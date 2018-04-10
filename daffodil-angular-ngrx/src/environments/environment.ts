@@ -4,5 +4,10 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  useMocks: false,
+  e2e: false,
+  name: "local",
+
+  API_BASE: "TBD"
 };

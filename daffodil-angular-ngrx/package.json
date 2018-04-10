@@ -26,7 +26,9 @@
     "@ngrx/router-store": "^5.0.1",
     "@ngrx/store": "^5.0.0",
     "@ngrx/store-devtools": "^5.0.1",
+    "angular-in-memory-web-api": "^0.6.0",
     "core-js": "^2.4.1",
+    "foundation-sites": "^6.4.4-rc1",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },
