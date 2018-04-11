@@ -17,7 +17,7 @@ export class ProductListEffects {
 
   @Effect()
   loadAll$ = this.actions$.pipe(
-    ofType(ProductListActionTypes.ProductsListLoadAction),
+    ofType(ProductListActionTypes.ProductListLoadAction),
     switchMap((action: ProductListLoad) =>
       this.productService.getAll()
         .pipe(
