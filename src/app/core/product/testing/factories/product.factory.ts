@@ -13,6 +13,7 @@ export class ProductFactory {
 export class MockProduct implements Product {
 
   cost: string;
+  id: string = Math.floor(Math.random()*1000).toString();
   
   constructor(givenCost:string) {
     this.cost = givenCost;

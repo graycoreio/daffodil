@@ -19,10 +19,9 @@ export function reducer(state = initialState, action: ProductListActions): State
     case ProductListActionTypes.ProductListLoadAction:
       return {...state, loading: true};
     case ProductListActionTypes.ProductListLoadSuccessAction:
-      return {...state, products: action.payload, loading: false};
+      return {...state, loading: false};
     case ProductListActionTypes.ProductListLoadFailureAction:
-      return {
-        ...state, 
+      return {...state, 
         loading: false, 
         errors: state.errors.concat(new Array(action.payload))
       };

@@ -50,10 +50,6 @@ describe('Product | Product List Reducer', () => {
       result = reducer(initialState, productListLoadSuccess);
     });
 
-    it('updates products on state', () => {
-      expect(result.products).toEqual(products);
-    });
-
     it('sets loading to false', () => {
       expect(result.loading).toEqual(false);
     });
