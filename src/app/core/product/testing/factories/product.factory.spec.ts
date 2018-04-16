@@ -21,12 +21,19 @@ describe('Core | Product | Testing | ProductFactory', () => {
 
   describe('create', () => {
 
-    let cost = "20";
-    
-    it('should return a Product with the given cost', () => {
-      let result:Product = productFactory.create(cost);
+    let result:Product;
 
-      expect(result.cost).toEqual(cost);
+    beforeEach(() => {
+      result = productFactory.create();
+    });
+    
+    it('should return a Product with a random cost under 10000', () => {
+
+      expect(result.cost).toBeLessThan(10000);
+    });
+
+    it('should return a Product with a random id under 1000', () => {
+      expect(result.id).toBeLessThan(1000);
     });
   });
 });

@@ -9,7 +9,6 @@ describe('Product | Product Entities Reducer', () => {
 
   beforeEach(() => {
     productFactory = new ProductFactory();
-
   });
 
   describe('when an unknown action is triggered', () => {
@@ -27,10 +26,12 @@ describe('Product | Product Entities Reducer', () => {
 
     let products: Product[];
     let result;
+    let product1Id;
 
     beforeEach(() => {
-      let product1 = productFactory.create('cost');
-      let product2 = productFactory.create('cost');
+      let product1 = productFactory.create();
+      let product2 = productFactory.create();
+      product1Id = product1.id;
       
       products = new Array(product1, product2);
       let productListLoadSuccess = new ProductListLoadSuccess(products);
@@ -43,7 +44,7 @@ describe('Product | Product Entities Reducer', () => {
     });
 
     it('sets expected product on state', () => {
-      expect(result.entities[products[0].id]).toEqual(products[0]);
+      expect(result.entities[product1Id].cost).toBe(products[0].cost);
     });
   });
 });
