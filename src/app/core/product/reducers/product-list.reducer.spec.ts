@@ -1,7 +1,8 @@
 import { Product } from "@core/product/model/product";
 import { ProductFactory } from "@core/product/testing/factories/product.factory";
-import { initialState, reducer } from "@core/product/reducers/product-list.reducer";
+import { initialState, reducer, getProductListLoading } from "@core/product/reducers/product-list.reducer";
 import { ProductListLoad, ProductListLoadSuccess, ProductListLoadFailure } from "@core/product/actions/product-list.actions";
+import { createSelector } from "@ngrx/store";
 
 
 describe('Product | Product List Reducer', () => {
@@ -75,6 +76,13 @@ describe('Product | Product List Reducer', () => {
 
     it('adds an error to state.errors', () => {
       expect(result.errors.length).toEqual(2);
+    });
+  });
+
+  describe('getProductListLoading', () => {
+    
+    it('returns loading state', () => {
+      expect(getProductListLoading(initialState)).toEqual(initialState.loading);
     });
   });
 });

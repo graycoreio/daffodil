@@ -29,3 +29,5 @@ export function reducer(state = initialState, action: ProductListActions): State
       return state;
   }
 }
+
+export const getProductListLoading = (state: State) => state.loading;
