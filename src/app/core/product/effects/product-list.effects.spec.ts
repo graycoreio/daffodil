@@ -33,7 +33,7 @@ describe('ProductListEffects', () => {
     productService = TestBed.get(ProductService);
     productFactory = TestBed.get(ProductFactory);
 
-    mockProductList = new Array(productFactory.create('cost'));
+    mockProductList = new Array(productFactory.create());
   });
 
   it('should be created', () => {

@@ -5,7 +5,7 @@ import { Product } from '@core/product/model/product';
 @Injectable()
 export class ProductFactory {
   
-  create(cost: string) : Product {
+  create() : Product {
     return new MockProduct();
   }
 }

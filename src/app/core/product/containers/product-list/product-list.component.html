@@ -1,0 +1,4 @@
+<product-list
+  *ngIf="(products$ | async) && !(loading$ | async)"
+  [products]="products$ | async"
+></product-list>

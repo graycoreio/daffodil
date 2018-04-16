@@ -22,7 +22,7 @@ describe('selectProductListState', () => {
       ]
     });
 
-    mockProduct = productFactory.create("cost");
+    mockProduct = productFactory.create();
     store = TestBed.get(Store);
     store.dispatch(new ProductListLoadSuccess(new Array(mockProduct)));
   }));

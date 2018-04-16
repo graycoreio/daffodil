@@ -3,13 +3,13 @@ import { TestBed, inject } from '@angular/core/testing';
 import { ProductTestingService } from './product.testing.service';
 import { Product } from '@core/product/model/product';
 import { ProductTestingModule } from '@core/product/testing/product-testing.module';
-import { ProductFactory } from '@core/product/testing/factories/product.factory';
+import { ProductFactory, MockProduct } from '@core/product/testing/factories/product.factory';
 
 describe('Core | Product | Testing | ProductTestingService', () => {
   
   let productTestingService;
   let productFactory;
-  let mockProduct;
+  let mockProduct: MockProduct;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -22,7 +22,8 @@ describe('Core | Product | Testing | ProductTestingService', () => {
     productFactory = TestBed.get(ProductFactory);
     productTestingService = TestBed.get(ProductTestingService);
     mockProduct = {
-      cost: "20"
+      cost: "20",
+      id: "21"
     }
 
     spyOn(productFactory, 'create').and.returnValue(mockProduct);

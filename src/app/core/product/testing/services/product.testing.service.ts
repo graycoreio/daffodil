@@ -19,8 +19,8 @@ export class ProductTestingService implements InMemoryDbService {
   createDb() {
     return {
       products: [
-        this.productFactory.create('10'),
-        this.productFactory.create('20')
+        this.productFactory.create(),
+        this.productFactory.create()
       ]
     };
   }
