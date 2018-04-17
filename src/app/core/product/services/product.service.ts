@@ -8,7 +8,7 @@ import { Product } from '@core/product/model/product';
 @Injectable()
 export class ProductService {
 
-  url = environment.API_BASE + "api/Products";
+  url = environment.API_BASE + "api/products";
 
   constructor(private http: HttpClient) {}
 

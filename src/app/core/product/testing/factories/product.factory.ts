@@ -6,12 +6,11 @@ import { Product } from '@core/product/model/product';
 export class ProductFactory {
   
   create() : Product {
-    return new MockProduct();
+    return {...new MockProduct()};
   }
 }
 
 export class MockProduct implements Product {
-
-  cost: string = faker.random.number(10000).toString();
-  id: string = faker.random.number(1000).toString();
+  cost = faker.random.number(10000).toString();
+  id = faker.random.number(1000).toString();
 };

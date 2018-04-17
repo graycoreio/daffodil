@@ -7,6 +7,7 @@ import { ProductListLoad } from '@core/product/actions/product-list.actions';
 
 @Component({
   selector: '[product-list-container]',
+  template: '<ng-content></ng-content>',
   exportAs: 'ProductListContainer'
 })
 export class ProductListContainer implements OnInit {

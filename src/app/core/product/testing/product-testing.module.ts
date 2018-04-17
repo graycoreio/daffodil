@@ -12,11 +12,12 @@ import { ProductService } from '@core/product/services/product.service';
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forFeature(ProductTestingService, {
       delay: 500
-    }),
+    })
   ],
   providers: [
     ProductFactory,
-    ProductService
+    ProductService,
+    ProductTestingService
   ]
 })
 export class ProductTestingModule { }

@@ -8,6 +8,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from '@core/core.module';
 import { ProductModule } from './product/product.module';
 import { EffectsModule } from '@ngrx/effects';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { MockModule } from '@core/mock/mock.module';
+
+import { ProductTestingService } from '@core/product/testing/services/product.testing.service';
+import { environment } from 'environments/environment';
 
 
 @NgModule({
@@ -16,9 +22,14 @@ import { EffectsModule } from '@ngrx/effects';
   ],
   imports: [
     BrowserModule,
+    
+    environment.useMocks ? MockModule : [],
+
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
+    
     AppRoutingModule,
+
     CoreModule,
     ProductModule
   ],

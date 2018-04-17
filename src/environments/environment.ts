@@ -9,7 +9,7 @@ export const environment = {
   e2e: false,
   name: "local",
 
-  API_BASE: "TBD",
+  API_BASE: "http://www.SOMEFAKEURL.com/",
   httpServiceSettings: {
     endpoint: '/example/endpoint'
   }

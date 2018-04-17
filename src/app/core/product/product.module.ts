@@ -9,16 +9,12 @@ import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
-    /**
-     * Testing Environment Setup
-     */
-    environment.useMocks ? ProductTestingModule : [],
-     
+    CommonModule,
+
     /**
      * Ngrx/store
      */
     CoreProductStateModule,
-    CommonModule
   ],
   declarations: [
     ProductListContainer

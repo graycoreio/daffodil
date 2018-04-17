@@ -27,7 +27,7 @@
     "@ngrx/store": "^5.0.0",
     "@ngrx/store-devtools": "^5.0.1",
     "@types/faker": "^4.1.2",
-    "angular-in-memory-web-api": "^0.6.0",
+    "angular-in-memory-web-api": "^0.5.4",
     "core-js": "^2.4.1",
     "faker": "^4.1.0",
     "foundation-sites": "^6.4.4-rc1",
