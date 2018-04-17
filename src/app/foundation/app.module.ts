@@ -5,6 +5,9 @@ import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { CoreModule } from '@core/core.module';
+import { ProductModule } from './product/product.module';
+import { EffectsModule } from '@ngrx/effects';
 
 
 @NgModule({
@@ -14,7 +17,10 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     StoreModule.forRoot({}),
-    AppRoutingModule
+    EffectsModule.forRoot([]),
+    AppRoutingModule,
+    CoreModule,
+    ProductModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,7 +6,8 @@ import * as fromProduct from '../../reducers';
 import { ProductListLoad } from '@core/product/actions/product-list.actions';
 
 @Component({
-  templateUrl: './product-list.component.html'
+  selector: '[product-list-container]',
+  exportAs: 'ProductListContainer'
 })
 export class ProductListContainer implements OnInit {
 

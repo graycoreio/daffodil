@@ -5,9 +5,12 @@
 
 export const environment = {
   production: false,
-  useMocks: false,
+  useMocks: true,
   e2e: false,
   name: "local",
 
-  API_BASE: "TBD"
+  API_BASE: "TBD",
+  httpServiceSettings: {
+    endpoint: '/example/endpoint'
+  }
 };
