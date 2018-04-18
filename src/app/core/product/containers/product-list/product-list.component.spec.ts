@@ -10,11 +10,6 @@ import { ProductListLoad } from '@core/product/actions/product-list.actions';
 import { of } from 'rxjs/observable/of';
 import { By } from '@angular/platform-browser';
 
-@Component({selector: 'product-list', template: ''})
-class ProductListComponentMock {
-  @Input() products;
-}
-
 describe('ProductListContainer', () => {
   let component: ProductListContainer;
   let fixture: ComponentFixture<ProductListContainer>;
@@ -30,7 +25,7 @@ describe('ProductListContainer', () => {
           products: combineReducers(fromProduct.reducers),
         })
       ],
-      declarations: [ ProductListContainer, ProductListComponentMock ]
+      declarations: [ ProductListContainer ]
     })
     .compileComponents();
   }));
@@ -116,19 +111,6 @@ describe('ProductListContainer', () => {
       it('should render product-list', () => {
         expect(fixture.debugElement.query(By.css('product-list'))).toBeDefined();
       });
-    });
-  });
-
-  describe('on product-list', () => {
-    
-    let productList;
-    
-    beforeEach(() => {
-      productList = fixture.debugElement.query(By.css('product-list'));
-    });
-
-    it('should set products', () => {
-      expect(productList.componentInstance.products).toEqual(initialProducts);
     });
   });
 });

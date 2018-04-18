@@ -44,7 +44,7 @@ describe('Product | Product Entities Reducer', () => {
     });
 
     it('sets expected product on state', () => {
-      expect(result.entities[product1Id].cost).toBe(products[0].cost);
+      expect(result.entities[product1Id]).toEqual(products[0]);
     });
   });
 });

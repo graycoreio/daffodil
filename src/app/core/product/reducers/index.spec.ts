@@ -40,7 +40,7 @@ describe('selectProductListState', () => {
     
     it('selects product entities as a dictionary object', () => {
       store.pipe(select(fromProduct.selectProductEntities)).subscribe((products) => {
-        expect(products[mockProduct.id].cost).toBe(mockProduct.cost);
+        expect(products[mockProduct.id]).toEqual(mockProduct);
       });
     });
   });
@@ -49,7 +49,7 @@ describe('selectProductListState', () => {
     
     it('selects all products as an array', () => {
       store.pipe(select(fromProduct.selectAllProducts)).subscribe((products) => {
-        expect(products[0].cost).toEqual(mockProduct.cost);
+        expect(products[0]).toEqual(mockProduct);
       });
     });
   });

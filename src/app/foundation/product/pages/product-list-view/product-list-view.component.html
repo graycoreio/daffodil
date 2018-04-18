@@ -1,3 +1,3 @@
-<div product-list-container #BLAH="ProductListContainer">
-  <product-list [products]="BLAH.products$ | async"></product-list>
+<div product-list-container #ProductListContainer="ProductListContainer">
+  <product-list [products]="ProductListContainer.products$ | async"></product-list>
 </div>
