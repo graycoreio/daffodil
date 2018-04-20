@@ -2,10 +2,8 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { CoreProductModule } from '@daffodil/product/product.module';
 import { DaffodilConfig } from '@daffodil/config/model';
-import { DaffodilConfigService } from '@daffodil/config/daffodil-config.service';
-
-let configValue;
-let instantiateDaffodilConfigService = new DaffodilConfigService(configValue);
+import { DaffodilConfigService, DaffodilConfigServiceFactory } from '@daffodil/config/daffodil-config.service';
+import { _DAFFODIL_CONFIG } from '@daffodil/tokens';
 
 @NgModule({
   imports: [
@@ -18,10 +16,19 @@ let instantiateDaffodilConfigService = new DaffodilConfigService(configValue);
 export class DaffodilModule {
 
   static forRoot(config: DaffodilConfig): ModuleWithProviders {
-    configValue = config;
     return {
       ngModule: DaffodilModule,
-      providers: [{provide: DaffodilConfigService, useValue: instantiateDaffodilConfigService}]
+      providers: [
+        {
+          provide: _DAFFODIL_CONFIG,
+          useValue: config
+        },
+        {
+          provide: DaffodilConfigService, 
+          useFactory: DaffodilConfigServiceFactory,
+          deps: [_DAFFODIL_CONFIG]
+        }
+      ]
     };
   }
 }
