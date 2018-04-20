@@ -1,19 +1,19 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "daffodil-angular-ngrx"
+    "name": "daffodil"
   },
   "apps": [
     {
       "name": "foundation",
-      "root": "src",
+      "root": "foundation-app",
       "outDir": "dist",
       "assets": [
         "assets",
         "favicon.ico"
       ],
       "index": "index.html",
-      "main": "entrypoints/foundation.ts",
+      "main": "main.ts",
       "polyfills": "polyfills.ts",
       "test": "test.ts",
       "tsconfig": "tsconfig.app.json",

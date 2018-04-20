@@ -1,9 +1,9 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 
-import { CoreProductModule } from '@daffodil/product/product.module';
-import { DaffodilConfig } from '@daffodil/config/model';
-import { DaffodilConfigService, DaffodilConfigServiceFactory } from '@daffodil/config/daffodil-config.service';
-import { _DAFFODIL_CONFIG } from '@daffodil/tokens';
+import { CoreProductModule } from './product/product.module';
+import { DaffodilConfig } from './config/model';
+import { DaffodilConfigService, DaffodilConfigServiceFactory } from './config/daffodil-config.service';
+import { _DAFFODIL_CONFIG } from './tokens';
 
 @NgModule({
   imports: [
