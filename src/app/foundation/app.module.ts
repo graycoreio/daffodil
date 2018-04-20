@@ -5,14 +5,13 @@ import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { CoreModule } from '@core/core.module';
+import { DaffodilModule } from '@daffodil/daffodil.module';
 import { ProductModule } from './product/product.module';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { MockModule } from '@core/mock/mock.module';
+import { MockModule } from '@daffodil/mock/mock.module';
 
-import { ProductTestingService } from '@core/product/testing/services/product.testing.service';
 import { environment } from 'environments/environment';
 
 
@@ -30,7 +29,7 @@ import { environment } from 'environments/environment';
     
     AppRoutingModule,
 
-    CoreModule,
+    DaffodilModule.forRoot({BASE_URL: environment.API_BASE}),
     ProductModule
   ],
   providers: [],

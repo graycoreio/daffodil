@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductListComponent } from './product-list.component';
-import { ProductFactory } from '@core/product/testing/factories/product.factory';
+import { ProductFactory } from '@daffodil/product/testing/factories/product.factory';
 import { By } from '@angular/platform-browser';
 
 describe('ProductListComponent', () => {

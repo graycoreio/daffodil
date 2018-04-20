@@ -5,11 +5,13 @@ import { Observable } from 'rxjs/Observable';
 import { ProductListEffects } from './product-list.effects';
 import { of } from 'rxjs/observable/of';
 import { hot, cold } from 'jasmine-marbles';
-import { ProductTestingModule } from '@core/product/testing/product-testing.module';
-import { ProductService } from '@core/product/services/product.service';
-import { ProductFactory } from '@core/product/testing/factories/product.factory';
-import { Product } from '@core/product/model/product';
-import { ProductListLoad, ProductListLoadSuccess, ProductListLoadFailure } from '@core/product/actions/product-list.actions';
+import { ProductTestingModule } from '@daffodil/product/testing/product-testing.module';
+import { ProductService } from '@daffodil/product/services/product.service';
+import { ProductFactory } from '@daffodil/product/testing/factories/product.factory';
+import { Product } from '@daffodil/product/model/product';
+import { ProductListLoad, ProductListLoadSuccess, ProductListLoadFailure } from '@daffodil/product/actions/product-list.actions';
+import { DaffodilConfigService } from '@daffodil/config/daffodil-config.service';
+import { DaffodilConfigFactory } from '@daffodil/config/testing/daffodil-config.factory';
 
 describe('ProductListEffects', () => {
   let actions$: Observable<any>;
@@ -17,15 +19,21 @@ describe('ProductListEffects', () => {
   let productService: ProductService;
   let productFactory: ProductFactory;
   let mockProductList: Product[];
+  let daffodilConfigService: DaffodilConfigService;
+  let daffodilConfigFactory: DaffodilConfigFactory;
 
   beforeEach(() => {
+    daffodilConfigFactory = new DaffodilConfigFactory();
+    daffodilConfigService = new DaffodilConfigService(daffodilConfigFactory.create());
+
     TestBed.configureTestingModule({
       imports: [
         ProductTestingModule
       ],
       providers: [
         ProductListEffects,
-        provideMockActions(() => actions$)
+        provideMockActions(() => actions$),
+        {provide: DaffodilConfigService, useValue: daffodilConfigService}
       ]
     });
 

@@ -1,7 +1,7 @@
-import { Product } from "@core/product/model/product";
-import { ProductFactory } from "@core/product/testing/factories/product.factory";
-import { initialState, reducer, productAdapter } from "@core/product/reducers/product-entities.reducer";
-import { ProductListLoad, ProductListLoadSuccess } from "@core/product/actions/product-list.actions";
+import { Product } from "@daffodil/product/model/product";
+import { ProductFactory } from "@daffodil/product/testing/factories/product.factory";
+import { initialState, reducer, productAdapter } from "@daffodil/product/reducers/product-entities.reducer";
+import { ProductListLoad, ProductListLoadSuccess } from "@daffodil/product/actions/product-list.actions";
 
 describe('Product | Product Entities Reducer', () => {
 

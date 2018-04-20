@@ -13,7 +13,7 @@
       "node_modules/@types"
     ],
     "paths": {
-      "@core/*" : ["app/core/*"],
+      "@daffodil/*" : ["app/core/*"],
       "@foundation" : ["app/foundation/*"]
     },
     "lib": [

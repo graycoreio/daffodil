@@ -1,11 +1,11 @@
-import { selectProductListState } from "@core/product/reducers";
+import { selectProductListState } from "@daffodil/product/reducers";
 import { NgModule } from "@angular/core";
 import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 import * as fromProduct from './index';
-import { ProductListLoadSuccess } from "@core/product/actions/product-list.actions";
-import { ProductFactory } from "@core/product/testing/factories/product.factory";
-import { Product } from "@core/product/model/product";
+import { ProductListLoadSuccess } from "@daffodil/product/actions/product-list.actions";
+import { ProductFactory } from "@daffodil/product/testing/factories/product.factory";
+import { Product } from "@daffodil/product/model/product";
 
 describe('selectProductListState', () => {
 

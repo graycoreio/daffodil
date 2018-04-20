@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Product } from '@core/product/model/product';
+import { Product } from '@daffodil/product/model/product';
 import { Store, select } from '@ngrx/store';
 import * as fromProduct from '../../reducers';
-import { ProductListLoad } from '@core/product/actions/product-list.actions';
+import { ProductListLoad } from '@daffodil/product/actions/product-list.actions';
 
 @Component({
   selector: '[product-list-container]',

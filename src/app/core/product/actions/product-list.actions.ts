@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Product } from '@core/product/model/product';
+import { Product } from '@daffodil/product/model/product';
 
 export enum ProductListActionTypes {
     ProductListLoadAction = "[ProductList] Load Action",

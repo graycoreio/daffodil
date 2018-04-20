@@ -2,15 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
-import { Product } from '@core/product/model/product';
-import { coreEnvironment } from '@core/environment-importer';
+import { environment } from 'environments/environment';
+import { Product } from '@daffodil/product/model/product';
+import { DaffodilConfigService } from '@daffodil/config/daffodil-config.service';
 
 @Injectable()
 export class ProductService {
 
-  url = coreEnvironment.API_BASE + "api/products";
+  url = this.daffodilConfigService.config.BASE_URL + 'api/products';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private daffodilConfigService: DaffodilConfigService
+  ) {}
 
   getAll(): Observable<Product[]> {
     return this.http.get<Product[]>(this.url);
