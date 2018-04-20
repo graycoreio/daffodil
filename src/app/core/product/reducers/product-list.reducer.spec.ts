@@ -1,7 +1,7 @@
-import { Product } from "@core/product/model/product";
-import { ProductFactory } from "@core/product/testing/factories/product.factory";
-import { initialState, reducer, getProductListLoading } from "@core/product/reducers/product-list.reducer";
-import { ProductListLoad, ProductListLoadSuccess, ProductListLoadFailure } from "@core/product/actions/product-list.actions";
+import { Product } from "@daffodil/product/model/product";
+import { ProductFactory } from "@daffodil/product/testing/factories/product.factory";
+import { initialState, reducer, getProductListLoading } from "@daffodil/product/reducers/product-list.reducer";
+import { ProductListLoad, ProductListLoadSuccess, ProductListLoadFailure } from "@daffodil/product/actions/product-list.actions";
 import { createSelector } from "@ngrx/store";
 
 

@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
-import { ProductListActionTypes, ProductListActions } from '@core/product/actions/product-list.actions';
-import { Product } from '@core/product/model/product';
+import { ProductListActionTypes, ProductListActions } from '@daffodil/product/actions/product-list.actions';
+import { Product } from '@daffodil/product/model/product';
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
 
 export const productAdapter = createEntityAdapter<Product>();

@@ -4,9 +4,9 @@ import * as fromProduct from '../../reducers';
 import { ProductListContainer } from './product-list.component';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { Component, Input } from '@angular/core';
-import { ProductFactory } from '@core/product/testing/factories/product.factory';
-import { Product } from '@core/product/model/product';
-import { ProductListLoad } from '@core/product/actions/product-list.actions';
+import { ProductFactory } from '@daffodil/product/testing/factories/product.factory';
+import { Product } from '@daffodil/product/model/product';
+import { ProductListLoad } from '@daffodil/product/actions/product-list.actions';
 import { of } from 'rxjs/observable/of';
 import { By } from '@angular/platform-browser';
 

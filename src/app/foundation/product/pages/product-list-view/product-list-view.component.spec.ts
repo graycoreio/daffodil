@@ -3,10 +3,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProductListViewComponent } from './product-list-view.component';
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Product } from '@core/product/model/product';
+import { Product } from '@daffodil/product/model/product';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs/observable/of';
-import { ProductFactory } from '@core/product/testing/factories/product.factory';
+import { ProductFactory } from '@daffodil/product/testing/factories/product.factory';
 
 let productFactory = new ProductFactory();
 let products$ = of(new Array(productFactory.create()));

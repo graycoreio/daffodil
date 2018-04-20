@@ -1,9 +1,9 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { ProductTestingService } from './product.testing.service';
-import { Product } from '@core/product/model/product';
-import { ProductTestingModule } from '@core/product/testing/product-testing.module';
-import { ProductFactory, MockProduct } from '@core/product/testing/factories/product.factory';
+import { Product } from '@daffodil/product/model/product';
+import { ProductTestingModule } from '@daffodil/product/testing/product-testing.module';
+import { ProductFactory, MockProduct } from '@daffodil/product/testing/factories/product.factory';
 
 describe('Core | Product | Testing | ProductTestingService', () => {
   
