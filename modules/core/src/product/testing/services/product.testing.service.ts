@@ -3,9 +3,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { map, take } from 'rxjs/operators';
-import { Product } from '@daffodil/product/model/product';
+
+import { Product } from '../../model/product';
+import { ProductFactory } from '../../testing/factories/product.factory';
+
 import { InMemoryDbService, RequestInfoUtilities, ParsedRequestUrl, RequestInfo, STATUS } from 'angular-in-memory-web-api';
-import { ProductFactory } from '@daffodil/product/testing/factories/product.factory';
+
 
 @Injectable()
 export class ProductTestingService implements InMemoryDbService {

@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
-import { environment } from 'environments/environment';
-import { Product } from '@daffodil/product/model/product';
-import { DaffodilConfigService } from '@daffodil/config/daffodil-config.service';
+import { Product } from '../model/product';
+import { DaffodilConfigService } from '../../config/daffodil-config.service';
 
 @Injectable()
 export class ProductService {

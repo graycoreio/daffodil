@@ -1,5 +1,5 @@
 {
-  "name": "daffodil-angular-ngrx",
+  "name": "@daffodil/platform",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -8,7 +8,8 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:core": "ng-packagr -p modules/core/package.json"
   },
   "private": true,
   "dependencies": {

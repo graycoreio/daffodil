@@ -5,8 +5,12 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { switchMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 
-import { ProductService } from '@daffodil/product/services/product.service';
-import { ProductListActionTypes, ProductListLoad, ProductListLoadSuccess, ProductListLoadFailure } from '@daffodil/product/actions/product-list.actions';
+import { ProductService } from '../services/product.service';
+import { 
+  ProductListActionTypes, 
+  ProductListLoad, 
+  ProductListLoadSuccess, 
+  ProductListLoadFailure } from '../actions/product-list.actions';
 
 @Injectable()
 export class ProductListEffects {

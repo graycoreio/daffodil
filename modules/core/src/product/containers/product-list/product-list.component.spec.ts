@@ -1,14 +1,21 @@
+import { Component, Input } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import * as fromProduct from '../../reducers';
+import { By } from '@angular/platform-browser';
+
+import { Store, StoreModule, combineReducers } from '@ngrx/store';
+
+import { of } from 'rxjs/observable/of';
 
 import { ProductListContainer } from './product-list.component';
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
-import { Component, Input } from '@angular/core';
-import { ProductFactory } from '@daffodil/product/testing/factories/product.factory';
-import { Product } from '@daffodil/product/model/product';
-import { ProductListLoad } from '@daffodil/product/actions/product-list.actions';
-import { of } from 'rxjs/observable/of';
-import { By } from '@angular/platform-browser';
+import { ProductFactory } from '../../testing/factories/product.factory';
+import { Product } from '../../model/product';
+
+
+import { ProductListLoad } from '../../actions/product-list.actions';
+import * as fromProduct from '../../reducers';
+
+
+
 
 describe('ProductListContainer', () => {
   let component: ProductListContainer;

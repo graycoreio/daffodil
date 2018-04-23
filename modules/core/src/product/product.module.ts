@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
-
-import { environment } from 'environments/environment';
-import { ProductService } from '@daffodil/product/services/product.service';
-import { ProductListContainer } from '@daffodil/product/containers/product-list/product-list.component';
-import { ProductTestingModule } from '@daffodil/product/testing/product-testing.module';
-import { CoreProductStateModule } from '@daffodil/product/product-state.module';
 import { CommonModule } from '@angular/common';
+
+import { ProductService } from './services/product.service';
+import { ProductListContainer } from './containers/product-list/product-list.component';
+import { ProductTestingModule } from './testing/product-testing.module';
+import { CoreProductStateModule } from './product-state.module';
 
 @NgModule({
   imports: [

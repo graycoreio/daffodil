@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/ng-packagr/package.schema.json",
+  "name": "@daffodil/core",
+  "version": "1.0.0",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^5.1.0",
+    "@angular/core": "^5.1.0",
+    "@ngrx/effects": "^5.0.1",
+    "@ngrx/entity": "^5.2.0",
+    "@ngrx/store": "^5.0.0",
+    "angular-in-memory-web-api": "^0.5.4",
+    "faker": "^4.1.0",
+    "rxjs": "^5.5.6"
+  },
+  "ngPackage": {
+    "lib": {
+      "entryFile": "public_api.ts"
+    },
+    "dest": "../../daffodil-core"
+  }
+}

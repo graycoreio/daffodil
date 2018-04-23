@@ -1,12 +1,15 @@
+import { Component, Input } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProductListViewComponent } from './product-list-view.component';
-import { Component, Input } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Product } from '@daffodil/product/model/product';
 import { By } from '@angular/platform-browser';
+
+import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-import { ProductFactory } from '@daffodil/product/testing/factories/product.factory';
+
+import { ProductListViewComponent } from './product-list-view.component';
+
+import { Product } from '@daffodil/core/product//model/product';
+import { ProductFactory } from '@daffodil/core/product/testing/factories/product.factory';
 
 let productFactory = new ProductFactory();
 let products$ = of(new Array(productFactory.create()));

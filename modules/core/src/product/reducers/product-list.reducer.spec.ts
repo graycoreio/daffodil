@@ -1,8 +1,9 @@
-import { Product } from "@daffodil/product/model/product";
-import { ProductFactory } from "@daffodil/product/testing/factories/product.factory";
-import { initialState, reducer, getProductListLoading } from "@daffodil/product/reducers/product-list.reducer";
-import { ProductListLoad, ProductListLoadSuccess, ProductListLoadFailure } from "@daffodil/product/actions/product-list.actions";
 import { createSelector } from "@ngrx/store";
+
+import { Product } from "../model/product";
+import { ProductFactory } from "../testing/factories/product.factory";
+import { initialState, reducer, getProductListLoading } from "../reducers/product-list.reducer";
+import { ProductListLoad, ProductListLoadSuccess, ProductListLoadFailure } from "../actions/product-list.actions";
 
 
 describe('Product | Product List Reducer', () => {

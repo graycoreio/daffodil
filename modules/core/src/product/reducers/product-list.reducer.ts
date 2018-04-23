@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
-import { ProductListActionTypes, ProductListActions } from '@daffodil/product/actions/product-list.actions';
-import { Product } from '@daffodil/product/model/product';
+
+import { ProductListActionTypes, ProductListActions } from '../actions/product-list.actions';
+import { Product } from '../model/product';
 
 export interface State {
   products: Product[],

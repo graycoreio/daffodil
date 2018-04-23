@@ -3,9 +3,9 @@ import { TestBed, inject } from '@angular/core/testing';
 import { ProductService } from './product.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Http } from '@angular/http';
-import { ProductTestingModule } from '@daffodil/product/testing/product-testing.module';
-import { DaffodilConfigService } from '@daffodil/config/daffodil-config.service';
-import { DaffodilConfigFactory } from '@daffodil/config/testing/daffodil-config.factory';
+import { ProductTestingModule } from '../testing/product-testing.module';
+import { DaffodilConfigService } from '../../config/daffodil-config.service';
+import { DaffodilConfigFactory } from '../../config/testing/daffodil-config.factory';
 
 describe('Core | Product | ProductService', () => {
   let productService;

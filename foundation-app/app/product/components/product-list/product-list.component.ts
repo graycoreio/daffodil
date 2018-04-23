@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Product } from '@daffodil/product/model/product';
+
+import { Product } from '@daffodil/core/product/model/product';
 
 @Component({
   selector: 'product-list',

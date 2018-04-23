@@ -1,8 +1,8 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { MockService } from './mock.service';
-import { ProductTestingService } from '@daffodil/product/testing/services/product.testing.service';
-import { ProductTestingModule } from '@daffodil/product/testing/product-testing.module';
+import { ProductTestingService } from '../../product/testing/services/product.testing.service';
+import { ProductTestingModule } from '../../product/testing/product-testing.module';
 
 describe('MockService', () => {
   beforeEach(() => {
