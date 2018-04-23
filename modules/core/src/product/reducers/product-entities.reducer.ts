@@ -1,9 +1,9 @@
 import { Action } from '@ngrx/store';
 import { ProductListActionTypes, ProductListActions } from '../actions/product-list.actions';
 import { Product } from '../model/product';
-import { createEntityAdapter, EntityState } from '@ngrx/entity';
+import { createEntityAdapter, EntityState, EntityAdapter } from '@ngrx/entity';
 
-export const productAdapter = createEntityAdapter<Product>();
+export const productAdapter : EntityAdapter<Product> = createEntityAdapter<Product>();
 
 export interface State extends EntityState<Product> { } 
 

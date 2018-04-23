@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { DaffodilConfigService } from './daffodil-config.service';
-import { DaffodilConfig } from '@daffodil/config/model';
+import { DaffodilConfig } from '../config/model';
 
 class DaffodilConfigMock implements DaffodilConfig {
 

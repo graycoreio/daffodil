@@ -11,6 +11,8 @@ import {
   ProductListLoad, 
   ProductListLoadSuccess, 
   ProductListLoadFailure } from '../actions/product-list.actions';
+import { Observable } from 'rxjs/Observable';
+import { Action } from 'rxjs/scheduler/Action';
 
 @Injectable()
 export class ProductListEffects {
@@ -20,7 +22,7 @@ export class ProductListEffects {
     private productService: ProductService) {}
 
   @Effect()
-  loadAll$ = this.actions$.pipe(
+  loadAll$ : Observable<any> = this.actions$.pipe(
     ofType(ProductListActionTypes.ProductListLoadAction),
     switchMap((action: ProductListLoad) =>
       this.productService.getAll()

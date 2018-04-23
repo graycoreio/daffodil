@@ -1,6 +1,10 @@
+import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
+import { Dictionary } from '@ngrx/entity/src/models';
+
 import * as fromProduct from './product-entities.reducer';
 import * as fromProductList from './product-list.reducer';
-import { ActionReducerMap, createSelector, createFeatureSelector } from '@ngrx/store';
+
+import { Product } from '../model/product';
 
 export interface ProductState {
   products : fromProduct.State;
@@ -52,7 +56,7 @@ export const selectProductListState = createSelector(
   (state: ProductState) => state.productList
 )
 
-export const selectProductListLoadingState = createSelector(
+export const selectProductListLoadingState : MemoizedSelector<object, boolean> = createSelector(
   selectProductListState,
   fromProductList.getProductListLoading
 )

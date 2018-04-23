@@ -1,5 +1,5 @@
 {
-  "$schema": "./node_modules/ng-packagr/package.schema.json",
+  "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@daffodil/core",
   "version": "1.0.0",
   "license": "MIT",
@@ -17,6 +17,6 @@
     "lib": {
       "entryFile": "public_api.ts"
     },
-    "dest": "../../daffodil-core"
+    "dest": "../../dist/core"
   }
 }
