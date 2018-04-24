@@ -12,13 +12,18 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "paths": {
-      "@daffodil/*" : ["modules/core/src/*"],
-      "@foundation" : ["foundation-app/foundation/*"]
-    },
     "lib": [
       "es2017",
       "dom"
-    ]
-  }
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@daffodil/*": ["libs/core/src/*"],
+      "@foundation": ["apps/foundation-app/*"]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

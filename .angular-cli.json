@@ -1,35 +1,10 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "$schema": "./node_modules/@nrwl/schematics/src/schema.json",
   "project": {
-    "name": "daffodil"
+    "name": "daffodil1",
+    "npmScope": "daffodil1",
+    "latestMigration": "20180412-nx-update-scripts"
   },
-  "apps": [
-    {
-      "name": "foundation",
-      "root": "foundation-app",
-      "outDir": "dist",
-      "assets": [
-        "assets",
-        "favicon.ico"
-      ],
-      "index": "index.html",
-      "main": "main.ts",
-      "polyfills": "polyfills.ts",
-      "test": "test.ts",
-      "tsconfig": "tsconfig.app.json",
-      "testTsconfig": "tsconfig.spec.json",
-      "prefix": "foundation",
-      "styles": [
-        "styles.scss"
-      ],
-      "scripts": [],
-      "environmentSource": "environments/environment.ts",
-      "environments": {
-        "dev": "environments/environment.ts",
-        "prod": "environments/environment.prod.ts"
-      }
-    }
-  ],
   "e2e": {
     "protractor": {
       "config": "./protractor.conf.js"
@@ -37,15 +12,15 @@
   },
   "lint": [
     {
-      "project": "src/tsconfig.app.json",
+      "project": "./tsconfig.spec.json",
       "exclude": "**/node_modules/**"
     },
     {
-      "project": "src/tsconfig.spec.json",
+      "project": "apps/foundation-app/src/tsconfig.app.json",
       "exclude": "**/node_modules/**"
     },
     {
-      "project": "e2e/tsconfig.e2e.json",
+      "project": "apps/foundation-app/e2e/tsconfig.e2e.json",
       "exclude": "**/node_modules/**"
     }
   ],
@@ -54,8 +29,54 @@
       "config": "./karma.conf.js"
     }
   },
+  "apps": [
+    {
+      "name": "foundation-app",
+      "root": "apps/foundation-app/src",
+      "outDir": "dist/apps/foundation-app",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "../../../test.js",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "../../../tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "styles.scss"
+      ],
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      },
+      "tags": []
+    },
+    {
+      "name": "core",
+      "root": "libs/core/src",
+      "test": "../../../test.js",
+      "appRoot": "",
+      "tags": []
+    },
+    {
+      "name": "$workspaceRoot",
+      "root": ".",
+      "appRoot": ""
+    }
+  ],
   "defaults": {
-    "styleExt": "scss",
+    "schematics": {
+      "collection": "@nrwl/schematics"
+    },
+    "styleExt": "css",
     "component": {}
+  },
+  "warnings": {
+    "typescriptMismatch": false
   }
 }
