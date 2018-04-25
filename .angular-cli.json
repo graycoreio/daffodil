@@ -1,8 +1,8 @@
 {
   "$schema": "./node_modules/@nrwl/schematics/src/schema.json",
   "project": {
-    "name": "daffodil1",
-    "npmScope": "daffodil1",
+    "name": "daffodil",
+    "npmScope": "daffodil",
     "latestMigration": "20180412-nx-update-scripts"
   },
   "e2e": {
