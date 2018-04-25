@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build:lib": "ng-packagr -p libs/core/package.json",
     "test": "ng test",
     "lint": "./node_modules/.bin/nx lint && ng lint",
     "e2e": "ng e2e",
@@ -54,9 +54,9 @@
   "devDependencies": {
     "@angular/cli": "^1.7.1",
     "@angular/compiler-cli": "5.2.7",
+    "@angular/language-service": "5.2.7",
     "@ngrx/schematics": "5.2.0",
     "@nrwl/schematics": "1.0.0",
-    "@angular/language-service": "5.2.7",
     "@types/jasmine": "~2.8.3",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
@@ -68,10 +68,11 @@
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "ng-packagr": "^3.0.0-rc.2",
+    "prettier": "1.10.2",
     "protractor": "~5.1.2",
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
-    "typescript": "2.6.2",
-    "prettier": "1.10.2"
+    "typescript": "2.6.2"
   }
 }

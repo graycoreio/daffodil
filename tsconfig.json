@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./src",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -18,7 +17,7 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@daffodil/*": ["libs/core/src/*"],
+      "@daffodil/core": ["libs/core"],
       "@foundation": ["apps/foundation-app/*"]
     }
   },

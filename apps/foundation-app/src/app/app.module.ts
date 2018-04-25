@@ -13,8 +13,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { ProductModule } from './product/product.module';
 
-import { MockModule } from '@daffodil/mock/mock.module'
-import { DaffodilModule } from '@daffodil/daffodil.module';
+import { MockModule } from '@daffodil/core';
+import { DaffodilModule } from '@daffodil/core';
 
 @NgModule({
   declarations: [

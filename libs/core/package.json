@@ -1,0 +1,25 @@
+{
+  "$schema": "../../node_modules/ng-packagr/package.schema.json",
+  "name": "core",
+  "version": "1.0.0-a",
+  "description": "An Angular PWA built for Magento 2",
+  "scripts": {
+    "test": "ng test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "ngPackage": {
+    "lib": {
+      "entryFile": "public_api.ts"
+    },
+    "dest": "../../dist/core"
+  }
+}
