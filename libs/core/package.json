@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
-  "name": "core",
+  "name": "@daffodil/core",
   "version": "1.0.0-a",
   "description": "An Angular PWA built for Magento 2",
   "scripts": {
