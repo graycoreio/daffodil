@@ -1,5 +1,5 @@
 {
-  "name": "daffodil",
+  "name": "@daffodil/daffodil",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
