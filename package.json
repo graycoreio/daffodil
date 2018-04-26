@@ -5,6 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "build": "ng build --app=foundation-demo",
     "build:lib": "ng-packagr -p libs/core/package.json",
     "test": "ng test",
     "lint": "./node_modules/.bin/nx lint && ng lint",
@@ -68,6 +69,7 @@
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "lerna": "^2.11.0",
     "ng-packagr": "^3.0.0-rc.2",
     "prettier": "1.10.2",
     "protractor": "~5.1.2",
