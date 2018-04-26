@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./src",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -12,13 +11,18 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "paths": {
-      "@daffodil/*" : ["app/core/*"],
-      "@foundation" : ["app/foundation/*"]
-    },
     "lib": [
       "es2017",
       "dom"
-    ]
-  }
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@daffodil/core": ["libs/core"],
+      "@foundation": ["apps/foundation-app/*"]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }
