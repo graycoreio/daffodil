@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { DaffodilConfigFactory } from './daffodil-config.factory';
-import { DaffodilConfig } from '@core/config/model';
+import { DaffodilConfig } from '../model';
 
 describe('Core | Config | DaffodilConfigFactory', () => {
   

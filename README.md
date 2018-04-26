@@ -1,6 +1,13 @@
-# Daffodil1
+# Daffodil
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) using [Nrwl Nx](https://nrwl.io/nx).
+
+You can swap between the different applications by doing:
+
+* `ng serve --app=foundation-app`
+
+## Contributing
+Please read the [contributing guidelines here](https://github.com/graycore/daffodil/blob/master/CONTRIBUTING.md).
 
 ## Nrwl Extensions for Angular (Nx)
 
