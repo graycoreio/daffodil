@@ -34,11 +34,11 @@ describe('Core | Product | ProductService', () => {
     expect(productService).toBeTruthy();
   });
 
-  describe('getAll', () => {
+  describe('get', () => {
       
     it('should send a get request', () => {
       spyOn(http, 'get');
-      productService.getAll();
+      productService.get();
       
       expect(http.get).toHaveBeenCalled();
     });

@@ -15,7 +15,7 @@ export class CartService {
     private daffodilConfigService: DaffodilConfigService
   ) {}
 
-  getAll(): Observable<Cart[]> {
-    return this.http.get<Cart[]>(this.url);
+  get(): Observable<Cart> {
+    return this.http.get<Cart>(this.url);
   }
 }
