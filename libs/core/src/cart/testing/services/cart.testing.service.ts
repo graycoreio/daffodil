@@ -4,16 +4,15 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { map, take } from 'rxjs/operators';
 
-import { Product } from '../../model/product';
-import { ProductFactory } from '../../testing/factories/product.factory';
+import { Cart } from '../../model/cart';
+import { CartFactory } from '../../testing/factories/cart.factory';
 
 import { InMemoryDbService, RequestInfoUtilities, ParsedRequestUrl, RequestInfo, STATUS } from 'angular-in-memory-web-api';
 
-
 @Injectable()
-export class ProductTestingService implements InMemoryDbService {
+export class CartTestingService implements InMemoryDbService {
 
-  constructor(private productFactory: ProductFactory) { }
+  constructor(private cartFactory: CartFactory) { }
 
   parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {
     return utils.parseRequestUrl(url);
@@ -21,9 +20,9 @@ export class ProductTestingService implements InMemoryDbService {
 
   createDb() {
     return {
-      products: [
-        this.productFactory.create(),
-        this.productFactory.create()
+      carts: [
+        this.cartFactory.create(),
+        this.cartFactory.create()
       ]
     };
   }
