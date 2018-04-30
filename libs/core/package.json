@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@daffodil/core",
-  "version": "1.0.0-a",
+  "version": "1.1.0-a",
   "description": "An Angular PWA built for Magento 2",
   "scripts": {
     "test": "ng test"
@@ -23,12 +23,12 @@
     "dest": "../../dist/core"
   },
   "peerDependencies": {
-    "@angular/common": "5.2.7",
-    "@angular/core": "5.2.7",
+    "@angular/common": "^5.2.7",
+    "@angular/core": "^5.2.7",
     "@angular/http": "^5.2.10",
-    "@ngrx/effects": "5.2.0",
+    "@ngrx/effects": "^5.2.0",
     "@ngrx/entity": "^5.2.0",
-    "@ngrx/store": "5.2.0",
+    "@ngrx/store": "^5.2.0",
     "core-js": "^2.4.1",
     "rxjs": "^5.5.6"
   },
