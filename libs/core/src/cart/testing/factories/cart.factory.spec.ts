@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { CartFactory } from './cart.factory';
+import { CartFactory, MockCart, MockCartItem, MockCartAddress, MockCartPayment, MockCartShippingRate } from './cart.factory';
 import { Cart } from '../../model/Cart';
 
 describe('Core | Cart | Testing | CartFactory', () => {
@@ -21,14 +21,36 @@ describe('Core | Cart | Testing | CartFactory', () => {
 
   describe('create', () => {
 
-    let result:Cart;
+    let result:MockCart;
 
     beforeEach(() => {
       result = cartFactory.create();
     });
 
-    it('should return a Cart with a random id under 1000', () => {
-      expect(result.id).toBeLessThan(1000);
+    it('should return a Cart', () => {
+      expect(result).toBeDefined();
+    });
+
+    describe('Cart object', () => {
+      
+      it('should have CartItems', () => {
+        expect(result.items[0]).toEqual(jasmine.any(MockCartItem))
+      });
+
+      it('should have CartAddresses', () => {
+        expect(result.addresses[0]).toEqual(jasmine.any(MockCartAddress));
+      });
+
+      it('should have a CartPayment', () => {
+        expect(result.payment).toEqual(jasmine.any(MockCartPayment));
+      });
+
+      describe('CartAddress', () => {
+        
+        it('should have a CartShippingRate', () => {
+          expect(result.addresses[0].shipping_rate).toEqual(jasmine.any(MockCartShippingRate));
+        });
+      });
     });
   });
 });
