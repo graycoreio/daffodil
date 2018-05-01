@@ -21,7 +21,6 @@ export class CartTestingService implements InMemoryDbService {
   createDb() {
     return {
       carts: [
-        this.cartFactory.create(),
         this.cartFactory.create()
       ]
     };

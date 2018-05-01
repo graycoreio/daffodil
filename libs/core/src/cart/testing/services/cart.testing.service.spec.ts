@@ -9,7 +9,6 @@ describe('Core | Cart | Testing | CartTestingService', () => {
   
   let cartTestingService;
   let cartFactory;
-  let mockCart: MockCart;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -21,11 +20,8 @@ describe('Core | Cart | Testing | CartTestingService', () => {
 
     cartFactory = TestBed.get(CartFactory);
     cartTestingService = TestBed.get(CartTestingService);
-    mockCart = {
-      id: "21"
-    }
 
-    spyOn(cartFactory, 'create').and.returnValue(mockCart);
+    spyOn(cartFactory, 'create');    
   });
 
   it('should be created', () => {
@@ -41,11 +37,11 @@ describe('Core | Cart | Testing | CartTestingService', () => {
     });
     
     it('should return an object with an array of carts', () => {
-      expect(result.carts.length).toEqual(2);
+      expect(result.carts.length).toEqual(1);
     });
 
-    it('should call cartFactory.create twice', () => {
-      expect(cartFactory.create).toHaveBeenCalledTimes(2);
+    it('should call cartFactory.create', () => {
+      expect(cartFactory.create).toHaveBeenCalledTimes(1);
     });
   });
 });
