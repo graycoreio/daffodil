@@ -17,7 +17,7 @@ export class CartLoad implements Action {
 export class CartLoadSuccess implements Action {
     readonly type = CartActionTypes.CartLoadSuccessAction;
 
-    constructor(public payload: Cart[]) {}
+    constructor(public payload: Cart) {}
 }
 
 export class CartLoadFailure implements Action {
