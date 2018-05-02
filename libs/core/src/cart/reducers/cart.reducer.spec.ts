@@ -3,7 +3,7 @@ import { createSelector } from "@ngrx/store";
 import { Cart } from "../model/cart";
 import { CartFactory } from "../testing/factories/cart.factory";
 import { initialState, reducer, getCartLoading } from "../reducers/cart.reducer";
-import { CartLoad, CartLoadSuccess, CartLoadFailure } from "../actions/cart.actions";
+import { CartLoad, CartLoadSuccess, CartLoadFailure, CartReset } from "../actions/cart.actions";
 
 
 describe('Cart | Cart List Reducer', () => {
@@ -84,6 +84,21 @@ describe('Cart | Cart List Reducer', () => {
     
     it('returns loading state', () => {
       expect(getCartLoading(initialState)).toEqual(initialState.loading);
+    });
+  });
+
+  describe('CartReset', () => {
+    
+    it('resets state to initialState', () => {
+      let expectedState = {
+        loading: false,
+        cart: null,
+        errors: []
+      }
+      let cartReset = new CartReset();
+      let result = reducer(initialState, cartReset);
+      
+      expect(result).toEqual(expectedState);
     });
   });
 });

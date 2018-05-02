@@ -1,14 +1,19 @@
 import { Cart } from "../model/cart";
 import { CartFactory } from "../testing/factories/cart.factory";
 import { initialState, reducer, cartAdapter } from "../reducers/cart-entities.reducer";
-import { CartLoad, CartLoadSuccess } from "../actions/cart.actions";
+import { CartLoad, CartLoadSuccess, CartReset } from "../actions/cart.actions";
 
 describe('Cart | Cart Entities Reducer', () => {
 
   let cartFactory;
+  let result;
+  let cart: Cart;
+  let cartLoadSuccess;
 
   beforeEach(() => {
     cartFactory = new CartFactory();
+    cart = cartFactory.create();
+    cartLoadSuccess = new CartLoadSuccess(cart);
   });
 
   describe('when an unknown action is triggered', () => {
@@ -16,7 +21,7 @@ describe('Cart | Cart Entities Reducer', () => {
     it('should return the current state', () => {
       const action = {} as any;
 
-      const result = reducer(initialState, action);
+      result = reducer(initialState, action);
 
       expect(result).toBe(initialState);
     });
@@ -24,21 +29,30 @@ describe('Cart | Cart Entities Reducer', () => {
 
   describe('when CartLoadSuccessAction is triggered', () => {
 
-    let cart: Cart;
-    let result;
     let cartId;
 
     beforeEach(() => {
-      cart = cartFactory.create();
       cartId = cart.id;
 
-      let cartListLoadSuccess = new CartLoadSuccess(cart);
-      
-      result = reducer(initialState, cartListLoadSuccess);
+      result = reducer(initialState, cartLoadSuccess);
     });
 
     it('sets expected cart on state', () => {
       expect(result.entities[cartId]).toEqual(cart);
+    });
+  });
+
+  describe('when CartResetAction is triggered', () => {
+
+    beforeEach(() => {
+      result = reducer(initialState, cartLoadSuccess);
+
+      let cartReset = new CartReset();      
+      result = reducer(result, cartReset);
+    });
+    
+    it('resets state to initialState', () => {
+      expect(result).toEqual(initialState);
     });
   });
 });

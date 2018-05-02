@@ -4,7 +4,7 @@ import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
 import * as fromCart from './index';
-import { CartLoadSuccess } from "../actions/cart.actions";
+import { CartLoadSuccess, CartReset } from "../actions/cart.actions";
 import { CartFactory } from "../testing/factories/cart.factory";
 import { Cart } from "../model/cart";
 
@@ -25,6 +25,7 @@ describe('selectCartState', () => {
 
     mockCart = cartFactory.create();
     store = TestBed.get(Store);
+    store.dispatch(new CartReset());
     store.dispatch(new CartLoadSuccess(mockCart));
   }));
 
@@ -74,7 +75,6 @@ describe('selectCartState', () => {
       }
 
       store.pipe(select(fromCart.cartLoadingStateSelector)).subscribe((cart) => {
-        console.log(cart);
         expect(cart).toEqual(expectedCartState);
       });
     });

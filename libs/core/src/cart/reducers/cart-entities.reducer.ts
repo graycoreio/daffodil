@@ -15,6 +15,8 @@ export function reducer(state = initialState, action: CartActions): State {
       return cartAdapter.upsertOne({
         id: action.payload.id, changes: {...action.payload}
       }, state);
+    case CartActionTypes.CartResetAction:
+      return cartAdapter.removeAll(state);
     default:
       return state;
   }
