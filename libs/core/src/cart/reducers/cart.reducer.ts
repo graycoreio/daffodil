@@ -15,6 +15,8 @@ export const initialState: State = {
   errors: []
 };
 
+export const resetState: State = Object.assign({}, initialState);
+
 export function reducer(state = initialState, action: CartActions): State {
   switch (action.type) {
     case CartActionTypes.CartLoadAction:
@@ -26,6 +28,9 @@ export function reducer(state = initialState, action: CartActions): State {
         loading: false, 
         errors: state.errors.concat(new Array(action.payload))
       };
+    case CartActionTypes.CartResetAction:
+      return {...state,
+        ...resetState};
     default:
       return state;
   }
