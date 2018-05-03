@@ -7,8 +7,8 @@ import { CartTestingModule } from '../testing/cart-testing.module';
 import { DaffodilConfigService } from '../../config/daffodil-config.service';
 import { DaffodilConfigFactory } from '../../config/testing/daffodil-config.factory';
 
-describe('Core | Product | ProductService', () => {
-  let productService;
+describe('Core | Cart | CartService', () => {
+  let cartService;
   let http: HttpClient;
   let daffodilConfigService: DaffodilConfigService;
   let daffodilConfigFactory: DaffodilConfigFactory;
@@ -27,18 +27,18 @@ describe('Core | Product | ProductService', () => {
       ]
     });
     http = TestBed.get(HttpClient);
-    productService = TestBed.get(CartService);
+    cartService = TestBed.get(CartService);
   });
 
   it('should be created', () => {
-    expect(productService).toBeTruthy();
+    expect(cartService).toBeTruthy();
   });
 
   describe('get', () => {
       
     it('should send a get request', () => {
       spyOn(http, 'get');
-      productService.get();
+      cartService.get();
       
       expect(http.get).toHaveBeenCalled();
     });
