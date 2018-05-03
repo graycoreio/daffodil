@@ -21,7 +21,6 @@ describe('Core | Cart | Testing | CartTestingService', () => {
     cartFactory = TestBed.get(CartFactory);
     cartTestingService = TestBed.get(CartTestingService);
 
-    spyOn(cartFactory, 'create');    
   });
 
   it('should be created', () => {
@@ -31,13 +30,16 @@ describe('Core | Cart | Testing | CartTestingService', () => {
   describe('createDb', () => {
 
     let result;
+    let mockCart;
 
     beforeEach(() => {
+      mockCart = cartFactory.create();
+      spyOn(cartFactory, 'create').and.returnValue(mockCart);
       result = cartTestingService.createDb();
     });
     
-    it('should return an object with an array of carts', () => {
-      expect(result.carts.length).toEqual(1);
+    it('should return a cart', () => {
+      expect(result.cart).toEqual(mockCart);
     });
 
     it('should call cartFactory.create', () => {

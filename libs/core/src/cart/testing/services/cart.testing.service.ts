@@ -20,9 +20,7 @@ export class CartTestingService implements InMemoryDbService {
 
   createDb() {
     return {
-      carts: [
-        this.cartFactory.create()
-      ]
+      cart: this.cartFactory.create()
     };
   }
 }
