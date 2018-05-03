@@ -4,13 +4,16 @@ import { CoreProductModule } from './product/product.module';
 import { DaffodilConfig } from './config/model';
 import { DaffodilConfigService, DaffodilConfigServiceFactory } from './config/daffodil-config.service';
 import { _DAFFODIL_CONFIG } from './tokens';
+import { CoreCartModule } from './cart/cart.module';
 
 @NgModule({
   imports: [
-    CoreProductModule
+    CoreProductModule,
+    CoreCartModule
   ],
   exports: [
-    CoreProductModule
+    CoreProductModule,
+    CoreCartModule
   ]
 })
 export class DaffodilModule {
