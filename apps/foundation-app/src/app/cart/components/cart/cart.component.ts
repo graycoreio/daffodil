@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Cart } from 'libs/core/src';
+import { Cart } from '@daffodil/core';
 
 @Component({
   selector: 'cart',

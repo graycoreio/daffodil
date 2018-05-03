@@ -15,6 +15,7 @@ import { ProductModule } from './product/product.module';
 
 import { MockModule } from '@daffodil/core';
 import { DaffodilModule } from '@daffodil/core';
+import { CartModule } from './cart/cart.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { DaffodilModule } from '@daffodil/core';
     AppRoutingModule,
 
     DaffodilModule.forRoot({BASE_URL: environment.API_BASE}),
-    ProductModule
+    ProductModule,
+    CartModule
   ],
   providers: [],
   bootstrap: [AppComponent]
