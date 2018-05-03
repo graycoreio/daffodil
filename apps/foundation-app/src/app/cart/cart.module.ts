@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CoreCartModule } from '@daffodil/core';
 
 import { CartViewComponent } from './pages/cart-view/cart-view.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   imports: [
@@ -12,10 +13,12 @@ import { CartViewComponent } from './pages/cart-view/cart-view.component';
     CoreCartModule,
   ],
   declarations: [
-    CartViewComponent
+    CartViewComponent,
+    CartComponent
   ],
   exports: [
-    CartViewComponent
+    CartViewComponent,
+    CartComponent
   ]
 })
 export class CartModule { }
