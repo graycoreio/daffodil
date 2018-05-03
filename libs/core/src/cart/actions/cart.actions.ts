@@ -40,7 +40,7 @@ export class AddToCart implements Action {
 export class AddToCartSuccess implements Action {
     readonly type = CartActionTypes.AddToCartSuccessAction;
 
-    constructor() {}
+    constructor(public payload: Cart) {}
 }
 
 export class AddToCartFailure implements Action {

@@ -10,7 +10,10 @@ import {
   CartActionTypes, 
   CartLoad, 
   CartLoadSuccess, 
-  CartLoadFailure } from '../actions/cart.actions';
+  CartLoadFailure, 
+  AddToCartSuccess,
+  AddToCartFailure,
+  AddToCart} from '../actions/cart.actions';
 import { Observable } from 'rxjs/Observable';
 import { Action } from 'rxjs/scheduler/Action';
 
@@ -32,6 +35,22 @@ export class CartEffects {
           }),
           catchError(error => {
             return of(new CartLoadFailure("Failed to load cart"));
+          })
+        )
+    )
+  )
+
+  @Effect()
+  addToCart$ = this.actions$.pipe(
+    ofType(CartActionTypes.AddToCartAction),
+    switchMap((action: AddToCart) =>
+      this.cartService.addToCart(action.payload)
+        .pipe(
+          map((resp) => {
+            return new AddToCartSuccess(resp);
+          }),
+          catchError(error => {
+            return of(new AddToCartFailure("Failed to add item to cart"));
           })
         )
     )

@@ -13,10 +13,11 @@ import { CartTestingModule } from '../testing/cart-testing.module';
 import { CartService } from '../services/cart.service';
 import { CartFactory } from '../testing/factories/cart.factory';
 import { Cart } from '../model/cart';
-import { CartLoad, CartLoadSuccess, CartLoadFailure } from '../actions/cart.actions';
+import { CartLoad, CartLoadSuccess, CartLoadFailure, AddToCart, AddToCartSuccess, AddToCartFailure } from '../actions/cart.actions';
 
 import { DaffodilConfigService } from '../../config/daffodil-config.service';
 import { DaffodilConfigFactory } from '../../config/testing/daffodil-config.factory';
+import { ProductFactory } from '../../product/testing/factories/product.factory';
 
 describe('CartEffects', () => {
   let actions$: Observable<any>;
@@ -26,10 +27,12 @@ describe('CartEffects', () => {
   let mockCart: Cart;
   let daffodilConfigService: DaffodilConfigService;
   let daffodilConfigFactory: DaffodilConfigFactory;
+  let productFactory: ProductFactory;
 
   beforeEach(() => {
     daffodilConfigFactory = new DaffodilConfigFactory();
     daffodilConfigService = new DaffodilConfigService(daffodilConfigFactory.create());
+    productFactory = new ProductFactory();
 
     TestBed.configureTestingModule({
       imports: [
@@ -85,6 +88,47 @@ describe('CartEffects', () => {
       
       it('should dispatch a CartLoadFailure action', () => {
         expect(effects.load$).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('when AddToCartAction is triggered', () => {
+
+    let expected;
+    let product;
+    const addToCartAction = new AddToCart(product);
+
+    beforeEach(() => {
+      product =  productFactory.create();
+    });
+    
+    describe('and the call to CartService is successful', () => {
+
+      beforeEach(() => {
+        spyOn(cartService, 'addToCart').and.returnValue(of(mockCart));
+        const addToCartSuccessAction = new AddToCartSuccess(mockCart);
+        actions$ = hot('--a', { a: addToCartAction });
+        expected = cold('--b', { b: addToCartSuccessAction });
+      });
+      
+      it('should dispatch a CartLoadSuccess action', () => {
+        expect(effects.addToCart$).toBeObservable(expected);
+      });
+    });
+
+    describe('and the call to CartService fails', () => {
+      
+      beforeEach(() => {
+        let error = 'Failed to add item to cart';
+        let response = cold('#', {}, error);
+        spyOn(cartService, 'addToCart').and.returnValue(response);
+        const addToCartFailureAction = new AddToCartFailure(error);
+        actions$ = hot('--a', { a: addToCartAction });
+        expected = cold('--b', { b: addToCartFailureAction });
+      });
+      
+      it('should dispatch a CartLoadFailure action', () => {
+        expect(effects.addToCart$).toBeObservable(expected);
       });
     });
   });
