@@ -1,6 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { Component } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 @Component({selector: 'foundation-product-list-view', template: ''})
 class ProductListContainerMock {}
@@ -8,6 +9,9 @@ class ProductListContainerMock {}
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ],
       declarations: [
         AppComponent,
         ProductListContainerMock
