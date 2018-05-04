@@ -10,5 +10,5 @@ export class DaffodilConfigFactory {
 }
 
 export class DaffodilConfigMock implements DaffodilConfig {
-  BASE_URL = 'baseUrl';
+  BASE_URL = 'baseUrl/';
 };

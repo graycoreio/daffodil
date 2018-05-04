@@ -8,7 +8,7 @@ import { DaffodilConfigService } from '../../config/daffodil-config.service';
 @Injectable()
 export class ProductService {
 
-  url = this.daffodilConfigService.config.BASE_URL + 'api/products';
+  url = this.daffodilConfigService.config.BASE_URL + 'api/products/';
 
   constructor(
     private http: HttpClient,
@@ -17,5 +17,9 @@ export class ProductService {
 
   getAll(): Observable<Product[]> {
     return this.http.get<Product[]>(this.url);
+  }
+
+  get(productId: string): Observable<Product> {
+    return this.http.get<Product>(this.url + productId);
   }
 }

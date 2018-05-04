@@ -29,7 +29,7 @@ describe('Core | Config | DaffodilConfigFactory', () => {
     
     it('should return a DaffodilConfig object with a BASE_URL', () => {
 
-      expect(result.BASE_URL).toEqual('baseUrl');
+      expect(result.BASE_URL).toEqual('baseUrl/');
     });
   });
 });
