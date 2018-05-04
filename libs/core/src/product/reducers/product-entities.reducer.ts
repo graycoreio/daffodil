@@ -2,6 +2,7 @@ import { Action } from '@ngrx/store';
 import { ProductListActionTypes, ProductListActions } from '../actions/product-list.actions';
 import { Product } from '../model/product';
 import { createEntityAdapter, EntityState, EntityAdapter } from '@ngrx/entity';
+import { ProductActionTypes, ProductActions } from '../actions/product.actions';
 
 export const productAdapter : EntityAdapter<Product> = createEntityAdapter<Product>();
 
@@ -9,7 +10,9 @@ export interface State extends EntityState<Product> { }
 
 export const initialState: State = productAdapter.getInitialState();
 
-export function reducer(state = initialState, action: ProductListActions): State {
+export function reducer(
+  state = initialState, 
+  action: ProductListActions| ProductActions): State {
   switch (action.type) {
     case ProductListActionTypes.ProductListLoadSuccessAction:
       return productAdapter.upsertMany(action.payload.map(
@@ -19,6 +22,11 @@ export function reducer(state = initialState, action: ProductListActions): State
           }
         }
       ), state);
+    case ProductActionTypes.ProductLoadSuccessAction:
+      return productAdapter.upsertOne(
+        { id: action.payload.id, changes: action.payload },
+        state
+      )
     default:
       return state;
   }

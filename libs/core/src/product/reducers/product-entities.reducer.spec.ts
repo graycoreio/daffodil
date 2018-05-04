@@ -2,6 +2,7 @@ import { Product } from "../model/product";
 import { ProductFactory } from "../testing/factories/product.factory";
 import { initialState, reducer, productAdapter } from "../reducers/product-entities.reducer";
 import { ProductListLoad, ProductListLoadSuccess } from "../actions/product-list.actions";
+import { ProductLoadSuccess } from "../actions/product.actions";
 
 describe('Product | Product Entities Reducer', () => {
 
@@ -45,6 +46,26 @@ describe('Product | Product Entities Reducer', () => {
 
     it('sets expected product on state', () => {
       expect(result.entities[product1Id]).toEqual(products[0]);
+    });
+  });
+
+  describe('when ProductLoadSuccessAction is triggered', () => {
+    
+    let product: Product;
+    let result;
+    let productId;
+
+    beforeEach(() => {
+      product = productFactory.create();
+      productId = product.id;
+      
+      let productLoadSuccess = new ProductLoadSuccess(product);
+      
+      result = reducer(initialState, productLoadSuccess);
+    });
+
+    it('sets expected product on state', () => {
+      expect(result.entities[productId]).toEqual(product);
     });
   });
 });
