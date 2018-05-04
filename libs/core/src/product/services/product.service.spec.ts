@@ -43,4 +43,20 @@ describe('Core | Product | ProductService', () => {
       expect(http.get).toHaveBeenCalled();
     });
   });
+
+  describe('get', () => {
+
+    let productId;
+
+    beforeEach(() => {
+      productId = 'product id';
+    });
+      
+    it('should send a get request', () => {
+      spyOn(http, 'get');
+      productService.get(productId);
+      
+      expect(http.get).toHaveBeenCalledWith(productService.url + productId);
+    });
+  });
 });
