@@ -6,23 +6,19 @@ import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
 import { of } from 'rxjs/observable/of';
 
-import { ProductListContainer } from './product-list.component';
+import { ProductContainer } from './product.component';
 import { ProductFactory } from '../../testing/factories/product.factory';
 import { Product } from '../../model/product';
 
-
-import { ProductListLoad } from '../../actions/product-list.actions';
+import { ProductLoad } from '../../actions/product.actions';
 import * as fromProduct from '../../reducers';
 
-
-
-
-describe('ProductListContainer', () => {
-  let component: ProductListContainer;
-  let fixture: ComponentFixture<ProductListContainer>;
+describe('ProductContainer', () => {
+  let component: ProductContainer;
+  let fixture: ComponentFixture<ProductContainer>;
   let store;
   let initialLoading: boolean;
-  let initialProducts: Product[];
+  let initialProduct: Product;
   let productFactory = new ProductFactory();
 
   beforeEach(async(() => {
@@ -32,21 +28,23 @@ describe('ProductListContainer', () => {
           products: combineReducers(fromProduct.reducers),
         })
       ],
-      declarations: [ ProductListContainer ]
+      declarations: [ ProductContainer ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProductListContainer);
+    fixture = TestBed.createComponent(ProductContainer);
     component = fixture.componentInstance;
     store = TestBed.get(Store);
 
     initialLoading = false;
-    initialProducts = new Array(productFactory.create());
+    initialProduct = productFactory.create();
 
-    spyOn(fromProduct, 'selectProductListLoadingState').and.returnValue(initialLoading);
-    spyOn(fromProduct, 'selectAllProducts').and.returnValue(initialProducts);
+    component.selectedProductId = initialProduct.id;
+
+    spyOn(fromProduct, 'selectSelectedProductLoadingState').and.returnValue(initialLoading);
+    spyOn(fromProduct, 'selectSelectedProduct').and.returnValue(initialProduct);
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();
@@ -58,8 +56,8 @@ describe('ProductListContainer', () => {
 
   describe('ngInit', () => {
     
-    it('dispatches a ProductListLoad action', () => {
-      expect(store.dispatch).toHaveBeenCalledWith(new ProductListLoad());
+    it('dispatches a ProductLoad action', () => {
+      expect(store.dispatch).toHaveBeenCalledWith(new ProductLoad(component.selectedProductId));
     });
 
     it('initializes loading$', () => {
@@ -68,9 +66,9 @@ describe('ProductListContainer', () => {
       });
     });
 
-    it('initializes products$', () => {
-      component.products$.subscribe((products) => {
-        expect(products).toEqual(initialProducts);
+    it('initializes product$', () => {
+      component.product$.subscribe((product) => {
+        expect(product).toEqual(initialProduct);
       });
     });
   });
