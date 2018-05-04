@@ -14,7 +14,7 @@ describe('Product | Product List Reducer', () => {
   beforeEach(() => {
     productFactory = new ProductFactory();
 
-    product = productFactory.create('cost');
+    product = productFactory.create();
   });
 
   describe('when an unknown action is triggered', () => {
