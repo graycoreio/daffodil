@@ -11,13 +11,13 @@ export enum ProductActionTypes {
 export class ProductLoad implements Action {
   readonly type = ProductActionTypes.ProductLoadAction;
 
-  constructor() {}
+  constructor(public payload: string) {}
 }
 
 export class ProductLoadSuccess implements Action {
     readonly type = ProductActionTypes.ProductLoadSuccessAction;
 
-    constructor(public payload: Product[]) {}
+    constructor(public payload: Product) {}
 }
 
 export class ProductLoadFailure implements Action {
