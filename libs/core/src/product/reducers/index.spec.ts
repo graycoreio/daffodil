@@ -126,6 +126,15 @@ describe('selectProductListState', () => {
         });
       });
     });
+
+    describe('selectSelectedProductLoadingState', () => {
+      
+      it('selects the loading state of the selected product', () => {
+        store.pipe(select(fromProduct.selectSelectedProductLoadingState)).subscribe((selectedProductLoadingState) => {
+          expect(selectedProductLoadingState).toEqual(true);
+        });
+      });
+    });
   });
 
   describe('selectSelectedProduct', () => {

@@ -77,6 +77,11 @@ export const selectSelectedProductId = createSelector(
   fromProduct.getSelectedProductId
 )
 
+export const selectSelectedProductLoadingState = createSelector(
+  selectSelectedProductState,
+  fromProduct.getProductLoading
+)
+
 export const selectSelectedProduct = createSelector(
   selectProductState,
   selectSelectedProductId,
