@@ -3,13 +3,13 @@ import { TestBed, inject } from '@angular/core/testing';
 import { ProductTestingService } from './product.testing.service';
 import { Product } from '../../model/product';
 import { ProductTestingModule } from '../../testing/product-testing.module';
-import { ProductFactory, MockProduct } from '../../testing/factories/product.factory';
+import { ProductFactory, MockProductShortNames } from '../../testing/factories/product.factory';
 
 describe('Core | Product | Testing | ProductTestingService', () => {
   
   let productTestingService;
   let productFactory;
-  let mockProduct: MockProduct;
+  let mockProduct: MockProductShortNames;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -21,12 +21,9 @@ describe('Core | Product | Testing | ProductTestingService', () => {
 
     productFactory = TestBed.get(ProductFactory);
     productTestingService = TestBed.get(ProductTestingService);
-    mockProduct = {
-      cost: "20",
-      id: "21"
-    }
+    mockProduct = productFactory.create();
 
-    spyOn(productFactory, 'create').and.returnValue(mockProduct);
+    spyOn(productFactory, 'createStyleTestingList').and.callThrough();
   });
 
   it('should be created', () => {
@@ -42,11 +39,11 @@ describe('Core | Product | Testing | ProductTestingService', () => {
     });
     
     it('should return a object with an array of Products', () => {
-      expect(result.products.length).toEqual(2);
+      expect(result.products.length).toEqual(4);
     });
 
-    it('should call productFactory.create twice', () => {
-      expect(productFactory.create).toHaveBeenCalledTimes(2);
+    it('should call productFactory.createStyleTestingList', () => {
+      expect(productFactory.createStyleTestingList).toHaveBeenCalled();
     });
   });
 });

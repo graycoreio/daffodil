@@ -6,11 +6,29 @@ import { Product } from '../../model/product';
 export class ProductFactory {
   
   create() : Product {
-    return {...new MockProduct()};
+    return {...new MockProductShortNames()};
+  }
+
+  createStyleTestingList() : Product[] {
+    return [
+      new MockProductShortNames(),
+      new MockProductLongNames(),
+      new MockProductLongNames(),
+      new MockProductShortNames()
+    ]
   }
 }
 
-export class MockProduct implements Product {
+export class MockProductShortNames implements Product {
   cost = faker.random.number(10000).toString();
   id = faker.random.number(1000).toString();
+  name = 'Product Name';
+  brand = 'Product Brand';
+};
+
+export class MockProductLongNames implements Product {
+  cost = faker.random.number(10000).toString();
+  id = faker.random.number(1000).toString();
+  name = 'A Longer Product Name';
+  brand = 'A Longer Product Brand';
 };
