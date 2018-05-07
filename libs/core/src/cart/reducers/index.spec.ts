@@ -29,53 +29,26 @@ describe('selectCartState', () => {
     store.dispatch(new CartLoadSuccess(mockCart));
   }));
 
-  describe('selectCartIds', () => {
-    
-    it('selects cart ids', () => {
-      store.pipe(select(fromCart.selectCartIds)).subscribe((ids) => {
-        expect(ids).toEqual(new Array(mockCart.id));
-      });
-    });
-  });
-
-  describe('selectCartEntities', () => {
-    
-    it('selects cart entities as a dictionary object', () => {
-      store.pipe(select(fromCart.selectCartEntities)).subscribe((carts) => {
-        expect(carts[mockCart.id]).toEqual(mockCart);
-      });
-    });
-  });
-
-  describe('selectAllCarts', () => {
-    
-    it('selects all carts as an array', () => {
-      store.pipe(select(fromCart.selectAllCarts)).subscribe((carts) => {
-        expect(carts[0]).toEqual(mockCart);
-      });
-    });
-  });
-
-  describe('selectTotalCarts', () => {
-    
-    it('selects the total number of carts', () => {
-      store.pipe(select(fromCart.selectTotalCarts)).subscribe((numberOfCarts) => {
-        expect(numberOfCarts).toEqual(1);
-      });
-    });
-  });
-
-  describe('cartLoadingStateSelector', () => {
+  describe('cartStateSelector', () => {
     
     it('selects cart state', () => {
       let expectedCartState = {
-        cart: null,
+        cart: mockCart,
         loading: false,
         errors: []
       }
 
-      store.pipe(select(fromCart.cartLoadingStateSelector)).subscribe((cart) => {
+      store.pipe(select(fromCart.cartStateSelector)).subscribe((cart) => {
         expect(cart).toEqual(expectedCartState);
+      });
+    });
+  });
+
+  describe('selectCartValueState', () => {
+    
+    it('selects cartValue state', () => {
+      store.pipe(select(fromCart.selectCartValueState)).subscribe((cart) => {
+        expect(cart).toEqual(mockCart);
       });
     });
   });

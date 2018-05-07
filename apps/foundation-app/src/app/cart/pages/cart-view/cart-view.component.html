@@ -1,3 +1,3 @@
 <div cart-container #CartContainer="CartContainer">
-  <cart [carts]="CartContainer.carts$ | async"></cart>
+  <cart [cart]="CartContainer.cart$ | async" *ngIf="!(CartContainer.loading$ | async)"></cart>
 </div>

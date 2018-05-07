@@ -22,7 +22,7 @@ export function reducer(state = initialState, action: CartActions): State {
     case CartActionTypes.CartLoadAction:
       return {...state, loading: true};
     case CartActionTypes.CartLoadSuccessAction:
-      return {...state, loading: false};
+      return {...state, cart: action.payload, loading: false};
     case CartActionTypes.CartLoadFailureAction:
       return {...state, 
         loading: false, 
@@ -35,5 +35,7 @@ export function reducer(state = initialState, action: CartActions): State {
       return state;
   }
 }
+
+export const getCart = (state: State) => state.cart;
 
 export const getCartLoading = (state: State) => state.loading;

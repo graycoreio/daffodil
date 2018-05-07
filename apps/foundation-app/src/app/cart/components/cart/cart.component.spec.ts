@@ -21,7 +21,7 @@ describe('CartComponent', () => {
     fixture = TestBed.createComponent(CartComponent);
     component = fixture.componentInstance;
 
-    component.carts = new Array(cartFactory.create(), cartFactory.create());
+    component.cart = cartFactory.create();
     fixture.detectChanges();
   });
 
@@ -29,7 +29,7 @@ describe('CartComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('renders a cart-container for each cart', () => {
-    expect(fixture.debugElement.queryAll(By.css('.cart-container'))).toBeDefined();
+  it('renders a cart-container', () => {
+    expect(fixture.debugElement.query(By.css('.cart-container'))).toBeDefined();
   });
 });
