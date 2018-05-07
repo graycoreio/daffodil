@@ -5,6 +5,7 @@ import { CoreProductModule } from '@daffodil/core';
 import { ProductListComponent } from './components/product-list/product-list.component';
 
 import { ProductListViewComponent } from './pages/product-list-view/product-list-view.component';
+import { ProductComponent } from './components/product/product.component';
 
 @NgModule({
   imports: [
@@ -14,11 +15,13 @@ import { ProductListViewComponent } from './pages/product-list-view/product-list
   ],
   declarations: [
     ProductListComponent,
-    ProductListViewComponent
+    ProductListViewComponent,
+    ProductComponent
   ],
   exports: [
     ProductListComponent,
-    ProductListViewComponent
+    ProductListViewComponent,
+    ProductComponent
   ]
 })
 export class ProductModule { }
