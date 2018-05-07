@@ -2,7 +2,7 @@ import { createSelector } from "@ngrx/store";
 
 import { Cart } from "../model/cart";
 import { CartFactory } from "../testing/factories/cart.factory";
-import { initialState, reducer, getCartLoading } from "../reducers/cart.reducer";
+import { initialState, reducer, getCartLoading, getCart } from "../reducers/cart.reducer";
 import { CartLoad, CartLoadSuccess, CartLoadFailure, CartReset } from "../actions/cart.actions";
 
 
@@ -41,15 +41,17 @@ describe('Cart | Cart List Reducer', () => {
 
   describe('when CartLoadSuccessAction is triggered', () => {
 
-    let cart: Cart;
     let result;
 
     beforeEach(() => {
       initialState.loading = true;
-      cart = cart;
       let cartListLoadSuccess = new CartLoadSuccess(cart);
       
       result = reducer(initialState, cartListLoadSuccess);
+    });
+
+    it('sets cart from action.payload', () => {
+      expect(result.cart).toEqual(cart)
     });
 
     it('sets loading to false', () => {
@@ -77,6 +79,13 @@ describe('Cart | Cart List Reducer', () => {
 
     it('adds an error to state.errors', () => {
       expect(result.errors.length).toEqual(2);
+    });
+  });
+
+  describe('getCart', () => {
+    
+    it('returns cart state', () => {
+      expect(getCart(initialState)).toEqual(initialState.cart);
     });
   });
 

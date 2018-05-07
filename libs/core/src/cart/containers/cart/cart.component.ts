@@ -16,7 +16,7 @@ import { CartLoad } from '../../actions/cart.actions';
 export class CartContainer implements OnInit {
 
   loading$: Observable<boolean>;
-  carts$: Observable<Cart[]>;
+  cart$: Observable<Cart>;
 
   constructor(
     private store: Store<fromCart.State>
@@ -29,8 +29,8 @@ export class CartContainer implements OnInit {
       select(fromCart.selectCartLoadingState)
     );
 
-    this.carts$ = this.store.pipe(
-      select(fromCart.selectAllCarts)
+    this.cart$ = this.store.pipe(
+      select(fromCart.selectCartValueState)
     );
   }
 }

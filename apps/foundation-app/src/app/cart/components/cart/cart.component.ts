@@ -8,7 +8,7 @@ import { Cart } from '@daffodil/core';
 })
 export class CartComponent implements OnInit {
 
-  @Input() carts: Cart[];
+  @Input() cart: Cart;
 
   constructor() { }
 

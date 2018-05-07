@@ -12,7 +12,7 @@ import { Cart } from '@daffodil/core';
 import { CartFactory } from '@daffodil/core';
 
 let cartFactory = new CartFactory();
-let carts$ = of(new Array(cartFactory.create()));
+let cart$ = of(cartFactory.create());
 
 @Component({
   selector: '[cart-container]', 
@@ -20,7 +20,7 @@ let carts$ = of(new Array(cartFactory.create()));
   exportAs: 'CartContainer'
 })
 class CartContainerMock {
-  carts$: Observable<Cart[]> = carts$;
+  cart$: Observable<Cart> = cart$;
 }
 
 @Component({
@@ -28,7 +28,7 @@ class CartContainerMock {
   template: ''
 })
 class CartMock { 
-  @Input() carts: Cart[];
+  @Input() cart: Cart;
 }
 
 describe('CartViewComponent', () => {
@@ -58,11 +58,11 @@ describe('CartViewComponent', () => {
 
   describe('on cart', () => {
     
-    it('should set carts to value passed by cart-container directive', () => {
-      let cartList = fixture.debugElement.query(By.css('cart'));
+    it('should set cart to value passed by cart-container directive', () => {
+      let cartElement = fixture.debugElement.query(By.css('cart'));
       
-      carts$.subscribe((carts) => {
-        expect(cartList.componentInstance.carts).toEqual(carts);
+      cart$.subscribe((cart) => {
+        expect(cartElement.componentInstance.cart).toEqual(cart);
       });
     });
   });

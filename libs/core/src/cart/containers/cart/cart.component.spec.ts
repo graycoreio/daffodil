@@ -17,7 +17,7 @@ describe('CartContainer', () => {
   let fixture: ComponentFixture<CartContainer>;
   let store;
   let initialLoading: boolean;
-  let initialCarts: Cart[];
+  let initialCart: Cart;
   let cartFactory = new CartFactory();
 
   beforeEach(async(() => {
@@ -38,10 +38,10 @@ describe('CartContainer', () => {
     store = TestBed.get(Store);
 
     initialLoading = false;
-    initialCarts = new Array(cartFactory.create());
+    initialCart = cartFactory.create();
 
     spyOn(fromCart, 'selectCartLoadingState').and.returnValue(initialLoading);
-    spyOn(fromCart, 'selectAllCarts').and.returnValue(initialCarts);
+    spyOn(fromCart, 'selectCartValueState').and.returnValue(initialCart);
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();
@@ -64,8 +64,8 @@ describe('CartContainer', () => {
     });
 
     it('initializes carts$', () => {
-      component.carts$.subscribe((carts) => {
-        expect(carts).toEqual(initialCarts);
+      component.cart$.subscribe((cart) => {
+        expect(cart).toEqual(initialCart);
       });
     });
   });
