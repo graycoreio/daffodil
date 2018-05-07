@@ -1,7 +1,8 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { ProductFactory } from './product.factory';
+import { ProductFactory, MockProductLongNames } from './product.factory';
 import { Product } from '../../model/product';
+import { MockProductShortNames } from './product.factory';
 
 describe('Core | Product | Testing | ProductFactory', () => {
   
@@ -21,19 +22,33 @@ describe('Core | Product | Testing | ProductFactory', () => {
 
   describe('create', () => {
 
-    let result:Product;
+    let result: Product;
 
     beforeEach(() => {
       result = productFactory.create();
     });
     
-    it('should return a Product with a random cost under 10000', () => {
+    it('should return a Product with all required fields defined', () => {
 
-      expect(result.cost).toBeLessThan(10000);
+      expect(result.id).toBeDefined();
+      expect(result.cost).toBeDefined();
+      expect(result.name).toBeDefined();
+      expect(result.brand).toBeDefined();      
     });
+  });
 
-    it('should return a Product with a random id under 1000', () => {
-      expect(result.id).toBeLessThan(1000);
+  describe('createStyleTestingList', () => {
+
+    let result: Product[];
+
+    beforeEach(() => {
+      result = productFactory.createStyleTestingList();
+    });
+    
+    it('should return a list of Products', () => {
+      expect(result.length).toEqual(4);
+      expect(result[0]).toEqual(jasmine.any(MockProductShortNames));
+      expect(result[1]).toEqual(jasmine.any(MockProductLongNames));
     });
   });
 });
