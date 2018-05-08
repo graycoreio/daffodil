@@ -56,7 +56,7 @@ describe('ProductViewComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('on product', () => {
+  describe('on <product></product>', () => {
     
     it('should set product to value passed by product-container directive', () => {
       let productComponent = fixture.debugElement.query(By.css('product'));
