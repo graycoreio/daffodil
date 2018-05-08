@@ -63,7 +63,7 @@ describe('CartContainer', () => {
       });
     });
 
-    it('initializes carts$', () => {
+    it('initializes cart$', () => {
       component.cart$.subscribe((cart) => {
         expect(cart).toEqual(initialCart);
       });
