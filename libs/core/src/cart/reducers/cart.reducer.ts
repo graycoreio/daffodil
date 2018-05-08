@@ -24,13 +24,14 @@ export function reducer(state = initialState, action: CartActions): State {
     case CartActionTypes.CartLoadSuccessAction:
       return {...state, cart: action.payload, loading: false};
     case CartActionTypes.CartLoadFailureAction:
-      return {...state, 
-        loading: false, 
+      return {...state,
+        loading: false,
         errors: state.errors.concat(new Array(action.payload))
       };
     case CartActionTypes.CartResetAction:
-      return {...state,
-        ...resetState};
+      return {
+        ...resetState
+      }
     default:
       return state;
   }
