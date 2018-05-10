@@ -5,6 +5,7 @@ import { ProductService } from './services/product.service';
 import { ProductListContainer } from './containers/product-list/product-list.component';
 import { ProductTestingModule } from './testing/product-testing.module';
 import { CoreProductStateModule } from './product-state.module';
+import { ProductContainer } from './containers/product/product.component';
 
 @NgModule({
   imports: [
@@ -16,10 +17,12 @@ import { CoreProductStateModule } from './product-state.module';
     CoreProductStateModule,
   ],
   declarations: [
-    ProductListContainer
+    ProductListContainer,
+    ProductContainer
   ],
   exports: [
-    ProductListContainer
+    ProductListContainer,
+    ProductContainer
   ],
   providers: [
     ProductService

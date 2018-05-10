@@ -14,6 +14,10 @@ export class ProductFactory {
       new MockProductShortNames(),
       new MockProductLongNames(),
       new MockProductLongNames(),
+      new MockProductShortNames(),
+      new MockProductShortNames(),
+      new MockProductLongNames(),
+      new MockProductLongNames(),
       new MockProductShortNames()
     ]
   }

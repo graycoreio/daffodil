@@ -1,2 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/foundation-sites/assets/foundation';
+
+.single-line-ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
