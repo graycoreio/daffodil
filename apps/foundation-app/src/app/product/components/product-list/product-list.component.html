@@ -1,4 +1,11 @@
-<div class="product-container" *ngFor="let product of products">
-  {{product.id}}
-  {{product.cost}}
+<div class="card-container">
+  <span class="card" *ngFor="let product of products">
+      <img src="https://image.freepik.com/free-icon/shopping-cart-with-product-inside_318-59544.jpg">
+      <div class="card-section">
+          <div class="product-brand single-line-ellipsis">{{product.brand}}</div>
+          <div class="single-line-ellipsis">{{product.name}}</div>
+          <div>${{product.cost}}</div>
+          <div class="view-options">+ More Colors</div>
+      </div>
+    </span>
 </div>
