@@ -1,54 +1,35 @@
 .card-container {
-  margin: 7% 2%;
-  text-align: center;
-  font-size: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   
   .card {
-    width: 45%;
-    margin: 0 0 0 1%;
-    float:left;
+    text-align: center;
     border: none;
-    height: 100%;
+    font-size: 12px;
 
-    .card-section {
-      height: 40%;
-
-      .product-brand {
-        font-weight: bold;
-        text-transform: uppercase;
-      }
-  
-      .view-options {
-        margin-top: 1em;
-        color: gray;
-      }
+    .product-brand {
+      font-weight: bold;
+      text-transform: uppercase;
     }
-  }
 
-  &:after {
-    content: "";
-    clear: both;
-    display: table;
+    .view-options {
+      margin-top: 1em;
+      color: gray;
+    }
   }
 }
 
 @media only screen and (min-width: 420px) {
   .card-container {
-    width: 80%;
-    margin-left: 10%;
+    margin: 5% 10%;
 
-    .card {
-      width: 31%;
-    }
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media only screen and (min-width: 750px) {
   .card-container {
-    width: 65%;
-    margin-left: 18%;
-    .card {
-      width: 23%; 
-    }
+    margin: 5% 17%;
+    grid-template-columns: repeat(4, 1fr);
   }
 }
