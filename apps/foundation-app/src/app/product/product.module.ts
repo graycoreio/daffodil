@@ -7,6 +7,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { ProductListViewComponent } from './pages/product-list-view/product-list-view.component';
 import { ProductViewComponent } from './pages/product-view/product-view.component';
 import { ProductComponent } from './components/product/product.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 @NgModule({
   imports: [
@@ -18,13 +19,15 @@ import { ProductComponent } from './components/product/product.component';
     ProductListComponent,
     ProductListViewComponent,
     ProductViewComponent,
-    ProductComponent
+    ProductComponent,
+    ProductCardComponent
   ],
   exports: [
     ProductListComponent,
     ProductListViewComponent,
     ProductViewComponent,
-    ProductComponent
+    ProductComponent,
+    ProductCardComponent    
   ]
 })
 export class ProductModule { }
