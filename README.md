@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Getting started
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Running the example foundation-app**
+**Running the example foundation-app**
 
 - After cloning this repository and running `npm install`, 
 - compile the `@daffodil/core` project by running `npm run-script build:lib`. This will compile the `@daffodil/core` module into an npm package in the `dist` folder, identical to the one located in the npm `@daffodil/core` repository. 
