@@ -6,7 +6,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 **Running the example foundation-app**
 
-- After cloning this repository, run `lerna bootstrap`. This will basically run `npm install` in all required packages within the project. 
+- Ensure that lerna is installed in your local environment `npm install --global lerna`.
+- Clone this repository and run `cd daffodil`.
+- Run `lerna bootstrap`. This will basically run `npm install` in all required packages within the project. 
 - Compile the `@daffodil/core` project by running `npm run-script build:lib`. This will compile the `@daffodil/core` module into an npm package in the `dist` folder, identical to the one located in the npm `@daffodil/core` repository. 
 - To run the foundation-app that points to the built `@daffodil/core` module, run `ng serve --app=foundation-demo`. This will serve the foundation-app to `localhost:4200`.
 
