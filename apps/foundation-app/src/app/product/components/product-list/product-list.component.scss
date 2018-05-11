@@ -1,35 +1,27 @@
-.card-container {
+@import '~styles.scss';
+
+.product-list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  
-  .card {
-    text-align: center;
-    border: none;
-    font-size: 12px;
-
-    .product-brand {
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-
-    .view-options {
-      margin-top: 1em;
-      color: gray;
-    }
-  }
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-@media only screen and (min-width: 420px) {
-  .card-container {
+@media only screen and (min-width: $small-screen) {
+  .product-list {
     margin: 5% 10%;
-
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-@media only screen and (min-width: 750px) {
-  .card-container {
+@media only screen and (min-width: $medium-screen) {
+  .product-list {
     margin: 5% 17%;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (min-width: $extra-large-screen) {
+  .product-list {
+    margin: 5% 17%;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 }

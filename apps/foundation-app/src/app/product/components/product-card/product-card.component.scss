@@ -1,0 +1,15 @@
+.card {
+  text-align: center;
+  border: none;
+  font-size: 12px;
+
+  &__brand {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  &__options {
+    margin-top: 1em;
+    color: gray;
+  }
+}
