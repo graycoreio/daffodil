@@ -2,6 +2,14 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) using [Nrwl Nx](https://nrwl.io/nx).
 
+## Getting started
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Running the example foundation-app**
+
+- After cloning this repository and running `npm install`, 
+- compile the `@daffodil/core` project by running `npm run-script build:lib`. This will compile the `@daffodil/core` module into an npm package in the `dist` folder, identical to the one located in the npm `@daffodil/core` repository. 
+- To run the foundation-app that points to the built `@daffodil/core` module, run `ng serve --app=foundation-demo`. This will serve the foundation-app to `localhost:4200`.
+
 ## Contributing
 Please read the [contributing guidelines here](https://github.com/graycore/daffodil/blob/master/CONTRIBUTING.md).
 
