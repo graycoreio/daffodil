@@ -46,7 +46,7 @@ describe('Core | Product | Testing | ProductFactory', () => {
     });
     
     it('should return a list of Products', () => {
-      expect(result.length).toEqual(4);
+      expect(result.length).toEqual(8);
       expect(result[0]).toEqual(jasmine.any(MockProductShortNames));
       expect(result[1]).toEqual(jasmine.any(MockProductLongNames));
     });
