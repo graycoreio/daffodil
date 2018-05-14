@@ -1,12 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
-$foundation-palette: (
-  primary: #1779ba,
-  secondary: #767676,
-  success: #3adb76,
-  warning: #ffae00,
-  alert: #cc4b37,
-);
+// Global styles
+$body-font-family: 'Open Sans', sans-serif;
 
 @import '~foundation-sites/assets/foundation';
 

@@ -1,22 +1,13 @@
 @import '~scss/mixins/media';
 @import '~scss/variables';
+@import '~scss/styles';
 
 .product-list {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0 10px;
 
-  @include media($small-screen) {
-    margin: 5% 10%;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  @include media($medium-screen) {
-    margin: 5% 17%;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  @include media($extra-large-screen) {
-    margin: 5% 17%;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+  @include breakpoint(medium) {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
 }
