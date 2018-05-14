@@ -1,16 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
-@import '../node_modules/foundation-sites/assets/foundation';
+
+$foundation-palette: (
+  primary: #1779ba,
+  secondary: #767676,
+  success: #3adb76,
+  warning: #ffae00,
+  alert: #cc4b37,
+);
+
+@import '~foundation-sites/assets/foundation';
 
 .single-line-ellipsis {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
-
-$small-screen: 420px;
-
-$medium-screen: 768px;
-
-$large-screen: 1224px;
-
-$extra-large-screen: 1824px;
