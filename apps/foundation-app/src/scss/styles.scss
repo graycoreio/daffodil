@@ -1,9 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+// You can add global styles to this file, and also import other style files (before foundation)
 
 // Global styles
 $body-font-family: 'Open Sans', sans-serif;
+$global-font-size: 14px;
+$global-weight-normal: 400;
+$global-weight-bold: 600;
+$breakpoint-classes: (small medium large xlarge xxlarge);
 
+// Imports
+@import '~scss/variables';
 @import '~foundation-sites/assets/foundation';
+
+body {
+  font-size: 16px;
+  
+  @include breakpoint(small) {
+    font-size: 14px;
+  }
+}
 
 .single-line-ellipsis {
   text-overflow: ellipsis;

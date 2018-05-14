@@ -5,9 +5,13 @@
 .product-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 0 10px;
+  grid-gap: 50px 10px;
 
-  @include breakpoint(medium) {
+  @include breakpoint(large) {
+    grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+  }
+
+  @include breakpoint(xlarge) {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
 }
