@@ -1,26 +1,21 @@
-@import '~styles.scss';
+@import '~scss/mixins/media';
+@import '~scss/variables';
 
 .product-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-}
 
-@media only screen and (min-width: $small-screen) {
-  .product-list {
+  @include media($small-screen) {
     margin: 5% 10%;
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-}
 
-@media only screen and (min-width: $medium-screen) {
-  .product-list {
+  @include media($medium-screen) {
     margin: 5% 17%;
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
-}
 
-@media only screen and (min-width: $extra-large-screen) {
-  .product-list {
+  @include media($extra-large-screen) {
     margin: 5% 17%;
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
