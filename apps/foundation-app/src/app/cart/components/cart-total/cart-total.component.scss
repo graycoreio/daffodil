@@ -1,0 +1,23 @@
+@import '~scss/styles';
+@import '~scss/colors';
+
+.cart-total {
+  font-size: $small-font;
+
+  &__promotion {
+    color: $gray;
+    margin-bottom: 25px;
+  }
+
+  &__description {
+    line-height: 24px;
+
+    & + span {
+      float:right;
+    }
+  }
+
+  &__grand {
+    color: $lightblue;
+  }
+}

@@ -1,0 +1,45 @@
+@import '~scss/styles.scss';
+@import '~scss/mixins/general';
+
+.cart-container {
+  display: grid;
+  grid-template-areas:
+    "cart"
+    "cart-total"
+    "proceed-to-checkout";
+  margin: 0 15px;
+
+  &__cart-wrapper {
+    grid-area: cart;
+    padding: 25px 0;
+    @include section-divider();
+  }
+  
+  &__cart-total-wrapper {
+    grid-area: cart-total;
+    margin: 15px 0;
+  }
+
+  &__proceed-to-checkout-wrapper {
+    grid-area: proceed-to-checkout;
+  }
+
+  @include breakpoint(medium) {
+    grid-template-areas:
+      "cart cart cart-total"
+      "proceed-to-checkout proceed-to-checkout proceed-to-checkout";
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    
+    &__cart-wrapper {
+      grid-area: cart;
+    }
+    
+    &__cart-total-wrapper {
+      grid-area: cart-total;
+    }
+    
+    &__proceed-to-checkout-wrapper {
+      grid-area: proceed-to-checkout;
+    }
+  }
+}
