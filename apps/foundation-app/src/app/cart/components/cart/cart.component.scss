@@ -10,13 +10,13 @@
   
   &__title {
     @include section-divider();
-    font-size: $medium-font;
+    font-size: $global-font-size;
     padding-bottom: 10px;
 
     &__item-count {
       float: right;
       color: $gray;
-      font-size: $small-font;
+      font-size: $small-font-size;
     }
   }
 }

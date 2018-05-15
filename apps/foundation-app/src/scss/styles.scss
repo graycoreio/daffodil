@@ -27,5 +27,7 @@ body {
 }
 
 .embolden {
-  font-weight: 600;
+  font-weight: $global-weight-bold;
 }
+
+$large-font-size: 120%;
