@@ -1,0 +1,22 @@
+@import '~scss/colors';
+@import '~scss/styles';
+@import '~scss/mixins/general';
+
+.cart {
+  display: grid;
+  grid-gap: 25px;
+  grid-template-columns: minmax(0, 1fr);
+  font-family: 'Open Sans', sans-serif;
+  
+  &__title {
+    @include section-divider();
+    font-size: $medium-font;
+    padding-bottom: 10px;
+
+    &__item-count {
+      float: right;
+      color: $gray;
+      font-size: $small-font;
+    }
+  }
+}

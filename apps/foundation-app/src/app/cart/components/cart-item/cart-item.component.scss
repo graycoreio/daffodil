@@ -1,0 +1,41 @@
+@import '~scss/colors';
+@import '~scss/styles';
+
+.cart-item {
+  display: grid;
+  font-size: $small-font;
+  grid-column-gap: 20px;
+  grid-row-gap: 15px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  &__description {
+    grid-column: span 3;
+
+    &__brand {
+      color: $gray
+    }
+
+    &__name {
+      font-size: $medium-font;
+    }
+
+    &__price {
+      font-size: $medium-font;
+      color: $lightblue;
+      margin-bottom: 15px;
+    }
+  }
+
+  &__change {
+    color: $gray;
+    grid-column: 2 / 5;
+
+    & > span {
+      text-decoration: underline;
+    }
+    
+    &__remove {
+      margin-left: 10px;
+    }
+  }
+}

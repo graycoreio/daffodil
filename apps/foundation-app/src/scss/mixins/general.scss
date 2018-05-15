@@ -1,0 +1,5 @@
+@import '~scss/colors';
+
+@mixin section-divider() {
+  border-bottom: solid 1px $lightgray;
+}

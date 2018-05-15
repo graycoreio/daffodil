@@ -1,3 +1,19 @@
-<p>
-  cart-total works!
-</p>
+<div class="cart-total">
+  <div class="cart-total__promotion">Enter promo code (optional) <span class="fa fa-chevron-down"></span></div>
+  <div>
+    <span class="cart-total__description embolden">SUBTOTAL</span>
+    <span>${{cart.subtotal}}</span>
+  </div>
+  <div>
+    <span class="cart-total__description embolden">ESTIMATED SHIPPING</span>
+    <span>FREE</span>
+  </div>
+  <div>
+    <span class="cart-total__description embolden">ESTIMATED TAX</span>
+    <span>${{cart.subtotal}}</span>
+  </div>
+  <div>
+    <span class="cart-total__description embolden">ESTIMATED TOTAL</span>
+    <span class="cart-total__grand">${{cart.grand_total}}</span>
+  </div>
+</div>

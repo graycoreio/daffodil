@@ -8,8 +8,7 @@ import { of } from 'rxjs/observable/of';
 
 import { CartViewComponent } from './cart-view.component';
 
-import { Cart } from '@daffodil/core';
-import { CartFactory } from '@daffodil/core';
+import { Cart, CartItem, CartFactory } from '@daffodil/core';
 
 let cartFactory = new CartFactory();
 let cart$ = of(cartFactory.create());
@@ -39,6 +38,12 @@ class CartTotalMock {
   @Input() cart: Cart;
 }
 
+@Component({
+  selector: 'proceed-to-checkout',
+  template: ''
+})
+class ProceedToCheckoutMock {}
+
 describe('CartViewComponent', () => {
   let component: CartViewComponent;
   let fixture: ComponentFixture<CartViewComponent>;
@@ -49,7 +54,8 @@ describe('CartViewComponent', () => {
         CartViewComponent,
         CartContainerMock,
         CartMock,
-        CartTotalMock
+        CartTotalMock,
+        ProceedToCheckoutMock
       ]
     })
     .compileComponents();

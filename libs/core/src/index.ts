@@ -8,5 +8,6 @@ export { ProductFactory } from './product/testing/factories/product.factory';
 export { ProductGridContainer } from './product/containers/product-grid/product-grid.component';
 
 export { Cart } from './cart/model/cart';
+export { CartItem } from './cart/model/cart-item';
 export { CartFactory } from './cart/testing/factories/cart.factory';
 export { CartContainer } from './cart/containers/cart/cart.component';
