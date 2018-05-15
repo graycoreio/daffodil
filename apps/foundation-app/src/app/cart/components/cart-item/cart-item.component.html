@@ -4,12 +4,18 @@
     <div class="cart-item__description__brand">Brand (HC)</div>
     <div class="cart-item__description__name embolden">{{item.name}}</div>
     <div class="cart-item__description__price">${{item.price}}</div>
-    <span class="embolden">Color: </span><span>White (HC)</span><br>
-    <span class="embolden">Size: </span><span>5 (HC)</span><br>
-    <span class="embolden">Qty: </span><span>{{item.qty}}</span>   
-  </div>
-  <div class="cart-item__change">
-    <span>Edit</span>
-    <span class="cart-item__change__remove">Remove</span>
+    <div class="cart-item__description__attribute">
+      <span class="embolden">Color: </span><span>White (HC)</span><br>
+    </div>
+    <div class="cart-item__description__size">
+      <span class="embolden">Size: </span><span>5 (HC)</span><br>
+    </div>
+    <div class="cart-item__description__qty">
+      <span class="embolden">Qty: </span><span>{{item.qty}}</span>   
+    </div>
+    <div class="cart-item__description__change">
+      <span>Edit</span>
+      <span class="cart-item__description__change__remove">Remove</span>
+    </div>
   </div>
 </div>

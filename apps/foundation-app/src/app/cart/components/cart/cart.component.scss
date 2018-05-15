@@ -19,4 +19,11 @@
       font-size: $small-font-size;
     }
   }
+
+  @include breakpoint(large) {
+    &__title {
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+    }
+  }  
 }
