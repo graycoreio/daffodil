@@ -3,14 +3,14 @@ import { By } from '@angular/platform-browser';
 
 import { ProductFactory, Product } from '@daffodil/core';
 
-import { ProductListComponent } from './product-list.component';
+import { ProductGridComponent } from './product-grid.component';
 import { Component, Input } from '@angular/core';
 
 let productFactory = new ProductFactory();
 let mockProduct = productFactory.create();
 
-@Component({template: '<product-list [products]="productsValue"></product-list>'})
-class TestProductListWrapper {
+@Component({template: '<product-grid [products]="productsValue"></product-grid>'})
+class TestProductGridWrapper {
   productsValue: Product[];
 }
 
@@ -19,24 +19,24 @@ class ProductCardMock {
   @Input() product: Product;
 }
 
-describe('ProductListComponent', () => {
-  let component: TestProductListWrapper;
-  let fixture: ComponentFixture<TestProductListWrapper>;
+describe('ProductGridComponent', () => {
+  let component: TestProductGridWrapper;
+  let fixture: ComponentFixture<TestProductGridWrapper>;
   let productFactory = new ProductFactory();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         ProductCardMock,
-        ProductListComponent,
-        TestProductListWrapper
+        ProductGridComponent,
+        TestProductGridWrapper
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestProductListWrapper);
+    fixture = TestBed.createComponent(TestProductGridWrapper);
     component = fixture.componentInstance;
 
     component.productsValue = new Array(productFactory.create(), productFactory.create());
@@ -44,9 +44,9 @@ describe('ProductListComponent', () => {
   });
 
   it('should be able to take an input of products', () => {
-    let productListComponent = fixture.debugElement.query(By.css('product-list'));
+    let productGridComponent = fixture.debugElement.query(By.css('product-grid'));
 
-    expect(productListComponent.componentInstance.products).toEqual(component.productsValue);
+    expect(productGridComponent.componentInstance.products).toEqual(component.productsValue);
   });
 
   describe('product-card', () => {

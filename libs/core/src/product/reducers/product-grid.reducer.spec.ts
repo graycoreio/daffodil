@@ -2,11 +2,11 @@ import { createSelector } from "@ngrx/store";
 
 import { Product } from "../model/product";
 import { ProductFactory } from "../testing/factories/product.factory";
-import { initialState, reducer, getProductListLoading } from "../reducers/product-list.reducer";
-import { ProductListLoad, ProductListLoadSuccess, ProductListLoadFailure } from "../actions/product-list.actions";
+import { initialState, reducer, getProductGridLoading } from "../reducers/product-grid.reducer";
+import { ProductGridLoad, ProductGridLoadSuccess, ProductGridLoadFailure } from "../actions/product-grid.actions";
 
 
-describe('Product | Product List Reducer', () => {
+describe('Product | Product Grid Reducer', () => {
 
   let productFactory;
   let product: Product;
@@ -28,18 +28,18 @@ describe('Product | Product List Reducer', () => {
     });
   });
 
-  describe('when ProductListLoadAction is triggered', () => {
+  describe('when ProductGridLoadAction is triggered', () => {
 
     it('sets loading state to true', () => {
-      const productListLoadAction: ProductListLoad = new ProductListLoad();
+      const productGridLoadAction: ProductGridLoad = new ProductGridLoad();
       
-      const result = reducer(initialState, productListLoadAction);
+      const result = reducer(initialState, productGridLoadAction);
 
       expect(result.loading).toEqual(true);
     });
   });
 
-  describe('when ProductListLoadSuccessAction is triggered', () => {
+  describe('when ProductGridLoadSuccessAction is triggered', () => {
 
     let products: Product[];
     let result;
@@ -47,9 +47,9 @@ describe('Product | Product List Reducer', () => {
     beforeEach(() => {
       initialState.loading = true;
       products = new Array(product);
-      let productListLoadSuccess = new ProductListLoadSuccess(products);
+      let productGridLoadSuccess = new ProductGridLoadSuccess(products);
       
-      result = reducer(initialState, productListLoadSuccess);
+      result = reducer(initialState, productGridLoadSuccess);
     });
 
     it('sets loading to false', () => {
@@ -57,7 +57,7 @@ describe('Product | Product List Reducer', () => {
     });
   });
 
-  describe('when ProductListLoadFailureAction is triggered', () => {
+  describe('when ProductGridLoadFailureAction is triggered', () => {
 
     let error: string;
     let result;
@@ -66,9 +66,9 @@ describe('Product | Product List Reducer', () => {
       initialState.loading = true;
       error = 'error';      
       initialState.errors = new Array('firstError');
-      let productListLoadFailure = new ProductListLoadFailure(error);
+      let productGridLoadFailure = new ProductGridLoadFailure(error);
 
-      result = reducer(initialState, productListLoadFailure);
+      result = reducer(initialState, productGridLoadFailure);
     });
 
     it('sets loading to false', () => {
@@ -80,10 +80,10 @@ describe('Product | Product List Reducer', () => {
     });
   });
 
-  describe('getProductListLoading', () => {
+  describe('getProductGridLoading', () => {
     
     it('returns loading state', () => {
-      expect(getProductListLoading(initialState)).toEqual(initialState.loading);
+      expect(getProductGridLoading(initialState)).toEqual(initialState.loading);
     });
   });
 });

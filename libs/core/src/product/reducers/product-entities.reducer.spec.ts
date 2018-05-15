@@ -1,7 +1,7 @@
 import { Product } from "../model/product";
 import { ProductFactory } from "../testing/factories/product.factory";
 import { initialState, reducer, productAdapter } from "../reducers/product-entities.reducer";
-import { ProductListLoad, ProductListLoadSuccess } from "../actions/product-list.actions";
+import { ProductGridLoad, ProductGridLoadSuccess } from "../actions/product-grid.actions";
 import { ProductLoadSuccess } from "../actions/product.actions";
 
 describe('Product | Product Entities Reducer', () => {
@@ -23,7 +23,7 @@ describe('Product | Product Entities Reducer', () => {
     });
   });
 
-  describe('when ProductListLoadSuccessAction is triggered', () => {
+  describe('when ProductGridLoadSuccessAction is triggered', () => {
 
     let products: Product[];
     let result;
@@ -35,9 +35,9 @@ describe('Product | Product Entities Reducer', () => {
       product1Id = product1.id;
       
       products = new Array(product1, product2);
-      let productListLoadSuccess = new ProductListLoadSuccess(products);
+      let productGridLoadSuccess = new ProductGridLoadSuccess(products);
       
-      result = reducer(initialState, productListLoadSuccess);
+      result = reducer(initialState, productGridLoadSuccess);
     });
 
     it('sets expected number of products on state', () => {

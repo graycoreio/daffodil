@@ -3,8 +3,8 @@ import { AppComponent } from './app.component';
 import { Component } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 
-@Component({selector: 'foundation-product-list-view', template: ''})
-class ProductListContainerMock {}
+@Component({selector: 'foundation-product-grid-view', template: ''})
+class ProductGridContainerMock {}
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -14,7 +14,7 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
-        ProductListContainerMock
+        ProductGridContainerMock
       ],
     }).compileComponents();
   }));

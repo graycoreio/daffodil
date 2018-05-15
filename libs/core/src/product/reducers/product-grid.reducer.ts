@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { ProductListActionTypes, ProductListActions } from '../actions/product-list.actions';
+import { ProductGridActionTypes, ProductGridActions } from '../actions/product-grid.actions';
 import { Product } from '../model/product';
 
 export interface State {
@@ -15,13 +15,13 @@ export const initialState: State = {
   errors: []
 };
 
-export function reducer(state = initialState, action: ProductListActions): State {
+export function reducer(state = initialState, action: ProductGridActions): State {
   switch (action.type) {
-    case ProductListActionTypes.ProductListLoadAction:
+    case ProductGridActionTypes.ProductGridLoadAction:
       return {...state, loading: true};
-    case ProductListActionTypes.ProductListLoadSuccessAction:
+    case ProductGridActionTypes.ProductGridLoadSuccessAction:
       return {...state, loading: false};
-    case ProductListActionTypes.ProductListLoadFailureAction:
+    case ProductGridActionTypes.ProductGridLoadFailureAction:
       return {...state, 
         loading: false, 
         errors: state.errors.concat(new Array(action.payload))
@@ -31,4 +31,4 @@ export function reducer(state = initialState, action: ProductListActions): State
   }
 }
 
-export const getProductListLoading = (state: State) => state.loading;
+export const getProductGridLoading = (state: State) => state.loading;

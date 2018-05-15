@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { ProductListActionTypes, ProductListActions } from '../actions/product-list.actions';
+import { ProductGridActionTypes, ProductGridActions } from '../actions/product-grid.actions';
 import { Product } from '../model/product';
 import { createEntityAdapter, EntityState, EntityAdapter } from '@ngrx/entity';
 import { ProductActionTypes, ProductActions } from '../actions/product.actions';
@@ -12,9 +12,9 @@ export const initialState: State = productAdapter.getInitialState();
 
 export function reducer(
   state = initialState, 
-  action: ProductListActions| ProductActions): State {
+  action: ProductGridActions| ProductActions): State {
   switch (action.type) {
-    case ProductListActionTypes.ProductListLoadSuccessAction:
+    case ProductGridActionTypes.ProductGridLoadSuccessAction:
       return productAdapter.upsertMany(action.payload.map(
         (product) => {
           return {

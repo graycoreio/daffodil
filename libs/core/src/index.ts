@@ -5,7 +5,7 @@ export { CoreCartModule } from './cart/cart.module';
 
 export { Product } from './product/model/product';
 export { ProductFactory } from './product/testing/factories/product.factory';
-export { ProductListContainer } from './product/containers/product-list/product-list.component';
+export { ProductGridContainer } from './product/containers/product-grid/product-grid.component';
 
 export { Cart } from './cart/model/cart';
 export { CartFactory } from './cart/testing/factories/cart.factory';

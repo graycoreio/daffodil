@@ -6,20 +6,20 @@ import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
 import { of } from 'rxjs/observable/of';
 
-import { ProductListContainer } from './product-list.component';
+import { ProductGridContainer } from './product-grid.component';
 import { ProductFactory } from '../../testing/factories/product.factory';
 import { Product } from '../../model/product';
 
 
-import { ProductListLoad } from '../../actions/product-list.actions';
+import { ProductGridLoad } from '../../actions/product-grid.actions';
 import * as fromProduct from '../../reducers';
 
 
 
 
-describe('ProductListContainer', () => {
-  let component: ProductListContainer;
-  let fixture: ComponentFixture<ProductListContainer>;
+describe('ProductGridContainer', () => {
+  let component: ProductGridContainer;
+  let fixture: ComponentFixture<ProductGridContainer>;
   let store;
   let initialLoading: boolean;
   let initialProducts: Product[];
@@ -32,20 +32,20 @@ describe('ProductListContainer', () => {
           products: combineReducers(fromProduct.reducers),
         })
       ],
-      declarations: [ ProductListContainer ]
+      declarations: [ ProductGridContainer ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProductListContainer);
+    fixture = TestBed.createComponent(ProductGridContainer);
     component = fixture.componentInstance;
     store = TestBed.get(Store);
 
     initialLoading = false;
     initialProducts = new Array(productFactory.create());
 
-    spyOn(fromProduct, 'selectProductListLoadingState').and.returnValue(initialLoading);
+    spyOn(fromProduct, 'selectProductGridLoadingState').and.returnValue(initialLoading);
     spyOn(fromProduct, 'selectAllProducts').and.returnValue(initialProducts);
     spyOn(store, 'dispatch');
 
@@ -58,8 +58,8 @@ describe('ProductListContainer', () => {
 
   describe('ngInit', () => {
     
-    it('dispatches a ProductListLoad action', () => {
-      expect(store.dispatch).toHaveBeenCalledWith(new ProductListLoad());
+    it('dispatches a ProductGridLoad action', () => {
+      expect(store.dispatch).toHaveBeenCalledWith(new ProductGridLoad());
     });
 
     it('initializes loading$', () => {
