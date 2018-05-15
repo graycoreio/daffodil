@@ -5,7 +5,7 @@
 .product-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 50px 10px;
+  grid-gap: 50px 20px;
 
   @include breakpoint(large) {
     grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
