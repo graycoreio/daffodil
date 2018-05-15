@@ -6,14 +6,14 @@ import { Store, select } from '@ngrx/store';
 
 import { Product } from '../../model/product';
 import * as fromProduct from '../../reducers';
-import { ProductListLoad } from '../../actions/product-list.actions';
+import { ProductGridLoad } from '../../actions/product-grid.actions';
 
 @Component({
-  selector: '[product-list-container]',
+  selector: '[product-grid-container]',
   template: '<ng-content></ng-content>',
-  exportAs: 'ProductListContainer'
+  exportAs: 'ProductGridContainer'
 })
-export class ProductListContainer implements OnInit {
+export class ProductGridContainer implements OnInit {
 
   loading$: Observable<boolean>;
   products$: Observable<Product[]>;
@@ -23,10 +23,10 @@ export class ProductListContainer implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.store.dispatch(new ProductListLoad());
+    this.store.dispatch(new ProductGridLoad());
 
     this.loading$ = this.store.pipe(
-      select(fromProduct.selectProductListLoadingState)
+      select(fromProduct.selectProductGridLoadingState)
     );
 
     this.products$ = this.store.pipe(

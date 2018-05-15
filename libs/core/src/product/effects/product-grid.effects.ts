@@ -7,15 +7,15 @@ import { of } from 'rxjs/observable/of';
 
 import { ProductService } from '../services/product.service';
 import { 
-  ProductListActionTypes, 
-  ProductListLoad, 
-  ProductListLoadSuccess, 
-  ProductListLoadFailure } from '../actions/product-list.actions';
+  ProductGridActionTypes, 
+  ProductGridLoad, 
+  ProductGridLoadSuccess, 
+  ProductGridLoadFailure } from '../actions/product-grid.actions';
 import { Observable } from 'rxjs/Observable';
 import { Action } from 'rxjs/scheduler/Action';
 
 @Injectable()
-export class ProductListEffects {
+export class ProductGridEffects {
 
   constructor(
     private actions$: Actions,
@@ -23,15 +23,15 @@ export class ProductListEffects {
 
   @Effect()
   loadAll$ : Observable<any> = this.actions$.pipe(
-    ofType(ProductListActionTypes.ProductListLoadAction),
-    switchMap((action: ProductListLoad) =>
+    ofType(ProductGridActionTypes.ProductGridLoadAction),
+    switchMap((action: ProductGridLoad) =>
       this.productService.getAll()
         .pipe(
           map((resp) => {
-            return new ProductListLoadSuccess(resp);
+            return new ProductGridLoadSuccess(resp);
           }),
           catchError(error => {
-            return of(new ProductListLoadFailure("Failed to load product list"));
+            return of(new ProductGridLoadFailure("Failed to load product grid"));
           })
         )
     )

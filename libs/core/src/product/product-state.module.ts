@@ -5,13 +5,13 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { reducers } from './reducers';
 
-import { ProductListEffects } from './effects/product-list.effects';
+import { ProductGridEffects } from './effects/product-grid.effects';
 
 @NgModule({
   imports: [
       StoreModule.forFeature('product', reducers),
       EffectsModule.forFeature([
-        ProductListEffects
+        ProductGridEffects
       ]),
   ]
 })

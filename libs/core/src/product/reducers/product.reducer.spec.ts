@@ -6,7 +6,7 @@ import { initialState, reducer, getProductLoading, getSelectedProductId } from "
 import { ProductLoad, ProductLoadSuccess, ProductLoadFailure } from "../actions/product.actions";
 
 
-describe('Product | Product List Reducer', () => {
+describe('Product | Product Reducer', () => {
 
   let productFactory;
   let product: Product;

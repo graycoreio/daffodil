@@ -7,23 +7,23 @@ import { of } from 'rxjs/observable/of';
 
 import { hot, cold } from 'jasmine-marbles';
 
-import { ProductListEffects } from './product-list.effects';
+import { ProductGridEffects } from './product-grid.effects';
 
 import { ProductTestingModule } from '../testing/product-testing.module';
 import { ProductService } from '../services/product.service';
 import { ProductFactory } from '../testing/factories/product.factory';
 import { Product } from '../model/product';
-import { ProductListLoad, ProductListLoadSuccess, ProductListLoadFailure } from '../actions/product-list.actions';
+import { ProductGridLoad, ProductGridLoadSuccess, ProductGridLoadFailure } from '../actions/product-grid.actions';
 
 import { DaffodilConfigService } from '../../config/daffodil-config.service';
 import { DaffodilConfigFactory } from '../../config/testing/daffodil-config.factory';
 
-describe('ProductListEffects', () => {
+describe('ProductGridEffects', () => {
   let actions$: Observable<any>;
-  let effects: ProductListEffects;
+  let effects: ProductGridEffects;
   let productService: ProductService;
   let productFactory: ProductFactory;
-  let mockProductList: Product[];
+  let mockProductGrid: Product[];
   let daffodilConfigService: DaffodilConfigService;
   let daffodilConfigFactory: DaffodilConfigFactory;
 
@@ -36,38 +36,38 @@ describe('ProductListEffects', () => {
         ProductTestingModule
       ],
       providers: [
-        ProductListEffects,
+        ProductGridEffects,
         provideMockActions(() => actions$),
         {provide: DaffodilConfigService, useValue: daffodilConfigService}
       ]
     });
 
-    effects = TestBed.get(ProductListEffects);
+    effects = TestBed.get(ProductGridEffects);
     productService = TestBed.get(ProductService);
     productFactory = TestBed.get(ProductFactory);
 
-    mockProductList = new Array(productFactory.create());
+    mockProductGrid = new Array(productFactory.create());
   });
 
   it('should be created', () => {
     expect(effects).toBeTruthy();
   });
 
-  describe('when ProductListLoadAction is triggered', () => {
+  describe('when ProductGridLoadAction is triggered', () => {
 
     let expected;
-    const productListLoadAction = new ProductListLoad();
+    const productGridLoadAction = new ProductGridLoad();
     
     describe('and the call to ProductService is successful', () => {
 
       beforeEach(() => {
-        spyOn(productService, 'getAll').and.returnValue(of(mockProductList));
-        const productListLoadSuccessAction = new ProductListLoadSuccess(mockProductList);
-        actions$ = hot('--a', { a: productListLoadAction });
-        expected = cold('--b', { b: productListLoadSuccessAction });
+        spyOn(productService, 'getAll').and.returnValue(of(mockProductGrid));
+        const productGridLoadSuccessAction = new ProductGridLoadSuccess(mockProductGrid);
+        actions$ = hot('--a', { a: productGridLoadAction });
+        expected = cold('--b', { b: productGridLoadSuccessAction });
       });
       
-      it('should dispatch a ProductListLoadSuccess action', () => {
+      it('should dispatch a ProductGridLoadSuccess action', () => {
         expect(effects.loadAll$).toBeObservable(expected);
       });
     });
@@ -75,15 +75,15 @@ describe('ProductListEffects', () => {
     describe('and the call to ProductService fails', () => {
       
       beforeEach(() => {
-        let error = 'Failed to load product list';
+        let error = 'Failed to load product grid';
         let response = cold('#', {}, error);
         spyOn(productService, 'getAll').and.returnValue(response);
-        const productListLoadFailureAction = new ProductListLoadFailure(error);
-        actions$ = hot('--a', { a: productListLoadAction });
-        expected = cold('--b', { b: productListLoadFailureAction });
+        const productGridLoadFailureAction = new ProductGridLoadFailure(error);
+        actions$ = hot('--a', { a: productGridLoadAction });
+        expected = cold('--b', { b: productGridLoadFailureAction });
       });
       
-      it('should dispatch a ProductListLoadFailure action', () => {
+      it('should dispatch a ProductGridLoadFailure action', () => {
         expect(effects.loadAll$).toBeObservable(expected);
       });
     });

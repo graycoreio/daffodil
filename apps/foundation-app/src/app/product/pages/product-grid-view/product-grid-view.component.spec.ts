@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
-import { ProductListViewComponent } from './product-list-view.component';
+import { ProductGridViewComponent } from './product-grid-view.component';
 
 import { Product } from '@daffodil/core';
 import { ProductFactory } from '@daffodil/core';
@@ -15,39 +15,39 @@ let productFactory = new ProductFactory();
 let products$ = of(new Array(productFactory.create()));
 
 @Component({
-  selector: '[product-list-container]', 
+  selector: '[product-grid-container]', 
   template: '<ng-content></ng-content>', 
-  exportAs: 'ProductListContainer'
+  exportAs: 'ProductGridContainer'
 })
-class ProductListContainerMock {
+class ProductGridContainerMock {
   products$: Observable<Product[]> = products$;
 }
 
 @Component({
-  selector: 'product-list',
+  selector: 'product-grid',
   template: ''
 })
-class ProductListMock { 
+class ProductGridMock { 
   @Input() products: Product[];
 }
 
-describe('ProductListViewComponent', () => {
-  let component: ProductListViewComponent;
-  let fixture: ComponentFixture<ProductListViewComponent>;
+describe('ProductGridViewComponent', () => {
+  let component: ProductGridViewComponent;
+  let fixture: ComponentFixture<ProductGridViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        ProductListViewComponent,
-        ProductListContainerMock,
-        ProductListMock
+        ProductGridViewComponent,
+        ProductGridContainerMock,
+        ProductGridMock
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProductListViewComponent);
+    fixture = TestBed.createComponent(ProductGridViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -56,13 +56,13 @@ describe('ProductListViewComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('on product-list', () => {
+  describe('on product-grid', () => {
     
-    it('should set products to value passed by product-list-container directive', () => {
-      let productList = fixture.debugElement.query(By.css('product-list'));
+    it('should set products to value passed by product-grid-container directive', () => {
+      let productGrid = fixture.debugElement.query(By.css('product-grid'));
       
       products$.subscribe((products) => {
-        expect(productList.componentInstance.products).toEqual(products);
+        expect(productGrid.componentInstance.products).toEqual(products);
       });
     });
   });

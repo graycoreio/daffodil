@@ -4,13 +4,13 @@ import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
 import * as fromProduct from './index';
-import { selectProductListState } from "../reducers";
-import { ProductListLoadSuccess } from "../actions/product-list.actions";
+import { selectProductGridState } from "../reducers";
+import { ProductGridLoadSuccess } from "../actions/product-grid.actions";
 import { ProductFactory } from "../testing/factories/product.factory";
 import { Product } from "../model/product";
 import { ProductLoad } from "../actions/product.actions";
 
-describe('selectProductListState', () => {
+describe('selectProductGridState', () => {
 
   let store: Store<fromProduct.ProductState>;
   let productFactory: ProductFactory = new ProductFactory();
@@ -27,7 +27,7 @@ describe('selectProductListState', () => {
 
     mockProduct = productFactory.create();
     store = TestBed.get(Store);
-    store.dispatch(new ProductListLoadSuccess(new Array(mockProduct)));
+    store.dispatch(new ProductGridLoadSuccess(new Array(mockProduct)));
     store.dispatch(new ProductLoad(mockProduct.id));
   }));
 
@@ -70,28 +70,28 @@ describe('selectProductListState', () => {
     });  
   });
   
-  describe('ProductListState', () => {
+  describe('ProductGridState', () => {
     
-    describe('selectProductListState', () => {
+    describe('selectProductGridState', () => {
     
-      it('selects product list state', () => {
-        let expectedListState = {
+      it('selects product grid state', () => {
+        let expectedGridState = {
           products: [],
           loading: false,
           errors: []
         }
   
-        store.pipe(select(fromProduct.selectProductListState)).subscribe((productList) => {
-          expect(productList).toEqual(expectedListState);
+        store.pipe(select(fromProduct.selectProductGridState)).subscribe((productGrid) => {
+          expect(productGrid).toEqual(expectedGridState);
         });
       });
     });
   
-    describe('selectProductListLoadingState', () => {
+    describe('selectProductGridLoadingState', () => {
       
-      it('selects product list loading state', () => {
-        store.pipe(select(fromProduct.selectProductListLoadingState)).subscribe((productListLoading) => {
-          expect(productListLoading).toEqual(false);
+      it('selects product grid loading state', () => {
+        store.pipe(select(fromProduct.selectProductGridLoadingState)).subscribe((productGridLoading) => {
+          expect(productGridLoading).toEqual(false);
         });
       });
     });

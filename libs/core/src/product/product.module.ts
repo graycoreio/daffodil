@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ProductService } from './services/product.service';
-import { ProductListContainer } from './containers/product-list/product-list.component';
+import { ProductGridContainer } from './containers/product-grid/product-grid.component';
 import { ProductTestingModule } from './testing/product-testing.module';
 import { CoreProductStateModule } from './product-state.module';
 import { ProductContainer } from './containers/product/product.component';
@@ -17,11 +17,11 @@ import { ProductContainer } from './containers/product/product.component';
     CoreProductStateModule,
   ],
   declarations: [
-    ProductListContainer,
+    ProductGridContainer,
     ProductContainer
   ],
   exports: [
-    ProductListContainer,
+    ProductGridContainer,
     ProductContainer
   ],
   providers: [

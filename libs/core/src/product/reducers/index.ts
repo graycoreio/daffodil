@@ -2,14 +2,14 @@ import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelect
 import { Dictionary } from '@ngrx/entity/src/models';
 
 import * as fromProductEntities from './product-entities.reducer';
-import * as fromProductList from './product-list.reducer';
+import * as fromProductGrid from './product-grid.reducer';
 import * as fromProduct from './product.reducer';
 
 import { Product } from '../model/product';
 
 export interface ProductState {
   products : fromProductEntities.State;
-  productList: fromProductList.State;
+  productGrid: fromProductGrid.State;
   product: fromProduct.State;
 }
 
@@ -19,7 +19,7 @@ export interface State {
 
 export const reducers : ActionReducerMap<ProductState> = {
   products: fromProductEntities.reducer,
-  productList: fromProductList.reducer,
+  productGrid: fromProductGrid.reducer,
   product: fromProduct.reducer
 }
 
@@ -52,16 +52,16 @@ export const {
 } = fromProductEntities.productAdapter.getSelectors(selectProductEntitiesState);
 
 /**
- * Product List
+ * Product Grid
  */
-export const selectProductListState = createSelector(
+export const selectProductGridState = createSelector(
   selectProductState,
-  (state: ProductState) => state.productList
+  (state: ProductState) => state.productGrid
 )
 
-export const selectProductListLoadingState : MemoizedSelector<object, boolean> = createSelector(
-  selectProductListState,
-  fromProductList.getProductListLoading
+export const selectProductGridLoadingState : MemoizedSelector<object, boolean> = createSelector(
+  selectProductGridState,
+  fromProductGrid.getProductGridLoading
 )
 
 /**
