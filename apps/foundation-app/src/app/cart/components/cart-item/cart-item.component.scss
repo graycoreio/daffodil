@@ -3,7 +3,7 @@
 
 .cart-item {
   display: grid;
-  font-size: $small-font;
+  font-size: $small-font-size;
   grid-column-gap: 20px;
   grid-row-gap: 15px;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -16,11 +16,11 @@
     }
 
     &__name {
-      font-size: $medium-font;
+      font-size: $global-font-size;
     }
 
     &__price {
-      font-size: $medium-font;
+      font-size: $global-font-size;
       color: $lightblue;
       margin-bottom: 15px;
     }
