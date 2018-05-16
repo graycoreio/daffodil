@@ -1,10 +1,13 @@
 # Daffodil
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) using [Nrwl Nx](https://nrwl.io/nx).
+[![Build Status](https://travis-ci.com/graycoreio/daffodil.svg?branch=master)](https://travis-ci.com/graycoreio/daffodil)
+[![npm version](https://badge.fury.io/js/%40daffodil%2Fcore.svg)](https://www.npmjs.com/@daffodil/core)
 
 ## Getting started
 
-**Running the example foundation-app**
+### Using Daffodil in Your Own Project
+1. `npm install @daffodil/core`
+
+### Running the example foundation-app
 
 - Ensure that lerna is installed in your local environment `npm install --global lerna`.
 - Clone this repository and run `cd daffodil`.
@@ -13,15 +16,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - To run the foundation-app that points to the built `@daffodil/core` module, run `ng serve --app=foundation-demo`. This will serve the foundation-app to `localhost:4200`.
 
 ## Contributing
+
 Please read the [contributing guidelines here](https://github.com/graycore/daffodil/blob/master/CONTRIBUTING.md).
-
-## Development server
-
-Run `ng serve --app=myapp` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Build
 
-Run `npm build:lib` to build the @daffodil/core project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Run `npm run-script build:lib` to build the `@daffodil/core` project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
 ## Release
 
