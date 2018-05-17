@@ -41,7 +41,7 @@ export class MockCartItem implements CartItem {
   name: string = 'Product Name';
   description: string = 'description';
   weight: number = faker.random.number(1000);
-  qty: number = faker.random.number(10);
+  qty: number = faker.random.number({min:1, max:11});
   price: number = faker.random.number(1000);
   discount_percent: number = faker.random.number(10);
   discount_amount: number = faker.random.number(100);

@@ -27,18 +27,19 @@
   @include breakpoint(large) {
     grid-template-areas:
       "cart cart cart-total"
-      "proceed-to-checkout proceed-to-checkout proceed-to-checkout";
+      "proceed-to-checkout proceed-to-checkout cart-total";
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-gap: 50px;
     margin: 50px 120px;
     
     &__cart-wrapper {
       grid-area: cart;
-      padding: 0;
+      padding: 0 0 50px 0;
     }
     
     &__cart-total-wrapper {
       grid-area: cart-total;
+      margin: 0;
     }
     
     &__proceed-to-checkout-wrapper {

@@ -25,6 +25,16 @@
       margin-bottom: 15px;
     }
 
+    &__qty {
+      &-small-screen {
+        display: inline;
+      }
+
+      &-large-screen {
+        display: none;
+      }
+    }
+
     &__change {
       color: $gray;
       margin-top: 15px;
@@ -40,7 +50,7 @@
   }
 
   @include breakpoint(large) {
-    &__description {
+    &__description {      
       grid-template-areas: 
         "brand      qty price"
         "name       qty price"
@@ -61,6 +71,7 @@
 
       &__price {
         grid-area: price;        
+        justify-self: end;
       }
 
       &__attribute {
@@ -72,7 +83,15 @@
       }
 
       &__qty {
-        grid-area: qty;        
+        grid-area: qty;
+
+        &-small-screen {
+          display: none;
+        }
+
+        &-large-screen {
+          display: inline;
+        }
       }
 
       &__change {

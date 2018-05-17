@@ -1,4 +1,5 @@
 // You can add global styles to this file, and also import other style files (before foundation)
+@import '~scss/variables';
 
 // Global styles
 $body-font-family: 'Open Sans', sans-serif;
@@ -8,7 +9,6 @@ $global-weight-bold: 600;
 $breakpoint-classes: (small medium large xlarge xxlarge);
 
 // Imports
-@import '~scss/variables';
 @import '~foundation-sites/assets/foundation';
 
 body {

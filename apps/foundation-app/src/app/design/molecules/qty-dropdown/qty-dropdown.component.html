@@ -1,0 +1,9 @@
+<div class="qty-dropdown">
+  <label class="qty-dropdown__label">
+    <select class="qty-dropdown__label__selector" (change)="onChange($event.target.value)" *ngIf="!showQtyInputField">
+        <option *ngFor="let item of dropdownItemCounter; index as i" [attr.selected]="isOptionSelectedInitially(i+1)">{{i+1}}</option>
+        <option>10+</option>
+    </select>
+    <input id="{{id}}" class="qty-dropdown__label__input" value="{{qty}}" *ngIf="showQtyInputField">
+  </label>
+</div>
