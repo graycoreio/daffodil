@@ -14,6 +14,12 @@ class TestCartTotalWrapper {
   cartValue: Cart;
 }
 
+@Component({
+  selector: 'proceed-to-checkout',
+  template: ''
+})
+class ProceedToCheckoutMock {}
+
 describe('CartTotalComponent', () => {
   let component: TestCartTotalWrapper;
   let fixture: ComponentFixture<TestCartTotalWrapper>;
@@ -22,7 +28,8 @@ describe('CartTotalComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         CartTotalComponent,
-        TestCartTotalWrapper
+        TestCartTotalWrapper,
+        ProceedToCheckoutMock
       ]
     })
     .compileComponents();

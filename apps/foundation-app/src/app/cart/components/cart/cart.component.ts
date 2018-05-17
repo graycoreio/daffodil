@@ -10,9 +10,17 @@ export class CartComponent implements OnInit {
 
   @Input() cart: Cart;
 
+  hasMultipleItems: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
+    if (this.cart.items.length > 1) {
+      this.hasMultipleItems = true;
+    }
   }
 
+  getItemText() {
+    return this.hasMultipleItems ? 'Items' : 'Item';
+  }
 }

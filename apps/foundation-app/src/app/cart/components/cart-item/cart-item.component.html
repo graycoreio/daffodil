@@ -1,25 +1,25 @@
 <div class="cart-item">
   <img src="/assets/mh04-green_alt1.jpg">
   <div class="cart-item__description">
-    <div class="cart-item__description__brand">Brand (HC)</div>
-    <div class="cart-item__description__name embolden">{{item.name}}</div>
-    <div class="cart-item__description__price">${{item.price}}</div>
-    <div class="cart-item__description__attribute">
+    <div class="cart-item__brand">Brand (HC)</div>
+    <div class="cart-item__name embolden">{{item.name}}</div>
+    <div class="cart-item__price">${{item.price}}</div>
+    <div class="cart-item__attribute">
       <span class="embolden">Color: </span><span>White (HC)</span><br>
     </div>
-    <div class="cart-item__description__size">
+    <div class="cart-item__size">
       <span class="embolden">Size: </span><span>5 (HC)</span><br>
     </div>
-    <div class="cart-item__description__qty">
-      <span class="embolden cart-item__description__qty-small-screen">Qty: </span>
-      <span class="cart-item__description__qty-small-screen">{{item.qty}}</span>
-      <span class="cart-item__description__qty-large-screen">
+    <div class="cart-item__qty-wrapper">
+      <span class="embolden cart-item__mobile-qty">Qty: </span>
+      <span class="cart-item__mobile-qty">{{item.qty}}</span>
+      <span class="cart-item__desktop-qty">
         <qty-dropdown [qty]="item.qty" [id]="item.item_id"></qty-dropdown>
       </span>
     </div>
-    <div class="cart-item__description__change">
+    <div class="cart-item__change">
       <span>Edit</span>
-      <span class="cart-item__description__change__remove">Remove</span>
+      <span class="cart-item__change__remove">Remove</span>
     </div>
   </div>
 </div>
