@@ -24,6 +24,11 @@
     &__title {
       margin-bottom: 25px;
       padding-bottom: 15px;
+
+      &__item-count {
+        margin-left: 25px;
+        float: none;
+      }
     }
   }  
 }

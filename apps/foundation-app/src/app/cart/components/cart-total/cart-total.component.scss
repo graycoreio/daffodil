@@ -1,7 +1,12 @@
 @import '~scss/styles';
 @import '~scss/colors';
+@import '~scss/mixins/general';
 
 .cart-total {
+  &__title {
+    display: none;
+  }
+
   &__promotion {
     color: $gray;
     margin-bottom: 25px;
@@ -17,5 +22,14 @@
 
   &__grand {
     color: $lightblue;
+  }
+
+  @include breakpoint(large) {
+    &__title {
+      display: block;
+      padding-bottom: 15px;
+      margin-bottom: 25px;
+      @include section-divider();
+    }
   }
 }

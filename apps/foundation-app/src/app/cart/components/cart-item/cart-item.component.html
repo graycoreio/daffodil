@@ -11,7 +11,11 @@
       <span class="embolden">Size: </span><span>5 (HC)</span><br>
     </div>
     <div class="cart-item__description__qty">
-      <span class="embolden">Qty: </span><span>{{item.qty}}</span>   
+      <span class="embolden cart-item__description__qty-small-screen">Qty: </span>
+      <span class="cart-item__description__qty-small-screen">{{item.qty}}</span>
+      <span class="cart-item__description__qty-large-screen">
+        <qty-dropdown [qty]="item.qty" [id]="item.item_id"></qty-dropdown>
+      </span>
     </div>
     <div class="cart-item__description__change">
       <span>Edit</span>

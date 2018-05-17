@@ -8,11 +8,12 @@ import { CartComponent } from './components/cart/cart.component';
 import { CartTotalComponent } from './components/cart-total/cart-total.component';
 import { ProceedToCheckoutComponent } from './components/proceed-to-checkout/proceed-to-checkout.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
+import { DesignModule } from '../design/design.module';
 
 @NgModule({
   imports: [
     CommonModule,
-
+    DesignModule,
     CoreCartModule,
   ],
   declarations: [
