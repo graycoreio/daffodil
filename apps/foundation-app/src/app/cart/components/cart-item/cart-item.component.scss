@@ -10,42 +10,40 @@
 
   &__description {
     display: grid;
+  }
 
-    &__brand {
-      color: $gray
+  &__brand {
+    color: $gray
+  }
+
+  &__name {
+    font-size: $global-font-size;
+  }
+
+  &__price {
+    font-size: $global-font-size;
+    color: $lightblue;
+    margin-bottom: 15px;
+  }
+
+  &__mobile-qty {
+    display: inline;
+  }
+
+  &__desktop-qty {
+    display: none;
+  }
+
+  &__change {
+    color: $gray;
+    margin-top: 15px;
+
+    & > span {
+      text-decoration: underline;
     }
-
-    &__name {
-      font-size: $global-font-size;
-    }
-
-    &__price {
-      font-size: $global-font-size;
-      color: $lightblue;
-      margin-bottom: 15px;
-    }
-
-    &__qty {
-      &-small-screen {
-        display: inline;
-      }
-
-      &-large-screen {
-        display: none;
-      }
-    }
-
-    &__change {
-      color: $gray;
-      margin-top: 15px;
-  
-      & > span {
-        text-decoration: underline;
-      }
-      
-      &__remove {
-        margin-left: 10px;
-      }
+    
+    &__remove {
+      margin-left: 10px;
     }
   }
 
@@ -58,45 +56,45 @@
         "size       qty price"
         "change     qty price";
       grid-template-rows: repeat(4, auto) 1fr;
+    }
 
-      &__brand {
-        grid-area: brand;
-        margin-bottom: 5px;
-      }
+    &__brand {
+      grid-area: brand;
+      margin-bottom: 5px;
+    }
 
-      &__name {
-        grid-area: name;
-        margin-bottom: 15px;      
-      }
+    &__name {
+      grid-area: name;
+      margin-bottom: 15px;      
+    }
 
-      &__price {
-        grid-area: price;        
-        justify-self: end;
-      }
+    &__price {
+      grid-area: price;        
+      justify-self: end;
+    }
 
-      &__attribute {
-        grid-area: attribute;        
-      }
+    &__attribute {
+      grid-area: attribute;        
+    }
 
-      &__size {
-        grid-area: size;  
-      }
+    &__size {
+      grid-area: size;  
+    }
 
-      &__qty {
-        grid-area: qty;
+    &__qty-wrapper {
+      grid-area: qty;
+    }
 
-        &-small-screen {
-          display: none;
-        }
+    &__mobile-qty {
+      display: none;
+    }
 
-        &-large-screen {
-          display: inline;
-        }
-      }
+    &__desktop-qty {
+      display: inline;
+    }
 
-      &__change {
-        grid-area: change;
-      }
+    &__change {
+      grid-area: change;
     }
   }
 }
