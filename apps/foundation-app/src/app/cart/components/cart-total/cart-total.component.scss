@@ -3,6 +3,8 @@
 @import '~scss/mixins/general';
 
 .cart-total {
+  margin-bottom: 25px;
+  
   &__title {
     display: none;
   }
@@ -10,6 +12,14 @@
   &__promotion {
     color: $gray;
     margin-bottom: 25px;
+
+    &__input {
+      display: none;
+    }
+
+    &__button {
+      display: none;
+    }
   }
 
   &__description {
@@ -24,12 +34,50 @@
     color: $lightblue;
   }
 
+  &__proceed-to-checkout-wrapper {
+    display: none;
+  }
+
   @include breakpoint(large) {
     &__title {
       display: block;
       padding-bottom: 15px;
       margin-bottom: 25px;
       @include section-divider();
+    }
+
+    &__promotion {
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns: 1fr 100px;
+
+      grid-template-areas: 
+        "text text"
+        "input button";
+      
+
+      &__text {
+        grid-area: text;
+      }
+
+      &__chevron {
+        display: none;
+      }
+
+      &__input {
+        display: block;
+        grid-area: input;
+        height: 35px;
+      }
+
+      &__button {
+        display: inline;
+        grid-area: button;
+      }
+    }
+
+    &__proceed-to-checkout-wrapper {
+      display: block;
     }
   }
 }

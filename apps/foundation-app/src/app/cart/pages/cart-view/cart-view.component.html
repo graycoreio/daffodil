@@ -2,4 +2,5 @@
   <cart class="cart-container__cart-wrapper" [cart]="CartContainer.cart$ | async" *ngIf="!(CartContainer.loading$ | async)"></cart>
   <cart-total class="cart-container__cart-total-wrapper" [cart]="CartContainer.cart$ | async" *ngIf="!(CartContainer.loading$ | async)"></cart-total>
   <proceed-to-checkout class="cart-container__proceed-to-checkout-wrapper"></proceed-to-checkout>
+  <div class="cart-container__takes-up-space"></div>
 </div>

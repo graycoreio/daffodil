@@ -26,8 +26,8 @@
 
   @include breakpoint(large) {
     grid-template-areas:
-      "cart cart cart-total"
-      "proceed-to-checkout proceed-to-checkout cart-total";
+      "cart                 cart            cart-total"
+      "proceed-to-checkout  takes-up-space  cart-total";
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-gap: 50px;
     margin: 50px 120px;
@@ -44,6 +44,11 @@
     
     &__proceed-to-checkout-wrapper {
       grid-area: proceed-to-checkout;
+      width: 250px;
+    }
+
+    &__takes-up-space {
+      grid-area: takes-up-space;
     }
   }
 }

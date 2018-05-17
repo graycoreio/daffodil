@@ -1,6 +1,11 @@
 <div class="cart-total">
   <div class="cart-total__title embolden">CART SUMMARY</div>
-  <div class="cart-total__promotion">Enter promo code (optional) <span class="fa fa-chevron-down"></span></div>
+  <div class="cart-total__promotion">
+    <span class="cart-total__promotion__text">Enter promo code (optional) </span>
+    <span class="fa fa-chevron-down cart-total__promotion__chevron"></span>
+    <input class="cart-total__promotion__input">
+    <div class="button cart-total__promotion__button">Apply</div>
+  </div>
   <div>
     <span class="cart-total__description embolden">SUBTOTAL</span>
     <span>${{cart.subtotal}}</span>
@@ -18,3 +23,4 @@
     <span class="cart-total__grand">${{cart.grand_total}}</span>
   </div>
 </div>
+<proceed-to-checkout class="cart-total__proceed-to-checkout-wrapper"></proceed-to-checkout>

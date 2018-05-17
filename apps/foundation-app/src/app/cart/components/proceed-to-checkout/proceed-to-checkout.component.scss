@@ -3,8 +3,4 @@
 .button {
   width: 100%;
   font-size: $large-font-size;
-
-  @include breakpoint(large) {
-    width: 250px;
-  }
 }
