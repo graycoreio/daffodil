@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import * as $ from 'jquery';
 
 @Component({
@@ -8,33 +8,32 @@ import * as $ from 'jquery';
 })
 export class QtyDropdownComponent implements OnInit {
 
-  @Input() qty: string;
+  @Input() qty: number;
   @Input() id: string;
+  @Output() qtyChanged: EventEmitter<number> = new EventEmitter();
 
   static readonly dropdownRange = 9;
-  showQtyInputField: boolean;
-  dropdownItemCounter: string[];
+  dropdownItemCounter: number[];
 
   constructor() { }
 
   ngOnInit() {
-    this.showQtyInputField = this.isQtyOutsideDropdownRange();
-    this.dropdownItemCounter = new Array(QtyDropdownComponent.dropdownRange);
+    this.dropdownItemCounter = Array.from(Array(QtyDropdownComponent.dropdownRange),(x,i)=>i);
+  }
+
+  get showQtyInputField() : boolean {
+    return this.isQtyOutsideDropdownRange();
   }
 
   onChange(value: String) {
     if(value === "10+") {
-      this.showQtyInputField = true;
       this.selectInput();
     }
   }
 
-  isOptionSelectedInitially(index: string): string {
-    return this.qty == index ? 'selected': null;
-  }
-
   private isQtyOutsideDropdownRange() {
-    return parseInt(this.qty) > QtyDropdownComponent.dropdownRange;
+    console.log(this.qty);
+    return this.qty > QtyDropdownComponent.dropdownRange;
   }
 
   private selectInput() {

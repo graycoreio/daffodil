@@ -1,10 +1,16 @@
 import { NgModule } from '@angular/core';
-import { QtyDropdownComponent } from './qty-dropdown/qty-dropdown.component';
+
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+
+
+import { QtyDropdownComponent } from './qty-dropdown/qty-dropdown.component';
 
 @NgModule({
   imports: [
-    CommonModule    
+    CommonModule,
+    FormsModule
   ],
   declarations: [
     QtyDropdownComponent
