@@ -1,5 +1,26 @@
 @import '~scss/colors';
 
+$global-weight-bold: 600;
+
 @mixin section-divider() {
   border-bottom: solid 1px $lightgray;
+}
+
+@mixin embolden() {
+  font-weight: $global-weight-bold;
+}
+
+@mixin single-line-ellipsis() {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+}
+
+.embolden {
+  @include embolden();
+}
+
+.single-line-ellipsis {
+  @include single-line-ellipsis();
 }

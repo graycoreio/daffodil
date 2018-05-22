@@ -1,4 +1,5 @@
 @import '~scss/mixins/media';
+@import '~scss/mixins/general';
 @import '~scss/variables';
 @import '~scss/styles';
 
@@ -11,7 +12,7 @@
   }
 
   &__brand {
-    font-weight: $global-weight-bold;
+    @include embolden();
     text-transform: uppercase;
   }
 

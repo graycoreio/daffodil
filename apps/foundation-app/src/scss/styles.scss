@@ -5,11 +5,11 @@
 $body-font-family: 'Open Sans', sans-serif;
 $global-font-size: 14px;
 $global-weight-normal: 400;
-$global-weight-bold: 600;
 $breakpoint-classes: (small medium large xlarge xxlarge);
 
 // Imports
 @import '~foundation-sites/assets/foundation';
+@import '~scss/mixins/general';
 
 body {
   font-size: 16px;
@@ -17,17 +17,6 @@ body {
   @include breakpoint(small) {
     font-size: 14px;
   }
-}
-
-.single-line-ellipsis {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  display: block;
-}
-
-.embolden {
-  font-weight: $global-weight-bold;
 }
 
 $large-font-size: 120%;
