@@ -1,9 +1,9 @@
 <div class="qty-dropdown">
   <label class="qty-dropdown__label">
-    <select class="qty-dropdown__label__selector" (ngModelChange)="onChange($event.target.value)" [(ngModel)]="qty" *ngIf="!showQtyInputField">
-        <option *ngFor="let item of dropdownItemCounter" [value]="item">{{ item }}</option>
+    <select id="select_{{id}}" class="qty-dropdown__selector" [(ngModel)]="qty" (ngModelChange)="onChangedWrapper(qty)" (blur)="onTouched()" *ngIf="!showQtyInputField">
+        <option *ngFor="let item of dropdownItemCounter" [value]="item+1">{{ item+1 }}</option>
         <option value="10">10+</option>
     </select>
-    <input id="{{id}}" class="qty-dropdown__label__input" [(ngModel)]="qty" *ngIf="showQtyInputField">
+    <input id="input_{{id}}" class="qty-dropdown__input" [(ngModel)]="qty" (ngModelChange)="onChangedWrapper(qty)" (blur)="onTouched()" *ngIf="showQtyInputField">
   </label>
 </div>
