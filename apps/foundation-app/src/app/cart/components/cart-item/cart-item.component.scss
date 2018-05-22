@@ -18,6 +18,7 @@
 
   &__name {
     font-size: $global-font-size;
+    @include embolden();
   }
 
   &__price {
@@ -28,6 +29,7 @@
 
   &__mobile-qty {
     display: inline;
+    @include embolden();
   }
 
   &__desktop-qty {
