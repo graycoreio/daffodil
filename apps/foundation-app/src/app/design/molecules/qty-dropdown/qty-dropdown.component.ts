@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import * as $ from 'jquery';
+import { Component, OnInit, Input, Renderer2, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'qty-dropdown',
@@ -9,37 +8,67 @@ import * as $ from 'jquery';
 export class QtyDropdownComponent implements OnInit {
 
   @Input() qty: number;
-  @Input() id: string;
-  @Output() qtyChanged: EventEmitter<number> = new EventEmitter();
+  @Input() id: number;
 
   static readonly dropdownRange = 9;
   dropdownItemCounter: number[];
+  inputHasBeenShown: boolean;
+  onChange = (qty: number) => {};
+  onTouched = () => {};
 
-  constructor() { }
+  constructor(private renderer: Renderer2) { }
 
   ngOnInit() {
     this.dropdownItemCounter = Array.from(Array(QtyDropdownComponent.dropdownRange),(x,i)=>i);
   }
 
-  get showQtyInputField() : boolean {
-    return this.isQtyOutsideDropdownRange();
+  writeValue(qty: number): void {
+    this.qty = qty;
+    this.onChange(this.qty);
   }
 
-  onChange(value: String) {
-    if(value === "10+") {
-      this.selectInput();
+  registerOnChange(fn: (qty: number) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    if (this.inputHasBeenShown) {
+      this.renderer.setProperty(document.getElementById('input_' + this.id), 'disabled', isDisabled);
+    } else {
+      this.renderer.setProperty(document.getElementById('select_' + this.id), 'disabled', isDisabled);
     }
   }
 
-  private isQtyOutsideDropdownRange() {
-    console.log(this.qty);
+  get showQtyInputField() : boolean {
+    if (!this.isQtyOutsideDropdownRange() && !this.inputHasBeenShown) {
+      return false
+    } else {
+      this.inputHasBeenShown = true;
+      return true;
+    }
+  }
+
+  onChangedWrapper(value: any) {
+    value = parseInt(value);
+    if (value === 10) {
+      this.selectInput();
+    }
+    this.onChange(value);
+  }
+
+  private isQtyOutsideDropdownRange() {    
     return this.qty > QtyDropdownComponent.dropdownRange;
   }
 
   private selectInput() {
     let that = this;
     setTimeout(function() {
-      $( "#" + that.id ).select();
+      let input = document.getElementById("input_" + that.id) as HTMLInputElement;
+      input.select();
     });
   }
 }
