@@ -1,6 +1,6 @@
 @import '~scss/styles';
 
-.cart-total {
+.cart-subtotal {
   &__description {
     line-height: 24px;
     @include embolden();
@@ -8,9 +8,5 @@
     & + span {
       float:right;
     }
-  }
-
-  &__grand {
-    color: $light-blue;
   }
 }
