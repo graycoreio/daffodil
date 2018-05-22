@@ -1,0 +1,26 @@
+@import '~scss/styles';
+
+.cart-summary {
+  &__title {
+    display: none;
+    @include embolden();
+  }
+
+  &__proceed-to-checkout-wrapper {
+    display: none;
+  }
+
+  @include breakpoint(large) {
+    &__title {
+      display: block;
+      padding-bottom: 15px;
+      margin-bottom: 25px;
+      @include section-divider();
+    }
+
+    &__proceed-to-checkout-wrapper {
+      display: block;
+      margin-top: 25px;
+    }
+  }
+}

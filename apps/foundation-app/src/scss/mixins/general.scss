@@ -1,9 +1,9 @@
-@import '~scss/colors';
+@import '~scss/variables';
 
 $global-weight-bold: 600;
 
 @mixin section-divider() {
-  border-bottom: solid 1px $lightgray;
+  border-bottom: solid 1px $medium-gray;
 }
 
 @mixin embolden() {

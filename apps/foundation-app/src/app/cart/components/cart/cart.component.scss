@@ -1,4 +1,3 @@
-@import '~scss/colors';
 @import '~scss/styles';
 @import '~scss/mixins/general';
 
@@ -16,7 +15,7 @@
 
   &__item-count {
     float: right;
-    color: $gray;
+    color: $dark-gray;
     font-size: $small-font-size;
   }
 

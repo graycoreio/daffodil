@@ -31,10 +31,10 @@ class CartMock {
 }
 
 @Component({
-  selector: 'cart-total',
+  selector: 'cart-summary',
   template: ''
 })
-class CartTotalMock {
+class CartSummaryMock {
   @Input() cart: Cart;
 }
 
@@ -54,7 +54,7 @@ describe('CartViewComponent', () => {
         CartViewComponent,
         CartContainerMock,
         CartMock,
-        CartTotalMock,
+        CartSummaryMock,
         ProceedToCheckoutMock
       ]
     })
@@ -82,13 +82,13 @@ describe('CartViewComponent', () => {
     });
   });
 
-  describe('on <cart-total>', () => {
+  describe('on <cart-summary>', () => {
     
     it('should set cart to value passed by the cart-container directive', () => {
-      let cartTotalElement = fixture.debugElement.query(By.css('cart-total'));
+      let cartSummaryElement = fixture.debugElement.query(By.css('cart-summary'));
 
       cart$.subscribe((cart) => {
-        expect(cartTotalElement.componentInstance.cart).toEqual(cart);
+        expect(cartSummaryElement.componentInstance.cart).toEqual(cart);
       });
     });
   });

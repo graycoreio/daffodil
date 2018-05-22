@@ -3,33 +3,33 @@ import { By } from '@angular/platform-browser';
 
 import { CartFactory, Cart } from '@daffodil/core';
 
-import { CartTotalComponent } from './cart-total.component';
+import { CartShippingComponent } from './cart-shipping.component';
 import { Component } from '@angular/core';
 
 let cartFactory = new CartFactory();
 let mockCart = cartFactory.create();
 
-@Component({template: '<cart-total [cart]="cartValue"></cart-total>'})
-class TestCartTotalWrapper {
+@Component({template: '<cart-shipping [cart]="cartValue"></cart-shipping>'})
+class TestCartShippingWrapper {
   cartValue: Cart;
 }
 
-describe('CartTotalComponent', () => {
-  let component: TestCartTotalWrapper;
-  let fixture: ComponentFixture<TestCartTotalWrapper>;
+describe('CartShippingComponent', () => {
+  let component: TestCartShippingWrapper;
+  let fixture: ComponentFixture<TestCartShippingWrapper>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        CartTotalComponent,
-        TestCartTotalWrapper
+        CartShippingComponent,
+        TestCartShippingWrapper
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestCartTotalWrapper);
+    fixture = TestBed.createComponent(TestCartShippingWrapper);
     component = fixture.componentInstance;
 
     component.cartValue = mockCart;
@@ -38,8 +38,8 @@ describe('CartTotalComponent', () => {
   });
 
   it('can be passed a Cart object', () => {
-    let cartTotalComponent = fixture.debugElement.query(By.css('cart-total'));
+    let cartShippingComponent = fixture.debugElement.query(By.css('cart-shipping'));
 
-    expect(cartTotalComponent.componentInstance.cart).toEqual(mockCart);
+    expect(cartShippingComponent.componentInstance.cart).toEqual(mockCart);
   });
 });

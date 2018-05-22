@@ -1,6 +1,6 @@
 <div class="cart-container" cart-container #CartContainer="CartContainer">
   <cart class="cart-container__cart-wrapper" [cart]="CartContainer.cart$ | async" *ngIf="!(CartContainer.loading$ | async)"></cart>
-  <cart-total class="cart-container__cart-total-wrapper" [cart]="CartContainer.cart$ | async" *ngIf="!(CartContainer.loading$ | async)"></cart-total>
+  <cart-summary class="cart-container__cart-summary-wrapper" [cart]="CartContainer.cart$ | async" *ngIf="!(CartContainer.loading$ | async)"></cart-summary>
   <proceed-to-checkout class="cart-container__proceed-to-checkout-wrapper"></proceed-to-checkout>
   <div class="cart-container__takes-up-space"></div>
 </div>
