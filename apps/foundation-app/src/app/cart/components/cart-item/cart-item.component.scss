@@ -9,15 +9,6 @@
 
   &__description {
     display: grid;
-    
-    @include breakpoint(large) {
-      grid-template-areas:
-        "name       qty price"
-        "attribute  qty price"
-        "size       qty price"
-        "change     qty price";
-      grid-template-rows: repeat(4, auto) 1fr;
-    }
   }
 
   &__name {
@@ -25,7 +16,6 @@
     @include embolden();
 
     @include breakpoint(large) {
-      grid-area: name;
       margin-bottom: 15px;
     }
   }
@@ -36,26 +26,7 @@
     margin-bottom: 15px;
 
     @include breakpoint(large) {
-      grid-area: price;        
       justify-self: end;
-    }
-  }
-
-  &__attribute {
-    @include breakpoint(large) {
-      grid-area: attribute;      
-    }  
-  }
-
-  &__size {
-    @include breakpoint(large) {
-      grid-area: size;  
-    }
-  }
-
-  &__qty-wrapper {
-    @include breakpoint(large) {
-      grid-area: qty;
     }
   }
 
@@ -80,16 +51,47 @@
     color: $dark-gray;
     margin-top: 15px;
 
-    @include breakpoint(large) {
-      grid-area: change;    
-    }
-
     & > a {
       text-decoration: underline;
     
       &:last-child {
         margin-left: 10px;
       }
+    }
+  }
+   
+  @include breakpoint(large) {
+    &__description {
+      grid-template-areas:
+        "name       qty price"
+        "attribute  qty price"
+        "size       qty price"
+        "change     qty price";
+      grid-template-rows: repeat(4, auto) 1fr;
+    }
+    
+    &__name {
+      grid-area: name;
+    }
+
+    &__price {
+      grid-area: price;
+    }
+
+    &__attribute {
+      grid-area: attribute;
+    }
+
+    &__size {
+      grid-area: size;  
+    }
+
+    &__qty-wrapper {
+      grid-area: qty;
+    }
+
+    &__change {
+      grid-area: change;    
     }
   }
 }

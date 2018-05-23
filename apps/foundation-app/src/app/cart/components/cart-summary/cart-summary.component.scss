@@ -14,11 +14,12 @@
     }
   }
 
-  &__proceed-to-checkout-wrapper {
+  &__proceed-to-checkout {
     display: none;
 
     @include breakpoint(large) {
       display: block;
+      @include embolden();
       margin-top: 25px;
     }
   }
