@@ -4,21 +4,19 @@
   &__title {
     display: none;
     @include embolden();
-  }
 
-  &__proceed-to-checkout-wrapper {
-    display: none;
-  }
-
-  @include breakpoint(large) {
-    &__title {
+    @include breakpoint(large) {
       display: block;
       padding-bottom: 15px;
       margin-bottom: 25px;
       @include section-divider();
     }
+  }
 
-    &__proceed-to-checkout-wrapper {
+  &__proceed-to-checkout-wrapper {
+    display: none;
+
+    @include breakpoint(large) {
       display: block;
       margin-top: 25px;
     }
