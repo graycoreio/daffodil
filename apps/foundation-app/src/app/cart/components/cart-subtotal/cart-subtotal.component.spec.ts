@@ -1,22 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { CartFactory, Cart } from '@daffodil/core';
-
 import { CartSubtotalComponent } from './cart-subtotal.component';
 import { Component } from '@angular/core';
 
-let cartFactory = new CartFactory();
-let mockCart = cartFactory.create();
-
-@Component({template: '<cart-subtotal [cart]="cartValue"></cart-subtotal>'})
+@Component({template: '<cart-subtotal [title]="titleValue" [value]="valueValue"></cart-subtotal>'})
 class TestCartSubtotalWrapper {
-  cartValue: Cart;
+  titleValue: string;
+  valueValue: string;
 }
 
 describe('CartSubtotalComponent', () => {
   let component: TestCartSubtotalWrapper;
   let fixture: ComponentFixture<TestCartSubtotalWrapper>;
+  let stubTitle: string;
+  let stubValue: string;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -31,15 +29,24 @@ describe('CartSubtotalComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestCartSubtotalWrapper);
     component = fixture.componentInstance;
+    stubTitle = 'title';
+    stubValue = 'value';
 
-    component.cartValue = mockCart;
+    component.titleValue = stubTitle;
+    component.valueValue = stubValue;
 
     fixture.detectChanges();
   });
 
-  it('can be passed a Cart object', () => {
+  it('can be passed a title string', () => {
     let cartSubtotalComponent = fixture.debugElement.query(By.css('cart-subtotal'));
 
-    expect(cartSubtotalComponent.componentInstance.cart).toEqual(mockCart);
+    expect(cartSubtotalComponent.componentInstance.title).toEqual(stubTitle);
+  });
+
+  it('can be passed a value string', () => {
+    let cartSubtotalComponent = fixture.debugElement.query(By.css('cart-subtotal'));
+
+    expect(cartSubtotalComponent.componentInstance.value).toEqual(stubValue);
   });
 });

@@ -1,6 +1,0 @@
-@import '~scss/styles';
-@import '~scss/mixins/cart-totals';
-
-.cart-shipping {
-  @include cart-totals();
-}

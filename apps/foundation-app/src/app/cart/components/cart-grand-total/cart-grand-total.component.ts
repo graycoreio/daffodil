@@ -2,11 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CartTotal } from '../../interfaces/cart-total';
 
 @Component({
-  selector: 'cart-subtotal',
-  templateUrl: './cart-subtotal.component.html',
-  styleUrls: ['./cart-subtotal.component.scss']
+  selector: 'cart-grand-total',
+  templateUrl: './cart-grand-total.component.html',
+  styleUrls: ['./cart-grand-total.component.scss']
 })
-export class CartSubtotalComponent implements OnInit, CartTotal {
+export class CartGrandTotalComponent implements OnInit, CartTotal {
 
   @Input() title: string;
   @Input() value: string;

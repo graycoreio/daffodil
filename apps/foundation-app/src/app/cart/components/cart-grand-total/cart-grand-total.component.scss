@@ -1,0 +1,10 @@
+@import '~scss/styles';
+@import '~scss/mixins/cart-total';
+
+.cart-grand-total {
+  @include cart-total();
+
+  &__value {
+    color: $secondary-color;
+  }
+}

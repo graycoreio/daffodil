@@ -1,5 +1,7 @@
-@mixin cart-totals() {
-  &__description {
+@import '~scss/styles';
+
+@mixin cart-total() {
+  &__title {
     line-height: 1.7rem;
     @include embolden();
     @include uppercase();

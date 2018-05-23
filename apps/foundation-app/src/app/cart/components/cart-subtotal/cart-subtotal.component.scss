@@ -1,6 +1,5 @@
-@import '~scss/styles';
-@import '~scss/mixins/cart-totals';
+@import '~scss/mixins/cart-total';
 
 .cart-subtotal {
-  @include cart-totals();
+  @include cart-total();
 }
