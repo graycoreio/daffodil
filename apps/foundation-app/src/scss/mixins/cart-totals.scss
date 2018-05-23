@@ -2,6 +2,7 @@
   &__description {
     line-height: 1.7rem;
     @include embolden();
+    @include uppercase();
     
     & + span {
       float: right;

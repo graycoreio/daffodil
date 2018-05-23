@@ -3,4 +3,6 @@
 .button {
   width: 100%;
   font-size: $large-font-size;
+  @include embolden();
+  @include uppercase();
 }
