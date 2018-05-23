@@ -7,8 +7,15 @@
     height: 35px;
   }
 
+  &__selector, &__input {
+    border: 1px solid $medium-gray;
+  }
+
+  &__input {
+    padding-left: 10px;
+  }
+
   &__selector {
-    border-color: $medium-gray;
     font-size: $global-font-size;
     padding-top: 5px;
   }
