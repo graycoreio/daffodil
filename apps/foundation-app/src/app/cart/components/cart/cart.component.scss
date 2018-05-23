@@ -18,6 +18,11 @@
     }
   }
 
+  &__subtitle {
+    @include embolden();
+    @include uppercase();
+  }
+
   &__item-count {
     float: right;
     color: $dark-gray;

@@ -10,6 +10,10 @@ $global-weight-bold: 600;
   font-weight: $global-weight-bold;
 }
 
+@mixin uppercase() {
+  text-transform: uppercase;
+}
+
 @mixin single-line-ellipsis() {
   text-overflow: ellipsis;
   overflow: hidden;
@@ -19,6 +23,10 @@ $global-weight-bold: 600;
 
 .embolden {
   @include embolden();
+}
+
+.uppercase {
+  @include uppercase();
 }
 
 .single-line-ellipsis {

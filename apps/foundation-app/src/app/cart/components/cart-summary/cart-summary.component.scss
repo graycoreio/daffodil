@@ -4,6 +4,7 @@
   &__title {
     display: none;
     @include embolden();
+    @include uppercase();
 
     @include breakpoint(large) {
       display: block;
