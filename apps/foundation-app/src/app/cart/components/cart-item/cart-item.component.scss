@@ -9,43 +9,8 @@
 
   &__description {
     display: grid;
-  }
-
-  &__name {
-    font-size: $global-font-size;
-    @include embolden();
-  }
-
-  &__price {
-    font-size: $global-font-size;
-    color: $light-blue;
-    margin-bottom: 15px;
-  }
-
-  &__mobile-qty {
-    display: inline;
-    @include embolden();
-  }
-
-  &__desktop-qty {
-    display: none;
-  }
-
-  &__change {
-    color: $dark-gray;
-    margin-top: 15px;
-
-    & > a {
-      text-decoration: underline;
     
-      &:last-child {
-        margin-left: 10px;
-      }
-    }
-  }
-
-  @include breakpoint(large) {
-    &__description {      
+    @include breakpoint(large) {
       grid-template-areas:
         "name       qty price"
         "attribute  qty price"
@@ -53,39 +18,78 @@
         "change     qty price";
       grid-template-rows: repeat(4, auto) 1fr;
     }
+  }
 
-    &__name {
+  &__name {
+    font-size: $global-font-size;
+    @include embolden();
+
+    @include breakpoint(large) {
       grid-area: name;
-      margin-bottom: 15px;      
+      margin-bottom: 15px;
     }
+  }
 
-    &__price {
+  &__price {
+    font-size: $global-font-size;
+    color: $light-blue;
+    margin-bottom: 15px;
+
+    @include breakpoint(large) {
       grid-area: price;        
       justify-self: end;
     }
+  }
 
-    &__attribute {
-      grid-area: attribute;        
-    }
+  &__attribute {
+    @include breakpoint(large) {
+      grid-area: attribute;      
+    }  
+  }
 
-    &__size {
+  &__size {
+    @include breakpoint(large) {
       grid-area: size;  
     }
+  }
 
-    &__qty-wrapper {
+  &__qty-wrapper {
+    @include breakpoint(large) {
       grid-area: qty;
     }
+  }
 
-    &__mobile-qty {
-      display: none;
+  &__mobile-qty {
+    display: inline;
+    @include embolden();
+
+    @include breakpoint(large) {
+      display: none;    
+    }
+  }
+
+  &__desktop-qty {
+    display: none;
+
+    @include breakpoint(large) {
+      display: inline;    
+    }
+  }
+
+  &__change {
+    color: $dark-gray;
+    margin-top: 15px;
+
+    @include breakpoint(large) {
+      grid-area: change;    
     }
 
-    &__desktop-qty {
-      display: inline;
-    }
-
-    &__change {
-      grid-area: change;
+    & > a {
+      text-decoration: underline;
+    
+      &:last-child {
+        margin-left: 10px;
+      }
     }
   }
 }
