@@ -11,23 +11,21 @@
     @include section-divider();
     font-size: $global-font-size;
     padding-bottom: 10px;
+
+    @include breakpoint(large) {
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+    }
   }
 
   &__item-count {
     float: right;
     color: $dark-gray;
     font-size: $small-font-size;
-  }
 
-  @include breakpoint(large) {
-    &__title {
-      margin-bottom: 25px;
-      padding-bottom: 15px;
-    }
-
-    &__item-count {
+    @include breakpoint(large) {
       margin-left: 25px;
       float: none;
     }
-  }  
+  }
 }
