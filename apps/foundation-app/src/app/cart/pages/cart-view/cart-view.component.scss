@@ -8,6 +8,18 @@
     "proceed-to-checkout";
   margin: 0 15px;
 
+  &__cart-wrapper {
+    grid-area: cart;
+  }
+
+  &__cart-summary-wrapper {
+    grid-area: cart-summary;
+  }
+
+  &__proceed-to-checkout-wrapper {
+    grid-area: proceed-to-checkout;
+  }
+
   @include breakpoint(large) {
     grid-template-areas:
       "cart                 cart            cart-summary"
@@ -15,41 +27,44 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-gap: 50px;
     margin: 50px 120px;
+
+    &__cart-wrapper {
+      grid-area: cart;
+    }
+
+    &__cart-summary-wrapper {
+      grid-area: cart-summary;
+    }
+
+    &__proceed-to-checkout-wrapper {
+      grid-area: proceed-to-checkout;
+    }
+
+    &__takes-up-space {
+      grid-area: takes-up-space;
+    }
   }
 
   &__cart-wrapper {
-    grid-area: cart;
     padding: 25px 0;
     @include section-divider();
 
     @include breakpoint(large) {
-      grid-area: cart;
       padding: 0 0 50px 0;
     }
   }
   
   &__cart-summary-wrapper {
-    grid-area: cart-summary;
     margin: 15px 0;
 
     @include breakpoint(large) {
-      grid-area: cart-summary;
       margin: 0;
     }
   }
 
   &__proceed-to-checkout-wrapper {
-    grid-area: proceed-to-checkout;
-
     @include breakpoint(large) {
-      grid-area: proceed-to-checkout;
       width: 250px;
-    }
-  }
-
-  &__takes-up-space {
-    @include breakpoint(large) { 
-      grid-area: takes-up-space;
     }
   }
 }
