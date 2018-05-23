@@ -1,0 +1,10 @@
+@mixin cart-totals() {
+  &__description {
+    line-height: 1.7rem;
+    @include embolden();
+    
+    & + span {
+      float: right;
+    }
+  }
+}
