@@ -1,14 +1,8 @@
 @import '~scss/styles';
+@import '~scss/mixins/cart-totals';
 
 .cart-total {
-  &__description {
-    line-height: 24px;
-    @include embolden();
-    
-    & + span {
-      float:right;
-    }
-  }
+  @include cart-totals();
 
   &__value {
     color: $light-blue;

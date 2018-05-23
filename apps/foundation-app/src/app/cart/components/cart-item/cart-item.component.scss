@@ -35,12 +35,12 @@
     color: $dark-gray;
     margin-top: 15px;
 
-    & > span {
+    & > a {
       text-decoration: underline;
-    }
     
-    &__remove {
-      margin-left: 10px;
+      &:last-child {
+        margin-left: 10px;
+      }
     }
   }
 

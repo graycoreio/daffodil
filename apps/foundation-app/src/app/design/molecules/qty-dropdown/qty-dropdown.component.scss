@@ -2,19 +2,14 @@
 @import '~scss/styles';
 
 .qty-dropdown {
-
-  &__label {
+  &__label > * {
     width: 60px;
+    height: 35px;
   }
 
   &__selector {
     border-color: $medium-gray;
     font-size: $global-font-size;
-    height: 35px;
     padding-top: 5px;
-  }
-
-  &__input {
-    width: 30px;
   }
 }
