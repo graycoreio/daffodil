@@ -1,10 +1,11 @@
 @import '~scss/styles';
+@import '~scss/variables';
 @import '~scss/mixins/cart-totals';
 
 .cart-total {
   @include cart-totals();
 
   &__value {
-    color: $light-blue;
+    color: $secondary-color;
   }
 }
