@@ -20,6 +20,14 @@
     grid-area: proceed-to-checkout;
   }
 
+  &__loading-icon {
+    margin: 20px auto;
+
+    @include breakpoint(large) {
+      grid-column: span 3;
+    }
+  }
+
   @include breakpoint(large) {
     grid-template-areas:
       "cart                 cart            cart-summary"
