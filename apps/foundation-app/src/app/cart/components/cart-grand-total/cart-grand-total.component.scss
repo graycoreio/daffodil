@@ -6,5 +6,6 @@
 
   &__value {
     color: $secondary-color;
+    @include embolden();
   }
 }
