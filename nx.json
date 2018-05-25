@@ -1,0 +1,14 @@
+{
+  "npmScope": "daffodil",
+  "projects": {
+    "foundation-demo": {
+      "tags": []
+    },
+    "foundation-demo-e2e": {
+      "tags": []
+    },
+    "core": {
+      "tags": []
+    }
+  }
+}
