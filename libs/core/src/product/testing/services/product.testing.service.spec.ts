@@ -39,7 +39,7 @@ describe('Core | Product | Testing | ProductTestingService', () => {
     });
     
     it('should return a object with an array of Products', () => {
-      expect(result.products.length).toEqual(8);
+      expect(result.products.length).toEqual(9);
     });
 
     it('should call productFactory.createStyleTestingList', () => {

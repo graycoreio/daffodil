@@ -18,7 +18,7 @@ export const appRoutes: Routes = [
     component: CartViewComponent
   },
   {
-    path: 'product:id',
+    path: 'product/:id',
     component: ProductViewComponent
   }
 ]

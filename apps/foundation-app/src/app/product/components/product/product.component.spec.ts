@@ -5,11 +5,17 @@ import { ProductFactory } from '@daffodil/core';
 import { Product } from '@daffodil/core';
 
 import { ProductComponent } from './product.component';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({template: '<product [product]="productValue"></product>'})
 class ProductWrapperTest {
   productValue: Product;
+}
+
+@Component({selector: 'qty-dropdown', template: ''})
+class MockQtyDropdownComponent {
+  @Input() qty: string;
+  @Input() id: string;
 }
 
 describe('ProductComponent', () => {
@@ -22,7 +28,8 @@ describe('ProductComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ 
         ProductComponent,
-        ProductWrapperTest
+        ProductWrapperTest,
+        MockQtyDropdownComponent
       ]
     })
     .compileComponents();
@@ -44,5 +51,12 @@ describe('ProductComponent', () => {
     let productComponent = fixture.debugElement.query(By.css('product'));
 
     expect(productComponent.componentInstance.product).toEqual(mockProduct);
+  });
+
+  xdescribe('on <qty-dropdown>', () => {
+    
+    it('should set qty', () => {
+      
+    });
   });
 });

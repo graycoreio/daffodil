@@ -1,4 +1,18 @@
-<div class="product-container">
-  {{product.id}}
-  {{product.cost}}
+<div class="product">
+  <div class="product__description-container">
+    <div class="product__brand">{{product.brand}}</div>
+    <div class="product__name">{{product.name}}</div>
+    <div class="product__cost">${{product.cost}}</div>
+  </div>
+  <div class="product__image">
+      <img src="/assets/mh04-green_alt1.jpg">
+  </div>
+  <div class="product__qty-container">
+    <div>Quantity</div>
+    <qty-dropdown [qty]="selectedQty"></qty-dropdown>
+  </div>
+  <div class="product__buttons-container">
+    <button type="button" class="button large expanded uppercase embolden">add to cart</button>
+    <button type="button" class="button large"><i class="fa fa-heart"></i></button>
+  </div>
 </div>

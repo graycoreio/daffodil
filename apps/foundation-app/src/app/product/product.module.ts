@@ -8,11 +8,12 @@ import { ProductGridViewComponent } from './pages/product-grid-view/product-grid
 import { ProductViewComponent } from './pages/product-view/product-view.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import { DesignModule } from '../design/design.module';
 
 @NgModule({
   imports: [
     CommonModule,
-
+    DesignModule,
     CoreProductModule,
   ],
   declarations: [
