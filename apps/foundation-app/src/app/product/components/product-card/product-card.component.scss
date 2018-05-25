@@ -1,7 +1,5 @@
-@import '~scss/mixins/media';
-@import '~scss/mixins/general';
-@import '~scss/variables';
-@import '~scss/styles';
+@import 'mixins/media';
+@import 'variables';
 
 .product-card {
   text-align: center;

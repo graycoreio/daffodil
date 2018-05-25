@@ -1,4 +1,36 @@
 # Daffodil
+[![Build Status](https://travis-ci.com/graycoreio/daffodil.svg?branch=master)](https://travis-ci.com/graycoreio/daffodil)
+[![npm version](https://badge.fury.io/js/%40daffodil%2Fcore.svg)](https://www.npmjs.com/@daffodil/core)
+
+## Using Daffodil To Build an Ecommerce Store
+1. Setup a new `@angular/cli` project
+2. `npm install @daffodil/core` - Install Core Daffodil Module
+3. `npm install @ngrx/store @ngrx/effects @ngrx/entity` - Install Necessary Peer Dependencies
+4. Add the following to your application's root `AppModule`.
+    ```
+    @NgModule({
+        ...
+        imports: [
+            ...
+            StoreModule.forRoot({}),
+            EffectsModule.forRoot([]),
+            DaffodilModule.forRoot({BASE_URL: "YOUR_STORE_URL_GOES_HERE"}),
+            ...
+        ],
+        ...
+    })
+    export class FoundationModule { }
+    ```
+5. Replace default with your store's url in your `AppModule`
+6. Check out Daffodil's `Foundation Theme` for code examples.
+
+### Running the example foundation-app
+1. Ensure that lerna is installed in your local environment `npm install --global lerna`.
+2. Run `lerna bootstrap`. This will basically run `npm install` in all required packages within the project. 
+3. Compile the `@daffodil/core` project by running `npm run-script build:lib`
+    * This will compile the `@daffodil/core` module into an npm package in the `dist` folder, identical to the one located in the npm `@daffodil/core` repository. 
+4. `ng serve --project=foundation-demo`
+5. Navigate to `localhost:4200` in your browser of choice
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) using [Nrwl Nx](https://nrwl.io/nx).
 
