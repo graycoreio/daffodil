@@ -1,0 +1,57 @@
+@import '~scss/styles';
+
+.slider {
+  height: inherit;
+  margin: 0;
+
+  &__active-image {
+    position: absolute;
+    padding-bottom: 100%;
+    width: 100%;
+    overflow: hidden;
+
+    & img {
+      position: absolute;
+      transition: all 0.5s;
+      top: 0;
+      bottom: 0;
+      margin: auto 0;
+    }
+  }
+
+  & input {
+    display: none;
+
+    &:checked + label {
+      border-color: $dark-gray;
+      // opacity for selected thumbnail image
+      opacity: 1;
+
+      // opacity for large selected image
+      & + div img {
+        opacity: 1;
+      }
+    }
+
+    // default opacity of large selected image
+    & ~ div img {
+      opacity: 0;
+    }
+  }
+
+  & label {
+    position: relative;
+    top: 100vw;
+    margin: 18px 0 0 18px;
+    float: left;
+    cursor: pointer;
+    
+    // default opacity of thumbnail image
+    opacity: 0.6;
+
+    & img {
+      display: block;
+      border: 2px solid $medium-gray;      
+    }
+  }
+}
