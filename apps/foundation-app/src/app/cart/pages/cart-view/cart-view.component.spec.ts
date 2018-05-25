@@ -18,19 +18,9 @@ let cart$ = of(cartFactory.create());
   template: '<ng-content></ng-content>', 
   exportAs: 'CartContainer'
 })
-class CartContainerLoadingFalseMock {
+class CartContainerMock {
   cart$: Observable<Cart> = cart$;
   loading$: Observable<boolean> = of(false);
-}
-
-@Component({
-  selector: '[cart-container]', 
-  template: '<ng-content></ng-content>', 
-  exportAs: 'CartContainer'
-})
-class CartContainerLoadingTrueMock {
-  cart$: Observable<Cart> = cart$;
-  loading$: Observable<boolean> = of(true);
 }
 
 @Component({
@@ -55,15 +45,16 @@ class CartSummaryMock {
 })
 class ProceedToCheckoutMock {}
 
-describe('CartViewComponent - loading$ is false', () => {
+describe('CartViewComponent', () => {
   let component: CartViewComponent;
   let fixture: ComponentFixture<CartViewComponent>;
+  let cartContainer;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
         CartViewComponent,
-        CartContainerLoadingFalseMock,
+        CartContainerMock,
         CartMock,
         CartSummaryMock,
         ProceedToCheckoutMock
@@ -75,6 +66,10 @@ describe('CartViewComponent - loading$ is false', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CartViewComponent);
     component = fixture.componentInstance;
+    
+    cartContainer = fixture.debugElement.query(By.css('[cart-container]'));
+    cartContainer.componentInstance.loading$ = of(false);
+
     fixture.detectChanges();
   });
 
@@ -130,32 +125,13 @@ describe('CartViewComponent - loading$ is false', () => {
       expect(loadingIcon).toBeNull();
     });
   });
-});
-
-describe('CartViewComponent - loading$ is true', () => {
-  let component: CartViewComponent;
-  let fixture: ComponentFixture<CartViewComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ 
-        CartViewComponent,
-        CartContainerLoadingTrueMock,
-        CartMock,
-        CartSummaryMock,
-        ProceedToCheckoutMock
-      ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CartViewComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
 
   describe('when CartContainer.$loading is true', () => {
+
+    beforeEach(() => {
+      cartContainer.componentInstance.loading$ = of(true);
+      fixture.detectChanges();
+    });
     
     it('should not render <cart>', () => {
       let cartComponent = fixture.debugElement.query(By.css('cart'));
