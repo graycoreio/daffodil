@@ -29,7 +29,7 @@
 2. Run `lerna bootstrap`. This will basically run `npm install` in all required packages within the project. 
 3. Compile the `@daffodil/core` project by running `npm run-script build:lib`
     * This will compile the `@daffodil/core` module into an npm package in the `dist` folder, identical to the one located in the npm `@daffodil/core` repository. 
-4. `ng serve --app=foundation-demo`
+4. `ng serve --project=foundation-demo`
 5. Navigate to `localhost:4200` in your browser of choice
 
 ## Contributing

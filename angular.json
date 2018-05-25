@@ -5,7 +5,7 @@
   "projects": {
     "foundation-demo": {
       "root": "",
-      "sourceRoot": "src",
+      "sourceRoot": "apps/foundation-app/src",
       "projectType": "application",
       "architect": {
         "build": {
@@ -23,6 +23,11 @@
             "styles": [
               "apps/foundation-app/src/scss/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "apps/foundation-app/src/scss"
+              ]
+            },
             "scripts": []
           },
           "configurations": {

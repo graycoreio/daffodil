@@ -8,7 +8,7 @@ $global-weight-bold: 600;
 $breakpoint-classes: (small medium large xlarge xxlarge);
 
 // Imports
-@import '~scss/variables';
+@import 'variables';
 @import '~foundation-sites/assets/foundation';
 
 body {
