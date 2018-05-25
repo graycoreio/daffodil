@@ -23,14 +23,14 @@
     "dest": "../../dist/core"
   },
   "peerDependencies": {
-    "@angular/common": "^5.2.7",
-    "@angular/core": "^5.2.7",
-    "@angular/http": "^5.2.10",
-    "@ngrx/effects": "^5.2.0",
-    "@ngrx/entity": "^5.2.0",
-    "@ngrx/store": "^5.2.0",
+    "@angular/common": "^6.0.1",
+    "@angular/core": "^6.0.1",
+    "@angular/http": "^6.0.1",
+    "@ngrx/effects": "^6.0.1",
+    "@ngrx/entity": "^6.0.1",
+    "@ngrx/store": "^6.0.1",
     "core-js": "^2.4.1",
-    "rxjs": "^5.5.6"
+    "rxjs": "^6.2.0"
   },
   "devDependencies": {
     "angular-in-memory-web-api": "^0.5.4",

@@ -15,7 +15,6 @@ import {
   AddToCartFailure,
   AddToCart} from '../actions/cart.actions';
 import { Observable } from 'rxjs/Observable';
-import { Action } from 'rxjs/scheduler/Action';
 
 @Injectable()
 export class CartEffects {
