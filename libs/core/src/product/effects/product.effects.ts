@@ -12,7 +12,6 @@ import {
   ProductLoadSuccess, 
   ProductLoadFailure } from '../actions/product.actions';
 import { Observable } from 'rxjs/Observable';
-import { Action } from 'rxjs/scheduler/Action';
 
 @Injectable()
 export class ProductEffects {
