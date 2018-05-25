@@ -56,6 +56,32 @@
       },
       "tags": []
     },
+    {	
+      "name": "foundation-dev",	
+      "root": "apps/foundation-app/src",	
+      "outDir": "dist/apps/foundation-app",	
+      "assets": [	
+        "assets",	
+        "favicon.ico"	
+      ],	
+      "index": "index.html",	
+      "main": "main.ts",	
+      "polyfills": "polyfills.ts",	
+      "test": "../../../test.js",	
+      "tsconfig": "tsconfig.app.json",	
+      "testTsconfig": "../../../tsconfig.spec.json",	
+      "prefix": "app",	
+      "styles": [	
+        "scss/styles.scss"	
+      ],	
+      "scripts": [],	
+      "environmentSource": "environments/environment.ts",	
+      "environments": {	
+        "dev": "environments/environment.ts",	
+        "prod": "environments/environment.prod.ts"	
+      },	
+      "tags": []	
+    },
     {
       "name": "core",
       "root": "libs/core/src",

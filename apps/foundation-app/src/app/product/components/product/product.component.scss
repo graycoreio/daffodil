@@ -1,0 +1,50 @@
+@import '~scss/styles';
+
+.product {
+  display: grid;
+  grid-gap: 25px;
+
+  &__description-container {
+    display: grid;
+    grid-gap: 5px;
+    margin: 25px 0 0 25px;
+  }
+
+  &__brand {
+    color: $dark-gray;
+  }
+
+  &__name {
+    @include embolden();
+    font-size: $large-font-size;
+  }
+
+  &__image {
+    position: relative;
+    padding-bottom: 100%;
+    width: 100%;
+    overflow: hidden;
+
+    & img {
+      position: absolute;
+    }
+  }
+
+  &__qty-container {
+    display: grid;
+    margin-left: 15px;
+    grid-gap: 25px;    
+    grid-template-columns: auto 1fr;
+
+    & div {
+      margin: auto 0;
+    }
+  }
+
+  &__buttons-container {
+    display: grid;
+    margin: 0 15px;
+    grid-gap: 5px;
+    grid-template-columns: 1fr 55px;
+  }
+}

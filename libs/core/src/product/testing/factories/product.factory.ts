@@ -11,6 +11,7 @@ export class ProductFactory {
 
   createStyleTestingList() : Product[] {
     return [
+      new MockProductDefinedId(),
       new MockProductShortNames(),
       new MockProductLongNames(),
       new MockProductLongNames(),
@@ -26,6 +27,13 @@ export class ProductFactory {
 export class MockProductShortNames implements Product {
   cost = faker.random.number(10000).toString();
   id = faker.random.number(1000).toString();
+  name = 'Product Name';
+  brand = 'Product Brand';
+};
+
+export class MockProductDefinedId implements Product {
+  cost = faker.random.number(10000).toString();
+  id = "1001";
   name = 'Product Name';
   brand = 'Product Brand';
 };

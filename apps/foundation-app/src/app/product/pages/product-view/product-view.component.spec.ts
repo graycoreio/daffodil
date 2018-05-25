@@ -10,9 +10,13 @@ import { ProductViewComponent } from './product-view.component';
 
 import { Product } from '@daffodil/core';
 import { ProductFactory } from '@daffodil/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRouteStub } from '../../../testing/ActivatedRouteStub';
 
 let productFactory = new ProductFactory();
-let product$ = of(productFactory.create());
+let mockProduct = productFactory.create();
+let product$ = of(mockProduct);
 
 @Component({
   selector: '[product-container]', 
@@ -20,7 +24,10 @@ let product$ = of(productFactory.create());
   exportAs: 'ProductContainer'
 })
 class ProductContainerMock {
+  @Input() selectedProductId: string;
+
   product$: Observable<Product> = product$;
+  loading$: Observable<boolean> = of(false);
 }
 
 @Component({
@@ -34,13 +41,25 @@ class ProductMock {
 describe('ProductViewComponent', () => {
   let component: ProductViewComponent;
   let fixture: ComponentFixture<ProductViewComponent>;
+  let route: ActivatedRoute;
+  let idParam: string;
+  let activatedRoute = new ActivatedRouteStub();
+  let productContainer;
+  let productComponent;
 
   beforeEach(async(() => {
+    idParam = '1001';
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ],
       declarations: [ 
         ProductViewComponent,
         ProductContainerMock,
         ProductMock
+      ],
+      providers: [
+        { provide: ActivatedRoute, useValue: activatedRoute }
       ]
     })
     .compileComponents();
@@ -49,21 +68,62 @@ describe('ProductViewComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProductViewComponent);
     component = fixture.componentInstance;
+    activatedRoute.setParamMap({ id: idParam });
+
+    productContainer = fixture.debugElement.query(By.css('[product-container]'));
+    productContainer.componentInstance.loading$ = of(false);
+
     fixture.detectChanges();
+    productComponent = fixture.debugElement.query(By.css('product'));
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should set productId from id param', () => {
+    expect(component.productId).toEqual(idParam);
+  });
+
+  describe('on ProductContainer', () => {
+    
+    it('should set selectedProductId', () => {
+      expect(productContainer.componentInstance.selectedProductId).toEqual(idParam);
+    });
+  });
+
   describe('on <product></product>', () => {
     
     it('should set product to value passed by product-container directive', () => {
-      let productComponent = fixture.debugElement.query(By.css('product'));
-      
-      product$.subscribe((product) => {
-        expect(productComponent.componentInstance.product).toEqual(product);
-      });
+      expect(productComponent.componentInstance.product).toEqual(mockProduct);
+    });
+  });
+
+  describe('when loading$ is false', () => {
+    
+    it('should render <product>', () => {
+      expect(productComponent).not.toBeNull();
+    });
+
+    it('should not render the loading spinner', () => {
+      expect(fixture.debugElement.query(By.css('.cart-container__loading-icon'))).toBeNull();
+    });
+  });
+
+  describe('when loading$ is true', () => {
+    
+    beforeEach(() => {
+      productContainer.componentInstance.loading$ = of(true);
+      fixture.detectChanges();
+      productComponent = fixture.debugElement.query(By.css('product'));
+    });
+
+    it('should  not render <product>', () => {
+      expect(productComponent).toBeNull();
+    });
+
+    it('should render the loading spinner', () => {
+      expect(fixture.debugElement.query(By.css('.cart-container__loading-icon'))).not.toBeNull();
     });
   });
 });
