@@ -78,6 +78,11 @@
             "styles": [
               "apps/foundation-app/src/scss/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "apps/foundation-app/src/scss"
+              ]
+            },
             "assets": [
               "apps/foundation-app/src/assets",
               "apps/foundation-app/src/favicon.ico"
