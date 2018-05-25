@@ -19,17 +19,6 @@
     font-size: $large-font-size;
   }
 
-  &__image {
-    position: relative;
-    padding-bottom: 100%;
-    width: 100%;
-    overflow: hidden;
-
-    & img {
-      position: absolute;
-    }
-  }
-
   &__qty-container {
     display: grid;
     margin-left: 15px;
