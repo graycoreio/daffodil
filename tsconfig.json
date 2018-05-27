@@ -17,8 +17,12 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@daffodil/core": ["libs/core"],
-      "@foundation": ["apps/foundation-app/*"]
+      "@daffodil/core": [
+        "libs/core"
+      ],
+      "@foundation": [
+        "apps/foundation-app/*"
+      ]
     }
   },
   "exclude": [
