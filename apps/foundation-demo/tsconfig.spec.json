@@ -1,8 +1,7 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../out-tsc/spec",
-    "baseUrl": "./",
+    "outDir": "../../dist/out-tsc/apps/foundation-demo",
     "module": "commonjs",
     "types": [
       "jasmine",
@@ -10,7 +9,8 @@
     ]
   },
   "files": [
-    "test.ts"
+    "src/test.ts",
+    "src/polyfills.ts"
   ],
   "include": [
     "**/*.spec.ts",
