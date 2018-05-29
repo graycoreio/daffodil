@@ -1,8 +1,6 @@
 #!/bin/bash
 
-set -e
-
-ng test --single-run
+ng test
 
 npm run build:lib
 npm run build
