@@ -1,7 +1,7 @@
 {
-  "extends": "../../../tsconfig.packaged.json",
+  "extends": "../../tsconfig.packaged.json",
   "compilerOptions": {
-    "outDir": "../../../dist/apps/foundation-packaged",
+    "outDir": "../../dist/apps/foundation-packaged",
     "module": "es2015"
   },
   "include": [
