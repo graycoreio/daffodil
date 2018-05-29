@@ -12,7 +12,6 @@ import {
   ProductGridLoadSuccess, 
   ProductGridLoadFailure } from '../actions/product-grid.actions';
 import { Observable } from 'rxjs/Observable';
-import { Action } from 'rxjs/scheduler/Action';
 
 @Injectable()
 export class ProductGridEffects {

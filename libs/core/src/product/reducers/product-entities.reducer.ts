@@ -18,13 +18,17 @@ export function reducer(
       return productAdapter.upsertMany(action.payload.map(
         (product) => {
           return {
-            id: product.id, changes: {...product}
+            id: product.id, 
+            ...product
           }
         }
       ), state);
     case ProductActionTypes.ProductLoadSuccessAction:
       return productAdapter.upsertOne(
-        { id: action.payload.id, changes: action.payload },
+        { 
+          id: action.payload.id, 
+          ...action.payload 
+        },
         state
       )
     default:
