@@ -19,6 +19,10 @@
     font-size: $large-font-size;
   }
 
+  &__image-gallery-wrapper {
+    margin-bottom: 100vw;
+  }
+
   &__qty-container {
     display: grid;
     margin-left: 15px;
