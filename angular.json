@@ -15,7 +15,7 @@
             "index": "apps/foundation-demo/src/index.html",
             "main": "apps/foundation-demo/src/main.ts",
             "polyfills": "apps/foundation-demo/src/polyfills.ts",
-            "tsConfig": "apps/foundation-demo/src/tsconfig.packaged.json",
+            "tsConfig": "apps/foundation-demo/tsconfig.packaged.json",
             "assets": [
               "apps/foundation-demo/src/assets",
               "apps/foundation-demo/src/favicon.ico"
