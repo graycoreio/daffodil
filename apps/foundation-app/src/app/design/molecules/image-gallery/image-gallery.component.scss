@@ -1,7 +1,7 @@
 @import '~scss/styles';
 
-.slider {
-  height: inherit;
+// parent element must have a margin-bottom of 100vw;
+.gallery {
   margin: 0;
 
   &__active-image {
@@ -45,13 +45,16 @@
     margin: 18px 0 0 18px;
     float: left;
     cursor: pointer;
+    height: 30vw;
+    width: 28vw;
+    overflow: hidden;
     
     // default opacity of thumbnail image
     opacity: 0.6;
 
     & img {
       display: block;
-      border: 2px solid $medium-gray;      
+      border: 2px solid $medium-gray;
     }
   }
 }
