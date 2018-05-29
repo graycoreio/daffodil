@@ -59,6 +59,21 @@ describe('QtyDropdownComponent', () => {
     it('should create the dropdownItemCounter array', () => {
       expect(qtyDropdownComponent.componentInstance.dropdownItemCounter.length).toEqual(QtyDropdownComponent.dropdownRange);
     });
+
+    describe('when qty is not given as input', () => {
+      
+      beforeEach(() => {
+        fixture = TestBed.createComponent(TestQtyDropdownWrapper);
+        component = fixture.componentInstance;
+
+        fixture.detectChanges();
+        qtyDropdownComponent = fixture.debugElement.query(By.css('qty-dropdown'));        
+      });
+
+      it('should set qty to 1', () => {
+        expect(qtyDropdownComponent.componentInstance.qty).toEqual(1);
+      });
+    });
   });
 
   describe('writeValue', () => {
@@ -210,17 +225,27 @@ describe('QtyDropdownComponent', () => {
   });
 
   describe('onChangedWrapper', () => {
+    
+    let input;
 
     beforeEach(() => {
+      input = "2";
       spyOn(qtyDropdownComponent.componentInstance, 'selectInput').and.callThrough();      
     });
 
     it('calls onChange with argument', () => {
-      let input = "2";
       spyOn(qtyDropdownComponent.componentInstance, "onChange");
       qtyDropdownComponent.componentInstance.onChangedWrapper(input);
       
       expect(qtyDropdownComponent.componentInstance.onChange).toHaveBeenCalledWith(parseInt(input));
+    });
+
+    it('calls qtyChanged.emit', () => {
+      spyOn(qtyDropdownComponent.componentInstance.qtyChanged, 'emit');
+
+      qtyDropdownComponent.componentInstance.onChangedWrapper(input);
+      
+      expect(qtyDropdownComponent.componentInstance.qtyChanged.emit).toHaveBeenCalledWith(parseInt(input));
     });
     
     describe('when value is 10', () => {

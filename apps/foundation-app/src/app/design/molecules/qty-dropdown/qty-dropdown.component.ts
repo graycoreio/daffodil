@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Renderer2, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Renderer2, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'qty-dropdown',
@@ -10,6 +10,8 @@ export class QtyDropdownComponent implements OnInit {
   @Input() qty: number;
   @Input() id: number;
 
+  @Output() qtyChanged: EventEmitter<number> = new EventEmitter<number>();
+
   static readonly dropdownRange = 9;
   dropdownItemCounter: number[];
   inputHasBeenShown: boolean;
@@ -20,6 +22,10 @@ export class QtyDropdownComponent implements OnInit {
 
   ngOnInit() {
     this.dropdownItemCounter = Array.from(Array(QtyDropdownComponent.dropdownRange),(x,i)=>i);
+
+    if (!this.qty) {
+      this.qty = 1;
+    }
   }
 
   writeValue(qty: number): void {
@@ -57,6 +63,7 @@ export class QtyDropdownComponent implements OnInit {
     if (value === 10) {
       this.selectInput();
     }
+    this.qtyChanged.emit(value);
     this.onChange(value);
   }
 

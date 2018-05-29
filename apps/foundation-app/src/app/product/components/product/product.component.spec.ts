@@ -18,6 +18,9 @@ class MockQtyDropdownComponent {
   @Input() id: string;
 }
 
+@Component({selector: 'image-gallery', template: ''})
+class MockImageGalleryComponent { }
+
 describe('ProductComponent', () => {
   let component: ProductWrapperTest;
   let fixture: ComponentFixture<ProductWrapperTest>;
@@ -29,7 +32,8 @@ describe('ProductComponent', () => {
       declarations: [ 
         ProductComponent,
         ProductWrapperTest,
-        MockQtyDropdownComponent
+        MockQtyDropdownComponent,
+        MockImageGalleryComponent
       ]
     })
     .compileComponents();
@@ -51,12 +55,5 @@ describe('ProductComponent', () => {
     let productComponent = fixture.debugElement.query(By.css('product'));
 
     expect(productComponent.componentInstance.product).toEqual(mockProduct);
-  });
-
-  xdescribe('on <qty-dropdown>', () => {
-    
-    it('should set qty', () => {
-      
-    });
   });
 });
