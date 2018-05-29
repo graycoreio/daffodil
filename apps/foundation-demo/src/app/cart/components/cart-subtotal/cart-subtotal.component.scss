@@ -1,0 +1,5 @@
+@import '~scss/mixins/cart-total';
+
+.cart-subtotal {
+  @include cart-total();
+}

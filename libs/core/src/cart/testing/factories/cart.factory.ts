@@ -25,7 +25,7 @@ export class MockCart implements Cart {
   coupon_code: string = faker.random.number(100000).toString();
   subtotal: number = faker.random.number(1000);
   subtotal_with_discount: number = faker.random.number(1000);
-  items: CartItem[] = [new MockCartItem];
+  items: CartItem[] = [new MockCartItem, new MockCartItem];
   addresses: CartAddress[] = [new MockCartAddress()];
   payment: CartPayment = new MockCartPayment();
 };
@@ -38,10 +38,10 @@ export class MockCartItem implements CartItem {
   product_id: number = faker.random.number(1000);
   parent_item_id: number = faker.random.number(1000);
   sku: string = 'sku';
-  name: string = 'name';
+  name: string = 'Product Name';
   description: string = 'description';
   weight: number = faker.random.number(1000);
-  qty: number = faker.random.number(10);
+  qty: number = faker.random.number({min:1, max:11});
   price: number = faker.random.number(1000);
   discount_percent: number = faker.random.number(10);
   discount_amount: number = faker.random.number(100);

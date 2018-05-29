@@ -1,0 +1,22 @@
+@import '~scss/variables';
+@import '~scss/styles';
+
+.qty-dropdown {
+  &__label > * {
+    width: 60px;
+    height: 35px;
+  }
+
+  &__selector, &__input {
+    border: 1px solid $medium-gray;
+  }
+
+  &__input {
+    padding-left: 10px;
+  }
+
+  &__selector {
+    font-size: $global-font-size;
+    padding-top: 5px;
+  }
+}

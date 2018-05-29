@@ -1,23 +1,24 @@
-@import 'mixins/media';
-@import 'variables';
-@import 'styles';
+@import '~scss/mixins/media';
+@import '~scss/mixins/general';
+@import '~scss/variables';
+@import '~scss/styles';
 
 .product-card {
   text-align: center;
   border: none;
 
   &__detail {
-    padding: 15px 15px 0 15px;
+    padding: 15px;
   }
 
   &__brand {
-    font-weight: $global-weight-bold;
+    @include embolden();
     text-transform: uppercase;
   }
 
   &__options {
     margin-top: 15px;
     color: $dark-gray;
-    font-size: 0.875rem;
+    font-size: $small-font-size;
   }
 }

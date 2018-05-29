@@ -32,6 +32,16 @@
 4. `ng serve --project=foundation-demo`
 5. Navigate to `localhost:4200` in your browser of choice
 
+## Getting started
+
+**Running the example foundation-app**
+
+- Ensure that lerna is installed in your local environment `npm install --global lerna`.
+- Clone this repository and run `cd daffodil`.
+- Run `lerna bootstrap`. This will basically run `npm install` in all required packages within the project. 
+- Compile the `@daffodil/core` project by running `npm run-script build:lib`. This will compile the `@daffodil/core` module into an npm package in the `dist` folder, identical to the one located in the npm `@daffodil/core` repository. 
+- To run the foundation-app that points to the built `@daffodil/core` module, run `ng serve --app=foundation-demo`. This will serve the foundation-app to `localhost:4200`.
+
 ## Contributing
 
 Please read the [contributing guidelines here](https://github.com/graycore/daffodil/blob/master/CONTRIBUTING.md).

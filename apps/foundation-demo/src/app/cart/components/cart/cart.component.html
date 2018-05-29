@@ -1,3 +1,7 @@
-<div class="cart-container">
-  {{cart.id}}
+<div class="cart">
+  <div class="cart__title">
+    <span class="cart__subtitle">your cart</span>
+    <span class="cart__item-count">{{cart.items.length}} {{getItemText()}}</span>
+  </div>
+  <cart-item *ngFor="let item of cart.items" [item]="item"></cart-item>
 </div>

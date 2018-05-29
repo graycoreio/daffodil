@@ -1,0 +1,97 @@
+@import '~scss/styles';
+
+.cart-item {
+  display: grid;
+  font-size: $small-font-size;
+  grid-column-gap: 20px;
+  grid-row-gap: 15px;
+  grid-template-columns: 1fr 3fr;
+
+  &__description {
+    display: grid;
+  }
+
+  &__name {
+    font-size: $global-font-size;
+    @include embolden();
+
+    @include breakpoint(large) {
+      margin-bottom: 15px;
+    }
+  }
+
+  &__price {
+    font-size: $global-font-size;
+    color: $secondary-color;
+    margin-bottom: 15px;
+
+    @include breakpoint(large) {
+      justify-self: end;
+    }
+  }
+
+  &__mobile-qty {
+    display: inline;
+    @include embolden();
+
+    @include breakpoint(large) {
+      display: none;    
+    }
+  }
+
+  &__desktop-qty {
+    display: none;
+
+    @include breakpoint(large) {
+      display: inline;    
+    }
+  }
+
+  &__change {
+    color: $dark-gray;
+    margin-top: 15px;
+
+    & > a {
+      text-decoration: underline;
+    
+      &:last-child {
+        margin-left: 10px;
+      }
+    }
+  }
+   
+  @include breakpoint(large) {
+    &__description {
+      grid-template-areas:
+        "name       qty price"
+        "attribute  qty price"
+        "size       qty price"
+        "change     qty price";
+      grid-template-rows: repeat(4, auto) 1fr;
+    }
+    
+    &__name {
+      grid-area: name;
+    }
+
+    &__price {
+      grid-area: price;
+    }
+
+    &__attribute {
+      grid-area: attribute;
+    }
+
+    &__size {
+      grid-area: size;  
+    }
+
+    &__qty-wrapper {
+      grid-area: qty;
+    }
+
+    &__change {
+      grid-area: change;    
+    }
+  }
+}
