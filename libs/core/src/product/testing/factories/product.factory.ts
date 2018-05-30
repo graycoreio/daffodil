@@ -4,6 +4,8 @@ import { Product } from '../../model/product';
 
 @Injectable()
 export class ProductFactory {
+
+  static readonly PRODUCT_DETAILS = 'Lorem ipsum dolor sit amet, accumsan ullamcorper ei eam. Sint appetere ocurreret no per, et cum lorem disputationi. Sit ut magna delenit, assum vidisse vocibus sed ut. In aperiri malorum accusamus sea, novum mediocritatem ius at. Duo agam probo honestatis ut. Nec regione splendide cu, unum graeco vivendum in duo.';
   
   create() : Product {
     return {...new MockProductShortNames()};
@@ -29,6 +31,7 @@ export class MockProductShortNames implements Product {
   id = faker.random.number(1000).toString();
   name = 'Product Name';
   brand = 'Product Brand';
+  description  = ProductFactory.PRODUCT_DETAILS;
 };
 
 export class MockProductDefinedId implements Product {
@@ -36,6 +39,7 @@ export class MockProductDefinedId implements Product {
   id = "1001";
   name = 'Product Name';
   brand = 'Product Brand';
+  description  = ProductFactory.PRODUCT_DETAILS;
 };
 
 export class MockProductLongNames implements Product {
@@ -43,4 +47,5 @@ export class MockProductLongNames implements Product {
   id = faker.random.number(1000).toString();
   name = 'A Longer Product Name';
   brand = 'A Longer Product Brand';
+  description  = ProductFactory.PRODUCT_DETAILS;
 };

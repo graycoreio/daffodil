@@ -1,6 +1,6 @@
-<div product-container #ProductContainer="ProductContainer" [selectedProductId]="productId">
+<div product-container #ProductContainer="ProductContainer" [selectedProductId]="productId" class="product-container">
   <product [product]="ProductContainer.product$ | async" *ngIf="!(ProductContainer.loading$ | async)"></product>
-  <div *ngIf="(ProductContainer.loading$ | async)" class="cart-container__loading-icon">
+  <div *ngIf="(ProductContainer.loading$ | async)" class="product-container__loading-icon">
     <i class="fa fa-spinner fa-spin fa-5x"></i>
   </div>
 </div>
