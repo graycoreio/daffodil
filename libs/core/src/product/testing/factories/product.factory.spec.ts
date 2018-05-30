@@ -32,7 +32,8 @@ describe('Core | Product | Testing | ProductFactory', () => {
       expect(result.id).toBeDefined();
       expect(result.cost).toBeDefined();
       expect(result.name).toBeDefined();
-      expect(result.brand).toBeDefined();      
+      expect(result.brand).toBeDefined(); 
+      expect(result.description).toBeDefined();     
     });
   });
 
