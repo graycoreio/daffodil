@@ -33,7 +33,7 @@
 
   @include breakpoint(large) {
     margin: 50px;
-    grid-gap: 25px;
+    grid-gap: 25px 50px;
   }
 
   &__description-container {
@@ -48,11 +48,16 @@
 
   &__brand {
     color: $dark-gray;
+    font-size: $medium-font-size;
   }
 
   &__name {
     @include embolden();
     font-size: $large-font-size;
+  }
+
+  &__price {
+    font-size: $medium-font-size;
   }
 
   &__image-gallery-wrapper {
@@ -77,7 +82,7 @@
     }
 
     @include breakpoint(large) {
-      grid-gap: 20px;      
+      grid-gap: 15px;      
     }
   }
 
