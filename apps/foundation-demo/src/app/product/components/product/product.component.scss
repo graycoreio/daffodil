@@ -10,6 +10,7 @@
       "image-gallery info"
       "image-gallery qty"
       "image-gallery buttons"
+      "images-wrapper accordion"
       "image-gallery .";
     grid-gap: 15px;
     grid-template-columns: 2fr 1fr;
@@ -28,6 +29,10 @@
 
     &__image-gallery {
       grid-area: image-gallery;
+    }
+    
+    &__accordion-wrapper {
+      grid-area: accordion;
     }
   }
 
@@ -97,5 +102,10 @@
       margin: 0;
       width: 70%;
     }
+  }
+
+  &__accordion-wrapper {
+    border-top: 1px solid $medium-gray;
+    margin: 25px 15px;
   }
 }
