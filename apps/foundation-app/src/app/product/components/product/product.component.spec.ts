@@ -26,6 +26,12 @@ class MockImageGalleryComponent {
   @Input() images: Image[];
 }
 
+@Component({selector: 'accordion', template: ''})
+class MockAccordionComponent { 
+  @Input() title: string;
+  @Input() id: string;
+}
+
 describe('ProductComponent', () => {
   let component: ProductWrapperTest;
   let fixture: ComponentFixture<ProductWrapperTest>;
@@ -43,7 +49,8 @@ describe('ProductComponent', () => {
         ProductComponent,
         ProductWrapperTest,
         MockQtyDropdownComponent,
-        MockImageGalleryComponent
+        MockImageGalleryComponent,
+        MockAccordionComponent
       ]
     })
     .compileComponents();
