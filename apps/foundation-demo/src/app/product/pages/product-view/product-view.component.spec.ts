@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { By } from '@angular/platform-browser';
@@ -28,7 +28,7 @@ class ProductContainerMock {
 
   product$: Observable<Product> = product$;
   loading$: Observable<boolean> = of(false);
-  addToCart: () => {};
+  addToCart;
 }
 
 @Component({
@@ -37,7 +37,7 @@ class ProductContainerMock {
 })
 class ProductMock { 
   @Input() product: Product;
-  @Input() addToCart: Function;
+  @Output() addToCart: EventEmitter<any> = new EventEmitter();
 }
 
 describe('ProductViewComponent', () => {
@@ -74,6 +74,7 @@ describe('ProductViewComponent', () => {
 
     productContainer = fixture.debugElement.query(By.css('[product-container]'));
     productContainer.componentInstance.loading$ = of(false);
+    productContainer.componentInstance.addToCart = (payload) => {};
 
     fixture.detectChanges();
     productComponent = fixture.debugElement.query(By.css('product'));
@@ -100,8 +101,13 @@ describe('ProductViewComponent', () => {
       expect(productComponent.componentInstance.product).toEqual(mockProduct);
     });
 
-    it('should set addToCart to value passed by product-container directive', () => {
-      expect(productComponent.componentInstance.addToCart).toEqual(productContainer.addToCart);
+    it('should set addToCart to call function passed by product-container directive', () => {
+      spyOn(productContainer.componentInstance, 'addToCart');
+      let payload = 'test';
+
+      productComponent.componentInstance.addToCart.emit(payload);
+
+      expect(productContainer.componentInstance.addToCart).toHaveBeenCalledWith(payload);
     });
   });
 

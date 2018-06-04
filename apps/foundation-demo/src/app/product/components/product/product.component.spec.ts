@@ -10,7 +10,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { Image } from '../../../design/interfaces/image';
 
-@Component({template: '<product [product]="productValue" [addToCart]="addToCartFunction"></product>'})
+@Component({template: '<product [product]="productValue" (addToCart)="addToCartFunction($event)"></product>'})
 class ProductWrapperTest {
   productValue: Product;
   addToCartFunction;
@@ -48,7 +48,7 @@ describe('ProductComponent', () => {
   let router;
   let stubProduct = productFactory.create();
   let productComponent;
-  let mockFunction = () => {};
+  let mockFunction = (payload) => {};
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -89,8 +89,13 @@ describe('ProductComponent', () => {
     expect(productComponent.componentInstance.product).toEqual(stubProduct);
   });
 
-  it('should be able to take an addToCart input', () => {
-    expect(productComponent.componentInstance.addToCart).toEqual(mockFunction);    
+  it('should call addToCartFunction when addToCart is emitted', () => {
+    let payload = 'payload';
+    spyOn(component, 'addToCartFunction');
+    
+    productComponent.componentInstance.addToCart.emit(payload);
+
+    expect(component.addToCartFunction).toHaveBeenCalledWith(payload);   
   });
 
   describe('ngOnInit', () => {
@@ -102,11 +107,11 @@ describe('ProductComponent', () => {
 
   describe('addProductToCart', () => {
     
-    it('should call addToCart with product and qty', () => {
-      spyOn(productComponent.componentInstance, 'addToCart');
+    it('should call addToCart.emit', () => {
+      spyOn(productComponent.componentInstance.addToCart, 'emit');
       productComponent.componentInstance.addProductToCart();
 
-      expect(productComponent.componentInstance.addToCart).toHaveBeenCalledWith(stubProduct, productComponent.componentInstance.qty);
+      expect(productComponent.componentInstance.addToCart.emit).toHaveBeenCalledWith({product: stubProduct, qty: productComponent.componentInstance.qty});
     });
   });
 
