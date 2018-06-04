@@ -91,7 +91,7 @@
     grid-template-columns: 1fr 55px;
 
     & button {
-      font-size: 16px;
+      font-size: $medium-font-size;
     }
 
     @include breakpoint(medium) {

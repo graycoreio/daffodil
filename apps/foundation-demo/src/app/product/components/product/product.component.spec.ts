@@ -37,6 +37,9 @@ class MockAccordionItemComponent {
   @Input() initiallyActive: boolean;
 }
 
+@Component({selector: 'add-to-cart', template: ''})
+class MockAddToCartComponent { }
+
 describe('ProductComponent', () => {
   let component: ProductWrapperTest;
   let fixture: ComponentFixture<ProductWrapperTest>;
@@ -56,7 +59,8 @@ describe('ProductComponent', () => {
         MockQtyDropdownComponent,
         MockImageGalleryComponent,
         MockAccordionComponent,
-        MockAccordionItemComponent
+        MockAccordionItemComponent,
+        MockAddToCartComponent
       ]
     })
     .compileComponents();
