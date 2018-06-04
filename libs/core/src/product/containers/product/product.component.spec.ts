@@ -12,6 +12,7 @@ import { Product } from '../../model/product';
 
 import { ProductLoad } from '../../actions/product.actions';
 import * as fromProduct from '../../reducers';
+import { AddToCart } from '../../../cart/actions/cart.actions';
 
 describe('ProductContainer', () => {
   let component: ProductContainer;
@@ -70,6 +71,17 @@ describe('ProductContainer', () => {
       component.product$.subscribe((product) => {
         expect(product).toEqual(initialProduct);
       });
+    });
+  });
+
+  describe('addToCart', () => {
+    
+    it('should call store.dispatch', () => {
+      let product: Product;
+      let qty: number;
+      component.addToCart(product, qty);
+
+      expect(store.dispatch).toHaveBeenCalledWith(new AddToCart({product, qty}));
     });
   });
 });

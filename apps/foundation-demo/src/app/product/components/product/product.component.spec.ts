@@ -10,9 +10,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { Image } from '../../../design/interfaces/image';
 
-@Component({template: '<product [product]="productValue"></product>'})
+@Component({template: '<product [product]="productValue" [addToCart]="addToCartFunction"></product>'})
 class ProductWrapperTest {
   productValue: Product;
+  addToCartFunction;
 }
 
 @Component({selector: 'qty-dropdown', template: ''})
@@ -44,9 +45,10 @@ describe('ProductComponent', () => {
   let component: ProductWrapperTest;
   let fixture: ComponentFixture<ProductWrapperTest>;
   let productFactory = new ProductFactory();
-  let mockProduct = productFactory.create();
   let router;
+  let stubProduct = productFactory.create();
   let productComponent;
+  let mockFunction = () => {};
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -72,7 +74,8 @@ describe('ProductComponent', () => {
     router = TestBed.get(Router);
     spyOn(router, 'navigateByUrl');
 
-    component.productValue = mockProduct;
+    component.productValue = stubProduct;
+    component.addToCartFunction = mockFunction;
     fixture.detectChanges();
 
     productComponent = fixture.debugElement.query(By.css('product'));
@@ -83,8 +86,38 @@ describe('ProductComponent', () => {
   });
 
   it('should be able to take a product input', () => {
+    expect(productComponent.componentInstance.product).toEqual(stubProduct);
+  });
 
-    expect(productComponent.componentInstance.product).toEqual(mockProduct);
+  it('should be able to take an addToCart input', () => {
+    expect(productComponent.componentInstance.addToCart).toEqual(mockFunction);    
+  });
+
+  describe('ngOnInit', () => {
+    
+    it('should initialize qty to 1', () => {
+      expect(productComponent.componentInstance.qty).toEqual(1);
+    });
+  });
+
+  describe('addProductToCart', () => {
+    
+    it('should call addToCart with product and qty', () => {
+      spyOn(productComponent.componentInstance, 'addToCart');
+      productComponent.componentInstance.addProductToCart();
+
+      expect(productComponent.componentInstance.addToCart).toHaveBeenCalledWith(stubProduct, productComponent.componentInstance.qty);
+    });
+  });
+
+  describe('updateQty', () => {
+    
+    it('should set qty to argument', () => {
+      let stubQty = 4;
+      productComponent.componentInstance.updateQty(stubQty);
+
+      expect(productComponent.componentInstance.qty).toEqual(stubQty);
+    });
   });
 
   describe('when product is null', () => {

@@ -7,6 +7,7 @@ import { Store, select } from '@ngrx/store';
 import { Product } from '../../model/product';
 import * as fromProduct from '../../reducers';
 import { ProductLoad } from '../../actions/product.actions';
+import { AddToCart } from '../../../cart/actions/cart.actions';
 
 @Component({
   selector: '[product-container]',
@@ -34,5 +35,9 @@ export class ProductContainer implements OnInit {
     this.product$ = this.store.pipe(
       select(fromProduct.selectSelectedProduct)
     );
+  }
+
+  addToCart(product: Product, qty: number) {
+    this.store.dispatch(new AddToCart({product, qty}));
   }
 }

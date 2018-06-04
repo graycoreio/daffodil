@@ -28,6 +28,7 @@ class ProductContainerMock {
 
   product$: Observable<Product> = product$;
   loading$: Observable<boolean> = of(false);
+  addToCart: () => {};
 }
 
 @Component({
@@ -36,6 +37,7 @@ class ProductContainerMock {
 })
 class ProductMock { 
   @Input() product: Product;
+  @Input() addToCart: Function;
 }
 
 describe('ProductViewComponent', () => {
@@ -96,6 +98,10 @@ describe('ProductViewComponent', () => {
     
     it('should set product to value passed by product-container directive', () => {
       expect(productComponent.componentInstance.product).toEqual(mockProduct);
+    });
+
+    it('should set addToCart to value passed by product-container directive', () => {
+      expect(productComponent.componentInstance.addToCart).toEqual(productContainer.addToCart);
     });
   });
 

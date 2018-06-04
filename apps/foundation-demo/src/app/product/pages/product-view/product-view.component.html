@@ -1,5 +1,5 @@
 <div product-container #ProductContainer="ProductContainer" [selectedProductId]="productId" class="product-container">
-  <product [product]="ProductContainer.product$ | async" *ngIf="!(ProductContainer.loading$ | async)"></product>
+  <product [product]="ProductContainer.product$ | async" [addToCart]="ProductContainer.addToCart" *ngIf="!(ProductContainer.loading$ | async)"></product>
   <div *ngIf="(ProductContainer.loading$ | async)" class="product-container__loading-icon">
     <i class="fa fa-spinner fa-spin fa-5x"></i>
   </div>
