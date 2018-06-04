@@ -25,7 +25,7 @@ export class ProductContainer implements OnInit {
     private store: Store<fromProduct.State>
   ) { }
 
-  ngOnInit() {    
+  ngOnInit() {
     this.store.dispatch(new ProductLoad(this.selectedProductId));
 
     this.loading$ = this.store.pipe(
@@ -37,7 +37,7 @@ export class ProductContainer implements OnInit {
     );
   }
 
-  addToCart(product: Product, qty: number) {
-    this.store.dispatch(new AddToCart({product, qty}));
+  addToCart(payload) {
+    this.store.dispatch(new AddToCart(payload));
   }
 }

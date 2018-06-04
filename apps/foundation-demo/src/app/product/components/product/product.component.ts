@@ -11,8 +11,8 @@ import { Image } from '../../../design/interfaces/image';
 })
 export class ProductComponent implements OnInit {
   @Input() product: Product;
-  @Input() addToCart;
-
+  @Output() addToCart: EventEmitter<any> = new EventEmitter();
+  
   qty: number;
   
   constructor(
@@ -36,7 +36,7 @@ export class ProductComponent implements OnInit {
   ]
 
   addProductToCart() {
-    this.addToCart(this.product, this.qty);
+    this.addToCart.emit({product: this.product, qty: this.qty});
   }
 
   updateQty(qty: number) {
