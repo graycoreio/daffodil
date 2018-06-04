@@ -30,7 +30,7 @@
     &__image-gallery {
       grid-area: image-gallery;
     }
-    
+
     &__accordion-wrapper {
       grid-area: accordion;
     }
@@ -38,7 +38,12 @@
 
   @include breakpoint(large) {
     margin: 50px;
+<<<<<<< HEAD
     grid-gap: 25px 50px;
+=======
+    grid-row-gap: 25px;
+    grid-column-gap: 50px;
+>>>>>>> update product grid to account for some resizing issues due to the accordion
   }
 }
 
@@ -106,6 +111,10 @@
 
   &__accordion-wrapper {
     border-top: 1px solid $medium-gray;
-    margin: 25px 15px;
+    margin: 25px 15px 0 15px;
+
+    @include breakpoint(medium) {
+      margin: 25px 0 0 0;
+    }
   }
 }
