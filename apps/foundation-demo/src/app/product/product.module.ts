@@ -9,6 +9,7 @@ import { ProductViewComponent } from './pages/product-view/product-view.componen
 import { ProductComponent } from './components/product/product.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { DesignModule } from '../design/design.module';
+import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
 
 @NgModule({
   imports: [
@@ -21,14 +22,16 @@ import { DesignModule } from '../design/design.module';
     ProductGridViewComponent,
     ProductViewComponent,
     ProductComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    AddToCartComponent
   ],
   exports: [
     ProductGridComponent,
     ProductGridViewComponent,
     ProductViewComponent,
     ProductComponent,
-    ProductCardComponent    
+    ProductCardComponent,
+    AddToCartComponent 
   ]
 })
 export class ProductModule { }

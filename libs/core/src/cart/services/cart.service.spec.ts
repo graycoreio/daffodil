@@ -51,22 +51,24 @@ describe('Core | Cart | CartService', () => {
   describe('addToCart', () => {
 
     let product;
+    let qty;
     let returnedValue;
     
     beforeEach(() => {
       product = productFactory.create();
+      qty = 1;
       returnedValue = 'returnedValue';
 
       spyOn(http, 'post').and.returnValue(returnedValue);;
     });
 
     it('should send a post request', () => {
-      cartService.addToCart(product);
-      expect(http.post).toHaveBeenCalledWith(cartService.url, product);
+      cartService.addToCart(product, qty);
+      expect(http.post).toHaveBeenCalledWith(cartService.url, {product, qty});
     });
 
     it('returns the value from post request', () => {
-      expect(cartService.addToCart(product)).toEqual(returnedValue);
+      expect(cartService.addToCart(product, qty)).toEqual(returnedValue);
     });
   });
 });
