@@ -14,7 +14,7 @@ describe('Cart | Cart List Reducer', () => {
   beforeEach(() => {
     cartFactory = new CartFactory();
 
-    cart = cartFactory.create('cost');
+    cart = cartFactory.create();
   });
 
   describe('when an unknown action is triggered', () => {

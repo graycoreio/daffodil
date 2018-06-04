@@ -106,7 +106,7 @@ describe('ProductViewComponent', () => {
     });
 
     it('should not render the loading spinner', () => {
-      expect(fixture.debugElement.query(By.css('.cart-container__loading-icon'))).toBeNull();
+      expect(fixture.debugElement.query(By.css('.product-container__loading-icon'))).toBeNull();
     });
   });
 
@@ -123,7 +123,7 @@ describe('ProductViewComponent', () => {
     });
 
     it('should render the loading spinner', () => {
-      expect(fixture.debugElement.query(By.css('.cart-container__loading-icon'))).not.toBeNull();
+      expect(fixture.debugElement.query(By.css('.product-container__loading-icon'))).not.toBeNull();
     });
   });
 });

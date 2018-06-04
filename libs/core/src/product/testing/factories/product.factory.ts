@@ -27,7 +27,7 @@ export class ProductFactory {
 }
 
 export class MockProductShortNames implements Product {
-  cost = faker.random.number(10000).toString();
+  price = faker.random.number(10000).toString();
   id = faker.random.number(1000).toString();
   name = 'Product Name';
   brand = 'Product Brand';
@@ -35,7 +35,7 @@ export class MockProductShortNames implements Product {
 };
 
 export class MockProductDefinedId implements Product {
-  cost = faker.random.number(10000).toString();
+  price = faker.random.number(10000).toString();
   id = "1001";
   name = 'Product Name';
   brand = 'Product Brand';
@@ -43,7 +43,7 @@ export class MockProductDefinedId implements Product {
 };
 
 export class MockProductLongNames implements Product {
-  cost = faker.random.number(10000).toString();
+  price = faker.random.number(10000).toString();
   id = faker.random.number(1000).toString();
   name = 'A Longer Product Name';
   brand = 'A Longer Product Brand';
