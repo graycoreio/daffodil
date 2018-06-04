@@ -3,7 +3,8 @@ import { createSelector } from "@ngrx/store";
 import { Cart } from "../model/cart";
 import { CartFactory } from "../testing/factories/cart.factory";
 import { initialState, reducer, getCartLoading, getCart } from "../reducers/cart.reducer";
-import { CartLoad, CartLoadSuccess, CartLoadFailure, CartReset } from "../actions/cart.actions";
+import { CartLoad, CartLoadSuccess, CartLoadFailure, CartReset, AddToCart, AddToCartSuccess, AddToCartFailure } from "../actions/cart.actions";
+import { Product } from "../..";
 
 
 describe('Cart | Cart List Reducer', () => {
@@ -71,6 +72,64 @@ describe('Cart | Cart List Reducer', () => {
       let cartListLoadFailure = new CartLoadFailure(error);
 
       result = reducer(initialState, cartListLoadFailure);
+    });
+
+    it('sets loading to false', () => {
+      expect(result.loading).toEqual(false);
+    });
+
+    it('adds an error to state.errors', () => {
+      expect(result.errors.length).toEqual(2);
+    });
+  });
+
+  describe('when AddToCartAction is triggered', () => {
+
+    let product: Product;
+    let qty: number;
+    
+    it('sets loading state to true', () => {
+      const addToCartAction: AddToCart = new AddToCart({product, qty});
+      
+      const result = reducer(initialState, addToCartAction);
+
+      expect(result.loading).toEqual(true);
+    });
+  });
+
+  describe('when AddToCartActionSuccess is triggered', () => {
+
+    let cart: Cart;
+    let result;
+
+    beforeEach(() => {
+      const addToCartActionSuccess: AddToCartSuccess = new AddToCartSuccess(cart);
+      initialState.loading = true;
+
+      result = reducer(initialState, addToCartActionSuccess);
+    });
+
+    it('sets cart from action.payload', () => {
+      expect(result.cart).toEqual(cart)
+    });
+    
+    it('sets loading state to false', () => {
+      expect(result.loading).toEqual(false);
+    });
+  });
+
+  describe('when AddToCartFailureAction is triggered', () => {
+
+    let error: string;
+    let result;
+
+    beforeEach(() => {
+      initialState.loading = true;
+      error = 'error';      
+      initialState.errors = new Array('firstError');
+      let addToCartFailure = new AddToCartFailure(error);
+
+      result = reducer(initialState, addToCartFailure);
     });
 
     it('sets loading to false', () => {
