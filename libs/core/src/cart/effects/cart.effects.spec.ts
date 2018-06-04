@@ -96,7 +96,8 @@ describe('CartEffects', () => {
 
     let expected;
     let product;
-    const addToCartAction = new AddToCart(product);
+    let qty: number;
+    const addToCartAction = new AddToCart({product, qty});
 
     beforeEach(() => {
       product =  productFactory.create();
