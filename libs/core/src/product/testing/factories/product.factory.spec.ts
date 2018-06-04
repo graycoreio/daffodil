@@ -30,7 +30,7 @@ describe('Core | Product | Testing | ProductFactory', () => {
     it('should return a Product with all required fields defined', () => {
 
       expect(result.id).toBeDefined();
-      expect(result.cost).toBeDefined();
+      expect(result.price).toBeDefined();
       expect(result.name).toBeDefined();
       expect(result.brand).toBeDefined(); 
       expect(result.description).toBeDefined();     
