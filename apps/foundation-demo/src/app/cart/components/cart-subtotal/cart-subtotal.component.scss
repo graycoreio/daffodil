@@ -1,4 +1,4 @@
-@import 'mixins/cart-total';
+@import 'daffodil-util';
 
 .cart-subtotal {
   @include cart-total();

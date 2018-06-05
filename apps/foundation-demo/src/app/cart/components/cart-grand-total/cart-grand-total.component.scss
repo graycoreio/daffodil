@@ -1,11 +1,10 @@
-@import 'styles';
-@import 'mixins/cart-total';
+@import 'daffodil-util';
 
 .cart-grand-total {
   @include cart-total();
 
   &__value {
-    color: $secondary-color;
+    color: get-color(secondary);
     @include embolden();
   }
 }

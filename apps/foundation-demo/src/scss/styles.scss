@@ -1,12 +1,13 @@
+/***********************************
+* DO NOT IMPORT THIS FILE ANYWHERE ELSE
+************************************/
+
 // Imports
 @import 'variables';
 @import '~foundation-sites/assets/foundation';
 
 //Mixins
-@import 'mixins/media';
-@import 'mixins/typography';
-@import 'mixins/cart-total';
-@import 'mixins/dividers';
+@import "daffodil-util";
 
 //Base Styles
-@import "typography";
+@import "components/typography";

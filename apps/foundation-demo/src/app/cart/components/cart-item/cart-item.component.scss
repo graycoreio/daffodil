@@ -1,4 +1,4 @@
-@import 'styles';
+@import 'daffodil-util';
 
 .cart-item {
   display: grid;
@@ -22,7 +22,7 @@
 
   &__price {
     font-size: $global-font-size;
-    color: $secondary-color;
+    color: get-color(secondary);
     margin-bottom: 15px;
 
     @include breakpoint(large) {
