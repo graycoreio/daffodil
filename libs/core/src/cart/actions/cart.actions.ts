@@ -34,7 +34,7 @@ export class CartLoadFailure implements Action {
 export class AddToCart implements Action {
     readonly type = CartActionTypes.AddToCartAction;
 
-    constructor(public payload: {product: Product, qty: number}) {}
+    constructor(public payload: {productId: string, qty: number}) {}
 }
 
 export class AddToCartSuccess implements Action {

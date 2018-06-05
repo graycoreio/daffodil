@@ -8,6 +8,8 @@ import { Component, Input } from '@angular/core';
 
 let cartFactory = new CartFactory();
 let mockCart = cartFactory.create();
+mockCart.items.push(cartFactory.createCartItem());
+mockCart.items.push(cartFactory.createCartItem());
 
 @Component({template: '<cart-summary [cart]="cartValue"></cart-summary>'})
 class TestCartSummaryWrapper {

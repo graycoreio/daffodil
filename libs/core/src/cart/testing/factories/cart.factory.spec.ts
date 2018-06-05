@@ -33,8 +33,8 @@ describe('Core | Cart | Testing | CartFactory', () => {
 
     describe('Cart object', () => {
       
-      it('should have CartItems', () => {
-        expect(result.items[0]).toEqual(jasmine.any(MockCartItem))
+      it('should have no CartItems', () => {
+        expect(result.items.length).toEqual(0)
       });
 
       it('should have CartAddresses', () => {

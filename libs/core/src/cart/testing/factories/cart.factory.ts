@@ -12,6 +12,16 @@ export class CartFactory {
   create() : Cart {
     return {...new MockCart()};
   }
+
+  createCartItem() : CartItem {
+    return new MockCartItem();
+  }
+
+  addCartItemToCart(reqBody) {
+    console.log(reqBody);
+    // let mockCart = new MockCart();
+    // mockCart.items.push
+  }
 }
 
 export class MockCart implements Cart {
@@ -25,7 +35,7 @@ export class MockCart implements Cart {
   coupon_code: string = faker.random.number(100000).toString();
   subtotal: number = faker.random.number(1000);
   subtotal_with_discount: number = faker.random.number(1000);
-  items: CartItem[] = [new MockCartItem, new MockCartItem];
+  items: CartItem[] = [];
   addresses: CartAddress[] = [new MockCartAddress()];
   payment: CartPayment = new MockCartPayment();
 };
