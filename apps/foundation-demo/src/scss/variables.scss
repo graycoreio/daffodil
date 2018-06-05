@@ -7,8 +7,18 @@ $foundation-palette: (
   alert: #cc4b37
 );
 
+$body-font-family: 'Open Sans', sans-serif;
+$global-font-size: 14px;
+$global-weight-normal: 400;
+$breakpoint-classes: (small medium large xlarge xxlarge);
+
 $light-gray: #fafafa;
 $medium-gray: #bdbdbd;
 $dark-gray: #424242;
 $black: #212121;
 $white: #fff;
+
+$global-weight-bold: 600;
+
+$large-font-size: 1.125rem;
+$small-font-size: 0.875rem;;

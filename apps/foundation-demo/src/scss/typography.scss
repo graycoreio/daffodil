@@ -1,0 +1,20 @@
+body {
+    font-size: 16px;
+
+    @include breakpoint(small) {
+        font-size: 14px;
+    }
+}
+
+.embolden {
+    @include embolden();
+}
+
+.uppercase {
+    @include uppercase();
+}
+
+.single-line-ellipsis {
+    @include single-line-ellipsis();
+}
+  

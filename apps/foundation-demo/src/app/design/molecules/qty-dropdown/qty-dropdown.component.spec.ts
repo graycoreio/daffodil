@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { QtyDropdownComponent } from './qty-dropdown.component';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import * as $ from 'jquery';
 
 @Component({template: '<qty-dropdown [qty]="qtyValue" [id]="idValue"></qty-dropdown>'})
 class TestQtyDropdownWrapper {

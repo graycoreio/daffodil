@@ -1,5 +1,5 @@
-@import '~scss/styles';
-@import '~scss/mixins/cart-total';
+@import 'styles';
+@import 'mixins/cart-total';
 
 .cart-grand-total {
   @include cart-total();

@@ -1,4 +1,4 @@
-@import '~scss/mixins/cart-total';
+@import 'mixins/cart-total';
 
 .cart-subtotal {
   @include cart-total();

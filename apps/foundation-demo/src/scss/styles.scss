@@ -1,24 +1,12 @@
-
-// Global styles
-$body-font-family: 'Open Sans', sans-serif;
-$global-font-size: 14px;
-$global-weight-normal: 400;
-$breakpoint-classes: (small medium large xlarge xxlarge);
-
 // Imports
 @import 'variables';
 @import '~foundation-sites/assets/foundation';
-@import '~scss/mixins/general';
 
-body {
-  font-size: 16px;
-  
-  @include breakpoint(small) {
-    font-size: 14px;
-  }
-}
+//Mixins
+@import 'mixins/media';
+@import 'mixins/typography';
+@import 'mixins/cart-total';
+@import 'mixins/dividers';
 
-$xlarge-font-size: 3rem;
-$large-font-size: 2rem;
-$medium-font-size: 1.125rem;
-$small-font-size: 0.875rem;;
+//Base Styles
+@import "typography";
