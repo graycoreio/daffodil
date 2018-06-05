@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { ProductTestingService } from '../../product/testing/services/product.testing.service';
 
-import { InMemoryDbService } from 'angular-in-memory-web-api';
+import { InMemoryDbService, RequestInfoUtilities, ParsedRequestUrl } from 'angular-in-memory-web-api';
 import { ProductFactory } from '../../product/testing/factories/product.factory';
 import { Product } from '../../product/model/product';
 import { CartTestingService } from '../../cart/testing/services/cart.testing.service';
@@ -14,6 +14,19 @@ export class MockService implements InMemoryDbService{
     private productTestingService: ProductTestingService,
     private cartTestingService: CartTestingService
   ) {}
+
+  parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {
+    return utils.parseRequestUrl(url);
+  }
+
+  post(reqInfo: any) {
+    const collectionName = reqInfo.collectionName;
+    if (collectionName === 'cart') {
+      return this.cartTestingService.post(reqInfo);
+    }
+
+    return undefined;
+  }
 
   createDb() : MockDatabase {
     return {

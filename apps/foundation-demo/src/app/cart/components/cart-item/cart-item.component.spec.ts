@@ -7,7 +7,7 @@ import { CartItemComponent } from './cart-item.component';
 import { Component, Input } from '@angular/core';
 
 let cartFactory = new CartFactory();
-let mockCartItem = cartFactory.create().items[0];
+let mockCartItem = cartFactory.createCartItem();
 
 @Component({template: '<cart-item [item]="cartItemValue"></cart-item>'})
 class TestCartItemWrapper {
@@ -48,30 +48,33 @@ describe('CartItemComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('renders a cart-item', () => {
-    expect(fixture.debugElement.query(By.css('.cart-item'))).not.toBeNull();
-  });
-
-  it('can be passed a CartItem object', () => {
-    expect(cartItemComponent.componentInstance.item).toEqual(mockCartItem);
-  });
-
-  it('renders a <qty-dropdown>', () => {
-    expect(qtyDropdownComponent).not.toBeNull();
-  });
-  
-  describe('on <qty-dropdown>', () => {
+  describe('when cart has a cartItem', () => {
     
-    it('sets qty', () => {
-      expect(qtyDropdownComponent.componentInstance.qty).toEqual(mockCartItem.qty);
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+
+    it('renders a cart-item', () => {
+      expect(fixture.debugElement.query(By.css('.cart-item'))).not.toBeNull();
+    });
+
+    it('can be passed a CartItem object', () => {
+      expect(cartItemComponent.componentInstance.item).toEqual(mockCartItem);
+    });
+
+    it('renders a <qty-dropdown>', () => {
+      expect(qtyDropdownComponent).not.toBeNull();
     });
     
-    it('sets id', () => {
-      expect(qtyDropdownComponent.componentInstance.id).toEqual(mockCartItem.item_id);
+    describe('on <qty-dropdown>', () => {
+      
+      it('sets qty', () => {
+        expect(qtyDropdownComponent.componentInstance.qty).toEqual(mockCartItem.qty);
+      });
+      
+      it('sets id', () => {
+        expect(qtyDropdownComponent.componentInstance.id).toEqual(mockCartItem.item_id);
+      });
     });
   });
 });

@@ -77,11 +77,11 @@ describe('ProductContainer', () => {
   describe('addToCart', () => {
     
     it('should call store.dispatch', () => {
-      let product: Product;
+      let productId: string;
       let qty: number;
-      component.addToCart({product, qty});
+      component.addToCart({productId, qty});
 
-      expect(store.dispatch).toHaveBeenCalledWith(new AddToCart({product, qty}));
+      expect(store.dispatch).toHaveBeenCalledWith(new AddToCart({productId, qty}));
     });
   });
 });

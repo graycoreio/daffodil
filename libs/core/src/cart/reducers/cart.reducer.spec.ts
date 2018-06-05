@@ -85,11 +85,11 @@ describe('Cart | Cart List Reducer', () => {
 
   describe('when AddToCartAction is triggered', () => {
 
-    let product: Product;
+    let productId: string;
     let qty: number;
     
     it('sets loading state to true', () => {
-      const addToCartAction: AddToCart = new AddToCart({product, qty});
+      const addToCartAction: AddToCart = new AddToCart({productId, qty});
       
       const result = reducer(initialState, addToCartAction);
 

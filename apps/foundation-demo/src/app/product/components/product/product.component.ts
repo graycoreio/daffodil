@@ -36,7 +36,7 @@ export class ProductComponent implements OnInit {
   ]
 
   addProductToCart() {
-    this.addToCart.emit({product: this.product, qty: this.qty});
+    this.addToCart.emit({productId: this.product.id, qty: this.qty});
   }
 
   updateQty(qty: number) {

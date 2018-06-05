@@ -111,7 +111,7 @@ describe('ProductComponent', () => {
       spyOn(productComponent.componentInstance.addToCart, 'emit');
       productComponent.componentInstance.addProductToCart();
 
-      expect(productComponent.componentInstance.addToCart.emit).toHaveBeenCalledWith({product: stubProduct, qty: productComponent.componentInstance.qty});
+      expect(productComponent.componentInstance.addToCart.emit).toHaveBeenCalledWith({productId: stubProduct.id, qty: productComponent.componentInstance.qty});
     });
   });
 

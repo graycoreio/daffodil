@@ -50,12 +50,12 @@ describe('Core | Cart | CartService', () => {
 
   describe('addToCart', () => {
 
-    let product;
+    let productId;
     let qty;
     let returnedValue;
     
     beforeEach(() => {
-      product = productFactory.create();
+      productId = 'productId';
       qty = 1;
       returnedValue = 'returnedValue';
 
@@ -63,12 +63,12 @@ describe('Core | Cart | CartService', () => {
     });
 
     it('should send a post request', () => {
-      cartService.addToCart(product, qty);
-      expect(http.post).toHaveBeenCalledWith(cartService.url, {product, qty});
+      cartService.addToCart(productId, qty);
+      expect(http.post).toHaveBeenCalledWith(cartService.url, {productId, qty});
     });
 
     it('returns the value from post request', () => {
-      expect(cartService.addToCart(product, qty)).toEqual(returnedValue);
+      expect(cartService.addToCart(productId, qty)).toEqual(returnedValue);
     });
   });
 });

@@ -95,12 +95,12 @@ describe('CartEffects', () => {
   describe('when AddToCartAction is triggered', () => {
 
     let expected;
-    let product;
+    let productId: string;
     let qty: number;
-    const addToCartAction = new AddToCart({product, qty});
+    const addToCartAction = new AddToCart({productId, qty});
 
     beforeEach(() => {
-      product =  productFactory.create();
+      productId =  '1001';
     });
     
     describe('and the call to CartService is successful', () => {

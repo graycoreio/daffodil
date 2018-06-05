@@ -43,7 +43,7 @@ export class CartEffects {
   addToCart$ = this.actions$.pipe(
     ofType(CartActionTypes.AddToCartAction),
     switchMap((action: AddToCart) =>
-      this.cartService.addToCart(action.payload.product, action.payload.qty)
+      this.cartService.addToCart(action.payload.productId, action.payload.qty)
         .pipe(
           map((resp) => {
             return new AddToCartSuccess(resp);

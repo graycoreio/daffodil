@@ -21,7 +21,7 @@ export class CartService {
     return this.http.get<Cart>(this.url);
   }
 
-  addToCart(product: Product, qty: number): Observable<Cart> {
-    return this.http.post<Cart>(this.url, {product, qty});
+  addToCart(productId: string, qty: number): Observable<Cart> {
+    return this.http.post<Cart>(this.url, {productId, qty});
   }
 }

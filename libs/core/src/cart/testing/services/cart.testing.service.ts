@@ -14,8 +14,15 @@ export class CartTestingService implements InMemoryDbService {
 
   constructor(private cartFactory: CartFactory) { }
 
-  parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {
-    return utils.parseRequestUrl(url);
+  post(reqInfo: any) {
+    return reqInfo.utils.createResponse$(() => {
+      let cart = this.cartFactory.addCartItemToCart(reqInfo.req.body);
+      
+      return {
+        body: cart,
+        status: STATUS.OK
+      }
+    })
   }
 
   createDb() {
