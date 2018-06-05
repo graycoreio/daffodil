@@ -1,0 +1,14 @@
+@mixin embolden($weight: 600) {
+    font-weight: $weight;
+}
+
+@mixin uppercase() {
+    text-transform: uppercase;
+}
+
+@mixin single-line-ellipsis() {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+}

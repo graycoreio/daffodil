@@ -70,7 +70,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "apps/foundation-demo/src/test.js",
+            "main": "apps/foundation-demo/src/test.ts",
             "polyfills": "apps/foundation-demo/src/polyfills.ts",
             "tsConfig": "apps/foundation-demo/tsconfig.spec.json",
             "karmaConfig": "apps/foundation-demo/karma.conf.js",

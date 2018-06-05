@@ -1,5 +1,7 @@
-@import '~scss/styles';
-@import '~scss/mixins/general';
+@import 'variables';
+
+@import 'mixins/dividers';
+@import 'mixins/typography';
 
 .cart {
   display: grid;
