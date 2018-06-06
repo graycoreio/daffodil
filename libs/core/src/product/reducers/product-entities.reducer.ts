@@ -15,14 +15,7 @@ export function reducer(
   action: ProductGridActions| ProductActions): State {
   switch (action.type) {
     case ProductGridActionTypes.ProductGridLoadSuccessAction:
-      return productAdapter.upsertMany(action.payload.map(
-        (product) => {
-          return {
-            id: product.id, 
-            ...product
-          }
-        }
-      ), state);
+      return productAdapter.upsertMany(action.payload, state);
     case ProductActionTypes.ProductLoadSuccessAction:
       return productAdapter.upsertOne(
         { 

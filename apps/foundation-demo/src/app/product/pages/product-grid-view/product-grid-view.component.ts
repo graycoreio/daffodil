@@ -1,13 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ProductGridContainer } from '@daffodil/core';
 
 @Component({
   selector: 'foundation-product-grid-view',
   templateUrl: './product-grid-view.component.html'
 })
-export class ProductGridViewComponent implements OnInit {
+export class ProductGridViewComponent {
 
+  @ViewChild('ProductGridContainer') ProductGridContainer: ProductGridContainer;
   constructor() { }
 
-  ngOnInit() { }
-
+  ngAfterViewInit() {
+    this.ProductGridContainer.products$.subscribe((products) => {
+      console.log(products);
+    })
+   }
 }

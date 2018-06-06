@@ -2,5 +2,5 @@
 
 ng test
 
-npm run build:lib
-npm run build
+ng build core
+ng build foundation-demo

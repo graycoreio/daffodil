@@ -20,8 +20,12 @@
       "@daffodil/core": [
         "libs/core"
       ],
-      "@foundation": [
-        "apps/foundation-app/*"
+      "mylib/*": [
+        "dist/mylib/*",
+        "dist/mylib/*"
+      ],
+      "@daffodil/mylib": [
+        "libs/mylib/src/index.ts"
       ]
     }
   },
