@@ -9,10 +9,4 @@ export class ProductGridViewComponent {
 
   @ViewChild('ProductGridContainer') ProductGridContainer: ProductGridContainer;
   constructor() { }
-
-  ngAfterViewInit() {
-    this.ProductGridContainer.products$.subscribe((products) => {
-      console.log(products);
-    })
-   }
 }
