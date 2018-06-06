@@ -1,0 +1,15 @@
+.image-list {
+  width: 100%;
+  overflow: scroll;
+  white-space: nowrap;
+
+  &__image-wrapper {
+    display: inline-block;
+    margin: 5px 5px 5px 0;
+
+    & img {
+      width: 140px; 
+      margin-left: 5px;
+    }
+  }
+}

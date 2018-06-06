@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { QtyDropdownComponent } from './qty-dropdown/qty-dropdown.component';
 import { ImageGalleryComponent } from './image-gallery/image-gallery.component';
+import { ImageListComponent } from './image-list/image-list.component';
 
 @NgModule({
   imports: [
@@ -13,11 +14,13 @@ import { ImageGalleryComponent } from './image-gallery/image-gallery.component';
   ],
   declarations: [
     QtyDropdownComponent,
-    ImageGalleryComponent
+    ImageGalleryComponent,
+    ImageListComponent
   ],
   exports: [
     QtyDropdownComponent,
-    ImageGalleryComponent    
+    ImageGalleryComponent,
+    ImageListComponent
   ]
 })
 export class MoleculesModule { }

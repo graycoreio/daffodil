@@ -1,33 +1,8 @@
 <div class="image-gallery">
-  <input type="radio" name="slide_switch" id="id1" checked="checked"/>
-  <label for="id1">
-    <img src="/assets/mh04-green_alt1.jpg"/>
-  </label>
   <div class="image-gallery__active-image">
-    <img src="/assets/mh04-green_alt1.jpg"/>
+    <img src="{{selectedImg}}"/>
   </div>
-
-  <input type="radio" name="slide_switch" id="id2"/>
-  <label for="id2">
-    <img src="/assets/mh04-green_alt1.jpg"/>
-  </label>
-  <div class="image-gallery__active-image">
-    <img src="/assets/mh04-green_alt1.jpg"/>
-  </div>
-  
-  <input type="radio" name="slide_switch" id="id3"/>
-  <label for="id3">
-    <img src="/assets/many_shirts.jpg"/>
-  </label>
-  <div class="image-gallery__active-image">
-    <img src="/assets/many_shirts.jpg"/>
-  </div>
-  
-  <input type="radio" name="slide_switch" id="id4"/>
-  <label for="id4">
-    <img src="/assets/mh04-green_alt1.jpg"/>
-  </label>
-  <div class="image-gallery__active-image">
-    <img src="/assets/mh04-green_alt1.jpg"/>
+  <div class="image-gallery__image-list">
+    <image-list [imgUrls]="imgUrls" (notifySelectedImg)="setSelectedImg($event)"></image-list>
   </div>
 </div>
