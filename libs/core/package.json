@@ -1,11 +1,7 @@
 {
-  "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@daffodil/core",
   "version": "1.1.0-a",
-  "description": "An Angular PWA built for Magento 2",
-  "scripts": {
-    "test": "ng test"
-  },
+  "description": "An Angular PWA built for Magento 2 and Shopify",
   "repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"
@@ -16,12 +12,6 @@
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
-  "ngPackage": {
-    "lib": {
-      "entryFile": "public_api.ts"
-    },
-    "dest": "../../dist/core"
-  },
   "peerDependencies": {
     "@angular/common": "^6.0.1",
     "@angular/core": "^6.0.1",

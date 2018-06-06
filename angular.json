@@ -133,6 +133,18 @@
       "projectType": "library",
       "prefix": "@daffodil",
       "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/core/tsconfig.lib.json",
+            "project": "libs/core/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/core/ng-package.prod.json"
+            }
+          }
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
