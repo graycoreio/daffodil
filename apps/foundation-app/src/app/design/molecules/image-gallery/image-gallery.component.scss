@@ -1,59 +1,23 @@
 @import '~scss/styles';
 
-// parent element must have a margin-bottom of 100vw;
 .image-gallery {
-  margin: 0;
-
   &__active-image {
     position: absolute;
+    height: 0;
     padding-bottom: 100%;
     width: 100%;
     overflow: hidden;
 
     & img {
       position: absolute;
-      transition: all 0.5s;
+      margin: auto 0;
       top: 0;
       bottom: 0;
-      margin: auto 0;
     }
   }
 
-  & input {
-    display: none;
-
-    &:checked + label {
-      border-color: $dark-gray;
-      // opacity for selected thumbnail image
-      opacity: 1;
-
-      // opacity for large selected image
-      & + div img {
-        opacity: 1;
-      }
-    }
-
-    // default opacity of large selected image
-    & ~ div img {
-      opacity: 0;
-    }
-  }
-
-  & label {
+  &__image-list {
     position: relative;
     top: 100vw;
-    margin: 18px 0 0 18px;
-    float: left;
-    cursor: pointer;
-    height: 30vw;
-    width: 28vw;
-    overflow: hidden;
-    
-    // default opacity of thumbnail image
-    opacity: 0.6;
-
-    & img {
-      display: block;
-    }
   }
 }

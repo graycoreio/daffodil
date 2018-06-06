@@ -61,8 +61,6 @@
   }
 
   &__image-gallery-wrapper {
-    margin-bottom: 100vw;
-
     @include breakpoint(medium) {
       display: none;
     }
