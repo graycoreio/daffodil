@@ -17,16 +17,7 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@daffodil/core": [
-        "libs/core"
-      ],
-      "mylib/*": [
-        "dist/mylib/*",
-        "dist/mylib/*"
-      ],
-      "@daffodil/mylib": [
-        "libs/mylib/src/index.ts"
-      ]
+      "@daffodil/core": ["dist/core"]
     }
   },
   "exclude": [
