@@ -4,6 +4,8 @@ import { ProductCardComponent } from './product-card.component';
 import { Component } from '@angular/core';
 import { Product, ProductFactory } from '@daffodil/core';
 import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
 let productFactory = new ProductFactory();
 let mockProduct = productFactory.create();
@@ -16,9 +18,14 @@ class TestProductCardWrapper {
 describe('ProductCardComponent', () => {
   let component: TestProductCardWrapper;
   let fixture: ComponentFixture<TestProductCardWrapper>;
+  let router;
+  let productCardComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ],
       declarations: [ 
         ProductCardComponent,
         TestProductCardWrapper
@@ -31,7 +38,11 @@ describe('ProductCardComponent', () => {
     fixture = TestBed.createComponent(TestProductCardWrapper);
     component = fixture.componentInstance;
     component.productValue = mockProduct;
+    router = TestBed.get(Router);
+    spyOn(router, 'navigateByUrl');
+
     fixture.detectChanges();
+    productCardComponent = fixture.debugElement.query(By.css('product-card'));
   });
 
   it('should create', () => {
@@ -39,8 +50,17 @@ describe('ProductCardComponent', () => {
   });
 
   it('should be able to take a product as input', () => {
-    let productCardComponent = fixture.debugElement.query(By.css('product-card'));
-
     expect(productCardComponent.componentInstance.product).toEqual(mockProduct);
+  });
+
+  describe('when product-card is clicked', () => {
+
+    beforeEach(() => {
+      fixture.debugElement.query(By.css('.product-card')).nativeElement.click();
+    });
+    
+    it('should call router.navigateByUrl', () => {
+      expect(productCardComponent.componentInstance.router.navigateByUrl).toHaveBeenCalledWith('product/' + mockProduct.id);
+    });
   });
 });
