@@ -19,7 +19,9 @@ class MockQtyDropdownComponent {
 }
 
 @Component({selector: 'image-gallery', template: ''})
-class MockImageGalleryComponent { }
+class MockImageGalleryComponent { 
+  @Input() imgUrls: string[];
+}
 
 describe('ProductComponent', () => {
   let component: ProductWrapperTest;

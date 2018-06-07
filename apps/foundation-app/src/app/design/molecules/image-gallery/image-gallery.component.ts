@@ -1,24 +1,33 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'image-gallery',
   templateUrl: './image-gallery.component.html',
   styleUrls: ['./image-gallery.component.scss']
 })
-export class ImageGalleryComponent {
+export class ImageGalleryComponent implements AfterViewInit {
 
   @Input() imgUrls: string[];
 
   selectedImg: string;
 
-  ngOnInit() {
-    console.log(this.imgUrls);
-    (<HTMLElement>document.getElementsByClassName('image-gallery')[0]).style.height = '600px';
+  ngAfterViewInit() {
+    setTimeout(this.updateImageGalleryHeight);
   }
 
   constructor() { }
 
   setSelectedImg(selectedImgUrl) {
     this.selectedImg = selectedImgUrl;
+  }
+
+  onResize() {
+    this.updateImageGalleryHeight();
+  }
+
+  updateImageGalleryHeight() {
+    let imageGalleryWidth = (<HTMLElement>document.getElementsByClassName('image-gallery')[0]).offsetWidth;
+
+    (<HTMLElement>document.getElementsByClassName('image-gallery__active-image')[0]).style.height = (imageGalleryWidth).toString() + 'px';
   }
 }
