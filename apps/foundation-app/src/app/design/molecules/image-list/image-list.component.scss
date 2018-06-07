@@ -5,12 +5,17 @@
   
   &__image-wrapper {
     display: inline-block;
-    margin: 5px 5px 5px 0;
+    margin: 5px 5px 5px 0;  
+  }
 
-    & img {
-      width: 140px; 
-      margin-left: 5px;
-    }
+  &__image {
+    width: 140px; 
+    margin-left: 5px;
+    opacity: 0.6;
+  }
+
+  &__selected {
+    opacity: 1;
   }
 }
 

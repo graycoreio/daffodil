@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { ImageListComponent } from './image-list.component';
 import { Component } from '@angular/core';
@@ -56,27 +56,44 @@ describe('ImageListComponent', () => {
     expect(component.selectedImgFunction).toHaveBeenCalledWith(stubImgUrls[0]);
   });
 
-  describe('ngOnInit', () => {
+  describe('ngAfterViewInit', () => {
     
-    it('should call selectImg', () => {
-      expect(imageListComponent.componentInstance.selectImg).toHaveBeenCalledWith(stubImgUrls[0]);
-    });
+    it('should call selectImg after the current digest cycle', fakeAsync(() => {
+      tick(500);
+      fixture.detectChanges();
+
+      fixture.whenStable().then(() => {
+        expect(imageListComponent.componentInstance.selectImg).toHaveBeenCalledWith(stubImgUrls[0]);
+      })
+    }));
   });
 
   describe('selectImg', () => {
 
+    let currentIndex;
+
     beforeEach(() => {
+      document.getElementsByClassName('image-list__image')[0].classList.add('image-list__selected');
+      currentIndex = 1;
       spyOn(imageListComponent.componentInstance.notifySelectedImg, 'emit');
 
-      imageListComponent.componentInstance.selectImg(stubImgUrls[1]);
+      imageListComponent.componentInstance.selectImg(currentIndex);
     });
     
-    it('should set selectedImgUrl', () => {
-      expect(imageListComponent.componentInstance.selectedImgUrl).toEqual(stubImgUrls[1]);
+    it('should set selectedImgIndex', () => {
+        expect(imageListComponent.componentInstance.selectedImgIndex).toEqual(currentIndex);
     });
 
     it('should call notifySelectedImg.emit', () => {
-      expect(imageListComponent.componentInstance.notifySelectedImg.emit).toHaveBeenCalledWith(stubImgUrls[1]);
+      expect(imageListComponent.componentInstance.notifySelectedImg.emit).toHaveBeenCalledWith(stubImgUrls[currentIndex]);
+    });
+
+    it('should remove the selected class from the previously selected image', () => {
+        expect(document.getElementsByClassName('image-list__image')[0].classList.contains('image-list__selected')).toBeFalsy();
+    });
+
+    it('should add the selected class to the currently selected image', () => {
+      expect(document.getElementsByClassName('image-list__image')[currentIndex].classList.contains('image-list__selected')).toBeTruthy();
     });
   });
 
@@ -86,7 +103,7 @@ describe('ImageListComponent', () => {
       let clickedImgIndex = 1;
       fixture.debugElement.queryAll(By.css('img'))[clickedImgIndex].nativeElement.click();
 
-      expect(imageListComponent.componentInstance.selectImg).toHaveBeenCalledWith(stubImgUrls[clickedImgIndex]);
+      expect(imageListComponent.componentInstance.selectImg).toHaveBeenCalledWith(clickedImgIndex);
     });
   });
 });

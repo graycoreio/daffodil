@@ -1,5 +1,5 @@
 <div class="image-list">
-  <div class="image-list__image-wrapper" *ngFor="let imgUrl of imgUrls">
-    <img src="{{imgUrl}}" (click)="selectImg(imgUrl)">
+  <div class="image-list__image-wrapper" *ngFor="let imgUrl of imgUrls; let i = index">
+    <img src="{{imgUrl}}" class="image-list__image" (click)="selectImg(i)">
   </div>
 </div>
