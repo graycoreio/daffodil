@@ -6,6 +6,8 @@ import { Product } from '@daffodil/core';
 
 import { ProductComponent } from './product.component';
 import { Component, Input } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
 @Component({template: '<product [product]="productValue"></product>'})
 class ProductWrapperTest {
@@ -28,9 +30,13 @@ describe('ProductComponent', () => {
   let fixture: ComponentFixture<ProductWrapperTest>;
   let productFactory = new ProductFactory();
   let mockProduct = productFactory.create();
+  let router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ],
       declarations: [ 
         ProductComponent,
         ProductWrapperTest,
@@ -44,6 +50,8 @@ describe('ProductComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProductWrapperTest);
     component = fixture.componentInstance;
+    router = TestBed.get(Router);
+    spyOn(router, 'navigateByUrl');
 
     component.productValue = mockProduct;
     fixture.detectChanges();
@@ -57,5 +65,18 @@ describe('ProductComponent', () => {
     let productComponent = fixture.debugElement.query(By.css('product'));
 
     expect(productComponent.componentInstance.product).toEqual(mockProduct);
+  });
+
+  describe('when product is null', () => {
+    
+    it('should redirect to the 404 not-found page', () => {
+      fixture = TestBed.createComponent(ProductWrapperTest);
+      component = fixture.componentInstance;
+
+      component.productValue = null;
+      fixture.detectChanges();
+      
+      expect(router.navigateByUrl).toHaveBeenCalledWith('/404');
+    });
   });
 });
