@@ -10,6 +10,7 @@ import { Product } from '@daffodil/core';
 export class ProductComponent {
   @Input() product: Product;
 
+  // only here to provide stubbed imgUrls
   imgUrls = [
     "/assets/mh04-green_alt1.jpg",
     "/assets/mh04-green_alt1.jpg",

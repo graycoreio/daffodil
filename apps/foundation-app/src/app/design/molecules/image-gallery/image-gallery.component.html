@@ -1,8 +1,8 @@
-<div class="image-gallery">
+<div class="image-gallery" (window:resize)="onResize()">
   <div class="image-gallery__active-image">
-    <img src="{{selectedImg}}"/>
+    <div class="image-gallery__image-cropper">
+      <img src="{{selectedImg}}"/>
+    </div>
   </div>
-  <div class="image-gallery__image-list">
-    <image-list [imgUrls]="imgUrls" (notifySelectedImg)="setSelectedImg($event)"></image-list>
-  </div>
+  <image-list [imgUrls]="imgUrls" (notifySelectedImg)="setSelectedImg($event)"></image-list>
 </div>

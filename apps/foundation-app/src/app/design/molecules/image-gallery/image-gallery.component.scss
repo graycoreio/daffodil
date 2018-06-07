@@ -2,6 +2,10 @@
 
 .image-gallery {
   &__active-image {
+    position: relative;
+  }
+
+  &__image-cropper {
     position: absolute;
     height: 0;
     padding-bottom: 100%;
@@ -10,14 +14,9 @@
 
     & img {
       position: absolute;
-      margin: auto 0;
       top: 0;
       bottom: 0;
+      margin: auto 0;
     }
-  }
-
-  &__image-list {
-    position: relative;
-    top: 100vw;
   }
 }
