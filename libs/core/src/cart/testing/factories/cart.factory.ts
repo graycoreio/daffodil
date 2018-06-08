@@ -8,9 +8,11 @@ import { CartShippingRate } from '../../model/cart-shipping-rate';
 
 @Injectable()
 export class CartFactory {
+
+  cart:MockCart = {...new MockCart()};
   
   create() : Cart {
-    return {...new MockCart()};
+    return this.cart;
   }
 
   createCartItem() : CartItem {
@@ -18,9 +20,11 @@ export class CartFactory {
   }
 
   addCartItemToCart(reqBody) {
-    console.log(reqBody);
-    // let mockCart = new MockCart();
-    // mockCart.items.push
+    this.cart.items.push(new MockCartItem());
+    this.cart.items[0].item_id = reqBody.productId;
+    this.cart.items[0].qty = reqBody.qty;
+
+    return this.cart;
   }
 }
 

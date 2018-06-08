@@ -1,5 +1,3 @@
-import { Action } from '@ngrx/store';
-
 import { CartActionTypes, CartActions } from '../actions/cart.actions';
 import { Cart } from '../model/cart';
 
