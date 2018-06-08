@@ -3,6 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AddToCartComponent } from './add-to-cart.component';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
 @Component({template: '<add-to-cart (addToCart)="eventCatcher()"></add-to-cart>'})
 class AddToCartWrapperTest {
@@ -13,9 +15,13 @@ describe('AddToCartComponent', () => {
   let component: AddToCartWrapperTest;
   let fixture: ComponentFixture<AddToCartWrapperTest>;
   let addToCartComponent;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ],
       declarations: [ 
         AddToCartWrapperTest,
         AddToCartComponent
@@ -28,6 +34,8 @@ describe('AddToCartComponent', () => {
     fixture = TestBed.createComponent(AddToCartWrapperTest);
     component = fixture.componentInstance;
     component.eventCatcher = () => {};
+    router = TestBed.get(Router);
+    spyOn(router, 'navigateByUrl');
     fixture.detectChanges();
 
     addToCartComponent = fixture.debugElement.query(By.css('add-to-cart'));
@@ -38,13 +46,20 @@ describe('AddToCartComponent', () => {
   });
 
   describe('when add to cart button is clicked', () => {
+
+    beforeEach(() => {
+      spyOn(addToCartComponent.componentInstance, 'emitAddToCart');
+      spyOn(addToCartComponent.componentInstance, 'redirectToCart');
+
+      addToCartComponent.query(By.css('button')).nativeElement.click();      
+    });
     
-    it('should call eventCatcher', () => {
-      spyOn(component, 'eventCatcher');
+    it('should call emitAddToCart', () => {
+      expect(addToCartComponent.componentInstance.emitAddToCart).toHaveBeenCalled();
+    });
 
-      addToCartComponent.query(By.css('button')).nativeElement.click();
-
-      expect(component.eventCatcher).toHaveBeenCalled();
+    it('should call redirectToCart', () => {
+      expect(addToCartComponent.componentInstance.redirectToCart).toHaveBeenCalled();
     });
   });
 
@@ -56,6 +71,15 @@ describe('AddToCartComponent', () => {
       addToCartComponent.componentInstance.emitAddToCart();
 
       expect(addToCartComponent.componentInstance.addToCart.emit).toHaveBeenCalled();
+    });
+  });
+
+  describe('redirectToCart', () => {
+    
+    it('should call router.navigateByUrl', () => {
+      addToCartComponent.componentInstance.redirectToCart();
+
+      expect(router.navigateByUrl).toHaveBeenCalledWith('/cart');
     });
   });
 });

@@ -4,8 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Cart } from '../model/cart';
 import { DaffodilConfigService } from '../../config/daffodil-config.service';
-import { Product } from '../..';
-import { map } from 'rxjs/operators';
 
 @Injectable()
 export class CartService {

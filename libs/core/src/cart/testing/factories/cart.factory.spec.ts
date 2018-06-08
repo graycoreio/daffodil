@@ -1,7 +1,13 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
-import { CartFactory, MockCart, MockCartItem, MockCartAddress, MockCartPayment, MockCartShippingRate } from './cart.factory';
-import { Cart } from '../../model/cart';
+import { 
+  CartFactory, 
+  MockCart, 
+  MockCartItem, 
+  MockCartAddress, 
+  MockCartPayment, 
+  MockCartShippingRate 
+} from './cart.factory';
 
 describe('Core | Cart | Testing | CartFactory', () => {
   
@@ -51,6 +57,29 @@ describe('Core | Cart | Testing | CartFactory', () => {
           expect(result.addresses[0].shipping_rate).toEqual(jasmine.any(MockCartShippingRate));
         });
       });
+    });
+  });
+
+  describe('addCartItemToCart', () => {
+
+    let givenId;
+    let givenQty;
+    let result;
+
+    beforeEach(() => {
+      result = cartFactory.addCartItemToCart({productId: givenId, qty: givenQty})
+    });
+    
+    it('should add a cartItem to the cart', () => {
+      expect(result.items[0]).toEqual(jasmine.any(MockCartItem));
+    });
+
+    it('should set the id of the cartItem to the id of the parameter', () => {
+      expect(result.items[0].id).toEqual(givenId);
+    });
+
+    it('should set the qty of the cartItem to the id of the parameter', () => {
+      expect(result.items[0].qty).toEqual(givenQty);
     });
   });
 });
