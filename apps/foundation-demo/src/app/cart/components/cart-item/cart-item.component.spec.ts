@@ -5,6 +5,8 @@ import { CartFactory, CartItem } from '@daffodil/core';
 
 import { CartItemComponent } from './cart-item.component';
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 let cartFactory = new CartFactory();
 let mockCartItem = cartFactory.createCartItem();
@@ -25,9 +27,13 @@ describe('CartItemComponent', () => {
   let fixture: ComponentFixture<TestCartItemWrapper>;
   let cartItemComponent;
   let qtyDropdownComponent;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ],
       declarations: [
         CartItemComponent,
         TestCartItemWrapper,
@@ -40,6 +46,8 @@ describe('CartItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestCartItemWrapper);
     component = fixture.componentInstance;
+    router = TestBed.get(Router);
+    spyOn(router, 'navigateByUrl');
 
     component.cartItemValue = mockCartItem;
     cartItemComponent = fixture.debugElement.query(By.css('cart-item'));
@@ -74,6 +82,35 @@ describe('CartItemComponent', () => {
       
       it('sets id', () => {
         expect(qtyDropdownComponent.componentInstance.id).toEqual(mockCartItem.item_id);
+      });
+    });
+
+    describe('redirectToProduct', () => {
+      
+      it('should call router.navigateByUrl', () => {
+        cartItemComponent.componentInstance.redirectToProduct();
+
+        expect(router.navigateByUrl).toHaveBeenCalledWith('/product/' + mockCartItem.item_id);
+      });
+    });
+
+    describe('when cart-item image is clicked', () => {
+      
+      it('should call redirectToProduct', () => {
+        spyOn(cartItemComponent.componentInstance, 'redirectToProduct');
+        fixture.debugElement.query(By.css('img')).nativeElement.click();
+
+        expect(cartItemComponent.componentInstance.redirectToProduct).toHaveBeenCalled();
+      });
+    });
+
+    describe('when cart-item__name is clicked', () => {
+      
+      it('should call redirectToProduct', () => {
+        spyOn(cartItemComponent.componentInstance, 'redirectToProduct');
+        fixture.debugElement.query(By.css('.cart-item__name')).nativeElement.click();
+        
+        expect(cartItemComponent.componentInstance.redirectToProduct).toHaveBeenCalled();
       });
     });
   });

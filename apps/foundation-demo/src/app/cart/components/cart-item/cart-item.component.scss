@@ -7,11 +7,16 @@
   grid-row-gap: 15px;
   grid-template-columns: 1fr 3fr;
 
+  & > img {
+    cursor: pointer;
+  }
+
   &__description {
     display: grid;
   }
 
   &__name {
+    cursor: pointer;
     font-size: $global-font-size;
     @include embolden();
 
