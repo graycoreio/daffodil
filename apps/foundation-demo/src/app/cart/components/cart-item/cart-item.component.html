@@ -1,7 +1,7 @@
 <div class="cart-item">
-  <img src="/assets/mh04-green_alt1.jpg">
+  <img src="/assets/mh04-green_alt1.jpg" (click)="redirectToProduct()">
   <div class="cart-item__description">
-    <div class="cart-item__name">{{item.name}}</div>
+    <div class="cart-item__name" (click)="redirectToProduct()">{{item.name}}</div>
     <div class="cart-item__price">${{item.price}}</div>
     <div class="cart-item__attribute">
       <span class="embolden">Color: </span><span>White (HC)</span><br>

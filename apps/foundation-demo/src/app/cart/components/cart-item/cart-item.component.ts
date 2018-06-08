@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CartItem } from '@daffodil/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'cart-item',
@@ -10,8 +11,14 @@ export class CartItemComponent implements OnInit {
 
   @Input() item: CartItem;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
+  }
+
+  redirectToProduct() {
+    this.router.navigateByUrl('/product/' + this.item.item_id);
   }
 }
