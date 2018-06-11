@@ -1,9 +1,3 @@
 <div class="cart-container" cart-container #CartContainer="CartContainer">
-  <cart class="cart-container__cart-wrapper" [cart]="CartContainer.cart$ | async" *ngIf="!(CartContainer.loading$ | async) && (CartContainer.cart$ | async)"></cart>
-  <cart-summary class="cart-container__cart-summary-wrapper" [cart]="CartContainer.cart$ | async" *ngIf="!(CartContainer.loading$ | async) && (CartContainer.cart$ | async)"></cart-summary>
-  <proceed-to-checkout class="cart-container__proceed-to-checkout-wrapper" *ngIf="!(CartContainer.loading$ | async) && (CartContainer.cart$ | async)"></proceed-to-checkout>
-  <div class="cart-container__takes-up-space"></div>
-  <div *ngIf="(CartContainer.loading$ | async)" class="cart-container__loading-icon">
-    <i class="fa fa-spinner fa-spin fa-5x"></i>
-  </div>
+  <cart-async-wrapper [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async"></cart-async-wrapper>
 </div>

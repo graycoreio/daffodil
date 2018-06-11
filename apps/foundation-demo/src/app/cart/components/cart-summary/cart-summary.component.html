@@ -1,4 +1,4 @@
-<div class="cart-summary">
+<div class="cart-summary" *ngIf="cart.items.length>0">
   <div class="cart-summary__title">cart summary</div>
   <promotion></promotion>
   <cart-subtotal [title]="'subtotal'" [value]="'$' + cart.subtotal"></cart-subtotal>

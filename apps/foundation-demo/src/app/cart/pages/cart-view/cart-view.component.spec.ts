@@ -8,10 +8,10 @@ import { of } from 'rxjs/observable/of';
 
 import { CartViewComponent } from './cart-view.component';
 
-import { Cart, CartItem, CartFactory } from '@daffodil/core';
+import { Cart, CartFactory } from '@daffodil/core';
 
 let cartFactory = new CartFactory();
-let cart$ = of(cartFactory.create());
+let cart = cartFactory.create();
 
 @Component({
   selector: '[cart-container]', 
@@ -19,31 +19,18 @@ let cart$ = of(cartFactory.create());
   exportAs: 'CartContainer'
 })
 class CartContainerMock {
-  cart$: Observable<Cart> = cart$;
+  cart$: Observable<Cart> = of(cart);
   loading$: Observable<boolean> = of(false);
 }
 
 @Component({
-  selector: 'cart',
+  selector: 'cart-async-wrapper',
   template: ''
 })
-class CartMock { 
+class CartAsyncWrapperMock { 
   @Input() cart: Cart;
+  @Input() loading: boolean;
 }
-
-@Component({
-  selector: 'cart-summary',
-  template: ''
-})
-class CartSummaryMock {
-  @Input() cart: Cart;
-}
-
-@Component({
-  selector: 'proceed-to-checkout',
-  template: ''
-})
-class ProceedToCheckoutMock {}
 
 describe('CartViewComponent', () => {
   let component: CartViewComponent;
@@ -55,9 +42,7 @@ describe('CartViewComponent', () => {
       declarations: [ 
         CartViewComponent,
         CartContainerMock,
-        CartMock,
-        CartSummaryMock,
-        ProceedToCheckoutMock
+        CartAsyncWrapperMock
       ]
     })
     .compileComponents();
@@ -77,84 +62,20 @@ describe('CartViewComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('on <cart>', () => {
-    
-    it('should set cart to value passed by cart-container directive', () => {
-      let cartElement = fixture.debugElement.query(By.css('cart'));
-      
-      cart$.subscribe((cart) => {
-        expect(cartElement.componentInstance.cart).toEqual(cart);
-      });
-    });
-  });
+  describe('on <cart-async-wrapper>', () => {
 
-  describe('on <cart-summary>', () => {
-    
-    it('should set cart to value passed by the cart-container directive', () => {
-      let cartSummaryElement = fixture.debugElement.query(By.css('cart-summary'));
-
-      cart$.subscribe((cart) => {
-        expect(cartSummaryElement.componentInstance.cart).toEqual(cart);
-      });
-    });
-  });
-
-  describe('when CartContainer.$loading is false', () => {
-    
-    it('should render <cart>', () => {
-      let cartComponent = fixture.debugElement.query(By.css('cart'));
-
-      expect(cartComponent).not.toBeNull();
-    });
-
-    it('should render <cart-summary>', () => {
-      let cartSummary = fixture.debugElement.query(By.css('cart-summary'));
-    
-      expect(cartSummary).not.toBeNull();
-    });
-
-    it('should render <proceed-to-checkout>', () => {
-      let proceedToCheckoutComponent = fixture.debugElement.query(By.css('proceed-to-checkout'));
-      
-      expect(proceedToCheckoutComponent).not.toBeNull();
-    });
-
-    it('should not render loading-icon', () => {
-      let loadingIcon = fixture.debugElement.query(By.css('.cart-container__loading-icon'));
-      
-      expect(loadingIcon).toBeNull();
-    });
-  });
-
-  describe('when CartContainer.$loading is true', () => {
+    let cartAsyncWrapperComponent;
 
     beforeEach(() => {
-      cartContainer.componentInstance.loading$ = of(true);
-      fixture.detectChanges();
+      cartAsyncWrapperComponent = fixture.debugElement.query(By.css('cart-async-wrapper'));
     });
     
-    it('should not render <cart>', () => {
-      let cartComponent = fixture.debugElement.query(By.css('cart'));
-
-      expect(cartComponent).toBeNull();
+    it('should set cart to value passed by cart-container directive', () => {
+      expect(cartAsyncWrapperComponent.componentInstance.cart).toEqual(cart);
     });
 
-    it('should not render <cart-summary>', () => {
-      let cartSummary = fixture.debugElement.query(By.css('cart-summary'));
-    
-      expect(cartSummary).toBeNull();
-    });
-
-    it('should not render <proceed-to-checkout>', () => {
-      let proceedToCheckoutComponent = fixture.debugElement.query(By.css('proceed-to-checkout'));
-      
-      expect(proceedToCheckoutComponent).toBeNull();
-    });
-
-    it('should render loading-icon', () => {
-      let loadingIcon = fixture.debugElement.query(By.css('.cart-container__loading-icon'));
-      
-      expect(loadingIcon).not.toBeNull();
+    it('should set loading to value passed by cart-container directive', () => {
+      expect(cartAsyncWrapperComponent.componentInstance.loading).toEqual(false);      
     });
   });
 });
