@@ -1,22 +1,22 @@
 @import '~scss/styles';
 
 .image-gallery {
-  &__active-image {
-    position: relative;
-  }
+  display: flex;
+  flex-direction: column;
+  
 
-  &__image-cropper {
-    position: absolute;
-    height: 0;
-    padding-bottom: 100%;
-    width: 100%;
-    overflow: hidden;
+  // &__image-cropper {
+  //   position: absolute;
+  //   height: 0;
+  //   padding-bottom: 100%;
+  //   width: 100%;
+  //   overflow: hidden;
 
-    & img {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      margin: auto 0;
-    }
-  }
+  //   & img {
+  //     position: absolute;
+  //     top: 0;
+  //     bottom: 0;
+  //     margin: auto 0;
+  //   }
+  // }
 }
