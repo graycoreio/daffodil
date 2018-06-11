@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { CartFactory, MockCart, MockCartItem, MockCartAddress, MockCartPayment, MockCartShippingRate } from './cart.factory';
-import { Cart } from '../../model/Cart';
+import { Cart } from '../../model/cart';
 
 describe('Core | Cart | Testing | CartFactory', () => {
   
