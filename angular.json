@@ -127,6 +127,42 @@
         }
       }
     },
+    "foundation-demo-dev": {
+      "root": "apps/foundation-demo/",
+      "sourceRoot": "apps/foundation-demo/src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/foundation-demo",
+            "index": "apps/foundation-demo/src/index.html",
+            "main": "apps/foundation-demo/src/main.ts",
+            "polyfills": "apps/foundation-demo/src/polyfills.ts",
+            "tsConfig": "apps/foundation-demo/tsconfig.dev.json",
+            "assets": [
+              "apps/foundation-demo/src/assets",
+              "apps/foundation-demo/src/favicon.ico"
+            ],
+            "styles": [
+              "apps/foundation-demo/src/scss/styles.scss"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "apps/foundation-demo/src/scss"
+              ]
+            },
+            "scripts": []
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "foundation-demo-dev:build"
+          }
+        }
+      }
+    },
     "core": {
       "root": "libs/core",
       "sourceRoot": "libs/core/src",
