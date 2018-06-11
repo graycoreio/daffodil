@@ -8,7 +8,8 @@ import { NotFoundComponent } from './misc/not-found/not-found.component';
 export const appRoutes: Routes = [
   {
     path: '',
-    component: ProductGridViewComponent
+    redirectTo: '/product-grid',
+    pathMatch: 'full'
   },
   {
     path: 'product-grid',

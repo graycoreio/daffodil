@@ -1,38 +1,30 @@
-import { Component, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Image } from '../../interfaces/image';
 
 @Component({
   selector: 'image-list',
   templateUrl: './image-list.component.html',
   styleUrls: ['./image-list.component.scss']
 })
-export class ImageListComponent implements AfterViewInit {
+export class ImageListComponent implements OnInit {
 
-  @Input() imgUrls: string[];
-  @Output() notifySelectedImg: EventEmitter<any> = new EventEmitter();
+  @Input() images: Image[];
+  @Input() selectedImage: Image = null;
 
-  selectedImgIndex: number = 0;
+  @Output() imageSelected: EventEmitter<Image> = new EventEmitter();
 
   constructor() { }
 
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.selectImg(0);
-    });
+  ngOnInit() {
+    //Consider throwing an exception if you don't give it any images?
+    if(this.images.length != 0){
+      this.selectedImage = this.selectedImage 
+        ? this.selectedImage
+        : this.images[0];
+    }
   }
 
-  selectImg(newSelectedImgIndex: number) {
-    this.removeSelectedClass(this.selectedImgIndex);
-    this.selectedImgIndex = newSelectedImgIndex;
-    this.addSelectedClass(this.selectedImgIndex);
-
-    this.notifySelectedImg.emit(this.imgUrls[this.selectedImgIndex]);
-  }
-
-  private removeSelectedClass(index: number) {
-    document.getElementsByClassName('image-list__image')[index].classList.remove('image-list__selected'); 
-  }
-
-  private addSelectedClass(index: number) {
-    document.getElementsByClassName('image-list__image')[index].classList.add('image-list__selected');
+  select(image) : void {
+    this.imageSelected.emit(image);
   }
 }

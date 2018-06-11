@@ -1,23 +1,17 @@
 <div class="product" *ngIf="product">
-  <div class="product__description-container">
+  <div class="product__image-gallery">
+    <image-gallery [images]="images"></image-gallery>
+  </div>
+  <div class="product__info">
     <div class="product__brand">{{product.brand}}</div>
     <div class="product__name">{{product.name}}</div>
     <div class="product__price">${{product.price}}</div>
   </div>
-  <div class="product__image-gallery-wrapper">
-    <image-gallery [imgUrls]="imgUrls"></image-gallery>
-  </div>
-  <div class="product__images-wrapper">
-    <img src="/assets/mh04-green_alt1.jpg"/>
-    <img src="/assets/mh04-green_alt1.jpg"/>
-    <img src="/assets/many_shirts.jpg"/>
-    <img src="/assets/mh04-green_alt1.jpg"/>
-  </div>
-  <div class="product__qty-container">
+  <div class="product__qty">
     <div>Quantity</div>
     <qty-dropdown id="id"></qty-dropdown>
   </div>
-  <div class="product__buttons-container">
+  <div class="product__buttons">
     <button type="button" class="button expanded uppercase embolden">add to cart</button>
     <button type="button" class="button"><i class="fa fa-heart"></i></button>
   </div>
