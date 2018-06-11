@@ -12,6 +12,7 @@ directories:
 
 before_script:
   - npm install -g @angular/cli
+  - npm install -g lerna
 
 script: build/ci.sh
 
