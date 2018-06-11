@@ -1,7 +1,9 @@
 #!/bin/bash
 
-ng test core --watch=false
-ng test foundation-demo --watch=false
+set -e
 
+ng test core --watch=false
 ng build core
+
+ng test foundation-demo --watch=false
 ng build foundation-demo
