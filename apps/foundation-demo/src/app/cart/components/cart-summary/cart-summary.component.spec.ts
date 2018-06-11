@@ -159,4 +159,22 @@ describe('CartSummaryComponent', () => {
       expect(cartComponent.componentInstance.value).toEqual('$' + mockCart.grand_total);
     });
   });
+
+  describe('when there are no cart items in the cart', () => {
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TestCartSummaryWrapper);
+      component = fixture.componentInstance;
+      let noItemsCart = mockCart;
+      noItemsCart.items = [];
+      component.cartValue = noItemsCart;
+      fixture.detectChanges();
+    });
+    
+    it('should not render cart-summary', () => {
+      let cartSummary = fixture.debugElement.query(By.css('.cart-summary'));
+
+      expect(cartSummary).toBeNull();
+    });
+  });
 });

@@ -12,6 +12,7 @@ import { PromotionComponent } from './components/promotion/promotion.component';
 import { CartSubtotalComponent } from './components/cart-subtotal/cart-subtotal.component';
 import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
 import { CartGrandTotalComponent } from './components/cart-grand-total/cart-grand-total.component';
+import { CartAsyncWrapperComponent } from './components/cart-async-wrapper/cart-async-wrapper.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { CartGrandTotalComponent } from './components/cart-grand-total/cart-gran
     PromotionComponent,
     CartSubtotalComponent,
     CartSummaryComponent,
-    CartGrandTotalComponent
+    CartGrandTotalComponent,
+    CartAsyncWrapperComponent
   ],
   exports: [
     CartViewComponent,
@@ -37,7 +39,8 @@ import { CartGrandTotalComponent } from './components/cart-grand-total/cart-gran
     PromotionComponent,
     CartSubtotalComponent,
     CartSummaryComponent,
-    CartGrandTotalComponent    
+    CartGrandTotalComponent,
+    CartAsyncWrapperComponent
   ]
 })
 export class CartModule { }

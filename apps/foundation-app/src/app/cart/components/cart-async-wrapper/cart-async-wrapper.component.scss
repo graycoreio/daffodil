@@ -1,6 +1,6 @@
-@import 'daffodil-util';
+@import '~scss/styles.scss';
 
-.cart-container {
+.cart-async-wrapper {
   display: grid;
   grid-template-areas:
     "cart"

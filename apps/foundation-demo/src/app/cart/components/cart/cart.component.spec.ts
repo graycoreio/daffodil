@@ -76,14 +76,14 @@ describe('CartComponent', () => {
 
   describe('ngOnInit', () => {
     
-    describe('when number of cartItems is greater than 1', () => {
+    describe('when number of cartItems is not one', () => {
       
-      it('should set hasMultipleItems to true', () => {
-        expect(cart.componentInstance.hasMultipleItems).toBeTruthy();
+      it('should set hasOneItem to false', () => {
+        expect(cart.componentInstance.hasOneItem).toBeFalsy();
       });
     });
 
-    describe('when number of cartItems is less than or equal to 1', () => {
+    describe('when number of cartItems is one', () => {
       
       beforeEach(() => {
         fixture = TestBed.createComponent(TestCartWrapper);
@@ -96,33 +96,33 @@ describe('CartComponent', () => {
         cart = fixture.debugElement.query(By.css('cart'));
       });
 
-      it('should not set hasMultipleItems to true', () => {
-        expect(cart.componentInstance.hasMultipleItems).toBeFalsy();
+      it('should set hasOneItem to true', () => {
+        expect(cart.componentInstance.hasOneItem).toBeTruthy();
       });
     });
   });
 
   describe('getItemText', () => {
     
-    describe('when hasMultipleItems is true', () => {
+    describe('when hasOneItem is false', () => {
       
       beforeEach(() => {
-        cart.componentInstance.hasMultipleItems = true;
+        cart.componentInstance.hasOneItem = false;
       });
 
       it('should return Items', () => {
-        expect(cart.componentInstance.getItemText()).toEqual('Items');
+        expect(cart.componentInstance.itemText).toEqual('Items');
       });
     });
     
-    describe('when hasMultipleItems is false', () => {
+    describe('when hasOneItem is true', () => {
       
       beforeEach(() => {
-        cart.componentInstance.hasMultipleItems = false;
+        cart.componentInstance.hasOneItem = true;
       });
 
       it('should return Item', () => {
-        expect(cart.componentInstance.getItemText()).toEqual('Item');
+        expect(cart.componentInstance.itemText).toEqual('Item');
       });
     });
   });
