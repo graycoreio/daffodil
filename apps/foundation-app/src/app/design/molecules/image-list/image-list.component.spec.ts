@@ -12,7 +12,7 @@ class TestImageListWrapper {
   selectedImgFunction: Function;
 }
 
-fdescribe('ImageListComponent', () => {
+describe('ImageListComponent', () => {
   let component: TestImageListWrapper;
   let fixture: ComponentFixture<TestImageListWrapper>;
   let imageListComponent: DebugElement;
