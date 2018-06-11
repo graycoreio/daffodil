@@ -4,5 +4,5 @@ set -e
 
 ng test --single-run
 
-npm build:lib
-npm build
+npm run build:lib
+npm run build
