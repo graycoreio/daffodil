@@ -1,33 +1,33 @@
 @import '~scss/styles';
 
-.product {
+@mixin product-page-grid() {
   display: grid;
   grid-gap: 25px;
 
   @include breakpoint(medium) {
-    grid-template-areas: 
-      "images-wrapper description"
-      "images-wrapper qty"
-      "images-wrapper buttons"
-      "images-wrapper .";
     margin: 25px;
+    grid-template-areas: 
+      "image-gallery info"
+      "image-gallery qty"
+      "image-gallery buttons"
+      "image-gallery .";
     grid-gap: 15px;
     grid-template-columns: 2fr 1fr;
 
-    &__description-container {
-      grid-area: description;
+    &__info {
+      grid-area: info;
     }
-
-    &__images-wrapper {
-      grid-area: images-wrapper;      
-    }
-
-    &__qty-container {
+    
+    &__qty {
       grid-area: qty;
     }
 
-    &__buttons-container {
+    &__buttons {
       grid-area: buttons;
+    }
+
+    &__image-gallery {
+      grid-area: image-gallery;
     }
   }
 
@@ -35,9 +35,12 @@
     margin: 50px;
     grid-gap: 25px 50px;
   }
+}
 
-  &__description-container {
-    display: grid;
+.product {
+  @include product-page-grid();
+
+  &__info {
     grid-gap: 5px;
     margin: 25px 0 0 25px;
 
@@ -60,31 +63,7 @@
     font-size: $medium-font-size;
   }
 
-  &__image-gallery-wrapper {
-    @include breakpoint(medium) {
-      display: none;
-    }
-  }
-
-  &__images-wrapper {
-    display: none;
-
-    @include breakpoint(medium) {
-      display: grid;
-      grid-gap: 10px;
-      grid-template-columns: 1fr 1fr;
-
-      & img {
-        margin: auto 0;    
-      }
-    }
-
-    @include breakpoint(large) {
-      grid-gap: 15px;      
-    }
-  }
-
-  &__qty-container {
+  &__qty {
     display: grid;
     margin-left: 15px;
     grid-gap: 25px;    
@@ -99,7 +78,7 @@
     }
   }
 
-  &__buttons-container {
+  &__buttons {
     display: grid;
     margin: 0 15px;
     grid-gap: 5px;

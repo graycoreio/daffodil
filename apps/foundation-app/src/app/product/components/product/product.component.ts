@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { Product } from '@daffodil/core';
 import { Router } from '@angular/router';
+import { Image } from '../../../design/interfaces/image';
 
 @Component({
   selector: 'product',
@@ -21,11 +22,11 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  // only here to provide stubbed imgUrls
-  imgUrls = [
-    "/assets/mh04-green_alt1.jpg",
-    "/assets/mh04-green_alt1.jpg",
-    "/assets/many_shirts.jpg",
-    "/assets/mh04-green_alt1.jpg"
+  images: Image[] = [
+    {url : '/assets/mh01-black_main.jpg', label: 'Image 1'},
+    {url : '/assets/mh01-gray_alt1.jpg', label: 'Image 2'},
+    {url : '/assets/mh01-gray_back.jpg', label: 'Image 3'},
+    {url : '/assets/mh01-gray_main.jpg',   label: 'Image 4'},
+    {url : '/assets/mh01-orange_main.jpg', label: 'Image 5'}
   ]
 }
