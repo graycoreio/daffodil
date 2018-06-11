@@ -4,5 +4,8 @@
       <img src="{{selectedImage.url}}" alt="{{selectedImage.label}}"/>
     </div>
   </div>
-  <image-list [images]="images" [selectedImage]="selectedImage" (imageSelected)="changeImage($event)"></image-list>
+  <image-list 
+    [images]="images" 
+    [selectedImage]="selectedImage" 
+    (imageSelected)="changeImage($event)"></image-list>
 </div>
