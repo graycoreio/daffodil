@@ -41,6 +41,12 @@ class CartSummaryMock {
 })
 class ProceedToCheckoutMock {}
 
+@Component({
+  selector: 'continue-shopping',
+  template: ''
+})
+class ContinueShoppingMock {}
+
 describe('TestCartAsyncWrapper', () => {
   let component: TestCartAsyncWrapper;
   let fixture: ComponentFixture<TestCartAsyncWrapper>;
@@ -53,6 +59,7 @@ describe('TestCartAsyncWrapper', () => {
         CartMock,
         CartSummaryMock,
         ProceedToCheckoutMock,
+        ContinueShoppingMock,
         CartAsyncWrapperComponent
       ]
     })
@@ -150,8 +157,8 @@ describe('TestCartAsyncWrapper', () => {
         expect(proceedToCheckoutComponent).not.toBeNull();
       });
 
-      it('should not render cart-async-wrapper__continue-shopping-wrapper', () => {
-        let continueShoppingComponent = fixture.debugElement.query(By.css('cart-async-wrapper__continue-shopping-wrapper'));
+      it('should not render continue-shopping', () => {
+        let continueShoppingComponent = fixture.debugElement.query(By.css('continue-shopping'));
 
         expect(continueShoppingComponent).toBeNull();
       });
@@ -181,6 +188,12 @@ describe('TestCartAsyncWrapper', () => {
       let proceedToCheckoutComponent = fixture.debugElement.query(By.css('proceed-to-checkout'));
       
       expect(proceedToCheckoutComponent).toBeNull();
+    });
+
+    it('should not render <continue-shopping>', () => {
+      let continueShoppingComponent = fixture.debugElement.query(By.css('continue-shopping'));
+      
+      expect(continueShoppingComponent).toBeNull();
     });
 
     it('should render loading-icon', () => {
