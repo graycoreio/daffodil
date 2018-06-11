@@ -2,7 +2,7 @@
   <cart class="cart-async-wrapper__cart-wrapper" [cart]="cart" *ngIf="!loading"></cart>
   <cart-summary class="cart-async-wrapper__cart-summary-wrapper" [cart]="cart" *ngIf="!(loading)"></cart-summary>
   <proceed-to-checkout class="cart-async-wrapper__proceed-to-checkout-wrapper" *ngIf="!isLoadedCartEmpty"></proceed-to-checkout>
-  <button type="button" class="button large expanded cart-async-wrapper__continue-shopping-wrapper" *ngIf="isLoadedCartEmpty">Continue Shopping</button>
+  <continue-shopping class="cart-async-wrapper__continue-shopping-wrapper" *ngIf="!(loading) && (isLoadedCartEmpty)"></continue-shopping>
   <div class="cart-async-wrapper__takes-up-space"></div>
   <div *ngIf="(loading)" class="cart-async-wrapper__loading-icon">
     <i class="fa fa-spinner fa-spin fa-5x"></i>

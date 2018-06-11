@@ -13,6 +13,7 @@ import { CartSubtotalComponent } from './components/cart-subtotal/cart-subtotal.
 import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
 import { CartGrandTotalComponent } from './components/cart-grand-total/cart-grand-total.component';
 import { CartAsyncWrapperComponent } from './components/cart-async-wrapper/cart-async-wrapper.component';
+import { ContinueShoppingComponent } from './components/continue-shopping/continue-shopping.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { CartAsyncWrapperComponent } from './components/cart-async-wrapper/cart-
     CartSubtotalComponent,
     CartSummaryComponent,
     CartGrandTotalComponent,
-    CartAsyncWrapperComponent
+    CartAsyncWrapperComponent,
+    ContinueShoppingComponent
   ],
   exports: [
     CartViewComponent,
@@ -40,7 +42,8 @@ import { CartAsyncWrapperComponent } from './components/cart-async-wrapper/cart-
     CartSubtotalComponent,
     CartSummaryComponent,
     CartGrandTotalComponent,
-    CartAsyncWrapperComponent
+    CartAsyncWrapperComponent,
+    ContinueShoppingComponent
   ]
 })
 export class CartModule { }
