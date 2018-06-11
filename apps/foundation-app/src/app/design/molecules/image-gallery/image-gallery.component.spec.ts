@@ -1,24 +1,28 @@
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { ImageGalleryComponent } from './image-gallery.component';
-import { Component, Input } from '@angular/core';
+import { Component, Input, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { Image } from '../../interfaces/image';
+import { ImageFactory } from '../../testing/factories/image.factory';
 
-@Component({template: '<image-gallery [imgUrls]="imgUrlsValue"></image-gallery>'})
+@Component({template: '<image-gallery [images]="images"></image-gallery>'})
 class TestImageGalleryWrapper {
-  imgUrlsValue: string[];
+  images: Image[] = [];
 }
 
 @Component({selector: 'image-list', template: ''})
 class MockImageListComponent {
-  @Input() imgUrls: string[];
+  @Input() images: Image[];
+  @Input() selectedImage: Image;
 }
 
 describe('ImageGalleryComponent', () => {
   let component: TestImageGalleryWrapper;
   let fixture: ComponentFixture<TestImageGalleryWrapper>;
-  let stubImgUrls: string[];
-  let imageGalleryComponent;
+
+  let imageGalleryComponent: DebugElement;
+  let stubImages: Image[] = [];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -34,13 +38,14 @@ describe('ImageGalleryComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestImageGalleryWrapper);
     component = fixture.componentInstance;
-    stubImgUrls = [
-      "imgUrl",
-      "imgUrl"
-    ]
-    component.imgUrlsValue = stubImgUrls;
+
+    stubImages = [
+      new ImageFactory().create(),
+      new ImageFactory().create(),
+    ];
+
+    component.images = stubImages;
     imageGalleryComponent = fixture.debugElement.query(By.css('.image-gallery'));
-    
     fixture.detectChanges();
   });
 
@@ -48,66 +53,64 @@ describe('ImageGalleryComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should be able to take imgUrls as input', () => {
-    expect(imageGalleryComponent.componentInstance.imgUrls).toEqual(stubImgUrls);
-  });
-
-  describe('ngAfterViewInit', () => {
-    
-    it('should call updateImageGalleryHeight', fakeAsync(() => {
-      tick(500);
-      fixture.detectChanges();
-
-      fixture.whenStable().then(() => {
-        spyOn(imageGalleryComponent.componentInstance, 'updateImageGalleryHeight').and.callThrough();
-        expect(imageGalleryComponent.componentInstance.updateImageGalleryHeight).toHaveBeenCalled();
-      })
-    }));
-  });
-
-  describe('setSelectedImg', () => {
-    
-    it('should set selectedImg to argument', () => {
-      let selectedImage = 'selectedImgUrl';
-      imageGalleryComponent.componentInstance.setSelectedImg(selectedImage);
-
-      expect(imageGalleryComponent.componentInstance.selectedImg).toEqual(selectedImage);
+  describe('using the `image-gallery` component inside another component', () => {
+    it('should be able to take images as input', () => {
+      expect(imageGalleryComponent.componentInstance.images).toEqual(stubImages);
+    });
+  
+    xit('should be able to take a selectedImage as input', () => {
+      expect(imageGalleryComponent.componentInstance.selectedImage).toEqual(null);
     });
   });
 
-  describe('onResize', () => {
-    
-    it('calls updateImageGalleryHeight', () => {
-      spyOn(imageGalleryComponent.componentInstance, 'updateImageGalleryHeight');
-      imageGalleryComponent.componentInstance.onResize();
+  describe('ngOnInit', () => {
+    it('should default the selectedImage to the first image if the selectedImage is not set', () => {
+        imageGalleryComponent.componentInstance.selectedImage = null;
+        expect(imageGalleryComponent.componentInstance.selectedImage).toBe(null);
+        imageGalleryComponent.componentInstance.ngOnInit();
+        expect(imageGalleryComponent.componentInstance.selectedImage).toBe(stubImages[0]);
+    });
 
-      expect(imageGalleryComponent.componentInstance.updateImageGalleryHeight).toHaveBeenCalled();
+    it('it not set a selected image if there are no images passed in.', () => {
+      imageGalleryComponent.componentInstance.images = [];
+      imageGalleryComponent.componentInstance.selectedImage = null;
+
+      imageGalleryComponent.componentInstance.ngOnInit();
+
+      expect(imageGalleryComponent.componentInstance.images).toEqual([]);
+      expect(imageGalleryComponent.componentInstance.selectedImage).toBe(null);
     });
   });
 
-  describe('updateImageGalleryHeight', () => {
 
-    let imageGalleryWidth;
-    
-    beforeEach(() => {
-      imageGalleryWidth = 100;
-      let imageGalleryWidthString = imageGalleryWidth + 'px';
-      (<HTMLElement>document.getElementsByClassName('image-gallery')[0]).style.width = imageGalleryWidthString;
-
-      imageGalleryComponent.componentInstance.updateImageGalleryHeight();
+  xdescribe('when a selectedImage is set', () => {
+    it('should show the selected image', () => {
+      
     });
 
-    it('should set the image-gallery__active-image class element to the width of the image-gallery', () => {
-      expect((<HTMLElement>document.getElementsByClassName('image-gallery')[0]).offsetHeight).toEqual(imageGalleryWidth);
+    it('should set an alt tag on the image', () => {
+
+    })
+  });
+
+  xdescribe('when images is not set or empty', () => {
+    it('should show nothing', () => {
+
     });
   });
 
-  describe('on <image-list>', () => {
-    
-    it('sets imgUrls', () => {
+  describe('changeImage', () => {
+    it('should set selectedImage to argument', () => {
+      let selectedImage = 'selectedImage';
+      imageGalleryComponent.componentInstance.changeImage(selectedImage);
+      expect(imageGalleryComponent.componentInstance.selectedImage).toEqual(selectedImage);
+    });
+  });
+
+  describe('on `image-list`', () => {
+    it('sets images', () => {
       let imageListComponent = fixture.debugElement.query(By.css('image-list'));
-
-      expect(imageListComponent.componentInstance.imgUrls).toEqual(stubImgUrls);
+      expect(imageListComponent.componentInstance.images).toEqual(stubImages);
     });
   });
 });

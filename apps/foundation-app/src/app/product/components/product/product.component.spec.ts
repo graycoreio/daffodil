@@ -8,6 +8,7 @@ import { ProductComponent } from './product.component';
 import { Component, Input } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
+import { Image } from '../../../design/interfaces/image';
 
 @Component({template: '<product [product]="productValue"></product>'})
 class ProductWrapperTest {
@@ -22,7 +23,7 @@ class MockQtyDropdownComponent {
 
 @Component({selector: 'image-gallery', template: ''})
 class MockImageGalleryComponent { 
-  @Input() imgUrls: string[];
+  @Input() images: Image[];
 }
 
 describe('ProductComponent', () => {
