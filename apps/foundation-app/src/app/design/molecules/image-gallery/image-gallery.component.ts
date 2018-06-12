@@ -8,8 +8,8 @@ import { Image } from '../../interfaces/image';
 })
 export class ImageGalleryComponent implements  OnInit {
 
-  @Input() images: Image[];
-  @Input() selectedImage: Image;
+  @Input() images: Image[] = [];
+  @Input() selectedImage: Image|null = null;
 
   ngOnInit() {
     //Consider throwing an exception if you don't give it any images?
@@ -24,5 +24,9 @@ export class ImageGalleryComponent implements  OnInit {
 
   changeImage(image: Image) {
     this.selectedImage = image;
+  }
+
+  hasImages() : boolean {
+    return this.images.length > 0;
   }
 }
