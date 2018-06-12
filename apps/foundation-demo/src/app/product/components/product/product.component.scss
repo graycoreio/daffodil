@@ -1,0 +1,101 @@
+@import 'daffodil-util';
+
+@mixin product-page-grid() {
+  display: grid;
+  grid-gap: 25px;
+
+  @include breakpoint(medium) {
+    margin: 25px;
+    grid-template-areas: 
+      "image-gallery info"
+      "image-gallery qty"
+      "image-gallery buttons"
+      "image-gallery .";
+    grid-gap: 15px;
+    grid-template-columns: 2fr 1fr;
+
+    &__info {
+      grid-area: info;
+    }
+    
+    &__qty {
+      grid-area: qty;
+    }
+
+    &__buttons {
+      grid-area: buttons;
+    }
+
+    &__image-gallery {
+      grid-area: image-gallery;
+    }
+  }
+
+  @include breakpoint(large) {
+    margin: 50px;
+    grid-gap: 25px 50px;
+  }
+}
+
+.product {
+  @include product-page-grid();
+
+  &__info {
+    grid-gap: 5px;
+    margin: 25px 0 0 25px;
+
+    @include breakpoint(medium) {
+      margin: 0;
+    }
+  }
+
+  &__brand {
+    color: $dark-gray;
+    font-size: $medium-font-size;
+  }
+
+  &__name {
+    @include embolden();
+    font-size: $large-font-size;
+  }
+
+  &__price {
+    font-size: $medium-font-size;
+  }
+
+  &__qty {
+    display: grid;
+    margin-left: 15px;
+    grid-gap: 25px;    
+    grid-template-columns: auto 1fr;
+
+    @include breakpoint(medium) {
+      margin: 0;
+    }
+
+    & div {
+      margin: auto 0;
+    }
+  }
+
+  &__buttons {
+    display: grid;
+    margin: 0 15px;
+    grid-gap: 5px;
+    grid-template-columns: 1fr 55px;
+
+    & button {
+      font-size: 16px;
+    }
+
+    @include breakpoint(medium) {
+      margin: 0;
+      width: 100%;
+    }
+
+    @include breakpoint(large) {
+      margin: 0;
+      width: 70%;
+    }
+  }
+}
