@@ -32,6 +32,7 @@ describe('ProductComponent', () => {
   let productFactory = new ProductFactory();
   let mockProduct = productFactory.create();
   let router;
+  let productComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -56,6 +57,8 @@ describe('ProductComponent', () => {
 
     component.productValue = mockProduct;
     fixture.detectChanges();
+
+    productComponent = fixture.debugElement.query(By.css('product'));
   });
 
   it('renders a product-container', () => {
@@ -63,7 +66,6 @@ describe('ProductComponent', () => {
   });
 
   it('should be able to take a product input', () => {
-    let productComponent = fixture.debugElement.query(By.css('product'));
 
     expect(productComponent.componentInstance.product).toEqual(mockProduct);
   });
@@ -78,6 +80,24 @@ describe('ProductComponent', () => {
       fixture.detectChanges();
       
       expect(router.navigateByUrl).toHaveBeenCalledWith('/404');
+    });
+  });
+
+  describe('on <image-gallery>', () => {
+    
+    it('should set images', () => {
+      let imageGalleryComponent = fixture.debugElement.query(By.css('image-gallery'));
+
+      expect(imageGalleryComponent.componentInstance.images).toEqual(productComponent.componentInstance.images);
+    });
+  });
+
+  describe('on <qty-dropdown>', () => {
+    
+    it('should set id', () => {
+      let qtyDropdownComponent = fixture.debugElement.query(By.css('qty-dropdown'));
+
+      expect(qtyDropdownComponent.componentInstance.id).toEqual(mockProduct.id);
     });
   });
 });
