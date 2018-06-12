@@ -105,7 +105,7 @@ describe('ImageGalleryComponent', () => {
     })
   });
 
-  describe('when images is not set or empty', () => {
+  describe('when images is not set or is empty', () => {
 
     it('should not show a selected image', () => {
       component.images = [];
