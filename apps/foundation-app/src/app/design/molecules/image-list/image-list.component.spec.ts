@@ -6,9 +6,10 @@ import { By } from '@angular/platform-browser';
 import { Image } from '../../interfaces/image';
 import { ImageFactory } from '../../testing/factories/image.factory';
 
-@Component({template: '<image-list [images]="images" (imageSelected)="selectedImgFunction($event)"></image-list>'})
+@Component({template: '<image-list [images]="images" [selectedImage]="selectedImageValue" (imageSelected)="selectedImgFunction($event)"></image-list>'})
 class TestImageListWrapper {
   images: Image[];
+  selectedImageValue: Image;
   selectedImgFunction: Function;
 }
 
@@ -38,6 +39,7 @@ describe('ImageListComponent', () => {
 
     component.selectedImgFunction = () => {};
     component.images = stubImages;
+    component.selectedImageValue = stubImages[1]
 
     spyOn(component, 'selectedImgFunction');
     
@@ -51,27 +53,58 @@ describe('ImageListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('using a `image-list` component', () => {
-    it('should be able to take images as input', () => {
-      expect(imageListComponent.componentInstance.images).toEqual(stubImages);
+  it('should be able to take images as input', () => {
+    expect(imageListComponent.componentInstance.images).toEqual(stubImages);
+  });
+
+  describe('ngOnInit', () => {
+    
+    describe('when selectedImage is given as Input', () => {
+
+      it('should set selectedImage as selectedImage', () => {
+        expect(imageListComponent.componentInstance.selectedImage).toEqual(stubImages[1]);
+      });
     });
-  
-    it('should call a function when imageSelected is emitted with the correct arguments', () => {
+
+    describe('when selectedImage is not given as Input', () => {
+      
+      it('should set selectedImage to the first image', () => {
+        fixture = TestBed.createComponent(TestImageListWrapper);
+        component = fixture.componentInstance;
+        component.images = stubImages;
+        fixture.detectChanges();
+        imageListComponent = fixture.debugElement.query(By.css('image-list'));
+
+        expect(imageListComponent.componentInstance.selectedImage).toEqual(stubImages[0]);
+      });
+    });
+  });
+
+  describe('when imageSelected is emitted', () => {
+    
+    it('should call the given function', () => {
       imageListComponent.componentInstance.imageSelected.emit(stubImages[0]);
       expect(component.selectedImgFunction).toHaveBeenCalledWith(stubImages[0]);
     });
   });
 
   describe('select', () => {
-    xit('should make imageSelected emit the selected image', () => {
+
+    it('should call imageSelected.emit', () => {
+      spyOn(imageListComponent.componentInstance.imageSelected, 'emit');
+
       imageListComponent.componentInstance.select(stubImages[0]);
-      expect(imageListComponent.componentInstance.imageSelected).toHaveBeenCalledWith(stubImages[0]);
+      expect(imageListComponent.componentInstance.imageSelected.emit).toHaveBeenCalledWith(stubImages[0]);
     })
   });
 
   describe('when an img is clicked', () => {
-    xit('should call select with clicked image', () => {
-      
+
+    it('should call select with clicked image', () => {
+      let images = fixture.debugElement.queryAll(By.css('img'));
+      images[0].nativeElement.click();
+
+      expect(imageListComponent.componentInstance.select).toHaveBeenCalledWith(stubImages[0]);
     });
   });
 });
