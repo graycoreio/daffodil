@@ -18,7 +18,7 @@ class MockImageListComponent {
   @Input() selectedImage: Image;
 }
 
-fdescribe('ImageGalleryComponent', () => {
+describe('ImageGalleryComponent', () => {
   let component: TestImageGalleryWrapper;
   let fixture: ComponentFixture<TestImageGalleryWrapper>;
 
