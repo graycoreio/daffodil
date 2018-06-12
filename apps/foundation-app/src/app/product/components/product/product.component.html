@@ -1,15 +1,15 @@
 <div class="product" *ngIf="product">
-  <div class="product__image-gallery">
-    <image-gallery [images]="images"></image-gallery>
-  </div>
   <div class="product__info">
     <div class="product__brand">{{product.brand}}</div>
     <div class="product__name">{{product.name}}</div>
     <div class="product__price">${{product.price}}</div>
   </div>
+  <div class="product__image-gallery">
+    <image-gallery [images]="images"></image-gallery>
+  </div>
   <div class="product__qty">
     <div>Quantity</div>
-    <qty-dropdown id="id"></qty-dropdown>
+    <qty-dropdown id="{{product.id}}"></qty-dropdown>
   </div>
   <div class="product__buttons">
     <button type="button" class="button expanded uppercase embolden">add to cart</button>

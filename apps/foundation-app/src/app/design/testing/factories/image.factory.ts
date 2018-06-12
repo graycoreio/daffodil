@@ -11,6 +11,6 @@ export class ImageFactory {
 }
 
 export class MockImage implements Image {
-    label: faker.word;
-    url: faker.random.url;
+    label = faker.image.nature();
+    url = faker.image.imageUrl();
 };
