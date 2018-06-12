@@ -1,4 +1,4 @@
-<div class="image-gallery">
+<div class="image-gallery" *ngIf="hasImages()">
   <div class="image-gallery__active-image">
     <div class="image-gallery__image-cropper">
       <img src="{{selectedImage.url}}" alt="{{selectedImage.label}}"/>
