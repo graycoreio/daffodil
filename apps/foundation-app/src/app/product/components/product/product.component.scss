@@ -10,7 +10,7 @@
       "image-gallery info"
       "image-gallery qty"
       "image-gallery buttons"
-      "images-wrapper accordion"
+      "image-gallery accordion"
       "image-gallery .";
     grid-gap: 15px;
     grid-template-columns: 2fr 1fr;
@@ -38,12 +38,8 @@
 
   @include breakpoint(large) {
     margin: 50px;
-<<<<<<< HEAD
-    grid-gap: 25px 50px;
-=======
     grid-row-gap: 25px;
     grid-column-gap: 50px;
->>>>>>> update product grid to account for some resizing issues due to the accordion
   }
 }
 
