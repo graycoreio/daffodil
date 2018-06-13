@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { letProto } from 'rxjs/operator/let';
 
 @Component({
@@ -7,11 +7,20 @@ import { letProto } from 'rxjs/operator/let';
   styleUrls: ['./accordion.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AccordionComponent {
+export class AccordionComponent implements OnInit {
 
-  @Input() title;
+  @Input() title: string;
+  @Input() initiallyActive: boolean;
 
-  active = false;
+  active: boolean;
+
+  ngOnInit() {
+    if(this.initiallyActive) {
+      this.active = true;
+    } else {
+      this.active = false;
+    }
+  }
 
   constructor() { }
 

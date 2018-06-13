@@ -7,7 +7,11 @@
   text-align: left;
   outline: none;
   @include embolden();
-  @include uppercase();  
+  @include uppercase(); 
+  
+  @include breakpoint(medium) {
+    padding: 30px 0;
+  }
 
   &__icon {
     float: right;
@@ -28,6 +32,10 @@
       height: auto;
       padding-bottom: 15px;
       max-height: 500px;
+
+      @include breakpoint(medium) {
+        padding-bottom: 30px;
+      }
     }
   }
 }
