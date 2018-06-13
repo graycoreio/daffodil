@@ -22,7 +22,7 @@ import { AccordionComponent } from './accordion/accordion.component';
   exports: [
     QtyDropdownComponent,
     ImageGalleryComponent,
-    ImageListComponent
+    ImageListComponent,
     AccordionComponent
   ]
 })
