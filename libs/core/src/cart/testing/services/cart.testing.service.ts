@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { CartFactory } from '../../testing/factories/cart.factory';
-
+import { Cart } from '../../model/cart';
 import { InMemoryDbService, STATUS } from 'angular-in-memory-web-api';
 
 @Injectable()
