@@ -51,96 +51,63 @@ describe('AccordionComponent', () => {
     expect(accordionComponent.componentInstance.title).toEqual(stubTitle);
   });
 
-  it('should be able to accept an id input', () => {
-    expect(accordionComponent.componentInstance.id).toEqual(stubId);
+  it('should set active to false', () => {
+    expect(accordionComponent.componentInstance.active).toBeFalsy();
   });
 
   describe('when accordion button is clicked', () => {
     
-    let panel;
+    let accordion;
 
     beforeEach(() => {
-      panel = accordionComponent.componentInstance.accordionElement.nextElementSibling;      
+      spyOn(accordionComponent.componentInstance, 'toggleActive');
+      accordion = fixture.debugElement.query(By.css('.accordion'));
+      
+      accordion.nativeElement.click();
     });
+
+    it('should call toggleActive', () => {
+      expect(accordionComponent.componentInstance.toggleActive);
+    });
+  });
+
+  describe('toggleActive', () => {
     
-    describe('and panel paddingBottom is defined', () => {
+    it('should toggle active', () => {
+      accordionComponent.componentInstance.toggleActive();
 
-      beforeEach(() => {
-        panel.style.paddingBottom = "20px";
-
-        accordionButton.nativeElement.click();
-      });
-      
-      it('should set panel paddingBottom to blank', () => {
-        expect(panel.style.paddingBottom).toEqual('');
-      });
-
-      it('should remove the active class from accordion', () => {
-        expect(accordionComponent.componentInstance.accordionElement.classList.contains('active')).toBeFalsy();
-      });
-    });
-
-    describe('and panel paddingBottom is blank', () => {
-
-      beforeEach(() => {
-        panel.style.paddingBottom = '';
-        
-        accordionButton.nativeElement.click();
-      });
-      
-      it('should set paddingBottom to expected value', () => {
-        expect(panel.style.paddingBottom).toEqual(panel.scrollHeight + 15 + "px");
-      });
-
-      it('should add the active class from accordion', () => {
-        expect(accordionComponent.componentInstance.accordionElement.classList.contains('active')).toBeTruthy();        
-      });
+      expect(accordionComponent.componentInstance.active).toBeTruthy();
     });
   });
 
   describe('isAccordionOpen getter', () => {
-    
-    describe('when accordionElement is defined', () => {
-      
-      describe('and accordion has active class', () => {
 
-        beforeEach(() => {
-          accordionComponent.componentInstance.accordionElement.classList.add('active');
-        });
-        
-        it('returns true', () => {
-          expect(accordionComponent.componentInstance.isAccordionOpen).toBeTruthy();
-        });
-      });
-
-      describe('and accordion does not have active class', () => {
-        
-        beforeEach(() => {
-          accordionComponent.componentInstance.accordionElement.classList.remove('active');
-        });
-
-        it('returns false', () => {
-          expect(accordionComponent.componentInstance.isAccordionOpen).toBeFalsy()
-        });
-      });
-    });
-
-    describe('when accordionElement is not defined', () => {
-
-      beforeEach(() => { 
-        accordionComponent.componentInstance.accordionElement = null;
-      });
-      
-      it('should return false', () => {
-        expect(accordionComponent.componentInstance.isAccordionOpen).toBeFalsy();
-      });
+    it('should return active', () => {
+      expect(accordionComponent.componentInstance.isAccordionOpen).toEqual(accordionComponent.componentInstance.active);
     });
   });
 
-  describe('accordionId getter', () => {
-    
-    it('should return expected string', () => {
-      expect(accordionComponent.componentInstance.accordionId).toEqual("accordion-" + stubId + "-" + stubTitle);
+  describe('when active is true', () => {
+
+    beforeEach(() => {
+      accordionComponent.componentInstance.active = true;
+
+      fixture.detectChanges();
+    });
+
+    it('should have the accordion__panel--active class', () => {
+      let accordionPanel = fixture.debugElement.query(By.css('.accordion__panel'));
+
+      expect(accordionPanel.nativeElement.classList.contains('accordion__panel--active')).toBeTruthy();
+    });
+  });
+
+  describe('when active is false', () => {
+
+    it('accordion__panel should not have the accordion__panel--active', () => {
+      let accordionPanel = fixture.debugElement.query(By.css('.accordion__panel'));
+
+      expect(accordionPanel.nativeElement.classList.contains('accordion__panel--active')).toBeFalsy();
     });
   });
 });
