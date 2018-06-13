@@ -152,7 +152,7 @@ describe('ProductComponent', () => {
     it('should set id', () => {
       let qtyDropdownComponent = fixture.debugElement.query(By.css('qty-dropdown'));
 
-      expect(qtyDropdownComponent.componentInstance.id).toEqual(mockProduct.id);
+      expect(qtyDropdownComponent.componentInstance.id).toEqual(stubProduct.id);
     });
   });
 });
