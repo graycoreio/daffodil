@@ -1,8 +1,0 @@
-<button class="accordion" (click)="toggleActive()">
- {{ title }}
- <span [hidden]="isAccordionOpen"><i class="fa fa-plus accordion__icon"></i></span>
- <span [hidden]="!isAccordionOpen"><i class="fa fa-minus accordion__icon"></i></span>
-</button>
-<div class="accordion__panel" [class.accordion__panel--active]="isAccordionOpen">
-  <ng-content></ng-content>
-</div>
