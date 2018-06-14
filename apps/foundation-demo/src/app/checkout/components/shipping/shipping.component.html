@@ -1,3 +1,32 @@
-<p>
-  shipping works!
-</p>
+<div class="shipping">
+  <div class="shipping__title">
+    shipping details
+  </div>
+  <form (ngSubmit)="onSubmit(shippingForm)" #shippingForm="ngForm">
+    <div class="shipping__first-name">
+      <input type="text" class="error" placeholder="First Name" required [(ngModel)]="shippingForm.firstName" name="firstName"/>
+    </div>
+    <div class="shipping__last-name">
+      <input type="text" placeholder="Last Name" [(ngModel)]="shippingForm.lastName" name="lastName"/>
+    </div>
+    <div class="shipping__address">
+      <input type="text" placeholder="Address" [(ngModel)]="shippingForm.address" name="address"/>
+    </div>
+    <div class="shipping__city">
+      <input type="text" placeholder="City" [(ngModel)]="shippingForm.city" name="city"/>
+    </div>
+    <div class="shipping__state">
+      <select>
+        <option disabled selected>State</option>
+        <option>option 1</option>
+      </select>
+    </div>
+    <div class="shipping__zip">
+      <input type="text" placeholder="Zip Code" [(ngModel)]="shippingForm.zip" name="zip"/>
+    </div>
+    <div class="shipping__phone">
+      <input type="text" placeholder="Phone Number"/>
+    </div>
+    <button type="submit" class="button large expanded">Save & Continue</button>
+  </form>
+</div>
