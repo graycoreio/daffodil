@@ -4,6 +4,9 @@
     "foundation-demo": {
       "tags": []
     },
+    "foundation-demo-dev": {
+      "tags": []
+    },
     "foundation-demo-e2e": {
       "tags": []
     },
