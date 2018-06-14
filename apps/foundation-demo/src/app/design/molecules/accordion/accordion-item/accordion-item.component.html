@@ -6,7 +6,7 @@
       <span [hidden]="isOpen"><i class="fa fa-plus accordion-item__icon"></i></span>
       <span [hidden]="!isOpen"><i class="fa fa-minus accordion-item__icon"></i></span>
     </div>
-    <div class="accordion-item__panel" *ngIf="isOpen" [class.accordion-item__panel--active]="isOpen">
+    <div class="accordion-item__panel" *ngIf="isOpen">
       <ng-content></ng-content>
     </div>
 </div>

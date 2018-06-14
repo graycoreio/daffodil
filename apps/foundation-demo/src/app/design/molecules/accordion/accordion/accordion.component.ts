@@ -1,10 +1,8 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { letProto } from 'rxjs/operator/let';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'accordion',
-  templateUrl: './accordion.component.html',
-  styleUrls: ['./accordion.component.scss']
+  templateUrl: './accordion.component.html'
 })
 export class AccordionComponent {
 

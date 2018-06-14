@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { letProto } from 'rxjs/operator/let';
 
 @Component({
   selector: 'accordion-item',
