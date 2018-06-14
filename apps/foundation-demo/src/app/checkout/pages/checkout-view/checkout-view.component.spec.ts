@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CheckoutViewComponent } from './checkout-view.component';
+import { Component } from '@angular/core';
+import { By } from '@angular/platform-browser';
+
+@Component({selector: 'shipping', template: ''})
+class MockShippingComponent {}
 
 describe('CheckoutViewComponent', () => {
   let component: CheckoutViewComponent;
@@ -8,7 +13,10 @@ describe('CheckoutViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CheckoutViewComponent ]
+      declarations: [ 
+        MockShippingComponent,
+        CheckoutViewComponent
+      ]
     })
     .compileComponents();
   }));
@@ -21,5 +29,9 @@ describe('CheckoutViewComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render shipping component', () => {
+    expect(fixture.debugElement.query(By.css('shipping'))).not.toBeNull();
   });
 });
