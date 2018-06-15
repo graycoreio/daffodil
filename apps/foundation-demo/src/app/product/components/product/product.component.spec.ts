@@ -26,6 +26,17 @@ class MockImageGalleryComponent {
   @Input() images: Image[];
 }
 
+@Component({selector: 'accordion', template: ''})
+class MockAccordionComponent { 
+  @Input() title: string;
+  @Input() id: string;
+}
+
+@Component({selector: 'accordion-item', template: ''})
+class MockAccordionItemComponent {
+  @Input() initiallyActive: boolean;
+}
+
 describe('ProductComponent', () => {
   let component: ProductWrapperTest;
   let fixture: ComponentFixture<ProductWrapperTest>;
@@ -43,7 +54,9 @@ describe('ProductComponent', () => {
         ProductComponent,
         ProductWrapperTest,
         MockQtyDropdownComponent,
-        MockImageGalleryComponent
+        MockImageGalleryComponent,
+        MockAccordionComponent,
+        MockAccordionItemComponent
       ]
     })
     .compileComponents();

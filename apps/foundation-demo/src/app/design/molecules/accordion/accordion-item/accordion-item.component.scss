@@ -1,0 +1,34 @@
+@import 'daffodil-util';
+
+.accordion-item {
+  @include section-divider();
+
+  padding: 15px 0;
+
+  @include breakpoint(medium) {
+    padding: 30px 0;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    @include clickable();
+  }
+
+  &__title {
+    font-size: $global-font-size;
+    margin: 0;
+    @include embolden();
+    @include uppercase(); 
+  }
+
+  &__panel {
+    padding-top: 15px;
+
+    @include breakpoint(medium) {
+      padding-top: 30px;
+    }
+  }
+}

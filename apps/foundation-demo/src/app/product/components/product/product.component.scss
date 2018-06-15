@@ -10,6 +10,7 @@
       "image-gallery info"
       "image-gallery qty"
       "image-gallery buttons"
+      "image-gallery accordion"
       "image-gallery .";
     grid-gap: 15px;
     grid-template-columns: 2fr 1fr;
@@ -29,11 +30,16 @@
     &__image-gallery {
       grid-area: image-gallery;
     }
+
+    &__accordion-wrapper {
+      grid-area: accordion;
+    }
   }
 
   @include breakpoint(large) {
     margin: 50px;
-    grid-gap: 25px 50px;
+    grid-row-gap: 25px;
+    grid-column-gap: 50px;
   }
 }
 
@@ -96,6 +102,15 @@
     @include breakpoint(large) {
       margin: 0;
       width: 70%;
+    }
+  }
+
+  &__accordion-wrapper {
+    border-top: 1px solid $medium-gray;
+    margin: 25px 15px 0 15px;
+
+    @include breakpoint(medium) {
+      margin: 25px 0 0 0;
     }
   }
 }
