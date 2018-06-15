@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'continue-shopping',
-  templateUrl: './continue-shopping.component.html',
-  styleUrls: ['./continue-shopping.component.scss']
+  templateUrl: './continue-shopping.component.html'
 })
 export class ContinueShoppingComponent {
 
