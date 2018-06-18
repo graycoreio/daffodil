@@ -5,6 +5,7 @@ import { CartFactory, CartItem } from '@daffodil/core';
 
 import { CartItemComponent } from './cart-item.component';
 import { Component, Input } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 let cartFactory = new CartFactory();
 let mockCartItem = cartFactory.create().items[0];
@@ -29,6 +30,7 @@ describe('CartItemComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
+        FormsModule,
         CartItemComponent,
         TestCartItemWrapper,
         MockQtyDropdownComponent

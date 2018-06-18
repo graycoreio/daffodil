@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { CoreCartModule } from '@daffodil/core';
 
@@ -16,6 +17,7 @@ import { CartGrandTotalComponent } from './components/cart-grand-total/cart-gran
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     DesignModule,
     CoreCartModule,
   ],

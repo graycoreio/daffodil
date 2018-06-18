@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { CoreProductModule } from '@daffodil/core';
 import { ProductGridComponent } from './components/product-grid/product-grid.component';
@@ -13,6 +14,8 @@ import { DesignModule } from '../design/design.module';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+
     DesignModule,
     CoreProductModule,
   ],

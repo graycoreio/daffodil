@@ -13,7 +13,7 @@
       <span class="cart-item__mobile-qty">Qty: </span>
       <span class="cart-item__mobile-qty">{{item.qty}}</span>
       <span class="cart-item__desktop-qty">
-        <qty-dropdown [qty]="item.qty" [id]="item.item_id"></qty-dropdown>
+        <qty-dropdown [(ngModel)]="item.qty"></qty-dropdown>
       </span>
     </div>
     <div class="cart-item__change">

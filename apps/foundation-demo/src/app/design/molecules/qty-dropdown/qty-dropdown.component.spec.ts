@@ -1,27 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { QtyDropdownComponent } from './qty-dropdown.component';
-import { Component } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-@Component({template: '<qty-dropdown [qty]="qtyValue" [id]="idValue"></qty-dropdown>'})
+@Component({template: '<qty-dropdown [ngModel]="qtyValue"></qty-dropdown>'})
 class TestQtyDropdownWrapper {
   qtyValue: string;
-  idValue: string;
 }
 
 describe('QtyDropdownComponent', () => {
   let component: TestQtyDropdownWrapper;
   let fixture: ComponentFixture<TestQtyDropdownWrapper>;
-  let mockQty = "3";
-  let mockId = "id";
-  let qtyDropdownComponent;
+  let qtyDropdownComponent: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
       ],
       declarations: [ 
         TestQtyDropdownWrapper,
@@ -34,9 +32,6 @@ describe('QtyDropdownComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestQtyDropdownWrapper);
     component = fixture.componentInstance;
-    component.qtyValue = mockQty;
-    component.idValue = mockId;
-    
     qtyDropdownComponent = fixture.debugElement.query(By.css('qty-dropdown'));
     fixture.detectChanges();
   });
@@ -45,58 +40,36 @@ describe('QtyDropdownComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('can be passed a qty input', () => {
-    expect(qtyDropdownComponent.componentInstance.qty).toEqual(mockQty);
-  });
-
-  it('can be passed an id input', () => {
-    expect(qtyDropdownComponent.componentInstance.id).toEqual(mockId);
-  });
+  it('should have an array numbers of quantities defined on it by default', () => {
+    expect(qtyDropdownComponent.componentInstance.dropdownItemCounter).not.toBeNull();
+  })
 
   describe('ngOnInit', () => {
-    
-    it('should create the dropdownItemCounter array', () => {
-      expect(qtyDropdownComponent.componentInstance.dropdownItemCounter.length).toEqual(QtyDropdownComponent.dropdownRange);
-    });
+    xit('subscribe to the valueChanges of the formControl property', () => {
 
-    describe('when qty is not given as input', () => {
-      
-      beforeEach(() => {
-        fixture = TestBed.createComponent(TestQtyDropdownWrapper);
-        component = fixture.componentInstance;
-
-        fixture.detectChanges();
-        qtyDropdownComponent = fixture.debugElement.query(By.css('qty-dropdown'));        
-      });
-
-      it('should set qty to 1', () => {
-        expect(qtyDropdownComponent.componentInstance.qty).toEqual(1);
-      });
     });
   });
 
   describe('writeValue', () => {
 
-    let newQtyValue = 'newQtyValue';
+    let newQtyValue = 2;
 
     beforeEach(() => {
       spyOn(qtyDropdownComponent.componentInstance, 'onChange');
       qtyDropdownComponent.componentInstance.writeValue(newQtyValue);
     });
     
-    it('sets qty to argument', () => {
-      expect(qtyDropdownComponent.componentInstance.qty).toEqual(newQtyValue);
+    it('sets the qtyControl value to argument', () => {
+      expect(qtyDropdownComponent.componentInstance._qtyControl.value).toEqual(newQtyValue);
     });
 
     it('calls onChange with qty', () => {
-      expect(qtyDropdownComponent.componentInstance.onChange)
-        .toHaveBeenCalledWith(qtyDropdownComponent.componentInstance.qty);
+      expect(qtyDropdownComponent.componentInstance.onChange).toHaveBeenCalledWith(newQtyValue);
     });
   });
 
   describe('registerOnChange', () => {
-
-    let givenFunction: Function= () => {};
+    let givenFunction: Function = () => {};
 
     beforeEach(() => {
       qtyDropdownComponent.componentInstance.registerOnChange(givenFunction);
@@ -108,7 +81,6 @@ describe('QtyDropdownComponent', () => {
   });
 
   describe('registerOnTouched', () => {
-
     let givenFunction: Function= () => {};
 
     beforeEach(() => {
@@ -121,58 +93,40 @@ describe('QtyDropdownComponent', () => {
   });
 
   describe('setDisabledState', () => {
+    beforeEach(() => {
+      qtyDropdownComponent.componentInstance.inputHasBeenShown = false;
+      fixture.detectChanges();
+    });
 
-    describe('when inputHasBeenShown is false', () => {
-
+    describe('when not disabled', () => {
       beforeEach(() => {
-        qtyDropdownComponent.componentInstance.inputHasBeenShown = false;
+        qtyDropdownComponent.componentInstance.setDisabledState(false);
+      });
 
+      it('should not disable <input>', () => {
+        qtyDropdownComponent.componentInstance.inputHasBeenShown = true;
         fixture.detectChanges();
-      });
-      
-      describe('when argument is false', () => {
-        
-        it('should not disable <select>', () => {
-          qtyDropdownComponent.componentInstance.setDisabledState(false);
-
-          expect(fixture.debugElement.query(By.css('select')).properties.disabled).toBeFalsy();
-        });
+        expect(fixture.debugElement.query(By.css('input')).properties.disabled).toBeFalsy();
       });
 
-      describe('when argument is true', () => {
-        
-        it('should disable <select>', () => {
-          qtyDropdownComponent.componentInstance.setDisabledState(true);
-          
-          expect(fixture.debugElement.query(By.css('select')).properties.disabled).toBeTruthy();
-        });
+      it('should not disable <select>', () => {
+        expect(fixture.debugElement.query(By.css('select')).properties.disabled).toBeFalsy();
       });
     });
 
-    describe('when inputHasBeenShown is true', () => {
-
+    describe('when disabled', () => {
       beforeEach(() => {
-        qtyDropdownComponent.componentInstance.inputHasBeenShown = true;
+        qtyDropdownComponent.componentInstance.setDisabledState(true);
+      });
 
-        fixture.detectChanges();
+      it('should disable <input>', () => {
+        qtyDropdownComponent.componentInstance.inputHasBeenShown = true;
+        fixture.detectChanges();        
+        expect(fixture.debugElement.query(By.css('input')).properties.disabled).toBeTruthy();
       });
       
-      describe('when argument is false', () => {
-        
-        it('should not disable <input>', () => {
-          qtyDropdownComponent.componentInstance.setDisabledState(false);
-
-          expect(fixture.debugElement.query(By.css('input')).properties.disabled).toBeFalsy();
-        });
-      });
-
-      describe('when argument is true', () => {
-        
-        it('should disable <input>', () => {
-          qtyDropdownComponent.componentInstance.setDisabledState(true);
-          
-          expect(fixture.debugElement.query(By.css('input')).properties.disabled).toBeTruthy();
-        });
+      it('should disable <select>', () => {
+        expect(fixture.debugElement.query(By.css('select')).properties.disabled).toBeTruthy();
       });
     });
   });
@@ -209,7 +163,7 @@ describe('QtyDropdownComponent', () => {
     describe('when qty is greater than dropdownRange', () => {
 
       beforeEach(() => {
-        qtyDropdownComponent.componentInstance.qty = 10;
+        qtyDropdownComponent.componentInstance._qtyControl.patchValue(10);
         fixture.detectChanges();        
       });
 
@@ -223,28 +177,20 @@ describe('QtyDropdownComponent', () => {
     });
   });
 
-  describe('onChangedWrapper', () => {
+  describe('onQtyChanged', () => {
     
     let input;
 
     beforeEach(() => {
       input = "2";
-      spyOn(qtyDropdownComponent.componentInstance, 'selectInput').and.callThrough();      
+      spyOn(qtyDropdownComponent.componentInstance, 'focusInput').and.callThrough();      
     });
 
     it('calls onChange with argument', () => {
       spyOn(qtyDropdownComponent.componentInstance, "onChange");
-      qtyDropdownComponent.componentInstance.onChangedWrapper(input);
+      qtyDropdownComponent.componentInstance.onQtyChanged(input);
       
       expect(qtyDropdownComponent.componentInstance.onChange).toHaveBeenCalledWith(parseInt(input));
-    });
-
-    it('calls qtyChanged.emit', () => {
-      spyOn(qtyDropdownComponent.componentInstance.qtyChanged, 'emit');
-
-      qtyDropdownComponent.componentInstance.onChangedWrapper(input);
-      
-      expect(qtyDropdownComponent.componentInstance.qtyChanged.emit).toHaveBeenCalledWith(parseInt(input));
     });
     
     describe('when value is 10', () => {
@@ -252,22 +198,22 @@ describe('QtyDropdownComponent', () => {
       beforeEach(() => {
         qtyDropdownComponent.componentInstance.inputHasBeenShown = true;
         fixture.detectChanges();
-        qtyDropdownComponent.componentInstance.onChangedWrapper("10");
+        qtyDropdownComponent.componentInstance.onQtyChanged("10");
       });
       
-      it('should calls selectInput', () => {
-        expect(qtyDropdownComponent.componentInstance.selectInput).toHaveBeenCalled();
+      it('should call focusInput', () => {
+        expect(qtyDropdownComponent.componentInstance.focusInput).toHaveBeenCalled();
       });
     });
     
     describe('when value is not 10', () => {
 
       beforeEach(() => {
-        qtyDropdownComponent.componentInstance.onChangedWrapper("2");
+        qtyDropdownComponent.componentInstance.onQtyChanged("2");
       });
       
-      it('does not call selectInput', () => {
-        expect(qtyDropdownComponent.componentInstance.selectInput).not.toHaveBeenCalled();
+      it('does not call focusInput', () => {
+        expect(qtyDropdownComponent.componentInstance.focusInput).not.toHaveBeenCalled();
       });
     });
   });
