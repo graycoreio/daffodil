@@ -4,7 +4,7 @@ import { ShippingComponent } from './shipping.component';
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-fdescribe('ShippingComponent', () => {
+describe('ShippingComponent', () => {
   let component: ShippingComponent;
   let fixture: ComponentFixture<ShippingComponent>;
 
