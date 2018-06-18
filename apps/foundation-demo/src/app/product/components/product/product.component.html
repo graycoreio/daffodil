@@ -9,7 +9,7 @@
   </div>
   <div class="product__qty">
     <div>Quantity</div>
-    <qty-dropdown id="{{product.id}}"></qty-dropdown>
+    <qty-dropdown [(ngModel)]="qty"></qty-dropdown>
   </div>
   <div class="product__buttons">
     <button type="button" class="button expanded uppercase embolden">add to cart</button>

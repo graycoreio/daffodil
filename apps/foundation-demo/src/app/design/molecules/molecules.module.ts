@@ -7,23 +7,23 @@ import { QtyDropdownComponent } from './qty-dropdown/qty-dropdown.component';
 import { ImageGalleryComponent } from './image-gallery/image-gallery.component';
 import { ImageListComponent } from './image-list/image-list.component';
 import { AccordionModule } from './accordion/accordion.module';
+import { QtyDropdownModule } from './qty-dropdown/qty-dropdown.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
-    AccordionModule
+    AccordionModule,
+    QtyDropdownModule
   ],
   declarations: [
-    QtyDropdownComponent,
     ImageGalleryComponent,
     ImageListComponent
   ],
   exports: [
-    QtyDropdownComponent,
     ImageGalleryComponent,
     ImageListComponent,
-    AccordionModule
+    AccordionModule,
+    QtyDropdownModule
   ]
 })
 export class MoleculesModule { }
