@@ -8,4 +8,12 @@
     @include embolden();
     @include uppercase();
   }
+
+  &__error {
+    border-left: 5px solid #a94442;
+  }
+
+  &__valid {
+    border-left: 5px solid #42A948;
+  }
 }
