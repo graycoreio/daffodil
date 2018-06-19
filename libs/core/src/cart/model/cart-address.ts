@@ -1,6 +1,7 @@
 import { CartShippingRate } from "./cart-shipping-rate";
+import { Address } from "../../interfaces/models/address";
 
-export interface CartAddress {
+export interface CartAddress extends Address {
   address_id: number;
   quote_id: number;
   created_at: Date;
