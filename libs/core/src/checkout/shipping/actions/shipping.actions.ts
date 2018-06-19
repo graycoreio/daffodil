@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { Address } from '../../../interfaces/models/address';
+import { ShippingAddress } from '../models/shipping-address';
 
 export enum ShippingActionTypes {
   UpdateShippingAction = "[Shipping] Load Action"
@@ -9,7 +9,7 @@ export enum ShippingActionTypes {
 export class UpdateShipping implements Action {
   readonly type = ShippingActionTypes.UpdateShippingAction;
 
-  constructor(public payload: Address) {}
+  constructor(public payload: ShippingAddress) {}
 }
 
 export type ShippingActions =

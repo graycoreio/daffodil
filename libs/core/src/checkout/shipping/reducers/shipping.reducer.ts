@@ -1,8 +1,8 @@
 import { ShippingActionTypes, ShippingActions } from '../actions/shipping.actions';
-import { Address } from '../../../interfaces/models/address';
+import { ShippingAddress } from '../models/shipping-address';
 
 export interface State {
-  shipping: Address
+  shipping: ShippingAddress
 }
 
 export const initialState: State = {

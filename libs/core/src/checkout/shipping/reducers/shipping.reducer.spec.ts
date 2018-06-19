@@ -1,4 +1,4 @@
-import { Address } from "../../../interfaces/models/address";
+import { ShippingAddress } from '../models/shipping-address';
 import { ShippingFactory } from "../testing/factories/shipping.factory";
 import { initialState, reducer, getShipping } from "../reducers/shipping.reducer";
 import { UpdateShipping } from "../actions/shipping.actions";
@@ -7,7 +7,7 @@ import { UpdateShipping } from "../actions/shipping.actions";
 describe('Shipping | Shipping List Reducer', () => {
 
   let shippingFactory: ShippingFactory;
-  let shipping: Address;
+  let shipping: ShippingAddress;
 
   beforeEach(() => {
     shippingFactory = new ShippingFactory();
