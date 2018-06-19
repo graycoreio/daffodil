@@ -5,21 +5,26 @@ import { ProductFactory } from '@daffodil/core';
 import { Product } from '@daffodil/core';
 
 import { ProductComponent } from './product.component';
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { Image } from '../../../design/interfaces/image';
+import { QtyDropdownComponent } from '../../../design/molecules/qty-dropdown/qty-dropdown.component';
+import { ImageGalleryComponent } from '../../../design/molecules/image-gallery/image-gallery.component';
 
-@Component({template: '<product [product]="productValue" (addToCart)="addToCartFunction($event)"></product>'})
+@Component({template: '<product [product]="productValue" [qty]="qtyValue" (addToCart)="addToCartFunction($event)" (updateQty)="updateQtyFunction($event)"></product>'})
 class ProductWrapperTest {
   productValue: Product;
-  addToCartFunction;
+  qtyValue: number;
+  addToCartFunction: Function;
+  updateQtyFunction: Function;
 }
 
 @Component({selector: 'qty-dropdown', template: ''})
 class MockQtyDropdownComponent {
-  @Input() qty: string;
-  @Input() id: string;
+  @Input() qty: number;
+  @Input() id: number;
+  @Output() qtyChanged: EventEmitter<any> = new EventEmitter();
 }
 
 @Component({selector: 'image-gallery', template: ''})
@@ -46,8 +51,9 @@ describe('ProductComponent', () => {
   let fixture: ComponentFixture<ProductWrapperTest>;
   let productFactory = new ProductFactory();
   let router;
-  let stubProduct = productFactory.create();
-  let productComponent;
+  let stubProduct: Product = productFactory.create();
+  let stubQty: number = 1;
+  let productComponent: ProductComponent;
   let mockFunction = (payload) => {};
 
   beforeEach(async(() => {
@@ -75,10 +81,12 @@ describe('ProductComponent', () => {
     spyOn(router, 'navigateByUrl');
 
     component.productValue = stubProduct;
+    component.qtyValue = stubQty;
     component.addToCartFunction = mockFunction;
+    component.updateQtyFunction = mockFunction;
     fixture.detectChanges();
 
-    productComponent = fixture.debugElement.query(By.css('product'));
+    productComponent = fixture.debugElement.query(By.css('product')).componentInstance;
   });
 
   it('renders a product-container', () => {
@@ -86,42 +94,56 @@ describe('ProductComponent', () => {
   });
 
   it('should be able to take a product input', () => {
-    expect(productComponent.componentInstance.product).toEqual(stubProduct);
+    expect(productComponent.product).toEqual(stubProduct);
+  });
+
+  it('should be able to take a qty input', () => {
+    expect(productComponent.qty).toEqual(stubQty);
   });
 
   it('should call addToCartFunction when addToCart is emitted', () => {
     let payload = 'payload';
     spyOn(component, 'addToCartFunction');
     
-    productComponent.componentInstance.addToCart.emit(payload);
+    productComponent.addToCart.emit(payload);
 
     expect(component.addToCartFunction).toHaveBeenCalledWith(payload);   
+  });
+
+  it('should call updateQtyFunction when updateQty is emitted', () => {
+    let payload = 4;
+    spyOn(component, 'updateQtyFunction');
+    
+    productComponent.updateQty.emit(payload);
+
+    expect(component.updateQtyFunction).toHaveBeenCalledWith(payload);   
   });
 
   describe('ngOnInit', () => {
     
     it('should initialize qty to 1', () => {
-      expect(productComponent.componentInstance.qty).toEqual(1);
+      expect(productComponent.qty).toEqual(1);
     });
   });
 
   describe('addProductToCart', () => {
     
     it('should call addToCart.emit', () => {
-      spyOn(productComponent.componentInstance.addToCart, 'emit');
-      productComponent.componentInstance.addProductToCart();
+      spyOn(productComponent.addToCart, 'emit');
+      productComponent.addProductToCart();
 
-      expect(productComponent.componentInstance.addToCart.emit).toHaveBeenCalledWith({productId: stubProduct.id, qty: productComponent.componentInstance.qty});
+      expect(productComponent.addToCart.emit).toHaveBeenCalledWith({productId: stubProduct.id, qty: productComponent.qty});
     });
   });
 
-  describe('updateQty', () => {
+  describe('onUpdateQty', () => {
     
-    it('should set qty to argument', () => {
+    it('should call updateQty.emit', () => {
+      spyOn(productComponent.updateQty, 'emit');
       let stubQty = 4;
-      productComponent.componentInstance.updateQty(stubQty);
+      productComponent.onUpdateQty(stubQty);
 
-      expect(productComponent.componentInstance.qty).toEqual(stubQty);
+      expect(productComponent.updateQty.emit).toHaveBeenCalledWith(stubQty);
     });
   });
 
@@ -141,18 +163,34 @@ describe('ProductComponent', () => {
   describe('on <image-gallery>', () => {
     
     it('should set images', () => {
-      let imageGalleryComponent = fixture.debugElement.query(By.css('image-gallery'));
+      let imageGalleryComponent:ImageGalleryComponent = fixture.debugElement.query(By.css('image-gallery')).componentInstance;
 
-      expect(imageGalleryComponent.componentInstance.images).toEqual(productComponent.componentInstance.images);
+      expect(imageGalleryComponent.images).toEqual(productComponent.images);
     });
   });
 
   describe('on <qty-dropdown>', () => {
-    
-    it('should set id', () => {
-      let qtyDropdownComponent = fixture.debugElement.query(By.css('qty-dropdown'));
 
-      expect(qtyDropdownComponent.componentInstance.id).toEqual(stubProduct.id);
+    let qtyDropdownComponent: QtyDropdownComponent;
+
+    beforeEach(() => {
+      qtyDropdownComponent = fixture.debugElement.query(By.css('qty-dropdown')).componentInstance;
+    });
+
+    it('should set id', () => {
+      expect(qtyDropdownComponent.id.toString()).toEqual(stubProduct.id);
+    });
+   
+    it('should set qty', () => {
+      expect(qtyDropdownComponent.qty).toEqual(stubQty);      
+    });
+
+    it('should call updateQty.emit when qtyChanged is called', () => {
+      spyOn(productComponent.updateQty, 'emit');
+      let newQty = 2;
+      qtyDropdownComponent.qtyChanged.emit(newQty);
+
+      expect(productComponent.updateQty.emit).toHaveBeenCalledWith(newQty);
     });
   });
 });

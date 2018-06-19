@@ -9,7 +9,7 @@
   </div>
   <div class="product__qty">
     <div>Quantity</div>
-    <qty-dropdown id="{{product.id}}" (qtyChanged)="updateQty($event)"></qty-dropdown>
+    <qty-dropdown id="{{product.id}}" [qty]="qty" (qtyChanged)="onUpdateQty($event)"></qty-dropdown>
   </div>
   <div class="product__buttons">
     <add-to-cart (addToCart)="addProductToCart()"></add-to-cart>

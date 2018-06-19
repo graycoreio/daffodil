@@ -1,10 +1,7 @@
-import { createSelector } from "@ngrx/store";
-
 import { Product } from "../model/product";
 import { ProductFactory } from "../testing/factories/product.factory";
-import { initialState, reducer, getProductLoading, getSelectedProductId } from "../reducers/product.reducer";
-import { ProductLoad, ProductLoadSuccess, ProductLoadFailure } from "../actions/product.actions";
-
+import { initialState, reducer, getProductLoading, getSelectedProductId, getProductQty } from "../reducers/product.reducer";
+import { ProductLoad, ProductLoadSuccess, ProductLoadFailure, UpdateQty } from "../actions/product.actions";
 
 describe('Product | Product Reducer', () => {
 
@@ -87,10 +84,20 @@ describe('Product | Product Reducer', () => {
     });
   });
 
-  describe('getProductLoading', () => {
-    
-    it('returns loading state', () => {
-      expect(getProductLoading(initialState)).toEqual(initialState.loading);
+  describe('when UpdateQtyAction is triggered', () => {
+
+    let givenQty: number;
+    let result;
+
+    beforeEach(() => {
+      givenQty = 3;
+      let productLoadFailure = new UpdateQty(givenQty);
+
+      result = reducer(initialState, productLoadFailure);
+    });
+
+    it('sets qty to payload', () => {
+      expect(result.qty).toEqual(givenQty);
     });
   });
 
@@ -98,6 +105,20 @@ describe('Product | Product Reducer', () => {
     
     it('returns selectedProductId', () => {
       expect(getSelectedProductId(initialState)).toEqual(initialState.selectedProductId);
+    });
+  });
+
+  describe('getProductQty', () => {
+    
+    it('returns selectedProductId', () => {
+      expect(getProductQty(initialState)).toEqual(initialState.qty);
+    });
+  });
+
+  describe('getProductLoading', () => {
+    
+    it('returns loading state', () => {
+      expect(getProductLoading(initialState)).toEqual(initialState.loading);
     });
   });
 });

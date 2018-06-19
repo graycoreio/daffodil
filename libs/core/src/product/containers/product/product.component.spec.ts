@@ -1,16 +1,12 @@
-import { Component, Input } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
-
-import { of } from 'rxjs/observable/of';
 
 import { ProductContainer } from './product.component';
 import { ProductFactory } from '../../testing/factories/product.factory';
 import { Product } from '../../model/product';
 
-import { ProductLoad } from '../../actions/product.actions';
+import { ProductLoad, UpdateQty } from '../../actions/product.actions';
 import * as fromProduct from '../../reducers';
 import { AddToCart } from '../../../cart/actions/cart.actions';
 
@@ -20,6 +16,7 @@ describe('ProductContainer', () => {
   let store;
   let initialLoading: boolean;
   let initialProduct: Product;
+  let initialQty: number;
   let productFactory = new ProductFactory();
 
   beforeEach(async(() => {
@@ -41,11 +38,13 @@ describe('ProductContainer', () => {
 
     initialLoading = false;
     initialProduct = productFactory.create();
+    initialQty = 1;
 
     component.selectedProductId = initialProduct.id;
 
     spyOn(fromProduct, 'selectSelectedProductLoadingState').and.returnValue(initialLoading);
     spyOn(fromProduct, 'selectSelectedProduct').and.returnValue(initialProduct);
+    spyOn(fromProduct, 'selectSelectedProductQty').and.returnValue(initialQty);
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();
@@ -71,6 +70,22 @@ describe('ProductContainer', () => {
       component.product$.subscribe((product) => {
         expect(product).toEqual(initialProduct);
       });
+    });
+
+    it('initializes qty$', () => {
+      component.qty$.subscribe((qty) => {
+        expect(qty).toEqual(initialQty);
+      })
+    });
+  });
+
+  describe('updateQty', () => {
+    
+    it('should call store.dispatch', () => {
+      let qty: number = 3;
+      component.updateQty(qty);
+
+      expect(store.dispatch).toHaveBeenCalledWith(new UpdateQty(qty));
     });
   });
 

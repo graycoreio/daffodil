@@ -1,16 +1,15 @@
-import { Action } from '@ngrx/store';
-
 import { ProductActionTypes, ProductActions } from '../actions/product.actions';
-import { Product } from '../model/product';
 
 export interface State {
   selectedProductId: string,
+  qty: number,
   loading: boolean,
   errors: string[]
 }
 
 export const initialState: State = {
   selectedProductId: null,
+  qty: 1,
   loading: false,
   errors: []
 };
@@ -26,11 +25,15 @@ export function reducer(state = initialState, action: ProductActions): State {
         loading: false, 
         errors: state.errors.concat(new Array(action.payload))
       };
+    case ProductActionTypes.UpdateQtyAction:
+      return {...state, qty: action.payload}
     default:
       return state;
   }
 }
 
 export const getSelectedProductId = (state: State) => state.selectedProductId;
+
+export const getProductQty = (state: State) => state.qty;
 
 export const getProductLoading = (state: State) => state.loading;
