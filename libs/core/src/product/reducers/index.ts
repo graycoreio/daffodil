@@ -1,11 +1,8 @@
 import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
-import { Dictionary } from '@ngrx/entity/src/models';
 
 import * as fromProductEntities from './product-entities.reducer';
 import * as fromProductGrid from './product-grid.reducer';
 import * as fromProduct from './product.reducer';
-
-import { Product } from '../model/product';
 
 export interface ProductState {
   products : fromProductEntities.State;
@@ -75,6 +72,11 @@ export const selectSelectedProductState = createSelector(
 export const selectSelectedProductId = createSelector(
   selectSelectedProductState,
   fromProduct.getSelectedProductId
+)
+
+export const selectSelectedProductQty = createSelector(
+  selectSelectedProductState,
+  fromProduct.getProductQty
 )
 
 export const selectSelectedProductLoadingState = createSelector(

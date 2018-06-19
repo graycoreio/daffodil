@@ -6,7 +6,7 @@ import { Store, select } from '@ngrx/store';
 
 import { Product } from '../../model/product';
 import * as fromProduct from '../../reducers';
-import { ProductLoad } from '../../actions/product.actions';
+import { ProductLoad, UpdateQty } from '../../actions/product.actions';
 import { AddToCart } from '../../../cart/actions/cart.actions';
 
 @Component({
@@ -20,6 +20,7 @@ export class ProductContainer implements OnInit {
 
   loading$: Observable<boolean>;
   product$: Observable<Product>;
+  qty$: Observable<number>;
 
   constructor(
     private store: Store<fromProduct.State>
@@ -35,6 +36,14 @@ export class ProductContainer implements OnInit {
     this.product$ = this.store.pipe(
       select(fromProduct.selectSelectedProduct)
     );
+
+    this.qty$ = this.store.pipe(
+      select(fromProduct.selectSelectedProductQty)
+    )
+  }
+
+  updateQty(payload: number) {
+    this.store.dispatch(new UpdateQty(payload));
   }
 
   addToCart(payload) {

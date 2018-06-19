@@ -17,6 +17,7 @@ import { ActivatedRouteStub } from '../../../testing/ActivatedRouteStub';
 let productFactory = new ProductFactory();
 let mockProduct = productFactory.create();
 let product$ = of(mockProduct);
+let stubQty = 1;
 
 @Component({
   selector: '[product-container]', 
@@ -28,7 +29,9 @@ class ProductContainerMock {
 
   product$: Observable<Product> = product$;
   loading$: Observable<boolean> = of(false);
-  addToCart;
+  qty$: Observable<number> = of(stubQty);
+  updateQty: Function;
+  addToCart: Function;
 }
 
 @Component({
@@ -37,13 +40,14 @@ class ProductContainerMock {
 })
 class ProductMock { 
   @Input() product: Product;
+  @Input() qty: number;
   @Output() addToCart: EventEmitter<any> = new EventEmitter();
+  @Output() updateQty: EventEmitter<any> = new EventEmitter();
 }
 
 describe('ProductViewComponent', () => {
   let component: ProductViewComponent;
   let fixture: ComponentFixture<ProductViewComponent>;
-  let route: ActivatedRoute;
   let idParam: string;
   let activatedRoute = new ActivatedRouteStub();
   let productContainer;
@@ -75,6 +79,7 @@ describe('ProductViewComponent', () => {
     productContainer = fixture.debugElement.query(By.css('[product-container]'));
     productContainer.componentInstance.loading$ = of(false);
     productContainer.componentInstance.addToCart = (payload) => {};
+    productContainer.componentInstance.updateQty = (payload: number) => {};
 
     fixture.detectChanges();
     productComponent = fixture.debugElement.query(By.css('product'));
@@ -101,6 +106,10 @@ describe('ProductViewComponent', () => {
       expect(productComponent.componentInstance.product).toEqual(mockProduct);
     });
 
+    it('should set qty to value passed by product-container directive', () => {
+      expect(productComponent.componentInstance.qty).toEqual(stubQty);
+    });
+
     it('should set addToCart to call function passed by product-container directive', () => {
       spyOn(productContainer.componentInstance, 'addToCart');
       let payload = 'test';
@@ -108,6 +117,15 @@ describe('ProductViewComponent', () => {
       productComponent.componentInstance.addToCart.emit(payload);
 
       expect(productContainer.componentInstance.addToCart).toHaveBeenCalledWith(payload);
+    });
+
+    it('should set updateQty to call function passed by product-container directive', () => {
+      spyOn(productContainer.componentInstance, 'updateQty');
+      let payload = 4;
+
+      productComponent.componentInstance.updateQty.emit(payload);
+
+      expect(productContainer.componentInstance.updateQty).toHaveBeenCalledWith(payload);
     });
   });
 

@@ -5,7 +5,8 @@ import { Product } from '../model/product';
 export enum ProductActionTypes {
     ProductLoadAction = "[Product] Load Action",
     ProductLoadSuccessAction = "[Product] Load Success Action",
-    ProductLoadFailureAction = "[Product] Load Failure Action"
+    ProductLoadFailureAction = "[Product] Load Failure Action",
+    UpdateQtyAction = "[Product] Update Qty Action"
 }
 
 export class ProductLoad implements Action {
@@ -26,7 +27,14 @@ export class ProductLoadFailure implements Action {
   constructor(public payload: string) {}
 }
 
+export class UpdateQty implements Action {
+    readonly type = ProductActionTypes.UpdateQtyAction;
+
+    constructor(public payload: number) {}
+}
+
 export type ProductActions = 
     | ProductLoad 
     | ProductLoadSuccess
-    | ProductLoadFailure;
+    | ProductLoadFailure
+    | UpdateQty;

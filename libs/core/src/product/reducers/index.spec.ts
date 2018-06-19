@@ -1,10 +1,8 @@
-import { NgModule } from "@angular/core";
 import { TestBed, async } from "@angular/core/testing";
 
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
 import * as fromProduct from './index';
-import { selectProductGridState } from "../reducers";
 import { ProductGridLoadSuccess } from "../actions/product-grid.actions";
 import { ProductFactory } from "../testing/factories/product.factory";
 import { Product } from "../model/product";
@@ -106,6 +104,7 @@ describe('selectProductGridState', () => {
       beforeEach(() => {
         expectedProductState = {
           selectedProductId: mockProduct.id,
+          qty: 1,
           loading: true,
           errors: []
         }
@@ -123,6 +122,15 @@ describe('selectProductGridState', () => {
       it('returns the selected product id', () => {
         store.pipe(select(fromProduct.selectSelectedProductId)).subscribe((selectedProductId) => {
           expect(selectedProductId).toEqual(mockProduct.id);
+        });
+      });
+    });
+
+    describe('selectSelectedProductQty', () => {
+      
+      it('returns the selected product id', () => {
+        store.pipe(select(fromProduct.selectSelectedProductQty)).subscribe((selectedProductQty) => {
+          expect(selectedProductQty).toEqual(1);
         });
       });
     });

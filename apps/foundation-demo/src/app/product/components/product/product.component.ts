@@ -11,17 +11,15 @@ import { Image } from '../../../design/interfaces/image';
 })
 export class ProductComponent implements OnInit {
   @Input() product: Product;
+  @Input() qty: number;
   @Output() addToCart: EventEmitter<any> = new EventEmitter();
-  
-  qty: number;
+  @Output() updateQty: EventEmitter<any> = new EventEmitter();
   
   constructor(
     private router: Router
   ) {}
 
   ngOnInit() {
-    this.qty = 1;
-
     if (!this.product) {
       this.router.navigateByUrl('/404');
     }
@@ -39,7 +37,7 @@ export class ProductComponent implements OnInit {
     this.addToCart.emit({productId: this.product.id, qty: this.qty});
   }
 
-  updateQty(qty: number) {
-    this.qty = qty;
+  onUpdateQty(qty: number) {
+    this.updateQty.emit(qty);
   }
 }
