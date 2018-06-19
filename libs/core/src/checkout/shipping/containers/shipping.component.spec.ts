@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
 import { ShippingContainer } from './shipping.component';
-import { Address } from '../../../interfaces/models/address';
+import { ShippingAddress } from '../models/shipping-address';
 import { UpdateShipping } from '../actions/shipping.actions';
 import * as fromShipping from '../reducers';
 import { ShippingFactory } from '../testing/factories/shipping.factory';
@@ -12,7 +12,7 @@ describe('ShippingContainer', () => {
   let component: ShippingContainer;
   let fixture: ComponentFixture<ShippingContainer>;
   let store;
-  let initialShipping: Address;
+  let initialShipping: ShippingAddress;
   let shippingFactory: ShippingFactory;
 
   beforeEach(async(() => {

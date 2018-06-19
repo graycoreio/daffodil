@@ -1,7 +1,7 @@
 import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
 import * as fromShipping from './shipping.reducer';
-import { Address } from '../../../interfaces/models/address';
+import { ShippingAddress } from '../models/shipping-address';
 
 export interface ShippingState {
   shipping: fromShipping.State;
@@ -25,7 +25,7 @@ export const shippingStateSelector = createSelector(
   (state: ShippingState) => state.shipping
 )
 
-export const selectShippingValueState: MemoizedSelector<object, Address> = createSelector(
+export const selectShippingValueState: MemoizedSelector<object, ShippingAddress> = createSelector(
   shippingStateSelector,
   fromShipping.getShipping
 )

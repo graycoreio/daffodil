@@ -4,14 +4,14 @@ import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
 import * as fromShipping from './index';
 import { ShippingFactory } from "../testing/factories/shipping.factory";
-import { Address } from "../../../interfaces/models/address";
+import { ShippingAddress } from '../models/shipping-address';
 import { UpdateShipping } from "../actions/shipping.actions";
 
 describe('selectShippingState', () => {
 
   let store: Store<fromShipping.ShippingState>;
   let shippingFactory: ShippingFactory = new ShippingFactory();
-  let stubShipping: Address;
+  let stubShipping: ShippingAddress;
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({

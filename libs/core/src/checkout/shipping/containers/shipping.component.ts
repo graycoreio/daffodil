@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Store, select } from '@ngrx/store';
 
-import { Address } from '../../../interfaces/models/address';
+import { ShippingAddress } from '../models/shipping-address';
 import * as fromShipping from '../reducers';
 import { UpdateShipping } from '../actions/shipping.actions';
 
@@ -15,7 +15,7 @@ import { UpdateShipping } from '../actions/shipping.actions';
 })
 export class ShippingContainer implements OnInit {
   
-  shipping$: Observable<Address>;
+  shipping$: Observable<ShippingAddress>;
 
   constructor(
     private store: Store<fromShipping.State>
@@ -27,7 +27,7 @@ export class ShippingContainer implements OnInit {
     );
   }
 
-  updateShipping(address: Address) {
+  updateShipping(address: ShippingAddress) {
     this.store.dispatch(new UpdateShipping(address));
   }
 }
