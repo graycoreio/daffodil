@@ -5,15 +5,18 @@ import { DaffodilConfig } from './config/model';
 import { DaffodilConfigService, DaffodilConfigServiceFactory } from './config/daffodil-config.service';
 import { _DAFFODIL_CONFIG } from './tokens';
 import { CoreCartModule } from './cart/cart.module';
+import { CoreCheckoutModule } from './checkout/checkout.module';
 
 @NgModule({
   imports: [
     CoreProductModule,
-    CoreCartModule
+    CoreCartModule,
+    CoreCheckoutModule
   ],
   exports: [
     CoreProductModule,
-    CoreCartModule
+    CoreCartModule,
+    CoreCheckoutModule
   ]
 })
 export class DaffodilModule {
