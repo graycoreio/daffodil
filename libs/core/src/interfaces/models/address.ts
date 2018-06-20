@@ -1,5 +1,4 @@
 export interface Address {
-  email: string;
   firstname: string;
   lastname: string;
   street: string;
