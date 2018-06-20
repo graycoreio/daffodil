@@ -1,12 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShippingComponent } from './shipping.component';
-import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { Component } from '@angular/core';
+import { ShippingAddress } from '@daffodil/core';
+
+@Component({'template': '<shipping [shippingInfo]="shippingInfoValue" (updateShipping)="updateShippingFunction($event)"></shipping>'})
+class TestingShippingComponentWrapper {
+  shippingInfoValue: ShippingAddress;
+  updateShippingFunction: Function;
+}
 
 describe('ShippingComponent', () => {
-  let component: ShippingComponent;
-  let fixture: ComponentFixture<ShippingComponent>;
+  let component: TestingShippingComponentWrapper;
+  let fixture: ComponentFixture<TestingShippingComponentWrapper>;
+  let shippingComponent: ShippingComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -14,19 +23,25 @@ describe('ShippingComponent', () => {
         FormsModule,
         ReactiveFormsModule
       ],
-      declarations: [ ShippingComponent ]
+      declarations: [ 
+        TestingShippingComponentWrapper,
+        ShippingComponent
+      ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ShippingComponent);
+    fixture = TestBed.createComponent(TestingShippingComponentWrapper);
     component = fixture.componentInstance;
+    component.updateShippingFunction = () => {};
     fixture.detectChanges();
+
+    shippingComponent = fixture.debugElement.query(By.css('shipping')).componentInstance;
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(shippingComponent).toBeTruthy();
   });
 
   describe('first-name input', () => {
@@ -70,7 +85,7 @@ describe('ShippingComponent', () => {
     describe('when it has been touched', () => {
 
       beforeEach(() => {
-        component.form.controls.firstName.markAsTouched();
+        shippingComponent.form.controls.firstname.markAsTouched();
         fixture.detectChanges();
       });
       
@@ -88,7 +103,7 @@ describe('ShippingComponent', () => {
       describe('and has input', () => {
 
         beforeEach(() => {
-          component.firstName.setValue("firstName");
+          shippingComponent.firstname.setValue("firstName");
           fixture.detectChanges();
         });
         
@@ -144,7 +159,7 @@ describe('ShippingComponent', () => {
     describe('when it has been touched', () => {
 
       beforeEach(() => {
-        component.form.controls.lastName.markAsTouched();
+        shippingComponent.form.controls.lastname.markAsTouched();
         fixture.detectChanges();
       });
       
@@ -162,7 +177,7 @@ describe('ShippingComponent', () => {
       describe('and has input', () => {
 
         beforeEach(() => {
-          component.lastName.setValue("lastName");
+          shippingComponent.lastname.setValue("lastName");
           fixture.detectChanges();
         });
         
@@ -177,12 +192,12 @@ describe('ShippingComponent', () => {
     });
   });
 
-  describe('address input', () => {
+  describe('street input', () => {
       
-    let addressInput;
+    let streetInput;
 
     beforeEach(() => {
-      addressInput = fixture.debugElement.query(By.css('.shipping__address'));
+      streetInput = fixture.debugElement.query(By.css('.shipping__street'));
     });
     
     describe('when it has not been touched', () => {
@@ -190,11 +205,11 @@ describe('ShippingComponent', () => {
       describe('and has no input', () => {
         
         it('should not have the error class', () => {
-          expect(addressInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
+          expect(streetInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
         });
 
         it('should not have the valid class', () => {
-          expect(addressInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+          expect(streetInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
         });
 
         describe('and form is submitted', () => {
@@ -205,11 +220,11 @@ describe('ShippingComponent', () => {
           });
         
           it('should have the error class', () => {
-            expect(addressInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
+            expect(streetInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
           });
   
           it('should not have the valid class', () => {
-            expect(addressInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+            expect(streetInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
           });
         });
       });
@@ -218,34 +233,34 @@ describe('ShippingComponent', () => {
     describe('when it has been touched', () => {
 
       beforeEach(() => {
-        component.form.controls.address.markAsTouched();
+        shippingComponent.form.controls.street.markAsTouched();
         fixture.detectChanges();
       });
       
       describe('and has no input', () => {
         
         it('should have the error class', () => {
-          expect(addressInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
+          expect(streetInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
         });
 
         it('should not have the valid class', () => {
-          expect(addressInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+          expect(streetInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
         });
       });
 
       describe('and has input', () => {
 
         beforeEach(() => {
-          component.address.setValue("address");
+          shippingComponent.street.setValue("street");
           fixture.detectChanges();
         });
         
         it('should not have the error class', () => {
-          expect(addressInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
+          expect(streetInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
         });
 
         it('should have the valid class', () => {
-          expect(addressInput.nativeElement.classList.contains('shipping__valid')).toBeTruthy();
+          expect(streetInput.nativeElement.classList.contains('shipping__valid')).toBeTruthy();
         });
       });
     });
@@ -292,7 +307,7 @@ describe('ShippingComponent', () => {
     describe('when it has been touched', () => {
 
       beforeEach(() => {
-        component.form.controls.city.markAsTouched();
+        shippingComponent.form.controls.city.markAsTouched();
         fixture.detectChanges();
       });
       
@@ -310,7 +325,7 @@ describe('ShippingComponent', () => {
       describe('and has input', () => {
 
         beforeEach(() => {
-          component.city.setValue("city");
+          shippingComponent.city.setValue("city");
           fixture.detectChanges();
         });
         
@@ -334,7 +349,7 @@ describe('ShippingComponent', () => {
     });
 
     it('should have a default value of "State"', () => {
-      expect(component.form.controls.state.value).toEqual('State');
+      expect(shippingComponent.form.controls.state.value).toEqual('State');
     });
     
     describe('when it has not been touched', () => {
@@ -370,7 +385,7 @@ describe('ShippingComponent', () => {
     describe('when it has been touched', () => {
 
       beforeEach(() => {
-        component.form.controls.state.markAsTouched();
+        shippingComponent.form.controls.state.markAsTouched();
         fixture.detectChanges();
       });
       
@@ -388,7 +403,7 @@ describe('ShippingComponent', () => {
       describe('and does not have the default input', () => {
 
         beforeEach(() => {
-          component.state.setValue("not default");
+          shippingComponent.state.setValue("not default");
           fixture.detectChanges();
         });
         
@@ -403,12 +418,12 @@ describe('ShippingComponent', () => {
     });
   });
 
-  describe('zip input', () => {
+  describe('postcode input', () => {
       
-    let zipInput;
+    let postcodeInput;
 
     beforeEach(() => {
-      zipInput = fixture.debugElement.query(By.css('.shipping__zip'));
+      postcodeInput = fixture.debugElement.query(By.css('.shipping__postcode'));
     });
     
     describe('when it has not been touched', () => {
@@ -416,11 +431,11 @@ describe('ShippingComponent', () => {
       describe('and has no input', () => {
         
         it('should not have the error class', () => {
-          expect(zipInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
+          expect(postcodeInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
         });
 
         it('should not have the valid class', () => {
-          expect(zipInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+          expect(postcodeInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
         });
 
         describe('and form is submitted', () => {
@@ -431,11 +446,11 @@ describe('ShippingComponent', () => {
           });
         
           it('should have the error class', () => {
-            expect(zipInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
+            expect(postcodeInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
           });
   
           it('should not have the valid class', () => {
-            expect(zipInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+            expect(postcodeInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
           });
         });
       });
@@ -444,45 +459,45 @@ describe('ShippingComponent', () => {
     describe('when it has been touched', () => {
 
       beforeEach(() => {
-        component.form.controls.zip.markAsTouched();
+        shippingComponent.form.controls.postcode.markAsTouched();
         fixture.detectChanges();
       });
       
       describe('and has no input', () => {
         
         it('should have the error class', () => {
-          expect(zipInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
+          expect(postcodeInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
         });
 
         it('should not have the valid class', () => {
-          expect(zipInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+          expect(postcodeInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
         });
       });
 
       describe('and has input', () => {
 
         beforeEach(() => {
-          component.zip.setValue("zip");
+          shippingComponent.postcode.setValue("postcode");
           fixture.detectChanges();
         });
         
         it('should not have the error class', () => {
-          expect(zipInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
+          expect(postcodeInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
         });
 
         it('should have the valid class', () => {
-          expect(zipInput.nativeElement.classList.contains('shipping__valid')).toBeTruthy();
+          expect(postcodeInput.nativeElement.classList.contains('shipping__valid')).toBeTruthy();
         });
       });
     });
   });
 
-  describe('phone input', () => {
+  describe('telephone input', () => {
       
-    let phoneInput;
+    let telephoneInput;
 
     beforeEach(() => {
-      phoneInput = fixture.debugElement.query(By.css('.shipping__phone'));
+      telephoneInput = fixture.debugElement.query(By.css('.shipping__telephone'));
     });
     
     describe('when it has not been touched', () => {
@@ -490,11 +505,11 @@ describe('ShippingComponent', () => {
       describe('and has no input', () => {
         
         it('should not have the error class', () => {
-          expect(phoneInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
+          expect(telephoneInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
         });
 
         it('should not have the valid class', () => {
-          expect(phoneInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+          expect(telephoneInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
         });
 
         describe('and form is submitted', () => {
@@ -505,11 +520,11 @@ describe('ShippingComponent', () => {
           });
         
           it('should have the error class', () => {
-            expect(phoneInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
+            expect(telephoneInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
           });
   
           it('should not have the valid class', () => {
-            expect(phoneInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+            expect(telephoneInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
           });
         });
       });
@@ -518,101 +533,181 @@ describe('ShippingComponent', () => {
     describe('when it has been touched', () => {
 
       beforeEach(() => {
-        component.form.controls.phone.markAsTouched();
+        shippingComponent.form.controls.telephone.markAsTouched();
         fixture.detectChanges();
       });
       
       describe('and has no input', () => {
         
         it('should have the error class', () => {
-          expect(phoneInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
+          expect(telephoneInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
         });
 
         it('should not have the valid class', () => {
-          expect(phoneInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+          expect(telephoneInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
         });
       });
 
       describe('and has input', () => {
 
         beforeEach(() => {
-          component.phone.setValue("phone");
+          shippingComponent.telephone.setValue("telephone");
           fixture.detectChanges();
         });
         
         it('should not have the error class', () => {
-          expect(phoneInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
+          expect(telephoneInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
         });
 
         it('should have the valid class', () => {
-          expect(phoneInput.nativeElement.classList.contains('shipping__valid')).toBeTruthy();
+          expect(telephoneInput.nativeElement.classList.contains('shipping__valid')).toBeTruthy();
         });
       });
     });
   });
 
-  describe('constructor', () => {
+  describe('ngOnInit', () => {
 
-    describe('initializes a form', () => {
+    describe('when shippingInfo is defined', () => {
 
-      it('with firstName', () => {
-        expect(component.form.value.firstName).toEqual('');
+      beforeEach(() => {
+        fixture = TestBed.createComponent(TestingShippingComponentWrapper);
+        component = fixture.componentInstance;
+        component.shippingInfoValue = {
+          firstname: 'test',
+          lastname: 'test',
+          street: 'test',
+          city: 'test',
+          state: 'test',
+          postcode: 'test',
+          telephone: 'test'
+        };
+        fixture.detectChanges();
+
+        shippingComponent = fixture.debugElement.query(By.css('shipping')).componentInstance;
       });
       
-      it('with lastName', () => {
-        expect(component.form.value.lastName).toEqual('');
+      it('sets form.value to shippingInfo', () => {
+        expect(<ShippingAddress>shippingComponent.form.value).toEqual(component.shippingInfoValue);
       });
+    });
+
+    describe('when shippingInfo is null', () => {
       
-      it('with address', () => {
-        expect(component.form.value.address).toEqual('');
-      });
-      
-      it('with city', () => {
-        expect(component.form.value.city).toEqual('');
-      });
-      
-      it('with state', () => {
-        expect(component.form.value.state).toEqual('State');
-      });
-      
-      it('with zip', () => {
-        expect(component.form.value.zip).toEqual('');
-      });
-      
-      it('with phone', () => {
-        expect(component.form.value.phone).toEqual('');
+      it('sets form.value to default', () => {
+        let defaultValues = {
+          firstname: '',
+          lastname: '',
+          street: '',
+          city: '',
+          state: 'State',
+          postcode: '',
+          telephone: ''
+        }
+
+        expect(shippingComponent.form.value).toEqual(defaultValues);
       });
     });
 
     describe('initializes a form control', () => {
       
       it('for firstName', () => {
-        expect(component.firstName).toEqual(jasmine.any(FormControl));
+        expect(shippingComponent.firstname).toEqual(jasmine.any(FormControl));
       });
 
       it('for lastName', () => {
-        expect(component.lastName).toEqual(jasmine.any(FormControl));
+        expect(shippingComponent.lastname).toEqual(jasmine.any(FormControl));
       });
 
-      it('for address', () => {
-        expect(component.address).toEqual(jasmine.any(FormControl));
+      it('for street', () => {
+        expect(shippingComponent.street).toEqual(jasmine.any(FormControl));
       });
 
       it('for city', () => {
-        expect(component.city).toEqual(jasmine.any(FormControl));
+        expect(shippingComponent.city).toEqual(jasmine.any(FormControl));
       });
 
       it('for state', () => {
-        expect(component.state).toEqual(jasmine.any(FormControl));
+        expect(shippingComponent.state).toEqual(jasmine.any(FormControl));
       });
 
-      it('for zip', () => {
-        expect(component.zip).toEqual(jasmine.any(FormControl));
+      it('for postcode', () => {
+        expect(shippingComponent.postcode).toEqual(jasmine.any(FormControl));
       });
 
-      it('for phone', () => {
-        expect(component.phone).toEqual(jasmine.any(FormControl));
+      it('for telephone', () => {
+        expect(shippingComponent.telephone).toEqual(jasmine.any(FormControl));
       });
+    });
+  });
+
+  describe('when submit button is clicked', () => {
+
+    beforeEach(() => {
+      spyOn(shippingComponent, 'onSubmit');
+      let submitButton = fixture.debugElement.query(By.css('button'));
+      submitButton.nativeElement.click();
+    });
+
+    it('should call onSubmit a form', () => {
+      expect(shippingComponent.onSubmit).toHaveBeenCalledWith(jasmine.any(FormGroup))
+    });
+  });
+
+  describe('onSubmit', () => {
+    
+    describe('when form is valid', () => {
+
+      beforeEach(() => {
+        fixture = TestBed.createComponent(TestingShippingComponentWrapper);
+        component = fixture.componentInstance;
+        component.shippingInfoValue = {
+          firstname: 'valid',
+          lastname: 'valid',
+          street: 'valid',
+          city: 'valid',
+          state: 'valid',
+          postcode: 'valid',
+          telephone: 'valid'
+        };
+        fixture.detectChanges();
+
+        shippingComponent = fixture.debugElement.query(By.css('shipping')).componentInstance;
+        spyOn(shippingComponent.updateShipping, 'emit');
+
+        shippingComponent.onSubmit(shippingComponent.form);
+      });
+      
+      it('should call updateShipping.emit', () => {
+        expect(shippingComponent.updateShipping.emit).toHaveBeenCalledWith(shippingComponent.form.value);
+      });
+    });
+
+    describe('when form is invalid', () => {
+      
+      it('should not call updateShipping.emit', () => {
+        spyOn(shippingComponent.updateShipping, 'emit');
+        
+        shippingComponent.onSubmit(shippingComponent.form);
+
+        expect(shippingComponent.updateShipping.emit).not.toHaveBeenCalled();
+      });
+    });
+  });
+
+  describe('when updateShipping event is emitted', () => {
+
+    let emittedValue;
+
+    beforeEach(() => {
+      emittedValue = 'emittedValue';
+      spyOn(component, 'updateShippingFunction');
+      
+      shippingComponent.updateShipping.emit(emittedValue);
+    });
+    
+    it('should call the function passed in by the host component', () => {
+      expect(component.updateShippingFunction).toHaveBeenCalledWith(emittedValue);
     });
   });
 });
