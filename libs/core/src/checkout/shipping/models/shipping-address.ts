@@ -1,5 +1,6 @@
-export interface ShippingAddress {
-  email: string;
+import { Address } from "../../../interfaces/models/address";
+
+export interface ShippingAddress extends Address {
   firstname: string;
   lastname: string;
   street: string;
