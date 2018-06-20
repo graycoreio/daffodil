@@ -2,6 +2,7 @@ export { DaffodilModule } from './daffodil.module';
 export { MockModule } from './mock/mock.module';
 export { CoreProductModule } from './product/product.module';
 export { CoreCartModule } from './cart/cart.module';
+export { CoreCheckoutModule } from './checkout/checkout.module';
 
 export { Product } from './product/model/product';
 export { ProductFactory } from './product/testing/factories/product.factory';
