@@ -6,6 +6,9 @@ import { CoreShippingModule } from './shipping/shipping.module';
   imports: [
     CommonModule,
     CoreShippingModule
+  ],
+  exports: [
+    CoreShippingModule
   ]
 })
 export class CoreCheckoutModule { }
