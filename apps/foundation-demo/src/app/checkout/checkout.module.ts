@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { CheckoutViewComponent } from './pages/checkout-view/checkout-view.component';
 import { ShippingComponent } from './components/shipping/shipping.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CoreCheckoutModule } from '@daffodil/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CoreCheckoutModule
   ],
   declarations: [
     CheckoutViewComponent,

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+
+import { ShippingAddress } from '@daffodil/core';
 
 @Component({
   selector: 'shipping',
@@ -8,38 +10,40 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 })
 export class ShippingComponent implements OnInit {
 
+  @Input() shippingInfo: ShippingAddress;
+  @Output() updateShipping: EventEmitter<any> = new EventEmitter();
+
   form: FormGroup
-  firstName: AbstractControl;
-  lastName: AbstractControl;
-  address: AbstractControl;
+  firstname: AbstractControl;
+  lastname: AbstractControl;
+  street: AbstractControl;
   city: AbstractControl;
   state: AbstractControl;
-  zip: AbstractControl;
-  phone: AbstractControl;
+  postcode: AbstractControl;
+  telephone: AbstractControl;
 
   constructor(
     private fb: FormBuilder
-  ) { 
-    this.form = fb.group({
-      'firstName': ['', Validators.required],
-      'lastName': ['', Validators.required],
-      'address': ['', Validators.required],
-      'city': ['', Validators.required],
-      'state': ['State', Validators.required],
-      'zip': ['', Validators.required],
-      'phone': ['', Validators.required]
-    });
-
-    this.firstName = this.form.controls['firstName'];
-    this.lastName = this.form.controls['lastName'];
-    this.address = this.form.controls['address'];
-    this.city = this.form.controls['city'];
-    this.state = this.form.controls['state'];
-    this.zip = this.form.controls['zip'];
-    this.phone = this.form.controls['phone'];
-  }
+  ) { }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      'firstname': [this.shippingInfo ? this.shippingInfo.firstname : '', Validators.required],
+      'lastname': [this.shippingInfo ? this.shippingInfo.lastname : '', Validators.required],
+      'street': [this.shippingInfo ? this.shippingInfo.street : '', Validators.required],
+      'city': [this.shippingInfo ? this.shippingInfo.city : '', Validators.required],
+      'state': [this.shippingInfo ? this.shippingInfo.state : 'State', Validators.required],
+      'postcode': [this.shippingInfo ? this.shippingInfo.postcode : '', Validators.required],
+      'telephone': [this.shippingInfo ? this.shippingInfo.telephone : '', Validators.required]
+    });
+
+    this.firstname = this.form.controls['firstname'];
+    this.lastname = this.form.controls['lastname'];
+    this.street = this.form.controls['street'];
+    this.city = this.form.controls['city'];
+    this.state = this.form.controls['state'];
+    this.postcode = this.form.controls['postcode'];
+    this.telephone = this.form.controls['telephone'];
   }
 
   stateSelectValues = [
@@ -47,8 +51,9 @@ export class ShippingComponent implements OnInit {
     'California'
   ];
 
-  onSubmit(value) {
-    console.log(value);
+  onSubmit(form) {
+    if(this.form.valid) {
+      this.updateShipping.emit(form.value);
+    }
   }
-
 }
