@@ -1,5 +1,7 @@
-<div class="checkout-view">
-  <div class="shipping-container" shipping-container #ShippingContainer="ShippingContainer">
-    <shipping-form [hidden]="!showShippingForm" [shippingInfo]="ShippingContainer.shipping$ | async" (updateShipping)="ShippingContainer.updateShipping($event); toggleShippingView()"></shipping-form>
+<div class="shipping-container" shipping-container #ShippingContainer="ShippingContainer">
+  <div class="shipping-container__title">
+    shipping details
   </div>
+  <shipping-form [hidden]="!showShippingForm" [shippingInfo]="ShippingContainer.shipping$ | async" (updateShipping)="ShippingContainer.updateShipping($event); toggleShippingView()"></shipping-form>
+  <shipping-summary [hidden]="showShippingForm" *ngIf="ShippingContainer.shipping$ | async" [shippingInfo]="ShippingContainer.shipping$ | async" (editShipping)="toggleShippingView()"></shipping-summary>
 </div>

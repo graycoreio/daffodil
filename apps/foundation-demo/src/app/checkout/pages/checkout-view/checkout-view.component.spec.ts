@@ -22,6 +22,12 @@ class MockShippingFormComponent {
   @Output() updateShipping: EventEmitter<any> = new EventEmitter();
 }
 
+@Component({selector: 'shipping-summary', template: ''})
+class MockShippingSummaryComponent {
+  @Input() shippingInfo: ShippingAddress;
+  @Output() editShipping: EventEmitter<any> = new EventEmitter();
+}
+
 @Component({
   selector: '[shipping-container]', 
   template: '<ng-content></ng-content>', 
@@ -32,16 +38,18 @@ class MockShippingContainer {
   updateShipping: Function = () => {};
 }
 
-describe('CheckoutViewComponent', () => {
+fdescribe('CheckoutViewComponent', () => {
   let component: CheckoutViewComponent;
   let fixture: ComponentFixture<CheckoutViewComponent>;
   let shippingFormComponent: MockShippingFormComponent;
+  let shippingSummaryComponent: MockShippingSummaryComponent;
   let shippingContainer: MockShippingContainer;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
         MockShippingFormComponent,
+        MockShippingSummaryComponent,
         MockShippingContainer,
         CheckoutViewComponent
       ]
@@ -55,6 +63,7 @@ describe('CheckoutViewComponent', () => {
     fixture.detectChanges();
 
     shippingFormComponent = fixture.debugElement.query(By.css('shipping-form')).componentInstance;
+    shippingSummaryComponent = fixture.debugElement.query(By.css('shipping-summary')).componentInstance;
     shippingContainer = fixture.debugElement.query(By.css('[shipping-container]')).componentInstance;
   });
 
@@ -62,15 +71,24 @@ describe('CheckoutViewComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render shipping component', () => {
+  it('should render shipping-form component', () => {
     expect(shippingFormComponent).not.toBeNull();
   });
 
-  describe('on <shipping>', () => {
+  describe('on <shipping-form>', () => {
     
     it('should set shippingInfo to value passed by the [shipping-container]', () => {
       shippingContainer.shipping$.subscribe((shippingAddress) => {
         expect(shippingFormComponent.shippingInfo).toEqual(shippingAddress);
+      })
+    });
+  });
+
+  describe('on <shipping-summary>', () => {
+    
+    it('should set shippingInfo to value passed by the [shipping-container]', () => {
+      shippingContainer.shipping$.subscribe((shippingAddress) => {
+        expect(shippingSummaryComponent.shippingInfo).toEqual(shippingAddress);
       })
     });
   });
@@ -103,12 +121,73 @@ describe('CheckoutViewComponent', () => {
     });
   });
 
+  describe('when shippingSummaryComponent.editShipping is emitted', () => {
+    
+    it('should call toggleShippingView', () => {
+      spyOn(component, 'toggleShippingView');
+
+      shippingSummaryComponent.editShipping.emit();
+      
+      expect(component.toggleShippingView).toHaveBeenCalled();
+    });
+  });
+
   describe('toggleShippingView', () => {
     
     it('should toggle showShippingForm', () => {
       component.toggleShippingView();
 
       expect(component.showShippingForm).toBeFalsy();
+    });
+  });
+
+  describe('when showShippingForm is true', () => {
+    
+    it('should show <shipping-form>', () => {
+      shippingContainer.shipping$.subscribe(() => {
+        expect(fixture.debugElement.query(By.css('shipping-form')).nativeElement.hidden).toBeFalsy();
+      });
+    });
+
+    describe('and shippingContainer.shipping is defined', () => {
+      
+      it('should hide <shipping-summary>', () => {
+        shippingContainer.shipping$.subscribe(() => {
+          expect(fixture.debugElement.query(By.css('shipping-summary')).nativeElement.hidden).toBeTruthy();
+        })
+      });
+    });
+
+    describe('and shippingContainer.shipping is null', () => {
+      
+      it('should not render <shipping-summary>', () => {
+        shippingContainer.shipping$ = of(null);
+        fixture.detectChanges();
+
+        shippingContainer.shipping$.subscribe(() => {
+          expect(fixture.debugElement.query(By.css('shipping-summary'))).toBeNull();
+        })
+      });
+    });
+  });
+
+  describe('when showShippingForm is false', () => {
+
+    beforeEach(() => {
+      component.showShippingForm = false;
+      fixture.detectChanges();
+    });
+    
+    it('should not show <shipping-form>', () => {
+      shippingContainer.shipping$.subscribe(() => {
+        expect(fixture.debugElement.query(By.css('shipping-form')).nativeElement.hidden).toBeTruthy();
+      });
+    });
+
+    it('should show <shipping-summary>', () => {
+      shippingContainer.shipping$.subscribe(() => {
+        expect(fixture.debugElement.query(By.css('shipping-summary')).nativeElement.hidden).toBeFalsy();
+      });
     });
   });
 });

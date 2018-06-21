@@ -1,13 +1,4 @@
-@import 'daffodil-util';
-
 .shipping-form {
-  margin: 24px 15px;
-
-  &__title {
-    margin-bottom: 15px;
-    @include embolden();
-    @include uppercase();
-  }
 
   &__error {
     border-left: 5px solid #a94442;
