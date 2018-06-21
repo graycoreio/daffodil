@@ -1,5 +1,5 @@
 <div class="checkout-view">
   <div class="shipping-container" shipping-container #ShippingContainer="ShippingContainer">
-    <shipping-form [shippingInfo]="ShippingContainer.shipping$ | async" (updateShipping)="ShippingContainer.updateShipping($event)"></shipping-form>
+    <shipping-form [hidden]="!showShippingForm" [shippingInfo]="ShippingContainer.shipping$ | async" (updateShipping)="ShippingContainer.updateShipping($event); toggleShippingView()"></shipping-form>
   </div>
 </div>

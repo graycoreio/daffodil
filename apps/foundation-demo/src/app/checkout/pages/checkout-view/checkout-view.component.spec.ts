@@ -16,8 +16,8 @@ let stubShippingAddress: ShippingAddress = {
   telephone: ''
 }
 
-@Component({selector: 'shipping', template: ''})
-class MockShippingComponent {
+@Component({selector: 'shipping-form', template: ''})
+class MockShippingFormComponent {
   @Input() shippingInfo: ShippingAddress;
   @Output() updateShipping: EventEmitter<any> = new EventEmitter();
 }
@@ -35,13 +35,13 @@ class MockShippingContainer {
 describe('CheckoutViewComponent', () => {
   let component: CheckoutViewComponent;
   let fixture: ComponentFixture<CheckoutViewComponent>;
-  let shippingComponent: MockShippingComponent;
+  let shippingFormComponent: MockShippingFormComponent;
   let shippingContainer: MockShippingContainer;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        MockShippingComponent,
+        MockShippingFormComponent,
         MockShippingContainer,
         CheckoutViewComponent
       ]
@@ -54,7 +54,7 @@ describe('CheckoutViewComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    shippingComponent = fixture.debugElement.query(By.css('shipping')).componentInstance;
+    shippingFormComponent = fixture.debugElement.query(By.css('shipping-form')).componentInstance;
     shippingContainer = fixture.debugElement.query(By.css('[shipping-container]')).componentInstance;
   });
 
@@ -63,31 +63,52 @@ describe('CheckoutViewComponent', () => {
   });
 
   it('should render shipping component', () => {
-    expect(shippingComponent).not.toBeNull();
+    expect(shippingFormComponent).not.toBeNull();
   });
 
   describe('on <shipping>', () => {
     
     it('should set shippingInfo to value passed by the [shipping-container]', () => {
       shippingContainer.shipping$.subscribe((shippingAddress) => {
-        expect(shippingComponent.shippingInfo).toEqual(shippingAddress);
+        expect(shippingFormComponent.shippingInfo).toEqual(shippingAddress);
       })
     });
   });
 
-  describe('when shippingComponent.updateShipping is emitted', () => {
+  describe('ngOnInit', () => {
+    
+    it('should set showShippingForm to true', () => {
+      expect(component.showShippingForm).toBeTruthy();
+    });
+  });
+
+  describe('when shippingFormComponent.updateShipping is emitted', () => {
 
     let emittedValue;
 
     beforeEach(() => {
       emittedValue = 'emittedValue';
       spyOn(shippingContainer, 'updateShipping');
+      spyOn(component, 'toggleShippingView');
 
-      shippingComponent.updateShipping.emit(emittedValue);
+      shippingFormComponent.updateShipping.emit(emittedValue);
     });
     
     it('should call shippingContainer.updateShipping', () => {
       expect(shippingContainer.updateShipping).toHaveBeenCalledWith(emittedValue);
+    });
+
+    it('should call toggleShippingView', () => {
+      expect(component.toggleShippingView).toHaveBeenCalled();
+    });
+  });
+
+  describe('toggleShippingView', () => {
+    
+    it('should toggle showShippingForm', () => {
+      component.toggleShippingView();
+
+      expect(component.showShippingForm).toBeFalsy();
     });
   });
 });
