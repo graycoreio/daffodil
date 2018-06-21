@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { ShippingAddress } from '@daffodil/core';
 
-@Component({'template': '<shipping [shippingInfo]="shippingInfoValue" (updateShipping)="updateShippingFunction($event)"></shipping>'})
+@Component({'template': '<shipping-form [shippingInfo]="shippingInfoValue" (updateShipping)="updateShippingFunction($event)"></shipping-form>'})
 class TestingShippingFormComponentWrapper {
   shippingInfoValue: ShippingAddress;
   updateShippingFunction: Function;
@@ -15,7 +15,7 @@ class TestingShippingFormComponentWrapper {
 describe('ShippingFormComponent', () => {
   let component: TestingShippingFormComponentWrapper;
   let fixture: ComponentFixture<TestingShippingFormComponentWrapper>;
-  let shippingComponent: ShippingFormComponent;
+  let shippingFormComponent: ShippingFormComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -37,11 +37,11 @@ describe('ShippingFormComponent', () => {
     component.updateShippingFunction = () => {};
     fixture.detectChanges();
 
-    shippingComponent = fixture.debugElement.query(By.css('shipping')).componentInstance;
+    shippingFormComponent = fixture.debugElement.query(By.css('shipping-form')).componentInstance;
   });
 
   it('should create', () => {
-    expect(shippingComponent).toBeTruthy();
+    expect(shippingFormComponent).toBeTruthy();
   });
 
   describe('first-name input', () => {
@@ -49,7 +49,7 @@ describe('ShippingFormComponent', () => {
     let firstNameInput;
 
     beforeEach(() => {
-      firstNameInput = fixture.debugElement.query(By.css('.shipping__first-name'));
+      firstNameInput = fixture.debugElement.query(By.css('.shipping-form__first-name'));
     });
     
     describe('when it has not been touched', () => {
@@ -57,11 +57,11 @@ describe('ShippingFormComponent', () => {
       describe('and has no input', () => {
         
         it('should not have the error class', () => {
-          expect(firstNameInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
+          expect(firstNameInput.nativeElement.classList.contains('shipping-form__error')).toBeFalsy();
         });
 
         it('should not have the valid class', () => {
-          expect(firstNameInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+          expect(firstNameInput.nativeElement.classList.contains('shipping-form__valid')).toBeFalsy();
         });
 
         describe('and form is submitted', () => {
@@ -72,11 +72,11 @@ describe('ShippingFormComponent', () => {
           });
         
           it('should have the error class', () => {
-            expect(firstNameInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
+            expect(firstNameInput.nativeElement.classList.contains('shipping-form__error')).toBeTruthy();
           });
   
           it('should not have the valid class', () => {
-            expect(firstNameInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+            expect(firstNameInput.nativeElement.classList.contains('shipping-form__valid')).toBeFalsy();
           });
         });
       });
@@ -85,34 +85,34 @@ describe('ShippingFormComponent', () => {
     describe('when it has been touched', () => {
 
       beforeEach(() => {
-        shippingComponent.form.controls.firstname.markAsTouched();
+        shippingFormComponent.form.controls.firstname.markAsTouched();
         fixture.detectChanges();
       });
       
       describe('and has no input', () => {
         
         it('should have the error class', () => {
-          expect(firstNameInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
+          expect(firstNameInput.nativeElement.classList.contains('shipping-form__error')).toBeTruthy();
         });
 
         it('should not have the valid class', () => {
-          expect(firstNameInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+          expect(firstNameInput.nativeElement.classList.contains('shipping-form__valid')).toBeFalsy();
         });
       });
 
       describe('and has input', () => {
 
         beforeEach(() => {
-          shippingComponent.firstname.setValue("firstName");
+          shippingFormComponent.firstname.setValue("firstName");
           fixture.detectChanges();
         });
         
         it('should not have the error class', () => {
-          expect(firstNameInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
+          expect(firstNameInput.nativeElement.classList.contains('shipping-form__error')).toBeFalsy();
         });
 
         it('should have the valid class', () => {
-          expect(firstNameInput.nativeElement.classList.contains('shipping__valid')).toBeTruthy();
+          expect(firstNameInput.nativeElement.classList.contains('shipping-form__valid')).toBeTruthy();
         });
       });
     });
@@ -123,7 +123,7 @@ describe('ShippingFormComponent', () => {
     let lastNameInput;
 
     beforeEach(() => {
-      lastNameInput = fixture.debugElement.query(By.css('.shipping__last-name'));
+      lastNameInput = fixture.debugElement.query(By.css('.shipping-form__last-name'));
     });
     
     describe('when it has not been touched', () => {
@@ -131,11 +131,11 @@ describe('ShippingFormComponent', () => {
       describe('and has no input', () => {
         
         it('should not have the error class', () => {
-          expect(lastNameInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
+          expect(lastNameInput.nativeElement.classList.contains('shipping-form__error')).toBeFalsy();
         });
 
         it('should not have the valid class', () => {
-          expect(lastNameInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+          expect(lastNameInput.nativeElement.classList.contains('shipping-form__valid')).toBeFalsy();
         });
 
         describe('and form is submitted', () => {
@@ -146,11 +146,11 @@ describe('ShippingFormComponent', () => {
           });
         
           it('should have the error class', () => {
-            expect(lastNameInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
+            expect(lastNameInput.nativeElement.classList.contains('shipping-form__error')).toBeTruthy();
           });
   
           it('should not have the valid class', () => {
-            expect(lastNameInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+            expect(lastNameInput.nativeElement.classList.contains('shipping-form__valid')).toBeFalsy();
           });
         });
       });
@@ -159,34 +159,34 @@ describe('ShippingFormComponent', () => {
     describe('when it has been touched', () => {
 
       beforeEach(() => {
-        shippingComponent.form.controls.lastname.markAsTouched();
+        shippingFormComponent.form.controls.lastname.markAsTouched();
         fixture.detectChanges();
       });
       
       describe('and has no input', () => {
         
         it('should have the error class', () => {
-          expect(lastNameInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
+          expect(lastNameInput.nativeElement.classList.contains('shipping-form__error')).toBeTruthy();
         });
 
         it('should not have the valid class', () => {
-          expect(lastNameInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+          expect(lastNameInput.nativeElement.classList.contains('shipping-form__valid')).toBeFalsy();
         });
       });
 
       describe('and has input', () => {
 
         beforeEach(() => {
-          shippingComponent.lastname.setValue("lastName");
+          shippingFormComponent.lastname.setValue("lastName");
           fixture.detectChanges();
         });
         
         it('should not have the error class', () => {
-          expect(lastNameInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
+          expect(lastNameInput.nativeElement.classList.contains('shipping-form__error')).toBeFalsy();
         });
 
         it('should have the valid class', () => {
-          expect(lastNameInput.nativeElement.classList.contains('shipping__valid')).toBeTruthy();
+          expect(lastNameInput.nativeElement.classList.contains('shipping-form__valid')).toBeTruthy();
         });
       });
     });
@@ -197,7 +197,7 @@ describe('ShippingFormComponent', () => {
     let streetInput;
 
     beforeEach(() => {
-      streetInput = fixture.debugElement.query(By.css('.shipping__street'));
+      streetInput = fixture.debugElement.query(By.css('.shipping-form__street'));
     });
     
     describe('when it has not been touched', () => {
@@ -205,11 +205,11 @@ describe('ShippingFormComponent', () => {
       describe('and has no input', () => {
         
         it('should not have the error class', () => {
-          expect(streetInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
+          expect(streetInput.nativeElement.classList.contains('shipping-form__error')).toBeFalsy();
         });
 
         it('should not have the valid class', () => {
-          expect(streetInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+          expect(streetInput.nativeElement.classList.contains('shipping-form__valid')).toBeFalsy();
         });
 
         describe('and form is submitted', () => {
@@ -220,11 +220,11 @@ describe('ShippingFormComponent', () => {
           });
         
           it('should have the error class', () => {
-            expect(streetInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
+            expect(streetInput.nativeElement.classList.contains('shipping-form__error')).toBeTruthy();
           });
   
           it('should not have the valid class', () => {
-            expect(streetInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+            expect(streetInput.nativeElement.classList.contains('shipping-form__valid')).toBeFalsy();
           });
         });
       });
@@ -233,34 +233,34 @@ describe('ShippingFormComponent', () => {
     describe('when it has been touched', () => {
 
       beforeEach(() => {
-        shippingComponent.form.controls.street.markAsTouched();
+        shippingFormComponent.form.controls.street.markAsTouched();
         fixture.detectChanges();
       });
       
       describe('and has no input', () => {
         
         it('should have the error class', () => {
-          expect(streetInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
+          expect(streetInput.nativeElement.classList.contains('shipping-form__error')).toBeTruthy();
         });
 
         it('should not have the valid class', () => {
-          expect(streetInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+          expect(streetInput.nativeElement.classList.contains('shipping-form__valid')).toBeFalsy();
         });
       });
 
       describe('and has input', () => {
 
         beforeEach(() => {
-          shippingComponent.street.setValue("street");
+          shippingFormComponent.street.setValue("street");
           fixture.detectChanges();
         });
         
         it('should not have the error class', () => {
-          expect(streetInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
+          expect(streetInput.nativeElement.classList.contains('shipping-form__error')).toBeFalsy();
         });
 
         it('should have the valid class', () => {
-          expect(streetInput.nativeElement.classList.contains('shipping__valid')).toBeTruthy();
+          expect(streetInput.nativeElement.classList.contains('shipping-form__valid')).toBeTruthy();
         });
       });
     });
@@ -271,7 +271,7 @@ describe('ShippingFormComponent', () => {
     let cityInput;
 
     beforeEach(() => {
-      cityInput = fixture.debugElement.query(By.css('.shipping__city'));
+      cityInput = fixture.debugElement.query(By.css('.shipping-form__city'));
     });
     
     describe('when it has not been touched', () => {
@@ -279,11 +279,11 @@ describe('ShippingFormComponent', () => {
       describe('and has no input', () => {
         
         it('should not have the error class', () => {
-          expect(cityInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
+          expect(cityInput.nativeElement.classList.contains('shipping-form__error')).toBeFalsy();
         });
 
         it('should not have the valid class', () => {
-          expect(cityInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+          expect(cityInput.nativeElement.classList.contains('shipping-form__valid')).toBeFalsy();
         });
 
         describe('and form is submitted', () => {
@@ -294,11 +294,11 @@ describe('ShippingFormComponent', () => {
           });
         
           it('should have the error class', () => {
-            expect(cityInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
+            expect(cityInput.nativeElement.classList.contains('shipping-form__error')).toBeTruthy();
           });
   
           it('should not have the valid class', () => {
-            expect(cityInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+            expect(cityInput.nativeElement.classList.contains('shipping-form__valid')).toBeFalsy();
           });
         });
       });
@@ -307,34 +307,34 @@ describe('ShippingFormComponent', () => {
     describe('when it has been touched', () => {
 
       beforeEach(() => {
-        shippingComponent.form.controls.city.markAsTouched();
+        shippingFormComponent.form.controls.city.markAsTouched();
         fixture.detectChanges();
       });
       
       describe('and has no input', () => {
         
         it('should have the error class', () => {
-          expect(cityInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
+          expect(cityInput.nativeElement.classList.contains('shipping-form__error')).toBeTruthy();
         });
 
         it('should not have the valid class', () => {
-          expect(cityInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+          expect(cityInput.nativeElement.classList.contains('shipping-form__valid')).toBeFalsy();
         });
       });
 
       describe('and has input', () => {
 
         beforeEach(() => {
-          shippingComponent.city.setValue("city");
+          shippingFormComponent.city.setValue("city");
           fixture.detectChanges();
         });
         
         it('should not have the error class', () => {
-          expect(cityInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
+          expect(cityInput.nativeElement.classList.contains('shipping-form__error')).toBeFalsy();
         });
 
         it('should have the valid class', () => {
-          expect(cityInput.nativeElement.classList.contains('shipping__valid')).toBeTruthy();
+          expect(cityInput.nativeElement.classList.contains('shipping-form__valid')).toBeTruthy();
         });
       });
     });
@@ -345,11 +345,11 @@ describe('ShippingFormComponent', () => {
     let stateInput;
 
     beforeEach(() => {
-      stateInput = fixture.debugElement.query(By.css('.shipping__state'));
+      stateInput = fixture.debugElement.query(By.css('.shipping-form__state'));
     });
 
     it('should have a default value of "State"', () => {
-      expect(shippingComponent.form.controls.state.value).toEqual('State');
+      expect(shippingFormComponent.form.controls.state.value).toEqual('State');
     });
     
     describe('when it has not been touched', () => {
@@ -357,11 +357,11 @@ describe('ShippingFormComponent', () => {
       describe('and has default input', () => {
         
         it('should not have the error class', () => {
-          expect(stateInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
+          expect(stateInput.nativeElement.classList.contains('shipping-form__error')).toBeFalsy();
         });
 
         it('should not have the valid class', () => {
-          expect(stateInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+          expect(stateInput.nativeElement.classList.contains('shipping-form__valid')).toBeFalsy();
         });
 
         describe('and form is submitted', () => {
@@ -372,11 +372,11 @@ describe('ShippingFormComponent', () => {
           });
         
           it('should have the error class', () => {
-            expect(stateInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
+            expect(stateInput.nativeElement.classList.contains('shipping-form__error')).toBeTruthy();
           });
   
           it('should not have the valid class', () => {
-            expect(stateInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+            expect(stateInput.nativeElement.classList.contains('shipping-form__valid')).toBeFalsy();
           });
         });
       });
@@ -385,34 +385,34 @@ describe('ShippingFormComponent', () => {
     describe('when it has been touched', () => {
 
       beforeEach(() => {
-        shippingComponent.form.controls.state.markAsTouched();
+        shippingFormComponent.form.controls.state.markAsTouched();
         fixture.detectChanges();
       });
       
       describe('and has default input', () => {
         
         it('should have the error class', () => {
-          expect(stateInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
+          expect(stateInput.nativeElement.classList.contains('shipping-form__error')).toBeTruthy();
         });
 
         it('should not have the valid class', () => {
-          expect(stateInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+          expect(stateInput.nativeElement.classList.contains('shipping-form__valid')).toBeFalsy();
         });
       });
 
       describe('and does not have the default input', () => {
 
         beforeEach(() => {
-          shippingComponent.state.setValue("not default");
+          shippingFormComponent.state.setValue("not default");
           fixture.detectChanges();
         });
         
         it('should not have the error class', () => {
-          expect(stateInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
+          expect(stateInput.nativeElement.classList.contains('shipping-form__error')).toBeFalsy();
         });
 
         it('should have the valid class', () => {
-          expect(stateInput.nativeElement.classList.contains('shipping__valid')).toBeTruthy();
+          expect(stateInput.nativeElement.classList.contains('shipping-form__valid')).toBeTruthy();
         });
       });
     });
@@ -423,7 +423,7 @@ describe('ShippingFormComponent', () => {
     let postcodeInput;
 
     beforeEach(() => {
-      postcodeInput = fixture.debugElement.query(By.css('.shipping__postcode'));
+      postcodeInput = fixture.debugElement.query(By.css('.shipping-form__postcode'));
     });
     
     describe('when it has not been touched', () => {
@@ -431,11 +431,11 @@ describe('ShippingFormComponent', () => {
       describe('and has no input', () => {
         
         it('should not have the error class', () => {
-          expect(postcodeInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
+          expect(postcodeInput.nativeElement.classList.contains('shipping-form__error')).toBeFalsy();
         });
 
         it('should not have the valid class', () => {
-          expect(postcodeInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+          expect(postcodeInput.nativeElement.classList.contains('shipping-form__valid')).toBeFalsy();
         });
 
         describe('and form is submitted', () => {
@@ -446,11 +446,11 @@ describe('ShippingFormComponent', () => {
           });
         
           it('should have the error class', () => {
-            expect(postcodeInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
+            expect(postcodeInput.nativeElement.classList.contains('shipping-form__error')).toBeTruthy();
           });
   
           it('should not have the valid class', () => {
-            expect(postcodeInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+            expect(postcodeInput.nativeElement.classList.contains('shipping-form__valid')).toBeFalsy();
           });
         });
       });
@@ -459,34 +459,34 @@ describe('ShippingFormComponent', () => {
     describe('when it has been touched', () => {
 
       beforeEach(() => {
-        shippingComponent.form.controls.postcode.markAsTouched();
+        shippingFormComponent.form.controls.postcode.markAsTouched();
         fixture.detectChanges();
       });
       
       describe('and has no input', () => {
         
         it('should have the error class', () => {
-          expect(postcodeInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
+          expect(postcodeInput.nativeElement.classList.contains('shipping-form__error')).toBeTruthy();
         });
 
         it('should not have the valid class', () => {
-          expect(postcodeInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+          expect(postcodeInput.nativeElement.classList.contains('shipping-form__valid')).toBeFalsy();
         });
       });
 
       describe('and has input', () => {
 
         beforeEach(() => {
-          shippingComponent.postcode.setValue("postcode");
+          shippingFormComponent.postcode.setValue("postcode");
           fixture.detectChanges();
         });
         
         it('should not have the error class', () => {
-          expect(postcodeInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
+          expect(postcodeInput.nativeElement.classList.contains('shipping-form__error')).toBeFalsy();
         });
 
         it('should have the valid class', () => {
-          expect(postcodeInput.nativeElement.classList.contains('shipping__valid')).toBeTruthy();
+          expect(postcodeInput.nativeElement.classList.contains('shipping-form__valid')).toBeTruthy();
         });
       });
     });
@@ -497,7 +497,7 @@ describe('ShippingFormComponent', () => {
     let telephoneInput;
 
     beforeEach(() => {
-      telephoneInput = fixture.debugElement.query(By.css('.shipping__telephone'));
+      telephoneInput = fixture.debugElement.query(By.css('.shipping-form__telephone'));
     });
     
     describe('when it has not been touched', () => {
@@ -505,11 +505,11 @@ describe('ShippingFormComponent', () => {
       describe('and has no input', () => {
         
         it('should not have the error class', () => {
-          expect(telephoneInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
+          expect(telephoneInput.nativeElement.classList.contains('shipping-form__error')).toBeFalsy();
         });
 
         it('should not have the valid class', () => {
-          expect(telephoneInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+          expect(telephoneInput.nativeElement.classList.contains('shipping-form__valid')).toBeFalsy();
         });
 
         describe('and form is submitted', () => {
@@ -520,11 +520,11 @@ describe('ShippingFormComponent', () => {
           });
         
           it('should have the error class', () => {
-            expect(telephoneInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
+            expect(telephoneInput.nativeElement.classList.contains('shipping-form__error')).toBeTruthy();
           });
   
           it('should not have the valid class', () => {
-            expect(telephoneInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+            expect(telephoneInput.nativeElement.classList.contains('shipping-form__valid')).toBeFalsy();
           });
         });
       });
@@ -533,34 +533,34 @@ describe('ShippingFormComponent', () => {
     describe('when it has been touched', () => {
 
       beforeEach(() => {
-        shippingComponent.form.controls.telephone.markAsTouched();
+        shippingFormComponent.form.controls.telephone.markAsTouched();
         fixture.detectChanges();
       });
       
       describe('and has no input', () => {
         
         it('should have the error class', () => {
-          expect(telephoneInput.nativeElement.classList.contains('shipping__error')).toBeTruthy();
+          expect(telephoneInput.nativeElement.classList.contains('shipping-form__error')).toBeTruthy();
         });
 
         it('should not have the valid class', () => {
-          expect(telephoneInput.nativeElement.classList.contains('shipping__valid')).toBeFalsy();
+          expect(telephoneInput.nativeElement.classList.contains('shipping-form__valid')).toBeFalsy();
         });
       });
 
       describe('and has input', () => {
 
         beforeEach(() => {
-          shippingComponent.telephone.setValue("telephone");
+          shippingFormComponent.telephone.setValue("telephone");
           fixture.detectChanges();
         });
         
         it('should not have the error class', () => {
-          expect(telephoneInput.nativeElement.classList.contains('shipping__error')).toBeFalsy();
+          expect(telephoneInput.nativeElement.classList.contains('shipping-form__error')).toBeFalsy();
         });
 
         it('should have the valid class', () => {
-          expect(telephoneInput.nativeElement.classList.contains('shipping__valid')).toBeTruthy();
+          expect(telephoneInput.nativeElement.classList.contains('shipping-form__valid')).toBeTruthy();
         });
       });
     });
@@ -584,11 +584,11 @@ describe('ShippingFormComponent', () => {
         };
         fixture.detectChanges();
 
-        shippingComponent = fixture.debugElement.query(By.css('shipping')).componentInstance;
+        shippingFormComponent = fixture.debugElement.query(By.css('shipping-form')).componentInstance;
       });
       
       it('sets form.value to shippingInfo', () => {
-        expect(<ShippingAddress>shippingComponent.form.value).toEqual(component.shippingInfoValue);
+        expect(<ShippingAddress>shippingFormComponent.form.value).toEqual(component.shippingInfoValue);
       });
     });
 
@@ -605,38 +605,38 @@ describe('ShippingFormComponent', () => {
           telephone: ''
         }
 
-        expect(shippingComponent.form.value).toEqual(defaultValues);
+        expect(shippingFormComponent.form.value).toEqual(defaultValues);
       });
     });
 
     describe('initializes a form control', () => {
       
       it('for firstName', () => {
-        expect(shippingComponent.firstname).toEqual(jasmine.any(FormControl));
+        expect(shippingFormComponent.firstname).toEqual(jasmine.any(FormControl));
       });
 
       it('for lastName', () => {
-        expect(shippingComponent.lastname).toEqual(jasmine.any(FormControl));
+        expect(shippingFormComponent.lastname).toEqual(jasmine.any(FormControl));
       });
 
       it('for street', () => {
-        expect(shippingComponent.street).toEqual(jasmine.any(FormControl));
+        expect(shippingFormComponent.street).toEqual(jasmine.any(FormControl));
       });
 
       it('for city', () => {
-        expect(shippingComponent.city).toEqual(jasmine.any(FormControl));
+        expect(shippingFormComponent.city).toEqual(jasmine.any(FormControl));
       });
 
       it('for state', () => {
-        expect(shippingComponent.state).toEqual(jasmine.any(FormControl));
+        expect(shippingFormComponent.state).toEqual(jasmine.any(FormControl));
       });
 
       it('for postcode', () => {
-        expect(shippingComponent.postcode).toEqual(jasmine.any(FormControl));
+        expect(shippingFormComponent.postcode).toEqual(jasmine.any(FormControl));
       });
 
       it('for telephone', () => {
-        expect(shippingComponent.telephone).toEqual(jasmine.any(FormControl));
+        expect(shippingFormComponent.telephone).toEqual(jasmine.any(FormControl));
       });
     });
   });
@@ -644,13 +644,13 @@ describe('ShippingFormComponent', () => {
   describe('when submit button is clicked', () => {
 
     beforeEach(() => {
-      spyOn(shippingComponent, 'onSubmit');
+      spyOn(shippingFormComponent, 'onSubmit');
       let submitButton = fixture.debugElement.query(By.css('button'));
       submitButton.nativeElement.click();
     });
 
     it('should call onSubmit a form', () => {
-      expect(shippingComponent.onSubmit).toHaveBeenCalledWith(jasmine.any(FormGroup))
+      expect(shippingFormComponent.onSubmit).toHaveBeenCalledWith(jasmine.any(FormGroup))
     });
   });
 
@@ -672,25 +672,25 @@ describe('ShippingFormComponent', () => {
         };
         fixture.detectChanges();
 
-        shippingComponent = fixture.debugElement.query(By.css('shipping')).componentInstance;
-        spyOn(shippingComponent.updateShipping, 'emit');
+        shippingFormComponent = fixture.debugElement.query(By.css('shipping-form')).componentInstance;
+        spyOn(shippingFormComponent.updateShipping, 'emit');
 
-        shippingComponent.onSubmit(shippingComponent.form);
+        shippingFormComponent.onSubmit(shippingFormComponent.form);
       });
       
       it('should call updateShipping.emit', () => {
-        expect(shippingComponent.updateShipping.emit).toHaveBeenCalledWith(shippingComponent.form.value);
+        expect(shippingFormComponent.updateShipping.emit).toHaveBeenCalledWith(shippingFormComponent.form.value);
       });
     });
 
     describe('when form is invalid', () => {
       
       it('should not call updateShipping.emit', () => {
-        spyOn(shippingComponent.updateShipping, 'emit');
+        spyOn(shippingFormComponent.updateShipping, 'emit');
         
-        shippingComponent.onSubmit(shippingComponent.form);
+        shippingFormComponent.onSubmit(shippingFormComponent.form);
 
-        expect(shippingComponent.updateShipping.emit).not.toHaveBeenCalled();
+        expect(shippingFormComponent.updateShipping.emit).not.toHaveBeenCalled();
       });
     });
   });
@@ -703,7 +703,7 @@ describe('ShippingFormComponent', () => {
       emittedValue = 'emittedValue';
       spyOn(component, 'updateShippingFunction');
       
-      shippingComponent.updateShipping.emit(emittedValue);
+      shippingFormComponent.updateShipping.emit(emittedValue);
     });
     
     it('should call the function passed in by the host component', () => {
