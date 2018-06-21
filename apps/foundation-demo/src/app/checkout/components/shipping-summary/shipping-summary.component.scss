@@ -1,0 +1,17 @@
+@import 'daffodil-util';
+
+.shipping-summary {
+  font-size: $small-font-size;
+
+  & a {
+    display: block;
+    margin: 15px 0 10px 0;
+    text-decoration: underline;
+  }
+
+  &__title {
+    font-size: $global-font-size;
+    @include embolden();
+    padding: 15px 0 15px 0;
+  }
+}

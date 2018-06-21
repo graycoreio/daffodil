@@ -1,0 +1,11 @@
+@import 'daffodil-util';
+
+.shipping-container {
+  margin: 24px 15px;
+
+  &__title {
+    margin-bottom: 15px;
+    @include embolden();
+    @include uppercase();
+  }
+}

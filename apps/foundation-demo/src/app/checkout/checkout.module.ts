@@ -4,6 +4,7 @@ import { CheckoutViewComponent } from './pages/checkout-view/checkout-view.compo
 import { ShippingFormComponent } from './components/shipping-form/shipping-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreCheckoutModule } from '@daffodil/core';
+import { ShippingSummaryComponent } from './components/shipping-summary/shipping-summary.component';
 
 @NgModule({
   imports: [
@@ -14,11 +15,13 @@ import { CoreCheckoutModule } from '@daffodil/core';
   ],
   declarations: [
     CheckoutViewComponent,
-    ShippingFormComponent
+    ShippingFormComponent,
+    ShippingSummaryComponent
   ],
   exports: [
     CheckoutViewComponent,
-    ShippingFormComponent
+    ShippingFormComponent,
+    ShippingSummaryComponent
   ]
 })
 export class CheckoutModule { }
