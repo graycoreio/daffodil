@@ -1,21 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShippingComponent } from './shipping.component';
+import { ShippingFormComponent } from './shipping-form.component';
 import { FormsModule, ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { ShippingAddress } from '@daffodil/core';
 
 @Component({'template': '<shipping [shippingInfo]="shippingInfoValue" (updateShipping)="updateShippingFunction($event)"></shipping>'})
-class TestingShippingComponentWrapper {
+class TestingShippingFormComponentWrapper {
   shippingInfoValue: ShippingAddress;
   updateShippingFunction: Function;
 }
 
-describe('ShippingComponent', () => {
-  let component: TestingShippingComponentWrapper;
-  let fixture: ComponentFixture<TestingShippingComponentWrapper>;
-  let shippingComponent: ShippingComponent;
+describe('ShippingFormComponent', () => {
+  let component: TestingShippingFormComponentWrapper;
+  let fixture: ComponentFixture<TestingShippingFormComponentWrapper>;
+  let shippingComponent: ShippingFormComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -24,15 +24,15 @@ describe('ShippingComponent', () => {
         ReactiveFormsModule
       ],
       declarations: [ 
-        TestingShippingComponentWrapper,
-        ShippingComponent
+        TestingShippingFormComponentWrapper,
+        ShippingFormComponent
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestingShippingComponentWrapper);
+    fixture = TestBed.createComponent(TestingShippingFormComponentWrapper);
     component = fixture.componentInstance;
     component.updateShippingFunction = () => {};
     fixture.detectChanges();
@@ -571,7 +571,7 @@ describe('ShippingComponent', () => {
     describe('when shippingInfo is defined', () => {
 
       beforeEach(() => {
-        fixture = TestBed.createComponent(TestingShippingComponentWrapper);
+        fixture = TestBed.createComponent(TestingShippingFormComponentWrapper);
         component = fixture.componentInstance;
         component.shippingInfoValue = {
           firstname: 'test',
@@ -659,7 +659,7 @@ describe('ShippingComponent', () => {
     describe('when form is valid', () => {
 
       beforeEach(() => {
-        fixture = TestBed.createComponent(TestingShippingComponentWrapper);
+        fixture = TestBed.createComponent(TestingShippingFormComponentWrapper);
         component = fixture.componentInstance;
         component.shippingInfoValue = {
           firstname: 'valid',
