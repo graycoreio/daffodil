@@ -4,11 +4,11 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { ShippingAddress } from '@daffodil/core';
 
 @Component({
-  selector: 'shipping',
+  selector: 'shipping-form',
   templateUrl: './shipping.component.html',
   styleUrls: ['./shipping.component.scss']
 })
-export class ShippingComponent implements OnInit {
+export class ShippingFormComponent implements OnInit {
 
   @Input() shippingInfo: ShippingAddress;
   @Output() updateShipping: EventEmitter<any> = new EventEmitter();
