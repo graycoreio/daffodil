@@ -88,15 +88,4 @@ describe('ProductContainer', () => {
       expect(store.dispatch).toHaveBeenCalledWith(new UpdateQty(qty));
     });
   });
-
-  describe('addToCart', () => {
-    
-    it('should call store.dispatch', () => {
-      let productId: string;
-      let qty: number;
-      component.addToCart({productId, qty});
-
-      expect(store.dispatch).toHaveBeenCalledWith(new AddToCart({productId, qty}));
-    });
-  });
 });
