@@ -2,20 +2,20 @@ import { ShippingActionTypes, ShippingActions } from '../actions/shipping.action
 import { ShippingAddress } from '../models/shipping-address';
 
 export interface State {
-  shipping: ShippingAddress
+  shippingInfo: ShippingAddress
 }
 
 export const initialState: State = {
-  shipping: null,
+  shippingInfo: null,
 };
 
 export function reducer(state = initialState, action: ShippingActions): State {
   switch (action.type) {
-    case ShippingActionTypes.UpdateShippingAction:
-      return {...state, shipping: action.payload};
+    case ShippingActionTypes.UpdateShippingInfoAction:
+      return {...state, shippingInfo: action.payload};
     default:
       return state;
   }
 }
 
-export const getShipping = (state: State) => state.shipping;
+export const getShippingInfo = (state: State) => state.shippingInfo;

@@ -4,7 +4,7 @@ import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
 import { ShippingContainer } from './shipping.component';
 import { ShippingAddress } from '../models/shipping-address';
-import { UpdateShipping } from '../actions/shipping.actions';
+import { UpdateShippingInfo } from '../actions/shipping.actions';
 import * as fromShipping from '../reducers';
 import { ShippingFactory } from '../testing/factories/shipping.factory';
 
@@ -12,7 +12,7 @@ describe('ShippingContainer', () => {
   let component: ShippingContainer;
   let fixture: ComponentFixture<ShippingContainer>;
   let store;
-  let initialShipping: ShippingAddress;
+  let initialShippingInfo: ShippingAddress;
   let shippingFactory: ShippingFactory;
 
   beforeEach(async(() => {
@@ -33,9 +33,9 @@ describe('ShippingContainer', () => {
     store = TestBed.get(Store);
 
     shippingFactory = new ShippingFactory();
-    initialShipping = shippingFactory.create();
+    initialShippingInfo = shippingFactory.create();
 
-    spyOn(fromShipping, 'selectShippingValueState').and.returnValue(initialShipping);
+    spyOn(fromShipping, 'selectShippingInfoState').and.returnValue(initialShippingInfo);
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();
@@ -47,19 +47,19 @@ describe('ShippingContainer', () => {
 
   describe('ngInit', () => {
 
-    it('initializes shipping$', () => {
-      component.shipping$.subscribe((shipping) => {
-        expect(shipping).toEqual(initialShipping);
+    it('initializes shippingInfo$', () => {
+      component.shippingInfo$.subscribe((shippingInfo) => {
+        expect(shippingInfo).toEqual(initialShippingInfo);
       });
     });
   });
 
-  describe('updateShipping', () => {
+  describe('updateShippingInfo', () => {
     
-    it('should call store.dispatch with UpdateShipping action', () => {
-      component.updateShipping(initialShipping);
+    it('should call store.dispatch with UpdateShippingInfo action', () => {
+      component.updateShippingInfo(initialShippingInfo);
 
-      expect(store.dispatch).toHaveBeenCalledWith(new UpdateShipping(initialShipping));
+      expect(store.dispatch).toHaveBeenCalledWith(new UpdateShippingInfo(initialShippingInfo));
     });
   });
 });

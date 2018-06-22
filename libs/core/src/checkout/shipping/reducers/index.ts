@@ -25,7 +25,7 @@ export const shippingStateSelector = createSelector(
   (state: ShippingState) => state.shipping
 )
 
-export const selectShippingValueState: MemoizedSelector<object, ShippingAddress> = createSelector(
+export const selectShippingInfoState: MemoizedSelector<object, ShippingAddress> = createSelector(
   shippingStateSelector,
-  fromShipping.getShipping
+  fromShipping.getShippingInfo
 )

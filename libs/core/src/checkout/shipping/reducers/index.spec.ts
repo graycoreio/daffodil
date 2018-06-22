@@ -5,13 +5,13 @@ import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 import * as fromShipping from './index';
 import { ShippingFactory } from "../testing/factories/shipping.factory";
 import { ShippingAddress } from '../models/shipping-address';
-import { UpdateShipping } from "../actions/shipping.actions";
+import { UpdateShippingInfo } from "../actions/shipping.actions";
 
 describe('selectShippingState', () => {
 
   let store: Store<fromShipping.ShippingState>;
   let shippingFactory: ShippingFactory = new ShippingFactory();
-  let stubShipping: ShippingAddress;
+  let stubShippingInfo: ShippingAddress;
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -22,16 +22,16 @@ describe('selectShippingState', () => {
       ]
     });
 
-    stubShipping = shippingFactory.create();
+    stubShippingInfo = shippingFactory.create();
     store = TestBed.get(Store);
-    store.dispatch(new UpdateShipping(stubShipping));
+    store.dispatch(new UpdateShippingInfo(stubShippingInfo));
   }));
 
   describe('selectShippingState', () => {
     
     it('selects shipping state', () => {
       let expectedShippingState = {
-        shipping: stubShipping
+        shippingInfo: stubShippingInfo
       }
 
       store.pipe(select(fromShipping.shippingStateSelector)).subscribe((shippingState) => {
@@ -40,11 +40,11 @@ describe('selectShippingState', () => {
     });
   });
 
-  describe('selectShippingValueState', () => {
+  describe('selectShippingInfoState', () => {
     
     it('selects shippingValue state', () => {
-      store.pipe(select(fromShipping.selectShippingValueState)).subscribe((shipping) => {
-        expect(shipping).toEqual(stubShipping);
+      store.pipe(select(fromShipping.selectShippingInfoState)).subscribe((shippingInfo) => {
+        expect(shippingInfo).toEqual(stubShippingInfo);
       });
     });
   });

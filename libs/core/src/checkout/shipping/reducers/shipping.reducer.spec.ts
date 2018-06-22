@@ -1,18 +1,18 @@
 import { ShippingAddress } from '../models/shipping-address';
 import { ShippingFactory } from "../testing/factories/shipping.factory";
-import { initialState, reducer, getShipping } from "../reducers/shipping.reducer";
-import { UpdateShipping } from "../actions/shipping.actions";
+import { initialState, reducer, getShippingInfo } from "../reducers/shipping.reducer";
+import { UpdateShippingInfo } from "../actions/shipping.actions";
 
 
-describe('Shipping | Shipping List Reducer', () => {
+describe('Shipping | Shipping Reducer', () => {
 
   let shippingFactory: ShippingFactory;
-  let shipping: ShippingAddress;
+  let shippingInfo: ShippingAddress;
 
   beforeEach(() => {
     shippingFactory = new ShippingFactory();
 
-    shipping = shippingFactory.create();
+    shippingInfo = shippingFactory.create();
   });
 
   describe('when an unknown action is triggered', () => {
@@ -26,25 +26,25 @@ describe('Shipping | Shipping List Reducer', () => {
     });
   });
 
-  describe('when UpdateShipping action is triggered', () => {
+  describe('when UpdateShippingInfo action is triggered', () => {
 
     let result;
 
     beforeEach(() => {
-      let shippingListLoadSuccess = new UpdateShipping(shipping);
+      let shippingListLoadSuccess = new UpdateShippingInfo(shippingInfo);
       
       result = reducer(initialState, shippingListLoadSuccess);
     });
 
-    it('sets shipping from action.payload', () => {
-      expect(result.shipping).toEqual(shipping)
+    it('sets shippingInfo from action.payload', () => {
+      expect(result.shippingInfo).toEqual(shippingInfo)
     });
   });
 
-  describe('getShipping', () => {
+  describe('getShippingInfo', () => {
     
-    it('returns shipping state', () => {
-      expect(getShipping(initialState)).toEqual(initialState.shipping);
+    it('returns shippingInfo state', () => {
+      expect(getShippingInfo(initialState)).toEqual(initialState.shippingInfo);
     });
   });
 });
