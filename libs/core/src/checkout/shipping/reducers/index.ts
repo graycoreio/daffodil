@@ -29,3 +29,8 @@ export const selectShippingInfoState: MemoizedSelector<object, ShippingAddress> 
   shippingStateSelector,
   fromShipping.getShippingInfo
 )
+
+export const selectShippingOptionState: MemoizedSelector<object, string> = createSelector(
+  shippingStateSelector,
+  fromShipping.getShippingOption
+)

@@ -4,7 +4,7 @@ import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
 import { ShippingContainer } from './shipping.component';
 import { ShippingAddress } from '../models/shipping-address';
-import { UpdateShippingInfo } from '../actions/shipping.actions';
+import { UpdateShippingInfo, UpdateShippingOption } from '../actions/shipping.actions';
 import * as fromShipping from '../reducers';
 import { ShippingFactory } from '../testing/factories/shipping.factory';
 
@@ -13,6 +13,7 @@ describe('ShippingContainer', () => {
   let fixture: ComponentFixture<ShippingContainer>;
   let store;
   let initialShippingInfo: ShippingAddress;
+  let stubShippingOption: string;
   let shippingFactory: ShippingFactory;
 
   beforeEach(async(() => {
@@ -34,8 +35,10 @@ describe('ShippingContainer', () => {
 
     shippingFactory = new ShippingFactory();
     initialShippingInfo = shippingFactory.create();
+    stubShippingOption = 'shippingOption';
 
     spyOn(fromShipping, 'selectShippingInfoState').and.returnValue(initialShippingInfo);
+    spyOn(fromShipping, 'selectShippingOptionState').and.returnValue(stubShippingOption);
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();
@@ -52,6 +55,12 @@ describe('ShippingContainer', () => {
         expect(shippingInfo).toEqual(initialShippingInfo);
       });
     });
+
+    it('initializes shippingOption$', () => {
+      component.shippingOption$.subscribe((shippingOption) => {
+        expect(shippingOption).toEqual(stubShippingOption);
+      })
+    });
   });
 
   describe('updateShippingInfo', () => {
@@ -60,6 +69,15 @@ describe('ShippingContainer', () => {
       component.updateShippingInfo(initialShippingInfo);
 
       expect(store.dispatch).toHaveBeenCalledWith(new UpdateShippingInfo(initialShippingInfo));
+    });
+  });
+
+  describe('updateShippingOption', () => {
+    
+    it('should call store.dispatch with UpdateShippingOption action', () => {
+      component.updateShippingOption(stubShippingOption);
+
+      expect(store.dispatch).toHaveBeenCalledWith(new UpdateShippingOption(stubShippingOption));
     });
   });
 });
