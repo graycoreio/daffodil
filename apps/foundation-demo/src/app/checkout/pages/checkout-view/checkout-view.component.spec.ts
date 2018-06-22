@@ -38,7 +38,7 @@ class MockShippingContainer {
   updateShipping: Function = () => {};
 }
 
-fdescribe('CheckoutViewComponent', () => {
+describe('CheckoutViewComponent', () => {
   let component: CheckoutViewComponent;
   let fixture: ComponentFixture<CheckoutViewComponent>;
   let shippingFormComponent: MockShippingFormComponent;

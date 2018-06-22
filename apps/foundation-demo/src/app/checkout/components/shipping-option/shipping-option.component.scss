@@ -1,0 +1,15 @@
+@import 'daffodil-util';
+
+.shipping-option {
+  font-size: $small-font-size;
+  padding: 15px 0 25px 0;
+
+  &__title {
+    @include embolden();
+    padding-bottom: 15px;
+  }
+
+  & input {
+    margin: 0;
+  }
+}
