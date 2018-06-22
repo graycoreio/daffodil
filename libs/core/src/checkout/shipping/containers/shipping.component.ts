@@ -6,7 +6,7 @@ import { Store, select } from '@ngrx/store';
 
 import { ShippingAddress } from '../models/shipping-address';
 import * as fromShipping from '../reducers';
-import { UpdateShipping } from '../actions/shipping.actions';
+import { UpdateShippingInfo } from '../actions/shipping.actions';
 
 @Component({
   selector: '[shipping-container]',
@@ -15,19 +15,19 @@ import { UpdateShipping } from '../actions/shipping.actions';
 })
 export class ShippingContainer implements OnInit {
   
-  shipping$: Observable<ShippingAddress>;
+  shippingInfo$: Observable<ShippingAddress>;
 
   constructor(
     private store: Store<fromShipping.State>
   ) { }
 
   ngOnInit() {
-    this.shipping$ = this.store.pipe(
-      select(fromShipping.selectShippingValueState)
+    this.shippingInfo$ = this.store.pipe(
+      select(fromShipping.selectShippingInfoState)
     );
   }
 
-  updateShipping(address: ShippingAddress) {
-    this.store.dispatch(new UpdateShipping(address));
+  updateShippingInfo(address: ShippingAddress) {
+    this.store.dispatch(new UpdateShippingInfo(address));
   }
 }
