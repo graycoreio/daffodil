@@ -15,6 +15,7 @@ let stubShippingAddress: ShippingAddress = {
   postcode: '',
   telephone: ''
 }
+let stubShippingOption: string = 'shipping option';
 
 @Component({selector: 'shipping-form', template: ''})
 class MockShippingFormComponent {
@@ -25,7 +26,9 @@ class MockShippingFormComponent {
 @Component({selector: 'shipping-summary', template: ''})
 class MockShippingSummaryComponent {
   @Input() shippingInfo: ShippingAddress;
+  @Input() shippingOption: string;
   @Output() editShippingInfo: EventEmitter<any> = new EventEmitter();
+  @Output() updateShippingOption: EventEmitter<any> = new EventEmitter();
 }
 
 @Component({
@@ -35,7 +38,9 @@ class MockShippingSummaryComponent {
 })
 class MockShippingContainer {
   shippingInfo$: Observable<ShippingAddress> = of(stubShippingAddress);
+  shippingOption$: Observable<string> = of(stubShippingOption);
   updateShippingInfo: Function = () => {};
+  updateShippingOption: Function = () => {};
 }
 
 describe('CheckoutViewComponent', () => {
@@ -89,7 +94,13 @@ describe('CheckoutViewComponent', () => {
     it('should set shippingInfo to value passed by the [shipping-container]', () => {
       shippingContainer.shippingInfo$.subscribe((shippingInfo) => {
         expect(shippingSummaryComponent.shippingInfo).toEqual(shippingInfo);
-      })
+      });
+    });
+
+    it('should set shippingOption to value passed by the [shipping-container]', () => {
+      shippingContainer.shippingOption$.subscribe((shippingOption) => {
+        expect(shippingSummaryComponent.shippingOption).toEqual(shippingOption);
+      });
     });
   });
 
@@ -129,6 +140,17 @@ describe('CheckoutViewComponent', () => {
       shippingSummaryComponent.editShippingInfo.emit();
       
       expect(component.toggleShippingView).toHaveBeenCalled();
+    });
+  });
+
+  describe('when shippingSummaryComponent.updateShippingOption is emitted', () => {
+    
+    it('should call ShippingContainer.updateShippingOption', () => {
+      spyOn(shippingContainer, 'updateShippingOption');
+
+      shippingSummaryComponent.updateShippingOption.emit(stubShippingOption);
+      
+      expect(shippingContainer.updateShippingOption).toHaveBeenCalledWith(stubShippingOption);
     });
   });
 

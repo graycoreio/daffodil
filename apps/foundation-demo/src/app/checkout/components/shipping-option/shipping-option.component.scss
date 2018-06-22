@@ -2,14 +2,21 @@
 
 .shipping-option {
   font-size: $small-font-size;
-  padding: 15px 0 25px 0;
+  margin: 15px 0 25px 0;
 
   &__title {
     @include embolden();
-    padding-bottom: 15px;
+  }
+
+  &__radio {
+    width: fit-content;
   }
 
   & input {
     margin: 0;
+  }
+
+  & label {
+    margin-right: 0;
   }
 }

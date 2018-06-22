@@ -1,9 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShippingSummaryComponent } from './shipping-summary.component';
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ShippingAddress } from '@daffodil/core';
 import { By } from '@angular/platform-browser';
+import { ShippingOptionComponent } from '../shipping-option/shipping-option.component';
 
 let stubShippingAddress = {
   firstname: 'firstname',
@@ -14,20 +15,27 @@ let stubShippingAddress = {
   postcode: 'postcode',
   telephone: 'telephone'
 };
+let stubShippingOption = 'shipping option';
 
 @Component({selector: 'shipping-option', template: ''})
-class MockShippingOptionComponent {}
+class MockShippingOptionComponent {
+  @Input() shippingOption: string;
+  @Output() updateShippingOption: EventEmitter<any> = new EventEmitter();
+}
 
-@Component({template: '<shipping-summary [shippingInfo]="shippingInfoValue" (editShippingInfo)="editShippingInfoFunction()"></shipping-summary>'})
+@Component({template: '<shipping-summary [shippingInfo]="shippingInfoValue" (editShippingInfo)="editShippingInfoFunction()" [shippingOption]="shippingOptionValue" (updateShippingOption)="updateShippingOptionFunction($event)"></shipping-summary>'})
 class TestShippingSummaryWrapper {
   shippingInfoValue: ShippingAddress = stubShippingAddress;
+  shippingOptionValue: string = stubShippingOption;
   editShippingInfoFunction: Function = () => {};
+  updateShippingOptionFunction: Function = () => {};
 }
 
 describe('ShippingSummaryComponent', () => {
   let component: TestShippingSummaryWrapper;
   let fixture: ComponentFixture<TestShippingSummaryWrapper>;
   let shippingSummaryComponent: ShippingSummaryComponent;
+  let shippingOptionComponent: ShippingOptionComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -46,6 +54,7 @@ describe('ShippingSummaryComponent', () => {
     fixture.detectChanges();
 
     shippingSummaryComponent = fixture.debugElement.query(By.css('shipping-summary')).componentInstance;
+    shippingOptionComponent = fixture.debugElement.query(By.css('shipping-option')).componentInstance;
   });
 
   it('should create', () => {
@@ -54,6 +63,28 @@ describe('ShippingSummaryComponent', () => {
 
   it('should be able to take shippingInfo', () => {
     expect(shippingSummaryComponent.shippingInfo).toEqual(stubShippingAddress);
+  });
+
+  it('should be able to take shippingOption', () => {
+    expect(shippingSummaryComponent.shippingOption).toEqual(stubShippingOption);
+  });
+
+  describe('on <shipping-option>', () => {
+    
+    it('should set shippingOption', () => {
+      expect(shippingOptionComponent.shippingOption).toEqual(stubShippingOption);
+    });
+  });
+
+  describe('when shippingOption.updateShippingOption is emitted', () => {
+    
+    it('should call onUpdateShippingOption', () => {
+      spyOn(shippingSummaryComponent, 'onUpdateShippingOption');
+
+      shippingOptionComponent.updateShippingOption.emit(stubShippingOption);
+
+      expect(shippingSummaryComponent.onUpdateShippingOption).toHaveBeenCalledWith(stubShippingOption);
+    });
   });
 
   describe('when edit anchor tag is clicked', () => {
@@ -86,6 +117,28 @@ describe('ShippingSummaryComponent', () => {
       shippingSummaryComponent.editShippingInfo.emit();
 
       expect(component.editShippingInfoFunction).toHaveBeenCalled();
+    });
+  });
+
+  describe('onUpdateShippingOption', () => {
+    
+    it('should call updateShippingOption.emit', () => {
+      spyOn(shippingSummaryComponent.updateShippingOption, 'emit');
+
+      shippingSummaryComponent.onUpdateShippingOption(stubShippingOption);
+
+      expect(shippingSummaryComponent.updateShippingOption.emit).toHaveBeenCalledWith(stubShippingOption);
+    });
+  });
+
+  describe('when updateShippingOption is emitted', () => {
+
+    it('should call updateShippingOptionFunction', () => {
+      spyOn(component, 'updateShippingOptionFunction');
+
+      shippingSummaryComponent.updateShippingOption.emit(stubShippingOption);
+
+      expect(component.updateShippingOptionFunction).toHaveBeenCalledWith(stubShippingOption);
     });
   });
 });
