@@ -18,10 +18,10 @@ let stubShippingAddress = {
 @Component({selector: 'shipping-option', template: ''})
 class MockShippingOptionComponent {}
 
-@Component({template: '<shipping-summary [shippingInfo]="shippingInfoValue" (editShipping)="editShippingFunction()"></shipping-summary>'})
+@Component({template: '<shipping-summary [shippingInfo]="shippingInfoValue" (editShippingInfo)="editShippingInfoFunction()"></shipping-summary>'})
 class TestShippingSummaryWrapper {
   shippingInfoValue: ShippingAddress = stubShippingAddress;
-  editShippingFunction: Function = () => {};
+  editShippingInfoFunction: Function = () => {};
 }
 
 describe('ShippingSummaryComponent', () => {
@@ -69,23 +69,23 @@ describe('ShippingSummaryComponent', () => {
 
   describe('onEdit', () => {
     
-    it('should call editShipping.emit', () => {
-      spyOn(shippingSummaryComponent.editShipping, 'emit');
+    it('should call editShippingInfo.emit', () => {
+      spyOn(shippingSummaryComponent.editShippingInfo, 'emit');
 
       shippingSummaryComponent.onEdit();
 
-      expect(shippingSummaryComponent.editShipping.emit).toHaveBeenCalled();
+      expect(shippingSummaryComponent.editShippingInfo.emit).toHaveBeenCalled();
     });
   });
 
-  describe('when editShipping is emitted', () => {
+  describe('when editShippingInfo is emitted', () => {
 
-    it('should call editShippingFunction', () => {
-      spyOn(component, 'editShippingFunction');
+    it('should call editShippingInfoFunction', () => {
+      spyOn(component, 'editShippingInfoFunction');
 
-      shippingSummaryComponent.editShipping.emit();
+      shippingSummaryComponent.editShippingInfo.emit();
 
-      expect(component.editShippingFunction).toHaveBeenCalled();
+      expect(component.editShippingInfoFunction).toHaveBeenCalled();
     });
   });
 });

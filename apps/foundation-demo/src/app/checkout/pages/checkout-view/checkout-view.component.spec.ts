@@ -19,13 +19,13 @@ let stubShippingAddress: ShippingAddress = {
 @Component({selector: 'shipping-form', template: ''})
 class MockShippingFormComponent {
   @Input() shippingInfo: ShippingAddress;
-  @Output() updateShipping: EventEmitter<any> = new EventEmitter();
+  @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
 }
 
 @Component({selector: 'shipping-summary', template: ''})
 class MockShippingSummaryComponent {
   @Input() shippingInfo: ShippingAddress;
-  @Output() editShipping: EventEmitter<any> = new EventEmitter();
+  @Output() editShippingInfo: EventEmitter<any> = new EventEmitter();
 }
 
 @Component({
@@ -34,8 +34,8 @@ class MockShippingSummaryComponent {
   exportAs: 'ShippingContainer'
 })
 class MockShippingContainer {
-  shipping$: Observable<ShippingAddress> = of(stubShippingAddress);
-  updateShipping: Function = () => {};
+  shippingInfo$: Observable<ShippingAddress> = of(stubShippingAddress);
+  updateShippingInfo: Function = () => {};
 }
 
 describe('CheckoutViewComponent', () => {
@@ -78,8 +78,8 @@ describe('CheckoutViewComponent', () => {
   describe('on <shipping-form>', () => {
     
     it('should set shippingInfo to value passed by the [shipping-container]', () => {
-      shippingContainer.shipping$.subscribe((shippingAddress) => {
-        expect(shippingFormComponent.shippingInfo).toEqual(shippingAddress);
+      shippingContainer.shippingInfo$.subscribe((shippingInfo) => {
+        expect(shippingFormComponent.shippingInfo).toEqual(shippingInfo);
       })
     });
   });
@@ -87,8 +87,8 @@ describe('CheckoutViewComponent', () => {
   describe('on <shipping-summary>', () => {
     
     it('should set shippingInfo to value passed by the [shipping-container]', () => {
-      shippingContainer.shipping$.subscribe((shippingAddress) => {
-        expect(shippingSummaryComponent.shippingInfo).toEqual(shippingAddress);
+      shippingContainer.shippingInfo$.subscribe((shippingInfo) => {
+        expect(shippingSummaryComponent.shippingInfo).toEqual(shippingInfo);
       })
     });
   });
@@ -100,20 +100,20 @@ describe('CheckoutViewComponent', () => {
     });
   });
 
-  describe('when shippingFormComponent.updateShipping is emitted', () => {
+  describe('when shippingFormComponent.updateShippingInfo is emitted', () => {
 
     let emittedValue;
 
     beforeEach(() => {
       emittedValue = 'emittedValue';
-      spyOn(shippingContainer, 'updateShipping');
+      spyOn(shippingContainer, 'updateShippingInfo');
       spyOn(component, 'toggleShippingView');
 
-      shippingFormComponent.updateShipping.emit(emittedValue);
+      shippingFormComponent.updateShippingInfo.emit(emittedValue);
     });
     
-    it('should call shippingContainer.updateShipping', () => {
-      expect(shippingContainer.updateShipping).toHaveBeenCalledWith(emittedValue);
+    it('should call shippingContainer.updateShippingInfo', () => {
+      expect(shippingContainer.updateShippingInfo).toHaveBeenCalledWith(emittedValue);
     });
 
     it('should call toggleShippingView', () => {
@@ -121,12 +121,12 @@ describe('CheckoutViewComponent', () => {
     });
   });
 
-  describe('when shippingSummaryComponent.editShipping is emitted', () => {
+  describe('when shippingSummaryComponent.editShippingInfo is emitted', () => {
     
     it('should call toggleShippingView', () => {
       spyOn(component, 'toggleShippingView');
 
-      shippingSummaryComponent.editShipping.emit();
+      shippingSummaryComponent.editShippingInfo.emit();
       
       expect(component.toggleShippingView).toHaveBeenCalled();
     });
@@ -144,7 +144,7 @@ describe('CheckoutViewComponent', () => {
   describe('when showShippingForm is true', () => {
     
     it('should show <shipping-form>', () => {
-      shippingContainer.shipping$.subscribe(() => {
+      shippingContainer.shippingInfo$.subscribe(() => {
         expect(fixture.debugElement.query(By.css('shipping-form')).nativeElement.hidden).toBeFalsy();
       });
     });
@@ -152,19 +152,19 @@ describe('CheckoutViewComponent', () => {
     describe('and shippingContainer.shipping is defined', () => {
       
       it('should hide <shipping-summary>', () => {
-        shippingContainer.shipping$.subscribe(() => {
+        shippingContainer.shippingInfo$.subscribe(() => {
           expect(fixture.debugElement.query(By.css('shipping-summary')).nativeElement.hidden).toBeTruthy();
         })
       });
     });
 
-    describe('and shippingContainer.shipping is null', () => {
+    describe('and shippingContainer.shippingInfo is null', () => {
       
       it('should not render <shipping-summary>', () => {
-        shippingContainer.shipping$ = of(null);
+        shippingContainer.shippingInfo$ = of(null);
         fixture.detectChanges();
 
-        shippingContainer.shipping$.subscribe(() => {
+        shippingContainer.shippingInfo$.subscribe(() => {
           expect(fixture.debugElement.query(By.css('shipping-summary'))).toBeNull();
         })
       });
@@ -179,13 +179,13 @@ describe('CheckoutViewComponent', () => {
     });
     
     it('should not show <shipping-form>', () => {
-      shippingContainer.shipping$.subscribe(() => {
+      shippingContainer.shippingInfo$.subscribe(() => {
         expect(fixture.debugElement.query(By.css('shipping-form')).nativeElement.hidden).toBeTruthy();
       });
     });
 
     it('should show <shipping-summary>', () => {
-      shippingContainer.shipping$.subscribe(() => {
+      shippingContainer.shippingInfo$.subscribe(() => {
         expect(fixture.debugElement.query(By.css('shipping-summary')).nativeElement.hidden).toBeFalsy();
       });
     });

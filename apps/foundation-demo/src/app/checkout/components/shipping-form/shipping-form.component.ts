@@ -11,7 +11,7 @@ import { ShippingAddress } from '@daffodil/core';
 export class ShippingFormComponent implements OnInit {
 
   @Input() shippingInfo: ShippingAddress;
-  @Output() updateShipping: EventEmitter<any> = new EventEmitter();
+  @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
 
   form: FormGroup
   firstname: AbstractControl;
@@ -53,7 +53,7 @@ export class ShippingFormComponent implements OnInit {
 
   onSubmit(form) {
     if(this.form.valid) {
-      this.updateShipping.emit(form.value);
+      this.updateShippingInfo.emit(form.value);
     }
   }
 }
