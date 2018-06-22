@@ -3,7 +3,8 @@ import { Action } from '@ngrx/store';
 import { ShippingAddress } from '../models/shipping-address';
 
 export enum ShippingActionTypes {
-  UpdateShippingInfoAction = "[Shipping Info] Load Action"
+  UpdateShippingInfoAction = "[Shipping] Update Shipping Info Action",
+  UpdateShippingOptionAction = "[Shipping] Update Shipping Option Action"
 }
 
 export class UpdateShippingInfo implements Action {
@@ -12,5 +13,12 @@ export class UpdateShippingInfo implements Action {
   constructor(public payload: ShippingAddress) {}
 }
 
+export class UpdateShippingOption implements Action {
+  readonly type = ShippingActionTypes.UpdateShippingOptionAction;
+
+  constructor(public payload: string) {}
+}
+
 export type ShippingActions =
-    | UpdateShippingInfo;
+    | UpdateShippingInfo
+    | UpdateShippingOption;

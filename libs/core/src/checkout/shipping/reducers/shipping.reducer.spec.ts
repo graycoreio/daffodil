@@ -1,18 +1,20 @@
 import { ShippingAddress } from '../models/shipping-address';
 import { ShippingFactory } from "../testing/factories/shipping.factory";
-import { initialState, reducer, getShippingInfo } from "../reducers/shipping.reducer";
-import { UpdateShippingInfo } from "../actions/shipping.actions";
+import { initialState, reducer, getShippingInfo, getShippingOption } from "../reducers/shipping.reducer";
+import { UpdateShippingInfo, UpdateShippingOption } from "../actions/shipping.actions";
 
 
 describe('Shipping | Shipping Reducer', () => {
 
   let shippingFactory: ShippingFactory;
   let shippingInfo: ShippingAddress;
+  let shippingOption: string;
 
   beforeEach(() => {
     shippingFactory = new ShippingFactory();
 
     shippingInfo = shippingFactory.create();
+    shippingOption = 'shippingOption';
   });
 
   describe('when an unknown action is triggered', () => {
@@ -31,9 +33,9 @@ describe('Shipping | Shipping Reducer', () => {
     let result;
 
     beforeEach(() => {
-      let shippingListLoadSuccess = new UpdateShippingInfo(shippingInfo);
+      let updateShippingInfoAction = new UpdateShippingInfo(shippingInfo);
       
-      result = reducer(initialState, shippingListLoadSuccess);
+      result = reducer(initialState, updateShippingInfoAction);
     });
 
     it('sets shippingInfo from action.payload', () => {
@@ -41,10 +43,32 @@ describe('Shipping | Shipping Reducer', () => {
     });
   });
 
+  describe('when UpdateShippingOption action is triggered', () => {
+
+    let result;
+
+    beforeEach(() => {
+      let updateShippingOptionAction = new UpdateShippingOption(shippingOption);
+      
+      result = reducer(initialState, updateShippingOptionAction);
+    });
+
+    it('sets shippingOption from action.payload', () => {
+      expect(result.shippingOption).toEqual(shippingOption)
+    });
+  });
+
   describe('getShippingInfo', () => {
     
     it('returns shippingInfo state', () => {
       expect(getShippingInfo(initialState)).toEqual(initialState.shippingInfo);
+    });
+  });
+
+  describe('getShippingOption', () => {
+    
+    it('returns shippingOption state', () => {
+      expect(getShippingOption(initialState)).toEqual(initialState.shippingOption);
     });
   });
 });
