@@ -2,6 +2,15 @@
   <div class="shipping-container__title">
     shipping details
   </div>
-  <shipping-form [hidden]="!showShippingForm" [shippingInfo]="ShippingContainer.shippingInfo$ | async" (updateShippingInfo)="ShippingContainer.updateShippingInfo($event); toggleShippingView()"></shipping-form>
-  <shipping-summary [hidden]="showShippingForm" *ngIf="ShippingContainer.shippingInfo$ | async" [shippingInfo]="ShippingContainer.shippingInfo$ | async" (editShippingInfo)="toggleShippingView()"></shipping-summary>
+  <shipping-form 
+    [hidden]="!showShippingForm" 
+    [shippingInfo]="ShippingContainer.shippingInfo$ | async" 
+    (updateShippingInfo)="ShippingContainer.updateShippingInfo($event); toggleShippingView()"></shipping-form>
+  <shipping-summary 
+    [hidden]="showShippingForm" 
+    *ngIf="ShippingContainer.shippingInfo$ | async" 
+    [shippingInfo]="ShippingContainer.shippingInfo$ | async" 
+    [shippingOption]="ShippingContainer.shippingOption$ | async"
+    (editShippingInfo)="toggleShippingView()"
+    (updateShippingOption)="ShippingContainer.updateShippingOption($event)"></shipping-summary>
 </div>
