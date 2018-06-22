@@ -9,7 +9,7 @@ import { ShippingAddress } from '@daffodil/core';
 export class ShippingSummaryComponent implements OnInit {
 
   @Input() shippingInfo: ShippingAddress;
-  @Output() editShipping: EventEmitter<any> = new EventEmitter();
+  @Output() editShippingInfo: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -17,6 +17,6 @@ export class ShippingSummaryComponent implements OnInit {
   }
 
   onEdit() {
-    this.editShipping.emit();
+    this.editShippingInfo.emit();
   }
 }

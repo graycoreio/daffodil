@@ -6,10 +6,10 @@ import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { ShippingAddress } from '@daffodil/core';
 
-@Component({'template': '<shipping-form [shippingInfo]="shippingInfoValue" (updateShipping)="updateShippingFunction($event)"></shipping-form>'})
+@Component({'template': '<shipping-form [shippingInfo]="shippingInfoValue" (updateShippingInfo)="updateShippingInfoFunction($event)"></shipping-form>'})
 class TestingShippingFormComponentWrapper {
   shippingInfoValue: ShippingAddress;
-  updateShippingFunction: Function;
+  updateShippingInfoFunction: Function;
 }
 
 describe('ShippingFormComponent', () => {
@@ -34,7 +34,7 @@ describe('ShippingFormComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestingShippingFormComponentWrapper);
     component = fixture.componentInstance;
-    component.updateShippingFunction = () => {};
+    component.updateShippingInfoFunction = () => {};
     fixture.detectChanges();
 
     shippingFormComponent = fixture.debugElement.query(By.css('shipping-form')).componentInstance;
@@ -673,41 +673,41 @@ describe('ShippingFormComponent', () => {
         fixture.detectChanges();
 
         shippingFormComponent = fixture.debugElement.query(By.css('shipping-form')).componentInstance;
-        spyOn(shippingFormComponent.updateShipping, 'emit');
+        spyOn(shippingFormComponent.updateShippingInfo, 'emit');
 
         shippingFormComponent.onSubmit(shippingFormComponent.form);
       });
       
-      it('should call updateShipping.emit', () => {
-        expect(shippingFormComponent.updateShipping.emit).toHaveBeenCalledWith(shippingFormComponent.form.value);
+      it('should call updateShippingInfo.emit', () => {
+        expect(shippingFormComponent.updateShippingInfo.emit).toHaveBeenCalledWith(shippingFormComponent.form.value);
       });
     });
 
     describe('when form is invalid', () => {
       
-      it('should not call updateShipping.emit', () => {
-        spyOn(shippingFormComponent.updateShipping, 'emit');
+      it('should not call updateShippingInfo.emit', () => {
+        spyOn(shippingFormComponent.updateShippingInfo, 'emit');
         
         shippingFormComponent.onSubmit(shippingFormComponent.form);
 
-        expect(shippingFormComponent.updateShipping.emit).not.toHaveBeenCalled();
+        expect(shippingFormComponent.updateShippingInfo.emit).not.toHaveBeenCalled();
       });
     });
   });
 
-  describe('when updateShipping event is emitted', () => {
+  describe('when updateShippingInfo event is emitted', () => {
 
     let emittedValue;
 
     beforeEach(() => {
       emittedValue = 'emittedValue';
-      spyOn(component, 'updateShippingFunction');
+      spyOn(component, 'updateShippingInfoFunction');
       
-      shippingFormComponent.updateShipping.emit(emittedValue);
+      shippingFormComponent.updateShippingInfo.emit(emittedValue);
     });
     
     it('should call the function passed in by the host component', () => {
-      expect(component.updateShippingFunction).toHaveBeenCalledWith(emittedValue);
+      expect(component.updateShippingInfoFunction).toHaveBeenCalledWith(emittedValue);
     });
   });
 });
