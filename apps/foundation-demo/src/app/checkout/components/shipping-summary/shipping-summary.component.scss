@@ -3,6 +3,46 @@
 .shipping-summary {
   font-size: $small-font-size;
 
+  @include breakpoint(large) {
+    display: grid;
+    grid-template-areas: 
+      "  body       body"
+      "button free-space";
+    grid-template-columns: repeat(2, 1fr);
+
+    &__body {
+      grid-area: body;
+    }
+
+    & button {
+      grid-area: button;
+    }
+
+    &__free-space {
+      grid-area: free-space;
+    }
+  }
+
+  @include breakpoint(xlarge) {
+    display: grid;
+    grid-template-areas:
+      "  body       body       body"
+      "button free-space free-space";
+    grid-template-columns: repeat(3, 1fr);
+
+    &__body {
+      grid-area: body;
+    }
+
+    & button {
+      grid-area: button;
+    }
+
+    &__free-space {
+      grid-area: free-space;
+    }
+  }
+
   & a {
     display: block;
     margin: 15px 0 10px 0;

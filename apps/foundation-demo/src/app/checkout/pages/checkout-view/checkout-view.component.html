@@ -1,16 +1,18 @@
-<div class="shipping-container" shipping-container #ShippingContainer="ShippingContainer">
-  <div class="shipping-container__title">
-    shipping details
+<div class="checkout">
+  <div class="checkout__shipping" shipping-container #ShippingContainer="ShippingContainer">
+    <div class="checkout__shipping-title">
+      shipping details
+    </div>
+    <shipping-form 
+      [hidden]="!showShippingForm" 
+      [shippingInfo]="ShippingContainer.shippingInfo$ | async" 
+      (updateShippingInfo)="ShippingContainer.updateShippingInfo($event); toggleShippingView()"></shipping-form>
+    <shipping-summary 
+      [hidden]="showShippingForm" 
+      *ngIf="ShippingContainer.shippingInfo$ | async" 
+      [shippingInfo]="ShippingContainer.shippingInfo$ | async" 
+      [shippingOption]="ShippingContainer.shippingOption$ | async"
+      (editShippingInfo)="toggleShippingView()"
+      (updateShippingOption)="ShippingContainer.updateShippingOption($event)"></shipping-summary>
   </div>
-  <shipping-form 
-    [hidden]="!showShippingForm" 
-    [shippingInfo]="ShippingContainer.shippingInfo$ | async" 
-    (updateShippingInfo)="ShippingContainer.updateShippingInfo($event); toggleShippingView()"></shipping-form>
-  <shipping-summary 
-    [hidden]="showShippingForm" 
-    *ngIf="ShippingContainer.shippingInfo$ | async" 
-    [shippingInfo]="ShippingContainer.shippingInfo$ | async" 
-    [shippingOption]="ShippingContainer.shippingOption$ | async"
-    (editShippingInfo)="toggleShippingView()"
-    (updateShippingOption)="ShippingContainer.updateShippingOption($event)"></shipping-summary>
 </div>
