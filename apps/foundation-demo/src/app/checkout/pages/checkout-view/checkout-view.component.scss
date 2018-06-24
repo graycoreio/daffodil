@@ -1,9 +1,25 @@
 @import 'daffodil-util';
 
-.shipping-container {
+.checkout {
   margin: 24px 15px;
 
-  &__title {
+  @include breakpoint(large) {
+    display: grid;
+    margin: 50px 120px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 
+      "shipping shipping free-space";
+
+    &__shipping {
+      grid-area: shipping;
+    }
+
+    &__free-space {
+      grid-area: free-space;
+    }
+  }
+  
+  &__shipping-title {
     margin-bottom: 15px;
     @include embolden();
     @include uppercase();

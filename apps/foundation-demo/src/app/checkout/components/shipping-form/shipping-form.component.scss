@@ -1,3 +1,5 @@
+@import 'daffodil-util';
+
 .shipping-form {
 
   &__error {
@@ -6,5 +8,53 @@
 
   &__valid {
     border-left: 5px solid #42A948;
+  }
+
+  @include breakpoint(large) {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-areas: 
+      "firstname firstname firstname   lastname   lastname   lastname"
+      "   street    street    street     street     street     street"
+      "     city      city     state      state   postcode   postcode"
+      "telephone telephone telephone free-space free-space free-space"
+      "   button    button    button free-space free-space free-space";
+
+    &__first-name {
+      grid-area: firstname;
+    }
+
+    &__last-name {
+      grid-area: lastname;
+    }
+
+    &__street {
+      grid-area: street;
+    }
+
+    &__city {
+      grid-area: city;
+    }
+
+    &__state {
+      grid-area: state;
+    }
+
+    &__postcode {
+      grid-area: postcode;
+    }
+
+    &__telephone {
+      grid-area: telephone;
+    }
+
+    & button {
+      grid-area: button;
+    }
+
+    &__free-space {
+      grid-area: free-space;
+    }
   }
 }
