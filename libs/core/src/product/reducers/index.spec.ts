@@ -8,9 +8,9 @@ import { ProductFactory } from "../testing/factories/product.factory";
 import { Product } from "../model/product";
 import { ProductLoad } from "../actions/product.actions";
 
-describe('selectProductGridState', () => {
+describe('selectProductState', () => {
 
-  let store: Store<fromProduct.ProductState>;
+  let store: Store<fromProduct.State>;
   let productFactory: ProductFactory = new ProductFactory();
   let mockProduct: Product;
   
@@ -31,7 +31,7 @@ describe('selectProductGridState', () => {
 
   describe('ProductEntitiesState', () => {
     
-    describe('selectProductIds', () => {
+    describe('selectIds', () => {
     
       it('selects product ids', () => {
         store.pipe(select(fromProduct.selectProductIds)).subscribe((ids) => {
@@ -40,7 +40,7 @@ describe('selectProductGridState', () => {
       });
     });
   
-    describe('selectProductEntities', () => {
+    describe('selectEntities', () => {
       
       it('selects product entities as a dictionary object', () => {
         store.pipe(select(fromProduct.selectProductEntities)).subscribe((products) => {
@@ -49,7 +49,7 @@ describe('selectProductGridState', () => {
       });
     });
   
-    describe('selectAllProducts', () => {
+    describe('selectAll', () => {
       
       it('selects all products as an array', () => {
         store.pipe(select(fromProduct.selectAllProducts)).subscribe((products) => {
@@ -58,7 +58,7 @@ describe('selectProductGridState', () => {
       });
     });
   
-    describe('selectTotalProducts', () => {
+    describe('selectTotal', () => {
       
       it('selects the total number of products', () => {
         store.pipe(select(fromProduct.selectTotalProducts)).subscribe((numberOfProducts) => {

@@ -1,20 +1,21 @@
-import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
+import { 
+  ActionReducerMap, 
+  createSelector, 
+  createFeatureSelector,
+  MemoizedSelector 
+} from '@ngrx/store';
 
 import * as fromProductEntities from './product-entities.reducer';
 import * as fromProductGrid from './product-grid.reducer';
 import * as fromProduct from './product.reducer';
 
-export interface ProductState {
+export interface State {
   products : fromProductEntities.State;
   productGrid: fromProductGrid.State;
   product: fromProduct.State;
 }
 
-export interface State {
-  product: ProductState
-}
-
-export const reducers : ActionReducerMap<ProductState> = {
+export const reducers : ActionReducerMap<State> = {
   products: fromProductEntities.reducer,
   productGrid: fromProductGrid.reducer,
   product: fromProduct.reducer
@@ -23,14 +24,15 @@ export const reducers : ActionReducerMap<ProductState> = {
 /**
  * Product State
  */
-export const selectProductState = createFeatureSelector<ProductState>('product');
+export const selectProductState = createFeatureSelector<State>('product');
 
 /**
- * Entities
+ * Entities State
  */
+// export const selectProductEntitiesState = createFeatureSelector<fromProductEntities.State>('products');
 export const selectProductEntitiesState = createSelector(
   selectProductState,
-  (state: ProductState) => state.products
+  (state: State) => state.products
 )
 
 /**
@@ -41,6 +43,7 @@ export const selectProductEntitiesState = createSelector(
  * the total number of records. This reduces boilerplate
  * in selecting records from the entity state.
  */
+
 export const {
   selectIds: selectProductIds,
   selectEntities: selectProductEntities,
@@ -53,7 +56,7 @@ export const {
  */
 export const selectProductGridState = createSelector(
   selectProductState,
-  (state: ProductState) => state.productGrid
+  (state: State) => state.productGrid
 )
 
 export const selectProductGridLoadingState : MemoizedSelector<object, boolean> = createSelector(
@@ -66,7 +69,7 @@ export const selectProductGridLoadingState : MemoizedSelector<object, boolean> =
  */
 export const selectSelectedProductState = createSelector(
   selectProductState,
-  (state: ProductState) => state.product
+  (state: State) => state.product
 )
 
 export const selectSelectedProductId = createSelector(
@@ -87,5 +90,5 @@ export const selectSelectedProductLoadingState = createSelector(
 export const selectSelectedProduct = createSelector(
   selectProductState,
   selectSelectedProductId,
-  (state: ProductState, id: string) => state.products.entities[id]
+  (state: State, id: string) => state.products.entities[id]
 )

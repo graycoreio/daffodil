@@ -1,10 +1,6 @@
-import { Component, Input } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
-
-import { of } from 'rxjs/observable/of';
 
 import { ProductGridContainer } from './product-grid.component';
 import { ProductFactory } from '../../testing/factories/product.factory';
@@ -13,9 +9,6 @@ import { Product } from '../../model/product';
 
 import { ProductGridLoad } from '../../actions/product-grid.actions';
 import * as fromProduct from '../../reducers';
-
-
-
 
 describe('ProductGridContainer', () => {
   let component: ProductGridContainer;
