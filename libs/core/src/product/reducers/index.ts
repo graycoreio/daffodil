@@ -8,6 +8,8 @@ import {
 import * as fromProductEntities from './product-entities.reducer';
 import * as fromProductGrid from './product-grid.reducer';
 import * as fromProduct from './product.reducer';
+import { Product } from '../model/product';
+import { Dictionary } from '@ngrx/entity/src/models';
 
 export interface State {
   products : fromProductEntities.State;
@@ -44,12 +46,32 @@ export const selectProductEntitiesState = createSelector(
  * in selecting records from the entity state.
  */
 
-export const {
-  selectIds: selectProductIds,
-  selectEntities: selectProductEntities,
-  selectAll: selectAllProducts,
-  selectTotal: selectTotalProducts
-} = fromProductEntities.productAdapter.getSelectors(selectProductEntitiesState);
+// export const {
+//   selectIds: selectProductIds,
+//   selectEntities: selectProductEntities,
+//   selectAll: selectAllProducts,
+//   selectTotal: selectTotalProducts
+// } = fromProductEntities.productAdapter.getSelectors(selectProductEntitiesState);
+
+export const selectProductIds = createSelector(
+  selectProductEntitiesState,
+  fromProductEntities.selectProductIds
+);
+
+export const selectProductEntities : MemoizedSelector<object, Dictionary<Product>> = createSelector(
+  selectProductEntitiesState,
+  fromProductEntities.selectProductEntities
+);
+
+export const selectAllProducts = createSelector(
+  selectProductEntitiesState,
+  fromProductEntities.selectAllProducts
+);
+
+export const selectProductTotal = createSelector(
+  selectProductEntitiesState,
+  fromProductEntities.selectProductTotal
+);
 
 /**
  * Product Grid
@@ -87,7 +109,7 @@ export const selectSelectedProductLoadingState = createSelector(
   fromProduct.getProductLoading
 )
 
-export const selectSelectedProduct = createSelector(
+export const selectSelectedProduct : MemoizedSelector<object, Product> = createSelector(
   selectProductState,
   selectSelectedProductId,
   (state: State, id: string) => state.products.entities[id]
