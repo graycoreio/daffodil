@@ -1,7 +1,7 @@
 import { Product } from "../model/product";
 import { ProductFactory } from "../testing/factories/product.factory";
-import { initialState, reducer, productAdapter } from "../reducers/product-entities.reducer";
-import { ProductGridLoad, ProductGridLoadSuccess } from "../actions/product-grid.actions";
+import { initialState, reducer } from "../reducers/product-entities.reducer";
+import { ProductGridLoadSuccess } from "../actions/product-grid.actions";
 import { ProductLoadSuccess } from "../actions/product.actions";
 
 describe('Product | Product Entities Reducer', () => {
