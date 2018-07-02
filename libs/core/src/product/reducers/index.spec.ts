@@ -61,7 +61,7 @@ describe('selectProductState', () => {
     describe('selectTotal', () => {
       
       it('selects the total number of products', () => {
-        store.pipe(select(fromProduct.selectTotalProducts)).subscribe((numberOfProducts) => {
+        store.pipe(select(fromProduct.selectProductTotal)).subscribe((numberOfProducts) => {
           expect(numberOfProducts).toEqual(1);
         });
       });
