@@ -11,3 +11,4 @@ export { Cart } from './cart/model/cart';
 export { CartItem } from './cart/model/cart-item';
 export { CartFactory } from './cart/testing/factories/cart.factory';
 export { CartContainer } from './cart/containers/cart/cart.component';
+export { CartActionTypes, AddToCart } from './cart/actions/cart.actions';

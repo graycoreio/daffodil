@@ -10,12 +10,17 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { DesignModule } from '../design/design.module';
 import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
+import { ProductEffects } from './effects/product.effects';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   imports: [
     CommonModule,
     DesignModule,
     CoreProductModule,
+    EffectsModule.forFeature([
+      ProductEffects
+    ]),
   ],
   declarations: [
     ProductGridComponent,
@@ -31,7 +36,7 @@ import { AddToCartComponent } from './components/add-to-cart/add-to-cart.compone
     ProductViewComponent,
     ProductComponent,
     ProductCardComponent,
-    AddToCartComponent 
+    AddToCartComponent
   ]
 })
 export class ProductModule { }
