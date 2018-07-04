@@ -80,17 +80,14 @@ describe('Core | Cart | Testing | CartTestingService', () => {
     describe('when reqInfo.id is addToCart', () => {
 
       let productIdValue;
-      let qtyValue;
-      
+
       beforeEach(() => {
-        productIdValue = 'productId';
-        qtyValue = 4;
         reqInfoStub = {
           id: 'addToCart',
           req: {
             body: {
-              productId: productIdValue,
-              qty: qtyValue
+              productId: 'replaceme',
+              qty: 4
             }
           },
           utils: {
@@ -99,19 +96,46 @@ describe('Core | Cart | Testing | CartTestingService', () => {
             }
           }
         }
-        result = cartTestingService.post(reqInfoStub);
       });
 
-      it('should add an item to the cart', () => {
-        expect(result.body.items.length).toEqual(1);
+      describe('and product is unique', () => {
+
+        it('should add an item to the cart', () => {
+          reqInfoStub.req.body.productId = "addToCartTest";
+          result = cartTestingService.post(reqInfoStub);
+
+          expect(result.body.items.length).toEqual(1);
+        });
+
+        it('should set qty of the cartItem to the given qty value', () => {
+          reqInfoStub.req.body.productId = 'qtyTest';
+          reqInfoStub.req.body.qty = 2;
+          
+          result = cartTestingService.post(reqInfoStub);
+
+          expect(result.body.items[1].qty).toEqual(2);
+        });
+
+        it('should set productId of the cartItem to the given productId value', () => {
+          productIdValue = 'productIdTest';
+          reqInfoStub.req.body.productId = productIdValue;
+
+          result = cartTestingService.post(reqInfoStub);
+
+          expect(result.body.items[2].product_id).toEqual(productIdValue);
+        });
       });
 
-      it('should set productId of the cartItem to the given productId value', () => {
-        expect(result.body.items[0].product_id).toEqual(productIdValue);
-      });
+      describe('and product is not unique', () => {
+        
+        it('should add given qty to existing product', () => {
+          reqInfoStub.req.body.productId = 'qtyTest';
+          reqInfoStub.req.body.qty = 2;
+          
+          result = cartTestingService.post(reqInfoStub);
 
-      it('should set qty of the cartItem to the given qty value', () => {
-        expect(result.body.items[0].qty).toEqual(qtyValue);
+          expect(result.body.items[1].qty).toEqual(4);
+        });
       });
     });
   });
