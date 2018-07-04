@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { CartFactory } from '../../testing/factories/cart.factory';
 import { InMemoryDbService, STATUS } from 'angular-in-memory-web-api';
-import { CartItem } from '@daffodil/core';
+import { CartItem } from '../../model/cart-item';
 
 @Injectable()
 export class CartTestingService implements InMemoryDbService {
