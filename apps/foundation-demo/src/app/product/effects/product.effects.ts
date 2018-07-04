@@ -19,7 +19,6 @@ export class ProductEffects {
     ofType(CartActionTypes.AddToCartAction),
     map(() => {
       this.router.navigateByUrl('/cart');
-      console.log('test');
       return new RedirectToCartSuccess('');
     })
   )

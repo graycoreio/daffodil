@@ -18,14 +18,6 @@ export class CartFactory {
   createCartItem() : CartItem {
     return new MockCartItem();
   }
-
-  addCartItemToCart(reqBody) {
-    this.cart.items.push(new MockCartItem());
-    this.cart.items[0].item_id = reqBody.productId;
-    this.cart.items[0].qty = reqBody.qty;
-
-    return this.cart;
-  }
 }
 
 export class MockCart implements Cart {
