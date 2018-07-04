@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { By } from '@angular/platform-browser';
@@ -10,9 +10,10 @@ import { ProductViewComponent } from './product-view.component';
 
 import { Product } from '@daffodil/core';
 import { ProductFactory } from '@daffodil/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRouteStub } from '../../../testing/ActivatedRouteStub';
+import { AddToCartComponent } from '../../components/add-to-cart/add-to-cart.component';
 
 let productFactory = new ProductFactory();
 let mockProduct = productFactory.create();
@@ -36,13 +37,19 @@ class ProductContainerMock {
 
 @Component({
   selector: 'product',
-  template: ''
+  template: '<ng-content></ng-content>',
+  encapsulation: ViewEncapsulation.None
 })
 class ProductMock { 
   @Input() product: Product;
   @Input() qty: number;
-  @Output() addToCart: EventEmitter<any> = new EventEmitter();
   @Output() updateQty: EventEmitter<any> = new EventEmitter();
+}
+
+@Component({selector: 'add-to-cart', template: ''})
+class MockAddToCartComponent { 
+  @Input() additive: any;
+  @Output() addToCart: EventEmitter<any> = new EventEmitter();
 }
 
 describe('ProductViewComponent', () => {
@@ -52,6 +59,7 @@ describe('ProductViewComponent', () => {
   let activatedRoute = new ActivatedRouteStub();
   let productContainer;
   let productComponent;
+  let addToCartComponent: AddToCartComponent;
 
   beforeEach(async(() => {
     idParam = '1001';
@@ -62,7 +70,8 @@ describe('ProductViewComponent', () => {
       declarations: [ 
         ProductViewComponent,
         ProductContainerMock,
-        ProductMock
+        ProductMock,
+        MockAddToCartComponent
       ],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRoute }
@@ -83,6 +92,7 @@ describe('ProductViewComponent', () => {
 
     fixture.detectChanges();
     productComponent = fixture.debugElement.query(By.css('product'));
+    addToCartComponent = fixture.debugElement.query(By.css('add-to-cart')).componentInstance;
   });
 
   it('should create', () => {
@@ -110,15 +120,6 @@ describe('ProductViewComponent', () => {
       expect(productComponent.componentInstance.qty).toEqual(stubQty);
     });
 
-    it('should set addToCart to call function passed by product-container directive', () => {
-      spyOn(productContainer.componentInstance, 'addToCart');
-      let payload = 'test';
-
-      productComponent.componentInstance.addToCart.emit(payload);
-
-      expect(productContainer.componentInstance.addToCart).toHaveBeenCalledWith(payload);
-    });
-
     it('should set updateQty to call function passed by product-container directive', () => {
       spyOn(productContainer.componentInstance, 'updateQty');
       let payload = 4;
@@ -126,6 +127,22 @@ describe('ProductViewComponent', () => {
       productComponent.componentInstance.updateQty.emit(payload);
 
       expect(productContainer.componentInstance.updateQty).toHaveBeenCalledWith(payload);
+    });
+  });
+
+  describe('on <add-to-cart>', () => {
+    
+    it('should set additive to product passed by product-container directive', () => {
+      expect(addToCartComponent.additive).toEqual(mockProduct);
+    });
+
+    it('should set addToCart to call function passed by product-container directive', () => {
+      spyOn(productContainer.componentInstance, 'addToCart');
+      let payload = 'test';
+
+      addToCartComponent.addToCart.emit(payload);
+
+      expect(productContainer.componentInstance.addToCart).toHaveBeenCalledWith(payload);
     });
   });
 

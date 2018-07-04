@@ -1,5 +1,7 @@
 <div product-container #ProductContainer="ProductContainer" [selectedProductId]="productId" class="product-container">
-  <product [product]="ProductContainer.product$ | async" [qty]="ProductContainer.qty$ | async" (addToCart)="ProductContainer.addToCart($event)" (updateQty)="ProductContainer.updateQty($event)" *ngIf="!(ProductContainer.loading$ | async)"></product>
+  <product [product]="ProductContainer.product$ | async" [qty]="ProductContainer.qty$ | async" (updateQty)="ProductContainer.updateQty($event)" *ngIf="!(ProductContainer.loading$ | async)">
+    <add-to-cart (addToCart)="ProductContainer.addToCart($event)" [additive]="ProductContainer.product$ | async"></add-to-cart>
+  </product>
   <div *ngIf="(ProductContainer.loading$ | async)" class="product-container__loading-icon">
     <i class="fa fa-spinner fa-spin fa-5x"></i>
   </div>
