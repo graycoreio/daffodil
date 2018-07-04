@@ -8,20 +8,23 @@ import { ProductEffects } from './product.effects';
 import { AddToCart } from '@daffodil/core';
 import { RedirectToCartSuccess } from '../actions/product.actions';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
 describe('ProductEffects', () => {
   let actions$: Observable<any>;
   let effects: ProductEffects;
+  let router = {
+    get: () => {},
+    navigateByUrl: () => {}
+  }
+
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
       providers: [
         ProductEffects,
-        provideMockActions(() => actions$)
+        provideMockActions(() => actions$),
+        {provide: Router, useValue: router}
       ]
     });
 
