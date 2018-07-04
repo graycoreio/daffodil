@@ -5,15 +5,16 @@ import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 
-@Component({template: '<add-to-cart (addToCart)="eventCatcher()"></add-to-cart>'})
+@Component({template: '<add-to-cart (addToCart)="eventCatcher()" [additive]="additiveValue"></add-to-cart>'})
 class AddToCartWrapperTest {
+  additiveValue = 'additiveValue';
   eventCatcher;
 }
 
 describe('AddToCartComponent', () => {
   let component: AddToCartWrapperTest;
   let fixture: ComponentFixture<AddToCartWrapperTest>;
-  let addToCartComponent;
+  let addToCartComponent: AddToCartComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -34,34 +35,38 @@ describe('AddToCartComponent', () => {
     component.eventCatcher = () => {};
     fixture.detectChanges();
 
-    addToCartComponent = fixture.debugElement.query(By.css('add-to-cart'));
+    addToCartComponent = fixture.debugElement.query(By.css('add-to-cart')).componentInstance;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should be able to take additive as input', () => {
+    expect(addToCartComponent.additive).toEqual(component.additiveValue);
+  });
+
   describe('when add to cart button is clicked', () => {
 
     beforeEach(() => {
-      spyOn(addToCartComponent.componentInstance, 'emitAddToCart');
+      spyOn(addToCartComponent, 'emitAddToCart');
 
-      addToCartComponent.query(By.css('button')).nativeElement.click();      
+      fixture.debugElement.query(By.css('button')).nativeElement.click();      
     });
     
     it('should call emitAddToCart', () => {
-      expect(addToCartComponent.componentInstance.emitAddToCart).toHaveBeenCalled();
+      expect(addToCartComponent.emitAddToCart).toHaveBeenCalled();
     });
   });
 
   describe('emitAddToCart', () => {
     
     it('should call addToCart.emit', () => {
-      spyOn(addToCartComponent.componentInstance.addToCart, 'emit');
+      spyOn(addToCartComponent.addToCart, 'emit');
 
-      addToCartComponent.componentInstance.emitAddToCart();
+      addToCartComponent.emitAddToCart();
 
-      expect(addToCartComponent.componentInstance.addToCart.emit).toHaveBeenCalled();
+      expect(addToCartComponent.addToCart.emit).toHaveBeenCalledWith(addToCartComponent.additive);
     });
   });
 });

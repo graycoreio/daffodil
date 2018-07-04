@@ -12,11 +12,10 @@ import { Image } from '../../../design/interfaces/image';
 import { QtyDropdownComponent } from '../../../design/molecules/qty-dropdown/qty-dropdown.component';
 import { ImageGalleryComponent } from '../../../design/molecules/image-gallery/image-gallery.component';
 
-@Component({template: '<product [product]="productValue" [qty]="qtyValue" (addToCart)="addToCartFunction($event)" (updateQty)="updateQtyFunction($event)"></product>'})
+@Component({template: '<product [product]="productValue" [qty]="qtyValue" (updateQty)="updateQtyFunction($event)"></product>'})
 class ProductWrapperTest {
   productValue: Product;
   qtyValue: number;
-  addToCartFunction: Function;
   updateQtyFunction: Function;
 }
 
@@ -43,9 +42,6 @@ class MockAccordionItemComponent {
   @Input() initiallyActive: boolean;
 }
 
-@Component({selector: 'add-to-cart', template: ''})
-class MockAddToCartComponent { }
-
 describe('ProductComponent', () => {
   let component: ProductWrapperTest;
   let fixture: ComponentFixture<ProductWrapperTest>;
@@ -67,8 +63,7 @@ describe('ProductComponent', () => {
         MockQtyDropdownComponent,
         MockImageGalleryComponent,
         MockAccordionComponent,
-        MockAccordionItemComponent,
-        MockAddToCartComponent
+        MockAccordionItemComponent
       ]
     })
     .compileComponents();
@@ -82,7 +77,6 @@ describe('ProductComponent', () => {
 
     component.productValue = stubProduct;
     component.qtyValue = stubQty;
-    component.addToCartFunction = mockFunction;
     component.updateQtyFunction = mockFunction;
     fixture.detectChanges();
 
@@ -101,15 +95,6 @@ describe('ProductComponent', () => {
     expect(productComponent.qty).toEqual(stubQty);
   });
 
-  it('should call addToCartFunction when addToCart is emitted', () => {
-    let payload = 'payload';
-    spyOn(component, 'addToCartFunction');
-    
-    productComponent.addToCart.emit(payload);
-
-    expect(component.addToCartFunction).toHaveBeenCalledWith(payload);   
-  });
-
   it('should call updateQtyFunction when updateQty is emitted', () => {
     let payload = 4;
     spyOn(component, 'updateQtyFunction');
@@ -123,16 +108,6 @@ describe('ProductComponent', () => {
     
     it('should initialize qty to 1', () => {
       expect(productComponent.qty).toEqual(1);
-    });
-  });
-
-  describe('addProductToCart', () => {
-    
-    it('should call addToCart.emit', () => {
-      spyOn(productComponent.addToCart, 'emit');
-      productComponent.addProductToCart();
-
-      expect(productComponent.addToCart.emit).toHaveBeenCalledWith({productId: stubProduct.id, qty: productComponent.qty});
     });
   });
 

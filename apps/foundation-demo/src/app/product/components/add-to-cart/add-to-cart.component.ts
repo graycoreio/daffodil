@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'add-to-cart',
@@ -7,15 +7,14 @@ import { Component, Output, EventEmitter } from '@angular/core';
 })
 export class AddToCartComponent {
 
+  @Input() additive: any;
   @Output() addToCart: EventEmitter<any> = new EventEmitter();
-
-  constructor() {}
 
   onAddToCart() {
     this.emitAddToCart();
   }
 
   emitAddToCart() {
-    this.addToCart.emit();
+    this.addToCart.emit(this.additive);
   }
 }
