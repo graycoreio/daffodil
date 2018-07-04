@@ -17,10 +17,12 @@ export class CartTestingService implements InMemoryDbService {
     return reqInfo.utils.createResponse$(() => {
 
       if(reqInfo.id === "addToCart") {
-        let cartItem: CartItem = this.cartFactory.createCartItem();
-        this.cart.items.push(cartItem);
-        this.cart.items[0].product_id = reqInfo.req.body.productId;
-        this.cart.items[0].qty = reqInfo.req.body.qty;
+        let matchedProductIndex = this.getMatchedProductIndex(reqInfo.req.body.productId);  
+        if(matchedProductIndex > -1) {
+          this.addQtyToCartProduct(reqInfo.req.body.qty, matchedProductIndex);
+        } else {
+          this.addProductToCart(reqInfo.req.body);
+        }
       }
       
       return {
@@ -34,5 +36,26 @@ export class CartTestingService implements InMemoryDbService {
     return {
       cart: this.cart
     };
+  }
+
+  private getMatchedProductIndex(productId: string) {
+    for(let i = 0; i<this.cart.items.length; i++) {
+      if(productId === this.cart.items[i].product_id) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
+
+  private addQtyToCartProduct(qty: number, matchedProductIndex: number) {
+    this.cart.items[matchedProductIndex].qty += qty;
+  }
+
+  private addProductToCart(reqBody) {
+    let cartItem: CartItem = this.cartFactory.createCartItem();
+    cartItem.product_id = reqBody.productId;
+    cartItem.qty = reqBody.qty;
+    this.cart.items.push(cartItem);
   }
 }
