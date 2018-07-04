@@ -20,6 +20,6 @@ export class CartService {
   }
 
   addToCart(productId: string, qty: number): Observable<Cart> {
-    return this.http.post<Cart>(this.url, {productId, qty});
+    return this.http.post<Cart>(this.url + '/addToCart', {productId, qty});
   }
 }

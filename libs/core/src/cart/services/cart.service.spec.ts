@@ -1,8 +1,7 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { CartService } from './cart.service';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { CartTestingModule } from '../testing/cart-testing.module';
 import { DaffodilConfigService } from '../../config/daffodil-config.service';
 import { DaffodilConfigFactory } from '../../config/testing/daffodil-config.factory';
@@ -64,7 +63,7 @@ describe('Core | Cart | CartService', () => {
 
     it('should send a post request', () => {
       cartService.addToCart(productId, qty);
-      expect(http.post).toHaveBeenCalledWith(cartService.url, {productId, qty});
+      expect(http.post).toHaveBeenCalledWith(cartService.url + '/addToCart', {productId, qty});
     });
 
     it('returns the value from post request', () => {
