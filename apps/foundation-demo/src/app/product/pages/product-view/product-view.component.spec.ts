@@ -49,6 +49,7 @@ class ProductMock {
 @Component({selector: 'add-to-cart', template: ''})
 class MockAddToCartComponent { 
   @Input() additive: any;
+  @Input() qty: number;
   @Output() addToCart: EventEmitter<any> = new EventEmitter();
 }
 
@@ -134,6 +135,10 @@ describe('ProductViewComponent', () => {
     
     it('should set additive to product passed by product-container directive', () => {
       expect(addToCartComponent.additive).toEqual(mockProduct);
+    });
+    
+    it('should set qty to qty passed by product-container directive', () => {
+      expect(addToCartComponent.qty).toEqual(stubQty);
     });
 
     it('should set addToCart to call function passed by product-container directive', () => {

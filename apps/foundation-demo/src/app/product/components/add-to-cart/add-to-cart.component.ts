@@ -8,6 +8,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 export class AddToCartComponent {
 
   @Input() additive: any;
+  @Input() qty: number;
   @Output() addToCart: EventEmitter<any> = new EventEmitter();
 
   onAddToCart() {
@@ -15,6 +16,6 @@ export class AddToCartComponent {
   }
 
   emitAddToCart() {
-    this.addToCart.emit(this.additive);
+    this.addToCart.emit({productId: this.additive.id, qty: this.qty});
   }
 }

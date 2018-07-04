@@ -5,9 +5,10 @@ import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 
-@Component({template: '<add-to-cart (addToCart)="eventCatcher()" [additive]="additiveValue"></add-to-cart>'})
+@Component({template: '<add-to-cart (addToCart)="eventCatcher()" [additive]="additiveValue" [qty]="qtyValue"></add-to-cart>'})
 class AddToCartWrapperTest {
   additiveValue = 'additiveValue';
+  qtyValue = 1;
   eventCatcher;
 }
 
@@ -46,6 +47,10 @@ describe('AddToCartComponent', () => {
     expect(addToCartComponent.additive).toEqual(component.additiveValue);
   });
 
+  it('should be able to take qty as input', () => {
+    expect(addToCartComponent.qty).toEqual(component.qtyValue);
+  });
+
   describe('when add to cart button is clicked', () => {
 
     beforeEach(() => {
@@ -66,7 +71,7 @@ describe('AddToCartComponent', () => {
 
       addToCartComponent.emitAddToCart();
 
-      expect(addToCartComponent.addToCart.emit).toHaveBeenCalledWith(addToCartComponent.additive);
+      expect(addToCartComponent.addToCart.emit).toHaveBeenCalledWith({productId: addToCartComponent.additive.id, qty: addToCartComponent.qty});
     });
   });
 });
