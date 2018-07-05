@@ -2,6 +2,7 @@
 
 .shipping-summary {
   font-size: $small-font-size;
+  @include section-divider();
 
   @include breakpoint(large) {
     display: grid;

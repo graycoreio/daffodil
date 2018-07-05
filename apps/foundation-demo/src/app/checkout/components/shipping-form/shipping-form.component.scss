@@ -1,6 +1,10 @@
 @import 'daffodil-util';
 
 .shipping-form {
+  display: grid;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  @include section-divider();
 
   &__error {
     border-left: 5px solid #a94442;
@@ -10,9 +14,19 @@
     border-left: 5px solid #42A948;
   }
 
+  & input {
+    margin: 0;
+  }
+
+  & select {
+    margin: 0;
+  }
+
+  & button {
+    margin: 25px 0;
+  }
+
   @include breakpoint(large) {
-    display: grid;
-    grid-column-gap: 10px;
     grid-template-columns: repeat(6, 1fr);
     grid-template-areas: 
       "firstname firstname firstname   lastname   lastname   lastname"

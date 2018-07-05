@@ -18,6 +18,15 @@
       grid-area: free-space;
     }
   }
+
+  &__shipping {
+    padding-top: 27px;
+    border-top: 1px solid $medium-gray;
+
+    @include breakpoint(large) {
+      padding-top: 30px;
+    }
+  }
   
   &__shipping-title {
     margin-bottom: 15px;
