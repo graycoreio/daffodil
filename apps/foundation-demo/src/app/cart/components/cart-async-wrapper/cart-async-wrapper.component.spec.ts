@@ -128,6 +128,12 @@ describe('TestCartAsyncWrapper', () => {
       expect(cartSummary).not.toBeNull();
     });
 
+    it('should render <help-box>', () => {
+      let helpBox = fixture.debugElement.query(By.css('help-box'));
+
+      expect(helpBox).not.toBeNull();
+    });
+
     it('should not render loading-icon', () => {
       let loadingIcon = fixture.debugElement.query(By.css('.cart-container__loading-icon'));
       
@@ -189,6 +195,12 @@ describe('TestCartAsyncWrapper', () => {
       let cartSummary = fixture.debugElement.query(By.css('cart-summary'));
     
       expect(cartSummary).toBeNull();
+    });
+
+    it('should not render <help-box>', () => {
+      let helpBox = fixture.debugElement.query(By.css('help-box'));
+    
+      expect(helpBox).toBeNull();
     });
 
     it('should not render <proceed-to-checkout>', () => {
