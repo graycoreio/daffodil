@@ -14,12 +14,14 @@ import { CartSummaryComponent } from './components/cart-summary/cart-summary.com
 import { CartGrandTotalComponent } from './components/cart-grand-total/cart-grand-total.component';
 import { CartAsyncWrapperComponent } from './components/cart-async-wrapper/cart-async-wrapper.component';
 import { ContinueShoppingComponent } from './components/continue-shopping/continue-shopping.component';
+import { MiscModule } from '../misc/misc.module';
 
 @NgModule({
   imports: [
     CommonModule,
     DesignModule,
     CoreCartModule,
+    MiscModule
   ],
   declarations: [
     CartViewComponent,

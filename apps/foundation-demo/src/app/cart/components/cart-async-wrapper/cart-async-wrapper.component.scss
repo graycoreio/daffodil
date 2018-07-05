@@ -4,7 +4,8 @@
   display: grid;
   grid-template-areas:
     "cart"
-    "cart-summary"
+    "continue-shopping"
+    "side-pane"
     "proceed-to-checkout";
   margin: 0 15px;
 
@@ -12,8 +13,12 @@
     grid-area: cart;
   }
 
-  &__cart-summary-wrapper {
-    grid-area: cart-summary;
+  &__continue-shopping-wrapper {
+    grid-area: continue-shopping;
+  }
+
+  &__side-pane {
+    grid-area: side-pane;
   }
 
   &__proceed-to-checkout-wrapper {
@@ -30,9 +35,9 @@
 
   @include breakpoint(large) {
     grid-template-areas:
-      "cart                 cart            cart-summary"
-      "proceed-to-checkout  takes-up-space  cart-summary"
-      "continue-shopping    takes-up-space  cart-summary";
+      "cart                 cart            side-pane"
+      "proceed-to-checkout  takes-up-space  side-pane"
+      "continue-shopping    takes-up-space  side-pane";
     grid-template-columns: repeat(3, minmax(0, 1fr));
     column-gap: 50px;
     row-gap: 0px;
@@ -42,8 +47,8 @@
       grid-area: cart;
     }
 
-    &__cart-summary-wrapper {
-      grid-area: cart-summary;
+    &__side-pane {
+      grid-area: side-pane;
     }
 
     &__proceed-to-checkout-wrapper {
@@ -61,6 +66,7 @@
 
   &__cart-wrapper {
     padding: 25px 0;
+    margin-bottom: 15px;
     @include section-divider();
 
     @include breakpoint(large) {
@@ -76,10 +82,18 @@
     }
   }
 
+  &__help-box-wrapper {
+    display: block;
+    margin: 35px 0 15px 0;
+  }
+
   &__proceed-to-checkout-wrapper {
+    display: none;
+
     @include breakpoint(large) {
       width: 250px;
-      margin-top: 50px;
+      margin-top: 25px;
+      display: inline;
     }
   }
 
