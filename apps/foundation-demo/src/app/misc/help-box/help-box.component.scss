@@ -1,0 +1,24 @@
+@import 'daffodil-util';
+
+.help-box {
+  border: 1px solid $medium-gray;
+  padding: 25px;
+
+  &__title {
+    @include embolden();
+    margin-bottom: 15px;
+  }
+
+  &__link {
+    text-decoration: underline;
+    margin-top: 10px;
+  }
+
+  &__info {
+    margin-top: 15px;
+  }
+
+  & a {
+    text-decoration: underline;
+  }
+}

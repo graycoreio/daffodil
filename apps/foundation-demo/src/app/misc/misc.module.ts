@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { HelpBoxComponent } from './help-box/help-box.component';
 
 @NgModule({
   imports: [
@@ -10,9 +10,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   declarations: [
     NotFoundComponent,
+    HelpBoxComponent
   ],
   exports: [
     NotFoundComponent,
+    HelpBoxComponent
   ]
 })
 export class MiscModule { }

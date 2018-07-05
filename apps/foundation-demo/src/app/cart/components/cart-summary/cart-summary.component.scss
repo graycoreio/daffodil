@@ -15,12 +15,10 @@
   }
 
   &__proceed-to-checkout {
-    display: none;
 
     @include breakpoint(large) {
       display: block;
       @include embolden();
-      margin-top: 25px;
     }
   }
 }
