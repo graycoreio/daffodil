@@ -1,8 +1,5 @@
 <div class="checkout">
   <div class="checkout__shipping" shipping-container #ShippingContainer="ShippingContainer">
-    <div class="checkout__shipping-title">
-      shipping details
-    </div>
     <shipping-form 
       [hidden]="!showShippingForm" 
       [shippingInfo]="ShippingContainer.shippingInfo$ | async" 
