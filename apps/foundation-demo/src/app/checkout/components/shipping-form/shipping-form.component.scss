@@ -14,14 +14,14 @@
   @include section-divider();
 
   @include breakpoint(large) {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(12, 1fr);
     grid-template-areas: 
-      "    title     title     title      title      title      title"
-      "firstname firstname firstname   lastname   lastname   lastname"
-      "   street    street    street     street     street     street"
-      "     city      city     state      state   postcode   postcode"
-      "telephone telephone telephone free-space free-space free-space"
-      "   button    button    button free-space free-space free-space";
+      "    title     title      title       title       title       title       title       title       title       title       title       title"
+      "firstname firstname  firstname   firstname   firstname   firstname    lastname    lastname    lastname    lastname    lastname    lastname"
+      "   street    street     street      street      street      street      street      street      street      street      street      street"
+      "     city      city       city        city       state       state       state       state    postcode    postcode    postcode    postcode"
+      "telephone telephone  telephone   telephone   telephone   telephone free-space1 free-space1 free-space1 free-space1 free-space1 free-space1"
+      "   button    button     button      button      button free-space2 free-space2 free-space2 free-space2 free-space2 free-space2 free-space2";
 
     &__title {
       grid-area: title;
@@ -59,8 +59,12 @@
       grid-area: button;
     }
 
-    &__free-space {
-      grid-area: free-space;
+    &__free-space1 {
+      grid-area: free-space1;
+    }
+
+    &__free-space2 {
+      grid-area: free-space2;
     }
   }
 
