@@ -1,15 +1,10 @@
 <div class="shipping-summary">
-  <div class="shipping-summary__body">
-    <div>
-      {{shippingInfo.firstname}} {{shippingInfo.lastname}}
-    </div>
-    <div>{{shippingInfo.street}}</div>
-    <div>{{shippingInfo.city}}, {{shippingInfo.state}} {{shippingInfo.postcode}}</div>
-    <div>{{shippingInfo.telephone}}</div>
-
-    <a (click)="onEdit()">Edit</a>
-
-    <shipping-option [shippingOption]="shippingOption" (updateShippingOption)="onUpdateShippingOption($event)"></shipping-option>
-  </div>
+  <div class="shipping-summary__title">shipping details</div>
+  <div class="shipping-summary__name">{{shippingInfo.firstname}} {{shippingInfo.lastname}}</div>
+  <div class="shipping-summary__street">{{shippingInfo.street}}</div>
+  <div class="shipping-summary__cityState">{{shippingInfo.city}}, {{shippingInfo.state}} {{shippingInfo.postcode}}</div>
+  <div class="shipping-summary__telephone">{{shippingInfo.telephone}}</div>
+  <a (click)="onEdit()">Edit</a>
+  <shipping-option class="shipping-summary__option" [shippingOption]="shippingOption" (updateShippingOption)="onUpdateShippingOption($event)"></shipping-option>
   <button type="button" class="button large expanded">Continue to Payment</button>
 </div>

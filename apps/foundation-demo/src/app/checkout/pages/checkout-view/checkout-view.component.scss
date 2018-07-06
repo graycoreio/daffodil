@@ -27,10 +27,4 @@
       padding-top: 30px;
     }
   }
-  
-  &__shipping-title {
-    margin-bottom: 15px;
-    @include embolden();
-    @include uppercase();
-  }
 }

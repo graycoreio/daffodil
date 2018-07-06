@@ -1,48 +1,49 @@
-<div>
-  <form class="shipping-form" [formGroup]="form" #ngForm="ngForm" (ngSubmit)="onSubmit(form)">
-    <input type="text" class="shipping-form__first-name"
-      placeholder="First Name"
-      name="firstname"
-      [formControl]="firstname"
-      [class.shipping-form__error]="firstname.errors && (firstname.touched || ngForm.submitted)"
-      [class.shipping-form__valid]="!firstname.errors && firstname.touched"/>
-    <input type="text" class="shipping-form__last-name"
-      placeholder="Last Name"
-      [formControl]="lastname"
-      name="lastname"
-      [class.shipping-form__error]="lastname.errors && (lastname.touched || ngForm.submitted)"
-      [class.shipping-form__valid]="!lastname.errors"/>
-    <input type="text" class="shipping-form__street"
-      placeholder="Street Address"
-      [formControl]="street"
-      name="street"
-      [class.shipping-form__error]="street.errors && (street.touched || ngForm.submitted)"
-      [class.shipping-form__valid]="!street.errors"/>
-    <input type="text" class="shipping-form__city"
-      placeholder="City"
-      [formControl]="city"
-      name="city"
-      [class.shipping-form__error]="city.errors && (city.touched || ngForm.submitted)"
-      [class.shipping-form__valid]="!city.errors"/>
-    <select class="shipping-form__state"
-      name="state"
-      [formControl]="state"
-      [class.shipping-form__error]="(state.errors || state.value == 'State') && (state.touched || ngForm.submitted)"
-      [class.shipping-form__valid]="!(state.errors || state.value == 'State')">
-      <option *ngFor="let state of stateSelectValues" [disabled]="state == 'State'">{{state}}</option>
-    </select>
-    <input type="text" class="shipping-form__postcode"
-      placeholder="Zip Code"
-      [formControl]="postcode"
-      name="postcode"
-      [class.shipping-form__error]="postcode.errors && (postcode.touched || ngForm.submitted)"
-      [class.shipping-form__valid]="!postcode.errors"/>
-    <input type="text" class="shipping-form__telephone"
-      placeholder="Phone Number"
-      [formControl]="telephone"
-      name="telephone"
-      [class.shipping-form__error]="telephone.errors && (telephone.touched || ngForm.submitted)"
-      [class.shipping-form__valid]="!telephone.errors"/>
-    <button type="submit" class="button large expanded">Save & Continue</button>
-  </form>
-</div>
+<form class="shipping-form" [formGroup]="form" #ngForm="ngForm" (ngSubmit)="onSubmit(form)">
+  <div class="shipping-form__title">
+    shipping details
+  </div>
+  <input type="text" class="shipping-form__first-name"
+    placeholder="First Name"
+    name="firstname"
+    [formControl]="firstname"
+    [class.shipping-form__error]="firstname.errors && (firstname.touched || ngForm.submitted)"
+    [class.shipping-form__valid]="!firstname.errors && firstname.touched"/>
+  <input type="text" class="shipping-form__last-name"
+    placeholder="Last Name"
+    [formControl]="lastname"
+    name="lastname"
+    [class.shipping-form__error]="lastname.errors && (lastname.touched || ngForm.submitted)"
+    [class.shipping-form__valid]="!lastname.errors"/>
+  <input type="text" class="shipping-form__street"
+    placeholder="Street Address"
+    [formControl]="street"
+    name="street"
+    [class.shipping-form__error]="street.errors && (street.touched || ngForm.submitted)"
+    [class.shipping-form__valid]="!street.errors"/>
+  <input type="text" class="shipping-form__city"
+    placeholder="City"
+    [formControl]="city"
+    name="city"
+    [class.shipping-form__error]="city.errors && (city.touched || ngForm.submitted)"
+    [class.shipping-form__valid]="!city.errors"/>
+  <select class="shipping-form__state"
+    name="state"
+    [formControl]="state"
+    [class.shipping-form__error]="(state.errors || state.value == 'State') && (state.touched || ngForm.submitted)"
+    [class.shipping-form__valid]="!(state.errors || state.value == 'State')">
+    <option *ngFor="let state of stateSelectValues" [disabled]="state == 'State'">{{state}}</option>
+  </select>
+  <input type="text" class="shipping-form__postcode"
+    placeholder="Zip Code"
+    [formControl]="postcode"
+    name="postcode"
+    [class.shipping-form__error]="postcode.errors && (postcode.touched || ngForm.submitted)"
+    [class.shipping-form__valid]="!postcode.errors"/>
+  <input type="text" class="shipping-form__telephone"
+    placeholder="Phone Number"
+    [formControl]="telephone"
+    name="telephone"
+    [class.shipping-form__error]="telephone.errors && (telephone.touched || ngForm.submitted)"
+    [class.shipping-form__valid]="!telephone.errors"/>
+  <button type="submit" class="button large expanded">Save & Continue</button>
+</form>

@@ -3,16 +3,91 @@
 .shipping-summary {
   font-size: $small-font-size;
   @include section-divider();
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-template-areas: 
+    "    title       edit"
+    "     name free-space"
+    "   street free-space"
+    "cityState free-space"
+    "telephone free-space"
+    "   option free-space"
+    "   button     button";
+
+  &__title {
+    grid-area: title;
+  }
+
+  &__name {
+    grid-area: name;
+  }
+
+  &__street {
+    grid-area: street;
+  }
+
+  &__cityState {
+    grid-area: cityState;
+  }
+
+  &__telephone {
+    grid-area: telephone;
+  }
+
+  & a {
+    grid-area: edit;
+  }
+
+  &__option {
+    grid-area: option;
+  }
+
+  & button {
+    grid-area: button;
+  }
+
+  &__free-space {
+    grid-area: free-space;
+  }
 
   @include breakpoint(large) {
-    display: grid;
     grid-template-areas: 
-      "  body       body"
-      "button free-space";
+      "    title      title"
+      "     name       name"
+      "   street     street"
+      "cityState  cityState"
+      "telephone  telephone"
+      "     edit       edit"
+      "   option     option"
+      "   button free-space";
     grid-template-columns: repeat(2, 1fr);
 
-    &__body {
-      grid-area: body;
+    &__title {
+      grid-area: title;
+    }
+
+    &__name {
+      grid-area: name;
+    }
+  
+    &__street {
+      grid-area: street;
+    }
+  
+    &__cityState {
+      grid-area: cityState;
+    }
+  
+    &__telephone {
+      grid-area: telephone;
+    }
+  
+    & a {
+      grid-area: edit;
+    }
+  
+    &__option {
+      grid-area: option;
     }
 
     & button {
@@ -25,10 +100,15 @@
   }
 
   @include breakpoint(xlarge) {
-    display: grid;
     grid-template-areas:
-      "  body       body       body"
-      "button free-space free-space";
+      "    title      title      title"
+      "     name       name       name"
+      "   street     street     street"
+      "cityState  cityState  cityState"
+      "telephone  telephone  telephone"
+      "     edit       edit       edit"
+      "   option     option     option"
+      "   button free-space free-space";
     grid-template-columns: repeat(3, 1fr);
 
     &__body {
@@ -39,20 +119,30 @@
       grid-area: button;
     }
 
+    &__title {
+      grid-area: title;
+    }
+
     &__free-space {
       grid-area: free-space;
     }
   }
 
-  & a {
-    display: block;
-    margin: 15px 0 10px 0;
-    text-decoration: underline;
-  }
-
   &__title {
     font-size: $global-font-size;
+    margin-bottom: 15px;
     @include embolden();
-    padding: 15px 0 15px 0;
+    @include uppercase();
+  }
+
+  & a {
+    display: block;
+    text-decoration: underline;
+    justify-self: end;
+
+    @include breakpoint(large) {
+      justify-self: start;
+      margin: 15px 0 10px 0;
+    }
   }
 }
