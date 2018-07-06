@@ -61,42 +61,6 @@
       "   option     option"
       "   button free-space";
     grid-template-columns: repeat(2, 1fr);
-
-    &__title {
-      grid-area: title;
-    }
-
-    &__name {
-      grid-area: name;
-    }
-  
-    &__street {
-      grid-area: street;
-    }
-  
-    &__cityState {
-      grid-area: cityState;
-    }
-  
-    &__telephone {
-      grid-area: telephone;
-    }
-  
-    & a {
-      grid-area: edit;
-    }
-  
-    &__option {
-      grid-area: option;
-    }
-
-    & button {
-      grid-area: button;
-    }
-
-    &__free-space {
-      grid-area: free-space;
-    }
   }
 
   @include breakpoint(xlarge) {
@@ -110,22 +74,6 @@
       "   option     option     option"
       "   button free-space free-space";
     grid-template-columns: repeat(3, 1fr);
-
-    &__body {
-      grid-area: body;
-    }
-
-    & button {
-      grid-area: button;
-    }
-
-    &__title {
-      grid-area: title;
-    }
-
-    &__free-space {
-      grid-area: free-space;
-    }
   }
 
   &__title {
