@@ -61,4 +61,13 @@ describe('selectShippingState', () => {
       });
     });
   });
+
+  describe('selectIsShippingInfoValid', () => {
+    
+    it('selects isShippingInfoValid state', () => {
+      store.pipe(select(fromShipping.selectIsShippingInfoValid)).subscribe((isShippingInfoValid) => {
+        expect(isShippingInfoValid).toBeTruthy();
+      });
+    });
+  });
 });

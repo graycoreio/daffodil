@@ -25,3 +25,7 @@ export function reducer(state = initialState, action: ShippingActions): State {
 export const getShippingInfo = (state: State) => state.shippingInfo;
 
 export const getShippingOption = (state: State) => state.shippingOption;
+
+export const isShippingInfoValid = (shippingInfo: ShippingAddress) => {
+  return !!shippingInfo;
+};

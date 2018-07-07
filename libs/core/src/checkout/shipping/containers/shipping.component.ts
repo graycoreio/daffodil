@@ -17,6 +17,7 @@ export class ShippingContainer implements OnInit {
   
   shippingInfo$: Observable<ShippingAddress>;
   shippingOption$: Observable<string>;
+  isShippingInfoValid$: Observable<Boolean>;
 
   constructor(
     private store: Store<fromShipping.State>
@@ -28,7 +29,10 @@ export class ShippingContainer implements OnInit {
     );
     this.shippingOption$ = this.store.pipe(
       select(fromShipping.selectShippingOptionState)
-    )
+    );
+    this.isShippingInfoValid$ = this.store.pipe(
+      select(fromShipping.selectIsShippingInfoValid)
+    );
   }
 
   updateShippingInfo(address: ShippingAddress) {
