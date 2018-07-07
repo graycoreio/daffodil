@@ -14,6 +14,7 @@ describe('ShippingContainer', () => {
   let store;
   let initialShippingInfo: ShippingAddress;
   let stubShippingOption: string;
+  let stubIsShippingInfoValid: boolean;
   let shippingFactory: ShippingFactory;
 
   beforeEach(async(() => {
@@ -36,9 +37,11 @@ describe('ShippingContainer', () => {
     shippingFactory = new ShippingFactory();
     initialShippingInfo = shippingFactory.create();
     stubShippingOption = 'shippingOption';
+    stubIsShippingInfoValid = true;
 
     spyOn(fromShipping, 'selectShippingInfoState').and.returnValue(initialShippingInfo);
     spyOn(fromShipping, 'selectShippingOptionState').and.returnValue(stubShippingOption);
+    spyOn(fromShipping, 'selectIsShippingInfoValid').and.returnValue(stubIsShippingInfoValid);
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();
@@ -59,6 +62,12 @@ describe('ShippingContainer', () => {
     it('initializes shippingOption$', () => {
       component.shippingOption$.subscribe((shippingOption) => {
         expect(shippingOption).toEqual(stubShippingOption);
+      })
+    });
+
+    it('initializes isShippingInfoValid$', () => {
+      component.isShippingInfoValid$.subscribe((isShippingInfoValid) => {
+        expect(isShippingInfoValid).toEqual(stubIsShippingInfoValid);
       })
     });
   });

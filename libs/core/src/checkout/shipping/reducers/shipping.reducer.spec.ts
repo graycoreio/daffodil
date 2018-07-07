@@ -1,6 +1,6 @@
 import { ShippingAddress } from '../models/shipping-address';
 import { ShippingFactory } from "../testing/factories/shipping.factory";
-import { initialState, reducer, getShippingInfo, getShippingOption } from "../reducers/shipping.reducer";
+import { initialState, reducer, getShippingInfo, getShippingOption, isShippingInfoValid, State } from "../reducers/shipping.reducer";
 import { UpdateShippingInfo, UpdateShippingOption } from "../actions/shipping.actions";
 
 
@@ -69,6 +69,39 @@ describe('Shipping | Shipping Reducer', () => {
     
     it('returns shippingOption state', () => {
       expect(getShippingOption(initialState)).toEqual(initialState.shippingOption);
+    });
+  });
+
+  describe('isShippingInfoValid', () => {
+
+    describe('when shippingInfo is defined', () => {
+
+      let result: State;
+
+      beforeEach(() => {
+        let updateShippingInfoAction = new UpdateShippingInfo(shippingInfo);
+
+        result = reducer(initialState, updateShippingInfoAction);
+      });
+      
+      it('should return true', () => {
+        expect(isShippingInfoValid(result.shippingInfo)).toBeTruthy();
+      });
+    });
+    
+    describe('when shippingInfo is null', () => {
+      
+      let result: State;
+
+      beforeEach(() => {
+        let updateShippingInfoAction = new UpdateShippingInfo(null);
+
+        result = reducer(initialState, updateShippingInfoAction);
+      });
+
+      it('should return false', () => {
+        expect(isShippingInfoValid(result.shippingInfo)).toBeFalsy();
+      });
     });
   });
 });
