@@ -1,3 +1,5 @@
 <div class="checkout">
-  <shipping-wrapper class="checkout__shipping"></shipping-wrapper>
+  <div class="checkout__shipping" shipping-container #ShippingContainer="ShippingContainer">
+    <shipping-async-wrapper [isShippingInfoValid]="ShippingContainer.isShippingInfoValid$ | async"></shipping-async-wrapper>
+  </div>
 </div>

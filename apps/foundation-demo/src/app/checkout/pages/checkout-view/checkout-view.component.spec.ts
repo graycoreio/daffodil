@@ -1,22 +1,33 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CheckoutViewComponent } from './checkout-view.component';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { Observable, of } from 'rxjs';
 
-@Component({selector: 'shipping-wrapper', template: ''})
-class MockShippingWrapperComponent {}
+let stubIsShippingInfoValid = true;
+
+@Component({selector: 'shipping-async-wrapper', template: ''})
+class MockShippingAsyncWrapperComponent {
+  @Input() isShippingInfoValid: boolean;
+}
+
+@Component({selector: '[shipping-container]', template: '<ng-content></ng-content>', exportAs: 'ShippingContainer'})
+class MockShippingContainer {
+  isShippingInfoValid$: Observable<boolean> = of(stubIsShippingInfoValid);
+}
 
 describe('CheckoutViewComponent', () => {
   let component: CheckoutViewComponent;
   let fixture: ComponentFixture<CheckoutViewComponent>;
-  let shippingWrapper: MockShippingWrapperComponent;
+  let shippingAsyncWrapper: MockShippingAsyncWrapperComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         CheckoutViewComponent,
-        MockShippingWrapperComponent
+        MockShippingAsyncWrapperComponent,
+        MockShippingContainer
       ]
     })
     .compileComponents();
@@ -27,14 +38,17 @@ describe('CheckoutViewComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    shippingWrapper = fixture.debugElement.query(By.css('shipping-wrapper')).componentInstance;
+    shippingAsyncWrapper = fixture.debugElement.query(By.css('shipping-async-wrapper')).componentInstance;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should render <shipping-wrapper>', () => {
-    expect(shippingWrapper).not.toBeNull();
+  
+  describe('on <shipping-async-wrapper>', () => {
+    
+    it('should set isShippingInfoValid', () => {
+      expect(shippingAsyncWrapper.isShippingInfoValid).toEqual(stubIsShippingInfoValid);
+    });
   });
 });
