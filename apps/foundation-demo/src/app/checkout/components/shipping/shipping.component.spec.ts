@@ -1,11 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShippingWrapperComponent } from './shipping-wrapper.component';
+import { ShippingComponent } from './shipping.component';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ShippingAddress } from '@daffodil/core';
 import { Observable, of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 
+let stubIsShippingInfoValidValue = true;
 let stubShippingAddress: ShippingAddress = {
   firstname: '',
   lastname: '',
@@ -16,6 +17,11 @@ let stubShippingAddress: ShippingAddress = {
   telephone: ''
 }
 let stubShippingOption: string = 'shipping option';
+
+@Component({template: '<shipping [isShippingInfoValid]="isShippingInfoValidValue"></shipping>'})
+class TestShippingWrapper {
+  isShippingInfoValidValue = stubIsShippingInfoValidValue;
+}
 
 @Component({selector: 'shipping-form', template: ''})
 class MockShippingFormComponent {
@@ -43,41 +49,40 @@ class MockShippingContainer {
   updateShippingOption: Function = () => {};
 }
 
-describe('ShippingViewComponent', () => {
-  let component: ShippingWrapperComponent;
-  let fixture: ComponentFixture<ShippingWrapperComponent>;
+describe('ShippingComponent', () => {
+  let component: TestShippingWrapper;
+  let fixture: ComponentFixture<TestShippingWrapper>;
   let shippingFormComponent: MockShippingFormComponent;
   let shippingSummaryComponent: MockShippingSummaryComponent;
   let shippingContainer: MockShippingContainer;
+  let shippingComponent: ShippingComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        ShippingWrapperComponent,
+        TestShippingWrapper,
         MockShippingFormComponent,
         MockShippingSummaryComponent,
-        MockShippingContainer
+        MockShippingContainer,
+        ShippingComponent
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ShippingWrapperComponent);
+    fixture = TestBed.createComponent(TestShippingWrapper);
     component = fixture.componentInstance;
     fixture.detectChanges();
 
     shippingFormComponent = fixture.debugElement.query(By.css('shipping-form')).componentInstance;
     shippingSummaryComponent = fixture.debugElement.query(By.css('shipping-summary')).componentInstance;
     shippingContainer = fixture.debugElement.query(By.css('[shipping-container]')).componentInstance;
+    shippingComponent = fixture.debugElement.query(By.css('shipping')).componentInstance;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should render shipping-form component', () => {
-    expect(shippingFormComponent).not.toBeNull();
   });
 
   describe('on <shipping-form>', () => {
@@ -106,64 +111,75 @@ describe('ShippingViewComponent', () => {
 
   describe('ngOnInit', () => {
     
-    it('should set showShippingForm to true', () => {
-      expect(component.showShippingForm).toBeTruthy();
+    it('should set showShippingForm to !value passed by the [shipping-container]', () => {
+      expect(shippingComponent.showShippingForm).toEqual(!stubIsShippingInfoValidValue);
     });
   });
 
-  describe('when shippingFormComponent.updateShippingInfo is emitted', () => {
-
-    let emittedValue;
-
-    beforeEach(() => {
-      emittedValue = 'emittedValue';
-      spyOn(shippingContainer, 'updateShippingInfo');
-      spyOn(component, 'toggleShippingView');
-
-      shippingFormComponent.updateShippingInfo.emit(emittedValue);
-    });
+  describe('when shippingFormComponent emits', () => {
     
-    it('should call shippingContainer.updateShippingInfo', () => {
-      expect(shippingContainer.updateShippingInfo).toHaveBeenCalledWith(emittedValue);
-    });
-
-    it('should call toggleShippingView', () => {
-      expect(component.toggleShippingView).toHaveBeenCalled();
-    });
-  });
-
-  describe('when shippingSummaryComponent.editShippingInfo is emitted', () => {
-    
-    it('should call toggleShippingView', () => {
-      spyOn(component, 'toggleShippingView');
-
-      shippingSummaryComponent.editShippingInfo.emit();
+    describe('updateShippingInfo', () => {
       
-      expect(component.toggleShippingView).toHaveBeenCalled();
+      let emittedValue;
+
+      beforeEach(() => {
+        emittedValue = 'emittedValue';
+        spyOn(shippingContainer, 'updateShippingInfo');
+        spyOn(shippingComponent, 'toggleShippingView');
+
+        shippingFormComponent.updateShippingInfo.emit(emittedValue);
+      });
+      
+      it('should call shippingContainer.updateShippingInfo', () => {
+        expect(shippingContainer.updateShippingInfo).toHaveBeenCalledWith(emittedValue);
+      });
+
+      it('should call toggleShippingView', () => {
+        expect(shippingComponent.toggleShippingView).toHaveBeenCalled();
+      });
     });
   });
 
-  describe('when shippingSummaryComponent.updateShippingOption is emitted', () => {
+  describe('when shippingSummaryComponent emits', () => {
     
-    it('should call ShippingContainer.updateShippingOption', () => {
-      spyOn(shippingContainer, 'updateShippingOption');
+    describe('editShippingInfo', () => {
+      it('should call toggleShippingView', () => {
+        spyOn(shippingComponent, 'toggleShippingView');
+  
+        shippingSummaryComponent.editShippingInfo.emit();
+        
+        expect(shippingComponent.toggleShippingView).toHaveBeenCalled();
+      });
+    });
 
-      shippingSummaryComponent.updateShippingOption.emit(stubShippingOption);
+    describe('updateShippingOption', () => {
       
-      expect(shippingContainer.updateShippingOption).toHaveBeenCalledWith(stubShippingOption);
+      it('should call ShippingContainer.updateShippingOption', () => {
+        spyOn(shippingContainer, 'updateShippingOption');
+
+        shippingSummaryComponent.updateShippingOption.emit(stubShippingOption);
+        
+        expect(shippingContainer.updateShippingOption).toHaveBeenCalledWith(stubShippingOption);
+      });
     });
   });
 
   describe('toggleShippingView', () => {
     
     it('should toggle showShippingForm', () => {
-      component.toggleShippingView();
+      shippingComponent.toggleShippingView();
 
-      expect(component.showShippingForm).toBeFalsy();
+      expect(shippingComponent.showShippingForm).toEqual(stubIsShippingInfoValidValue);
     });
   });
 
   describe('when showShippingForm is true', () => {
+
+    beforeEach(() => {
+      shippingComponent.showShippingForm = true;
+
+      fixture.detectChanges();
+    });
     
     it('should show <shipping-form>', () => {
       shippingContainer.shippingInfo$.subscribe(() => {
@@ -196,7 +212,7 @@ describe('ShippingViewComponent', () => {
   describe('when showShippingForm is false', () => {
 
     beforeEach(() => {
-      component.showShippingForm = false;
+      shippingComponent.showShippingForm = false;
       fixture.detectChanges();
     });
     
