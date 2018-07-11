@@ -7,4 +7,13 @@ import { Component, Input } from '@angular/core';
 export class ShippingAsyncWrapperComponent {
 
   @Input() isShippingInfoValid: Boolean;
+  showShippingForm: boolean;
+
+  ngOnInit() {
+    this.showShippingForm = !this.isShippingInfoValid;
+  }
+
+  toggleShippingView() {
+    this.showShippingForm = !this.showShippingForm;
+  }
 }

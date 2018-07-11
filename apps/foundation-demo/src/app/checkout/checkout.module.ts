@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreCheckoutModule } from '@daffodil/core';
 import { ShippingSummaryComponent } from './components/shipping-summary/shipping-summary.component';
 import { ShippingOptionComponent } from './components/shipping-option/shipping-option.component';
-import { ShippingComponent } from './components/shipping/shipping.component';
 import { ShippingAsyncWrapperComponent } from './components/shipping-async-wrapper/shipping-async-wrapper.component';
 
 @NgModule({
@@ -21,7 +20,6 @@ import { ShippingAsyncWrapperComponent } from './components/shipping-async-wrapp
     ShippingFormComponent,
     ShippingSummaryComponent,
     ShippingOptionComponent,
-    ShippingComponent,
     ShippingAsyncWrapperComponent
   ],
   exports: [
@@ -29,7 +27,6 @@ import { ShippingAsyncWrapperComponent } from './components/shipping-async-wrapp
     ShippingFormComponent,
     ShippingSummaryComponent,
     ShippingOptionComponent,
-    ShippingComponent,
     ShippingAsyncWrapperComponent
   ]
 })
