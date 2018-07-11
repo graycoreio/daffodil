@@ -9,7 +9,7 @@ import { CartEffects } from './effects/cart.effects';
 
 @NgModule({
   imports: [
-      StoreModule.forFeature('carts', reducers),
+      StoreModule.forFeature('cart', reducers),
       EffectsModule.forFeature([
         CartEffects
       ]),
