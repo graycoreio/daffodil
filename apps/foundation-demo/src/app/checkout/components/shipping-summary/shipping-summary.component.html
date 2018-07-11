@@ -6,5 +6,5 @@
   <div class="shipping-summary__telephone">{{shippingInfo.telephone}}</div>
   <a (click)="onEdit()">Edit</a>
   <shipping-option class="shipping-summary__option" [shippingOption]="shippingOption" (updateShippingOption)="onUpdateShippingOption($event)"></shipping-option>
-  <button type="button" class="button large expanded">Continue to Payment</button>
+  <button type="button" class="button large expanded" [disabled]="disableContinueToPayment">Continue to Payment</button>
 </div>
