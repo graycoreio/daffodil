@@ -7,6 +7,7 @@ import { QtyDropdownComponent } from './qty-dropdown/qty-dropdown.component';
 import { ImageGalleryComponent } from './image-gallery/image-gallery.component';
 import { ImageListComponent } from './image-list/image-list.component';
 import { AccordionModule } from './accordion/accordion.module';
+import { InputValidatorComponent } from './input-validator/input-validator.component';
 
 @NgModule({
   imports: [
@@ -17,13 +18,15 @@ import { AccordionModule } from './accordion/accordion.module';
   declarations: [
     QtyDropdownComponent,
     ImageGalleryComponent,
-    ImageListComponent
+    ImageListComponent,
+    InputValidatorComponent
   ],
   exports: [
     QtyDropdownComponent,
     ImageGalleryComponent,
     ImageListComponent,
-    AccordionModule
+    AccordionModule,
+    InputValidatorComponent
   ]
 })
 export class MoleculesModule { }
