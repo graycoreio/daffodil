@@ -7,13 +7,15 @@ import { CoreCheckoutModule } from '@daffodil/core';
 import { ShippingSummaryComponent } from './components/shipping-summary/shipping-summary.component';
 import { ShippingOptionComponent } from './components/shipping-option/shipping-option.component';
 import { ShippingAsyncWrapperComponent } from './components/shipping-async-wrapper/shipping-async-wrapper.component';
+import { DesignModule } from '../design/design.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    CoreCheckoutModule
+    CoreCheckoutModule,
+    DesignModule
   ],
   declarations: [
     CheckoutViewComponent,

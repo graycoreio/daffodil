@@ -14,13 +14,7 @@ export class ShippingFormComponent implements OnInit {
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
 
   form: FormGroup
-  firstname: AbstractControl;
-  lastname: AbstractControl;
-  street: AbstractControl;
-  city: AbstractControl;
   state: AbstractControl;
-  postcode: AbstractControl;
-  telephone: AbstractControl;
 
   constructor(
     private fb: FormBuilder
@@ -37,13 +31,7 @@ export class ShippingFormComponent implements OnInit {
       'telephone': [this.shippingInfo ? this.shippingInfo.telephone : '', Validators.required]
     });
 
-    this.firstname = this.form.controls['firstname'];
-    this.lastname = this.form.controls['lastname'];
-    this.street = this.form.controls['street'];
-    this.city = this.form.controls['city'];
     this.state = this.form.controls['state'];
-    this.postcode = this.form.controls['postcode'];
-    this.telephone = this.form.controls['telephone'];
   }
 
   stateSelectValues = [
