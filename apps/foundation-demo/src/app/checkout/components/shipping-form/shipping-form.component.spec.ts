@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule, FormControl, FormGroup, AbstractContr
 import { By } from '@angular/platform-browser';
 import { Component, Input } from '@angular/core';
 import { ShippingAddress } from '@daffodil/core';
-import { InputValidatorComponent } from '../../../design/molecules/input-validator/input-validator.component';
+import { ErrorStateMatcher } from '../../../design/molecules/error-state-matcher/error-state-matcher.component';
 
 @Component({'template': '<shipping-form [shippingInfo]="shippingInfoValue" (updateShippingInfo)="updateShippingInfoFunction($event)"></shipping-form>'})
 class TestingShippingFormComponentWrapper {
@@ -17,6 +17,13 @@ class TestingShippingFormComponentWrapper {
 class MockInputValidatorComponent {
   @Input() formControl: FormControl;
   @Input() formSubmitted: boolean;
+}
+
+@Component({'selector': '[select-validator]', 'template': ''})
+class MockSelectValidatorComponent {
+  @Input() formControl: FormControl;
+  @Input() formSubmitted: boolean;
+  @Input() errorStateMatcher: ErrorStateMatcher;
 }
 
 describe('ShippingFormComponent', () => {
@@ -33,7 +40,8 @@ describe('ShippingFormComponent', () => {
       declarations: [ 
         TestingShippingFormComponentWrapper,
         ShippingFormComponent,
-        MockInputValidatorComponent
+        MockInputValidatorComponent,
+        MockSelectValidatorComponent
       ]
     })
     .compileComponents();
@@ -95,10 +103,118 @@ describe('ShippingFormComponent', () => {
       });
     });
 
-    describe('initializes a form control', () => {
+    describe('stateErrorStateMatcher.isErrorState', () => {
 
-      it('for state', () => {
-        expect(shippingFormComponent.state).toEqual(jasmine.any(FormControl));
+      let formControl;
+
+      beforeEach(() => {
+        formControl = new FormControl();
+      });
+      
+      describe('when control.touched is true', () => {
+        
+        beforeEach(() => {
+          formControl.touched = true;
+        });
+
+        describe('and control.value is State', () => {
+          
+          beforeEach(() => {
+            formControl.value = 'State';            
+          });
+
+          it('should return true', () => {
+            expect(shippingFormComponent.stateErrorStateMatcher.isErrorState(formControl, false)).toBeTruthy();
+          });
+        });
+
+        describe('and value is not State', () => {
+          
+          describe('and control has errors', () => {
+            
+            beforeEach(() => {
+              formControl.errors = true;
+            });
+
+            it('should return true', () => {
+              expect(shippingFormComponent.stateErrorStateMatcher.isErrorState(formControl, false)).toBeTruthy();              
+            });
+          });
+          
+          describe('and control has no errors', () => {
+            
+            beforeEach(() => {
+              formControl.errors = false;
+            });
+
+            it('should return false', () => {
+              expect(shippingFormComponent.stateErrorStateMatcher.isErrorState(formControl, false)).toBeFalsy();              
+            });
+          });
+        });
+      });
+
+      describe('when control.touched is false', () => {
+
+        let formSubmitted;
+        
+        beforeEach(() => {
+          formControl.touched = false;
+        });
+
+        describe('and formSubmitted is true', () => {
+          
+          beforeEach(() => {
+            formSubmitted = true;
+          });
+
+          describe('and control.value is State', () => {
+            
+            beforeEach(() => {
+              formControl.value = 'State';
+            });
+
+            it('should return true', () => {
+              expect(shippingFormComponent.stateErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeTruthy();              
+            });
+          });
+
+          describe('and control.value is not State', () => {
+            
+            describe('and control has errors', () => {
+              
+              beforeEach(() => {
+                formControl.errors = true;
+              });
+
+              it('should return true', () => {
+                expect(shippingFormComponent.stateErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeTruthy();              
+              });
+            });
+
+            describe('and control has no errors', () => {
+              
+              beforeEach(() => {
+                formControl.errors = false;
+              });
+
+              it('should return false', () => {
+                expect(shippingFormComponent.stateErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeFalsy();              
+              });
+            });
+          });
+        });
+
+        describe('and formSubmitted is false', () => {
+          
+          beforeEach(() => {
+            formSubmitted = false;
+          });
+
+          it('should return false', () => {
+            expect(shippingFormComponent.stateErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeFalsy();              
+          });
+        });
       });
     });
   });
@@ -175,7 +291,7 @@ describe('ShippingFormComponent', () => {
 
   describe('on [input-validator]', () => {
 
-    let inputValidator: InputValidatorComponent;
+    let inputValidator: MockInputValidatorComponent;
 
     beforeEach(() => {
       inputValidator = fixture.debugElement.queryAll(By.css('[input-validator]'))[0].componentInstance;
@@ -196,6 +312,37 @@ describe('ShippingFormComponent', () => {
         fixture.detectChanges();
 
         expect(inputValidator.formSubmitted).toBeTruthy();
+      });
+    });
+  });
+
+  describe('on [select-validator]', () => {
+
+    let selectValidator: MockSelectValidatorComponent;
+
+    beforeEach(() => {
+      selectValidator = fixture.debugElement.query(By.css('[select-validator]')).componentInstance;
+    });
+    
+    it('should set formControl', () => {
+      expect(<AbstractControl> selectValidator.formControl).toEqual(<AbstractControl> shippingFormComponent.form.controls['state']);
+    });
+
+    it('should set formSubmitted', () => {
+      expect(selectValidator.formSubmitted).toBeFalsy();
+    });
+
+    it('should set ErrorStateMatcher', () => {
+      expect(selectValidator.errorStateMatcher).toEqual(shippingFormComponent.stateErrorStateMatcher);
+    });
+
+    describe('when form is submitted', () => {
+      
+      it('should change formSubmitted to true', () => {
+        fixture.debugElement.query(By.css('button')).nativeElement.click();
+        fixture.detectChanges();
+
+        expect(selectValidator.formSubmitted).toBeTruthy();
       });
     });
   });
