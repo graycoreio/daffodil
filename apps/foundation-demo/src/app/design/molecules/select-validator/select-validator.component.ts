@@ -1,23 +1,23 @@
-import { OnInit, Input, Component, ViewEncapsulation, HostBinding } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, HostBinding } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ErrorStateMatcher } from '../error-state-matcher/error-state-matcher.component';
 
 @Component({
-  selector: 'input[input-validator]',
+  selector: '[select-validator]',
   template: '<ng-content></ng-content>',
   host: {
-    'class': 'input-validator'
+    'class': 'select-validator'
   },
-  styleUrls: ['./input-validator.component.scss'],
+  styleUrls: ['./select-validator.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class InputValidatorComponent implements OnInit {
+export class SelectValidatorComponent implements OnInit {
 
   @Input() formSubmitted: boolean;
   @Input() formControl: FormControl;
   @Input() errorStateMatcher: ErrorStateMatcher;
-  @HostBinding('class.input-validator__error') errorState: boolean;
-  @HostBinding('class.input-validator__valid') validState: boolean;
+  @HostBinding('class.select-validator__error') errorState: boolean;
+  @HostBinding('class.select-validator__valid') validState: boolean;
 
   constructor() {}
 
@@ -33,6 +33,6 @@ export class InputValidatorComponent implements OnInit {
 
   ngDoCheck() {
     this.errorState = this.errorStateMatcher.isErrorState(this.formControl, this.formSubmitted);
-    this.validState = !this.formControl.errors && this.formControl.touched;
+    this.validState = !this.errorState && this.formControl.touched;
   }
 }
