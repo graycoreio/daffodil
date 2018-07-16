@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
 
 import { ShippingAddress } from '@daffodil/core';
+import { ErrorStateMatcher } from '../../../design/molecules/error-state-matcher/error-state-matcher.component';
 
 @Component({
   selector: 'shipping-form',
@@ -14,7 +15,7 @@ export class ShippingFormComponent implements OnInit {
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
 
   form: FormGroup
-  state: AbstractControl;
+  stateErrorStateMatcher: ErrorStateMatcher;
 
   constructor(
     private fb: FormBuilder
@@ -31,7 +32,10 @@ export class ShippingFormComponent implements OnInit {
       'telephone': [this.shippingInfo ? this.shippingInfo.telephone : '', Validators.required]
     });
 
-    this.state = this.form.controls['state'];
+    this.stateErrorStateMatcher = new ErrorStateMatcher();
+    this.stateErrorStateMatcher.isErrorState = (control: FormControl, formSubmitted: boolean) => {
+      return (control.errors || control.value == 'State') && (control.touched || formSubmitted);
+    }
   }
 
   stateSelectValues = [

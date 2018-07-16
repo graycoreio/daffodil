@@ -22,11 +22,11 @@
     name="city"
     [formControl]="form.controls['city']"
     [formSubmitted]="ngForm.submitted"/>
-  <select class="shipping-form__state"
+  <select select-validator class="shipping-form__state"
     name="state"
-    [formControl]="state"
-    [class.shipping-form__error]="(state.errors || state.value == 'State') && (state.touched || ngForm.submitted)"
-    [class.shipping-form__valid]="!(state.errors || state.value == 'State')">
+    [formControl]="form.controls['state']"
+    [formSubmitted]="ngForm.submitted"
+    [errorStateMatcher]="stateErrorStateMatcher">
     <option *ngFor="let state of stateSelectValues" [disabled]="state == 'State'">{{state}}</option>
   </select>
   <input input-validator type="text" class="shipping-form__postcode"
