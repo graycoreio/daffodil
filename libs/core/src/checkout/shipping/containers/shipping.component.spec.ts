@@ -15,7 +15,6 @@ describe('ShippingContainer', () => {
   let initialShippingInfo: ShippingAddress;
   let stubSelectedShippingOption: string;
   let stubIsShippingInfoValid: boolean;
-  let stubIsShippingOptionSelected: boolean;
   let shippingFactory: ShippingFactory;
 
   beforeEach(async(() => {
@@ -39,12 +38,10 @@ describe('ShippingContainer', () => {
     initialShippingInfo = shippingFactory.createShippingAddress();
     stubSelectedShippingOption = 'shippingOption';
     stubIsShippingInfoValid = true;
-    stubIsShippingOptionSelected = true;
 
     spyOn(fromShipping, 'selectShippingInfoState').and.returnValue(initialShippingInfo);
     spyOn(fromShipping, 'selectShippingOptionState').and.returnValue(stubSelectedShippingOption);
     spyOn(fromShipping, 'selectIsShippingInfoValid').and.returnValue(stubIsShippingInfoValid);
-    spyOn(fromShipping, 'selectIsShippingOptionSelected').and.returnValue(stubIsShippingOptionSelected);
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();
@@ -71,12 +68,6 @@ describe('ShippingContainer', () => {
     it('initializes isShippingInfoValid$', () => {
       component.isShippingInfoValid$.subscribe((isShippingInfoValid) => {
         expect(isShippingInfoValid).toEqual(stubIsShippingInfoValid);
-      })
-    });
-
-    it('initializes isShippingOptionSelected$', () => {
-      component.isShippingOptionSelected$.subscribe((isShippingOptionSelected) => {
-        expect(isShippingOptionSelected).toEqual(stubIsShippingOptionSelected);
       })
     });
   });

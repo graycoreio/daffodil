@@ -34,9 +34,6 @@ export class ShippingContainer implements OnInit {
     this.isShippingInfoValid$ = this.store.pipe(
       select(fromShipping.selectIsShippingInfoValid)
     );
-    this.isShippingOptionSelected$ = this.store.pipe(
-      select(fromShipping.selectIsShippingOptionSelected)
-    )
   }
 
   updateShippingInfo(address: ShippingAddress) {

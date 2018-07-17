@@ -29,7 +29,3 @@ export const getSelectedShippingOption = (state: State) => state.selectedShippin
 export const isShippingInfoValid = (shippingInfo: ShippingAddress) => {
   return !!shippingInfo;
 };
-
-export const isShippingOptionSelected = (selectedShippingOption: string) => {
-  return !!selectedShippingOption;
-}
