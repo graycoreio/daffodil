@@ -1,20 +1,20 @@
 import { ShippingAddress } from '../models/shipping-address';
 import { ShippingFactory } from "../testing/factories/shipping.factory";
-import { initialState, reducer, getShippingInfo, getShippingOption, isShippingInfoValid, State } from "../reducers/shipping.reducer";
-import { UpdateShippingInfo, UpdateShippingOption } from "../actions/shipping.actions";
+import { initialState, reducer, getShippingInfo, getSelectedShippingOption, isShippingInfoValid, State } from "../reducers/shipping.reducer";
+import { UpdateShippingInfo, SelectShippingOption } from "../actions/shipping.actions";
 
 
 describe('Shipping | Shipping Reducer', () => {
 
   let shippingFactory: ShippingFactory;
   let shippingInfo: ShippingAddress;
-  let shippingOption: string;
+  let selectedShippingOption: string;
 
   beforeEach(() => {
     shippingFactory = new ShippingFactory();
 
-    shippingInfo = shippingFactory.create();
-    shippingOption = 'shippingOption';
+    shippingInfo = shippingFactory.createShippingAddress();
+    selectedShippingOption = 'selectedShippingOption';
   });
 
   describe('when an unknown action is triggered', () => {
@@ -43,18 +43,18 @@ describe('Shipping | Shipping Reducer', () => {
     });
   });
 
-  describe('when UpdateShippingOption action is triggered', () => {
+  describe('when SelectShippingOption action is triggered', () => {
 
     let result;
 
     beforeEach(() => {
-      let updateShippingOptionAction = new UpdateShippingOption(shippingOption);
+      let selectShippingOptionAction = new SelectShippingOption(selectedShippingOption);
       
-      result = reducer(initialState, updateShippingOptionAction);
+      result = reducer(initialState, selectShippingOptionAction);
     });
 
-    it('sets shippingOption from action.payload', () => {
-      expect(result.shippingOption).toEqual(shippingOption)
+    it('sets selectedShippingOption from action.payload', () => {
+      expect(result.selectedShippingOption).toEqual(selectedShippingOption)
     });
   });
 
@@ -65,10 +65,10 @@ describe('Shipping | Shipping Reducer', () => {
     });
   });
 
-  describe('getShippingOption', () => {
+  describe('getSelectedShippingOption', () => {
     
-    it('returns shippingOption state', () => {
-      expect(getShippingOption(initialState)).toEqual(initialState.shippingOption);
+    it('returns selectedShippingOption state', () => {
+      expect(getSelectedShippingOption(initialState)).toEqual(initialState.selectedShippingOption);
     });
   });
 

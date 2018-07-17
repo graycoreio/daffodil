@@ -15,5 +15,6 @@ export { CartContainer } from './cart/containers/cart/cart.component';
 export { CartActionTypes, AddToCart } from './cart/actions/cart.actions';
 
 export { ShippingAddress } from './checkout/shipping/models/shipping-address';
+export { ShippingOption } from './checkout/shipping/models/shipping-option';
 export { ShippingContainer } from './checkout/shipping/containers/shipping.component';
 export { ShippingFactory } from './checkout/shipping/testing/factories/shipping.factory';

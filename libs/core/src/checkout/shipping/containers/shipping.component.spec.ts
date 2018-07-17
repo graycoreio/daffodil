@@ -4,7 +4,7 @@ import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
 import { ShippingContainer } from './shipping.component';
 import { ShippingAddress } from '../models/shipping-address';
-import { UpdateShippingInfo, UpdateShippingOption } from '../actions/shipping.actions';
+import { UpdateShippingInfo, SelectShippingOption } from '../actions/shipping.actions';
 import * as fromShipping from '../reducers';
 import { ShippingFactory } from '../testing/factories/shipping.factory';
 
@@ -13,7 +13,7 @@ describe('ShippingContainer', () => {
   let fixture: ComponentFixture<ShippingContainer>;
   let store;
   let initialShippingInfo: ShippingAddress;
-  let stubShippingOption: string;
+  let stubSelectedShippingOption: string;
   let stubIsShippingInfoValid: boolean;
   let shippingFactory: ShippingFactory;
 
@@ -35,12 +35,12 @@ describe('ShippingContainer', () => {
     store = TestBed.get(Store);
 
     shippingFactory = new ShippingFactory();
-    initialShippingInfo = shippingFactory.create();
-    stubShippingOption = 'shippingOption';
+    initialShippingInfo = shippingFactory.createShippingAddress();
+    stubSelectedShippingOption = 'shippingOption';
     stubIsShippingInfoValid = true;
 
     spyOn(fromShipping, 'selectShippingInfoState').and.returnValue(initialShippingInfo);
-    spyOn(fromShipping, 'selectShippingOptionState').and.returnValue(stubShippingOption);
+    spyOn(fromShipping, 'selectShippingOptionState').and.returnValue(stubSelectedShippingOption);
     spyOn(fromShipping, 'selectIsShippingInfoValid').and.returnValue(stubIsShippingInfoValid);
     spyOn(store, 'dispatch');
 
@@ -59,9 +59,9 @@ describe('ShippingContainer', () => {
       });
     });
 
-    it('initializes shippingOption$', () => {
-      component.shippingOption$.subscribe((shippingOption) => {
-        expect(shippingOption).toEqual(stubShippingOption);
+    it('initializes selectedShippingOption$', () => {
+      component.selectedShippingOption$.subscribe((shippingOption) => {
+        expect(shippingOption).toEqual(stubSelectedShippingOption);
       })
     });
 
@@ -81,12 +81,12 @@ describe('ShippingContainer', () => {
     });
   });
 
-  describe('updateShippingOption', () => {
+  describe('selectShippingOption', () => {
     
-    it('should call store.dispatch with UpdateShippingOption action', () => {
-      component.updateShippingOption(stubShippingOption);
+    it('should call store.dispatch with SelectShippingOption action', () => {
+      component.selectShippingOption(stubSelectedShippingOption);
 
-      expect(store.dispatch).toHaveBeenCalledWith(new UpdateShippingOption(stubShippingOption));
+      expect(store.dispatch).toHaveBeenCalledWith(new SelectShippingOption(stubSelectedShippingOption));
     });
   });
 });

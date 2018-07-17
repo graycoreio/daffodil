@@ -5,14 +5,14 @@ import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 import * as fromShipping from './index';
 import { ShippingFactory } from "../testing/factories/shipping.factory";
 import { ShippingAddress } from '../models/shipping-address';
-import { UpdateShippingInfo, UpdateShippingOption } from "../actions/shipping.actions";
+import { UpdateShippingInfo, SelectShippingOption } from "../actions/shipping.actions";
 
 describe('selectShippingState', () => {
 
   let store: Store<fromShipping.ShippingState>;
   let shippingFactory: ShippingFactory = new ShippingFactory();
   let stubShippingInfo: ShippingAddress;
-  let stubShippingOption: string;
+  let stubSelectedShippingOption: string;
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,11 +23,11 @@ describe('selectShippingState', () => {
       ]
     });
 
-    stubShippingInfo = shippingFactory.create();
-    stubShippingOption = 'shippingOption';
+    stubShippingInfo = shippingFactory.createShippingAddress();
+    stubSelectedShippingOption = 'shippingOption';
     store = TestBed.get(Store);
     store.dispatch(new UpdateShippingInfo(stubShippingInfo));
-    store.dispatch(new UpdateShippingOption(stubShippingOption));
+    store.dispatch(new SelectShippingOption(stubSelectedShippingOption));
   }));
 
   describe('selectShippingState', () => {
@@ -35,7 +35,7 @@ describe('selectShippingState', () => {
     it('selects shipping state', () => {
       let expectedShippingState = {
         shippingInfo: stubShippingInfo,
-        shippingOption: stubShippingOption
+        selectedShippingOption: stubSelectedShippingOption
       }
 
       store.pipe(select(fromShipping.shippingStateSelector)).subscribe((shippingState) => {
@@ -57,7 +57,7 @@ describe('selectShippingState', () => {
     
     it('selects shippingOption state', () => {
       store.pipe(select(fromShipping.selectShippingOptionState)).subscribe((shippingOption) => {
-        expect(shippingOption).toEqual(stubShippingOption);
+        expect(shippingOption).toEqual(stubSelectedShippingOption);
       });
     });
   });
