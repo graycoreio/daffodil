@@ -7,7 +7,7 @@
     [hidden]="showShippingForm" 
     *ngIf="shippingInfo" 
     [shippingInfo]="shippingInfo" 
-    [shippingOption]="shippingOption"
+    [selectedShippingOption]="selectedShippingOption"
     (editShippingInfo)="toggleShippingView()"
-    (updateShippingOption)="onUpdateShippingOption($event)"></shipping-summary>
+    (selectShippingOption)="onSelectShippingOption($event)"></shipping-summary>
 </div>

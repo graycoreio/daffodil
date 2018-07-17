@@ -9,25 +9,25 @@ import { ShippingContainer } from 'libs/core/src';
 
 let shippingFactory = new ShippingFactory();
 let stubIsShippingInfoValid = true;
-let stubShippingInfo = shippingFactory.create();
-let stubShippingOption = 'shippingOption';
+let stubShippingInfo = shippingFactory.createShippingAddress();
+let stubSelectedShippingOption = 'shippingOption';
 
 @Component({selector: 'shipping', template: ''})
 class MockShippingComponent {
   @Input() isShippingInfoValid: Boolean;
   @Input() shippingInfo: ShippingAddress;
-  @Input() shippingOption: string;
+  @Input() selectedShippingOption: string;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
-  @Output() updateShippingOption: EventEmitter<any> = new EventEmitter();
+  @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
 }
 
 @Component({selector: '[shipping-container]', template: '<ng-content></ng-content>', exportAs: 'ShippingContainer'})
 class MockShippingContainer {
   isShippingInfoValid$: Observable<boolean> = of(stubIsShippingInfoValid);
   shippingInfo$: Observable<ShippingAddress> = of(stubShippingInfo);
-  shippingOption$: Observable<string> = of(stubShippingOption);
+  selectedShippingOption$: Observable<string> = of(stubSelectedShippingOption);
   updateShippingInfo: Function = () => {};
-  updateShippingOption: Function = () => {};
+  selectShippingOption: Function = () => {};
 }
 
 describe('CheckoutViewComponent', () => {
@@ -70,8 +70,8 @@ describe('CheckoutViewComponent', () => {
       expect(shipping.shippingInfo).toEqual(stubShippingInfo);
     });
 
-    it('should set shippingOption', () => {
-      expect(shipping.shippingOption).toEqual(stubShippingOption);
+    it('should set selectedShippingOption', () => {
+      expect(shipping.selectedShippingOption).toEqual(stubSelectedShippingOption);
     });
   });
 
@@ -88,14 +88,14 @@ describe('CheckoutViewComponent', () => {
       });
     });
 
-    describe('updateShippingOption', () => {
+    describe('selectShippingOption', () => {
       
       it('should call function passed by ShippingContainer', () => {
-        spyOn(shippingContainer, 'updateShippingOption');
+        spyOn(shippingContainer, 'selectShippingOption');
 
-        shipping.updateShippingOption.emit(stubShippingOption);
+        shipping.selectShippingOption.emit(stubSelectedShippingOption);
 
-        expect(shippingContainer.updateShippingOption).toHaveBeenCalledWith(stubShippingOption);
+        expect(shippingContainer.selectShippingOption).toHaveBeenCalledWith(stubSelectedShippingOption);
       });
     });
   });

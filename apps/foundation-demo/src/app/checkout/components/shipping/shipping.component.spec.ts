@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ShippingComponent } from './shipping.component';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ShippingAddress } from '@daffodil/core';
-import { Observable, of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 
 let stubIsShippingInfoValidValue = true;
@@ -16,15 +15,15 @@ let stubShippingAddress: ShippingAddress = {
   postcode: '',
   telephone: ''
 }
-let stubShippingOption: string = 'shipping option';
+let stubSelectedShippingOption: string = 'shipping option';
 
-@Component({template: '<shipping [isShippingInfoValid]="isShippingInfoValidValue" [shippingInfo]="shippingInfoValue" [shippingOption]="shippingOptionValue" (updateShippingInfo)="updateShippingInfoFunction($event)" (updateShippingOption)="updateShippingOptionFunction($event)"></shipping>'})
+@Component({template: '<shipping [isShippingInfoValid]="isShippingInfoValidValue" [shippingInfo]="shippingInfoValue" [selectedShippingOption]="selectedShippingOptionValue" (updateShippingInfo)="updateShippingInfoFunction($event)" (selectShippingOption)="selectShippingOptionFunction($event)"></shipping>'})
 class TestShipping {
   isShippingInfoValidValue = stubIsShippingInfoValidValue;
   shippingInfoValue: ShippingAddress = stubShippingAddress;
-  shippingOptionValue: string = stubShippingOption;
+  selectedShippingOptionValue: string = stubSelectedShippingOption;
   updateShippingInfoFunction: Function = () => {};
-  updateShippingOptionFunction: Function = () => {};
+  selectShippingOptionFunction: Function = () => {};
 }
 
 @Component({selector: 'shipping-form', template: ''})
@@ -36,9 +35,9 @@ class MockShippingFormComponent {
 @Component({selector: 'shipping-summary', template: ''})
 class MockShippingSummaryComponent {
   @Input() shippingInfo: ShippingAddress;
-  @Input() shippingOption: string;
+  @Input() selectedShippingOption: string;
   @Output() editShippingInfo: EventEmitter<any> = new EventEmitter();
-  @Output() updateShippingOption: EventEmitter<any> = new EventEmitter();
+  @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
 }
 
 describe('ShippingComponent', () => {
@@ -82,8 +81,8 @@ describe('ShippingComponent', () => {
     expect(shipping.shippingInfo).toEqual(stubShippingAddress);
   });
 
-  it('should be able to take shippingOption as input', () => {
-    expect(shipping.shippingOption).toEqual(stubShippingOption);
+  it('should be able to take selectedShippingOption as input', () => {
+    expect(shipping.selectedShippingOption).toEqual(stubSelectedShippingOption);
   });
 
   describe('on <shipping-form>', () => {
@@ -99,8 +98,8 @@ describe('ShippingComponent', () => {
       expect(shippingSummaryComponent.shippingInfo).toEqual(shipping.shippingInfo);
     });
 
-    it('should set shippingOption to value passed by the [shipping-container]', () => {
-      expect(shippingSummaryComponent.shippingOption).toEqual(shipping.shippingOption);
+    it('should set selectedShippingOption to value passed by the [shipping-container]', () => {
+      expect(shippingSummaryComponent.selectedShippingOption).toEqual(shipping.selectedShippingOption);
     });
   });
 
@@ -147,14 +146,14 @@ describe('ShippingComponent', () => {
       });
     });
 
-    describe('updateShippingOption', () => {
+    describe('selectShippingOption', () => {
       
-      it('should call hostComponent.updateShippingOptionFunction', () => {
-        spyOn(component, 'updateShippingOptionFunction');
+      it('should call hostComponent.selectShippingOptionFunction', () => {
+        spyOn(component, 'selectShippingOptionFunction');
 
-        shippingSummaryComponent.updateShippingOption.emit(stubShippingOption);
+        shippingSummaryComponent.selectShippingOption.emit(stubSelectedShippingOption);
         
-        expect(component.updateShippingOptionFunction).toHaveBeenCalledWith(stubShippingOption);
+        expect(component.selectShippingOptionFunction).toHaveBeenCalledWith(stubSelectedShippingOption);
       });
     });
   });

@@ -3,9 +3,8 @@
     <shipping 
       [isShippingInfoValid]="ShippingContainer.isShippingInfoValid$ | async"
       [shippingInfo]="ShippingContainer.shippingInfo$ | async"
-      [shippingOption]="ShippingContainer.shippingOption$ | async"
+      [selectedShippingOption]="ShippingContainer.selectedShippingOption$ | async"
       (updateShippingInfo)="ShippingContainer.updateShippingInfo($event)"
-      (updateShippingOption)="ShippingContainer.updateShippingOption($event)"
-      ></shipping>
+      (selectShippingOption)="ShippingContainer.selectShippingOption($event)"></shipping>
   </div>
 </div>
