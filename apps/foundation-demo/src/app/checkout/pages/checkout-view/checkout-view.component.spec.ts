@@ -1,32 +1,46 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CheckoutViewComponent } from './checkout-view.component';
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
+import { ShippingAddress, ShippingFactory } from '@daffodil/core';
+import { ShippingContainer } from 'libs/core/src';
 
+let shippingFactory = new ShippingFactory();
 let stubIsShippingInfoValid = true;
+let stubShippingInfo = shippingFactory.create();
+let stubShippingOption = 'shippingOption';
 
-@Component({selector: 'shipping-async-wrapper', template: ''})
-class MockShippingAsyncWrapperComponent {
-  @Input() isShippingInfoValid: boolean;
+@Component({selector: 'shipping', template: ''})
+class MockShippingComponent {
+  @Input() isShippingInfoValid: Boolean;
+  @Input() shippingInfo: ShippingAddress;
+  @Input() shippingOption: string;
+  @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
+  @Output() updateShippingOption: EventEmitter<any> = new EventEmitter();
 }
 
 @Component({selector: '[shipping-container]', template: '<ng-content></ng-content>', exportAs: 'ShippingContainer'})
 class MockShippingContainer {
   isShippingInfoValid$: Observable<boolean> = of(stubIsShippingInfoValid);
+  shippingInfo$: Observable<ShippingAddress> = of(stubShippingInfo);
+  shippingOption$: Observable<string> = of(stubShippingOption);
+  updateShippingInfo: Function = () => {};
+  updateShippingOption: Function = () => {};
 }
 
 describe('CheckoutViewComponent', () => {
   let component: CheckoutViewComponent;
   let fixture: ComponentFixture<CheckoutViewComponent>;
-  let shippingAsyncWrapper: MockShippingAsyncWrapperComponent;
+  let shipping: MockShippingComponent;
+  let shippingContainer: ShippingContainer;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         CheckoutViewComponent,
-        MockShippingAsyncWrapperComponent,
+        MockShippingComponent,
         MockShippingContainer
       ]
     })
@@ -38,17 +52,51 @@ describe('CheckoutViewComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    shippingAsyncWrapper = fixture.debugElement.query(By.css('shipping-async-wrapper')).componentInstance;
+    shipping = fixture.debugElement.query(By.css('shipping')).componentInstance;
+    shippingContainer = fixture.debugElement.query(By.css('[shipping-container]')).componentInstance;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
   
-  describe('on <shipping-async-wrapper>', () => {
+  describe('on <shipping>', () => {
     
     it('should set isShippingInfoValid', () => {
-      expect(shippingAsyncWrapper.isShippingInfoValid).toEqual(stubIsShippingInfoValid);
+      expect(shipping.isShippingInfoValid).toEqual(stubIsShippingInfoValid);
+    });
+
+    it('should set shippingInfo', () => {
+      expect(shipping.shippingInfo).toEqual(stubShippingInfo);
+    });
+
+    it('should set shippingOption', () => {
+      expect(shipping.shippingOption).toEqual(stubShippingOption);
+    });
+  });
+
+  describe('when <shipping> emits', () => {
+    
+    describe('updateShippingInfo', () => {
+      
+      it('should call function passed by ShippingContainer', () => {
+        spyOn(shippingContainer, 'updateShippingInfo');
+
+        shipping.updateShippingInfo.emit(stubShippingInfo);
+
+        expect(shippingContainer.updateShippingInfo).toHaveBeenCalledWith(stubShippingInfo);
+      });
+    });
+
+    describe('updateShippingOption', () => {
+      
+      it('should call function passed by ShippingContainer', () => {
+        spyOn(shippingContainer, 'updateShippingOption');
+
+        shipping.updateShippingOption.emit(stubShippingOption);
+
+        expect(shippingContainer.updateShippingOption).toHaveBeenCalledWith(stubShippingOption);
+      });
     });
   });
 });
