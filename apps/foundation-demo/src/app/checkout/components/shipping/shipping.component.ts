@@ -10,9 +10,9 @@ export class ShippingComponent {
 
   @Input() isShippingInfoValid: Boolean;
   @Input() shippingInfo: ShippingAddress;
-  @Input() shippingOption: string;
+  @Input() selectedShippingOption: string;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
-  @Output() updateShippingOption: EventEmitter<any> = new EventEmitter();
+  @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
   showShippingForm: boolean;
 
   ngOnInit() {
@@ -28,7 +28,7 @@ export class ShippingComponent {
     this.toggleShippingView();
   }
 
-  onUpdateShippingOption(shippingOption: string) {
-    this.updateShippingOption.emit(shippingOption);
+  onSelectShippingOption(shippingOption: string) {
+    this.selectShippingOption.emit(shippingOption);
   }
 }

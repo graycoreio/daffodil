@@ -5,7 +5,7 @@ import { ShippingFormComponent } from './components/shipping-form/shipping-form.
 import { ReactiveFormsModule } from '@angular/forms';
 import { CoreCheckoutModule } from '@daffodil/core';
 import { ShippingSummaryComponent } from './components/shipping-summary/shipping-summary.component';
-import { ShippingOptionComponent } from './components/shipping-option/shipping-option.component';
+import { ShippingOptionsComponent } from './components/shipping-options/shipping-options.component';
 import { ShippingComponent } from './components/shipping/shipping.component';
 import { DesignModule } from '../design/design.module';
 
@@ -20,14 +20,14 @@ import { DesignModule } from '../design/design.module';
     CheckoutViewComponent,
     ShippingFormComponent,
     ShippingSummaryComponent,
-    ShippingOptionComponent,
+    ShippingOptionsComponent,
     ShippingComponent
   ],
   exports: [
     CheckoutViewComponent,
     ShippingFormComponent,
     ShippingSummaryComponent,
-    ShippingOptionComponent,
+    ShippingOptionsComponent,
     ShippingComponent
   ]
 })

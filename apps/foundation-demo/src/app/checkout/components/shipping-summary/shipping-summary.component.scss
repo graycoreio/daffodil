@@ -11,8 +11,8 @@
     "   street free-space"
     "cityState free-space"
     "telephone free-space"
-    "   option free-space"
-    "   button     button";
+    "  options free-space"
+    "  button     button";
 
   &__title {
     grid-area: title;
@@ -38,8 +38,8 @@
     grid-area: edit;
   }
 
-  &__option {
-    grid-area: option;
+  &__options {
+    grid-area: options;
   }
 
   & button {
@@ -58,7 +58,7 @@
       "cityState  cityState"
       "telephone  telephone"
       "     edit       edit"
-      "   option     option"
+      "  options    options"
       "   button free-space";
     grid-template-columns: repeat(2, 1fr);
   }
@@ -71,7 +71,7 @@
       "cityState  cityState  cityState"
       "telephone  telephone  telephone"
       "     edit       edit       edit"
-      "   option     option     option"
+      "  options    options    options"
       "   button free-space free-space";
     grid-template-columns: repeat(3, 1fr);
   }
