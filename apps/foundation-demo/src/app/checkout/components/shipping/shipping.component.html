@@ -1,0 +1,13 @@
+<div class="shipping">
+  <shipping-form 
+    [hidden]="!showShippingForm"
+    [shippingInfo]="shippingInfo" 
+    (updateShippingInfo)="onUpdateShippingInfo($event)"></shipping-form>
+  <shipping-summary 
+    [hidden]="showShippingForm" 
+    *ngIf="shippingInfo" 
+    [shippingInfo]="shippingInfo" 
+    [shippingOption]="shippingOption"
+    (editShippingInfo)="toggleShippingView()"
+    (updateShippingOption)="onUpdateShippingOption($event)"></shipping-summary>
+</div>
