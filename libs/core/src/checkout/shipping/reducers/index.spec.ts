@@ -70,4 +70,13 @@ describe('selectShippingState', () => {
       });
     });
   });
+
+  describe('selectIsShippingOptionSelected', () => {
+    
+    it('selects isShippingOptionSelected state', () => {
+      store.pipe(select(fromShipping.selectIsShippingOptionSelected)).subscribe((isShippingOptionSelected) => {
+        expect(isShippingOptionSelected).toBeTruthy();
+      });
+    });
+  });
 });
