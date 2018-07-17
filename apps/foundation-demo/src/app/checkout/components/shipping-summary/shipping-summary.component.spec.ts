@@ -139,10 +139,6 @@ describe('ShippingSummaryComponent', () => {
 
       shippingSummaryComponent.onSelectShippingOption(shippingSummaryComponent.shippingOptions[0].id);
     });
-
-    it('should set disableContinueToPayment to false', () => {
-      expect(shippingSummaryComponent.disableContinueToPayment).toBeFalsy();
-    });
     
     it('should call selectShippingOption.emit', () => {
       expect(shippingSummaryComponent.selectShippingOption.emit).toHaveBeenCalledWith(shippingSummaryComponent.shippingOptions[0].id);
@@ -160,29 +156,22 @@ describe('ShippingSummaryComponent', () => {
     });
   });
 
-  describe('ngOnInit', () => {
+  describe('when selectedShippingOption is null', () => {
     
-    it('should set disableContinueToPayment to true', () => {
-      expect(shippingSummaryComponent.disableContinueToPayment).toBeTruthy();
-    });
-  });
-
-  describe('when disableContinueToPayment is true', () => {
-    
-    it('should disable continue to payment button', () => {
-      shippingSummaryComponent.disableContinueToPayment = true;
+    it('should disable Continue to Payment button', () => {
+      shippingSummaryComponent.selectedShippingOption = null;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.disabled).toBeTruthy();
     });
   });
 
-  describe('when disableContinueToPayment is false', () => {
+  describe('when selectedShippingOption is defined', () => {
     
-    it('should not disable continue to payment button', () => {
-      shippingSummaryComponent.disableContinueToPayment = false;
+    it('should disable Continue to Payment button', () => {
+      shippingSummaryComponent.selectedShippingOption = 'defined';
       fixture.detectChanges();
-      
+
       expect(fixture.debugElement.query(By.css('button')).nativeElement.disabled).toBeFalsy();
     });
   });
