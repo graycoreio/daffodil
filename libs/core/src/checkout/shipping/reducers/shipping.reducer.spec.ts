@@ -1,6 +1,6 @@
 import { ShippingAddress } from '../models/shipping-address';
 import { ShippingFactory } from "../testing/factories/shipping.factory";
-import { initialState, reducer, getShippingInfo, getSelectedShippingOption, isShippingInfoValid, State } from "../reducers/shipping.reducer";
+import { initialState, reducer, getShippingInfo, getSelectedShippingOption, isShippingInfoValid, State, isShippingOptionSelected } from "../reducers/shipping.reducer";
 import { UpdateShippingInfo, SelectShippingOption } from "../actions/shipping.actions";
 
 
@@ -101,6 +101,39 @@ describe('Shipping | Shipping Reducer', () => {
 
       it('should return false', () => {
         expect(isShippingInfoValid(result.shippingInfo)).toBeFalsy();
+      });
+    });
+  });
+
+  describe('isShippingOptionSelected', () => {
+
+    describe('when selectedShippingOption is defined', () => {
+
+      let result: State;
+
+      beforeEach(() => {
+        let updateShippingInfoAction = new SelectShippingOption(selectedShippingOption);
+
+        result = reducer(initialState, updateShippingInfoAction);
+      });
+      
+      it('should return true', () => {
+        expect(isShippingOptionSelected(result.selectedShippingOption)).toBeTruthy();
+      });
+    });
+    
+    describe('when selectedShippingOption is null', () => {
+      
+      let result: State;
+
+      beforeEach(() => {
+        let updateShippingInfoAction = new SelectShippingOption(null);
+
+        result = reducer(initialState, updateShippingInfoAction);
+      });
+
+      it('should return false', () => {
+        expect(isShippingOptionSelected(result.selectedShippingOption)).toBeFalsy();
       });
     });
   });
