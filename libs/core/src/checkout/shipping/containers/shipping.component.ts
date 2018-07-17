@@ -6,7 +6,7 @@ import { Store, select } from '@ngrx/store';
 
 import { ShippingAddress } from '../models/shipping-address';
 import * as fromShipping from '../reducers';
-import { UpdateShippingInfo, UpdateShippingOption } from '../actions/shipping.actions';
+import { UpdateShippingInfo, SelectShippingOption } from '../actions/shipping.actions';
 
 @Component({
   selector: '[shipping-container]',
@@ -16,7 +16,7 @@ import { UpdateShippingInfo, UpdateShippingOption } from '../actions/shipping.ac
 export class ShippingContainer implements OnInit {
   
   shippingInfo$: Observable<ShippingAddress>;
-  shippingOption$: Observable<string>;
+  selectedShippingOption$: Observable<string>;
   isShippingInfoValid$: Observable<Boolean>;
 
   constructor(
@@ -27,7 +27,7 @@ export class ShippingContainer implements OnInit {
     this.shippingInfo$ = this.store.pipe(
       select(fromShipping.selectShippingInfoState)
     );
-    this.shippingOption$ = this.store.pipe(
+    this.selectedShippingOption$ = this.store.pipe(
       select(fromShipping.selectShippingOptionState)
     );
     this.isShippingInfoValid$ = this.store.pipe(
@@ -39,7 +39,7 @@ export class ShippingContainer implements OnInit {
     this.store.dispatch(new UpdateShippingInfo(address));
   }
 
-  updateShippingOption(option: string) {
-    this.store.dispatch(new UpdateShippingOption(option));
+  selectShippingOption(option: string) {
+    this.store.dispatch(new SelectShippingOption(option));
   }
 }

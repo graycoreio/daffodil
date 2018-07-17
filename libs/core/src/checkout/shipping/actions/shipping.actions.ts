@@ -4,7 +4,7 @@ import { ShippingAddress } from '../models/shipping-address';
 
 export enum ShippingActionTypes {
   UpdateShippingInfoAction = "[Shipping] Update Shipping Info Action",
-  UpdateShippingOptionAction = "[Shipping] Update Shipping Option Action"
+  SelectShippingOptionAction = "[Shipping] Select Shipping Option Action"
 }
 
 export class UpdateShippingInfo implements Action {
@@ -13,12 +13,12 @@ export class UpdateShippingInfo implements Action {
   constructor(public payload: ShippingAddress) {}
 }
 
-export class UpdateShippingOption implements Action {
-  readonly type = ShippingActionTypes.UpdateShippingOptionAction;
+export class SelectShippingOption implements Action {
+  readonly type = ShippingActionTypes.SelectShippingOptionAction;
 
   constructor(public payload: string) {}
 }
 
 export type ShippingActions =
     | UpdateShippingInfo
-    | UpdateShippingOption;
+    | SelectShippingOption;

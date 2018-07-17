@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ShippingFactory, MockShipping } from './shipping.factory';
+import { ShippingFactory, MockShippingAddress, MockShippingOption } from './shipping.factory';
+import { ShippingOption } from '../../models/shipping-option';
 
 describe('Core | Shipping | Testing | ShippingFactory', () => {
   
@@ -18,12 +19,12 @@ describe('Core | Shipping | Testing | ShippingFactory', () => {
     expect(shippingFactory).toBeTruthy();
   });
 
-  describe('create', () => {
+  describe('createShippingAddress', () => {
 
-    let result:MockShipping;
+    let result:MockShippingAddress;
 
     beforeEach(() => {
-      result = shippingFactory.create();
+      result = shippingFactory.createShippingAddress();
     });
 
     it('should return an Address with firstname', () => {
@@ -56,6 +57,19 @@ describe('Core | Shipping | Testing | ShippingFactory', () => {
 
     it('should return an Address with telephone', () => {
       expect(result.telephone).toBeDefined();
+    });
+  });
+
+  describe('createShippingOptions', () => {
+    
+    let result:ShippingOption[];
+
+    beforeEach(() => {
+      result = shippingFactory.createShippingOptions();
+    });
+
+    it('should return an array of ShippingOptions', () => {
+      expect(result[0]).toEqual(jasmine.any(MockShippingOption));
     });
   });
 });
