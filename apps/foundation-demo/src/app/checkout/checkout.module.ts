@@ -8,13 +8,15 @@ import { ShippingSummaryComponent } from './components/shipping-summary/shipping
 import { ShippingOptionsComponent } from './components/shipping-options/shipping-options.component';
 import { ShippingComponent } from './components/shipping/shipping.component';
 import { DesignModule } from '../design/design.module';
+import { FoundationCheckoutStateModule } from './checkout-state.module';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     CoreCheckoutModule,
-    DesignModule
+    DesignModule,
+    FoundationCheckoutStateModule
   ],
   declarations: [
     CheckoutViewComponent,
