@@ -5,11 +5,16 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { PaymentInfo, PaymentFactory, PaymentContainer } from '@daffodil/core';
 import { PaymentFormComponent } from '../payment-form/payment-form.component';
 import { By } from '@angular/platform-browser';
-import { Observable, of } from 'rxjs';
 import { PaymentSummaryComponent } from '../payment-summary/payment-summary.component';
 
 let paymentFactory = new PaymentFactory();
 let stubPaymentInfo = paymentFactory.create();
+
+@Component({template: '<payment [paymentInfo]="paymentInfoValue" (updatePaymentInfo)="updatePaymentInfoFunction($event)"></payment>'})
+class TestPaymentComponentWrapper {
+  paymentInfoValue: PaymentInfo = stubPaymentInfo;
+  updatePaymentInfoFunction: Function = () => {};
+}
 
 @Component({selector: 'payment-form', template: ''})
 class MockPaymentFormComponent {
@@ -23,43 +28,41 @@ class MockPaymentSummaryComponent {
   @Output() editPaymentInfo: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({selector: '[payment-container]', template: '<ng-content></ng-content>', exportAs: 'PaymentContainer'})
-class MockPaymentContainer {
-  paymentInfo$: Observable<PaymentInfo> = of(stubPaymentInfo);
-  updatePaymentInfo: Function = () => {};
-}
-
 describe('PaymentComponent', () => {
-  let component: PaymentComponent;
-  let fixture: ComponentFixture<PaymentComponent>;
+  let component: TestPaymentComponentWrapper;
+  let fixture: ComponentFixture<TestPaymentComponentWrapper>;
+  let payment: PaymentComponent;
   let paymentForm: PaymentFormComponent;
   let paymentSummary: PaymentSummaryComponent;
-  let paymentContainer: PaymentContainer;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        PaymentComponent,
-        MockPaymentContainer,
+        TestPaymentComponentWrapper,
         MockPaymentFormComponent,
-        MockPaymentSummaryComponent
+        MockPaymentSummaryComponent,
+        PaymentComponent
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PaymentComponent);
+    fixture = TestBed.createComponent(TestPaymentComponentWrapper);
     component = fixture.componentInstance;
     fixture.detectChanges();
 
+    payment = fixture.debugElement.query(By.css('payment')).componentInstance;
     paymentForm = fixture.debugElement.query(By.css('payment-form')).componentInstance;
     paymentSummary = fixture.debugElement.query(By.css('payment-summary')).componentInstance;
-    paymentContainer = fixture.debugElement.query(By.css('[payment-container]')).componentInstance;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should be able to take paymentInfo as input', () => {
+    expect(payment.paymentInfo).toEqual(stubPaymentInfo);
   });
 
   describe('on <payment-form>', () => {
@@ -71,11 +74,11 @@ describe('PaymentComponent', () => {
 
   describe('when paymentForm.updatePaymentInfo is emitted', () => {
 
-    it('should call PaymentContainer.updatePaymentInfo', () => {
-      spyOn(paymentContainer, 'updatePaymentInfo');
+    it('should call hostComponent.updatePaymentInfoFunction', () => {
+      spyOn(component, 'updatePaymentInfoFunction');
       paymentForm.updatePaymentInfo.emit(stubPaymentInfo);
 
-      expect(paymentContainer.updatePaymentInfo).toHaveBeenCalledWith(stubPaymentInfo);
+      expect(component.updatePaymentInfoFunction).toHaveBeenCalledWith(stubPaymentInfo);
     });
   });
 
@@ -89,28 +92,39 @@ describe('PaymentComponent', () => {
   describe('when paymentForm.editPaymentInfo is emitted', () => {
 
     it('should call payment.togglePaymentView', () => {
-      spyOn(component, 'togglePaymentView');
+      spyOn(payment, 'togglePaymentView');
       paymentSummary.editPaymentInfo.emit();
 
-      expect(component.togglePaymentView).toHaveBeenCalled();
+      expect(payment.togglePaymentView).toHaveBeenCalled();
     });
   });
 
   describe('ngOnInit', () => {
     
     it('should set showPaymentForm to true', () => {
-      expect(component.showPaymentForm).toBeTruthy();
+      expect(payment.showPaymentForm).toBeTruthy();
     });
   });
 
   describe('togglePaymentView', () => {
     
     it('should toggle the showPaymentForm boolean', () => {
-      component.showPaymentForm = true;
+      payment.showPaymentForm = true;
 
-      component.togglePaymentView();
+      payment.togglePaymentView();
 
-      expect(component.showPaymentForm).toBeFalsy();
+      expect(payment.showPaymentForm).toBeFalsy();
+    });
+  });
+
+  describe('onUpdatePaymentInfo', () => {
+    
+    it('should call togglePaymentView', () => {
+      spyOn(payment, 'togglePaymentView');
+
+      payment.onUpdatePaymentInfo(stubPaymentInfo);
+
+      expect(payment.togglePaymentView).toHaveBeenCalled();
     });
   });
 
@@ -120,7 +134,7 @@ describe('PaymentComponent', () => {
     let paymentSummaryNativeElement;
 
     beforeEach(() => {
-      component.showPaymentForm = true;
+      payment.showPaymentForm = true;
       fixture.detectChanges();
 
       paymentFormNativeElement = fixture.debugElement.query(By.css('payment-form')).nativeElement;
@@ -142,7 +156,7 @@ describe('PaymentComponent', () => {
     let paymentSummaryNativeElement;
 
     beforeEach(() => {
-      component.showPaymentForm = false;
+      payment.showPaymentForm = false;
       fixture.detectChanges();
 
       paymentFormNativeElement = fixture.debugElement.query(By.css('payment-form')).nativeElement;
@@ -163,7 +177,7 @@ describe('PaymentComponent', () => {
     let paymentSummary;
     
     beforeEach(() => {
-      paymentContainer.paymentInfo$ = of(null);
+      payment.paymentInfo = null;
 
       fixture.detectChanges();
 
