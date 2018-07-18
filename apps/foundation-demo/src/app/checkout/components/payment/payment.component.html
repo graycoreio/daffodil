@@ -1,11 +1,11 @@
-<div class="payment" payment-container #PaymentContainer="PaymentContainer">
+<div class="payment">
   <payment-form 
     [hidden]="!showPaymentForm"
-    [paymentInfo]="PaymentContainer.paymentInfo$ | async" 
-    (updatePaymentInfo)="PaymentContainer.updatePaymentInfo($event); togglePaymentView()"></payment-form>
+    [paymentInfo]="paymentInfo" 
+    (updatePaymentInfo)="onUpdatePaymentInfo($event)"></payment-form>
   <payment-summary
     [hidden]="showPaymentForm"
-    *ngIf="PaymentContainer.paymentInfo$ | async"
-    [paymentInfo]="PaymentContainer.paymentInfo$ | async"
+    *ngIf="paymentInfo"
+    [paymentInfo]="paymentInfo"
     (editPaymentInfo)="togglePaymentView()"></payment-summary>
 </div>

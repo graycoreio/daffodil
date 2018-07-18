@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { PaymentInfo } from '@daffodil/core';
 
 @Component({
   selector: 'payment',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaymentComponent implements OnInit {
 
+  @Input() paymentInfo: PaymentInfo;
+  @Output() updatePaymentInfo: EventEmitter<any> = new EventEmitter();
   showPaymentForm: boolean;
 
   ngOnInit() {
@@ -15,5 +18,10 @@ export class PaymentComponent implements OnInit {
 
   togglePaymentView() {
     this.showPaymentForm = !this.showPaymentForm;
+  }
+
+  onUpdatePaymentInfo(paymentInfo: PaymentInfo) {
+    this.updatePaymentInfo.emit(paymentInfo);
+    this.togglePaymentView();
   }
 }
