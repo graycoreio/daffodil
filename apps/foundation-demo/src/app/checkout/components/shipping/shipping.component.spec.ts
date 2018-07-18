@@ -4,6 +4,10 @@ import { ShippingComponent } from './shipping.component';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ShippingAddress } from '@daffodil/core';
 import { By } from '@angular/platform-browser';
+import * as fromFoundationShipping from '../../reducers';
+import { Store, StoreModule, combineReducers } from '@ngrx/store';
+import { SetShowShippingForm, ToggleShippingForm } from '../../actions/shipping.actions';
+import { of } from 'rxjs';
 
 let stubIsShippingInfoValidValue = true;
 let stubShippingAddress: ShippingAddress = {
@@ -16,6 +20,7 @@ let stubShippingAddress: ShippingAddress = {
   telephone: ''
 }
 let stubSelectedShippingOption: string = 'shipping option';
+let stubShowShippingForm: boolean = true;
 
 @Component({template: '<shipping [isShippingInfoValid]="isShippingInfoValidValue" [shippingInfo]="shippingInfoValue" [selectedShippingOption]="selectedShippingOptionValue" (updateShippingInfo)="updateShippingInfoFunction($event)" (selectShippingOption)="selectShippingOptionFunction($event)"></shipping>'})
 class TestShipping {
@@ -46,9 +51,15 @@ describe('ShippingComponent', () => {
   let shippingFormComponent: MockShippingFormComponent;
   let shippingSummaryComponent: MockShippingSummaryComponent;
   let shipping: ShippingComponent;
+  let store;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        StoreModule.forRoot({
+          shippings: combineReducers(fromFoundationShipping.reducers),
+        })
+      ],
       declarations: [ 
         TestShipping,
         MockShippingFormComponent,
@@ -62,6 +73,9 @@ describe('ShippingComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestShipping);
     component = fixture.componentInstance;
+    store = TestBed.get(Store);
+    spyOn(fromFoundationShipping, 'selectShowShippingForm').and.returnValue(stubShowShippingForm);
+    spyOn(store, 'dispatch');
     fixture.detectChanges();
 
     shippingFormComponent = fixture.debugElement.query(By.css('shipping-form')).componentInstance;
@@ -104,9 +118,15 @@ describe('ShippingComponent', () => {
   });
 
   describe('ngOnInit', () => {
+
+    it('should dispatch a SetShowShippingForm action', () => {
+      expect(store.dispatch).toHaveBeenCalledWith(new SetShowShippingForm(!stubIsShippingInfoValidValue));
+    });
     
-    it('should set showShippingForm to !value passed by the [shipping-container]', () => {
-      expect(shipping.showShippingForm).toEqual(!stubIsShippingInfoValidValue);
+    it('should initialize showShippingForm$', () => {
+      shipping.showShippingForm$.subscribe((showShippingForm) => {
+        expect(showShippingForm).toEqual(stubShowShippingForm);
+      });
     });
   });
 
@@ -160,18 +180,17 @@ describe('ShippingComponent', () => {
 
   describe('toggleShippingView', () => {
     
-    it('should toggle showShippingForm', () => {
-      let oldShowShippingForm = shipping.showShippingForm;
+    it('should dispatch a ToggleShippingForm action', () => {
       shipping.toggleShippingView();
 
-      expect(shipping.showShippingForm).toEqual(!oldShowShippingForm);
+      expect(store.dispatch).toHaveBeenCalledWith(new ToggleShippingForm());
     });
   });
 
-  describe('when showShippingForm is true', () => {
+  describe('when showShippingForm$ is true', () => {
 
     beforeEach(() => {
-      shipping.showShippingForm = true;
+      shipping.showShippingForm$ = of(true);
 
       fixture.detectChanges();
     });
@@ -201,7 +220,7 @@ describe('ShippingComponent', () => {
   describe('when showShippingForm is false', () => {
 
     beforeEach(() => {
-      shipping.showShippingForm = false;
+      shipping.showShippingForm$ = of(false);
       fixture.detectChanges();
     });
     

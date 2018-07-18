@@ -1,10 +1,10 @@
 <div class="shipping">
   <shipping-form 
-    [hidden]="!showShippingForm"
+    [hidden]="!(showShippingForm$ | async)"
     [shippingInfo]="shippingInfo" 
     (updateShippingInfo)="onUpdateShippingInfo($event)"></shipping-form>
   <shipping-summary 
-    [hidden]="showShippingForm" 
+    [hidden]="showShippingForm$ | async" 
     *ngIf="shippingInfo" 
     [shippingInfo]="shippingInfo" 
     [selectedShippingOption]="selectedShippingOption"

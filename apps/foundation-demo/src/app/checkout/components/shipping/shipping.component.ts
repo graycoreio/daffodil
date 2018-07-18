@@ -1,5 +1,9 @@
 import { Component, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { ShippingAddress } from '@daffodil/core';
+import { Observable } from 'rxjs';
+import { SetShowShippingForm, ToggleShippingForm } from '../../actions/shipping.actions';
+import { Store, select } from '@ngrx/store';
+import * as fromFoundationShipping from '../../reducers';
 
 @Component({
   selector: 'shipping',
@@ -13,14 +17,26 @@ export class ShippingComponent {
   @Input() selectedShippingOption: string;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
-  showShippingForm: boolean;
+  showShippingForm$: Observable<boolean>;
+
+  constructor(
+    private store: Store<fromFoundationShipping.State>
+  ) { }
 
   ngOnInit() {
-    this.showShippingForm = !this.isShippingInfoValid;
+    this.store.dispatch(
+      new SetShowShippingForm(!this.isShippingInfoValid)
+    );
+
+    this.showShippingForm$ = this.store.pipe(
+      select(fromFoundationShipping.selectShowShippingForm)
+    );
   }
 
   toggleShippingView() {
-    this.showShippingForm = !this.showShippingForm;
+    this.store.dispatch(
+      new ToggleShippingForm()
+    );
   }
 
   onUpdateShippingInfo(shippingInfo: ShippingAddress) {
