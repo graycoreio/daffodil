@@ -16,12 +16,13 @@ class MockShippingOptionsComponent {
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({template: '<shipping-summary [selectedShippingOption]="selectedShippingOptionValue" [shippingInfo]="shippingInfoValue" (editShippingInfo)="editShippingInfoFunction()" (selectShippingOption)="selectShippingOptionFunction($event)"></shipping-summary>'})
+@Component({template: '<shipping-summary [selectedShippingOption]="selectedShippingOptionValue" [shippingInfo]="shippingInfoValue" (editShippingInfo)="editShippingInfoFunction()" (selectShippingOption)="selectShippingOptionFunction($event)" (continueToPayment)="continueToPaymentFunction()"></shipping-summary>'})
 class TestShippingSummaryWrapper {
   shippingInfoValue: ShippingAddress = stubShippingAddress;
   selectedShippingOptionValue: string = 'id';
   editShippingInfoFunction: Function = () => {};
   selectShippingOptionFunction: Function = () => {};
+  continueToPaymentFunction: Function = () => {};
 }
 
 describe('ShippingSummaryComponent', () => {
@@ -78,6 +79,13 @@ describe('ShippingSummaryComponent', () => {
 
     it('should generate a shippingOptions array with one-day-shipping', () => {
       expect(shippingSummaryComponent.shippingOptions[2].id).toEqual('one-day-shipping');
+    });
+  });
+
+  describe('ngOnInit', () => {
+    
+    it('should set showContinueToPayment to true', () => {
+      expect(shippingSummaryComponent.showContinueToPayment).toBeTruthy();
     });
   });
 
@@ -173,6 +181,71 @@ describe('ShippingSummaryComponent', () => {
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.disabled).toBeFalsy();
+    });
+  });
+
+  describe('when continue to payment button is clicked', () => {
+    
+    it('should call onContinueToPayment', () => {
+      spyOn(shippingSummaryComponent, 'onContinueToPayment');
+
+      fixture.debugElement.query(By.css('button')).nativeElement.click();
+
+      expect(shippingSummaryComponent.onContinueToPayment).toHaveBeenCalled();
+    });
+  });
+
+  describe('onContinueToPayment', () => {
+
+    beforeEach(() => {
+      spyOn(shippingSummaryComponent.continueToPayment, 'emit');
+
+      shippingSummaryComponent.onContinueToPayment();
+    });
+
+    it('should set showContinueToPayment to false', () => {
+      expect(shippingSummaryComponent.showContinueToPayment).toBeFalsy();
+    });
+    
+    it('should call continueToPayment.emit', () => {
+      expect(shippingSummaryComponent.continueToPayment.emit).toHaveBeenCalled();
+    });
+  });
+
+  describe('when continueToPayment is emitted', () => {
+    
+    it('should call function passed by host component', () => {
+      spyOn(component, "continueToPaymentFunction");
+
+      shippingSummaryComponent.continueToPayment.emit();
+
+      expect(component.continueToPaymentFunction).toHaveBeenCalled();
+    });
+  });
+
+  describe('when showContinueToPayment is true', () => {
+    
+    beforeEach(() => {
+      shippingSummaryComponent.showContinueToPayment = true;
+    
+      fixture.detectChanges();
+    });
+
+    it('should render the Continue to Payment button', () => {
+      expect(fixture.debugElement.query(By.css('button'))).not.toBeNull();
+    });
+  });
+
+  describe('when showContinueToPayment is false', () => {
+    
+    beforeEach(() => {
+      shippingSummaryComponent.showContinueToPayment = false;
+
+      fixture.detectChanges();
+    });
+
+    it('should not render the Continue to Payment button', () => {
+      expect(fixture.debugElement.query(By.css('button'))).toBeNull();      
     });
   });
 });

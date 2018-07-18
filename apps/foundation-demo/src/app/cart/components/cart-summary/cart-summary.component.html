@@ -1,6 +1,6 @@
 <div class="cart-summary" *ngIf="cart.items.length>0">
   <div class="cart-summary__title">cart summary</div>
-  <promotion></promotion>
+  <promotion class="cart-summary__promotion"></promotion>
   <cart-subtotal [title]="'subtotal'" [value]="'$' + cart.subtotal"></cart-subtotal>
   <cart-subtotal [title]="'estimated shipping'" [value]="'FREE (HC)'"></cart-subtotal>
   <cart-subtotal [title]="'estimated tax'" [value]="'$' + cartTax"></cart-subtotal>

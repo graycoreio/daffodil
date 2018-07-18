@@ -22,13 +22,14 @@ let stubShippingAddress: ShippingAddress = {
 let stubSelectedShippingOption: string = 'shipping option';
 let stubShowShippingForm: boolean = true;
 
-@Component({template: '<shipping [isShippingInfoValid]="isShippingInfoValidValue" [shippingInfo]="shippingInfoValue" [selectedShippingOption]="selectedShippingOptionValue" (updateShippingInfo)="updateShippingInfoFunction($event)" (selectShippingOption)="selectShippingOptionFunction($event)"></shipping>'})
+@Component({template: '<shipping [isShippingInfoValid]="isShippingInfoValidValue" [shippingInfo]="shippingInfoValue" [selectedShippingOption]="selectedShippingOptionValue" (updateShippingInfo)="updateShippingInfoFunction($event)" (selectShippingOption)="selectShippingOptionFunction($event)" (continueToPayment)="onContinueToPaymentFunction()"></shipping>'})
 class TestShipping {
   isShippingInfoValidValue = stubIsShippingInfoValidValue;
   shippingInfoValue: ShippingAddress = stubShippingAddress;
   selectedShippingOptionValue: string = stubSelectedShippingOption;
   updateShippingInfoFunction: Function = () => {};
   selectShippingOptionFunction: Function = () => {};
+  onContinueToPaymentFunction: Function = () => {};
 }
 
 @Component({selector: 'shipping-form', template: ''})
@@ -43,6 +44,7 @@ class MockShippingSummaryComponent {
   @Input() selectedShippingOption: string;
   @Output() editShippingInfo: EventEmitter<any> = new EventEmitter();
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
+  @Output() continueToPayment: EventEmitter<any> = new EventEmitter();
 }
 
 describe('ShippingComponent', () => {
@@ -174,6 +176,17 @@ describe('ShippingComponent', () => {
         shippingSummaryComponent.selectShippingOption.emit(stubSelectedShippingOption);
         
         expect(component.selectShippingOptionFunction).toHaveBeenCalledWith(stubSelectedShippingOption);
+      });
+    });
+
+    describe('continueToPayment', () => {
+      
+      it('should call hostComponent.onContinueToPaymentFunction', () => {
+        spyOn(component, 'onContinueToPaymentFunction');
+
+        shippingSummaryComponent.continueToPayment.emit();
+
+        expect(component.onContinueToPaymentFunction).toHaveBeenCalled();
       });
     });
   });

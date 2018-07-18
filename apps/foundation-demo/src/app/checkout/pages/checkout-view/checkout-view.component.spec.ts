@@ -19,6 +19,7 @@ class MockShippingComponent {
   @Input() selectedShippingOption: string;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
+  @Output() continueToPayment: EventEmitter<any> = new EventEmitter();
 }
 
 @Component({selector: '[shipping-container]', template: '<ng-content></ng-content>', exportAs: 'ShippingContainer'})
@@ -29,6 +30,9 @@ class MockShippingContainer {
   updateShippingInfo: Function = () => {};
   selectShippingOption: Function = () => {};
 }
+
+@Component({selector: 'payment', template: ''})
+class MockPaymentComponent {}
 
 describe('CheckoutViewComponent', () => {
   let component: CheckoutViewComponent;
@@ -41,7 +45,8 @@ describe('CheckoutViewComponent', () => {
       declarations: [
         CheckoutViewComponent,
         MockShippingComponent,
-        MockShippingContainer
+        MockShippingContainer,
+        MockPaymentComponent
       ]
     })
     .compileComponents();
@@ -59,7 +64,7 @@ describe('CheckoutViewComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  
+
   describe('on <shipping>', () => {
     
     it('should set isShippingInfoValid', () => {
@@ -96,6 +101,53 @@ describe('CheckoutViewComponent', () => {
         shipping.selectShippingOption.emit(stubSelectedShippingOption);
 
         expect(shippingContainer.selectShippingOption).toHaveBeenCalledWith(stubSelectedShippingOption);
+      });
+    });
+
+    describe('when <shipping> emits continueToPayment', () => {
+      
+      it('should call onContinueToPayment', () => {
+        spyOn(component, 'onContinueToPayment');
+  
+        shipping.continueToPayment.emit();
+  
+        expect(component.onContinueToPayment).toHaveBeenCalled();
+      });
+    });
+  
+    describe('ngOnInit', () => {
+      
+      it('should set showPaymentView to false', () => {
+        expect(component.showPaymentView).toBeFalsy();
+      });
+    });
+  
+    describe('onContinueToPayment', () => {
+      
+      it('should set showPaymentView to true', () => {
+        component.onContinueToPayment();
+  
+        expect(component.showPaymentView).toBeTruthy();
+      });
+    });
+  
+    describe('when showPaymentView is false', () => {
+      
+      it('should not render checkout__payment', () => {
+        component.showPaymentView = false;
+        fixture.detectChanges();
+  
+        expect(fixture.debugElement.query(By.css('.checkout__payment'))).toBeNull();
+      });
+    });
+  
+    describe('when showPaymentView is true', () => {
+      
+      it('should render checkout__payment', () => {
+        component.showPaymentView = true;
+        fixture.detectChanges();
+  
+        expect(fixture.debugElement.query(By.css('.checkout__payment'))).not.toBeNull();
       });
     });
   });
