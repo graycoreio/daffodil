@@ -1,0 +1,65 @@
+@import 'daffodil-util';
+
+.payment-summary {
+  font-size: $small-font-size;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-template-areas: 
+    "       title         edit"
+    "method-title method-title"
+    " card-number  card-number"
+    "  expiration   expiration";
+
+  &__title {
+    margin-bottom: 5px;
+    grid-area: title;
+    @include embolden();
+    @include uppercase();
+  }
+
+  &__method-title {
+    @include embolden();
+    margin-bottom: 5px;
+    grid-area: method-title;
+  }
+
+  &__cardnumber {
+    grid-area: card-number;
+  }
+
+  &__expiration {
+    grid-area: expiration;
+  }
+
+  & a {
+    grid-area: edit;
+  }
+
+  @include breakpoint(large) {
+    grid-template-areas: 
+    "       title        title"
+    "method-title method-title"
+    " card-number  card-number"
+    "  expiration   expiration"
+    "        edit        edit";
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &__title {
+    font-size: $global-font-size;
+    margin-bottom: 15px;
+    @include embolden();
+    @include uppercase();
+  }
+
+  & a {
+    display: block;
+    text-decoration: underline;
+    justify-self: end;
+
+    @include breakpoint(large) {
+      justify-self: start;
+      margin: 15px 0 10px 0;
+    }
+  }
+}

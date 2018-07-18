@@ -9,6 +9,10 @@ import { ShippingOptionsComponent } from './components/shipping-options/shipping
 import { ShippingComponent } from './components/shipping/shipping.component';
 import { DesignModule } from '../design/design.module';
 import { FoundationCheckoutStateModule } from './checkout-state.module';
+import { PaymentFormComponent } from './components/payment-form/payment-form.component';
+import { PaymentComponent } from './components/payment/payment.component';
+import { PaymentSummaryComponent } from './components/payment-summary/payment-summary.component';
+import { CartModule } from '../cart/cart.module';
 
 @NgModule({
   imports: [
@@ -16,21 +20,28 @@ import { FoundationCheckoutStateModule } from './checkout-state.module';
     ReactiveFormsModule,
     CoreCheckoutModule,
     DesignModule,
-    FoundationCheckoutStateModule
+    FoundationCheckoutStateModule,
+    CartModule
   ],
   declarations: [
     CheckoutViewComponent,
     ShippingFormComponent,
     ShippingSummaryComponent,
     ShippingOptionsComponent,
-    ShippingComponent
+    ShippingComponent,
+    PaymentFormComponent,
+    PaymentComponent,
+    PaymentSummaryComponent
   ],
   exports: [
     CheckoutViewComponent,
     ShippingFormComponent,
     ShippingSummaryComponent,
     ShippingOptionsComponent,
-    ShippingComponent
+    ShippingComponent,
+    PaymentFormComponent,
+    PaymentComponent,
+    PaymentSummaryComponent
   ]
 })
 export class CheckoutModule { }
