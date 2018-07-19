@@ -6,6 +6,9 @@ import { By } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
 import { ShippingAddress, ShippingFactory, PaymentInfo, PaymentFactory } from '@daffodil/core';
 import { ShippingContainer } from 'libs/core/src';
+import { StoreModule, combineReducers, Store } from '@ngrx/store';
+import * as fromFoundationCheckout from '../../reducers';
+import { ShowPaymentView } from '../../actions/payment.actions';
 
 let shippingFactory = new ShippingFactory();
 let paymentFactory = new PaymentFactory();
@@ -13,12 +16,14 @@ let stubIsShippingInfoValid = true;
 let stubShippingInfo = shippingFactory.createShippingAddress();
 let stubSelectedShippingOption = 'shippingOption';
 let stubPaymentInfo: PaymentInfo = paymentFactory.create();
+let stubShowPaymentView: boolean = true;
 
 @Component({selector: 'shipping', template: ''})
 class MockShippingComponent {
   @Input() isShippingInfoValid: Boolean;
   @Input() shippingInfo: ShippingAddress;
   @Input() selectedShippingOption: string;
+  @Input() hideContinueToPayment: boolean;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
   @Output() continueToPayment: EventEmitter<any> = new EventEmitter();
@@ -52,9 +57,15 @@ describe('CheckoutViewComponent', () => {
   let shippingContainer: ShippingContainer;
   let payment: MockPaymentComponent
   let paymentContainer: MockPaymentContainer;
+  let store;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        StoreModule.forRoot({
+          shippings: combineReducers(fromFoundationCheckout.reducers),
+        })
+      ],
       declarations: [
         CheckoutViewComponent,
         MockShippingComponent,
@@ -69,7 +80,16 @@ describe('CheckoutViewComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CheckoutViewComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();});
+    store = TestBed.get(Store);
+    spyOn(fromFoundationCheckout, 'selectShowPaymentView').and.returnValue(stubShowPaymentView);
+    spyOn(store, 'dispatch');
+    fixture.detectChanges();
+
+    shipping = fixture.debugElement.query(By.css('shipping')).componentInstance;
+    shippingContainer = fixture.debugElement.query(By.css('[shipping-container]')).componentInstance;
+    payment = fixture.debugElement.query(By.css('payment')).componentInstance;
+    paymentContainer = fixture.debugElement.query(By.css('[payment-container]')).componentInstance;  
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -77,119 +97,113 @@ describe('CheckoutViewComponent', () => {
   
   describe('ngOnInit', () => {
     
-    it('should set showPaymentView to false', () => {
-      expect(component.showPaymentView).toBeFalsy();
+    it('should initialize showPaymentView$', () => {
+      component.showPaymentView$.subscribe((showPaymentView) => {
+        expect(showPaymentView).toEqual(stubShowPaymentView);
+      });
+    });
+  });
+  
+  describe('on <shipping>', () => {
+  
+    it('should set isShippingInfoValid', () => {
+      expect(shipping.isShippingInfoValid).toEqual(stubIsShippingInfoValid);
+    });
+
+    it('should set shippingInfo', () => {
+      expect(shipping.shippingInfo).toEqual(stubShippingInfo);
+    });
+
+    it('should set selectedShippingOption', () => {
+      expect(shipping.selectedShippingOption).toEqual(stubSelectedShippingOption);
+    });
+
+    it('should set hideContinueToPayment', () => {
+      expect(shipping.hideContinueToPayment).toEqual(stubShowPaymentView);
     });
   });
 
-  describe('set showPaymentView to true', () => {
+  describe('on <payment>', () => {
     
-    beforeEach(() => {
-      component.showPaymentView = true;
+    it('should set paymentInfo', () => {
+      expect(payment.paymentInfo).toEqual(stubPaymentInfo);
+    });
+  });
+
+  describe('when <shipping> emits', () => {
+    
+    describe('updateShippingInfo', () => {
+      
+      it('should call function passed by ShippingContainer', () => {
+        spyOn(shippingContainer, 'updateShippingInfo');
+
+        shipping.updateShippingInfo.emit(stubShippingInfo);
+
+        expect(shippingContainer.updateShippingInfo).toHaveBeenCalledWith(stubShippingInfo);
+      });
+    });
+
+    describe('selectShippingOption', () => {
+      
+      it('should call function passed by ShippingContainer', () => {
+        spyOn(shippingContainer, 'selectShippingOption');
+
+        shipping.selectShippingOption.emit(stubSelectedShippingOption);
+
+        expect(shippingContainer.selectShippingOption).toHaveBeenCalledWith(stubSelectedShippingOption);
+      });
+    });
+
+    describe('when <shipping> emits continueToPayment', () => {
+      
+      it('should call onContinueToPayment', () => {
+        spyOn(component, 'onContinueToPayment');
+  
+        shipping.continueToPayment.emit();
+  
+        expect(component.onContinueToPayment).toHaveBeenCalled();
+      });
+    });
+  });
+
+  describe('when payment emits updatePaymentInfo', () => {
+    
+    it('should call PaymentContainer.updatePaymentInfo', () => {
+      spyOn(paymentContainer, 'updatePaymentInfo');
+
+      payment.updatePaymentInfo.emit(stubPaymentInfo);
+
+      expect(paymentContainer.updatePaymentInfo).toHaveBeenCalledWith(stubPaymentInfo);
+    });
+  });
+
+  describe('onContinueToPayment', () => {
+    
+    it('should dispatch a ShowPaymentView action', () => {
+      component.onContinueToPayment();
+
+      expect(store.dispatch).toHaveBeenCalledWith(new ShowPaymentView());
+    });
+  });
+
+  describe('when showPaymentView$ is false', () => {
+    
+    it('should not render checkout__payment', () => {
+
+      component.showPaymentView$ = of(false);
       fixture.detectChanges();
 
-      shipping = fixture.debugElement.query(By.css('shipping')).componentInstance;
-      shippingContainer = fixture.debugElement.query(By.css('[shipping-container]')).componentInstance;
-      payment = fixture.debugElement.query(By.css('payment')).componentInstance;
-      paymentContainer = fixture.debugElement.query(By.css('[payment-container]')).componentInstance;  
+      expect(fixture.debugElement.query(By.css('.checkout__payment'))).toBeNull();
     });
+  });
+
+  describe('when showPaymentView$ is true', () => {
     
-    describe('on <shipping>', () => {
-    
-      it('should set isShippingInfoValid', () => {
-        expect(shipping.isShippingInfoValid).toEqual(stubIsShippingInfoValid);
-      });
-  
-      it('should set shippingInfo', () => {
-        expect(shipping.shippingInfo).toEqual(stubShippingInfo);
-      });
-  
-      it('should set selectedShippingOption', () => {
-        expect(shipping.selectedShippingOption).toEqual(stubSelectedShippingOption);
-      });
+    it('should render checkout__payment', () => {
+      component.showPaymentView$ = of(true);
+      fixture.detectChanges();
+
+      expect(fixture.debugElement.query(By.css('.checkout__payment'))).not.toBeNull();
     });
-  
-    describe('on <payment>', () => {
-      
-      it('should set paymentInfo', () => {
-        expect(payment.paymentInfo).toEqual(stubPaymentInfo);
-      });
-    });
-  
-    describe('when <shipping> emits', () => {
-      
-      describe('updateShippingInfo', () => {
-        
-        it('should call function passed by ShippingContainer', () => {
-          spyOn(shippingContainer, 'updateShippingInfo');
-  
-          shipping.updateShippingInfo.emit(stubShippingInfo);
-  
-          expect(shippingContainer.updateShippingInfo).toHaveBeenCalledWith(stubShippingInfo);
-        });
-      });
-  
-      describe('selectShippingOption', () => {
-        
-        it('should call function passed by ShippingContainer', () => {
-          spyOn(shippingContainer, 'selectShippingOption');
-  
-          shipping.selectShippingOption.emit(stubSelectedShippingOption);
-  
-          expect(shippingContainer.selectShippingOption).toHaveBeenCalledWith(stubSelectedShippingOption);
-        });
-      });
-  
-      describe('when <shipping> emits continueToPayment', () => {
-        
-        it('should call onContinueToPayment', () => {
-          spyOn(component, 'onContinueToPayment');
-    
-          shipping.continueToPayment.emit();
-    
-          expect(component.onContinueToPayment).toHaveBeenCalled();
-        });
-      });
-    });
-  
-    describe('when payment emits updatePaymentInfo', () => {
-      
-      it('should call PaymentContainer.updatePaymentInfo', () => {
-        spyOn(paymentContainer, 'updatePaymentInfo');
-  
-        payment.updatePaymentInfo.emit(stubPaymentInfo);
-  
-        expect(paymentContainer.updatePaymentInfo).toHaveBeenCalledWith(stubPaymentInfo);
-      });
-    });
-  
-    describe('onContinueToPayment', () => {
-      
-      it('should set showPaymentView to true', () => {
-        component.onContinueToPayment();
-  
-        expect(component.showPaymentView).toBeTruthy();
-      });
-    });
-  
-    describe('when showPaymentView is false', () => {
-      
-      it('should not render checkout__payment', () => {
-        component.showPaymentView = false;
-        fixture.detectChanges();
-  
-        expect(fixture.debugElement.query(By.css('.checkout__payment'))).toBeNull();
-      });
-    });
-  
-    describe('when showPaymentView is true', () => {
-      
-      it('should render checkout__payment', () => {
-        component.showPaymentView = true;
-        fixture.detectChanges();
-  
-        expect(fixture.debugElement.query(By.css('.checkout__payment'))).not.toBeNull();
-      });
-    });
-  });  
+  });
 });

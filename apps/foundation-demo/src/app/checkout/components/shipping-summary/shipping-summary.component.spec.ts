@@ -8,6 +8,7 @@ import { ShippingOptionsComponent } from '../shipping-options/shipping-options.c
 
 let shippingFactory = new ShippingFactory();
 let stubShippingAddress = shippingFactory.createShippingAddress();
+let stubHideContinueToPayment = false;
 
 @Component({selector: 'shipping-options', template: ''})
 class MockShippingOptionsComponent {
@@ -16,10 +17,11 @@ class MockShippingOptionsComponent {
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({template: '<shipping-summary [selectedShippingOption]="selectedShippingOptionValue" [shippingInfo]="shippingInfoValue" (editShippingInfo)="editShippingInfoFunction()" (selectShippingOption)="selectShippingOptionFunction($event)" (continueToPayment)="continueToPaymentFunction()"></shipping-summary>'})
+@Component({template: '<shipping-summary [selectedShippingOption]="selectedShippingOptionValue" [shippingInfo]="shippingInfoValue" [hideContinueToPayment]="hideContinueToPaymentValue" (editShippingInfo)="editShippingInfoFunction()" (selectShippingOption)="selectShippingOptionFunction($event)" (continueToPayment)="continueToPaymentFunction()"></shipping-summary>'})
 class TestShippingSummaryWrapper {
   shippingInfoValue: ShippingAddress = stubShippingAddress;
   selectedShippingOptionValue: string = 'id';
+  hideContinueToPaymentValue: boolean = stubHideContinueToPayment;
   editShippingInfoFunction: Function = () => {};
   selectShippingOptionFunction: Function = () => {};
   continueToPaymentFunction: Function = () => {};
@@ -63,6 +65,10 @@ describe('ShippingSummaryComponent', () => {
     expect(shippingSummaryComponent.selectedShippingOption).toEqual(component.selectedShippingOptionValue);
   });
 
+  it('should be able to take hideContinueToPayment as input', () => {
+    expect(shippingSummaryComponent.hideContinueToPayment).toEqual(stubHideContinueToPayment);
+  });
+
   describe('constructor', () => {
     
     it('should generate an array of shippingOptions', () => {
@@ -79,13 +85,6 @@ describe('ShippingSummaryComponent', () => {
 
     it('should generate a shippingOptions array with one-day-shipping', () => {
       expect(shippingSummaryComponent.shippingOptions[2].id).toEqual('one-day-shipping');
-    });
-  });
-
-  describe('ngOnInit', () => {
-    
-    it('should set showContinueToPayment to true', () => {
-      expect(shippingSummaryComponent.showContinueToPayment).toBeTruthy();
     });
   });
 
@@ -202,10 +201,6 @@ describe('ShippingSummaryComponent', () => {
 
       shippingSummaryComponent.onContinueToPayment();
     });
-
-    it('should set showContinueToPayment to false', () => {
-      expect(shippingSummaryComponent.showContinueToPayment).toBeFalsy();
-    });
     
     it('should call continueToPayment.emit', () => {
       expect(shippingSummaryComponent.continueToPayment.emit).toHaveBeenCalled();
@@ -223,10 +218,10 @@ describe('ShippingSummaryComponent', () => {
     });
   });
 
-  describe('when showContinueToPayment is true', () => {
+  describe('when hideContinueToPayment is false', () => {
     
     beforeEach(() => {
-      shippingSummaryComponent.showContinueToPayment = true;
+      shippingSummaryComponent.hideContinueToPayment = false;
     
       fixture.detectChanges();
     });
@@ -236,10 +231,10 @@ describe('ShippingSummaryComponent', () => {
     });
   });
 
-  describe('when showContinueToPayment is false', () => {
+  describe('when hideContinueToPayment is true', () => {
     
     beforeEach(() => {
-      shippingSummaryComponent.showContinueToPayment = false;
+      shippingSummaryComponent.hideContinueToPayment = true;
 
       fixture.detectChanges();
     });

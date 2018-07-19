@@ -2,24 +2,26 @@ import { TestBed, async } from "@angular/core/testing";
 
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
-import * as fromShipping from './index';
+import * as fromCheckout from './index';
 import { SetShowShippingForm } from "../actions/shipping.actions";
 
 describe('selectFoundationShippingState', () => {
 
-  let store: Store<fromShipping.FoundationShippingState>;
+  let store: Store<fromCheckout.FoundationCheckoutState>;
   let stubShowShippingForm: boolean;
+  let expectedShowPaymentView: boolean;
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          foundationShipping: combineReducers(fromShipping.reducers),
+          foundationCheckout: combineReducers(fromCheckout.reducers),
         })
       ]
     });
 
     stubShowShippingForm = true;
+    expectedShowPaymentView = false;
     store = TestBed.get(Store);
     store.dispatch(new SetShowShippingForm(stubShowShippingForm));
   }));
@@ -31,7 +33,7 @@ describe('selectFoundationShippingState', () => {
         showShippingForm: stubShowShippingForm
       }
 
-      store.pipe(select(fromShipping.foundationShippingStateSelector)).subscribe((shippingState) => {
+      store.pipe(select(fromCheckout.foundationShippingStateSelector)).subscribe((shippingState) => {
         expect(shippingState).toEqual(expectedShippingState);
       });
     });
@@ -40,8 +42,30 @@ describe('selectFoundationShippingState', () => {
   describe('selectShowShippingForm', () => {
     
     it('selects showShippingForm state', () => {
-      store.pipe(select(fromShipping.selectShowShippingForm)).subscribe((showShippingForm) => {
+      store.pipe(select(fromCheckout.selectShowShippingForm)).subscribe((showShippingForm) => {
         expect(showShippingForm).toEqual(stubShowShippingForm);
+      });
+    });
+  });
+
+  describe('foundationPaymentStateSelector', () => {
+    
+    it('selects shipping state', () => {
+      let expectedPaymentState = {
+        showPaymentView: expectedShowPaymentView
+      }
+
+      store.pipe(select(fromCheckout.foundationPaymentStateSelector)).subscribe((paymentState) => {
+        expect(paymentState).toEqual(expectedPaymentState);
+      });
+    });
+  });
+
+  describe('selectShowPaymentView', () => {
+    
+    it('selects showPaymentView state', () => {
+      store.pipe(select(fromCheckout.selectShowPaymentView)).subscribe((showPaymentView) => {
+        expect(showPaymentView).toEqual(expectedShowPaymentView);
       });
     });
   });

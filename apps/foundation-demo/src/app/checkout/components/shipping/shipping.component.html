@@ -8,6 +8,7 @@
     *ngIf="shippingInfo" 
     [shippingInfo]="shippingInfo" 
     [selectedShippingOption]="selectedShippingOption"
+    [hideContinueToPayment]="hideContinueToPayment"
     (editShippingInfo)="toggleShippingView()"
     (selectShippingOption)="onSelectShippingOption($event)"
     (continueToPayment)="onContinueToPayment()"></shipping-summary>
