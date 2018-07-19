@@ -3,21 +3,23 @@
 [![Build Status](https://travis-ci.com/graycoreio/daffodil.svg?branch=master)](https://travis-ci.com/graycoreio/daffodil)
 [![npm version](https://badge.fury.io/js/%40daffodil%2Fcore.svg)](https://www.npmjs.com/@daffodil/core)
 
+## Current Stability - Alpha
+
 ## What is Daffodil?
 Daffodil is a set of frontend libraries that intends to accomplish three things:
-1. Improve the develop workflow when writing frontend software for online stores.
-2. Provide a consistent developer tool-chain regardless of chosen Ecommerce platform.
-3. Drastically improve the end-user experience of online-shopping (Ecommmerce).
+1. Improve the developer workflow when writing frontend software for online stores.
+2. Provide a consistent frontend developer tool-chain regardless of a business's chosen Ecommerce platform
+3. Drastically improve the end-user experience of online-shopping.
 
-Daffodil utilizes several technological solutions to achieve it's goals. We plan on providing several modules to improve different aspects of developer workflow:
+Daffodil provides several modules to improve different aspects of developer workflow:
 
 1. `@daffodil/state` (partially complete) - An extendable Ecommerce redux store
-2. `@daffodil/driver` (todo) - An extendable API interface with configurable
+2. `@daffodil/driver` (todo) - An extendable API interface with configurable drivers for different Ecommerce platforms.
 3. `@daffodil/model` (partially complete) - An extendable set of models for Ecommerce.
 
 Additionally, we plan on providing additional sample implementations of the `@daffodil` modules
 in the style of some of the major frontend libraries. To date, we're focusing only on:
-1. [Foundation](https://foundation.zurb.com/).
+1. [Foundation](https://foundation.zurb.com/)
 
 ### Benefits For Developers
 
@@ -39,7 +41,7 @@ in the style of some of the major frontend libraries. To date, we're focusing on
   * Offline Support
   * Service Worker Caching
   * App-like UX
-  * Mobile App Installation
+  * Mobile App-like Installation
 * Daffodil (with the help of Angular) supports simple Server Side Rendering for fantastic SEO
 
 ## Example Stores
