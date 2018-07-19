@@ -26,6 +26,7 @@ ng test foundation-demo
 
 ### Prerequisites
 * `Lerna` - `npm install --g lerna`.
+* `Angular CLI` - `npm install -g @angular/cli`
 
 ### Commands
 1. Clone this repo `git clone https://github.com/graycoreio/daffodil.git`
