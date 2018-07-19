@@ -1,4 +1,5 @@
 # Daffodil
+[![Join the chat at https://gitter.im/graycoreio/daffodil](https://badges.gitter.im/graycoreio/daffodil.svg)](https://gitter.im/graycoreio/daffodil?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.com/graycoreio/daffodil.svg?branch=master)](https://travis-ci.com/graycoreio/daffodil)
 [![npm version](https://badge.fury.io/js/%40daffodil%2Fcore.svg)](https://www.npmjs.com/@daffodil/core)
 
