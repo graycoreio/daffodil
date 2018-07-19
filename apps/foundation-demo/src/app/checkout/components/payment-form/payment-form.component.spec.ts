@@ -1,14 +1,28 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PaymentFormComponent } from './payment-form.component';
-import { Component } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormsModule, ReactiveFormsModule, FormControl, AbstractControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { ErrorStateMatcher } from '../../../design/molecules/error-state-matcher/error-state-matcher.component';
 
 @Component({'template': '<payment-form [paymentInfo]="paymentInfoValue" (updatePaymentInfo)="updatePaymentInfoFunction($event)"></payment-form>'})
 class TestingPaymentFormComponentWrapper {
   paymentInfoValue;
   updatePaymentInfoFunction: Function;
+}
+
+@Component({'selector': '[input-validator]', 'template': ''})
+class MockInputValidatorComponent {
+  @Input() formControl: FormControl;
+  @Input() formSubmitted: boolean;
+}
+
+@Component({'selector': '[select-validator]', 'template': ''})
+class MockSelectValidatorComponent {
+  @Input() formControl: FormControl;
+  @Input() formSubmitted: boolean;
+  @Input() errorStateMatcher: ErrorStateMatcher;
 }
 
 @Component({
@@ -32,6 +46,8 @@ describe('PaymentFormComponent', () => {
       declarations: [ 
         TestingPaymentFormComponentWrapper,
         PromotionComponentMock,
+        MockInputValidatorComponent,
+        MockSelectValidatorComponent,
         PaymentFormComponent
       ]
     })
@@ -96,29 +112,6 @@ describe('PaymentFormComponent', () => {
         expect(paymentFormComponent.form.value).toEqual(defaultValues);
       });
     });
-
-    describe('initializes a form control', () => {
-      
-      it('for name', () => {
-        expect(paymentFormComponent.name).toEqual(jasmine.any(FormControl));
-      });
-
-      it('for cardnumber', () => {
-        expect(paymentFormComponent.cardnumber).toEqual(jasmine.any(FormControl));
-      });
-
-      it('for month', () => {
-        expect(paymentFormComponent.month).toEqual(jasmine.any(FormControl));
-      });
-
-      it('for year', () => {
-        expect(paymentFormComponent.year).toEqual(jasmine.any(FormControl));
-      });
-
-      it('for securitycode', () => {
-        expect(paymentFormComponent.securitycode).toEqual(jasmine.any(FormControl));
-      });
-    });
   });
 
   describe('when submit button is clicked', () => {
@@ -176,380 +169,290 @@ describe('PaymentFormComponent', () => {
     });
   });
 
-  describe('name input', () => {
+  describe('monthErrorStateMatcher.isErrorState', () => {
 
-    let nameInput;
+    let formControl;
 
     beforeEach(() => {
-      nameInput = fixture.debugElement.query(By.css('.payment-form__name'));
+      formControl = new FormControl();
     });
     
-    describe('when it has not been touched', () => {
+    describe('when control.touched is true', () => {
       
-      describe('and has no input', () => {
+      beforeEach(() => {
+        formControl.touched = true;
+      });
+
+      describe('and control.value is Month', () => {
         
-        it('should not have the error class', () => {
-          expect(nameInput.nativeElement.classList.contains('payment-form__error')).toBeFalsy();
+        beforeEach(() => {
+          formControl.value = 'Month';            
         });
 
-        it('should not have the valid class', () => {
-          expect(nameInput.nativeElement.classList.contains('payment-form__valid')).toBeFalsy();
+        it('should return true', () => {
+          expect(paymentFormComponent.monthErrorStateMatcher.isErrorState(formControl, false)).toBeTruthy();
         });
+      });
 
-        describe('and form is submitted', () => {
-
+      describe('and value is not Month', () => {
+        
+        describe('and control has errors', () => {
+          
           beforeEach(() => {
-            fixture.debugElement.query(By.css('button')).nativeElement.click();
-            fixture.detectChanges();
+            formControl.errors = true;
           });
+
+          it('should return true', () => {
+            expect(paymentFormComponent.monthErrorStateMatcher.isErrorState(formControl, false)).toBeTruthy();              
+          });
+        });
         
-          it('should have the error class', () => {
-            expect(nameInput.nativeElement.classList.contains('payment-form__error')).toBeTruthy();
+        describe('and control has no errors', () => {
+          
+          beforeEach(() => {
+            formControl.errors = false;
           });
-  
-          it('should not have the valid class', () => {
-            expect(nameInput.nativeElement.classList.contains('payment-form__valid')).toBeFalsy();
+
+          it('should return false', () => {
+            expect(paymentFormComponent.monthErrorStateMatcher.isErrorState(formControl, false)).toBeFalsy();              
           });
         });
       });
     });
 
-    describe('when it has been touched', () => {
+    describe('when control.touched is false', () => {
 
-      beforeEach(() => {
-        paymentFormComponent.form.controls.name.markAsTouched();
-        fixture.detectChanges();
-      });
+      let formSubmitted;
       
-      describe('and has no input', () => {
+      beforeEach(() => {
+        formControl.touched = false;
+      });
+
+      describe('and formSubmitted is true', () => {
         
-        it('should have the error class', () => {
-          expect(nameInput.nativeElement.classList.contains('payment-form__error')).toBeTruthy();
+        beforeEach(() => {
+          formSubmitted = true;
         });
 
-        it('should not have the valid class', () => {
-          expect(nameInput.nativeElement.classList.contains('payment-form__valid')).toBeFalsy();
+        describe('and control.value is Month', () => {
+          
+          beforeEach(() => {
+            formControl.value = 'Month';
+          });
+
+          it('should return true', () => {
+            expect(paymentFormComponent.monthErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeTruthy();              
+          });
+        });
+
+        describe('and control.value is not Month', () => {
+          
+          describe('and control has errors', () => {
+            
+            beforeEach(() => {
+              formControl.errors = true;
+            });
+
+            it('should return true', () => {
+              expect(paymentFormComponent.monthErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeTruthy();              
+            });
+          });
+
+          describe('and control has no errors', () => {
+            
+            beforeEach(() => {
+              formControl.errors = false;
+            });
+
+            it('should return false', () => {
+              expect(paymentFormComponent.monthErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeFalsy();              
+            });
+          });
         });
       });
 
-      describe('and has input', () => {
-
-        beforeEach(() => {
-          paymentFormComponent.name.setValue("name");
-          fixture.detectChanges();
-        });
+      describe('and formSubmitted is false', () => {
         
-        it('should not have the error class', () => {
-          expect(nameInput.nativeElement.classList.contains('payment-form__error')).toBeFalsy();
+        beforeEach(() => {
+          formSubmitted = false;
         });
 
-        it('should have the valid class', () => {
-          expect(nameInput.nativeElement.classList.contains('payment-form__valid')).toBeTruthy();
+        it('should return false', () => {
+          expect(paymentFormComponent.monthErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeFalsy();              
         });
       });
     });
   });
 
-  describe('card-number input', () => {
+  describe('yearErrorStateMatcher.isErrorState', () => {
 
-    let cardNumberInput;
+    let formControl;
 
     beforeEach(() => {
-      cardNumberInput = fixture.debugElement.query(By.css('.payment-form__card-number'));
+      formControl = new FormControl();
     });
     
-    describe('when it has not been touched', () => {
+    describe('when control.touched is true', () => {
       
-      describe('and has no input', () => {
+      beforeEach(() => {
+        formControl.touched = true;
+      });
+
+      describe('and control.value is Year', () => {
         
-        it('should not have the error class', () => {
-          expect(cardNumberInput.nativeElement.classList.contains('payment-form__error')).toBeFalsy();
+        beforeEach(() => {
+          formControl.value = 'Year';            
         });
 
-        it('should not have the valid class', () => {
-          expect(cardNumberInput.nativeElement.classList.contains('payment-form__valid')).toBeFalsy();
+        it('should return true', () => {
+          expect(paymentFormComponent.yearErrorStateMatcher.isErrorState(formControl, false)).toBeTruthy();
         });
+      });
 
-        describe('and form is submitted', () => {
-
+      describe('and value is not Year', () => {
+        
+        describe('and control has errors', () => {
+          
           beforeEach(() => {
-            fixture.debugElement.query(By.css('button')).nativeElement.click();
-            fixture.detectChanges();
+            formControl.errors = true;
           });
+
+          it('should return true', () => {
+            expect(paymentFormComponent.yearErrorStateMatcher.isErrorState(formControl, false)).toBeTruthy();              
+          });
+        });
         
-          it('should have the error class', () => {
-            expect(cardNumberInput.nativeElement.classList.contains('payment-form__error')).toBeTruthy();
+        describe('and control has no errors', () => {
+          
+          beforeEach(() => {
+            formControl.errors = false;
           });
-  
-          it('should not have the valid class', () => {
-            expect(cardNumberInput.nativeElement.classList.contains('payment-form__valid')).toBeFalsy();
+
+          it('should return false', () => {
+            expect(paymentFormComponent.yearErrorStateMatcher.isErrorState(formControl, false)).toBeFalsy();              
           });
         });
       });
     });
 
-    describe('when it has been touched', () => {
+    describe('when control.touched is false', () => {
 
-      beforeEach(() => {
-        paymentFormComponent.form.controls.cardnumber.markAsTouched();
-        fixture.detectChanges();
-      });
+      let formSubmitted;
       
-      describe('and has no input', () => {
+      beforeEach(() => {
+        formControl.touched = false;
+      });
+
+      describe('and formSubmitted is true', () => {
         
-        it('should have the error class', () => {
-          expect(cardNumberInput.nativeElement.classList.contains('payment-form__error')).toBeTruthy();
+        beforeEach(() => {
+          formSubmitted = true;
         });
 
-        it('should not have the valid class', () => {
-          expect(cardNumberInput.nativeElement.classList.contains('payment-form__valid')).toBeFalsy();
+        describe('and control.value is Year', () => {
+          
+          beforeEach(() => {
+            formControl.value = 'Year';
+          });
+
+          it('should return true', () => {
+            expect(paymentFormComponent.yearErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeTruthy();              
+          });
+        });
+
+        describe('and control.value is not Year', () => {
+          
+          describe('and control has errors', () => {
+            
+            beforeEach(() => {
+              formControl.errors = true;
+            });
+
+            it('should return true', () => {
+              expect(paymentFormComponent.yearErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeTruthy();              
+            });
+          });
+
+          describe('and control has no errors', () => {
+            
+            beforeEach(() => {
+              formControl.errors = false;
+            });
+
+            it('should return false', () => {
+              expect(paymentFormComponent.yearErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeFalsy();              
+            });
+          });
         });
       });
 
-      describe('and has input', () => {
-
-        beforeEach(() => {
-          paymentFormComponent.cardnumber.setValue("cardNumber");
-          fixture.detectChanges();
-        });
+      describe('and formSubmitted is false', () => {
         
-        it('should not have the error class', () => {
-          expect(cardNumberInput.nativeElement.classList.contains('payment-form__error')).toBeFalsy();
+        beforeEach(() => {
+          formSubmitted = false;
         });
 
-        it('should have the valid class', () => {
-          expect(cardNumberInput.nativeElement.classList.contains('payment-form__valid')).toBeTruthy();
+        it('should return false', () => {
+          expect(paymentFormComponent.yearErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeFalsy();              
         });
       });
     });
   });
 
-  describe('month input', () => {
-      
-    let monthInput;
+  describe('on [input-validator]', () => {
+
+    let inputValidator: MockInputValidatorComponent;
 
     beforeEach(() => {
-      monthInput = fixture.debugElement.query(By.css('.payment-form__month'));
-    });
-
-    it('should have a default value of "Month"', () => {
-      expect(paymentFormComponent.form.controls.month.value).toEqual('Month');
+      inputValidator = fixture.debugElement.queryAll(By.css('[input-validator]'))[0].componentInstance;
     });
     
-    describe('when it has not been touched', () => {
-      
-      describe('and has default input', () => {
-        
-        it('should not have the error class', () => {
-          expect(monthInput.nativeElement.classList.contains('payment-form__error')).toBeFalsy();
-        });
-
-        it('should not have the valid class', () => {
-          expect(monthInput.nativeElement.classList.contains('payment-form__valid')).toBeFalsy();
-        });
-
-        describe('and form is submitted', () => {
-
-          beforeEach(() => {
-            fixture.debugElement.query(By.css('button')).nativeElement.click();
-            fixture.detectChanges();
-          });
-        
-          it('should have the error class', () => {
-            expect(monthInput.nativeElement.classList.contains('payment-form__error')).toBeTruthy();
-          });
-  
-          it('should not have the valid class', () => {
-            expect(monthInput.nativeElement.classList.contains('payment-form__valid')).toBeFalsy();
-          });
-        });
-      });
+    it('should set formControl', () => {
+      expect(<AbstractControl> inputValidator.formControl).toEqual(<AbstractControl> paymentFormComponent.form.controls['name']);
     });
 
-    describe('when it has been touched', () => {
+    it('should set formSubmitted', () => {
+      expect(inputValidator.formSubmitted).toBeFalsy();
+    });
 
-      beforeEach(() => {
-        paymentFormComponent.form.controls.month.markAsTouched();
-        fixture.detectChanges();
-      });
+    describe('when form is submitted', () => {
       
-      describe('and has default input', () => {
-        
-        it('should have the error class', () => {
-          expect(monthInput.nativeElement.classList.contains('payment-form__error')).toBeTruthy();
-        });
+      it('should change formSubmitted to true', () => {
+        fixture.debugElement.query(By.css('button')).nativeElement.click();
+        fixture.detectChanges();
 
-        it('should not have the valid class', () => {
-          expect(monthInput.nativeElement.classList.contains('payment-form__valid')).toBeFalsy();
-        });
-      });
-
-      describe('and does not have the default input', () => {
-
-        beforeEach(() => {
-          paymentFormComponent.month.setValue("not default");
-          fixture.detectChanges();
-        });
-        
-        it('should not have the error class', () => {
-          expect(monthInput.nativeElement.classList.contains('payment-form__error')).toBeFalsy();
-        });
-
-        it('should have the valid class', () => {
-          expect(monthInput.nativeElement.classList.contains('payment-form__valid')).toBeTruthy();
-        });
+        expect(inputValidator.formSubmitted).toBeTruthy();
       });
     });
   });
 
-  describe('year input', () => {
-      
-    let yearInput;
+  describe('on [select-validator]', () => {
+
+    let selectValidator: MockSelectValidatorComponent;
 
     beforeEach(() => {
-      yearInput = fixture.debugElement.query(By.css('.payment-form__year'));
-    });
-
-    it('should have a default value of "Year"', () => {
-      expect(paymentFormComponent.form.controls.year.value).toEqual('Year');
+      selectValidator = fixture.debugElement.queryAll(By.css('[select-validator]'))[0].componentInstance;
     });
     
-    describe('when it has not been touched', () => {
-      
-      describe('and has default input', () => {
-        
-        it('should not have the error class', () => {
-          expect(yearInput.nativeElement.classList.contains('payment-form__error')).toBeFalsy();
-        });
-
-        it('should not have the valid class', () => {
-          expect(yearInput.nativeElement.classList.contains('payment-form__valid')).toBeFalsy();
-        });
-
-        describe('and form is submitted', () => {
-
-          beforeEach(() => {
-            fixture.debugElement.query(By.css('button')).nativeElement.click();
-            fixture.detectChanges();
-          });
-        
-          it('should have the error class', () => {
-            expect(yearInput.nativeElement.classList.contains('payment-form__error')).toBeTruthy();
-          });
-  
-          it('should not have the valid class', () => {
-            expect(yearInput.nativeElement.classList.contains('payment-form__valid')).toBeFalsy();
-          });
-        });
-      });
+    it('should set formControl', () => {
+      expect(<AbstractControl> selectValidator.formControl).toEqual(<AbstractControl> paymentFormComponent.form.controls['month']);
     });
 
-    describe('when it has been touched', () => {
+    it('should set formSubmitted', () => {
+      expect(selectValidator.formSubmitted).toBeFalsy();
+    });
 
-      beforeEach(() => {
-        paymentFormComponent.form.controls.year.markAsTouched();
+    it('should set ErrorStateMatcher', () => {
+      expect(selectValidator.errorStateMatcher).toEqual(paymentFormComponent.monthErrorStateMatcher);
+    });
+
+    describe('when form is submitted', () => {
+      
+      it('should change formSubmitted to true', () => {
+        fixture.debugElement.query(By.css('button')).nativeElement.click();
         fixture.detectChanges();
-      });
-      
-      describe('and has default input', () => {
-        
-        it('should have the error class', () => {
-          expect(yearInput.nativeElement.classList.contains('payment-form__error')).toBeTruthy();
-        });
 
-        it('should not have the valid class', () => {
-          expect(yearInput.nativeElement.classList.contains('payment-form__valid')).toBeFalsy();
-        });
-      });
-
-      describe('and does not have the default input', () => {
-
-        beforeEach(() => {
-          paymentFormComponent.year.setValue("not default");
-          fixture.detectChanges();
-        });
-        
-        it('should not have the error class', () => {
-          expect(yearInput.nativeElement.classList.contains('payment-form__error')).toBeFalsy();
-        });
-
-        it('should have the valid class', () => {
-          expect(yearInput.nativeElement.classList.contains('payment-form__valid')).toBeTruthy();
-        });
-      });
-    });
-  });
-
-  describe('security-code input', () => {
-
-    let securityCodeInput;
-
-    beforeEach(() => {
-      securityCodeInput = fixture.debugElement.query(By.css('.payment-form__security-code'));
-    });
-    
-    describe('when it has not been touched', () => {
-      
-      describe('and has no input', () => {
-        
-        it('should not have the error class', () => {
-          expect(securityCodeInput.nativeElement.classList.contains('payment-form__error')).toBeFalsy();
-        });
-
-        it('should not have the valid class', () => {
-          expect(securityCodeInput.nativeElement.classList.contains('payment-form__valid')).toBeFalsy();
-        });
-
-        describe('and form is submitted', () => {
-
-          beforeEach(() => {
-            fixture.debugElement.query(By.css('button')).nativeElement.click();
-            fixture.detectChanges();
-          });
-        
-          it('should have the error class', () => {
-            expect(securityCodeInput.nativeElement.classList.contains('payment-form__error')).toBeTruthy();
-          });
-  
-          it('should not have the valid class', () => {
-            expect(securityCodeInput.nativeElement.classList.contains('payment-form__valid')).toBeFalsy();
-          });
-        });
-      });
-    });
-
-    describe('when it has been touched', () => {
-
-      beforeEach(() => {
-        paymentFormComponent.form.controls.securitycode.markAsTouched();
-        fixture.detectChanges();
-      });
-      
-      describe('and has no input', () => {
-        
-        it('should have the error class', () => {
-          expect(securityCodeInput.nativeElement.classList.contains('payment-form__error')).toBeTruthy();
-        });
-
-        it('should not have the valid class', () => {
-          expect(securityCodeInput.nativeElement.classList.contains('payment-form__valid')).toBeFalsy();
-        });
-      });
-
-      describe('and has input', () => {
-
-        beforeEach(() => {
-          paymentFormComponent.securitycode.setValue("securityCode");
-          fixture.detectChanges();
-        });
-        
-        it('should not have the error class', () => {
-          expect(securityCodeInput.nativeElement.classList.contains('payment-form__error')).toBeFalsy();
-        });
-
-        it('should have the valid class', () => {
-          expect(securityCodeInput.nativeElement.classList.contains('payment-form__valid')).toBeTruthy();
-        });
+        expect(selectValidator.formSubmitted).toBeTruthy();
       });
     });
   });
