@@ -3,13 +3,51 @@
 [![npm version](https://badge.fury.io/js/%40daffodil%2Fcore.svg)](https://www.npmjs.com/@daffodil/core)
 
 ## What is Daffodil?
+Daffodil is a set of frontend libraries that intends to accomplish three things:
+1. Improve the develop workflow when writing frontend software for online stores.
+2. Provide a consistent developer tool-chain regardless of chosen Ecommerce platform.
+3. Drastically improve the end-user experience of online-shopping (Ecommmerce).
+
+Daffodil utilizes several technological solutions to achieve it's goals. We plan on providing several modules to improve different aspects of developer workflow:
+
+1. `@daffodil/state` (partially complete) - An extendable Ecommerce redux store
+2. `@daffodil/driver` (todo) - An extendable API interface with configurable
+3. `@daffodil/model` (partially complete) - An extendable set of models for Ecommerce.
+
+Additionally, we plan on providing additional sample implementations of the `@daffodil` modules
+in the style of some of the major frontend libraries. To date, we're focusing only on:
+1. [Foundation](https://foundation.zurb.com/).
+
+### Benefits For Developers
+
+* Daffodil builds upon state-of-the-art development tools like Angular (6+) and Redux
+* Daffodil seamlessly integrates with the major Ecommerce platforms Shopify and Magento (2.3+)
+* Daffodil's codebase is fully-tested and CI covered (Unit, Integration, and E2E).
+* Daffodil's core team reviews every pull-request individually to ensure code quality remains high.
+* Daffodil's `foundation-demo` provides a sample for implementing technologies like:
+   * Server Side Rendering
+   * Progressive Web Apps
+* Daffodil is easily extensible so that you can:
+  * Append your own redux state 
+  * Add your own custom routing
+  * Add your own custom design
+
+### For End-users
+
+* Daffodil (with the help of Angular) is written with Progressive Web Apps in mind, this means:
+  * Offline Support
+  * Service Worker Caching
+  * App-like UX
+  * Mobile App Installation
+* Daffodil (with the help of Angular) supports simple Server Side Rendering for fantastic SEO
 
 ## Example Stores
+Currently none, but you can check our progress by following the steps [here](https://github.com/graycoreio/daffodil/blob/develop/docs/DEVELOPER.md#running-the-example-foundation-demo).
 
-## Using Daffodil To Build an Ecommerce Store
+## Using Daffodil To Build Your own Ecommerce Store
 1. Setup a new `@angular/cli` project
-2. `npm install @daffodil/core` - Install Core Daffodil Module
-3. `npm install @ngrx/store @ngrx/effects @ngrx/entity` - Install Necessary Peer Dependencies
+2. `npm install --save @daffodil/core` - Install Core Daffodil Module
+3. `npm install --save @ngrx/store @ngrx/effects @ngrx/entity` - Install Necessary Peer Dependencies
 4. Add the following to your application's root `AppModule`.
     ```
     @NgModule({
@@ -23,29 +61,7 @@
         ],
         ...
     })
-    export class FoundationModule { }
+    export class AppModule { }
     ```
-5. Replace default with your store's url in your `AppModule`
+5. Replace the defaults with your store's url in your `AppModule`
 6. Check out Daffodil's `Foundation Theme` for code examples.
-
-## Contributing
-Please read the [contributing guidelines here](https://github.com/graycore/daffodil/blob/master/CONTRIBUTING.md).
-
-## Build
-
-Run `ng build core` to build the @daffodil/core project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Release
-
-After updating the version and navigating to the dist folder, run `npm publish` to publish the current version of @daffodil/core to npm.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-To run an individual suite:
-
-```
-ng test core
-ng test foundation-demo
-```
