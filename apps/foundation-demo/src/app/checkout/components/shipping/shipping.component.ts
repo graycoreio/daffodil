@@ -1,7 +1,7 @@
 import { Component, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { ShippingAddress } from '@daffodil/core';
 import { Observable } from 'rxjs';
-import { SetShowShippingForm, ToggleShippingForm } from '../../actions/shipping.actions';
+import { SetShowShippingForm, ToggleShowShippingForm } from '../../actions/shipping.actions';
 import { Store, select } from '@ngrx/store';
 import * as fromFoundationCheckout from '../../reducers';
 
@@ -38,7 +38,7 @@ export class ShippingComponent {
 
   toggleShippingView() {
     this.store.dispatch(
-      new ToggleShippingForm()
+      new ToggleShowShippingForm()
     );
   }
 

@@ -6,7 +6,7 @@ import { ShippingAddress } from '@daffodil/core';
 import { By } from '@angular/platform-browser';
 import * as fromFoundationCheckout from '../../reducers';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
-import { SetShowShippingForm, ToggleShippingForm } from '../../actions/shipping.actions';
+import { SetShowShippingForm, ToggleShowShippingForm } from '../../actions/shipping.actions';
 import { of } from 'rxjs';
 
 let stubIsShippingInfoValidValue = true;
@@ -204,10 +204,10 @@ describe('ShippingComponent', () => {
 
   describe('toggleShippingView', () => {
     
-    it('should dispatch a ToggleShippingForm action', () => {
+    it('should dispatch a ToggleShowShippingForm action', () => {
       shipping.toggleShippingView();
 
-      expect(store.dispatch).toHaveBeenCalledWith(new ToggleShippingForm());
+      expect(store.dispatch).toHaveBeenCalledWith(new ToggleShowShippingForm());
     });
   });
 
