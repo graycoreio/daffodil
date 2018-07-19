@@ -2,13 +2,18 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PaymentComponent } from './payment.component';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { PaymentInfo, PaymentFactory, PaymentContainer } from '@daffodil/core';
+import { PaymentInfo, PaymentFactory } from '@daffodil/core';
 import { PaymentFormComponent } from '../payment-form/payment-form.component';
 import { By } from '@angular/platform-browser';
 import { PaymentSummaryComponent } from '../payment-summary/payment-summary.component';
+import { StoreModule, combineReducers, Store } from '@ngrx/store';
+import * as fromFoundationCheckout from '../../reducers';
+import { SetShowPaymentForm, ToggleShowPaymentForm } from '../../actions/payment.actions';
+import { of } from '../../../../../../../node_modules/rxjs';
 
 let paymentFactory = new PaymentFactory();
 let stubPaymentInfo = paymentFactory.create();
+let stubShowPaymentForm = true;
 
 @Component({template: '<payment [paymentInfo]="paymentInfoValue" (updatePaymentInfo)="updatePaymentInfoFunction($event)"></payment>'})
 class TestPaymentComponentWrapper {
@@ -34,9 +39,15 @@ describe('PaymentComponent', () => {
   let payment: PaymentComponent;
   let paymentForm: PaymentFormComponent;
   let paymentSummary: PaymentSummaryComponent;
+  let store;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        StoreModule.forRoot({
+          shippings: combineReducers(fromFoundationCheckout.reducers),
+        })
+      ],
       declarations: [ 
         TestPaymentComponentWrapper,
         MockPaymentFormComponent,
@@ -50,6 +61,9 @@ describe('PaymentComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestPaymentComponentWrapper);
     component = fixture.componentInstance;
+    store = TestBed.get(Store);
+    spyOn(fromFoundationCheckout, 'selectShowPaymentForm').and.returnValue(stubShowPaymentForm);
+    spyOn(store, 'dispatch');
     fixture.detectChanges();
 
     payment = fixture.debugElement.query(By.css('payment')).componentInstance;
@@ -101,19 +115,25 @@ describe('PaymentComponent', () => {
 
   describe('ngOnInit', () => {
     
-    it('should set showPaymentForm to true', () => {
-      expect(payment.showPaymentForm).toBeTruthy();
+    it('dispatches a SetShowPaymentForm action', () => {
+      expect(store.dispatch).toHaveBeenCalledWith(
+        new SetShowPaymentForm(!payment.paymentInfo)
+      );
+    });
+
+    it('should initialize showPaymentForm$', () => {
+      payment.showPaymentForm$.subscribe((showPaymentForm) => {
+        expect(showPaymentForm).toEqual(stubShowPaymentForm);
+      });
     });
   });
 
   describe('togglePaymentView', () => {
     
-    it('should toggle the showPaymentForm boolean', () => {
-      payment.showPaymentForm = true;
-
+    it('should dispatch a ToggleShowPaymentForm action', () => {
       payment.togglePaymentView();
 
-      expect(payment.showPaymentForm).toBeFalsy();
+      expect(store.dispatch).toHaveBeenCalledWith(new ToggleShowPaymentForm());
     });
   });
 
@@ -128,13 +148,13 @@ describe('PaymentComponent', () => {
     });
   });
 
-  describe('when showPaymentForm is true', () => {
+  describe('when showPaymentForm$ is true', () => {
 
     let paymentFormNativeElement;
     let paymentSummaryNativeElement;
 
     beforeEach(() => {
-      payment.showPaymentForm = true;
+      payment.showPaymentForm$ = of(true);
       fixture.detectChanges();
 
       paymentFormNativeElement = fixture.debugElement.query(By.css('payment-form')).nativeElement;
@@ -150,13 +170,13 @@ describe('PaymentComponent', () => {
     });
   });
 
-  describe('when showPaymentForm is false', () => {
+  describe('when showPaymentForm$ is false', () => {
 
     let paymentFormNativeElement;
     let paymentSummaryNativeElement;
 
     beforeEach(() => {
-      payment.showPaymentForm = false;
+      payment.showPaymentForm$ = of(false);
       fixture.detectChanges();
 
       paymentFormNativeElement = fixture.debugElement.query(By.css('payment-form')).nativeElement;

@@ -1,5 +1,5 @@
-import { initialState, reducer, getShowPaymentView } from "../reducers/payment.reducer";
-import { ShowPaymentView } from "../actions/payment.actions";
+import { initialState, reducer, getShowPaymentView, getShowPaymentForm } from "../reducers/payment.reducer";
+import { ShowPaymentView, SetShowPaymentForm, ToggleShowPaymentForm } from "../actions/payment.actions";
 
 describe('Checkout | Payment | Payment Reducer', () => {
   
@@ -7,6 +7,10 @@ describe('Checkout | Payment | Payment Reducer', () => {
     
     it('should set showPaymentView to false', () => {
       expect(initialState.showPaymentView).toBeFalsy();
+    });
+
+    it('should set showPaymentForm to null', () => {
+      expect(initialState.showPaymentForm).toBeNull();
     });
   });
 
@@ -36,10 +40,53 @@ describe('Checkout | Payment | Payment Reducer', () => {
     });
   });
 
+  describe('when SetShowPaymentForm action is triggered', () => {
+
+    let result;
+    let showPaymentFormValue;
+
+    beforeEach(() => {
+      showPaymentFormValue = true;
+      let showPaymentFormAction = new SetShowPaymentForm(showPaymentFormValue);
+      
+      result = reducer(initialState, showPaymentFormAction);
+    });
+
+    it('sets showPaymentView to true', () => {
+      expect(result.showPaymentForm).toEqual(showPaymentFormValue);
+    });
+  });
+
+  describe('when ToggleShowPaymentForm action is triggered', () => {
+
+    let result;
+    let showPaymentFormValue;
+
+    beforeEach(() => {
+      showPaymentFormValue = true;
+      let showPaymentFormAction = new SetShowPaymentForm(showPaymentFormValue);
+      result = reducer(initialState, showPaymentFormAction)
+      let togglePaymentFormAction = new ToggleShowPaymentForm();
+      
+      result = reducer(result, togglePaymentFormAction);
+    });
+
+    it('sets showPaymentForm to true', () => {
+      expect(result.showPaymentForm).toEqual(!showPaymentFormValue);
+    });
+  });
+
   describe('getShowPaymentView', () => {
     
     it('returns showPaymentView state', () => {
       expect(getShowPaymentView(initialState)).toEqual(initialState.showPaymentView);
+    });
+  });
+
+  describe('getShowPaymentForm', () => {
+    
+    it('returns showPaymentForm state', () => {
+      expect(getShowPaymentForm(initialState)).toEqual(initialState.showPaymentForm);
     });
   });
 });

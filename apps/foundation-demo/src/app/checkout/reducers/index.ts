@@ -47,3 +47,8 @@ export const selectShowPaymentView: MemoizedSelector<object, boolean> = createSe
   foundationPaymentStateSelector,
   fromFoundationPayment.getShowPaymentView
 )
+
+export const selectShowPaymentForm: MemoizedSelector<object, boolean> = createSelector(
+  foundationPaymentStateSelector,
+  fromFoundationPayment.getShowPaymentForm
+)
