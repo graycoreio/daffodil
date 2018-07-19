@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { ShippingAddress, ShippingOption } from '@daffodil/core';
 
 @Component({
@@ -6,16 +6,16 @@ import { ShippingAddress, ShippingOption } from '@daffodil/core';
   templateUrl: './shipping-summary.component.html',
   styleUrls: ['./shipping-summary.component.scss']
 })
-export class ShippingSummaryComponent implements OnInit{
+export class ShippingSummaryComponent {
 
   @Input() shippingInfo: ShippingAddress;
   @Input() selectedShippingOption: string;
+  @Input() hideContinueToPayment: boolean;
   @Output() editShippingInfo: EventEmitter<any> = new EventEmitter();
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
   @Output() continueToPayment: EventEmitter<any> = new EventEmitter();
 
   shippingOptions: ShippingOption[];
-  showContinueToPayment: boolean;
 
   constructor() { 
     this.shippingOptions = [
@@ -34,10 +34,6 @@ export class ShippingSummaryComponent implements OnInit{
     ]
   }
 
-  ngOnInit() {
-    this.showContinueToPayment = true;
-  }
-
   onEdit() {
     this.editShippingInfo.emit();
   }
@@ -47,7 +43,6 @@ export class ShippingSummaryComponent implements OnInit{
   }
 
   onContinueToPayment() {
-    this.showContinueToPayment = false;
     this.continueToPayment.emit();
   }
 }

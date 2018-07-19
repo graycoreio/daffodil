@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import * as fromFoundationCheckout from '../../reducers';
+import { ShowPaymentView } from '../../actions/payment.actions';
 
 @Component({
   templateUrl: './checkout-view.component.html',
@@ -6,13 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckoutViewComponent implements OnInit {
 
-  showPaymentView: boolean;
+  showPaymentView$: Observable<boolean>;
+
+  constructor(
+    private store: Store<fromFoundationCheckout.State>
+  ) { }
 
   ngOnInit() {
-    this.showPaymentView = false;
+    this.showPaymentView$ = this.store.pipe(
+      select(fromFoundationCheckout.selectShowPaymentView)
+    );
   }
 
   onContinueToPayment() {
-    this.showPaymentView = true;
+    this.store.dispatch(
+      new ShowPaymentView()
+    );
   }
 }

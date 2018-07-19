@@ -4,11 +4,12 @@
       [isShippingInfoValid]="ShippingContainer.isShippingInfoValid$ | async"
       [shippingInfo]="ShippingContainer.shippingInfo$ | async"
       [selectedShippingOption]="ShippingContainer.selectedShippingOption$ | async"
+      [hideContinueToPayment]="showPaymentView$ | async"
       (updateShippingInfo)="ShippingContainer.updateShippingInfo($event)"
       (selectShippingOption)="ShippingContainer.selectShippingOption($event)"
       (continueToPayment)="onContinueToPayment()"></shipping>
   </div>
-  <div class="checkout__payment" *ngIf="showPaymentView" payment-container #PaymentContainer="PaymentContainer">
+  <div class="checkout__payment" *ngIf="showPaymentView$ | async" payment-container #PaymentContainer="PaymentContainer">
     <payment
       [paymentInfo]="PaymentContainer.paymentInfo$ | async" 
       (updatePaymentInfo)="PaymentContainer.updatePaymentInfo($event)"></payment>
