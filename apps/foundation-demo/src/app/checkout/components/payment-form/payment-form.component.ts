@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Validators, FormGroup, AbstractControl, FormBuilder } from '@angular/forms';
+import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { PaymentInfo } from '@daffodil/core';
+import { ErrorStateMatcher } from '../../../design/molecules/error-state-matcher/error-state-matcher.component';
 
 @Component({
   selector: 'payment-form',
@@ -11,14 +12,11 @@ export class PaymentFormComponent implements OnInit {
 
   @Input() paymentInfo: PaymentInfo;
   @Output() updatePaymentInfo: EventEmitter<any> = new EventEmitter();
-
+  
   form: FormGroup;
-  name: AbstractControl;
-  cardnumber: AbstractControl;
-  month: AbstractControl;
-  year: AbstractControl;
-  securitycode: AbstractControl;
-
+  monthErrorStateMatcher: ErrorStateMatcher;
+  yearErrorStateMatcher: ErrorStateMatcher;
+  
   constructor(
     private fb: FormBuilder
   ) { }
@@ -32,11 +30,15 @@ export class PaymentFormComponent implements OnInit {
       'securitycode': [this.paymentInfo ? this.paymentInfo.securitycode : '', Validators.required]
     });
 
-    this.name = this.form.controls['name'];
-    this.cardnumber = this.form.controls['cardnumber'];
-    this.month = this.form.controls['month'];
-    this.year = this.form.controls['year'];
-    this.securitycode = this.form.controls['securitycode']
+    this.monthErrorStateMatcher = new ErrorStateMatcher();
+    this.monthErrorStateMatcher.isErrorState = (control: FormControl, formSubmitted: boolean) => {
+      return (control.errors || control.value == 'Month') && (control.touched || formSubmitted);
+    }
+
+    this.yearErrorStateMatcher = new ErrorStateMatcher();
+    this.yearErrorStateMatcher.isErrorState = (control: FormControl, formSubmitted: boolean) => {
+      return (control.errors || control.value == 'Year') && (control.touched || formSubmitted);
+    }
   }
 
   monthSelectValues = [

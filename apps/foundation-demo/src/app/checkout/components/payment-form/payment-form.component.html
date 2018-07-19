@@ -4,38 +4,35 @@
   </div>
   <promotion class="payment-form__promotion"></promotion>
   <div class="payment-form__method-title">Payment Method</div>
-  <input type="text" class="payment-form__name"
+  <input input-validator type="text" class="payment-form__name"
     placeholder="Cardholder's Name"
     name="name"
-    [formControl]="name"
-    [class.payment-form__error]="name.errors && (name.touched || ngForm.submitted)"
-    [class.payment-form__valid]="!name.errors && name.touched"/>
-  <input type="text" class="payment-form__card-number"
+    [formControl]="form.controls['name']"
+    [formSubmitted]="ngForm.submitted"/>
+  <input input-validator type="text" class="payment-form__card-number"
     placeholder="Card Number"
-    [formControl]="cardnumber"
     name="cardnumber"
-    [class.payment-form__error]="cardnumber.errors && (cardnumber.touched || ngForm.submitted)"
-    [class.payment-form__valid]="!cardnumber.errors"/>
-  <select class="payment-form__month"
+    [formControl]="form.controls['cardnumber']"
+    [formSubmitted]="ngForm.submitted"/>
+  <select select-validator class="payment-form__month"
     name="month"
-    [formControl]="month"
-    [class.payment-form__error]="(month.errors || month.value == 'Month') && (month.touched || ngForm.submitted)"
-    [class.payment-form__valid]="!(month.errors || month.value == 'Month')">
+    [formControl]="form.controls['month']"
+    [formSubmitted]="ngForm.submitted"
+    [errorStateMatcher]="monthErrorStateMatcher">
     <option *ngFor="let month of monthSelectValues" [disabled]="month == 'Month'">{{month}}</option>
   </select>
-  <select class="payment-form__year"
+  <select select-validator class="payment-form__year"
     name="year"
-    [formControl]="year"
-    [class.payment-form__error]="(year.errors || year.value == 'Year') && (year.touched || ngForm.submitted)"
-    [class.payment-form__valid]="!(year.errors || year.value == 'Year')">
+    [formControl]="form.controls['year']"
+    [formSubmitted]="ngForm.submitted"
+    [errorStateMatcher]="yearErrorStateMatcher">
     <option *ngFor="let year of yearSelectValues" [disabled]="year == 'Year'">{{year}}</option>
   </select>
-  <input type="text" class="payment-form__security-code"
+  <input input-validator type="text" class="payment-form__security-code"
     placeholder="Security Code (XXX)"
-    [formControl]="securitycode"
     name="securitycode"
-    [class.payment-form__error]="securitycode.errors && (securitycode.touched || ngForm.submitted)"
-    [class.payment-form__valid]="!securitycode.errors"/>
+    [formControl]="form.controls['securitycode']"
+    [formSubmitted]="ngForm.submitted"/>
   <button type="submit" class="button large expanded">Save & Review Order</button>
   <div class="payment-form__note">
     You can review this order before it's final.
