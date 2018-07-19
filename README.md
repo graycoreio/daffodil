@@ -11,11 +11,11 @@ Daffodil is a set of frontend libraries that intends to accomplish three things:
 2. Provide a consistent frontend developer tool-chain regardless of a business's chosen Ecommerce platform
 3. Drastically improve the end-user experience of online-shopping.
 
-Daffodil provides several modules to improve different aspects of developer workflow:
+Currently, Daffodil provides several modules to improve different aspects of developer workflow:
 
 1. `@daffodil/state` (partially complete) - An extendable Ecommerce redux store
 2. `@daffodil/driver` (todo) - An extendable API interface with configurable drivers for different Ecommerce platforms.
-3. `@daffodil/model` (partially complete) - An extendable set of models for Ecommerce.
+3. `@daffodil/model` (partially complete) - An extendable set of common models for Ecommerce.
 
 Additionally, we plan on providing additional sample implementations of the `@daffodil` modules
 in the style of some of the major frontend libraries. To date, we're focusing only on:
