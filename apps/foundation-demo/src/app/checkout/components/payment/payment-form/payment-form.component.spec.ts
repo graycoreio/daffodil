@@ -4,7 +4,7 @@ import { PaymentFormComponent } from './payment-form.component';
 import { Component, Input } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormControl, AbstractControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { ErrorStateMatcher } from '../../../design/molecules/error-state-matcher/error-state-matcher.component';
+import { ErrorStateMatcher } from '../../../../design/molecules/error-state-matcher/error-state-matcher.component';
 
 @Component({'template': '<payment-form [paymentInfo]="paymentInfoValue" (updatePaymentInfo)="updatePaymentInfoFunction($event)"></payment-form>'})
 class TestingPaymentFormComponentWrapper {
