@@ -1,9 +1,9 @@
 import { Component, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { ShippingAddress } from '@daffodil/core';
 import { Observable } from 'rxjs';
-import { SetShowShippingForm, ToggleShowShippingForm } from '../../actions/shipping.actions';
+import { SetShowShippingForm, ToggleShowShippingForm } from '../../../actions/shipping.actions';
 import { Store, select } from '@ngrx/store';
-import * as fromFoundationCheckout from '../../reducers';
+import * as fromFoundationCheckout from '../../../reducers';
 
 @Component({
   selector: 'shipping',

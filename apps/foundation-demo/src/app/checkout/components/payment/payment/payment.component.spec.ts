@@ -7,9 +7,9 @@ import { PaymentFormComponent } from '../payment-form/payment-form.component';
 import { By } from '@angular/platform-browser';
 import { PaymentSummaryComponent } from '../payment-summary/payment-summary.component';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
-import * as fromFoundationCheckout from '../../reducers';
-import { SetShowPaymentForm, ToggleShowPaymentForm } from '../../actions/payment.actions';
-import { of } from '../../../../../../../node_modules/rxjs';
+import * as fromFoundationCheckout from '../../../reducers';
+import { SetShowPaymentForm, ToggleShowPaymentForm } from '../../../actions/payment.actions';
+import { of } from 'rxjs';
 
 let paymentFactory = new PaymentFactory();
 let stubPaymentInfo = paymentFactory.create();

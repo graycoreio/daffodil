@@ -4,9 +4,9 @@ import { ShippingComponent } from './shipping.component';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ShippingAddress } from '@daffodil/core';
 import { By } from '@angular/platform-browser';
-import * as fromFoundationCheckout from '../../reducers';
+import * as fromFoundationCheckout from '../../../reducers';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
-import { SetShowShippingForm, ToggleShowShippingForm } from '../../actions/shipping.actions';
+import { SetShowShippingForm, ToggleShowShippingForm } from '../../../actions/shipping.actions';
 import { of } from 'rxjs';
 
 let stubIsShippingInfoValidValue = true;

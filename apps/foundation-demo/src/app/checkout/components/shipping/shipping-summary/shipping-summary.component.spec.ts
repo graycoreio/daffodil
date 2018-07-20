@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShippingSummaryComponent } from './shipping-summary.component';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ShippingAddress, ShippingFactory, ShippingOption } from '@daffodil/core';
+import { ShippingAddress, ShippingFactory } from '@daffodil/core';
 import { By } from '@angular/platform-browser';
 import { ShippingOptionsComponent } from '../shipping-options/shipping-options.component';
 
