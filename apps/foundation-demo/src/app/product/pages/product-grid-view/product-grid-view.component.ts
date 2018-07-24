@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { ProductGridContainer } from '@daffodil/core';
+import { ProductGridContainer } from '@daffodil/state';
 
 @Component({
   selector: 'foundation-product-grid-view',

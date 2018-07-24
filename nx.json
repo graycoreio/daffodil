@@ -10,7 +10,7 @@
     "foundation-demo-e2e": {
       "tags": []
     },
-    "core": {
+    "state": {
       "tags": []
     }
   }

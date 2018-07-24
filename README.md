@@ -1,7 +1,7 @@
 # Daffodil
 [![Join the chat at https://gitter.im/graycoreio/daffodil](https://badges.gitter.im/graycoreio/daffodil.svg)](https://gitter.im/graycoreio/daffodil?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.com/graycoreio/daffodil.svg?branch=master)](https://travis-ci.com/graycoreio/daffodil)
-[![npm version](https://badge.fury.io/js/%40daffodil%2Fcore.svg)](https://www.npmjs.com/@daffodil/core)
+[![npm version](https://badge.fury.io/js/%40daffodil%2Fcore.svg)](https://www.npmjs.com/@daffodil/state)
 
 ## Current Stability - Alpha
 
@@ -49,7 +49,7 @@ Currently none, but you can check our progress by following the steps [here](htt
 
 ## Using Daffodil To Build Your own Ecommerce Store
 1. Setup a new `@angular/cli` project
-2. `npm install --save @daffodil/core` - Install Core Daffodil Module
+2. `npm install --save @daffodil/state` - Install State Daffodil Module
 3. `npm install --save @ngrx/store @ngrx/effects @ngrx/entity` - Install Necessary Peer Dependencies
 4. Add the following to your application's root `AppModule`.
     ```

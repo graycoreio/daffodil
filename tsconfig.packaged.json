@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./dist",
     "paths": {
-      "@daffodil/core": ["core"]
+      "@daffodil/state": ["state"]
     }
   }
 }

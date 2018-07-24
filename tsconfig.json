@@ -17,7 +17,7 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@daffodil/core": ["dist/core"]
+      "@daffodil/state": ["dist/state"]
     }
   },
   "exclude": [
