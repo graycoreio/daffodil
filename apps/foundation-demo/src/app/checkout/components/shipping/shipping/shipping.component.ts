@@ -1,5 +1,5 @@
 import { Component, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
-import { ShippingAddress } from '@daffodil/state';
+import { ShippingAddress } from '@daffodil/core';
 import { Observable } from 'rxjs';
 import { SetShowShippingForm, ToggleShippingForm } from '../../../actions/shipping.actions';
 import { Store, select } from '@ngrx/store';

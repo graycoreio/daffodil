@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShippingComponent } from './shipping.component';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ShippingAddress } from '@daffodil/state';
+import { ShippingAddress } from '@daffodil/core';
 import { By } from '@angular/platform-browser';
 import * as fromFoundationCheckout from '../../../reducers';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';

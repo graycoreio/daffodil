@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Product } from '@daffodil/state';
+import { Product } from '@daffodil/core';
 import { Router } from '@angular/router';
 
 @Component({

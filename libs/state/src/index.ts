@@ -4,7 +4,6 @@ export { StateProductModule } from './product/product.module';
 export { StateCartModule } from './cart/cart.module';
 export { StateCheckoutModule } from './checkout/checkout.module';
 
-export { Product, Cart, CartItem, ShippingAddress, ShippingOption } from '@daffodil/core';
 export { ProductFactory } from './product/testing/factories/product.factory';
 export { ProductGridContainer } from './product/containers/product-grid/product-grid.component';
 
