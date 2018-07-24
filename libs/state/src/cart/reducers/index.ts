@@ -1,6 +1,7 @@
 import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
 import * as fromCart from './cart.reducer';
+import { Cart } from '@daffodil/core';
 
 export interface CartState {
   cart: fromCart.State;
@@ -24,7 +25,7 @@ export const cartStateSelector = createSelector(
   (state: CartState) => state.cart
 )
 
-export const selectCartValueState = createSelector(
+export const selectCartValueState : MemoizedSelector<object, Cart> = createSelector(
   cartStateSelector,
   fromCart.getCart
 )
