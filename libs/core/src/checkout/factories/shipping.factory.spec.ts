@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { ShippingFactory, MockShippingAddress, MockShippingOption } from './shipping.factory';
 import { ShippingOption } from '@daffodil/core';
 
-describe('State | Shipping | Testing | ShippingFactory', () => {
+describe('Core | Checkout | Factories | ShippingFactory', () => {
   
   let shippingFactory;
 

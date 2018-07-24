@@ -11,13 +11,13 @@ import { CartEffects } from './cart.effects';
 
 import { CartTestingModule } from '../testing/cart-testing.module';
 import { CartService } from '../services/cart.service';
-import { CartFactory } from '../testing/factories/cart.factory';
+import { CartFactory } from '@daffodil/core';
 import { Cart } from '@daffodil/core';
 import { CartLoad, CartLoadSuccess, CartLoadFailure, AddToCart, AddToCartSuccess, AddToCartFailure } from '../actions/cart.actions';
 
 import { DaffodilConfigService } from '../../config/daffodil-config.service';
-import { DaffodilConfigFactory } from '../../config/testing/daffodil-config.factory';
-import { ProductFactory } from '../../product/testing/factories/product.factory';
+import { DaffodilConfigFactory } from '@daffodil/core';
+import { ProductFactory } from '@daffodil/core';
 
 describe('CartEffects', () => {
   let actions$: Observable<any>;

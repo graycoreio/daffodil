@@ -9,7 +9,7 @@ import { of } from 'rxjs/observable/of';
 import { ProductViewComponent } from './product-view.component';
 
 import { Product } from '@daffodil/core';
-import { ProductFactory } from '@daffodil/state';
+import { ProductFactory } from '@daffodil/core';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRouteStub } from '../../../testing/ActivatedRouteStub';

@@ -4,7 +4,7 @@ import { CartService } from './cart.service';
 import { HttpClient } from '@angular/common/http';
 import { CartTestingModule } from '../testing/cart-testing.module';
 import { DaffodilConfigService } from '../../config/daffodil-config.service';
-import { DaffodilConfigFactory } from '../../config/testing/daffodil-config.factory';
+import { DaffodilConfigFactory } from '@daffodil/core';
 
 describe('State | Cart | CartService', () => {
   let cartService;

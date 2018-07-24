@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { CartTestingService } from './cart.testing.service';
 import { CartTestingModule } from '../../testing/cart-testing.module';
-import { CartFactory, MockCart } from '../../testing/factories/cart.factory';
+import { CartFactory } from '@daffodil/core';
 import { STATUS } from 'angular-in-memory-web-api';
 
 describe('State | Cart | Testing | CartTestingService', () => {

@@ -1,5 +1,4 @@
-import { Product } from "@daffodil/core";
-import { ProductFactory } from "../testing/factories/product.factory";
+import { Product, ProductFactory } from "@daffodil/core";
 import { initialState, reducer } from "../reducers/product-entities.reducer";
 import { ProductGridLoadSuccess } from "../actions/product-grid.actions";
 import { ProductLoadSuccess } from "../actions/product.actions";

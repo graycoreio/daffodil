@@ -8,7 +8,7 @@ import {
   MockCartShippingRate 
 } from './cart.factory';
 
-describe('State | Cart | Testing | CartFactory', () => {
+describe('Core | Cart | Factories | CartFactory', () => {
   
   let cartFactory;
 

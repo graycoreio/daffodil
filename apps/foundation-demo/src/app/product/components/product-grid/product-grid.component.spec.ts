@@ -1,13 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { ProductFactory, Product } from '@daffodil/state';
+import { ProductFactory, Product } from '@daffodil/core';
 
 import { ProductGridComponent } from './product-grid.component';
 import { Component, Input } from '@angular/core';
-
-let productFactory = new ProductFactory();
-let mockProduct = productFactory.create();
 
 @Component({template: '<product-grid [products]="productsValue"></product-grid>'})
 class TestProductGridWrapper {

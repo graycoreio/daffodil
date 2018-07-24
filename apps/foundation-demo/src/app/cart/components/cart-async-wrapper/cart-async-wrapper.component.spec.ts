@@ -8,7 +8,7 @@ import { of } from 'rxjs/observable/of';
 
 import { CartAsyncWrapperComponent } from './cart-async-wrapper.component';
 
-import { Cart, CartFactory } from '@daffodil/state';
+import { Cart, CartFactory } from '@daffodil/core';
 
 let cartFactory = new CartFactory();
 let cart = cartFactory.create();

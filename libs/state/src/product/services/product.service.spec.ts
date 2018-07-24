@@ -4,7 +4,7 @@ import { ProductService } from './product.service';
 import { HttpClient } from '@angular/common/http';
 import { ProductTestingModule } from '../testing/product-testing.module';
 import { DaffodilConfigService } from '../../config/daffodil-config.service';
-import { DaffodilConfigFactory } from '../../config/testing/daffodil-config.factory';
+import { DaffodilConfigFactory } from '@daffodil/core';
 
 describe('State | Product | ProductService', () => {
   let productService;

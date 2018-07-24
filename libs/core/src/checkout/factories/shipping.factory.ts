@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Address } from '@daffodil/core';
-import { ShippingOption } from '@daffodil/core';
+import { ShippingOption } from '../models/shipping-option';
+import { Address } from '../../interfaces/models/address';
 
 @Injectable()
 export class ShippingFactory {
