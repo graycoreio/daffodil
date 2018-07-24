@@ -8,7 +8,7 @@ import { of } from 'rxjs/observable/of';
 
 import { ProductViewComponent } from './product-view.component';
 
-import { Product } from '@daffodil/state';
+import { Product } from '@daffodil/core';
 import { ProductFactory } from '@daffodil/state';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
