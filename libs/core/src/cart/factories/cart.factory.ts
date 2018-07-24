@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker';
-import { Cart } from '@daffodil/core';
-import { CartItem } from '@daffodil/core';
-import { CartAddress } from '@daffodil/core';
-import { CartPayment } from '@daffodil/core';
-import { CartShippingRate } from '@daffodil/core';
+import { Cart } from '../models/cart';
+import { CartItem } from '../models/cart-item';
+import { CartAddress } from '../models/cart-address';
+import { CartPayment } from '../models/cart-payment';
+import { CartShippingRate } from '../models/cart-shipping-rate';
 
 @Injectable()
 export class CartFactory {

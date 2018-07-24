@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { ProductTestingService } from './product.testing.service';
 import { ProductTestingModule } from '../../testing/product-testing.module';
-import { ProductFactory } from '../../testing/factories/product.factory';
+import { ProductFactory } from '@daffodil/core';
 
 describe('State | Product | Testing | ProductTestingService', () => {
   

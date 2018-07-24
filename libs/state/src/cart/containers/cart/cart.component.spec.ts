@@ -1,13 +1,9 @@
-import { Component, Input } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
-import { of } from 'rxjs/observable/of';
-
 import { CartContainer } from './cart.component';
-import { CartFactory } from '../../testing/factories/cart.factory';
+import { CartFactory } from '@daffodil/core';
 import { Cart } from '@daffodil/core';
 import { CartLoad } from '../../actions/cart.actions';
 import * as fromCart from '../../reducers';

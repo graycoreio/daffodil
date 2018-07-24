@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { ShippingAddress, ShippingOption } from '@daffodil/state';
+import { ShippingAddress, ShippingOption } from '@daffodil/core';
 
 @Component({
   selector: 'shipping-summary',

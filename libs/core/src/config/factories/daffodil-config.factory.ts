@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DaffodilConfig } from '../../config/model';
+import { DaffodilConfig } from '../models/model';
 
 @Injectable()
 export class DaffodilConfigFactory {

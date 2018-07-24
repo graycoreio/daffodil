@@ -11,12 +11,12 @@ import { ProductGridEffects } from './product-grid.effects';
 
 import { ProductTestingModule } from '../testing/product-testing.module';
 import { ProductService } from '../services/product.service';
-import { ProductFactory } from '../testing/factories/product.factory';
+import { ProductFactory } from '@daffodil/core';
 import { Product } from '@daffodil/core';
 import { ProductGridLoad, ProductGridLoadSuccess, ProductGridLoadFailure } from '../actions/product-grid.actions';
 
 import { DaffodilConfigService } from '../../config/daffodil-config.service';
-import { DaffodilConfigFactory } from '../../config/testing/daffodil-config.factory';
+import { DaffodilConfigFactory } from '@daffodil/core';
 
 describe('ProductGridEffects', () => {
   let actions$: Observable<any>;

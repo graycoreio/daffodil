@@ -1,5 +1,4 @@
-import { Product } from "@daffodil/core";
-import { ProductFactory } from "../testing/factories/product.factory";
+import { Product, ProductFactory } from "@daffodil/core";
 import { initialState, reducer, getProductLoading, getSelectedProductId, getProductQty } from "../reducers/product.reducer";
 import { ProductLoad, ProductLoadSuccess, ProductLoadFailure, UpdateQty } from "../actions/product.actions";
 

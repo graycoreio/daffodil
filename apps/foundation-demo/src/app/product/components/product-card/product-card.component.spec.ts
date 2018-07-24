@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductCardComponent } from './product-card.component';
 import { Component } from '@angular/core';
-import { Product, ProductFactory } from '@daffodil/state';
+import { Product, ProductFactory } from '@daffodil/core';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';

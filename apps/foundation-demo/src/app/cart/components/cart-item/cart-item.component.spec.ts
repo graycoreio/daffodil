@@ -1,12 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { CartFactory, CartItem } from '@daffodil/state';
-
 import { CartItemComponent } from './cart-item.component';
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { CartItem, CartFactory } from '@daffodil/core';
 
 let cartFactory = new CartFactory();
 let mockCartItem = cartFactory.createCartItem();

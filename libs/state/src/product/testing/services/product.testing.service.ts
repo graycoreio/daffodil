@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { ProductFactory } from '../../testing/factories/product.factory';
+import { ProductFactory } from '@daffodil/core';
 
 import { InMemoryDbService, RequestInfoUtilities, ParsedRequestUrl } from 'angular-in-memory-web-api';
 

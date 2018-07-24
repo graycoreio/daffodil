@@ -3,8 +3,7 @@ import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
 import * as fromShipping from './index';
-import { ShippingFactory } from "../testing/factories/shipping.factory";
-import { ShippingAddress } from '@daffodil/core';
+import { ShippingAddress, ShippingFactory } from '@daffodil/core';
 import { UpdateShippingInfo, SelectShippingOption } from "../actions/shipping.actions";
 
 describe('selectShippingState', () => {

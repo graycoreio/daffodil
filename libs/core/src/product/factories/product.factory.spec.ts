@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
 import { ProductFactory, MockProductDefinedId, MockProductShortNames } from './product.factory';
-import { Product } from '@daffodil/core';
+import { Product } from '../models/product';
 
-describe('State | Product | Testing | ProductFactory', () => {
+describe('Core | Product | Factories | ProductFactory', () => {
   
   let productFactory;
 

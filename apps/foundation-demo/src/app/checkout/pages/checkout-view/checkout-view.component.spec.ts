@@ -4,7 +4,8 @@ import { CheckoutViewComponent } from './checkout-view.component';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
-import { ShippingAddress, ShippingFactory, ShippingContainer } from '@daffodil/state';
+import { ShippingContainer } from '@daffodil/state';
+import { ShippingAddress, ShippingFactory } from '@daffodil/core';
 
 let shippingFactory = new ShippingFactory();
 let paymentFactory = new PaymentFactory();

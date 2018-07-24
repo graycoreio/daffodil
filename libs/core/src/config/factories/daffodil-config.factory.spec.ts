@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
+import { DaffodilConfig } from '../models/model';
 import { DaffodilConfigFactory } from './daffodil-config.factory';
-import { DaffodilConfig } from '../model';
 
-describe('State | Config | DaffodilConfigFactory', () => {
+describe('Core | Config | Factories | DaffodilConfigFactory', () => {
   
   let daffodilConfigFactory;
 

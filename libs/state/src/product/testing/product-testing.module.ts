@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ProductTestingService } from '../testing/services/product.testing.service';
-import { ProductFactory } from '../testing/factories/product.factory';
+import { ProductFactory } from '@daffodil/core';
 import { ProductService } from '../services/product.service';
 import { DaffodilConfigService } from '../../config/daffodil-config.service';
 

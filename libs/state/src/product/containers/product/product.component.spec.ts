@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
 import { ProductContainer } from './product.component';
-import { ProductFactory } from '../../testing/factories/product.factory';
+import { ProductFactory } from '@daffodil/core';
 import { Product } from '@daffodil/core';
 
 import { ProductLoad, UpdateQty } from '../../actions/product.actions';

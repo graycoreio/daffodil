@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker';
-import { Product } from '@daffodil/core';
+import { Product } from '../models/product';
 
 @Injectable()
 export class ProductFactory {

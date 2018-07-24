@@ -6,7 +6,7 @@ import { ShippingContainer } from './shipping.component';
 import { ShippingAddress } from '@daffodil/core';
 import { UpdateShippingInfo, SelectShippingOption } from '../actions/shipping.actions';
 import * as fromShipping from '../reducers';
-import { ShippingFactory } from '../testing/factories/shipping.factory';
+import { ShippingFactory } from '@daffodil/core';
 
 describe('ShippingContainer', () => {
   let component: ShippingContainer;
