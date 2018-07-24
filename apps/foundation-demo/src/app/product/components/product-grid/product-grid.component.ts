@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Product } from '@daffodil/core';
+import { Product } from '@daffodil/state';
 
 @Component({
   selector: 'product-grid',

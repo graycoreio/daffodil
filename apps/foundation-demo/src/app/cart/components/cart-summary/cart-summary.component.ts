@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
-import { Cart } from '@daffodil/core';
+import { Cart } from '@daffodil/state';
 
 @Component({
   selector: 'cart-summary',

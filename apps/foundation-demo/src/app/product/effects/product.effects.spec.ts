@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { hot, cold } from 'jasmine-marbles';
 
 import { ProductEffects } from './product.effects';
-import { AddToCart } from '@daffodil/core';
+import { AddToCart } from '@daffodil/state';
 import { RedirectToCartSuccess } from '../actions/product.actions';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Router } from '@angular/router';

@@ -4,7 +4,7 @@ import { ShippingFormComponent } from './shipping-form.component';
 import { FormsModule, ReactiveFormsModule, FormControl, FormGroup, AbstractControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { Component, Input } from '@angular/core';
-import { ShippingAddress } from '@daffodil/core';
+import { ShippingAddress } from '@daffodil/state';
 import { ErrorStateMatcher } from '../../../../design/molecules/error-state-matcher/error-state-matcher.component';
 
 @Component({'template': '<shipping-form [shippingInfo]="shippingInfoValue" (updateShippingInfo)="updateShippingInfoFunction($event)"></shipping-form>'})

@@ -8,8 +8,8 @@ import { of } from 'rxjs/observable/of';
 
 import { ProductGridViewComponent } from './product-grid-view.component';
 
-import { Product } from '@daffodil/core';
-import { ProductFactory } from '@daffodil/core';
+import { Product } from '@daffodil/state';
+import { ProductFactory } from '@daffodil/state';
 
 let productFactory = new ProductFactory();
 let products$ = of(new Array(productFactory.create()));

@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
-import { ShippingAddress } from '@daffodil/core';
-import { ErrorStateMatcher } from '../../../../design/molecules/error-state-matcher/error-state-matcher.component';
+import { ShippingAddress } from '@daffodil/state';
+import { ErrorStateMatcher } from '../../../design/molecules/error-state-matcher/error-state-matcher.component';
 
 @Component({
   selector: 'shipping-form',

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { map } from 'rxjs/operators';
 
-import { CartActionTypes } from '@daffodil/core';
+import { CartActionTypes } from '@daffodil/state';
 import { RedirectToCartSuccess } from '../actions/product.actions';
 
 @Injectable()

@@ -4,4 +4,4 @@ The docs are intended to be used by the core `@daffodil` team to record common p
 
 ## Release
 
-After updating the version and navigating to the dist folder, run `npm publish` to publish the current version of @daffodil/core to npm.
+After updating the version and navigating to the dist folder, run `npm publish` to publish the current version of @daffodil/state to npm.

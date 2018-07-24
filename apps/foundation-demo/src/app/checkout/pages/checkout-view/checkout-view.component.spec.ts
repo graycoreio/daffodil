@@ -4,11 +4,7 @@ import { CheckoutViewComponent } from './checkout-view.component';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
-import { ShippingAddress, ShippingFactory, PaymentInfo, PaymentFactory } from '@daffodil/core';
-import { ShippingContainer } from 'libs/core/src';
-import { StoreModule, combineReducers, Store } from '@ngrx/store';
-import * as fromFoundationCheckout from '../../reducers';
-import { ShowPaymentView } from '../../actions/payment.actions';
+import { ShippingAddress, ShippingFactory, ShippingContainer } from '@daffodil/state';
 
 let shippingFactory = new ShippingFactory();
 let paymentFactory = new PaymentFactory();

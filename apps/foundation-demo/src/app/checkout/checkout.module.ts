@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CheckoutViewComponent } from './pages/checkout-view/checkout-view.component';
 import { ShippingFormComponent } from './components/shipping/shipping-form/shipping-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CoreCheckoutModule } from '@daffodil/core';
+import { StateCheckoutModule } from '@daffodil/state';
 import { ShippingSummaryComponent } from './components/shipping/shipping-summary/shipping-summary.component';
 import { ShippingOptionsComponent } from './components/shipping/shipping-options/shipping-options.component';
 import { ShippingComponent } from './components/shipping/shipping/shipping.component';
@@ -18,7 +18,7 @@ import { CartModule } from '../cart/cart.module';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    CoreCheckoutModule,
+    StateCheckoutModule,
     DesignModule,
     FoundationCheckoutStateModule,
     CartModule

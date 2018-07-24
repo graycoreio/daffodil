@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { ProductFactory, Product } from '@daffodil/core';
+import { ProductFactory, Product } from '@daffodil/state';
 
 import { ProductGridComponent } from './product-grid.component';
 import { Component, Input } from '@angular/core';

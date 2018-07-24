@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { CartFactory, CartItem } from '@daffodil/core';
+import { CartFactory, CartItem } from '@daffodil/state';
 
 import { CartItemComponent } from './cart-item.component';
 import { Component, Input } from '@angular/core';

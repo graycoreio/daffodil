@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { CoreProductModule } from '@daffodil/core';
+import { StateProductModule } from '@daffodil/state';
 import { ProductGridComponent } from './components/product-grid/product-grid.component';
 
 import { ProductGridViewComponent } from './pages/product-grid-view/product-grid-view.component';
@@ -17,7 +17,7 @@ import { EffectsModule } from '@ngrx/effects';
   imports: [
     CommonModule,
     DesignModule,
-    CoreProductModule,
+    StateProductModule,
     EffectsModule.forFeature([
       ProductEffects
     ]),

@@ -2,8 +2,8 @@
 
 set -e
 
-ng test core --watch=false
-ng build core
+ng test state --watch=false
+ng build state
 
 ng test foundation-demo --watch=false
 ng build foundation-demo
