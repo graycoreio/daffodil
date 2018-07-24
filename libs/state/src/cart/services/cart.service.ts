@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
-import { Cart } from '../model/cart';
+import { Cart } from '@daffodil/core';
 import { DaffodilConfigService } from '../../config/daffodil-config.service';
 
 @Injectable()

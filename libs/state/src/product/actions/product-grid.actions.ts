@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { Product } from '../model/product';
+import { Product } from '@daffodil/core';
 
 export enum ProductGridActionTypes {
     ProductGridLoadAction = "[ProductGrid] Load Action",

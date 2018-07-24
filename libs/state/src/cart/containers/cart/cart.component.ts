@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Store, select } from '@ngrx/store';
 
-import { Cart } from '../../model/cart';
+import { Cart } from '@daffodil/core';
 import * as fromCart from '../../reducers';
 import { CartLoad } from '../../actions/cart.actions';
 

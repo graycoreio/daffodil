@@ -1,7 +1,7 @@
 import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
 import * as fromShipping from './shipping.reducer';
-import { ShippingAddress } from '../models/shipping-address';
+import { ShippingAddress } from '@daffodil/core';
 
 export interface ShippingState {
   shipping: fromShipping.State;

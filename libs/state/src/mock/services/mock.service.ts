@@ -3,10 +3,9 @@ import { Injectable } from '@angular/core';
 import { ProductTestingService } from '../../product/testing/services/product.testing.service';
 
 import { InMemoryDbService, RequestInfoUtilities, ParsedRequestUrl } from 'angular-in-memory-web-api';
-import { ProductFactory } from '../../product/testing/factories/product.factory';
-import { Product } from '../../product/model/product';
+import { Product } from '@daffodil/core';
 import { CartTestingService } from '../../cart/testing/services/cart.testing.service';
-import { Cart } from '../../cart/model/cart';
+import { Cart } from '@daffodil/core';
 
 @Injectable()
 export class MockService implements InMemoryDbService{

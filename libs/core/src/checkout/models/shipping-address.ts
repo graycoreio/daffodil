@@ -1,4 +1,4 @@
-import { Address } from "../../../interfaces/models/address";
+import { Address } from "../../interfaces/models/address";
 
 export interface ShippingAddress extends Address {
   firstname: string;

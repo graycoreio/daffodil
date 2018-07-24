@@ -12,7 +12,7 @@ import { ProductEffects } from './product.effects';
 import { ProductTestingModule } from '../testing/product-testing.module';
 import { ProductService } from '../services/product.service';
 import { ProductFactory } from '../testing/factories/product.factory';
-import { Product } from '../model/product';
+import { Product } from '@daffodil/core';
 import { ProductLoad, ProductLoadSuccess, ProductLoadFailure } from '../actions/product.actions';
 
 import { DaffodilConfigService } from '../../config/daffodil-config.service';

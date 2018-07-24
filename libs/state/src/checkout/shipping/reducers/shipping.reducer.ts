@@ -1,5 +1,5 @@
 import { ShippingActionTypes, ShippingActions } from '../actions/shipping.actions';
-import { ShippingAddress } from '../models/shipping-address';
+import { ShippingAddress } from '@daffodil/core';
 
 export interface State {
   shippingInfo: ShippingAddress,

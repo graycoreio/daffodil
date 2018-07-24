@@ -1,14 +1,11 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc/libs/state",
+    "outDir": "../../dist/out-tsc/libs/core",
     "types": [
       "jasmine",
       "node"
-    ],
-    "paths": {
-      "@daffodil/core": ["dist/core"]
-    }
+    ]
   },
   "files": [
     "src/test.ts"

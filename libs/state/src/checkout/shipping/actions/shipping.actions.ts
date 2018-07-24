@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { ShippingAddress } from '../models/shipping-address';
+import { ShippingAddress } from '@daffodil/core';
 
 export enum ShippingActionTypes {
   UpdateShippingInfoAction = "[Shipping] Update Shipping Info Action",

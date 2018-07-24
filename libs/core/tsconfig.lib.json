@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc/libs/state",
+    "outDir": "../../dist/out-tsc/libs/core",
     "target": "es2015",
     "module": "es2015",
     "moduleResolution": "node",
@@ -15,10 +15,7 @@
     "lib": [
       "dom",
       "es2015"
-    ],
-    "paths": {
-      "@daffodil/core": ["dist/core"]
-    }
+    ]
   },
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,

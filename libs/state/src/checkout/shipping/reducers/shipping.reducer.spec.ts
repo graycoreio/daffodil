@@ -1,4 +1,4 @@
-import { ShippingAddress } from '../models/shipping-address';
+import { ShippingAddress } from '@daffodil/core';
 import { ShippingFactory } from "../testing/factories/shipping.factory";
 import { initialState, reducer, getShippingInfo, getSelectedShippingOption, isShippingInfoValid, State } from "../reducers/shipping.reducer";
 import { UpdateShippingInfo, SelectShippingOption } from "../actions/shipping.actions";

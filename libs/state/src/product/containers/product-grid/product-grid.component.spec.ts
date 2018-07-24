@@ -4,7 +4,7 @@ import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
 import { ProductGridContainer } from './product-grid.component';
 import { ProductFactory } from '../../testing/factories/product.factory';
-import { Product } from '../../model/product';
+import { Product } from '@daffodil/core';
 
 
 import { ProductGridLoad } from '../../actions/product-grid.actions';

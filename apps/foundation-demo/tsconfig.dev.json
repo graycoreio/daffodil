@@ -2,7 +2,8 @@
   "extends": "./tsconfig.app.json",
   "compilerOptions": {
     "paths": {
-      "@daffodil/state": ["libs/state/src"]
+      "@daffodil/state": ["libs/state/src"],
+      "@daffodil/core": ["libs/core/src"]
     }
   }
 }

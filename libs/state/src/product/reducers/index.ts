@@ -8,7 +8,7 @@ import {
 import * as fromProductEntities from './product-entities.reducer';
 import * as fromProductGrid from './product-grid.reducer';
 import * as fromProduct from './product.reducer';
-import { Product } from '../model/product';
+import { Product } from '@daffodil/core';
 import { Dictionary } from '@ngrx/entity/src/models';
 
 export interface State {

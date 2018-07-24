@@ -1,5 +1,5 @@
 import { CartActionTypes, CartActions } from '../actions/cart.actions';
-import { Cart } from '../model/cart';
+import { Cart } from '@daffodil/core';
 
 export interface State {
   cart: Cart,
