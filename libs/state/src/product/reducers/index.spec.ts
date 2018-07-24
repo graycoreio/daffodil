@@ -5,7 +5,7 @@ import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 import * as fromProduct from './index';
 import { ProductGridLoadSuccess } from "../actions/product-grid.actions";
 import { ProductFactory } from "../testing/factories/product.factory";
-import { Product } from "../model/product";
+import { Product } from "@daffodil/core";
 import { ProductLoad } from "../actions/product.actions";
 
 describe('selectProductState', () => {

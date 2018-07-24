@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
 import { ShippingContainer } from './shipping.component';
-import { ShippingAddress } from '../models/shipping-address';
+import { ShippingAddress } from '@daffodil/core';
 import { UpdateShippingInfo, SelectShippingOption } from '../actions/shipping.actions';
 import * as fromShipping from '../reducers';
 import { ShippingFactory } from '../testing/factories/shipping.factory';

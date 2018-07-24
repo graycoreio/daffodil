@@ -1,6 +1,6 @@
 import { createSelector } from "@ngrx/store";
 
-import { Product } from "../model/product";
+import { Product } from "@daffodil/core";
 import { ProductFactory } from "../testing/factories/product.factory";
 import { initialState, reducer, getProductGridLoading } from "../reducers/product-grid.reducer";
 import { ProductGridLoad, ProductGridLoadSuccess, ProductGridLoadFailure } from "../actions/product-grid.actions";

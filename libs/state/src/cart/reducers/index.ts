@@ -1,9 +1,6 @@
 import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
-import { Dictionary } from '@ngrx/entity/src/models';
 
 import * as fromCart from './cart.reducer';
-
-import { Cart } from '../model/cart';
 
 export interface CartState {
   cart: fromCart.State;

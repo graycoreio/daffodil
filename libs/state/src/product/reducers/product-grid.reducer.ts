@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
 import { ProductGridActionTypes, ProductGridActions } from '../actions/product-grid.actions';
-import { Product } from '../model/product';
+import { Product } from '@daffodil/core';
 
 export interface State {
   products: Product[],

@@ -4,7 +4,7 @@ import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
 import { ProductContainer } from './product.component';
 import { ProductFactory } from '../../testing/factories/product.factory';
-import { Product } from '../../model/product';
+import { Product } from '@daffodil/core';
 
 import { ProductLoad, UpdateQty } from '../../actions/product.actions';
 import * as fromProduct from '../../reducers';

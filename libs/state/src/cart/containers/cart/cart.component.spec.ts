@@ -8,7 +8,7 @@ import { of } from 'rxjs/observable/of';
 
 import { CartContainer } from './cart.component';
 import { CartFactory } from '../../testing/factories/cart.factory';
-import { Cart } from '../../model/cart';
+import { Cart } from '@daffodil/core';
 import { CartLoad } from '../../actions/cart.actions';
 import * as fromCart from '../../reducers';
 

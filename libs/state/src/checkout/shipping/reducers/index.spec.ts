@@ -4,7 +4,7 @@ import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
 import * as fromShipping from './index';
 import { ShippingFactory } from "../testing/factories/shipping.factory";
-import { ShippingAddress } from '../models/shipping-address';
+import { ShippingAddress } from '@daffodil/core';
 import { UpdateShippingInfo, SelectShippingOption } from "../actions/shipping.actions";
 
 describe('selectShippingState', () => {
