@@ -2,6 +2,7 @@
 
 set -e
 
+ng build core
 ng test state --watch=false
 ng build state
 
