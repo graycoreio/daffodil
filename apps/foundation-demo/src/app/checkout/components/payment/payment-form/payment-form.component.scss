@@ -85,24 +85,20 @@
   }
 
   @include breakpoint(large) {
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-template-areas: 
-      "        title         title         title         title         title         title         title   free-space1   free-space1   free-space1   free-space1   free-space1   free-space1   free-space1"
-      "    promotion     promotion     promotion     promotion     promotion     promotion     promotion   free-space1   free-space1   free-space1   free-space1   free-space1   free-space1   free-space1"
-      " method-title  method-title  method-title  method-title  method-title  method-title  method-title   free-space1   free-space1   free-space1   free-space1   free-space1   free-space1   free-space1"
-      "         name          name          name          name          name          name          name   free-space1   free-space1   free-space1   free-space1   free-space1   free-space1   free-space1"
-      "  card-number   card-number   card-number   card-number   card-number   card-number   card-number   free-space1   free-space1   free-space1   free-space1   free-space1   free-space1   free-space1"
-      "        month         month         month          year          year          year          year   free-space1   free-space1   free-space1   free-space1   free-space1   free-space1   free-space1"
-      "security-code security-code security-code security-code security-code security-code security-code   free-space1   free-space1   free-space1   free-space1   free-space1   free-space1   free-space1"
-      "       button        button        button        button        button        button   free-space2   free-space2   free-space2   free-space2   free-space2   free-space2   free-space2   free-space2"
-      "         note          note          note          note          note          note   free-space2   free-space2   free-space2   free-space2   free-space2   free-space2   free-space2   free-space2";
+      "        title         title   free-space1   free-space1"
+      "    promotion     promotion   free-space1   free-space1"
+      " method-title  method-title   free-space1   free-space1"
+      "         name          name   free-space1   free-space1"
+      "  card-number   card-number   free-space1   free-space1"
+      "        month          year   free-space1   free-space1"
+      "security-code security-code   free-space1   free-space1"
+      "       button        button   free-space1   free-space1"
+      "         note          note   free-space1   free-space1";
 
     &__free-space1 {
       grid-area: free-space1;
-    }
-
-    &__free-space2 {
-      grid-area: free-space2;
     }
   }
 }
