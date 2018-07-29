@@ -87,18 +87,18 @@
   @include breakpoint(large) {
     grid-template-columns: repeat(4, 1fr);
     grid-template-areas: 
-      "        title         title   free-space1   free-space1"
-      "    promotion     promotion   free-space1   free-space1"
-      " method-title  method-title   free-space1   free-space1"
-      "         name          name   free-space1   free-space1"
-      "  card-number   card-number   free-space1   free-space1"
-      "        month          year   free-space1   free-space1"
-      "security-code security-code   free-space1   free-space1"
-      "       button        button   free-space1   free-space1"
-      "         note          note   free-space1   free-space1";
+      "        title         title   free-space   free-space"
+      "    promotion     promotion   free-space   free-space"
+      " method-title  method-title   free-space   free-space"
+      "         name          name   free-space   free-space"
+      "  card-number   card-number   free-space   free-space"
+      "        month          year   free-space   free-space"
+      "security-code security-code   free-space   free-space"
+      "       button        button   free-space   free-space"
+      "         note          note   free-space   free-space";
 
-    &__free-space1 {
-      grid-area: free-space1;
+    &__free-space {
+      grid-area: free-space;
     }
   }
 }
