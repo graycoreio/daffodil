@@ -27,6 +27,7 @@
   &__shipping {
     padding-top: 27px;
     border-top: 1px solid $medium-gray;
+    @include section-divider();
 
     @include breakpoint(large) {
       padding-top: 30px;
