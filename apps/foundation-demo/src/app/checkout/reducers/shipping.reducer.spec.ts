@@ -1,5 +1,5 @@
 import { initialState, reducer, getShowShippingForm } from "../reducers/shipping.reducer";
-import { ToggleShowShippingForm, SetShowShippingForm } from "../actions/shipping.actions";
+import { ToggleShippingForm, SetShowShippingForm } from "../actions/shipping.actions";
 
 
 describe('Checkout | Shipping | Shipping Reducer', () => {
@@ -36,7 +36,7 @@ describe('Checkout | Shipping | Shipping Reducer', () => {
     });
   });
 
-  describe('when ToggleShowShippingForm action is triggered', () => {
+  describe('when ToggleShippingForm action is triggered', () => {
 
     let result;
 
@@ -44,7 +44,7 @@ describe('Checkout | Shipping | Shipping Reducer', () => {
       let setShowShippingFormAction = new SetShowShippingForm(false);
       reducer(initialState, setShowShippingFormAction);
       
-      let toggleShippingFormAction = new ToggleShowShippingForm();
+      let toggleShippingFormAction = new ToggleShippingForm();
       
       result = reducer(initialState, toggleShippingFormAction);
     });

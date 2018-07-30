@@ -10,7 +10,7 @@ export const initialState: State = {
 
 export function reducer(state = initialState, action: ShippingActions): State {
   switch (action.type) {
-    case ShippingActionTypes.ToggleShowShippingFormAction:
+    case ShippingActionTypes.ToggleShippingFormAction:
       return {...state, showShippingForm: !state.showShippingForm};
     case ShippingActionTypes.SetShowShippingFormAction:
       return {...state, showShippingForm: action.payload};
