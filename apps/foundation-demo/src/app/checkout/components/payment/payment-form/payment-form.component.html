@@ -1,0 +1,40 @@
+<form class="payment-form" [formGroup]="form" #ngForm="ngForm" (ngSubmit)="onSubmit(form)">
+  <div class="payment-form__title">
+    payment details
+  </div>
+  <promotion class="payment-form__promotion"></promotion>
+  <div class="payment-form__method-title">Payment Method</div>
+  <input input-validator type="text" class="payment-form__name"
+    placeholder="Cardholder's Name"
+    name="name"
+    [formControl]="form.controls['name']"
+    [formSubmitted]="ngForm.submitted"/>
+  <input input-validator type="text" class="payment-form__card-number"
+    placeholder="Card Number"
+    name="cardnumber"
+    [formControl]="form.controls['cardnumber']"
+    [formSubmitted]="ngForm.submitted"/>
+  <select select-validator class="payment-form__month"
+    name="month"
+    [formControl]="form.controls['month']"
+    [formSubmitted]="ngForm.submitted"
+    [errorStateMatcher]="monthErrorStateMatcher">
+    <option *ngFor="let month of monthSelectValues" [disabled]="month == 'Month'">{{month}}</option>
+  </select>
+  <select select-validator class="payment-form__year"
+    name="year"
+    [formControl]="form.controls['year']"
+    [formSubmitted]="ngForm.submitted"
+    [errorStateMatcher]="yearErrorStateMatcher">
+    <option *ngFor="let year of yearSelectValues" [disabled]="year == 'Year'">{{year}}</option>
+  </select>
+  <input input-validator type="text" class="payment-form__security-code"
+    placeholder="Security Code (XXX)"
+    name="securitycode"
+    [formControl]="form.controls['securitycode']"
+    [formSubmitted]="ngForm.submitted"/>
+  <button type="submit" class="button large expanded">Save & Review Order</button>
+  <div class="payment-form__note">
+    You can review this order before it's final.
+  </div>
+</form>

@@ -2,12 +2,13 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShippingSummaryComponent } from './shipping-summary.component';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ShippingAddress, ShippingFactory, ShippingOption } from '@daffodil/core';
+import { ShippingAddress, ShippingFactory } from '@daffodil/core';
 import { By } from '@angular/platform-browser';
 import { ShippingOptionsComponent } from '../shipping-options/shipping-options.component';
 
 let shippingFactory = new ShippingFactory();
 let stubShippingAddress = shippingFactory.createShippingAddress();
+let stubHideContinueToPayment = false;
 
 @Component({selector: 'shipping-options', template: ''})
 class MockShippingOptionsComponent {
@@ -16,12 +17,14 @@ class MockShippingOptionsComponent {
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({template: '<shipping-summary [selectedShippingOption]="selectedShippingOptionValue" [shippingInfo]="shippingInfoValue" (editShippingInfo)="editShippingInfoFunction()" (selectShippingOption)="selectShippingOptionFunction($event)"></shipping-summary>'})
+@Component({template: '<shipping-summary [selectedShippingOption]="selectedShippingOptionValue" [shippingInfo]="shippingInfoValue" [hideContinueToPayment]="hideContinueToPaymentValue" (editShippingInfo)="editShippingInfoFunction()" (selectShippingOption)="selectShippingOptionFunction($event)" (continueToPayment)="continueToPaymentFunction()"></shipping-summary>'})
 class TestShippingSummaryWrapper {
   shippingInfoValue: ShippingAddress = stubShippingAddress;
   selectedShippingOptionValue: string = 'id';
+  hideContinueToPaymentValue: boolean = stubHideContinueToPayment;
   editShippingInfoFunction: Function = () => {};
   selectShippingOptionFunction: Function = () => {};
+  continueToPaymentFunction: Function = () => {};
 }
 
 describe('ShippingSummaryComponent', () => {
@@ -60,6 +63,10 @@ describe('ShippingSummaryComponent', () => {
 
   it('should be able to take selectedShippingOption', () => {
     expect(shippingSummaryComponent.selectedShippingOption).toEqual(component.selectedShippingOptionValue);
+  });
+
+  it('should be able to take hideContinueToPayment as input', () => {
+    expect(shippingSummaryComponent.hideContinueToPayment).toEqual(stubHideContinueToPayment);
   });
 
   describe('constructor', () => {
@@ -173,6 +180,67 @@ describe('ShippingSummaryComponent', () => {
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.disabled).toBeFalsy();
+    });
+  });
+
+  describe('when continue to payment button is clicked', () => {
+    
+    it('should call onContinueToPayment', () => {
+      spyOn(shippingSummaryComponent, 'onContinueToPayment');
+
+      fixture.debugElement.query(By.css('button')).nativeElement.click();
+
+      expect(shippingSummaryComponent.onContinueToPayment).toHaveBeenCalled();
+    });
+  });
+
+  describe('onContinueToPayment', () => {
+
+    beforeEach(() => {
+      spyOn(shippingSummaryComponent.continueToPayment, 'emit');
+
+      shippingSummaryComponent.onContinueToPayment();
+    });
+    
+    it('should call continueToPayment.emit', () => {
+      expect(shippingSummaryComponent.continueToPayment.emit).toHaveBeenCalled();
+    });
+  });
+
+  describe('when continueToPayment is emitted', () => {
+    
+    it('should call function passed by host component', () => {
+      spyOn(component, "continueToPaymentFunction");
+
+      shippingSummaryComponent.continueToPayment.emit();
+
+      expect(component.continueToPaymentFunction).toHaveBeenCalled();
+    });
+  });
+
+  describe('when hideContinueToPayment is false', () => {
+    
+    beforeEach(() => {
+      shippingSummaryComponent.hideContinueToPayment = false;
+    
+      fixture.detectChanges();
+    });
+
+    it('should render the Continue to Payment button', () => {
+      expect(fixture.debugElement.query(By.css('button'))).not.toBeNull();
+    });
+  });
+
+  describe('when hideContinueToPayment is true', () => {
+    
+    beforeEach(() => {
+      shippingSummaryComponent.hideContinueToPayment = true;
+
+      fixture.detectChanges();
+    });
+
+    it('should not render the Continue to Payment button', () => {
+      expect(fixture.debugElement.query(By.css('button'))).toBeNull();      
     });
   });
 });

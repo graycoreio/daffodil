@@ -1,9 +1,9 @@
 import { Component, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { ShippingAddress } from '@daffodil/core';
 import { Observable } from 'rxjs';
-import { SetShowShippingForm, ToggleShippingForm } from '../../actions/shipping.actions';
+import { SetShowShippingForm, ToggleShowShippingForm } from '../../../actions/shipping.actions';
 import { Store, select } from '@ngrx/store';
-import * as fromFoundationShipping from '../../reducers';
+import * as fromFoundationCheckout from '../../../reducers';
 
 @Component({
   selector: 'shipping',
@@ -12,15 +12,18 @@ import * as fromFoundationShipping from '../../reducers';
 })
 export class ShippingComponent {
 
-  @Input() isShippingInfoValid: Boolean;
+  @Input() isShippingInfoValid: boolean;
   @Input() shippingInfo: ShippingAddress;
   @Input() selectedShippingOption: string;
+  @Input() hideContinueToPayment: boolean;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
+  @Output() continueToPayment: EventEmitter<any> = new EventEmitter();
+
   showShippingForm$: Observable<boolean>;
 
   constructor(
-    private store: Store<fromFoundationShipping.State>
+    private store: Store<fromFoundationCheckout.State>
   ) { }
 
   ngOnInit() {
@@ -29,13 +32,13 @@ export class ShippingComponent {
     );
 
     this.showShippingForm$ = this.store.pipe(
-      select(fromFoundationShipping.selectShowShippingForm)
+      select(fromFoundationCheckout.selectShowShippingForm)
     );
   }
 
   toggleShippingView() {
     this.store.dispatch(
-      new ToggleShippingForm()
+      new ToggleShowShippingForm()
     );
   }
 
@@ -46,5 +49,9 @@ export class ShippingComponent {
 
   onSelectShippingOption(shippingOption: string) {
     this.selectShippingOption.emit(shippingOption);
+  }
+
+  onContinueToPayment() {
+    this.continueToPayment.emit();
   }
 }

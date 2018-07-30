@@ -1,30 +1,54 @@
 import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
 import * as fromFoundationShipping from './shipping.reducer';
+import * as fromFoundationPayment from './payment.reducer';
 
-export interface FoundationShippingState {
+export interface FoundationCheckoutState {
   foundationShipping: fromFoundationShipping.State;
+  foundationPayment: fromFoundationPayment.State;
 }
 
 export interface State {
-  foundationShipping: FoundationShippingState
+  foundationCheckout: FoundationCheckoutState
 }
 
-export const reducers : ActionReducerMap<FoundationShippingState> = {
-  foundationShipping: fromFoundationShipping.reducer
+export const reducers : ActionReducerMap<FoundationCheckoutState> = {
+  foundationShipping: fromFoundationShipping.reducer,
+  foundationPayment: fromFoundationPayment.reducer
 }
 
 /**
- * Foundation Shipping State
+ * Foundation Checkout State
  */
-export const selectFoundationShippingState: MemoizedSelector<object, FoundationShippingState> = createFeatureSelector<FoundationShippingState>('foundationShipping');
+export const selectFoundationCheckoutState: MemoizedSelector<object, FoundationCheckoutState> = createFeatureSelector<FoundationCheckoutState>('foundationCheckout');
 
+/**
+ * Foundation Checkout Shipping State
+ */
 export const foundationShippingStateSelector = createSelector(
-  selectFoundationShippingState,
-  (state: FoundationShippingState) => state.foundationShipping
+  selectFoundationCheckoutState,
+  (state: FoundationCheckoutState) => state.foundationShipping
 );
 
 export const selectShowShippingForm: MemoizedSelector<object, boolean> = createSelector(
   foundationShippingStateSelector,
   fromFoundationShipping.getShowShippingForm
 );
+
+/**
+ * Foundation Checkout Payment State
+ */
+export const foundationPaymentStateSelector = createSelector(
+  selectFoundationCheckoutState,
+  (state: FoundationCheckoutState) => state.foundationPayment
+);
+
+export const selectShowPaymentView: MemoizedSelector<object, boolean> = createSelector(
+  foundationPaymentStateSelector,
+  fromFoundationPayment.getShowPaymentView
+)
+
+export const selectShowPaymentForm: MemoizedSelector<object, boolean> = createSelector(
+  foundationPaymentStateSelector,
+  fromFoundationPayment.getShowPaymentForm
+)

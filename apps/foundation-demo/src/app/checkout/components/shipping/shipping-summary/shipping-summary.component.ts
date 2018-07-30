@@ -10,8 +10,10 @@ export class ShippingSummaryComponent {
 
   @Input() shippingInfo: ShippingAddress;
   @Input() selectedShippingOption: string;
+  @Input() hideContinueToPayment: boolean;
   @Output() editShippingInfo: EventEmitter<any> = new EventEmitter();
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
+  @Output() continueToPayment: EventEmitter<any> = new EventEmitter();
 
   shippingOptions: ShippingOption[];
 
@@ -38,5 +40,9 @@ export class ShippingSummaryComponent {
 
   onSelectShippingOption(option: string) {
     this.selectShippingOption.emit(option);
+  }
+
+  onContinueToPayment() {
+    this.continueToPayment.emit();
   }
 }
