@@ -1,5 +1,5 @@
 import { initialState, reducer, getShowPaymentView, getShowPaymentForm } from "../reducers/payment.reducer";
-import { ShowPaymentView, SetShowPaymentForm, ToggleShowPaymentForm } from "../actions/payment.actions";
+import { ShowPaymentView, ShowPaymentForm, ToggleShowPaymentForm, HidePaymentForm } from "../actions/payment.actions";
 
 describe('Checkout | Payment | Payment Reducer', () => {
   
@@ -40,20 +40,33 @@ describe('Checkout | Payment | Payment Reducer', () => {
     });
   });
 
-  describe('when SetShowPaymentForm action is triggered', () => {
+  describe('when ShowPaymentForm action is triggered', () => {
 
     let result;
-    let showPaymentFormValue;
 
     beforeEach(() => {
-      showPaymentFormValue = true;
-      let showPaymentFormAction = new SetShowPaymentForm(showPaymentFormValue);
+      let showPaymentFormAction = new ShowPaymentForm();
       
       result = reducer(initialState, showPaymentFormAction);
     });
 
-    it('sets showPaymentView to true', () => {
-      expect(result.showPaymentForm).toEqual(showPaymentFormValue);
+    it('sets showPaymentForm to true', () => {
+      expect(result.showPaymentForm).toEqual(true);
+    });
+  });
+
+  describe('when HidePaymentForm action is triggered', () => {
+
+    let result;
+
+    beforeEach(() => {
+      let hidePaymentFormAction = new HidePaymentForm();
+      
+      result = reducer(initialState, hidePaymentFormAction);
+    });
+
+    it('sets showPaymentForm to false', () => {
+      expect(result.showPaymentForm).toEqual(false);
     });
   });
 
@@ -64,7 +77,7 @@ describe('Checkout | Payment | Payment Reducer', () => {
 
     beforeEach(() => {
       showPaymentFormValue = true;
-      let showPaymentFormAction = new SetShowPaymentForm(showPaymentFormValue);
+      let showPaymentFormAction = new ShowPaymentForm();
       result = reducer(initialState, showPaymentFormAction)
       let togglePaymentFormAction = new ToggleShowPaymentForm();
       

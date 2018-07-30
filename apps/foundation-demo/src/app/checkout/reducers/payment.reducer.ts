@@ -14,8 +14,10 @@ export function reducer(state = initialState, action: PaymentActions): State {
   switch (action.type) {
     case PaymentActionTypes.ShowPaymentViewAction:
       return {...state, showPaymentView: true};
-    case PaymentActionTypes.SetShowPaymentFormAction:
-      return {...state, showPaymentForm: action.payload};
+    case PaymentActionTypes.ShowPaymentFormAction:
+      return {...state, showPaymentForm: true};
+    case PaymentActionTypes.HidePaymentFormAction:
+      return {...state, showPaymentForm: false};
     case PaymentActionTypes.ToggleShowPaymentFormAction:
       return {...state, showPaymentForm: !state.showPaymentForm};
     default:

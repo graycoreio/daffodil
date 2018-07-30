@@ -8,7 +8,7 @@ import { By } from '@angular/platform-browser';
 import { PaymentSummaryComponent } from '../payment-summary/payment-summary.component';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import * as fromFoundationCheckout from '../../../reducers';
-import { SetShowPaymentForm, ToggleShowPaymentForm } from '../../../actions/payment.actions';
+import { ShowPaymentForm, ToggleShowPaymentForm, HidePaymentForm } from '../../../actions/payment.actions';
 import { of } from 'rxjs';
 
 let paymentFactory = new PaymentFactory();
@@ -114,11 +114,29 @@ describe('PaymentComponent', () => {
   });
 
   describe('ngOnInit', () => {
-    
-    it('dispatches a SetShowPaymentForm action', () => {
-      expect(store.dispatch).toHaveBeenCalledWith(
-        new SetShowPaymentForm(!payment.paymentInfo)
-      );
+
+    describe('when paymentInfo is defined', () => {
+      
+      beforeEach(() => {
+        payment.paymentInfo = stubPaymentInfo;
+        payment.ngOnInit();
+      });
+
+      it('should dispatch a HidePaymentForm action', () => {
+        expect(store.dispatch).toHaveBeenCalledWith(new HidePaymentForm());
+      });
+    });
+
+    describe('when paymentInfo is not defined', () => {
+
+      beforeEach(() => {
+        payment.paymentInfo = null;
+        payment.ngOnInit();
+      });
+      
+      it('should dispatch a ShowPaymentForm action', () => {
+        expect(store.dispatch).toHaveBeenCalledWith(new ShowPaymentForm());
+      });
     });
 
     it('should initialize showPaymentForm$', () => {
