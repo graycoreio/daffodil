@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PaymentInfo } from '@daffodil/core';
 import { Store, select } from '@ngrx/store';
 import * as fromFoundationCheckout from '../../../reducers';
-import { SetShowPaymentForm, ToggleShowPaymentForm } from '../../../actions/payment.actions';
+import { ToggleShowPaymentForm, HidePaymentForm, ShowPaymentForm } from '../../../actions/payment.actions';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -20,9 +20,15 @@ export class PaymentComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.store.dispatch(
-      new SetShowPaymentForm(!this.paymentInfo)
-    );
+    if(this.paymentInfo) {
+      this.store.dispatch(
+        new HidePaymentForm()
+      )
+    } else {
+      this.store.dispatch(
+        new ShowPaymentForm()
+      )
+    }
 
     this.showPaymentForm$ = this.store.pipe(
       select(fromFoundationCheckout.selectShowPaymentForm)

@@ -2,7 +2,8 @@ import { Action } from '@ngrx/store';
 
 export enum PaymentActionTypes {
   ShowPaymentViewAction = "[Foundation-Payment] Show Payment View Action",
-  SetShowPaymentFormAction = "[Foundation-Payment] Set Show Payment Form Action",
+  ShowPaymentFormAction = "[Foundation-Payment] Show Payment Form Action",
+  HidePaymentFormAction = "[Foundation-Payment] Hide Payment Form Action",
   ToggleShowPaymentFormAction = "[Foundation-Payment] Toggle Show Payment Form Action"
 }
 
@@ -12,10 +13,16 @@ export class ShowPaymentView implements Action {
   constructor() {}
 }
 
-export class SetShowPaymentForm implements Action {
-  readonly type = PaymentActionTypes.SetShowPaymentFormAction;
+export class ShowPaymentForm implements Action {
+  readonly type = PaymentActionTypes.ShowPaymentFormAction;
 
-  constructor(public payload: boolean) {}
+  constructor() {}
+}
+
+export class HidePaymentForm implements Action {
+  readonly type = PaymentActionTypes.HidePaymentFormAction;
+
+  constructor() {}
 }
 
 export class ToggleShowPaymentForm implements Action {
@@ -26,5 +33,6 @@ export class ToggleShowPaymentForm implements Action {
 
 export type PaymentActions =
     | ShowPaymentView
-    | SetShowPaymentForm
+    | ShowPaymentForm
+    | HidePaymentForm
     | ToggleShowPaymentForm;
