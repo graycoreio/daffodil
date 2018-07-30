@@ -1,12 +1,12 @@
 import { Action } from '@ngrx/store';
 
 export enum ShippingActionTypes {
-  ToggleShowShippingFormAction = "[Foundation-Shipping] Toggle Show Shipping Form Action",
+  ToggleShippingFormAction = "[Foundation-Shipping] Toggle Shipping Form Action",
   SetShowShippingFormAction = "[Foundation-Shipping] Set Show Shipping Form Action"
 }
 
-export class ToggleShowShippingForm implements Action {
-  readonly type = ShippingActionTypes.ToggleShowShippingFormAction;
+export class ToggleShippingForm implements Action {
+  readonly type = ShippingActionTypes.ToggleShippingFormAction;
 
   constructor() {}
 }
@@ -18,5 +18,5 @@ export class SetShowShippingForm implements Action {
 }
 
 export type ShippingActions =
-    | ToggleShowShippingForm
+    | ToggleShippingForm
     | SetShowShippingForm;
