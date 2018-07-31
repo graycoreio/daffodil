@@ -1,8 +1,10 @@
 <div class="cart-async-wrapper">
   <cart class="cart-async-wrapper__cart-wrapper" [cart]="cart" *ngIf="!loading"></cart>
   <div class="cart-async-wrapper__side-pane" *ngIf="!(loading)">
-      <cart-summary class="cart-async-wrapper__cart-summary-wrapper" [cart]="cart"></cart-summary>
-      <help-box class="cart-async-wrapper__help-box-wrapper"></help-box>
+    <cart-summary class="cart-async-wrapper__cart-summary-wrapper" [cart]="cart">
+      <promotion class="cart-summary__promotion"></promotion>
+    </cart-summary>
+    <help-box class="cart-async-wrapper__help-box-wrapper"></help-box>
   </div>
   <proceed-to-checkout class="cart-async-wrapper__proceed-to-checkout-wrapper" *ngIf="!isLoadedCartEmpty"></proceed-to-checkout>
   <continue-shopping class="cart-async-wrapper__continue-shopping-wrapper" *ngIf="!(loading) && (isLoadedCartEmpty)"></continue-shopping>

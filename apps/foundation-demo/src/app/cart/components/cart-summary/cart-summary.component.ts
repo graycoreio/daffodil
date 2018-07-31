@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { Cart } from '@daffodil/core';
 
 @Component({
   selector: 'cart-summary',
   templateUrl: './cart-summary.component.html',
-  styleUrls: ['./cart-summary.component.scss']
+  styleUrls: ['./cart-summary.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CartSummaryComponent implements OnInit {
 

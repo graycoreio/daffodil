@@ -36,6 +36,12 @@ class CartSummaryMock {
 }
 
 @Component({
+  selector: 'promotion',
+  template: ''
+})
+class PromotionMock {}
+
+@Component({
   selector: 'help-box',
   template: ''
 })
@@ -67,6 +73,7 @@ describe('TestCartAsyncWrapper', () => {
         HelpBoxMock,
         ProceedToCheckoutMock,
         ContinueShoppingMock,
+        PromotionMock,
         CartAsyncWrapperComponent
       ]
     })
