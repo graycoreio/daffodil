@@ -8,10 +8,15 @@
     margin: 50px 120px;
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas: 
-      "shipping shipping free-space";
+      "shipping shipping free-space"
+      " payment  payment free-space";
 
     &__shipping {
       grid-area: shipping;
+    }
+
+    &__payment {
+      grid-area: payment;
     }
 
     &__free-space {
@@ -22,6 +27,15 @@
   &__shipping {
     padding-top: 27px;
     border-top: 1px solid $medium-gray;
+    @include section-divider();
+
+    @include breakpoint(large) {
+      padding-top: 30px;
+    }
+  }
+
+  &__payment {
+    padding-top: 27px;
 
     @include breakpoint(large) {
       padding-top: 30px;

@@ -4,9 +4,9 @@ import { ShippingComponent } from './shipping.component';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ShippingAddress } from '@daffodil/core';
 import { By } from '@angular/platform-browser';
-import * as fromFoundationShipping from '../../reducers';
+import * as fromFoundationCheckout from '../../../reducers';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
-import { SetShowShippingForm, ToggleShippingForm } from '../../actions/shipping.actions';
+import { SetShowShippingForm, ToggleShippingForm } from '../../../actions/shipping.actions';
 import { of } from 'rxjs';
 
 let stubIsShippingInfoValidValue = true;
@@ -21,14 +21,17 @@ let stubShippingAddress: ShippingAddress = {
 }
 let stubSelectedShippingOption: string = 'shipping option';
 let stubShowShippingForm: boolean = true;
+let stubHideContinueToPayment: boolean = false;
 
-@Component({template: '<shipping [isShippingInfoValid]="isShippingInfoValidValue" [shippingInfo]="shippingInfoValue" [selectedShippingOption]="selectedShippingOptionValue" (updateShippingInfo)="updateShippingInfoFunction($event)" (selectShippingOption)="selectShippingOptionFunction($event)"></shipping>'})
+@Component({template: '<shipping [isShippingInfoValid]="isShippingInfoValidValue" [shippingInfo]="shippingInfoValue" [selectedShippingOption]="selectedShippingOptionValue" [hideContinueToPayment]="hideContinueToPaymentValue" (updateShippingInfo)="updateShippingInfoFunction($event)" (selectShippingOption)="selectShippingOptionFunction($event)" (continueToPayment)="onContinueToPaymentFunction()"></shipping>'})
 class TestShipping {
   isShippingInfoValidValue = stubIsShippingInfoValidValue;
   shippingInfoValue: ShippingAddress = stubShippingAddress;
   selectedShippingOptionValue: string = stubSelectedShippingOption;
+  hideContinueToPaymentValue: boolean = stubHideContinueToPayment;
   updateShippingInfoFunction: Function = () => {};
   selectShippingOptionFunction: Function = () => {};
+  onContinueToPaymentFunction: Function = () => {};
 }
 
 @Component({selector: 'shipping-form', template: ''})
@@ -41,8 +44,10 @@ class MockShippingFormComponent {
 class MockShippingSummaryComponent {
   @Input() shippingInfo: ShippingAddress;
   @Input() selectedShippingOption: string;
+  @Input() hideContinueToPayment: boolean;
   @Output() editShippingInfo: EventEmitter<any> = new EventEmitter();
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
+  @Output() continueToPayment: EventEmitter<any> = new EventEmitter();
 }
 
 describe('ShippingComponent', () => {
@@ -57,7 +62,7 @@ describe('ShippingComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          shippings: combineReducers(fromFoundationShipping.reducers),
+          shippings: combineReducers(fromFoundationCheckout.reducers),
         })
       ],
       declarations: [ 
@@ -74,7 +79,7 @@ describe('ShippingComponent', () => {
     fixture = TestBed.createComponent(TestShipping);
     component = fixture.componentInstance;
     store = TestBed.get(Store);
-    spyOn(fromFoundationShipping, 'selectShowShippingForm').and.returnValue(stubShowShippingForm);
+    spyOn(fromFoundationCheckout, 'selectShowShippingForm').and.returnValue(stubShowShippingForm);
     spyOn(store, 'dispatch');
     fixture.detectChanges();
 
@@ -99,6 +104,10 @@ describe('ShippingComponent', () => {
     expect(shipping.selectedShippingOption).toEqual(stubSelectedShippingOption);
   });
 
+  it('should be able to take hideContinueToPayment as input', () => {
+    expect(shipping.hideContinueToPayment).toEqual(stubHideContinueToPayment);
+  });
+
   describe('on <shipping-form>', () => {
     
     it('should set shippingInfo', () => {
@@ -108,12 +117,16 @@ describe('ShippingComponent', () => {
 
   describe('on <shipping-summary>', () => {
     
-    it('should set shippingInfo to value passed by the [shipping-container]', () => {
+    it('should set shippingInfo', () => {
       expect(shippingSummaryComponent.shippingInfo).toEqual(shipping.shippingInfo);
     });
 
-    it('should set selectedShippingOption to value passed by the [shipping-container]', () => {
+    it('should set selectedShippingOption', () => {
       expect(shippingSummaryComponent.selectedShippingOption).toEqual(shipping.selectedShippingOption);
+    });
+
+    it('should set hideContinueToPayment', () => {
+      expect(shippingSummaryComponent.hideContinueToPayment).toEqual(shipping.hideContinueToPayment);
     });
   });
 
@@ -174,6 +187,17 @@ describe('ShippingComponent', () => {
         shippingSummaryComponent.selectShippingOption.emit(stubSelectedShippingOption);
         
         expect(component.selectShippingOptionFunction).toHaveBeenCalledWith(stubSelectedShippingOption);
+      });
+    });
+
+    describe('continueToPayment', () => {
+      
+      it('should call hostComponent.onContinueToPaymentFunction', () => {
+        spyOn(component, 'onContinueToPaymentFunction');
+
+        shippingSummaryComponent.continueToPayment.emit();
+
+        expect(component.onContinueToPaymentFunction).toHaveBeenCalled();
       });
     });
   });

@@ -11,16 +11,10 @@ let mockCart = cartFactory.create();
 mockCart.items.push(cartFactory.createCartItem());
 mockCart.items.push(cartFactory.createCartItem());
 
-@Component({template: '<cart-summary [cart]="cartValue"></cart-summary>'})
+@Component({template: '<cart-summary [cart]="cartValue"><div class="transcluded"></div></cart-summary>'})
 class TestCartSummaryWrapper {
   @Input() cartValue: Cart;
 }
-
-@Component({
-  selector: 'promotion',
-  template: ''
-})
-class PromotionComponentMock {}
 
 @Component({
   selector: 'proceed-to-checkout',
@@ -50,7 +44,6 @@ describe('CartSummaryComponent', () => {
       declarations: [
         CartSummaryComponent,
         TestCartSummaryWrapper,
-        PromotionComponentMock,
         ProceedToCheckoutMock,
         CartSubtotalMock,
         CartGrandTotalMock
@@ -72,6 +65,10 @@ describe('CartSummaryComponent', () => {
   it('can be passed a Cart object', () => {
 
     expect(cartSummaryComponent.componentInstance.cart).toEqual(mockCart);
+  });
+
+  it('should render the transcluded element', () => {
+    expect(fixture.debugElement.query(By.css('.transcluded'))).not.toBeNull();
   });
 
   describe('calculateTotalTax', () => {

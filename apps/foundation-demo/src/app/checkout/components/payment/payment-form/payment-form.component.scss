@@ -1,0 +1,104 @@
+@import 'daffodil-util';
+
+.payment-form {
+
+  display: grid;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: 
+    "        title         title"
+    "    promotion     promotion"
+    " method-title  method-title"
+    "         name          name"
+    "  card-number   card-number"
+    "        month          year"
+    "security-code security-code"
+    "       button        button"
+    "         note          note";
+
+  &__title {
+    margin-bottom: 5px;
+    grid-area: title;
+    @include embolden();
+    @include uppercase();
+  }
+
+  &__promotion {
+    margin-bottom: 15px;
+    grid-area: promotion;
+  }
+
+  &__method-title {
+    @include embolden();
+    margin-bottom: 5px;
+    grid-area: method-title;
+  }
+
+  &__name {
+    grid-area: name;
+  }
+
+  &__card-number {
+    grid-area: card-number;
+  }
+
+  &__month {
+    grid-area: month;
+  }
+
+  &__year {
+    grid-area: year;
+  }
+
+  &__security-code {
+    grid-area: security-code;
+  }
+
+  &__error {
+    border-left: 5px solid #a94442;
+  }
+
+  &__valid {
+    border-left: 5px solid #42A948;
+  }
+
+  & input {
+    margin: 0;
+    box-shadow: none;
+  }
+
+  & select {
+    margin: 0;
+  }
+
+  & button {
+    margin: 25px 0 10px 0;
+    grid-area: button;
+  }
+
+  &__note {
+    justify-self: center;
+    margin-bottom: 25px;
+    grid-area: note;
+    font-size: $small-font-size;
+  }
+
+  @include breakpoint(large) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: 
+      "        title         title   free-space   free-space"
+      "    promotion     promotion   free-space   free-space"
+      " method-title  method-title   free-space   free-space"
+      "         name          name   free-space   free-space"
+      "  card-number   card-number   free-space   free-space"
+      "        month          year   free-space   free-space"
+      "security-code security-code   free-space   free-space"
+      "       button        button   free-space   free-space"
+      "         note          note   free-space   free-space";
+
+    &__free-space {
+      grid-area: free-space;
+    }
+  }
+}

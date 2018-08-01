@@ -5,7 +5,7 @@ import { reducers } from './reducers';
 
 @NgModule({
   imports: [
-      StoreModule.forFeature('foundationCheckout', reducers)
+      StoreModule.forFeature('payment', reducers)
   ]
 })
-export class FoundationCheckoutStateModule { }
+export class CorePaymentStateModule { }
