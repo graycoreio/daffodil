@@ -5,6 +5,11 @@
 
 ## Current Stability - Alpha
 
+## Packages
+* @daffodil/core
+* @daffodil/state
+* @daffodil/driver
+
 ## What is Daffodil?
 Daffodil is a set of frontend libraries that intends to accomplish three things:
 1. Improve the developer workflow when writing frontend software for online stores.
@@ -13,12 +18,13 @@ Daffodil is a set of frontend libraries that intends to accomplish three things:
 
 Currently, Daffodil provides several modules to improve different aspects of developer workflow:
 
-1. `@daffodil/state` (partially complete) - An extendable Ecommerce redux store
-2. `@daffodil/driver` (todo) - An extendable API interface with configurable drivers for different Ecommerce platforms.
-3. `@daffodil/model` (partially complete) - An extendable set of common models for Ecommerce.
+1. `@daffodil/core` (partially complete) - Daffodil's core - a set of interfaces and factories for Ecommerce.
+2. `@daffodil/state` (partially complete) - An extendable redux store for Ecommerce.
+3. `@daffodil/driver` (todo) - An extendable API interface with configurable drivers for different Ecommerce platforms.
 
-Additionally, we plan on providing additional sample implementations of the `@daffodil` modules
+Additionally, we plan on providing additional sample implementations of the `@daffodil` packages
 in the style of some of the major frontend libraries. To date, we're focusing only on:
+
 1. [Foundation](https://foundation.zurb.com/)
 
 ### Benefits For Developers
