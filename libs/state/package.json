@@ -12,13 +12,11 @@
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
-  "dependencies": {
-    "@daffodil/core": "1.1.0-a"
-  },
   "peerDependencies": {
     "@angular/common": "^6.0.1",
     "@angular/core": "^6.0.1",
     "@angular/http": "^6.0.1",
+    "@daffodil/core": "1.1.0-a",
     "@ngrx/effects": "^6.0.1",
     "@ngrx/entity": "^6.0.1",
     "@ngrx/store": "^6.0.1",
