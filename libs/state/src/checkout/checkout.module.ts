@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StateShippingModule } from './shipping/shipping.module';
+import { StatePaymentModule } from './payment/payment.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    StateShippingModule
+    StateShippingModule,
+    StatePaymentModule
   ],
   exports: [
-    StateShippingModule
+    StateShippingModule,
+    StatePaymentModule
   ]
 })
 export class StateCheckoutModule { }

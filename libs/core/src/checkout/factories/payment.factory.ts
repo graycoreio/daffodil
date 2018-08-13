@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PaymentInfo } from '../../models/payment-info';
+import { PaymentInfo } from '../models/payment-info';
 
 @Injectable()
 export class PaymentFactory {

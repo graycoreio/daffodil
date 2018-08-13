@@ -3,10 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
 import { PaymentContainer } from './payment.component';
-import { PaymentInfo } from '../models/payment-info';
+import { PaymentInfo, PaymentFactory } from '@daffodil/core';
 import { UpdatePaymentInfo } from '../actions/payment.actions';
 import * as fromPayment from '../reducers';
-import { PaymentFactory } from '../testing/factories/payment.factory';
 
 describe('PaymentContainer', () => {
   let component: PaymentContainer;

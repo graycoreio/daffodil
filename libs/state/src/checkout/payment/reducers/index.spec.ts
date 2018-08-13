@@ -3,8 +3,7 @@ import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
 import * as fromPayment from './index';
-import { PaymentFactory } from "../testing/factories/payment.factory";
-import { PaymentInfo } from '../models/payment-info';
+import { PaymentInfo, PaymentFactory } from '@daffodil/core';
 import { UpdatePaymentInfo } from "../actions/payment.actions";
 
 describe('selectPaymentState', () => {
