@@ -1,7 +1,7 @@
 import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
 import * as fromPayment from './payment.reducer';
-import { PaymentInfo } from '../models/payment-info';
+import { PaymentInfo } from '@daffodil/core';
 
 export interface PaymentState {
   payment: fromPayment.State;

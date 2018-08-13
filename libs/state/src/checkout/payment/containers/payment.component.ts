@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Store, select } from '@ngrx/store';
 
-import { PaymentInfo } from '../models/payment-info';
+import { PaymentInfo } from '@daffodil/core';
 import * as fromPayment from '../reducers';
 import { UpdatePaymentInfo } from '../actions/payment.actions';
 

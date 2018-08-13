@@ -1,5 +1,4 @@
-import { PaymentInfo } from '../models/payment-info';
-import { PaymentFactory } from "../testing/factories/payment.factory";
+import { PaymentInfo, PaymentFactory } from '@daffodil/core';
 import { initialState, reducer, getPaymentInfo, State } from "../reducers/payment.reducer";
 import { UpdatePaymentInfo } from "../actions/payment.actions";
 

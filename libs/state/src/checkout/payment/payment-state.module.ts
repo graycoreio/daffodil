@@ -8,4 +8,4 @@ import { reducers } from './reducers';
       StoreModule.forFeature('payment', reducers)
   ]
 })
-export class CorePaymentStateModule { }
+export class StatePaymentStateModule { }

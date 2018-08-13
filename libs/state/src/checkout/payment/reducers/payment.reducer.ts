@@ -1,5 +1,5 @@
 import { PaymentActionTypes, PaymentActions } from '../actions/payment.actions';
-import { PaymentInfo } from '../models/payment-info';
+import { PaymentInfo } from '@daffodil/core';
 
 export interface State {
   paymentInfo: PaymentInfo

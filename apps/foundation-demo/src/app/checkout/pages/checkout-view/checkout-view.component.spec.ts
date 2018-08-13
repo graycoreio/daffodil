@@ -5,7 +5,10 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
 import { ShippingContainer } from '@daffodil/state';
-import { ShippingAddress, ShippingFactory } from '@daffodil/core';
+import { ShippingAddress, ShippingFactory, PaymentFactory, PaymentInfo } from '@daffodil/core';
+import { StoreModule, combineReducers, Store } from '@ngrx/store';
+import { ShowPaymentView } from '../../actions/payment.actions';
+import * as fromFoundationCheckout from '../../reducers/index';
 
 let shippingFactory = new ShippingFactory();
 let paymentFactory = new PaymentFactory();

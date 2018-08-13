@@ -1,6 +1,5 @@
 import { Action } from '@ngrx/store';
-
-import { PaymentInfo } from '../models/payment-info';
+import { PaymentInfo } from '@daffodil/core';
 
 export enum PaymentActionTypes {
   UpdatePaymentInfoAction = "[Payment] Update Payment Info Action"
