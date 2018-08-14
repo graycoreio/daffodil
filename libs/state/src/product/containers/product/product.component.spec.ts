@@ -7,7 +7,7 @@ import { ProductFactory } from '@daffodil/core';
 import { Product } from '@daffodil/core';
 
 import { ProductLoad, UpdateQty } from '../../actions/product.actions';
-import * as fromProduct from '../../reducers';
+import * as fromProduct from '../../reducers/index';
 import { AddToCart } from '../../../cart/actions/cart.actions';
 
 describe('ProductContainer', () => {

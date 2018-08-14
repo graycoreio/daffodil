@@ -5,7 +5,7 @@ import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { PaymentContainer } from './payment.component';
 import { PaymentInfo, BillingFactory } from '@daffodil/core';
 import { UpdatePaymentInfo } from '../actions/payment.actions';
-import * as fromPayment from '../reducers';
+import * as fromPayment from '../reducers/index';
 
 describe('PaymentContainer', () => {
   let component: PaymentContainer;

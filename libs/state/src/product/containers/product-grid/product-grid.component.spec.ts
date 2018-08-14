@@ -8,7 +8,7 @@ import { Product } from '@daffodil/core';
 
 
 import { ProductGridLoad } from '../../actions/product-grid.actions';
-import * as fromProduct from '../../reducers';
+import * as fromProduct from '../../reducers/index';
 
 describe('ProductGridContainer', () => {
   let component: ProductGridContainer;

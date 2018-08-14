@@ -6,7 +6,7 @@ import { CartContainer } from './cart.component';
 import { CartFactory } from '@daffodil/core';
 import { Cart } from '@daffodil/core';
 import { CartLoad } from '../../actions/cart.actions';
-import * as fromCart from '../../reducers';
+import * as fromCart from '../../reducers/index';
 
 describe('CartContainer', () => {
   let component: CartContainer;

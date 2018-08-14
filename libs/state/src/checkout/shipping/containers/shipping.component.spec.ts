@@ -5,7 +5,7 @@ import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { ShippingContainer } from './shipping.component';
 import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
 import { UpdateShippingInfo, SelectShippingOption } from '../actions/shipping.actions';
-import * as fromShipping from '../reducers';
+import * as fromShipping from '../reducers/index';
 
 describe('ShippingContainer', () => {
   let component: ShippingContainer;
