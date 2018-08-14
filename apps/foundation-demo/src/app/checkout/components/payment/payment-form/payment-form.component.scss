@@ -1,38 +1,45 @@
 @import 'daffodil-util';
 
 .payment-form {
-
   display: grid;
   grid-column-gap: 10px;
-  grid-row-gap: 10px;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: 
     "        title         title"
     "    promotion     promotion"
-    " method-title  method-title"
+    "method-title1 method-title1"
     "         name          name"
     "  card-number   card-number"
     "        month          year"
     "security-code security-code"
+    "method-title2 method-title2"
+    "     checkbox      checkbox"
+    "   first-name    first-name"
+    "    last-name     last-name"
+    "       street        street"
+    "         city          city"
+    "        state         state"
+    "     postcode      postcode"
+    "    telephone     telephone"
     "       button        button"
     "         note          note";
 
   &__title {
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     grid-area: title;
     @include embolden();
     @include uppercase();
   }
 
   &__promotion {
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     grid-area: promotion;
   }
 
-  &__method-title {
+  &__info-method-title {
     @include embolden();
-    margin-bottom: 5px;
-    grid-area: method-title;
+    margin-bottom: 15px;
+    grid-area: method-title1;
   }
 
   &__name {
@@ -55,33 +62,68 @@
     grid-area: security-code;
   }
 
-  &__error {
-    border-left: 5px solid #a94442;
+  &__address-method-title {
+    @include embolden();
+    margin: 15px 0 15px 0;
+    grid-area: method-title2;
   }
 
-  &__valid {
-    border-left: 5px solid #42A948;
+  &__checkbox {
+    grid-area: checkbox;
+    margin-bottom: 10px;
+  }
+
+  &__first-name {
+    grid-area: first-name;
+  }
+
+  &__last-name {
+    grid-area: last-name;
+  }
+
+  &__street {
+    grid-area: street;
+  }
+
+  &__city {
+    grid-area: city;
+  }
+
+  &__state {
+    grid-area: state;
+  }
+
+  &__postcode {
+    grid-area: postcode;
+  }
+
+  &__telephone {
+    grid-area: telephone;
   }
 
   & input {
-    margin: 0;
+    margin: 0 0 10px 0;
     box-shadow: none;
   }
 
   & select {
-    margin: 0;
+    margin: 0 0 10px 0;
   }
 
   & button {
-    margin: 25px 0 10px 0;
+    margin: 15px 0 10px 0;
     grid-area: button;
   }
 
   &__note {
     justify-self: center;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
     grid-area: note;
     font-size: $small-font-size;
+
+    @include breakpoint(large) {
+      justify-self: left;
+    }
   }
 
   @include breakpoint(large) {
@@ -89,16 +131,37 @@
     grid-template-areas: 
       "        title         title   free-space   free-space"
       "    promotion     promotion   free-space   free-space"
-      " method-title  method-title   free-space   free-space"
+      "method-title1 method-title1   free-space   free-space"
       "         name          name   free-space   free-space"
       "  card-number   card-number   free-space   free-space"
       "        month          year   free-space   free-space"
       "security-code security-code   free-space   free-space"
+      "method-title2 method-title2   free-space   free-space"
+      "     checkbox      checkbox   free-space   free-space"
+      "   first-name    first-name   free-space   free-space"
+      "    last-name     last-name   free-space   free-space"
+      "       street        street   free-space   free-space"
+      "         city          city   free-space   free-space"
+      "        state         state   free-space   free-space"
+      "     postcode      postcode   free-space   free-space"
+      "    telephone     telephone   free-space   free-space"
       "       button        button   free-space   free-space"
       "         note          note   free-space   free-space";
 
     &__free-space {
       grid-area: free-space;
+    }
+
+    &__free-space3 {
+      grid-area: free-space3;
+    }
+
+    &__free-space4 {
+      grid-area: free-space4;
+    }
+
+    &__free-space5 {
+      grid-area: free-space5;
     }
   }
 }

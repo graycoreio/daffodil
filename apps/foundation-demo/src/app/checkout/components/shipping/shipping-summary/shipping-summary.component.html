@@ -1,9 +1,6 @@
 <div class="shipping-summary">
   <div class="shipping-summary__title">shipping details</div>
-  <div class="shipping-summary__name">{{shippingInfo.firstname}} {{shippingInfo.lastname}}</div>
-  <div class="shipping-summary__street">{{shippingInfo.street}}</div>
-  <div class="shipping-summary__cityState">{{shippingInfo.city}}, {{shippingInfo.state}} {{shippingInfo.postcode}}</div>
-  <div class="shipping-summary__telephone">{{shippingInfo.telephone}}</div>
+  <address-summary class="shipping-summary__address" [address]="shippingInfo"></address-summary>
   <a (click)="onEdit()">Edit</a>
   <shipping-options class="shipping-summary__options" [selectedShippingOption]="selectedShippingOption" [shippingOptions]="shippingOptions" (selectShippingOption)="onSelectShippingOption($event)"></shipping-options>
   <button type="button" class="button large expanded" (click)="onContinueToPayment()"  *ngIf="!hideContinueToPayment" [disabled]="!selectedShippingOption">Continue to Payment</button>

@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { ShippingAddress } from '@daffodil/core';
+import { DaffodilAddress } from '@daffodil/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ErrorStateMatcher } from '../../../../design/molecules/error-state-matcher/error-state-matcher.component';
 
 @Component({
@@ -9,9 +9,9 @@ import { ErrorStateMatcher } from '../../../../design/molecules/error-state-matc
   templateUrl: './shipping-form.component.html',
   styleUrls: ['./shipping-form.component.scss']
 })
-export class ShippingFormComponent implements OnInit {
+export class ShippingFormComponent {
 
-  @Input() shippingInfo: ShippingAddress;
+  @Input() shippingInfo: DaffodilAddress;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
 
   form: FormGroup

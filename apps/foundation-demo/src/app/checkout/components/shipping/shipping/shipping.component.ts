@@ -1,5 +1,5 @@
 import { Component, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
-import { ShippingAddress } from '@daffodil/core';
+import { DaffodilAddress } from '@daffodil/core';
 import { Observable } from 'rxjs';
 import { SetShowShippingForm, ToggleShippingForm } from '../../../actions/shipping.actions';
 import { Store, select } from '@ngrx/store';
@@ -13,7 +13,7 @@ import * as fromFoundationCheckout from '../../../reducers';
 export class ShippingComponent {
 
   @Input() isShippingInfoValid: boolean;
-  @Input() shippingInfo: ShippingAddress;
+  @Input() shippingInfo: DaffodilAddress;
   @Input() selectedShippingOption: string;
   @Input() hideContinueToPayment: boolean;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
@@ -42,7 +42,7 @@ export class ShippingComponent {
     );
   }
 
-  onUpdateShippingInfo(shippingInfo: ShippingAddress) {
+  onUpdateShippingInfo(shippingInfo: DaffodilAddress) {
     this.updateShippingInfo.emit(shippingInfo);
     this.toggleShippingView();
   }

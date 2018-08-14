@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { PaymentInfo } from '@daffodil/core';
+import { PaymentInfo, DaffodilAddress } from '@daffodil/core';
 import { Store, select } from '@ngrx/store';
 import * as fromFoundationCheckout from '../../../reducers';
 import { ToggleShowPaymentForm, HidePaymentForm, ShowPaymentForm } from '../../../actions/payment.actions';
@@ -12,7 +12,11 @@ import { Observable } from 'rxjs';
 export class PaymentComponent implements OnInit {
 
   @Input() paymentInfo: PaymentInfo;
+  @Input() billingAddress: DaffodilAddress;
+  @Input() billingAddressIsShippingAddress: boolean;
   @Output() updatePaymentInfo: EventEmitter<any> = new EventEmitter();
+  @Output() updateBillingAddress: EventEmitter<any> = new EventEmitter();
+  @Output() toggleBillingAddressIsShippingAddress: EventEmitter<any> = new EventEmitter();
   showPaymentForm$: Observable<boolean>;
 
   constructor(
@@ -44,5 +48,13 @@ export class PaymentComponent implements OnInit {
   onUpdatePaymentInfo(paymentInfo: PaymentInfo) {
     this.updatePaymentInfo.emit(paymentInfo);
     this.togglePaymentView();
+  }
+
+  onUpdateBillingAddress(billingAddress: DaffodilAddress) {
+    this.updateBillingAddress.emit(billingAddress);
+  }
+
+  onToggleBillingAddressIsShippingAddress() {
+    this.toggleBillingAddressIsShippingAddress.emit();
   }
 }

@@ -2,29 +2,38 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PaymentComponent } from './payment.component';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { PaymentInfo, PaymentFactory } from '@daffodil/core';
-import { PaymentFormComponent } from '../payment-form/payment-form.component';
+import { PaymentInfo, BillingFactory, DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
 import { By } from '@angular/platform-browser';
-import { PaymentSummaryComponent } from '../payment-summary/payment-summary.component';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import * as fromFoundationCheckout from '../../../reducers';
 import { ShowPaymentForm, ToggleShowPaymentForm, HidePaymentForm } from '../../../actions/payment.actions';
 import { of } from 'rxjs';
 
-let paymentFactory = new PaymentFactory();
-let stubPaymentInfo = paymentFactory.create();
+let billingFactory = new BillingFactory();
+let daffodilAddressFactory = new DaffodilAddressFactory();
+let stubPaymentInfo = billingFactory.create();
+let stubBillingAddress = daffodilAddressFactory.create();
 let stubShowPaymentForm = true;
+let stubBillingAddressIsShippingAddress = false;
 
-@Component({template: '<payment [paymentInfo]="paymentInfoValue" (updatePaymentInfo)="updatePaymentInfoFunction($event)"></payment>'})
+@Component({template: '<payment [paymentInfo]="paymentInfoValue" [billingAddress]="billingAddressValue" [billingAddressIsShippingAddress]="billingAddressIsShippingAddressValue" (updatePaymentInfo)="updatePaymentInfoFunction($event)" (updateBillingAddress)="updateBillingAddressFunction($event)" (toggleBillingAddressIsShippingAddress)="toggleBillingAddressIsShippingAddressFunction()"></payment>'})
 class TestPaymentComponentWrapper {
   paymentInfoValue: PaymentInfo = stubPaymentInfo;
-  updatePaymentInfoFunction: Function = () => {};
+  billingAddressValue: DaffodilAddress = stubBillingAddress;
+  billingAddressIsShippingAddressValue: boolean = stubBillingAddressIsShippingAddress;
+  updatePaymentInfoFunction = () => {};
+  updateBillingAddressFunction = () => {};
+  toggleBillingAddressIsShippingAddressFunction = () => {};
 }
 
 @Component({selector: 'payment-form', template: ''})
 class MockPaymentFormComponent {
   @Input() paymentInfo: PaymentInfo;
+  @Input() billingAddress: DaffodilAddress;
+  @Input() billingAddressIsShippingAddress: boolean;
   @Output() updatePaymentInfo: EventEmitter<any> = new EventEmitter();
+  @Output() updateBillingAddress: EventEmitter<any> = new EventEmitter();
+  @Output() toggleBillingAddressIsShippingAddress: EventEmitter<any> = new EventEmitter();
 }
 
 @Component({selector: 'payment-summary', template: ''})
@@ -33,12 +42,19 @@ class MockPaymentSummaryComponent {
   @Output() editPaymentInfo: EventEmitter<any> = new EventEmitter();
 }
 
+@Component({selector: 'billing-summary', template: ''})
+class MockBillingSummaryComponent {
+  @Input() billingAddress: DaffodilAddress;
+  @Input() billingAddressIsShippingAddress: boolean;
+}
+
 describe('PaymentComponent', () => {
   let component: TestPaymentComponentWrapper;
   let fixture: ComponentFixture<TestPaymentComponentWrapper>;
   let payment: PaymentComponent;
-  let paymentForm: PaymentFormComponent;
-  let paymentSummary: PaymentSummaryComponent;
+  let paymentForm: MockPaymentFormComponent;
+  let paymentSummary: MockPaymentSummaryComponent;
+  let billingSummary: MockBillingSummaryComponent;
   let store;
 
   beforeEach(async(() => {
@@ -52,6 +68,7 @@ describe('PaymentComponent', () => {
         TestPaymentComponentWrapper,
         MockPaymentFormComponent,
         MockPaymentSummaryComponent,
+        MockBillingSummaryComponent,
         PaymentComponent
       ]
     })
@@ -69,6 +86,7 @@ describe('PaymentComponent', () => {
     payment = fixture.debugElement.query(By.css('payment')).componentInstance;
     paymentForm = fixture.debugElement.query(By.css('payment-form')).componentInstance;
     paymentSummary = fixture.debugElement.query(By.css('payment-summary')).componentInstance;
+    billingSummary = fixture.debugElement.query(By.css('billing-summary')).componentInstance;
   });
 
   it('should create', () => {
@@ -79,37 +97,87 @@ describe('PaymentComponent', () => {
     expect(payment.paymentInfo).toEqual(stubPaymentInfo);
   });
 
+  it('should be able to take billingAddress as input', () => {
+    expect(payment.billingAddress).toEqual(stubBillingAddress);
+  });
+
+  it('should be able to take billingAddressIsShippingAddress as input', () => {
+    expect(payment.billingAddressIsShippingAddress).toEqual(stubBillingAddressIsShippingAddress);
+  });
+
   describe('on <payment-form>', () => {
     
     it('should set paymentInfo', () => {
       expect(paymentForm.paymentInfo).toEqual(stubPaymentInfo);
     });
-  });
 
-  describe('when paymentForm.updatePaymentInfo is emitted', () => {
+    it('should set billingAddress', () => {
+      expect(paymentForm.billingAddress).toEqual(stubBillingAddress);
+    });
 
-    it('should call hostComponent.updatePaymentInfoFunction', () => {
-      spyOn(component, 'updatePaymentInfoFunction');
-      paymentForm.updatePaymentInfo.emit(stubPaymentInfo);
-
-      expect(component.updatePaymentInfoFunction).toHaveBeenCalledWith(stubPaymentInfo);
+    it('should set billingAddressIsShippingAddress', () => {
+      expect(paymentForm.billingAddressIsShippingAddress).toEqual(stubBillingAddressIsShippingAddress);
     });
   });
 
-  describe('no <payment-summary>', () => {
+  describe('when paymentForm emits', () => {
+
+    describe('updatePaymentInfo', () => {
+
+      it('should call hostComponent.updatePaymentInfoFunction', () => {
+        spyOn(component, 'updatePaymentInfoFunction');
+        paymentForm.updatePaymentInfo.emit(stubPaymentInfo);
+
+        expect(component.updatePaymentInfoFunction).toHaveBeenCalledWith(stubPaymentInfo);
+      });
+    });
+
+    describe('updateBillingAddress', () => {
+
+      it('should call hostComponent.updateBillingAddressFunction', () => {
+        spyOn(component, 'updateBillingAddressFunction');
+        paymentForm.updateBillingAddress.emit(stubBillingAddress);
+
+        expect(component.updateBillingAddressFunction).toHaveBeenCalledWith(stubBillingAddress);
+      });
+    });
+
+    describe('toggleBillingAddressIsShippingAddress', () => {
+
+      it('should call hostComponent.toggleBillingAddressIsShippingAddressFunction', () => {
+        spyOn(component, 'toggleBillingAddressIsShippingAddressFunction');
+        paymentForm.toggleBillingAddressIsShippingAddress.emit();
+
+        expect(component.toggleBillingAddressIsShippingAddressFunction).toHaveBeenCalled();
+      });
+    });
+  });
+
+  describe('on <payment-summary>', () => {
     
     it('should set paymentInfo', () => {
       expect(paymentSummary.paymentInfo).toEqual(stubPaymentInfo);
     });
   });
 
-  describe('when paymentForm.editPaymentInfo is emitted', () => {
+  describe('when paymentSummary.editPaymentInfo is emitted', () => {
 
     it('should call payment.togglePaymentView', () => {
       spyOn(payment, 'togglePaymentView');
       paymentSummary.editPaymentInfo.emit();
 
       expect(payment.togglePaymentView).toHaveBeenCalled();
+    });
+  });
+
+  describe('on <billing-summary>', () => {
+    
+    it('should set billingAddress', () => {
+      expect(billingSummary.billingAddress).toEqual(stubBillingAddress);
+    });
+    
+    it('should set billingAddressIsShippingAddress', () => {
+      expect(billingSummary.billingAddressIsShippingAddress).toEqual(stubBillingAddressIsShippingAddress);
     });
   });
 
@@ -170,6 +238,7 @@ describe('PaymentComponent', () => {
 
     let paymentFormNativeElement;
     let paymentSummaryNativeElement;
+    let billingSummaryNativeElement;
 
     beforeEach(() => {
       payment.showPaymentForm$ = of(true);
@@ -177,6 +246,7 @@ describe('PaymentComponent', () => {
 
       paymentFormNativeElement = fixture.debugElement.query(By.css('payment-form')).nativeElement;
       paymentSummaryNativeElement = fixture.debugElement.query(By.css('payment-summary')).nativeElement;
+      billingSummaryNativeElement = fixture.debugElement.query(By.css('billing-summary')).nativeElement;
     });
     
     it('should not put hidden attribute on payment-form', () => {
@@ -186,12 +256,17 @@ describe('PaymentComponent', () => {
     it('should put hidden attribute on payment-summary', () => {
       expect(paymentSummaryNativeElement.hidden).toBeTruthy();      
     });
+
+    it('should put hidden attribute on billing-summary', () => {
+      expect(billingSummaryNativeElement.hidden).toBeTruthy();      
+    });
   });
 
   describe('when showPaymentForm$ is false', () => {
 
     let paymentFormNativeElement;
     let paymentSummaryNativeElement;
+    let billingSummaryNativeElement;
 
     beforeEach(() => {
       payment.showPaymentForm$ = of(false);
@@ -199,6 +274,7 @@ describe('PaymentComponent', () => {
 
       paymentFormNativeElement = fixture.debugElement.query(By.css('payment-form')).nativeElement;
       paymentSummaryNativeElement = fixture.debugElement.query(By.css('payment-summary')).nativeElement;
+      billingSummaryNativeElement = fixture.debugElement.query(By.css('billing-summary')).nativeElement;
     });
 
     it('should put hidden attribute on payment-form', () => {
@@ -208,9 +284,13 @@ describe('PaymentComponent', () => {
     it('should not put hidden attribute on payment-summary', () => {
       expect(paymentSummaryNativeElement.hidden).toBeFalsy();     
     });
+
+    it('should not put hidden attribute on billing-summary', () => {
+      expect(billingSummaryNativeElement.hidden).toBeFalsy();     
+    });
   });
 
-  describe('when PaymentContainer.paymentInfo$ is null', () => {
+  describe('when paymentInfo is null', () => {
 
     let paymentSummary;
     

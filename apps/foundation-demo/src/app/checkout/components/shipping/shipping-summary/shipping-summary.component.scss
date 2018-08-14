@@ -5,32 +5,17 @@
   display: grid;
   grid-template-columns: 4fr 1fr;
   grid-template-areas: 
-    "    title       edit"
-    "     name free-space"
-    "   street free-space"
-    "cityState free-space"
-    "telephone free-space"
-    "  options free-space"
-    "  button     button";
+    "  title       edit"
+    "address free-space"
+    "options free-space"
+    " button     button";
 
   &__title {
     grid-area: title;
   }
 
-  &__name {
-    grid-area: name;
-  }
-
-  &__street {
-    grid-area: street;
-  }
-
-  &__cityState {
-    grid-area: cityState;
-  }
-
-  &__telephone {
-    grid-area: telephone;
+  &__address {
+    grid-area: address;
   }
 
   & a {
@@ -52,27 +37,21 @@
 
   @include breakpoint(large) {
     grid-template-areas: 
-      "    title      title"
-      "     name       name"
-      "   street     street"
-      "cityState  cityState"
-      "telephone  telephone"
-      "     edit       edit"
-      "  options    options"
-      "   button free-space";
+      "  title      title"
+      "address    address"
+      "   edit       edit"
+      "options    options"
+      " button free-space";
     grid-template-columns: repeat(2, 1fr);
   }
 
   @include breakpoint(xlarge) {
     grid-template-areas:
-      "    title      title      title"
-      "     name       name       name"
-      "   street     street     street"
-      "cityState  cityState  cityState"
-      "telephone  telephone  telephone"
-      "     edit       edit       edit"
-      "  options    options    options"
-      "   button free-space free-space";
+      "  title      title      title"
+      "address    address    address"
+      "   edit       edit       edit"
+      "options    options    options"
+      " button free-space free-space";
     grid-template-columns: repeat(3, 1fr);
   }
 

@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShippingComponent } from './shipping.component';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ShippingAddress } from '@daffodil/core';
+import { DaffodilAddress } from '@daffodil/core';
 import { By } from '@angular/platform-browser';
 import * as fromFoundationCheckout from '../../../reducers';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
@@ -10,7 +10,7 @@ import { SetShowShippingForm, ToggleShippingForm } from '../../../actions/shippi
 import { of } from 'rxjs';
 
 let stubIsShippingInfoValidValue = true;
-let stubShippingAddress: ShippingAddress = {
+let stubDaffodilAddress: DaffodilAddress = {
   firstname: '',
   lastname: '',
   street: '',
@@ -26,7 +26,7 @@ let stubHideContinueToPayment: boolean = false;
 @Component({template: '<shipping [isShippingInfoValid]="isShippingInfoValidValue" [shippingInfo]="shippingInfoValue" [selectedShippingOption]="selectedShippingOptionValue" [hideContinueToPayment]="hideContinueToPaymentValue" (updateShippingInfo)="updateShippingInfoFunction($event)" (selectShippingOption)="selectShippingOptionFunction($event)" (continueToPayment)="onContinueToPaymentFunction()"></shipping>'})
 class TestShipping {
   isShippingInfoValidValue = stubIsShippingInfoValidValue;
-  shippingInfoValue: ShippingAddress = stubShippingAddress;
+  shippingInfoValue: DaffodilAddress = stubDaffodilAddress;
   selectedShippingOptionValue: string = stubSelectedShippingOption;
   hideContinueToPaymentValue: boolean = stubHideContinueToPayment;
   updateShippingInfoFunction: Function = () => {};
@@ -36,13 +36,13 @@ class TestShipping {
 
 @Component({selector: 'shipping-form', template: ''})
 class MockShippingFormComponent {
-  @Input() shippingInfo: ShippingAddress;
+  @Input() shippingInfo: DaffodilAddress;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
 }
 
 @Component({selector: 'shipping-summary', template: ''})
 class MockShippingSummaryComponent {
-  @Input() shippingInfo: ShippingAddress;
+  @Input() shippingInfo: DaffodilAddress;
   @Input() selectedShippingOption: string;
   @Input() hideContinueToPayment: boolean;
   @Output() editShippingInfo: EventEmitter<any> = new EventEmitter();
@@ -97,7 +97,7 @@ describe('ShippingComponent', () => {
   });
 
   it('should be able to take shippingInfo as input', () => {
-    expect(shipping.shippingInfo).toEqual(stubShippingAddress);
+    expect(shipping.shippingInfo).toEqual(stubDaffodilAddress);
   });
 
   it('should be able to take selectedShippingOption as input', () => {

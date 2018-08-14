@@ -2,10 +2,18 @@
   <payment-form 
     [hidden]="!(showPaymentForm$ | async)"
     [paymentInfo]="paymentInfo" 
-    (updatePaymentInfo)="onUpdatePaymentInfo($event)"></payment-form>
+    [billingAddress]="billingAddress"
+    [billingAddressIsShippingAddress]="billingAddressIsShippingAddress"
+    (updatePaymentInfo)="onUpdatePaymentInfo($event)"
+    (updateBillingAddress)="onUpdateBillingAddress($event)"
+    (toggleBillingAddressIsShippingAddress)="onToggleBillingAddressIsShippingAddress()"></payment-form>
   <payment-summary
     [hidden]="showPaymentForm$ | async"
     *ngIf="paymentInfo"
     [paymentInfo]="paymentInfo"
     (editPaymentInfo)="togglePaymentView()"></payment-summary>
+  <billing-summary
+    [hidden]="showPaymentForm$ | async"
+    [billingAddress]="billingAddress"
+    [billingAddressIsShippingAddress]="billingAddressIsShippingAddress"></billing-summary>
 </div>

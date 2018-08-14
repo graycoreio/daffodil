@@ -13,6 +13,8 @@ import { PaymentFormComponent } from './components/payment/payment-form/payment-
 import { PaymentComponent } from './components/payment/payment/payment.component';
 import { PaymentSummaryComponent } from './components/payment/payment-summary/payment-summary.component';
 import { CartModule } from '../cart/cart.module';
+import { AddressSummaryComponent } from './components/payment/address-summary/address-summary.component';
+import { BillingSummaryComponent } from './components/payment/billing-summary/billing-summary.component';
 
 @NgModule({
   imports: [
@@ -31,7 +33,9 @@ import { CartModule } from '../cart/cart.module';
     ShippingComponent,
     PaymentFormComponent,
     PaymentComponent,
-    PaymentSummaryComponent
+    PaymentSummaryComponent,
+    AddressSummaryComponent,
+    BillingSummaryComponent
   ],
   exports: [
     CheckoutViewComponent,
@@ -41,7 +45,9 @@ import { CartModule } from '../cart/cart.module';
     ShippingComponent,
     PaymentFormComponent,
     PaymentComponent,
-    PaymentSummaryComponent
+    PaymentSummaryComponent,
+    AddressSummaryComponent,
+    BillingSummaryComponent
   ]
 })
 export class CheckoutModule { }
