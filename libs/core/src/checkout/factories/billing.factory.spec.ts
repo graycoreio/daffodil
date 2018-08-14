@@ -1,17 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PaymentFactory, MockPaymentInfo } from './payment.factory';
+import { BillingFactory, MockPaymentInfo } from './billing.factory';
 
-describe('Core | Payment | Testing | PaymentFactory', () => {
+describe('Core | Billing | Testing | BillingFactory', () => {
   
   let paymentFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [PaymentFactory]
+      providers: [BillingFactory]
     });
 
-    paymentFactory = TestBed.get(PaymentFactory);
+    paymentFactory = TestBed.get(BillingFactory);
   });
 
   it('should be created', () => {

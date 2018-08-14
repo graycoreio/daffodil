@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { PaymentInfo } from '../models/payment-info';
 
 @Injectable()
-export class PaymentFactory {
+export class BillingFactory {
   
   create() : MockPaymentInfo {
     return {...new MockPaymentInfo()};
