@@ -4,24 +4,26 @@ import { CheckoutViewComponent } from './checkout-view.component';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
-import { ShippingContainer } from '@daffodil/state';
-import { ShippingAddress, ShippingFactory, PaymentFactory, PaymentInfo } from '@daffodil/core';
+import { DaffodilAddress, DaffodilAddressFactory, PaymentInfo, BillingFactory } from '@daffodil/core';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { ShowPaymentView } from '../../actions/payment.actions';
 import * as fromFoundationCheckout from '../../reducers/index';
+import { ShippingContainer } from '@daffodil/state';
 
-let shippingFactory = new ShippingFactory();
-let paymentFactory = new PaymentFactory();
+let daffodilAddressFactory = new DaffodilAddressFactory();
+let billingFactory = new BillingFactory();
 let stubIsShippingInfoValid = true;
-let stubShippingInfo = shippingFactory.createShippingAddress();
+let stubShippingInfo = daffodilAddressFactory.create();
 let stubSelectedShippingOption = 'shippingOption';
-let stubPaymentInfo: PaymentInfo = paymentFactory.create();
+let stubPaymentInfo: PaymentInfo = billingFactory.create();
 let stubShowPaymentView: boolean = true;
+let stubBillingAddress: DaffodilAddress = daffodilAddressFactory.create();
+let stubBillingAddressIsShippingAddress: boolean = false;
 
 @Component({selector: 'shipping', template: ''})
 class MockShippingComponent {
-  @Input() isShippingInfoValid: Boolean;
-  @Input() shippingInfo: ShippingAddress;
+  @Input() isShippingInfoValid: boolean;
+  @Input() shippingInfo: DaffodilAddress;
   @Input() selectedShippingOption: string;
   @Input() hideContinueToPayment: boolean;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
@@ -32,22 +34,30 @@ class MockShippingComponent {
 @Component({selector: 'payment', template: ''})
 class MockPaymentComponent {
   @Input() paymentInfo: PaymentInfo;
+  @Input() billingAddress: DaffodilAddress;
+  @Input() billingAddressIsShippingAddress: boolean;
   @Output() updatePaymentInfo: EventEmitter<any> = new EventEmitter();
+  @Output() updateBillingAddress: EventEmitter<any> = new EventEmitter();
+  @Output() toggleBillingAddressIsShippingAddress: EventEmitter<any> = new EventEmitter();
 }
 
 @Component({selector: '[shipping-container]', template: '<ng-content></ng-content>', exportAs: 'ShippingContainer'})
 class MockShippingContainer {
   isShippingInfoValid$: Observable<boolean> = of(stubIsShippingInfoValid);
-  shippingInfo$: Observable<ShippingAddress> = of(stubShippingInfo);
+  shippingInfo$: Observable<DaffodilAddress> = of(stubShippingInfo);
   selectedShippingOption$: Observable<string> = of(stubSelectedShippingOption);
-  updateShippingInfo: Function = () => {};
-  selectShippingOption: Function = () => {};
+  updateShippingInfo = () => {};
+  selectShippingOption = () => {};
 }
 
-@Component({selector: '[payment-container]', template: '<ng-content></ng-content>', exportAs: 'PaymentContainer'})
-class MockPaymentContainer {
+@Component({selector: '[billing-container]', template: '<ng-content></ng-content>', exportAs: 'BillingContainer'})
+class MockBillingContainer {
   paymentInfo$: Observable<PaymentInfo> = of(stubPaymentInfo);
-  updatePaymentInfo: Function = () => {};
+  billingAddress$: Observable<DaffodilAddress> = of(stubBillingAddress);
+  billingAddressIsShippingAddress$: Observable<boolean> = of(stubBillingAddressIsShippingAddress);
+  updatePaymentInfo = () => {};
+  updateBillingAddress = () => {};
+  toggleBillingAddressIsShippingAddress = () => {};
 }
 
 describe('CheckoutViewComponent', () => {
@@ -56,7 +66,7 @@ describe('CheckoutViewComponent', () => {
   let shipping: MockShippingComponent;
   let shippingContainer: ShippingContainer;
   let payment: MockPaymentComponent
-  let paymentContainer: MockPaymentContainer;
+  let billingContainer: MockBillingContainer;
   let store;
 
   beforeEach(async(() => {
@@ -71,7 +81,7 @@ describe('CheckoutViewComponent', () => {
         MockShippingComponent,
         MockShippingContainer,
         MockPaymentComponent,
-        MockPaymentContainer
+        MockBillingContainer
       ]
     })
     .compileComponents();
@@ -88,7 +98,7 @@ describe('CheckoutViewComponent', () => {
     shipping = fixture.debugElement.query(By.css('shipping')).componentInstance;
     shippingContainer = fixture.debugElement.query(By.css('[shipping-container]')).componentInstance;
     payment = fixture.debugElement.query(By.css('payment')).componentInstance;
-    paymentContainer = fixture.debugElement.query(By.css('[payment-container]')).componentInstance;  
+    billingContainer = fixture.debugElement.query(By.css('[billing-container]')).componentInstance;  
   });
 
   it('should create', () => {
@@ -128,6 +138,14 @@ describe('CheckoutViewComponent', () => {
     it('should set paymentInfo', () => {
       expect(payment.paymentInfo).toEqual(stubPaymentInfo);
     });
+
+    it('should set billingAddress', () => {
+      expect(payment.billingAddress).toEqual(stubBillingAddress);
+    });
+
+    it('should set billingAddressIsShippingAddress', () => {
+      expect(payment.billingAddressIsShippingAddress).toEqual(stubBillingAddressIsShippingAddress);
+    });
   });
 
   describe('when <shipping> emits', () => {
@@ -154,7 +172,7 @@ describe('CheckoutViewComponent', () => {
       });
     });
 
-    describe('when <shipping> emits continueToPayment', () => {
+    describe('continueToPayment', () => {
       
       it('should call onContinueToPayment', () => {
         spyOn(component, 'onContinueToPayment');
@@ -166,14 +184,39 @@ describe('CheckoutViewComponent', () => {
     });
   });
 
-  describe('when payment emits updatePaymentInfo', () => {
-    
-    it('should call PaymentContainer.updatePaymentInfo', () => {
-      spyOn(paymentContainer, 'updatePaymentInfo');
+  describe('when payment emits', () => {
 
-      payment.updatePaymentInfo.emit(stubPaymentInfo);
+    describe('updatePaymentInfo', () => {
+      
+      it('should call BillingContainer.updatePaymentInfo', () => {
+        spyOn(billingContainer, 'updatePaymentInfo');
 
-      expect(paymentContainer.updatePaymentInfo).toHaveBeenCalledWith(stubPaymentInfo);
+        payment.updatePaymentInfo.emit(stubPaymentInfo);
+
+        expect(billingContainer.updatePaymentInfo).toHaveBeenCalledWith(stubPaymentInfo);
+      });
+    });
+
+    describe('updateBillingAddress', () => {
+      
+      it('should call BillingContainer.updateBillingAddress', () => {
+        spyOn(billingContainer, 'updateBillingAddress');
+
+        payment.updateBillingAddress.emit(stubBillingAddress);
+
+        expect(billingContainer.updateBillingAddress).toHaveBeenCalledWith(stubBillingAddress);
+      });
+    });
+
+    describe('toggleBillingAddressIsShippingAddress', () => {
+      
+      it('should call BillingContainer.toggleBillingAddressIsShippingAddress', () => {
+        spyOn(billingContainer, 'toggleBillingAddressIsShippingAddress');
+
+        payment.toggleBillingAddressIsShippingAddress.emit();
+
+        expect(billingContainer.toggleBillingAddressIsShippingAddress).toHaveBeenCalled();
+      });
     });
   });
 

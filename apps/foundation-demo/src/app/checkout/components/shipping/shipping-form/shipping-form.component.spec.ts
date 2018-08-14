@@ -4,22 +4,22 @@ import { ShippingFormComponent } from './shipping-form.component';
 import { FormsModule, ReactiveFormsModule, FormControl, FormGroup, AbstractControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { Component, Input } from '@angular/core';
-import { ShippingAddress } from '@daffodil/core';
+import { DaffodilAddress } from '@daffodil/core';
 import { ErrorStateMatcher } from '../../../../design/molecules/error-state-matcher/error-state-matcher.component';
 
-@Component({'template': '<shipping-form [shippingInfo]="shippingInfoValue" (updateShippingInfo)="updateShippingInfoFunction($event)"></shipping-form>'})
+@Component({'template': '<shipping-form [shippingInfo]="shippingInfoValue" (updateShippingInfo)="onUpdateShippingInfoFunction($event)"></shipping-form>'})
 class TestingShippingFormComponentWrapper {
-  shippingInfoValue: ShippingAddress;
-  updateShippingInfoFunction: Function;
+  shippingInfoValue: DaffodilAddress;
+  onUpdateShippingInfoFunction: Function;
 }
 
-@Component({'selector': '[input-validator]', 'template': ''})
+@Component({selector: '[input-validator]', template: ''})
 class MockInputValidatorComponent {
   @Input() formControl: FormControl;
   @Input() formSubmitted: boolean;
 }
 
-@Component({'selector': '[select-validator]', 'template': ''})
+@Component({selector: '[select-validator]', template: ''})
 class MockSelectValidatorComponent {
   @Input() formControl: FormControl;
   @Input() formSubmitted: boolean;
@@ -30,6 +30,7 @@ describe('ShippingFormComponent', () => {
   let component: TestingShippingFormComponentWrapper;
   let fixture: ComponentFixture<TestingShippingFormComponentWrapper>;
   let shippingFormComponent: ShippingFormComponent;
+  let stubShippingInfo: DaffodilAddress;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -50,7 +51,8 @@ describe('ShippingFormComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestingShippingFormComponentWrapper);
     component = fixture.componentInstance;
-    component.updateShippingInfoFunction = () => {};
+    component.shippingInfoValue = stubShippingInfo;
+    component.onUpdateShippingInfoFunction = () => {};
     fixture.detectChanges();
 
     shippingFormComponent = fixture.debugElement.query(By.css('shipping-form')).componentInstance;
@@ -60,11 +62,74 @@ describe('ShippingFormComponent', () => {
     expect(shippingFormComponent).toBeTruthy();
   });
 
+  it('should be able to take shippingInfo as input', () => {
+    expect(shippingFormComponent.shippingInfo).toEqual(component.shippingInfoValue);
+  });
+
+  describe('on [input-validator]', () => {
+
+    let inputValidator: MockInputValidatorComponent;
+
+    beforeEach(() => {
+      inputValidator = fixture.debugElement.queryAll(By.css('[input-validator]'))[0].componentInstance;
+    });
+    
+    it('should set formControl', () => {
+      expect(<AbstractControl> inputValidator.formControl).toEqual(<AbstractControl> shippingFormComponent.form.controls['firstname']);
+    });
+
+    it('should set formSubmitted', () => {
+      expect(inputValidator.formSubmitted).toBeFalsy();
+    });
+
+    describe('when form is submitted', () => {
+      
+      it('should change formSubmitted to true', () => {
+        fixture.debugElement.query(By.css('button')).nativeElement.click();
+        fixture.detectChanges();
+
+        expect(inputValidator.formSubmitted).toBeTruthy();
+      });
+    });
+  });
+
+  describe('on [select-validator]', () => {
+
+    let selectValidator: MockSelectValidatorComponent;
+
+    beforeEach(() => {
+      selectValidator = fixture.debugElement.query(By.css('[select-validator]')).componentInstance;
+    });
+    
+    it('should set formControl', () => {
+      expect(<AbstractControl> selectValidator.formControl).toEqual(<AbstractControl> shippingFormComponent.form.controls['state']);
+    });
+
+    it('should set formSubmitted', () => {
+      expect(selectValidator.formSubmitted).toBeFalsy();
+    });
+
+    it('should set ErrorStateMatcher', () => {
+      expect(selectValidator.errorStateMatcher).toEqual(shippingFormComponent.stateErrorStateMatcher);
+    });
+
+    describe('when form is submitted', () => {
+      
+      it('should change formSubmitted to true', () => {
+        fixture.debugElement.query(By.css('button')).nativeElement.click();
+        fixture.detectChanges();
+
+        expect(selectValidator.formSubmitted).toBeTruthy();
+      });
+    });
+  });
+
   describe('ngOnInit', () => {
 
     describe('when shippingInfo is defined', () => {
 
       beforeEach(() => {
+        
         fixture = TestBed.createComponent(TestingShippingFormComponentWrapper);
         component = fixture.componentInstance;
         component.shippingInfoValue = {
@@ -82,7 +147,7 @@ describe('ShippingFormComponent', () => {
       });
       
       it('sets form.value to shippingInfo', () => {
-        expect(<ShippingAddress>shippingFormComponent.form.value).toEqual(component.shippingInfoValue);
+        expect(<DaffodilAddress>shippingFormComponent.form.value).toEqual(component.shippingInfoValue);
       });
     });
 
@@ -279,71 +344,13 @@ describe('ShippingFormComponent', () => {
 
     beforeEach(() => {
       emittedValue = 'emittedValue';
-      spyOn(component, 'updateShippingInfoFunction');
+      spyOn(component, 'onUpdateShippingInfoFunction');
       
       shippingFormComponent.updateShippingInfo.emit(emittedValue);
     });
     
     it('should call the function passed in by the host component', () => {
-      expect(component.updateShippingInfoFunction).toHaveBeenCalledWith(emittedValue);
-    });
-  });
-
-  describe('on [input-validator]', () => {
-
-    let inputValidator: MockInputValidatorComponent;
-
-    beforeEach(() => {
-      inputValidator = fixture.debugElement.queryAll(By.css('[input-validator]'))[0].componentInstance;
-    });
-    
-    it('should set formControl', () => {
-      expect(<AbstractControl> inputValidator.formControl).toEqual(<AbstractControl> shippingFormComponent.form.controls['firstname']);
-    });
-
-    it('should set formSubmitted', () => {
-      expect(inputValidator.formSubmitted).toBeFalsy();
-    });
-
-    describe('when form is submitted', () => {
-      
-      it('should change formSubmitted to true', () => {
-        fixture.debugElement.query(By.css('button')).nativeElement.click();
-        fixture.detectChanges();
-
-        expect(inputValidator.formSubmitted).toBeTruthy();
-      });
-    });
-  });
-
-  describe('on [select-validator]', () => {
-
-    let selectValidator: MockSelectValidatorComponent;
-
-    beforeEach(() => {
-      selectValidator = fixture.debugElement.query(By.css('[select-validator]')).componentInstance;
-    });
-    
-    it('should set formControl', () => {
-      expect(<AbstractControl> selectValidator.formControl).toEqual(<AbstractControl> shippingFormComponent.form.controls['state']);
-    });
-
-    it('should set formSubmitted', () => {
-      expect(selectValidator.formSubmitted).toBeFalsy();
-    });
-
-    it('should set ErrorStateMatcher', () => {
-      expect(selectValidator.errorStateMatcher).toEqual(shippingFormComponent.stateErrorStateMatcher);
-    });
-
-    describe('when form is submitted', () => {
-      
-      it('should change formSubmitted to true', () => {
-        fixture.debugElement.query(By.css('button')).nativeElement.click();
-        fixture.detectChanges();
-
-        expect(selectValidator.formSubmitted).toBeTruthy();
-      });
+      expect(component.onUpdateShippingInfoFunction).toHaveBeenCalledWith(emittedValue);
     });
   });
 });

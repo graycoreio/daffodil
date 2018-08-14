@@ -1,9 +1,9 @@
-<form class="payment-form" [formGroup]="form" #ngForm="ngForm" (ngSubmit)="onSubmit(form)">
+<form class="payment-form" [formGroup]="form" #ngForm="ngForm" (ngSubmit)="onSubmit()">
   <div class="payment-form__title">
     payment details
   </div>
   <promotion class="payment-form__promotion"></promotion>
-  <div class="payment-form__method-title">Payment Method</div>
+  <div class="payment-form__info-method-title">Payment Method</div>
   <input input-validator type="text" class="payment-form__name"
     placeholder="Cardholder's Name"
     name="name"
@@ -32,6 +32,59 @@
     placeholder="Security Code (XXX)"
     name="securitycode"
     [formControl]="form.controls['securitycode']"
+    [formSubmitted]="ngForm.submitted"/>
+
+  <div class="payment-form__address-method-title">Billing Address</div>
+  <div class="payment-form__checkbox">
+    <input type="checkbox"
+      value="sameAsShipping"
+      id="sameAsShipping"
+      (click)="toggleBillingAddressIsShippingAddress.emit()">
+    <label for="sameAsShipping">Same as shipping address</label>
+  </div>
+  <input input-validator type="text" class="payment-form__first-name"
+    *ngIf="!billingAddressIsShippingAddress"
+    placeholder="First Name"
+    name="firstname"
+    [formControl]="form.controls['firstname']"
+    [formSubmitted]="ngForm.submitted"/>
+  <input input-validator type="text" class="payment-form__last-name"
+    *ngIf="!billingAddressIsShippingAddress"
+    placeholder="Last Name"
+    name="lastname"
+    [formControl]="form.controls['lastname']"
+    [formSubmitted]="ngForm.submitted"/>
+  <input input-validator type="text" class="payment-form__street"
+    *ngIf="!billingAddressIsShippingAddress"
+    placeholder="Street Address"
+    name="street"
+    [formControl]="form.controls['street']"
+    [formSubmitted]="ngForm.submitted"/>
+  <input input-validator type="text" class="payment-form__city"
+    *ngIf="!billingAddressIsShippingAddress"
+    placeholder="City"
+    name="city"
+    [formControl]="form.controls['city']"
+    [formSubmitted]="ngForm.submitted"/>
+  <select select-validator class="payment-form__state"
+    *ngIf="!billingAddressIsShippingAddress"
+    name="state"
+    [formControl]="form.controls['state']"
+    [formSubmitted]="ngForm.submitted"
+    [errorStateMatcher]="stateErrorStateMatcher">
+    <option *ngFor="let state of stateSelectValues" [disabled]="state == 'State'">{{state}}</option>
+  </select>
+  <input input-validator type="text" class="payment-form__postcode"
+    *ngIf="!billingAddressIsShippingAddress"
+    placeholder="Zip Code"
+    name="postcode"
+    [formControl]="form.controls['postcode']"
+    [formSubmitted]="ngForm.submitted"/>
+  <input input-validator type="text" class="payment-form__telephone"
+    *ngIf="!billingAddressIsShippingAddress"
+    placeholder="Phone Number"
+    name="telephone"
+    [formControl]="form.controls['telephone']"
     [formSubmitted]="ngForm.submitted"/>
   <button type="submit" class="button large expanded">Save & Review Order</button>
   <div class="payment-form__note">

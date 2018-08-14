@@ -1,16 +1,16 @@
 @import 'daffodil-util';
 
 .shipping-form {
+  display: grid;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  @include section-divider();
 
   &__title {
     margin-bottom: 15px;
     @include embolden();
     @include uppercase();
   }
-
-  display: grid;
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
 
   @include breakpoint(large) {
     grid-template-columns: repeat(6, 1fr);
@@ -72,6 +72,6 @@
   }
 
   & button {
-    margin: 15px 0 25px 0;
+    margin: 25px 0;
   }
 }

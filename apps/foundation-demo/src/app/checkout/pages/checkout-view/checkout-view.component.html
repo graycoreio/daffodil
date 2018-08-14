@@ -9,9 +9,13 @@
       (selectShippingOption)="ShippingContainer.selectShippingOption($event)"
       (continueToPayment)="onContinueToPayment()"></shipping>
   </div>
-  <div class="checkout__payment" *ngIf="showPaymentView$ | async" payment-container #PaymentContainer="PaymentContainer">
+  <div class="checkout__payment" *ngIf="showPaymentView$ | async" billing-container #BillingContainer="BillingContainer">
     <payment
-      [paymentInfo]="PaymentContainer.paymentInfo$ | async" 
-      (updatePaymentInfo)="PaymentContainer.updatePaymentInfo($event)"></payment>
+      [paymentInfo]="BillingContainer.paymentInfo$ | async" 
+      [billingAddress]="BillingContainer.billingAddress$ | async"
+      [billingAddressIsShippingAddress]="BillingContainer.billingAddressIsShippingAddress$ | async"
+      (updatePaymentInfo)="BillingContainer.updatePaymentInfo($event)"
+      (updateBillingAddress)="BillingContainer.updateBillingAddress($event)"
+      (toggleBillingAddressIsShippingAddress)="BillingContainer.toggleBillingAddressIsShippingAddress()"></payment>
   </div>
 </div>

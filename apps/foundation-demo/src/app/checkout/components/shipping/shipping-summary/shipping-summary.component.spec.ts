@@ -2,12 +2,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShippingSummaryComponent } from './shipping-summary.component';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ShippingAddress, ShippingFactory } from '@daffodil/core';
+import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
 import { By } from '@angular/platform-browser';
 import { ShippingOptionsComponent } from '../shipping-options/shipping-options.component';
 
-let shippingFactory = new ShippingFactory();
-let stubShippingAddress = shippingFactory.createShippingAddress();
+let daffodilAddressFactory = new DaffodilAddressFactory();
+let stubDaffodilAddress = daffodilAddressFactory.create();
 let stubHideContinueToPayment = false;
 
 @Component({selector: 'shipping-options', template: ''})
@@ -19,7 +19,7 @@ class MockShippingOptionsComponent {
 
 @Component({template: '<shipping-summary [selectedShippingOption]="selectedShippingOptionValue" [shippingInfo]="shippingInfoValue" [hideContinueToPayment]="hideContinueToPaymentValue" (editShippingInfo)="editShippingInfoFunction()" (selectShippingOption)="selectShippingOptionFunction($event)" (continueToPayment)="continueToPaymentFunction()"></shipping-summary>'})
 class TestShippingSummaryWrapper {
-  shippingInfoValue: ShippingAddress = stubShippingAddress;
+  shippingInfoValue: DaffodilAddress = stubDaffodilAddress;
   selectedShippingOptionValue: string = 'id';
   hideContinueToPaymentValue: boolean = stubHideContinueToPayment;
   editShippingInfoFunction: Function = () => {};
@@ -27,18 +27,25 @@ class TestShippingSummaryWrapper {
   continueToPaymentFunction: Function = () => {};
 }
 
+@Component({selector: 'address-summary', template: ''})
+class MockAddressSummaryComponent {
+  @Input() address: DaffodilAddress;
+}
+
 describe('ShippingSummaryComponent', () => {
   let component: TestShippingSummaryWrapper;
   let fixture: ComponentFixture<TestShippingSummaryWrapper>;
   let shippingSummaryComponent: ShippingSummaryComponent;
   let shippingOptionsComponent: ShippingOptionsComponent;
+  let addressSummaryComponent: MockAddressSummaryComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
         MockShippingOptionsComponent,
         TestShippingSummaryWrapper,
-        ShippingSummaryComponent
+        ShippingSummaryComponent,
+        MockAddressSummaryComponent
       ]
     })
     .compileComponents();
@@ -51,6 +58,7 @@ describe('ShippingSummaryComponent', () => {
 
     shippingSummaryComponent = fixture.debugElement.query(By.css('shipping-summary')).componentInstance;
     shippingOptionsComponent = fixture.debugElement.query(By.css('shipping-options')).componentInstance;
+    addressSummaryComponent = fixture.debugElement.query(By.css('address-summary')).componentInstance;
   });
 
   it('should create', () => {
@@ -58,7 +66,7 @@ describe('ShippingSummaryComponent', () => {
   });
 
   it('should be able to take shippingInfo', () => {
-    expect(shippingSummaryComponent.shippingInfo).toEqual(stubShippingAddress);
+    expect(shippingSummaryComponent.shippingInfo).toEqual(stubDaffodilAddress);
   });
 
   it('should be able to take selectedShippingOption', () => {
@@ -92,6 +100,13 @@ describe('ShippingSummaryComponent', () => {
     
     it('should set shippingOptions', () => {
       expect(shippingOptionsComponent.shippingOptions).toEqual(shippingSummaryComponent.shippingOptions);
+    });
+  });
+
+  describe('on <address-summary', () => {
+
+    it('should set address', () => {
+      expect(addressSummaryComponent.address).toEqual(stubDaffodilAddress);
     });
   });
 

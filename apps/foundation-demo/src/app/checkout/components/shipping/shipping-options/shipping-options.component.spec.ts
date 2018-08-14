@@ -13,7 +13,7 @@ let stubSelectedShippingOption = stubShippingOptions[0].id;
 class TestShippingOptionsWrapper {
   selectedShippingOptionValue: string = stubSelectedShippingOption;
   shippingOptionsValue: ShippingOption[] = stubShippingOptions;
-  selectShippingOptionFunction: Function = () => {};
+  selectShippingOptionFunction = () => {};
 };
 
 describe('ShippingOptionsComponent', () => {

@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { ShippingAddress, ShippingOption } from '@daffodil/core';
+import { DaffodilAddress, ShippingOption } from '@daffodil/core';
 
 @Component({
   selector: 'shipping-summary',
@@ -8,7 +8,7 @@ import { ShippingAddress, ShippingOption } from '@daffodil/core';
 })
 export class ShippingSummaryComponent {
 
-  @Input() shippingInfo: ShippingAddress;
+  @Input() shippingInfo: DaffodilAddress;
   @Input() selectedShippingOption: string;
   @Input() hideContinueToPayment: boolean;
   @Output() editShippingInfo: EventEmitter<any> = new EventEmitter();

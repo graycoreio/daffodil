@@ -1,0 +1,10 @@
+@import 'daffodil-util';
+
+.billing-summary {
+  font-size: $small-font-size;
+  margin-top: 15px;
+
+  &__title {
+    @include embolden();
+  }
+}
