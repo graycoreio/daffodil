@@ -81,4 +81,36 @@ describe('selectFoundationCheckoutState', () => {
       });
     });
   });
+
+  describe('foundationCheckoutStateSelector', () => {
+    
+    it('selects checkout state', () => {
+      let expectedCheckoutState = {
+        enablePlaceOrderButton: false,
+        showReviewView: false
+      }
+
+      store.pipe(select(fromCheckout.foundationCheckoutStateSelector)).subscribe((checkoutState) => {
+        expect(checkoutState).toEqual(expectedCheckoutState);
+      });
+    });
+  });
+
+  describe('selectEnablePlaceOrderButton', () => {
+    
+    it('selects enablePlaceOrderButton state', () => {
+      store.pipe(select(fromCheckout.selectEnablePlaceOrderButton)).subscribe((enablePlaceOrderButton) => {
+        expect(enablePlaceOrderButton).toEqual(false);
+      });
+    });
+  });
+
+  describe('selectShowReviewView', () => {
+    
+    it('selects showReviewView state', () => {
+      store.pipe(select(fromCheckout.selectShowReviewView)).subscribe((showReviewView) => {
+        expect(showReviewView).toEqual(false);
+      });
+    });
+  });
 });

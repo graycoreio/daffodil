@@ -11,7 +11,7 @@ let mockCart = cartFactory.create();
 mockCart.items.push(cartFactory.createCartItem());
 mockCart.items.push(cartFactory.createCartItem());
 
-@Component({template: '<cart-summary [cart]="cartValue"><div class="transcluded"></div></cart-summary>'})
+@Component({template: '<cart-summary [cart]="cartValue"></cart-summary>'})
 class TestCartSummaryWrapper {
   @Input() cartValue: Cart;
 }
@@ -65,10 +65,6 @@ describe('CartSummaryComponent', () => {
   it('can be passed a Cart object', () => {
 
     expect(cartSummaryComponent.componentInstance.cart).toEqual(mockCart);
-  });
-
-  it('should render the transcluded element', () => {
-    expect(fixture.debugElement.query(By.css('.transcluded'))).not.toBeNull();
   });
 
   describe('calculateTotalTax', () => {
@@ -154,24 +150,6 @@ describe('CartSummaryComponent', () => {
 
     it('should set value', () => {
       expect(cartComponent.componentInstance.value).toEqual('$' + mockCart.grand_total);
-    });
-  });
-
-  describe('when there are no cart items in the cart', () => {
-
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestCartSummaryWrapper);
-      component = fixture.componentInstance;
-      let noItemsCart = mockCart;
-      noItemsCart.items = [];
-      component.cartValue = noItemsCart;
-      fixture.detectChanges();
-    });
-    
-    it('should not render cart-summary', () => {
-      let cartSummary = fixture.debugElement.query(By.css('.cart-summary'));
-
-      expect(cartSummary).toBeNull();
     });
   });
 });

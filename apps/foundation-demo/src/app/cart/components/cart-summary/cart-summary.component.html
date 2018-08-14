@@ -1,9 +1,6 @@
-<div class="cart-summary" *ngIf="cart.items.length>0">
-  <div class="cart-summary__title">cart summary</div>
-  <ng-content></ng-content>
+<div class="cart-summary">
   <cart-subtotal [title]="'subtotal'" [value]="'$' + cart.subtotal"></cart-subtotal>
   <cart-subtotal [title]="'estimated shipping'" [value]="'FREE (HC)'"></cart-subtotal>
   <cart-subtotal [title]="'estimated tax'" [value]="'$' + cartTax"></cart-subtotal>
   <cart-grand-total [title]="'estimated total'" [value]="'$' + cart.grand_total"></cart-grand-total>
-  <proceed-to-checkout class="cart-summary__proceed-to-checkout"></proceed-to-checkout>
 </div>

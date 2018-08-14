@@ -1,4 +1,4 @@
-<div class="checkout">
+<div class="checkout" cart-container #CartContainer="CartContainer">
   <div class="checkout__shipping" shipping-container #ShippingContainer="ShippingContainer">
     <shipping 
       [isShippingInfoValid]="ShippingContainer.isShippingInfoValid$ | async"
@@ -17,5 +17,23 @@
       (updatePaymentInfo)="BillingContainer.updatePaymentInfo($event)"
       (updateBillingAddress)="BillingContainer.updateBillingAddress($event)"
       (toggleBillingAddressIsShippingAddress)="BillingContainer.toggleBillingAddressIsShippingAddress()"></payment>
+  </div>
+  <div class="checkout__cart">
+    <div class="checkout__desktop-cart">
+      <checkout-cart-async-wrapper [cartTitle]="'CART SUMMARY'" [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async">
+        <place-order *ngIf="!(CartContainer.loading$ | async)"></place-order>
+      </checkout-cart-async-wrapper>
+    </div>
+    <accordion class="checkout__mobile-cart">
+      <accordion-item [initiallyActive]="false">
+        <h2 accordion-item-title>Cart Summary ({{(CartContainer.cart$ | async) ? (CartContainer.cart$ | async).items.length : 0}})</h2>
+        <checkout-cart-async-wrapper [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async"></checkout-cart-async-wrapper>
+      </accordion-item>
+    </accordion>
+  </div>
+  <div class="checkout__review" *ngIf="showReviewView$ | async">
+    <checkout-cart-async-wrapper class="checkout__mobile-review" [cartTitle]="'Review Order'" [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async">
+      <place-order *ngIf="!(CartContainer.loading$ | async)"></place-order>
+    </checkout-cart-async-wrapper>
   </div>
 </div>

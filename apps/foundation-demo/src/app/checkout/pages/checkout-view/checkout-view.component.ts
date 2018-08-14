@@ -11,6 +11,7 @@ import { ShowPaymentView } from '../../actions/payment.actions';
 export class CheckoutViewComponent implements OnInit {
 
   showPaymentView$: Observable<boolean>;
+  showReviewView$: Observable<boolean>;
 
   constructor(
     private store: Store<fromFoundationCheckout.State>
@@ -19,6 +20,10 @@ export class CheckoutViewComponent implements OnInit {
   ngOnInit() {
     this.showPaymentView$ = this.store.pipe(
       select(fromFoundationCheckout.selectShowPaymentView)
+    );
+
+    this.showReviewView$ = this.store.pipe(
+      select(fromFoundationCheckout.selectShowReviewView)
     );
   }
 

@@ -25,7 +25,14 @@ class TestCartAsyncWrapper {
 })
 class CartMock { 
   @Input() cart: Cart;
+  @Input() subtitle: string;
 }
+
+@Component({
+  selector: 'promotion',
+  template: ''
+})
+class PromotionMock {}
 
 @Component({
   selector: 'cart-summary',
@@ -34,12 +41,6 @@ class CartMock {
 class CartSummaryMock {
   @Input() cart: Cart;
 }
-
-@Component({
-  selector: 'promotion',
-  template: ''
-})
-class PromotionMock {}
 
 @Component({
   selector: 'help-box',
@@ -62,7 +63,13 @@ class ContinueShoppingMock {}
 describe('TestCartAsyncWrapper', () => {
   let component: TestCartAsyncWrapper;
   let fixture: ComponentFixture<TestCartAsyncWrapper>;
-  let cartAsyncWrapperComponent;
+  let cartAsyncWrapperComponent: CartAsyncWrapperComponent;
+  let cartComponent;
+  let promotionComponent;
+  let cartSummaryComponent;
+  let helpBoxComponent;
+  let proceedToCheckoutComponent;
+  let continueShoppingComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -86,9 +93,16 @@ describe('TestCartAsyncWrapper', () => {
     component.cartValue = of(cart);
     component.loadingValue = of(false);
     
-    cartAsyncWrapperComponent = fixture.debugElement.query(By.css('cart-async-wrapper'));
+    cartAsyncWrapperComponent = fixture.debugElement.query(By.css('cart-async-wrapper')).componentInstance;
 
     fixture.detectChanges();
+
+    cartComponent = fixture.debugElement.query(By.css('cart'));
+    promotionComponent = fixture.debugElement.query(By.css('promotion'));
+    cartSummaryComponent = fixture.debugElement.query(By.css('cart-summary'));
+    helpBoxComponent = fixture.debugElement.query(By.css('help-box'));
+    proceedToCheckoutComponent = fixture.debugElement.query(By.css('proceed-to-checkout'));
+    continueShoppingComponent = fixture.debugElement.query(By.css('continue-shopping'));
   });
 
   it('should create', () => {
@@ -96,49 +110,32 @@ describe('TestCartAsyncWrapper', () => {
   });
 
   it('should be able to take cart as input', () => {
-    expect(cartAsyncWrapperComponent.componentInstance.cart).toEqual(cart);
+    expect(cartAsyncWrapperComponent.cart).toEqual(cart);
   });
 
   it('should be able to take loading as input', () => {
-    expect(cartAsyncWrapperComponent.componentInstance.loading).toEqual(false);
+    expect(cartAsyncWrapperComponent.loading).toEqual(false);
   });
 
   describe('on <cart>', () => {
     
     it('should set cart to value passed by cart-container directive', () => {
-      let cartElement = fixture.debugElement.query(By.css('cart'));
-      
-      expect(cartElement.componentInstance.cart).toEqual(cart);
+      expect(cartComponent.componentInstance.cart).toEqual(cart);
     });
-  });
 
-  describe('on <cart-summary>', () => {
-    
-    it('should set cart to value passed by the cart-container directive', () => {
-      let cartSummaryElement = fixture.debugElement.query(By.css('cart-summary'));
-
-      expect(cartSummaryElement.componentInstance.cart).toEqual(cart);
+    it('should set subtitle to "your cart"', () => {
+      expect(cartComponent.componentInstance.subtitle).toEqual('your cart');
     });
   });
 
   describe('when CartContainer.$loading is false', () => {
     
     it('should render <cart>', () => {
-      let cartComponent = fixture.debugElement.query(By.css('cart'));
-
       expect(cartComponent).not.toBeNull();
     });
 
-    it('should render <cart-summary>', () => {
-      let cartSummary = fixture.debugElement.query(By.css('cart-summary'));
-    
-      expect(cartSummary).not.toBeNull();
-    });
-
     it('should render <help-box>', () => {
-      let helpBox = fixture.debugElement.query(By.css('help-box'));
-
-      expect(helpBox).not.toBeNull();
+      expect(helpBoxComponent).not.toBeNull();
     });
 
     it('should not render loading-icon', () => {
@@ -148,16 +145,26 @@ describe('TestCartAsyncWrapper', () => {
     });
 
     describe('and cart is empty', () => {
+
+      it('should not render .cart-async-wrapper__summary-title', () => {
+        let summaryTitleElement = fixture.debugElement.query(By.css('.cart-async-wrapper__summary-title'));
+
+        expect(summaryTitleElement).toBeNull();
+      });
+
+      it('should not render <promotion>', () => {
+        expect(promotionComponent).toBeNull();
+      });
+
+      it('should not render <cart-summary>', () => {
+        expect(cartSummaryComponent).toBeNull();
+      });
       
       it('should not render <proceed-to-checkout>', () => {
-        let proceedToCheckoutComponent = fixture.debugElement.query(By.css('proceed-to-checkout'));
-      
         expect(proceedToCheckoutComponent).toBeNull();
       });
 
       it('should render cart-async-wrapper__continue-shopping-wrapper', () => {
-        let continueShoppingComponent = fixture.debugElement.query(By.css('.cart-async-wrapper__continue-shopping-wrapper'));
-
         expect(continueShoppingComponent).not.toBeNull();
       });
     });
@@ -169,6 +176,27 @@ describe('TestCartAsyncWrapper', () => {
         component.cartValue = of(cart);
 
         fixture.detectChanges();
+      });
+
+      it('should render .cart-async-wrapper__summary-title', () => {
+        let summaryTitleElement = fixture.debugElement.query(By.css('.cart-async-wrapper__summary-title'));
+        
+        expect(summaryTitleElement).not.toBeNull();
+      });
+
+      it('should render <promotion>', () => {
+        let promotionComponent = fixture.debugElement.query(By.css('promotion'))
+
+        expect(promotionComponent).not.toBeNull();
+      });
+
+      it('should render <cart-summary>', () => {
+        let cartSummaryComponent = fixture.debugElement.query(By.css('cart-summary'))
+        expect(cartSummaryComponent).not.toBeNull();
+      });
+    
+      it('should set cart to value passed by the cart-container directive', () => {
+        expect(cartSummaryComponent.componentInstance.cart).toEqual(cart);
       });
 
       it('should render <proceed-to-checkout>', () => {
@@ -198,16 +226,10 @@ describe('TestCartAsyncWrapper', () => {
       expect(cartComponent).toBeNull();
     });
 
-    it('should not render <cart-summary>', () => {
-      let cartSummary = fixture.debugElement.query(By.css('cart-summary'));
+    it('should not render cart-async-wrapper__side-pane', () => {
+      let sidePaneElement = fixture.debugElement.query(By.css('.cart-async-wrapper__side-pane'));
     
-      expect(cartSummary).toBeNull();
-    });
-
-    it('should not render <help-box>', () => {
-      let helpBox = fixture.debugElement.query(By.css('help-box'));
-    
-      expect(helpBox).toBeNull();
+      expect(sidePaneElement).toBeNull();
     });
 
     it('should not render <proceed-to-checkout>', () => {

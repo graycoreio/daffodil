@@ -2,6 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { PaymentInfo, DaffodilAddress } from '@daffodil/core';
 import { ErrorStateMatcher } from '../../../../design/molecules/error-state-matcher/error-state-matcher.component';
+import { Store } from '@ngrx/store';
+import * as fromFoundationCheckout from '../../../reducers';
+import { EnablePlaceOrderButton } from '../../../actions/checkout.actions';
 
 @Component({
   selector: 'payment-form',
@@ -23,7 +26,8 @@ export class PaymentFormComponent implements OnInit {
   stateErrorStateMatcher: ErrorStateMatcher;
   
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private store: Store<fromFoundationCheckout.State>
   ) { }
 
   ngOnInit() {
@@ -121,6 +125,7 @@ export class PaymentFormComponent implements OnInit {
       this.updatePaymentInfo.emit(
         this.buildPaymentInfo(this.form.value)
       );
+      this.store.dispatch(new EnablePlaceOrderButton());
     } else if (this.form.valid) {
       this.updatePaymentInfo.emit(
         this.buildPaymentInfo(this.form.value)
@@ -129,6 +134,7 @@ export class PaymentFormComponent implements OnInit {
       this.updateBillingAddress.emit(
         this.buildBillingAddress(this.form.value)
       );
+      this.store.dispatch(new EnablePlaceOrderButton());
     }
   };
 }

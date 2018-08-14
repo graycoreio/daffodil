@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CheckoutViewComponent } from './checkout-view.component';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
-import { DaffodilAddress, DaffodilAddressFactory, PaymentInfo, BillingFactory } from '@daffodil/core';
+import { DaffodilAddress, DaffodilAddressFactory, PaymentInfo, BillingFactory, CartFactory, Cart } from '@daffodil/core';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { ShowPaymentView } from '../../actions/payment.actions';
 import * as fromFoundationCheckout from '../../reducers/index';
@@ -12,12 +12,17 @@ import { ShippingContainer } from '@daffodil/state';
 
 let daffodilAddressFactory = new DaffodilAddressFactory();
 let billingFactory = new BillingFactory();
-let stubIsShippingInfoValid = true;
+let cartFactory = new CartFactory();
+
 let stubShippingInfo = daffodilAddressFactory.create();
-let stubSelectedShippingOption = 'shippingOption';
 let stubPaymentInfo: PaymentInfo = billingFactory.create();
-let stubShowPaymentView: boolean = true;
 let stubBillingAddress: DaffodilAddress = daffodilAddressFactory.create();
+let stubCart: Cart = cartFactory.create();
+
+let stubIsShippingInfoValid = true;
+let stubSelectedShippingOption = 'shippingOption';
+let stubShowPaymentView: boolean = true;
+let stubShowReviewView: boolean = true;
 let stubBillingAddressIsShippingAddress: boolean = false;
 
 @Component({selector: 'shipping', template: ''})
@@ -41,6 +46,27 @@ class MockPaymentComponent {
   @Output() toggleBillingAddressIsShippingAddress: EventEmitter<any> = new EventEmitter();
 }
 
+@Component({selector: 'checkout-cart-async-wrapper', template: '<ng-content>', encapsulation: ViewEncapsulation.None})
+class MockCheckoutCartAsyncWrapper {
+  @Input() cart: Cart;
+  @Input() loading: boolean;
+  @Input() cartTitle: string;
+}
+
+@Component({selector: 'accordion', template: '<ng-content></ng-content>', encapsulation: ViewEncapsulation.None})
+class MockAccordionComponent { 
+  @Input() title: string;
+  @Input() id: string;
+}
+
+@Component({selector: 'accordion-item', template: '<ng-content></ng-content>', encapsulation: ViewEncapsulation.None})
+class MockAccordionItemComponent {
+  @Input() initiallyActive: boolean;
+}
+
+@Component({selector: 'place-order', template: ''})
+class MockPlaceOrderComponent {}
+
 @Component({selector: '[shipping-container]', template: '<ng-content></ng-content>', exportAs: 'ShippingContainer'})
 class MockShippingContainer {
   isShippingInfoValid$: Observable<boolean> = of(stubIsShippingInfoValid);
@@ -60,28 +86,44 @@ class MockBillingContainer {
   toggleBillingAddressIsShippingAddress = () => {};
 }
 
+@Component({selector: '[cart-container]', template: '<ng-content></ng-content>', exportAs: 'CartContainer'})
+class MockCartContainer {
+  cart$: Observable<Cart> = of(stubCart);
+  loading$: Observable<boolean> = of(false);
+}
+
 describe('CheckoutViewComponent', () => {
   let component: CheckoutViewComponent;
   let fixture: ComponentFixture<CheckoutViewComponent>;
   let shipping: MockShippingComponent;
-  let shippingContainer: ShippingContainer;
   let payment: MockPaymentComponent
+  let checkoutCartAsyncWrappers;
+  let shippingContainer: ShippingContainer;
   let billingContainer: MockBillingContainer;
+  let cartContainer: MockCartContainer;
+  let accordion: MockAccordionComponent;
+  let accordionItem: MockAccordionItemComponent;
+  let placeOrders;
   let store;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          shippings: combineReducers(fromFoundationCheckout.reducers),
+          foundationCheckout: combineReducers(fromFoundationCheckout.reducers),
         })
       ],
       declarations: [
         CheckoutViewComponent,
+        MockAccordionComponent,
+        MockAccordionItemComponent,
         MockShippingComponent,
         MockShippingContainer,
+        MockCheckoutCartAsyncWrapper,
         MockPaymentComponent,
-        MockBillingContainer
+        MockPlaceOrderComponent,
+        MockBillingContainer,
+        MockCartContainer
       ]
     })
     .compileComponents();
@@ -92,13 +134,19 @@ describe('CheckoutViewComponent', () => {
     component = fixture.componentInstance;
     store = TestBed.get(Store);
     spyOn(fromFoundationCheckout, 'selectShowPaymentView').and.returnValue(stubShowPaymentView);
+    spyOn(fromFoundationCheckout, 'selectShowReviewView').and.returnValue(stubShowReviewView);
     spyOn(store, 'dispatch');
     fixture.detectChanges();
 
     shipping = fixture.debugElement.query(By.css('shipping')).componentInstance;
-    shippingContainer = fixture.debugElement.query(By.css('[shipping-container]')).componentInstance;
     payment = fixture.debugElement.query(By.css('payment')).componentInstance;
+    checkoutCartAsyncWrappers = fixture.debugElement.queryAll(By.css('checkout-cart-async-wrapper'));
+    shippingContainer = fixture.debugElement.query(By.css('[shipping-container]')).componentInstance;
     billingContainer = fixture.debugElement.query(By.css('[billing-container]')).componentInstance;  
+    cartContainer = fixture.debugElement.query(By.css('[cart-container]')).componentInstance;  
+    accordion = fixture.debugElement.query(By.css('accordion')).componentInstance;  
+    accordionItem = fixture.debugElement.query(By.css('accordion-item')).componentInstance;
+    placeOrders = fixture.debugElement.queryAll(By.css('place-order'));
   });
 
   it('should create', () => {
@@ -112,6 +160,16 @@ describe('CheckoutViewComponent', () => {
         expect(showPaymentView).toEqual(stubShowPaymentView);
       });
     });
+    
+    it('should initialize showReviewView$', () => {
+      component.showReviewView$.subscribe((showReviewView) => {
+        expect(showReviewView).toEqual(stubShowReviewView);
+      });
+    });
+  });
+
+  it('should render two place-order buttons', () => {
+    expect(placeOrders.length).toEqual(2);
   });
   
   describe('on <shipping>', () => {
@@ -145,6 +203,78 @@ describe('CheckoutViewComponent', () => {
 
     it('should set billingAddressIsShippingAddress', () => {
       expect(payment.billingAddressIsShippingAddress).toEqual(stubBillingAddressIsShippingAddress);
+    });
+  });
+
+  describe('on first <checkout-cart-async-wrapper>', () => {
+    
+    it('should set cart', () => {
+      expect(checkoutCartAsyncWrappers[0].componentInstance.cart).toEqual(stubCart);
+    });
+
+    it('should set loading', () => {
+      expect(checkoutCartAsyncWrappers[0].componentInstance.loading).toEqual(false);
+    });
+
+    it('should set cartTitle to CART SUMMARY', () => {
+      expect(checkoutCartAsyncWrappers[0].componentInstance.cartTitle).toEqual('CART SUMMARY');
+    });
+  });
+
+  describe('on second <checkout-cart-async-wrapper>', () => {
+    
+    it('should set cart', () => {
+      expect(checkoutCartAsyncWrappers[1].componentInstance.cart).toEqual(stubCart);
+    });
+
+    it('should set loading', () => {
+      expect(checkoutCartAsyncWrappers[1].componentInstance.loading).toEqual(false);
+    });
+
+    it('should not set cartTitle', () => {
+      expect(checkoutCartAsyncWrappers[1].componentInstance.cartTitle).toBeUndefined();;
+    });
+  });
+
+  describe('on third <checkout-cart-async-wrapper>', () => {
+    
+    it('should set cart', () => {
+      expect(checkoutCartAsyncWrappers[2].componentInstance.cart).toEqual(stubCart);
+    });
+
+    it('should set loading', () => {
+      expect(checkoutCartAsyncWrappers[2].componentInstance.loading).toEqual(false);
+    });
+
+    it('should set cartTitle to Review Order', () => {
+      expect(checkoutCartAsyncWrappers[2].componentInstance.cartTitle).toEqual('Review Order');;
+    });
+  });
+
+  describe('on <accordion-item>', () => {
+    
+    it('should set initiallyAction to false', () => {
+      expect(accordionItem.initiallyActive).toBeFalsy();
+    });
+
+    describe('when cart is empty', () => {
+      
+      it('should show zero cart items in the accordion title', () => {
+        expect(fixture.debugElement.query(By.css('h2')).nativeElement.innerHTML).toEqual('Cart Summary (0)');
+      });
+    });
+
+    describe('when cart is not empty', () => {
+
+      beforeEach(() => {
+        stubCart.items.push(cartFactory.createCartItem());
+        cartContainer.cart$ = of(stubCart);
+        fixture.detectChanges();
+      });
+      
+      it('should show the number of cart items in the accordion title', () => {
+        expect(fixture.debugElement.query(By.css('h2')).nativeElement.innerHTML).toEqual('Cart Summary (1)');
+      });
     });
   });
 
@@ -247,6 +377,53 @@ describe('CheckoutViewComponent', () => {
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('.checkout__payment'))).not.toBeNull();
+    });
+  });
+
+  describe('when showReviewView$ is false', () => {
+    
+    it('should not render checkout__review', () => {
+
+      component.showReviewView$ = of(false);
+      fixture.detectChanges();
+
+      expect(fixture.debugElement.query(By.css('.checkout__review'))).toBeNull();
+    });
+  });
+
+  describe('when showReviewView$ is true', () => {
+    
+    it('should render checkout__review', () => {
+      component.showReviewView$ = of(true);
+      fixture.detectChanges();
+
+      expect(fixture.debugElement.query(By.css('.checkout__review'))).not.toBeNull();
+    });
+  });
+
+  describe('when CartContainer.loading$ is true', () => {
+
+    beforeEach(() => {
+      cartContainer.loading$ = of(true);
+      fixture.detectChanges();
+      placeOrders = fixture.debugElement.queryAll(By.css('place-order'));
+    });
+    
+    it('should not render place-order', () => {
+      expect(placeOrders.length).toEqual(0);
+    });
+  });
+
+  describe('when CartContainer.loading$ is false', () => {
+
+    beforeEach(() => {
+      cartContainer.loading$ = of(false);
+      fixture.detectChanges();
+      placeOrders = fixture.debugElement.queryAll(By.css('place-order'));
+    });
+    
+    it('should render place-order', () => {
+      expect(placeOrders.length).toEqual(2);
     });
   });
 });

@@ -1,0 +1,48 @@
+@import 'daffodil-util';
+
+.checkout-cart {
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: minmax(0, 1fr);
+  font-family: 'Open Sans', sans-serif;
+  margin-bottom: 25px;
+
+  @include breakpoint(large) {
+    grid-gap: 25px;
+  }
+  
+  &__title {
+    font-size: $global-font-size;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-template-areas: 
+      "subtitle edit";
+    
+    @include breakpoint(large) {
+      @include section-divider();
+      padding-bottom: 10px;
+    }
+  }
+
+  &__subtitle {
+    @include embolden();
+    grid-area: subtitle;
+  }
+
+  &__edit-cart {
+    grid-area: edit;
+    justify-self: right;
+    font-size: $small-font-size;
+    text-decoration: underline;
+
+    @include breakpoint(large) {
+      display: none;
+    }
+  }
+
+  &__item-count {
+    float: right;
+    color: $dark-gray;
+    font-size: $small-font-size;
+  }
+}

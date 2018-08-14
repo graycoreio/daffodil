@@ -1,0 +1,39 @@
+@import 'daffodil-util';
+
+.checkout-cart-async-wrapper {
+
+  &__loading-icon {
+    margin: 20px 44%;
+
+    @include breakpoint(large) {
+      grid-column: span 3;
+    }
+  }
+
+  &__cart-wrapper {
+    padding: 25px 0;
+    margin-bottom: 15px;
+    @include section-divider();
+
+    @include breakpoint(large) {
+      padding: 0 0 50px 0;
+    }
+  }
+  
+  &__cart-summary-wrapper {
+    margin: 15px 0;
+
+    @include breakpoint(large) {
+      margin: 0;
+    }
+  }
+
+  &__help-box-wrapper {
+    display: none;
+    margin: 35px 0 15px 0;
+
+    @include breakpoint(large) {
+      display: block;
+    }
+  }
+}

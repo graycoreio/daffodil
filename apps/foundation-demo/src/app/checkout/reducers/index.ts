@@ -2,10 +2,12 @@ import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelect
 
 import * as fromFoundationShipping from './shipping.reducer';
 import * as fromFoundationPayment from './payment.reducer';
+import * as fromFoundationCheckout from './checkout.reducer';
 
 export interface FoundationCheckoutState {
   foundationShipping: fromFoundationShipping.State;
   foundationPayment: fromFoundationPayment.State;
+  foundationCheckout: fromFoundationCheckout.State;
 }
 
 export interface State {
@@ -14,7 +16,8 @@ export interface State {
 
 export const reducers : ActionReducerMap<FoundationCheckoutState> = {
   foundationShipping: fromFoundationShipping.reducer,
-  foundationPayment: fromFoundationPayment.reducer
+  foundationPayment: fromFoundationPayment.reducer,
+  foundationCheckout: fromFoundationCheckout.reducer
 }
 
 /**
@@ -46,9 +49,27 @@ export const foundationPaymentStateSelector = createSelector(
 export const selectShowPaymentView: MemoizedSelector<object, boolean> = createSelector(
   foundationPaymentStateSelector,
   fromFoundationPayment.getShowPaymentView
-)
+);
 
 export const selectShowPaymentForm: MemoizedSelector<object, boolean> = createSelector(
   foundationPaymentStateSelector,
   fromFoundationPayment.getShowPaymentForm
-)
+);
+
+/**
+ * Foundation Checkout Checkout State
+ */
+export const foundationCheckoutStateSelector = createSelector(
+  selectFoundationCheckoutState,
+  (state: FoundationCheckoutState) => state.foundationCheckout
+);
+
+export const selectEnablePlaceOrderButton: MemoizedSelector<object, boolean> = createSelector(
+  foundationCheckoutStateSelector,
+  fromFoundationCheckout.getEnablePlaceOrderButton
+);
+
+export const selectShowReviewView: MemoizedSelector<object, boolean> = createSelector(
+  foundationCheckoutStateSelector,
+  fromFoundationCheckout.getShowReviewView
+);

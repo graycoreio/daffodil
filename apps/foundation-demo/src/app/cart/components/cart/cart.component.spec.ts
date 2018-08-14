@@ -9,10 +9,12 @@ let cartFactory = new CartFactory();
 let mockCart = cartFactory.create();
 mockCart.items.push(cartFactory.createCartItem());
 mockCart.items.push(cartFactory.createCartItem());
+let stubSubtitle = 'subtitle';
 
-@Component({template: '<cart [cart]="cartValue"></cart>'})
+@Component({template: '<cart [cart]="cartValue" [subtitle]="subtitleValue"></cart>'})
 class TestCartWrapper {
   cartValue: Cart;
+  subtitleValue: string;
 }
 
 @Component({selector: 'cart-item', template: ''})
@@ -24,7 +26,7 @@ describe('CartComponent', () => {
   let component: TestCartWrapper;
   let fixture: ComponentFixture<TestCartWrapper>;
   let cartItems;
-  let cart;
+  let cart: CartComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -42,10 +44,11 @@ describe('CartComponent', () => {
     component = fixture.componentInstance;
 
     component.cartValue = mockCart;
+    component.subtitleValue = stubSubtitle;
 
     fixture.detectChanges();
     cartItems = fixture.debugElement.queryAll(By.css('cart-item'));
-    cart = fixture.debugElement.query(By.css('cart'));
+    cart = fixture.debugElement.query(By.css('cart')).componentInstance;
   });
 
   it('should create', () => {
@@ -57,9 +60,11 @@ describe('CartComponent', () => {
   });
 
   it('can be passed a Cart object', () => {
-    let cartComponent = fixture.debugElement.query(By.css('cart'));
+    expect(cart.cart).toEqual(mockCart);
+  });
 
-    expect(cartComponent.componentInstance.cart).toEqual(mockCart);
+  it('can be passed a subtitle as input', () => {
+    expect(cart.subtitle).toEqual(stubSubtitle);
   });
 
   it('renders a <cart-item> for every cart.items', () => {
@@ -78,7 +83,7 @@ describe('CartComponent', () => {
     describe('when number of cartItems is not one', () => {
       
       it('should set hasOneItem to false', () => {
-        expect(cart.componentInstance.hasOneItem).toBeFalsy();
+        expect(cart.hasOneItem).toBeFalsy();
       });
     });
 
@@ -92,12 +97,33 @@ describe('CartComponent', () => {
         component.cartValue = mockCart;
 
         fixture.detectChanges();
-        cart = fixture.debugElement.query(By.css('cart'));
+        cart = fixture.debugElement.query(By.css('cart')).componentInstance;
       });
 
       it('should set hasOneItem to true', () => {
-        expect(cart.componentInstance.hasOneItem).toBeTruthy();
+        expect(cart.hasOneItem).toBeTruthy();
       });
+    });
+  });
+
+  describe('when subtitle is null', () => {
+    
+    it('should not render .cart__title', () => {
+      cart.subtitle = null;
+      fixture.detectChanges();
+
+      let cartTitleElement = fixture.debugElement.query(By.css('.cart__title'));
+
+      expect(cartTitleElement).toBeNull();
+    });
+  });
+
+  describe('when subtitle is defined', () => {
+    
+    it('should render .cart__title', () => {
+      let cartTitleElement = fixture.debugElement.query(By.css('.cart__title'));
+
+      expect(cartTitleElement).not.toBeNull();
     });
   });
 
@@ -106,22 +132,22 @@ describe('CartComponent', () => {
     describe('when hasOneItem is false', () => {
       
       beforeEach(() => {
-        cart.componentInstance.hasOneItem = false;
+        cart.hasOneItem = false;
       });
 
       it('should return Items', () => {
-        expect(cart.componentInstance.itemText).toEqual('Items');
+        expect(cart.itemText).toEqual('Items');
       });
     });
     
     describe('when hasOneItem is true', () => {
       
       beforeEach(() => {
-        cart.componentInstance.hasOneItem = true;
+        cart.hasOneItem = true;
       });
 
       it('should return Item', () => {
-        expect(cart.componentInstance.itemText).toEqual('Item');
+        expect(cart.itemText).toEqual('Item');
       });
     });
   });
