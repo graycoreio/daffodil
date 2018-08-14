@@ -88,4 +88,13 @@
       display: none;
     }
   }
+  
+  &__loading-icon {
+    margin: 0 auto;
+
+    @include breakpoint(large) {
+      grid-column: span 3;
+      margin-top: 20px;
+    }
+  }
 }
