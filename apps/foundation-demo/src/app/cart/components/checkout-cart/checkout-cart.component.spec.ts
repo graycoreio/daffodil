@@ -114,4 +114,20 @@ describe('CheckoutCartComponent', () => {
       expect(router.navigateByUrl).toHaveBeenCalledWith('/cart');
     });
   });
+
+  describe('when cart is empty', () => {
+    
+    beforeEach(() => {
+      let fixture = TestBed.createComponent(TestCheckoutCartWrapper);
+      component = fixture.componentInstance;
+
+      component.cartValue = mockCart;
+      component.cartValue.items = [];
+      fixture.detectChanges();
+    });
+    
+    it('should navigate to the /cart page', () => {
+      expect(router.navigateByUrl).toHaveBeenCalledWith('/cart');
+    });
+  });
 });
