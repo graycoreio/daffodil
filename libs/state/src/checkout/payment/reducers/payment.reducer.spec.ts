@@ -1,16 +1,16 @@
-import { PaymentInfo, PaymentFactory } from '@daffodil/core';
+import { PaymentInfo, BillingFactory } from '@daffodil/core';
 import { initialState, reducer, getPaymentInfo, State } from "../reducers/payment.reducer";
 import { UpdatePaymentInfo } from "../actions/payment.actions";
 
 describe('Payment | Payment Reducer', () => {
 
-  let paymentFactory: PaymentFactory;
+  let billingFactory: BillingFactory;
   let paymentInfo: PaymentInfo;
 
   beforeEach(() => {
-    paymentFactory = new PaymentFactory();
+    billingFactory = new BillingFactory();
 
-    paymentInfo = paymentFactory.create();
+    paymentInfo = billingFactory.create();
   });
 
   describe('when an unknown action is triggered', () => {

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Store, select } from '@ngrx/store';
 
-import { ShippingAddress } from '@daffodil/core';
+import { DaffodilAddress } from '@daffodil/core';
 import * as fromShipping from '../reducers';
 import { UpdateShippingInfo, SelectShippingOption } from '../actions/shipping.actions';
 
@@ -15,10 +15,10 @@ import { UpdateShippingInfo, SelectShippingOption } from '../actions/shipping.ac
 })
 export class ShippingContainer implements OnInit {
   
-  shippingInfo$: Observable<ShippingAddress>;
+  shippingInfo$: Observable<DaffodilAddress>;
   selectedShippingOption$: Observable<string>;
-  isShippingInfoValid$: Observable<Boolean>;
-  isShippingOptionSelected$: Observable<Boolean>;
+  isShippingInfoValid$: Observable<boolean>;
+  isShippingOptionSelected$: Observable<boolean>;
 
   constructor(
     private store: Store<fromShipping.State>
@@ -36,7 +36,7 @@ export class ShippingContainer implements OnInit {
     );
   }
 
-  updateShippingInfo(address: ShippingAddress) {
+  updateShippingInfo(address: DaffodilAddress) {
     this.store.dispatch(new UpdateShippingInfo(address));
   }
 
