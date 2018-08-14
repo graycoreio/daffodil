@@ -1,5 +1,5 @@
 <div class="billing-summary">
   <div class="billing-summary__title">Billing Address</div>
   <address-summary *ngIf="(billingAddress && !billingAddressIsShippingAddress)" [address]="billingAddress"></address-summary>
-  <div class="billing-summary__billing-address-is-shipping-address" *ngIf="billingAddressIsShippingAddress">Billing address is shipping address</div>
+  <div class="billing-summary__note" *ngIf="billingAddressIsShippingAddress">Billing address is shipping address</div>
 </div>
