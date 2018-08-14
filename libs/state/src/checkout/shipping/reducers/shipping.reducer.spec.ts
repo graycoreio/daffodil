@@ -1,18 +1,16 @@
-import { ShippingAddress, ShippingFactory } from '@daffodil/core';
+import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
 import { initialState, reducer, getShippingInfo, getSelectedShippingOption, isShippingInfoValid, State } from "../reducers/shipping.reducer";
 import { UpdateShippingInfo, SelectShippingOption } from "../actions/shipping.actions";
 
 
 describe('Shipping | Shipping Reducer', () => {
 
-  let shippingFactory: ShippingFactory;
-  let shippingInfo: ShippingAddress;
+  let daffodilAddressFactory: DaffodilAddressFactory = new DaffodilAddressFactory();
+  let shippingInfo: DaffodilAddress;
   let selectedShippingOption: string;
 
   beforeEach(() => {
-    shippingFactory = new ShippingFactory();
-
-    shippingInfo = shippingFactory.createShippingAddress();
+    shippingInfo = daffodilAddressFactory.create();
     selectedShippingOption = 'selectedShippingOption';
   });
 

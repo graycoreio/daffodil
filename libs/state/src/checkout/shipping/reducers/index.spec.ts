@@ -3,14 +3,14 @@ import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
 import * as fromShipping from './index';
-import { ShippingAddress, ShippingFactory } from '@daffodil/core';
+import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
 import { UpdateShippingInfo, SelectShippingOption } from "../actions/shipping.actions";
 
 describe('selectShippingState', () => {
 
   let store: Store<fromShipping.ShippingState>;
-  let shippingFactory: ShippingFactory = new ShippingFactory();
-  let stubShippingInfo: ShippingAddress;
+  let daffodilAddressFactory: DaffodilAddressFactory = new DaffodilAddressFactory();
+  let stubShippingInfo: DaffodilAddress;
   let stubSelectedShippingOption: string;
   
   beforeEach(async(() => {
@@ -22,7 +22,7 @@ describe('selectShippingState', () => {
       ]
     });
 
-    stubShippingInfo = shippingFactory.createShippingAddress();
+    stubShippingInfo = daffodilAddressFactory.create();
     stubSelectedShippingOption = 'shippingOption';
     store = TestBed.get(Store);
     store.dispatch(new UpdateShippingInfo(stubShippingInfo));

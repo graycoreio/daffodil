@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
 import { PaymentContainer } from './payment.component';
-import { PaymentInfo, PaymentFactory } from '@daffodil/core';
+import { PaymentInfo, BillingFactory } from '@daffodil/core';
 import { UpdatePaymentInfo } from '../actions/payment.actions';
 import * as fromPayment from '../reducers';
 
@@ -12,7 +12,7 @@ describe('PaymentContainer', () => {
   let fixture: ComponentFixture<PaymentContainer>;
   let store;
   let initialPaymentInfo: PaymentInfo;
-  let paymentFactory: PaymentFactory;
+  let billingFactory: BillingFactory;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -31,8 +31,8 @@ describe('PaymentContainer', () => {
     component = fixture.componentInstance;
     store = TestBed.get(Store);
 
-    paymentFactory = new PaymentFactory();
-    initialPaymentInfo = paymentFactory.create();
+    billingFactory = new BillingFactory();
+    initialPaymentInfo = billingFactory.create();
 
     spyOn(fromPayment, 'selectPaymentInfoState').and.returnValue(initialPaymentInfo);
     spyOn(store, 'dispatch');

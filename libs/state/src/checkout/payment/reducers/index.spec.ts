@@ -3,13 +3,13 @@ import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
 import * as fromPayment from './index';
-import { PaymentInfo, PaymentFactory } from '@daffodil/core';
+import { PaymentInfo, BillingFactory } from '@daffodil/core';
 import { UpdatePaymentInfo } from "../actions/payment.actions";
 
 describe('selectPaymentState', () => {
 
   let store: Store<fromPayment.PaymentState>;
-  let paymentFactory: PaymentFactory = new PaymentFactory();
+  let billingFactory: BillingFactory = new BillingFactory();
   let stubPaymentInfo: PaymentInfo;
   
   beforeEach(async(() => {
@@ -21,7 +21,7 @@ describe('selectPaymentState', () => {
       ]
     });
 
-    stubPaymentInfo = paymentFactory.create();
+    stubPaymentInfo = billingFactory.create();
     store = TestBed.get(Store);
     store.dispatch(new UpdatePaymentInfo(stubPaymentInfo));
   }));

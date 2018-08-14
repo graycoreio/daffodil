@@ -1,8 +1,8 @@
 import { ShippingActionTypes, ShippingActions } from '../actions/shipping.actions';
-import { ShippingAddress } from '@daffodil/core';
+import { DaffodilAddress } from '@daffodil/core';
 
 export interface State {
-  shippingInfo: ShippingAddress,
+  shippingInfo: DaffodilAddress,
   selectedShippingOption: string
 }
 
@@ -26,6 +26,6 @@ export const getShippingInfo = (state: State) => state.shippingInfo;
 
 export const getSelectedShippingOption = (state: State) => state.selectedShippingOption;
 
-export const isShippingInfoValid = (shippingInfo: ShippingAddress) => {
+export const isShippingInfoValid = (shippingInfo: DaffodilAddress) => {
   return !!shippingInfo;
 };

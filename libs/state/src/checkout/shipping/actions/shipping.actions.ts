@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { ShippingAddress } from '@daffodil/core';
+import { DaffodilAddress } from '@daffodil/core';
 
 export enum ShippingActionTypes {
   UpdateShippingInfoAction = "[Shipping] Update Shipping Info Action",
@@ -10,7 +10,7 @@ export enum ShippingActionTypes {
 export class UpdateShippingInfo implements Action {
   readonly type = ShippingActionTypes.UpdateShippingInfoAction;
 
-  constructor(public payload: ShippingAddress) {}
+  constructor(public payload: DaffodilAddress) {}
 }
 
 export class SelectShippingOption implements Action {
