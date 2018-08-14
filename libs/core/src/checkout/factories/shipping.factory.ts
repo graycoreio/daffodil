@@ -1,13 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ShippingOption } from '../models/shipping-option';
-import { Address } from '../../interfaces/models/address';
 
 @Injectable()
 export class ShippingFactory {
-  
-  createShippingAddress() : MockShippingAddress {
-    return {...new MockShippingAddress()};
-  }
 
   createShippingOptions() : ShippingOption[] {
     return [
@@ -15,17 +10,6 @@ export class ShippingFactory {
       new MockShippingOption('2')
     ]
   }
-}
-
-export class MockShippingAddress implements Address {
-  firstname: string = 'first';
-  lastname: string = 'last';
-  street: string = 'street';
-  city: string = 'city';
-  state: string = 'state';
-  email: string = '';
-  postcode: string = 'postcode';
-  telephone: string = 'telephone';
 }
 
 export class MockShippingOption implements ShippingOption {
