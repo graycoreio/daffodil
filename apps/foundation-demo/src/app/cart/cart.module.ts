@@ -15,6 +15,9 @@ import { CartGrandTotalComponent } from './components/cart-grand-total/cart-gran
 import { CartAsyncWrapperComponent } from './components/cart-async-wrapper/cart-async-wrapper.component';
 import { ContinueShoppingComponent } from './components/continue-shopping/continue-shopping.component';
 import { MiscModule } from '../misc/misc.module';
+import { CheckoutCartAsyncWrapperComponent } from './components/checkout-cart-async-wrapper/checkout-cart-async-wrapper.component';
+import { CheckoutCartComponent } from './components/checkout-cart/checkout-cart.component';
+import { CheckoutCartItemComponent } from './components/checkout-cart-item/checkout-cart-item.component';
 
 @NgModule({
   imports: [
@@ -33,7 +36,10 @@ import { MiscModule } from '../misc/misc.module';
     CartSummaryComponent,
     CartGrandTotalComponent,
     CartAsyncWrapperComponent,
-    ContinueShoppingComponent
+    ContinueShoppingComponent,
+    CheckoutCartAsyncWrapperComponent,
+    CheckoutCartComponent,
+    CheckoutCartItemComponent
   ],
   exports: [
     CartViewComponent,
@@ -45,7 +51,10 @@ import { MiscModule } from '../misc/misc.module';
     CartSummaryComponent,
     CartGrandTotalComponent,
     CartAsyncWrapperComponent,
-    ContinueShoppingComponent
+    ContinueShoppingComponent,
+    CheckoutCartAsyncWrapperComponent,
+    CheckoutCartComponent,
+    CheckoutCartItemComponent
   ]
 })
 export class CartModule { }

@@ -6,15 +6,18 @@ import { FormsModule, ReactiveFormsModule, FormControl, AbstractControl } from '
 import { By } from '@angular/platform-browser';
 import { ErrorStateMatcher } from '../../../../design/molecules/error-state-matcher/error-state-matcher.component';
 import { DaffodilAddress, PaymentInfo } from '@daffodil/core';
+import { StoreModule, combineReducers, Store } from '@ngrx/store';
+import * as fromFoundationCheckout from '../../../reducers';
+import { EnablePlaceOrderButton } from '../../../actions/checkout.actions';
 
 @Component({'template': '<payment-form [paymentInfo]="paymentInfoValue" [billingAddress]="billingAddressValue" [billingAddressIsShippingAddress]="billingAddressIsShippingAddressValue" (updatePaymentInfo)="updatePaymentInfoFunction($event)" (updateBillingAddress)="updatePaymentInfoFunction($event)" (toggleBillingAddressIsShippingAddress)="toggleBillingAddressIsShippingAddressFunction($event)"></payment-form>'})
 class TestingPaymentFormComponentWrapper {
   paymentInfoValue: PaymentInfo;
   billingAddressValue: DaffodilAddress;
   billingAddressIsShippingAddressValue: boolean;
-  updatePaymentInfoFunction: Function = () => {};
-  updateBillingAddressFunction: Function = () => {};
-  toggleBillingAddressIsShippingAddressFunction: Function = () => {};
+  updatePaymentInfoFunction = () => {};
+  updateBillingAddressFunction = () => {};
+  toggleBillingAddressIsShippingAddressFunction = () => {};
 }
 
 @Component({'selector': '[input-validator]', 'template': ''})
@@ -43,12 +46,16 @@ describe('PaymentFormComponent', () => {
   let stubPaymentInfo;
   let stubBillingAddress;
   let stubBillingAddressIsShippingAddress;
+  let store;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        StoreModule.forRoot({
+          shippings: combineReducers(fromFoundationCheckout.reducers),
+        })
       ],
       declarations: [ 
         TestingPaymentFormComponentWrapper,
@@ -67,6 +74,8 @@ describe('PaymentFormComponent', () => {
     stubBillingAddressIsShippingAddress = false;
 
     fixture = TestBed.createComponent(TestingPaymentFormComponentWrapper);
+    store = TestBed.get(Store);
+    spyOn(store, 'dispatch');
     component = fixture.componentInstance;
     component.paymentInfoValue = stubPaymentInfo;
     component.billingAddressValue = stubBillingAddress;
@@ -326,6 +335,10 @@ describe('PaymentFormComponent', () => {
 
         expect(paymentFormComponent.updateBillingAddress.emit).toHaveBeenCalledWith(expectedBillingAddress);
       });
+
+      it('should call store.dispatch with an EnablePlaceOrderButton action', () => {
+        expect(store.dispatch).toHaveBeenCalledWith(new EnablePlaceOrderButton());
+      });
     });
 
     describe('when form is invalid', () => {
@@ -343,6 +356,10 @@ describe('PaymentFormComponent', () => {
 
         it('should not emit updateBillingAddress', () => {
           expect(paymentFormComponent.updateBillingAddress.emit).not.toHaveBeenCalled();
+        });
+        
+        it('should not call store.dispatch', () => {
+          expect(store.dispatch).not.toHaveBeenCalled();
         });
       });
 
@@ -365,6 +382,10 @@ describe('PaymentFormComponent', () => {
 
           it('should not emit updateBillingAddress', () => {
             expect(paymentFormComponent.updateBillingAddress.emit).not.toHaveBeenCalled();
+          });
+
+          it('should not call store.dispatch', () => {
+            expect(store.dispatch).not.toHaveBeenCalled();
           });
         });
 
@@ -404,6 +425,10 @@ describe('PaymentFormComponent', () => {
 
           it('should not emit updateBillingAddress', () => {
             expect(paymentFormComponent.updateBillingAddress.emit).not.toHaveBeenCalled();
+          });
+
+          it('should call store.dispatch with an EnablePlaceOrderButton action', () => {
+            expect(store.dispatch).toHaveBeenCalledWith(new EnablePlaceOrderButton());
           });
         });
       });

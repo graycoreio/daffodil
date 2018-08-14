@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'proceed-to-checkout',
   templateUrl: './proceed-to-checkout.component.html',
   styleUrls: ['./proceed-to-checkout.component.scss']
 })
-export class ProceedToCheckoutComponent implements OnInit {
+export class ProceedToCheckoutComponent {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
-  ngOnInit() {
+  navigateToCheckout() {
+    this.router.navigateByUrl('/checkout');
   }
-
 }

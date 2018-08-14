@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CheckoutViewComponent } from './pages/checkout-view/checkout-view.component';
 import { ShippingFormComponent } from './components/shipping/shipping-form/shipping-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { StateCheckoutModule } from '@daffodil/state';
+import { StateCheckoutModule, StateCartModule } from '@daffodil/state';
 import { ShippingSummaryComponent } from './components/shipping/shipping-summary/shipping-summary.component';
 import { ShippingOptionsComponent } from './components/shipping/shipping-options/shipping-options.component';
 import { ShippingComponent } from './components/shipping/shipping/shipping.component';
@@ -15,6 +15,7 @@ import { PaymentSummaryComponent } from './components/payment/payment-summary/pa
 import { CartModule } from '../cart/cart.module';
 import { AddressSummaryComponent } from './components/payment/address-summary/address-summary.component';
 import { BillingSummaryComponent } from './components/payment/billing-summary/billing-summary.component';
+import { PlaceOrderComponent } from './components/place-order/place-order.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { BillingSummaryComponent } from './components/payment/billing-summary/bi
     StateCheckoutModule,
     DesignModule,
     FoundationCheckoutStateModule,
-    CartModule
+    CartModule,
+    StateCartModule
   ],
   declarations: [
     CheckoutViewComponent,
@@ -35,7 +37,8 @@ import { BillingSummaryComponent } from './components/payment/billing-summary/bi
     PaymentComponent,
     PaymentSummaryComponent,
     AddressSummaryComponent,
-    BillingSummaryComponent
+    BillingSummaryComponent,
+    PlaceOrderComponent
   ],
   exports: [
     CheckoutViewComponent,
@@ -47,7 +50,8 @@ import { BillingSummaryComponent } from './components/payment/billing-summary/bi
     PaymentComponent,
     PaymentSummaryComponent,
     AddressSummaryComponent,
-    BillingSummaryComponent
+    BillingSummaryComponent,
+    PlaceOrderComponent
   ]
 })
 export class CheckoutModule { }

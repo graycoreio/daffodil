@@ -1,0 +1,7 @@
+<div class="checkout-cart">
+  <div class="checkout-cart__title" *ngIf="subtitle">
+    <span class="checkout-cart__subtitle">{{subtitle}}</span>
+    <span class="checkout-cart__edit-cart"><a (click)="navigateToCart()">Edit Cart</a></span>
+  </div>
+  <checkout-cart-item *ngFor="let item of cart.items" [item]="item"></checkout-cart-item>
+</div>

@@ -73,7 +73,25 @@
       padding: 0 0 50px 0;
     }
   }
+  
+  &__summary-title {
+    display: none;
+    @include embolden();
+    @include uppercase();
 
+    @include breakpoint(large) {
+      display: block;
+      padding-bottom: 15px;
+      margin-bottom: 25px;
+      @include section-divider();
+    }
+  }
+
+  &__promotion {
+    display: block;
+    margin-bottom: 25px;
+  }
+  
   &__cart-summary-wrapper {
     margin: 15px 0;
 

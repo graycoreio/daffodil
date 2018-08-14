@@ -1,0 +1,9 @@
+<div class="checkout-cart-async-wrapper">
+  <checkout-cart class="checkout-cart-async-wrapper__cart-wrapper" [cart]="cart" [subtitle]="cartTitle" *ngIf="!loading"></checkout-cart>
+  <cart-summary class="checkout-cart-async-wrapper__cart-summary-wrapper" *ngIf="!(loading)" [cart]="cart"></cart-summary>
+  <ng-content></ng-content>
+  <help-box class="checkout-cart-async-wrapper__help-box-wrapper" *ngIf="!(loading)"></help-box>
+  <div *ngIf="(loading)" class="checkout-cart-async-wrapper__loading-icon">
+    <i class="fa fa-spinner fa-spin fa-5x"></i>
+  </div>
+</div>

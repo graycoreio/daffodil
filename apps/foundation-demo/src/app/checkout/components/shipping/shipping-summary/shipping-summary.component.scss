@@ -1,7 +1,8 @@
 @import 'daffodil-util';
 
 .shipping-summary {
-  font-size: $global-font-size;
+  font-size: $small-font-size;
+  @include section-divider();
   display: grid;
   grid-template-columns: 4fr 1fr;
   grid-template-areas: 
@@ -27,7 +28,6 @@
   }
 
   & button {
-    margin-bottom: 25px;
     grid-area: button;
   }
 
@@ -56,7 +56,7 @@
   }
 
   &__title {
-    font-size: $medium-font-size;
+    font-size: $global-font-size;
     margin-bottom: 15px;
     @include embolden();
     @include uppercase();
