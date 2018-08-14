@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Store, select } from '@ngrx/store';
 
 import { Product } from '@daffodil/core';
-import * as fromProduct from '../../reducers';
+import * as fromProduct from '../../reducers/index';
 import { ProductLoad, UpdateQty } from '../../actions/product.actions';
 import { AddToCart } from '../../../cart/actions/cart.actions';
 
