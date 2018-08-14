@@ -117,8 +117,8 @@ describe('BillingSummaryComponent', () => {
       fixture.detectChanges();
     });
 
-    it('should render billing-address-is-shipping-address', () => {
-      let billingAddressIsShippingAddress = fixture.debugElement.query(By.css('.billing-summary__billing-address-is-shipping-address'));
+    it('should render note', () => {
+      let billingAddressIsShippingAddress = fixture.debugElement.query(By.css('.billing-summary__note'));
 
       expect(billingAddressIsShippingAddress).not.toBeNull();
     });
@@ -131,8 +131,8 @@ describe('BillingSummaryComponent', () => {
       fixture.detectChanges();
     });
 
-    it('should not render billing-address-is-shipping-address', () => {
-      let billingAddressIsShippingAddress = fixture.debugElement.query(By.css('.billing-summary__billing-address-is-shipping-address'));
+    it('should not render note', () => {
+      let billingAddressIsShippingAddress = fixture.debugElement.query(By.css('.billing-summary__note'));
 
       expect(billingAddressIsShippingAddress).toBeNull();
     });
