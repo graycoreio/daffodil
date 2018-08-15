@@ -5,7 +5,7 @@ import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { BillingContainer } from './billing.component';
 import { DaffodilAddress, DaffodilAddressFactory, BillingFactory, PaymentInfo } from '@daffodil/core';
 import { UpdateBillingAddress, UpdatePaymentInfo, ToggleBillingAddressIsShippingAddress } from '../actions/billing.actions';
-import * as fromBilling from '../reducers';
+import * as fromBilling from '../reducers/index';
 
 describe('BillingContainer', () => {
   let component: BillingContainer;
