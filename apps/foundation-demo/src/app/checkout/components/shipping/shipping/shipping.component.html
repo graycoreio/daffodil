@@ -2,14 +2,14 @@
   <shipping-form 
     [hidden]="!(showShippingForm$ | async)"
     [shippingInfo]="shippingInfo" 
-    (updateShippingInfo)="onUpdateShippingInfo($event)"></shipping-form>
+    [selectedShippingOption]="selectedShippingOption"
+    (updateShippingInfo)="onUpdateShippingInfo($event)"
+    (selectShippingOption)="onSelectShippingOption($event)"
+    (continueToPayment)="onContinueToPayment()"></shipping-form>
   <shipping-summary 
     [hidden]="showShippingForm$ | async" 
     *ngIf="shippingInfo" 
     [shippingInfo]="shippingInfo" 
     [selectedShippingOption]="selectedShippingOption"
-    [hideContinueToPayment]="hideContinueToPayment"
-    (editShippingInfo)="toggleShippingView()"
-    (selectShippingOption)="onSelectShippingOption($event)"
-    (continueToPayment)="onContinueToPayment()"></shipping-summary>
+    (editShippingInfo)="toggleShippingView()"></shipping-summary>
 </div>
