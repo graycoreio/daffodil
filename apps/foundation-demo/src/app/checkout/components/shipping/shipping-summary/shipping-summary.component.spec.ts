@@ -1,31 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
 
-import { ShippingOptionsComponent } from '../shipping-options/shipping-options.component';
 import { ShippingSummaryComponent } from './shipping-summary.component';
 
 let daffodilAddressFactory = new DaffodilAddressFactory();
 let stubDaffodilAddress = daffodilAddressFactory.create();
-let stubHideContinueToPayment = false;
 
-@Component({
-  template: '<shipping-summary ' +
-              '[selectedShippingOption]="selectedShippingOptionValue" ' +
-              '[shippingInfo]="shippingInfoValue" ' +
-              '[hideContinueToPayment]="hideContinueToPaymentValue" ' +
-              '(editShippingInfo)="editShippingInfoFunction()" ' +
-              '(selectShippingOption)="selectShippingOptionFunction($event)" ' +
-              '(continueToPayment)="continueToPaymentFunction()"></shipping-summary>'})
+@Component({template: '<shipping-summary [selectedShippingOption]="selectedShippingOptionValue" [shippingInfo]="shippingInfoValue" (editShippingInfo)="editShippingInfoFunction()"></shipping-summary>'})
 class TestShippingSummaryWrapper {
   shippingInfoValue: DaffodilAddress = stubDaffodilAddress;
   selectedShippingOptionValue: string = 'id';
-  hideContinueToPaymentValue: boolean = stubHideContinueToPayment;
   editShippingInfoFunction: Function = () => {};
-  selectShippingOptionFunction: Function = () => {};
-  continueToPaymentFunction: Function = () => {};
 }
 
 @Component({selector: 'shipping-options', template: ''})
@@ -44,13 +32,11 @@ describe('ShippingSummaryComponent', () => {
   let component: TestShippingSummaryWrapper;
   let fixture: ComponentFixture<TestShippingSummaryWrapper>;
   let shippingSummaryComponent: ShippingSummaryComponent;
-  let shippingOptionsComponent: ShippingOptionsComponent;
   let addressSummaryComponent: MockAddressSummaryComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
-        MockShippingOptionsComponent,
+      declarations: [
         TestShippingSummaryWrapper,
         ShippingSummaryComponent,
         MockAddressSummaryComponent
@@ -65,7 +51,6 @@ describe('ShippingSummaryComponent', () => {
     fixture.detectChanges();
 
     shippingSummaryComponent = fixture.debugElement.query(By.css('shipping-summary')).componentInstance;
-    shippingOptionsComponent = fixture.debugElement.query(By.css('shipping-options')).componentInstance;
     addressSummaryComponent = fixture.debugElement.query(By.css('address-summary')).componentInstance;
   });
 
@@ -81,51 +66,10 @@ describe('ShippingSummaryComponent', () => {
     expect(shippingSummaryComponent.selectedShippingOption).toEqual(component.selectedShippingOptionValue);
   });
 
-  it('should be able to take hideContinueToPayment as input', () => {
-    expect(shippingSummaryComponent.hideContinueToPayment).toEqual(stubHideContinueToPayment);
-  });
-
-  describe('on <shipping-options>', () => {
-    
-    it('should set shippingOptions', () => {
-      expect(shippingOptionsComponent.shippingOptions).toEqual(shippingSummaryComponent.shippingOptions);
-    });
-  });
-
-  describe('when shippingOptions.selectShippingOption is emitted', () => {
-    
-    it('should call onSelectShippingOption', () => {
-      spyOn(shippingSummaryComponent, 'onSelectShippingOption');
-
-      shippingOptionsComponent.selectShippingOption.emit(shippingSummaryComponent.shippingOptions[0].id);
-
-      expect(shippingSummaryComponent.onSelectShippingOption).toHaveBeenCalledWith(shippingSummaryComponent.shippingOptions[0].id);
-    });
-  });
-
   describe('on <address-summary', () => {
 
     it('should set address', () => {
       expect(addressSummaryComponent.address).toEqual(stubDaffodilAddress);
-    });
-  });
-
-  describe('constructor', () => {
-    
-    it('should generate an array of shippingOptions', () => {
-      expect(shippingSummaryComponent.shippingOptions.length).toEqual(3);
-    });
-
-    it('should generate a shippingOptions array with standard-shipping', () => {
-      expect(shippingSummaryComponent.shippingOptions[0].id).toEqual('standard-shipping');
-    });
-
-    it('should generate a shippingOptions array with two-day-shipping', () => {
-      expect(shippingSummaryComponent.shippingOptions[1].id).toEqual('two-day-shipping');
-    });
-
-    it('should generate a shippingOptions array with one-day-shipping', () => {
-      expect(shippingSummaryComponent.shippingOptions[2].id).toEqual('one-day-shipping');
     });
   });
 
@@ -159,111 +103,6 @@ describe('ShippingSummaryComponent', () => {
       shippingSummaryComponent.editShippingInfo.emit();
 
       expect(component.editShippingInfoFunction).toHaveBeenCalled();
-    });
-  });
-
-  describe('onSelectShippingOption', () => {
-
-    beforeEach(() => {
-      spyOn(shippingSummaryComponent.selectShippingOption, 'emit');
-
-      shippingSummaryComponent.onSelectShippingOption(shippingSummaryComponent.shippingOptions[0].id);
-    });
-    
-    it('should call selectShippingOption.emit', () => {
-      expect(shippingSummaryComponent.selectShippingOption.emit).toHaveBeenCalledWith(shippingSummaryComponent.shippingOptions[0].id);
-    });
-  });
-
-  describe('when selectShippingOption is emitted', () => {
-
-    it('should call selectShippingOptionFunction', () => {
-      spyOn(component, 'selectShippingOptionFunction');
-
-      shippingSummaryComponent.selectShippingOption.emit(shippingSummaryComponent.shippingOptions[0].id);
-
-      expect(component.selectShippingOptionFunction).toHaveBeenCalledWith(shippingSummaryComponent.shippingOptions[0].id);
-    });
-  });
-
-  describe('when selectedShippingOption is null', () => {
-    
-    it('should disable Continue to Payment button', () => {
-      shippingSummaryComponent.selectedShippingOption = null;
-      fixture.detectChanges();
-
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.disabled).toBeTruthy();
-    });
-  });
-
-  describe('when selectedShippingOption is defined', () => {
-    
-    it('should disable Continue to Payment button', () => {
-      shippingSummaryComponent.selectedShippingOption = 'defined';
-      fixture.detectChanges();
-
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.disabled).toBeFalsy();
-    });
-  });
-
-  describe('when continue to payment button is clicked', () => {
-    
-    it('should call onContinueToPayment', () => {
-      spyOn(shippingSummaryComponent, 'onContinueToPayment');
-
-      fixture.debugElement.query(By.css('button')).nativeElement.click();
-
-      expect(shippingSummaryComponent.onContinueToPayment).toHaveBeenCalled();
-    });
-  });
-
-  describe('onContinueToPayment', () => {
-
-    beforeEach(() => {
-      spyOn(shippingSummaryComponent.continueToPayment, 'emit');
-
-      shippingSummaryComponent.onContinueToPayment();
-    });
-    
-    it('should call continueToPayment.emit', () => {
-      expect(shippingSummaryComponent.continueToPayment.emit).toHaveBeenCalled();
-    });
-  });
-
-  describe('when continueToPayment is emitted', () => {
-    
-    it('should call function passed by host component', () => {
-      spyOn(component, "continueToPaymentFunction");
-
-      shippingSummaryComponent.continueToPayment.emit();
-
-      expect(component.continueToPaymentFunction).toHaveBeenCalled();
-    });
-  });
-
-  describe('when hideContinueToPayment is false', () => {
-    
-    beforeEach(() => {
-      shippingSummaryComponent.hideContinueToPayment = false;
-    
-      fixture.detectChanges();
-    });
-
-    it('should render the Continue to Payment button', () => {
-      expect(fixture.debugElement.query(By.css('button'))).not.toBeNull();
-    });
-  });
-
-  describe('when hideContinueToPayment is true', () => {
-    
-    beforeEach(() => {
-      shippingSummaryComponent.hideContinueToPayment = true;
-
-      fixture.detectChanges();
-    });
-
-    it('should not render the Continue to Payment button', () => {
-      expect(fixture.debugElement.query(By.css('button'))).toBeNull();      
     });
   });
 });

@@ -2,6 +2,4 @@
   <div class="shipping-summary__title">shipping details</div>
   <address-summary class="shipping-summary__address" [address]="shippingInfo"></address-summary>
   <a (click)="onEdit()">Edit</a>
-  <shipping-options class="shipping-summary__options" [selectedShippingOption]="selectedShippingOption" [shippingOptions]="shippingOptions" (selectShippingOption)="onSelectShippingOption($event)"></shipping-options>
-  <button type="button" class="button large expanded" (click)="onContinueToPayment()"  *ngIf="!hideContinueToPayment" [disabled]="!selectedShippingOption">Continue to Payment</button>
 </div>
