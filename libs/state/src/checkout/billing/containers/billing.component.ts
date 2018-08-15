@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Store, select } from '@ngrx/store';
 
 import { DaffodilAddress, PaymentInfo } from '@daffodil/core';
-import * as fromBilling from '../reducers';
+import * as fromBilling from '../reducers/index';
 import { UpdateBillingAddress, UpdatePaymentInfo, ToggleBillingAddressIsShippingAddress } from '../actions/billing.actions';
 
 @Component({
