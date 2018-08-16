@@ -1,21 +1,18 @@
 import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
-
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
-import { ProductViewComponent } from './product-view.component';
+import { Product, ProductFactory } from '@daffodil/core';
 
-import { Product } from '@daffodil/core';
-import { ProductFactory } from '@daffodil/core';
-import { ActivatedRoute } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ProductViewComponent } from './product-view.component';
 import { ActivatedRouteStub } from '../../../testing/ActivatedRouteStub';
 import { AddToCartComponent } from '../../components/add-to-cart/add-to-cart.component';
 
-let productFactory = new ProductFactory();
+let productFactory: ProductFactory = new ProductFactory();
 let mockProduct = productFactory.create();
 let product$ = of(mockProduct);
 let stubQty = 1;
@@ -25,7 +22,7 @@ let stubQty = 1;
   template: '<ng-content></ng-content>', 
   exportAs: 'ProductContainer'
 })
-class ProductContainerMock {
+class MockProductContainer {
   @Input() selectedProductId: string;
 
   product$: Observable<Product> = product$;
@@ -40,7 +37,7 @@ class ProductContainerMock {
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
-class ProductMock { 
+class MockProductComponent { 
   @Input() product: Product;
   @Input() qty: number;
   @Output() updateQty: EventEmitter<any> = new EventEmitter();
@@ -58,8 +55,8 @@ describe('ProductViewComponent', () => {
   let fixture: ComponentFixture<ProductViewComponent>;
   let idParam: string;
   let activatedRoute = new ActivatedRouteStub();
-  let productContainer;
-  let productComponent;
+  let productContainer: MockProductContainer;
+  let productComponent: MockProductComponent;
   let addToCartComponent: AddToCartComponent;
 
   beforeEach(async(() => {
@@ -70,8 +67,8 @@ describe('ProductViewComponent', () => {
       ],
       declarations: [ 
         ProductViewComponent,
-        ProductContainerMock,
-        ProductMock,
+        MockProductContainer,
+        MockProductComponent,
         MockAddToCartComponent
       ],
       providers: [
@@ -86,13 +83,13 @@ describe('ProductViewComponent', () => {
     component = fixture.componentInstance;
     activatedRoute.setParamMap({ id: idParam });
 
-    productContainer = fixture.debugElement.query(By.css('[product-container]'));
-    productContainer.componentInstance.loading$ = of(false);
-    productContainer.componentInstance.addToCart = (payload) => {};
-    productContainer.componentInstance.updateQty = (payload: number) => {};
+    productContainer = fixture.debugElement.query(By.css('[product-container]')).componentInstance;
+    productContainer.loading$ = of(false);
+    productContainer.addToCart = (payload) => {};
+    productContainer.updateQty = (payload: number) => {};
 
     fixture.detectChanges();
-    productComponent = fixture.debugElement.query(By.css('product'));
+    productComponent = fixture.debugElement.query(By.css('product')).componentInstance;
     addToCartComponent = fixture.debugElement.query(By.css('add-to-cart')).componentInstance;
   });
 
@@ -104,30 +101,30 @@ describe('ProductViewComponent', () => {
     expect(component.productId).toEqual(idParam);
   });
 
-  describe('on ProductContainer', () => {
+  describe('on [product-container]', () => {
     
     it('should set selectedProductId', () => {
-      expect(productContainer.componentInstance.selectedProductId).toEqual(idParam);
+      expect(productContainer.selectedProductId).toEqual(idParam);
     });
   });
 
-  describe('on <product></product>', () => {
+  describe('on <product>', () => {
     
     it('should set product to value passed by product-container directive', () => {
-      expect(productComponent.componentInstance.product).toEqual(mockProduct);
+      expect(productComponent.product).toEqual(mockProduct);
     });
 
     it('should set qty to value passed by product-container directive', () => {
-      expect(productComponent.componentInstance.qty).toEqual(stubQty);
+      expect(productComponent.qty).toEqual(stubQty);
     });
 
     it('should set updateQty to call function passed by product-container directive', () => {
-      spyOn(productContainer.componentInstance, 'updateQty');
+      spyOn(productContainer, 'updateQty');
       let payload = 4;
 
-      productComponent.componentInstance.updateQty.emit(payload);
+      productComponent.updateQty.emit(payload);
 
-      expect(productContainer.componentInstance.updateQty).toHaveBeenCalledWith(payload);
+      expect(productContainer.updateQty).toHaveBeenCalledWith(payload);
     });
   });
 
@@ -142,12 +139,12 @@ describe('ProductViewComponent', () => {
     });
 
     it('should set addToCart to call function passed by product-container directive', () => {
-      spyOn(productContainer.componentInstance, 'addToCart');
+      spyOn(productContainer, 'addToCart');
       let payload = 'test';
 
       addToCartComponent.addToCart.emit(payload);
 
-      expect(productContainer.componentInstance.addToCart).toHaveBeenCalledWith(payload);
+      expect(productContainer.addToCart).toHaveBeenCalledWith(payload);
     });
   });
 
@@ -165,9 +162,10 @@ describe('ProductViewComponent', () => {
   describe('when loading$ is true', () => {
     
     beforeEach(() => {
-      productContainer.componentInstance.loading$ = of(true);
+      productContainer.loading$ = of(true);
       fixture.detectChanges();
-      productComponent = fixture.debugElement.query(By.css('product'));
+
+      productComponent = fixture.debugElement.query(By.css('product')).componentInstance;
     });
 
     it('should  not render <product>', () => {

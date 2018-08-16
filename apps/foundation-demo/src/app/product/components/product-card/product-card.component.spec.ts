@@ -1,13 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ProductCardComponent } from './product-card.component';
 import { Component } from '@angular/core';
-import { Product, ProductFactory } from '@daffodil/core';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-let productFactory = new ProductFactory();
+import { Product, ProductFactory } from '@daffodil/core';
+
+import { ProductCardComponent } from './product-card.component';
+
+let productFactory: ProductFactory = new ProductFactory();
 let mockProduct = productFactory.create();
 
 @Component({template: '<product-card [product]="productValue"></product-card>'})
@@ -42,6 +43,7 @@ describe('ProductCardComponent', () => {
     spyOn(router, 'navigateByUrl');
 
     fixture.detectChanges();
+
     productCardComponent = fixture.debugElement.query(By.css('product-card'));
   });
 

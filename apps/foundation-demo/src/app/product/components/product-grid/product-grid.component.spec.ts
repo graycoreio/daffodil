@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { Component, Input } from '@angular/core';
 
 import { ProductFactory, Product } from '@daffodil/core';
 
 import { ProductGridComponent } from './product-grid.component';
-import { Component, Input } from '@angular/core';
 
 @Component({template: '<product-grid [products]="productsValue"></product-grid>'})
 class TestProductGridWrapper {
@@ -12,19 +12,20 @@ class TestProductGridWrapper {
 }
 
 @Component({selector: 'product-card', template: ''})
-class ProductCardMock {
+class MockProductCardComponent {
   @Input() product: Product;
 }
 
 describe('ProductGridComponent', () => {
   let component: TestProductGridWrapper;
   let fixture: ComponentFixture<TestProductGridWrapper>;
-  let productFactory = new ProductFactory();
+  let productFactory: ProductFactory = new ProductFactory();
+  let productCards;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        ProductCardMock,
+        MockProductCardComponent,
         ProductGridComponent,
         TestProductGridWrapper
       ]
@@ -35,9 +36,11 @@ describe('ProductGridComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestProductGridWrapper);
     component = fixture.componentInstance;
-
     component.productsValue = new Array(productFactory.create(), productFactory.create());
+
     fixture.detectChanges();
+
+    productCards = fixture.debugElement.queryAll(By.css('product-card'));
   });
 
   it('should be able to take an input of products', () => {
@@ -46,20 +49,14 @@ describe('ProductGridComponent', () => {
     expect(productGridComponent.componentInstance.products).toEqual(component.productsValue);
   });
 
-  describe('product-card', () => {
+  describe('on <product-card>', () => {
 
-    let productCards;
-
-    beforeEach(() => {
-      productCards = fixture.debugElement.queryAll(By.css('product-card'));
-    });
-
-    it('renders a product-card for each product in products', () => {
-      expect(productCards.length).toEqual(component.productsValue.length);
-    });
-
-    it('passes product down to product-card', () => {
+    it('should set product', () => {
       expect(productCards[0].componentInstance.product).toEqual(component.productsValue[0]);
     });
+  });
+
+  it('renders a product-card for each product in products', () => {
+    expect(productCards.length).toEqual(component.productsValue.length);
   });
 });
