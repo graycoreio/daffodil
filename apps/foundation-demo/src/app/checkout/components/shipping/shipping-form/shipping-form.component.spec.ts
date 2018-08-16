@@ -8,10 +8,11 @@ import { DaffodilAddress, ShippingOption } from '@daffodil/core';
 import { ErrorStateMatcher } from '../../../../design/molecules/error-state-matcher/error-state-matcher.component';
 import { ShippingFormComponent } from './shipping-form.component';
 
-@Component({'template': '<shipping-form [shippingInfo]="shippingInfoValue" [selectedShippingOption]="selectedShippingOptionValue" (updateShippingInfo)="onUpdateShippingInfoFunction($event)" (selectShippingOption)="selectShippingOptionFunction($event)" (continueToPayment)="continueToPaymentFunction()"></shipping-form>'})
+@Component({'template': '<shipping-form [shippingInfo]="shippingInfoValue" [selectedShippingOption]="selectedShippingOptionValue" [hideContinueToPayment]="hideContinueToPaymentValue" (updateShippingInfo)="onUpdateShippingInfoFunction($event)" (selectShippingOption)="selectShippingOptionFunction($event)" (continueToPayment)="continueToPaymentFunction()"></shipping-form>'})
 class TestingShippingFormComponentWrapper {
   shippingInfoValue: DaffodilAddress;
   selectedShippingOptionValue: string;
+  hideContinueToPaymentValue: boolean;
   onUpdateShippingInfoFunction: Function = () => {};
   selectShippingOptionFunction: Function = () => {};
   continueToPaymentFunction: Function = () => {};
@@ -66,6 +67,7 @@ describe('ShippingFormComponent', () => {
     component = fixture.componentInstance;
     component.shippingInfoValue = stubShippingInfo;
     component.selectedShippingOptionValue = 'option';
+    component.hideContinueToPaymentValue = false;
     fixture.detectChanges();
 
     shippingFormComponent = fixture.debugElement.query(By.css('shipping-form')).componentInstance;
@@ -78,6 +80,10 @@ describe('ShippingFormComponent', () => {
 
   it('should be able to take shippingInfo as input', () => {
     expect(shippingFormComponent.shippingInfo).toEqual(component.shippingInfoValue);
+  });
+
+  it('should be able to take hideContinueToPayment as input', () => {
+    expect(shippingFormComponent.hideContinueToPayment).toEqual(component.hideContinueToPaymentValue);
   });
 
   describe('constructor', () => {
@@ -467,6 +473,29 @@ describe('ShippingFormComponent', () => {
       shippingFormComponent.continueToPayment.emit();
 
       expect(component.continueToPaymentFunction).toHaveBeenCalled();
+    });
+  });
+
+  describe('when hideContinueToPayment is false', () => {
+    
+    it('should set button text to Continue to Payment', () => {
+      let buttonText = fixture.debugElement.query(By.css('button')).nativeElement.innerHTML;
+      expect(buttonText).toEqual('Continue to Payment')
+    });
+  });
+
+  describe('when hideContinueToPayment is true', () => {
+    
+    let buttonText;
+    
+    beforeEach(() => {
+      shippingFormComponent.hideContinueToPayment = true;
+      fixture.detectChanges();
+      buttonText = fixture.debugElement.query(By.css('button')).nativeElement.innerHTML;
+    });
+    
+    it('should set button text to Save', () => {
+      expect(buttonText).toEqual('Save');
     });
   });
 });

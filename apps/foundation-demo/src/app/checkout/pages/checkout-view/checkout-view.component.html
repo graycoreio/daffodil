@@ -4,7 +4,7 @@
       [isShippingInfoValid]="ShippingContainer.isShippingInfoValid$ | async"
       [shippingInfo]="ShippingContainer.shippingInfo$ | async"
       [selectedShippingOption]="ShippingContainer.selectedShippingOption$ | async"
-      [hideContinueToPayment]="showPaymentView$ | async"
+      [showPaymentView]="showPaymentView$ | async"
       (updateShippingInfo)="ShippingContainer.updateShippingInfo($event)"
       (selectShippingOption)="ShippingContainer.selectShippingOption($event)"
       (continueToPayment)="onContinueToPayment()"></shipping>

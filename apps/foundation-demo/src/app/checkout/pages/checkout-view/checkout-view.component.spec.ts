@@ -34,7 +34,7 @@ class MockShippingComponent {
   @Input() isShippingInfoValid: boolean;
   @Input() shippingInfo: DaffodilAddress;
   @Input() selectedShippingOption: string;
-  @Input() hideContinueToPayment: boolean;
+  @Input() showPaymentView: boolean;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
   @Output() continueToPayment: EventEmitter<any> = new EventEmitter();
@@ -173,8 +173,8 @@ describe('CheckoutViewComponent', () => {
       expect(shipping.selectedShippingOption).toEqual(stubSelectedShippingOption);
     });
 
-    it('should set hideContinueToPayment', () => {
-      expect(shipping.hideContinueToPayment).toEqual(stubShowPaymentView);
+    it('should set showPaymentView', () => {
+      expect(shipping.showPaymentView).toEqual(stubShowPaymentView);
     });
   });
 
