@@ -10,6 +10,7 @@ import { ProductGridViewComponent } from './product-grid-view.component';
 
 let productFactory = new ProductFactory();
 let products$ = of(new Array(productFactory.create()));
+let loading$ = of(false);
 
 @Component({
   selector: '[product-grid-container]', 
@@ -18,6 +19,7 @@ let products$ = of(new Array(productFactory.create()));
 })
 class MockProductGridContainer {
   products$: Observable<Product[]> = products$;
+  loading$: Observable<boolean> = loading$;
 }
 
 @Component({
@@ -63,6 +65,43 @@ describe('ProductGridViewComponent', () => {
       products$.subscribe((products) => {
         expect(productGridComponent.products).toEqual(products);
       });
+    });
+  });
+
+  describe('when ProductContainer.loading$ is false', () => {
+    
+    it('should render <product-grid>', () => {
+      let productGrid = fixture.debugElement.query(By.css('product-grid'));
+
+      expect(productGrid).not.toBeNull();
+    });
+
+    it('should not render loading-icon', () => {
+      let loadingIcon = fixture.debugElement.query(By.css('.product-grid-container__loading-icon'));
+
+      expect(loadingIcon).toBeNull();
+    });
+  });
+
+  describe('when ProductContainer.loading$ is true', () => {
+
+    beforeEach(() => {
+      let productGridComponent: ProductGridContainerMock = fixture.debugElement.query(By.css('[product-grid-container]')).componentInstance;
+      productGridComponent.loading$ = of(true);
+      
+      fixture.detectChanges();
+    });
+    
+    it('should not render <product-grid>', () => {
+      let productGrid = fixture.debugElement.query(By.css('product-grid'));
+
+      expect(productGrid).toBeNull();
+    });
+
+    it('should render loading-icon', () => {
+      let loadingIcon = fixture.debugElement.query(By.css('.product-grid-container__loading-icon'));
+
+      expect(loadingIcon).not.toBeNull();
     });
   });
 });
