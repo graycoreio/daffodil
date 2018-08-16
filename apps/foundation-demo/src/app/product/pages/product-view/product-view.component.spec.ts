@@ -161,11 +161,13 @@ describe('ProductViewComponent', () => {
 
   describe('when loading$ is true', () => {
     
+    let productComponent;
+    
     beforeEach(() => {
       productContainer.loading$ = of(true);
       fixture.detectChanges();
 
-      productComponent = fixture.debugElement.query(By.css('product')).componentInstance;
+      productComponent = fixture.debugElement.query(By.css('product'));
     });
 
     it('should  not render <product>', () => {
