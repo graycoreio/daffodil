@@ -21,7 +21,7 @@ class TestCheckoutCartWrapper {
 }
 
 @Component({selector: 'checkout-cart-item', template: ''})
-class CheckoutCartItemMock {
+class MockCheckoutCartItemComponent {
   @Input() item: CartItem;
 }
 
@@ -40,7 +40,7 @@ describe('CheckoutCartComponent', () => {
       declarations: [
         CheckoutCartComponent,
         TestCheckoutCartWrapper,
-        CheckoutCartItemMock
+        MockCheckoutCartItemComponent
       ]
     })
     .compileComponents();

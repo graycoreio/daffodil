@@ -1,14 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { By } from '@angular/platform-browser';
-
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
-import { CartAsyncWrapperComponent } from './cart-async-wrapper.component';
-
 import { Cart, CartFactory } from '@daffodil/core';
+
+import { CartAsyncWrapperComponent } from './cart-async-wrapper.component';
 
 let cartFactory = new CartFactory();
 let cart = cartFactory.create();

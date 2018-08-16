@@ -1,9 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { Component, Input } from '@angular/core';
+
+import { Cart, CartItem, CartFactory } from '@daffodil/core';
 
 import { CartComponent } from './cart.component';
-import { Component, Input } from '@angular/core';
-import { Cart, CartItem, CartFactory } from '@daffodil/core';
 
 let cartFactory = new CartFactory();
 let mockCart = cartFactory.create();
@@ -18,7 +19,7 @@ class TestCartWrapper {
 }
 
 @Component({selector: 'cart-item', template: ''})
-class CartItemMock {
+class MockCartItemComponent {
   @Input() item: CartItem;
 }
 
@@ -33,7 +34,7 @@ describe('CartComponent', () => {
       declarations: [
         CartComponent,
         TestCartWrapper,
-        CartItemMock
+        MockCartItemComponent
       ]
     })
     .compileComponents();

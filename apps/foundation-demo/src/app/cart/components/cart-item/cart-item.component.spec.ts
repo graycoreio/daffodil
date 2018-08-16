@@ -1,14 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
-import { CartItemComponent } from './cart-item.component';
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
+
 import { CartItem, CartFactory } from '@daffodil/core';
 
+import { CartItemComponent } from './cart-item.component';
+
 let cartFactory = new CartFactory();
-let mockCartItem = cartFactory.createCartItem();
+let mockCartItem: CartItem = cartFactory.createCartItem();
 
 @Component({template: '<cart-item [item]="cartItemValue"></cart-item>'})
 class TestCartItemWrapper {
@@ -17,15 +18,15 @@ class TestCartItemWrapper {
 
 @Component({selector: 'qty-dropdown', template: ''})
 class MockQtyDropdownComponent {
-  @Input() qty: string;
-  @Input() id: string;
+  @Input() qty: number;
+  @Input() id: number;
 }
 
 describe('CartItemComponent', () => {
   let component: TestCartItemWrapper;
   let fixture: ComponentFixture<TestCartItemWrapper>;
   let cartItemComponent;
-  let qtyDropdownComponent;
+  let qtyDropdownComponent: MockQtyDropdownComponent;
   let router: Router;
 
   beforeEach(async(() => {
@@ -50,7 +51,7 @@ describe('CartItemComponent', () => {
 
     component.cartItemValue = mockCartItem;
     cartItemComponent = fixture.debugElement.query(By.css('cart-item'));
-    qtyDropdownComponent = fixture.debugElement.query(By.css('qty-dropdown'));
+    qtyDropdownComponent = fixture.debugElement.query(By.css('qty-dropdown')).componentInstance;
 
     fixture.detectChanges();
   });
@@ -70,11 +71,11 @@ describe('CartItemComponent', () => {
   describe('on <qty-dropdown>', () => {
     
     it('sets qty', () => {
-      expect(qtyDropdownComponent.componentInstance.qty).toEqual(mockCartItem.qty);
+      expect(qtyDropdownComponent.qty).toEqual(mockCartItem.qty);
     });
     
     it('sets id', () => {
-      expect(qtyDropdownComponent.componentInstance.id).toEqual(mockCartItem.item_id);
+      expect(qtyDropdownComponent.id).toEqual(mockCartItem.item_id);
     });
   });
 

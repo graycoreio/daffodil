@@ -1,8 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { CartSubtotalComponent } from './cart-subtotal.component';
 import { Component } from '@angular/core';
+
+import { CartSubtotalComponent } from './cart-subtotal.component';
 
 @Component({template: '<cart-subtotal [title]="titleValue" [value]="valueValue"></cart-subtotal>'})
 class TestCartSubtotalWrapper {
