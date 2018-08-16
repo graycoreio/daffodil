@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { Component } from '@angular/core';
 
 import { CartGrandTotalComponent } from './cart-grand-total.component';
-import { Component } from '@angular/core';
 
 @Component({template: '<cart-grand-total [title]="titleValue" [value]="valueValue"></cart-grand-total>'})
 class TestCartGrandTotalWrapper {

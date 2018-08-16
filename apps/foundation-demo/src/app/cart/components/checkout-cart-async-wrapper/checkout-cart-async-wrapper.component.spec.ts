@@ -1,14 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { By } from '@angular/platform-browser';
-
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
-import { CheckoutCartAsyncWrapperComponent } from './checkout-cart-async-wrapper.component';
-
 import { Cart, CartFactory } from '@daffodil/core';
+
+import { CheckoutCartAsyncWrapperComponent } from './checkout-cart-async-wrapper.component';
 
 let cartFactory = new CartFactory();
 let cart = cartFactory.create();
@@ -25,22 +23,16 @@ class TestCheckoutCartAsyncWrapper {
   selector: 'checkout-cart',
   template: ''
 })
-class CheckoutCartMock { 
+class MockCheckoutCartComponent { 
   @Input() cart: Cart;
   @Input() subtitle: string;
 }
 
 @Component({
-  selector: 'promotion',
-  template: ''
-})
-class PromotionMock {}
-
-@Component({
   selector: 'cart-summary',
   template: ''
 })
-class CartSummaryMock {
+class MockCartSummaryComponent {
   @Input() cart: Cart;
 }
 
@@ -48,41 +40,23 @@ class CartSummaryMock {
   selector: 'help-box',
   template: ''
 })
-class HelpBoxMock {}
-
-@Component({
-  selector: 'proceed-to-checkout',
-  template: ''
-})
-class ProceedToCheckoutMock {}
-
-@Component({
-  selector: 'continue-shopping',
-  template: ''
-})
-class ContinueShoppingMock {}
+class MockHelpBoxComponent {}
 
 describe('CheckoutCartAsyncWrapper', () => {
   let component: TestCheckoutCartAsyncWrapper;
   let fixture: ComponentFixture<TestCheckoutCartAsyncWrapper>;
   let checkoutCartAsyncWrapperComponent: CheckoutCartAsyncWrapperComponent;
-  let cartComponent;
-  let promotionComponent;
-  let cartSummaryComponent;
-  let helpBoxComponent;
-  let proceedToCheckoutComponent;
-  let continueShoppingComponent;
+  let checkoutCartComponent: MockCheckoutCartComponent;
+  let cartSummaryComponent: MockCartSummaryComponent;
+  let helpBoxComponent: MockHelpBoxComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
         TestCheckoutCartAsyncWrapper,
-        CheckoutCartMock,
-        CartSummaryMock,
-        HelpBoxMock,
-        ProceedToCheckoutMock,
-        ContinueShoppingMock,
-        PromotionMock,
+        MockCheckoutCartComponent,
+        MockCartSummaryComponent,
+        MockHelpBoxComponent,
         CheckoutCartAsyncWrapperComponent
       ]
     })
@@ -100,12 +74,9 @@ describe('CheckoutCartAsyncWrapper', () => {
 
     fixture.detectChanges();
 
-    cartComponent = fixture.debugElement.query(By.css('checkout-cart'));
-    promotionComponent = fixture.debugElement.query(By.css('promotion'));
-    cartSummaryComponent = fixture.debugElement.query(By.css('cart-summary'));
-    helpBoxComponent = fixture.debugElement.query(By.css('help-box'));
-    proceedToCheckoutComponent = fixture.debugElement.query(By.css('proceed-to-checkout'));
-    continueShoppingComponent = fixture.debugElement.query(By.css('continue-shopping'));
+    checkoutCartComponent = fixture.debugElement.query(By.css('checkout-cart')).componentInstance;
+    cartSummaryComponent = fixture.debugElement.query(By.css('cart-summary')).componentInstance;
+    helpBoxComponent = fixture.debugElement.query(By.css('help-box')).componentInstance;
   });
 
   it('should create', () => {
@@ -131,25 +102,25 @@ describe('CheckoutCartAsyncWrapper', () => {
   describe('on <checkout-cart>', () => {
     
     it('should set cart to value passed by cart-container directive', () => {
-      expect(cartComponent.componentInstance.cart).toEqual(cart);
+      expect(checkoutCartComponent.cart).toEqual(cart);
     });
 
     it('should set subtitle', () => {
-      expect(cartComponent.componentInstance.subtitle).toEqual(stubCartTitle);
+      expect(checkoutCartComponent.subtitle).toEqual(stubCartTitle);
     });
   });
 
   describe('on <cart-summary>', () => {
     
     it('should set cart to value passed by the cart-container directive', () => {
-      expect(cartSummaryComponent.componentInstance.cart).toEqual(cart);
+      expect(cartSummaryComponent.cart).toEqual(cart);
     });
   });
 
   describe('when CartContainer.$loading is false', () => {
     
     it('should render <checkout-cart>', () => {
-      expect(cartComponent).not.toBeNull();
+      expect(checkoutCartComponent).not.toBeNull();
     });
 
     it('should render <cart-summary>', () => {
@@ -176,9 +147,9 @@ describe('CheckoutCartAsyncWrapper', () => {
     });
     
     it('should not render <checkout-cart>', () => {
-      let cartComponent = fixture.debugElement.query(By.css('cart'));
+      let checkoutCartComponent = fixture.debugElement.query(By.css('cart'));
 
-      expect(cartComponent).toBeNull();
+      expect(checkoutCartComponent).toBeNull();
     });
 
     it('should not render <cart-summary>', () => {

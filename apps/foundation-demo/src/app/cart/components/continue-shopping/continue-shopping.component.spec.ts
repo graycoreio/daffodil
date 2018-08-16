@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ContinueShoppingComponent } from './continue-shopping.component';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
+
+import { ContinueShoppingComponent } from './continue-shopping.component';
 
 describe('ContinueShoppingComponent', () => {
   let component: ContinueShoppingComponent;

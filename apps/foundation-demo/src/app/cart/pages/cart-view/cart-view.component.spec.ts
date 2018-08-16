@@ -1,14 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { By } from '@angular/platform-browser';
-
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
-import { CartViewComponent } from './cart-view.component';
-
 import { Cart, CartFactory } from '@daffodil/core';
+
+import { CartViewComponent } from './cart-view.component';
 
 let cartFactory = new CartFactory();
 let cart = cartFactory.create();
@@ -18,7 +16,7 @@ let cart = cartFactory.create();
   template: '<ng-content></ng-content>', 
   exportAs: 'CartContainer'
 })
-class CartContainerMock {
+class MockCartContainerComponent {
   cart$: Observable<Cart> = of(cart);
   loading$: Observable<boolean> = of(false);
 }
@@ -27,7 +25,7 @@ class CartContainerMock {
   selector: 'cart-async-wrapper',
   template: ''
 })
-class CartAsyncWrapperMock { 
+class MockCartAsyncWrapperComponent { 
   @Input() cart: Cart;
   @Input() loading: boolean;
 }
@@ -35,14 +33,14 @@ class CartAsyncWrapperMock {
 describe('CartViewComponent', () => {
   let component: CartViewComponent;
   let fixture: ComponentFixture<CartViewComponent>;
-  let cartContainer;
+  let cartContainer: MockCartContainerComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
         CartViewComponent,
-        CartContainerMock,
-        CartAsyncWrapperMock
+        MockCartContainerComponent,
+        MockCartAsyncWrapperComponent
       ]
     })
     .compileComponents();
@@ -52,8 +50,8 @@ describe('CartViewComponent', () => {
     fixture = TestBed.createComponent(CartViewComponent);
     component = fixture.componentInstance;
     
-    cartContainer = fixture.debugElement.query(By.css('[cart-container]'));
-    cartContainer.componentInstance.loading$ = of(false);
+    cartContainer = fixture.debugElement.query(By.css('[cart-container]')).componentInstance;
+    cartContainer.loading$ = of(false);
 
     fixture.detectChanges();
   });

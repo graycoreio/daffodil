@@ -16,6 +16,7 @@ describe('PromotionComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PromotionComponent);
     component = fixture.componentInstance;
+    
     fixture.detectChanges();
   });
 

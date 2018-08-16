@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ProceedToCheckoutComponent } from './proceed-to-checkout.component';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
+
+import { ProceedToCheckoutComponent } from './proceed-to-checkout.component';
 
 describe('ProceedToCheckoutComponent', () => {
   let component: ProceedToCheckoutComponent;
@@ -24,6 +24,7 @@ describe('ProceedToCheckoutComponent', () => {
     fixture = TestBed.createComponent(ProceedToCheckoutComponent);
     router = TestBed.get(Router);
     component = fixture.componentInstance;
+    
     fixture.detectChanges();
 
     spyOn(router, 'navigateByUrl');
