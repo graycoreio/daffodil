@@ -1,15 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { PlaceOrderComponent } from './place-order.component';
 import { By } from '@angular/platform-browser';
-import * as fromFoundationCheckout from '../../reducers';
+import { StoreModule, combineReducers } from '@ngrx/store';
 import { of } from 'rxjs';
-import { StoreModule, combineReducers, Store } from '@ngrx/store';
+
+import * as fromFoundationCheckout from '../../reducers';
+import { PlaceOrderComponent } from './place-order.component';
 
 describe('PlaceOrderComponent', () => {
   let component: PlaceOrderComponent;
   let fixture: ComponentFixture<PlaceOrderComponent>;
-  let store;
   let stubEnablePlaceOrderButton: boolean = true;
 
   beforeEach(async(() => {
@@ -27,9 +26,8 @@ describe('PlaceOrderComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PlaceOrderComponent);
     component = fixture.componentInstance;
-    store = TestBed.get(Store);
-
     spyOn(fromFoundationCheckout, 'selectEnablePlaceOrderButton').and.returnValue(stubEnablePlaceOrderButton);
+    
     fixture.detectChanges();
   });
 

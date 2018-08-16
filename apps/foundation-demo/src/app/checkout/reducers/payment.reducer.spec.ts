@@ -1,7 +1,7 @@
 import { initialState, reducer, getShowPaymentView, getShowPaymentForm } from "../reducers/payment.reducer";
 import { ShowPaymentView, ShowPaymentForm, ToggleShowPaymentForm, HidePaymentForm } from "../actions/payment.actions";
 
-describe('Checkout | Payment | Payment Reducer', () => {
+describe('Checkout | Payment Reducer', () => {
   
   describe('initialState', () => {
     

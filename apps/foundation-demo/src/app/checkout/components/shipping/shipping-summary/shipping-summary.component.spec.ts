@@ -1,23 +1,24 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ShippingSummaryComponent } from './shipping-summary.component';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
 import { By } from '@angular/platform-browser';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
+
 import { ShippingOptionsComponent } from '../shipping-options/shipping-options.component';
+import { ShippingSummaryComponent } from './shipping-summary.component';
 
 let daffodilAddressFactory = new DaffodilAddressFactory();
 let stubDaffodilAddress = daffodilAddressFactory.create();
 let stubHideContinueToPayment = false;
 
-@Component({selector: 'shipping-options', template: ''})
-class MockShippingOptionsComponent {
-  @Input() selectedShippingOption: string;
-  @Input() shippingOptions: string;
-  @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
-}
-
-@Component({template: '<shipping-summary [selectedShippingOption]="selectedShippingOptionValue" [shippingInfo]="shippingInfoValue" [hideContinueToPayment]="hideContinueToPaymentValue" (editShippingInfo)="editShippingInfoFunction()" (selectShippingOption)="selectShippingOptionFunction($event)" (continueToPayment)="continueToPaymentFunction()"></shipping-summary>'})
+@Component({
+  template: '<shipping-summary ' +
+              '[selectedShippingOption]="selectedShippingOptionValue" ' +
+              '[shippingInfo]="shippingInfoValue" ' +
+              '[hideContinueToPayment]="hideContinueToPaymentValue" ' +
+              '(editShippingInfo)="editShippingInfoFunction()" ' +
+              '(selectShippingOption)="selectShippingOptionFunction($event)" ' +
+              '(continueToPayment)="continueToPaymentFunction()"></shipping-summary>'})
 class TestShippingSummaryWrapper {
   shippingInfoValue: DaffodilAddress = stubDaffodilAddress;
   selectedShippingOptionValue: string = 'id';
@@ -25,6 +26,13 @@ class TestShippingSummaryWrapper {
   editShippingInfoFunction: Function = () => {};
   selectShippingOptionFunction: Function = () => {};
   continueToPaymentFunction: Function = () => {};
+}
+
+@Component({selector: 'shipping-options', template: ''})
+class MockShippingOptionsComponent {
+  @Input() selectedShippingOption: string;
+  @Input() shippingOptions: string;
+  @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
 }
 
 @Component({selector: 'address-summary', template: ''})
@@ -77,6 +85,31 @@ describe('ShippingSummaryComponent', () => {
     expect(shippingSummaryComponent.hideContinueToPayment).toEqual(stubHideContinueToPayment);
   });
 
+  describe('on <shipping-options>', () => {
+    
+    it('should set shippingOptions', () => {
+      expect(shippingOptionsComponent.shippingOptions).toEqual(shippingSummaryComponent.shippingOptions);
+    });
+  });
+
+  describe('when shippingOptions.selectShippingOption is emitted', () => {
+    
+    it('should call onSelectShippingOption', () => {
+      spyOn(shippingSummaryComponent, 'onSelectShippingOption');
+
+      shippingOptionsComponent.selectShippingOption.emit(shippingSummaryComponent.shippingOptions[0].id);
+
+      expect(shippingSummaryComponent.onSelectShippingOption).toHaveBeenCalledWith(shippingSummaryComponent.shippingOptions[0].id);
+    });
+  });
+
+  describe('on <address-summary', () => {
+
+    it('should set address', () => {
+      expect(addressSummaryComponent.address).toEqual(stubDaffodilAddress);
+    });
+  });
+
   describe('constructor', () => {
     
     it('should generate an array of shippingOptions', () => {
@@ -93,31 +126,6 @@ describe('ShippingSummaryComponent', () => {
 
     it('should generate a shippingOptions array with one-day-shipping', () => {
       expect(shippingSummaryComponent.shippingOptions[2].id).toEqual('one-day-shipping');
-    });
-  });
-
-  describe('on <shipping-options>', () => {
-    
-    it('should set shippingOptions', () => {
-      expect(shippingOptionsComponent.shippingOptions).toEqual(shippingSummaryComponent.shippingOptions);
-    });
-  });
-
-  describe('on <address-summary', () => {
-
-    it('should set address', () => {
-      expect(addressSummaryComponent.address).toEqual(stubDaffodilAddress);
-    });
-  });
-
-  describe('when shippingOptions.selectShippingOption is emitted', () => {
-    
-    it('should call onSelectShippingOption', () => {
-      spyOn(shippingSummaryComponent, 'onSelectShippingOption');
-
-      shippingOptionsComponent.selectShippingOption.emit(shippingSummaryComponent.shippingOptions[0].id);
-
-      expect(shippingSummaryComponent.onSelectShippingOption).toHaveBeenCalledWith(shippingSummaryComponent.shippingOptions[0].id);
     });
   });
 

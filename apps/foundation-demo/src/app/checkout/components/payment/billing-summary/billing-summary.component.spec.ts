@@ -1,9 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, Input } from '@angular/core';
+import { By } from '@angular/platform-browser';
+
+import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
 
 import { BillingSummaryComponent } from './billing-summary.component';
-import { Component, Input } from '@angular/core';
-import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
-import { By } from '@angular/platform-browser';
 
 let daffodilAddressFactory = new DaffodilAddressFactory();
 let stubBillingAddress = daffodilAddressFactory.create();
@@ -127,7 +128,7 @@ describe('BillingSummaryComponent', () => {
   describe('when billingAddressIsShippingAddress is false', () => {
 
     beforeEach(() => {
-      component.billingAddressIsShippingAddressValue = false;
+      billingSummary.billingAddressIsShippingAddress = false;
       fixture.detectChanges();
     });
 

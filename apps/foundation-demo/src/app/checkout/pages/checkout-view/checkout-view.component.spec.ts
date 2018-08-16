@@ -1,14 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { CheckoutViewComponent } from './checkout-view.component';
+import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
+
 import { DaffodilAddress, DaffodilAddressFactory, PaymentInfo, BillingFactory, CartFactory, Cart } from '@daffodil/core';
-import { StoreModule, combineReducers, Store } from '@ngrx/store';
+import { ShippingContainer } from '@daffodil/state';
+
 import { ShowPaymentView } from '../../actions/payment.actions';
 import * as fromFoundationCheckout from '../../reducers/index';
-import { ShippingContainer } from '@daffodil/state';
+import { CheckoutViewComponent } from './checkout-view.component';
 
 let daffodilAddressFactory = new DaffodilAddressFactory();
 let billingFactory = new BillingFactory();
@@ -47,7 +48,7 @@ class MockPaymentComponent {
 }
 
 @Component({selector: 'checkout-cart-async-wrapper', template: '<ng-content>', encapsulation: ViewEncapsulation.None})
-class MockCheckoutCartAsyncWrapper {
+class MockCheckoutCartAsyncWrapperComponent {
   @Input() cart: Cart;
   @Input() loading: boolean;
   @Input() cartTitle: string;
@@ -101,7 +102,6 @@ describe('CheckoutViewComponent', () => {
   let shippingContainer: ShippingContainer;
   let billingContainer: MockBillingContainer;
   let cartContainer: MockCartContainer;
-  let accordion: MockAccordionComponent;
   let accordionItem: MockAccordionItemComponent;
   let placeOrders;
   let store;
@@ -119,7 +119,7 @@ describe('CheckoutViewComponent', () => {
         MockAccordionItemComponent,
         MockShippingComponent,
         MockShippingContainer,
-        MockCheckoutCartAsyncWrapper,
+        MockCheckoutCartAsyncWrapperComponent,
         MockPaymentComponent,
         MockPlaceOrderComponent,
         MockBillingContainer,
@@ -142,30 +142,14 @@ describe('CheckoutViewComponent', () => {
     payment = fixture.debugElement.query(By.css('payment')).componentInstance;
     checkoutCartAsyncWrappers = fixture.debugElement.queryAll(By.css('checkout-cart-async-wrapper'));
     shippingContainer = fixture.debugElement.query(By.css('[shipping-container]')).componentInstance;
-    billingContainer = fixture.debugElement.query(By.css('[billing-container]')).componentInstance;  
-    cartContainer = fixture.debugElement.query(By.css('[cart-container]')).componentInstance;  
-    accordion = fixture.debugElement.query(By.css('accordion')).componentInstance;  
+    billingContainer = fixture.debugElement.query(By.css('[billing-container]')).componentInstance;
+    cartContainer = fixture.debugElement.query(By.css('[cart-container]')).componentInstance;
     accordionItem = fixture.debugElement.query(By.css('accordion-item')).componentInstance;
     placeOrders = fixture.debugElement.queryAll(By.css('place-order'));
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-  
-  describe('ngOnInit', () => {
-    
-    it('should initialize showPaymentView$', () => {
-      component.showPaymentView$.subscribe((showPaymentView) => {
-        expect(showPaymentView).toEqual(stubShowPaymentView);
-      });
-    });
-    
-    it('should initialize showReviewView$', () => {
-      component.showReviewView$.subscribe((showReviewView) => {
-        expect(showReviewView).toEqual(stubShowReviewView);
-      });
-    });
   });
 
   it('should render two place-order buttons', () => {
@@ -191,6 +175,42 @@ describe('CheckoutViewComponent', () => {
     });
   });
 
+  describe('when <shipping> emits', () => {
+    
+    describe('updateShippingInfo', () => {
+      
+      it('should call function passed by ShippingContainer', () => {
+        spyOn(shippingContainer, 'updateShippingInfo');
+
+        shipping.updateShippingInfo.emit(stubShippingInfo);
+
+        expect(shippingContainer.updateShippingInfo).toHaveBeenCalledWith(stubShippingInfo);
+      });
+    });
+
+    describe('selectShippingOption', () => {
+      
+      it('should call function passed by ShippingContainer', () => {
+        spyOn(shippingContainer, 'selectShippingOption');
+
+        shipping.selectShippingOption.emit(stubSelectedShippingOption);
+
+        expect(shippingContainer.selectShippingOption).toHaveBeenCalledWith(stubSelectedShippingOption);
+      });
+    });
+
+    describe('continueToPayment', () => {
+      
+      it('should call onContinueToPayment', () => {
+        spyOn(component, 'onContinueToPayment');
+  
+        shipping.continueToPayment.emit();
+  
+        expect(component.onContinueToPayment).toHaveBeenCalled();
+      });
+    });
+  });
+
   describe('on <payment>', () => {
     
     it('should set paymentInfo', () => {
@@ -203,6 +223,42 @@ describe('CheckoutViewComponent', () => {
 
     it('should set billingAddressIsShippingAddress', () => {
       expect(payment.billingAddressIsShippingAddress).toEqual(stubBillingAddressIsShippingAddress);
+    });
+  });
+
+  describe('when payment emits', () => {
+
+    describe('updatePaymentInfo', () => {
+      
+      it('should call BillingContainer.updatePaymentInfo', () => {
+        spyOn(billingContainer, 'updatePaymentInfo');
+
+        payment.updatePaymentInfo.emit(stubPaymentInfo);
+
+        expect(billingContainer.updatePaymentInfo).toHaveBeenCalledWith(stubPaymentInfo);
+      });
+    });
+
+    describe('updateBillingAddress', () => {
+      
+      it('should call BillingContainer.updateBillingAddress', () => {
+        spyOn(billingContainer, 'updateBillingAddress');
+
+        payment.updateBillingAddress.emit(stubBillingAddress);
+
+        expect(billingContainer.updateBillingAddress).toHaveBeenCalledWith(stubBillingAddress);
+      });
+    });
+
+    describe('toggleBillingAddressIsShippingAddress', () => {
+      
+      it('should call BillingContainer.toggleBillingAddressIsShippingAddress', () => {
+        spyOn(billingContainer, 'toggleBillingAddressIsShippingAddress');
+
+        payment.toggleBillingAddressIsShippingAddress.emit();
+
+        expect(billingContainer.toggleBillingAddressIsShippingAddress).toHaveBeenCalled();
+      });
     });
   });
 
@@ -277,75 +333,18 @@ describe('CheckoutViewComponent', () => {
       });
     });
   });
-
-  describe('when <shipping> emits', () => {
+  
+  describe('ngOnInit', () => {
     
-    describe('updateShippingInfo', () => {
-      
-      it('should call function passed by ShippingContainer', () => {
-        spyOn(shippingContainer, 'updateShippingInfo');
-
-        shipping.updateShippingInfo.emit(stubShippingInfo);
-
-        expect(shippingContainer.updateShippingInfo).toHaveBeenCalledWith(stubShippingInfo);
+    it('should initialize showPaymentView$', () => {
+      component.showPaymentView$.subscribe((showPaymentView) => {
+        expect(showPaymentView).toEqual(stubShowPaymentView);
       });
     });
-
-    describe('selectShippingOption', () => {
-      
-      it('should call function passed by ShippingContainer', () => {
-        spyOn(shippingContainer, 'selectShippingOption');
-
-        shipping.selectShippingOption.emit(stubSelectedShippingOption);
-
-        expect(shippingContainer.selectShippingOption).toHaveBeenCalledWith(stubSelectedShippingOption);
-      });
-    });
-
-    describe('continueToPayment', () => {
-      
-      it('should call onContinueToPayment', () => {
-        spyOn(component, 'onContinueToPayment');
-  
-        shipping.continueToPayment.emit();
-  
-        expect(component.onContinueToPayment).toHaveBeenCalled();
-      });
-    });
-  });
-
-  describe('when payment emits', () => {
-
-    describe('updatePaymentInfo', () => {
-      
-      it('should call BillingContainer.updatePaymentInfo', () => {
-        spyOn(billingContainer, 'updatePaymentInfo');
-
-        payment.updatePaymentInfo.emit(stubPaymentInfo);
-
-        expect(billingContainer.updatePaymentInfo).toHaveBeenCalledWith(stubPaymentInfo);
-      });
-    });
-
-    describe('updateBillingAddress', () => {
-      
-      it('should call BillingContainer.updateBillingAddress', () => {
-        spyOn(billingContainer, 'updateBillingAddress');
-
-        payment.updateBillingAddress.emit(stubBillingAddress);
-
-        expect(billingContainer.updateBillingAddress).toHaveBeenCalledWith(stubBillingAddress);
-      });
-    });
-
-    describe('toggleBillingAddressIsShippingAddress', () => {
-      
-      it('should call BillingContainer.toggleBillingAddressIsShippingAddress', () => {
-        spyOn(billingContainer, 'toggleBillingAddressIsShippingAddress');
-
-        payment.toggleBillingAddressIsShippingAddress.emit();
-
-        expect(billingContainer.toggleBillingAddressIsShippingAddress).toHaveBeenCalled();
+    
+    it('should initialize showReviewView$', () => {
+      component.showReviewView$.subscribe((showReviewView) => {
+        expect(showReviewView).toEqual(stubShowReviewView);
       });
     });
   });

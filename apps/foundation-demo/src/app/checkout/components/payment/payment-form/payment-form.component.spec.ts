@@ -1,16 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { PaymentFormComponent } from './payment-form.component';
 import { Component, Input } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormControl, AbstractControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { ErrorStateMatcher } from '../../../../design/molecules/error-state-matcher/error-state-matcher.component';
-import { DaffodilAddress, PaymentInfo } from '@daffodil/core';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
+
+import { DaffodilAddress, PaymentInfo } from '@daffodil/core';
+
+import { PaymentFormComponent } from './payment-form.component';
+import { ErrorStateMatcher } from '../../../../design/molecules/error-state-matcher/error-state-matcher.component';
 import * as fromFoundationCheckout from '../../../reducers';
 import { EnablePlaceOrderButton } from '../../../actions/checkout.actions';
 
-@Component({'template': '<payment-form [paymentInfo]="paymentInfoValue" [billingAddress]="billingAddressValue" [billingAddressIsShippingAddress]="billingAddressIsShippingAddressValue" (updatePaymentInfo)="updatePaymentInfoFunction($event)" (updateBillingAddress)="updatePaymentInfoFunction($event)" (toggleBillingAddressIsShippingAddress)="toggleBillingAddressIsShippingAddressFunction($event)"></payment-form>'})
+@Component({
+  'template': '<payment-form ' + 
+                '[paymentInfo]="paymentInfoValue" ' + 
+                '[billingAddress]="billingAddressValue" ' +
+                '[billingAddressIsShippingAddress]="billingAddressIsShippingAddressValue" ' + 
+                '(updatePaymentInfo)="updatePaymentInfoFunction($event)" ' + 
+                '(updateBillingAddress)="updatePaymentInfoFunction($event)" ' + 
+                '(toggleBillingAddressIsShippingAddress)="toggleBillingAddressIsShippingAddressFunction($event)"></payment-form>'
+})
 class TestingPaymentFormComponentWrapper {
   paymentInfoValue: PaymentInfo;
   billingAddressValue: DaffodilAddress;
@@ -37,7 +46,7 @@ class MockSelectValidatorComponent {
   selector: 'promotion',
   template: ''
 })
-class PromotionComponentMock {}
+class MockPromotionComponent {}
 
 describe('PaymentFormComponent', () => {
   let component: TestingPaymentFormComponentWrapper;
@@ -59,7 +68,7 @@ describe('PaymentFormComponent', () => {
       ],
       declarations: [ 
         TestingPaymentFormComponentWrapper,
-        PromotionComponentMock,
+        MockPromotionComponent,
         MockInputValidatorComponent,
         MockSelectValidatorComponent,
         PaymentFormComponent
@@ -80,6 +89,7 @@ describe('PaymentFormComponent', () => {
     component.paymentInfoValue = stubPaymentInfo;
     component.billingAddressValue = stubBillingAddress;
     component.billingAddressIsShippingAddressValue = stubBillingAddressIsShippingAddress;
+
     fixture.detectChanges();
 
     paymentFormComponent = fixture.debugElement.query(By.css('payment-form')).componentInstance;
@@ -99,6 +109,64 @@ describe('PaymentFormComponent', () => {
 
   it('should be able to take billingAddressIsShippingAddress', () => {
     expect(paymentFormComponent.billingAddressIsShippingAddress).toEqual(stubBillingAddressIsShippingAddress);
+  });
+
+  describe('on [input-validator]', () => {
+
+    let inputValidator: MockInputValidatorComponent;
+
+    beforeEach(() => {
+      inputValidator = fixture.debugElement.queryAll(By.css('[input-validator]'))[0].componentInstance;
+    });
+    
+    it('should set formControl', () => {
+      expect(<AbstractControl> inputValidator.formControl).toEqual(<AbstractControl> paymentFormComponent.form.controls['name']);
+    });
+
+    it('should set formSubmitted', () => {
+      expect(inputValidator.formSubmitted).toBeFalsy();
+    });
+
+    describe('when form is submitted', () => {
+      
+      it('should change formSubmitted to true', () => {
+        fixture.debugElement.query(By.css('button')).nativeElement.click();
+        fixture.detectChanges();
+
+        expect(inputValidator.formSubmitted).toBeTruthy();
+      });
+    });
+  });
+
+  describe('on [select-validator]', () => {
+
+    let selectValidator: MockSelectValidatorComponent;
+
+    beforeEach(() => {
+      selectValidator = fixture.debugElement.queryAll(By.css('[select-validator]'))[0].componentInstance;
+    });
+    
+    it('should set formControl', () => {
+      expect(<AbstractControl> selectValidator.formControl).toEqual(<AbstractControl> paymentFormComponent.form.controls['month']);
+    });
+
+    it('should set formSubmitted', () => {
+      expect(selectValidator.formSubmitted).toBeFalsy();
+    });
+
+    it('should set ErrorStateMatcher', () => {
+      expect(selectValidator.errorStateMatcher).toEqual(paymentFormComponent.monthErrorStateMatcher);
+    });
+
+    describe('when form is submitted', () => {
+      
+      it('should change formSubmitted to true', () => {
+        fixture.debugElement.query(By.css('button')).nativeElement.click();
+        fixture.detectChanges();
+
+        expect(selectValidator.formSubmitted).toBeTruthy();
+      });
+    });
   });
 
   describe('ngOnInit', () => {
@@ -787,64 +855,6 @@ describe('PaymentFormComponent', () => {
         it('should return false', () => {
           expect(paymentFormComponent.stateErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeFalsy();              
         });
-      });
-    });
-  });
-
-  describe('on [input-validator]', () => {
-
-    let inputValidator: MockInputValidatorComponent;
-
-    beforeEach(() => {
-      inputValidator = fixture.debugElement.queryAll(By.css('[input-validator]'))[0].componentInstance;
-    });
-    
-    it('should set formControl', () => {
-      expect(<AbstractControl> inputValidator.formControl).toEqual(<AbstractControl> paymentFormComponent.form.controls['name']);
-    });
-
-    it('should set formSubmitted', () => {
-      expect(inputValidator.formSubmitted).toBeFalsy();
-    });
-
-    describe('when form is submitted', () => {
-      
-      it('should change formSubmitted to true', () => {
-        fixture.debugElement.query(By.css('button')).nativeElement.click();
-        fixture.detectChanges();
-
-        expect(inputValidator.formSubmitted).toBeTruthy();
-      });
-    });
-  });
-
-  describe('on [select-validator]', () => {
-
-    let selectValidator: MockSelectValidatorComponent;
-
-    beforeEach(() => {
-      selectValidator = fixture.debugElement.queryAll(By.css('[select-validator]'))[0].componentInstance;
-    });
-    
-    it('should set formControl', () => {
-      expect(<AbstractControl> selectValidator.formControl).toEqual(<AbstractControl> paymentFormComponent.form.controls['month']);
-    });
-
-    it('should set formSubmitted', () => {
-      expect(selectValidator.formSubmitted).toBeFalsy();
-    });
-
-    it('should set ErrorStateMatcher', () => {
-      expect(selectValidator.errorStateMatcher).toEqual(paymentFormComponent.monthErrorStateMatcher);
-    });
-
-    describe('when form is submitted', () => {
-      
-      it('should change formSubmitted to true', () => {
-        fixture.debugElement.query(By.css('button')).nativeElement.click();
-        fixture.detectChanges();
-
-        expect(selectValidator.formSubmitted).toBeTruthy();
       });
     });
   });

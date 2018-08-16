@@ -2,7 +2,7 @@ import { initialState, reducer, getShowShippingForm } from "../reducers/shipping
 import { ToggleShowShippingForm, SetShowShippingForm } from "../actions/shipping.actions";
 
 
-describe('Checkout | Shipping | Shipping Reducer', () => {
+describe('Checkout | Shipping Reducer', () => {
 
   let stubShowShippingForm;
 

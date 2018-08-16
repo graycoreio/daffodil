@@ -1,13 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ShippingComponent } from './shipping.component';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { DaffodilAddress } from '@daffodil/core';
-import { By } from '@angular/platform-browser';
-import * as fromFoundationCheckout from '../../../reducers';
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
-import { SetShowShippingForm, ToggleShowShippingForm } from '../../../actions/shipping.actions';
 import { of } from 'rxjs';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { Store, StoreModule, combineReducers } from '@ngrx/store';
+
+import { DaffodilAddress } from '@daffodil/core';
+
+import * as fromFoundationCheckout from '../../../reducers';
+import { SetShowShippingForm, ToggleShowShippingForm } from '../../../actions/shipping.actions';
+import { ShippingComponent } from './shipping.component';
 
 let stubIsShippingInfoValidValue = true;
 let stubDaffodilAddress: DaffodilAddress = {
@@ -23,7 +24,16 @@ let stubSelectedShippingOption: string = 'shipping option';
 let stubShowShippingForm: boolean = true;
 let stubHideContinueToPayment: boolean = false;
 
-@Component({template: '<shipping [isShippingInfoValid]="isShippingInfoValidValue" [shippingInfo]="shippingInfoValue" [selectedShippingOption]="selectedShippingOptionValue" [hideContinueToPayment]="hideContinueToPaymentValue" (updateShippingInfo)="updateShippingInfoFunction($event)" (selectShippingOption)="selectShippingOptionFunction($event)" (continueToPayment)="onContinueToPaymentFunction()"></shipping>'})
+@Component({
+  template: '<shipping ' + 
+              '[isShippingInfoValid]="isShippingInfoValidValue" ' + 
+              '[shippingInfo]="shippingInfoValue" ' + 
+              '[selectedShippingOption]="selectedShippingOptionValue" ' + 
+              '[hideContinueToPayment]="hideContinueToPaymentValue" ' + 
+              '(updateShippingInfo)="updateShippingInfoFunction($event)" ' + 
+              '(selectShippingOption)="selectShippingOptionFunction($event)" ' + 
+              '(continueToPayment)="onContinueToPaymentFunction()"></shipping>'
+})
 class TestShipping {
   isShippingInfoValidValue = stubIsShippingInfoValidValue;
   shippingInfoValue: DaffodilAddress = stubDaffodilAddress;
@@ -81,6 +91,7 @@ describe('ShippingComponent', () => {
     store = TestBed.get(Store);
     spyOn(fromFoundationCheckout, 'selectShowShippingForm').and.returnValue(stubShowShippingForm);
     spyOn(store, 'dispatch');
+
     fixture.detectChanges();
 
     shippingFormComponent = fixture.debugElement.query(By.css('shipping-form')).componentInstance;
@@ -115,34 +126,6 @@ describe('ShippingComponent', () => {
     });
   });
 
-  describe('on <shipping-summary>', () => {
-    
-    it('should set shippingInfo', () => {
-      expect(shippingSummaryComponent.shippingInfo).toEqual(shipping.shippingInfo);
-    });
-
-    it('should set selectedShippingOption', () => {
-      expect(shippingSummaryComponent.selectedShippingOption).toEqual(shipping.selectedShippingOption);
-    });
-
-    it('should set hideContinueToPayment', () => {
-      expect(shippingSummaryComponent.hideContinueToPayment).toEqual(shipping.hideContinueToPayment);
-    });
-  });
-
-  describe('ngOnInit', () => {
-
-    it('should dispatch a SetShowShippingForm action', () => {
-      expect(store.dispatch).toHaveBeenCalledWith(new SetShowShippingForm(!stubIsShippingInfoValidValue));
-    });
-    
-    it('should initialize showShippingForm$', () => {
-      shipping.showShippingForm$.subscribe((showShippingForm) => {
-        expect(showShippingForm).toEqual(stubShowShippingForm);
-      });
-    });
-  });
-
   describe('when shippingFormComponent emits', () => {
     
     describe('updateShippingInfo', () => {
@@ -164,6 +147,21 @@ describe('ShippingComponent', () => {
       it('should call toggleShippingView', () => {
         expect(shipping.toggleShippingView).toHaveBeenCalled();
       });
+    });
+  });
+
+  describe('on <shipping-summary>', () => {
+    
+    it('should set shippingInfo', () => {
+      expect(shippingSummaryComponent.shippingInfo).toEqual(shipping.shippingInfo);
+    });
+
+    it('should set selectedShippingOption', () => {
+      expect(shippingSummaryComponent.selectedShippingOption).toEqual(shipping.selectedShippingOption);
+    });
+
+    it('should set hideContinueToPayment', () => {
+      expect(shippingSummaryComponent.hideContinueToPayment).toEqual(shipping.hideContinueToPayment);
     });
   });
 
@@ -198,6 +196,19 @@ describe('ShippingComponent', () => {
         shippingSummaryComponent.continueToPayment.emit();
 
         expect(component.onContinueToPaymentFunction).toHaveBeenCalled();
+      });
+    });
+  });
+
+  describe('ngOnInit', () => {
+
+    it('should dispatch a SetShowShippingForm action', () => {
+      expect(store.dispatch).toHaveBeenCalledWith(new SetShowShippingForm(!stubIsShippingInfoValidValue));
+    });
+    
+    it('should initialize showShippingForm$', () => {
+      shipping.showShippingForm$.subscribe((showShippingForm) => {
+        expect(showShippingForm).toEqual(stubShowShippingForm);
       });
     });
   });
