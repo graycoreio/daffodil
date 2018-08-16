@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { PanelDirective } from './panel.directive';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
+
+import { PanelDirective } from './panel.directive';
 
 @Component({template: '<div class="panel-wrapper" panel></div>'})
 class TestPanelWrapper {}
@@ -24,6 +24,7 @@ describe('PanelDirective', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestPanelWrapper);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
   });
 

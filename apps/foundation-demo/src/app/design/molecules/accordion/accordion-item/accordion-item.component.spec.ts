@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { AccordionItemComponent } from './accordion-item.component';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
+
+import { AccordionItemComponent } from './accordion-item.component';
 
 @Component({template: '<accordion-item [title]="titleValue" [initiallyActive]="initiallyActiveValue"></accordion-item>'})
 class TestAccordionItemWrapper {
@@ -15,7 +15,7 @@ describe('AccordionItemComponent', () => {
   let fixture: ComponentFixture<TestAccordionItemWrapper>;
   let stubTitle: string;
   let stubInitiallyActive: boolean;
-  let accordionItemComponent;
+  let accordionItemComponent: AccordionItemComponent;
   let accordionButton;
 
   beforeEach(async(() => {
@@ -33,12 +33,12 @@ describe('AccordionItemComponent', () => {
 
     fixture = TestBed.createComponent(TestAccordionItemWrapper);
     component = fixture.componentInstance;
-
     component.titleValue = stubTitle;
     component.initiallyActiveValue = stubInitiallyActive;
 
     fixture.detectChanges();
-    accordionItemComponent = fixture.debugElement.query(By.css('accordion-item'));    
+
+    accordionItemComponent = fixture.debugElement.query(By.css('accordion-item')).componentInstance;    
     accordionButton = fixture.debugElement.query(By.css('.accordion-item__button'));
   });
 
@@ -47,7 +47,7 @@ describe('AccordionItemComponent', () => {
   });
 
   it('should be able to accept an initiallyActive input', () => {
-    expect(accordionItemComponent.componentInstance.initiallyActive).toEqual(stubInitiallyActive);
+    expect(accordionItemComponent.initiallyActive).toEqual(stubInitiallyActive);
   });
 
   describe('ngOnInit', () => {
@@ -55,17 +55,17 @@ describe('AccordionItemComponent', () => {
     describe('when initiallyActive is true', () => {
       
       it('should set open to true', () => {
-        expect(accordionItemComponent.componentInstance.open).toBeTruthy();
+        expect(accordionItemComponent.open).toBeTruthy();
       });
     });
 
     describe('when initiallyActive is not set', () => {
       
       it('should set open to false', () => {
-        accordionItemComponent.componentInstance.initiallyActive = null;
-        accordionItemComponent.componentInstance.ngOnInit();
+        accordionItemComponent.initiallyActive = null;
+        accordionItemComponent.ngOnInit();
         
-        expect(accordionItemComponent.componentInstance.open).toBeFalsy();
+        expect(accordionItemComponent.open).toBeFalsy();
       });
     });
   });
@@ -73,37 +73,37 @@ describe('AccordionItemComponent', () => {
   describe('when accordion button is clicked', () => {
 
     beforeEach(() => {
-      spyOn(accordionItemComponent.componentInstance, 'toggleActive');
+      spyOn(accordionItemComponent, 'toggleActive');
       
       accordionButton.nativeElement.click();
     });
 
     it('should call toggleActive', () => {
-      expect(accordionItemComponent.componentInstance.toggleActive);
+      expect(accordionItemComponent.toggleActive);
     });
   });
 
   describe('toggleActive', () => {
     
     it('should toggle active', () => {
-      accordionItemComponent.componentInstance.open = false;
-      accordionItemComponent.componentInstance.toggleActive();
+      accordionItemComponent.open = false;
+      accordionItemComponent.toggleActive();
 
-      expect(accordionItemComponent.componentInstance.open).toBeTruthy();
+      expect(accordionItemComponent.open).toBeTruthy();
     });
   });
 
   describe('isOpen getter', () => {
 
     it('should return open', () => {
-      expect(accordionItemComponent.componentInstance.isOpen).toEqual(accordionItemComponent.componentInstance.open);
+      expect(accordionItemComponent.isOpen).toEqual(accordionItemComponent.open);
     });
   });
 
   describe('when open is true', () => {
 
     beforeEach(() => {
-      accordionItemComponent.componentInstance.open = true;
+      accordionItemComponent.open = true;
 
       fixture.detectChanges();
     });
@@ -118,7 +118,7 @@ describe('AccordionItemComponent', () => {
   describe('when active is false', () => {
 
     beforeEach(() => {
-      accordionItemComponent.componentInstance.open = false;
+      accordionItemComponent.open = false;
 
       fixture.detectChanges();
     });

@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { SelectValidatorComponent } from './select-validator.component';
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+
+import { SelectValidatorComponent } from './select-validator.component';
 import { ErrorStateMatcher } from '../error-state-matcher/error-state-matcher.component';
 
 @Component({template: '<select select-validator [formSubmitted]="formSubmittedValue" [formControl]="formControlValue" [errorStateMatcher]="errorStateMatcherValue"></select>'})
@@ -123,7 +123,6 @@ describe('SelectValidatorComponent', () => {
 
     beforeEach(() => {
       returnedValue = false;
-      // spyOn(selectValidator.errorStateMatcher, 'isErrorState').and.returnValue(returnedValue);      
 
       fixture.debugElement.query(By.css('select')).nativeElement.touched = true;
     });
