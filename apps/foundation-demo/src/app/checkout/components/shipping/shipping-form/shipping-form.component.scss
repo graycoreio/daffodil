@@ -3,11 +3,10 @@
 .shipping-form {
   display: grid;
   grid-column-gap: 10px;
-  grid-row-gap: 10px;
-  @include section-divider();
+  grid-row-gap: 15px;
 
   &__title {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     @include embolden();
     @include uppercase();
   }
@@ -15,11 +14,12 @@
   @include breakpoint(large) {
     grid-template-columns: repeat(6, 1fr);
     grid-template-areas: 
-      "    title     title      title       title       title       title"
-      "firstname firstname  firstname    lastname    lastname    lastname"
-      "   street    street     street      street      street      street"
-      "     city      city      state       state    postcode    postcode"
+      "    title     title       title       title       title       title"
+      "firstname firstname   firstname    lastname    lastname    lastname"
+      "   street    street      street      street      street      street"
+      "     city      city       state       state    postcode    postcode"
       "telephone telephone   telephone free-space1 free-space1 free-space1"
+      "  options   options     options     options     options     options"
       "   button    button free-space2 free-space2 free-space2 free-space2";
 
     &__title {
@@ -54,6 +54,10 @@
       grid-area: telephone;
     }
 
+    &__options {
+      grid-area: options;
+    }
+
     & button {
       grid-area: button;
     }
@@ -72,6 +76,6 @@
   }
 
   & button {
-    margin: 25px 0;
+    margin: 10px 0 0 0;
   }
 }

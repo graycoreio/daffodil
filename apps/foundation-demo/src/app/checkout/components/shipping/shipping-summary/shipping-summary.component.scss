@@ -6,12 +6,17 @@
   display: grid;
   grid-template-columns: 4fr 1fr;
   grid-template-areas: 
-    "  title       edit"
-    "address free-space"
-    "options free-space"
-    " button     button";
+    "   title       edit"
+    " address free-space"
+    "subtitle free-space"
+    "  option free-space"
+    "  button     button";
 
   &__title {
+    font-size: $global-font-size;
+    margin-bottom: 15px;
+    @include embolden();
+    @include uppercase();
     grid-area: title;
   }
 
@@ -21,10 +26,24 @@
 
   & a {
     grid-area: edit;
+    display: block;
+    text-decoration: underline;
+    justify-self: end;
+
+    @include breakpoint(large) {
+      justify-self: start;
+      margin: 15px 0 10px 0;
+    }
   }
 
-  &__options {
-    grid-area: options;
+  &__subtitle {
+    margin-top: 15px;
+    @include embolden();
+    grid-area: subtitle;
+  }
+
+  &__selected-shipping-option {
+    grid-area: option;
   }
 
   & button {
@@ -37,39 +56,23 @@
 
   @include breakpoint(large) {
     grid-template-areas: 
-      "  title      title"
-      "address    address"
-      "   edit       edit"
-      "options    options"
-      " button free-space";
+      "   title      title"
+      " address    address"
+      "    edit       edit"
+      "subtitle   subtitle"
+      "  option     option"
+      "  button free-space";
     grid-template-columns: repeat(2, 1fr);
   }
 
   @include breakpoint(xlarge) {
     grid-template-areas:
-      "  title      title      title"
-      "address    address    address"
-      "   edit       edit       edit"
-      "options    options    options"
-      " button free-space free-space";
+      "   title      title      title"
+      " address    address    address"
+      "    edit       edit       edit"
+      "subtitle   subtitle   subtitle"
+      "  option     option     option"
+      "  button free-space free-space";
     grid-template-columns: repeat(3, 1fr);
-  }
-
-  &__title {
-    font-size: $global-font-size;
-    margin-bottom: 15px;
-    @include embolden();
-    @include uppercase();
-  }
-
-  & a {
-    display: block;
-    text-decoration: underline;
-    justify-self: end;
-
-    @include breakpoint(large) {
-      justify-self: start;
-      margin: 15px 0 10px 0;
-    }
   }
 }

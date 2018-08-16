@@ -39,6 +39,6 @@
     name="telephone"
     [formControl]="form.controls['telephone']"
     [formSubmitted]="ngForm.submitted"/>
-  <shipping-options class="shipping-summary__options" [selectedShippingOption]="selectedShippingOption" [shippingOptions]="shippingOptions" (selectShippingOption)="onSelectShippingOption($event)"></shipping-options>
+  <shipping-options class="shipping-form__options" [selectedShippingOption]="selectedShippingOption" [shippingOptions]="shippingOptions" (selectShippingOption)="onSelectShippingOption($event)"></shipping-options>
   <button type="submit" class="button large expanded" [disabled]="!selectedShippingOption">Continue to Payment</button>
 </form>
