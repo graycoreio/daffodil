@@ -19,6 +19,6 @@ export class CartItemComponent implements OnInit {
   }
 
   redirectToProduct() {
-    this.router.navigateByUrl('/product/' + this.item.item_id);
+    this.router.navigateByUrl('/product/' + this.item.product_id);
   }
 }

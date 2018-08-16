@@ -84,7 +84,7 @@ describe('CartItemComponent', () => {
     it('should call router.navigateByUrl', () => {
       cartItemComponent.componentInstance.redirectToProduct();
 
-      expect(router.navigateByUrl).toHaveBeenCalledWith('/product/' + mockCartItem.item_id);
+      expect(router.navigateByUrl).toHaveBeenCalledWith('/product/' + mockCartItem.product_id);
     });
   });
 
