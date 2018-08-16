@@ -1,10 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ShippingFormComponent } from './shipping-form.component';
+import { Component, Input } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormControl, FormGroup, AbstractControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { Component, Input } from '@angular/core';
+
 import { DaffodilAddress } from '@daffodil/core';
+
+import { ShippingFormComponent } from './shipping-form.component';
 import { ErrorStateMatcher } from '../../../../design/molecules/error-state-matcher/error-state-matcher.component';
 
 @Component({'template': '<shipping-form [shippingInfo]="shippingInfoValue" (updateShippingInfo)="onUpdateShippingInfoFunction($event)"></shipping-form>'})
@@ -53,6 +54,7 @@ describe('ShippingFormComponent', () => {
     component = fixture.componentInstance;
     component.shippingInfoValue = stubShippingInfo;
     component.onUpdateShippingInfoFunction = () => {};
+    
     fixture.detectChanges();
 
     shippingFormComponent = fixture.debugElement.query(By.css('shipping-form')).componentInstance;

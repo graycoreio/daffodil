@@ -1,9 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { By } from '@angular/platform-browser';
+
+import { PaymentInfo } from '@daffodil/core';
 
 import { PaymentSummaryComponent } from './payment-summary.component';
-import { Component } from '@angular/core';
-import { PaymentInfo } from '@daffodil/core';
-import { By } from '@angular/platform-browser';
 
 let stubPaymentInfo: PaymentInfo = {
   name: 'test',
@@ -13,7 +14,11 @@ let stubPaymentInfo: PaymentInfo = {
   securitycode: 123
 };
 
-@Component({template: '<payment-summary [paymentInfo]="paymentInfoValue" (editPaymentInfo)="editPaymentInfoFunction()"></payment-summary>'})
+@Component({
+  template: '<payment-summary ' + 
+              '[paymentInfo]="paymentInfoValue" '+ 
+              '(editPaymentInfo)="editPaymentInfoFunction()"></payment-summary>'
+})
 class TestPaymentSummaryWrapper {
   paymentInfoValue: PaymentInfo = stubPaymentInfo;
   editPaymentInfoFunction: Function = () => {};

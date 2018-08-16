@@ -1,13 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { PaymentComponent } from './payment.component';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { PaymentInfo, BillingFactory, DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
 import { By } from '@angular/platform-browser';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
-import * as fromFoundationCheckout from '../../../reducers';
-import { ShowPaymentForm, ToggleShowPaymentForm, HidePaymentForm } from '../../../actions/payment.actions';
 import { of } from 'rxjs';
+
+import { PaymentInfo, BillingFactory, DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
+
+import { ShowPaymentForm, ToggleShowPaymentForm, HidePaymentForm } from '../../../actions/payment.actions';
+import * as fromFoundationCheckout from '../../../reducers';
+import { PaymentComponent } from './payment.component';
 
 let billingFactory = new BillingFactory();
 let daffodilAddressFactory = new DaffodilAddressFactory();
@@ -16,7 +17,15 @@ let stubBillingAddress = daffodilAddressFactory.create();
 let stubShowPaymentForm = true;
 let stubBillingAddressIsShippingAddress = false;
 
-@Component({template: '<payment [paymentInfo]="paymentInfoValue" [billingAddress]="billingAddressValue" [billingAddressIsShippingAddress]="billingAddressIsShippingAddressValue" (updatePaymentInfo)="updatePaymentInfoFunction($event)" (updateBillingAddress)="updateBillingAddressFunction($event)" (toggleBillingAddressIsShippingAddress)="toggleBillingAddressIsShippingAddressFunction()"></payment>'})
+@Component({
+  template: '<payment ' +
+              '[paymentInfo]="paymentInfoValue" ' + 
+              '[billingAddress]="billingAddressValue" ' + 
+              '[billingAddressIsShippingAddress]="billingAddressIsShippingAddressValue" ' + 
+              '(updatePaymentInfo)="updatePaymentInfoFunction($event)" ' + 
+              '(updateBillingAddress)="updateBillingAddressFunction($event)" ' + 
+              '(toggleBillingAddressIsShippingAddress)="toggleBillingAddressIsShippingAddressFunction()"></payment>'
+})
 class TestPaymentComponentWrapper {
   paymentInfoValue: PaymentInfo = stubPaymentInfo;
   billingAddressValue: DaffodilAddress = stubBillingAddress;
@@ -81,6 +90,7 @@ describe('PaymentComponent', () => {
     store = TestBed.get(Store);
     spyOn(fromFoundationCheckout, 'selectShowPaymentForm').and.returnValue(stubShowPaymentForm);
     spyOn(store, 'dispatch');
+    
     fixture.detectChanges();
 
     payment = fixture.debugElement.query(By.css('payment')).componentInstance;

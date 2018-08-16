@@ -9,7 +9,12 @@ let shippingFactory: ShippingFactory = new ShippingFactory();
 let stubShippingOptions = shippingFactory.createShippingOptions();
 let stubSelectedShippingOption = stubShippingOptions[0].id;
 
-@Component({template: '<shipping-options [selectedShippingOption]="selectedShippingOptionValue" [shippingOptions]="shippingOptionsValue" (selectShippingOption)="selectShippingOptionFunction($event)"></shipping-options>'})
+@Component({
+  template: '<shipping-options ' + 
+              '[selectedShippingOption]="selectedShippingOptionValue" ' + 
+              '[shippingOptions]="shippingOptionsValue" ' + 
+              '(selectShippingOption)="selectShippingOptionFunction($event)"></shipping-options>'
+})
 class TestShippingOptionsWrapper {
   selectedShippingOptionValue: string = stubSelectedShippingOption;
   shippingOptionsValue: ShippingOption[] = stubShippingOptions;

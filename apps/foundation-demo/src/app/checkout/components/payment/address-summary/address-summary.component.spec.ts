@@ -1,9 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { By } from '@angular/platform-browser';
+
+import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
 
 import { AddressSummaryComponent } from './address-summary.component';
-import { Component } from '@angular/core';
-import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
-import { By } from '@angular/platform-browser';
 
 let daffodilAddressFactory = new DaffodilAddressFactory();
 let stubDaffodilAddress = daffodilAddressFactory.create();
@@ -16,7 +17,7 @@ class TestShippingSummaryWrapper {
 describe('AddressSummaryComponent', () => {
   let component: TestShippingSummaryWrapper;
   let fixture: ComponentFixture<TestShippingSummaryWrapper>;
-  let addressSummary;
+  let addressSummary: AddressSummaryComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -31,6 +32,7 @@ describe('AddressSummaryComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestShippingSummaryWrapper);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
 
     addressSummary = fixture.debugElement.query(By.css('address-summary')).componentInstance;

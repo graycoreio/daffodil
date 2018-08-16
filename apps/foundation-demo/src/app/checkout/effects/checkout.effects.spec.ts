@@ -1,10 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-
 import { provideMockActions } from '@ngrx/effects/testing';
-
 import { Observable } from 'rxjs/Observable';
-
 import { hot, cold } from 'jasmine-marbles';
+
 import { CheckoutEffects } from './checkout.effects';
 import { ToggleShowPaymentForm } from '../actions/payment.actions';
 import { ShowReviewView } from '../actions/checkout.actions';
