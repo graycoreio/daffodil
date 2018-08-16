@@ -63,7 +63,7 @@ describe('CheckoutCartItemComponent', () => {
       it('should call router.navigateByUrl', () => {
         cartItemComponent.redirectToProduct();
 
-        expect(router.navigateByUrl).toHaveBeenCalledWith('/product/' + mockCartItem.item_id);
+        expect(router.navigateByUrl).toHaveBeenCalledWith('/product/' + mockCartItem.product_id);
       });
     });
 
