@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
 import { Product, ProductFactory } from '@daffodil/core';
 
 import { ProductComponent } from './product.component';
-import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Router } from '@angular/router';
 import { Image } from '../../../design/interfaces/image';
 import { QtyDropdownComponent } from '../../../design/molecules/qty-dropdown/qty-dropdown.component';
 import { ImageGalleryComponent } from '../../../design/molecules/image-gallery/image-gallery.component';
@@ -73,10 +73,10 @@ describe('ProductComponent', () => {
     component = fixture.componentInstance;
     router = TestBed.get(Router);
     spyOn(router, 'navigateByUrl');
-
     component.productValue = stubProduct;
     component.qtyValue = stubQty;
     component.updateQtyFunction = mockFunction;
+    
     fixture.detectChanges();
 
     productComponent = fixture.debugElement.query(By.css('product')).componentInstance;
@@ -92,6 +92,40 @@ describe('ProductComponent', () => {
 
   it('should be able to take a qty input', () => {
     expect(productComponent.qty).toEqual(stubQty);
+  });
+
+  describe('on <image-gallery>', () => {
+    
+    it('should set images', () => {
+      let imageGalleryComponent:ImageGalleryComponent = fixture.debugElement.query(By.css('image-gallery')).componentInstance;
+
+      expect(imageGalleryComponent.images).toEqual(productComponent.images);
+    });
+  });
+
+  describe('on <qty-dropdown>', () => {
+
+    let qtyDropdownComponent: QtyDropdownComponent;
+
+    beforeEach(() => {
+      qtyDropdownComponent = fixture.debugElement.query(By.css('qty-dropdown')).componentInstance;
+    });
+
+    it('should set id', () => {
+      expect(qtyDropdownComponent.id.toString()).toEqual(stubProduct.id);
+    });
+   
+    it('should set qty', () => {
+      expect(qtyDropdownComponent.qty).toEqual(stubQty);      
+    });
+
+    it('should call updateQty.emit when qtyChanged is called', () => {
+      spyOn(productComponent.updateQty, 'emit');
+      let newQty = 2;
+      qtyDropdownComponent.qtyChanged.emit(newQty);
+
+      expect(productComponent.updateQty.emit).toHaveBeenCalledWith(newQty);
+    });
   });
 
   it('should call updateQtyFunction when updateQty is emitted', () => {
@@ -131,40 +165,6 @@ describe('ProductComponent', () => {
       fixture.detectChanges();
       
       expect(router.navigateByUrl).toHaveBeenCalledWith('/404');
-    });
-  });
-
-  describe('on <image-gallery>', () => {
-    
-    it('should set images', () => {
-      let imageGalleryComponent:ImageGalleryComponent = fixture.debugElement.query(By.css('image-gallery')).componentInstance;
-
-      expect(imageGalleryComponent.images).toEqual(productComponent.images);
-    });
-  });
-
-  describe('on <qty-dropdown>', () => {
-
-    let qtyDropdownComponent: QtyDropdownComponent;
-
-    beforeEach(() => {
-      qtyDropdownComponent = fixture.debugElement.query(By.css('qty-dropdown')).componentInstance;
-    });
-
-    it('should set id', () => {
-      expect(qtyDropdownComponent.id.toString()).toEqual(stubProduct.id);
-    });
-   
-    it('should set qty', () => {
-      expect(qtyDropdownComponent.qty).toEqual(stubQty);      
-    });
-
-    it('should call updateQty.emit when qtyChanged is called', () => {
-      spyOn(productComponent.updateQty, 'emit');
-      let newQty = 2;
-      qtyDropdownComponent.qtyChanged.emit(newQty);
-
-      expect(productComponent.updateQty.emit).toHaveBeenCalledWith(newQty);
     });
   });
 });

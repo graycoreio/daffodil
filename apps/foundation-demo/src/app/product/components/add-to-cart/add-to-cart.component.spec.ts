@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { AddToCartComponent } from './add-to-cart.component';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+
+import { AddToCartComponent } from './add-to-cart.component';
 
 @Component({template: '<add-to-cart (addToCart)="eventCatcher()" [additive]="additiveValue" [qty]="qtyValue"></add-to-cart>'})
 class AddToCartWrapperTest {
@@ -34,6 +34,7 @@ describe('AddToCartComponent', () => {
     fixture = TestBed.createComponent(AddToCartWrapperTest);
     component = fixture.componentInstance;
     component.eventCatcher = () => {};
+    
     fixture.detectChanges();
 
     addToCartComponent = fixture.debugElement.query(By.css('add-to-cart')).componentInstance;
