@@ -9,7 +9,7 @@ import { ShippingFactory } from '@daffodil/core/testing';
 
 let shippingFactory: ShippingFactory = new ShippingFactory();
 let stubShippingOptions = shippingFactory.createShippingOptions();
-let stubSelectedShippingOption = stubShippingOptions[0].id;
+let stubSelectedShippingOption = stubShippingOptions[0].text;
 
 @Component({
   template: '<shipping-options ' + 

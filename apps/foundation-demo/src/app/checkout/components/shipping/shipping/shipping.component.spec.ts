@@ -22,14 +22,13 @@ let stubDaffodilAddress: DaffodilAddress = {
 }
 let stubSelectedShippingOption: string = 'shipping option';
 let stubShowShippingForm: boolean = true;
-let stubHideContinueToPayment: boolean = false;
+let stubShowPaymentView: boolean = false;
 
 @Component({
-  template: '<shipping ' + 
-              '[isShippingInfoValid]="isShippingInfoValidValue" ' + 
+  template: '<shipping [isShippingInfoValid]="isShippingInfoValidValue" ' + 
               '[shippingInfo]="shippingInfoValue" ' + 
               '[selectedShippingOption]="selectedShippingOptionValue" ' + 
-              '[hideContinueToPayment]="hideContinueToPaymentValue" ' + 
+              '[showPaymentView]="showPaymentViewValue" ' + 
               '(updateShippingInfo)="updateShippingInfoFunction($event)" ' + 
               '(selectShippingOption)="selectShippingOptionFunction($event)" ' + 
               '(continueToPayment)="onContinueToPaymentFunction()"></shipping>'
@@ -38,7 +37,7 @@ class TestShipping {
   isShippingInfoValidValue = stubIsShippingInfoValidValue;
   shippingInfoValue: DaffodilAddress = stubDaffodilAddress;
   selectedShippingOptionValue: string = stubSelectedShippingOption;
-  hideContinueToPaymentValue: boolean = stubHideContinueToPayment;
+  showPaymentViewValue: boolean = stubShowPaymentView;
   updateShippingInfoFunction: Function = () => {};
   selectShippingOptionFunction: Function = () => {};
   onContinueToPaymentFunction: Function = () => {};
@@ -48,6 +47,7 @@ class TestShipping {
 class MockShippingFormComponent {
   @Input() shippingInfo: DaffodilAddress;
   @Input() selectedShippingOption: string;
+  @Input() hideContinueToPayment: boolean;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
   @Output() continueToPayment: EventEmitter<any> = new EventEmitter();
@@ -115,8 +115,8 @@ describe('ShippingComponent', () => {
     expect(shipping.selectedShippingOption).toEqual(stubSelectedShippingOption);
   });
 
-  it('should be able to take hideContinueToPayment as input', () => {
-    expect(shipping.hideContinueToPayment).toEqual(stubHideContinueToPayment);
+  it('should be able to take showPaymentView as input', () => {
+    expect(shipping.showPaymentView).toEqual(stubShowPaymentView);
   });
 
   describe('on <shipping-form>', () => {
@@ -126,7 +126,11 @@ describe('ShippingComponent', () => {
     });
 
     it('should set selectedShippingOption', () => {
-      expect(shippingSummaryComponent.selectedShippingOption).toEqual(shipping.selectedShippingOption);
+      expect(shippingFormComponent.selectedShippingOption).toEqual(shipping.selectedShippingOption);
+    });
+
+    it('should set hideContinueToPayment', () => {
+      expect(shippingFormComponent.hideContinueToPayment).toEqual(shipping.showPaymentView);
     });
   });
 

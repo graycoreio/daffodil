@@ -3,6 +3,7 @@
     [hidden]="!(showShippingForm$ | async)"
     [shippingInfo]="shippingInfo" 
     [selectedShippingOption]="selectedShippingOption"
+    [hideContinueToPayment]="showPaymentView"
     (updateShippingInfo)="onUpdateShippingInfo($event)"
     (selectShippingOption)="onSelectShippingOption($event)"
     (continueToPayment)="onContinueToPayment()"></shipping-form>
