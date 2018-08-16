@@ -89,12 +89,13 @@
     }
   }
   
+
   &__loading-icon {
-    margin: 0 auto;
+    padding: 20px calc(50% - 37px);
 
     @include breakpoint(large) {
-      grid-column: span 3;
-      margin-top: 20px;
+      padding-top: 0;
+      grid-column: 1 / -1;
     }
   }
 }

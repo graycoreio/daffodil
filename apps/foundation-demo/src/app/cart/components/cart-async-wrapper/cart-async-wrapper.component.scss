@@ -26,10 +26,11 @@
   }
 
   &__loading-icon {
-    margin: 20px auto;
+    padding: 40px calc(50% - 37px);
 
     @include breakpoint(large) {
-      grid-column: span 3;
+      padding-top: 0;
+      grid-column: 1 / -1;
     }
   }
 
