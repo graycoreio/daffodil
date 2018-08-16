@@ -16,6 +16,7 @@ describe('HelpBoxComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HelpBoxComponent);
     component = fixture.componentInstance;
+    
     fixture.detectChanges();
   });
 
