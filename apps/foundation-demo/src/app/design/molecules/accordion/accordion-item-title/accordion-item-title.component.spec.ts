@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { AccordionItemTitleComponent } from './accordion-item-title.component';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
+
+import { AccordionItemTitleComponent } from './accordion-item-title.component';
 
 @Component({template: '<div class="accordion-item-title-wrapper" accordion-item-title>Title</div>'})
 class TestAccordionItemTitleWrapper {}
@@ -24,6 +24,7 @@ describe('AccordionItemTitleComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestAccordionItemTitleWrapper);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
   });
 

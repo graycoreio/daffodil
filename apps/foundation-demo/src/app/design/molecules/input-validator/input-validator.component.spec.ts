@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { InputValidatorComponent } from './input-validator.component';
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+
+import { InputValidatorComponent } from './input-validator.component';
 import { ErrorStateMatcher } from '../error-state-matcher/error-state-matcher.component';
 
 @Component({template: '<input input-validator [formSubmitted]="formSubmittedValue" [formControl]="formControlValue" [errorStateMatcher]="errorStateMatcherValue"/>'})

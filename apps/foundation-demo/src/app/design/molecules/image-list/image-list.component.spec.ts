@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 import { ImageListComponent } from './image-list.component';
-import { Component, DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
 import { Image } from '../../interfaces/image';
 import { ImageFactory } from '../../testing/factories/image.factory';
 
@@ -16,7 +16,7 @@ class TestImageListWrapper {
 describe('ImageListComponent', () => {
   let component: TestImageListWrapper;
   let fixture: ComponentFixture<TestImageListWrapper>;
-  let imageListComponent: DebugElement;
+  let imageListComponent: ImageListComponent;
   let stubImages: Image[];
 
   beforeEach(async(() => {
@@ -32,19 +32,17 @@ describe('ImageListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestImageListWrapper);
     component = fixture.componentInstance;
+
     stubImages = [
       new ImageFactory().create(),
       new ImageFactory().create(),
     ];
-
     component.selectedImgFunction = () => {};
     component.images = stubImages;
     component.selectedImageValue = stubImages[1]
-
     spyOn(component, 'selectedImgFunction');
-    
-    imageListComponent = fixture.debugElement.query(By.css('image-list'));
-    spyOn(imageListComponent.componentInstance, 'select').and.callThrough();
+    imageListComponent = fixture.debugElement.query(By.css('image-list')).componentInstance;
+    spyOn(imageListComponent, 'select').and.callThrough();
 
     fixture.detectChanges();
   });
@@ -54,7 +52,7 @@ describe('ImageListComponent', () => {
   });
 
   it('should be able to take images as input', () => {
-    expect(imageListComponent.componentInstance.images).toEqual(stubImages);
+    expect(imageListComponent.images).toEqual(stubImages);
   });
 
   describe('ngOnInit', () => {
@@ -62,7 +60,7 @@ describe('ImageListComponent', () => {
     describe('when selectedImage is given as Input', () => {
 
       it('should set selectedImage as selectedImage', () => {
-        expect(imageListComponent.componentInstance.selectedImage).toEqual(stubImages[1]);
+        expect(imageListComponent.selectedImage).toEqual(stubImages[1]);
       });
     });
 
@@ -73,9 +71,9 @@ describe('ImageListComponent', () => {
         component = fixture.componentInstance;
         component.images = stubImages;
         fixture.detectChanges();
-        imageListComponent = fixture.debugElement.query(By.css('image-list'));
+        imageListComponent = fixture.debugElement.query(By.css('image-list')).componentInstance;
 
-        expect(imageListComponent.componentInstance.selectedImage).toEqual(stubImages[0]);
+        expect(imageListComponent.selectedImage).toEqual(stubImages[0]);
       });
     });
   });
@@ -83,7 +81,7 @@ describe('ImageListComponent', () => {
   describe('when imageSelected is emitted', () => {
     
     it('should call the given function', () => {
-      imageListComponent.componentInstance.imageSelected.emit(stubImages[0]);
+      imageListComponent.imageSelected.emit(stubImages[0]);
       expect(component.selectedImgFunction).toHaveBeenCalledWith(stubImages[0]);
     });
   });
@@ -91,10 +89,10 @@ describe('ImageListComponent', () => {
   describe('select', () => {
 
     it('should call imageSelected.emit', () => {
-      spyOn(imageListComponent.componentInstance.imageSelected, 'emit');
+      spyOn(imageListComponent.imageSelected, 'emit');
 
-      imageListComponent.componentInstance.select(stubImages[0]);
-      expect(imageListComponent.componentInstance.imageSelected.emit).toHaveBeenCalledWith(stubImages[0]);
+      imageListComponent.select(stubImages[0]);
+      expect(imageListComponent.imageSelected.emit).toHaveBeenCalledWith(stubImages[0]);
     })
   });
 
@@ -104,7 +102,7 @@ describe('ImageListComponent', () => {
       let images = fixture.debugElement.queryAll(By.css('img'));
       images[0].nativeElement.click();
 
-      expect(imageListComponent.componentInstance.select).toHaveBeenCalledWith(stubImages[0]);
+      expect(imageListComponent.select).toHaveBeenCalledWith(stubImages[0]);
     });
   });
 });

@@ -1,5 +1,6 @@
-import { ErrorStateMatcher } from './error-state-matcher.component';
 import { FormControl } from '@angular/forms';
+
+import { ErrorStateMatcher } from './error-state-matcher.component';
 
 describe('ErrorStateMatcher', () => {
   let component: ErrorStateMatcher;

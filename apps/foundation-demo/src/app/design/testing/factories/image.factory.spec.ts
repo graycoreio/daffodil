@@ -1,10 +1,11 @@
 import { TestBed } from '@angular/core/testing';
+
 import { ImageFactory } from './image.factory';
 import { Image } from '../../interfaces/image';
 
 describe('ImageFactory', () => {
   
-  let imageFactory;
+  let imageFactory: ImageFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
