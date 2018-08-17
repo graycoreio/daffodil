@@ -60,12 +60,36 @@ describe('ShippingOptionsComponent', () => {
 
   describe('when radio is clicked', () => {
     
-    it('should call onSelectShippingOption', () => {
+    it('should not call onSelectShippingOption', () => {
       spyOn(shippingOptionsComponent, 'onSelectShippingOption');
 
       shippingOptionsRadios[0].nativeElement.click();
 
-      expect(shippingOptionsComponent.onSelectShippingOption).toHaveBeenCalledWith(stubShippingOptions[0].id);
+      expect(shippingOptionsComponent.onSelectShippingOption).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('when radio input is clicked', () => {
+    
+    it('should call onSelectShippingOption', () => {
+      let radioInputs = fixture.debugElement.queryAll(By.css('input'));
+      spyOn(shippingOptionsComponent, 'onSelectShippingOption');
+
+      radioInputs[0].nativeElement.click();
+
+      expect(shippingOptionsComponent.onSelectShippingOption).toHaveBeenCalledWith(stubShippingOptions[0].text);
+    });
+  });
+
+  describe('when radio label is clicked', () => {
+    
+    it('should call onSelectShippingOption', () => {
+      let radioLabels = fixture.debugElement.queryAll(By.css('label'));
+      spyOn(shippingOptionsComponent, 'onSelectShippingOption');
+
+      radioLabels[0].nativeElement.click();
+
+      expect(shippingOptionsComponent.onSelectShippingOption).toHaveBeenCalledWith(stubShippingOptions[0].text);
     });
   });
 
