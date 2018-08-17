@@ -1,11 +1,11 @@
 import { TestBed, async } from "@angular/core/testing";
-
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
-import * as fromProduct from './index';
-import { ProductGridLoadSuccess } from "../actions/product-grid.actions";
 import { Product, ProductFactory } from "@daffodil/core";
+
 import { ProductLoad } from "../actions/product.actions";
+import { ProductGridLoadSuccess } from "../actions/product-grid.actions";
+import * as fromProduct from './index';
 
 describe('selectProductState', () => {
 

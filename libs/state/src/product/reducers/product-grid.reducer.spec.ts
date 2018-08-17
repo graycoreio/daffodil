@@ -1,11 +1,12 @@
 import { Product, ProductFactory } from "@daffodil/core";
-import { initialState, reducer, getProductGridLoading } from "../reducers/product-grid.reducer";
+
 import { ProductGridLoad, ProductGridLoadSuccess, ProductGridLoadFailure } from "../actions/product-grid.actions";
+import { initialState, reducer, getProductGridLoading } from "../reducers/product-grid.reducer";
 
 
 describe('Product | Product Grid Reducer', () => {
 
-  let productFactory;
+  let productFactory: ProductFactory;
   let product: Product;
 
   beforeEach(() => {

@@ -1,22 +1,17 @@
-import { TestBed, inject } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-
 import { hot, cold } from 'jasmine-marbles';
 
-import { ProductEffects } from './product.effects';
+import { Product, ProductFactory, DaffodilConfigFactory } from '@daffodil/core';
 
-import { ProductTestingModule } from '../testing/product-testing.module';
-import { ProductService } from '../services/product.service';
-import { ProductFactory } from '@daffodil/core';
-import { Product } from '@daffodil/core';
 import { ProductLoad, ProductLoadSuccess, ProductLoadFailure } from '../actions/product.actions';
-
+import { ProductEffects } from './product.effects';
 import { DaffodilConfigService } from '../../config/daffodil-config.service';
-import { DaffodilConfigFactory } from '@daffodil/core';
+import { ProductService } from '../services/product.service';
+import { ProductTestingModule } from '../testing/product-testing.module';
+
 
 describe('ProductEffects', () => {
   let actions$: Observable<any>;

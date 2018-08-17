@@ -1,23 +1,30 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Component } from '@angular/core';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
+import { By } from '@angular/platform-browser';
 
-import { ProductContainer } from './product.component';
 import { ProductFactory } from '@daffodil/core';
 import { Product } from '@daffodil/core';
 
+import { ProductContainer } from './product.component';
+import { AddToCart } from '../../../cart/actions/cart.actions';
 import { ProductLoad, UpdateQty } from '../../actions/product.actions';
 import * as fromProduct from '../../reducers/index';
-import { AddToCart } from '../../../cart/actions/cart.actions';
+
+@Component({template: '<div product-container #ProductContainer="ProductContainer" [selectedProductId]="selectedProductIdValue"></div>'})
+class TestProductContainerWrapper {
+  selectedProductIdValue: string;
+}
 
 describe('ProductContainer', () => {
-  let component: ProductContainer;
-  let fixture: ComponentFixture<ProductContainer>;
+  let component: TestProductContainerWrapper;
+  let fixture: ComponentFixture<TestProductContainerWrapper>;
   let store;
   let initialLoading: boolean;
   let initialProduct: Product;
   let initialQty: number;
   let productFactory = new ProductFactory();
+  let productContainer: ProductContainer;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -26,13 +33,16 @@ describe('ProductContainer', () => {
           products: combineReducers(fromProduct.reducers),
         })
       ],
-      declarations: [ ProductContainer ]
+      declarations: [ 
+        TestProductContainerWrapper,
+        ProductContainer
+      ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProductContainer);
+    fixture = TestBed.createComponent(TestProductContainerWrapper);
     component = fixture.componentInstance;
     store = TestBed.get(Store);
 
@@ -40,7 +50,7 @@ describe('ProductContainer', () => {
     initialProduct = productFactory.create();
     initialQty = 1;
 
-    component.selectedProductId = initialProduct.id;
+    component.selectedProductIdValue = initialProduct.id;
 
     spyOn(fromProduct, 'selectSelectedProductLoadingState').and.returnValue(initialLoading);
     spyOn(fromProduct, 'selectSelectedProduct').and.returnValue(initialProduct);
@@ -48,32 +58,38 @@ describe('ProductContainer', () => {
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();
+
+    productContainer = fixture.debugElement.query(By.css('[product-container]')).componentInstance;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should be able to take a selectedProductId as input', () => {
+    expect(productContainer.selectedProductId).toEqual(component.selectedProductIdValue);
+  });
+
   describe('ngInit', () => {
     
     it('dispatches a ProductLoad action', () => {
-      expect(store.dispatch).toHaveBeenCalledWith(new ProductLoad(component.selectedProductId));
+      expect(store.dispatch).toHaveBeenCalledWith(new ProductLoad(productContainer.selectedProductId));
     });
 
     it('initializes loading$', () => {
-      component.loading$.subscribe((loading) => {
+      productContainer.loading$.subscribe((loading) => {
         expect(loading).toEqual(initialLoading);
       });
     });
 
     it('initializes product$', () => {
-      component.product$.subscribe((product) => {
+      productContainer.product$.subscribe((product) => {
         expect(product).toEqual(initialProduct);
       });
     });
 
     it('initializes qty$', () => {
-      component.qty$.subscribe((qty) => {
+      productContainer.qty$.subscribe((qty) => {
         expect(qty).toEqual(initialQty);
       })
     });
@@ -83,9 +99,20 @@ describe('ProductContainer', () => {
     
     it('should call store.dispatch', () => {
       let qty: number = 3;
-      component.updateQty(qty);
+      productContainer.updateQty(qty);
 
       expect(store.dispatch).toHaveBeenCalledWith(new UpdateQty(qty));
+    });
+  });
+
+  describe('addToCart', () => {
+    
+    it('should call store.dispatch', () => {
+      let qty: number = 3;
+      let payload = {productId: '', qty: qty};
+      productContainer.addToCart(payload);
+
+      expect(store.dispatch).toHaveBeenCalledWith(new AddToCart(payload));
     });
   });
 });
