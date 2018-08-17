@@ -1,10 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
+import { Cart, CartFactory } from '@daffodil/core';
+
 import { CartContainer } from './cart.component';
-import { CartFactory } from '@daffodil/core';
-import { Cart } from '@daffodil/core';
 import { CartLoad } from '../../actions/cart.actions';
 import * as fromCart from '../../reducers/index';
 

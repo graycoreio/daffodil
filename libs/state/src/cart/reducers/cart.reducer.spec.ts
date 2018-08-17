@@ -1,10 +1,11 @@
 import { Cart, CartFactory } from "@daffodil/core";
-import { initialState, reducer, getCartLoading, getCart } from "../reducers/cart.reducer";
+
 import { CartLoad, CartLoadSuccess, CartLoadFailure, CartReset, AddToCart, AddToCartSuccess, AddToCartFailure } from "../actions/cart.actions";
+import { initialState, reducer, getCartLoading, getCart } from "../reducers/cart.reducer";
 
 describe('Cart | Cart List Reducer', () => {
 
-  let cartFactory;
+  let cartFactory: CartFactory;
   let cart: Cart;
 
   beforeEach(() => {

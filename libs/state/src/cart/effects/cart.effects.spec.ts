@@ -1,23 +1,16 @@
-import { TestBed, inject } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-
 import { hot, cold } from 'jasmine-marbles';
 
-import { CartEffects } from './cart.effects';
+import { Cart, CartFactory, DaffodilConfigFactory } from '@daffodil/core';
 
-import { CartTestingModule } from '../testing/cart-testing.module';
-import { CartService } from '../services/cart.service';
-import { CartFactory } from '@daffodil/core';
-import { Cart } from '@daffodil/core';
 import { CartLoad, CartLoadSuccess, CartLoadFailure, AddToCart, AddToCartSuccess, AddToCartFailure } from '../actions/cart.actions';
-
+import { CartEffects } from './cart.effects';
+import { CartService } from '../services/cart.service';
+import { CartTestingModule } from '../testing/cart-testing.module';
 import { DaffodilConfigService } from '../../config/daffodil-config.service';
-import { DaffodilConfigFactory } from '@daffodil/core';
-import { ProductFactory } from '@daffodil/core';
 
 describe('CartEffects', () => {
   let actions$: Observable<any>;
@@ -27,12 +20,10 @@ describe('CartEffects', () => {
   let mockCart: Cart;
   let daffodilConfigService: DaffodilConfigService;
   let daffodilConfigFactory: DaffodilConfigFactory;
-  let productFactory: ProductFactory;
 
   beforeEach(() => {
     daffodilConfigFactory = new DaffodilConfigFactory();
     daffodilConfigService = new DaffodilConfigService(daffodilConfigFactory.create());
-    productFactory = new ProductFactory();
 
     TestBed.configureTestingModule({
       imports: [
