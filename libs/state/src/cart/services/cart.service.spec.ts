@@ -1,10 +1,11 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpClient } from '@angular/common/http';
+
+import { DaffodilConfigFactory } from '@daffodil/core';
 
 import { CartService } from './cart.service';
-import { HttpClient } from '@angular/common/http';
 import { CartTestingModule } from '../testing/cart-testing.module';
 import { DaffodilConfigService } from '../../config/daffodil-config.service';
-import { DaffodilConfigFactory } from '@daffodil/core';
 
 describe('State | Cart | CartService', () => {
   let cartService;
@@ -46,9 +47,9 @@ describe('State | Cart | CartService', () => {
 
   describe('addToCart', () => {
 
-    let productId;
-    let qty;
-    let returnedValue;
+    let productId: string;
+    let qty: number;
+    let returnedValue: string;
     
     beforeEach(() => {
       productId = 'productId';

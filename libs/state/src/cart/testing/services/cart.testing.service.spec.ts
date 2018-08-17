@@ -1,9 +1,10 @@
 import { TestBed } from '@angular/core/testing';
+import { STATUS } from 'angular-in-memory-web-api';
+
+import { CartFactory } from '@daffodil/core';
 
 import { CartTestingService } from './cart.testing.service';
 import { CartTestingModule } from '../../testing/cart-testing.module';
-import { CartFactory } from '@daffodil/core';
-import { STATUS } from 'angular-in-memory-web-api';
 
 describe('State | Cart | Testing | CartTestingService', () => {
   
