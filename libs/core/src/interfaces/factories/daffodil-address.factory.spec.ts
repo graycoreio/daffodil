@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffodilAddressFactory, MockDaffodilAddress } from './daffodil-address.factory';
 
-describe('Core | Testing | DaffodilAddressFactory', () => {
+describe('Core | Interfaces | Factories | DaffodilAddressFactory', () => {
   
   let daffodilAddressFactory;
 
@@ -20,7 +20,7 @@ describe('Core | Testing | DaffodilAddressFactory', () => {
 
   describe('createDaffodilAddress', () => {
 
-    let result:MockDaffodilAddress;
+    let result: MockDaffodilAddress;
 
     beforeEach(() => {
       result = daffodilAddressFactory.create();

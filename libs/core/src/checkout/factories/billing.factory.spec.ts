@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { BillingFactory, MockPaymentInfo } from './billing.factory';
 
-describe('Core | Billing | Testing | BillingFactory', () => {
+describe('Core | Checkout | Factories | BillingFactory', () => {
   
   let paymentFactory;
 
@@ -20,7 +20,7 @@ describe('Core | Billing | Testing | BillingFactory', () => {
 
   describe('create', () => {
 
-    let result:MockPaymentInfo;
+    let result: MockPaymentInfo;
 
     beforeEach(() => {
       result = paymentFactory.create();
