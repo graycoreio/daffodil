@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { StateShippingModule } from './shipping/shipping.module';
 import { StatePaymentModule } from './payment/payment.module';
 import { StateBillingModule } from './billing/billing.module';

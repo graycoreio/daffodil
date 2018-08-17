@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
-import { ShippingContainer } from './shipping.component';
 import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
+
+import { ShippingContainer } from './shipping.component';
 import { UpdateShippingInfo, SelectShippingOption } from '../actions/shipping.actions';
 import * as fromShipping from '../reducers/index';
 
