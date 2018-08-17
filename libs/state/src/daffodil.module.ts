@@ -1,11 +1,12 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 
-import { StateProductModule } from './product/product.module';
 import { DaffodilConfig } from '@daffodil/core';
-import { DaffodilConfigService, DaffodilConfigServiceFactory } from './config/daffodil-config.service';
-import { _DAFFODIL_CONFIG } from './tokens';
+
 import { StateCartModule } from './cart/cart.module';
 import { StateCheckoutModule } from './checkout/checkout.module';
+import { StateProductModule } from './product/product.module';
+import { DaffodilConfigService, DaffodilConfigServiceFactory } from './config/daffodil-config.service';
+import { _DAFFODIL_CONFIG } from './tokens';
 
 @NgModule({
   imports: [

@@ -1,13 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 
+import { ProductFactory } from '@daffodil/core';
+
 import { ProductTestingService } from './product.testing.service';
 import { ProductTestingModule } from '../../testing/product-testing.module';
-import { ProductFactory } from '@daffodil/core';
 
 describe('State | Product | Testing | ProductTestingService', () => {
   
-  let productTestingService;
-  let productFactory;
+  let productTestingService: ProductTestingService;
+  let productFactory: ProductFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

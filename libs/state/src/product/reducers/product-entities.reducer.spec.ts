@@ -1,11 +1,12 @@
 import { Product, ProductFactory } from "@daffodil/core";
-import { initialState, reducer } from "../reducers/product-entities.reducer";
-import { ProductGridLoadSuccess } from "../actions/product-grid.actions";
+
 import { ProductLoadSuccess } from "../actions/product.actions";
+import { ProductGridLoadSuccess } from "../actions/product-grid.actions";
+import { initialState, reducer } from "../reducers/product-entities.reducer";
 
 describe('Product | Product Entities Reducer', () => {
 
-  let productFactory;
+  let productFactory: ProductFactory;
 
   beforeEach(() => {
     productFactory = new ProductFactory();
