@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
-import { PaymentContainer } from './payment.component';
 import { PaymentInfo, BillingFactory } from '@daffodil/core';
+
+import { PaymentContainer } from './payment.component';
 import { UpdatePaymentInfo } from '../actions/payment.actions';
 import * as fromPayment from '../reducers/index';
 

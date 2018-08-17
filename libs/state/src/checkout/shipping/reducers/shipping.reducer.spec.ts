@@ -1,7 +1,7 @@
 import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
-import { initialState, reducer, getShippingInfo, getSelectedShippingOption, isShippingInfoValid, State } from "../reducers/shipping.reducer";
-import { UpdateShippingInfo, SelectShippingOption } from "../actions/shipping.actions";
 
+import { UpdateShippingInfo, SelectShippingOption } from "../actions/shipping.actions";
+import { initialState, reducer, getShippingInfo, getSelectedShippingOption, isShippingInfoValid, State } from "../reducers/shipping.reducer";
 
 describe('Shipping | Shipping Reducer', () => {
 

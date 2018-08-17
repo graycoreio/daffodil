@@ -1,10 +1,10 @@
 import { TestBed, async } from "@angular/core/testing";
-
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
-import * as fromPayment from './index';
 import { PaymentInfo, BillingFactory } from '@daffodil/core';
+
 import { UpdatePaymentInfo } from "../actions/payment.actions";
+import * as fromPayment from './index';
 
 describe('selectPaymentState', () => {
 

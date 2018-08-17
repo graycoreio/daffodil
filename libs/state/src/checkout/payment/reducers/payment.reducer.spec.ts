@@ -1,6 +1,7 @@
 import { PaymentInfo, BillingFactory } from '@daffodil/core';
-import { initialState, reducer, getPaymentInfo, State } from "../reducers/payment.reducer";
+
 import { UpdatePaymentInfo } from "../actions/payment.actions";
+import { initialState, reducer, getPaymentInfo } from "../reducers/payment.reducer";
 
 describe('Payment | Payment Reducer', () => {
 
