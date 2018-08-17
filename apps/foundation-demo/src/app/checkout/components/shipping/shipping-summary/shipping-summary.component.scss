@@ -9,8 +9,7 @@
     "   title       edit"
     " address free-space"
     "subtitle free-space"
-    "  option free-space"
-    "  button     button";
+    "  option free-space";
 
   &__title {
     font-size: $global-font-size;
@@ -32,7 +31,7 @@
 
     @include breakpoint(large) {
       justify-self: start;
-      margin: 15px 0 10px 0;
+      margin-top: 15px;
     }
   }
 
@@ -46,10 +45,6 @@
     grid-area: option;
   }
 
-  & button {
-    grid-area: button;
-  }
-
   &__free-space {
     grid-area: free-space;
   }
@@ -58,10 +53,9 @@
     grid-template-areas: 
       "   title      title"
       " address    address"
-      "    edit       edit"
       "subtitle   subtitle"
       "  option     option"
-      "  button free-space";
+      "    edit       edit";
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -69,10 +63,9 @@
     grid-template-areas:
       "   title      title      title"
       " address    address    address"
-      "    edit       edit       edit"
       "subtitle   subtitle   subtitle"
       "  option     option     option"
-      "  button free-space free-space";
+      "    edit       edit       edit";
     grid-template-columns: repeat(3, 1fr);
   }
 }
