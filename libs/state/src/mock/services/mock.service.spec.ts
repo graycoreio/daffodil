@@ -1,7 +1,6 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { MockService } from './mock.service';
-import { ProductTestingService } from '../../product/testing/services/product.testing.service';
 import { ProductTestingModule } from '../../product/testing/product-testing.module';
 import { CartTestingModule } from '../../cart/testing/cart-testing.module';
 

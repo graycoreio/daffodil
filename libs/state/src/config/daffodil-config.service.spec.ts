@@ -1,10 +1,10 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { DaffodilConfigService } from './daffodil-config.service';
 import { DaffodilConfig } from '@daffodil/core';
 
-class DaffodilConfigMock implements DaffodilConfig {
+import { DaffodilConfigService } from './daffodil-config.service';
 
+class MockDaffodilConfig implements DaffodilConfig {
   BASE_URL: string = 'mockBaseUrl';
 }
 
@@ -14,7 +14,7 @@ describe('DaffodilConfigService', () => {
   let daffodilConfig: DaffodilConfig;
 
   beforeEach(() => {
-    daffodilConfig = new DaffodilConfigMock();
+    daffodilConfig = new MockDaffodilConfig();
     daffodilConfigService = new DaffodilConfigService(daffodilConfig);
 
     TestBed.configureTestingModule({
