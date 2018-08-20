@@ -2,7 +2,6 @@
 
 .shipping-summary {
   font-size: $small-font-size;
-  @include section-divider();
   display: grid;
   grid-template-columns: 4fr 1fr;
   grid-template-areas: 
