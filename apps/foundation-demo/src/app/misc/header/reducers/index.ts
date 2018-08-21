@@ -1,9 +1,9 @@
 import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
-import * as fromFoundationHeader from './header.reducer';
+import * as fromFoundationSidebar from './sidebar.reducer';
 
 export interface FoundationHeaderState {
-  foundationHeader: fromFoundationHeader.State;
+  foundationSidebar: fromFoundationSidebar.State;
 }
 
 export interface State {
@@ -11,7 +11,7 @@ export interface State {
 }
 
 export const reducers : ActionReducerMap<FoundationHeaderState> = {
-  foundationHeader: fromFoundationHeader.reducer
+  foundationSidebar: fromFoundationSidebar.reducer
 }
 
 /**
@@ -20,14 +20,14 @@ export const reducers : ActionReducerMap<FoundationHeaderState> = {
 export const selectFoundationHeaderState: MemoizedSelector<object, FoundationHeaderState> = createFeatureSelector<FoundationHeaderState>('foundationHeader');
 
 /**
- * Foundation Header Header State
+ * Foundation Header Sidebar State
  */
-export const foundationHeaderStateSelector = createSelector(
+export const foundationSidebarStateSelector = createSelector(
   selectFoundationHeaderState,
-  (state: FoundationHeaderState) => state.foundationHeader
+  (state: FoundationHeaderState) => state.foundationSidebar
 );
 
 export const selectShowSidebar: MemoizedSelector<object, boolean> = createSelector(
-  foundationHeaderStateSelector,
-  fromFoundationHeader.getShowSidebar
+  foundationSidebarStateSelector,
+  fromFoundationSidebar.getShowSidebar
 );

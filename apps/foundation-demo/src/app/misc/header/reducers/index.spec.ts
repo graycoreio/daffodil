@@ -21,15 +21,15 @@ describe('selectFoundationHeaderState', () => {
     store = TestBed.get(Store);
   }));
 
-  describe('foundationHeaderStateSelector', () => {
+  describe('foundationSidebarStateSelector', () => {
     
-    it('selects header state', () => {
-      let expectedHeaderState = {
+    it('selects sidebar state', () => {
+      let expectedSidebarState = {
         showSidebar: expectedShowSidebar
       }
 
-      store.pipe(select(fromHeader.foundationHeaderStateSelector)).subscribe((headerState) => {
-        expect(headerState).toEqual(expectedHeaderState);
+      store.pipe(select(fromHeader.foundationSidebarStateSelector)).subscribe((sidebarState) => {
+        expect(sidebarState).toEqual(expectedSidebarState);
       });
     });
   });
