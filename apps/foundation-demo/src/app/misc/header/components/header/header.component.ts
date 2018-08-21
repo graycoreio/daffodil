@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import * as fromFoundationHeader from '../../reducers';
-import { ToggleShowSidebar } from '../../actions/header.actions';
+import { ToggleShowSidebar } from '../../actions/sidebar.actions';
 
 @Component({
   selector: 'header',

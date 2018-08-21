@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import { ToggleShowSidebar } from '../../actions/header.actions';
+import { ToggleShowSidebar } from '../../actions/sidebar.actions';
 import * as fromFoundationHeader from '../../reducers';
 
 @Component({

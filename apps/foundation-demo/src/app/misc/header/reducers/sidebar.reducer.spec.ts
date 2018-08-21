@@ -1,7 +1,7 @@
-import { ToggleShowSidebar } from "../actions/header.actions";
-import { initialState, reducer, getShowSidebar } from "../reducers/header.reducer";
+import { ToggleShowSidebar } from "../actions/sidebar.actions";
+import { initialState, reducer, getShowSidebar } from "../reducers/sidebar.reducer";
 
-describe('Header | Header Reducer', () => {
+describe('Header | Sidebar Reducer', () => {
   
   describe('initialState', () => {
     

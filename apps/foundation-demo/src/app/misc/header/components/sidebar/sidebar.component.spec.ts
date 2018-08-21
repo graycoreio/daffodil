@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 
 import { SidebarComponent } from './sidebar.component';
 import * as fromFoundationHeader from '../../reducers/index';
-import { ToggleShowSidebar } from '../../actions/header.actions';
+import { ToggleShowSidebar } from '../../actions/sidebar.actions';
 
 @Component({selector: '[sidebar-item]', template: ''})
 class MockSidebarItemComponent {}

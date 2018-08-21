@@ -1,4 +1,4 @@
-import { HeaderActionTypes, HeaderActions } from '../actions/header.actions';
+import { SidebarActionTypes, SidebarActions } from '../actions/sidebar.actions';
 
 export interface State {
   showSidebar: boolean
@@ -8,9 +8,9 @@ export const initialState: State = {
   showSidebar: false
 };
 
-export function reducer(state = initialState, action: HeaderActions): State {
+export function reducer(state = initialState, action: SidebarActions): State {
   switch (action.type) {
-    case HeaderActionTypes.ToggleShowSidebarAction:
+    case SidebarActionTypes.ToggleShowSidebarAction:
       return {...state, showSidebar: !state.showSidebar};
     default:
       return state;

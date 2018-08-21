@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { By } from '@angular/platform-browser';
+import { Component } from '@angular/core';
 
 import { HeaderComponent } from './header.component';
-import { ToggleShowSidebar } from '../../actions/header.actions';
+import { ToggleShowSidebar } from '../../actions/sidebar.actions';
 import * as fromFoundationHeader from '../../reducers/index';
-import { Component } from '@angular/core';
 
 @Component({selector: 'sidebar', template: ''})
 class MockSidebarComponent {}
