@@ -1,11 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
-import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 
 import { HeaderComponent } from './header.component';
 import { ToggleShowSidebar } from '../../actions/header.actions';
 import * as fromFoundationHeader from '../../reducers/index';
+import { Component } from '@angular/core';
+
+@Component({selector: 'sidebar', template: ''})
+class MockSidebarComponent {}
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -20,7 +23,10 @@ describe('HeaderComponent', () => {
           foundationHeader: combineReducers(fromFoundationHeader.reducers),
         })
       ],
-      declarations: [ HeaderComponent ]
+      declarations: [ 
+        MockSidebarComponent,
+        HeaderComponent
+      ]
     })
     .compileComponents();
   }));
@@ -41,15 +47,6 @@ describe('HeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('ngOnInit', () => {
-    
-    it('should initialize showSidebar$', () => {
-      component.showSidebar$.subscribe((showSidebar) => {
-        expect(showSidebar).toEqual(stubSelectSidebar);
-      });
-    });
-  });
-
   describe('toggleShowSidebar', () => {
     
     it('should call store.dispatch with a ToggleShowSidebar action', () => {
@@ -59,32 +56,11 @@ describe('HeaderComponent', () => {
     });
   });
 
-  describe('when showSidebar$ is false', () => {
-    
-    it('should set header__sidebar-hide class on sidebar', () => {
-      component.showSidebar$ = of(false);
-      fixture.detectChanges();
-
-      expect(fixture.debugElement.query(By.css('.header__sidebar')).nativeElement.classList.contains('header__sidebar-hide')).toBeTruthy();
-    });
-  });
-
-  describe('when showSidebar$ is true', () => {
-    
-    it('should set header__sidebar-show class on sidebar', () => {
-      component.showSidebar$ = of(true);
-      fixture.detectChanges();
-
-      expect(fixture.debugElement.query(By.css('.header__sidebar')).nativeElement.classList.contains('header__sidebar-show')).toBeTruthy();
-    });
-  });
-  
-  describe('when the close icon is clicked', () => {
+  describe('when open-icon is clicked', () => {
     
     it('should call toggleShowSidebar', () => {
       spyOn(component, 'toggleShowSidebar');
-
-      fixture.debugElement.query(By.css('.header__close')).nativeElement.click();
+      fixture.debugElement.query(By.css('.header__open-icon-wrapper')).nativeElement.click();
 
       expect(component.toggleShowSidebar).toHaveBeenCalled();
     });

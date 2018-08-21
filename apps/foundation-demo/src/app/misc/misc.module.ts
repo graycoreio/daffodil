@@ -6,6 +6,7 @@ import { HelpBoxComponent } from './help-box/help-box.component';
 import { HeaderComponent } from './header/components/header/header.component';
 import { FoundationMiscStateModule } from './misc-state.module';
 import { SidebarItemComponent } from './header/components/sidebar-item/sidebar-item.component';
+import { SidebarComponent } from './header/components/sidebar/sidebar.component';
 
 @NgModule({
   imports: [
@@ -16,12 +17,14 @@ import { SidebarItemComponent } from './header/components/sidebar-item/sidebar-i
     NotFoundComponent,
     HelpBoxComponent,
     HeaderComponent,
+    SidebarComponent,
     SidebarItemComponent
   ],
   exports: [
     NotFoundComponent,
     HelpBoxComponent,
     HeaderComponent,
+    SidebarComponent,
     SidebarItemComponent
   ]
 })

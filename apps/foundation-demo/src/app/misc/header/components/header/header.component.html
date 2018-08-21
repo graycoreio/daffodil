@@ -1,10 +1,4 @@
 <div class="header">
   <span class="header__open-icon-wrapper" (click)="toggleShowSidebar()"><i class="fa fa-bars header__open-icon"></i></span>
-  <div class="header__sidebar" [ngClass]="(showSidebar$ | async) ? 'header__sidebar-show' : 'header__sidebar-hide'">
-      <span class="header__close" (click)="toggleShowSidebar()"><i class="fa fa-times"></i></span>
-      <div sidebar-item>women's</div>
-      <div sidebar-item>men's</div>
-      <div sidebar-item>accessories</div>
-      <div sidebar-item>sale</div>
-    </div>
+  <sidebar></sidebar>
 </div>
