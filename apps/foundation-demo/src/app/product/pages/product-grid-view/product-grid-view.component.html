@@ -1,3 +1,4 @@
+<header></header>
 <div product-grid-container #ProductGridContainer="ProductGridContainer">
   <product-grid *ngIf="!(ProductGridContainer.loading$ | async)" [products]="ProductGridContainer.products$ | async"></product-grid>
   <div *ngIf="(ProductGridContainer.loading$ | async)" class="product-grid-container__loading-icon">
