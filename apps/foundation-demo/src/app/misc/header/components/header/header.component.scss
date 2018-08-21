@@ -17,16 +17,18 @@
   }
 
   &__sidebar {
-    position: absolute;
+    position: fixed;
     height: 100%;
     display: grid;
-    width: 0;
+    grid-template-rows: 100px repeat(15, 35px);
+    width: 200px;
     opacity: 0;
     top: 0;
+    left: -200px;
 
     &-show {
       background-color: white;
-      width: 200px;
+      left: 0;
       opacity: 1;
       -webkit-box-shadow: 10px 0px 76px -13px rgba(0,0,0,0.59);
       -moz-box-shadow: 10px 0px 76px -13px rgba(0,0,0,0.59);
@@ -39,7 +41,7 @@
     }
 
     &-hide {
-      width: 0;
+      left: -200px;
       opacity: 0;
       top: 0;
       -webkit-transition: 0.5s ease;
@@ -57,5 +59,13 @@
     cursor: pointer;
     line-height: 0;
     height: 25px;
+  }
+
+  &__sidebar-item {
+    @include embolden();
+    @include uppercase();
+    margin: 0 auto auto 30px;
+    font-size: $small-font-size;
+    cursor: pointer;
   }
 }
