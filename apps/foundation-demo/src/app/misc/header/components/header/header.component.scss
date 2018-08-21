@@ -1,0 +1,61 @@
+@import 'daffodil-util';
+
+.header {
+  height: 70px;
+  width: 100%;
+  @include section-divider();
+
+  &__open-icon-wrapper {
+    cursor: pointer;
+    font-size: $medium-font-size;
+    padding: 27px;
+    border-right: 2px solid $medium-gray;
+  }
+
+  &__open-icon {
+    margin-top: 24px;
+  }
+
+  &__sidebar {
+    position: absolute;
+    height: 100%;
+    display: grid;
+    width: 0;
+    opacity: 0;
+    top: 0;
+
+    &-show {
+      background-color: white;
+      width: 200px;
+      opacity: 1;
+      -webkit-box-shadow: 10px 0px 76px -13px rgba(0,0,0,0.59);
+      -moz-box-shadow: 10px 0px 76px -13px rgba(0,0,0,0.59);
+      box-shadow: 10px 0px 76px -13px rgba(0,0,0,0.59);
+      -webkit-transition: 0.5s ease;
+      -moz-transition: 0.5s ease;
+      -ms-transition: 0.5s ease;
+      -o-transition: 0.5s ease;
+      transition: 0.5s ease;
+    }
+
+    &-hide {
+      width: 0;
+      opacity: 0;
+      top: 0;
+      -webkit-transition: 0.5s ease;
+      -moz-transition: 0.5s ease;
+      -ms-transition: 0.5s ease;
+      -o-transition: 0.5s ease;
+      transition: 0.5s ease;
+    }
+  }
+
+  &__close {
+    justify-self: end;
+    margin: 20px;
+    font-size: $large-font-size;
+    cursor: pointer;
+    line-height: 0;
+    height: 25px;
+  }
+}

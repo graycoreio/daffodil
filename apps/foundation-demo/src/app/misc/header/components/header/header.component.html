@@ -1,0 +1,6 @@
+<div class="header">
+  <span class="header__open-icon-wrapper" (click)="toggleShowSidebar()"><i class="fa fa-bars header__open-icon"></i></span>
+  <div class="header__sidebar" [ngClass]="(showSidebar$ | async) ? 'header__sidebar-show' : 'header__sidebar-hide'">
+      <span class="header__close" (click)="toggleShowSidebar()"><i class="fa fa-times"></i></span>
+  </div>
+</div>
