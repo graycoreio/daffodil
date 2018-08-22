@@ -1,13 +1,15 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-
-import { DaffodilAddress, ShippingOption } from '@daffodil/core';
+import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+
+import { DaffodilAddress } from '@daffodil/core';
+
 import { ErrorStateMatcher } from '../../../../design/molecules/error-state-matcher/error-state-matcher.component';
 
 @Component({
   selector: 'shipping-form',
   templateUrl: './shipping-form.component.html',
-  styleUrls: ['./shipping-form.component.scss']
+  styleUrls: ['./shipping-form.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ShippingFormComponent {
 
@@ -15,31 +17,14 @@ export class ShippingFormComponent {
   @Input() selectedShippingOption: string;
   @Input() hideContinueToPayment: boolean;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
-  @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
   @Output() continueToPayment: EventEmitter<any> = new EventEmitter();
 
   form: FormGroup
   stateErrorStateMatcher: ErrorStateMatcher;
-  shippingOptions: ShippingOption[];
 
   constructor(
     private fb: FormBuilder
-  ) { 
-    this.shippingOptions = [
-      {
-        id: 'standard-shipping',
-        text: 'Standard'
-      },
-      {
-        id: 'two-day-shipping',
-        text: 'Two Day'
-      },
-      {
-        id: 'one-day-shipping',
-        text: 'One Day'
-      }
-    ]
-  }
+  ) {}
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -68,9 +53,5 @@ export class ShippingFormComponent {
       this.updateShippingInfo.emit(form.value);
       this.continueToPayment.emit();
     }
-  }
-
-  onSelectShippingOption(option: string) {
-    this.selectShippingOption.emit(option);
   }
 }
