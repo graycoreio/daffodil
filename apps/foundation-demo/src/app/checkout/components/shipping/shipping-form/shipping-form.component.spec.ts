@@ -1,28 +1,26 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormControl, FormGroup, AbstractControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DaffodilAddress, ShippingOption } from '@daffodil/core';
+import { DaffodilAddress } from '@daffodil/core';
 
 import { ErrorStateMatcher } from '../../../../design/molecules/error-state-matcher/error-state-matcher.component';
 import { ShippingFormComponent } from './shipping-form.component';
 
-@Component({'template': '<shipping-form [shippingInfo]="shippingInfoValue" [selectedShippingOption]="selectedShippingOptionValue" [hideContinueToPayment]="hideContinueToPaymentValue" (updateShippingInfo)="onUpdateShippingInfoFunction($event)" (selectShippingOption)="selectShippingOptionFunction($event)" (continueToPayment)="continueToPaymentFunction()"></shipping-form>'})
+@Component({
+  'template': '<shipping-form [shippingInfo]="shippingInfoValue" ' + 
+                '[selectedShippingOption]="selectedShippingOptionValue" ' + 
+                '[hideContinueToPayment]="hideContinueToPaymentValue" ' + 
+                '(updateShippingInfo)="onUpdateShippingInfoFunction($event)" ' + 
+                '(continueToPayment)="continueToPaymentFunction()"></shipping-form>'
+})
 class TestingShippingFormComponentWrapper {
   shippingInfoValue: DaffodilAddress;
   selectedShippingOptionValue: string;
   hideContinueToPaymentValue: boolean;
   onUpdateShippingInfoFunction: Function = () => {};
-  selectShippingOptionFunction: Function = () => {};
   continueToPaymentFunction: Function = () => {};
-}
-
-@Component({selector: 'shipping-options', template: ''})
-class MockShippingOptionsComponent {
-  @Input() selectedShippingOption: string;
-  @Input() shippingOptions: ShippingOption[];
-  @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
 }
 
 @Component({selector: '[input-validator]', template: ''})
@@ -43,7 +41,6 @@ describe('ShippingFormComponent', () => {
   let fixture: ComponentFixture<TestingShippingFormComponentWrapper>;
   let shippingFormComponent: ShippingFormComponent;
   let stubShippingInfo: DaffodilAddress;
-  let shippingOptionsComponent: MockShippingOptionsComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -54,7 +51,6 @@ describe('ShippingFormComponent', () => {
       declarations: [ 
         TestingShippingFormComponentWrapper,
         ShippingFormComponent,
-        MockShippingOptionsComponent,
         MockInputValidatorComponent,
         MockSelectValidatorComponent
       ]
@@ -71,7 +67,6 @@ describe('ShippingFormComponent', () => {
     fixture.detectChanges();
 
     shippingFormComponent = fixture.debugElement.query(By.css('shipping-form')).componentInstance;
-    shippingOptionsComponent = fixture.debugElement.query(By.css('shipping-options')).componentInstance;
   });
 
   it('should create', () => {
@@ -84,43 +79,6 @@ describe('ShippingFormComponent', () => {
 
   it('should be able to take hideContinueToPayment as input', () => {
     expect(shippingFormComponent.hideContinueToPayment).toEqual(component.hideContinueToPaymentValue);
-  });
-
-  describe('constructor', () => {
-    
-    it('should generate an array of shippingOptions', () => {
-      expect(shippingFormComponent.shippingOptions.length).toEqual(3);
-    });
-
-    it('should generate a shippingOptions array with standard-shipping', () => {
-      expect(shippingFormComponent.shippingOptions[0].id).toEqual('standard-shipping');
-    });
-
-    it('should generate a shippingOptions array with two-day-shipping', () => {
-      expect(shippingFormComponent.shippingOptions[1].id).toEqual('two-day-shipping');
-    });
-
-    it('should generate a shippingOptions array with one-day-shipping', () => {
-      expect(shippingFormComponent.shippingOptions[2].id).toEqual('one-day-shipping');
-    });
-  });
-
-  describe('on <shipping-options>', () => {
-    
-    it('should set shippingOptions', () => {
-      expect(shippingOptionsComponent.shippingOptions).toEqual(shippingFormComponent.shippingOptions);
-    });
-  });
-
-  describe('when shippingOptions.selectShippingOption is emitted', () => {
-    
-    it('should call onSelectShippingOption', () => {
-      spyOn(shippingFormComponent, 'onSelectShippingOption');
-
-      shippingOptionsComponent.selectShippingOption.emit(shippingFormComponent.shippingOptions[0].id);
-
-      expect(shippingFormComponent.onSelectShippingOption).toHaveBeenCalledWith(shippingFormComponent.shippingOptions[0].id);
-    });
   });
 
   describe('on [input-validator]', () => {
@@ -438,30 +396,6 @@ describe('ShippingFormComponent', () => {
     
     it('should call the function passed in by the host component', () => {
       expect(component.onUpdateShippingInfoFunction).toHaveBeenCalledWith(emittedValue);
-    });
-  });
-  
-  describe('onSelectShippingOption', () => {
-
-    beforeEach(() => {
-      spyOn(shippingFormComponent.selectShippingOption, 'emit');
-
-      shippingFormComponent.onSelectShippingOption(shippingFormComponent.shippingOptions[0].id);
-    });
-    
-    it('should call selectShippingOption.emit', () => {
-      expect(shippingFormComponent.selectShippingOption.emit).toHaveBeenCalledWith(shippingFormComponent.shippingOptions[0].id);
-    });
-  });
-
-  describe('when selectShippingOption is emitted', () => {
-
-    it('should call selectShippingOptionFunction', () => {
-      spyOn(component, 'selectShippingOptionFunction');
-
-      shippingFormComponent.selectShippingOption.emit(shippingFormComponent.shippingOptions[0].id);
-
-      expect(component.selectShippingOptionFunction).toHaveBeenCalledWith(shippingFormComponent.shippingOptions[0].id);
     });
   });
 
