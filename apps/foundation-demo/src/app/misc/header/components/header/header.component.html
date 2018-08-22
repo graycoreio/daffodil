@@ -1,4 +1,4 @@
 <div class="header">
   <span class="header__open-icon-wrapper" (click)="toggleShowSidebar()"><i class="fa fa-bars header__open-icon"></i></span>
-  <sidebar></sidebar>
+  <sidebar [showSidebar]="showSidebar$ | async"></sidebar>
 </div>

@@ -1,4 +1,4 @@
-<div class="sidebar" [ngClass]="(showSidebar$ | async) ? 'sidebar-show' : 'sidebar-hide'">
+<div class="sidebar" [ngClass]="showSidebar ? 'sidebar-show' : 'sidebar-hide'">
   <span class="sidebar__close" (click)="toggleShowSidebar()"><i class="fa fa-times"></i></span>
   <div sidebar-item>women's</div>
   <div sidebar-item>men's</div>
