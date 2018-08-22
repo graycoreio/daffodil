@@ -1,20 +1,23 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { By } from '@angular/platform-browser';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { HeaderComponent } from './header.component';
 import { ToggleShowSidebar } from '../../actions/sidebar.actions';
 import * as fromFoundationHeader from '../../reducers/index';
 
 @Component({selector: 'sidebar', template: ''})
-class MockSidebarComponent {}
+class MockSidebarComponent {
+  @Input() showSidebar: boolean;
+}
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   let store;
-  let stubSelectSidebar;
+  let stubShowSidebar;
+  let sidebar: MockSidebarComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -37,23 +40,42 @@ describe('HeaderComponent', () => {
     spyOn(store, 'dispatch');
     component = fixture.componentInstance;
 
-    stubSelectSidebar = false;
-    spyOn(fromFoundationHeader, 'selectShowSidebar').and.returnValue(stubSelectSidebar);
+    stubShowSidebar = false;
+    spyOn(fromFoundationHeader, 'selectShowSidebar').and.returnValue(stubShowSidebar);
 
     fixture.detectChanges();
+
+    sidebar = fixture.debugElement.query(By.css('sidebar')).componentInstance;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
+  describe('on <sidebar>', () => {
+    
+    it('should set showSidebar', () => {
+      expect(sidebar.showSidebar).toEqual(stubShowSidebar);
+    });
+  });
+
+  describe('ngOnInit', () => {
+    
+    it('should initialize showSidebar$', () => {
+      component.showSidebar$.subscribe((showSidebar) => {
+        expect(showSidebar).toEqual(stubShowSidebar);
+      });
+    });
+  });
+
   describe('toggleShowSidebar', () => {
     
-    it('should call store.dispatch with a ToggleShowSidebar action', () => {
+    it('should call store.dispatch with a ToggleShowSidebar action within a setTimeout', fakeAsync(() => {
       component.toggleShowSidebar();
+      tick(200);
 
       expect(store.dispatch).toHaveBeenCalledWith(new ToggleShowSidebar());
-    });
+    }));
   });
 
   describe('when open-icon is clicked', () => {

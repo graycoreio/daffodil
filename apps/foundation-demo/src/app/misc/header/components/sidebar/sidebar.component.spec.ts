@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
-import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 
@@ -11,11 +10,17 @@ import { ToggleShowSidebar } from '../../actions/sidebar.actions';
 @Component({selector: '[sidebar-item]', template: ''})
 class MockSidebarItemComponent {}
 
+@Component({template: '<sidebar [showSidebar]="showSidebarValue"></sidebar><div class="outside"></div>'})
+class TestSidebarComponentWrapper {
+  showSidebarValue: boolean;
+}
+
 describe('SidebarComponent', () => {
-  let component: SidebarComponent;
-  let fixture: ComponentFixture<SidebarComponent>;
+  let component: TestSidebarComponentWrapper;
+  let fixture: ComponentFixture<TestSidebarComponentWrapper>;
   let store;
-  let stubSelectSidebar: boolean;
+  let stubShowSidebar: boolean;
+  let sidebar: SidebarComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -26,74 +31,94 @@ describe('SidebarComponent', () => {
       ],
       declarations: [ 
         MockSidebarItemComponent,
-        SidebarComponent 
+        TestSidebarComponentWrapper,
+        SidebarComponent
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SidebarComponent);
+    fixture = TestBed.createComponent(TestSidebarComponentWrapper);
     store = TestBed.get(Store);
     spyOn(store, 'dispatch');
     component = fixture.componentInstance;
 
-    stubSelectSidebar = false;
-    spyOn(fromFoundationHeader, 'selectShowSidebar').and.returnValue(stubSelectSidebar);
+    stubShowSidebar = false;
+    component.showSidebarValue = stubShowSidebar;
 
     fixture.detectChanges();
+
+    sidebar = fixture.debugElement.query(By.css('sidebar')).componentInstance;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('ngOnInit', () => {
-    
-    it('should initialize showSidebar$', () => {
-      component.showSidebar$.subscribe((showSidebar) => {
-        expect(showSidebar).toEqual(stubSelectSidebar);
-      });
-    });
+  it('should be able to take showSidebar as input', () => {
+    expect(sidebar.showSidebar).toEqual(stubShowSidebar);
   });
 
   describe('toggleShowSidebar', () => {
     
     it('should call store.dispatch with a ToggleShowSidebar action', () => {
-      component.toggleShowSidebar();
+      sidebar.toggleShowSidebar();
 
       expect(store.dispatch).toHaveBeenCalledWith(new ToggleShowSidebar());
     });
   });
 
-  describe('when showSidebar$ is false', () => {
+  describe('when showSidebar is false', () => {
     
     it('should set sidebar-hide class on sidebar', () => {
-      component.showSidebar$ = of(false);
+      sidebar.showSidebar = false;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('.sidebar')).nativeElement.classList.contains('sidebar-hide')).toBeTruthy();
     });
   });
 
-  describe('when showSidebar$ is true', () => {
+  describe('when showSidebar is true', () => {
+
+    beforeEach(() => {
+      spyOn(sidebar, 'toggleShowSidebar'); 
+
+      sidebar.showSidebar = true;
+      fixture.detectChanges();       
+    });
     
     it('should set sidebar-show class on sidebar', () => {
-      component.showSidebar$ = of(true);
-      fixture.detectChanges();
-
       expect(fixture.debugElement.query(By.css('.sidebar')).nativeElement.classList.contains('sidebar-show')).toBeTruthy();
+    });
+
+    describe('and sidebar is clicked', () => {
+      
+      it('should not call toggleShowSidebar', () => {
+        fixture.debugElement.query(By.css('.sidebar')).nativeElement.click();
+
+        expect(sidebar.toggleShowSidebar).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('and a click occurs outside of the sidebar', () => {
+      
+      it('should call toggleShowSidebar', () => {
+        fixture.debugElement.query(By.css('.outside')).nativeElement.click();
+
+        expect(sidebar.toggleShowSidebar).toHaveBeenCalled();
+      });
     });
   });
   
   describe('when the close icon is clicked', () => {
     
     it('should call toggleShowSidebar', () => {
-      spyOn(component, 'toggleShowSidebar');
+      spyOn(sidebar, 'toggleShowSidebar');
 
       fixture.debugElement.query(By.css('.sidebar__close')).nativeElement.click();
 
-      expect(component.toggleShowSidebar).toHaveBeenCalled();
+      expect(sidebar.toggleShowSidebar).toHaveBeenCalled();
     });
   });
 });
