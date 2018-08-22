@@ -25,7 +25,7 @@ describe('ShippingOptionsComponent', () => {
   let component: TestShippingOptionsWrapper;
   let fixture: ComponentFixture<TestShippingOptionsWrapper>;
   let shippingOptionsComponent: ShippingOptionsComponent;
-  let shippingOptionsRadios;
+  let shippingOptionsRadioWrappers;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -43,7 +43,7 @@ describe('ShippingOptionsComponent', () => {
     fixture.detectChanges();
 
     shippingOptionsComponent = fixture.debugElement.query(By.css('shipping-options')).componentInstance;
-    shippingOptionsRadios = fixture.debugElement.queryAll(By.css('.shipping-options__radio'));
+    shippingOptionsRadioWrappers = fixture.debugElement.queryAll(By.css('.shipping-options__radio'));
   });
 
   it('should create', () => {
@@ -58,18 +58,18 @@ describe('ShippingOptionsComponent', () => {
     expect(shippingOptionsComponent.selectedShippingOption).toEqual(stubSelectedShippingOption);
   });
 
-  describe('when radio is clicked', () => {
+  describe('when radio wrapper is clicked', () => {
     
     it('should not call onSelectShippingOption', () => {
       spyOn(shippingOptionsComponent, 'onSelectShippingOption');
 
-      shippingOptionsRadios[0].nativeElement.click();
+      shippingOptionsRadioWrappers[0].nativeElement.click();
 
       expect(shippingOptionsComponent.onSelectShippingOption).not.toHaveBeenCalled();
     });
   });
 
-  describe('when radio input is clicked', () => {
+  describe('when radio input button is clicked', () => {
     
     it('should call onSelectShippingOption', () => {
       let radioInputs = fixture.debugElement.queryAll(By.css('input'));
