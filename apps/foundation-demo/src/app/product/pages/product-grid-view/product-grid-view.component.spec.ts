@@ -86,7 +86,7 @@ describe('ProductGridViewComponent', () => {
   describe('when ProductContainer.loading$ is true', () => {
 
     beforeEach(() => {
-      let productGridComponent: ProductGridContainerMock = fixture.debugElement.query(By.css('[product-grid-container]')).componentInstance;
+      let productGridComponent: MockProductGridContainer = fixture.debugElement.query(By.css('[product-grid-container]')).componentInstance;
       productGridComponent.loading$ = of(true);
       
       fixture.detectChanges();
