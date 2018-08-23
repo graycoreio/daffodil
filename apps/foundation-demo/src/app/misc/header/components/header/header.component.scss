@@ -5,7 +5,7 @@
   width: 100%;
   @include section-divider();
   display: grid;
-  grid-template-columns: 70px auto;
+  grid-template-columns: 70px 100px auto;
   justify-items: center;
 
   &__open-icon {
@@ -15,10 +15,21 @@
     border-right: 2px solid $medium-gray;
   }
 
+  &__logo-icon {
+    cursor: pointer;
+    align-self: center;
+    height: 40px;
+
+    & img {
+      height: 40px;
+    }
+  }
+
   &__cart-icon {
     cursor: pointer;
     justify-self: end;
     padding: 23px 28px;
+    font-size: $medium-font-size;
 
     @include breakpoint(large) {
       padding: 0;

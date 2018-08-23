@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { ToggleShowSidebar } from '../../actions/sidebar.actions';
 import * as fromFoundationHeader from '../../reducers';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'header',
@@ -15,7 +16,8 @@ export class HeaderComponent implements OnInit {
   showSidebar$: Observable<boolean>;
 
   constructor(
-    private store: Store<fromFoundationHeader.State>
+    private store: Store<fromFoundationHeader.State>,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -30,5 +32,9 @@ export class HeaderComponent implements OnInit {
     setTimeout(() => {
       that.store.dispatch(new ToggleShowSidebar());
     });
+  }
+
+  navigateToHomepage() {
+    this.router.navigateByUrl('/');
   }
 }
