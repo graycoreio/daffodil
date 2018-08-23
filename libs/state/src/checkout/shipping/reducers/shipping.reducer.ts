@@ -3,12 +3,12 @@ import { DaffodilAddress } from '@daffodil/core';
 
 export interface State {
   shippingInfo: DaffodilAddress,
-  selectedShippingOption: string
+  selectedShippingOptionId: number
 }
 
 export const initialState: State = {
   shippingInfo: null,
-  selectedShippingOption: null
+  selectedShippingOptionId: null
 };
 
 export function reducer(state = initialState, action: ShippingActions): State {
@@ -16,7 +16,7 @@ export function reducer(state = initialState, action: ShippingActions): State {
     case ShippingActionTypes.UpdateShippingInfoAction:
       return {...state, shippingInfo: action.payload};
     case ShippingActionTypes.SelectShippingOptionAction:
-      return {...state, selectedShippingOption: action.payload};
+      return {...state, selectedShippingOptionId: action.payload};
     default:
       return state;
   }
@@ -24,7 +24,7 @@ export function reducer(state = initialState, action: ShippingActions): State {
 
 export const getShippingInfo = (state: State) => state.shippingInfo;
 
-export const getSelectedShippingOption = (state: State) => state.selectedShippingOption;
+export const getSelectedShippingOptionId = (state: State) => state.selectedShippingOptionId;
 
 export const isShippingInfoValid = (shippingInfo: DaffodilAddress) => {
   return !!shippingInfo;

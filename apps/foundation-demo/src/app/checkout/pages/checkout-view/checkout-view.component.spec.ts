@@ -24,7 +24,7 @@ let stubBillingAddress: DaffodilAddress = daffodilAddressFactory.create();
 let stubCart: Cart = cartFactory.create();
 
 let stubIsShippingInfoValid = true;
-let stubSelectedShippingOption = 'shippingOption';
+let stubSelectedShippingOptionId = 0;
 let stubShowPaymentView: boolean = true;
 let stubShowReviewView: boolean = true;
 let stubBillingAddressIsShippingAddress: boolean = false;
@@ -33,7 +33,7 @@ let stubBillingAddressIsShippingAddress: boolean = false;
 class MockShippingComponent {
   @Input() isShippingInfoValid: boolean;
   @Input() shippingInfo: DaffodilAddress;
-  @Input() selectedShippingOption: string;
+  @Input() selectedShippingOptionId: number;
   @Input() showPaymentView: boolean;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
@@ -75,7 +75,7 @@ class MockPlaceOrderComponent {}
 class MockShippingContainer {
   isShippingInfoValid$: Observable<boolean> = of(stubIsShippingInfoValid);
   shippingInfo$: Observable<DaffodilAddress> = of(stubShippingInfo);
-  selectedShippingOption$: Observable<string> = of(stubSelectedShippingOption);
+  selectedShippingOptionId$: Observable<number> = of(stubSelectedShippingOptionId);
   updateShippingInfo = () => {};
   selectShippingOption = () => {};
 }
@@ -169,8 +169,8 @@ describe('CheckoutViewComponent', () => {
       expect(shipping.shippingInfo).toEqual(stubShippingInfo);
     });
 
-    it('should set selectedShippingOption', () => {
-      expect(shipping.selectedShippingOption).toEqual(stubSelectedShippingOption);
+    it('should set selectedShippingOptionId', () => {
+      expect(shipping.selectedShippingOptionId).toEqual(stubSelectedShippingOptionId);
     });
 
     it('should set showPaymentView', () => {
@@ -196,9 +196,9 @@ describe('CheckoutViewComponent', () => {
       it('should call function passed by ShippingContainer', () => {
         spyOn(shippingContainer, 'selectShippingOption');
 
-        shipping.selectShippingOption.emit(stubSelectedShippingOption);
+        shipping.selectShippingOption.emit(stubSelectedShippingOptionId);
 
-        expect(shippingContainer.selectShippingOption).toHaveBeenCalledWith(stubSelectedShippingOption);
+        expect(shippingContainer.selectShippingOption).toHaveBeenCalledWith(stubSelectedShippingOptionId);
       });
     });
 

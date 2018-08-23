@@ -16,7 +16,7 @@ import { UpdateShippingInfo, SelectShippingOption } from '../actions/shipping.ac
 export class ShippingContainer implements OnInit {
   
   shippingInfo$: Observable<DaffodilAddress>;
-  selectedShippingOption$: Observable<string>;
+  selectedShippingOptionId$: Observable<number>;
   isShippingInfoValid$: Observable<boolean>;
   isShippingOptionSelected$: Observable<boolean>;
 
@@ -28,7 +28,7 @@ export class ShippingContainer implements OnInit {
     this.shippingInfo$ = this.store.pipe(
       select(fromShipping.selectShippingInfoState)
     );
-    this.selectedShippingOption$ = this.store.pipe(
+    this.selectedShippingOptionId$ = this.store.pipe(
       select(fromShipping.selectShippingOptionState)
     );
     this.isShippingInfoValid$ = this.store.pipe(
@@ -40,7 +40,7 @@ export class ShippingContainer implements OnInit {
     this.store.dispatch(new UpdateShippingInfo(address));
   }
 
-  selectShippingOption(option: string) {
-    this.store.dispatch(new SelectShippingOption(option));
+  selectShippingOption(optionId: number) {
+    this.store.dispatch(new SelectShippingOption(optionId));
   }
 }

@@ -14,7 +14,7 @@ import { ErrorStateMatcher } from '../../../../design/molecules/error-state-matc
 export class ShippingFormComponent {
 
   @Input() shippingInfo: DaffodilAddress;
-  @Input() selectedShippingOption: string;
+  @Input() selectedShippingOptionId: number;
   @Input() hideContinueToPayment: boolean;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
   @Output() continueToPayment: EventEmitter<any> = new EventEmitter();

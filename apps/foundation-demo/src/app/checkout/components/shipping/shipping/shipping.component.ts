@@ -14,7 +14,7 @@ export class ShippingComponent {
 
   @Input() isShippingInfoValid: boolean;
   @Input() shippingInfo: DaffodilAddress;
-  @Input() selectedShippingOption: string;
+  @Input() selectedShippingOptionId: number;
   @Input() showPaymentView: boolean;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
@@ -30,18 +30,18 @@ export class ShippingComponent {
   ngOnInit() {
     this.shippingOptions = [
       {
-        id: 'standard-shipping',
+        id: 0,
         text: 'Standard'
       },
       {
-        id: 'two-day-shipping',
+        id: 1,
         text: 'Two Day'
       },
       {
-        id: 'one-day-shipping',
+        id: 2,
         text: 'One Day'
       }
-    ]
+    ];
 
     this.store.dispatch(
       new SetShowShippingForm(!this.isShippingInfoValid)
@@ -63,8 +63,8 @@ export class ShippingComponent {
     this.toggleShippingView();
   }
 
-  onSelectShippingOption(shippingOption: string) {
-    this.selectShippingOption.emit(shippingOption);
+  onSelectShippingOption(shippingOptionId: number) {
+    this.selectShippingOption.emit(shippingOptionId);
   }
 
   onContinueToPayment() {
