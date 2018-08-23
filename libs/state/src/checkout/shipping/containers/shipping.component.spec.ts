@@ -12,7 +12,7 @@ describe('ShippingContainer', () => {
   let fixture: ComponentFixture<ShippingContainer>;
   let store;
   let initialShippingInfo: DaffodilAddress;
-  let stubSelectedShippingOption: string;
+  let stubSelectedShippingOptionId: number;
   let stubIsShippingInfoValid: boolean;
   let daffodilAddressFactory: DaffodilAddressFactory;
 
@@ -35,11 +35,11 @@ describe('ShippingContainer', () => {
 
     daffodilAddressFactory = new DaffodilAddressFactory();
     initialShippingInfo = daffodilAddressFactory.create();
-    stubSelectedShippingOption = 'shippingOption';
+    stubSelectedShippingOptionId = 0;
     stubIsShippingInfoValid = true;
 
     spyOn(fromShipping, 'selectShippingInfoState').and.returnValue(initialShippingInfo);
-    spyOn(fromShipping, 'selectShippingOptionState').and.returnValue(stubSelectedShippingOption);
+    spyOn(fromShipping, 'selectShippingOptionState').and.returnValue(stubSelectedShippingOptionId);
     spyOn(fromShipping, 'selectIsShippingInfoValid').and.returnValue(stubIsShippingInfoValid);
     spyOn(store, 'dispatch');
 
@@ -58,9 +58,9 @@ describe('ShippingContainer', () => {
       });
     });
 
-    it('initializes selectedShippingOption$', () => {
-      component.selectedShippingOption$.subscribe((shippingOption) => {
-        expect(shippingOption).toEqual(stubSelectedShippingOption);
+    it('initializes selectedShippingOptionId$', () => {
+      component.selectedShippingOptionId$.subscribe((shippingOption) => {
+        expect(shippingOption).toEqual(stubSelectedShippingOptionId);
       })
     });
 
@@ -83,9 +83,9 @@ describe('ShippingContainer', () => {
   describe('selectShippingOption', () => {
     
     it('should call store.dispatch with SelectShippingOption action', () => {
-      component.selectShippingOption(stubSelectedShippingOption);
+      component.selectShippingOption(stubSelectedShippingOptionId);
 
-      expect(store.dispatch).toHaveBeenCalledWith(new SelectShippingOption(stubSelectedShippingOption));
+      expect(store.dispatch).toHaveBeenCalledWith(new SelectShippingOption(stubSelectedShippingOptionId));
     });
   });
 });

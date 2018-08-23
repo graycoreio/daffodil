@@ -2,25 +2,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
+import { DaffodilAddress, DaffodilAddressFactory, ShippingOption } from '@daffodil/core';
 
 import { ShippingSummaryComponent } from './shipping-summary.component';
 
 let daffodilAddressFactory = new DaffodilAddressFactory();
 let stubDaffodilAddress = daffodilAddressFactory.create();
 
-@Component({template: '<shipping-summary [selectedShippingOption]="selectedShippingOptionValue" [shippingInfo]="shippingInfoValue" (editShippingInfo)="editShippingInfoFunction()"></shipping-summary>'})
+@Component({
+  template: '<shipping-summary [selectedShippingOption]="selectedShippingOptionValue" ' + 
+              '[shippingInfo]="shippingInfoValue" ' + 
+              '(editShippingInfo)="editShippingInfoFunction()"></shipping-summary>'})
 class TestShippingSummaryWrapper {
   shippingInfoValue: DaffodilAddress = stubDaffodilAddress;
-  selectedShippingOptionValue: string = 'id';
+  selectedShippingOptionValue: ShippingOption = {id: 0, text:'shippingOption'};
   editShippingInfoFunction: Function = () => {};
-}
-
-@Component({selector: 'shipping-options', template: ''})
-class MockShippingOptionsComponent {
-  @Input() selectedShippingOption: string;
-  @Input() shippingOptions: string;
-  @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
 }
 
 @Component({selector: 'address-summary', template: ''})

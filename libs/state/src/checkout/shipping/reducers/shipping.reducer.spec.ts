@@ -1,17 +1,17 @@
 import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
 
 import { UpdateShippingInfo, SelectShippingOption } from "../actions/shipping.actions";
-import { initialState, reducer, getShippingInfo, getSelectedShippingOption, isShippingInfoValid, State } from "../reducers/shipping.reducer";
+import { initialState, reducer, getShippingInfo, getSelectedShippingOptionId, isShippingInfoValid, State } from "../reducers/shipping.reducer";
 
 describe('Shipping | Shipping Reducer', () => {
 
   let daffodilAddressFactory: DaffodilAddressFactory = new DaffodilAddressFactory();
   let shippingInfo: DaffodilAddress;
-  let selectedShippingOption: string;
+  let selectedShippingOptionId: number;
 
   beforeEach(() => {
     shippingInfo = daffodilAddressFactory.create();
-    selectedShippingOption = 'selectedShippingOption';
+    selectedShippingOptionId = 0;
   });
 
   describe('when an unknown action is triggered', () => {
@@ -45,13 +45,13 @@ describe('Shipping | Shipping Reducer', () => {
     let result;
 
     beforeEach(() => {
-      let selectShippingOptionAction = new SelectShippingOption(selectedShippingOption);
+      let selectShippingOptionAction = new SelectShippingOption(selectedShippingOptionId);
       
       result = reducer(initialState, selectShippingOptionAction);
     });
 
-    it('sets selectedShippingOption from action.payload', () => {
-      expect(result.selectedShippingOption).toEqual(selectedShippingOption)
+    it('sets selectedShippingOptionId from action.payload', () => {
+      expect(result.selectedShippingOptionId).toEqual(selectedShippingOptionId)
     });
   });
 
@@ -62,10 +62,10 @@ describe('Shipping | Shipping Reducer', () => {
     });
   });
 
-  describe('getSelectedShippingOption', () => {
+  describe('getSelectedShippingOptionId', () => {
     
-    it('returns selectedShippingOption state', () => {
-      expect(getSelectedShippingOption(initialState)).toEqual(initialState.selectedShippingOption);
+    it('returns selectedShippingOptionId state', () => {
+      expect(getSelectedShippingOptionId(initialState)).toEqual(initialState.selectedShippingOptionId);
     });
   });
 

@@ -16,7 +16,7 @@ export class UpdateShippingInfo implements Action {
 export class SelectShippingOption implements Action {
   readonly type = ShippingActionTypes.SelectShippingOptionAction;
 
-  constructor(public payload: string) {}
+  constructor(public payload: number) {}
 }
 
 export type ShippingActions =

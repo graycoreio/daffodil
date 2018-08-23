@@ -9,16 +9,16 @@ import { ShippingFactory } from '@daffodil/core/testing';
 
 let shippingFactory: ShippingFactory = new ShippingFactory();
 let stubShippingOptions = shippingFactory.createShippingOptions();
-let stubSelectedShippingOption = stubShippingOptions[0].text;
+let stubSelectedShippingOptionId = stubShippingOptions[0].id;
 
 @Component({
   template: '<shipping-options ' + 
-              '[selectedShippingOption]="selectedShippingOptionValue" ' + 
+              '[selectedShippingOptionId]="selectedShippingOptionIdValue" ' + 
               '[shippingOptions]="shippingOptionsValue" ' + 
               '(selectShippingOption)="selectShippingOptionFunction($event)"></shipping-options>'
 })
 class TestShippingOptionsWrapper {
-  selectedShippingOptionValue: string = stubSelectedShippingOption;
+  selectedShippingOptionIdValue: number = stubSelectedShippingOptionId;
   shippingOptionsValue: ShippingOption[] = stubShippingOptions;
   selectShippingOptionFunction = () => {};
 };
@@ -56,8 +56,8 @@ describe('ShippingOptionsComponent', () => {
     expect(shippingOptionsComponent.shippingOptions).toEqual(stubShippingOptions);
   });
 
-  it('should be able to take selectedShippingOption as input', () => {
-    expect(shippingOptionsComponent.selectedShippingOption).toEqual(stubSelectedShippingOption);
+  it('should be able to take selectedShippingOptionId as input', () => {
+    expect(shippingOptionsComponent.selectedShippingOptionId).toEqual(stubSelectedShippingOptionId);
   });
 
   describe('when radio wrapper is clicked', () => {
@@ -91,7 +91,7 @@ describe('ShippingOptionsComponent', () => {
 
       radioLabels[0].nativeElement.click();
 
-      expect(shippingOptionsComponent.onSelectShippingOption).toHaveBeenCalledWith(stubShippingOptions[0].text);
+      expect(shippingOptionsComponent.onSelectShippingOption).toHaveBeenCalledWith(stubShippingOptions[0].id);
     });
   });
 

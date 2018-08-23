@@ -10,14 +10,14 @@ import { ShippingFormComponent } from './shipping-form.component';
 
 @Component({
   'template': '<shipping-form [shippingInfo]="shippingInfoValue" ' + 
-                '[selectedShippingOption]="selectedShippingOptionValue" ' + 
+                '[selectedShippingOptionId]="selectedShippingOptionIdValue" ' + 
                 '[hideContinueToPayment]="hideContinueToPaymentValue" ' + 
                 '(updateShippingInfo)="onUpdateShippingInfoFunction($event)" ' + 
                 '(continueToPayment)="continueToPaymentFunction()"></shipping-form>'
 })
 class TestingShippingFormComponentWrapper {
   shippingInfoValue: DaffodilAddress;
-  selectedShippingOptionValue: string;
+  selectedShippingOptionIdValue: number;
   hideContinueToPaymentValue: boolean;
   onUpdateShippingInfoFunction: Function = () => {};
   continueToPaymentFunction: Function = () => {};
@@ -62,7 +62,7 @@ describe('ShippingFormComponent', () => {
     fixture = TestBed.createComponent(TestingShippingFormComponentWrapper);
     component = fixture.componentInstance;
     component.shippingInfoValue = stubShippingInfo;
-    component.selectedShippingOptionValue = 'option';
+    component.selectedShippingOptionIdValue = 0;
     component.hideContinueToPaymentValue = false;
     fixture.detectChanges();
 
@@ -75,6 +75,10 @@ describe('ShippingFormComponent', () => {
 
   it('should be able to take shippingInfo as input', () => {
     expect(shippingFormComponent.shippingInfo).toEqual(component.shippingInfoValue);
+  });
+
+  it('should be able to take selectedShippingOptionId as input', () => {
+    expect(shippingFormComponent.selectedShippingOptionId).toEqual(component.selectedShippingOptionIdValue);
   });
 
   it('should be able to take hideContinueToPayment as input', () => {
@@ -299,10 +303,10 @@ describe('ShippingFormComponent', () => {
     });
   });
 
-  describe('when selectedShippingOption is null', () => {
+  describe('when selectedShippingOptionId is undefined', () => {
 
     beforeEach(() => {
-      shippingFormComponent.selectedShippingOption = null;
+      shippingFormComponent.selectedShippingOptionId = undefined;
       fixture.detectChanges();
     });
     
@@ -313,7 +317,7 @@ describe('ShippingFormComponent', () => {
     });
   });
 
-  describe('when selectShippingOption is defined', () => {
+  describe('when selectedShippingOptionId is defined', () => {
     
     describe('and submit button is clicked', () => {
 

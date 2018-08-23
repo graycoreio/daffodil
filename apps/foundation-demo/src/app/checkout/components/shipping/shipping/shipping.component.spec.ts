@@ -20,14 +20,14 @@ let stubDaffodilAddress: DaffodilAddress = {
   postcode: '',
   telephone: ''
 }
-let stubSelectedShippingOption: string = 'shipping option';
+let stubSelectedShippingOptionId: number = 0;
 let stubShowShippingForm: boolean = true;
 let stubShowPaymentView: boolean = false;
 
 @Component({
   template: '<shipping [isShippingInfoValid]="isShippingInfoValidValue" ' + 
               '[shippingInfo]="shippingInfoValue" ' + 
-              '[selectedShippingOption]="selectedShippingOptionValue" ' + 
+              '[selectedShippingOptionId]="selectedShippingOptionIdValue" ' + 
               '[showPaymentView]="showPaymentViewValue" ' + 
               '(updateShippingInfo)="updateShippingInfoFunction($event)" ' + 
               '(selectShippingOption)="selectShippingOptionFunction($event)" ' + 
@@ -36,7 +36,7 @@ let stubShowPaymentView: boolean = false;
 class TestShipping {
   isShippingInfoValidValue = stubIsShippingInfoValidValue;
   shippingInfoValue: DaffodilAddress = stubDaffodilAddress;
-  selectedShippingOptionValue: string = stubSelectedShippingOption;
+  selectedShippingOptionIdValue: number = stubSelectedShippingOptionId;
   showPaymentViewValue: boolean = stubShowPaymentView;
   updateShippingInfoFunction: Function = () => {};
   selectShippingOptionFunction: Function = () => {};
@@ -46,7 +46,7 @@ class TestShipping {
 @Component({selector: 'shipping-form', template: '<ng-content></ng-content>', encapsulation: ViewEncapsulation.None})
 class MockShippingFormComponent {
   @Input() shippingInfo: DaffodilAddress;
-  @Input() selectedShippingOption: string;
+  @Input() selectedShippingOptionId: number;
   @Input() hideContinueToPayment: boolean;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
   @Output() continueToPayment: EventEmitter<any> = new EventEmitter();
@@ -54,7 +54,7 @@ class MockShippingFormComponent {
 
 @Component({selector: 'shipping-options', template: ''})
 class MockShippingOptionsComponent {
-  @Input() selectedShippingOption: string;
+  @Input() selectedShippingOptionId: number;
   @Input() shippingOptions: ShippingOption[];
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
 }
@@ -62,7 +62,7 @@ class MockShippingOptionsComponent {
 @Component({selector: 'shipping-summary', template: ''})
 class MockShippingSummaryComponent {
   @Input() shippingInfo: DaffodilAddress;
-  @Input() selectedShippingOption: string;
+  @Input() selectedShippingOption: ShippingOption;
   @Output() editShippingInfo: EventEmitter<any> = new EventEmitter();
 }
 
@@ -120,8 +120,8 @@ describe('ShippingComponent', () => {
     expect(shipping.shippingInfo).toEqual(stubDaffodilAddress);
   });
 
-  it('should be able to take selectedShippingOption as input', () => {
-    expect(shipping.selectedShippingOption).toEqual(stubSelectedShippingOption);
+  it('should be able to take selectedShippingOptionId as input', () => {
+    expect(shipping.selectedShippingOptionId).toEqual(stubSelectedShippingOptionId);
   });
 
   it('should be able to take showPaymentView as input', () => {
@@ -129,6 +129,10 @@ describe('ShippingComponent', () => {
   });
 
   describe('on <shipping-options>', () => {
+
+    it('should set selectedShippingOptionId', () => {
+      expect(shippingOptionsComponent.selectedShippingOptionId).toEqual(shipping.selectedShippingOptionId);
+    });
     
     it('should set shippingOptions', () => {
       expect(shippingOptionsComponent.shippingOptions).toEqual(shipping.shippingOptions);
@@ -145,25 +149,6 @@ describe('ShippingComponent', () => {
       expect(shipping.onSelectShippingOption).toHaveBeenCalledWith(shipping.shippingOptions[0].id);
     });
   });
-
-  describe('constructor', () => {
-    
-    it('should generate an array of shippingOptions', () => {
-      expect(shipping.shippingOptions.length).toEqual(3);
-    });
-
-    it('should generate a shippingOptions array with standard-shipping', () => {
-      expect(shipping.shippingOptions[0].id).toEqual('standard-shipping');
-    });
-
-    it('should generate a shippingOptions array with two-day-shipping', () => {
-      expect(shipping.shippingOptions[1].id).toEqual('two-day-shipping');
-    });
-
-    it('should generate a shippingOptions array with one-day-shipping', () => {
-      expect(shipping.shippingOptions[2].id).toEqual('one-day-shipping');
-    });
-  });
   
   describe('on <shipping-form>', () => {
     
@@ -171,8 +156,8 @@ describe('ShippingComponent', () => {
       expect(shippingFormComponent.shippingInfo).toEqual(shipping.shippingInfo);
     });
 
-    it('should set selectedShippingOption', () => {
-      expect(shippingFormComponent.selectedShippingOption).toEqual(shipping.selectedShippingOption);
+    it('should set selectedShippingOptionId', () => {
+      expect(shippingFormComponent.selectedShippingOptionId).toEqual(shipping.selectedShippingOptionId);
     });
 
     it('should set hideContinueToPayment', () => {
@@ -186,8 +171,27 @@ describe('ShippingComponent', () => {
       expect(shippingSummaryComponent.shippingInfo).toEqual(shipping.shippingInfo);
     });
 
-    it('should set selectedShippingOption', () => {
-      expect(shippingSummaryComponent.selectedShippingOption).toEqual(shipping.selectedShippingOption);
+    it('should set selectedShippingOptionId', () => {
+      expect(shippingSummaryComponent.selectedShippingOption).toEqual(shipping.shippingOptions[stubSelectedShippingOptionId]);
+    });
+  });
+
+  describe('constructor', () => {
+    
+    it('should generate an array of shippingOptions', () => {
+      expect(shipping.shippingOptions.length).toEqual(3);
+    });
+
+    it('should generate a shippingOptions array with 0', () => {
+      expect(shipping.shippingOptions[0].id).toEqual(0);
+    });
+
+    it('should generate a shippingOptions array with 1', () => {
+      expect(shipping.shippingOptions[1].id).toEqual(1);
+    });
+
+    it('should generate a shippingOptions array with 2', () => {
+      expect(shipping.shippingOptions[2].id).toEqual(2);
     });
   });
 

@@ -8,13 +8,13 @@ import { ShippingOption } from '@daffodil/core';
 })
 export class ShippingOptionsComponent {
 
-  @Input() selectedShippingOption: string;
+  @Input() selectedShippingOptionId: number;
   @Input() shippingOptions: ShippingOption[];
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
-  onSelectShippingOption(optionId: string) {
+  onSelectShippingOption(optionId: number) {
     this.selectShippingOption.emit(optionId);
   }
 }

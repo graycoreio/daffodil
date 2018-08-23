@@ -11,19 +11,19 @@ export class ShippingFactory {
 
   createShippingOptions() : ShippingOption[] {
     return [
-      new MockShippingOption('1'),
-      new MockShippingOption('2')
+      new MockShippingOption(0),
+      new MockShippingOption(1)
     ]
   }
 }
 
 export class MockShippingOption implements ShippingOption {
 
-  option: string;
+  option: number;
 
-  constructor(option:string) {
+  constructor(option:number) {
     this.option = option;
   }
-  id: string = 'id' + this.option;
+  id: number = this.option;
   text: string = 'text' + this.option;
 }

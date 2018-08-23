@@ -3,11 +3,11 @@
       [hidden]="!(showShippingForm$ | async)"
       [shippingInfo]="shippingInfo"
       [hideContinueToPayment]="showPaymentView"
-      [selectedShippingOption]="selectedShippingOption"
+      [selectedShippingOptionId]="selectedShippingOptionId"
       (updateShippingInfo)="onUpdateShippingInfo($event)"
       (continueToPayment)="onContinueToPayment()">
     <shipping-options class="shipping-form__options" 
-        [selectedShippingOption]="selectedShippingOption" 
+        [selectedShippingOptionId]="selectedShippingOptionId" 
         [shippingOptions]="shippingOptions" 
         (selectShippingOption)="onSelectShippingOption($event)"></shipping-options>
   </shipping-form>
@@ -15,6 +15,6 @@
     [hidden]="showShippingForm$ | async" 
     *ngIf="shippingInfo" 
     [shippingInfo]="shippingInfo" 
-    [selectedShippingOption]="selectedShippingOption"
+    [selectedShippingOption]="shippingOptions[selectedShippingOptionId]"
     (editShippingInfo)="toggleShippingView()"></shipping-summary>
 </div>
