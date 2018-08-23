@@ -1,17 +1,17 @@
 import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
 
 import { UpdateShippingInfo, SelectShippingOption } from "../actions/shipping.actions";
-import { initialState, reducer, getShippingInfo, getSelectedShippingOptionId, isShippingInfoValid, State } from "../reducers/shipping.reducer";
+import { initialState, reducer, getShippingInfo, getSelectedShippingOptionIndex, isShippingInfoValid, State } from "../reducers/shipping.reducer";
 
 describe('Shipping | Shipping Reducer', () => {
 
   let daffodilAddressFactory: DaffodilAddressFactory = new DaffodilAddressFactory();
   let shippingInfo: DaffodilAddress;
-  let selectedShippingOptionId: number;
+  let selectedShippingOptionIndex: number;
 
   beforeEach(() => {
     shippingInfo = daffodilAddressFactory.create();
-    selectedShippingOptionId = 0;
+    selectedShippingOptionIndex = 0;
   });
 
   describe('when an unknown action is triggered', () => {
@@ -45,13 +45,13 @@ describe('Shipping | Shipping Reducer', () => {
     let result;
 
     beforeEach(() => {
-      let selectShippingOptionAction = new SelectShippingOption(selectedShippingOptionId);
+      let selectShippingOptionAction = new SelectShippingOption(selectedShippingOptionIndex);
       
       result = reducer(initialState, selectShippingOptionAction);
     });
 
-    it('sets selectedShippingOptionId from action.payload', () => {
-      expect(result.selectedShippingOptionId).toEqual(selectedShippingOptionId)
+    it('sets selectedShippingOptionIndex from action.payload', () => {
+      expect(result.selectedShippingOptionIndex).toEqual(selectedShippingOptionIndex)
     });
   });
 
@@ -62,10 +62,10 @@ describe('Shipping | Shipping Reducer', () => {
     });
   });
 
-  describe('getSelectedShippingOptionId', () => {
+  describe('getSelectedShippingOptionIndex', () => {
     
-    it('returns selectedShippingOptionId state', () => {
-      expect(getSelectedShippingOptionId(initialState)).toEqual(initialState.selectedShippingOptionId);
+    it('returns selectedShippingOptionIndex state', () => {
+      expect(getSelectedShippingOptionIndex(initialState)).toEqual(initialState.selectedShippingOptionIndex);
     });
   });
 

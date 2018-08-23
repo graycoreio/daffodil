@@ -7,19 +7,18 @@ import { By } from '@angular/platform-browser';
 import { ShippingOption } from '@daffodil/core';
 import { ShippingFactory } from '@daffodil/core/testing';
 
-let shippingFactory: ShippingFactory = new ShippingFactory();
-let stubShippingOptions = shippingFactory.createShippingOptions();
-let stubSelectedShippingOptionId = stubShippingOptions[0].id;
+let stubShippingOptions = [ 'option1', 'option2'];
+let stubSelectedShippingOptionIndex = 0;
 
 @Component({
   template: '<shipping-options ' + 
-              '[selectedShippingOptionId]="selectedShippingOptionIdValue" ' + 
+              '[selectedShippingOptionIndex]="selectedShippingOptionIndexValue" ' + 
               '[shippingOptions]="shippingOptionsValue" ' + 
               '(selectShippingOption)="selectShippingOptionFunction($event)"></shipping-options>'
 })
 class TestShippingOptionsWrapper {
-  selectedShippingOptionIdValue: number = stubSelectedShippingOptionId;
-  shippingOptionsValue: ShippingOption[] = stubShippingOptions;
+  selectedShippingOptionIndexValue: number = stubSelectedShippingOptionIndex;
+  shippingOptionsValue: string[] = stubShippingOptions;
   selectShippingOptionFunction = () => {};
 };
 
@@ -28,6 +27,7 @@ describe('ShippingOptionsComponent', () => {
   let fixture: ComponentFixture<TestShippingOptionsWrapper>;
   let shippingOptionsComponent: ShippingOptionsComponent;
   let shippingOptionsRadioWrappers;
+  let selectedIndex = 0;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -56,8 +56,8 @@ describe('ShippingOptionsComponent', () => {
     expect(shippingOptionsComponent.shippingOptions).toEqual(stubShippingOptions);
   });
 
-  it('should be able to take selectedShippingOptionId as input', () => {
-    expect(shippingOptionsComponent.selectedShippingOptionId).toEqual(stubSelectedShippingOptionId);
+  it('should be able to take selectedShippingOptionIndex as input', () => {
+    expect(shippingOptionsComponent.selectedShippingOptionIndex).toEqual(stubSelectedShippingOptionIndex);
   });
 
   describe('when radio wrapper is clicked', () => {
@@ -91,7 +91,7 @@ describe('ShippingOptionsComponent', () => {
 
       radioLabels[0].nativeElement.click();
 
-      expect(shippingOptionsComponent.onSelectShippingOption).toHaveBeenCalledWith(stubShippingOptions[0].id);
+      expect(shippingOptionsComponent.onSelectShippingOption).toHaveBeenCalledWith(selectedIndex);
     });
   });
 
@@ -100,9 +100,9 @@ describe('ShippingOptionsComponent', () => {
     it('should emit selectShippingOption', () => {
       spyOn(shippingOptionsComponent.selectShippingOption, 'emit');
 
-      shippingOptionsComponent.onSelectShippingOption(stubShippingOptions[0].id);
+      shippingOptionsComponent.onSelectShippingOption(selectedIndex);
 
-      expect(shippingOptionsComponent.selectShippingOption.emit).toHaveBeenCalledWith(stubShippingOptions[0].id);
+      expect(shippingOptionsComponent.selectShippingOption.emit).toHaveBeenCalledWith(selectedIndex);
     });
   });
 
@@ -111,9 +111,9 @@ describe('ShippingOptionsComponent', () => {
     it('should call the function passed by host', () => {
       spyOn(component, 'selectShippingOptionFunction');
 
-      shippingOptionsComponent.selectShippingOption.emit(stubShippingOptions[0].id);
+      shippingOptionsComponent.selectShippingOption.emit(selectedIndex);
 
-      expect(component.selectShippingOptionFunction).toHaveBeenCalledWith(stubShippingOptions[0].id);
+      expect(component.selectShippingOptionFunction).toHaveBeenCalledWith(selectedIndex);
     });
   });
 });

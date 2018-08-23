@@ -40,5 +40,5 @@
     [formControl]="form.controls['telephone']"
     [formSubmitted]="ngForm.submitted"/>
   <ng-content></ng-content>
-  <button type="submit" class="button large expanded" [disabled]="selectedShippingOptionId === undefined">{{hideContinueToPayment ? 'Save' : 'Continue to Payment'}}</button>
+  <button type="submit" class="button large expanded" [disabled]="selectedShippingOptionIndex === undefined">{{hideContinueToPayment ? 'Save' : 'Continue to Payment'}}</button>
 </form>

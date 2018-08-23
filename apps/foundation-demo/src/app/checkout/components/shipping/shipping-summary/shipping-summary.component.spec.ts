@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { DaffodilAddress, DaffodilAddressFactory, ShippingOption } from '@daffodil/core';
+import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
 
 import { ShippingSummaryComponent } from './shipping-summary.component';
 
@@ -15,7 +15,7 @@ let stubDaffodilAddress = daffodilAddressFactory.create();
               '(editShippingInfo)="editShippingInfoFunction()"></shipping-summary>'})
 class TestShippingSummaryWrapper {
   shippingInfoValue: DaffodilAddress = stubDaffodilAddress;
-  selectedShippingOptionValue: ShippingOption = {id: 0, text:'shippingOption'};
+  selectedShippingOptionValue: string = 'shippingOption';
   editShippingInfoFunction: Function = () => {};
 }
 
