@@ -12,7 +12,7 @@ describe('ShippingContainer', () => {
   let fixture: ComponentFixture<ShippingContainer>;
   let store;
   let initialShippingInfo: DaffodilAddress;
-  let stubSelectedShippingOptionId: number;
+  let stubSelectedShippingOptionIndex: number;
   let stubIsShippingInfoValid: boolean;
   let daffodilAddressFactory: DaffodilAddressFactory;
 
@@ -35,11 +35,11 @@ describe('ShippingContainer', () => {
 
     daffodilAddressFactory = new DaffodilAddressFactory();
     initialShippingInfo = daffodilAddressFactory.create();
-    stubSelectedShippingOptionId = 0;
+    stubSelectedShippingOptionIndex = 0;
     stubIsShippingInfoValid = true;
 
     spyOn(fromShipping, 'selectShippingInfoState').and.returnValue(initialShippingInfo);
-    spyOn(fromShipping, 'selectShippingOptionState').and.returnValue(stubSelectedShippingOptionId);
+    spyOn(fromShipping, 'selectShippingOptionState').and.returnValue(stubSelectedShippingOptionIndex);
     spyOn(fromShipping, 'selectIsShippingInfoValid').and.returnValue(stubIsShippingInfoValid);
     spyOn(store, 'dispatch');
 
@@ -58,9 +58,9 @@ describe('ShippingContainer', () => {
       });
     });
 
-    it('initializes selectedShippingOptionId$', () => {
-      component.selectedShippingOptionId$.subscribe((shippingOption) => {
-        expect(shippingOption).toEqual(stubSelectedShippingOptionId);
+    it('initializes selectedShippingOptionIndex$', () => {
+      component.selectedShippingOptionIndex$.subscribe((shippingOption) => {
+        expect(shippingOption).toEqual(stubSelectedShippingOptionIndex);
       })
     });
 
@@ -83,9 +83,9 @@ describe('ShippingContainer', () => {
   describe('selectShippingOption', () => {
     
     it('should call store.dispatch with SelectShippingOption action', () => {
-      component.selectShippingOption(stubSelectedShippingOptionId);
+      component.selectShippingOption(stubSelectedShippingOptionIndex);
 
-      expect(store.dispatch).toHaveBeenCalledWith(new SelectShippingOption(stubSelectedShippingOptionId));
+      expect(store.dispatch).toHaveBeenCalledWith(new SelectShippingOption(stubSelectedShippingOptionIndex));
     });
   });
 });

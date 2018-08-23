@@ -3,7 +3,7 @@
     <shipping 
       [isShippingInfoValid]="ShippingContainer.isShippingInfoValid$ | async"
       [shippingInfo]="ShippingContainer.shippingInfo$ | async"
-      [selectedShippingOptionId]="ShippingContainer.selectedShippingOptionId$ | async"
+      [selectedShippingOptionIndex]="ShippingContainer.selectedShippingOptionIndex$ | async"
       [showPaymentView]="showPaymentView$ | async"
       (updateShippingInfo)="ShippingContainer.updateShippingInfo($event)"
       (selectShippingOption)="ShippingContainer.selectShippingOption($event)"

@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { DaffodilAddress, ShippingOption } from '@daffodil/core';
+import { DaffodilAddress } from '@daffodil/core';
 
 @Component({
   selector: 'shipping-summary',
@@ -9,7 +9,7 @@ import { DaffodilAddress, ShippingOption } from '@daffodil/core';
 export class ShippingSummaryComponent {
 
   @Input() shippingInfo: DaffodilAddress;
-  @Input() selectedShippingOption: ShippingOption;
+  @Input() selectedShippingOption: string;
   @Output() editShippingInfo: EventEmitter<any> = new EventEmitter();
 
   onEdit() {

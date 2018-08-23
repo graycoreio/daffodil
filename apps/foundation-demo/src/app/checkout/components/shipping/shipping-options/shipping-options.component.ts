@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ShippingOption } from '@daffodil/core';
 
 @Component({
   selector: 'shipping-options',
@@ -8,13 +7,13 @@ import { ShippingOption } from '@daffodil/core';
 })
 export class ShippingOptionsComponent {
 
-  @Input() selectedShippingOptionId: number;
-  @Input() shippingOptions: ShippingOption[];
+  @Input() selectedShippingOptionIndex: number;
+  @Input() shippingOptions: string[];
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
-  onSelectShippingOption(optionId: number) {
-    this.selectShippingOption.emit(optionId);
+  onSelectShippingOption(optionIndex: number) {
+    this.selectShippingOption.emit(optionIndex);
   }
 }
