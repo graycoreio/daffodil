@@ -82,7 +82,7 @@ describe('HeaderComponent', () => {
     
     it('should call toggleShowSidebar', () => {
       spyOn(component, 'toggleShowSidebar');
-      fixture.debugElement.query(By.css('.header__open-icon-wrapper')).nativeElement.click();
+      fixture.debugElement.query(By.css('.header__open-icon')).nativeElement.click();
 
       expect(component.toggleShowSidebar).toHaveBeenCalled();
     });
