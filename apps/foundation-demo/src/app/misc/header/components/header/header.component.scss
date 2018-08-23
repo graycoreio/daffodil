@@ -4,15 +4,25 @@
   height: 70px;
   width: 100%;
   @include section-divider();
+  display: grid;
+  grid-template-columns: 70px auto;
+  justify-items: center;
 
-  &__open-icon-wrapper {
+  &__open-icon {
     cursor: pointer;
     font-size: $medium-font-size;
-    padding: 27px;
+    padding: 23px 26px;
     border-right: 2px solid $medium-gray;
   }
 
-  &__open-icon {
-    margin-top: 24px;
+  &__cart-icon {
+    cursor: pointer;
+    justify-self: end;
+    padding: 23px 28px;
+
+    @include breakpoint(large) {
+      padding: 0;
+      margin: 23px 28px;
+    }
   }
 }
