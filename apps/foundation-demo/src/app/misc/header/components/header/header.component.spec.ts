@@ -6,6 +6,8 @@ import { Component, Input } from '@angular/core';
 import { HeaderComponent } from './header.component';
 import { ToggleShowSidebar } from '../../actions/sidebar.actions';
 import * as fromFoundationHeader from '../../reducers/index';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
 @Component({selector: 'sidebar', template: ''})
 class MockSidebarComponent {
@@ -18,13 +20,15 @@ describe('HeaderComponent', () => {
   let store;
   let stubShowSidebar;
   let sidebar: MockSidebarComponent;
+  let router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
           foundationHeader: combineReducers(fromFoundationHeader.reducers),
-        })
+        }),
+        RouterTestingModule
       ],
       declarations: [ 
         MockSidebarComponent,
@@ -37,6 +41,7 @@ describe('HeaderComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HeaderComponent);
     store = TestBed.get(Store);
+    router = TestBed.get(Router);
     spyOn(store, 'dispatch');
     component = fixture.componentInstance;
 
@@ -85,6 +90,16 @@ describe('HeaderComponent', () => {
       fixture.debugElement.query(By.css('.header__open-icon')).nativeElement.click();
 
       expect(component.toggleShowSidebar).toHaveBeenCalled();
+    });
+  });
+
+  describe('when logo-icon is clicked', () => {
+    
+    it('should call router.navigateByUrl', () => {
+      spyOn(router, 'navigateByUrl');
+      fixture.debugElement.query(By.css('.header__logo-icon')).nativeElement.click();
+
+      expect(router.navigateByUrl).toHaveBeenCalledWith('/');
     });
   });
 });
