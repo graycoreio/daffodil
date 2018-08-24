@@ -1,0 +1,35 @@
+@import 'daffodil-util';
+
+.footer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) 0.5fr;
+  grid-template-rows: auto 40px;
+  margin: 35px 15px;
+
+  @include breakpoint(medium) {
+    margin: 0 0 100px 50px;
+    grid-template-columns: repeat(2, 1fr) repeat(2, 0.75fr);
+  }
+
+  @include breakpoint(large) {
+    margin-left: 200px;
+    grid-template-columns: repeat(3, 1fr) 2fr;
+  }
+
+  &__category-title {
+    @include embolden();
+    @include uppercase();
+  }
+
+  &__icons {
+    align-self: end;
+
+    @include breakpoint(medium) {
+      align-self: start;
+    }
+  }
+
+  & span {
+    margin-right: 20px;
+  }
+}

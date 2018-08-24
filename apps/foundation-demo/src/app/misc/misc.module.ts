@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HelpBoxComponent } from './help-box/help-box.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   imports: [
@@ -10,11 +11,13 @@ import { HelpBoxComponent } from './help-box/help-box.component';
   ],
   declarations: [
     NotFoundComponent,
-    HelpBoxComponent
+    HelpBoxComponent,
+    FooterComponent
   ],
   exports: [
     NotFoundComponent,
-    HelpBoxComponent
+    HelpBoxComponent,
+    FooterComponent
   ]
 })
 export class MiscModule { }
