@@ -6,7 +6,9 @@ import { Cart } from '@daffodil/core';
 
 import { DaffCartServiceInterface } from '@daffodil/driver';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DaffInMemoryCartService implements DaffCartServiceInterface {
   url = '/api/cart';
 

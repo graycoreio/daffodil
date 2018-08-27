@@ -8,7 +8,9 @@ import {
 
 import { ProductFactory } from '@daffodil/core/testing';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DaffInMemoryProductTestingService implements InMemoryDbService {
   constructor(private productFactory: ProductFactory) {}
 

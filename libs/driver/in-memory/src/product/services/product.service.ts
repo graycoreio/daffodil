@@ -5,7 +5,9 @@ import { Observable } from 'rxjs/Observable';
 import { Product } from '@daffodil/core';
 import { DaffProductServiceInterface } from '@daffodil/driver';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DaffInMemoryProductService implements DaffProductServiceInterface {
   url = '/api/products/';
 

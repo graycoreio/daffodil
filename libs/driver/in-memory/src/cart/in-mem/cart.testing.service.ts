@@ -5,7 +5,9 @@ import { CartFactory } from '@daffodil/core/testing';
 
 import { InMemoryDbService, STATUS } from 'angular-in-memory-web-api';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DaffInMemoryCartTestingService implements InMemoryDbService {
   private cart;
 
