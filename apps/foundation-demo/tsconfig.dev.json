@@ -3,8 +3,13 @@
   "compilerOptions": {
     "paths": {
       "@daffodil/core": ["libs/core/src"],
+      "@daffodil/core/testing": ["libs/core/testing/src"],
       "@daffodil/state": ["libs/state/src"],
-      "@daffodil/driver": ["libs/driver/src"]
+      "@daffodil/driver": ["libs/driver/src"],
+      "@daffodil/driver/testing": ["libs/driver/testing/src"],
+      "@daffodil/driver/in-memory": ["libs/driver/in-memory/src"],
+      "@daffodil/driver/shopify": ["libs/driver/shopify/src"],
+      "@daffodil/driver/magento": ["libs/driver/magento/src"]
     }
   }
 }

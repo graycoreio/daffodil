@@ -33,7 +33,9 @@ import { CheckoutModule } from './checkout/checkout.module';
 
     HttpClientModule,
     environment.useMocks ? HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryService) : [],
-    environment.useMocks ? DaffInMemoryDriverModule : [],
+    environment.useMocks ? DaffInMemoryDriverModule.forRoot({
+      BASE_URL: environment.API_BASE
+    }) : [],
 
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
