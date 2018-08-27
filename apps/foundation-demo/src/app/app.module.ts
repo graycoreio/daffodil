@@ -1,6 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { HttpClientModule } from '@angular/common/http';
+
+import { HttpInMemoryWebApiModule, HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { DaffInMemoryDriverModule, DaffInMemoryService } from '@daffodil/driver/in-memory';
+
 import { environment } from '../environments/environment';
 
 import { StoreModule } from '@ngrx/store';
@@ -14,8 +19,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { ProductModule } from './product/product.module';
 
-import { MockModule } from '@daffodil/state';
-import { DaffodilModule } from '@daffodil/state';
 import { CartModule } from './cart/cart.module';
 import { MiscModule } from './misc/misc.module';
 import { CheckoutModule } from './checkout/checkout.module';
@@ -27,7 +30,10 @@ import { CheckoutModule } from './checkout/checkout.module';
   imports: [
     BrowserModule,
     NxModule.forRoot(),
-    environment.useMocks ? MockModule : [],
+
+    HttpClientModule,
+    environment.useMocks ? HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryService) : [],
+    environment.useMocks ? DaffInMemoryDriverModule : [],
 
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
@@ -39,7 +45,6 @@ import { CheckoutModule } from './checkout/checkout.module';
     
     AppRoutingModule,
 
-    DaffodilModule.forRoot({BASE_URL: environment.API_BASE}),
     ProductModule,
     CartModule,
     MiscModule,

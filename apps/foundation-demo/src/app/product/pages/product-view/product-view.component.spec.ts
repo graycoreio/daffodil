@@ -6,7 +6,8 @@ import { By } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
-import { Product, ProductFactory } from '@daffodil/core';
+import { Product } from '@daffodil/core';
+import { ProductFactory } from '@daffodil/core/testing';
 
 import { ProductViewComponent } from './product-view.component';
 import { ActivatedRouteStub } from '../../../testing/ActivatedRouteStub';

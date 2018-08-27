@@ -4,7 +4,8 @@ import { By } from '@angular/platform-browser';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { of } from 'rxjs';
 
-import { PaymentInfo, BillingFactory, DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
+import { PaymentInfo, DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
+import { BillingFactory } from '@daffodil/core/testing';
 
 import { ShowPaymentForm, ToggleShowPaymentForm, HidePaymentForm } from '../../../actions/payment.actions';
 import * as fromFoundationCheckout from '../../../reducers';

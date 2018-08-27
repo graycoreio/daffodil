@@ -4,7 +4,10 @@ import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angu
 import { By } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
 
-import { DaffodilAddress, DaffodilAddressFactory, PaymentInfo, BillingFactory, CartFactory, Cart } from '@daffodil/core';
+import { DaffodilAddress, DaffodilAddressFactory, PaymentInfo, Cart } from '@daffodil/core';
+
+import { ShippingFactory, BillingFactory, CartFactory } from '@daffodil/core/testing';
+
 import { ShippingContainer } from '@daffodil/state';
 
 import { ShowPaymentView } from '../../actions/payment.actions';
