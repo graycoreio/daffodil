@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { ToggleShowSidebar } from '../../actions/sidebar.actions';
-import * as fromFoundationHeader from '../../reducers';
+import { ToggleShowSidebar } from '../../../sidebar/actions/sidebar.actions';
+import * as fromFoundationHeader from '../../../sidebar/reducers/index';
 import { Router } from '@angular/router';
 
 @Component({

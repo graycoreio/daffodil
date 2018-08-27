@@ -4,8 +4,8 @@ import { By } from '@angular/platform-browser';
 import { Component, Input } from '@angular/core';
 
 import { HeaderComponent } from './header.component';
-import { ToggleShowSidebar } from '../../actions/sidebar.actions';
-import * as fromFoundationHeader from '../../reducers/index';
+import { ToggleShowSidebar } from '../../../sidebar/actions/sidebar.actions';
+import * as fromFoundationHeader from '../../../sidebar/reducers/index';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 

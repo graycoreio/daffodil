@@ -5,7 +5,7 @@ import { reducers } from './reducers/index';
 
 @NgModule({
   imports: [
-    StoreModule.forFeature('foundationHeader', reducers)
+    StoreModule.forFeature('foundationSidebar', reducers)
   ]
 })
-export class FoundationHeaderStateModule { }
+export class FoundationSidebarStateModule { }
