@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc/apps/foundation-demo",
+    "outDir": "../../dist/apps/foundation-demo",
     "module": "es2015",
     "types": []
   },

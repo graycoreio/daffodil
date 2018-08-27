@@ -2,8 +2,9 @@
   "extends": "./tsconfig.app.json",
   "compilerOptions": {
     "paths": {
+      "@daffodil/core": ["libs/core/src"],
       "@daffodil/state": ["libs/state/src"],
-      "@daffodil/core": ["libs/core/src"]
+      "@daffodil/driver": ["libs/driver/src"]
     }
   }
 }
