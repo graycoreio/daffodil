@@ -1,7 +1,8 @@
 import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
-import { Product, ProductFactory } from "@daffodil/core";
+import { Product } from "@daffodil/core";
+import { ProductFactory } from "@daffodil/core/testing";
 
 import { ProductLoad } from "../actions/product.actions";
 import { ProductGridLoadSuccess } from "../actions/product-grid.actions";

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { CartService } from './services/cart.service';
 import { CartContainer } from './containers/cart/cart.component';
 import { StateCartStateModule } from './cart-state.module';
 
@@ -19,9 +18,6 @@ import { StateCartStateModule } from './cart-state.module';
   ],
   exports: [
     CartContainer
-  ],
-  providers: [
-    CartService
   ]
 })
 export class StateCartModule { }

@@ -1,10 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
-import { ProductFactory } from '@daffodil/core';
 import { Product } from '@daffodil/core';
+import { ProductFactory } from '@daffodil/core/testing';
 
 import { ProductGridContainer } from './product-grid.component';
+
 import { ProductGridLoad } from '../../actions/product-grid.actions';
 import * as fromProduct from '../../reducers/index';
 

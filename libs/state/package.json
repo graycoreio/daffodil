@@ -13,18 +13,15 @@
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
+    "@daffodil/core": "1.1.0-a",
+    "@daffodil/driver": "1.1.0-a",
     "@angular/common": "^6.0.1",
     "@angular/core": "^6.0.1",
     "@angular/http": "^6.0.1",
-    "@daffodil/core": "1.1.0-a",
     "@ngrx/effects": "^6.0.1",
     "@ngrx/entity": "^6.0.1",
     "@ngrx/store": "^6.0.1",
     "core-js": "^2.4.1",
     "rxjs": "^6.2.0"
-  },
-  "devDependencies": {
-    "angular-in-memory-web-api": "^0.5.4",
-    "faker": "^4.1.0"
   }
 }
