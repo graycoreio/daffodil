@@ -5,7 +5,7 @@ import { Product } from '@daffodil/core';
 
 
 @Injectable({
-  providedIn: DaffCoreTestingModule
+  providedIn: 'root'
 })
 export class ProductFactory {
 

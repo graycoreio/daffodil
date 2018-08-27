@@ -6,7 +6,7 @@ import { Cart, CartItem, CartAddress, CartPayment, CartShippingRate} from '@daff
 
 
 @Injectable({
-  providedIn: DaffCoreTestingModule
+  providedIn: 'root'
 })
 export class CartFactory {
 

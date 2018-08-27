@@ -4,7 +4,9 @@ import { DaffCoreTestingModule } from '../../testing.module';
 import { ShippingOption, Address } from '@daffodil/core';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ShippingFactory {
 
   createShippingOptions() : ShippingOption[] {
