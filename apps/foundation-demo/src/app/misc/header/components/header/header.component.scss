@@ -1,9 +1,6 @@
 @import 'daffodil-util';
 
 .header {
-  height: 70px;
-  width: 100%;
-  @include section-divider();
   display: grid;
   grid-template-columns: 70px 100px auto;
   justify-items: center;

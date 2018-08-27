@@ -12,17 +12,17 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { DesignModule } from '../design/design.module';
 import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
 import { ProductEffects } from './effects/product.effects';
-import { MiscModule } from '../misc/misc.module';
+import { HeaderModule } from '../misc/header/header.module';
 
 @NgModule({
   imports: [
     CommonModule,
     DesignModule,
-    MiscModule,
     StateProductModule,
     EffectsModule.forFeature([
       ProductEffects
     ]),
+    HeaderModule
   ],
   declarations: [
     ProductGridComponent,
