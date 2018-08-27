@@ -6,12 +6,14 @@ import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SidebarItemComponent } from './components/sidebar-item/sidebar-item.component';
 import { FoundationHeaderStateModule } from './header.state.module';
+import { DaffSidebarModule } from '../../design/molecules/daff-sidebar/daff-sidebar.module';
 
 @NgModule({
   imports: [
     CommonModule,
     DaffHeaderModule,
-    FoundationHeaderStateModule
+    FoundationHeaderStateModule,
+    DaffSidebarModule
   ],
   declarations: [
     HeaderComponent,

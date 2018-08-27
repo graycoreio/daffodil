@@ -42,7 +42,8 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     column-gap: 50px;
     row-gap: 0px;
-    margin: 50px 120px;
+    padding: 50px 120px;
+    margin: 0;
 
     &__cart-wrapper {
       grid-area: cart;

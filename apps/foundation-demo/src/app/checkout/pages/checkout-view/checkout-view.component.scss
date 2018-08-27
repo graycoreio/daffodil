@@ -1,7 +1,7 @@
 @import 'daffodil-util';
 
 .checkout {
-  margin: 24px 15px;
+  padding: 24px 15px;
   display: grid;
   grid-template-areas: 
     "  mobile-cart"
@@ -28,7 +28,7 @@
   }
 
   @include breakpoint(large) {
-    margin: 50px 120px;
+    padding: 50px 120px;
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 50px;
     grid-template-areas: 

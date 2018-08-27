@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { By } from '@angular/platform-browser';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { SidebarComponent } from './sidebar.component';
 import * as fromFoundationHeader from '../../reducers/index';
@@ -9,6 +9,11 @@ import { ToggleShowSidebar } from '../../actions/sidebar.actions';
 
 @Component({selector: '[sidebar-item]', template: ''})
 class MockSidebarItemComponent {}
+
+@Component({selector: '[daff-sidebar]', template: '<ng-content></ng-content>'})
+class MockDaffSidebarComponent {
+  @Input() show: boolean;
+}
 
 @Component({template: '<sidebar [showSidebar]="showSidebarValue"></sidebar><div class="outside"></div>'})
 class TestSidebarComponentWrapper {
@@ -31,6 +36,7 @@ describe('SidebarComponent', () => {
       ],
       declarations: [ 
         MockSidebarItemComponent,
+        MockDaffSidebarComponent,
         TestSidebarComponentWrapper,
         SidebarComponent
       ]
@@ -69,16 +75,6 @@ describe('SidebarComponent', () => {
     });
   });
 
-  describe('when showSidebar is false', () => {
-    
-    it('should set sidebar-hide class on sidebar', () => {
-      sidebar.showSidebar = false;
-      fixture.detectChanges();
-
-      expect(fixture.debugElement.query(By.css('.sidebar')).nativeElement.classList.contains('sidebar-hide')).toBeTruthy();
-    });
-  });
-
   describe('when showSidebar is true', () => {
 
     beforeEach(() => {
@@ -86,10 +82,6 @@ describe('SidebarComponent', () => {
 
       sidebar.showSidebar = true;
       fixture.detectChanges();       
-    });
-    
-    it('should set sidebar-show class on sidebar', () => {
-      expect(fixture.debugElement.query(By.css('.sidebar')).nativeElement.classList.contains('sidebar-show')).toBeTruthy();
     });
 
     describe('and sidebar is clicked', () => {
