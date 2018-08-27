@@ -5,7 +5,7 @@
   grid-gap: 25px;
 
   @include breakpoint(medium) {
-    margin: 25px;
+    padding: 25px;
     grid-template-areas: 
       "image-gallery info"
       "image-gallery qty"
@@ -37,7 +37,7 @@
   }
 
   @include breakpoint(large) {
-    margin: 50px;
+    padding: 50px;
     grid-row-gap: 25px;
     grid-column-gap: 50px;
   }
