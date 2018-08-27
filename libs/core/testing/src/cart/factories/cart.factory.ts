@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker';
-import { Cart } from '../models/cart';
-import { CartItem } from '../models/cart-item';
-import { CartAddress } from '../models/cart-address';
-import { CartPayment } from '../models/cart-payment';
-import { CartShippingRate } from '../models/cart-shipping-rate';
+import { DaffCoreTestingModule } from '../../testing.module';
 
-@Injectable()
+import { Cart, CartItem, CartAddress, CartPayment, CartShippingRate} from '@daffodil/core';
+
+
+@Injectable({
+  providedIn: DaffCoreTestingModule
+})
 export class CartFactory {
 
   cart:MockCart = {...new MockCart()};

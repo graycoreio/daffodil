@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ShippingOption } from '../models/shipping-option';
+
+import { DaffCoreTestingModule } from '../../testing.module';
+import { ShippingOption, Address } from '@daffodil/core';
+
 
 @Injectable()
 export class ShippingFactory {
