@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { PaymentInfo } from '@daffodil/core';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class BillingFactory {
   
   create() : MockPaymentInfo {
