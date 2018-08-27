@@ -14,17 +14,19 @@ import { CartSummaryComponent } from './components/cart-summary/cart-summary.com
 import { CartGrandTotalComponent } from './components/cart-grand-total/cart-grand-total.component';
 import { CartAsyncWrapperComponent } from './components/cart-async-wrapper/cart-async-wrapper.component';
 import { ContinueShoppingComponent } from './components/continue-shopping/continue-shopping.component';
-import { MiscModule } from '../misc/misc.module';
 import { CheckoutCartAsyncWrapperComponent } from './components/checkout-cart-async-wrapper/checkout-cart-async-wrapper.component';
 import { CheckoutCartComponent } from './components/checkout-cart/checkout-cart.component';
 import { CheckoutCartItemComponent } from './components/checkout-cart-item/checkout-cart-item.component';
+import { MiscModule } from '../misc/misc.module';
+import { HeaderModule } from '../misc/header/header.module';
 
 @NgModule({
   imports: [
     CommonModule,
     DesignModule,
+    MiscModule,
     StateCartModule,
-    MiscModule
+    HeaderModule
   ],
   declarations: [
     CartViewComponent,
