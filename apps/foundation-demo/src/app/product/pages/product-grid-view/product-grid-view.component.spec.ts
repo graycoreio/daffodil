@@ -4,7 +4,8 @@ import { By } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
-import { Product, ProductFactory } from '@daffodil/core';
+import { Product } from '@daffodil/core';
+import { ProductFactory } from '@daffodil/core/testing';
 
 import { ProductGridViewComponent } from './product-grid-view.component';
 

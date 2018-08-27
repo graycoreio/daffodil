@@ -4,7 +4,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { CartFactory, CartItem } from '@daffodil/core';
+import { CartItem } from '@daffodil/core';
+import { CartFactory } from '@daffodil/core/testing';
 
 import { CheckoutCartItemComponent } from './checkout-cart-item.component';
 import { CartItemComponent } from '../cart-item/cart-item.component';

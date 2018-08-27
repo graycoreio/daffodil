@@ -4,7 +4,8 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-import { Product, ProductFactory } from '@daffodil/core';
+import { Product } from '@daffodil/core';
+import { ProductFactory } from '@daffodil/core/testing';
 
 import { ProductComponent } from './product.component';
 import { Image } from '../../../design/interfaces/image';

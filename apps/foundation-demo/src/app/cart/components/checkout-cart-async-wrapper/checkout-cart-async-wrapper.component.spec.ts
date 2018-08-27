@@ -4,7 +4,8 @@ import { By } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
-import { Cart, CartFactory } from '@daffodil/core';
+import { Cart } from '@daffodil/core';
+import { CartFactory } from '@daffodil/core/testing';
 
 import { CheckoutCartAsyncWrapperComponent } from './checkout-cart-async-wrapper.component';
 

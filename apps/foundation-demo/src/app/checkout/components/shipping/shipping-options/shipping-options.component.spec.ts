@@ -3,7 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ShippingOptionsComponent } from './shipping-options.component';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { ShippingOption, ShippingFactory } from '@daffodil/core';
+
+import { ShippingOption } from '@daffodil/core';
+import { ShippingFactory } from '@daffodil/core/testing';
 
 let shippingFactory: ShippingFactory = new ShippingFactory();
 let stubShippingOptions = shippingFactory.createShippingOptions();
