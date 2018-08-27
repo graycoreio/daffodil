@@ -43,11 +43,11 @@
     "@ngrx/store": "^6.1.0",
     "@nrwl/nx": "^6.2.0",
     "core-js": "^2.5.6",
-    "ng-packagr": "^3.0.0",
-    "ngrx-store-freeze": "^0.2.4",
-    "rxjs": "^6.2.2",
-    "rxjs-compat": "^6.2.2",
-    "zone.js": "^0.8.26"
+    "ngrx-store-freeze": "^0.2.3",
+    "rxjs": "^6.2.0",
+    "rxjs-compat": "^6.0.0-rc.0",
+    "zone.js": "^0.8.26",
+    "foundation-sites": "^6.4.4-rc1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.7.3",
@@ -74,6 +74,7 @@
     "karma-jasmine": "^1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
     "lerna": "^2.11.0",
+    "ng-packagr": "^4.1.1",
     "prettier": "1.12.1",
     "protractor": "~5.4.0",
     "ts-node": "~6.0.5",

@@ -15,7 +15,7 @@
             "index": "apps/foundation-demo/src/index.html",
             "main": "apps/foundation-demo/src/main.ts",
             "polyfills": "apps/foundation-demo/src/polyfills.ts",
-            "tsConfig": "apps/foundation-demo/tsconfig.packaged.json",
+            "tsConfig": "apps/foundation-demo/tsconfig.app.json",
             "assets": [
               "apps/foundation-demo/src/assets",
               "apps/foundation-demo/src/favicon.ico"
@@ -224,7 +224,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/core/src/test.ts",
+            "main": "libs/core/test.ts",
             "tsConfig": "libs/core/tsconfig.spec.json",
             "karmaConfig": "libs/core/karma.conf.js"
           }
@@ -235,6 +235,46 @@
             "tsConfig": [
               "libs/core/tsconfig.lib.json",
               "libs/core/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "driver": {
+      "root": "libs/driver",
+      "sourceRoot": "libs/driver/src",
+      "projectType": "library",
+      "prefix": "daffodil",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/driver/tsconfig.lib.json",
+            "project": "libs/driver/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/driver/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/driver/test.ts",
+            "tsConfig": "libs/driver/tsconfig.spec.json",
+            "karmaConfig": "libs/driver/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/driver/tsconfig.lib.json",
+              "libs/driver/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
