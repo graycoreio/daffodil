@@ -4,41 +4,37 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { hot, cold } from 'jasmine-marbles';
 
-import { Product, ProductFactory, DaffodilConfigFactory } from '@daffodil/core';
+import { Product } from '@daffodil/core';
+import { ProductFactory } from '@daffodil/core/testing';
+import { DaffProductServiceInterface, DaffDriver, DaffDriverInterface } from '@daffodil/driver';
+import { DaffDriverTestingModule } from '@daffodil/driver/testing';
+
 
 import { ProductGridLoad, ProductGridLoadSuccess, ProductGridLoadFailure } from '../actions/product-grid.actions';
+
 import { ProductGridEffects } from './product-grid.effects';
-import { ProductTestingModule } from '../testing/product-testing.module';
-import { ProductService } from '../services/product.service';
-import { DaffodilConfigService } from '../../config/daffodil-config.service';
 
 describe('ProductGridEffects', () => {
   let actions$: Observable<any>;
   let effects: ProductGridEffects;
-  let productService: ProductService;
   let productFactory: ProductFactory;
+  let daffDriver: DaffDriverInterface;
   let mockProductGrid: Product[];
-  let daffodilConfigService: DaffodilConfigService;
-  let daffodilConfigFactory: DaffodilConfigFactory;
 
   beforeEach(() => {
-    daffodilConfigFactory = new DaffodilConfigFactory();
-    daffodilConfigService = new DaffodilConfigService(daffodilConfigFactory.create());
-
     TestBed.configureTestingModule({
       imports: [
-        ProductTestingModule
+        DaffDriverTestingModule
       ],
       providers: [
         ProductGridEffects,
         provideMockActions(() => actions$),
-        {provide: DaffodilConfigService, useValue: daffodilConfigService}
       ]
     });
 
     effects = TestBed.get(ProductGridEffects);
-    productService = TestBed.get(ProductService);
     productFactory = TestBed.get(ProductFactory);
+    daffDriver = TestBed.get(DaffDriver);
 
     mockProductGrid = new Array(productFactory.create());
   });
@@ -55,7 +51,7 @@ describe('ProductGridEffects', () => {
     describe('and the call to ProductService is successful', () => {
 
       beforeEach(() => {
-        spyOn(productService, 'getAll').and.returnValue(of(mockProductGrid));
+        spyOn(daffDriver.productService, 'getAll').and.returnValue(of(mockProductGrid));
         const productGridLoadSuccessAction = new ProductGridLoadSuccess(mockProductGrid);
         actions$ = hot('--a', { a: productGridLoadAction });
         expected = cold('--b', { b: productGridLoadSuccessAction });
@@ -71,7 +67,7 @@ describe('ProductGridEffects', () => {
       beforeEach(() => {
         let error = 'Failed to load product grid';
         let response = cold('#', {}, error);
-        spyOn(productService, 'getAll').and.returnValue(response);
+        spyOn(daffDriver.productService, 'getAll').and.returnValue(response);
         const productGridLoadFailureAction = new ProductGridLoadFailure(error);
         actions$ = hot('--a', { a: productGridLoadAction });
         expected = cold('--b', { b: productGridLoadFailureAction });

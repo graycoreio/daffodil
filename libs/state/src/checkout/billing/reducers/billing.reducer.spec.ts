@@ -1,4 +1,5 @@
-import { DaffodilAddress, DaffodilAddressFactory, BillingFactory, PaymentInfo } from '@daffodil/core';
+import { DaffodilAddress, DaffodilAddressFactory, PaymentInfo } from '@daffodil/core';
+import { BillingFactory } from '@daffodil/core/testing';
 
 import { initialState, reducer, getBillingAddress, getPaymentInfo, getBillingAddressIsShippingAddress } from "../reducers/billing.reducer";
 import { UpdateBillingAddress, UpdatePaymentInfo, ToggleBillingAddressIsShippingAddress } from "../actions/billing.actions";

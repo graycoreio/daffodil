@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { By } from '@angular/platform-browser';
 
-import { ProductFactory } from '@daffodil/core';
 import { Product } from '@daffodil/core';
+import { ProductFactory } from '@daffodil/core/testing';
 
 import { ProductContainer } from './product.component';
 import { AddToCart } from '../../../cart/actions/cart.actions';

@@ -1,7 +1,8 @@
 import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
-import { PaymentInfo, BillingFactory } from '@daffodil/core';
+import { PaymentInfo } from '@daffodil/core';
+import { BillingFactory } from '@daffodil/core/testing';
 
 import { UpdatePaymentInfo } from "../actions/payment.actions";
 import * as fromPayment from './index';

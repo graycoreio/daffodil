@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { StateShippingStateModule } from './shipping-state.module';
 import { ShippingContainer } from './containers/shipping.component';
 

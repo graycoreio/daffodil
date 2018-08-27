@@ -6,9 +6,6 @@
       "jasmine",
       "node"
     ],
-    "paths": {
-      "@daffodil/core": ["dist/core"]
-    }
   },
   "files": [
     "src/test.ts"

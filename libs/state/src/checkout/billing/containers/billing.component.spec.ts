@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
-import { DaffodilAddress, DaffodilAddressFactory, BillingFactory, PaymentInfo } from '@daffodil/core';
+import { DaffodilAddress, DaffodilAddressFactory, PaymentInfo } from '@daffodil/core';
+import { BillingFactory } from '@daffodil/core/testing';
 
 import { BillingContainer } from './billing.component';
 import { UpdateBillingAddress, UpdatePaymentInfo, ToggleBillingAddressIsShippingAddress } from '../actions/billing.actions';

@@ -1,4 +1,5 @@
-import { PaymentInfo, BillingFactory } from '@daffodil/core';
+import { PaymentInfo } from '@daffodil/core';
+import { BillingFactory } from '@daffodil/core/testing';
 
 import { UpdatePaymentInfo } from "../actions/payment.actions";
 import { initialState, reducer, getPaymentInfo } from "../reducers/payment.reducer";

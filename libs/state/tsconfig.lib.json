@@ -15,10 +15,7 @@
     "lib": [
       "dom",
       "es2015"
-    ],
-    "paths": {
-      "@daffodil/core": ["dist/core"]
-    }
+    ]
   },
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,

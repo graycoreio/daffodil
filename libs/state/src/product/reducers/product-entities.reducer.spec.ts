@@ -1,4 +1,5 @@
-import { Product, ProductFactory } from "@daffodil/core";
+import { Product } from "@daffodil/core";
+import { ProductFactory } from "@daffodil/core/testing";
 
 import { ProductLoadSuccess } from "../actions/product.actions";
 import { ProductGridLoadSuccess } from "../actions/product-grid.actions";
