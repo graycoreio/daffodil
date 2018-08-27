@@ -1,18 +1,18 @@
 import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
-import * as fromHeader from './index';
+import * as fromSidebar from './index';
 
-describe('selectFoundationHeaderState', () => {
+describe('selectFoundationSidebarState', () => {
 
-  let store: Store<fromHeader.FoundationHeaderState>;
+  let store: Store<fromSidebar.FoundationSidebarState>;
   let expectedShowSidebar: boolean;
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          foundationHeader: combineReducers(fromHeader.reducers),
+          foundationSidebar: combineReducers(fromSidebar.reducers),
         })
       ]
     });
@@ -28,7 +28,7 @@ describe('selectFoundationHeaderState', () => {
         showSidebar: expectedShowSidebar
       }
 
-      store.pipe(select(fromHeader.foundationSidebarStateSelector)).subscribe((sidebarState) => {
+      store.pipe(select(fromSidebar.foundationSidebarStateSelector)).subscribe((sidebarState) => {
         expect(sidebarState).toEqual(expectedSidebarState);
       });
     });
@@ -37,7 +37,7 @@ describe('selectFoundationHeaderState', () => {
   describe('selectShowSidebar', () => {
     
     it('selects showSidebar state', () => {
-      store.pipe(select(fromHeader.selectShowSidebar)).subscribe((showSidebar) => {
+      store.pipe(select(fromSidebar.selectShowSidebar)).subscribe((showSidebar) => {
         expect(showSidebar).toEqual(expectedShowSidebar);
       });
     });

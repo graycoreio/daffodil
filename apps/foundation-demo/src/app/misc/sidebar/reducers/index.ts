@@ -2,29 +2,29 @@ import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelect
 
 import * as fromFoundationSidebar from './sidebar.reducer';
 
-export interface FoundationHeaderState {
+export interface FoundationSidebarState {
   foundationSidebar: fromFoundationSidebar.State;
 }
 
 export interface State {
-  foundationHeader: FoundationHeaderState
+  foundationSidebar: FoundationSidebarState
 }
 
-export const reducers : ActionReducerMap<FoundationHeaderState> = {
+export const reducers : ActionReducerMap<FoundationSidebarState> = {
   foundationSidebar: fromFoundationSidebar.reducer
 }
 
 /**
- * Foundation Header State
+ * Foundation Sidebar State
  */
-export const selectFoundationHeaderState: MemoizedSelector<object, FoundationHeaderState> = createFeatureSelector<FoundationHeaderState>('foundationHeader');
+export const selectFoundationSidebarState: MemoizedSelector<object, FoundationSidebarState> = createFeatureSelector<FoundationSidebarState>('foundationSidebar');
 
 /**
- * Foundation Header Sidebar State
+ * Foundation Sidebar Sidebar State
  */
 export const foundationSidebarStateSelector = createSelector(
-  selectFoundationHeaderState,
-  (state: FoundationHeaderState) => state.foundationSidebar
+  selectFoundationSidebarState,
+  (state: FoundationSidebarState) => state.foundationSidebar
 );
 
 export const selectShowSidebar: MemoizedSelector<object, boolean> = createSelector(

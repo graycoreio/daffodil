@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { ToggleShowSidebar } from '../../actions/sidebar.actions';
-import * as fromFoundationHeader from '../../reducers';
+import * as fromFoundationSidebar from '../../reducers/index';
 
 @Component({
   selector: 'sidebar',
@@ -17,7 +17,7 @@ export class SidebarComponent {
   @Input() showSidebar: boolean;
 
   constructor(
-    private store: Store<fromFoundationHeader.State>
+    private store: Store<fromFoundationSidebar.State>
   ) { }
 
   toggleShowSidebar() {
