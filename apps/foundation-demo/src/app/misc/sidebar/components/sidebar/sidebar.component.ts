@@ -1,8 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { Store } from '@ngrx/store';
-
-import { ToggleShowSidebar } from '../../actions/sidebar.actions';
-import * as fromFoundationSidebar from '../../reducers/index';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'sidebar',
@@ -15,22 +11,19 @@ import * as fromFoundationSidebar from '../../reducers/index';
 export class SidebarComponent {
 
   @Input() showSidebar: boolean;
-
-  constructor(
-    private store: Store<fromFoundationSidebar.State>
-  ) { }
-
-  toggleShowSidebar() {
-    this.store.dispatch(new ToggleShowSidebar());
-  }
+  @Output() toggleShowSidebar: EventEmitter<any> = new EventEmitter();
 
   onClick(event) {
     if(this.showSidebar && !this.isSidebarElement(event)) {
-      this.toggleShowSidebar();
+      this.toggleShowSidebar.emit();
     }
   }
 
   private isSidebarElement(event) {
     return event.path[0].classList[0].includes('sidebar');
+  }
+
+  onToggleShowSidebar() {
+    this.toggleShowSidebar.emit()
   }
 }

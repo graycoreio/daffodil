@@ -5,7 +5,6 @@ import { Component, Input } from '@angular/core';
 
 import { SidebarComponent } from './sidebar.component';
 import * as fromFoundationHeader from '../../reducers/index';
-import { ToggleShowSidebar } from '../../actions/sidebar.actions';
 
 @Component({selector: '[sidebar-item]', template: ''})
 class MockSidebarItemComponent {}
@@ -15,9 +14,10 @@ class MockDaffSidebarComponent {
   @Input() show: boolean;
 }
 
-@Component({template: '<sidebar [showSidebar]="showSidebarValue"></sidebar><div class="outside"></div>'})
+@Component({template: '<sidebar [showSidebar]="showSidebarValue" (toggleShowSidebar)="toggleShowSidebarFunction()"></sidebar><div class="outside"></div>'})
 class TestSidebarComponentWrapper {
   showSidebarValue: boolean;
+  toggleShowSidebarFunction: Function = () => {};
 }
 
 describe('SidebarComponent', () => {
@@ -66,19 +66,21 @@ describe('SidebarComponent', () => {
     expect(sidebar.showSidebar).toEqual(stubShowSidebar);
   });
 
-  describe('toggleShowSidebar', () => {
+  describe('when toggleShowSidebar is emitted', () => {
     
-    it('should call store.dispatch with a ToggleShowSidebar action', () => {
-      sidebar.toggleShowSidebar();
+    it('should call associated host function', () => {
+      spyOn(component, 'toggleShowSidebarFunction');
 
-      expect(store.dispatch).toHaveBeenCalledWith(new ToggleShowSidebar());
+      sidebar.toggleShowSidebar.emit();
+
+      expect(component.toggleShowSidebarFunction).toHaveBeenCalled();
     });
   });
 
   describe('when showSidebar is true', () => {
 
     beforeEach(() => {
-      spyOn(sidebar, 'toggleShowSidebar'); 
+      spyOn(sidebar.toggleShowSidebar, 'emit'); 
 
       sidebar.showSidebar = true;
       fixture.detectChanges();       
@@ -89,16 +91,16 @@ describe('SidebarComponent', () => {
       it('should not call toggleShowSidebar', () => {
         fixture.debugElement.query(By.css('.sidebar')).nativeElement.click();
 
-        expect(sidebar.toggleShowSidebar).not.toHaveBeenCalled();
+        expect(sidebar.toggleShowSidebar.emit).not.toHaveBeenCalled();
       });
     });
 
     describe('and a click occurs outside of the sidebar', () => {
       
-      it('should call toggleShowSidebar', () => {
+      it('should emit toggleShowSidebar', () => {
         fixture.debugElement.query(By.css('.outside')).nativeElement.click();
 
-        expect(sidebar.toggleShowSidebar).toHaveBeenCalled();
+        expect(sidebar.toggleShowSidebar.emit).toHaveBeenCalled();
       });
     });
   });
@@ -106,11 +108,10 @@ describe('SidebarComponent', () => {
   describe('when the close icon is clicked', () => {
     
     it('should call toggleShowSidebar', () => {
-      spyOn(sidebar, 'toggleShowSidebar');
-
+      spyOn(sidebar.toggleShowSidebar, 'emit'); 
       fixture.debugElement.query(By.css('.sidebar__close')).nativeElement.click();
 
-      expect(sidebar.toggleShowSidebar).toHaveBeenCalled();
+      expect(sidebar.toggleShowSidebar.emit).toHaveBeenCalled();
     });
   });
 });
