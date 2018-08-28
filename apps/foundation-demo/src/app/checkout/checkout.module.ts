@@ -20,7 +20,6 @@ import { PlaceOrderComponent } from './components/place-order/place-order.compon
 import { ShippingOptionsModule } from './components/shipping/shipping-options/shipping-options.module';
 import { AddressFormModule } from './components/forms/address-form/address-form.module';
 import { MiscModule } from '../misc/misc.module';
-import { HeaderModule } from '../misc/header/header.module';
 
 @NgModule({
   imports: [
@@ -33,8 +32,7 @@ import { HeaderModule } from '../misc/header/header.module';
     StateCartModule,
     ShippingOptionsModule,
     AddressFormModule,
-    MiscModule,
-    HeaderModule
+    MiscModule
   ],
   declarations: [
     CheckoutViewComponent,

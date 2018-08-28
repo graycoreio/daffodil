@@ -9,17 +9,14 @@ import * as fromFoundationHeader from '../../../sidebar/reducers/index';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-@Component({selector: 'sidebar', template: ''})
-class MockSidebarComponent {
-  @Input() showSidebar: boolean;
-}
+@Component({selector: 'sidebar-view', template: ''})
+class MockSidebarViewComponent {}
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   let store;
   let stubShowSidebar;
-  let sidebar: MockSidebarComponent;
   let router;
 
   beforeEach(async(() => {
@@ -31,7 +28,7 @@ describe('HeaderComponent', () => {
         RouterTestingModule
       ],
       declarations: [ 
-        MockSidebarComponent,
+        MockSidebarViewComponent,
         HeaderComponent
       ]
     })
@@ -49,19 +46,10 @@ describe('HeaderComponent', () => {
     spyOn(fromFoundationHeader, 'selectShowSidebar').and.returnValue(stubShowSidebar);
 
     fixture.detectChanges();
-
-    sidebar = fixture.debugElement.query(By.css('sidebar')).componentInstance;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  describe('on <sidebar>', () => {
-    
-    it('should set showSidebar', () => {
-      expect(sidebar.showSidebar).toEqual(stubShowSidebar);
-    });
   });
 
   describe('ngOnInit', () => {
