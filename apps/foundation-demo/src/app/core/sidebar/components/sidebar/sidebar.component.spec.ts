@@ -6,15 +6,12 @@ import { Component, Input } from '@angular/core';
 import { SidebarComponent } from './sidebar.component';
 import * as fromFoundationHeader from '../../reducers/index';
 
-@Component({selector: '[sidebar-item]', template: ''})
-class MockSidebarItemComponent {}
-
 @Component({selector: '[daff-sidebar]', template: '<ng-content></ng-content>'})
 class MockDaffSidebarComponent {
   @Input() show: boolean;
 }
 
-@Component({template: '<sidebar [showSidebar]="showSidebarValue" (toggleSidebarVisibility)="toggleSidebarVisibilityFunction()"></sidebar><div class="outside"></div>'})
+@Component({template: '<sidebar [showSidebar]="showSidebarValue" (toggleSidebarVisibility)="toggleSidebarVisibilityFunction()"><div class="transcluded"></div></sidebar><div class="outside"></div>'})
 class TestSidebarComponentWrapper {
   showSidebarValue: boolean;
   toggleSidebarVisibilityFunction: Function = () => {};
@@ -34,8 +31,7 @@ describe('SidebarComponent', () => {
           foundationHeader: combineReducers(fromFoundationHeader.reducers),
         })
       ],
-      declarations: [ 
-        MockSidebarItemComponent,
+      declarations: [
         MockDaffSidebarComponent,
         TestSidebarComponentWrapper,
         SidebarComponent

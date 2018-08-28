@@ -13,6 +13,9 @@ class MockSidebarContainer {
   toggleSidebarVisibility: Function = () => {}
 }
 
+@Component({selector: '[sidebar-item]', template: ''})
+class MockSidebarItemComponent {}
+
 @Component({selector: 'sidebar', template: ''})
 class MockSidebarComponent {
   @Input() showSidebar: boolean;
@@ -37,6 +40,7 @@ describe('SidebarViewComponent', () => {
       declarations: [ 
         MockSidebarContainer,
         MockSidebarComponent,
+        MockSidebarItemComponent,
         SidebarViewComponent
       ]
     })
