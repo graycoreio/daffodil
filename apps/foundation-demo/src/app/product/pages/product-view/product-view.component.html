@@ -1,4 +1,3 @@
-<header></header>
 <div product-container #ProductContainer="ProductContainer" [selectedProductId]="productId" class="product-container">
   <product [product]="ProductContainer.product$ | async" [qty]="ProductContainer.qty$ | async" (updateQty)="ProductContainer.updateQty($event)" *ngIf="!(ProductContainer.loading$ | async)">
     <add-to-cart (addToCart)="ProductContainer.addToCart($event)" [additive]="ProductContainer.product$ | async"  [qty]="ProductContainer.qty$ | async"></add-to-cart>
