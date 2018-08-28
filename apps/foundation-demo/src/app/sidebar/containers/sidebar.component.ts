@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { ToggleShowSidebar } from '../actions/sidebar.actions';
+import { ToggleSidebarVisibility } from '../actions/sidebar.actions';
 import * as fromFoundationSidebar from '../reducers/index';
 
 @Component({
@@ -24,7 +24,7 @@ export class SidebarContainer {
     private store: Store<fromFoundationSidebar.State>
   ) { }
 
-  toggleShowSidebar() {
-    this.store.dispatch(new ToggleShowSidebar());
+  toggleSidebarVisibility() {
+    this.store.dispatch(new ToggleSidebarVisibility());
   }
 }

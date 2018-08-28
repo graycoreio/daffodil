@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 
 import { SidebarContainer } from './sidebar.component';
 import * as fromFoundationSidebar from '../reducers/index';
-import { ToggleShowSidebar } from '../actions/sidebar.actions';
+import { ToggleSidebarVisibility } from '../actions/sidebar.actions';
 
 describe('SidebarContainer', () => {
   let component: SidebarContainer;
@@ -51,12 +51,12 @@ describe('SidebarContainer', () => {
     });
   });
 
-  describe('toggleShowSidebar', () => {
+  describe('toggleSidebarVisibility', () => {
     
-    it('should call store.dispatch with a ToggleShowSidebar action', () => {
-      component.toggleShowSidebar();
+    it('should call store.dispatch with a ToggleSidebarVisibility action', () => {
+      component.toggleSidebarVisibility();
 
-      expect(store.dispatch).toHaveBeenCalledWith(new ToggleShowSidebar());
+      expect(store.dispatch).toHaveBeenCalledWith(new ToggleSidebarVisibility());
     });
   });
 });

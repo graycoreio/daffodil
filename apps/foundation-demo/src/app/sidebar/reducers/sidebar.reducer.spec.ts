@@ -1,4 +1,4 @@
-import { ToggleShowSidebar } from "../actions/sidebar.actions";
+import { ToggleSidebarVisibility } from "../actions/sidebar.actions";
 import { initialState, reducer, getShowSidebar } from "../reducers/sidebar.reducer";
 
 describe('Header | Sidebar Reducer', () => {
@@ -21,14 +21,14 @@ describe('Header | Sidebar Reducer', () => {
     });
   });
 
-  describe('when ToggleShowSidebar action is triggered', () => {
+  describe('when ToggleSidebarVisibility action is triggered', () => {
 
     let result;
 
     beforeEach(() => {
-      let toggleShowSidebarAction = new ToggleShowSidebar();
+      let toggleSidebarVisibilityAction = new ToggleSidebarVisibility();
       
-      result = reducer(initialState, toggleShowSidebarAction);
+      result = reducer(initialState, toggleSidebarVisibilityAction);
     });
 
     it('sets showSidebar to !showSidebar', () => {

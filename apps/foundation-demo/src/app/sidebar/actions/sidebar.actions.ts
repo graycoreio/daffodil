@@ -1,14 +1,14 @@
 import { Action } from '@ngrx/store';
 
 export enum SidebarActionTypes {
-  ToggleShowSidebarAction = "[Foundation-Sidebar] Toggle Show Sidebar Action"
+  ToggleSidebarVisibilityAction = "[Foundation-Sidebar] Toggle Show Sidebar Action"
 }
 
-export class ToggleShowSidebar implements Action {
-  readonly type = SidebarActionTypes.ToggleShowSidebarAction;
+export class ToggleSidebarVisibility implements Action {
+  readonly type = SidebarActionTypes.ToggleSidebarVisibilityAction;
 
   constructor() {}
 }
 
 export type SidebarActions =
-    | ToggleShowSidebar;
+    | ToggleSidebarVisibility;
