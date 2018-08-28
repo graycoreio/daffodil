@@ -11,11 +11,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class SidebarComponent {
 
   @Input() showSidebar: boolean;
-  @Output() toggleShowSidebar: EventEmitter<any> = new EventEmitter();
+  @Output() toggleSidebarVisibility: EventEmitter<any> = new EventEmitter();
 
   onClick(event) {
     if(this.showSidebar && !this.isSidebarElement(event)) {
-      this.toggleShowSidebar.emit();
+      this.toggleSidebarVisibility.emit();
     }
   }
 
@@ -23,7 +23,7 @@ export class SidebarComponent {
     return event.path[0].classList[0].includes('sidebar');
   }
 
-  onToggleShowSidebar() {
-    this.toggleShowSidebar.emit()
+  onToggleSidebarVisibility() {
+    this.toggleSidebarVisibility.emit()
   }
 }

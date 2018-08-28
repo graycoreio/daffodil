@@ -9,9 +9,9 @@ import { Router } from '@angular/router';
 @Component({selector: 'sidebar-view', template: ''})
 class MockSidebarViewComponent {}
 
-@Component({template: '<header (toggleShowSidebar)="toggleShowSidebarFunction()"></header>'})
+@Component({template: '<header (toggleSidebarVisibility)="toggleSidebarVisibilityFunction()"></header>'})
 class TestHeaderComponentWrapper {
-  toggleShowSidebarFunction: Function = () => {};
+  toggleSidebarVisibilityFunction: Function = () => {};
 }
 
 describe('HeaderComponent', () => {
@@ -47,13 +47,13 @@ describe('HeaderComponent', () => {
 
   describe('when open-icon is clicked', () => {
     
-    it('should call host.toggleShowSidebarFunction', fakeAsync(() => {
-      spyOn(component, 'toggleShowSidebarFunction');
+    it('should call host.toggleSidebarVisibilityFunction', fakeAsync(() => {
+      spyOn(component, 'toggleSidebarVisibilityFunction');
       fixture.debugElement.query(By.css('.header__open-icon')).nativeElement.click();
       fixture.detectChanges();
       tick();
 
-      expect(component.toggleShowSidebarFunction).toHaveBeenCalled();
+      expect(component.toggleSidebarVisibilityFunction).toHaveBeenCalled();
     }));
   });
 

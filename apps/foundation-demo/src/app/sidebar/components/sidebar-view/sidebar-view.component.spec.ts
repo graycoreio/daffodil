@@ -10,13 +10,13 @@ import { Observable, of } from 'rxjs';
 @Component({selector: '[sidebar-container]', template: '<ng-content></ng-content>', exportAs: 'SidebarContainer'})
 class MockSidebarContainer {
   showSidebar$: Observable<boolean>;
-  toggleShowSidebar: Function = () => {}
+  toggleSidebarVisibility: Function = () => {}
 }
 
 @Component({selector: 'sidebar', template: ''})
 class MockSidebarComponent {
   @Input() showSidebar: boolean;
-  @Output() toggleShowSidebar: EventEmitter<any> = new EventEmitter();
+  @Output() toggleSidebarVisibility: EventEmitter<any> = new EventEmitter();
 }
 
 describe('SidebarViewComponent', () => {
@@ -68,14 +68,14 @@ describe('SidebarViewComponent', () => {
     });
   });
 
-  describe('when sidebar emits toggleShowSidebar', () => {
+  describe('when sidebar emits toggleSidebarVisibility', () => {
     
-    it('should call sidebarContainer.toggleShowSidebar', () => {
-      spyOn(sidebarContainer, 'toggleShowSidebar');
+    it('should call sidebarContainer.toggleSidebarVisibility', () => {
+      spyOn(sidebarContainer, 'toggleSidebarVisibility');
 
-      sidebar.toggleShowSidebar.emit();
+      sidebar.toggleSidebarVisibility.emit();
 
-      expect(sidebarContainer.toggleShowSidebar).toHaveBeenCalled();
+      expect(sidebarContainer.toggleSidebarVisibility).toHaveBeenCalled();
     });
   });
 });

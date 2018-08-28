@@ -6,12 +6,12 @@ import { By } from '@angular/platform-browser';
 
 @Component({selector: '[sidebar-container]', template: '<ng-content></ng-content>', exportAs: 'SidebarContainer'})
 class MockSidebarContainer {
-  toggleShowSidebar: Function = () => {};
+  toggleSidebarVisibility: Function = () => {};
 }
 
 @Component({selector: 'header', template: ''})
 class MockHeaderComponent {
-  @Output() toggleShowSidebar: EventEmitter<any> = new EventEmitter();
+  @Output() toggleSidebarVisibility: EventEmitter<any> = new EventEmitter();
 }
 
 describe('HeaderViewComponent', () => {
@@ -44,14 +44,14 @@ describe('HeaderViewComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('when <header> emits toggleShowSidebar', () => {
+  describe('when <header> emits toggleSidebarVisibility', () => {
     
-    it('should call sidebarContainer.toggleShowSidebar', () => {
-      spyOn(sidebarContainer, 'toggleShowSidebar');
+    it('should call sidebarContainer.toggleSidebarVisibility', () => {
+      spyOn(sidebarContainer, 'toggleSidebarVisibility');
 
-      header.toggleShowSidebar.emit();
+      header.toggleSidebarVisibility.emit();
 
-      expect(sidebarContainer.toggleShowSidebar).toHaveBeenCalled();
+      expect(sidebarContainer.toggleSidebarVisibility).toHaveBeenCalled();
     });
   });
 });
