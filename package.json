@@ -42,12 +42,15 @@
     "@ngrx/router-store": "^6.1.0",
     "@ngrx/store": "^6.1.0",
     "@nrwl/nx": "^6.2.0",
+    "apollo-angular-boost": "^1.0.0",
     "core-js": "^2.5.6",
+    "foundation-sites": "^6.4.4-rc1",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2",
     "ngrx-store-freeze": "^0.2.3",
-    "rxjs": "^6.2.0",
+    "rxjs": "^6.2.2",
     "rxjs-compat": "^6.0.0-rc.0",
-    "zone.js": "^0.8.26",
-    "foundation-sites": "^6.4.4-rc1"
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.7.3",
