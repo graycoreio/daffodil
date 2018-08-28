@@ -7,6 +7,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 @Component({selector: 'header-view', template: ''})
 class MockHeaderViewComponent {}
 
+@Component({selector: 'sidebar-view', template: ''})
+class MockSidebarViewComponent {}
+
 describe('TemplateComponent', () => {
   let component: TemplateComponent;
   let fixture: ComponentFixture<TemplateComponent>;
@@ -18,6 +21,7 @@ describe('TemplateComponent', () => {
       ],
       declarations: [ 
         MockHeaderViewComponent,
+        MockSidebarViewComponent,
         TemplateComponent
       ]
     })
