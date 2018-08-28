@@ -1,9 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
-
-import { ToggleShowSidebar } from '../../../sidebar/actions/sidebar.actions';
-import * as fromFoundationHeader from '../../../sidebar/reducers/index';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,26 +6,19 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
-  showSidebar$: Observable<boolean>;
+  @Output() toggleShowSidebar: EventEmitter<any> = new EventEmitter();
 
   constructor(
-    private store: Store<fromFoundationHeader.State>,
     private router: Router
   ) { }
 
-  ngOnInit() {
-    this.showSidebar$ = this.store.pipe(
-      select(fromFoundationHeader.selectShowSidebar)
-    );
-  }
-
-  toggleShowSidebar() {
+  onToggleShowSidebar() {
     let that = this;
     // setTimeout included to give the sidebar component time to determine the location of the click first.
     setTimeout(() => {
-      that.store.dispatch(new ToggleShowSidebar());
+      that.toggleShowSidebar.emit();
     });
   }
 
