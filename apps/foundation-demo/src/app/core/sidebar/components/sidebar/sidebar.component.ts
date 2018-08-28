@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'sidebar',
@@ -6,7 +6,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./sidebar.component.scss'],
   host: {
     '(document:click)': 'onClick($event)',
-  }
+  },
+  encapsulation: ViewEncapsulation.None
 })
 export class SidebarComponent {
 

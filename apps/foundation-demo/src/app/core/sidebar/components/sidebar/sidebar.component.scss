@@ -1,39 +1,10 @@
 @import 'daffodil-util';
 
 .sidebar {
-  // position: fixed;
-  // height: 100%;
   display: grid;
   grid-template-rows: 100px repeat(15, 35px);
   width: 200px;
-  // opacity: 0;
-  // top: 0;
-  // left: -200px;
   background-color: white;
-
-  // &-show {
-  //   left: 0;
-  //   opacity: 1;
-  //   -webkit-box-shadow: 10px 0px 76px -13px rgba(0,0,0,0.59);
-  //   -moz-box-shadow: 10px 0px 76px -13px rgba(0,0,0,0.59);
-  //   box-shadow: 10px 0px 76px -13px rgba(0,0,0,0.59);
-  //   -webkit-transition: 0.5s ease;
-  //   -moz-transition: 0.5s ease;
-  //   -ms-transition: 0.5s ease;
-  //   -o-transition: 0.5s ease;
-  //   transition: 0.5s ease;
-  // }
-
-  // &-hide {
-  //   left: -200px;
-  //   opacity: 0;
-  //   top: 0;
-  //   -webkit-transition: 0.5s ease;
-  //   -moz-transition: 0.5s ease;
-  //   -ms-transition: 0.5s ease;
-  //   -o-transition: 0.5s ease;
-  //   transition: 0.5s ease;
-  // }
 
   &__close {
     justify-self: end;
