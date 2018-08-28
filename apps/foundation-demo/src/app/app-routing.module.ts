@@ -5,7 +5,7 @@ import { CartViewComponent } from './cart/pages/cart-view/cart-view.component';
 import { ProductViewComponent } from './product/pages/product-view/product-view.component';
 import { NotFoundComponent } from './misc/not-found/not-found.component';
 import { CheckoutViewComponent } from './checkout/pages/checkout-view/checkout-view.component';
-import { HeaderComponent } from './misc/header/components/header/header.component';
+import { HeaderComponent } from './header/components/header/header.component';
 
 export const appRoutes: Routes = [
   {

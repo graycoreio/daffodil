@@ -19,6 +19,7 @@ import { ProductModule } from './product/product.module';
 import { CartModule } from './cart/cart.module';
 import { MiscModule } from './misc/misc.module';
 import { CheckoutModule } from './checkout/checkout.module';
+import { HeaderModule } from './header/header.module';
 
 import { getDriverVariant } from './helper/driver-variant';
 
@@ -47,7 +48,8 @@ import { getDriverVariant } from './helper/driver-variant';
     ProductModule,
     CartModule,
     MiscModule,
-    CheckoutModule
+    CheckoutModule,
+    HeaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
