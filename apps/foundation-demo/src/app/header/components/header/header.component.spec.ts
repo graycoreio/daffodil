@@ -1,34 +1,32 @@
 import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
-import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { By } from '@angular/platform-browser';
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { HeaderComponent } from './header.component';
-import { ToggleShowSidebar } from '../../../sidebar/actions/sidebar.actions';
-import * as fromFoundationHeader from '../../../sidebar/reducers/index';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
 @Component({selector: 'sidebar-view', template: ''})
 class MockSidebarViewComponent {}
 
+@Component({template: '<header (toggleShowSidebar)="toggleShowSidebarFunction()"></header>'})
+class TestHeaderComponentWrapper {
+  toggleShowSidebarFunction: Function = () => {};
+}
+
 describe('HeaderComponent', () => {
-  let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
-  let store;
-  let stubShowSidebar;
+  let component: TestHeaderComponentWrapper;
+  let fixture: ComponentFixture<TestHeaderComponentWrapper>;
   let router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        StoreModule.forRoot({
-          foundationHeader: combineReducers(fromFoundationHeader.reducers),
-        }),
         RouterTestingModule
       ],
       declarations: [ 
         MockSidebarViewComponent,
+        TestHeaderComponentWrapper,
         HeaderComponent
       ]
     })
@@ -36,14 +34,9 @@ describe('HeaderComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderComponent);
-    store = TestBed.get(Store);
+    fixture = TestBed.createComponent(TestHeaderComponentWrapper);
     router = TestBed.get(Router);
-    spyOn(store, 'dispatch');
     component = fixture.componentInstance;
-
-    stubShowSidebar = false;
-    spyOn(fromFoundationHeader, 'selectShowSidebar').and.returnValue(stubShowSidebar);
 
     fixture.detectChanges();
   });
@@ -52,33 +45,16 @@ describe('HeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('ngOnInit', () => {
-    
-    it('should initialize showSidebar$', () => {
-      component.showSidebar$.subscribe((showSidebar) => {
-        expect(showSidebar).toEqual(stubShowSidebar);
-      });
-    });
-  });
-
-  describe('toggleShowSidebar', () => {
-    
-    it('should call store.dispatch with a ToggleShowSidebar action within a setTimeout', fakeAsync(() => {
-      component.toggleShowSidebar();
-      tick(200);
-
-      expect(store.dispatch).toHaveBeenCalledWith(new ToggleShowSidebar());
-    }));
-  });
-
   describe('when open-icon is clicked', () => {
     
-    it('should call toggleShowSidebar', () => {
-      spyOn(component, 'toggleShowSidebar');
+    it('should call host.toggleShowSidebarFunction', fakeAsync(() => {
+      spyOn(component, 'toggleShowSidebarFunction');
       fixture.debugElement.query(By.css('.header__open-icon')).nativeElement.click();
+      fixture.detectChanges();
+      tick();
 
-      expect(component.toggleShowSidebar).toHaveBeenCalled();
-    });
+      expect(component.toggleShowSidebarFunction).toHaveBeenCalled();
+    }));
   });
 
   describe('when logo-icon is clicked', () => {

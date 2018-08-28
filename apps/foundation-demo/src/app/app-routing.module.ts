@@ -5,7 +5,7 @@ import { CartViewComponent } from './cart/pages/cart-view/cart-view.component';
 import { ProductViewComponent } from './product/pages/product-view/product-view.component';
 import { NotFoundComponent } from './misc/not-found/not-found.component';
 import { CheckoutViewComponent } from './checkout/pages/checkout-view/checkout-view.component';
-import { HeaderComponent } from './header/components/header/header.component';
+import { HeaderViewComponent } from './header/components/header-view/header-view.component';
 
 export const appRoutes: Routes = [
   {
@@ -14,7 +14,7 @@ export const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: '', component: HeaderComponent, children: [
+    path: '', component: HeaderViewComponent, children: [
       { path: 'product-grid', component: ProductGridViewComponent},
       { path: 'cart', component: CartViewComponent },
       { path: 'product/:id', component: ProductViewComponent },
