@@ -4,8 +4,7 @@
       [shippingInfo]="shippingInfo"
       [editMode]="showPaymentView"
       [selectedShippingOptionId]="selectedShippingOptionId"
-      (updateShippingInfo)="onUpdateShippingInfo($event)"
-      (continueToPayment)="onContinueToPayment()">
+      (updateShippingInfo)="onUpdateShippingInfo($event)">
     <shipping-options class="shipping-form__options" 
         [selectedShippingOptionId]="selectedShippingOptionId" 
         [shippingOptions]="shippingOptions" 

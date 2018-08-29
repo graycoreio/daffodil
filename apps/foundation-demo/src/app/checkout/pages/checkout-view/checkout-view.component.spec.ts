@@ -37,7 +37,6 @@ class MockShippingComponent {
   @Input() showPaymentView: boolean;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
-  @Output() continueToPayment: EventEmitter<any> = new EventEmitter();
 }
 
 @Component({selector: 'payment', template: ''})
@@ -189,6 +188,12 @@ describe('CheckoutViewComponent', () => {
 
         expect(shippingContainer.updateShippingInfo).toHaveBeenCalledWith(stubShippingInfo);
       });
+      
+      it('should dispatch a ShowPaymentView action', () => {
+        shipping.updateShippingInfo.emit(stubShippingInfo);
+        
+        expect(store.dispatch).toHaveBeenCalledWith(new ShowPaymentView());
+      });
     });
 
     describe('selectShippingOption', () => {
@@ -199,17 +204,6 @@ describe('CheckoutViewComponent', () => {
         shipping.selectShippingOption.emit(stubSelectedShippingOptionIndex);
 
         expect(shippingContainer.selectShippingOption).toHaveBeenCalledWith(stubSelectedShippingOptionIndex);
-      });
-    });
-
-    describe('continueToPayment', () => {
-      
-      it('should call onContinueToPayment', () => {
-        spyOn(component, 'onContinueToPayment');
-  
-        shipping.continueToPayment.emit();
-  
-        expect(component.onContinueToPayment).toHaveBeenCalled();
       });
     });
   });
@@ -349,15 +343,6 @@ describe('CheckoutViewComponent', () => {
       component.showReviewView$.subscribe((showReviewView) => {
         expect(showReviewView).toEqual(stubShowReviewView);
       });
-    });
-  });
-
-  describe('onContinueToPayment', () => {
-    
-    it('should dispatch a ShowPaymentView action', () => {
-      component.onContinueToPayment();
-
-      expect(store.dispatch).toHaveBeenCalledWith(new ShowPaymentView());
     });
   });
 

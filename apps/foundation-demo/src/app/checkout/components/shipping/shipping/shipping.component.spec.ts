@@ -30,8 +30,7 @@ let stubShowPaymentView: boolean = false;
               '[selectedShippingOptionId]="selectedShippingOptionIdValue" ' + 
               '[showPaymentView]="showPaymentViewValue" ' + 
               '(updateShippingInfo)="updateShippingInfoFunction($event)" ' + 
-              '(selectShippingOption)="selectShippingOptionFunction($event)" ' + 
-              '(continueToPayment)="onContinueToPaymentFunction()"></shipping>'
+              '(selectShippingOption)="selectShippingOptionFunction($event)"></shipping>'
 })
 class TestShipping {
   isShippingInfoValidValue = stubIsShippingInfoValidValue;
@@ -40,7 +39,6 @@ class TestShipping {
   showPaymentViewValue: boolean = stubShowPaymentView;
   updateShippingInfoFunction: Function = () => {};
   selectShippingOptionFunction: Function = () => {};
-  onContinueToPaymentFunction: Function = () => {};
 }
 
 @Component({selector: 'shipping-form', template: '<ng-content></ng-content>', encapsulation: ViewEncapsulation.None})
@@ -49,7 +47,6 @@ class MockShippingFormComponent {
   @Input() selectedShippingOptionId: string;
   @Input() editMode: boolean;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
-  @Output() continueToPayment: EventEmitter<any> = new EventEmitter();
 }
 
 @Component({selector: 'shipping-options', template: ''})
@@ -229,17 +226,6 @@ describe('ShippingComponent', () => {
 
       it('should call toggleShippingView', () => {
         expect(shipping.toggleShippingView).toHaveBeenCalled();
-      });
-    });
-
-    describe('continueToPayment', () => {
-      
-      it('should call hostComponent.onContinueToPaymentFunction', () => {
-        spyOn(component, 'onContinueToPaymentFunction');
-
-        shippingFormComponent.continueToPayment.emit();
-
-        expect(component.onContinueToPaymentFunction).toHaveBeenCalled();
       });
     });
   });
