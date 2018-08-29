@@ -11,14 +11,14 @@ import { ShippingFormComponent } from './shipping-form.component';
 @Component({
   'template': '<shipping-form [shippingInfo]="shippingInfoValue" ' + 
                 '[selectedShippingOptionIndex]="selectedShippingOptionIndexValue" ' + 
-                '[hideContinueToPayment]="hideContinueToPaymentValue" ' + 
+                '[editMode]="editModeValue" ' + 
                 '(updateShippingInfo)="onUpdateShippingInfoFunction($event)" ' + 
                 '(continueToPayment)="continueToPaymentFunction()"></shipping-form>'
 })
 class TestingShippingFormComponentWrapper {
   shippingInfoValue: DaffodilAddress;
   selectedShippingOptionIndexValue: number;
-  hideContinueToPaymentValue: boolean;
+  editModeValue: boolean;
   onUpdateShippingInfoFunction: Function = () => {};
   continueToPaymentFunction: Function = () => {};
 }
@@ -63,7 +63,7 @@ describe('ShippingFormComponent', () => {
     component = fixture.componentInstance;
     component.shippingInfoValue = stubShippingInfo;
     component.selectedShippingOptionIndexValue = 0;
-    component.hideContinueToPaymentValue = false;
+    component.editModeValue = false;
     fixture.detectChanges();
 
     shippingFormComponent = fixture.debugElement.query(By.css('shipping-form')).componentInstance;
@@ -81,8 +81,8 @@ describe('ShippingFormComponent', () => {
     expect(shippingFormComponent.selectedShippingOptionIndex).toEqual(component.selectedShippingOptionIndexValue);
   });
 
-  it('should be able to take hideContinueToPayment as input', () => {
-    expect(shippingFormComponent.hideContinueToPayment).toEqual(component.hideContinueToPaymentValue);
+  it('should be able to take editMode as input', () => {
+    expect(shippingFormComponent.editMode).toEqual(component.editModeValue);
   });
 
   describe('on [input-validator]', () => {
@@ -104,6 +104,7 @@ describe('ShippingFormComponent', () => {
     describe('when form is submitted', () => {
       
       it('should change formSubmitted to true', () => {
+        shippingFormComponent.editMode = true
         fixture.debugElement.query(By.css('button')).nativeElement.click();
         fixture.detectChanges();
 
@@ -414,7 +415,7 @@ describe('ShippingFormComponent', () => {
     });
   });
 
-  describe('when hideContinueToPayment is false', () => {
+  describe('when editMode is false', () => {
     
     it('should set button text to Continue to Payment', () => {
       let buttonText = fixture.debugElement.query(By.css('button')).nativeElement.innerHTML;
@@ -422,12 +423,12 @@ describe('ShippingFormComponent', () => {
     });
   });
 
-  describe('when hideContinueToPayment is true', () => {
+  describe('when editMode is true', () => {
     
     let buttonText;
     
     beforeEach(() => {
-      shippingFormComponent.hideContinueToPayment = true;
+      shippingFormComponent.editMode = true;
       fixture.detectChanges();
       buttonText = fixture.debugElement.query(By.css('button')).nativeElement.innerHTML;
     });

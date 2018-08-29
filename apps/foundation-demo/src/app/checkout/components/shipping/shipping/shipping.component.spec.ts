@@ -47,7 +47,7 @@ class TestShipping {
 class MockShippingFormComponent {
   @Input() shippingInfo: DaffodilAddress;
   @Input() selectedShippingOptionIndex: number;
-  @Input() hideContinueToPayment: boolean;
+  @Input() editMode: boolean;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
   @Output() continueToPayment: EventEmitter<any> = new EventEmitter();
 }
@@ -161,8 +161,8 @@ describe('ShippingComponent', () => {
       expect(shippingFormComponent.selectedShippingOptionIndex).toEqual(shipping.selectedShippingOptionIndex);
     });
 
-    it('should set hideContinueToPayment', () => {
-      expect(shippingFormComponent.hideContinueToPayment).toEqual(shipping.showPaymentView);
+    it('should set editMode', () => {
+      expect(shippingFormComponent.editMode).toEqual(shipping.showPaymentView);
     });
   });
 
