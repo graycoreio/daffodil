@@ -5,6 +5,7 @@ export { CartAddress } from './cart/models/cart-address';
 export { CartPayment } from './cart/models/cart-payment';
 export { CartShippingRate } from './cart/models/cart-shipping-rate';
 export { PaymentInfo } from './checkout/models/payment-info';
+export { ShippingOption } from './checkout/models/shipping-option';
 
 export { Address } from './interfaces/models/address';
 
