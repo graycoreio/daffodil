@@ -27,7 +27,6 @@ export class ShippingFormComponent {
   ) {}
 
   ngOnInit() {
-    console.log(this.selectedShippingOptionIndex === undefined);
     this.form = this.fb.group({
       'firstname': [this.shippingInfo ? this.shippingInfo.firstname : '', Validators.required],
       'lastname': [this.shippingInfo ? this.shippingInfo.lastname : '', Validators.required],
