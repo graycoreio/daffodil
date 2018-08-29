@@ -1,7 +1,7 @@
 <fieldset class="shipping-options">
   <legend class="shipping-options__title">Shipping Options</legend>
-  <div class="shipping-options__radio" *ngFor="let option of shippingOptions">
-    <input type="radio" id="{{option.id}}" name="shipping-options" [checked]="selectedShippingOption == option.id" (click)="onSelectShippingOption(option.text)"/>
-    <label for="{{option.id}}" (click)="onSelectShippingOption(option.text)">{{option.text}}</label>
+  <div class="shipping-options__radio" *ngFor="let option of shippingOptions; let i = index">
+      <input type="radio" id="{{i}}" name="shipping-options" [checked]="selectedShippingOptionIndex == i" (click)="onSelectShippingOption(i)"/>
+      <label for="{{i}}" (click)="onSelectShippingOption(i)">{{option}}</label>
   </div>
 </fieldset>
