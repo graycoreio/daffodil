@@ -2,12 +2,14 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
+import { DaffodilAddress, DaffodilAddressFactory, ShippingOption, ShippingFactory } from '@daffodil/core';
 
 import { ShippingSummaryComponent } from './shipping-summary.component';
 
 let daffodilAddressFactory = new DaffodilAddressFactory();
 let stubDaffodilAddress = daffodilAddressFactory.create();
+let shippingFactory: ShippingFactory = new ShippingFactory();
+let stubShippingOption: ShippingOption[] = shippingFactory.createShippingOptions();
 
 @Component({
   template: '<shipping-summary [selectedShippingOption]="selectedShippingOptionValue" ' + 
@@ -15,7 +17,7 @@ let stubDaffodilAddress = daffodilAddressFactory.create();
               '(editShippingInfo)="editShippingInfoFunction()"></shipping-summary>'})
 class TestShippingSummaryWrapper {
   shippingInfoValue: DaffodilAddress = stubDaffodilAddress;
-  selectedShippingOptionValue: string = 'shippingOption';
+  selectedShippingOptionValue: ShippingOption = stubShippingOption[0];
   editShippingInfoFunction: Function = () => {};
 }
 

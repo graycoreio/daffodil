@@ -1,5 +1,5 @@
 import { Component, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffodilAddress, ShippingOption } from '@daffodil/core';
 import { Observable } from 'rxjs';
 import { SetShowShippingForm, ToggleShowShippingForm } from '../../../actions/shipping.actions';
 import { Store, select } from '@ngrx/store';
@@ -14,14 +14,14 @@ export class ShippingComponent {
 
   @Input() isShippingInfoValid: boolean;
   @Input() shippingInfo: DaffodilAddress;
-  @Input() selectedShippingOptionIndex: number;
+  @Input() selectedShippingOptionId: string;
   @Input() showPaymentView: boolean;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
   @Output() continueToPayment: EventEmitter<any> = new EventEmitter();
 
   showShippingForm$: Observable<boolean>;
-  shippingOptions: string[];
+  shippingOptions: ShippingOption[];
 
   constructor(
     private store: Store<fromFoundationCheckout.State>
@@ -29,9 +29,18 @@ export class ShippingComponent {
 
   ngOnInit() {
     this.shippingOptions = [
-      'Standard',
-      'Two Day',
-      'One Day'
+      {
+        id: '0',
+        text: 'Standard'
+      },
+      {
+        id: '1',
+        text: 'Two Day'
+      },
+      {
+        id: '2',
+        text: 'One Day'
+      }
     ];
 
     this.store.dispatch(

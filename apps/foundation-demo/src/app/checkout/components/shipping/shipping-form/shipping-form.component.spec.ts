@@ -10,14 +10,14 @@ import { ShippingFormComponent } from './shipping-form.component';
 
 @Component({
   'template': '<shipping-form [shippingInfo]="shippingInfoValue" ' + 
-                '[selectedShippingOptionIndex]="selectedShippingOptionIndexValue" ' + 
+                '[selectedShippingOptionId]="selectedShippingOptionIdValue" ' + 
                 '[editMode]="editModeValue" ' + 
                 '(updateShippingInfo)="onUpdateShippingInfoFunction($event)" ' + 
                 '(continueToPayment)="continueToPaymentFunction()"></shipping-form>'
 })
 class TestingShippingFormComponentWrapper {
   shippingInfoValue: DaffodilAddress;
-  selectedShippingOptionIndexValue: number;
+  selectedShippingOptionIdValue: number;
   editModeValue: boolean;
   onUpdateShippingInfoFunction: Function = () => {};
   continueToPaymentFunction: Function = () => {};
@@ -62,7 +62,7 @@ describe('ShippingFormComponent', () => {
     fixture = TestBed.createComponent(TestingShippingFormComponentWrapper);
     component = fixture.componentInstance;
     component.shippingInfoValue = stubShippingInfo;
-    component.selectedShippingOptionIndexValue = 0;
+    component.selectedShippingOptionIdValue = 0;
     component.editModeValue = false;
     fixture.detectChanges();
 
@@ -77,8 +77,8 @@ describe('ShippingFormComponent', () => {
     expect(shippingFormComponent.shippingInfo).toEqual(component.shippingInfoValue);
   });
 
-  it('should be able to take selectedShippingOptionIndex as input', () => {
-    expect(shippingFormComponent.selectedShippingOptionIndex).toEqual(component.selectedShippingOptionIndexValue);
+  it('should be able to take selectedShippingOptionId as input', () => {
+    expect(shippingFormComponent.selectedShippingOptionId).toEqual(component.selectedShippingOptionIdValue);
   });
 
   it('should be able to take editMode as input', () => {
@@ -304,10 +304,10 @@ describe('ShippingFormComponent', () => {
     });
   });
 
-  describe('when selectedShippingOptionIndex is null', () => {
+  describe('when selectedShippingOptionId is null', () => {
 
     beforeEach(() => {
-      shippingFormComponent.selectedShippingOptionIndex = null;
+      shippingFormComponent.selectedShippingOptionId = null;
       fixture.detectChanges();
     });
     
@@ -318,7 +318,7 @@ describe('ShippingFormComponent', () => {
     });
   });
 
-  describe('when selectedShippingOptionIndex is defined', () => {
+  describe('when selectedShippingOptionId is defined', () => {
     
     describe('and submit button is clicked', () => {
 

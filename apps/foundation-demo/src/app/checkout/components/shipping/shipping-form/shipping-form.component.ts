@@ -14,7 +14,7 @@ import { ErrorStateMatcher } from '../../../../design/molecules/error-state-matc
 export class ShippingFormComponent {
 
   @Input() shippingInfo: DaffodilAddress;
-  @Input() selectedShippingOptionIndex: number;
+  @Input() selectedShippingOptionId: number;
   @Input() editMode: boolean;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
   @Output() continueToPayment: EventEmitter<any> = new EventEmitter();
@@ -49,7 +49,7 @@ export class ShippingFormComponent {
   ];
 
   isSelectedShippingOptionIndexNull() {
-    return this.selectedShippingOptionIndex === null;
+    return this.selectedShippingOptionId === null;
   };
 
   isEditMode() {

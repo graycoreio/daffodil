@@ -11,7 +11,7 @@ describe('selectShippingState', () => {
   let store: Store<fromShipping.ShippingState>;
   let daffodilAddressFactory: DaffodilAddressFactory = new DaffodilAddressFactory();
   let stubShippingInfo: DaffodilAddress;
-  let stubSelectedShippingOptionIndex: number;
+  let stubSelectedShippingOptionId: string;
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,10 +23,10 @@ describe('selectShippingState', () => {
     });
 
     stubShippingInfo = daffodilAddressFactory.create();
-    stubSelectedShippingOptionIndex = 0;
+    stubSelectedShippingOptionId = '0';
     store = TestBed.get(Store);
     store.dispatch(new UpdateShippingInfo(stubShippingInfo));
-    store.dispatch(new SelectShippingOption(stubSelectedShippingOptionIndex));
+    store.dispatch(new SelectShippingOption(stubSelectedShippingOptionId));
   }));
 
   describe('selectShippingState', () => {
@@ -34,7 +34,7 @@ describe('selectShippingState', () => {
     it('selects shipping state', () => {
       let expectedShippingState = {
         shippingInfo: stubShippingInfo,
-        selectedShippingOptionIndex: stubSelectedShippingOptionIndex
+        selectedShippingOptionId: stubSelectedShippingOptionId
       }
 
       store.pipe(select(fromShipping.shippingStateSelector)).subscribe((shippingState) => {
@@ -56,7 +56,7 @@ describe('selectShippingState', () => {
     
     it('selects shippingOption state', () => {
       store.pipe(select(fromShipping.selectShippingOptionState)).subscribe((shippingOption) => {
-        expect(shippingOption).toEqual(stubSelectedShippingOptionIndex);
+        expect(shippingOption).toEqual(stubSelectedShippingOptionId);
       });
     });
   });
