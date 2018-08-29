@@ -5,9 +5,8 @@
       [shippingInfo]="ShippingContainer.shippingInfo$ | async"
       [selectedShippingOptionId]="ShippingContainer.selectedShippingOptionId$ | async"
       [showPaymentView]="showPaymentView$ | async"
-      (updateShippingInfo)="ShippingContainer.updateShippingInfo($event)"
-      (selectShippingOption)="ShippingContainer.selectShippingOption($event)"
-      (continueToPayment)="onContinueToPayment()"></shipping>
+      (updateShippingInfo)="ShippingContainer.updateShippingInfo($event); onUpdateShippingInfo()"
+      (selectShippingOption)="ShippingContainer.selectShippingOption($event)"></shipping>
   </div>
   <div class="checkout__payment" *ngIf="showPaymentView$ | async" billing-container #BillingContainer="BillingContainer">
     <payment

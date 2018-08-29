@@ -12,15 +12,13 @@ import { ShippingFormComponent } from './shipping-form.component';
   'template': '<shipping-form [shippingInfo]="shippingInfoValue" ' + 
                 '[selectedShippingOptionId]="selectedShippingOptionIdValue" ' + 
                 '[editMode]="editModeValue" ' + 
-                '(updateShippingInfo)="onUpdateShippingInfoFunction($event)" ' + 
-                '(continueToPayment)="continueToPaymentFunction()"></shipping-form>'
+                '(updateShippingInfo)="onUpdateShippingInfoFunction($event)"></shipping-form>'
 })
 class TestingShippingFormComponentWrapper {
   shippingInfoValue: DaffodilAddress;
   selectedShippingOptionIdValue: number;
   editModeValue: boolean;
   onUpdateShippingInfoFunction: Function = () => {};
-  continueToPaymentFunction: Function = () => {};
 }
 
 @Component({selector: '[input-validator]', template: ''})
@@ -354,17 +352,12 @@ describe('ShippingFormComponent', () => {
 
         shippingFormComponent = fixture.debugElement.query(By.css('shipping-form')).componentInstance;
         spyOn(shippingFormComponent.updateShippingInfo, 'emit');
-        spyOn(shippingFormComponent.continueToPayment, 'emit');
 
         shippingFormComponent.onSubmit(shippingFormComponent.form);
       });
       
       it('should call updateShippingInfo.emit', () => {
         expect(shippingFormComponent.updateShippingInfo.emit).toHaveBeenCalledWith(shippingFormComponent.form.value);
-      });
-      
-      it('should call continueToPayment.emit', () => {
-        expect(shippingFormComponent.continueToPayment.emit).toHaveBeenCalled();
       });
     });
 
@@ -376,14 +369,6 @@ describe('ShippingFormComponent', () => {
         shippingFormComponent.onSubmit(shippingFormComponent.form);
 
         expect(shippingFormComponent.updateShippingInfo.emit).not.toHaveBeenCalled();
-      });
-      
-      it('should not call continueToPayment.emit', () => {
-        spyOn(shippingFormComponent.continueToPayment, 'emit');
-        
-        shippingFormComponent.onSubmit(shippingFormComponent.form);
-
-        expect(shippingFormComponent.continueToPayment.emit).not.toHaveBeenCalled();
       });
     });
   });
@@ -401,17 +386,6 @@ describe('ShippingFormComponent', () => {
     
     it('should call the function passed in by the host component', () => {
       expect(component.onUpdateShippingInfoFunction).toHaveBeenCalledWith(emittedValue);
-    });
-  });
-
-  describe('when continueToPayment is emitted', () => {
-    
-    it('should call function passed by host component', () => {
-      spyOn(component, "continueToPaymentFunction");
-
-      shippingFormComponent.continueToPayment.emit();
-
-      expect(component.continueToPaymentFunction).toHaveBeenCalled();
     });
   });
 

@@ -27,7 +27,7 @@ export class CheckoutViewComponent implements OnInit {
     );
   }
 
-  onContinueToPayment() {
+  onUpdateShippingInfo() {
     this.store.dispatch(
       new ShowPaymentView()
     );

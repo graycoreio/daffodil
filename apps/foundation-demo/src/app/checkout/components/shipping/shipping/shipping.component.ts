@@ -18,7 +18,6 @@ export class ShippingComponent {
   @Input() showPaymentView: boolean;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
-  @Output() continueToPayment: EventEmitter<any> = new EventEmitter();
 
   showShippingForm$: Observable<boolean>;
   shippingOptions: ShippingOption[];
@@ -73,9 +72,5 @@ export class ShippingComponent {
 
   onSelectShippingOption(shippingOptionId: number) {
     this.selectShippingOption.emit(shippingOptionId);
-  }
-
-  onContinueToPayment() {
-    this.continueToPayment.emit();
   }
 }

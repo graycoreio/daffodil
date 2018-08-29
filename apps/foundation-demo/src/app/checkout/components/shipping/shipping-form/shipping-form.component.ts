@@ -17,7 +17,6 @@ export class ShippingFormComponent {
   @Input() selectedShippingOptionId: number;
   @Input() editMode: boolean;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
-  @Output() continueToPayment: EventEmitter<any> = new EventEmitter();
 
   form: FormGroup;
   stateErrorStateMatcher: ErrorStateMatcher;
@@ -59,7 +58,6 @@ export class ShippingFormComponent {
   onSubmit(form) {
     if(this.form.valid) {
       this.updateShippingInfo.emit(form.value);
-      this.continueToPayment.emit();
     }
   };
 }
