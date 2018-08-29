@@ -2,7 +2,7 @@
   <shipping-form 
       [hidden]="!(showShippingForm$ | async)"
       [shippingInfo]="shippingInfo"
-      [hideContinueToPayment]="showPaymentView"
+      [editMode]="showPaymentView"
       [selectedShippingOptionIndex]="selectedShippingOptionIndex"
       (updateShippingInfo)="onUpdateShippingInfo($event)"
       (continueToPayment)="onContinueToPayment()">

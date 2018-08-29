@@ -15,11 +15,11 @@ export class ShippingFormComponent {
 
   @Input() shippingInfo: DaffodilAddress;
   @Input() selectedShippingOptionIndex: number;
-  @Input() hideContinueToPayment: boolean;
+  @Input() editMode: boolean;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
   @Output() continueToPayment: EventEmitter<any> = new EventEmitter();
 
-  form: FormGroup
+  form: FormGroup;
   stateErrorStateMatcher: ErrorStateMatcher;
 
   constructor(
@@ -48,10 +48,18 @@ export class ShippingFormComponent {
     'California'
   ];
 
+  isSelectedShippingOptionIndexNull() {
+    return this.selectedShippingOptionIndex === null;
+  };
+
+  isEditMode() {
+    return this.editMode;
+  };
+
   onSubmit(form) {
     if(this.form.valid) {
       this.updateShippingInfo.emit(form.value);
       this.continueToPayment.emit();
     }
-  }
+  };
 }
