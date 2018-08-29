@@ -33,7 +33,7 @@ let stubBillingAddressIsShippingAddress: boolean = false;
 class MockShippingComponent {
   @Input() isShippingInfoValid: boolean;
   @Input() shippingInfo: DaffodilAddress;
-  @Input() selectedShippingOptionIndex: number;
+  @Input() selectedShippingOptionId: number;
   @Input() showPaymentView: boolean;
   @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
@@ -75,7 +75,7 @@ class MockPlaceOrderComponent {}
 class MockShippingContainer {
   isShippingInfoValid$: Observable<boolean> = of(stubIsShippingInfoValid);
   shippingInfo$: Observable<DaffodilAddress> = of(stubShippingInfo);
-  selectedShippingOptionIndex$: Observable<number> = of(stubSelectedShippingOptionIndex);
+  selectedShippingOptionId$: Observable<number> = of(stubSelectedShippingOptionIndex);
   updateShippingInfo = () => {};
   selectShippingOption = () => {};
 }
@@ -169,8 +169,8 @@ describe('CheckoutViewComponent', () => {
       expect(shipping.shippingInfo).toEqual(stubShippingInfo);
     });
 
-    it('should set selectedShippingOptionIndex', () => {
-      expect(shipping.selectedShippingOptionIndex).toEqual(stubSelectedShippingOptionIndex);
+    it('should set selectedShippingOptionId', () => {
+      expect(shipping.selectedShippingOptionId).toEqual(stubSelectedShippingOptionIndex);
     });
 
     it('should set showPaymentView', () => {

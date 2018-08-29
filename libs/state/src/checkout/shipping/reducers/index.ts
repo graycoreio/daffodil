@@ -30,7 +30,7 @@ export const selectShippingInfoState: MemoizedSelector<object, DaffodilAddress> 
   fromShipping.getShippingInfo
 )
 
-export const selectShippingOptionState: MemoizedSelector<object, number> = createSelector(
+export const selectShippingOptionState: MemoizedSelector<object, string> = createSelector(
   shippingStateSelector,
   fromShipping.getSelectedShippingOptionIndex
 )

@@ -7,11 +7,11 @@ describe('Shipping | Shipping Reducer', () => {
 
   let daffodilAddressFactory: DaffodilAddressFactory = new DaffodilAddressFactory();
   let shippingInfo: DaffodilAddress;
-  let selectedShippingOptionIndex: number;
+  let selectedShippingOptionId: string;
 
   beforeEach(() => {
     shippingInfo = daffodilAddressFactory.create();
-    selectedShippingOptionIndex = 0;
+    selectedShippingOptionId = '0';
   });
 
   describe('when an unknown action is triggered', () => {
@@ -45,13 +45,13 @@ describe('Shipping | Shipping Reducer', () => {
     let result;
 
     beforeEach(() => {
-      let selectShippingOptionAction = new SelectShippingOption(selectedShippingOptionIndex);
+      let selectShippingOptionAction = new SelectShippingOption(selectedShippingOptionId);
       
       result = reducer(initialState, selectShippingOptionAction);
     });
 
-    it('sets selectedShippingOptionIndex from action.payload', () => {
-      expect(result.selectedShippingOptionIndex).toEqual(selectedShippingOptionIndex)
+    it('sets selectedShippingOptionId from action.payload', () => {
+      expect(result.selectedShippingOptionId).toEqual(selectedShippingOptionId)
     });
   });
 
@@ -64,8 +64,8 @@ describe('Shipping | Shipping Reducer', () => {
 
   describe('getSelectedShippingOptionIndex', () => {
     
-    it('returns selectedShippingOptionIndex state', () => {
-      expect(getSelectedShippingOptionIndex(initialState)).toEqual(initialState.selectedShippingOptionIndex);
+    it('returns selectedShippingOptionId state', () => {
+      expect(getSelectedShippingOptionIndex(initialState)).toEqual(initialState.selectedShippingOptionId);
     });
   });
 
