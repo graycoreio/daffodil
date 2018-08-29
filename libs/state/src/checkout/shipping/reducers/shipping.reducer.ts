@@ -16,6 +16,7 @@ export function reducer(state = initialState, action: ShippingActions): State {
     case ShippingActionTypes.UpdateShippingInfoAction:
       return {...state, shippingInfo: action.payload};
     case ShippingActionTypes.SelectShippingOptionAction:
+    console.log(action.payload);
       return {...state, selectedShippingOptionIndex: action.payload};
     default:
       return state;

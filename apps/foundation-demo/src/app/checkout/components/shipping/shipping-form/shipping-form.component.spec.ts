@@ -303,10 +303,10 @@ describe('ShippingFormComponent', () => {
     });
   });
 
-  describe('when selectedShippingOptionIndex is undefined', () => {
+  describe('when selectedShippingOptionIndex is null', () => {
 
     beforeEach(() => {
-      shippingFormComponent.selectedShippingOptionIndex = undefined;
+      shippingFormComponent.selectedShippingOptionIndex = null;
       fixture.detectChanges();
     });
     

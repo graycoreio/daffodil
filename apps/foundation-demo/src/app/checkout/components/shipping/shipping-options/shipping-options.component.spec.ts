@@ -79,7 +79,7 @@ describe('ShippingOptionsComponent', () => {
 
       radioInputs[0].nativeElement.click();
 
-      expect(shippingOptionsComponent.onSelectShippingOption).toHaveBeenCalledWith(stubShippingOptions[0].text);
+      expect(shippingOptionsComponent.onSelectShippingOption).toHaveBeenCalledWith(selectedIndex);
     });
   });
 
