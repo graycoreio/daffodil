@@ -58,6 +58,14 @@ export class ShippingComponent {
     );
   }
 
+  getSelectedShippingOption(id: string) {
+    for(let i=0;i<this.shippingOptions.length; i++) {
+      if(this.shippingOptions[i].id === id) {
+        return this.shippingOptions[i];
+      }
+    }
+  }
+
   onUpdateShippingInfo(shippingInfo: DaffodilAddress) {
     this.updateShippingInfo.emit(shippingInfo);
     this.toggleShippingView();
