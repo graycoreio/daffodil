@@ -1,9 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { DaffodilAddress } from '@daffodil/core';
-
-import { ErrorStateMatcher } from '../../../../design/molecules/error-state-matcher/error-state-matcher.component';
 
 @Component({
   selector: 'shipping-form',
@@ -19,7 +17,6 @@ export class ShippingFormComponent {
   @Output() submitted: EventEmitter<any> = new EventEmitter();
 
   form: FormGroup;
-  stateErrorStateMatcher: ErrorStateMatcher;
 
   constructor(
     private fb: FormBuilder
@@ -27,25 +24,17 @@ export class ShippingFormComponent {
 
   ngOnInit() {
     this.form = this.fb.group({
-      'firstname': [this.shippingInfo ? this.shippingInfo.firstname : '', Validators.required],
-      'lastname': [this.shippingInfo ? this.shippingInfo.lastname : '', Validators.required],
-      'street': [this.shippingInfo ? this.shippingInfo.street : '', Validators.required],
-      'city': [this.shippingInfo ? this.shippingInfo.city : '', Validators.required],
-      'state': [this.shippingInfo ? this.shippingInfo.state : 'State', Validators.required],
-      'postcode': [this.shippingInfo ? this.shippingInfo.postcode : '', Validators.required],
-      'telephone': [this.shippingInfo ? this.shippingInfo.telephone : '', Validators.required]
+      address: this.fb.group({
+        firstname: [this.shippingInfo ? this.shippingInfo.firstname : '', Validators.required],
+        lastname: [this.shippingInfo ? this.shippingInfo.lastname : '', Validators.required],
+        street: [this.shippingInfo ? this.shippingInfo.street : '', Validators.required],
+        city: [this.shippingInfo ? this.shippingInfo.city : '', Validators.required],
+        state: [this.shippingInfo ? this.shippingInfo.state : 'State', Validators.required],
+        postcode: [this.shippingInfo ? this.shippingInfo.postcode : '', Validators.required],
+        telephone: [this.shippingInfo ? this.shippingInfo.telephone : '', Validators.required]
+      })
     });
-
-    this.stateErrorStateMatcher = new ErrorStateMatcher();
-    this.stateErrorStateMatcher.isErrorState = (control: FormControl, formSubmitted: boolean) => {
-      return (control.errors || control.value == 'State') && (control.touched || formSubmitted);
-    }
   }
-
-  stateSelectValues = [
-    'State',
-    'California'
-  ];
 
   isSelectedShippingOptionIndexNull() {
     return this.selectedShippingOptionId === null;
@@ -57,7 +46,7 @@ export class ShippingFormComponent {
 
   onSubmit(form) {
     if(this.form.valid) {
-      this.submitted.emit(form.value);
+      this.submitted.emit(form.value.address);
     }
   };
 }
