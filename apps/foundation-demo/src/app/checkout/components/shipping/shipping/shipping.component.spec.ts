@@ -46,7 +46,7 @@ class MockShippingFormComponent {
   @Input() shippingInfo: DaffodilAddress;
   @Input() selectedShippingOptionId: string;
   @Input() editMode: boolean;
-  @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
+  @Output() submitted: EventEmitter<any> = new EventEmitter();
 }
 
 @Component({selector: 'shipping-options', template: ''})
@@ -217,7 +217,7 @@ describe('ShippingComponent', () => {
         spyOn(component, 'updateShippingInfoFunction');
         spyOn(shipping, 'toggleShippingView');
 
-        shippingFormComponent.updateShippingInfo.emit(emittedValue);
+        shippingFormComponent.submitted.emit(emittedValue);
       });
       
       it('should call hostComponent.updateShippingInfoFunction', () => {
