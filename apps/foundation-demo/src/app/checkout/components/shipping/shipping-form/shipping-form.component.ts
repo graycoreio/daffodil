@@ -16,7 +16,7 @@ export class ShippingFormComponent {
   @Input() shippingInfo: DaffodilAddress;
   @Input() selectedShippingOptionId: number;
   @Input() editMode: boolean;
-  @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
+  @Output() submitted: EventEmitter<any> = new EventEmitter();
 
   form: FormGroup;
   stateErrorStateMatcher: ErrorStateMatcher;
@@ -57,7 +57,7 @@ export class ShippingFormComponent {
 
   onSubmit(form) {
     if(this.form.valid) {
-      this.updateShippingInfo.emit(form.value);
+      this.submitted.emit(form.value);
     }
   };
 }
