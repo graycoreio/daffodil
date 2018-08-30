@@ -15,43 +15,16 @@
     grid-template-columns: repeat(6, 1fr);
     grid-template-areas: 
       "    title     title       title       title       title       title"
-      "firstname firstname   firstname    lastname    lastname    lastname"
-      "   street    street      street      street      street      street"
-      "     city      city       state       state    postcode    postcode"
-      "telephone telephone   telephone free-space1 free-space1 free-space1"
+      "  address   address     address     address     address     address"
       "  options   options     options     options     options     options"
-      "   button    button free-space2 free-space2 free-space2 free-space2";
+      "   button    button free-space1 free-space1 free-space1 free-space1";
 
     &__title {
       grid-area: title;
     }
 
-    &__first-name {
-      grid-area: firstname;
-    }
-
-    &__last-name {
-      grid-area: lastname;
-    }
-
-    &__street {
-      grid-area: street;
-    }
-
-    &__city {
-      grid-area: city;
-    }
-
-    &__state {
-      grid-area: state;
-    }
-
-    &__postcode {
-      grid-area: postcode;
-    }
-
-    &__telephone {
-      grid-area: telephone;
+    &__address {
+      grid-area: address;
     }
 
     &__options {
@@ -65,14 +38,6 @@
     &__free-space1 {
       grid-area: free-space1;
     }
-
-    &__free-space2 {
-      grid-area: free-space2;
-    }
-  }
-
-  & select {
-    margin: 0;
   }
 
   & button {
