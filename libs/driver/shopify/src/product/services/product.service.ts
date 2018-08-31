@@ -13,6 +13,10 @@ interface GetAllProductsResponse {
   shop?: ShopGraph
 }
 
+interface GetAProductResponse {
+  node: ProductNode
+}
+
 interface ShopGraph {
   products?: ProductGraph
 }
@@ -37,10 +41,10 @@ type Variables = {
 
 
 
-const GetAllProducts = gql`
-  query GetAllProducts {
+export const GetAllProductsQuery = gql`
+  query GetAllProducts($length: Int) {
     shop {
-      products(first: 200)  {
+      products(first: $length)  {
         edges {
           node {
             id
@@ -52,19 +56,21 @@ const GetAllProducts = gql`
   }
 `;
 
-const GetAProduct = (productId) => gql`
-  {
-    product(id:) {
+export const GetAProduct = gql`
+  query GetAProduct($id: ID!){
+    node(id: $id) {
       id
-      title
+      ... on Product {
+        title
+      }
     }
   }
 `;
 
-export const DaffShopifyProductTransformer = (edge: ProductEdge) : Product => {
+export const DaffShopifyProductTransformer = (node: ProductNode) : Product => {
   return {
-    id: edge.node.id,
-    name: edge.node.title
+    id: node.id,
+    name: node.title
   }
 }
 
@@ -72,28 +78,33 @@ export const DaffShopifyProductTransformer = (edge: ProductEdge) : Product => {
   providedIn: 'root'
 })
 export class DaffShopifyProductService implements DaffProductServiceInterface {
+
+  defaultLength: number = 20;
   
   constructor(private apollo: Apollo) {}
 
   getAll(): Observable<Product[]> {
     return this.apollo.query<GetAllProductsResponse>({
-      query: GetAllProducts
+      query: GetAllProductsQuery,
+      variables: {
+        length: this.defaultLength
+      }
     }).pipe(
       map(result => {
-        console.log(result.data);
-        return result.data.shop.products.edges.map(edge => DaffShopifyProductTransformer(edge))
-      }),
-      tap((result) => console.log(result))
+        return result.data.shop.products.edges.map(edge => DaffShopifyProductTransformer(edge.node))
+      })
     );
   }
 
   get(productId: string): Observable<Product> {
-    return this.apollo.query<Product>({
-      query: GetAProduct(productId)
+    console.log(productId);
+    return this.apollo.query<GetAProductResponse>({
+      query: GetAProduct,
+      variables: {
+        id: productId
+      }
     }).pipe(
-      map(result => {
-        return result.data;
-      })
+      map(result => DaffShopifyProductTransformer(result.data.node))
     );
   }
 }
