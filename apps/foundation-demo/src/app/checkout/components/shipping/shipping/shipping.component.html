@@ -2,7 +2,6 @@
   <shipping-form 
     [hidden]="!(showShippingForm$ | async)"
     [shippingInfo]="shippingInfo"
-    [shippingOptions]="shippingOptions"
     [editMode]="showPaymentView"
     (submitted)="onUpdateShippingInfo($event)">
   </shipping-form>
@@ -10,6 +9,6 @@
     [hidden]="showShippingForm$ | async" 
     *ngIf="shippingInfo" 
     [shippingInfo]="shippingInfo" 
-    [selectedShippingOption]="getSelectedShippingOption(selectedShippingOptionId)"
+    [selectedShippingOptionId]="selectedShippingOptionId"
     (editShippingInfo)="toggleShippingView()"></shipping-summary>
 </div>

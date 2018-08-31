@@ -3,27 +3,24 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ShippingOptionsComponent } from './shipping-options.component';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { ShippingOption, ShippingFactory } from '@daffodil/core';
 import { FormGroup, FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ShippingOptionsService } from '../services/shipping-options.service';
+import { ShippingOptionsFactory } from '../factories/shipping-options.factory';
 
-let shippingFactory: ShippingFactory = new ShippingFactory();
 let formBuilder: FormBuilder = new FormBuilder();
 
 let stubFormGroupValue = formBuilder.group({
   id: ''
 });
-let stubShippingOptions: ShippingOption[] = shippingFactory.createShippingOptions();
 let stubSubmitted = true;
 
 @Component({
   template: '<shipping-options ' + 
-              '[formGroup]="formGroupValue" ' + 
-              '[shippingOptions]="shippingOptionsValue" ' + 
+              '[formGroup]="formGroupValue" ' +  
               '[submitted]="submittedValue"></shipping-options>'
 })
 class TestShippingOptionsWrapper {
   formGroupValue: FormGroup = stubFormGroupValue;
-  shippingOptionsValue: ShippingOption[] = stubShippingOptions;
   submittedValue: boolean = stubSubmitted;
 };
 
@@ -31,6 +28,7 @@ describe('ShippingOptionsComponent', () => {
   let component: TestShippingOptionsWrapper;
   let fixture: ComponentFixture<TestShippingOptionsWrapper>;
   let shippingOptionsComponent: ShippingOptionsComponent;
+  let shippingOptionsService: ShippingOptionsService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -41,6 +39,10 @@ describe('ShippingOptionsComponent', () => {
       declarations: [ 
         TestShippingOptionsWrapper,
         ShippingOptionsComponent
+      ],
+      providers: [
+        ShippingOptionsService,
+        ShippingOptionsFactory
       ]
     })
     .compileComponents();
@@ -48,6 +50,7 @@ describe('ShippingOptionsComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestShippingOptionsWrapper);
+    shippingOptionsService = TestBed.get(ShippingOptionsService);
     component = fixture.componentInstance;
     fixture.detectChanges();
 
@@ -62,11 +65,11 @@ describe('ShippingOptionsComponent', () => {
     expect(shippingOptionsComponent.formGroup).toEqual(component.formGroupValue);
   });
 
-  it('should be able to take shippingOptions as input', () => {
-    expect(shippingOptionsComponent.shippingOptions).toEqual(stubShippingOptions);
-  });
-
   it('should be able to take submitted as input', () => {
     expect(shippingOptionsComponent.submitted).toEqual(component.submittedValue);
+  });
+
+  it('should set shippingOptions', () => {
+    expect(shippingOptionsComponent.shippingOptions).toEqual(shippingOptionsService.getShippingOptions());
   });
 });

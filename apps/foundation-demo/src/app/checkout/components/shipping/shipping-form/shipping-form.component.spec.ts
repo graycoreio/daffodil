@@ -3,22 +3,18 @@ import { Component, Input } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DaffodilAddress, ShippingOption, ShippingFactory } from '@daffodil/core';
+import { DaffodilAddress } from '@daffodil/core';
 
 import { ShippingFormComponent } from './shipping-form.component';
-
-let shippingFactory: ShippingFactory = new ShippingFactory();
 
 @Component({
   'template': '<shipping-form [shippingInfo]="shippingInfoValue" ' + 
                 '[editMode]="editModeValue" ' + 
-                '[shippingOptions]="shippingOptionsValue" ' + 
                 '(submitted)="submittedFunction($event)"></shipping-form>'
 })
 class TestingShippingFormComponentWrapper {
   shippingInfoValue: DaffodilAddress;
   editModeValue: boolean;
-  shippingOptionsValue: ShippingOption[];
   submittedFunction: Function = () => {};
 }
 
@@ -30,7 +26,6 @@ class MockAddressFormComponent {
 
 @Component({selector: 'shipping-options', template: ''})
 class MockShippingOptionsComponent {
-  @Input() shippingOptions: ShippingOption[];
   @Input() formGroup: FormGroup;
   @Input() submitted: boolean;
 }
@@ -63,7 +58,6 @@ describe('ShippingFormComponent', () => {
     fixture = TestBed.createComponent(TestingShippingFormComponentWrapper);
     component = fixture.componentInstance;
     component.shippingInfoValue = stubShippingInfo;
-    component.shippingOptionsValue = shippingFactory.createShippingOptions();;
     component.editModeValue = false;
     fixture.detectChanges();
 
@@ -84,10 +78,6 @@ describe('ShippingFormComponent', () => {
     expect(shippingFormComponent.editMode).toEqual(component.editModeValue);
   });
 
-  it('should be able to take shippingOptions as input', () => {
-    expect(shippingFormComponent.shippingOptions).toEqual(component.shippingOptionsValue);
-  });
-
   describe('on <address-form>', () => {
     
     it('should set formGroup', () => {
@@ -100,10 +90,6 @@ describe('ShippingFormComponent', () => {
   });
 
   describe('on <shipping-options>', () => {
-    
-    it('should set shippingOptions', () => {
-      expect(shippingOptionsComponent.shippingOptions).toEqual(component.shippingOptionsValue);
-    });
 
     it('should set formGroup', () => {
       expect(<FormGroup> shippingOptionsComponent.formGroup).toEqual(<FormGroup> shippingFormComponent.form.controls.shippingOption);

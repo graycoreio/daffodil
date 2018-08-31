@@ -1,20 +1,18 @@
-import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { DaffodilAddress, ShippingOption } from '@daffodil/core';
+import { DaffodilAddress } from '@daffodil/core';
 
 @Component({
   selector: 'shipping-form',
   templateUrl: './shipping-form.component.html',
-  styleUrls: ['./shipping-form.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./shipping-form.component.scss']
 })
 export class ShippingFormComponent {
 
   // todo: use shippingInfo when session storage is implemented. Right now, it is not actually needed.
   @Input() shippingInfo: DaffodilAddress;
   @Input() editMode: boolean;
-  @Input() shippingOptions: ShippingOption[];
   @Output() submitted: EventEmitter<any> = new EventEmitter();
 
   form: FormGroup;
