@@ -37,6 +37,18 @@ describe('Core | Product | Factories | ProductFactory', () => {
     });
   });
 
+  describe('createMany', () => {
+    let result: Product[];
+
+    it('should create as many products as desired', () => {
+      result = productFactory.createMany(2);
+      expect(result.length).toEqual(2);
+
+      result = productFactory.createMany(3);
+      expect(result.length).toEqual(3);
+    })
+  })
+
   describe('createStyleTestingList', () => {
 
     let result: Product[];

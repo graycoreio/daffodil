@@ -20,9 +20,9 @@ export class ProductFactory {
    * @param qty 
    */
   createMany(qty: number = 1): Product[] {
-    return [new Array(qty).keys()].map(() => {
+    return new Array(qty).map(() => {
       return this.create();
-    })
+    });
   }
 
   createStyleTestingList() : Product[] {
