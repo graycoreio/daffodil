@@ -3,13 +3,13 @@
 set -e
 
 ng build core
-ng test core --watch=false
+ng test core --watch=false --browsers=ChromeHeadless
 
 ng build driver
-ng test driver --watch=false
+ng test driver --watch=false --browsers=ChromeHeadless
 
 ng build state
-ng test state --watch=false
+ng test state --watch=false --browsers=ChromeHeadless
 
 ng test foundation-demo --watch=false
 ng build foundation-demo
