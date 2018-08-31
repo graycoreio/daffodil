@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StateShippingModule } from './shipping/shipping.module';
-import { StateBillingModule } from 'libs/state/src/checkout/billing/billing.module';
+import { StateBillingModule } from './billing/billing.module';
 
 @NgModule({
   imports: [
