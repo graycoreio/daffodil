@@ -1,5 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { ShippingOption } from '@daffodil/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'shipping-options',
@@ -7,14 +8,7 @@ import { ShippingOption } from '@daffodil/core';
   styleUrls: ['./shipping-options.component.scss']
 })
 export class ShippingOptionsComponent {
-
-  @Input() selectedShippingOptionId: string;
+  @Input() formGroup: FormGroup;
   @Input() shippingOptions: ShippingOption[];
-  @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
-
-  constructor() { }
-
-  onSelectShippingOption(id: string) {
-    this.selectShippingOption.emit(id);
-  }
+  @Input() submitted: boolean;
 }
