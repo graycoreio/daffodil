@@ -8,6 +8,7 @@ export const environment = {
   useMocks: true,
   e2e: false,
   name: "local",
+  driver: "INMEMORY",
 
   API_BASE: "http://www.SOMEFAKEURL.com/",
   httpServiceSettings: {
