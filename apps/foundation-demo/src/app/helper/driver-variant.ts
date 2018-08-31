@@ -7,9 +7,9 @@ import { DriverVariants } from "./driver-variant.enum";
 export const getDriverVariant = (driver: string): any => {
     switch(driver) {
         case DriverVariants.SHOPIFY:
-            return InMemoryModule;
-        case DriverVariants.MAGENTO:
             return ShopifyModule;
+        case DriverVariants.MAGENTO:
+            return InMemoryModule;
         case DriverVariants.INMEMORY:
             return InMemoryModule
         default:
