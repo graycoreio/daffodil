@@ -1,22 +1,24 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, FormControl, FormGroup, AbstractControl } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffodilAddress, ShippingOption, ShippingFactory } from '@daffodil/core';
 
 import { ShippingFormComponent } from './shipping-form.component';
 
+let shippingFactory: ShippingFactory = new ShippingFactory();
+
 @Component({
   'template': '<shipping-form [shippingInfo]="shippingInfoValue" ' + 
-                '[selectedShippingOptionId]="selectedShippingOptionIdValue" ' + 
                 '[editMode]="editModeValue" ' + 
+                '[shippingOptions]="shippingOptionsValue" ' + 
                 '(submitted)="submittedFunction($event)"></shipping-form>'
 })
 class TestingShippingFormComponentWrapper {
   shippingInfoValue: DaffodilAddress;
-  selectedShippingOptionIdValue: number;
   editModeValue: boolean;
+  shippingOptionsValue: ShippingOption[];
   submittedFunction: Function = () => {};
 }
 
@@ -26,10 +28,19 @@ class MockAddressFormComponent {
   @Input() submitted: boolean;
 }
 
+@Component({selector: 'shipping-options', template: ''})
+class MockShippingOptionsComponent {
+  @Input() shippingOptions: ShippingOption[];
+  @Input() formGroup: FormGroup;
+  @Input() submitted: boolean;
+}
+
 describe('ShippingFormComponent', () => {
   let component: TestingShippingFormComponentWrapper;
   let fixture: ComponentFixture<TestingShippingFormComponentWrapper>;
   let shippingFormComponent: ShippingFormComponent;
+  let addressFormComponent: MockAddressFormComponent;
+  let shippingOptionsComponent: MockShippingOptionsComponent;
   let stubShippingInfo: DaffodilAddress;
 
   beforeEach(async(() => {
@@ -41,7 +52,8 @@ describe('ShippingFormComponent', () => {
       declarations: [ 
         TestingShippingFormComponentWrapper,
         ShippingFormComponent,
-        MockAddressFormComponent
+        MockAddressFormComponent,
+        MockShippingOptionsComponent
       ]
     })
     .compileComponents();
@@ -51,11 +63,13 @@ describe('ShippingFormComponent', () => {
     fixture = TestBed.createComponent(TestingShippingFormComponentWrapper);
     component = fixture.componentInstance;
     component.shippingInfoValue = stubShippingInfo;
-    component.selectedShippingOptionIdValue = 0;
+    component.shippingOptionsValue = shippingFactory.createShippingOptions();;
     component.editModeValue = false;
     fixture.detectChanges();
 
     shippingFormComponent = fixture.debugElement.query(By.css('shipping-form')).componentInstance;
+    addressFormComponent = fixture.debugElement.query(By.css('address-form')).componentInstance;
+    shippingOptionsComponent = fixture.debugElement.query(By.css('shipping-options')).componentInstance;
   });
 
   it('should create', () => {
@@ -66,103 +80,54 @@ describe('ShippingFormComponent', () => {
     expect(shippingFormComponent.shippingInfo).toEqual(component.shippingInfoValue);
   });
 
-  it('should be able to take selectedShippingOptionId as input', () => {
-    expect(shippingFormComponent.selectedShippingOptionId).toEqual(component.selectedShippingOptionIdValue);
-  });
-
   it('should be able to take editMode as input', () => {
     expect(shippingFormComponent.editMode).toEqual(component.editModeValue);
   });
 
+  it('should be able to take shippingOptions as input', () => {
+    expect(shippingFormComponent.shippingOptions).toEqual(component.shippingOptionsValue);
+  });
+
   describe('on <address-form>', () => {
-
-    let addressForm: MockAddressFormComponent;
-
-    beforeEach(() => {
-      addressForm = fixture.debugElement.query(By.css('address-form')).componentInstance;
-    });
     
     it('should set formGroup', () => {
-      expect(addressForm.formGroup).toEqual(shippingFormComponent.form.controls['address']);
+      expect(<FormGroup> addressFormComponent.formGroup).toEqual(<FormGroup> shippingFormComponent.form.controls['address']);
     });
 
     it('should set formSubmitted', () => {
-      expect(addressForm.formSubmitted).toBeFalsy();
+      expect(addressFormComponent.submitted).toEqual(shippingFormComponent.form.valid);
+    });
+  });
+
+  describe('on <shipping-options>', () => {
+    
+    it('should set shippingOptions', () => {
+      expect(shippingOptionsComponent.shippingOptions).toEqual(component.shippingOptionsValue);
+    });
+
+    it('should set formGroup', () => {
+      expect(<FormGroup> shippingOptionsComponent.formGroup).toEqual(<FormGroup> shippingFormComponent.form.controls.shippingOption);
+    });
+
+    it('should set submitted', () => {
+      expect(shippingOptionsComponent.submitted).toEqual(shippingFormComponent.form.valid);
     });
   });
 
   describe('ngOnInit', () => {
-
-    describe('when shippingInfo is defined', () => {
-
-      beforeEach(() => {
-        
-        fixture = TestBed.createComponent(TestingShippingFormComponentWrapper);
-        component = fixture.componentInstance;
-        component.shippingInfoValue = {
-          firstname: 'test',
-          lastname: 'test',
-          street: 'test',
-          city: 'test',
-          state: 'test',
-          postcode: 'test',
-          telephone: 'test'
-        };
-        fixture.detectChanges();
-
-        shippingFormComponent = fixture.debugElement.query(By.css('shipping-form')).componentInstance;
-      });
-      
-      it('sets form.value.address to shippingInfo', () => {
-        expect(<DaffodilAddress>shippingFormComponent.form.value.address).toEqual(component.shippingInfoValue);
-      });
-    });
-
-    describe('when shippingInfo is null', () => {
-      
-      it('sets form.value.address to default', () => {
-        let defaultValues = {
-          firstname: '',
-          lastname: '',
-          street: '',
-          city: '',
-          state: 'State',
-          postcode: '',
-          telephone: ''
-        }
-
-        expect(shippingFormComponent.form.value.address).toEqual(defaultValues);
-      });
-    });
-  });
-
-  describe('when selectedShippingOptionId is null', () => {
-
-    beforeEach(() => {
-      shippingFormComponent.selectedShippingOptionId = null;
-      fixture.detectChanges();
-    });
     
-    it('should disable the submit button', () => {
-      let submitButton = fixture.debugElement.query(By.css('button'));
+    it('sets form.value.address to default', () => {
+      let defaultValues = {
+        firstname: '',
+        lastname: '',
+        street: '',
+        city: '',
+        state: 'State',
+        postcode: '',
+        telephone: ''
+      }
 
-      expect(submitButton.nativeElement.disabled).toBeTruthy();
-    });
-  });
-
-  describe('when selectedShippingOptionId is defined', () => {
-    
-    describe('and submit button is clicked', () => {
-
-      beforeEach(() => {
-        spyOn(shippingFormComponent, 'onSubmit');
-        let submitButton = fixture.debugElement.query(By.css('button'));
-        submitButton.nativeElement.click();
-      });
-
-      it('should call onSubmit a form', () => {
-        expect(shippingFormComponent.onSubmit).toHaveBeenCalledWith(jasmine.any(FormGroup))
-      });
+      expect(shippingFormComponent.form.value.address).toEqual(defaultValues);
     });
   });
 
@@ -171,27 +136,20 @@ describe('ShippingFormComponent', () => {
     describe('when form is valid', () => {
 
       beforeEach(() => {
-        fixture = TestBed.createComponent(TestingShippingFormComponentWrapper);
-        component = fixture.componentInstance;
-        component.shippingInfoValue = {
-          firstname: 'valid',
-          lastname: 'valid',
-          street: 'valid',
-          city: 'valid',
-          state: 'valid',
-          postcode: 'valid',
-          telephone: 'valid'
-        };
+        let formBuilder = new FormBuilder();
+        shippingFormComponent.form = formBuilder.group({
+          address: formBuilder.group({}),
+          shippingOption: formBuilder.group({id: 'id'})
+        });
         fixture.detectChanges();
 
-        shippingFormComponent = fixture.debugElement.query(By.css('shipping-form')).componentInstance;
         spyOn(shippingFormComponent.submitted, 'emit');
 
         shippingFormComponent.onSubmit(shippingFormComponent.form);
       });
       
       it('should call submitted.emit', () => {
-        expect(shippingFormComponent.submitted.emit).toHaveBeenCalledWith(shippingFormComponent.form.value.address);
+        expect(shippingFormComponent.submitted.emit).toHaveBeenCalledWith(shippingFormComponent.form.value);
       });
     });
 

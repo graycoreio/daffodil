@@ -4,32 +4,40 @@ import { ShippingOptionsComponent } from './shipping-options.component';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ShippingOption, ShippingFactory } from '@daffodil/core';
+import { FormGroup, FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 let shippingFactory: ShippingFactory = new ShippingFactory();
+let formBuilder: FormBuilder = new FormBuilder();
+
+let stubFormGroupValue = formBuilder.group({
+  id: ''
+});
 let stubShippingOptions: ShippingOption[] = shippingFactory.createShippingOptions();
-let stubSelectedShippingOptionId = '0';
+let stubSubmitted = true;
 
 @Component({
   template: '<shipping-options ' + 
-              '[selectedShippingOptionId]="selectedShippingOptionIdValue" ' + 
+              '[formGroup]="formGroupValue" ' + 
               '[shippingOptions]="shippingOptionsValue" ' + 
-              '(selectShippingOption)="selectShippingOptionFunction($event)"></shipping-options>'
+              '[submitted]="submittedValue"></shipping-options>'
 })
 class TestShippingOptionsWrapper {
-  selectedShippingOptionIdValue: string = stubSelectedShippingOptionId;
+  formGroupValue: FormGroup = stubFormGroupValue;
   shippingOptionsValue: ShippingOption[] = stubShippingOptions;
-  selectShippingOptionFunction = () => {};
+  submittedValue: boolean = stubSubmitted;
 };
 
 describe('ShippingOptionsComponent', () => {
   let component: TestShippingOptionsWrapper;
   let fixture: ComponentFixture<TestShippingOptionsWrapper>;
   let shippingOptionsComponent: ShippingOptionsComponent;
-  let shippingOptionsRadioWrappers;
-  let selectedIndex = '0';
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        FormsModule,
+        ReactiveFormsModule
+      ],
       declarations: [ 
         TestShippingOptionsWrapper,
         ShippingOptionsComponent
@@ -44,75 +52,21 @@ describe('ShippingOptionsComponent', () => {
     fixture.detectChanges();
 
     shippingOptionsComponent = fixture.debugElement.query(By.css('shipping-options')).componentInstance;
-    shippingOptionsRadioWrappers = fixture.debugElement.queryAll(By.css('.shipping-options__radio'));
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should be able to take formGroup as input', () => {
+    expect(shippingOptionsComponent.formGroup).toEqual(component.formGroupValue);
+  });
+
   it('should be able to take shippingOptions as input', () => {
     expect(shippingOptionsComponent.shippingOptions).toEqual(stubShippingOptions);
   });
 
-  it('should be able to take selectedShippingOptionId as input', () => {
-    expect(shippingOptionsComponent.selectedShippingOptionId).toEqual(stubSelectedShippingOptionId);
-  });
-
-  describe('when radio wrapper is clicked', () => {
-    
-    it('should not call onSelectShippingOption', () => {
-      spyOn(shippingOptionsComponent, 'onSelectShippingOption');
-
-      shippingOptionsRadioWrappers[0].nativeElement.click();
-
-      expect(shippingOptionsComponent.onSelectShippingOption).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('when radio input button is clicked', () => {
-    
-    it('should call onSelectShippingOption', () => {
-      let radioInputs = fixture.debugElement.queryAll(By.css('input'));
-      spyOn(shippingOptionsComponent, 'onSelectShippingOption');
-
-      radioInputs[0].nativeElement.click();
-
-      expect(shippingOptionsComponent.onSelectShippingOption).toHaveBeenCalledWith(stubShippingOptions[selectedIndex].id);
-    });
-  });
-
-  describe('when radio label is clicked', () => {
-    
-    it('should call onSelectShippingOption', () => {
-      let radioLabels = fixture.debugElement.queryAll(By.css('label'));
-      spyOn(shippingOptionsComponent, 'onSelectShippingOption');
-
-      radioLabels[0].nativeElement.click();
-
-      expect(shippingOptionsComponent.onSelectShippingOption).toHaveBeenCalledWith(stubShippingOptions[selectedIndex].id);
-    });
-  });
-
-  describe('when onSelectShippingOption is called', () => {
-    
-    it('should emit selectShippingOption', () => {
-      spyOn(shippingOptionsComponent.selectShippingOption, 'emit');
-
-      shippingOptionsComponent.onSelectShippingOption(selectedIndex);
-
-      expect(shippingOptionsComponent.selectShippingOption.emit).toHaveBeenCalledWith(selectedIndex);
-    });
-  });
-
-  describe('when selectShippingOption is emitted', () => {
-    
-    it('should call the function passed by host', () => {
-      spyOn(component, 'selectShippingOptionFunction');
-
-      shippingOptionsComponent.selectShippingOption.emit(selectedIndex);
-
-      expect(component.selectShippingOptionFunction).toHaveBeenCalledWith(selectedIndex);
-    });
+  it('should be able to take submitted as input', () => {
+    expect(shippingOptionsComponent.submitted).toEqual(component.submittedValue);
   });
 });

@@ -41,7 +41,7 @@ export class ShippingComponent {
         text: 'One Day'
       }
     ];
-
+    
     this.store.dispatch(
       new SetShowShippingForm(!this.isShippingInfoValid)
     );
@@ -65,12 +65,10 @@ export class ShippingComponent {
     }
   }
 
-  onUpdateShippingInfo(shippingInfo: DaffodilAddress) {
-    this.updateShippingInfo.emit(shippingInfo);
-    this.toggleShippingView();
-  }
+  onUpdateShippingInfo(shippingInfo) {
+    this.updateShippingInfo.emit(shippingInfo.address);
+    this.selectShippingOption.emit(shippingInfo.shippingOption.id);
 
-  onSelectShippingOption(shippingOptionId: number) {
-    this.selectShippingOption.emit(shippingOptionId);
+    this.toggleShippingView();
   }
 }

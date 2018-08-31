@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffodilAddress, ShippingOption } from '@daffodil/core';
 
 @Component({
   selector: 'shipping-form',
@@ -11,9 +11,10 @@ import { DaffodilAddress } from '@daffodil/core';
 })
 export class ShippingFormComponent {
 
+  // todo: use shippingInfo when session storage is implemented. Right now, it is not actually needed.
   @Input() shippingInfo: DaffodilAddress;
-  @Input() selectedShippingOptionId: number;
   @Input() editMode: boolean;
+  @Input() shippingOptions: ShippingOption[];
   @Output() submitted: EventEmitter<any> = new EventEmitter();
 
   form: FormGroup;
@@ -25,20 +26,19 @@ export class ShippingFormComponent {
   ngOnInit() {
     this.form = this.fb.group({
       address: this.fb.group({
-        firstname: [this.shippingInfo ? this.shippingInfo.firstname : '', Validators.required],
-        lastname: [this.shippingInfo ? this.shippingInfo.lastname : '', Validators.required],
-        street: [this.shippingInfo ? this.shippingInfo.street : '', Validators.required],
-        city: [this.shippingInfo ? this.shippingInfo.city : '', Validators.required],
-        state: [this.shippingInfo ? this.shippingInfo.state : 'State', Validators.required],
-        postcode: [this.shippingInfo ? this.shippingInfo.postcode : '', Validators.required],
-        telephone: [this.shippingInfo ? this.shippingInfo.telephone : '', Validators.required]
+        firstname: ['', Validators.required],
+        lastname: ['', Validators.required],
+        street: ['', Validators.required],
+        city: ['', Validators.required],
+        state: ['State', Validators.required],
+        postcode: ['', Validators.required],
+        telephone: ['', Validators.required]
+      }),
+      shippingOption: this.fb.group({
+        id: ['', Validators.required]
       })
     });
   }
-
-  isSelectedShippingOptionIndexNull() {
-    return this.selectedShippingOptionId === null;
-  };
 
   isEditMode() {
     return this.editMode;
@@ -46,7 +46,7 @@ export class ShippingFormComponent {
 
   onSubmit(form) {
     if(this.form.valid) {
-      this.submitted.emit(form.value.address);
+      this.submitted.emit(form.value);
     }
   };
 }

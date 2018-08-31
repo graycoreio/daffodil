@@ -1,14 +1,10 @@
 <div class="shipping">
   <shipping-form 
-      [hidden]="!(showShippingForm$ | async)"
-      [shippingInfo]="shippingInfo"
-      [editMode]="showPaymentView"
-      [selectedShippingOptionId]="selectedShippingOptionId"
-      (submitted)="onUpdateShippingInfo($event)">
-    <shipping-options class="shipping-form__options" 
-        [selectedShippingOptionId]="selectedShippingOptionId" 
-        [shippingOptions]="shippingOptions" 
-        (selectShippingOption)="onSelectShippingOption($event)"></shipping-options>
+    [hidden]="!(showShippingForm$ | async)"
+    [shippingInfo]="shippingInfo"
+    [shippingOptions]="shippingOptions"
+    [editMode]="showPaymentView"
+    (submitted)="onUpdateShippingInfo($event)">
   </shipping-form>
   <shipping-summary 
     [hidden]="showShippingForm$ | async" 
