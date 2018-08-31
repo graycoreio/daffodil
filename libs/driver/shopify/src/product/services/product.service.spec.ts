@@ -1,44 +1,35 @@
-import { TestBed, inject } from '@angular/core/testing';
-import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { ProductFactory, DaffCoreTestingModule } from '@daffodil/core/testing';
 
-import { DaffDriverConfigService, DaffDriverConfigFactory } from '@daffodil/driver';
+import {
+  ApolloTestingModule,
+  ApolloTestingController,
+} from 'apollo-angular/testing';
 
-import { DaffShopifyProductService } from './product.service';
+
+import { DaffShopifyProductService, GetAllProductsQuery, GetAProduct } from './product.service';
 
 describe('Driver | Shopify | Product | ProductService', () => {
-  let productService;
-  let httpMock: HttpTestingController;
+  let productService: DaffShopifyProductService;
   let productFactory: ProductFactory;
-
-  let daffodilConfigService: DaffDriverConfigService;
-  let daffodilConfigFactory: DaffDriverConfigFactory;
+  let controller: ApolloTestingController;
 
   beforeEach(() => {
-    daffodilConfigFactory = new DaffDriverConfigFactory();
-    daffodilConfigService = new DaffDriverConfigService(
-      daffodilConfigFactory.create()
-    );
-
     TestBed.configureTestingModule({
       imports: [
         DaffCoreTestingModule,
-        HttpClientTestingModule
+        ApolloTestingModule
       ],
       providers: [
-        DaffShopifyProductService,
-        { provide: DaffDriverConfigService, useValue: daffodilConfigService }
+        DaffShopifyProductService
       ]
     });
 
-    httpMock = TestBed.get(HttpTestingController);
+    controller = TestBed.get(ApolloTestingController);
+
     productService = TestBed.get(DaffShopifyProductService);
     productFactory = TestBed.get(ProductFactory);
-  });
-
-  afterEach(() => {
-    httpMock.verify();
   });
 
   it('should be created', () => {
@@ -46,42 +37,64 @@ describe('Driver | Shopify | Product | ProductService', () => {
   });
 
   describe('getAll | getting a list of products', () => {
-    it('should send a get request', () => {
-      let mockProducts = productFactory.createStyleTestingList();
-
-      productService.getAll().subscribe(products => {
-        expect(products).toEqual(mockProducts);
+    it('should should return an observable array of 20 products by default', () => {
+      productService.getAll().subscribe((result) => {
+        expect(Array.isArray(result)).toEqual(true);
+        expect(result.length).toEqual(20);
       });
 
-      const req = httpMock.expectOne(`${productService.url}`);
-      expect(req.request.method).toBe("GET");
+      let products = productFactory.createMany(20);
 
-      req.flush(mockProducts);
+      const op = controller.expectOne(GetAllProductsQuery);
+
+      expect(op.operation.variables.length).toEqual(20);
+
+      op.flush({
+        data:{
+          shop: {
+            products: {
+              edges: products.map(product => {
+                  return { node: {
+                    title: product.name,
+                    id: product.id
+                  }}
+                })
+            }
+          }
+        }
+      });
     });
 
-    xit('should query the getAll url from configuration', () => {
-
-    })
+    afterEach(() => {
+      controller.verify();
+    });
   });
 
   describe('get | getting a single product', () => {
-    let productId;
+    it('should return an observable single product', () => {
+      let product = productFactory.create();
 
-    it('should send a get request', () => {
-      let mockProduct = productFactory.create();
-
-      productService.get(mockProduct.id).subscribe(product => {
-        expect(product).toEqual(mockProduct);
+      productService.get(product.id).subscribe((result) => {
+        expect(result.id).toEqual(product.id);
+        expect(result.name).toEqual(product.name);
       });
 
-      const req = httpMock.expectOne(`${productService.url}${mockProduct.id}`);
-      expect(req.request.method).toBe("GET");
+      const op = controller.expectOne(GetAProduct);
 
-      req.flush(mockProduct);
+      expect(op.operation.variables.id).toEqual(product.id);
+
+      op.flush({
+        data: {
+          node: {
+            id: product.id,
+            title: product.name
+          }
+        }
+      });
     });
 
-    xit('should query the base url from configuration', () => {
-      
-    })
+    afterEach(() => {
+      controller.verify();
+    });
   });
 });
