@@ -7,7 +7,6 @@ import { StateCheckoutModule, StateCartModule } from '@daffodil/state';
 import { CheckoutViewComponent } from './pages/checkout-view/checkout-view.component';
 import { ShippingFormComponent } from './components/shipping/shipping-form/shipping-form.component';
 import { ShippingSummaryComponent } from './components/shipping/shipping-summary/shipping-summary.component';
-import { ShippingOptionsComponent } from './components/shipping/shipping-options/shipping-options.component';
 import { ShippingComponent } from './components/shipping/shipping/shipping.component';
 import { DesignModule } from '../design/design.module';
 import { FoundationCheckoutStateModule } from './checkout-state.module';
@@ -19,6 +18,7 @@ import { AddressSummaryComponent } from './components/payment/address-summary/ad
 import { BillingSummaryComponent } from './components/payment/billing-summary/billing-summary.component';
 import { PlaceOrderComponent } from './components/place-order/place-order.component';
 import { AddressFormComponent } from './components/forms/address-form/address-form.component';
+import { ShippingOptionsModule } from './components/shipping/shipping-options/shipping-options.module';
 
 @NgModule({
   imports: [
@@ -28,13 +28,13 @@ import { AddressFormComponent } from './components/forms/address-form/address-fo
     DesignModule,
     FoundationCheckoutStateModule,
     CartModule,
-    StateCartModule
+    StateCartModule,
+    ShippingOptionsModule
   ],
   declarations: [
     CheckoutViewComponent,
     ShippingFormComponent,
     ShippingSummaryComponent,
-    ShippingOptionsComponent,
     ShippingComponent,
     PaymentFormComponent,
     PaymentComponent,
@@ -48,7 +48,6 @@ import { AddressFormComponent } from './components/forms/address-form/address-fo
     CheckoutViewComponent,
     ShippingFormComponent,
     ShippingSummaryComponent,
-    ShippingOptionsComponent,
     ShippingComponent,
     PaymentFormComponent,
     PaymentComponent,

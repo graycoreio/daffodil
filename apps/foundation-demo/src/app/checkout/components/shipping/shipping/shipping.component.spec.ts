@@ -1,16 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
-import { DaffodilAddress, ShippingOption, ShippingFactory } from '@daffodil/core';
+import { DaffodilAddress } from '@daffodil/core';
 
 import * as fromFoundationCheckout from '../../../reducers';
 import { SetShowShippingForm, ToggleShowShippingForm } from '../../../actions/shipping.actions';
 import { ShippingComponent } from './shipping.component';
-
-let shippingFactory: ShippingFactory = new ShippingFactory();
 
 let stubIsShippingInfoValidValue = true;
 let stubDaffodilAddress: DaffodilAddress = {
@@ -22,7 +20,6 @@ let stubDaffodilAddress: DaffodilAddress = {
   postcode: '',
   telephone: ''
 }
-let stubShippingOptions: ShippingOption[] = shippingFactory.createShippingOptions();
 let stubSelectedShippingOptionId: string = '0';
 let stubShowShippingForm: boolean = true;
 let stubShowPaymentView: boolean = false;
@@ -44,10 +41,9 @@ class TestShipping {
   selectShippingOptionFunction: Function = () => {};
 }
 
-@Component({selector: 'shipping-form', template: '<ng-content></ng-content>', encapsulation: ViewEncapsulation.None})
+@Component({selector: 'shipping-form', template: '<ng-content></ng-content>'})
 class MockShippingFormComponent {
   @Input() shippingInfo: DaffodilAddress;
-  @Input() shippingOptions: ShippingOption[];
   @Input() editMode: boolean;
   @Output() submitted: EventEmitter<any> = new EventEmitter();
 }
@@ -55,7 +51,7 @@ class MockShippingFormComponent {
 @Component({selector: 'shipping-summary', template: ''})
 class MockShippingSummaryComponent {
   @Input() shippingInfo: DaffodilAddress;
-  @Input() selectedShippingOption: ShippingOption;
+  @Input() selectedShippingOptionId: string;
   @Output() editShippingInfo: EventEmitter<any> = new EventEmitter();
 }
 
@@ -110,25 +106,6 @@ describe('ShippingComponent', () => {
     expect(shipping.shippingInfo).toEqual(stubDaffodilAddress);
   });
 
-  it('should be able to take shippingOptions as input', () => {
-    let expectedShippingOptions = [
-      {
-        id: '0',
-        text: 'Standard'
-      },
-      {
-        id: '1',
-        text: 'Two Day'
-      },
-      {
-        id: '2',
-        text: 'One Day'
-      }
-    ];
-
-    expect(shipping.shippingOptions).toEqual(expectedShippingOptions);
-  });
-
   it('should be able to take showPaymentView as input', () => {
     expect(shipping.showPaymentView).toEqual(stubShowPaymentView);
   });
@@ -137,10 +114,6 @@ describe('ShippingComponent', () => {
     
     it('should set shippingInfo', () => {
       expect(shippingFormComponent.shippingInfo).toEqual(shipping.shippingInfo);
-    });
-
-    it('should set shippingOptions', () => {
-      expect(shippingFormComponent.shippingOptions).toEqual(shipping.shippingOptions);
     });
 
     it('should set editMode', () => {
@@ -154,27 +127,8 @@ describe('ShippingComponent', () => {
       expect(shippingSummaryComponent.shippingInfo).toEqual(shipping.shippingInfo);
     });
 
-    it('should set selectedShippingOption', () => {
-      expect(shippingSummaryComponent.selectedShippingOption).toEqual(shipping.shippingOptions[stubSelectedShippingOptionId]);
-    });
-  });
-
-  describe('constructor', () => {
-    
-    it('should generate an array of shippingOptions', () => {
-      expect(shipping.shippingOptions.length).toEqual(3);
-    });
-
-    it('should generate a shippingOptions array with Standard', () => {
-      expect(shipping.shippingOptions[0].text).toEqual('Standard');
-    });
-
-    it('should generate a shippingOptions array with Two Day', () => {
-      expect(shipping.shippingOptions[1].text).toEqual('Two Day');
-    });
-
-    it('should generate a shippingOptions array with One Day', () => {
-      expect(shipping.shippingOptions[2].text).toEqual('One Day');
+    it('should set selectedShippingOptionId', () => {
+      expect(shippingSummaryComponent.selectedShippingOptionId).toEqual(shipping.selectedShippingOptionId);
     });
   });
 

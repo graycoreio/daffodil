@@ -1,8 +1,10 @@
 import { Component, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
-import { DaffodilAddress, ShippingOption } from '@daffodil/core';
 import { Observable } from 'rxjs';
-import { SetShowShippingForm, ToggleShowShippingForm } from '../../../actions/shipping.actions';
 import { Store, select } from '@ngrx/store';
+
+import { DaffodilAddress } from '@daffodil/core';
+
+import { SetShowShippingForm, ToggleShowShippingForm } from '../../../actions/shipping.actions';
 import * as fromFoundationCheckout from '../../../reducers';
 
 @Component({
@@ -20,28 +22,12 @@ export class ShippingComponent {
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
 
   showShippingForm$: Observable<boolean>;
-  shippingOptions: ShippingOption[];
 
   constructor(
     private store: Store<fromFoundationCheckout.State>
   ) { }
 
-  ngOnInit() {
-    this.shippingOptions = [
-      {
-        id: '0',
-        text: 'Standard'
-      },
-      {
-        id: '1',
-        text: 'Two Day'
-      },
-      {
-        id: '2',
-        text: 'One Day'
-      }
-    ];
-    
+  ngOnInit() {    
     this.store.dispatch(
       new SetShowShippingForm(!this.isShippingInfoValid)
     );
@@ -55,14 +41,6 @@ export class ShippingComponent {
     this.store.dispatch(
       new ToggleShowShippingForm()
     );
-  }
-
-  getSelectedShippingOption(id: string) {
-    for(let i=0;i<this.shippingOptions.length; i++) {
-      if(this.shippingOptions[i].id === id) {
-        return this.shippingOptions[i];
-      }
-    }
   }
 
   onUpdateShippingInfo(shippingInfo) {

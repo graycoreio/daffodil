@@ -5,19 +5,19 @@ import { By } from '@angular/platform-browser';
 import { DaffodilAddress, DaffodilAddressFactory, ShippingOption, ShippingFactory } from '@daffodil/core';
 
 import { ShippingSummaryComponent } from './shipping-summary.component';
+import { ShippingOptionsService } from '../shipping-options/components/services/shipping-options.service';
+import { ShippingOptionsFactory } from '../shipping-options/components/factories/shipping-options.factory';
 
 let daffodilAddressFactory = new DaffodilAddressFactory();
 let stubDaffodilAddress = daffodilAddressFactory.create();
-let shippingFactory: ShippingFactory = new ShippingFactory();
-let stubShippingOption: ShippingOption[] = shippingFactory.createShippingOptions();
 
 @Component({
-  template: '<shipping-summary [selectedShippingOption]="selectedShippingOptionValue" ' + 
+  template: '<shipping-summary [selectedShippingOptionId]="selectedShippingOptionIdValue" ' + 
               '[shippingInfo]="shippingInfoValue" ' + 
               '(editShippingInfo)="editShippingInfoFunction()"></shipping-summary>'})
 class TestShippingSummaryWrapper {
   shippingInfoValue: DaffodilAddress = stubDaffodilAddress;
-  selectedShippingOptionValue: ShippingOption = stubShippingOption[0];
+  selectedShippingOptionIdValue: string = '0';
   editShippingInfoFunction: Function = () => {};
 }
 
@@ -31,6 +31,7 @@ describe('ShippingSummaryComponent', () => {
   let fixture: ComponentFixture<TestShippingSummaryWrapper>;
   let shippingSummaryComponent: ShippingSummaryComponent;
   let addressSummaryComponent: MockAddressSummaryComponent;
+  let shippingOptionsService: ShippingOptionsService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -38,6 +39,10 @@ describe('ShippingSummaryComponent', () => {
         TestShippingSummaryWrapper,
         ShippingSummaryComponent,
         MockAddressSummaryComponent
+      ],
+      providers: [
+        ShippingOptionsService,
+        ShippingOptionsFactory
       ]
     })
     .compileComponents();
@@ -45,6 +50,7 @@ describe('ShippingSummaryComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestShippingSummaryWrapper);
+    shippingOptionsService = TestBed.get(ShippingOptionsService);
     component = fixture.componentInstance;
     fixture.detectChanges();
 
@@ -60,8 +66,12 @@ describe('ShippingSummaryComponent', () => {
     expect(shippingSummaryComponent.shippingInfo).toEqual(stubDaffodilAddress);
   });
 
-  it('should be able to take selectedShippingOption', () => {
-    expect(shippingSummaryComponent.selectedShippingOption).toEqual(component.selectedShippingOptionValue);
+  it('should be able to take selectedShippingOptionId', () => {
+    expect(shippingSummaryComponent.selectedShippingOptionId).toEqual(component.selectedShippingOptionIdValue);
+  });
+
+  it('should set shippingOptions', () => {
+    expect(shippingSummaryComponent.shippingOptions).toEqual(shippingOptionsService.getShippingOptions());
   });
 
   describe('on <address-summary', () => {
