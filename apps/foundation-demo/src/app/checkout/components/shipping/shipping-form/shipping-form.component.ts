@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { DaffodilAddress } from '@daffodil/core';
 
+import { AddressFormService } from '../../forms/address-form/services/address-form.service';
+
 @Component({
   selector: 'shipping-form',
   templateUrl: './shipping-form.component.html',
@@ -18,20 +20,13 @@ export class ShippingFormComponent {
   form: FormGroup;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private addressFormService: AddressFormService
   ) {}
 
   ngOnInit() {
     this.form = this.fb.group({
-      address: this.fb.group({
-        firstname: ['', Validators.required],
-        lastname: ['', Validators.required],
-        street: ['', Validators.required],
-        city: ['', Validators.required],
-        state: ['State', Validators.required],
-        postcode: ['', Validators.required],
-        telephone: ['', Validators.required]
-      }),
+      address: this.addressFormService.getAddressFormGroup(),
       shippingOption: this.fb.group({
         id: ['', Validators.required]
       })

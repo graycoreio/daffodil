@@ -17,8 +17,8 @@ import { CartModule } from '../cart/cart.module';
 import { AddressSummaryComponent } from './components/payment/address-summary/address-summary.component';
 import { BillingSummaryComponent } from './components/payment/billing-summary/billing-summary.component';
 import { PlaceOrderComponent } from './components/place-order/place-order.component';
-import { AddressFormComponent } from './components/forms/address-form/address-form.component';
 import { ShippingOptionsModule } from './components/shipping/shipping-options/shipping-options.module';
+import { AddressFormModule } from './components/forms/address-form/address-form.module';
 
 @NgModule({
   imports: [
@@ -29,7 +29,8 @@ import { ShippingOptionsModule } from './components/shipping/shipping-options/sh
     FoundationCheckoutStateModule,
     CartModule,
     StateCartModule,
-    ShippingOptionsModule
+    ShippingOptionsModule,
+    AddressFormModule
   ],
   declarations: [
     CheckoutViewComponent,
@@ -41,8 +42,7 @@ import { ShippingOptionsModule } from './components/shipping/shipping-options/sh
     PaymentSummaryComponent,
     AddressSummaryComponent,
     BillingSummaryComponent,
-    PlaceOrderComponent,
-    AddressFormComponent
+    PlaceOrderComponent
   ],
   exports: [
     CheckoutViewComponent,
@@ -54,8 +54,7 @@ import { ShippingOptionsModule } from './components/shipping/shipping-options/sh
     PaymentSummaryComponent,
     AddressSummaryComponent,
     BillingSummaryComponent,
-    PlaceOrderComponent,
-    AddressFormComponent
+    PlaceOrderComponent
   ]
 })
 export class CheckoutModule { }

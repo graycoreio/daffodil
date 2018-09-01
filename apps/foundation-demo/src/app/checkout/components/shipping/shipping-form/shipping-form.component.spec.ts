@@ -6,6 +6,7 @@ import { By } from '@angular/platform-browser';
 import { DaffodilAddress } from '@daffodil/core';
 
 import { ShippingFormComponent } from './shipping-form.component';
+import { AddressFormService } from '../../forms/address-form/services/address-form.service';
 
 @Component({
   'template': '<shipping-form [shippingInfo]="shippingInfoValue" ' + 
@@ -37,6 +38,7 @@ describe('ShippingFormComponent', () => {
   let addressFormComponent: MockAddressFormComponent;
   let shippingOptionsComponent: MockShippingOptionsComponent;
   let stubShippingInfo: DaffodilAddress;
+  let addressFormService: AddressFormService
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -49,6 +51,9 @@ describe('ShippingFormComponent', () => {
         ShippingFormComponent,
         MockAddressFormComponent,
         MockShippingOptionsComponent
+      ],
+      providers: [
+        AddressFormService
       ]
     })
     .compileComponents();
@@ -56,6 +61,7 @@ describe('ShippingFormComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestingShippingFormComponentWrapper);
+    addressFormService = TestBed.get(AddressFormService);
     component = fixture.componentInstance;
     component.shippingInfoValue = stubShippingInfo;
     component.editModeValue = false;
@@ -102,18 +108,8 @@ describe('ShippingFormComponent', () => {
 
   describe('ngOnInit', () => {
     
-    it('sets form.value.address to default', () => {
-      let defaultValues = {
-        firstname: '',
-        lastname: '',
-        street: '',
-        city: '',
-        state: 'State',
-        postcode: '',
-        telephone: ''
-      }
-
-      expect(shippingFormComponent.form.value.address).toEqual(defaultValues);
+    it('sets form.value.address to addressFormService.getAddressFormGroup()', () => {
+      expect(shippingFormComponent.form.value.address).toEqual(addressFormService.getAddressFormGroup().value);
     });
   });
 
