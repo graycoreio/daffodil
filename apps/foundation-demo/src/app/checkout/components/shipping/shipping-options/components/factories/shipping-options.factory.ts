@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ShippingOption } from '@daffodil/core';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ShippingOptionsFactory {
 
   constructor() {}
