@@ -1,9 +1,10 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { DaffodilAddress } from '@daffodil/core';
 
 import { AddressFormService } from '../../forms/address-form/services/address-form.service';
+import { ShippingOptionFormService } from '../shipping-options/components/services/shipping-option-form.service';
 
 @Component({
   selector: 'shipping-form',
@@ -21,15 +22,14 @@ export class ShippingFormComponent {
 
   constructor(
     private fb: FormBuilder,
-    private addressFormService: AddressFormService
+    private addressFormService: AddressFormService,
+    private shippingOptionFormService: ShippingOptionFormService
   ) {}
 
   ngOnInit() {
     this.form = this.fb.group({
       address: this.addressFormService.getAddressFormGroup(),
-      shippingOption: this.fb.group({
-        id: ['', Validators.required]
-      })
+      shippingOption: this.shippingOptionFormService.getShippingOptionFormGroup()
     });
   }
 

@@ -7,6 +7,7 @@ import { DaffodilAddress } from '@daffodil/core';
 
 import { ShippingFormComponent } from './shipping-form.component';
 import { AddressFormService } from '../../forms/address-form/services/address-form.service';
+import { ShippingOptionFormService } from '../shipping-options/components/services/shipping-option-form.service';
 
 @Component({
   'template': '<shipping-form [shippingInfo]="shippingInfoValue" ' + 
@@ -39,6 +40,7 @@ describe('ShippingFormComponent', () => {
   let shippingOptionsComponent: MockShippingOptionsComponent;
   let stubShippingInfo: DaffodilAddress;
   let addressFormService: AddressFormService
+  let shippingOptionFormService: ShippingOptionFormService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -53,7 +55,8 @@ describe('ShippingFormComponent', () => {
         MockShippingOptionsComponent
       ],
       providers: [
-        AddressFormService
+        AddressFormService,
+        ShippingOptionFormService
       ]
     })
     .compileComponents();
@@ -62,6 +65,7 @@ describe('ShippingFormComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestingShippingFormComponentWrapper);
     addressFormService = TestBed.get(AddressFormService);
+    shippingOptionFormService = TestBed.get(ShippingOptionFormService);
     component = fixture.componentInstance;
     component.shippingInfoValue = stubShippingInfo;
     component.editModeValue = false;
@@ -110,6 +114,10 @@ describe('ShippingFormComponent', () => {
     
     it('sets form.value.address to addressFormService.getAddressFormGroup()', () => {
       expect(shippingFormComponent.form.value.address).toEqual(addressFormService.getAddressFormGroup().value);
+    });
+    
+    it('sets form.value.shippingOption to shippingOptionFormService.getShippingOptionFormGroup()', () => {
+      expect(shippingFormComponent.form.value.shippingOption).toEqual(shippingOptionFormService.getShippingOptionFormGroup().value);
     });
   });
 
