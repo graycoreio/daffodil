@@ -2,19 +2,19 @@ import { ShippingActionTypes, ShippingActions } from '../actions/shipping.action
 import { DaffodilAddress } from '@daffodil/core';
 
 export interface State {
-  shippingInfo: DaffodilAddress,
+  shippingAddress: DaffodilAddress,
   selectedShippingOptionId: string
 }
 
 export const initialState: State = {
-  shippingInfo: null,
+  shippingAddress: null,
   selectedShippingOptionId: null
 };
 
 export function reducer(state = initialState, action: ShippingActions): State {
   switch (action.type) {
-    case ShippingActionTypes.UpdateShippingInfoAction:
-      return {...state, shippingInfo: action.payload};
+    case ShippingActionTypes.UpdateShippingAddressAction:
+      return {...state, shippingAddress: action.payload};
     case ShippingActionTypes.SelectShippingOptionAction:
       return {...state, selectedShippingOptionId: action.payload};
     default:
@@ -22,10 +22,10 @@ export function reducer(state = initialState, action: ShippingActions): State {
   }
 }
 
-export const getShippingInfo = (state: State) => state.shippingInfo;
+export const getShippingAddress = (state: State) => state.shippingAddress;
 
 export const getSelectedShippingOptionIndex = (state: State) => state.selectedShippingOptionId;
 
-export const isShippingInfoValid = (shippingInfo: DaffodilAddress) => {
-  return !!shippingInfo;
+export const isShippingAddressValid = (shippingAddress: DaffodilAddress) => {
+  return !!shippingAddress;
 };

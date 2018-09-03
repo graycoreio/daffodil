@@ -4,16 +4,16 @@ import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
 
 import { ShippingContainer } from './shipping.component';
-import { UpdateShippingInfo, SelectShippingOption } from '../actions/shipping.actions';
+import { UpdateShippingAddress, SelectShippingOption } from '../actions/shipping.actions';
 import * as fromShipping from '../reducers/index';
 
 describe('ShippingContainer', () => {
   let component: ShippingContainer;
   let fixture: ComponentFixture<ShippingContainer>;
   let store;
-  let initialShippingInfo: DaffodilAddress;
+  let initialShippingAddress: DaffodilAddress;
   let stubSelectedShippingOptionId: string;
-  let stubIsShippingInfoValid: boolean;
+  let stubIsShippingAddressValid: boolean;
   let daffodilAddressFactory: DaffodilAddressFactory;
 
   beforeEach(async(() => {
@@ -34,13 +34,13 @@ describe('ShippingContainer', () => {
     store = TestBed.get(Store);
 
     daffodilAddressFactory = new DaffodilAddressFactory();
-    initialShippingInfo = daffodilAddressFactory.create();
+    initialShippingAddress = daffodilAddressFactory.create();
     stubSelectedShippingOptionId = '0';
-    stubIsShippingInfoValid = true;
+    stubIsShippingAddressValid = true;
 
-    spyOn(fromShipping, 'selectShippingInfoState').and.returnValue(initialShippingInfo);
+    spyOn(fromShipping, 'selectShippingAddressState').and.returnValue(initialShippingAddress);
     spyOn(fromShipping, 'selectShippingOptionState').and.returnValue(stubSelectedShippingOptionId);
-    spyOn(fromShipping, 'selectIsShippingInfoValid').and.returnValue(stubIsShippingInfoValid);
+    spyOn(fromShipping, 'selectIsShippingAddressValid').and.returnValue(stubIsShippingAddressValid);
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();
@@ -52,9 +52,9 @@ describe('ShippingContainer', () => {
 
   describe('ngInit', () => {
 
-    it('initializes shippingInfo$', () => {
-      component.shippingInfo$.subscribe((shippingInfo) => {
-        expect(shippingInfo).toEqual(initialShippingInfo);
+    it('initializes shippingAddress$', () => {
+      component.shippingAddress$.subscribe((shippingAddress) => {
+        expect(shippingAddress).toEqual(initialShippingAddress);
       });
     });
 
@@ -64,19 +64,19 @@ describe('ShippingContainer', () => {
       })
     });
 
-    it('initializes isShippingInfoValid$', () => {
-      component.isShippingInfoValid$.subscribe((isShippingInfoValid) => {
-        expect(isShippingInfoValid).toEqual(stubIsShippingInfoValid);
+    it('initializes isShippingAddressValid$', () => {
+      component.isShippingAddressValid$.subscribe((isShippingAddressValid) => {
+        expect(isShippingAddressValid).toEqual(stubIsShippingAddressValid);
       })
     });
   });
 
-  describe('updateShippingInfo', () => {
+  describe('updateShippingAddress', () => {
     
-    it('should call store.dispatch with UpdateShippingInfo action', () => {
-      component.updateShippingInfo(initialShippingInfo);
+    it('should call store.dispatch with UpdateShippingAddress action', () => {
+      component.updateShippingAddress(initialShippingAddress);
 
-      expect(store.dispatch).toHaveBeenCalledWith(new UpdateShippingInfo(initialShippingInfo));
+      expect(store.dispatch).toHaveBeenCalledWith(new UpdateShippingAddress(initialShippingAddress));
     });
   });
 

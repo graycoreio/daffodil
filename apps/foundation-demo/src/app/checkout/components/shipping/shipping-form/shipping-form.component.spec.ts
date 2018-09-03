@@ -10,12 +10,12 @@ import { AddressFormService } from '../../forms/address-form/services/address-fo
 import { ShippingOptionFormService } from '../shipping-options/components/services/shipping-option-form.service';
 
 @Component({
-  'template': '<shipping-form [shippingInfo]="shippingInfoValue" ' + 
+  'template': '<shipping-form [shippingAddress]="shippingAddressValue" ' + 
                 '[editMode]="editModeValue" ' + 
                 '(submitted)="submittedFunction($event)"></shipping-form>'
 })
 class TestingShippingFormComponentWrapper {
-  shippingInfoValue: DaffodilAddress;
+  shippingAddressValue: DaffodilAddress;
   editModeValue: boolean;
   submittedFunction: Function = () => {};
 }
@@ -38,7 +38,7 @@ describe('ShippingFormComponent', () => {
   let shippingFormComponent: ShippingFormComponent;
   let addressFormComponent: MockAddressFormComponent;
   let shippingOptionsComponent: MockShippingOptionsComponent;
-  let stubShippingInfo: DaffodilAddress;
+  let stubShippingAddress: DaffodilAddress;
   let addressFormService: AddressFormService
   let shippingOptionFormService: ShippingOptionFormService;
 
@@ -67,7 +67,7 @@ describe('ShippingFormComponent', () => {
     addressFormService = TestBed.get(AddressFormService);
     shippingOptionFormService = TestBed.get(ShippingOptionFormService);
     component = fixture.componentInstance;
-    component.shippingInfoValue = stubShippingInfo;
+    component.shippingAddressValue = stubShippingAddress;
     component.editModeValue = false;
     fixture.detectChanges();
 
@@ -80,8 +80,8 @@ describe('ShippingFormComponent', () => {
     expect(shippingFormComponent).toBeTruthy();
   });
 
-  it('should be able to take shippingInfo as input', () => {
-    expect(shippingFormComponent.shippingInfo).toEqual(component.shippingInfoValue);
+  it('should be able to take shippingAddress as input', () => {
+    expect(shippingFormComponent.shippingAddress).toEqual(component.shippingAddressValue);
   });
 
   it('should be able to take editMode as input', () => {

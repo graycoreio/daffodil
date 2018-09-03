@@ -1,16 +1,16 @@
 import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
 
-import { UpdateShippingInfo, SelectShippingOption } from "../actions/shipping.actions";
-import { initialState, reducer, getShippingInfo, getSelectedShippingOptionIndex, isShippingInfoValid, State } from "../reducers/shipping.reducer";
+import { UpdateShippingAddress, SelectShippingOption } from "../actions/shipping.actions";
+import { initialState, reducer, getShippingAddress, getSelectedShippingOptionIndex, isShippingAddressValid, State } from "../reducers/shipping.reducer";
 
 describe('Shipping | Shipping Reducer', () => {
 
   let daffodilAddressFactory: DaffodilAddressFactory = new DaffodilAddressFactory();
-  let shippingInfo: DaffodilAddress;
+  let shippingAddress: DaffodilAddress;
   let selectedShippingOptionId: string;
 
   beforeEach(() => {
-    shippingInfo = daffodilAddressFactory.create();
+    shippingAddress = daffodilAddressFactory.create();
     selectedShippingOptionId = '0';
   });
 
@@ -25,18 +25,18 @@ describe('Shipping | Shipping Reducer', () => {
     });
   });
 
-  describe('when UpdateShippingInfo action is triggered', () => {
+  describe('when UpdateShippingAddress action is triggered', () => {
 
     let result;
 
     beforeEach(() => {
-      let updateShippingInfoAction = new UpdateShippingInfo(shippingInfo);
+      let updateShippingAddressAction = new UpdateShippingAddress(shippingAddress);
       
-      result = reducer(initialState, updateShippingInfoAction);
+      result = reducer(initialState, updateShippingAddressAction);
     });
 
-    it('sets shippingInfo from action.payload', () => {
-      expect(result.shippingInfo).toEqual(shippingInfo)
+    it('sets shippingAddress from action.payload', () => {
+      expect(result.shippingAddress).toEqual(shippingAddress)
     });
   });
 
@@ -55,10 +55,10 @@ describe('Shipping | Shipping Reducer', () => {
     });
   });
 
-  describe('getShippingInfo', () => {
+  describe('getShippingAddress', () => {
     
-    it('returns shippingInfo state', () => {
-      expect(getShippingInfo(initialState)).toEqual(initialState.shippingInfo);
+    it('returns shippingAddress state', () => {
+      expect(getShippingAddress(initialState)).toEqual(initialState.shippingAddress);
     });
   });
 
@@ -69,35 +69,35 @@ describe('Shipping | Shipping Reducer', () => {
     });
   });
 
-  describe('isShippingInfoValid', () => {
+  describe('isShippingAddressValid', () => {
 
-    describe('when shippingInfo is defined', () => {
+    describe('when shippingAddress is defined', () => {
 
       let result: State;
 
       beforeEach(() => {
-        let updateShippingInfoAction = new UpdateShippingInfo(shippingInfo);
+        let updateShippingAddressAction = new UpdateShippingAddress(shippingAddress);
 
-        result = reducer(initialState, updateShippingInfoAction);
+        result = reducer(initialState, updateShippingAddressAction);
       });
       
       it('should return true', () => {
-        expect(isShippingInfoValid(result.shippingInfo)).toBeTruthy();
+        expect(isShippingAddressValid(result.shippingAddress)).toBeTruthy();
       });
     });
     
-    describe('when shippingInfo is null', () => {
+    describe('when shippingAddress is null', () => {
       
       let result: State;
 
       beforeEach(() => {
-        let updateShippingInfoAction = new UpdateShippingInfo(null);
+        let updateShippingAddressAction = new UpdateShippingAddress(null);
 
-        result = reducer(initialState, updateShippingInfoAction);
+        result = reducer(initialState, updateShippingAddressAction);
       });
 
       it('should return false', () => {
-        expect(isShippingInfoValid(result.shippingInfo)).toBeFalsy();
+        expect(isShippingAddressValid(result.shippingAddress)).toBeFalsy();
       });
     });
   });

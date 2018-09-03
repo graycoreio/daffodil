@@ -14,11 +14,11 @@ import * as fromFoundationCheckout from '../../../reducers';
 })
 export class ShippingComponent {
 
-  @Input() isShippingInfoValid: boolean;
-  @Input() shippingInfo: DaffodilAddress;
+  @Input() isShippingAddressValid: boolean;
+  @Input() shippingAddress: DaffodilAddress;
   @Input() selectedShippingOptionId: string;
   @Input() showPaymentView: boolean;
-  @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
+  @Output() updateShippingAddress: EventEmitter<any> = new EventEmitter();
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
 
   showShippingForm$: Observable<boolean>;
@@ -29,7 +29,7 @@ export class ShippingComponent {
 
   ngOnInit() {    
     this.store.dispatch(
-      new SetShowShippingForm(!this.isShippingInfoValid)
+      new SetShowShippingForm(!this.isShippingAddressValid)
     );
 
     this.showShippingForm$ = this.store.pipe(
@@ -44,7 +44,7 @@ export class ShippingComponent {
   }
 
   onUpdateShippingInfo(shippingInfo) {
-    this.updateShippingInfo.emit(shippingInfo.address);
+    this.updateShippingAddress.emit(shippingInfo.address);
     this.selectShippingOption.emit(shippingInfo.shippingOption.id);
 
     this.toggleShippingView();

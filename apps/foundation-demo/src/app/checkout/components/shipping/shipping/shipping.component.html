@@ -1,14 +1,14 @@
 <div class="shipping">
   <shipping-form 
     [hidden]="!(showShippingForm$ | async)"
-    [shippingInfo]="shippingInfo"
+    [shippingAddress]="shippingAddress"
     [editMode]="showPaymentView"
     (submitted)="onUpdateShippingInfo($event)">
   </shipping-form>
   <shipping-summary 
     [hidden]="showShippingForm$ | async" 
-    *ngIf="shippingInfo" 
-    [shippingInfo]="shippingInfo" 
+    *ngIf="shippingAddress" 
+    [shippingAddress]="shippingAddress" 
     [selectedShippingOptionId]="selectedShippingOptionId"
     (editShippingInfo)="toggleShippingView()"></shipping-summary>
 </div>

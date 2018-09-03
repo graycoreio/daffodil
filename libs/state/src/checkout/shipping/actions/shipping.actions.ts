@@ -3,12 +3,12 @@ import { Action } from '@ngrx/store';
 import { DaffodilAddress } from '@daffodil/core';
 
 export enum ShippingActionTypes {
-  UpdateShippingInfoAction = "[Shipping] Update Shipping Info Action",
+  UpdateShippingAddressAction = "[Shipping] Update Shipping Address Action",
   SelectShippingOptionAction = "[Shipping] Select Shipping Option Action"
 }
 
-export class UpdateShippingInfo implements Action {
-  readonly type = ShippingActionTypes.UpdateShippingInfoAction;
+export class UpdateShippingAddress implements Action {
+  readonly type = ShippingActionTypes.UpdateShippingAddressAction;
 
   constructor(public payload: DaffodilAddress) {}
 }
@@ -20,5 +20,5 @@ export class SelectShippingOption implements Action {
 }
 
 export type ShippingActions =
-    | UpdateShippingInfo
+    | UpdateShippingAddress
     | SelectShippingOption;
