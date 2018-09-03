@@ -20,4 +20,8 @@
   & label {
     margin-right: 0;
   }
+
+  &__invalid {
+    background-color: #a94442;
+  }
 }
