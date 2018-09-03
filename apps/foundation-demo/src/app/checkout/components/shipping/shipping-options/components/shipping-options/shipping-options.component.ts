@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { ShippingOption } from '@daffodil/core';
@@ -11,12 +11,13 @@ import { ErrorStateMatcher } from '../../../../../../design/molecules/error-stat
   templateUrl: './shipping-options.component.html',
   styleUrls: ['./shipping-options.component.scss']
 })
-export class ShippingOptionsComponent {
+export class ShippingOptionsComponent implements OnInit {
   @Input() formGroup: FormGroup;
   @Input() submitted: boolean;
+  
   shippingOptions: ShippingOption[];
   errorState: boolean;
-  errorStateMatcher: ErrorStateMatcher;
+  private errorStateMatcher: ErrorStateMatcher;
 
   constructor(
     private shippingOptionsService: ShippingOptionsService

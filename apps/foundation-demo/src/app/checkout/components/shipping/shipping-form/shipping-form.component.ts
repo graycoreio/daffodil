@@ -24,9 +24,7 @@ export class ShippingFormComponent {
     private fb: FormBuilder,
     private addressFormService: AddressFormService,
     private shippingOptionFormService: ShippingOptionFormService
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.form = this.fb.group({
       address: this.addressFormService.getAddressFormGroup(),
       shippingOption: this.shippingOptionFormService.getShippingOptionFormGroup()

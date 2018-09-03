@@ -3,8 +3,6 @@
     shipping details
   </div>
   <address-form class="shipping-form__address" [formGroup]="form.controls.address" [submitted]="ngForm.submitted"></address-form>
-  <shipping-options class="shipping-form__options" 
-    [formGroup]="form.controls.shippingOption"
-    [submitted]="ngForm.submitted"></shipping-options>
+  <shipping-options class="shipping-form__options" [formGroup]="form.controls.shippingOption" [submitted]="ngForm.submitted"></shipping-options>
   <button type="submit" class="button large expanded">{{isEditMode() ? 'Save' : 'Continue to Payment'}}</button>
 </form>
