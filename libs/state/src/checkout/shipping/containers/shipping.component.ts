@@ -6,7 +6,7 @@ import { Store, select } from '@ngrx/store';
 
 import { DaffodilAddress } from '@daffodil/core';
 import * as fromShipping from '../reducers/index';
-import { UpdateShippingInfo, SelectShippingOption } from '../actions/shipping.actions';
+import { UpdateShippingAddress, SelectShippingOption } from '../actions/shipping.actions';
 
 @Component({
   selector: '[shipping-container]',
@@ -15,9 +15,9 @@ import { UpdateShippingInfo, SelectShippingOption } from '../actions/shipping.ac
 })
 export class ShippingContainer implements OnInit {
   
-  shippingInfo$: Observable<DaffodilAddress>;
+  shippingAddress$: Observable<DaffodilAddress>;
   selectedShippingOptionId$: Observable<string>;
-  isShippingInfoValid$: Observable<boolean>;
+  isShippingAddressValid$: Observable<boolean>;
   isShippingOptionSelected$: Observable<boolean>;
 
   constructor(
@@ -25,19 +25,19 @@ export class ShippingContainer implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.shippingInfo$ = this.store.pipe(
-      select(fromShipping.selectShippingInfoState)
+    this.shippingAddress$ = this.store.pipe(
+      select(fromShipping.selectShippingAddressState)
     );
     this.selectedShippingOptionId$ = this.store.pipe(
       select(fromShipping.selectShippingOptionState)
     );
-    this.isShippingInfoValid$ = this.store.pipe(
-      select(fromShipping.selectIsShippingInfoValid)
+    this.isShippingAddressValid$ = this.store.pipe(
+      select(fromShipping.selectIsShippingAddressValid)
     );
   }
 
-  updateShippingInfo(address: DaffodilAddress) {
-    this.store.dispatch(new UpdateShippingInfo(address));
+  updateShippingAddress(address: DaffodilAddress) {
+    this.store.dispatch(new UpdateShippingAddress(address));
   }
 
   selectShippingOption(optionId: string) {

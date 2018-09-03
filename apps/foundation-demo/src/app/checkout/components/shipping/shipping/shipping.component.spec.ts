@@ -10,7 +10,7 @@ import * as fromFoundationCheckout from '../../../reducers';
 import { SetShowShippingForm, ToggleShowShippingForm } from '../../../actions/shipping.actions';
 import { ShippingComponent } from './shipping.component';
 
-let stubIsShippingInfoValidValue = true;
+let stubIsShippingAddressValidValue = true;
 let stubDaffodilAddress: DaffodilAddress = {
   firstname: '',
   lastname: '',
@@ -25,32 +25,32 @@ let stubShowShippingForm: boolean = true;
 let stubShowPaymentView: boolean = false;
 
 @Component({
-  template: '<shipping [isShippingInfoValid]="isShippingInfoValidValue" ' + 
-              '[shippingInfo]="shippingInfoValue" ' + 
+  template: '<shipping [isShippingAddressValid]="isShippingAddressValidValue" ' + 
+              '[shippingAddress]="shippingAddressValue" ' + 
               '[selectedShippingOptionId]="selectedShippingOptionIdValue" ' + 
               '[showPaymentView]="showPaymentViewValue" ' + 
-              '(updateShippingInfo)="updateShippingInfoFunction($event)" ' + 
+              '(updateShippingAddress)="updateShippingAddressFunction($event)" ' + 
               '(selectShippingOption)="selectShippingOptionFunction($event)"></shipping>'
 })
 class TestShipping {
-  isShippingInfoValidValue = stubIsShippingInfoValidValue;
-  shippingInfoValue: DaffodilAddress = stubDaffodilAddress;
+  isShippingAddressValidValue = stubIsShippingAddressValidValue;
+  shippingAddressValue: DaffodilAddress = stubDaffodilAddress;
   selectedShippingOptionIdValue: string = stubSelectedShippingOptionId;
   showPaymentViewValue: boolean = stubShowPaymentView;
-  updateShippingInfoFunction: Function = () => {};
+  updateShippingAddressFunction: Function = () => {};
   selectShippingOptionFunction: Function = () => {};
 }
 
 @Component({selector: 'shipping-form', template: '<ng-content></ng-content>'})
 class MockShippingFormComponent {
-  @Input() shippingInfo: DaffodilAddress;
+  @Input() shippingAddress: DaffodilAddress;
   @Input() editMode: boolean;
   @Output() submitted: EventEmitter<any> = new EventEmitter();
 }
 
 @Component({selector: 'shipping-summary', template: ''})
 class MockShippingSummaryComponent {
-  @Input() shippingInfo: DaffodilAddress;
+  @Input() shippingAddress: DaffodilAddress;
   @Input() selectedShippingOptionId: string;
   @Output() editShippingInfo: EventEmitter<any> = new EventEmitter();
 }
@@ -98,12 +98,12 @@ describe('ShippingComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should be able to take isShippingInfoValid as input', () => {
-    expect(shipping.isShippingInfoValid).toEqual(stubIsShippingInfoValidValue);
+  it('should be able to take isShippingAddressValid as input', () => {
+    expect(shipping.isShippingAddressValid).toEqual(stubIsShippingAddressValidValue);
   });
 
-  it('should be able to take shippingInfo as input', () => {
-    expect(shipping.shippingInfo).toEqual(stubDaffodilAddress);
+  it('should be able to take shippingAddress as input', () => {
+    expect(shipping.shippingAddress).toEqual(stubDaffodilAddress);
   });
 
   it('should be able to take showPaymentView as input', () => {
@@ -112,8 +112,8 @@ describe('ShippingComponent', () => {
   
   describe('on <shipping-form>', () => {
     
-    it('should set shippingInfo', () => {
-      expect(shippingFormComponent.shippingInfo).toEqual(shipping.shippingInfo);
+    it('should set shippingAddress', () => {
+      expect(shippingFormComponent.shippingAddress).toEqual(shipping.shippingAddress);
     });
 
     it('should set editMode', () => {
@@ -123,8 +123,8 @@ describe('ShippingComponent', () => {
 
   describe('on <shipping-summary>', () => {
     
-    it('should set shippingInfo', () => {
-      expect(shippingSummaryComponent.shippingInfo).toEqual(shipping.shippingInfo);
+    it('should set shippingAddress', () => {
+      expect(shippingSummaryComponent.shippingAddress).toEqual(shipping.shippingAddress);
     });
 
     it('should set selectedShippingOptionId', () => {
@@ -135,7 +135,7 @@ describe('ShippingComponent', () => {
   describe('ngOnInit', () => {
 
     it('should dispatch a SetShowShippingForm action', () => {
-      expect(store.dispatch).toHaveBeenCalledWith(new SetShowShippingForm(!stubIsShippingInfoValidValue));
+      expect(store.dispatch).toHaveBeenCalledWith(new SetShowShippingForm(!stubIsShippingAddressValidValue));
     });
     
     it('should initialize showShippingForm$', () => {
@@ -159,15 +159,15 @@ describe('ShippingComponent', () => {
           }
         };
 
-        spyOn(component, 'updateShippingInfoFunction');
+        spyOn(component, 'updateShippingAddressFunction');
         spyOn(component, 'selectShippingOptionFunction');
         spyOn(shipping, 'toggleShippingView');
 
         shippingFormComponent.submitted.emit(emittedValue);
       });
       
-      it('should call hostComponent.updateShippingInfoFunction', () => {
-        expect(component.updateShippingInfoFunction).toHaveBeenCalledWith(emittedValue.address);
+      it('should call hostComponent.updateShippingAddressFunction', () => {
+        expect(component.updateShippingAddressFunction).toHaveBeenCalledWith(emittedValue.address);
       });
       
       it('should call hostComponent.selectShippingOptionFunction', () => {
@@ -214,17 +214,17 @@ describe('ShippingComponent', () => {
       expect(fixture.debugElement.query(By.css('shipping-form')).nativeElement.hidden).toBeFalsy();
     });
 
-    describe('and shippingInfo is defined', () => {
+    describe('and shippingAddress is defined', () => {
       
       it('should hide <shipping-summary>', () => {
         expect(fixture.debugElement.query(By.css('shipping-summary')).nativeElement.hidden).toBeTruthy();
       });
     });
 
-    describe('and shippingInfo is null', () => {
+    describe('and shippingAddress is null', () => {
       
       it('should not render <shipping-summary>', () => {
-        shipping.shippingInfo = null;
+        shipping.shippingAddress = null;
         fixture.detectChanges();
 
         expect(fixture.debugElement.query(By.css('shipping-summary'))).toBeNull();

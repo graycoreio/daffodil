@@ -18,12 +18,12 @@ let daffodilAddressFactory = new DaffodilAddressFactory();
 let billingFactory = new BillingFactory();
 let cartFactory = new CartFactory();
 
-let stubShippingInfo = daffodilAddressFactory.create();
+let stubShippingAddress = daffodilAddressFactory.create();
 let stubPaymentInfo: PaymentInfo = billingFactory.create();
 let stubBillingAddress: DaffodilAddress = daffodilAddressFactory.create();
 let stubCart: Cart = cartFactory.create();
 
-let stubIsShippingInfoValid = true;
+let stubIsShippingAddressValid = true;
 let stubSelectedShippingOptionIndex = 0;
 let stubShowPaymentView: boolean = true;
 let stubShowReviewView: boolean = true;
@@ -31,11 +31,11 @@ let stubBillingAddressIsShippingAddress: boolean = false;
 
 @Component({selector: 'shipping', template: ''})
 class MockShippingComponent {
-  @Input() isShippingInfoValid: boolean;
-  @Input() shippingInfo: DaffodilAddress;
+  @Input() isShippingAddressValid: boolean;
+  @Input() shippingAddress: DaffodilAddress;
   @Input() selectedShippingOptionId: number;
   @Input() showPaymentView: boolean;
-  @Output() updateShippingInfo: EventEmitter<any> = new EventEmitter();
+  @Output() updateShippingAddress: EventEmitter<any> = new EventEmitter();
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
 }
 
@@ -72,10 +72,10 @@ class MockPlaceOrderComponent {}
 
 @Component({selector: '[shipping-container]', template: '<ng-content></ng-content>', exportAs: 'ShippingContainer'})
 class MockShippingContainer {
-  isShippingInfoValid$: Observable<boolean> = of(stubIsShippingInfoValid);
-  shippingInfo$: Observable<DaffodilAddress> = of(stubShippingInfo);
+  isShippingAddressValid$: Observable<boolean> = of(stubIsShippingAddressValid);
+  shippingAddress$: Observable<DaffodilAddress> = of(stubShippingAddress);
   selectedShippingOptionId$: Observable<number> = of(stubSelectedShippingOptionIndex);
-  updateShippingInfo = () => {};
+  updateShippingAddress = () => {};
   selectShippingOption = () => {};
 }
 
@@ -160,12 +160,12 @@ describe('CheckoutViewComponent', () => {
   
   describe('on <shipping>', () => {
   
-    it('should set isShippingInfoValid', () => {
-      expect(shipping.isShippingInfoValid).toEqual(stubIsShippingInfoValid);
+    it('should set isShippingAddressValid', () => {
+      expect(shipping.isShippingAddressValid).toEqual(stubIsShippingAddressValid);
     });
 
-    it('should set shippingInfo', () => {
-      expect(shipping.shippingInfo).toEqual(stubShippingInfo);
+    it('should set shippingAddress', () => {
+      expect(shipping.shippingAddress).toEqual(stubShippingAddress);
     });
 
     it('should set selectedShippingOptionId', () => {
@@ -179,18 +179,18 @@ describe('CheckoutViewComponent', () => {
 
   describe('when <shipping> emits', () => {
     
-    describe('updateShippingInfo', () => {
+    describe('updateShippingAddress', () => {
       
       it('should call function passed by ShippingContainer', () => {
-        spyOn(shippingContainer, 'updateShippingInfo');
+        spyOn(shippingContainer, 'updateShippingAddress');
 
-        shipping.updateShippingInfo.emit(stubShippingInfo);
+        shipping.updateShippingAddress.emit(stubShippingAddress);
 
-        expect(shippingContainer.updateShippingInfo).toHaveBeenCalledWith(stubShippingInfo);
+        expect(shippingContainer.updateShippingAddress).toHaveBeenCalledWith(stubShippingAddress);
       });
       
       it('should dispatch a ShowPaymentView action', () => {
-        shipping.updateShippingInfo.emit(stubShippingInfo);
+        shipping.updateShippingAddress.emit(stubShippingAddress);
         
         expect(store.dispatch).toHaveBeenCalledWith(new ShowPaymentView());
       });

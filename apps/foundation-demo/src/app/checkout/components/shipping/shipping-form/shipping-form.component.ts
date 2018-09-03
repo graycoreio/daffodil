@@ -13,8 +13,8 @@ import { ShippingOptionFormService } from '../shipping-options/components/servic
 })
 export class ShippingFormComponent {
 
-  // todo: use shippingInfo when session storage is implemented. Right now, it is not actually needed.
-  @Input() shippingInfo: DaffodilAddress;
+  // todo: use shippingAddress when session storage is implemented. Right now, it is not actually needed.
+  @Input() shippingAddress: DaffodilAddress;
   @Input() editMode: boolean;
   @Output() submitted: EventEmitter<any> = new EventEmitter();
 

@@ -3,14 +3,14 @@ import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
 import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
 
-import { UpdateShippingInfo, SelectShippingOption } from "../actions/shipping.actions";
+import { UpdateShippingAddress, SelectShippingOption } from "../actions/shipping.actions";
 import * as fromShipping from './index';
 
 describe('selectShippingState', () => {
 
   let store: Store<fromShipping.ShippingState>;
   let daffodilAddressFactory: DaffodilAddressFactory = new DaffodilAddressFactory();
-  let stubShippingInfo: DaffodilAddress;
+  let stubShippingAddress: DaffodilAddress;
   let stubSelectedShippingOptionId: string;
   
   beforeEach(async(() => {
@@ -22,10 +22,10 @@ describe('selectShippingState', () => {
       ]
     });
 
-    stubShippingInfo = daffodilAddressFactory.create();
+    stubShippingAddress = daffodilAddressFactory.create();
     stubSelectedShippingOptionId = '0';
     store = TestBed.get(Store);
-    store.dispatch(new UpdateShippingInfo(stubShippingInfo));
+    store.dispatch(new UpdateShippingAddress(stubShippingAddress));
     store.dispatch(new SelectShippingOption(stubSelectedShippingOptionId));
   }));
 
@@ -33,7 +33,7 @@ describe('selectShippingState', () => {
     
     it('selects shipping state', () => {
       let expectedShippingState = {
-        shippingInfo: stubShippingInfo,
+        shippingAddress: stubShippingAddress,
         selectedShippingOptionId: stubSelectedShippingOptionId
       }
 
@@ -43,11 +43,11 @@ describe('selectShippingState', () => {
     });
   });
 
-  describe('selectShippingInfoState', () => {
+  describe('selectShippingAddressState', () => {
     
-    it('selects shippingInfo state', () => {
-      store.pipe(select(fromShipping.selectShippingInfoState)).subscribe((shippingInfo) => {
-        expect(shippingInfo).toEqual(stubShippingInfo);
+    it('selects shippingAddress state', () => {
+      store.pipe(select(fromShipping.selectShippingAddressState)).subscribe((shippingAddress) => {
+        expect(shippingAddress).toEqual(stubShippingAddress);
       });
     });
   });
@@ -61,11 +61,11 @@ describe('selectShippingState', () => {
     });
   });
 
-  describe('selectIsShippingInfoValid', () => {
+  describe('selectIsShippingAddressValid', () => {
     
-    it('selects isShippingInfoValid state', () => {
-      store.pipe(select(fromShipping.selectIsShippingInfoValid)).subscribe((isShippingInfoValid) => {
-        expect(isShippingInfoValid).toBeTruthy();
+    it('selects isShippingAddressValid state', () => {
+      store.pipe(select(fromShipping.selectIsShippingAddressValid)).subscribe((isShippingAddressValid) => {
+        expect(isShippingAddressValid).toBeTruthy();
       });
     });
   });

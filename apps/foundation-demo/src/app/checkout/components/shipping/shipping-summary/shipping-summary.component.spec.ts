@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { DaffodilAddress, DaffodilAddressFactory, ShippingOption, ShippingFactory } from '@daffodil/core';
+import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
 
 import { ShippingSummaryComponent } from './shipping-summary.component';
 import { ShippingOptionsService } from '../shipping-options/components/services/shipping-options.service';
@@ -13,10 +13,10 @@ let stubDaffodilAddress = daffodilAddressFactory.create();
 
 @Component({
   template: '<shipping-summary [selectedShippingOptionId]="selectedShippingOptionIdValue" ' + 
-              '[shippingInfo]="shippingInfoValue" ' + 
+              '[shippingAddress]="shippingAddressValue" ' + 
               '(editShippingInfo)="editShippingInfoFunction()"></shipping-summary>'})
 class TestShippingSummaryWrapper {
-  shippingInfoValue: DaffodilAddress = stubDaffodilAddress;
+  shippingAddressValue: DaffodilAddress = stubDaffodilAddress;
   selectedShippingOptionIdValue: string = '0';
   editShippingInfoFunction: Function = () => {};
 }
@@ -62,8 +62,8 @@ describe('ShippingSummaryComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should be able to take shippingInfo', () => {
-    expect(shippingSummaryComponent.shippingInfo).toEqual(stubDaffodilAddress);
+  it('should be able to take shippingAddress', () => {
+    expect(shippingSummaryComponent.shippingAddress).toEqual(stubDaffodilAddress);
   });
 
   it('should be able to take selectedShippingOptionId', () => {

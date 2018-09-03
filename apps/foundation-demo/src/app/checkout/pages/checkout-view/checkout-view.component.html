@@ -1,11 +1,11 @@
 <div class="checkout" cart-container #CartContainer="CartContainer">
   <div class="checkout__shipping" shipping-container #ShippingContainer="ShippingContainer" *ngIf="!(CartContainer.loading$ | async)">
     <shipping 
-      [isShippingInfoValid]="ShippingContainer.isShippingInfoValid$ | async"
-      [shippingInfo]="ShippingContainer.shippingInfo$ | async"
+      [isShippingAddressValid]="ShippingContainer.isShippingAddressValid$ | async"
+      [shippingAddress]="ShippingContainer.shippingAddress$ | async"
       [selectedShippingOptionId]="ShippingContainer.selectedShippingOptionId$ | async"
       [showPaymentView]="showPaymentView$ | async"
-      (updateShippingInfo)="ShippingContainer.updateShippingInfo($event); onUpdateShippingInfo()"
+      (updateShippingAddress)="ShippingContainer.updateShippingAddress($event); onUpdateShippingAddress()"
       (selectShippingOption)="ShippingContainer.selectShippingOption($event)"></shipping>
   </div>
   <div class="checkout__payment" *ngIf="showPaymentView$ | async" billing-container #BillingContainer="BillingContainer">
