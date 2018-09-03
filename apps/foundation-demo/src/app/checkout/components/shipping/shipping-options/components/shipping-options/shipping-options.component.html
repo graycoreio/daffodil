@@ -4,4 +4,7 @@
     <input type="radio" id="{{option.id}}" [formControl]="formGroup.controls['id']" [value]="option.id"/>
     <label for="{{option.id}}">{{option.text}}</label>
   </div>
+  <div class="shipping-options__invalid" [hidden]="!errorState">
+    Please choose a shipping option.
+  </div>
 </fieldset>
