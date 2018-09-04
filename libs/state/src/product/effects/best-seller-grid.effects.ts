@@ -7,30 +7,30 @@ import { of } from 'rxjs/observable/of';
 
 import { ProductService } from '../services/product.service';
 import { 
-  BestSellersActionTypes, 
-  BestSellersLoad, 
-  BestSellersLoadSuccess, 
-  BestSellersLoadFailure } from '../actions/best-sellers.actions';
+  BestSellerGridActionTypes, 
+  BestSellerGridLoad, 
+  BestSellerGridLoadSuccess, 
+  BestSellerGridLoadFailure } from '../actions/best-seller-grid.actions';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class BestSellersEffects {
+export class BestSellerGridEffects {
 
   constructor(
     private actions$: Actions,
     private productService: ProductService) {}
 
   @Effect()
-  loadBestSellers$ : Observable<any> = this.actions$.pipe(
-    ofType(BestSellersActionTypes.BestSellersLoadAction),
-    switchMap((action: BestSellersLoad) =>
+  loadBestSellerGrid$ : Observable<any> = this.actions$.pipe(
+    ofType(BestSellerGridActionTypes.BestSellerGridLoadAction),
+    switchMap((action: BestSellerGridLoad) =>
       this.productService.getBestSellers()
         .pipe(
           map((resp) => {
-            return new BestSellersLoadSuccess(resp);
+            return new BestSellerGridLoadSuccess(resp);
           }),
           catchError(error => {
-            return of(new BestSellersLoadFailure("Failed to load best selling products"));
+            return of(new BestSellerGridLoadFailure("Failed to load best selling products"));
           })
         )
     )

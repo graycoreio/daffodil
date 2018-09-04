@@ -6,18 +6,18 @@ import { hot, cold } from 'jasmine-marbles';
 
 import { Product, ProductFactory, DaffodilConfigFactory } from '@daffodil/core';
 
-import { BestSellersLoad, BestSellersLoadSuccess, BestSellersLoadFailure } from '../actions/best-sellers.actions';
-import { BestSellersEffects } from './best-sellers.effects';
+import { BestSellerGridLoad, BestSellerGridLoadSuccess, BestSellerGridLoadFailure } from '../actions/best-seller-grid.actions';
+import { BestSellerGridEffects } from './best-seller-grid.effects';
 import { ProductTestingModule } from '../testing/product-testing.module';
 import { ProductService } from '../services/product.service';
 import { DaffodilConfigService } from '../../config/daffodil-config.service';
 
-describe('BestSellersEffects', () => {
+describe('BestSellerGridEffects', () => {
   let actions$: Observable<any>;
-  let effects: BestSellersEffects;
+  let effects: BestSellerGridEffects;
   let productService: ProductService;
   let productFactory: ProductFactory;
-  let mockBestSellers: Product[];
+  let mockBestSellerGrid: Product[];
   let daffodilConfigService: DaffodilConfigService;
   let daffodilConfigFactory: DaffodilConfigFactory;
 
@@ -30,39 +30,39 @@ describe('BestSellersEffects', () => {
         ProductTestingModule
       ],
       providers: [
-        BestSellersEffects,
+        BestSellerGridEffects,
         provideMockActions(() => actions$),
         {provide: DaffodilConfigService, useValue: daffodilConfigService}
       ]
     });
 
-    effects = TestBed.get(BestSellersEffects);
+    effects = TestBed.get(BestSellerGridEffects);
     productService = TestBed.get(ProductService);
     productFactory = TestBed.get(ProductFactory);
 
-    mockBestSellers = new Array(productFactory.create());
+    mockBestSellerGrid = new Array(productFactory.create());
   });
 
   it('should be created', () => {
     expect(effects).toBeTruthy();
   });
 
-  describe('when BestSellersLoadAction is triggered', () => {
+  describe('when BestSellerGridLoadAction is triggered', () => {
 
     let expected;
-    const bestSellersLoadAction = new BestSellersLoad();
+    const bestSellersLoadAction = new BestSellerGridLoad();
     
     describe('and the call to ProductService is successful', () => {
 
       beforeEach(() => {
-        spyOn(productService, 'getBestSellers').and.returnValue(of(mockBestSellers));
-        const bestSellersLoadSuccessAction = new BestSellersLoadSuccess(mockBestSellers);
+        spyOn(productService, 'getBestSellers').and.returnValue(of(mockBestSellerGrid));
+        const bestSellersLoadSuccessAction = new BestSellerGridLoadSuccess(mockBestSellerGrid);
         actions$ = hot('--a', { a: bestSellersLoadAction });
         expected = cold('--b', { b: bestSellersLoadSuccessAction });
       });
       
-      it('should dispatch a BestSellersLoadSuccess action', () => {
-        expect(effects.loadBestSellers$).toBeObservable(expected);
+      it('should dispatch a BestSellerGridLoadSuccess action', () => {
+        expect(effects.loadBestSellerGrid$).toBeObservable(expected);
       });
     });
 
@@ -72,13 +72,13 @@ describe('BestSellersEffects', () => {
         let error = 'Failed to load best selling products';
         let response = cold('#', {}, error);
         spyOn(productService, 'getBestSellers').and.returnValue(response);
-        const bestSellersLoadFailureAction = new BestSellersLoadFailure(error);
+        const bestSellersLoadFailureAction = new BestSellerGridLoadFailure(error);
         actions$ = hot('--a', { a: bestSellersLoadAction });
         expected = cold('--b', { b: bestSellersLoadFailureAction });
       });
       
-      it('should dispatch a BestSellersLoadFailure action', () => {
-        expect(effects.loadBestSellers$).toBeObservable(expected);
+      it('should dispatch a BestSellerGridLoadFailure action', () => {
+        expect(effects.loadBestSellerGrid$).toBeObservable(expected);
       });
     });
   });
