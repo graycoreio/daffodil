@@ -7,6 +7,7 @@ import { ProductFactory } from "@daffodil/core/testing";
 import { ProductLoad } from "../actions/product.actions";
 import { ProductGridLoadSuccess } from "../actions/product-grid.actions";
 import * as fromProduct from './index';
+import { BestSellerGridLoadSuccess } from "../actions/best-seller-grid.actions";
 
 describe('selectProductState', () => {
 
@@ -25,6 +26,7 @@ describe('selectProductState', () => {
 
     mockProduct = productFactory.create();
     store = TestBed.get(Store);
+    store.dispatch(new BestSellerGridLoadSuccess(new Array(mockProduct)));
     store.dispatch(new ProductGridLoadSuccess(new Array(mockProduct)));
     store.dispatch(new ProductLoad(mockProduct.id));
   }));
@@ -150,6 +152,71 @@ describe('selectProductState', () => {
     it('selects the selected product', () => {
       store.pipe(select(fromProduct.selectSelectedProduct)).subscribe((selectedProduct) => {
         expect(selectedProduct).toEqual(mockProduct);
+      });
+    });
+  });
+
+  describe('BestSellerEntitiesState', () => {
+    
+    describe('selectBestSellerIds', () => {
+    
+      it('selects product ids', () => {
+        store.pipe(select(fromProduct.selectBestSellerIds)).subscribe((ids) => {
+          expect(ids).toEqual(new Array(mockProduct.id));
+        });
+      });
+    });
+  
+    describe('selectBestSellerEntities', () => {
+      
+      it('selects product entities as a dictionary object', () => {
+        store.pipe(select(fromProduct.selectBestSellerEntities)).subscribe((products) => {
+          expect(products[mockProduct.id]).toEqual(mockProduct);
+        });
+      });
+    });
+  
+    describe('selectAllBestSeller', () => {
+      
+      it('selects all best selling products as an array', () => {
+        store.pipe(select(fromProduct.selectAllBestSeller)).subscribe((products) => {
+          expect(products[0]).toEqual(mockProduct);
+        });
+      });
+    });
+  
+    describe('selectBestSellerTotal', () => {
+      
+      it('selects the total number of best selling products', () => {
+        store.pipe(select(fromProduct.selectBestSellerTotal)).subscribe((numberOfProducts) => {
+          expect(numberOfProducts).toEqual(1);
+        });
+      });
+    });  
+  });
+  
+  describe('BestSellerGridState', () => {
+    
+    describe('selectBestSellerGridState', () => {
+    
+      it('selects best seller grid state', () => {
+        let expectedGridState = {
+          loading: false,
+          errors: []
+        }
+  
+        store.pipe(select(fromProduct.selectBestSellerGridState)).subscribe((bestSellerGrid) => {
+          expect(bestSellerGrid).toEqual(expectedGridState);
+        });
+      });
+    });
+  
+    describe('selectBestSellerGridLoadingState', () => {
+      
+      it('selects product grid loading state', () => {
+        store.pipe(select(fromProduct.selectBestSellerGridLoadingState)).subscribe((bestSellerGridLoading) => {
+          expect(bestSellerGridLoading).toEqual(false);
+        });
       });
     });
   });
