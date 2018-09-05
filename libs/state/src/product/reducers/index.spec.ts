@@ -5,9 +5,9 @@ import { Product } from "@daffodil/core";
 import { ProductFactory } from "@daffodil/core/testing";
 
 import { ProductLoad } from "../actions/product.actions";
-import { ProductGridLoadSuccess } from "../actions/product-grid.actions";
+import { ProductGridLoadSuccess, ProductGridReset } from "../actions/product-grid.actions";
 import * as fromProduct from './index';
-import { BestSellerGridLoadSuccess } from "../actions/best-seller-grid.actions";
+import { BestSellersLoadSuccess, BestSellersReset } from "../actions/best-sellers.actions";
 
 describe('selectProductState', () => {
 
@@ -26,7 +26,9 @@ describe('selectProductState', () => {
 
     mockProduct = productFactory.create();
     store = TestBed.get(Store);
-    store.dispatch(new BestSellerGridLoadSuccess(new Array(mockProduct)));
+    store.dispatch(new BestSellersReset());
+    store.dispatch(new ProductGridReset());
+    store.dispatch(new BestSellersLoadSuccess(new Array(mockProduct)));
     store.dispatch(new ProductGridLoadSuccess(new Array(mockProduct)));
     store.dispatch(new ProductLoad(mockProduct.id));
   }));
@@ -155,67 +157,38 @@ describe('selectProductState', () => {
       });
     });
   });
-
-  describe('BestSellerEntitiesState', () => {
+  
+  describe('BestSellersState', () => {
     
-    describe('selectBestSellerIds', () => {
-    
-      it('selects product ids', () => {
-        store.pipe(select(fromProduct.selectBestSellerIds)).subscribe((ids) => {
-          expect(ids).toEqual(new Array(mockProduct.id));
-        });
-      });
-    });
-  
-    describe('selectBestSellerEntities', () => {
-      
-      it('selects product entities as a dictionary object', () => {
-        store.pipe(select(fromProduct.selectBestSellerEntities)).subscribe((products) => {
-          expect(products[mockProduct.id]).toEqual(mockProduct);
-        });
-      });
-    });
-  
-    describe('selectAllBestSeller', () => {
-      
-      it('selects all best selling products as an array', () => {
-        store.pipe(select(fromProduct.selectAllBestSeller)).subscribe((products) => {
-          expect(products[0]).toEqual(mockProduct);
-        });
-      });
-    });
-  
-    describe('selectBestSellerTotal', () => {
-      
-      it('selects the total number of best selling products', () => {
-        store.pipe(select(fromProduct.selectBestSellerTotal)).subscribe((numberOfProducts) => {
-          expect(numberOfProducts).toEqual(1);
-        });
-      });
-    });  
-  });
-  
-  describe('BestSellerGridState', () => {
-    
-    describe('selectBestSellerGridState', () => {
+    describe('selectBestSellersState', () => {
     
       it('selects best seller grid state', () => {
-        let expectedGridState = {
+        let expectedsState = {
+          productIds: [mockProduct.id],
           loading: false,
           errors: []
         }
   
-        store.pipe(select(fromProduct.selectBestSellerGridState)).subscribe((bestSellerGrid) => {
-          expect(bestSellerGrid).toEqual(expectedGridState);
+        store.pipe(select(fromProduct.selectBestSellersState)).subscribe((bestSellers) => {
+          expect(bestSellers).toEqual(expectedsState);
         });
       });
     });
   
-    describe('selectBestSellerGridLoadingState', () => {
+    describe('selectBestSellersLoadingState', () => {
       
       it('selects product grid loading state', () => {
-        store.pipe(select(fromProduct.selectBestSellerGridLoadingState)).subscribe((bestSellerGridLoading) => {
-          expect(bestSellerGridLoading).toEqual(false);
+        store.pipe(select(fromProduct.selectBestSellersLoadingState)).subscribe((bestSellersLoading) => {
+          expect(bestSellersLoading).toEqual(false);
+        });
+      });
+    });
+
+    describe('selectBestSellersIdsState', () => {
+      
+      it('selects product grid loading state', () => {
+        store.pipe(select(fromProduct.selectBestSellersIdsState)).subscribe((bestSellersIds) => {
+          expect(bestSellersIds).toEqual([mockProduct.id]);
         });
       });
     });
