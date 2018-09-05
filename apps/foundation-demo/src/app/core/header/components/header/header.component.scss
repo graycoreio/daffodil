@@ -1,36 +1,26 @@
 @import 'daffodil-util';
 
 .header {
-  display: grid;
-  grid-template-columns: 70px 100px auto;
-  justify-items: center;
+  display: flex;
+  align-items: center;
 
-  &__open-icon {
-    cursor: pointer;
-    font-size: $medium-font-size;
-    padding: 23px 26px;
-    border-right: 2px solid $medium-gray;
+  &__menu, &__cart, &__logo {
+    padding: 0 16px;
   }
 
-  &__logo-icon {
-    cursor: pointer;
-    align-self: center;
-    height: 40px;
-
-    & img {
-      height: 40px;
-    }
+  &__logo {
+    display: inline-block;
+  }
+  
+  &__menu {
+    border-right: 1px solid $medium-gray;
   }
 
-  &__cart-icon {
-    cursor: pointer;
+  &__spacer {
+    flex-grow: 1;
+  }
+
+  &__cart {
     justify-self: end;
-    padding: 23px 28px;
-    font-size: $medium-font-size;
-
-    @include breakpoint(large) {
-      padding: 0;
-      margin: 23px 28px;
-    }
   }
 }

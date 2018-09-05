@@ -1,32 +1,30 @@
-import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { Component } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Router } from '@angular/router';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
-@Component({selector: 'sidebar-view', template: ''})
-class MockSidebarViewComponent {}
+@Component({selector: '[sidebar-container]', template: '<ng-content></ng-content>', exportAs: 'SidebarContainer'})
+class MockSidebarContainer {
+  toggleSidebarVisibility: Function = () => {};
+}
 
-@Component({template: '<header (toggleSidebarVisibility)="toggleSidebarVisibilityFunction()"></header>'})
-class TestHeaderComponentWrapper {
-  toggleSidebarVisibilityFunction: Function = () => {};
+@Component({selector: 'header', template: ''})
+class MockHeaderComponent {
+  @Output() toggleSidebarVisibility: EventEmitter<any> = new EventEmitter();
 }
 
 describe('HeaderComponent', () => {
-  let component: TestHeaderComponentWrapper;
-  let fixture: ComponentFixture<TestHeaderComponentWrapper>;
-  let router;
+  let component: HeaderComponent;
+  let fixture: ComponentFixture<HeaderComponent>;
+  let sidebarContainer: MockSidebarContainer;
+  let header: MockHeaderComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
       declarations: [ 
-        MockSidebarViewComponent,
-        TestHeaderComponentWrapper,
+        MockSidebarContainer,
+        MockHeaderComponent,
         HeaderComponent
       ]
     })
@@ -34,36 +32,26 @@ describe('HeaderComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestHeaderComponentWrapper);
-    router = TestBed.get(Router);
+    fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
-
     fixture.detectChanges();
+
+    header = fixture.debugElement.query(By.css('header')).componentInstance;
+    sidebarContainer = fixture.debugElement.query(By.css('[sidebar-container]')).componentInstance;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('when open-icon is clicked', () => {
+  describe('when <header> emits toggleSidebarVisibility', () => {
     
-    it('should call host.toggleSidebarVisibilityFunction', fakeAsync(() => {
-      spyOn(component, 'toggleSidebarVisibilityFunction');
-      fixture.debugElement.query(By.css('.header__open-icon')).nativeElement.click();
-      fixture.detectChanges();
-      tick();
+    it('should call sidebarContainer.toggleSidebarVisibility', () => {
+      spyOn(sidebarContainer, 'toggleSidebarVisibility');
 
-      expect(component.toggleSidebarVisibilityFunction).toHaveBeenCalled();
-    }));
-  });
+      header.toggleSidebarVisibility.emit();
 
-  describe('when logo-icon is clicked', () => {
-    
-    it('should call router.navigateByUrl', () => {
-      spyOn(router, 'navigateByUrl');
-      fixture.debugElement.query(By.css('.header__logo-icon')).nativeElement.click();
-
-      expect(router.navigateByUrl).toHaveBeenCalledWith('/');
+      expect(sidebarContainer.toggleSidebarVisibility).toHaveBeenCalled();
     });
   });
 });

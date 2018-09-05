@@ -1,24 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
-import { DaffHeaderModule } from '../../design/molecules/daff-header/daff-header.module';
-import { HeaderComponent } from './components/header/header.component';
+import { DaffNavbarModule } from '../../design/molecules/navbar/navbar.module';
 import { SidebarModule } from '../sidebar/sidebar.module';
-import { HeaderViewComponent } from './components/header-view/header-view.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HeaderContainer } from './containers/header/header.component';
+import { LogoModule } from '../logo/logo.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    DaffHeaderModule,
-    SidebarModule
+    DaffNavbarModule,
+    LogoModule,
+    SidebarModule,
+    RouterModule
   ],
   declarations: [
     HeaderComponent,
-    HeaderViewComponent
+    HeaderContainer
   ],
   exports: [
     HeaderComponent,
-    HeaderViewComponent
+    HeaderContainer
   ]
 })
 export class HeaderModule { }
