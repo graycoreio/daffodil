@@ -1,39 +1,26 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
+import { Directive } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { Component, Input } from '@angular/core';
+
+import { Observable, of } from 'rxjs';
 
 import { SidebarComponent } from './sidebar.component';
-import * as fromFoundationHeader from '../../reducers/index';
+import { DaffSidebarModule } from '../../../../design/molecules/sidebar/sidebar.module';
+import { DaffSidebarComponent } from '../../../../design/molecules/sidebar/sidebar/sidebar.component';
 
-@Component({selector: '[daff-sidebar]', template: '<ng-content></ng-content>'})
-class MockDaffSidebarComponent {
-  @Input() show: boolean;
-}
-
-@Component({template: '<sidebar [showSidebar]="showSidebarValue" (toggleSidebarVisibility)="toggleSidebarVisibilityFunction()"><div class="transcluded"></div></sidebar><div class="outside"></div>'})
-class TestSidebarComponentWrapper {
-  showSidebarValue: boolean;
-  toggleSidebarVisibilityFunction: Function = () => {};
-}
+let stubShowSidebar = true;
 
 describe('SidebarComponent', () => {
-  let component: TestSidebarComponentWrapper;
-  let fixture: ComponentFixture<TestSidebarComponentWrapper>;
-  let store;
-  let stubShowSidebar: boolean;
-  let sidebar: SidebarComponent;
-
+  let component: SidebarComponent;
+  let fixture: ComponentFixture<SidebarComponent>;
+  let daffSidebar: DaffSidebarComponent;
+  
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        StoreModule.forRoot({
-          foundationHeader: combineReducers(fromFoundationHeader.reducers),
-        })
+        DaffSidebarModule
       ],
-      declarations: [
-        MockDaffSidebarComponent,
-        TestSidebarComponentWrapper,
+      declarations: [ 
         SidebarComponent
       ]
     })
@@ -41,73 +28,43 @@ describe('SidebarComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestSidebarComponentWrapper);
-    store = TestBed.get(Store);
-    spyOn(store, 'dispatch');
+    fixture = TestBed.createComponent(SidebarComponent);
     component = fixture.componentInstance;
-
-    stubShowSidebar = false;
-    component.showSidebarValue = stubShowSidebar;
 
     fixture.detectChanges();
 
-    sidebar = fixture.debugElement.query(By.css('sidebar')).componentInstance;
+    daffSidebar = fixture.debugElement.query(By.css('daff-sidebar')).componentInstance;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should be able to take showSidebar as input', () => {
-    expect(sidebar.showSidebar).toEqual(stubShowSidebar);
-  });
+  describe('on `daff-sidebar`', () => {
+    it('should set `opened`', () => {
+      component.opened = true;
+      fixture.detectChanges();
+      expect(daffSidebar.opened).toEqual(true);
 
-  describe('when toggleSidebarVisibility is emitted', () => {
-    
-    it('should call associated host function', () => {
-      spyOn(component, 'toggleSidebarVisibilityFunction');
-
-      sidebar.toggleSidebarVisibility.emit();
-
-      expect(component.toggleSidebarVisibilityFunction).toHaveBeenCalled();
+      component.opened = false;
+      fixture.detectChanges();
+      expect(daffSidebar.opened).toEqual(false);
     });
   });
 
-  describe('when showSidebar is true', () => {
+  it('should emit `escapePressed` when the `daff-sidebar` emits `escapePressed`', () => {
+    spyOn(component.escapePressed, 'emit');
 
-    beforeEach(() => {
-      spyOn(sidebar.toggleSidebarVisibility, 'emit'); 
+    daffSidebar.escapePressed.emit();
 
-      sidebar.showSidebar = true;
-      fixture.detectChanges();       
-    });
+    expect(component.escapePressed.emit).toHaveBeenCalledTimes(1);
+  })
 
-    describe('and sidebar is clicked', () => {
-      
-      it('should not call toggleSidebarVisibility', () => {
-        fixture.debugElement.query(By.css('.sidebar')).nativeElement.click();
+  it('should emit close when the `close` button is clicked', () => {
+    spyOn(component.close, 'emit');
 
-        expect(sidebar.toggleSidebarVisibility.emit).not.toHaveBeenCalled();
-      });
-    });
+    fixture.debugElement.query(By.css('.sidebar__close')).nativeElement.click();
 
-    describe('and a click occurs outside of the sidebar', () => {
-      
-      it('should emit toggleSidebarVisibility', () => {
-        fixture.debugElement.query(By.css('.outside')).nativeElement.click();
-
-        expect(sidebar.toggleSidebarVisibility.emit).toHaveBeenCalled();
-      });
-    });
-  });
-  
-  describe('when the close icon is clicked', () => {
-    
-    it('should call toggleSidebarVisibility', () => {
-      spyOn(sidebar.toggleSidebarVisibility, 'emit'); 
-      fixture.debugElement.query(By.css('.sidebar__close')).nativeElement.click();
-
-      expect(sidebar.toggleSidebarVisibility.emit).toHaveBeenCalled();
-    });
-  });
+    expect(component.close.emit).toHaveBeenCalledTimes(1);
+  })
 });

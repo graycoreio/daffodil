@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Directive } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { ToggleSidebarVisibility } from '../actions/sidebar.actions';
+import { ToggleSidebar, CloseSidebar, OpenSidebar, SetSidebarState } from '../actions/sidebar.actions';
 import * as fromFoundationSidebar from '../reducers/index';
 
 @Component({
-  selector: '[sidebar-container]',
-  template: '<ng-content></ng-content>',
-  exportAs: 'SidebarContainer'
+  selector: 'sidebar-container',
+  exportAs: 'SidebarContainer',
+  templateUrl: './sidebar.component.html'
 })
 export class SidebarContainer {
   
@@ -24,7 +24,19 @@ export class SidebarContainer {
     private store: Store<fromFoundationSidebar.State>
   ) { }
 
-  toggleSidebarVisibility() {
-    this.store.dispatch(new ToggleSidebarVisibility());
+  close () {
+    this.store.dispatch(new CloseSidebar);
+  }
+
+  open () {
+    this.store.dispatch(new OpenSidebar);
+  }
+
+  toggle() {
+    this.store.dispatch(new ToggleSidebar());
+  }
+
+  setVisibility(state: boolean) {
+    this.store.dispatch(new SetSidebarState(state));
   }
 }

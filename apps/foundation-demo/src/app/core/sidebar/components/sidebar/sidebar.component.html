@@ -1,4 +1,4 @@
-<div class="sidebar" daff-sidebar [show]="showSidebar">
-  <span class="sidebar__close" (click)="onToggleSidebarVisibility()"><i class="fa fa-times"></i></span>
-  <ng-content></ng-content>
-</div>
+<daff-sidebar [opened]="opened" (escapePressed)="escapePressed.emit($event)" class="sidebar">
+    <span class="sidebar__close" (click)="_onCloseClick()"><i class="fa fa-times"></i></span>
+    <ng-content></ng-content>
+</daff-sidebar>

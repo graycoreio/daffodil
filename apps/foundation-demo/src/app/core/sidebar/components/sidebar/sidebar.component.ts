@@ -1,30 +1,15 @@
-import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { DaffSidebarComponent } from '../../../../design/molecules/sidebar/sidebar/sidebar.component';
 
 @Component({
   selector: 'sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss'],
-  host: {
-    '(document:click)': 'onClick($event)',
-  },
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['sidebar.component.scss']
 })
-export class SidebarComponent {
+export class SidebarComponent extends DaffSidebarComponent {
+  @Output() close: EventEmitter<void> = new EventEmitter();
 
-  @Input() showSidebar: boolean;
-  @Output() toggleSidebarVisibility: EventEmitter<any> = new EventEmitter();
-
-  onClick(event) {
-    if(this.showSidebar && !this.isSidebarElement(event)) {
-      this.toggleSidebarVisibility.emit();
-    }
-  }
-
-  private isSidebarElement(event) {
-    return event.path[0].classList[0].includes('sidebar');
-  }
-
-  onToggleSidebarVisibility() {
-    this.toggleSidebarVisibility.emit()
+  _onCloseClick() : void {
+    this.close.emit();
   }
 }
