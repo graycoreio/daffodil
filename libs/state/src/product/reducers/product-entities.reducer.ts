@@ -1,8 +1,11 @@
-import { ProductGridActionTypes, ProductGridActions } from '../actions/product-grid.actions';
-import { Product } from '@daffodil/core';
 import { createEntityAdapter, EntityState, EntityAdapter } from '@ngrx/entity';
-import { ProductActionTypes, ProductActions } from '../actions/product.actions';
 import { Dictionary } from '@ngrx/entity/src/models';
+
+import { Product } from '@daffodil/core';
+
+import { ProductGridActionTypes, ProductGridActions } from '../actions/product-grid.actions';
+import { ProductActionTypes, ProductActions } from '../actions/product.actions';
+import { BestSellersActionTypes, BestSellersActions } from '../actions/best-sellers.actions';
 
 export interface State extends EntityState<Product> {}
 
@@ -12,9 +15,11 @@ export const initialState: State = productAdapter.getInitialState();
 
 export function reducer(
   state = initialState, 
-  action: ProductGridActions| ProductActions): State {
+  action: ProductGridActions | BestSellersActions | ProductActions): State {
   switch (action.type) {
     case ProductGridActionTypes.ProductGridLoadSuccessAction:
+      return productAdapter.upsertMany(action.payload, state);
+    case BestSellersActionTypes.BestSellersLoadSuccessAction:
       return productAdapter.upsertMany(action.payload, state);
     case ProductActionTypes.ProductLoadSuccessAction:
       return productAdapter.upsertOne(
@@ -23,7 +28,9 @@ export function reducer(
           ...action.payload
         },
         state
-      )
+      );
+    case ProductGridActionTypes.ProductGridResetAction:
+      return productAdapter.removeAll(state);
     default:
       return state;
   }

@@ -8,8 +8,7 @@ import {
 import * as fromProductEntities from './product-entities.reducer';
 import * as fromProductGrid from './product-grid.reducer';
 import * as fromProduct from './product.reducer';
-import * as fromBestSellerEntities from './best-seller-entities.reducer';
-import * as fromBestSellerGrid from './best-seller-grid.reducer';
+import * as fromBestSellers from './best-sellers.reducer';
 import { Product } from '@daffodil/core';
 import { Dictionary } from '@ngrx/entity/src/models';
 
@@ -17,16 +16,14 @@ export interface State {
   products : fromProductEntities.State;
   productGrid: fromProductGrid.State;
   product: fromProduct.State;
-  bestSellers: fromBestSellerEntities.State;
-  bestSellerGrid: fromBestSellerGrid.State;
+  bestSellers: fromBestSellers.State;
 }
 
 export const reducers : ActionReducerMap<State> = {
   products: fromProductEntities.reducer,
   productGrid: fromProductGrid.reducer,
   product: fromProduct.reducer,
-  bestSellers: fromBestSellerEntities.reducer,
-  bestSellerGrid: fromBestSellerGrid.reducer
+  bestSellers: fromBestSellers.reducer
 }
 
 /**
@@ -122,42 +119,19 @@ export const selectSelectedProduct : MemoizedSelector<object, Product> = createS
 );
 
 /**
- * Best Seller Grid State
+ * Best Seller  State
  */
-export const selectBestSellerGridState = createSelector(
-  selectProductState,
-  (state: State) => state.bestSellerGrid
-);
-
-export const selectBestSellerGridLoadingState : MemoizedSelector<object, boolean> = createSelector(
-  selectBestSellerGridState,
-  fromBestSellerGrid.getBestSellerGridLoading
-);
-
-/**
- * Best Seller Entities State
- */
-export const selectBestSellerEntitiesState = createSelector(
+export const selectBestSellersState = createSelector(
   selectProductState,
   (state: State) => state.bestSellers
 );
 
-export const selectBestSellerIds = createSelector(
-  selectBestSellerEntitiesState,
-  fromBestSellerEntities.selectBestSellerIds
+export const selectBestSellersLoadingState : MemoizedSelector<object, boolean> = createSelector(
+  selectBestSellersState,
+  fromBestSellers.getBestSellersLoading
 );
 
-export const selectBestSellerEntities : MemoizedSelector<object, Dictionary<Product>> = createSelector(
-  selectBestSellerEntitiesState,
-  fromBestSellerEntities.selectBestSellerEntities
-);
-
-export const selectAllBestSeller = createSelector(
-  selectBestSellerEntitiesState,
-  fromBestSellerEntities.selectAllBestSeller
-);
-
-export const selectBestSellerTotal = createSelector(
-  selectBestSellerEntitiesState,
-  fromBestSellerEntities.selectBestSellerTotal
+export const selectBestSellersIdsState : MemoizedSelector<object, string[]> = createSelector(
+  selectBestSellersState,
+  fromBestSellers.getBestSellersIds
 );

@@ -5,7 +5,8 @@ import { Product } from '@daffodil/core';
 export enum ProductGridActionTypes {
     ProductGridLoadAction = "[ProductGrid] Load Action",
     ProductGridLoadSuccessAction = "[ProductGrid] Load Success Action",
-    ProductGridLoadFailureAction = "[ProductGrid] Load Failure Action"
+    ProductGridLoadFailureAction = "[ProductGrid] Load Failure Action",
+    ProductGridResetAction = "[ProductGrid] Reset Action"
 }
 
 export class ProductGridLoad implements Action {
@@ -26,7 +27,14 @@ export class ProductGridLoadFailure implements Action {
   constructor(public payload: string) {}
 }
 
+export class ProductGridReset implements Action {
+    readonly type = ProductGridActionTypes.ProductGridResetAction;
+
+    constructor() {}
+}
+
 export type ProductGridActions = 
     | ProductGridLoad 
     | ProductGridLoadSuccess
-    | ProductGridLoadFailure;
+    | ProductGridLoadFailure
+    | ProductGridReset;

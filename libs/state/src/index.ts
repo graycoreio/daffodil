@@ -5,8 +5,10 @@ export { StateCartModule } from './cart/cart.module';
 export { StateCheckoutModule } from './checkout/checkout.module';
 
 export { ProductGridContainer } from './product/containers/product-grid/product-grid.component';
+export { BestSellersContainer } from './product/containers/best-sellers/best-sellers.component';
 
 export { CartContainer } from './cart/containers/cart/cart.component';
 export { CartActionTypes, AddToCart } from './cart/actions/cart.actions';
 
 export { ShippingContainer } from './checkout/shipping/containers/shipping.component';
+export { PaymentContainer } from './checkout/payment/containers/payment.component';
