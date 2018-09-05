@@ -1,0 +1,10 @@
+<div class="daff-sidebar__backdrop" (click)="_onBackdropClicked()" *ngIf="hasBackdrop"
+     [class.daff-sidebar-shown]="backdropIsVisible"></div>
+
+<ng-content select="daff-sidebar"></ng-content>
+
+<ng-content select="daff-sidebar-content"></ng-content>
+<daff-sidebar-content *ngIf="!_content">
+    <ng-content></ng-content>
+</daff-sidebar-content>
+    
