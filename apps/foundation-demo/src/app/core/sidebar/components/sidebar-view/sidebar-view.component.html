@@ -1,5 +1,0 @@
-<div class="sidebar-view" sidebar-container #SidebarContainer="SidebarContainer">
-  <sidebar [showSidebar]="SidebarContainer.showSidebar$ | async" (toggleSidebarVisibility)="SidebarContainer.toggleSidebarVisibility()">
-    <div *ngFor="let item of items" sidebar-item>{{item}}</div>
-  </sidebar>
-</div>

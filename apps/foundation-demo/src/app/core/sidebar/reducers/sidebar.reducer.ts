@@ -10,8 +10,14 @@ export const initialState: State = {
 
 export function reducer(state = initialState, action: SidebarActions): State {
   switch (action.type) {
-    case SidebarActionTypes.ToggleSidebarVisibilityAction:
+    case SidebarActionTypes.ToggleSidebarAction:
       return {...state, showSidebar: !state.showSidebar};
+    case SidebarActionTypes.CloseSidebarAction:
+      return {...state, showSidebar: false};
+    case SidebarActionTypes.OpenSidebarAction: 
+      return { ...state, showSidebar: true}
+    case SidebarActionTypes.SetSidebarStateAction: 
+      return { ...state, showSidebar: action.payload}
     default:
       return state;
   }

@@ -1,25 +1,13 @@
 @import 'daffodil-util';
 
 .sidebar {
-  display: grid;
-  grid-template-rows: 100px repeat(15, 35px);
-  width: 200px;
   background-color: white;
 
   &__close {
-    justify-self: end;
-    margin: 20px;
-    font-size: $large-font-size;
-    cursor: pointer;
-    line-height: 0;
-    height: 25px;
-  }
-
-  &__item {
-    @include embolden();
-    @include uppercase();
-    margin: 0 auto auto 30px;
-    font-size: $small-font-size;
+    padding: 20px 20px 35px;
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
     cursor: pointer;
   }
 }
