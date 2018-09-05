@@ -1,5 +1,13 @@
-<div class="header" daff-header>
-  <span class="header__open-icon" (click)="onToggleSidebarVisibility()"><i class="fa fa-bars"></i></span>
-  <span class="header__logo-icon" (click)="navigateToHomepage()"><img src="/assets/logo-icon.jpg"></span>
-  <span class="header__cart-icon"><i class="fa fa-shopping-cart"></i></span>
-</div>
+<daff-navbar class="header">
+  <div class="header__menu">
+      <ng-content select="[header-menu-button]"></ng-content>
+  </div>
+  <div class="header__logo">
+      <ng-content select="[header-logo]"></ng-content>
+  </div>
+  <ng-content></ng-content>
+  <div class="header__spacer"></div>
+  <div class="header__cart">
+      <ng-content select="[header-cart-button]"></ng-content>
+  </div>
+</daff-navbar>
