@@ -1,0 +1,16 @@
+:host {
+    display: block;
+}
+
+.logo {
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+    }
+
+    &--icon {
+        max-width: 40px;
+        max-height: 40px;
+    }
+}
