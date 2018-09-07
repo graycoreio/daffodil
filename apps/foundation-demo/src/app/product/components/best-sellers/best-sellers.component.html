@@ -1,0 +1,10 @@
+<div best-sellers-container #BestSellersContainer="BestSellersContainer">
+  <div class="best-sellers" *ngIf="!(BestSellersContainer.loading$ | async)">
+    <div class="best-sellers__title">best sellers</div>
+    <product-grid [products]="BestSellersContainer.bestSellers"></product-grid>
+  </div>
+
+  <div *ngIf="(BestSellersContainer.loading$ | async)" class="best-sellers__loading-icon">
+    <i class="fa fa-spinner fa-spin fa-5x"></i>
+  </div>
+</div>

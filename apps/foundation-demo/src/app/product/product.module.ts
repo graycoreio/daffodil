@@ -13,6 +13,7 @@ import { DesignModule } from '../design/design.module';
 import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
 import { ProductEffects } from './effects/product.effects';
 import { MiscModule } from '../misc/misc.module';
+import { BestSellersComponent } from './components/best-sellers/best-sellers.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { MiscModule } from '../misc/misc.module';
     ProductViewComponent,
     ProductComponent,
     ProductCardComponent,
-    AddToCartComponent
+    AddToCartComponent,
+    BestSellersComponent
   ],
   exports: [
     ProductGridComponent,
@@ -38,7 +40,8 @@ import { MiscModule } from '../misc/misc.module';
     ProductViewComponent,
     ProductComponent,
     ProductCardComponent,
-    AddToCartComponent
+    AddToCartComponent,
+    BestSellersComponent
   ]
 })
 export class ProductModule { }
