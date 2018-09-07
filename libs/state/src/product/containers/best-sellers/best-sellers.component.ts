@@ -23,8 +23,6 @@ export class BestSellersContainer implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.bestSellers = [];
-
     this.store.dispatch(new BestSellersLoad());
 
     this.loading$ = this.store.pipe(
@@ -34,6 +32,8 @@ export class BestSellersContainer implements OnInit {
     combineLatest(
       this.getProducts(), this.getBestSellersIds()
     ).subscribe(([products, bestSellersIds]) => {
+      this.bestSellers = [];
+
       bestSellersIds.forEach(id => {
         products.forEach(product => {
           if (product.id === id) {
