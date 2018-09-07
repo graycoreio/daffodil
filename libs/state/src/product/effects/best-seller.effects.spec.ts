@@ -7,7 +7,7 @@ import { hot, cold } from 'jasmine-marbles';
 import { Product, ProductFactory, DaffodilConfigFactory } from '@daffodil/core';
 
 import { BestSellersLoad, BestSellersLoadSuccess, BestSellersLoadFailure } from '../actions/best-sellers.actions';
-import { BestSellersEffects } from './best-seller-grid.effects';
+import { BestSellersEffects } from './best-seller.effects';
 import { ProductTestingModule } from '../testing/product-testing.module';
 import { ProductService } from '../services/product.service';
 import { DaffodilConfigService } from '../../config/daffodil-config.service';
