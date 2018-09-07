@@ -28,7 +28,7 @@ export class ProductTestingService implements InMemoryDbService {
     if(reqInfo.id === "best-sellers") {
       return reqInfo.utils.createResponse$(() => {
           return {
-            body: this.products.splice(1,4),
+            body: this.products.slice(0,4),
             status: STATUS.OK
           };
       });
