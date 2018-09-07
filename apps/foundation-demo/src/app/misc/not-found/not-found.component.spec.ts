@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NotFoundComponent } from './not-found.component';
+import { Component } from '@angular/core';
+
+@Component({selector: 'best-sellers', template: ''})
+class MockBestSellersComponent {}
 
 describe('NotFoundComponent', () => {
   let component: NotFoundComponent;
@@ -8,7 +12,10 @@ describe('NotFoundComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NotFoundComponent ]
+      declarations: [ 
+        NotFoundComponent,
+        MockBestSellersComponent
+      ]
     })
     .compileComponents();
   }));

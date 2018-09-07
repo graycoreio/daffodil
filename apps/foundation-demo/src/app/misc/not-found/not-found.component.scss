@@ -1,26 +1,16 @@
 @import 'daffodil-util';
 
 .not-found {
-  width: 100%;
+  padding: 50px 100px 0 100px;
+
+  &__text {
+    margin-bottom: 50px;
+    text-align: center;
+    @include embolden();
+    @include uppercase();
+  }
 
   @include breakpoint(large) {
     height: 100vh;
-  }
-
-  &__images {
-    display: grid;
-    width: 400px;
-    margin: 0 auto;
-
-    @include breakpoint(large) {
-      height: inherit;
-      grid-template-columns: 1fr 1fr;
-      width: auto;
-      margin: 0;
-
-      & img {
-        height: inherit;
-      }
-    }
   }
 }
