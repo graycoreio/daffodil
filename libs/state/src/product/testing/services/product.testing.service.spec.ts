@@ -66,28 +66,5 @@ describe('State | Product | Testing | ProductTestingService', () => {
         expect(result.body.length).toEqual(4);
       });
     });
-
-    describe('when reqInfo.id is not "best-sellers"', () => {
-      
-      let reqInfoStub;
-      let result;
-
-      beforeEach(() => {
-        reqInfoStub = {
-          id: '',
-          utils: {
-            createResponse$: (func) => {
-              return func();
-            }
-          }
-        }
-
-        result = productTestingService.get(reqInfoStub);
-      });
-
-      it('should return all products', () => {
-        expect(result.body).toEqual(productTestingService.products);
-      });
-    });
   });
 });
