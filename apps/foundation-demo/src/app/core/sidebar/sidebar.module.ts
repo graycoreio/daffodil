@@ -1,24 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { DaffSidebarModule } from '../../design/molecules/sidebar/sidebar.module';
 import { FoundationSidebarStateModule } from './sidebar.state.module';
-import { SidebarContainer } from './containers/sidebar.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { SidebarViewportContainer } from './containers/sidebar-viewport.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     FoundationSidebarStateModule,
     DaffSidebarModule
   ],
   declarations: [
-    SidebarContainer,
-    SidebarComponent
+    SidebarViewportContainer
   ],
   exports: [
-    SidebarContainer,
-    SidebarComponent
+    SidebarViewportContainer
   ]
 })
 export class SidebarModule { }

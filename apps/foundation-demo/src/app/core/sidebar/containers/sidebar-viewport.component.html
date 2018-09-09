@@ -1,0 +1,8 @@
+<daff-sidebar-viewport (onBackdropClicked)="close()" mode="push" [opened]="showSidebar$ | async">
+    <daff-sidebar (escapePressed)="close()">
+        <a daff-sidebar-item routerLink="/">Temp</a>
+    </daff-sidebar>
+
+    <ng-content></ng-content>
+</daff-sidebar-viewport>
+

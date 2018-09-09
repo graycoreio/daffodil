@@ -1,6 +1,0 @@
-<daff-sidebar-wrapper (onBackdropClicked)="close()" [hasBackdrop]="showSidebar$ | async">
-    <sidebar ngProjectAs="daff-sidebar" (close)="close()" (escapePressed)="close()" [opened]="showSidebar$ | async">
-        <a routerLink="/something">Something</a>
-    </sidebar>
-    <ng-content></ng-content>
-</daff-sidebar-wrapper>
