@@ -16,10 +16,12 @@ import {
   
   /** Animations used by the Material drawers. */
   export const daffSidebarAnimations: {
-    readonly transformSidebar: AnimationTriggerMetadata;
+    readonly transformSidebar: AnimationTriggerMetadata,
+    readonly transformContent: AnimationTriggerMetadata,
+    readonly fadeBackdrop: AnimationTriggerMetadata,
   } = {
     /** Animation that slides a drawer in and out. */
-    transformSidebar: trigger('transform', [
+    transformSidebar: trigger('transformSidebar', [
       // We remove the `transform` here completely, rather than setting it to zero, because:
       // 1. Having a transform can cause elements with ripples or an animated
       //    transform to shift around in Chrome with an RTL layout (see #10023).
@@ -30,6 +32,25 @@ import {
       })),
       state('void', style({
         'visibility': 'hidden',
+      })),
+      transition('void => open-instant', animate('0ms')),
+      transition('void <=> open, open-instant => void',
+          animate('350ms cubic-bezier(0.25, 0.8, 0.25, 1)'))
+    ]),
+    transformContent: trigger('transformContent', [
+      state('void', style({
+        'transform': 'none',
+      })),
+      transition('void => open-instant', animate('0ms')),
+      transition('void <=> open, open-instant => void',
+          animate('350ms cubic-bezier(0.25, 0.8, 0.25, 1)'))
+    ]),
+    fadeBackdrop: trigger('fadeBackdrop', [
+      state('open, open-instant', style({
+        opacity: '1',
+      })),
+      state('void',style({
+        opacity: 0
       })),
       transition('void => open-instant', animate('0ms')),
       transition('void <=> open, open-instant => void',

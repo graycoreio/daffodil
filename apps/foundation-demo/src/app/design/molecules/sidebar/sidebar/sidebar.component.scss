@@ -1,54 +1,22 @@
 @import 'daffodil-util';
 
-$sidebar-width: 300px;
-
-$daff-sidebar-wrapper-z-index: 1;
-$daff-sidebar-content-z-index: 2;
-$daff-sidebar-backdrop-z-index: 3;
-$daff-sidebar-z-index: 4;
+:host {
+  display: block;
+}
 
 .daff-sidebar {
-  position: fixed;
-  top: 0;
-  bottom: 0;
+  display: block;
   background: $white;
-  width: $sidebar-width;
-  transform: translate3d(-100%, 0, 0);
-  z-index: $daff-sidebar-z-index;
+  box-shadow: 6px 1px 9px 0px rgba(128,128, 128, 0.1);
+  height: 100%;
 
   &__item {
+    display: block;
+    width: 100%;
     @include embolden();
     @include uppercase();
     padding: 0 0 25px 30px;
     font-size: $small-font-size;
     cursor: pointer;
-  }
-
-  &__backdrop {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
-    display: block;
-    z-index: $daff-sidebar-backdrop-z-index;
-    background: rgba(0,0,0,0.3);
-  }
-
-  &__wrapper {
-    position: relative;
-    z-index: $daff-sidebar-wrapper-z-index;
-    box-sizing: border-box;
-    -webkit-overflow-scrolling: touch;
-    display: block;
-    overflow: hidden;
-  }
-
-  &__content {
-    position: relative;
-    z-index: $daff-sidebar-content-z-index;
-    display: block;
-    height: 100%;
-    overflow: auto;
   }
 }

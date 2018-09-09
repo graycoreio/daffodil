@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'daff-sidebar-content',
   template: '<ng-content></ng-content>',
   host: {
-    class: 'daff-sidebar__content',
-  }
+    class: 'daff-sidebar-content',
+  },
+  encapsulation: ViewEncapsulation.None
 })
 export class DaffSidebarContentComponent {}

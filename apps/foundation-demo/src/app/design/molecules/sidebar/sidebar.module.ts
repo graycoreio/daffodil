@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DaffSidebarComponent } from './sidebar/sidebar.component';
 import { DaffSidebarItemComponent } from './sidebar-item/sidebar-item.component';
-import { DaffSidebarWrapperComponent } from './sidebar-wrapper/sidebar-wrapper.component';
+import { DaffSidebarViewportComponent } from './sidebar-viewport/sidebar-viewport.component';
 import { DaffSidebarContentComponent } from './sidebar-content/sidebar-content.component';
 
 
@@ -14,13 +14,13 @@ import { DaffSidebarContentComponent } from './sidebar-content/sidebar-content.c
   declarations: [
     DaffSidebarComponent,
     DaffSidebarItemComponent,
-    DaffSidebarWrapperComponent,
+    DaffSidebarViewportComponent,
     DaffSidebarContentComponent
   ],
   exports: [
     DaffSidebarComponent,
     DaffSidebarItemComponent,
-    DaffSidebarWrapperComponent,
+    DaffSidebarViewportComponent,
     DaffSidebarContentComponent
   ]
 })
