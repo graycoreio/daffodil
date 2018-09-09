@@ -5,11 +5,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HelpBoxComponent } from './help-box/help-box.component';
 import { FooterComponent } from './footer/footer.component';
 import { DaffFooterModule } from '../design/molecules/footer/footer.module';
+import { DaffListModule } from '../design/molecules/list/list.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    DaffFooterModule
+    DaffFooterModule,
+    DaffListModule
   ],
   declarations: [
     NotFoundComponent,
