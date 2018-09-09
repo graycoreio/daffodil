@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 
-import { DaffFooterIconsComponent } from './daff-footer-icons.component';
+import { DaffFooterIconsComponent } from './footer-icons.component';
 import { By } from '@angular/platform-browser';
 
 @Component({template: '<div class="host-element" daff-footer-icons></div>'})
