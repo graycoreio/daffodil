@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffFooterComponent } from './daff-footer.component';
+import { DaffFooterComponent } from './footer.component';
 
 @Component({template: '<div class="host-element" daff-footer></div>'})
 class TestDaffFooterComponentWrapper {}

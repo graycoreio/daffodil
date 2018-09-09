@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 
-import { DaffFooterCategoryComponent } from './daff-footer-category.component';
+import { DaffFooterCategoryComponent } from './footer-category.component';
 
 @Component({template: '<div class="host-element" daff-footer-category></div>'})
 class TestDaffFooterCategoryComponentWrapper {}

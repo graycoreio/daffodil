@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DaffFooterCategoryTitleComponent } from './daff-footer-category-title.component';
+import { DaffFooterCategoryTitleComponent } from './footer-category-title.component';
 import { By } from '@angular/platform-browser';
 
 @Component({template: '<div class="host-element" daff-footer-category-title></div>'})

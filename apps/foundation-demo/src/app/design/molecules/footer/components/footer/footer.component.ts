@@ -3,7 +3,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 @Component({
   selector: '[daff-footer]',
   template: '<ng-content></ng-content>',
-  styleUrls: ['./daff-footer.component.scss'],
+  styleUrls: ['./footer.component.scss'],
   host: {'class': 'daff-footer'},
   encapsulation: ViewEncapsulation.None
 })
