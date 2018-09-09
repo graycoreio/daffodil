@@ -1,7 +1,11 @@
 @import 'daffodil-util';
 
 .not-found {
-  padding: 50px 100px 0 100px;
+  padding-top: 50px;
+
+  @include breakpoint(large) {
+    padding: 50px 100px 0 100px;
+  }
 
   &__text {
     margin-bottom: 50px;
