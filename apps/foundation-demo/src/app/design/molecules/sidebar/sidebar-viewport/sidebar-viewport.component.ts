@@ -1,9 +1,7 @@
-import { Component, Output, EventEmitter, Input, ViewEncapsulation, ContentChild, ChangeDetectionStrategy, AfterContentInit, OnDestroy } from '@angular/core';
-import { DaffSidebarContentComponent } from '../sidebar-content/sidebar-content.component';
-import { DaffSidebarComponent } from '../sidebar/sidebar.component';
+import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy } from '@angular/core';
+
 import { DaffSidebarMode } from '../helper/sidebar-mode';
-import { Subscription } from 'rxjs';
-import { daffSidebarAnimations } from 'apps/foundation-demo/src/app/design/molecules/sidebar/sidebar-viewport/sidebar-viewport.animation';
+import { daffSidebarAnimations } from './sidebar-viewport.animation';
 
 @Component({
   selector: 'daff-sidebar-viewport',
@@ -17,6 +15,7 @@ import { daffSidebarAnimations } from 'apps/foundation-demo/src/app/design/molec
   ]
 })
 export class DaffSidebarViewportComponent{
+
 
   _animationState: string = "void";
 
@@ -55,10 +54,6 @@ export class DaffSidebarViewportComponent{
 
   hasBackdrop() : boolean {
     return this._opened && ( this.mode == DaffSidebarMode.OVER || this.mode == DaffSidebarMode.PUSH);
-  }
-
-  get openClass() : string {
-    return this._opened ? "open" : null;
   }
 
   /**
