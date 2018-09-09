@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
 
-import { OpenSidebar } from '../../../sidebar/actions/sidebar.actions';
+import { OpenSidebar, ToggleSidebar } from '../../../sidebar/actions/sidebar.actions';
 
 @Component({
   selector: 'header-container',
@@ -13,6 +13,6 @@ export class HeaderContainer {
   constructor(private store: Store<{}>) { }
 
   openSidebar() {
-    this.store.dispatch(new OpenSidebar());
+    this.store.dispatch(new ToggleSidebar());
   }
 }

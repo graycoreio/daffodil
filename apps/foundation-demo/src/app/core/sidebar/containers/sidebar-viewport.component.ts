@@ -6,11 +6,10 @@ import { ToggleSidebar, CloseSidebar, OpenSidebar, SetSidebarState } from '../ac
 import * as fromFoundationSidebar from '../reducers/index';
 
 @Component({
-  selector: 'sidebar-container',
-  exportAs: 'SidebarContainer',
-  templateUrl: './sidebar.component.html'
+  selector: 'sidebar-viewport-container',
+  templateUrl: './sidebar-viewport.component.html'
 })
-export class SidebarContainer {
+export class SidebarViewportContainer {
   
   showSidebar$: Observable<boolean>;
 

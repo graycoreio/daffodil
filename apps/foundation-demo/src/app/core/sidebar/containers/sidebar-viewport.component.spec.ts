@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
-import { SidebarContainer } from './sidebar.component';
+import { SidebarViewportContainer } from './sidebar-viewport.component';
 import * as fromSidebar from '../reducers/index';
 import { ToggleSidebar, OpenSidebar, CloseSidebar, SetSidebarState } from '../actions/sidebar.actions';
 
@@ -13,7 +13,7 @@ class TestSidebarContainerComponent {}
 
 
 describe('SidebarContainer', () => {
-  let component: SidebarContainer;
+  let component: SidebarViewportContainer;
   let fixture: ComponentFixture<TestSidebarContainerComponent>;
   let store: Store<fromSidebar.State>;
   let stubShowSidebar: boolean;
@@ -26,7 +26,7 @@ describe('SidebarContainer', () => {
         })
       ],
       declarations: [ 
-        SidebarContainer,
+        SidebarViewportContainer,
         TestSidebarContainerComponent
       ]
     })
@@ -36,7 +36,7 @@ describe('SidebarContainer', () => {
   beforeEach(() => {
     store = TestBed.get(Store);
     spyOn(store, 'dispatch');
-    component = new SidebarContainer(store);
+    component = new SidebarViewportContainer(store);
   });
 
   it('should create', () => {
