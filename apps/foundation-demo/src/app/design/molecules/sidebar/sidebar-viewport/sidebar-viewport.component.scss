@@ -60,9 +60,16 @@ $daff-sidebar-viewport: 1;
     background: rgba(0,0,0,0.3);
     z-index: 3;
     cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
     
     &--transparent {
         background: none;
+    }
+
+    &:focus, &:active, &:visited {
+        outline: 0;
+        
     }
 }
     
