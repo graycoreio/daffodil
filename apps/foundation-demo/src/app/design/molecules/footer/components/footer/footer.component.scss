@@ -17,11 +17,6 @@
     grid-template-columns: repeat(4, 1fr);
   }
 
-  &__category-title {
-    @include embolden();
-    @include uppercase();
-  }
-
   &__icons {
     align-self: end;
     display: grid;

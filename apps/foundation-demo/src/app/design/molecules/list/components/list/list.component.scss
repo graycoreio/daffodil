@@ -1,0 +1,8 @@
+@import 'daffodil-util';
+
+.daff-list {
+  &__title {
+    @include embolden();
+    @include uppercase();
+  }
+}
