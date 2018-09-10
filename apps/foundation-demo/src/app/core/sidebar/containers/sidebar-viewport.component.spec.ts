@@ -59,7 +59,7 @@ describe('SidebarContainer', () => {
   it('should call close when the `daff-sidebar-viewport` emits `onBackdropClicked`', () => {
     spyOn(component, 'close');
 
-    expect(sidebarViewport.onBackdropClicked.emit());
+    sidebarViewport.onBackdropClicked.emit()
 
     expect(component.close).toHaveBeenCalledWith();    
   })
@@ -67,7 +67,7 @@ describe('SidebarContainer', () => {
   it('should call `close` when the daff-sidebar emits `escapePressed`', () => {
     spyOn(component, 'close');
 
-    expect(sidebar.escapePressed.emit());
+    sidebar.escapePressed.emit()
 
     expect(component.close).toHaveBeenCalledWith();    
   })
