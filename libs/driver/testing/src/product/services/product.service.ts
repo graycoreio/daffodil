@@ -5,9 +5,8 @@ import { Observable, of } from 'rxjs';
 import { Product } from '@daffodil/core';
 import { ProductFactory } from '@daffodil/core/testing';
 
-import { DaffProductServiceInterface, DaffDriverConfigService } from '@daffodil/driver';
+import { DaffProductServiceInterface } from '@daffodil/driver';
 
-import { DaffDriverTestingModule } from '../../testing.module';
 
 @Injectable({
   providedIn: 'root'

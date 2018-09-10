@@ -4,7 +4,6 @@ import { Observable, of } from 'rxjs';
 
 import { Cart } from '@daffodil/core';
 
-import { DaffDriverTestingModule } from '../../testing.module';
 import { DaffCartServiceInterface } from '@daffodil/driver';
 import { CartFactory } from '@daffodil/core/testing';
 
