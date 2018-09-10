@@ -25,6 +25,10 @@
     grid-template-columns: repeat(auto-fill, minmax(15px, 1fr));
     grid-column: 1/-1;
 
+    & > * {
+      margin: auto;
+    }
+
     @include breakpoint(medium) {
       grid-column-start: auto;
       align-self: start;
