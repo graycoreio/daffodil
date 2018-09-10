@@ -1,7 +1,7 @@
 import { ToggleSidebar, CloseSidebar, OpenSidebar, SetSidebarState } from "../actions/sidebar.actions";
 import { initialState, reducer, getShowSidebar } from "../reducers/sidebar.reducer";
 
-describe('Header | Sidebar Reducer', () => {
+describe('Sidebar | Sidebar Reducer', () => {
   
   describe('initialState', () => {
     
