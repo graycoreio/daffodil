@@ -4,7 +4,6 @@ import { DaffSidebarComponent } from './sidebar.component';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-
 describe('DaffSidebarComponent', () => {
   let component: DaffSidebarComponent;
   let fixture: ComponentFixture<DaffSidebarComponent>;
@@ -28,42 +27,44 @@ describe('DaffSidebarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set `opened` to be false by default', () => {
-    expect(component.opened).toEqual(false);
-  })
-
-  describe('when opened is true', () => {
-    beforeEach(() => {
-      component.opened = true;
-      fixture.detectChanges();
-    });
-  });
-
-  describe('when opened is false', () => {
-    beforeEach(() => {
-      component.opened = false;
-      fixture.detectChanges();
-    });
-    
-    it('should set daff-sidebar-hide on host element', () => {      
-      expect(fixture.debugElement.nativeElement.classList.contains('daff-sidebar-hide')).toBeTruthy();
-    });
-  });
-
   describe('user interactions', () => {
     it('should emit `escapedPressed` when the `ESC` key is pressed', () => {
+      spyOn(component.escapePressed, "emit");
 
-    })
+      fixture.nativeElement.dispatchEvent(new KeyboardEvent("keydown", {
+          key: "Escape"
+      }));
+      
+      fixture.detectChanges();
+
+      expect(component.escapePressed.emit).toHaveBeenCalled();
+    });
+
+    it('should not emit `escapedPressed` if the event is not triggered ON the `daff-sidebar`', () => {
+      spyOn(component.escapePressed, "emit");
+
+      document.dispatchEvent(new KeyboardEvent("keydown", {
+        key: "Escape"
+      }));
+
+      fixture.detectChanges();
+
+      expect(component.escapePressed.emit).not.toHaveBeenCalled();
+    });
   });
 });
 
 @Component({template: `
   <div class="host-element">
-    <daff-sidebar [opened]="showValue"></daff-sidebar>
+    <daff-sidebar (escapePressed)="pressed()"></daff-sidebar>
   </div>
 `})
 class TestDaffSidebarComponentWrapper {
-  showValue: boolean = false;
+  escapePressedCount: number = 0;
+
+  pressed(): void{
+    this.escapePressedCount++;
+  }
 }
 
 describe('DaffSidebarComponent | usage', () => {
@@ -93,13 +94,11 @@ describe('DaffSidebarComponent | usage', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should be able to take opened as input', () => {
-    component.showValue = false;
+  it('should be able to bind to the Output `escapePressed`', () => {
+    daffSidebar.escapePressed.emit();
+
     fixture.detectChanges();
-    expect(daffSidebar.opened).toEqual(component.showValue);
-    
-    component.showValue = true;
-    fixture.detectChanges();
-    expect(daffSidebar.opened).toEqual(component.showValue);
+
+    expect(component.escapePressedCount).toEqual(1);
   });
 });
