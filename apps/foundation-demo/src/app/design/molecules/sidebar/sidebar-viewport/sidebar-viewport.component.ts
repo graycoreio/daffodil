@@ -1,7 +1,8 @@
 import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { DaffSidebarMode } from '../helper/sidebar-mode';
-import { daffSidebarAnimations } from './sidebar-viewport.animation';
+import { daffSidebarAnimations } from '../animation/sidebar-animation';
+import { getAnimationState } from '../animation/sidebar-animation-state';
 
 @Component({
   selector: 'daff-sidebar-viewport',
@@ -15,7 +16,6 @@ import { daffSidebarAnimations } from './sidebar-viewport.animation';
   ]
 })
 export class DaffSidebarViewportComponent{
-
 
   _animationState: string = "void";
 
@@ -67,17 +67,4 @@ export class DaffSidebarViewportComponent{
    */
   @Input() mode: DaffSidebarMode = DaffSidebarMode.SIDE;
 
-}
-
-
-export const getAnimationState = (open : boolean = false, enabled: boolean = true) => {
-  if(open && enabled){
-      return "open";
-  }
-  else if(open && !enabled) {
-    return "open-instant";
-  }
-  else {
-    return "void";
-  }
 }
