@@ -1,5 +1,1 @@
-export enum DaffSidebarMode {
-    OVER = "over",
-    SIDE = "side",
-    PUSH = "push"
-}
+export type DaffSidebarMode = "over" | "push" | "side";
