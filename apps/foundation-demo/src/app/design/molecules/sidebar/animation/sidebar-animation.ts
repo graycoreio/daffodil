@@ -30,9 +30,6 @@ import {
         'transform': 'none',
         'visibility': 'visible',
       })),
-      state('void', style({
-        'visibility': 'hidden',
-      })),
       transition('void <=> open',
           animate('350ms cubic-bezier(0.25, 0.8, 0.25, 1)'))
     ]),
