@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+
+import { Observable, of} from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
 import { Product } from '@daffodil/core';
 import { ProductFactory } from '@daffodil/core/testing';
-import { DaffProductServiceInterface, DaffDriver, DaffDriverInterface } from '@daffodil/driver';
+import { DaffDriver, DaffDriverInterface } from '@daffodil/driver';
 import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
 

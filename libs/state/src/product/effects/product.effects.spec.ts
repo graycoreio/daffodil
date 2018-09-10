@@ -5,9 +5,9 @@ import { of } from 'rxjs/observable/of';
 import { hot, cold } from 'jasmine-marbles';
 
 import { Product } from '@daffodil/core';
-import { ProductFactory, DaffCoreTestingModule } from '@daffodil/core/testing';
+import { ProductFactory } from '@daffodil/core/testing';
 
-import { DaffProductServiceInterface, DaffDriver, DaffDriverInterface } from '@daffodil/driver';
+import { DaffDriver, DaffDriverInterface } from '@daffodil/driver';
 
 import { ProductEffects } from './product.effects';
 import { ProductLoad, ProductLoadSuccess, ProductLoadFailure } from '../actions/product.actions';
