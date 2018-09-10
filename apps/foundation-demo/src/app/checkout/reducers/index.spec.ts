@@ -10,7 +10,6 @@ describe('selectFoundationCheckoutState', () => {
   let stubShowShippingForm: boolean;
   let expectedShowPaymentView: boolean;
   let expectedShowPaymentForm: boolean;
-  let expectedShowThankYou: boolean;
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -24,7 +23,6 @@ describe('selectFoundationCheckoutState', () => {
     stubShowShippingForm = true;
     expectedShowPaymentView = false;
     expectedShowPaymentForm = null;
-    expectedShowThankYou = false;
     store = TestBed.get(Store);
     store.dispatch(new SetShowShippingForm(stubShowShippingForm));
   }));
@@ -89,7 +87,7 @@ describe('selectFoundationCheckoutState', () => {
       let expectedCheckoutState = {
         enablePlaceOrderButton: false,
         showReviewView: false,
-        showThankYou: false
+        isOrderPlaced: false
       }
 
       store.pipe(select(fromCheckout.foundationCheckoutStateSelector)).subscribe((checkoutState) => {
@@ -116,11 +114,11 @@ describe('selectFoundationCheckoutState', () => {
     });
   });
 
-  describe('selectShowThankYou', () => {
+  describe('selectIsOrderPlaced', () => {
     
-    it('selects showThankYou state', () => {
-      store.pipe(select(fromCheckout.selectShowThankYou)).subscribe((showThankYou) => {
-        expect(showThankYou).toEqual(false);
+    it('selects isOrderPlaced state', () => {
+      store.pipe(select(fromCheckout.selectIsOrderPlaced)).subscribe((isOrderPlaced) => {
+        expect(isOrderPlaced).toEqual(false);
       });
     });
   });

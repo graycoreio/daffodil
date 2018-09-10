@@ -1,4 +1,4 @@
-import { initialState, reducer, getEnablePlaceOrderButton, getShowReviewView, getShowThankYou } from "../reducers/checkout.reducer";
+import { initialState, reducer, getEnablePlaceOrderButton, getShowReviewView, getIsOrderPlaced } from "../reducers/checkout.reducer";
 import { EnablePlaceOrderButton, ShowReviewView, PlaceOrder } from "../actions/checkout.actions";
 
 describe('Checkout | Checkout Reducer', () => {
@@ -61,8 +61,8 @@ describe('Checkout | Checkout Reducer', () => {
       result = reducer(initialState, placeOrderAction);
     });
 
-    it('sets showThankYou to true', () => {
-      expect(result.showThankYou).toBeTruthy();
+    it('sets isOrderPlaced to true', () => {
+      expect(result.isOrderPlaced).toBeTruthy();
     });
   });
 
@@ -80,10 +80,10 @@ describe('Checkout | Checkout Reducer', () => {
     });
   });
 
-  describe('getShowThankYou', () => {
+  describe('getIsOrderPlaced', () => {
     
-    it('returns showThankYou state', () => {
-      expect(getShowThankYou(initialState)).toEqual(initialState.showThankYou);
+    it('returns isOrderPlaced state', () => {
+      expect(getIsOrderPlaced(initialState)).toEqual(initialState.isOrderPlaced);
     });
   });
 });
