@@ -19,6 +19,10 @@ export class DaffSidebarViewportComponent{
 
   _animationState: string = "void";
 
+  get animationsEnabled() : boolean {
+    return ( this.mode == "over" || this.mode == "push" ) ? true : false;
+  }
+
   /**
    * Property for the "opened" state of the sidebar
    */
@@ -27,15 +31,8 @@ export class DaffSidebarViewportComponent{
   set opened(value: boolean) { 
     if(this._opened == value){return;}
     this._opened = value;
-    this._openedChanged.emit(value);
-    this._animationState = getAnimationState(value);
+    this._animationState = getAnimationState(value, this.animationsEnabled);
   }
-
-  /**
-   * Output event to monitor when opened changes
-   */
-  
-  private _openedChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   /**
    * Internal tracking variable for the state of sidebar viewport.
@@ -52,8 +49,8 @@ export class DaffSidebarViewportComponent{
     this.onBackdropClicked.emit();
   }
 
-  hasBackdrop() : boolean {
-    return this._opened && ( this.mode == DaffSidebarMode.OVER || this.mode == DaffSidebarMode.PUSH);
+  get hasBackdrop() : boolean {
+    return this._opened && ( this.mode == "over" || this.mode == "push");
   }
 
   /**
@@ -65,6 +62,5 @@ export class DaffSidebarViewportComponent{
   /**
    * The mode to put the sidebar in
    */
-  @Input() mode: DaffSidebarMode = DaffSidebarMode.SIDE;
-
+  @Input() mode: DaffSidebarMode = "side";
 }
