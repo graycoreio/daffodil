@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 import { DaffSidebarMode } from '../helper/sidebar-mode';
 import { daffSidebarAnimations } from '../animation/sidebar-animation';
@@ -15,9 +15,13 @@ import { getAnimationState } from '../animation/sidebar-animation-state';
     daffSidebarAnimations.fadeBackdrop
   ]
 })
-export class DaffSidebarViewportComponent{
+export class DaffSidebarViewportComponent implements OnInit{
 
-  _animationState: string = "void";
+  ngOnInit() {
+    this._animationState = getAnimationState(this.opened, this.animationsEnabled);
+  }
+
+  _animationState: string;
 
   get animationsEnabled() : boolean {
     return ( this.mode == "over" || this.mode == "push" ) ? true : false;
@@ -29,7 +33,6 @@ export class DaffSidebarViewportComponent{
   @Input()
   get opened(): boolean { return this._opened; }
   set opened(value: boolean) { 
-    if(this._opened == value){return;}
     this._opened = value;
     this._animationState = getAnimationState(value, this.animationsEnabled);
   }

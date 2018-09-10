@@ -7,6 +7,7 @@ import { DaffSidebarViewportComponent } from './sidebar-viewport.component';
 import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 import { DaffSidebarMode } from '../helper/sidebar-mode';
 import { ofType } from '@ngrx/effects';
+import { getAnimationState } from '../animation/sidebar-animation-state';
 
 @Component({template: `
   <div class="sidebar-content-wrapper">
@@ -67,8 +68,8 @@ describe('DaffSidebarViewportComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have the _animationState should be `void` by default', () => {
-    expect(sidebarViewport._animationState).toEqual("void");
+  it('should have the _animationState should be `open` by default', () => {
+    expect(sidebarViewport._animationState).toEqual("open");
   });
 
   it('should not have the backdrop by default', () => {
@@ -192,16 +193,16 @@ describe('DaffSidebarViewportComponent', () => {
       expect(sidebarViewport.hasBackdrop).toBe(false);
     });
 
-    it('should not animate regardless of state changes', () => {
+    it('should be `open` and and not change animation states regardless of `opened` state changes', () => {
       component.open = false;
       fixture.detectChanges();
 
-      expect(sidebarViewport._animationState).toEqual("void");
+      expect(sidebarViewport._animationState).toEqual("open");
 
       component.open = true;
       fixture.detectChanges();
 
-      expect(sidebarViewport._animationState).toEqual("void");
+      expect(sidebarViewport._animationState).toEqual("open");
     });
   });
 });
