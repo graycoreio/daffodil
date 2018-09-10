@@ -7,7 +7,7 @@ import { DaffSidebarContentComponent } from './sidebar-content.component';
 @Component({template: '<daff-sidebar-content class="sidebar-content-wrapper">Title</daff-sidebar-content>>'})
 class TestSidebarContentWrapper {}
 
-fdescribe('DaffSidebarContentComponent', () => {
+describe('DaffSidebarContentComponent', () => {
   let component: DaffSidebarContentComponent;
   let fixture: ComponentFixture<DaffSidebarContentComponent>;
 
