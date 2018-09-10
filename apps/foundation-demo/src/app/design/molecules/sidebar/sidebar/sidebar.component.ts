@@ -30,8 +30,8 @@ export class DaffSidebarComponent {
 
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
-    private _ngZone: NgZone,
-    @Optional() @Inject(DOCUMENT) private _doc: any) {
+    private _ngZone: NgZone
+    ) {
 
     /**
      * Listen to `keydown` events outside the zone so that change detection is not run every
@@ -41,7 +41,7 @@ export class DaffSidebarComponent {
     this._ngZone.runOutsideAngular(() => {
       fromEvent<KeyboardEvent>(this._elementRef.nativeElement, 'keydown').pipe(
           filter(event => {
-            return event.keyCode === ESCAPE
+            return event.key === "Escape"
           })
       ).subscribe(event => this._ngZone.run(() => {
           this.escapePressed.emit();
