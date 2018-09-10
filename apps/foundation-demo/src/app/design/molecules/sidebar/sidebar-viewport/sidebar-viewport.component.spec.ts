@@ -5,7 +5,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DaffSidebarViewportComponent } from './sidebar-viewport.component';
 import { DaffSidebarComponent } from '../sidebar/sidebar.component';
-import { DaffSidebarContentComponent } from '../sidebar-content/sidebar-content.component';
 import { DaffSidebarMode } from '../helper/sidebar-mode';
 import { ofType } from '@ngrx/effects';
 
@@ -51,7 +50,6 @@ describe('DaffSidebarViewportComponent', () => {
         TestSidebarViewportWrapper,
         DaffSidebarViewportComponent,
         DaffSidebarComponent,
-        DaffSidebarContentComponent,
       ]
     })
     .compileComponents();
