@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 
 import { DaffSidebarItemComponent } from './sidebar-item.component';
 
-@Component({template: '<div class="sidebar-item-wrapper" sidebar-item>Title</div>'})
+@Component({template: '<div class="sidebar-item-wrapper" daff-sidebar-item>Title</div>'})
 class TestSidebarItemWrapper {}
 
 describe('DaffSidebarItemComponent', () => {
@@ -31,7 +31,7 @@ describe('DaffSidebarItemComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should add a class of `sidebar__item` to its host', () => {
+  it('should add a class of `daff-sidebar__item` to its host', () => {
     let sidebarItemWrapper = fixture.debugElement.query(By.css('.sidebar-item-wrapper'));
 
     expect(sidebarItemWrapper.nativeElement.classList.contains('daff-sidebar__item')).toBeTruthy();
