@@ -1,36 +1,34 @@
 import { TestBed } from '@angular/core/testing';
 
 import { STATUS } from 'angular-in-memory-web-api';
-import { CartFactory } from '@daffodil/core/testing';
 import { DaffInMemoryCartTestingService } from './cart.testing.service';
+import { DaffCoreTestingModule, CartFactory } from '@daffodil/core/testing';
+import { Cart } from '@daffodil/core';
 
 describe('Driver | Cart | In Memory | CartTestingService', () => {
-  let cartTestingService;
-  let cartFactory: CartFactory = new CartFactory();
-  let mockCart = cartFactory.create();
-
+  let cartTestingService: DaffInMemoryCartTestingService;
+  let cartFactory: CartFactory;
+  let mockCart: Cart;
+  
   beforeEach(() => {
-    spyOn(cartFactory, 'create').and.returnValue(mockCart);
-
     TestBed.configureTestingModule({
-      imports: [],
+      imports: [
+        DaffCoreTestingModule
+      ],
       providers: [
-        DaffInMemoryCartTestingService,
-        { provide: CartFactory, useValue: cartFactory }
+        DaffInMemoryCartTestingService
       ]
     });
 
     cartTestingService = TestBed.get(DaffInMemoryCartTestingService);
+    cartFactory = TestBed.get(CartFactory);
+
+    mockCart = cartFactory.create();
+    spyOn(cartFactory, 'create').and.returnValue(mockCart);
   });
 
   it('should be created', () => {
     expect(cartTestingService).toBeTruthy();
-  });
-
-  describe('constructor', () => {
-    it('should call cartFactory.create', () => {
-      expect(cartFactory.create).toHaveBeenCalledTimes(1);
-    });
   });
 
   describe('createDb', () => {
@@ -104,7 +102,7 @@ describe('Driver | Cart | In Memory | CartTestingService', () => {
 
           result = cartTestingService.post(reqInfoStub);
 
-          expect(result.body.items[1].qty).toEqual(2);
+          expect(result.body.items[0].qty).toEqual(2);
         });
 
         it('should set productId of the cartItem to the given productId value', () => {
@@ -113,7 +111,7 @@ describe('Driver | Cart | In Memory | CartTestingService', () => {
 
           result = cartTestingService.post(reqInfoStub);
 
-          expect(result.body.items[2].product_id).toEqual(productIdValue);
+          expect(result.body.items[0].product_id).toEqual(productIdValue);
         });
       });
 
@@ -124,7 +122,11 @@ describe('Driver | Cart | In Memory | CartTestingService', () => {
 
           result = cartTestingService.post(reqInfoStub);
 
-          expect(result.body.items[1].qty).toEqual(4);
+          expect(result.body.items[0].qty).toEqual(2);
+
+          result = cartTestingService.post(reqInfoStub);
+
+          expect(result.body.items[0].qty).toEqual(4);
         });
       });
     });
