@@ -10,10 +10,7 @@
         (click)="_onBackdropClicked()" ></div>
 
     <div class="daff-sidebar-viewport__content" [@transformContent]="_animationState">
-        <ng-content select="daff-sidebar-content"></ng-content>
-        <daff-sidebar-content *ngIf="!_content">
-            <ng-content></ng-content>
-        </daff-sidebar-content>
+        <ng-content></ng-content>
     </div>
 </div>
     
