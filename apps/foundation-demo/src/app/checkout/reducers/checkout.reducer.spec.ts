@@ -1,5 +1,5 @@
-import { initialState, reducer, getEnablePlaceOrderButton, getShowReviewView } from "../reducers/checkout.reducer";
-import { EnablePlaceOrderButton, ShowReviewView } from "../actions/checkout.actions";
+import { initialState, reducer, getEnablePlaceOrderButton, getShowReviewView, getShowThankYou } from "../reducers/checkout.reducer";
+import { EnablePlaceOrderButton, ShowReviewView, PlaceOrder } from "../actions/checkout.actions";
 
 describe('Checkout | Checkout Reducer', () => {
   
@@ -51,6 +51,21 @@ describe('Checkout | Checkout Reducer', () => {
     });
   });
 
+  describe('when PlaceOrder action is triggered', () => {
+
+    let result;
+
+    beforeEach(() => {
+      let placeOrderAction = new PlaceOrder();
+      
+      result = reducer(initialState, placeOrderAction);
+    });
+
+    it('sets showThankYou to true', () => {
+      expect(result.showThankYou).toBeTruthy();
+    });
+  });
+
   describe('getEnablePlaceOrderButton', () => {
     
     it('returns enablePlaceOrderButton state', () => {
@@ -62,6 +77,13 @@ describe('Checkout | Checkout Reducer', () => {
     
     it('returns showReviewView state', () => {
       expect(getShowReviewView(initialState)).toEqual(initialState.showReviewView);
+    });
+  });
+
+  describe('getShowThankYou', () => {
+    
+    it('returns showThankYou state', () => {
+      expect(getShowThankYou(initialState)).toEqual(initialState.showThankYou);
     });
   });
 });
