@@ -1,20 +1,22 @@
-import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
 import { SidebarViewportContainer } from './sidebar-viewport.component';
 import * as fromSidebar from '../reducers/index';
 import { ToggleSidebar, OpenSidebar, CloseSidebar, SetSidebarState } from '../actions/sidebar.actions';
-
-@Component({
-  template: `<ng-template sidebar-container></ng-template>` 
-})
-class TestSidebarContainerComponent {}
-
+import { DaffSidebarModule } from '../../../design/molecules/sidebar/sidebar.module';
+import { DaffSidebarComponent } from '../../../design/molecules/sidebar/sidebar/sidebar.component';
+import { DaffSidebarViewportComponent } from '../../../design/molecules/sidebar/sidebar-viewport/sidebar-viewport.component';
+import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('SidebarContainer', () => {
   let component: SidebarViewportContainer;
-  let fixture: ComponentFixture<TestSidebarContainerComponent>;
+  let fixture: ComponentFixture<SidebarViewportContainer>;
+  
+  let sidebar: DaffSidebarComponent;
+  let sidebarViewport: DaffSidebarViewportComponent;
+
   let store: Store<fromSidebar.State>;
   let stubShowSidebar: boolean;
 
@@ -23,25 +25,52 @@ describe('SidebarContainer', () => {
       imports: [
         StoreModule.forRoot({
           foundationSidebar: combineReducers(fromSidebar.reducers),
-        })
+        }),
+        NoopAnimationsModule,
+        DaffSidebarModule,
       ],
       declarations: [ 
         SidebarViewportContainer,
-        TestSidebarContainerComponent
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
+    fixture = TestBed.createComponent(SidebarViewportContainer);
+    component = fixture.componentInstance;
     store = TestBed.get(Store);
     spyOn(store, 'dispatch');
-    component = new SidebarViewportContainer(store);
+
+    fixture.detectChanges();
+
+    sidebar = fixture.debugElement.query(By.css("daff-sidebar")).componentInstance;
+    sidebarViewport = fixture.debugElement.query(By.css("daff-sidebar-viewport")).componentInstance;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should set the `daff-sidebar-viewport` mode to push', () => {
+    expect(sidebarViewport.mode).toEqual("push");
+  });
+
+  it('should call close when the `daff-sidebar-viewport` emits `onBackdropClicked`', () => {
+    spyOn(component, 'close');
+
+    expect(sidebarViewport.onBackdropClicked.emit());
+
+    expect(component.close).toHaveBeenCalledWith();    
+  })
+
+  it('should call `close` when the daff-sidebar emits `escapePressed`', () => {
+    spyOn(component, 'close');
+
+    expect(sidebar.escapePressed.emit());
+
+    expect(component.close).toHaveBeenCalledWith();    
+  })
 
   describe('ngOnInit', () => {
     it('should initialize showSidebar$', () => {

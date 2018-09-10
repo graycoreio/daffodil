@@ -4,10 +4,10 @@ import { TemplateComponent } from './template.component';
 import { Component } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 
-@Component({selector: 'header-view', template: ''})
+@Component({selector: 'header-container', template: ''})
 class MockHeaderViewComponent {}
 
-@Component({selector: 'sidebar-view', template: ''})
+@Component({selector: 'sidebar-viewport-container', template: ''})
 class MockSidebarViewComponent {}
 
 describe('TemplateComponent', () => {

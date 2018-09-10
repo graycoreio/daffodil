@@ -4,7 +4,7 @@ import { DaffNavbarComponent } from './navbar.component';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-@Component({template: '<div class="host-element" daff-header></div>'})
+@Component({template: '<daff-navbar class="host-element"></ daff-navbar>'})
 class TestDaffodilHeaderComponent {}
 
 describe('DaffNavbarComponent', () => {
