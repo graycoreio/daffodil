@@ -4,7 +4,8 @@ import { RouterModule } from '@angular/router';
 
 import { DaffSidebarModule } from '../../design/molecules/sidebar/sidebar.module';
 import { FoundationSidebarStateModule } from './sidebar.state.module';
-import { SidebarViewportContainer } from './containers/sidebar-viewport.component';
+import { SidebarViewportContainer } from './containers/sidebar-viewport/sidebar-viewport.component';
+import { SidebarContainer } from './containers/sidebar/sidebar.component';
 
 @NgModule({
   imports: [
@@ -14,10 +15,12 @@ import { SidebarViewportContainer } from './containers/sidebar-viewport.componen
     DaffSidebarModule
   ],
   declarations: [
-    SidebarViewportContainer
+    SidebarViewportContainer,
+    SidebarContainer
   ],
   exports: [
-    SidebarViewportContainer
+    SidebarViewportContainer,
+    SidebarContainer
   ]
 })
 export class SidebarModule { }
