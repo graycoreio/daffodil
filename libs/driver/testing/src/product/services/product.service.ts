@@ -19,6 +19,10 @@ export class DaffTestingProductService implements DaffProductServiceInterface {
     return of(this.productFactory.createMany(5));
   }
 
+  getBestSellers(): Observable<Product[]> {
+    return of(this.productFactory.createMany(4));
+  }
+
   get(productId: string): Observable<Product> {
     return of(this.productFactory.create());
   }

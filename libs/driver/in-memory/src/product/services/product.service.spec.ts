@@ -1,4 +1,4 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { DaffInMemoryProductService } from './product.service';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
@@ -42,6 +42,22 @@ describe('Driver | Mock | Product | ProductService', () => {
       });
 
       const req = httpMock.expectOne(`${productService.url}`);
+      expect(req.request.method).toBe("GET");
+
+      req.flush(mockProducts);
+    });
+  });
+
+  describe('getBestSellers', () => {
+    
+    it('should send a get request', () => {
+      let mockProducts = productFactory.createStyleTestingList();
+
+      productService.getBestSellers().subscribe(products => {
+        expect(products).toEqual(mockProducts);
+      });
+
+      const req = httpMock.expectOne(`${productService.url}best-sellers`);
       expect(req.request.method).toBe("GET");
 
       req.flush(mockProducts);

@@ -3,16 +3,22 @@ import { Injectable } from '@angular/core';
 import {
   InMemoryDbService,
   RequestInfoUtilities,
-  ParsedRequestUrl
+  ParsedRequestUrl,
+  STATUS
 } from 'angular-in-memory-web-api';
 
 import { ProductFactory } from '@daffodil/core/testing';
+import { Product } from '@daffodil/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DaffInMemoryProductTestingService implements InMemoryDbService {
-  constructor(private productFactory: ProductFactory) {}
+  products: Product[];
+  
+  constructor(private productFactory: ProductFactory) { 
+    this.products = this.productFactory.createStyleTestingList();
+  }
 
   parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {
     return utils.parseRequestUrl(url);
@@ -20,7 +26,20 @@ export class DaffInMemoryProductTestingService implements InMemoryDbService {
 
   createDb(): any {
     return {
-      products: this.productFactory.createStyleTestingList()
+      products: this.products
     };
+  }
+
+  get(reqInfo: any) {
+    if(reqInfo.id === "best-sellers") {
+      return reqInfo.utils.createResponse$(() => {
+          return {
+            body: this.products.slice(0,4),
+            status: STATUS.OK
+          };
+      });
+    }
+
+    return undefined;
   }
 }
