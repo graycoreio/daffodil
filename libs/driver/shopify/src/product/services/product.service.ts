@@ -96,6 +96,20 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
     );
   }
 
+  //todo: add actual getBestSellers apollo call. Right now, it just makes the getAll() call
+  getBestSellers(): Observable<Product[]> {
+    return this.apollo.query<GetAllProductsResponse>({
+      query: GetAllProductsQuery,
+      variables: {
+        length: this.defaultLength
+      }
+    }).pipe(
+      map(result => {
+        return result.data.shop.products.edges.map(edge => DaffShopifyProductTransformer(edge.node))
+      })
+    );
+  }
+
   get(productId: string): Observable<Product> {
     console.log(productId);
     return this.apollo.query<GetAProductResponse>({

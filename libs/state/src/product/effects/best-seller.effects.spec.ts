@@ -4,40 +4,35 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { hot, cold } from 'jasmine-marbles';
 
-import { Product, ProductFactory, DaffodilConfigFactory } from '@daffodil/core';
+import { Product } from '@daffodil/core';
+import { ProductFactory } from '@daffodil/core/testing';
 
 import { BestSellersLoad, BestSellersLoadSuccess, BestSellersLoadFailure } from '../actions/best-sellers.actions';
 import { BestSellersEffects } from './best-seller.effects';
-import { ProductTestingModule } from '../testing/product-testing.module';
-import { ProductService } from '../services/product.service';
-import { DaffodilConfigService } from '../../config/daffodil-config.service';
+import { DaffDriverTestingModule } from '@daffodil/driver/testing';
+import { DaffDriverInterface, DaffDriver } from '@daffodil/driver';
 
 describe('BestSellersEffects', () => {
   let actions$: Observable<any>;
   let effects: BestSellersEffects;
-  let productService: ProductService;
   let productFactory: ProductFactory;
   let mockBestSellers: Product[];
-  let daffodilConfigService: DaffodilConfigService;
-  let daffodilConfigFactory: DaffodilConfigFactory;
+  let daffDriver: DaffDriverInterface;
 
   beforeEach(() => {
-    daffodilConfigFactory = new DaffodilConfigFactory();
-    daffodilConfigService = new DaffodilConfigService(daffodilConfigFactory.create());
 
     TestBed.configureTestingModule({
       imports: [
-        ProductTestingModule
+        DaffDriverTestingModule
       ],
       providers: [
         BestSellersEffects,
-        provideMockActions(() => actions$),
-        {provide: DaffodilConfigService, useValue: daffodilConfigService}
+        provideMockActions(() => actions$)
       ]
     });
 
     effects = TestBed.get(BestSellersEffects);
-    productService = TestBed.get(ProductService);
+    daffDriver = TestBed.get(DaffDriver);
     productFactory = TestBed.get(ProductFactory);
 
     mockBestSellers = new Array(productFactory.create());
@@ -55,7 +50,7 @@ describe('BestSellersEffects', () => {
     describe('and the call to ProductService is successful', () => {
 
       beforeEach(() => {
-        spyOn(productService, 'getBestSellers').and.returnValue(of(mockBestSellers));
+        spyOn(daffDriver.productService, 'getBestSellers').and.returnValue(of(mockBestSellers));
         const bestSellersLoadSuccessAction = new BestSellersLoadSuccess(mockBestSellers);
         actions$ = hot('--a', { a: bestSellersLoadAction });
         expected = cold('--b', { b: bestSellersLoadSuccessAction });
@@ -71,7 +66,7 @@ describe('BestSellersEffects', () => {
       beforeEach(() => {
         let error = 'Failed to load best selling products';
         let response = cold('#', {}, error);
-        spyOn(productService, 'getBestSellers').and.returnValue(response);
+        spyOn(daffDriver.productService, 'getBestSellers').and.returnValue(response);
         const bestSellersLoadFailureAction = new BestSellersLoadFailure(error);
         actions$ = hot('--a', { a: bestSellersLoadAction });
         expected = cold('--b', { b: bestSellersLoadFailureAction });

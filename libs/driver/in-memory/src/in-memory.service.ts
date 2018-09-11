@@ -32,6 +32,13 @@ export class DaffInMemoryService implements InMemoryDbService {
     return undefined;
   }
 
+  get(reqInfo: any) {
+    const collectionName = reqInfo.collectionName;
+    if (collectionName === 'products') {
+      return this.productTestingService.get(reqInfo);
+    }
+  }
+
   createDb(): MockDaffDatabase {
     return {
       ...this.productTestingService.createDb(),
