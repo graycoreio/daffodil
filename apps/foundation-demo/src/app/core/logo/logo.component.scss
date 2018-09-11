@@ -3,8 +3,34 @@
 }
 
 .logo {
-    img {
-        width: 100%;
-        display: block;
+    height: 40px;
+    width: 40px;
+
+    svg {
+        height: 100%;;
     }
+}
+
+.cls-1 {
+  fill: url(#linear-gradient);
+}
+
+.cls-2 {
+  fill: url(#linear-gradient-2);
+}
+
+.cls-3 {
+  fill: url(#linear-gradient-3);
+}
+
+.cls-4 {
+  fill: #fff000;
+}
+
+.cls-5 {
+  fill: #ff8500;
+}
+
+.cls-6 {
+  fill: #ffc000;
 }
