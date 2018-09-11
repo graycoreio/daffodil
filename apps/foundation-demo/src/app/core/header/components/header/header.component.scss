@@ -1,15 +1,13 @@
 @import 'daffodil-util';
 
 .header {
-  display: flex;
-  align-items: center;
-
   &__menu, &__cart, &__logo {
     padding: 0 16px;
   }
 
   &__logo {
-    display: inline-block;
+    flex: 1 0 auto;
+    display: block;
   }
   
   &__menu {
