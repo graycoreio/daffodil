@@ -49,7 +49,7 @@
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
     "ngrx-store-freeze": "^0.2.3",
-    "rxjs": "^6.2.2",
+    "rxjs": "6.2.2",
     "rxjs-compat": "^6.0.0-rc.0",
     "zone.js": "^0.8.26"
   },
