@@ -2,8 +2,8 @@ import { Component, Directive } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { ToggleSidebar, CloseSidebar, OpenSidebar, SetSidebarState } from '../actions/sidebar.actions';
-import * as fromFoundationSidebar from '../reducers/index';
+import { ToggleSidebar, CloseSidebar, OpenSidebar, SetSidebarState } from '../../actions/sidebar.actions';
+import * as fromFoundationSidebar from '../../reducers/index';
 
 @Component({
   selector: 'sidebar-viewport-container',

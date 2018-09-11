@@ -1,0 +1,21 @@
+@import 'daffodil-util';
+
+.sidebar {
+  padding-top: 10px;
+  display: grid;
+  grid-template-rows: 100px repeat(4, 35px);
+
+  &__close {
+    justify-self: end;
+    margin: 20px;
+    font-size: $medium-font-size;
+    cursor: pointer;
+    line-height: 0;
+    height: 25px;
+  }
+
+  & a {
+    @include embolden();
+    @include uppercase();
+  }
+}
