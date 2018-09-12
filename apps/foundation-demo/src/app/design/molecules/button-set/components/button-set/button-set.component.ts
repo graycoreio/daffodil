@@ -1,10 +1,10 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: '[daff-footer]',
+  selector: '[daff-button-set]',
   template: '<ng-content></ng-content>',
-  styleUrls: ['./footer.component.scss'],
-  host: {'class': 'daff-footer'},
+  styleUrls: ['./button-set.component.scss'],
+  host: {'class': 'daff-button-set'},
   encapsulation: ViewEncapsulation.None
 })
-export class DaffFooterComponent {}
+export class DaffButtonSetComponent { }
