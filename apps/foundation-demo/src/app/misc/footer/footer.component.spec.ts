@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FooterComponent } from './footer.component';
-import { DaffFooterModule } from '../../design/molecules/footer/footer.module';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
@@ -9,9 +8,6 @@ describe('FooterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        DaffFooterModule
-      ],
       declarations: [ FooterComponent ]
     })
     .compileComponents();
