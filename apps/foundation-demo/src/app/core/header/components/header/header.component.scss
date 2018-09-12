@@ -1,24 +1,26 @@
 @import 'daffodil-util';
 
 .header {
-  &__menu, &__cart, &__logo {
-    padding: 0 16px;
-  }
+  &__menu, &__cart {
 
-  &__logo {
-    flex: 1 0 auto;
-    display: block;
+    & button {
+      cursor: pointer;
+    }
   }
   
   &__menu {
-    border-right: 1px solid $medium-gray;
+
+    button {
+      border-right: 1px solid $medium-gray;
+      padding: 21px 26px;
+    }
+  }
+
+  &__logo, &__cart {
+    padding: 0 16px;
   }
 
   &__spacer {
     flex-grow: 1;
-  }
-
-  &__cart {
-    justify-self: end;
   }
 }
