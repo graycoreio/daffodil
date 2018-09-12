@@ -27,6 +27,7 @@ let stubIsShippingAddressValid = true;
 let stubSelectedShippingOptionIndex = 0;
 let stubShowPaymentView: boolean = true;
 let stubShowReviewView: boolean = true;
+let stubIsOrderPlaced: boolean = false;
 let stubBillingAddressIsShippingAddress: boolean = false;
 
 @Component({selector: 'shipping', template: ''})
@@ -97,6 +98,8 @@ class MockCartContainer {
 
 @Component({selector: 'footer', template: ''})
 class MockFooterComponent {}
+@Component({selector: 'thank-you', template: ''})
+class MockThankYouComponent {}
 
 describe('CheckoutViewComponent', () => {
   let component: CheckoutViewComponent;
@@ -129,7 +132,8 @@ describe('CheckoutViewComponent', () => {
         MockPlaceOrderComponent,
         MockBillingContainer,
         MockCartContainer,
-        MockFooterComponent
+        MockFooterComponent,
+        MockThankYouComponent
       ]
     })
     .compileComponents();
@@ -141,6 +145,7 @@ describe('CheckoutViewComponent', () => {
     store = TestBed.get(Store);
     spyOn(fromFoundationCheckout, 'selectShowPaymentView').and.returnValue(stubShowPaymentView);
     spyOn(fromFoundationCheckout, 'selectShowReviewView').and.returnValue(stubShowReviewView);
+    spyOn(fromFoundationCheckout, 'selectIsOrderPlaced').and.returnValue(stubIsOrderPlaced);
     spyOn(store, 'dispatch');
     fixture.detectChanges();
 
@@ -274,7 +279,7 @@ describe('CheckoutViewComponent', () => {
     });
 
     it('should set cartTitle to CART SUMMARY', () => {
-      expect(checkoutCartAsyncWrappers[0].componentInstance.cartTitle).toEqual('CART SUMMARY');
+      expect(checkoutCartAsyncWrappers[0].componentInstance.cartTitle).toBeUndefined();
     });
   });
 
@@ -289,7 +294,7 @@ describe('CheckoutViewComponent', () => {
     });
 
     it('should not set cartTitle', () => {
-      expect(checkoutCartAsyncWrappers[1].componentInstance.cartTitle).toBeUndefined();;
+      expect(checkoutCartAsyncWrappers[1].componentInstance.cartTitle).toEqual('Review Order');
     });
   });
 
@@ -304,7 +309,7 @@ describe('CheckoutViewComponent', () => {
     });
 
     it('should set cartTitle to Review Order', () => {
-      expect(checkoutCartAsyncWrappers[2].componentInstance.cartTitle).toEqual('Review Order');;
+      expect(checkoutCartAsyncWrappers[2].componentInstance.cartTitle).toEqual('CART SUMMARY');
     });
   });
 
@@ -348,6 +353,12 @@ describe('CheckoutViewComponent', () => {
         expect(showReviewView).toEqual(stubShowReviewView);
       });
     });
+    
+    it('should initialize isOrderPlaced$', () => {
+      component.isOrderPlaced$.subscribe((isOrderPlaced) => {
+        expect(isOrderPlaced).toEqual(stubIsOrderPlaced);
+      });
+    });
   });
 
   describe('when showPaymentView$ is false', () => {
@@ -389,6 +400,40 @@ describe('CheckoutViewComponent', () => {
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('.checkout__review'))).not.toBeNull();
+    });
+  });
+
+  describe('when isOrderPlaced$ is false', () => {
+    
+    it('should render checkout__shipping', () => {
+      component.isOrderPlaced$ = of(false);
+      fixture.detectChanges();
+
+      expect(fixture.debugElement.query(By.css('.checkout__shipping'))).not.toBeNull();
+    });
+
+    it('should not render checkout__thank-you', () => {
+      component.isOrderPlaced$ = of(false);
+      fixture.detectChanges();
+
+      expect(fixture.debugElement.query(By.css('.checkout__thank-you'))).toBeNull();
+    });
+  });
+
+  describe('when isOrderPlaced$ is true', () => {
+    
+    it('should not render checkout__shipping', () => {
+      component.isOrderPlaced$ = of(true);
+      fixture.detectChanges();
+
+      expect(fixture.debugElement.query(By.css('.checkout__shipping'))).toBeNull();
+    });
+
+    it('should render checkout__thank-you', () => {
+      component.isOrderPlaced$ = of(true);
+      fixture.detectChanges();
+
+      expect(fixture.debugElement.query(By.css('.checkout__thank-you'))).not.toBeNull();
     });
   });
 

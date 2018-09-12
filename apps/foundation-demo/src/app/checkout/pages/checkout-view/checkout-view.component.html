@@ -1,6 +1,13 @@
-<div cart-container #CartContainer="CartContainer">
-  <div class="checkout">
-    <div class="checkout__shipping" shipping-container #ShippingContainer="ShippingContainer" *ngIf="!(CartContainer.loading$ | async)">
+<div class="checkout" cart-container #CartContainer="CartContainer">
+  <accordion class="checkout__mobile-cart" *ngIf="!(CartContainer.loading$ | async)">
+    <accordion-item [initiallyActive]="false">
+      <h2 accordion-item-title>Cart Summary ({{(CartContainer.cart$ | async) ? (CartContainer.cart$ | async).items.length : 0}})</h2>
+      <checkout-cart-async-wrapper [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async"></checkout-cart-async-wrapper>
+    </accordion-item>
+  </accordion>
+
+  <div>
+    <div class="checkout__shipping" shipping-container #ShippingContainer="ShippingContainer" *ngIf="!(CartContainer.loading$ | async) && !(isOrderPlaced$ | async)">
       <shipping 
         [isShippingAddressValid]="ShippingContainer.isShippingAddressValid$ | async"
         [shippingAddress]="ShippingContainer.shippingAddress$ | async"
@@ -9,7 +16,7 @@
         (updateShippingAddress)="ShippingContainer.updateShippingAddress($event); onUpdateShippingAddress()"
         (selectShippingOption)="ShippingContainer.selectShippingOption($event)"></shipping>
     </div>
-    <div class="checkout__payment" *ngIf="showPaymentView$ | async" billing-container #BillingContainer="BillingContainer">
+    <div class="checkout__payment" *ngIf="(showPaymentView$ | async) && !(isOrderPlaced$ | async)" billing-container #BillingContainer="BillingContainer">
       <payment
         [paymentInfo]="BillingContainer.paymentInfo$ | async" 
         [billingAddress]="BillingContainer.billingAddress$ | async"
@@ -18,27 +25,26 @@
         (updateBillingAddress)="BillingContainer.updateBillingAddress($event)"
         (toggleBillingAddressIsShippingAddress)="BillingContainer.toggleBillingAddressIsShippingAddress()"></payment>
     </div>
-    <div class="checkout__cart" *ngIf="!(CartContainer.loading$ | async)">
-      <div class="checkout__desktop-cart">
-        <checkout-cart-async-wrapper [cartTitle]="'CART SUMMARY'" [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async">
-          <place-order></place-order>
-        </checkout-cart-async-wrapper>
-      </div>
-      <accordion class="checkout__mobile-cart">
-        <accordion-item [initiallyActive]="false">
-          <h2 accordion-item-title>Cart Summary ({{(CartContainer.cart$ | async) ? (CartContainer.cart$ | async).items.length : 0}})</h2>
-          <checkout-cart-async-wrapper [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async"></checkout-cart-async-wrapper>
-        </accordion-item>
-      </accordion>
-    </div>
     <div class="checkout__review" *ngIf="showReviewView$ | async">
       <checkout-cart-async-wrapper class="checkout__mobile-review" [cartTitle]="'Review Order'" [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async">
-        <place-order></place-order>
+        <place-order *ngIf="!(isOrderPlaced$ | async)"></place-order>
       </checkout-cart-async-wrapper>
     </div>
-    <div *ngIf="(CartContainer.loading$ | async)" class="checkout__loading-icon">
-      <i class="fas fa-spinner fa-5x"></i>
+    <div class="checkout__thank-you" *ngIf="isOrderPlaced$ | async">
+      <thank-you></thank-you>
     </div>
+  </div>
+  
+  <div class="checkout__cart" *ngIf="!(CartContainer.loading$ | async)">
+    <div class="checkout__desktop-cart">
+      <checkout-cart-async-wrapper [cartTitle]="'CART SUMMARY'" [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async">
+        <place-order *ngIf="!(isOrderPlaced$ | async)"></place-order>
+      </checkout-cart-async-wrapper>
+    </div>
+  </div>
+
+  <div *ngIf="(CartContainer.loading$ | async)" class="checkout__loading-icon">
+    <i class="fas fa-spinner fa-5x"></i>
   </div>
   <footer *ngIf="!(CartContainer.loading$ | async)"></footer>
 </div>

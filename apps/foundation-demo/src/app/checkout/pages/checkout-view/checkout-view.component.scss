@@ -3,50 +3,19 @@
 .checkout {
   padding: 24px 15px;
   display: grid;
-  grid-template-areas: 
-    "  mobile-cart"
-    "     shipping"
-    "      payment"
-    "      review";
-
-  &__shipping {
-    grid-area: shipping;
-  }
 
   &__payment {
-    grid-area: payment;
     align-self: start;
-  }
-
-  &__mobile-cart {
-    grid-area: mobile-cart;
   }
 
   &__review {
     margin-top: 25px;
-    grid-area: review;
   }
 
   @include breakpoint(large) {
     padding: 50px 120px;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 2fr 1fr;
     grid-column-gap: 50px;
-    grid-template-areas: 
-      "  shipping   shipping   cart"
-      "   payment    payment   cart"
-      "free-space free-space   cart";
-
-    &__cart {
-      grid-area: cart;
-    }
-
-    &__payment {
-      grid-area: payment;
-    }
-
-    &__free-space {
-      grid-area: free-space;
-    }
   }
 
   &__shipping {
@@ -62,6 +31,10 @@
     @include breakpoint(large) {
       display: none;
     }
+  }
+
+  &__thank-you {
+    border-top: 1px solid $medium-gray;
   }
 
   &__desktop-cart {
