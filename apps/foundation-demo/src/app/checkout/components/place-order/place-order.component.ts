@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as fromFoundationCheckout from '../../reducers';
 import { Store, select } from '@ngrx/store';
+import { PlaceOrder } from '../../actions/checkout.actions';
 
 @Component({
   selector: 'place-order',
@@ -23,6 +24,6 @@ export class PlaceOrderComponent implements OnInit{
   }
 
   placeOrder() {
-    console.log('place order');
+    this.store.dispatch(new PlaceOrder());
   }
 }

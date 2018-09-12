@@ -12,6 +12,7 @@ export class CheckoutViewComponent implements OnInit {
 
   showPaymentView$: Observable<boolean>;
   showReviewView$: Observable<boolean>;
+  isOrderPlaced$: Observable<boolean>;
 
   constructor(
     private store: Store<fromFoundationCheckout.State>
@@ -24,6 +25,10 @@ export class CheckoutViewComponent implements OnInit {
 
     this.showReviewView$ = this.store.pipe(
       select(fromFoundationCheckout.selectShowReviewView)
+    );
+
+    this.isOrderPlaced$ = this.store.pipe(
+      select(fromFoundationCheckout.selectIsOrderPlaced)
     );
   }
 
