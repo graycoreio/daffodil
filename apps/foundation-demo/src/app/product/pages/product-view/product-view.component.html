@@ -3,6 +3,6 @@
     <add-to-cart (addToCart)="ProductContainer.addToCart($event)" [additive]="ProductContainer.product$ | async"  [qty]="ProductContainer.qty$ | async"></add-to-cart>
   </product>
   <div *ngIf="(ProductContainer.loading$ | async)" class="product-container__loading-icon">
-    <i class="fa fa-spinner fa-spin fa-5x"></i>
+    <i class="fas fa-spinner fa-5x"></i>
   </div>
 </div>
