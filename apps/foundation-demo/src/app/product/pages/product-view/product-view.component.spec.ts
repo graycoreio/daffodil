@@ -51,6 +51,9 @@ class MockAddToCartComponent {
   @Output() addToCart: EventEmitter<any> = new EventEmitter();
 }
 
+@Component({selector: 'footer', template: ''})
+class MockFooterComponent {}
+
 describe('ProductViewComponent', () => {
   let component: ProductViewComponent;
   let fixture: ComponentFixture<ProductViewComponent>;
@@ -70,7 +73,8 @@ describe('ProductViewComponent', () => {
         ProductViewComponent,
         MockProductContainer,
         MockProductComponent,
-        MockAddToCartComponent
+        MockAddToCartComponent,
+        MockFooterComponent
       ],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRoute }
@@ -155,6 +159,10 @@ describe('ProductViewComponent', () => {
       expect(productComponent).not.toBeNull();
     });
 
+    it('should render <footer>', () => {
+      expect(fixture.debugElement.query(By.css('footer'))).not.toBeNull();
+    });
+
     it('should not render the loading spinner', () => {
       expect(fixture.debugElement.query(By.css('.product-container__loading-icon'))).toBeNull();
     });
@@ -163,16 +171,22 @@ describe('ProductViewComponent', () => {
   describe('when loading$ is true', () => {
     
     let productComponent;
+    let footer;
     
     beforeEach(() => {
       productContainer.loading$ = of(true);
       fixture.detectChanges();
 
       productComponent = fixture.debugElement.query(By.css('product'));
+      footer = fixture.debugElement.query(By.css('footer'));
     });
 
     it('should  not render <product>', () => {
       expect(productComponent).toBeNull();
+    });
+
+    it('should not render <footer>', () => {
+      expect(footer).toBeNull();
     });
 
     it('should render the loading spinner', () => {

@@ -137,12 +137,6 @@ describe('TestCartAsyncWrapper', () => {
       expect(helpBoxComponent).not.toBeNull();
     });
 
-    it('should not render loading-icon', () => {
-      let loadingIcon = fixture.debugElement.query(By.css('.cart-container__loading-icon'));
-      
-      expect(loadingIcon).toBeNull();
-    });
-
     describe('and cart is empty', () => {
 
       it('should not render .cart-async-wrapper__summary-title', () => {
@@ -241,12 +235,6 @@ describe('TestCartAsyncWrapper', () => {
       let continueShoppingComponent = fixture.debugElement.query(By.css('continue-shopping'));
       
       expect(continueShoppingComponent).toBeNull();
-    });
-
-    it('should render loading-icon', () => {
-      let loadingIcon = fixture.debugElement.query(By.css('.cart-async-wrapper__loading-icon'));
-      
-      expect(loadingIcon).not.toBeNull();
     });
   });
 });
