@@ -6,6 +6,7 @@ import { ProductViewComponent } from './product/pages/product-view/product-view.
 import { CheckoutViewComponent } from './checkout/pages/checkout-view/checkout-view.component';
 import { TemplateComponent } from './core/template/template/template.component';
 import { NotFoundComponent } from './misc/not-found/not-found/not-found.component';
+import { CheckoutGuard } from './helper/RoutingGuards/checkout-guard.service';
 
 export const appRoutes: Routes = [
   {
@@ -18,8 +19,12 @@ export const appRoutes: Routes = [
       { path: 'product-grid', component: ProductGridViewComponent},
       { path: 'cart', component: CartViewComponent },
       { path: 'product/:id', component: ProductViewComponent },
-      { path: 'checkout', component: CheckoutViewComponent },
       { path: '404', component: NotFoundComponent },
+      {
+        canActivate: [CheckoutGuard],
+        path: 'checkout', 
+        component: CheckoutViewComponent
+      }
     ]
   },
   {
@@ -32,6 +37,7 @@ export const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(appRoutes)
   ],
+  providers: [CheckoutGuard],
   exports: [
     RouterModule
   ]

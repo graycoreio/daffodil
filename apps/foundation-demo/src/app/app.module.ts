@@ -22,9 +22,8 @@ import { CartModule } from './cart/cart.module';
 import { MiscModule } from './misc/misc.module';
 import { CheckoutModule } from './checkout/checkout.module';
 import { TemplateModule } from './core/template/template.module';
-
-import { getDriverVariant } from './helper/driver-variant';
 import { NotFoundModule } from './misc/not-found/not-found.module';
+import { getDriverVariant } from './helper/driver-variant/driver-variant';
 
 @NgModule({
   declarations: [

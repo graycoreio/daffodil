@@ -1,7 +1,5 @@
-import { ModuleWithProviders } from "@angular/core";
-
-import { InMemoryModule } from "../in-memory.module";
-import { ShopifyModule } from "../shopify.module";
+import { InMemoryModule } from "../../in-memory.module";
+import { ShopifyModule } from "../../shopify.module";
 import { DriverVariants } from "./driver-variant.enum";
 
 export const getDriverVariant = (driver: string): any => {
