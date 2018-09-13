@@ -12,7 +12,4 @@
   <proceed-to-checkout class="cart-async-wrapper__proceed-to-checkout-wrapper" *ngIf="!isLoadedCartEmpty"></proceed-to-checkout>
   <continue-shopping class="cart-async-wrapper__continue-shopping-wrapper" *ngIf="!(loading) && (isLoadedCartEmpty)"></continue-shopping>
   <div class="cart-async-wrapper__takes-up-space"></div>
-  <div *ngIf="(loading)" class="cart-async-wrapper__loading-icon">
-    <i class="fas fa-spinner fa-5x"></i>
-  </div>
 </div>

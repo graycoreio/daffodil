@@ -31,6 +31,9 @@ class MockProductGridComponent {
   @Input() products: Product[];
 }
 
+@Component({selector: 'footer', template: ''})
+class MockFooterComponent {}
+
 describe('ProductGridViewComponent', () => {
   let component: ProductGridViewComponent;
   let fixture: ComponentFixture<ProductGridViewComponent>;
@@ -41,7 +44,8 @@ describe('ProductGridViewComponent', () => {
       declarations: [ 
         ProductGridViewComponent,
         MockProductGridContainer,
-        MockProductGridComponent
+        MockProductGridComponent,
+        MockFooterComponent
       ]
     })
     .compileComponents();
@@ -77,6 +81,12 @@ describe('ProductGridViewComponent', () => {
       expect(productGrid).not.toBeNull();
     });
 
+    it('should render <footer>', () => {
+      let footer = fixture.debugElement.query(By.css('footer'));
+
+      expect(footer).not.toBeNull();
+    });
+
     it('should not render loading-icon', () => {
       let loadingIcon = fixture.debugElement.query(By.css('.product-grid-container__loading-icon'));
 
@@ -97,6 +107,12 @@ describe('ProductGridViewComponent', () => {
       let productGrid = fixture.debugElement.query(By.css('product-grid'));
 
       expect(productGrid).toBeNull();
+    });
+
+    it('should not render <footer>', () => {
+      let footer = fixture.debugElement.query(By.css('footer'));
+
+      expect(footer).toBeNull();
     });
 
     it('should render loading-icon', () => {

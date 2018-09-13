@@ -32,9 +32,9 @@
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 50px;
     grid-template-areas: 
-      "  shipping   shipping cart"
-      "   payment    payment cart"
-      "free-space free-space cart";
+      "  shipping   shipping   cart"
+      "   payment    payment   cart"
+      "free-space free-space   cart";
 
     &__cart {
       grid-area: cart;
