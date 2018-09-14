@@ -1,5 +1,9 @@
 .daff-button-set {
   & button {
     padding: 0 5px;
+
+    &:focus {
+      outline: none;
+    }
   }
 }
