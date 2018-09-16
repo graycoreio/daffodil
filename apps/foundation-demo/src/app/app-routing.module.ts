@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { ProductGridViewComponent } from './product/pages/product-grid-view/product-grid-view.component';
 import { CartViewComponent } from './cart/pages/cart-view/cart-view.component';
 import { ProductViewComponent } from './product/pages/product-view/product-view.component';
-import { NotFoundComponent } from './misc/not-found/not-found.component';
 import { CheckoutViewComponent } from './checkout/pages/checkout-view/checkout-view.component';
 import { TemplateComponent } from './core/template/template/template.component';
+import { NotFoundComponent } from './misc/not-found/not-found/not-found.component';
 
 export const appRoutes: Routes = [
   {

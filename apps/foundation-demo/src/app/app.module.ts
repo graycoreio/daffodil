@@ -24,6 +24,7 @@ import { CheckoutModule } from './checkout/checkout.module';
 import { TemplateModule } from './core/template/template.module';
 
 import { getDriverVariant } from './helper/driver-variant';
+import { NotFoundModule } from './misc/not-found/not-found.module';
 
 @NgModule({
   declarations: [
@@ -51,9 +52,10 @@ import { getDriverVariant } from './helper/driver-variant';
 
     ProductModule,
     CartModule,
-    MiscModule,
+    // MiscModule,
     CheckoutModule,
-    TemplateModule
+    TemplateModule,
+    NotFoundModule
   ],
   providers: [],
   bootstrap: [AppComponent]
