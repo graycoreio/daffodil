@@ -51,7 +51,6 @@ import { getDriverVariant } from './helper/driver-variant/driver-variant';
 
     ProductModule,
     CartModule,
-    // MiscModule,
     CheckoutModule,
     TemplateModule,
     NotFoundModule
