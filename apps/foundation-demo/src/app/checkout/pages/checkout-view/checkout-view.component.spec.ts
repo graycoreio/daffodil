@@ -96,11 +96,6 @@ class MockCartContainer {
   loading$: Observable<boolean> = of(false);
 }
 
-@Component({selector: 'footer', template: ''})
-class MockFooterComponent {}
-@Component({selector: 'thank-you', template: ''})
-class MockThankYouComponent {}
-
 describe('CheckoutViewComponent', () => {
   let component: CheckoutViewComponent;
   let fixture: ComponentFixture<CheckoutViewComponent>;
@@ -131,9 +126,7 @@ describe('CheckoutViewComponent', () => {
         MockPaymentComponent,
         MockPlaceOrderComponent,
         MockBillingContainer,
-        MockCartContainer,
-        MockFooterComponent,
-        MockThankYouComponent
+        MockCartContainer
       ]
     })
     .compileComponents();
@@ -441,7 +434,6 @@ describe('CheckoutViewComponent', () => {
 
     let shippingElement;
     let cartElement;
-    let footer;
     let loadingIcon;
 
     beforeEach(() => {
@@ -449,7 +441,6 @@ describe('CheckoutViewComponent', () => {
       fixture.detectChanges();
       shippingElement = fixture.debugElement.query(By.css('.checkout__shipping'));
       cartElement = fixture.debugElement.query(By.css('.checkout__cart'));
-      footer = fixture.debugElement.query(By.css('footer'));
       loadingIcon = fixture.debugElement.query(By.css('.checkout__loading-icon'));
     });
     
@@ -459,10 +450,6 @@ describe('CheckoutViewComponent', () => {
     
     it('should not render cartElement', () => {
       expect(cartElement).toBeNull();
-    });
-    
-    it('should not render footer', () => {
-      expect(footer).toBeNull();
     });
 
     it('should render loadingIcon', () => {
@@ -474,7 +461,6 @@ describe('CheckoutViewComponent', () => {
 
     let shippingElement;
     let cartElement;
-    let footer;
     let loadingIcon;
 
     beforeEach(() => {
@@ -482,7 +468,6 @@ describe('CheckoutViewComponent', () => {
       fixture.detectChanges();
       shippingElement = fixture.debugElement.query(By.css('.checkout__shipping'));
       cartElement = fixture.debugElement.query(By.css('.checkout__cart'));
-      footer = fixture.debugElement.query(By.css('footer'));
       loadingIcon = fixture.debugElement.query(By.css('.checkout__loading-icon'));
     });
     
@@ -493,10 +478,7 @@ describe('CheckoutViewComponent', () => {
     it('should render cartElement', () => {
       expect(cartElement).not.toBeNull();
     });
-    
-    it('should render footer', () => {
-      expect(footer).not.toBeNull();
-    });
+  
 
     it('should not render loadingIcon', () => {
       expect(loadingIcon).toBeNull();
