@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NotFoundComponent } from './not-found.component';
-import { Component } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 @Component({selector: 'best-sellers', template: ''})
 class MockBestSellersComponent {}
@@ -9,6 +10,7 @@ class MockBestSellersComponent {}
 describe('NotFoundComponent', () => {
   let component: NotFoundComponent;
   let fixture: ComponentFixture<NotFoundComponent>;
+  let de: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,6 +25,9 @@ describe('NotFoundComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NotFoundComponent);
     component = fixture.componentInstance;
+
+    de = fixture.debugElement.query(By.css('h1'));
+
     
     fixture.detectChanges();
   });
@@ -30,4 +35,10 @@ describe('NotFoundComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display the `not-found` text', () => {
+    const h1 = de.nativeElement;
+    expect(h1.innerText).toMatch(/404/i,
+      '<h1> should say something about "404"');
+  })
 });

@@ -13,8 +13,4 @@
     @include embolden();
     @include uppercase();
   }
-
-  @include breakpoint(large) {
-    height: 100vh;
-  }
 }
