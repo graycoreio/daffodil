@@ -18,12 +18,9 @@ export const appRoutes: Routes = [
       { path: 'product-grid', component: ProductGridViewComponent},
       { path: 'cart', component: CartViewComponent },
       { path: 'product/:id', component: ProductViewComponent },
-      { path: 'checkout', component: CheckoutViewComponent }
+      { path: 'checkout', component: CheckoutViewComponent },
+      { path: '404', component: NotFoundComponent },
     ]
-  },
-  {
-    path: '404',
-    component: NotFoundComponent
   },
   {
     path: '**',
