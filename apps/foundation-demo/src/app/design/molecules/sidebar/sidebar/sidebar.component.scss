@@ -15,8 +15,8 @@
     width: 100%;
     @include embolden();
     @include uppercase();
-    padding: 0 0 25px 30px;
-    font-size: $small-font-size;
+    padding: 0 0 25px 0;
+    font-size: $global-font-size;
     cursor: pointer;
   }
 }
