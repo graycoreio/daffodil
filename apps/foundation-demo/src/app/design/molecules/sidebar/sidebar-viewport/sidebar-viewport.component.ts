@@ -1,8 +1,8 @@
 import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 import { DaffSidebarMode } from '../helper/sidebar-mode';
-import { daffSidebarAnimations } from '../animation/sidebar-animation';
-import { getAnimationState } from '../animation/sidebar-animation-state';
+import { daffSidebarAnimations } from '../../backdrop/animation/sidebar-animation';
+import { getAnimationState } from '../../backdrop/animation/sidebar-animation-state';
 
 @Component({
   selector: 'daff-sidebar-viewport',
@@ -53,7 +53,7 @@ export class DaffSidebarViewportComponent implements OnInit{
   }
 
   get hasBackdrop() : boolean {
-    return this._opened && ( this.mode == "over" || this.mode == "push");
+    return (this.mode == "over" || this.mode == "push");
   }
 
   /**

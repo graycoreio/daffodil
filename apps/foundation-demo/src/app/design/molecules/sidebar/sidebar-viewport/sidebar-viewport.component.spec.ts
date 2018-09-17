@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -6,8 +6,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DaffSidebarViewportComponent } from './sidebar-viewport.component';
 import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 import { DaffSidebarMode } from '../helper/sidebar-mode';
-import { ofType } from '@ngrx/effects';
-import { getAnimationState } from '../animation/sidebar-animation-state';
 
 @Component({template: `
   <div class="sidebar-content-wrapper">
@@ -36,11 +34,18 @@ class TestSidebarViewportWrapper {
   }
 }
 
+@Component({selector: 'backdrop', template: ''})
+class MockBackDropComponent {
+  @Input() show: boolean;
+  @Input() backdropIsVisible: boolean;
+  @Output() backdropClicked: EventEmitter<any> = new EventEmitter();
+}
+
 describe('DaffSidebarViewportComponent', () => {
   let component: TestSidebarViewportWrapper;
   let fixture: ComponentFixture<TestSidebarViewportWrapper>;
   let sidebarViewport: DaffSidebarViewportComponent;
-  let backdrop: HTMLElement;
+  let backdrop: MockBackDropComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -51,6 +56,7 @@ describe('DaffSidebarViewportComponent', () => {
         TestSidebarViewportWrapper,
         DaffSidebarViewportComponent,
         DaffSidebarComponent,
+        MockBackDropComponent
       ]
     })
     .compileComponents();
@@ -59,8 +65,8 @@ describe('DaffSidebarViewportComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestSidebarViewportWrapper);
     component = fixture.componentInstance;
+
     sidebarViewport = fixture.debugElement.query(By.css('daff-sidebar-viewport')).componentInstance;
-    
     fixture.detectChanges();
   });
 
@@ -74,29 +80,46 @@ describe('DaffSidebarViewportComponent', () => {
 
   it('should not have the backdrop by default', () => {
     expect(sidebarViewport.hasBackdrop).toBe(false);
-    expect(fixture.debugElement.query(By.css('.daff-sidebar-backdrop'))).toBeNull();
+    expect(fixture.debugElement.query(By.css('backdrop'))).toBeNull();
   });
 
   it('should be `side` mode by default', () => {
     expect(sidebarViewport.mode).toBe('side');
   });
 
-  describe('backdrop transparency', () => {
-    beforeEach(() => {
-      component.mode = "over";
-      component.open = true;
+  describe('on <backdrop>', () => {
 
+    beforeEach(() => {
+      component.mode = 'over';
       fixture.detectChanges();
+
+      backdrop = fixture.debugElement.query(By.css('backdrop')).componentInstance;
+    });
+    
+    it('should set show to sidebarViewport.open', () => {
+      expect(backdrop.show).toEqual(sidebarViewport.opened);
     });
 
-    it('should apply the transparency class to the backdrop if `backdropIsVisible` is false', () => {
-      component.backdropIsVisible = false;
-      fixture.detectChanges();
+    it('should set backdropIsVisible', () => {
+      expect(backdrop.backdropIsVisible).toEqual(sidebarViewport.backdropIsVisible);
+    });
+  });
 
-      expect(fixture.debugElement.query(By.css('.daff-sidebar-backdrop')).nativeElement.classList)
-        .toContain("daff-sidebar-backdrop--transparent");
-    })
-  })
+  describe('when <backdrop> emits backdropClicked', () => {
+
+    beforeEach(() => {
+      component.mode = 'over';
+      fixture.detectChanges();
+      backdrop = fixture.debugElement.query(By.css('backdrop')).componentInstance;
+      spyOn(sidebarViewport.onBackdropClicked, 'emit');
+
+      backdrop.backdropClicked.emit();
+    });
+    
+    it('should call sidebarViewport.backdropClicked.emit', () => {
+      expect(sidebarViewport.onBackdropClicked.emit).toHaveBeenCalled();
+    });
+  });
 
   describe('over mode' , () => {
     beforeEach(() => {
@@ -104,93 +127,35 @@ describe('DaffSidebarViewportComponent', () => {
       fixture.detectChanges();
     });
 
-    afterEach(() => {
-        component.reset();
-    });
-
-    describe('when not open', () => {
-      beforeEach(() => {
-        component.open = false;
-        fixture.detectChanges();
-      });
-
-      it('should not show the backdrop', () => {
-        expect(sidebarViewport.backdropIsVisible).toEqual(false);
-        expect(fixture.debugElement.query(By.css('.daff-sidebar-backdrop'))).toBeNull();
-      });
-    });
-
-    describe('when open', () => {
-      beforeEach(() => {
-        component.open = true;
-        component.backdropIsVisible = true;
-        fixture.detectChanges();
-
-        backdrop = fixture.debugElement.query(By.css('.daff-sidebar-backdrop')).nativeElement;
-      });
-
-      it('should show the backdrop', () => {
-        expect(sidebarViewport.hasBackdrop).toBe(true);
-      });
-
-      it('should emit `onBackdropClicked` when the backdrop is clicked', () => {
-        backdrop.click();
-        expect(component.backdropClickedCounter).toEqual(1);
-      });
+    it('should render backdrop', () => {
+      expect(backdrop).not.toBeNull();
     });
   });
   
-
   describe('push mode', () => {
     beforeEach(() => {
       component.mode = "push";
       fixture.detectChanges();
     });
 
-    afterEach(() => {
-      component.reset();
-    });
-
-    describe('when open', () => {
-      beforeEach(() => {
-        component.open = true;
-        fixture.detectChanges();
-        backdrop = fixture.debugElement.query(By.css('.daff-sidebar-backdrop')).nativeElement;
-
-      });
-
-      it('should show the backdrop', () => {
-        expect(sidebarViewport.hasBackdrop).toBe(true);
-      });
-
-      it('should emit `onBackdropClicked` when the backdrop is clicked', () => {
-        backdrop.click();
-        expect(component.backdropClickedCounter).toEqual(1);
-      });
-    });
-
-    describe('when closed', () => {
-      beforeEach(() => {
-        component.open = false;
-        fixture.detectChanges();
-      });
-
-      it('should not show the backdrop', () => {
-        expect(sidebarViewport.backdropIsVisible).toEqual(false);
-        expect(fixture.debugElement.query(By.css('.daff-sidebar-backdrop'))).toBeNull();
-      });
+    it('should render backdrop', () => {
+      expect(backdrop).not.toBeNull();
     });
   });
 
   describe('side mode', () => {
 
+    let backdrop;
+
     beforeEach(() => {
       component.mode = "side";
       fixture.detectChanges();
+
+      backdrop = fixture.debugElement.query(By.css('backdrop'));
     });
 
-    it('should not have the backdrop by default', () => {
-      expect(sidebarViewport.hasBackdrop).toBe(false);
+    it('should not render backdrop', () => {
+      expect(backdrop).toBeNull();
     });
 
     it('should be `open` and and not change animation states regardless of `opened` state changes', () => {
