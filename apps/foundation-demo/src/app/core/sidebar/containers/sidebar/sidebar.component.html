@@ -1,7 +1,9 @@
 <daff-sidebar class="sidebar" (escapePressed)="onClose()">
-  <span class="sidebar__close" (click)="onClose()"><i class="fas fa-times"></i></span>
-  <a daff-sidebar-item (click)="onClose()" routerLink="/">women's</a>
-  <a daff-sidebar-item (click)="onClose()" routerLink="/">men's</a>
-  <a daff-sidebar-item (click)="onClose()" routerLink="/">accessories</a>
-  <a daff-sidebar-item (click)="onClose()" routerLink="/">sale</a>
+  <span class="sidebar__close" (click)="onClose()"><i class="fa fa-times"></i></span>
+  <ul class="sidebar__list">
+    <li><a daff-sidebar-item (click)="onClose()" routerLink="/">Women's</a></li>
+    <li><a daff-sidebar-item (click)="onClose()" routerLink="/">Men's</a></li>
+    <li><a daff-sidebar-item (click)="onClose()" routerLink="/">Accessories</a></li>
+    <li><a daff-sidebar-item (click)="onClose()" routerLink="/">Sale</a></li>
+  </ul>
 </daff-sidebar>
