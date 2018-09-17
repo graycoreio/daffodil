@@ -2,7 +2,6 @@
   <product [product]="ProductContainer.product$ | async" [qty]="ProductContainer.qty$ | async" (updateQty)="ProductContainer.updateQty($event)" *ngIf="!(ProductContainer.loading$ | async)">
     <add-to-cart (addToCart)="ProductContainer.addToCart($event)" [additive]="ProductContainer.product$ | async"  [qty]="ProductContainer.qty$ | async"></add-to-cart>
   </product>
-  <footer *ngIf="!(ProductContainer.loading$ | async)"></footer>
   <div *ngIf="(ProductContainer.loading$ | async)" class="product-container__loading-icon">
     <i class="fas fa-spinner fa-5x"></i>
   </div>
