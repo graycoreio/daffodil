@@ -11,12 +11,12 @@
   height: 100%;
 
   &__item {
-    display: block;
+    display: flex;
     width: 100%;
+    padding: 15px 0;
+    font-size: $global-font-size;
     @include embolden();
     @include uppercase();
-    padding: 0 0 25px 0;
-    font-size: $global-font-size;
     cursor: pointer;
   }
 }
