@@ -1,15 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { StoreModule, combineReducers } from '@ngrx/store';
+import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { of } from 'rxjs';
 
 import * as fromFoundationCheckout from '../../reducers';
 import { PlaceOrderComponent } from './place-order.component';
+import { PlaceOrder } from '../../actions/checkout.actions';
 
 describe('PlaceOrderComponent', () => {
   let component: PlaceOrderComponent;
   let fixture: ComponentFixture<PlaceOrderComponent>;
   let stubEnablePlaceOrderButton: boolean = true;
+  let store;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -25,7 +27,9 @@ describe('PlaceOrderComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PlaceOrderComponent);
+    store = TestBed.get(Store);
     component = fixture.componentInstance;
+    spyOn(store, 'dispatch');
     spyOn(fromFoundationCheckout, 'selectEnablePlaceOrderButton').and.returnValue(stubEnablePlaceOrderButton);
     
     fixture.detectChanges();
@@ -67,12 +71,10 @@ describe('PlaceOrderComponent', () => {
 
   describe('when button is clicked', () => {
     
-    it('should call placeOrder', () => {
-      spyOn(component, 'placeOrder');
-
+    it('should call store.dispatch with a PlaceOrder action', () => {
       fixture.debugElement.query(By.css('button')).nativeElement.click();
 
-      expect(component.placeOrder).toHaveBeenCalled();
+      expect(store.dispatch).toHaveBeenCalledWith(new PlaceOrder());
     });
   });
 });
