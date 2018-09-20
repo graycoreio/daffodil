@@ -1,26 +1,26 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BackdropComponent } from './backdrop.component';
+import { DaffBackdropComponent } from './backdrop.component';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({ template: `
-<backdrop
+<daff-backdrop
   [show]="showValue"
   [backdropIsVisible]="backdropIsVisibleValue"
-  (backdropClicked)="backdropFunction()"></backdrop>
+  (backdropClicked)="backdropFunction()"></daff-backdrop>
 `})
-class TestBackdropComponentWrapper {
+class TestDaffBackdropComponentWrapper {
   showValue: boolean = true;
   backdropIsVisibleValue: boolean = true;
   backdropFunction: Function = () => {};
 }
 
-describe('BackdropComponent', () => {
-  let component: TestBackdropComponentWrapper;
-  let fixture: ComponentFixture<TestBackdropComponentWrapper>;
-  let backdrop: BackdropComponent;
+describe('DaffBackdropComponent', () => {
+  let component: TestDaffBackdropComponentWrapper;
+  let fixture: ComponentFixture<TestDaffBackdropComponentWrapper>;
+  let backdrop: DaffBackdropComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -28,19 +28,19 @@ describe('BackdropComponent', () => {
         NoopAnimationsModule
       ],
       declarations: [ 
-        TestBackdropComponentWrapper,
-        BackdropComponent
+        TestDaffBackdropComponentWrapper,
+        DaffBackdropComponent
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestBackdropComponentWrapper);
+    fixture = TestBed.createComponent(TestDaffBackdropComponentWrapper);
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    backdrop = fixture.debugElement.query(By.css('backdrop')).componentInstance;
+    backdrop = fixture.debugElement.query(By.css('daff-backdrop')).componentInstance;
   });
 
   it('should create', () => {

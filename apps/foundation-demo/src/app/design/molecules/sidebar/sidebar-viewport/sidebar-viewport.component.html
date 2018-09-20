@@ -3,11 +3,11 @@
     <ng-content select="daff-sidebar"></ng-content>
   </div>
 
-  <backdrop
+  <daff-backdrop
     *ngIf="hasBackdrop"
     [show]="_opened"
     [backdropIsVisible]="backdropIsVisible"
-    (backdropClicked)="_onBackdropClicked()"></backdrop>
+    (backdropClicked)="_onBackdropClicked()"></daff-backdrop>
 
   <div class="daff-sidebar-viewport__content" [@transformContent]="_animationState">
     <ng-content></ng-content>

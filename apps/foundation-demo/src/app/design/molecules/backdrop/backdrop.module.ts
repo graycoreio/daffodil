@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { BackdropComponent } from './backdrop/backdrop.component';
+import { DaffBackdropComponent } from './backdrop/backdrop.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
-    BackdropComponent
+    DaffBackdropComponent
   ],
   exports: [
-    BackdropComponent
+    DaffBackdropComponent
   ]
 })
 export class DaffBackdropModule { }

@@ -34,8 +34,8 @@ class TestSidebarViewportWrapper {
   }
 }
 
-@Component({selector: 'backdrop', template: ''})
-class MockBackDropComponent {
+@Component({selector: 'daff-backdrop', template: ''})
+class MockDaffBackDropComponent {
   @Input() show: boolean;
   @Input() backdropIsVisible: boolean;
   @Output() backdropClicked: EventEmitter<any> = new EventEmitter();
@@ -45,7 +45,7 @@ describe('DaffSidebarViewportComponent', () => {
   let component: TestSidebarViewportWrapper;
   let fixture: ComponentFixture<TestSidebarViewportWrapper>;
   let sidebarViewport: DaffSidebarViewportComponent;
-  let backdrop: MockBackDropComponent;
+  let backdrop: MockDaffBackDropComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -56,7 +56,7 @@ describe('DaffSidebarViewportComponent', () => {
         TestSidebarViewportWrapper,
         DaffSidebarViewportComponent,
         DaffSidebarComponent,
-        MockBackDropComponent
+        MockDaffBackDropComponent
       ]
     })
     .compileComponents();
@@ -80,7 +80,7 @@ describe('DaffSidebarViewportComponent', () => {
 
   it('should not have the backdrop by default', () => {
     expect(sidebarViewport.hasBackdrop).toBe(false);
-    expect(fixture.debugElement.query(By.css('backdrop'))).toBeNull();
+    expect(fixture.debugElement.query(By.css('daff-backdrop'))).toBeNull();
   });
 
   it('should be `side` mode by default', () => {
@@ -93,7 +93,7 @@ describe('DaffSidebarViewportComponent', () => {
       component.mode = 'over';
       fixture.detectChanges();
 
-      backdrop = fixture.debugElement.query(By.css('backdrop')).componentInstance;
+      backdrop = fixture.debugElement.query(By.css('daff-backdrop')).componentInstance;
     });
     
     it('should set show to sidebarViewport.open', () => {
@@ -110,7 +110,7 @@ describe('DaffSidebarViewportComponent', () => {
     beforeEach(() => {
       component.mode = 'over';
       fixture.detectChanges();
-      backdrop = fixture.debugElement.query(By.css('backdrop')).componentInstance;
+      backdrop = fixture.debugElement.query(By.css('daff-backdrop')).componentInstance;
       spyOn(sidebarViewport.onBackdropClicked, 'emit');
 
       backdrop.backdropClicked.emit();
@@ -151,7 +151,7 @@ describe('DaffSidebarViewportComponent', () => {
       component.mode = "side";
       fixture.detectChanges();
 
-      backdrop = fixture.debugElement.query(By.css('backdrop'));
+      backdrop = fixture.debugElement.query(By.css('daff-backdrop'));
     });
 
     it('should not render backdrop', () => {
