@@ -1,0 +1,15 @@
+@import 'daffodil-util';
+
+.best-sellers {
+  &__title {
+    font-size: $medium-font-size;
+    text-align: center;
+    @include uppercase();
+    @include embolden();
+    margin-bottom: 30px;
+  }
+
+  &__loading-icon {
+    padding: 40px calc(50% - 37px);
+  }
+}

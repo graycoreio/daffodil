@@ -20,6 +20,8 @@ import { PlaceOrderComponent } from './components/place-order/place-order.compon
 import { ShippingOptionsModule } from './components/shipping/shipping-options/shipping-options.module';
 import { AddressFormModule } from './components/forms/address-form/address-form.module';
 import { MiscModule } from '../misc/misc.module';
+import { ThankYouComponent } from './components/thank-you/thank-you.component';
+import { PrintOrderSummaryComponent } from './components/print-order-summary/print-order-summary.component';
 
 @NgModule({
   imports: [
@@ -44,7 +46,9 @@ import { MiscModule } from '../misc/misc.module';
     PaymentSummaryComponent,
     AddressSummaryComponent,
     BillingSummaryComponent,
-    PlaceOrderComponent
+    PlaceOrderComponent,
+    ThankYouComponent,
+    PrintOrderSummaryComponent
   ],
   exports: [
     CheckoutViewComponent,
@@ -56,7 +60,9 @@ import { MiscModule } from '../misc/misc.module';
     PaymentSummaryComponent,
     AddressSummaryComponent,
     BillingSummaryComponent,
-    PlaceOrderComponent
+    PlaceOrderComponent,
+    ThankYouComponent,
+    PrintOrderSummaryComponent
   ]
 })
 export class CheckoutModule { }
