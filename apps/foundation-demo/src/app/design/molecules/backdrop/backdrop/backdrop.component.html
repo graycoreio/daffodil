@@ -1,0 +1,5 @@
+<div class="daff-backdrop" 
+  *ngIf="show"
+  [@fadeBackdrop]="_animationState"
+  [class.daff-backdrop--transparent]="!backdropIsVisible" 
+  (click)="onBackdropClicked()"></div>

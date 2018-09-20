@@ -11,8 +11,7 @@ import { getAnimationState } from '../animation/sidebar-animation-state';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     daffSidebarAnimations.transformSidebar,
-    daffSidebarAnimations.transformContent,
-    daffSidebarAnimations.fadeBackdrop
+    daffSidebarAnimations.transformContent
   ]
 })
 export class DaffSidebarViewportComponent implements OnInit{
@@ -53,7 +52,7 @@ export class DaffSidebarViewportComponent implements OnInit{
   }
 
   get hasBackdrop() : boolean {
-    return this._opened && ( this.mode == "over" || this.mode == "push");
+    return (this.mode == "over" || this.mode == "push");
   }
 
   /**
