@@ -1,17 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+
+import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 
 import { DaffodilAddress, DaffodilAddressFactory, PaymentInfo, Cart } from '@daffodil/core';
-
-import { ShippingFactory, BillingFactory, CartFactory } from '@daffodil/core/testing';
-
+import { BillingFactory, CartFactory } from '@daffodil/core/testing';
 import { ShippingContainer } from '@daffodil/state';
 
-import { ShowPaymentView } from '../../actions/payment.actions';
 import * as fromFoundationCheckout from '../../reducers/index';
+import { ShowPaymentView } from '../../actions/payment.actions';
 import { CheckoutViewComponent } from './checkout-view.component';
 
 let daffodilAddressFactory = new DaffodilAddressFactory();
@@ -96,6 +95,9 @@ class MockCartContainer {
   loading$: Observable<boolean> = of(false);
 }
 
+@Component({selector: 'thank-you', template: ''})
+class MockThankYouComponent {}
+
 describe('CheckoutViewComponent', () => {
   let component: CheckoutViewComponent;
   let fixture: ComponentFixture<CheckoutViewComponent>;
@@ -126,6 +128,7 @@ describe('CheckoutViewComponent', () => {
         MockPaymentComponent,
         MockPlaceOrderComponent,
         MockBillingContainer,
+        MockThankYouComponent,
         MockCartContainer
       ]
     })
@@ -430,7 +433,7 @@ describe('CheckoutViewComponent', () => {
     });
   });
 
-  describe('when CartContainer.loading$ is true', () => {
+  fdescribe('when CartContainer.loading$ is true', () => {
 
     let shippingElement;
     let cartElement;
