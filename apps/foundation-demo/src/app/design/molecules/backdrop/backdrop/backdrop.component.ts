@@ -1,15 +1,14 @@
-import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy, OnChanges } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnChanges } from '@angular/core';
 
-import { daffSidebarAnimations } from '../animation/sidebar-animation';
-import { getAnimationState } from '../animation/sidebar-animation-state';
+import { daffBackdropAnimations } from '../animation/backdrop-animation';
+import { getAnimationState } from '../animation/backdrop-animation-state';
 
 @Component({
   selector: 'backdrop',
   templateUrl: './backdrop.component.html',
   styleUrls: ['./backdrop.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
-    daffSidebarAnimations.fadeBackdrop
+    daffBackdropAnimations.fadeBackdrop
   ]
 })
 export class BackdropComponent implements OnChanges{
