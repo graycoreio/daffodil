@@ -4,14 +4,14 @@ import { daffBackdropAnimations } from '../animation/backdrop-animation';
 import { getAnimationState } from '../animation/backdrop-animation-state';
 
 @Component({
-  selector: 'backdrop',
+  selector: 'daff-backdrop',
   templateUrl: './backdrop.component.html',
   styleUrls: ['./backdrop.component.scss'],
   animations: [
     daffBackdropAnimations.fadeBackdrop
   ]
 })
-export class BackdropComponent implements OnChanges{
+export class DaffBackdropComponent implements OnChanges{
 
   _animationState: string;
 
