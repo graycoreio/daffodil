@@ -1,8 +1,8 @@
 import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 import { DaffSidebarMode } from '../helper/sidebar-mode';
-import { daffSidebarAnimations } from '../../backdrop/animation/sidebar-animation';
-import { getAnimationState } from '../../backdrop/animation/sidebar-animation-state';
+import { daffSidebarAnimations } from '../animation/sidebar-animation';
+import { getAnimationState } from '../animation/sidebar-animation-state';
 
 @Component({
   selector: 'daff-sidebar-viewport',
@@ -11,8 +11,7 @@ import { getAnimationState } from '../../backdrop/animation/sidebar-animation-st
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     daffSidebarAnimations.transformSidebar,
-    daffSidebarAnimations.transformContent,
-    daffSidebarAnimations.fadeBackdrop
+    daffSidebarAnimations.transformContent
   ]
 })
 export class DaffSidebarViewportComponent implements OnInit{
