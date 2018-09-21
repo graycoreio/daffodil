@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ProductFactory, MockProductDefinedId, MockProductShortNames } from './product.factory';
+import { ProductFactory, MockProductShortNames, MockProductLongNames } from './product.factory';
 import { Product } from '@daffodil/core';
 
 describe('Core | Product | Factories | ProductFactory', () => {
@@ -59,8 +59,8 @@ describe('Core | Product | Factories | ProductFactory', () => {
     
     it('should return a list of Products', () => {
       expect(result.length).toEqual(9);
-      expect(result[0]).toEqual(jasmine.any(MockProductDefinedId));
-      expect(result[1]).toEqual(jasmine.any(MockProductShortNames));
+      expect(result[0]).toEqual(jasmine.any(MockProductShortNames));
+      expect(result[1]).toEqual(jasmine.any(MockProductLongNames));
     });
   });
 });
