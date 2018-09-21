@@ -1,7 +1,7 @@
 <div class="cart-async-wrapper">
-  <cart class="cart-async-wrapper__cart-wrapper" [cart]="cart" [subtitle]="'your cart'" *ngIf="!loading"></cart>
-  <div class="cart-async-wrapper__side-pane" *ngIf="!(loading)">
-    <div *ngIf="(!isLoadedCartEmpty)">
+  <cart class="cart-async-wrapper__cart-wrapper" [cart]="cart" [subtitle]="'your cart'"></cart>
+  <div class="cart-async-wrapper__side-pane">
+    <div *ngIf="!isCartEmpty">
         <div class="cart-async-wrapper__summary-title">cart summary</div>
         <promotion class="cart-async-wrapper__promotion"></promotion>
         <cart-summary class="cart-async-wrapper__cart-summary-wrapper" [cart]="cart"></cart-summary>
@@ -9,7 +9,7 @@
     </div>
     <help-box class="cart-async-wrapper__help-box-wrapper"></help-box>
   </div>
-  <proceed-to-checkout class="cart-async-wrapper__proceed-to-checkout-wrapper" *ngIf="!isLoadedCartEmpty"></proceed-to-checkout>
-  <continue-shopping class="cart-async-wrapper__continue-shopping-wrapper" *ngIf="!(loading) && (isLoadedCartEmpty)"></continue-shopping>
+  <proceed-to-checkout class="cart-async-wrapper__proceed-to-checkout-wrapper" *ngIf="!isCartEmpty"></proceed-to-checkout>
+  <continue-shopping class="cart-async-wrapper__continue-shopping-wrapper" *ngIf="isCartEmpty"></continue-shopping>
   <div class="cart-async-wrapper__takes-up-space"></div>
 </div>

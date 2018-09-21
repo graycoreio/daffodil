@@ -9,9 +9,8 @@ import { Cart } from '@daffodil/core';
 export class CartAsyncWrapperComponent {
 
   @Input() cart: Cart;
-  @Input() loading: boolean;
 
-  get isLoadedCartEmpty() {
-    return this.loading || this.cart.items.length === 0;
+  get isCartEmpty() {
+    return this.cart.items.length === 0;
   }
 }
