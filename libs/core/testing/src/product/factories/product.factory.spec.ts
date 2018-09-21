@@ -62,5 +62,17 @@ describe('Core | Product | Factories | ProductFactory', () => {
       expect(result[0]).toEqual(jasmine.any(MockProductShortNames));
       expect(result[1]).toEqual(jasmine.any(MockProductLongNames));
     });
+
+    it('should return expected productId', () => {
+      expect(result[0]).toEqual('1001');
+      expect(result[1]).toEqual('1002');
+      expect(result[2]).toEqual('1003');
+      expect(result[3]).toEqual('1004');
+      expect(result[4]).toEqual('1005');
+      expect(result[5]).toEqual('1006');
+      expect(result[6]).toEqual('1007');
+      expect(result[7]).toEqual('1008');
+      expect(result[8]).toEqual('1009');
+    });
   });
 });
