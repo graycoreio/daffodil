@@ -18,7 +18,6 @@ import {
   export const daffSidebarAnimations: {
     readonly transformSidebar: AnimationTriggerMetadata,
     readonly transformContent: AnimationTriggerMetadata,
-    readonly fadeBackdrop: AnimationTriggerMetadata,
   } = {
     /** Animation that slides a drawer in and out. */
     transformSidebar: trigger('transformSidebar', [
@@ -36,16 +35,6 @@ import {
     transformContent: trigger('transformContent', [
       state('void', style({
         'transform': 'none',
-      })),
-      transition('void <=> open',
-          animate('350ms cubic-bezier(0.25, 0.8, 0.25, 1)'))
-    ]),
-    fadeBackdrop: trigger('fadeBackdrop', [
-      state('open', style({
-        opacity: '1',
-      })),
-      state('void',style({
-        opacity: 0
       })),
       transition('void <=> open',
           animate('350ms cubic-bezier(0.25, 0.8, 0.25, 1)'))
