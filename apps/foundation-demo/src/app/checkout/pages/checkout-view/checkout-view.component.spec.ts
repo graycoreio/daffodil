@@ -1,17 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+
+import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 
 import { DaffodilAddress, DaffodilAddressFactory, PaymentInfo, Cart } from '@daffodil/core';
-
-import { ShippingFactory, BillingFactory, CartFactory } from '@daffodil/core/testing';
-
+import { BillingFactory, CartFactory } from '@daffodil/core/testing';
 import { ShippingContainer } from '@daffodil/state';
 
-import { ShowPaymentView } from '../../actions/payment.actions';
 import * as fromFoundationCheckout from '../../reducers/index';
+import { ShowPaymentView } from '../../actions/payment.actions';
 import { CheckoutViewComponent } from './checkout-view.component';
 
 let daffodilAddressFactory = new DaffodilAddressFactory();
@@ -96,8 +95,6 @@ class MockCartContainer {
   loading$: Observable<boolean> = of(false);
 }
 
-@Component({selector: 'footer', template: ''})
-class MockFooterComponent {}
 @Component({selector: 'thank-you', template: ''})
 class MockThankYouComponent {}
 
@@ -131,9 +128,8 @@ describe('CheckoutViewComponent', () => {
         MockPaymentComponent,
         MockPlaceOrderComponent,
         MockBillingContainer,
-        MockCartContainer,
-        MockFooterComponent,
-        MockThankYouComponent
+        MockThankYouComponent,
+        MockCartContainer
       ]
     })
     .compileComponents();
@@ -441,7 +437,6 @@ describe('CheckoutViewComponent', () => {
 
     let shippingElement;
     let cartElement;
-    let footer;
     let loadingIcon;
 
     beforeEach(() => {
@@ -449,7 +444,6 @@ describe('CheckoutViewComponent', () => {
       fixture.detectChanges();
       shippingElement = fixture.debugElement.query(By.css('.checkout__shipping'));
       cartElement = fixture.debugElement.query(By.css('.checkout__cart'));
-      footer = fixture.debugElement.query(By.css('footer'));
       loadingIcon = fixture.debugElement.query(By.css('.checkout__loading-icon'));
     });
     
@@ -459,10 +453,6 @@ describe('CheckoutViewComponent', () => {
     
     it('should not render cartElement', () => {
       expect(cartElement).toBeNull();
-    });
-    
-    it('should not render footer', () => {
-      expect(footer).toBeNull();
     });
 
     it('should render loadingIcon', () => {
@@ -474,7 +464,6 @@ describe('CheckoutViewComponent', () => {
 
     let shippingElement;
     let cartElement;
-    let footer;
     let loadingIcon;
 
     beforeEach(() => {
@@ -482,7 +471,6 @@ describe('CheckoutViewComponent', () => {
       fixture.detectChanges();
       shippingElement = fixture.debugElement.query(By.css('.checkout__shipping'));
       cartElement = fixture.debugElement.query(By.css('.checkout__cart'));
-      footer = fixture.debugElement.query(By.css('footer'));
       loadingIcon = fixture.debugElement.query(By.css('.checkout__loading-icon'));
     });
     
@@ -493,10 +481,7 @@ describe('CheckoutViewComponent', () => {
     it('should render cartElement', () => {
       expect(cartElement).not.toBeNull();
     });
-    
-    it('should render footer', () => {
-      expect(footer).not.toBeNull();
-    });
+  
 
     it('should not render loadingIcon', () => {
       expect(loadingIcon).toBeNull();
