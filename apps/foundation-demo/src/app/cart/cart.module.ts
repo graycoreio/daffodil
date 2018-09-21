@@ -18,13 +18,15 @@ import { CheckoutCartAsyncWrapperComponent } from './components/checkout-cart-as
 import { CheckoutCartComponent } from './components/checkout-cart/checkout-cart.component';
 import { CheckoutCartItemComponent } from './components/checkout-cart-item/checkout-cart-item.component';
 import { MiscModule } from '../misc/misc.module';
+import { LoadingIconModule } from '../core/loading-icon/loading-icon.module';
 
 @NgModule({
   imports: [
     CommonModule,
     DesignModule,
     MiscModule,
-    StateCartModule
+    StateCartModule,
+    LoadingIconModule
   ],
   declarations: [
     CartViewComponent,

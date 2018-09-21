@@ -1,6 +1,4 @@
 <div class="cart-view" cart-container #CartContainer="CartContainer">
-  <cart-async-wrapper [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async"></cart-async-wrapper>
-  <div *ngIf="(CartContainer.loading$ | async)" class="cart-view__loading-icon">
-    <i class="fa fa-spinner fa-spin fa-5x"></i>
-  </div>
+  <cart-async-wrapper *ngIf="!(CartContainer.loading$ | async)" [cart]="CartContainer.cart$ | async"></cart-async-wrapper>
+  <div loading-icon *ngIf="CartContainer.loading$ | async"></div>
 </div>
