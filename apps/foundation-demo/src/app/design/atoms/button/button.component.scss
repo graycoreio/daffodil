@@ -2,7 +2,9 @@
     display: inline-block;
     position: relative;
     overflow: hidden;
-    background-color: none;
+    background-color: $black;
+    border: 1px solid $black;
+    color: $white;
     margin: 0;
     padding: 15px 30px;
     cursor: pointer;
@@ -10,10 +12,57 @@
     &:focus {
         outline: none;
     }
+
+    &:hover {
+        background-color: $dark-gray;
+        border: 1px solid $dark-gray;
+    }
 }
 
 .daff-icon-button {
     cursor: pointer;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.daff-clear-button {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: $black;
+    margin: 0;
+    padding: 15px 30px;
+    cursor: pointer;
+
+    &:hover {
+        border-color: $medium-gray;
+        border: 1px solid $medium-gray;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.daff-stroked-button {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+    border: 1px solid $black;
+    color: $black;
+    margin: 0;
+    padding: 15px 30px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $black;
+        color: $white;
+    }
 
     &:focus {
         outline: none;

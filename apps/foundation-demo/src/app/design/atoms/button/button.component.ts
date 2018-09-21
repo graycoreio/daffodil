@@ -6,6 +6,8 @@ import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ElementR
 
 const BUTTON_HOST_ATTRIBUTES = [
   'daff-button',
+  'daff-clear-button',
+  'daff-stroked-button',
   'daff-icon-button'
 ];
 
@@ -13,8 +15,12 @@ const BUTTON_HOST_ATTRIBUTES = [
 @Component({
   selector: '' +
     'button[daff-button]' + ',' +
+    'button[daff-clear-button]' + ',' +
+    'button[daff-stroked-button]' + ',' +
     'button[daff-icon-button]' + ',' +
     'a[daff-button]' + ',' +
+    'a[daff-clear-button]' + ',' +
+    'a[daff-stroked-button]' + ',' +
     'a[daff-icon-button]',
   template: 'ng-content',
   styleUrls: ['./button.component.scss'],
