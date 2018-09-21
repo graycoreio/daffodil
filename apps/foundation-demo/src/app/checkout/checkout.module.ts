@@ -22,6 +22,7 @@ import { AddressFormModule } from './components/forms/address-form/address-form.
 import { MiscModule } from '../misc/misc.module';
 import { ThankYouComponent } from './components/thank-you/thank-you.component';
 import { PrintOrderSummaryComponent } from './components/print-order-summary/print-order-summary.component';
+import { LoadingIconModule } from '../core/loading-icon/loading-icon.module';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { PrintOrderSummaryComponent } from './components/print-order-summary/pri
     StateCartModule,
     ShippingOptionsModule,
     AddressFormModule,
-    MiscModule
+    MiscModule,
+    LoadingIconModule
   ],
   declarations: [
     CheckoutViewComponent,
