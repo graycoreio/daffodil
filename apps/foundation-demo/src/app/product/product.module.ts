@@ -14,6 +14,7 @@ import { AddToCartComponent } from './components/add-to-cart/add-to-cart.compone
 import { ProductEffects } from './effects/product.effects';
 import { MiscModule } from '../misc/misc.module';
 import { BestSellersComponent } from './components/best-sellers/best-sellers.component';
+import { LoadingIconModule } from '../core/loading-icon/loading-icon.module';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { BestSellersComponent } from './components/best-sellers/best-sellers.com
     MiscModule,
     EffectsModule.forFeature([
       ProductEffects
-    ])
+    ]),
+    LoadingIconModule
   ],
   declarations: [
     ProductGridComponent,
