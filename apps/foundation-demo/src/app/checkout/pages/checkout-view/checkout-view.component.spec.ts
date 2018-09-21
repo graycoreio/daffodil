@@ -433,7 +433,7 @@ describe('CheckoutViewComponent', () => {
     });
   });
 
-  fdescribe('when CartContainer.loading$ is true', () => {
+  describe('when CartContainer.loading$ is true', () => {
 
     let shippingElement;
     let cartElement;
