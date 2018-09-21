@@ -1,6 +1,5 @@
 <div product-grid-container #ProductGridContainer="ProductGridContainer">
   <product-grid *ngIf="!(ProductGridContainer.loading$ | async)" [products]="ProductGridContainer.products$ | async"></product-grid>
-  <footer *ngIf="!(ProductGridContainer.loading$ | async)"></footer>
   <div *ngIf="(ProductGridContainer.loading$ | async)" class="product-grid-container__loading-icon">
     <i class="fas fa-spinner fa-5x"></i>
   </div>

@@ -32,12 +32,6 @@ class MockCartAsyncWrapperComponent {
   @Input() loading: boolean;
 }
 
-@Component({
-  selector: 'footer',
-  template: ''
-})
-class MockFooterComponent { }
-
 describe('CartViewComponent', () => {
   let component: CartViewComponent;
   let fixture: ComponentFixture<CartViewComponent>;
@@ -48,8 +42,7 @@ describe('CartViewComponent', () => {
       declarations: [ 
         CartViewComponent,
         MockCartContainerComponent,
-        MockCartAsyncWrapperComponent,
-        MockFooterComponent
+        MockCartAsyncWrapperComponent
       ]
     })
     .compileComponents();
@@ -89,18 +82,12 @@ describe('CartViewComponent', () => {
   describe('when CartContainer.loading$ is true', () => {
 
     let loadingIcon;
-    let footer;
 
     beforeEach(() => {
       cartContainer.loading$ = of(true);
       fixture.detectChanges();
 
-      footer = fixture.debugElement.query(By.css('footer'));
       loadingIcon = fixture.debugElement.query(By.css('.cart-view__loading-icon'));
-    });
-
-    it('should not render footer', () => {
-      expect(footer).toBeNull();
     });
 
     it('should render loadingIcon', () => {
@@ -111,18 +98,12 @@ describe('CartViewComponent', () => {
   describe('when CartContainer.loading$ is false', () => {
 
     let loadingIcon;
-    let footer;
 
     beforeEach(() => {
       cartContainer.loading$ = of(false);
       fixture.detectChanges();
 
-      footer = fixture.debugElement.query(By.css('footer'));
       loadingIcon = fixture.debugElement.query(By.css('.cart-view__loading-icon'));
-    });
-
-    it('should render footer', () => {
-      expect(footer).not.toBeNull();
     });
 
     it('should not render loadingIcon', () => {
