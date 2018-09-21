@@ -3,8 +3,7 @@ import { ProductGridContainer } from '@daffodil/state';
 
 @Component({
   selector: 'foundation-product-grid-view',
-  templateUrl: './product-grid-view.component.html',
-  styleUrls: ['./product-grid-view.component.scss']
+  templateUrl: './product-grid-view.component.html'
 })
 export class ProductGridViewComponent {
 
