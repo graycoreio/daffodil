@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: '[daff-select]',
-  templateUrl: './select.component.html',
-  styleUrls: ['./select.component.scss']
+  host: {'class': 'daff-select'},
+  template: '<ng-content></ng-content>',
+  styleUrls: ['./select.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
-export class DaffSelectComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class DaffSelectComponent {
 }
