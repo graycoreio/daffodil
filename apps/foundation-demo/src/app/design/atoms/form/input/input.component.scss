@@ -1,5 +1,16 @@
+@import 'daffodil-util';
+
 .daff-input {
-  height:200px;
-  padding: 15px 30px;
-  margin: 0;
+    height: inherit;
+    background: $white;
+    border: 1px solid $black;
+    padding: 15px;
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    box-shadow: none;
+
+  &:focus {
+    box-shadow: none;
+  }
 }
