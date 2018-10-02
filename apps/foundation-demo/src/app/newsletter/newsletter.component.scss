@@ -1,0 +1,37 @@
+@import 'daffodil-util';
+
+.newsletter {
+    background: $black;
+    color: $white;
+    padding: 75px 0;
+    margin: 0;
+
+    &__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 50px 0;
+    }
+
+    &__title {
+        @include embolden();
+        @include uppercase();
+        font-size: 1.5rem;
+        margin: 0;
+        padding: 0 0 15px 0;
+    }
+
+    &__input {
+        width: 70%;
+        display: inline;
+    }
+
+    &__button {
+        background-color: get-color(secondary);
+        width: 30%;
+    }
+}
+
+.container-medium {
+    max-width: 1040px;
+    margin: 0 auto;
+}
