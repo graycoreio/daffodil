@@ -1,0 +1,31 @@
+$title-padding: 21px;
+$dropdown-y-position: -2*$title-padding;
+
+.daff-dropdown {
+  position: relative;
+
+  &__title {
+    padding: $title-padding 16px;
+    cursor: pointer;
+  }
+
+  &__body {
+    position: absolute;
+
+    &--after > * {
+      left: 0;
+    }
+
+    &--before > * {
+      right: 0;
+    }
+
+    &--above > * {
+      top: $dropdown-y-position;
+    }
+
+    &--below > * {
+      bottom: $dropdown-y-position;
+    }
+  }
+}

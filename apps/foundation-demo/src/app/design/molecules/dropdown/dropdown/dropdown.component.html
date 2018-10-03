@@ -1,0 +1,8 @@
+<div class="daff-dropdown" (mouseleave)="closeBody()">
+  <div class="daff-dropdown__title-wrapper" (click)="toggleBody()">
+    <ng-content select="[daff-dropdown-title]"></ng-content>
+  </div>
+  <div class="daff-dropdown__body-wrapper" [ngClass]="bodyClassList" [@fade]="_animationState">
+    <ng-content select="[daff-dropdown-body]"></ng-content>
+  </div>
+</div>
