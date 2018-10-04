@@ -8,10 +8,9 @@ $daff-sidebar-viewport-z-index: 1;
 
 .daff-sidebar-viewport {
   $root: &;
-  display:flex;
   width: 100%;
   overflow:hidden;
-  position: relative;
+  position: absolute;
   z-index: $daff-sidebar-viewport-z-index;
   min-height: 100%;
 
