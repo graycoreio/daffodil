@@ -1,0 +1,11 @@
+<div class="daff-modal" *ngIf="_show" [@fade]="_animationState">
+  <div class="daff-modal__content">
+    <ng-content></ng-content>
+  </div>
+
+  <daff-backdrop
+    class="daff-modal__backdrop"
+    [show]="_show"
+    [backdropIsVisible]="backdropIsVisible"
+    (backdropClicked)="_onBackdropClicked()"></daff-backdrop>
+</div>
