@@ -18,7 +18,7 @@ import { By } from '@angular/platform-browser';
 })
 class TestButtonWrapper {}
 
-fdescribe('ButtonComponent', () => {
+describe('ButtonComponent', () => {
   let component: TestButtonWrapper;
   let fixture: ComponentFixture<TestButtonWrapper>;
 
