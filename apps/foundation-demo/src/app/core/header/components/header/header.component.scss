@@ -12,12 +12,17 @@
 
     button {
       border-right: 1px solid $medium-gray;
-      padding: 21px 26px;
+      padding: 0 30px;
+      height: 70px;
+
+        &:focus {
+          outline: none;
+        }
     }
   }
 
   &__logo, &__cart {
-    padding: 0 16px;
+    padding: 0 25px;
   }
 
   &__spacer {
