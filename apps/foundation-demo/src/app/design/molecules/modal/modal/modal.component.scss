@@ -7,14 +7,36 @@ $daff-modal-z-index: 1;
   position: absolute;
   width: 100%;
   min-height: 100%;
-  display: grid;
   z-index: 1;
+  display: grid;
 
   &__content {
     position: absolute;
-    align-self: center;
-    justify-self: center;
     z-index: $daff-modal-content-z-index;
+
+    &--top {
+      align-self: start;
+    }
+
+    &--bottom {
+      align-self: end;
+    }
+
+    &--middle {
+      align-self: center;
+    }
+
+    &--left {
+      justify-self: start;
+    }
+
+    &--right {
+      justify-self: end;
+    }
+
+    &--center {
+      justify-self: center;
+    }
   }
 
   &__backdrop {

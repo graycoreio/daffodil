@@ -1,5 +1,5 @@
 <div class="daff-modal" *ngIf="_show" [@fade]="_animationState">
-  <div class="daff-modal__content">
+  <div class="daff-modal__content" [ngClass]="_modalContentClasses">
     <ng-content></ng-content>
   </div>
 
