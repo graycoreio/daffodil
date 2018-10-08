@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ButtonComponent } from './button.component';
+import { DaffButtonComponent } from './button.component';
 import { By } from '@angular/platform-browser';
 
 @Component({
@@ -18,14 +18,14 @@ import { By } from '@angular/platform-browser';
 })
 class TestButtonWrapper {}
 
-describe('ButtonComponent', () => {
+describe('DaffButtonComponent', () => {
   let component: TestButtonWrapper;
   let fixture: ComponentFixture<TestButtonWrapper>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        ButtonComponent,
+        DaffButtonComponent,
         TestButtonWrapper
       ]
     })
