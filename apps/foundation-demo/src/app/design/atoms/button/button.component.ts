@@ -22,7 +22,7 @@ const BUTTON_HOST_ATTRIBUTES = [
     'a[daff-clear-button]' + ',' +
     'a[daff-stroked-button]' + ',' +
     'a[daff-icon-button]',
-  template: 'ng-content',
+  template: '<ng-content></ng-content>',
   styleUrls: ['./button.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
