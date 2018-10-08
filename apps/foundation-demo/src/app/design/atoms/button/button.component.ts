@@ -28,7 +28,7 @@ const BUTTON_HOST_ATTRIBUTES = [
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class ButtonComponent implements OnInit {
+export class DaffButtonComponent implements OnInit {
 
     ngOnInit() {}
 

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonComponent } from './button.component';
+import { DaffButtonComponent } from './button.component';
 
 
 @NgModule({
@@ -8,10 +8,10 @@ import { ButtonComponent } from './button.component';
     CommonModule
   ],
   declarations: [
-    ButtonComponent
+    DaffButtonComponent
   ],
   exports: [
-    ButtonComponent
+    DaffButtonComponent
   ]
 })
-export class ButtonModule { }
+export class DaffButtonModule { }
