@@ -4,7 +4,7 @@ $daff-modal-backdrop-z-index: 2;
 $daff-modal-z-index: 1;
 
 .daff-modal {
-  position: absolute;
+  position: fixed;
   width: 100%;
   min-height: 100%;
   z-index: 1;
