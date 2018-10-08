@@ -210,6 +210,7 @@ The following is the list of supported scopes:
 * **driver**
 * **state**
 * **foundation-demo**
+* **daffio**
 
 ### Subject
 The subject contains a succinct description of the change:
