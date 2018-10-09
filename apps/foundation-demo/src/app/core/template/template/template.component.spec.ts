@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TemplateComponent } from './template.component';
 import { Component } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
+import { DaffNewsletterModule } from '../../../newsletter/newsletter.module';
 
 @Component({selector: 'header-container', template: ''})
 class MockHeaderViewComponent {}
@@ -17,7 +18,8 @@ describe('TemplateComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        DaffNewsletterModule
       ],
       declarations: [ 
         MockHeaderViewComponent,
