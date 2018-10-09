@@ -1,0 +1,89 @@
+@import 'daffodil-util';
+
+.daff-button {
+    min-width: 125px;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    background-color: $black;
+    border: 1px solid $black;
+    color: $white;
+    margin: 0;
+    padding: 15px 30px;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+
+    &:focus {
+        outline: none;
+    }
+
+    &:hover {
+        background-color: $dark-gray;
+        border: 1px solid $dark-gray;
+    }
+}
+
+.daff-icon-button {
+    cursor: pointer;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    font-size: 1.25rem;
+    transition: 0.2s ease-in;
+
+    &:focus {
+        outline: none;
+    }
+
+    &:hover {
+        background-color: $light-gray;
+    }
+}
+
+.daff-clear-button {
+    min-width: 125px;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: $black;
+    margin: 0;
+    padding: 15px 30px;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+
+
+    &:hover {
+        border-color: $medium-gray;
+        border: 1px solid $medium-gray;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.daff-stroked-button {
+    min-width: 125px;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+    border: 1px solid $black;
+    color: $black;
+    margin: 0;
+    padding: 15px 30px;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+
+    &:hover {
+        background-color: $black;
+        color: $white;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
