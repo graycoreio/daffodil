@@ -98,6 +98,9 @@ class MockCartContainer {
 @Component({selector: 'thank-you', template: ''})
 class MockThankYouComponent {}
 
+@Component({ selector: 'loading-icon', template: ''})
+class MockLoadingIconComponent {}
+
 describe('CheckoutViewComponent', () => {
   let component: CheckoutViewComponent;
   let fixture: ComponentFixture<CheckoutViewComponent>;
@@ -129,6 +132,7 @@ describe('CheckoutViewComponent', () => {
         MockPlaceOrderComponent,
         MockBillingContainer,
         MockThankYouComponent,
+        MockLoadingIconComponent,
         MockCartContainer
       ]
     })

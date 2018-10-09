@@ -30,11 +30,8 @@ class MockCartAsyncWrapperComponent {
   @Input() cart: Cart;
 }
 
-@Component({
-  selector: '[loading-icon]',
-  template: ''
-})
-class MockLoadingIconComponent { }
+@Component({ selector: 'loading-icon', template: ''})
+class MockLoadingIconComponent {}
 
 describe('CartViewComponent', () => {
   let component: CartViewComponent;
@@ -90,7 +87,7 @@ describe('CartViewComponent', () => {
       fixture.detectChanges();
 
       cartAsyncWrapper = fixture.debugElement.query(By.css('cart-async-wrapper'));
-      loadingIcon = fixture.debugElement.query(By.css('[loading-icon]'));
+      loadingIcon = fixture.debugElement.query(By.css('loading-icon'));
     });
 
     it('should not render cart-async-wrapper', () => {
@@ -112,7 +109,7 @@ describe('CartViewComponent', () => {
       fixture.detectChanges();
 
       cartAsyncWrapper = fixture.debugElement.query(By.css('cart-async-wrapper'));
-      loadingIcon = fixture.debugElement.query(By.css('[loading-icon]'));
+      loadingIcon = fixture.debugElement.query(By.css('loading-icon'));
     });
 
     it('should render cart-async-wrapper', () => {

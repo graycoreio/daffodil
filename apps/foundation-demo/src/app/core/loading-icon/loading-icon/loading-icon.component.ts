@@ -1,10 +1,8 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: '[loading-icon]',
+  selector: 'loading-icon',
   templateUrl: './loading-icon.component.html',
-  styleUrls: ['./loading-icon.component.scss'],
-  host: {'class': 'loading-icon'},
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./loading-icon.component.scss']
 })
 export class LoadingIconComponent { }

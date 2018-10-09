@@ -51,7 +51,7 @@ class MockAddToCartComponent {
   @Output() addToCart: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({selector: '[loading-icon]', template: ''})
+@Component({ selector: 'loading-icon', template: ''})
 class MockLoadingIconComponent {}
 
 describe('ProductViewComponent', () => {
@@ -159,8 +159,8 @@ describe('ProductViewComponent', () => {
       expect(productComponent).not.toBeNull();
     });
 
-    it('should not render [loading-icon]', () => {
-      expect(fixture.debugElement.query(By.css('[loading-icon]'))).toBeNull();
+    it('should not render loading-icon', () => {
+      expect(fixture.debugElement.query(By.css('loading-icon'))).toBeNull();
     });
   });
 
@@ -178,8 +178,8 @@ describe('ProductViewComponent', () => {
       expect(productComponent).toBeNull();
     });
     
-    it('should render [loading-icon]', () => {
-      expect(fixture.debugElement.query(By.css('[loading-icon'))).not.toBeNull();
+    it('should render loading-icon', () => {
+      expect(fixture.debugElement.query(By.css('loading-icon'))).not.toBeNull();
     });
   });
 });

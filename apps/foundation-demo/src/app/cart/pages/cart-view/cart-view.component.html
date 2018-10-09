@@ -1,4 +1,4 @@
 <div class="cart-view" cart-container #CartContainer="CartContainer">
   <cart-async-wrapper *ngIf="!(CartContainer.loading$ | async)" [cart]="CartContainer.cart$ | async"></cart-async-wrapper>
-  <div loading-icon *ngIf="CartContainer.loading$ | async"></div>
+  <loading-icon *ngIf="CartContainer.loading$ | async"></loading-icon>
 </div>
