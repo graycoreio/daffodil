@@ -24,9 +24,9 @@ describe('DaffInputComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set `daff-input` on host element', () => {
-    let daffInput = fixture.debugElement.query(By.css('[daff-input]')).nativeElement;
-
-    expect(daffInput.classList.contains('daff-input')).toBeTruthy();
+  describe('daff-input',() => {
+    it('should set `daff-input` on host element', () => {
+      expect(fixture.debugElement.query(By.css('[daff-input]')).nativeElement.classList.contains('daff-input')).toEqual(true);
+    });
   });
 });
