@@ -31,7 +31,7 @@ class MockProductGridComponent {
   @Input() products: Product[];
 }
 
-@Component({selector: '[loading-icon]', template: ''})
+@Component({ selector: 'loading-icon', template: ''})
 class MockLoadingIconComponent {}
 
 describe('ProductGridViewComponent', () => {
@@ -82,7 +82,7 @@ describe('ProductGridViewComponent', () => {
     });
 
     it('should not render loading-icon', () => {
-      let loadingIcon = fixture.debugElement.query(By.css('[loading-icon]'));
+      let loadingIcon = fixture.debugElement.query(By.css('loading-icon'));
 
       expect(loadingIcon).toBeNull();
     });
@@ -104,7 +104,7 @@ describe('ProductGridViewComponent', () => {
     });
 
     it('should render loading-icon', () => {
-      let loadingIcon = fixture.debugElement.query(By.css('[loading-icon]'));
+      let loadingIcon = fixture.debugElement.query(By.css('loading-icon'));
 
       expect(loadingIcon).not.toBeNull();
     });

@@ -1,4 +1,4 @@
 <div product-grid-container #ProductGridContainer="ProductGridContainer">
   <product-grid *ngIf="!(ProductGridContainer.loading$ | async)" [products]="ProductGridContainer.products$ | async"></product-grid>
-  <div loading-icon *ngIf="(ProductGridContainer.loading$ | async)"></div>
+  <loading-icon *ngIf="(ProductGridContainer.loading$ | async)"></loading-icon>
 </div>

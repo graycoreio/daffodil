@@ -31,10 +31,4 @@ describe('LoadingIconComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should add loading-icon class to host element', () => {
-    let hostElement = fixture.debugElement.query(By.css('.host-element')).nativeElement;
-
-    expect(hostElement.classList.contains('loading-icon')).toBeTruthy();
-  });
 });
