@@ -1,7 +1,7 @@
 @import 'daffodil-util';
 
 .daff-button {
-    min-width: 125px;
+    min-width: 90px;
     display: inline-block;
     position: relative;
     overflow: hidden;
@@ -9,7 +9,7 @@
     border: 1px solid $black;
     color: $white;
     margin: 0;
-    padding: 15px 30px;
+    padding: 15px 0;
     cursor: pointer;
     transition: 0.2s ease-in;
 
@@ -42,7 +42,7 @@
 }
 
 .daff-clear-button {
-    min-width: 125px;
+    min-width: 90px;
     display: inline-block;
     position: relative;
     overflow: hidden;
@@ -50,7 +50,7 @@
     border: 1px solid transparent;
     color: $black;
     margin: 0;
-    padding: 15px 30px;
+    padding: 15px 0;
     cursor: pointer;
     transition: 0.2s ease-in;
 
@@ -66,7 +66,7 @@
 }
 
 .daff-stroked-button {
-    min-width: 125px;
+    min-width: 90px;
     display: inline-block;
     position: relative;
     overflow: hidden;
@@ -74,7 +74,7 @@
     border: 1px solid $black;
     color: $black;
     margin: 0;
-    padding: 15px 30px;
+    padding: 15px 0;
     cursor: pointer;
     transition: 0.2s ease-in;
 
