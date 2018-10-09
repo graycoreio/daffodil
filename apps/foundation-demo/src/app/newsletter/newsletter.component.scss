@@ -21,7 +21,6 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 50px 0;
-    justify-content: center;
     text-align: center;
 
     @include breakpoint(large) {
@@ -58,9 +57,4 @@
       width: 30%;
     }
   }
-}
-
-.container-medium {
-  max-width: 1040px;
-  margin: 0 auto;
 }
