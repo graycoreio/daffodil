@@ -1,11 +1,14 @@
 @import 'daffodil-util';
-
-.newsletter {
+:host{
+  display: block;
   background: $black;
   color: $white;
   padding: 75px 0;
   margin: 0;
+}
 
+
+.daff-newsletter {
   &__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
