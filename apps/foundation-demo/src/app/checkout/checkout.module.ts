@@ -13,7 +13,6 @@ import { FoundationCheckoutStateModule } from './checkout-state.module';
 import { PaymentFormComponent } from './components/payment/payment-form/payment-form.component';
 import { PaymentComponent } from './components/payment/payment/payment.component';
 import { PaymentSummaryComponent } from './components/payment/payment-summary/payment-summary.component';
-import { CartModule } from '../cart/cart.module';
 import { AddressSummaryComponent } from './components/payment/address-summary/address-summary.component';
 import { BillingSummaryComponent } from './components/payment/billing-summary/billing-summary.component';
 import { PlaceOrderComponent } from './components/place-order/place-order.component';
@@ -23,6 +22,9 @@ import { MiscModule } from '../misc/misc.module';
 import { ThankYouComponent } from './components/thank-you/thank-you.component';
 import { PrintOrderSummaryComponent } from './components/print-order-summary/print-order-summary.component';
 import { LoadingIconModule } from '../core/loading-icon/loading-icon.module';
+import { CheckoutCartAsyncWrapperModule } from '../cart/components/checkout-cart-async-wrapper/checkout-cart-async-wrapper.module';
+import { PromotionModule } from '../cart/components/promotion/promotion.module';
+import { CheckoutCartModule } from '../cart/components/checkout-cart/checkout-cart.module';
 
 @NgModule({
   imports: [
@@ -31,12 +33,14 @@ import { LoadingIconModule } from '../core/loading-icon/loading-icon.module';
     StateCheckoutModule,
     DesignModule,
     FoundationCheckoutStateModule,
-    CartModule,
     StateCartModule,
     ShippingOptionsModule,
     AddressFormModule,
     MiscModule,
-    LoadingIconModule
+    LoadingIconModule,
+    CheckoutCartAsyncWrapperModule,
+    PromotionModule,
+    CheckoutCartModule
   ],
   declarations: [
     CheckoutViewComponent,

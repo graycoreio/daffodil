@@ -4,21 +4,21 @@ import { CommonModule } from '@angular/common';
 import { StateCartModule } from '@daffodil/state';
 
 import { CartViewComponent } from './pages/cart-view/cart-view.component';
-import { CartComponent } from './components/cart/cart.component';
-import { ProceedToCheckoutComponent } from './components/proceed-to-checkout/proceed-to-checkout.component';
-import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { DesignModule } from '../design/design.module';
-import { PromotionComponent } from './components/promotion/promotion.component';
-import { CartSubtotalComponent } from './components/cart-subtotal/cart-subtotal.component';
-import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
-import { CartGrandTotalComponent } from './components/cart-grand-total/cart-grand-total.component';
-import { CartAsyncWrapperComponent } from './components/cart-async-wrapper/cart-async-wrapper.component';
-import { ContinueShoppingComponent } from './components/continue-shopping/continue-shopping.component';
-import { CheckoutCartAsyncWrapperComponent } from './components/checkout-cart-async-wrapper/checkout-cart-async-wrapper.component';
-import { CheckoutCartComponent } from './components/checkout-cart/checkout-cart.component';
-import { CheckoutCartItemComponent } from './components/checkout-cart-item/checkout-cart-item.component';
 import { MiscModule } from '../misc/misc.module';
 import { LoadingIconModule } from '../core/loading-icon/loading-icon.module';
+import { CartComponentModule } from './components/cart/cart-component.module';
+import { CartAsyncWrapperModule } from './components/cart-async-wrapper/cart-async-wrapper.module';
+import { CartGrandTotalModule } from './components/cart-grand-total/cart-grand-total.module';
+import { CartItemModule } from './components/cart-item/cart-item.module';
+import { CartSubtotalModule } from './components/cart-subtotal/cart-subtotal.module';
+import { CartSummaryModule } from './components/cart-summary/cart-summary.module';
+import { CheckoutCartModule } from './components/checkout-cart/checkout-cart.module';
+import { ContinueShoppingModule } from './components/continue-shopping/continue-shopping.module';
+import { ProceedToCheckoutModule } from './components/proceed-to-checkout/proceed-to-checkout.module';
+import { PromotionModule } from './components/promotion/promotion.module';
+import { CheckoutCartAsyncWrapperModule } from './components/checkout-cart-async-wrapper/checkout-cart-async-wrapper.module';
+import { CheckoutCartItemModule } from './components/checkout-cart-item/checkout-cart-item.module';
 
 @NgModule({
   imports: [
@@ -26,37 +26,25 @@ import { LoadingIconModule } from '../core/loading-icon/loading-icon.module';
     DesignModule,
     MiscModule,
     StateCartModule,
-    LoadingIconModule
+    LoadingIconModule,
+    CartComponentModule,
+    CartAsyncWrapperModule,
+    CartGrandTotalModule,
+    CartItemModule,
+    CartSubtotalModule,
+    CartSummaryModule,
+    ContinueShoppingModule,
+    ProceedToCheckoutModule,
+    PromotionModule,
+    CheckoutCartModule,
+    CheckoutCartAsyncWrapperModule,
+    CheckoutCartItemModule
   ],
   declarations: [
-    CartViewComponent,
-    CartComponent,
-    ProceedToCheckoutComponent,
-    CartItemComponent,
-    PromotionComponent,
-    CartSubtotalComponent,
-    CartSummaryComponent,
-    CartGrandTotalComponent,
-    CartAsyncWrapperComponent,
-    ContinueShoppingComponent,
-    CheckoutCartAsyncWrapperComponent,
-    CheckoutCartComponent,
-    CheckoutCartItemComponent
+    CartViewComponent
   ],
   exports: [
-    CartViewComponent,
-    CartComponent,
-    ProceedToCheckoutComponent,
-    CartItemComponent,
-    PromotionComponent,
-    CartSubtotalComponent,
-    CartSummaryComponent,
-    CartGrandTotalComponent,
-    CartAsyncWrapperComponent,
-    ContinueShoppingComponent,
-    CheckoutCartAsyncWrapperComponent,
-    CheckoutCartComponent,
-    CheckoutCartItemComponent
+    CartViewComponent
   ]
 })
 export class CartModule { }
