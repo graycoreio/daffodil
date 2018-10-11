@@ -8,8 +8,6 @@ import { MoleculesModule } from './molecules/molecules.module';
   ],
   exports: [
     MoleculesModule
-  ],
-  declarations: [
   ]
 })
 export class DesignModule { }
