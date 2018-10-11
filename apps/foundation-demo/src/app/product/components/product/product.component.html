@@ -1,7 +1,7 @@
 <div class="product" *ngIf="product">
   <div class="product__info">
-    <div class="product__brand">{{product.brand}}</div>
-    <div class="product__name">{{product.name}}</div>
+    <h2 class="product__brand">{{product.brand}}</h2>
+    <h1 class="product__name">{{product.name}}</h1>
     <div class="product__price">${{product.price}}</div>
   </div>
   <div class="product__image-gallery">
@@ -21,11 +21,11 @@
     <accordion>
         <accordion-item initiallyActive="true">
           <h2 accordion-item-title>Details</h2>
-          <div panel-title>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo lacus ut sapien consectetur, et ultricies
+          <p panel-title>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo lacus ut sapien consectetur, et ultricies
             leo rutrum. Integer iaculis ultrices nunc, et maximus quam efficitur sed. Maecenas iaculis nisl neque, maximus
             sagittis libero sagittis eget.
             <a>Learn More.</a>
-          </div>
+          </p>
         </accordion-item>
         <accordion-item>
           <h2 accordion-item-title>Size and Fit</h2>
