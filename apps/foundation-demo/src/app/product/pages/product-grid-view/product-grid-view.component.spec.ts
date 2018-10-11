@@ -8,6 +8,7 @@ import { Product } from '@daffodil/core';
 import { ProductFactory } from '@daffodil/core/testing';
 
 import { ProductGridViewComponent } from './product-grid-view.component';
+import { DaffContainerModule } from '../../../design/atoms/container/container.module';
 
 let productFactory = new ProductFactory();
 let products$ = of(new Array(productFactory.create()));
@@ -44,8 +45,11 @@ describe('ProductGridViewComponent', () => {
       declarations: [ 
         ProductGridViewComponent,
         MockProductGridContainer,
-        MockProductGridComponent,
-        MockLoadingIconComponent
+        MockLoadingIconComponent,
+        MockProductGridComponent
+      ],
+      imports: [
+        DaffContainerModule
       ]
     })
     .compileComponents();
@@ -70,6 +74,14 @@ describe('ProductGridViewComponent', () => {
       products$.subscribe((products) => {
         expect(productGridComponent.products).toEqual(products);
       });
+    });
+  });
+
+  describe('on <daff-container>', () => {
+    it('should set size="large"', () => {
+      let container = fixture.debugElement.query(By.css('daff-container'));
+
+      expect(container.componentInstance.size).toEqual('large');
     });
   });
 
