@@ -15,6 +15,7 @@ import { ProductEffects } from './effects/product.effects';
 import { MiscModule } from '../misc/misc.module';
 import { BestSellersComponent } from './components/best-sellers/best-sellers.component';
 import { LoadingIconModule } from '../core/loading-icon/loading-icon.module';
+import { DaffContainerModule } from '../design/atoms/container/container.module';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { LoadingIconModule } from '../core/loading-icon/loading-icon.module';
     EffectsModule.forFeature([
       ProductEffects
     ]),
-    LoadingIconModule
+    LoadingIconModule,
+    DaffContainerModule
   ],
   declarations: [
     ProductGridComponent,
