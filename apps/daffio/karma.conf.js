@@ -5,7 +5,7 @@ const { join } = require('path');
 const getBaseKarmaConfig = require('../../karma.conf');
 
 module.exports = function(config) {
-  const baseConfig = getBaseKarmaConfig();
+  const baseConfig = getBaseKarmaConfig(config);
   config.set({
     ...baseConfig,
     coverageIstanbulReporter: {
