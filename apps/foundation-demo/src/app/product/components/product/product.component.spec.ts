@@ -11,6 +11,7 @@ import { ProductComponent } from './product.component';
 import { Image } from '../../../design/interfaces/image';
 import { QtyDropdownComponent } from '../../../design/molecules/qty-dropdown/qty-dropdown.component';
 import { ImageGalleryComponent } from '../../../design/molecules/image-gallery/image-gallery.component';
+import { DaffContainerModule } from '../../../design/atoms/container/container.module';
 
 @Component({template: '<product [product]="productValue" [qty]="qtyValue" (updateQty)="updateQtyFunction($event)"></product>'})
 class ProductWrapperTest {
@@ -55,7 +56,8 @@ describe('ProductComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        DaffContainerModule
       ],
       declarations: [ 
         ProductComponent,
@@ -166,6 +168,14 @@ describe('ProductComponent', () => {
       fixture.detectChanges();
       
       expect(router.navigateByUrl).toHaveBeenCalledWith('/404');
+    });
+  });
+
+  describe('on <daff-container>', () => {
+    it('should set size="large"', () => {
+      let container = fixture.debugElement.query(By.css('daff-container'));
+
+      expect(container.componentInstance.size).toEqual('large');
     });
   });
 });
