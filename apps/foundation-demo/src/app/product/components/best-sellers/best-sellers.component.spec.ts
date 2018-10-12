@@ -22,6 +22,9 @@ class MockProductGridComponent {
   @Input() products: Product[];
 }
 
+@Component({ selector: 'loading-icon', template: ''})
+class MockLoadingIconComponent {}
+
 describe('BestSellersComponent', () => {
   let component: BestSellersComponent;
   let fixture: ComponentFixture<BestSellersComponent>;
@@ -33,7 +36,8 @@ describe('BestSellersComponent', () => {
       declarations: [ 
         BestSellersComponent,
         MockBestSellersContainer,
-        MockProductGridComponent
+        MockProductGridComponent,
+        MockLoadingIconComponent
       ]
     })
     .compileComponents();

@@ -1,6 +1,11 @@
 .daff-button-set {
-  & button {
-    padding: 0 5px;
+  & button,
+  & a {
+    margin-right: 5px;
+
+    &:last-child {
+      margin-right: 0;
+    }
 
     &:focus {
       outline: none;

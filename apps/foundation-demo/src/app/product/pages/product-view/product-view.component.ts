@@ -3,8 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'foundation-product-view',
-  templateUrl: './product-view.component.html',
-  styleUrls: ['./product-view.component.scss']
+  templateUrl: './product-view.component.html'
 })
 export class ProductViewComponent implements OnInit {
 

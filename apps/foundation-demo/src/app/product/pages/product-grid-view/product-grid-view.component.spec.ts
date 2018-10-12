@@ -8,6 +8,7 @@ import { Product } from '@daffodil/core';
 import { ProductFactory } from '@daffodil/core/testing';
 
 import { ProductGridViewComponent } from './product-grid-view.component';
+import { DaffContainerModule } from '../../../design/atoms/container/container.module';
 
 let productFactory = new ProductFactory();
 let products$ = of(new Array(productFactory.create()));
@@ -31,6 +32,9 @@ class MockProductGridComponent {
   @Input() products: Product[];
 }
 
+@Component({ selector: 'loading-icon', template: ''})
+class MockLoadingIconComponent {}
+
 describe('ProductGridViewComponent', () => {
   let component: ProductGridViewComponent;
   let fixture: ComponentFixture<ProductGridViewComponent>;
@@ -41,7 +45,11 @@ describe('ProductGridViewComponent', () => {
       declarations: [ 
         ProductGridViewComponent,
         MockProductGridContainer,
+        MockLoadingIconComponent,
         MockProductGridComponent
+      ],
+      imports: [
+        DaffContainerModule
       ]
     })
     .compileComponents();
@@ -69,6 +77,14 @@ describe('ProductGridViewComponent', () => {
     });
   });
 
+  describe('on <daff-container>', () => {
+    it('should set size="large"', () => {
+      let container = fixture.debugElement.query(By.css('daff-container'));
+
+      expect(container.componentInstance.size).toEqual('large');
+    });
+  });
+
   describe('when ProductContainer.loading$ is false', () => {
     
     it('should render <product-grid>', () => {
@@ -78,7 +94,7 @@ describe('ProductGridViewComponent', () => {
     });
 
     it('should not render loading-icon', () => {
-      let loadingIcon = fixture.debugElement.query(By.css('.product-grid-container__loading-icon'));
+      let loadingIcon = fixture.debugElement.query(By.css('loading-icon'));
 
       expect(loadingIcon).toBeNull();
     });
@@ -100,7 +116,7 @@ describe('ProductGridViewComponent', () => {
     });
 
     it('should render loading-icon', () => {
-      let loadingIcon = fixture.debugElement.query(By.css('.product-grid-container__loading-icon'));
+      let loadingIcon = fixture.debugElement.query(By.css('loading-icon'));
 
       expect(loadingIcon).not.toBeNull();
     });
