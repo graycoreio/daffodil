@@ -72,9 +72,13 @@
   }
 
   &__qty {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 0 25px 0;
+    align-items: center;
+
     div {
-      display: inline-block;
-      margin: 0 15px 25px 0;
+      margin: 0 15px 0 0;
     }
   }
 
@@ -95,10 +99,6 @@
 
   &__accordion-wrapper {
     border-top: 1px solid $medium-gray;
-    margin: 25px 0 0 0;
-
-    @include breakpoint(medium) {
-      margin: 25px 0 0 0;
-    }
+    margin: 50px 0 0 0;
   }
 }
