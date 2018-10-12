@@ -16,6 +16,7 @@ import { MiscModule } from '../misc/misc.module';
 import { BestSellersComponent } from './components/best-sellers/best-sellers.component';
 import { LoadingIconModule } from '../core/loading-icon/loading-icon.module';
 import { DaffContainerModule } from '../design/atoms/container/container.module';
+import { DaffButtonModule } from '../design/atoms/button/button.module';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { DaffContainerModule } from '../design/atoms/container/container.module'
       ProductEffects
     ]),
     LoadingIconModule,
-    DaffContainerModule
+    DaffContainerModule,
+    DaffButtonModule
   ],
   declarations: [
     ProductGridComponent,

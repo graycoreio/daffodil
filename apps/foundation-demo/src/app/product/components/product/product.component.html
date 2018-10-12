@@ -1,44 +1,49 @@
-<div class="product" *ngIf="product">
-  <div class="product__info">
-    <h2 class="product__brand">{{product.brand}}</h2>
-    <h1 class="product__name">{{product.name}}</h1>
-    <div class="product__price">${{product.price}}</div>
+<daff-container size="large">
+  <div class="product" *ngIf="product">
+    <div class="product__image-gallery">
+      <image-gallery [images]="images"></image-gallery>
+    </div>
+    <div class="product__info">
+      <h2 class="product__brand">{{product.brand}}</h2>
+      <h1 class="product__name">{{product.name}}</h1>
+      <div class="product__price">${{product.price}}</div>
+    </div>
+    <div class="product__details">
+      <div class="product__qty">
+        <div>Quantity</div>
+        <qty-dropdown id="{{product.id}}" [qty]="qty" (qtyChanged)="onUpdateQty($event)"></qty-dropdown>
+      </div>
+      <div class="product__buttons">
+        <ng-content></ng-content>
+        <button daff-button>
+          <i class="fas fa-heart"></i>
+        </button>
+      </div>
+      <div class="product__accordion-wrapper">
+        <accordion>
+            <accordion-item initiallyActive="true">
+              <h2 accordion-item-title>Details</h2>
+              <div panel-title>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo lacus ut sapien consectetur, et ultricies
+                leo rutrum. Integer iaculis ultrices nunc, et maximus quam efficitur sed. Maecenas iaculis nisl neque, maximus
+                sagittis libero sagittis eget.</p>
+                <p><a>Learn More.</a></p>
+              </div>
+            </accordion-item>
+            <accordion-item>
+              <h2 accordion-item-title>Size and Fit</h2>
+              <div panel-title>no content</div>
+            </accordion-item>
+            <accordion-item>
+              <h2 accordion-item-title>Shipping and Returns</h2>
+              <div panel-title>no content</div>
+            </accordion-item>
+            <accordion-item>
+              <h2 accordion-item-title>Reviews</h2>
+              <div panel-title>no content</div>
+            </accordion-item>
+        </accordion>
+      </div>
+    </div>
   </div>
-  <div class="product__image-gallery">
-    <image-gallery [images]="images"></image-gallery>
-  </div>
-  <div class="product__qty">
-    <div>Quantity</div>
-    <qty-dropdown id="{{product.id}}" [qty]="qty" (qtyChanged)="onUpdateQty($event)"></qty-dropdown>
-  </div>
-  <div class="product__buttons">
-    <ng-content></ng-content>
-    <button type="button" class="button">
-      <i class="fas fa-heart"></i>
-    </button>
-  </div>
-  <div class="product__accordion-wrapper">
-    <accordion>
-        <accordion-item initiallyActive="true">
-          <h2 accordion-item-title>Details</h2>
-          <p panel-title>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo lacus ut sapien consectetur, et ultricies
-            leo rutrum. Integer iaculis ultrices nunc, et maximus quam efficitur sed. Maecenas iaculis nisl neque, maximus
-            sagittis libero sagittis eget.
-            <a>Learn More.</a>
-          </p>
-        </accordion-item>
-        <accordion-item>
-          <h2 accordion-item-title>Size and Fit</h2>
-          <div panel-title>no content</div>
-        </accordion-item>
-        <accordion-item>
-          <h2 accordion-item-title>Shipping and Returns</h2>
-          <div panel-title>no content</div>
-        </accordion-item>
-        <accordion-item>
-          <h2 accordion-item-title>Reviews</h2>
-          <div panel-title>no content</div>
-        </accordion-item>
-    </accordion>
-  </div>
-</div>
+</daff-container>
