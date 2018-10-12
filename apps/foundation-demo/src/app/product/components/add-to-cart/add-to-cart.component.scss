@@ -1,7 +1,10 @@
 @import 'daffodil-util';
 
 .add-to-cart {
-  font-size: $medium-font-size;
-  @include uppercase();
-  @include embolden();
+  flex: 1 0 auto;
+  margin-right: 5px;
+
+  button {
+    width: 100%;
+  }
 }
