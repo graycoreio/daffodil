@@ -2,12 +2,12 @@
 
 
 .product-card {
-  text-align: center;
   border: none;
   cursor: pointer;
 
-  &__detail {
-    padding: 15px;
+  &__details {
+    padding: 15px 15px 0 15px;
+    font-size: $small-font-size;
   }
 
   &__brand {
@@ -15,9 +15,8 @@
     text-transform: uppercase;
   }
 
-  &__options {
-    margin-top: 15px;
-    color: $dark-gray;
-    font-size: $small-font-size;
+  &__brand, &__name, &__price {
+    margin: 0;
+    padding: 0;
   }
 }
