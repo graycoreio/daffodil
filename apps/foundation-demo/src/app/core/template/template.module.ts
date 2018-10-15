@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { SidebarModule } from '../sidebar/sidebar.module';
 import { DaffSidebarModule } from '../../design/molecules/sidebar/sidebar.module';
 import { FooterModule } from '../footer/footer.module';
-import { DaffNewsletterModule } from '../../newsletter/newsletter.module';
+import { NewsletterModule } from '../../newsletter/newsletter.module';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { DaffNewsletterModule } from '../../newsletter/newsletter.module';
     FooterModule,
     SidebarModule,
     DaffSidebarModule,
-    DaffNewsletterModule
+    NewsletterModule
   ],
   declarations: [
     TemplateComponent
