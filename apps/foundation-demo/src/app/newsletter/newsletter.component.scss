@@ -1,5 +1,6 @@
 @import 'daffodil-util';
-:host{
+
+:host {
   display: block;
   background: $black;
   color: $white;
@@ -15,8 +16,7 @@
   }
 }
 
-
-.daff-newsletter {
+.newsletter {
   &__grid {
     display: grid;
     grid-template-columns: 1fr;
