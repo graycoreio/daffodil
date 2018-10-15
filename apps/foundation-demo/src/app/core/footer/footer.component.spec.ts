@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FooterComponent } from './footer.component';
+import { By } from '@angular/platform-browser';
+import { DaffContainerModule } from '../../design/atoms/container/container.module';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
@@ -8,7 +10,12 @@ describe('FooterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FooterComponent ]
+      declarations: [
+        FooterComponent
+      ],
+      imports: [
+        DaffContainerModule
+      ]
     })
     .compileComponents();
   }));
@@ -21,5 +28,13 @@ describe('FooterComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('on <daff-container>', () => {
+    it('should set size="medium"', () => {
+      let container = fixture.debugElement.query(By.css('daff-container'));
+
+      expect(container.componentInstance.size).toEqual('medium');
+    });
   });
 });
