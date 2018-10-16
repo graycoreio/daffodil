@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 25px;
-  padding: 50px 30px;
+  padding: 50px 25px;
 
   @include breakpoint(medium) {
     grid-template-columns: 1fr 1fr;
@@ -15,7 +15,7 @@
     grid-template-columns: repeat(4, 1fr);
   }
 
-  @include breakpoint(xlarge) {
+  @include breakpoint(xxlarge) {
     padding: 75px 0;
   }
 }
