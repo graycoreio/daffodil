@@ -1,0 +1,13 @@
+@import "../typography/mixins";
+
+@mixin cart-total() {
+  &__title {
+    line-height: 1.7rem;
+    @include embolden();
+    @include uppercase();
+    
+    & + span {
+      float: right;
+    }
+  }
+}

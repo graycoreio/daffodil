@@ -1,0 +1,27 @@
+{
+  "name": "@daffodil/design",
+  "version": "1.1.0-a",
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "scripts": {
+    "build": "ng build design",
+    "postbuild": "npm run postbuild:scss:util && npm run postbuild:scss:theme && npm run postbuild:scss:typography",
+    "postbuild:scss:util": "scss-bundle -c build/util.json",
+    "postbuild:scss:theme": "scss-bundle -c build/theme.json",
+    "postbuild:scss:typography": "scss-bundle -c build/typography.json",
+    "test": "ng test design --watch=false --browsers=ChromeHeadless"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "description": "A consistent, sane api driver that works with different ecommerce systems.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "peerDependencies": {
+    "@angular/common": "^6.0.1",
+    "@angular/core": "^6.0.1"
+  }
+}

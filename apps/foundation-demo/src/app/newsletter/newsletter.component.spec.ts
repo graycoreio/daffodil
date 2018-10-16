@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NewsletterComponent } from './newsletter.component';
-import { DaffContainerModule } from '../design/atoms/container/container.module';
+import { DaffContainerModule } from '@daffodil/design';
+
 import { By } from '@angular/platform-browser';
 
 describe('NewsletterComponent', () => {

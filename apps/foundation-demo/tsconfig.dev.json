@@ -9,7 +9,9 @@
       "@daffodil/driver/testing": ["libs/driver/testing/src"],
       "@daffodil/driver/in-memory": ["libs/driver/in-memory/src"],
       "@daffodil/driver/shopify": ["libs/driver/shopify/src"],
-      "@daffodil/driver/magento": ["libs/driver/magento/src"]
+      "@daffodil/driver/magento": ["libs/driver/magento/src"],
+      "@daffodil/driver/magento": ["libs/driver/magento/src"],
+      "@daffodil/design": ["libs/design/src"]
     }
   }
 }

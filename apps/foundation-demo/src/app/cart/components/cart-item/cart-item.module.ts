@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { DaffQtyDropdownModule } from '@daffodil/design';
+
 import { CartItemComponent } from './cart-item.component';
-import { DesignModule } from '../../../design/design.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    DesignModule
+    DaffQtyDropdownModule
   ],
   declarations: [
     CartItemComponent

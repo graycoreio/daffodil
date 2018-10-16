@@ -1,0 +1,8 @@
+
+@mixin breakpoint($point) {
+    @if not map-has-key($map: $breakpoints, $key: $point){
+        @warn 'breakpoint(): "#{$key}" is not defined in your $breakpoints setting.';
+    }
+
+    @media (min-width: map-get($breakpoints, $point)) { @content ; }
+}

@@ -2,7 +2,6 @@ import { Component, OnInit, Input, EventEmitter, Output, ViewEncapsulation } fro
 
 import { Product } from '@daffodil/core';
 import { Router } from '@angular/router';
-import { Image } from '../../../design/interfaces/image';
 
 @Component({
   selector: 'product',
@@ -25,7 +24,7 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  images: Image[] = [
+  images: Object[] = [
     {url : '/assets/mh01-black_main.jpg', label: 'Image 1'},
     {url : '/assets/mh01-gray_alt1.jpg', label: 'Image 2'},
     {url : '/assets/mh01-gray_back.jpg', label: 'Image 3'},

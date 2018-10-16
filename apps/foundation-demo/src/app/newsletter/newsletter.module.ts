@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { NewsletterComponent } from './newsletter.component';
-import { DaffInputModule } from '../design/atoms/form/input/input.module';
-import { DaffButtonModule } from '../design/atoms/button/button.module';
-import { DaffContainerModule } from '../design/atoms/container/container.module';
+
+import { DaffInputModule, DaffButtonModule, DaffContainerModule } from '@daffodil/design';
 
 @NgModule({
   imports: [

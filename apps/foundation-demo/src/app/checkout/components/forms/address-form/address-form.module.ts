@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AddressFormComponent } from './components/address-form/address-form.component';
-import { DesignModule } from '../../../../design/design.module';
+import { DaffInputValidatorModule, DaffSelectValidatorModule } from '@daffodil/design';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DesignModule
+    DaffInputValidatorModule,
+    DaffSelectValidatorModule
   ],
   declarations: [
     AddressFormComponent
