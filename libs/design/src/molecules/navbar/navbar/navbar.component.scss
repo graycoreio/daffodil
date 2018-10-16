@@ -1,0 +1,7 @@
+@import '../../../scss/daff-util.scss';
+
+.daff-navbar {
+  display: flex;
+  align-items: center;
+  @include section-divider();
+}

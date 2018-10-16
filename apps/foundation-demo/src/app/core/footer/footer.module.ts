@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DaffListModule } from '../../design/molecules/list/list.module';
-import { DaffButtonSetModule } from '../../design/molecules/button-set/button-set.module';
+
+import { DaffListModule } from '@daffodil/design';
+import { DaffButtonSetModule } from '@daffodil/design';
+
 import { FooterComponent } from './footer.component';
 import { DaffButtonModule } from '../../design/atoms/button/button.module';
 import { DaffContainerModule } from '../../design/atoms/container/container.module';

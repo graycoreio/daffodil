@@ -1,0 +1,3 @@
+@function daff-color($palette, $color) {
+    @return map-get($palette, $color);
+}

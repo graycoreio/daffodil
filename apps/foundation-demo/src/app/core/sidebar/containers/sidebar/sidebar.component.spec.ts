@@ -3,8 +3,7 @@ import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { SidebarContainer } from './sidebar.component';
-import { DaffSidebarComponent } from '../../../../design/molecules/sidebar/sidebar/sidebar.component';
-import { DaffSidebarModule } from '../../../../design/molecules/sidebar/sidebar.module';
+import { DaffSidebarModule, DaffSidebarComponent } from '@daffodil/design';
 
 @Component({template: '<sidebar (close)="closeFunction()"></sidebar>'})
 class TestSidebarContainerWrapper {

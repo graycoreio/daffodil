@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormControl, FormGroup, AbstractControl, Validators, FormBuilder } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { ErrorStateMatcher } from '../../../../../../design/molecules/error-state-matcher/error-state-matcher.component';
+import { ErrorStateMatcher } from '@daffodil/design';
 import { AddressFormComponent } from './address-form.component';
 
 @Component({

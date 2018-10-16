@@ -1,0 +1,26 @@
+@import "daff-util";
+
+body {
+    font-size: 16px;
+
+    @include breakpoint(small) {
+        font-size: 14px;
+    }
+}
+
+h1,h2,h3,h4,h5,h6 {
+    margin: 0;
+    padding: 0;
+}
+
+.embolden {
+    @include embolden();
+}
+
+.uppercase {
+    @include uppercase();
+}
+
+.single-line-ellipsis {
+    @include single-line-ellipsis();
+}

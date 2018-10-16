@@ -206,6 +206,7 @@ The following is the list of supported scopes:
 
 * **all**
 * **core**
+* **design**
 * **driver**
 * **state**
 * **foundation-demo**

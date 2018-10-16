@@ -2,12 +2,13 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormControl, AbstractControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 
 import { DaffodilAddress, PaymentInfo } from '@daffodil/core';
+import { ErrorStateMatcher } from '@daffodil/design';
 
 import { PaymentFormComponent } from './payment-form.component';
-import { ErrorStateMatcher } from '../../../../design/molecules/error-state-matcher/error-state-matcher.component';
 import * as fromFoundationCheckout from '../../../reducers';
 import { EnablePlaceOrderButton } from '../../../actions/checkout.actions';
 

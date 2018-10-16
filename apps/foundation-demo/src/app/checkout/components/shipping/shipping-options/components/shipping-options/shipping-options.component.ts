@@ -4,7 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { ShippingOption } from '@daffodil/core';
 
 import { ShippingOptionsService } from '../services/shipping-options.service';
-import { ErrorStateMatcher } from '../../../../../../design/molecules/error-state-matcher/error-state-matcher.component';
+import { ErrorStateMatcher } from '@daffodil/design';
 
 @Component({
   selector: 'shipping-options',
