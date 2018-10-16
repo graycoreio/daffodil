@@ -11,6 +11,10 @@
   "bugs": {
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
+  "scripts": {
+    "build": "ng build state",
+    "test": "ng test state --watch=false --browsers=ChromeHeadless"
+  },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
     "@daffodil/core": "1.1.0-a",
@@ -23,5 +27,9 @@
     "@ngrx/store": "^6.0.1",
     "core-js": "^2.4.1",
     "rxjs": "^6.2.0"
+  },
+  "devDependencies": {
+    "@daffodil/core": "1.1.0-a",
+    "@daffodil/driver": "1.1.0-a"
   }
 }
