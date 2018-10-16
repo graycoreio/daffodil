@@ -34,6 +34,7 @@
 npm-debug.log
 testem.log
 /typings
+lerna-debug.log
 
 # e2e
 /e2e/*.js
