@@ -43,6 +43,9 @@ class MockCartSummaryComponent {
 })
 class MockHelpBoxComponent {}
 
+@Component({ selector: 'loading-icon', template: ''})
+class MockLoadingIconComponent {}
+
 describe('CheckoutCartAsyncWrapper', () => {
   let component: TestCheckoutCartAsyncWrapper;
   let fixture: ComponentFixture<TestCheckoutCartAsyncWrapper>;
@@ -58,6 +61,7 @@ describe('CheckoutCartAsyncWrapper', () => {
         MockCheckoutCartComponent,
         MockCartSummaryComponent,
         MockHelpBoxComponent,
+        MockLoadingIconComponent,
         CheckoutCartAsyncWrapperComponent
       ]
     })

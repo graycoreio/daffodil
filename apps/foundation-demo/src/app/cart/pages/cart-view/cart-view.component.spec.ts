@@ -7,7 +7,6 @@ import { of } from 'rxjs/observable/of';
 import { Cart } from '@daffodil/core';
 import { CartFactory } from '@daffodil/core/testing';
 
-
 import { CartViewComponent } from './cart-view.component';
 
 let cartFactory = new CartFactory();
@@ -29,8 +28,10 @@ class MockCartContainerComponent {
 })
 class MockCartAsyncWrapperComponent { 
   @Input() cart: Cart;
-  @Input() loading: boolean;
 }
+
+@Component({ selector: 'loading-icon', template: ''})
+class MockLoadingIconComponent {}
 
 describe('CartViewComponent', () => {
   let component: CartViewComponent;
@@ -42,7 +43,8 @@ describe('CartViewComponent', () => {
       declarations: [ 
         CartViewComponent,
         MockCartContainerComponent,
-        MockCartAsyncWrapperComponent
+        MockCartAsyncWrapperComponent,
+        MockLoadingIconComponent
       ]
     })
     .compileComponents();
@@ -73,21 +75,23 @@ describe('CartViewComponent', () => {
     it('should set cart to value passed by cart-container directive', () => {
       expect(cartAsyncWrapperComponent.componentInstance.cart).toEqual(cart);
     });
-
-    it('should set loading to value passed by cart-container directive', () => {
-      expect(cartAsyncWrapperComponent.componentInstance.loading).toEqual(false);      
-    });
   });
 
   describe('when CartContainer.loading$ is true', () => {
 
     let loadingIcon;
+    let cartAsyncWrapper;
 
     beforeEach(() => {
       cartContainer.loading$ = of(true);
       fixture.detectChanges();
 
-      loadingIcon = fixture.debugElement.query(By.css('.cart-view__loading-icon'));
+      cartAsyncWrapper = fixture.debugElement.query(By.css('cart-async-wrapper'));
+      loadingIcon = fixture.debugElement.query(By.css('loading-icon'));
+    });
+
+    it('should not render cart-async-wrapper', () => {
+      expect(cartAsyncWrapper).toBeNull();
     });
 
     it('should render loadingIcon', () => {
@@ -98,12 +102,18 @@ describe('CartViewComponent', () => {
   describe('when CartContainer.loading$ is false', () => {
 
     let loadingIcon;
+    let cartAsyncWrapper;
 
     beforeEach(() => {
       cartContainer.loading$ = of(false);
       fixture.detectChanges();
 
-      loadingIcon = fixture.debugElement.query(By.css('.cart-view__loading-icon'));
+      cartAsyncWrapper = fixture.debugElement.query(By.css('cart-async-wrapper'));
+      loadingIcon = fixture.debugElement.query(By.css('loading-icon'));
+    });
+
+    it('should render cart-async-wrapper', () => {
+      expect(cartAsyncWrapper).not.toBeNull();
     });
 
     it('should not render loadingIcon', () => {

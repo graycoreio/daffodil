@@ -51,6 +51,9 @@ class MockAddToCartComponent {
   @Output() addToCart: EventEmitter<any> = new EventEmitter();
 }
 
+@Component({ selector: 'loading-icon', template: ''})
+class MockLoadingIconComponent {}
+
 describe('ProductViewComponent', () => {
   let component: ProductViewComponent;
   let fixture: ComponentFixture<ProductViewComponent>;
@@ -70,7 +73,8 @@ describe('ProductViewComponent', () => {
         ProductViewComponent,
         MockProductContainer,
         MockProductComponent,
-        MockAddToCartComponent
+        MockAddToCartComponent,
+        MockLoadingIconComponent
       ],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRoute }
@@ -155,8 +159,8 @@ describe('ProductViewComponent', () => {
       expect(productComponent).not.toBeNull();
     });
 
-    it('should not render the loading spinner', () => {
-      expect(fixture.debugElement.query(By.css('.product-container__loading-icon'))).toBeNull();
+    it('should not render loading-icon', () => {
+      expect(fixture.debugElement.query(By.css('loading-icon'))).toBeNull();
     });
   });
 
@@ -173,9 +177,9 @@ describe('ProductViewComponent', () => {
     it('should  not render <product>', () => {
       expect(productComponent).toBeNull();
     });
-
-    it('should render the loading spinner', () => {
-      expect(fixture.debugElement.query(By.css('.product-container__loading-icon'))).not.toBeNull();
+    
+    it('should render loading-icon', () => {
+      expect(fixture.debugElement.query(By.css('loading-icon'))).not.toBeNull();
     });
   });
 });

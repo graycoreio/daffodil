@@ -3,55 +3,56 @@
 @mixin product-page-grid() {
   display: grid;
   grid-gap: 25px;
+  grid-template-columns: 1fr;
+  padding: 25px 0 50px 0;
 
-  @include breakpoint(medium) {
-    padding: 25px;
-    grid-template-areas: 
-      "image-gallery info"
-      "image-gallery qty"
-      "image-gallery buttons"
-      "image-gallery accordion"
-      "image-gallery .";
-    grid-gap: 15px;
-    grid-template-columns: 2fr 1fr;
+  &__image-gallery {
+    order: 2;
+  }
 
-    &__info {
-      grid-area: info;
-    }
-    
-    &__qty {
-      grid-area: qty;
-    }
+  &__info {
+    order: 1;
+  }
 
-    &__buttons {
-      grid-area: buttons;
-    }
-
-    &__image-gallery {
-      grid-area: image-gallery;
-    }
-
-    &__accordion-wrapper {
-      grid-area: accordion;
-    }
+  &__details {
+    order: 3;
   }
 
   @include breakpoint(large) {
-    padding: 50px;
-    grid-row-gap: 25px;
-    grid-column-gap: 50px;
+    grid-template-areas: 
+      "image-gallery info"
+      "image-gallery details"
+      "image-gallery ."
+      "image-gallery ."
+      "image-gallery .";
+    grid-gap: 25px 50px;
+    grid-template-columns: 2fr 1fr;
+    padding: 50px 25px;
+
+    &__image-gallery {
+      grid-area: image-gallery;
+      order: 1;
+    }
+
+    &__info {
+      grid-area: info;
+      order: 2;
+    }
+
+    &__details {
+      grid-area: details;
+    }
   }
 }
 
 .product {
   @include product-page-grid();
 
-  &__info {
-    grid-gap: 5px;
-    margin: 25px 0 0 25px;
+  &__info, &__details {
+    padding: 0 25px;
 
-    @include breakpoint(medium) {
-      margin: 0;
+    @include breakpoint(large) {
+      padding: 0;
     }
   }
 
@@ -63,6 +64,7 @@
   &__name {
     @include embolden();
     font-size: $large-font-size;
+    padding: 5px 0;
   }
 
   &__price {
@@ -70,47 +72,32 @@
   }
 
   &__qty {
-    display: grid;
-    margin-left: 15px;
-    grid-gap: 25px;    
-    grid-template-columns: auto 1fr;
+    display: flex;
+    margin: 0 0 25px 0;
+    align-items: center;
 
-    @include breakpoint(medium) {
-      margin: 0;
-    }
-
-    & div {
-      margin: auto 0;
+    div {
+      margin: 0 15px 0 0;
     }
   }
 
   &__buttons {
-    display: grid;
-    margin: 0 15px;
-    grid-gap: 5px;
-    grid-template-columns: 1fr 55px;
-
-    & button {
-      font-size: $medium-font-size;
-    }
-
-    @include breakpoint(medium) {
-      margin: 0;
-      width: 100%;
-    }
+    font-size: $medium-font-size;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
 
     @include breakpoint(large) {
-      margin: 0;
-      width: 70%;
+      width: 80%
+    }
+
+    & button {
+      min-width: 75px;
     }
   }
 
   &__accordion-wrapper {
     border-top: 1px solid $medium-gray;
-    margin: 25px 15px 0 15px;
-
-    @include breakpoint(medium) {
-      margin: 25px 0 0 0;
-    }
+    margin: 50px 0 0 0;
   }
 }

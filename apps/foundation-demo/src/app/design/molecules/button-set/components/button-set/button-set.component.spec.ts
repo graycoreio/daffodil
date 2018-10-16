@@ -4,7 +4,7 @@ import { DaffButtonSetComponent } from './button-set.component';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-@Component({template: '<div daff-button-set class="host-element"></div>'})
+@Component({template: '<div daff-button-set></div>'})
 class TestDaffButtonSetComponent {}
 
 describe('DaffButtonSetComponent', () => {
@@ -32,8 +32,8 @@ describe('DaffButtonSetComponent', () => {
   });
 
   it('should set "daff-button-set" on host element', () => {
-    let hostElement = fixture.debugElement.query(By.css('.host-element')).nativeElement;
+    let buttonSet = fixture.debugElement.query(By.css('[daff-button-set]')).nativeElement;
 
-    expect(hostElement.classList.contains('daff-button-set')).toBeTruthy();
+    expect(buttonSet.classList.contains('daff-button-set')).toBeTruthy();
   });
 });

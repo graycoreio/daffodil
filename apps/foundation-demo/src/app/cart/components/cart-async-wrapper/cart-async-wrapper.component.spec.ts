@@ -12,10 +12,9 @@ import { CartAsyncWrapperComponent } from './cart-async-wrapper.component';
 let cartFactory = new CartFactory();
 let cart = cartFactory.create();
 
-@Component({template: '<cart-async-wrapper [cart]="cartValue | async" [loading]="loadingValue | async"></cart-async-wrapper>'})
+@Component({template: '<cart-async-wrapper [cart]="cartValue | async"></cart-async-wrapper>'})
 class TestCartAsyncWrapper {
   cartValue: Observable<Cart>;
-  loadingValue: Observable<boolean>;
 }
 
 @Component({
@@ -90,7 +89,6 @@ describe('TestCartAsyncWrapper', () => {
     fixture = TestBed.createComponent(TestCartAsyncWrapper);
     component = fixture.componentInstance;
     component.cartValue = of(cart);
-    component.loadingValue = of(false);
     
     cartAsyncWrapperComponent = fixture.debugElement.query(By.css('cart-async-wrapper')).componentInstance;
 
@@ -110,10 +108,6 @@ describe('TestCartAsyncWrapper', () => {
 
   it('should be able to take cart as input', () => {
     expect(cartAsyncWrapperComponent.cart).toEqual(cart);
-  });
-
-  it('should be able to take loading as input', () => {
-    expect(cartAsyncWrapperComponent.loading).toEqual(false);
   });
 
   describe('on <cart>', () => {
@@ -203,38 +197,6 @@ describe('TestCartAsyncWrapper', () => {
 
         expect(continueShoppingComponent).toBeNull();
       });
-    });
-  });
-
-  describe('when CartContainer.$loading is true', () => {
-
-    beforeEach(() => {
-      component.loadingValue = of(true);
-      fixture.detectChanges();
-    });
-    
-    it('should not render <cart>', () => {
-      let cartComponent = fixture.debugElement.query(By.css('cart'));
-
-      expect(cartComponent).toBeNull();
-    });
-
-    it('should not render cart-async-wrapper__side-pane', () => {
-      let sidePaneElement = fixture.debugElement.query(By.css('.cart-async-wrapper__side-pane'));
-    
-      expect(sidePaneElement).toBeNull();
-    });
-
-    it('should not render <proceed-to-checkout>', () => {
-      let proceedToCheckoutComponent = fixture.debugElement.query(By.css('proceed-to-checkout'));
-      
-      expect(proceedToCheckoutComponent).toBeNull();
-    });
-
-    it('should not render <continue-shopping>', () => {
-      let continueShoppingComponent = fixture.debugElement.query(By.css('continue-shopping'));
-      
-      expect(continueShoppingComponent).toBeNull();
     });
   });
 });

@@ -1,0 +1,60 @@
+@import 'daffodil-util';
+:host{
+  display: block;
+  background: $black;
+  color: $white;
+  padding: 75px 0;
+  margin: 0;
+
+  @include breakpoint(medium) {
+    padding: 75px 50px;
+  }
+
+  @include breakpoint(xlarge) {
+    padding: 75px 0;
+  }
+}
+
+
+.daff-newsletter {
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 50px 0;
+    text-align: center;
+
+    @include breakpoint(large) {
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 0 50px;
+      text-align: left;
+    }
+  }
+
+  &__title {
+    @include embolden();
+    @include uppercase();
+    font-size: 1.5rem;
+    margin: 0;
+    padding-bottom: 15px;
+  }
+
+  &__input {
+    width: 60%;
+    display: inline;
+
+    @include breakpoint(medium) {
+      width: 70%;
+    }
+  }
+
+  &__button {
+    background-color: get-color(secondary);
+    border: 1px solid get-color(secondary);
+    width: 40%;
+    line-height: 1.5rem;
+
+    @include breakpoint(medium) {
+      width: 30%;
+    }
+  }
+}

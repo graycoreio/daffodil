@@ -98,6 +98,9 @@ class MockCartContainer {
 @Component({selector: 'thank-you', template: ''})
 class MockThankYouComponent {}
 
+@Component({ selector: 'loading-icon', template: ''})
+class MockLoadingIconComponent {}
+
 describe('CheckoutViewComponent', () => {
   let component: CheckoutViewComponent;
   let fixture: ComponentFixture<CheckoutViewComponent>;
@@ -129,6 +132,7 @@ describe('CheckoutViewComponent', () => {
         MockPlaceOrderComponent,
         MockBillingContainer,
         MockThankYouComponent,
+        MockLoadingIconComponent,
         MockCartContainer
       ]
     })
@@ -435,24 +439,19 @@ describe('CheckoutViewComponent', () => {
 
   describe('when CartContainer.loading$ is true', () => {
 
-    let shippingElement;
-    let cartElement;
+    let checkoutElement;
     let loadingIcon;
 
     beforeEach(() => {
       cartContainer.loading$ = of(true);
       fixture.detectChanges();
-      shippingElement = fixture.debugElement.query(By.css('.checkout__shipping'));
-      cartElement = fixture.debugElement.query(By.css('.checkout__cart'));
+
+      checkoutElement = fixture.debugElement.query(By.css('.checkout'));
       loadingIcon = fixture.debugElement.query(By.css('.checkout__loading-icon'));
     });
     
-    it('should not render shippingElement', () => {
-      expect(shippingElement).toBeNull();
-    });
-    
-    it('should not render cartElement', () => {
-      expect(cartElement).toBeNull();
+    it('should not render checkoutElement', () => {
+      expect(checkoutElement).toBeNull();
     });
 
     it('should render loadingIcon', () => {
@@ -462,26 +461,20 @@ describe('CheckoutViewComponent', () => {
 
   describe('when CartContainer.loading$ is false', () => {
 
-    let shippingElement;
-    let cartElement;
+    let checkoutElement;
     let loadingIcon;
 
     beforeEach(() => {
       cartContainer.loading$ = of(false);
       fixture.detectChanges();
-      shippingElement = fixture.debugElement.query(By.css('.checkout__shipping'));
-      cartElement = fixture.debugElement.query(By.css('.checkout__cart'));
+
+      checkoutElement = fixture.debugElement.query(By.css('.checkout'));
       loadingIcon = fixture.debugElement.query(By.css('.checkout__loading-icon'));
     });
     
-    it('should render shippingElement', () => {
-      expect(shippingElement).not.toBeNull();
+    it('should render checkout', () => {
+      expect(checkoutElement).not.toBeNull();
     });
-    
-    it('should render cartElement', () => {
-      expect(cartElement).not.toBeNull();
-    });
-  
 
     it('should not render loadingIcon', () => {
       expect(loadingIcon).toBeNull();

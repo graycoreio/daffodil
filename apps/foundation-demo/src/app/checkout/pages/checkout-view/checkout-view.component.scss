@@ -56,10 +56,10 @@
   
 
   &__loading-icon {
-    padding: 20px calc(50% - 37px);
+    // padding: 20px calc(50% - 37px);
 
     @include breakpoint(large) {
-      padding-top: 0;
+    //   padding-top: 0;
       grid-column: 1 / -1;
     }
   }

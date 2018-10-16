@@ -289,7 +289,6 @@
     "warnings": {
       "typescriptMismatch": false,
       "versionMismatch": false
-    },
-    "defaultCollection": "@nrwl/schematics"
+    }
   }
 }
