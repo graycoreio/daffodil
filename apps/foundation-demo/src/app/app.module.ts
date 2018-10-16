@@ -11,8 +11,6 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { NxModule } from '@nrwl/nx';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -33,8 +31,6 @@ import { NotFoundModule } from './misc/not-found/not-found.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-
-    NxModule.forRoot(),
 
     HttpClientModule,
 
