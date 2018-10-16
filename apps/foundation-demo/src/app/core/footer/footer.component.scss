@@ -13,6 +13,9 @@
 
   @include breakpoint(large) {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include breakpoint(xlarge) {
     padding: 75px 0;
   }
 }
