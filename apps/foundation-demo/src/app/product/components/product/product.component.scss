@@ -81,18 +81,12 @@
     }
   }
 
-  &__buttons {
+  &__button {
     font-size: $medium-font-size;
-    display: flex;
-    flex-wrap: wrap;
     width: 100%;
 
     @include breakpoint(large) {
-      width: 80%
-    }
-
-    & button {
-      min-width: 75px;
+      width: 70%
     }
   }
 
