@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { DaffButtonSetComponent } from './components/button-set/button-set.component';
+import { DaffButtonSetComponent } from './button-set.component';
 
 @NgModule({
   declarations: [
