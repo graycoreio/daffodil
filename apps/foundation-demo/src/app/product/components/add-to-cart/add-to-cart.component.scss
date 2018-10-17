@@ -1,9 +1,9 @@
 @import 'daffodil-util';
 
 .add-to-cart {
-  flex: 1 0 auto;
-  margin-right: 5px;
-
+  display: inline-block;
+  width: 100%;
+  
   button {
     width: 100%;
   }
