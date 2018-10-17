@@ -1,6 +1,5 @@
 .daff-button-set {
-  & button,
-  & a {
+  > * {
     margin-right: 5px;
 
     &:last-child {
