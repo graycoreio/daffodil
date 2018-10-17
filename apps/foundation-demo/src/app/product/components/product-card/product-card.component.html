@@ -1,13 +1,16 @@
 <div class="product-card" (click)="navigateToProduct()">
-    <div class="product-card__detail">
-        <img src="/assets/mh04-green_alt1.jpg">
-        <div class="product-card__brand">
-            <span class="single-line-ellipsis">{{product.brand}}</span>
-        </div>
-        <div class="product-card__name">
-            <span class="single-line-ellipsis">{{product.name}}</span>
-        </div>
-        <div class="product-card__price">${{product.price}}</div>
-        <div class="product-card__options">+ More Colors</div>
-    </div>
-</div>
+  <div class="product-card__image">
+    <img src="/assets/mh04-green_alt1.jpg">
+  </div>
+  <div class="product-card__details">
+    <p class="product-card__brand single-line-ellipsis">
+      {{product.brand}}
+    </p>
+    <p class="product-card__name single-line-ellipsis">
+      {{product.name}}
+    </p>
+    <p class="product-card__price">
+      ${{product.price}}
+    </p>
+  </div>
+</div>      
