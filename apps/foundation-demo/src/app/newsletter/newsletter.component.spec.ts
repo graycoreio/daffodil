@@ -1,17 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DaffNewsletterComponent } from './newsletter.component';
+import { NewsletterComponent } from './newsletter.component';
 import { DaffContainerModule } from '../design/atoms/container/container.module';
 import { By } from '@angular/platform-browser';
 
-describe('DaffNewsletterComponent', () => {
-  let component: DaffNewsletterComponent;
-  let fixture: ComponentFixture<DaffNewsletterComponent>;
+describe('NewsletterComponent', () => {
+  let component: NewsletterComponent;
+  let fixture: ComponentFixture<NewsletterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DaffNewsletterComponent
+        NewsletterComponent
       ],
       imports: [
         DaffContainerModule
@@ -21,7 +21,7 @@ describe('DaffNewsletterComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DaffNewsletterComponent);
+    fixture = TestBed.createComponent(NewsletterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

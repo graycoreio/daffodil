@@ -10,6 +10,7 @@
     color: $white;
     margin: 0;
     padding: 15px 20px;
+    text-align: center;
     cursor: pointer;
     transition: 0.2s ease-in;
 
@@ -24,12 +25,14 @@
 }
 
 .daff-icon-button {
+    display: inline-block;
     cursor: pointer;
     border-radius: 50%;
     height: 40px;
     width: 40px;
     line-height: 40px;
     font-size: 1.25rem;
+    text-align: center;
     transition: 0.2s ease-in;
 
     &:focus {
@@ -51,6 +54,7 @@
     color: $black;
     margin: 0;
     padding: 15px 20px;
+    text-align: center;
     cursor: pointer;
     transition: 0.2s ease-in;
 
@@ -75,6 +79,7 @@
     color: $black;
     margin: 0;
     padding: 15px 20px;
+    text-align: center;
     cursor: pointer;
     transition: 0.2s ease-in;
 

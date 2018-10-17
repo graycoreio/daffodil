@@ -1,22 +1,22 @@
 @import 'daffodil-util';
-:host{
+
+:host {
   display: block;
   background: $black;
   color: $white;
-  padding: 75px 0;
+  padding: 50px 25px;
   margin: 0;
 
   @include breakpoint(medium) {
     padding: 75px 50px;
   }
 
-  @include breakpoint(xlarge) {
+  @include breakpoint(xxlarge) {
     padding: 75px 0;
   }
 }
 
-
-.daff-newsletter {
+.newsletter {
   &__grid {
     display: grid;
     grid-template-columns: 1fr;

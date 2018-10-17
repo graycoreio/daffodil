@@ -1,13 +1,17 @@
 @import 'daffodil-util';
 
 .daff-list {
+  margin: 0;
+  padding: 0;
+  
   &__title {
     @include embolden();
     @include uppercase();
+    padding: 0 0 15px 0;
   }
 
   &__item {
     list-style-type: none;
-    padding: 0 0 5px 0;
+    margin: 0 0 5px 0;
   }
 }

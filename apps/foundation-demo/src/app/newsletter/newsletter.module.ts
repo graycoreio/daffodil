@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DaffNewsletterComponent } from './newsletter.component';
+import { NewsletterComponent } from './newsletter.component';
 import { DaffInputModule } from '../design/atoms/form/input/input.module';
 import { DaffButtonModule } from '../design/atoms/button/button.module';
 import { DaffContainerModule } from '../design/atoms/container/container.module';
@@ -13,10 +13,10 @@ import { DaffContainerModule } from '../design/atoms/container/container.module'
     DaffContainerModule
   ],
   declarations: [
-    DaffNewsletterComponent
+    NewsletterComponent
   ],
   exports: [
-    DaffNewsletterComponent
+    NewsletterComponent
   ]
 })
-export class DaffNewsletterModule { }
+export class NewsletterModule { }

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'daff-newsletter',
+  selector: 'newsletter',
   templateUrl: './newsletter.component.html',
   styleUrls: ['./newsletter.component.scss']
 })
-export class DaffNewsletterComponent {}
+export class NewsletterComponent {}

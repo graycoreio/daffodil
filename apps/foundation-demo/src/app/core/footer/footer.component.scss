@@ -2,18 +2,20 @@
 
 .footer {
   display: grid;
-  grid-template-columns: repeat(2, 1fr) 0.6fr;
-  grid-template-rows: auto;
-  grid-row-gap: 20px;
-  margin: 35px 15px;
+  grid-template-columns: 1fr;
+  grid-gap: 25px;
+  padding: 50px 25px;
 
   @include breakpoint(medium) {
-    margin: 0 50px 100px 50px;
-    grid-template-columns: repeat(2, 1fr) repeat(2, 0.75fr);
+    grid-template-columns: 1fr 1fr;
+    padding: 75px 50px;
   }
 
   @include breakpoint(large) {
-    margin: 0 150px 100px 200px;
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include breakpoint(xxlarge) {
+    padding: 75px 0;
   }
 }
