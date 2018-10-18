@@ -1,7 +1,7 @@
 <div class="cart-wrapper">
   <div class="cart-wrapper__wrapper">
     <cart [cart]="cart" [title]="'Your Cart'"></cart>
-    <continue-shopping class="cart-wrapper__button" *ngIf="isCartEmpty"></continue-shopping>
+    <continue-shopping class="cart-wrapper__continue-shopping" *ngIf="isCartEmpty"></continue-shopping>
   </div>
   <div class="cart-wrapper__side-pane">
     <div class="cart-wrapper__summary" *ngIf="!isCartEmpty">
