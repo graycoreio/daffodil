@@ -58,7 +58,7 @@ class ProceedToCheckoutMock {}
 })
 class ContinueShoppingMock {}
 
-describe('TestCartWrapper', () => {
+describe('CartWrapper', () => {
   let component: TestCartWrapper;
   let fixture: ComponentFixture<TestCartWrapper>;
   let cartWrapperComponent: CartWrapperComponent;
