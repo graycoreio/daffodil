@@ -24,6 +24,14 @@
       width: 50%;
     }
   }
+
+  &__summary {
+    margin: 25px 0 50px 0;
+
+    @include breakpoint(large) {
+      margin: 0 0 50px 0;
+    }
+  }
   
   &__summary-title {
     display: none;
@@ -43,7 +51,7 @@
     margin-bottom: 25px;
   }
   
-  &__cart-summary-wrapper {
+  &__cart-summary {
     margin: 15px 0;
 
     @include breakpoint(large) {
@@ -51,8 +59,7 @@
     }
   }
 
-  &__help-box-wrapper {
+  &__help-box {
     display: block;
-    margin: 35px 0 15px 0;
   }
 }

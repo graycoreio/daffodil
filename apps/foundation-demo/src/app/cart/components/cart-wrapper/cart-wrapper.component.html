@@ -4,13 +4,13 @@
     <continue-shopping class="cart-wrapper__button" *ngIf="isCartEmpty"></continue-shopping>
   </div>
   <div class="cart-wrapper__side-pane">
-    <div *ngIf="!isCartEmpty">
+    <div class="cart-wrapper__summary" *ngIf="!isCartEmpty">
         <div class="cart-wrapper__summary-title">cart summary</div>
         <promotion class="cart-wrapper__promotion"></promotion>
-        <cart-summary class="cart-wrapper__cart-summary-wrapper" [cart]="cart"></cart-summary>
+        <cart-summary class="cart-wrapper__cart-summary" [cart]="cart"></cart-summary>
         <proceed-to-checkout class="cart-wrapper__proceed-to-checkout"></proceed-to-checkout>    
     </div>
-    <help-box class="cart-wrapper__help-box-wrapper"></help-box>
+    <help-box class="cart-wrapper__help-box"></help-box>
   </div>
   <div class="cart-wrapper__takes-up-space"></div>
 </div>
