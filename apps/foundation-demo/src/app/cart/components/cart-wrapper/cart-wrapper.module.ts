@@ -6,12 +6,12 @@ import { CartSummaryModule } from '../cart-summary/cart-summary.module';
 import { ProceedToCheckoutModule } from '../proceed-to-checkout/proceed-to-checkout.module';
 import { ContinueShoppingModule } from '../continue-shopping/continue-shopping.module';
 import { MiscModule } from '../../../misc/misc.module';
-import { CartComponentModule } from '../cart/cart.component.module';
+import { CartModule } from '../cart/cart.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    CartComponentModule,
+    CartModule,
     PromotionModule,
     CartSummaryModule,
     ProceedToCheckoutModule,
