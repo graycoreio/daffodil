@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CartAsyncWrapperComponent } from './cart-async-wrapper.component';
+import { CartWrapperComponent } from './cart-wrapper.component';
 import { PromotionModule } from '../promotion/promotion.module';
 import { CartSummaryModule } from '../cart-summary/cart-summary.module';
 import { ProceedToCheckoutModule } from '../proceed-to-checkout/proceed-to-checkout.module';
@@ -19,10 +19,10 @@ import { CartComponentModule } from '../cart/cart.component.module';
     MiscModule
   ],
   declarations: [
-    CartAsyncWrapperComponent
+    CartWrapperComponent
   ],
   exports: [
-    CartAsyncWrapperComponent
+    CartWrapperComponent
   ]
 })
-export class CartAsyncWrapperModule { }
+export class CartWrapperModule { }
