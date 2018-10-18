@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Directive } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
@@ -46,15 +46,13 @@ class CartSummaryMock {
 })
 class HelpBoxMock {}
 
-@Component({
-  selector: 'proceed-to-checkout',
-  template: ''
+@Directive({
+  selector: '[proceed-to-checkout]'
 })
 class ProceedToCheckoutMock {}
 
-@Component({
-  selector: 'continue-shopping',
-  template: ''
+@Directive({
+  selector: '[continue-shopping]'
 })
 class ContinueShoppingMock {}
 
@@ -98,8 +96,8 @@ describe('CartWrapper', () => {
     promotionComponent = fixture.debugElement.query(By.css('promotion'));
     cartSummaryComponent = fixture.debugElement.query(By.css('cart-summary'));
     helpBoxComponent = fixture.debugElement.query(By.css('help-box'));
-    proceedToCheckoutComponent = fixture.debugElement.query(By.css('proceed-to-checkout'));
-    continueShoppingComponent = fixture.debugElement.query(By.css('continue-shopping'));
+    proceedToCheckoutComponent = fixture.debugElement.query(By.css('[proceed-to-checkout]'));
+    continueShoppingComponent = fixture.debugElement.query(By.css('[continue-shopping]'));
   });
 
   it('should create', () => {
@@ -151,7 +149,7 @@ describe('CartWrapper', () => {
         expect(proceedToCheckoutComponent).toBeNull();
       });
 
-      it('should render cart-wrapper__continue-shopping', () => {
+      it('should render <continue-shopping>', () => {
         expect(continueShoppingComponent).not.toBeNull();
       });
     });
@@ -187,15 +185,11 @@ describe('CartWrapper', () => {
       });
 
       it('should render <proceed-to-checkout>', () => {
-        let proceedToCheckoutComponent = fixture.debugElement.query(By.css('proceed-to-checkout'));
-        
         expect(proceedToCheckoutComponent).not.toBeNull();
       });
 
-      it('should not render continue-shopping', () => {
-        let continueShoppingComponent = fixture.debugElement.query(By.css('continue-shopping'));
-
-        expect(continueShoppingComponent).toBeNull();
+      it('should render <continue-shopping>', () => {
+        expect(continueShoppingComponent).not.toBeNull();
       });
     });
   });
