@@ -2,12 +2,9 @@
 
 
 .cart {
-  display: grid;
-  grid-gap: 25px;
-  grid-template-columns: minmax(0, 1fr);
-  font-family: 'Open Sans', sans-serif;
+  display: block;
   
-  &__title {
+  &__header {
     @include section-divider();
     font-size: 1rem;
     padding-bottom: 10px;
@@ -18,7 +15,7 @@
     }
   }
 
-  &__subtitle {
+  &__title {
     @include embolden();
     @include uppercase();
   }
@@ -29,8 +26,12 @@
     font-size: $small-font-size;
 
     @include breakpoint(large) {
-      margin-left: 25px;
+      margin-left: 15px;
       float: none;
     }
+  }
+
+  &__content {
+    padding: 25px 0;
   }
 }

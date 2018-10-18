@@ -12,12 +12,12 @@ let cartFactory = new CartFactory();
 let mockCart = cartFactory.create();
 mockCart.items.push(cartFactory.createCartItem());
 mockCart.items.push(cartFactory.createCartItem());
-let stubSubtitle = 'subtitle';
+let stubTitle = 'title';
 
-@Component({template: '<cart [cart]="cartValue" [subtitle]="subtitleValue"></cart>'})
+@Component({template: '<cart [cart]="cartValue" [title]="titleValue"></cart>'})
 class TestCartWrapper {
   cartValue: Cart;
-  subtitleValue: string;
+  titleValue: string;
 }
 
 @Component({selector: 'cart-item', template: ''})
@@ -47,7 +47,7 @@ describe('CartComponent', () => {
     component = fixture.componentInstance;
 
     component.cartValue = mockCart;
-    component.subtitleValue = stubSubtitle;
+    component.titleValue = stubTitle;
 
     fixture.detectChanges();
     cartItems = fixture.debugElement.queryAll(By.css('cart-item'));
@@ -66,8 +66,8 @@ describe('CartComponent', () => {
     expect(cart.cart).toEqual(mockCart);
   });
 
-  it('can be passed a subtitle as input', () => {
-    expect(cart.subtitle).toEqual(stubSubtitle);
+  it('can be passed a title as input', () => {
+    expect(cart.title).toEqual(stubTitle);
   });
 
   it('renders a <cart-item> for every cart.items', () => {
@@ -109,24 +109,24 @@ describe('CartComponent', () => {
     });
   });
 
-  describe('when subtitle is null', () => {
+  describe('when title is null', () => {
     
-    it('should not render .cart__title', () => {
-      cart.subtitle = null;
+    it('should not render .cart__header', () => {
+      cart.title = null;
       fixture.detectChanges();
 
-      let cartTitleElement = fixture.debugElement.query(By.css('.cart__title'));
+      let cartHeaderElement = fixture.debugElement.query(By.css('.cart__header'));
 
-      expect(cartTitleElement).toBeNull();
+      expect(cartHeaderElement).toBeNull();
     });
   });
 
-  describe('when subtitle is defined', () => {
+  describe('when title is defined', () => {
     
-    it('should render .cart__title', () => {
-      let cartTitleElement = fixture.debugElement.query(By.css('.cart__title'));
+    it('should render .cart__header', () => {
+      let cartHeaderElement = fixture.debugElement.query(By.css('.cart__header'));
 
-      expect(cartTitleElement).not.toBeNull();
+      expect(cartHeaderElement).not.toBeNull();
     });
   });
 

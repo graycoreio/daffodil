@@ -9,7 +9,7 @@ import { Cart } from '@daffodil/core';
 export class CartComponent implements OnInit {
 
   @Input() cart: Cart;
-  @Input() subtitle: string;
+  @Input() title: string;
 
   hasOneItem: boolean = false;
 
