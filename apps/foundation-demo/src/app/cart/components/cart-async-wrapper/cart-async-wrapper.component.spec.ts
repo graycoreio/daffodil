@@ -23,7 +23,7 @@ class TestCartAsyncWrapper {
 })
 class CartMock { 
   @Input() cart: Cart;
-  @Input() subtitle: string;
+  @Input() title: string;
 }
 
 @Component({
@@ -116,8 +116,8 @@ describe('TestCartAsyncWrapper', () => {
       expect(cartComponent.componentInstance.cart).toEqual(cart);
     });
 
-    it('should set subtitle to "your cart"', () => {
-      expect(cartComponent.componentInstance.subtitle).toEqual('your cart');
+    it('should set title to "Your Cart"', () => {
+      expect(cartComponent.componentInstance.title).toEqual('Your Cart');
     });
   });
 
