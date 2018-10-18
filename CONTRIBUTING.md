@@ -229,9 +229,6 @@ reference GitHub issues that this commit **Closes**.
 
 A detailed explanation can be found in this [document][commit-message-format].
 
-### Styling
-Child components should not define their own outer padding or margin. This is to ensure the component can be reused in other parts of an app. The parent component should define the padding and margin between its child components.
-
 
 [coc]: https://github.com/graycoreio/daffodil/code-of-conduct/blob/master/CODE_OF_CONDUCT.md
 [commit-message-format]: https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#
