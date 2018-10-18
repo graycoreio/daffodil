@@ -6,12 +6,13 @@
   
   &__header {
     @include section-divider();
-    font-size: 1rem;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
 
     @include breakpoint(large) {
-      margin-bottom: 25px;
-      padding-bottom: 15px;
+      justify-content: flex-start;
     }
   }
 
@@ -21,13 +22,11 @@
   }
 
   &__item-count {
-    float: right;
     color: $dark-gray;
     font-size: $small-font-size;
 
     @include breakpoint(large) {
       margin-left: 15px;
-      float: none;
     }
   }
 
