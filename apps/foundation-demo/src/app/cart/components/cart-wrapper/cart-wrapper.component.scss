@@ -3,7 +3,7 @@
 .cart-wrapper {
   display: grid;
   grid-template-columns: 1fr;
-  padding: 25px;
+  padding: 50px 25px;
 
   @include breakpoint(large) {
     grid-template-columns: 2fr 1fr;
@@ -13,15 +13,6 @@
 
   @include breakpoint(xxlarge) {
     padding: 75px 0;
-  }
-
-  &__wrapper {
-    padding: 25px 0;
-    margin-bottom: 15px;
-
-    @include breakpoint(large) {
-      padding: 0 0 50px 0;
-    }
   }
 
   &__button {
