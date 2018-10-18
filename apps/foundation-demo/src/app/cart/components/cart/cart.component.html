@@ -3,8 +3,10 @@
     <span class="cart__title">{{title}}</span>
     <span class="cart__item-count">{{cart.items.length}} {{itemText}}</span>
   </div>
-  <cart-item *ngFor="let item of cart.items" [item]="item"></cart-item>
-  <div *ngIf="cart.items.length === 0">
-    There are no items in your cart.
+  <div class="cart__content">
+    <cart-item *ngFor="let item of cart.items" [item]="item"></cart-item>
+    <div *ngIf="cart.items.length === 0">
+      There are no items in your cart.
+    </div>
   </div>
 </div>

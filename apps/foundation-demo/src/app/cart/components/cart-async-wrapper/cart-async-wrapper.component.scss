@@ -60,7 +60,6 @@
   &__cart-wrapper {
     padding: 25px 0;
     margin-bottom: 15px;
-    @include section-divider();
 
     @include breakpoint(large) {
       padding: 0 0 50px 0;
