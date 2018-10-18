@@ -1,18 +1,21 @@
 <div class="cart-wrapper">
-  <div class="cart-wrapper__main">
-    <cart [cart]="cart" [title]="'Your Cart'"></cart>
-    <button type="button" daff-button continue-shopping class="cart-wrapper__continue-shopping" *ngIf="isCartEmpty">
-      Continue Shopping
-    </button>
-  </div>
-  <div class="cart-wrapper__side-pane">
-    <div class="cart-wrapper__summary" *ngIf="!isCartEmpty">
+    <div class="cart-wrapper__main">
+      <cart [cart]="cart" [title]="'Your Cart'"></cart>
+      <button type="button" daff-button continue-shopping class="cart-wrapper__continue-shopping" *ngIf="isCartEmpty">
+        Continue Shopping
+      </button>
+    </div>
+    <div class="cart-wrapper__side-pane">
+      <div class="cart-wrapper__summary" *ngIf="!isCartEmpty">
         <div class="cart-wrapper__summary-title">cart summary</div>
         <promotion class="cart-wrapper__promotion"></promotion>
         <cart-summary class="cart-wrapper__cart-summary" [cart]="cart"></cart-summary>
-        <proceed-to-checkout class="cart-wrapper__proceed-to-checkout"></proceed-to-checkout>    
+        <button type="button" daff-button proceed-to-checkout class="cart-wrapper__proceed-to-checkout">
+          Proceed to Checkout
+        </button>
+      </div>
+      <help-box class="cart-wrapper__help-box"></help-box>
     </div>
-    <help-box class="cart-wrapper__help-box"></help-box>
+    <div class="cart-wrapper__takes-up-space"></div>
   </div>
-  <div class="cart-wrapper__takes-up-space"></div>
-</div>
+  

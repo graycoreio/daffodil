@@ -1,18 +1,20 @@
-import { Component } from '@angular/core';
+import { Directive, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
-@Component({
-  selector: 'proceed-to-checkout',
-  templateUrl: './proceed-to-checkout.component.html',
-  styleUrls: ['./proceed-to-checkout.component.scss']
+@Directive({
+  selector: '[proceed-to-checkout]'
 })
 export class ProceedToCheckoutComponent {
+
+  @HostListener('click') onClick() {
+    this.navigateToCheckout()
+  }
 
   constructor(
     private router: Router
   ) { }
 
-  navigateToCheckout() {
+  private navigateToCheckout() {
     this.router.navigateByUrl('/checkout');
   }
 }
