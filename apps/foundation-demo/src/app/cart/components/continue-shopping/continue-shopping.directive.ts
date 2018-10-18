@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
   selector: '[continue-shopping]'
 })
 
-export class ContinueShoppingComponent {
+export class ContinueShoppingDirective {
 
   @HostListener('click') onClick() {
     this.navigateToShopping()
