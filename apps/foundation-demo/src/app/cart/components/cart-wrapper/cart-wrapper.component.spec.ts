@@ -7,13 +7,13 @@ import { of } from 'rxjs/observable/of';
 import { Cart } from '@daffodil/core';
 import { CartFactory } from '@daffodil/core/testing';
 
-import { CartAsyncWrapperComponent } from './cart-async-wrapper.component';
+import { CartWrapperComponent } from './cart-wrapper.component';
 
 let cartFactory = new CartFactory();
 let cart = cartFactory.create();
 
-@Component({template: '<cart-async-wrapper [cart]="cartValue | async"></cart-async-wrapper>'})
-class TestCartAsyncWrapper {
+@Component({template: '<cart-wrapper [cart]="cartValue | async"></cart-wrapper>'})
+class TestCartWrapper {
   cartValue: Observable<Cart>;
 }
 
@@ -58,10 +58,10 @@ class ProceedToCheckoutMock {}
 })
 class ContinueShoppingMock {}
 
-describe('TestCartAsyncWrapper', () => {
-  let component: TestCartAsyncWrapper;
-  let fixture: ComponentFixture<TestCartAsyncWrapper>;
-  let cartAsyncWrapperComponent: CartAsyncWrapperComponent;
+describe('TestCartWrapper', () => {
+  let component: TestCartWrapper;
+  let fixture: ComponentFixture<TestCartWrapper>;
+  let cartWrapperComponent: CartWrapperComponent;
   let cartComponent;
   let promotionComponent;
   let cartSummaryComponent;
@@ -72,25 +72,25 @@ describe('TestCartAsyncWrapper', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        TestCartAsyncWrapper,
+        TestCartWrapper,
         CartMock,
         CartSummaryMock,
         HelpBoxMock,
         ProceedToCheckoutMock,
         ContinueShoppingMock,
         PromotionMock,
-        CartAsyncWrapperComponent
+        CartWrapperComponent
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestCartAsyncWrapper);
+    fixture = TestBed.createComponent(TestCartWrapper);
     component = fixture.componentInstance;
     component.cartValue = of(cart);
     
-    cartAsyncWrapperComponent = fixture.debugElement.query(By.css('cart-async-wrapper')).componentInstance;
+    cartWrapperComponent = fixture.debugElement.query(By.css('cart-wrapper')).componentInstance;
 
     fixture.detectChanges();
 
@@ -107,7 +107,7 @@ describe('TestCartAsyncWrapper', () => {
   });
 
   it('should be able to take cart as input', () => {
-    expect(cartAsyncWrapperComponent.cart).toEqual(cart);
+    expect(cartWrapperComponent.cart).toEqual(cart);
   });
 
   describe('on <cart>', () => {
@@ -133,8 +133,8 @@ describe('TestCartAsyncWrapper', () => {
 
     describe('and cart is empty', () => {
 
-      it('should not render .cart-async-wrapper__summary-title', () => {
-        let summaryTitleElement = fixture.debugElement.query(By.css('.cart-async-wrapper__summary-title'));
+      it('should not render .cart-wrapper__summary-title', () => {
+        let summaryTitleElement = fixture.debugElement.query(By.css('.cart-wrapper__summary-title'));
 
         expect(summaryTitleElement).toBeNull();
       });
@@ -151,7 +151,7 @@ describe('TestCartAsyncWrapper', () => {
         expect(proceedToCheckoutComponent).toBeNull();
       });
 
-      it('should render cart-async-wrapper__continue-shopping-wrapper', () => {
+      it('should render cart-wrapper__continue-shopping-wrapper', () => {
         expect(continueShoppingComponent).not.toBeNull();
       });
     });
@@ -165,8 +165,8 @@ describe('TestCartAsyncWrapper', () => {
         fixture.detectChanges();
       });
 
-      it('should render .cart-async-wrapper__summary-title', () => {
-        let summaryTitleElement = fixture.debugElement.query(By.css('.cart-async-wrapper__summary-title'));
+      it('should render .cart-wrapper__summary-title', () => {
+        let summaryTitleElement = fixture.debugElement.query(By.css('.cart-wrapper__summary-title'));
         
         expect(summaryTitleElement).not.toBeNull();
       });

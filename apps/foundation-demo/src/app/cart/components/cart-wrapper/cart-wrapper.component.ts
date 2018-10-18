@@ -2,11 +2,11 @@ import { Component, Input } from '@angular/core';
 import { Cart } from '@daffodil/core';
 
 @Component({
-  selector: 'cart-async-wrapper',
-  templateUrl: './cart-async-wrapper.component.html',
-  styleUrls: ['./cart-async-wrapper.component.scss']
+  selector: 'cart-wrapper',
+  templateUrl: './cart-wrapper.component.html',
+  styleUrls: ['./cart-wrapper.component.scss']
 })
-export class CartAsyncWrapperComponent {
+export class CartWrapperComponent {
 
   @Input() cart: Cart;
 
