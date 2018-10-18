@@ -8,6 +8,7 @@ import { ContinueShoppingModule } from '../continue-shopping/continue-shopping.m
 import { MiscModule } from '../../../misc/misc.module';
 import { CartModule } from '../cart/cart.module';
 import { DaffButtonModule } from '../../../design/atoms/button/button.module';
+import { DaffButtonSetModule } from '../../../design/molecules/button-set/button-set.module';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { DaffButtonModule } from '../../../design/atoms/button/button.module';
     ProceedToCheckoutModule,
     ContinueShoppingModule,
     MiscModule,
-    DaffButtonModule
+    DaffButtonModule,
+    DaffButtonSetModule
   ],
   declarations: [
     CartWrapperComponent
