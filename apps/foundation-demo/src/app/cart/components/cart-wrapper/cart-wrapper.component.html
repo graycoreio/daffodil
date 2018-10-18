@@ -1,7 +1,9 @@
 <div class="cart-wrapper">
   <div class="cart-wrapper__main">
     <cart [cart]="cart" [title]="'Your Cart'"></cart>
-    <continue-shopping class="cart-wrapper__continue-shopping" *ngIf="isCartEmpty"></continue-shopping>
+    <button type="button" daff-button continue-shopping class="cart-wrapper__continue-shopping" *ngIf="isCartEmpty">
+      Continue Shopping
+    </button>
   </div>
   <div class="cart-wrapper__side-pane">
     <div class="cart-wrapper__summary" *ngIf="!isCartEmpty">

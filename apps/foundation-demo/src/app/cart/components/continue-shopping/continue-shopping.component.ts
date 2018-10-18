@@ -1,17 +1,21 @@
-import { Component } from '@angular/core';
+import { Directive, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
-@Component({
-  selector: 'continue-shopping',
-  templateUrl: './continue-shopping.component.html'
+@Directive({
+  selector: '[continue-shopping]'
 })
+
 export class ContinueShoppingComponent {
 
+  @HostListener('click') onClick() {
+    this.navigateToShopping()
+  }
+  
   constructor(
     private router: Router
   ) { }
 
-  navigateToShopping() {
+  private navigateToShopping() {
     this.router.navigateByUrl('/product-grid');
   }
 }
