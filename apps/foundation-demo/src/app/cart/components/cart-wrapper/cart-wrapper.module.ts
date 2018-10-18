@@ -7,6 +7,7 @@ import { ProceedToCheckoutModule } from '../proceed-to-checkout/proceed-to-check
 import { ContinueShoppingModule } from '../continue-shopping/continue-shopping.module';
 import { MiscModule } from '../../../misc/misc.module';
 import { CartModule } from '../cart/cart.module';
+import { DaffButtonModule } from '../../../design/atoms/button/button.module';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { CartModule } from '../cart/cart.module';
     CartSummaryModule,
     ProceedToCheckoutModule,
     ContinueShoppingModule,
-    MiscModule
+    MiscModule,
+    DaffButtonModule
   ],
   declarations: [
     CartWrapperComponent
