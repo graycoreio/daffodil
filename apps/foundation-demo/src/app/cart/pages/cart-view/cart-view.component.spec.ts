@@ -8,6 +8,7 @@ import { Cart } from '@daffodil/core';
 import { CartFactory } from '@daffodil/core/testing';
 
 import { CartViewComponent } from './cart-view.component';
+import { DaffContainerModule } from '../../../design/atoms/container/container.module';
 
 let cartFactory = new CartFactory();
 let cart = cartFactory.create();
@@ -45,6 +46,9 @@ describe('CartViewComponent', () => {
         MockCartContainerComponent,
         MockCartWrapperComponent,
         MockLoadingIconComponent
+      ],
+      imports: [
+        DaffContainerModule
       ]
     })
     .compileComponents();
@@ -118,6 +122,14 @@ describe('CartViewComponent', () => {
 
     it('should not render loadingIcon', () => {
       expect(loadingIcon).toBeNull();
+    });
+  });
+
+  describe('on <daff-container>', () => {
+    it('should set size="medium"', () => {
+      let container = fixture.debugElement.query(By.css('daff-container'));
+
+      expect(container.componentInstance.size).toEqual('medium');
     });
   });
 });
