@@ -151,7 +151,7 @@ describe('TestCartWrapper', () => {
         expect(proceedToCheckoutComponent).toBeNull();
       });
 
-      it('should render cart-wrapper__continue-shopping-wrapper', () => {
+      it('should render cart-wrapper__continue-shopping', () => {
         expect(continueShoppingComponent).not.toBeNull();
       });
     });
