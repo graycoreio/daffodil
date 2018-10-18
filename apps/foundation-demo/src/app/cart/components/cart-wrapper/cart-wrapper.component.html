@@ -10,9 +10,14 @@
         <div class="cart-wrapper__summary-title">cart summary</div>
         <promotion class="cart-wrapper__promotion"></promotion>
         <cart-summary class="cart-wrapper__cart-summary" [cart]="cart"></cart-summary>
-        <button type="button" daff-button proceed-to-checkout class="cart-wrapper__proceed-to-checkout">
-          Proceed to Checkout
-        </button>
+        <div daff-button-set class="cart-wrapper__button-set">
+          <button type="button" daff-button proceed-to-checkout>
+            Proceed to Checkout
+          </button>
+          <button type="button" daff-stroked-button continue-shopping>
+            Continue Shopping
+          </button>
+        </div>
       </div>
       <help-box class="cart-wrapper__help-box"></help-box>
     </div>
