@@ -1,6 +1,21 @@
 <div class="cart-totals">
-  <cart-subtotal [title]="'subtotal'" [value]="'$' + cart.subtotal"></cart-subtotal>
-  <cart-subtotal [title]="'estimated shipping'" [value]="'FREE (HC)'"></cart-subtotal>
-  <cart-subtotal [title]="'estimated tax'" [value]="'$' + cartTax"></cart-subtotal>
-  <cart-grand-total [title]="'estimated total'" [value]="'$' + cart.grand_total"></cart-grand-total>
+  <cart-totals-item>
+    <ng-container cart-total-label>Subtotal</ng-container>
+    <ng-container cart-total-value>{{ cart.subtotal | currency }}</ng-container>
+  </cart-totals-item>
+
+  <cart-totals-item>
+    <ng-container cart-total-label>Estimated Shipping</ng-container>
+    <ng-container cart-total-value>FREE (HC)</ng-container>
+  </cart-totals-item>
+
+  <cart-totals-item>
+    <ng-container cart-total-label>Estimated Tax</ng-container>
+    <ng-container cart-total-value>{{ cartTax | currency }}</ng-container>
+  </cart-totals-item>
+
+  <cart-totals-item emphasize="true">
+    <ng-container cart-total-label>Estimated Total</ng-container>
+    <ng-container cart-total-value>{{ cart.grand_total | currency }}</ng-container>
+  </cart-totals-item>
 </div>
