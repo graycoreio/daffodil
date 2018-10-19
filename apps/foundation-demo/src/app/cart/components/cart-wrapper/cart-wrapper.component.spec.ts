@@ -33,10 +33,10 @@ class CartMock {
 class PromotionMock {}
 
 @Component({
-  selector: 'cart-summary',
+  selector: 'cart-totals',
   template: ''
 })
-class CartSummaryMock {
+class CartTotalsMock {
   @Input() cart: Cart;
 }
 
@@ -62,7 +62,7 @@ describe('CartWrapper', () => {
   let cartWrapperComponent: CartWrapperComponent;
   let cartComponent;
   let promotionComponent;
-  let cartSummaryComponent;
+  let cartTotalsComponent;
   let helpBoxComponent;
   let proceedToCheckoutComponent;
   let continueShoppingComponent;
@@ -72,7 +72,7 @@ describe('CartWrapper', () => {
       declarations: [ 
         TestCartWrapper,
         CartMock,
-        CartSummaryMock,
+        CartTotalsMock,
         HelpBoxMock,
         ProceedToCheckoutMock,
         ContinueShoppingMock,
@@ -94,7 +94,7 @@ describe('CartWrapper', () => {
 
     cartComponent = fixture.debugElement.query(By.css('cart'));
     promotionComponent = fixture.debugElement.query(By.css('promotion'));
-    cartSummaryComponent = fixture.debugElement.query(By.css('cart-summary'));
+    cartTotalsComponent = fixture.debugElement.query(By.css('cart-totals'));
     helpBoxComponent = fixture.debugElement.query(By.css('help-box'));
     proceedToCheckoutComponent = fixture.debugElement.query(By.css('[proceed-to-checkout]'));
     continueShoppingComponent = fixture.debugElement.query(By.css('[continue-shopping]'));
@@ -141,8 +141,8 @@ describe('CartWrapper', () => {
         expect(promotionComponent).toBeNull();
       });
 
-      it('should not render <cart-summary>', () => {
-        expect(cartSummaryComponent).toBeNull();
+      it('should not render <cart-totals>', () => {
+        expect(cartTotalsComponent).toBeNull();
       });
       
       it('should not render <proceed-to-checkout>', () => {
@@ -175,13 +175,13 @@ describe('CartWrapper', () => {
         expect(promotionComponent).not.toBeNull();
       });
 
-      it('should render <cart-summary>', () => {
-        let cartSummaryComponent = fixture.debugElement.query(By.css('cart-summary'))
-        expect(cartSummaryComponent).not.toBeNull();
+      it('should render <cart-totals>', () => {
+        let cartTotalsComponent = fixture.debugElement.query(By.css('cart-totals'))
+        expect(cartTotalsComponent).not.toBeNull();
       });
     
       it('should set cart to value passed by the cart-container directive', () => {
-        expect(cartSummaryComponent.componentInstance.cart).toEqual(cart);
+        expect(cartTotalsComponent.componentInstance.cart).toEqual(cart);
       });
 
       it('should render <proceed-to-checkout>', () => {

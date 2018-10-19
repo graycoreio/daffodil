@@ -5,7 +5,7 @@ import { Component, Input } from '@angular/core';
 import { Cart } from '@daffodil/core';
 import { CartFactory } from '@daffodil/core/testing';
 
-import { CartSummaryComponent } from './cart-summary.component';
+import { CartTotalsComponent } from './cart-totals.component';
 
 let cartFactory = new CartFactory();
 let mockCart = cartFactory.create();
@@ -16,8 +16,8 @@ mockCart.items.push(cartFactory.createCartItem());
 mockCart.items[0].tax_amount = tax1;
 mockCart.items[1].tax_amount = tax2;
 
-@Component({template: '<cart-summary [cart]="cartValue"></cart-summary>'})
-class TestCartSummaryWrapper {
+@Component({template: '<cart-totals [cart]="cartValue"></cart-totals>'})
+class TestCartTotalsWrapper {
   @Input() cartValue: Cart;
 }
 
@@ -39,17 +39,17 @@ class MockCartGrandTotalComponent {
   @Input() value: string;
 }
 
-describe('CartSummaryComponent', () => {
-  let component: TestCartSummaryWrapper;
-  let fixture: ComponentFixture<TestCartSummaryWrapper>;
-  let cartSummaryComponent: CartSummaryComponent;
+describe('CartTotalsComponent', () => {
+  let component: TestCartTotalsWrapper;
+  let fixture: ComponentFixture<TestCartTotalsWrapper>;
+  let cartTotalsComponent: CartTotalsComponent;
   let cartSubtotalComponent: MockCartSubtotalComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        CartSummaryComponent,
-        TestCartSummaryWrapper,
+        CartTotalsComponent,
+        TestCartTotalsWrapper,
         MockProceedToCheckoutComponent,
         MockCartSubtotalComponent,
         MockCartGrandTotalComponent
@@ -59,17 +59,17 @@ describe('CartSummaryComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestCartSummaryWrapper);
+    fixture = TestBed.createComponent(TestCartTotalsWrapper);
     component = fixture.componentInstance;
 
     component.cartValue = mockCart;
 
     fixture.detectChanges();
-    cartSummaryComponent = fixture.debugElement.query(By.css('cart-summary')).componentInstance;
+    cartTotalsComponent = fixture.debugElement.query(By.css('cart-totals')).componentInstance;
   });
 
   it('can be passed a Cart object', () => {
-    expect(cartSummaryComponent.cart).toEqual(mockCart);
+    expect(cartTotalsComponent.cart).toEqual(mockCart);
   });
 
   describe('ngOnInit', () => {
@@ -81,7 +81,7 @@ describe('CartSummaryComponent', () => {
     });
 
     it('should set cartTax to the aggregated tax of all cart items', () => {
-      expect(cartSummaryComponent.cartTax).toEqual(expectedTax);
+      expect(cartTotalsComponent.cartTax).toEqual(expectedTax);
     });
   });
 
@@ -126,7 +126,7 @@ describe('CartSummaryComponent', () => {
     });
   
     it('should set value', () => {
-      expect(cartSubtotalComponent.value).toEqual('$' + cartSummaryComponent.cartTax);
+      expect(cartSubtotalComponent.value).toEqual('$' + cartTotalsComponent.cartTax);
     });
   });
 

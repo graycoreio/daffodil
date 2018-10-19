@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CartSummaryComponent } from './cart-summary.component';
+import { CartTotalsComponent } from './cart-totals.component';
 import { CartSubtotalModule } from '../cart-subtotal/cart-subtotal.module';
 import { CartGrandTotalModule } from '../cart-grand-total/cart-grand-total.module';
 
@@ -11,10 +11,10 @@ import { CartGrandTotalModule } from '../cart-grand-total/cart-grand-total.modul
     CartGrandTotalModule
   ],
   declarations: [
-    CartSummaryComponent
+    CartTotalsComponent
   ],
   exports: [
-    CartSummaryComponent
+    CartTotalsComponent
   ]
 })
-export class CartSummaryModule { }
+export class CartTotalsModule { }
