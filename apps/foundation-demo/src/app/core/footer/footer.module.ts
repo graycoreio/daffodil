@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DaffListModule } from '@daffodil/design';
-import { DaffButtonSetModule } from '@daffodil/design';
+import { 
+  DaffListModule, 
+  DaffButtonSetModule, 
+  DaffButtonModule, 
+  DaffContainerModule 
+} from '@daffodil/design';
 
 import { FooterComponent } from './footer.component';
-import { DaffButtonModule } from '../../design/atoms/button/button.module';
-import { DaffContainerModule } from '../../design/atoms/container/container.module';
 
 @NgModule({
   imports: [
