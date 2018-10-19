@@ -34,7 +34,7 @@ describe('ContinueShoppingDirective', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('when button is clicked', () => {
+  fdescribe('when button is clicked', () => {
     
     it('should call router.navigateByUrl', () => {
       fixture.debugElement.query(By.css('button')).nativeElement.click();
