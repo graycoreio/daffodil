@@ -13,7 +13,8 @@ import {
   AccordionModule, 
   DaffQtyDropdownModule, 
   DaffImageGalleryModule, 
-  DaffContainerModule 
+  DaffContainerModule,
+  QtyDropdownComponent 
 } from '@daffodil/design';
 
 
@@ -99,7 +100,7 @@ describe('ProductComponent', () => {
 
   describe('on <qty-dropdown>', () => {
 
-    let qtyDropdownComponent;
+    let qtyDropdownComponent: QtyDropdownComponent;
 
     beforeEach(() => {
       qtyDropdownComponent = fixture.debugElement.query(By.css('qty-dropdown')).componentInstance;
