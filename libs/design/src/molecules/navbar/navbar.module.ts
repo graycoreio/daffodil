@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { DaffNavbarComponent } from './navbar/navbar.component';
+import { DaffNavbarComponent } from './navbar.component';
 
 @NgModule({
   declarations: [
