@@ -1,0 +1,17 @@
+@import 'daffodil-util';
+
+.cart-totals-item {
+  &__label {
+    line-height: 1.7rem;
+    @include uppercase();
+    
+    & + span {
+      float: right;
+    }
+  }
+
+  &.emphasize {
+    @include embolden();
+    color: get-color(secondary);
+  }
+}

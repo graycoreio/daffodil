@@ -6,6 +6,8 @@ import { Cart } from '@daffodil/core';
 import { CartFactory } from '@daffodil/core/testing';
 
 import { CartTotalsComponent } from './cart-totals.component';
+import { CartTotalsItemModule } from '../cart-totals-item/cart-totals-item.module';
+import { CartTotalsItemComponent } from '../cart-totals-item/cart-totals-item.component';
 
 let cartFactory = new CartFactory();
 let mockCart = cartFactory.create();
@@ -27,32 +29,21 @@ class TestCartTotalsWrapper {
 })
 class MockProceedToCheckoutComponent {}
 
-@Component({selector: 'cart-subtotal', template: ''})
-class MockCartSubtotalComponent {
-  @Input() title: string;
-  @Input() value: string;
-}
-
-@Component({selector: 'cart-grand-total', template: ''})
-class MockCartGrandTotalComponent {
-  @Input() title: string;
-  @Input() value: string;
-}
-
-describe('CartTotalsComponent', () => {
+fdescribe('CartTotalsComponent', () => {
   let component: TestCartTotalsWrapper;
   let fixture: ComponentFixture<TestCartTotalsWrapper>;
   let cartTotalsComponent: CartTotalsComponent;
-  let cartSubtotalComponent: MockCartSubtotalComponent;
+  let cartTotalsItemComponent: any;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         CartTotalsComponent,
         TestCartTotalsWrapper,
-        MockProceedToCheckoutComponent,
-        MockCartSubtotalComponent,
-        MockCartGrandTotalComponent
+        MockProceedToCheckoutComponent
+      ],
+      imports: [
+        CartTotalsItemModule
       ]
     })
     .compileComponents();
@@ -85,65 +76,64 @@ describe('CartTotalsComponent', () => {
     });
   });
 
-  describe('on first <cart-subtotal>', () => {
+  describe('on first <cart-totals-item>', () => {
 
     beforeEach(() => {
-      cartSubtotalComponent = fixture.debugElement.queryAll(By.css('cart-subtotal'))[0].componentInstance;
+      cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('cart-totals-item'))[0].nativeElement;
     });
   
-    it('should set title', () => {
-      expect(cartSubtotalComponent.title).toEqual('subtotal');
+    it('should set label', () => {
+      expect(cartTotalsItemComponent.innerHTML).toContain('Subtotal');
     });
   
     it('should set value', () => {
-      expect(cartSubtotalComponent.value).toEqual('$' + mockCart.subtotal);
+      expect(cartTotalsItemComponent.innerHTML).toContain('$' + mockCart.subtotal);
     });
   });
 
-  describe('on second <cart-subtotal>', () => {
+  describe('on second <cart-totals-item>', () => {
 
     beforeEach(() => {
-      cartSubtotalComponent = fixture.debugElement.queryAll(By.css('cart-subtotal'))[1].componentInstance;
+      cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('cart-totals-item'))[1].nativeElement;
+      console.log(cartTotalsItemComponent)
     });
   
-    it('should set title', () => {
-      expect(cartSubtotalComponent.title).toEqual('estimated shipping');
+    it('should set label', () => {
+      expect(cartTotalsItemComponent.innerHTML).toContain('Estimated Shipping');
     });
   
     it('should set value', () => {
-      expect(cartSubtotalComponent.value).toEqual('FREE (HC)');
+      expect(cartTotalsItemComponent.innerHTML).toContain('FREE (HC)');
     });
   });
 
-  describe('on third <cart-subtotal>', () => {
+  describe('on third <cart-totals-item>', () => {
 
     beforeEach(() => {
-      cartSubtotalComponent = fixture.debugElement.queryAll(By.css('cart-subtotal'))[2].componentInstance;
+      cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('cart-totals-item'))[2].nativeElement;
     });
   
-    it('should set title', () => {
-      expect(cartSubtotalComponent.title).toEqual('estimated tax');
+    it('should set label', () => {
+      expect(cartTotalsItemComponent.innerHTML).toContain('Estimated Tax');
     });
   
     it('should set value', () => {
-      expect(cartSubtotalComponent.value).toEqual('$' + cartTotalsComponent.cartTax);
+      expect(cartTotalsItemComponent.innerHTML).toContain('$' + cartTotalsComponent.cartTax);
     });
   });
 
-  describe('on <cart-grand-total>', () => {
-  
-    let cartGrandTotalComponent: MockCartGrandTotalComponent;
+  describe('on fourth <cart-totals-item>', () => {
 
     beforeEach(() => {
-      cartGrandTotalComponent = fixture.debugElement.query(By.css('cart-grand-total')).componentInstance;      
+      cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('cart-totals-item'))[3].nativeElement;
     });
-
-    it('should set title', () => {
-      expect(cartGrandTotalComponent.title).toEqual('estimated total');
+  
+    it('should set label', () => {
+      expect(cartTotalsItemComponent.innerHTML).toContain('Estimated Total');
     });
-
+  
     it('should set value', () => {
-      expect(cartGrandTotalComponent.value).toEqual('$' + mockCart.grand_total);
+      expect(cartTotalsItemComponent.innerHTML).toContain('$' + cartTotalsComponent.cart.grand_total);
     });
   });
 });
