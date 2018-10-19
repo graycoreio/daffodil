@@ -9,7 +9,7 @@
       <div class="cart-wrapper__summary" *ngIf="!isCartEmpty">
         <div class="cart-wrapper__summary-title">cart summary</div>
         <promotion class="cart-wrapper__promotion"></promotion>
-        <cart-summary class="cart-wrapper__cart-summary" [cart]="cart"></cart-summary>
+        <cart-totals class="cart-wrapper__cart-totals" [cart]="cart"></cart-totals>
         <div daff-button-set class="cart-wrapper__button-set">
           <button type="button" daff-button proceed-to-checkout>
             Proceed to Checkout
