@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 @Directive({
   selector: '[proceed-to-checkout]'
 })
-export class ProceedToCheckoutComponent {
+
+export class ProceedToCheckoutDirective {
 
   @HostListener('click') onClick() {
     this.navigateToCheckout()
