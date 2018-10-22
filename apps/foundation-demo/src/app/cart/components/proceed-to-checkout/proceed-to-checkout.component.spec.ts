@@ -43,7 +43,7 @@ class TestProceedToCheckoutDirective {}
     expect(fixture.debugElement.query(By.css('.button'))).toBeDefined();
   });
 
-  fdescribe('when button is clicked', () => {
+  describe('when button is clicked', () => {
     
     it('should call router.navigateByUrl', () => {
       fixture.debugElement.query(By.css('button')).nativeElement.click();
