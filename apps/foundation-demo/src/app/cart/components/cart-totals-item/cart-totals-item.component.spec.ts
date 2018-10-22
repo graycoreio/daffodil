@@ -54,7 +54,7 @@ fdescribe('CartTotalsItemComponent', () => {
     expect(cartTotalsItemComponent.nativeElement.innerHTML).toContain('value');
   });
 
-  fit('should add the emphasize class to cart-totals-item when emphasize is true', () => {
+  it('should add the emphasize class to cart-totals-item when emphasize is true', () => {
     component.emphasize=true;
     fixture.detectChanges();
 
