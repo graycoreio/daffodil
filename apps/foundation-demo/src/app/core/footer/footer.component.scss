@@ -18,4 +18,8 @@
   @include breakpoint(xxlarge) {
     padding: 75px 0;
   }
+
+  a {
+    text-decoration: none;
+  }
 }
