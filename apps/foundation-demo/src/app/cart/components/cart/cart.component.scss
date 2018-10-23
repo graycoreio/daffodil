@@ -9,7 +9,7 @@
   
   &__title {
     @include section-divider();
-    font-size: $global-font-size;
+    font-size: 1rem;
     padding-bottom: 10px;
 
     @include breakpoint(large) {
