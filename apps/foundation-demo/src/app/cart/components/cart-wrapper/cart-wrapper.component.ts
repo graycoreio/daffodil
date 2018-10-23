@@ -10,7 +10,15 @@ export class CartWrapperComponent {
 
   @Input() cart: Cart;
 
-  get isCartEmpty() {
+  get isCartEmpty():boolean {
     return this.cart.items.length === 0;
+  }
+
+  get hasOneItem():boolean {
+    return this.cart.items.length === 1;
+  }
+
+  get itemText():string {
+    return this.hasOneItem ? 'Item' : 'Items';
   }
 }
