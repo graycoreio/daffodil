@@ -48,8 +48,8 @@
   }
 
   &__button {
-    background-color: get-color(secondary);
-    border: 1px solid get-color(secondary);
+    background-color: $accent;
+    border: 1px solid $accent;
     width: 40%;
     line-height: 1.5rem;
 
