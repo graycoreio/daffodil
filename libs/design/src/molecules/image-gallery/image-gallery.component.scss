@@ -1,4 +1,9 @@
 .image-gallery {
   display: flex;
   flex-direction: column;
+
+  &__image {
+    display: block;
+    max-width: 100%;
+  }
 }
