@@ -17,7 +17,7 @@ class TestCartTotalsItemWrapper {
   emphasize: boolean;
 }
 
-fdescribe('CartTotalsItemComponent', () => {
+describe('CartTotalsItemComponent', () => {
   let component: TestCartTotalsItemWrapper;
   let fixture: ComponentFixture<TestCartTotalsItemWrapper>;
 
@@ -59,7 +59,6 @@ fdescribe('CartTotalsItemComponent', () => {
     fixture.detectChanges();
 
     let cartTotalsItemComponent = fixture.debugElement.query(By.css('.cart-totals-item'));
-    console.log(cartTotalsItemComponent.nativeElement)
     expect(cartTotalsItemComponent.nativeElement.classList).toContain('emphasize');
   });
 });

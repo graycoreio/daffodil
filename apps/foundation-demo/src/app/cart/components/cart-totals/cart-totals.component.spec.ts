@@ -29,7 +29,7 @@ class TestCartTotalsWrapper {
 })
 class MockProceedToCheckoutComponent {}
 
-fdescribe('CartTotalsComponent', () => {
+describe('CartTotalsComponent', () => {
   let component: TestCartTotalsWrapper;
   let fixture: ComponentFixture<TestCartTotalsWrapper>;
   let cartTotalsComponent: CartTotalsComponent;
@@ -95,7 +95,6 @@ fdescribe('CartTotalsComponent', () => {
 
     beforeEach(() => {
       cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('cart-totals-item'))[1].nativeElement;
-      console.log(cartTotalsItemComponent)
     });
   
     it('should set label', () => {
