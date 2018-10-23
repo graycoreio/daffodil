@@ -8,13 +8,13 @@ import { Cart } from '@daffodil/core';
 import { CartFactory } from '@daffodil/core/testing';
 
 import { CartWrapperComponent } from './cart-wrapper.component';
+import { ContinueShoppingModule } from '../continue-shopping/continue-shopping.module';
+import { ProceedToCheckoutModule } from '../proceed-to-checkout/proceed-to-checkout.module';
+import { RouterTestingModule } from '@angular/router/testing';
 
-let cartFactory = new CartFactory();
-let cart = cartFactory.create();
-
-@Component({template: '<cart-wrapper [cart]="cartValue | async"></cart-wrapper>'})
+@Component({template: '<cart-wrapper [cart]="cartValue"></cart-wrapper>'})
 class TestCartWrapper {
-  cartValue: Observable<Cart>;
+  cartValue: Cart;
 }
 
 @Component({
@@ -66,6 +66,8 @@ describe('CartWrapper', () => {
   let helpBoxComponent;
   let proceedToCheckoutComponent;
   let continueShoppingComponent;
+  let cartFactory = new CartFactory();
+  let cart = cartFactory.create();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -86,7 +88,7 @@ describe('CartWrapper', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestCartWrapper);
     component = fixture.componentInstance;
-    component.cartValue = of(cart);
+    component.cartValue = cart;
     
     cartWrapperComponent = fixture.debugElement.query(By.css('cart-wrapper')).componentInstance;
 
@@ -112,10 +114,6 @@ describe('CartWrapper', () => {
     
     it('should set cart to value passed by cart-container directive', () => {
       expect(cartComponent.componentInstance.cart).toEqual(cart);
-    });
-
-    it('should set title to "Your Cart"', () => {
-      expect(cartComponent.componentInstance.title).toEqual('Your Cart');
     });
   });
 
@@ -158,7 +156,7 @@ describe('CartWrapper', () => {
       
       beforeEach(() => {
         cart.items.push(cartFactory.createCartItem());
-        component.cartValue = of(cart);
+        component.cartValue = cart;
 
         fixture.detectChanges();
       });
@@ -191,6 +189,81 @@ describe('CartWrapper', () => {
       it('should render <continue-shopping>', () => {
         expect(continueShoppingComponent).not.toBeNull();
       });
+    });
+  });
+
+  // Set cart item count depending on how many cart-items there are in cart
+
+  describe('isCartEmpty', () => {
+    it('should return true if there are no items in the cart', () => {
+      component.cartValue=cartFactory.create();
+      fixture.detectChanges();
+      expect(cartWrapperComponent.isCartEmpty).toEqual(true);
+    });
+
+    it('should return false if there are one or more items in the cart', () => {
+      let cart=cartFactory.create();
+      cart={
+        ...cart,
+        items: [...cart.items, cartFactory.createCartItem()]
+      }
+      component.cartValue=cart;
+      fixture.detectChanges();
+      expect(cartWrapperComponent.isCartEmpty).toEqual(false);
+    });
+  });
+
+  describe('hasOneItem', () => {
+    it('should return false if there are no items in the cart', () => {
+      component.cartValue=cartFactory.create();
+      fixture.detectChanges();
+      expect(cartWrapperComponent.hasOneItem).toEqual(false);
+    });
+
+    it('should return true if there is exactly one item in the cart', () => {
+      let cart=cartFactory.create();
+      cart={
+        ...cart,
+        items: [...cart.items, cartFactory.createCartItem()]
+      }
+      component.cartValue=cart;
+      fixture.detectChanges();
+      expect(cartWrapperComponent.hasOneItem).toEqual(true);
+    });
+
+    it('should return false if there are two or more items in the cart', () => {
+      let cart=cartFactory.create();
+      cart={
+        ...cart,
+        items: [...cart.items, cartFactory.createCartItem(), cartFactory.createCartItem()]
+      }
+      component.cartValue=cart;
+      fixture.detectChanges();
+      expect(cartWrapperComponent.hasOneItem).toEqual(false);
+    });
+  });
+
+  describe('getItemText', () => {
+    it('should return Item if there is one item in the cart', () => {
+      let cart=cartFactory.create();
+      cart={
+        ...cart,
+        items: [...cart.items, cartFactory.createCartItem()]
+      }
+      component.cartValue=cart;
+      fixture.detectChanges();
+      expect(cartWrapperComponent.itemText).toEqual('Item');
+    });
+
+    it('should return Items if there is more than one item or zero in the cart', () => {
+      let cart=cartFactory.create();
+      cart={
+        ...cart,
+        items: [...cart.items, cartFactory.createCartItem(), cartFactory.createCartItem()]
+      }
+      component.cartValue=cart;
+      fixture.detectChanges();
+      expect(cartWrapperComponent.itemText).toEqual('Items');
     });
   });
 });
