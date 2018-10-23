@@ -1,8 +1,4 @@
 <div class="cart">
-  <div class="cart__header" *ngIf="title">
-    <span class="cart__title">{{title}}</span>
-    <span class="cart__item-count">{{cart.items.length}} {{itemText}}</span>
-  </div>
   <div class="cart__content">
     <cart-item *ngFor="let item of cart.items" [item]="item"></cart-item>
     <div *ngIf="cart.items.length === 0">
