@@ -89,7 +89,6 @@ describe('CartWrapper', () => {
     fixture = TestBed.createComponent(TestCartWrapper);
     component = fixture.componentInstance;
     component.cartValue = cart;
-    
     cartWrapperComponent = fixture.debugElement.query(By.css('cart-wrapper')).componentInstance;
 
     fixture.detectChanges();
@@ -192,77 +191,53 @@ describe('CartWrapper', () => {
     });
   });
 
-  // Set cart item count depending on how many cart-items there are in cart
-
   describe('isCartEmpty', () => {
-    it('should return true if there are no items in the cart', () => {
-      component.cartValue=cartFactory.create();
-      fixture.detectChanges();
-      expect(cartWrapperComponent.isCartEmpty).toEqual(true);
-    });
 
     it('should return false if there are one or more items in the cart', () => {
-      let cart=cartFactory.create();
-      cart={
-        ...cart,
-        items: [...cart.items, cartFactory.createCartItem()]
-      }
-      component.cartValue=cart;
-      fixture.detectChanges();
+      component.cartValue.items.push(cartFactory.createCartItem());
+
       expect(cartWrapperComponent.isCartEmpty).toEqual(false);
+    });
+
+    it('should return true if there are no items in the cart', () => {
+      component.cartValue.items = [];
+
+      expect(cartWrapperComponent.isCartEmpty).toEqual(true);
     });
   });
 
-  describe('hasOneItem', () => {
+  describe('cartHasOneItem', () => {
+
     it('should return false if there are no items in the cart', () => {
-      component.cartValue=cartFactory.create();
-      fixture.detectChanges();
-      expect(cartWrapperComponent.hasOneItem).toEqual(false);
+      component.cartValue.items = [];
+
+      expect(cartWrapperComponent.cartHasOneItem).toEqual(false);
     });
 
     it('should return true if there is exactly one item in the cart', () => {
-      let cart=cartFactory.create();
-      cart={
-        ...cart,
-        items: [...cart.items, cartFactory.createCartItem()]
-      }
-      component.cartValue=cart;
-      fixture.detectChanges();
-      expect(cartWrapperComponent.hasOneItem).toEqual(true);
+      component.cartValue.items = [cartFactory.createCartItem()];
+
+      expect(cartWrapperComponent.cartHasOneItem).toEqual(true);
     });
 
     it('should return false if there are two or more items in the cart', () => {
-      let cart=cartFactory.create();
-      cart={
-        ...cart,
-        items: [...cart.items, cartFactory.createCartItem(), cartFactory.createCartItem()]
-      }
-      component.cartValue=cart;
-      fixture.detectChanges();
-      expect(cartWrapperComponent.hasOneItem).toEqual(false);
+      component.cartValue.items.push(cartFactory.createCartItem(), cartFactory.createCartItem());
+
+      expect(cartWrapperComponent.cartHasOneItem).toEqual(false);
     });
   });
 
   describe('getItemText', () => {
+
     it('should return Item if there is one item in the cart', () => {
-      let cart=cartFactory.create();
-      cart={
-        ...cart,
-        items: [...cart.items, cartFactory.createCartItem()]
-      }
-      component.cartValue=cart;
-      fixture.detectChanges();
+      component.cartValue.items = [cartFactory.createCartItem()];
+
       expect(cartWrapperComponent.itemText).toEqual('Item');
     });
 
     it('should return Items if there is more than one item or zero in the cart', () => {
-      let cart=cartFactory.create();
-      cart={
-        ...cart,
-        items: [...cart.items, cartFactory.createCartItem(), cartFactory.createCartItem()]
-      }
-      component.cartValue=cart;
-      fixture.detectChanges();
+      component.cartValue.items.push(cartFactory.createCartItem(), cartFactory.createCartItem());
+
       expect(cartWrapperComponent.itemText).toEqual('Items');
     });
   });
