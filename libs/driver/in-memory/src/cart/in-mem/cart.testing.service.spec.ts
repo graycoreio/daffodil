@@ -36,7 +36,7 @@ describe('Driver | Cart | In Memory | CartTestingService', () => {
       result = cartTestingService.createDb();
     });
 
-    it('should return a cart', () => {
+    it('should return an Object', () => {
       expect(result.cart).toEqual(jasmine.any(Object));
     });
   });
