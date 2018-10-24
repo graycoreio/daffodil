@@ -8,7 +8,7 @@ import { Cart } from '@daffodil/core';
 import { CartFactory } from '@daffodil/core/testing';
 
 import { CartViewComponent } from './cart-view.component';
-import { DaffContainerModule } from '../../../design/atoms/container/container.module';
+import { DaffContainerModule } from '@daffodil/design';
 
 let cartFactory = new CartFactory();
 let cart = cartFactory.create();
