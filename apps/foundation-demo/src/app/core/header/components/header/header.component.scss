@@ -6,8 +6,12 @@
     border-right: 1px solid $medium-gray;
   }
   
-  &__logo, &__cart {
-    padding: 0 25px;
+  &__logo {
+    padding: 0 0 0 25px;
+  }
+
+  &__right-nav {
+    padding: 0 25px 0 0;
   }
 
   &__spacer {
