@@ -7,8 +7,8 @@ import { ProceedToCheckoutModule } from '../proceed-to-checkout/proceed-to-check
 import { ContinueShoppingModule } from '../continue-shopping/continue-shopping.module';
 import { MiscModule } from '../../../misc/misc.module';
 import { CartModule } from '../cart/cart.module';
-import { DaffButtonModule } from '../../../design/atoms/button/button.module';
-import { DaffButtonSetModule } from '../../../design/molecules/button-set/button-set.module';
+import { DaffButtonModule, DaffButtonSetModule } from '@daffodil/design';
+
 
 @NgModule({
   imports: [
