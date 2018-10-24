@@ -27,22 +27,24 @@
 
 .daff-icon-button {
     display: inline-block;
-    cursor: pointer;
-    border-radius: 50%;
     height: 40px;
     width: 40px;
     line-height: 40px;
-    font-size: 1.25rem;
+    font-size: 1rem;
     text-align: center;
-    transition: 0.2s ease-in;
+    background: none;
+    padding: 0;
+    margin: 0;
     border: 0;
+    cursor: pointer;
+    transition: 0.2s ease-in;
 
     &:focus {
         outline: none;
     }
 
     &:hover {
-        background-color: $light-gray;
+        color: $dark-gray;
     }
 }
 
