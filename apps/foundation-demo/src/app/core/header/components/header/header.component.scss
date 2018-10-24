@@ -1,26 +1,11 @@
 @import 'daff-util';
 
 .header {
-  &__menu, &__cart {
-
-    & button {
-      cursor: pointer;
-    }
+  &__menu {
+    padding: 15px;
+    border-right: 1px solid $medium-gray;
   }
   
-  &__menu {
-
-    button {
-      border-right: 1px solid $medium-gray;
-      padding: 0 30px;
-      height: 70px;
-
-        &:focus {
-          outline: none;
-        }
-    }
-  }
-
   &__logo, &__cart {
     padding: 0 25px;
   }
