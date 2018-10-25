@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
-import { ErrorStateMatcher } from '../../../../../../design/molecules/error-state-matcher/error-state-matcher.component';
+import { ErrorStateMatcher } from '@daffodil/design';
 
 @Component({
   selector: 'address-form',

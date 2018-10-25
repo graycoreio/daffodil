@@ -13,7 +13,6 @@ directories:
 before_script:
   - npm install -g @angular/cli
   - npm install -g lerna
-  - lerna bootstrap
 
 script: build/ci.sh
 

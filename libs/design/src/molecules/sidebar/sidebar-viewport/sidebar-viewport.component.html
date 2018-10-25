@@ -1,0 +1,17 @@
+<div class="daff-sidebar-viewport {{ mode }}">
+  <div class="daff-sidebar-viewport__sidebar" [@transformSidebar]="_animationState">
+    <ng-content select="daff-sidebar"></ng-content>
+  </div>
+
+  <daff-backdrop
+    class="daff-sidebar-viewport__backdrop"
+    *ngIf="hasBackdrop"
+    [show]="opened"
+    [backdropIsVisible]="backdropIsVisible"
+    (backdropClicked)="_onBackdropClicked()"></daff-backdrop>
+
+  <div class="daff-sidebar-viewport__content" [@transformContent]="_animationState">
+    <ng-content></ng-content>
+  </div>
+</div>
+    

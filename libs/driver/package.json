@@ -11,6 +11,10 @@
   "bugs": {
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
+  "scripts": {
+    "build": "ng build driver",
+    "test": "ng test driver --watch=false --browsers=ChromeHeadless"
+  },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
     "@daffodil/core": "1.1.0-a",
@@ -22,5 +26,8 @@
     "angular-in-memory-web-api": "^0.5.4",
     "graphql": "0.13.2",
     "apollo-angular-boost": "1.0.0"
+  },
+  "devDependencies": {
+    "@daffodil/core": "1.1.0-a"
   }
 }

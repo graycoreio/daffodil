@@ -1,0 +1,22 @@
+@import '../../../scss/daff-util';
+
+:host {
+  display: block;
+}
+
+.daff-sidebar {
+  display: block;
+  background: $white;
+  box-shadow: 6px 1px 9px 0px rgba(128,128, 128, 0.1);
+  height: 100%;
+
+  &__item {
+    display: flex;
+    width: 100%;
+    padding: 15px 0;
+    font-size: 1rem;
+    @include embolden();
+    @include uppercase();
+    cursor: pointer;
+  }
+}

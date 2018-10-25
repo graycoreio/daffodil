@@ -8,7 +8,7 @@ import { Product } from '@daffodil/core';
 import { ProductFactory } from '@daffodil/core/testing';
 
 import { ProductGridViewComponent } from './product-grid-view.component';
-import { DaffContainerModule } from '../../../design/atoms/container/container.module';
+import { DaffContainerModule } from '@daffodil/design';
 
 let productFactory = new ProductFactory();
 let products$ = of(new Array(productFactory.create()));

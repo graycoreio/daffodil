@@ -1,0 +1,30 @@
+{
+    "name": "@daffodil/demo",
+    "version": "1.1.0-a",
+    "author": "Graycore LLC",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/graycoreio/daffodil/issues"
+    },
+    "scripts": {
+      "build": "ng build foundation-demo",
+      "test": "ng test foundation-demo --watch=false --browsers=ChromeHeadless"
+    },
+    "homepage": "https://github.com/graycoreio/daffodil",
+    "description": "A demo implementation of the @daffodil libraries for ecommerce",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/graycoreio/daffodil"
+    },
+    "devDependencies": {
+      "@daffodil/core": "1.1.0-a",
+      "@daffodil/design": "1.1.0-a",
+      "@daffodil/state": "1.1.0-a",
+      "@daffodil/driver": "1.1.0-a"
+    },
+    "peerDependencies": {
+      "@angular/common": "^6.0.1",
+      "@angular/core": "^6.0.1"
+    }
+  }
+  

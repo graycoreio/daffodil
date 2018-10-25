@@ -1,0 +1,4 @@
+{
+    "entry": "./src/scss/daff-theme.scss",
+    "dest": "../../dist/design/daff-theme.scss"
+}

@@ -2,7 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FooterComponent } from './footer.component';
 import { By } from '@angular/platform-browser';
-import { DaffContainerModule } from '../../design/atoms/container/container.module';
+
+import { DaffContainerModule } from '@daffodil/design';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;

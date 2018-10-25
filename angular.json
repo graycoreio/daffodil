@@ -25,7 +25,8 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "apps/foundation-demo/src/scss"
+                "apps/foundation-demo/src/scss",
+                "dist/design"
               ]
             },
             "scripts": []
@@ -80,7 +81,8 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "apps/foundation-demo/src/scss"
+                "apps/foundation-demo/src/scss",
+                "libs/design/src/scss"
               ]
             },
             "assets": [
@@ -149,7 +151,8 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "apps/foundation-demo/src/scss"
+                "apps/foundation-demo/src/scss",
+                "libs/design/src/scss"
               ]
             },
             "scripts": []
@@ -282,9 +285,173 @@
           }
         }
       }
+    },
+    "design": {
+      "root": "libs/design",
+      "sourceRoot": "libs/design/src",
+      "projectType": "library",
+      "prefix": "daffodil",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/design/tsconfig.lib.json",
+            "project": "libs/design/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/design/src/test.ts",
+            "tsConfig": "libs/design/tsconfig.spec.json",
+            "karmaConfig": "libs/design/karma.conf.js",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/design/scss"
+              ]
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/design/tsconfig.lib.json",
+              "libs/design/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "daffio": {
+      "root": "apps/daffio/",
+      "sourceRoot": "apps/daffio/src",
+      "projectType": "application",
+      "prefix": "daffodil",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/daffio",
+            "index": "apps/daffio/src/index.html",
+            "main": "apps/daffio/src/main.ts",
+            "polyfills": "apps/daffio/src/polyfills.ts",
+            "tsConfig": "apps/daffio/tsconfig.app.json",
+            "assets": [
+              "apps/daffio/src/favicon.ico",
+              "apps/daffio/src/assets"
+            ],
+            "styles": [
+              "apps/daffio/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/daffio/src/environments/environment.ts",
+                  "with": "apps/daffio/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "daffio:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "daffio:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "daffio:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/daffio/src/test.ts",
+            "polyfills": "apps/daffio/src/polyfills.ts",
+            "tsConfig": "apps/daffio/tsconfig.spec.json",
+            "karmaConfig": "apps/daffio/karma.conf.js",
+            "styles": [
+              "apps/daffio/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "apps/daffio/src/favicon.ico",
+              "apps/daffio/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/daffio/tsconfig.app.json",
+              "apps/daffio/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "daffio-e2e": {
+      "root": "apps/daffio-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/daffio-e2e/protractor.conf.js",
+            "devServerTarget": "daffio:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "daffio:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/daffio-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "foundation-demo",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  },
   "cli": {
     "warnings": {
       "typescriptMismatch": false,

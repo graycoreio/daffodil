@@ -8,28 +8,21 @@ import { Product } from '@daffodil/core';
 import { ProductFactory } from '@daffodil/core/testing';
 
 import { ProductComponent } from './product.component';
-import { Image } from '../../../design/interfaces/image';
-import { QtyDropdownComponent } from '../../../design/molecules/qty-dropdown/qty-dropdown.component';
-import { ImageGalleryComponent } from '../../../design/molecules/image-gallery/image-gallery.component';
-import { DaffContainerModule } from '../../../design/atoms/container/container.module';
+
+import { 
+  AccordionModule, 
+  DaffQtyDropdownModule, 
+  DaffImageGalleryModule, 
+  DaffContainerModule,
+  QtyDropdownComponent 
+} from '@daffodil/design';
+
 
 @Component({template: '<product [product]="productValue" [qty]="qtyValue" (updateQty)="updateQtyFunction($event)"></product>'})
 class ProductWrapperTest {
   productValue: Product;
   qtyValue: number;
   updateQtyFunction: Function;
-}
-
-@Component({selector: 'qty-dropdown', template: ''})
-class MockQtyDropdownComponent {
-  @Input() qty: number;
-  @Input() id: number;
-  @Output() qtyChanged: EventEmitter<any> = new EventEmitter();
-}
-
-@Component({selector: 'image-gallery', template: ''})
-class MockImageGalleryComponent { 
-  @Input() images: Image[];
 }
 
 @Component({selector: 'accordion', template: ''})
@@ -57,15 +50,14 @@ describe('ProductComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        DaffContainerModule
+        DaffContainerModule,
+        AccordionModule,
+        DaffQtyDropdownModule,
+        DaffImageGalleryModule
       ],
       declarations: [ 
         ProductComponent,
-        ProductWrapperTest,
-        MockQtyDropdownComponent,
-        MockImageGalleryComponent,
-        MockAccordionComponent,
-        MockAccordionItemComponent
+        ProductWrapperTest
       ]
     })
     .compileComponents();
@@ -100,7 +92,7 @@ describe('ProductComponent', () => {
   describe('on <image-gallery>', () => {
     
     it('should set images', () => {
-      let imageGalleryComponent:ImageGalleryComponent = fixture.debugElement.query(By.css('image-gallery')).componentInstance;
+      let imageGalleryComponent = fixture.debugElement.query(By.css('image-gallery')).componentInstance;
 
       expect(imageGalleryComponent.images).toEqual(productComponent.images);
     });
