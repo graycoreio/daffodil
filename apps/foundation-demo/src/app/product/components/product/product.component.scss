@@ -82,7 +82,6 @@
   }
 
   &__button {
-    font-size: $medium-font-size;
     width: 100%;
 
     @include breakpoint(large) {
