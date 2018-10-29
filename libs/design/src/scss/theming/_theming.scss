@@ -4,12 +4,3 @@
 $primary: daff-color($daff-primary, 500);
 $accent: daff-color($daff-accent, 500);
 $gray: daff-color($daff-gray, 500);
-
-/** daff-color($daff-gray, 300): daff-color($daff-color-palette, medium-gray);
-$primary: daff-color($daff-color-palette, primary);
-$accent: daff-color($daff-color-palette, accent);
-$black: daff-color($daff-color-palette, black);
-
-$light-gray: daff-color($daff-color-palette, light-gray);
-daff-color($daff-gray, 300): daff-color($daff-color-palette, medium-gray);
-daff-color($daff-gray, 400);: daff-color($daff-color-palette, dark-gray); */
