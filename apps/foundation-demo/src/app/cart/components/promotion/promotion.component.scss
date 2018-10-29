@@ -1,7 +1,7 @@
 @import 'daff-util';
 
 .promotion {
-  color: $dark-gray;
+  color: daff-color($daff-gray, 800);
 
   &__form {
     display: none;
