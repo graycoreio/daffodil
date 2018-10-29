@@ -57,7 +57,7 @@
   }
 
   &__brand {
-    color: $dark-gray;
+    color: daff-color($daff-gray, 800);
     font-size: $medium-font-size;
   }
 
@@ -90,7 +90,7 @@
   }
 
   &__accordion-wrapper {
-    border-top: 1px solid $medium-gray;
+    border-top: 1px solid daff-color($daff-gray, 300);
     margin: 50px 0 0 0;
   }
 }
