@@ -19,4 +19,9 @@
     margin: 0;
     padding: 0;
   }
+
+  &__image {
+    display: block;
+    max-width: 100%;
+  }
 }

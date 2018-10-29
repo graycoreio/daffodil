@@ -3,11 +3,14 @@ import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-import { ProceedToCheckoutComponent } from './proceed-to-checkout.component';
+import { ProceedToCheckoutDirective } from './proceed-to-checkout.directive';
+import { Component } from '@angular/core';
 
-describe('ProceedToCheckoutComponent', () => {
-  let component: ProceedToCheckoutComponent;
-  let fixture: ComponentFixture<ProceedToCheckoutComponent>;
+@Component({template: '<button proceed-to-checkout></button>'})
+class TestProceedToCheckoutDirective {}
+ describe('ProceedToCheckoutDirective', () => {
+  let component: TestProceedToCheckoutDirective;
+  let fixture: ComponentFixture<TestProceedToCheckoutDirective>;
   let router;
 
   beforeEach(async(() => {
@@ -15,13 +18,15 @@ describe('ProceedToCheckoutComponent', () => {
       imports: [
         RouterTestingModule
       ],
-      declarations: [ ProceedToCheckoutComponent ]
-    })
-    .compileComponents();
+      declarations: [
+        TestProceedToCheckoutDirective,
+        ProceedToCheckoutDirective
+      ]
+    });
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProceedToCheckoutComponent);
+    fixture = TestBed.createComponent(TestProceedToCheckoutDirective);
     router = TestBed.get(Router);
     component = fixture.componentInstance;
     

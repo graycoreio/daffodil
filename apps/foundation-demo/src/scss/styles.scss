@@ -3,5 +3,13 @@
 ************************************/
 
 // Imports
-@import 'variables';
-@import '~foundation-sites/assets/foundation';
+@import 'daff-typography';
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}

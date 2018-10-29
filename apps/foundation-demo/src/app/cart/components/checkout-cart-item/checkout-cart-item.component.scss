@@ -7,8 +7,10 @@
   grid-row-gap: 15px;
   grid-template-columns: 1fr 3fr;
 
-  & > img {
+  &__image {
     cursor: pointer;
+    display: block;
+    max-width: 100%;
   }
 
   &__description {
@@ -17,13 +19,13 @@
 
   &__name {
     cursor: pointer;
-    font-size: $global-font-size;
+    font-size: 1rem;
     @include embolden();
   }
 
   &__price {
-    font-size: $global-font-size;
-    color: get-color(secondary);
+    font-size: 1rem;
+    color: $accent;
     margin-bottom: 15px;
   }
 

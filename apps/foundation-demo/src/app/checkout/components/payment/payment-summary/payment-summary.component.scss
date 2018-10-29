@@ -45,7 +45,7 @@
   }
 
   &__title {
-    font-size: $global-font-size;
+    font-size: 1rem;
     margin-bottom: 15px;
     @include embolden();
     @include uppercase();

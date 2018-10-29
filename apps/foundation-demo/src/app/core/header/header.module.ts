@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { DaffNavbarModule } from '@daffodil/design';
+import { DaffNavbarModule, DaffButtonModule } from '@daffodil/design';
 import { SidebarModule } from '../sidebar/sidebar.module';
 import { HeaderComponent } from './components/header/header.component';
 import { HeaderContainer } from './containers/header/header.component';
@@ -14,7 +14,8 @@ import { LogoModule } from '../logo/logo.module';
     DaffNavbarModule,
     LogoModule,
     SidebarModule,
-    RouterModule
+    RouterModule,
+    DaffButtonModule
   ],
   declarations: [
     HeaderComponent,
