@@ -2,35 +2,10 @@
 
 
 .cart {
-  display: grid;
-  grid-gap: 25px;
-  grid-template-columns: minmax(0, 1fr);
-  font-family: 'Open Sans', sans-serif;
-  
-  &__title {
+  display: block;
+
+  &__content {
+    padding: 25px 0;
     @include section-divider();
-    font-size: 1rem;
-    padding-bottom: 10px;
-
-    @include breakpoint(large) {
-      margin-bottom: 25px;
-      padding-bottom: 15px;
-    }
-  }
-
-  &__subtitle {
-    @include embolden();
-    @include uppercase();
-  }
-
-  &__item-count {
-    float: right;
-    color: $dark-gray;
-    font-size: $small-font-size;
-
-    @include breakpoint(large) {
-      margin-left: 25px;
-      float: none;
-    }
   }
 }

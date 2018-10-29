@@ -9,11 +9,9 @@ import { Cart, CartItem, CartAddress, CartPayment, CartShippingRate} from '@daff
   providedIn: 'root'
 })
 export class CartFactory {
-
-  cart:MockCart = {...new MockCart()};
   
   create() : Cart {
-    return this.cart;
+    return {...new MockCart()};
   }
 
   createCartItem() : CartItem {

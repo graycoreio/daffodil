@@ -3,23 +3,26 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 
-import { ContinueShoppingComponent } from './continue-shopping.component';
+import { ContinueShoppingDirective } from './continue-shopping.directive';
+import { Component } from '@angular/core';
 
-describe('ContinueShoppingComponent', () => {
-  let component: ContinueShoppingComponent;
-  let fixture: ComponentFixture<ContinueShoppingComponent>;
+@Component({template: '<button continue-shopping></button>'})
+class TestContinueShoppingDirective {}
+
+describe('ContinueShoppingDirective', () => {
+  let component: TestContinueShoppingDirective;
+  let fixture: ComponentFixture<TestContinueShoppingDirective>;
   let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ RouterTestingModule ],
-      declarations: [ ContinueShoppingComponent ]
-    })
-    .compileComponents();
+      declarations: [ TestContinueShoppingDirective, ContinueShoppingDirective ]
+    });
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ContinueShoppingComponent);
+    fixture = TestBed.createComponent(TestContinueShoppingDirective);
     component = fixture.componentInstance;
     router = TestBed.get(Router);
     spyOn(router, 'navigateByUrl');

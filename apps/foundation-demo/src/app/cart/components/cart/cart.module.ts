@@ -15,4 +15,4 @@ import { CartItemModule } from '../cart-item/cart-item.module';
     CartComponent
   ]
 })
-export class CartComponentModule { }
+export class CartModule { }
