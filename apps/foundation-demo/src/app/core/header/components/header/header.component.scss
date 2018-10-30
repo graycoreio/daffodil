@@ -3,7 +3,7 @@
 .header {
   &__menu {
     padding: 15px;
-    border-right: 1px solid $medium-gray;
+    border-right: 1px solid daff-color($daff-gray, 300);
   }
   
   &__logo {
