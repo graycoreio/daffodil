@@ -444,7 +444,44 @@
           }
         }
       }
-    }
+    },
+    "daffio-dev": {
+      "root": "apps/daffio/",
+      "sourceRoot": "apps/daffio/src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/daffio",
+            "index": "apps/daffio/src/index.html",
+            "main": "apps/daffio/src/main.ts",
+            "polyfills": "apps/daffio/src/polyfills.ts",
+            "tsConfig": "apps/daffio/tsconfig.dev.json",
+            "assets": [
+              "apps/daffio/src/assets",
+              "apps/daffio/src/favicon.ico"
+            ],
+            "styles": [
+              "apps/daffio/src/scss/styles.scss"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "apps/daffio/src/scss",
+                "libs/design/src/scss"
+              ]
+            },
+            "scripts": []
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "daffio-dev:build"
+          }
+        }
+      }
+    },
   },
   "defaultProject": "foundation-demo",
   "schematics": {
