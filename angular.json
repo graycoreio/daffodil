@@ -346,8 +346,14 @@
               "apps/daffio/src/assets"
             ],
             "styles": [
-              "apps/daffio/src/styles.css"
+              "apps/daffio/src/scss/styles.scss",
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "apps/daffio/src/scss",
+                "libs/design/src/scss"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
@@ -395,7 +401,8 @@
             "tsConfig": "apps/daffio/tsconfig.spec.json",
             "karmaConfig": "apps/daffio/karma.conf.js",
             "styles": [
-              "apps/daffio/src/styles.css"
+              "apps/daffio/src/styles.css",
+              "libs/design/src/scss"
             ],
             "scripts": [],
             "assets": [
@@ -481,7 +488,7 @@
           }
         }
       }
-    },
+    }
   },
   "defaultProject": "foundation-demo",
   "schematics": {
