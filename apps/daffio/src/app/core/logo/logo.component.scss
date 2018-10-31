@@ -1,0 +1,42 @@
+@import 'daff-util';
+
+.daff-logo {
+  display: flex;
+  align-items: center;
+  
+  svg {
+    display: block;
+    width: 100px;
+
+    @include breakpoint(medium) {
+      width: 150px;
+    }
+  }
+}
+
+.cls-1 {
+  fill:#2d3047;
+}
+
+.cls-2 {
+  fill: url(#linear-gradient);
+}
+
+.cls-3 {
+  fill: url(#linear-gradient-2);
+}
+
+.cls-4 {
+  fill:url(#linear-gradient-3);
+}
+
+.cls-5 {
+  fill:#fff000;
+}
+.cls-6 {
+  fill:#ff8500;
+}
+
+.cls-7 {
+  fill:#ffc000;
+}
