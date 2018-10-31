@@ -1,0 +1,73 @@
+@import 'daff-util';
+
+.daffio-header {
+  display: flex;
+  align-items: center;
+  padding: 25px;
+  width: 100%;
+
+  @include breakpoint(large) {
+    padding: 25px 50px;
+  }
+
+  @include breakpoint(xlarge) {
+    padding: 25px 0;
+  }
+
+  &__right {
+    display: flex;
+  }
+
+  &__menu {
+    display: none;
+    margin: 0;
+    padding: 0;
+
+    @include breakpoint(medium) {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__menu-item {
+    color: $black;
+    padding: 0 30px 0 0;
+    text-decoration: none;
+
+    &:last-child {
+      padding: 0;
+    }
+  }
+
+  &__button {
+    display: none;
+    margin-left: 30px;
+
+    @include breakpoint(medium) {
+      display: inline-block;
+    }
+    
+    button {
+      color: $black;
+      background: $primary;
+      border: 1px solid $primary;
+
+      &:hover {
+        background: daff-color($daff-primary, 600);
+        border: 1px solid daff-color($daff-primary, 600);
+      }
+    }
+  }
+
+  &__bars {
+    display: inline-block;
+
+    @include breakpoint(medium) {
+      display: none;
+    }
+  }
+}
+
+.nav-spacer {
+  flex-grow: 1;
+}
