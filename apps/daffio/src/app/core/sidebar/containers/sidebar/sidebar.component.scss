@@ -1,0 +1,25 @@
+@import 'daff-util';
+
+.daffio-sidebar {
+  padding: 75px 25px 0 25px;
+
+  &__close {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    font-size: $medium-font-size;
+    cursor: pointer;
+  }
+
+  &__list {
+
+    span {
+      display: block;
+      width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  }
+}

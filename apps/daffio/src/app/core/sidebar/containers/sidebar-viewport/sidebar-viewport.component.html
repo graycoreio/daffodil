@@ -1,0 +1,6 @@
+<daff-sidebar-viewport (onBackdropClicked)="close()" mode="over" [opened]="showSidebar$ | async">
+    <daffio-sidebar ngProjectAs="daff-sidebar" (close)="close()"></daffio-sidebar>
+
+    <ng-content></ng-content>
+</daff-sidebar-viewport>
+
