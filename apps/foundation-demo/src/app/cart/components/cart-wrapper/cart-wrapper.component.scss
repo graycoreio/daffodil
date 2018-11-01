@@ -5,13 +5,13 @@
   grid-template-columns: 1fr;
   padding: 50px 25px;
 
-  @include breakpoint(large) {
+  @include breakpoint(big-tablet) {
     grid-template-columns: 2fr 1fr;
     column-gap: 50px;
     padding: 75px 50px;
   }
 
-  @include breakpoint(xxlarge) {
+  @include breakpoint(laptop) {
     padding: 75px 0;
   }
 
@@ -22,7 +22,7 @@
     align-items: flex-end;
     justify-content: space-between;
 
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       justify-content: flex-start;
     }
   }
@@ -36,7 +36,7 @@
     color: daff-color($daff-gray, 800);
     font-size: $small-font-size;
 
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       margin-left: 15px;
     }
   }
@@ -46,7 +46,7 @@
     width: 100%;
     margin: 50px 0 25px 0;
 
-    @include breakpoint(medium) {
+    @include breakpoint(tablet) {
       width: 50%;
       margin: 50px 0 0 0;
     }
@@ -70,7 +70,7 @@
   &__summary {
     margin: 25px 0 50px 0;
 
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       margin: 0 0 50px 0;
     }
   }
@@ -80,7 +80,7 @@
     @include embolden();
     @include uppercase();
 
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       display: block;
       padding-bottom: 15px;
       margin-bottom: 25px;
@@ -96,7 +96,7 @@
   &__cart-totals {
     margin: 15px 0;
 
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       margin: 0;
     }
   }

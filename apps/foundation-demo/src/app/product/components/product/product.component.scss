@@ -18,7 +18,7 @@
     order: 3;
   }
 
-  @include breakpoint(large) {
+  @include breakpoint(big-tablet) {
     grid-template-areas: 
       "image-gallery info"
       "image-gallery details"
@@ -51,7 +51,7 @@
   &__info, &__details {
     padding: 0 25px;
 
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       padding: 0;
     }
   }
@@ -84,7 +84,7 @@
   &__button {
     width: 100%;
 
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       width: 70%
     }
   }

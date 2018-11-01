@@ -28,7 +28,7 @@
     text-decoration: underline;
     justify-self: end;
 
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       justify-self: start;
       margin-top: 15px;
     }
@@ -48,7 +48,7 @@
     grid-area: free-space;
   }
 
-  @include breakpoint(large) {
+  @include breakpoint(big-tablet) {
     grid-template-areas: 
       "   title      title"
       " address    address"
@@ -58,7 +58,7 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include breakpoint(xlarge) {
+  @include breakpoint(small-laptop) {
     grid-template-areas:
       "   title      title      title"
       " address    address    address"

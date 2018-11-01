@@ -3,7 +3,7 @@
 .not-found {
   padding-top: 50px;
 
-  @include breakpoint(large) {
+  @include breakpoint(big-tablet) {
     padding: 50px 100px 0 100px;
   }
 

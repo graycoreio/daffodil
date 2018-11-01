@@ -11,7 +11,7 @@
     @include uppercase();
   }
 
-  @include breakpoint(large) {
+  @include breakpoint(big-tablet) {
     grid-template-columns: repeat(6, 1fr);
     grid-template-areas: 
       "    title     title       title       title       title       title"
