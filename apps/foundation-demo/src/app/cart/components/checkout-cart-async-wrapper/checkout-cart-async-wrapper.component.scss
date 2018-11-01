@@ -5,7 +5,7 @@
   &__loading-icon {
     margin: 20px 44%;
 
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       grid-column: span 3;
     }
   }
@@ -15,7 +15,7 @@
     margin-bottom: 15px;
     @include section-divider();
 
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       padding: 0 0 50px 0;
     }
   }
@@ -23,7 +23,7 @@
   &__cart-totals-wrapper {
     margin: 15px 0;
 
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       margin: 0;
     }
   }
@@ -32,7 +32,7 @@
     display: none;
     margin: 35px 0 15px 0;
 
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       display: block;
     }
   }

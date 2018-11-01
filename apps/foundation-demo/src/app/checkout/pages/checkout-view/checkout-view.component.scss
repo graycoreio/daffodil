@@ -12,7 +12,7 @@
     margin-top: 25px;
   }
 
-  @include breakpoint(large) {
+  @include breakpoint(big-tablet) {
     padding: 50px 120px;
     grid-template-columns: 2fr 1fr;
     grid-column-gap: 50px;
@@ -28,7 +28,7 @@
   }
 
   &__review {
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       display: none;
     }
   }
@@ -40,7 +40,7 @@
   &__desktop-cart {
     display: none;
 
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       display: block;
     }
   }
@@ -49,7 +49,7 @@
     display: block;
     border-top: 1px solid daff-color($daff-gray, 400);
     
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       display: none;
     }
   }
@@ -58,7 +58,7 @@
   &__loading-icon {
     // padding: 20px calc(50% - 37px);
 
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
     //   padding-top: 0;
       grid-column: 1 / -1;
     }

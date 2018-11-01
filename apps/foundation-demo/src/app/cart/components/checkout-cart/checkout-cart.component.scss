@@ -7,7 +7,7 @@
   font-family: 'Open Sans', sans-serif;
   margin-bottom: 25px;
 
-  @include breakpoint(large) {
+  @include breakpoint(big-tablet) {
     grid-gap: 25px;
   }
   
@@ -18,7 +18,7 @@
     grid-template-areas: 
       "subtitle edit";
     
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       @include section-divider();
       padding-bottom: 10px;
     }
@@ -35,7 +35,7 @@
     font-size: $small-font-size;
     text-decoration: underline;
 
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       display: none;
     }
   }

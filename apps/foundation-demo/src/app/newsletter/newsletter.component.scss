@@ -7,11 +7,11 @@
   padding: 50px 25px;
   margin: 0;
 
-  @include breakpoint(medium) {
+  @include breakpoint(tablet) {
     padding: 75px 50px;
   }
 
-  @include breakpoint(xxlarge) {
+  @include breakpoint(laptop) {
     padding: 75px 0;
   }
 }
@@ -23,7 +23,7 @@
     grid-gap: 50px 0;
     text-align: center;
 
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       grid-template-columns: 1fr 1fr;
       grid-gap: 0 50px;
       text-align: left;
@@ -42,7 +42,7 @@
     width: 60%;
     display: inline;
 
-    @include breakpoint(medium) {
+    @include breakpoint(tablet) {
       width: 70%;
     }
   }
@@ -53,7 +53,7 @@
     width: 40%;
     line-height: 1.5rem;
 
-    @include breakpoint(medium) {
+    @include breakpoint(tablet) {
       width: 30%;
     }
   }
