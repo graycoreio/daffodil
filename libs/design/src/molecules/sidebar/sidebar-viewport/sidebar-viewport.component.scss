@@ -25,6 +25,8 @@ $daff-sidebar-viewport-z-index: 1;
   &__sidebar {
     width: $sidebar-width;
     z-index: $daff-sidebar-z-index;
+
+    
   }
 
   &.push {
@@ -44,7 +46,7 @@ $daff-sidebar-viewport-z-index: 1;
 
   &.over {
     #{$root}__sidebar {
-      position: absolute;
+      position: fixed;
       height: 100%;
       top: 0;
       bottom: 0;
