@@ -20,8 +20,8 @@
     }
 
     &:hover {
-        background-color: $dark-gray;
-        border: 1px solid $dark-gray;
+        background-color: daff-color($daff-gray, 800);
+        border: 1px solid daff-color($daff-gray, 800);
     }
 }
 
@@ -44,7 +44,7 @@
     }
 
     &:hover {
-        color: $dark-gray;
+        color: daff-color($daff-gray, 800);
     }
 }
 
@@ -65,8 +65,8 @@
 
 
     &:hover {
-        border-color: $medium-gray;
-        border: 1px solid $medium-gray;
+        border-color: daff-color($daff-gray, 400);
+        border: 1px solid daff-color($daff-gray, 400);
     }
 
     &:focus {

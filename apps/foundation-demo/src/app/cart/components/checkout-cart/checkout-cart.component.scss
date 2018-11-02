@@ -42,7 +42,7 @@
 
   &__item-count {
     float: right;
-    color: $dark-gray;
+    color: daff-color($daff-gray, 800);
     font-size: $small-font-size;
   }
 }
