@@ -12,7 +12,7 @@
   }
   
   &__title {
-    font-size: $global-font-size;
+    font-size: 1rem;
     display: grid;
     grid-template-columns: 4fr 1fr;
     grid-template-areas: 
@@ -42,7 +42,7 @@
 
   &__item-count {
     float: right;
-    color: $dark-gray;
+    color: daff-color($daff-gray, 800);
     font-size: $small-font-size;
   }
 }

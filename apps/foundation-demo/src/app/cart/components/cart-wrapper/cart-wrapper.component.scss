@@ -1,0 +1,107 @@
+@import 'daff-util';
+
+.cart-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 50px 25px;
+
+  @include breakpoint(large) {
+    grid-template-columns: 2fr 1fr;
+    column-gap: 50px;
+    padding: 75px 50px;
+  }
+
+  @include breakpoint(xxlarge) {
+    padding: 75px 0;
+  }
+
+  &__header {
+    @include section-divider();
+    padding-bottom: 15px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    @include breakpoint(large) {
+      justify-content: flex-start;
+    }
+  }
+
+  &__title {
+    @include embolden();
+    @include uppercase();
+  }
+
+  &__item-count {
+    color: daff-color($daff-gray, 800);
+    font-size: $small-font-size;
+
+    @include breakpoint(large) {
+      margin-left: 15px;
+    }
+  }
+
+  &__continue-shopping {
+    display: block;
+    width: 100%;
+    margin: 50px 0 25px 0;
+
+    @include breakpoint(medium) {
+      width: 50%;
+      margin: 50px 0 0 0;
+    }
+  }
+
+  &__button-set {
+    margin: 25px 0 0 0;
+
+    > * {
+      display: block;
+      width: 100%;
+      margin: 0 0 5px 0;
+      font-size: 1.125rem;
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+
+  &__summary {
+    margin: 25px 0 50px 0;
+
+    @include breakpoint(large) {
+      margin: 0 0 50px 0;
+    }
+  }
+  
+  &__summary-title {
+    display: none;
+    @include embolden();
+    @include uppercase();
+
+    @include breakpoint(large) {
+      display: block;
+      padding-bottom: 15px;
+      margin-bottom: 25px;
+      @include section-divider();
+    }
+  }
+
+  &__promotion {
+    display: block;
+    margin-bottom: 25px;
+  }
+  
+  &__cart-totals {
+    margin: 15px 0;
+
+    @include breakpoint(large) {
+      margin: 0;
+    }
+  }
+
+  &__help-box {
+    display: block;
+  }
+}

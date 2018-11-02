@@ -1,16 +1,24 @@
 @import "daff-util";
 
-body {
-    font-size: 16px;
+body,html {
+    font-size: $mobile-font-size;
+    font-family: $body-font-family;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
-    @include breakpoint(small) {
-        font-size: 14px;
+    @include breakpoint(large) {
+        font-size: $desktop-font-size;
     }
 }
 
 h1,h2,h3,h4,h5,h6 {
     margin: 0;
     padding: 0;
+}
+
+a {
+    color: $black;
 }
 
 .embolden {

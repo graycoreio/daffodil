@@ -1,0 +1,28 @@
+<div class="cart-wrapper">
+  <div class="cart-wrapper__main">
+    <div class="cart-wrapper__header">
+      <span class="cart-wrapper__title">Your Cart</span>
+      <span class="cart-wrapper__item-count">{{cart.items.length}} {{itemText}}</span>
+    </div>
+    <cart [cart]="cart"></cart>
+    <button type="button" daff-button continue-shopping class="cart-wrapper__continue-shopping" *ngIf="isCartEmpty">
+      Continue Shopping
+    </button>
+  </div>
+  <div class="cart-wrapper__sidebar">
+    <div class="cart-wrapper__summary" *ngIf="!isCartEmpty">
+      <div class="cart-wrapper__summary-title">cart summary</div>
+      <promotion class="cart-wrapper__promotion"></promotion>
+      <cart-totals class="cart-wrapper__cart-totals" [cart]="cart"></cart-totals>
+      <div daff-button-set class="cart-wrapper__button-set">
+        <button type="button" daff-button proceed-to-checkout>
+          Proceed to Checkout
+        </button>
+        <button type="button" daff-stroked-button continue-shopping>
+          Continue Shopping
+        </button>
+      </div>
+    </div>
+    <help-box class="cart-wrapper__help-box"></help-box>
+  </div>
+</div>

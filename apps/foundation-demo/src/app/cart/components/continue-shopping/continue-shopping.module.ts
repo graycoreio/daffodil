@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ContinueShoppingComponent } from './continue-shopping.component';
+import { ContinueShoppingDirective } from './continue-shopping.directive';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   declarations: [
-    ContinueShoppingComponent
+    ContinueShoppingDirective
   ],
   exports: [
-    ContinueShoppingComponent
+    ContinueShoppingDirective
   ]
 })
 export class ContinueShoppingModule { }

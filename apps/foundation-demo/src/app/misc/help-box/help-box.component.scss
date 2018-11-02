@@ -1,7 +1,7 @@
 @import 'daff-util';
 
 .help-box {
-  border: 1px solid $medium-gray;
+  border: 1px solid daff-color($daff-gray, 400);
   padding: 25px;
 
   &__title {

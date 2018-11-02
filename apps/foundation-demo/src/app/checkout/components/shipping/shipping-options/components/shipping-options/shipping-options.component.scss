@@ -5,7 +5,7 @@
   margin-top: 15px;
 
   &__title {
-    font-size: $global-font-size;
+    font-size: 1rem;
     @include embolden();
   }
 

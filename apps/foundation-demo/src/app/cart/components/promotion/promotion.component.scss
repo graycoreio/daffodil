@@ -1,42 +1,31 @@
 @import 'daff-util';
 
 .promotion {
-  color: $dark-gray;
+  color: daff-color($daff-gray, 800);
 
-  &__input {
+  &__form {
     display: none;
   }
 
-  &__button {
-    display: none;
-  }
   @include breakpoint(large) {
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: 1fr 100px;
-
-    grid-template-areas: 
-      "text text"
-      "input button";
-    
-
-    &__text {
-      grid-area: text;
-    }
-
     &__chevron {
       display: none;
     }
 
+    &__form {
+      margin-top: 15px;
+      display: flex;
+      flex: 1 0 auto;
+    }
+
     &__input {
-      display: block;
-      grid-area: input;
-      height: 35px;
+      display: inline-block;
+      flex-basis: 70%;
     }
 
     &__button {
-      display: inline;
-      grid-area: button;
+      display: inline-block;
+      flex-basis: 30%;
     }
   }
 }

@@ -1,13 +1,13 @@
 //Variables
 @import "typography/variables";
 @import 'responsive/variables';
-@import 'themeing/variables';
+@import 'theming/variables';
 
 // Sass Mixins & Functions
 @import "interaction/mouse/clickable";
 @import 'responsive/breakpoint';
 @import 'typography/mixins';
-@import 'themeing/themeing';
+@import 'theming/theming';
 
 //TODO Remove these from @daffodil/design
 @import 'mixins/cart-total';

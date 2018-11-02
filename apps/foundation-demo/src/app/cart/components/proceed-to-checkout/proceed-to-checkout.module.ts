@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ProceedToCheckoutComponent } from './proceed-to-checkout.component';
+import { ProceedToCheckoutDirective } from './proceed-to-checkout.directive';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   declarations: [
-    ProceedToCheckoutComponent
+    ProceedToCheckoutDirective
   ],
   exports: [
-    ProceedToCheckoutComponent
+    ProceedToCheckoutDirective
   ]
 })
 export class ProceedToCheckoutModule { }
