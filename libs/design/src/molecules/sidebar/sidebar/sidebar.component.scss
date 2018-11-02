@@ -8,8 +8,7 @@
   display: block;
   background: $white;
   box-shadow: 6px 1px 9px 0px rgba(128,128, 128, 0.1);
-  height: 100vh;
-  position: fixed;
+  height: 100%;
 
   &__item {
     display: flex;
