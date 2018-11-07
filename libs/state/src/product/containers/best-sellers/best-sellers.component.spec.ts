@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Store, StoreModule, combineReducers, select } from '@ngrx/store';
+import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
 import { ProductFactory } from '@daffodil/core/testing';
 import { Product } from '@daffodil/core';
@@ -65,8 +65,8 @@ describe('BestSellersContainer', () => {
 
     it('sets bestSellers', () => {
       combineLatest(
-        store.pipe(select(fromProduct.selectAllProducts)), 
-        store.pipe(select(fromProduct.selectBestSellersIdsState))
+        store.select(fromProduct.selectAllProducts), 
+        store.select(fromProduct.selectBestSellersIdsState)
       ).subscribe(() => {
         expect(component.bestSellers).toEqual([bestSeller]);
       });
