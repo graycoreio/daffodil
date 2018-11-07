@@ -1,6 +1,6 @@
 import { Component, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
 import { DaffodilAddress } from '@daffodil/core';
 
@@ -32,9 +32,7 @@ export class ShippingComponent {
       new SetShowShippingForm(!this.isShippingAddressValid)
     );
 
-    this.showShippingForm$ = this.store.pipe(
-      select(fromFoundationCheckout.selectShowShippingForm)
-    );
+    this.showShippingForm$ = this.store.select(fromFoundationCheckout.selectShowShippingForm);
   }
 
   toggleShippingView() {

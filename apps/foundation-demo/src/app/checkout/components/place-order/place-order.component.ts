@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as fromFoundationCheckout from '../../reducers';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { PlaceOrder } from '../../actions/checkout.actions';
 
 @Component({
@@ -18,9 +18,7 @@ export class PlaceOrderComponent implements OnInit{
   ) { }
 
   ngOnInit() {
-    this.enablePlaceOrderButton$ = this.store.pipe(
-      select(fromFoundationCheckout.selectEnablePlaceOrderButton)
-    );
+    this.enablePlaceOrderButton$ = this.store.select(fromFoundationCheckout.selectEnablePlaceOrderButton);
   }
 
   placeOrder() {
