@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
 import { Product } from '@daffodil/core';
 import * as fromProduct from '../../reducers/index';
@@ -25,13 +25,9 @@ export class ProductGridContainer implements OnInit {
   ngOnInit() {
     this.store.dispatch(new ProductGridLoad());
 
-    this.loading$ = this.store.pipe(
-      select(fromProduct.selectProductGridLoadingState)
-    );
+    this.loading$ = this.store.select(fromProduct.selectProductGridLoadingState);
 
-    this.products$ = this.store.pipe(
-      select(fromProduct.selectAllProducts)
-    );
+    this.products$ = this.store.select(fromProduct.selectAllProducts);
   }
 
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
 import { DaffodilAddress, PaymentInfo } from '@daffodil/core';
 import * as fromBilling from '../reducers/index';
@@ -24,15 +24,9 @@ export class BillingContainer implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.billingAddress$ = this.store.pipe(
-      select(fromBilling.selectBillingAddressState)
-    );
-    this.billingAddressIsShippingAddress$ = this.store.pipe(
-      select(fromBilling.selectBillingAddressIsShippingAddressState)
-    );
-    this.paymentInfo$ = this.store.pipe(
-      select(fromBilling.selectPaymentInfoState)
-    );
+    this.billingAddress$ = this.store.select(fromBilling.selectBillingAddressState);
+    this.billingAddressIsShippingAddress$ = this.store.select(fromBilling.selectBillingAddressIsShippingAddressState);
+    this.paymentInfo$ = this.store.select(fromBilling.selectPaymentInfoState);
   }
 
   updateBillingAddress(address: DaffodilAddress) {
