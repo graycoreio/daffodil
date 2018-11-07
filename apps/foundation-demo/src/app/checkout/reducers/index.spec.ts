@@ -1,5 +1,5 @@
 import { TestBed, async } from "@angular/core/testing";
-import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
+import { StoreModule, combineReducers, Store } from "@ngrx/store";
 
 import * as fromCheckout from './index';
 import { SetShowShippingForm } from "../actions/shipping.actions";
@@ -34,7 +34,7 @@ describe('selectFoundationCheckoutState', () => {
         showShippingForm: stubShowShippingForm
       }
 
-      store.pipe(select(fromCheckout.foundationShippingStateSelector)).subscribe((shippingState) => {
+      store.select(fromCheckout.foundationShippingStateSelector).subscribe((shippingState) => {
         expect(shippingState).toEqual(expectedShippingState);
       });
     });
@@ -43,7 +43,7 @@ describe('selectFoundationCheckoutState', () => {
   describe('selectShowShippingForm', () => {
     
     it('selects showShippingForm state', () => {
-      store.pipe(select(fromCheckout.selectShowShippingForm)).subscribe((showShippingForm) => {
+      store.select(fromCheckout.selectShowShippingForm).subscribe((showShippingForm) => {
         expect(showShippingForm).toEqual(stubShowShippingForm);
       });
     });
@@ -57,7 +57,7 @@ describe('selectFoundationCheckoutState', () => {
         showPaymentForm: expectedShowPaymentForm
       }
 
-      store.pipe(select(fromCheckout.foundationPaymentStateSelector)).subscribe((paymentState) => {
+      store.select(fromCheckout.foundationPaymentStateSelector).subscribe((paymentState) => {
         expect(paymentState).toEqual(expectedPaymentState);
       });
     });
@@ -66,7 +66,7 @@ describe('selectFoundationCheckoutState', () => {
   describe('selectShowPaymentView', () => {
     
     it('selects showPaymentView state', () => {
-      store.pipe(select(fromCheckout.selectShowPaymentView)).subscribe((showPaymentView) => {
+      store.select(fromCheckout.selectShowPaymentView).subscribe((showPaymentView) => {
         expect(showPaymentView).toEqual(expectedShowPaymentView);
       });
     });
@@ -75,7 +75,7 @@ describe('selectFoundationCheckoutState', () => {
   describe('selectShowPaymentForm', () => {
     
     it('selects showPaymentForm state', () => {
-      store.pipe(select(fromCheckout.selectShowPaymentForm)).subscribe((showPaymentForm) => {
+      store.select(fromCheckout.selectShowPaymentForm).subscribe((showPaymentForm) => {
         expect(showPaymentForm).toEqual(expectedShowPaymentForm);
       });
     });
@@ -90,7 +90,7 @@ describe('selectFoundationCheckoutState', () => {
         isOrderPlaced: false
       }
 
-      store.pipe(select(fromCheckout.foundationCheckoutStateSelector)).subscribe((checkoutState) => {
+      store.select(fromCheckout.foundationCheckoutStateSelector).subscribe((checkoutState) => {
         expect(checkoutState).toEqual(expectedCheckoutState);
       });
     });
@@ -99,7 +99,7 @@ describe('selectFoundationCheckoutState', () => {
   describe('selectEnablePlaceOrderButton', () => {
     
     it('selects enablePlaceOrderButton state', () => {
-      store.pipe(select(fromCheckout.selectEnablePlaceOrderButton)).subscribe((enablePlaceOrderButton) => {
+      store.select(fromCheckout.selectEnablePlaceOrderButton).subscribe((enablePlaceOrderButton) => {
         expect(enablePlaceOrderButton).toEqual(false);
       });
     });
@@ -108,7 +108,7 @@ describe('selectFoundationCheckoutState', () => {
   describe('selectShowReviewView', () => {
     
     it('selects showReviewView state', () => {
-      store.pipe(select(fromCheckout.selectShowReviewView)).subscribe((showReviewView) => {
+      store.select(fromCheckout.selectShowReviewView).subscribe((showReviewView) => {
         expect(showReviewView).toEqual(false);
       });
     });
@@ -117,7 +117,7 @@ describe('selectFoundationCheckoutState', () => {
   describe('selectIsOrderPlaced', () => {
     
     it('selects isOrderPlaced state', () => {
-      store.pipe(select(fromCheckout.selectIsOrderPlaced)).subscribe((isOrderPlaced) => {
+      store.select(fromCheckout.selectIsOrderPlaced).subscribe((isOrderPlaced) => {
         expect(isOrderPlaced).toEqual(false);
       });
     });

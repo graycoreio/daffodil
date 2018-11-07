@@ -1,5 +1,5 @@
 import { TestBed, async } from "@angular/core/testing";
-import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
+import { StoreModule, combineReducers, Store } from "@ngrx/store";
 
 import * as fromSidebar from './index';
 
@@ -28,7 +28,7 @@ describe('selectFoundationSidebarState', () => {
         showSidebar: expectedShowSidebar
       }
 
-      store.pipe(select(fromSidebar.foundationSidebarStateSelector)).subscribe((sidebarState) => {
+      store.select(fromSidebar.foundationSidebarStateSelector).subscribe((sidebarState) => {
         expect(sidebarState).toEqual(expectedSidebarState);
       });
     });
@@ -37,7 +37,7 @@ describe('selectFoundationSidebarState', () => {
   describe('selectShowSidebar', () => {
     
     it('selects showSidebar state', () => {
-      store.pipe(select(fromSidebar.selectShowSidebar)).subscribe((showSidebar) => {
+      store.select(fromSidebar.selectShowSidebar).subscribe((showSidebar) => {
         expect(showSidebar).toEqual(expectedShowSidebar);
       });
     });
