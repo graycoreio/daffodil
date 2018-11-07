@@ -1,5 +1,5 @@
 import { TestBed, async } from "@angular/core/testing";
-import { StoreModule, combineReducers, Store } from "@ngrx/store";
+import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
 import { PaymentInfo } from '@daffodil/core';
 import { BillingFactory } from '@daffodil/core/testing';
@@ -34,7 +34,7 @@ describe('selectPaymentState', () => {
         paymentInfo: stubPaymentInfo
       }
 
-      store.select(fromPayment.paymentStateSelector).subscribe((paymentState) => {
+      store.pipe(select(fromPayment.paymentStateSelector)).subscribe((paymentState) => {
         expect(paymentState).toEqual(expectedPaymentState);
       });
     });
@@ -43,7 +43,7 @@ describe('selectPaymentState', () => {
   describe('selectPaymentInfoState', () => {
     
     it('selects paymentInfo state', () => {
-      store.select(fromPayment.selectPaymentInfoState).subscribe((paymentInfo) => {
+      store.pipe(select(fromPayment.selectPaymentInfoState)).subscribe((paymentInfo) => {
         expect(paymentInfo).toEqual(stubPaymentInfo);
       });
     });

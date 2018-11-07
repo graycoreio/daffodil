@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 import { DaffodilAddress } from '@daffodil/core';
 import * as fromShipping from '../reducers/index';
@@ -25,9 +25,9 @@ export class ShippingContainer implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.shippingAddress$ = this.store.select(fromShipping.selectShippingAddressState);
-    this.selectedShippingOptionId$ = this.store.select(fromShipping.selectShippingOptionState);
-    this.isShippingAddressValid$ = this.store.select(fromShipping.selectIsShippingAddressValid);
+    this.shippingAddress$ = this.store.pipe(select(fromShipping.selectShippingAddressState));
+    this.selectedShippingOptionId$ = this.store.pipe(select(fromShipping.selectShippingOptionState));
+    this.isShippingAddressValid$ = this.store.pipe(select(fromShipping.selectIsShippingAddressValid));
   }
 
   updateShippingAddress(address: DaffodilAddress) {

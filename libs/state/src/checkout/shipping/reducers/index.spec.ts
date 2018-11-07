@@ -1,5 +1,5 @@
 import { TestBed, async } from "@angular/core/testing";
-import { StoreModule, combineReducers, Store } from "@ngrx/store";
+import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
 import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
 
@@ -37,7 +37,7 @@ describe('selectShippingState', () => {
         selectedShippingOptionId: stubSelectedShippingOptionId
       }
 
-      store.select(fromShipping.shippingStateSelector).subscribe((shippingState) => {
+      store.pipe(select(fromShipping.shippingStateSelector)).subscribe((shippingState) => {
         expect(shippingState).toEqual(expectedShippingState);
       });
     });
@@ -46,7 +46,7 @@ describe('selectShippingState', () => {
   describe('selectShippingAddressState', () => {
     
     it('selects shippingAddress state', () => {
-      store.select(fromShipping.selectShippingAddressState).subscribe((shippingAddress) => {
+      store.pipe(select(fromShipping.selectShippingAddressState)).subscribe((shippingAddress) => {
         expect(shippingAddress).toEqual(stubShippingAddress);
       });
     });
@@ -55,7 +55,7 @@ describe('selectShippingState', () => {
   describe('selectShippingOptionState', () => {
     
     it('selects shippingOption state', () => {
-      store.select(fromShipping.selectShippingOptionState).subscribe((shippingOption) => {
+      store.pipe(select(fromShipping.selectShippingOptionState)).subscribe((shippingOption) => {
         expect(shippingOption).toEqual(stubSelectedShippingOptionId);
       });
     });
@@ -64,7 +64,7 @@ describe('selectShippingState', () => {
   describe('selectIsShippingAddressValid', () => {
     
     it('selects isShippingAddressValid state', () => {
-      store.select(fromShipping.selectIsShippingAddressValid).subscribe((isShippingAddressValid) => {
+      store.pipe(select(fromShipping.selectIsShippingAddressValid)).subscribe((isShippingAddressValid) => {
         expect(isShippingAddressValid).toBeTruthy();
       });
     });

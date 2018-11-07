@@ -1,5 +1,5 @@
 import { TestBed, async } from "@angular/core/testing";
-import { StoreModule, combineReducers, Store } from "@ngrx/store";
+import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
 import { DaffodilAddressFactory, DaffodilAddress, PaymentInfo } from "@daffodil/core";
 import { BillingFactory } from '@daffodil/core/testing';
@@ -42,7 +42,7 @@ describe('selectBillingState', () => {
         paymentInfo: stubPaymentInfo
       }
 
-      store.select(fromBilling.billingStateSelector).subscribe((billingState) => {
+      store.pipe(select(fromBilling.billingStateSelector)).subscribe((billingState) => {
         expect(billingState).toEqual(expectedBillingState);
       });
     });
@@ -51,7 +51,7 @@ describe('selectBillingState', () => {
   describe('selectBillingAddressState', () => {
     
     it('selects billingAddress state', () => {
-      store.select(fromBilling.selectBillingAddressState).subscribe((billingAddress) => {
+      store.pipe(select(fromBilling.selectBillingAddressState)).subscribe((billingAddress) => {
         expect(billingAddress).toEqual(stubBillingAddress);
       });
     });
@@ -60,7 +60,7 @@ describe('selectBillingState', () => {
   describe('selectBillingAddressIsShippingAddressState', () => {
     
     it('selects billingAddressIsShippingAddress state', () => {
-      store.select(fromBilling.selectBillingAddressIsShippingAddressState).subscribe((billingAddressIsShippingAddress) => {
+      store.pipe(select(fromBilling.selectBillingAddressIsShippingAddressState)).subscribe((billingAddressIsShippingAddress) => {
         expect(billingAddressIsShippingAddress).toEqual(stubBillingAddressIsShippingAddress);
       });
     });
@@ -69,7 +69,7 @@ describe('selectBillingState', () => {
   describe('selectPaymentInfoState', () => {
     
     it('selects paymentInfo state', () => {
-      store.select(fromBilling.selectPaymentInfoState).subscribe((paymentInfo) => {
+      store.pipe(select(fromBilling.selectPaymentInfoState)).subscribe((paymentInfo) => {
         expect(paymentInfo).toEqual(stubPaymentInfo);
       });
     });
