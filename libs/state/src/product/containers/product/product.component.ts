@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 import { Product } from '@daffodil/core';
 import * as fromProduct from '../../reducers/index';
@@ -29,11 +29,11 @@ export class ProductContainer implements OnInit {
   ngOnInit() {
     this.store.dispatch(new ProductLoad(this.selectedProductId));
 
-    this.loading$ = this.store.select(fromProduct.selectSelectedProductLoadingState);
+    this.loading$ = this.store.pipe(select(fromProduct.selectSelectedProductLoadingState));
 
-    this.product$ = this.store.select(fromProduct.selectSelectedProduct);
+    this.product$ = this.store.pipe(select(fromProduct.selectSelectedProduct));
 
-    this.qty$ = this.store.select(fromProduct.selectSelectedProductQty);
+    this.qty$ = this.store.pipe(select(fromProduct.selectSelectedProductQty));
   }
 
   updateQty(payload: number) {

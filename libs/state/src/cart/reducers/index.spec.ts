@@ -1,5 +1,5 @@
 import { TestBed, async } from "@angular/core/testing";
-import { StoreModule, combineReducers, Store } from "@ngrx/store";
+import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
 import { CartLoadSuccess, CartReset } from "../actions/cart.actions";
 import * as fromCart from './index';
@@ -37,7 +37,7 @@ describe('selectCartState', () => {
         errors: []
       }
 
-      store.select(fromCart.cartStateSelector).subscribe((cart) => {
+      store.pipe(select(fromCart.cartStateSelector)).subscribe((cart) => {
         expect(cart).toEqual(expectedCartState);
       });
     });
@@ -46,7 +46,7 @@ describe('selectCartState', () => {
   describe('selectCartValueState', () => {
     
     it('selects cartValue state', () => {
-      store.select(fromCart.selectCartValueState).subscribe((cart) => {
+      store.pipe(select(fromCart.selectCartValueState)).subscribe((cart) => {
         expect(cart).toEqual(mockCart);
       });
     });
@@ -55,7 +55,7 @@ describe('selectCartState', () => {
   describe('selectCartLoadingState', () => {
     
     it('selects cart loading state', () => {
-      store.select(fromCart.selectCartLoadingState).subscribe((cartLoading) => {
+      store.pipe(select(fromCart.selectCartLoadingState)).subscribe((cartLoading) => {
         expect(cartLoading).toEqual(false);
       });
     });

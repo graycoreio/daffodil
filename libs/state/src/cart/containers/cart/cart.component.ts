@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 import { Cart } from '@daffodil/core';
 import * as fromCart from '../../reducers/index';
@@ -25,7 +25,7 @@ export class CartContainer implements OnInit {
   ngOnInit() {
     this.store.dispatch(new CartLoad());
 
-    this.loading$ = this.store.select(fromCart.selectCartLoadingState);
-    this.cart$ = this.store.select(fromCart.selectCartValueState);
+    this.loading$ = this.store.pipe(select(fromCart.selectCartLoadingState));
+    this.cart$ = this.store.pipe(select(fromCart.selectCartValueState));
   }
 }

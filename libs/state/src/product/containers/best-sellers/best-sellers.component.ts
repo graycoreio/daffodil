@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 import { Product } from '@daffodil/core';
 
@@ -25,7 +25,7 @@ export class BestSellersContainer implements OnInit {
   ngOnInit() {
     this.store.dispatch(new BestSellersLoad());
 
-    this.loading$ = this.store.select(fromProduct.selectBestSellersLoadingState);
+    this.loading$ = this.store.pipe(select(fromProduct.selectBestSellersLoadingState));
 
     combineLatest(
       this.getProducts(), this.getBestSellersIds()
@@ -43,10 +43,10 @@ export class BestSellersContainer implements OnInit {
   }
 
   private getProducts(): Observable<Product[]> {
-    return this.store.select(fromProduct.selectAllProducts);
+    return this.store.pipe(select(fromProduct.selectAllProducts));
   }
 
   private getBestSellersIds(): Observable<string[]> {
-    return this.store.select(fromProduct.selectBestSellersIdsState);
+    return this.store.pipe(select(fromProduct.selectBestSellersIdsState));
   }
 }
