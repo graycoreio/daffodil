@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
 import { PaymentInfo } from '@daffodil/core';
 import * as fromPayment from '../reducers/index';
@@ -22,9 +22,7 @@ export class PaymentContainer implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.paymentInfo$ = this.store.pipe(
-      select(fromPayment.selectPaymentInfoState)
-    );
+    this.paymentInfo$ = this.store.select(fromPayment.selectPaymentInfoState);
   }
 
   updatePaymentInfo(info: PaymentInfo) {
