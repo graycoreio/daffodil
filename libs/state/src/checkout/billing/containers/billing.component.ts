@@ -24,15 +24,9 @@ export class BillingContainer implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.billingAddress$ = this.store.pipe(
-      select(fromBilling.selectBillingAddressState)
-    );
-    this.billingAddressIsShippingAddress$ = this.store.pipe(
-      select(fromBilling.selectBillingAddressIsShippingAddressState)
-    );
-    this.paymentInfo$ = this.store.pipe(
-      select(fromBilling.selectPaymentInfoState)
-    );
+    this.billingAddress$ = this.store.pipe(select(fromBilling.selectBillingAddressState));
+    this.billingAddressIsShippingAddress$ = this.store.pipe(select(fromBilling.selectBillingAddressIsShippingAddressState));
+    this.paymentInfo$ = this.store.pipe(select(fromBilling.selectPaymentInfoState));
   }
 
   updateBillingAddress(address: DaffodilAddress) {

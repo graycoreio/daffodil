@@ -25,15 +25,9 @@ export class ShippingContainer implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.shippingAddress$ = this.store.pipe(
-      select(fromShipping.selectShippingAddressState)
-    );
-    this.selectedShippingOptionId$ = this.store.pipe(
-      select(fromShipping.selectShippingOptionState)
-    );
-    this.isShippingAddressValid$ = this.store.pipe(
-      select(fromShipping.selectIsShippingAddressValid)
-    );
+    this.shippingAddress$ = this.store.pipe(select(fromShipping.selectShippingAddressState));
+    this.selectedShippingOptionId$ = this.store.pipe(select(fromShipping.selectShippingOptionState));
+    this.isShippingAddressValid$ = this.store.pipe(select(fromShipping.selectIsShippingAddressValid));
   }
 
   updateShippingAddress(address: DaffodilAddress) {

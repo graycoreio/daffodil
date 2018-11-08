@@ -32,9 +32,7 @@ export class ShippingComponent {
       new SetShowShippingForm(!this.isShippingAddressValid)
     );
 
-    this.showShippingForm$ = this.store.pipe(
-      select(fromFoundationCheckout.selectShowShippingForm)
-    );
+    this.showShippingForm$ = this.store.pipe(select(fromFoundationCheckout.selectShowShippingForm));
   }
 
   toggleShippingView() {

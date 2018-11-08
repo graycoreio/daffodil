@@ -25,12 +25,7 @@ export class CartContainer implements OnInit {
   ngOnInit() {
     this.store.dispatch(new CartLoad());
 
-    this.loading$ = this.store.pipe(
-      select(fromCart.selectCartLoadingState)
-    );
-
-    this.cart$ = this.store.pipe(
-      select(fromCart.selectCartValueState)
-    );
+    this.loading$ = this.store.pipe(select(fromCart.selectCartLoadingState));
+    this.cart$ = this.store.pipe(select(fromCart.selectCartValueState));
   }
 }

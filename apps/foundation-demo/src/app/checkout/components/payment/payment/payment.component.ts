@@ -34,9 +34,7 @@ export class PaymentComponent implements OnInit {
       )
     }
 
-    this.showPaymentForm$ = this.store.pipe(
-      select(fromFoundationCheckout.selectShowPaymentForm)
-    );
+    this.showPaymentForm$ = this.store.pipe(select(fromFoundationCheckout.selectShowPaymentForm));
   }
 
   togglePaymentView() {

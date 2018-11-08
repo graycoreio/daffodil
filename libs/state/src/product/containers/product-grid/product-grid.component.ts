@@ -25,13 +25,9 @@ export class ProductGridContainer implements OnInit {
   ngOnInit() {
     this.store.dispatch(new ProductGridLoad());
 
-    this.loading$ = this.store.pipe(
-      select(fromProduct.selectProductGridLoadingState)
-    );
+    this.loading$ = this.store.pipe(select(fromProduct.selectProductGridLoadingState));
 
-    this.products$ = this.store.pipe(
-      select(fromProduct.selectAllProducts)
-    );
+    this.products$ = this.store.pipe(select(fromProduct.selectAllProducts));
   }
 
 }

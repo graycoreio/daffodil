@@ -29,17 +29,11 @@ export class ProductContainer implements OnInit {
   ngOnInit() {
     this.store.dispatch(new ProductLoad(this.selectedProductId));
 
-    this.loading$ = this.store.pipe(
-      select(fromProduct.selectSelectedProductLoadingState)
-    );
+    this.loading$ = this.store.pipe(select(fromProduct.selectSelectedProductLoadingState));
 
-    this.product$ = this.store.pipe(
-      select(fromProduct.selectSelectedProduct)
-    );
+    this.product$ = this.store.pipe(select(fromProduct.selectSelectedProduct));
 
-    this.qty$ = this.store.pipe(
-      select(fromProduct.selectSelectedProductQty)
-    )
+    this.qty$ = this.store.pipe(select(fromProduct.selectSelectedProductQty));
   }
 
   updateQty(payload: number) {
