@@ -19,7 +19,7 @@ export class DaffButtonBase{
   constructor(public _elementRef: ElementRef) {}
 }
 
-const _daffButtonBase = daffColorMixin(DaffButtonBase) 
+const _daffButtonBase = daffColorMixin(DaffButtonBase, 'black') 
 
 @Component({
   selector: '' +
