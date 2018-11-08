@@ -15,10 +15,21 @@ export class CartWrapperComponent {
   }
 
   get cartHasOneItem():boolean {
+    if (this.cart.items.length === 1) {
+      return this.cart.items[0].qty === 1;
+    }
     return this.cart.items.length === 1;
   }
 
   get itemText():string {
     return this.cartHasOneItem ? 'Item' : 'Items';
+  }
+
+  get itemCount():number {
+    let itemCount: number = 0;
+    this.cart.items.forEach(cartItem => {
+      itemCount += cartItem.qty;
+    })
+    return itemCount;
   }
 }

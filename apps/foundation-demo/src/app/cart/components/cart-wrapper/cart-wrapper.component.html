@@ -2,7 +2,7 @@
   <div class="cart-wrapper__main">
     <div class="cart-wrapper__header">
       <span class="cart-wrapper__title">Your Cart</span>
-      <span class="cart-wrapper__item-count">{{cart.items.length}} {{itemText}}</span>
+      <span class="cart-wrapper__item-count">{{itemCount}} {{itemText}}</span>
     </div>
     <cart [cart]="cart"></cart>
     <button type="button" daff-button color="black" continue-shopping class="cart-wrapper__continue-shopping" *ngIf="isCartEmpty">

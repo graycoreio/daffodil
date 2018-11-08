@@ -1,16 +1,11 @@
 import { Component, Input, Directive } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
 
 import { Cart } from '@daffodil/core';
 import { CartFactory } from '@daffodil/core/testing';
 
 import { CartWrapperComponent } from './cart-wrapper.component';
-import { ContinueShoppingModule } from '../continue-shopping/continue-shopping.module';
-import { ProceedToCheckoutModule } from '../proceed-to-checkout/proceed-to-checkout.module';
-import { RouterTestingModule } from '@angular/router/testing';
 
 @Component({template: '<cart-wrapper [cart]="cartValue"></cart-wrapper>'})
 class TestCartWrapper {
@@ -196,13 +191,13 @@ describe('CartWrapper', () => {
     it('should return false if there are one or more items in the cart', () => {
       component.cartValue.items.push(cartFactory.createCartItem());
 
-      expect(cartWrapperComponent.isCartEmpty).toEqual(false);
+      expect(cartWrapperComponent.isCartEmpty).toBeFalsy();
     });
 
     it('should return true if there are no items in the cart', () => {
       component.cartValue.items = [];
 
-      expect(cartWrapperComponent.isCartEmpty).toEqual(true);
+      expect(cartWrapperComponent.isCartEmpty).toBeTruthy();
     });
   });
 
@@ -211,34 +206,75 @@ describe('CartWrapper', () => {
     it('should return false if there are no items in the cart', () => {
       component.cartValue.items = [];
 
-      expect(cartWrapperComponent.cartHasOneItem).toEqual(false);
+      expect(cartWrapperComponent.cartHasOneItem).toBeFalsy();
     });
 
-    it('should return true if there is exactly one item in the cart', () => {
-      component.cartValue.items = [cartFactory.createCartItem()];
+    describe('when cart has one type of item', () => {
+      
+      describe('and there is only one of that type of item', () => {
+        
+        beforeEach(() => {
+          component.cartValue.items = [
+            cartFactory.createCartItem()
+          ];
+          component.cartValue.items[0].qty = 1;
+        });
 
-      expect(cartWrapperComponent.cartHasOneItem).toEqual(true);
+        it('should return true', () => {
+          expect(cartWrapperComponent.cartHasOneItem).toBeTruthy();
+        });
+      });
+
+      describe('and there is more than one of that type of item', () => {
+        
+        beforeEach(() => {
+          component.cartValue.items = [
+            cartFactory.createCartItem()
+          ];
+          component.cartValue.items[0].qty = 2;
+        });
+
+        it('should return false', () => {
+          expect(cartWrapperComponent.cartHasOneItem).toBeFalsy();
+        });
+      });
     });
 
     it('should return false if there are two or more items in the cart', () => {
       component.cartValue.items.push(cartFactory.createCartItem(), cartFactory.createCartItem());
 
-      expect(cartWrapperComponent.cartHasOneItem).toEqual(false);
+      expect(cartWrapperComponent.cartHasOneItem).toBeFalsy();
     });
   });
 
-  describe('getItemText', () => {
+  describe('itemText', () => {
 
     it('should return Item if there is one item in the cart', () => {
-      component.cartValue.items = [cartFactory.createCartItem()];
+      spyOnProperty(cartWrapperComponent, 'cartHasOneItem').and.returnValue(true);
 
       expect(cartWrapperComponent.itemText).toEqual('Item');
     });
 
-    it('should return Items if there is more than one item or zero in the cart', () => {
-      component.cartValue.items.push(cartFactory.createCartItem(), cartFactory.createCartItem());
+    it('should return Items if there is not one items in the cart', () => {
+      spyOnProperty(cartWrapperComponent, 'cartHasOneItem').and.returnValue(false);
 
       expect(cartWrapperComponent.itemText).toEqual('Items');
+    });
+  });
+
+  describe('itemCount', () => {
+
+    beforeEach(() => {
+      component.cartValue.items = [
+        cartFactory.createCartItem(),
+        cartFactory.createCartItem()
+      ];
+      component.cartValue.items[0].qty = 2;
+      component.cartValue.items[1].qty = 3;
+    });
+    
+    it('should return the total number of items in the cart', () => {
+      expect(cartWrapperComponent.itemCount).toEqual(5);
     });
   });
 });
