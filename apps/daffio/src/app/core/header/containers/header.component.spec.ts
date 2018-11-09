@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderContainer } from './header.component';
+import { DaffioHeaderContainer } from './header.component';
 import { LogoModule } from '../../logo/logo.module';
 import { StoreModule } from '@ngrx/store';
 
-describe('HeaderContainer', () => {
-  let component: HeaderContainer;
-  let fixture: ComponentFixture<HeaderContainer>;
+describe('DaffioHeaderContainer', () => {
+  let component: DaffioHeaderContainer;
+  let fixture: ComponentFixture<DaffioHeaderContainer>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -14,13 +14,13 @@ describe('HeaderContainer', () => {
         StoreModule.forRoot({}),
         LogoModule
       ],
-      declarations: [ HeaderContainer ]
+      declarations: [ DaffioHeaderContainer ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderContainer);
+    fixture = TestBed.createComponent(DaffioHeaderContainer);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
