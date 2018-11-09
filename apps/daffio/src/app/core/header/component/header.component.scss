@@ -3,19 +3,16 @@
 .daffio-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 25px;
   width: 100%;
 
-  @include breakpoint(large) {
+  @include breakpoint(big-tablet) {
     padding: 25px 50px;
   }
 
-  @include breakpoint(xlarge) {
+  @include breakpoint(laptop) {
     padding: 25px 0;
-  }
-
-  &__right {
-    display: flex;
   }
 
   &__menu {
@@ -23,7 +20,7 @@
     margin: 0;
     padding: 0;
 
-    @include breakpoint(medium) {
+    @include breakpoint(big-tablet) {
       display: flex;
       align-items: center;
     }
@@ -31,43 +28,24 @@
 
   &__menu-item {
     color: $black;
-    padding: 0 30px 0 0;
+    padding: 0 30px;
     text-decoration: none;
-
-    &:last-child {
-      padding: 0;
-    }
   }
 
   &__button {
     display: none;
-    margin-left: 30px;
 
-    @include breakpoint(medium) {
+    @include breakpoint(mobile) {
       display: inline-block;
-    }
-    
-    button {
-      color: $black;
-      background: $primary;
-      border: 1px solid $primary;
-
-      &:hover {
-        background: daff-color($daff-primary, 600);
-        border: 1px solid daff-color($daff-primary, 600);
-      }
     }
   }
 
   &__bars {
-    display: inline-block;
+    display: flex;
+    align-items: center;
 
-    @include breakpoint(medium) {
+    @include breakpoint(big-tablet) {
       display: none;
     }
   }
-}
-
-.nav-spacer {
-  flex-grow: 1;
 }
