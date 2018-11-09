@@ -1,12 +1,12 @@
 import { ToggleSidebar, CloseSidebar, OpenSidebar, SetSidebarState } from "../actions/sidebar.actions";
-import { initialState, reducer, getShowDaffioSidebar } from "../reducers/sidebar.reducer";
+import { initialState, reducer, getShowSidebar } from "../reducers/sidebar.reducer";
 
 describe('Sidebar | Sidebar Reducer', () => {
   
   describe('initialState', () => {
     
     it('should set showDaffioSidebar to false', () => {
-      expect(initialState.showDaffioSidebar).toBeFalsy();
+      expect(initialState.showSidebar).toBeFalsy();
     });
   });
 
@@ -31,48 +31,48 @@ describe('Sidebar | Sidebar Reducer', () => {
       result = reducer(initialState, toggleSidebar);
     });
 
-    it('sets showDaffioSidebar to !showDaffioSidebar', () => {
+    it('sets showSidebar to !showSidebar', () => {
       expect(result.showSidebar).toBeTruthy();
     });
   });
 
   describe('when CloseSidebar is triggered', () => { 
-    it('sets showDaffioSidebar to `false`', () => {
+    it('sets showSidebar to `false`', () => {
       let action = new CloseSidebar();
 
       let result = reducer(initialState, action);
-      expect(result.showDaffioSidebar).toEqual(false);
+      expect(result.showSidebar).toEqual(false);
     })
   });
 
   describe('when OpenSidebar is triggered', () => { 
-    it('sets showDaffioSidebar to `true`', () => {
+    it('sets showSidebar to `true`', () => {
       let action = new OpenSidebar();
 
       let result = reducer(initialState, action);
-      expect(result.showDaffioSidebar).toEqual(true);
+      expect(result.showSidebar).toEqual(true);
     })
   });
 
   describe('when SetSidebarState is triggered', () => { 
-    it('sets showDaffioSidebar to `true` when the actions payload is true', () => {
+    it('sets showSidebar to `true` when the actions payload is true', () => {
       let action = new SetSidebarState(true);
 
       let result = reducer(initialState, action);
-      expect(result.showDaffioSidebar).toEqual(true);
+      expect(result.showSidebar).toEqual(true);
     })
 
-    it('sets showDaffioSidebar to `false` when the actions payload is false', () => {
+    it('sets showSidebar to `false` when the actions payload is false', () => {
       let action = new SetSidebarState(false);
 
       let result = reducer(initialState, action);
-      expect(result.showDaffioSidebar).toEqual(false);
+      expect(result.showSidebar).toEqual(false);
     })
   });
 
-  describe('getShowDaffioSidebar', () => {
-    it('returns showDaffioSidebar state', () => {
-      expect(getShowDaffioSidebar(initialState)).toEqual(initialState.showDaffioSidebar);
+  describe('getShowSidebar', () => {
+    it('returns showSidebar state', () => {
+      expect(getShowSidebar(initialState)).toEqual(initialState.showSidebar);
     });
   });
 });
