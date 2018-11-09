@@ -6,9 +6,9 @@
   
   svg {
     display: block;
-    width: 100px;
+    width: 125px;
 
-    @include breakpoint(medium) {
+    @include breakpoint(mobile) {
       width: 150px;
     }
   }
