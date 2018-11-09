@@ -8,7 +8,11 @@ export { ProductGridContainer } from './product/containers/product-grid/product-
 export { BestSellersContainer } from './product/containers/best-sellers/best-sellers.component';
 
 export { CartContainer } from './cart/containers/cart/cart.component';
-export { CartActionTypes, AddToCart } from './cart/actions/cart.actions';
+export { CartActionTypes, AddToCart, CartReset, CartLoadSuccess } from './cart/actions/cart.actions';
+import * as fromCart from './cart/reducers/index';
+export { fromCart };
+import * as fromCartReducer from './cart/reducers/cart.reducer';
+export { fromCartReducer };
 
 export { ShippingContainer } from './checkout/shipping/containers/shipping.component';
 export { PaymentContainer } from './checkout/payment/containers/payment.component';

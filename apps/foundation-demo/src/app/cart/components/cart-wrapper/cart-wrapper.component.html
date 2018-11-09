@@ -2,15 +2,15 @@
   <div class="cart-wrapper__main">
     <div class="cart-wrapper__header">
       <span class="cart-wrapper__title">Your Cart</span>
-      <span class="cart-wrapper__item-count">{{itemCount}} {{itemText}}</span>
+      <span class="cart-wrapper__item-count">{{(itemCount$ | async)}} {{(itemText$ | async)}}</span>
     </div>
     <cart [cart]="cart"></cart>
-    <button type="button" daff-button color="black" continue-shopping class="cart-wrapper__continue-shopping" *ngIf="isCartEmpty">
+    <button type="button" daff-button color="black" continue-shopping class="cart-wrapper__continue-shopping" *ngIf="(isCartEmpty$ | async)">
       Continue Shopping
     </button>
   </div>
   <div class="cart-wrapper__sidebar">
-    <div class="cart-wrapper__summary" *ngIf="!isCartEmpty">
+    <div class="cart-wrapper__summary" *ngIf="!(isCartEmpty$ | async)">
       <div class="cart-wrapper__summary-title">cart summary</div>
       <promotion class="cart-wrapper__promotion"></promotion>
       <cart-totals class="cart-wrapper__cart-totals" [cart]="cart"></cart-totals>
