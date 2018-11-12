@@ -6,7 +6,7 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
   styleUrls: ['./logo.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LogoComponent{
+export class DaffLogoComponent{
   @Input() size: LogoSize = LogoSize.ICON;
 }
 
