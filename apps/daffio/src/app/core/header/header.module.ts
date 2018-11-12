@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { DaffNavbarModule, DaffContainerModule, DaffButtonModule } from '@daffodil/design';
-import { LogoModule } from '../logo/logo.module';
+import { DaffLogoModule } from '../logo/logo.module';
 import { DaffioHeaderComponent } from './component/header.component';
 import { DaffioSidebarModule } from '../sidebar/sidebar.module';
 import { DaffioHeaderContainer } from './containers/header.component';
@@ -13,7 +13,7 @@ import { DaffioHeaderContainer } from './containers/header.component';
     CommonModule,
     RouterModule,
     DaffNavbarModule,
-    LogoModule,
+    DaffLogoModule,
     DaffContainerModule,
     DaffButtonModule,
     DaffioSidebarModule
