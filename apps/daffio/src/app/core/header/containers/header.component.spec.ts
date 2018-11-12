@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DaffioHeaderContainer } from './header.component';
-import { LogoModule } from '../../logo/logo.module';
+import { DaffLogoModule } from '../../logo/logo.module';
 import { StoreModule } from '@ngrx/store';
 
 describe('DaffioHeaderContainer', () => {
@@ -12,7 +12,7 @@ describe('DaffioHeaderContainer', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({}),
-        LogoModule
+        DaffLogoModule
       ],
       declarations: [ DaffioHeaderContainer ]
     })
