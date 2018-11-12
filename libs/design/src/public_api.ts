@@ -20,6 +20,7 @@ export * from './molecules/navbar/public_api';
 export * from './molecules/qty-dropdown/public_api';
 export * from './molecules/select-validator/public_api';
 export * from './molecules/sidebar/public_api';
+export * from './molecules/dropdown/public_api';
 
 //Helpers
 export { ErrorStateMatcher } from './molecules/error-state-matcher/error-state-matcher';

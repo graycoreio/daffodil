@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation, Input } from '@angular/core';
 
-import { daffFadeAnimation } from '../../../animations/fade-animation';
-import { getAnimationState } from '../../../animations/fade-animation-state';
+import { daffFadeAnimation } from '../animations/fade-animation';
+import { getAnimationState } from '../animations/fade-animation-state';
 
 @Component({
   selector: 'daff-dropdown',
