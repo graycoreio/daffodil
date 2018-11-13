@@ -21,9 +21,11 @@ export const daffFadeAnimation: {
   fade: trigger('fade', [
     state('show', style({
       opacity: '1',
+      transform: 'translate3d(0,10px,0)',
     })),
     state('void',style({
-      opacity: 0
+      opacity: 0,
+      transform: 'translate3d(0,-20px,0)',
     })),
     transition('void <=> show',
         animate('350ms cubic-bezier(0.25, 0.8, 0.25, 1)'))

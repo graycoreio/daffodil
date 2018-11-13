@@ -1,22 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DaffDropdownComponent } from './dropdown/dropdown.component';
-import { DaffDropdownTitleComponent } from './dropdown-title/dropdown-title.component';
-import { DaffDropdownBodyComponent } from './dropdown-body/dropdown-body.component';
 
 @NgModule({
   imports: [
     CommonModule,
   ],
   declarations: [
-    DaffDropdownComponent,
-    DaffDropdownTitleComponent,
-    DaffDropdownBodyComponent
+    DaffDropdownComponent
   ],
   exports: [
-    DaffDropdownComponent,
-    DaffDropdownTitleComponent,
-    DaffDropdownBodyComponent
+    DaffDropdownComponent
   ]
 })
 export class DaffDropdownModule { }

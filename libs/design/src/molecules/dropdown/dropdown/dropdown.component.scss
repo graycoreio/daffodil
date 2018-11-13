@@ -1,31 +1,50 @@
-$title-padding: 21px;
+@import '../../../scss/daff-util';
+
+$title-padding: 20px;
 $dropdown-y-position: -2*$title-padding;
 
 .daff-dropdown {
   position: relative;
-
-  &__title {
-    padding: $title-padding 16px;
-    cursor: pointer;
-  }
-
+  
   &__body {
-    position: absolute;
-
+    position: relative;
+    background: $white;
+    border-radius: 5px;
+    box-shadow: 0 2px 20px -1px daff-color($daff-gray, 300);
+    width: 300px;
+  }
+  
+  &__content {
+    display: block;
+    padding: 25px;
+  
     &--after > * {
       left: 0;
     }
-
+  
     &--before > * {
       right: 0;
     }
-
+  
     &--above > * {
       top: $dropdown-y-position;
     }
-
+  
     &--below > * {
       bottom: $dropdown-y-position;
     }
+  }
+  
+  &__caret {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    transform: translateX(-50%) rotate(45deg);
+    background: $white;
+    box-shadow: -5px -5px 20px -4px daff-color($daff-gray, 300);
   }
 }

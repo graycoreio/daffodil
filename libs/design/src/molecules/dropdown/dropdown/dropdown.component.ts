@@ -21,48 +21,41 @@ export class DaffDropdownComponent {
   @Input()
   get positionX(): string { return this._positionX; }
   set positionX(value: string) {
-    if (value !== 'before' && value !== 'after') {
-      throw Error(`positionX value must be either 'before' or 'after'.
-      Example: <daff-dropdown-body positionX="before"></daff-dropdown-body>`);
-    }
+    // if (value !== 'before' && value !== 'after') {
+    //   throw Error(`positionX value must be either 'before' or 'after'.
+    //   Example: <daff-dropdown-body positionX="before"></daff-dropdown-body>`);
+    // }
     this._positionX = value;
-    this.updatePositionClasses();
   }
 
   @Input()
   get positionY(): string { return this._positionY; }
   set positionY(value: string) {
-    if (value !== 'above' && value !== 'below') {
-      throw Error(`positionY value must be either 'above' or 'below'.
-      Example: <daff-dropdown-body positionY="below"></daff-dropdown-body>`);
-    }
+    // if (value !== 'above' && value !== 'below') {
+    //   throw Error(`positionY value must be either 'above' or 'below'.
+    //   Example: <daff-dropdown-body positionY="below"></daff-dropdown-body>`);
+    // }
     this._positionY = value;
-    this.updatePositionClasses();
-  }
-  
-  bodyClassList: {[key: string]: boolean} = {};
-
-  ngOnInit() {
-    this.updatePositionClasses();
-    this._animationState = getAnimationState(this._showBody);
   }
 
-  private updatePositionClasses() {
-    const bodyClasses = this.bodyClassList;
-    bodyClasses['daff-dropdown__body--before'] = this._positionX === 'before';
-    bodyClasses['daff-dropdown__body--after'] = this._positionX === 'after';
-    bodyClasses['daff-dropdown__body--above'] = this.positionY === 'above';
-    bodyClasses['daff-dropdown__body--below'] = this.positionY === 'below';
-  }
-
-  toggleBody() {
+  @Input()
+  get open(): boolean {return this._showBody; }
+  set open(value: boolean) {
     this._showBody = !this._showBody;
     this._animationState = getAnimationState(this._showBody);
   }
+  
+  get bodyClassList(): {[key: string]: boolean} {
 
-  closeBody() {
-    if (this._showBody) {
-      this.toggleBody();
-    }
+    return {
+      'daff-dropdown__body--before': this._positionX === 'before',
+      'daff-dropdown__body--after': this._positionX === 'after',
+      'daff-dropdown__body--above': this.positionY === 'above',
+      'daff-dropdown__body--below': this.positionY === 'below',
+    };
+  };
+
+  ngOnInit() {
+    this._animationState = getAnimationState(this._showBody);
   }
 }
