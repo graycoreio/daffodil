@@ -1,3 +1,8 @@
 <daffio-header>
-  <button type="button" sidebar-button daff-icon-button (click)="openSidebar()"><i class="fas fa-bars"></i></button>
+  <a daffio-logo>
+    <daffio-logo></daffio-logo>
+  </a>
+  <a href="{{ link.path }}" daffio-header-item *ngFor="let link of links">{{ link.title }}</a>
+  <button type="button" daff-icon-button sidebar-button (click)="openSidebar()"><i class="fas fa-bars"></i></button>
+  <button type="button" daff-button quickstart-button color="black">Get Started</button>
 </daffio-header>

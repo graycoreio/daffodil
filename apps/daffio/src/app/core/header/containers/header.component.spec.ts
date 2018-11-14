@@ -1,8 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DaffioHeaderContainer } from './header.component';
-import { DaffLogoModule } from '../../logo/logo.module';
 import { StoreModule } from '@ngrx/store';
+import { DaffioLogoModule } from '../../logo/logo.module';
+import { DaffioHeaderComponent } from '../component/header.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('DaffioHeaderContainer', () => {
   let component: DaffioHeaderContainer;
@@ -11,10 +13,16 @@ describe('DaffioHeaderContainer', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        StoreModule.forRoot({}),
-        DaffLogoModule
+        DaffioLogoModule,
+        StoreModule.forRoot({})
       ],
-      declarations: [ DaffioHeaderContainer ]
+      declarations: [
+        DaffioHeaderContainer,
+        DaffioHeaderComponent
+      ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ]
     })
     .compileComponents();
   }));

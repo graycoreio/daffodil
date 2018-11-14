@@ -2,25 +2,27 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { DaffNavbarModule, DaffContainerModule, DaffButtonModule } from '@daffodil/design';
-import { DaffLogoModule } from '../logo/logo.module';
+import { DaffNavbarModule, DaffButtonModule, DaffContainerModule } from '@daffodil/design';
+import { DaffioLogoModule } from '../logo/logo.module';
 import { DaffioHeaderComponent } from './component/header.component';
 import { DaffioSidebarModule } from '../sidebar/sidebar.module';
 import { DaffioHeaderContainer } from './containers/header.component';
+import { DaffioHeaderItemComponent } from './header-item/header-item.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     DaffNavbarModule,
-    DaffLogoModule,
-    DaffContainerModule,
+    DaffioLogoModule,
     DaffButtonModule,
-    DaffioSidebarModule
+    DaffioSidebarModule,
+    DaffContainerModule
   ],
   declarations: [
     DaffioHeaderComponent,
-    DaffioHeaderContainer
+    DaffioHeaderContainer,
+    DaffioHeaderItemComponent
   ],
   exports: [
     DaffioHeaderContainer
