@@ -5,7 +5,7 @@ describe('Sidebar | Sidebar Reducer', () => {
   
   describe('initialState', () => {
     
-    it('should set showDaffioSidebar to false', () => {
+    it('should set showSidebar to false', () => {
       expect(initialState.showSidebar).toBeFalsy();
     });
   });

@@ -5,7 +5,7 @@ import { reducers } from './reducers/index';
 
 @NgModule({
   imports: [
-    StoreModule.forFeature('sidebar', reducers)
+    StoreModule.forFeature('daffioSidebar', reducers)
   ]
 })
 export class DaffioSidebarStateModule { }
