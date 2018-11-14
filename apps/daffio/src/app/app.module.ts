@@ -11,8 +11,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    DaffioHeaderModule,
+
     StoreModule.forRoot({}),
+
+    DaffioHeaderModule,
     DaffioSidebarModule
   ],
   declarations: [
