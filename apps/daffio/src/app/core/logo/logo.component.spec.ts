@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DaffLogoComponent } from './logo.component';
+import { DaffioLogoComponent } from './logo.component';
 
-describe('DaffLogoComponent', () => {
-  let component: DaffLogoComponent;
-  let fixture: ComponentFixture<DaffLogoComponent>;
+describe('DaffioLogoComponent', () => {
+  let component: DaffioLogoComponent;
+  let fixture: ComponentFixture<DaffioLogoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DaffLogoComponent ]
+      declarations: [ DaffioLogoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DaffLogoComponent);
+    fixture = TestBed.createComponent(DaffioLogoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
