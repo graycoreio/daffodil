@@ -3,5 +3,14 @@
 .daff-navbar {
   display: flex;
   align-items: center;
-  @include section-divider();
+  padding: 25px;
+  width: 100%;
+
+  @include breakpoint(big-tablet) {
+    padding: 25px 50px;
+  }
+
+  @include breakpoint(laptop) {
+    padding: 25px 0;
+  }
 }
