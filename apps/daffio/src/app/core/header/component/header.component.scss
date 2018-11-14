@@ -1,19 +1,7 @@
 @import 'daff-util';
 
 .daffio-header {
-  display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 25px;
-  width: 100%;
-
-  @include breakpoint(big-tablet) {
-    padding: 25px 50px;
-  }
-
-  @include breakpoint(laptop) {
-    padding: 25px 0;
-  }
 
   &__menu {
     display: none;
@@ -26,7 +14,7 @@
     }
   }
 
-  &__menu-item {
+  &__item {
     color: $black;
     padding: 0 30px;
     text-decoration: none;

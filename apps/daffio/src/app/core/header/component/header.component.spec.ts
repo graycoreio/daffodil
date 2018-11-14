@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DaffNavbarModule } from '@daffodil/design';
-
 import { DaffioHeaderComponent } from './header.component';
+import { DaffContainerModule } from '@daffodil/design';
+import { DaffNavbarModule } from 'libs/design/src';
 
 describe('DaffioHeaderComponent', () => {
   let component: DaffioHeaderComponent;
@@ -11,6 +11,7 @@ describe('DaffioHeaderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        DaffContainerModule,
         DaffNavbarModule
       ],
       declarations: [ 

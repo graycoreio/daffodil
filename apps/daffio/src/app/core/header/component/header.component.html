@@ -1,17 +1,16 @@
-<daff-container size="medium">  
-  <div class="daffio-header">
-    <daff-logo></daff-logo>
+<daff-container size="medium"> 
+  <daff-navbar class="daffio-header">
+    <div class="daffio-header__logo">
+      <ng-content select="[daffio-logo]"></ng-content>
+    </div>
     <div class="daffio-header__menu">
-      <a href="#" target="_blank" rel="noopener noreferrer" class="daffio-header__menu-item">Developers</a>
-      <a href="#" target="_blank" rel="noopener noreferrer" class="daffio-header__menu-item">Solutions</a>
-      <a href="#" target="_blank" rel="noopener noreferrer" class="daffio-header__menu-item">Documentation</a>
-      <a href="#" target="_blank" rel="noopener noreferrer" class="daffio-header__menu-item">Support</a>
+      <ng-content select="[daffio-header-item]"></ng-content>
     </div>
     <div class="daffio-header__bars">
       <ng-content select="[sidebar-button]"></ng-content>
     </div>
     <div class="daffio-header__button">
-      <button type="button" daff-button color="black">Get Started</button>
+      <ng-content select="[quickstart-button]"></ng-content>
     </div>
-  </div>
+  </daff-navbar>
 </daff-container>
