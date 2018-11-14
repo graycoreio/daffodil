@@ -28,7 +28,7 @@ describe('DaffioSidebarContainer', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          foundationSidebar: combineReducers(fromSidebar.reducers),
+          daffioSidebar: combineReducers(fromSidebar.reducers),
         }),
         NoopAnimationsModule,
         DaffSidebarModule,

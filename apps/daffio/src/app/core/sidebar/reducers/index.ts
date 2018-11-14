@@ -1,9 +1,9 @@
 import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
-import * as fromSidebar from './sidebar.reducer';
+import * as fromDaffioSidebar from './sidebar.reducer';
 
 export interface DaffioSidebarState {
-  daffioSidebar: fromSidebar.State;
+  daffioSidebar: fromDaffioSidebar.State;
 }
 
 export interface State {
@@ -11,13 +11,14 @@ export interface State {
 }
 
 export const reducers : ActionReducerMap<DaffioSidebarState> = {
-  daffioSidebar: fromSidebar.reducer
+  daffioSidebar: fromDaffioSidebar.reducer
 }
 
 /**
  * Daffio Sidebar State
  */
-export const selectDaffioSidebarState: MemoizedSelector<object, DaffioSidebarState> = createFeatureSelector<DaffioSidebarState>('sidebar');
+export const selectDaffioSidebarState: MemoizedSelector<object, DaffioSidebarState> = 
+  createFeatureSelector<DaffioSidebarState>('daffioSidebar');
 
 /**
  * Daffio Sidebar Sidebar State
@@ -29,5 +30,5 @@ export const daffioSidebarStateSelector = createSelector(
 
 export const selectShowSidebar: MemoizedSelector<object, boolean> = createSelector(
   daffioSidebarStateSelector,
-  fromSidebar.getShowSidebar
+  fromDaffioSidebar.getShowSidebar
 );
