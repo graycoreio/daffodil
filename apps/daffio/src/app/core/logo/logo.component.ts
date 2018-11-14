@@ -1,12 +1,12 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
 @Component({
-  selector: 'daff-logo',
+  selector: 'daffio-logo',
   templateUrl: './logo.component.html',
   styleUrls: ['./logo.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DaffLogoComponent{
+export class DaffioLogoComponent{
   @Input() size: LogoSize = LogoSize.ICON;
 }
 
