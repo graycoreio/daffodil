@@ -105,14 +105,14 @@ describe('DaffDropdownComponent', () => {
 
         fixture.detectChanges();
 
-        bodyWrapperElement = fixture.debugElement.query(By.css('.daff-dropdown__body-wrapper')).nativeElement;
+        bodyWrapperElement = fixture.debugElement.query(By.css('.daff-dropdown__body')).nativeElement;
       });
       
-      it('should set daff-dropdown__body--before on daff-dropdown__body-wrapper', () => {
+      it('should set daff-dropdown__body--before on daff-dropdown__body', () => {
         expect(bodyWrapperElement.classList.contains('daff-dropdown__body--before')).toBeTruthy();
       });
 
-      it('should not set daff-dropdown__body--after on daff-dropdown__body-wrapper', () => {
+      it('should not set daff-dropdown__body--after on daff-dropdown__body', () => {
         expect(bodyWrapperElement.classList.contains('daff-dropdown__body--after')).toBeFalsy();
       });
     });
@@ -126,14 +126,14 @@ describe('DaffDropdownComponent', () => {
 
         fixture.detectChanges();
 
-        bodyWrapperElement = fixture.debugElement.query(By.css('.daff-dropdown__body-wrapper')).nativeElement;
+        bodyWrapperElement = fixture.debugElement.query(By.css('.daff-dropdown__body')).nativeElement;
       });
       
-      it('should not set daff-dropdown__body--before on daff-dropdown__body-wrapper', () => {
+      it('should not set daff-dropdown__body--before on daff-dropdown__body', () => {
         expect(bodyWrapperElement.classList.contains('daff-dropdown__body--before')).toBeFalsy();
       });
 
-      it('should set daff-dropdown__body--after on daff-dropdown__body-wrapper', () => {
+      it('should set daff-dropdown__body--after on daff-dropdown__body', () => {
         expect(bodyWrapperElement.classList.contains('daff-dropdown__body--after')).toBeTruthy();
       });
     });
@@ -147,14 +147,14 @@ describe('DaffDropdownComponent', () => {
 
         fixture.detectChanges();
 
-        bodyWrapperElement = fixture.debugElement.query(By.css('.daff-dropdown__body-wrapper')).nativeElement;
+        bodyWrapperElement = fixture.debugElement.query(By.css('.daff-dropdown__body')).nativeElement;
       });
       
-      it('should set daff-dropdown__body--above on daff-dropdown__body-wrapper', () => {
+      it('should set daff-dropdown__body--above on daff-dropdown__body', () => {
         expect(bodyWrapperElement.classList.contains('daff-dropdown__body--above')).toBeTruthy();
       });
 
-      it('should not set daff-dropdown__body--below on daff-dropdown__body-wrapper', () => {
+      it('should not set daff-dropdown__body--below on daff-dropdown__body', () => {
         expect(bodyWrapperElement.classList.contains('daff-dropdown__body--below')).toBeFalsy();
       });
     });
@@ -168,66 +168,16 @@ describe('DaffDropdownComponent', () => {
 
         fixture.detectChanges();
 
-        bodyWrapperElement = fixture.debugElement.query(By.css('.daff-dropdown__body-wrapper')).nativeElement;
+        bodyWrapperElement = fixture.debugElement.query(By.css('.daff-dropdown__body')).nativeElement;
       });
       
-      it('should not set daff-dropdown__body--above on daff-dropdown__body-wrapper', () => {
+      it('should not set daff-dropdown__body--above on daff-dropdown__body', () => {
         expect(bodyWrapperElement.classList.contains('daff-dropdown__body--above')).toBeFalsy();
       });
 
-      it('should set daff-dropdown__body--below on daff-dropdown__body-wrapper', () => {
+      it('should set daff-dropdown__body--below on daff-dropdown__body', () => {
         expect(bodyWrapperElement.classList.contains('daff-dropdown__body--below')).toBeTruthy();
-      });
-    });
-
-    describe('when daff-dropdown__title-wrapper is clicked', () => {
-      
-      beforeEach(() => {
-        dropdownComponent._showBody = false;
-
-        fixture.debugElement.query(By.css('.daff-dropdown__title-wrapper')).nativeElement.click();
-      });
-
-      it('should toggle _showBody', () => {
-        expect(dropdownComponent._showBody).toBeTruthy();
-      });
-    });
-
-    describe('when mouse leaves daff-dropdown', () => {
-      
-      let daffDropdownElement;
-      
-      beforeEach(() => {
-        daffDropdownElement = fixture.debugElement.query(By.css('.daff-dropdown')).nativeElement;
-      });
-
-      describe('when _showBody is true', () => {
-        
-        beforeEach(() => {
-          dropdownComponent._showBody = true;
-
-          daffDropdownElement.dispatchEvent(new Event('mouseleave'));
-        });
-
-        it('should toggle _showBody', () => {
-          expect(dropdownComponent._showBody).toBeFalsy();
-        });
-      });
-
-      describe('when _showBody is false', () => {
-        
-        beforeEach(() => {
-          dropdownComponent._showBody = false;
-
-          daffDropdownElement.dispatchEvent(new Event('mouseleave'));
-        });
-
-        it('should not toggle _showBody', () => {
-          expect(dropdownComponent._showBody).toBeFalsy();
-        });
       });
     });
   });
 });
-
-
