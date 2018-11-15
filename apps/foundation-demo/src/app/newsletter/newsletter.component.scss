@@ -40,7 +40,8 @@
 
   &__input {
     width: 60%;
-    display: inline;
+    display: inline-block;
+    border: 1px solid $white;
 
     @include breakpoint(tablet) {
       width: 70%;
@@ -48,8 +49,6 @@
   }
 
   &__button {
-    background-color: $accent;
-    border: 1px solid $accent;
     width: 40%;
     line-height: 1.5rem;
 
