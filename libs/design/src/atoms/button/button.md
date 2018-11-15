@@ -13,13 +13,19 @@ The button is used for making actions apparent to the end-user. It can be used t
 * `gc-stroked-button` — Rectangular outlined button with no background color
 * `gc-icon-button` — Icon button used with icon fonts
 
+## Colors
+
+To define a button color, add `color="[value]"` to the button tag.
+
+* Color values: `primary`, `accent`, `black`, and `white`
+
 ## Accessbility
 
 Icon buttons need to be given labels using `aria-label`.
 
 ## Usage
 ```
-<button daff-button>
+<button daff-button color="primary">
   button text
 </button>
 ```
