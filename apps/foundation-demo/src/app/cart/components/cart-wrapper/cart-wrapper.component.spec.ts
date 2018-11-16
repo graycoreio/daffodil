@@ -1,16 +1,15 @@
 import { Component, Input, Directive } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
 
 import { Cart } from '@daffodil/core';
 import { CartFactory } from '@daffodil/core/testing';
 
 import { CartWrapperComponent } from './cart-wrapper.component';
-import { ContinueShoppingModule } from '../continue-shopping/continue-shopping.module';
-import { ProceedToCheckoutModule } from '../proceed-to-checkout/proceed-to-checkout.module';
-import { RouterTestingModule } from '@angular/router/testing';
+import { StoreModule, combineReducers, Store } from '@ngrx/store';
+import { fromCart } from '@daffodil/state';
+import * as cartSelector from '../../selectors/cart-selector';
+import { of } from 'rxjs';
 
 @Component({template: '<cart-wrapper [cart]="cartValue"></cart-wrapper>'})
 class TestCartWrapper {
@@ -68,9 +67,18 @@ describe('CartWrapper', () => {
   let continueShoppingComponent;
   let cartFactory = new CartFactory();
   let cart = cartFactory.create();
+  let store;
+  let stubIsCartEmpty: boolean = true;
+  let stubCartHasOneItem: boolean = false;
+  let stubSelectCartItemCount: number = 0;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        StoreModule.forRoot({
+          carts: combineReducers(fromCart.reducers),
+        })
+      ],
       declarations: [ 
         TestCartWrapper,
         CartMock,
@@ -90,6 +98,11 @@ describe('CartWrapper', () => {
     component = fixture.componentInstance;
     component.cartValue = cart;
     cartWrapperComponent = fixture.debugElement.query(By.css('cart-wrapper')).componentInstance;
+    store = TestBed.get(Store);
+
+    spyOn(cartSelector, 'isCartEmpty').and.returnValue(stubIsCartEmpty);
+    spyOn(cartSelector, 'cartHasOneItem').and.returnValue(stubCartHasOneItem);
+    spyOn(cartSelector, 'selectCartItemCount').and.returnValue(stubSelectCartItemCount);
 
     fixture.detectChanges();
 
@@ -128,6 +141,10 @@ describe('CartWrapper', () => {
 
     describe('and cart is empty', () => {
 
+      beforeAll(() => {
+        stubIsCartEmpty = true;
+      });
+
       it('should not render .cart-wrapper__summary-title', () => {
         let summaryTitleElement = fixture.debugElement.query(By.css('.cart-wrapper__summary-title'));
 
@@ -151,13 +168,10 @@ describe('CartWrapper', () => {
       });
     });
 
-    describe('and cart has at least one item', () => {
+    describe('and cart is not empty', () => {
       
-      beforeEach(() => {
-        cart.items.push(cartFactory.createCartItem());
-        component.cartValue = cart;
-
-        fixture.detectChanges();
+      beforeAll(() => {
+        stubIsCartEmpty = false;
       });
 
       it('should render .cart-wrapper__summary-title', () => {
@@ -191,54 +205,59 @@ describe('CartWrapper', () => {
     });
   });
 
-  describe('isCartEmpty', () => {
+  describe('isCartEmpty$', () => {
 
-    it('should return false if there are one or more items in the cart', () => {
-      component.cartValue.items.push(cartFactory.createCartItem());
-
-      expect(cartWrapperComponent.isCartEmpty).toEqual(false);
-    });
-
-    it('should return true if there are no items in the cart', () => {
-      component.cartValue.items = [];
-
-      expect(cartWrapperComponent.isCartEmpty).toEqual(true);
+    it('returns cartSelector.isCartEmpty', () => {
+      cartWrapperComponent.isCartEmpty$.subscribe(isCartEmpty => {
+        expect(isCartEmpty).toEqual(stubIsCartEmpty);
+      })
     });
   });
 
-  describe('cartHasOneItem', () => {
+  describe('cartHasOneItem$', () => {
 
-    it('should return false if there are no items in the cart', () => {
-      component.cartValue.items = [];
-
-      expect(cartWrapperComponent.cartHasOneItem).toEqual(false);
-    });
-
-    it('should return true if there is exactly one item in the cart', () => {
-      component.cartValue.items = [cartFactory.createCartItem()];
-
-      expect(cartWrapperComponent.cartHasOneItem).toEqual(true);
-    });
-
-    it('should return false if there are two or more items in the cart', () => {
-      component.cartValue.items.push(cartFactory.createCartItem(), cartFactory.createCartItem());
-
-      expect(cartWrapperComponent.cartHasOneItem).toEqual(false);
+    it('returns cartSelector.cartHasOneItem', () => {
+      cartWrapperComponent.cartHasOneItem$.subscribe(cartHasOneItem => {
+        expect(cartHasOneItem).toEqual(stubCartHasOneItem);
+      })
     });
   });
 
-  describe('getItemText', () => {
+  describe('itemText$', () => {
 
-    it('should return Item if there is one item in the cart', () => {
-      component.cartValue.items = [cartFactory.createCartItem()];
+    describe('when cartSelector.cartHasOneItem is true', () => {
 
-      expect(cartWrapperComponent.itemText).toEqual('Item');
+      beforeAll(() => {
+        stubCartHasOneItem = true;
+      });
+      
+      it('returns "Item"', () => {
+        cartWrapperComponent.itemText$.subscribe(itemText => {
+          expect(itemText).toEqual('Item');
+        });
+      });
     });
 
-    it('should return Items if there is more than one item or zero in the cart', () => {
-      component.cartValue.items.push(cartFactory.createCartItem(), cartFactory.createCartItem());
+    describe('when cartSelector.cartHasOneItem$ is of(false)', () => {
 
-      expect(cartWrapperComponent.itemText).toEqual('Items');
+      beforeAll(() => {
+        stubCartHasOneItem = false;
+      });
+      
+      it('returns "Items"', () => {
+        cartWrapperComponent.itemText$.subscribe(itemText => {
+          expect(itemText).toEqual('Items');
+        });
+      });
+    });
+  });
+
+  describe('itemCount$', () => {
+
+    it('returns cartSelector.itemCount', () => {
+      cartWrapperComponent.itemCount$.subscribe(itemCount => {
+        expect(itemCount).toEqual(stubSelectCartItemCount);
+      })
     });
   });
 });
