@@ -1,9 +1,9 @@
-<div class="image-gallery" *ngIf="hasImages()">
+<div class="image-gallery">
   <div class="image-gallery__active-image">
-    <img class="image-gallery__image" src="{{selectedImage.url}}" alt="{{selectedImage.label}}"/>
+    <img class="image-gallery__image" src="{{selectedImage}}"/>
   </div>
-  <image-list 
-    [images]="images" 
-    [selectedImage]="selectedImage" 
-    (imageSelected)="changeImage($event)"></image-list>
+
+  <div class="image-gallery__image-list">
+    <ng-content select="image-gallery-list"></ng-content>
+  </div>
 </div>
