@@ -6,10 +6,10 @@ import { ToggleSidebar, CloseSidebar, OpenSidebar, SetSidebarState } from '../..
 import * as fromDaffioSidebar from '../../reducers/index';
 
 @Component({
-  selector: 'daffio-sidebar-viewport-container',
+  selector: 'daff-sidebar-viewport-container',
   templateUrl: './sidebar-viewport.component.html'
 })
-export class DaffioSidebarViewportContainer {
+export class DaffSidebarViewportContainer {
   
   showSidebar$: Observable<boolean>;
 
