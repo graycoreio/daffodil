@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
-import { DaffioSidebarViewportContainer } from './sidebar-viewport.component';
+import { DaffSidebarViewportContainer } from './sidebar-viewport.component';
 import * as fromSidebar from '../../reducers/index';
 import { ToggleSidebar, OpenSidebar, CloseSidebar, SetSidebarState } from '../../actions/sidebar.actions';
 import { DaffSidebarModule, DaffSidebarViewportComponent } from '@daffodil/design';
@@ -14,9 +14,9 @@ class MockDaffioSidebarContainer {
   @Output() close: EventEmitter<any> = new EventEmitter();
 }
 
-describe('DaffioSidebarContainer', () => {
-  let component: DaffioSidebarViewportContainer;
-  let fixture: ComponentFixture<DaffioSidebarViewportContainer>;
+describe('DaffSidebarViewportContainer', () => {
+  let component: DaffSidebarViewportContainer;
+  let fixture: ComponentFixture<DaffSidebarViewportContainer>;
   
   let sidebarViewport: DaffSidebarViewportComponent;
 
@@ -34,7 +34,7 @@ describe('DaffioSidebarContainer', () => {
         DaffSidebarModule,
       ],
       declarations: [ 
-        DaffioSidebarViewportContainer,
+        DaffSidebarViewportContainer,
         MockDaffioSidebarContainer
       ]
     })
@@ -42,7 +42,7 @@ describe('DaffioSidebarContainer', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DaffioSidebarViewportContainer);
+    fixture = TestBed.createComponent(DaffSidebarViewportContainer);
     component = fixture.componentInstance;
     store = TestBed.get(Store);
     spyOn(store, 'dispatch');
@@ -94,11 +94,11 @@ describe('DaffioSidebarContainer', () => {
   });
 
   describe('methods', () => {
-    describe('toggle', () => {
-      it('should call store.dispatch with a ToggleSidebar action', () => {
-        component.toggle();
+    describe('close', () => {
+      it('should call store.dispatch with a CloseSidebar action', () => {
+        component.close();
   
-        expect(store.dispatch).toHaveBeenCalledWith(new ToggleSidebar());
+        expect(store.dispatch).toHaveBeenCalledWith(new CloseSidebar());
       });
     });
 
@@ -110,11 +110,11 @@ describe('DaffioSidebarContainer', () => {
       });
     });
 
-    describe('close', () => {
-      it('should call store.dispatch with a CloseSidebar action', () => {
-        component.close();
+    describe('toggle', () => {
+      it('should call store.dispatch with a ToggleSidebar action', () => {
+        component.toggle();
   
-        expect(store.dispatch).toHaveBeenCalledWith(new CloseSidebar());
+        expect(store.dispatch).toHaveBeenCalledWith(new ToggleSidebar());
       });
     });
 

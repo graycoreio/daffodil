@@ -23,9 +23,9 @@ describe('AppComponent', () => {
 
   it('should render a `daffio-header-container` inside a `daffio-sidebar-viewport-container`', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    let sidebarViewport = fixture.debugElement.queryAll(By.css('daffio-sidebar-viewport-container'));
-    expect(sidebarViewport.length).toEqual(1);
 
-    expect(sidebarViewport[0].queryAll(By.css('daffio-header-container')).length).toEqual(1);
+    let sidebarViewport = fixture.debugElement.query(By.css('daffio-sidebar-viewport-container'));
+    
+    expect(sidebarViewport.query(By.css('daffio-header-container'))).not.toBeNull()
   })
 });

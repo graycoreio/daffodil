@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 
 import { DaffioSidebarContainer } from './sidebar.component';
 import { DaffSidebarModule, DaffSidebarComponent } from '@daffodil/design';
+import { CloseSidebar } from '../../actions/sidebar.actions';
 
 @Component({template: '<daffio-sidebar (close)="closeFunction()"></daffio-sidebar>'})
 class TestDaffioSidebarContainerWrapper {
@@ -13,7 +14,7 @@ class TestDaffioSidebarContainerWrapper {
 describe('DaffioSidebarContainer', () => {
   let component: TestDaffioSidebarContainerWrapper;
   let fixture: ComponentFixture<TestDaffioSidebarContainerWrapper>;
-  let daffiosidebarContainer: DaffioSidebarContainer;
+  let daffioSidebarContainer: DaffioSidebarContainer;
   let daffSidebar: DaffSidebarComponent;
 
   beforeEach(async(() => {
@@ -34,7 +35,7 @@ describe('DaffioSidebarContainer', () => {
     component = fixture.componentInstance;  
     fixture.detectChanges();
 
-    daffiosidebarContainer = fixture.debugElement.query(By.css('daffio-sidebar')).componentInstance;
+    daffioSidebarContainer = fixture.debugElement.query(By.css('daffio-sidebar')).componentInstance;
     daffSidebar = fixture.debugElement.query(By.css("daff-sidebar")).componentInstance;
   });
 
@@ -47,17 +48,41 @@ describe('DaffioSidebarContainer', () => {
     it('should call close function on host component', () => {
       spyOn(component, 'closeFunction');
 
-      daffiosidebarContainer.close.emit();
+      daffioSidebarContainer.close.emit();
 
       expect(component.closeFunction).toHaveBeenCalled();
     });
   });
 
   it('should call `onClose` when the daff-sidebar emits `escapePressed`', () => {
-    spyOn(daffiosidebarContainer, 'onClose');
+    spyOn(daffioSidebarContainer, 'onClose');
 
     daffSidebar.escapePressed.emit();
 
-    expect(daffiosidebarContainer.onClose).toHaveBeenCalled();    
+    expect(daffioSidebarContainer.onClose).toHaveBeenCalled();    
   })
+
+  describe('when .daffio-sidebar__close is clicked', () => {
+
+    it('should call `onClose`', () => {
+      spyOn(component, 'closeFunction');
+
+      daffioSidebarContainer.close.emit();
+
+      expect(component.closeFunction).toHaveBeenCalled();
+    });
+
+  });
+
+  describe('when [sidebar-item] is clicked', () => {
+
+    it('should call `onClose`', () => {
+      spyOn(component, 'closeFunction');
+
+      daffioSidebarContainer.close.emit();
+
+      expect(component.closeFunction).toHaveBeenCalled();
+    });
+
+  });
 });

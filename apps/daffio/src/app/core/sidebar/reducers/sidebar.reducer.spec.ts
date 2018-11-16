@@ -55,19 +55,12 @@ describe('Sidebar | Sidebar Reducer', () => {
   });
 
   describe('when SetSidebarState is triggered', () => { 
-    it('sets showSidebar to `true` when the actions payload is true', () => {
-      let action = new SetSidebarState(true);
-
+    it('sets showSidebar to actions payload', () => {
+      let stubShowSidebar = true;
+      let action = new SetSidebarState(stubShowSidebar);
       let result = reducer(initialState, action);
-      expect(result.showSidebar).toEqual(true);
-    })
-
-    it('sets showSidebar to `false` when the actions payload is false', () => {
-      let action = new SetSidebarState(false);
-
-      let result = reducer(initialState, action);
-      expect(result.showSidebar).toEqual(false);
-    })
+      expect(result.showSidebar).toEqual(stubShowSidebar);
+    });
   });
 
   describe('getShowSidebar', () => {
