@@ -1,22 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ImageGalleryComponent } from './image-gallery.component';
-import { DaffImageListModule } from '../image-list/image-list.module';
-import { DaffGalleryImageModule } from '../gallery-image/public_api';
+import { ImageGalleryComponent } from './image-gallery/image-gallery.component';
+import { GalleryImageComponent } from './gallery-image/gallery-image.component';
+import { SelectedGalleryImageComponent } from './selected-gallery-image/selected-gallery-image.component';
 
 @NgModule({
   imports: [
-    CommonModule,
-    DaffImageListModule,
-    DaffGalleryImageModule
+    CommonModule
   ],
   declarations: [
-    ImageGalleryComponent
+    ImageGalleryComponent,
+    GalleryImageComponent,
+    SelectedGalleryImageComponent
   ],
   exports: [
     ImageGalleryComponent,
-    DaffGalleryImageModule
+    GalleryImageComponent,
+    SelectedGalleryImageComponent
   ]
 })
 export class DaffImageGalleryModule { }
