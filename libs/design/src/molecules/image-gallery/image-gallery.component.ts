@@ -1,32 +1,12 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
-import { Image } from '../../interfaces/image';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'image-gallery',
+  selector: 'daff-image-gallery',
   templateUrl: './image-gallery.component.html',
-  styleUrls: ['./image-gallery.component.scss']
+  styleUrls: ['./image-gallery.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
-export class ImageGalleryComponent implements  OnInit {
+export class ImageGalleryComponent {
 
-  @Input() images: Image[] = [];
-  @Input() selectedImage: Image|null = null;
-
-  ngOnInit() {
-    //Consider throwing an exception if you don't give it any images?
-    if(this.images.length != 0){
-      this.selectedImage = this.selectedImage 
-        ? this.selectedImage
-        : this.images[0];
-    }
-  }
-
-  constructor() { }
-
-  changeImage(image: Image) {
-    this.selectedImage = image;
-  }
-
-  hasImages() : boolean {
-    return this.images.length > 0;
-  }
+  @Input() selectedImage: string;
 }

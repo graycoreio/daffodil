@@ -3,17 +3,20 @@ import { CommonModule } from '@angular/common';
 
 import { ImageGalleryComponent } from './image-gallery.component';
 import { DaffImageListModule } from '../image-list/image-list.module';
+import { DaffGalleryImageModule } from '../gallery-image/public_api';
 
 @NgModule({
   imports: [
     CommonModule,
-    DaffImageListModule
+    DaffImageListModule,
+    DaffGalleryImageModule
   ],
   declarations: [
     ImageGalleryComponent
   ],
   exports: [
-    ImageGalleryComponent
+    ImageGalleryComponent,
+    DaffGalleryImageModule
   ]
 })
 export class DaffImageGalleryModule { }

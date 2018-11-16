@@ -5,7 +5,6 @@ import { StateProductModule } from '@daffodil/state';
 
 import { 
   DaffContainerModule, 
-  DaffImageGalleryModule, 
   DaffButtonModule, 
   AccordionModule,
   DaffQtyDropdownModule 
@@ -21,6 +20,7 @@ import { MiscModule } from '../misc/misc.module';
 import { BestSellersComponent } from './components/best-sellers/best-sellers.component';
 import { LoadingIconModule } from '../core/loading-icon/loading-icon.module';
 import { AddToCartNotificationModule } from '../modals/add-to-cart-notification/add-to-cart-notification.module';
+import { ImageGalleryModule } from '../core/image-gallery/image-gallery.module';
 
 @NgModule({
   imports: [
@@ -32,8 +32,8 @@ import { AddToCartNotificationModule } from '../modals/add-to-cart-notification/
     DaffButtonModule,
     DaffQtyDropdownModule,
     AccordionModule,
-    DaffImageGalleryModule,
-    AddToCartNotificationModule
+    AddToCartNotificationModule,
+    ImageGalleryModule
   ],
   declarations: [
     ProductGridComponent,
