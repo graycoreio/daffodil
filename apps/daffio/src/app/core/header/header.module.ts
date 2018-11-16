@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { DaffNavbarModule, DaffButtonModule, DaffContainerModule } from '@daffodil/design';
 import { DaffioLogoModule } from '../logo/logo.module';
 import { DaffioHeaderComponent } from './component/header.component';
-import { DaffioSidebarModule } from '../sidebar/sidebar.module';
 import { DaffioHeaderContainer } from './containers/header.component';
 import { DaffioHeaderItemComponent } from './header-item/header-item.component';
 
@@ -16,7 +15,6 @@ import { DaffioHeaderItemComponent } from './header-item/header-item.component';
     DaffNavbarModule,
     DaffioLogoModule,
     DaffButtonModule,
-    DaffioSidebarModule,
     DaffContainerModule
   ],
   declarations: [
