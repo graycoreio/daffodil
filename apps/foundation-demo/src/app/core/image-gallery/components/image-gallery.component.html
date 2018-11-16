@@ -1,12 +1,10 @@
 <daff-image-gallery [selectedImage]="selectedImage$ | async">
-  <div ngProjectAs="image-gallery-list">
-    <div class="image-gallery__gallery-image-wrapper" *ngFor="let image of images">
-      <img 
-        alt="{{image.label}}"
-        src="{{image.url}}" 
-        daff-gallery-image
-        [selected]="image.url === (selectedImage$ | async)"
-        (click)="select(image.url)">
-    </div>
+  <div ngProjectAs="gallery-image" class="gallery__image-wrapper" *ngFor="let image of images">
+    <img 
+      alt="{{image.label}}"
+      src="{{image.url}}" 
+      daff-gallery-image
+      [selected]="image.url === (selectedImage$ | async)"
+      (click)="select(image.url)">
   </div>
 </daff-image-gallery>

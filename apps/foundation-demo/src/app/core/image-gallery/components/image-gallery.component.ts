@@ -6,7 +6,7 @@ import * as fromFoundationImageGallery from '../reducers/index';
 import { SetSelectedImageState } from '../actions/image-gallery.actions';
 
 @Component({
-  selector: 'image-gallery-component',
+  selector: 'image-gallery-container',
   templateUrl: './image-gallery.component.html',
   encapsulation: ViewEncapsulation.None
 })
