@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'daff-image-gallery',
@@ -6,7 +6,4 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./image-gallery.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ImageGalleryComponent {
-
-  @Input() selectedImage: string;
-}
+export class ImageGalleryComponent {}
