@@ -12,4 +12,11 @@ export class DaffioSidebarContainer {
   onClose() {
     this.close.emit();
   }
+
+  links: any[] = [
+    {path: '/developers', title: 'Developers'},
+    {path: '/solutions', title: 'Solutions'},
+    {path: '/documentation', title: 'Documentation'},
+    {path: '/support', title: 'Support'}
+  ];
 }

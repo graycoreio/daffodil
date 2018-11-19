@@ -9,6 +9,7 @@ import { DaffioHeaderComponent } from '../component/header.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ToggleSidebar } from '../../sidebar/actions/sidebar.actions';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('DaffioHeaderContainer', () => {
   let component: DaffioHeaderContainer;
@@ -20,7 +21,8 @@ describe('DaffioHeaderContainer', () => {
     TestBed.configureTestingModule({
       imports: [
         DaffioLogoModule,
-        StoreModule.forRoot({})
+        StoreModule.forRoot({}),
+        RouterTestingModule
       ],
       declarations: [
         DaffioHeaderContainer,

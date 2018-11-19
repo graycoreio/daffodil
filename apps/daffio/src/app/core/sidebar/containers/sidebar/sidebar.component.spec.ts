@@ -1,10 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { DaffioSidebarContainer } from './sidebar.component';
 import { DaffSidebarModule, DaffSidebarComponent } from '@daffodil/design';
 import { CloseSidebar } from '../../actions/sidebar.actions';
+import { RouterTestingModule } from '@angular/router/testing';
 
 @Component({template: '<daffio-sidebar (close)="closeFunction()"></daffio-sidebar>'})
 class TestDaffioSidebarContainerWrapper {
@@ -16,11 +17,14 @@ describe('DaffioSidebarContainer', () => {
   let fixture: ComponentFixture<TestDaffioSidebarContainerWrapper>;
   let daffioSidebarContainer: DaffioSidebarContainer;
   let daffSidebar: DaffSidebarComponent;
+  let closeButton: HTMLElement;
+  let sidebarItem: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffSidebarModule
+        DaffSidebarModule,
+        RouterTestingModule
       ],
       declarations: [ 
         TestDaffioSidebarContainerWrapper,
@@ -37,6 +41,8 @@ describe('DaffioSidebarContainer', () => {
 
     daffioSidebarContainer = fixture.debugElement.query(By.css('daffio-sidebar')).componentInstance;
     daffSidebar = fixture.debugElement.query(By.css("daff-sidebar")).componentInstance;
+    closeButton = fixture.debugElement.query(By.css('.daffio-sidebar__close')).nativeElement;
+    sidebarItem = fixture.debugElement.query(By.css('[daff-sidebar-item]')).nativeElement;
   });
 
   it('should create', () => {
@@ -65,24 +71,30 @@ describe('DaffioSidebarContainer', () => {
   describe('when .daffio-sidebar__close is clicked', () => {
 
     it('should call `onClose`', () => {
-      spyOn(component, 'closeFunction');
+      spyOn(daffioSidebarContainer, 'onClose');
 
-      daffioSidebarContainer.close.emit();
+      closeButton.click();
 
-      expect(component.closeFunction).toHaveBeenCalled();
+      expect(daffioSidebarContainer.onClose).toHaveBeenCalled();
     });
 
   });
 
-  describe('when [sidebar-item] is clicked', () => {
-
+  describe('when [daff-sidebar-item] is clicked', () => {
+  
     it('should call `onClose`', () => {
-      spyOn(component, 'closeFunction');
+      spyOn(daffioSidebarContainer, 'onClose');
 
-      daffioSidebarContainer.close.emit();
+      sidebarItem.click();
 
-      expect(component.closeFunction).toHaveBeenCalled();
+      expect(daffioSidebarContainer.onClose).toHaveBeenCalled();
     });
 
+  });
+
+  it('renders a [daff-sidebar-item] for every links defined', () => {
+    let sidebarItems = fixture.debugElement.queryAll(By.css('[daff-sidebar-item]'));
+
+    expect(sidebarItems.length).toEqual(daffioSidebarContainer.links.length);
   });
 });
