@@ -18,7 +18,6 @@ describe('DaffioSidebarContainer', () => {
   let daffioSidebarContainer: DaffioSidebarContainer;
   let daffSidebar: DaffSidebarComponent;
   let closeButton: HTMLElement;
-  let sidebarItem: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -42,7 +41,6 @@ describe('DaffioSidebarContainer', () => {
     daffioSidebarContainer = fixture.debugElement.query(By.css('daffio-sidebar')).componentInstance;
     daffSidebar = fixture.debugElement.query(By.css("daff-sidebar")).componentInstance;
     closeButton = fixture.debugElement.query(By.css('.daffio-sidebar__close')).nativeElement;
-    sidebarItem = fixture.debugElement.query(By.css('[daff-sidebar-item]')).nativeElement;
   });
 
   it('should create', () => {
@@ -74,18 +72,6 @@ describe('DaffioSidebarContainer', () => {
       spyOn(daffioSidebarContainer, 'onClose');
 
       closeButton.click();
-
-      expect(daffioSidebarContainer.onClose).toHaveBeenCalled();
-    });
-
-  });
-
-  describe('when [daff-sidebar-item] is clicked', () => {
-  
-    it('should call `onClose`', () => {
-      spyOn(daffioSidebarContainer, 'onClose');
-
-      sidebarItem.click();
 
       expect(daffioSidebarContainer.onClose).toHaveBeenCalled();
     });
