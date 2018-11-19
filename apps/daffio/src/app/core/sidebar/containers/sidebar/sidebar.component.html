@@ -1,9 +1,8 @@
 <daff-sidebar class="daffio-sidebar" (escapePressed)="onClose()">
-  <span class="daffio-sidebar__close" (click)="onClose()"><i class="fa fa-times"></i></span>
+  <button daff-icon-button class="daffio-sidebar__close" (click)="onClose()"><i class="fa fa-times"></i></button>
   <div class="daffio-sidebar__list">
-    <span><a daff-sidebar-item (click)="onClose()">Developers</a></span>
-    <span><a daff-sidebar-item (click)="onClose()">Solutions</a></span>
-    <span><a daff-sidebar-item (click)="onClose()">Documentation</a></span>
-    <span><a daff-sidebar-item (click)="onClose()">Support</a></span>
+    <a [routerLink]="link.path" daff-sidebar-item *ngFor="let link of links">
+      {{ link.title }}
+    </a>
   </div>
 </daff-sidebar>
