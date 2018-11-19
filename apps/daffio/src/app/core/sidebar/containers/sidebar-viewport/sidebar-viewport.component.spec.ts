@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
-import { DaffSidebarViewportContainer } from './sidebar-viewport.component';
+import { SidebarViewportContainer } from './sidebar-viewport.component';
 import * as fromSidebar from '../../reducers/index';
 import { ToggleSidebar, OpenSidebar, CloseSidebar, SetSidebarState } from '../../actions/sidebar.actions';
 import { DaffSidebarModule, DaffSidebarViewportComponent } from '@daffodil/design';
@@ -14,9 +14,9 @@ class MockDaffioSidebarContainer {
   @Output() close: EventEmitter<any> = new EventEmitter();
 }
 
-describe('DaffSidebarViewportContainer', () => {
-  let component: DaffSidebarViewportContainer;
-  let fixture: ComponentFixture<DaffSidebarViewportContainer>;
+describe('SidebarViewportContainer', () => {
+  let component: SidebarViewportContainer;
+  let fixture: ComponentFixture<SidebarViewportContainer>;
   
   let sidebarViewport: DaffSidebarViewportComponent;
 
@@ -34,7 +34,7 @@ describe('DaffSidebarViewportContainer', () => {
         DaffSidebarModule,
       ],
       declarations: [ 
-        DaffSidebarViewportContainer,
+        SidebarViewportContainer,
         MockDaffioSidebarContainer
       ]
     })
@@ -42,7 +42,7 @@ describe('DaffSidebarViewportContainer', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DaffSidebarViewportContainer);
+    fixture = TestBed.createComponent(SidebarViewportContainer);
     component = fixture.componentInstance;
     store = TestBed.get(Store);
     spyOn(store, 'dispatch');
