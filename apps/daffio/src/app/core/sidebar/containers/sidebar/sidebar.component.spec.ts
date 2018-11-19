@@ -80,18 +80,6 @@ describe('DaffioSidebarContainer', () => {
 
   });
 
-  describe('when [daff-sidebar-item] is clicked', () => {
-  
-    it('should call `onClose`', () => {
-      spyOn(daffioSidebarContainer, 'onClose');
-
-      sidebarItem.click();
-
-      expect(daffioSidebarContainer.onClose).toHaveBeenCalled();
-    });
-
-  });
-
   it('renders a [daff-sidebar-item] for every links defined', () => {
     let sidebarItems = fixture.debugElement.queryAll(By.css('[daff-sidebar-item]'));
 
