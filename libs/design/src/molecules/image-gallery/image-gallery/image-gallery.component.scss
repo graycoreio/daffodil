@@ -1,46 +1,44 @@
 @import 'daff-util';
 
 .image-gallery {
-  display: flex;
+  display: grid;
   flex-direction: column;
+  grid-template-areas: 
+    "image-list active-image";
+  max-height: min-content;
+  
+  @include breakpoint(big-tablet) {
+    grid-template-areas:
+      "active-image"
+      "image-list";
+    max-height: 100%;
+  }
 
   &__active-image {
-    display: block;
-    max-width: 100%;
+    grid-area: active-image;
+
+    & img {
+      display: block;
+      max-width: 100%;
+    }
   }
 
   &__image-list {
-    width: 100%;
-    overflow: scroll;
-    white-space: nowrap;
-    padding: 5px 0 0 0;
+    grid-area: image-list;
+    max-height: -webkit-fill-available;
 
-    & > * {
-      display: inline-block;
-      margin: 0 5px 0 0;
-
-      &:last-child {
-        margin: 0;
-      }
+    @include breakpoint(big-tablet) {
+      max-height: 100%;
     }
   }
 
   &__gallery-image {
-      display: block;
-      max-width: 100%;
-      width: 90px;
-      opacity: 0.6;
+    display: block;
+    width: 90px;
+    opacity: 0.6;
 
     &--selected {
       opacity: 1;
     }
   }
-}
-::-webkit-scrollbar {
-  height: 2px;
-  width: 0;
-}
-
-::-webkit-scrollbar-thumb {
-  -webkit-box-shadow: inset 0 0 3px daff-color($daff-gray, 400);
 }

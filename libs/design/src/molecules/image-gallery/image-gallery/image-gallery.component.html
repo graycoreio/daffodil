@@ -1,7 +1,9 @@
 <div class="image-gallery">
-  <img class="image-gallery__active-image" src="{{selectedImage}}"/>
-
-  <div class="image-gallery__image-list">
-    <ng-content select="gallery-image"></ng-content>
+  <div class="image-gallery__active-image">
+    <ng-content select="[active-image]"></ng-content>
   </div>
+
+  <image-list class="image-gallery__image-list">
+    <ng-content select="[gallery-image]"></ng-content>
+  </image-list>
 </div>

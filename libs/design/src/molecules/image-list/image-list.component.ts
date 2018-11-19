@@ -1,30 +1,10 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { Image } from '../../interfaces/image';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'image-list',
-  templateUrl: './image-list.component.html',
-  styleUrls: ['./image-list.component.scss']
+  template: '<ng-content></ng-content>',
+  host: { 'class' : 'image-list' },
+  styleUrls: ['./image-list.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
-export class ImageListComponent implements OnInit {
-
-  @Input() images: Image[];
-  @Input() selectedImage: Image = null;
-
-  @Output() imageSelected: EventEmitter<Image> = new EventEmitter();
-
-  constructor() { }
-
-  ngOnInit() {
-    //Consider throwing an exception if you don't give it any images?
-    if(this.images.length != 0){
-      this.selectedImage = this.selectedImage 
-        ? this.selectedImage
-        : this.images[0];
-    }
-  }
-
-  select(image) : void {
-    this.imageSelected.emit(image);
-  }
-}
+export class ImageListComponent {}
