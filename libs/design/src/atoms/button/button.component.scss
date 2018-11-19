@@ -59,6 +59,18 @@
             border: 1px solid daff-color($daff-gray, 100);
         }
     }
+
+    &[disabled] {
+        cursor: not-allowed;
+        background-color: daff-color($daff-gray, 300);
+        border: 1px solid daff-color($daff-gray, 300);
+        color: daff-color($daff-gray, 600);
+
+        &:hover {
+            background-color: daff-color($daff-gray, 300);
+            border: 1px solid daff-color($daff-gray, 300); 
+        }
+    }
 }
 
 .daff-icon-button {
@@ -108,6 +120,15 @@
 
         &:hover {
             color: daff-color($daff-gray, 100);
+        }
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+        color: daff-color($daff-gray, 600);
+
+        &:hover {
+            color: daff-color($daff-gray, 600);
         }
     }
 }
@@ -161,6 +182,15 @@
 
     &:focus {
         outline: none;
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+        color: daff-color($daff-gray, 600);
+
+        &:hover {
+            color: daff-color($daff-gray, 600);
+        }
     }
 }
 
@@ -219,5 +249,16 @@
 
     &:focus {
         outline: none;
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+        border: 1px solid daff-color($daff-gray, 300);
+        color: daff-color($daff-gray, 600);
+
+        &:hover {
+            background-color: transparent;
+            color: daff-color($daff-gray, 600);
+        }
     }
 }
