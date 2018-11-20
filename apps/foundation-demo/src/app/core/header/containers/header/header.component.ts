@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 
-import { OpenSidebar, ToggleSidebar } from '../../../sidebar/actions/sidebar.actions';
+import { ToggleSidebar } from '../../../sidebar/actions/sidebar.actions';
 
 @Component({
-  selector: 'foundation-header-container',
+  selector: 'header-container',
   templateUrl: './header.component.html'
 })
 export class FoundationHeaderContainer {
