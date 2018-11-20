@@ -18,11 +18,11 @@ describe('SidebarViewportContainer', () => {
   let component: SidebarViewportContainer;
   let fixture: ComponentFixture<SidebarViewportContainer>;
   
-  let sidebarViewport: DaffSidebarViewportComponent;
+  let daffSidebarViewport: DaffSidebarViewportComponent;
 
   let store: Store<fromSidebar.State>;
   let stubShowSidebar: boolean;
-  let sidebarContainer: MockDaffioSidebarContainer;
+  let daffioSidebarContainer: MockDaffioSidebarContainer;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -49,8 +49,8 @@ describe('SidebarViewportContainer', () => {
 
     fixture.detectChanges();
 
-    sidebarViewport = fixture.debugElement.query(By.css("daff-sidebar-viewport")).componentInstance;
-    sidebarContainer = fixture.debugElement.query(By.css("daffio-sidebar")).componentInstance;
+    daffSidebarViewport = fixture.debugElement.query(By.css("daff-sidebar-viewport")).componentInstance;
+    daffioSidebarContainer = fixture.debugElement.query(By.css("daffio-sidebar")).componentInstance;
   });
 
   it('should create', () => {
@@ -58,13 +58,13 @@ describe('SidebarViewportContainer', () => {
   });
 
   it('should set the `daff-sidebar-viewport` mode to over', () => {
-    expect(sidebarViewport.mode).toEqual("over");
+    expect(daffSidebarViewport.mode).toEqual("over");
   });
 
   it('should call close when the `daff-sidebar-viewport` emits `onBackdropClicked`', () => {
     spyOn(component, 'close');
 
-    sidebarViewport.onBackdropClicked.emit()
+    daffSidebarViewport.onBackdropClicked.emit()
 
     expect(component.close).toHaveBeenCalledWith();    
   });
@@ -74,7 +74,7 @@ describe('SidebarViewportContainer', () => {
     it('should call close', () => {
       spyOn(component, 'close');
 
-      sidebarContainer.close.emit();
+      daffioSidebarContainer.close.emit();
       
       expect(component.close).toHaveBeenCalled();
     });
