@@ -1,6 +1,9 @@
 @import 'daff-util';
 
-.header {
+.foundation-header {
+  padding: 0;
+  @include section-divider;
+
   &__menu {
     padding: 15px;
     border-right: 1px solid daff-color($daff-gray, 300);
