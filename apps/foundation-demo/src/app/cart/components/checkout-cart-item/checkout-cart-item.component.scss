@@ -39,7 +39,7 @@
     margin-top: 15px;
     display: none;
 
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       display: block;
     }
 

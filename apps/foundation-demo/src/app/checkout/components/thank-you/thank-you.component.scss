@@ -11,7 +11,7 @@
   }
 
   &__print-order-summary {
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       width: 40%;
     }
   }

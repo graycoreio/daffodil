@@ -22,9 +22,7 @@ export class PaymentContainer implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.paymentInfo$ = this.store.pipe(
-      select(fromPayment.selectPaymentInfoState)
-    );
+    this.paymentInfo$ = this.store.pipe(select(fromPayment.selectPaymentInfoState));
   }
 
   updatePaymentInfo(info: PaymentInfo) {

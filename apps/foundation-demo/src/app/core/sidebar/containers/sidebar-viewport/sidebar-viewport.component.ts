@@ -1,4 +1,4 @@
-import { Component, Directive } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -14,9 +14,7 @@ export class SidebarViewportContainer {
   showSidebar$: Observable<boolean>;
 
   ngOnInit() {
-    this.showSidebar$ = this.store.pipe(
-      select(fromFoundationSidebar.selectShowSidebar)
-    );
+    this.showSidebar$ = this.store.pipe(select(fromFoundationSidebar.selectShowSidebar));
   }
 
   constructor(

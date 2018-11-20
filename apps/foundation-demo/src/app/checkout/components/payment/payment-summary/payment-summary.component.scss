@@ -34,7 +34,7 @@
     grid-area: edit;
   }
 
-  @include breakpoint(large) {
+  @include breakpoint(big-tablet) {
     grid-template-areas: 
     "       title        title"
     "method-title method-title"
@@ -56,7 +56,7 @@
     text-decoration: underline;
     justify-self: end;
 
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       justify-self: start;
       margin: 15px 0 10px 0;
     }

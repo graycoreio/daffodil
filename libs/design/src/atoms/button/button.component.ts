@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ElementRef, Input } from '@angular/core';
+
+import { daffColorMixin, DaffColorable, DaffPalette } from '../../core/colorable/colorable';
 
 /**
 * List of classes to add to Daff Button instances based on host attributes to style as different variants.
 */
-
 const BUTTON_HOST_ATTRIBUTES = [
   'daff-button',
   'daff-clear-button',
@@ -11,6 +12,14 @@ const BUTTON_HOST_ATTRIBUTES = [
   'daff-icon-button'
 ];
 
+/**
+ * An _elementRef is needed for the Colorable mixin
+ */
+export class DaffButtonBase{
+  constructor(public _elementRef: ElementRef) {}
+}
+
+const _daffButtonBase = daffColorMixin(DaffButtonBase, 'black') 
 
 @Component({
   selector: '' +
@@ -28,11 +37,14 @@ const BUTTON_HOST_ATTRIBUTES = [
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class DaffButtonComponent implements OnInit {
+export class DaffButtonComponent extends _daffButtonBase implements OnInit, DaffColorable {
+    @Input() color: DaffPalette;
 
     ngOnInit() {}
 
     constructor(private elementRef: ElementRef) {
+      super(elementRef);
+
       for (const attr of BUTTON_HOST_ATTRIBUTES) {
         if (this._hasHostAttributes(attr)) {
           (elementRef.nativeElement as HTMLElement).classList.add(attr);

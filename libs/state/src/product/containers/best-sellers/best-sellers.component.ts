@@ -25,9 +25,7 @@ export class BestSellersContainer implements OnInit {
   ngOnInit() {
     this.store.dispatch(new BestSellersLoad());
 
-    this.loading$ = this.store.pipe(
-      select(fromProduct.selectBestSellersLoadingState)
-    );
+    this.loading$ = this.store.pipe(select(fromProduct.selectBestSellersLoadingState));
 
     combineLatest(
       this.getProducts(), this.getBestSellersIds()
@@ -45,14 +43,10 @@ export class BestSellersContainer implements OnInit {
   }
 
   private getProducts(): Observable<Product[]> {
-    return this.store.pipe(
-      select(fromProduct.selectAllProducts)
-    );
+    return this.store.pipe(select(fromProduct.selectAllProducts));
   }
 
   private getBestSellersIds(): Observable<string[]> {
-    return this.store.pipe(
-      select(fromProduct.selectBestSellersIdsState)
-    );
+    return this.store.pipe(select(fromProduct.selectBestSellersIdsState));
   }
 }

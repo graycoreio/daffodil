@@ -121,12 +121,12 @@
     grid-area: note;
     font-size: $small-font-size;
 
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       justify-self: left;
     }
   }
 
-  @include breakpoint(large) {
+  @include breakpoint(big-tablet) {
     grid-template-columns: repeat(4, 1fr);
     grid-template-areas: 
       "        title         title   free-space   free-space"

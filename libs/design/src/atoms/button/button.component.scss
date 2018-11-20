@@ -5,10 +5,7 @@
     display: inline-block;
     position: relative;
     overflow: hidden;
-    background-color: $black;
-    border: 1px solid $black;
     font-size: 1rem;
-    color: $white;
     margin: 0;
     padding: 15px 20px;
     text-align: center;
@@ -19,9 +16,60 @@
         outline: none;
     }
 
-    &:hover {
-        background-color: daff-color($daff-gray, 800);
-        border: 1px solid daff-color($daff-gray, 800);
+    &.daff-primary {
+        background-color: $primary;
+        border: 1px solid $primary;
+        color: $black;
+
+        &:hover {
+            background-color: daff-color($daff-primary, 700);
+            border: 1px solid daff-color($daff-primary, 700);
+        }
+    }
+
+    &.daff-accent {
+        background-color: $accent;
+        border: 1px solid $accent;
+        color: $white;
+
+        &:hover {
+            background-color: daff-color($daff-accent, 700);
+            border: 1px solid daff-color($daff-accent, 700);
+        }
+    }
+
+    &.daff-black {
+        background-color: $black;
+        border: 1px solid $black;
+        color: $white;
+
+        &:hover {
+            background-color: daff-color($daff-gray, 800);
+            border: 1px solid daff-color($daff-gray, 800);
+        }
+    }
+
+    &.daff-white {
+        background-color: $white;
+        border: 1px solid $white;
+        color: $black;
+
+        &:hover {
+            background-color: daff-color($daff-gray, 100);
+            border: 1px solid daff-color($daff-gray, 100);
+        }
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+        background-color: daff-color($daff-gray, 300);
+        border: 1px solid daff-color($daff-gray, 300);
+        color: daff-color($daff-gray, 600);
+
+        &:hover {
+            background-color: daff-color($daff-gray, 300);
+            border: 1px solid daff-color($daff-gray, 300); 
+        }
     }
 }
 
@@ -43,8 +91,45 @@
         outline: none;
     }
 
-    &:hover {
-        color: daff-color($daff-gray, 800);
+    &.daff-primary {
+        color: $primary;
+
+        &:hover {
+            color: daff-color($daff-primary, 700);
+        }
+    }
+
+    &.daff-accent {
+        color: $accent;
+
+        &:hover {
+            color: daff-color($daff-accent, 700);
+        }
+    }
+
+    &.daff-black {
+        color: $black;
+
+        &:hover {
+            color: daff-color($daff-gray, 800);
+        }
+    }
+
+    &.daff-white {
+        color: $white;
+
+        &:hover {
+            color: daff-color($daff-gray, 100);
+        }
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+        color: daff-color($daff-gray, 600);
+
+        &:hover {
+            color: daff-color($daff-gray, 600);
+        }
     }
 }
 
@@ -56,7 +141,6 @@
     background-color: transparent;
     border: 1px solid transparent;
     font-size: 1rem;
-    color: $black;
     margin: 0;
     padding: 15px 20px;
     text-align: center;
@@ -64,13 +148,49 @@
     transition: 0.2s ease-in;
 
 
-    &:hover {
-        border-color: daff-color($daff-gray, 400);
-        border: 1px solid daff-color($daff-gray, 400);
+    &.daff-primary {
+        color: $primary;
+
+        &:hover {
+            color: daff-color($daff-primary, 700);
+        }
+    }
+
+    &.daff-accent {
+        color: $accent;
+        
+        &:hover {
+            color: daff-color($daff-accent, 700);
+        }
+    }
+
+    &.daff-black {
+        color: $black;
+        
+        &:hover {
+            color: daff-color($daff-gray, 800);
+        }
+    }
+
+    &.daff-white {
+        color: $white;
+        
+        &:hover {
+            color: daff-color($daff-gray, 100);
+        }
     }
 
     &:focus {
         outline: none;
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+        color: daff-color($daff-gray, 600);
+
+        &:hover {
+            color: daff-color($daff-gray, 600);
+        }
     }
 }
 
@@ -79,22 +199,66 @@
     display: inline-block;
     position: relative;
     overflow: hidden;
-    background-color: transparent;
-    border: 1px solid $black;
     font-size: 1rem;
-    color: $black;
     margin: 0;
     padding: 15px 20px;
     text-align: center;
     cursor: pointer;
+    background-color: transparent;
     transition: 0.2s ease-in;
 
-    &:hover {
-        background-color: $black;
+    &.daff-primary {
+        border: 1px solid $primary;
+        color: $primary;
+
+        &:hover {
+            background-color: $primary;
+            color: $white;
+        }
+    }
+
+    &.daff-accent {
+        border: 1px solid $accent;
+        color: $accent;
+
+        &:hover {
+            background-color: $accent;
+            color: $white;
+        }
+    }
+
+    &.daff-black {
+        border: 1px solid $black;
+        color: $black;
+
+        &:hover {
+            background-color: $black;
+            color: $white;
+        }
+    }
+
+    &.daff-white {
+        border: 1px solid $white;
         color: $white;
+
+        &:hover {
+            background-color: $white;
+            color: $black;
+        }
     }
 
     &:focus {
         outline: none;
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+        border: 1px solid daff-color($daff-gray, 300);
+        color: daff-color($daff-gray, 600);
+
+        &:hover {
+            background-color: transparent;
+            color: daff-color($daff-gray, 600);
+        }
     }
 }

@@ -7,7 +7,7 @@
     display: none;
   }
 
-  @include breakpoint(large) {
+  @include breakpoint(big-tablet) {
     &__chevron {
       display: none;
     }

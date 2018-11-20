@@ -22,7 +22,7 @@
     font-size: 1rem;
     @include embolden();
 
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       margin-bottom: 15px;
     }
   }
@@ -32,7 +32,7 @@
     color: $accent;
     margin-bottom: 15px;
 
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       justify-self: end;
     }
   }
@@ -41,7 +41,7 @@
     display: inline;
     @include embolden();
 
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       display: none;    
     }
   }
@@ -49,7 +49,7 @@
   &__desktop-qty {
     display: none;
 
-    @include breakpoint(large) {
+    @include breakpoint(big-tablet) {
       display: inline;    
     }
   }
@@ -67,7 +67,7 @@
     }
   }
    
-  @include breakpoint(large) {
+  @include breakpoint(big-tablet) {
     &__description {
       grid-template-areas:
         "name       qty price"

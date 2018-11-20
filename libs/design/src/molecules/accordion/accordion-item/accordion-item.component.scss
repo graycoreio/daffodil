@@ -5,7 +5,7 @@
 
   padding: 15px 0;
 
-  @include breakpoint(medium) {
+  @include breakpoint(tablet) {
     padding: 30px 0;
   }
 
@@ -27,7 +27,7 @@
   &__panel {
     padding-top: 15px;
 
-    @include breakpoint(medium) {
+    @include breakpoint(tablet) {
       padding-top: 30px;
     }
   }

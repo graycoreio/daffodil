@@ -18,9 +18,7 @@ export class PlaceOrderComponent implements OnInit{
   ) { }
 
   ngOnInit() {
-    this.enablePlaceOrderButton$ = this.store.pipe(
-      select(fromFoundationCheckout.selectEnablePlaceOrderButton)
-    );
+    this.enablePlaceOrderButton$ = this.store.pipe(select(fromFoundationCheckout.selectEnablePlaceOrderButton));
   }
 
   placeOrder() {
