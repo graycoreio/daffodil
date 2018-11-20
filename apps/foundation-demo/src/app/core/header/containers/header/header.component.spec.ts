@@ -37,6 +37,7 @@ describe('FoundationHeaderContainer', () => {
     fixture = TestBed.createComponent(FoundationHeaderContainer);
     component = fixture.componentInstance;
     store = TestBed.get(Store);
+    spyOn(store, 'dispatch');
     fixture.detectChanges();
   });
 
@@ -44,7 +45,7 @@ describe('FoundationHeaderContainer', () => {
     expect(component).toBeTruthy();
   });
 
-  fdescribe('when [header-menu-button] is clicked', () => {
+  describe('when [header-menu-button] is clicked', () => {
     it('should call store.dispatch with a ToggleSidebar action', () => {
       let sidebarButton = fixture.debugElement.query(By.css('[header-menu-button]')).nativeElement;
       sidebarButton.click();
