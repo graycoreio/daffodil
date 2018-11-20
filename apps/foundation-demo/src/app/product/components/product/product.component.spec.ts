@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
@@ -24,8 +24,8 @@ class ProductWrapperTest {
   updateQtyFunction: Function;
 }
 
-@Component({selector: 'image-gallery', template: ''})
-class MockImageGalleryComponent {
+@Component({selector: 'image-gallery-container', template: ''})
+class MockImageGalleryContainer {
   @Input() images;
 }
 
@@ -50,7 +50,7 @@ describe('ProductComponent', () => {
       declarations: [ 
         ProductComponent,
         ProductWrapperTest,
-        MockImageGalleryComponent,
+        MockImageGalleryContainer
       ]
     })
     .compileComponents();
@@ -82,12 +82,12 @@ describe('ProductComponent', () => {
     expect(productComponent.qty).toEqual(stubQty);
   });
 
-  describe('on <image-gallery>', () => {
+  describe('on <image-gallery-container>', () => {
     
     it('should set images', () => {
-      let imageGalleryComponent = fixture.debugElement.query(By.css('image-gallery')).componentInstance;
+      let imageGalleryContainer = fixture.debugElement.query(By.css('image-gallery-container')).componentInstance;
 
-      expect(imageGalleryComponent.images).toEqual(productComponent.images);
+      expect(imageGalleryContainer.images).toEqual(productComponent.images);
     });
   });
 
