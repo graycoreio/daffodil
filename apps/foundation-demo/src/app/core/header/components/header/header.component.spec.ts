@@ -2,11 +2,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DaffNavbarModule } from '@daffodil/design';
 
-import { HeaderComponent } from './header.component';
+import { FoundationHeaderComponent } from './header.component';
 
-describe('HeaderComponent', () => {
-  let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
+describe('FoundationHeaderComponent', () => {
+  let component: FoundationHeaderComponent;
+  let fixture: ComponentFixture<FoundationHeaderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -14,14 +14,14 @@ describe('HeaderComponent', () => {
         DaffNavbarModule
       ],
       declarations: [ 
-        HeaderComponent
+        FoundationHeaderComponent
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderComponent);
+    fixture = TestBed.createComponent(FoundationHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -5,10 +5,10 @@ import { Store } from '@ngrx/store';
 import { OpenSidebar, ToggleSidebar } from '../../../sidebar/actions/sidebar.actions';
 
 @Component({
-  selector: 'header-container',
+  selector: 'foundation-header-container',
   templateUrl: './header.component.html'
 })
-export class HeaderContainer {
+export class FoundationHeaderContainer {
   constructor(private store: Store<{}>) { }
 
   openSidebar() {
