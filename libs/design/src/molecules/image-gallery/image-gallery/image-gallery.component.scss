@@ -33,11 +33,14 @@
   }
 
   &__gallery-image {
-    display: block;
-    width: 90px;
-    opacity: 0.6;
+    
+    & img {
+      display: block;
+      width: 90px;
+      opacity: 0.6;
+    }
 
-    &--selected {
+    &--selected img {
       opacity: 1;
     }
   }
