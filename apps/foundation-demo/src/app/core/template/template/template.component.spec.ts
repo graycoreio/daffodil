@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NewsletterModule } from '../../../newsletter/newsletter.module';
 
-@Component({selector: 'header-container', template: ''})
+@Component({selector: 'foundation-header-container', template: ''})
 class MockHeaderViewComponent {}
 
 @Component({selector: 'sidebar-viewport-container', template: ''})
