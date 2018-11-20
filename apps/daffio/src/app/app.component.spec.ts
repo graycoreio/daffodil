@@ -1,10 +1,17 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AppComponent]
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ],
+      declarations: [
+        AppComponent
+      ]
     }).compileComponents();
   }));
 
@@ -14,18 +21,11 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'daffio'`, () => {
+  it('should render a `daffio-header-container` inside a `sidebar-viewport-container`', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('daffio');
-  });
 
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain(
-      'Welcome to daffio!'
-    );
-  });
+    let sidebarViewport = fixture.debugElement.query(By.css('sidebar-viewport-container'));
+    
+    expect(sidebarViewport.query(By.css('daffio-header-container'))).not.toBeNull()
+  })
 });

@@ -1,0 +1,39 @@
+@import 'daff-util';
+
+.daffio-header {
+  justify-content: space-between;
+
+  &__menu {
+    display: none;
+    margin: 0;
+    padding: 0;
+
+    @include breakpoint(big-tablet) {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__item {
+    color: $black;
+    padding: 0 30px;
+    text-decoration: none;
+  }
+
+  &__button {
+    display: none;
+
+    @include breakpoint(mobile) {
+      display: inline-block;
+    }
+  }
+
+  &__bars {
+    display: flex;
+    align-items: center;
+
+    @include breakpoint(big-tablet) {
+      display: none;
+    }
+  }
+}
