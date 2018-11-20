@@ -4,11 +4,12 @@ import { By } from '@angular/platform-browser';
 import { ImageGalleryComponent } from './image-gallery.component';
 import { Component } from '@angular/core';
 import { ImageListComponent } from '../../image-list/public_api';
+import { GalleryImageComponent } from '../gallery-image/gallery-image.component';
 
 @Component({ template: 
   `<daff-image-gallery>
     <div daff-active-image class="test-active-image"></div>
-    <div daff-gallery-image class="test-gallery-image"></div>
+    <daff-gallery-image class="test-gallery-image"></daff-gallery-image>
    </daff-image-gallery>`})
 class TestImageGalleryComponentWrapper {}
 
@@ -22,7 +23,8 @@ describe('ImageGalleryComponent', () => {
       declarations: [ 
         TestImageGalleryComponentWrapper,
         ImageListComponent,
-        ImageGalleryComponent
+        ImageGalleryComponent,
+        GalleryImageComponent
       ]
     })
     .compileComponents();
@@ -47,7 +49,7 @@ describe('ImageGalleryComponent', () => {
     expect(activeImageElement.query(By.css('.test-active-image'))).not.toBeNull();
   });
 
-  it('should render [daff-gallery-image] inside .image-gallery__image-list', () => {
+  it('should render daff-gallery-image inside .image-gallery__image-list', () => {
     let imageListElement = fixture.debugElement.query(By.css('.image-gallery__image-list'));
 
     expect(imageListElement.query(By.css('.test-gallery-image'))).not.toBeNull();

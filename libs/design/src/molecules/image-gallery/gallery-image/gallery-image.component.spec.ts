@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 
 import { GalleryImageComponent } from './gallery-image.component';
 
-@Component({template: '<div daff-gallery-image class="host-component" [selected]="selectedValue"><div class="inner-element"></div></div>'})
+@Component({template: '<daff-gallery-image class="host-component" [selected]="selectedValue"><div class="inner-element"></div></daff-gallery-image>'})
 class TestGalleryImageWrapper {
   selectedValue: boolean = true;
 }
@@ -30,7 +30,7 @@ describe('GalleryImageComponent', () => {
     component = fixture.componentInstance;
 
     hostElement = fixture.debugElement.query(By.css('.host-component'));
-    galleryImage = fixture.debugElement.query(By.css('[daff-gallery-image]')).componentInstance;
+    galleryImage = fixture.debugElement.query(By.css('daff-gallery-image')).componentInstance;
 
     fixture.detectChanges();
   });
