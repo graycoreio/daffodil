@@ -1,12 +1,15 @@
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
-import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { By } from '@angular/platform-browser';
+
 import { RouterTestingModule } from '@angular/router/testing';
 
-@Component({selector: 'homepage', template: ''})
-class HomepageContainerMock {}
+import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  let fixture: ComponentFixture<AppComponent>;
+  let app: AppComponent;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [
@@ -16,15 +19,22 @@ describe('AppComponent', () => {
         RouterTestingModule
       ],
       declarations: [
-        AppComponent,
-        HomepageContainerMock
+        AppComponent
       ]
     }).compileComponents();
   }));
 
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    app = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
   it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
+
+  it('should render a <router-outlet>', () => {
+    expect(fixture.debugElement.query(By.css('router-outlet'))).not.toBeNull()
+  });
 });
