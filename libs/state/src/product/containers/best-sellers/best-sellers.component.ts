@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  combineLatest } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
 import { Product } from '@daffodil/core';
 
 import * as fromProduct from '../../reducers/index';
 import { BestSellersLoad } from '../../actions/best-sellers.actions';
-import { combineLatest } from 'rxjs';
 
 @Component({
   selector: '[best-sellers-container]',

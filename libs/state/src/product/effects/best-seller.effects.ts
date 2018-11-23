@@ -1,8 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  of } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { switchMap, map, catchError } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
 
 import { DaffDriverInterface, DaffDriver } from '@daffodil/driver';
 
