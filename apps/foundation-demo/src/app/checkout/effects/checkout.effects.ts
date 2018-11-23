@@ -4,7 +4,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 
 import { map } from 'rxjs/operators';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { PaymentActionTypes } from '../actions/payment.actions';
 import { ShowReviewView } from '../actions/checkout.actions';
 
