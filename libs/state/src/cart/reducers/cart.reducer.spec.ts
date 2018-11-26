@@ -1,7 +1,7 @@
 import { Cart } from "@daffodil/core";
 import { CartFactory } from "@daffodil/core/testing";
 
-import { initialState, reducer, getCartLoading, getCart } from "../reducers/cart.reducer";
+import { initialState, reducer, getCartLoading, getCart, State } from "../reducers/cart.reducer";
 import { CartLoad, CartLoadSuccess, CartLoadFailure, CartReset, AddToCart, AddToCartSuccess, AddToCartFailure } from "../actions/cart.actions";
 
 describe('Cart | Cart List Reducer', () => {
@@ -40,12 +40,17 @@ describe('Cart | Cart List Reducer', () => {
   describe('when CartLoadSuccessAction is triggered', () => {
 
     let result;
+    let state: State;
 
     beforeEach(() => {
-      initialState.loading = true;
+      state = {
+        ...initialState,
+        loading: true
+      }
+  
       let cartListLoadSuccess = new CartLoadSuccess(cart);
       
-      result = reducer(initialState, cartListLoadSuccess);
+      result = reducer(state, cartListLoadSuccess);
     });
 
     it('sets cart from action.payload', () => {
@@ -61,14 +66,18 @@ describe('Cart | Cart List Reducer', () => {
 
     let error: string;
     let result;
+    let state: State;
 
     beforeEach(() => {
-      initialState.loading = true;
-      error = 'error';      
-      initialState.errors = new Array('firstError');
+       state = {
+        ...initialState,
+        loading: true,
+        errors: new Array('firstError')
+       }
+      
       let cartListLoadFailure = new CartLoadFailure(error);
 
-      result = reducer(initialState, cartListLoadFailure);
+      result = reducer(state, cartListLoadFailure);
     });
 
     it('sets loading to false', () => {
@@ -98,12 +107,17 @@ describe('Cart | Cart List Reducer', () => {
 
     let cart: Cart;
     let result;
+    let state: State;
+
 
     beforeEach(() => {
       const addToCartActionSuccess: AddToCartSuccess = new AddToCartSuccess(cart);
-      initialState.loading = true;
+      state = {
+        ...initialState,
+        loading: true
+      }
 
-      result = reducer(initialState, addToCartActionSuccess);
+      result = reducer(state, addToCartActionSuccess);
     });
 
     it('sets cart from action.payload', () => {
@@ -119,14 +133,20 @@ describe('Cart | Cart List Reducer', () => {
 
     let error: string;
     let result;
+    let state: State;
 
     beforeEach(() => {
-      initialState.loading = true;
+      state = {
+        ...initialState,
+        loading: true,
+        errors: new Array('firstError')
+       }
+
       error = 'error';      
-      initialState.errors = new Array('firstError');
+
       let addToCartFailure = new AddToCartFailure(error);
 
-      result = reducer(initialState, addToCartFailure);
+      result = reducer(state, addToCartFailure);
     });
 
     it('sets loading to false', () => {
