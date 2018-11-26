@@ -9,12 +9,6 @@ import { Component, Input } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-let cartFactory = new CartFactory();
-let mockCart = cartFactory.create();
-mockCart.items.push(cartFactory.createCartItem());
-mockCart.items.push(cartFactory.createCartItem());
-let stubSubtitle = 'subtitle';
-
 @Component({template: '<checkout-cart [cart]="cartValue" [subtitle]="subtitleValue"></checkout-cart>'})
 class TestCheckoutCartWrapper {
   cartValue: Cart;
@@ -33,7 +27,13 @@ describe('CheckoutCartComponent', () => {
   let checkoutCart: CheckoutCartComponent;
   let router;
 
-  beforeEach(async(() => {
+  let cartFactory = new CartFactory();
+  let mockCart = cartFactory.create();
+  mockCart.items.push(cartFactory.createCartItem());
+  mockCart.items.push(cartFactory.createCartItem());
+  let stubSubtitle = 'subtitle';
+
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule
@@ -45,18 +45,18 @@ describe('CheckoutCartComponent', () => {
       ]
     })
     .compileComponents();
-  }));
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(TestCheckoutCartWrapper);
+    component = fixture.componentInstance;
+    
     router = TestBed.get(Router);
     spyOn(router, 'navigateByUrl');
-    component = fixture.componentInstance;
 
     component.cartValue = mockCart;
     component.subtitleValue = stubSubtitle;
 
     fixture.detectChanges();
+
     checkoutCartItems = fixture.debugElement.queryAll(By.css('checkout-cart-item'));
     checkoutCart = fixture.debugElement.query(By.css('checkout-cart')).componentInstance;
   });
@@ -78,7 +78,6 @@ describe('CheckoutCartComponent', () => {
   });
 
   describe('on <checkout-cart-item>', () => {
-    
     it('should set item', () => {
       expect(checkoutCartItems[0].componentInstance.item).toEqual(mockCart.items[0]);  
     });
