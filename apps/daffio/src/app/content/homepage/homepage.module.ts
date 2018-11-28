@@ -8,6 +8,11 @@ import { TemplateModule } from '../../core/template/template.module';
 import { DaffioHomepageComponent } from './component/homepage.component';
 import { DaffioHomepageRoutingModule } from './homepage-routing.module';
 
+import {
+  DaffHeroModule,
+  DaffButtonSetModule,
+  DaffButtonModule
+} from '@daffodil/design';
 
 @NgModule({
   imports: [
@@ -17,7 +22,11 @@ import { DaffioHomepageRoutingModule } from './homepage-routing.module';
     
     TemplateModule,
 
-    DaffioHomepageRoutingModule
+    DaffioHomepageRoutingModule,
+
+    DaffHeroModule,
+    DaffButtonSetModule,
+    DaffButtonModule
   ],
   declarations: [
     DaffioHomepageComponent
