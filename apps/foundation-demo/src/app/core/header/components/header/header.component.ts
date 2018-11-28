@@ -1,9 +1,18 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
+export class FoundationHeaderComponent { 
 
-export class FoundationHeaderComponent { }
+  constructor(
+    private router: Router
+  ) {}
+
+  navigateToCart() {
+    this.router.navigateByUrl('/cart');
+  }
+}

@@ -8,6 +8,7 @@ import { HeaderModule } from '../header/header.module';
 import { SidebarModule } from '../sidebar/sidebar.module';
 import { FooterModule } from '../footer/footer.module';
 import { NewsletterModule } from '../../newsletter/newsletter.module';
+import { ModalPortalComponent } from './portals/modal-portal.component';
 
 @NgModule({
   imports: [
@@ -19,10 +20,12 @@ import { NewsletterModule } from '../../newsletter/newsletter.module';
     NewsletterModule
   ],
   declarations: [
-    TemplateComponent
+    TemplateComponent,
+    ModalPortalComponent
   ],
   exports: [
-    TemplateComponent
+    TemplateComponent,
+    ModalPortalComponent
   ]
 })
 export class TemplateModule { }

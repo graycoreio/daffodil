@@ -3,4 +3,5 @@
     <add-to-cart (addToCart)="ProductContainer.addToCart($event)" [additive]="ProductContainer.product$ | async"  [qty]="ProductContainer.qty$ | async"></add-to-cart>
   </product>
   <loading-icon *ngIf="(ProductContainer.loading$ | async)"></loading-icon>
+  <add-to-cart-notification></add-to-cart-notification>
 </div>
