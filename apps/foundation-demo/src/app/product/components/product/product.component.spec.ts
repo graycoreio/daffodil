@@ -12,7 +12,6 @@ import { ProductComponent } from './product.component';
 import { 
   AccordionModule, 
   DaffQtyDropdownModule, 
-  DaffImageGalleryModule, 
   DaffContainerModule,
   QtyDropdownComponent 
 } from '@daffodil/design';
@@ -25,15 +24,9 @@ class ProductWrapperTest {
   updateQtyFunction: Function;
 }
 
-@Component({selector: 'accordion', template: ''})
-class MockAccordionComponent { 
-  @Input() title: string;
-  @Input() id: string;
-}
-
-@Component({selector: 'accordion-item', template: ''})
-class MockAccordionItemComponent {
-  @Input() initiallyActive: boolean;
+@Component({selector: 'image-gallery', template: ''})
+class MockImageGalleryComponent {
+  @Input() images;
 }
 
 describe('ProductComponent', () => {
@@ -52,12 +45,12 @@ describe('ProductComponent', () => {
         RouterTestingModule,
         DaffContainerModule,
         AccordionModule,
-        DaffQtyDropdownModule,
-        DaffImageGalleryModule
+        DaffQtyDropdownModule
       ],
       declarations: [ 
         ProductComponent,
-        ProductWrapperTest
+        ProductWrapperTest,
+        MockImageGalleryComponent,
       ]
     })
     .compileComponents();

@@ -54,6 +54,9 @@ class MockAddToCartComponent {
 @Component({ selector: 'loading-icon', template: ''})
 class MockLoadingIconComponent {}
 
+@Component({ selector: 'add-to-cart-notification', template: ''})
+class MockAddToCartNotificationComponent {}
+
 describe('ProductViewComponent', () => {
   let component: ProductViewComponent;
   let fixture: ComponentFixture<ProductViewComponent>;
@@ -62,6 +65,7 @@ describe('ProductViewComponent', () => {
   let productContainer: MockProductContainer;
   let productComponent: MockProductComponent;
   let addToCartComponent: AddToCartComponent;
+  let addToCartNotification: MockAddToCartNotificationComponent;
 
   beforeEach(async(() => {
     idParam = '1001';
@@ -74,7 +78,8 @@ describe('ProductViewComponent', () => {
         MockProductContainer,
         MockProductComponent,
         MockAddToCartComponent,
-        MockLoadingIconComponent
+        MockLoadingIconComponent,
+        MockAddToCartNotificationComponent
       ],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRoute }
@@ -96,6 +101,7 @@ describe('ProductViewComponent', () => {
     fixture.detectChanges();
     productComponent = fixture.debugElement.query(By.css('product')).componentInstance;
     addToCartComponent = fixture.debugElement.query(By.css('add-to-cart')).componentInstance;
+    addToCartNotification = fixture.debugElement.query(By.css('add-to-cart-notification')).componentInstance;
   });
 
   it('should create', () => {

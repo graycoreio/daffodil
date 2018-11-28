@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StoreModule, Store } from '@ngrx/store';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 
 import * as fromSidebar from '../../../sidebar/reducers/index';
@@ -20,6 +21,7 @@ describe('FoundationHeaderContainer', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({}),
+        RouterTestingModule,
         LogoModule
       ],
       declarations: [
