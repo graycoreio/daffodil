@@ -1,6 +1,8 @@
 @import 'daff-util';
 
 .checkout-cart-async-wrapper {
+  display: grid;
+  grid-row-gap: 20px;
 
   &__loading-icon {
     margin: 20px 44%;
@@ -11,8 +13,6 @@
   }
 
   &__cart-wrapper {
-    padding: 25px 0;
-    margin-bottom: 15px;
     @include section-divider();
 
     @include breakpoint(big-tablet) {
@@ -30,7 +30,6 @@
 
   &__help-box-wrapper {
     display: none;
-    margin: 35px 0 15px 0;
 
     @include breakpoint(big-tablet) {
       display: block;

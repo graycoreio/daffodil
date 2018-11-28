@@ -6,6 +6,8 @@ import { ProductViewComponent } from './product/pages/product-view/product-view.
 import { CheckoutViewComponent } from './checkout/pages/checkout-view/checkout-view.component';
 import { TemplateComponent } from './core/template/template/template.component';
 import { NotFoundComponent } from './misc/not-found/not-found/not-found.component';
+import { CheckoutGuard } from './helper/routing-guards/checkout.guard';
+import { CartLoadGuard } from './helper/routing-guards/cart-load.guard';
 
 export const appRoutes: Routes = [
   {
@@ -18,7 +20,13 @@ export const appRoutes: Routes = [
       { path: 'product-grid', component: ProductGridViewComponent},
       { path: 'cart', component: CartViewComponent },
       { path: 'product/:id', component: ProductViewComponent },
-      { path: 'checkout', component: CheckoutViewComponent },
+      { 
+        canActivate: [
+          CheckoutGuard
+        ],
+        path: 'checkout', 
+        component: CheckoutViewComponent 
+      },
       { path: '404', component: NotFoundComponent },
     ]
   },
@@ -31,6 +39,10 @@ export const appRoutes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(appRoutes)
+  ],
+  providers: [
+    CheckoutGuard, 
+    CartLoadGuard
   ],
   exports: [
     RouterModule

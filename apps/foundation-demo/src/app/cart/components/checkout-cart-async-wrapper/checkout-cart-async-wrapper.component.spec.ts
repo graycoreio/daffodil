@@ -8,6 +8,8 @@ import { Cart } from '@daffodil/core';
 import { CartFactory } from '@daffodil/core/testing';
 
 import { CheckoutCartAsyncWrapperComponent } from './checkout-cart-async-wrapper.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
 let cartFactory = new CartFactory();
 let cart = cartFactory.create();
@@ -53,9 +55,13 @@ describe('CheckoutCartAsyncWrapper', () => {
   let checkoutCartComponent: MockCheckoutCartComponent;
   let cartTotalsComponent: MockCartTotalsComponent;
   let helpBoxComponent: MockHelpBoxComponent;
+  let router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ],
       declarations: [ 
         TestCheckoutCartAsyncWrapper,
         MockCheckoutCartComponent,
@@ -70,6 +76,8 @@ describe('CheckoutCartAsyncWrapper', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestCheckoutCartAsyncWrapper);
+    router = TestBed.get(Router);
+    spyOn(router, 'navigateByUrl');
     component = fixture.componentInstance;
     component.cartValue$ = of(cart);
     component.loadingValue$ = of(false);
