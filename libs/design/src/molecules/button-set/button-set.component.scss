@@ -1,4 +1,7 @@
 .daff-button-set {
+  display: flex;
+  flex-wrap: wrap;
+
   > * {
     margin-right: 5px;
 
