@@ -1,0 +1,153 @@
+@import '../../scss/daff-util';
+
+@mixin hero-headings($titleSize: 4rem, $subtitleSize: 1.5rem) {
+  &__title {
+    margin: 0;
+    padding: 0;
+    font-size: 2rem;
+
+    @include breakpoint(mobile) {
+      font-size: 2.75rem;
+    }
+
+    @include breakpoint(big-tablet) {
+      font-size: $titleSize;
+      line-height: 5rem;
+    }
+  }
+
+  &__subtitle {
+    margin: 10px 0 0 0;
+    padding: 0;
+    font-size: 1.125rem;
+    font-weight: 400;
+
+    @include breakpoint(mobile) {
+      font-size: 1.25rem;
+      line-height: 2rem;
+    }
+
+    @include breakpoint(big-tablet) {
+      margin: 25px 0 0 0;
+      font-size: $subtitleSize;
+    }
+
+    + button,
+    + .daff-button-set {
+      margin-top: 50px;
+    }
+  }
+
+  &__title, &__subtitle {
+    max-width: 1000px;
+  }
+}
+
+.daff-hero {
+  $root: &;
+  @include hero-headings();
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: calc(70vh - 99px);
+  text-align: center;
+
+  @include breakpoint(mobile) {
+    text-align: left;
+  }
+
+  &__container {
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 75px 25px;
+    flex: 1;
+
+    @include breakpoint(mobile) {
+      padding: 100px 50px;
+    }
+  }
+
+  &--grid {
+    #{$root}__container {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-gap: 25px; 
+      align-items: center;
+
+      @include breakpoint(mobile) {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 50px;
+      }
+    }
+  }
+
+  &--small {
+    #{$root}__container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 75px 0;
+      flex: 1;
+
+      @include breakpoint(mobile) {
+        padding: 100px 0;
+      }
+    }
+  }
+
+  &--centered {
+    text-align: center;
+
+    #{$root}__title {
+      margin: 0 auto;
+    }
+
+    #{$root}__subtitle {
+      margin: 25px auto 0 auto;
+    }
+  }
+
+  &--fullscreen {
+    min-height: calc(100vh - 99px);
+    margin: 0;
+
+    #{$root}__container {
+      padding: 25px;
+    }
+  }
+
+  &__image {
+    max-width: 800px;
+    margin: 0 auto;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  // color variants
+
+  &--primary {
+    background-color: $primary;
+    color: $white;
+  }
+
+  &--accent {
+    background-color: $accent;
+    color: white;
+  }
+
+  &--white {
+    background-color: $white;
+    color: $black;
+  }
+
+  &--black {
+    background-color: $black;
+    color: $white;
+  }
+
+  &--gray {
+    background-color: daff-color($daff-gray, 100);
+    color: $black;
+  }
+}

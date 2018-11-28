@@ -4,6 +4,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 
 import { DaffioHomepageComponent } from './homepage.component';
+import { By } from '@angular/platform-browser';
+
+import { DaffHeroModule } from '@daffodil/design';
 
 describe('DaffioHomepageComponent', () => {
   let component: DaffioHomepageComponent;
@@ -12,7 +15,8 @@ describe('DaffioHomepageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        DaffHeroModule
       ],
       declarations: [
         DaffioHomepageComponent
@@ -32,5 +36,13 @@ describe('DaffioHomepageComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('on <daff-hero>', () => {
+    it('should set layout="centered"', () => {
+      let hero = fixture.debugElement.query(By.css('daff-hero'));
+
+      expect(hero.componentInstance.layout).toEqual('centered');
+    });
   });
 });
