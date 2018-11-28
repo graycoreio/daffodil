@@ -40,6 +40,11 @@
 
   &__title, &__subtitle {
     max-width: 1000px;
+    text-align: center;
+
+    @include breakpoint(mobile) {
+      text-align: left;
+    }
   }
 }
 
@@ -50,11 +55,6 @@
   align-items: center;
   flex-wrap: wrap;
   min-height: calc(70vh - 99px);
-  text-align: center;
-
-  @include breakpoint(mobile) {
-    text-align: left;
-  }
 
   &__container {
     max-width: 1920px;
@@ -95,14 +95,21 @@
   }
 
   &--centered {
-    text-align: center;
+
+    #{$root}__container {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
 
     #{$root}__title {
       margin: 0 auto;
+      text-align: center;
     }
 
     #{$root}__subtitle {
       margin: 25px auto 0 auto;
+      text-align: center;
     }
   }
 
