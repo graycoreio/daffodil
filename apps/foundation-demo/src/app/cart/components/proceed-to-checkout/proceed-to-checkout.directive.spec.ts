@@ -8,7 +8,8 @@ import { Component } from '@angular/core';
 
 @Component({template: '<button proceed-to-checkout></button>'})
 class TestProceedToCheckoutDirective {}
- describe('ProceedToCheckoutDirective', () => {
+
+describe('ProceedToCheckoutDirective', () => {
   let component: TestProceedToCheckoutDirective;
   let fixture: ComponentFixture<TestProceedToCheckoutDirective>;
   let router;

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Cart } from '@daffodil/core';
 import { Router } from '@angular/router';
 
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './checkout-cart.component.html',
   styleUrls: ['./checkout-cart.component.scss']
 })
-export class CheckoutCartComponent implements OnInit {
+export class CheckoutCartComponent {
 
   @Input() cart: Cart;
   @Input() subtitle: string;
@@ -15,12 +15,6 @@ export class CheckoutCartComponent implements OnInit {
   constructor(
     private router: Router
   ) { }
-
-  ngOnInit() {
-    if(this.cart.items.length === 0) {
-      this.navigateToCart();
-    }
-  }
 
   navigateToCart = () => {
     this.router.navigateByUrl('/cart');
