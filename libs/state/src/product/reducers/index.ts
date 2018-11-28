@@ -49,13 +49,6 @@ export const selectProductEntitiesState = createSelector(
  * in selecting records from the entity state.
  */
 
-// export const {
-//   selectIds: selectProductIds,
-//   selectEntities: selectProductEntities,
-//   selectAll: selectAllProducts,
-//   selectTotal: selectTotalProducts
-// } = fromProductEntities.productAdapter.getSelectors(selectProductEntitiesState);
-
 export const selectProductIds = createSelector(
   selectProductEntitiesState,
   fromProductEntities.selectProductIds
@@ -74,6 +67,14 @@ export const selectAllProducts = createSelector(
 export const selectProductTotal = createSelector(
   selectProductEntitiesState,
   fromProductEntities.selectProductTotal
+);
+
+/**
+ * Select Product by Id
+ */
+export const selectProduct = createSelector(
+  selectProductEntitiesState,
+  (products, props) => products.entities[props.id]
 );
 
 /**
