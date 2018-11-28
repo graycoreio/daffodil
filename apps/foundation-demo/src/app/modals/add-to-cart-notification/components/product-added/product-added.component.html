@@ -1,0 +1,16 @@
+<div class="product-added" *ngIf="product">
+  <img src="/assets/mh04-green_alt1.jpg">
+  <div class="product-added__description">
+    <div class="product-added__name">{{product.name}}</div>
+    <div class="product-added__price">${{product.price}}</div>
+    <div class="product-added__attribute">
+      <span class="embolden">Color: </span><span>White (HC)</span><br>
+    </div>
+    <div class="product-added__size">
+      <span class="embolden">Size: </span><span>5 (HC)</span><br>
+    </div>
+    <div class="product-added__qty-wrapper">
+      <span class="product-added__qty">Qty: {{qty}}</span>
+    </div>
+  </div>
+</div>
