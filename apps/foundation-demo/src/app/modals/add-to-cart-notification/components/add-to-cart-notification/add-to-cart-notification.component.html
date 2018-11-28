@@ -1,0 +1,17 @@
+<modal-portal>
+  <daff-modal [show]="open$ | async" (hide)="onHide()" [verticalPosition]="_verticalPosition" [horizontalPosition]="_horizontalPosition">
+    <div class="add-to-cart-notification">
+      <div *ngIf="!(loading$ | async)" class="add-to-cart-notification__top-bar">
+        <span class="add-to-cart-notification__check-icon"><i class="fa fa-check" aria-hidden="true"></i></span>
+        <span>Added to Cart</span>
+        <span class="add-to-cart-notification__times-icon"><i (click)="onHide()" class="fa fa-times" aria-hidden="true"></i></span>
+      </div>
+      <product-added *ngIf="!(loading$ | async)" class="add-to-cart-notification__product-added" [product]="product$ | async" [qty]="productQty$ | async"></product-added>
+      <div *ngIf="!(loading$ | async)" daff-button-set class="add-to-cart-notification__button-set">
+        <button type="button" daff-stroked-button (click)="onHide()" view-cart>View Cart ({{(cartItemCount$ | async)}})</button>
+        <button type="button" daff-button color="black" (click)="onHide()" proceed-to-checkout>Checkout</button>
+      </div>
+      <loading-icon *ngIf="(loading$ | async)"></loading-icon>
+    </div>
+  </daff-modal>
+</modal-portal>
