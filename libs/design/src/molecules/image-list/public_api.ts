@@ -1,2 +1,2 @@
 export { DaffImageListModule } from './image-list.module';
-export { ImageListComponent } from './image-list.component';
+export { DaffImageListComponent } from './image-list.component';

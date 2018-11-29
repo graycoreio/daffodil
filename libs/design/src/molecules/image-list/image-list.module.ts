@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ImageListComponent } from './image-list.component';
+import { DaffImageListComponent } from './image-list.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
-    ImageListComponent
+    DaffImageListComponent
   ],
   exports: [
-    ImageListComponent
+    DaffImageListComponent
   ]
 })
 export class DaffImageListModule { }

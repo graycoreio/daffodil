@@ -8,6 +8,6 @@ import { Component, Input } from '@angular/core';
     '[class.image-gallery__gallery-image--selected]':'selected' 
   }
 })
-export class GalleryImageComponent {
+export class DaffGalleryImageComponent {
   @Input() selected: boolean;
 }
