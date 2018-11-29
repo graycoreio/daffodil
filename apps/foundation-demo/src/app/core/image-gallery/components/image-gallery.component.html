@@ -1,9 +1,8 @@
 <daff-image-gallery>
   <img daff-active-image src="{{(selectedImage$ | async)}}">
   <daff-gallery-image 
-    class="gallery__image-wrapper"
-    [selected]="image.url === (selectedImage$ | async)"
-    *ngFor="let image of images">
+    *ngFor="let image of images"
+    [selected]="image.url === (selectedImage$ | async)">
 
     <img alt="{{image.label}}"
       src="{{image.url}}" 
