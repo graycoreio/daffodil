@@ -2,24 +2,24 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { GalleryImageComponent } from './gallery-image.component';
+import { DaffGalleryImageComponent } from './gallery-image.component';
 
 @Component({template: '<daff-gallery-image class="host-component" [selected]="selectedValue"><div class="inner-element"></div></daff-gallery-image>'})
 class TestGalleryImageWrapper {
   selectedValue: boolean = true;
 }
 
-describe('GalleryImageComponent', () => {
+describe('DaffGalleryImageComponent', () => {
   let component: TestGalleryImageWrapper;
   let fixture: ComponentFixture<TestGalleryImageWrapper>;
   let hostElement;
-  let galleryImage: GalleryImageComponent;
+  let galleryImage: DaffGalleryImageComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
         TestGalleryImageWrapper,
-        GalleryImageComponent
+        DaffGalleryImageComponent
       ]
     })
     .compileComponents();

@@ -2,28 +2,28 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { ImageListComponent } from './image-list.component';
+import { DaffImageListComponent } from './image-list.component';
 
-@Component({template: '<image-list class="host-component"><div class="inner-element"></div></image-list>'})
-class TestImageListWrapper {}
+@Component({template: '<daff-image-list class="host-component"><div class="inner-element"></div></daff-image-list>'})
+class TestDaffImageListWrapper {}
 
-describe('ImageListComponent', () => {
-  let component: TestImageListWrapper;
-  let fixture: ComponentFixture<TestImageListWrapper>;
+describe('DaffImageListComponent', () => {
+  let component: TestDaffImageListWrapper;
+  let fixture: ComponentFixture<TestDaffImageListWrapper>;
   let hostElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        TestImageListWrapper,
-        ImageListComponent
+        TestDaffImageListWrapper,
+        DaffImageListComponent
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestImageListWrapper);
+    fixture = TestBed.createComponent(TestDaffImageListWrapper);
     component = fixture.componentInstance;
 
     hostElement = fixture.debugElement.query(By.css('.host-component'));
