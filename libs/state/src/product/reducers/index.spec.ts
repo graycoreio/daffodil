@@ -28,10 +28,6 @@ describe('selectProductState', () => {
     mockProduct = productFactory.create();
     store = TestBed.get(Store);
 
-    store.pipe(
-      take(1)
-    ).subscribe(s => console.log(s));
-
     store.dispatch(new BestSellersReset());
     store.dispatch(new ProductGridReset());
     store.dispatch(new BestSellersLoadSuccess(new Array(mockProduct)));
