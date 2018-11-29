@@ -1,5 +1,6 @@
 import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
+import { take } from 'rxjs/operators';
 
 import { Product } from "@daffodil/core";
 import { ProductFactory } from "@daffodil/core/testing";
@@ -15,7 +16,7 @@ describe('selectProductState', () => {
   let productFactory: ProductFactory = new ProductFactory();
   let mockProduct: Product;
   
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
@@ -26,12 +27,13 @@ describe('selectProductState', () => {
 
     mockProduct = productFactory.create();
     store = TestBed.get(Store);
+
     store.dispatch(new BestSellersReset());
     store.dispatch(new ProductGridReset());
     store.dispatch(new BestSellersLoadSuccess(new Array(mockProduct)));
     store.dispatch(new ProductGridLoadSuccess(new Array(mockProduct)));
     store.dispatch(new ProductLoad(mockProduct.id));
-  }));
+  });
 
   describe('ProductEntitiesState', () => {
     
@@ -109,7 +111,7 @@ describe('selectProductState', () => {
   });
   
   describe('SelectedProductState', () => {
-    
+
     describe('selectSelectedProductState', () => {
 
       let expectedProductState;

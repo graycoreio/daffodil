@@ -2,7 +2,7 @@ import { Product } from "@daffodil/core";
 import { ProductFactory } from "@daffodil/core/testing";
 
 import { ProductGridLoad, ProductGridLoadSuccess, ProductGridLoadFailure } from "../actions/product-grid.actions";
-import { initialState, reducer, getProductGridLoading } from "../reducers/product-grid.reducer";
+import { initialState, reducer, getProductGridLoading, State } from "../reducers/product-grid.reducer";
 
 
 describe('Product | Product Grid Reducer', () => {
@@ -42,13 +42,17 @@ describe('Product | Product Grid Reducer', () => {
 
     let products: Product[];
     let result;
+    let state: State;
 
     beforeEach(() => {
-      initialState.loading = true;
+      state = {
+        ...initialState,
+        loading: true,
+      }
       products = new Array(product);
       let productGridLoadSuccess = new ProductGridLoadSuccess(products);
       
-      result = reducer(initialState, productGridLoadSuccess);
+      result = reducer(state, productGridLoadSuccess);
     });
 
     it('sets loading to false', () => {
@@ -60,14 +64,18 @@ describe('Product | Product Grid Reducer', () => {
 
     let error: string;
     let result;
+    let state: State;
 
     beforeEach(() => {
-      initialState.loading = true;
+      state = {
+        ...initialState,
+        loading: true,
+        errors: new Array('firstError')
+      }
+      
       error = 'error';      
-      initialState.errors = new Array('firstError');
       let productGridLoadFailure = new ProductGridLoadFailure(error);
-
-      result = reducer(initialState, productGridLoadFailure);
+      result = reducer(state, productGridLoadFailure);
     });
 
     it('sets loading to false', () => {

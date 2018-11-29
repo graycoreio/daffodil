@@ -20,7 +20,7 @@ let cartFactory = new CartFactory();
 let stubShippingAddress = daffodilAddressFactory.create();
 let stubPaymentInfo: PaymentInfo = billingFactory.create();
 let stubBillingAddress: DaffodilAddress = daffodilAddressFactory.create();
-let stubCart: Cart = cartFactory.create();
+let stubCart: Cart;
 
 let stubIsShippingAddressValid = true;
 let stubSelectedShippingOptionIndex = 0;
@@ -91,7 +91,7 @@ class MockBillingContainer {
 
 @Component({selector: '[cart-container]', template: '<ng-content></ng-content>', exportAs: 'CartContainer'})
 class MockCartContainer {
-  cart$: Observable<Cart> = of(stubCart);
+  cart$: Observable<Cart>;
   loading$: Observable<boolean> = of(false);
 }
 
@@ -113,6 +113,7 @@ describe('CheckoutViewComponent', () => {
   let accordionItem: MockAccordionItemComponent;
   let placeOrders;
   let store;
+  let stubCart = cartFactory.create();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -157,6 +158,9 @@ describe('CheckoutViewComponent', () => {
     cartContainer = fixture.debugElement.query(By.css('[cart-container]')).componentInstance;
     accordionItem = fixture.debugElement.query(By.css('accordion-item')).componentInstance;
     placeOrders = fixture.debugElement.queryAll(By.css('place-order'));
+
+    cartContainer.cart$ = of(stubCart);
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -327,10 +331,14 @@ describe('CheckoutViewComponent', () => {
     });
 
     describe('when cart is not empty', () => {
-
       beforeEach(() => {
-        stubCart.items.push(cartFactory.createCartItem());
-        cartContainer.cart$ = of(stubCart);
+        cartContainer.cart$ = of({
+          ...stubCart,
+          items: [
+            ...stubCart.items,
+            cartFactory.createCartItem()
+          ]
+        });
         fixture.detectChanges();
       });
       

@@ -1,7 +1,14 @@
 import { Product } from "@daffodil/core";
 import { ProductFactory } from "@daffodil/core/testing";
 
-import { initialState, reducer, getProductLoading, getSelectedProductId, getProductQty } from "../reducers/product.reducer";
+import { 
+  initialState, 
+  reducer, 
+  State,
+  getProductLoading, 
+  getSelectedProductId, 
+  getProductQty 
+} from "../reducers/product.reducer";
 import { ProductLoad, ProductLoadSuccess, ProductLoadFailure, UpdateQty } from "../actions/product.actions";
 
 describe('Product | Product Reducer', () => {
@@ -49,12 +56,16 @@ describe('Product | Product Reducer', () => {
   describe('when ProductLoadSuccessAction is triggered', () => {
 
     let result;
+    let state: State;
 
     beforeEach(() => {
-      initialState.loading = true;
+      state = {
+        ...initialState,
+        loading: true
+      }
+
       let productLoadSuccess = new ProductLoadSuccess(product);
-      
-      result = reducer(initialState, productLoadSuccess);
+      result = reducer(state, productLoadSuccess);
     });
 
     it('sets loading to false', () => {
@@ -66,14 +77,18 @@ describe('Product | Product Reducer', () => {
 
     let error: string;
     let result;
+    let state: State;
 
     beforeEach(() => {
-      initialState.loading = true;
-      error = 'error';      
-      initialState.errors = new Array('firstError');
+      state = {
+        ...initialState,
+        loading: true,
+        errors: new Array('firstError')
+      }
+
       let productLoadFailure = new ProductLoadFailure(error);
 
-      result = reducer(initialState, productLoadFailure);
+      result = reducer(state, productLoadFailure);
     });
 
     it('sets loading to false', () => {

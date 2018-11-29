@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { hot, cold } from 'jasmine-marbles';
 import { provideMockActions } from '@ngrx/effects/testing';
 
 import { AddToCartNotificationEffects } from './add-to-cart-notification.effects';
 import { AddToCart } from '@daffodil/state';
 import { OpenAddToCartNotification } from '../actions/add-to-cart-notification.actions';
-import { hot, cold } from 'jasmine-marbles';
 
 describe('AddToCartNotificationEffects', () => {
   let actions$: Observable<any>;

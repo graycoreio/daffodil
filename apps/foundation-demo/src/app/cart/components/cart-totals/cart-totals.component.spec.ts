@@ -7,16 +7,6 @@ import { CartFactory } from '@daffodil/core/testing';
 
 import { CartTotalsComponent } from './cart-totals.component';
 import { CartTotalsItemModule } from '../cart-totals-item/cart-totals-item.module';
-import { CartTotalsItemComponent } from '../cart-totals-item/cart-totals-item.component';
-
-let cartFactory = new CartFactory();
-let mockCart = cartFactory.create();
-let tax1 = 3;
-let tax2 = 4;
-mockCart.items.push(cartFactory.createCartItem());
-mockCart.items.push(cartFactory.createCartItem());
-mockCart.items[0].tax_amount = tax1;
-mockCart.items[1].tax_amount = tax2;
 
 @Component({template: '<cart-totals [cart]="cartValue"></cart-totals>'})
 class TestCartTotalsWrapper {
@@ -34,6 +24,15 @@ describe('CartTotalsComponent', () => {
   let fixture: ComponentFixture<TestCartTotalsWrapper>;
   let cartTotalsComponent: CartTotalsComponent;
   let cartTotalsItemComponent: any;
+
+  let cartFactory = new CartFactory();
+  let mockCart = cartFactory.create();
+  let tax1 = 3;
+  let tax2 = 4;
+  mockCart.items.push(cartFactory.createCartItem());
+  mockCart.items.push(cartFactory.createCartItem());
+  mockCart.items[0].tax_amount = tax1;
+  mockCart.items[1].tax_amount = tax2;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

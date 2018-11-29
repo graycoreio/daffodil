@@ -7,11 +7,11 @@ export interface State {
   errors: string[]
 }
 
-export const initialState: State = {
+export const initialState: State = Object.freeze({
   cart: null,
   loading: false,
   errors: []
-};
+});
 
 export const resetState: State = Object.assign({}, initialState);
 

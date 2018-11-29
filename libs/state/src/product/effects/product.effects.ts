@@ -3,7 +3,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
 import { switchMap, map, catchError } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
+import { of ,  Observable } from 'rxjs';
 
 import { DaffDriverInterface, DaffDriver } from '@daffodil/driver';
 
@@ -13,7 +13,6 @@ import {
   ProductLoad, 
   ProductLoadSuccess, 
   ProductLoadFailure } from '../actions/product.actions';
-import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ProductEffects {

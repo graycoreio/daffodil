@@ -2,7 +2,7 @@ import { Product } from "@daffodil/core";
 import { ProductFactory } from "@daffodil/core/testing";
 
 import { BestSellersLoad, BestSellersLoadSuccess, BestSellersLoadFailure, BestSellersReset } from "../actions/best-sellers.actions";
-import { initialState, reducer, getBestSellersLoading, getBestSellersIds } from "../reducers/best-sellers.reducer";
+import { initialState, reducer, getBestSellersLoading, getBestSellersIds, State } from "../reducers/best-sellers.reducer";
 
 
 describe('Product | Best Sellers Reducer', () => {
@@ -42,13 +42,18 @@ describe('Product | Best Sellers Reducer', () => {
 
     let products: Product[];
     let result;
+    let state: State;
 
     beforeEach(() => {
-      initialState.loading = true;
+      state = {
+        ...initialState,
+        loading: true
+      }
+  
       products = new Array(product);
       let productsLoadSuccess = new BestSellersLoadSuccess(products);
       
-      result = reducer(initialState, productsLoadSuccess);
+      result = reducer(state, productsLoadSuccess);
     });
 
     it('sets loading to false', () => {
@@ -64,14 +69,18 @@ describe('Product | Best Sellers Reducer', () => {
 
     let error: string;
     let result;
+    let state: State;
 
     beforeEach(() => {
-      initialState.loading = true;
+      state = {
+        ...initialState,
+        loading: true,
+        errors: new Array('firstError'),
+      }
       error = 'error';      
-      initialState.errors = new Array('firstError');
       let productsLoadFailure = new BestSellersLoadFailure(error);
 
-      result = reducer(initialState, productsLoadFailure);
+      result = reducer(state, productsLoadFailure);
     });
 
     it('sets loading to false', () => {
