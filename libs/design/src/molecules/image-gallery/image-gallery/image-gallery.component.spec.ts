@@ -43,14 +43,14 @@ describe('DaffImageGalleryComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render [daff-active-image] inside .image-gallery__active-image', () => {
-    let activeImageElement = fixture.debugElement.query(By.css('.image-gallery__active-image'));
+  it('should render [daff-active-image] inside .daff-image-gallery__active-image', () => {
+    let activeImageElement = fixture.debugElement.query(By.css('.daff-image-gallery__active-image'));
 
     expect(activeImageElement.query(By.css('.test-active-image'))).not.toBeNull();
   });
 
-  it('should render daff-gallery-image inside .image-gallery__image-list', () => {
-    let imageListElement = fixture.debugElement.query(By.css('.image-gallery__image-list'));
+  it('should render daff-gallery-image inside .daff-image-gallery__daff-image-list', () => {
+    let imageListElement = fixture.debugElement.query(By.css('.daff-image-gallery__daff-image-list'));
 
     expect(imageListElement.query(By.css('.test-gallery-image'))).not.toBeNull();
   });
