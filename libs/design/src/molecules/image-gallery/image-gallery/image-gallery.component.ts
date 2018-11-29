@@ -6,4 +6,4 @@ import { Component, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./image-gallery.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ImageGalleryComponent {}
+export class DaffImageGalleryComponent {}

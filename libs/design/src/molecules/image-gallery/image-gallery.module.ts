@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ImageGalleryComponent } from './image-gallery/image-gallery.component';
-import { GalleryImageComponent } from './gallery-image/gallery-image.component';
+import { DaffImageGalleryComponent } from './image-gallery/image-gallery.component';
+import { DaffGalleryImageComponent } from './gallery-image/gallery-image.component';
 import { DaffImageListModule } from '../image-list/public_api';
 
 @NgModule({
@@ -11,12 +11,12 @@ import { DaffImageListModule } from '../image-list/public_api';
     DaffImageListModule
   ],
   declarations: [
-    ImageGalleryComponent,
-    GalleryImageComponent
+    DaffImageGalleryComponent,
+    DaffGalleryImageComponent
   ],
   exports: [
-    ImageGalleryComponent,
-    GalleryImageComponent
+    DaffImageGalleryComponent,
+    DaffGalleryImageComponent
   ]
 })
 export class DaffImageGalleryModule { }

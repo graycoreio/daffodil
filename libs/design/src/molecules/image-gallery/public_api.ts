@@ -1,3 +1,3 @@
-export { ImageGalleryComponent } from './image-gallery/image-gallery.component';
-export { GalleryImageComponent } from './gallery-image/gallery-image.component';
+export { DaffImageGalleryComponent } from './image-gallery/image-gallery.component';
+export { DaffGalleryImageComponent } from './gallery-image/gallery-image.component';
 export { DaffImageGalleryModule } from './image-gallery.module';
