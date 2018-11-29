@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { DaffSidebarModule } from '@daffodil/design';
+import { DaffImageGalleryModule } from '@daffodil/design';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 
 import { ImageGalleryComponent } from './image-gallery.component';
@@ -19,14 +19,6 @@ class TestImageGalleryComponentWrapper {
   imagesValue: Object[] = stubImages;
 }
 
-@Component( {selector: 'daff-gallery-image', template: '<ng-content></ng-content>'})
-class MockDaffGalleryImage {
-  @Input() selected: boolean;
-}
-
-@Component( {selector: 'daff-image-gallery', template: '<ng-content></ng-content>'})
-class MockDaffImageGallery {}
-
 describe('ImageGalleryComponent', () => {
   let component: TestImageGalleryComponentWrapper;
   let fixture: ComponentFixture<TestImageGalleryComponentWrapper>;
@@ -41,13 +33,11 @@ describe('ImageGalleryComponent', () => {
         StoreModule.forRoot({
           foundationImageGallery: combineReducers(fromFoundationImageGallery.reducers),
         }),
-        DaffSidebarModule
+        DaffImageGalleryModule
       ],
       declarations: [ 
         TestImageGalleryComponentWrapper,
-        ImageGalleryComponent,
-        MockDaffGalleryImage,
-        MockDaffImageGallery
+        ImageGalleryComponent
       ]
     })
     .compileComponents();

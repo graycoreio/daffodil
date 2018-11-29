@@ -35,8 +35,8 @@ describe('DaffImageListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should add an image-list class to host element', () => {
-    expect(hostElement.nativeElement.classList.contains('image-list')).toBeTruthy();
+  it('should add an daff-image-list class to host element', () => {
+    expect(hostElement.nativeElement.classList.contains('daff-image-list')).toBeTruthy();
   });
 
   it('should transclude', () => {

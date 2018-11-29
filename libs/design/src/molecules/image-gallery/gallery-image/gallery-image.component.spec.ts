@@ -39,8 +39,8 @@ describe('DaffGalleryImageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should add an image-gallery__gallery-image class to host element', () => {
-    expect(hostElement.nativeElement.classList.contains('image-gallery__gallery-image')).toBeTruthy();
+  it('should add an daff-image-gallery__daff-gallery-image class to host element', () => {
+    expect(hostElement.nativeElement.classList.contains('daff-image-gallery__daff-gallery-image')).toBeTruthy();
   });
 
   it('should transclude', () => {
@@ -53,21 +53,21 @@ describe('DaffGalleryImageComponent', () => {
 
   describe('when selected is true', () => {
     
-    it('should add the image-gallery__gallery-image--selected class to host element', () => {
+    it('should add the daff-image-gallery__daff-gallery-image--selected class to host element', () => {
       component.selectedValue = true
       fixture.detectChanges();
 
-      expect(hostElement.nativeElement.classList.contains('image-gallery__gallery-image--selected')).toBeTruthy();
+      expect(hostElement.nativeElement.classList.contains('daff-image-gallery__daff-gallery-image--selected')).toBeTruthy();
     });
   });
 
   describe('when selected is false', () => {
     
-    it('should not add the image-gallery__gallery-image--selected class to host element', () => {
+    it('should not add the daff-image-gallery__daff-gallery-image--selected class to host element', () => {
       component.selectedValue = false;
       fixture.detectChanges();
 
-      expect(hostElement.nativeElement.classList.contains('image-gallery__gallery-image--selected')).toBeFalsy();
+      expect(hostElement.nativeElement.classList.contains('daff-image-gallery__daff-gallery-image--selected')).toBeFalsy();
     });
   });
 });

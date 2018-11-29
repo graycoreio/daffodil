@@ -4,8 +4,8 @@ import { Component, Input } from '@angular/core';
   selector: 'daff-gallery-image',
   templateUrl: './gallery-image.component.html',
   host: { 
-    'class' : 'image-gallery__gallery-image',
-    '[class.image-gallery__gallery-image--selected]':'selected' 
+    'class' : 'daff-image-gallery__daff-gallery-image',
+    '[class.daff-image-gallery__daff-gallery-image--selected]':'selected' 
   }
 })
 export class DaffGalleryImageComponent {
