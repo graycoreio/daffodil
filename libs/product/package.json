@@ -1,0 +1,29 @@
+{
+  "name": "@daffodil/product",
+  "version": "1.1.0-a",
+  "description": "An Angular PWA built for Magento 2 and Shopify",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "scripts": {
+    "build": "ng build product",
+    "test": "ng test product --watch=false --browsers=ChromeHeadless"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "peerDependencies": {
+    "@angular/common": "^6.0.1",
+    "@angular/core": "^6.0.1",
+    "@angular/http": "^6.0.1",
+    "@ngrx/effects": "^6.0.1",
+    "@ngrx/entity": "^6.0.1",
+    "@ngrx/store": "^6.0.1",
+    "core-js": "^2.4.1",
+    "rxjs": "^6.2.0"
+  }
+}
