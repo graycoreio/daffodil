@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { ProductFactory, MockProductShortNames, MockProductLongNames } from './product.factory';
-import { Product } from '@daffodil/core';
+import { Product } from '../../../../../index';
 
 describe('Core | Product | Factories | ProductFactory', () => {
   

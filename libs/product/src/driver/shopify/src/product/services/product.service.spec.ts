@@ -1,12 +1,10 @@
 import { TestBed } from '@angular/core/testing';
-
-import { ProductFactory, DaffCoreTestingModule } from '@daffodil/core/testing';
-
 import {
   ApolloTestingModule,
   ApolloTestingController,
 } from 'apollo-angular/testing';
 
+import { ProductFactory, DaffCoreTestingModule } from '../../../../../index';
 
 import { DaffShopifyProductService, GetAllProductsQuery, GetAProduct } from './product.service';
 

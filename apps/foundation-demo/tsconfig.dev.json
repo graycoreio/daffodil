@@ -11,7 +11,7 @@
       "@daffodil/driver/shopify": ["libs/driver/shopify/src"],
       "@daffodil/driver/magento": ["libs/driver/magento/src"],
       "@daffodil/design": ["libs/design/src"],
-      "@daffodil/product/state": ["libs/product/state/src"]
+      "@daffodil/product": ["libs/product/src"]
     }
   }
 }

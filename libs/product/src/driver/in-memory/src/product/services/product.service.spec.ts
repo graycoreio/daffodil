@@ -2,8 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { DaffInMemoryProductService } from './product.service';
-import { ProductFactory } from '../../../../../index';
-import { DaffCoreTestingModule } from '@daffodil/core/testing';
+import { ProductFactory, DaffCoreTestingModule } from '../../../../../index';
 
 describe('Driver | Mock | Product | ProductService', () => {
   let productService;

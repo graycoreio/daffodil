@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffInMemoryProductTestingService } from './product.testing.service';
 
-import { DaffCoreTestingModule } from '@daffodil/core/testing';
+import { DaffCoreTestingModule } from '../../../../../index';
 
 describe('Driver | InMemory | Product | DaffInMemoryProductTestingService', () => {
   let productTestingService;
