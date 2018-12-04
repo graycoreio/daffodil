@@ -1,8 +1,8 @@
 @import 'variables';
 @import 'color';
 
-$primary: daff-color($daff-primary, 500);
-$accent: daff-color($daff-accent, 500);
-$blue-gray: daff-color($daff-blue-gray, 500);
-$gray: daff-color($daff-gray, 500);
-$black: daff-color($daff-gray, 900);
+$primary: daff-color($daff-yellow, 50);
+$accent-purple: daff-color($daff-purple, 50);
+$accent-blue: daff-color($daff-blue, 50);
+$gray: daff-color($daff-gray, 50);
+$black: daff-color($daff-gray, 100);
