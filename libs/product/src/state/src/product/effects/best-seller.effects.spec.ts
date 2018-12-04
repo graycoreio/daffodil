@@ -3,8 +3,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable ,  of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
-import { Product } from '@daffodil/core';
-import { ProductFactory } from '@daffodil/core/testing';
+import { Product, ProductFactory } from '../../../../index';
 
 import { BestSellersLoad, BestSellersLoadSuccess, BestSellersLoadFailure } from '../actions/best-sellers.actions';
 import { BestSellersEffects } from './best-seller.effects';

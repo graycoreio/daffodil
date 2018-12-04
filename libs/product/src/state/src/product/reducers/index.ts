@@ -4,13 +4,14 @@ import {
   createFeatureSelector,
   MemoizedSelector 
 } from '@ngrx/store';
+import { Dictionary } from '@ngrx/entity/src/models';
+
+import { Product } from '../../../../index';
 
 import * as fromProductEntities from './product-entities.reducer';
 import * as fromProductGrid from './product-grid.reducer';
 import * as fromProduct from './product.reducer';
 import * as fromBestSellers from './best-sellers.reducer';
-import { Product } from '@daffodil/core';
-import { Dictionary } from '@ngrx/entity/src/models';
 
 export interface State {
   products : fromProductEntities.State;

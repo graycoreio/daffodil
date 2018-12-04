@@ -1,10 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-
 import { Observable } from 'rxjs';
-
 import { Store, select } from '@ngrx/store';
 
-import { Product } from '@daffodil/core';
+import { Product } from '../../../../../index';
+
 import * as fromProduct from '../../reducers/index';
 import { ProductLoad, UpdateQty } from '../../actions/product.actions';
 //todo probably move this action into product? or something

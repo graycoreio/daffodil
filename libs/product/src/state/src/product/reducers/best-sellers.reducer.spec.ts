@@ -1,9 +1,7 @@
-import { Product } from "@daffodil/core";
-import { ProductFactory } from "@daffodil/core/testing";
+import { Product, ProductFactory } from '../../../../index';
 
 import { BestSellersLoad, BestSellersLoadSuccess, BestSellersLoadFailure, BestSellersReset } from "../actions/best-sellers.actions";
 import { initialState, reducer, getBestSellersLoading, getBestSellersIds, State } from "../reducers/best-sellers.reducer";
-
 
 describe('Product | Best Sellers Reducer', () => {
 

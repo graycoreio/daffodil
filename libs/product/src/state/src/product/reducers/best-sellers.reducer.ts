@@ -1,5 +1,6 @@
+import { Product } from '../../../../index';
+
 import { BestSellersActionTypes, BestSellersActions } from '../actions/best-sellers.actions';
-import { Product } from '@daffodil/core';
 
 export interface State {
   productIds: string[],

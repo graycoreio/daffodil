@@ -1,5 +1,4 @@
-import { Product } from "@daffodil/core";
-import { ProductFactory } from "@daffodil/core/testing";
+import { Product, ProductFactory } from '../../../../index';
 
 import { 
   initialState, 

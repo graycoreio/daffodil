@@ -1,8 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers, select } from '@ngrx/store';
 
-import { ProductFactory } from '@daffodil/core/testing';
-import { Product } from '@daffodil/core';
+import { Product, ProductFactory } from '../../../../../index';
 
 import { BestSellersContainer } from './best-sellers.component';
 import { BestSellersLoad } from '../../actions/best-sellers.actions';
