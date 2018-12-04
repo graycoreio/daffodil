@@ -4,7 +4,7 @@
   @include cart-total();
 
   &__value {
-    color: $accent;
+    color: $accent-purple;
     @include embolden();
   }
 }

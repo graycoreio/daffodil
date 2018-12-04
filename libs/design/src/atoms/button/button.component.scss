@@ -27,14 +27,25 @@
         }
     }
 
-    &.daff-accent {
-        background-color: $accent;
-        border: 1px solid $accent;
+    &.daff-accent-purple {
+        background-color: $accent-purple;
+        border: 1px solid $accent-purple;
         color: $white;
 
         &:hover {
-            background-color: daff-color($daff-accent, 700);
-            border: 1px solid daff-color($daff-accent, 700);
+            background-color: daff-color($daff-purple, 700);
+            border: 1px solid daff-color($daff-purple, 700);
+        }
+    }
+
+    &.daff-accent-blue {
+        background-color: $accent-blue;
+        border: 1px solid $accent-blue;
+        color: $white;
+
+        &:hover {
+            background-color: daff-color($daff-blue, 700);
+            border: 1px solid daff-color($daff-blue, 700);
         }
     }
 
@@ -95,15 +106,23 @@
         color: $primary;
 
         &:hover {
-            color: daff-color($daff-primary, 700);
+            color: daff-color($daff-yellow, 700);
         }
     }
 
-    &.daff-accent {
-        color: $accent;
+    &.daff-accent-purple {
+        color: $accent-purple;
 
         &:hover {
-            color: daff-color($daff-accent, 700);
+            color: daff-color($daff-purple, 700);
+        }
+    }
+
+    &.daff-accent-blue {
+        color: $accent-blue;
+
+        &:hover {
+            color: daff-color($daff-blue, 700);
         }
     }
 
@@ -156,11 +175,19 @@
         }
     }
 
-    &.daff-accent {
-        color: $accent;
+    &.daff-accent-purple {
+        color: $accent-purple;
         
         &:hover {
-            color: daff-color($daff-accent, 700);
+            color: daff-color($daff-purple, 700);
+        }
+    }
+
+    &.daff-accent-blue {
+        color: $accent-blue;
+        
+        &:hover {
+            color: daff-color($daff-blue, 700);
         }
     }
 
@@ -217,12 +244,22 @@
         }
     }
 
-    &.daff-accent {
-        border: 1px solid $accent;
-        color: $accent;
+    &.daff-accent-purple {
+        border: 1px solid $accent-purple;
+        color: $accent-purple;
 
         &:hover {
-            background-color: $accent;
+            background-color: $accent-purple;
+            color: $white;
+        }
+    }
+
+    &.daff-accent-blue {
+        border: 1px solid $accent-blue;
+        color: $accent-blue;
+
+        &:hover {
+            background-color: $accent-blue;
             color: $white;
         }
     }
