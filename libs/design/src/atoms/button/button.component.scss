@@ -22,8 +22,8 @@
         color: $black;
 
         &:hover {
-            background-color: daff-color($daff-primary, 700);
-            border: 1px solid daff-color($daff-primary, 700);
+            background-color: daff-color($daff-yellow, 700);
+            border: 1px solid daff-color($daff-yellow, 700);
         }
     }
 
@@ -171,7 +171,7 @@
         color: $primary;
 
         &:hover {
-            color: daff-color($daff-primary, 700);
+            color: daff-color($daff-yellow, 700);
         }
     }
 
