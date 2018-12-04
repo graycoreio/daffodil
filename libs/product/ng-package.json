@@ -3,7 +3,7 @@
   "dest": "../../dist/product",
   "deleteDestPath": false,
   "lib": {
-    "entryFile": "src/state/index.ts"
+    "entryFile": "src/index.ts"
   },
   "whitelistedNonPeerDependencies": [
     "daffodil"

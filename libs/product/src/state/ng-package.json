@@ -1,8 +1,0 @@
-{
-  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/product/state",
-  "deleteDestPath": false,
-  "lib": {
-    "entryFile": "index.ts"
-  }
-}

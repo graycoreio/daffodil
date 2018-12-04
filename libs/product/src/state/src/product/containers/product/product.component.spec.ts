@@ -7,7 +7,7 @@ import { Product } from '@daffodil/core';
 import { ProductFactory } from '@daffodil/core/testing';
 
 import { ProductContainer } from './product.component';
-import { AddToCart } from '../../../cart/actions/cart.actions';
+import { AddToCart } from '@daffodil/state';
 import { ProductLoad, UpdateQty } from '../../actions/product.actions';
 import * as fromProduct from '../../reducers/index';
 

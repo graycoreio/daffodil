@@ -328,7 +328,7 @@
     },
     "product": {
       "root": "libs/product",
-      "sourceRoot": "libs/product/src",
+      "sourceRoot": "libs/product",
       "projectType": "library",
       "prefix": "@daffodil",
       "architect": {
@@ -347,7 +347,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/product/src/test.ts",
+            "main": "libs/product/test.ts",
             "tsConfig": "libs/product/tsconfig.spec.json",
             "karmaConfig": "libs/product/karma.conf.js"
           }

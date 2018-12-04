@@ -7,7 +7,7 @@ import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 import { DaffProductFactory } from '@daffodil/core/testing';
 import { Product } from '@daffodil/core';
 // importing from @daffodil/state doesn't work.
-import * as fromProduct from 'libs/state/src/product/reducers/index';
+import * as fromProduct from 'libs/product/state/src/product/reducers/index';
 
 import { AddToCartNotificationComponent } from './add-to-cart-notification.component';
 import * as fromAddToCartNotification from '../../reducers/index';
