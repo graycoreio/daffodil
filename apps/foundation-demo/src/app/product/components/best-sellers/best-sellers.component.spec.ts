@@ -1,10 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { BestSellersComponent } from './best-sellers.component';
 import { Component, Input } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Product } from '@daffodil/core';
 import { By } from '@angular/platform-browser';
+
+import { Product } from '@daffodil/product';
+
+import { BestSellersComponent } from './best-sellers.component';
 
 let stubBestSellers: Product[];
 

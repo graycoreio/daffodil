@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { Product } from '@daffodil/core';
-import { DaffProductFactory } from '@daffodil/core/testing';
+import { Product, DaffProductFactory } from '@daffodil/product';
 import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
 import { ProductAddedComponent } from './product-added.component';

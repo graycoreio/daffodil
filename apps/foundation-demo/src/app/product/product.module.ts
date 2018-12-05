@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { StateProductModule } from '@daffodil/state';
+import { StateProductModule } from '@daffodil/product';
 
 import { 
   DaffContainerModule, 

@@ -4,8 +4,7 @@ import { Component, Input } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-import { Product } from '@daffodil/core';
-import { DaffProductFactory } from '@daffodil/core/testing';
+import { DaffProductFactory, Product } from '@daffodil/product';
 
 import { ProductComponent } from './product.component';
 

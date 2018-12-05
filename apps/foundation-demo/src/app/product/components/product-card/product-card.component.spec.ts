@@ -4,8 +4,7 @@ import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-import { Product } from '@daffodil/core';
-import { DaffProductFactory } from '@daffodil/core/testing';
+import { Product, DaffProductFactory } from '@daffodil/product';
 
 import { ProductCardComponent } from './product-card.component';
 

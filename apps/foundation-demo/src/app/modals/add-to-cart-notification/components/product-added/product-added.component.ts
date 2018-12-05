@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Product } from '@daffodil/core';
+import { Product } from '@daffodil/product';
 
 @Component({
   selector: 'product-added',

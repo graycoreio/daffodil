@@ -4,10 +4,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { DaffDriverTestingModule } from '@daffodil/driver/testing';
-import { DaffProductFactory } from '@daffodil/core/testing';
-import { Product } from '@daffodil/core';
+import { Product, DaffProductFactory } from '@daffodil/product';
 // importing from @daffodil/state doesn't work.
-import * as fromProduct from 'libs/state/src/product/reducers/index';
+import * as fromProduct from 'libs/product/src/state/src/product/reducers/index';
 
 import { AddToCartNotificationComponent } from './add-to-cart-notification.component';
 import * as fromAddToCartNotification from '../../reducers/index';

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 
-import { Product } from '@daffodil/core';
+import { Product } from '@daffodil/product';
 import { Router } from '@angular/router';
 
 @Component({
