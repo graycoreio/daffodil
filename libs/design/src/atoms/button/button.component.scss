@@ -22,8 +22,8 @@
         color: $black;
 
         &:hover {
-            background-color: daff-color($daff-yellow, 700);
-            border: 1px solid daff-color($daff-yellow, 700);
+            background-color: daff-color($daff-yellow, 70);
+            border: 1px solid daff-color($daff-yellow, 70);
         }
     }
 
@@ -33,8 +33,8 @@
         color: $white;
 
         &:hover {
-            background-color: daff-color($daff-purple, 700);
-            border: 1px solid daff-color($daff-purple, 700);
+            background-color: daff-color($daff-purple, 70);
+            border: 1px solid daff-color($daff-purple, 70);
         }
     }
 
@@ -44,8 +44,8 @@
         color: $white;
 
         &:hover {
-            background-color: daff-color($daff-blue, 700);
-            border: 1px solid daff-color($daff-blue, 700);
+            background-color: daff-color($daff-blue, 70);
+            border: 1px solid daff-color($daff-blue, 70);
         }
     }
 
@@ -55,8 +55,8 @@
         color: $white;
 
         &:hover {
-            background-color: daff-color($daff-gray, 800);
-            border: 1px solid daff-color($daff-gray, 800);
+            background-color: daff-color($daff-gray, 90);
+            border: 1px solid daff-color($daff-gray, 90);
         }
     }
 
@@ -66,20 +66,20 @@
         color: $black;
 
         &:hover {
-            background-color: daff-color($daff-gray, 100);
-            border: 1px solid daff-color($daff-gray, 100);
+            background-color: daff-color($daff-gray, 10);
+            border: 1px solid daff-color($daff-gray, 10);
         }
     }
 
     &[disabled] {
         cursor: not-allowed;
-        background-color: daff-color($daff-gray, 300);
-        border: 1px solid daff-color($daff-gray, 300);
-        color: daff-color($daff-gray, 600);
+        background-color: daff-color($daff-gray, 30);
+        border: 1px solid daff-color($daff-gray, 30);
+        color: daff-color($daff-gray, 60);
 
         &:hover {
-            background-color: daff-color($daff-gray, 300);
-            border: 1px solid daff-color($daff-gray, 300); 
+            background-color: daff-color($daff-gray, 30);
+            border: 1px solid daff-color($daff-gray, 30); 
         }
     }
 }
@@ -106,7 +106,7 @@
         color: $primary;
 
         &:hover {
-            color: daff-color($daff-yellow, 700);
+            color: daff-color($daff-yellow, 70);
         }
     }
 
@@ -114,7 +114,7 @@
         color: $accent-purple;
 
         &:hover {
-            color: daff-color($daff-purple, 700);
+            color: daff-color($daff-purple, 70);
         }
     }
 
@@ -122,7 +122,7 @@
         color: $accent-blue;
 
         &:hover {
-            color: daff-color($daff-blue, 700);
+            color: daff-color($daff-blue, 70);
         }
     }
 
@@ -130,7 +130,7 @@
         color: $black;
 
         &:hover {
-            color: daff-color($daff-gray, 800);
+            color: daff-color($daff-gray, 90);
         }
     }
 
@@ -138,16 +138,16 @@
         color: $white;
 
         &:hover {
-            color: daff-color($daff-gray, 100);
+            color: daff-color($daff-gray, 10);
         }
     }
 
     &[disabled] {
         cursor: not-allowed;
-        color: daff-color($daff-gray, 600);
+        color: daff-color($daff-gray, 60);
 
         &:hover {
-            color: daff-color($daff-gray, 600);
+            color: daff-color($daff-gray, 60);
         }
     }
 }
@@ -171,7 +171,7 @@
         color: $primary;
 
         &:hover {
-            color: daff-color($daff-yellow, 700);
+            color: daff-color($daff-yellow, 70);
         }
     }
 
@@ -179,7 +179,7 @@
         color: $accent-purple;
         
         &:hover {
-            color: daff-color($daff-purple, 700);
+            color: daff-color($daff-purple, 70);
         }
     }
 
@@ -187,7 +187,7 @@
         color: $accent-blue;
         
         &:hover {
-            color: daff-color($daff-blue, 700);
+            color: daff-color($daff-blue, 70);
         }
     }
 
@@ -195,7 +195,7 @@
         color: $black;
         
         &:hover {
-            color: daff-color($daff-gray, 800);
+            color: daff-color($daff-gray, 90);
         }
     }
 
@@ -203,7 +203,7 @@
         color: $white;
         
         &:hover {
-            color: daff-color($daff-gray, 100);
+            color: daff-color($daff-gray, 10);
         }
     }
 
@@ -213,10 +213,10 @@
 
     &[disabled] {
         cursor: not-allowed;
-        color: daff-color($daff-gray, 600);
+        color: daff-color($daff-gray, 60);
 
         &:hover {
-            color: daff-color($daff-gray, 600);
+            color: daff-color($daff-gray, 60);
         }
     }
 }
@@ -290,12 +290,12 @@
 
     &[disabled] {
         cursor: not-allowed;
-        border: 1px solid daff-color($daff-gray, 300);
-        color: daff-color($daff-gray, 600);
+        border: 1px solid daff-color($daff-gray, 30);
+        color: daff-color($daff-gray, 60);
 
         &:hover {
             background-color: transparent;
-            color: daff-color($daff-gray, 600);
+            color: daff-color($daff-gray, 60);
         }
     }
 }

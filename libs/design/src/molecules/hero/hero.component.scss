@@ -138,8 +138,13 @@
     color: $white;
   }
 
-  &--accent {
+  &--accent-purple {
     background-color: $accent-purple;
+    color: white;
+  }
+
+  &--accent-blue {
+    background-color: $accent-blue;
     color: white;
   }
 
@@ -154,7 +159,7 @@
   }
 
   &--gray {
-    background-color: daff-color($daff-gray, 100);
+    background-color: daff-color($daff-gray, 10);
     color: $black;
   }
 }

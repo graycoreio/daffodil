@@ -34,7 +34,7 @@
   }
 
   &__thank-you {
-    border-top: 1px solid daff-color($daff-gray, 400);
+    border-top: 1px solid daff-color($daff-gray, 40);
   }
 
   &__desktop-cart {
@@ -47,7 +47,7 @@
 
   &__mobile-cart {
     display: block;
-    border-top: 1px solid daff-color($daff-gray, 400);
+    border-top: 1px solid daff-color($daff-gray, 40);
     
     @include breakpoint(big-tablet) {
       display: none;
