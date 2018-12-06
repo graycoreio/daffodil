@@ -1,8 +1,10 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DaffCoreTestingModule } from '../../../index';
 import { DaffDriver } from '@daffodil/driver';
+
+import { DaffCoreTestingModule } from '../../../index';
+
 import { DaffTestingDriver } from './testing.driver';
 
 @NgModule({

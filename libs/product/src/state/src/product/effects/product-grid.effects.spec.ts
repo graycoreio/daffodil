@@ -3,14 +3,12 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of} from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
-import { Product, ProductFactory } from '../../../../index';
-
 import { DaffDriver, DaffDriverInterface } from '@daffodil/driver';
 import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
+import { Product, ProductFactory } from '../../../../index';
 
 import { ProductGridLoad, ProductGridLoadSuccess, ProductGridLoadFailure } from '../actions/product-grid.actions';
-
 import { ProductGridEffects } from './product-grid.effects';
 
 describe('ProductGridEffects', () => {
