@@ -6,8 +6,6 @@ import { Product } from '../../../../../index';
 
 import * as fromProduct from '../../reducers/index';
 import { ProductLoad, UpdateQty } from '../../actions/product.actions';
-//todo probably move this action into product? or something
-import { AddToCart } from '@daffodil/state';
 
 @Component({
   selector: '[product-container]',
@@ -38,9 +36,5 @@ export class ProductContainer implements OnInit {
 
   updateQty(payload: number) {
     this.store.dispatch(new UpdateQty(payload));
-  }
-
-  addToCart(payload) {
-    this.store.dispatch(new AddToCart(payload));
   }
 }
