@@ -26,7 +26,6 @@
     "core-js": "^2.4.1",
     "rxjs": "^6.2.0",
     "@daffodil/core": "1.1.0-a",
-    "@daffodil/driver": "1.1.0-a",
-    "@daffodil/state": "1.1.0-a"
+    "@daffodil/driver": "1.1.0-a"
   }
 }

@@ -1,4 +1,4 @@
-# @daffodil/state
+# @daffodil/product
 
 The `@daffodil/product` package provides everything you need to integrate your frontend website with whatever ecommerce platform you choose.
 

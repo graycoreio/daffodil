@@ -6,7 +6,6 @@ import { By } from '@angular/platform-browser';
 import { Product, ProductFactory } from '../../../../../index';
 
 import { ProductContainer } from './product.component';
-import { AddToCart } from '@daffodil/state';
 import { ProductLoad, UpdateQty } from '../../actions/product.actions';
 import * as fromProduct from '../../reducers/index';
 
@@ -101,17 +100,6 @@ describe('ProductContainer', () => {
       productContainer.updateQty(qty);
 
       expect(store.dispatch).toHaveBeenCalledWith(new UpdateQty(qty));
-    });
-  });
-
-  describe('addToCart', () => {
-    
-    it('should call store.dispatch', () => {
-      let qty: number = 3;
-      let payload = {productId: '', qty: qty};
-      productContainer.addToCart(payload);
-
-      expect(store.dispatch).toHaveBeenCalledWith(new AddToCart(payload));
     });
   });
 });
