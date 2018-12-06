@@ -15,12 +15,13 @@ import { ProductGridViewComponent } from './pages/product-grid-view/product-grid
 import { ProductViewComponent } from './pages/product-view/product-view.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
-import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
 import { MiscModule } from '../misc/misc.module';
 import { BestSellersComponent } from './components/best-sellers/best-sellers.component';
 import { LoadingIconModule } from '../core/loading-icon/loading-icon.module';
 import { AddToCartNotificationModule } from '../modals/add-to-cart-notification/add-to-cart-notification.module';
 import { ImageGalleryModule } from '../core/image-gallery/image-gallery.module';
+import { AddToCartModule } from '../cart/components/add-to-cart/add-to-cart.module';
+import { StateCartModule } from '@daffodil/state';
 
 @NgModule({
   imports: [
@@ -33,7 +34,9 @@ import { ImageGalleryModule } from '../core/image-gallery/image-gallery.module';
     DaffQtyDropdownModule,
     AccordionModule,
     AddToCartNotificationModule,
-    ImageGalleryModule
+    ImageGalleryModule,
+    AddToCartModule,
+    StateCartModule
   ],
   declarations: [
     ProductGridComponent,
@@ -41,7 +44,6 @@ import { ImageGalleryModule } from '../core/image-gallery/image-gallery.module';
     ProductViewComponent,
     ProductComponent,
     ProductCardComponent,
-    AddToCartComponent,
     BestSellersComponent
   ],
   exports: [
@@ -50,7 +52,6 @@ import { ImageGalleryModule } from '../core/image-gallery/image-gallery.module';
     ProductViewComponent,
     ProductComponent,
     ProductCardComponent,
-    AddToCartComponent,
     BestSellersComponent
   ]
 })

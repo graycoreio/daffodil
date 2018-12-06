@@ -9,7 +9,7 @@ import { Product, DaffProductFactory } from '@daffodil/product';
 
 import { ProductViewComponent } from './product-view.component';
 import { ActivatedRouteStub } from '../../../testing/ActivatedRouteStub';
-import { AddToCartComponent } from '../../components/add-to-cart/add-to-cart.component';
+import { AddToCartComponent } from '../../../cart/components/add-to-cart/add-to-cart.component';
 
 let productFactory: DaffProductFactory = new DaffProductFactory();
 let mockProduct = productFactory.create();
@@ -28,6 +28,14 @@ class MockProductContainer {
   loading$: Observable<boolean> = of(false);
   qty$: Observable<number> = of(stubQty);
   updateQty: Function;
+}
+
+@Component({
+  selector: '[cart-container]', 
+  template: '<ng-content></ng-content>', 
+  exportAs: 'CartContainer'
+})
+class MockCartContainer {
   addToCart: Function;
 }
 
@@ -61,9 +69,9 @@ describe('ProductViewComponent', () => {
   let idParam: string;
   let activatedRoute = new ActivatedRouteStub();
   let productContainer: MockProductContainer;
+  let cartContainer: MockCartContainer;
   let productComponent: MockProductComponent;
   let addToCartComponent: AddToCartComponent;
-  let addToCartNotification: MockAddToCartNotificationComponent;
 
   beforeEach(async(() => {
     idParam = '1001';
@@ -74,6 +82,7 @@ describe('ProductViewComponent', () => {
       declarations: [ 
         ProductViewComponent,
         MockProductContainer,
+        MockCartContainer,
         MockProductComponent,
         MockAddToCartComponent,
         MockLoadingIconComponent,
@@ -93,13 +102,13 @@ describe('ProductViewComponent', () => {
 
     productContainer = fixture.debugElement.query(By.css('[product-container]')).componentInstance;
     productContainer.loading$ = of(false);
-    productContainer.addToCart = (payload) => {};
     productContainer.updateQty = (payload: number) => {};
-
+    
     fixture.detectChanges();
+    cartContainer = fixture.debugElement.query(By.css('[cart-container]')).componentInstance;
     productComponent = fixture.debugElement.query(By.css('product')).componentInstance;
     addToCartComponent = fixture.debugElement.query(By.css('add-to-cart')).componentInstance;
-    addToCartNotification = fixture.debugElement.query(By.css('add-to-cart-notification')).componentInstance;
+    cartContainer.addToCart = (payload) => {};
   });
 
   it('should create', () => {
@@ -147,13 +156,13 @@ describe('ProductViewComponent', () => {
       expect(addToCartComponent.qty).toEqual(stubQty);
     });
 
-    it('should set addToCart to call function passed by product-container directive', () => {
-      spyOn(productContainer, 'addToCart');
+    it('should set addToCart to call function passed by cart-container directive', () => {
+      spyOn(cartContainer, 'addToCart');
       let payload = 'test';
 
       addToCartComponent.addToCart.emit(payload);
 
-      expect(productContainer.addToCart).toHaveBeenCalledWith(payload);
+      expect(cartContainer.addToCart).toHaveBeenCalledWith(payload);
     });
   });
 
