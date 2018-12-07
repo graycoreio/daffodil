@@ -3,9 +3,9 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
-import { Cart, CartFactory } from '../../../../index';
-import { DaffDriverInterface, DaffDriver } from '@daffodil/driver';
-import { DaffDriverTestingModule } from '@daffodil/driver/testing';
+import { DaffDriver } from '@daffodil/driver';
+
+import { Cart, CartFactory, DaffDriverInterface, DaffDriverTestingModule } from '../../../../index';
 
 import { CartEffects } from './cart.effects';
 import { CartLoad, CartLoadSuccess, CartLoadFailure, AddToCart,

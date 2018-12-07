@@ -5,7 +5,9 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { switchMap, map, catchError } from 'rxjs/operators';
 import { of ,  Observable } from 'rxjs';
 
-import { DaffDriver, DaffDriverInterface, DaffCartServiceInterface } from '@daffodil/driver';
+import { DaffDriver } from '@daffodil/driver';
+
+import { DaffDriverInterface } from '../../../../index';
 
 import { 
   CartActionTypes, 
