@@ -1,7 +1,8 @@
 import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
+import { Cart } from '../../../../index';
+
 import * as fromCart from './cart.reducer';
-import { Cart } from '@daffodil/core';
 
 export interface CartState {
   cart: fromCart.State;

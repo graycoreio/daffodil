@@ -1,13 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
-import { Cart } from '@daffodil/core';
-import { CartFactory } from '@daffodil/core/testing';
+import { Cart, CartFactory } from '../../../../../index';
 
 import { CartContainer } from './cart.component';
 import { CartLoad } from '../../actions/cart.actions';
 import * as fromCart from '../../reducers/index';
-
 
 describe('CartContainer', () => {
   let component: CartContainer;

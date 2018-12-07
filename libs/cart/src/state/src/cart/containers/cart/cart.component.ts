@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Observable } from 'rxjs';
-
 import { Store, select } from '@ngrx/store';
 
-import { Cart } from '@daffodil/core';
+import { Cart } from '../../../../../index';
+
 import * as fromCart from '../../reducers/index';
 import { CartLoad, AddToCart } from '../../actions/cart.actions';
 

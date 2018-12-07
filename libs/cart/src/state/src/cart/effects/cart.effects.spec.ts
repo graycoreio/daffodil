@@ -3,8 +3,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
-import { Cart } from '@daffodil/core';
-import { CartFactory } from '@daffodil/core/testing';
+import { Cart, CartFactory } from '../../../../index';
 import { DaffDriverInterface, DaffDriver } from '@daffodil/driver';
 import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 

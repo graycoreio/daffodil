@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { Cart } from '@daffodil/core';
+import { Cart } from '../../../../index';
 
 export enum CartActionTypes {
     CartLoadAction = "[Cart] Load Action",

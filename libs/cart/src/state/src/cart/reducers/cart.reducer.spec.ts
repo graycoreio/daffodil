@@ -1,5 +1,4 @@
-import { Cart } from "@daffodil/core";
-import { CartFactory } from "@daffodil/core/testing";
+import { Cart, CartFactory } from "../../../../index";
 
 import { initialState, reducer, getCartLoading, getCart, State } from "../reducers/cart.reducer";
 import { CartLoad, CartLoadSuccess, CartLoadFailure, CartReset, AddToCart, AddToCartSuccess, AddToCartFailure } from "../actions/cart.actions";
