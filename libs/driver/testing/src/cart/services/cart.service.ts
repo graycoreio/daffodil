@@ -5,14 +5,14 @@ import { Observable, of } from 'rxjs';
 import { Cart } from '@daffodil/core';
 
 import { DaffCartServiceInterface } from '@daffodil/driver';
-import { CartFactory } from '@daffodil/core/testing';
+import { DaffCartFactory } from '@daffodil/core/testing';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DaffTestingCartService implements DaffCartServiceInterface {
   constructor(
-    private cartFactory: CartFactory
+    private cartFactory: DaffCartFactory
   ) {}
 
   get(): Observable<Cart> {

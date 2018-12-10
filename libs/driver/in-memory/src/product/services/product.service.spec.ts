@@ -2,12 +2,12 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffInMemoryProductService } from './product.service';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
-import { ProductFactory, DaffCoreTestingModule } from '@daffodil/core/testing';
+import { DaffProductFactory, DaffCoreTestingModule } from '@daffodil/core/testing';
 
-describe('Driver | Mock | Product | ProductService', () => {
+describe('Driver | InMemory | Product | ProductService', () => {
   let productService;
   let httpMock: HttpTestingController;
-  let productFactory: ProductFactory;
+  let productFactory: DaffProductFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -22,7 +22,7 @@ describe('Driver | Mock | Product | ProductService', () => {
 
     httpMock = TestBed.get(HttpTestingController);
     productService = TestBed.get(DaffInMemoryProductService);
-    productFactory = TestBed.get(ProductFactory);
+    productFactory = TestBed.get(DaffProductFactory);
   });
 
   afterEach(() => {
@@ -35,7 +35,7 @@ describe('Driver | Mock | Product | ProductService', () => {
 
   describe('getAll | getting a list of products', () => {
     it('should send a get request', () => {
-      let mockProducts = productFactory.createStyleTestingList();
+      let mockProducts = productFactory.createMany();
 
       productService.getAll().subscribe(products => {
         expect(products).toEqual(mockProducts);
@@ -49,9 +49,8 @@ describe('Driver | Mock | Product | ProductService', () => {
   });
 
   describe('getBestSellers', () => {
-    
-    it('should send a get request', () => {
-      let mockProducts = productFactory.createStyleTestingList();
+    it('should send a get request and return an array of products', () => {
+      let mockProducts = productFactory.createMany();
 
       productService.getBestSellers().subscribe(products => {
         expect(products).toEqual(mockProducts);

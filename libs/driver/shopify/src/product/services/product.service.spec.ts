@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ProductFactory, DaffCoreTestingModule } from '@daffodil/core/testing';
+import { DaffProductFactory, DaffCoreTestingModule } from '@daffodil/core/testing';
 
 import {
   ApolloTestingModule,
@@ -12,7 +12,7 @@ import { DaffShopifyProductService, GetAllProductsQuery, GetAProduct } from './p
 
 describe('Driver | Shopify | Product | ProductService', () => {
   let productService: DaffShopifyProductService;
-  let productFactory: ProductFactory;
+  let productFactory: DaffProductFactory;
   let controller: ApolloTestingController;
 
   beforeEach(() => {
@@ -29,7 +29,7 @@ describe('Driver | Shopify | Product | ProductService', () => {
     controller = TestBed.get(ApolloTestingController);
 
     productService = TestBed.get(DaffShopifyProductService);
-    productFactory = TestBed.get(ProductFactory);
+    productFactory = TestBed.get(DaffProductFactory);
   });
 
   it('should be created', () => {

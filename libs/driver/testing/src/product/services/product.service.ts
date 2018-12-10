@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { Product } from '@daffodil/core';
-import { ProductFactory } from '@daffodil/core/testing';
+import { DaffProductFactory } from '@daffodil/core/testing';
 
 import { DaffProductServiceInterface } from '@daffodil/driver';
 
@@ -13,7 +13,7 @@ import { DaffProductServiceInterface } from '@daffodil/driver';
 })
 export class DaffTestingProductService implements DaffProductServiceInterface {
  
-  constructor(private productFactory: ProductFactory) {}
+  constructor(private productFactory: DaffProductFactory) {}
 
   getAll(): Observable<Product[]> {
     return of(this.productFactory.createMany(5));

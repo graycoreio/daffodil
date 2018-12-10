@@ -7,7 +7,7 @@ import {
   STATUS
 } from 'angular-in-memory-web-api';
 
-import { ProductFactory } from '@daffodil/core/testing';
+import { DaffProductFactory } from '@daffodil/core/testing';
 import { Product } from '@daffodil/core';
 
 @Injectable({
@@ -16,8 +16,18 @@ import { Product } from '@daffodil/core';
 export class DaffInMemoryProductTestingService implements InMemoryDbService {
   products: Product[];
   
-  constructor(private productFactory: ProductFactory) { 
-    this.products = this.productFactory.createStyleTestingList();
+  constructor(private productFactory: DaffProductFactory) { 
+    this.products = [
+      this.productFactory.create({id: '1001'}),
+      this.productFactory.create({id: '1002'}),
+      this.productFactory.create({id: '1003'}),
+      this.productFactory.create({id: '1004'}),
+      this.productFactory.create({id: '1005'}),
+      this.productFactory.create({id: '1006'}),
+      this.productFactory.create({id: '1007'}),
+      this.productFactory.create({id: '1008'}),
+      this.productFactory.create({id: '1009'})
+    ]
   }
 
   parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {
