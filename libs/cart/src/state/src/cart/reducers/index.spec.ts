@@ -1,7 +1,7 @@
 import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
-import { Cart, CartFactory } from '../../../../index';
+import { Cart, DaffCartFactory } from '../../../../index';
 
 import { CartLoadSuccess, CartReset } from "../actions/cart.actions";
 import * as fromCart from './index';
@@ -9,7 +9,7 @@ import * as fromCart from './index';
 describe('selectCartState', () => {
 
   let store: Store<fromCart.CartState>;
-  let cartFactory: CartFactory = new CartFactory();
+  let cartFactory: DaffCartFactory = new DaffCartFactory();
   let mockCart: Cart;
   
   beforeEach(async(() => {

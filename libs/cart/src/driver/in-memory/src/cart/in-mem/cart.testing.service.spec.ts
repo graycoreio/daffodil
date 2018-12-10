@@ -1,12 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffCoreTestingModule, CartFactory } from '../../../../../index';
+import { DaffCoreTestingModule, DaffCartItemFactory, DaffCartFactory } from '../../../../../index';
 import { DaffInMemoryCartTestingService } from './cart.testing.service';
 
 describe('Driver | Cart | In Memory | CartTestingService', () => {
   let cartTestingService: DaffInMemoryCartTestingService;
-  let cartFactory: CartFactory;
+  let cartItemFactory: DaffCartItemFactory;
+  let cartFactory: DaffCartFactory;
   let mockCart;
+  let mockCartItem;
   
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -19,10 +21,13 @@ describe('Driver | Cart | In Memory | CartTestingService', () => {
     });
 
     cartTestingService = TestBed.get(DaffInMemoryCartTestingService);
-    cartFactory = TestBed.get(CartFactory);
+    cartItemFactory = TestBed.get(DaffCartItemFactory);
+    cartFactory = TestBed.get(DaffCartFactory);
 
     mockCart = cartFactory.create();
     spyOn(cartFactory, 'create').and.returnValue(mockCart);
+    mockCartItem = cartItemFactory.create();
+    spyOn(cartItemFactory, 'create').and.returnValue(mockCartItem);
   });
 
   it('should be created', () => {

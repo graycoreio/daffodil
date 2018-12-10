@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService, STATUS } from 'angular-in-memory-web-api';
 
-import { CartItem, CartFactory } from '../../../../../index';
+import { CartItem, DaffCartItemFactory, DaffCartFactory } from '../../../../../index';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,10 @@ import { CartItem, CartFactory } from '../../../../../index';
 export class DaffInMemoryCartTestingService implements InMemoryDbService {
   private cart;
 
-  constructor(private cartFactory: CartFactory) {
+  constructor(
+    private cartItemFactory: DaffCartItemFactory,
+    private cartFactory: DaffCartFactory) {
+
     this.cart = this.cartFactory.create();
   }
 
@@ -54,7 +57,7 @@ export class DaffInMemoryCartTestingService implements InMemoryDbService {
   }
 
   private addProductToCart(reqBody) {
-    let cartItem: CartItem = this.cartFactory.createCartItem();
+    let cartItem: CartItem = this.cartItemFactory.create();
     cartItem.product_id = reqBody.productId;
     cartItem.qty = reqBody.qty;
     this.cart.items.push(cartItem);

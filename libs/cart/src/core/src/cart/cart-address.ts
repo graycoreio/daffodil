@@ -1,10 +1,12 @@
-export interface MagentoCartAddress {
+import { CartShippingRate } from "./cart-shipping-rate";
+import { DaffodilAddress } from "@daffodil/core";
+
+export interface CartAddress extends DaffodilAddress {
   address_id: number;
   quote_id: number;
   created_at: Date;
   updated_at: Date;
   customer_id: number;
-  save_in_address_book: boolean;
   customer_address_id: number;
   address_type: string; //todo: is actually an enum
   email: string;
@@ -22,9 +24,7 @@ export interface MagentoCartAddress {
   country_id: string; //todo: ISO code
   telephone: string;
   fax: string;
-  same_as_billing: boolean;
-  free_shipping: boolean;
-  collect_shipping_rates: boolean;
-  shipping_method: string;
-  shipping_description: string;
+  shipping_method?: string | null;
+  shipping_description?: string | null;
+  shipping_rate?: CartShippingRate | null;
 }

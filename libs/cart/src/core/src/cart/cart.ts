@@ -13,7 +13,7 @@ export interface Cart {
   coupon_code: string;
   subtotal: number;
   subtotal_with_discount: number;
-  items: CartItem[];
-  addresses: CartAddress[];
-  payment: CartPayment;
+  items?: CartItem[];
+  addresses?: CartAddress[];
+  payment?: CartPayment | null;
 }

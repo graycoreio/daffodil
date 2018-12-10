@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 
-import { Cart, CartFactory } from '../../../../../index';
+import { Cart, DaffCartFactory } from '../../../../../index';
 import { DaffCartServiceInterface } from '../../../../src/service-interfaces/cart/cart-service.interface';
 
 @Injectable({
@@ -10,7 +10,7 @@ import { DaffCartServiceInterface } from '../../../../src/service-interfaces/car
 })
 export class DaffTestingCartService implements DaffCartServiceInterface {
   constructor(
-    private cartFactory: CartFactory
+    private cartFactory: DaffCartFactory
   ) {}
 
   get(): Observable<Cart> {

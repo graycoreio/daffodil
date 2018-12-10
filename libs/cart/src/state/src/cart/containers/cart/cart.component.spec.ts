@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
-import { Cart, CartFactory } from '../../../../../index';
+import { Cart, DaffCartFactory } from '../../../../../index';
 
 import { CartContainer } from './cart.component';
 import { CartLoad } from '../../actions/cart.actions';
@@ -13,7 +13,7 @@ describe('CartContainer', () => {
   let store;
   let initialLoading: boolean;
   let initialCart: Cart;
-  let cartFactory = new CartFactory();
+  let cartFactory = new DaffCartFactory();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

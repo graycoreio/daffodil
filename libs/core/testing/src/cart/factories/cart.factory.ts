@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
-import { Cart, CartItem, CartAddress} from '@daffodil/core';
+import { Cart } from '@daffodil/core';
 import { ModelFactory } from '../../factories/factory';
 
 export class MockCart implements Cart {

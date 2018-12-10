@@ -20,4 +20,5 @@ export { DaffShippingRateFactory } from "./shipping/factories/shipping-rate.fact
 
 //Core
 export { DaffCoreTestingModule } from "./testing.module";
+export { ModelFactory } from "./factories/factory";
 

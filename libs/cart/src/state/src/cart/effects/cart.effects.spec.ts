@@ -5,7 +5,7 @@ import { hot, cold } from 'jasmine-marbles';
 
 import { DaffDriver } from '@daffodil/driver';
 
-import { Cart, CartFactory, DaffDriverInterface, DaffDriverTestingModule } from '../../../../index';
+import { Cart, DaffCartFactory, DaffDriverInterface, DaffDriverTestingModule } from '../../../../index';
 
 import { CartEffects } from './cart.effects';
 import { CartLoad, CartLoadSuccess, CartLoadFailure, AddToCart,
@@ -17,7 +17,7 @@ describe('Daffodil | State | Cart | CartEffects', () => {
   
   let mockCart: Cart;
 
-  let cartFactory: CartFactory;
+  let cartFactory: DaffCartFactory;
 
   let daffDriver: DaffDriverInterface;
 
@@ -34,7 +34,7 @@ describe('Daffodil | State | Cart | CartEffects', () => {
 
     effects = TestBed.get(CartEffects);
     daffDriver = TestBed.get(DaffDriver);
-    cartFactory = TestBed.get(CartFactory);
+    cartFactory = TestBed.get(DaffCartFactory);
 
     mockCart = cartFactory.create();
   });
