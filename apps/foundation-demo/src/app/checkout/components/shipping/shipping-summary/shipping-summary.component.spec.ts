@@ -2,13 +2,14 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
+import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddressFactory } from '@daffodil/core/testing';
 
 import { ShippingSummaryComponent } from './shipping-summary.component';
 import { ShippingOptionsService } from '../shipping-options/components/services/shipping-options.service';
 import { ShippingOptionsFactory } from '../shipping-options/components/factories/shipping-options.factory';
 
-let daffodilAddressFactory = new DaffodilAddressFactory();
+let daffodilAddressFactory = new DaffAddressFactory();
 let stubDaffodilAddress = daffodilAddressFactory.create();
 
 @Component({

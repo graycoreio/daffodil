@@ -4,7 +4,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { DaffDriverTestingModule } from '@daffodil/driver/testing';
-import { ProductFactory } from '@daffodil/core/testing';
+import { DaffProductFactory } from '@daffodil/core/testing';
 import { Product } from '@daffodil/core';
 // importing from @daffodil/state doesn't work.
 import * as fromProduct from 'libs/state/src/product/reducers/index';
@@ -56,7 +56,7 @@ describe('AddToCartNotificationComponent', () => {
   let component: TestAddToCartNotificationComponentWrapper;
   let fixture: ComponentFixture<TestAddToCartNotificationComponentWrapper>;
   let store;
-  let productFactory: ProductFactory;
+  let productFactory: DaffProductFactory;
   let stubProduct: Product;
   let stubProductId: string;
   let daffModal: MockDaffModalComponent;
@@ -92,7 +92,7 @@ describe('AddToCartNotificationComponent', () => {
     fixture = TestBed.createComponent(TestAddToCartNotificationComponentWrapper);
     component = fixture.componentInstance;
     store = TestBed.get(Store);
-    productFactory = TestBed.get(ProductFactory);
+    productFactory = TestBed.get(DaffProductFactory);
     stubProduct = productFactory.create();
     stubProductId = stubProduct.id;
     spyOn(store, 'dispatch');

@@ -4,16 +4,16 @@ import { By } from '@angular/platform-browser';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { of } from 'rxjs';
 
-import { PaymentInfo, DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
-import { BillingFactory } from '@daffodil/core/testing';
+import { PaymentInfo, DaffodilAddress } from '@daffodil/core';
+import { DaffAddressFactory, DaffPaymentFactory } from '@daffodil/core/testing';
 
 import { ShowPaymentForm, ToggleShowPaymentForm, HidePaymentForm } from '../../../actions/payment.actions';
 import * as fromFoundationCheckout from '../../../reducers';
 import { PaymentComponent } from './payment.component';
 
-let billingFactory = new BillingFactory();
-let daffodilAddressFactory = new DaffodilAddressFactory();
-let stubPaymentInfo = billingFactory.create();
+let paymentFactory = new DaffPaymentFactory();
+let daffodilAddressFactory = new DaffAddressFactory();
+let stubPaymentInfo = paymentFactory.create();
 let stubBillingAddress = daffodilAddressFactory.create();
 let stubShowPaymentForm = true;
 let stubBillingAddressIsShippingAddress = false;

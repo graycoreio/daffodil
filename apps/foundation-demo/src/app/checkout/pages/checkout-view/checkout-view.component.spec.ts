@@ -5,20 +5,21 @@ import { By } from '@angular/platform-browser';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 
-import { DaffodilAddress, DaffodilAddressFactory, PaymentInfo, Cart } from '@daffodil/core';
-import { BillingFactory, CartFactory } from '@daffodil/core/testing';
+import { DaffodilAddress, PaymentInfo, Cart } from '@daffodil/core';
+import { DaffCartFactory, DaffPaymentFactory,  DaffAddressFactory, DaffCartItemFactory } from '@daffodil/core/testing';
 import { ShippingContainer } from '@daffodil/state';
 
 import * as fromFoundationCheckout from '../../reducers/index';
 import { ShowPaymentView } from '../../actions/payment.actions';
 import { CheckoutViewComponent } from './checkout-view.component';
 
-let daffodilAddressFactory = new DaffodilAddressFactory();
-let billingFactory = new BillingFactory();
-let cartFactory = new CartFactory();
+let daffodilAddressFactory = new DaffAddressFactory();
+let paymentFactory = new DaffPaymentFactory();
+let cartFactory = new DaffCartFactory();
+let cartItemFactory = new DaffCartItemFactory();
 
 let stubShippingAddress = daffodilAddressFactory.create();
-let stubPaymentInfo: PaymentInfo = billingFactory.create();
+let stubPaymentInfo: PaymentInfo = paymentFactory.create();
 let stubBillingAddress: DaffodilAddress = daffodilAddressFactory.create();
 let stubCart: Cart;
 
@@ -336,7 +337,7 @@ describe('CheckoutViewComponent', () => {
           ...stubCart,
           items: [
             ...stubCart.items,
-            cartFactory.createCartItem()
+            cartItemFactory.create()
           ]
         });
         fixture.detectChanges();

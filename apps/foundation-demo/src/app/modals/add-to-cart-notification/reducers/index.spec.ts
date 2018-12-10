@@ -3,7 +3,7 @@ import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
 import { DaffDriverTestingModule } from "@daffodil/driver/testing";
 import { Cart } from "@daffodil/core";
-import { CartFactory } from "@daffodil/core/testing";
+import { DaffCartFactory, DaffCartItemFactory, DaffCoreTestingModule } from "@daffodil/core/testing";
 import { CartReset, CartLoadSuccess, fromCart } from "@daffodil/state";
 
 import * as fromAddToCartNotification from './index';
@@ -16,11 +16,13 @@ describe('selectFoundationAddToCartNotificationState', () => {
   let expectedProductQty: number;
   let expectedProductId: string;
   let expectedLoading: boolean;
-  let cartFactory;
+  let cartFactory: DaffCartFactory;
+  let cartItemFactory: DaffCartItemFactory;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        DaffCoreTestingModule,
         StoreModule.forRoot({
           foundationAddToCartNotification: combineReducers(fromAddToCartNotification.reducers),
           cart: combineReducers(fromCart.reducers)
@@ -34,7 +36,8 @@ describe('selectFoundationAddToCartNotificationState', () => {
     expectedLoading = false;
     expectedProductId = null;
     store = TestBed.get(Store);
-    cartFactory = TestBed.get(CartFactory);
+    cartFactory = TestBed.get(DaffCartFactory);
+    cartItemFactory = TestBed.get(DaffCartItemFactory);
     store.dispatch(new CloseAddToCartNotification);
   }));
 
@@ -86,17 +89,19 @@ describe('selectFoundationAddToCartNotificationState', () => {
     let stubCart: Cart;
 
     beforeEach(() => {
-      stubCart = cartFactory.create();
-      stubCart.items = [cartFactory.createCartItem(), cartFactory.createCartItem()];
-      stubCart.items[0].qty = 2;
-      stubCart.items[1].qty = 4;
+      stubCart = cartFactory.create({
+        items: cartItemFactory.createMany(2, {
+          qty: 2
+        })
+      });
+
       store.dispatch(new CartReset());
       store.dispatch(new CartLoadSuccess(stubCart));
     });
     
     it('selects total number of cartItems', () => {
       store.pipe(select(fromAddToCartNotification.selectCartItemCount)).subscribe((count) => {
-        expect(count).toEqual(6);
+        expect(count).toEqual(4);
       });
     });
   });

@@ -4,12 +4,12 @@ import { By } from '@angular/platform-browser';
 import { Observable ,  of } from 'rxjs';
 
 import { Cart } from '@daffodil/core';
-import { CartFactory } from '@daffodil/core/testing';
+import { DaffCartFactory } from '@daffodil/core/testing';
 
 import { CartViewComponent } from './cart-view.component';
 import { DaffContainerModule } from '@daffodil/design';
 
-let cartFactory = new CartFactory();
+let cartFactory = new DaffCartFactory();
 let cart = cartFactory.create();
 
 @Component({

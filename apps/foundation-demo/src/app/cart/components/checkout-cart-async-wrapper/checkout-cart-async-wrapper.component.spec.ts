@@ -4,13 +4,13 @@ import { By } from '@angular/platform-browser';
 import { Observable ,  of } from 'rxjs';
 
 import { Cart } from '@daffodil/core';
-import { CartFactory } from '@daffodil/core/testing';
+import { DaffCartFactory } from '@daffodil/core/testing';
 
 import { CheckoutCartAsyncWrapperComponent } from './checkout-cart-async-wrapper.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-let cartFactory = new CartFactory();
+let cartFactory = new DaffCartFactory();
 let cart = cartFactory.create();
 let stubCartTitle = 'cartTitle';
 

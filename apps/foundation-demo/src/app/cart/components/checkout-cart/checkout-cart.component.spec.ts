@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { Cart, CartItem } from '@daffodil/core';
-import { CartFactory } from '@daffodil/core/testing';
+import { DaffCartFactory, DaffCartItemFactory, DaffCoreTestingModule } from '@daffodil/core/testing';
 
 import { CheckoutCartComponent } from './checkout-cart.component';
 import { Component, Input } from '@angular/core';
@@ -26,17 +26,16 @@ describe('CheckoutCartComponent', () => {
   let checkoutCartItems;
   let checkoutCart: CheckoutCartComponent;
   let router;
-
-  let cartFactory = new CartFactory();
-  let mockCart = cartFactory.create();
-  mockCart.items.push(cartFactory.createCartItem());
-  mockCart.items.push(cartFactory.createCartItem());
+  let cartFactory: DaffCartFactory ;
+  let cartItemFactory: DaffCartItemFactory;
+  let mockCart: Cart;
   let stubSubtitle = 'subtitle';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        DaffCoreTestingModule
       ],
       declarations: [
         CheckoutCartComponent,
@@ -51,6 +50,12 @@ describe('CheckoutCartComponent', () => {
     
     router = TestBed.get(Router);
     spyOn(router, 'navigateByUrl');
+    cartFactory = TestBed.get(DaffCartFactory);
+    cartItemFactory = TestBed.get(DaffCartItemFactory);
+
+    mockCart = cartFactory.create({
+      items: cartItemFactory.createMany(2)
+    });
 
     component.cartValue = mockCart;
     component.subtitleValue = stubSubtitle;
