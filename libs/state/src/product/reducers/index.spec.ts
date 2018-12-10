@@ -3,7 +3,7 @@ import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 import { take } from 'rxjs/operators';
 
 import { Product } from "@daffodil/core";
-import { ProductFactory } from "@daffodil/core/testing";
+import { DaffProductFactory } from "@daffodil/core/testing";
 
 import { ProductLoad } from "../actions/product.actions";
 import { ProductGridLoadSuccess, ProductGridReset } from "../actions/product-grid.actions";
@@ -13,7 +13,7 @@ import { BestSellersLoadSuccess, BestSellersReset } from "../actions/best-seller
 describe('selectProductState', () => {
 
   let store: Store<fromProduct.State>;
-  let productFactory: ProductFactory = new ProductFactory();
+  let productFactory: DaffProductFactory = new DaffProductFactory();
   let mockProduct: Product;
   
   beforeEach(() => {

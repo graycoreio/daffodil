@@ -2,7 +2,7 @@ import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
 import { PaymentInfo } from '@daffodil/core';
-import { BillingFactory } from '@daffodil/core/testing';
+import { DaffPaymentFactory } from '@daffodil/core/testing';
 
 import { UpdatePaymentInfo } from "../actions/payment.actions";
 import * as fromPayment from './index';
@@ -10,7 +10,7 @@ import * as fromPayment from './index';
 describe('selectPaymentState', () => {
 
   let store: Store<fromPayment.PaymentState>;
-  let billingFactory: BillingFactory = new BillingFactory();
+  let billingFactory: DaffPaymentFactory = new DaffPaymentFactory();
   let stubPaymentInfo: PaymentInfo;
   
   beforeEach(async(() => {

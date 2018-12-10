@@ -5,7 +5,7 @@ import { Observable, of} from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
 import { Product } from '@daffodil/core';
-import { ProductFactory } from '@daffodil/core/testing';
+import { DaffProductFactory } from '@daffodil/core/testing';
 import { DaffDriver, DaffDriverInterface } from '@daffodil/driver';
 import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
@@ -17,7 +17,7 @@ import { ProductGridEffects } from './product-grid.effects';
 describe('ProductGridEffects', () => {
   let actions$: Observable<any>;
   let effects: ProductGridEffects;
-  let productFactory: ProductFactory;
+  let productFactory: DaffProductFactory;
   let daffDriver: DaffDriverInterface;
   let mockProductGrid: Product[];
 
@@ -33,7 +33,7 @@ describe('ProductGridEffects', () => {
     });
 
     effects = TestBed.get(ProductGridEffects);
-    productFactory = TestBed.get(ProductFactory);
+    productFactory = TestBed.get(DaffProductFactory);
     daffDriver = TestBed.get(DaffDriver);
 
     mockProductGrid = new Array(productFactory.create());

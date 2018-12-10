@@ -4,7 +4,7 @@ import { Observable ,  of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
 import { Product } from '@daffodil/core';
-import { ProductFactory } from '@daffodil/core/testing';
+import { DaffProductFactory } from '@daffodil/core/testing';
 
 import { DaffDriver, DaffDriverInterface } from '@daffodil/driver';
 
@@ -18,7 +18,7 @@ describe('ProductEffects', () => {
   let mockProduct: Product;
   let daffDriver: DaffDriverInterface;
 
-  let productFactory: ProductFactory;
+  let productFactory: DaffProductFactory;
   let productId;
 
   beforeEach(() => {
@@ -35,7 +35,7 @@ describe('ProductEffects', () => {
     });
 
     effects = TestBed.get(ProductEffects);
-    productFactory = TestBed.get(ProductFactory);
+    productFactory = TestBed.get(DaffProductFactory);
 
     daffDriver = TestBed.get(DaffDriver);
 

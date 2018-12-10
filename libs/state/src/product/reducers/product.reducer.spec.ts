@@ -1,5 +1,5 @@
 import { Product } from "@daffodil/core";
-import { ProductFactory } from "@daffodil/core/testing";
+import { DaffProductFactory } from "@daffodil/core/testing";
 
 import { 
   initialState, 
@@ -13,12 +13,12 @@ import { ProductLoad, ProductLoadSuccess, ProductLoadFailure, UpdateQty } from "
 
 describe('Product | Product Reducer', () => {
 
-  let productFactory: ProductFactory;
+  let productFactory: DaffProductFactory;
   let product: Product;
   let productId: string;
 
   beforeEach(() => {
-    productFactory = new ProductFactory();
+    productFactory = new DaffProductFactory();
 
     product = productFactory.create();
     productId = product.id;

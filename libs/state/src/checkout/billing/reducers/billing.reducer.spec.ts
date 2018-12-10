@@ -1,21 +1,21 @@
-import { DaffodilAddress, DaffodilAddressFactory, PaymentInfo } from '@daffodil/core';
-import { BillingFactory } from '@daffodil/core/testing';
+import { DaffodilAddress, PaymentInfo } from '@daffodil/core';
+import { DaffPaymentFactory, DaffAddressFactory } from '@daffodil/core/testing';
 
 import { initialState, reducer, getBillingAddress, getPaymentInfo, getBillingAddressIsShippingAddress } from "../reducers/billing.reducer";
 import { UpdateBillingAddress, UpdatePaymentInfo, ToggleBillingAddressIsShippingAddress } from "../actions/billing.actions";
 
 describe('Billing | Billing Reducer', () => {
 
-  let daffodilAddressFactory: DaffodilAddressFactory;
+  let addressFactory: DaffAddressFactory;
   let billingAddress: DaffodilAddress;
-  let paymentFactory: BillingFactory;
+  let paymentFactory: DaffPaymentFactory;
   let paymentInfo: PaymentInfo;
 
   beforeEach(() => {
-    daffodilAddressFactory = new DaffodilAddressFactory();
-    paymentFactory = new BillingFactory();
+    addressFactory = new DaffAddressFactory();
+    paymentFactory = new DaffPaymentFactory();
 
-    billingAddress = daffodilAddressFactory.create();
+    billingAddress = addressFactory.create();
     paymentInfo = paymentFactory.create();
   });
 

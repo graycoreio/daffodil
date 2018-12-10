@@ -4,7 +4,7 @@ import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { By } from '@angular/platform-browser';
 
 import { Product } from '@daffodil/core';
-import { ProductFactory } from '@daffodil/core/testing';
+import { DaffProductFactory } from '@daffodil/core/testing';
 
 import { ProductContainer } from './product.component';
 import { AddToCart } from '../../../cart/actions/cart.actions';
@@ -23,7 +23,7 @@ describe('ProductContainer', () => {
   let initialLoading: boolean;
   let initialProduct: Product;
   let initialQty: number;
-  let productFactory = new ProductFactory();
+  let productFactory = new DaffProductFactory();
   let productContainer: ProductContainer;
 
   beforeEach(async(() => {

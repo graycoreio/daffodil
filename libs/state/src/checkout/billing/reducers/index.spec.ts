@@ -1,8 +1,8 @@
 import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
-import { DaffodilAddressFactory, DaffodilAddress, PaymentInfo } from "@daffodil/core";
-import { BillingFactory } from '@daffodil/core/testing';
+import { DaffodilAddress, PaymentInfo } from "@daffodil/core";
+import { DaffPaymentFactory, DaffAddressFactory } from '@daffodil/core/testing';
 
 import { UpdateBillingAddress, UpdatePaymentInfo } from "../actions/billing.actions";
 import * as fromBilling from './index';
@@ -10,10 +10,12 @@ import * as fromBilling from './index';
 describe('selectBillingState', () => {
 
   let store: Store<fromBilling.BillingState>;
-  let daffodilAddressFactory: DaffodilAddressFactory = new DaffodilAddressFactory();
+  let addressFactory: DaffAddressFactory = new DaffAddressFactory();
   let stubBillingAddress: DaffodilAddress;
-  let billingFactory: BillingFactory = new BillingFactory();
+
+  let paymentFactory: DaffPaymentFactory = new DaffPaymentFactory();
   let stubPaymentInfo: PaymentInfo;
+  
   let stubBillingAddressIsShippingAddress: boolean;
   
   beforeEach(async(() => {
@@ -25,8 +27,8 @@ describe('selectBillingState', () => {
       ]
     });
 
-    stubPaymentInfo = billingFactory.create();
-    stubBillingAddress = daffodilAddressFactory.create();
+    stubPaymentInfo = paymentFactory.create();
+    stubBillingAddress = addressFactory.create();
     stubBillingAddressIsShippingAddress = false;
     store = TestBed.get(Store);
     store.dispatch(new UpdateBillingAddress(stubBillingAddress));
