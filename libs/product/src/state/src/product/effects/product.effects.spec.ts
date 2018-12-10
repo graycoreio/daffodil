@@ -6,7 +6,7 @@ import { hot, cold } from 'jasmine-marbles';
 import { DaffDriver, DaffDriverInterface } from '@daffodil/driver';
 import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
-import { Product, ProductFactory } from '../../../../index';
+import { Product, DaffProductFactory } from '../../../../index';
 
 import { ProductEffects } from './product.effects';
 import { ProductLoad, ProductLoadSuccess, ProductLoadFailure } from '../actions/product.actions';
@@ -17,7 +17,7 @@ describe('ProductEffects', () => {
   let mockProduct: Product;
   let daffDriver: DaffDriverInterface;
 
-  let productFactory: ProductFactory;
+  let productFactory: DaffProductFactory;
   let productId;
 
   beforeEach(() => {
@@ -34,7 +34,7 @@ describe('ProductEffects', () => {
     });
 
     effects = TestBed.get(ProductEffects);
-    productFactory = TestBed.get(ProductFactory);
+    productFactory = TestBed.get(DaffProductFactory);
 
     daffDriver = TestBed.get(DaffDriver);
 

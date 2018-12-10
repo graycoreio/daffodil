@@ -7,7 +7,7 @@ import {
   STATUS
 } from 'angular-in-memory-web-api';
 
-import { ProductFactory, Product } from '../../../../../index';
+import { DaffProductFactory, Product } from '../../../../../index';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ import { ProductFactory, Product } from '../../../../../index';
 export class DaffInMemoryProductTestingService implements InMemoryDbService {
   products: Product[];
   
-  constructor(private productFactory: ProductFactory) { 
+  constructor(private productFactory: DaffProductFactory) { 
     this.products = this.productFactory.createStyleTestingList();
   }
 

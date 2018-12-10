@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 
-import { Product, ProductFactory } from '../../../../../index';
+import { Product, DaffProductFactory } from '../../../../../index';
 import { DaffProductServiceInterface } from '../../../../src/service-interfaces/product-service.interface';
 
 @Injectable({
@@ -10,7 +10,7 @@ import { DaffProductServiceInterface } from '../../../../src/service-interfaces/
 })
 export class DaffTestingProductService implements DaffProductServiceInterface {
  
-  constructor(private productFactory: ProductFactory) {}
+  constructor(private productFactory: DaffProductFactory) {}
 
   getAll(): Observable<Product[]> {
     return of(this.productFactory.createMany(5));

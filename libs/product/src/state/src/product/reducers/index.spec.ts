@@ -1,7 +1,7 @@
 import { TestBed } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
-import { Product, ProductFactory } from '../../../../index';
+import { Product, DaffProductFactory } from '../../../../index';
 
 import { ProductLoad } from "../actions/product.actions";
 import { ProductGridLoadSuccess, ProductGridReset } from "../actions/product-grid.actions";
@@ -11,7 +11,7 @@ import { BestSellersLoadSuccess, BestSellersReset } from "../actions/best-seller
 describe('selectProductState', () => {
 
   let store: Store<fromProduct.State>;
-  let productFactory: ProductFactory = new ProductFactory();
+  let productFactory: DaffProductFactory = new DaffProductFactory();
   let mockProduct: Product;
   
   beforeEach(() => {

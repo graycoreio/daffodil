@@ -2,12 +2,12 @@ import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { DaffInMemoryProductService } from './product.service';
-import { ProductFactory, DaffCoreTestingModule } from '../../../../../index';
+import { DaffProductFactory, DaffCoreTestingModule } from '../../../../../index';
 
 describe('Driver | Mock | Product | ProductService', () => {
   let productService;
   let httpMock: HttpTestingController;
-  let productFactory: ProductFactory;
+  let productFactory: DaffProductFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -22,7 +22,7 @@ describe('Driver | Mock | Product | ProductService', () => {
 
     httpMock = TestBed.get(HttpTestingController);
     productService = TestBed.get(DaffInMemoryProductService);
-    productFactory = TestBed.get(ProductFactory);
+    productFactory = TestBed.get(DaffProductFactory);
   });
 
   afterEach(() => {

@@ -1,4 +1,4 @@
-import { Product, ProductFactory } from '../../../../index';
+import { Product, DaffProductFactory } from '../../../../index';
 
 import { 
   initialState, 
@@ -12,12 +12,12 @@ import { ProductLoad, ProductLoadSuccess, ProductLoadFailure, UpdateQty } from "
 
 describe('Product | Product Reducer', () => {
 
-  let productFactory: ProductFactory;
+  let productFactory: DaffProductFactory;
   let product: Product;
   let productId: string;
 
   beforeEach(() => {
-    productFactory = new ProductFactory();
+    productFactory = new DaffProductFactory();
 
     product = productFactory.create();
     productId = product.id;

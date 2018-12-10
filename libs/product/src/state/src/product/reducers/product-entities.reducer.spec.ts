@@ -1,4 +1,4 @@
-import { Product, ProductFactory } from '../../../../index';
+import { Product, DaffProductFactory } from '../../../../index';
 
 import { ProductLoadSuccess } from "../actions/product.actions";
 import { ProductGridLoadSuccess, ProductGridReset } from "../actions/product-grid.actions";
@@ -7,10 +7,10 @@ import { BestSellersLoadSuccess } from "../actions/best-sellers.actions";
 
 describe('Product | Product Entities Reducer', () => {
 
-  let productFactory: ProductFactory;
+  let productFactory: DaffProductFactory;
 
   beforeEach(() => {
-    productFactory = new ProductFactory();
+    productFactory = new DaffProductFactory();
   });
 
   describe('when an unknown action is triggered', () => {

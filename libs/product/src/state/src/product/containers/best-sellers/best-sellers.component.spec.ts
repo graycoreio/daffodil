@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers, select } from '@ngrx/store';
 
-import { Product, ProductFactory } from '../../../../../index';
+import { Product, DaffProductFactory } from '../../../../../index';
 
 import { BestSellersContainer } from './best-sellers.component';
 import { BestSellersLoad } from '../../actions/best-sellers.actions';
@@ -14,7 +14,7 @@ describe('BestSellersContainer', () => {
   let store;
   let initialLoading: boolean;
   let initialProducts: Product[];
-  let productFactory = new ProductFactory();
+  let productFactory = new DaffProductFactory();
   let bestSeller: Product;
 
   beforeEach(async(() => {

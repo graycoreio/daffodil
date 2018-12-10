@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
-import { Product, ProductFactory } from '../../../../../index';
+import { Product, DaffProductFactory } from '../../../../../index';
 
 import { ProductGridContainer } from './product-grid.component';
 import { ProductGridLoad } from '../../actions/product-grid.actions';
@@ -13,7 +13,7 @@ describe('ProductGridContainer', () => {
   let store;
   let initialLoading: boolean;
   let initialProducts: Product[];
-  let productFactory = new ProductFactory();
+  let productFactory = new DaffProductFactory();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

@@ -6,7 +6,7 @@ import { hot, cold } from 'jasmine-marbles';
 import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 import { DaffDriver } from '@daffodil/driver';
 
-import { Product, ProductFactory, DaffDriverInterface } from '../../../../index';
+import { Product, DaffProductFactory, DaffDriverInterface } from '../../../../index';
 
 import { BestSellersLoad, BestSellersLoadSuccess, BestSellersLoadFailure } from '../actions/best-sellers.actions';
 import { BestSellersEffects } from './best-seller.effects';
@@ -14,7 +14,7 @@ import { BestSellersEffects } from './best-seller.effects';
 describe('BestSellersEffects', () => {
   let actions$: Observable<any>;
   let effects: BestSellersEffects;
-  let productFactory: ProductFactory;
+  let productFactory: DaffProductFactory;
   let mockBestSellers: Product[];
   let daffDriver: DaffDriverInterface;
 
@@ -32,7 +32,7 @@ describe('BestSellersEffects', () => {
 
     effects = TestBed.get(BestSellersEffects);
     daffDriver = TestBed.get(DaffDriver);
-    productFactory = TestBed.get(ProductFactory);
+    productFactory = TestBed.get(DaffProductFactory);
 
     mockBestSellers = new Array(productFactory.create());
   });

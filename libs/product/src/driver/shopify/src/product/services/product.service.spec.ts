@@ -4,13 +4,13 @@ import {
   ApolloTestingController,
 } from 'apollo-angular/testing';
 
-import { ProductFactory, DaffCoreTestingModule } from '../../../../../index';
+import { DaffProductFactory, DaffCoreTestingModule } from '../../../../../index';
 
 import { DaffShopifyProductService, GetAllProductsQuery, GetAProduct } from './product.service';
 
 describe('Driver | Shopify | Product | ProductService', () => {
   let productService: DaffShopifyProductService;
-  let productFactory: ProductFactory;
+  let productFactory: DaffProductFactory;
   let controller: ApolloTestingController;
 
   beforeEach(() => {
@@ -27,7 +27,7 @@ describe('Driver | Shopify | Product | ProductService', () => {
     controller = TestBed.get(ApolloTestingController);
 
     productService = TestBed.get(DaffShopifyProductService);
-    productFactory = TestBed.get(ProductFactory);
+    productFactory = TestBed.get(DaffProductFactory);
   });
 
   it('should be created', () => {

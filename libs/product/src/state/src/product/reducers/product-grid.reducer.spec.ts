@@ -1,15 +1,15 @@
-import { Product, ProductFactory } from '../../../../index';
+import { Product, DaffProductFactory } from '../../../../index';
 
 import { ProductGridLoad, ProductGridLoadSuccess, ProductGridLoadFailure } from "../actions/product-grid.actions";
 import { initialState, reducer, getProductGridLoading, State } from "../reducers/product-grid.reducer";
 
 describe('Product | Product Grid Reducer', () => {
 
-  let productFactory: ProductFactory;
+  let productFactory: DaffProductFactory;
   let product: Product;
 
   beforeEach(() => {
-    productFactory = new ProductFactory();
+    productFactory = new DaffProductFactory();
 
     product = productFactory.create();
   });

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { By } from '@angular/platform-browser';
 
-import { Product, ProductFactory } from '../../../../../index';
+import { Product, DaffProductFactory } from '../../../../../index';
 
 import { ProductContainer } from './product.component';
 import { ProductLoad, UpdateQty } from '../../actions/product.actions';
@@ -21,7 +21,7 @@ describe('ProductContainer', () => {
   let initialLoading: boolean;
   let initialProduct: Product;
   let initialQty: number;
-  let productFactory = new ProductFactory();
+  let productFactory = new DaffProductFactory();
   let productContainer: ProductContainer;
 
   beforeEach(async(() => {

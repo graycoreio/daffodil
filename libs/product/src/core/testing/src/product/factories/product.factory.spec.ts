@@ -1,18 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ProductFactory, MockProductShortNames, MockProductLongNames } from './product.factory';
+import { DaffProductFactory, MockProductShortNames, MockProductLongNames } from './product.factory';
 import { Product } from '../../../../../index';
 
-describe('Core | Product | Factories | ProductFactory', () => {
+describe('Core | Product | Factories | DaffProductFactory', () => {
   
   let productFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ProductFactory]
+      providers: [DaffProductFactory]
     });
 
-    productFactory = TestBed.get(ProductFactory);
+    productFactory = TestBed.get(DaffProductFactory);
   });
 
   it('should be created', () => {
