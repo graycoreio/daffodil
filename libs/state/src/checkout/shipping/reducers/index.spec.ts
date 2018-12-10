@@ -1,7 +1,8 @@
 import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
-import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
+import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddressFactory } from '@daffodil/core/testing';
 
 import { UpdateShippingAddress, SelectShippingOption } from "../actions/shipping.actions";
 import * as fromShipping from './index';
@@ -9,7 +10,7 @@ import * as fromShipping from './index';
 describe('selectShippingState', () => {
 
   let store: Store<fromShipping.ShippingState>;
-  let daffodilAddressFactory: DaffodilAddressFactory = new DaffodilAddressFactory();
+  let addressFactory: DaffAddressFactory;
   let stubShippingAddress: DaffodilAddress;
   let stubSelectedShippingOptionId: string;
   
@@ -22,7 +23,9 @@ describe('selectShippingState', () => {
       ]
     });
 
-    stubShippingAddress = daffodilAddressFactory.create();
+    addressFactory = TestBed.get(DaffAddressFactory);
+
+    stubShippingAddress = addressFactory.create();
     stubSelectedShippingOptionId = '0';
     store = TestBed.get(Store);
     store.dispatch(new UpdateShippingAddress(stubShippingAddress));

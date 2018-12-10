@@ -1,5 +1,5 @@
 import { Product } from "@daffodil/core";
-import { ProductFactory } from "@daffodil/core/testing";
+import { DaffProductFactory } from "@daffodil/core/testing";
 
 import { BestSellersLoad, BestSellersLoadSuccess, BestSellersLoadFailure, BestSellersReset } from "../actions/best-sellers.actions";
 import { initialState, reducer, getBestSellersLoading, getBestSellersIds, State } from "../reducers/best-sellers.reducer";
@@ -7,11 +7,11 @@ import { initialState, reducer, getBestSellersLoading, getBestSellersIds, State 
 
 describe('Product | Best Sellers Reducer', () => {
 
-  let productFactory: ProductFactory;
+  let productFactory: DaffProductFactory;
   let product: Product;
 
   beforeEach(() => {
-    productFactory = new ProductFactory();
+    productFactory = new DaffProductFactory();
 
     product = productFactory.create();
   });

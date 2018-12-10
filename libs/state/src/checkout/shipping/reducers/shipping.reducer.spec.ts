@@ -1,18 +1,24 @@
-import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
+import { TestBed, async } from "@angular/core/testing";
+import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddressFactory } from '@daffodil/core/testing';
+
 
 import { UpdateShippingAddress, SelectShippingOption } from "../actions/shipping.actions";
 import { initialState, reducer, getShippingAddress, getSelectedShippingOptionIndex, isShippingAddressValid, State } from "../reducers/shipping.reducer";
 
 describe('Shipping | Shipping Reducer', () => {
 
-  let daffodilAddressFactory: DaffodilAddressFactory = new DaffodilAddressFactory();
+  let addressFactory: DaffAddressFactory;
   let shippingAddress: DaffodilAddress;
   let selectedShippingOptionId: string;
 
-  beforeEach(() => {
-    shippingAddress = daffodilAddressFactory.create();
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({});
+
+    addressFactory = TestBed.get(DaffAddressFactory);
+    shippingAddress = addressFactory.create();
     selectedShippingOptionId = '0';
-  });
+  }));
 
   describe('when an unknown action is triggered', () => {
 

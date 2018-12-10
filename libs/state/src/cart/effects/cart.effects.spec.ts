@@ -1,23 +1,16 @@
-import { TestBed, inject } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-
+import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-
 import { Observable, of } from 'rxjs';
-
 import { hot, cold } from 'jasmine-marbles';
 
 import { Cart } from '@daffodil/core';
-import { CartFactory, ProductFactory, DaffCoreTestingModule } from '@daffodil/core/testing';
-
+import { DaffCartFactory } from '@daffodil/core/testing';
 import { DaffDriverInterface, DaffDriver } from '@daffodil/driver';
+import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
 import { CartEffects } from './cart.effects';
-
 import { CartLoad, CartLoadSuccess, CartLoadFailure, AddToCart,
   AddToCartSuccess, AddToCartFailure } from '../actions/cart.actions';
-  
-import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
 describe('Daffodil | State | Cart | CartEffects', () => {
   let actions$: Observable<any>;
@@ -25,8 +18,7 @@ describe('Daffodil | State | Cart | CartEffects', () => {
   
   let mockCart: Cart;
 
-  let cartFactory: CartFactory;
-  let productFactory: ProductFactory;
+  let cartFactory: DaffCartFactory;
 
   let daffDriver: DaffDriverInterface;
 
@@ -43,7 +35,7 @@ describe('Daffodil | State | Cart | CartEffects', () => {
 
     effects = TestBed.get(CartEffects);
     daffDriver = TestBed.get(DaffDriver);
-    cartFactory = TestBed.get(CartFactory);
+    cartFactory = TestBed.get(DaffCartFactory);
 
     mockCart = cartFactory.create();
   });

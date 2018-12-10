@@ -1,5 +1,5 @@
 import { Product } from "@daffodil/core";
-import { ProductFactory } from "@daffodil/core/testing";
+import { DaffProductFactory } from "@daffodil/core/testing";
 
 import { ProductLoadSuccess } from "../actions/product.actions";
 import { ProductGridLoadSuccess, ProductGridReset } from "../actions/product-grid.actions";
@@ -8,10 +8,10 @@ import { BestSellersLoadSuccess } from "../actions/best-sellers.actions";
 
 describe('Product | Product Entities Reducer', () => {
 
-  let productFactory: ProductFactory;
+  let productFactory: DaffProductFactory;
 
   beforeEach(() => {
-    productFactory = new ProductFactory();
+    productFactory = new DaffProductFactory();
   });
 
   describe('when an unknown action is triggered', () => {
@@ -29,14 +29,9 @@ describe('Product | Product Entities Reducer', () => {
 
     let products: Product[];
     let result;
-    let product1Id;
 
     beforeEach(() => {
-      let product1 = productFactory.create();
-      let product2 = productFactory.create();
-      product1Id = product1.id;
-      
-      products = new Array(product1, product2);
+      products = productFactory.createMany(2);
       let productGridLoadSuccess = new ProductGridLoadSuccess(products);
       
       result = reducer(initialState, productGridLoadSuccess);
@@ -47,7 +42,7 @@ describe('Product | Product Entities Reducer', () => {
     });
 
     it('sets expected product on state', () => {
-      expect(result.entities[product1Id]).toEqual(products[0]);
+      expect(result.entities[products[0].id]).toEqual(products[0]);
     });
   });
 
@@ -55,14 +50,10 @@ describe('Product | Product Entities Reducer', () => {
 
     let products: Product[];
     let result;
-    let product1Id;
 
     beforeEach(() => {
-      let product1 = productFactory.create();
-      let product2 = productFactory.create();
-      product1Id = product1.id;
+      products = productFactory.createMany(2);
       
-      products = new Array(product1, product2);
       let bestSellersLoadSuccess = new BestSellersLoadSuccess(products);
       
       result = reducer(initialState, bestSellersLoadSuccess);
@@ -73,7 +64,7 @@ describe('Product | Product Entities Reducer', () => {
     });
 
     it('sets expected product on state', () => {
-      expect(result.entities[product1Id]).toEqual(products[0]);
+      expect(result.entities[products[0].id]).toEqual(products[0]);
     });
   });
 

@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
-import { DaffodilAddress, DaffodilAddressFactory, PaymentInfo } from '@daffodil/core';
-import { BillingFactory } from '@daffodil/core/testing';
+import { DaffodilAddress, PaymentInfo } from '@daffodil/core';
+import { DaffAddressFactory, DaffPaymentFactory } from '@daffodil/core/testing';
 
 import { BillingContainer } from './billing.component';
 import { UpdateBillingAddress, UpdatePaymentInfo, ToggleBillingAddressIsShippingAddress } from '../actions/billing.actions';
@@ -15,8 +15,8 @@ describe('BillingContainer', () => {
   let initialBillingAddress: DaffodilAddress;
   let initialBillingAddressIsShippingAddress: boolean;
   let initialPaymentInfo: PaymentInfo;
-  let daffodilAddressFactory: DaffodilAddressFactory;
-  let billingFactory: BillingFactory;
+  let addressFactory: DaffAddressFactory;
+  let paymentFactory: DaffPaymentFactory;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -33,13 +33,14 @@ describe('BillingContainer', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BillingContainer);
     component = fixture.componentInstance;
+    
     store = TestBed.get(Store);
+    addressFactory = TestBed.get(DaffAddressFactory);
+    paymentFactory = TestBed.get(DaffPaymentFactory);
 
-    daffodilAddressFactory = new DaffodilAddressFactory();
-    initialBillingAddress = daffodilAddressFactory.create();
+    initialBillingAddress = addressFactory.create();
     initialBillingAddressIsShippingAddress = false;
-    billingFactory = new BillingFactory();
-    initialPaymentInfo = billingFactory.create();
+    initialPaymentInfo = paymentFactory.create();
 
     spyOn(fromBilling, 'selectPaymentInfoState').and.returnValue(initialPaymentInfo);
     spyOn(fromBilling, 'selectBillingAddressState').and.returnValue(initialBillingAddress);

@@ -4,7 +4,7 @@ import { Observable ,  of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
 import { Product } from '@daffodil/core';
-import { ProductFactory } from '@daffodil/core/testing';
+import { DaffProductFactory } from '@daffodil/core/testing';
 
 import { BestSellersLoad, BestSellersLoadSuccess, BestSellersLoadFailure } from '../actions/best-sellers.actions';
 import { BestSellersEffects } from './best-seller.effects';
@@ -14,7 +14,7 @@ import { DaffDriverInterface, DaffDriver } from '@daffodil/driver';
 describe('BestSellersEffects', () => {
   let actions$: Observable<any>;
   let effects: BestSellersEffects;
-  let productFactory: ProductFactory;
+  let productFactory: DaffProductFactory;
   let mockBestSellers: Product[];
   let daffDriver: DaffDriverInterface;
 
@@ -32,7 +32,7 @@ describe('BestSellersEffects', () => {
 
     effects = TestBed.get(BestSellersEffects);
     daffDriver = TestBed.get(DaffDriver);
-    productFactory = TestBed.get(ProductFactory);
+    productFactory = TestBed.get(DaffProductFactory);
 
     mockBestSellers = new Array(productFactory.create());
   });

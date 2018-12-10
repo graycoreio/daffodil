@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
-import { DaffodilAddress, DaffodilAddressFactory } from '@daffodil/core';
+import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddressFactory } from '@daffodil/core/testing';
 
 import { ShippingContainer } from './shipping.component';
 import { UpdateShippingAddress, SelectShippingOption } from '../actions/shipping.actions';
@@ -14,7 +15,7 @@ describe('ShippingContainer', () => {
   let initialShippingAddress: DaffodilAddress;
   let stubSelectedShippingOptionId: string;
   let stubIsShippingAddressValid: boolean;
-  let daffodilAddressFactory: DaffodilAddressFactory;
+  let addressFactory: DaffAddressFactory;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -31,10 +32,11 @@ describe('ShippingContainer', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ShippingContainer);
     component = fixture.componentInstance;
+    
     store = TestBed.get(Store);
+    addressFactory = TestBed.get(DaffAddressFactory);
 
-    daffodilAddressFactory = new DaffodilAddressFactory();
-    initialShippingAddress = daffodilAddressFactory.create();
+    initialShippingAddress = addressFactory.create();
     stubSelectedShippingOptionId = '0';
     stubIsShippingAddressValid = true;
 

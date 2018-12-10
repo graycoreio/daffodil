@@ -5,12 +5,12 @@ import { CartLoadSuccess, CartReset } from "../actions/cart.actions";
 import * as fromCart from './index';
 
 import { Cart } from "@daffodil/core";
-import { CartFactory } from "@daffodil/core/testing";
+import { DaffCartFactory } from "@daffodil/core/testing";
 
 describe('selectCartState', () => {
 
   let store: Store<fromCart.CartState>;
-  let cartFactory: CartFactory = new CartFactory();
+  let cartFactory: DaffCartFactory = new DaffCartFactory();
   let mockCart: Cart;
   
   beforeEach(async(() => {

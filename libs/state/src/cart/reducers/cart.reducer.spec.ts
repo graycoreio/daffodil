@@ -1,16 +1,16 @@
 import { Cart } from "@daffodil/core";
-import { CartFactory } from "@daffodil/core/testing";
+import { DaffCartFactory } from "@daffodil/core/testing";
 
 import { initialState, reducer, getCartLoading, getCart, State } from "../reducers/cart.reducer";
 import { CartLoad, CartLoadSuccess, CartLoadFailure, CartReset, AddToCart, AddToCartSuccess, AddToCartFailure } from "../actions/cart.actions";
 
 describe('Cart | Cart List Reducer', () => {
 
-  let cartFactory: CartFactory;
+  let cartFactory: DaffCartFactory;
   let cart: Cart;
 
   beforeEach(() => {
-    cartFactory = new CartFactory();
+    cartFactory = new DaffCartFactory();
 
     cart = cartFactory.create();
   });

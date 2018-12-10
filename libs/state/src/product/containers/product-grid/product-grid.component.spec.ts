@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
 import { Product } from '@daffodil/core';
-import { ProductFactory } from '@daffodil/core/testing';
+import { DaffProductFactory } from '@daffodil/core/testing';
 
 import { ProductGridContainer } from './product-grid.component';
 
@@ -15,7 +15,7 @@ describe('ProductGridContainer', () => {
   let store;
   let initialLoading: boolean;
   let initialProducts: Product[];
-  let productFactory = new ProductFactory();
+  let productFactory = new DaffProductFactory();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
