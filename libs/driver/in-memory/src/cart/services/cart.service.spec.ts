@@ -2,14 +2,14 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { Cart } from '@daffodil/core';
-import { DaffCoreTestingModule, CartFactory } from '@daffodil/core/testing';
+import { DaffCoreTestingModule, DaffCartFactory } from '@daffodil/core/testing';
 
 import { DaffInMemoryCartService } from './cart.service';
 
 describe('Driver | In Memory | Cart | CartService', () => {
   let cartService: DaffInMemoryCartService;
   let httpMock: HttpTestingController;
-  let cartFactory: CartFactory;
+  let cartFactory: DaffCartFactory;
   let mockCart: Cart;
 
   beforeEach(() => {
@@ -24,7 +24,7 @@ describe('Driver | In Memory | Cart | CartService', () => {
     });
     
     httpMock = TestBed.get(HttpTestingController);
-    cartFactory = TestBed.get(CartFactory);
+    cartFactory = TestBed.get(DaffCartFactory);
     cartService = TestBed.get(DaffInMemoryCartService);
   });
 

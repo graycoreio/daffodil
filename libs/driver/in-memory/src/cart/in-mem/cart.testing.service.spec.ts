@@ -1,28 +1,33 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffInMemoryCartTestingService } from './cart.testing.service';
-import { DaffCoreTestingModule, CartFactory } from '@daffodil/core/testing';
+
+import { Cart } from '@daffodil/core';
+import { DaffCoreTestingModule, DaffCartFactory } from '@daffodil/core/testing';
+
+import { STATUS } from 'angular-in-memory-web-api';
 
 describe('Driver | Cart | In Memory | CartTestingService', () => {
   let cartTestingService: DaffInMemoryCartTestingService;
-  let cartFactory: CartFactory;
-  let mockCart;
+  let stubCart: Cart;
+  let daffCartFactory: jasmine.SpyObj<DaffCartFactory>;
+
   
   beforeEach(() => {
+    const spy = jasmine.createSpyObj('DaffCartFactory', ['create']);
+    stubCart = new DaffCartFactory().create();
+
     TestBed.configureTestingModule({
-      imports: [
-        DaffCoreTestingModule
-      ],
       providers: [
-        DaffInMemoryCartTestingService
+        DaffInMemoryCartTestingService,
+        { provide: DaffCartFactory, useValue: spy}
       ]
     });
+    
+    daffCartFactory = TestBed.get(DaffCartFactory);    
+    daffCartFactory.create.and.returnValue(stubCart);
 
     cartTestingService = TestBed.get(DaffInMemoryCartTestingService);
-    cartFactory = TestBed.get(CartFactory);
-
-    mockCart = cartFactory.create();
-    spyOn(cartFactory, 'create').and.returnValue(mockCart);
   });
 
   it('should be created', () => {
@@ -35,9 +40,10 @@ describe('Driver | Cart | In Memory | CartTestingService', () => {
     beforeEach(() => {
       result = cartTestingService.createDb();
     });
-
-    it('should return an Object', () => {
-      expect(result.cart).toEqual(jasmine.any(Object));
+    
+    it('should return a cart', () => {
+      result = cartTestingService.createDb();
+      expect(result.cart).toEqual(stubCart);
     });
   });
 
@@ -59,8 +65,11 @@ describe('Driver | Cart | In Memory | CartTestingService', () => {
       result = cartTestingService.post(reqInfoStub);
     });
 
-    it('should return an object', () => {
-      expect(result).toEqual(jasmine.any(Object));
+    it('should return the returned value from createResponse$', () => {
+      expect(result).toEqual({
+        body: stubCart,
+        status: STATUS.OK
+      });
     });
 
     describe('when reqInfo.id is addToCart', () => {

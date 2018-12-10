@@ -8,7 +8,7 @@ import { DaffShopifyCartService } from './cart.service';
 
 import { DaffDriverConfigService, DaffDriverConfigFactory } from '@daffodil/driver';
 
-import { DaffCoreTestingModule, CartFactory } from '@daffodil/core/testing';
+import { DaffCoreTestingModule, DaffCartFactory } from '@daffodil/core/testing';
 import { Cart } from '@daffodil/core';
 
 describe('Driver | Shopify | Cart | CartService', () => {
@@ -16,7 +16,7 @@ describe('Driver | Shopify | Cart | CartService', () => {
   let httpMock: HttpTestingController;
   
   let mockCart: Cart;
-  let cartFactory: CartFactory;
+  let cartFactory: DaffCartFactory;
 
   let daffodilConfigService: DaffDriverConfigService;
   let daffodilConfigFactory: DaffDriverConfigFactory;
@@ -40,7 +40,7 @@ describe('Driver | Shopify | Cart | CartService', () => {
     
     httpMock = TestBed.get(HttpTestingController);
     cartService = TestBed.get(DaffShopifyCartService);
-    cartFactory = TestBed.get(CartFactory);
+    cartFactory = TestBed.get(DaffCartFactory);
   });
 
   afterEach(() => {
