@@ -5,7 +5,10 @@
     "types": [
       "jasmine",
       "node"
-    ]
+    ],
+    "paths": {
+      "@daffodil/core": ["libs/core/src"]
+    }
   },
   "files": [
     "test.ts"

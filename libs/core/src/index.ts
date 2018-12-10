@@ -1,13 +1,16 @@
-export { Product } from './product/models/product';
-export { Cart } from './cart/models/cart';
-export { CartItem } from './cart/models/cart-item';
-export { CartAddress } from './cart/models/cart-address';
-export { CartPayment } from './cart/models/cart-payment';
-export { CartShippingRate } from './cart/models/cart-shipping-rate';
-export { PaymentInfo } from './checkout/models/payment-info';
-export { ShippingOption } from './checkout/models/shipping-option';
+export { Product } from './product/product';
 
-export { Address } from './interfaces/models/address';
+export { Cart } from './cart/cart';
+export { CartItem } from './cart/cart-item';
+export { CartAddress } from './cart/cart-address';
+export { CartPayment } from './cart/cart-payment';
+export { CartShippingRate } from './cart/cart-shipping-rate';
 
-export { DaffodilAddress } from './interfaces/models/daffodil-address';
-export { DaffodilAddressFactory } from './interfaces/factories/daffodil-address.factory';
+export { PaymentInfo } from './payment/payment-info';
+
+export { ShippingRate } from './shipping/shipping-rate';
+export { ShippingOption } from './shipping/shipping-option';
+
+export { DaffodilAddress } from './address/address';
+
+export { range } from './utils/range';

@@ -1,23 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 
-import { 
-  CartFactory, 
-  MockCart,
-  MockCartAddress, 
-  MockCartPayment, 
-  MockCartShippingRate 
-} from './cart.factory';
+import { DaffCartFactory } from './cart.factory';
+import { Cart } from '@daffodil/core';
 
-describe('Core | Cart | Factories | CartFactory', () => {
+describe('Core | Cart | Factories | DaffCartFactory', () => {
   
-  let cartFactory;
+  let cartFactory: DaffCartFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [CartFactory]
+      providers: [DaffCartFactory]
     });
 
-    cartFactory = TestBed.get(CartFactory);
+    cartFactory = TestBed.get(DaffCartFactory);
   });
 
   it('should be created', () => {
@@ -26,7 +21,7 @@ describe('Core | Cart | Factories | CartFactory', () => {
 
   describe('create', () => {
 
-    let result:MockCart;
+    let result : Cart;
 
     beforeEach(() => {
       result = cartFactory.create();
@@ -42,20 +37,25 @@ describe('Core | Cart | Factories | CartFactory', () => {
         expect(result.items.length).toEqual(0)
       });
 
-      it('should have CartAddresses', () => {
-        expect(result.addresses[0]).toEqual(jasmine.any(MockCartAddress));
+      it('should have no CartAddresses', () => {
+        expect(result.addresses.length).toEqual(0);
       });
 
-      it('should have a CartPayment', () => {
-        expect(result.payment).toEqual(jasmine.any(MockCartPayment));
-      });
-
-      describe('CartAddress', () => {
-        
-        it('should have a CartShippingRate', () => {
-          expect(result.addresses[0].shipping_rate).toEqual(jasmine.any(MockCartShippingRate));
-        });
+      it('should not have a CartPayment', () => {
+        expect(result.payment).toEqual(null);
       });
     });
   });
+
+  describe('createMany', () => {
+    let result: Cart[];
+
+    it('should create as many carts as desired', () => {
+      result = cartFactory.createMany(2);
+      expect(result.length).toEqual(2);
+
+      result = cartFactory.createMany(3);
+      expect(result.length).toEqual(3);
+    });
+  })
 });
