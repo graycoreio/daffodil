@@ -13,6 +13,7 @@
   },
   "scripts": {
     "build": "ng build core",
+    "lint": "ng lint core",
     "test": "ng test core --watch=false --browsers=ChromeHeadless"
   },
   "homepage": "https://github.com/graycoreio/daffodil",

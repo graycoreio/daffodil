@@ -1,10 +1,23 @@
-export { ProductFactory } from "./product/factories/product.factory";
+// Address
+export { DaffAddressFactory } from './address/factories/address.factory';
 
-export { CartFactory } from "./cart/factories/cart.factory";
+// Cart
+export { DaffCartAddressFactory } from './cart/factories/cart-address.factory';
+export { DaffCartItemFactory } from './cart/factories/cart-item.factory';
+export { DaffCartPaymentFactory } from './cart/factories/cart-payment.factory';
+export { DaffCartShippingRateFactory } from './cart/factories/cart-shipping-rate.factory';
+export { DaffCartFactory } from './cart/factories/cart.factory';
 
-export { ShippingFactory } from "./checkout/factories/shipping.factory";
+//Payment
+export { DaffPaymentFactory } from './payment/factories/payment.factory';
 
-export { BillingFactory } from './checkout/factories/billing.factory';
+//Product
+export { DaffProductFactory } from "./product/factories/product.factory";
 
+//Shipping
+export { DaffShippingOptionFactory } from "./shipping/factories/shipping-option.factory"
+export { DaffShippingRateFactory } from "./shipping/factories/shipping-rate.factory"
+
+//Core
 export { DaffCoreTestingModule } from "./testing.module";
 
