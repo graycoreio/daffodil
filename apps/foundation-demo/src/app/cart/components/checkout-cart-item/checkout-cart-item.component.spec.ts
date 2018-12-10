@@ -5,13 +5,10 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { CartItem } from '@daffodil/core';
-import { CartFactory } from '@daffodil/core/testing';
+import { DaffCartItemFactory } from '@daffodil/core/testing';
 
 import { CheckoutCartItemComponent } from './checkout-cart-item.component';
 import { CartItemComponent } from '../cart-item/cart-item.component';
-
-let cartFactory = new CartFactory();
-let mockCartItem = cartFactory.createCartItem();
 
 @Component({template: '<checkout-cart-item [item]="cartItemValue"></checkout-cart-item>'})
 class TestCheckoutCartItemWrapper {
@@ -23,6 +20,8 @@ describe('CheckoutCartItemComponent', () => {
   let fixture: ComponentFixture<TestCheckoutCartItemWrapper>;
   let cartItemComponent: CartItemComponent;
   let router: Router;
+  let cartItemFactory = new DaffCartItemFactory();
+  let mockCartItem = cartItemFactory.create();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

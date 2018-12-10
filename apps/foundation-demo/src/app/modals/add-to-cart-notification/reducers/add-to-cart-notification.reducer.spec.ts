@@ -2,7 +2,7 @@ import { AddToCart, AddToCartSuccess } from "@daffodil/state";
 
 import { initialState, reducer, getOpen, getProductQty, getLoading, getProductId } from "../reducers/add-to-cart-notification.reducer";
 import { OpenAddToCartNotification, CloseAddToCartNotification } from "../actions/add-to-cart-notification.actions";
-import { CartFactory } from "@daffodil/core/testing";
+import { DaffCartFactory } from "@daffodil/core/testing";
 import { Cart } from "@daffodil/core";
 
 describe('Add To Cart Notification | Reducer', () => {
@@ -85,7 +85,7 @@ describe('Add To Cart Notification | Reducer', () => {
   describe('when AddToCartSuccess action is triggered', () => {
 
     let result;
-    let cartFactory = new CartFactory();
+    let cartFactory = new DaffCartFactory();
     let stubCart: Cart = cartFactory.create();
 
     beforeEach(() => {

@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 import { Component, Input } from '@angular/core';
 
 import { Product } from '@daffodil/core';
-import { ProductFactory } from '@daffodil/core/testing';
+import { DaffProductFactory } from '@daffodil/core/testing';
 
 import { ProductGridComponent } from './product-grid.component';
 
@@ -20,7 +20,7 @@ class MockProductCardComponent {
 describe('ProductGridComponent', () => {
   let component: TestProductGridWrapper;
   let fixture: ComponentFixture<TestProductGridWrapper>;
-  let productFactory: ProductFactory = new ProductFactory();
+  let productFactory: DaffProductFactory = new DaffProductFactory();
   let productCards;
 
   beforeEach(async(() => {

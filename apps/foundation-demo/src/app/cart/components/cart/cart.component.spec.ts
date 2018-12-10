@@ -5,13 +5,7 @@ import { Component, Input } from '@angular/core';
 import { CartComponent } from './cart.component';
 
 import { Cart, CartItem } from '@daffodil/core';
-import { CartFactory } from '@daffodil/core/testing';
-
-
-let cartFactory = new CartFactory();
-let mockCart = cartFactory.create();
-mockCart.items.push(cartFactory.createCartItem());
-mockCart.items.push(cartFactory.createCartItem());
+import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/core/testing';
 
 @Component({template: '<cart [cart]="cartValue"></cart>'})
 class TestCartWrapper {
@@ -28,6 +22,11 @@ describe('CartComponent', () => {
   let fixture: ComponentFixture<TestCartWrapper>;
   let cartItems;
   let cart: CartComponent;
+
+  let cartFactory = new DaffCartFactory();
+  let mockCart = cartFactory.create({
+    items: new DaffCartItemFactory().createMany(2)
+  });
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
 import { CartItemComponent } from './cart-item.component';
 
 import { Cart, CartItem } from '@daffodil/core';
-import { CartFactory } from '@daffodil/core/testing';
+import { DaffCartItemFactory } from '@daffodil/core/testing';
 
-let cartFactory = new CartFactory();
-let mockCartItem: CartItem = cartFactory.createCartItem();
+let cartItemFactory = new DaffCartItemFactory();
+let mockCartItem: CartItem = cartItemFactory.create();
 
 @Component({template: '<cart-item [item]="cartItemValue"></cart-item>'})
 class TestCartItemWrapper {

@@ -5,12 +5,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
 import { Product } from '@daffodil/core';
-import { ProductFactory } from '@daffodil/core/testing';
+import { DaffProductFactory } from '@daffodil/core/testing';
 
 import { ProductCardComponent } from './product-card.component';
-
-let productFactory: ProductFactory = new ProductFactory();
-let mockProduct = productFactory.create();
 
 @Component({template: '<product-card [product]="productValue"></product-card>'})
 class TestProductCardWrapper {
@@ -22,6 +19,8 @@ describe('ProductCardComponent', () => {
   let fixture: ComponentFixture<TestProductCardWrapper>;
   let router;
   let productCardComponent;
+  let productFactory: DaffProductFactory = new DaffProductFactory();
+  let mockProduct = productFactory.create();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

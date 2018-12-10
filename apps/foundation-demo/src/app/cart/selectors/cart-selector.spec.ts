@@ -4,41 +4,40 @@ import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 import * as fromCart from './cart-selector';
 
 import { Cart } from "@daffodil/core";
-import { CartFactory } from "@daffodil/core/testing";
+import { DaffCartFactory, DaffCartItemFactory, DaffCoreTestingModule } from "@daffodil/core/testing";
 import { CartReset, CartLoadSuccess } from "@daffodil/state";
-import { DaffDriverTestingModule } from "@daffodil/driver/testing";
 
 describe('selectCartState', () => {
 
   let store: Store<fromCart.CartState>;
-  let cartFactory: CartFactory;
+  let cartFactory: DaffCartFactory;
+  let cartItemFactory: DaffCartItemFactory;
   let mockCart: Cart;
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffDriverTestingModule,
+        DaffCoreTestingModule,
         StoreModule.forRoot({
           cart: combineReducers(fromCart.reducers),
         })
       ]
     });
 
-    cartFactory = TestBed.get(CartFactory);
+    cartFactory = TestBed.get(DaffCartFactory);
+    cartItemFactory = TestBed.get(DaffCartItemFactory);
     store = TestBed.get(Store);
   }));
 
   describe('cartHasOneItem', () => {
-    
     describe('when there is one type of cartItem in the cart', () => {
-
-      beforeEach(() => {
-        mockCart = cartFactory.create();
-        mockCart.items = [cartFactory.createCartItem()];
+      beforeEach(() => {        
+        mockCart = cartFactory.create({
+          items: [cartItemFactory.createMany()]
+        });
       });
       
       describe('and the qty is one', () => {
-
         beforeEach(() => {
           mockCart.items[0].qty = 1;
           store.dispatch(new CartReset());
@@ -47,7 +46,7 @@ describe('selectCartState', () => {
         
         it('should return true', () => {
           store.pipe(select(fromCart.cartHasOneItem)).subscribe(bool => {
-            expect(bool).toBeTruthy();;
+            expect(bool).toBeTruthy();
           });
         });
       });
@@ -62,7 +61,7 @@ describe('selectCartState', () => {
         
         it('should return false', () => {
           store.pipe(select(fromCart.cartHasOneItem)).subscribe(bool => {
-            expect(bool).toBeFalsy();;
+            expect(bool).toBeFalsy();
           });
         });
       });
@@ -70,9 +69,10 @@ describe('selectCartState', () => {
 
     describe('when there is not one type of cartItem in the cart', () => {
       
-      beforeEach(() => {
-        mockCart = cartFactory.create();
-        mockCart.items = [cartFactory.createCartItem(), cartFactory.createCartItem()];
+      beforeEach(() => {        
+        mockCart = cartFactory.create({
+          items: cartItemFactory.createMany(2)
+        });
         store.dispatch(new CartReset());
         store.dispatch(new CartLoadSuccess(mockCart));
       });
@@ -88,10 +88,13 @@ describe('selectCartState', () => {
   describe('selectCartItemCount', () => {
 
     beforeEach(() => {
-      mockCart = cartFactory.create();
-      mockCart.items = [cartFactory.createCartItem(), cartFactory.createCartItem()];
+      mockCart = cartFactory.create({
+        items: cartItemFactory.createMany(2)
+      });
+
       mockCart.items[0].qty = 2;
       mockCart.items[1].qty = 4;
+      
       store.dispatch(new CartReset());
       store.dispatch(new CartLoadSuccess(mockCart));
     });
@@ -123,8 +126,9 @@ describe('selectCartState', () => {
     describe('when cart is not empty', () => {
       
       beforeEach(() => {
-        mockCart = cartFactory.create();
-        mockCart.items = [cartFactory.createCartItem()];
+        mockCart = cartFactory.create({
+          items: cartItemFactory.createMany(2)
+        });
         store.dispatch(new CartReset());
         store.dispatch(new CartLoadSuccess(mockCart));
       });

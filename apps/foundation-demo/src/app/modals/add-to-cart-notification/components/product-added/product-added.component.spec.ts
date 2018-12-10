@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { Product } from '@daffodil/core';
-import { ProductFactory } from '@daffodil/core/testing';
+import { DaffProductFactory } from '@daffodil/core/testing';
 import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
 import { ProductAddedComponent } from './product-added.component';
@@ -21,7 +21,7 @@ class TestProductAddedComponentWrapper {
 describe('ProductViewComponent', () => {
   let component: TestProductAddedComponentWrapper;
   let fixture: ComponentFixture<TestProductAddedComponentWrapper>;
-  let productFactory: ProductFactory;
+  let productFactory: DaffProductFactory;
   let stubProduct: Product;
   let productAdded: ProductAddedComponent;
 
@@ -42,7 +42,7 @@ describe('ProductViewComponent', () => {
     fixture = TestBed.createComponent(TestProductAddedComponentWrapper);
     component = fixture.componentInstance;
 
-    productFactory = TestBed.get(ProductFactory);
+    productFactory = TestBed.get(DaffProductFactory);
     stubProduct = productFactory.create();
     component.productValue = stubProduct;
 

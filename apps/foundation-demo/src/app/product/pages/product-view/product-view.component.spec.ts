@@ -6,13 +6,13 @@ import { By } from '@angular/platform-browser';
 import { Observable ,  of } from 'rxjs';
 
 import { Product } from '@daffodil/core';
-import { ProductFactory } from '@daffodil/core/testing';
+import { DaffProductFactory } from '@daffodil/core/testing';
 
 import { ProductViewComponent } from './product-view.component';
 import { ActivatedRouteStub } from '../../../testing/ActivatedRouteStub';
 import { AddToCartComponent } from '../../components/add-to-cart/add-to-cart.component';
 
-let productFactory: ProductFactory = new ProductFactory();
+let productFactory: DaffProductFactory = new DaffProductFactory();
 let mockProduct = productFactory.create();
 let product$ = of(mockProduct);
 let stubQty = 1;

@@ -8,16 +8,18 @@ import { CheckoutGuard } from './checkout.guard';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { DaffDriverTestingModule } from '@daffodil/driver/testing';
-import { CartFactory } from '@daffodil/core/testing';
+import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/core/testing';
 
 import { fromCart } from '@daffodil/state';
 import { CartLoadGuard } from './cart-load.guard';
+
 
 xdescribe('Checkout Guard', () => {
   let checkoutGuardService: CheckoutGuard;
   let router: Router;
   let result: Observable<boolean>;
-  let cartFactory: CartFactory;
+  let cartFactory: DaffCartFactory;
+  let cartItemFactory: DaffCartItemFactory;
   let cartLoadGuard: CartLoadGuard;
   let stubCart: Cart;
 
@@ -39,7 +41,7 @@ xdescribe('Checkout Guard', () => {
     checkoutGuardService = TestBed.get(CheckoutGuard);
     router = TestBed.get(Router);
     cartLoadGuard = TestBed.get(CartLoadGuard);
-    cartFactory = TestBed.get(CartFactory);
+    cartFactory = TestBed.get(DaffCartFactory);
     stubCart = cartFactory.create();
 
     spyOn(router, 'navigateByUrl');
@@ -73,9 +75,7 @@ xdescribe('Checkout Guard', () => {
     describe('when cart is not empty', () => {
 
       beforeEach(() => {
-        stubCart.items = [
-          cartFactory.createCartItem()
-        ];
+        stubCart.items = cartItemFactory.createMany(2);
 
         result = checkoutGuardService.canActivate();
       });

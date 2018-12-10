@@ -4,12 +4,12 @@ import { By } from '@angular/platform-browser';
 import { Observable ,  of } from 'rxjs';
 
 import { Product } from '@daffodil/core';
-import { ProductFactory } from '@daffodil/core/testing';
+import { DaffProductFactory } from '@daffodil/core/testing';
 
 import { ProductGridViewComponent } from './product-grid-view.component';
 import { DaffContainerModule } from '@daffodil/design';
 
-let productFactory = new ProductFactory();
+let productFactory = new DaffProductFactory();
 let products$ = of(new Array(productFactory.create()));
 let loading$ = of(false);
 

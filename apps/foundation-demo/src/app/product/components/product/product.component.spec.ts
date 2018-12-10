@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
 import { Product } from '@daffodil/core';
-import { ProductFactory } from '@daffodil/core/testing';
+import { DaffProductFactory } from '@daffodil/core/testing';
 
 import { ProductComponent } from './product.component';
 
@@ -32,7 +32,7 @@ class MockImageGalleryContainer {
 describe('ProductComponent', () => {
   let component: ProductWrapperTest;
   let fixture: ComponentFixture<ProductWrapperTest>;
-  let productFactory = new ProductFactory();
+  let productFactory = new DaffProductFactory();
   let router;
   let stubProduct: Product = productFactory.create();
   let stubQty: number = 1;

@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 import { Component, Input } from '@angular/core';
 
 import { Cart } from '@daffodil/core';
-import { CartFactory } from '@daffodil/core/testing';
+import { DaffCartItemFactory, DaffCartFactory } from '@daffodil/core/testing';
 
 import { CartTotalsComponent } from './cart-totals.component';
 import { CartTotalsItemModule } from '../cart-totals-item/cart-totals-item.module';
@@ -13,33 +13,28 @@ class TestCartTotalsWrapper {
   @Input() cartValue: Cart;
 }
 
-@Component({
-  selector: 'proceed-to-checkout',
-  template: ''
-})
-class MockProceedToCheckoutComponent {}
-
 describe('CartTotalsComponent', () => {
   let component: TestCartTotalsWrapper;
   let fixture: ComponentFixture<TestCartTotalsWrapper>;
   let cartTotalsComponent: CartTotalsComponent;
   let cartTotalsItemComponent: any;
 
-  let cartFactory = new CartFactory();
-  let mockCart = cartFactory.create();
-  let tax1 = 3;
-  let tax2 = 4;
-  mockCart.items.push(cartFactory.createCartItem());
-  mockCart.items.push(cartFactory.createCartItem());
-  mockCart.items[0].tax_amount = tax1;
-  mockCart.items[1].tax_amount = tax2;
+  let cartFactory = new DaffCartFactory();
+  let cartItemFactory = new DaffCartItemFactory();
+
+  let itemTaxValue = 3.00;
+
+  let mockCart = cartFactory.create({
+    items: cartItemFactory.createMany(2, {
+      tax_amount: itemTaxValue
+    })
+  });
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         CartTotalsComponent,
-        TestCartTotalsWrapper,
-        MockProceedToCheckoutComponent
+        TestCartTotalsWrapper
       ],
       imports: [
         CartTotalsItemModule
@@ -67,7 +62,7 @@ describe('CartTotalsComponent', () => {
     let expectedTax: number;
     
     beforeEach(() => {
-      expectedTax = tax1 + tax2;
+      expectedTax = 2 * itemTaxValue;
     });
 
     it('should set cartTax to the aggregated tax of all cart items', () => {

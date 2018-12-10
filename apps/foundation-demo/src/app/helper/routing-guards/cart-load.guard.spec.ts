@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Observable } from 'rxjs';
 
 import { Cart } from '@daffodil/core';
-import { CartFactory, DaffCoreTestingModule } from '@daffodil/core/testing';
+import { DaffCartFactory, DaffCoreTestingModule } from '@daffodil/core/testing';
 
 import { fromCart , CartLoad, CartLoadSuccess }  from '@daffodil/state';
 
@@ -13,7 +13,7 @@ import { CartLoadGuard } from './cart-load.guard';
 xdescribe('CartLoadGuard', () => {
   let cartLoadGuard: CartLoadGuard;
   let result: Observable<boolean>;
-  let cartFactory: CartFactory;
+  let cartFactory: DaffCartFactory;
   let stubCart: Cart;
   let store: Store<fromCart.State>;
 
@@ -32,7 +32,7 @@ xdescribe('CartLoadGuard', () => {
     });
 
     cartLoadGuard = TestBed.get(CartLoadGuard);
-    cartFactory = TestBed.get(CartFactory);
+    cartFactory = TestBed.get(DaffCartFactory);
     stubCart = cartFactory.create();
     store = TestBed.get(Store);
   }));
