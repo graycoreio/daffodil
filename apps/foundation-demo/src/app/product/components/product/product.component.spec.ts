@@ -3,6 +3,7 @@ import { By } from '@angular/platform-browser';
 import { Component, Input } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { Product } from '@daffodil/core';
 import { DaffProductFactory } from '@daffodil/core/testing';
@@ -10,12 +11,11 @@ import { DaffProductFactory } from '@daffodil/core/testing';
 import { ProductComponent } from './product.component';
 
 import { 
-  AccordionModule, 
+  DaffAccordionModule, 
   DaffQtyDropdownModule, 
   DaffContainerModule,
   QtyDropdownComponent 
 } from '@daffodil/design';
-
 
 @Component({template: '<product [product]="productValue" [qty]="qtyValue" (updateQty)="updateQtyFunction($event)"></product>'})
 class ProductWrapperTest {
@@ -44,8 +44,9 @@ describe('ProductComponent', () => {
       imports: [
         RouterTestingModule,
         DaffContainerModule,
-        AccordionModule,
-        DaffQtyDropdownModule
+        DaffAccordionModule,
+        DaffQtyDropdownModule,
+        NoopAnimationsModule
       ],
       declarations: [ 
         ProductComponent,

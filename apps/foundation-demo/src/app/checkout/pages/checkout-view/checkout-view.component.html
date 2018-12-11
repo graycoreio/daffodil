@@ -1,11 +1,11 @@
 <div cart-container #CartContainer="CartContainer">
   <div class="checkout" *ngIf="!(CartContainer.loading$ | async)">
-    <accordion class="checkout__mobile-cart">
-      <accordion-item [initiallyActive]="false">
-        <h2 accordion-item-title>Cart Summary ({{(CartContainer.cart$ | async) ? (CartContainer.cart$ | async).items.length : 0}})</h2>
+    <daff-accordion class="checkout__mobile-cart">
+      <daff-accordion-item [initiallyActive]="false">
+        <h3 daff-accordion-item-title>Cart Summary ({{(CartContainer.cart$ | async) ? (CartContainer.cart$ | async).items.length : 0}})</h3>
         <checkout-cart-async-wrapper [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async"></checkout-cart-async-wrapper>
-      </accordion-item>
-    </accordion>
+      </daff-accordion-item>
+    </daff-accordion>
 
     <div>
       <div class="checkout__shipping" shipping-container #ShippingContainer="ShippingContainer" *ngIf="!(isOrderPlaced$ | async)">
