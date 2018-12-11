@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
@@ -12,6 +13,7 @@ import { ShippingContainer } from '@daffodil/state';
 import * as fromFoundationCheckout from '../../reducers/index';
 import { ShowPaymentView } from '../../actions/payment.actions';
 import { CheckoutViewComponent } from './checkout-view.component';
+import { DaffAccordionModule, DaffAccordionItemComponent } from '@daffodil/design';
 
 let daffodilAddressFactory = new DaffAddressFactory();
 let paymentFactory = new DaffPaymentFactory();
@@ -57,17 +59,6 @@ class MockCheckoutCartAsyncWrapperComponent {
   @Input() cartTitle: string;
 }
 
-@Component({selector: 'accordion', template: '<ng-content></ng-content>', encapsulation: ViewEncapsulation.None})
-class MockAccordionComponent { 
-  @Input() title: string;
-  @Input() id: string;
-}
-
-@Component({selector: 'accordion-item', template: '<ng-content></ng-content>', encapsulation: ViewEncapsulation.None})
-class MockAccordionItemComponent {
-  @Input() initiallyActive: boolean;
-}
-
 @Component({selector: 'place-order', template: ''})
 class MockPlaceOrderComponent {}
 
@@ -111,7 +102,7 @@ describe('CheckoutViewComponent', () => {
   let shippingContainer: ShippingContainer;
   let billingContainer: MockBillingContainer;
   let cartContainer: MockCartContainer;
-  let accordionItem: MockAccordionItemComponent;
+  let accordionItem: DaffAccordionItemComponent;
   let placeOrders;
   let store;
   let stubCart = cartFactory.create();
@@ -121,12 +112,12 @@ describe('CheckoutViewComponent', () => {
       imports: [
         StoreModule.forRoot({
           foundationCheckout: combineReducers(fromFoundationCheckout.reducers),
-        })
+        }),
+        DaffAccordionModule,
+        NoopAnimationsModule
       ],
       declarations: [
         CheckoutViewComponent,
-        MockAccordionComponent,
-        MockAccordionItemComponent,
         MockShippingComponent,
         MockShippingContainer,
         MockCheckoutCartAsyncWrapperComponent,
@@ -157,7 +148,7 @@ describe('CheckoutViewComponent', () => {
     shippingContainer = fixture.debugElement.query(By.css('[shipping-container]')).componentInstance;
     billingContainer = fixture.debugElement.query(By.css('[billing-container]')).componentInstance;
     cartContainer = fixture.debugElement.query(By.css('[cart-container]')).componentInstance;
-    accordionItem = fixture.debugElement.query(By.css('accordion-item')).componentInstance;
+    accordionItem = fixture.debugElement.query(By.css('daff-accordion-item')).componentInstance;
     placeOrders = fixture.debugElement.queryAll(By.css('place-order'));
 
     cartContainer.cart$ = of(stubCart);
@@ -274,7 +265,6 @@ describe('CheckoutViewComponent', () => {
   });
 
   describe('on first <checkout-cart-async-wrapper>', () => {
-    
     it('should set cart', () => {
       expect(checkoutCartAsyncWrappers[0].componentInstance.cart).toEqual(stubCart);
     });
@@ -318,20 +308,25 @@ describe('CheckoutViewComponent', () => {
     });
   });
 
-  describe('on <accordion-item>', () => {
+  describe('on <daff-accordion-item>', () => {
     
     it('should set initiallyAction to false', () => {
       expect(accordionItem.initiallyActive).toBeFalsy();
     });
 
-    describe('when cart is empty', () => {
+    describe('when cart is null', () => {
+      beforeEach(() => {
+        cartContainer.cart$ = of(null);
+ 
+        fixture.detectChanges();
+      });
       
       it('should show zero cart items in the accordion title', () => {
-        expect(fixture.debugElement.query(By.css('h2')).nativeElement.innerHTML).toEqual('Cart Summary (0)');
+        expect(fixture.debugElement.query(By.css('[daff-accordion-item-title]')).nativeElement.innerHTML).toEqual('Cart Summary (0)');
       });
     });
 
-    describe('when cart is not empty', () => {
+    describe('when cart is not null', () => {
       beforeEach(() => {
         cartContainer.cart$ = of({
           ...stubCart,
@@ -344,7 +339,7 @@ describe('CheckoutViewComponent', () => {
       });
       
       it('should show the number of cart items in the accordion title', () => {
-        expect(fixture.debugElement.query(By.css('h2')).nativeElement.innerHTML).toEqual('Cart Summary (1)');
+        expect(fixture.debugElement.query(By.css('[daff-accordion-item-title]')).nativeElement.innerHTML).toEqual('Cart Summary (1)');
       });
     });
   });

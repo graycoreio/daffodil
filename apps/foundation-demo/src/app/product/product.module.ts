@@ -6,7 +6,7 @@ import { StateProductModule } from '@daffodil/state';
 import { 
   DaffContainerModule, 
   DaffButtonModule, 
-  AccordionModule,
+  DaffAccordionModule,
   DaffQtyDropdownModule 
 } from '@daffodil/design';
 
@@ -31,9 +31,9 @@ import { ImageGalleryModule } from '../core/image-gallery/image-gallery.module';
     DaffContainerModule,
     DaffButtonModule,
     DaffQtyDropdownModule,
-    AccordionModule,
-    AddToCartNotificationModule,
-    ImageGalleryModule
+    DaffAccordionModule,
+    ImageGalleryModule,
+    AddToCartNotificationModule
   ],
   declarations: [
     ProductGridComponent,

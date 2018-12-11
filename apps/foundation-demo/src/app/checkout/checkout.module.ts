@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { StateCheckoutModule, StateCartModule } from '@daffodil/state';
 
-import { AccordionModule } from '@daffodil/design';
+import { DaffAccordionModule } from '@daffodil/design';
 
 import { CheckoutViewComponent } from './pages/checkout-view/checkout-view.component';
 import { FoundationCheckoutStateModule } from './checkout-state.module';
@@ -27,7 +27,7 @@ import { PlaceOrderModule } from './components/place-order/place-order.module';
     ThankYouModule,
     PlaceOrderModule,
 
-    AccordionModule
+    DaffAccordionModule
   ],
   declarations: [
     CheckoutViewComponent
