@@ -1,13 +1,8 @@
-<div class="accordion-item">
-    <div class="accordion-item__button" (click)="toggleActive()">
-      <div class="accordion-item__title">
-          <ng-content select="[accordion-item-title]"></ng-content>
-      </div>
-      <span [hidden]="isOpen"><i class="fas fa-plus accordion-item__icon"></i></span>
-      <span [hidden]="!isOpen"><i class="fas fa-minus accordion-item__icon"></i></span>
-    </div>
-    <div class="accordion-item__panel" *ngIf="isOpen">
-      <ng-content></ng-content>
-    </div>
+<div class="daff-accordion-item__header" (click)="toggleActive()">
+  <ng-content select="[daff-accordion-item-title]"></ng-content>
+  <span [hidden]="_open"><i class="fas fa-plus daff-accordion-item__icon"></i></span>
+  <span [hidden]="!_open"><i class="fas fa-minus daff-accordion-item__icon"></i></span>
 </div>
- 
+<div [@openAccordion]="_animationState">
+  <ng-content></ng-content>
+</div>

@@ -1,132 +1,134 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { AccordionItemComponent } from './accordion-item.component';
+import { DaffAccordionItemComponent } from './accordion-item.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-@Component({template: '<accordion-item [title]="titleValue" [initiallyActive]="initiallyActiveValue"></accordion-item>'})
-class TestAccordionItemWrapper {
-  titleValue: string;
+@Component({template: `
+<daff-accordion-item [initiallyActive]="initiallyActiveValue">
+  <h3 daff-accordion-item-title>Size and Fit</h3>
+  <div daff-accordion-item-content>no content</div>
+</daff-accordion-item>
+`})
+class Wrapper {
   initiallyActiveValue: boolean;
 }
 
-describe('AccordionItemComponent', () => {
-  let component: TestAccordionItemWrapper;
-  let fixture: ComponentFixture<TestAccordionItemWrapper>;
-  let stubTitle: string;
-  let stubInitiallyActive: boolean;
-  let accordionItemComponent: AccordionItemComponent;
-  let accordionButton;
+describe('DaffAccordionItemComponent', () => {
+  let wrapper: Wrapper;
+  let fixture: ComponentFixture<Wrapper>;
+  let component: DaffAccordionItemComponent;
+  let accordionHeader: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        NoopAnimationsModule
+      ],
       declarations: [ 
-        TestAccordionItemWrapper,
-        AccordionItemComponent
+        Wrapper,
+        DaffAccordionItemComponent
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    stubInitiallyActive = true;
-
-    fixture = TestBed.createComponent(TestAccordionItemWrapper);
-    component = fixture.componentInstance;
-    component.titleValue = stubTitle;
-    component.initiallyActiveValue = stubInitiallyActive;
-
+    fixture = TestBed.createComponent(Wrapper);
+    wrapper = fixture.componentInstance;
+    
     fixture.detectChanges();
-
-    accordionItemComponent = fixture.debugElement.query(By.css('accordion-item')).componentInstance;    
-    accordionButton = fixture.debugElement.query(By.css('.accordion-item__button'));
+    
+    component = fixture.debugElement.query(By.css('daff-accordion-item')).componentInstance;    
+    accordionHeader = fixture.debugElement.query(By.css('.daff-accordion-item__header'));
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should set _open to false by default', () => {
+    expect(component._open).toEqual(false);
+  });
+
+  it('should set _animationState to void by default', () => {
+    expect(component._animationState).toEqual('void');
+  });
+
   it('should be able to accept an initiallyActive input', () => {
-    expect(accordionItemComponent.initiallyActive).toEqual(stubInitiallyActive);
+    wrapper.initiallyActiveValue = false;
+
+    fixture.detectChanges();
+
+    expect(component.initiallyActive).toEqual(false);
+
+    wrapper.initiallyActiveValue = true;
+
+    fixture.detectChanges();
+
+    expect(component.initiallyActive).toEqual(true);
   });
 
   describe('ngOnInit', () => {
     
     describe('when initiallyActive is true', () => {
+
+      beforeEach(() => {
+        wrapper.initiallyActiveValue = true;
+        fixture.detectChanges();
+      })
       
-      it('should set open to true', () => {
-        expect(accordionItemComponent.open).toBeTruthy();
+      it('should set _open to true', () => {
+        component.ngOnInit();
+        expect(component._open).toBeTruthy();
       });
     });
 
     describe('when initiallyActive is not set', () => {
+
+      beforeEach(() => {
+        wrapper.initiallyActiveValue = undefined;
+        fixture.detectChanges();
+      })
       
       it('should set open to false', () => {
-        accordionItemComponent.initiallyActive = null;
-        accordionItemComponent.ngOnInit();
-        
-        expect(accordionItemComponent.open).toBeFalsy();
+        component.ngOnInit();
+        expect(component._open).toBeFalsy();
       });
     });
   });
 
-  describe('when accordion button is clicked', () => {
+  describe('when accordion header is clicked', () => {
 
     beforeEach(() => {
-      spyOn(accordionItemComponent, 'toggleActive');
+      spyOn(component, 'toggleActive');
       
-      accordionButton.nativeElement.click();
+      accordionHeader.nativeElement.click();
     });
 
     it('should call toggleActive', () => {
-      expect(accordionItemComponent.toggleActive);
+      expect(component.toggleActive).toHaveBeenCalled();
     });
   });
 
   describe('toggleActive', () => {
-    
-    it('should toggle active', () => {
-      accordionItemComponent.open = false;
-      accordionItemComponent.toggleActive();
+    it('should toggle open', () => {
+      component._open = false;
 
-      expect(accordionItemComponent.open).toBeTruthy();
-    });
-  });
+      component.toggleActive();
+      expect(component._open).toEqual(true);
 
-  describe('isOpen getter', () => {
-
-    it('should return open', () => {
-      expect(accordionItemComponent.isOpen).toEqual(accordionItemComponent.open);
-    });
-  });
-
-  describe('when open is true', () => {
-
-    beforeEach(() => {
-      accordionItemComponent.open = true;
-
-      fixture.detectChanges();
+      component.toggleActive();
+      expect(component._open).toEqual(false);
     });
 
-    it('should render the accordion-item__panel', () => {
-      let accordionPanel = fixture.debugElement.query(By.css('.accordion-item__panel'));
+    it('should toggle _animationState between void and open', () =>  {
+      component.toggleActive();
+      expect(component._animationState).toEqual('open');
 
-      expect(accordionPanel).not.toBeNull();
-    });
-  });
-
-  describe('when active is false', () => {
-
-    beforeEach(() => {
-      accordionItemComponent.open = false;
-
-      fixture.detectChanges();
-    });
-
-    it('should not render the accordion-item__panel', () => {
-      let accordionPanel = fixture.debugElement.query(By.css('.accordion-item__panel'));
-
-      expect(accordionPanel).toBeNull();
+      component.toggleActive();
+      expect(component._animationState).toEqual('void');
     });
   });
 });

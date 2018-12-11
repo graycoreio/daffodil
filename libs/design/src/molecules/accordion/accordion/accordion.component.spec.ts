@@ -1,22 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccordionComponent } from './accordion.component';
+import { DaffAccordionComponent } from './accordion.component';
 
-describe('AccordionComponent', () => {
-  let component: AccordionComponent;
-  let fixture: ComponentFixture<AccordionComponent>;
+describe('DaffAccordionComponent', () => {
+  let component: DaffAccordionComponent;
+  let fixture: ComponentFixture<DaffAccordionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AccordionComponent
+        DaffAccordionComponent
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AccordionComponent);
+    fixture = TestBed.createComponent(DaffAccordionComponent);
     component = fixture.componentInstance;
 
     fixture.detectChanges();
