@@ -1,10 +1,10 @@
-import { AccordionModule } from './accordion.module';
+import { DaffAccordionModule } from './accordion.module';
 
-describe('AccordionModule', () => {
-  let accordionModule: AccordionModule;
+describe('DaffAccordionModule', () => {
+  let accordionModule: DaffAccordionModule;
 
   beforeEach(() => {
-    accordionModule = new AccordionModule();
+    accordionModule = new DaffAccordionModule();
   });
 
   it('should create an instance', () => {

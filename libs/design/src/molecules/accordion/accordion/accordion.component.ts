@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'accordion',
-  templateUrl: './accordion.component.html'
+  selector: 'daff-accordion',
+  templateUrl: './accordion.component.html',
+  styleUrls: ['./accordion.component.scss']
 })
-export class AccordionComponent {
+
+export class DaffAccordionComponent {
 
 }

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: '[accordion-item-title]',
-  host: {'class': 'accordion-item__title'},
+  selector: '[daff-accordion-item-title]',
+  host: {'class': 'daff-accordion-item__title'},
   template: '<ng-content></ng-content>'
 })
-export class AccordionItemTitleComponent{ }
+export class DaffAccordionItemTitleComponent{ }
