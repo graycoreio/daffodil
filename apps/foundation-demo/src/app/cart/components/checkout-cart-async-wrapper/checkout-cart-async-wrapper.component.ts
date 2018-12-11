@@ -1,6 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { Cart } from '@daffodil/core';
-import { Router } from '@angular/router';
+import { Cart } from '@daffodil/cart';
 
 @Component({
   selector: 'checkout-cart-async-wrapper',

@@ -3,11 +3,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Observable ,  of } from 'rxjs';
 
-import { Cart } from '@daffodil/core';
-import { DaffCartFactory } from '@daffodil/core/testing';
+import { Cart, DaffCartFactory } from '@daffodil/cart';
+import { DaffContainerModule } from '@daffodil/design';
 
 import { CartViewComponent } from './cart-view.component';
-import { DaffContainerModule } from '@daffodil/design';
 
 let cartFactory = new DaffCartFactory();
 let cart = cartFactory.create();

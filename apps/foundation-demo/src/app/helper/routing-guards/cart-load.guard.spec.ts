@@ -3,10 +3,14 @@ import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Observable } from 'rxjs';
 
-import { Cart } from '@daffodil/core';
-import { DaffCartFactory, DaffCoreTestingModule } from '@daffodil/core/testing';
-
-import { fromCart , CartLoad, CartLoadSuccess }  from '@daffodil/state';
+import { 
+  Cart, 
+  DaffCartFactory, 
+  DaffCoreTestingModule, 
+  fromCart, 
+  CartLoad, 
+  CartLoadSuccess 
+} from '@daffodil/cart';
 
 import { CartLoadGuard } from './cart-load.guard';
 

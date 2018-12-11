@@ -3,9 +3,14 @@ import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
 import * as fromCart from './cart-selector';
 
-import { Cart } from "@daffodil/core";
-import { DaffCartFactory, DaffCartItemFactory, DaffCoreTestingModule } from "@daffodil/core/testing";
-import { CartReset, CartLoadSuccess } from "@daffodil/state";
+import { 
+  Cart, 
+  DaffCartFactory,
+  DaffCartItemFactory, 
+  DaffCoreTestingModule,
+  CartReset, 
+  CartLoadSuccess
+} from "@daffodil/cart";
 
 describe('selectCartState', () => {
 

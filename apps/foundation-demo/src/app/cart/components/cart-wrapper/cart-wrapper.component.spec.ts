@@ -1,15 +1,12 @@
 import { Component, Input, Directive } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { StoreModule, combineReducers, Store } from '@ngrx/store';
 
-import { Cart } from '@daffodil/core';
-import { DaffCartFactory } from '@daffodil/core/testing';
+import { Cart, DaffCartFactory, fromCart } from '@daffodil/cart';
 
 import { CartWrapperComponent } from './cart-wrapper.component';
-import { StoreModule, combineReducers, Store } from '@ngrx/store';
-import { fromCart } from '@daffodil/state';
 import * as cartSelector from '../../selectors/cart-selector';
-import { of } from 'rxjs';
 
 @Component({template: '<cart-wrapper [cart]="cartValue"></cart-wrapper>'})
 class TestCartWrapper {

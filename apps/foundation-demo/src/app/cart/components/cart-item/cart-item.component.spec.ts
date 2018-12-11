@@ -4,10 +4,9 @@ import { Component, Input } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-import { CartItemComponent } from './cart-item.component';
+import { CartItem, DaffCartItemFactory } from '@daffodil/cart';
 
-import { Cart, CartItem } from '@daffodil/core';
-import { DaffCartItemFactory } from '@daffodil/core/testing';
+import { CartItemComponent } from './cart-item.component';
 
 let cartItemFactory = new DaffCartItemFactory();
 let mockCartItem: CartItem = cartItemFactory.create();

@@ -3,8 +3,9 @@ import { Observable } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 import { provideMockActions } from '@ngrx/effects/testing';
 
+import { AddToCart } from '@daffodil/cart';
+
 import { AddToCartNotificationEffects } from './add-to-cart-notification.effects';
-import { AddToCart } from '@daffodil/state';
 import { OpenAddToCartNotification } from '../actions/add-to-cart-notification.actions';
 
 describe('AddToCartNotificationEffects', () => {

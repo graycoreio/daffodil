@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffCartAddressFactory } from './cart-address.factory';
-import { CartAddress } from '@daffodil/core';
+import { CartAddress } from '../../../../../index';
 
 describe('Core | Cart | Factories | CartAddressFactory', () => {
   

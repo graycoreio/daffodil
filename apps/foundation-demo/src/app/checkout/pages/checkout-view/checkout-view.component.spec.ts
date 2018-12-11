@@ -1,12 +1,12 @@
 import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 
-import { DaffodilAddress, PaymentInfo, Cart } from '@daffodil/core';
-import { DaffCartFactory, DaffPaymentFactory,  DaffAddressFactory, DaffCartItemFactory } from '@daffodil/core/testing';
+import { DaffodilAddress, PaymentInfo } from '@daffodil/core';
+import { DaffPaymentFactory,  DaffAddressFactory } from '@daffodil/core/testing';
+import { Cart, DaffCartItemFactory, DaffCartFactory } from '@daffodil/cart';
 import { ShippingContainer } from '@daffodil/state';
 
 import * as fromFoundationCheckout from '../../reducers/index';

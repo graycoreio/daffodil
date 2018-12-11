@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
-
-import { CartPayment } from "@daffodil/core";
 import * as faker from 'faker/locale/en_US';
+
 import { ModelFactory } from "@daffodil/core/testing";
+
+import { CartPayment } from "../../../../../index";
 
 export class MockCartPayment implements CartPayment {
     payment_id = faker.random.number(1000);

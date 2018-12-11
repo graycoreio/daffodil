@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { StateCheckoutModule, StateCartModule } from '@daffodil/state';
-
+import { StateCheckoutModule } from '@daffodil/state';
+import { StateCartModule } from '@daffodil/cart';
 import { AccordionModule } from '@daffodil/design';
 
 import { CheckoutViewComponent } from './pages/checkout-view/checkout-view.component';

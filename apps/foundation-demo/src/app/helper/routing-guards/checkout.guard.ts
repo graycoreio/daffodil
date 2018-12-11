@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, take, switchMap } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+
+import { Cart, fromCart } from '@daffodil/cart';
 
 import { CartLoadGuard } from './cart-load.guard';
-import { fromCart } from '@daffodil/state';
-import { Store } from '@ngrx/store';
-import { Cart } from '@daffodil/core';
 
 @Injectable()
 export class CheckoutGuard implements CanActivate {

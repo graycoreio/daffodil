@@ -1,13 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
-import { Cart, CartItem } from '@daffodil/core';
-import { DaffCartFactory, DaffCartItemFactory, DaffCoreTestingModule } from '@daffodil/core/testing';
-
-import { CheckoutCartComponent } from './checkout-cart.component';
 import { Component, Input } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
+
+import { 
+  Cart, 
+  CartItem, 
+  DaffCartFactory, 
+  DaffCartItemFactory, 
+  DaffCoreTestingModule 
+} from '@daffodil/cart';
+
+import { CheckoutCartComponent } from './checkout-cart.component';
 
 @Component({template: '<checkout-cart [cart]="cartValue" [subtitle]="subtitleValue"></checkout-cart>'})
 class TestCheckoutCartWrapper {

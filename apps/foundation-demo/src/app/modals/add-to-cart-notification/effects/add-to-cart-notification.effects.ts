@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs/operators';
 import { interval } from 'rxjs';
 
-import { CartActionTypes } from '@daffodil/state';
+import { CartActionTypes } from '@daffodil/cart';
 
 import { CloseAddToCartNotification, OpenAddToCartNotification } from '../actions/add-to-cart-notification.actions';
 

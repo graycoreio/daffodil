@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { StateProductModule } from '@daffodil/product';
-
+import { StateCartModule } from '@daffodil/cart';
 import { 
   DaffContainerModule, 
   DaffButtonModule, 
@@ -21,7 +21,6 @@ import { LoadingIconModule } from '../core/loading-icon/loading-icon.module';
 import { AddToCartNotificationModule } from '../modals/add-to-cart-notification/add-to-cart-notification.module';
 import { ImageGalleryModule } from '../core/image-gallery/image-gallery.module';
 import { AddToCartModule } from '../cart/components/add-to-cart/add-to-cart.module';
-import { StateCartModule } from '@daffodil/state';
 
 @NgModule({
   imports: [

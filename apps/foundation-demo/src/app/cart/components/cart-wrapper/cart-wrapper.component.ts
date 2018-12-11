@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { Cart } from '@daffodil/core';
-
-import * as fromCart from '../../selectors/cart-selector';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { Cart } from '@daffodil/cart';
+
+import * as fromCart from '../../selectors/cart-selector';
 
 @Component({
   selector: 'cart-wrapper',

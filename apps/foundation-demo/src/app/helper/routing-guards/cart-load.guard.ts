@@ -1,12 +1,10 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
-import { map, filter, take, timeout, catchError } from 'rxjs/operators';
-import { fromCart } from '@daffodil/state';
-
-import { CartLoad } from '@daffodil/state';
-import { Cart } from '@daffodil/core';
+import { Observable } from 'rxjs';
+import { map, filter, take } from 'rxjs/operators';
 import { CanActivate } from '@angular/router';
+
+import { Cart, CartLoad, fromCart } from '@daffodil/cart';
 
 @Injectable()
 export class CartLoadGuard implements CanActivate {

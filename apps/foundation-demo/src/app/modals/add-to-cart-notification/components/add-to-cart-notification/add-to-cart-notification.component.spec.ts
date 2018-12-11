@@ -3,8 +3,7 @@ import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { DaffDriverTestingModule } from '@daffodil/driver/testing';
-import { Product, DaffProductFactory } from '@daffodil/product';
+import { Product, DaffProductFactory, DaffDriverTestingModule } from '@daffodil/product';
 // importing from @daffodil/state doesn't work.
 import * as fromProduct from 'libs/product/src/state/src/product/reducers/index';
 

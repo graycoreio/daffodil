@@ -2,13 +2,12 @@ import { Component, Input } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Observable ,  of } from 'rxjs';
-
-import { Cart } from '@daffodil/core';
-import { DaffCartFactory } from '@daffodil/core/testing';
-
-import { CheckoutCartAsyncWrapperComponent } from './checkout-cart-async-wrapper.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
+
+import { Cart, DaffCartFactory } from '@daffodil/cart';
+
+import { CheckoutCartAsyncWrapperComponent } from './checkout-cart-async-wrapper.component';
 
 let cartFactory = new DaffCartFactory();
 let cart = cartFactory.create();

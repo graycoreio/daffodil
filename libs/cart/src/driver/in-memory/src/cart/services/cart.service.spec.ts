@@ -1,10 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { DaffCoreTestingModule, Cart } from '../../../../../index';
+import { DaffCoreTestingModule, Cart, DaffCartFactory } from '../../../../../index';
 
 import { DaffInMemoryCartService } from './cart.service';
-import { DaffCartFactory } from '@daffodil/core/testing';
 
 describe('Driver | In Memory | Cart | CartService', () => {
   let cartService: DaffInMemoryCartService;

@@ -1,18 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers } from '@ngrx/store';
 import { RouterTestingModule } from '@angular/router/testing';
-
-import { Cart } from '@daffodil/core';
-
-import { CheckoutGuard } from './checkout.guard';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { DaffDriverTestingModule } from '@daffodil/driver/testing';
-import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/core/testing';
 
-import { fromCart } from '@daffodil/state';
+import { 
+  Cart, 
+  DaffCartFactory, 
+  DaffCartItemFactory,
+  fromCart, 
+  DaffDriverTestingModule 
+} from '@daffodil/cart';
+
+import { CheckoutGuard } from './checkout.guard';
 import { CartLoadGuard } from './cart-load.guard';
-
 
 xdescribe('Checkout Guard', () => {
   let checkoutGuardService: CheckoutGuard;

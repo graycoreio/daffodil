@@ -2,8 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component, Input } from '@angular/core';
 
-import { Cart } from '@daffodil/core';
-import { DaffCartItemFactory, DaffCartFactory } from '@daffodil/core/testing';
+import { Cart, DaffCartItemFactory, DaffCartFactory } from '@daffodil/cart';
 
 import { CartTotalsComponent } from './cart-totals.component';
 import { CartTotalsItemModule } from '../cart-totals-item/cart-totals-item.module';
