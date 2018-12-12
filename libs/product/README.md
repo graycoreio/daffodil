@@ -1,12 +1,8 @@
 # @daffodil/product
 
-The `@daffodil/product` package provides everything you need to integrate your frontend website with whatever ecommerce platform you choose.
+The `@daffodil/product` package provides everything you need to integrate your product-related frontend components with @daffodil/driver and an ecommerce platform of your choosing.
 
-`@daffodil/product/core` holds all product-related models.
-
-`@daffodil/product/state` provides a sane redux-store of product.
-
-`@daffodil/product/driver` provides service implementations for products from which you can retrieve and update data in whatever ecommerce platform you choose.
+The `@daffodil/producttesting` package provides factories to generate test data for daffodil product models.
 
 ## Installation
 

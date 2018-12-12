@@ -12,3 +12,5 @@ export { ShippingOption } from './shipping/shipping-option';
 export { DaffodilAddress } from './address/address';
 
 export { range } from './utils/range';
+
+export { Product } from './product/product';

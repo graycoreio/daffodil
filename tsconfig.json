@@ -47,6 +47,9 @@
       ],
       "@daffodil/product": [
         "dist/product"
+      ],
+      "@daffodil/producttesting": [
+        "dist/product/testing"
       ]
     }
   },
