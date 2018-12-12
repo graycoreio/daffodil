@@ -1,12 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
+import { Observable } from 'rxjs';
+
+import { Action } from '@ngrx/store';
+import { ROUTER_NAVIGATION } from '@ngrx/router-store';
 import { provideMockActions } from '@ngrx/effects/testing';
+import { Actions } from '@ngrx/effects';
 
-import { Observable, of } from 'rxjs';
-
-import { hot, cold } from 'jasmine-marbles';
+import { hot, cold, getTestScheduler } from 'jasmine-marbles';
 
 import { SidebarEffects } from './sidebar.effects';
+import * as SidebarActions from '../actions/sidebar.actions';
 
 describe('Daffio | SidebarEffects', () => {
   let effects: SidebarEffects;
@@ -14,9 +18,8 @@ describe('Daffio | SidebarEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-      ],
       providers: [
+        SidebarEffects,
         provideMockActions(() => actions$)
       ]
     });
@@ -29,9 +32,16 @@ describe('Daffio | SidebarEffects', () => {
   });
 
   describe('when a ROUTER_NAVIGATION occurs', () => {
-    it('should dispatch CloseSidebar with a 10ms delay', () => {
-      
+    const action: Action = { type: ROUTER_NAVIGATION};
+    const completion = new SidebarActions.CloseSidebar();
+
+    it('should dispatch CloseSidebar with some delay', () => {
+        let expected; 
+
+        actions$ = hot( '--a', { a: action });
+        expected = cold('---b', { b: completion });
+
+        expect(effects.closeOnPageChange$(10, getTestScheduler())).toBeObservable(expected);
     });
   });
-
 });
