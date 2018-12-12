@@ -1,5 +1,3 @@
-export { Product } from './product/product';
-
 export { Cart } from './cart/cart';
 export { CartItem } from './cart/cart-item';
 export { CartAddress } from './cart/cart-address';

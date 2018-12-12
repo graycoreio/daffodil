@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { DaffDriverInterface } from '../../src/service-interfaces/driver.interface';
+import { DaffDriverInterface } from '@daffodil/product';
 import { DaffShopifyProductService } from './product/services/product.service';
 
 @Injectable({

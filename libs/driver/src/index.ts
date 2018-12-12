@@ -3,9 +3,6 @@ export { DaffDriverConfigService, DaffDriverConfigServiceFactory } from './confi
 export { _DAFFODIL_DRIVER_CONFIG } from './config/tokens/driver-config.token';
 export { DaffDriverConfig } from './config/models/driver-config';
 export { DaffDriverConfigFactory } from './config/factories/driver-config.factory';
- 
-//Product
-export { DaffProductServiceInterface } from './service-interfaces/product/product-service.interface';
 
 //Cart
 export { DaffCartServiceInterface } from './service-interfaces/cart/cart-service.interface';

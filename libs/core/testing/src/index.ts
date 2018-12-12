@@ -11,13 +11,9 @@ export { DaffCartFactory } from './cart/factories/cart.factory';
 //Payment
 export { DaffPaymentFactory } from './payment/factories/payment.factory';
 
-//Product
-export { DaffProductFactory } from "./product/factories/product.factory";
-
 //Shipping
 export { DaffShippingOptionFactory } from "./shipping/factories/shipping-option.factory"
 export { DaffShippingRateFactory } from "./shipping/factories/shipping-rate.factory"
 
 //Core
 export { DaffCoreTestingModule } from "./testing.module";
-
