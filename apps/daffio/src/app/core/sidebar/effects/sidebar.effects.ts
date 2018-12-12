@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, asyncScheduler } from 'rxjs';
 import { switchMap, delay } from 'rxjs/operators';
 import { Action } from '@ngrx/store';
 
@@ -15,9 +15,10 @@ export class SidebarEffects {
   constructor(private actions$: Actions) {}
 
   @Effect()
-  closeOnPageChange$: Observable<Action> = this.actions$.pipe(
+  closeOnPageChange$ = 
+    (delayTime = 10, scheduler = asyncScheduler) : Observable<Action> => this.actions$.pipe(
     ofType(ROUTER_NAVIGATION),
-    delay(10),
+    delay(delayTime, scheduler),
     switchMap(() => {
       return of(new SidebarActions.CloseSidebar());
     })
