@@ -27,9 +27,9 @@
         }
     }
 
-    &.daff-accent-purple {
-        background-color: $accent-purple;
-        border: 1px solid $accent-purple;
+    &.daff-accent {
+        background-color: $accent;
+        border: 1px solid $accent;
         color: $white;
 
         &:hover {
@@ -38,9 +38,9 @@
         }
     }
 
-    &.daff-accent-blue {
-        background-color: $accent-blue;
-        border: 1px solid $accent-blue;
+    &.daff-blue {
+        background-color: $blue;
+        border: 1px solid $blue;
         color: $white;
 
         &:hover {
@@ -110,16 +110,16 @@
         }
     }
 
-    &.daff-accent-purple {
-        color: $accent-purple;
+    &.daff-accent {
+        color: $accent;
 
         &:hover {
             color: daff-color($daff-purple, 70);
         }
     }
 
-    &.daff-accent-blue {
-        color: $accent-blue;
+    &.daff-blue {
+        color: $blue;
 
         &:hover {
             color: daff-color($daff-blue, 70);
@@ -175,16 +175,16 @@
         }
     }
 
-    &.daff-accent-purple {
-        color: $accent-purple;
+    &.daff-accent {
+        color: $accent;
         
         &:hover {
             color: daff-color($daff-purple, 70);
         }
     }
 
-    &.daff-accent-blue {
-        color: $accent-blue;
+    &.daff-accent {
+        color: $blue;
         
         &:hover {
             color: daff-color($daff-blue, 70);
@@ -244,22 +244,22 @@
         }
     }
 
-    &.daff-accent-purple {
-        border: 1px solid $accent-purple;
-        color: $accent-purple;
+    &.daff-accent {
+        border: 1px solid $accent;
+        color: $accent;
 
         &:hover {
-            background-color: $accent-purple;
+            background-color: $accent;
             color: $white;
         }
     }
 
-    &.daff-accent-blue {
-        border: 1px solid $accent-blue;
-        color: $accent-blue;
+    &.daff-blue {
+        border: 1px solid $blue;
+        color: $blue;
 
         &:hover {
-            background-color: $accent-blue;
+            background-color: $blue;
             color: $white;
         }
     }

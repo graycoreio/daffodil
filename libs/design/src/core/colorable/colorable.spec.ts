@@ -111,6 +111,7 @@ describe('colorInPalette', () => {
         expect(colorInPalette("white")).toEqual(true);
         expect(colorInPalette("primary")).toEqual(true);
         expect(colorInPalette("accent")).toEqual(true);
+        expect(colorInPalette("blue")).toEqual(true);
     });
   });
 

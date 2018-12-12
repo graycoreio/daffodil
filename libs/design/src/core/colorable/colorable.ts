@@ -11,12 +11,13 @@ export interface DaffColorable {
 /**
  * These are the valid options that can be passed to a DaffColorable component
  */
-export type DaffPalette = "primary" | "accent" | "black" | "white" | undefined;
+export type DaffPalette = "primary" | "accent" | "black" | "white" | "blue" | undefined;
 export enum DaffPaletteEnum {
     PRIMARY = "primary",
     ACCENT = "accent",
     BLACK = "black",
     WHITE = "white",
+    BLUE = "blue",
 }
 export interface HasElementRef {
     _elementRef: ElementRef;
