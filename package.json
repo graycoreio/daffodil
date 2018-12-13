@@ -34,6 +34,7 @@
     "ngrx-store-freeze": "^0.2.3",
     "rxjs": "6.3.3",
     "rxjs-compat": "^6.3.3",
+    "webfontloader": "^1.6.28",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
