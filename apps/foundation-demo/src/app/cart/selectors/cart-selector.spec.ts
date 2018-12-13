@@ -29,62 +29,6 @@ describe('selectCartState', () => {
     store = TestBed.get(Store);
   }));
 
-  describe('cartHasOneItem', () => {
-    describe('when there is one type of cartItem in the cart', () => {
-      beforeEach(() => {        
-        mockCart = cartFactory.create({
-          items: [cartItemFactory.createMany()]
-        });
-      });
-      
-      describe('and the qty is one', () => {
-        beforeEach(() => {
-          mockCart.items[0].qty = 1;
-          store.dispatch(new CartReset());
-          store.dispatch(new CartLoadSuccess(mockCart));
-        });
-        
-        it('should return true', () => {
-          store.pipe(select(fromCart.cartHasOneItem)).subscribe(bool => {
-            expect(bool).toBeTruthy();
-          });
-        });
-      });
-
-      describe('and the qty is not one', () => {
-
-        beforeEach(() => {
-          mockCart.items[0].qty = 2;
-          store.dispatch(new CartReset());
-          store.dispatch(new CartLoadSuccess(mockCart));
-        });
-        
-        it('should return false', () => {
-          store.pipe(select(fromCart.cartHasOneItem)).subscribe(bool => {
-            expect(bool).toBeFalsy();
-          });
-        });
-      });
-    });
-
-    describe('when there is not one type of cartItem in the cart', () => {
-      
-      beforeEach(() => {        
-        mockCart = cartFactory.create({
-          items: cartItemFactory.createMany(2)
-        });
-        store.dispatch(new CartReset());
-        store.dispatch(new CartLoadSuccess(mockCart));
-      });
-
-      it('should return false', () => {
-        store.pipe(select(fromCart.cartHasOneItem)).subscribe(bool => {
-          expect(bool).toBeFalsy();;
-        });
-      });
-    });
-  });
-
   describe('selectCartItemCount', () => {
 
     beforeEach(() => {

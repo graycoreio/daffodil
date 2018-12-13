@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
 import { Cart } from '@daffodil/core';
 
 import * as fromCart from '../../selectors/cart-selector';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'cart-wrapper',
@@ -21,18 +21,6 @@ export class CartWrapperComponent {
 
   get isCartEmpty$():Observable<boolean> {
     return this.store.pipe(select(fromCart.isCartEmpty));
-  }
-
-  get cartHasOneItem$(): Observable<boolean> {
-    return this.store.pipe(select(fromCart.cartHasOneItem));
-  }
-
-  get itemText$():Observable<string> {
-    return this.cartHasOneItem$.pipe(
-      map(bool => {
-        return bool ? 'Item' : 'Items';
-      })
-    )
   }
 
   get itemCount$():Observable<number> {
