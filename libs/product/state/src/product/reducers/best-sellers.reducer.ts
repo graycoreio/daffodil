@@ -1,4 +1,4 @@
-import { Product } from '@daffodil/product';
+import { Product } from '@daffodil/productCore';
 
 import { BestSellersActionTypes, BestSellersActions } from '../actions/best-sellers.actions';
 

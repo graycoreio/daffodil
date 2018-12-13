@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Product } from '@daffodil/product';
+import { Product } from '@daffodil/productCore';
 
 @Component({
   selector: 'product-card',

@@ -5,8 +5,8 @@ import { hot, cold } from 'jasmine-marbles';
 
 import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 import { DaffDriver, DaffDriverInterface } from '@daffodil/driver';
-import { Product } from '@daffodil/product';
-import { DaffProductFactory } from '@daffodil/producttesting';
+import { Product } from '@daffodil/productCore';
+import { DaffProductFactory } from '@daffodil/productTesting';
 
 import { BestSellersLoad, BestSellersLoadSuccess, BestSellersLoadFailure } from '../actions/best-sellers.actions';
 import { BestSellersEffects } from './best-seller.effects';

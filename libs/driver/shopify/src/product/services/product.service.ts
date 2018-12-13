@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Product } from '@daffodil/core';
+import { Product } from '@daffodil/productCore';
 import { DaffProductServiceInterface } from '@daffodil/driver';
 
 interface GetAllProductsResponse {

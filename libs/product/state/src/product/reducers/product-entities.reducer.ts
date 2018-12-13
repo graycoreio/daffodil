@@ -1,7 +1,7 @@
 import { createEntityAdapter, EntityState, EntityAdapter } from '@ngrx/entity';
 import { Dictionary } from '@ngrx/entity/src/models';
 
-import { Product } from '@daffodil/product';
+import { Product } from '@daffodil/productCore';
 
 import { ProductGridActionTypes, ProductGridActions } from '../actions/product-grid.actions';
 import { ProductActionTypes, ProductActions } from '../actions/product.actions';

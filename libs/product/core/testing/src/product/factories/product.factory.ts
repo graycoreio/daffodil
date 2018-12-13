@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker';
-import { Product } from '@daffodil/product';
+import { Product } from '@daffodil/productCore';
 
 @Injectable({
   providedIn: 'root'

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { Product } from '@daffodil/core';
+import { Product } from '@daffodil/productCore';
 import { DaffProductServiceInterface } from '@daffodil/driver';
 
 @Injectable({

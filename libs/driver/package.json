@@ -18,6 +18,8 @@
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
     "@daffodil/core": "1.1.0-a",
+    "@daffodil/productCore": "1.1.0-a",
+    "@daffodil/productTesting": "1.1.0-a",
     "@angular/common": "^6.0.1",
     "@angular/core": "^6.0.1",
     "@angular/http": "^6.0.1",
@@ -28,6 +30,8 @@
     "apollo-angular-boost": "1.0.0"
   },
   "devDependencies": {
-    "@daffodil/core": "1.1.0-a"
+    "@daffodil/core": "1.1.0-a",
+    "@daffodil/productCore": "1.1.0-a",
+    "@daffodil/productTesting": "1.1.0-a"
   }
 }

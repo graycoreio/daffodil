@@ -12,7 +12,8 @@
       "@daffodil/driver/magento": ["libs/driver/magento/src"],
       "@daffodil/design": ["libs/design/src"],
       "@daffodil/product": ["libs/product"],
-      "@daffodil/producttesting": ["libs/product/core/testing/src"]
+      "@daffodil/productTesting": ["libs/product/core/testing/src"],
+      "@daffodil/productCore": ["libs/product/core/src"]
     }
   }
 }

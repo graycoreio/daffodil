@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { Product } from '@daffodil/core';
-import { DaffProductFactory } from '@daffodil/core/testing';
+import { Product } from '@daffodil/productCore';
+import { DaffProductFactory } from '@daffodil/productTesting';
 
 import { DaffProductServiceInterface } from '@daffodil/driver';
 

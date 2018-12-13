@@ -7,8 +7,8 @@ import {
   STATUS
 } from 'angular-in-memory-web-api';
 
-import { DaffProductFactory } from '@daffodil/core/testing';
-import { Product } from '@daffodil/core';
+import { DaffProductFactory } from '@daffodil/productTesting';
+import { Product } from '@daffodil/productCore';
 
 @Injectable({
   providedIn: 'root'

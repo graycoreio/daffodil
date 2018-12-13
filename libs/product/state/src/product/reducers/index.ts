@@ -6,7 +6,7 @@ import {
 } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity/src/models';
 
-import { Product } from '@daffodil/product';
+import { Product } from '@daffodil/productCore';
 
 import * as fromProductEntities from './product-entities.reducer';
 import * as fromProductGrid from './product-grid.reducer';

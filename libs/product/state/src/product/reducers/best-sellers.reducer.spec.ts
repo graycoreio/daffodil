@@ -1,5 +1,5 @@
-import { Product } from '@daffodil/product';
-import { DaffProductFactory } from '@daffodil/producttesting';
+import { Product } from '@daffodil/productCore';
+import { DaffProductFactory } from '@daffodil/productTesting';
 
 import { BestSellersLoad, BestSellersLoadSuccess, BestSellersLoadFailure, BestSellersReset } from "../actions/best-sellers.actions";
 import { initialState, reducer, getBestSellersLoading, getBestSellersIds, State } from "../reducers/best-sellers.reducer";

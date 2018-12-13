@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 
-import { Product } from '@daffodil/product';
+import { Product } from '@daffodil/productCore';
 
 import { BestSellersComponent } from './best-sellers.component';
 

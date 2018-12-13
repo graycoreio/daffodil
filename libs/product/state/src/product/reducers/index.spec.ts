@@ -1,8 +1,8 @@
 import { TestBed } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
-import { Product } from '@daffodil/product';
-import { DaffProductFactory } from '@daffodil/producttesting';
+import { Product } from '@daffodil/productCore';
+import { DaffProductFactory } from '@daffodil/productTesting';
 
 import { ProductLoad } from "../actions/product.actions";
 import { ProductGridLoadSuccess, ProductGridReset } from "../actions/product-grid.actions";

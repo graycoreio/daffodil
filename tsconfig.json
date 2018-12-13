@@ -48,8 +48,11 @@
       "@daffodil/product": [
         "dist/product"
       ],
-      "@daffodil/producttesting": [
+      "@daffodil/productTesting": [
         "dist/product/testing"
+      ],
+      "@daffodil/productCore": [
+        "dist/product/core"
       ]
     }
   },

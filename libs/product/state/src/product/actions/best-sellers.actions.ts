@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { Product } from '@daffodil/product';
+import { Product } from '@daffodil/productCore';
 
 export enum BestSellersActionTypes {
     BestSellersLoadAction = "[BestSellers] Load Action",

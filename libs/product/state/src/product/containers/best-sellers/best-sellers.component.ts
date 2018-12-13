@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable ,  combineLatest } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import { Product } from '@daffodil/product';
+import { Product } from '@daffodil/productCore';
 
 import * as fromProduct from '../../reducers/index';
 import { BestSellersLoad } from '../../actions/best-sellers.actions';

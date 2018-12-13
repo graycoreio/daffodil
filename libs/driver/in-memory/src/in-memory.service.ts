@@ -5,7 +5,7 @@ import {
   RequestInfoUtilities,
   ParsedRequestUrl
 } from 'angular-in-memory-web-api';
-import { Product } from '@daffodil/core';
+import { Product } from '@daffodil/productCore';
 import { Cart } from '@daffodil/core';
 
 import { DaffInMemoryCartTestingService } from './cart/in-mem/cart.testing.service';

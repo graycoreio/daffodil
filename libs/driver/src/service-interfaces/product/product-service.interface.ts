@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Product } from '@daffodil/core';
+import { Product } from '@daffodil/productCore';
 
 export interface DaffProductServiceInterface {
   getAll(): Observable<Product[]>;

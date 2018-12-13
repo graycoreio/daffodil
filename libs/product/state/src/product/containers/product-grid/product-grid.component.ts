@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import { Product } from '@daffodil/product';
+import { Product } from '@daffodil/productCore';
 
 import * as fromProduct from '../../reducers/index';
 import { ProductGridLoad } from '../../actions/product-grid.actions';

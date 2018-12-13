@@ -1,5 +1,5 @@
-import { Product } from '@daffodil/product';
-import { DaffProductFactory } from '@daffodil/producttesting';
+import { Product } from '@daffodil/productCore';
+import { DaffProductFactory } from '@daffodil/productTesting';
 
 import { ProductLoadSuccess } from "../actions/product.actions";
 import { ProductGridLoadSuccess, ProductGridReset } from "../actions/product-grid.actions";
