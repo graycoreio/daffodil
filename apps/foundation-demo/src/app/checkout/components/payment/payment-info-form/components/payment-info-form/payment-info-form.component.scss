@@ -1,0 +1,40 @@
+@import 'daff-util';
+
+.payment-info-form {
+  display: grid;
+  grid-column-gap: 10px;
+  grid-row-gap: 15px;
+
+  @include breakpoint(big-tablet) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "         name          name"
+      "  card-number   card-number"
+      "        month          year"
+      "security-code security-code";
+
+    &__name {
+      grid-area: name;
+    }
+
+    &__card-number {
+      grid-area: card-number;
+    }
+
+    &__month {
+      grid-area: month;
+    }
+
+    &__year {
+      grid-area: year;
+    }
+
+    &__security-code {
+      grid-area: security-code;
+    }
+  }
+
+  & select {
+    margin: 0;
+  }
+}

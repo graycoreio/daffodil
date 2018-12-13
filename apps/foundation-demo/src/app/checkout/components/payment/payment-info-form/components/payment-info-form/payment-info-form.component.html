@@ -1,0 +1,31 @@
+<div class="payment-info-form">
+  <input input-validator type="text" class="payment-info-form__name"
+    placeholder="Cardholder's Name"
+    name="name"
+    [formControl]="formGroup.controls['name']"
+    [formSubmitted]="submitted"/>
+  <input input-validator type="text" class="payment-info-form__card-number"
+    placeholder="Card Number"
+    name="cardnumber"
+    [formControl]="formGroup.controls['cardnumber']"
+    [formSubmitted]="submitted"/>
+  <select select-validator class="payment-info-form__month"
+    name="month"
+    [formControl]="formGroup.controls['month']"
+    [formSubmitted]="submitted"
+    [errorStateMatcher]="monthErrorStateMatcher">
+    <option *ngFor="let month of monthSelectValues" [disabled]="month == 'Month'">{{month}}</option>
+  </select>
+  <select select-validator class="payment-info-form__year"
+    name="year"
+    [formControl]="formGroup.controls['year']"
+    [formSubmitted]="submitted"
+    [errorStateMatcher]="yearErrorStateMatcher">
+    <option *ngFor="let year of yearSelectValues" [disabled]="year == 'Year'">{{year}}</option>
+  </select>
+  <input input-validator type="text" class="payment-info-form__security-code"
+    placeholder="Security Code (XXX)"
+    name="securitycode"
+    [formControl]="formGroup.controls['securitycode']"
+    [formSubmitted]="submitted"/>
+</div>
