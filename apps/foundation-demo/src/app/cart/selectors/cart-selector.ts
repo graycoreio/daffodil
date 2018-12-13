@@ -14,16 +14,6 @@ export const reducers : ActionReducerMap<CartState> = {
   cart: fromCartReducer.reducer
 }
 
-export const cartHasOneItem : MemoizedSelector<object, boolean> = createSelector(
-  fromCart.selectCartValueState,
-  cart => {
-    if (cart.items.length === 1) {
-      return cart.items[0].qty === 1;
-    }
-    return cart.items.length === 1;
-  }
-)
-
 export const selectCartItemCount : MemoizedSelector<object, number> = createSelector(
   fromCart.selectCartValueState,
   cart => {

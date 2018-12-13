@@ -2,7 +2,11 @@
   <div class="cart-wrapper__main">
     <div class="cart-wrapper__header">
       <span class="cart-wrapper__title">Your Cart</span>
-      <span class="cart-wrapper__item-count">{{(itemCount$ | async)}} {{(itemText$ | async)}}</span>
+      <span class="cart-wrapper__item-count" [ngPlural]="itemCount$ | async">
+        {{(itemCount$ | async)}}
+        <ng-template ngPluralCase="other">Items</ng-template>
+        <ng-template ngPluralCase="=1">Item</ng-template>
+      </span>
     </div>
     <cart [cart]="cart"></cart>
     <button type="button" daff-button color="black" continue-shopping class="cart-wrapper__continue-shopping" *ngIf="(isCartEmpty$ | async)">
