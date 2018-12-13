@@ -3,36 +3,9 @@
     payment details
   </div>
   <promotion class="payment-form__promotion"></promotion>
+  
   <div class="payment-form__info-method-title">Payment Method</div>
-  <input input-validator type="text" class="payment-form__name"
-    placeholder="Cardholder's Name"
-    name="name"
-    [formControl]="form.controls['name']"
-    [formSubmitted]="ngForm.submitted"/>
-  <input input-validator type="text" class="payment-form__card-number"
-    placeholder="Card Number"
-    name="cardnumber"
-    [formControl]="form.controls['cardnumber']"
-    [formSubmitted]="ngForm.submitted"/>
-  <select select-validator class="payment-form__month"
-    name="month"
-    [formControl]="form.controls['month']"
-    [formSubmitted]="ngForm.submitted"
-    [errorStateMatcher]="monthErrorStateMatcher">
-    <option *ngFor="let month of monthSelectValues" [disabled]="month == 'Month'">{{month}}</option>
-  </select>
-  <select select-validator class="payment-form__year"
-    name="year"
-    [formControl]="form.controls['year']"
-    [formSubmitted]="ngForm.submitted"
-    [errorStateMatcher]="yearErrorStateMatcher">
-    <option *ngFor="let year of yearSelectValues" [disabled]="year == 'Year'">{{year}}</option>
-  </select>
-  <input input-validator type="text" class="payment-form__security-code"
-    placeholder="Security Code (XXX)"
-    name="securitycode"
-    [formControl]="form.controls['securitycode']"
-    [formSubmitted]="ngForm.submitted"/>
+  <payment-info-form class="payment-form__payment-info" [formGroup]="form.controls.paymentInfo" [submitted]="ngForm.submitted"></payment-info-form>
 
   <div class="payment-form__address-method-title">Billing Address</div>
   <div class="payment-form__checkbox">
@@ -42,50 +15,8 @@
       (click)="toggleBillingAddressIsShippingAddress.emit()">
     <label for="sameAsShipping">Same as shipping address</label>
   </div>
-  <input input-validator type="text" class="payment-form__first-name"
-    *ngIf="!billingAddressIsShippingAddress"
-    placeholder="First Name"
-    name="firstname"
-    [formControl]="form.controls['firstname']"
-    [formSubmitted]="ngForm.submitted"/>
-  <input input-validator type="text" class="payment-form__last-name"
-    *ngIf="!billingAddressIsShippingAddress"
-    placeholder="Last Name"
-    name="lastname"
-    [formControl]="form.controls['lastname']"
-    [formSubmitted]="ngForm.submitted"/>
-  <input input-validator type="text" class="payment-form__street"
-    *ngIf="!billingAddressIsShippingAddress"
-    placeholder="Street Address"
-    name="street"
-    [formControl]="form.controls['street']"
-    [formSubmitted]="ngForm.submitted"/>
-  <input input-validator type="text" class="payment-form__city"
-    *ngIf="!billingAddressIsShippingAddress"
-    placeholder="City"
-    name="city"
-    [formControl]="form.controls['city']"
-    [formSubmitted]="ngForm.submitted"/>
-  <select select-validator class="payment-form__state"
-    *ngIf="!billingAddressIsShippingAddress"
-    name="state"
-    [formControl]="form.controls['state']"
-    [formSubmitted]="ngForm.submitted"
-    [errorStateMatcher]="stateErrorStateMatcher">
-    <option *ngFor="let state of stateSelectValues" [disabled]="state == 'State'">{{state}}</option>
-  </select>
-  <input input-validator type="text" class="payment-form__postcode"
-    *ngIf="!billingAddressIsShippingAddress"
-    placeholder="Zip Code"
-    name="postcode"
-    [formControl]="form.controls['postcode']"
-    [formSubmitted]="ngForm.submitted"/>
-  <input input-validator type="text" class="payment-form__telephone"
-    *ngIf="!billingAddressIsShippingAddress"
-    placeholder="Phone Number"
-    name="telephone"
-    [formControl]="form.controls['telephone']"
-    [formSubmitted]="ngForm.submitted"/>
+  <address-form *ngIf="!billingAddressIsShippingAddress" class="payment-form__address" [formGroup]="form.controls.address" [submitted]="ngForm.submitted"></address-form>
+  
   <button type="submit" class="button large expanded">Save & Review Order</button>
   <div class="payment-form__note">
     You can review this order before it's final.
