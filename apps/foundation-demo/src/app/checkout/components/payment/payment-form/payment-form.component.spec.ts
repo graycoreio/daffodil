@@ -1,16 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, FormControl, AbstractControl } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 
 import { DaffodilAddress, PaymentInfo } from '@daffodil/core';
-import { ErrorStateMatcher } from '@daffodil/design';
 
 import { PaymentFormComponent } from './payment-form.component';
 import * as fromFoundationCheckout from '../../../reducers';
 import { EnablePlaceOrderButton } from '../../../actions/checkout.actions';
+import { AddressFormFactory } from '../../forms/address-form/factories/address-form.factory';
+import { PaymentInfoFormFactory } from '../payment-info-form/factories/payment-info-form.factory';
 
 @Component({
   'template': '<payment-form ' + 
@@ -30,17 +30,16 @@ class TestingPaymentFormComponentWrapper {
   toggleBillingAddressIsShippingAddressFunction = () => {};
 }
 
-@Component({'selector': '[input-validator]', 'template': ''})
-class MockInputValidatorComponent {
-  @Input() formControl: FormControl;
-  @Input() formSubmitted: boolean;
+@Component({selector: 'address-form', template: ''})
+class MockAddressFormComponent {
+  @Input() formGroup: FormGroup;
+  @Input() submitted: boolean;
 }
 
-@Component({'selector': '[select-validator]', 'template': ''})
-class MockSelectValidatorComponent {
-  @Input() formControl: FormControl;
-  @Input() formSubmitted: boolean;
-  @Input() errorStateMatcher: ErrorStateMatcher;
+@Component({selector: 'payment-info-form', template: ''})
+class MockPaymentInfoFormComponent {
+  @Input() formGroup: FormGroup;
+  @Input() submitted: boolean;
 }
 
 @Component({
@@ -52,11 +51,17 @@ class MockPromotionComponent {}
 describe('PaymentFormComponent', () => {
   let component: TestingPaymentFormComponentWrapper;
   let fixture: ComponentFixture<TestingPaymentFormComponentWrapper>;
-  let paymentFormComponent: PaymentFormComponent;
   let stubPaymentInfo;
   let stubBillingAddress;
   let stubBillingAddressIsShippingAddress;
   let store;
+  let paymentFormComponent: PaymentFormComponent;
+  let addressFormComponent: MockAddressFormComponent;
+  let paymentInfoFormComponent: MockPaymentInfoFormComponent;
+  let addressFormFactorySpy = jasmine.createSpyObj('AddressFormFactory', ['create']);
+  let stubAddressFormGroup: FormGroup;
+  let paymentInfoFormFactorySpy = jasmine.createSpyObj('PaymentInfoFormFactory', ['create']);
+  let stubPaymentInfoFormGroup: FormGroup;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -70,9 +75,13 @@ describe('PaymentFormComponent', () => {
       declarations: [ 
         TestingPaymentFormComponentWrapper,
         MockPromotionComponent,
-        MockInputValidatorComponent,
-        MockSelectValidatorComponent,
+        MockAddressFormComponent,
+        MockPaymentInfoFormComponent,
         PaymentFormComponent
+      ],
+      providers: [
+        {provide: AddressFormFactory, useValue: addressFormFactorySpy},
+        {provide: PaymentInfoFormFactory, useValue: paymentInfoFormFactorySpy}
       ]
     })
     .compileComponents();
@@ -82,6 +91,12 @@ describe('PaymentFormComponent', () => {
     stubPaymentInfo = null;
     stubBillingAddress = null;
     stubBillingAddressIsShippingAddress = false;
+    stubAddressFormGroup = new AddressFormFactory(new FormBuilder()).create(stubPaymentInfo);
+    stubAddressFormGroup.markAsDirty();
+    stubAddressFormGroup.markAsTouched();
+    addressFormFactorySpy.create.and.returnValue(stubAddressFormGroup);
+    stubPaymentInfoFormGroup = new PaymentInfoFormFactory(new FormBuilder()).create(stubBillingAddress);
+    paymentInfoFormFactorySpy.create.and.returnValue(stubPaymentInfoFormGroup);
 
     fixture = TestBed.createComponent(TestingPaymentFormComponentWrapper);
     store = TestBed.get(Store);
@@ -94,6 +109,10 @@ describe('PaymentFormComponent', () => {
     fixture.detectChanges();
 
     paymentFormComponent = fixture.debugElement.query(By.css('payment-form')).componentInstance;
+    addressFormComponent = fixture.debugElement.query(By.css('address-form')).componentInstance;
+    paymentInfoFormComponent = fixture.debugElement.query(By.css('payment-info-form')).componentInstance;
+    spyOn(paymentFormComponent.updatePaymentInfo, 'emit').and.callThrough();
+    spyOn(paymentFormComponent.updateBillingAddress, 'emit').and.callThrough();
   });
 
   it('should create', () => {
@@ -112,172 +131,41 @@ describe('PaymentFormComponent', () => {
     expect(paymentFormComponent.billingAddressIsShippingAddress).toEqual(stubBillingAddressIsShippingAddress);
   });
 
-  describe('on [input-validator]', () => {
-
-    let inputValidator: MockInputValidatorComponent;
-
-    beforeEach(() => {
-      inputValidator = fixture.debugElement.queryAll(By.css('[input-validator]'))[0].componentInstance;
-    });
+  describe('on <address-form>', () => {
     
-    it('should set formControl', () => {
-      expect(<AbstractControl> inputValidator.formControl).toEqual(<AbstractControl> paymentFormComponent.form.controls['name']);
+    it('should set formGroup', () => {
+      expect(<FormGroup> addressFormComponent.formGroup).toEqual(<FormGroup> paymentFormComponent.form.controls['address']);
     });
 
     it('should set formSubmitted', () => {
-      expect(inputValidator.formSubmitted).toBeFalsy();
-    });
-
-    describe('when form is submitted', () => {
-      
-      it('should change formSubmitted to true', () => {
-        fixture.debugElement.query(By.css('button')).nativeElement.click();
-        fixture.detectChanges();
-
-        expect(inputValidator.formSubmitted).toBeTruthy();
-      });
+      expect(addressFormComponent.submitted).toEqual(paymentFormComponent.form.valid);
     });
   });
 
-  describe('on [select-validator]', () => {
-
-    let selectValidator: MockSelectValidatorComponent;
-
-    beforeEach(() => {
-      selectValidator = fixture.debugElement.queryAll(By.css('[select-validator]'))[0].componentInstance;
-    });
+  describe('on <payment-info-form>', () => {
     
-    it('should set formControl', () => {
-      expect(<AbstractControl> selectValidator.formControl).toEqual(<AbstractControl> paymentFormComponent.form.controls['month']);
+    it('should set formGroup', () => {
+      expect(<FormGroup> paymentInfoFormComponent.formGroup).toEqual(<FormGroup> paymentFormComponent.form.controls['paymentInfo']);
     });
 
     it('should set formSubmitted', () => {
-      expect(selectValidator.formSubmitted).toBeFalsy();
-    });
-
-    it('should set ErrorStateMatcher', () => {
-      expect(selectValidator.errorStateMatcher).toEqual(paymentFormComponent.monthErrorStateMatcher);
-    });
-
-    describe('when form is submitted', () => {
-      
-      it('should change formSubmitted to true', () => {
-        fixture.debugElement.query(By.css('button')).nativeElement.click();
-        fixture.detectChanges();
-
-        expect(selectValidator.formSubmitted).toBeTruthy();
-      });
+      expect(paymentInfoFormComponent.submitted).toEqual(false);
     });
   });
 
   describe('ngOnInit', () => {
 
-    describe('when paymentInfo is defined', () => {
-
-      beforeEach(() => {
-        fixture = TestBed.createComponent(TestingPaymentFormComponentWrapper);
-        component = fixture.componentInstance;
-        component.paymentInfoValue = {
-          name: 'test',
-          cardnumber: 3,
-          month: 3,
-          year: 3,
-          securitycode: 3
-        };
-        fixture.detectChanges();
-
-        paymentFormComponent = fixture.debugElement.query(By.css('payment-form')).componentInstance;
-      });
-      
-      it('sets form.value.name to paymentInfo.name', () => {
-        expect(paymentFormComponent.form.value.name).toEqual(component.paymentInfoValue.name);
-      });
-      
-      it('sets form.value.cardnumber to paymentInfo.cardnumber', () => {
-        expect(paymentFormComponent.form.value.cardnumber).toEqual(component.paymentInfoValue.cardnumber);
-      });
-      
-      it('sets form.value.month to paymentInfo.month', () => {
-        expect(paymentFormComponent.form.value.month).toEqual(component.paymentInfoValue.month);
-      });
-      
-      it('sets form.value.year to paymentInfo.year', () => {
-        expect(paymentFormComponent.form.value.year).toEqual(component.paymentInfoValue.year);
-      });
-      
-      it('sets form.value.securitycode to paymentInfo.securitycode', () => {
-        expect(paymentFormComponent.form.value.securitycode).toEqual(component.paymentInfoValue.securitycode);
-      });
+    it('should call PaymentInfoFormFactory with paymentInfo', () => {
+      expect(paymentInfoFormFactorySpy.create).toHaveBeenCalledWith(stubPaymentInfo);
     });
 
-    describe('when billingAddress is defined', () => {
-      
-      beforeEach(() => {
-        fixture = TestBed.createComponent(TestingPaymentFormComponentWrapper);
-        component = fixture.componentInstance;
-        component.billingAddressValue = {
-          firstname: 'firstname',
-          lastname: 'lastname',
-          street: 'street',
-          city: 'city',
-          state: 'state',
-          postcode: 'postcode',
-          telephone: 'telephone'
-        };
-        fixture.detectChanges();
-
-        paymentFormComponent = fixture.debugElement.query(By.css('payment-form')).componentInstance;
-      });
-      
-      it('sets form.value.firstname to billingAddress.firstname', () => {
-        expect(paymentFormComponent.form.value.firstname).toEqual(component.billingAddressValue.firstname);
-      });
-      
-      it('sets form.value.lastname to billingAddress.lastname', () => {
-        expect(paymentFormComponent.form.value.lastname).toEqual(component.billingAddressValue.lastname);
-      });
-      
-      it('sets form.value.street to billingAddress.street', () => {
-        expect(paymentFormComponent.form.value.street).toEqual(component.billingAddressValue.street);
-      });
-      
-      it('sets form.value.city to billingAddress.city', () => {
-        expect(paymentFormComponent.form.value.city).toEqual(component.billingAddressValue.city);
-      });
-      
-      it('sets form.value.state to billingAddress.state', () => {
-        expect(paymentFormComponent.form.value.state).toEqual(component.billingAddressValue.state);
-      });
-      
-      it('sets form.value.postcode to billingAddress.postcode', () => {
-        expect(paymentFormComponent.form.value.postcode).toEqual(component.billingAddressValue.postcode);
-      });
-      
-      it('sets form.value.telephone to billingAddress.telephone', () => {
-        expect(paymentFormComponent.form.value.telephone).toEqual(component.billingAddressValue.telephone);
-      });
+    it('should call AddressFormFactory with billingAddress', () => {
+      expect(addressFormFactorySpy.create).toHaveBeenCalledWith(stubBillingAddress);
     });
 
-    describe('when paymentInfo and billingAddress are null', () => {
-      
-      it('sets form.value to default', () => {
-        let defaultValues = {
-          name: '',
-          cardnumber: '',
-          month: 'Month',
-          year: 'Year',
-          securitycode: '',
-          firstname: '',
-          lastname: '',
-          street: '',
-          city: '',
-          state: 'State',
-          postcode: '',
-          telephone: ''
-        }
-
-        expect(paymentFormComponent.form.value).toEqual(defaultValues);
-      });
+    it('sets form.value to returned factory values', () => {
+      expect(paymentFormComponent.form.value.address).toEqual(stubAddressFormGroup.value);
+      expect(paymentFormComponent.form.value.paymentInfo).toEqual(stubPaymentInfoFormGroup.value);
     });
   });
 
@@ -303,42 +191,6 @@ describe('PaymentFormComponent', () => {
 
       expect(firstnameElement).toBeNull();
     });
-    
-    it('should not render lastname input', () => {
-      let lastnameElement = fixture.debugElement.query(By.css('.payment-form__last-name'));
-      
-      expect(lastnameElement).toBeNull();
-    });
-    
-    it('should not render street input', () => {
-      let streetElement = fixture.debugElement.query(By.css('.payment-form__street'));
-      
-      expect(streetElement).toBeNull();
-    });
-    
-    it('should not render city input', () => {
-      let cityElement = fixture.debugElement.query(By.css('.payment-form__city'));
-      
-      expect(cityElement).toBeNull();
-    });
-    
-    it('should not render state input', () => {
-      let stateElement = fixture.debugElement.query(By.css('.payment-form__state'));
-      
-      expect(stateElement).toBeNull();
-    });
-    
-    it('should not render postcode input', () => {
-      let postcodeElement = fixture.debugElement.query(By.css('.payment-form__postcode'));
-      
-      expect(postcodeElement).toBeNull();
-    });
-    
-    it('should not render telephone input', () => {
-      let telephoneElement = fixture.debugElement.query(By.css('.payment-form__telephone'));
-      
-      expect(telephoneElement).toBeNull();
-    });
   });
 
   describe('when submit button is clicked', () => {
@@ -353,69 +205,22 @@ describe('PaymentFormComponent', () => {
 
   describe('onSubmit', () => {
 
-    beforeEach(() => {
-      spyOn(paymentFormComponent.updatePaymentInfo, 'emit');
-      spyOn(paymentFormComponent.updateBillingAddress, 'emit');
-    });
-
-    describe('when form is valid', () => {
+    describe('when form is invalid', () => {
 
       beforeEach(() => {
-        paymentFormComponent.form.setValue({
-          name: 'valid',
-          cardnumber: 2,
-          month: 2,
-          year: 2,
-          securitycode: 2,
-          firstname: 'valid',
-          lastname: 'valid',
-          street: 'valid',
-          city: 'valid',
-          state: 'valid',
-          postcode: 'valid',
-          telephone: 'valid'
+        let formBuilder = new FormBuilder();
+        paymentFormComponent.form = formBuilder.group({
+          address: stubAddressFormGroup,
+          paymentInfo: stubPaymentInfoFormGroup
         });
-        fixture.detectChanges();
-        paymentFormComponent.onSubmit();
       });
-    
-      it('should emit updatePaymentInfo', () => {
-        let expectedPaymentInfo: PaymentInfo = {
-          name: 'valid',
-          cardnumber: 2,
-          month: 2,
-          year: 2,
-          securitycode: 2
-        }
-
-        expect(paymentFormComponent.updatePaymentInfo.emit).toHaveBeenCalledWith(expectedPaymentInfo);
-      });
-
-      it('should emit updateBillingAddress with expected object', () => {
-        let expectedBillingAddress: DaffodilAddress = {
-          firstname: 'valid',
-          lastname: 'valid',
-          street: 'valid',
-          city: 'valid',
-          state: 'valid',
-          postcode: 'valid',
-          telephone: 'valid'
-        }
-
-        expect(paymentFormComponent.updateBillingAddress.emit).toHaveBeenCalledWith(expectedBillingAddress);
-      });
-
-      it('should call store.dispatch with an EnablePlaceOrderButton action', () => {
-        expect(store.dispatch).toHaveBeenCalledWith(new EnablePlaceOrderButton());
-      });
-    });
-
-    describe('when form is invalid', () => {
 
       describe('and billingAddressIsShippingAddress is false', () => {
 
         beforeEach(() => {
+          paymentFormComponent.billingAddressIsShippingAddress = false;
           fixture.detectChanges();
+
           paymentFormComponent.onSubmit();
         });
         
@@ -441,7 +246,7 @@ describe('PaymentFormComponent', () => {
         describe('and paymentInfoForm is invalid', () => {
           
           beforeEach(() => {
-            paymentFormComponent.form.value.name = null;
+            paymentFormComponent.form.controls.paymentInfo.value.name = null;
             fixture.detectChanges();
           });
 
@@ -459,36 +264,23 @@ describe('PaymentFormComponent', () => {
         });
 
         describe('and paymentInfoForm is valid', () => {
-          
+
+          let expectedPaymentInfo: PaymentInfo = {
+            name: 'valid',
+            cardnumber: 2,
+            month: 2,
+            year: 2,
+            securitycode: 2
+          }
+
           beforeEach(() => {
-            paymentFormComponent.form.setValue({
-              name: 'valid',
-              cardnumber: 2,
-              month: 2,
-              year: 2,
-              securitycode: 2,
-              firstname: null,
-              lastname: null,
-              street: null,
-              city: null,
-              state: null,
-              postcode: null,
-              telephone: null
-            });
+            paymentFormComponent.form.controls.paymentInfo.setValue(expectedPaymentInfo);
             fixture.detectChanges();
 
             paymentFormComponent.onSubmit();
           });
     
           it('should emit updatePaymentInfo', () => {
-            let expectedPaymentInfo: PaymentInfo = {
-              name: 'valid',
-              cardnumber: 2,
-              month: 2,
-              year: 2,
-              securitycode: 2
-            }
-    
             expect(paymentFormComponent.updatePaymentInfo.emit).toHaveBeenCalledWith(expectedPaymentInfo);
           });
 
@@ -502,6 +294,49 @@ describe('PaymentFormComponent', () => {
         });
       });
     });
+
+    describe('when form is valid', () => {
+
+      beforeEach(() => {
+        stubPaymentInfoFormGroup.setValue({
+          name: 'valid',
+          cardnumber: 'valid',
+          month: '01',
+          year: 'valid',
+          securitycode: 'valid'
+        });
+        stubAddressFormGroup.setValue({
+          firstname: 'valid',
+          lastname: 'valid',
+          street: 'valid',
+          city: 'valid',
+          state: 'California',
+          postcode: 'valid',
+          telephone: 'valid'
+        });
+        let formBuilder = new FormBuilder();
+        paymentFormComponent.form = formBuilder.group({
+          address: stubAddressFormGroup,
+          paymentInfo: stubPaymentInfoFormGroup
+        });
+        fixture.detectChanges();
+      });
+    
+      it('should emit updatePaymentInfo', () => {
+        paymentFormComponent.onSubmit();
+        expect(paymentFormComponent.updatePaymentInfo.emit).toHaveBeenCalledWith(stubPaymentInfoFormGroup.value);
+      });
+
+      it('should emit updateBillingAddress with expected object', () => {
+        paymentFormComponent.onSubmit();
+        expect(paymentFormComponent.updateBillingAddress.emit).toHaveBeenCalledWith(stubAddressFormGroup.value);
+      });
+
+      it('should call store.dispatch with an EnablePlaceOrderButton action', () => {
+        paymentFormComponent.onSubmit();
+        expect(store.dispatch).toHaveBeenCalledWith(new EnablePlaceOrderButton());
+      });
+    });
   });
 
   describe('when updatePaymentInfo is emitted', () => {
@@ -512,351 +347,6 @@ describe('PaymentFormComponent', () => {
       paymentFormComponent.updatePaymentInfo.emit(emittedValue);
 
       expect(component.updatePaymentInfoFunction).toHaveBeenCalledWith(emittedValue);
-    });
-  });
-
-  describe('monthErrorStateMatcher.isErrorState', () => {
-
-    let formControl;
-
-    beforeEach(() => {
-      formControl = new FormControl();
-    });
-    
-    describe('when control.touched is true', () => {
-      
-      beforeEach(() => {
-        formControl.touched = true;
-      });
-
-      describe('and control.value is Month', () => {
-        
-        beforeEach(() => {
-          formControl.value = 'Month';            
-        });
-
-        it('should return true', () => {
-          expect(paymentFormComponent.monthErrorStateMatcher.isErrorState(formControl, false)).toBeTruthy();
-        });
-      });
-
-      describe('and value is not Month', () => {
-        
-        describe('and control has errors', () => {
-          
-          beforeEach(() => {
-            formControl.errors = true;
-          });
-
-          it('should return true', () => {
-            expect(paymentFormComponent.monthErrorStateMatcher.isErrorState(formControl, false)).toBeTruthy();              
-          });
-        });
-        
-        describe('and control has no errors', () => {
-          
-          beforeEach(() => {
-            formControl.errors = false;
-          });
-
-          it('should return false', () => {
-            expect(paymentFormComponent.monthErrorStateMatcher.isErrorState(formControl, false)).toBeFalsy();              
-          });
-        });
-      });
-    });
-
-    describe('when control.touched is false', () => {
-
-      let formSubmitted;
-      
-      beforeEach(() => {
-        formControl.touched = false;
-      });
-
-      describe('and formSubmitted is true', () => {
-        
-        beforeEach(() => {
-          formSubmitted = true;
-        });
-
-        describe('and control.value is Month', () => {
-          
-          beforeEach(() => {
-            formControl.value = 'Month';
-          });
-
-          it('should return true', () => {
-            expect(paymentFormComponent.monthErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeTruthy();              
-          });
-        });
-
-        describe('and control.value is not Month', () => {
-          
-          describe('and control has errors', () => {
-            
-            beforeEach(() => {
-              formControl.errors = true;
-            });
-
-            it('should return true', () => {
-              expect(paymentFormComponent.monthErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeTruthy();              
-            });
-          });
-
-          describe('and control has no errors', () => {
-            
-            beforeEach(() => {
-              formControl.errors = false;
-            });
-
-            it('should return false', () => {
-              expect(paymentFormComponent.monthErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeFalsy();              
-            });
-          });
-        });
-      });
-
-      describe('and formSubmitted is false', () => {
-        
-        beforeEach(() => {
-          formSubmitted = false;
-        });
-
-        it('should return false', () => {
-          expect(paymentFormComponent.monthErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeFalsy();              
-        });
-      });
-    });
-  });
-
-  describe('yearErrorStateMatcher.isErrorState', () => {
-
-    let formControl;
-
-    beforeEach(() => {
-      formControl = new FormControl();
-    });
-    
-    describe('when control.touched is true', () => {
-      
-      beforeEach(() => {
-        formControl.touched = true;
-      });
-
-      describe('and control.value is Year', () => {
-        
-        beforeEach(() => {
-          formControl.value = 'Year';            
-        });
-
-        it('should return true', () => {
-          expect(paymentFormComponent.yearErrorStateMatcher.isErrorState(formControl, false)).toBeTruthy();
-        });
-      });
-
-      describe('and value is not Year', () => {
-        
-        describe('and control has errors', () => {
-          
-          beforeEach(() => {
-            formControl.errors = true;
-          });
-
-          it('should return true', () => {
-            expect(paymentFormComponent.yearErrorStateMatcher.isErrorState(formControl, false)).toBeTruthy();              
-          });
-        });
-        
-        describe('and control has no errors', () => {
-          
-          beforeEach(() => {
-            formControl.errors = false;
-          });
-
-          it('should return false', () => {
-            expect(paymentFormComponent.yearErrorStateMatcher.isErrorState(formControl, false)).toBeFalsy();              
-          });
-        });
-      });
-    });
-
-    describe('when control.touched is false', () => {
-
-      let formSubmitted;
-      
-      beforeEach(() => {
-        formControl.touched = false;
-      });
-
-      describe('and formSubmitted is true', () => {
-        
-        beforeEach(() => {
-          formSubmitted = true;
-        });
-
-        describe('and control.value is Year', () => {
-          
-          beforeEach(() => {
-            formControl.value = 'Year';
-          });
-
-          it('should return true', () => {
-            expect(paymentFormComponent.yearErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeTruthy();              
-          });
-        });
-
-        describe('and control.value is not Year', () => {
-          
-          describe('and control has errors', () => {
-            
-            beforeEach(() => {
-              formControl.errors = true;
-            });
-
-            it('should return true', () => {
-              expect(paymentFormComponent.yearErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeTruthy();              
-            });
-          });
-
-          describe('and control has no errors', () => {
-            
-            beforeEach(() => {
-              formControl.errors = false;
-            });
-
-            it('should return false', () => {
-              expect(paymentFormComponent.yearErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeFalsy();              
-            });
-          });
-        });
-      });
-
-      describe('and formSubmitted is false', () => {
-        
-        beforeEach(() => {
-          formSubmitted = false;
-        });
-
-        it('should return false', () => {
-          expect(paymentFormComponent.yearErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeFalsy();              
-        });
-      });
-    });
-  });
-
-  describe('stateErrorStateMatcher.isErrorState', () => {
-
-    let formControl;
-
-    beforeEach(() => {
-      formControl = new FormControl();
-    });
-    
-    describe('when control.touched is true', () => {
-      
-      beforeEach(() => {
-        formControl.touched = true;
-      });
-
-      describe('and control.value is State', () => {
-        
-        beforeEach(() => {
-          formControl.value = 'State';            
-        });
-
-        it('should return true', () => {
-          expect(paymentFormComponent.stateErrorStateMatcher.isErrorState(formControl, false)).toBeTruthy();
-        });
-      });
-
-      describe('and value is not State', () => {
-        
-        describe('and control has errors', () => {
-          
-          beforeEach(() => {
-            formControl.errors = true;
-          });
-
-          it('should return true', () => {
-            expect(paymentFormComponent.stateErrorStateMatcher.isErrorState(formControl, false)).toBeTruthy();              
-          });
-        });
-        
-        describe('and control has no errors', () => {
-          
-          beforeEach(() => {
-            formControl.errors = false;
-          });
-
-          it('should return false', () => {
-            expect(paymentFormComponent.stateErrorStateMatcher.isErrorState(formControl, false)).toBeFalsy();              
-          });
-        });
-      });
-    });
-
-    describe('when control.touched is false', () => {
-
-      let formSubmitted;
-      
-      beforeEach(() => {
-        formControl.touched = false;
-      });
-
-      describe('and formSubmitted is true', () => {
-        
-        beforeEach(() => {
-          formSubmitted = true;
-        });
-
-        describe('and control.value is State', () => {
-          
-          beforeEach(() => {
-            formControl.value = 'State';
-          });
-
-          it('should return true', () => {
-            expect(paymentFormComponent.stateErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeTruthy();              
-          });
-        });
-
-        describe('and control.value is not State', () => {
-          
-          describe('and control has errors', () => {
-            
-            beforeEach(() => {
-              formControl.errors = true;
-            });
-
-            it('should return true', () => {
-              expect(paymentFormComponent.stateErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeTruthy();              
-            });
-          });
-
-          describe('and control has no errors', () => {
-            
-            beforeEach(() => {
-              formControl.errors = false;
-            });
-
-            it('should return false', () => {
-              expect(paymentFormComponent.stateErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeFalsy();              
-            });
-          });
-        });
-      });
-
-      describe('and formSubmitted is false', () => {
-        
-        beforeEach(() => {
-          formSubmitted = false;
-        });
-
-        it('should return false', () => {
-          expect(paymentFormComponent.stateErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeFalsy();              
-        });
-      });
     });
   });
 });

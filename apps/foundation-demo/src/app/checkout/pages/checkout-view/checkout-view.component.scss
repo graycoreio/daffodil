@@ -53,14 +53,4 @@
       display: none;
     }
   }
-  
-
-  &__loading-icon {
-    // padding: 20px calc(50% - 37px);
-
-    @include breakpoint(big-tablet) {
-    //   padding-top: 0;
-      grid-column: 1 / -1;
-    }
-  }
 }
