@@ -6,8 +6,8 @@ import { By } from '@angular/platform-browser';
 import { DaffodilAddress } from '@daffodil/core';
 
 import { ShippingFormComponent } from './shipping-form.component';
-import { AddressFormService } from '../../forms/address-form/services/address-form.service';
 import { ShippingOptionFormService } from '../shipping-options/components/services/shipping-option-form.service';
+import { AddressFormFactory } from '../../forms/address-form/factories/address-form.factory';
 
 @Component({
   'template': '<shipping-form [shippingAddress]="shippingAddressValue" ' + 
@@ -38,9 +38,10 @@ describe('ShippingFormComponent', () => {
   let shippingFormComponent: ShippingFormComponent;
   let addressFormComponent: MockAddressFormComponent;
   let shippingOptionsComponent: MockShippingOptionsComponent;
-  let stubShippingAddress: DaffodilAddress;
-  let addressFormService: AddressFormService
+  let addressFormFactorySpy = jasmine.createSpyObj('AddressFormFactory', ['create']);
+  let stubAddressFormGroup: FormGroup;
   let shippingOptionFormService: ShippingOptionFormService;
+  let stubShippingAddress;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -55,7 +56,7 @@ describe('ShippingFormComponent', () => {
         MockShippingOptionsComponent
       ],
       providers: [
-        AddressFormService,
+        {provide: AddressFormFactory, useValue: addressFormFactorySpy},
         ShippingOptionFormService
       ]
     })
@@ -64,11 +65,23 @@ describe('ShippingFormComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestingShippingFormComponentWrapper);
-    addressFormService = TestBed.get(AddressFormService);
     shippingOptionFormService = TestBed.get(ShippingOptionFormService);
+    stubShippingAddress = {
+      firstname: '',
+      lastname: '',
+      street: '',
+      city: '',
+      state: '',
+      postcode: '',
+      telephone: ''
+    };
     component = fixture.componentInstance;
-    component.shippingAddressValue = stubShippingAddress;
     component.editModeValue = false;
+    component.shippingAddressValue = stubShippingAddress;
+    
+    stubAddressFormGroup = new AddressFormFactory(new FormBuilder()).create(stubShippingAddress).value;
+    addressFormFactorySpy.create.and.returnValue(stubAddressFormGroup);
+
     fixture.detectChanges();
 
     shippingFormComponent = fixture.debugElement.query(By.css('shipping-form')).componentInstance;
@@ -111,9 +124,17 @@ describe('ShippingFormComponent', () => {
   });
 
   describe('ngOnInit', () => {
+
+    beforeEach(() => {
+      shippingFormComponent.ngOnInit();
+    });
+
+    it('should call addressFormFactory.create with shippingAddress', () => {
+      expect(addressFormFactorySpy.create).toHaveBeenCalledWith(stubShippingAddress)
+    });
     
-    it('sets form.value.address to addressFormService.getAddressFormGroup()', () => {
-      expect(shippingFormComponent.form.value.address).toEqual(addressFormService.getAddressFormGroup().value);
+    it('sets form.value.address to addressFormFactory.create()', () => {
+      expect(shippingFormComponent.form.value.address).toEqual(stubAddressFormGroup);
     });
     
     it('sets form.value.shippingOption to shippingOptionFormService.getShippingOptionFormGroup()', () => {

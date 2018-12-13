@@ -10,15 +10,15 @@ export class AddressFormFactory {
     private fb: FormBuilder
   ) {}
   
-  create() : FormGroup {
+  create(address) : FormGroup {
     return this.fb.group({
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
-      street: ['', Validators.required],
-      city: ['', Validators.required],
-      state: ['State', Validators.required],
-      postcode: ['', Validators.required],
-      telephone: ['', Validators.required]
+      firstname: [address ? address.firstname : '', Validators.required],
+      lastname: [address ? address.lastname : '', Validators.required],
+      street: [address ? address.street : '', Validators.required],
+      city: [address ? address.city : '', Validators.required],
+      state: [address ? address.state : 'State', Validators.required],
+      postcode: [address ? address.postcode : '', Validators.required],
+      telephone: [address ? address.telephone : '', Validators.required]
     });
   }
 }

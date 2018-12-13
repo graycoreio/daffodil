@@ -1,19 +1,18 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { DaffodilAddress } from '@daffodil/core';
 
-import { AddressFormService } from '../../forms/address-form/services/address-form.service';
 import { ShippingOptionFormService } from '../shipping-options/components/services/shipping-option-form.service';
+import { AddressFormFactory } from '../../forms/address-form/factories/address-form.factory';
 
 @Component({
   selector: 'shipping-form',
   templateUrl: './shipping-form.component.html',
   styleUrls: ['./shipping-form.component.scss']
 })
-export class ShippingFormComponent {
+export class ShippingFormComponent implements OnInit {
 
-  // todo: use shippingAddress when session storage is implemented. Right now, it is not actually needed.
   @Input() shippingAddress: DaffodilAddress;
   @Input() editMode: boolean;
   @Output() submitted: EventEmitter<any> = new EventEmitter();
@@ -22,11 +21,13 @@ export class ShippingFormComponent {
 
   constructor(
     private fb: FormBuilder,
-    private addressFormService: AddressFormService,
+    private addressFormFactory: AddressFormFactory,
     private shippingOptionFormService: ShippingOptionFormService
-  ) {
+  ) {}
+
+  ngOnInit() {
     this.form = this.fb.group({
-      address: this.addressFormService.getAddressFormGroup(),
+      address: this.addressFormFactory.create(this.shippingAddress),
       shippingOption: this.shippingOptionFormService.getShippingOptionFormGroup()
     });
   }
