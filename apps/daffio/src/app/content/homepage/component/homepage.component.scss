@@ -1,0 +1,30 @@
+@import 'daff-util';
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 50px;
+  padding: 50px 0;
+
+  @include breakpoint(tablet) {
+    grid-template-columns: 1fr 1fr;
+    padding: 75px 0;
+  }
+
+  &__image {
+    display: block;
+    max-width: 100%;
+  }
+
+  &__list {
+    padding: 15px;
+  }
+}
+
+.pwa {
+  background-color: daff-color($daff-gray, 100);
+
+  &__button {
+    text-align: center;
+  }
+}

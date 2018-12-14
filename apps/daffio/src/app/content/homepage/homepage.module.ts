@@ -11,7 +11,11 @@ import { DaffioHomepageRoutingModule } from './homepage-routing.module';
 import {
   DaffHeroModule,
   DaffButtonSetModule,
-  DaffButtonModule
+  DaffButtonModule,
+  DaffCalloutModule,
+  DaffListModule,
+  DaffContainerModule,
+  DaffAccordionModule
 } from '@daffodil/design';
 
 @NgModule({
@@ -26,7 +30,11 @@ import {
 
     DaffHeroModule,
     DaffButtonSetModule,
-    DaffButtonModule
+    DaffButtonModule,
+    DaffCalloutModule,
+    DaffListModule,
+    DaffContainerModule,
+    DaffAccordionModule
   ],
   declarations: [
     DaffioHomepageComponent
