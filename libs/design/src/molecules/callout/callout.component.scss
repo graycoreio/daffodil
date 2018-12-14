@@ -1,0 +1,105 @@
+@import '../../scss/daff-util';
+
+.daff-callout {
+  $root: &;
+  display: flex;
+  flex-direction: column;
+  padding: 75px 25px;
+    
+    @include breakpoint(mobile) {
+      padding: 100px 50px;
+    }
+
+  &__title {
+    margin: 0;
+    padding: 0;
+    font-size: 1.5rem;
+
+    @include breakpoint(mobile) {
+      font-size: 2rem;
+    }
+
+    @include breakpoint(big-tablet) {
+      font-size: 2.5rem;
+      line-height: 3rem;
+    }
+  }
+
+  &__body {
+    margin: 10px 0 0 0;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 400;
+
+    @include breakpoint(big-tablet) {
+      margin: 25px 0 0 0;
+    }
+
+    + button,
+    + .daff-button-set {
+      margin-top: 50px;
+    }
+  }
+
+  &__title, &__body {
+    max-width: 1000px;
+    text-align: center;
+
+    @include breakpoint(mobile) {
+      text-align: left;
+    }
+  }
+
+  &--small {
+    padding: 75px 0;
+    
+    @include breakpoint(mobile) {
+      padding: 100px 0;
+    }
+  }
+
+  &--centered {
+    display: flex;
+    align-items: center;
+
+    #{$root}__title {
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    #{$root}__body {
+      margin: 25px auto 0 auto;
+      text-align: center;
+    }
+  }
+
+  &__image {
+    max-width: 800px;
+    margin: 0 auto;
+
+     img {
+      max-width: 100%;
+    }
+  }
+
+  // color variants
+  &.daff-primary {
+    background-color: $primary;
+    color: $black;
+  }
+
+  &.daff-accent {
+    background-color: $accent;
+    color: white;
+  }
+
+  &.daff-white {
+    background-color: $white;
+    color: $black;
+  }
+
+  &.daff-black {
+    background-color: $black;
+    color: $white;
+  }
+}
