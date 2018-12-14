@@ -9,7 +9,8 @@ import { Component, Input, ViewEncapsulation, ChangeDetectionStrategy } from '@a
     class: 'daff-container',
     '[class.daff-container--small]':'size === "small"',
     '[class.daff-container--medium]':'size === "medium"',
-    '[class.daff-container--large]':'size === "large"'
+    '[class.daff-container--large]':'size === "large"',
+    '[class.daff-container--xlarge]':'size === "xlarge"'
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

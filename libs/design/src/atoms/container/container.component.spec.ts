@@ -47,5 +47,13 @@ describe('DaffContainerComponent', () => {
         expect(fixture.nativeElement.classList.contains('daff-container--large')).toEqual(true);
       });
     });
+
+    describe('when size is xlarge', () => {
+      it('should set "daff-container--xlarge" on host element', () => {
+        component.size = 'large';
+        fixture.detectChanges();
+        expect(fixture.nativeElement.classList.contains('daff-container--xlarge')).toEqual(true);
+      });
+    });
   });
 });
