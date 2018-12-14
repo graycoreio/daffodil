@@ -15,7 +15,7 @@ class Wrapper {
   size: string;
 }
 
-fdescribe('DaffCalloutComponent', () => {
+describe('DaffCalloutComponent', () => {
   let wrapper: Wrapper;
   let component: DaffCalloutComponent;
   let fixture: ComponentFixture<Wrapper>;
