@@ -1,0 +1,66 @@
+@import '../../../scss/daff-util';
+
+.daff-list {
+  $root: &;
+  display: block;
+  margin: 0;
+  padding: 0;
+  
+  &__subheader {
+    @include embolden();
+    @include uppercase();
+    font-size: 1rem;
+    padding: 0 0 25px 0;
+  }
+
+  &--link {
+    a {
+      text-decoration: none;
+
+      &:hover {
+        color: daff-color($daff-gray, 800);
+      }
+    }
+  }
+
+  &--multi-line {
+
+    .daff-list-item {
+      padding: 15px 0;
+
+      &:first-of-type {
+        padding: 0 0 15px 0;
+      }
+    }
+  }
+}
+
+.daff-list-item {
+  $root: &;
+  display: flex;
+  padding: 8px 0;
+
+  &:first-of-type {
+    padding: 0 0 8px 0;
+  }
+
+  &__icon {
+    margin-right: 15px;
+  }
+
+  &__content {
+    *:nth-child(1) {
+      @include embolden();
+      @include uppercase();
+      font-size: 1rem;
+      line-height: 1rem;
+      margin: 0 0 5px 0;
+      padding: 0;
+    }
+
+    *:nth-child(n+2) {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
