@@ -1,14 +1,30 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { DaffHeroComponent } from './hero.component';
+import { By } from '@angular/platform-browser';
+import { Component, DebugElement } from '@angular/core';
+import { DaffPalette } from '../../core/colorable/colorable';
 
-describe('DaffHeroComponent', () => {
+@Component ({
+  template: `
+    <daff-hero [layout]="layout" [size]="size" [color]="color"></daff-callout>
+  `
+})
+class Wrapper {
+  color: DaffPalette;
+  layout: string;
+  size: string;
+}
+
+fdescribe('DaffHeroComponent', () => {
+  let wrapper: Wrapper;
   let component: DaffHeroComponent;
-  let fixture: ComponentFixture<DaffHeroComponent>;
+  let fixture: ComponentFixture<Wrapper>;
+  let de: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
+        Wrapper,
         DaffHeroComponent
       ]
     })
@@ -16,8 +32,11 @@ describe('DaffHeroComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DaffHeroComponent);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(Wrapper);
+    wrapper = fixture.componentInstance;
+    component = fixture.debugElement.query(By.css('daff-hero')).componentInstance;
+    de = fixture.debugElement.query(By.css('daff-hero'));
+
     fixture.detectChanges();
   });
 
@@ -25,82 +44,42 @@ describe('DaffHeroComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('setting the layout of the hero', () => {
-    describe('when layout is centered', () => {
-      it('should set "daff-hero--centered" on host element', () => {
-        component.layout = 'centered';
-        fixture.detectChanges();
-        expect(fixture.nativeElement.classList.contains('daff-hero--centered')).toEqual(true);
-      });
+  describe('using a layout variant of a callout', () => {
+    it('should set a layout class on the callout', () => {
+      wrapper.layout = "centered";
+      fixture.detectChanges();
+
+      expect(de.nativeElement.classList.contains('daff-hero--centered')).toEqual(true);
     });
 
-    describe('when layout is a grid', () => {
-      it('should set "daff-hero--grid" on host element', () => {
-        component.layout = 'grid';
-        fixture.detectChanges();
-        expect(fixture.nativeElement.classList.contains('daff-hero--grid')).toEqual(true);
-      });
+    it('should not set a default layout', () => {
+      expect(component.layout).toBeFalsy();
     });
   });
 
-  describe('setting the size of the hero', () => {
-    describe('when size is fullscreen', () => {
-      it('should set "daff-hero--fullscreen" on host element', () => {
-        component.size = 'fullscreen';
-        fixture.detectChanges();
-        expect(fixture.nativeElement.classList.contains('daff-hero--fullscreen')).toEqual(true);
-      });
+  describe('using a size variant of a hero', () => {
+    it('should set a size class on the hero', () => {
+      wrapper.size = "small";
+      fixture.detectChanges();
+
+      expect(de.nativeElement.classList.contains('daff-hero--small')).toEqual(true);
     });
 
-    describe('when size is small', () => {
-      it('should set "daff-hero--small" on host element', () => {
-        component.size = 'small';
-        fixture.detectChanges();
-        expect(fixture.nativeElement.classList.contains('daff-hero--small')).toEqual(true);
-      });
+    it('should not set a default size', () => {
+      expect(component.size).toBeFalsy();
     });
   });
 
-  describe('setting the color of the hero', () => {
-    describe('when color is primary', () => {
-      it('should set "daff-hero--primary" on host element', () => {
-        component.color = 'primary';
-        fixture.detectChanges();
-        expect(fixture.nativeElement.classList.contains('daff-hero--primary')).toEqual(true);
-      });
+  describe('using a colored variant of a hero',() => {
+    it('should set a color class on the hero', () => {
+      wrapper.color = "primary";
+      fixture.detectChanges();
+      
+      expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
     });
 
-    describe('when color is accent', () => {
-      it('should set "daff-hero--accent" on host element', () => {
-        component.color = 'accent';
-        fixture.detectChanges();
-        expect(fixture.nativeElement.classList.contains('daff-hero--accent')).toEqual(true);
-      });
-    });
-
-    describe('when color is gray', () => {
-      it('should set "daff-hero--gray" on host element', () => {
-        component.color = 'gray';
-        fixture.detectChanges();
-        expect(fixture.nativeElement.classList.contains('daff-hero--gray')).toEqual(true);
-      });
-    });
-
-    describe('when color is black', () => {
-      it('should set "daff-hero--black" on host element', () => {
-        component.color = 'black';
-        fixture.detectChanges();
-        expect(fixture.nativeElement.classList.contains('daff-hero--black')).toEqual(true);
-      });
-    });
-
-    describe('when color is white', () => {
-      it('should set "daff-hero--white" on host element', () => {
-        component.color = 'white';
-        fixture.detectChanges();
-        expect(fixture.nativeElement.classList.contains('daff-hero--white')).toEqual(true);
-      });
+    it('should not set a default color', () => {
+      expect(component.color).toBeFalsy();
     });
   });
-
 });

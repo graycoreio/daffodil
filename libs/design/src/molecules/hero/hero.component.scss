@@ -1,6 +1,17 @@
 @import '../../scss/daff-util';
 
-@mixin hero-headings($titleSize: 4rem, $subtitleSize: 1.5rem) {
+.daff-hero {
+  $root: &;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: calc(70vh - 99px);
+  padding: 75px 25px;
+
+  @include breakpoint(mobile) {
+    padding: 100px 50px;
+  }
+
   &__title {
     margin: 0;
     padding: 0;
@@ -11,7 +22,7 @@
     }
 
     @include breakpoint(big-tablet) {
-      font-size: $titleSize;
+      font-size: 4rem;
       line-height: 5rem;
     }
   }
@@ -29,7 +40,7 @@
 
     @include breakpoint(big-tablet) {
       margin: 25px 0 0 0;
-      font-size: $subtitleSize;
+      font-size: 1.5rem;
     }
 
     + button,
@@ -46,61 +57,18 @@
       text-align: left;
     }
   }
-}
-
-.daff-hero {
-  $root: &;
-  @include hero-headings();
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  min-height: calc(70vh - 99px);
-
-  &__container {
-    max-width: 1920px;
-    margin: 0 auto;
-    padding: 75px 25px;
-    flex: 1;
-
-    @include breakpoint(mobile) {
-      padding: 100px 50px;
-    }
-  }
-
-  &--grid {
-    #{$root}__container {
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-gap: 25px; 
-      align-items: center;
-
-      @include breakpoint(mobile) {
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 50px;
-      }
-    }
-  }
 
   &--small {
-    #{$root}__container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 75px 0;
-      flex: 1;
+    padding: 75px 0;
 
-      @include breakpoint(mobile) {
-        padding: 100px 0;
-      }
+    @include breakpoint(mobile) {
+      padding: 100px 0;
     }
   }
 
   &--centered {
-
-    #{$root}__container {
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-    }
+    display: flex;
+    align-items: center;
 
     #{$root}__title {
       margin: 0 auto;
@@ -133,28 +101,23 @@
 
   // color variants
 
-  &--primary {
+  &.daff-primary {
     background-color: $primary;
     color: $white;
   }
 
-  &--accent {
+  &.daff-accent {
     background-color: $accent;
     color: white;
   }
 
-  &--white {
+  &.daff-white {
     background-color: $white;
     color: $black;
   }
 
-  &--black {
+  &.daff-black {
     background-color: $black;
     color: $white;
-  }
-
-  &--gray {
-    background-color: daff-color($daff-gray, 100);
-    color: $black;
   }
 }
