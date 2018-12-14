@@ -3,7 +3,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FooterComponent } from './footer.component';
 import { By } from '@angular/platform-browser';
 
-import { DaffContainerModule } from '@daffodil/design';
+import {
+  DaffContainerModule,
+  DaffListModule
+} from '@daffodil/design';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
@@ -15,7 +18,8 @@ describe('FooterComponent', () => {
         FooterComponent
       ],
       imports: [
-        DaffContainerModule
+        DaffContainerModule,
+        DaffListModule
       ]
     })
     .compileComponents();
@@ -36,6 +40,18 @@ describe('FooterComponent', () => {
       let container = fixture.debugElement.query(By.css('daff-container'));
 
       expect(container.componentInstance.size).toEqual('medium');
+    });
+  });
+
+  describe('the list of navigational links', () => {
+    it('should render three daff-lists with type="link"', () => {
+      let lists = fixture.debugElement.queryAll(By.css('daff-list'));
+
+      expect(lists.length).toEqual(3);
+      
+      lists.forEach(list => {
+        expect(list.componentInstance.type).toEqual('link');
+      });
     });
   });
 });
