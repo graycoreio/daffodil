@@ -50,7 +50,7 @@ describe('DaffContainerComponent', () => {
 
     describe('when size is xlarge', () => {
       it('should set "daff-container--xlarge" on host element', () => {
-        component.size = 'large';
+        component.size = 'xlarge';
         fixture.detectChanges();
         expect(fixture.nativeElement.classList.contains('daff-container--xlarge')).toEqual(true);
       });
