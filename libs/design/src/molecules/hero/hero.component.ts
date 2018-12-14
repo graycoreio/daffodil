@@ -2,6 +2,17 @@ import { Component, ViewEncapsulation, Input, ElementRef, ChangeDetectionStrateg
 
 import { DaffPalette, daffColorMixin, DaffColorable } from '../../core/colorable/colorable';
 
+export type DaffHeroLayout = "centered" | undefined;
+export enum DaffHeroLayoutEnum {
+  Centered = "centered"
+}
+
+export type DaffHeroSize = "fullscreen" | "small" | undefined;
+export enum DaffHeroSizeEnum {
+  Fullscreen = "fullscreen",
+  Small = "small"
+}
+
 /**
  * An _elementRef is needed for the Colorable mixin
  */
@@ -19,15 +30,15 @@ const _daffHeroBase = daffColorMixin(DaffHeroBase)
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'daff-hero',
-    '[class.daff-hero--centered]':'layout === "centered"',
-    '[class.daff-hero--fullscreen]':'size === "fullscreen"',
-    '[class.daff-hero--small]':'size === "small"'
+    '[class.daff-hero--centered]':'layout === "' + DaffHeroLayoutEnum.Centered + '"',
+    '[class.daff-hero--fullscreen]':'size === "' + DaffHeroSizeEnum.Fullscreen + '"',
+    '[class.daff-hero--small]':'size === "' + DaffHeroSizeEnum.Small + '"'
   },
 })
 export class DaffHeroComponent extends _daffHeroBase implements DaffColorable {
 
-  @Input() layout: string;
-  @Input() size: string;
+  @Input() layout: DaffHeroLayout;
+  @Input() size: DaffHeroSize;
   @Input() color: DaffPalette;
 
   constructor(private elementRef: ElementRef) {
