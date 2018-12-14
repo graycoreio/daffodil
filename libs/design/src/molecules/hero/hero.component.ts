@@ -5,11 +5,11 @@ import { DaffPalette, daffColorMixin, DaffColorable } from '../../core/colorable
 /**
  * An _elementRef is needed for the Colorable mixin
  */
-export class DaffCalloutBase {
+export class DaffHeroBase {
   constructor(public _elementRef: ElementRef) {}
 }
 
-const _daffCalloutBase = daffColorMixin(DaffCalloutBase)
+const _daffHeroBase = daffColorMixin(DaffHeroBase)
 
 @Component({
   selector: 'daff-hero',
@@ -24,7 +24,7 @@ const _daffCalloutBase = daffColorMixin(DaffCalloutBase)
     '[class.daff-hero--small]':'size === "small"'
   },
 })
-export class DaffHeroComponent extends _daffCalloutBase implements DaffColorable {
+export class DaffHeroComponent extends _daffHeroBase implements DaffColorable {
 
   @Input() layout: string;
   @Input() size: string;
