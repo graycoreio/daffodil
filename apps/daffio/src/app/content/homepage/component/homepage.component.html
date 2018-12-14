@@ -12,7 +12,7 @@
 </daff-hero>
 
 <daff-callout layout="centered" class="pwa">
-  <daff-container size="medium">
+  <daff-container size="md">
     <h3 daff-callout-title>
       Written with Progressive Web Apps in mind
     </h3>
@@ -21,24 +21,19 @@
     </p>
     <div class="grid">
       <img class="grid__image" src="/assets/pwa-screens.png" />
-      <daff-list type="multi-line">
-        <daff-list-item>
-          <h4>Offline Support</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vehicula lacinia tellus quis bibendum.</p>
-        </daff-list-item>
-        <daff-list-item>
-          <h4>App-Like UX & Installation</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vehicula lacinia tellus quis bibendum.</p>
-        </daff-list-item>
-        <daff-list-item>
-          <h4>Progressive Enhancements</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vehicula lacinia tellus quis bibendum.</p>
-        </daff-list-item>
-        <daff-list-item>
-          <h4>Discoverable</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vehicula lacinia tellus quis bibendum.</p>
-        </daff-list-item>
-      </daff-list>
+      <ul daff-list>
+        <div daff-list-title>Offline Support</div>
+        <li daff-list-item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vehicula lacinia tellus quis bibendum.</li>
+
+        <div daff-list-title>App-Like UX & Installation</div>
+        <li daff-list-item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vehicula lacinia tellus quis bibendum.</li>
+
+        <div daff-list-title>Progressive Enhancements</div>
+        <li daff-list-item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vehicula lacinia tellus quis bibendum.</li>
+
+        <div daff-list-title>Discoverable</div>
+        <li daff-list-item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vehicula lacinia tellus quis bibendum.</li>
+      </ul>
     </div>
     <div class="pwa__button">
       <button daff-clear-button color="accent">Learn more about Progressive Web Apps <i class="fas fa-arrow-right"></i></button>

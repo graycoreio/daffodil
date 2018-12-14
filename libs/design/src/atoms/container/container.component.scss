@@ -5,19 +5,23 @@
     margin: 0 auto;
     padding: 0;
 
-    &--small {
+    &--xs {
+        max-width: 640px;
+    }
+
+    &--sm {
         max-width: 800px;
     }
 
-    &--medium {
-        max-width: 1200px;
+    &--md {
+        max-width: 1040px;
     }
 
-    &--large {
+    &--lg {
         max-width: 1340px;
     }
 
-    &--xlarge {
+    &--xl {
         max-width: 1920px;
     }
 }

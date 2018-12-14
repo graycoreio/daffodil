@@ -1,26 +1,18 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { DaffListSubheaderComponent } from './list-subheader/list-subheader.component';
-import { DaffListComponent } from './list/list.component';
-import { DaffListItemComponent } from './list-item/list-item.component';
-import { DaffListItemIconComponent } from './list-item-icon/list-item-icon.component';
+import { DaffListTitleComponent } from './components/list-title/list-title.component';
+import { DaffListComponent } from './components/list/list.component';
+import { DaffListItemComponent } from './components/list-item/list-item.component';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
   declarations: [
     DaffListComponent,
-    DaffListSubheaderComponent,
-    DaffListItemComponent,
-    DaffListItemIconComponent
+    DaffListTitleComponent,
+    DaffListItemComponent
   ],
   exports: [
     DaffListComponent,
-    DaffListSubheaderComponent,
-    DaffListItemComponent,
-    DaffListItemIconComponent
+    DaffListTitleComponent,
+    DaffListItemComponent
   ]
 })
 export class DaffListModule { }

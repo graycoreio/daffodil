@@ -158,10 +158,10 @@ describe('ProductComponent', () => {
   });
 
   describe('on <daff-container>', () => {
-    it('should set size="large"', () => {
+    it('should set size="lg"', () => {
       let container = fixture.debugElement.query(By.css('daff-container'));
 
-      expect(container.componentInstance.size).toEqual('large');
+      expect(container.componentInstance.size).toEqual('lg');
     });
   });
 });
