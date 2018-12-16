@@ -1,21 +1,37 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DaffContainerComponent } from './container.component';
+import { DaffContainerComponent, DaffContainerSize, DaffContainerSizeEnum } from './container.component';
+import { Component, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+
+@Component({
+  template: `<daff-container [size]="size"></daff-container>`
+})
+class WrapperComponent {
+  size: DaffContainerSize;
+}
 
 describe('DaffContainerComponent', () => {
+  let wrapper: WrapperComponent;
   let component: DaffContainerComponent;
-  let fixture: ComponentFixture<DaffContainerComponent>;
+  let de: DebugElement;
+  let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DaffContainerComponent ]
+      declarations: [ 
+        WrapperComponent,
+        DaffContainerComponent
+      ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DaffContainerComponent);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.debugElement.componentInstance;
+    de = fixture.debugElement.query(By.css('daff-container'));
+    component = de.componentInstance;
     fixture.detectChanges();
   });
 
@@ -24,35 +40,43 @@ describe('DaffContainerComponent', () => {
   }); 
 
   describe('setting the size of the container', () => {
-    describe('when size is small', () => {
-      it('should set "daff-container--small" on host element', () => {
-        component.size = 'small';
+    describe('when size is xs', () => {
+      it('should set "daff-container--xs" on host element', () => {
+        wrapper.size = DaffContainerSizeEnum.XSmall;
         fixture.detectChanges();
-        expect(fixture.nativeElement.classList.contains('daff-container--small')).toEqual(true);
+        expect(de.nativeElement.classList.contains('daff-container--xs')).toEqual(true);
       });
     });
 
-    describe('when size is medium', () => {
-      it('should set "daff-container--medium" on host element', () => {
-        component.size = 'medium';
+    describe('when size is sm', () => {
+      it('should set "daff-container--sm" on host element', () => {
+        wrapper.size = DaffContainerSizeEnum.Small;
         fixture.detectChanges();
-        expect(fixture.nativeElement.classList.contains('daff-container--medium')).toEqual(true);
+        expect(de.nativeElement.classList.contains('daff-container--sm')).toEqual(true);
       });
     });
 
-    describe('when size is large', () => {
-      it('should set "daff-container--large" on host element', () => {
-        component.size = 'large';
+    describe('when size is md', () => {
+      it('should set "daff-container--md" on host element', () => {
+        wrapper.size = DaffContainerSizeEnum.Medium;
         fixture.detectChanges();
-        expect(fixture.nativeElement.classList.contains('daff-container--large')).toEqual(true);
+        expect(de.nativeElement.classList.contains('daff-container--md')).toEqual(true);
       });
     });
 
-    describe('when size is xlarge', () => {
-      it('should set "daff-container--xlarge" on host element', () => {
-        component.size = 'xlarge';
+    describe('when size is lg', () => {
+      it('should set "daff-container--lg" on host element', () => {
+        wrapper.size = DaffContainerSizeEnum.Large;
         fixture.detectChanges();
-        expect(fixture.nativeElement.classList.contains('daff-container--xlarge')).toEqual(true);
+        expect(de.nativeElement.classList.contains('daff-container--lg')).toEqual(true);
+      });
+    });
+
+    describe('when size is xl', () => {
+      it('should set "daff-container--xl" on host element', () => {
+        wrapper.size = DaffContainerSizeEnum.XLarge;
+        fixture.detectChanges();
+        expect(de.nativeElement.classList.contains('daff-container--xl')).toEqual(true);
       });
     });
   });
