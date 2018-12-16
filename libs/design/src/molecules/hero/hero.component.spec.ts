@@ -40,14 +40,16 @@ describe('DaffHeroComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  }); 
+  });
 
-  describe('using a layout variant of a callout', () => {
-    it('should set a layout class on the callout', () => {
-      wrapper.layout = DaffHeroLayoutEnum.Centered;
-      fixture.detectChanges();
+  describe('setting the layout of the hero', () => {
+    describe('when layout is centered', () => {
+      it('should set "daff-hero--centered" on host element', () => {
+        wrapper.layout = DaffHeroLayoutEnum.Centered;
+        fixture.detectChanges();
 
-      expect(de.nativeElement.classList.contains('daff-hero--centered')).toEqual(true);
+        expect(de.nativeElement.classList.contains('daff-hero--centered')).toEqual(true);
+      });
     });
 
     it('should not set a default layout', () => {
@@ -55,12 +57,23 @@ describe('DaffHeroComponent', () => {
     });
   });
 
-  describe('using a size variant of a hero', () => {
-    it('should set a size class on the hero', () => {
-      wrapper.size = DaffHeroSizeEnum.Small;;
-      fixture.detectChanges();
+  describe('setting the size of the hero', () => {
+    describe('when size is fullscreen', () => {
+      it('should set "daff-hero--fullscreen" on host element', () => {
+        wrapper.size = DaffHeroSizeEnum.Fullscreen;
+        fixture.detectChanges();
 
-      expect(de.nativeElement.classList.contains('daff-hero--small')).toEqual(true);
+        expect(de.nativeElement.classList.contains('daff-hero--fullscreen')).toEqual(true);
+      });
+    });
+
+    describe('when size is small', () => {
+      it('should set "daff-hero--small" on host element', () => {
+        wrapper.size = DaffHeroSizeEnum.Small;
+        fixture.detectChanges();
+
+        expect(de.nativeElement.classList.contains('daff-hero--small')).toEqual(true);
+      });
     });
 
     it('should not set a default size', () => {
