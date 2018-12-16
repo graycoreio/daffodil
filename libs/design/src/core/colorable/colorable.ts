@@ -11,10 +11,11 @@ export interface DaffColorable {
 /**
  * These are the valid options that can be passed to a DaffColorable component
  */
-export type DaffPalette = "primary" | "accent" | "black" | "white" | "blue" | undefined;
+export type DaffPalette = "primary" | "secondary" | "tertiary" | "black" | "white" | "blue" | undefined;
 export enum DaffPaletteEnum {
     PRIMARY = "primary",
-    ACCENT = "accent",
+    secondary = "secondary",
+    TERTIARY = "tertiary",
     BLACK = "black",
     WHITE = "white",
     BLUE = "blue",

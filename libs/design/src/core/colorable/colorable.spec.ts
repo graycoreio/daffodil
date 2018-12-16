@@ -49,11 +49,11 @@ describe('daffColorMixin', () => {
       instance.color = "primary";
       expect(instance.element.classList).toContain('daff-primary');
 
-      instance.color = "accent";
+      instance.color = "secondary";
     });
     
     it('should add the new color class', () => {
-      expect(instance.element.classList).toContain('daff-accent');
+      expect(instance.element.classList).toContain('daff-secondary');
     });
 
     it('should remove the provious color class', () => {
@@ -110,8 +110,8 @@ describe('colorInPalette', () => {
         expect(colorInPalette("black")).toEqual(true);
         expect(colorInPalette("white")).toEqual(true);
         expect(colorInPalette("primary")).toEqual(true);
-        expect(colorInPalette("accent")).toEqual(true);
-        expect(colorInPalette("blue")).toEqual(true);
+        expect(colorInPalette("secondary")).toEqual(true);
+        expect(colorInPalette("tertiary")).toEqual(true);
     });
   });
 

@@ -88,9 +88,14 @@
     color: $black;
   }
 
-  &.daff-accent {
-    background-color: $accent;
+  &.daff-secondary {
+    background-color: $secondary;
     color: white;
+  }
+
+  &.daff-tertiary {
+    background-color: $tertiary;
+    color: $white;
   }
 
   &.daff-white {

@@ -70,11 +70,11 @@ describe('DaffHeroComponent', () => {
       });
     });
 
-    describe('when color is accent', () => {
-      it('should set "daff-hero--accent" on host element', () => {
-        component.color = 'accent';
+    describe('when color is secondary', () => {
+      it('should set "daff-hero--secondary" on host element', () => {
+        component.color = 'secondary';
         fixture.detectChanges();
-        expect(fixture.nativeElement.classList.contains('daff-hero--accent')).toEqual(true);
+        expect(fixture.nativeElement.classList.contains('daff-hero--secondary')).toEqual(true);
       });
     });
 

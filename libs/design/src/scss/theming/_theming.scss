@@ -2,8 +2,7 @@
 @import 'color';
 
 $primary: daff-color($daff-yellow, 60);
-$accent: daff-color($daff-purple, 60);
+$secondary: daff-color($daff-purple, 60);
+$tertiary: daff-color($daff-blue, 60);
 $gray: daff-color($daff-gray, 60);
 $black: daff-color($daff-gray, 100);
-
-$blue: daff-color($daff-blue, 60);

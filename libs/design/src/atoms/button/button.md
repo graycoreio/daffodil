@@ -17,7 +17,7 @@ The button is used for making actions apparent to the end-user. It can be used t
 
 To define a button color, add `color="[value]"` to the button tag.
 
-* Color values: `primary`, `accent`, `black`, and `white`
+* Color values: `primary`, `secondary`, `black`, and `white`
 
 ## Accessbility
 

@@ -27,9 +27,9 @@
         }
     }
 
-    &.daff-accent {
-        background-color: $accent;
-        border: 1px solid $accent;
+    &.daff-secondary {
+        background-color: $secondary;
+        border: 1px solid $secondary;
         color: $white;
 
         &:hover {
@@ -38,9 +38,9 @@
         }
     }
 
-    &.daff-blue {
-        background-color: $blue;
-        border: 1px solid $blue;
+    &.daff-tertiary {
+        background-color: $tertiary;
+        border: 1px solid $tertiary;
         color: $white;
 
         &:hover {
@@ -110,16 +110,16 @@
         }
     }
 
-    &.daff-accent {
-        color: $accent;
+    &.daff-secondary {
+        color: $secondary;
 
         &:hover {
             color: daff-color($daff-purple, 70);
         }
     }
 
-    &.daff-blue {
-        color: $blue;
+    &.daff-tertiary {
+        color: $tertiary;
 
         &:hover {
             color: daff-color($daff-blue, 70);
@@ -175,16 +175,16 @@
         }
     }
 
-    &.daff-accent {
-        color: $accent;
+    &.daff-secondary {
+        color: $secondary;
         
         &:hover {
             color: daff-color($daff-purple, 70);
         }
     }
 
-    &.daff-accent {
-        color: $blue;
+    &.daff-tertiary {
+        color: $tertiary;
         
         &:hover {
             color: daff-color($daff-blue, 70);
@@ -244,22 +244,22 @@
         }
     }
 
-    &.daff-accent {
-        border: 1px solid $accent;
-        color: $accent;
+    &.daff-secondary {
+        border: 1px solid $secondary;
+        color: $secondary;
 
         &:hover {
-            background-color: $accent;
+            background-color: $secondary;
             color: $white;
         }
     }
 
-    &.daff-blue {
-        border: 1px solid $blue;
-        color: $blue;
+    &.daff-tertiary {
+        border: 1px solid $tertiary;
+        color: $tertiary;
 
         &:hover {
-            background-color: $blue;
+            background-color: $tertiary;
             color: $white;
         }
     }

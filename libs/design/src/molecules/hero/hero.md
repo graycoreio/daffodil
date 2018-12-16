@@ -13,7 +13,7 @@ The `hero` component is a top level container that is large and captivating. It 
 
 ## Colors
 * To define a hero background color, add `color="[value]"` to the hero tag.
-* Values: `primary`, `accent`, `gray`, `black`, and `white`
+* Values: `primary`, `secondary`, `gray`, `black`, and `white`
 
 ## Sizing
 * To define a hero size, add `size="[value]"` to the hero tag.
