@@ -4,7 +4,6 @@
   $root: &;
   display: flex;
   align-items: center;
-  flex-direction: column;
   min-height: calc(70vh - 99px);
   padding: 75px 25px;
 
@@ -67,8 +66,6 @@
   }
 
   &--centered {
-    display: flex;
-    align-items: center;
 
     #{$root}__title {
       margin: 0 auto;
@@ -83,7 +80,6 @@
 
   &--fullscreen {
     min-height: calc(100vh - 99px);
-    margin: 0;
 
     #{$root}__container {
       padding: 25px;
