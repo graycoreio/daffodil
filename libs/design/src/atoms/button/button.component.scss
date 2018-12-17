@@ -1,20 +1,24 @@
 @import '../../scss/daff-util';
 
-.daff-button {
-    min-width: 90px;
+@mixin daff-button {
     display: inline-block;
     position: relative;
-    overflow: hidden;
     font-size: 1rem;
     margin: 0;
-    padding: 15px 20px;
+    overflow: hidden;
     text-align: center;
-    cursor: pointer;
     transition: 0.2s ease-in;
+    @include clickable();
 
     &:focus {
         outline: none;
     }
+}
+
+.daff-button {
+    @include daff-button();
+    min-width: 90px;
+    padding: 15px 20px;
 
     &.daff-primary {
         background-color: $primary;
@@ -74,22 +78,13 @@
 }
 
 .daff-icon-button {
-    display: inline-block;
+    @include daff-button();
     height: 40px;
     width: 40px;
     line-height: 40px;
-    font-size: 1rem;
-    text-align: center;
     background: none;
     padding: 0;
-    margin: 0;
     border: 0;
-    cursor: pointer;
-    transition: 0.2s ease-in;
-
-    &:focus {
-        outline: none;
-    }
 
     &.daff-primary {
         color: $primary;
@@ -134,19 +129,11 @@
 }
 
 .daff-clear-button {
+    @include daff-button();
     min-width: 90px;
-    display: inline-block;
-    position: relative;
-    overflow: hidden;
     background-color: transparent;
     border: 1px solid transparent;
-    font-size: 1rem;
-    margin: 0;
     padding: 15px 20px;
-    text-align: center;
-    cursor: pointer;
-    transition: 0.2s ease-in;
-
 
     &.daff-primary {
         color: $primary;
@@ -180,10 +167,6 @@
         }
     }
 
-    &:focus {
-        outline: none;
-    }
-
     &[disabled] {
         cursor: not-allowed;
         color: daff-color($daff-gray, 600);
@@ -195,17 +178,9 @@
 }
 
 .daff-stroked-button {
+    @include daff-button();
     min-width: 90px;
-    display: inline-block;
-    position: relative;
-    overflow: hidden;
-    font-size: 1rem;
-    margin: 0;
     padding: 15px 20px;
-    text-align: center;
-    cursor: pointer;
-    background-color: transparent;
-    transition: 0.2s ease-in;
 
     &.daff-primary {
         border: 1px solid $primary;
@@ -245,10 +220,6 @@
             background-color: $white;
             color: $black;
         }
-    }
-
-    &:focus {
-        outline: none;
     }
 
     &[disabled] {
