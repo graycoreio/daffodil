@@ -3,6 +3,7 @@
 @mixin daff-button {
     display: inline-block;
     position: relative;
+    font-family: $body-font-family;
     font-size: 1rem;
     margin: 0;
     overflow: hidden;
