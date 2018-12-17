@@ -31,6 +31,22 @@
       &:first-of-type {
         padding: 0 0 15px 0;
       }
+
+      &__content {
+        *:nth-child(1) {
+          @include embolden();
+          @include uppercase();
+          font-size: 1rem;
+          line-height: 1rem;
+          margin: 0 0 5px 0;
+          padding: 0;
+        }
+    
+        *:nth-child(n+2) {
+          margin: 0;
+          padding: 0;
+        }
+      }
     }
   }
 }
@@ -46,21 +62,5 @@
 
   &__icon {
     margin-right: 15px;
-  }
-
-  &__content {
-    *:nth-child(1) {
-      @include embolden();
-      @include uppercase();
-      font-size: 1rem;
-      line-height: 1rem;
-      margin: 0 0 5px 0;
-      padding: 0;
-    }
-
-    *:nth-child(n+2) {
-      margin: 0;
-      padding: 0;
-    }
   }
 }
