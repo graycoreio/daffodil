@@ -42,9 +42,8 @@
       font-size: 1.5rem;
     }
 
-    + button,
-    + .daff-button-set {
-      margin-top: 50px;
+    + * {
+      margin: 50px 0 0 0;
     }
   }
 
