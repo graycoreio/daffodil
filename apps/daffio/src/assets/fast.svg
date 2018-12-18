@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 152.41 136.56" style="enable-background:new 0 0 152.41 136.56;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#000000;stroke-width:3;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#2618B1;stroke-width:3;stroke-miterlimit:10;}
+</style>
+<g>
+	<polyline class="st0" points="23.74,17.34 55.7,17.34 55.7,3.57 84.35,28.36 56.73,53.71 56.8,41.59 33.66,41.59 	"/>
+	<polyline class="st0" points="49.91,79.88 82.14,79.88 82.14,60.04 119.88,95.86 82.42,132.77 82.42,112.94 23.74,112.94 	"/>
+	<polyline class="st1" points="94.35,40.5 124.38,40.5 124.38,26.72 150,49.16 124.17,74.99 124.17,58.95 111.16,58.95 	"/>
+	<line class="st1" x1="35.81" y1="28.64" x2="13.22" y2="28.64"/>
+	<line class="st1" x1="9.37" y1="28.64" x2="0" y2="28.64"/>
+	<line class="st1" x1="62.26" y1="92.42" x2="35.81" y2="92.42"/>
+	<line class="st1" x1="31.4" y1="92.42" x2="23.74" y2="92.42"/>
+	<line class="st1" x1="19.28" y1="92.42" x2="9.37" y2="92.42"/>
+	<line class="st1" x1="19.65" y1="112.95" x2="9.73" y2="112.95"/>
+</g>
+</svg>

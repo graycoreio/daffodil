@@ -22,6 +22,7 @@ export * from './molecules/select-validator/public_api';
 export * from './molecules/sidebar/public_api';
 export * from './molecules/hero/public_api';
 export * from './molecules/callout/public_api';
+export * from './molecules/feature/public_api';
 
 //Helpers
 export { ErrorStateMatcher } from './molecules/error-state-matcher/error-state-matcher';
