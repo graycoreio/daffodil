@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DaffHeroComponent } from './hero.component';
-import { DaffHeroSubtitleComponent } from './hero-subtitle.component';
-import { DaffHeroTitleComponent } from './hero-title.component';
+import { DaffHeroSubtitleComponent } from './hero-subtitle/hero-subtitle.component';
+import { DaffHeroTitleComponent } from './hero-title/hero-title.component';
 
 @NgModule({
   imports: [

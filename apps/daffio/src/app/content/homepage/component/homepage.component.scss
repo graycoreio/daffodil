@@ -1,5 +1,18 @@
 @import 'daff-util';
 
+.hero-button-set {
+  justify-content: center;
+  align-items: center; 
+}
+
+.pwa {
+  background-color: daff-color($daff-gray, 100);
+
+  &__button {
+    text-align: center;
+  }
+}
+
 .grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -18,13 +31,5 @@
 
   &__list {
     padding: 15px;
-  }
-}
-
-.pwa {
-  background-color: daff-color($daff-gray, 100);
-
-  &__button {
-    text-align: center;
   }
 }
