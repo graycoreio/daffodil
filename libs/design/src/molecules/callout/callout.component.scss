@@ -14,9 +14,12 @@
     margin: 0;
     padding: 0;
     font-size: 1.5rem;
+    text-align: center;
+    max-width: 1000px;
 
     @include breakpoint(mobile) {
       font-size: 2rem;
+      text-align: left;
     }
 
     @include breakpoint(big-tablet) {
@@ -30,23 +33,19 @@
     padding: 0;
     font-size: 1rem;
     font-weight: 400;
+    text-align: center;
+    max-width: 600px;
+
+    @include breakpoint(mobile) {
+      text-align: left;
+    }
 
     @include breakpoint(big-tablet) {
       margin: 25px 0 0 0;
     }
 
-    + button,
-    + .daff-button-set {
-      margin-top: 50px;
-    }
-  }
-
-  &__title, &__body {
-    max-width: 1000px;
-    text-align: center;
-
-    @include breakpoint(mobile) {
-      text-align: left;
+    + * {
+      margin: 50px 0 0 0;
     }
   }
 
@@ -59,17 +58,18 @@
   }
 
   &--centered {
-    display: flex;
-    align-items: center;
-
     #{$root}__title {
       margin: 0 auto;
       text-align: center;
     }
 
     #{$root}__body {
-      margin: 25px auto 0 auto;
+      margin: 10px auto 0 auto;
       text-align: center;
+
+      @include breakpoint(big-tablet) {
+        margin: 25px auto 0 auto;
+      }
     }
   }
 
