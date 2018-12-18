@@ -3,10 +3,12 @@
 @mixin daff-button {
     display: inline-block;
     position: relative;
+    font-family: $body-font-family;
     font-size: 1rem;
     margin: 0;
     overflow: hidden;
     text-align: center;
+    text-decoration: none;
     transition: 0.2s ease-in;
     @include clickable();
 
@@ -133,7 +135,6 @@
     min-width: 90px;
     background-color: transparent;
     border: 1px solid transparent;
-    padding: 15px 20px;
 
     &.daff-primary {
         color: $primary;
