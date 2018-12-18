@@ -13,6 +13,26 @@
   }
 }
 
+.features {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1px;
+  background-color: daff-color($daff-gray, 200);
+
+  @include breakpoint(tablet) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  > * {
+    background-color: $white;
+  }
+
+  &__button {    
+    > * {
+      margin-left: 5px;
+    }
+  }
+}
 .grid {
   display: grid;
   grid-template-columns: 1fr;
