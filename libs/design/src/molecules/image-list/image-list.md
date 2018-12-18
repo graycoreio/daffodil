@@ -1,5 +1,5 @@
 # Daff Image List Component
-The daff image list component wraps elements (usually imgs) to display them in a list. The position of the list of images is horizonal when the screen size is larger than 1024px, and is vertical when the smaller.
+The daff image list component wraps elements (usually imgs) to display them in a list. The position of the list of images is vertical when the screen size is larger than 1024px, and is horizontal when the smaller.
 
  ## Usage 
  ```
