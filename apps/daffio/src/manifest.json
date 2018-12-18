@@ -1,7 +1,7 @@
 {
   "name": "Daffodil",
   "short_name": "Daffodil",
-  "theme_color": "#1976d2",
+  "theme_color": "#ffc810",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "/",
