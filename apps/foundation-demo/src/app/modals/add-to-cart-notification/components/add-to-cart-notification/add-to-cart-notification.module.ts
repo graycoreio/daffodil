@@ -4,11 +4,12 @@ import { DaffButtonSetModule, DaffModalModule, DaffButtonModule } from '@daffodi
 import { AddToCartNotificationComponent } from './add-to-cart-notification.component';
 import { ViewCartModule } from '../../../../cart/components/view-cart/view-cart.module';
 import { ProceedToCheckoutModule } from '../../../../cart/components/proceed-to-checkout/proceed-to-checkout.module';
-import { TemplateModule } from '../../../../core/template/template.module';
 import { ProductAddedModule } from '../product-added/product-added.module';
 import { FoundationAddToCartNotificationStateModule } from '../../add-to-cart-notification-state.module';
 import { StateCartModule } from '@daffodil/state';
 import { LoadingIconModule } from '../../../../core/loading-icon/loading-icon.module';
+import { TemplateModule } from '../../../../core/template/template/template.module';
+import { ModalPortalModule } from 'apps/foundation-demo/src/app/core/template/portals/modal-portal.module';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { LoadingIconModule } from '../../../../core/loading-icon/loading-icon.mo
     ProductAddedModule,
     FoundationAddToCartNotificationStateModule,
     StateCartModule,
-    LoadingIconModule
+    LoadingIconModule,
+    ModalPortalModule
   ],
   declarations: [
     AddToCartNotificationComponent

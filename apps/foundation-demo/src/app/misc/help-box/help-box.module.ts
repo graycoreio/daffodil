@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LoadingIconComponent } from './loading-icon.component';
+import { HelpBoxComponent } from './help-box.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
-    LoadingIconComponent
+    HelpBoxComponent
   ],
   exports: [
-    LoadingIconComponent
+    HelpBoxComponent
   ]
 })
-export class LoadingIconModule { }
+export class HelpBoxModule { }

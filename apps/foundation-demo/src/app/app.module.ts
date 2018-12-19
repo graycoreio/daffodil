@@ -17,12 +17,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { ProductModule } from './product/product.module';
 
 import { CartModule } from './cart/cart.module';
-import { MiscModule } from './misc/misc.module';
 import { CheckoutModule } from './checkout/checkout.module';
-import { TemplateModule } from './core/template/template.module';
 
 import { getDriverVariant } from './helper/driver-variant';
 import { NotFoundModule } from './misc/not-found/not-found.module';
+import { TemplateModule } from './core/template/template/template.module';
 
 @NgModule({
   declarations: [
@@ -48,7 +47,6 @@ import { NotFoundModule } from './misc/not-found/not-found.module';
 
     ProductModule,
     CartModule,
-    // MiscModule,
     CheckoutModule,
     TemplateModule,
     NotFoundModule
