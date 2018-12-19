@@ -90,7 +90,7 @@ class MockCartContainer {
 @Component({selector: 'thank-you', template: ''})
 class MockThankYouComponent {}
 
-@Component({ selector: 'loading-icon', template: ''})
+@Component({ selector: 'fd-loading-icon', template: ''})
 class MockLoadingIconComponent {}
 
 describe('CheckoutViewComponent', () => {
@@ -451,14 +451,14 @@ describe('CheckoutViewComponent', () => {
       fixture.detectChanges();
 
       checkoutElement = fixture.debugElement.query(By.css('.checkout'));
-      loadingIcon = fixture.debugElement.query(By.css('.checkout__loading-icon'));
+      loadingIcon = fixture.debugElement.query(By.css('.checkout__fd-loading-icon'));
     });
     
     it('should not render checkoutElement', () => {
       expect(checkoutElement).toBeNull();
     });
 
-    it('should render loadingIcon', () => {
+    it('should render fd-loading-icon', () => {
       expect(loadingIcon).not.toBeNull();
     });
   });
@@ -473,7 +473,7 @@ describe('CheckoutViewComponent', () => {
       fixture.detectChanges();
 
       checkoutElement = fixture.debugElement.query(By.css('.checkout'));
-      loadingIcon = fixture.debugElement.query(By.css('.checkout__loading-icon'));
+      loadingIcon = fixture.debugElement.query(By.css('.checkout__fd-loading-icon'));
     });
     
     it('should render checkout', () => {

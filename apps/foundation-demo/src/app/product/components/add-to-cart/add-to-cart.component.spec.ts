@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { AddToCartComponent } from './add-to-cart.component';
 
-@Component({template: '<add-to-cart (addToCart)="eventCatcher()" [additive]="additiveValue" [qty]="qtyValue"></add-to-cart>'})
+@Component({template: '<fd-add-to-cart (addToCart)="eventCatcher()" [additive]="additiveValue" [qty]="qtyValue"></fd-add-to-cart>'})
 class AddToCartWrapperTest {
   additiveValue = 'additiveValue';
   qtyValue = 1;
@@ -37,7 +37,7 @@ describe('AddToCartComponent', () => {
     
     fixture.detectChanges();
 
-    addToCartComponent = fixture.debugElement.query(By.css('add-to-cart')).componentInstance;
+    addToCartComponent = fixture.debugElement.query(By.css('fd-add-to-cart')).componentInstance;
   });
 
   it('should create', () => {

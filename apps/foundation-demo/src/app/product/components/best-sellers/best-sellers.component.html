@@ -4,7 +4,7 @@
     <product-grid [products]="BestSellersContainer.bestSellers"></product-grid>
   </div>
 
-  <div *ngIf="(BestSellersContainer.loading$ | async)" class="best-sellers__loading-icon">
-    <loading-icon></loading-icon>
+  <div *ngIf="(BestSellersContainer.loading$ | async)" class="best-sellers__fd-loading-icon">
+    <fd-loading-icon></fd-loading-icon>
   </div>
 </div>

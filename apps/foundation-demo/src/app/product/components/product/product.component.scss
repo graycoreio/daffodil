@@ -45,7 +45,7 @@
   }
 }
 
-.product {
+.fd-product {
   @include product-page-grid();
 
   &__info, &__details {

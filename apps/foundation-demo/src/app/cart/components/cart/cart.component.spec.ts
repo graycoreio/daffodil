@@ -8,23 +8,23 @@ import { Cart, CartItem } from '@daffodil/core';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/core/testing';
 
 @Component({template: '<cart [cart]="cartValue"></cart>'})
-class TestCartWrapper {
+class TestCartComponent {
   cartValue: Cart;
 }
 
-@Component({selector: 'cart-item', template: ''})
+@Component({selector: 'fd-cart-item', template: ''})
 class MockCartItemComponent {
   @Input() item: CartItem;
 }
 
 describe('CartComponent', () => {
-  let component: TestCartWrapper;
-  let fixture: ComponentFixture<TestCartWrapper>;
+  let component: TestCartComponent;
+  let fixture: ComponentFixture<TestCartComponent>;
   let cartItems;
   let cart: CartComponent;
 
-  let cartFactory = new DaffCartFactory();
-  let mockCart = cartFactory.create({
+  const cartFactory = new DaffCartFactory();
+  const mockCart = cartFactory.create({
     items: new DaffCartItemFactory().createMany(2)
   });
 
@@ -32,7 +32,7 @@ describe('CartComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         CartComponent,
-        TestCartWrapper,
+        TestCartComponent,
         MockCartItemComponent
       ]
     })
@@ -40,13 +40,13 @@ describe('CartComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestCartWrapper);
+    fixture = TestBed.createComponent(TestCartComponent);
     component = fixture.componentInstance;
 
     component.cartValue = mockCart;
 
     fixture.detectChanges();
-    cartItems = fixture.debugElement.queryAll(By.css('cart-item'));
+    cartItems = fixture.debugElement.queryAll(By.css('fd-cart-item'));
     cart = fixture.debugElement.query(By.css('cart')).componentInstance;
   });
 
@@ -62,11 +62,11 @@ describe('CartComponent', () => {
     expect(cart.cart).toEqual(mockCart);
   });
 
-  it('renders a <cart-item> for every cart.items', () => {
+  it('renders a <fd-cart-item> for every cart.items', () => {
     expect(cartItems.length).toEqual(mockCart.items.length);
   });
 
-  describe('on <cart-item>', () => {
+  describe('on <fd-cart-item>', () => {
     
     it('should set item', () => {
       expect(cartItems[0].componentInstance.item).toEqual(mockCart.items[0]);  

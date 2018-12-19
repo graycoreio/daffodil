@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
-  selector: 'foundation-product-view',
+  selector: 'fd-product-view',
   templateUrl: './product-view.component.html'
 })
 export class ProductViewComponent implements OnInit {

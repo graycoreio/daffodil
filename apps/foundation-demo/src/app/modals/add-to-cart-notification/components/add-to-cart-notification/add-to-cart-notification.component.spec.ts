@@ -19,7 +19,7 @@ let stubProductQty = 1;
 let stubLoading = false;
 let stubCartItemCount = 2;
 
-@Component({ template: '<add-to-cart-notification [verticalPosition]="verticalPositionValue" [horizontalPosition]="horizontalPositionValue"></add-to-cart-notification>'})
+@Component({ template: '<fd-add-to-cart-notification [verticalPosition]="verticalPositionValue" [horizontalPosition]="horizontalPositionValue"></fd-add-to-cart-notification>'})
 class TestAddToCartNotificationComponentWrapper {
   productValue: Product;
   verticalPositionValue: string = "bottom";
@@ -49,7 +49,7 @@ class MockProductAddedComponent {
   @Input() qty: number;
 }
 
-@Component({ selector: 'loading-icon', template: ''})
+@Component({ selector: 'fd-loading-icon', template: ''})
 class MockLoadingIconComponent {}
 
 describe('AddToCartNotificationComponent', () => {
@@ -107,7 +107,7 @@ describe('AddToCartNotificationComponent', () => {
     fixture.detectChanges();
     
     daffModal = fixture.debugElement.query(By.css('daff-modal')).componentInstance;
-    addToCartNotification = fixture.debugElement.query(By.css('add-to-cart-notification')).componentInstance;
+    addToCartNotification = fixture.debugElement.query(By.css('fd-add-to-cart-notification')).componentInstance;
     productAdded = fixture.debugElement.query(By.css('product-added')).componentInstance;
   });
     
@@ -241,25 +241,25 @@ describe('AddToCartNotificationComponent', () => {
     });
     
     it('should render top-bar', () => {
-      let topBarElement = fixture.debugElement.query(By.css('.add-to-cart-notification__top-bar'));
+      let topBarElement = fixture.debugElement.query(By.css('.fd-add-to-cart-notification__top-bar'));
 
       expect(topBarElement).not.toBeNull();
     });
     
     it('should render product-added', () => {
-      let productAddedElement = fixture.debugElement.query(By.css('.add-to-cart-notification__product-added'));
+      let productAddedElement = fixture.debugElement.query(By.css('.fd-add-to-cart-notification__product-added'));
 
       expect(productAddedElement).not.toBeNull();
     });
     
     it('should render button-set', () => {
-      let buttonSetElement = fixture.debugElement.query(By.css('.add-to-cart-notification__button-set'));
+      let buttonSetElement = fixture.debugElement.query(By.css('.fd-add-to-cart-notification__button-set'));
 
       expect(buttonSetElement).not.toBeNull();
     });
     
-    it('should not render <loading-icon>', () => {
-      let loadingIcon = fixture.debugElement.query(By.css('loading-icon'));
+    it('should not render <fd-loading-icon>', () => {
+      let loadingIcon = fixture.debugElement.query(By.css('fd-loading-icon'));
 
       expect(loadingIcon).toBeNull();
     });
@@ -273,25 +273,25 @@ describe('AddToCartNotificationComponent', () => {
     });
     
     it('should not render top-bar', () => {
-      let topBarElement = fixture.debugElement.query(By.css('.add-to-cart-notification__top-bar'));
+      let topBarElement = fixture.debugElement.query(By.css('.fd-add-to-cart-notification__top-bar'));
 
       expect(topBarElement).toBeNull();
     });
     
     it('should not render product-added', () => {
-      let productAddedElement = fixture.debugElement.query(By.css('.add-to-cart-notification__product-added'));
+      let productAddedElement = fixture.debugElement.query(By.css('.fd-add-to-cart-notification__product-added'));
 
       expect(productAddedElement).toBeNull();
     });
     
     it('should not render button-set', () => {
-      let buttonSetElement = fixture.debugElement.query(By.css('.add-to-cart-notification__button-set'));
+      let buttonSetElement = fixture.debugElement.query(By.css('.fd-add-to-cart-notification__button-set'));
 
       expect(buttonSetElement).toBeNull();
     });
     
-    it('should render <loading-icon>', () => {
-      let loadingIcon = fixture.debugElement.query(By.css('loading-icon'));
+    it('should render <fd-loading-icon>', () => {
+      let loadingIcon = fixture.debugElement.query(By.css('fd-loading-icon'));
 
       expect(loadingIcon).not.toBeNull();
     });

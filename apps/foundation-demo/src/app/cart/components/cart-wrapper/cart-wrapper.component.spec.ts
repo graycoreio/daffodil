@@ -12,7 +12,7 @@ import * as cartSelector from '../../selectors/cart-selector';
 import { of } from 'rxjs';
 
 @Component({template: '<cart-wrapper [cart]="cartValue"></cart-wrapper>'})
-class TestCartWrapper {
+class TestCartComponent {
   cartValue: Cart;
 }
 
@@ -20,7 +20,7 @@ class TestCartWrapper {
   selector: 'cart',
   template: ''
 })
-class CartMock { 
+class MockCartComponent { 
   @Input() cart: Cart;
   @Input() title: string;
 }
@@ -29,13 +29,13 @@ class CartMock {
   selector: 'promotion',
   template: ''
 })
-class PromotionMock {}
+class MockPromotionComponent {}
 
 @Component({
   selector: 'cart-totals',
   template: ''
 })
-class CartTotalsMock {
+class MockCartTotalsComponent {
   @Input() cart: Cart;
 }
 
@@ -43,21 +43,21 @@ class CartTotalsMock {
   selector: 'help-box',
   template: ''
 })
-class HelpBoxMock {}
+class MockHelpBoxComponent {}
 
 @Directive({
   selector: '[proceed-to-checkout]'
 })
-class ProceedToCheckoutMock {}
+class MockProceedToCheckoutComponent {}
 
 @Directive({
   selector: '[continue-shopping]'
 })
-class ContinueShoppingMock {}
+class MockContinueShoppingComponent {}
 
 describe('CartWrapper', () => {
-  let component: TestCartWrapper;
-  let fixture: ComponentFixture<TestCartWrapper>;
+  let component: TestCartComponent;
+  let fixture: ComponentFixture<TestCartComponent>;
   let cartWrapperComponent: CartWrapperComponent;
   let cartComponent;
   let promotionComponent;
@@ -65,10 +65,12 @@ describe('CartWrapper', () => {
   let helpBoxComponent;
   let proceedToCheckoutComponent;
   let continueShoppingComponent;
-  let cartFactory = new DaffCartFactory();
-  let cart = cartFactory.create();
-  let stubIsCartEmpty: boolean = true;
+  const cartFactory = new DaffCartFactory();
+  const cart = cartFactory.create();
+  let stubIsCartEmpty = true;
   let stubSelectCartItemCount: number;
+  let itemCountElement;
+  let summaryTitleElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -78,13 +80,13 @@ describe('CartWrapper', () => {
         })
       ],
       declarations: [ 
-        TestCartWrapper,
-        CartMock,
-        CartTotalsMock,
-        HelpBoxMock,
-        ProceedToCheckoutMock,
-        ContinueShoppingMock,
-        PromotionMock,
+        TestCartComponent,
+        MockCartComponent,
+        MockCartTotalsComponent,
+        MockHelpBoxComponent,
+        MockProceedToCheckoutComponent,
+        MockContinueShoppingComponent,
+        MockPromotionComponent,
         CartWrapperComponent
       ]
     })
@@ -92,7 +94,7 @@ describe('CartWrapper', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestCartWrapper);
+    fixture = TestBed.createComponent(TestCartComponent);
     component = fixture.componentInstance;
     component.cartValue = cart;
     cartWrapperComponent = fixture.debugElement.query(By.css('cart-wrapper')).componentInstance;
@@ -111,7 +113,7 @@ describe('CartWrapper', () => {
     });
     
     it('should set item count text to "Item"', () => {
-      let itemCountElement = fixture.debugElement.query(By.css('.cart-wrapper__item-count'));
+      itemCountElement = fixture.debugElement.query(By.css('.cart-wrapper__item-count'));
       
       expect(itemCountElement.nativeElement.innerText).toEqual('1 Item');
     });
@@ -127,7 +129,7 @@ describe('CartWrapper', () => {
     });
     
     it('should set item count text to "Items"', () => {
-      let itemCountElement = fixture.debugElement.query(By.css('.cart-wrapper__item-count'));
+      itemCountElement = fixture.debugElement.query(By.css('.cart-wrapper__item-count'));
 
       expect(itemCountElement.nativeElement.innerText).toEqual(stubSelectCartItemCount + ' Items');
     });
@@ -179,7 +181,7 @@ describe('CartWrapper', () => {
         });
 
         it('should not render .cart-wrapper__summary-title', () => {
-          let summaryTitleElement = fixture.debugElement.query(By.css('.cart-wrapper__summary-title'));
+          summaryTitleElement = fixture.debugElement.query(By.css('.cart-wrapper__summary-title'));
 
           expect(summaryTitleElement).toBeNull();
         });
@@ -208,19 +210,19 @@ describe('CartWrapper', () => {
         });
 
         it('should render .cart-wrapper__summary-title', () => {
-          let summaryTitleElement = fixture.debugElement.query(By.css('.cart-wrapper__summary-title'));
+          summaryTitleElement = fixture.debugElement.query(By.css('.cart-wrapper__summary-title'));
           
           expect(summaryTitleElement).not.toBeNull();
         });
 
         it('should render <promotion>', () => {
-          let promotionComponent = fixture.debugElement.query(By.css('promotion'))
+          promotionComponent = fixture.debugElement.query(By.css('promotion'))
 
           expect(promotionComponent).not.toBeNull();
         });
 
         it('should render <cart-totals>', () => {
-          let cartTotalsComponent = fixture.debugElement.query(By.css('cart-totals'))
+          cartTotalsComponent = fixture.debugElement.query(By.css('cart-totals'))
           expect(cartTotalsComponent).not.toBeNull();
         });
       

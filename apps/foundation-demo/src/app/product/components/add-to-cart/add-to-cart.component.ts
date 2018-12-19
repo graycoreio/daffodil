@@ -1,10 +1,10 @@
 import { Component, Output, EventEmitter, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'add-to-cart',
+  selector: 'fd-add-to-cart',
   templateUrl: './add-to-cart.component.html',
   styleUrls: ['./add-to-cart.component.scss'],
-  host: {'class': 'add-to-cart'},
+  host: {'class': 'fd-add-to-cart'},
   encapsulation: ViewEncapsulation.None
 })
 export class AddToCartComponent {

@@ -10,12 +10,12 @@ import { CheckoutCartAsyncWrapperComponent } from './checkout-cart-async-wrapper
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-let cartFactory = new DaffCartFactory();
-let cart = cartFactory.create();
-let stubCartTitle = 'cartTitle';
+const cartFactory = new DaffCartFactory();
+const cart = cartFactory.create();
+const stubCartTitle = 'cartTitle';
 
 @Component({template: '<checkout-cart-async-wrapper [cartTitle]="cartTitleValue" [cart]="cartValue$ | async" [loading]="loadingValue$ | async"><div class="transcluded-content"></div></checkout-cart-async-wrapper>'})
-class TestCheckoutCartAsyncWrapper {
+class TestCheckoutCartAsyncComponent {
   cartValue$: Observable<Cart>;
   loadingValue$: Observable<boolean>;
   cartTitleValue: string;
@@ -44,12 +44,12 @@ class MockCartTotalsComponent {
 })
 class MockHelpBoxComponent {}
 
-@Component({ selector: 'loading-icon', template: ''})
+@Component({ selector: 'fd-loading-icon', template: ''})
 class MockLoadingIconComponent {}
 
 describe('CheckoutCartAsyncWrapper', () => {
-  let component: TestCheckoutCartAsyncWrapper;
-  let fixture: ComponentFixture<TestCheckoutCartAsyncWrapper>;
+  let component: TestCheckoutCartAsyncComponent;
+  let fixture: ComponentFixture<TestCheckoutCartAsyncComponent>;
   let checkoutCartAsyncWrapperComponent: CheckoutCartAsyncWrapperComponent;
   let checkoutCartComponent: MockCheckoutCartComponent;
   let cartTotalsComponent: MockCartTotalsComponent;
@@ -62,7 +62,7 @@ describe('CheckoutCartAsyncWrapper', () => {
         RouterTestingModule
       ],
       declarations: [ 
-        TestCheckoutCartAsyncWrapper,
+        TestCheckoutCartAsyncComponent,
         MockCheckoutCartComponent,
         MockCartTotalsComponent,
         MockHelpBoxComponent,
@@ -74,7 +74,7 @@ describe('CheckoutCartAsyncWrapper', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestCheckoutCartAsyncWrapper);
+    fixture = TestBed.createComponent(TestCheckoutCartAsyncComponent);
     router = TestBed.get(Router);
     spyOn(router, 'navigateByUrl');
     component = fixture.componentInstance;
@@ -136,7 +136,7 @@ describe('CheckoutCartAsyncWrapper', () => {
     });
 
     it('should render <cart-totals>', () => {
-      let cartTotalsComponent = fixture.debugElement.query(By.css('cart-totals'))
+      const cartTotalsComponent = fixture.debugElement.query(By.css('cart-totals'))
       expect(cartTotalsComponent).not.toBeNull();
     });
 
@@ -144,8 +144,8 @@ describe('CheckoutCartAsyncWrapper', () => {
       expect(helpBoxComponent).not.toBeNull();
     });
 
-    it('should not render loading-icon', () => {
-      let loadingIcon = fixture.debugElement.query(By.css('.cart-container__loading-icon'));
+    it('should not render fd-loading-icon', () => {
+      const loadingIcon = fixture.debugElement.query(By.css('.cart-container__fd-loading-icon'));
       
       expect(loadingIcon).toBeNull();
     });
@@ -159,23 +159,23 @@ describe('CheckoutCartAsyncWrapper', () => {
     });
     
     it('should not render <checkout-cart>', () => {
-      let checkoutCartComponent = fixture.debugElement.query(By.css('cart'));
+      const checkoutCartComponent = fixture.debugElement.query(By.css('cart'));
 
       expect(checkoutCartComponent).toBeNull();
     });
 
     it('should not render <cart-totals>', () => {
-      let cartTotalsComponent = fixture.debugElement.query(By.css('cart-totals'));
+      const cartTotalsComponent = fixture.debugElement.query(By.css('cart-totals'));
       expect(cartTotalsComponent).toBeNull();
     });
 
     it('should not render <help-box>', () => {
-      let helpBoxComponent = fixture.debugElement.query(By.css('help-box'));
+      const helpBoxComponent = fixture.debugElement.query(By.css('help-box'));
       expect(helpBoxComponent).toBeNull();
     });
 
-    it('should render loading-icon', () => {
-      let loadingIcon = fixture.debugElement.query(By.css('.checkout-cart-async-wrapper__loading-icon'));
+    it('should render fd-loading-icon', () => {
+      const loadingIcon = fixture.debugElement.query(By.css('.checkout-cart-async-wrapper__fd-loading-icon'));
       
       expect(loadingIcon).not.toBeNull();
     });

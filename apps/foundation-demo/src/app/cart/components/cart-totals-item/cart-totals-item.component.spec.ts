@@ -11,28 +11,29 @@ import { CartTotalsItemComponent } from './cart-totals-item.component';
     <ng-container cart-total-value>{{value}}</ng-container>
   </cart-totals-item>
 `})
-class TestCartTotalsItemWrapper {
+class TestCartTotalsItemComponent {
   label: string;
   value: string;
   emphasize: boolean;
 }
 
 describe('CartTotalsItemComponent', () => {
-  let component: TestCartTotalsItemWrapper;
-  let fixture: ComponentFixture<TestCartTotalsItemWrapper>;
+  let component: TestCartTotalsItemComponent;
+  let fixture: ComponentFixture<TestCartTotalsItemComponent>;
+  let cartTotalsItemComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         CartTotalsItemComponent,
-        TestCartTotalsItemWrapper
+        TestCartTotalsItemComponent
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestCartTotalsItemWrapper);
+    fixture = TestBed.createComponent(TestCartTotalsItemComponent);
     component = fixture.componentInstance;
 
     fixture.detectChanges();
@@ -42,7 +43,7 @@ describe('CartTotalsItemComponent', () => {
     component.label="label";
     fixture.detectChanges();
 
-    let cartTotalsItemComponent = fixture.debugElement.query(By.css('.cart-totals-item__label'));
+    cartTotalsItemComponent = fixture.debugElement.query(By.css('.cart-totals-item__label'));
     expect(cartTotalsItemComponent.nativeElement.innerHTML).toContain('label');
   });
 
@@ -50,7 +51,7 @@ describe('CartTotalsItemComponent', () => {
     component.value="value";
     fixture.detectChanges();
 
-    let cartTotalsItemComponent = fixture.debugElement.query(By.css('.cart-totals-item__value'));
+    cartTotalsItemComponent = fixture.debugElement.query(By.css('.cart-totals-item__value'));
     expect(cartTotalsItemComponent.nativeElement.innerHTML).toContain('value');
   });
 
@@ -58,7 +59,7 @@ describe('CartTotalsItemComponent', () => {
     component.emphasize=true;
     fixture.detectChanges();
 
-    let cartTotalsItemComponent = fixture.debugElement.query(By.css('.cart-totals-item'));
+    cartTotalsItemComponent = fixture.debugElement.query(By.css('.cart-totals-item'));
     expect(cartTotalsItemComponent.nativeElement.classList).toContain('emphasize');
   });
 });

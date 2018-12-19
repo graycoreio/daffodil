@@ -17,7 +17,7 @@ import {
   QtyDropdownComponent 
 } from '@daffodil/design';
 
-@Component({template: '<product [product]="productValue" [qty]="qtyValue" (updateQty)="updateQtyFunction($event)"></product>'})
+@Component({template: '<fd-product [product]="productValue" [qty]="qtyValue" (updateQty)="updateQtyFunction($event)"></fd-product>'})
 class ProductWrapperTest {
   productValue: Product;
   qtyValue: number;
@@ -68,7 +68,7 @@ describe('ProductComponent', () => {
     
     fixture.detectChanges();
 
-    productComponent = fixture.debugElement.query(By.css('product')).componentInstance;
+    productComponent = fixture.debugElement.query(By.css('fd-product')).componentInstance;
   });
 
   it('renders a product-container', () => {

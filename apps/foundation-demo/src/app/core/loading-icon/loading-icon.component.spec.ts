@@ -2,20 +2,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoadingIconComponent } from './loading-icon.component';
-import { Component } from '@angular/core';
-import { By } from '@angular/platform-browser';
-
-@Component({ template: '<div loading-icon class="host-element"></div>' })
-class TestLoadingIconComponentWrapper {}
 
 describe('LoadingIconComponent', () => {
-  let component: TestLoadingIconComponentWrapper;
-  let fixture: ComponentFixture<TestLoadingIconComponentWrapper>;
+  let component: LoadingIconComponent;
+  let fixture: ComponentFixture<LoadingIconComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        TestLoadingIconComponentWrapper,
         LoadingIconComponent
       ]
     })
@@ -23,7 +17,7 @@ describe('LoadingIconComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestLoadingIconComponentWrapper);
+    fixture = TestBed.createComponent(LoadingIconComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

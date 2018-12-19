@@ -30,7 +30,7 @@ class MockCartWrapperComponent {
   @Input() cart: Cart;
 }
 
-@Component({ selector: 'loading-icon', template: ''})
+@Component({ selector: 'fd-loading-icon', template: ''})
 class MockLoadingIconComponent {}
 
 describe('CartViewComponent', () => {
@@ -90,7 +90,7 @@ describe('CartViewComponent', () => {
       fixture.detectChanges();
 
       cartWrapper = fixture.debugElement.query(By.css('cart-wrapper'));
-      loadingIcon = fixture.debugElement.query(By.css('loading-icon'));
+      loadingIcon = fixture.debugElement.query(By.css('fd-loading-icon'));
     });
 
     it('should not render cart-wrapper', () => {
@@ -112,7 +112,7 @@ describe('CartViewComponent', () => {
       fixture.detectChanges();
 
       cartWrapper = fixture.debugElement.query(By.css('cart-wrapper'));
-      loadingIcon = fixture.debugElement.query(By.css('loading-icon'));
+      loadingIcon = fixture.debugElement.query(By.css('fd-loading-icon'));
     });
 
     it('should render cart-wrapper', () => {

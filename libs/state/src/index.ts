@@ -6,6 +6,7 @@ export { StateCheckoutModule } from './checkout/checkout.module';
 
 export { ProductGridContainer } from './product/containers/product-grid/product-grid.component';
 export { BestSellersContainer } from './product/containers/best-sellers/best-sellers.component';
+export { ProductContainer } from './product/containers/product/product.component';
 
 export { CartContainer } from './cart/containers/cart/cart.component';
 export * from './cart/actions/cart.actions';

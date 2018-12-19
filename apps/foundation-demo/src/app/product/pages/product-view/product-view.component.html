@@ -1,7 +1,7 @@
 <div product-container #ProductContainer="ProductContainer" [selectedProductId]="productId" class="product-container">
-  <product [product]="ProductContainer.product$ | async" [qty]="ProductContainer.qty$ | async" (updateQty)="ProductContainer.updateQty($event)" *ngIf="!(ProductContainer.loading$ | async)">
-    <add-to-cart (addToCart)="ProductContainer.addToCart($event)" [additive]="ProductContainer.product$ | async"  [qty]="ProductContainer.qty$ | async"></add-to-cart>
-  </product>
-  <loading-icon *ngIf="(ProductContainer.loading$ | async)"></loading-icon>
-  <add-to-cart-notification></add-to-cart-notification>
+  <fd-product [product]="ProductContainer.product$ | async" [qty]="ProductContainer.qty$ | async" (updateQty)="ProductContainer.updateQty($event)" *ngIf="!(ProductContainer.loading$ | async)">
+    <fd-add-to-cart (addToCart)="ProductContainer.addToCart($event)" [additive]="ProductContainer.product$ | async"  [qty]="ProductContainer.qty$ | async"></fd-add-to-cart>
+  </fd-product>
+  <fd-loading-icon *ngIf="(ProductContainer.loading$ | async)"></fd-loading-icon>
+  <fd-add-to-cart-notification></fd-add-to-cart-notification>
 </div>

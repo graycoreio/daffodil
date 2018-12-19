@@ -22,7 +22,7 @@ class MockProductGridComponent {
   @Input() products: Product[];
 }
 
-@Component({ selector: 'loading-icon', template: ''})
+@Component({ selector: 'fd-loading-icon', template: ''})
 class MockLoadingIconComponent {}
 
 describe('BestSellersComponent', () => {
@@ -30,6 +30,7 @@ describe('BestSellersComponent', () => {
   let fixture: ComponentFixture<BestSellersComponent>;
   let bestSellersContainer: MockBestSellersContainer;
   let productGridComponent: MockProductGridComponent;
+  let loadingIconElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -71,9 +72,8 @@ describe('BestSellersComponent', () => {
       expect(bestSellersElement).not.toBeNull();
     });
 
-    it('should not render best-sellers__loading-icon', () => {
-      let loadingIconElement = fixture.debugElement.query(By.css('.best-sellers__loading-icon'));
-
+    it('should not render best-sellers__fd-loading-icon', () => {
+      loadingIconElement = fixture.debugElement.query(By.css('.best-sellers__fd-loading-icon'));
       expect(loadingIconElement).toBeNull();
     });
   });
@@ -92,9 +92,8 @@ describe('BestSellersComponent', () => {
       expect(bestSellersElement).toBeNull();
     });
 
-    it('should render best-sellers__loading-icon', () => {
-      let loadingIconElement = fixture.debugElement.query(By.css('.best-sellers__loading-icon'));
-
+    it('should render best-sellers__fd-loading-icon', () => {
+      loadingIconElement = fixture.debugElement.query(By.css('.best-sellers__fd-loading-icon'));
       expect(loadingIconElement).not.toBeNull();
     });
   });

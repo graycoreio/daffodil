@@ -6,14 +6,14 @@ import { Router } from '@angular/router';
 
 import { CartItemComponent } from './cart-item.component';
 
-import { Cart, CartItem } from '@daffodil/core';
+import { CartItem } from '@daffodil/core';
 import { DaffCartItemFactory } from '@daffodil/core/testing';
 
-let cartItemFactory = new DaffCartItemFactory();
-let mockCartItem: CartItem = cartItemFactory.create();
+const cartItemFactory = new DaffCartItemFactory();
+const mockCartItem: CartItem = cartItemFactory.create();
 
-@Component({template: '<cart-item [item]="cartItemValue"></cart-item>'})
-class TestCartItemWrapper {
+@Component({template: '<fd-cart-item [item]="cartItemValue"></fd-cart-item>'})
+class TestCartItemComponent {
   cartItemValue: CartItem;
 }
 
@@ -24,8 +24,8 @@ class MockQtyDropdownComponent {
 }
 
 describe('CartItemComponent', () => {
-  let component: TestCartItemWrapper;
-  let fixture: ComponentFixture<TestCartItemWrapper>;
+  let component: TestCartItemComponent;
+  let fixture: ComponentFixture<TestCartItemComponent>;
   let cartItemComponent;
   let qtyDropdownComponent: MockQtyDropdownComponent;
   let router: Router;
@@ -37,7 +37,7 @@ describe('CartItemComponent', () => {
       ],
       declarations: [
         CartItemComponent,
-        TestCartItemWrapper,
+        TestCartItemComponent,
         MockQtyDropdownComponent
       ]
     })
@@ -45,13 +45,13 @@ describe('CartItemComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestCartItemWrapper);
+    fixture = TestBed.createComponent(TestCartItemComponent);
     component = fixture.componentInstance;
     router = TestBed.get(Router);
     spyOn(router, 'navigateByUrl');
 
     component.cartItemValue = mockCartItem;
-    cartItemComponent = fixture.debugElement.query(By.css('cart-item'));
+    cartItemComponent = fixture.debugElement.query(By.css('fd-cart-item'));
     qtyDropdownComponent = fixture.debugElement.query(By.css('qty-dropdown')).componentInstance;
 
     fixture.detectChanges();
