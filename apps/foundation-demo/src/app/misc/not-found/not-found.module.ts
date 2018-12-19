@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { NotFoundComponent } from './not-found/not-found.component';
-import { ProductModule } from '../../product/product.module';
+import { NotFoundComponent } from './not-found.component';
+import { BestSellersModule } from '../../product/components/best-sellers/best-sellers.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    ProductModule
+    BestSellersModule
   ],
   declarations: [
     NotFoundComponent

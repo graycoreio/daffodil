@@ -4,16 +4,16 @@ import { CommonModule } from '@angular/common';
 import { CheckoutCartAsyncWrapperComponent } from './checkout-cart-async-wrapper.component';
 import { CheckoutCartModule } from '../checkout-cart/checkout-cart.module';
 import { CartTotalsModule } from '../cart-totals/cart-totals.module';
-import { MiscModule } from '../../../misc/misc.module';
 import { LoadingIconModule } from '../../../core/loading-icon/loading-icon.module';
+import { HelpBoxModule } from '../../../misc/help-box/help-box.module';
 
 @NgModule({
   imports: [
     CommonModule,
     CheckoutCartModule,
     CartTotalsModule,
-    MiscModule,
-    LoadingIconModule
+    LoadingIconModule,
+    HelpBoxModule
   ],
   declarations: [
     CheckoutCartAsyncWrapperComponent

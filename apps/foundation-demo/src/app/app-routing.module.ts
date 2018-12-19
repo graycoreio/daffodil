@@ -5,9 +5,9 @@ import { CartViewComponent } from './cart/pages/cart-view/cart-view.component';
 import { ProductViewComponent } from './product/pages/product-view/product-view.component';
 import { CheckoutViewComponent } from './checkout/pages/checkout-view/checkout-view.component';
 import { TemplateComponent } from './core/template/template/template.component';
-import { NotFoundComponent } from './misc/not-found/not-found/not-found.component';
 import { CheckoutGuard } from './helper/routing-guards/checkout.guard';
 import { CartLoadGuard } from './helper/routing-guards/cart-load.guard';
+import { NotFoundComponent } from './misc/not-found/not-found.component';
 
 export const appRoutes: Routes = [
   {

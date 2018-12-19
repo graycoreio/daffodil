@@ -5,9 +5,9 @@ import { PromotionModule } from '../promotion/promotion.module';
 import { CartTotalsModule } from '../cart-totals/cart-totals.module';
 import { ProceedToCheckoutModule } from '../proceed-to-checkout/proceed-to-checkout.module';
 import { ContinueShoppingModule } from '../continue-shopping/continue-shopping.module';
-import { MiscModule } from '../../../misc/misc.module';
 import { CartModule } from '../cart/cart.module';
 import { DaffButtonModule, DaffButtonSetModule } from '@daffodil/design';
+import { HelpBoxModule } from '../../../misc/help-box/help-box.module';
 
 
 @NgModule({
@@ -18,7 +18,7 @@ import { DaffButtonModule, DaffButtonSetModule } from '@daffodil/design';
     CartTotalsModule,
     ProceedToCheckoutModule,
     ContinueShoppingModule,
-    MiscModule,
+    HelpBoxModule,
     DaffButtonModule,
     DaffButtonSetModule
   ],
