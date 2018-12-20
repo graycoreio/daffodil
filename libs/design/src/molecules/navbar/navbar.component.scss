@@ -3,14 +3,6 @@
 .daff-navbar {
   display: flex;
   align-items: center;
-  padding: 25px;
+  padding: 15px;
   width: 100%;
-
-  @include breakpoint(big-tablet) {
-    padding: 25px 50px;
-  }
-
-  @include breakpoint(laptop) {
-    padding: 25px 0;
-  }
 }

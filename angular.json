@@ -343,7 +343,8 @@
             "tsConfig": "apps/daffio/tsconfig.app.json",
             "assets": [
               "apps/daffio/src/favicon.ico",
-              "apps/daffio/src/assets"
+              "apps/daffio/src/assets",
+              "apps/daffio/src/manifest.json"
             ],
             "styles": [
               "apps/daffio/src/scss/styles.scss"
@@ -372,7 +373,8 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "serviceWorker": true
             }
           }
         },
@@ -412,7 +414,8 @@
             "scripts": [],
             "assets": [
               "apps/daffio/src/favicon.ico",
-              "apps/daffio/src/assets"
+              "apps/daffio/src/assets",
+              "apps/daffio/src/manifest.json"
             ]
           }
         },

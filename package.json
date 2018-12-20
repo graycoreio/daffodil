@@ -21,6 +21,7 @@
     "@angular/http": "^7.1.0",
     "@angular/platform-browser": "^7.1.0",
     "@angular/platform-browser-dynamic": "^7.1.0",
+    "@angular/pwa": "^0.11.3",
     "@angular/router": "^7.1.0",
     "@angular/service-worker": "^7.1.0",
     "@ngrx/effects": "^6.1.2",

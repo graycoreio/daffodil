@@ -130,54 +130,6 @@
     }
 }
 
-.daff-clear-button {
-    @include daff-button();
-    min-width: 90px;
-    background-color: transparent;
-    border: 1px solid transparent;
-
-    &.daff-primary {
-        color: $primary;
-
-        &:hover {
-            color: daff-color($daff-primary, 700);
-        }
-    }
-
-    &.daff-accent {
-        color: $accent;
-        
-        &:hover {
-            color: daff-color($daff-accent, 700);
-        }
-    }
-
-    &.daff-black {
-        color: $black;
-        
-        &:hover {
-            color: daff-color($daff-gray, 800);
-        }
-    }
-
-    &.daff-white {
-        color: $white;
-        
-        &:hover {
-            color: daff-color($daff-gray, 100);
-        }
-    }
-
-    &[disabled] {
-        cursor: not-allowed;
-        color: daff-color($daff-gray, 600);
-
-        &:hover {
-            color: daff-color($daff-gray, 600);
-        }
-    }
-}
-
 .daff-stroked-button {
     @include daff-button();
     min-width: 90px;

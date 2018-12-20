@@ -1,8 +1,8 @@
 @import '../../scss/daff-util';
 
 .daff-feature {
-  padding: 50px;
   display: flex;
+  padding: 50px;
 
   @include breakpoint(big-tablet) {
     padding: 75px;
@@ -14,6 +14,7 @@
 
   &__icon {
     display: inline-block;
+    align-self: center;
     max-width: 50px;
     margin-right: 25px;
 
