@@ -11,6 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { TemplateModule } from './core/template/template.module';
 import { AppRoutingModule } from './app-routing.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   imports: [
@@ -30,7 +32,8 @@ import { AppRoutingModule } from './app-routing.module';
       */
       stateKey: 'router',
     }),
-    TemplateModule
+    TemplateModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   declarations: [
     AppComponent

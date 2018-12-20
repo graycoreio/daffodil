@@ -3,14 +3,10 @@
 .daffio-logo {
   display: flex;
   align-items: center;
-  
+
   svg {
     display: block;
-    width: 125px;
-
-    @include breakpoint(mobile) {
-      width: 150px;
-    }
+    width: 100%;
   }
 }
 
@@ -39,4 +35,23 @@
 
 .cls-7 {
   fill:#ffc000;
+}
+
+.st0 {
+  fill:#FFF000;
+}
+.st1 {
+  fill:url(#icon_gradient_1);
+}
+.st2 {
+  fill:url(#icon_gradient_2);
+}
+.st3 {
+  fill:url(#icon_gradient_3);
+}
+.st4 {
+  fill:#FF8500;
+}
+.st5 {
+  fill:#FFC000;
 }
