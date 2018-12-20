@@ -1,27 +1,47 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { Component, ViewEncapsulation, Input, ElementRef, ChangeDetectionStrategy } from '@angular/core';
+
+import { DaffPalette, daffColorMixin, DaffColorable } from '../../core/colorable/colorable';
+
+export type DaffHeroLayout = "centered" | undefined;
+export enum DaffHeroLayoutEnum {
+  Centered = "centered"
+}
+
+export type DaffHeroSize = "fullscreen" | "small" | undefined;
+export enum DaffHeroSizeEnum {
+  Fullscreen = "fullscreen",
+  Small = "small"
+}
+
+/**
+ * An _elementRef is needed for the Colorable mixin
+ */
+export class DaffHeroBase {
+  constructor(public _elementRef: ElementRef) {}
+}
+
+const _daffHeroBase = daffColorMixin(DaffHeroBase)
 
 @Component({
   selector: 'daff-hero',
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'daff-hero',
-    '[class.daff-hero--centered]':'layout === "centered"',
-    '[class.daff-hero--grid]':'layout === "grid"',
-    '[class.daff-hero--fullscreen]':'size === "fullscreen"',
-    '[class.daff-hero--small]':'size === "small"',
-    '[class.daff-hero--primary]':'color === "primary"',
-    '[class.daff-hero--accent]':'color === "accent"',
-    '[class.daff-hero--gray]':'color === "gray"',
-    '[class.daff-hero--black]':'color === "black"',
-    '[class.daff-hero--white]':'color === "white"',
+    '[class.daff-hero--centered]':'layout === "' + DaffHeroLayoutEnum.Centered + '"',
+    '[class.daff-hero--fullscreen]':'size === "' + DaffHeroSizeEnum.Fullscreen + '"',
+    '[class.daff-hero--small]':'size === "' + DaffHeroSizeEnum.Small + '"'
   },
 })
-export class DaffHeroComponent {
+export class DaffHeroComponent extends _daffHeroBase implements DaffColorable {
 
-  @Input() layout: string;
-  @Input() size: string;
-  @Input() color: string;
-  
+  @Input() layout: DaffHeroLayout;
+  @Input() size: DaffHeroSize;
+  @Input() color: DaffPalette;
+
+  constructor(private elementRef: ElementRef) {
+    super(elementRef);
+  }
 }

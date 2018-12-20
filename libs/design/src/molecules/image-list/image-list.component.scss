@@ -8,9 +8,11 @@
   
   & > * {
     margin: 0 5px 0 0;
+    display: inline-block;
     
     @include breakpoint(big-tablet) {
-      display: inline-block;
+      margin: 0 0 5px 0;
+      display: block;
     }
 
     &:last-child {
