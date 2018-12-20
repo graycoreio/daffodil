@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 
 import { DaffioHeaderItemComponent } from './header-item.component';
 
-@Component({template: '<div class="test-wrapper" daffio-header-item>Item</div>'})
+@Component({template: '<div daffio-header-item>Item</div>'})
 class TestWrapper {}
 
 describe('DaffioHeaderItemComponent', () => {
@@ -30,11 +30,5 @@ describe('DaffioHeaderItemComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should add a class of `daffio-header__item` to its host', () => {
-    let testWrapper = fixture.debugElement.query(By.css('.test-wrapper'));
-
-    expect(testWrapper.nativeElement.classList.contains('daffio-header__item')).toBeTruthy();
   });
 });
