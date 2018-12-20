@@ -8,7 +8,7 @@
 .pwa {
   background-color: daff-color($daff-gray, 100);
 
-  &__button {
+  &__link {
     text-align: center;
   }
 }
@@ -27,7 +27,7 @@
     background-color: $white;
   }
 
-  &__button {    
+  &__link {    
     > * {
       margin-left: 5px;
     }
