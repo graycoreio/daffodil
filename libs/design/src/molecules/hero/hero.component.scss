@@ -12,11 +12,12 @@
   }
 
   &__title {
-    margin: 0;
-    padding: 0;
+    @include embolden();
     font-size: 2rem;
     text-align: center;
     max-width: 1000px;
+    margin: 0;
+    padding: 0;
 
     @include breakpoint(mobile) {
       font-size: 2.75rem;
@@ -30,12 +31,12 @@
   }
 
   &__subtitle {
-    margin: 10px 0 0 0;
-    padding: 0;
     font-size: 1.125rem;
-    font-weight: 400;
+    font-weight: normal;
     text-align: center;
     max-width: 600px;
+    margin: 10px 0 0 0;
+    padding: 0;
 
     @include breakpoint(mobile) {
       font-size: 1.25rem;
