@@ -2,6 +2,15 @@
 
 .daffio-header {
   justify-content: space-between;
+  padding: 25px;
+
+  @include breakpoint(mobile) {
+    padding: 25px 50px;
+  }
+
+  @include breakpoint(small-laptop) {
+    padding: 25px 0;
+  }
 
   &__menu {
     display: none;
@@ -14,16 +23,18 @@
     }
   }
 
-  &__item {
-    color: $black;
-    padding: 0 30px;
-    text-decoration: none;
+  &__logo {
+    width: 125px;
+
+    @include breakpoint(mobile) {
+      width: 150px;
+    }
   }
 
   &__button {
     display: none;
 
-    @include breakpoint(mobile) {
+    @include breakpoint(big-tablet) {
       display: inline-block;
     }
   }
@@ -31,6 +42,7 @@
   &__bars {
     display: flex;
     align-items: center;
+    margin-right: -13px;
 
     @include breakpoint(big-tablet) {
       display: none;
