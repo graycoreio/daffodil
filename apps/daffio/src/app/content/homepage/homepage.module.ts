@@ -16,7 +16,8 @@ import {
   DaffListModule,
   DaffContainerModule,
   DaffAccordionModule,
-  DaffFeatureModule
+  DaffFeatureModule,
+  DaffLinkModule
 } from '@daffodil/design';
 
 @NgModule({
@@ -36,7 +37,8 @@ import {
     DaffListModule,
     DaffContainerModule,
     DaffAccordionModule,
-    DaffFeatureModule
+    DaffFeatureModule,
+    DaffLinkModule
   ],
   declarations: [
     DaffioHomepageComponent
