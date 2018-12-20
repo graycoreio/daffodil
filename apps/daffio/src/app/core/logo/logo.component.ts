@@ -6,13 +6,20 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
   styleUrls: ['./logo.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DaffioLogoComponent{
-  @Input() size: LogoSize = LogoSize.ICON;
+
+export class DaffioLogoComponent {
+  @Input() type: LogoType = LogoType.FULL;
+
+  isIcon(): boolean {
+    return this.type==LogoType.ICON;
+  }
+
+  isFull(): boolean {
+    return this.type==LogoType.FULL;
+  }
 }
 
-export enum LogoSize {
-  ICON = 0,
-  SMALL = 1,
-  MEDIUM = 2,
-  LARGE = 3
+export enum LogoType {
+  ICON = "icon",
+  FULL = "full"
 }
