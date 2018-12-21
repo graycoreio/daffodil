@@ -24,14 +24,6 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  images: Object[] = [
-    {url : '/assets/mh01-black_main.jpg', label: 'Image 1'},
-    {url : '/assets/mh01-gray_alt1.jpg', label: 'Image 2'},
-    {url : '/assets/mh01-gray_back.jpg', label: 'Image 3'},
-    {url : '/assets/mh01-gray_main.jpg',   label: 'Image 4'},
-    {url : '/assets/mh01-orange_main.jpg', label: 'Image 5'}
-  ]
-
   onUpdateQty(qty: number) {
     this.updateQty.emit(qty);
   }

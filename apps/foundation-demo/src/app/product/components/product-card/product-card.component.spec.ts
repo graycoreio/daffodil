@@ -5,9 +5,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
 import { Product } from '@daffodil/core';
-import { DaffProductFactory } from '@daffodil/core/testing';
+import { DaffProductFactory, DaffProductImageFactory } from '@daffodil/core/testing';
 
 import { ProductCardComponent } from './product-card.component';
+import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
 @Component({template: '<demo-product-card [product]="productValue"></demo-product-card>'})
 class TestProductCardWrapper {
@@ -19,13 +20,15 @@ describe('ProductCardComponent', () => {
   let fixture: ComponentFixture<TestProductCardWrapper>;
   let router;
   let productCardComponent;
-  let productFactory: DaffProductFactory = new DaffProductFactory();
-  let mockProduct = productFactory.create();
+  let productImageFactory: DaffProductImageFactory;
+  let productFactory: DaffProductFactory;
+  let stubProduct: Product;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        DaffDriverTestingModule
       ],
       declarations: [ 
         ProductCardComponent,
@@ -38,7 +41,13 @@ describe('ProductCardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestProductCardWrapper);
     component = fixture.componentInstance;
-    component.productValue = mockProduct;
+    productImageFactory = TestBed.get(DaffProductImageFactory);
+    productFactory = TestBed.get(DaffProductFactory);
+
+    let stubProductImages = productImageFactory.createMany(5);
+    stubProduct = productFactory.create({images: stubProductImages});
+
+    component.productValue = stubProduct;
     router = TestBed.get(Router);
     spyOn(router, 'navigateByUrl');
 
@@ -52,7 +61,7 @@ describe('ProductCardComponent', () => {
   });
 
   it('should be able to take a product as input', () => {
-    expect(productCardComponent.componentInstance.product).toEqual(mockProduct);
+    expect(productCardComponent.componentInstance.product).toEqual(stubProduct);
   });
 
   describe('when product-card is clicked', () => {
@@ -62,7 +71,7 @@ describe('ProductCardComponent', () => {
     });
     
     it('should call router.navigateByUrl', () => {
-      expect(productCardComponent.componentInstance.router.navigateByUrl).toHaveBeenCalledWith('product/' + mockProduct.id);
+      expect(productCardComponent.componentInstance.router.navigateByUrl).toHaveBeenCalledWith('product/' + stubProduct.id);
     });
   });
 });

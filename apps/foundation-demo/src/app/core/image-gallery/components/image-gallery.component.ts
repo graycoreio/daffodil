@@ -20,13 +20,8 @@ export class ImageGalleryComponent {
   ) {}
 
   ngOnInit() {
+    this.select(this.images[0].url);
     this.selectedImage$ = this.store.pipe(select(fromFoundationImageGallery.selectSelectedImage));
-    
-    this.selectedImage$.subscribe((selectedImage) => {
-      if (!selectedImage) {
-        this.select(this.images[0].url);
-      }
-    })
   }
 
   select(image: string) {

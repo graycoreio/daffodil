@@ -100,39 +100,19 @@ describe('ImageGalleryComponent', () => {
   describe('ngOnInit', () => {
 
     beforeEach(() => {
-      spyOn(imageGalleryContainer, 'select');      
+      spyOn(imageGalleryContainer, 'select'); 
+      
+      imageGalleryContainer.ngOnInit();
+    });
+      
+    it('should call select with the first image', () => {
+      expect(imageGalleryContainer.select).toHaveBeenCalledWith(imageGalleryContainer.images[0].url);
     });
     
-    describe('when selectedImage is null', () => {
-
-      beforeEach(() => {
-        spyOn(fromFoundationImageGallery, 'selectSelectedImage').and.returnValue(null);
-      });
-      
-      it('should call select with the first image', () => {
-        imageGalleryContainer.ngOnInit();
-
-        expect(imageGalleryContainer.select).toHaveBeenCalledWith(imageGalleryContainer.images[0].url);
-      });
-    });
-
-    describe('when selectedImage is defined', () => {
-      
-      beforeEach(() => {
-        spyOn(fromFoundationImageGallery, 'selectSelectedImage').and.returnValue(stubImages[1].url);
-        
-        imageGalleryContainer.ngOnInit();
-      });
-
-      it('should not call select', () => {
-        expect(imageGalleryContainer.select).not.toHaveBeenCalled();
-      });
-
-      it('should initialize selectedImage$', () => {
-        imageGalleryContainer.selectedImage$.subscribe((selectedImage) => {
-          expect(selectedImage).toEqual(stubImages[1].url);
-        })
-      });
+    it('should initialize selectedImage$', () => {
+      imageGalleryContainer.selectedImage$.subscribe((selectedImage) => {
+        expect(selectedImage).toEqual(stubImages[0].url);
+      })
     });
   });
 
