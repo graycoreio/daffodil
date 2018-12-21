@@ -7,7 +7,7 @@ import {
   STATUS
 } from 'angular-in-memory-web-api';
 
-import { DaffProductFactory } from '@daffodil/core/testing';
+import { DaffProductFactory, DaffProductImageFactory } from '@daffodil/core/testing';
 import { Product } from '@daffodil/core';
 
 @Injectable({
@@ -16,17 +16,19 @@ import { Product } from '@daffodil/core';
 export class DaffInMemoryProductTestingService implements InMemoryDbService {
   products: Product[];
   
-  constructor(private productFactory: DaffProductFactory) { 
+  constructor(
+    private productFactory: DaffProductFactory,
+    private productImageFactory: DaffProductImageFactory) { 
     this.products = [
-      this.productFactory.create({id: '1001'}),
-      this.productFactory.create({id: '1002'}),
-      this.productFactory.create({id: '1003'}),
-      this.productFactory.create({id: '1004'}),
-      this.productFactory.create({id: '1005'}),
-      this.productFactory.create({id: '1006'}),
-      this.productFactory.create({id: '1007'}),
-      this.productFactory.create({id: '1008'}),
-      this.productFactory.create({id: '1009'})
+      this.productFactory.create({id: '1001', images: this.productImageFactory.createMany(5)}),
+      this.productFactory.create({id: '1002', images: this.productImageFactory.createMany(5)}),
+      this.productFactory.create({id: '1003', images: this.productImageFactory.createMany(5)}),
+      this.productFactory.create({id: '1004', images: this.productImageFactory.createMany(5)}),
+      this.productFactory.create({id: '1005', images: this.productImageFactory.createMany(5)}),
+      this.productFactory.create({id: '1006', images: this.productImageFactory.createMany(5)}),
+      this.productFactory.create({id: '1007', images: this.productImageFactory.createMany(5)}),
+      this.productFactory.create({id: '1008', images: this.productImageFactory.createMany(5)}),
+      this.productFactory.create({id: '1009', images: this.productImageFactory.createMany(5)})
     ]
   }
 
