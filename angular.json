@@ -18,7 +18,8 @@
             "tsConfig": "apps/foundation-demo/tsconfig.app.json",
             "assets": [
               "apps/foundation-demo/src/assets",
-              "apps/foundation-demo/src/favicon.ico"
+              "apps/foundation-demo/src/favicon.ico",
+              { "glob": "**/*", "input": "libs/core/assets/", "output": "/assets/" }
             ],
             "styles": [
               "apps/foundation-demo/src/scss/styles.scss"
@@ -144,7 +145,8 @@
             "tsConfig": "apps/foundation-demo/tsconfig.dev.json",
             "assets": [
               "apps/foundation-demo/src/assets",
-              "apps/foundation-demo/src/favicon.ico"
+              "apps/foundation-demo/src/favicon.ico",
+              { "glob": "**/*", "input": "libs/core/assets/", "output": "/assets/" }
             ],
             "styles": [
               "apps/foundation-demo/src/scss/styles.scss"

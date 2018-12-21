@@ -1,5 +1,5 @@
 <div class="product-added" *ngIf="product">
-  <img src="/assets/mh04-green_alt1.jpg">
+  <img *ngIf="product.images" src="{{product.images[0].url}}">
   <div class="product-added__description">
     <div class="product-added__name">{{product.name}}</div>
     <div class="product-added__price">${{product.price}}</div>
