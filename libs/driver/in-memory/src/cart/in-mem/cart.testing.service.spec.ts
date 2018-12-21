@@ -2,29 +2,35 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffInMemoryCartTestingService } from './cart.testing.service';
 
-import { Cart } from '@daffodil/core';
-import { DaffCoreTestingModule, DaffCartFactory } from '@daffodil/core/testing';
+import { Cart, ProductImage } from '@daffodil/core';
+import { DaffCartFactory, DaffProductImageFactory } from '@daffodil/core/testing';
 
 import { STATUS } from 'angular-in-memory-web-api';
 
 describe('Driver | Cart | In Memory | CartTestingService', () => {
   let cartTestingService: DaffInMemoryCartTestingService;
   let stubCart: Cart;
+  let stubProductImage: ProductImage;
   let daffCartFactory: jasmine.SpyObj<DaffCartFactory>;
-
+  let daffProductImageFactory: jasmine.SpyObj<DaffProductImageFactory>;
   
   beforeEach(() => {
-    const spy = jasmine.createSpyObj('DaffCartFactory', ['create']);
-    stubCart = new DaffCartFactory().create();
+    const daffCartFactorySpy = jasmine.createSpyObj('DaffCartFactory', ['create']);
+    const daffProductImageFactorySpy = jasmine.createSpyObj('DaffProductImageFactory', ['create']);
+    stubProductImage = new DaffProductImageFactory().create();
+    stubCart = new DaffCartFactory().create({image: stubProductImage});
 
     TestBed.configureTestingModule({
       providers: [
         DaffInMemoryCartTestingService,
-        { provide: DaffCartFactory, useValue: spy}
+        { provide: DaffCartFactory, useValue: daffCartFactorySpy},
+        { provide: DaffProductImageFactory, useValue: daffProductImageFactorySpy}
       ]
     });
     
-    daffCartFactory = TestBed.get(DaffCartFactory);    
+    daffCartFactory = TestBed.get(DaffCartFactory);
+    daffProductImageFactory = TestBed.get(DaffProductImageFactory);
+    daffProductImageFactory.create.and.returnValue(stubProductImage);
     daffCartFactory.create.and.returnValue(stubCart);
 
     cartTestingService = TestBed.get(DaffInMemoryCartTestingService);
@@ -116,6 +122,14 @@ describe('Driver | Cart | In Memory | CartTestingService', () => {
           result = cartTestingService.post(reqInfoStub);
 
           expect(result.body.items[0].product_id).toEqual(productIdValue);
+        });
+
+        it('should set an image on cartItem', () => {
+          productIdValue = 'imageTest';
+
+          result = cartTestingService.post(reqInfoStub);
+
+          expect(result.body.items[0].image).toEqual(stubProductImage);
         });
       });
 

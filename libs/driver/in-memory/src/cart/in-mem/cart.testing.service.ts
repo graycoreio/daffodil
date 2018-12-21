@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { CartItem } from '@daffodil/core';
-import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/core/testing';
+import { DaffCartFactory, DaffCartItemFactory, DaffProductImageFactory } from '@daffodil/core/testing';
 
 import { InMemoryDbService, STATUS } from 'angular-in-memory-web-api';
 
@@ -13,7 +13,8 @@ export class DaffInMemoryCartTestingService implements InMemoryDbService {
 
   constructor(
     private cartFactory: DaffCartFactory,
-    private cartItemFactory: DaffCartItemFactory
+    private cartItemFactory: DaffCartItemFactory,
+    private productImageFactory: DaffProductImageFactory
   ) {
     this.cart = this.cartFactory.create();
   }
@@ -59,7 +60,7 @@ export class DaffInMemoryCartTestingService implements InMemoryDbService {
   }
 
   private addProductToCart(reqBody) {
-    let cartItem: CartItem = this.cartItemFactory.create();
+    let cartItem: CartItem = this.cartItemFactory.create({image: this.productImageFactory.create()});
     cartItem.product_id = reqBody.productId;
     cartItem.qty = reqBody.qty;
     this.cart.items.push(cartItem);
