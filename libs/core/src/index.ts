@@ -1,4 +1,5 @@
 export { Product } from './product/product';
+export { ProductImage } from './product/product-image';
 
 export { Cart } from './cart/cart';
 export { CartItem } from './cart/cart-item';

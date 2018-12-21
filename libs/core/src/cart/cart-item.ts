@@ -1,5 +1,8 @@
+import { ProductImage } from "../product/product-image";
+
 export interface CartItem {
   item_id: number;
+  image: ProductImage;
   quote_id: number;
   created_at: Date;
   updated_at: Date;

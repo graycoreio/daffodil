@@ -13,6 +13,9 @@ export { DaffPaymentFactory } from './payment/factories/payment.factory';
 
 //Product
 export { DaffProductFactory } from "./product/factories/product.factory";
+export { DaffProductImageFactory } from "./product/factories/product-image.factory";
+import * as productHelper from './product/helpers/product-helper';
+export { productHelper };
 
 //Shipping
 export { DaffShippingOptionFactory } from "./shipping/factories/shipping-option.factory"
