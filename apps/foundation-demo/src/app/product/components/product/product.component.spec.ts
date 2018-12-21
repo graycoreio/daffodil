@@ -88,7 +88,7 @@ describe('ProductComponent', () => {
     it('should set images', () => {
       let imageGalleryContainer = fixture.debugElement.query(By.css('demo-image-gallery-container')).componentInstance;
 
-      expect(imageGalleryContainer.images).toEqual(productComponent.images);
+      expect(imageGalleryContainer.images).toEqual(productComponent.product.images);
     });
   });
 

@@ -1,7 +1,7 @@
 <daff-container size="lg">
   <div class="product" *ngIf="product">
     <div class="product__image-gallery">
-      <demo-image-gallery-container [images]="images"></demo-image-gallery-container>
+      <demo-image-gallery-container [images]="product.images"></demo-image-gallery-container>
     </div>
     <div class="product__info">
       <h2 class="product__brand">{{product.brand}}</h2>

@@ -1,5 +1,5 @@
 <div class="product-card" (click)="navigateToProduct()">
-  <img class="product-card__image" src="/assets/mh04-green_alt1.jpg">
+  <img class="product-card__image" src="{{product.images[0].url}}">
   <div class="product-card__details">
     <p class="product-card__brand single-line-ellipsis">
       {{product.brand}}
