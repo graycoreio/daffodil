@@ -5,10 +5,11 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { CartItem } from '@daffodil/core';
-import { DaffCartItemFactory } from '@daffodil/core/testing';
+import { DaffCartItemFactory, DaffProductImageFactory } from '@daffodil/core/testing';
 
 import { CheckoutCartItemComponent } from './checkout-cart-item.component';
 import { CartItemComponent } from '../cart-item/cart-item.component';
+import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
 @Component({template: '<demo-checkout-cart-item [item]="cartItemValue"></demo-checkout-cart-item>'})
 class TestCheckoutCartItemWrapper {
@@ -19,14 +20,16 @@ describe('CheckoutCartItemComponent', () => {
   let component: TestCheckoutCartItemWrapper;
   let fixture: ComponentFixture<TestCheckoutCartItemWrapper>;
   let cartItemComponent: CartItemComponent;
+  let cartItemFactory: DaffCartItemFactory;
+  let productImageFactory: DaffProductImageFactory;
+  let mockCartItem: CartItem;
   let router: Router;
-  let cartItemFactory = new DaffCartItemFactory();
-  let mockCartItem = cartItemFactory.create();
-
+  
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        DaffDriverTestingModule
       ],
       declarations: [
         CheckoutCartItemComponent,
@@ -35,12 +38,15 @@ describe('CheckoutCartItemComponent', () => {
     })
     .compileComponents();
   }));
-
+  
   beforeEach(() => {
     fixture = TestBed.createComponent(TestCheckoutCartItemWrapper);
     component = fixture.componentInstance;
     router = TestBed.get(Router);
     spyOn(router, 'navigateByUrl');
+    cartItemFactory = TestBed.get(DaffCartItemFactory);
+    productImageFactory = TestBed.get(DaffProductImageFactory);
+    mockCartItem = cartItemFactory.create({image: productImageFactory.create()});
 
     component.cartItemValue = mockCartItem;
     cartItemComponent = fixture.debugElement.query(By.css('demo-checkout-cart-item')).componentInstance;

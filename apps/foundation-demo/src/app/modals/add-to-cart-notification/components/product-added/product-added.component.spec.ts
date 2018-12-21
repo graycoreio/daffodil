@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { Product } from '@daffodil/core';
-import { DaffProductFactory } from '@daffodil/core/testing';
+import { DaffProductFactory, DaffProductImageFactory } from '@daffodil/core/testing';
 import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
 import { ProductAddedComponent } from './product-added.component';
@@ -18,10 +18,11 @@ class TestProductAddedComponentWrapper {
   productValue: Product;
 }
 
-describe('ProductViewComponent', () => {
+describe('ProductAddedComponent', () => {
   let component: TestProductAddedComponentWrapper;
   let fixture: ComponentFixture<TestProductAddedComponentWrapper>;
   let productFactory: DaffProductFactory;
+  let productImageFactory: DaffProductImageFactory;
   let stubProduct: Product;
   let productAdded: ProductAddedComponent;
 
@@ -43,7 +44,8 @@ describe('ProductViewComponent', () => {
     component = fixture.componentInstance;
 
     productFactory = TestBed.get(DaffProductFactory);
-    stubProduct = productFactory.create();
+    productImageFactory = TestBed.get(DaffProductImageFactory);
+    stubProduct = productFactory.create({images:productImageFactory.createMany(5)});
     component.productValue = stubProduct;
 
     fixture.detectChanges();
@@ -69,6 +71,29 @@ describe('ProductViewComponent', () => {
       let productAddedElement = fixture.debugElement.query(By.css('.product-added'));
 
       expect(productAddedElement).not.toBeNull();
+    });
+
+    describe('and product.images is null', () => {
+      
+      beforeEach(() => {
+        productAdded.product.images = null;
+        fixture.detectChanges();
+      });
+
+      it('should not render img tag', () => {
+        let imgTag = fixture.debugElement.query(By.css('img'));
+
+        expect(imgTag).toBeNull();
+      });
+    });
+
+    describe('and product.images is defined', () => {
+      
+      it('should render img tag', () => {
+        let imgTag = fixture.debugElement.query(By.css('img'));
+
+        expect(imgTag).not.toBeNull();
+      });
     });
   });
   

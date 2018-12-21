@@ -6,11 +6,9 @@ import { Router } from '@angular/router';
 
 import { CartItemComponent } from './cart-item.component';
 
-import { Cart, CartItem } from '@daffodil/core';
-import { DaffCartItemFactory } from '@daffodil/core/testing';
-
-let cartItemFactory = new DaffCartItemFactory();
-let mockCartItem: CartItem = cartItemFactory.create();
+import { CartItem } from '@daffodil/core';
+import { DaffCartItemFactory, DaffProductImageFactory } from '@daffodil/core/testing';
+import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
 @Component({template: '<demo-cart-item [item]="cartItemValue"></demo-cart-item>'})
 class TestCartItemWrapper {
@@ -29,11 +27,15 @@ describe('CartItemComponent', () => {
   let cartItemComponent;
   let qtyDropdownComponent: MockQtyDropdownComponent;
   let router: Router;
+  let cartItemFactory: DaffCartItemFactory;
+  let productImageFactory: DaffProductImageFactory;
+  let mockCartItem: CartItem;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        DaffDriverTestingModule
       ],
       declarations: [
         CartItemComponent,
@@ -49,6 +51,9 @@ describe('CartItemComponent', () => {
     component = fixture.componentInstance;
     router = TestBed.get(Router);
     spyOn(router, 'navigateByUrl');
+    cartItemFactory = TestBed.get(DaffCartItemFactory);
+    productImageFactory = TestBed.get(DaffProductImageFactory);
+    mockCartItem = cartItemFactory.create({image: productImageFactory.create()});
 
     component.cartItemValue = mockCartItem;
     cartItemComponent = fixture.debugElement.query(By.css('demo-cart-item'));
