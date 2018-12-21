@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Product } from '@daffodil/core';
 
 @Component({
-  selector: 'product-added',
+  selector: 'demo-product-added',
   templateUrl: './product-added.component.html',
   styleUrls: ['./product-added.component.scss']
 })

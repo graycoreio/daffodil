@@ -11,13 +11,13 @@ import { StoreModule, combineReducers } from '@ngrx/store';
 import * as cartSelector from '../../selectors/cart-selector';
 import { of } from 'rxjs';
 
-@Component({template: '<cart-wrapper [cart]="cartValue"></cart-wrapper>'})
+@Component({template: '<demo-cart-wrapper [cart]="cartValue"></demo-cart-wrapper>'})
 class TestCartWrapper {
   cartValue: Cart;
 }
 
 @Component({
-  selector: 'cart',
+  selector: 'demo-cart',
   template: ''
 })
 class CartMock { 
@@ -26,13 +26,13 @@ class CartMock {
 }
 
 @Component({
-  selector: 'promotion',
+  selector: 'demo-promotion',
   template: ''
 })
 class PromotionMock {}
 
 @Component({
-  selector: 'cart-totals',
+  selector: 'demo-cart-totals',
   template: ''
 })
 class CartTotalsMock {
@@ -40,18 +40,18 @@ class CartTotalsMock {
 }
 
 @Component({
-  selector: 'help-box',
+  selector: 'demo-help-box',
   template: ''
 })
 class HelpBoxMock {}
 
 @Directive({
-  selector: '[proceed-to-checkout]'
+  selector: '[demo-proceed-to-checkout]'
 })
 class ProceedToCheckoutMock {}
 
 @Directive({
-  selector: '[continue-shopping]'
+  selector: '[demo-continue-shopping]'
 })
 class ContinueShoppingMock {}
 
@@ -95,7 +95,7 @@ describe('CartWrapper', () => {
     fixture = TestBed.createComponent(TestCartWrapper);
     component = fixture.componentInstance;
     component.cartValue = cart;
-    cartWrapperComponent = fixture.debugElement.query(By.css('cart-wrapper')).componentInstance;
+    cartWrapperComponent = fixture.debugElement.query(By.css('demo-cart-wrapper')).componentInstance;
     stubSelectCartItemCount = 1;
 
     spyOn(cartSelector, 'isCartEmpty').and.returnValue(stubIsCartEmpty);
@@ -139,12 +139,12 @@ describe('CartWrapper', () => {
         spyOn(cartSelector, 'selectCartItemCount').and.returnValue(stubSelectCartItemCount);
           fixture.detectChanges();
 
-      cartComponent = fixture.debugElement.query(By.css('cart'));
-      promotionComponent = fixture.debugElement.query(By.css('promotion'));
-      cartTotalsComponent = fixture.debugElement.query(By.css('cart-totals'));
-      helpBoxComponent = fixture.debugElement.query(By.css('help-box'));
-      proceedToCheckoutComponent = fixture.debugElement.query(By.css('[proceed-to-checkout]'));
-      continueShoppingComponent = fixture.debugElement.query(By.css('[continue-shopping]'));
+      cartComponent = fixture.debugElement.query(By.css('demo-cart'));
+      promotionComponent = fixture.debugElement.query(By.css('demo-promotion'));
+      cartTotalsComponent = fixture.debugElement.query(By.css('demo-cart-totals'));
+      helpBoxComponent = fixture.debugElement.query(By.css('demo-help-box'));
+      proceedToCheckoutComponent = fixture.debugElement.query(By.css('[demo-proceed-to-checkout]'));
+      continueShoppingComponent = fixture.debugElement.query(By.css('[demo-continue-shopping]'));
     });
 
     it('should create', () => {
@@ -155,7 +155,7 @@ describe('CartWrapper', () => {
       expect(cartWrapperComponent.cart).toEqual(cart);
     });
 
-    describe('on <cart>', () => {
+    describe('on <demo-cart>', () => {
       
       it('should set cart to value passed by cart-container directive', () => {
         expect(cartComponent.componentInstance.cart).toEqual(cart);
@@ -164,11 +164,11 @@ describe('CartWrapper', () => {
 
     describe('when CartContainer.$loading is false', () => {
       
-      it('should render <cart>', () => {
+      it('should render <demo-cart>', () => {
         expect(cartComponent).not.toBeNull();
       });
 
-      it('should render <help-box>', () => {
+      it('should render <demo-help-box>', () => {
         expect(helpBoxComponent).not.toBeNull();
       });
 
@@ -184,19 +184,19 @@ describe('CartWrapper', () => {
           expect(summaryTitleElement).toBeNull();
         });
 
-        it('should not render <promotion>', () => {
+        it('should not render <demo-promotion>', () => {
           expect(promotionComponent).toBeNull();
         });
 
-        it('should not render <cart-totals>', () => {
+        it('should not render <demo-cart-totals>', () => {
           expect(cartTotalsComponent).toBeNull();
         });
         
-        it('should not render <proceed-to-checkout>', () => {
+        it('should not render [demo-proceed-to-checkout]', () => {
           expect(proceedToCheckoutComponent).toBeNull();
         });
 
-        it('should render <continue-shopping>', () => {
+        it('should render [demo-continue-shopping]', () => {
           expect(continueShoppingComponent).not.toBeNull();
         });
       });
@@ -213,14 +213,14 @@ describe('CartWrapper', () => {
           expect(summaryTitleElement).not.toBeNull();
         });
 
-        it('should render <promotion>', () => {
-          let promotionComponent = fixture.debugElement.query(By.css('promotion'))
+        it('should render <demo-promotion>', () => {
+          let promotionComponent = fixture.debugElement.query(By.css('demo-promotion'))
 
           expect(promotionComponent).not.toBeNull();
         });
 
-        it('should render <cart-totals>', () => {
-          let cartTotalsComponent = fixture.debugElement.query(By.css('cart-totals'))
+        it('should render <demo-cart-totals>', () => {
+          let cartTotalsComponent = fixture.debugElement.query(By.css('demo-cart-totals'))
           expect(cartTotalsComponent).not.toBeNull();
         });
       
@@ -228,11 +228,11 @@ describe('CartWrapper', () => {
           expect(cartTotalsComponent.componentInstance.cart).toEqual(cart);
         });
 
-        it('should render <proceed-to-checkout>', () => {
+        it('should render [demo-proceed-to-checkout]', () => {
           expect(proceedToCheckoutComponent).not.toBeNull();
         });
 
-        it('should render <continue-shopping>', () => {
+        it('should render [demo-continue-shopping]',() => {
           expect(continueShoppingComponent).not.toBeNull();
         });
       });

@@ -32,7 +32,7 @@ let stubShowReviewView: boolean = true;
 let stubIsOrderPlaced: boolean = false;
 let stubBillingAddressIsShippingAddress: boolean = false;
 
-@Component({selector: 'shipping', template: ''})
+@Component({selector: 'demo-shipping', template: ''})
 class MockShippingComponent {
   @Input() isShippingAddressValid: boolean;
   @Input() shippingAddress: DaffodilAddress;
@@ -42,7 +42,7 @@ class MockShippingComponent {
   @Output() selectShippingOption: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({selector: 'payment', template: ''})
+@Component({selector: 'demo-payment', template: ''})
 class MockPaymentComponent {
   @Input() paymentInfo: PaymentInfo;
   @Input() billingAddress: DaffodilAddress;
@@ -52,14 +52,14 @@ class MockPaymentComponent {
   @Output() toggleBillingAddressIsShippingAddress: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({selector: 'checkout-cart-async-wrapper', template: '<ng-content>', encapsulation: ViewEncapsulation.None})
+@Component({selector: 'demo-checkout-cart-async-wrapper', template: '<ng-content>', encapsulation: ViewEncapsulation.None})
 class MockCheckoutCartAsyncWrapperComponent {
   @Input() cart: Cart;
   @Input() loading: boolean;
   @Input() cartTitle: string;
 }
 
-@Component({selector: 'place-order', template: ''})
+@Component({selector: 'demo-place-order', template: ''})
 class MockPlaceOrderComponent {}
 
 @Component({selector: '[shipping-container]', template: '<ng-content></ng-content>', exportAs: 'ShippingContainer'})
@@ -87,10 +87,10 @@ class MockCartContainer {
   loading$: Observable<boolean> = of(false);
 }
 
-@Component({selector: 'thank-you', template: ''})
+@Component({selector: 'demo-thank-you', template: ''})
 class MockThankYouComponent {}
 
-@Component({ selector: 'loading-icon', template: ''})
+@Component({ selector: 'demo-loading-icon', template: ''})
 class MockLoadingIconComponent {}
 
 describe('CheckoutViewComponent', () => {
@@ -142,14 +142,14 @@ describe('CheckoutViewComponent', () => {
     spyOn(store, 'dispatch');
     fixture.detectChanges();
 
-    shipping = fixture.debugElement.query(By.css('shipping')).componentInstance;
-    payment = fixture.debugElement.query(By.css('payment')).componentInstance;
-    checkoutCartAsyncWrappers = fixture.debugElement.queryAll(By.css('checkout-cart-async-wrapper'));
+    shipping = fixture.debugElement.query(By.css('demo-shipping')).componentInstance;
+    payment = fixture.debugElement.query(By.css('demo-payment')).componentInstance;
+    checkoutCartAsyncWrappers = fixture.debugElement.queryAll(By.css('demo-checkout-cart-async-wrapper'));
     shippingContainer = fixture.debugElement.query(By.css('[shipping-container]')).componentInstance;
     billingContainer = fixture.debugElement.query(By.css('[billing-container]')).componentInstance;
     cartContainer = fixture.debugElement.query(By.css('[cart-container]')).componentInstance;
     accordionItem = fixture.debugElement.query(By.css('daff-accordion-item')).componentInstance;
-    placeOrders = fixture.debugElement.queryAll(By.css('place-order'));
+    placeOrders = fixture.debugElement.queryAll(By.css('demo-place-order'));
 
     cartContainer.cart$ = of(stubCart);
     fixture.detectChanges();
@@ -163,7 +163,7 @@ describe('CheckoutViewComponent', () => {
     expect(placeOrders.length).toEqual(2);
   });
   
-  describe('on <shipping>', () => {
+  describe('on <demo-shipping>', () => {
   
     it('should set isShippingAddressValid', () => {
       expect(shipping.isShippingAddressValid).toEqual(stubIsShippingAddressValid);
@@ -182,7 +182,7 @@ describe('CheckoutViewComponent', () => {
     });
   });
 
-  describe('when <shipping> emits', () => {
+  describe('when <demo-shipping> emits', () => {
     
     describe('updateShippingAddress', () => {
       
@@ -213,7 +213,7 @@ describe('CheckoutViewComponent', () => {
     });
   });
 
-  describe('on <payment>', () => {
+  describe('on <demo-payment>', () => {
     
     it('should set paymentInfo', () => {
       expect(payment.paymentInfo).toEqual(stubPaymentInfo);
@@ -264,7 +264,7 @@ describe('CheckoutViewComponent', () => {
     });
   });
 
-  describe('on first <checkout-cart-async-wrapper>', () => {
+  describe('on first <demo-checkout-cart-async-wrapper>', () => {
     it('should set cart', () => {
       expect(checkoutCartAsyncWrappers[0].componentInstance.cart).toEqual(stubCart);
     });
@@ -278,7 +278,7 @@ describe('CheckoutViewComponent', () => {
     });
   });
 
-  describe('on second <checkout-cart-async-wrapper>', () => {
+  describe('on second <demo-checkout-cart-async-wrapper>', () => {
     
     it('should set cart', () => {
       expect(checkoutCartAsyncWrappers[1].componentInstance.cart).toEqual(stubCart);
@@ -293,7 +293,7 @@ describe('CheckoutViewComponent', () => {
     });
   });
 
-  describe('on third <checkout-cart-async-wrapper>', () => {
+  describe('on third <demo-checkout-cart-async-wrapper>', () => {
     
     it('should set cart', () => {
       expect(checkoutCartAsyncWrappers[2].componentInstance.cart).toEqual(stubCart);

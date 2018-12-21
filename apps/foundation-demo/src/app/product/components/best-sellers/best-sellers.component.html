@@ -1,10 +1,10 @@
 <div best-sellers-container #BestSellersContainer="BestSellersContainer">
   <div class="best-sellers" *ngIf="!(BestSellersContainer.loading$ | async)">
     <div class="best-sellers__title">best sellers</div>
-    <product-grid [products]="BestSellersContainer.bestSellers"></product-grid>
+    <demo-product-grid [products]="BestSellersContainer.bestSellers"></demo-product-grid>
   </div>
 
   <div *ngIf="(BestSellersContainer.loading$ | async)" class="best-sellers__loading-icon">
-    <loading-icon></loading-icon>
+    <demo-loading-icon></demo-loading-icon>
   </div>
 </div>

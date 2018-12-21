@@ -8,7 +8,7 @@ import { SetShowShippingForm, ToggleShowShippingForm } from '../../../actions/sh
 import * as fromFoundationCheckout from '../../../reducers';
 
 @Component({
-  selector: 'shipping',
+  selector: 'demo-shipping',
   templateUrl: './shipping.component.html',
   encapsulation: ViewEncapsulation.None
 })

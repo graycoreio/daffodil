@@ -19,13 +19,13 @@ let stubShowPaymentForm = true;
 let stubBillingAddressIsShippingAddress = false;
 
 @Component({
-  template: '<payment ' +
+  template: '<demo-payment ' +
               '[paymentInfo]="paymentInfoValue" ' + 
               '[billingAddress]="billingAddressValue" ' + 
               '[billingAddressIsShippingAddress]="billingAddressIsShippingAddressValue" ' + 
               '(updatePaymentInfo)="updatePaymentInfoFunction($event)" ' + 
               '(updateBillingAddress)="updateBillingAddressFunction($event)" ' + 
-              '(toggleBillingAddressIsShippingAddress)="toggleBillingAddressIsShippingAddressFunction()"></payment>'
+              '(toggleBillingAddressIsShippingAddress)="toggleBillingAddressIsShippingAddressFunction()"></demo-payment>'
 })
 class TestPaymentComponentWrapper {
   paymentInfoValue: PaymentInfo = stubPaymentInfo;
@@ -36,7 +36,7 @@ class TestPaymentComponentWrapper {
   toggleBillingAddressIsShippingAddressFunction = () => {};
 }
 
-@Component({selector: 'payment-form', template: ''})
+@Component({selector: 'demo-payment-form', template: ''})
 class MockPaymentFormComponent {
   @Input() paymentInfo: PaymentInfo;
   @Input() billingAddress: DaffodilAddress;
@@ -46,13 +46,13 @@ class MockPaymentFormComponent {
   @Output() toggleBillingAddressIsShippingAddress: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({selector: 'payment-summary', template: ''})
+@Component({selector: 'demo-payment-summary', template: ''})
 class MockPaymentSummaryComponent {
   @Input() paymentInfo: PaymentInfo;
   @Output() editPaymentInfo: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({selector: 'billing-summary', template: ''})
+@Component({selector: 'demo-billing-summary', template: ''})
 class MockBillingSummaryComponent {
   @Input() billingAddress: DaffodilAddress;
   @Input() billingAddressIsShippingAddress: boolean;
@@ -94,10 +94,10 @@ describe('PaymentComponent', () => {
     
     fixture.detectChanges();
 
-    payment = fixture.debugElement.query(By.css('payment')).componentInstance;
-    paymentForm = fixture.debugElement.query(By.css('payment-form')).componentInstance;
-    paymentSummary = fixture.debugElement.query(By.css('payment-summary')).componentInstance;
-    billingSummary = fixture.debugElement.query(By.css('billing-summary')).componentInstance;
+    payment = fixture.debugElement.query(By.css('demo-payment')).componentInstance;
+    paymentForm = fixture.debugElement.query(By.css('demo-payment-form')).componentInstance;
+    paymentSummary = fixture.debugElement.query(By.css('demo-payment-summary')).componentInstance;
+    billingSummary = fixture.debugElement.query(By.css('demo-billing-summary')).componentInstance;
   });
 
   it('should create', () => {
@@ -116,7 +116,7 @@ describe('PaymentComponent', () => {
     expect(payment.billingAddressIsShippingAddress).toEqual(stubBillingAddressIsShippingAddress);
   });
 
-  describe('on <payment-form>', () => {
+  describe('on <demo-payment-form>', () => {
     
     it('should set paymentInfo', () => {
       expect(paymentForm.paymentInfo).toEqual(stubPaymentInfo);
@@ -164,7 +164,7 @@ describe('PaymentComponent', () => {
     });
   });
 
-  describe('on <payment-summary>', () => {
+  describe('on <demo-payment-summary>', () => {
     
     it('should set paymentInfo', () => {
       expect(paymentSummary.paymentInfo).toEqual(stubPaymentInfo);
@@ -181,7 +181,7 @@ describe('PaymentComponent', () => {
     });
   });
 
-  describe('on <billing-summary>', () => {
+  describe('on <demo-billing-summary>', () => {
     
     it('should set billingAddress', () => {
       expect(billingSummary.billingAddress).toEqual(stubBillingAddress);
@@ -255,20 +255,20 @@ describe('PaymentComponent', () => {
       payment.showPaymentForm$ = of(true);
       fixture.detectChanges();
 
-      paymentFormNativeElement = fixture.debugElement.query(By.css('payment-form')).nativeElement;
-      paymentSummaryNativeElement = fixture.debugElement.query(By.css('payment-summary')).nativeElement;
-      billingSummaryNativeElement = fixture.debugElement.query(By.css('billing-summary')).nativeElement;
+      paymentFormNativeElement = fixture.debugElement.query(By.css('demo-payment-form')).nativeElement;
+      paymentSummaryNativeElement = fixture.debugElement.query(By.css('demo-payment-summary')).nativeElement;
+      billingSummaryNativeElement = fixture.debugElement.query(By.css('demo-billing-summary')).nativeElement;
     });
     
-    it('should not put hidden attribute on payment-form', () => {
+    it('should not put hidden attribute on demo-payment-form', () => {
       expect(paymentFormNativeElement.hidden).toBeFalsy();
     });
 
-    it('should put hidden attribute on payment-summary', () => {
+    it('should put hidden attribute on demo-payment-summary', () => {
       expect(paymentSummaryNativeElement.hidden).toBeTruthy();      
     });
 
-    it('should put hidden attribute on billing-summary', () => {
+    it('should put hidden attribute on demo-billing-summary', () => {
       expect(billingSummaryNativeElement.hidden).toBeTruthy();      
     });
   });
@@ -283,20 +283,20 @@ describe('PaymentComponent', () => {
       payment.showPaymentForm$ = of(false);
       fixture.detectChanges();
 
-      paymentFormNativeElement = fixture.debugElement.query(By.css('payment-form')).nativeElement;
-      paymentSummaryNativeElement = fixture.debugElement.query(By.css('payment-summary')).nativeElement;
-      billingSummaryNativeElement = fixture.debugElement.query(By.css('billing-summary')).nativeElement;
+      paymentFormNativeElement = fixture.debugElement.query(By.css('demo-payment-form')).nativeElement;
+      paymentSummaryNativeElement = fixture.debugElement.query(By.css('demo-payment-summary')).nativeElement;
+      billingSummaryNativeElement = fixture.debugElement.query(By.css('demo-billing-summary')).nativeElement;
     });
 
-    it('should put hidden attribute on payment-form', () => {
+    it('should put hidden attribute on demo-payment-form', () => {
       expect(paymentFormNativeElement.hidden).toBeTruthy();
     });
 
-    it('should not put hidden attribute on payment-summary', () => {
+    it('should not put hidden attribute on demo-payment-summary', () => {
       expect(paymentSummaryNativeElement.hidden).toBeFalsy();     
     });
 
-    it('should not put hidden attribute on billing-summary', () => {
+    it('should not put hidden attribute on demo-billing-summary', () => {
       expect(billingSummaryNativeElement.hidden).toBeFalsy();     
     });
   });
@@ -310,10 +310,10 @@ describe('PaymentComponent', () => {
 
       fixture.detectChanges();
 
-      paymentSummary = fixture.debugElement.query(By.css('payment-summary'));
+      paymentSummary = fixture.debugElement.query(By.css('demo-payment-summary'));
     });
 
-    it('should not render payment-summary', () => {
+    it('should not render demo-payment-summary', () => {
       expect(paymentSummary).toBeNull();
     });
   });

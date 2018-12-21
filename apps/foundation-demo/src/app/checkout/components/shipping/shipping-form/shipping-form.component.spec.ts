@@ -10,9 +10,9 @@ import { ShippingOptionFormService } from '../shipping-options/components/servic
 import { AddressFormFactory } from '../../forms/address-form/factories/address-form.factory';
 
 @Component({
-  'template': '<shipping-form [shippingAddress]="shippingAddressValue" ' + 
+  'template': '<demo-shipping-form [shippingAddress]="shippingAddressValue" ' + 
                 '[editMode]="editModeValue" ' + 
-                '(submitted)="submittedFunction($event)"></shipping-form>'
+                '(submitted)="submittedFunction($event)"></demo-shipping-form>'
 })
 class TestingShippingFormComponentWrapper {
   shippingAddressValue: DaffodilAddress;
@@ -20,13 +20,13 @@ class TestingShippingFormComponentWrapper {
   submittedFunction: Function = () => {};
 }
 
-@Component({selector: 'address-form', template: ''})
+@Component({selector: 'demo-address-form', template: ''})
 class MockAddressFormComponent {
   @Input() formGroup: FormGroup;
   @Input() submitted: boolean;
 }
 
-@Component({selector: 'shipping-options', template: ''})
+@Component({selector: 'demo-shipping-options', template: ''})
 class MockShippingOptionsComponent {
   @Input() formGroup: FormGroup;
   @Input() submitted: boolean;
@@ -84,9 +84,9 @@ describe('ShippingFormComponent', () => {
 
     fixture.detectChanges();
 
-    shippingFormComponent = fixture.debugElement.query(By.css('shipping-form')).componentInstance;
-    addressFormComponent = fixture.debugElement.query(By.css('address-form')).componentInstance;
-    shippingOptionsComponent = fixture.debugElement.query(By.css('shipping-options')).componentInstance;
+    shippingFormComponent = fixture.debugElement.query(By.css('demo-shipping-form')).componentInstance;
+    addressFormComponent = fixture.debugElement.query(By.css('demo-address-form')).componentInstance;
+    shippingOptionsComponent = fixture.debugElement.query(By.css('demo-shipping-options')).componentInstance;
   });
 
   it('should create', () => {
@@ -101,7 +101,7 @@ describe('ShippingFormComponent', () => {
     expect(shippingFormComponent.editMode).toEqual(component.editModeValue);
   });
 
-  describe('on <address-form>', () => {
+  describe('on <demo-address-form>', () => {
     
     it('should set formGroup', () => {
       expect(<FormGroup> addressFormComponent.formGroup).toEqual(<FormGroup> shippingFormComponent.form.controls['address']);
@@ -112,7 +112,7 @@ describe('ShippingFormComponent', () => {
     });
   });
 
-  describe('on <shipping-options>', () => {
+  describe('on <demo-shipping-options>', () => {
 
     it('should set formGroup', () => {
       expect(<FormGroup> shippingOptionsComponent.formGroup).toEqual(<FormGroup> shippingFormComponent.form.controls.shippingOption);

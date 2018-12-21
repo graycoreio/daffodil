@@ -13,16 +13,16 @@ let daffodilAddressFactory = new DaffAddressFactory();
 let stubDaffodilAddress = daffodilAddressFactory.create();
 
 @Component({
-  template: '<shipping-summary [selectedShippingOptionId]="selectedShippingOptionIdValue" ' + 
+  template: '<demo-shipping-summary [selectedShippingOptionId]="selectedShippingOptionIdValue" ' + 
               '[shippingAddress]="shippingAddressValue" ' + 
-              '(editShippingInfo)="editShippingInfoFunction()"></shipping-summary>'})
+              '(editShippingInfo)="editShippingInfoFunction()"></demo-shipping-summary>'})
 class TestShippingSummaryWrapper {
   shippingAddressValue: DaffodilAddress = stubDaffodilAddress;
   selectedShippingOptionIdValue: string = '0';
   editShippingInfoFunction: Function = () => {};
 }
 
-@Component({selector: 'address-summary', template: ''})
+@Component({selector: 'demo-address-summary', template: ''})
 class MockAddressSummaryComponent {
   @Input() address: DaffodilAddress;
 }
@@ -55,8 +55,8 @@ describe('ShippingSummaryComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    shippingSummaryComponent = fixture.debugElement.query(By.css('shipping-summary')).componentInstance;
-    addressSummaryComponent = fixture.debugElement.query(By.css('address-summary')).componentInstance;
+    shippingSummaryComponent = fixture.debugElement.query(By.css('demo-shipping-summary')).componentInstance;
+    addressSummaryComponent = fixture.debugElement.query(By.css('demo-address-summary')).componentInstance;
   });
 
   it('should create', () => {
@@ -75,7 +75,7 @@ describe('ShippingSummaryComponent', () => {
     expect(shippingSummaryComponent.shippingOptions).toEqual(shippingOptionsService.getShippingOptions());
   });
 
-  describe('on <address-summary', () => {
+  describe('on <demo-address-summary>', () => {
 
     it('should set address', () => {
       expect(addressSummaryComponent.address).toEqual(stubDaffodilAddress);

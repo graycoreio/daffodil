@@ -3,46 +3,46 @@
     <daff-accordion class="checkout__mobile-cart">
       <daff-accordion-item [initiallyActive]="false">
         <h3 daff-accordion-item-title>Cart Summary ({{(CartContainer.cart$ | async) ? (CartContainer.cart$ | async).items.length : 0}})</h3>
-        <checkout-cart-async-wrapper [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async"></checkout-cart-async-wrapper>
+        <demo-checkout-cart-async-wrapper [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async"></demo-checkout-cart-async-wrapper>
       </daff-accordion-item>
     </daff-accordion>
 
     <div>
       <div class="checkout__shipping" shipping-container #ShippingContainer="ShippingContainer" *ngIf="!(isOrderPlaced$ | async)">
-        <shipping 
+        <demo-shipping 
           [isShippingAddressValid]="ShippingContainer.isShippingAddressValid$ | async"
           [shippingAddress]="ShippingContainer.shippingAddress$ | async"
           [selectedShippingOptionId]="ShippingContainer.selectedShippingOptionId$ | async"
           [showPaymentView]="showPaymentView$ | async"
           (updateShippingAddress)="ShippingContainer.updateShippingAddress($event); onUpdateShippingAddress()"
-          (selectShippingOption)="ShippingContainer.selectShippingOption($event)"></shipping>
+          (selectShippingOption)="ShippingContainer.selectShippingOption($event)"></demo-shipping>
       </div>
       <div class="checkout__payment" *ngIf="(showPaymentView$ | async) && !(isOrderPlaced$ | async)" billing-container #BillingContainer="BillingContainer">
-        <payment
+        <demo-payment
           [paymentInfo]="BillingContainer.paymentInfo$ | async" 
           [billingAddress]="BillingContainer.billingAddress$ | async"
           [billingAddressIsShippingAddress]="BillingContainer.billingAddressIsShippingAddress$ | async"
           (updatePaymentInfo)="BillingContainer.updatePaymentInfo($event)"
           (updateBillingAddress)="BillingContainer.updateBillingAddress($event)"
-          (toggleBillingAddressIsShippingAddress)="BillingContainer.toggleBillingAddressIsShippingAddress()"></payment>
+          (toggleBillingAddressIsShippingAddress)="BillingContainer.toggleBillingAddressIsShippingAddress()"></demo-payment>
       </div>
       <div class="checkout__review" *ngIf="showReviewView$ | async">
-        <checkout-cart-async-wrapper class="checkout__mobile-review" [cartTitle]="'Review Order'" [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async">
-          <place-order *ngIf="!(isOrderPlaced$ | async)"></place-order>
-        </checkout-cart-async-wrapper>
+        <demo-checkout-cart-async-wrapper class="checkout__mobile-review" [cartTitle]="'Review Order'" [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async">
+          <demo-place-order *ngIf="!(isOrderPlaced$ | async)"></demo-place-order>
+        </demo-checkout-cart-async-wrapper>
       </div>
       <div class="checkout__thank-you" *ngIf="isOrderPlaced$ | async">
-        <thank-you></thank-you>
+        <demo-thank-you></demo-thank-you>
       </div>
     </div>
     
     <div class="checkout__cart">
       <div class="checkout__desktop-cart">
-        <checkout-cart-async-wrapper [cartTitle]="'CART SUMMARY'" [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async">
-          <place-order *ngIf="!(isOrderPlaced$ | async)"></place-order>
-        </checkout-cart-async-wrapper>
+        <demo-checkout-cart-async-wrapper [cartTitle]="'CART SUMMARY'" [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async">
+          <demo-place-order *ngIf="!(isOrderPlaced$ | async)"></demo-place-order>
+        </demo-checkout-cart-async-wrapper>
       </div>
     </div>
   </div>
-  <loading-icon *ngIf="(CartContainer.loading$ | async)" class="checkout__loading-icon"></loading-icon>
+  <demo-loading-icon *ngIf="(CartContainer.loading$ | async)" class="checkout__loading-icon"></demo-loading-icon>
 </div>

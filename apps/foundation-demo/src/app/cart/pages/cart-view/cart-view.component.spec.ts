@@ -23,14 +23,14 @@ class MockCartContainerComponent {
 }
 
 @Component({
-  selector: 'cart-wrapper',
+  selector: 'demo-cart-wrapper',
   template: ''
 })
 class MockCartWrapperComponent { 
   @Input() cart: Cart;
 }
 
-@Component({ selector: 'loading-icon', template: ''})
+@Component({ selector: 'demo-loading-icon', template: ''})
 class MockLoadingIconComponent {}
 
 describe('CartViewComponent', () => {
@@ -67,12 +67,12 @@ describe('CartViewComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('on <cart-wrapper>', () => {
+  describe('on <demo-cart-wrapper>', () => {
 
     let cartWrapperComponent;
 
     beforeEach(() => {
-      cartWrapperComponent = fixture.debugElement.query(By.css('cart-wrapper'));
+      cartWrapperComponent = fixture.debugElement.query(By.css('demo-cart-wrapper'));
     });
     
     it('should set cart to value passed by cart-container directive', () => {
@@ -89,15 +89,15 @@ describe('CartViewComponent', () => {
       cartContainer.loading$ = of(true);
       fixture.detectChanges();
 
-      cartWrapper = fixture.debugElement.query(By.css('cart-wrapper'));
-      loadingIcon = fixture.debugElement.query(By.css('loading-icon'));
+      cartWrapper = fixture.debugElement.query(By.css('demo-cart-wrapper'));
+      loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
     });
 
-    it('should not render cart-wrapper', () => {
+    it('should not render demo-cart-wrapper', () => {
       expect(cartWrapper).toBeNull();
     });
 
-    it('should render loadingIcon', () => {
+    it('should render demo-loading-icon', () => {
       expect(loadingIcon).not.toBeNull();
     });
   });
@@ -111,15 +111,15 @@ describe('CartViewComponent', () => {
       cartContainer.loading$ = of(false);
       fixture.detectChanges();
 
-      cartWrapper = fixture.debugElement.query(By.css('cart-wrapper'));
-      loadingIcon = fixture.debugElement.query(By.css('loading-icon'));
+      cartWrapper = fixture.debugElement.query(By.css('demo-cart-wrapper'));
+      loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
     });
 
-    it('should render cart-wrapper', () => {
+    it('should render demo-cart-wrapper', () => {
       expect(cartWrapper).not.toBeNull();
     });
 
-    it('should not render loadingIcon', () => {
+    it('should not render demo-loading-icon', () => {
       expect(loadingIcon).toBeNull();
     });
   });

@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 import { SidebarContainer } from './sidebar.component';
 import { DaffSidebarModule, DaffSidebarComponent } from '@daffodil/design';
 
-@Component({template: '<sidebar (close)="closeFunction()"></sidebar>'})
+@Component({template: '<demo-sidebar (close)="closeFunction()"></demo-sidebar>'})
 class TestSidebarContainerWrapper {
   closeFunction: Function = () => {}
 }
@@ -34,7 +34,7 @@ describe('SidebarContainer', () => {
     component = fixture.componentInstance;  
     fixture.detectChanges();
 
-    sidebarContainer = fixture.debugElement.query(By.css('sidebar')).componentInstance;
+    sidebarContainer = fixture.debugElement.query(By.css('demo-sidebar')).componentInstance;
     daffSidebar = fixture.debugElement.query(By.css("daff-sidebar")).componentInstance;
   });
 

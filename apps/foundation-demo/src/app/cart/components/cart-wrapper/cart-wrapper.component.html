@@ -8,25 +8,25 @@
         <ng-template ngPluralCase="=1">Item</ng-template>
       </span>
     </div>
-    <cart [cart]="cart"></cart>
-    <button type="button" daff-button color="black" continue-shopping class="cart-wrapper__continue-shopping" *ngIf="(isCartEmpty$ | async)">
+    <demo-cart [cart]="cart"></demo-cart>
+    <button type="button" daff-button color="black" demo-continue-shopping class="cart-wrapper__continue-shopping" *ngIf="(isCartEmpty$ | async)">
       Continue Shopping
     </button>
   </div>
   <div class="cart-wrapper__sidebar">
     <div class="cart-wrapper__summary" *ngIf="!(isCartEmpty$ | async)">
       <div class="cart-wrapper__summary-title">cart summary</div>
-      <promotion class="cart-wrapper__promotion"></promotion>
-      <cart-totals class="cart-wrapper__cart-totals" [cart]="cart"></cart-totals>
+      <demo-promotion class="cart-wrapper__promotion"></demo-promotion>
+      <demo-cart-totals class="cart-wrapper__cart-totals" [cart]="cart"></demo-cart-totals>
       <div daff-button-set class="cart-wrapper__button-set">
-        <button type="button" daff-button color="black" proceed-to-checkout>
+        <button type="button" daff-button color="black" demo-proceed-to-checkout>
           Proceed to Checkout
         </button>
-        <button type="button" daff-stroked-button color="black" continue-shopping>
+        <button type="button" daff-stroked-button color="black" demo-continue-shopping>
           Continue Shopping
         </button>
       </div>
     </div>
-    <help-box class="cart-wrapper__help-box"></help-box>
+    <demo-help-box class="cart-wrapper__help-box"></demo-help-box>
   </div>
 </div>

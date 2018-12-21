@@ -5,7 +5,7 @@ import { DaffodilAddress, ShippingOption } from '@daffodil/core';
 import { ShippingOptionsService } from '../shipping-options/components/services/shipping-options.service';
 
 @Component({
-  selector: 'shipping-summary',
+  selector: 'demo-shipping-summary',
   templateUrl: './shipping-summary.component.html',
   styleUrls: ['./shipping-summary.component.scss']
 })

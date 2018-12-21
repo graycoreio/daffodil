@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Cart } from '@daffodil/core';
 
 @Component({
-  selector: 'cart-totals',
+  selector: 'demo-cart-totals',
   templateUrl: './cart-totals.component.html'
 })
 export class CartTotalsComponent implements OnInit {

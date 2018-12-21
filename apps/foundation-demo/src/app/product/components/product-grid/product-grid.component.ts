@@ -1,9 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { Product } from '@daffodil/core';
 
 @Component({
-  selector: 'product-grid',
+  selector: 'demo-product-grid',
   templateUrl: './product-grid.component.html',
   styleUrls: ['./product-grid.component.scss']
 })

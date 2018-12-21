@@ -7,7 +7,7 @@ import { Cart } from '@daffodil/core';
 import * as fromCart from '../../selectors/cart-selector';
 
 @Component({
-  selector: 'cart-wrapper',
+  selector: 'demo-cart-wrapper',
   templateUrl: './cart-wrapper.component.html',
   styleUrls: ['./cart-wrapper.component.scss']
 })

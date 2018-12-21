@@ -7,8 +7,8 @@ import { ErrorStateMatcher } from '@daffodil/design';
 import { AddressFormComponent } from './address-form.component';
 
 @Component({
-  template: '<address-form [formGroup]="formGroupValue" ' + 
-                '[submitted]="submittedValue"></address-form>'
+  template: '<demo-address-form [formGroup]="formGroupValue" ' + 
+                '[submitted]="submittedValue"></demo-address-form>'
 })
 class TestingAddressFormComponentWrapper {
   formGroupValue: FormGroup;
@@ -67,7 +67,7 @@ describe('AddressFormComponent', () => {
 
     fixture.detectChanges();
 
-    addressForm = fixture.debugElement.query(By.css('address-form')).componentInstance;
+    addressForm = fixture.debugElement.query(By.css('demo-address-form')).componentInstance;
   });
 
   it('should create', () => {

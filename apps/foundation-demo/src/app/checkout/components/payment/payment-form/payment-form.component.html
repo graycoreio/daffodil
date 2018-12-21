@@ -2,10 +2,10 @@
   <div class="payment-form__title">
     payment details
   </div>
-  <promotion class="payment-form__promotion"></promotion>
+  <demo-promotion class="payment-form__promotion"></demo-promotion>
   
   <div class="payment-form__info-method-title">Payment Method</div>
-  <payment-info-form class="payment-form__payment-info" [formGroup]="form.controls.paymentInfo" [submitted]="ngForm.submitted"></payment-info-form>
+  <demo-payment-info-form class="payment-form__payment-info" [formGroup]="form.controls.paymentInfo" [submitted]="ngForm.submitted"></demo-payment-info-form>
 
   <div class="payment-form__address-method-title">Billing Address</div>
   <div class="payment-form__checkbox">
@@ -15,7 +15,7 @@
       (click)="toggleBillingAddressIsShippingAddress.emit()">
     <label for="sameAsShipping">Same as shipping address</label>
   </div>
-  <address-form *ngIf="!billingAddressIsShippingAddress" class="payment-form__address" [formGroup]="form.controls.address" [submitted]="ngForm.submitted"></address-form>
+  <demo-address-form *ngIf="!billingAddressIsShippingAddress" class="payment-form__address" [formGroup]="form.controls.address" [submitted]="ngForm.submitted"></demo-address-form>
   
   <button type="submit" class="button large expanded">Save & Review Order</button>
   <div class="payment-form__note">

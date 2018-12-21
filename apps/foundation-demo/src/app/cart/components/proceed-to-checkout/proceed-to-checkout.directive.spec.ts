@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { ProceedToCheckoutDirective } from './proceed-to-checkout.directive';
 import { Component } from '@angular/core';
 
-@Component({template: '<button proceed-to-checkout></button>'})
+@Component({template: '<button demo-proceed-to-checkout></button>'})
 class TestProceedToCheckoutDirective {}
 
 describe('ProceedToCheckoutDirective', () => {

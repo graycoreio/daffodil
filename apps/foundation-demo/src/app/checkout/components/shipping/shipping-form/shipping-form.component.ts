@@ -7,7 +7,7 @@ import { ShippingOptionFormService } from '../shipping-options/components/servic
 import { AddressFormFactory } from '../../forms/address-form/factories/address-form.factory';
 
 @Component({
-  selector: 'shipping-form',
+  selector: 'demo-shipping-form',
   templateUrl: './shipping-form.component.html',
   styleUrls: ['./shipping-form.component.scss']
 })

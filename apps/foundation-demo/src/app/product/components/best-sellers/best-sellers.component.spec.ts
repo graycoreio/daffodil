@@ -15,14 +15,14 @@ class MockBestSellersContainer {
 }
 
 @Component({
-  selector: 'product-grid',
+  selector: 'demo-product-grid',
   template: ''
 })
 class MockProductGridComponent { 
   @Input() products: Product[];
 }
 
-@Component({ selector: 'loading-icon', template: ''})
+@Component({ selector: 'demo-loading-icon', template: ''})
 class MockLoadingIconComponent {}
 
 describe('BestSellersComponent', () => {
@@ -49,14 +49,14 @@ describe('BestSellersComponent', () => {
     fixture.detectChanges();
 
     bestSellersContainer = fixture.debugElement.query(By.css('[best-sellers-container]')).componentInstance;
-    productGridComponent = fixture.debugElement.query(By.css('product-grid')).componentInstance;
+    productGridComponent = fixture.debugElement.query(By.css('demo-product-grid')).componentInstance;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('on <product-grid>', () => {
+  describe('on <demo-product-grid>', () => {
     
     it('should set products to bestSellersContainer.bestSellers', () => {
       expect(productGridComponent.products).toEqual(bestSellersContainer.bestSellers);

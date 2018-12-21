@@ -33,7 +33,7 @@ class MockProductContainer {
 }
 
 @Component({
-  selector: 'product',
+  selector: 'demo-product',
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
@@ -43,17 +43,17 @@ class MockProductComponent {
   @Output() updateQty: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({selector: 'add-to-cart', template: ''})
+@Component({selector: 'demo-add-to-cart', template: ''})
 class MockAddToCartComponent { 
   @Input() additive: any;
   @Input() qty: number;
   @Output() addToCart: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({ selector: 'loading-icon', template: ''})
+@Component({ selector: 'demo-loading-icon', template: ''})
 class MockLoadingIconComponent {}
 
-@Component({ selector: 'add-to-cart-notification', template: ''})
+@Component({ selector: 'demo-add-to-cart-notification', template: ''})
 class MockAddToCartNotificationComponent {}
 
 describe('ProductViewComponent', () => {
@@ -98,9 +98,9 @@ describe('ProductViewComponent', () => {
     productContainer.updateQty = (payload: number) => {};
 
     fixture.detectChanges();
-    productComponent = fixture.debugElement.query(By.css('product')).componentInstance;
-    addToCartComponent = fixture.debugElement.query(By.css('add-to-cart')).componentInstance;
-    addToCartNotification = fixture.debugElement.query(By.css('add-to-cart-notification')).componentInstance;
+    productComponent = fixture.debugElement.query(By.css('demo-product')).componentInstance;
+    addToCartComponent = fixture.debugElement.query(By.css('demo-add-to-cart')).componentInstance;
+    addToCartNotification = fixture.debugElement.query(By.css('demo-add-to-cart-notification')).componentInstance;
   });
 
   it('should create', () => {
@@ -118,7 +118,7 @@ describe('ProductViewComponent', () => {
     });
   });
 
-  describe('on <product>', () => {
+  describe('on <demo-product>', () => {
     
     it('should set product to value passed by product-container directive', () => {
       expect(productComponent.product).toEqual(mockProduct);
@@ -138,7 +138,7 @@ describe('ProductViewComponent', () => {
     });
   });
 
-  describe('on <add-to-cart>', () => {
+  describe('on <demo-add-to-cart>', () => {
     
     it('should set additive to product passed by product-container directive', () => {
       expect(addToCartComponent.additive).toEqual(mockProduct);
@@ -160,12 +160,12 @@ describe('ProductViewComponent', () => {
 
   describe('when loading$ is false', () => {
     
-    it('should render <product>', () => {
+    it('should render <demo-product>', () => {
       expect(productComponent).not.toBeNull();
     });
 
-    it('should not render loading-icon', () => {
-      expect(fixture.debugElement.query(By.css('loading-icon'))).toBeNull();
+    it('should not render demo-loading-icon', () => {
+      expect(fixture.debugElement.query(By.css('demo-loading-icon'))).toBeNull();
     });
   });
 
@@ -176,15 +176,15 @@ describe('ProductViewComponent', () => {
       productContainer.loading$ = of(true);
       fixture.detectChanges();
 
-      productComponent = fixture.debugElement.query(By.css('product'));
+      productComponent = fixture.debugElement.query(By.css('demo-product'));
     });
 
-    it('should  not render <product>', () => {
+    it('should  not render <demo-product>', () => {
       expect(productComponent).toBeNull();
     });
     
-    it('should render loading-icon', () => {
-      expect(fixture.debugElement.query(By.css('loading-icon'))).not.toBeNull();
+    it('should render demo-loading-icon', () => {
+      expect(fixture.debugElement.query(By.css('demo-loading-icon'))).not.toBeNull();
     });
   });
 });

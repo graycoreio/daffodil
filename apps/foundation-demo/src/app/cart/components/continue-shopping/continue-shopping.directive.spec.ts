@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { ContinueShoppingDirective } from './continue-shopping.directive';
 import { Component } from '@angular/core';
 
-@Component({template: '<button continue-shopping></button>'})
+@Component({template: '<button demo-continue-shopping></button>'})
 class TestContinueShoppingDirective {}
 
 describe('ContinueShoppingDirective', () => {

@@ -13,13 +13,13 @@ import { AddressFormFactory } from '../../forms/address-form/factories/address-f
 import { PaymentInfoFormFactory } from '../payment-info-form/factories/payment-info-form.factory';
 
 @Component({
-  'template': '<payment-form ' + 
+  'template': '<demo-payment-form ' + 
                 '[paymentInfo]="paymentInfoValue" ' + 
                 '[billingAddress]="billingAddressValue" ' +
                 '[billingAddressIsShippingAddress]="billingAddressIsShippingAddressValue" ' + 
                 '(updatePaymentInfo)="updatePaymentInfoFunction($event)" ' + 
                 '(updateBillingAddress)="updatePaymentInfoFunction($event)" ' + 
-                '(toggleBillingAddressIsShippingAddress)="toggleBillingAddressIsShippingAddressFunction($event)"></payment-form>'
+                '(toggleBillingAddressIsShippingAddress)="toggleBillingAddressIsShippingAddressFunction($event)"></demo-payment-form>'
 })
 class TestingPaymentFormComponentWrapper {
   paymentInfoValue: PaymentInfo;
@@ -30,20 +30,20 @@ class TestingPaymentFormComponentWrapper {
   toggleBillingAddressIsShippingAddressFunction = () => {};
 }
 
-@Component({selector: 'address-form', template: ''})
+@Component({selector: 'demo-address-form', template: ''})
 class MockAddressFormComponent {
   @Input() formGroup: FormGroup;
   @Input() submitted: boolean;
 }
 
-@Component({selector: 'payment-info-form', template: ''})
+@Component({selector: 'demo-payment-info-form', template: ''})
 class MockPaymentInfoFormComponent {
   @Input() formGroup: FormGroup;
   @Input() submitted: boolean;
 }
 
 @Component({
-  selector: 'promotion',
+  selector: 'demo-promotion',
   template: ''
 })
 class MockPromotionComponent {}
@@ -108,9 +108,9 @@ describe('PaymentFormComponent', () => {
 
     fixture.detectChanges();
 
-    paymentFormComponent = fixture.debugElement.query(By.css('payment-form')).componentInstance;
-    addressFormComponent = fixture.debugElement.query(By.css('address-form')).componentInstance;
-    paymentInfoFormComponent = fixture.debugElement.query(By.css('payment-info-form')).componentInstance;
+    paymentFormComponent = fixture.debugElement.query(By.css('demo-payment-form')).componentInstance;
+    addressFormComponent = fixture.debugElement.query(By.css('demo-address-form')).componentInstance;
+    paymentInfoFormComponent = fixture.debugElement.query(By.css('demo-payment-info-form')).componentInstance;
     spyOn(paymentFormComponent.updatePaymentInfo, 'emit').and.callThrough();
     spyOn(paymentFormComponent.updateBillingAddress, 'emit').and.callThrough();
   });
@@ -131,7 +131,7 @@ describe('PaymentFormComponent', () => {
     expect(paymentFormComponent.billingAddressIsShippingAddress).toEqual(stubBillingAddressIsShippingAddress);
   });
 
-  describe('on <address-form>', () => {
+  describe('on <demo-address-form>', () => {
     
     it('should set formGroup', () => {
       expect(<FormGroup> addressFormComponent.formGroup).toEqual(<FormGroup> paymentFormComponent.form.controls['address']);
@@ -142,7 +142,7 @@ describe('PaymentFormComponent', () => {
     });
   });
 
-  describe('on <payment-info-form>', () => {
+  describe('on <demo-payment-info-form>', () => {
     
     it('should set formGroup', () => {
       expect(<FormGroup> paymentInfoFormComponent.formGroup).toEqual(<FormGroup> paymentFormComponent.form.controls['paymentInfo']);

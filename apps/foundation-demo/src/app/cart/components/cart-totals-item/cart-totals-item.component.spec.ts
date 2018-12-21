@@ -6,10 +6,10 @@ import { Component } from '@angular/core';
 import { CartTotalsItemComponent } from './cart-totals-item.component';
 
 @Component({template: `
-  <cart-totals-item emphasize="true">
+  <demo-cart-totals-item emphasize="true">
     <ng-container cart-total-label>{{label}}</ng-container>
     <ng-container cart-total-value>{{value}}</ng-container>
-  </cart-totals-item>
+  </demo-cart-totals-item>
 `})
 class TestCartTotalsItemWrapper {
   label: string;

@@ -4,7 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { ErrorStateMatcher } from '@daffodil/design';
 
 @Component({
-  selector: 'payment-info-form',
+  selector: 'demo-payment-info-form',
   templateUrl: './payment-info-form.component.html',
   styleUrls: ['./payment-info-form.component.scss']
 })

@@ -16,7 +16,7 @@ import {
 } from '@angular/cdk/portal';
 
 @Component({
-  selector: 'modal-portal',
+  selector: 'demo-modal-portal',
   template: `
   <ng-template #contentRef>
     <ng-content></ng-content>
@@ -38,7 +38,7 @@ export class ModalPortalComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     // Create a portalHost from template.html element
     this.portalHost = new DomPortalHost(
-      document.querySelector('#modal-portal'),
+      document.querySelector('#demo-modal-portal'),
       this.componentFactoryResolver,
       this.appRef,
       this.injector

@@ -13,8 +13,8 @@ import { PaymentInfoFormComponent } from './payment-info-form.component';
 import { PaymentInfoFormFactory } from '../../factories/payment-info-form.factory';
 
 @Component({
-  template: '<payment-info-form [formGroup]="formGroupValue" ' + 
-                '[submitted]="submittedValue"></payment-info-form>'
+  template: '<demo-payment-info-form [formGroup]="formGroupValue" ' + 
+                '[submitted]="submittedValue"></demo-payment-info-form>'
 })
 class TestingPaymentInfoFormComponentWrapper {
   formGroupValue: FormGroup;
@@ -53,7 +53,7 @@ describe('PaymentInfoFormComponent', () => {
 
     fixture.detectChanges();
 
-    paymentInfoForm = fixture.debugElement.query(By.css('payment-info-form')).componentInstance;
+    paymentInfoForm = fixture.debugElement.query(By.css('demo-payment-info-form')).componentInstance;
   });
 
   it('should create', () => {

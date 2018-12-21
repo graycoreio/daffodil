@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { ProductGridContainer } from '@daffodil/state';
 
 @Component({
-  selector: 'foundation-product-grid-view',
+  selector: 'demo-product-grid-view',
   templateUrl: './product-grid-view.component.html'
 })
 export class ProductGridViewComponent {

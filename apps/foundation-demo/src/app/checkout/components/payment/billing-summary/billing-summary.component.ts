@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { DaffodilAddress } from '@daffodil/core';
 
 @Component({
-  selector: 'billing-summary',
+  selector: 'demo-billing-summary',
   templateUrl: './billing-summary.component.html',
   styleUrls: ['./billing-summary.component.scss']
 })

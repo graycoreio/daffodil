@@ -6,7 +6,7 @@ import { ToggleSidebar, CloseSidebar, OpenSidebar, SetSidebarState } from '../..
 import * as fromFoundationSidebar from '../../reducers/index';
 
 @Component({
-  selector: 'sidebar-viewport-container',
+  selector: 'demo-sidebar-viewport-container',
   templateUrl: './sidebar-viewport.component.html'
 })
 export class SidebarViewportContainer {

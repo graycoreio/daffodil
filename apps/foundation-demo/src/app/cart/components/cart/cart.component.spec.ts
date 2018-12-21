@@ -7,12 +7,12 @@ import { CartComponent } from './cart.component';
 import { Cart, CartItem } from '@daffodil/core';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/core/testing';
 
-@Component({template: '<cart [cart]="cartValue"></cart>'})
+@Component({template: '<demo-cart [cart]="cartValue"></demo-cart>'})
 class TestCartWrapper {
   cartValue: Cart;
 }
 
-@Component({selector: 'cart-item', template: ''})
+@Component({selector: 'demo-cart-item', template: ''})
 class MockCartItemComponent {
   @Input() item: CartItem;
 }
@@ -46,8 +46,8 @@ describe('CartComponent', () => {
     component.cartValue = mockCart;
 
     fixture.detectChanges();
-    cartItems = fixture.debugElement.queryAll(By.css('cart-item'));
-    cart = fixture.debugElement.query(By.css('cart')).componentInstance;
+    cartItems = fixture.debugElement.queryAll(By.css('demo-cart-item'));
+    cart = fixture.debugElement.query(By.css('demo-cart')).componentInstance;
   });
 
   it('should create', () => {
@@ -62,11 +62,11 @@ describe('CartComponent', () => {
     expect(cart.cart).toEqual(mockCart);
   });
 
-  it('renders a <cart-item> for every cart.items', () => {
+  it('renders a <demo-cart-item> for every cart.items', () => {
     expect(cartItems.length).toEqual(mockCart.items.length);
   });
 
-  describe('on <cart-item>', () => {
+  describe('on <demo-cart-item>', () => {
     
     it('should set item', () => {
       expect(cartItems[0].componentInstance.item).toEqual(mockCart.items[0]);  

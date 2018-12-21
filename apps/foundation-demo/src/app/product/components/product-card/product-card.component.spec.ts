@@ -9,7 +9,7 @@ import { DaffProductFactory } from '@daffodil/core/testing';
 
 import { ProductCardComponent } from './product-card.component';
 
-@Component({template: '<product-card [product]="productValue"></product-card>'})
+@Component({template: '<demo-product-card [product]="productValue"></demo-product-card>'})
 class TestProductCardWrapper {
   productValue: Product;
 }
@@ -44,7 +44,7 @@ describe('ProductCardComponent', () => {
 
     fixture.detectChanges();
 
-    productCardComponent = fixture.debugElement.query(By.css('product-card'));
+    productCardComponent = fixture.debugElement.query(By.css('demo-product-card'));
   });
 
   it('should create', () => {

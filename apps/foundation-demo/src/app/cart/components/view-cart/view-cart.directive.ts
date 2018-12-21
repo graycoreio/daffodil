@@ -2,7 +2,7 @@ import { HostListener, Directive } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Directive({
-  selector: '[view-cart]'
+  selector: '[demo-view-cart]'
 })
 export class ViewCartDirective {
 

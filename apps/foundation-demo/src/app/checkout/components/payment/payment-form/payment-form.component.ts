@@ -11,7 +11,7 @@ import { AddressFormFactory } from '../../forms/address-form/factories/address-f
 import { PaymentInfoFormFactory } from '../payment-info-form/factories/payment-info-form.factory';
 
 @Component({
-  selector: 'payment-form',
+  selector: 'demo-payment-form',
   templateUrl: './payment-form.component.html',
   styleUrls: ['./payment-form.component.scss']
 })

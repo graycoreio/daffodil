@@ -19,7 +19,7 @@ let stubProductQty = 1;
 let stubLoading = false;
 let stubCartItemCount = 2;
 
-@Component({ template: '<add-to-cart-notification [verticalPosition]="verticalPositionValue" [horizontalPosition]="horizontalPositionValue"></add-to-cart-notification>'})
+@Component({ template: '<demo-add-to-cart-notification [verticalPosition]="verticalPositionValue" [horizontalPosition]="horizontalPositionValue"></demo-add-to-cart-notification>'})
 class TestAddToCartNotificationComponentWrapper {
   productValue: Product;
   verticalPositionValue: string = "bottom";
@@ -34,22 +34,22 @@ class MockDaffModalComponent {
   @Output() hide: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({ selector: '[view-cart]', template: ''})
+@Component({ selector: '[demo-view-cart]', template: ''})
 class MockViewCartComponent {}
 
-@Component({ selector: '[proceed-to-checkout]', template: ''})
+@Component({ selector: '[demo-proceed-to-checkout]', template: ''})
 class MockProceedToCheckoutComponent {}
 
-@Component({ selector: 'modal-portal', template: '<ng-content></ng-content>'})
+@Component({ selector: 'demo-modal-portal', template: '<ng-content></ng-content>'})
 class MockModalPortalComponent {}
 
-@Component({ selector: 'product-added', template: ''})
+@Component({ selector: 'demo-product-added', template: ''})
 class MockProductAddedComponent {
   @Input() product: Product;
   @Input() qty: number;
 }
 
-@Component({ selector: 'loading-icon', template: ''})
+@Component({ selector: 'demo-loading-icon', template: ''})
 class MockLoadingIconComponent {}
 
 describe('AddToCartNotificationComponent', () => {
@@ -101,14 +101,14 @@ describe('AddToCartNotificationComponent', () => {
     spyOn(fromAddToCartNotification, 'selectLoading').and.returnValue(stubLoading);
     spyOn(fromAddToCartNotification, 'selectProductId').and.returnValue(stubProductId);
     spyOn(fromAddToCartNotification, 'selectCartItemCount').and.returnValue(stubCartItemCount);
-    // this doesn't seem to actually mock this selector.
+    // todo this doesn't seem to actually mock this selector.
     // spyOn(fromProduct, 'selectProduct').and.returnValue(stubProduct);
 
     fixture.detectChanges();
     
     daffModal = fixture.debugElement.query(By.css('daff-modal')).componentInstance;
-    addToCartNotification = fixture.debugElement.query(By.css('add-to-cart-notification')).componentInstance;
-    productAdded = fixture.debugElement.query(By.css('product-added')).componentInstance;
+    addToCartNotification = fixture.debugElement.query(By.css('demo-add-to-cart-notification')).componentInstance;
+    productAdded = fixture.debugElement.query(By.css('demo-product-added')).componentInstance;
   });
     
 
@@ -131,7 +131,7 @@ describe('AddToCartNotificationComponent', () => {
     });
   });
 
-  describe('on product-added', () => {
+  describe('on demo-product-added', () => {
     
     it('should set product', () => {
       addToCartNotification.product$ = of(stubProduct);
@@ -206,19 +206,19 @@ describe('AddToCartNotificationComponent', () => {
     });
   });
 
-  describe('when [view-cart] is clicked', () => {
+  describe('when [demo-view-cart] is clicked', () => {
     
     it('should call dispatch a CloseAddToCartNotification action', () => {
-      fixture.debugElement.query(By.css('[view-cart]')).nativeElement.click();
+      fixture.debugElement.query(By.css('[demo-view-cart]')).nativeElement.click();
 
       expect(store.dispatch).toHaveBeenCalledWith(new CloseAddToCartNotification());
     });
   });
 
-  describe('when [proceed-to-checkout] is clicked', () => {
+  describe('when [demo-proceed-to-checkout] is clicked', () => {
     
     it('should call dispatch a CloseAddToCartNotification action', () => {
-      fixture.debugElement.query(By.css('[proceed-to-checkout]')).nativeElement.click();
+      fixture.debugElement.query(By.css('[demo-proceed-to-checkout]')).nativeElement.click();
       
       expect(store.dispatch).toHaveBeenCalledWith(new CloseAddToCartNotification());
     });
@@ -246,7 +246,7 @@ describe('AddToCartNotificationComponent', () => {
       expect(topBarElement).not.toBeNull();
     });
     
-    it('should render product-added', () => {
+    it('should render demo-product-added', () => {
       let productAddedElement = fixture.debugElement.query(By.css('.add-to-cart-notification__product-added'));
 
       expect(productAddedElement).not.toBeNull();
@@ -258,8 +258,8 @@ describe('AddToCartNotificationComponent', () => {
       expect(buttonSetElement).not.toBeNull();
     });
     
-    it('should not render <loading-icon>', () => {
-      let loadingIcon = fixture.debugElement.query(By.css('loading-icon'));
+    it('should not render <demo-loading-icon>', () => {
+      let loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
 
       expect(loadingIcon).toBeNull();
     });
@@ -278,7 +278,7 @@ describe('AddToCartNotificationComponent', () => {
       expect(topBarElement).toBeNull();
     });
     
-    it('should not render product-added', () => {
+    it('should not render demo-product-added', () => {
       let productAddedElement = fixture.debugElement.query(By.css('.add-to-cart-notification__product-added'));
 
       expect(productAddedElement).toBeNull();
@@ -290,8 +290,8 @@ describe('AddToCartNotificationComponent', () => {
       expect(buttonSetElement).toBeNull();
     });
     
-    it('should render <loading-icon>', () => {
-      let loadingIcon = fixture.debugElement.query(By.css('loading-icon'));
+    it('should render <demo-loading-icon>', () => {
+      let loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
 
       expect(loadingIcon).not.toBeNull();
     });
