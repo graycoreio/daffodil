@@ -17,14 +17,14 @@ import {
   QtyDropdownComponent 
 } from '@daffodil/design';
 
-@Component({template: '<product [product]="productValue" [qty]="qtyValue" (updateQty)="updateQtyFunction($event)"></product>'})
+@Component({template: '<demo-product [product]="productValue" [qty]="qtyValue" (updateQty)="updateQtyFunction($event)"></demo-product>'})
 class ProductWrapperTest {
   productValue: Product;
   qtyValue: number;
   updateQtyFunction: Function;
 }
 
-@Component({selector: 'image-gallery-container', template: ''})
+@Component({selector: 'demo-image-gallery-container', template: ''})
 class MockImageGalleryContainer {
   @Input() images;
 }
@@ -68,7 +68,7 @@ describe('ProductComponent', () => {
     
     fixture.detectChanges();
 
-    productComponent = fixture.debugElement.query(By.css('product')).componentInstance;
+    productComponent = fixture.debugElement.query(By.css('demo-product')).componentInstance;
   });
 
   it('renders a product-container', () => {
@@ -83,10 +83,10 @@ describe('ProductComponent', () => {
     expect(productComponent.qty).toEqual(stubQty);
   });
 
-  describe('on <image-gallery-container>', () => {
+  describe('on <demo-image-gallery-container>', () => {
     
     it('should set images', () => {
-      let imageGalleryContainer = fixture.debugElement.query(By.css('image-gallery-container')).componentInstance;
+      let imageGalleryContainer = fixture.debugElement.query(By.css('demo-image-gallery-container')).componentInstance;
 
       expect(imageGalleryContainer.images).toEqual(productComponent.images);
     });

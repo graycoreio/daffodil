@@ -1,15 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'help-box',
+  selector: 'demo-help-box',
   templateUrl: './help-box.component.html',
   styleUrls: ['./help-box.component.scss']
 })
-export class HelpBoxComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
+export class HelpBoxComponent {}

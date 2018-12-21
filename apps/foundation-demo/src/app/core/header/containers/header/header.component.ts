@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { ToggleSidebar } from '../../../sidebar/actions/sidebar.actions';
 
 @Component({
-  selector: 'header-container',
+  selector: 'demo-header-container',
   templateUrl: './header.component.html'
 })
 export class FoundationHeaderContainer {

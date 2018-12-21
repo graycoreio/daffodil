@@ -5,20 +5,19 @@ import { By } from '@angular/platform-browser';
 import { DaffodilAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
-
 import { BillingSummaryComponent } from './billing-summary.component';
 
 let daffodilAddressFactory = new DaffAddressFactory();
 let stubBillingAddress = daffodilAddressFactory.create();
 let stubBillingAddressIsShippingAddress: boolean = false;
 
-@Component({template: '<billing-summary [billingAddress]="billingAddressValue" [billingAddressIsShippingAddress]="billingAddressIsShippingAddressValue"></billing-summary>'})
+@Component({template: '<demo-billing-summary [billingAddress]="billingAddressValue" [billingAddressIsShippingAddress]="billingAddressIsShippingAddressValue"></demo-billing-summary>'})
 class TestPaymentSummaryWrapper {
   billingAddressValue: DaffodilAddress = stubBillingAddress;
   billingAddressIsShippingAddressValue: boolean = stubBillingAddressIsShippingAddress;
 }
 
-@Component({selector: 'address-summary', template: ''})
+@Component({selector: 'demo-address-summary', template: ''})
 class MockAddressSummaryComponent {
   @Input() address: DaffodilAddress;
 }
@@ -45,8 +44,8 @@ describe('BillingSummaryComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    billingSummary = fixture.debugElement.query(By.css('billing-summary')).componentInstance;
-    addressSummary = fixture.debugElement.query(By.css('address-summary')).componentInstance;
+    billingSummary = fixture.debugElement.query(By.css('demo-billing-summary')).componentInstance;
+    addressSummary = fixture.debugElement.query(By.css('demo-address-summary')).componentInstance;
   });
 
   it('should create', () => {
@@ -75,8 +74,8 @@ describe('BillingSummaryComponent', () => {
       fixture.detectChanges();
     });
     
-    it('should not render address-summary', () => {
-      let addressSummaryElement = fixture.debugElement.query(By.css('address-summary'));
+    it('should not render demo-address-summary', () => {
+      let addressSummaryElement = fixture.debugElement.query(By.css('demo-address-summary'));
 
       expect(addressSummaryElement).toBeNull();
     });
@@ -90,11 +89,11 @@ describe('BillingSummaryComponent', () => {
 
     describe('and billingAddressIsShippingAddress is false', () => {
       
-      it('should render address-summary', () => {
+      it('should render demo-address-summary', () => {
         billingSummary.billingAddressIsShippingAddress = false;
         fixture.detectChanges();
 
-        let addressSummaryElement = fixture.debugElement.query(By.css('address-summary'));
+        let addressSummaryElement = fixture.debugElement.query(By.css('demo-address-summary'));
 
         expect(addressSummaryElement).not.toBeNull();
       });
@@ -102,11 +101,11 @@ describe('BillingSummaryComponent', () => {
 
     describe('and billingAddressIsShippingAddress is true', () => {
       
-      it('should not render address-summary', () => {
+      it('should not render demo-address-summary', () => {
         billingSummary.billingAddressIsShippingAddress = true;
         fixture.detectChanges();
         
-        let addressSummaryElement = fixture.debugElement.query(By.css('address-summary'));
+        let addressSummaryElement = fixture.debugElement.query(By.css('demo-address-summary'));
 
         expect(addressSummaryElement).toBeNull();
       });

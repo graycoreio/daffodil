@@ -14,7 +14,7 @@ let stubImages = [
   { url: '/assets/mh01-gray_alt1.jpg', label: 'testlabel1'}
 ]
 
-@Component({template: '<image-gallery-container [images]="imagesValue"></image-gallery-container>'})
+@Component({template: '<demo-image-gallery-container [images]="imagesValue"></demo-image-gallery-container>'})
 class TestImageGalleryComponentWrapper {
   imagesValue: Object[] = stubImages;
 }
@@ -50,7 +50,7 @@ describe('ImageGalleryComponent', () => {
     
     store = TestBed.get(Store);
 
-    imageGalleryContainer = fixture.debugElement.query(By.css('image-gallery-container')).componentInstance;
+    imageGalleryContainer = fixture.debugElement.query(By.css('demo-image-gallery-container')).componentInstance;
     daffGalleryImages = fixture.debugElement.queryAll(By.css('daff-gallery-image'));
   });
 

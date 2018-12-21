@@ -3,5 +3,5 @@
     <span class="checkout-cart__subtitle">{{subtitle}}</span>
     <span class="checkout-cart__edit-cart"><a (click)="navigateToCart()">Edit Cart</a></span>
   </div>
-  <checkout-cart-item *ngFor="let item of cart.items" [item]="item"></checkout-cart-item>
+  <demo-checkout-cart-item *ngFor="let item of cart.items" [item]="item"></demo-checkout-cart-item>
 </div>

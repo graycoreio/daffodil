@@ -6,7 +6,7 @@ import { ToggleShowPaymentForm, HidePaymentForm, ShowPaymentForm } from '../../.
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'payment',
+  selector: 'demo-payment',
   templateUrl: './payment.component.html'
 })
 export class PaymentComponent implements OnInit {

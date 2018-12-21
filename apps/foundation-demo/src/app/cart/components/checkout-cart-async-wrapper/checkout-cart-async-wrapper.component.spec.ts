@@ -14,7 +14,7 @@ let cartFactory = new DaffCartFactory();
 let cart = cartFactory.create();
 let stubCartTitle = 'cartTitle';
 
-@Component({template: '<checkout-cart-async-wrapper [cartTitle]="cartTitleValue" [cart]="cartValue$ | async" [loading]="loadingValue$ | async"><div class="transcluded-content"></div></checkout-cart-async-wrapper>'})
+@Component({template: '<demo-checkout-cart-async-wrapper [cartTitle]="cartTitleValue" [cart]="cartValue$ | async" [loading]="loadingValue$ | async"><div class="transcluded-content"></div></demo-checkout-cart-async-wrapper>'})
 class TestCheckoutCartAsyncWrapper {
   cartValue$: Observable<Cart>;
   loadingValue$: Observable<boolean>;
@@ -22,7 +22,7 @@ class TestCheckoutCartAsyncWrapper {
 }
 
 @Component({
-  selector: 'checkout-cart',
+  selector: 'demo-checkout-cart',
   template: ''
 })
 class MockCheckoutCartComponent { 
@@ -31,7 +31,7 @@ class MockCheckoutCartComponent {
 }
 
 @Component({
-  selector: 'cart-totals',
+  selector: 'demo-cart-totals',
   template: ''
 })
 class MockCartTotalsComponent {
@@ -39,12 +39,12 @@ class MockCartTotalsComponent {
 }
 
 @Component({
-  selector: 'help-box',
+  selector: 'demo-help-box',
   template: ''
 })
 class MockHelpBoxComponent {}
 
-@Component({ selector: 'loading-icon', template: ''})
+@Component({ selector: 'demo-loading-icon', template: ''})
 class MockLoadingIconComponent {}
 
 describe('CheckoutCartAsyncWrapper', () => {
@@ -82,13 +82,13 @@ describe('CheckoutCartAsyncWrapper', () => {
     component.loadingValue$ = of(false);
     component.cartTitleValue = stubCartTitle;
     
-    checkoutCartAsyncWrapperComponent = fixture.debugElement.query(By.css('checkout-cart-async-wrapper')).componentInstance;
+    checkoutCartAsyncWrapperComponent = fixture.debugElement.query(By.css('demo-checkout-cart-async-wrapper')).componentInstance;
 
     fixture.detectChanges();
 
-    checkoutCartComponent = fixture.debugElement.query(By.css('checkout-cart')).componentInstance;
-    cartTotalsComponent = fixture.debugElement.query(By.css('cart-totals')).componentInstance;
-    helpBoxComponent = fixture.debugElement.query(By.css('help-box')).componentInstance;
+    checkoutCartComponent = fixture.debugElement.query(By.css('demo-checkout-cart')).componentInstance;
+    cartTotalsComponent = fixture.debugElement.query(By.css('demo-cart-totals')).componentInstance;
+    helpBoxComponent = fixture.debugElement.query(By.css('demo-help-box')).componentInstance;
   });
 
   it('should create', () => {
@@ -111,7 +111,7 @@ describe('CheckoutCartAsyncWrapper', () => {
     expect(fixture.debugElement.query(By.css('.transcluded-content'))).not.toBeNull();
   });
 
-  describe('on <checkout-cart>', () => {
+  describe('on <demo-checkout-cart>', () => {
     
     it('should set cart to value passed by cart-container directive', () => {
       expect(checkoutCartComponent.cart).toEqual(cart);
@@ -122,7 +122,7 @@ describe('CheckoutCartAsyncWrapper', () => {
     });
   });
 
-  describe('on <cart-totals>', () => {
+  describe('on <demo-cart-totals>', () => {
     
     it('should set cart to value passed by the cart-container directive', () => {
       expect(cartTotalsComponent.cart).toEqual(cart);
@@ -131,16 +131,16 @@ describe('CheckoutCartAsyncWrapper', () => {
 
   describe('when CartContainer.$loading is false', () => {
     
-    it('should render <checkout-cart>', () => {
+    it('should render <demo-checkout-cart>', () => {
       expect(checkoutCartComponent).not.toBeNull();
     });
 
-    it('should render <cart-totals>', () => {
-      let cartTotalsComponent = fixture.debugElement.query(By.css('cart-totals'))
+    it('should render <demo-cart-totals>', () => {
+      let cartTotalsComponent = fixture.debugElement.query(By.css('demo-cart-totals'))
       expect(cartTotalsComponent).not.toBeNull();
     });
 
-    it('should render <help-box>', () => {
+    it('should render <demo-help-box>', () => {
       expect(helpBoxComponent).not.toBeNull();
     });
 
@@ -158,19 +158,19 @@ describe('CheckoutCartAsyncWrapper', () => {
       fixture.detectChanges();
     });
     
-    it('should not render <checkout-cart>', () => {
-      let checkoutCartComponent = fixture.debugElement.query(By.css('cart'));
+    it('should not render <demo-checkout-cart>', () => {
+      let checkoutCartComponent = fixture.debugElement.query(By.css('demo-checkout-cart'));
 
       expect(checkoutCartComponent).toBeNull();
     });
 
-    it('should not render <cart-totals>', () => {
-      let cartTotalsComponent = fixture.debugElement.query(By.css('cart-totals'));
+    it('should not render <demo-cart-totals>', () => {
+      let cartTotalsComponent = fixture.debugElement.query(By.css('demo-cart-totals'));
       expect(cartTotalsComponent).toBeNull();
     });
 
-    it('should not render <help-box>', () => {
-      let helpBoxComponent = fixture.debugElement.query(By.css('help-box'));
+    it('should not render <demo-help-box>', () => {
+      let helpBoxComponent = fixture.debugElement.query(By.css('demo-help-box'));
       expect(helpBoxComponent).toBeNull();
     });
 

@@ -5,7 +5,7 @@ import { LoadingIconComponent } from './loading-icon.component';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-@Component({ template: '<div loading-icon class="host-element"></div>' })
+@Component({ template: '<demo-loading-icon class="host-element"></demo-loading-icon>' })
 class TestLoadingIconComponentWrapper {}
 
 describe('LoadingIconComponent', () => {

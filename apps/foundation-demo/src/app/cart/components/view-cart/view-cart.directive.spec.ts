@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 
-@Component({template: '<button view-cart></button>'})
+@Component({template: '<button demo-view-cart></button>'})
 class TestViewCartDirective {}
 
 describe('ViewCartDirective', () => {

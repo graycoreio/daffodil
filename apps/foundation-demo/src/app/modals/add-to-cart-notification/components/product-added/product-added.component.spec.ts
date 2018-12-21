@@ -11,7 +11,7 @@ import { ProductAddedComponent } from './product-added.component';
 let stubQty = 1;
 
 @Component({
-  template: '<product-added [qty]="qtyValue" [product]="productValue"></product-added>'
+  template: '<demo-product-added [qty]="qtyValue" [product]="productValue"></demo-product-added>'
 })
 class TestProductAddedComponentWrapper { 
   qtyValue: number = stubQty;
@@ -48,7 +48,7 @@ describe('ProductViewComponent', () => {
 
     fixture.detectChanges();
 
-    productAdded = fixture.debugElement.query(By.css('product-added')).componentInstance;
+    productAdded = fixture.debugElement.query(By.css('demo-product-added')).componentInstance;
   });
 
   it('should create', () => {

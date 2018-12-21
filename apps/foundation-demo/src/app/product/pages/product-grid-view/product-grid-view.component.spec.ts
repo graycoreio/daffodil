@@ -24,14 +24,14 @@ class MockProductGridContainer {
 }
 
 @Component({
-  selector: 'product-grid',
+  selector: 'demo-product-grid',
   template: ''
 })
 class MockProductGridComponent { 
   @Input() products: Product[];
 }
 
-@Component({ selector: 'loading-icon', template: ''})
+@Component({ selector: 'demo-loading-icon', template: ''})
 class MockLoadingIconComponent {}
 
 describe('ProductGridViewComponent', () => {
@@ -60,14 +60,14 @@ describe('ProductGridViewComponent', () => {
 
     fixture.detectChanges();
 
-    productGridComponent = fixture.debugElement.query(By.css('product-grid')).componentInstance;
+    productGridComponent = fixture.debugElement.query(By.css('demo-product-grid')).componentInstance;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('on <product-grid>', () => {
+  describe('on <demo-product-grid>', () => {
     
     it('should set products to value passed by [product-grid-container]', () => {
       products$.subscribe((products) => {
@@ -86,14 +86,14 @@ describe('ProductGridViewComponent', () => {
 
   describe('when ProductContainer.loading$ is false', () => {
     
-    it('should render <product-grid>', () => {
-      let productGrid = fixture.debugElement.query(By.css('product-grid'));
+    it('should render <demo-product-grid>', () => {
+      let productGrid = fixture.debugElement.query(By.css('demo-product-grid'));
 
       expect(productGrid).not.toBeNull();
     });
 
-    it('should not render loading-icon', () => {
-      let loadingIcon = fixture.debugElement.query(By.css('loading-icon'));
+    it('should not render demo-loading-icon', () => {
+      let loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
 
       expect(loadingIcon).toBeNull();
     });
@@ -108,14 +108,14 @@ describe('ProductGridViewComponent', () => {
       fixture.detectChanges();
     });
     
-    it('should not render <product-grid>', () => {
-      let productGrid = fixture.debugElement.query(By.css('product-grid'));
+    it('should not render <demo-product-grid>', () => {
+      let productGrid = fixture.debugElement.query(By.css('demo-product-grid'));
 
       expect(productGrid).toBeNull();
     });
 
-    it('should render loading-icon', () => {
-      let loadingIcon = fixture.debugElement.query(By.css('loading-icon'));
+    it('should render demo-loading-icon', () => {
+      let loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
 
       expect(loadingIcon).not.toBeNull();
     });

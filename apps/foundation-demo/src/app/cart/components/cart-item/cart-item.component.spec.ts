@@ -12,7 +12,7 @@ import { DaffCartItemFactory } from '@daffodil/core/testing';
 let cartItemFactory = new DaffCartItemFactory();
 let mockCartItem: CartItem = cartItemFactory.create();
 
-@Component({template: '<cart-item [item]="cartItemValue"></cart-item>'})
+@Component({template: '<demo-cart-item [item]="cartItemValue"></demo-cart-item>'})
 class TestCartItemWrapper {
   cartItemValue: CartItem;
 }
@@ -51,7 +51,7 @@ describe('CartItemComponent', () => {
     spyOn(router, 'navigateByUrl');
 
     component.cartItemValue = mockCartItem;
-    cartItemComponent = fixture.debugElement.query(By.css('cart-item'));
+    cartItemComponent = fixture.debugElement.query(By.css('demo-cart-item'));
     qtyDropdownComponent = fixture.debugElement.query(By.css('qty-dropdown')).componentInstance;
 
     fixture.detectChanges();

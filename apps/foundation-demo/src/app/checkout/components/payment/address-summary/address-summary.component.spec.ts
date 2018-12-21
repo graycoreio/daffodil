@@ -10,7 +10,7 @@ import { AddressSummaryComponent } from './address-summary.component';
 let daffodilAddressFactory = new DaffAddressFactory();
 let stubDaffodilAddress = daffodilAddressFactory.create();
 
-@Component({template: '<address-summary [address]="addressValue"></address-summary>'})
+@Component({template: '<demo-address-summary [address]="addressValue"></demo-address-summary>'})
 class TestShippingSummaryWrapper {
   addressValue: DaffodilAddress = stubDaffodilAddress;
 }
@@ -36,7 +36,7 @@ describe('AddressSummaryComponent', () => {
 
     fixture.detectChanges();
 
-    addressSummary = fixture.debugElement.query(By.css('address-summary')).componentInstance;
+    addressSummary = fixture.debugElement.query(By.css('demo-address-summary')).componentInstance;
   });
 
   it('should create', () => {

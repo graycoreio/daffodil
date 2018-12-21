@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ThankYouComponent } from './thank-you.component';
 import { Component } from '@angular/core';
 
-@Component({selector: 'print-order-summary', template: ''})
+@Component({selector: 'demo-print-order-summary', template: ''})
 class MockPrintOrderSummaryComponent {}
 
 describe('ThankYouComponent', () => {

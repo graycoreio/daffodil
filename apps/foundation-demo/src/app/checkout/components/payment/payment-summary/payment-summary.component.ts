@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { PaymentInfo } from '@daffodil/core';
 
 @Component({
-  selector: 'payment-summary',
+  selector: 'demo-payment-summary',
   templateUrl: './payment-summary.component.html',
   styleUrls: ['./payment-summary.component.scss']
 })

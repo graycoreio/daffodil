@@ -4,12 +4,12 @@ import { ModalPortalComponent } from './modal-portal.component';
 import { Component } from '@angular/core';
 
 @Component({ template: `
-  <modal-portal>
+  <demo-modal-portal>
     <div class="portal-content"></div>
-  </modal-portal>
+  </demo-modal-portal>
 
   <div class="portal-host-destination">
-    <div id="modal-portal">
+    <div id="demo-modal-portal">
       // portal content should go here.
     </div>
   <div>
@@ -41,7 +41,7 @@ describe('ModalPortalComponent', () => {
   });
 
   it('should attach portal-content to portal-host-destination', () => {
-    let modalPortal = document.getElementById('modal-portal');
+    let modalPortal = document.getElementById('demo-modal-portal');
 
     expect(modalPortal.innerHTML.match('portal-content')).toBeTruthy();
   });

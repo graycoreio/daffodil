@@ -8,7 +8,7 @@ import { Product } from '@daffodil/core';
 import { fromProduct } from '@daffodil/state';
 
 @Component({
-  selector: 'add-to-cart-notification',
+  selector: 'demo-add-to-cart-notification',
   templateUrl: './add-to-cart-notification.component.html',
   styleUrls: ['./add-to-cart-notification.component.scss']
 })

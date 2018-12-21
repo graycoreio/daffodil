@@ -9,13 +9,13 @@ import { Component, Input } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-@Component({template: '<checkout-cart [cart]="cartValue" [subtitle]="subtitleValue"></checkout-cart>'})
+@Component({template: '<demo-checkout-cart [cart]="cartValue" [subtitle]="subtitleValue"></demo-checkout-cart>'})
 class TestCheckoutCartWrapper {
   cartValue: Cart;
   subtitleValue: string;
 }
 
-@Component({selector: 'checkout-cart-item', template: ''})
+@Component({selector: 'demo-checkout-cart-item', template: ''})
 class MockCheckoutCartItemComponent {
   @Input() item: CartItem;
 }
@@ -62,8 +62,8 @@ describe('CheckoutCartComponent', () => {
 
     fixture.detectChanges();
 
-    checkoutCartItems = fixture.debugElement.queryAll(By.css('checkout-cart-item'));
-    checkoutCart = fixture.debugElement.query(By.css('checkout-cart')).componentInstance;
+    checkoutCartItems = fixture.debugElement.queryAll(By.css('demo-checkout-cart-item'));
+    checkoutCart = fixture.debugElement.query(By.css('demo-checkout-cart')).componentInstance;
   });
 
   it('should create', () => {
@@ -78,11 +78,11 @@ describe('CheckoutCartComponent', () => {
     expect(checkoutCart.subtitle).toEqual(stubSubtitle);
   });
 
-  it('renders a <checkout-cart-item> for every checkoutCart.items', () => {
+  it('renders a <demo-checkout-cart-item> for every checkoutCart.items', () => {
     expect(checkoutCartItems.length).toEqual(mockCart.items.length);
   });
 
-  describe('on <checkout-cart-item>', () => {
+  describe('on <demo-checkout-cart-item>', () => {
     it('should set item', () => {
       expect(checkoutCartItems[0].componentInstance.item).toEqual(mockCart.items[0]);  
     });

@@ -4,7 +4,7 @@ import { Product } from '@daffodil/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'product',
+  selector: 'demo-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss'],
   encapsulation: ViewEncapsulation.None

@@ -10,7 +10,7 @@ import { DaffCartItemFactory } from '@daffodil/core/testing';
 import { CheckoutCartItemComponent } from './checkout-cart-item.component';
 import { CartItemComponent } from '../cart-item/cart-item.component';
 
-@Component({template: '<checkout-cart-item [item]="cartItemValue"></checkout-cart-item>'})
+@Component({template: '<demo-checkout-cart-item [item]="cartItemValue"></demo-checkout-cart-item>'})
 class TestCheckoutCartItemWrapper {
   cartItemValue: CartItem;
 }
@@ -43,7 +43,7 @@ describe('CheckoutCartItemComponent', () => {
     spyOn(router, 'navigateByUrl');
 
     component.cartItemValue = mockCartItem;
-    cartItemComponent = fixture.debugElement.query(By.css('checkout-cart-item')).componentInstance;
+    cartItemComponent = fixture.debugElement.query(By.css('demo-checkout-cart-item')).componentInstance;
 
     fixture.detectChanges();
   });

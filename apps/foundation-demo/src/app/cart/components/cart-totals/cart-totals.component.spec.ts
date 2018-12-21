@@ -8,7 +8,7 @@ import { DaffCartItemFactory, DaffCartFactory } from '@daffodil/core/testing';
 import { CartTotalsComponent } from './cart-totals.component';
 import { CartTotalsItemModule } from '../cart-totals-item/cart-totals-item.module';
 
-@Component({template: '<cart-totals [cart]="cartValue"></cart-totals>'})
+@Component({template: '<demo-cart-totals [cart]="cartValue"></demo-cart-totals>'})
 class TestCartTotalsWrapper {
   @Input() cartValue: Cart;
 }
@@ -50,7 +50,7 @@ describe('CartTotalsComponent', () => {
     component.cartValue = mockCart;
 
     fixture.detectChanges();
-    cartTotalsComponent = fixture.debugElement.query(By.css('cart-totals')).componentInstance;
+    cartTotalsComponent = fixture.debugElement.query(By.css('demo-cart-totals')).componentInstance;
   });
 
   it('can be passed a Cart object', () => {
@@ -70,10 +70,10 @@ describe('CartTotalsComponent', () => {
     });
   });
 
-  describe('on first <cart-totals-item>', () => {
+  describe('on first <demo-cart-totals-item>', () => {
 
     beforeEach(() => {
-      cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('cart-totals-item'))[0].nativeElement;
+      cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('demo-cart-totals-item'))[0].nativeElement;
     });
   
     it('should set label', () => {
@@ -85,10 +85,10 @@ describe('CartTotalsComponent', () => {
     });
   });
 
-  describe('on second <cart-totals-item>', () => {
+  describe('on second <demo-cart-totals-item>', () => {
 
     beforeEach(() => {
-      cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('cart-totals-item'))[1].nativeElement;
+      cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('demo-cart-totals-item'))[1].nativeElement;
     });
   
     it('should set label', () => {
@@ -100,10 +100,10 @@ describe('CartTotalsComponent', () => {
     });
   });
 
-  describe('on third <cart-totals-item>', () => {
+  describe('on third <demo-cart-totals-item>', () => {
 
     beforeEach(() => {
-      cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('cart-totals-item'))[2].nativeElement;
+      cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('demo-cart-totals-item'))[2].nativeElement;
     });
   
     it('should set label', () => {
@@ -115,10 +115,10 @@ describe('CartTotalsComponent', () => {
     });
   });
 
-  describe('on fourth <cart-totals-item>', () => {
+  describe('on fourth <demo-cart-totals-item>', () => {
 
     beforeEach(() => {
-      cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('cart-totals-item'))[3].nativeElement;
+      cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('demo-cart-totals-item'))[3].nativeElement;
     });
   
     it('should set label', () => {

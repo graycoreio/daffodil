@@ -4,7 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { ErrorStateMatcher } from '@daffodil/design';
 
 @Component({
-  selector: 'address-form',
+  selector: 'demo-address-form',
   templateUrl: './address-form.component.html',
   styleUrls: ['./address-form.component.scss']
 })

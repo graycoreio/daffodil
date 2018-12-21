@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 
 import { DaffSidebarModule } from '@daffodil/design';
 
-import { ModalPortalModule } from '../portals/modal-portal.module';
 import { HeaderModule } from '../../header/header.module';
 import { FooterModule } from '../../footer/footer.module';
 import { SidebarModule } from '../../sidebar/sidebar.module';

@@ -15,9 +15,9 @@ let stubFormGroupValue = formBuilder.group({
 let stubSubmitted = false;
 
 @Component({
-  template: '<shipping-options ' + 
+  template: '<demo-shipping-options ' + 
               '[formGroup]="formGroupValue" ' +  
-              '[submitted]="submittedValue"></shipping-options>'
+              '[submitted]="submittedValue"></demo-shipping-options>'
 })
 class TestShippingOptionsWrapper {
   formGroupValue: FormGroup = stubFormGroupValue;
@@ -54,7 +54,7 @@ describe('ShippingOptionsComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    shippingOptionsComponent = fixture.debugElement.query(By.css('shipping-options')).componentInstance;
+    shippingOptionsComponent = fixture.debugElement.query(By.css('demo-shipping-options')).componentInstance;
   });
 
   it('should create', () => {

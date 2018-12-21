@@ -7,12 +7,12 @@ import { DaffProductFactory } from '@daffodil/core/testing';
 
 import { ProductGridComponent } from './product-grid.component';
 
-@Component({template: '<product-grid [products]="productsValue"></product-grid>'})
+@Component({template: '<demo-product-grid [products]="productsValue"></demo-product-grid>'})
 class TestProductGridWrapper {
   productsValue: Product[];
 }
 
-@Component({selector: 'product-card', template: ''})
+@Component({selector: 'demo-product-card', template: ''})
 class MockProductCardComponent {
   @Input() product: Product;
 }
@@ -41,16 +41,16 @@ describe('ProductGridComponent', () => {
 
     fixture.detectChanges();
 
-    productCards = fixture.debugElement.queryAll(By.css('product-card'));
+    productCards = fixture.debugElement.queryAll(By.css('demo-product-card'));
   });
 
   it('should be able to take an input of products', () => {
-    let productGridComponent = fixture.debugElement.query(By.css('product-grid'));
+    let productGridComponent = fixture.debugElement.query(By.css('demo-product-grid'));
 
     expect(productGridComponent.componentInstance.products).toEqual(component.productsValue);
   });
 
-  describe('on <product-card>', () => {
+  describe('on <demo-product-card>', () => {
 
     it('should set product', () => {
       expect(productCards[0].componentInstance.product).toEqual(component.productsValue[0]);

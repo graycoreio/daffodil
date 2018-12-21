@@ -4,7 +4,7 @@ import { NotFoundComponent } from './not-found.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-@Component({selector: 'best-sellers', template: ''})
+@Component({selector: 'demo-best-sellers', template: ''})
 class MockBestSellersComponent {}
 
 describe('NotFoundComponent', () => {

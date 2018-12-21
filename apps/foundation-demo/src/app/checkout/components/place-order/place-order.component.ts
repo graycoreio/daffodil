@@ -5,7 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { PlaceOrder } from '../../actions/checkout.actions';
 
 @Component({
-  selector: 'place-order',
+  selector: 'demo-place-order',
   templateUrl: './place-order.component.html',
   styleUrls: ['./place-order.component.scss']
 })

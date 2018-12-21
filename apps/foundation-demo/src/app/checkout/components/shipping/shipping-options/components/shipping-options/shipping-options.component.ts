@@ -7,7 +7,7 @@ import { ShippingOptionsService } from '../services/shipping-options.service';
 import { ErrorStateMatcher } from '@daffodil/design';
 
 @Component({
-  selector: 'shipping-options',
+  selector: 'demo-shipping-options',
   templateUrl: './shipping-options.component.html',
   styleUrls: ['./shipping-options.component.scss']
 })

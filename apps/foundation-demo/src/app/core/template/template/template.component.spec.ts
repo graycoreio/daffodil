@@ -5,11 +5,14 @@ import { Component } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NewsletterModule } from '../../../newsletter/newsletter.module';
 
-@Component({selector: 'header-container', template: ''})
+@Component({selector: 'demo-header-container', template: ''})
 class MockHeaderViewComponent {}
 
-@Component({selector: 'sidebar-viewport-container', template: ''})
+@Component({selector: 'demo-sidebar-viewport-container', template: ''})
 class MockSidebarViewComponent {}
+
+@Component({selector: 'demo-footer', template: ''})
+class MockFooterComponent {}
 
 describe('TemplateComponent', () => {
   let component: TemplateComponent;
@@ -24,6 +27,7 @@ describe('TemplateComponent', () => {
       declarations: [ 
         MockHeaderViewComponent,
         MockSidebarViewComponent,
+        MockFooterComponent,
         TemplateComponent
       ]
     })

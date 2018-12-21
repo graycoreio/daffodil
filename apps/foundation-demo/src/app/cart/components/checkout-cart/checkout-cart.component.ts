@@ -3,7 +3,7 @@ import { Cart } from '@daffodil/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'checkout-cart',
+  selector: 'demo-checkout-cart',
   templateUrl: './checkout-cart.component.html',
   styleUrls: ['./checkout-cart.component.scss']
 })

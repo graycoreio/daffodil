@@ -15,9 +15,9 @@ let stubPaymentInfo: PaymentInfo = {
 };
 
 @Component({
-  template: '<payment-summary ' + 
+  template: '<demo-payment-summary ' + 
               '[paymentInfo]="paymentInfoValue" '+ 
-              '(editPaymentInfo)="editPaymentInfoFunction()"></payment-summary>'
+              '(editPaymentInfo)="editPaymentInfoFunction()"></demo-payment-summary>'
 })
 class TestPaymentSummaryWrapper {
   paymentInfoValue: PaymentInfo = stubPaymentInfo;
@@ -44,7 +44,7 @@ describe('PaymentSummaryComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    paymentSummaryComponent = fixture.debugElement.query(By.css('payment-summary')).componentInstance;
+    paymentSummaryComponent = fixture.debugElement.query(By.css('demo-payment-summary')).componentInstance;
   });
 
   it('should create', () => {

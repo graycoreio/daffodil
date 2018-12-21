@@ -1,7 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-logo',
+  selector: 'demo-logo',
   templateUrl: './logo.component.html',
   styleUrls: ['./logo.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

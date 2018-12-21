@@ -25,12 +25,12 @@ let stubShowShippingForm: boolean = true;
 let stubShowPaymentView: boolean = false;
 
 @Component({
-  template: '<shipping [isShippingAddressValid]="isShippingAddressValidValue" ' + 
+  template: '<demo-shipping [isShippingAddressValid]="isShippingAddressValidValue" ' + 
               '[shippingAddress]="shippingAddressValue" ' + 
               '[selectedShippingOptionId]="selectedShippingOptionIdValue" ' + 
               '[showPaymentView]="showPaymentViewValue" ' + 
               '(updateShippingAddress)="updateShippingAddressFunction($event)" ' + 
-              '(selectShippingOption)="selectShippingOptionFunction($event)"></shipping>'
+              '(selectShippingOption)="selectShippingOptionFunction($event)"></demo-shipping>'
 })
 class TestShipping {
   isShippingAddressValidValue = stubIsShippingAddressValidValue;
@@ -41,14 +41,14 @@ class TestShipping {
   selectShippingOptionFunction: Function = () => {};
 }
 
-@Component({selector: 'shipping-form', template: '<ng-content></ng-content>'})
+@Component({selector: 'demo-shipping-form', template: '<ng-content></ng-content>'})
 class MockShippingFormComponent {
   @Input() shippingAddress: DaffodilAddress;
   @Input() editMode: boolean;
   @Output() submitted: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({selector: 'shipping-summary', template: ''})
+@Component({selector: 'demo-shipping-summary', template: ''})
 class MockShippingSummaryComponent {
   @Input() shippingAddress: DaffodilAddress;
   @Input() selectedShippingOptionId: string;
@@ -89,9 +89,9 @@ describe('ShippingComponent', () => {
 
     fixture.detectChanges();
 
-    shippingFormComponent = fixture.debugElement.query(By.css('shipping-form')).componentInstance;
-    shippingSummaryComponent = fixture.debugElement.query(By.css('shipping-summary')).componentInstance;
-    shipping = fixture.debugElement.query(By.css('shipping')).componentInstance;
+    shippingFormComponent = fixture.debugElement.query(By.css('demo-shipping-form')).componentInstance;
+    shippingSummaryComponent = fixture.debugElement.query(By.css('demo-shipping-summary')).componentInstance;
+    shipping = fixture.debugElement.query(By.css('demo-shipping')).componentInstance;
   });
 
   it('should create', () => {
@@ -110,7 +110,7 @@ describe('ShippingComponent', () => {
     expect(shipping.showPaymentView).toEqual(stubShowPaymentView);
   });
   
-  describe('on <shipping-form>', () => {
+  describe('on <demo-shipping-form>', () => {
     
     it('should set shippingAddress', () => {
       expect(shippingFormComponent.shippingAddress).toEqual(shipping.shippingAddress);
@@ -121,7 +121,7 @@ describe('ShippingComponent', () => {
     });
   });
 
-  describe('on <shipping-summary>', () => {
+  describe('on <demo-shipping-summary>', () => {
     
     it('should set shippingAddress', () => {
       expect(shippingSummaryComponent.shippingAddress).toEqual(shipping.shippingAddress);
@@ -210,24 +210,24 @@ describe('ShippingComponent', () => {
       fixture.detectChanges();
     });
     
-    it('should show <shipping-form>', () => {
-      expect(fixture.debugElement.query(By.css('shipping-form')).nativeElement.hidden).toBeFalsy();
+    it('should show <demo-shipping-form>', () => {
+      expect(fixture.debugElement.query(By.css('demo-shipping-form')).nativeElement.hidden).toBeFalsy();
     });
 
     describe('and shippingAddress is defined', () => {
       
-      it('should hide <shipping-summary>', () => {
-        expect(fixture.debugElement.query(By.css('shipping-summary')).nativeElement.hidden).toBeTruthy();
+      it('should hide <demo-shipping-summary>', () => {
+        expect(fixture.debugElement.query(By.css('demo-shipping-summary')).nativeElement.hidden).toBeTruthy();
       });
     });
 
     describe('and shippingAddress is null', () => {
       
-      it('should not render <shipping-summary>', () => {
+      it('should not render <demo-shipping-summary>', () => {
         shipping.shippingAddress = null;
         fixture.detectChanges();
 
-        expect(fixture.debugElement.query(By.css('shipping-summary'))).toBeNull();
+        expect(fixture.debugElement.query(By.css('demo-shipping-summary'))).toBeNull();
       });
     });
   });
@@ -239,12 +239,12 @@ describe('ShippingComponent', () => {
       fixture.detectChanges();
     });
     
-    it('should not show <shipping-form>', () => {
-      expect(fixture.debugElement.query(By.css('shipping-form')).nativeElement.hidden).toBeTruthy();
+    it('should not show <demo-shipping-form>', () => {
+      expect(fixture.debugElement.query(By.css('demo-shipping-form')).nativeElement.hidden).toBeTruthy();
     });
 
-    it('should show <shipping-summary>', () => {
-      expect(fixture.debugElement.query(By.css('shipping-summary')).nativeElement.hidden).toBeFalsy();
+    it('should show <demo-shipping-summary>', () => {
+      expect(fixture.debugElement.query(By.css('demo-shipping-summary')).nativeElement.hidden).toBeFalsy();
     });
   });
 });

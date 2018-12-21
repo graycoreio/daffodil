@@ -9,7 +9,7 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Component, Output, EventEmitter } from '@angular/core';
 
-@Component({selector: 'sidebar', template: ''})
+@Component({selector: 'demo-sidebar', template: ''})
 class MockSidebarContainer {
   @Output() close: EventEmitter<any> = new EventEmitter();
 }
@@ -50,7 +50,7 @@ describe('SidebarContainer', () => {
     fixture.detectChanges();
 
     sidebarViewport = fixture.debugElement.query(By.css("daff-sidebar-viewport")).componentInstance;
-    sidebarContainer = fixture.debugElement.query(By.css("sidebar")).componentInstance;
+    sidebarContainer = fixture.debugElement.query(By.css("demo-sidebar")).componentInstance;
   });
 
   it('should create', () => {
