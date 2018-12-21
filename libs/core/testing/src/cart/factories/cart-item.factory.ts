@@ -7,6 +7,7 @@ import { ModelFactory } from "../../factories/factory";
 
 export class MockCartItem implements CartItem {
   item_id = faker.random.number(1000);
+  image = null;
   quote_id = faker.random.number(1000);
   created_at = new Date();
   updated_at = new Date();
