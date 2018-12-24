@@ -1,0 +1,58 @@
+@import 'daff-util';
+
+:host {
+  padding: 50px 25px;
+  border-top: 1px solid daff-color($daff-gray, 200);
+
+  @include breakpoint(tablet) {
+    padding: 75px 50px;
+  }
+
+  @include breakpoint(laptop) {
+    padding: 75px 0;
+  }
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 50px;
+  grid-template-areas:
+    'logo'
+    'newsletter'
+    'link-1'
+    'link-2';
+
+  @include breakpoint(tablet) {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 25px;
+    grid-template-areas:
+      'logo link-1'
+      'link-2 newsletter';
+  }
+
+  @include breakpoint(big-tablet) {
+    grid-template-columns: 1fr 1fr 1fr 2fr;
+    grid-template-areas: 'logo link-1 link-2 newsletter';
+  }
+
+  &__logo {
+    display: block;
+    width: 50px;
+    grid-area: logo;
+  }
+
+  &__links {
+    &:first-of-type {
+      grid-area: link-1;
+    }
+
+    &:nth-of-type(2) {
+      grid-area: link-2;
+    }
+  }
+
+  &__newsletter {
+    grid-area: newsletter;
+  }
+}

@@ -6,13 +6,15 @@ import { CommonModule } from '@angular/common';
 import { TemplateComponent } from './template.component';
 import { DaffioHeaderModule } from '../header/header.module';
 import { DaffioSidebarModule } from '../sidebar/sidebar.module';
+import { DaffioFooterModule } from '../footer/footer.module';
 
 @NgModule({
   imports: [
     RouterModule,
     CommonModule,
     DaffioHeaderModule,
-    DaffioSidebarModule
+    DaffioSidebarModule,
+    DaffioFooterModule
   ],
   declarations: [
     TemplateComponent
