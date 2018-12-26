@@ -5,7 +5,7 @@ import { LoadingIconComponent } from './loading-icon.component';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-@Component({ template: '<demo-loading-icon class="host-element"></demo-loading-icon>' })
+@Component({ template: '<daff-loading-icon class="host-element"></daff-loading-icon>' })
 class WrapperComponent {}
 
 describe('LoadingIconComponent', () => {

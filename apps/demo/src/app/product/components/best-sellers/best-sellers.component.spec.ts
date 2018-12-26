@@ -23,7 +23,7 @@ class MockProductGridComponent {
   @Input() products: Product[];
 }
 
-@Component({ selector: 'demo-loading-icon', template: ''})
+@Component({ selector: 'daff-loading-icon', template: ''})
 class MockLoadingIconComponent {}
 
 describe('BestSellersComponent', () => {

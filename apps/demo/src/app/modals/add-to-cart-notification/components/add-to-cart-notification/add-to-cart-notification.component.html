@@ -11,7 +11,7 @@
         <button type="button" daff-stroked-button (click)="onHide()" demoViewCart>View Cart ({{(cartItemCount$ | async)}})</button>
         <button type="button" daff-button color="black" (click)="onHide()" demoProceedToCheckout>Checkout</button>
       </div>
-      <demo-loading-icon *ngIf="(loading$ | async)"></demo-loading-icon>
+      <daff-loading-icon *ngIf="(loading$ | async)"></daff-loading-icon>
     </div>
   </daff-modal>
 </demo-modal-portal>

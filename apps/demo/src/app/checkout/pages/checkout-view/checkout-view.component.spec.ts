@@ -88,8 +88,7 @@ class MockCartContainer {
   cart$: Observable<Cart>;
   loading$: Observable<boolean> = of(false);
 }
-
-@Component({ selector: 'demo-loading-icon', template: ''})
+@Component({ selector: 'daff-loading-icon', template: ''})
 class MockLoadingIconComponent {}
 
 describe('CheckoutViewComponent', () => {
