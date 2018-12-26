@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LoadingIconModule } from '../../../core/loading-icon/loading-icon.module';
+import { DaffQtyDropdownModule, DaffAccordionModule, DaffContainerModule, DaffLoadingIconModule } from '@daffodil/design';
+
 import { ImageGalleryModule } from '../../../core/image-gallery/image-gallery.module';
 import { ProductComponent } from './product.component';
 
@@ -16,7 +17,7 @@ import {
   imports: [
     CommonModule,
     ImageGalleryModule,
-    LoadingIconModule,
+    DaffLoadingIconModule,
     DaffQtyDropdownModule,
     DaffAccordionModule,
     DaffContainerModule,

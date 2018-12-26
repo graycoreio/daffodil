@@ -7,7 +7,7 @@ import { ProceedToCheckoutModule } from '../../../../cart/components/proceed-to-
 import { ProductAddedModule } from '../product-added/product-added.module';
 import { FoundationAddToCartNotificationStateModule } from '../../add-to-cart-notification-state.module';
 import { StateCartModule } from '@daffodil/state';
-import { LoadingIconModule } from '../../../../core/loading-icon/loading-icon.module';
+import { DaffLoadingIconModule } from '@daffodil/design';
 import { TemplateModule } from '../../../../core/template/template/template.module';
 import { ModalPortalModule } from '../../../../core/template/portals/modal-portal.module';
 
@@ -23,7 +23,7 @@ import { ModalPortalModule } from '../../../../core/template/portals/modal-porta
     ProductAddedModule,
     FoundationAddToCartNotificationStateModule,
     StateCartModule,
-    LoadingIconModule,
+    DaffLoadingIconModule,
     ModalPortalModule
   ],
   declarations: [
