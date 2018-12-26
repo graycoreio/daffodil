@@ -32,7 +32,7 @@ class MockProductGridComponent {
   @Input() products: Product[];
 }
 
-@Component({ selector: 'demo-loading-icon', template: ''})
+@Component({ selector: 'daff-loading-icon', template: ''})
 class MockLoadingIconComponent {}
 
 describe('ProductGridViewComponent', () => {
@@ -94,8 +94,8 @@ describe('ProductGridViewComponent', () => {
       expect(productGrid).not.toBeNull();
     });
 
-    it('should not render demo-loading-icon', () => {
-      const loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
+    it('should not render daff-loading-icon', () => {
+      const loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
 
       expect(loadingIcon).toBeNull();
     });
@@ -116,8 +116,8 @@ describe('ProductGridViewComponent', () => {
       expect(productGrid).toBeNull();
     });
 
-    it('should render demo-loading-icon', () => {
-      const loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
+    it('should render daff-loading-icon', () => {
+      const loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
 
       expect(loadingIcon).not.toBeNull();
     });

@@ -50,7 +50,7 @@ class MockProductAddedComponent {
   @Input() qty: number;
 }
 
-@Component({ selector: 'demo-loading-icon', template: ''})
+@Component({ selector: 'daff-loading-icon', template: ''})
 class MockLoadingIconComponent {}
 
 describe('AddToCartNotificationComponent', () => {
@@ -259,8 +259,8 @@ describe('AddToCartNotificationComponent', () => {
       expect(buttonSetElement).not.toBeNull();
     });
     
-    it('should not render <demo-loading-icon>', () => {
-      const loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
+    it('should not render <daff-loading-icon>', () => {
+      const loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
 
       expect(loadingIcon).toBeNull();
     });
@@ -291,8 +291,8 @@ describe('AddToCartNotificationComponent', () => {
       expect(buttonSetElement).toBeNull();
     });
     
-    it('should render <demo-loading-icon>', () => {
-      const loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
+    it('should render <daff-loading-icon>', () => {
+      const loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
 
       expect(loadingIcon).not.toBeNull();
     });

@@ -31,7 +31,7 @@ class MockCartWrapperComponent {
   @Input() cart: Cart;
 }
 
-@Component({ selector: 'demo-loading-icon', template: ''})
+@Component({ selector: 'daff-loading-icon', template: ''})
 class MockLoadingIconComponent {}
 
 describe('CartViewComponent', () => {
@@ -91,14 +91,14 @@ describe('CartViewComponent', () => {
       fixture.detectChanges();
 
       cartWrapper = fixture.debugElement.query(By.css('demo-cart-wrapper'));
-      loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
+      loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
     });
 
     it('should not render demo-cart-wrapper', () => {
       expect(cartWrapper).toBeNull();
     });
 
-    it('should render demo-loading-icon', () => {
+    it('should render daff-loading-icon', () => {
       expect(loadingIcon).not.toBeNull();
     });
   });
@@ -113,14 +113,14 @@ describe('CartViewComponent', () => {
       fixture.detectChanges();
 
       cartWrapper = fixture.debugElement.query(By.css('demo-cart-wrapper'));
-      loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
+      loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
     });
 
     it('should render demo-cart-wrapper', () => {
       expect(cartWrapper).not.toBeNull();
     });
 
-    it('should not render demo-loading-icon', () => {
+    it('should not render daff-loading-icon', () => {
       expect(loadingIcon).toBeNull();
     });
   });
