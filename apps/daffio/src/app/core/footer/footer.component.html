@@ -1,0 +1,16 @@
+<daff-container size="md">
+  <div class="footer">
+    <a routerLink="/" class="footer__logo">
+      <daffio-logo type="icon"></daffio-logo>
+    </a>
+    <daff-list type="link" class="footer__links" *ngFor="let linkset of links">
+      <h3 daff-list-subheader>{{ linkset.title }}</h3>
+      <daff-list-item *ngFor="let link of linkset.links">
+        <a daff-link color="black" routerLink="link.path">{{ link.title }}</a>
+      </daff-list-item>
+    </daff-list>
+    <div class="footer__newsletter">
+      <newsletter></newsletter>
+    </div>
+  </div>
+</daff-container>

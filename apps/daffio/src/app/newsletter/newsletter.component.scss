@@ -1,0 +1,43 @@
+@import 'daff-util';
+
+.newsletter {
+  &__header {
+    @include embolden();
+    text-transform: uppercase;
+    font-size: 1rem;
+    padding: 0 0 25px 0;
+  }
+
+  &__content {
+    font-size: 1rem;
+    padding: 0 0 25px 0;
+  }
+
+  &__form {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__input {
+    width: 60%;
+    border-color: daff-color($daff-gray, 300);
+
+    @include breakpoint(laptop) {
+      width: 60%;
+    }
+  }
+
+  &__button {
+    width: 40%;
+    line-height: 1.5rem;
+    font-size: 0.875rem;
+
+    @include breakpoint(tablet) {
+      font-size: 1rem;
+    }
+
+    @include breakpoint(laptop) {
+      width: 30%;
+    }
+  }
+}
