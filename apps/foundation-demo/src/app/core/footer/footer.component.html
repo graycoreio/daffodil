@@ -1,25 +1,10 @@
 <daff-container size="md">
   <div class="footer">
-    <daff-list type="link">
-      <h3 daff-list-subheader>Support</h3>
-      <daff-list-item><a href="#">Help</a></daff-list-item>
-      <daff-list-item><a href="#">Shipping</a></daff-list-item>
-      <daff-list-item><a href="#">Returns & Exchanges</a></daff-list-item>
-      <daff-list-item><a href="#">Contact</a></daff-list-item>
-    </daff-list>
-    <daff-list type="link">
-      <h3 daff-list-subheader>About</h3>
-      <daff-list-item><a href="#">About Daffodil</a></daff-list-item>
-      <daff-list-item><a href="#">Press</a></daff-list-item>
-      <daff-list-item><a href="#">Careers</a></daff-list-item>
-      <daff-list-item><a href="#">Privacy Policy</a></daff-list-item>
-      <daff-list-item><a href="#">Terms & Conditions</a></daff-list-item>
-    </daff-list>
-    <daff-list type="link">
-      <h3 daff-list-subheader>Browse</h3>
-      <daff-list-item><a href="#">Men's</a></daff-list-item>
-      <daff-list-item><a href="#">Women's</a></daff-list-item>
-      <daff-list-item><a href="#">Accessories</a></daff-list-item>
+    <daff-list type="link" class="footer__links" *ngFor="let linkset of links">
+      <h3 daff-list-subheader>{{ linkset.title }}</h3>
+      <daff-list-item *ngFor="let link of linkset.links">
+        <a daff-link color="black" routerLink="{{ link.path }}">{{ link.title }}</a>
+      </daff-list-item>
     </daff-list>
     <div daff-button-set>
       <a daff-icon-button color="black" href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
