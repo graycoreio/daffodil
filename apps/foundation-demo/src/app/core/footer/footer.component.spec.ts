@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { FooterComponent } from './footer.component';
 import { By } from '@angular/platform-browser';
@@ -15,6 +16,7 @@ describe('FooterComponent', () => {
         FooterComponent
       ],
       imports: [
+        RouterTestingModule,
         DaffContainerModule,
         DaffListModule
       ]
@@ -38,5 +40,12 @@ describe('FooterComponent', () => {
 
       expect(container.componentInstance.size).toEqual('md');
     });
+  });
+
+  it('renders a <daff-list-item> for each leaf in the tree of links', () => {
+    let listItems = fixture.debugElement.queryAll(By.css('daff-list-item'));
+    let numberOfLinks = component.links.reduce((acc,linkset)=>acc+linkset.links.length,0);
+
+    expect(listItems.length).toEqual(numberOfLinks);
   });
 });
