@@ -6,7 +6,7 @@
     <daff-list type="link" class="footer__links" *ngFor="let linkset of links">
       <h3 daff-list-subheader>{{ linkset.title }}</h3>
       <daff-list-item *ngFor="let link of linkset.links">
-        <a daff-link color="black" routerLink="link.path">{{ link.title }}</a>
+        <a daff-link color="black" routerLink="{{ link.path }}">{{ link.title }}</a>
       </daff-list-item>
     </daff-list>
     <div class="footer__newsletter">
