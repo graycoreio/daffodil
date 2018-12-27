@@ -28,6 +28,7 @@
     "@ngrx/entity": "^6.1.2",
     "@ngrx/router-store": "^6.1.2",
     "@ngrx/store": "^6.1.2",
+    "aos": "^2.3.4",
     "apollo-angular-boost": "^1.4.0",
     "core-js": "^2.5.6",
     "graphql": "^14.0.2",
