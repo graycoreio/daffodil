@@ -50,7 +50,7 @@ describe('DaffImageGalleryComponent', () => {
   });
 
   it('should render daff-gallery-image inside .daff-image-gallery__daff-image-list', () => {
-    let imageListElement = fixture.debugElement.query(By.css('.daff-image-gallery__daff-image-list'));
+    let imageListElement = fixture.debugElement.query(By.css('.daff-image-gallery__image-list'));
 
     expect(imageListElement.query(By.css('.test-gallery-image'))).not.toBeNull();
   });
