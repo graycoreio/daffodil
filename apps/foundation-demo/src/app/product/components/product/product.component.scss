@@ -1,22 +1,10 @@
 @import 'daff-util';
 
-@mixin product-page-grid() {
+.product {
   display: grid;
   grid-gap: 25px;
   grid-template-columns: 1fr;
   padding: 25px 0 50px 0;
-
-  &__image-gallery {
-    order: 2;
-  }
-
-  &__info {
-    order: 1;
-  }
-
-  &__details {
-    order: 3;
-  }
 
   @include breakpoint(big-tablet) {
     grid-template-areas: 
@@ -28,30 +16,34 @@
     grid-gap: 25px 50px;
     grid-template-columns: 2fr 1fr;
     padding: 50px 25px;
+  }
 
-    &__image-gallery {
+  &__image-gallery {
+    order: 2;
+
+    @include breakpoint(big-tablet) {
       grid-area: image-gallery;
       order: 1;
     }
-
-    &__info {
-      grid-area: info;
-      order: 2;
-    }
-
-    &__details {
-      grid-area: details;
-    }
   }
-}
 
-.product {
-  @include product-page-grid();
-
-  &__info, &__details {
+  &__info {
+    order: 1;
     padding: 0 25px;
 
     @include breakpoint(big-tablet) {
+      grid-area: info;
+      order: 2;
+      padding: 0;
+    }
+  }
+
+  &__details {
+    order: 3;
+    padding: 0 25px;
+
+    @include breakpoint(big-tablet) {
+      grid-area: details;
       padding: 0;
     }
   }
