@@ -23,11 +23,13 @@
     }
   }
 
-  &__daff-image-list {
+  &__image-list {
     grid-area: image-list;
     max-height: 100%;
+    margin: 5px 0 0 0;
     
     @include breakpoint(big-tablet) {
+      margin: 0 25px 0 0;
       max-height: -webkit-fill-available;
     }
   }
