@@ -82,8 +82,14 @@
     }
   }
 
-  &__accordion-wrapper {
+  &__accordion {
     border-top: 1px solid daff-color($daff-gray, 300);
     margin: 50px 0 0 0;
+
+    a {
+      display: block;
+      text-decoration: underline;
+      margin-top: 15px;
+    }
   }
 }
