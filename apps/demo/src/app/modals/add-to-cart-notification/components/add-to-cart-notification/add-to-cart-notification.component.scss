@@ -4,13 +4,13 @@
   background-color: $white;
   padding: 25px;
   position: relative;
-  width: 100vw;
+  width: 100%;
 
   @include breakpoint(tablet) {
-    width: 600px;
+    width: 500px;
   }
 
-  &__top-bar {
+  &__header {
     margin-bottom: 25px;
     @include embolden();
     @include uppercase();
@@ -21,26 +21,23 @@
     font-size: $medium-font-size;
   }
 
-  &__times-icon {
+  &__close {
     position: absolute;
     right: 25px;
     font-size: $medium-font-size;
-    cursor: pointer;
+    @include clickable();
   }
 
   &__product-added {
     display: block;
-    max-height: 300px;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
   }
 
   &__button-set {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
-    
+
     > * {
-      @include embolden();
+      font-size: $medium-font-size;
+      flex: 1;
     }
   }
 }
