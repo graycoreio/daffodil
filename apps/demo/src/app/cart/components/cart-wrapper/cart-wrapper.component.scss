@@ -48,22 +48,26 @@
 
     @include breakpoint(tablet) {
       width: 50%;
+    }
+
+    @include breakpoint(big-tablet) {
       margin: 50px 0 0 0;
     }
   }
 
   &__button-set {
     margin: 25px 0 0 0;
+    justify-content: center;
 
-    > * {
-      display: block;
+    *:nth-child(1) {
       width: 100%;
-      margin: 0 0 5px 0;
-      font-size: 1.125rem;
+      margin: 0 0 15px 0;
+      font-size: $medium-font-size;
+    }
 
-      &:last-child {
-        margin: 0;
-      }
+    *:nth-child(2) {
+      text-align: center;
+      text-decoration: underline;
     }
   }
 
