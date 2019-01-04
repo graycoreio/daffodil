@@ -7,6 +7,7 @@
   & > * {
     margin: 0 5px 0 0;
     display: inline-block;
+    @include clickable();
     
     @include breakpoint(big-tablet) {
       margin: 0 0 5px 0;
