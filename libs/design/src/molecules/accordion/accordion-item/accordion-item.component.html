@@ -1,7 +1,7 @@
 <div class="daff-accordion-item__header" (click)="toggleActive()">
   <ng-content select="[daff-accordion-item-title]"></ng-content>
-  <span [hidden]="_open"><i class="fas fa-plus daff-accordion-item__icon"></i></span>
-  <span [hidden]="!_open"><i class="fas fa-minus daff-accordion-item__icon"></i></span>
+  <span [hidden]="_open"><i class="fas fa-angle-down daff-accordion-item__icon"></i></span>
+  <span [hidden]="!_open"><i class="fas fa-angle-up daff-accordion-item__icon"></i></span>
 </div>
 <div [@openAccordion]="_animationState">
   <ng-content></ng-content>
