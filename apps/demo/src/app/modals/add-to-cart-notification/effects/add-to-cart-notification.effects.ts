@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { map, switchMap } from 'rxjs/operators';
-import { interval } from 'rxjs';
+import { map, delay } from 'rxjs/operators';
 
 import { CartActionTypes } from '@daffodil/state';
 
@@ -16,12 +15,10 @@ export class AddToCartNotificationEffects {
   productAddedToCart$ = 
     this.actions$.pipe(
       ofType(CartActionTypes.AddToCartSuccessAction),
-      switchMap(() => 
-        interval(3000)
-        .pipe(map(() => {
+        delay(3000),
+        map(() => {
           return new CloseAddToCartNotification();
-        }))
-      )
+        })
     )
 
   @Effect()
