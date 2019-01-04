@@ -5,9 +5,13 @@ import { CartTotalsModule } from '../cart-totals/cart-totals.module';
 import { ProceedToCheckoutModule } from '../proceed-to-checkout/proceed-to-checkout.module';
 import { ContinueShoppingModule } from '../continue-shopping/continue-shopping.module';
 import { CartModule } from '../cart/cart.module';
-import { DaffButtonModule, DaffButtonSetModule } from '@daffodil/design';
 import { HelpBoxModule } from '../../../misc/help-box/help-box.module';
 
+import {
+  DaffButtonModule,
+  DaffButtonSetModule,
+  DaffLinkModule
+} from '@daffodil/design';
 
 @NgModule({
   imports: [
@@ -18,7 +22,8 @@ import { HelpBoxModule } from '../../../misc/help-box/help-box.module';
     ContinueShoppingModule,
     HelpBoxModule,
     DaffButtonModule,
-    DaffButtonSetModule
+    DaffButtonSetModule,
+    DaffLinkModule
   ],
   declarations: [
     CartWrapperComponent
