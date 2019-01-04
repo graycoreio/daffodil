@@ -34,10 +34,10 @@ describe('ContinueShoppingDirective', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  describe('when button is clicked', () => {
+  describe('when [demo-continue-shopping] is clicked', () => {
     
     it('should call router.navigateByUrl', () => {
-      fixture.debugElement.query(By.css('button')).nativeElement.click();
+      fixture.debugElement.query(By.css('[demo-continue-shopping]')).nativeElement.click();
 
       expect(router.navigateByUrl).toHaveBeenCalledWith('/product-grid');
     });
