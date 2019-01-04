@@ -241,8 +241,8 @@ describe('AddToCartNotificationComponent', () => {
       fixture.detectChanges();
     });
     
-    it('should render top-bar', () => {
-      const topBarElement = fixture.debugElement.query(By.css('.add-to-cart-notification__top-bar'));
+    it('should render header', () => {
+      const topBarElement = fixture.debugElement.query(By.css('.add-to-cart-notification__header'));
 
       expect(topBarElement).not.toBeNull();
     });
@@ -273,8 +273,8 @@ describe('AddToCartNotificationComponent', () => {
       fixture.detectChanges();
     });
     
-    it('should not render top-bar', () => {
-      const topBarElement = fixture.debugElement.query(By.css('.add-to-cart-notification__top-bar'));
+    it('should not render header', () => {
+      const topBarElement = fixture.debugElement.query(By.css('.add-to-cart-notification__header'));
 
       expect(topBarElement).toBeNull();
     });
