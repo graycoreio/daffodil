@@ -16,7 +16,7 @@ class WrapperComponent {
 }
 
 // tslint:disable-next-line: component-selector
-@Component({selector: '[input-validator]', template: ''})
+@Component({selector: '[daff-input]', template: ''})
 class MockInputValidatorComponent {
   @Input() formControl: FormControl;
   @Input() formSubmitted: boolean;
@@ -84,12 +84,12 @@ describe('AddressFormComponent', () => {
     expect(addressForm.submitted).toEqual(wrapper.submittedValue);
   });
 
-  describe('on [input-validator]', () => {
+  describe('on [daff-input]', () => {
 
     let inputValidator: MockInputValidatorComponent;
 
     beforeEach(() => {
-      inputValidator = fixture.debugElement.queryAll(By.css('[input-validator]'))[0].componentInstance;
+      inputValidator = fixture.debugElement.queryAll(By.css('[daff-input]'))[0].componentInstance;
     });
     
     it('should set formControl', () => {

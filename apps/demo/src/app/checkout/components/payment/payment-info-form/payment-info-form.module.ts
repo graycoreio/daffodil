@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { PaymentInfoFormComponent } from './components/payment-info-form/payment-info-form.component';
-import { DaffInputValidatorModule, DaffSelectValidatorModule } from '@daffodil/design';
+import { DaffInputModule, DaffSelectValidatorModule } from '@daffodil/design';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DaffInputValidatorModule,
+    DaffInputModule,
     DaffSelectValidatorModule
   ],
   declarations: [

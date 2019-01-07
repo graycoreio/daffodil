@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 
 import { 
   DaffSelectValidatorModule, 
-  DaffInputValidatorModule, 
+  DaffInputModule, 
   InputValidatorComponent,
   SelectValidatorComponent
 } from '@daffodil/design';
@@ -34,7 +34,7 @@ describe('PaymentInfoFormComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         DaffSelectValidatorModule,
-        DaffInputValidatorModule
+        DaffInputModule
       ],
       declarations: [ 
         WrapperComponent,
@@ -68,12 +68,12 @@ describe('PaymentInfoFormComponent', () => {
     expect(paymentInfoForm.submitted).toEqual(wrapper.submittedValue);
   });
 
-  describe('on [input-validator]', () => {
+  describe('on [daff-input]', () => {
 
     let inputValidator: InputValidatorComponent;
 
     beforeEach(() => {
-      inputValidator = fixture.debugElement.queryAll(By.css('[input-validator]'))[0].componentInstance;
+      inputValidator = fixture.debugElement.queryAll(By.css('[daff-input]'))[0].componentInstance;
     });
     
     it('should set formControl', () => {
