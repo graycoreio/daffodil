@@ -7,6 +7,7 @@ export * from './atoms/button/public_api';
 export * from'./atoms/form/input/public_api';
 export * from './atoms/container/public_api';
 export * from './atoms/link/public_api';
+export * from './atoms/form/select-validator/public_api';
 
 // Molecules
 export * from './molecules/accordion/public_api';
@@ -18,11 +19,10 @@ export * from './molecules/list/public_api';
 export * from './molecules/modal/public_api';
 export * from './molecules/navbar/public_api';
 export * from './molecules/qty-dropdown/public_api';
-export * from './molecules/select-validator/public_api';
 export * from './molecules/sidebar/public_api';
 export * from './molecules/hero/public_api';
 export * from './molecules/callout/public_api';
 export * from './molecules/feature/public_api';
 
 //Helpers
-export { ErrorStateMatcher } from './molecules/error-state-matcher/error-state-matcher';
+export { ErrorStateMatcher } from './atoms/form/error-state-matcher/error-state-matcher';
