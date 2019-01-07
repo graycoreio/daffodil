@@ -5,9 +5,9 @@ import { By } from '@angular/platform-browser';
 
 import { 
   DaffSelectValidatorModule, 
-  DaffInputModule, 
-  InputValidatorComponent,
-  SelectValidatorComponent
+  DaffInputModule,
+  SelectValidatorComponent,
+  DaffInputComponent
 } from '@daffodil/design';
 import { PaymentInfoFormComponent } from './payment-info-form.component';
 import { PaymentInfoFormFactory } from '../../factories/payment-info-form.factory';
@@ -70,7 +70,7 @@ describe('PaymentInfoFormComponent', () => {
 
   describe('on [daff-input]', () => {
 
-    let inputValidator: InputValidatorComponent;
+    let inputValidator: DaffInputComponent;
 
     beforeEach(() => {
       inputValidator = fixture.debugElement.queryAll(By.css('[daff-input]'))[0].componentInstance;

@@ -17,7 +17,7 @@ class WrapperComponent {
 
 // tslint:disable-next-line: component-selector
 @Component({selector: '[daff-input]', template: ''})
-class MockInputValidatorComponent {
+class MockInputComponent {
   @Input() formControl: FormControl;
   @Input() formSubmitted: boolean;
 }
@@ -44,7 +44,7 @@ describe('AddressFormComponent', () => {
       declarations: [ 
         WrapperComponent,
         AddressFormComponent,
-        MockInputValidatorComponent,
+        MockInputComponent,
         MockSelectValidatorComponent
       ]
     })
@@ -86,7 +86,7 @@ describe('AddressFormComponent', () => {
 
   describe('on [daff-input]', () => {
 
-    let inputValidator: MockInputValidatorComponent;
+    let inputValidator: MockInputComponent;
 
     beforeEach(() => {
       inputValidator = fixture.debugElement.queryAll(By.css('[daff-input]'))[0].componentInstance;
