@@ -1,0 +1,26 @@
+@import 'daff-util';
+
+.thank-you {
+  display: grid;
+  grid-gap: 20px;
+  padding: 50px 25px;
+
+  @include breakpoint(big-tablet) {
+    padding: 75px 50px;
+  }
+
+  @include breakpoint(laptop) {
+    padding: 75px 0;
+  }
+  
+  &__title {
+    @include embolden();
+    @include uppercase();
+  }
+
+  &__print-order-summary {
+    @include breakpoint(big-tablet) {
+      width: 40%;
+    }
+  }
+}

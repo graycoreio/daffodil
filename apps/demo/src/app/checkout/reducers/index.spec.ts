@@ -86,8 +86,7 @@ describe('selectFoundationCheckoutState', () => {
     it('selects checkout state', () => {
       const expectedCheckoutState = {
         enablePlaceOrderButton: false,
-        showReviewView: false,
-        isOrderPlaced: false
+        showReviewView: false
       }
 
       store.pipe(select(fromCheckout.foundationCheckoutStateSelector)).subscribe((checkoutState) => {
@@ -110,15 +109,6 @@ describe('selectFoundationCheckoutState', () => {
     it('selects showReviewView state', () => {
       store.pipe(select(fromCheckout.selectShowReviewView)).subscribe((showReviewView) => {
         expect(showReviewView).toEqual(false);
-      });
-    });
-  });
-
-  describe('selectIsOrderPlaced', () => {
-    
-    it('selects isOrderPlaced state', () => {
-      store.pipe(select(fromCheckout.selectIsOrderPlaced)).subscribe((isOrderPlaced) => {
-        expect(isOrderPlaced).toEqual(false);
       });
     });
   });

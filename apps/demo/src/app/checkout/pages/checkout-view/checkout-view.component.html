@@ -17,7 +17,7 @@
           (updateShippingAddress)="ShippingContainer.updateShippingAddress($event); onUpdateShippingAddress()"
           (selectShippingOption)="ShippingContainer.selectShippingOption($event)"></demo-shipping>
       </div>
-      <div class="checkout__payment" *ngIf="(showPaymentView$ | async) && !(isOrderPlaced$ | async)" billing-container #BillingContainer="BillingContainer">
+      <div class="checkout__payment" *ngIf="(showPaymentView$ | async)" billing-container #BillingContainer="BillingContainer">
         <demo-payment
           [paymentInfo]="BillingContainer.paymentInfo$ | async" 
           [billingAddress]="BillingContainer.billingAddress$ | async"
@@ -28,18 +28,15 @@
       </div>
       <div class="checkout__review" *ngIf="showReviewView$ | async">
         <demo-checkout-cart-async-wrapper class="checkout__mobile-review" [cartTitle]="'Review Order'" [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async">
-          <demo-place-order *ngIf="!(isOrderPlaced$ | async)"></demo-place-order>
+          <demo-place-order></demo-place-order>
         </demo-checkout-cart-async-wrapper>
-      </div>
-      <div class="checkout__thank-you" *ngIf="isOrderPlaced$ | async">
-        <demo-thank-you></demo-thank-you>
       </div>
     </div>
     
     <div class="checkout__cart">
       <div class="checkout__desktop-cart">
         <demo-checkout-cart-async-wrapper [cartTitle]="'CART SUMMARY'" [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async">
-          <demo-place-order *ngIf="!(isOrderPlaced$ | async)"></demo-place-order>
+          <demo-place-order></demo-place-order>
         </demo-checkout-cart-async-wrapper>
       </div>
     </div>
