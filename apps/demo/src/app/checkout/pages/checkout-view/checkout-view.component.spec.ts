@@ -29,7 +29,6 @@ const stubIsShippingAddressValid = true;
 const stubSelectedShippingOptionIndex = 0;
 const stubShowPaymentView = true;
 const stubShowReviewView = true;
-const stubIsOrderPlaced = false;
 const stubBillingAddressIsShippingAddress = false;
 
 @Component({selector: 'demo-shipping', template: ''})
@@ -90,9 +89,6 @@ class MockCartContainer {
   loading$: Observable<boolean> = of(false);
 }
 
-@Component({selector: 'demo-thank-you', template: ''})
-class MockThankYouComponent {}
-
 @Component({ selector: 'demo-loading-icon', template: ''})
 class MockLoadingIconComponent {}
 
@@ -127,7 +123,6 @@ describe('CheckoutViewComponent', () => {
         MockPaymentComponent,
         MockPlaceOrderComponent,
         MockBillingContainer,
-        MockThankYouComponent,
         MockLoadingIconComponent,
         MockCartContainer
       ]
@@ -141,7 +136,6 @@ describe('CheckoutViewComponent', () => {
     store = TestBed.get(Store);
     spyOn(fromFoundationCheckout, 'selectShowPaymentView').and.returnValue(stubShowPaymentView);
     spyOn(fromFoundationCheckout, 'selectShowReviewView').and.returnValue(stubShowReviewView);
-    spyOn(fromFoundationCheckout, 'selectIsOrderPlaced').and.returnValue(stubIsOrderPlaced);
     spyOn(store, 'dispatch');
     fixture.detectChanges();
 
@@ -360,12 +354,6 @@ describe('CheckoutViewComponent', () => {
         expect(showReviewView).toEqual(stubShowReviewView);
       });
     });
-    
-    it('should initialize isOrderPlaced$', () => {
-      component.isOrderPlaced$.subscribe((isOrderPlaced) => {
-        expect(isOrderPlaced).toEqual(stubIsOrderPlaced);
-      });
-    });
   });
 
   describe('when showPaymentView$ is false', () => {
@@ -407,40 +395,6 @@ describe('CheckoutViewComponent', () => {
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('.checkout__review'))).not.toBeNull();
-    });
-  });
-
-  describe('when isOrderPlaced$ is false', () => {
-    
-    it('should render checkout__shipping', () => {
-      component.isOrderPlaced$ = of(false);
-      fixture.detectChanges();
-
-      expect(fixture.debugElement.query(By.css('.checkout__shipping'))).not.toBeNull();
-    });
-
-    it('should not render checkout__thank-you', () => {
-      component.isOrderPlaced$ = of(false);
-      fixture.detectChanges();
-
-      expect(fixture.debugElement.query(By.css('.checkout__thank-you'))).toBeNull();
-    });
-  });
-
-  describe('when isOrderPlaced$ is true', () => {
-    
-    it('should not render checkout__shipping', () => {
-      component.isOrderPlaced$ = of(true);
-      fixture.detectChanges();
-
-      expect(fixture.debugElement.query(By.css('.checkout__shipping'))).toBeNull();
-    });
-
-    it('should render checkout__thank-you', () => {
-      component.isOrderPlaced$ = of(true);
-      fixture.detectChanges();
-
-      expect(fixture.debugElement.query(By.css('.checkout__thank-you'))).not.toBeNull();
     });
   });
 

@@ -73,8 +73,3 @@ export const selectShowReviewView: MemoizedSelector<object, boolean> = createSel
   foundationCheckoutStateSelector,
   fromFoundationCheckout.getShowReviewView
 );
-
-export const selectIsOrderPlaced: MemoizedSelector<object, boolean> = createSelector(
-  foundationCheckoutStateSelector,
-  fromFoundationCheckout.getIsOrderPlaced
-);
