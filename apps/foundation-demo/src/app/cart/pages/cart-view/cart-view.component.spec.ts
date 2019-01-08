@@ -9,10 +9,11 @@ import { DaffCartFactory } from '@daffodil/core/testing';
 import { CartViewComponent } from './cart-view.component';
 import { DaffContainerModule } from '@daffodil/design';
 
-let cartFactory = new DaffCartFactory();
-let cart = cartFactory.create();
+const cartFactory = new DaffCartFactory();
+const cart = cartFactory.create();
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: '[cart-container]', 
   template: '<ng-content></ng-content>', 
   exportAs: 'CartContainer'
@@ -126,7 +127,7 @@ describe('CartViewComponent', () => {
 
   describe('on <daff-container>', () => {
     it('should set size="md"', () => {
-      let container = fixture.debugElement.query(By.css('daff-container'));
+      const container = fixture.debugElement.query(By.css('daff-container'));
 
       expect(container.componentInstance.size).toEqual('md');
     });

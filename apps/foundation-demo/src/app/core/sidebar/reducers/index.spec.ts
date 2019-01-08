@@ -24,7 +24,7 @@ describe('selectFoundationSidebarState', () => {
   describe('foundationSidebarStateSelector', () => {
     
     it('selects sidebar state', () => {
-      let expectedSidebarState = {
+      const expectedSidebarState = {
         showSidebar: expectedShowSidebar
       }
 

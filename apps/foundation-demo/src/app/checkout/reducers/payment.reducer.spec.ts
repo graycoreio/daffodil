@@ -30,7 +30,7 @@ describe('Checkout | Payment Reducer', () => {
     let result;
 
     beforeEach(() => {
-      let showPaymentViewAction = new ShowPaymentView();
+      const showPaymentViewAction = new ShowPaymentView();
       
       result = reducer(initialState, showPaymentViewAction);
     });
@@ -45,7 +45,7 @@ describe('Checkout | Payment Reducer', () => {
     let result;
 
     beforeEach(() => {
-      let showPaymentFormAction = new ShowPaymentForm();
+      const showPaymentFormAction = new ShowPaymentForm();
       
       result = reducer(initialState, showPaymentFormAction);
     });
@@ -60,7 +60,7 @@ describe('Checkout | Payment Reducer', () => {
     let result;
 
     beforeEach(() => {
-      let hidePaymentFormAction = new HidePaymentForm();
+      const hidePaymentFormAction = new HidePaymentForm();
       
       result = reducer(initialState, hidePaymentFormAction);
     });
@@ -77,9 +77,9 @@ describe('Checkout | Payment Reducer', () => {
 
     beforeEach(() => {
       showPaymentFormValue = true;
-      let showPaymentFormAction = new ShowPaymentForm();
+      const showPaymentFormAction = new ShowPaymentForm();
       result = reducer(initialState, showPaymentFormAction)
-      let togglePaymentFormAction = new ToggleShowPaymentForm();
+      const togglePaymentFormAction = new ToggleShowPaymentForm();
       
       result = reducer(result, togglePaymentFormAction);
     });

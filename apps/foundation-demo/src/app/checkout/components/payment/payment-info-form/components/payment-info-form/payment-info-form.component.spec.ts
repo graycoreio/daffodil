@@ -16,17 +16,17 @@ import { PaymentInfoFormFactory } from '../../factories/payment-info-form.factor
   template: '<demo-payment-info-form [formGroup]="formGroupValue" ' + 
                 '[submitted]="submittedValue"></demo-payment-info-form>'
 })
-class TestingPaymentInfoFormComponentWrapper {
+class WrapperComponent {
   formGroupValue: FormGroup;
   submittedValue: boolean;
 }
 
 describe('PaymentInfoFormComponent', () => {
-  let component: TestingPaymentInfoFormComponentWrapper;
-  let fixture: ComponentFixture<TestingPaymentInfoFormComponentWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let paymentInfoForm: PaymentInfoFormComponent;
-  let paymentInfoFormFactory = new PaymentInfoFormFactory(new FormBuilder());
-  let paymentInfoGroup = paymentInfoFormFactory.create(null);
+  const paymentInfoFormFactory = new PaymentInfoFormFactory(new FormBuilder());
+  const paymentInfoGroup = paymentInfoFormFactory.create(null);
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -37,7 +37,7 @@ describe('PaymentInfoFormComponent', () => {
         DaffInputValidatorModule
       ],
       declarations: [ 
-        TestingPaymentInfoFormComponentWrapper,
+        WrapperComponent,
         PaymentInfoFormComponent
       ]
     })
@@ -45,11 +45,11 @@ describe('PaymentInfoFormComponent', () => {
   }));
   
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestingPaymentInfoFormComponentWrapper);
-    component = fixture.componentInstance;
-    component.formGroupValue = paymentInfoGroup;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
+    wrapper.formGroupValue = paymentInfoGroup;
 
-    component.submittedValue = false;
+    wrapper.submittedValue = false;
 
     fixture.detectChanges();
 
@@ -61,11 +61,11 @@ describe('PaymentInfoFormComponent', () => {
   });
 
   it('should be able to take formGroup as input', () => {
-    expect(paymentInfoForm.formGroup).toEqual(component.formGroupValue);
+    expect(paymentInfoForm.formGroup).toEqual(wrapper.formGroupValue);
   });
 
   it('should be able to take submitted as input', () => {
-    expect(paymentInfoForm.submitted).toEqual(component.submittedValue);
+    expect(paymentInfoForm.submitted).toEqual(wrapper.submittedValue);
   });
 
   describe('on [input-validator]', () => {

@@ -49,7 +49,7 @@ describe('FoundationHeaderContainer', () => {
 
   describe('when [header-menu-button] is clicked', () => {
     it('should call store.dispatch with a ToggleSidebar action', () => {
-      let sidebarButton = fixture.debugElement.query(By.css('[header-menu-button]')).nativeElement;
+      const sidebarButton = fixture.debugElement.query(By.css('[header-menu-button]')).nativeElement;
       sidebarButton.click();
       
       expect(store.dispatch).toHaveBeenCalledWith(new ToggleSidebar());

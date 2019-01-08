@@ -11,13 +11,13 @@ import { ProductCardComponent } from './product-card.component';
 import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
 @Component({template: '<demo-product-card [product]="productValue"></demo-product-card>'})
-class TestProductCardWrapper {
+class WrapperComponent {
   productValue: Product;
 }
 
 describe('ProductCardComponent', () => {
-  let component: TestProductCardWrapper;
-  let fixture: ComponentFixture<TestProductCardWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let router;
   let productCardComponent;
   let productImageFactory: DaffProductImageFactory;
@@ -32,22 +32,22 @@ describe('ProductCardComponent', () => {
       ],
       declarations: [ 
         ProductCardComponent,
-        TestProductCardWrapper
+        WrapperComponent
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestProductCardWrapper);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
     productImageFactory = TestBed.get(DaffProductImageFactory);
     productFactory = TestBed.get(DaffProductFactory);
 
-    let stubProductImages = productImageFactory.createMany(5);
+    const stubProductImages = productImageFactory.createMany(5);
     stubProduct = productFactory.create({images: stubProductImages});
 
-    component.productValue = stubProduct;
+    wrapper.productValue = stubProduct;
     router = TestBed.get(Router);
     spyOn(router, 'navigateByUrl');
 
@@ -57,7 +57,7 @@ describe('ProductCardComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(productCardComponent).toBeTruthy();
   });
 
   it('should be able to take a product as input', () => {

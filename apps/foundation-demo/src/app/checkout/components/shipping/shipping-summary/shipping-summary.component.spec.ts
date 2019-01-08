@@ -9,16 +9,16 @@ import { ShippingSummaryComponent } from './shipping-summary.component';
 import { ShippingOptionsService } from '../shipping-options/components/services/shipping-options.service';
 import { ShippingOptionsFactory } from '../shipping-options/components/factories/shipping-options.factory';
 
-let daffodilAddressFactory = new DaffAddressFactory();
-let stubDaffodilAddress = daffodilAddressFactory.create();
+const daffodilAddressFactory = new DaffAddressFactory();
+const stubDaffodilAddress = daffodilAddressFactory.create();
 
 @Component({
   template: '<demo-shipping-summary [selectedShippingOptionId]="selectedShippingOptionIdValue" ' + 
               '[shippingAddress]="shippingAddressValue" ' + 
               '(editShippingInfo)="editShippingInfoFunction()"></demo-shipping-summary>'})
-class TestShippingSummaryWrapper {
+class WrapperComponent {
   shippingAddressValue: DaffodilAddress = stubDaffodilAddress;
-  selectedShippingOptionIdValue: string = '0';
+  selectedShippingOptionIdValue = '0';
   editShippingInfoFunction: Function = () => {};
 }
 
@@ -28,8 +28,8 @@ class MockAddressSummaryComponent {
 }
 
 describe('ShippingSummaryComponent', () => {
-  let component: TestShippingSummaryWrapper;
-  let fixture: ComponentFixture<TestShippingSummaryWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let shippingSummaryComponent: ShippingSummaryComponent;
   let addressSummaryComponent: MockAddressSummaryComponent;
   let shippingOptionsService: ShippingOptionsService;
@@ -37,7 +37,7 @@ describe('ShippingSummaryComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        TestShippingSummaryWrapper,
+        WrapperComponent,
         ShippingSummaryComponent,
         MockAddressSummaryComponent
       ],
@@ -50,9 +50,9 @@ describe('ShippingSummaryComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestShippingSummaryWrapper);
+    fixture = TestBed.createComponent(WrapperComponent);
     shippingOptionsService = TestBed.get(ShippingOptionsService);
-    component = fixture.componentInstance;
+    wrapper = fixture.componentInstance;
     fixture.detectChanges();
 
     shippingSummaryComponent = fixture.debugElement.query(By.css('demo-shipping-summary')).componentInstance;
@@ -60,7 +60,7 @@ describe('ShippingSummaryComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(shippingSummaryComponent).toBeTruthy();
   });
 
   it('should be able to take shippingAddress', () => {
@@ -68,7 +68,7 @@ describe('ShippingSummaryComponent', () => {
   });
 
   it('should be able to take selectedShippingOptionId', () => {
-    expect(shippingSummaryComponent.selectedShippingOptionId).toEqual(component.selectedShippingOptionIdValue);
+    expect(shippingSummaryComponent.selectedShippingOptionId).toEqual(wrapper.selectedShippingOptionIdValue);
   });
 
   it('should set shippingOptions', () => {
@@ -107,11 +107,11 @@ describe('ShippingSummaryComponent', () => {
   describe('when editShippingInfo is emitted', () => {
 
     it('should call editShippingInfoFunction', () => {
-      spyOn(component, 'editShippingInfoFunction');
+      spyOn(wrapper, 'editShippingInfoFunction');
 
       shippingSummaryComponent.editShippingInfo.emit();
 
-      expect(component.editShippingInfoFunction).toHaveBeenCalled();
+      expect(wrapper.editShippingInfoFunction).toHaveBeenCalled();
     });
   });
 });

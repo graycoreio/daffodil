@@ -21,7 +21,7 @@ import { PaymentInfoFormFactory } from '../payment-info-form/factories/payment-i
                 '(updateBillingAddress)="updatePaymentInfoFunction($event)" ' + 
                 '(toggleBillingAddressIsShippingAddress)="toggleBillingAddressIsShippingAddressFunction($event)"></demo-payment-form>'
 })
-class TestingPaymentFormComponentWrapper {
+class WrapperComponent {
   paymentInfoValue: PaymentInfo;
   billingAddressValue: DaffodilAddress;
   billingAddressIsShippingAddressValue: boolean;
@@ -49,8 +49,8 @@ class MockPaymentInfoFormComponent {
 class MockPromotionComponent {}
 
 describe('PaymentFormComponent', () => {
-  let component: TestingPaymentFormComponentWrapper;
-  let fixture: ComponentFixture<TestingPaymentFormComponentWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let stubPaymentInfo;
   let stubBillingAddress;
   let stubBillingAddressIsShippingAddress;
@@ -58,9 +58,9 @@ describe('PaymentFormComponent', () => {
   let paymentFormComponent: PaymentFormComponent;
   let addressFormComponent: MockAddressFormComponent;
   let paymentInfoFormComponent: MockPaymentInfoFormComponent;
-  let addressFormFactorySpy = jasmine.createSpyObj('AddressFormFactory', ['create']);
+  const addressFormFactorySpy = jasmine.createSpyObj('AddressFormFactory', ['create']);
   let stubAddressFormGroup: FormGroup;
-  let paymentInfoFormFactorySpy = jasmine.createSpyObj('PaymentInfoFormFactory', ['create']);
+  const paymentInfoFormFactorySpy = jasmine.createSpyObj('PaymentInfoFormFactory', ['create']);
   let stubPaymentInfoFormGroup: FormGroup;
 
   beforeEach(async(() => {
@@ -73,7 +73,7 @@ describe('PaymentFormComponent', () => {
         })
       ],
       declarations: [ 
-        TestingPaymentFormComponentWrapper,
+        WrapperComponent,
         MockPromotionComponent,
         MockAddressFormComponent,
         MockPaymentInfoFormComponent,
@@ -98,13 +98,13 @@ describe('PaymentFormComponent', () => {
     stubPaymentInfoFormGroup = new PaymentInfoFormFactory(new FormBuilder()).create(stubBillingAddress);
     paymentInfoFormFactorySpy.create.and.returnValue(stubPaymentInfoFormGroup);
 
-    fixture = TestBed.createComponent(TestingPaymentFormComponentWrapper);
+    fixture = TestBed.createComponent(WrapperComponent);
     store = TestBed.get(Store);
     spyOn(store, 'dispatch');
-    component = fixture.componentInstance;
-    component.paymentInfoValue = stubPaymentInfo;
-    component.billingAddressValue = stubBillingAddress;
-    component.billingAddressIsShippingAddressValue = stubBillingAddressIsShippingAddress;
+    wrapper = fixture.componentInstance;
+    wrapper.paymentInfoValue = stubPaymentInfo;
+    wrapper.billingAddressValue = stubBillingAddress;
+    wrapper.billingAddressIsShippingAddressValue = stubBillingAddressIsShippingAddress;
 
     fixture.detectChanges();
 
@@ -116,7 +116,7 @@ describe('PaymentFormComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(paymentFormComponent).toBeTruthy();
   });
 
   it('should be able to take paymentInfo as input', () => {
@@ -187,7 +187,7 @@ describe('PaymentFormComponent', () => {
     });
     
     it('should not render firstname input', () => {
-      let firstnameElement = fixture.debugElement.query(By.css('.payment-form__first-name'));
+      const firstnameElement = fixture.debugElement.query(By.css('.payment-form__first-name'));
 
       expect(firstnameElement).toBeNull();
     });
@@ -208,7 +208,7 @@ describe('PaymentFormComponent', () => {
     describe('when form is invalid', () => {
 
       beforeEach(() => {
-        let formBuilder = new FormBuilder();
+        const formBuilder = new FormBuilder();
         paymentFormComponent.form = formBuilder.group({
           address: stubAddressFormGroup,
           paymentInfo: stubPaymentInfoFormGroup
@@ -265,7 +265,7 @@ describe('PaymentFormComponent', () => {
 
         describe('and paymentInfoForm is valid', () => {
 
-          let expectedPaymentInfo: PaymentInfo = {
+          const expectedPaymentInfo: PaymentInfo = {
             name: 'valid',
             cardnumber: 2,
             month: 2,
@@ -314,7 +314,7 @@ describe('PaymentFormComponent', () => {
           postcode: 'valid',
           telephone: 'valid'
         });
-        let formBuilder = new FormBuilder();
+        const formBuilder = new FormBuilder();
         paymentFormComponent.form = formBuilder.group({
           address: stubAddressFormGroup,
           paymentInfo: stubPaymentInfoFormGroup
@@ -342,11 +342,11 @@ describe('PaymentFormComponent', () => {
   describe('when updatePaymentInfo is emitted', () => {
     
     it('should call the function passed by the host element', () => {
-      let emittedValue = 'emittedValue';
-      spyOn(component, 'updatePaymentInfoFunction');
+      const emittedValue = 'emittedValue';
+      spyOn(wrapper, 'updatePaymentInfoFunction');
       paymentFormComponent.updatePaymentInfo.emit(emittedValue);
 
-      expect(component.updatePaymentInfoFunction).toHaveBeenCalledWith(emittedValue);
+      expect(wrapper.updatePaymentInfoFunction).toHaveBeenCalledWith(emittedValue);
     });
   });
 });

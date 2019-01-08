@@ -6,13 +6,13 @@ import { SidebarContainer } from './sidebar.component';
 import { DaffSidebarModule, DaffSidebarComponent } from '@daffodil/design';
 
 @Component({template: '<demo-sidebar (close)="closeFunction()"></demo-sidebar>'})
-class TestSidebarContainerWrapper {
+class WrapperComponent {
   closeFunction: Function = () => {}
 }
 
 describe('SidebarContainer', () => {
-  let component: TestSidebarContainerWrapper;
-  let fixture: ComponentFixture<TestSidebarContainerWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let sidebarContainer: SidebarContainer;
   let daffSidebar: DaffSidebarComponent;
 
@@ -22,7 +22,7 @@ describe('SidebarContainer', () => {
         DaffSidebarModule
       ],
       declarations: [ 
-        TestSidebarContainerWrapper,
+        WrapperComponent,
         SidebarContainer
       ]
     })
@@ -30,8 +30,8 @@ describe('SidebarContainer', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestSidebarContainerWrapper);
-    component = fixture.componentInstance;  
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;  
     fixture.detectChanges();
 
     sidebarContainer = fixture.debugElement.query(By.css('demo-sidebar')).componentInstance;
@@ -39,17 +39,17 @@ describe('SidebarContainer', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(sidebarContainer).toBeTruthy();
   });
 
   describe('when close is emitted', () => {
     
     it('should call close function on host component', () => {
-      spyOn(component, 'closeFunction');
+      spyOn(wrapper, 'closeFunction');
 
       sidebarContainer.close.emit();
 
-      expect(component.closeFunction).toHaveBeenCalled();
+      expect(wrapper.closeFunction).toHaveBeenCalled();
     });
   });
 

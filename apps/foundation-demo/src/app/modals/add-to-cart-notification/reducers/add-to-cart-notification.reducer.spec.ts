@@ -30,7 +30,7 @@ describe('Add To Cart Notification | Reducer', () => {
     let result;
 
     beforeEach(() => {
-      let openAddToCartNotificationAction = new OpenAddToCartNotification();
+      const openAddToCartNotificationAction = new OpenAddToCartNotification();
       
       result = reducer(initialState, openAddToCartNotificationAction);
     });
@@ -45,7 +45,7 @@ describe('Add To Cart Notification | Reducer', () => {
     let result;
 
     beforeEach(() => {
-      let closeAddToCartNotificationAction = new CloseAddToCartNotification();
+      const closeAddToCartNotificationAction = new CloseAddToCartNotification();
       
       result = reducer(initialState, closeAddToCartNotificationAction);
     });
@@ -64,7 +64,7 @@ describe('Add To Cart Notification | Reducer', () => {
     beforeEach(() => {
       stubQty = 1;
       stubId = 'id';
-      let addToCartAction = new AddToCart({productId: stubId, qty: stubQty});
+      const addToCartAction = new AddToCart({productId: stubId, qty: stubQty});
       
       result = reducer(initialState, addToCartAction);
     });
@@ -85,11 +85,11 @@ describe('Add To Cart Notification | Reducer', () => {
   describe('when AddToCartSuccess action is triggered', () => {
 
     let result;
-    let cartFactory = new DaffCartFactory();
-    let stubCart: Cart = cartFactory.create();
+    const cartFactory = new DaffCartFactory();
+    const stubCart: Cart = cartFactory.create();
 
     beforeEach(() => {
-      let addToCartSuccessAction = new AddToCartSuccess(stubCart);
+      const addToCartSuccessAction = new AddToCartSuccess(stubCart);
       
       result = reducer(initialState, addToCartSuccessAction);
     });

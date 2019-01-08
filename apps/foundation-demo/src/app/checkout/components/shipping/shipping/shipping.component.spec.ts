@@ -10,8 +10,8 @@ import * as fromFoundationCheckout from '../../../reducers';
 import { SetShowShippingForm, ToggleShowShippingForm } from '../../../actions/shipping.actions';
 import { ShippingComponent } from './shipping.component';
 
-let stubIsShippingAddressValidValue = true;
-let stubDaffodilAddress: DaffodilAddress = {
+const stubIsShippingAddressValidValue = true;
+const stubDaffodilAddress: DaffodilAddress = {
   firstname: '',
   lastname: '',
   street: '',
@@ -20,9 +20,9 @@ let stubDaffodilAddress: DaffodilAddress = {
   postcode: '',
   telephone: ''
 }
-let stubSelectedShippingOptionId: string = '0';
-let stubShowShippingForm: boolean = true;
-let stubShowPaymentView: boolean = false;
+const stubSelectedShippingOptionId = '0';
+const stubShowShippingForm = true;
+const stubShowPaymentView = false;
 
 @Component({
   template: '<demo-shipping [isShippingAddressValid]="isShippingAddressValidValue" ' + 
@@ -32,7 +32,7 @@ let stubShowPaymentView: boolean = false;
               '(updateShippingAddress)="updateShippingAddressFunction($event)" ' + 
               '(selectShippingOption)="selectShippingOptionFunction($event)"></demo-shipping>'
 })
-class TestShipping {
+class WrapperComponent {
   isShippingAddressValidValue = stubIsShippingAddressValidValue;
   shippingAddressValue: DaffodilAddress = stubDaffodilAddress;
   selectedShippingOptionIdValue: string = stubSelectedShippingOptionId;
@@ -56,8 +56,8 @@ class MockShippingSummaryComponent {
 }
 
 describe('ShippingComponent', () => {
-  let component: TestShipping;
-  let fixture: ComponentFixture<TestShipping>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let shippingFormComponent: MockShippingFormComponent;
   let shippingSummaryComponent: MockShippingSummaryComponent;
   let shipping: ShippingComponent;
@@ -71,7 +71,7 @@ describe('ShippingComponent', () => {
         })
       ],
       declarations: [ 
-        TestShipping,
+        WrapperComponent,
         MockShippingFormComponent,
         MockShippingSummaryComponent,
         ShippingComponent
@@ -81,8 +81,8 @@ describe('ShippingComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestShipping);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
     store = TestBed.get(Store);
     spyOn(fromFoundationCheckout, 'selectShowShippingForm').and.returnValue(stubShowShippingForm);
     spyOn(store, 'dispatch');
@@ -95,7 +95,7 @@ describe('ShippingComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(shipping).toBeTruthy();
   });
 
   it('should be able to take isShippingAddressValid as input', () => {
@@ -159,19 +159,19 @@ describe('ShippingComponent', () => {
           }
         };
 
-        spyOn(component, 'updateShippingAddressFunction');
-        spyOn(component, 'selectShippingOptionFunction');
+        spyOn(wrapper, 'updateShippingAddressFunction');
+        spyOn(wrapper, 'selectShippingOptionFunction');
         spyOn(shipping, 'toggleShippingView');
 
         shippingFormComponent.submitted.emit(emittedValue);
       });
       
       it('should call hostComponent.updateShippingAddressFunction', () => {
-        expect(component.updateShippingAddressFunction).toHaveBeenCalledWith(emittedValue.address);
+        expect(wrapper.updateShippingAddressFunction).toHaveBeenCalledWith(emittedValue.address);
       });
       
       it('should call hostComponent.selectShippingOptionFunction', () => {
-        expect(component.selectShippingOptionFunction).toHaveBeenCalledWith(emittedValue.shippingOption.id);
+        expect(wrapper.selectShippingOptionFunction).toHaveBeenCalledWith(emittedValue.shippingOption.id);
       });
 
       it('should call toggleShippingView', () => {

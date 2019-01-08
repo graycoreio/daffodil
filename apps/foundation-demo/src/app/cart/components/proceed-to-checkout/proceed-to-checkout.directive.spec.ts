@@ -6,12 +6,12 @@ import { Router } from '@angular/router';
 import { ProceedToCheckoutDirective } from './proceed-to-checkout.directive';
 import { Component } from '@angular/core';
 
-@Component({template: '<button demo-proceed-to-checkout></button>'})
-class TestProceedToCheckoutDirective {}
+@Component({template: '<button demoProceedToCheckout></button>'})
+class WrapperComponent {}
 
 describe('ProceedToCheckoutDirective', () => {
-  let component: TestProceedToCheckoutDirective;
-  let fixture: ComponentFixture<TestProceedToCheckoutDirective>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let router;
 
   beforeEach(async(() => {
@@ -20,16 +20,16 @@ describe('ProceedToCheckoutDirective', () => {
         RouterTestingModule
       ],
       declarations: [
-        TestProceedToCheckoutDirective,
+        WrapperComponent,
         ProceedToCheckoutDirective
       ]
     });
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestProceedToCheckoutDirective);
+    fixture = TestBed.createComponent(WrapperComponent);
     router = TestBed.get(Router);
-    component = fixture.componentInstance;
+    wrapper = fixture.componentInstance;
     
     fixture.detectChanges();
 
@@ -37,7 +37,7 @@ describe('ProceedToCheckoutDirective', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(wrapper).toBeTruthy();
   });
 
   it('should display a proceed to checkout button', () => {

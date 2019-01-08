@@ -7,12 +7,12 @@ import { DaffAddressFactory } from '@daffodil/core/testing';
 
 import { BillingSummaryComponent } from './billing-summary.component';
 
-let daffodilAddressFactory = new DaffAddressFactory();
-let stubBillingAddress = daffodilAddressFactory.create();
-let stubBillingAddressIsShippingAddress: boolean = false;
+const daffodilAddressFactory = new DaffAddressFactory();
+const stubBillingAddress = daffodilAddressFactory.create();
+const stubBillingAddressIsShippingAddress = false;
 
 @Component({template: '<demo-billing-summary [billingAddress]="billingAddressValue" [billingAddressIsShippingAddress]="billingAddressIsShippingAddressValue"></demo-billing-summary>'})
-class TestPaymentSummaryWrapper {
+class WrapperComponent {
   billingAddressValue: DaffodilAddress = stubBillingAddress;
   billingAddressIsShippingAddressValue: boolean = stubBillingAddressIsShippingAddress;
 }
@@ -23,15 +23,17 @@ class MockAddressSummaryComponent {
 }
 
 describe('BillingSummaryComponent', () => {
-  let component: TestPaymentSummaryWrapper;
-  let fixture: ComponentFixture<TestPaymentSummaryWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let billingSummary: BillingSummaryComponent;
   let addressSummary: MockAddressSummaryComponent;
-
+  let addressSummaryElement;
+  let billingAddressIsShippingAddress;
+  
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        TestPaymentSummaryWrapper,
+        WrapperComponent,
         BillingSummaryComponent,
         MockAddressSummaryComponent
       ]
@@ -40,8 +42,8 @@ describe('BillingSummaryComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestPaymentSummaryWrapper);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
     fixture.detectChanges();
 
     billingSummary = fixture.debugElement.query(By.css('demo-billing-summary')).componentInstance;
@@ -49,7 +51,7 @@ describe('BillingSummaryComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(billingSummary).toBeTruthy();
   });
 
   it('should be able to take billingAddress as input', () => {
@@ -75,7 +77,7 @@ describe('BillingSummaryComponent', () => {
     });
     
     it('should not render demo-address-summary', () => {
-      let addressSummaryElement = fixture.debugElement.query(By.css('demo-address-summary'));
+      addressSummaryElement = fixture.debugElement.query(By.css('demo-address-summary'));
 
       expect(addressSummaryElement).toBeNull();
     });
@@ -93,7 +95,7 @@ describe('BillingSummaryComponent', () => {
         billingSummary.billingAddressIsShippingAddress = false;
         fixture.detectChanges();
 
-        let addressSummaryElement = fixture.debugElement.query(By.css('demo-address-summary'));
+        addressSummaryElement = fixture.debugElement.query(By.css('demo-address-summary'));
 
         expect(addressSummaryElement).not.toBeNull();
       });
@@ -105,7 +107,7 @@ describe('BillingSummaryComponent', () => {
         billingSummary.billingAddressIsShippingAddress = true;
         fixture.detectChanges();
         
-        let addressSummaryElement = fixture.debugElement.query(By.css('demo-address-summary'));
+        addressSummaryElement = fixture.debugElement.query(By.css('demo-address-summary'));
 
         expect(addressSummaryElement).toBeNull();
       });
@@ -120,7 +122,7 @@ describe('BillingSummaryComponent', () => {
     });
 
     it('should render note', () => {
-      let billingAddressIsShippingAddress = fixture.debugElement.query(By.css('.billing-summary__note'));
+      billingAddressIsShippingAddress = fixture.debugElement.query(By.css('.billing-summary__note'));
 
       expect(billingAddressIsShippingAddress).not.toBeNull();
     });
@@ -134,7 +136,7 @@ describe('BillingSummaryComponent', () => {
     });
 
     it('should not render note', () => {
-      let billingAddressIsShippingAddress = fixture.debugElement.query(By.css('.billing-summary__note'));
+      billingAddressIsShippingAddress = fixture.debugElement.query(By.css('.billing-summary__note'));
 
       expect(billingAddressIsShippingAddress).toBeNull();
     });

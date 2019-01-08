@@ -14,7 +14,7 @@ import { AddressFormFactory } from '../../forms/address-form/factories/address-f
                 '[editMode]="editModeValue" ' + 
                 '(submitted)="submittedFunction($event)"></demo-shipping-form>'
 })
-class TestingShippingFormComponentWrapper {
+class WrapperComponent {
   shippingAddressValue: DaffodilAddress;
   editModeValue: boolean;
   submittedFunction: Function = () => {};
@@ -33,12 +33,12 @@ class MockShippingOptionsComponent {
 }
 
 describe('ShippingFormComponent', () => {
-  let component: TestingShippingFormComponentWrapper;
-  let fixture: ComponentFixture<TestingShippingFormComponentWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let shippingFormComponent: ShippingFormComponent;
   let addressFormComponent: MockAddressFormComponent;
   let shippingOptionsComponent: MockShippingOptionsComponent;
-  let addressFormFactorySpy = jasmine.createSpyObj('AddressFormFactory', ['create']);
+  const addressFormFactorySpy = jasmine.createSpyObj('AddressFormFactory', ['create']);
   let stubAddressFormGroup: FormGroup;
   let shippingOptionFormService: ShippingOptionFormService;
   let stubShippingAddress;
@@ -50,7 +50,7 @@ describe('ShippingFormComponent', () => {
         ReactiveFormsModule
       ],
       declarations: [ 
-        TestingShippingFormComponentWrapper,
+        WrapperComponent,
         ShippingFormComponent,
         MockAddressFormComponent,
         MockShippingOptionsComponent
@@ -64,7 +64,7 @@ describe('ShippingFormComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestingShippingFormComponentWrapper);
+    fixture = TestBed.createComponent(WrapperComponent);
     shippingOptionFormService = TestBed.get(ShippingOptionFormService);
     stubShippingAddress = {
       firstname: '',
@@ -75,9 +75,9 @@ describe('ShippingFormComponent', () => {
       postcode: '',
       telephone: ''
     };
-    component = fixture.componentInstance;
-    component.editModeValue = false;
-    component.shippingAddressValue = stubShippingAddress;
+    wrapper = fixture.componentInstance;
+    wrapper.editModeValue = false;
+    wrapper.shippingAddressValue = stubShippingAddress;
     
     stubAddressFormGroup = new AddressFormFactory(new FormBuilder()).create(stubShippingAddress).value;
     addressFormFactorySpy.create.and.returnValue(stubAddressFormGroup);
@@ -94,11 +94,11 @@ describe('ShippingFormComponent', () => {
   });
 
   it('should be able to take shippingAddress as input', () => {
-    expect(shippingFormComponent.shippingAddress).toEqual(component.shippingAddressValue);
+    expect(shippingFormComponent.shippingAddress).toEqual(wrapper.shippingAddressValue);
   });
 
   it('should be able to take editMode as input', () => {
-    expect(shippingFormComponent.editMode).toEqual(component.editModeValue);
+    expect(shippingFormComponent.editMode).toEqual(wrapper.editModeValue);
   });
 
   describe('on <demo-address-form>', () => {
@@ -147,7 +147,7 @@ describe('ShippingFormComponent', () => {
     describe('when form is valid', () => {
 
       beforeEach(() => {
-        let formBuilder = new FormBuilder();
+        const formBuilder = new FormBuilder();
         shippingFormComponent.form = formBuilder.group({
           address: formBuilder.group({}),
           shippingOption: formBuilder.group({id: 'id'})
@@ -182,20 +182,20 @@ describe('ShippingFormComponent', () => {
 
     beforeEach(() => {
       emittedValue = 'emittedValue';
-      spyOn(component, 'submittedFunction');
+      spyOn(wrapper, 'submittedFunction');
       
       shippingFormComponent.submitted.emit(emittedValue);
     });
     
     it('should call the function passed in by the host component', () => {
-      expect(component.submittedFunction).toHaveBeenCalledWith(emittedValue);
+      expect(wrapper.submittedFunction).toHaveBeenCalledWith(emittedValue);
     });
   });
 
   describe('when editMode is false', () => {
     
     it('should set button text to Continue to Payment', () => {
-      let buttonText = fixture.debugElement.query(By.css('button')).nativeElement.innerHTML;
+      const buttonText = fixture.debugElement.query(By.css('button')).nativeElement.innerHTML;
       expect(buttonText).toEqual('Continue to Payment')
     });
   });

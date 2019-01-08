@@ -6,8 +6,9 @@ import { Observable, of } from 'rxjs';
 import { Product } from '@daffodil/core';
 import { By } from '@angular/platform-browser';
 
-let stubBestSellers: Product[];
+const stubBestSellers: Product[] = [];
 
+// tslint:disable-next-line: component-selector
 @Component({selector: '[best-sellers-container]', exportAs: 'BestSellersContainer', template: '<ng-content></ng-content>'})
 class MockBestSellersContainer {
   loading$: Observable<boolean> = of(false);
@@ -66,13 +67,13 @@ describe('BestSellersComponent', () => {
   describe('when bestSellersContainer.loading$ is false', () => {
     
     it('should render best-sellers', () => {
-      let bestSellersElement = fixture.debugElement.query(By.css('.best-sellers'));
+      const bestSellersElement = fixture.debugElement.query(By.css('.best-sellers'));
 
       expect(bestSellersElement).not.toBeNull();
     });
 
     it('should not render best-sellers__loading-icon', () => {
-      let loadingIconElement = fixture.debugElement.query(By.css('.best-sellers__loading-icon'));
+      const loadingIconElement = fixture.debugElement.query(By.css('.best-sellers__loading-icon'));
 
       expect(loadingIconElement).toBeNull();
     });
@@ -87,13 +88,13 @@ describe('BestSellersComponent', () => {
     });
     
     it('should not render best-sellers element', () => {
-      let bestSellersElement = fixture.debugElement.query(By.css('.best-sellers'));
+      const bestSellersElement = fixture.debugElement.query(By.css('.best-sellers'));
 
       expect(bestSellersElement).toBeNull();
     });
 
     it('should render best-sellers__loading-icon', () => {
-      let loadingIconElement = fixture.debugElement.query(By.css('.best-sellers__loading-icon'));
+      const loadingIconElement = fixture.debugElement.query(By.css('.best-sellers__loading-icon'));
 
       expect(loadingIconElement).not.toBeNull();
     });

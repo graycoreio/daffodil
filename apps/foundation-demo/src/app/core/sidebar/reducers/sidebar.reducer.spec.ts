@@ -2,7 +2,9 @@ import { ToggleSidebar, CloseSidebar, OpenSidebar, SetSidebarState } from "../ac
 import { initialState, reducer, getShowSidebar } from "../reducers/sidebar.reducer";
 
 describe('Sidebar | Sidebar Reducer', () => {
-  
+  let action;
+  let result;
+
   describe('initialState', () => {
     
     it('should set showSidebar to false', () => {
@@ -13,9 +15,9 @@ describe('Sidebar | Sidebar Reducer', () => {
   describe('when an unknown action is triggered', () => {
 
     it('should return the current state', () => {
-      const action = {} as any;
+      action = {} as any;
 
-      const result = reducer(initialState, action);
+      result = reducer(initialState, action);
 
       expect(result).toBe(initialState);
     });
@@ -23,12 +25,10 @@ describe('Sidebar | Sidebar Reducer', () => {
 
   describe('when ToggleSidebar action is triggered', () => {
 
-    let result;
-
     beforeEach(() => {
-      let toggleSidebar = new ToggleSidebar();
+      action = new ToggleSidebar();
       
-      result = reducer(initialState, toggleSidebar);
+      result = reducer(initialState, action);
     });
 
     it('sets showSidebar to !showSidebar', () => {
@@ -38,34 +38,34 @@ describe('Sidebar | Sidebar Reducer', () => {
 
   describe('when CloseSidebar is triggered', () => { 
     it('sets showSidebar to `false`', () => {
-      let action = new CloseSidebar();
+      action = new CloseSidebar();
 
-      let result = reducer(initialState, action);
+      result = reducer(initialState, action);
       expect(result.showSidebar).toEqual(false);
     })
   });
 
   describe('when OpenSidebar is triggered', () => { 
     it('sets showSidebar to `true`', () => {
-      let action = new OpenSidebar();
+      action = new OpenSidebar();
 
-      let result = reducer(initialState, action);
+      result = reducer(initialState, action);
       expect(result.showSidebar).toEqual(true);
     })
   });
 
   describe('when SetSidebarState is triggered', () => { 
     it('sets showSidebar to `true` when the actions payload is true', () => {
-      let action = new SetSidebarState(true);
+      action = new SetSidebarState(true);
 
-      let result = reducer(initialState, action);
+      result = reducer(initialState, action);
       expect(result.showSidebar).toEqual(true);
     })
 
     it('sets showSidebar to `false` when the actions payload is false', () => {
-      let action = new SetSidebarState(false);
+      action = new SetSidebarState(false);
 
-      let result = reducer(initialState, action);
+      result = reducer(initialState, action);
       expect(result.showSidebar).toEqual(false);
     })
   });

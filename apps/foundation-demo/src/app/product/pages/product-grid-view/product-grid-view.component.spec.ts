@@ -9,11 +9,12 @@ import { DaffProductFactory } from '@daffodil/core/testing';
 import { ProductGridViewComponent } from './product-grid-view.component';
 import { DaffContainerModule } from '@daffodil/design';
 
-let productFactory = new DaffProductFactory();
-let products$ = of(new Array(productFactory.create()));
-let loading$ = of(false);
+const productFactory = new DaffProductFactory();
+const products$ = of(new Array(productFactory.create()));
+const loading$ = of(false);
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: '[product-grid-container]', 
   template: '<ng-content></ng-content>', 
   exportAs: 'ProductGridContainer'
@@ -38,6 +39,7 @@ describe('ProductGridViewComponent', () => {
   let component: ProductGridViewComponent;
   let fixture: ComponentFixture<ProductGridViewComponent>;
   let productGridComponent: MockProductGridComponent;
+  let productGridContainer: MockProductGridContainer;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -78,7 +80,7 @@ describe('ProductGridViewComponent', () => {
 
   describe('on <daff-container>', () => {
     it('should set size="lg"', () => {
-      let container = fixture.debugElement.query(By.css('daff-container'));
+      const container = fixture.debugElement.query(By.css('daff-container'));
 
       expect(container.componentInstance.size).toEqual('lg');
     });
@@ -87,13 +89,13 @@ describe('ProductGridViewComponent', () => {
   describe('when ProductContainer.loading$ is false', () => {
     
     it('should render <demo-product-grid>', () => {
-      let productGrid = fixture.debugElement.query(By.css('demo-product-grid'));
+      const productGrid = fixture.debugElement.query(By.css('demo-product-grid'));
 
       expect(productGrid).not.toBeNull();
     });
 
     it('should not render demo-loading-icon', () => {
-      let loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
+      const loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
 
       expect(loadingIcon).toBeNull();
     });
@@ -102,20 +104,20 @@ describe('ProductGridViewComponent', () => {
   describe('when ProductContainer.loading$ is true', () => {
 
     beforeEach(() => {
-      let productGridComponent: MockProductGridContainer = fixture.debugElement.query(By.css('[product-grid-container]')).componentInstance;
-      productGridComponent.loading$ = of(true);
+      productGridContainer = fixture.debugElement.query(By.css('[product-grid-container]')).componentInstance;
+      productGridContainer.loading$ = of(true);
       
       fixture.detectChanges();
     });
     
     it('should not render <demo-product-grid>', () => {
-      let productGrid = fixture.debugElement.query(By.css('demo-product-grid'));
+      const productGrid = fixture.debugElement.query(By.css('demo-product-grid'));
 
       expect(productGrid).toBeNull();
     });
 
     it('should render demo-loading-icon', () => {
-      let loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
+      const loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
 
       expect(loadingIcon).not.toBeNull();
     });

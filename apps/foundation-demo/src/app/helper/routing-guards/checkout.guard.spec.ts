@@ -42,6 +42,7 @@ xdescribe('Checkout Guard', () => {
     router = TestBed.get(Router);
     cartLoadGuard = TestBed.get(CartLoadGuard);
     cartFactory = TestBed.get(DaffCartFactory);
+    cartItemFactory = TestBed.get(DaffCartItemFactory);
     stubCart = cartFactory.create();
 
     spyOn(router, 'navigateByUrl');

@@ -30,7 +30,7 @@ describe('selectFoundationCheckoutState', () => {
   describe('foundationShippingStateSelector', () => {
     
     it('selects shipping state', () => {
-      let expectedShippingState = {
+      const expectedShippingState = {
         showShippingForm: stubShowShippingForm
       }
 
@@ -52,7 +52,7 @@ describe('selectFoundationCheckoutState', () => {
   describe('foundationPaymentStateSelector', () => {
     
     it('selects payment state', () => {
-      let expectedPaymentState = {
+      const expectedPaymentState = {
         showPaymentView: expectedShowPaymentView,
         showPaymentForm: expectedShowPaymentForm
       }
@@ -84,7 +84,7 @@ describe('selectFoundationCheckoutState', () => {
   describe('foundationCheckoutStateSelector', () => {
     
     it('selects checkout state', () => {
-      let expectedCheckoutState = {
+      const expectedCheckoutState = {
         enablePlaceOrderButton: false,
         showReviewView: false,
         isOrderPlaced: false

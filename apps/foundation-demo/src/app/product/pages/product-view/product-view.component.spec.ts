@@ -12,12 +12,13 @@ import { ProductViewComponent } from './product-view.component';
 import { ActivatedRouteStub } from '../../../testing/ActivatedRouteStub';
 import { AddToCartComponent } from '../../components/add-to-cart/add-to-cart.component';
 
-let productFactory: DaffProductFactory = new DaffProductFactory();
-let mockProduct = productFactory.create();
-let product$ = of(mockProduct);
-let stubQty = 1;
+const productFactory: DaffProductFactory = new DaffProductFactory();
+const mockProduct = productFactory.create();
+const product$ = of(mockProduct);
+const stubQty = 1;
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: '[product-container]', 
   template: '<ng-content></ng-content>', 
   exportAs: 'ProductContainer'
@@ -59,15 +60,14 @@ class MockAddToCartNotificationComponent {}
 describe('ProductViewComponent', () => {
   let component: ProductViewComponent;
   let fixture: ComponentFixture<ProductViewComponent>;
-  let idParam: string;
-  let activatedRoute = new ActivatedRouteStub();
+  const idParam = '1001';
+  const activatedRoute = new ActivatedRouteStub();
   let productContainer: MockProductContainer;
   let productComponent: MockProductComponent;
   let addToCartComponent: AddToCartComponent;
   let addToCartNotification: MockAddToCartNotificationComponent;
 
   beforeEach(async(() => {
-    idParam = '1001';
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule
@@ -130,7 +130,7 @@ describe('ProductViewComponent', () => {
 
     it('should set updateQty to call function passed by product-container directive', () => {
       spyOn(productContainer, 'updateQty');
-      let payload = 4;
+      const payload = 4;
 
       productComponent.updateQty.emit(payload);
 
@@ -150,7 +150,7 @@ describe('ProductViewComponent', () => {
 
     it('should set addToCart to call function passed by product-container directive', () => {
       spyOn(productContainer, 'addToCart');
-      let payload = 'test';
+      const payload = 'test';
 
       addToCartComponent.addToCart.emit(payload);
 
@@ -170,17 +170,17 @@ describe('ProductViewComponent', () => {
   });
 
   describe('when loading$ is true', () => {
-    let productComponent;
+    let productElement;
     
     beforeEach(() => {
       productContainer.loading$ = of(true);
       fixture.detectChanges();
 
-      productComponent = fixture.debugElement.query(By.css('demo-product'));
+      productElement = fixture.debugElement.query(By.css('demo-product'));
     });
 
     it('should  not render <demo-product>', () => {
-      expect(productComponent).toBeNull();
+      expect(productElement).toBeNull();
     });
     
     it('should render demo-loading-icon', () => {

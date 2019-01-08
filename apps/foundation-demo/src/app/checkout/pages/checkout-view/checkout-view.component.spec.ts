@@ -15,22 +15,22 @@ import { ShowPaymentView } from '../../actions/payment.actions';
 import { CheckoutViewComponent } from './checkout-view.component';
 import { DaffAccordionModule, DaffAccordionItemComponent } from '@daffodil/design';
 
-let daffodilAddressFactory = new DaffAddressFactory();
-let paymentFactory = new DaffPaymentFactory();
-let cartFactory = new DaffCartFactory();
-let cartItemFactory = new DaffCartItemFactory();
+const daffodilAddressFactory = new DaffAddressFactory();
+const paymentFactory = new DaffPaymentFactory();
+const cartFactory = new DaffCartFactory();
+const cartItemFactory = new DaffCartItemFactory();
 
-let stubShippingAddress = daffodilAddressFactory.create();
-let stubPaymentInfo: PaymentInfo = paymentFactory.create();
-let stubBillingAddress: DaffodilAddress = daffodilAddressFactory.create();
+const stubShippingAddress = daffodilAddressFactory.create();
+const stubPaymentInfo: PaymentInfo = paymentFactory.create();
+const stubBillingAddress: DaffodilAddress = daffodilAddressFactory.create();
 let stubCart: Cart;
 
-let stubIsShippingAddressValid = true;
-let stubSelectedShippingOptionIndex = 0;
-let stubShowPaymentView: boolean = true;
-let stubShowReviewView: boolean = true;
-let stubIsOrderPlaced: boolean = false;
-let stubBillingAddressIsShippingAddress: boolean = false;
+const stubIsShippingAddressValid = true;
+const stubSelectedShippingOptionIndex = 0;
+const stubShowPaymentView = true;
+const stubShowReviewView = true;
+const stubIsOrderPlaced = false;
+const stubBillingAddressIsShippingAddress = false;
 
 @Component({selector: 'demo-shipping', template: ''})
 class MockShippingComponent {
@@ -62,6 +62,7 @@ class MockCheckoutCartAsyncWrapperComponent {
 @Component({selector: 'demo-place-order', template: ''})
 class MockPlaceOrderComponent {}
 
+// tslint:disable-next-line: component-selector
 @Component({selector: '[shipping-container]', template: '<ng-content></ng-content>', exportAs: 'ShippingContainer'})
 class MockShippingContainer {
   isShippingAddressValid$: Observable<boolean> = of(stubIsShippingAddressValid);
@@ -71,6 +72,7 @@ class MockShippingContainer {
   selectShippingOption = () => {};
 }
 
+// tslint:disable-next-line: component-selector
 @Component({selector: '[billing-container]', template: '<ng-content></ng-content>', exportAs: 'BillingContainer'})
 class MockBillingContainer {
   paymentInfo$: Observable<PaymentInfo> = of(stubPaymentInfo);
@@ -81,6 +83,7 @@ class MockBillingContainer {
   toggleBillingAddressIsShippingAddress = () => {};
 }
 
+// tslint:disable-next-line: component-selector
 @Component({selector: '[cart-container]', template: '<ng-content></ng-content>', exportAs: 'CartContainer'})
 class MockCartContainer {
   cart$: Observable<Cart>;
@@ -105,7 +108,7 @@ describe('CheckoutViewComponent', () => {
   let accordionItem: DaffAccordionItemComponent;
   let placeOrders;
   let store;
-  let stubCart = cartFactory.create();
+  stubCart = cartFactory.create();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

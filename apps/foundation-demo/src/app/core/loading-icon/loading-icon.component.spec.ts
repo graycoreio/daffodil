@@ -6,16 +6,16 @@ import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 @Component({ template: '<demo-loading-icon class="host-element"></demo-loading-icon>' })
-class TestLoadingIconComponentWrapper {}
+class WrapperComponent {}
 
 describe('LoadingIconComponent', () => {
-  let component: TestLoadingIconComponentWrapper;
-  let fixture: ComponentFixture<TestLoadingIconComponentWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        TestLoadingIconComponentWrapper,
+        WrapperComponent,
         LoadingIconComponent
       ]
     })
@@ -23,12 +23,12 @@ describe('LoadingIconComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestLoadingIconComponentWrapper);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(wrapper).toBeTruthy();
   });
 });

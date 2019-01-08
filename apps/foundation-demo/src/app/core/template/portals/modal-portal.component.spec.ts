@@ -14,16 +14,16 @@ import { Component } from '@angular/core';
     </div>
   <div>
 `})
-class TestModalPortalWrapper {}
+class WrapperComponent {}
 
 describe('ModalPortalComponent', () => {
-  let component: TestModalPortalWrapper;
-  let fixture: ComponentFixture<TestModalPortalWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        TestModalPortalWrapper,
+        WrapperComponent,
         ModalPortalComponent
       ]
     })
@@ -31,17 +31,17 @@ describe('ModalPortalComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestModalPortalWrapper);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(wrapper).toBeTruthy();
   });
 
   it('should attach portal-content to portal-host-destination', () => {
-    let modalPortal = document.getElementById('demo-modal-portal');
+    const modalPortal = document.getElementById('demo-modal-portal');
 
     expect(modalPortal.innerHTML.match('portal-content')).toBeTruthy();
   });

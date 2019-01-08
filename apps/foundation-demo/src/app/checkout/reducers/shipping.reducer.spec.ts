@@ -26,7 +26,7 @@ describe('Checkout | Shipping Reducer', () => {
     let result;
 
     beforeEach(() => {
-      let setShowShippingFormAction = new SetShowShippingForm(stubShowShippingForm);
+      const setShowShippingFormAction = new SetShowShippingForm(stubShowShippingForm);
       
       result = reducer(initialState, setShowShippingFormAction);
     });
@@ -41,10 +41,10 @@ describe('Checkout | Shipping Reducer', () => {
     let result;
 
     beforeEach(() => {
-      let setShowShippingFormAction = new SetShowShippingForm(false);
+      const setShowShippingFormAction = new SetShowShippingForm(false);
       reducer(initialState, setShowShippingFormAction);
       
-      let toggleShippingFormAction = new ToggleShowShippingForm();
+      const toggleShippingFormAction = new ToggleShowShippingForm();
       
       result = reducer(initialState, toggleShippingFormAction);
     });

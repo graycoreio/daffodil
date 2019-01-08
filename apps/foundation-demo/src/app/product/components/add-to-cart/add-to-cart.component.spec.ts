@@ -6,15 +6,15 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AddToCartComponent } from './add-to-cart.component';
 
 @Component({template: '<demo-add-to-cart (addToCart)="eventCatcher()" [additive]="additiveValue" [qty]="qtyValue"></demo-add-to-cart>'})
-class AddToCartWrapperTest {
+class WrapperComponent {
   additiveValue = 'additiveValue';
   qtyValue = 1;
   eventCatcher;
 }
 
 describe('AddToCartComponent', () => {
-  let component: AddToCartWrapperTest;
-  let fixture: ComponentFixture<AddToCartWrapperTest>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let addToCartComponent: AddToCartComponent;
 
   beforeEach(async(() => {
@@ -23,7 +23,7 @@ describe('AddToCartComponent', () => {
         RouterTestingModule
       ],
       declarations: [ 
-        AddToCartWrapperTest,
+        WrapperComponent,
         AddToCartComponent
       ]
     })
@@ -31,9 +31,9 @@ describe('AddToCartComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddToCartWrapperTest);
-    component = fixture.componentInstance;
-    component.eventCatcher = () => {};
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
+    wrapper.eventCatcher = () => {};
     
     fixture.detectChanges();
 
@@ -41,15 +41,15 @@ describe('AddToCartComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(addToCartComponent).toBeTruthy();
   });
 
   it('should be able to take additive as input', () => {
-    expect(addToCartComponent.additive).toEqual(component.additiveValue);
+    expect(addToCartComponent.additive).toEqual(wrapper.additiveValue);
   });
 
   it('should be able to take qty as input', () => {
-    expect(addToCartComponent.qty).toEqual(component.qtyValue);
+    expect(addToCartComponent.qty).toEqual(wrapper.qtyValue);
   });
 
   describe('when add to cart button is clicked', () => {

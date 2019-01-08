@@ -8,7 +8,7 @@ import { Cart, CartItem } from '@daffodil/core';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/core/testing';
 
 @Component({template: '<demo-cart [cart]="cartValue"></demo-cart>'})
-class TestCartWrapper {
+class WrapperComponent {
   cartValue: Cart;
 }
 
@@ -18,13 +18,13 @@ class MockCartItemComponent {
 }
 
 describe('CartComponent', () => {
-  let component: TestCartWrapper;
-  let fixture: ComponentFixture<TestCartWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let cartItems;
   let cart: CartComponent;
 
-  let cartFactory = new DaffCartFactory();
-  let mockCart = cartFactory.create({
+  const cartFactory = new DaffCartFactory();
+  const mockCart = cartFactory.create({
     items: new DaffCartItemFactory().createMany(2)
   });
 
@@ -32,7 +32,7 @@ describe('CartComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         CartComponent,
-        TestCartWrapper,
+        WrapperComponent,
         MockCartItemComponent
       ]
     })
@@ -40,10 +40,10 @@ describe('CartComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestCartWrapper);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
 
-    component.cartValue = mockCart;
+    wrapper.cartValue = mockCart;
 
     fixture.detectChanges();
     cartItems = fixture.debugElement.queryAll(By.css('demo-cart-item'));
@@ -51,7 +51,7 @@ describe('CartComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(cart).toBeTruthy();
   });
 
   it('renders a cart', () => {
