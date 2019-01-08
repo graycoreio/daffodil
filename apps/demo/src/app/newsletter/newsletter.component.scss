@@ -38,6 +38,10 @@
     padding-bottom: 15px;
   }
 
+  &__right {
+    display: flex;
+  }
+
   &__input {
     width: 60%;
     display: inline-block;
@@ -45,6 +49,10 @@
 
     @include breakpoint(tablet) {
       width: 70%;
+    }
+
+    &:focus {
+      border: 1px solid $white;
     }
   }
 
