@@ -8,6 +8,7 @@
     },
     "scripts": {
       "build": "ng build foundation-demo",
+      "lint": "ng lint foundation-demo",
       "test": "ng test foundation-demo --watch=false --browsers=ChromeHeadless"
     },
     "homepage": "https://github.com/graycoreio/daffodil",
