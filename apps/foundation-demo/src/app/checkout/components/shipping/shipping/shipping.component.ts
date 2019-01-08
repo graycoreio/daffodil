@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
+import { Component, Input, ViewEncapsulation, Output, EventEmitter, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
@@ -12,7 +12,7 @@ import * as fromFoundationCheckout from '../../../reducers';
   templateUrl: './shipping.component.html',
   encapsulation: ViewEncapsulation.None
 })
-export class ShippingComponent {
+export class ShippingComponent implements OnInit {
 
   @Input() isShippingAddressValid: boolean;
   @Input() shippingAddress: DaffodilAddress;

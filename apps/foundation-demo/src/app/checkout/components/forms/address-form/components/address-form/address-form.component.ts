@@ -25,7 +25,7 @@ export class AddressFormComponent implements OnInit {
   ngOnInit() {
     this.stateErrorStateMatcher = new ErrorStateMatcher();
     this.stateErrorStateMatcher.isErrorState = (control: FormControl, formSubmitted: boolean) => {
-      return (control.errors || control.value == 'State') && (control.touched || formSubmitted);
+      return (control.errors || control.value === 'State') && (control.touched || formSubmitted);
     }
   }
 }

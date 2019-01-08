@@ -1,7 +1,7 @@
-import { Injectable, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
-import { map, filter, take, timeout, catchError } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { map, filter, take } from 'rxjs/operators';
 import { fromCart } from '@daffodil/state';
 
 import { CartLoad } from '@daffodil/state';
@@ -28,7 +28,8 @@ export class CartLoadGuard implements CanActivate {
    * or if cart is null dispatch an action
    */
   private getCart(): Observable<Cart> {
-    return this.store.select(fromCart.selectCartValueState).pipe(
+    return this.store.pipe(
+      select(fromCart.selectCartValueState),
       map(cart => {
         if(cart === null) {
           this.loadCart()

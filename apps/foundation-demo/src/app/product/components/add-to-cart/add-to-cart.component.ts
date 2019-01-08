@@ -4,11 +4,12 @@ import { Component, Output, EventEmitter, Input, ViewEncapsulation } from '@angu
   selector: 'demo-add-to-cart',
   templateUrl: './add-to-cart.component.html',
   styleUrls: ['./add-to-cart.component.scss'],
-  host: {'class': 'add-to-cart'},
+  host: {
+    'class': 'add-to-cart'
+  },
   encapsulation: ViewEncapsulation.None
 })
 export class AddToCartComponent {
-
   @Input() additive: any;
   @Input() qty: number;
   @Output() addToCart: EventEmitter<any> = new EventEmitter();

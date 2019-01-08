@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -9,7 +9,7 @@ import * as fromFoundationSidebar from '../../reducers/index';
   selector: 'demo-sidebar-viewport-container',
   templateUrl: './sidebar-viewport.component.html'
 })
-export class SidebarViewportContainer {
+export class SidebarViewportContainer implements OnInit {
   
   showSidebar$: Observable<boolean>;
 

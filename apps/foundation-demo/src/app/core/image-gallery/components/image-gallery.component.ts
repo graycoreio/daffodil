@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
@@ -10,7 +10,7 @@ import { SetSelectedImageState } from '../actions/image-gallery.actions';
   templateUrl: './image-gallery.component.html',
   encapsulation: ViewEncapsulation.None
 })
-export class ImageGalleryComponent {
+export class ImageGalleryComponent implements OnInit {
 
   @Input() images;
   selectedImage$: Observable<string>;

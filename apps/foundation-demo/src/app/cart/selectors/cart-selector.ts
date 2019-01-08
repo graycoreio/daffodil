@@ -17,7 +17,7 @@ export const reducers : ActionReducerMap<CartState> = {
 export const selectCartItemCount : MemoizedSelector<object, number> = createSelector(
   fromCart.selectCartValueState,
   cart => {
-    let itemCount: number = 0;
+    let itemCount = 0;
     cart.items.forEach(cartItem => {
       itemCount += cartItem.qty;
     })

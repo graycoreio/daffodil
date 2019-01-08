@@ -13,7 +13,7 @@ export class ProductComponent implements OnInit {
   @Input() product: Product;
   @Input() qty: number;
   @Output() updateQty: EventEmitter<any> = new EventEmitter();
-  
+
   constructor(
     private router: Router
   ) {}
