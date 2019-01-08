@@ -1,0 +1,51 @@
+$animationTime: 1000ms;
+
+$circleRadius: 45;
+$pi: 3.14159265359;
+$maxPercentageFill: 3.5/10;
+
+$circlePerimeter: 2 * $pi * $circleRadius;
+$maxStrokeLength: $circlePerimeter * $maxPercentageFill;
+$angleInRadians: $maxPercentageFill * 2 * $pi;
+$finalAngleInRadians: 3*$pi/2 - $angleInRadians;
+$finalAngleInDegrees: $finalAngleInRadians * 180/$pi;
+
+.daff-loading-icon {
+    width: 100px;
+    height: 100px;
+    animation: rotation;
+    animation-duration: $animationTime;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    transform: rotate(-90deg);
+}
+
+circle {
+    fill: transparent;
+    stroke: black;
+    stroke-width: 10%;
+    stroke-miterlimit: 4;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    animation: circle-animation;
+    animation-duration: $animationTime;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes circle-animation {
+    0%   {  stroke-dasharray: $maxStrokeLength 400; stroke-dashoffset: $maxStrokeLength; }
+    50%  {  stroke-dasharray: $maxStrokeLength 400; stroke-dashoffset: $maxStrokeLength - $circlePerimeter * 0.25; }
+    75%  {  stroke-dasharray: $maxStrokeLength 400; stroke-dashoffset: 0; }
+    100% { stroke-dasharray: 0 400; stroke-dashoffset: -$maxStrokeLength; }
+}
+
+@keyframes rotation {
+    0% {transform: rotate(-90deg);}
+    25% {transform: rotate(0deg);}
+    27% {transform: rotate(0deg);}
+    50% {transform: rotate(90deg);}
+    51% {transform: rotate(90deg);}
+    99% {transform: rotate(#{$finalAngleInDegrees}deg);}
+    100% {transform: rotate(#{$finalAngleInDegrees}deg);}
+}

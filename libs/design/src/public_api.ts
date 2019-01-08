@@ -7,6 +7,7 @@ export * from './atoms/button/public_api';
 export * from'./atoms/form/input/public_api';
 export * from './atoms/container/public_api';
 export * from './atoms/link/public_api';
+export * from './atoms/loading-icon/public_api';
 
 // Molecules
 export * from './molecules/accordion/public_api';
@@ -24,7 +25,7 @@ export * from './molecules/sidebar/public_api';
 export * from './molecules/hero/public_api';
 export * from './molecules/callout/public_api';
 export * from './molecules/feature/public_api';
-export * from './molecules/loading-icon/public_api';
+
 
 //Helpers
 export { ErrorStateMatcher } from './molecules/error-state-matcher/error-state-matcher';
