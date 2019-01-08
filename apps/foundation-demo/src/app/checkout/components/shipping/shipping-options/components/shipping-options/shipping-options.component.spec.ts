@@ -7,26 +7,26 @@ import { FormGroup, FormBuilder, FormsModule, ReactiveFormsModule, FormControl, 
 import { ShippingOptionsService } from '../services/shipping-options.service';
 import { ShippingOptionsFactory } from '../factories/shipping-options.factory';
 
-let formBuilder: FormBuilder = new FormBuilder();
+const formBuilder: FormBuilder = new FormBuilder();
 
-let stubFormGroupValue = formBuilder.group({
+const stubFormGroupValue = formBuilder.group({
   id: ['', Validators.required]
 });
-let stubSubmitted = false;
+const stubSubmitted = false;
 
 @Component({
   template: '<demo-shipping-options ' + 
               '[formGroup]="formGroupValue" ' +  
               '[submitted]="submittedValue"></demo-shipping-options>'
 })
-class TestShippingOptionsWrapper {
+class WrapperComponent {
   formGroupValue: FormGroup = stubFormGroupValue;
   submittedValue: boolean = stubSubmitted;
 };
 
 describe('ShippingOptionsComponent', () => {
-  let component: TestShippingOptionsWrapper;
-  let fixture: ComponentFixture<TestShippingOptionsWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let shippingOptionsComponent: ShippingOptionsComponent;
   let shippingOptionsService: ShippingOptionsService;
 
@@ -37,7 +37,7 @@ describe('ShippingOptionsComponent', () => {
         ReactiveFormsModule
       ],
       declarations: [ 
-        TestShippingOptionsWrapper,
+        WrapperComponent,
         ShippingOptionsComponent
       ],
       providers: [
@@ -49,24 +49,24 @@ describe('ShippingOptionsComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestShippingOptionsWrapper);
+    fixture = TestBed.createComponent(WrapperComponent);
     shippingOptionsService = TestBed.get(ShippingOptionsService);
-    component = fixture.componentInstance;
+    wrapper = fixture.componentInstance;
     fixture.detectChanges();
 
     shippingOptionsComponent = fixture.debugElement.query(By.css('demo-shipping-options')).componentInstance;
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(shippingOptionsComponent).toBeTruthy();
   });
 
   it('should be able to take formGroup as input', () => {
-    expect(shippingOptionsComponent.formGroup).toEqual(component.formGroupValue);
+    expect(shippingOptionsComponent.formGroup).toEqual(wrapper.formGroupValue);
   });
 
   it('should be able to take submitted as input', () => {
-    expect(shippingOptionsComponent.submitted).toEqual(component.submittedValue);
+    expect(shippingOptionsComponent.submitted).toEqual(wrapper.submittedValue);
   });
 
   it('should set shippingOptions', () => {
@@ -121,7 +121,7 @@ describe('ShippingOptionsComponent', () => {
     });
     
     it('should set hidden to false on shipping-options__invalid', () => {
-      let hostNativeElement = fixture.debugElement.query(By.css('.shipping-options__invalid')).nativeElement;
+      const hostNativeElement = fixture.debugElement.query(By.css('.shipping-options__invalid')).nativeElement;
 
       expect(hostNativeElement.hidden).toBeFalsy();
     });
@@ -136,7 +136,7 @@ describe('ShippingOptionsComponent', () => {
     });
 
     it('should set hidden to true on shipping-options__invalid', () => {
-      let hostNativeElement = fixture.debugElement.query(By.css('.shipping-options__invalid')).nativeElement;
+      const hostNativeElement = fixture.debugElement.query(By.css('.shipping-options__invalid')).nativeElement;
 
       expect(hostNativeElement.hidden).toBeTruthy();
     });

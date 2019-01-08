@@ -18,7 +18,7 @@ import {
 } from '@daffodil/design';
 
 @Component({template: '<demo-product [product]="productValue" [qty]="qtyValue" (updateQty)="updateQtyFunction($event)"></demo-product>'})
-class ProductWrapperTest {
+class WrapperComponent {
   productValue: Product;
   qtyValue: number;
   updateQtyFunction: Function;
@@ -30,14 +30,14 @@ class MockImageGalleryContainer {
 }
 
 describe('ProductComponent', () => {
-  let component: ProductWrapperTest;
-  let fixture: ComponentFixture<ProductWrapperTest>;
-  let productFactory = new DaffProductFactory();
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
+  const productFactory = new DaffProductFactory();
   let router;
-  let stubProduct: Product = productFactory.create();
-  let stubQty: number = 1;
+  const stubProduct: Product = productFactory.create();
+  let stubQty = 1;
   let productComponent: ProductComponent;
-  let mockFunction = (payload) => {};
+  const mockFunction = (payload) => {};
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -50,7 +50,7 @@ describe('ProductComponent', () => {
       ],
       declarations: [ 
         ProductComponent,
-        ProductWrapperTest,
+        WrapperComponent,
         MockImageGalleryContainer
       ]
     })
@@ -58,13 +58,13 @@ describe('ProductComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProductWrapperTest);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
     router = TestBed.get(Router);
     spyOn(router, 'navigateByUrl');
-    component.productValue = stubProduct;
-    component.qtyValue = stubQty;
-    component.updateQtyFunction = mockFunction;
+    wrapper.productValue = stubProduct;
+    wrapper.qtyValue = stubQty;
+    wrapper.updateQtyFunction = mockFunction;
     
     fixture.detectChanges();
 
@@ -86,7 +86,7 @@ describe('ProductComponent', () => {
   describe('on <demo-image-gallery-container>', () => {
     
     it('should set images', () => {
-      let imageGalleryContainer = fixture.debugElement.query(By.css('demo-image-gallery-container')).componentInstance;
+      const imageGalleryContainer = fixture.debugElement.query(By.css('demo-image-gallery-container')).componentInstance;
 
       expect(imageGalleryContainer.images).toEqual(productComponent.product.images);
     });
@@ -110,7 +110,7 @@ describe('ProductComponent', () => {
 
     it('should call updateQty.emit when qtyChanged is called', () => {
       spyOn(productComponent.updateQty, 'emit');
-      let newQty = 2;
+      const newQty = 2;
       qtyDropdownComponent.qtyChanged.emit(newQty);
 
       expect(productComponent.updateQty.emit).toHaveBeenCalledWith(newQty);
@@ -118,26 +118,19 @@ describe('ProductComponent', () => {
   });
 
   it('should call updateQtyFunction when updateQty is emitted', () => {
-    let payload = 4;
-    spyOn(component, 'updateQtyFunction');
+    const payload = 4;
+    spyOn(wrapper, 'updateQtyFunction');
     
     productComponent.updateQty.emit(payload);
 
-    expect(component.updateQtyFunction).toHaveBeenCalledWith(payload);   
-  });
-
-  describe('ngOnInit', () => {
-    
-    it('should initialize qty to 1', () => {
-      expect(productComponent.qty).toEqual(1);
-    });
+    expect(wrapper.updateQtyFunction).toHaveBeenCalledWith(payload);   
   });
 
   describe('onUpdateQty', () => {
     
     it('should call updateQty.emit', () => {
       spyOn(productComponent.updateQty, 'emit');
-      let stubQty = 4;
+      stubQty = 4;
       productComponent.onUpdateQty(stubQty);
 
       expect(productComponent.updateQty.emit).toHaveBeenCalledWith(stubQty);
@@ -147,10 +140,10 @@ describe('ProductComponent', () => {
   describe('when product is null', () => {
     
     it('should redirect to the 404 not-found page', () => {
-      fixture = TestBed.createComponent(ProductWrapperTest);
-      component = fixture.componentInstance;
+      fixture = TestBed.createComponent(WrapperComponent);
+      wrapper = fixture.componentInstance;
 
-      component.productValue = null;
+      wrapper.productValue = null;
       fixture.detectChanges();
       
       expect(router.navigateByUrl).toHaveBeenCalledWith('/404');
@@ -159,7 +152,7 @@ describe('ProductComponent', () => {
 
   describe('on <daff-container>', () => {
     it('should set size="lg"', () => {
-      let container = fixture.debugElement.query(By.css('daff-container'));
+      const container = fixture.debugElement.query(By.css('daff-container'));
 
       expect(container.componentInstance.size).toEqual('lg');
     });

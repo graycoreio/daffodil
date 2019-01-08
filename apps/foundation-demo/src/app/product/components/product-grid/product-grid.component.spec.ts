@@ -8,7 +8,7 @@ import { DaffProductFactory } from '@daffodil/core/testing';
 import { ProductGridComponent } from './product-grid.component';
 
 @Component({template: '<demo-product-grid [products]="productsValue"></demo-product-grid>'})
-class TestProductGridWrapper {
+class WrapperComponent {
   productsValue: Product[];
 }
 
@@ -18,9 +18,9 @@ class MockProductCardComponent {
 }
 
 describe('ProductGridComponent', () => {
-  let component: TestProductGridWrapper;
-  let fixture: ComponentFixture<TestProductGridWrapper>;
-  let productFactory: DaffProductFactory = new DaffProductFactory();
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
+  const productFactory: DaffProductFactory = new DaffProductFactory();
   let productCards;
 
   beforeEach(async(() => {
@@ -28,16 +28,16 @@ describe('ProductGridComponent', () => {
       declarations: [
         MockProductCardComponent,
         ProductGridComponent,
-        TestProductGridWrapper
+        WrapperComponent
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestProductGridWrapper);
-    component = fixture.componentInstance;
-    component.productsValue = new Array(productFactory.create(), productFactory.create());
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
+    wrapper.productsValue = new Array(productFactory.create(), productFactory.create());
 
     fixture.detectChanges();
 
@@ -45,19 +45,19 @@ describe('ProductGridComponent', () => {
   });
 
   it('should be able to take an input of products', () => {
-    let productGridComponent = fixture.debugElement.query(By.css('demo-product-grid'));
+    const productGridComponent = fixture.debugElement.query(By.css('demo-product-grid'));
 
-    expect(productGridComponent.componentInstance.products).toEqual(component.productsValue);
+    expect(productGridComponent.componentInstance.products).toEqual(wrapper.productsValue);
   });
 
   describe('on <demo-product-card>', () => {
 
     it('should set product', () => {
-      expect(productCards[0].componentInstance.product).toEqual(component.productsValue[0]);
+      expect(productCards[0].componentInstance.product).toEqual(wrapper.productsValue[0]);
     });
   });
 
   it('renders a product-card for each product in products', () => {
-    expect(productCards.length).toEqual(component.productsValue.length);
+    expect(productCards.length).toEqual(wrapper.productsValue.length);
   });
 });

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { Cart, CartItem } from '@daffodil/core';
@@ -10,7 +10,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
 @Component({template: '<demo-checkout-cart [cart]="cartValue" [subtitle]="subtitleValue"></demo-checkout-cart>'})
-class TestCheckoutCartWrapper {
+class WrapperComponent {
   cartValue: Cart;
   subtitleValue: string;
 }
@@ -21,15 +21,15 @@ class MockCheckoutCartItemComponent {
 }
 
 describe('CheckoutCartComponent', () => {
-  let component: TestCheckoutCartWrapper;
-  let fixture: ComponentFixture<TestCheckoutCartWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let checkoutCartItems;
   let checkoutCart: CheckoutCartComponent;
   let router;
   let cartFactory: DaffCartFactory ;
   let cartItemFactory: DaffCartItemFactory;
   let mockCart: Cart;
-  let stubSubtitle = 'subtitle';
+  const stubSubtitle = 'subtitle';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -39,14 +39,14 @@ describe('CheckoutCartComponent', () => {
       ],
       declarations: [
         CheckoutCartComponent,
-        TestCheckoutCartWrapper,
+        WrapperComponent,
         MockCheckoutCartItemComponent
       ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TestCheckoutCartWrapper);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
     
     router = TestBed.get(Router);
     spyOn(router, 'navigateByUrl');
@@ -57,8 +57,8 @@ describe('CheckoutCartComponent', () => {
       items: cartItemFactory.createMany(2)
     });
 
-    component.cartValue = mockCart;
-    component.subtitleValue = stubSubtitle;
+    wrapper.cartValue = mockCart;
+    wrapper.subtitleValue = stubSubtitle;
 
     fixture.detectChanges();
 
@@ -67,7 +67,7 @@ describe('CheckoutCartComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(checkoutCart).toBeTruthy();
   });
 
   it('can be passed a Cart object', () => {
@@ -94,7 +94,7 @@ describe('CheckoutCartComponent', () => {
       checkoutCart.subtitle = null;
       fixture.detectChanges();
 
-      let cartTitleElement = fixture.debugElement.query(By.css('.checkout-cart__title'));
+      const cartTitleElement = fixture.debugElement.query(By.css('.checkout-cart__title'));
 
       expect(cartTitleElement).toBeNull();
     });
@@ -103,7 +103,7 @@ describe('CheckoutCartComponent', () => {
   describe('when subtitle is defined', () => {
     
     it('should render .checkout-cart__title', () => {
-      let cartTitleElement = fixture.debugElement.query(By.css('.checkout-cart__title'));
+      const cartTitleElement = fixture.debugElement.query(By.css('.checkout-cart__title'));
 
       expect(cartTitleElement).not.toBeNull();
     });

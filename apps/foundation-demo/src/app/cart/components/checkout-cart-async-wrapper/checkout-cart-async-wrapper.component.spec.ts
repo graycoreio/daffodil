@@ -10,12 +10,12 @@ import { CheckoutCartAsyncWrapperComponent } from './checkout-cart-async-wrapper
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-let cartFactory = new DaffCartFactory();
-let cart = cartFactory.create();
-let stubCartTitle = 'cartTitle';
+const cartFactory = new DaffCartFactory();
+const cart = cartFactory.create();
+const stubCartTitle = 'cartTitle';
 
 @Component({template: '<demo-checkout-cart-async-wrapper [cartTitle]="cartTitleValue" [cart]="cartValue$ | async" [loading]="loadingValue$ | async"><div class="transcluded-content"></div></demo-checkout-cart-async-wrapper>'})
-class TestCheckoutCartAsyncWrapper {
+class WrapperComponent {
   cartValue$: Observable<Cart>;
   loadingValue$: Observable<boolean>;
   cartTitleValue: string;
@@ -48,8 +48,8 @@ class MockHelpBoxComponent {}
 class MockLoadingIconComponent {}
 
 describe('CheckoutCartAsyncWrapper', () => {
-  let component: TestCheckoutCartAsyncWrapper;
-  let fixture: ComponentFixture<TestCheckoutCartAsyncWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let checkoutCartAsyncWrapperComponent: CheckoutCartAsyncWrapperComponent;
   let checkoutCartComponent: MockCheckoutCartComponent;
   let cartTotalsComponent: MockCartTotalsComponent;
@@ -62,7 +62,7 @@ describe('CheckoutCartAsyncWrapper', () => {
         RouterTestingModule
       ],
       declarations: [ 
-        TestCheckoutCartAsyncWrapper,
+        WrapperComponent,
         MockCheckoutCartComponent,
         MockCartTotalsComponent,
         MockHelpBoxComponent,
@@ -74,13 +74,13 @@ describe('CheckoutCartAsyncWrapper', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestCheckoutCartAsyncWrapper);
+    fixture = TestBed.createComponent(WrapperComponent);
     router = TestBed.get(Router);
     spyOn(router, 'navigateByUrl');
-    component = fixture.componentInstance;
-    component.cartValue$ = of(cart);
-    component.loadingValue$ = of(false);
-    component.cartTitleValue = stubCartTitle;
+    wrapper = fixture.componentInstance;
+    wrapper.cartValue$ = of(cart);
+    wrapper.loadingValue$ = of(false);
+    wrapper.cartTitleValue = stubCartTitle;
     
     checkoutCartAsyncWrapperComponent = fixture.debugElement.query(By.css('demo-checkout-cart-async-wrapper')).componentInstance;
 
@@ -92,7 +92,7 @@ describe('CheckoutCartAsyncWrapper', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(checkoutCartAsyncWrapperComponent).toBeTruthy();
   });
 
   it('should be able to take cart as input', () => {
@@ -136,8 +136,8 @@ describe('CheckoutCartAsyncWrapper', () => {
     });
 
     it('should render <demo-cart-totals>', () => {
-      let cartTotalsComponent = fixture.debugElement.query(By.css('demo-cart-totals'))
-      expect(cartTotalsComponent).not.toBeNull();
+      const cartTotalsComponentElement = fixture.debugElement.query(By.css('demo-cart-totals'))
+      expect(cartTotalsComponentElement).not.toBeNull();
     });
 
     it('should render <demo-help-box>', () => {
@@ -145,39 +145,39 @@ describe('CheckoutCartAsyncWrapper', () => {
     });
 
     it('should not render loading-icon', () => {
-      let loadingIcon = fixture.debugElement.query(By.css('.cart-container__loading-icon'));
+      const loadingIconElement = fixture.debugElement.query(By.css('.cart-container__loading-icon'));
       
-      expect(loadingIcon).toBeNull();
+      expect(loadingIconElement).toBeNull();
     });
   });
 
   describe('when CartContainer.$loading is true', () => {
 
     beforeEach(() => {
-      component.loadingValue$ = of(true);
+      wrapper.loadingValue$ = of(true);
       fixture.detectChanges();
     });
     
     it('should not render <demo-checkout-cart>', () => {
-      let checkoutCartComponent = fixture.debugElement.query(By.css('demo-checkout-cart'));
+      const checkoutCartElement = fixture.debugElement.query(By.css('demo-checkout-cart'));
 
-      expect(checkoutCartComponent).toBeNull();
+      expect(checkoutCartElement).toBeNull();
     });
 
     it('should not render <demo-cart-totals>', () => {
-      let cartTotalsComponent = fixture.debugElement.query(By.css('demo-cart-totals'));
-      expect(cartTotalsComponent).toBeNull();
+      const cartTotalsComponentElement = fixture.debugElement.query(By.css('demo-cart-totals'));
+      expect(cartTotalsComponentElement).toBeNull();
     });
 
     it('should not render <demo-help-box>', () => {
-      let helpBoxComponent = fixture.debugElement.query(By.css('demo-help-box'));
-      expect(helpBoxComponent).toBeNull();
+      const helpBoxComponentElement = fixture.debugElement.query(By.css('demo-help-box'));
+      expect(helpBoxComponentElement).toBeNull();
     });
 
     it('should render loading-icon', () => {
-      let loadingIcon = fixture.debugElement.query(By.css('.checkout-cart-async-wrapper__loading-icon'));
+      const loadingIconElement = fixture.debugElement.query(By.css('.checkout-cart-async-wrapper__loading-icon'));
       
-      expect(loadingIcon).not.toBeNull();
+      expect(loadingIconElement).not.toBeNull();
     });
   });
 });

@@ -9,21 +9,21 @@ import { ImageGalleryComponent } from './image-gallery.component';
 import * as fromFoundationImageGallery from '../reducers/index';
 import { SetSelectedImageState } from '../actions/image-gallery.actions';
 
-let stubImages = [
+const stubImages = [
   { url: '/assets/mh01-black_main.jpg', label: 'testlabel'},
   { url: '/assets/mh01-gray_alt1.jpg', label: 'testlabel1'}
 ]
 
 @Component({template: '<demo-image-gallery-container [images]="imagesValue"></demo-image-gallery-container>'})
-class TestImageGalleryComponentWrapper {
+class WrapperComponent {
   imagesValue: Object[] = stubImages;
 }
 
 describe('ImageGalleryComponent', () => {
-  let component: TestImageGalleryComponentWrapper;
-  let fixture: ComponentFixture<TestImageGalleryComponentWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let imageGalleryContainer: ImageGalleryComponent;
-  let activeImageIndex: number = 0;
+  const activeImageIndex = 0;
   let daffGalleryImages;
   let store;
 
@@ -36,7 +36,7 @@ describe('ImageGalleryComponent', () => {
         DaffImageGalleryModule
       ],
       declarations: [ 
-        TestImageGalleryComponentWrapper,
+        WrapperComponent,
         ImageGalleryComponent
       ]
     })
@@ -44,8 +44,8 @@ describe('ImageGalleryComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestImageGalleryComponentWrapper);
-    component = fixture.componentInstance;  
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;  
     fixture.detectChanges();
     
     store = TestBed.get(Store);
@@ -55,7 +55,7 @@ describe('ImageGalleryComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(imageGalleryContainer).toBeTruthy();
   });
 
   it('should be able to take images as input', () => {
@@ -123,7 +123,7 @@ describe('ImageGalleryComponent', () => {
     });
 
     it('should call store.dispatch', () => {
-      let stubSelectedImage = stubImages[1].url;
+      const stubSelectedImage = stubImages[1].url;
       imageGalleryContainer.select(stubSelectedImage);
 
       expect(store.dispatch).toHaveBeenCalledWith(new SetSelectedImageState(stubSelectedImage));

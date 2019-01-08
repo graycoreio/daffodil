@@ -9,10 +9,9 @@ import { fromCart } from '@daffodil/state';
 import { CartWrapperComponent } from './cart-wrapper.component';
 import { StoreModule, combineReducers } from '@ngrx/store';
 import * as cartSelector from '../../selectors/cart-selector';
-import { of } from 'rxjs';
 
 @Component({template: '<demo-cart-wrapper [cart]="cartValue"></demo-cart-wrapper>'})
-class TestCartWrapper {
+class WrapperComponent {
   cartValue: Cart;
 }
 
@@ -20,7 +19,7 @@ class TestCartWrapper {
   selector: 'demo-cart',
   template: ''
 })
-class CartMock { 
+class MockCartComponent { 
   @Input() cart: Cart;
   @Input() title: string;
 }
@@ -29,13 +28,13 @@ class CartMock {
   selector: 'demo-promotion',
   template: ''
 })
-class PromotionMock {}
+class MockPromotionComponent {}
 
 @Component({
   selector: 'demo-cart-totals',
   template: ''
 })
-class CartTotalsMock {
+class MockCartTotalsComponent {
   @Input() cart: Cart;
 }
 
@@ -43,21 +42,21 @@ class CartTotalsMock {
   selector: 'demo-help-box',
   template: ''
 })
-class HelpBoxMock {}
+class MockHelpBoxComponent {}
 
 @Directive({
-  selector: '[demo-proceed-to-checkout]'
+  selector: '[demoProceedToCheckout]'
 })
-class ProceedToCheckoutMock {}
+class MockProceedToCheckoutDirective {}
 
 @Directive({
-  selector: '[demo-continue-shopping]'
+  selector: '[demoContinueShopping]'
 })
-class ContinueShoppingMock {}
+class MockContinueShoppingDirective {}
 
 describe('CartWrapper', () => {
-  let component: TestCartWrapper;
-  let fixture: ComponentFixture<TestCartWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let cartWrapperComponent: CartWrapperComponent;
   let cartComponent;
   let promotionComponent;
@@ -65,9 +64,9 @@ describe('CartWrapper', () => {
   let helpBoxComponent;
   let proceedToCheckoutComponent;
   let continueShoppingComponent;
-  let cartFactory = new DaffCartFactory();
-  let cart = cartFactory.create();
-  let stubIsCartEmpty: boolean = true;
+  const cartFactory = new DaffCartFactory();
+  const cart = cartFactory.create();
+  let stubIsCartEmpty = true;
   let stubSelectCartItemCount: number;
 
   beforeEach(async(() => {
@@ -78,13 +77,13 @@ describe('CartWrapper', () => {
         })
       ],
       declarations: [ 
-        TestCartWrapper,
-        CartMock,
-        CartTotalsMock,
-        HelpBoxMock,
-        ProceedToCheckoutMock,
-        ContinueShoppingMock,
-        PromotionMock,
+        WrapperComponent,
+        MockCartComponent,
+        MockCartTotalsComponent,
+        MockHelpBoxComponent,
+        MockProceedToCheckoutDirective,
+        MockContinueShoppingDirective,
+        MockPromotionComponent,
         CartWrapperComponent
       ]
     })
@@ -92,9 +91,9 @@ describe('CartWrapper', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestCartWrapper);
-    component = fixture.componentInstance;
-    component.cartValue = cart;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
+    wrapper.cartValue = cart;
     cartWrapperComponent = fixture.debugElement.query(By.css('demo-cart-wrapper')).componentInstance;
     stubSelectCartItemCount = 1;
 
@@ -111,7 +110,7 @@ describe('CartWrapper', () => {
     });
     
     it('should set item count text to "Item"', () => {
-      let itemCountElement = fixture.debugElement.query(By.css('.cart-wrapper__item-count'));
+      const itemCountElement = fixture.debugElement.query(By.css('.cart-wrapper__item-count'));
       
       expect(itemCountElement.nativeElement.innerText).toEqual('1 Item');
     });
@@ -127,7 +126,7 @@ describe('CartWrapper', () => {
     });
     
     it('should set item count text to "Items"', () => {
-      let itemCountElement = fixture.debugElement.query(By.css('.cart-wrapper__item-count'));
+      const itemCountElement = fixture.debugElement.query(By.css('.cart-wrapper__item-count'));
 
       expect(itemCountElement.nativeElement.innerText).toEqual(stubSelectCartItemCount + ' Items');
     });
@@ -143,12 +142,12 @@ describe('CartWrapper', () => {
       promotionComponent = fixture.debugElement.query(By.css('demo-promotion'));
       cartTotalsComponent = fixture.debugElement.query(By.css('demo-cart-totals'));
       helpBoxComponent = fixture.debugElement.query(By.css('demo-help-box'));
-      proceedToCheckoutComponent = fixture.debugElement.query(By.css('[demo-proceed-to-checkout]'));
-      continueShoppingComponent = fixture.debugElement.query(By.css('[demo-continue-shopping]'));
+      proceedToCheckoutComponent = fixture.debugElement.query(By.css('[demoProceedToCheckout]'));
+      continueShoppingComponent = fixture.debugElement.query(By.css('[demoContinueShopping]'));
     });
 
     it('should create', () => {
-      expect(component).toBeTruthy();
+      expect(cartWrapperComponent).toBeTruthy();
     });
 
     it('should be able to take cart as input', () => {
@@ -179,7 +178,7 @@ describe('CartWrapper', () => {
         });
 
         it('should not render .cart-wrapper__summary-title', () => {
-          let summaryTitleElement = fixture.debugElement.query(By.css('.cart-wrapper__summary-title'));
+          const summaryTitleElement = fixture.debugElement.query(By.css('.cart-wrapper__summary-title'));
 
           expect(summaryTitleElement).toBeNull();
         });
@@ -192,11 +191,11 @@ describe('CartWrapper', () => {
           expect(cartTotalsComponent).toBeNull();
         });
         
-        it('should not render [demo-proceed-to-checkout]', () => {
+        it('should not render [demoProceedToCheckout]', () => {
           expect(proceedToCheckoutComponent).toBeNull();
         });
 
-        it('should render [demo-continue-shopping]', () => {
+        it('should render [demoContinueShopping]', () => {
           expect(continueShoppingComponent).not.toBeNull();
         });
       });
@@ -208,31 +207,31 @@ describe('CartWrapper', () => {
         });
 
         it('should render .cart-wrapper__summary-title', () => {
-          let summaryTitleElement = fixture.debugElement.query(By.css('.cart-wrapper__summary-title'));
+          const summaryTitleElement = fixture.debugElement.query(By.css('.cart-wrapper__summary-title'));
           
           expect(summaryTitleElement).not.toBeNull();
         });
 
         it('should render <demo-promotion>', () => {
-          let promotionComponent = fixture.debugElement.query(By.css('demo-promotion'))
+          const promotionElement = fixture.debugElement.query(By.css('demo-promotion'))
 
-          expect(promotionComponent).not.toBeNull();
+          expect(promotionElement).not.toBeNull();
         });
 
         it('should render <demo-cart-totals>', () => {
-          let cartTotalsComponent = fixture.debugElement.query(By.css('demo-cart-totals'))
-          expect(cartTotalsComponent).not.toBeNull();
+          const cartTotalsElement = fixture.debugElement.query(By.css('demo-cart-totals'))
+          expect(cartTotalsElement).not.toBeNull();
         });
       
         it('should set cart to value passed by the cart-container directive', () => {
           expect(cartTotalsComponent.componentInstance.cart).toEqual(cart);
         });
 
-        it('should render [demo-proceed-to-checkout]', () => {
+        it('should render [demoProceedToCheckout]', () => {
           expect(proceedToCheckoutComponent).not.toBeNull();
         });
 
-        it('should render [demo-continue-shopping]',() => {
+        it('should render [demoContinueShopping]',() => {
           expect(continueShoppingComponent).not.toBeNull();
         });
       });

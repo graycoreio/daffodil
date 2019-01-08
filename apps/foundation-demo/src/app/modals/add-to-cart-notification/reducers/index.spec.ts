@@ -44,7 +44,7 @@ describe('selectFoundationAddToCartNotificationState', () => {
   describe('addToCartNotificationStateSelector', () => {
     
     it('selects add to cart notification state', () => {
-      let expectedAddToCartNotificationState = {
+      const expectedAddToCartNotificationState = {
         open: expectedOpen,
         productQty: expectedProductQty,
         productId: expectedProductId,

@@ -6,12 +6,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 
-@Component({template: '<button demo-view-cart></button>'})
-class TestViewCartDirective {}
+@Component({template: '<button demoViewCart></button>'})
+class WrapperComponent {}
 
 describe('ViewCartDirective', () => {
-  let component: TestViewCartDirective;
-  let fixture: ComponentFixture<TestViewCartDirective>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let router;
 
   beforeEach(async(() => {
@@ -21,7 +21,7 @@ describe('ViewCartDirective', () => {
       ],
       declarations: [ 
         ViewCartDirective, 
-        TestViewCartDirective
+        WrapperComponent
       ]
     })
     .compileComponents();
@@ -31,13 +31,13 @@ describe('ViewCartDirective', () => {
     router = TestBed.get(Router);
     spyOn(router, 'navigateByUrl');
 
-    fixture = TestBed.createComponent(TestViewCartDirective);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(wrapper).toBeTruthy();
   });
 
   describe('when button is clicked', () => {

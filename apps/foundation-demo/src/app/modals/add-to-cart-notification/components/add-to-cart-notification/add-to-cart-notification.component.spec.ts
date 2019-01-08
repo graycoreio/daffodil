@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, Directive } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { DaffDriverTestingModule } from '@daffodil/driver/testing';
@@ -14,18 +14,19 @@ import * as fromAddToCartNotification from '../../reducers/index';
 import { CloseAddToCartNotification } from '../../actions/add-to-cart-notification.actions';
 import { of } from 'rxjs';
 
-let stubOpen: boolean = true;
-let stubProductQty = 1;
-let stubLoading = false;
-let stubCartItemCount = 2;
+const stubOpen = true;
+const stubProductQty = 1;
+const stubLoading = false;
+const stubCartItemCount = 2;
 
 @Component({ template: '<demo-add-to-cart-notification [verticalPosition]="verticalPositionValue" [horizontalPosition]="horizontalPositionValue"></demo-add-to-cart-notification>'})
-class TestAddToCartNotificationComponentWrapper {
+class WrapperComponent {
   productValue: Product;
-  verticalPositionValue: string = "bottom";
-  horizontalPositionValue: string = "left";
+  verticalPositionValue = "bottom";
+  horizontalPositionValue = "left";
 }
 
+// tslint:disable-next-line: component-selector
 @Component({ selector: 'daff-modal', template: '<ng-content></ng-content>'})
 class MockDaffModalComponent {
   @Input() show: boolean;
@@ -34,11 +35,11 @@ class MockDaffModalComponent {
   @Output() hide: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({ selector: '[demo-view-cart]', template: ''})
-class MockViewCartComponent {}
+@Directive({ selector: '[demoViewCart]'})
+class MockViewCartDirective {}
 
-@Component({ selector: '[demo-proceed-to-checkout]', template: ''})
-class MockProceedToCheckoutComponent {}
+@Directive({ selector: '[demoProceedToCheckout]'})
+class MockProceedToCheckoutDirective {}
 
 @Component({ selector: 'demo-modal-portal', template: '<ng-content></ng-content>'})
 class MockModalPortalComponent {}
@@ -53,8 +54,8 @@ class MockProductAddedComponent {
 class MockLoadingIconComponent {}
 
 describe('AddToCartNotificationComponent', () => {
-  let component: TestAddToCartNotificationComponentWrapper;
-  let fixture: ComponentFixture<TestAddToCartNotificationComponentWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let store;
   let productFactory: DaffProductFactory;
   let stubProduct: Product;
@@ -75,11 +76,11 @@ describe('AddToCartNotificationComponent', () => {
         DaffDriverTestingModule
       ],
       declarations: [
-        TestAddToCartNotificationComponentWrapper,
+        WrapperComponent,
         AddToCartNotificationComponent,
         MockDaffModalComponent,
-        MockViewCartComponent,
-        MockProceedToCheckoutComponent,
+        MockViewCartDirective,
+        MockProceedToCheckoutDirective,
         MockModalPortalComponent,
         MockProductAddedComponent,
         MockLoadingIconComponent
@@ -89,8 +90,8 @@ describe('AddToCartNotificationComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestAddToCartNotificationComponentWrapper);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
     store = TestBed.get(Store);
     productFactory = TestBed.get(DaffProductFactory);
     stubProduct = productFactory.create();
@@ -113,7 +114,7 @@ describe('AddToCartNotificationComponent', () => {
     
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(addToCartNotification).toBeTruthy();
   });
 
   describe('on <daff-modal>', () => {
@@ -146,11 +147,11 @@ describe('AddToCartNotificationComponent', () => {
   });
 
   it('should be able to take verticalPosition as input', () => {
-    expect(addToCartNotification.verticalPosition).toEqual(component.verticalPositionValue);
+    expect(addToCartNotification.verticalPosition).toEqual(wrapper.verticalPositionValue);
   });
 
   it('should be able to take horizontalPosition as input', () => {
-    expect(addToCartNotification.horizontalPosition).toEqual(component.horizontalPositionValue);
+    expect(addToCartNotification.horizontalPosition).toEqual(wrapper.horizontalPositionValue);
   });
 
   describe('ngOnInit', () => {
@@ -206,19 +207,19 @@ describe('AddToCartNotificationComponent', () => {
     });
   });
 
-  describe('when [demo-view-cart] is clicked', () => {
+  describe('when [demoViewCart] is clicked', () => {
     
     it('should call dispatch a CloseAddToCartNotification action', () => {
-      fixture.debugElement.query(By.css('[demo-view-cart]')).nativeElement.click();
+      fixture.debugElement.query(By.css('[demoViewCart]')).nativeElement.click();
 
       expect(store.dispatch).toHaveBeenCalledWith(new CloseAddToCartNotification());
     });
   });
 
-  describe('when [demo-proceed-to-checkout] is clicked', () => {
+  describe('when [demoProceedToCheckout] is clicked', () => {
     
     it('should call dispatch a CloseAddToCartNotification action', () => {
-      fixture.debugElement.query(By.css('[demo-proceed-to-checkout]')).nativeElement.click();
+      fixture.debugElement.query(By.css('[demoProceedToCheckout]')).nativeElement.click();
       
       expect(store.dispatch).toHaveBeenCalledWith(new CloseAddToCartNotification());
     });
@@ -241,25 +242,25 @@ describe('AddToCartNotificationComponent', () => {
     });
     
     it('should render top-bar', () => {
-      let topBarElement = fixture.debugElement.query(By.css('.add-to-cart-notification__top-bar'));
+      const topBarElement = fixture.debugElement.query(By.css('.add-to-cart-notification__top-bar'));
 
       expect(topBarElement).not.toBeNull();
     });
     
     it('should render demo-product-added', () => {
-      let productAddedElement = fixture.debugElement.query(By.css('.add-to-cart-notification__product-added'));
+      const productAddedElement = fixture.debugElement.query(By.css('.add-to-cart-notification__product-added'));
 
       expect(productAddedElement).not.toBeNull();
     });
     
     it('should render button-set', () => {
-      let buttonSetElement = fixture.debugElement.query(By.css('.add-to-cart-notification__button-set'));
+      const buttonSetElement = fixture.debugElement.query(By.css('.add-to-cart-notification__button-set'));
 
       expect(buttonSetElement).not.toBeNull();
     });
     
     it('should not render <demo-loading-icon>', () => {
-      let loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
+      const loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
 
       expect(loadingIcon).toBeNull();
     });
@@ -273,25 +274,25 @@ describe('AddToCartNotificationComponent', () => {
     });
     
     it('should not render top-bar', () => {
-      let topBarElement = fixture.debugElement.query(By.css('.add-to-cart-notification__top-bar'));
+      const topBarElement = fixture.debugElement.query(By.css('.add-to-cart-notification__top-bar'));
 
       expect(topBarElement).toBeNull();
     });
     
     it('should not render demo-product-added', () => {
-      let productAddedElement = fixture.debugElement.query(By.css('.add-to-cart-notification__product-added'));
+      const productAddedElement = fixture.debugElement.query(By.css('.add-to-cart-notification__product-added'));
 
       expect(productAddedElement).toBeNull();
     });
     
     it('should not render button-set', () => {
-      let buttonSetElement = fixture.debugElement.query(By.css('.add-to-cart-notification__button-set'));
+      const buttonSetElement = fixture.debugElement.query(By.css('.add-to-cart-notification__button-set'));
 
       expect(buttonSetElement).toBeNull();
     });
     
     it('should render <demo-loading-icon>', () => {
-      let loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
+      const loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
 
       expect(loadingIcon).not.toBeNull();
     });

@@ -8,23 +8,24 @@ import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
 import { ProductAddedComponent } from './product-added.component';
 
-let stubQty = 1;
+const stubQty = 1;
 
 @Component({
   template: '<demo-product-added [qty]="qtyValue" [product]="productValue"></demo-product-added>'
 })
-class TestProductAddedComponentWrapper { 
+class WrapperComponent { 
   qtyValue: number = stubQty;
   productValue: Product;
 }
 
 describe('ProductAddedComponent', () => {
-  let component: TestProductAddedComponentWrapper;
-  let fixture: ComponentFixture<TestProductAddedComponentWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let productFactory: DaffProductFactory;
   let productImageFactory: DaffProductImageFactory;
   let stubProduct: Product;
   let productAdded: ProductAddedComponent;
+  let productAddedElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -32,7 +33,7 @@ describe('ProductAddedComponent', () => {
         DaffDriverTestingModule
       ],
       declarations: [
-        TestProductAddedComponentWrapper,
+        WrapperComponent,
         ProductAddedComponent
       ]
     })
@@ -40,13 +41,13 @@ describe('ProductAddedComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestProductAddedComponentWrapper);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
 
     productFactory = TestBed.get(DaffProductFactory);
     productImageFactory = TestBed.get(DaffProductImageFactory);
     stubProduct = productFactory.create({images:productImageFactory.createMany(5)});
-    component.productValue = stubProduct;
+    wrapper.productValue = stubProduct;
 
     fixture.detectChanges();
 
@@ -54,7 +55,7 @@ describe('ProductAddedComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(productAdded).toBeTruthy();
   });
 
   it('should be able to take qty as input', () => {
@@ -68,7 +69,7 @@ describe('ProductAddedComponent', () => {
   describe('when product is defined', () => {
     
     it('should render .product-added', () => {
-      let productAddedElement = fixture.debugElement.query(By.css('.product-added'));
+      productAddedElement = fixture.debugElement.query(By.css('.product-added'));
 
       expect(productAddedElement).not.toBeNull();
     });
@@ -81,7 +82,7 @@ describe('ProductAddedComponent', () => {
       });
 
       it('should not render img tag', () => {
-        let imgTag = fixture.debugElement.query(By.css('img'));
+        const imgTag = fixture.debugElement.query(By.css('img'));
 
         expect(imgTag).toBeNull();
       });
@@ -90,7 +91,7 @@ describe('ProductAddedComponent', () => {
     describe('and product.images is defined', () => {
       
       it('should render img tag', () => {
-        let imgTag = fixture.debugElement.query(By.css('img'));
+        const imgTag = fixture.debugElement.query(By.css('img'));
 
         expect(imgTag).not.toBeNull();
       });
@@ -100,12 +101,12 @@ describe('ProductAddedComponent', () => {
   describe('when product is null', () => {
     
     beforeEach(() => {
-      component.productValue = null;
+      wrapper.productValue = null;
       fixture.detectChanges();
     });
     
     it('should not render .product-added', () => {
-      let productAddedElement = fixture.debugElement.query(By.css('.product-added'));
+      productAddedElement = fixture.debugElement.query(By.css('.product-added'));
 
       expect(productAddedElement).toBeNull();
     });

@@ -11,10 +11,11 @@ import { DaffCartItemFactory, DaffProductImageFactory } from '@daffodil/core/tes
 import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
 @Component({template: '<demo-cart-item [item]="cartItemValue"></demo-cart-item>'})
-class TestCartItemWrapper {
+class WrapperComponent {
   cartItemValue: CartItem;
 }
 
+// tslint:disable-next-line: component-selector
 @Component({selector: 'qty-dropdown', template: ''})
 class MockQtyDropdownComponent {
   @Input() qty: number;
@@ -22,8 +23,8 @@ class MockQtyDropdownComponent {
 }
 
 describe('CartItemComponent', () => {
-  let component: TestCartItemWrapper;
-  let fixture: ComponentFixture<TestCartItemWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let cartItemComponent;
   let qtyDropdownComponent: MockQtyDropdownComponent;
   let router: Router;
@@ -39,7 +40,7 @@ describe('CartItemComponent', () => {
       ],
       declarations: [
         CartItemComponent,
-        TestCartItemWrapper,
+        WrapperComponent,
         MockQtyDropdownComponent
       ]
     })
@@ -47,15 +48,15 @@ describe('CartItemComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestCartItemWrapper);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
     router = TestBed.get(Router);
     spyOn(router, 'navigateByUrl');
     cartItemFactory = TestBed.get(DaffCartItemFactory);
     productImageFactory = TestBed.get(DaffProductImageFactory);
     mockCartItem = cartItemFactory.create({image: productImageFactory.create()});
 
-    component.cartItemValue = mockCartItem;
+    wrapper.cartItemValue = mockCartItem;
     cartItemComponent = fixture.debugElement.query(By.css('demo-cart-item'));
     qtyDropdownComponent = fixture.debugElement.query(By.css('qty-dropdown')).componentInstance;
 
@@ -63,7 +64,7 @@ describe('CartItemComponent', () => {
   });
     
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(cartItemComponent).toBeTruthy();
   });
 
   it('can be passed a CartItem object', () => {

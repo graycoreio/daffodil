@@ -11,12 +11,12 @@ import { ShowPaymentForm, ToggleShowPaymentForm, HidePaymentForm } from '../../.
 import * as fromFoundationCheckout from '../../../reducers';
 import { PaymentComponent } from './payment.component';
 
-let paymentFactory = new DaffPaymentFactory();
-let daffodilAddressFactory = new DaffAddressFactory();
-let stubPaymentInfo = paymentFactory.create();
-let stubBillingAddress = daffodilAddressFactory.create();
-let stubShowPaymentForm = true;
-let stubBillingAddressIsShippingAddress = false;
+const paymentFactory = new DaffPaymentFactory();
+const daffodilAddressFactory = new DaffAddressFactory();
+const stubPaymentInfo = paymentFactory.create();
+const stubBillingAddress = daffodilAddressFactory.create();
+const stubShowPaymentForm = true;
+const stubBillingAddressIsShippingAddress = false;
 
 @Component({
   template: '<demo-payment ' +
@@ -27,7 +27,7 @@ let stubBillingAddressIsShippingAddress = false;
               '(updateBillingAddress)="updateBillingAddressFunction($event)" ' + 
               '(toggleBillingAddressIsShippingAddress)="toggleBillingAddressIsShippingAddressFunction()"></demo-payment>'
 })
-class TestPaymentComponentWrapper {
+class WrapperComponent {
   paymentInfoValue: PaymentInfo = stubPaymentInfo;
   billingAddressValue: DaffodilAddress = stubBillingAddress;
   billingAddressIsShippingAddressValue: boolean = stubBillingAddressIsShippingAddress;
@@ -59,8 +59,8 @@ class MockBillingSummaryComponent {
 }
 
 describe('PaymentComponent', () => {
-  let component: TestPaymentComponentWrapper;
-  let fixture: ComponentFixture<TestPaymentComponentWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let payment: PaymentComponent;
   let paymentForm: MockPaymentFormComponent;
   let paymentSummary: MockPaymentSummaryComponent;
@@ -75,7 +75,7 @@ describe('PaymentComponent', () => {
         })
       ],
       declarations: [ 
-        TestPaymentComponentWrapper,
+        WrapperComponent,
         MockPaymentFormComponent,
         MockPaymentSummaryComponent,
         MockBillingSummaryComponent,
@@ -86,8 +86,8 @@ describe('PaymentComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestPaymentComponentWrapper);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
     store = TestBed.get(Store);
     spyOn(fromFoundationCheckout, 'selectShowPaymentForm').and.returnValue(stubShowPaymentForm);
     spyOn(store, 'dispatch');
@@ -101,7 +101,7 @@ describe('PaymentComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(payment).toBeTruthy();
   });
 
   it('should be able to take paymentInfo as input', () => {
@@ -136,30 +136,30 @@ describe('PaymentComponent', () => {
     describe('updatePaymentInfo', () => {
 
       it('should call hostComponent.updatePaymentInfoFunction', () => {
-        spyOn(component, 'updatePaymentInfoFunction');
+        spyOn(wrapper, 'updatePaymentInfoFunction');
         paymentForm.updatePaymentInfo.emit(stubPaymentInfo);
 
-        expect(component.updatePaymentInfoFunction).toHaveBeenCalledWith(stubPaymentInfo);
+        expect(wrapper.updatePaymentInfoFunction).toHaveBeenCalledWith(stubPaymentInfo);
       });
     });
 
     describe('updateBillingAddress', () => {
 
       it('should call hostComponent.updateBillingAddressFunction', () => {
-        spyOn(component, 'updateBillingAddressFunction');
+        spyOn(wrapper, 'updateBillingAddressFunction');
         paymentForm.updateBillingAddress.emit(stubBillingAddress);
 
-        expect(component.updateBillingAddressFunction).toHaveBeenCalledWith(stubBillingAddress);
+        expect(wrapper.updateBillingAddressFunction).toHaveBeenCalledWith(stubBillingAddress);
       });
     });
 
     describe('toggleBillingAddressIsShippingAddress', () => {
 
       it('should call hostComponent.toggleBillingAddressIsShippingAddressFunction', () => {
-        spyOn(component, 'toggleBillingAddressIsShippingAddressFunction');
+        spyOn(wrapper, 'toggleBillingAddressIsShippingAddressFunction');
         paymentForm.toggleBillingAddressIsShippingAddress.emit();
 
-        expect(component.toggleBillingAddressIsShippingAddressFunction).toHaveBeenCalled();
+        expect(wrapper.toggleBillingAddressIsShippingAddressFunction).toHaveBeenCalled();
       });
     });
   });
@@ -302,19 +302,19 @@ describe('PaymentComponent', () => {
   });
 
   describe('when paymentInfo is null', () => {
-
-    let paymentSummary;
+    
+    let paymentSummaryElement;
     
     beforeEach(() => {
       payment.paymentInfo = null;
 
       fixture.detectChanges();
 
-      paymentSummary = fixture.debugElement.query(By.css('demo-payment-summary'));
+      paymentSummaryElement = fixture.debugElement.query(By.css('demo-payment-summary'));
     });
 
     it('should not render demo-payment-summary', () => {
-      expect(paymentSummary).toBeNull();
+      expect(paymentSummaryElement).toBeNull();
     });
   });
 });

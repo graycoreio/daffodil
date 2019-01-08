@@ -9,22 +9,22 @@ import { CartTotalsComponent } from './cart-totals.component';
 import { CartTotalsItemModule } from '../cart-totals-item/cart-totals-item.module';
 
 @Component({template: '<demo-cart-totals [cart]="cartValue"></demo-cart-totals>'})
-class TestCartTotalsWrapper {
+class WrapperComponent {
   @Input() cartValue: Cart;
 }
 
 describe('CartTotalsComponent', () => {
-  let component: TestCartTotalsWrapper;
-  let fixture: ComponentFixture<TestCartTotalsWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let cartTotalsComponent: CartTotalsComponent;
   let cartTotalsItemComponent: any;
 
-  let cartFactory = new DaffCartFactory();
-  let cartItemFactory = new DaffCartItemFactory();
+  const cartFactory = new DaffCartFactory();
+  const cartItemFactory = new DaffCartItemFactory();
 
-  let itemTaxValue = 3.00;
+  const itemTaxValue = 3.00;
 
-  let mockCart = cartFactory.create({
+  const mockCart = cartFactory.create({
     items: cartItemFactory.createMany(2, {
       tax_amount: itemTaxValue
     })
@@ -34,7 +34,7 @@ describe('CartTotalsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         CartTotalsComponent,
-        TestCartTotalsWrapper
+        WrapperComponent
       ],
       imports: [
         CartTotalsItemModule
@@ -44,10 +44,10 @@ describe('CartTotalsComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestCartTotalsWrapper);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
 
-    component.cartValue = mockCart;
+    wrapper.cartValue = mockCart;
 
     fixture.detectChanges();
     cartTotalsComponent = fixture.debugElement.query(By.css('demo-cart-totals')).componentInstance;

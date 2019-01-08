@@ -11,54 +11,55 @@ import { CartTotalsItemComponent } from './cart-totals-item.component';
     <ng-container cart-total-value>{{value}}</ng-container>
   </demo-cart-totals-item>
 `})
-class TestCartTotalsItemWrapper {
+class WrapperComponent {
   label: string;
   value: string;
   emphasize: boolean;
 }
 
 describe('CartTotalsItemComponent', () => {
-  let component: TestCartTotalsItemWrapper;
-  let fixture: ComponentFixture<TestCartTotalsItemWrapper>;
-
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
+  let cartTotalsItemComponent;
+  
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         CartTotalsItemComponent,
-        TestCartTotalsItemWrapper
+        WrapperComponent
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestCartTotalsItemWrapper);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
 
     fixture.detectChanges();
   });
 
   it('can transclude a label', () => {
-    component.label="label";
+    wrapper.label="label";
     fixture.detectChanges();
 
-    let cartTotalsItemComponent = fixture.debugElement.query(By.css('.cart-totals-item__label'));
+    cartTotalsItemComponent = fixture.debugElement.query(By.css('.cart-totals-item__label'));
     expect(cartTotalsItemComponent.nativeElement.innerHTML).toContain('label');
   });
 
   it('can transclude a value', () => {
-    component.value="value";
+    wrapper.value="value";
     fixture.detectChanges();
 
-    let cartTotalsItemComponent = fixture.debugElement.query(By.css('.cart-totals-item__value'));
+    cartTotalsItemComponent = fixture.debugElement.query(By.css('.cart-totals-item__value'));
     expect(cartTotalsItemComponent.nativeElement.innerHTML).toContain('value');
   });
 
   it('should add the emphasize class to cart-totals-item when emphasize is true', () => {
-    component.emphasize=true;
+    wrapper.emphasize=true;
     fixture.detectChanges();
 
-    let cartTotalsItemComponent = fixture.debugElement.query(By.css('.cart-totals-item'));
+    cartTotalsItemComponent = fixture.debugElement.query(By.css('.cart-totals-item'));
     expect(cartTotalsItemComponent.nativeElement.classList).toContain('emphasize');
   });
 });

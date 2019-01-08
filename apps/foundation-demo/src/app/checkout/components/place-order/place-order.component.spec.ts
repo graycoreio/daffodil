@@ -10,7 +10,7 @@ import { PlaceOrder } from '../../actions/checkout.actions';
 describe('PlaceOrderComponent', () => {
   let component: PlaceOrderComponent;
   let fixture: ComponentFixture<PlaceOrderComponent>;
-  let stubEnablePlaceOrderButton: boolean = true;
+  const stubEnablePlaceOrderButton = true;
   let store;
 
   beforeEach(async(() => {

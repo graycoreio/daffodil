@@ -6,7 +6,7 @@ import { PaymentInfo } from '@daffodil/core';
 
 import { PaymentSummaryComponent } from './payment-summary.component';
 
-let stubPaymentInfo: PaymentInfo = {
+const stubPaymentInfo: PaymentInfo = {
   name: 'test',
   cardnumber: 123,
   month: 123,
@@ -19,20 +19,20 @@ let stubPaymentInfo: PaymentInfo = {
               '[paymentInfo]="paymentInfoValue" '+ 
               '(editPaymentInfo)="editPaymentInfoFunction()"></demo-payment-summary>'
 })
-class TestPaymentSummaryWrapper {
+class WrapperComponent {
   paymentInfoValue: PaymentInfo = stubPaymentInfo;
   editPaymentInfoFunction: Function = () => {};
 }
 
 describe('PaymentSummaryComponent', () => {
-  let component: TestPaymentSummaryWrapper;
-  let fixture: ComponentFixture<TestPaymentSummaryWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let paymentSummaryComponent: PaymentSummaryComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        TestPaymentSummaryWrapper,
+        WrapperComponent,
         PaymentSummaryComponent
       ]
     })
@@ -40,15 +40,15 @@ describe('PaymentSummaryComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestPaymentSummaryWrapper);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
     fixture.detectChanges();
 
     paymentSummaryComponent = fixture.debugElement.query(By.css('demo-payment-summary')).componentInstance;
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(paymentSummaryComponent).toBeTruthy();
   });
 
   it('should be able to take paymentInfo', () => {
@@ -80,11 +80,11 @@ describe('PaymentSummaryComponent', () => {
   describe('when editPaymentInfo is emitted', () => {
 
     it('should call editPaymentInfoFunction', () => {
-      spyOn(component, 'editPaymentInfoFunction');
+      spyOn(wrapper, 'editPaymentInfoFunction');
 
       paymentSummaryComponent.editPaymentInfo.emit();
 
-      expect(component.editPaymentInfoFunction).toHaveBeenCalled();
+      expect(wrapper.editPaymentInfoFunction).toHaveBeenCalled();
     });
   });
 });

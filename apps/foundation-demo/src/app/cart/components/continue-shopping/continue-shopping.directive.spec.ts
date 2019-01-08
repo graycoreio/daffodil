@@ -6,24 +6,24 @@ import { By } from '@angular/platform-browser';
 import { ContinueShoppingDirective } from './continue-shopping.directive';
 import { Component } from '@angular/core';
 
-@Component({template: '<button demo-continue-shopping></button>'})
-class TestContinueShoppingDirective {}
+@Component({template: '<button demoContinueShopping></button>'})
+class WrapperComponent {}
 
 describe('ContinueShoppingDirective', () => {
-  let component: TestContinueShoppingDirective;
-  let fixture: ComponentFixture<TestContinueShoppingDirective>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ RouterTestingModule ],
-      declarations: [ TestContinueShoppingDirective, ContinueShoppingDirective ]
+      declarations: [ WrapperComponent, ContinueShoppingDirective ]
     });
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestContinueShoppingDirective);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
     router = TestBed.get(Router);
     spyOn(router, 'navigateByUrl');
 
@@ -31,7 +31,7 @@ describe('ContinueShoppingDirective', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(wrapper).toBeTruthy();
   });
 
   describe('when button is clicked', () => {

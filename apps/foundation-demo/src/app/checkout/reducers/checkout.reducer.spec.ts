@@ -26,7 +26,7 @@ describe('Checkout | Checkout Reducer', () => {
     let result;
 
     beforeEach(() => {
-      let enablePlaceOrderButtonAction = new EnablePlaceOrderButton();
+      const enablePlaceOrderButtonAction = new EnablePlaceOrderButton();
       
       result = reducer(initialState, enablePlaceOrderButtonAction);
     });
@@ -41,7 +41,7 @@ describe('Checkout | Checkout Reducer', () => {
     let result;
 
     beforeEach(() => {
-      let showReviewViewAction = new ShowReviewView();
+      const showReviewViewAction = new ShowReviewView();
       
       result = reducer(initialState, showReviewViewAction);
     });
@@ -56,7 +56,7 @@ describe('Checkout | Checkout Reducer', () => {
     let result;
 
     beforeEach(() => {
-      let placeOrderAction = new PlaceOrder();
+      const placeOrderAction = new PlaceOrder();
       
       result = reducer(initialState, placeOrderAction);
     });

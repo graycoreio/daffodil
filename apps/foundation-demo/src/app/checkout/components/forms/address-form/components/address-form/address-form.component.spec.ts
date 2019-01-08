@@ -10,17 +10,19 @@ import { AddressFormComponent } from './address-form.component';
   template: '<demo-address-form [formGroup]="formGroupValue" ' + 
                 '[submitted]="submittedValue"></demo-address-form>'
 })
-class TestingAddressFormComponentWrapper {
+class WrapperComponent {
   formGroupValue: FormGroup;
   submittedValue: boolean;
 }
 
+// tslint:disable-next-line: component-selector
 @Component({selector: '[input-validator]', template: ''})
 class MockInputValidatorComponent {
   @Input() formControl: FormControl;
   @Input() formSubmitted: boolean;
 }
 
+// tslint:disable-next-line: component-selector
 @Component({selector: '[select-validator]', template: ''})
 class MockSelectValidatorComponent {
   @Input() formControl: FormControl;
@@ -29,8 +31,8 @@ class MockSelectValidatorComponent {
 }
 
 describe('AddressFormComponent', () => {
-  let component: TestingAddressFormComponentWrapper;
-  let fixture: ComponentFixture<TestingAddressFormComponentWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let addressForm: AddressFormComponent;
 
   beforeEach(async(() => {
@@ -40,7 +42,7 @@ describe('AddressFormComponent', () => {
         ReactiveFormsModule
       ],
       declarations: [ 
-        TestingAddressFormComponentWrapper,
+        WrapperComponent,
         AddressFormComponent,
         MockInputValidatorComponent,
         MockSelectValidatorComponent
@@ -50,10 +52,10 @@ describe('AddressFormComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestingAddressFormComponentWrapper);
-    component = fixture.componentInstance;
-    let formBuilder = new FormBuilder
-    component.formGroupValue = formBuilder.group({
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
+    const formBuilder = new FormBuilder
+    wrapper.formGroupValue = formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       street: ['', Validators.required],
@@ -63,7 +65,7 @@ describe('AddressFormComponent', () => {
       telephone: ['', Validators.required]
     });
 
-    component.submittedValue = false;
+    wrapper.submittedValue = false;
 
     fixture.detectChanges();
 
@@ -75,11 +77,11 @@ describe('AddressFormComponent', () => {
   });
 
   it('should be able to take formGroup as input', () => {
-    expect(addressForm.formGroup).toEqual(component.formGroupValue);
+    expect(addressForm.formGroup).toEqual(wrapper.formGroupValue);
   });
 
   it('should be able to take submitted as input', () => {
-    expect(addressForm.submitted).toEqual(component.submittedValue);
+    expect(addressForm.submitted).toEqual(wrapper.submittedValue);
   });
 
   describe('on [input-validator]', () => {

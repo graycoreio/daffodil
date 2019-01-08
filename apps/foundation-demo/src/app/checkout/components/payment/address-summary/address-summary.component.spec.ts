@@ -7,23 +7,23 @@ import { DaffAddressFactory } from '@daffodil/core/testing';
 
 import { AddressSummaryComponent } from './address-summary.component';
 
-let daffodilAddressFactory = new DaffAddressFactory();
-let stubDaffodilAddress = daffodilAddressFactory.create();
+const daffodilAddressFactory = new DaffAddressFactory();
+const stubDaffodilAddress = daffodilAddressFactory.create();
 
 @Component({template: '<demo-address-summary [address]="addressValue"></demo-address-summary>'})
-class TestShippingSummaryWrapper {
+class WrapperComponent {
   addressValue: DaffodilAddress = stubDaffodilAddress;
 }
 
 describe('AddressSummaryComponent', () => {
-  let component: TestShippingSummaryWrapper;
-  let fixture: ComponentFixture<TestShippingSummaryWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let addressSummary: AddressSummaryComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        TestShippingSummaryWrapper,
+        WrapperComponent,
         AddressSummaryComponent
       ]
     })
@@ -31,8 +31,8 @@ describe('AddressSummaryComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestShippingSummaryWrapper);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
 
     fixture.detectChanges();
 
@@ -40,7 +40,7 @@ describe('AddressSummaryComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(addressSummary).toBeTruthy();
   });
 
   it('should be able to take address as input', () => {
