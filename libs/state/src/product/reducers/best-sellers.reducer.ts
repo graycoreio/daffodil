@@ -40,7 +40,7 @@ export const getBestSellersIds = (state: State) => state.productIds;
 export const getBestSellersLoading = (state: State) => state.loading;
 
 function getIds(products: Product[]): string[] {
-  let ids: string[] = new Array();
+  const ids: string[] = new Array();
 
   products.forEach(product => {
     ids.push(product.id)
