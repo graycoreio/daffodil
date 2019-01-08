@@ -19,8 +19,8 @@ export class AddToCartNotificationComponent implements OnInit {
   productId$: Observable<string>;
   product$: Observable<Product>;
 
-  _verticalPosition: string = "center";
-  _horizontalPosition: string = "center";
+  _verticalPosition = "center";
+  _horizontalPosition = "center";
   
   @Input()
   get verticalPosition(): string { return this._verticalPosition; }

@@ -2,7 +2,7 @@ import { Directive, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Directive({
-  selector: '[demo-proceed-to-checkout]'
+  selector: '[demoProceedToCheckout]'
 })
 
 export class ProceedToCheckoutDirective {

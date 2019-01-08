@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, DoCheck } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { ShippingOption } from '@daffodil/core';
@@ -11,7 +11,7 @@ import { ErrorStateMatcher } from '@daffodil/design';
   templateUrl: './shipping-options.component.html',
   styleUrls: ['./shipping-options.component.scss']
 })
-export class ShippingOptionsComponent implements OnInit {
+export class ShippingOptionsComponent implements OnInit, DoCheck {
   @Input() formGroup: FormGroup;
   @Input() submitted: boolean;
   

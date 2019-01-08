@@ -5,7 +5,7 @@ import { map, take, switchMap } from 'rxjs/operators';
 
 import { CartLoadGuard } from './cart-load.guard';
 import { fromCart } from '@daffodil/state';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Cart } from '@daffodil/core';
 
 @Injectable()
@@ -34,7 +34,8 @@ export class CheckoutGuard implements CanActivate {
    * or if cart is null dispatch an action
    */
   private getCart(): Observable<Cart> {
-    return this.store.select(fromCart.selectCartValueState).pipe(
+    return this.store.pipe(
+      select(fromCart.selectCartValueState),
       take(1)
     );
   }

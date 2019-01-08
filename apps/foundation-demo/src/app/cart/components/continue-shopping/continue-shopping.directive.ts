@@ -2,7 +2,7 @@ import { Directive, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Directive({
-  selector: '[demo-continue-shopping]'
+  selector: '[demoContinueShopping]'
 })
 
 export class ContinueShoppingDirective {

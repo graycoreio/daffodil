@@ -42,12 +42,12 @@ export class PaymentInfoFormComponent implements OnInit {
   ngOnInit() {
     this.monthErrorStateMatcher = new ErrorStateMatcher();
     this.monthErrorStateMatcher.isErrorState = (control: FormControl, formSubmitted: boolean) => {
-      return (control.errors || control.value == 'Month') && (control.touched || formSubmitted);
+      return (control.errors || control.value === 'Month') && (control.touched || formSubmitted);
     }
   
     this.yearErrorStateMatcher = new ErrorStateMatcher();
     this.yearErrorStateMatcher.isErrorState = (control: FormControl, formSubmitted: boolean) => {
-      return (control.errors || control.value == 'Year') && (control.touched || formSubmitted);
+      return (control.errors || control.value === 'Year') && (control.touched || formSubmitted);
     }
   }
 }
