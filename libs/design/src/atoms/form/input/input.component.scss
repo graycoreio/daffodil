@@ -3,23 +3,20 @@
 .daff-input {
     height: inherit;
     background: $white;
-    border: 1px solid $black;
-    padding: 15px;
+    border: 1px solid daff-color($daff-gray, 300);
+    padding: 10px 15px;
     margin: 0;
     font-size: 1rem;
     line-height: 1.5rem;
     box-shadow: none;
 
   &:focus {
+    border: 1px solid $black;
     box-shadow: none;
     outline: none;
   }
   
   &__error {
-    border-left: 5px solid #a94442;
-  }
-  
-  &__valid {
-    border-left: 5px solid #42A948;
+    border: 1px solid $error;
   }
 }
