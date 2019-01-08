@@ -13,11 +13,6 @@ $finalAngleInDegrees: $finalAngleInRadians * 180/$pi;
 .daff-loading-icon {
     width: 100px;
     height: 100px;
-    animation: rotation;
-    animation-duration: $animationTime;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    transform: rotate(-90deg);
 }
 
 circle {
@@ -27,10 +22,12 @@ circle {
     stroke-miterlimit: 4;
     stroke-linecap: round;
     stroke-linejoin: miter;
-    animation: circle-animation;
+    stroke-dasharray: $maxStrokeLength 400;
+    animation: rotation $animationTime, circle-animation $animationTime;
     animation-duration: $animationTime;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
+    transform-origin: center;
 }
 
 @keyframes circle-animation {
@@ -43,7 +40,7 @@ circle {
 @keyframes rotation {
     0% {transform: rotate(-90deg);}
     25% {transform: rotate(0deg);}
-    27% {transform: rotate(0deg);}
+    26% {transform: rotate(0deg);}
     50% {transform: rotate(90deg);}
     51% {transform: rotate(90deg);}
     99% {transform: rotate(#{$finalAngleInDegrees}deg);}
