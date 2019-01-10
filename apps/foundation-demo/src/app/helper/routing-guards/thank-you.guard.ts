@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
+import { Store, select } from '@ngrx/store';
+import { Router, CanActivate } from '@angular/router';
+
 import { Cart } from '@daffodil/core';
 import { fromCart } from '@daffodil/state';
-import { Store, select } from '@ngrx/store';
-import { Router } from '@angular/router';
 
 @Injectable()
-export class ThankYouGuard {
+export class ThankYouGuard implements CanActivate {
   constructor(
     private store: Store<fromCart.State>,
     private router: Router
