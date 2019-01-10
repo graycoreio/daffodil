@@ -6,7 +6,7 @@ import { map, tap } from 'rxjs/operators';
 
 import { Observable } from 'rxjs';
 import { PaymentActionTypes } from '../actions/payment.actions';
-import { ShowReviewView, CheckoutActionTypes, PlaceOrderSuccess } from '../actions/checkout.actions';
+import { ShowReviewView, CheckoutActionTypes, PlaceOrderSuccess, PlaceOrder } from '../actions/checkout.actions';
 import { Router } from '@angular/router';
 import { NavigatingToThankYou } from '../../thank-you/actions/thank-you.actions';
 
@@ -29,16 +29,16 @@ export class CheckoutEffects {
   @Effect()
   onPlaceOrder$ : Observable<any> = this.actions$.pipe(
     ofType(CheckoutActionTypes.PlaceOrderAction),
-    map(() => {
-      return new PlaceOrderSuccess();
+    map((action: PlaceOrder) => {
+      return new PlaceOrderSuccess(action.payload);
     })
   );
 
   @Effect()
   onPlaceOrderSuccess$ : Observable<any> = this.actions$.pipe(
     ofType(CheckoutActionTypes.PlaceOrderSuccessAction),
-    map(() => {
-      this.router.navigateByUrl('/thank-you');
+    map((action: PlaceOrderSuccess) => {
+      this.router.navigateByUrl('/thank-you/' + action.payload);
       return new NavigatingToThankYou();
     })
   );

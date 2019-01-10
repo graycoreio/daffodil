@@ -21,10 +21,14 @@ export class ShowReviewView implements Action {
 
 export class PlaceOrder implements Action {
   readonly type = CheckoutActionTypes.PlaceOrderAction;
+
+  constructor(public payload: number) {}
 }
 
 export class PlaceOrderSuccess implements Action {
   readonly type = CheckoutActionTypes.PlaceOrderSuccessAction;
+
+  constructor(public payload: number) {}
 }
 
 export type CheckoutActions =

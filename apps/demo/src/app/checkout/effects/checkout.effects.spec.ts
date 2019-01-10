@@ -8,24 +8,36 @@ import { ToggleShowPaymentForm } from '../actions/payment.actions';
 import { ShowReviewView, PlaceOrder, PlaceOrderSuccess } from '../actions/checkout.actions';
 import { NavigatingToThankYou } from '../../thank-you/actions/thank-you.actions';
 import { RouterTestingModule } from '@angular/router/testing';
+import { DaffDriverTestingModule } from '@daffodil/driver/testing';
+import { Cart } from '@daffodil/core';
+import { DaffCartFactory } from '@daffodil/core/testing';
+import { Router } from '@angular/router';
 
 describe('CheckoutEffects', () => {
   let actions$: Observable<any>;
   let effects: CheckoutEffects;
-
+  let stubCart: Cart;
+  let cartFactory: DaffCartFactory;
+  let router: Router;
+  
   beforeEach(() => {
-
+    
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        DaffDriverTestingModule
       ],
       providers: [
         CheckoutEffects,
         provideMockActions(() => actions$)
       ]
     });
-
+    
     effects = TestBed.get(CheckoutEffects);
+    router = TestBed.get(Router);
+    cartFactory = TestBed.get(DaffCartFactory);
+    stubCart = cartFactory.create();
+    spyOn(router, 'navigateByUrl');
   });
 
   it('should be created', () => {
@@ -51,10 +63,10 @@ describe('CheckoutEffects', () => {
   describe('when PlaceOrderAction is triggered', () => {
 
     let expected;
-    const placeOrderAction = new PlaceOrder();
-
+    
     beforeEach(() => {
-      const placeOrderSuccessAction = new PlaceOrderSuccess();
+      const placeOrderAction = new PlaceOrder(stubCart.id);
+      const placeOrderSuccessAction = new PlaceOrderSuccess(stubCart.id);
       actions$ = hot('--a', { a: placeOrderAction });
       expected = cold('--b', { b: placeOrderSuccessAction });
     });
@@ -67,12 +79,19 @@ describe('CheckoutEffects', () => {
   describe('when PlaceOrderSuccessAction is triggered', () => {
 
     let expected;
-    const placeOrderSuccessAction = new PlaceOrderSuccess();
-
+    
     beforeEach(() => {
+      const placeOrderSuccessAction = new PlaceOrderSuccess(stubCart.id);
       const navigatingToThankYou = new NavigatingToThankYou();
       actions$ = hot('--a', { a: placeOrderSuccessAction });
       expected = cold('--b', { b: navigatingToThankYou });
+    });
+
+    it('should call router.navigateByUrl', () => {
+      //the actual effect doesn't trigger unless the following test is run
+      expect(effects.onPlaceOrderSuccess$).toBeObservable(expected);
+
+      expect(router.navigateByUrl).toHaveBeenCalledWith('/thank-you/' + stubCart.id);
     });
     
     it('should dispatch a NavigatingToThankYou action', () => {

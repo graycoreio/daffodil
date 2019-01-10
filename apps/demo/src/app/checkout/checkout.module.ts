@@ -11,7 +11,6 @@ import { LoadingIconModule } from '../core/loading-icon/loading-icon.module';
 import { CheckoutCartAsyncWrapperModule } from '../cart/components/checkout-cart-async-wrapper/checkout-cart-async-wrapper.module';
 import { ShippingModule } from './components/shipping/shipping/shipping.module';
 import { PaymentModule } from './components/payment/payment/payment.module';
-import { ThankYouModule } from './components/thank-you/thank-you.module';
 import { PlaceOrderModule } from './components/place-order/place-order.module';
 
 @NgModule({
@@ -24,7 +23,6 @@ import { PlaceOrderModule } from './components/place-order/place-order.module';
     CheckoutCartAsyncWrapperModule,
     ShippingModule,
     PaymentModule,
-    ThankYouModule,
     PlaceOrderModule,
 
     DaffAccordionModule
