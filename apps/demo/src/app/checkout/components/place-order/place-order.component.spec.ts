@@ -2,15 +2,28 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { of } from 'rxjs';
+import { Component } from '@angular/core';
+
+import { Cart } from '@daffodil/core';
+import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
 import * as fromFoundationCheckout from '../../reducers';
 import { PlaceOrderComponent } from './place-order.component';
 import { PlaceOrder } from '../../actions/checkout.actions';
+import { DaffCartFactory } from '@daffodil/core/testing';
+
+@Component({template: '<demo-place-order [cart]="cartValue"></demo-place-order>'})
+class WrapperComponent {
+  cartValue: Cart;
+}
 
 describe('PlaceOrderComponent', () => {
-  let component: PlaceOrderComponent;
-  let fixture: ComponentFixture<PlaceOrderComponent>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
+  let placeOrderComponent: PlaceOrderComponent;
   const stubEnablePlaceOrderButton = true;
+  let cartFactory: DaffCartFactory;
+  let stubCart: Cart;
   let store;
 
   beforeEach(async(() => {
@@ -18,35 +31,50 @@ describe('PlaceOrderComponent', () => {
       imports: [
         StoreModule.forRoot({
           checkout: combineReducers(fromFoundationCheckout.reducers),
-        })
+        }),
+        DaffDriverTestingModule
       ],
-      declarations: [ PlaceOrderComponent ]
+      declarations: [ 
+        WrapperComponent,
+        PlaceOrderComponent
+      ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PlaceOrderComponent);
+    fixture = TestBed.createComponent(WrapperComponent);
     store = TestBed.get(Store);
-    component = fixture.componentInstance;
+    cartFactory = TestBed.get(DaffCartFactory);
+
+    wrapper = fixture.componentInstance;
+    stubCart = cartFactory.create();
+    wrapper.cartValue = stubCart;
+
     spyOn(store, 'dispatch');
     spyOn(fromFoundationCheckout, 'selectEnablePlaceOrderButton').and.returnValue(stubEnablePlaceOrderButton);
     
     fixture.detectChanges();
+
+    placeOrderComponent = fixture.debugElement.query(By.css('demo-place-order')).componentInstance;
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(placeOrderComponent).toBeTruthy();
   });
 
   it('should display a proceed to checkout button', () => {
     expect(fixture.debugElement.query(By.css('.button'))).toBeDefined();
   });
 
+  it('should be able to take cart as input', () => {
+    expect(placeOrderComponent.cart).toEqual(wrapper.cartValue);
+  });
+
   describe('ngOnInit', () => {
     
     it('should initialize enablePlaceOrderButton$', () => {
-      component.enablePlaceOrderButton$.subscribe((enablePlaceOrderButton) => {
+      placeOrderComponent.enablePlaceOrderButton$.subscribe((enablePlaceOrderButton) => {
         expect(enablePlaceOrderButton).toEqual(stubEnablePlaceOrderButton);
       });
     });
@@ -62,7 +90,7 @@ describe('PlaceOrderComponent', () => {
   describe('when enablePlaceOrderButton$ is false', () => {
     
     it('should disabled on Place Order button to true', () => {
-      component.enablePlaceOrderButton$ = of(false);
+      placeOrderComponent.enablePlaceOrderButton$ = of(false);
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.disabled).toBeTruthy();
@@ -74,7 +102,7 @@ describe('PlaceOrderComponent', () => {
     it('should call store.dispatch with a PlaceOrder action', () => {
       fixture.debugElement.query(By.css('button')).nativeElement.click();
 
-      expect(store.dispatch).toHaveBeenCalledWith(new PlaceOrder());
+      expect(store.dispatch).toHaveBeenCalledWith(new PlaceOrder(stubCart.id));
     });
   });
 });

@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import * as fromFoundationCheckout from '../../reducers';
 import { Store, select } from '@ngrx/store';
+
+import { Cart } from '@daffodil/core';
+
+import * as fromFoundationCheckout from '../../reducers';
 import { PlaceOrder } from '../../actions/checkout.actions';
 
 @Component({
@@ -12,6 +15,7 @@ import { PlaceOrder } from '../../actions/checkout.actions';
 export class PlaceOrderComponent implements OnInit{
 
   enablePlaceOrderButton$: Observable<boolean>;
+  @Input() cart: Cart;
 
   constructor(
     private store: Store<fromFoundationCheckout.State>
@@ -22,6 +26,6 @@ export class PlaceOrderComponent implements OnInit{
   }
 
   placeOrder() {
-    this.store.dispatch(new PlaceOrder());
+    this.store.dispatch(new PlaceOrder(this.cart.id));
   }
 }
