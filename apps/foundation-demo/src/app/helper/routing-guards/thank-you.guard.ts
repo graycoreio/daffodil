@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { Cart } from '@daffodil/core';
 import { fromCart } from '@daffodil/state';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -26,7 +26,8 @@ export class ThankYouGuard {
   }
 
   getCart(): Observable<Cart> {
-    return this.store.select(fromCart.selectCartValueState).pipe(
+    return this.store.pipe(
+      select(fromCart.selectCartValueState),
       map(cart => {
         return cart;
       }),
