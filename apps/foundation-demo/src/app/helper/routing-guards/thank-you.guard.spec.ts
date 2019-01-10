@@ -15,7 +15,7 @@ describe('ThankYouGuard', () => {
   let router: Router;
   let cartFactory: DaffCartFactory;
   let stubCart: Cart;
-  let stubParam = {
+  const stubParam = {
     params: {
       id: "1232123"
     }
