@@ -7,7 +7,6 @@ import { CheckoutViewComponent } from './checkout/pages/checkout-view/checkout-v
 import { TemplateComponent } from './core/template/template/template.component';
 import { CheckoutGuard } from './helper/routing-guards/checkout.guard';
 import { CartLoadGuard } from './helper/routing-guards/cart-load.guard';
-import { ThankYouGuard } from './helper/routing-guards/thank-you.guard';
 import { NotFoundComponent } from './misc/not-found/not-found.component';
 import { ThankYouViewComponent } from './thank-you/pages/thank-you-view.component';
 
@@ -26,15 +25,11 @@ export const appRoutes: Routes = [
         canActivate: [
           CheckoutGuard
         ],
-        path: 'checkout', 
-        component: CheckoutViewComponent 
-      },
-      { 
-        canActivate: [
-          ThankYouGuard
-        ],
-        path: 'thank-you/:id', 
-        component: ThankYouViewComponent 
+        path: 'checkout',
+        children: [
+          { path: '', component: CheckoutViewComponent },
+          { path: 'thank-you', component: ThankYouViewComponent }
+        ]
       },
       { path: '404', component: NotFoundComponent },
     ]
@@ -51,8 +46,7 @@ export const appRoutes: Routes = [
   ],
   providers: [
     CheckoutGuard, 
-    CartLoadGuard,
-    ThankYouGuard
+    CartLoadGuard
   ],
   exports: [
     RouterModule

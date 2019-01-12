@@ -102,7 +102,7 @@ describe('PlaceOrderComponent', () => {
     it('should call store.dispatch with a PlaceOrder action', () => {
       fixture.debugElement.query(By.css('button')).nativeElement.click();
 
-      expect(store.dispatch).toHaveBeenCalledWith(new PlaceOrder(stubCart.id));
+      expect(store.dispatch).toHaveBeenCalledWith(new PlaceOrder());
     });
   });
 });
