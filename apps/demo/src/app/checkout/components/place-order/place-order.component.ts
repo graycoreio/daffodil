@@ -26,6 +26,6 @@ export class PlaceOrderComponent implements OnInit{
   }
 
   placeOrder() {
-    this.store.dispatch(new PlaceOrder(this.cart.id));
+    this.store.dispatch(new PlaceOrder());
   }
 }
