@@ -40,7 +40,7 @@ You can read more about each library and it's build/testing process in the readm
 
 ### Apps
 * [daff.io](../apps/daffio/README.md)
-* [foundation-demo](../apps/daffio/README.md)
+* [demo](../apps/daffio/README.md)
 
 ### Libraries
 * [core](../libs/core/README.md)

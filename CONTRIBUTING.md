@@ -209,7 +209,7 @@ The following is the list of supported scopes:
 * **design**
 * **driver**
 * **state**
-* **foundation-demo**
+* **demo**
 * **daffio**
 
 ### Subject

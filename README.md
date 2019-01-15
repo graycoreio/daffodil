@@ -33,7 +33,7 @@ in the style of some of the major frontend libraries. To date, we're focusing on
 * Daffodil seamlessly integrates with the major Ecommerce platforms Shopify and Magento (2.3+)
 * Daffodil's codebase is fully-tested and CI covered (Unit, Integration, and E2E).
 * Daffodil's core team reviews every pull-request individually to ensure code quality remains high.
-* Daffodil's `foundation-demo` provides a sample for implementing technologies like:
+* Daffodil's `demo` provides a sample for implementing technologies like:
    * Server Side Rendering
    * Progressive Web Apps
 * Daffodil is easily extensible so that you can:
@@ -51,7 +51,7 @@ in the style of some of the major frontend libraries. To date, we're focusing on
 * Daffodil (with the help of Angular) supports simple Server Side Rendering for fantastic SEO
 
 ## Example Stores
-Currently none, but you can check our progress by following the steps [here](https://github.com/graycoreio/daffodil/blob/develop/docs/DEVELOPER.md#running-the-example-foundation-demo).
+Currently none, but you can check our progress by following the steps [here](https://github.com/graycoreio/daffodil/blob/develop/docs/DEVELOPER.md#running-the-example-demo).
 
 ## Using Daffodil To Build Your own Ecommerce Store
 1. Setup a new `@angular/cli` project
