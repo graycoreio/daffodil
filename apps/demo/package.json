@@ -7,9 +7,9 @@
       "url": "https://github.com/graycoreio/daffodil/issues"
     },
     "scripts": {
-      "build": "ng build foundation-demo",
-      "lint": "ng lint foundation-demo",
-      "test": "ng test foundation-demo --watch=false --browsers=ChromeHeadless"
+      "build": "ng build demo",
+      "lint": "ng lint demo",
+      "test": "ng test demo --watch=false --browsers=ChromeHeadless"
     },
     "homepage": "https://github.com/graycoreio/daffodil",
     "description": "A demo implementation of the @daffodil libraries for ecommerce",

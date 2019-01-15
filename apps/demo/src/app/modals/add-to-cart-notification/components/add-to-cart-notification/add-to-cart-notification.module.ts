@@ -9,7 +9,7 @@ import { FoundationAddToCartNotificationStateModule } from '../../add-to-cart-no
 import { StateCartModule } from '@daffodil/state';
 import { LoadingIconModule } from '../../../../core/loading-icon/loading-icon.module';
 import { TemplateModule } from '../../../../core/template/template/template.module';
-import { ModalPortalModule } from 'apps/foundation-demo/src/app/core/template/portals/modal-portal.module';
+import { ModalPortalModule } from '../../../../core/template/portals/modal-portal.module';
 
 @NgModule({
   imports: [
