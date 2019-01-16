@@ -1,0 +1,29 @@
+@import 'daff-util';
+
+.thank-you {
+  padding: 24px 15px;
+  display: grid;
+
+  @include breakpoint(big-tablet) {
+    padding: 50px 0;
+    grid-template-columns: 2fr 1fr;
+    grid-column-gap: 50px;
+  }
+
+  &__desktop-cart {
+    display: none;
+
+    @include breakpoint(big-tablet) {
+      display: block;
+    }
+  }
+
+  &__mobile-cart {
+    display: block;
+    border-top: 1px solid daff-color($daff-gray, 300);
+    
+    @include breakpoint(big-tablet) {
+      display: none;
+    }
+  }
+}

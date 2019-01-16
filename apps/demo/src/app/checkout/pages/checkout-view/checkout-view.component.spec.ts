@@ -59,9 +59,7 @@ class MockCheckoutCartAsyncWrapperComponent {
 }
 
 @Component({selector: 'demo-place-order', template: ''})
-class MockPlaceOrderComponent {
-  @Input() cart: Cart;
-}
+class MockPlaceOrderComponent {}
 
 // tslint:disable-next-line: component-selector
 @Component({selector: '[shipping-container]', template: '<ng-content></ng-content>', exportAs: 'ShippingContainer'})
@@ -340,13 +338,6 @@ describe('CheckoutViewComponent', () => {
       it('should show the number of cart items in the accordion title', () => {
         expect(fixture.debugElement.query(By.css('[daff-accordion-item-title]')).nativeElement.innerHTML).toEqual('Cart Summary (1)');
       });
-    });
-  });
-
-  describe('on <demo-place-order>', () => {
-    
-    it('should set cart', () => {
-      expect(placeOrders[0].componentInstance.cart).toEqual(stubCart);
     });
   });
   
