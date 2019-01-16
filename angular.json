@@ -3,30 +3,30 @@
   "version": 1,
   "newProjectRoot": "",
   "projects": {
-    "foundation-demo": {
-      "root": "apps/foundation-demo/",
-      "sourceRoot": "apps/foundation-demo/src",
+    "demo": {
+      "root": "apps/demo/",
+      "sourceRoot": "apps/demo/src",
       "projectType": "application",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/foundation-demo",
-            "index": "apps/foundation-demo/src/index.html",
-            "main": "apps/foundation-demo/src/main.ts",
-            "polyfills": "apps/foundation-demo/src/polyfills.ts",
-            "tsConfig": "apps/foundation-demo/tsconfig.app.json",
+            "outputPath": "dist/apps/demo",
+            "index": "apps/demo/src/index.html",
+            "main": "apps/demo/src/main.ts",
+            "polyfills": "apps/demo/src/polyfills.ts",
+            "tsConfig": "apps/demo/tsconfig.app.json",
             "assets": [
-              "apps/foundation-demo/src/assets",
-              "apps/foundation-demo/src/favicon.ico",
+              "apps/demo/src/assets",
+              "apps/demo/src/favicon.ico",
               { "glob": "**/*", "input": "libs/core/assets/", "output": "/assets/" }
             ],
             "styles": [
-              "apps/foundation-demo/src/scss/styles.scss"
+              "apps/demo/src/scss/styles.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "apps/foundation-demo/src/scss",
+                "apps/demo/src/scss",
                 "dist/design"
               ]
             },
@@ -45,8 +45,8 @@
               "buildOptimizer": true,
               "fileReplacements": [
                 {
-                  "replace": "apps/foundation-demo/src/environments/environment.ts",
-                  "with": "apps/foundation-demo/src/environments/environment.prod.ts"
+                  "replace": "apps/demo/src/environments/environment.ts",
+                  "with": "apps/demo/src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -55,40 +55,40 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "foundation-demo:build"
+            "browserTarget": "demo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "foundation-demo:build:production"
+              "browserTarget": "demo:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "foundation-demo:build"
+            "browserTarget": "demo:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "apps/foundation-demo/src/test.ts",
-            "polyfills": "apps/foundation-demo/src/polyfills.ts",
-            "tsConfig": "apps/foundation-demo/tsconfig.spec.json",
-            "karmaConfig": "apps/foundation-demo/karma.conf.js",
+            "main": "apps/demo/src/test.ts",
+            "polyfills": "apps/demo/src/polyfills.ts",
+            "tsConfig": "apps/demo/tsconfig.spec.json",
+            "karmaConfig": "apps/demo/karma.conf.js",
             "scripts": [],
             "styles": [
-              "apps/foundation-demo/src/scss/styles.scss"
+              "apps/demo/src/scss/styles.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "apps/foundation-demo/src/scss",
+                "apps/demo/src/scss",
                 "libs/design/src/scss"
               ]
             },
             "assets": [
-              "apps/foundation-demo/src/assets",
-              "apps/foundation-demo/src/favicon.ico"
+              "apps/demo/src/assets",
+              "apps/demo/src/favicon.ico"
             ]
           }
         },
@@ -96,8 +96,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/foundation-demo/tsconfig.spec.json",
-              "apps/foundation-demo/tsconfig.app.json"
+              "apps/demo/tsconfig.spec.json",
+              "apps/demo/tsconfig.app.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -106,22 +106,22 @@
         }
       }
     },
-    "foundation-demo-e2e": {
-      "root": "apps/foundation-demo-e2e/",
+    "demo-e2e": {
+      "root": "apps/demo-e2e/",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "foundation-demo:serve"
+            "devServerTarget": "demo:serve"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/foundation-demo-e2e/tsconfig.e2e.json"
+              "apps/demo-e2e/tsconfig.e2e.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -130,30 +130,30 @@
         }
       }
     },
-    "foundation-demo-dev": {
-      "root": "apps/foundation-demo/",
-      "sourceRoot": "apps/foundation-demo/src",
+    "demo-dev": {
+      "root": "apps/demo/",
+      "sourceRoot": "apps/demo/src",
       "projectType": "application",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/foundation-demo",
-            "index": "apps/foundation-demo/src/index.html",
-            "main": "apps/foundation-demo/src/main.ts",
-            "polyfills": "apps/foundation-demo/src/polyfills.ts",
-            "tsConfig": "apps/foundation-demo/tsconfig.dev.json",
+            "outputPath": "dist/apps/demo",
+            "index": "apps/demo/src/index.html",
+            "main": "apps/demo/src/main.ts",
+            "polyfills": "apps/demo/src/polyfills.ts",
+            "tsConfig": "apps/demo/tsconfig.dev.json",
             "assets": [
-              "apps/foundation-demo/src/assets",
-              "apps/foundation-demo/src/favicon.ico",
+              "apps/demo/src/assets",
+              "apps/demo/src/favicon.ico",
               { "glob": "**/*", "input": "libs/core/assets/", "output": "/assets/" }
             ],
             "styles": [
-              "apps/foundation-demo/src/scss/styles.scss"
+              "apps/demo/src/scss/styles.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "apps/foundation-demo/src/scss",
+                "apps/demo/src/scss",
                 "libs/design/src/scss"
               ]
             },
@@ -163,7 +163,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "foundation-demo-dev:build"
+            "browserTarget": "demo-dev:build"
           }
         }
       }
@@ -500,7 +500,7 @@
       }
     }
   },
-  "defaultProject": "foundation-demo",
+  "defaultProject": "demo",
   "schematics": {
     "@schematics/angular:component": {
       "styleext": "scss"
