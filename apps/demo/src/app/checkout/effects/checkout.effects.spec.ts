@@ -7,8 +7,7 @@ import { Router } from '@angular/router';
 
 import { CheckoutEffects } from './checkout.effects';
 import { ToggleShowPaymentForm } from '../actions/payment.actions';
-import { ShowReviewView, PlaceOrder } from '../actions/checkout.actions';
-import { NavigatingToThankYou } from '../../thank-you/actions/thank-you.actions';
+import { ShowReviewView, PlaceOrder, PlaceOrderSuccess } from '../actions/checkout.actions';
 
 describe('CheckoutEffects', () => {
   let actions$: Observable<any>;
@@ -55,23 +54,34 @@ describe('CheckoutEffects', () => {
   describe('when PlaceOrderAction is triggered', () => {
 
     let expected;
-    
+    const placeOrderAction = new PlaceOrder();
+
     beforeEach(() => {
-      const placeOrderAction = new PlaceOrder();
-      const navigatingToThankYou = new NavigatingToThankYou();
+      const placeOrderSuccessAction = new PlaceOrderSuccess();
       actions$ = hot('--a', { a: placeOrderAction });
-      expected = cold('--b', { b: navigatingToThankYou });
-    });
-
-    it('should call router.navigateByUrl', () => {
-      //the actual effect doesn't trigger unless the following test is run
-      expect(effects.onPlaceOrder$).toBeObservable(expected);
-
-      expect(router.navigateByUrl).toHaveBeenCalledWith('/checkout/thank-you');
+      expected = cold('--b', { b: placeOrderSuccessAction });
     });
     
     it('should dispatch a PlaceOrderSuccess action', () => {
       expect(effects.onPlaceOrder$).toBeObservable(expected);
+    });
+  });
+
+  describe('when PlaceOrderSuccessAction is triggered', () => {
+
+    let expected;
+    const placeOrderSuccessAction = new PlaceOrderSuccess();
+    
+    beforeEach(() => {
+      actions$ = hot('--a', { a: placeOrderSuccessAction });
+      expected = cold('--b', { b: placeOrderSuccessAction });
+    });
+
+    it('should call router.navigateByUrl', () => {
+      //the actual effect doesn't trigger unless the following test is run
+      expect(effects.onPlaceOrderSuccess$).toBeObservable(expected);
+
+      expect(router.navigateByUrl).toHaveBeenCalledWith('/checkout/thank-you');
     });
   });
 });
