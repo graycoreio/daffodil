@@ -38,15 +38,19 @@ class MockCartTotalsComponent {
 })
 class MockHelpBoxComponent {}
 
-@Directive({
-  selector: '[demoProceedToCheckout]'
+@Component({
+  // tslint:disable-next-line: component-selector
+  selector: '[demo-proceed-to-checkout]',
+  template: '<ng-content></ng-content>'
 })
-class MockProceedToCheckoutDirective {}
+class MockProceedToCheckoutComponent {}
 
-@Directive({
-  selector: '[demoContinueShopping]'
+@Component({
+  // tslint:disable-next-line: component-selector
+  selector: '[demo-continue-shopping]',
+  template: '<ng-content></ng-content>'
 })
-class MockContinueShoppingDirective {}
+class MockContinueShoppingComponent {}
 
 describe('CartWrapper', () => {
   let wrapper: WrapperComponent;
@@ -74,8 +78,8 @@ describe('CartWrapper', () => {
         MockCartComponent,
         MockCartTotalsComponent,
         MockHelpBoxComponent,
-        MockProceedToCheckoutDirective,
-        MockContinueShoppingDirective,
+        MockProceedToCheckoutComponent,
+        MockContinueShoppingComponent,
         CartWrapperComponent
       ]
     })
@@ -133,8 +137,8 @@ describe('CartWrapper', () => {
       cartComponent = fixture.debugElement.query(By.css('demo-cart'));
       cartTotalsComponent = fixture.debugElement.query(By.css('demo-cart-totals'));
       helpBoxComponent = fixture.debugElement.query(By.css('demo-help-box'));
-      proceedToCheckoutComponent = fixture.debugElement.query(By.css('[demoProceedToCheckout]'));
-      continueShoppingComponent = fixture.debugElement.query(By.css('[demoContinueShopping]'));
+      proceedToCheckoutComponent = fixture.debugElement.query(By.css('[demo-proceed-to-checkout]'));
+      continueShoppingComponent = fixture.debugElement.query(By.css('[demo-continue-shopping]'));
     });
 
     it('should create', () => {
@@ -178,11 +182,11 @@ describe('CartWrapper', () => {
           expect(cartTotalsComponent).toBeNull();
         });
         
-        it('should not render [demoProceedToCheckout]', () => {
+        it('should not render [demo-proceed-to-checkout]', () => {
           expect(proceedToCheckoutComponent).toBeNull();
         });
 
-        it('should render [demoContinueShopping]', () => {
+        it('should render [demo-continue-shopping]', () => {
           expect(continueShoppingComponent).not.toBeNull();
         });
       });
@@ -208,11 +212,11 @@ describe('CartWrapper', () => {
           expect(cartTotalsComponent.componentInstance.cart).toEqual(cart);
         });
 
-        it('should render [demoProceedToCheckout]', () => {
+        it('should render [demo-proceed-to-checkout]', () => {
           expect(proceedToCheckoutComponent).not.toBeNull();
         });
 
-        it('should render [demoContinueShopping]',() => {
+        it('should render [demo-continue-shopping]',() => {
           expect(continueShoppingComponent).not.toBeNull();
         });
       });
