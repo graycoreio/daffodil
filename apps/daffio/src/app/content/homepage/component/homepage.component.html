@@ -1,66 +1,75 @@
 <daff-hero layout="centered">
   <daff-container size="md">
     <h1 daff-hero-title>
-      Modern front-end development toolkit for ecommerce PWAs
+      A modern front-end development toolkit for ecommerce
     </h1>
     <h2 daff-hero-subtitle>
-      Build your store with ease and flexibility &mdash; take advantage of the cutting edge with Angular (6+), Redux and Progressive Web Apps.
+      Build your store with ease and flexibility &mdash; take advantage of the cutting edge with Angular, Redux and Progressive Web Apps.
     </h2>
     <div daff-button-set class="hero-button-set">
-      <button daff-button color="primary">See on Github</button>
-      <button daff-stroked-button color="black">Learn More</button>
+      <a href="https://github.com/graycoreio/daffodil" target="_blank" daff-button color="primary">Get Started</a>
     </div>
   </daff-container>
 </daff-hero>
 
 <daff-callout layout="centered" class="pwa">
-  <daff-container size="md">
+  <daff-container size="xl">
     <h3 daff-callout-title>
-      Written with Progressive Web Apps in mind
+      Build the next generation of ecommerce stores
     </h3>
     <p daff-callout-body>
-      Utilize tools like TypeScript, Redux and Angular (6+) to build your eCommerce store.
+      Deliver high quality user experiences by leveraging the benefits of PWAs.
     </p>
-    <div class="grid">
-      <img class="grid__image" src="/assets/pwa-screens.png" />
-      <daff-list type="multi-line">
+    <div class="pwa__grid">
+      <div class="pwa__images">
+        <daffio-iphone>
+            <img src="/assets/pwa-install-add.svg" />
+        </daffio-iphone>
+        <daffio-iphone>
+            <img src="/assets/pwa-install-info.svg" />
+        </daffio-iphone>
+        <daffio-iphone>
+            <img src="/assets/pwa-install-home.svg" />
+        </daffio-iphone>
+      </div>
+      <daff-list type="multi-line" class="pwa__list">
         <daff-list-item>
           <h4>Offline Support</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vehicula lacinia tellus quis bibendum.</p>
+          <p>Take advantage of service workers to cache key assets and data on user devices. Empower your store and allow users to shop independent of network quality.</p>
         </daff-list-item>
         <daff-list-item>
-          <h4>App-Like UX & Installation</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vehicula lacinia tellus quis bibendum.</p>
-        </daff-list-item>
-        <daff-list-item>
-          <h4>Progressive Enhancements</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vehicula lacinia tellus quis bibendum.</p>
+          <h4>Native Functionalities</h4>
+          <p>
+            Utilize native device features like home screen access, push notifications, and immersive full screen experiences without the need of an app store.
+          </p>
         </daff-list-item>
         <daff-list-item>
           <h4>Discoverable</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vehicula lacinia tellus quis bibendum.</p>
+          <p>Get all the benefits of a seamless mobile experience without sacrificing SEO. Just like a typical website, all content is indexable and searchable.</p>
+        </daff-list-item>
+        <daff-list-item>
+          <h4>Fast</h4>
+          <p>PWAs are light. They exponentially improve loading time, creating a smooth native performance for users.</p>
         </daff-list-item>
       </daff-list>
     </div>
-    <div class="pwa__link">
-      <a daff-link color="accent">Learn more about Progressive Web Apps <i class="fas fa-arrow-right"></i></a>
-    </div>
+    <a routerLink="/solution" daff-link class="pwa__link" color="accent" href="/solution">
+      Learn more about Progressive Web Apps <i class="fas fa-arrow-right"></i>
+    </a>
   </daff-container>
 </daff-callout>
 
-<div class="features">
-  <daff-feature>
-    <h4 daff-feature-title>Modern toolchain for front-end developers</h4>
-    <p daff-feature-body>Utilize tools like TypeScript, Redux and Angular (6+) to build your eCommerce store.</p>
-    <a daff-link color="accent" class="features__link" href="#">
-      Get started with Daffodil <i class="fas fa-arrow-right"></i>
-    </a>
-  </daff-feature>
-  <daff-feature>
-    <h4 daff-feature-title>Extendable redux datastore</h4>
-    <p daff-feature-body>Performant and fucntional client-side data management that you can extend to handle the needs of your project.</p>
-    <a daff-link color="accent" class="features__link" href="#">
-      Explore documentation <i class="fas fa-arrow-right"></i>
-    </a>
-  </daff-feature>
-</div>
+<daff-callout layout="centered" class="platform">
+  <daff-container size="md">
+    <h3 daff-callout-title>
+      Seamless multi-platform ecommerce integration
+    </h3>
+    <p daff-callout-body>
+      Transition between Magento, Shopify or any other platforms without the hassle of reinventing your front-end.
+    </p>
+    <div class="platform__logos">
+      <img src="/assets/magento-logo.svg" />
+      <img src="/assets/shopify-logo.svg" />
+    </div>
+  </daff-container>
+</daff-callout>
