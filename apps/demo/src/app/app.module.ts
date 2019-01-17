@@ -22,6 +22,7 @@ import { CheckoutModule } from './checkout/checkout.module';
 import { getDriverVariant } from './helper/driver-variant';
 import { NotFoundModule } from './misc/not-found/not-found.module';
 import { TemplateModule } from './core/template/template/template.module';
+import { ThankYouModule } from './thank-you/thank-you.module';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { TemplateModule } from './core/template/template/template.module';
     ProductModule,
     CartModule,
     CheckoutModule,
+    ThankYouModule,
     TemplateModule,
     NotFoundModule
   ],

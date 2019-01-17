@@ -1,38 +1,15 @@
 @import 'daff-util';
 
-.checkout {
+.thank-you {
   padding: 24px 15px;
   display: grid;
 
-  &__payment {
-    align-self: start;
-  }
-
-  &__review {
-    margin-top: 25px;
-  }
-
   @include breakpoint(big-tablet) {
-    padding: 50px 120px;
+    padding: 50px 0;
     grid-template-columns: 2fr 1fr;
     grid-column-gap: 50px;
   }
 
-  &__shipping {
-    padding: 30px 0;
-    @include section-divider();
-  }
-
-  &__payment {
-    padding-top: 30px;
-  }
-
-  &__review {
-    @include breakpoint(big-tablet) {
-      display: none;
-    }
-  }
-  
   &__desktop-cart {
     display: none;
 
@@ -43,7 +20,7 @@
 
   &__mobile-cart {
     display: block;
-    border-top: 1px solid daff-color($daff-gray, 400);
+    border-top: 1px solid daff-color($daff-gray, 300);
     
     @include breakpoint(big-tablet) {
       display: none;

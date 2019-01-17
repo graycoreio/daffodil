@@ -8,6 +8,7 @@ import { TemplateComponent } from './core/template/template/template.component';
 import { CheckoutGuard } from './helper/routing-guards/checkout.guard';
 import { CartLoadGuard } from './helper/routing-guards/cart-load.guard';
 import { NotFoundComponent } from './misc/not-found/not-found.component';
+import { ThankYouViewComponent } from './thank-you/pages/thank-you-view.component';
 
 export const appRoutes: Routes = [
   {
@@ -24,8 +25,11 @@ export const appRoutes: Routes = [
         canActivate: [
           CheckoutGuard
         ],
-        path: 'checkout', 
-        component: CheckoutViewComponent 
+        path: 'checkout',
+        children: [
+          { path: '', component: CheckoutViewComponent },
+          { path: 'thank-you', component: ThankYouViewComponent }
+        ]
       },
       { path: '404', component: NotFoundComponent },
     ]

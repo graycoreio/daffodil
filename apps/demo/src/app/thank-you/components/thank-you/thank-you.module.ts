@@ -16,4 +16,4 @@ import { PrintOrderSummaryModule } from '../print-order-summary/print-order-summ
     ThankYouComponent
   ]
 })
-export class ThankYouModule { }
+export class ThankYouComponentModule { }

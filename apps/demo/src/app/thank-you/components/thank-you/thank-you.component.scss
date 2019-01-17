@@ -1,0 +1,24 @@
+@import 'daff-util';
+
+.thank-you {
+  padding: 25px 0px;
+  @include section-divider();
+
+  @include breakpoint(big-tablet) {
+    padding: 50px 0px;
+    border-top: 1px solid daff-color($daff-gray, 300);
+  }
+  
+  &__title {
+    @include embolden();
+    @include uppercase();
+  }
+
+  &__body {
+    margin: 25px 0 50px;
+
+    span {
+      @include embolden();
+    }
+  }
+}

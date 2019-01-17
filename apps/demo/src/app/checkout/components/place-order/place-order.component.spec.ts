@@ -8,8 +8,8 @@ import { PlaceOrderComponent } from './place-order.component';
 import { PlaceOrder } from '../../actions/checkout.actions';
 
 describe('PlaceOrderComponent', () => {
-  let component: PlaceOrderComponent;
   let fixture: ComponentFixture<PlaceOrderComponent>;
+  let placeOrderComponent: PlaceOrderComponent;
   const stubEnablePlaceOrderButton = true;
   let store;
 
@@ -20,7 +20,10 @@ describe('PlaceOrderComponent', () => {
           checkout: combineReducers(fromFoundationCheckout.reducers),
         })
       ],
-      declarations: [ PlaceOrderComponent ]
+      declarations: [ 
+        PlaceOrderComponent,
+        PlaceOrderComponent
+      ]
     })
     .compileComponents();
   }));
@@ -28,15 +31,17 @@ describe('PlaceOrderComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PlaceOrderComponent);
     store = TestBed.get(Store);
-    component = fixture.componentInstance;
+
     spyOn(store, 'dispatch');
     spyOn(fromFoundationCheckout, 'selectEnablePlaceOrderButton').and.returnValue(stubEnablePlaceOrderButton);
     
     fixture.detectChanges();
+
+    placeOrderComponent = fixture.componentInstance;
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(placeOrderComponent).toBeTruthy();
   });
 
   it('should display a proceed to checkout button', () => {
@@ -46,7 +51,7 @@ describe('PlaceOrderComponent', () => {
   describe('ngOnInit', () => {
     
     it('should initialize enablePlaceOrderButton$', () => {
-      component.enablePlaceOrderButton$.subscribe((enablePlaceOrderButton) => {
+      placeOrderComponent.enablePlaceOrderButton$.subscribe((enablePlaceOrderButton) => {
         expect(enablePlaceOrderButton).toEqual(stubEnablePlaceOrderButton);
       });
     });
@@ -62,7 +67,7 @@ describe('PlaceOrderComponent', () => {
   describe('when enablePlaceOrderButton$ is false', () => {
     
     it('should disabled on Place Order button to true', () => {
-      component.enablePlaceOrderButton$ = of(false);
+      placeOrderComponent.enablePlaceOrderButton$ = of(false);
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.disabled).toBeTruthy();

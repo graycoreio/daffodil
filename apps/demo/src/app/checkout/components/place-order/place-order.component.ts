@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import * as fromFoundationCheckout from '../../reducers';
 import { Store, select } from '@ngrx/store';
+
+import * as fromFoundationCheckout from '../../reducers';
 import { PlaceOrder } from '../../actions/checkout.actions';
 
 @Component({
