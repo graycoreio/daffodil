@@ -8,8 +8,8 @@
       </div>
       <demo-product-added *ngIf="!(loading$ | async)" class="add-to-cart-notification__product-added" [product]="product$ | async" [qty]="productQty$ | async"></demo-product-added>
       <div *ngIf="!(loading$ | async)" daff-button-set class="add-to-cart-notification__button-set">
-        <button type="button" daff-stroked-button (click)="onHide()" demoViewCart>View Cart ({{(cartItemCount$ | async)}})</button>
-        <button type="button" daff-button color="black" (click)="onHide()" demoProceedToCheckout>Checkout</button>
+        <button type="button" daff-stroked-button (click)="onHide()" demo-view-cart>View Cart ({{(cartItemCount$ | async)}})</button>
+        <button type="button" daff-button color="black" (click)="onHide()" demo-proceed-to-checkout>Checkout</button>
       </div>
       <demo-loading-icon *ngIf="(loading$ | async)"></demo-loading-icon>
     </div>

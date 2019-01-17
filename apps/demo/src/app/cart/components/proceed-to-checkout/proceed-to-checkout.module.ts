@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ProceedToCheckoutDirective } from './proceed-to-checkout.directive';
+import { ProceedToCheckoutComponent } from './proceed-to-checkout.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -10,10 +10,10 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   declarations: [
-    ProceedToCheckoutDirective
+    ProceedToCheckoutComponent
   ],
   exports: [
-    ProceedToCheckoutDirective
+    ProceedToCheckoutComponent
   ]
 })
 export class ProceedToCheckoutModule { }

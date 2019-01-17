@@ -35,11 +35,19 @@ class MockDaffModalComponent {
   @Output() hide: EventEmitter<any> = new EventEmitter();
 }
 
-@Directive({ selector: '[demoViewCart]'})
-class MockViewCartDirective {}
+@Component({ 
+  // tslint:disable-next-line: component-selector
+  selector: '[demo-view-cart]',
+  template: '<ng-content></ng-content>'
+})
+class MockViewCartComponent {}
 
-@Directive({ selector: '[demoProceedToCheckout]'})
-class MockProceedToCheckoutDirective {}
+@Component({ 
+  // tslint:disable-next-line: component-selector
+  selector: '[demo-proceed-to-checkout]',
+  template: '<ng-content></ng-content>'
+})
+class MockProceedToCheckoutComponent {}
 
 @Component({ selector: 'demo-modal-portal', template: '<ng-content></ng-content>'})
 class MockModalPortalComponent {}
@@ -79,8 +87,8 @@ describe('AddToCartNotificationComponent', () => {
         WrapperComponent,
         AddToCartNotificationComponent,
         MockDaffModalComponent,
-        MockViewCartDirective,
-        MockProceedToCheckoutDirective,
+        MockViewCartComponent,
+        MockProceedToCheckoutComponent,
         MockModalPortalComponent,
         MockProductAddedComponent,
         MockLoadingIconComponent
@@ -207,19 +215,19 @@ describe('AddToCartNotificationComponent', () => {
     });
   });
 
-  describe('when [demoViewCart] is clicked', () => {
+  describe('when [demo-view-cart] is clicked', () => {
     
     it('should call dispatch a CloseAddToCartNotification action', () => {
-      fixture.debugElement.query(By.css('[demoViewCart]')).nativeElement.click();
+      fixture.debugElement.query(By.css('[demo-view-cart]')).nativeElement.click();
 
       expect(store.dispatch).toHaveBeenCalledWith(new CloseAddToCartNotification());
     });
   });
 
-  describe('when [demoProceedToCheckout] is clicked', () => {
+  describe('when [demo-proceed-to-checkout] is clicked', () => {
     
     it('should call dispatch a CloseAddToCartNotification action', () => {
-      fixture.debugElement.query(By.css('[demoProceedToCheckout]')).nativeElement.click();
+      fixture.debugElement.query(By.css('[demo-proceed-to-checkout]')).nativeElement.click();
       
       expect(store.dispatch).toHaveBeenCalledWith(new CloseAddToCartNotification());
     });
