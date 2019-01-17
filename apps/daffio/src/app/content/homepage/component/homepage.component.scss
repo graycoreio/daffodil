@@ -7,9 +7,69 @@
 
 .pwa {
   background-color: daff-color($daff-gray, 100);
+  padding: 75px 25px;
+
+  @include breakpoint(mobile) {
+    padding: 100px 50px;
+  }
+  
+  @include breakpoint(big-tablet) {
+    padding: 100px 0;
+  }
+
+  &__grid {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr;
+    grid-gap: 50px;
+    margin: 50px 0;
+
+    @include breakpoint(big-tablet) {
+      grid-template-columns: 1fr 1fr;
+      margin: 75px 0;
+    }
+
+    @include breakpoint(small-laptop) {
+      grid-gap: 75px;
+    }
+
+    @include breakpoint(desktop) {
+      max-width: 1440px;
+      margin: 75px auto;
+    }
+  }
+
+  &__images {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 15px;
+
+    > * {
+      width: 100%;
+    }
+  }
+
+  &__list {
+    @include breakpoint(big-tablet) {
+      padding: 0 50px 0 0;
+    }
+
+    @include breakpoint(small-laptop) {
+      padding: 0 150px 0 0;
+    }
+
+    @include breakpoint(desktop) {
+      padding: 0;
+    }
+  }
 
   &__link {
+    display: block;
     text-align: center;
+    
+    > * {
+      margin-left: 5px;
+    }
   }
 }
 
@@ -33,23 +93,21 @@
     }
   }
 }
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 50px;
-  margin: 50px 0;
 
-  @include breakpoint(tablet) {
-    grid-template-columns: 1fr 1fr;
-    margin: 75px 0;
-  }
+.platform {
+  color: $white;
+  background-color: #2D3047;
 
-  &__image {
-    display: block;
-    max-width: 100%;
-  }
+  &__logos {
+    text-align: center;
+    opacity: 0.5;
+    
+    > * {
+      padding: 0 25px;
+    }
 
-  &__list {
-    padding: 15px;
+    img {
+      max-width: 150px;
+    }
   }
 }

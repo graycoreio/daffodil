@@ -39,6 +39,8 @@
 
     @include breakpoint(mobile) {
       text-align: left;
+      font-size: $medium-font-size;
+      line-height: 1.75rem;
     }
 
     @include breakpoint(big-tablet) {

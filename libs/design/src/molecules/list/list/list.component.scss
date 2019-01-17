@@ -32,6 +32,10 @@
         padding: 0 0 15px 0;
       }
 
+      &:last-of-type {
+        padding: 15px 0 0 0;
+      }
+
       &__content {
         *:nth-child(1) {
           @include embolden();

@@ -19,6 +19,7 @@ import {
   DaffFeatureModule,
   DaffLinkModule
 } from '@daffodil/design';
+import { IphoneModule } from '../../design/device/iphone/iphone.module';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import {
     RouterModule,
     
     TemplateModule,
+    IphoneModule,
 
     DaffioHomepageRoutingModule,
 
