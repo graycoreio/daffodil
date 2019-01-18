@@ -1,41 +1,40 @@
 @import 'daff-util';
 
-.checkout-cart-item {
+:host {
   display: grid;
-  font-size: $small-font-size;
   grid-column-gap: 20px;
   grid-row-gap: 15px;
   grid-template-columns: 1fr 3fr;
+}
 
+.minicart-item {
   &__image {
-    cursor: pointer;
     display: block;
     max-width: 100%;
+    @include clickable();
   }
 
   &__description {
-    display: grid;
+    display: block;
   }
 
   &__name {
-    cursor: pointer;
-    font-size: 1rem;
     @include embolden();
+    @include clickable();
   }
 
   &__price {
-    font-size: 1rem;
     color: $accent;
     margin-bottom: 15px;
   }
 
-  &__qty {
-    display: inline;
-    @include embolden();
+  &__info {
+    font-size: $small-font-size;
+    color: daff-color($daff-gray, 800);
+    line-height: 1.25rem;
   }
 
   &__change {
-    color: daff-color($daff-gray, 800);
     margin-top: 15px;
     display: none;
 
@@ -43,7 +42,9 @@
       display: block;
     }
 
-    & > a {
+    > * {
+      font-size: $small-font-size;
+      color: daff-color($daff-gray, 600);
       text-decoration: underline;
     
       &:last-child {

@@ -3,14 +3,14 @@ import { Cart } from '@daffodil/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'demo-checkout-cart',
-  templateUrl: './checkout-cart.component.html',
-  styleUrls: ['./checkout-cart.component.scss']
+  selector: 'demo-cart-summary',
+  templateUrl: './cart-summary.component.html',
+  styleUrls: ['./cart-summary.component.scss']
 })
-export class CheckoutCartComponent {
+export class CartSummaryComponent {
 
   @Input() cart: Cart;
-  @Input() subtitle: string;
+  @Input() title: string;
 
   constructor(
     private router: Router

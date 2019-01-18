@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'demo-print-order-summary',
-  templateUrl: './print-order-summary.component.html',
-  styleUrls: ['./print-order-summary.component.scss']
+  templateUrl: './print-order-summary.component.html'
 })
 export class PrintOrderSummaryComponent{
 

@@ -25,12 +25,6 @@ class MockCartComponent {
 }
 
 @Component({
-  selector: 'demo-promotion',
-  template: ''
-})
-class MockPromotionComponent {}
-
-@Component({
   selector: 'demo-cart-totals',
   template: ''
 })
@@ -59,7 +53,6 @@ describe('CartWrapper', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let cartWrapperComponent: CartWrapperComponent;
   let cartComponent;
-  let promotionComponent;
   let cartTotalsComponent;
   let helpBoxComponent;
   let proceedToCheckoutComponent;
@@ -83,7 +76,6 @@ describe('CartWrapper', () => {
         MockHelpBoxComponent,
         MockProceedToCheckoutDirective,
         MockContinueShoppingDirective,
-        MockPromotionComponent,
         CartWrapperComponent
       ]
     })
@@ -139,7 +131,6 @@ describe('CartWrapper', () => {
           fixture.detectChanges();
 
       cartComponent = fixture.debugElement.query(By.css('demo-cart'));
-      promotionComponent = fixture.debugElement.query(By.css('demo-promotion'));
       cartTotalsComponent = fixture.debugElement.query(By.css('demo-cart-totals'));
       helpBoxComponent = fixture.debugElement.query(By.css('demo-help-box'));
       proceedToCheckoutComponent = fixture.debugElement.query(By.css('[demoProceedToCheckout]'));
@@ -183,10 +174,6 @@ describe('CartWrapper', () => {
           expect(summaryTitleElement).toBeNull();
         });
 
-        it('should not render <demo-promotion>', () => {
-          expect(promotionComponent).toBeNull();
-        });
-
         it('should not render <demo-cart-totals>', () => {
           expect(cartTotalsComponent).toBeNull();
         });
@@ -210,12 +197,6 @@ describe('CartWrapper', () => {
           const summaryTitleElement = fixture.debugElement.query(By.css('.cart-wrapper__summary-title'));
           
           expect(summaryTitleElement).not.toBeNull();
-        });
-
-        it('should render <demo-promotion>', () => {
-          const promotionElement = fixture.debugElement.query(By.css('demo-promotion'))
-
-          expect(promotionElement).not.toBeNull();
         });
 
         it('should render <demo-cart-totals>', () => {

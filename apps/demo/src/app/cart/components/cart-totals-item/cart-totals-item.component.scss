@@ -1,17 +1,20 @@
 @import 'daff-util';
 
+:host {
+  display: block;
+}
+
 .cart-totals-item {
+  line-height: 1.75rem;
+
   &__label {
-    line-height: 1.7rem;
-    @include uppercase();
-    
     & + span {
       float: right;
     }
   }
 
   &.emphasize {
+    @include uppercase();
     @include embolden();
-    color: get-color(secondary);
   }
 }

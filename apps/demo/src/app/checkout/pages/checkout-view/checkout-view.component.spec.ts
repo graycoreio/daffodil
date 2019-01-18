@@ -13,7 +13,7 @@ import { ShippingContainer } from '@daffodil/state';
 import * as fromFoundationCheckout from '../../reducers/index';
 import { ShowPaymentView } from '../../actions/payment.actions';
 import { CheckoutViewComponent } from './checkout-view.component';
-import { DaffAccordionModule, DaffAccordionItemComponent } from '@daffodil/design';
+import { DaffAccordionModule, DaffAccordionItemComponent, DaffContainerModule } from '@daffodil/design';
 
 const daffodilAddressFactory = new DaffAddressFactory();
 const paymentFactory = new DaffPaymentFactory();
@@ -51,8 +51,8 @@ class MockPaymentComponent {
   @Output() toggleBillingAddressIsShippingAddress: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({selector: 'demo-checkout-cart-async-wrapper', template: '<ng-content>', encapsulation: ViewEncapsulation.None})
-class MockCheckoutCartAsyncWrapperComponent {
+@Component({selector: 'demo-cart-summary-wrapper', template: '<ng-content>', encapsulation: ViewEncapsulation.None})
+class MockCartSummaryWrapperComponent {
   @Input() cart: Cart;
   @Input() loading: boolean;
   @Input() cartTitle: string;
@@ -97,7 +97,7 @@ describe('CheckoutViewComponent', () => {
   let fixture: ComponentFixture<CheckoutViewComponent>;
   let shipping: MockShippingComponent;
   let payment: MockPaymentComponent
-  let checkoutCartAsyncWrappers;
+  let cartSummaryWrappers;
   let shippingContainer: ShippingContainer;
   let billingContainer: MockBillingContainer;
   let cartContainer: MockCartContainer;
@@ -113,13 +113,14 @@ describe('CheckoutViewComponent', () => {
           foundationCheckout: combineReducers(fromFoundationCheckout.reducers),
         }),
         DaffAccordionModule,
-        NoopAnimationsModule
+        NoopAnimationsModule,
+        DaffContainerModule
       ],
       declarations: [
         CheckoutViewComponent,
         MockShippingComponent,
         MockShippingContainer,
-        MockCheckoutCartAsyncWrapperComponent,
+        MockCartSummaryWrapperComponent,
         MockPaymentComponent,
         MockPlaceOrderComponent,
         MockBillingContainer,
@@ -141,7 +142,7 @@ describe('CheckoutViewComponent', () => {
 
     shipping = fixture.debugElement.query(By.css('demo-shipping')).componentInstance;
     payment = fixture.debugElement.query(By.css('demo-payment')).componentInstance;
-    checkoutCartAsyncWrappers = fixture.debugElement.queryAll(By.css('demo-checkout-cart-async-wrapper'));
+    cartSummaryWrappers = fixture.debugElement.queryAll(By.css('demo-cart-summary-wrapper'));
     shippingContainer = fixture.debugElement.query(By.css('[shipping-container]')).componentInstance;
     billingContainer = fixture.debugElement.query(By.css('[billing-container]')).componentInstance;
     cartContainer = fixture.debugElement.query(By.css('[cart-container]')).componentInstance;
@@ -261,47 +262,47 @@ describe('CheckoutViewComponent', () => {
     });
   });
 
-  describe('on first <demo-checkout-cart-async-wrapper>', () => {
+  describe('on first <demo-cart-summary-wrapper>', () => {
     it('should set cart', () => {
-      expect(checkoutCartAsyncWrappers[0].componentInstance.cart).toEqual(stubCart);
+      expect(cartSummaryWrappers[0].componentInstance.cart).toEqual(stubCart);
     });
 
     it('should set loading', () => {
-      expect(checkoutCartAsyncWrappers[0].componentInstance.loading).toEqual(false);
-    });
-
-    it('should set cartTitle to CART SUMMARY', () => {
-      expect(checkoutCartAsyncWrappers[0].componentInstance.cartTitle).toBeUndefined();
-    });
-  });
-
-  describe('on second <demo-checkout-cart-async-wrapper>', () => {
-    
-    it('should set cart', () => {
-      expect(checkoutCartAsyncWrappers[1].componentInstance.cart).toEqual(stubCart);
-    });
-
-    it('should set loading', () => {
-      expect(checkoutCartAsyncWrappers[1].componentInstance.loading).toEqual(false);
+      expect(cartSummaryWrappers[0].componentInstance.loading).toEqual(false);
     });
 
     it('should not set cartTitle', () => {
-      expect(checkoutCartAsyncWrappers[1].componentInstance.cartTitle).toEqual('Review Order');
+      expect(cartSummaryWrappers[0].componentInstance.cartTitle).toBeUndefined();
     });
   });
 
-  describe('on third <demo-checkout-cart-async-wrapper>', () => {
+  describe('on second <demo-cart-summary-wrapper>', () => {
     
     it('should set cart', () => {
-      expect(checkoutCartAsyncWrappers[2].componentInstance.cart).toEqual(stubCart);
+      expect(cartSummaryWrappers[1].componentInstance.cart).toEqual(stubCart);
     });
 
     it('should set loading', () => {
-      expect(checkoutCartAsyncWrappers[2].componentInstance.loading).toEqual(false);
+      expect(cartSummaryWrappers[1].componentInstance.loading).toEqual(false);
     });
 
-    it('should set cartTitle to Review Order', () => {
-      expect(checkoutCartAsyncWrappers[2].componentInstance.cartTitle).toEqual('CART SUMMARY');
+    it('should set cartTitle to REVIEW ORDER', () => {
+      expect(cartSummaryWrappers[1].componentInstance.cartTitle).toEqual('REVIEW ORDER');
+    });
+  });
+
+  describe('on third <demo-cart-summary-wrapper>', () => {
+    
+    it('should set cart', () => {
+      expect(cartSummaryWrappers[2].componentInstance.cart).toEqual(stubCart);
+    });
+
+    it('should set loading', () => {
+      expect(cartSummaryWrappers[2].componentInstance.loading).toEqual(false);
+    });
+
+    it('should set cartTitle to CART SUMMARY', () => {
+      expect(cartSummaryWrappers[2].componentInstance.cartTitle).toEqual('CART SUMMARY');
     });
   });
 

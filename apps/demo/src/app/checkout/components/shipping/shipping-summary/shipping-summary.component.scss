@@ -5,10 +5,20 @@
   display: grid;
   grid-template-columns: 4fr 1fr;
   grid-template-areas: 
-    "   title       edit"
-    " address free-space"
-    "subtitle free-space"
-    "  option free-space";
+    "   title  edit"
+    " address     ."
+    "subtitle     ."
+    "  option     .";
+
+  @include breakpoint(big-tablet) {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "title"
+      "address"
+      "subtitle"
+      "option"
+      "edit";
+  }
 
   &__title {
     font-size: 1rem;
@@ -22,11 +32,13 @@
     grid-area: address;
   }
 
-  & a {
+  &__edit {
     grid-area: edit;
     display: block;
+    font-size: 0.875rem;
     text-decoration: underline;
     justify-self: end;
+    @include clickable();
 
     @include breakpoint(big-tablet) {
       justify-self: start;
@@ -35,36 +47,12 @@
   }
 
   &__subtitle {
-    margin-top: 15px;
+    margin: 15px 0 5px 0;
     @include embolden();
     grid-area: subtitle;
   }
 
   &__shipping-option {
     grid-area: option;
-  }
-
-  &__free-space {
-    grid-area: free-space;
-  }
-
-  @include breakpoint(big-tablet) {
-    grid-template-areas: 
-      "   title      title"
-      " address    address"
-      "subtitle   subtitle"
-      "  option     option"
-      "    edit       edit";
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include breakpoint(small-laptop) {
-    grid-template-areas:
-      "   title      title      title"
-      " address    address    address"
-      "subtitle   subtitle   subtitle"
-      "  option     option     option"
-      "    edit       edit       edit";
-    grid-template-columns: repeat(3, 1fr);
   }
 }

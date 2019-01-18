@@ -2,12 +2,12 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { Cart } from '@daffodil/core';
 
 @Component({
-  selector: 'demo-checkout-cart-async-wrapper',
-  templateUrl: './checkout-cart-async-wrapper.component.html',
-  styleUrls: ['./checkout-cart-async-wrapper.component.scss'],
+  selector: 'demo-cart-summary-wrapper',
+  templateUrl: './cart-summary-wrapper.component.html',
+  styleUrls: ['./cart-summary-wrapper.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class CheckoutCartAsyncWrapperComponent {
+export class CartSummaryWrapperComponent {
 
   @Input() cart: Cart;
   @Input() loading: boolean;

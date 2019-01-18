@@ -4,7 +4,7 @@
       <daff-accordion class="thank-you__mobile-cart">
         <daff-accordion-item [initiallyActive]="false">
           <h3 daff-accordion-item-title>Cart Summary ({{(CartContainer.cart$ | async).items.length}})</h3>
-          <demo-checkout-cart-async-wrapper [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async"></demo-checkout-cart-async-wrapper>
+          <demo-cart-summary-wrapper [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async"></demo-cart-summary-wrapper>
         </daff-accordion-item>
       </daff-accordion>
 
@@ -12,7 +12,7 @@
 
       <div class="thank-you__cart">
         <div class="thank-you__desktop-cart">
-          <demo-checkout-cart-async-wrapper [cartTitle]="'CART SUMMARY'" [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async"></demo-checkout-cart-async-wrapper>
+          <demo-cart-summary-wrapper [cartTitle]="'CART SUMMARY'" [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async"></demo-cart-summary-wrapper>
         </div>
       </div>
     </div>

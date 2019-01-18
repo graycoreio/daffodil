@@ -1,71 +1,43 @@
 @import 'daff-util';
 
 .payment-form {
-  display: grid;
-  grid-template-areas: 
-    "        title"
-    "    promotion"
-    "method-title1"
-    " payment-info"
-    "method-title2"
-    "     checkbox"
-    "      address"
-    "       button"
-    "         note";
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+
+  @include breakpoint(big-tablet) {
+    max-width: 350px;
+  }
 
   &__title {
     margin-bottom: 15px;
-    grid-area: title;
     @include embolden();
     @include uppercase();
   }
 
-  &__promotion {
-    margin-bottom: 25px;
-    grid-area: promotion;
-  }
-
-  &__info-method-title {
+  &__subtitle {
     @include embolden();
     margin-bottom: 15px;
-    grid-area: method-title1;
   }
 
-  &__payment-info {
-    grid-area: payment-info;
-  }
-
-  &__address-method-title {
-    @include embolden();
-    margin: 15px 0 15px 0;
-    grid-area: method-title2;
-  }
-
-  &__checkbox {
-    grid-area: checkbox;
-    margin-bottom: 10px;
+  &__promotion, &__payment-info {
+    margin-bottom: 25px;
   }
 
   &__address {
-    grid-area: address;
+    margin-top: 15px;
   }
 
-  & button {
-    margin: 15px 0 10px 0;
-    grid-area: button;
+  &__button {
+    margin: 25px 0 10px 0;
   }
 
   &__note {
-    justify-self: center;
-    grid-area: note;
+    text-align: center;
     font-size: $small-font-size;
 
     @include breakpoint(big-tablet) {
-      justify-self: left;
+      text-align: left;
     }
-  }
-
-  @include breakpoint(big-tablet) {
-    grid-template-columns: repeat(2, 1fr);
   }
 }
