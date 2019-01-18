@@ -1,7 +1,7 @@
 @import 'daff-util';
 
 .help-box {
-  border: 1px solid daff-color($daff-gray, 400);
+  border: 1px solid daff-color($daff-gray, 300);
   padding: 25px;
 
   &__title {
@@ -10,7 +10,7 @@
   }
 
   &__link {
-    text-decoration: underline;
+    display: block;
     margin-top: 10px;
   }
 
@@ -18,7 +18,7 @@
     margin-top: 15px;
   }
 
-  & a {
+  a {
     text-decoration: underline;
   }
 }

@@ -15,8 +15,7 @@
   </div>
   <div class="cart-wrapper__sidebar">
     <div class="cart-wrapper__summary" *ngIf="!(isCartEmpty$ | async)">
-      <div class="cart-wrapper__summary-title">cart summary</div>
-      <demo-promotion class="cart-wrapper__promotion"></demo-promotion>
+      <div class="cart-wrapper__summary-title">Cart Summary</div>
       <demo-cart-totals class="cart-wrapper__cart-totals" [cart]="cart"></demo-cart-totals>
       <div daff-button-set class="cart-wrapper__button-set">
         <button type="button" daff-button color="black" demoProceedToCheckout>

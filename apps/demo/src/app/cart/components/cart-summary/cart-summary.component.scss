@@ -1,22 +1,14 @@
 @import 'daff-util';
 
-.checkout-cart {
-  display: grid;
-  grid-gap: 15px;
-  grid-template-columns: minmax(0, 1fr);
-  font-family: 'Open Sans', sans-serif;
-  margin-bottom: 25px;
-
-  @include breakpoint(big-tablet) {
-    grid-gap: 25px;
-  }
+.cart-summary {
+  display: flex;
+  flex-direction: column;
   
-  &__title {
+  &__header {
     font-size: 1rem;
-    display: grid;
-    grid-template-columns: 4fr 1fr;
-    grid-template-areas: 
-      "subtitle edit";
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
     
     @include breakpoint(big-tablet) {
       @include section-divider();
@@ -24,9 +16,20 @@
     }
   }
 
-  &__subtitle {
+  &__title {
     @include embolden();
-    grid-area: subtitle;
+  }
+
+  &__minicart {
+    padding: 25px 0;
+
+    > * {
+      margin-bottom: 15px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 
   &__edit-cart {
@@ -34,6 +37,7 @@
     justify-self: right;
     font-size: $small-font-size;
     text-decoration: underline;
+    @include clickable();
 
     @include breakpoint(big-tablet) {
       display: none;

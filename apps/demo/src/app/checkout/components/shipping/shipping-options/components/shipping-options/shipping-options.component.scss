@@ -1,27 +1,45 @@
 @import 'daff-util';
 
 .shipping-options {
-  font-size: $small-font-size;
-  margin-top: 15px;
+  border: 0;
+  margin: 25px 0;
+  padding: 0;
 
   &__title {
-    font-size: 1rem;
-    @include embolden();
-  }
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 15px;
 
-  &__radio {
-    width: fit-content;
-  }
+    @include breakpoint(mobile) {
+      flex-wrap: nowrap;
+    }
 
-  & input {
-    margin: 0;
-  }
-
-  & label {
-    margin-right: 0;
+    legend {
+      @include embolden();
+      font-size: 1rem;
+      margin-right: 15px;
+    }
   }
 
   &__invalid {
-    background-color: #a94442;
+    font-size: $small-font-size;
+    color: $error;
+  }
+
+  &__radio {
+    margin: 0 0 5px 0;
+
+    &:last-child {
+      margin: 0;
+    }
+
+    input {
+      margin: 0;
+    }
+
+    label {
+      margin-left: 10px;
+    }
   }
 }

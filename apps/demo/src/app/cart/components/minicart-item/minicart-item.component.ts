@@ -3,11 +3,12 @@ import { CartItem } from '@daffodil/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'demo-checkout-cart-item',
-  templateUrl: './checkout-cart-item.component.html',
-  styleUrls: ['./checkout-cart-item.component.scss']
+  selector: 'demo-minicart-item',
+  host: {'class': 'minicart-item'},
+  templateUrl: './minicart-item.component.html',
+  styleUrls: ['./minicart-item.component.scss'],
 })
-export class CheckoutCartItemComponent {
+export class MiniCartItemComponent {
 
   @Input() item: CartItem;
 

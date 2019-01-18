@@ -3,9 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { PlaceOrderComponent } from './place-order.component';
 
+import { DaffButtonModule } from '@daffodil/design';
+
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    DaffButtonModule
   ],
   declarations: [
     PlaceOrderComponent

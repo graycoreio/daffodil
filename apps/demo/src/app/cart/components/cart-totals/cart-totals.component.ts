@@ -3,7 +3,8 @@ import { Cart } from '@daffodil/core';
 
 @Component({
   selector: 'demo-cart-totals',
-  templateUrl: './cart-totals.component.html'
+  templateUrl: './cart-totals.component.html',
+  styleUrls: ['./cart-totals.component.scss']
 })
 export class CartTotalsComponent implements OnInit {
 

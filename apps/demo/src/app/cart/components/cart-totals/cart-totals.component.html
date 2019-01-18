@@ -14,7 +14,7 @@
     <ng-container cart-total-value>{{ cartTax | currency }}</ng-container>
   </demo-cart-totals-item>
 
-  <demo-cart-totals-item emphasize="true">
+  <demo-cart-totals-item emphasize="true" class="cart-totals__total">
     <ng-container cart-total-label>Estimated Total</ng-container>
     <ng-container cart-total-value>{{ cart.grand_total | currency }}</ng-container>
   </demo-cart-totals-item>

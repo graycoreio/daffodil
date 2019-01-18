@@ -42,12 +42,6 @@ class MockPaymentInfoFormComponent {
   @Input() submitted: boolean;
 }
 
-@Component({
-  selector: 'demo-promotion',
-  template: ''
-})
-class MockPromotionComponent {}
-
 describe('PaymentFormComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
@@ -74,7 +68,6 @@ describe('PaymentFormComponent', () => {
       ],
       declarations: [ 
         WrapperComponent,
-        MockPromotionComponent,
         MockAddressFormComponent,
         MockPaymentInfoFormComponent,
         PaymentFormComponent

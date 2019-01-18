@@ -4,32 +4,32 @@ import { By } from '@angular/platform-browser';
 import { Cart, CartItem } from '@daffodil/core';
 import { DaffCartFactory, DaffCartItemFactory, DaffCoreTestingModule } from '@daffodil/core/testing';
 
-import { CheckoutCartComponent } from './checkout-cart.component';
+import { CartSummaryComponent } from './cart-summary.component';
 import { Component, Input } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-@Component({template: '<demo-checkout-cart [cart]="cartValue" [subtitle]="subtitleValue"></demo-checkout-cart>'})
+@Component({template: '<demo-cart-summary [cart]="cartValue" [title]="titleValue"></demo-cart-summary>'})
 class WrapperComponent {
   cartValue: Cart;
-  subtitleValue: string;
+  titleValue: string;
 }
 
-@Component({selector: 'demo-checkout-cart-item', template: ''})
-class MockCheckoutCartItemComponent {
+@Component({selector: 'demo-minicart-item', template: ''})
+class MockMiniCartItemComponent {
   @Input() item: CartItem;
 }
 
-describe('CheckoutCartComponent', () => {
+describe('CartSummaryComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let checkoutCartItems;
-  let checkoutCart: CheckoutCartComponent;
+  let minicartItems;
+  let cartSummary: CartSummaryComponent;
   let router;
   let cartFactory: DaffCartFactory ;
   let cartItemFactory: DaffCartItemFactory;
   let mockCart: Cart;
-  const stubSubtitle = 'subtitle';
+  const stubTitle = 'title';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -38,9 +38,9 @@ describe('CheckoutCartComponent', () => {
         DaffCoreTestingModule
       ],
       declarations: [
-        CheckoutCartComponent,
+        CartSummaryComponent,
         WrapperComponent,
-        MockCheckoutCartItemComponent
+        MockMiniCartItemComponent
       ]
     })
     .compileComponents();
@@ -58,52 +58,52 @@ describe('CheckoutCartComponent', () => {
     });
 
     wrapper.cartValue = mockCart;
-    wrapper.subtitleValue = stubSubtitle;
+    wrapper.titleValue = stubTitle;
 
     fixture.detectChanges();
 
-    checkoutCartItems = fixture.debugElement.queryAll(By.css('demo-checkout-cart-item'));
-    checkoutCart = fixture.debugElement.query(By.css('demo-checkout-cart')).componentInstance;
+    minicartItems = fixture.debugElement.queryAll(By.css('demo-minicart-item'));
+    cartSummary = fixture.debugElement.query(By.css('demo-cart-summary')).componentInstance;
   });
 
   it('should create', () => {
-    expect(checkoutCart).toBeTruthy();
+    expect(cartSummary).toBeTruthy();
   });
 
   it('can be passed a Cart object', () => {
-    expect(checkoutCart.cart).toEqual(mockCart);
+    expect(cartSummary.cart).toEqual(mockCart);
   });
 
-  it('can be passed a subtitle as input', () => {
-    expect(checkoutCart.subtitle).toEqual(stubSubtitle);
+  it('can be passed a title as input', () => {
+    expect(cartSummary.title).toEqual(stubTitle);
   });
 
-  it('renders a <demo-checkout-cart-item> for every checkoutCart.items', () => {
-    expect(checkoutCartItems.length).toEqual(mockCart.items.length);
+  it('renders a <demo-minicart-item> for every miniCart.items', () => {
+    expect(minicartItems.length).toEqual(mockCart.items.length);
   });
 
-  describe('on <demo-checkout-cart-item>', () => {
+  describe('on <demo-minicart-item>', () => {
     it('should set item', () => {
-      expect(checkoutCartItems[0].componentInstance.item).toEqual(mockCart.items[0]);  
+      expect(minicartItems[0].componentInstance.item).toEqual(mockCart.items[0]);  
     });
   });
 
-  describe('when subtitle is null', () => {
+  describe('when title is null', () => {
     
-    it('should not render .checkout-cart__title', () => {
-      checkoutCart.subtitle = null;
+    it('should not render .cart-summary__header', () => {
+      cartSummary.title = null;
       fixture.detectChanges();
 
-      const cartTitleElement = fixture.debugElement.query(By.css('.checkout-cart__title'));
+      const cartTitleElement = fixture.debugElement.query(By.css('.cart-summary__title'));
 
       expect(cartTitleElement).toBeNull();
     });
   });
 
-  describe('when subtitle is defined', () => {
+  describe('when title is defined', () => {
     
-    it('should render .checkout-cart__title', () => {
-      const cartTitleElement = fixture.debugElement.query(By.css('.checkout-cart__title'));
+    it('should render .cart-summary__header', () => {
+      const cartTitleElement = fixture.debugElement.query(By.css('.cart-summary__title'));
 
       expect(cartTitleElement).not.toBeNull();
     });

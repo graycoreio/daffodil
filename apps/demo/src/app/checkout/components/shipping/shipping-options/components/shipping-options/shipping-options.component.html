@@ -1,10 +1,12 @@
 <fieldset class="shipping-options">
-  <legend class="shipping-options__title">Shipping Options</legend>
+  <div class="shipping-options__title">
+    <legend>Shipping Options</legend>
+    <div class="shipping-options__invalid" [hidden]="!errorState">
+      Please choose a shipping option.
+    </div>
+  </div>
   <div class="shipping-options__radio" *ngFor="let option of shippingOptions">
     <input type="radio" id="{{option.id}}" [formControl]="formGroup.controls['id']" [value]="option.id"/>
     <label for="{{option.id}}">{{option.text}}</label>
-  </div>
-  <div class="shipping-options__invalid" [hidden]="!errorState">
-    Please choose a shipping option.
   </div>
 </fieldset>

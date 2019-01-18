@@ -1,0 +1,9 @@
+<div class="cart-summary">
+  <div class="cart-summary__header" *ngIf="title">
+    <span class="cart-summary__title">{{title}}</span>
+    <span class="cart-summary__edit-cart"><a (click)="navigateToCart()">Edit Cart</a></span>
+  </div>
+  <div class="cart-summary__minicart">
+    <demo-minicart-item *ngFor="let item of cart.items" [item]="item"></demo-minicart-item>
+  </div>
+</div>

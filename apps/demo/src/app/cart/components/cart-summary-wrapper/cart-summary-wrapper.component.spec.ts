@@ -6,15 +6,16 @@ import { Observable ,  of } from 'rxjs';
 import { Cart } from '@daffodil/core';
 import { DaffCartFactory } from '@daffodil/core/testing';
 
-import { CheckoutCartAsyncWrapperComponent } from './checkout-cart-async-wrapper.component';
+import { CartSummaryWrapperComponent } from './cart-summary-wrapper.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
+import { CartSummaryComponent } from '../cart-summary/cart-summary.component';
 
 const cartFactory = new DaffCartFactory();
 const cart = cartFactory.create();
 const stubCartTitle = 'cartTitle';
 
-@Component({template: '<demo-checkout-cart-async-wrapper [cartTitle]="cartTitleValue" [cart]="cartValue$ | async" [loading]="loadingValue$ | async"><div class="transcluded-content"></div></demo-checkout-cart-async-wrapper>'})
+@Component({template: '<demo-cart-summary-wrapper [cartTitle]="cartTitleValue" [cart]="cartValue$ | async" [loading]="loadingValue$ | async"><div class="transcluded-content"></div></demo-cart-summary-wrapper>'})
 class WrapperComponent {
   cartValue$: Observable<Cart>;
   loadingValue$: Observable<boolean>;
@@ -22,12 +23,12 @@ class WrapperComponent {
 }
 
 @Component({
-  selector: 'demo-checkout-cart',
+  selector: 'demo-cart-summary',
   template: ''
 })
-class MockCheckoutCartComponent { 
+class MockCartSummaryComponent { 
   @Input() cart: Cart;
-  @Input() subtitle: string;
+  @Input() title: string;
 }
 
 @Component({
@@ -47,11 +48,11 @@ class MockHelpBoxComponent {}
 @Component({ selector: 'demo-loading-icon', template: ''})
 class MockLoadingIconComponent {}
 
-describe('CheckoutCartAsyncWrapper', () => {
+describe('CartSummaryWrapper', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let checkoutCartAsyncWrapperComponent: CheckoutCartAsyncWrapperComponent;
-  let checkoutCartComponent: MockCheckoutCartComponent;
+  let cartSummaryWrapperComponent: CartSummaryWrapperComponent;
+  let cartSummaryComponent: CartSummaryComponent;
   let cartTotalsComponent: MockCartTotalsComponent;
   let helpBoxComponent: MockHelpBoxComponent;
   let router;
@@ -63,11 +64,11 @@ describe('CheckoutCartAsyncWrapper', () => {
       ],
       declarations: [ 
         WrapperComponent,
-        MockCheckoutCartComponent,
+        CartSummaryWrapperComponent,
         MockCartTotalsComponent,
         MockHelpBoxComponent,
         MockLoadingIconComponent,
-        CheckoutCartAsyncWrapperComponent
+        MockCartSummaryComponent
       ]
     })
     .compileComponents();
@@ -82,43 +83,43 @@ describe('CheckoutCartAsyncWrapper', () => {
     wrapper.loadingValue$ = of(false);
     wrapper.cartTitleValue = stubCartTitle;
     
-    checkoutCartAsyncWrapperComponent = fixture.debugElement.query(By.css('demo-checkout-cart-async-wrapper')).componentInstance;
+    cartSummaryWrapperComponent = fixture.debugElement.query(By.css('demo-cart-summary-wrapper')).componentInstance;
 
     fixture.detectChanges();
 
-    checkoutCartComponent = fixture.debugElement.query(By.css('demo-checkout-cart')).componentInstance;
+    cartSummaryComponent = fixture.debugElement.query(By.css('demo-cart-summary')).componentInstance;
     cartTotalsComponent = fixture.debugElement.query(By.css('demo-cart-totals')).componentInstance;
     helpBoxComponent = fixture.debugElement.query(By.css('demo-help-box')).componentInstance;
   });
 
   it('should create', () => {
-    expect(checkoutCartAsyncWrapperComponent).toBeTruthy();
+    expect(cartSummaryWrapperComponent).toBeTruthy();
   });
 
   it('should be able to take cart as input', () => {
-    expect(checkoutCartAsyncWrapperComponent.cart).toEqual(cart);
+    expect(cartSummaryWrapperComponent.cart).toEqual(cart);
   });
 
   it('should be able to take loading as input', () => {
-    expect(checkoutCartAsyncWrapperComponent.loading).toEqual(false);
+    expect(cartSummaryWrapperComponent.loading).toEqual(false);
   });
 
   it('should be able to take cartTitle as input', () => {
-    expect(checkoutCartAsyncWrapperComponent.cartTitle).toEqual(stubCartTitle);
+    expect(cartSummaryWrapperComponent.cartTitle).toEqual(stubCartTitle);
   });
 
   it('should be able to take transcluded content', () => {
     expect(fixture.debugElement.query(By.css('.transcluded-content'))).not.toBeNull();
   });
 
-  describe('on <demo-checkout-cart>', () => {
+  describe('on <demo-cart-summary>', () => {
     
     it('should set cart to value passed by cart-container directive', () => {
-      expect(checkoutCartComponent.cart).toEqual(cart);
+      expect(cartSummaryComponent.cart).toEqual(cart);
     });
 
-    it('should set subtitle', () => {
-      expect(checkoutCartComponent.subtitle).toEqual(stubCartTitle);
+    it('should set title', () => {
+      expect(cartSummaryComponent.title).toEqual(stubCartTitle);
     });
   });
 
@@ -131,8 +132,8 @@ describe('CheckoutCartAsyncWrapper', () => {
 
   describe('when CartContainer.$loading is false', () => {
     
-    it('should render <demo-checkout-cart>', () => {
-      expect(checkoutCartComponent).not.toBeNull();
+    it('should render <demo-cart-summary>', () => {
+      expect(cartSummaryComponent).not.toBeNull();
     });
 
     it('should render <demo-cart-totals>', () => {
@@ -158,10 +159,9 @@ describe('CheckoutCartAsyncWrapper', () => {
       fixture.detectChanges();
     });
     
-    it('should not render <demo-checkout-cart>', () => {
-      const checkoutCartElement = fixture.debugElement.query(By.css('demo-checkout-cart'));
-
-      expect(checkoutCartElement).toBeNull();
+    it('should not render <demo-cart-summary>', () => {
+      const cartSummaryElement = fixture.debugElement.query(By.css('demo-cart-summary'));
+      expect(cartSummaryElement).toBeNull();
     });
 
     it('should not render <demo-cart-totals>', () => {
@@ -175,9 +175,9 @@ describe('CheckoutCartAsyncWrapper', () => {
     });
 
     it('should render loading-icon', () => {
-      const loadingIconElement = fixture.debugElement.query(By.css('.checkout-cart-async-wrapper__loading-icon'));
+      const loadingIcon = fixture.debugElement.query(By.css('.cart-summary-wrapper__loading-icon'));
       
-      expect(loadingIconElement).not.toBeNull();
+      expect(loadingIcon).not.toBeNull();
     });
   });
 });

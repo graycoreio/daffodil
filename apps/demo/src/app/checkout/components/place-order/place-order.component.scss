@@ -1,5 +1,6 @@
 @import 'daff-util';
 
-.button {
-  @include embolden();
+.place-order-button {
+  display: block;
+  width: 100%;
 }

@@ -10,6 +10,16 @@
     " card-number  card-number"
     "  expiration   expiration";
 
+  @include breakpoint(big-tablet) {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "       title"
+    "method-title"
+    " card-number"
+    "  expiration"
+    "        edit";
+  }
+
   &__title {
     margin-bottom: 5px;
     grid-area: title;
@@ -30,18 +40,18 @@
     grid-area: expiration;
   }
 
-  & a {
+  &__edit {
+    display: block;
     grid-area: edit;
-  }
+    font-size: 0.875rem;
+    text-decoration: underline;
+    justify-self: end;
+    @include clickable();
 
-  @include breakpoint(big-tablet) {
-    grid-template-areas: 
-    "       title        title"
-    "method-title method-title"
-    " card-number  card-number"
-    "  expiration   expiration"
-    "        edit        edit";
-    grid-template-columns: repeat(2, 1fr);
+    @include breakpoint(big-tablet) {
+      justify-self: start;
+      margin-top: 15px;
+    }
   }
 
   &__title {
@@ -49,16 +59,5 @@
     margin-bottom: 15px;
     @include embolden();
     @include uppercase();
-  }
-
-  & a {
-    display: block;
-    text-decoration: underline;
-    justify-self: end;
-
-    @include breakpoint(big-tablet) {
-      justify-self: start;
-      margin: 15px 0 10px 0;
-    }
   }
 }

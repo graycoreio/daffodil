@@ -5,7 +5,7 @@
   grid-column-gap: 10px;
   grid-row-gap: 15px;
 
-  @include breakpoint(big-tablet) {
+  @include breakpoint(tablet) {
     grid-template-columns: repeat(6, 1fr);
     grid-template-areas:
       "firstname firstname   firstname    lastname    lastname    lastname"

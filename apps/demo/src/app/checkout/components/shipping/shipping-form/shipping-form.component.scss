@@ -1,46 +1,20 @@
 @import 'daff-util';
 
 .shipping-form {
-  display: grid;
-  grid-column-gap: 10px;
-  grid-row-gap: 15px;
+  display: flex;
+  flex-direction: column;
 
   &__title {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     @include embolden();
     @include uppercase();
   }
 
-  @include breakpoint(big-tablet) {
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-areas: 
-      "    title     title       title       title       title       title"
-      "  address   address     address     address     address     address"
-      "  options   options     options     options     options     options"
-      "   button    button free-space1 free-space1 free-space1 free-space1";
+  &__button {
+    width: 100%;
 
-    &__title {
-      grid-area: title;
+    @include breakpoint(mobile) {
+      width: 50%;
     }
-
-    &__address {
-      grid-area: address;
-    }
-
-    &__options {
-      grid-area: options;
-    }
-
-    & button {
-      grid-area: button;
-    }
-
-    &__free-space1 {
-      grid-area: free-space1;
-    }
-  }
-
-  & button {
-    margin: 10px 0 0 0;
   }
 }

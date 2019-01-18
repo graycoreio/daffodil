@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HelpBoxComponent } from './help-box.component';
+import { MiniCartItemComponent } from './minicart-item.component';
 
 import {
   DaffLinkModule
@@ -13,10 +13,10 @@ import {
     DaffLinkModule
   ],
   declarations: [
-    HelpBoxComponent
+    MiniCartItemComponent
   ],
   exports: [
-    HelpBoxComponent
+    MiniCartItemComponent
   ]
 })
-export class HelpBoxModule { }
+export class MiniCartItemModule { }

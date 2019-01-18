@@ -1,7 +1,7 @@
 <div class="shipping-summary">
-  <div class="shipping-summary__title">shipping details</div>
+  <div class="shipping-summary__title">Shipping Details</div>
   <demo-address-summary class="shipping-summary__address" [address]="shippingAddress"></demo-address-summary>
   <div class="shipping-summary__subtitle">Shipping Option</div>
   <div class="shipping-summary__shipping-option">{{getSelectedShippingOption()}}</div>
-  <a (click)="onEdit()">Edit</a>
+  <a daff-link class="shipping-summary__edit" (click)="onEdit()">Edit</a>
 </div>

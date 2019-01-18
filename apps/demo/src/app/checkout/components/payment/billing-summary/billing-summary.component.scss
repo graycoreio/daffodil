@@ -2,9 +2,9 @@
 
 .billing-summary {
   font-size: $small-font-size;
-  margin-top: 15px;
 
   &__title {
     @include embolden();
+    margin: 15px 0 5px 0;
   }
 }
