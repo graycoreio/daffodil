@@ -9,22 +9,14 @@
       </span>
     </div>
     <demo-cart [cart]="cart"></demo-cart>
-    <button type="button" daff-button color="black" demoContinueShopping class="cart-wrapper__continue-shopping" *ngIf="(isCartEmpty$ | async)">
-      Continue Shopping
-    </button>
   </div>
   <div class="cart-wrapper__sidebar">
     <div class="cart-wrapper__summary" *ngIf="!(isCartEmpty$ | async)">
       <div class="cart-wrapper__summary-title">Cart Summary</div>
       <demo-cart-totals class="cart-wrapper__cart-totals" [cart]="cart"></demo-cart-totals>
-      <div daff-button-set class="cart-wrapper__button-set">
-        <button type="button" daff-button color="accent" demoProceedToCheckout>
-          Proceed to Checkout
-        </button>
-        <button type="button" daff-stroked-button color="black" demoContinueShopping>
-          Continue Shopping
-        </a>
-      </div>
+      <button type="button" daff-button color="accent" class="cart-wrapper__button" demoProceedToCheckout>
+        Proceed to Checkout
+      </button>
     </div>
     <demo-help-box class="cart-wrapper__help-box"></demo-help-box>
   </div>

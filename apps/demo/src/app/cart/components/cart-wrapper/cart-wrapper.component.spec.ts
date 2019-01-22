@@ -43,11 +43,6 @@ class MockHelpBoxComponent {}
 })
 class MockProceedToCheckoutDirective {}
 
-@Directive({
-  selector: '[demoContinueShopping]'
-})
-class MockContinueShoppingDirective {}
-
 describe('CartWrapper', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
@@ -56,7 +51,6 @@ describe('CartWrapper', () => {
   let cartTotalsComponent;
   let helpBoxComponent;
   let proceedToCheckoutDirective;
-  let continueShoppingDirective;
   const cartFactory = new DaffCartFactory();
   const cart = cartFactory.create();
   let stubIsCartEmpty = true;
@@ -75,7 +69,6 @@ describe('CartWrapper', () => {
         MockCartTotalsComponent,
         MockHelpBoxComponent,
         MockProceedToCheckoutDirective,
-        MockContinueShoppingDirective,
         CartWrapperComponent
       ]
     })
@@ -134,7 +127,6 @@ describe('CartWrapper', () => {
       cartTotalsComponent = fixture.debugElement.query(By.css('demo-cart-totals'));
       helpBoxComponent = fixture.debugElement.query(By.css('demo-help-box'));
       proceedToCheckoutDirective = fixture.debugElement.query(By.css('[demoProceedToCheckout]'));
-      continueShoppingDirective = fixture.debugElement.query(By.css('[demoContinueShopping]'));
     });
 
     it('should create', () => {
@@ -181,10 +173,6 @@ describe('CartWrapper', () => {
         it('should not render [demoProceedToCheckout]', () => {
           expect(proceedToCheckoutDirective).toBeNull();
         });
-
-        it('should render [demoContinueShopping]', () => {
-          expect(continueShoppingDirective).not.toBeNull();
-        });
       });
 
       describe('and cart is not empty', () => {
@@ -210,10 +198,6 @@ describe('CartWrapper', () => {
 
         it('should render [demoProceedToCheckout]', () => {
           expect(proceedToCheckoutDirective).not.toBeNull();
-        });
-
-        it('should render [demoContinueShopping]',() => {
-          expect(continueShoppingDirective).not.toBeNull();
         });
       });
     });
