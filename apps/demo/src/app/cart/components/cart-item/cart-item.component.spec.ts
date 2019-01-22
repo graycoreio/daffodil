@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
@@ -9,24 +9,18 @@ import { CartItemComponent } from './cart-item.component';
 import { CartItem } from '@daffodil/core';
 import { DaffCartItemFactory, DaffProductImageFactory } from '@daffodil/core/testing';
 import { DaffDriverTestingModule } from '@daffodil/driver/testing';
+import { DaffQtyDropdownModule, DaffQtyDropdownComponent } from '@daffodil/design';
 
 @Component({template: '<demo-cart-item [item]="cartItemValue"></demo-cart-item>'})
 class WrapperComponent {
   cartItemValue: CartItem;
 }
 
-// tslint:disable-next-line: component-selector
-@Component({selector: 'qty-dropdown', template: ''})
-class MockQtyDropdownComponent {
-  @Input() qty: number;
-  @Input() id: number;
-}
-
 describe('CartItemComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let cartItemComponent;
-  let qtyDropdownComponent: MockQtyDropdownComponent;
+  let qtyDropdownComponent: DaffQtyDropdownComponent;
   let router: Router;
   let cartItemFactory: DaffCartItemFactory;
   let productImageFactory: DaffProductImageFactory;
@@ -36,12 +30,12 @@ describe('CartItemComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        DaffDriverTestingModule
+        DaffDriverTestingModule,
+        DaffQtyDropdownModule
       ],
       declarations: [
         CartItemComponent,
-        WrapperComponent,
-        MockQtyDropdownComponent
+        WrapperComponent
       ]
     })
     .compileComponents();
@@ -58,7 +52,7 @@ describe('CartItemComponent', () => {
 
     wrapper.cartItemValue = mockCartItem;
     cartItemComponent = fixture.debugElement.query(By.css('demo-cart-item'));
-    qtyDropdownComponent = fixture.debugElement.query(By.css('qty-dropdown')).componentInstance;
+    qtyDropdownComponent = fixture.debugElement.query(By.css('daff-qty-dropdown')).componentInstance;
 
     fixture.detectChanges();
   });
@@ -71,11 +65,11 @@ describe('CartItemComponent', () => {
     expect(cartItemComponent.componentInstance.item).toEqual(mockCartItem);
   });
 
-  it('renders a <qty-dropdown>', () => {
+  it('renders a <daff-qty-dropdown>', () => {
     expect(qtyDropdownComponent).not.toBeNull();
   });
   
-  describe('on <qty-dropdown>', () => {
+  describe('on <daff-qty-dropdown>', () => {
     
     it('sets qty', () => {
       expect(qtyDropdownComponent.qty).toEqual(mockCartItem.qty);

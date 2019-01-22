@@ -5,6 +5,7 @@ import { By } from '@angular/platform-browser';
 import { Cart } from '@daffodil/core';
 import { DaffCartFactory } from '@daffodil/core/testing';
 import { fromCart } from '@daffodil/state';
+import { DaffButtonSetModule } from '@daffodil/design';
 
 import { CartWrapperComponent } from './cart-wrapper.component';
 import { StoreModule, combineReducers } from '@ngrx/store';
@@ -71,7 +72,8 @@ describe('CartWrapper', () => {
       imports: [
         StoreModule.forRoot({
           carts: combineReducers(fromCart.reducers),
-        })
+        }),
+        DaffButtonSetModule
       ],
       declarations: [ 
         WrapperComponent,
