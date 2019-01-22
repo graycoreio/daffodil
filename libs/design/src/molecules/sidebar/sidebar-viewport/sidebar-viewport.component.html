@@ -8,7 +8,7 @@
     *ngIf="hasBackdrop"
     [show]="opened"
     [backdropIsVisible]="backdropIsVisible"
-    (backdropClicked)="_onBackdropClicked()"></daff-backdrop>
+    (backdropClicked)="_backdropClicked()"></daff-backdrop>
 
   <div class="daff-sidebar-viewport__content" [@transformContent]="_animationState">
     <ng-content></ng-content>

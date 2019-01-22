@@ -9,37 +9,33 @@ import { DaffAccordionItemContentComponent } from './accordion-item-content.comp
     <div daff-accordion-item-content>Content</div>
   `
 })
-
-class Wrapper {
-
-}
+class WrapperComponent {}
 
 describe('DaffAccordionItemContentComponent', () => {
-  let wrapper: Wrapper;
-  let component: DaffAccordionItemContentComponent;
+  let accordionItemContent: DaffAccordionItemContentComponent;
   let de: DebugElement;
-  let fixture: ComponentFixture<Wrapper>;
+  let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         DaffAccordionItemContentComponent,
-        Wrapper
+        WrapperComponent
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Wrapper);
+    fixture = TestBed.createComponent(WrapperComponent);
     de = fixture.debugElement.query(By.css('[daff-accordion-item-content]'));
-    component = de.componentInstance;
+    accordionItemContent = de.componentInstance;
 
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(accordionItemContent).toBeTruthy();
   });
 
   describe('[daff-accordion-item-content]',() => {

@@ -11,15 +11,15 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
   <div daff-accordion-item-content>no content</div>
 </daff-accordion-item>
 `})
-class Wrapper {
+class WrapperComponent {
   initiallyActiveValue: boolean;
 }
 
 describe('DaffAccordionItemComponent', () => {
-  let wrapper: Wrapper;
-  let fixture: ComponentFixture<Wrapper>;
-  let component: DaffAccordionItemComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
+  let wrapper: WrapperComponent;
   let accordionHeader: DebugElement;
+  let daffAccordionItem: DaffAccordionItemComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -27,7 +27,7 @@ describe('DaffAccordionItemComponent', () => {
         NoopAnimationsModule
       ],
       declarations: [ 
-        Wrapper,
+        WrapperComponent,
         DaffAccordionItemComponent
       ]
     })
@@ -35,25 +35,25 @@ describe('DaffAccordionItemComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Wrapper);
+    fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     
     fixture.detectChanges();
     
-    component = fixture.debugElement.query(By.css('daff-accordion-item')).componentInstance;    
+    daffAccordionItem = fixture.debugElement.query(By.css('daff-accordion-item')).componentInstance;    
     accordionHeader = fixture.debugElement.query(By.css('.daff-accordion-item__header'));
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(daffAccordionItem).toBeTruthy();
   });
 
   it('should set _open to false by default', () => {
-    expect(component._open).toEqual(false);
+    expect(daffAccordionItem._open).toEqual(false);
   });
 
   it('should set _animationState to void by default', () => {
-    expect(component._animationState).toEqual('void');
+    expect(daffAccordionItem._animationState).toEqual('void');
   });
 
   it('should be able to accept an initiallyActive input', () => {
@@ -61,13 +61,13 @@ describe('DaffAccordionItemComponent', () => {
 
     fixture.detectChanges();
 
-    expect(component.initiallyActive).toEqual(false);
+    expect(daffAccordionItem.initiallyActive).toEqual(false);
 
     wrapper.initiallyActiveValue = true;
 
     fixture.detectChanges();
 
-    expect(component.initiallyActive).toEqual(true);
+    expect(daffAccordionItem.initiallyActive).toEqual(true);
   });
 
   describe('ngOnInit', () => {
@@ -80,8 +80,8 @@ describe('DaffAccordionItemComponent', () => {
       })
       
       it('should set _open to true', () => {
-        component.ngOnInit();
-        expect(component._open).toBeTruthy();
+        daffAccordionItem.ngOnInit();
+        expect(daffAccordionItem._open).toBeTruthy();
       });
     });
 
@@ -93,8 +93,8 @@ describe('DaffAccordionItemComponent', () => {
       })
       
       it('should set open to false', () => {
-        component.ngOnInit();
-        expect(component._open).toBeFalsy();
+        daffAccordionItem.ngOnInit();
+        expect(daffAccordionItem._open).toBeFalsy();
       });
     });
   });
@@ -102,33 +102,33 @@ describe('DaffAccordionItemComponent', () => {
   describe('when accordion header is clicked', () => {
 
     beforeEach(() => {
-      spyOn(component, 'toggleActive');
+      spyOn(daffAccordionItem, 'toggleActive');
       
       accordionHeader.nativeElement.click();
     });
 
     it('should call toggleActive', () => {
-      expect(component.toggleActive).toHaveBeenCalled();
+      expect(daffAccordionItem.toggleActive).toHaveBeenCalled();
     });
   });
 
   describe('toggleActive', () => {
     it('should toggle open', () => {
-      component._open = false;
+      daffAccordionItem._open = false;
 
-      component.toggleActive();
-      expect(component._open).toEqual(true);
+      daffAccordionItem.toggleActive();
+      expect(daffAccordionItem._open).toEqual(true);
 
-      component.toggleActive();
-      expect(component._open).toEqual(false);
+      daffAccordionItem.toggleActive();
+      expect(daffAccordionItem._open).toEqual(false);
     });
 
     it('should toggle _animationState between void and open', () =>  {
-      component.toggleActive();
-      expect(component._animationState).toEqual('open');
+      daffAccordionItem.toggleActive();
+      expect(daffAccordionItem._animationState).toEqual('open');
 
-      component.toggleActive();
-      expect(component._animationState).toEqual('void');
+      daffAccordionItem.toggleActive();
+      expect(daffAccordionItem._animationState).toEqual('void');
     });
   });
 });

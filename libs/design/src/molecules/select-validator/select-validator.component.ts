@@ -1,23 +1,24 @@
-import { Component, OnInit, ViewEncapsulation, Input, HostBinding } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, HostBinding, DoCheck } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ErrorStateMatcher } from '../error-state-matcher/error-state-matcher';
 
 @Component({
-  selector: '[select-validator]',
+  // tslint:disable-next-line: component-selector
+  selector: '[daff-select-validator]',
   template: '<ng-content></ng-content>',
-  host: {
-    'class': 'select-validator'
-  },
   styleUrls: ['./select-validator.component.scss'],
+  host: {
+    'class': 'daff-select-validator'
+  },
   encapsulation: ViewEncapsulation.None
 })
-export class SelectValidatorComponent implements OnInit {
+export class SelectValidatorComponent implements OnInit, DoCheck {
 
   @Input() formSubmitted: boolean;
   @Input() formControl: FormControl;
   @Input() errorStateMatcher: ErrorStateMatcher;
-  @HostBinding('class.select-validator__error') errorState: boolean;
-  @HostBinding('class.select-validator__valid') validState: boolean;
+  @HostBinding('class.daff-select-validator__error') errorState: boolean;
+  @HostBinding('class.daff-select-validator__valid') validState: boolean;
 
   constructor() {}
 
@@ -27,7 +28,7 @@ export class SelectValidatorComponent implements OnInit {
     }
 
     if (!this.formControl || this.formSubmitted === undefined) {
-      throw 'formControl: FormControl and formSubmitted: boolean are required fields';
+      throw Error('formControl: FormControl and formSubmitted: boolean are required fields');
     }
   }
 

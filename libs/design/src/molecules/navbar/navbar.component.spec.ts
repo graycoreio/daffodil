@@ -5,17 +5,17 @@ import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 @Component({template: '<daff-navbar class="host-element"></ daff-navbar>'})
-class TestDaffodilHeaderComponent {}
+class WrapperComponent {}
 
 describe('DaffNavbarComponent', () => {
-  let component: TestDaffodilHeaderComponent;
-  let fixture: ComponentFixture<TestDaffodilHeaderComponent>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let hostElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        TestDaffodilHeaderComponent,
+        WrapperComponent,
         DaffNavbarComponent
       ]
     })
@@ -23,15 +23,15 @@ describe('DaffNavbarComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestDaffodilHeaderComponent);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
     fixture.detectChanges();
 
     hostElement = fixture.debugElement.query(By.css('.host-element'));
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(wrapper).toBeTruthy();
   });
 
   it('should add a daff-navbar class to the host component', () => {

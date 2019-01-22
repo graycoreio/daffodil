@@ -4,11 +4,11 @@ import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/
   selector: 'daff-feature',
   templateUrl: './feature.component.html',
   styleUrls: ['./feature.component.scss'],
-  host: {'class': 'daff-feature'},
+  host: {
+    'class': 'daff-feature'
+  },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class DaffFeatureComponent {
-
-}
+export class DaffFeatureComponent {}

@@ -13,7 +13,6 @@ export enum DaffContainerSizeEnum {
   selector: 'daff-container',
   styleUrls: ['./container.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  template: '<ng-content></ng-content>',
   host: {
     class: 'daff-container',
     '[class.daff-container--xs]':'size === "' + DaffContainerSizeEnum.XSmall + '"',
@@ -22,6 +21,7 @@ export enum DaffContainerSizeEnum {
     '[class.daff-container--lg]':'size === "' + DaffContainerSizeEnum.Large + '"',
     '[class.daff-container--xl]':'size === "' + DaffContainerSizeEnum.XLarge + '"',
   },
+  template: '<ng-content></ng-content>',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaffContainerComponent {

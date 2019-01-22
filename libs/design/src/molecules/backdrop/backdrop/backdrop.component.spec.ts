@@ -11,24 +11,25 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
   [backdropIsVisible]="backdropIsVisibleValue"
   (backdropClicked)="backdropFunction()"></daff-backdrop>
 `})
-class TestDaffBackdropComponentWrapper {
-  showValue: boolean = true;
-  backdropIsVisibleValue: boolean = true;
+class WrapperComponent {
+  showValue = true;
+  backdropIsVisibleValue = true;
   backdropFunction: Function = () => {};
 }
 
 describe('DaffBackdropComponent', () => {
-  let component: TestDaffBackdropComponentWrapper;
-  let fixture: ComponentFixture<TestDaffBackdropComponentWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let backdrop: DaffBackdropComponent;
-
+  let backdropElement;
+  
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule
       ],
       declarations: [ 
-        TestDaffBackdropComponentWrapper,
+        WrapperComponent,
         DaffBackdropComponent
       ]
     })
@@ -36,15 +37,15 @@ describe('DaffBackdropComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestDaffBackdropComponentWrapper);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
     fixture.detectChanges();
 
     backdrop = fixture.debugElement.query(By.css('daff-backdrop')).componentInstance;
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(backdrop).toBeTruthy();
   });
 
   describe('when show is true', () => {
@@ -55,7 +56,7 @@ describe('DaffBackdropComponent', () => {
     });
     
     it('should render backdrop', () => {
-      let backdropElement = fixture.debugElement.query(By.css('.daff-backdrop'));
+      backdropElement = fixture.debugElement.query(By.css('.daff-backdrop'));
 
       expect(backdropElement).not.toBeNull();
     });
@@ -64,12 +65,12 @@ describe('DaffBackdropComponent', () => {
   describe('when show is false', () => {
 
     beforeEach(() => {
-      component.showValue = false;
+      wrapper.showValue = false;
       fixture.detectChanges();
     });
     
     it('should not render backdrop', () => {
-      let backdropElement = fixture.debugElement.query(By.css('.daff-backdrop'));
+      backdropElement = fixture.debugElement.query(By.css('.daff-backdrop'));
 
       expect(backdropElement).toBeNull();
     });
@@ -77,7 +78,7 @@ describe('DaffBackdropComponent', () => {
 
   describe('backdrop transparency', () => {
     beforeEach(() => {
-      component.backdropIsVisibleValue = false;
+      wrapper.backdropIsVisibleValue = false;
 
       fixture.detectChanges();
     });
@@ -91,7 +92,7 @@ describe('DaffBackdropComponent', () => {
   describe('when .daff-backdrop is clicked', () => {
 
     it('should emit backdropClicked', () => {
-      let backdropElement = fixture.debugElement.query(By.css('.daff-backdrop'));
+      backdropElement = fixture.debugElement.query(By.css('.daff-backdrop'));
       spyOn(backdrop.backdropClicked, 'emit');
 
       backdropElement.nativeElement.click();

@@ -9,22 +9,22 @@ import { DaffPalette } from '../../core/colorable/colorable';
     <daff-callout [layout]="layout" [size]="size" [color]="color"></daff-callout>
   `
 })
-class Wrapper {
+class WrapperComponent {
   color: DaffPalette;
   layout: string;
   size: string;
 }
 
 describe('DaffCalloutComponent', () => {
-  let wrapper: Wrapper;
-  let component: DaffCalloutComponent;
-  let fixture: ComponentFixture<Wrapper>;
+  let wrapper: WrapperComponent;
+  let calloutComponent: DaffCalloutComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        Wrapper,
+        WrapperComponent,
         DaffCalloutComponent
       ]
     })
@@ -32,16 +32,16 @@ describe('DaffCalloutComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Wrapper);
+    fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    component = fixture.debugElement.query(By.css('daff-callout')).componentInstance;
+    calloutComponent = fixture.debugElement.query(By.css('daff-callout')).componentInstance;
     de = fixture.debugElement.query(By.css('daff-callout'));
 
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(calloutComponent).toBeTruthy();
   });
 
   describe('using a layout variant of a callout', () => {
@@ -53,7 +53,7 @@ describe('DaffCalloutComponent', () => {
     });
 
     it('should not set a default layout', () => {
-      expect(component.layout).toBeFalsy();
+      expect(calloutComponent.layout).toBeFalsy();
     });
   });
 
@@ -66,7 +66,7 @@ describe('DaffCalloutComponent', () => {
     });
 
     it('should not set a default size', () => {
-      expect(component.size).toBeFalsy();
+      expect(calloutComponent.size).toBeFalsy();
     });
   });
 
@@ -79,7 +79,7 @@ describe('DaffCalloutComponent', () => {
     });
 
     it('should not set a default color', () => {
-      expect(component.color).toBeFalsy();
+      expect(calloutComponent.color).toBeFalsy();
     });
   });
 });

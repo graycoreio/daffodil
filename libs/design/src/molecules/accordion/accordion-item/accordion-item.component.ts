@@ -3,12 +3,13 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { daffAccordionAnimations } from '../animation/accordion-animation';
 import { getAnimationState } from '../animation/accordion-animation-state';
 
-
 @Component({
   selector: 'daff-accordion-item',
-  host: {'class': 'daff-accordion-item'},
   templateUrl: './accordion-item.component.html',
   styleUrls: ['./accordion-item.component.scss'],
+  host: {
+    'class': 'daff-accordion-item'
+  },
   encapsulation: ViewEncapsulation.None,
   animations: [
     daffAccordionAnimations.openAccordion
@@ -16,7 +17,7 @@ import { getAnimationState } from '../animation/accordion-animation-state';
 })
 export class DaffAccordionItemComponent implements OnInit {
   @Input() initiallyActive: boolean;
-  _open: boolean = false;
+  _open = false;
   _animationState: string;
   
   ngOnInit() {

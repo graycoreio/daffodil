@@ -1,2 +1,2 @@
 export { DaffQtyDropdownModule } from './qty-dropdown.module';
-export { QtyDropdownComponent } from './qty-dropdown.component';
+export { DaffQtyDropdownComponent } from './qty-dropdown.component';

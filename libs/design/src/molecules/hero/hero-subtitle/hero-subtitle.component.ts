@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: '[daff-hero-subtitle]',
+  host: {
+    'class': 'daff-hero__subtitle'
+  },
   template: '<ng-content></ng-content>',
-  host: {'class': 'daff-hero__subtitle'}
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DaffHeroSubtitleComponent {
-
-  constructor() { }
-
-}
+export class DaffHeroSubtitleComponent {}
