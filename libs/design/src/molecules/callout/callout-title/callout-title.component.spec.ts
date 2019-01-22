@@ -8,40 +8,35 @@ import { DaffCalloutTitleComponent } from './callout-title.component';
     <h3 daff-callout-title>Lorem Ipsum</h3>
   `
 })
- 
-class Wrapper {
-}
+class WrapperComponent {}
 
 describe('DaffCalloutTitleComponent', () => {
-  let wrapper: Wrapper;
-  let component: DaffCalloutTitleComponent;
-  let de: DebugElement;
-  let fixture: ComponentFixture<Wrapper>;
+  let calloutTitle: DebugElement;
+  let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         DaffCalloutTitleComponent,
-        Wrapper
+        WrapperComponent
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Wrapper);
-    de = fixture.debugElement.query(By.css('[daff-callout-title]'));
-    component = de.componentInstance;
-     fixture.detectChanges();
+    fixture = TestBed.createComponent(WrapperComponent);
+    calloutTitle = fixture.debugElement.query(By.css('[daff-callout-title]'));
+    fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(calloutTitle).toBeTruthy();
   });
 
   describe('[daff-callout-title]',() => {
     it('should add a class of `daff-callout__title` to its host element', () => {
-      expect(de.nativeElement.classList.contains('daff-callout__title')).toEqual(true);
+      expect(calloutTitle.nativeElement.classList.contains('daff-callout__title')).toEqual(true);
     });
   });
 }); 

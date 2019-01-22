@@ -12,17 +12,20 @@ import { getAnimationState } from '../animations/modal-animation-state';
   ]
 })
 export class DaffModalComponent implements OnInit {
-
-  ngOnInit() {
-    this._animationState = getAnimationState(this.show);
-    this.updatePositionClasses();
-  }
-
   _modalContentClasses: {[key: string]: boolean} = {};
   _animationState: string;
-  _verticalPosition: string = 'center';
-  _horizontalPosition: string = 'center';
-
+  _verticalPosition = 'center';
+  _horizontalPosition = 'center';
+  /**
+   * Internal tracking variable for the state of modal.
+   */
+  private _show = false;
+  
+  /**
+   * Input state for whether or not the backdrop is 
+   * "visible" to the human eye
+   */
+  @Input() backdropIsVisible = true;
   /**
    * Property for the "show" state of the modal
    */
@@ -32,7 +35,11 @@ export class DaffModalComponent implements OnInit {
     this._show = value;
     this._animationState = getAnimationState(value);
   }
-
+  /**
+   * Event fired when the backdrop is clicked
+   * This is often used to close the modal
+   */
+  @Output() hide: EventEmitter<void> = new EventEmitter<void>();
   @Input()
   get verticalPosition(): string { return this._verticalPosition; }
   set verticalPosition(value: string) {
@@ -55,26 +62,14 @@ export class DaffModalComponent implements OnInit {
     this.updatePositionClasses();
   }
 
-  /**
-   * Internal tracking variable for the state of modal.
-   */
-  private _show: boolean = false;
-
-  /**
-   * Event fired when the backdrop is clicked
-   * This is often used to close the modal
-   */
-  @Output() hide: EventEmitter<void> = new EventEmitter<void>();
-
-  _onBackdropClicked() : void {
+  ngOnInit() {
+    this._animationState = getAnimationState(this.show);
+    this.updatePositionClasses();
+  }
+  
+  _backdropClicked() : void {
     this.hide.emit();
   }
-
-  /**
-   * Input state for whether or not the backdrop is 
-   * "visible" to the human eye
-   */
-  @Input() backdropIsVisible: boolean = true;
 
   private updatePositionClasses() {
     const modalContentClasses = this._modalContentClasses;

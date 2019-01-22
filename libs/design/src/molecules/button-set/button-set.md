@@ -3,7 +3,7 @@ The button set component is used when there are two or more buttons grouped toge
 
 ## Usage 
 ```
-<div daff-button-set>
+<daff-button-set>
     <button></button>
     <button></button>
     <button></button>

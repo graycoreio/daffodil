@@ -43,16 +43,18 @@ describe('DaffLinkComponent', () => {
   });
 
   describe('using a colored variant of a link',() => {
+    let linkDE;
+    
     it('should set a color class on the link', () => {
       component.color = "primary";
       fixture.detectChanges();
       
-      let linkDE = fixture.debugElement.query(By.css('a[daff-link]'));
+      linkDE = fixture.debugElement.query(By.css('a[daff-link]'));
       expect(linkDE.nativeElement.classList.contains('daff-primary')).toEqual(true);
     });
 
     it('should set the default color to black', () => {
-      let linkDE = fixture.debugElement.query(By.css('a[daff-link]'));
+      linkDE = fixture.debugElement.query(By.css('a[daff-link]'));
       expect(linkDE.nativeElement.classList.contains('daff-black')).toEqual(true);
     });
   });

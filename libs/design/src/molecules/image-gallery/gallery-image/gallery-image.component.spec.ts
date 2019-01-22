@@ -5,20 +5,20 @@ import { By } from '@angular/platform-browser';
 import { DaffGalleryImageComponent } from './gallery-image.component';
 
 @Component({template: '<daff-gallery-image class="host-component" [selected]="selectedValue"><div class="inner-element"></div></daff-gallery-image>'})
-class TestGalleryImageWrapper {
-  selectedValue: boolean = true;
+class WrapperComponent {
+  selectedValue = true;
 }
 
 describe('DaffGalleryImageComponent', () => {
-  let component: TestGalleryImageWrapper;
-  let fixture: ComponentFixture<TestGalleryImageWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let hostElement;
-  let galleryImage: DaffGalleryImageComponent;
+  let component: DaffGalleryImageComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        TestGalleryImageWrapper,
+        WrapperComponent,
         DaffGalleryImageComponent
       ]
     })
@@ -26,17 +26,17 @@ describe('DaffGalleryImageComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestGalleryImageWrapper);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
 
     hostElement = fixture.debugElement.query(By.css('.host-component'));
-    galleryImage = fixture.debugElement.query(By.css('daff-gallery-image')).componentInstance;
+    component = fixture.debugElement.query(By.css('daff-gallery-image')).componentInstance;
 
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(wrapper).toBeTruthy();
   });
 
   it('should add an daff-image-gallery__daff-gallery-image class to host element', () => {
@@ -48,13 +48,13 @@ describe('DaffGalleryImageComponent', () => {
   });
 
   it('should be able to take selected as input', () => {
-    expect(galleryImage.selected).toEqual(true);
+    expect(component.selected).toEqual(true);
   });
 
   describe('when selected is true', () => {
     
     it('should add the daff-image-gallery__daff-gallery-image--selected class to host element', () => {
-      component.selectedValue = true
+      wrapper.selectedValue = true
       fixture.detectChanges();
 
       expect(hostElement.nativeElement.classList.contains('daff-image-gallery__daff-gallery-image--selected')).toBeTruthy();
@@ -64,7 +64,7 @@ describe('DaffGalleryImageComponent', () => {
   describe('when selected is false', () => {
     
     it('should not add the daff-image-gallery__daff-gallery-image--selected class to host element', () => {
-      component.selectedValue = false;
+      wrapper.selectedValue = false;
       fixture.detectChanges();
 
       expect(hostElement.nativeElement.classList.contains('daff-image-gallery__daff-gallery-image--selected')).toBeFalsy();

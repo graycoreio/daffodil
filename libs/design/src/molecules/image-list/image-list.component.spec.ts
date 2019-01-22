@@ -5,17 +5,17 @@ import { By } from '@angular/platform-browser';
 import { DaffImageListComponent } from './image-list.component';
 
 @Component({template: '<daff-image-list class="host-component"><div class="inner-element"></div></daff-image-list>'})
-class TestDaffImageListWrapper {}
+class WrapperComponent {}
 
 describe('DaffImageListComponent', () => {
-  let component: TestDaffImageListWrapper;
-  let fixture: ComponentFixture<TestDaffImageListWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let hostElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        TestDaffImageListWrapper,
+        WrapperComponent,
         DaffImageListComponent
       ]
     })
@@ -23,8 +23,8 @@ describe('DaffImageListComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestDaffImageListWrapper);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
 
     hostElement = fixture.debugElement.query(By.css('.host-component'));
 
@@ -32,7 +32,7 @@ describe('DaffImageListComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(wrapper).toBeTruthy();
   });
 
   it('should add an daff-image-list class to host element', () => {

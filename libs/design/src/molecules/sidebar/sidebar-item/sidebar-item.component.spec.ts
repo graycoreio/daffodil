@@ -5,16 +5,16 @@ import { By } from '@angular/platform-browser';
 import { DaffSidebarItemComponent } from './sidebar-item.component';
 
 @Component({template: '<div class="sidebar-item-wrapper" daff-sidebar-item>Title</div>'})
-class TestSidebarItemWrapper {}
+class WrapperComponent {}
 
 describe('DaffSidebarItemComponent', () => {
-  let component: TestSidebarItemWrapper;
-  let fixture: ComponentFixture<TestSidebarItemWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        TestSidebarItemWrapper,
+        WrapperComponent,
         DaffSidebarItemComponent
       ]
     })
@@ -22,17 +22,17 @@ describe('DaffSidebarItemComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestSidebarItemWrapper);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(wrapper).toBeTruthy();
   });
 
   it('should add a class of `daff-sidebar__item` to its host', () => {
-    let sidebarItemWrapper = fixture.debugElement.query(By.css('.sidebar-item-wrapper'));
+    const sidebarItemWrapper = fixture.debugElement.query(By.css('.sidebar-item-wrapper'));
 
     expect(sidebarItemWrapper.nativeElement.classList.contains('daff-sidebar__item')).toBeTruthy();
   });

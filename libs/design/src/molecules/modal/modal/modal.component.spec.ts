@@ -12,17 +12,17 @@ import { DaffModalComponent } from './modal.component';
       [show]="show" 
       [verticalPosition]="verticalPositionValue"
       [horizontalPosition]="horizontalPositionValue"
-      (hide)="onBackdropClickedFunction()"></daff-modal>
+      (hide)="backdropClickedFunction()"></daff-modal>
   </div>
 `})
-class TestModalWrapper {
-  show: boolean = true;
+class WrapperComponent {
+  show = true;
   verticalPositionValue = 'top';
   horizontalPositionValue = 'right';
 
-  backdropIsVisible : boolean = false;
+  backdropIsVisible = false;
 
-  onBackdropClickedFunction() {}
+  backdropClickedFunction() {}
 }
 
 @Component({selector: 'daff-backdrop', template: ''})
@@ -33,10 +33,11 @@ class MockDaffBackDropComponent {
 }
 
 describe('DaffModalComponent', () => {
-  let component: TestModalWrapper;
-  let fixture: ComponentFixture<TestModalWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let modal: DaffModalComponent;
   let backdrop: MockDaffBackDropComponent;
+  let daffModalElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -44,7 +45,7 @@ describe('DaffModalComponent', () => {
         NoopAnimationsModule
       ],
       declarations: [
-        TestModalWrapper,
+        WrapperComponent,
         DaffModalComponent,
         MockDaffBackDropComponent
       ]
@@ -53,44 +54,43 @@ describe('DaffModalComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestModalWrapper);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
 
     modal = fixture.debugElement.query(By.css('daff-modal')).componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(wrapper).toBeTruthy();
   });
 
   it('should be able to take show as input', () => {
-    expect(modal.show).toEqual(component.show);
+    expect(modal.show).toEqual(wrapper.show);
   });
 
   it('should be able to take backdropIsVisible as input', () => {
-    expect(modal.backdropIsVisible).toEqual(component.backdropIsVisible);
+    expect(modal.backdropIsVisible).toEqual(wrapper.backdropIsVisible);
   });
 
   it('should be able to take verticalPosition as input', () => {
-    expect(modal.verticalPosition).toEqual(component.verticalPositionValue);
+    expect(modal.verticalPosition).toEqual(wrapper.verticalPositionValue);
   });
 
   it('should be able to take horizontalPosition as input', () => {
-    expect(modal.horizontalPosition).toEqual(component.horizontalPositionValue);
+    expect(modal.horizontalPosition).toEqual(wrapper.horizontalPositionValue);
   });
 
   describe('when _show is true', () => {
     
     it('should render .daff-modal', () => {
-      let daffModalElement = fixture.debugElement.query(By.css('.daff-modal'));
+      daffModalElement = fixture.debugElement.query(By.css('.daff-modal'));
       expect(daffModalElement).not.toBeNull();
     });
   });
 
   describe('when _show is false', () => {
 
-    let daffModalElement;
 
     beforeEach(() => {
       modal.show = false;
@@ -123,13 +123,13 @@ describe('DaffModalComponent', () => {
 
     beforeEach(() => {
       backdrop = fixture.debugElement.query(By.css('daff-backdrop')).componentInstance;
-      spyOn(component, 'onBackdropClickedFunction');
+      spyOn(wrapper, 'backdropClickedFunction');
 
       backdrop.backdropClicked.emit();
     });
     
     it('should call hostComponent.backdropClicked.emit', () => {
-      expect(component.onBackdropClickedFunction).toHaveBeenCalled();
+      expect(wrapper.backdropClickedFunction).toHaveBeenCalled();
     });
   });
 
@@ -140,7 +140,7 @@ describe('DaffModalComponent', () => {
       let contentWrapperElement;
       
       beforeEach(() => {
-        component.horizontalPositionValue = 'left';
+        wrapper.horizontalPositionValue = 'left';
         fixture.detectChanges();
         contentWrapperElement = fixture.debugElement.query(By.css('.daff-modal__content')).nativeElement;
       });
@@ -163,7 +163,7 @@ describe('DaffModalComponent', () => {
       let contentWrapperElement;
       
       beforeEach(() => {
-        component.horizontalPositionValue = 'right';
+        wrapper.horizontalPositionValue = 'right';
         fixture.detectChanges();
         contentWrapperElement = fixture.debugElement.query(By.css('.daff-modal__content')).nativeElement;
       });
@@ -186,7 +186,7 @@ describe('DaffModalComponent', () => {
       let contentWrapperElement;
       
       beforeEach(() => {
-        component.horizontalPositionValue = 'center';
+        wrapper.horizontalPositionValue = 'center';
         fixture.detectChanges();
         contentWrapperElement = fixture.debugElement.query(By.css('.daff-modal__content')).nativeElement;
       });
@@ -212,7 +212,7 @@ describe('DaffModalComponent', () => {
       let contentWrapperElement;
       
       beforeEach(() => {
-        component.verticalPositionValue = 'top';
+        wrapper.verticalPositionValue = 'top';
         fixture.detectChanges();
         contentWrapperElement = fixture.debugElement.query(By.css('.daff-modal__content')).nativeElement;
       });
@@ -235,7 +235,7 @@ describe('DaffModalComponent', () => {
       let contentWrapperElement;
       
       beforeEach(() => {
-        component.verticalPositionValue = 'bottom';
+        wrapper.verticalPositionValue = 'bottom';
         fixture.detectChanges();
         contentWrapperElement = fixture.debugElement.query(By.css('.daff-modal__content')).nativeElement;
       });
@@ -258,7 +258,7 @@ describe('DaffModalComponent', () => {
       let contentWrapperElement;
       
       beforeEach(() => {
-        component.verticalPositionValue = 'center';
+        wrapper.verticalPositionValue = 'center';
         fixture.detectChanges();
         contentWrapperElement = fixture.debugElement.query(By.css('.daff-modal__content')).nativeElement;
       });

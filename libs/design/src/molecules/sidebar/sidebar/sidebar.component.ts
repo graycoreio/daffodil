@@ -1,10 +1,7 @@
-import { Component, ViewEncapsulation, NgZone, ElementRef, Output, EventEmitter, Optional, Inject, Input } from '@angular/core';
-
-import { ESCAPE } from '@angular/cdk/keycodes';
+import { Component, ViewEncapsulation, NgZone, ElementRef, Output, EventEmitter } from '@angular/core';
 
 import { filter } from 'rxjs/operators';
 import { fromEvent } from 'rxjs';
-import { DOCUMENT } from '@angular/platform-browser';
 
 /**
  * DaffSidebar is heavily based upon the work done by the @angular/material2
@@ -15,11 +12,11 @@ import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
   selector: 'daff-sidebar',
+  styleUrls: ['./sidebar.component.scss'],
+  template: '<ng-content></ng-content>',
   host: {
     'class': 'daff-sidebar'
   },
-  styleUrls: ['./sidebar.component.scss'],
-  template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
 export class DaffSidebarComponent {

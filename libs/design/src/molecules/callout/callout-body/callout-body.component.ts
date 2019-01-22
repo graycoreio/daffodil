@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
  @Component({
+  // tslint:disable-next-line: component-selector
   selector: '[daff-callout-body]',
+  host: {
+    'class': 'daff-callout__body'
+  },
   template: '<ng-content></ng-content>',
-  host: {'class': 'daff-callout__body'}
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-
-export class DaffCalloutBodyComponent {
-
- }
+export class DaffCalloutBodyComponent {}
