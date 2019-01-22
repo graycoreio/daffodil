@@ -61,10 +61,10 @@ describe('SidebarContainer', () => {
     expect(sidebarViewport.mode).toEqual("over");
   });
 
-  it('should call close when the `daff-sidebar-viewport` emits `onBackdropClicked`', () => {
+  it('should call close when the `daff-sidebar-viewport` emits `backdropClicked`', () => {
     spyOn(component, 'close');
 
-    sidebarViewport.onBackdropClicked.emit()
+    sidebarViewport.backdropClicked.emit()
 
     expect(component.close).toHaveBeenCalledWith();    
   });

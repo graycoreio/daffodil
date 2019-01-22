@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { FooterComponent } from './footer.component';
 import { By } from '@angular/platform-browser';
 
-import { DaffContainerModule, DaffListModule } from '@daffodil/design';
+import { DaffContainerModule, DaffListModule, DaffButtonSetModule } from '@daffodil/design';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
@@ -18,7 +18,8 @@ describe('FooterComponent', () => {
       imports: [
         RouterTestingModule,
         DaffContainerModule,
-        DaffListModule
+        DaffListModule,
+        DaffButtonSetModule
       ]
     })
     .compileComponents();

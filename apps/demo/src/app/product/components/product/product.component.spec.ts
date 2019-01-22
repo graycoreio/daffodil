@@ -14,7 +14,7 @@ import {
   DaffAccordionModule, 
   DaffQtyDropdownModule, 
   DaffContainerModule,
-  QtyDropdownComponent 
+  DaffQtyDropdownComponent 
 } from '@daffodil/design';
 
 @Component({template: '<demo-product [product]="productValue" [qty]="qtyValue" (updateQty)="updateQtyFunction($event)"></demo-product>'})
@@ -92,12 +92,12 @@ describe('ProductComponent', () => {
     });
   });
 
-  describe('on <qty-dropdown>', () => {
+  describe('on <daff-qty-dropdown>', () => {
 
-    let qtyDropdownComponent: QtyDropdownComponent;
+    let qtyDropdownComponent: DaffQtyDropdownComponent;
 
     beforeEach(() => {
-      qtyDropdownComponent = fixture.debugElement.query(By.css('qty-dropdown')).componentInstance;
+      qtyDropdownComponent = fixture.debugElement.query(By.css('daff-qty-dropdown')).componentInstance;
     });
 
     it('should set id', () => {

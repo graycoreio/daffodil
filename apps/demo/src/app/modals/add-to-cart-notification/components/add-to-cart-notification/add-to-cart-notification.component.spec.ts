@@ -6,6 +6,7 @@ import { By } from '@angular/platform-browser';
 import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 import { DaffProductFactory } from '@daffodil/core/testing';
 import { Product } from '@daffodil/core';
+import { DaffButtonSetModule } from '@daffodil/design';
 // importing from @daffodil/state doesn't work.
 import * as fromProduct from 'libs/state/src/product/reducers/index';
 
@@ -81,7 +82,8 @@ describe('AddToCartNotificationComponent', () => {
         StoreModule.forRoot({
           product: combineReducers(fromProduct.reducers)
         }),
-        DaffDriverTestingModule
+        DaffDriverTestingModule,
+        DaffButtonSetModule
       ],
       declarations: [
         WrapperComponent,

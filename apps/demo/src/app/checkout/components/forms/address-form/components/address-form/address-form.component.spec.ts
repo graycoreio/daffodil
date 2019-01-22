@@ -16,14 +16,14 @@ class WrapperComponent {
 }
 
 // tslint:disable-next-line: component-selector
-@Component({selector: '[input-validator]', template: ''})
+@Component({selector: '[daff-input-validator]', template: ''})
 class MockInputValidatorComponent {
   @Input() formControl: FormControl;
   @Input() formSubmitted: boolean;
 }
 
 // tslint:disable-next-line: component-selector
-@Component({selector: '[select-validator]', template: ''})
+@Component({selector: '[daff-select-validator]', template: ''})
 class MockSelectValidatorComponent {
   @Input() formControl: FormControl;
   @Input() formSubmitted: boolean;
@@ -84,12 +84,12 @@ describe('AddressFormComponent', () => {
     expect(addressForm.submitted).toEqual(wrapper.submittedValue);
   });
 
-  describe('on [input-validator]', () => {
+  describe('on [daff-input-validator]', () => {
 
     let inputValidator: MockInputValidatorComponent;
 
     beforeEach(() => {
-      inputValidator = fixture.debugElement.queryAll(By.css('[input-validator]'))[0].componentInstance;
+      inputValidator = fixture.debugElement.queryAll(By.css('[daff-input-validator]'))[0].componentInstance;
     });
     
     it('should set formControl', () => {
@@ -101,12 +101,12 @@ describe('AddressFormComponent', () => {
     });
   });
 
-  describe('on [select-validator]', () => {
+  describe('on [daff-select-validator]', () => {
 
     let selectValidator: MockSelectValidatorComponent;
 
     beforeEach(() => {
-      selectValidator = fixture.debugElement.query(By.css('[select-validator]')).componentInstance;
+      selectValidator = fixture.debugElement.query(By.css('[daff-select-validator]')).componentInstance;
     });
     
     it('should set formControl', () => {
