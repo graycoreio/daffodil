@@ -5,7 +5,6 @@ import { By } from '@angular/platform-browser';
 import { Cart } from '@daffodil/core';
 import { DaffCartFactory } from '@daffodil/core/testing';
 import { fromCart } from '@daffodil/state';
-import { DaffButtonSetModule } from '@daffodil/design';
 
 import { CartWrapperComponent } from './cart-wrapper.component';
 import { StoreModule, combineReducers } from '@ngrx/store';
@@ -39,19 +38,15 @@ class MockCartTotalsComponent {
 })
 class MockHelpBoxComponent {}
 
-@Component({
-  // tslint:disable-next-line: component-selector
-  selector: '[demo-proceed-to-checkout]',
-  template: '<ng-content></ng-content>'
+@Directive({
+  selector: '[demoProceedToCheckout]'
 })
-class MockProceedToCheckoutComponent {}
+class MockProceedToCheckoutDirective {}
 
-@Component({
-  // tslint:disable-next-line: component-selector
-  selector: '[demo-continue-shopping]',
-  template: '<ng-content></ng-content>'
+@Directive({
+  selector: '[demoContinueShopping]'
 })
-class MockContinueShoppingComponent {}
+class MockContinueShoppingDirective {}
 
 describe('CartWrapper', () => {
   let wrapper: WrapperComponent;
@@ -72,16 +67,15 @@ describe('CartWrapper', () => {
       imports: [
         StoreModule.forRoot({
           carts: combineReducers(fromCart.reducers),
-        }),
-        DaffButtonSetModule
+        })
       ],
       declarations: [ 
         WrapperComponent,
         MockCartComponent,
         MockCartTotalsComponent,
         MockHelpBoxComponent,
-        MockProceedToCheckoutComponent,
-        MockContinueShoppingComponent,
+        MockProceedToCheckoutDirective,
+        MockContinueShoppingDirective,
         CartWrapperComponent
       ]
     })
@@ -139,8 +133,8 @@ describe('CartWrapper', () => {
       cartComponent = fixture.debugElement.query(By.css('demo-cart'));
       cartTotalsComponent = fixture.debugElement.query(By.css('demo-cart-totals'));
       helpBoxComponent = fixture.debugElement.query(By.css('demo-help-box'));
-      proceedToCheckoutComponent = fixture.debugElement.query(By.css('[demo-proceed-to-checkout]'));
-      continueShoppingComponent = fixture.debugElement.query(By.css('[demo-continue-shopping]'));
+      proceedToCheckoutComponent = fixture.debugElement.query(By.css('[demoProceedToCheckout]'));
+      continueShoppingComponent = fixture.debugElement.query(By.css('[demoContinueShopping]'));
     });
 
     it('should create', () => {
@@ -184,11 +178,11 @@ describe('CartWrapper', () => {
           expect(cartTotalsComponent).toBeNull();
         });
         
-        it('should not render [demo-proceed-to-checkout]', () => {
+        it('should not render [demoProceedToCheckout]', () => {
           expect(proceedToCheckoutComponent).toBeNull();
         });
 
-        it('should render [demo-continue-shopping]', () => {
+        it('should render [demoContinueShopping]', () => {
           expect(continueShoppingComponent).not.toBeNull();
         });
       });
@@ -214,11 +208,11 @@ describe('CartWrapper', () => {
           expect(cartTotalsComponent.componentInstance.cart).toEqual(cart);
         });
 
-        it('should render [demo-proceed-to-checkout]', () => {
+        it('should render [demoProceedToCheckout]', () => {
           expect(proceedToCheckoutComponent).not.toBeNull();
         });
 
-        it('should render [demo-continue-shopping]',() => {
+        it('should render [demoContinueShopping]',() => {
           expect(continueShoppingComponent).not.toBeNull();
         });
       });

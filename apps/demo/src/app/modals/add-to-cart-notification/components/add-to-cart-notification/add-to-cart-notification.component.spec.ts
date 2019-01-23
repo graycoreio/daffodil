@@ -6,7 +6,6 @@ import { By } from '@angular/platform-browser';
 import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 import { DaffProductFactory } from '@daffodil/core/testing';
 import { Product } from '@daffodil/core';
-import { DaffButtonSetModule } from '@daffodil/design';
 // importing from @daffodil/state doesn't work.
 import * as fromProduct from 'libs/state/src/product/reducers/index';
 
@@ -36,19 +35,11 @@ class MockDaffModalComponent {
   @Output() hide: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({ 
-  // tslint:disable-next-line: component-selector
-  selector: '[demo-view-cart]',
-  template: '<ng-content></ng-content>'
-})
-class MockViewCartComponent {}
+@Directive({ selector: '[demoViewCart]'})
+class MockViewCartDirective {}
 
-@Component({ 
-  // tslint:disable-next-line: component-selector
-  selector: '[demo-proceed-to-checkout]',
-  template: '<ng-content></ng-content>'
-})
-class MockProceedToCheckoutComponent {}
+@Directive({ selector: '[demoProceedToCheckout]'})
+class MockProceedToCheckoutDirective {}
 
 @Component({ selector: 'demo-modal-portal', template: '<ng-content></ng-content>'})
 class MockModalPortalComponent {}
@@ -82,15 +73,14 @@ describe('AddToCartNotificationComponent', () => {
         StoreModule.forRoot({
           product: combineReducers(fromProduct.reducers)
         }),
-        DaffDriverTestingModule,
-        DaffButtonSetModule
+        DaffDriverTestingModule
       ],
       declarations: [
         WrapperComponent,
         AddToCartNotificationComponent,
         MockDaffModalComponent,
-        MockViewCartComponent,
-        MockProceedToCheckoutComponent,
+        MockViewCartDirective,
+        MockProceedToCheckoutDirective,
         MockModalPortalComponent,
         MockProductAddedComponent,
         MockLoadingIconComponent
@@ -217,19 +207,19 @@ describe('AddToCartNotificationComponent', () => {
     });
   });
 
-  describe('when [demo-view-cart] is clicked', () => {
+  describe('when [demoViewCart] is clicked', () => {
     
     it('should call dispatch a CloseAddToCartNotification action', () => {
-      fixture.debugElement.query(By.css('[demo-view-cart]')).nativeElement.click();
+      fixture.debugElement.query(By.css('[demoViewCart]')).nativeElement.click();
 
       expect(store.dispatch).toHaveBeenCalledWith(new CloseAddToCartNotification());
     });
   });
 
-  describe('when [demo-proceed-to-checkout] is clicked', () => {
+  describe('when [demoProceedToCheckout] is clicked', () => {
     
     it('should call dispatch a CloseAddToCartNotification action', () => {
-      fixture.debugElement.query(By.css('[demo-proceed-to-checkout]')).nativeElement.click();
+      fixture.debugElement.query(By.css('[demoProceedToCheckout]')).nativeElement.click();
       
       expect(store.dispatch).toHaveBeenCalledWith(new CloseAddToCartNotification());
     });

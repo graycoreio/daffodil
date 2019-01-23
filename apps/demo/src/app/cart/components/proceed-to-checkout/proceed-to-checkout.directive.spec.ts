@@ -1,37 +1,47 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
-import { ContinueShoppingComponent } from './continue-shopping.component';
+import { ProceedToCheckoutDirective } from './proceed-to-checkout.directive';
 import { Component } from '@angular/core';
 
-@Component({template: '<button demo-continue-shopping></button>'})
+@Component({template: '<button demoProceedToCheckout></button>'})
 class WrapperComponent {}
 
-describe('ContinueShoppingComponent', () => {
+describe('ProceedToCheckoutDirective', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let router: Router;
+  let router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule ],
-      declarations: [ WrapperComponent, ContinueShoppingComponent ]
+      imports: [
+        RouterTestingModule
+      ],
+      declarations: [
+        WrapperComponent,
+        ProceedToCheckoutDirective
+      ]
     });
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
-    wrapper = fixture.componentInstance;
     router = TestBed.get(Router);
-    spyOn(router, 'navigateByUrl');
-
+    wrapper = fixture.componentInstance;
+    
     fixture.detectChanges();
+
+    spyOn(router, 'navigateByUrl');
   });
 
   it('should create', () => {
     expect(wrapper).toBeTruthy();
+  });
+
+  it('should display a proceed to checkout button', () => {
+    expect(fixture.debugElement.query(By.css('.button'))).toBeDefined();
   });
 
   describe('when button is clicked', () => {
@@ -39,7 +49,7 @@ describe('ContinueShoppingComponent', () => {
     it('should call router.navigateByUrl', () => {
       fixture.debugElement.query(By.css('button')).nativeElement.click();
 
-      expect(router.navigateByUrl).toHaveBeenCalledWith('/product-grid');
+      expect(router.navigateByUrl).toHaveBeenCalledWith('/checkout');
     });
   });
 });
