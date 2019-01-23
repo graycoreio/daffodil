@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ContinueShoppingComponent } from './continue-shopping.component';
+import { ContinueShoppingDirective } from './continue-shopping.directive';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -10,10 +10,10 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   declarations: [
-    ContinueShoppingComponent
+    ContinueShoppingDirective
   ],
   exports: [
-    ContinueShoppingComponent
+    ContinueShoppingDirective
   ]
 })
 export class ContinueShoppingModule { }

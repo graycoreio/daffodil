@@ -1,38 +1,32 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ViewCartComponent } from './view-cart.component';
-import { By } from '@angular/platform-browser';
-import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { By } from '@angular/platform-browser';
+
+import { ContinueShoppingDirective } from './continue-shopping.directive';
 import { Component } from '@angular/core';
 
-@Component({template: '<button demo-view-cart></button>'})
+@Component({template: '<button demoContinueShopping></button>'})
 class WrapperComponent {}
 
-describe('ViewCartComponent', () => {
+describe('ContinueShoppingDirective', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let router;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [ 
-        ViewCartComponent, 
-        WrapperComponent
-      ]
-    })
-    .compileComponents();
+      imports: [ RouterTestingModule ],
+      declarations: [ WrapperComponent, ContinueShoppingDirective ]
+    });
   }));
 
   beforeEach(() => {
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
     router = TestBed.get(Router);
     spyOn(router, 'navigateByUrl');
 
-    fixture = TestBed.createComponent(WrapperComponent);
-    wrapper = fixture.componentInstance;
     fixture.detectChanges();
   });
 
@@ -45,7 +39,7 @@ describe('ViewCartComponent', () => {
     it('should call router.navigateByUrl', () => {
       fixture.debugElement.query(By.css('button')).nativeElement.click();
 
-      expect(router.navigateByUrl).toHaveBeenCalledWith('/cart');
+      expect(router.navigateByUrl).toHaveBeenCalledWith('/product-grid');
     });
   });
 });

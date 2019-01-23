@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ViewCartComponent } from './view-cart.component';
+import { ViewCartDirective } from './view-cart.directive';
 import { DaffButtonModule } from '@daffodil/design';
 
 @NgModule({
@@ -10,10 +10,10 @@ import { DaffButtonModule } from '@daffodil/design';
     DaffButtonModule
   ],
   declarations: [
-    ViewCartComponent
+    ViewCartDirective
   ],
   exports: [
-    ViewCartComponent
+    ViewCartDirective
   ]
 })
 export class ViewCartModule { }
