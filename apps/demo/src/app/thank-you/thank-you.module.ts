@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { DaffContainerModule, DaffAccordionModule, DaffLoadingIconModule } from '@daffodil/design';
+import { StateCartModule } from '@daffodil/state';
+
+import { CartSummaryWrapperModule } from '../cart/components/cart-summary-wrapper/cart-summary-wrapper.module';
+
 import { ThankYouViewComponent } from './pages/thank-you-view.component';
 import { ThankYouComponentModule } from './components/thank-you/thank-you.module';
-import { DaffContainerModule, DaffAccordionModule } from '@daffodil/design';
-import { CartSummaryWrapperModule } from '../cart/components/cart-summary-wrapper/cart-summary-wrapper.module';
-import { LoadingIconModule } from '../core/loading-icon/loading-icon.module';
-import { StateCartModule } from '@daffodil/state';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { StateCartModule } from '@daffodil/state';
     DaffContainerModule,
     CartSummaryWrapperModule,
     DaffAccordionModule,
-    LoadingIconModule,
+    DaffLoadingIconModule,
     StateCartModule
   ],
   declarations: [

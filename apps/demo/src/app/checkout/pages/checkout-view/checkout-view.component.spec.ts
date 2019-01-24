@@ -13,7 +13,7 @@ import { ShippingContainer } from '@daffodil/state';
 import * as fromFoundationCheckout from '../../reducers/index';
 import { ShowPaymentView } from '../../actions/payment.actions';
 import { CheckoutViewComponent } from './checkout-view.component';
-import { DaffAccordionModule, DaffAccordionItemComponent, DaffContainerModule } from '@daffodil/design';
+import { DaffAccordionModule, DaffAccordionItemComponent, DaffContainerModule, DaffLoadingIconModule } from '@daffodil/design';
 
 const daffodilAddressFactory = new DaffAddressFactory();
 const paymentFactory = new DaffPaymentFactory();
@@ -88,8 +88,6 @@ class MockCartContainer {
   cart$: Observable<Cart>;
   loading$: Observable<boolean> = of(false);
 }
-@Component({ selector: 'daff-loading-icon', template: ''})
-class MockLoadingIconComponent {}
 
 describe('CheckoutViewComponent', () => {
   let component: CheckoutViewComponent;
@@ -113,7 +111,8 @@ describe('CheckoutViewComponent', () => {
         }),
         DaffAccordionModule,
         NoopAnimationsModule,
-        DaffContainerModule
+        DaffContainerModule,
+        DaffLoadingIconModule
       ],
       declarations: [
         CheckoutViewComponent,
@@ -123,7 +122,6 @@ describe('CheckoutViewComponent', () => {
         MockPaymentComponent,
         MockPlaceOrderComponent,
         MockBillingContainer,
-        MockLoadingIconComponent,
         MockCartContainer
       ]
     })

@@ -7,6 +7,7 @@ import { Observable ,  of } from 'rxjs';
 
 import { Product } from '@daffodil/core';
 import { DaffProductFactory } from '@daffodil/core/testing';
+import { DaffLoadingIconModule } from '@daffodil/design';
 
 import { ProductViewComponent } from './product-view.component';
 import { ActivatedRouteStub } from '../../../testing/ActivatedRouteStub';
@@ -51,9 +52,6 @@ class MockAddToCartComponent {
   @Output() addToCart: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({ selector: 'daff-loading-icon', template: ''})
-class MockLoadingIconComponent {}
-
 @Component({ selector: 'demo-add-to-cart-notification', template: ''})
 class MockAddToCartNotificationComponent {}
 
@@ -70,14 +68,14 @@ describe('ProductViewComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        DaffLoadingIconModule
       ],
       declarations: [ 
         ProductViewComponent,
         MockProductContainer,
         MockProductComponent,
         MockAddToCartComponent,
-        MockLoadingIconComponent,
         MockAddToCartNotificationComponent
       ],
       providers: [
