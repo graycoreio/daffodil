@@ -40,10 +40,10 @@ describe('ProceedToCheckoutDirective', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  describe('when [demo-proceed-to-checkout] is clicked', () => {
+  describe('when [demoProceedToCheckout] is clicked', () => {
     
     it('should call router.navigateByUrl', () => {
-      fixture.debugElement.query(By.css('[demo-proceed-to-checkout]')).nativeElement.click();
+      fixture.debugElement.query(By.css('[demoProceedToCheckout]')).nativeElement.click();
 
       expect(router.navigateByUrl).toHaveBeenCalledWith('/checkout');
     });
