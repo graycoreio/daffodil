@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DaffHeroComponent } from './hero.component';
-import { DaffHeroSubtitleComponent } from './hero-subtitle/hero-subtitle.component';
-import { DaffHeroTitleComponent } from './hero-title/hero-title.component';
+import { DaffHeroComponent } from './hero/hero.component';
+import { DaffHeroSubtitleDirective } from './hero-subtitle/hero-subtitle.directive';
+import { DaffHeroTitleDirective } from './hero-title/hero-title.directive';
 
 @NgModule({
   imports: [
@@ -10,13 +10,13 @@ import { DaffHeroTitleComponent } from './hero-title/hero-title.component';
   ],
   declarations: [
     DaffHeroComponent,
-    DaffHeroTitleComponent,
-    DaffHeroSubtitleComponent
+    DaffHeroTitleDirective,
+    DaffHeroSubtitleDirective
   ],
   exports: [
     DaffHeroComponent,
-    DaffHeroTitleComponent,
-    DaffHeroSubtitleComponent
+    DaffHeroTitleDirective,
+    DaffHeroSubtitleDirective
   ]
 })
 export class DaffHeroModule { }

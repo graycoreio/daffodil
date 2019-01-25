@@ -4,15 +4,15 @@ The `hero` component is a top level container that is large and captivating. It 
 
 ## Supported Content Types
 A `daff-hero` transcludes:
-* `[daff-hero-title]`
-* `[daff-hero-subtitle]`
+* `[daffHeroTitle]`
+* `[daffHeroSubtitle]`
 * Any additional components
 
 ### Title
-* Hero title is used by adding `<daff-hero-title>` to a `<h1>` tag.
+* Hero title is used by adding `<daffHeroTitle>` to a `<h1>` tag.
 
 ### Subtitle
-* Hero subtitle is used by adding `<daff-hero-subtitle>` to a `<h2>` tag.
+* Hero subtitle is used by adding `<daffHeroSubtitle>` to a `<h2>` tag.
 
 ## Colors
 * To define a hero background color, add `color="[value]"` to the hero tag.
@@ -29,7 +29,7 @@ A `daff-hero` transcludes:
 ## Usage
 ```
 <daff-hero color="primary" size="small" layout="centered">
-  <h1 daff-hero-title>Hero Title</h1>
-  <h2 daff-hero-subtitle>Hero subtitle</h2>
+  <h1 daffHeroTitle>Hero Title</h1>
+  <h2 daffHeroSubtitle>Hero subtitle</h2>
 </daff-hero>
 ```

@@ -3,7 +3,7 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { DaffHeroComponent, DaffHeroLayout, DaffHeroLayoutEnum, DaffHeroSize, DaffHeroSizeEnum } from './hero.component';
-import { DaffPalette } from '../../core/colorable/colorable';
+import { DaffPalette } from '../../../core/colorable/colorable';
 
 @Component({
   template: `<daff-hero [layout]="layout" [size]="size" [color]="color"></daff-hero>`
