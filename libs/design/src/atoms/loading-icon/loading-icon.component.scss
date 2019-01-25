@@ -1,48 +1,49 @@
-$animationTime: 1000ms;
-
-$circleRadius: 45;
+/**
+* Formula Constants
+**/
+$radius: 46; //This must be the same as the radius of the circle in the svg
 $pi: 3.14159265359;
 $maxPercentageFill: 3.5/10;
 
-$circlePerimeter: 2 * $pi * $circleRadius;
-$maxStrokeLength: $circlePerimeter * $maxPercentageFill;
-$angleInRadians: $maxPercentageFill * 2 * $pi;
-$finalAngleInRadians: 3*$pi/2 - $angleInRadians;
-$finalAngleInDegrees: $finalAngleInRadians * 180/$pi;
+//P = 2πr
+$perimeter: 2 * $pi * $radius;
+$maxStrokeLength: $perimeter * $maxPercentageFill;
 
-.daff-loading-icon {
-    width: 100px;
-    height: 100px;
+//The angle "back" that we have to calculate to ensure the animation 
+//starts and stops at the top of the circle
+$angle: 270 - $maxPercentageFill * 360;
+
+:host{
+    display: block;
+    padding: 40px 0;
+    margin: 0 auto;
 }
 
 circle {
     fill: transparent;
     stroke: black;
-    stroke-width: 10%;
-    stroke-miterlimit: 4;
+    stroke-width: 5px;
     stroke-linecap: round;
-    stroke-linejoin: miter;
     stroke-dasharray: $maxStrokeLength 400;
-    animation: rotation $animationTime, circle-animation $animationTime;
-    animation-duration: $animationTime;
+    animation: rotation linear, circle-animation linear;
+    animation-duration: 1000ms;
     animation-iteration-count: infinite;
-    animation-timing-function: linear;
     transform-origin: center;
 }
 
 @keyframes circle-animation {
     0%   {  stroke-dasharray: $maxStrokeLength 400; stroke-dashoffset: $maxStrokeLength; }
-    50%  {  stroke-dasharray: $maxStrokeLength 400; stroke-dashoffset: $maxStrokeLength - $circlePerimeter * 0.25; }
+    50%  {  stroke-dasharray: $maxStrokeLength 400; stroke-dashoffset: $maxStrokeLength - $perimeter * 0.25; }
     75%  {  stroke-dasharray: $maxStrokeLength 400; stroke-dashoffset: 0; }
     100% { stroke-dasharray: 0 400; stroke-dashoffset: -$maxStrokeLength; }
 }
 
 @keyframes rotation {
     0% {transform: rotate(-90deg);}
-    25% {transform: rotate(0deg);}
-    26% {transform: rotate(0deg);}
-    50% {transform: rotate(90deg);}
-    51% {transform: rotate(90deg);}
-    99% {transform: rotate(#{$finalAngleInDegrees}deg);}
-    100% {transform: rotate(#{$finalAngleInDegrees}deg);}
+    50% {transform: rotate(0deg);}
+    50.5% {transform: rotate(0deg);}
+    75% {transform: rotate(90deg);}
+    75.5% {transform: rotate(90deg);}
+    99% {transform: rotate(#{$angle}deg);}
+    100% {transform: rotate(#{$angle}deg);}
 }
