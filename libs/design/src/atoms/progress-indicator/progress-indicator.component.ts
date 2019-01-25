@@ -23,27 +23,37 @@ const _daffProgressIndicatorBase = daffColorMixin(DaffProgressIndicatorBase, 'pr
   ]
 })
 export class DaffProgressIndicatorComponent extends _daffProgressIndicatorBase implements DaffColorable{
+
   /**
-   * The percentage completion of the fill, 
+   * The color of the progress indicator
+   * See DaffColorable
+   */
+  @Input() color: DaffPalette;
+
+  /**
+   * The percentage completion of the progression, 
    * expressed as a whole number between 0 and 100.
    * 
    */
   @Input() percentage = 0;
 
   /**
-   * Fires each time the bar reaches 100% and the animation
-   * is finished
+   * An event that emits each time the progression reaches 100% 
+   * and the animation is finished
    */
   @Output() finished: EventEmitter<void> = new EventEmitter();
 
 
   /**
-   * Calculates when the progress indicating is fully completed
+   * Calculates when the progress animation is fully completed
    * @param event: AnimationEvent
    */
   onAnimationComplete(event: AnimationEvent) : void {
     // @ts-ignore: @angular/animations typing error on event.toState as string
-    event.toState == "100" || event.toState == 100 ? this.finished.emit() : null;
+    // See: https://github.com/angular/angular/issues/26507
+    if(event.toState === "100" || event.toState === 100) {
+      this.finished.emit();
+    }
   }
 
   get fillState(): any {
