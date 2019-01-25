@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, Input, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 
-import { DaffPalette, daffColorMixin, DaffColorable } from '../../core/colorable/colorable';
+import { DaffPalette, daffColorMixin, DaffColorable } from '../../../core/colorable/colorable';
 
 export type DaffHeroLayout = "centered" | undefined;
 export enum DaffHeroLayoutEnum {
