@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 
-@Component({template: '<button demoViewCart></button>'})
+@Component({template: '<div demoViewCart></div>'})
 class WrapperComponent {}
 
 describe('ViewCartDirective', () => {
@@ -40,10 +40,10 @@ describe('ViewCartDirective', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  describe('when button is clicked', () => {
+  describe('when [demoViewCart] is clicked', () => {
     
     it('should call router.navigateByUrl', () => {
-      fixture.debugElement.query(By.css('button')).nativeElement.click();
+      fixture.debugElement.query(By.css('[demoViewCart]')).nativeElement.click();
 
       expect(router.navigateByUrl).toHaveBeenCalledWith('/cart');
     });
