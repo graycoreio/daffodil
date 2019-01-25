@@ -9,8 +9,6 @@ export class DaffioSidebarContainer {
 
   links: any[] = [
     {path: '/developers', title: 'Developers'},
-    {path: '/solutions', title: 'Solutions'},
-    {path: '/documentation', title: 'Documentation'},
     {path: '/support', title: 'Support'}
   ];
 
