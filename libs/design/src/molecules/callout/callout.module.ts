@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DaffCalloutComponent } from './callout.component';
-import { DaffCalloutTitleComponent } from './callout-title/callout-title.component';
-import { DaffCalloutBodyComponent } from './callout-body/callout-body.component';
+import { DaffCalloutTitleDirective } from './callout-title/callout-title.directive';
+import { DaffCalloutSubtitleDirective } from './callout-subtitle/callout-subtitle.directive';
 
 @NgModule({
   imports: [
@@ -10,13 +10,13 @@ import { DaffCalloutBodyComponent } from './callout-body/callout-body.component'
   ],
   declarations: [
     DaffCalloutComponent,
-    DaffCalloutTitleComponent,
-    DaffCalloutBodyComponent
+    DaffCalloutTitleDirective,
+    DaffCalloutSubtitleDirective
   ],
   exports: [
     DaffCalloutComponent,
-    DaffCalloutTitleComponent,
-    DaffCalloutBodyComponent
+    DaffCalloutSubtitleDirective,
+    DaffCalloutTitleDirective
   ]
 })
 

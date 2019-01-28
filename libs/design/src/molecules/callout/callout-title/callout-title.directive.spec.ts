@@ -1,23 +1,23 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { DaffCalloutTitleComponent } from './callout-title.component';
+import { DaffCalloutTitleDirective } from './callout-title.directive';
 
 @Component({
   template: `
-    <h3 daff-callout-title>Lorem Ipsum</h3>
+    <h3 daffCalloutTitle>Lorem Ipsum</h3>
   `
 })
 class WrapperComponent {}
 
-describe('DaffCalloutTitleComponent', () => {
+describe('DaffCalloutTitleDirective', () => {
   let calloutTitle: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DaffCalloutTitleComponent,
+        DaffCalloutTitleDirective,
         WrapperComponent
       ]
     })
@@ -26,7 +26,7 @@ describe('DaffCalloutTitleComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
-    calloutTitle = fixture.debugElement.query(By.css('[daff-callout-title]'));
+    calloutTitle = fixture.debugElement.query(By.css('[daffCalloutTitle]'));
     fixture.detectChanges();
   });
 
@@ -34,7 +34,7 @@ describe('DaffCalloutTitleComponent', () => {
     expect(calloutTitle).toBeTruthy();
   });
 
-  describe('[daff-callout-title]',() => {
+  describe('[daffCalloutTitle]',() => {
     it('should add a class of `daff-callout__title` to its host element', () => {
       expect(calloutTitle.nativeElement.classList.contains('daff-callout__title')).toEqual(true);
     });
