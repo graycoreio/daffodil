@@ -18,6 +18,7 @@ export class DaffLinkBase {
 const _daffLinkBase = daffColorMixin(DaffLinkBase, 'black')
 
 @Component ({
+  // tslint:disable-next-line: component-selector
   selector: 'a[daff-link]',
   template: '<ng-content></ng-content>',
   styleUrls: ['./link.component.scss'],

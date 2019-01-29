@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, Input, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 
-import { DaffPalette, daffColorMixin, DaffColorable } from '../../core/colorable/colorable';
+import { DaffPalette, daffColorMixin, DaffColorable } from '../../../core/colorable/colorable';
 
 export type DaffHeroLayout = "centered" | undefined;
 export enum DaffHeroLayoutEnum {
@@ -26,17 +26,16 @@ const _daffHeroBase = daffColorMixin(DaffHeroBase)
   selector: 'daff-hero',
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'daff-hero',
-    '[class.daff-hero--centered]':'layout === "' + DaffHeroLayoutEnum.Centered + '"',
-    '[class.daff-hero--fullscreen]':'size === "' + DaffHeroSizeEnum.Fullscreen + '"',
-    '[class.daff-hero--small]':'size === "' + DaffHeroSizeEnum.Small + '"'
+    'class': 'daff-hero',
+    '[class.daff-hero--centered]': 'layout === "' + DaffHeroLayoutEnum.Centered + '"',
+    '[class.daff-hero--fullscreen]': 'size === "' + DaffHeroSizeEnum.Fullscreen + '"',
+    '[class.daff-hero--small]': 'size === "' + DaffHeroSizeEnum.Small + '"'
   },
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DaffHeroComponent extends _daffHeroBase implements DaffColorable {
-
   @Input() layout: DaffHeroLayout;
   @Input() size: DaffHeroSize;
   @Input() color: DaffPalette;

@@ -1,23 +1,24 @@
-import { OnInit, Input, Component, ViewEncapsulation, HostBinding } from '@angular/core';
+import { OnInit, Input, Component, ViewEncapsulation, HostBinding, DoCheck } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ErrorStateMatcher } from '../error-state-matcher/error-state-matcher';
 
 @Component({
-  selector: 'input[input-validator]',
+  // tslint:disable-next-line: component-selector
+  selector: 'input[daff-input-validator]',
   template: '<ng-content></ng-content>',
-  host: {
-    'class': 'input-validator'
-  },
   styleUrls: ['./input-validator.component.scss'],
+  host: {
+    'class': 'daff-input-validator'
+  },
   encapsulation: ViewEncapsulation.None
 })
-export class InputValidatorComponent implements OnInit {
+export class InputValidatorComponent implements OnInit, DoCheck {
 
   @Input() formSubmitted: boolean;
   @Input() formControl: FormControl;
   @Input() errorStateMatcher: ErrorStateMatcher;
-  @HostBinding('class.input-validator__error') errorState: boolean;
-  @HostBinding('class.input-validator__valid') validState: boolean;
+  @HostBinding('class.daff-input-validator__error') errorState: boolean;
+  @HostBinding('class.daff-input-validator__valid') validState: boolean;
 
   constructor() {}
 
@@ -27,7 +28,7 @@ export class InputValidatorComponent implements OnInit {
     }
 
     if (!this.formControl || this.formSubmitted === undefined) {
-      throw 'formControl: FormControl and formSubmitted: boolean are required fields';
+      throw Error('formControl: FormControl and formSubmitted: boolean are required fields');
     }
   }
 

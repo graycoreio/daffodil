@@ -8,30 +8,30 @@ import { Component } from '@angular/core';
   template: `<input daff-input>`
 })
 
-class TestInputWrapper {}
+class WrapperComponent {}
 
 describe('DaffInputComponent', () => {
-  let component: DaffInputComponent;
-  let fixture: ComponentFixture<DaffInputComponent>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
         DaffInputComponent,
-        TestInputWrapper
+        WrapperComponent
        ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestInputWrapper);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(wrapper).toBeTruthy();
   });
 
   describe('daff-input',() => {

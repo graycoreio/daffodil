@@ -1,37 +1,37 @@
 <div class="address-form">
-  <input input-validator type="text" class="address-form__first-name"
+  <input daff-input-validator type="text" class="address-form__first-name"
     placeholder="First Name"
     name="firstname"
     [formControl]="formGroup.controls['firstname']"
     [formSubmitted]="submitted"/>
-  <input input-validator type="text" class="address-form__last-name"
+  <input daff-input-validator type="text" class="address-form__last-name"
     placeholder="Last Name"
     name="lastname"
     [formControl]="formGroup.controls['lastname']"
     [formSubmitted]="submitted"/>
-  <input input-validator type="text" class="address-form__street"
+  <input daff-input-validator type="text" class="address-form__street"
     placeholder="Street Address"
     name="street"
     [formControl]="formGroup.controls['street']"
     [formSubmitted]="submitted"/>
-  <input input-validator type="text" class="address-form__city"
+  <input daff-input-validator type="text" class="address-form__city"
     placeholder="City"
     name="city"
     [formControl]="formGroup.controls['city']"
     [formSubmitted]="submitted"/>
-  <select select-validator class="address-form__state"
+  <select daff-select-validator class="address-form__state"
     name="state"
     [formControl]="formGroup.controls['state']"
     [formSubmitted]="submitted"
     [errorStateMatcher]="stateErrorStateMatcher">
     <option *ngFor="let state of stateSelectValues" [disabled]="state == 'State'">{{state}}</option>
   </select>
-  <input input-validator type="text" class="address-form__postcode"
+  <input daff-input-validator type="text" class="address-form__postcode"
     placeholder="Zip Code"
     name="postcode"
     [formControl]="formGroup.controls['postcode']"
     [formSubmitted]="submitted"/>
-  <input input-validator type="text" class="address-form__telephone"
+  <input daff-input-validator type="text" class="address-form__telephone"
     placeholder="Phone Number"
     name="telephone"
     [formControl]="formGroup.controls['telephone']"

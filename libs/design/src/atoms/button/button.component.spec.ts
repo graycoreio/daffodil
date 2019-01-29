@@ -15,32 +15,32 @@ import { DaffPalette } from '../../core/colorable/colorable';
     <button daff-icon-button [color]="color">Button Daff Icon Button</button>
   `
 })
-class TestButtonWrapper {
+class WrapperComponent {
   color: DaffPalette;
 }
 
 describe('DaffButtonComponent', () => {
-  let component: TestButtonWrapper;
-  let fixture: ComponentFixture<TestButtonWrapper>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
         DaffButtonComponent,
-        TestButtonWrapper
+        WrapperComponent
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestButtonWrapper);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(wrapper).toBeTruthy();
   });
 
   describe('daff-button',() => {
@@ -68,16 +68,18 @@ describe('DaffButtonComponent', () => {
   }); 
 
   describe('using a colored variant of a button',() => {
+    let buttonDE;
+
     it('should set a color class on the button', () => {
-      component.color = "primary";
+      wrapper.color = "primary";
       fixture.detectChanges();
       
-      let buttonDE = fixture.debugElement.query(By.css('button[daff-button]'));
+      buttonDE = fixture.debugElement.query(By.css('button[daff-button]'));
       expect(buttonDE.nativeElement.classList.contains('daff-primary')).toEqual(true);
     });
 
     it('should set the default color to black', () => {
-      let buttonDE = fixture.debugElement.query(By.css('button[daff-button]'));
+      buttonDE = fixture.debugElement.query(By.css('button[daff-button]'));
       expect(buttonDE.nativeElement.classList.contains('daff-black')).toEqual(true);
     });
   });

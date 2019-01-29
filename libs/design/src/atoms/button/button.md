@@ -8,10 +8,9 @@ The button is used for making actions apparent to the end-user. It can be used t
 
 ## Selectors
 
-* `gc-button` — Rectangular contained button with background color
-* `gc-clear-button` - Rectangular button with no background color
-* `gc-stroked-button` — Rectangular outlined button with no background color
-* `gc-icon-button` — Icon button used with icon fonts
+* `daff-button` — Rectangular contained button with background color
+* `daff-stroked-button` — Rectangular outlined button with no background color
+* `daff-icon-button` — Icon button used with icon fonts
 
 ## Colors
 

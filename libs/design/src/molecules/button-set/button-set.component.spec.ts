@@ -4,17 +4,17 @@ import { DaffButtonSetComponent } from './button-set.component';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-@Component({template: '<div daff-button-set></div>'})
-class TestDaffButtonSetComponent {}
+@Component({template: '<daff-button-set></daff-button-set>'})
+class WrapperComponent {}
 
 describe('DaffButtonSetComponent', () => {
-  let component: TestDaffButtonSetComponent;
-  let fixture: ComponentFixture<TestDaffButtonSetComponent>;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        TestDaffButtonSetComponent,
+        WrapperComponent,
         DaffButtonSetComponent
        ]
     })
@@ -22,17 +22,17 @@ describe('DaffButtonSetComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestDaffButtonSetComponent);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(wrapper).toBeTruthy();
   });
 
-  it('should set "daff-button-set" on host element', () => {
-    let buttonSet = fixture.debugElement.query(By.css('[daff-button-set]')).nativeElement;
+  it('should set "daff-button-set" class on self', () => {
+    const buttonSet = fixture.debugElement.query(By.css('daff-button-set')).nativeElement;
 
     expect(buttonSet.classList.contains('daff-button-set')).toBeTruthy();
   });

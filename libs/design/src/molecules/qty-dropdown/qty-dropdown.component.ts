@@ -1,18 +1,18 @@
-import { Component, OnInit, Input, Renderer2, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Renderer2, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'qty-dropdown',
+  selector: 'daff-qty-dropdown',
   templateUrl: './qty-dropdown.component.html',
   styleUrls: ['./qty-dropdown.component.scss']
 })
-export class QtyDropdownComponent implements OnInit {
+export class DaffQtyDropdownComponent implements OnInit {
+  
+  static readonly dropdownRange = 9;
 
   @Input() qty: number;
   @Input() id: number;
-
   @Output() qtyChanged: EventEmitter<number> = new EventEmitter<number>();
 
-  static readonly dropdownRange = 9;
   dropdownItemCounter: number[];
   inputHasBeenShown: boolean;
   onChange = (qty: number) => {};
@@ -21,7 +21,7 @@ export class QtyDropdownComponent implements OnInit {
   constructor(private renderer: Renderer2) { }
 
   ngOnInit() {
-    this.dropdownItemCounter = Array.from(Array(QtyDropdownComponent.dropdownRange),(x,i)=>i);
+    this.dropdownItemCounter = Array.from(Array(DaffQtyDropdownComponent.dropdownRange),(x,i)=>i);
 
     if (!this.qty) {
       this.qty = 1;
@@ -59,7 +59,7 @@ export class QtyDropdownComponent implements OnInit {
   }
 
   onChangedWrapper(value: any) {
-    value = parseInt(value);
+    value = parseInt(value, 10);
     if (value === 10) {
       this.selectInput();
     }
@@ -68,13 +68,13 @@ export class QtyDropdownComponent implements OnInit {
   }
 
   private isQtyOutsideDropdownRange() {    
-    return this.qty > QtyDropdownComponent.dropdownRange;
+    return this.qty > DaffQtyDropdownComponent.dropdownRange;
   }
 
   private selectInput() {
-    let that = this;
+    const that = this;
     setTimeout(function() {
-      let input = document.getElementById("input_" + that.id) as HTMLInputElement;
+      const input = document.getElementById("input_" + that.id) as HTMLInputElement;
       input.select();
     });
   }

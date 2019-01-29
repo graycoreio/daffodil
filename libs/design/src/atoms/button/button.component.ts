@@ -21,6 +21,7 @@ export class DaffButtonBase{
 const _daffButtonBase = daffColorMixin(DaffButtonBase, 'black') 
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: '' +
     'button[daff-button]' + ',' +
     'button[daff-stroked-button]' + ',' +

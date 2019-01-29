@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { QtyDropdownComponent } from './qty-dropdown.component';
+import { DaffQtyDropdownComponent } from './qty-dropdown.component';
 
 @NgModule({
   imports: [
@@ -10,10 +10,10 @@ import { QtyDropdownComponent } from './qty-dropdown.component';
     FormsModule
   ],
   declarations: [
-    QtyDropdownComponent
+    DaffQtyDropdownComponent
   ],
   exports: [
-    QtyDropdownComponent
+    DaffQtyDropdownComponent
   ]
 })
 export class DaffQtyDropdownModule { }

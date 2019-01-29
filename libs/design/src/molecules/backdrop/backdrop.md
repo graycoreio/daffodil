@@ -8,7 +8,7 @@ html
     class="my-component__backdrop"
     [show]="show"
     [backdropIsVisible]="backdropIsVisible"
-    (backdropClicked)="onBackdropClicked()"></daff-backdrop>
+    (backdropClicked)="backdropClicked()"></daff-backdrop>
 ```
 
 css

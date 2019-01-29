@@ -59,8 +59,8 @@ describe('DaffSidebarComponent', () => {
     <daff-sidebar (escapePressed)="pressed()"></daff-sidebar>
   </div>
 `})
-class TestDaffSidebarComponentWrapper {
-  escapePressedCount: number = 0;
+class WrapperComponent {
+  escapePressedCount = 0;
 
   pressed(): void{
     this.escapePressedCount++;
@@ -68,14 +68,14 @@ class TestDaffSidebarComponentWrapper {
 }
 
 describe('DaffSidebarComponent | usage', () => {
-  let component: TestDaffSidebarComponentWrapper;
-  let fixture: ComponentFixture<TestDaffSidebarComponentWrapper>;
-  let daffSidebar: DaffSidebarComponent;
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
+  let component: DaffSidebarComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        TestDaffSidebarComponentWrapper,
+        WrapperComponent,
         DaffSidebarComponent
       ]
     })
@@ -83,22 +83,22 @@ describe('DaffSidebarComponent | usage', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestDaffSidebarComponentWrapper);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
     fixture.detectChanges();
 
-    daffSidebar = fixture.debugElement.query(By.css('daff-sidebar')).componentInstance;
+    component = fixture.debugElement.query(By.css('daff-sidebar')).componentInstance;
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(wrapper).toBeTruthy();
   });
 
   it('should be able to bind to the Output `escapePressed`', () => {
-    daffSidebar.escapePressed.emit();
+    component.escapePressed.emit();
 
     fixture.detectChanges();
 
-    expect(component.escapePressedCount).toEqual(1);
+    expect(wrapper.escapePressedCount).toEqual(1);
   });
 });

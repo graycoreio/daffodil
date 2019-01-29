@@ -68,12 +68,12 @@ describe('PaymentInfoFormComponent', () => {
     expect(paymentInfoForm.submitted).toEqual(wrapper.submittedValue);
   });
 
-  describe('on [input-validator]', () => {
+  describe('on [daff-input-validator]', () => {
 
     let inputValidator: InputValidatorComponent;
 
     beforeEach(() => {
-      inputValidator = fixture.debugElement.queryAll(By.css('[input-validator]'))[0].componentInstance;
+      inputValidator = fixture.debugElement.queryAll(By.css('[daff-input-validator]'))[0].componentInstance;
     });
     
     it('should set formControl', () => {
@@ -85,12 +85,12 @@ describe('PaymentInfoFormComponent', () => {
     });
   });
 
-  describe('on month [select-validator]', () => {
+  describe('on month [daff-select-validator]', () => {
 
     let monthSelectValidator: SelectValidatorComponent;
 
     beforeEach(() => {
-      monthSelectValidator = fixture.debugElement.queryAll(By.css('[select-validator]'))[0].componentInstance;
+      monthSelectValidator = fixture.debugElement.queryAll(By.css('[daff-select-validator]'))[0].componentInstance;
     });
     
     it('should set formControl', () => {
@@ -106,12 +106,12 @@ describe('PaymentInfoFormComponent', () => {
     });
   });
 
-  describe('on year [select-validator]', () => {
+  describe('on year [daff-select-validator]', () => {
 
     let yearSelectValidator: SelectValidatorComponent;
 
     beforeEach(() => {
-      yearSelectValidator = fixture.debugElement.queryAll(By.css('[select-validator]'))[1].componentInstance;
+      yearSelectValidator = fixture.debugElement.queryAll(By.css('[daff-select-validator]'))[1].componentInstance;
     });
     
     it('should set formControl', () => {

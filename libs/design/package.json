@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "ng build design",
+    "lint": "ng lint design",
     "postbuild": "npm run postbuild:scss:util && npm run postbuild:scss:theme && npm run postbuild:scss:typography",
     "postbuild:scss:util": "scss-bundle -c build/util.json",
     "postbuild:scss:theme": "scss-bundle -c build/theme.json",

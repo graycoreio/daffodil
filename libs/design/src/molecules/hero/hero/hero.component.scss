@@ -1,4 +1,4 @@
-@import '../../scss/daff-util';
+@import '../../../scss/daff-util';
 
 .daff-hero {
   $root: &;
@@ -63,6 +63,7 @@
   }
 
   &--centered {
+    text-align: center;
 
     #{$root}__title {
       margin: 0 auto;

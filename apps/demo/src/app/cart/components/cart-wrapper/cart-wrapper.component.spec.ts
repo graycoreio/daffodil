@@ -55,8 +55,8 @@ describe('CartWrapper', () => {
   let cartComponent;
   let cartTotalsComponent;
   let helpBoxComponent;
-  let proceedToCheckoutComponent;
-  let continueShoppingComponent;
+  let proceedToCheckoutDirective;
+  let continueShoppingDirective;
   const cartFactory = new DaffCartFactory();
   const cart = cartFactory.create();
   let stubIsCartEmpty = true;
@@ -133,8 +133,8 @@ describe('CartWrapper', () => {
       cartComponent = fixture.debugElement.query(By.css('demo-cart'));
       cartTotalsComponent = fixture.debugElement.query(By.css('demo-cart-totals'));
       helpBoxComponent = fixture.debugElement.query(By.css('demo-help-box'));
-      proceedToCheckoutComponent = fixture.debugElement.query(By.css('[demoProceedToCheckout]'));
-      continueShoppingComponent = fixture.debugElement.query(By.css('[demoContinueShopping]'));
+      proceedToCheckoutDirective = fixture.debugElement.query(By.css('[demoProceedToCheckout]'));
+      continueShoppingDirective = fixture.debugElement.query(By.css('[demoContinueShopping]'));
     });
 
     it('should create', () => {
@@ -179,11 +179,11 @@ describe('CartWrapper', () => {
         });
         
         it('should not render [demoProceedToCheckout]', () => {
-          expect(proceedToCheckoutComponent).toBeNull();
+          expect(proceedToCheckoutDirective).toBeNull();
         });
 
         it('should render [demoContinueShopping]', () => {
-          expect(continueShoppingComponent).not.toBeNull();
+          expect(continueShoppingDirective).not.toBeNull();
         });
       });
 
@@ -209,11 +209,11 @@ describe('CartWrapper', () => {
         });
 
         it('should render [demoProceedToCheckout]', () => {
-          expect(proceedToCheckoutComponent).not.toBeNull();
+          expect(proceedToCheckoutDirective).not.toBeNull();
         });
 
         it('should render [demoContinueShopping]',() => {
-          expect(continueShoppingComponent).not.toBeNull();
+          expect(continueShoppingDirective).not.toBeNull();
         });
       });
     });

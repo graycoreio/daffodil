@@ -1,6 +1,12 @@
 import { daffColorMixin, colorInPalette } from "./colorable";
 import { ElementRef } from "@angular/core";
 
+class TestingClass {
+  element: HTMLElement = document.createElement('div');
+
+  _elementRef = new ElementRef<HTMLElement>(this.element);
+}
+
 /**
  * Some of these tests are inspired by the @angular/material
  * color common-behavior, as it is a really clean implementation.
@@ -130,9 +136,3 @@ describe('colorInPalette', () => {
     });
   });
 })
-
-class TestingClass {
-  element: HTMLElement = document.createElement('div');
-
-  _elementRef = new ElementRef<HTMLElement>(this.element);
-}

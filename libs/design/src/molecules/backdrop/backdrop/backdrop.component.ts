@@ -14,16 +14,15 @@ import { getAnimationState } from '../animation/backdrop-animation-state';
 export class DaffBackdropComponent implements OnChanges{
 
   _animationState: string;
+  @Input() show: boolean;
+  @Input() backdropIsVisible = true;
+  @Output() backdropClicked: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() { }
 
   ngOnChanges() {
     this._animationState = getAnimationState(this.show);
   }
-  
-  @Input() show: boolean;
-  @Input() backdropIsVisible: boolean = true;
-  @Output() backdropClicked: EventEmitter<void> = new EventEmitter<void>();
 
   onBackdropClicked() : void {
     this.backdropClicked.emit();

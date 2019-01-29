@@ -3,19 +3,19 @@ import { FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { QtyDropdownComponent } from './qty-dropdown.component';
+import { DaffQtyDropdownComponent } from './qty-dropdown.component';
 
-@Component({template: '<qty-dropdown [qty]="qtyValue" [id]="idValue"></qty-dropdown>'})
-class TestQtyDropdownWrapper {
+@Component({template: '<daff-qty-dropdown [qty]="qtyValue" [id]="idValue"></daff-qty-dropdown>'})
+class WrapperComponent {
   qtyValue: string;
   idValue: string;
 }
 
-describe('QtyDropdownComponent', () => {
-  let component: TestQtyDropdownWrapper;
-  let fixture: ComponentFixture<TestQtyDropdownWrapper>;
-  let mockQty = "3";
-  let mockId = "id";
+describe('DaffQtyDropdownComponent', () => {
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
+  const mockQty = "3";
+  const mockId = "id";
   let qtyDropdownComponent;
 
   beforeEach(async(() => {
@@ -24,26 +24,26 @@ describe('QtyDropdownComponent', () => {
         FormsModule
       ],
       declarations: [ 
-        TestQtyDropdownWrapper,
-        QtyDropdownComponent
+        WrapperComponent,
+        DaffQtyDropdownComponent
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestQtyDropdownWrapper);
-    component = fixture.componentInstance;
-    component.qtyValue = mockQty;
-    component.idValue = mockId;
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
+    wrapper.qtyValue = mockQty;
+    wrapper.idValue = mockId;
     
-    qtyDropdownComponent = fixture.debugElement.query(By.css('qty-dropdown'));
+    qtyDropdownComponent = fixture.debugElement.query(By.css('daff-qty-dropdown'));
     
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(wrapper).toBeTruthy();
   });
 
   it('can be passed a qty input', () => {
@@ -57,17 +57,17 @@ describe('QtyDropdownComponent', () => {
   describe('ngOnInit', () => {
     
     it('should create the dropdownItemCounter array', () => {
-      expect(qtyDropdownComponent.componentInstance.dropdownItemCounter.length).toEqual(QtyDropdownComponent.dropdownRange);
+      expect(qtyDropdownComponent.componentInstance.dropdownItemCounter.length).toEqual(DaffQtyDropdownComponent.dropdownRange);
     });
 
     describe('when qty is not given as input', () => {
       
       beforeEach(() => {
-        fixture = TestBed.createComponent(TestQtyDropdownWrapper);
-        component = fixture.componentInstance;
+        fixture = TestBed.createComponent(WrapperComponent);
+        wrapper = fixture.componentInstance;
 
         fixture.detectChanges();
-        qtyDropdownComponent = fixture.debugElement.query(By.css('qty-dropdown'));        
+        qtyDropdownComponent = fixture.debugElement.query(By.css('daff-qty-dropdown'));        
       });
 
       it('should set qty to 1', () => {
@@ -78,7 +78,7 @@ describe('QtyDropdownComponent', () => {
 
   describe('writeValue', () => {
 
-    let newQtyValue = 'newQtyValue';
+    const newQtyValue = 'newQtyValue';
 
     beforeEach(() => {
       spyOn(qtyDropdownComponent.componentInstance, 'onChange');
@@ -97,7 +97,7 @@ describe('QtyDropdownComponent', () => {
 
   describe('registerOnChange', () => {
 
-    let givenFunction: Function= () => {};
+    const givenFunction: Function= () => {};
 
     beforeEach(() => {
       qtyDropdownComponent.componentInstance.registerOnChange(givenFunction);
@@ -110,7 +110,7 @@ describe('QtyDropdownComponent', () => {
 
   describe('registerOnTouched', () => {
 
-    let givenFunction: Function= () => {};
+    const givenFunction: Function= () => {};
 
     beforeEach(() => {
       qtyDropdownComponent.componentInstance.registerOnTouched(givenFunction);
@@ -237,7 +237,7 @@ describe('QtyDropdownComponent', () => {
       spyOn(qtyDropdownComponent.componentInstance, "onChange");
       qtyDropdownComponent.componentInstance.onChangedWrapper(input);
       
-      expect(qtyDropdownComponent.componentInstance.onChange).toHaveBeenCalledWith(parseInt(input));
+      expect(qtyDropdownComponent.componentInstance.onChange).toHaveBeenCalledWith(parseInt(input, 10));
     });
 
     it('calls qtyChanged.emit', () => {
@@ -245,7 +245,7 @@ describe('QtyDropdownComponent', () => {
 
       qtyDropdownComponent.componentInstance.onChangedWrapper(input);
       
-      expect(qtyDropdownComponent.componentInstance.qtyChanged.emit).toHaveBeenCalledWith(parseInt(input));
+      expect(qtyDropdownComponent.componentInstance.qtyChanged.emit).toHaveBeenCalledWith(parseInt(input, 10));
     });
     
     describe('when value is 10', () => {

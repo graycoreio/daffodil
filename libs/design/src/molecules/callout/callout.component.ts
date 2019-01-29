@@ -14,13 +14,13 @@ const _daffCalloutBase = daffColorMixin(DaffCalloutBase)
   selector: 'daff-callout',
   templateUrl: './callout.component.html',
   styleUrls: ['./callout.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'daff-callout',
-    '[class.daff-callout--centered]':'layout === "centered"',
-    '[class.daff-callout--small]':'size === "small"',
+    'class': 'daff-callout',
+    '[class.daff-callout--centered]': 'layout === "centered"',
+    '[class.daff-callout--small]': 'size === "small"'
   },
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class DaffCalloutComponent extends _daffCalloutBase implements DaffColorable {

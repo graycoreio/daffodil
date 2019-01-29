@@ -11,7 +11,7 @@
     <div class="product__details">
       <div class="product__qty">
         <div>Quantity</div>
-        <qty-dropdown id="{{product.id}}" [qty]="qty" (qtyChanged)="onUpdateQty($event)"></qty-dropdown>
+        <daff-qty-dropdown id="{{product.id}}" [qty]="qty" (qtyChanged)="onUpdateQty($event)"></daff-qty-dropdown>
       </div>
       <div class="product__button">
         <ng-content></ng-content>
