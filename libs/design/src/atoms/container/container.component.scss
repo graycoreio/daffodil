@@ -6,22 +6,22 @@
     padding: 0;
 
     &--xs {
-        max-width: 640px;
+        width: 640px;
     }
 
     &--sm {
-        max-width: 800px;
+        width: 800px;
     }
 
     &--md {
-        max-width: 1040px;
+        width: 1040px;
     }
 
     &--lg {
-        max-width: 1340px;
+        width: 1340px;
     }
 
     &--xl {
-        max-width: 1920px;
+        width: 1920px;
     }
 }
