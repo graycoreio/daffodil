@@ -6,6 +6,8 @@ import { By } from '@angular/platform-browser';
 import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 import { DaffProductFactory } from '@daffodil/core/testing';
 import { Product } from '@daffodil/core';
+import { DaffLoadingIconModule } from '@daffodil/design';
+
 // importing from @daffodil/state doesn't work.
 import * as fromProduct from 'libs/state/src/product/reducers/index';
 
@@ -50,9 +52,6 @@ class MockProductAddedComponent {
   @Input() qty: number;
 }
 
-@Component({ selector: 'demo-loading-icon', template: ''})
-class MockLoadingIconComponent {}
-
 describe('AddToCartNotificationComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
@@ -73,7 +72,8 @@ describe('AddToCartNotificationComponent', () => {
         StoreModule.forRoot({
           product: combineReducers(fromProduct.reducers)
         }),
-        DaffDriverTestingModule
+        DaffDriverTestingModule,
+        DaffLoadingIconModule
       ],
       declarations: [
         WrapperComponent,
@@ -82,8 +82,7 @@ describe('AddToCartNotificationComponent', () => {
         MockViewCartDirective,
         MockProceedToCheckoutDirective,
         MockModalPortalComponent,
-        MockProductAddedComponent,
-        MockLoadingIconComponent
+        MockProductAddedComponent
       ]
     })
     .compileComponents();
@@ -259,8 +258,8 @@ describe('AddToCartNotificationComponent', () => {
       expect(buttonSetElement).not.toBeNull();
     });
     
-    it('should not render <demo-loading-icon>', () => {
-      const loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
+    it('should not render <daff-loading-icon>', () => {
+      const loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
 
       expect(loadingIcon).toBeNull();
     });
@@ -291,8 +290,8 @@ describe('AddToCartNotificationComponent', () => {
       expect(buttonSetElement).toBeNull();
     });
     
-    it('should render <demo-loading-icon>', () => {
-      const loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
+    it('should render <daff-loading-icon>', () => {
+      const loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
 
       expect(loadingIcon).not.toBeNull();
     });

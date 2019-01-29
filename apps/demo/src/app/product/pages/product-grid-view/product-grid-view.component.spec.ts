@@ -7,7 +7,7 @@ import { Product } from '@daffodil/core';
 import { DaffProductFactory } from '@daffodil/core/testing';
 
 import { ProductGridViewComponent } from './product-grid-view.component';
-import { DaffContainerModule } from '@daffodil/design';
+import { DaffContainerModule, DaffLoadingIconModule } from '@daffodil/design';
 
 const productFactory = new DaffProductFactory();
 const products$ = of(new Array(productFactory.create()));
@@ -32,9 +32,6 @@ class MockProductGridComponent {
   @Input() products: Product[];
 }
 
-@Component({ selector: 'demo-loading-icon', template: ''})
-class MockLoadingIconComponent {}
-
 describe('ProductGridViewComponent', () => {
   let component: ProductGridViewComponent;
   let fixture: ComponentFixture<ProductGridViewComponent>;
@@ -46,11 +43,11 @@ describe('ProductGridViewComponent', () => {
       declarations: [ 
         ProductGridViewComponent,
         MockProductGridContainer,
-        MockLoadingIconComponent,
         MockProductGridComponent
       ],
       imports: [
-        DaffContainerModule
+        DaffContainerModule,
+        DaffLoadingIconModule
       ]
     })
     .compileComponents();
@@ -94,8 +91,8 @@ describe('ProductGridViewComponent', () => {
       expect(productGrid).not.toBeNull();
     });
 
-    it('should not render demo-loading-icon', () => {
-      const loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
+    it('should not render daff-loading-icon', () => {
+      const loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
 
       expect(loadingIcon).toBeNull();
     });
@@ -116,8 +113,8 @@ describe('ProductGridViewComponent', () => {
       expect(productGrid).toBeNull();
     });
 
-    it('should render demo-loading-icon', () => {
-      const loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
+    it('should render daff-loading-icon', () => {
+      const loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
 
       expect(loadingIcon).not.toBeNull();
     });
