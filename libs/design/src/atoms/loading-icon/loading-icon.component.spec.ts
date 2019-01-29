@@ -9,7 +9,7 @@ class WrapperComponent {
   diameter = 100;
 }
 
-describe('DaffLoadingIconComponent', () => {
+describe('DaffLoadingIconComponent | Usage', () => {
   let wrapper: WrapperComponent;
   let component: DaffLoadingIconComponent;
   let de: DebugElement;
@@ -42,8 +42,35 @@ describe('DaffLoadingIconComponent', () => {
     fixture.detectChanges();
     expect(de.nativeElement.style.maxWidth).toEqual("50px");
   });
+});
 
-  it('has a default value of 100 for the diameter', () => {
-    expect(component.diameter).toEqual(100);
+
+describe('DaffLoadingIconComponent | Defaults', () => {
+  let component: DaffLoadingIconComponent;
+  let fixture: ComponentFixture<DaffLoadingIconComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        DaffLoadingIconComponent
+      ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(DaffLoadingIconComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('has a default value of 60 for the diameter', () => {
+    expect(component.diameter).toEqual(60);
   });
 });
+
+
