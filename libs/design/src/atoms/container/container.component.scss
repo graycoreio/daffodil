@@ -4,24 +4,25 @@
     display: block;
     margin: 0 auto;
     padding: 0;
+    width: 100%;
 
     &--xs {
-        width: 640px;
+        max-width: 640px;
     }
 
     &--sm {
-        width: 800px;
+        max-width: 800px;
     }
 
     &--md {
-        width: 1040px;
+        max-width: 1040px;
     }
 
     &--lg {
-        width: 1340px;
+        max-width: 1340px;
     }
 
     &--xl {
-        width: 1920px;
+        max-width: 1920px;
     }
 }
