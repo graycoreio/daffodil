@@ -12,7 +12,7 @@ import {
 import { DaffioLogoModule } from '../logo/logo.module';
 import { DaffioHeaderComponent } from './component/header.component';
 import { DaffioHeaderContainer } from './containers/header.component';
-import { DaffioHeaderItemComponent } from './header-item/header-item.component';
+import { DaffioHeaderItemDirective } from './header-item/header-item.directive';
 
 @NgModule({
   imports: [
@@ -28,7 +28,7 @@ import { DaffioHeaderItemComponent } from './header-item/header-item.component';
   declarations: [
     DaffioHeaderComponent,
     DaffioHeaderContainer,
-    DaffioHeaderItemComponent
+    DaffioHeaderItemDirective
   ],
   exports: [
     DaffioHeaderContainer

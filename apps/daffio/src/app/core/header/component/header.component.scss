@@ -12,6 +12,11 @@
     padding: 25px 0;
   }
 
+  &__item {
+    padding: 0 30px;
+    font-size: $medium-font-size;
+  }
+
   &__menu {
     display: none;
     margin: 0;
@@ -20,10 +25,6 @@
     @include breakpoint(big-tablet) {
       display: flex;
       align-items: center;
-    }
-
-    a {
-      font-size: $medium-font-size;
     }
   }
 
