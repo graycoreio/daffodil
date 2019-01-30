@@ -54,7 +54,6 @@ describe('Driver | In Memory | Cart | CartService', () => {
   describe('addToCart', () => {
     let productId;
     let qty;
-    let returnedValue;
 
     beforeEach(() => {
       productId = 'productId';
