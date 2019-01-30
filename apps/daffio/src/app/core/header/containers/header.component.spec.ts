@@ -59,8 +59,8 @@ describe('DaffioHeaderContainer', () => {
     });
   });
 
-  it('renders a [daffio-header-item] for every links defined', () => {
-    const headerItems = fixture.debugElement.queryAll(By.css('[daffio-header-item]'));
+  it('renders a [daffioHeaderItem] for every links defined', () => {
+    let headerItems = fixture.debugElement.queryAll(By.css('[daffioHeaderItem]'));
 
     expect(headerItems.length).toEqual(component.links.length);
   });
