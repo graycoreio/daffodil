@@ -4,9 +4,13 @@ import { By } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { DaffContainerModule, DaffContainerComponent } from '@daffodil/design';
 import { Cart } from '@daffodil/core';
-import { DaffAccordionModule, DaffAccordionItemComponent } from '@daffodil/design';
+import { DaffAccordionModule, 
+  DaffAccordionItemComponent, 
+  DaffLoadingIconModule,
+  DaffContainerModule, 
+  DaffContainerComponent
+} from '@daffodil/design';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/core/testing';
 
 import { ThankYouViewComponent } from './thank-you-view.component';
@@ -32,9 +36,6 @@ class MockCartSummaryWrapperComponent {
   @Input() cartTitle: string;
 }
 
-@Component({ selector: 'demo-loading-icon', template: ''})
-class MockLoadingIconComponent {}
-
 describe('ThankYouViewComponent', () => {
   let component: ThankYouViewComponent;
   let fixture: ComponentFixture<ThankYouViewComponent>;
@@ -48,14 +49,14 @@ describe('ThankYouViewComponent', () => {
       imports: [
         DaffContainerModule,
         DaffAccordionModule,
+        DaffLoadingIconModule,
         NoopAnimationsModule
       ],
       declarations: [ 
         ThankYouViewComponent,
         MockThankYouComponent,
         MockCartContainer,
-        MockCartSummaryWrapperComponent,
-        MockLoadingIconComponent
+        MockCartSummaryWrapperComponent
       ]
     })
     .compileComponents();
@@ -133,7 +134,7 @@ describe('ThankYouViewComponent', () => {
       fixture.detectChanges();
 
       thankYouElement = fixture.debugElement.query(By.css('.thank-you'));
-      loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
+      loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
     });
     
     it('should not render thankYouElement', () => {
@@ -155,7 +156,7 @@ describe('ThankYouViewComponent', () => {
       fixture.detectChanges();
 
       thankYouElement = fixture.debugElement.query(By.css('.thank-you'));
-      loadingIcon = fixture.debugElement.query(By.css('demo-loading-icon'));
+      loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
     });
     
     it('should render thank-you', () => {

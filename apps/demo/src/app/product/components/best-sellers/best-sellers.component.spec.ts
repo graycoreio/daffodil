@@ -1,10 +1,14 @@
+import { Component, Input } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+
+import { Observable, of } from 'rxjs';
+
+import { Product } from '@daffodil/core';
+import { DaffLoadingIconModule } from '@daffodil/design';
 
 import { BestSellersComponent } from './best-sellers.component';
-import { Component, Input } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Product } from '@daffodil/core';
-import { By } from '@angular/platform-browser';
+
 
 const stubBestSellers: Product[] = [];
 
@@ -23,9 +27,6 @@ class MockProductGridComponent {
   @Input() products: Product[];
 }
 
-@Component({ selector: 'demo-loading-icon', template: ''})
-class MockLoadingIconComponent {}
-
 describe('BestSellersComponent', () => {
   let component: BestSellersComponent;
   let fixture: ComponentFixture<BestSellersComponent>;
@@ -34,11 +35,13 @@ describe('BestSellersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffLoadingIconModule
+      ],
       declarations: [ 
         BestSellersComponent,
         MockBestSellersContainer,
-        MockProductGridComponent,
-        MockLoadingIconComponent
+        MockProductGridComponent
       ]
     })
     .compileComponents();

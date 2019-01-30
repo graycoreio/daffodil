@@ -2,37 +2,33 @@
 
 .product-added {
   display: grid;
-  font-size: $small-font-size;
   grid-column-gap: 20px;
   grid-row-gap: 15px;
   grid-template-columns: 1fr 3fr;
 
-  & img {
+  img {
     max-width: 100%;
   }
 
   &__description {
-    display: grid;
+    display: block;
   }
 
   &__name {
-    cursor: pointer;
     font-size: $medium-font-size;
+    margin-bottom: 5px;
     @include embolden();
-
-    @include breakpoint(big-tablet) {
-      margin-bottom: 15px;
-    }
+    @include clickable();
   }
 
   &__price {
     font-size: $medium-font-size;
-    color: get-color(secondary);
+    color: $accent;
     margin-bottom: 15px;
   }
 
-  &__qty {
-    display: inline;
-    @include embolden();
+  &__info {
+    font-size: $small-font-size;
+    line-height: 1.25rem;
   }
 }

@@ -6,6 +6,8 @@ import { Observable ,  of } from 'rxjs';
 import { Cart } from '@daffodil/core';
 import { DaffCartFactory } from '@daffodil/core/testing';
 
+import { DaffLoadingIconModule } from '@daffodil/design';
+
 import { CartSummaryWrapperComponent } from './cart-summary-wrapper.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
@@ -45,9 +47,6 @@ class MockCartTotalsComponent {
 })
 class MockHelpBoxComponent {}
 
-@Component({ selector: 'demo-loading-icon', template: ''})
-class MockLoadingIconComponent {}
-
 describe('CartSummaryWrapper', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
@@ -60,14 +59,14 @@ describe('CartSummaryWrapper', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        DaffLoadingIconModule
       ],
       declarations: [ 
         WrapperComponent,
         CartSummaryWrapperComponent,
         MockCartTotalsComponent,
         MockHelpBoxComponent,
-        MockLoadingIconComponent,
         MockCartSummaryComponent
       ]
     })

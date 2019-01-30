@@ -41,30 +41,11 @@
     }
   }
 
-  &__continue-shopping {
-    display: block;
-    width: 100%;
-    margin: 50px 0 25px 0;
-
-    @include breakpoint(tablet) {
-      width: 50%;
-      margin: 50px 0 0 0;
-    }
-  }
-
-  &__button-set {
+  &__button {
     margin: 25px 0 0 0;
-
-    > * {
-      display: block;
-      width: 100%;
-      margin: 0 0 5px 0;
-      font-size: 1.125rem;
-
-      &:last-child {
-        margin: 0;
-      }
-    }
+    justify-content: center;
+    width: 100%;
+    font-size: $medium-font-size;
   }
 
   &__summary {
@@ -86,11 +67,6 @@
       margin-bottom: 25px;
       @include section-divider();
     }
-  }
-
-  &__promotion {
-    display: block;
-    margin-bottom: 25px;
   }
   
   &__cart-totals {

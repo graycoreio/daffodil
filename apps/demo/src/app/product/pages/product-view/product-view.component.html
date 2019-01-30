@@ -2,6 +2,6 @@
   <demo-product [product]="ProductContainer.product$ | async" [qty]="ProductContainer.qty$ | async" (updateQty)="ProductContainer.updateQty($event)" *ngIf="!(ProductContainer.loading$ | async)">
     <demo-add-to-cart (addToCart)="ProductContainer.addToCart($event)" [additive]="ProductContainer.product$ | async"  [qty]="ProductContainer.qty$ | async"></demo-add-to-cart>
   </demo-product>
-  <demo-loading-icon *ngIf="(ProductContainer.loading$ | async)"></demo-loading-icon>
+  <daff-loading-icon *ngIf="(ProductContainer.loading$ | async)"></daff-loading-icon>
   <demo-add-to-cart-notification></demo-add-to-cart-notification>
 </div>

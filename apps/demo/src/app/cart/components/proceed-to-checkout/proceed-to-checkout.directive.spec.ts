@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { ProceedToCheckoutDirective } from './proceed-to-checkout.directive';
 import { Component } from '@angular/core';
 
-@Component({template: '<button demoProceedToCheckout></button>'})
+@Component({template: '<div demoProceedToCheckout></div>'})
 class WrapperComponent {}
 
 describe('ProceedToCheckoutDirective', () => {
@@ -40,14 +40,10 @@ describe('ProceedToCheckoutDirective', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  it('should display a proceed to checkout button', () => {
-    expect(fixture.debugElement.query(By.css('.button'))).toBeDefined();
-  });
-
-  describe('when button is clicked', () => {
+  describe('when [demoProceedToCheckout] is clicked', () => {
     
     it('should call router.navigateByUrl', () => {
-      fixture.debugElement.query(By.css('button')).nativeElement.click();
+      fixture.debugElement.query(By.css('[demoProceedToCheckout]')).nativeElement.click();
 
       expect(router.navigateByUrl).toHaveBeenCalledWith('/checkout');
     });
