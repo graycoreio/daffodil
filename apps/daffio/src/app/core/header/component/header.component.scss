@@ -24,7 +24,6 @@
 
     @include breakpoint(big-tablet) {
       display: flex;
-      align-items: center;
     }
   }
 
@@ -40,13 +39,12 @@
     display: none;
 
     @include breakpoint(big-tablet) {
-      display: inline-block;
+      display: flex;
     }
   }
 
   &__bars {
     display: flex;
-    align-items: center;
     margin-right: -13px;
 
     @include breakpoint(big-tablet) {
