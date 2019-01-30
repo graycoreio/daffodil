@@ -24,7 +24,9 @@ describe('CartTotalsComponent', () => {
 
   const itemTaxValue = 3.00;
 
-  const mockCart = cartFactory.create({
+  let mockCart = cartFactory.create({
+    grand_total: 100,
+    subtotal: 100,
     items: cartItemFactory.createMany(2, {
       tax_amount: itemTaxValue
     })
@@ -70,22 +72,7 @@ describe('CartTotalsComponent', () => {
     });
   });
 
-  describe('on first <demo-cart-totals-item>', () => {
-
-    beforeEach(() => {
-      cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('demo-cart-totals-item'))[0].nativeElement;
-    });
-  
-    it('should set label', () => {
-      expect(cartTotalsItemComponent.innerHTML).toContain('Subtotal');
-    });
-  
-    it('should set value', () => {
-      expect(cartTotalsItemComponent.innerHTML).toContain('$' + mockCart.subtotal);
-    });
-  });
-
-  describe('on second <demo-cart-totals-item>', () => {
+  describe('on estimated shipping <demo-cart-totals-item>', () => {
 
     beforeEach(() => {
       cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('demo-cart-totals-item'))[1].nativeElement;
@@ -100,7 +87,7 @@ describe('CartTotalsComponent', () => {
     });
   });
 
-  describe('on third <demo-cart-totals-item>', () => {
+  describe('on estimated tax on <demo-cart-totals-item>', () => {
 
     beforeEach(() => {
       cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('demo-cart-totals-item'))[2].nativeElement;
@@ -115,8 +102,62 @@ describe('CartTotalsComponent', () => {
     });
   });
 
-  describe('on fourth <demo-cart-totals-item>', () => {
+  describe('on subtotal <demo-cart-totals-item>', () => {
+    
+    beforeEach(() => {
+      cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('demo-cart-totals-item'))[0].nativeElement;
+    });
+  
+    it('should set label', () => {
+      expect(cartTotalsItemComponent.innerHTML).toContain('Subtotal');
+    });
+    
+    describe('when subtotal is less than 4 digits', () => {
 
+      beforeEach(() => {
+        mockCart = cartFactory.create({
+          grand_total: 100,
+          subtotal: 100,
+          items: cartItemFactory.createMany(2, {
+            tax_amount: itemTaxValue
+          })
+        });
+
+        wrapper.cartValue = mockCart;
+        fixture.detectChanges();
+
+        cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('demo-cart-totals-item'))[0].nativeElement;
+      });
+    
+      it('should set value with proper formatting', () => {  
+        expect(cartTotalsItemComponent.innerHTML).toContain('$' + mockCart.subtotal);
+      });
+    });
+
+    describe('when subtotal is at least 4 digits', () => {
+      
+      beforeEach(() => {
+        mockCart = cartFactory.create({
+          grand_total: 1000,
+          subtotal: 1000,
+          items: cartItemFactory.createMany(2, {
+            tax_amount: itemTaxValue
+          })
+        });
+        wrapper.cartValue = mockCart;
+        fixture.detectChanges();
+
+        cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('demo-cart-totals-item'))[0].nativeElement;
+      });
+        
+      it('should set value with proper formatting', () => {  
+        expect(cartTotalsItemComponent.innerHTML).toContain('$1,000');
+      });
+    });
+  });
+
+  describe('on estimated total <demo-cart-totals-item>', () => {
+    
     beforeEach(() => {
       cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('demo-cart-totals-item'))[3].nativeElement;
     });
@@ -124,9 +165,43 @@ describe('CartTotalsComponent', () => {
     it('should set label', () => {
       expect(cartTotalsItemComponent.innerHTML).toContain('Estimated Total');
     });
+
+    describe('when grand_total is less than 4 digits', () => {
+      
+      beforeEach(() => {
+        mockCart = cartFactory.create({
+          grand_total: 100,
+          subtotal: 100,
+          items: cartItemFactory.createMany(2, {
+            tax_amount: itemTaxValue
+          })
+        });
+        wrapper.cartValue = mockCart;
+        fixture.detectChanges();
+      });
   
-    it('should set value', () => {
-      expect(cartTotalsItemComponent.innerHTML).toContain('$' + cartTotalsComponent.cart.grand_total);
+      it('should set value', () => {
+        expect(cartTotalsItemComponent.innerHTML).toContain('$' + cartTotalsComponent.cart.grand_total);
+      });
+    });
+
+    describe('when grand_total is at least 4 digits', () => {
+      
+      beforeEach(() => {
+        mockCart = cartFactory.create({
+          grand_total: 1000,
+          subtotal: 1000,
+          items: cartItemFactory.createMany(2, {
+            tax_amount: itemTaxValue
+          })
+        });
+        wrapper.cartValue = mockCart;
+        fixture.detectChanges();
+      });
+  
+      it('should set value', () => {
+        expect(cartTotalsItemComponent.innerHTML).toContain('$1,000');
+      });
     });
   });
 });

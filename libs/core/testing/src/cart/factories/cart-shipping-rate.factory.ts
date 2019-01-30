@@ -14,7 +14,7 @@ export class MockCartShippingRate implements CartShippingRate {
     code = 'code';
     method = 'swallow';
     method_description = 'efficient';
-    price = faker.random.number(999);
+    price = faker.random.number(1500);
     error_message = 'error message';
     method_title = 'laden';
 }
