@@ -7,6 +7,7 @@ import { Observable ,  of } from 'rxjs';
 
 import { Product } from '@daffodil/core';
 import { DaffProductFactory } from '@daffodil/core/testing';
+import { DaffLoadingIconModule } from '@daffodil/design';
 
 import { ProductViewComponent } from './product-view.component';
 import { ActivatedRouteStub } from '../../../testing/ActivatedRouteStub';
@@ -51,9 +52,6 @@ class MockAddToCartComponent {
   @Output() addToCart: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({ selector: 'demo-loading-icon', template: ''})
-class MockLoadingIconComponent {}
-
 @Component({ selector: 'demo-add-to-cart-notification', template: ''})
 class MockAddToCartNotificationComponent {}
 
@@ -70,14 +68,14 @@ describe('ProductViewComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        DaffLoadingIconModule
       ],
       declarations: [ 
         ProductViewComponent,
         MockProductContainer,
         MockProductComponent,
         MockAddToCartComponent,
-        MockLoadingIconComponent,
         MockAddToCartNotificationComponent
       ],
       providers: [
@@ -164,8 +162,8 @@ describe('ProductViewComponent', () => {
       expect(productComponent).not.toBeNull();
     });
 
-    it('should not render demo-loading-icon', () => {
-      expect(fixture.debugElement.query(By.css('demo-loading-icon'))).toBeNull();
+    it('should not render daff-loading-icon', () => {
+      expect(fixture.debugElement.query(By.css('daff-loading-icon'))).toBeNull();
     });
   });
 
@@ -183,8 +181,8 @@ describe('ProductViewComponent', () => {
       expect(productElement).toBeNull();
     });
     
-    it('should render demo-loading-icon', () => {
-      expect(fixture.debugElement.query(By.css('demo-loading-icon'))).not.toBeNull();
+    it('should render daff-loading-icon', () => {
+      expect(fixture.debugElement.query(By.css('daff-loading-icon'))).not.toBeNull();
     });
   });
 });

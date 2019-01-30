@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LoadingIconComponent } from './loading-icon.component';
+import { DaffLoadingIconComponent } from './loading-icon.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
-    LoadingIconComponent
+    DaffLoadingIconComponent
   ],
   exports: [
-    LoadingIconComponent
+    DaffLoadingIconComponent
   ]
 })
-export class LoadingIconModule { }
+export class DaffLoadingIconModule { }
