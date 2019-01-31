@@ -62,7 +62,6 @@ describe('DaffProgressIndicatorComponent', () => {
     wrapper.percentage = 100;
     spyOn(wrapper, 'onComplete');
    
-    //console.log(wrapper.onComplete);
     fixture.detectChanges();
     flush();
 
