@@ -1,6 +1,6 @@
 @import 'daff-util';
 
-.daffio-header {
+.navbar {
   justify-content: space-between;
   padding: 25px;
 
@@ -11,6 +11,10 @@
   @include breakpoint(small-laptop) {
     padding: 25px 0;
   }
+}
+
+.daffio-header {
+  display: block;
 
   &__item {
     padding: 0 30px;
