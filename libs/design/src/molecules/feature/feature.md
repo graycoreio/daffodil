@@ -3,26 +3,26 @@ The `feature` component can be used to display feature-related content on a page
 
 ## Supported Content Types
 A `daff-feature` transcludes:
-* `[daff-feature-title]`
-* `[daff-feature-body]`
-* `[daff-feature-icon]`
+* `[daffFeatureTitle]`
+* `[daffFeatureSubtitle]`
+* `[daffFeatureIcon]`
 * Any additional components
 
 ### Title
-* Feature title is used by adding `[daff-feature-title]` to any tag.
+* Feature title is used by adding `[daffFeatureTitle]` to any tag.
 
-### Body
-* Feature body is used by adding `[daff-feature-body]` to any tag.
+### Subtitle
+* Feature subtitle is used by adding `[daffFeatureSubtitle]` to any tag.
 
 ### Icon
-* Feature icon is used by adding `[daff-feature-icon]` to any tag.
+* Feature icon is used by adding `[daffFeatureIcon]` to any tag.
 
 ### Usage
 ```
 <daff-feature>
-  <img daff-feature-icon src="" />
-  <h4 daff-feature-title>Title</h4>
-  <p daff-feature-body>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+  <img daffFeatureIcon src="" />
+  <h4 daffFeatureTitle>Title</h4>
+  <p daffFeatureSubtitle>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   Some other content
 </daff-feature>
 ```

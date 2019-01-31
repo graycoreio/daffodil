@@ -1,4 +1,4 @@
-@import '../../scss/daff-util';
+@import '../../../scss/daff-util';
 
 .daff-feature {
   display: flex;
@@ -35,7 +35,7 @@
     }
   }
 
-  &__body {
+  &__subtitle {
     font-size: 1rem;
     margin: 25px 0 0 0;
     padding: 0;
