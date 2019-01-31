@@ -1,22 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DaffFeatureBodyComponent } from './feature-body.component';
+import { DaffFeatureIconDirective } from './feature-icon.directive';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-@Component({template: '<div daff-feature-body></div>'})
+@Component({template: '<div daffFeatureIcon></div>'})
 class WrapperComponent {}
 
-describe('DaffFeatureBodyComponent', () => {
+describe('DaffFeatureIconDirective', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let featureBody;
+  let featureIcon;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
         WrapperComponent,
-        DaffFeatureBodyComponent
+        DaffFeatureIconDirective
       ]
     })
     .compileComponents();
@@ -27,14 +27,14 @@ describe('DaffFeatureBodyComponent', () => {
     wrapper = fixture.componentInstance;
     
     fixture.detectChanges();
-    featureBody = fixture.debugElement.query(By.css('[daff-feature-body]'));
+    featureIcon = fixture.debugElement.query(By.css('[daffFeatureIcon]'));
   });
 
   it('should create', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  it('should add a class of `daff-feature__body` to its host', () => {
-    expect(featureBody.nativeElement.classList.contains('daff-feature__body')).toBeTruthy();
+  it('should add a class of `daff-feature__icon` to its host', () => {
+    expect(featureIcon.nativeElement.classList.contains('daff-feature__icon')).toBeTruthy();
   });
 });
