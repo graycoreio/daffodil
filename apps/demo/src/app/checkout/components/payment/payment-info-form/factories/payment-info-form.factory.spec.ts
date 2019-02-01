@@ -5,7 +5,7 @@ import { PaymentInfoFormFactory } from './payment-info-form.factory';
 import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 import { DaffPaymentFactory } from '@daffodil/core/testing';
 
-describe('Foundation Demo | Checkout | Forms | Payment Info Form | Factories | PaymentInfoFormFactory', () => {
+describe('Daffodil Demo | Checkout | Forms | Payment Info Form | Factories | PaymentInfoFormFactory', () => {
   
   let paymentInfoFormFactory;
   let paymentFactory: DaffPaymentFactory;

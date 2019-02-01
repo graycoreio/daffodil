@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import * as fromFoundationCheckout from '../../reducers';
+import * as fromDemoCheckout from '../../reducers';
 import { ShowPaymentView } from '../../actions/payment.actions';
 
 @Component({
@@ -14,12 +14,12 @@ export class CheckoutViewComponent implements OnInit {
   showReviewView$: Observable<boolean>;
 
   constructor(
-    private store: Store<fromFoundationCheckout.State>
+    private store: Store<fromDemoCheckout.State>
   ) { }
 
   ngOnInit() {
-    this.showPaymentView$ = this.store.pipe(select(fromFoundationCheckout.selectShowPaymentView));
-    this.showReviewView$ = this.store.pipe(select(fromFoundationCheckout.selectShowReviewView));
+    this.showPaymentView$ = this.store.pipe(select(fromDemoCheckout.selectShowPaymentView));
+    this.showReviewView$ = this.store.pipe(select(fromDemoCheckout.selectShowReviewView));
   }
 
   onUpdateShippingAddress() {

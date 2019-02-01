@@ -1,10 +1,10 @@
 import { Action } from '@ngrx/store';
 
 export enum PaymentActionTypes {
-  ShowPaymentViewAction = "[Foundation-Payment] Show Payment View Action",
-  ShowPaymentFormAction = "[Foundation-Payment] Show Payment Form Action",
-  HidePaymentFormAction = "[Foundation-Payment] Hide Payment Form Action",
-  ToggleShowPaymentFormAction = "[Foundation-Payment] Toggle Show Payment Form Action"
+  ShowPaymentViewAction = "[Demo-Payment] Show Payment View Action",
+  ShowPaymentFormAction = "[Demo-Payment] Show Payment Form Action",
+  HidePaymentFormAction = "[Demo-Payment] Hide Payment Form Action",
+  ToggleShowPaymentFormAction = "[Demo-Payment] Toggle Show Payment Form Action"
 }
 
 export class ShowPaymentView implements Action {

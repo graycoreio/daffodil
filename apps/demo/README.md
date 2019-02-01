@@ -1,4 +1,4 @@
-## Running the Foundation demo
+## Running Daffodil Demo
 
 ### Prerequisites
 * [Lerna](https://lernajs.io/) - `npm install --g lerna`.

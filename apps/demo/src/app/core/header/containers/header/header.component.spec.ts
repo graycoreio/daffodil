@@ -8,12 +8,12 @@ import * as fromSidebar from '../../../sidebar/reducers/index';
 import { ToggleSidebar } from '../../../sidebar/actions/sidebar.actions';
 
 import { LogoModule } from '../../../logo/logo.module';
-import { FoundationHeaderContainer } from './header.component';
-import { FoundationHeaderComponent } from '../../components/header/header.component';
+import { DemoHeaderContainer } from './header.component';
+import { DemoHeaderComponent } from '../../components/header/header.component';
 
-describe('FoundationHeaderContainer', () => {
-  let component: FoundationHeaderContainer;
-  let fixture: ComponentFixture<FoundationHeaderContainer>;
+describe('DemoHeaderContainer', () => {
+  let component: DemoHeaderContainer;
+  let fixture: ComponentFixture<DemoHeaderContainer>;
 
   let store: Store<fromSidebar.State>;
 
@@ -25,8 +25,8 @@ describe('FoundationHeaderContainer', () => {
         LogoModule
       ],
       declarations: [
-        FoundationHeaderContainer,
-        FoundationHeaderComponent
+        DemoHeaderContainer,
+        DemoHeaderComponent
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA
@@ -36,7 +36,7 @@ describe('FoundationHeaderContainer', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FoundationHeaderContainer);
+    fixture = TestBed.createComponent(DemoHeaderContainer);
     component = fixture.componentInstance;
     store = TestBed.get(Store);
     spyOn(store, 'dispatch');

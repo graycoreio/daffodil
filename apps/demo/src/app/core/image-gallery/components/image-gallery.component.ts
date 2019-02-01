@@ -2,7 +2,7 @@ import { Component, Input, ViewEncapsulation, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import * as fromFoundationImageGallery from '../reducers/index';
+import * as fromDemoImageGallery from '../reducers/index';
 import { SetSelectedImageState } from '../actions/image-gallery.actions';
 
 @Component({
@@ -16,12 +16,12 @@ export class ImageGalleryComponent implements OnInit {
   selectedImage$: Observable<string>;
 
   constructor(
-    private store: Store<fromFoundationImageGallery.State>
+    private store: Store<fromDemoImageGallery.State>
   ) {}
 
   ngOnInit() {
     this.select(this.images[0].url);
-    this.selectedImage$ = this.store.pipe(select(fromFoundationImageGallery.selectSelectedImage));
+    this.selectedImage$ = this.store.pipe(select(fromDemoImageGallery.selectSelectedImage));
   }
 
   select(image: string) {

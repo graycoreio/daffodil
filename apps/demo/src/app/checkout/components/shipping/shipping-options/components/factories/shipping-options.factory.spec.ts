@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { ShippingOptionsFactory } from './shipping-options.factory';
 import { ShippingOption } from '@daffodil/core';
 
-describe('Foundation Demo | Checkout | Shipping | Shipping Options | Factories | ShippingOptionsFactory', () => {
+describe('Daffodil Demo | Checkout | Shipping | Shipping Options | Factories | ShippingOptionsFactory', () => {
   
   let shippingOptionsFactory;
 

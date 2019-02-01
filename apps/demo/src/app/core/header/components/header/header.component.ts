@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class FoundationHeaderComponent { 
+export class DemoHeaderComponent { 
 
   constructor(
     private router: Router

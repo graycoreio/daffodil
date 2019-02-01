@@ -1,33 +1,33 @@
 import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
-import * as fromFoundationSidebar from './sidebar.reducer';
+import * as fromDemoSidebar from './sidebar.reducer';
 
-export interface FoundationSidebarState {
-  foundationSidebar: fromFoundationSidebar.State;
+export interface DemoSidebarState {
+  demoSidebar: fromDemoSidebar.State;
 }
 
 export interface State {
-  foundationSidebar: FoundationSidebarState
+  demoSidebar: DemoSidebarState
 }
 
-export const reducers : ActionReducerMap<FoundationSidebarState> = {
-  foundationSidebar: fromFoundationSidebar.reducer
+export const reducers : ActionReducerMap<DemoSidebarState> = {
+  demoSidebar: fromDemoSidebar.reducer
 }
 
 /**
- * Foundation Sidebar State
+ * Demo Sidebar State
  */
-export const selectFoundationSidebarState: MemoizedSelector<object, FoundationSidebarState> = createFeatureSelector<FoundationSidebarState>('foundationSidebar');
+export const selectDemoSidebarState: MemoizedSelector<object, DemoSidebarState> = createFeatureSelector<DemoSidebarState>('demoSidebar');
 
 /**
- * Foundation Sidebar Sidebar State
+ * Demo Sidebar Sidebar State
  */
-export const foundationSidebarStateSelector = createSelector(
-  selectFoundationSidebarState,
-  (state: FoundationSidebarState) => state.foundationSidebar
+export const demoSidebarStateSelector = createSelector(
+  selectDemoSidebarState,
+  (state: DemoSidebarState) => state.demoSidebar
 );
 
 export const selectShowSidebar: MemoizedSelector<object, boolean> = createSelector(
-  foundationSidebarStateSelector,
-  fromFoundationSidebar.getShowSidebar
+  demoSidebarStateSelector,
+  fromDemoSidebar.getShowSidebar
 );

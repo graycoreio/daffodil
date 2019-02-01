@@ -10,7 +10,7 @@ import { AddToCartNotificationEffects } from './effects/add-to-cart-notification
     EffectsModule.forFeature([
       AddToCartNotificationEffects
     ]),
-    StoreModule.forFeature('foundationAddToCartNotification', reducers)
+    StoreModule.forFeature('demoAddToCartNotification', reducers)
   ]
 })
-export class FoundationAddToCartNotificationStateModule { }
+export class DemoAddToCartNotificationStateModule { }

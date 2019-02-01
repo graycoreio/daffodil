@@ -7,10 +7,10 @@ import { CheckoutEffects } from './effects/checkout.effects';
 
 @NgModule({
   imports: [
-    StoreModule.forFeature('foundationCheckout', reducers),
+    StoreModule.forFeature('demoCheckout', reducers),
     EffectsModule.forFeature([
       CheckoutEffects
     ])
   ]
 })
-export class FoundationCheckoutStateModule { }
+export class DemoCheckoutStateModule { }
