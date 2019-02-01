@@ -8,7 +8,7 @@ import { ToggleSidebar } from '../../../sidebar/actions/sidebar.actions';
   selector: 'demo-header-container',
   templateUrl: './header.component.html'
 })
-export class FoundationHeaderContainer {
+export class DemoHeaderContainer {
   constructor(private store: Store<{}>) { }
 
   openSidebar() {

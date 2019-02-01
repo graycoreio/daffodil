@@ -1,7 +1,7 @@
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { FoundationModule } from './app/app.module';
+import { DemoModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 import * as WebFont from 'webfontloader';
@@ -17,5 +17,5 @@ if (environment.production) {
 }
 
 platformBrowserDynamic()
-  .bootstrapModule(FoundationModule)
+  .bootstrapModule(DemoModule)
   .catch(err => console.log(err));

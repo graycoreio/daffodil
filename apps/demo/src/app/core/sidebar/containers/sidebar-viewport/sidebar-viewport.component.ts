@@ -3,7 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { ToggleSidebar, CloseSidebar, OpenSidebar, SetSidebarState } from '../../actions/sidebar.actions';
-import * as fromFoundationSidebar from '../../reducers/index';
+import * as fromDemoSidebar from '../../reducers/index';
 
 @Component({
   selector: 'demo-sidebar-viewport-container',
@@ -14,11 +14,11 @@ export class SidebarViewportContainer implements OnInit {
   showSidebar$: Observable<boolean>;
 
   ngOnInit() {
-    this.showSidebar$ = this.store.pipe(select(fromFoundationSidebar.selectShowSidebar));
+    this.showSidebar$ = this.store.pipe(select(fromDemoSidebar.selectShowSidebar));
   }
 
   constructor(
-    private store: Store<fromFoundationSidebar.State>
+    private store: Store<fromDemoSidebar.State>
   ) { }
 
   close () {

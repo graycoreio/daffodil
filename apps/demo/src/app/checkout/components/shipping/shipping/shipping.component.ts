@@ -5,7 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { DaffodilAddress } from '@daffodil/core';
 
 import { SetShowShippingForm, ToggleShowShippingForm } from '../../../actions/shipping.actions';
-import * as fromFoundationCheckout from '../../../reducers';
+import * as fromDemoCheckout from '../../../reducers';
 
 @Component({
   selector: 'demo-shipping',
@@ -24,7 +24,7 @@ export class ShippingComponent implements OnInit {
   showShippingForm$: Observable<boolean>;
 
   constructor(
-    private store: Store<fromFoundationCheckout.State>
+    private store: Store<fromDemoCheckout.State>
   ) { }
 
   ngOnInit() {    
@@ -32,7 +32,7 @@ export class ShippingComponent implements OnInit {
       new SetShowShippingForm(!this.isShippingAddressValid)
     );
 
-    this.showShippingForm$ = this.store.pipe(select(fromFoundationCheckout.selectShowShippingForm));
+    this.showShippingForm$ = this.store.pipe(select(fromDemoCheckout.selectShowShippingForm));
   }
 
   toggleShippingView() {

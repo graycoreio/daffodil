@@ -56,4 +56,4 @@ import { ThankYouModule } from './thank-you/thank-you.module';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class FoundationModule {}
+export class DemoModule {}

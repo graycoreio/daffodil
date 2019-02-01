@@ -4,9 +4,9 @@ import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 import * as fromCheckout from './index';
 import { SetShowShippingForm } from "../actions/shipping.actions";
 
-describe('selectFoundationCheckoutState', () => {
+describe('selectDemoCheckoutState', () => {
 
-  let store: Store<fromCheckout.FoundationCheckoutState>;
+  let store: Store<fromCheckout.DemoCheckoutState>;
   let stubShowShippingForm: boolean;
   let expectedShowPaymentView: boolean;
   let expectedShowPaymentForm: boolean;
@@ -15,7 +15,7 @@ describe('selectFoundationCheckoutState', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          foundationCheckout: combineReducers(fromCheckout.reducers),
+          demoCheckout: combineReducers(fromCheckout.reducers),
         })
       ]
     });
@@ -27,14 +27,14 @@ describe('selectFoundationCheckoutState', () => {
     store.dispatch(new SetShowShippingForm(stubShowShippingForm));
   }));
 
-  describe('foundationShippingStateSelector', () => {
+  describe('demoShippingStateSelector', () => {
     
     it('selects shipping state', () => {
       const expectedShippingState = {
         showShippingForm: stubShowShippingForm
       }
 
-      store.pipe(select(fromCheckout.foundationShippingStateSelector)).subscribe((shippingState) => {
+      store.pipe(select(fromCheckout.demoShippingStateSelector)).subscribe((shippingState) => {
         expect(shippingState).toEqual(expectedShippingState);
       });
     });
@@ -49,7 +49,7 @@ describe('selectFoundationCheckoutState', () => {
     });
   });
 
-  describe('foundationPaymentStateSelector', () => {
+  describe('demoPaymentStateSelector', () => {
     
     it('selects payment state', () => {
       const expectedPaymentState = {
@@ -57,7 +57,7 @@ describe('selectFoundationCheckoutState', () => {
         showPaymentForm: expectedShowPaymentForm
       }
 
-      store.pipe(select(fromCheckout.foundationPaymentStateSelector)).subscribe((paymentState) => {
+      store.pipe(select(fromCheckout.demoPaymentStateSelector)).subscribe((paymentState) => {
         expect(paymentState).toEqual(expectedPaymentState);
       });
     });
@@ -81,7 +81,7 @@ describe('selectFoundationCheckoutState', () => {
     });
   });
 
-  describe('foundationCheckoutStateSelector', () => {
+  describe('demoCheckoutStateSelector', () => {
     
     it('selects checkout state', () => {
       const expectedCheckoutState = {
@@ -89,7 +89,7 @@ describe('selectFoundationCheckoutState', () => {
         showReviewView: false
       }
 
-      store.pipe(select(fromCheckout.foundationCheckoutStateSelector)).subscribe((checkoutState) => {
+      store.pipe(select(fromCheckout.demoCheckoutStateSelector)).subscribe((checkoutState) => {
         expect(checkoutState).toEqual(expectedCheckoutState);
       });
     });
