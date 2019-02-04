@@ -12,7 +12,7 @@ class WrapperComponent {
   mode: DaffFeatureMode;
 }
 
-fdescribe('DaffFeatureComponent', () => {
+describe('DaffFeatureComponent', () => {
   let wrapper: WrapperComponent;
   let component: DaffFeatureComponent;
   let de: DebugElement;
