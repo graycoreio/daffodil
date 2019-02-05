@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 
-import { DaffFeatureComponent } from './feature.component';
+import { DaffFeatureComponent } from './feature/feature.component';
 import { CommonModule } from '@angular/common';
-import { DaffFeatureTitleComponent } from './feature-title/feature-title.component';
-import { DaffFeatureBodyComponent } from './feature-body/feature-body.component';
-import { DaffFeatureIconComponent } from './feature-icon/feature-icon.component';
+import { DaffFeatureTitleDirective } from './feature-title/feature-title.directive';
+import { DaffFeatureSubtitleDirective } from './feature-subtitle/feature-subtitle.directive';
+import { DaffFeatureIconDirective } from './feature-icon/feature-icon.directive';
 
 @NgModule({
   imports: [
@@ -12,15 +12,15 @@ import { DaffFeatureIconComponent } from './feature-icon/feature-icon.component'
   ],
   declarations: [
     DaffFeatureComponent,
-    DaffFeatureTitleComponent,
-    DaffFeatureBodyComponent,
-    DaffFeatureIconComponent
+    DaffFeatureTitleDirective,
+    DaffFeatureSubtitleDirective,
+    DaffFeatureIconDirective
   ],
   exports: [
     DaffFeatureComponent,
-    DaffFeatureTitleComponent,
-    DaffFeatureBodyComponent,
-    DaffFeatureIconComponent
+    DaffFeatureTitleDirective,
+    DaffFeatureSubtitleDirective,
+    DaffFeatureIconDirective
   ]
 })
 export class DaffFeatureModule { }
