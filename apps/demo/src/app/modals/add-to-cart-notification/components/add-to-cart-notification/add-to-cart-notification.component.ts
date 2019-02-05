@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 
-import * as fromFoundationAddToCartNotification from '../../reducers/index';
+import * as fromDemoAddToCartNotification from '../../reducers/index';
 import { Observable } from 'rxjs';
 import { CloseAddToCartNotification } from '../../actions/add-to-cart-notification.actions';
 import { Product } from '@daffodil/core';
@@ -31,24 +31,24 @@ export class AddToCartNotificationComponent implements OnInit {
   set horizontalPosition(value: string) { this._horizontalPosition = value; }
   
   constructor(
-    private store: Store<fromFoundationAddToCartNotification.State>
+    private store: Store<fromDemoAddToCartNotification.State>
   ) { }
 
   ngOnInit() {
     this.open$ = this.store.pipe(
-      select(fromFoundationAddToCartNotification.selectOpen)
+      select(fromDemoAddToCartNotification.selectOpen)
     );
 
     this.productQty$ = this.store.pipe(
-      select(fromFoundationAddToCartNotification.selectProductQty)
+      select(fromDemoAddToCartNotification.selectProductQty)
     );
 
     this.loading$ = this.store.pipe(
-      select(fromFoundationAddToCartNotification.selectLoading)
+      select(fromDemoAddToCartNotification.selectLoading)
     );
 
     this.productId$ = this.store.pipe(
-      select(fromFoundationAddToCartNotification.selectProductId)
+      select(fromDemoAddToCartNotification.selectProductId)
     );
     
     this.productId$.subscribe((productId) => {
@@ -60,7 +60,7 @@ export class AddToCartNotificationComponent implements OnInit {
 
   get cartItemCount$(): Observable<number> {
     return this.store.pipe(
-      select(fromFoundationAddToCartNotification.selectCartItemCount)
+      select(fromDemoAddToCartNotification.selectCartItemCount)
     )
   }
 

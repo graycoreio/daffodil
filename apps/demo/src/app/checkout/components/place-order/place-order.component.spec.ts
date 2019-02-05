@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { of } from 'rxjs';
 
-import * as fromFoundationCheckout from '../../reducers';
+import * as fromDemoCheckout from '../../reducers';
 import { PlaceOrderComponent } from './place-order.component';
 import { PlaceOrder } from '../../actions/checkout.actions';
 
@@ -17,7 +17,7 @@ describe('PlaceOrderComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          checkout: combineReducers(fromFoundationCheckout.reducers),
+          checkout: combineReducers(fromDemoCheckout.reducers),
         })
       ],
       declarations: [ 
@@ -33,7 +33,7 @@ describe('PlaceOrderComponent', () => {
     store = TestBed.get(Store);
 
     spyOn(store, 'dispatch');
-    spyOn(fromFoundationCheckout, 'selectEnablePlaceOrderButton').and.returnValue(stubEnablePlaceOrderButton);
+    spyOn(fromDemoCheckout, 'selectEnablePlaceOrderButton').and.returnValue(stubEnablePlaceOrderButton);
     
     fixture.detectChanges();
 

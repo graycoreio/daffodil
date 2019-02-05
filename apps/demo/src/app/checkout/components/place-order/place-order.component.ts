@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import * as fromFoundationCheckout from '../../reducers';
+import * as fromDemoCheckout from '../../reducers';
 import { PlaceOrder } from '../../actions/checkout.actions';
 
 @Component({
@@ -15,11 +15,11 @@ export class PlaceOrderComponent implements OnInit{
   enablePlaceOrderButton$: Observable<boolean>;
 
   constructor(
-    private store: Store<fromFoundationCheckout.State>
+    private store: Store<fromDemoCheckout.State>
   ) { }
 
   ngOnInit() {
-    this.enablePlaceOrderButton$ = this.store.pipe(select(fromFoundationCheckout.selectEnablePlaceOrderButton));
+    this.enablePlaceOrderButton$ = this.store.pipe(select(fromDemoCheckout.selectEnablePlaceOrderButton));
   }
 
   placeOrder() {

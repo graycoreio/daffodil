@@ -8,7 +8,7 @@ import { PaymentInfo, DaffodilAddress } from '@daffodil/core';
 import { DaffAddressFactory, DaffPaymentFactory } from '@daffodil/core/testing';
 
 import { ShowPaymentForm, ToggleShowPaymentForm, HidePaymentForm } from '../../../actions/payment.actions';
-import * as fromFoundationCheckout from '../../../reducers';
+import * as fromDemoCheckout from '../../../reducers';
 import { PaymentComponent } from './payment.component';
 
 const paymentFactory = new DaffPaymentFactory();
@@ -71,7 +71,7 @@ describe('PaymentComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          shippings: combineReducers(fromFoundationCheckout.reducers),
+          shippings: combineReducers(fromDemoCheckout.reducers),
         })
       ],
       declarations: [ 
@@ -89,7 +89,7 @@ describe('PaymentComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     store = TestBed.get(Store);
-    spyOn(fromFoundationCheckout, 'selectShowPaymentForm').and.returnValue(stubShowPaymentForm);
+    spyOn(fromDemoCheckout, 'selectShowPaymentForm').and.returnValue(stubShowPaymentForm);
     spyOn(store, 'dispatch');
     
     fixture.detectChanges();

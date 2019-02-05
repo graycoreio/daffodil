@@ -1,33 +1,33 @@
 import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
-import * as fromFoundationImageGallery from './image-gallery.reducer';
+import * as fromDemoImageGallery from './image-gallery.reducer';
 
-export interface FoundationImageGalleryState {
-  foundationImageGallery: fromFoundationImageGallery.State;
+export interface DemoImageGalleryState {
+  demoImageGallery: fromDemoImageGallery.State;
 }
 
 export interface State {
-  foundationImageGallery: FoundationImageGalleryState
+  demoImageGallery: DemoImageGalleryState
 }
 
-export const reducers : ActionReducerMap<FoundationImageGalleryState> = {
-  foundationImageGallery: fromFoundationImageGallery.reducer
+export const reducers : ActionReducerMap<DemoImageGalleryState> = {
+  demoImageGallery: fromDemoImageGallery.reducer
 }
 
 /**
- * Foundation ImageGallery State
+ * Demo ImageGallery State
  */
-export const selectFoundationImageGalleryState: MemoizedSelector<object, FoundationImageGalleryState> = createFeatureSelector<FoundationImageGalleryState>('foundationImageGallery');
+export const selectDemoImageGalleryState: MemoizedSelector<object, DemoImageGalleryState> = createFeatureSelector<DemoImageGalleryState>('demoImageGallery');
 
 /**
- * Foundation ImageGallery ImageGallery State
+ * Demo ImageGallery ImageGallery State
  */
-export const foundationImageGalleryStateSelector = createSelector(
-  selectFoundationImageGalleryState,
-  (state: FoundationImageGalleryState) => state.foundationImageGallery
+export const demoImageGalleryStateSelector = createSelector(
+  selectDemoImageGalleryState,
+  (state: DemoImageGalleryState) => state.demoImageGallery
 );
 
 export const selectSelectedImage: MemoizedSelector<object, string> = createSelector(
-  foundationImageGalleryStateSelector,
-  fromFoundationImageGallery.getSelectedImage
+  demoImageGalleryStateSelector,
+  fromDemoImageGallery.getSelectedImage
 );
