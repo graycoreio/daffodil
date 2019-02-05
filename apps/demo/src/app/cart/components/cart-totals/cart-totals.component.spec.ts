@@ -29,9 +29,7 @@ describe('CartTotalsComponent', () => {
 
   const itemTaxValue = 3.00;
 
-  let mockCart = cartFactory.create({
-    grand_total: 100,
-    subtotal: 100,
+  const mockCart = cartFactory.create({
     items: cartItemFactory.createMany(2, {
       tax_amount: itemTaxValue
     })
