@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, Input, Pipe, PipeTransform } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { Cart } from '@daffodil/core';
-import { DaffCartItemFactory, DaffCartFactory } from '@daffodil/core/testing';
+import { DaffCartItemFactory, DaffCartFactory, DaffMockPipes } from '@daffodil/core/testing';
 
 import { CartTotalsComponent } from './cart-totals.component';
 import { CartTotalsItemModule } from '../cart-totals-item/cart-totals-item.module';
@@ -11,11 +11,6 @@ import { CartTotalsItemModule } from '../cart-totals-item/cart-totals-item.modul
 @Component({template: '<demo-cart-totals [cart]="cartValue"></demo-cart-totals>'})
 class WrapperComponent {
   @Input() cartValue: Cart;
-}
-
-@Pipe({name: 'currency'})
-class MockCurrencyPipe implements PipeTransform {
-  transform(value: number) {};
 }
 
 describe('CartTotalsComponent', () => {
@@ -40,7 +35,7 @@ describe('CartTotalsComponent', () => {
       declarations: [
         CartTotalsComponent,
         WrapperComponent,
-        MockCurrencyPipe
+        DaffMockPipes.DaffMockCurrencyPipe
       ],
       imports: [
         CartTotalsItemModule
@@ -52,7 +47,7 @@ describe('CartTotalsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    currencyPipeTransformSpy = spyOn(MockCurrencyPipe.prototype, 'transform');
+    currencyPipeTransformSpy = spyOn(DaffMockPipes.DaffMockCurrencyPipe.prototype, 'transform');
     
     wrapper.cartValue = mockCart;
 

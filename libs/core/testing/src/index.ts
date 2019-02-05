@@ -18,8 +18,12 @@ import * as productHelper from './product/helpers/product-helper';
 export { productHelper };
 
 //Shipping
-export { DaffShippingOptionFactory } from "./shipping/factories/shipping-option.factory"
-export { DaffShippingRateFactory } from "./shipping/factories/shipping-rate.factory"
+export { DaffShippingOptionFactory } from "./shipping/factories/shipping-option.factory";
+export { DaffShippingRateFactory } from "./shipping/factories/shipping-rate.factory";
+
+//Angular Mocks
+import * as DaffMockPipes from "./angular-mocks/mock-pipes";
+export { DaffMockPipes };
 
 //Core
 export { DaffCoreTestingModule } from "./testing.module";
