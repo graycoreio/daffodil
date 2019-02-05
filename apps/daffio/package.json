@@ -8,7 +8,8 @@
     },
     "scripts": {
       "build": "ng build daffio",
-      "test": "ng test daffio --watch=false --browsers=ChromeHeadless"
+      "test": "ng test daffio --watch=false --browsers=ChromeHeadless",
+      "lint": "ng lint daffio"
     },
     "homepage": "https://github.com/graycoreio/daffodil",
     "description": "A documentation site for the daffodil project",

@@ -8,17 +8,17 @@ import { ToggleSidebar } from '../../sidebar/actions/sidebar.actions';
   selector: 'daffio-header-container',
   templateUrl: './header.component.html'
 })
-export class DaffioHeaderContainer {
-  constructor(private store: Store<{}>) { }
-
-  openSidebar() {
-    this.store.dispatch(new ToggleSidebar());
-  }
-
+export class DaffioHeaderContainerComponent {
   links: any[] = [
     {path: '/developers', title: 'Developers'},
     {path: '/solutions', title: 'Solutions'},
     {path: '/documentation', title: 'Documentation'},
     {path: '/support', title: 'Support'}
   ];
+  
+  constructor(private store: Store<{}>) { }
+
+  openSidebar() {
+    this.store.dispatch(new ToggleSidebar());
+  }
 }

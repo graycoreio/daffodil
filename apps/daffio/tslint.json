@@ -4,13 +4,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "daffodil",
+      "daffio",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "daffodil",
+      "daffio",
       "kebab-case"
     ]
   }

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DaffioHeaderContainer } from './header.component';
+import { DaffioHeaderContainerComponent } from './header.component';
 import { StoreModule, Store } from '@ngrx/store';
 import * as fromSidebar from '../../sidebar/reducers/index';
 
@@ -11,9 +11,9 @@ import { By } from '@angular/platform-browser';
 import { ToggleSidebar } from '../../sidebar/actions/sidebar.actions';
 import { RouterTestingModule } from '@angular/router/testing';
 
-describe('DaffioHeaderContainer', () => {
-  let component: DaffioHeaderContainer;
-  let fixture: ComponentFixture<DaffioHeaderContainer>;
+describe('DaffioHeaderContainerComponent', () => {
+  let component: DaffioHeaderContainerComponent;
+  let fixture: ComponentFixture<DaffioHeaderContainerComponent>;
 
   let store: Store<fromSidebar.State>;
 
@@ -25,7 +25,7 @@ describe('DaffioHeaderContainer', () => {
         RouterTestingModule
       ],
       declarations: [
-        DaffioHeaderContainer,
+        DaffioHeaderContainerComponent,
         DaffioHeaderComponent
       ],
       schemas: [
@@ -36,7 +36,7 @@ describe('DaffioHeaderContainer', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DaffioHeaderContainer);
+    fixture = TestBed.createComponent(DaffioHeaderContainerComponent);
     component = fixture.componentInstance;
     store = TestBed.get(Store);
     spyOn(store, 'dispatch');
@@ -49,7 +49,7 @@ describe('DaffioHeaderContainer', () => {
 
   describe('when [sidebar-button] is clicked', () => {
     it('should call store.dispatch with a ToggleSidebar action', () => {
-      let sidebarButton = fixture.debugElement.query(By.css('[sidebar-button]')).nativeElement;
+      const sidebarButton = fixture.debugElement.query(By.css('[sidebar-button]')).nativeElement;
       sidebarButton.click();
       
       expect(store.dispatch).toHaveBeenCalledWith(new ToggleSidebar());
@@ -57,7 +57,7 @@ describe('DaffioHeaderContainer', () => {
   });
 
   it('renders a [daffio-header-item] for every links defined', () => {
-    let headerItems = fixture.debugElement.queryAll(By.css('[daffio-header-item]'));
+    const headerItems = fixture.debugElement.queryAll(By.css('[daffio-header-item]'));
 
     expect(headerItems.length).toEqual(component.links.length);
   });

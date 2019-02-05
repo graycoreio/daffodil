@@ -24,7 +24,7 @@ describe('selectDaffioSidebarState', () => {
   describe('daffioSidebarStateSelector', () => {
     
     it('selects sidebar state', () => {
-      let expectedSidebarState = {
+      const expectedSidebarState = {
         showSidebar: expectedShowSidebar
       }
 

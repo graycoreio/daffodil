@@ -26,7 +26,7 @@ describe('Sidebar | Sidebar Reducer', () => {
     let result;
 
     beforeEach(() => {
-      let toggleSidebar = new ToggleSidebar();
+      const toggleSidebar = new ToggleSidebar();
       
       result = reducer(initialState, toggleSidebar);
     });
@@ -38,27 +38,27 @@ describe('Sidebar | Sidebar Reducer', () => {
 
   describe('when CloseSidebar is triggered', () => { 
     it('sets showSidebar to `false`', () => {
-      let action = new CloseSidebar();
+      const action = new CloseSidebar();
 
-      let result = reducer(initialState, action);
+      const result = reducer(initialState, action);
       expect(result.showSidebar).toEqual(false);
     })
   });
 
   describe('when OpenSidebar is triggered', () => { 
     it('sets showSidebar to `true`', () => {
-      let action = new OpenSidebar();
+      const action = new OpenSidebar();
 
-      let result = reducer(initialState, action);
+      const result = reducer(initialState, action);
       expect(result.showSidebar).toEqual(true);
     })
   });
 
   describe('when SetSidebarState is triggered', () => { 
     it('sets showSidebar to actions payload', () => {
-      let stubShowSidebar = true;
-      let action = new SetSidebarState(stubShowSidebar);
-      let result = reducer(initialState, action);
+      const stubShowSidebar = true;
+      const action = new SetSidebarState(stubShowSidebar);
+      const result = reducer(initialState, action);
       expect(result.showSidebar).toEqual(stubShowSidebar);
     });
   });
