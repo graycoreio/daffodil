@@ -3,16 +3,16 @@ import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
 import * as fromSidebar from './index';
 
-describe('selectFoundationSidebarState', () => {
+describe('selectDemoSidebarState', () => {
 
-  let store: Store<fromSidebar.FoundationSidebarState>;
+  let store: Store<fromSidebar.DemoSidebarState>;
   let expectedShowSidebar: boolean;
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          foundationSidebar: combineReducers(fromSidebar.reducers),
+          demoSidebar: combineReducers(fromSidebar.reducers),
         })
       ]
     });
@@ -21,14 +21,14 @@ describe('selectFoundationSidebarState', () => {
     store = TestBed.get(Store);
   }));
 
-  describe('foundationSidebarStateSelector', () => {
+  describe('demoSidebarStateSelector', () => {
     
     it('selects sidebar state', () => {
       const expectedSidebarState = {
         showSidebar: expectedShowSidebar
       }
 
-      store.pipe(select(fromSidebar.foundationSidebarStateSelector)).subscribe((sidebarState) => {
+      store.pipe(select(fromSidebar.demoSidebarStateSelector)).subscribe((sidebarState) => {
         expect(sidebarState).toEqual(expectedSidebarState);
       });
     });

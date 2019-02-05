@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc/apps/foundation-app-e2e",
+    "outDir": "../../dist/out-tsc/apps/demo-e2e",
     "module": "commonjs",
     "target": "es5",
     "types": [

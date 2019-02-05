@@ -1,75 +1,75 @@
 import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
-import * as fromFoundationShipping from './shipping.reducer';
-import * as fromFoundationPayment from './payment.reducer';
-import * as fromFoundationCheckout from './checkout.reducer';
+import * as fromDemoShipping from './shipping.reducer';
+import * as fromDemoPayment from './payment.reducer';
+import * as fromDemoCheckout from './checkout.reducer';
 
-export interface FoundationCheckoutState {
-  foundationShipping: fromFoundationShipping.State;
-  foundationPayment: fromFoundationPayment.State;
-  foundationCheckout: fromFoundationCheckout.State;
+export interface DemoCheckoutState {
+  demoShipping: fromDemoShipping.State;
+  demoPayment: fromDemoPayment.State;
+  demoCheckout: fromDemoCheckout.State;
 }
 
 export interface State {
-  foundationCheckout: FoundationCheckoutState
+  demoCheckout: DemoCheckoutState
 }
 
-export const reducers : ActionReducerMap<FoundationCheckoutState> = {
-  foundationShipping: fromFoundationShipping.reducer,
-  foundationPayment: fromFoundationPayment.reducer,
-  foundationCheckout: fromFoundationCheckout.reducer
+export const reducers : ActionReducerMap<DemoCheckoutState> = {
+  demoShipping: fromDemoShipping.reducer,
+  demoPayment: fromDemoPayment.reducer,
+  demoCheckout: fromDemoCheckout.reducer
 }
 
 /**
- * Foundation Checkout State
+ * Demo Checkout State
  */
-export const selectFoundationCheckoutState: MemoizedSelector<object, FoundationCheckoutState> = createFeatureSelector<FoundationCheckoutState>('foundationCheckout');
+export const selectDemoCheckoutState: MemoizedSelector<object, DemoCheckoutState> = createFeatureSelector<DemoCheckoutState>('demoCheckout');
 
 /**
- * Foundation Checkout Shipping State
+ * Demo Checkout Shipping State
  */
-export const foundationShippingStateSelector = createSelector(
-  selectFoundationCheckoutState,
-  (state: FoundationCheckoutState) => state.foundationShipping
+export const demoShippingStateSelector = createSelector(
+  selectDemoCheckoutState,
+  (state: DemoCheckoutState) => state.demoShipping
 );
 
 export const selectShowShippingForm: MemoizedSelector<object, boolean> = createSelector(
-  foundationShippingStateSelector,
-  fromFoundationShipping.getShowShippingForm
+  demoShippingStateSelector,
+  fromDemoShipping.getShowShippingForm
 );
 
 /**
- * Foundation Checkout Payment State
+ * Demo Checkout Payment State
  */
-export const foundationPaymentStateSelector = createSelector(
-  selectFoundationCheckoutState,
-  (state: FoundationCheckoutState) => state.foundationPayment
+export const demoPaymentStateSelector = createSelector(
+  selectDemoCheckoutState,
+  (state: DemoCheckoutState) => state.demoPayment
 );
 
 export const selectShowPaymentView: MemoizedSelector<object, boolean> = createSelector(
-  foundationPaymentStateSelector,
-  fromFoundationPayment.getShowPaymentView
+  demoPaymentStateSelector,
+  fromDemoPayment.getShowPaymentView
 );
 
 export const selectShowPaymentForm: MemoizedSelector<object, boolean> = createSelector(
-  foundationPaymentStateSelector,
-  fromFoundationPayment.getShowPaymentForm
+  demoPaymentStateSelector,
+  fromDemoPayment.getShowPaymentForm
 );
 
 /**
- * Foundation Checkout Checkout State
+ * Demo Checkout Checkout State
  */
-export const foundationCheckoutStateSelector = createSelector(
-  selectFoundationCheckoutState,
-  (state: FoundationCheckoutState) => state.foundationCheckout
+export const demoCheckoutStateSelector = createSelector(
+  selectDemoCheckoutState,
+  (state: DemoCheckoutState) => state.demoCheckout
 );
 
 export const selectEnablePlaceOrderButton: MemoizedSelector<object, boolean> = createSelector(
-  foundationCheckoutStateSelector,
-  fromFoundationCheckout.getEnablePlaceOrderButton
+  demoCheckoutStateSelector,
+  fromDemoCheckout.getEnablePlaceOrderButton
 );
 
 export const selectShowReviewView: MemoizedSelector<object, boolean> = createSelector(
-  foundationCheckoutStateSelector,
-  fromFoundationCheckout.getShowReviewView
+  demoCheckoutStateSelector,
+  fromDemoCheckout.getShowReviewView
 );

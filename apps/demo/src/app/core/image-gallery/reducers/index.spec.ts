@@ -1,18 +1,18 @@
 import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
-import * as fromFoundationImageGallery from './index';
+import * as fromDemoImageGallery from './index';
 import { SetSelectedImageState } from "../actions/image-gallery.actions";
 
 describe('selectImageGalleryState', () => {
 
-  let store: Store<fromFoundationImageGallery.State>;
+  let store: Store<fromDemoImageGallery.State>;
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          foundationImageGallery: combineReducers(fromFoundationImageGallery.reducers),
+          demoImageGallery: combineReducers(fromDemoImageGallery.reducers),
         })
       ]
     });
@@ -20,7 +20,7 @@ describe('selectImageGalleryState', () => {
     store = TestBed.get(Store);
   }));
     
-  describe('foundationImageGalleryStateSelector', () => {
+  describe('demoImageGalleryStateSelector', () => {
 
     let expectedImageGalleryState;
 
@@ -31,7 +31,7 @@ describe('selectImageGalleryState', () => {
     });
     
     it('returns the image gallery state', () => {
-      store.pipe(select(fromFoundationImageGallery.foundationImageGalleryStateSelector)).subscribe((selectedImageGalleryState) => {
+      store.pipe(select(fromDemoImageGallery.demoImageGalleryStateSelector)).subscribe((selectedImageGalleryState) => {
         expect(selectedImageGalleryState).toEqual(expectedImageGalleryState);
       });
     });
@@ -47,7 +47,7 @@ describe('selectImageGalleryState', () => {
     });
     
     it('selects the selected image', () => {
-      store.pipe(select(fromFoundationImageGallery.selectSelectedImage)).subscribe((selectedImage) => {
+      store.pipe(select(fromDemoImageGallery.selectSelectedImage)).subscribe((selectedImage) => {
         expect(selectedImage).toEqual(stubSelectedImage);
       });
     });

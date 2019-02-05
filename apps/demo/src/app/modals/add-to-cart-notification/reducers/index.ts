@@ -1,49 +1,49 @@
 import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
-import * as fromFoundationAddToCartNotification from './add-to-cart-notification.reducer';
+import * as fromDemoAddToCartNotification from './add-to-cart-notification.reducer';
 import { fromCartReducer, fromCart } from '@daffodil/state';
 
 export interface State {
-  addToCartNotification: fromFoundationAddToCartNotification.State,
+  addToCartNotification: fromDemoAddToCartNotification.State,
   cart: fromCartReducer.State
 }
 
 export const reducers : ActionReducerMap<State> = {
-  addToCartNotification: fromFoundationAddToCartNotification.reducer,
+  addToCartNotification: fromDemoAddToCartNotification.reducer,
   cart: fromCartReducer.reducer
 }
 
 /**
- * Foundation AddToCartNotification State
+ * Demo AddToCartNotification State
  */
-export const selectFoundationAddToCartNotificationState = createFeatureSelector<State>('foundationAddToCartNotification');
+export const selectDemoAddToCartNotificationState = createFeatureSelector<State>('demoAddToCartNotification');
 
 /**
- * Foundation AddToCartNotification AddToCartNotification State
+ * Demo AddToCartNotification AddToCartNotification State
  */
 export const addToCartNotificationStateSelector = createSelector(
-  selectFoundationAddToCartNotificationState,
+  selectDemoAddToCartNotificationState,
   (state: State) => state.addToCartNotification
 );
 
 export const selectOpen: MemoizedSelector<object, boolean> = createSelector(
   addToCartNotificationStateSelector,
-  fromFoundationAddToCartNotification.getOpen
+  fromDemoAddToCartNotification.getOpen
 );
 
 export const selectProductQty: MemoizedSelector<object, number> = createSelector(
   addToCartNotificationStateSelector,
-  fromFoundationAddToCartNotification.getProductQty
+  fromDemoAddToCartNotification.getProductQty
 );
 
 export const selectProductId: MemoizedSelector<object, string> = createSelector(
   addToCartNotificationStateSelector,
-  fromFoundationAddToCartNotification.getProductId
+  fromDemoAddToCartNotification.getProductId
 )
 
 export const selectLoading: MemoizedSelector<object, boolean> = createSelector(
   addToCartNotificationStateSelector,
-  fromFoundationAddToCartNotification.getLoading
+  fromDemoAddToCartNotification.getLoading
 );
 
 export const selectCartItemCount : MemoizedSelector<object, number> = createSelector(

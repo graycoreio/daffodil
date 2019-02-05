@@ -7,7 +7,7 @@ import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { DaffodilAddress, PaymentInfo } from '@daffodil/core';
 
 import { PaymentFormComponent } from './payment-form.component';
-import * as fromFoundationCheckout from '../../../reducers';
+import * as fromDemoCheckout from '../../../reducers';
 import { EnablePlaceOrderButton } from '../../../actions/checkout.actions';
 import { AddressFormFactory } from '../../forms/address-form/factories/address-form.factory';
 import { PaymentInfoFormFactory } from '../payment-info-form/factories/payment-info-form.factory';
@@ -63,7 +63,7 @@ describe('PaymentFormComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         StoreModule.forRoot({
-          shippings: combineReducers(fromFoundationCheckout.reducers),
+          shippings: combineReducers(fromDemoCheckout.reducers),
         })
       ],
       declarations: [ 

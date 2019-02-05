@@ -5,11 +5,11 @@ import { By } from '@angular/platform-browser';
 
 import { DaffNavbarModule } from '@daffodil/design';
 
-import { FoundationHeaderComponent } from './header.component';
+import { DemoHeaderComponent } from './header.component';
 
-describe('FoundationHeaderComponent', () => {
-  let component: FoundationHeaderComponent;
-  let fixture: ComponentFixture<FoundationHeaderComponent>;
+describe('DemoHeaderComponent', () => {
+  let component: DemoHeaderComponent;
+  let fixture: ComponentFixture<DemoHeaderComponent>;
   let router;
 
   beforeEach(async(() => {
@@ -19,14 +19,14 @@ describe('FoundationHeaderComponent', () => {
         RouterTestingModule
       ],
       declarations: [ 
-        FoundationHeaderComponent
+        DemoHeaderComponent
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FoundationHeaderComponent);
+    fixture = TestBed.createComponent(DemoHeaderComponent);
     router = TestBed.get(Router);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { DaffSidebarModule } from '@daffodil/design';
 
-import { FoundationSidebarStateModule } from './sidebar.state.module';
+import { DemoSidebarStateModule } from './sidebar.state.module';
 import { SidebarViewportContainer } from './containers/sidebar-viewport/sidebar-viewport.component';
 import { SidebarContainer } from './containers/sidebar/sidebar.component';
 
@@ -12,7 +12,7 @@ import { SidebarContainer } from './containers/sidebar/sidebar.component';
   imports: [
     CommonModule,
     RouterModule,
-    FoundationSidebarStateModule,
+    DemoSidebarStateModule,
     DaffSidebarModule
   ],
   declarations: [

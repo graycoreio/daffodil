@@ -4,8 +4,8 @@ import { RouterModule } from '@angular/router';
 
 import { DaffNavbarModule, DaffButtonModule } from '@daffodil/design';
 import { SidebarModule } from '../sidebar/sidebar.module';
-import { FoundationHeaderComponent } from './components/header/header.component';
-import { FoundationHeaderContainer } from './containers/header/header.component';
+import { DemoHeaderComponent } from './components/header/header.component';
+import { DemoHeaderContainer } from './containers/header/header.component';
 import { LogoModule } from '../logo/logo.module';
 
 @NgModule({
@@ -18,12 +18,12 @@ import { LogoModule } from '../logo/logo.module';
     DaffButtonModule
   ],
   declarations: [
-    FoundationHeaderComponent,
-    FoundationHeaderContainer
+    DemoHeaderComponent,
+    DemoHeaderContainer
   ],
   exports: [
-    FoundationHeaderComponent,
-    FoundationHeaderContainer
+    DemoHeaderComponent,
+    DemoHeaderContainer
   ]
 })
 export class HeaderModule { }

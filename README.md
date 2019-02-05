@@ -22,11 +22,6 @@ Currently, Daffodil provides several modules to improve different aspects of dev
 2. `@daffodil/state` (partially complete) - An extendable redux store for Ecommerce.
 3. `@daffodil/driver` (todo) - An extendable API interface with configurable drivers for different Ecommerce platforms.
 
-Additionally, we plan on providing additional sample implementations of the `@daffodil` packages
-in the style of some of the major frontend libraries. To date, we're focusing only on:
-
-1. [Foundation](https://foundation.zurb.com/)
-
 ### Benefits For Developers
 
 * Daffodil builds upon state-of-the-art development tools like Angular (6+) and Redux
@@ -73,4 +68,4 @@ Currently none, but you can check our progress by following the steps [here](htt
     export class AppModule { }
     ```
 5. Replace the defaults with your store's url in your `AppModule`
-6. Check out Daffodil's `Foundation Theme` for code examples.
+6. Check out Daffodil's `Demo Theme` for code examples.
