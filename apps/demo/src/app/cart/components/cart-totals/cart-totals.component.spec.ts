@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, Input } from '@angular/core';
+import { Component, Input, Pipe, PipeTransform } from '@angular/core';
 
 import { Cart } from '@daffodil/core';
 import { DaffCartItemFactory, DaffCartFactory } from '@daffodil/core/testing';
@@ -13,12 +13,17 @@ class WrapperComponent {
   @Input() cartValue: Cart;
 }
 
+@Pipe({name: 'currency'})
+class MockCurrencyPipe implements PipeTransform {
+  transform(value: number) {};
+}
+
 describe('CartTotalsComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let cartTotalsComponent: CartTotalsComponent;
   let cartTotalsItemComponent: any;
-
+  let currencyPipeTransformSpy;
   const cartFactory = new DaffCartFactory();
   const cartItemFactory = new DaffCartItemFactory();
 
@@ -36,7 +41,8 @@ describe('CartTotalsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         CartTotalsComponent,
-        WrapperComponent
+        WrapperComponent,
+        MockCurrencyPipe
       ],
       imports: [
         CartTotalsItemModule
@@ -48,7 +54,8 @@ describe('CartTotalsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-
+    currencyPipeTransformSpy = spyOn(MockCurrencyPipe.prototype, 'transform');
+    
     wrapper.cartValue = mockCart;
 
     fixture.detectChanges();
@@ -97,8 +104,8 @@ describe('CartTotalsComponent', () => {
       expect(cartTotalsItemComponent.innerHTML).toContain('Estimated Tax');
     });
   
-    it('should set value', () => {
-      expect(cartTotalsItemComponent.innerHTML).toContain('$' + cartTotalsComponent.cartTax);
+    it('should call the angular CurrencyPipe.transform with cartTax', () => {
+      expect(currencyPipeTransformSpy).toHaveBeenCalledWith(cartTotalsComponent.cartTax);
     });
   });
 
@@ -112,47 +119,8 @@ describe('CartTotalsComponent', () => {
       expect(cartTotalsItemComponent.innerHTML).toContain('Subtotal');
     });
     
-    describe('when subtotal is less than 4 digits', () => {
-
-      beforeEach(() => {
-        mockCart = cartFactory.create({
-          grand_total: 100,
-          subtotal: 100,
-          items: cartItemFactory.createMany(2, {
-            tax_amount: itemTaxValue
-          })
-        });
-
-        wrapper.cartValue = mockCart;
-        fixture.detectChanges();
-
-        cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('demo-cart-totals-item'))[0].nativeElement;
-      });
-    
-      it('should set value with proper formatting', () => {  
-        expect(cartTotalsItemComponent.innerHTML).toContain('$' + mockCart.subtotal);
-      });
-    });
-
-    describe('when subtotal is at least 4 digits', () => {
-      
-      beforeEach(() => {
-        mockCart = cartFactory.create({
-          grand_total: 1000,
-          subtotal: 1000,
-          items: cartItemFactory.createMany(2, {
-            tax_amount: itemTaxValue
-          })
-        });
-        wrapper.cartValue = mockCart;
-        fixture.detectChanges();
-
-        cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('demo-cart-totals-item'))[0].nativeElement;
-      });
-        
-      it('should set value with proper formatting', () => {  
-        expect(cartTotalsItemComponent.innerHTML).toContain('$1,000');
-      });
+    it('should call the angular CurrencyPipe.transform with cart subtotal', () => {  
+      expect(currencyPipeTransformSpy).toHaveBeenCalledWith(mockCart.subtotal);
     });
   });
 
@@ -166,42 +134,8 @@ describe('CartTotalsComponent', () => {
       expect(cartTotalsItemComponent.innerHTML).toContain('Estimated Total');
     });
 
-    describe('when grand_total is less than 4 digits', () => {
-      
-      beforeEach(() => {
-        mockCart = cartFactory.create({
-          grand_total: 100,
-          subtotal: 100,
-          items: cartItemFactory.createMany(2, {
-            tax_amount: itemTaxValue
-          })
-        });
-        wrapper.cartValue = mockCart;
-        fixture.detectChanges();
-      });
-  
-      it('should set value', () => {
-        expect(cartTotalsItemComponent.innerHTML).toContain('$' + cartTotalsComponent.cart.grand_total);
-      });
-    });
-
-    describe('when grand_total is at least 4 digits', () => {
-      
-      beforeEach(() => {
-        mockCart = cartFactory.create({
-          grand_total: 1000,
-          subtotal: 1000,
-          items: cartItemFactory.createMany(2, {
-            tax_amount: itemTaxValue
-          })
-        });
-        wrapper.cartValue = mockCart;
-        fixture.detectChanges();
-      });
-  
-      it('should set value', () => {
-        expect(cartTotalsItemComponent.innerHTML).toContain('$1,000');
-      });
+    it('should call the angular CurrencyPipe.transform with cart grand_total', () => {
+      expect(currencyPipeTransformSpy).toHaveBeenCalledWith(cartTotalsComponent.cart.grand_total);
     });
   });
 });
