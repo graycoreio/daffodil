@@ -7,7 +7,8 @@ export const appRoutes: Routes = [
     redirectTo: '/loading-icon',
     pathMatch: 'full'
   },
-  {path: 'loading-icon', loadChildren: './loading-icon/loading-icon.module#LoadingIconModule'}
+  {path: 'loading-icon', loadChildren: './loading-icon/loading-icon.module#LoadingIconModule'},
+  {path: 'feature', loadChildren: './feature/feature.module#FeatureModule'}
 ]
 
 @NgModule({
