@@ -1,18 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DaffCalloutComponent } from './callout.component';
 import { By } from '@angular/platform-browser';
 import { Component, DebugElement } from '@angular/core';
-import { DaffPalette } from '../../core/colorable/colorable';
+
+import {
+  DaffCalloutComponent, DaffCalloutLayout, DaffCalloutLayoutEnum} from './callout.component';
+import { DaffPalette } from '../../../core/colorable/colorable';
 
 @Component ({
   template: `
-    <daff-callout [layout]="layout" [size]="size" [color]="color"></daff-callout>
+    <daff-callout [layout]="layout" [color]="color"></daff-callout>
   `
 })
+
 class WrapperComponent {
+  layout: DaffCalloutLayout;
   color: DaffPalette;
-  layout: string;
-  size: string;
 }
 
 describe('DaffCalloutComponent', () => {
@@ -44,29 +46,18 @@ describe('DaffCalloutComponent', () => {
     expect(calloutComponent).toBeTruthy();
   });
 
-  describe('using a layout variant of a callout', () => {
-    it('should set a layout class on the callout', () => {
-      wrapper.layout = "centered";
-      fixture.detectChanges();
+  describe('setting the layout of a callout', () => {
+    describe('when layout is centered', () => {
+      it('should set "daff-callout--centered" on host element', () => {
+        wrapper.layout = DaffCalloutLayoutEnum.Centered;
 
-      expect(de.nativeElement.classList.contains('daff-callout--centered')).toEqual(true);
+        fixture.detectChanges();
+        expect(de.nativeElement.classList.contains('daff-callout--centered')).toEqual(true);
+      });
     });
 
     it('should not set a default layout', () => {
       expect(calloutComponent.layout).toBeFalsy();
-    });
-  });
-
-  describe('using a size variant of a callout', () => {
-    it('should set a size class on the callout', () => {
-      wrapper.size = "small";
-      fixture.detectChanges();
-
-      expect(de.nativeElement.classList.contains('daff-callout--small')).toEqual(true);
-    });
-
-    it('should not set a default size', () => {
-      expect(calloutComponent.size).toBeFalsy();
     });
   });
 
