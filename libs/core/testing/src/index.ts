@@ -21,9 +21,8 @@ export { productHelper };
 export { DaffShippingOptionFactory } from "./shipping/factories/shipping-option.factory";
 export { DaffShippingRateFactory } from "./shipping/factories/shipping-rate.factory";
 
-//Angular Mocks
-import * as DaffMockPipes from "./angular-mocks/mock-pipes";
-export { DaffMockPipes };
+//@angular/core
+export { DaffMockCurrencyPipe } from './angular/mocks/pipes/currency';
 
 //Core
 export { DaffCoreTestingModule } from "./testing.module";

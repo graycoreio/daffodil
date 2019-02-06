@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { DaffMockCurrencyPipe } from './angular-mocks/mock-pipes';
+import { DaffMockCurrencyPipe } from './angular/mocks/pipes/currency';
 
 @NgModule({
   declarations: [

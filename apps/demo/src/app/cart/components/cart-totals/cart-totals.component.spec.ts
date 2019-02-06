@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 import { Component, Input } from '@angular/core';
 
 import { Cart } from '@daffodil/core';
-import { DaffCartItemFactory, DaffCartFactory, DaffMockPipes } from '@daffodil/core/testing';
+import { DaffCartItemFactory, DaffCartFactory, DaffMockCurrencyPipe } from '@daffodil/core/testing';
 
 import { CartTotalsComponent } from './cart-totals.component';
 import { CartTotalsItemModule } from '../cart-totals-item/cart-totals-item.module';
@@ -13,12 +13,12 @@ class WrapperComponent {
   @Input() cartValue: Cart;
 }
 
-describe('CartTotalsComponent', () => {
+fdescribe('CartTotalsComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let cartTotalsComponent: CartTotalsComponent;
   let cartTotalsItemComponent: any;
-  let currencyPipeTransformSpy;
+  let currencyPipe;
   const cartFactory = new DaffCartFactory();
   const cartItemFactory = new DaffCartItemFactory();
 
@@ -33,9 +33,9 @@ describe('CartTotalsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        CartTotalsComponent,
         WrapperComponent,
-        DaffMockPipes.DaffMockCurrencyPipe
+        CartTotalsComponent,
+        DaffMockCurrencyPipe
       ],
       imports: [
         CartTotalsItemModule
@@ -47,7 +47,7 @@ describe('CartTotalsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    currencyPipeTransformSpy = spyOn(DaffMockPipes.DaffMockCurrencyPipe.prototype, 'transform');
+    currencyPipe = spyOn(DaffMockCurrencyPipe.prototype, 'transform');
     
     wrapper.cartValue = mockCart;
 
@@ -98,7 +98,7 @@ describe('CartTotalsComponent', () => {
     });
   
     it('should call the angular CurrencyPipe.transform with cartTax', () => {
-      expect(currencyPipeTransformSpy).toHaveBeenCalledWith(cartTotalsComponent.cartTax);
+      expect(currencyPipe).toHaveBeenCalledWith(cartTotalsComponent.cartTax);
     });
   });
 
@@ -113,7 +113,7 @@ describe('CartTotalsComponent', () => {
     });
     
     it('should call the angular CurrencyPipe.transform with cart subtotal', () => {  
-      expect(currencyPipeTransformSpy).toHaveBeenCalledWith(mockCart.subtotal);
+      expect(currencyPipe).toHaveBeenCalledWith(mockCart.subtotal);
     });
   });
 
@@ -128,7 +128,7 @@ describe('CartTotalsComponent', () => {
     });
 
     it('should call the angular CurrencyPipe.transform with cart grand_total', () => {
-      expect(currencyPipeTransformSpy).toHaveBeenCalledWith(cartTotalsComponent.cart.grand_total);
+      expect(currencyPipe).toHaveBeenCalledWith(cartTotalsComponent.cart.grand_total);
     });
   });
 });
