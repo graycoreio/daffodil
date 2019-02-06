@@ -13,7 +13,7 @@ class WrapperComponent {
   @Input() cartValue: Cart;
 }
 
-fdescribe('CartTotalsComponent', () => {
+describe('CartTotalsComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let cartTotalsComponent: CartTotalsComponent;
