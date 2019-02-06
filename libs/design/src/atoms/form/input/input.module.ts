@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DaffInputComponent } from './input.component';
+import { DaffInputComponent } from './input/input.component';
+import { DaffInputValidatorComponent } from './input-validator/input-validator.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   exports: [
-    DaffInputComponent
+    DaffInputComponent,
+    DaffInputValidatorComponent
   ],
-
   declarations: [
-    DaffInputComponent
+    DaffInputComponent,
+    DaffInputValidatorComponent
   ]
 })
 export class DaffInputModule { }
