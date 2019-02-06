@@ -5,10 +5,9 @@ import { CartViewComponent } from './cart/pages/cart-view/cart-view.component';
 import { ProductViewComponent } from './product/pages/product-view/product-view.component';
 import { CheckoutViewComponent } from './checkout/pages/checkout-view/checkout-view.component';
 import { TemplateComponent } from './core/template/template/template.component';
-import { CheckoutGuard } from './helper/routing-guards/checkout.guard';
-import { CartLoadGuard } from './helper/routing-guards/cart-load.guard';
 import { NotFoundComponent } from './misc/not-found/not-found.component';
 import { ThankYouViewComponent } from './thank-you/pages/thank-you-view.component';
+import { EmptyCartResolver } from './cart/routing-resolvers/resolvers/empty-cart-resolver.service';
 
 export const appRoutes: Routes = [
   {
@@ -22,14 +21,14 @@ export const appRoutes: Routes = [
       { path: 'cart', component: CartViewComponent },
       { path: 'product/:id', component: ProductViewComponent },
       { 
-        canActivate: [
-          CheckoutGuard
-        ],
         path: 'checkout',
         children: [
           { path: '', component: CheckoutViewComponent },
           { path: 'thank-you', component: ThankYouViewComponent }
-        ]
+        ],
+        resolve: {
+          cartItem: EmptyCartResolver
+        }
       },
       { path: '404', component: NotFoundComponent },
     ]
@@ -45,10 +44,6 @@ export const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, {
       scrollPositionRestoration: 'enabled',
     }),
-  ],
-  providers: [
-    CheckoutGuard, 
-    CartLoadGuard
   ],
   exports: [
     RouterModule
