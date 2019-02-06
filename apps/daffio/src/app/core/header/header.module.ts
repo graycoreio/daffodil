@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { DaffNavbarModule, DaffButtonModule, DaffContainerModule } from '@daffodil/design';
 import { DaffioLogoModule } from '../logo/logo.module';
 import { DaffioHeaderComponent } from './component/header.component';
-import { DaffioHeaderContainerComponent } from './containers/header.component';
+import { DaffioHeaderContainer } from './containers/header.component';
 import { DaffioHeaderItemComponent } from './header-item/header-item.component';
 
 @NgModule({
@@ -20,11 +20,11 @@ import { DaffioHeaderItemComponent } from './header-item/header-item.component';
   ],
   declarations: [
     DaffioHeaderComponent,
-    DaffioHeaderContainerComponent,
+    DaffioHeaderContainer,
     DaffioHeaderItemComponent
   ],
   exports: [
-    DaffioHeaderContainerComponent
+    DaffioHeaderContainer
   ]
 })
 export class DaffioHeaderModule { }

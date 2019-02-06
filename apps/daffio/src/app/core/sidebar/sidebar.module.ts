@@ -5,8 +5,8 @@ import { RouterModule } from '@angular/router';
 import { DaffSidebarModule, DaffButtonModule } from '@daffodil/design';
 
 import { DaffioSidebarStateModule } from './sidebar.state.module';
-import { DaffioSidebarViewportContainerComponent } from './containers/sidebar-viewport/sidebar-viewport.component';
-import { DaffioSidebarContainerComponent } from './containers/sidebar/sidebar.component';
+import { DaffioSidebarViewportContainer } from './containers/sidebar-viewport/sidebar-viewport.component';
+import { DaffioSidebarContainer } from './containers/sidebar/sidebar.component';
 
 @NgModule({
   imports: [
@@ -18,12 +18,12 @@ import { DaffioSidebarContainerComponent } from './containers/sidebar/sidebar.co
     DaffButtonModule
   ],
   declarations: [
-    DaffioSidebarViewportContainerComponent,
-    DaffioSidebarContainerComponent
+    DaffioSidebarViewportContainer,
+    DaffioSidebarContainer
   ],
   exports: [
-    DaffioSidebarViewportContainerComponent,
-    DaffioSidebarContainerComponent
+    DaffioSidebarViewportContainer,
+    DaffioSidebarContainer
   ]
 })
 export class DaffioSidebarModule { }
