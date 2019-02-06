@@ -1,22 +1,24 @@
+import { Component, Output, EventEmitter } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
-
-import { DaffioSidebarViewportContainerComponent } from './sidebar-viewport.component';
-import * as fromSidebar from '../../reducers/index';
-import { ToggleSidebar, OpenSidebar, CloseSidebar, SetSidebarState } from '../../actions/sidebar.actions';
-import { DaffSidebarModule, DaffSidebarViewportComponent } from '@daffodil/design';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Component, Output, EventEmitter } from '@angular/core';
+
+import { Store, StoreModule, combineReducers } from '@ngrx/store';
+
+import { DaffSidebarModule, DaffSidebarViewportComponent } from '@daffodil/design';
+
+import { DaffioSidebarViewportContainer } from './sidebar-viewport.component';
+import * as fromSidebar from '../../reducers/index';
+import { ToggleSidebar, OpenSidebar, CloseSidebar, SetSidebarState } from '../../actions/sidebar.actions';
 
 @Component({selector: 'daffio-sidebar', template: ''})
 class MockDaffioSidebarContainerComponent {
   @Output() close: EventEmitter<any> = new EventEmitter();
 }
 
-describe('DaffioSidebarViewportContainerComponent', () => {
-  let component: DaffioSidebarViewportContainerComponent;
-  let fixture: ComponentFixture<DaffioSidebarViewportContainerComponent>;
+describe('DaffioSidebarViewportContainer', () => {
+  let component: DaffioSidebarViewportContainer;
+  let fixture: ComponentFixture<DaffioSidebarViewportContainer>;
   
   let daffSidebarViewport: DaffSidebarViewportComponent;
 
@@ -34,7 +36,7 @@ describe('DaffioSidebarViewportContainerComponent', () => {
         DaffSidebarModule,
       ],
       declarations: [ 
-        DaffioSidebarViewportContainerComponent,
+        DaffioSidebarViewportContainer,
         MockDaffioSidebarContainerComponent
       ]
     })
@@ -42,7 +44,7 @@ describe('DaffioSidebarViewportContainerComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DaffioSidebarViewportContainerComponent);
+    fixture = TestBed.createComponent(DaffioSidebarViewportContainer);
     component = fixture.componentInstance;
     store = TestBed.get(Store);
     spyOn(store, 'dispatch');

@@ -5,7 +5,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class DaffioSidebarContainerComponent {
+export class DaffioSidebarContainer {
 
   links: any[] = [
     {path: '/developers', title: 'Developers'},

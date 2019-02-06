@@ -1,10 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffioSidebarContainerComponent } from './sidebar.component';
 import { DaffSidebarModule, DaffSidebarComponent } from '@daffodil/design';
-import { RouterTestingModule } from '@angular/router/testing';
+
+import { DaffioSidebarContainer } from './sidebar.component';
 
 @Component({template: '<daffio-sidebar (close)="closeFunction()"></daffio-sidebar>'})
 class WrapperComponent {
@@ -14,7 +15,7 @@ class WrapperComponent {
 describe('DaffioSidebarContainer', () => {
   let component: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let daffioSidebarContainer: DaffioSidebarContainerComponent;
+  let daffioSidebarContainer: DaffioSidebarContainer;
   let daffSidebar: DaffSidebarComponent;
   let closeButton: HTMLElement;
 
@@ -26,7 +27,7 @@ describe('DaffioSidebarContainer', () => {
       ],
       declarations: [ 
         WrapperComponent,
-        DaffioSidebarContainerComponent
+        DaffioSidebarContainer
       ]
     })
     .compileComponents();

@@ -9,7 +9,7 @@ import * as fromDaffioSidebar from '../../reducers/index';
   selector: 'daffio-sidebar-viewport-container',
   templateUrl: './sidebar-viewport.component.html'
 })
-export class DaffioSidebarViewportContainerComponent implements OnInit{
+export class DaffioSidebarViewportContainer implements OnInit{
   
   showSidebar$: Observable<boolean>;
 
