@@ -8,7 +8,7 @@ import { ToggleSidebar } from '../../sidebar/actions/sidebar.actions';
   selector: 'daffio-header-container',
   templateUrl: './header.component.html'
 })
-export class DaffioHeaderContainerComponent {
+export class DaffioHeaderContainer {
   links: any[] = [
     {path: '/developers', title: 'Developers'},
     {path: '/solutions', title: 'Solutions'},

@@ -1,19 +1,22 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { By } from '@angular/platform-browser';
 
-import { DaffioHeaderContainerComponent } from './header.component';
 import { StoreModule, Store } from '@ngrx/store';
+
 import * as fromSidebar from '../../sidebar/reducers/index';
+import { ToggleSidebar } from '../../sidebar/actions/sidebar.actions';
 
 import { DaffioLogoModule } from '../../logo/logo.module';
 import { DaffioHeaderComponent } from '../component/header.component';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { By } from '@angular/platform-browser';
-import { ToggleSidebar } from '../../sidebar/actions/sidebar.actions';
-import { RouterTestingModule } from '@angular/router/testing';
+import { DaffioHeaderContainer } from './header.component';
 
-describe('DaffioHeaderContainerComponent', () => {
-  let component: DaffioHeaderContainerComponent;
-  let fixture: ComponentFixture<DaffioHeaderContainerComponent>;
+
+
+describe('DaffioHeaderContainer', () => {
+  let component: DaffioHeaderContainer;
+  let fixture: ComponentFixture<DaffioHeaderContainer>;
 
   let store: Store<fromSidebar.State>;
 
@@ -25,7 +28,7 @@ describe('DaffioHeaderContainerComponent', () => {
         RouterTestingModule
       ],
       declarations: [
-        DaffioHeaderContainerComponent,
+        DaffioHeaderContainer,
         DaffioHeaderComponent
       ],
       schemas: [
@@ -36,7 +39,7 @@ describe('DaffioHeaderContainerComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DaffioHeaderContainerComponent);
+    fixture = TestBed.createComponent(DaffioHeaderContainer);
     component = fixture.componentInstance;
     store = TestBed.get(Store);
     spyOn(store, 'dispatch');
