@@ -4,10 +4,10 @@ import { FormsModule, ReactiveFormsModule, FormControl, FormGroup, AbstractContr
 import { By } from '@angular/platform-browser';
 
 import { 
-  DaffSelectValidatorModule, 
-  DaffInputValidatorModule, 
-  InputValidatorComponent,
-  SelectValidatorComponent
+  DaffSelectModule, 
+  DaffInputModule, 
+  DaffInputValidatorComponent,
+  DaffSelectValidatorComponent
 } from '@daffodil/design';
 import { PaymentInfoFormComponent } from './payment-info-form.component';
 import { PaymentInfoFormFactory } from '../../factories/payment-info-form.factory';
@@ -33,8 +33,8 @@ describe('PaymentInfoFormComponent', () => {
       imports: [
         FormsModule,
         ReactiveFormsModule,
-        DaffSelectValidatorModule,
-        DaffInputValidatorModule
+        DaffSelectModule,
+        DaffInputModule
       ],
       declarations: [ 
         WrapperComponent,
@@ -70,7 +70,7 @@ describe('PaymentInfoFormComponent', () => {
 
   describe('on [daff-input-validator]', () => {
 
-    let inputValidator: InputValidatorComponent;
+    let inputValidator: DaffInputValidatorComponent;
 
     beforeEach(() => {
       inputValidator = fixture.debugElement.queryAll(By.css('[daff-input-validator]'))[0].componentInstance;
@@ -87,7 +87,7 @@ describe('PaymentInfoFormComponent', () => {
 
   describe('on month [daff-select-validator]', () => {
 
-    let monthSelectValidator: SelectValidatorComponent;
+    let monthSelectValidator: DaffSelectValidatorComponent;
 
     beforeEach(() => {
       monthSelectValidator = fixture.debugElement.queryAll(By.css('[daff-select-validator]'))[0].componentInstance;
@@ -108,7 +108,7 @@ describe('PaymentInfoFormComponent', () => {
 
   describe('on year [daff-select-validator]', () => {
 
-    let yearSelectValidator: SelectValidatorComponent;
+    let yearSelectValidator: DaffSelectValidatorComponent;
 
     beforeEach(() => {
       yearSelectValidator = fixture.debugElement.queryAll(By.css('[daff-select-validator]'))[1].componentInstance;
