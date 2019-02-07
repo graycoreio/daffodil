@@ -1,22 +1,22 @@
+import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DaffListSubheaderComponent } from './list-subheader.component';
-import { Component } from '@angular/core';
+import { DaffListItemIconDirective } from './list-item-icon.directive';
 import { By } from '@angular/platform-browser';
 
-@Component({template: '<div daff-list-subheader></div>'})
+@Component({template: '<div daffListItemIcon></div>'})
 class WrapperComponent {}
 
-describe('DaffListSubheaderComponent', () => {
+describe('DaffListItemIconDirective', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let listSubheader;
+  let listItemIcon;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
         WrapperComponent,
-        DaffListSubheaderComponent
+        DaffListItemIconDirective
       ]
     })
     .compileComponents();
@@ -27,15 +27,14 @@ describe('DaffListSubheaderComponent', () => {
     wrapper = fixture.componentInstance;
     
     fixture.detectChanges();
-
-    listSubheader = fixture.debugElement.query(By.css('[daff-list-subheader]'));
+    listItemIcon = fixture.debugElement.query(By.css('[daffListItemIcon]'));
   });
 
   it('should create', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  it('should add a class of `daff-list__subheader` to its host', () => {
-    expect(listSubheader.nativeElement.classList.contains('daff-list__subheader')).toBeTruthy();
+  it('should add a class of `daff-list-item__icon` to its host', () => {
+    expect(listItemIcon.nativeElement.classList.contains('daff-list-item__icon')).toBeTruthy();
   });
 });
