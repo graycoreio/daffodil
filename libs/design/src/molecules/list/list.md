@@ -1,13 +1,13 @@
 # List Component
-The `list` component can be used to display a series of line items.
+The `<daff-list>` component can be used to display a series of line items.
 
 ## Basic List
-* Consists of multiple `daff-list-item`s
+* Consists of multiple `<daff-list-item>`s
 
 ### Usage
 ```
 <daff-list>
-  <h3 daff-list-subheader>Lorem Ipsum</h3>
+  <h3 daffListSubheader>Lorem Ipsum</h3>
   <daff-list-item>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</daff-list-item>
   <daff-list-item>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</daff-list-item>
   <daff-list-item>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</daff-list-item>
@@ -20,7 +20,7 @@ The `list` component can be used to display a series of line items.
 ### Usage
 ```
 <daff-list type="link">
-  <h3 daff-list-subheader>List Subheader</h3>
+  <h3 daffListSubheader>List Subheader</h3>
   <daff-list-item><a href="#">List Item</a></daff-list-item>
   <daff-list-item><a href="#">List Item</a></daff-list-item>
   <daff-list-item><a href="#">List Item</a></daff-list-item>
@@ -51,14 +51,14 @@ The `list` component can be used to display a series of line items.
 ```
 
 ## Icon List
-* `[daff-list-item-icon]` allows you to add an icon to your list item.
-* Add the attribute `[daff-list-item-icon]` to any element.
+* `[daffListItemIcon]` allows you to add an icon to your list item.
+* Add the attribute `[daffListItemIcon]` to any element.
 
 ### Usage
 ```
 <daff-list>
   <daff-list-item>
-    <i class="fab fa-twitter" daff-list-item-icon></i>
+    <i class="fab fa-twitter" daffListItemIcon></i>
     <h4>Lorem ipsum</h4>
   </daff-list-item>
 </daff-list>

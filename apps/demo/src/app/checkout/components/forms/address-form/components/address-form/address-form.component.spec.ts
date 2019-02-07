@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormControl, FormGroup, AbstractControl, Validators, FormBuilder } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { ErrorStateMatcher } from '@daffodil/design';
+import { DaffErrorStateMatcher } from '@daffodil/design';
 import { AddressFormComponent } from './address-form.component';
 
 @Component({
@@ -27,7 +27,7 @@ class MockInputValidatorComponent {
 class MockSelectValidatorComponent {
   @Input() formControl: FormControl;
   @Input() formSubmitted: boolean;
-  @Input() errorStateMatcher: ErrorStateMatcher;
+  @Input() errorStateMatcher: DaffErrorStateMatcher;
 }
 
 describe('AddressFormComponent', () => {
@@ -117,7 +117,7 @@ describe('AddressFormComponent', () => {
       expect(selectValidator.formSubmitted).toEqual(addressForm.submitted);
     });
 
-    it('should set ErrorStateMatcher', () => {
+    it('should set DaffErrorStateMatcher', () => {
       expect(selectValidator.errorStateMatcher).toEqual(addressForm.stateErrorStateMatcher);
     });
   });

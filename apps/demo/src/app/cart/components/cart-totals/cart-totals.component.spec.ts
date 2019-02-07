@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 import { Component, Input } from '@angular/core';
 
 import { Cart } from '@daffodil/core';
-import { DaffCartItemFactory, DaffCartFactory } from '@daffodil/core/testing';
+import { DaffCartItemFactory, DaffCartFactory, DaffMockCurrencyPipe } from '@daffodil/core/testing';
 
 import { CartTotalsComponent } from './cart-totals.component';
 import { CartTotalsItemModule } from '../cart-totals-item/cart-totals-item.module';
@@ -18,7 +18,7 @@ describe('CartTotalsComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let cartTotalsComponent: CartTotalsComponent;
   let cartTotalsItemComponent: any;
-
+  let currencyPipe;
   const cartFactory = new DaffCartFactory();
   const cartItemFactory = new DaffCartItemFactory();
 
@@ -33,8 +33,9 @@ describe('CartTotalsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
+        WrapperComponent,
         CartTotalsComponent,
-        WrapperComponent
+        DaffMockCurrencyPipe
       ],
       imports: [
         CartTotalsItemModule
@@ -46,7 +47,8 @@ describe('CartTotalsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-
+    currencyPipe = spyOn(DaffMockCurrencyPipe.prototype, 'transform');
+    
     wrapper.cartValue = mockCart;
 
     fixture.detectChanges();
@@ -70,22 +72,7 @@ describe('CartTotalsComponent', () => {
     });
   });
 
-  describe('on first <demo-cart-totals-item>', () => {
-
-    beforeEach(() => {
-      cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('demo-cart-totals-item'))[0].nativeElement;
-    });
-  
-    it('should set label', () => {
-      expect(cartTotalsItemComponent.innerHTML).toContain('Subtotal');
-    });
-  
-    it('should set value', () => {
-      expect(cartTotalsItemComponent.innerHTML).toContain('$' + mockCart.subtotal);
-    });
-  });
-
-  describe('on second <demo-cart-totals-item>', () => {
+  describe('on estimated shipping <demo-cart-totals-item>', () => {
 
     beforeEach(() => {
       cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('demo-cart-totals-item'))[1].nativeElement;
@@ -100,7 +87,7 @@ describe('CartTotalsComponent', () => {
     });
   });
 
-  describe('on third <demo-cart-totals-item>', () => {
+  describe('on estimated tax on <demo-cart-totals-item>', () => {
 
     beforeEach(() => {
       cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('demo-cart-totals-item'))[2].nativeElement;
@@ -110,13 +97,28 @@ describe('CartTotalsComponent', () => {
       expect(cartTotalsItemComponent.innerHTML).toContain('Estimated Tax');
     });
   
-    it('should set value', () => {
-      expect(cartTotalsItemComponent.innerHTML).toContain('$' + cartTotalsComponent.cartTax);
+    it('should call the angular CurrencyPipe.transform with cartTax', () => {
+      expect(currencyPipe).toHaveBeenCalledWith(cartTotalsComponent.cartTax);
     });
   });
 
-  describe('on fourth <demo-cart-totals-item>', () => {
+  describe('on subtotal <demo-cart-totals-item>', () => {
+    
+    beforeEach(() => {
+      cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('demo-cart-totals-item'))[0].nativeElement;
+    });
+  
+    it('should set label', () => {
+      expect(cartTotalsItemComponent.innerHTML).toContain('Subtotal');
+    });
+    
+    it('should call the angular CurrencyPipe.transform with cart subtotal', () => {  
+      expect(currencyPipe).toHaveBeenCalledWith(mockCart.subtotal);
+    });
+  });
 
+  describe('on estimated total <demo-cart-totals-item>', () => {
+    
     beforeEach(() => {
       cartTotalsItemComponent = fixture.debugElement.queryAll(By.css('demo-cart-totals-item'))[3].nativeElement;
     });
@@ -124,9 +126,9 @@ describe('CartTotalsComponent', () => {
     it('should set label', () => {
       expect(cartTotalsItemComponent.innerHTML).toContain('Estimated Total');
     });
-  
-    it('should set value', () => {
-      expect(cartTotalsItemComponent.innerHTML).toContain('$' + cartTotalsComponent.cart.grand_total);
+
+    it('should call the angular CurrencyPipe.transform with cart grand_total', () => {
+      expect(currencyPipe).toHaveBeenCalledWith(cartTotalsComponent.cart.grand_total);
     });
   });
 });

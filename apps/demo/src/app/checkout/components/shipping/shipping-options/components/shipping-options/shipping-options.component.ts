@@ -4,7 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { ShippingOption } from '@daffodil/core';
 
 import { ShippingOptionsService } from '../services/shipping-options.service';
-import { ErrorStateMatcher } from '@daffodil/design';
+import { DaffErrorStateMatcher } from '@daffodil/design';
 
 @Component({
   selector: 'demo-shipping-options',
@@ -17,7 +17,7 @@ export class ShippingOptionsComponent implements OnInit, DoCheck {
   
   shippingOptions: ShippingOption[];
   errorState: boolean;
-  private errorStateMatcher: ErrorStateMatcher;
+  private errorStateMatcher: DaffErrorStateMatcher;
 
   constructor(
     private shippingOptionsService: ShippingOptionsService
@@ -26,7 +26,7 @@ export class ShippingOptionsComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
-    this.errorStateMatcher = new ErrorStateMatcher();
+    this.errorStateMatcher = new DaffErrorStateMatcher();
   }
 
   ngDoCheck() {

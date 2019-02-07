@@ -7,8 +7,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({template: `
 <daff-accordion-item [initiallyActive]="initiallyActiveValue">
-  <h3 daff-accordion-item-title>Size and Fit</h3>
-  <div daff-accordion-item-content>no content</div>
+  <h3 daffAccordionItemTitle>Size and Fit</h3>
+  <div daffAccordionItemContent>no content</div>
 </daff-accordion-item>
 `})
 class WrapperComponent {

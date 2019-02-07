@@ -1,0 +1,10 @@
+.daff-progress-indicator {
+    background: rgba(0,0,0,0.1);
+    height: 3px;
+    width:100%;
+    display: flex;
+
+    &__fill {
+        background: black;
+    }
+}
