@@ -120,7 +120,7 @@ describe('ThankYouViewComponent', () => {
     });
       
     it('should show the number of cart items in the accordion title', () => {
-      expect(fixture.debugElement.query(By.css('[daff-accordion-item-title]')).nativeElement.innerHTML).toEqual('Cart Summary (1)');
+      expect(fixture.debugElement.query(By.css('[daffAccordionItemTitle]')).nativeElement.innerHTML).toEqual('Cart Summary (1)');
     });
   });
 

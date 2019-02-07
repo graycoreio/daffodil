@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -6,10 +6,10 @@ import { ToggleSidebar, CloseSidebar, OpenSidebar, SetSidebarState } from '../..
 import * as fromDaffioSidebar from '../../reducers/index';
 
 @Component({
-  selector: 'sidebar-viewport-container',
+  selector: 'daffio-sidebar-viewport-container',
   templateUrl: './sidebar-viewport.component.html'
 })
-export class SidebarViewportContainer {
+export class DaffioSidebarViewportContainer implements OnInit{
   
   showSidebar$: Observable<boolean>;
 

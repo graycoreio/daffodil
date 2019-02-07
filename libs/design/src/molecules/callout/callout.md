@@ -22,17 +22,13 @@ A `daff-callout` transcludes:
 * To define a callout background color, add `color="[value]"` to the `daff-callout` tag.
 * Values: `primary`, `accent`, `black`, and `white`
 
-## Sizing
-* To define a callout size, add `size="[value]"` to the `daff-callout` tag.
-* Values: `small`
-
 ## Layout
 * To define a callout layout, add `layout="[value]"` to the `daff-callout` tag.
 * Values: `centered`
 
 ## Usage
 ```
-<daff-callout color="primary" size="small" layout="centered">
+<daff-callout color="primary" layout="centered">
   <h3 daffCalloutTitle>Callout Title</h3>
   <p daffCalloutSubtitle>Callout subtitle</p>
 </daff-callout>

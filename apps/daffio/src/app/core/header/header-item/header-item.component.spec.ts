@@ -1,20 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { By } from '@angular/platform-browser';
 
 import { DaffioHeaderItemComponent } from './header-item.component';
 
 @Component({template: '<div daffio-header-item>Item</div>'})
-class TestWrapper {}
+class WrapperComponent {}
 
 describe('DaffioHeaderItemComponent', () => {
-  let component: TestWrapper;
-  let fixture: ComponentFixture<TestWrapper>;
+  let component: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        TestWrapper,
+        WrapperComponent,
         DaffioHeaderItemComponent
       ]
     })
@@ -22,7 +21,7 @@ describe('DaffioHeaderItemComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestWrapper);
+    fixture = TestBed.createComponent(WrapperComponent);
     component = fixture.componentInstance;
 
     fixture.detectChanges();

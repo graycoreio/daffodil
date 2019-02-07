@@ -1,15 +1,18 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { By } from '@angular/platform-browser';
 
-import { DaffioHeaderContainer } from './header.component';
 import { StoreModule, Store } from '@ngrx/store';
+
 import * as fromSidebar from '../../sidebar/reducers/index';
+import { ToggleSidebar } from '../../sidebar/actions/sidebar.actions';
 
 import { DaffioLogoModule } from '../../logo/logo.module';
 import { DaffioHeaderComponent } from '../component/header.component';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { By } from '@angular/platform-browser';
-import { ToggleSidebar } from '../../sidebar/actions/sidebar.actions';
-import { RouterTestingModule } from '@angular/router/testing';
+import { DaffioHeaderContainer } from './header.component';
+
+
 
 describe('DaffioHeaderContainer', () => {
   let component: DaffioHeaderContainer;
@@ -49,7 +52,7 @@ describe('DaffioHeaderContainer', () => {
 
   describe('when [sidebar-button] is clicked', () => {
     it('should call store.dispatch with a ToggleSidebar action', () => {
-      let sidebarButton = fixture.debugElement.query(By.css('[sidebar-button]')).nativeElement;
+      const sidebarButton = fixture.debugElement.query(By.css('[sidebar-button]')).nativeElement;
       sidebarButton.click();
       
       expect(store.dispatch).toHaveBeenCalledWith(new ToggleSidebar());
@@ -57,7 +60,7 @@ describe('DaffioHeaderContainer', () => {
   });
 
   it('renders a [daffio-header-item] for every links defined', () => {
-    let headerItems = fixture.debugElement.queryAll(By.css('[daffio-header-item]'));
+    const headerItems = fixture.debugElement.queryAll(By.css('[daffio-header-item]'));
 
     expect(headerItems.length).toEqual(component.links.length);
   });

@@ -1,28 +1,30 @@
+import { Component, Output, EventEmitter } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
-
-import { SidebarViewportContainer } from './sidebar-viewport.component';
-import * as fromSidebar from '../../reducers/index';
-import { ToggleSidebar, OpenSidebar, CloseSidebar, SetSidebarState } from '../../actions/sidebar.actions';
-import { DaffSidebarModule, DaffSidebarViewportComponent } from '@daffodil/design';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Component, Output, EventEmitter } from '@angular/core';
+
+import { Store, StoreModule, combineReducers } from '@ngrx/store';
+
+import { DaffSidebarModule, DaffSidebarViewportComponent } from '@daffodil/design';
+
+import { DaffioSidebarViewportContainer } from './sidebar-viewport.component';
+import * as fromSidebar from '../../reducers/index';
+import { ToggleSidebar, OpenSidebar, CloseSidebar, SetSidebarState } from '../../actions/sidebar.actions';
 
 @Component({selector: 'daffio-sidebar', template: ''})
-class MockDaffioSidebarContainer {
+class MockDaffioSidebarContainerComponent {
   @Output() close: EventEmitter<any> = new EventEmitter();
 }
 
-describe('SidebarViewportContainer', () => {
-  let component: SidebarViewportContainer;
-  let fixture: ComponentFixture<SidebarViewportContainer>;
+describe('DaffioSidebarViewportContainer', () => {
+  let component: DaffioSidebarViewportContainer;
+  let fixture: ComponentFixture<DaffioSidebarViewportContainer>;
   
   let daffSidebarViewport: DaffSidebarViewportComponent;
 
   let store: Store<fromSidebar.State>;
   let stubShowSidebar: boolean;
-  let daffioSidebarContainer: MockDaffioSidebarContainer;
+  let daffioSidebarContainer: MockDaffioSidebarContainerComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -34,15 +36,15 @@ describe('SidebarViewportContainer', () => {
         DaffSidebarModule,
       ],
       declarations: [ 
-        SidebarViewportContainer,
-        MockDaffioSidebarContainer
+        DaffioSidebarViewportContainer,
+        MockDaffioSidebarContainerComponent
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SidebarViewportContainer);
+    fixture = TestBed.createComponent(DaffioSidebarViewportContainer);
     component = fixture.componentInstance;
     store = TestBed.get(Store);
     spyOn(store, 'dispatch');

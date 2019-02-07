@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { DaffSidebarModule, DaffButtonModule } from '@daffodil/design';
 
 import { DaffioSidebarStateModule } from './sidebar.state.module';
-import { SidebarViewportContainer } from './containers/sidebar-viewport/sidebar-viewport.component';
+import { DaffioSidebarViewportContainer } from './containers/sidebar-viewport/sidebar-viewport.component';
 import { DaffioSidebarContainer } from './containers/sidebar/sidebar.component';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -18,11 +18,11 @@ import { RouterModule } from '@angular/router';
     DaffButtonModule
   ],
   declarations: [
-    SidebarViewportContainer,
+    DaffioSidebarViewportContainer,
     DaffioSidebarContainer
   ],
   exports: [
-    SidebarViewportContainer,
+    DaffioSidebarViewportContainer,
     DaffioSidebarContainer
   ]
 })
