@@ -3,29 +3,29 @@ import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { SelectValidatorComponent } from './select-validator.component';
-import { ErrorStateMatcher } from '../error-state-matcher/error-state-matcher';
+import { DaffInputValidatorComponent } from './input-validator.component';
+import { DaffErrorStateMatcher } from '../../core/public_api';
 
-@Component({template: '<select daff-select-validator [formSubmitted]="formSubmittedValue" [formControl]="formControlValue" [errorStateMatcher]="errorStateMatcherValue"></select>'})
+@Component({template: '<input daff-input-validator [formSubmitted]="formSubmittedValue" [formControl]="formControlValue" [errorStateMatcher]="errorStateMatcherValue"/>'})
 class WrapperComponent {
   formSubmittedValue: boolean;
   formControlValue: FormControl;
-  errorStateMatcherValue: ErrorStateMatcher;
+  errorStateMatcherValue: DaffErrorStateMatcher;
 }
 
-describe('SelectValidatorComponent', () => {
+describe('DaffInputValidatorComponent', () => {
   let stubFormControl;
   let stubFormSubmitted: boolean;
-  let mockErrorStateMatcher: ErrorStateMatcher;
+  let mockDaffErrorStateMatcher: DaffErrorStateMatcher;
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let component: SelectValidatorComponent;
+  let component: DaffInputValidatorComponent;
   let hostNativeElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        SelectValidatorComponent,
+        DaffInputValidatorComponent,
         WrapperComponent
       ]
     })
@@ -35,7 +35,7 @@ describe('SelectValidatorComponent', () => {
   beforeEach(() => {
     stubFormControl = new FormControl();
     stubFormSubmitted = false;
-    mockErrorStateMatcher = new ErrorStateMatcher();
+    mockDaffErrorStateMatcher = new DaffErrorStateMatcher();
 
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
@@ -43,23 +43,23 @@ describe('SelectValidatorComponent', () => {
     wrapper.formSubmittedValue = stubFormSubmitted;
     fixture.detectChanges();
 
-    component = fixture.debugElement.query(By.css('[daff-select-validator]')).componentInstance;
+    component = fixture.debugElement.query(By.css('[daff-input-validator]')).componentInstance;
   });
 
   it('should create', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  it('should be able to take formControl as select', () => {
+  it('should be able to take formControl as input', () => {
     expect(component.formControl).toEqual(stubFormControl);
   });
 
-  it('should be able to take formSubmitted as select', () => {
+  it('should be able to take formSubmitted as input', () => {
     expect(component.formSubmitted).toEqual(stubFormSubmitted);
   });
 
-  it('should be able to take an ErrorStateMatcher as select', () => {
-    expect(component.errorStateMatcher).toEqual(mockErrorStateMatcher);
+  it('should be able to take an DaffErrorStateMatcher as input', () => {
+    expect(component.errorStateMatcher).toEqual(mockDaffErrorStateMatcher);
   });
 
   describe('ngOnInit', () => {
@@ -75,11 +75,11 @@ describe('SelectValidatorComponent', () => {
         wrapper.formSubmittedValue = stubFormSubmitted;
         errorStateMatcherTestFixture.detectChanges();
 
-        component = errorStateMatcherTestFixture.debugElement.query(By.css('[daff-select-validator]')).componentInstance;
+        component = errorStateMatcherTestFixture.debugElement.query(By.css('[daff-input-validator]')).componentInstance;
       });
 
-      it('should initialize a default ErrorStateMatcher', () => {
-        expect(component.errorStateMatcher).toEqual(jasmine.any(ErrorStateMatcher));
+      it('should initialize a default DaffErrorStateMatcher', () => {
+        expect(component.errorStateMatcher).toEqual(jasmine.any(DaffErrorStateMatcher));
       });
     });
 
@@ -124,19 +124,18 @@ describe('SelectValidatorComponent', () => {
 
     beforeEach(() => {
       returnedValue = false;
+      spyOn(component.errorStateMatcher, 'isErrorState').and.returnValue(returnedValue);      
 
-      fixture.debugElement.query(By.css('select')).nativeElement.touched = true;
+      fixture.debugElement.query(By.css('input')).nativeElement.touched = true;
     });
     
     it('should call errorStateMatcher.isErrorState', () => {
-      spyOn(component.errorStateMatcher, 'isErrorState').and.returnValue(returnedValue)
       fixture.detectChanges();
 
       expect(component.errorStateMatcher.isErrorState).toHaveBeenCalledWith(stubFormControl, stubFormSubmitted);
     });
 
     it('should set errorState to returned value of errorStateMatcher.isErrorState', () => {
-      spyOn(component.errorStateMatcher, 'isErrorState').and.returnValue(returnedValue)
       fixture.detectChanges();
 
       expect(component.errorState).toEqual(returnedValue);
@@ -163,7 +162,7 @@ describe('SelectValidatorComponent', () => {
       describe('and has an error', () => {
         
         it('should set validState to false', () => {
-          spyOn(component.errorStateMatcher, 'isErrorState').and.returnValue(true);
+          stubFormControl.errors = true;
           component.formControl = stubFormControl;
       
           fixture.detectChanges();
@@ -195,10 +194,10 @@ describe('SelectValidatorComponent', () => {
       fixture.detectChanges();
     });
     
-    it('should set daff-select-validator__error class on host component', () => {
-      hostNativeElement = fixture.debugElement.query(By.css('select')).nativeElement;
+    it('should set daff-input-validator__error class on host component', () => {
+      hostNativeElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
-      expect(hostNativeElement.classList.contains('daff-select-validator__error')).toBeTruthy();
+      expect(hostNativeElement.classList.contains('daff-input-validator__error')).toBeTruthy();
     });
   });
 
@@ -211,10 +210,10 @@ describe('SelectValidatorComponent', () => {
       fixture.detectChanges();
     });
     
-    it('should set not set daff-select-validator__error class on host component', () => {
-      hostNativeElement = fixture.debugElement.query(By.css('select')).nativeElement;
+    it('should set not set daff-input-validator__error class on host component', () => {
+      hostNativeElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
-      expect(hostNativeElement.classList.contains('daff-select-validator__error')).toBeFalsy();
+      expect(hostNativeElement.classList.contains('daff-input-validator__error')).toBeFalsy();
     });
   });
 
@@ -227,10 +226,10 @@ describe('SelectValidatorComponent', () => {
       fixture.detectChanges();
     });
     
-    it('should set set daff-select-validator__valid class on host component', () => {
-      hostNativeElement = fixture.debugElement.query(By.css('select')).nativeElement;
+    it('should set set daff-input-validator__valid class on host component', () => {
+      hostNativeElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
-      expect(hostNativeElement.classList.contains('daff-select-validator__valid')).toBeTruthy();
+      expect(hostNativeElement.classList.contains('daff-input-validator__valid')).toBeTruthy();
     });
   });
 
@@ -243,10 +242,10 @@ describe('SelectValidatorComponent', () => {
       fixture.detectChanges();
     });
     
-    it('should set not set daff-select-validator__valid class on host component', () => {
-      hostNativeElement = fixture.debugElement.query(By.css('select')).nativeElement;
+    it('should set not set daff-input-validator__valid class on host component', () => {
+      hostNativeElement = fixture.debugElement.query(By.css('input')).nativeElement;
 
-      expect(hostNativeElement.classList.contains('daff-select-validator__valid')).toBeFalsy();
+      expect(hostNativeElement.classList.contains('daff-input-validator__valid')).toBeFalsy();
     });
   });
 });
