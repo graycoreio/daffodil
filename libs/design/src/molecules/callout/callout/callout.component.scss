@@ -1,4 +1,4 @@
-@import '../../scss/daff-util';
+@import '../../../scss/daff-util';
 
 .daff-callout {
   $root: &;
@@ -6,9 +6,9 @@
   flex-direction: column;
   padding: 75px 25px;
     
-    @include breakpoint(mobile) {
-      padding: 100px 50px;
-    }
+  @include breakpoint(mobile) {
+    padding: 100px 50px;
+  }
 
   &__title {
     @include embolden();
@@ -49,14 +49,6 @@
 
     + * {
       margin: 50px 0 0 0;
-    }
-  }
-
-  &--small {
-    padding: 75px 0;
-    
-    @include breakpoint(mobile) {
-      padding: 100px 0;
     }
   }
 

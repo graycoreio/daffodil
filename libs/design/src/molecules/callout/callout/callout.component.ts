@@ -1,5 +1,10 @@
 import { Component, ViewEncapsulation, Input, ElementRef, ChangeDetectionStrategy } from '@angular/core';
-import { DaffColorable, DaffPalette, daffColorMixin } from '../../core/colorable/colorable';
+import { DaffColorable, DaffPalette, daffColorMixin } from '../../../core/colorable/colorable';
+
+export type DaffCalloutLayout = "centered" | undefined;
+export enum DaffCalloutLayoutEnum {
+  Centered = "centered"
+}
 
 /**
  * An _elementRef is needed for the Colorable mixin
@@ -16,16 +21,14 @@ const _daffCalloutBase = daffColorMixin(DaffCalloutBase)
   styleUrls: ['./callout.component.scss'],
   host: {
     'class': 'daff-callout',
-    '[class.daff-callout--centered]': 'layout === "centered"',
-    '[class.daff-callout--small]': 'size === "small"'
+    '[class.daff-callout--centered]': 'layout === "' + DaffCalloutLayoutEnum.Centered + '"',
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class DaffCalloutComponent extends _daffCalloutBase implements DaffColorable {
-  @Input() layout: string;
-  @Input() size: string;
+  @Input() layout: DaffCalloutLayout;
   @Input() color: DaffPalette;
 
   constructor(private elementRef: ElementRef) {
