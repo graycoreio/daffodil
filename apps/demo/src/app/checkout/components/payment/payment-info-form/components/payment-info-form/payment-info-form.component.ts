@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
-import { ErrorStateMatcher } from '@daffodil/design';
+import { DaffErrorStateMatcher } from '@daffodil/design';
 
 @Component({
   selector: 'demo-payment-info-form',
@@ -13,8 +13,8 @@ export class PaymentInfoFormComponent implements OnInit {
   @Input() formGroup: FormGroup;
   @Input() submitted: boolean;
 
-  monthErrorStateMatcher: ErrorStateMatcher;
-  yearErrorStateMatcher: ErrorStateMatcher;
+  monthErrorStateMatcher: DaffErrorStateMatcher;
+  yearErrorStateMatcher: DaffErrorStateMatcher;
 
   constructor() { }
 
@@ -40,12 +40,12 @@ export class PaymentInfoFormComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.monthErrorStateMatcher = new ErrorStateMatcher();
+    this.monthErrorStateMatcher = new DaffErrorStateMatcher();
     this.monthErrorStateMatcher.isErrorState = (control: FormControl, formSubmitted: boolean) => {
       return (control.errors || control.value === 'Month') && (control.touched || formSubmitted);
     }
   
-    this.yearErrorStateMatcher = new ErrorStateMatcher();
+    this.yearErrorStateMatcher = new DaffErrorStateMatcher();
     this.yearErrorStateMatcher.isErrorState = (control: FormControl, formSubmitted: boolean) => {
       return (control.errors || control.value === 'Year') && (control.touched || formSubmitted);
     }
