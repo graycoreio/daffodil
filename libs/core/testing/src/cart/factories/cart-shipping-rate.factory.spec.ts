@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffCartItemFactory } from './cart-item.factory';
-import { CartItem, CartShippingRate } from '@daffodil/core';
+import { CartShippingRate } from '@daffodil/core';
 import { DaffCartShippingRateFactory } from './cart-shipping-rate.factory';
 
 describe('Core | Testing | Cart | Factories | CartShippingRateFactory', () => {
