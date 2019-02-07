@@ -7,16 +7,16 @@ import { Component, Output, EventEmitter } from '@angular/core';
 })
 export class DaffioSidebarContainer {
 
-  @Output() close: EventEmitter<any> = new EventEmitter();
-
-  onClose() {
-    this.close.emit();
-  }
-
   links: any[] = [
     {path: '/developers', title: 'Developers'},
     {path: '/solutions', title: 'Solutions'},
     {path: '/documentation', title: 'Documentation'},
     {path: '/support', title: 'Support'}
   ];
+
+  @Output() close: EventEmitter<any> = new EventEmitter();
+
+  onClose() {
+    this.close.emit();
+  }
 }

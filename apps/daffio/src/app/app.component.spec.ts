@@ -4,11 +4,11 @@ import { By } from '@angular/platform-browser';
 
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { AppComponent } from './app.component';
+import { DaffioAppComponent } from './app.component';
 
-describe('AppComponent', () => {
-  let fixture: ComponentFixture<AppComponent>;
-  let app: AppComponent;
+describe('DaffioAppComponent', () => {
+  let fixture: ComponentFixture<DaffioAppComponent>;
+  let app: DaffioAppComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -19,13 +19,13 @@ describe('AppComponent', () => {
         RouterTestingModule
       ],
       declarations: [
-        AppComponent
+        DaffioAppComponent
       ]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(DaffioAppComponent);
     app = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'homepage',
+  selector: 'daffio-homepage',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.scss'],
 })

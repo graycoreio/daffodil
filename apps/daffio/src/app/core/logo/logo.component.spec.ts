@@ -41,7 +41,7 @@ describe('DaffioLogoComponent', () => {
   describe('setting the type of the logo', () => {
     describe('when type is full', () => {
       it('should set "daffio-logo--full" on host element', () => {
-        wrapper.type = LogoType.FULL;
+        wrapper.type = "full";
         fixture.detectChanges();
         de = fixture.debugElement.query(By.css('svg'));
         expect(de.nativeElement.classList.contains('daffio-logo--full')).toEqual(true);
@@ -50,7 +50,7 @@ describe('DaffioLogoComponent', () => {
 
     describe('when type is icon', () => {
       it('should set "daffio-logo--icon" on host element', () => {
-        wrapper.type = LogoType.ICON;
+        wrapper.type = "icon";
         fixture.detectChanges();
         de = fixture.debugElement.query(By.css('svg'));
         expect(de.nativeElement.classList.contains('daffio-logo--icon')).toEqual(true);

@@ -332,7 +332,7 @@
       "root": "apps/daffio/",
       "sourceRoot": "apps/daffio/src",
       "projectType": "application",
-      "prefix": "daffodil",
+      "prefix": "daffio",
       "schematics": {},
       "architect": {
         "build": {

@@ -1,5 +1,11 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
+export type LogoType = "icon" | "full";
+export enum LogoTypeEnum {
+  ICON = "icon",
+  FULL = "full"
+}
+
 @Component({
   selector: 'daffio-logo',
   templateUrl: './logo.component.html',
@@ -8,18 +14,13 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 })
 
 export class DaffioLogoComponent {
-  @Input() type: LogoType = LogoType.FULL;
+  @Input() type: LogoType = LogoTypeEnum.FULL;
 
   isIcon(): boolean {
-    return this.type==LogoType.ICON;
+    return this.type === LogoTypeEnum.ICON;
   }
 
   isFull(): boolean {
-    return this.type==LogoType.FULL;
+    return this.type === LogoTypeEnum.FULL;
   }
-}
-
-export enum LogoType {
-  ICON = "icon",
-  FULL = "full"
 }
