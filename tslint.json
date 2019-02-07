@@ -90,8 +90,7 @@
     "use-pipe-transform-interface": true,
     "component-class-suffix": [
       true,
-      "Component",
-      "Container"
+      "Component"
     ],
     "directive-class-suffix": true,
     "no-focused-tests": true

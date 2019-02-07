@@ -12,6 +12,11 @@
       "element",
       "daffio",
       "kebab-case"
+    ],
+    "component-class-suffix": [
+      true,
+      "Component",
+      "Container"
     ]
   }
 }
