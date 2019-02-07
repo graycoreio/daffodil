@@ -26,3 +26,4 @@ export * from './molecules/sidebar/public_api';
 export * from './molecules/hero/public_api';
 export * from './molecules/callout/public_api';
 export * from './molecules/feature/public_api';
+export * from './molecules/card/public_api';
