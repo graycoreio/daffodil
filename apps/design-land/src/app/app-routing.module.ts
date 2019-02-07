@@ -9,7 +9,8 @@ export const appRoutes: Routes = [
   },
   {path: 'loading-icon', loadChildren: './loading-icon/loading-icon.module#LoadingIconModule'},
   {path: 'card', loadChildren: './card/card.module#CardModule'},
-  {path: 'feature', loadChildren: './feature/feature.module#FeatureModule'}
+  {path: 'feature', loadChildren: './feature/feature.module#FeatureModule'},
+  {path: 'list', loadChildren: './list/list.module#ListModule'}
 ]
 
 @NgModule({
