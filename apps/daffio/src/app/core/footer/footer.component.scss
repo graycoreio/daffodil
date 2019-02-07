@@ -1,6 +1,7 @@
 @import 'daff-util';
 
 :host {
+  display: block;
   padding: 50px 25px;
   border-top: 1px solid daff-color($daff-gray, 200);
 
