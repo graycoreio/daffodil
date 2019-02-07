@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DaffListItemIconComponent } from './list-item-icon.component';
+import { DaffListItemIconDirective } from './list-item-icon.directive';
 import { By } from '@angular/platform-browser';
 
-@Component({template: '<div daff-list-item-icon></div>'})
+@Component({template: '<div daffListItemIcon></div>'})
 class WrapperComponent {}
 
-describe('DaffListItemIconComponent', () => {
+describe('DaffListItemIconDirective', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let listItemIcon;
@@ -16,7 +16,7 @@ describe('DaffListItemIconComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ 
         WrapperComponent,
-        DaffListItemIconComponent
+        DaffListItemIconDirective
       ]
     })
     .compileComponents();
@@ -27,7 +27,7 @@ describe('DaffListItemIconComponent', () => {
     wrapper = fixture.componentInstance;
     
     fixture.detectChanges();
-    listItemIcon = fixture.debugElement.query(By.css('[daff-list-item-icon'));
+    listItemIcon = fixture.debugElement.query(By.css('[daffListItemIcon]'));
   });
 
   it('should create', () => {

@@ -1,13 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DaffListSubheaderComponent } from './list-subheader.component';
+import { DaffListSubheaderDirective } from './list-subheader.directive';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-@Component({template: '<div daff-list-subheader></div>'})
+@Component({template: '<div daffListSubheader></div>'})
 class WrapperComponent {}
 
-describe('DaffListSubheaderComponent', () => {
+describe('DaffListSubheaderDirective', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let listSubheader;
@@ -16,7 +16,7 @@ describe('DaffListSubheaderComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ 
         WrapperComponent,
-        DaffListSubheaderComponent
+        DaffListSubheaderDirective
       ]
     })
     .compileComponents();
@@ -28,7 +28,7 @@ describe('DaffListSubheaderComponent', () => {
     
     fixture.detectChanges();
 
-    listSubheader = fixture.debugElement.query(By.css('[daff-list-subheader]'));
+    listSubheader = fixture.debugElement.query(By.css('[daffListSubheader]'));
   });
 
   it('should create', () => {
