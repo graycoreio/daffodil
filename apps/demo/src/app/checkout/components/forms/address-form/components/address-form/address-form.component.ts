@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
-import { ErrorStateMatcher } from '@daffodil/design';
+import { DaffErrorStateMatcher } from '@daffodil/design';
 
 @Component({
   selector: 'demo-address-form',
@@ -13,7 +13,7 @@ export class AddressFormComponent implements OnInit {
   @Input() formGroup: FormGroup;
   @Input() submitted: boolean;
 
-  stateErrorStateMatcher: ErrorStateMatcher;
+  stateErrorStateMatcher: DaffErrorStateMatcher;
 
   constructor() { }
 
@@ -23,7 +23,7 @@ export class AddressFormComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.stateErrorStateMatcher = new ErrorStateMatcher();
+    this.stateErrorStateMatcher = new DaffErrorStateMatcher();
     this.stateErrorStateMatcher.isErrorState = (control: FormControl, formSubmitted: boolean) => {
       return (control.errors || control.value === 'State') && (control.touched || formSubmitted);
     }

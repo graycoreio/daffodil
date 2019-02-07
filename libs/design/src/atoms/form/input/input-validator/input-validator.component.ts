@@ -1,6 +1,6 @@
 import { OnInit, Input, Component, ViewEncapsulation, HostBinding, DoCheck } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ErrorStateMatcher } from '../error-state-matcher/error-state-matcher';
+import { DaffErrorStateMatcher } from '../../core/error-state-matcher/error-state-matcher';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -12,11 +12,11 @@ import { ErrorStateMatcher } from '../error-state-matcher/error-state-matcher';
   },
   encapsulation: ViewEncapsulation.None
 })
-export class InputValidatorComponent implements OnInit, DoCheck {
+export class DaffInputValidatorComponent implements OnInit, DoCheck {
 
   @Input() formSubmitted: boolean;
   @Input() formControl: FormControl;
-  @Input() errorStateMatcher: ErrorStateMatcher;
+  @Input() errorStateMatcher: DaffErrorStateMatcher;
   @HostBinding('class.daff-input-validator__error') errorState: boolean;
   @HostBinding('class.daff-input-validator__valid') validState: boolean;
 
@@ -24,7 +24,7 @@ export class InputValidatorComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     if (!this.errorStateMatcher) {
-      this.errorStateMatcher = new ErrorStateMatcher();
+      this.errorStateMatcher = new DaffErrorStateMatcher();
     }
 
     if (!this.formControl || this.formSubmitted === undefined) {

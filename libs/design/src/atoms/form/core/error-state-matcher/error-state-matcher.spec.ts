@@ -1,11 +1,11 @@
 import { FormControl } from '@angular/forms';
 
-import { ErrorStateMatcher } from './error-state-matcher';
+import { DaffErrorStateMatcher } from './error-state-matcher';
 
-describe('ErrorStateMatcher', () => {
-  let component: ErrorStateMatcher;
+describe('DaffErrorStateMatcher', () => {
+  let component: DaffErrorStateMatcher;
 
-  component = new ErrorStateMatcher();
+  component = new DaffErrorStateMatcher();
 
   describe('isErrorState', () => {
 
