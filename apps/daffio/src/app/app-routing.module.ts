@@ -5,7 +5,8 @@ import { TemplateComponent } from './core//template/template.component';
 export const appRoutes: Routes = [
   {
     path: '', component: TemplateComponent, children: [
-      { path: '', pathMatch: 'full', loadChildren: './content/homepage/homepage.module#DaffioHomepageModule'}
+      { path: '', pathMatch: 'full', loadChildren: './content/homepage/homepage.module#DaffioHomepageModule'},
+      { path: 'support', loadChildren: './content/support/support.module#DaffioSupportModule' }
     ]
   }
 ]
