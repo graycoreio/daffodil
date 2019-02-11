@@ -8,8 +8,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 export class DaffioSidebarContainer {
 
   links: any[] = [
-    {path: '/developers', title: 'Developers'},
-    {path: '/support', title: 'Support'}
+    {path: '/why-pwa', title: 'Why PWA'},
   ];
 
   @Output() close: EventEmitter<any> = new EventEmitter();
