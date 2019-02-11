@@ -64,7 +64,7 @@ describe('Product | Product Reducer', () => {
         loading: true
       }
 
-      let productLoadSuccess = new ProductLoadSuccess(product);
+      const productLoadSuccess = new ProductLoadSuccess(product);
       result = reducer(state, productLoadSuccess);
     });
 
@@ -75,7 +75,7 @@ describe('Product | Product Reducer', () => {
 
   describe('when ProductLoadFailureAction is triggered', () => {
 
-    let error: string;
+    const error = 'error message';
     let result;
     let state: State;
 
@@ -86,7 +86,7 @@ describe('Product | Product Reducer', () => {
         errors: new Array('firstError')
       }
 
-      let productLoadFailure = new ProductLoadFailure(error);
+      const productLoadFailure = new ProductLoadFailure(error);
 
       result = reducer(state, productLoadFailure);
     });
@@ -107,7 +107,7 @@ describe('Product | Product Reducer', () => {
 
     beforeEach(() => {
       givenQty = 3;
-      let productLoadFailure = new UpdateQty(givenQty);
+      const productLoadFailure = new UpdateQty(givenQty);
 
       result = reducer(initialState, productLoadFailure);
     });

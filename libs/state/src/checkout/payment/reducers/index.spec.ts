@@ -10,7 +10,7 @@ import * as fromPayment from './index';
 describe('selectPaymentState', () => {
 
   let store: Store<fromPayment.PaymentState>;
-  let billingFactory: DaffPaymentFactory = new DaffPaymentFactory();
+  const billingFactory: DaffPaymentFactory = new DaffPaymentFactory();
   let stubPaymentInfo: PaymentInfo;
   
   beforeEach(async(() => {
@@ -30,7 +30,7 @@ describe('selectPaymentState', () => {
   describe('selectPaymentState', () => {
     
     it('selects payment state', () => {
-      let expectedPaymentState = {
+      const expectedPaymentState = {
         paymentInfo: stubPaymentInfo
       }
 

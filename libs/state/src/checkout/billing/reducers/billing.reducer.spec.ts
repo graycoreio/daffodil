@@ -35,7 +35,7 @@ describe('Billing | Billing Reducer', () => {
     let result;
 
     beforeEach(() => {
-      let updateBillingAddressAction = new UpdateBillingAddress(billingAddress);
+      const updateBillingAddressAction = new UpdateBillingAddress(billingAddress);
       
       result = reducer(initialState, updateBillingAddressAction);
     });
@@ -52,7 +52,7 @@ describe('Billing | Billing Reducer', () => {
 
     beforeEach(() => {
       initialBillingAddressIsShippingAddress = initialState.billingAddressIsShippingAddress;
-      let toggleBillingAddressIsShippingAddress = new ToggleBillingAddressIsShippingAddress();
+      const toggleBillingAddressIsShippingAddress = new ToggleBillingAddressIsShippingAddress();
       
       result = reducer(initialState, toggleBillingAddressIsShippingAddress);
     });
@@ -71,7 +71,7 @@ describe('Billing | Billing Reducer', () => {
     let result;
 
     beforeEach(() => {
-      let updatePaymentInfoAction = new UpdatePaymentInfo(paymentInfo);
+      const updatePaymentInfoAction = new UpdatePaymentInfo(paymentInfo);
       
       result = reducer(initialState, updatePaymentInfoAction);
     });

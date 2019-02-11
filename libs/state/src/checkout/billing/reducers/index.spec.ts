@@ -10,10 +10,10 @@ import * as fromBilling from './index';
 describe('selectBillingState', () => {
 
   let store: Store<fromBilling.BillingState>;
-  let addressFactory: DaffAddressFactory = new DaffAddressFactory();
+  const addressFactory: DaffAddressFactory = new DaffAddressFactory();
   let stubBillingAddress: DaffodilAddress;
 
-  let paymentFactory: DaffPaymentFactory = new DaffPaymentFactory();
+  const paymentFactory: DaffPaymentFactory = new DaffPaymentFactory();
   let stubPaymentInfo: PaymentInfo;
   
   let stubBillingAddressIsShippingAddress: boolean;
@@ -38,7 +38,7 @@ describe('selectBillingState', () => {
   describe('selectBillingState', () => {
     
     it('selects billing state', () => {
-      let expectedBillingState = {
+      const expectedBillingState = {
         billingAddress: stubBillingAddress,
         billingAddressIsShippingAddress: stubBillingAddressIsShippingAddress,
         paymentInfo: stubPaymentInfo
