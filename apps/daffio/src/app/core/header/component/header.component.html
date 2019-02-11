@@ -5,12 +5,12 @@
     </div>
     <div class="daffio-header__menu">
       <ng-content select="[daffioHeaderItem]"></ng-content>
+      <div class="daffio-header__button">
+        <ng-content select="[quickstart-button]"></ng-content>
+      </div>
     </div>
     <div class="daffio-header__bars">
       <ng-content select="[sidebar-button]"></ng-content>
-    </div>
-    <div class="daffio-header__button">
-      <ng-content select="[quickstart-button]"></ng-content>
     </div>
   </daff-navbar>
 </daff-container>

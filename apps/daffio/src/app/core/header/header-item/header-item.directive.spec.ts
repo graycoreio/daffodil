@@ -4,16 +4,17 @@ import { Component } from '@angular/core';
 import { DaffioHeaderItemDirective } from './header-item.directive';
 
 @Component({template: '<div daffioHeaderItem>Item</div>'})
-class Wrapper {}
+
+class WrapperComponent {}
 
 describe('DaffioHeaderItemComponent', () => {
-  let component: Wrapper;
-  let fixture: ComponentFixture<Wrapper>;
+  let component: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        Wrapper,
+        WrapperComponent,
         DaffioHeaderItemDirective
       ]
     })
@@ -21,7 +22,7 @@ describe('DaffioHeaderItemComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Wrapper);
+    fixture = TestBed.createComponent(WrapperComponent);
     component = fixture.componentInstance;
 
     fixture.detectChanges();

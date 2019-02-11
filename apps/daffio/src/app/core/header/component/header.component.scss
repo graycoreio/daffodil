@@ -26,9 +26,15 @@
     margin: 0;
     padding: 0;
 
-    @include breakpoint(big-tablet) {
+    @include breakpoint(tablet) {
       display: flex;
+      align-items: center;
     }
+  }
+
+  &__button {
+    display: flex;
+    margin-left: 15px;
   }
 
   &__logo {
@@ -39,19 +45,11 @@
     }
   }
 
-  &__button {
-    display: none;
-
-    @include breakpoint(big-tablet) {
-      display: flex;
-    }
-  }
-
   &__bars {
     display: flex;
     margin-right: -13px;
 
-    @include breakpoint(big-tablet) {
+    @include breakpoint(tablet) {
       display: none;
     }
   }
