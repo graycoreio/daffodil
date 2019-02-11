@@ -7,7 +7,6 @@ import { Product } from '@daffodil/core';
 import { BestSellersContainer } from './best-sellers.component';
 import { BestSellersLoad } from '../../actions/best-sellers.actions';
 import * as fromProduct from '../../reducers/index';
-import { combineLatest } from 'rxjs';
 
 describe('BestSellersContainer', () => {
   let component: BestSellersContainer;
@@ -15,7 +14,7 @@ describe('BestSellersContainer', () => {
   let store;
   let initialLoading: boolean;
   let initialProducts: Product[];
-  let productFactory = new DaffProductFactory();
+  const productFactory = new DaffProductFactory();
   let bestSeller: Product;
 
   beforeEach(async(() => {
@@ -64,10 +63,9 @@ describe('BestSellersContainer', () => {
     });
 
     it('sets bestSellers', () => {
-      combineLatest(
-        store.pipe(select(fromProduct.selectAllProducts)), 
-        store.pipe(select(fromProduct.selectBestSellersIdsState))
-      ).subscribe(() => {
+      store.pipe(select(fromProduct.selectAllProducts)).subscribe();
+
+      store.pipe(select(fromProduct.selectBestSellersIdsState)).subscribe(() => {
         expect(component.bestSellers).toEqual([bestSeller]);
       });
     });

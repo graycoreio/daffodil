@@ -36,7 +36,7 @@ describe('Shipping | Shipping Reducer', () => {
     let result;
 
     beforeEach(() => {
-      let updateShippingAddressAction = new UpdateShippingAddress(shippingAddress);
+      const updateShippingAddressAction = new UpdateShippingAddress(shippingAddress);
       
       result = reducer(initialState, updateShippingAddressAction);
     });
@@ -51,7 +51,7 @@ describe('Shipping | Shipping Reducer', () => {
     let result;
 
     beforeEach(() => {
-      let selectShippingOptionAction = new SelectShippingOption(selectedShippingOptionId);
+      const selectShippingOptionAction = new SelectShippingOption(selectedShippingOptionId);
       
       result = reducer(initialState, selectShippingOptionAction);
     });
@@ -82,7 +82,7 @@ describe('Shipping | Shipping Reducer', () => {
       let result: State;
 
       beforeEach(() => {
-        let updateShippingAddressAction = new UpdateShippingAddress(shippingAddress);
+        const updateShippingAddressAction = new UpdateShippingAddress(shippingAddress);
 
         result = reducer(initialState, updateShippingAddressAction);
       });
@@ -97,7 +97,7 @@ describe('Shipping | Shipping Reducer', () => {
       let result: State;
 
       beforeEach(() => {
-        let updateShippingAddressAction = new UpdateShippingAddress(null);
+        const updateShippingAddressAction = new UpdateShippingAddress(null);
 
         result = reducer(initialState, updateShippingAddressAction);
       });

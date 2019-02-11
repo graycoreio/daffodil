@@ -13,7 +13,7 @@ describe('PaymentContainer', () => {
   let fixture: ComponentFixture<PaymentContainer>;
   let store;
   let initialPaymentInfo: PaymentInfo;
-  let paymentFactory: DaffPaymentFactory = new DaffPaymentFactory();
+  const paymentFactory: DaffPaymentFactory = new DaffPaymentFactory();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
