@@ -22,7 +22,7 @@ export class DaffInMemoryCartTestingService implements InMemoryDbService {
   post(reqInfo: any) {
     return reqInfo.utils.createResponse$(() => {
       if (reqInfo.id === 'addToCart') {
-        let matchedProductIndex = this.getMatchedProductIndex(
+        const matchedProductIndex = this.getMatchedProductIndex(
           reqInfo.req.body.productId
         );
         if (matchedProductIndex > -1) {
@@ -60,7 +60,7 @@ export class DaffInMemoryCartTestingService implements InMemoryDbService {
   }
 
   private addProductToCart(reqBody) {
-    let cartItem: CartItem = this.cartItemFactory.create({image: this.productImageFactory.create()});
+    const cartItem: CartItem = this.cartItemFactory.create({image: this.productImageFactory.create()});
     cartItem.product_id = reqBody.productId;
     cartItem.qty = reqBody.qty;
     this.cart.items.push(cartItem);

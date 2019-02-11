@@ -69,7 +69,6 @@ describe('Driver | Shopify | Cart | CartService', () => {
   describe('addToCart', () => {
     let productId;
     let qty;
-    let returnedValue;
 
     beforeEach(() => {
       productId = 'productId';
