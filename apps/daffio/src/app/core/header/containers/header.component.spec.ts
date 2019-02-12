@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
@@ -8,28 +8,27 @@ import { StoreModule, Store } from '@ngrx/store';
 import * as fromSidebar from '../../sidebar/reducers/index';
 import { ToggleSidebar } from '../../sidebar/actions/sidebar.actions';
 
-import { DaffioLogoModule } from '../../logo/logo.module';
-import { DaffioHeaderComponent } from '../component/header.component';
 import { DaffioHeaderContainer } from './header.component';
 
-
+@Component({template: '<daffio-header-container></daffio-header-container>'})
+class WrapperComponent {}
 
 describe('DaffioHeaderContainer', () => {
-  let component: DaffioHeaderContainer;
-  let fixture: ComponentFixture<DaffioHeaderContainer>;
+  let component: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
+  let daffioHeaderContainer: DaffioHeaderContainer;
 
   let store: Store<fromSidebar.State>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffioLogoModule,
         StoreModule.forRoot({}),
         RouterTestingModule
       ],
       declarations: [
-        DaffioHeaderContainer,
-        DaffioHeaderComponent
+        WrapperComponent,
+        DaffioHeaderContainer
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA
@@ -39,11 +38,13 @@ describe('DaffioHeaderContainer', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DaffioHeaderContainer);
+    fixture = TestBed.createComponent(WrapperComponent);
     component = fixture.componentInstance;
     store = TestBed.get(Store);
     spyOn(store, 'dispatch');
     fixture.detectChanges();
+
+    daffioHeaderContainer = fixture.debugElement.query(By.css('daffio-header-container')).componentInstance;
   });
 
   it('should create', () => {
@@ -59,9 +60,9 @@ describe('DaffioHeaderContainer', () => {
     });
   });
 
-  it('renders a [daffio-header-item] for every links defined', () => {
-    const headerItems = fixture.debugElement.queryAll(By.css('[daffio-header-item]'));
+  it('renders a [daffioHeaderItemm] for every links defined', () => {
+    const headerItems = fixture.debugElement.queryAll(By.css('[daffioHeaderItem]'));
 
-    expect(headerItems.length).toEqual(component.links.length);
+    expect(headerItems.length).toEqual(daffioHeaderContainer.links.length);
   });
 });

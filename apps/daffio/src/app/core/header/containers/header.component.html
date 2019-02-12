@@ -2,7 +2,7 @@
   <a routerLink="/" daffio-logo>
     <daffio-logo type="full"></daffio-logo>
   </a>
-  <a routerLink="{{ link.path }}" daffio-header-item *ngFor="let link of links">{{ link.title }}</a>
+  <a daff-link color="black" daffioHeaderItem routerLink="{{ link.path }}" *ngFor="let link of links">{{ link.title }}</a>
+  <a href="https://github.com/graycoreio/daffodil" rel="noopener noreferrer" target="_blank" daff-button type="button" color="black" quickstart-button>Get Started</a>
   <button type="button" daff-icon-button sidebar-button (click)="openSidebar()"><i class="fas fa-bars"></i></button>
-  <button type="button" daff-button quickstart-button color="black">Get Started</button>
 </daffio-header>
