@@ -1,9 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 
-import { DaffioHeaderItemComponent } from './header-item.component';
+import { DaffioHeaderItemDirective } from './header-item.directive';
 
-@Component({template: '<div daffio-header-item>Item</div>'})
+@Component({template: '<div daffioHeaderItem>Item</div>'})
+
 class WrapperComponent {}
 
 describe('DaffioHeaderItemComponent', () => {
@@ -14,7 +15,7 @@ describe('DaffioHeaderItemComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ 
         WrapperComponent,
-        DaffioHeaderItemComponent
+        DaffioHeaderItemDirective
       ]
     })
     .compileComponents();
