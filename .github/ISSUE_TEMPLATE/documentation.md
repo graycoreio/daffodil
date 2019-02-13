@@ -14,21 +14,15 @@ ISSUES MISSING IMPORTANT INFORMATION MAY BE CLOSED WITHOUT INVESTIGATION.
 
 # Documentation Request
 
+## Prior Works
+<!-- Describe any existing documentation that this would potentially require change. -->
+
 ## Current behavior
-<!-- Describe how the issue manifests. -->
+<!-- Describe how to came to need the documentation. -->
 
 
 ## Expected behavior
-<!-- Describe what the desired behavior would be. -->
-
-
-## Minimal reproduction of the problem with instructions
-<!--
-For bug reports please provide the *STEPS TO REPRODUCE* and if possible a *MINIMAL DEMO* of the problem -->
-
-## What is the motivation / use case for changing the behavior?
-<!-- Describe the motivation or the concrete use case. -->
-
+<!-- Describe what you would like to see documented as well as where. -->
 
 ## Environment
 
