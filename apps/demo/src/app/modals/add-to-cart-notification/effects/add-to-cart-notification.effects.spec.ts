@@ -3,8 +3,9 @@ import { Observable } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 import { provideMockActions } from '@ngrx/effects/testing';
 
-import { AddToCartNotificationEffects } from './add-to-cart-notification.effects';
 import { AddToCart } from '@daffodil/state';
+
+import { AddToCartNotificationEffects } from './add-to-cart-notification.effects';
 import { OpenAddToCartNotification } from '../actions/add-to-cart-notification.actions';
 
 describe('AddToCartNotificationEffects', () => {
@@ -26,7 +27,7 @@ describe('AddToCartNotificationEffects', () => {
     expect(effects).toBeTruthy();
   });
 
-  describe('when AddToCartAction is triggered', () => {
+  describe('addToCart$', () => {
 
     let expected;
     const addToCartAction = new AddToCart({productId: 'id', qty: 1});

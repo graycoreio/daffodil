@@ -4,8 +4,8 @@
   background-color: $white;
   padding: 25px;
   position: relative;
-  width: 100%;
-
+  width: 100vw;
+  
   @include breakpoint(tablet) {
     width: 500px;
   }
