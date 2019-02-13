@@ -12,7 +12,7 @@ describe('Driver | Testing | Product | ProductService', () => {
 
   beforeEach(() => {
     stubProductImages = new DaffProductImageFactory().createMany(5);
-    let productImageFactorySpy = jasmine.createSpyObj('DaffProductImageFactory', ['createMany', 'create']);
+    const productImageFactorySpy = jasmine.createSpyObj('DaffProductImageFactory', ['createMany', 'create']);
 
     TestBed.configureTestingModule({
       imports: [

@@ -35,7 +35,7 @@ describe('Driver | InMemory | Product | ProductService', () => {
 
   describe('getAll | getting a list of products', () => {
     it('should send a get request', () => {
-      let mockProducts = productFactory.createMany();
+      const mockProducts = productFactory.createMany();
 
       productService.getAll().subscribe(products => {
         expect(products).toEqual(mockProducts);
@@ -50,7 +50,7 @@ describe('Driver | InMemory | Product | ProductService', () => {
 
   describe('getBestSellers', () => {
     it('should send a get request and return an array of products', () => {
-      let mockProducts = productFactory.createMany();
+      const mockProducts = productFactory.createMany();
 
       productService.getBestSellers().subscribe(products => {
         expect(products).toEqual(mockProducts);
@@ -64,10 +64,9 @@ describe('Driver | InMemory | Product | ProductService', () => {
   });
 
   describe('get | getting a single product', () => {
-    let productId;
 
     it('should send a get request', () => {
-      let mockProduct = productFactory.create();
+      const mockProduct = productFactory.create();
 
       productService.get(mockProduct.id).subscribe(product => {
         expect(product).toEqual(mockProduct);

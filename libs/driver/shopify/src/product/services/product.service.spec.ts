@@ -43,7 +43,7 @@ describe('Driver | Shopify | Product | ProductService', () => {
         expect(result.length).toEqual(20);
       });
 
-      let products = productFactory.createMany(20);
+      const products = productFactory.createMany(20);
 
       const op = controller.expectOne(GetAllProductsQuery);
 
@@ -72,7 +72,7 @@ describe('Driver | Shopify | Product | ProductService', () => {
 
   describe('get | getting a single product', () => {
     it('should return an observable single product', () => {
-      let product = productFactory.create();
+      const product = productFactory.create();
 
       productService.get(product.id).subscribe((result) => {
         expect(result.id).toEqual(product.id);
