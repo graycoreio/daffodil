@@ -1,6 +1,6 @@
 ---
 name: Bug report or Regression
-about: Create a report to help us fix an issue
+about: Create a report to help us fix an issue or regression
 title: '[BUG]'
 labels: 'bug'
 assignees: 'lderrickable'
