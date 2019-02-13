@@ -1,19 +1,18 @@
+---
+name: Bug report or Regression
+about: Create a report to help us fix an issue
+title: '[BUG]'
+labels: 'bug'
+assignees: 'lderrickable'
+---
+
 <!--
 PLEASE HELP US PROCESS GITHUB ISSUES FASTER BY PROVIDING THE FOLLOWING INFORMATION.
 
 ISSUES MISSING IMPORTANT INFORMATION MAY BE CLOSED WITHOUT INVESTIGATION.
 -->
 
-## I'm submitting a...
-<!-- Check one of the following options with "x" -->
-<pre><code>
-[ ] Regression (a behavior that used to work and stopped working in a new release)
-[ ] Bug report  <!-- Please search GitHub for a similar issue or PR before submitting -->
-[ ] Performance issue
-[ ] Feature request
-[ ] Documentation issue or request
-[ ] Other... Please describe:
-</code></pre>
+# Bug report
 
 ## Current behavior
 <!-- Describe how the issue manifests. -->
@@ -35,6 +34,7 @@ For bug reports please provide the *STEPS TO REPRODUCE* and if possible a *MINIM
 
 <pre><code>
 Daffodil version: X.Y.Z
+Angular version: X.Y.Z 
 <!-- Check whether this is still an issue in the most recent Daffodil version -->
  
 For Tooling issues:
