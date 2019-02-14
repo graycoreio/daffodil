@@ -4,14 +4,19 @@
     "directive-selector": [
       true,
       "attribute",
-      "daffodil",
+      "daffio",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "daffodil",
+      "daffio",
       "kebab-case"
+    ],
+    "component-class-suffix": [
+      true,
+      "Component",
+      "Container"
     ]
   }
 }

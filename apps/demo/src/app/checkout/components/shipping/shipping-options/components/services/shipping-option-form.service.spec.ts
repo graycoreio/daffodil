@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ShippingOptionFormService } from './shipping-option-form.service';
 import { ShippingOptionFormFactory } from '../factories/shipping-option-form.factory';
 
-describe('Foundation Demo | Checkout | Shipping | Shipping Options | Services | ShippingOptionFormService', () => {
+describe('Daffodil Demo | Checkout | Shipping | Shipping Options | Services | ShippingOptionFormService', () => {
   let shippingOptionsService: ShippingOptionFormService;
   let shippingOptionFormFactory: ShippingOptionFormFactory;
 

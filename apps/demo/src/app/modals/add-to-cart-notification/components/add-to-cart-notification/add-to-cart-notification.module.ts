@@ -5,7 +5,7 @@ import { AddToCartNotificationComponent } from './add-to-cart-notification.compo
 import { ViewCartModule } from '../../../../cart/components/view-cart/view-cart.module';
 import { ProceedToCheckoutModule } from '../../../../cart/components/proceed-to-checkout/proceed-to-checkout.module';
 import { ProductAddedModule } from '../product-added/product-added.module';
-import { FoundationAddToCartNotificationStateModule } from '../../add-to-cart-notification-state.module';
+import { DemoAddToCartNotificationStateModule } from '../../add-to-cart-notification-state.module';
 import { StateCartModule } from '@daffodil/state';
 import { DaffLoadingIconModule } from '@daffodil/design';
 import { TemplateModule } from '../../../../core/template/template/template.module';
@@ -21,7 +21,7 @@ import { ModalPortalModule } from '../../../../core/template/portals/modal-porta
     TemplateModule,
     DaffButtonModule,
     ProductAddedModule,
-    FoundationAddToCartNotificationStateModule,
+    DemoAddToCartNotificationStateModule,
     StateCartModule,
     DaffLoadingIconModule,
     ModalPortalModule

@@ -63,8 +63,8 @@ describe('BestSellersEffects', () => {
     describe('and the call to ProductService fails', () => {
       
       beforeEach(() => {
-        let error = 'Failed to load best selling products';
-        let response = cold('#', {}, error);
+        const error = 'Failed to load best selling products';
+        const response = cold('#', {}, error);
         spyOn(daffDriver.productService, 'getBestSellers').and.returnValue(response);
         const bestSellersLoadFailureAction = new BestSellersLoadFailure(error);
         actions$ = hot('--a', { a: bestSellersLoadAction });

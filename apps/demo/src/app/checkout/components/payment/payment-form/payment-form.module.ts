@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import {
-  DaffInputValidatorModule,
-  DaffSelectValidatorModule,
+  DaffInputModule,
+  DaffSelectModule,
   DaffButtonModule
 } from '@daffodil/design';
 
@@ -16,8 +16,8 @@ import { PaymentInfoFormModule } from '../payment-info-form/payment-info-form.mo
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DaffInputValidatorModule,
-    DaffSelectValidatorModule,
+    DaffInputModule,
+    DaffSelectModule,
     AddressFormModule,
     PaymentInfoFormModule,
     DaffButtonModule

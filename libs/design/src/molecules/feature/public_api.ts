@@ -1,5 +1,6 @@
 export { DaffFeatureModule } from './feature.module';
-export { DaffFeatureComponent } from './feature.component';
-export { DaffFeatureTitleComponent } from './feature-title/feature-title.component';
-export { DaffFeatureBodyComponent } from './feature-body/feature-body.component';
-export { DaffFeatureIconComponent } from './feature-icon/feature-icon.component';
+export { DaffFeatureComponent } from './feature/feature.component';
+export { DaffFeatureTitleDirective } from './feature-title/feature-title.directive';
+export { DaffFeatureSubtitleDirective } from './feature-subtitle/feature-subtitle.directive';
+export { DaffFeatureIconDirective } from './feature-icon/feature-icon.directive';
+export { DaffFeatureSubheaderDirective } from './feature-subheader/feature-subheader.directive';

@@ -6,7 +6,7 @@ import { DaffImageGalleryModule } from '@daffodil/design';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 
 import { ImageGalleryComponent } from './image-gallery.component';
-import * as fromFoundationImageGallery from '../reducers/index';
+import * as fromDemoImageGallery from '../reducers/index';
 import { SetSelectedImageState } from '../actions/image-gallery.actions';
 
 const stubImages = [
@@ -31,7 +31,7 @@ describe('ImageGalleryComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          foundationImageGallery: combineReducers(fromFoundationImageGallery.reducers),
+          demoImageGallery: combineReducers(fromDemoImageGallery.reducers),
         }),
         DaffImageGalleryModule
       ],
@@ -69,7 +69,7 @@ describe('ImageGalleryComponent', () => {
   describe('on daff-gallery-image', () => {
 
     beforeEach(() => {
-      spyOn(fromFoundationImageGallery, 'selectSelectedImage').and.returnValue(stubImages[activeImageIndex].url);      
+      spyOn(fromDemoImageGallery, 'selectSelectedImage').and.returnValue(stubImages[activeImageIndex].url);      
     });
 
     describe('when daff-gallery-image is the selectedImage', () => {

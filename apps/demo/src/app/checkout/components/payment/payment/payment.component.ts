@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PaymentInfo, DaffodilAddress } from '@daffodil/core';
 import { Store, select } from '@ngrx/store';
-import * as fromFoundationCheckout from '../../../reducers';
+import * as fromDemoCheckout from '../../../reducers';
 import { ToggleShowPaymentForm, HidePaymentForm, ShowPaymentForm } from '../../../actions/payment.actions';
 import { Observable } from 'rxjs';
 
@@ -20,7 +20,7 @@ export class PaymentComponent implements OnInit {
   showPaymentForm$: Observable<boolean>;
 
   constructor(
-    private store: Store<fromFoundationCheckout.State>
+    private store: Store<fromDemoCheckout.State>
   ) { }
 
   ngOnInit() {
@@ -34,7 +34,7 @@ export class PaymentComponent implements OnInit {
       )
     }
 
-    this.showPaymentForm$ = this.store.pipe(select(fromFoundationCheckout.selectShowPaymentForm));
+    this.showPaymentForm$ = this.store.pipe(select(fromDemoCheckout.selectShowPaymentForm));
   }
 
   togglePaymentView() {

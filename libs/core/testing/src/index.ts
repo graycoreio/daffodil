@@ -18,8 +18,11 @@ import * as productHelper from './product/helpers/product-helper';
 export { productHelper };
 
 //Shipping
-export { DaffShippingOptionFactory } from "./shipping/factories/shipping-option.factory"
-export { DaffShippingRateFactory } from "./shipping/factories/shipping-rate.factory"
+export { DaffShippingOptionFactory } from "./shipping/factories/shipping-option.factory";
+export { DaffShippingRateFactory } from "./shipping/factories/shipping-rate.factory";
+
+//@angular/core
+export { DaffMockCurrencyPipe } from './angular/mocks/pipes/currency';
 
 //Core
 export { DaffCoreTestingModule } from "./testing.module";

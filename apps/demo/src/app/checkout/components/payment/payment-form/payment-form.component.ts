@@ -5,7 +5,7 @@ import { PaymentInfo, DaffodilAddress } from '@daffodil/core';
 
 import { Store } from '@ngrx/store';
 
-import * as fromFoundationCheckout from '../../../reducers';
+import * as fromDemoCheckout from '../../../reducers';
 import { EnablePlaceOrderButton } from '../../../actions/checkout.actions';
 import { AddressFormFactory } from '../../forms/address-form/factories/address-form.factory';
 import { PaymentInfoFormFactory } from '../payment-info-form/factories/payment-info-form.factory';
@@ -30,7 +30,7 @@ export class PaymentFormComponent implements OnInit {
     private fb: FormBuilder,
     private paymentInfoFormFactory: PaymentInfoFormFactory,
     private addressFormFactory: AddressFormFactory,
-    private store: Store<fromFoundationCheckout.State>
+    private store: Store<fromDemoCheckout.State>
   ) { }
 
   ngOnInit() {

@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { ShippingOptionFormFactory } from './shipping-option-form.factory';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
-describe('Foundation Demo | Checkout | Shipping | Shipping Options | Factories | ShippingOptionFormFactory', () => {
+describe('Daffodil Demo | Checkout | Shipping | Shipping Options | Factories | ShippingOptionFormFactory', () => {
   
   let shippingOptionFormFactory;
 

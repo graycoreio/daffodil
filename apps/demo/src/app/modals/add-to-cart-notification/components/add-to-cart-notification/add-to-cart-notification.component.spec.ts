@@ -67,7 +67,7 @@ describe('AddToCartNotificationComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          foundationCheckout: combineReducers(fromAddToCartNotification.reducers)
+          demoCheckout: combineReducers(fromAddToCartNotification.reducers)
         }),
         StoreModule.forRoot({
           product: combineReducers(fromProduct.reducers)

@@ -35,7 +35,7 @@ interface ProductNode {
   price?: string;
 }
 
-type Variables = {
+interface Variables {
   first: number
 };
 
@@ -79,7 +79,7 @@ export const DaffShopifyProductTransformer = (node: ProductNode) : Product => {
 })
 export class DaffShopifyProductService implements DaffProductServiceInterface {
 
-  defaultLength: number = 20;
+  defaultLength = 20;
   
   constructor(private apollo: Apollo) {}
 

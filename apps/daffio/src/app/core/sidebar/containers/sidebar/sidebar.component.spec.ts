@@ -1,20 +1,20 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffioSidebarContainer } from './sidebar.component';
 import { DaffSidebarModule, DaffSidebarComponent } from '@daffodil/design';
-import { CloseSidebar } from '../../actions/sidebar.actions';
-import { RouterTestingModule } from '@angular/router/testing';
+
+import { DaffioSidebarContainer } from './sidebar.component';
 
 @Component({template: '<daffio-sidebar (close)="closeFunction()"></daffio-sidebar>'})
-class TestDaffioSidebarContainerWrapper {
+class WrapperComponent {
   closeFunction: Function = () => {}
 }
 
 describe('DaffioSidebarContainer', () => {
-  let component: TestDaffioSidebarContainerWrapper;
-  let fixture: ComponentFixture<TestDaffioSidebarContainerWrapper>;
+  let component: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let daffioSidebarContainer: DaffioSidebarContainer;
   let daffSidebar: DaffSidebarComponent;
   let closeButton: HTMLElement;
@@ -26,7 +26,7 @@ describe('DaffioSidebarContainer', () => {
         RouterTestingModule
       ],
       declarations: [ 
-        TestDaffioSidebarContainerWrapper,
+        WrapperComponent,
         DaffioSidebarContainer
       ]
     })
@@ -34,7 +34,7 @@ describe('DaffioSidebarContainer', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestDaffioSidebarContainerWrapper);
+    fixture = TestBed.createComponent(WrapperComponent);
     component = fixture.componentInstance;  
     fixture.detectChanges();
 
@@ -79,7 +79,7 @@ describe('DaffioSidebarContainer', () => {
   });
 
   it('renders a [daff-sidebar-item] for every links defined', () => {
-    let sidebarItems = fixture.debugElement.queryAll(By.css('[daff-sidebar-item]'));
+    const sidebarItems = fixture.debugElement.queryAll(By.css('[daff-sidebar-item]'));
 
     expect(sidebarItems.length).toEqual(daffioSidebarContainer.links.length);
   });

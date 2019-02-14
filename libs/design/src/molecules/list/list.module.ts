@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DaffListSubheaderComponent } from './list-subheader/list-subheader.component';
 import { DaffListComponent } from './list/list.component';
+import { DaffListSubheaderDirective } from './list-subheader/list-subheader.directive';
 import { DaffListItemComponent } from './list-item/list-item.component';
-import { DaffListItemIconComponent } from './list-item-icon/list-item-icon.component';
+import { DaffListItemIconDirective } from './list-item-icon/list-item-icon.directive';
 
 @NgModule({
   imports: [
@@ -12,15 +12,15 @@ import { DaffListItemIconComponent } from './list-item-icon/list-item-icon.compo
   ],
   declarations: [
     DaffListComponent,
-    DaffListSubheaderComponent,
+    DaffListSubheaderDirective,
     DaffListItemComponent,
-    DaffListItemIconComponent
+    DaffListItemIconDirective
   ],
   exports: [
     DaffListComponent,
-    DaffListSubheaderComponent,
+    DaffListSubheaderDirective,
     DaffListItemComponent,
-    DaffListItemIconComponent
+    DaffListItemIconDirective
   ]
 })
 export class DaffListModule { }

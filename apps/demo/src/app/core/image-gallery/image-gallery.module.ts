@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { DaffImageGalleryModule } from '@daffodil/design';
 
-import { FoundationImageGalleryStateModule } from './image-gallery.state.module';
+import { DemoImageGalleryStateModule } from './image-gallery.state.module';
 import { ImageGalleryComponent } from './components/image-gallery.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    FoundationImageGalleryStateModule,
+    DemoImageGalleryStateModule,
     DaffImageGalleryModule,
   ],
   declarations: [

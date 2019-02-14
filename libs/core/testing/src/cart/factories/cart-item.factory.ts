@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
-import { CartItem, range } from '@daffodil/core';
+import { CartItem } from '@daffodil/core';
 
 import { ModelFactory } from "../../factories/factory";
 
@@ -18,13 +18,13 @@ export class MockCartItem implements CartItem {
   description = 'description';
   weight = faker.random.number(1000);
   qty = faker.random.number({min:1, max:100});
-  price = faker.random.number(1000);
+  price = faker.random.number(1500);
   discount_percent = faker.random.number(10);
   discount_amount = faker.random.number(100);
   tax_percent = faker.random.number(10);
   tax_amount = faker.random.number(10);
-  row_total = faker.random.number(1000);
-  row_total_with_discount = faker.random.number(1000);
+  row_total = faker.random.number(1500);
+  row_total_with_discount = faker.random.number(1500);
   row_weight = faker.random.number(100);
   tax_before_discount = faker.random.number(100);
 }

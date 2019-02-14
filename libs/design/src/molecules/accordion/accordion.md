@@ -9,8 +9,8 @@ The accordion consists of a global `<daff-accordion>` parent with children `<daf
 ```
 <daff-accordion>
     <daff-accordion-item initiallyActive="true">
-        <h3 daff-accordion-item-title>Details</h3>
-        <div daff-accordion-item-content>
+        <h3 daffAccordionItemTitle>Details</h3>
+        <div daffAccordionItemContent>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo 
             lacus ut sapien consectetur, et ultricies leo rutrum. Integer iaculis ultrices nunc, 
             et maximus quam efficitur sed. Maecenas iaculis nisl neque, maximus sagittis libero sagittis eget.

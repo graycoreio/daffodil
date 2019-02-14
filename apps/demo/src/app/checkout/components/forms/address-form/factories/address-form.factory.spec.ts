@@ -3,7 +3,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { AddressFormFactory } from './address-form.factory';
 
-describe('Foundation Demo | Checkout | Forms | Address Form | Factories | AddressFormFactory', () => {
+describe('Daffodil Demo | Checkout | Forms | Address Form | Factories | AddressFormFactory', () => {
   
   let addressFormFactory;
 

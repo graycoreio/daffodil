@@ -4,13 +4,15 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { CheckoutEffects } from './effects/checkout.effects';
+import { CartResolverEffects } from '../cart/routing-resolvers/effects/cart-resolver.effects';
 
 @NgModule({
   imports: [
-    StoreModule.forFeature('foundationCheckout', reducers),
+    StoreModule.forFeature('demoCheckout', reducers),
     EffectsModule.forFeature([
-      CheckoutEffects
+      CheckoutEffects,
+      CartResolverEffects
     ])
   ]
 })
-export class FoundationCheckoutStateModule { }
+export class DemoCheckoutStateModule { }

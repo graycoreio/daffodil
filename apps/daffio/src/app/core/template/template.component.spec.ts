@@ -30,18 +30,18 @@ describe('TemplateComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    sidebarViewport = fixture.debugElement.query(By.css('sidebar-viewport-container'));
+    sidebarViewport = fixture.debugElement.query(By.css('daffio-sidebar-viewport-container'));
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render a <daffio-header-container> inside a <sidebar-viewport-container>', () => {
+  it('should render a <daffio-header-container> inside a <daffio-sidebar-viewport-container>', () => {
     expect(sidebarViewport.query(By.css('daffio-header-container'))).not.toBeNull()
   });
 
-  it('should render a <router-outlet> inside a <sidebar-viewport-container>', () => {
+  it('should render a <router-outlet> inside a <daffio-sidebar-viewport-container>', () => {
     expect(sidebarViewport.query(By.css('router-outlet'))).not.toBeNull()
   });
 });

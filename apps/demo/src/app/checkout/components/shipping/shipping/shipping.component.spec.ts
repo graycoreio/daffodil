@@ -6,7 +6,7 @@ import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
 import { DaffodilAddress } from '@daffodil/core';
 
-import * as fromFoundationCheckout from '../../../reducers';
+import * as fromDemoCheckout from '../../../reducers';
 import { SetShowShippingForm, ToggleShowShippingForm } from '../../../actions/shipping.actions';
 import { ShippingComponent } from './shipping.component';
 
@@ -67,7 +67,7 @@ describe('ShippingComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          shippings: combineReducers(fromFoundationCheckout.reducers),
+          shippings: combineReducers(fromDemoCheckout.reducers),
         })
       ],
       declarations: [ 
@@ -84,7 +84,7 @@ describe('ShippingComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     store = TestBed.get(Store);
-    spyOn(fromFoundationCheckout, 'selectShowShippingForm').and.returnValue(stubShowShippingForm);
+    spyOn(fromDemoCheckout, 'selectShowShippingForm').and.returnValue(stubShowShippingForm);
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();

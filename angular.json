@@ -332,7 +332,7 @@
       "root": "apps/daffio/",
       "sourceRoot": "apps/daffio/src",
       "projectType": "application",
-      "prefix": "daffodil",
+      "prefix": "daffio",
       "schematics": {},
       "architect": {
         "build": {
@@ -495,6 +495,133 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "daffio-dev:build"
+          }
+        }
+      }
+    },
+    "design-land": {
+      "root": "apps/design-land/",
+      "sourceRoot": "apps/design-land/src",
+      "projectType": "application",
+      "prefix": "design-land",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/design-land",
+            "index": "apps/design-land/src/index.html",
+            "main": "apps/design-land/src/main.ts",
+            "polyfills": "apps/design-land/src/polyfills.ts",
+            "tsConfig": "apps/design-land/tsconfig.app.json",
+            "assets": [
+              "apps/design-land/src/favicon.ico",
+              "apps/design-land/src/assets"
+            ],
+            "styles": [
+              "apps/design-land/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/design-land/src/environments/environment.ts",
+                  "with": "apps/design-land/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "design-land:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "design-land:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "design-land:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/design-land/src/test.ts",
+            "polyfills": "apps/design-land/src/polyfills.ts",
+            "tsConfig": "apps/design-land/tsconfig.spec.json",
+            "karmaConfig": "apps/design-land/karma.conf.js",
+            "styles": [
+              "apps/design-land/src/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "apps/design-land/src/favicon.ico",
+              "apps/design-land/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/design-land/tsconfig.app.json",
+              "apps/design-land/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "design-land-e2e": {
+      "root": "apps/design-land-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/design-land-e2e/protractor.conf.js",
+            "devServerTarget": "design-land:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "design-land:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/design-land-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }

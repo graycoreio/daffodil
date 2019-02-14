@@ -9,7 +9,7 @@ import { CartReset, CartLoadSuccess, fromCart } from "@daffodil/state";
 import * as fromAddToCartNotification from './index';
 import { CloseAddToCartNotification } from "../actions/add-to-cart-notification.actions";
 
-describe('selectFoundationAddToCartNotificationState', () => {
+describe('selectDemoAddToCartNotificationState', () => {
 
   let store: Store<fromAddToCartNotification.State>;
   let expectedOpen: boolean;
@@ -24,7 +24,7 @@ describe('selectFoundationAddToCartNotificationState', () => {
       imports: [
         DaffCoreTestingModule,
         StoreModule.forRoot({
-          foundationAddToCartNotification: combineReducers(fromAddToCartNotification.reducers),
+          demoAddToCartNotification: combineReducers(fromAddToCartNotification.reducers),
           cart: combineReducers(fromCart.reducers)
         }),
         DaffDriverTestingModule

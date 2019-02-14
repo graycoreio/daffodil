@@ -10,7 +10,7 @@ import { DaffodilAddress, PaymentInfo, Cart } from '@daffodil/core';
 import { DaffCartFactory, DaffPaymentFactory,  DaffAddressFactory, DaffCartItemFactory } from '@daffodil/core/testing';
 import { ShippingContainer } from '@daffodil/state';
 
-import * as fromFoundationCheckout from '../../reducers/index';
+import * as fromDemoCheckout from '../../reducers/index';
 import { ShowPaymentView } from '../../actions/payment.actions';
 import { CheckoutViewComponent } from './checkout-view.component';
 import { DaffAccordionModule, DaffAccordionItemComponent, DaffContainerModule, DaffLoadingIconModule } from '@daffodil/design';
@@ -107,7 +107,7 @@ describe('CheckoutViewComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          foundationCheckout: combineReducers(fromFoundationCheckout.reducers),
+          demoCheckout: combineReducers(fromDemoCheckout.reducers),
         }),
         DaffAccordionModule,
         NoopAnimationsModule,
@@ -132,8 +132,8 @@ describe('CheckoutViewComponent', () => {
     fixture = TestBed.createComponent(CheckoutViewComponent);
     component = fixture.componentInstance;
     store = TestBed.get(Store);
-    spyOn(fromFoundationCheckout, 'selectShowPaymentView').and.returnValue(stubShowPaymentView);
-    spyOn(fromFoundationCheckout, 'selectShowReviewView').and.returnValue(stubShowReviewView);
+    spyOn(fromDemoCheckout, 'selectShowPaymentView').and.returnValue(stubShowPaymentView);
+    spyOn(fromDemoCheckout, 'selectShowReviewView').and.returnValue(stubShowReviewView);
     spyOn(store, 'dispatch');
     fixture.detectChanges();
 
@@ -317,7 +317,7 @@ describe('CheckoutViewComponent', () => {
       });
       
       it('should show zero cart items in the accordion title', () => {
-        expect(fixture.debugElement.query(By.css('[daff-accordion-item-title]')).nativeElement.innerHTML).toEqual('Cart Summary (0)');
+        expect(fixture.debugElement.query(By.css('[daffAccordionItemTitle]')).nativeElement.innerHTML).toEqual('Cart Summary (0)');
       });
     });
 
@@ -334,7 +334,7 @@ describe('CheckoutViewComponent', () => {
       });
       
       it('should show the number of cart items in the accordion title', () => {
-        expect(fixture.debugElement.query(By.css('[daff-accordion-item-title]')).nativeElement.innerHTML).toEqual('Cart Summary (1)');
+        expect(fixture.debugElement.query(By.css('[daffAccordionItemTitle]')).nativeElement.innerHTML).toEqual('Cart Summary (1)');
       });
     });
   });

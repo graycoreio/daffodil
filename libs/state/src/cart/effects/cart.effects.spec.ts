@@ -66,8 +66,8 @@ describe('Daffodil | State | Cart | CartEffects', () => {
     describe('and the call to CartService fails', () => {
       
       beforeEach(() => {
-        let error = 'Failed to load cart';
-        let response = cold('#', {}, error);
+        const error = 'Failed to load cart';
+        const response = cold('#', {}, error);
         spyOn(daffDriver.cartService, 'get').and.returnValue(response);
         const cartLoadFailureAction = new CartLoadFailure(error);
         actions$ = hot('--a', { a: cartLoadAction });
@@ -84,7 +84,7 @@ describe('Daffodil | State | Cart | CartEffects', () => {
 
     let expected;
     let productId: string;
-    let qty: number;
+    const qty = 1;
     const addToCartAction = new AddToCart({productId, qty});
 
     beforeEach(() => {
@@ -108,8 +108,8 @@ describe('Daffodil | State | Cart | CartEffects', () => {
     describe('and the call to CartService fails', () => {
       
       beforeEach(() => {
-        let error = 'Failed to add item to cart';
-        let response = cold('#', {}, error);
+        const error = 'Failed to add item to cart';
+        const response = cold('#', {}, error);
         spyOn(daffDriver.cartService, 'addToCart').and.returnValue(response);
         const addToCartFailureAction = new AddToCartFailure(error);
         actions$ = hot('--a', { a: addToCartAction });
