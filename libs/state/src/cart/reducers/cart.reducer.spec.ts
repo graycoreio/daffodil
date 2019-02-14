@@ -48,7 +48,7 @@ describe('Cart | Cart List Reducer', () => {
         loading: true
       }
   
-      let cartListLoadSuccess = new CartLoadSuccess(cart);
+      const cartListLoadSuccess = new CartLoadSuccess(cart);
       
       result = reducer(state, cartListLoadSuccess);
     });
@@ -64,7 +64,7 @@ describe('Cart | Cart List Reducer', () => {
 
   describe('when CartLoadFailureAction is triggered', () => {
 
-    let error: string;
+    const error = 'error message';
     let result;
     let state: State;
 
@@ -75,7 +75,7 @@ describe('Cart | Cart List Reducer', () => {
         errors: new Array('firstError')
        }
       
-      let cartListLoadFailure = new CartLoadFailure(error);
+      const cartListLoadFailure = new CartLoadFailure(error);
 
       result = reducer(state, cartListLoadFailure);
     });
@@ -91,8 +91,8 @@ describe('Cart | Cart List Reducer', () => {
 
   describe('when AddToCartAction is triggered', () => {
 
-    let productId: string;
-    let qty: number;
+    const productId = 'productId';
+    const qty = 1;
     
     it('sets loading state to true', () => {
       const addToCartAction: AddToCart = new AddToCart({productId, qty});
@@ -105,7 +105,6 @@ describe('Cart | Cart List Reducer', () => {
 
   describe('when AddToCartActionSuccess is triggered', () => {
 
-    let cart: Cart;
     let result;
     let state: State;
 
@@ -144,7 +143,7 @@ describe('Cart | Cart List Reducer', () => {
 
       error = 'error';      
 
-      let addToCartFailure = new AddToCartFailure(error);
+      const addToCartFailure = new AddToCartFailure(error);
 
       result = reducer(state, addToCartFailure);
     });
@@ -175,13 +174,13 @@ describe('Cart | Cart List Reducer', () => {
   describe('CartReset', () => {
     
     it('resets state to initialState', () => {
-      let expectedState = {
+      const expectedState = {
         loading: false,
         cart: null,
         errors: []
       }
-      let cartReset = new CartReset();
-      let result = reducer(initialState, cartReset);
+      const cartReset = new CartReset();
+      const result = reducer(initialState, cartReset);
       
       expect(result).toEqual(expectedState);
     });

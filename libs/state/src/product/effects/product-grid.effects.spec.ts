@@ -65,8 +65,8 @@ describe('ProductGridEffects', () => {
     describe('and the call to ProductService fails', () => {
       
       beforeEach(() => {
-        let error = 'Failed to load product grid';
-        let response = cold('#', {}, error);
+        const error = 'Failed to load product grid';
+        const response = cold('#', {}, error);
         spyOn(daffDriver.productService, 'getAll').and.returnValue(response);
         const productGridLoadFailureAction = new ProductGridLoadFailure(error);
         actions$ = hot('--a', { a: productGridLoadAction });

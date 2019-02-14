@@ -31,7 +31,7 @@ describe('Payment | Payment Reducer', () => {
     let result;
 
     beforeEach(() => {
-      let updatePaymentInfoAction = new UpdatePaymentInfo(paymentInfo);
+      const updatePaymentInfoAction = new UpdatePaymentInfo(paymentInfo);
       
       result = reducer(initialState, updatePaymentInfoAction);
     });
