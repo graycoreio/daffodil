@@ -6,6 +6,7 @@ export const appRoutes: Routes = [
   {
     path: '', component: TemplateComponent, children: [
       { path: '', pathMatch: 'full', loadChildren: './content/homepage/homepage.module#DaffioHomepageModule'},
+      { path: 'why-pwa', loadChildren: './content/pwa/pwa.module#DaffioPwaModule' },
       { path: 'support', loadChildren: './content/support/support.module#DaffioSupportModule' }
     ]
   }
