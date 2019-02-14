@@ -1,16 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'daffio-iphone',
   templateUrl: './iphone.component.html',
-  styleUrls: ['./iphone.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./iphone.component.scss']
 })
-export class IphoneComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class IphoneComponent{
 }
