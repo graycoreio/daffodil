@@ -35,8 +35,8 @@ describe('DaffioSimpleFooterComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should add a class of `daffio-simple-footer` to its host', () => {
-    expect(fixture.nativeElement.classList.contains('daffio-simple-footer')).toBeTruthy();
+  it('should add a class of `simple-footer` to its host', () => {
+    expect(fixture.nativeElement.classList.contains('simple-footer')).toBeTruthy();
   });
 
   describe('on <daffio-logo>', () => {
