@@ -2,10 +2,9 @@ import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'daffio-simple-footer',
-  host: {'class': 'daffio-simple-footer'},
+  host: {'class': 'simple-footer'},
   templateUrl: './simple-footer.component.html',
-  styleUrls: ['./simple-footer.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./simple-footer.component.scss']
 })
 export class DaffioSimpleFooterComponent {
 

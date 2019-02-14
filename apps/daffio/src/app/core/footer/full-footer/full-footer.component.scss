@@ -1,6 +1,6 @@
 @import 'daff-util';
 
-.daffio-full-footer {
+:host {
   display: block;
   padding: 50px 25px;
   border-top: 1px solid daff-color($daff-gray, 200);
@@ -12,7 +12,9 @@
   @include breakpoint(laptop) {
     padding: 75px 0;
   }
+}
 
+.full-footer {
   &__grid {
     display: grid;
     grid-template-columns: 1fr;
