@@ -1,7 +1,12 @@
 @import 'daff-util';
 
+.hero {
+  text-align: center;
+}
+
 .pwa {
   background-color: daff-color($daff-gray, 100);
+  text-align: center;
 
   &__grid {
     display: grid;
@@ -63,15 +68,6 @@
         margin-left: 0;
         margin-right: 0;
       }
-    }
-  }
-
-  &__link {
-    display: block;
-    text-align: center;
-    
-    > * {
-      margin-left: 5px;
     }
   }
 }
