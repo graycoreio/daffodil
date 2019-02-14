@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'daffio-footer',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+  selector: 'daffio-full-footer',
+  host: {'class': 'daffio-full-footer'},
+  templateUrl: './full-footer.component.html',
+  styleUrls: ['./full-footer.component.scss']
 })
-export class DaffioFooterComponent {
+export class DaffioFullFooterComponent {
 
   links: any[] = [
     {title: 'About', links: [

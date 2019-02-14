@@ -1,0 +1,21 @@
+<daff-container size="sm">
+  <div class="simple-footer__grid">
+    <div class="simple-footer__menu">
+      <a routerLink="{{ link.path }}" *ngFor="let link of links" class="simple-footer__link">{{ link.title }}</a>
+    </div>
+    <a class="simple-footer__logo" routerLink="/">
+      <daffio-logo type="icon"></daffio-logo>
+    </a>
+    <div class="simple-footer__social">
+      <a href="https://github.com/graycoreio/daffodil" target="_blank" rel="noopener noreferrer" class="simple-footer__social-link">
+        <i class="fab fa-github fa-lg"></i> <span>Github</span>
+      </a>
+      <a href="https://gitter.im/graycoreio/daffodil" target="_blank" rel="noopener noreferrer" class="simple-footer__social-link">
+        <i class="fab fa-gitter fa-lg"></i> <span>Gitter</span>
+      </a>
+    </div>
+  </div>
+  <div class="simple-footer__copyright">
+      &copy; 2019 Daffodil. All Rights Reserved.
+  </div>
+</daff-container>
