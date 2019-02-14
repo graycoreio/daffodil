@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'daffio-full-footer',
-  host: {'class': 'daffio-full-footer'},
+  host: {'class': 'full-footer'},
   templateUrl: './full-footer.component.html',
   styleUrls: ['./full-footer.component.scss']
 })
