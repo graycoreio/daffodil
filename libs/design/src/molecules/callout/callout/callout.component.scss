@@ -13,14 +13,13 @@
   &__title {
     @include embolden();
     font-size: 1.5rem;
-    text-align: center;
+    text-align: left;
     max-width: 1040px;
     margin: 0;
     padding: 0;
 
     @include breakpoint(mobile) {
       font-size: 2rem;
-      text-align: left;
     }
 
     @include breakpoint(big-tablet) {
@@ -32,13 +31,12 @@
   &__subtitle {
     font-size: 1rem;
     font-weight: normal;
-    text-align: center;
+    text-align: left;
     max-width: 600px;
     margin: 10px 0 0 0;
     padding: 0;
 
     @include breakpoint(mobile) {
-      text-align: left;
       font-size: $medium-font-size;
       line-height: 1.75rem;
     }
