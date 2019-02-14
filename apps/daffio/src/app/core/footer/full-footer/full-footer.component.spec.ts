@@ -41,8 +41,8 @@ describe('DaffioFullFooterComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should add a class of `daffio-full-footer` to its host', () => {
-    expect(fixture.nativeElement.classList.contains('daffio-full-footer')).toBeTruthy();
+  it('should add a class of `full-footer` to its host', () => {
+    expect(fixture.nativeElement.classList.contains('full-footer')).toBeTruthy();
   });
 
   describe('on <daff-container>', () => {
