@@ -15,7 +15,7 @@ describe('ProductGridContainer', () => {
   let store;
   let initialLoading: boolean;
   let initialProducts: Product[];
-  let productFactory = new DaffProductFactory();
+  const productFactory = new DaffProductFactory();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

@@ -13,7 +13,7 @@ import { BestSellersLoadSuccess, BestSellersReset } from "../actions/best-seller
 describe('selectProductState', () => {
 
   let store: Store<fromProduct.State>;
-  let productFactory: DaffProductFactory = new DaffProductFactory();
+  const productFactory: DaffProductFactory = new DaffProductFactory();
   let mockProduct: Product;
   
   beforeEach(() => {
@@ -88,7 +88,7 @@ describe('selectProductState', () => {
     describe('selectProductGridState', () => {
     
       it('selects product grid state', () => {
-        let expectedGridState = {
+        const expectedGridState = {
           products: [],
           loading: false,
           errors: []
@@ -174,7 +174,7 @@ describe('selectProductState', () => {
     describe('selectBestSellersState', () => {
     
       it('selects best seller grid state', () => {
-        let expectedsState = {
+        const expectedsState = {
           productIds: [mockProduct.id],
           loading: false,
           errors: []
