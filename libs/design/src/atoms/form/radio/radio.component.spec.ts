@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 
 @Component({
-  template: `<input daff-radio type="radio">`
+  template: `<daff-radio></daff-radio>`
 })
 
 class WrapperComponent {}
