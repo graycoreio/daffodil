@@ -1,17 +1,25 @@
 @import '../../../../scss/daff-util';
 
 .daff-input {
-    height: inherit;
-    background: $white;
-    border: 1px solid $black;
-    padding: 15px;
-    margin: 0;
-    font-size: 1rem;
-    line-height: 1.5rem;
-    box-shadow: none;
-
+  display: inline-block;
+  height: inherit;
+  background: $white;
+  border: 1px solid daff-color($daff-gray, 300);
+  border-radius: 3px;
+  box-shadow: none;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  margin: 0;
+  padding: 15px;
+  width: 100%;
+  
   &:focus {
+    border: 1px solid $black;
     box-shadow: none;
     outline: none;
+  }
+
+  &__error {
+    border: 1px solid $error;
   }
 }
