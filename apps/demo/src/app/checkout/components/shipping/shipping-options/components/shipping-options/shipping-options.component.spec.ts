@@ -6,6 +6,7 @@ import { By } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, FormsModule, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
 import { ShippingOptionsService } from '../services/shipping-options.service';
 import { ShippingOptionsFactory } from '../factories/shipping-options.factory';
+import { DaffRadioModule } from '@daffodil/design';
 
 const formBuilder: FormBuilder = new FormBuilder();
 
@@ -34,7 +35,8 @@ describe('ShippingOptionsComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        DaffRadioModule
       ],
       declarations: [ 
         WrapperComponent,
