@@ -1,24 +1,36 @@
 <div class="address-form">
-  <input daff-input-validator type="text" class="address-form__first-name"
-    placeholder="First Name"
-    name="firstname"
-    [formControl]="formGroup.controls['firstname']"
-    [formSubmitted]="submitted"/>
-  <input daff-input-validator type="text" class="address-form__last-name"
-    placeholder="Last Name"
-    name="lastname"
-    [formControl]="formGroup.controls['lastname']"
-    [formSubmitted]="submitted"/>
-  <input daff-input-validator type="text" class="address-form__street"
-    placeholder="Street Address"
-    name="street"
-    [formControl]="formGroup.controls['street']"
-    [formSubmitted]="submitted"/>
-  <input daff-input-validator type="text" class="address-form__city"
-    placeholder="City"
-    name="city"
-    [formControl]="formGroup.controls['city']"
-    [formSubmitted]="submitted"/>
+  <daff-form-field class="address-form__first-name">
+    <input daff-input type="text"
+      placeholder="First Name"
+      name="firstname"
+      [formControl]="formGroup.controls['firstname']"
+      [formSubmitted]="submitted"/>
+    <daff-error-message *ngIf="formGroup.controls['firstname'].errors && (formGroup.controls['firstname'].touched || submitted)">This field is required.</daff-error-message>
+  </daff-form-field>
+  <daff-form-field class="address-form__last-name">
+    <input daff-input type="text"
+      placeholder="Last Name"
+      name="lastname"
+      [formControl]="formGroup.controls['lastname']"
+      [formSubmitted]="submitted"/>
+    <daff-error-message *ngIf="formGroup.controls['lastname'].errors && (formGroup.controls['lastname'].touched || submitted)">This field is required.</daff-error-message>
+  </daff-form-field>
+  <daff-form-field class="address-form__street">
+    <input daff-input type="text"
+      placeholder="Street Address*"
+      name="street"
+      [formControl]="formGroup.controls['street']"
+      [formSubmitted]="submitted"/>
+      <daff-error-message *ngIf="formGroup.controls['street'].errors && (formGroup.controls['street'].touched || submitted)">This field is required.</daff-error-message>
+  </daff-form-field>
+  <daff-form-field class="address-form__city">
+    <input daff-input type="text"
+      placeholder="City"
+      name="city"
+      [formControl]="formGroup.controls['city']"
+      [formSubmitted]="submitted"/>
+    <daff-error-message *ngIf="formGroup.controls['city'].errors && (formGroup.controls['city'].touched || submitted)">This field is required.</daff-error-message>
+  </daff-form-field>
   <select daff-select-validator class="address-form__state"
     name="state"
     [formControl]="formGroup.controls['state']"
@@ -26,14 +38,19 @@
     [errorStateMatcher]="stateErrorStateMatcher">
     <option *ngFor="let state of stateSelectValues" [disabled]="state == 'State'">{{state}}</option>
   </select>
-  <input daff-input-validator type="text" class="address-form__postcode"
-    placeholder="Zip Code"
-    name="postcode"
-    [formControl]="formGroup.controls['postcode']"
-    [formSubmitted]="submitted"/>
-  <input daff-input-validator type="text" class="address-form__telephone"
-    placeholder="Phone Number"
-    name="telephone"
-    [formControl]="formGroup.controls['telephone']"
-    [formSubmitted]="submitted"/>
+  <daff-form-field class="address-form__postcode">
+    <input daff-input type="text"
+      placeholder="Zip Code"
+      name="postcode"
+      [formControl]="formGroup.controls['postcode']"
+      [formSubmitted]="submitted"/>
+    <daff-error-message *ngIf="formGroup.controls['postcode'].errors && (formGroup.controls['postcode'].touched || submitted)">This field is required.</daff-error-message>
+    </daff-form-field>
+  <daff-form-field class="address-form__telephone">
+    <input daff-input type="text"
+      placeholder="Phone Number"
+      name="telephone"
+      [formControl]="formGroup.controls['telephone']"
+      [formSubmitted]="submitted"/>
+  </daff-form-field>
 </div>
