@@ -28,18 +28,11 @@
   }
 
   &__radio {
+    display: block;
     margin: 0 0 5px 0;
 
     &:last-child {
       margin: 0;
-    }
-
-    input {
-      margin: 0;
-    }
-
-    label {
-      margin-left: 10px;
     }
   }
 }
