@@ -1,14 +1,18 @@
 <div class="payment-info-form">
-  <input daff-input-validator type="text" class="payment-info-form__name"
-    placeholder="Cardholder's Name"
-    name="name"
-    [formControl]="formGroup.controls['name']"
-    [formSubmitted]="submitted"/>
-  <input daff-input-validator type="text" class="payment-info-form__card-number"
-    placeholder="Card Number"
-    name="cardnumber"
-    [formControl]="formGroup.controls['cardnumber']"
-    [formSubmitted]="submitted"/>
+  <daff-form-field class="payment-info-form__name">
+    <input daff-input type="text" class="payment-info-form__name"
+      placeholder="Cardholder's Name"
+      name="name"
+      [formControl]="formGroup.controls['name']"
+      [formSubmitted]="submitted"/>
+  </daff-form-field>
+  <daff-form-field class="payment-info-form__card-number">
+    <input daff-input type="text" class="payment-info-form__card-number"
+      placeholder="Card Number"
+      name="cardnumber"
+      [formControl]="formGroup.controls['cardnumber']"
+      [formSubmitted]="submitted"/>
+  </daff-form-field>
   <select daff-select-validator class="payment-info-form__month"
     name="month"
     [formControl]="formGroup.controls['month']"
@@ -23,9 +27,11 @@
     [errorStateMatcher]="yearErrorStateMatcher">
     <option *ngFor="let year of yearSelectValues" [disabled]="year == 'Year'">{{year}}</option>
   </select>
-  <input daff-input-validator type="text" class="payment-info-form__security-code"
-    placeholder="Security Code (XXX)"
-    name="securitycode"
-    [formControl]="formGroup.controls['securitycode']"
-    [formSubmitted]="submitted"/>
+  <daff-form-field class="payment-info-form__security-code">
+    <input daff-input type="text" class="payment-info-form__security-code"
+      placeholder="Security Code (XXX)"
+      name="securitycode"
+      [formControl]="formGroup.controls['securitycode']"
+      [formSubmitted]="submitted"/>
+  </daff-form-field>
 </div>
