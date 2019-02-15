@@ -28,9 +28,9 @@ const _daffHeroBase = daffColorMixin(DaffHeroBase)
   styleUrls: ['./hero.component.scss'],
   host: {
     'class': 'daff-hero',
-    '[class.daff-hero--centered]': 'layout === "' + DaffHeroLayoutEnum.Centered + '"',
-    '[class.daff-hero--fullscreen]': 'size === "' + DaffHeroSizeEnum.Fullscreen + '"',
-    '[class.daff-hero--small]': 'size === "' + DaffHeroSizeEnum.Small + '"'
+    '[class.daff-hero--centered]':'layout === "' + DaffHeroLayoutEnum.Centered + '"',
+    '[class.daff-hero--fullscreen]':'size === "' + DaffHeroSizeEnum.Fullscreen + '"',
+    '[class.daff-hero--small]':'size === "' + DaffHeroSizeEnum.Small + '"'
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush

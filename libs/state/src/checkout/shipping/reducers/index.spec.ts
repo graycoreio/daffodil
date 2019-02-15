@@ -35,7 +35,7 @@ describe('selectShippingState', () => {
   describe('selectShippingState', () => {
     
     it('selects shipping state', () => {
-      let expectedShippingState = {
+      const expectedShippingState = {
         shippingAddress: stubShippingAddress,
         selectedShippingOptionId: stubSelectedShippingOptionId
       }

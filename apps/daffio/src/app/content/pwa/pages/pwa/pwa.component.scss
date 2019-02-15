@@ -1,0 +1,133 @@
+@import 'daff-util';
+
+@mixin hover {
+  transition: all .2s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 0 20px 0 rgba($black,0.12);
+  }
+}
+
+.hero {
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+
+    @include breakpoint(big-tablet) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__text {
+    z-index: 2;
+    text-align: center;
+
+    @include breakpoint(big-tablet) {
+      text-align: left;
+    }
+
+    > * {
+      margin-left: auto;
+      margin-right: auto;
+
+      @include breakpoint(big-tablet) {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+
+    .highlight {
+      color: $primary;
+    }
+  }
+
+  &__image {
+    display: block;
+    max-width: 400px;
+    margin: 0 auto;
+
+    @include breakpoint(big-tablet) {
+      width: 100%;
+      max-width: none;
+      margin: auto;
+    }
+  }
+}
+
+.features {
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-left: -25px;
+    margin-right: -25px;
+
+    @include breakpoint(mobile) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @include breakpoint(tablet) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+}
+
+.understanding {
+  background-color: daff-color($daff-gray, 100);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 15px;
+
+    @include breakpoint(big-tablet) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  &__feature {
+    @include hover();
+
+    background: linear-gradient(to bottom right, daff-color($daff-accent, 300), $accent);
+    box-shadow: 0 0 10px 0 rgba($black,0.1);
+    color: $white;
+  }
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 15px;
+
+  @include breakpoint(tablet) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  > * {
+    text-decoration: none;
+  }
+
+  &__card {
+    @include hover();
+    background: daff-color($daff-gray, 100);
+  }
+}
+
+.comparison {
+  background-color: daff-color($daff-gray, 100);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 50px;
+    align-items: center;
+
+    @include breakpoint(big-tablet) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}

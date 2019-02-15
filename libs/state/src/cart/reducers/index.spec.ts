@@ -10,7 +10,7 @@ import { DaffCartFactory } from "@daffodil/core/testing";
 describe('selectCartState', () => {
 
   let store: Store<fromCart.CartState>;
-  let cartFactory: DaffCartFactory = new DaffCartFactory();
+  const cartFactory: DaffCartFactory = new DaffCartFactory();
   let mockCart: Cart;
   
   beforeEach(async(() => {
@@ -31,7 +31,7 @@ describe('selectCartState', () => {
   describe('cartStateSelector', () => {
     
     it('selects cart state', () => {
-      let expectedCartState = {
+      const expectedCartState = {
         cart: mockCart,
         loading: false,
         errors: []

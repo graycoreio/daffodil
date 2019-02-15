@@ -32,7 +32,7 @@ describe('Product | Product Entities Reducer', () => {
 
     beforeEach(() => {
       products = productFactory.createMany(2);
-      let productGridLoadSuccess = new ProductGridLoadSuccess(products);
+      const productGridLoadSuccess = new ProductGridLoadSuccess(products);
       
       result = reducer(initialState, productGridLoadSuccess);
     });
@@ -54,7 +54,7 @@ describe('Product | Product Entities Reducer', () => {
     beforeEach(() => {
       products = productFactory.createMany(2);
       
-      let bestSellersLoadSuccess = new BestSellersLoadSuccess(products);
+      const bestSellersLoadSuccess = new BestSellersLoadSuccess(products);
       
       result = reducer(initialState, bestSellersLoadSuccess);
     });
@@ -78,7 +78,7 @@ describe('Product | Product Entities Reducer', () => {
       product = productFactory.create();
       productId = product.id;
       
-      let productLoadSuccess = new ProductLoadSuccess(product);
+      const productLoadSuccess = new ProductLoadSuccess(product);
       
       result = reducer(initialState, productLoadSuccess);
     });
@@ -93,7 +93,7 @@ describe('Product | Product Entities Reducer', () => {
     let result;
 
     beforeEach(() => {
-      let productGridReset = new ProductGridReset();
+      const productGridReset = new ProductGridReset();
       
       result = reducer(initialState, productGridReset);
     });

@@ -1,0 +1,90 @@
+@import 'daff-util';
+
+:host { 
+  display: block;
+  padding: 50px 0;
+  border-top: 1px solid daff-color($daff-gray, 200);
+  font-size: $small-font-size;
+
+  @include breakpoint(tablet) {
+    padding: 75px 50px;
+  }
+
+  @include breakpoint(big-tablet) {
+    padding: 75px 0;
+  }
+}
+
+.simple-footer {
+  &__grid {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+    'logo'
+    'menu'
+    'social';
+    grid-gap: 15px;
+
+    @include breakpoint(tablet) {
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-areas: 'menu logo social';
+      grid-gap: 50px;
+    }
+  }
+
+  &__menu {
+    grid-area: menu;
+    display: flex;
+    justify-content: center;
+
+    @include breakpoint(tablet) {
+      justify-content: flex-start;
+    }
+  }
+
+  &__logo {
+    grid-area: logo;
+    display: flex;
+    justify-content: center;
+    width: 50px;
+    margin: 0 auto;
+  }
+
+  &__social {
+    grid-area: social;
+    display: flex;
+    justify-content: center;
+
+    @include breakpoint(tablet) {
+      justify-content: flex-end;
+    }
+  }
+
+  &__link, &__social-link {
+    @include embolden();
+    @include uppercase();
+    padding-right: 30px;
+    text-decoration: none;
+    transition: all 0.3s ease-out;
+
+    &:last-child {
+      padding-right: 0;
+    }
+
+    &:hover {
+      color: $accent;
+    }
+
+    span {
+      margin-left: 5px;
+    }
+  }
+
+  &__copyright {
+    display: block;
+    color: daff-color($daff-gray, 700);
+    text-align: center;
+    margin-top: 25px;
+  }
+}

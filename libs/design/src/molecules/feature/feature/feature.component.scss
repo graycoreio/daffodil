@@ -6,8 +6,12 @@
   border-radius: 10px;
   
   &__icon {
-    height: 50px;
-    width: 50px;
+    display: inline-block;
+    max-width: 30px;
+    
+    @include breakpoint(mobile) {
+      max-width: 50px;
+    }
   }
 
   &__subheader {
@@ -36,7 +40,6 @@
   &--normal {
     flex-direction: column;
     align-items: flex-start;
-    max-width: 750px;
     padding: 25px;
 
     @include breakpoint(mobile) {
@@ -54,7 +57,7 @@
     }
 
     #{$root}__subheader {
-      margin: 0 0 5px 0;
+      margin: 0 0 15px 0;
 
       @include breakpoint(mobile) {
         margin: 0 0 30px 0;
@@ -62,15 +65,19 @@
     }
 
     #{$root}__title {
-      font-size: 2rem;
-      line-height: 2rem;
+      font-size: 1.25rem;
+      line-height: 1.25rem;
+
+      @include breakpoint(mobile) {
+        font-size: 2rem;
+        line-height: 2rem;
+      }
     }
   }
 
   &--compact {
     flex-direction: column;
     align-items: flex-start;
-    max-width: 400px;
     padding: 25px;
 
     #{$root}__icon {
@@ -82,8 +89,13 @@
     }
   
     #{$root}__title {
-      font-size: 1.5rem;
-      line-height: 1.5rem;
+      font-size: 1.25rem;
+      line-height: 1.25rem;
+      
+      @include breakpoint(mobile) {
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+      }
     }
   }
 }

@@ -51,7 +51,7 @@ describe('Product | Best Sellers Reducer', () => {
       }
   
       products = new Array(product);
-      let productsLoadSuccess = new BestSellersLoadSuccess(products);
+      const productsLoadSuccess = new BestSellersLoadSuccess(products);
       
       result = reducer(state, productsLoadSuccess);
     });
@@ -78,7 +78,7 @@ describe('Product | Best Sellers Reducer', () => {
         errors: new Array('firstError'),
       }
       error = 'error';      
-      let productsLoadFailure = new BestSellersLoadFailure(error);
+      const productsLoadFailure = new BestSellersLoadFailure(error);
 
       result = reducer(state, productsLoadFailure);
     });
@@ -95,13 +95,13 @@ describe('Product | Best Sellers Reducer', () => {
   describe('BestSellersReset', () => {
     
     it('resets state to initialState', () => {
-      let expectedState = {
+      const expectedState = {
         loading: false,
         productIds: [],
         errors: []
       }
-      let bestSellersReset = new BestSellersReset();
-      let result = reducer(initialState, bestSellersReset);
+      const bestSellersReset = new BestSellersReset();
+      const result = reducer(initialState, bestSellersReset);
       
       expect(result).toEqual(expectedState);
     });
