@@ -1,6 +1,6 @@
 ---
 name: Performance Issue
-about: Create a report about a perf problem.
+about: Create a report about a performance problem.
 title: '[PERF]'
 labels: 'perf'
 assignees: 'damienwebdev'
@@ -19,12 +19,11 @@ ISSUES MISSING IMPORTANT INFORMATION MAY BE CLOSED WITHOUT INVESTIGATION.
 
 
 ## Expected behavior
-<!-- Describe what the desired behavior would be. -->
+<!-- Describe what the expected behavior is. -->
 
 
 ## Minimal reproduction of the problem with instructions
-<!--
-For bug reports please provide the *STEPS TO REPRODUCE* and if possible a *MINIMAL DEMO* of the problem -->
+<!-- Please provide the *STEPS TO REPRODUCE* and if possible a *MINIMAL DEMO* of the problem -->
 
 
 ## What is the motivation / use case for changing the behavior?

@@ -26,7 +26,7 @@ ISSUES MISSING IMPORTANT INFORMATION MAY BE CLOSED WITHOUT INVESTIGATION.
 <!-- Please try to format as "As a {role}, I'd like to be able to do {x}. -->
 
 
-## Prior Works
+## Prior Work
 <!-- If you got this idea from somewhere, please indicate where you got it from. -->
 
 

@@ -1,6 +1,6 @@
 ---
 name: Other
-about: A general issue that isn't covered by other issue templates.
+about: Report a general issue that isn't covered by other issue templates.
 title: '[OTHER]'
 labels: ''
 assignees: ''
@@ -13,9 +13,7 @@ ISSUES MISSING IMPORTANT INFORMATION MAY BE CLOSED WITHOUT INVESTIGATION.
 -->
 
 # :question: Other
-
-## Issue Description
-<!-- If you're asking a question, have you search through Github first? -->
+<!-- If you're asking a question, have you searched through Github first? -->
 
 
 ## Environment
