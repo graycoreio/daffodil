@@ -14,12 +14,12 @@ ISSUES MISSING IMPORTANT INFORMATION MAY BE CLOSED WITHOUT INVESTIGATION.
 
 # :bug: Bug report
 
-## Current behavior
+## Current Behavior
 <!-- Describe how the issue manifests. -->
 
 
-## Expected behavior
-<!-- Describe what the desired behavior is. -->
+## Expected Behavior
+<!-- Describe what the expected behavior is. -->
 
 
 ## Minimal reproduction of the problem with instructions

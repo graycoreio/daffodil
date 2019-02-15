@@ -14,10 +14,6 @@ ISSUES MISSING IMPORTANT INFORMATION MAY BE CLOSED WITHOUT INVESTIGATION.
 
 # :page_facing_up: Documentation Request
 
-## Existing Documentation
-<!-- Describe any existing documentation that would potentially require changes. -->
-
-
 ## What were you doing?
 <!-- Describe how you came to need the documentation. -->
 
@@ -25,6 +21,9 @@ ISSUES MISSING IMPORTANT INFORMATION MAY BE CLOSED WITHOUT INVESTIGATION.
 ## Expected behavior
 <!-- Describe not only **what** you would like to see documented, but also **where** you'd like to see it. -->
 
+
+## Existing Documentation
+<!-- Describe any existing documentation that would potentially require change. -->
 
 ## Environment
 
