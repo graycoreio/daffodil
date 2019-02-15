@@ -1,0 +1,10 @@
+.form {
+
+  & input {
+    height: 50px;
+    font-size: 40px;
+  }
+  &__error-placeholder {
+    height: 18px;
+  }
+}
