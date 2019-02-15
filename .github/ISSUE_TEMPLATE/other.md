@@ -12,7 +12,11 @@ PLEASE HELP US PROCESS GITHUB ISSUES FASTER BY PROVIDING THE FOLLOWING INFORMATI
 ISSUES MISSING IMPORTANT INFORMATION MAY BE CLOSED WITHOUT INVESTIGATION.
 -->
 
+# :question: Other
+
 ## Issue Description
+<!-- If you're asking a question, have you search through Github first? -->
+
 
 ## Environment
 

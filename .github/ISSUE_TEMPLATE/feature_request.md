@@ -12,19 +12,23 @@ PLEASE HELP US PROCESS GITHUB ISSUES FASTER BY PROVIDING THE FOLLOWING INFORMATI
 ISSUES MISSING IMPORTANT INFORMATION MAY BE CLOSED WITHOUT INVESTIGATION.
 -->
 
-# Feature request
+# :bulb: Feature request
 
 ## Feature Name
-<!-- Naming is hard, what YOU call this feature? -->
+<!-- Naming is hard, what do YOU call this feature? -->
 
-## The desired behavior
+
+## The Desired Behavior
 <!-- Please describe, in as much detail as you can, what you'd like to see happen. -->
+
 
 ## Your Use Case
 <!-- Please try to format as "As a {role}, I'd like to be able to do {x}. -->
 
+
 ## Prior Works
 <!-- If you got this idea from somewhere, please indicate where you got it from. -->
+
 
 ## Environment
 

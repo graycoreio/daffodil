@@ -12,17 +12,19 @@ PLEASE HELP US PROCESS GITHUB ISSUES FASTER BY PROVIDING THE FOLLOWING INFORMATI
 ISSUES MISSING IMPORTANT INFORMATION MAY BE CLOSED WITHOUT INVESTIGATION.
 -->
 
-# Documentation Request
+# :page_facing_up: Documentation Request
 
-## Prior Works
-<!-- Describe any existing documentation that this would potentially require change. -->
+## Existing Documentation
+<!-- Describe any existing documentation that would potentially require changes. -->
 
-## Current behavior
-<!-- Describe how to came to need the documentation. -->
+
+## What were you doing?
+<!-- Describe how you came to need the documentation. -->
 
 
 ## Expected behavior
-<!-- Describe what you would like to see documented as well as where. -->
+<!-- Describe not only **what** you would like to see documented, but also **where** you'd like to see it. -->
+
 
 ## Environment
 
