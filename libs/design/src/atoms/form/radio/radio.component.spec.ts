@@ -7,8 +7,8 @@ import { Component, DebugElement } from '@angular/core';
 @Component({
   template: `
   <daff-radio>
-  <input daff-radio-input type="radio" />
-  <label daff-radio-label></label>
+  <input type="radio" />
+  <label></label>
   <div class="random-content">random content</div>
   </daff-radio>
   `
@@ -46,14 +46,14 @@ describe('DaffRadioComponent', () => {
     expect(de.nativeElement.classList.contains('daff-radio')).toEqual(true);
   });
 
-  it('should render input[daff-radio-input]', () => {
-    const radioInputElement = fixture.debugElement.query(By.css('input[daff-radio-input]'));
+  it('should render an <input>', () => {
+    const radioInputElement = fixture.debugElement.query(By.css('input'));
 
     expect(radioInputElement).toBeDefined();
   });
 
-  it('should render input[daff-radio-label]', () => {
-    const radioLabelElement = fixture.debugElement.query(By.css('input[daff-radio-label]'));
+  it('should render a <label>', () => {
+    const radioLabelElement = fixture.debugElement.query(By.css('label'));
 
     expect(radioLabelElement).toBeDefined();
   });
