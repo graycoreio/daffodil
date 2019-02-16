@@ -18,7 +18,7 @@ export class AddressFormFactory {
       city: [address ? address.city : '', Validators.required],
       state: [address ? address.state : 'State', Validators.required],
       postcode: [address ? address.postcode : '', Validators.required],
-      telephone: [address ? address.telephone : '', Validators.required]
+      telephone: [address ? address.telephone : '']
     });
   }
 }

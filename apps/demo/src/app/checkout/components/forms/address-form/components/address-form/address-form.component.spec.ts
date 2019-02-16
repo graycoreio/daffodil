@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormControl, FormGroup, AbstractControl, Validators, FormBuilder } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DaffErrorStateMatcher } from '@daffodil/design';
+import { DaffInputModule, DaffFormFieldModule, DaffSelectModule, DaffInputComponent, DaffSelectValidatorComponent  } from '@daffodil/design';
 import { AddressFormComponent } from './address-form.component';
 
 @Component({
@@ -15,21 +15,6 @@ class WrapperComponent {
   submittedValue: boolean;
 }
 
-// tslint:disable-next-line: component-selector
-@Component({selector: '[daff-input-validator]', template: ''})
-class MockInputValidatorComponent {
-  @Input() formControl: FormControl;
-  @Input() formSubmitted: boolean;
-}
-
-// tslint:disable-next-line: component-selector
-@Component({selector: '[daff-select-validator]', template: ''})
-class MockSelectValidatorComponent {
-  @Input() formControl: FormControl;
-  @Input() formSubmitted: boolean;
-  @Input() errorStateMatcher: DaffErrorStateMatcher;
-}
-
 describe('AddressFormComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
@@ -39,13 +24,14 @@ describe('AddressFormComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        DaffInputModule,
+        DaffSelectModule,
+        DaffFormFieldModule
       ],
       declarations: [ 
         WrapperComponent,
-        AddressFormComponent,
-        MockInputValidatorComponent,
-        MockSelectValidatorComponent
+        AddressFormComponent
       ]
     })
     .compileComponents();
@@ -84,12 +70,12 @@ describe('AddressFormComponent', () => {
     expect(addressForm.submitted).toEqual(wrapper.submittedValue);
   });
 
-  describe('on [daff-input-validator]', () => {
+  describe('on [daff-input]', () => {
 
-    let inputValidator: MockInputValidatorComponent;
+    let inputValidator: DaffInputComponent;
 
     beforeEach(() => {
-      inputValidator = fixture.debugElement.queryAll(By.css('[daff-input-validator]'))[0].componentInstance;
+      inputValidator = fixture.debugElement.queryAll(By.css('[daff-input]'))[0].componentInstance;
     });
     
     it('should set formControl', () => {
@@ -103,7 +89,7 @@ describe('AddressFormComponent', () => {
 
   describe('on [daff-select-validator]', () => {
 
-    let selectValidator: MockSelectValidatorComponent;
+    let selectValidator: DaffSelectValidatorComponent;
 
     beforeEach(() => {
       selectValidator = fixture.debugElement.query(By.css('[daff-select-validator]')).componentInstance;

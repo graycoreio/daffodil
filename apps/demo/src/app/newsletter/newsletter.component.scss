@@ -38,19 +38,28 @@
     padding-bottom: 15px;
   }
 
+  &__right {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   &__input {
     width: 60%;
-    display: inline-block;
     border: 1px solid $white;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 
     @include breakpoint(tablet) {
       width: 70%;
+    }
+
+    &:focus, &:hover {
+      border: 1px solid $white;
     }
   }
 
   &__button {
     width: 40%;
-    line-height: 1.5rem;
 
     @include breakpoint(tablet) {
       width: 30%;
