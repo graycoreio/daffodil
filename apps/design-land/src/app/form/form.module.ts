@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DesignLandFormRoutingModule } from './form-routing.module';
 
 import { FormComponent } from './form.component';
-import { DaffInputModule, DaffFormFieldModule, DaffFormCoreModule, DaffButtonModule } from '@daffodil/design';
+import { DaffInputModule, DaffFormFieldModule, DaffButtonModule } from '@daffodil/design';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -15,7 +15,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     DaffInputModule,
     DaffFormFieldModule,
-    DaffFormCoreModule,
     DesignLandFormRoutingModule,
     ReactiveFormsModule,
     DaffButtonModule
