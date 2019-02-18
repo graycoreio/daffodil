@@ -159,7 +159,7 @@ describe('Driver | In Memory | InMemoryService', () => {
     });
 
     it('should return expected object', () => {
-      let expectedObject = {
+      const expectedObject = {
         ...productReturn,
         ...cartReturn
       };

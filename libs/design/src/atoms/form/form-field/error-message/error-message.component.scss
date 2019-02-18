@@ -1,0 +1,8 @@
+@import '../../../../scss/daff-util';
+
+.daff-error-message {
+  display: block;
+  color: $error;
+  font-size: $small-font-size;
+  margin-top: 5px;
+}

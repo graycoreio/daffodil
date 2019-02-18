@@ -1,0 +1,12 @@
+<form [formGroup]="form" #ngForm="ngForm">
+    <daff-form-field>
+      <input daff-input type="text"
+        placeholder="Daff Input Demo"
+        [formControl]="form.controls['inputTest1']"
+        [formSubmitted]="ngForm.submitted">
+      <daff-error-message *ngIf="form.controls['inputTest1'].errors && (form.controls['inputTest1'].touched || ngForm.submitted)">This is a required field >:(</daff-error-message>
+      <div class="form__error-placeholder" *ngIf="!(form.controls['inputTest1'].errors && (form.controls['inputTest1'].touched || ngForm.submitted))"></div>
+    </daff-form-field>
+    <button daff-button type="submit" daff-button>Submit</button>
+  </form>
+  

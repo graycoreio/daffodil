@@ -2,23 +2,23 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 
-import { DaffioFooterComponent } from './footer.component';
-import { DaffioLogoModule } from '../logo/logo.module';
-import { DaffioNewsletterModule } from '../../newsletter/newsletter.module';
+import { DaffioFullFooterComponent } from './full-footer.component';
+import { DaffioLogoModule } from '../../logo/logo.module';
+import { DaffioNewsletterModule } from '../../../newsletter/newsletter.module';
 
 import {
   DaffContainerModule,
   DaffListModule
 } from '@daffodil/design';
 
-describe('DaffioFooterComponent', () => {
-  let component: DaffioFooterComponent;
-  let fixture: ComponentFixture<DaffioFooterComponent>;
+describe('DaffioFullFooterComponent', () => {
+  let component: DaffioFullFooterComponent;
+  let fixture: ComponentFixture<DaffioFullFooterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DaffioFooterComponent
+        DaffioFullFooterComponent
       ],
       imports: [
         RouterTestingModule,
@@ -32,13 +32,17 @@ describe('DaffioFooterComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DaffioFooterComponent);
+    fixture = TestBed.createComponent(DaffioFullFooterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should add a class of `full-footer` to its host', () => {
+    expect(fixture.nativeElement.classList.contains('full-footer')).toBeTruthy();
   });
 
   describe('on <daff-container>', () => {

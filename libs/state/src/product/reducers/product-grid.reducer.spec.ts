@@ -50,7 +50,7 @@ describe('Product | Product Grid Reducer', () => {
         loading: true,
       }
       products = new Array(product);
-      let productGridLoadSuccess = new ProductGridLoadSuccess(products);
+      const productGridLoadSuccess = new ProductGridLoadSuccess(products);
       
       result = reducer(state, productGridLoadSuccess);
     });
@@ -74,7 +74,7 @@ describe('Product | Product Grid Reducer', () => {
       }
       
       error = 'error';      
-      let productGridLoadFailure = new ProductGridLoadFailure(error);
+      const productGridLoadFailure = new ProductGridLoadFailure(error);
       result = reducer(state, productGridLoadFailure);
     });
 

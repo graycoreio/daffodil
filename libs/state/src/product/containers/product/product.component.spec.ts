@@ -12,18 +12,18 @@ import { ProductLoad, UpdateQty } from '../../actions/product.actions';
 import * as fromProduct from '../../reducers/index';
 
 @Component({template: '<div product-container #ProductContainer="ProductContainer" [selectedProductId]="selectedProductIdValue"></div>'})
-class TestProductContainerWrapper {
+class WrapperComponent {
   selectedProductIdValue: string;
 }
 
 describe('ProductContainer', () => {
-  let component: TestProductContainerWrapper;
-  let fixture: ComponentFixture<TestProductContainerWrapper>;
+  let component: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
   let store;
   let initialLoading: boolean;
   let initialProduct: Product;
   let initialQty: number;
-  let productFactory = new DaffProductFactory();
+  const productFactory = new DaffProductFactory();
   let productContainer: ProductContainer;
 
   beforeEach(async(() => {
@@ -34,7 +34,7 @@ describe('ProductContainer', () => {
         })
       ],
       declarations: [ 
-        TestProductContainerWrapper,
+        WrapperComponent,
         ProductContainer
       ]
     })
@@ -42,7 +42,7 @@ describe('ProductContainer', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestProductContainerWrapper);
+    fixture = TestBed.createComponent(WrapperComponent);
     component = fixture.componentInstance;
     store = TestBed.get(Store);
 
@@ -98,7 +98,7 @@ describe('ProductContainer', () => {
   describe('updateQty', () => {
     
     it('should call store.dispatch', () => {
-      let qty: number = 3;
+      const qty = 3;
       productContainer.updateQty(qty);
 
       expect(store.dispatch).toHaveBeenCalledWith(new UpdateQty(qty));
@@ -108,8 +108,8 @@ describe('ProductContainer', () => {
   describe('addToCart', () => {
     
     it('should call store.dispatch', () => {
-      let qty: number = 3;
-      let payload = {productId: '', qty: qty};
+      const qty = 3;
+      const payload = {productId: '', qty: qty};
       productContainer.addToCart(payload);
 
       expect(store.dispatch).toHaveBeenCalledWith(new AddToCart(payload));
