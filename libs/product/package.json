@@ -13,7 +13,8 @@
   },
   "scripts": {
     "build": "ng build product --prod",
-    "lint": "ng lint product"
+    "lint": "ng lint product",
+    "test": "ng test product --watch=false --browsers=ChromeHeadless"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
@@ -25,5 +26,8 @@
     "@ngrx/store": "NGRX_VERSION",
     "rxjs": "RXJS_VERSION",
     "faker": "^4.1.0"
+  },
+  "devDependencies": {
+    "@daffodil/core": "1.1.0-a"
   }
 }
