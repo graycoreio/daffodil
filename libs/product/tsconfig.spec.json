@@ -5,10 +5,7 @@
     "types": [
       "jasmine",
       "node"
-    ],
-    "paths": {
-      "@daffodil/product": ["libs/product/src"]
-    }
+    ]
   },
   "files": [
     "test.ts"

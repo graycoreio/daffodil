@@ -24,6 +24,12 @@
       "@daffodil/core/testing": [
         "dist/core/testing"
       ],
+      "@daffodil/product": [
+        "dist/product"
+      ],
+      "@daffodil/product/testing": [
+        "dist/product/testing"
+      ],
       "@daffodil/state": [
         "dist/state"
       ],
