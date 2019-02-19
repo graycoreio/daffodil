@@ -21,6 +21,9 @@
       "@daffodil/core": [
         "dist/core"
       ],
+      "@daffodil/cart": [
+        "dist/cart"
+      ],
       "@daffodil/core/testing": [
         "dist/core/testing"
       ],
