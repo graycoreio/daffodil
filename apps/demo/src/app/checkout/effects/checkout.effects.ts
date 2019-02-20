@@ -5,7 +5,8 @@ import { map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 import { PaymentActionTypes } from '../actions/payment.actions';
-import { ShowReviewView, CheckoutActionTypes, PlaceOrderSuccess } from '../actions/checkout.actions';
+import { ShowReviewView } from '../actions/checkout.actions';
+import { OrderActionTypes } from '@daffodil/state';
 
 @Injectable()
 export class CheckoutEffects {
@@ -23,15 +24,9 @@ export class CheckoutEffects {
     })
   );
 
-  @Effect()
-  onPlaceOrder$ : Observable<any> = this.actions$.pipe(
-    ofType(CheckoutActionTypes.PlaceOrderAction),
-    map(() => new PlaceOrderSuccess())
-  );
-
   @Effect({ dispatch: false })
-  onPlaceOrderSuccess$ : Observable<any> = this.actions$.pipe(
-    ofType(CheckoutActionTypes.PlaceOrderSuccessAction),
+  onPlaceOrder$ : Observable<any> = this.actions$.pipe(
+    ofType(OrderActionTypes.PlaceOrderAction),
     tap(() => {
       this.router.navigateByUrl('/checkout/thank-you');
     })

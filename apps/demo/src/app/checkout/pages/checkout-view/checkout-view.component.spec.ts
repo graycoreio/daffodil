@@ -59,7 +59,9 @@ class MockCartSummaryWrapperComponent {
 }
 
 @Component({selector: 'demo-place-order', template: ''})
-class MockPlaceOrderComponent {}
+class MockPlaceOrderComponent {
+  @Input() cart: Cart;
+}
 
 // tslint:disable-next-line: component-selector
 @Component({selector: '[shipping-container]', template: '<ng-content></ng-content>', exportAs: 'ShippingContainer'})
