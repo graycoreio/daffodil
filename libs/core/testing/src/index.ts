@@ -8,6 +8,13 @@ export { DaffCartPaymentFactory } from './cart/factories/cart-payment.factory';
 export { DaffCartShippingRateFactory } from './cart/factories/cart-shipping-rate.factory';
 export { DaffCartFactory } from './cart/factories/cart.factory';
 
+// Order
+export { DaffOrderAddressFactory } from './order/factories/order-address.factory';
+export { DaffOrderItemFactory } from './order/factories/order-item.factory';
+export { DaffOrderPaymentFactory } from './order/factories/order-payment.factory';
+export { DaffOrderShippingRateFactory } from './order/factories/order-shipping-rate.factory';
+export { DaffOrderFactory } from './order/factories/order.factory';
+
 //Payment
 export { DaffPaymentFactory } from './payment/factories/payment.factory';
 
