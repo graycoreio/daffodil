@@ -5,10 +5,11 @@ import {
   RequestInfoUtilities,
   ParsedRequestUrl
 } from 'angular-in-memory-web-api';
-import { Product, Cart } from '@daffodil/core';
+import { Product, Cart, Order } from '@daffodil/core';
 
 import { DaffInMemoryCartTestingService } from './cart/in-mem/cart.testing.service';
 import { DaffInMemoryProductTestingService } from './product/in-mem/product.testing.service';
+import { DaffInMemoryCheckoutTestingService } from './checkout/in-mem/checkout.testing.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ import { DaffInMemoryProductTestingService } from './product/in-mem/product.test
 export class DaffInMemoryService implements InMemoryDbService {
   constructor(
     private productTestingService: DaffInMemoryProductTestingService,
-    private cartTestingService: DaffInMemoryCartTestingService
+    private cartTestingService: DaffInMemoryCartTestingService,
+    private checkoutTestingService: DaffInMemoryCheckoutTestingService
   ) {}
 
   parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {
@@ -27,6 +29,8 @@ export class DaffInMemoryService implements InMemoryDbService {
     const collectionName = reqInfo.collectionName;
     if (collectionName === 'cart') {
       return this.cartTestingService.post(reqInfo);
+    } else if (collectionName === 'checkout') {
+      return this.checkoutTestingService.post(reqInfo);
     }
 
     return undefined;
@@ -42,7 +46,8 @@ export class DaffInMemoryService implements InMemoryDbService {
   createDb(): MockDaffDatabase {
     return {
       ...this.productTestingService.createDb(),
-      ...this.cartTestingService.createDb()
+      ...this.cartTestingService.createDb(),
+      ...this.checkoutTestingService.createDb()
     };
   }
 }
@@ -50,4 +55,5 @@ export class DaffInMemoryService implements InMemoryDbService {
 export interface MockDaffDatabase {
   products: Product[];
   cart: Cart;
+  order: Order;
 }

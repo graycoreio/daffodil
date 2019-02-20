@@ -1,28 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
 import * as fromDemoCheckout from '../../reducers';
-import { PlaceOrder } from '../../actions/checkout.actions';
+import { fromCart } from '@daffodil/state';
+import { Cart } from '@daffodil/core';
+import { PlaceOrder } from '@daffodil/state';
 
 @Component({
   selector: 'demo-place-order',
   templateUrl: './place-order.component.html',
   styleUrls: ['./place-order.component.scss']
 })
-export class PlaceOrderComponent implements OnInit{
+export class PlaceOrderComponent implements OnInit {
 
+  cart$: Observable<Cart>;
   enablePlaceOrderButton$: Observable<boolean>;
+  
+  @HostListener('click', ['$event.target'])
+  placeOrder() {
+    this.cart$.subscribe((cart) => {
+      this.store.dispatch(new PlaceOrder(cart));
+    })
+  }
 
   constructor(
-    private store: Store<fromDemoCheckout.State>
+    private store: Store<fromCart.State>
   ) { }
 
   ngOnInit() {
     this.enablePlaceOrderButton$ = this.store.pipe(select(fromDemoCheckout.selectEnablePlaceOrderButton));
-  }
-
-  placeOrder() {
-    this.store.dispatch(new PlaceOrder());
+    this.cart$ = this.store.pipe(select(fromCart.selectCartValueState));
   }
 }

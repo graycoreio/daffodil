@@ -22,4 +22,8 @@ export class DaffTestingCartService implements DaffCartServiceInterface {
   addToCart(productId: string, qty: number): Observable<Cart> {
     return of(this.cartFactory.create());
   }
+
+  clear(): Observable<void> {
+    return of();
+  }
 }

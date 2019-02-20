@@ -23,9 +23,9 @@ const stubCart: Cart = cartFactory.create({items: [cartItemFactory.create()]})
 class MockThankYouComponent {}
 
 // tslint:disable-next-line: component-selector
-@Component({selector: '[cart-container]', template: '<ng-content></ng-content>', exportAs: 'CartContainer'})
-class MockCartContainer {
-  cart$: Observable<Cart> = of(stubCart);
+@Component({selector: '[order-container]', template: '<ng-content></ng-content>', exportAs: 'OrderContainer'})
+class MockOrderContainer {
+  order$: Observable<Cart> = of(stubCart);
   loading$: Observable<boolean> = of(false);
 }
 
@@ -42,7 +42,7 @@ describe('ThankYouViewComponent', () => {
   let daffContainer: DaffContainerComponent;
   let cartSummaryWrappers;
   let accordionItem: DaffAccordionItemComponent;
-  let cartContainer: MockCartContainer;
+  let orderContainer: MockOrderContainer;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -55,7 +55,7 @@ describe('ThankYouViewComponent', () => {
       declarations: [ 
         ThankYouViewComponent,
         MockThankYouComponent,
-        MockCartContainer,
+        MockOrderContainer,
         MockCartSummaryWrapperComponent
       ]
     })
@@ -70,7 +70,7 @@ describe('ThankYouViewComponent', () => {
     daffContainer = fixture.debugElement.query(By.css('daff-container')).componentInstance;
     cartSummaryWrappers = fixture.debugElement.queryAll(By.css('demo-cart-summary-wrapper'));
     accordionItem = fixture.debugElement.query(By.css('daff-accordion-item')).componentInstance;
-    cartContainer = fixture.debugElement.query(By.css('[cart-container]')).componentInstance;
+    orderContainer = fixture.debugElement.query(By.css('[order-container]')).componentInstance;
   });
 
   it('should create', () => {
@@ -124,13 +124,13 @@ describe('ThankYouViewComponent', () => {
     });
   });
 
-  describe('when CartContainer.loading$ is true', () => {
+  describe('when OrderContainer.loading$ is true', () => {
 
     let thankYouElement;
     let loadingIcon;
 
     beforeEach(() => {
-      cartContainer.loading$ = of(true);
+      orderContainer.loading$ = of(true);
       fixture.detectChanges();
 
       thankYouElement = fixture.debugElement.query(By.css('.thank-you'));
@@ -152,7 +152,7 @@ describe('ThankYouViewComponent', () => {
     let loadingIcon;
 
     beforeEach(() => {
-      cartContainer.loading$ = of(false);
+      orderContainer.loading$ = of(false);
       fixture.detectChanges();
 
       thankYouElement = fixture.debugElement.query(By.css('.thank-you'));

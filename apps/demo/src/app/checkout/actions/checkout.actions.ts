@@ -1,10 +1,8 @@
 import { Action } from '@ngrx/store';
 
 export enum CheckoutActionTypes {
-  EnablePlaceOrderButtonAction = "[Demo-Checkout] Enable Place Order Button Action",
-  ShowReviewViewAction = "[Demo-Checkout] Show Review View Action",
-  PlaceOrderAction = "[Demo-Checkout] Place Order Action",
-  PlaceOrderSuccessAction = "[Demo-Checkout] Place Order Success Action"
+  EnablePlaceOrderButtonAction = "[Foundation-Checkout] Enable Place Order Button Action",
+  ShowReviewViewAction = "[Foundation-Checkout] Show Review View Action"
 }
 
 export class EnablePlaceOrderButton implements Action {
@@ -15,16 +13,6 @@ export class ShowReviewView implements Action {
   readonly type = CheckoutActionTypes.ShowReviewViewAction;
 }
 
-export class PlaceOrder implements Action {
-  readonly type = CheckoutActionTypes.PlaceOrderAction;
-}
-
-export class PlaceOrderSuccess implements Action {
-  readonly type = CheckoutActionTypes.PlaceOrderSuccessAction;
-}
-
 export type CheckoutActions =
     | EnablePlaceOrderButton
-    | ShowReviewView
-    | PlaceOrder
-    | PlaceOrderSuccess;
+    | ShowReviewView;

@@ -1,11 +1,9 @@
 import { Injectable, Inject } from '@angular/core';
-
+import { switchMap, map, catchError, tap } from 'rxjs/operators';
+import { of , Observable } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
-import { switchMap, map, catchError } from 'rxjs/operators';
-import { of ,  Observable } from 'rxjs';
-
-import { DaffDriver, DaffDriverInterface, DaffCartServiceInterface } from '@daffodil/driver';
+import { DaffDriver, DaffDriverInterface } from '@daffodil/driver';
 
 import { 
   CartActionTypes, 
@@ -15,6 +13,7 @@ import {
   AddToCartSuccess,
   AddToCartFailure,
   AddToCart} from '../actions/cart.actions';
+import { OrderActionTypes, PlaceOrderSuccess } from '../../checkout/order/actions/order.actions';
 
 @Injectable()
 export class CartEffects {

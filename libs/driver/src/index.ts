@@ -10,6 +10,9 @@ export { DaffProductServiceInterface } from './service-interfaces/product/produc
 //Cart
 export { DaffCartServiceInterface } from './service-interfaces/cart/cart-service.interface';
 
+//Checkout
+export { DaffCheckoutServiceInterface } from './service-interfaces/checkout/checkout-service.interface';
+
 //Driver DI
 export { DaffDriver } from './injection-tokens/driver.token';
 export { DaffDriverInterface } from './service-interfaces/driver.interface';
