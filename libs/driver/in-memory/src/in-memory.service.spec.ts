@@ -1,10 +1,13 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { DaffCoreTestingModule } from '@daffodil/core/testing';
+import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
 import { DaffInMemoryService } from './in-memory.service';
 import { DaffInMemoryCartTestingService } from './cart/in-mem/cart.testing.service';
 import { DaffInMemoryProductTestingService } from './product/in-mem/product.testing.service';
+import { DaffInMemoryCheckoutService } from './checkout/services/checkout.service';
 
 describe('Driver | In Memory | InMemoryService', () => {
   let service;
@@ -12,11 +15,14 @@ describe('Driver | In Memory | InMemoryService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffCoreTestingModule
+        DaffCoreTestingModule,
+        DaffDriverTestingModule,
+        HttpClientTestingModule
       ],
       providers: [
         DaffInMemoryCartTestingService,
         DaffInMemoryProductTestingService,
+        DaffInMemoryCheckoutService,
         DaffInMemoryService
       ]
     });
@@ -137,15 +143,18 @@ describe('Driver | In Memory | InMemoryService', () => {
   describe('createDb', () => {
     let productReturn;
     let cartReturn;
+    let orderReturn;
     let result;
 
     beforeEach(() => {
       productReturn = 'productReturn';
       cartReturn = 'cartReturn';
+      orderReturn = 'orderReturn';
       spyOn(service.productTestingService, 'createDb').and.returnValue(
         productReturn
       );
       spyOn(service.cartTestingService, 'createDb').and.returnValue(cartReturn);
+      spyOn(service.checkoutTestingService, 'createDb').and.returnValue(orderReturn);
 
       result = service.createDb();
     });
@@ -161,7 +170,8 @@ describe('Driver | In Memory | InMemoryService', () => {
     it('should return expected object', () => {
       const expectedObject = {
         ...productReturn,
-        ...cartReturn
+        ...cartReturn,
+        ...orderReturn
       };
 
       expect(result).toEqual(expectedObject);

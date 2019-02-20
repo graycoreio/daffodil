@@ -148,5 +148,47 @@ describe('Driver | Cart | In Memory | CartTestingService', () => {
         });
       });
     });
+
+    describe('when reqInfo.id is clear', () => {
+
+      beforeEach(() => {
+        //add cartItems
+        cartTestingService.post({
+          id: 'addToCart',
+          req: {
+            body: {
+              productId: 'replaceme',
+              qty: 4
+            }
+          },
+          utils: {
+            createResponse$: func => {
+              return func();
+            }
+          }
+        });
+
+        //test clear endpoint
+        reqInfoStub = {
+          id: 'clear',
+          req: {
+            body: {
+              cartId: 'cartId'
+            }
+          },
+          utils: {
+            createResponse$: func => {
+              return func();
+            }
+          }
+        };
+      });
+
+      it('should remove the items in the cart', () => {
+        result = cartTestingService.post(reqInfoStub);
+        
+        expect(result.body.items.length).toEqual(0);
+      });
+    });
   });
 });

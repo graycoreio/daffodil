@@ -111,7 +111,6 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
   }
 
   get(productId: string): Observable<Product> {
-    console.log(productId);
     return this.apollo.query<GetAProductResponse>({
       query: GetAProduct,
       variables: {

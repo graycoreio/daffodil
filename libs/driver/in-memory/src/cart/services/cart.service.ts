@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { Cart } from '@daffodil/core';
@@ -20,5 +20,9 @@ export class DaffInMemoryCartService implements DaffCartServiceInterface {
 
   addToCart(productId: string, qty: number): Observable<Cart> {
     return this.http.post<Cart>(this.url + '/addToCart', { productId, qty });
+  }
+
+  clear(): Observable<void> {
+    return this.http.post<void>(this.url + '/clear', {});
   }
 }
