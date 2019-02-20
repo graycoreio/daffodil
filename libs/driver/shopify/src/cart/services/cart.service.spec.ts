@@ -93,6 +93,26 @@ describe('Driver | Shopify | Cart | CartService', () => {
         
         req.flush(mockCart);
       });
-    })
+    });
+  });
+
+  describe('clear', () => {
+    
+    beforeEach(() => {
+      mockCart = cartFactory.create();
+    });
+
+    describe('a successful clear request', () => {
+      it('should send a post request to `api/cart/clear`', () => {
+        cartService.clear().subscribe();
+  
+        const req = httpMock.expectOne(`${cartService.url}/clear`);
+  
+        expect(req.request.method).toBe("POST");
+        expect(req.request.body).toEqual({});
+
+        req.flush(mockCart);
+      });
+    });
   });
 });

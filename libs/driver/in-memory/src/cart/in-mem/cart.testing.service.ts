@@ -9,7 +9,7 @@ import { InMemoryDbService, STATUS } from 'angular-in-memory-web-api';
   providedIn: 'root'
 })
 export class DaffInMemoryCartTestingService implements InMemoryDbService {
-  private cart;
+  public cart;
 
   constructor(
     private cartFactory: DaffCartFactory,
@@ -30,6 +30,8 @@ export class DaffInMemoryCartTestingService implements InMemoryDbService {
         } else {
           this.addProductToCart(reqInfo.req.body);
         }
+      } else if (reqInfo.id === 'clear') {
+        this.clearCart();
       }
 
       return {
@@ -64,5 +66,9 @@ export class DaffInMemoryCartTestingService implements InMemoryDbService {
     cartItem.product_id = reqBody.productId;
     cartItem.qty = reqBody.qty;
     this.cart.items.push(cartItem);
+  }
+
+  private clearCart(): void {
+    this.cart.items = [];
   }
 }
