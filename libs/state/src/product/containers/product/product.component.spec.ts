@@ -7,7 +7,6 @@ import { Product } from '@daffodil/core';
 import { DaffProductFactory } from '@daffodil/core/testing';
 
 import { ProductContainer } from './product.component';
-import { AddToCart } from '../../../cart/actions/cart.actions';
 import { ProductLoad, UpdateQty } from '../../actions/product.actions';
 import * as fromProduct from '../../reducers/index';
 
@@ -102,17 +101,6 @@ describe('ProductContainer', () => {
       productContainer.updateQty(qty);
 
       expect(store.dispatch).toHaveBeenCalledWith(new UpdateQty(qty));
-    });
-  });
-
-  describe('addToCart', () => {
-    
-    it('should call store.dispatch', () => {
-      const qty = 3;
-      const payload = {productId: '', qty: qty};
-      productContainer.addToCart(payload);
-
-      expect(store.dispatch).toHaveBeenCalledWith(new AddToCart(payload));
     });
   });
 });

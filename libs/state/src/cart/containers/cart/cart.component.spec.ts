@@ -5,9 +5,8 @@ import { Cart } from '@daffodil/core';
 import { DaffCartFactory } from '@daffodil/core/testing';
 
 import { CartContainer } from './cart.component';
-import { CartLoad } from '../../actions/cart.actions';
+import { CartLoad, AddToCart } from '../../actions/cart.actions';
 import * as fromCart from '../../reducers/index';
-
 
 describe('CartContainer', () => {
   let component: CartContainer;
@@ -65,6 +64,17 @@ describe('CartContainer', () => {
       component.cart$.subscribe((cart) => {
         expect(cart).toEqual(initialCart);
       });
+    });
+  });
+
+  describe('addToCart', () => {
+    
+    it('should call store.dispatch', () => {
+      const qty = 3;
+      const payload = {productId: '', qty: qty};
+      component.addToCart(payload);
+
+      expect(store.dispatch).toHaveBeenCalledWith(new AddToCart(payload));
     });
   });
 });
