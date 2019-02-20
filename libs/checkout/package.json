@@ -13,7 +13,8 @@
   },
   "scripts": {
     "build": "ng build checkout --prod",
-    "lint": "ng lint checkout"
+    "lint": "ng lint checkout",
+    "test": "ng test checkout --watch=false --browsers=ChromeHeadless"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
