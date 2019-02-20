@@ -7,15 +7,19 @@ import { Router } from '@angular/router';
 
 import { CheckoutEffects } from './checkout.effects';
 import { ToggleShowPaymentForm } from '../actions/payment.actions';
-import { ShowReviewView, PlaceOrder, PlaceOrderSuccess } from '../actions/checkout.actions';
+import { ShowReviewView } from '../actions/checkout.actions';
+import { PlaceOrder } from '@daffodil/state';
+import { DaffCartFactory } from '@daffodil/core/testing';
+import { Cart } from '@daffodil/core';
 
 describe('CheckoutEffects', () => {
   let actions$: Observable<any>;
   let effects: CheckoutEffects;
   let router: Router;
+  const cartFactory: DaffCartFactory = new DaffCartFactory();
+  let stubCart: Cart;
   
   beforeEach(() => {
-    
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule
@@ -25,7 +29,8 @@ describe('CheckoutEffects', () => {
         provideMockActions(() => actions$)
       ]
     });
-    
+
+    stubCart = cartFactory.create();
     effects = TestBed.get(CheckoutEffects);
     router = TestBed.get(Router);
     spyOn(router, 'navigateByUrl');
@@ -54,32 +59,16 @@ describe('CheckoutEffects', () => {
   describe('when PlaceOrderAction is triggered', () => {
 
     let expected;
-    const placeOrderAction = new PlaceOrder();
-
+    const placeOrderAction = new PlaceOrder(stubCart);
+    
     beforeEach(() => {
-      const placeOrderSuccessAction = new PlaceOrderSuccess();
       actions$ = hot('--a', { a: placeOrderAction });
-      expected = cold('--b', { b: placeOrderSuccessAction });
-    });
-    
-    it('should dispatch a PlaceOrderSuccess action', () => {
-      expect(effects.onPlaceOrder$).toBeObservable(expected);
-    });
-  });
-
-  describe('when PlaceOrderSuccessAction is triggered', () => {
-
-    let expected;
-    const placeOrderSuccessAction = new PlaceOrderSuccess();
-    
-    beforeEach(() => {
-      actions$ = hot('--a', { a: placeOrderSuccessAction });
-      expected = cold('--b', { b: placeOrderSuccessAction });
+      expected = cold('--b', { b: placeOrderAction });
     });
 
     it('should call router.navigateByUrl', () => {
       //the actual effect doesn't trigger unless the following test is run
-      expect(effects.onPlaceOrderSuccess$).toBeObservable(expected);
+      expect(effects.onPlaceOrder$).toBeObservable(expected);
 
       expect(router.navigateByUrl).toHaveBeenCalledWith('/checkout/thank-you');
     });

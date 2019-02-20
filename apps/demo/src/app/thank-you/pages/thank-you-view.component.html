@@ -1,10 +1,10 @@
 <daff-container size="md">
-  <div cart-container #CartContainer="CartContainer">
-    <div class="thank-you" *ngIf="!(CartContainer.loading$ | async)">
+  <div order-container #OrderContainer="OrderContainer">
+    <div class="thank-you" *ngIf="!(OrderContainer.loading$ | async)">
       <daff-accordion class="thank-you__mobile-cart">
         <daff-accordion-item [initiallyActive]="false">
-          <h3 daffAccordionItemTitle>Cart Summary ({{(CartContainer.cart$ | async).items.length}})</h3>
-          <demo-cart-summary-wrapper [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async"></demo-cart-summary-wrapper>
+          <h3 daffAccordionItemTitle>Cart Summary ({{(OrderContainer.order$ | async).items.length}})</h3>
+          <demo-cart-summary-wrapper [cart]="OrderContainer.order$ | async" [loading]="OrderContainer.loading$ | async"></demo-cart-summary-wrapper>
         </daff-accordion-item>
       </daff-accordion>
 
@@ -12,10 +12,10 @@
 
       <div class="thank-you__cart">
         <div class="thank-you__desktop-cart">
-          <demo-cart-summary-wrapper [cartTitle]="'CART SUMMARY'" [cart]="CartContainer.cart$ | async" [loading]="CartContainer.loading$ | async"></demo-cart-summary-wrapper>
+          <demo-cart-summary-wrapper [cartTitle]="'CART SUMMARY'" [cart]="OrderContainer.order$ | async" [loading]="OrderContainer.loading$ | async"></demo-cart-summary-wrapper>
         </div>
       </div>
     </div>
-    <daff-loading-icon *ngIf="(CartContainer.loading$ | async)"></daff-loading-icon>
+    <daff-loading-icon *ngIf="(OrderContainer.loading$ | async)"></daff-loading-icon>
   </div>
 </daff-container>
