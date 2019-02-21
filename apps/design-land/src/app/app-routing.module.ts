@@ -7,6 +7,7 @@ export const appRoutes: Routes = [
     redirectTo: '/loading-icon',
     pathMatch: 'full'
   },
+  {path: 'button', loadChildren: './button/button.module#ButtonModule'},
   {path: 'loading-icon', loadChildren: './loading-icon/loading-icon.module#LoadingIconModule'},
   {path: 'card', loadChildren: './card/card.module#CardModule'},
   {path: 'feature', loadChildren: './feature/feature.module#FeatureModule'},

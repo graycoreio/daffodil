@@ -60,6 +60,8 @@
 
   &__button {
     width: 40%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 
     @include breakpoint(tablet) {
       width: 30%;
