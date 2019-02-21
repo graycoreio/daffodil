@@ -10,11 +10,12 @@ The button is used for making actions apparent to the end-user. It can be used t
 
 * `daff-button` — Rectangular contained button with background color
 * `daff-stroked-button` — Rectangular outlined button with no background color
+* `daff-raised-button` - Rectangular contained button with background color and elevation
 * `daff-icon-button` — Icon button used with icon fonts
 
-## Colors
+## Theming
 
-To define a button color, add `color="[value]"` to the button tag.
+Buttons can be colored by using the `color` property. To define a color, add `color="[value]"` to the button tag.
 
 * Color values: `primary`, `accent`, `black`, and `white`
 
@@ -25,12 +26,12 @@ Icon buttons need to be given labels using `aria-label`.
 ## Usage
 ```
 <button daff-button color="primary">
-  button text
+  Button Text
 </button>
 ```
 
 ```
 <a daff-button type="button">
-  button text
+  Button Text
 </a>
 ```
