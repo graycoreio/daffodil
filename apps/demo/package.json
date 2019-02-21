@@ -21,7 +21,8 @@
       "@daffodil/core": "1.1.0-a",
       "@daffodil/design": "1.1.0-a",
       "@daffodil/state": "1.1.0-a",
-      "@daffodil/driver": "1.1.0-a"
+      "@daffodil/driver": "1.1.0-a",
+      "@daffodil/product": "1.1.0-a"
     },
     "peerDependencies": {
       "@angular/common": "^6.0.1",

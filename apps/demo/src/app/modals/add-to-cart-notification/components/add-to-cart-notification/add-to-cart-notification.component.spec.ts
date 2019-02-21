@@ -8,8 +8,8 @@ import { DaffProductFactory } from '@daffodil/core/testing';
 import { Product } from '@daffodil/core';
 import { DaffLoadingIconModule } from '@daffodil/design';
 
-// importing from @daffodil/state doesn't work.
-import * as fromProduct from 'libs/state/src/product/reducers/index';
+// importing from @daffodil/product doesn't work.
+import * as fromProduct from 'libs/product/src/reducers/index';
 
 import { AddToCartNotificationComponent } from './add-to-cart-notification.component';
 import * as fromAddToCartNotification from '../../reducers/index';
