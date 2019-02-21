@@ -7,7 +7,6 @@ import { Store, select } from '@ngrx/store';
 import { Product } from '@daffodil/core';
 import * as fromProduct from '../../reducers/index';
 import { ProductLoad, UpdateQty } from '../../actions/product.actions';
-import { AddToCart } from '../../../cart/actions/cart.actions';
 
 @Component({
   selector: '[product-container]',
@@ -38,9 +37,5 @@ export class ProductContainer implements OnInit {
 
   updateQty(payload: number) {
     this.store.dispatch(new UpdateQty(payload));
-  }
-
-  addToCart(payload) {
-    this.store.dispatch(new AddToCart(payload));
   }
 }
