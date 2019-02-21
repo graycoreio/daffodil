@@ -6,7 +6,7 @@ import { Store, select } from '@ngrx/store';
 
 import { Cart } from '@daffodil/core';
 import * as fromCart from '../../reducers/index';
-import { CartLoad } from '../../actions/cart.actions';
+import { CartLoad, AddToCart } from '../../actions/cart.actions';
 
 @Component({
   selector: '[cart-container]',
@@ -27,5 +27,9 @@ export class CartContainer implements OnInit {
 
     this.loading$ = this.store.pipe(select(fromCart.selectCartLoadingState));
     this.cart$ = this.store.pipe(select(fromCart.selectCartValueState));
+  }
+
+  addToCart(payload) {
+    this.store.dispatch(new AddToCart(payload));
   }
 }

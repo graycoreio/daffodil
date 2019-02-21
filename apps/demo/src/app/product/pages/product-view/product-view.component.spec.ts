@@ -31,6 +31,15 @@ class MockProductContainer {
   loading$: Observable<boolean> = of(false);
   qty$: Observable<number> = of(stubQty);
   updateQty: Function;
+}
+
+@Component({
+  // tslint:disable-next-line: component-selector
+  selector: '[cart-container]', 
+  template: '<ng-content></ng-content>', 
+  exportAs: 'CartContainer'
+})
+class MockCartContainer {
   addToCart: Function;
 }
 
@@ -61,6 +70,7 @@ describe('ProductViewComponent', () => {
   const idParam = '1001';
   const activatedRoute = new ActivatedRouteStub();
   let productContainer: MockProductContainer;
+  let cartContainer: MockCartContainer;
   let productComponent: MockProductComponent;
   let addToCartComponent: AddToCartComponent;
   let addToCartNotification: MockAddToCartNotificationComponent;
@@ -74,6 +84,7 @@ describe('ProductViewComponent', () => {
       declarations: [ 
         ProductViewComponent,
         MockProductContainer,
+        MockCartContainer,
         MockProductComponent,
         MockAddToCartComponent,
         MockAddToCartNotificationComponent
@@ -89,13 +100,14 @@ describe('ProductViewComponent', () => {
     fixture = TestBed.createComponent(ProductViewComponent);
     component = fixture.componentInstance;
     activatedRoute.setParamMap({ id: idParam });
-
+    
+    fixture.detectChanges();
     productContainer = fixture.debugElement.query(By.css('[product-container]')).componentInstance;
     productContainer.loading$ = of(false);
-    productContainer.addToCart = (payload) => {};
     productContainer.updateQty = (payload: number) => {};
+    cartContainer = fixture.debugElement.query(By.css('[cart-container]')).componentInstance;
+    cartContainer.addToCart = (payload) => {};
 
-    fixture.detectChanges();
     productComponent = fixture.debugElement.query(By.css('demo-product')).componentInstance;
     addToCartComponent = fixture.debugElement.query(By.css('demo-add-to-cart')).componentInstance;
     addToCartNotification = fixture.debugElement.query(By.css('demo-add-to-cart-notification')).componentInstance;
@@ -146,13 +158,13 @@ describe('ProductViewComponent', () => {
       expect(addToCartComponent.qty).toEqual(stubQty);
     });
 
-    it('should set addToCart to call function passed by product-container directive', () => {
-      spyOn(productContainer, 'addToCart');
+    it('should set addToCart to call function passed by cart-container directive', () => {
+      spyOn(cartContainer, 'addToCart');
       const payload = 'test';
 
       addToCartComponent.addToCart.emit(payload);
 
-      expect(productContainer.addToCart).toHaveBeenCalledWith(payload);
+      expect(cartContainer.addToCart).toHaveBeenCalledWith(payload);
     });
   });
 
