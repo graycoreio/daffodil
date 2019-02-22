@@ -8,6 +8,7 @@ import { daffColorMixin, DaffColorable, DaffPalette } from '../../core/colorable
 const BUTTON_HOST_ATTRIBUTES = [
   'daff-button',
   'daff-stroked-button',
+  'daff-raised-button',
   'daff-icon-button'
 ];
 
@@ -25,9 +26,11 @@ const _daffButtonBase = daffColorMixin(DaffButtonBase, 'black')
   selector: '' +
     'button[daff-button]' + ',' +
     'button[daff-stroked-button]' + ',' +
+    'button[daff-raised-button]' + ',' +
     'button[daff-icon-button]' + ',' +
     'a[daff-button]' + ',' +
     'a[daff-stroked-button]' + ',' +
+    'a[daff-raised-button]' + ',' +
     'a[daff-icon-button]',
   template: '<ng-content></ng-content>',
   styleUrls: ['./button.component.scss'],
