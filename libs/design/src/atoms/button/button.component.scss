@@ -1,11 +1,11 @@
 @import '../../scss/daff-util';
 
-@mixin daff-button {
+@mixin button-styles {
     display: inline-block;
     position: relative;
     font-family: $body-font-family;
-    font-size: 1rem;
-    margin: 0;
+    font-size: $medium-font-size;
+    border-radius: 3px;
     overflow: hidden;
     text-align: center;
     text-decoration: none;
@@ -17,10 +17,9 @@
     }
 }
 
-.daff-button {
-    @include daff-button();
+@mixin daff-button {
     min-width: 90px;
-    padding: 15px 20px;
+    padding: 15px 25px;
 
     &.daff-primary {
         background-color: $primary;
@@ -79,8 +78,22 @@
     }
 }
 
-.daff-icon-button {
+.daff-button {
+    @include button-styles();
     @include daff-button();
+}
+
+.daff-raised-button {
+    @include button-styles();
+    @include daff-button();
+    box-shadow:
+        0 2px 10px rgba($black, 0.1),
+        0 1px 3px rgba($black, 0.08);
+
+}
+
+.daff-icon-button {
+    @include button-styles();
     height: 40px;
     width: 40px;
     line-height: 40px;
@@ -131,7 +144,7 @@
 }
 
 .daff-stroked-button {
-    @include daff-button();
+    @include button-styles();
     min-width: 90px;
     padding: 15px 20px;
 

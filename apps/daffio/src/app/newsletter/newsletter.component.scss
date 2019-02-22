@@ -21,6 +21,8 @@
   &__input {
     width: 60%;
     border-color: daff-color($daff-gray, 300);
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 
     @include breakpoint(laptop) {
       width: 60%;
@@ -31,6 +33,8 @@
     width: 40%;
     line-height: 1.5rem;
     font-size: 0.875rem;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 
     @include breakpoint(tablet) {
       font-size: 1rem;
