@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { StateCartModule } from '@daffodil/state';
 import { StateProductModule } from '@daffodil/product';
+import { StateCartModule } from '@daffodil/cart';
 import { DaffLoadingIconModule } from '@daffodil/design';
 
 import { ProductComponentModule } from '../../components/product/product.module';

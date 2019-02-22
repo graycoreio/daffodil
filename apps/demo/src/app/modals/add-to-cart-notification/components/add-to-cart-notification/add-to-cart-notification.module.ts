@@ -6,7 +6,6 @@ import { ViewCartModule } from '../../../../cart/components/view-cart/view-cart.
 import { ProceedToCheckoutModule } from '../../../../cart/components/proceed-to-checkout/proceed-to-checkout.module';
 import { ProductAddedModule } from '../product-added/product-added.module';
 import { DemoAddToCartNotificationStateModule } from '../../add-to-cart-notification-state.module';
-import { StateCartModule } from '@daffodil/state';
 import { DaffLoadingIconModule } from '@daffodil/design';
 import { TemplateModule } from '../../../../core/template/template/template.module';
 import { ModalPortalModule } from '../../../../core/template/portals/modal-portal.module';
@@ -22,7 +21,6 @@ import { ModalPortalModule } from '../../../../core/template/portals/modal-porta
     DaffButtonModule,
     ProductAddedModule,
     DemoAddToCartNotificationStateModule,
-    StateCartModule,
     DaffLoadingIconModule,
     ModalPortalModule
   ],

@@ -3,8 +3,9 @@ import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
 import { DaffDriverTestingModule } from "@daffodil/driver/testing";
 import { Cart } from "@daffodil/core";
-import { DaffCartFactory, DaffCartItemFactory, DaffCoreTestingModule } from "@daffodil/core/testing";
-import { CartReset, CartLoadSuccess, fromCart } from "@daffodil/state";
+import { DaffCoreTestingModule } from "@daffodil/core/testing";
+import { CartReset, CartLoadSuccess, fromCart } from "@daffodil/cart";
+import { DaffCartFactory, DaffCartItemFactory } from "@daffodil/core/testing";
 
 import * as fromAddToCartNotification from './index';
 import { CloseAddToCartNotification } from "../actions/add-to-cart-notification.actions";

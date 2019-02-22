@@ -2,10 +2,10 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import * as fromDemoCheckout from '../../reducers';
-import { fromCart } from '@daffodil/state';
-import { Cart } from '@daffodil/core';
+import { fromCart, Cart } from '@daffodil/cart';
 import { PlaceOrder } from '@daffodil/state';
+
+import * as fromDemoCheckout from '../../reducers';
 
 @Component({
   selector: 'demo-place-order',
