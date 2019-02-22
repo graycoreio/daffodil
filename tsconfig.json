@@ -36,6 +36,12 @@
       "@daffodil/product/testing": [
         "dist/product/testing"
       ],
+      "@daffodil/checkout": [
+        "dist/checkout"
+      ],
+      "@daffodil/checkout/testing": [
+        "dist/checkout/testing"
+      ],
       "@daffodil/state": [
         "dist/state"
       ],
