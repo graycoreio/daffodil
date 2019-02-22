@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Store, ActionsSubject, Action } from '@ngrx/store';
-import { fromCart } from '@daffodil/state';
-
 import { Resolve, Router } from '@angular/router';
-import { ResolveCart, ResolveCartSuccess, ResolveCartFailure, CartResolverActionTypes } from '../actions/cart-resolver.actions';
 import { map, filter, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+
+import { fromCart } from '@daffodil/cart';
+
+import { ResolveCart, ResolveCartSuccess, ResolveCartFailure, CartResolverActionTypes } from '../actions/cart-resolver.actions';
 
 @Injectable({
   providedIn: 'root'

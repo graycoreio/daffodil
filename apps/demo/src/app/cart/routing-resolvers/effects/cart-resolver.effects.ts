@@ -4,8 +4,7 @@ import { Observable, of } from 'rxjs';
 import { switchMap, take, map, catchError } from 'rxjs/operators';
 import { Action, select, Store } from '@ngrx/store';
 
-import { Cart } from '@daffodil/core';
-import { fromCart } from '@daffodil/state';
+import { fromCart, Cart } from '@daffodil/cart';
 import { DaffDriver, DaffDriverInterface } from '@daffodil/driver';
 
 import { ResolveCartSuccess, CartResolverActionTypes, ResolveCartFailure } from '../actions/cart-resolver.actions';

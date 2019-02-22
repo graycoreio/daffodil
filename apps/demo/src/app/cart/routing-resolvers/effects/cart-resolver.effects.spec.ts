@@ -4,14 +4,13 @@ import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 import { StoreModule, combineReducers } from '@ngrx/store';
 
-import { fromCart } from '@daffodil/state';
-import { DaffDriverTestingModule } from '@daffodil/driver/testing';
+import { fromCart, Cart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/core/testing';
-import { Cart } from '@daffodil/core';
+import { DaffDriverInterface, DaffDriver } from '@daffodil/driver';
+import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
 import { CartResolverEffects } from './cart-resolver.effects';
 import { ResolveCart, ResolveCartSuccess, ResolveCartFailure } from '../actions/cart-resolver.actions';
-import { DaffDriverInterface, DaffDriver } from '@daffodil/driver';
 
 describe('CartResolverEffects', () => {
   let actions$: Observable<any>;

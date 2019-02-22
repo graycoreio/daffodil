@@ -3,12 +3,13 @@ import { By } from '@angular/platform-browser';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { of } from 'rxjs';
 
+import { PlaceOrder } from '@daffodil/state';
+import { Cart } from '@daffodil/cart';
+import { DaffCartFactory } from '@daffodil/core/testing';
+import { DaffDriverTestingModule } from '@daffodil/driver/testing';
+
 import * as fromDemoCheckout from '../../reducers';
 import { PlaceOrderComponent } from './place-order.component';
-import { PlaceOrder } from '@daffodil/state';
-import { Cart } from '@daffodil/core';
-import { DaffDriverTestingModule } from '@daffodil/driver/testing';
-import { DaffCartFactory } from '@daffodil/core/testing';
 
 describe('PlaceOrderComponent', () => {
   let fixture: ComponentFixture<PlaceOrderComponent>;
