@@ -1,9 +1,10 @@
 $sidebar-width: 250px;
 
 // Stacking Context Layers
-$daff-sidebar-z-index: 12; //needs to be greater than the daff-backdrop z-index.
-$daff-sidebar-content-z-index: 6; //needs to be less than the daff-backdrop z-index.
-$daff-sidebar-viewport-z-index: 2;
+$daff-sidebar-z-index: 4;
+$daff-sidebar-backdrop-z-index: 3;
+$daff-sidebar-content-z-index: 2;
+$daff-sidebar-viewport-z-index: 1;
 
 .daff-sidebar-viewport {
   $root: &;
@@ -23,9 +24,15 @@ $daff-sidebar-viewport-z-index: 2;
 
   &__sidebar {
     width: $sidebar-width;
-    z-index: $daff-sidebar-z-index;
+    z-index: $daff-sidebar-z-index; 
+  }
 
-    
+  &__backdrop {
+    position: absolute;
+    z-index: $daff-sidebar-backdrop-z-index;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
   }
 
   &.push {
