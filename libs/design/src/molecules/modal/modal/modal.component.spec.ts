@@ -1,9 +1,10 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DaffModalComponent } from './modal.component';
+import { DaffBackdropComponent, DaffBackdropModule } from '../../backdrop/public_api';
 
 @Component({template: `
   <div class="daff-modal-wrapper">
@@ -25,29 +26,22 @@ class WrapperComponent {
   backdropClickedFunction() {}
 }
 
-@Component({selector: 'daff-backdrop', template: ''})
-class MockDaffBackDropComponent {
-  @Input() show: boolean;
-  @Input() backdropIsVisible: boolean;
-  @Output() backdropClicked: EventEmitter<any> = new EventEmitter();
-}
-
 describe('DaffModalComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let modal: DaffModalComponent;
-  let backdrop: MockDaffBackDropComponent;
-  let daffModalElement;
+  let backdrop: DaffBackdropComponent;
+  let daffModalElement: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        NoopAnimationsModule
+        NoopAnimationsModule,
+        DaffBackdropModule
       ],
       declarations: [
         WrapperComponent,
-        DaffModalComponent,
-        MockDaffBackDropComponent
+        DaffModalComponent
       ]
     })
     .compileComponents();
@@ -104,22 +98,31 @@ describe('DaffModalComponent', () => {
     });
   });
 
-  describe('on <backdrop>', () => {
+  describe('on <daff-backdrop>', () => {
 
     beforeEach(() => {
       backdrop = fixture.debugElement.query(By.css('daff-backdrop')).componentInstance;
     });
     
-    it('should set show to modal.show', () => {
-      expect(backdrop.show).toEqual(modal.show);
+    it('should add and remove the backdrop from the DOM as `show` changes', () => {
+      wrapper.show = false;
+      fixture.detectChanges();
+
+      expect(fixture.debugElement.query(By.css('daff-backdrop'))).toBe(null);
+
+      wrapper.show = true;
+      fixture.detectChanges();
+
+      expect(fixture.debugElement.query(By.css('daff-backdrop'))).toBeDefined();
     });
 
-    it('should set backdropIsVisible', () => {
-      expect(backdrop.backdropIsVisible).toEqual(modal.backdropIsVisible);
+    it('should set transparent', () => {
+      fixture.detectChanges();
+      expect(backdrop.transparent).toEqual(modal.backdropIsVisible);
     });
   });
 
-  describe('when <backdrop> emits backdropClicked', () => {
+  describe('when <daff-backdrop> emits backdropClicked', () => {
 
     beforeEach(() => {
       backdrop = fixture.debugElement.query(By.css('daff-backdrop')).componentInstance;
