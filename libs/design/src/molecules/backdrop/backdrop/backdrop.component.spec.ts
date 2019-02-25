@@ -1,27 +1,27 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DaffBackdropComponent } from './backdrop.component';
-import { Component } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({ template: `
 <daff-backdrop
-  [show]="showValue"
-  [backdropIsVisible]="backdropIsVisibleValue"
+  [transparent]="transparentValue"
   (backdropClicked)="backdropFunction()"></daff-backdrop>
 `})
 class WrapperComponent {
   showValue = true;
-  backdropIsVisibleValue = true;
+  transparentValue = true;
   backdropFunction: Function = () => {};
 }
 
-describe('DaffBackdropComponent', () => {
+describe('DaffBackdropComponent | Usage', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let backdrop: DaffBackdropComponent;
-  let backdropElement;
+  let backdropHost: DebugElement;
+  let backdropEl: DebugElement;
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -42,62 +42,71 @@ describe('DaffBackdropComponent', () => {
     fixture.detectChanges();
 
     backdrop = fixture.debugElement.query(By.css('daff-backdrop')).componentInstance;
+    backdropHost = fixture.debugElement.query(By.css('daff-backdrop'));
+    backdropEl = fixture.debugElement.query(By.css('.daff-backdrop'));
   });
 
   it('should create', () => {
-    expect(backdrop).toBeTruthy();
+    expect(wrapper).toBeTruthy();
   });
 
-  describe('when show is true', () => {
-
-    beforeEach(() => {
-      backdrop.show = true;
+  describe('when I make the backdrop NOT transparent', () => {
+    it('should not add the class `daff-backdrop--transparent` to the host element', () => {
+      wrapper.transparentValue = false;
       fixture.detectChanges();
-    });
-    
-    it('should render backdrop', () => {
-      backdropElement = fixture.debugElement.query(By.css('.daff-backdrop'));
-
-      expect(backdropElement).not.toBeNull();
+      
+      expect(backdropEl.nativeElement.classList).not.toContain("daff-backdrop--transparent");
     });
   });
 
-  describe('when show is false', () => {
-
-    beforeEach(() => {
-      wrapper.showValue = false;
+  describe('when I make the backdrop transparent', () => {
+    it('should add the class `daff-backdrop--transparent` to the host element', () => {
+      wrapper.transparentValue = true;
       fixture.detectChanges();
-    });
-    
-    it('should not render backdrop', () => {
-      backdropElement = fixture.debugElement.query(By.css('.daff-backdrop'));
-
-      expect(backdropElement).toBeNull();
+      
+      expect(backdropEl.nativeElement.classList).toContain("daff-backdrop--transparent");
     });
   });
 
-  describe('backdrop transparency', () => {
-    beforeEach(() => {
-      wrapper.backdropIsVisibleValue = false;
-
-      fixture.detectChanges();
-    });
-
-    it('should apply the transparency class to the backdrop if `backdropIsVisible` is false', () => {
-      expect(fixture.debugElement.query(By.css('.daff-backdrop')).nativeElement.classList)
-        .toContain("daff-backdrop--transparent");
-    });
-  });
-
-  describe('when .daff-backdrop is clicked', () => {
-
+  describe('when the backdrop host element is clicked', () => {
     it('should emit backdropClicked', () => {
-      backdropElement = fixture.debugElement.query(By.css('.daff-backdrop'));
       spyOn(backdrop.backdropClicked, 'emit');
 
-      backdropElement.nativeElement.click();
+      backdropHost.nativeElement.click();
 
       expect(backdrop.backdropClicked.emit).toHaveBeenCalled();
     });
+  });
+});
+
+
+describe('DaffBackdropComponent | Defaults', () => {
+  let fixture: ComponentFixture<DaffBackdropComponent>;
+  let component: DaffBackdropComponent;
+  
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        NoopAnimationsModule
+      ],
+      declarations: [ 
+        DaffBackdropComponent
+      ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(DaffBackdropComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should set transparent to `false` by default', () => {
+    expect(component.transparent).toBe(false);
   });
 });
