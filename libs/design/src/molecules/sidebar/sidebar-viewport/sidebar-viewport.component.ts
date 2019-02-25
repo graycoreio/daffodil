@@ -17,10 +17,12 @@ import { getAnimationState } from '../animation/sidebar-animation-state';
 export class DaffSidebarViewportComponent implements OnInit{
 
   _animationState: string;
+  
+  
   /**
    * Internal tracking variable for the state of sidebar viewport.
    */
-  private _opened = false;
+  _opened = false;
   
   /**
    * The mode to put the sidebar in

@@ -5,9 +5,8 @@
 
   <daff-backdrop
     class="daff-sidebar-viewport__backdrop"
-    *ngIf="hasBackdrop"
-    [show]="opened"
-    [backdropIsVisible]="backdropIsVisible"
+    *ngIf="hasBackdrop && _opened"
+    [transparent]="!backdropIsVisible"
     (backdropClicked)="_backdropClicked()"></daff-backdrop>
 
   <div class="daff-sidebar-viewport__content" [@transformContent]="_animationState">

@@ -1,19 +1,12 @@
 # Backdrop Component
 
+The `daff-backdrop` component is a simple component used to "backdrop" other components. `daff-backdrop` is often used alongside modals, dialogs, overlays, and lightboxes. 
+
+## Animations
+`daff-backdrop` provides and manages its own animation.
+
 ## Usage 
 
-html
 ```
-<daff-backdrop
-    class="my-component__backdrop"
-    [show]="show"
-    [backdropIsVisible]="backdropIsVisible"
-    (backdropClicked)="backdropClicked()"></daff-backdrop>
-```
-
-css
-```
-.my-component__backdrop {
-  z-index: $backdrop-z-index;
-}
+<daff-backdrop [backdropIsVisible]="backdropIsVisible" (backdropClicked)="backdropClicked()"></daff-backdrop>
 ```
