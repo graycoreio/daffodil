@@ -1,7 +1,6 @@
-import { Component, Output, EventEmitter, Input, OnChanges } from '@angular/core';
+import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy, HostListener, HostBinding } from '@angular/core';
 
 import { daffBackdropAnimations } from '../animation/backdrop-animation';
-import { getAnimationState } from '../animation/backdrop-animation-state';
 
 @Component({
   selector: 'daff-backdrop',
@@ -9,21 +8,36 @@ import { getAnimationState } from '../animation/backdrop-animation-state';
   styleUrls: ['./backdrop.component.scss'],
   animations: [
     daffBackdropAnimations.fadeBackdrop
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DaffBackdropComponent implements OnChanges{
+export class DaffBackdropComponent {
 
-  _animationState: string;
-  @Input() show: boolean;
-  @Input() backdropIsVisible = true;
+  /**
+   * @docs
+   * Determines whether or not the backdrop is transparent.
+   */
+  @Input() transparent = false;
+
+  /**
+   * @docs
+   * Output event triggered when the backdrop is clicked.
+   */
   @Output() backdropClicked: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor() { }
+  /**
+   * @docs
+   * Animation hook for that controls the backdrops 
+   * entrance and fade animations.
+   */
+  @HostBinding('@fadeBackdrop')
 
-  ngOnChanges() {
-    this._animationState = getAnimationState(this.show);
-  }
-
+  /**
+   * @docs
+   * @deprecated
+   * Backdrop event that triggers when the backdrop element is clicked.
+   */
+  @HostListener('click')
   onBackdropClicked() : void {
     this.backdropClicked.emit();
   }
