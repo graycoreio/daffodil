@@ -1,0 +1,197 @@
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# $$               Daffodil Code Owners                 $$
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#  
+# The configuration for Code Owners for graycoreio/daffodil.
+#
+#  For more info see: https://help.github.com/articles/about-codeowners/
+#
+
+
+# ================================================
+#  Concepts
+# ================================================
+#
+# A CodeOwner should only review what they are comfortable reviewing. If you're not comfortable, say something.
+# It is a CodeOwners responsibility to only accept the changes that they understand and deem necessary.
+# The CodeOwners have final say on whether or not code is accepted.
+# If multiple CodeOwners are listed, ALL code owners must approve the PR prior to merge.
+# CodeOwners work in conjunction with Github's "Number of Required Approvals (1)" requirement.
+
+
+
+# ================================================
+#  GitHub username registry
+# ================================================
+
+#  damienwebdev - Damien Retzinger
+#  xelaint - Elain Tsai
+#  lderrickable - Luke Derrick
+
+
+
+######################################################################################################
+#
+#  Team structure and memberships
+#  ------------------------------
+#
+#
+#  Any changes to team structure or memberships must first be made in this file and only then
+#  implemented in the GitHub UI.
+#######################################################################################################
+
+
+# ===========================================================
+#  @graycore/daff-design
+# ===========================================================
+#
+#   - damienwebdev
+#   - xelaint
+
+# ===========================================================
+#  @graycore/daff-core
+# ===========================================================
+#
+#   - lderrickable
+#   - damienwebdev
+
+# ===========================================================
+#  @graycore/daff-driver
+# ===========================================================
+#
+#   - lderrickable
+#   - damienwebdev
+
+# ===========================================================
+#  @graycore/daff-product
+# ===========================================================
+#
+#   - lderrickable
+#   - damienwebdev
+
+
+# ===========================================================
+#  @graycore/daff-cart
+# ===========================================================
+#
+#   - lderrickable
+#   - damienwebdev
+
+
+# ===========================================================
+#  @graycore/daff-checkout
+# ===========================================================
+#
+#   - lderrickable
+#   - damienwebdev
+
+# ===========================================================
+#  @graycore/daff-marketing
+# ===========================================================
+#
+#   - xelaint
+#   - damienwebdev
+
+# ===========================================================
+#  @graycore/daff-dev-infra
+# ===========================================================
+#
+#   - lderrickable
+#   - damienwebdev
+
+# ===========================================================
+#  @graycore/daff-docs
+# ===========================================================
+#
+#   - lderrickable
+#   - xelaint
+#   - damienwebdev
+
+
+######################################################################################################
+#
+# CODEOWNERS rules
+# -----------------
+#
+# All the following rules are applied in the order specified in this file.
+# The last rule that matches wins!
+#
+# See https://git-scm.com/docs/gitignore#_pattern_format for pattern syntax docs.
+#
+######################################################################################################
+
+
+# ================================================
+#  Default Owners
+# (in case no pattern matches a path in a PR - this should be treated as a bug and result in adding the path to CODEOWNERS)
+# ================================================
+
+* @damienwebdev
+
+# ================================================
+#  @daffodil/demo
+# ================================================
+/apps/demo/**                                                   @graycoreio/daff-docs @graycoreio/daff-marketing
+/apps/demo-e2e/**                                               @graycoreio/daff-docs @graycoreio/daff-marketing
+
+# ================================================
+#  @daffodil/daffio
+# ================================================
+/apps/daffio/**                                                 @graycoreio/daff-docs @graycoreio/daff-marketing
+/apps/daffio-e2e/**                                             @graycoreio/daff-docs
+
+# ================================================
+#  @daffodil/design
+# ================================================
+/apps/design-land/**                                            @graycore/daff-design
+/apps/design-land-e2e/**                                        @graycore/daff-design    
+/libs/design/**                                                 @graycore/daff-design
+
+# ================================================
+#  @daffodil/core
+# ================================================
+/libs/core/**                                                   @graycore/daff-core
+
+# ================================================
+#  @daffodil/driver
+# ================================================
+/libs/driver/**                                                 @graycore/daff-driver
+
+# ================================================
+#  @daffodil/product
+# ================================================
+/libs/product/**                                                @graycore/daff-product
+
+# ================================================
+#  @daffodil/cart
+# ================================================
+/libs/cart/**                                                   @graycore/daff-cart
+
+# ================================================
+#  @daffodil/checkout
+# ================================================
+/libs/checkout/**                                               @graycore/daff-checkout
+
+# ================================================
+#  Docs: Maintainers
+# ================================================
+/docs/**                                                        @graycore/daff-docs
+
+# ================================================
+#  Build & CI Owners
+# ================================================
+
+/*                                                              @graycore/daff-dev-infra
+/.github/**                                                     @graycore/daff-dev-infra
+/build/**                                                       @graycore/daff-dev-infra
+/.vscode/**                                                     @graycore/daff-dev-infra
+/tools/**                                                       @graycore/daff-dev-infra
+
+
+# ================================================
+#  CODEOWNERS Owners owners ...
+# ================================================
+
+/.github/CODEOWNERS                                             @damienwebdev
