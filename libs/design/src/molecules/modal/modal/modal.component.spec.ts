@@ -116,9 +116,9 @@ describe('DaffModalComponent', () => {
       expect(fixture.debugElement.query(By.css('daff-backdrop'))).toBeDefined();
     });
 
-    it('should set transparent', () => {
+    it('should set transparent to the negation of `backdropIsVisible`', () => {
       fixture.detectChanges();
-      expect(backdrop.transparent).toEqual(modal.backdropIsVisible);
+      expect(backdrop.transparent).toEqual(!modal.backdropIsVisible);
     });
   });
 

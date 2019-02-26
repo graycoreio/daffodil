@@ -4,6 +4,6 @@
   </div>
 
   <daff-backdrop class="daff-modal__backdrop" *ngIf="show"
-    [transparent]="backdropIsVisible"
+    [transparent]="!backdropIsVisible"
     (backdropClicked)="_backdropClicked()"></daff-backdrop>
 </div>
