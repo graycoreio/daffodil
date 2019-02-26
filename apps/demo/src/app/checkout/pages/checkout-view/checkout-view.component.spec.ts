@@ -2,18 +2,19 @@ import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angu
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 
-import { DaffodilAddress, PaymentInfo, Cart } from '@daffodil/core';
-import { DaffCartFactory, DaffPaymentFactory,  DaffAddressFactory, DaffCartItemFactory } from '@daffodil/core/testing';
+import { DaffodilAddress, PaymentInfo } from '@daffodil/core';
+import { DaffPaymentFactory,  DaffAddressFactory } from '@daffodil/core/testing';
+import { Cart } from '@daffodil/cart';
+import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/core/testing';
 import { ShippingContainer } from '@daffodil/state';
+import { DaffAccordionModule, DaffAccordionItemComponent, DaffContainerModule, DaffLoadingIconModule } from '@daffodil/design';
 
 import * as fromDemoCheckout from '../../reducers/index';
 import { ShowPaymentView } from '../../actions/payment.actions';
 import { CheckoutViewComponent } from './checkout-view.component';
-import { DaffAccordionModule, DaffAccordionItemComponent, DaffContainerModule, DaffLoadingIconModule } from '@daffodil/design';
 
 const daffodilAddressFactory = new DaffAddressFactory();
 const paymentFactory = new DaffPaymentFactory();

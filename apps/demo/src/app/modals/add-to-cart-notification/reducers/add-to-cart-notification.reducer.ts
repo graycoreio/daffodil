@@ -1,5 +1,6 @@
+import { CartActionTypes, CartActions } from '@daffodil/cart';
+
 import { AddToCartNotificationActionTypes, AddToCartNotificationActions } from '../actions/add-to-cart-notification.actions';
-import { CartActionTypes, CartActions } from '@daffodil/state';
 
 export interface State {
   open: boolean,

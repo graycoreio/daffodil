@@ -1,16 +1,15 @@
 import { TestBed, async } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
-
-import { fromCart }  from '@daffodil/state';
-
-import { EmptyCartResolver } from './empty-cart-resolver.service';
-import { ResolveCartSuccess } from '../actions/cart-resolver.actions';
-import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/core/testing';
-import { Cart } from '@daffodil/core';
 import { Observable, of } from 'rxjs';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
+
+import { fromCart, Cart }  from '@daffodil/cart';
+import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/core/testing';
+
+import { EmptyCartResolver } from './empty-cart-resolver.service';
+import { ResolveCartSuccess } from '../actions/cart-resolver.actions';
 
 describe('EmptyCartResolver', () => {
   const actions$: Observable<any> = null;
