@@ -5,7 +5,7 @@ import * as fromDemoAddToCartNotification from '../../reducers/index';
 import { Observable } from 'rxjs';
 import { CloseAddToCartNotification } from '../../actions/add-to-cart-notification.actions';
 import { Product } from '@daffodil/core';
-import { fromProduct } from '@daffodil/state';
+import { fromProduct } from '@daffodil/product';
 
 @Component({
   selector: 'demo-add-to-cart-notification',
