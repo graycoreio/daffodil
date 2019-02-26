@@ -145,49 +145,49 @@
 # ================================================
 #  @daffodil/design
 # ================================================
-/apps/design-land/**                                            @graycore/daff-design
-/apps/design-land-e2e/**                                        @graycore/daff-design    
-/libs/design/**                                                 @graycore/daff-design
+/apps/design-land/**                                            @graycoreio/daff-design
+/apps/design-land-e2e/**                                        @graycoreio/daff-design    
+/libs/design/**                                                 @graycoreio/daff-design
 
 # ================================================
 #  @daffodil/core
 # ================================================
-/libs/core/**                                                   @graycore/daff-core
+/libs/core/**                                                   @graycoreio/daff-core
 
 # ================================================
 #  @daffodil/driver
 # ================================================
-/libs/driver/**                                                 @graycore/daff-driver
+/libs/driver/**                                                 @graycoreio/daff-driver
 
 # ================================================
 #  @daffodil/product
 # ================================================
-/libs/product/**                                                @graycore/daff-product
+/libs/product/**                                                @graycoreio/daff-product
 
 # ================================================
 #  @daffodil/cart
 # ================================================
-/libs/cart/**                                                   @graycore/daff-cart
+/libs/cart/**                                                   @graycoreio/daff-cart
 
 # ================================================
 #  @daffodil/checkout
 # ================================================
-/libs/checkout/**                                               @graycore/daff-checkout
+/libs/checkout/**                                               @graycoreio/daff-checkout
 
 # ================================================
 #  Docs: Maintainers
 # ================================================
-/docs/**                                                        @graycore/daff-docs
+/docs/**                                                        @graycoreio/daff-docs
 
 # ================================================
 #  Build & CI Owners
 # ================================================
 
-/*                                                              @graycore/daff-dev-infra
-/.github/**                                                     @graycore/daff-dev-infra
-/build/**                                                       @graycore/daff-dev-infra
-/.vscode/**                                                     @graycore/daff-dev-infra
-/tools/**                                                       @graycore/daff-dev-infra
+/*                                                              @graycoreio/daff-dev-infra
+/.github/**                                                     @graycoreio/daff-dev-infra
+/build/**                                                       @graycoreio/daff-dev-infra
+/.vscode/**                                                     @graycoreio/daff-dev-infra
+/tools/**                                                       @graycoreio/daff-dev-infra
 
 
 # ================================================
