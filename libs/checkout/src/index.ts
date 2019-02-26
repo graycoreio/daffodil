@@ -8,3 +8,12 @@ export { PaymentInfo } from './models/payment/payment-info';
 
 export { ShippingRate } from './models/shipping/shipping-rate';
 export { ShippingOption } from './models/shipping/shipping-option';
+
+export { ShippingContainer } from './shipping/containers/shipping.component';
+export { PaymentContainer } from './payment/containers/payment.component';
+export { OrderContainer } from './order/containers/order.component';
+export * from './order/actions/order.actions';
+import * as fromOrder from './order/reducers/order.reducer';
+export { fromOrder };
+
+export { StateCheckoutModule } from './checkout.module';
