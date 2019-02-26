@@ -7,12 +7,15 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { environment } from '../environments/environment';
 
+import { AppRoutingModule } from './app-routing.module';
+
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { DaffProgressIndicatorModule } from '@daffodil/design';
+
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
 
 import { ProductModule } from './product/product.module';
 
@@ -23,6 +26,8 @@ import { getDriverVariant } from './helper/driver-variant';
 import { NotFoundModule } from './misc/not-found/not-found.module';
 import { TemplateModule } from './core/template/template/template.module';
 import { ThankYouModule } from './thank-you/thank-you.module';
+
+import { DemoRoutingComponentModule } from './routing/routing-component.module';
 
 @NgModule({
   declarations: [
@@ -45,13 +50,15 @@ import { ThankYouModule } from './thank-you/thank-you.module';
     }),
     
     AppRoutingModule,
+    DemoRoutingComponentModule,
 
     ProductModule,
     CartModule,
     CheckoutModule,
     ThankYouModule,
     TemplateModule,
-    NotFoundModule
+    NotFoundModule,
+    DaffProgressIndicatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
