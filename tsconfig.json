@@ -42,9 +42,6 @@
       "@daffodil/checkout/testing": [
         "dist/checkout/testing"
       ],
-      "@daffodil/state": [
-        "dist/state"
-      ],
       "@daffodil/driver": [
         "dist/driver"
       ],

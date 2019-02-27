@@ -1,13 +1,15 @@
 # Daffodil
 [![Join the chat at https://gitter.im/graycoreio/daffodil](https://badges.gitter.im/graycoreio/daffodil.svg)](https://gitter.im/graycoreio/daffodil?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.com/graycoreio/daffodil.svg?branch=master)](https://travis-ci.com/graycoreio/daffodil)
-[![npm version](https://badge.fury.io/js/%40daffodil%2Fcore.svg)](https://www.npmjs.com/@daffodil/state)
+[![npm version](https://badge.fury.io/js/%40daffodil%2Fcore.svg)](https://www.npmjs.com/@daffodil/checkout)
 
 ## Current Stability - Alpha
 
 ## Packages
 * @daffodil/core
-* @daffodil/state
+* @daffodil/product
+* @daffodil/cart
+* @daffodil/checkout
 * @daffodil/driver
 
 ## What is Daffodil?
@@ -19,7 +21,9 @@ Daffodil is a set of frontend libraries that intends to accomplish three things:
 Currently, Daffodil provides several modules to improve different aspects of developer workflow:
 
 1. `@daffodil/core` (partially complete) - Daffodil's core - a set of interfaces and factories for Ecommerce.
-2. `@daffodil/state` (partially complete) - An extendable redux store for Ecommerce.
+2. `@daffodil/product` (partially complete) - An extendable redux store for Ecommerce products.
+2. `@daffodil/cart` (partially complete) - An extendable redux store for an Ecommerce cart.
+2. `@daffodil/checkout` (partially complete) - An extendable redux store for Ecommerce checkout.
 3. `@daffodil/driver` (todo) - An extendable API interface with configurable drivers for different Ecommerce platforms.
 
 ### Benefits For Developers
@@ -50,7 +54,13 @@ Currently none, but you can check our progress by following the steps [here](htt
 
 ## Using Daffodil To Build Your own Ecommerce Store
 1. Setup a new `@angular/cli` project
-2. `npm install --save @daffodil/state` - Install State Daffodil Module
+2. Install Daffodil Modules
+    
+    a. `npm install --save @daffodil/product` - Install Product Daffodil Module
+    
+    b. `npm install --save @daffodil/cart` - Install Cart Daffodil Module
+    
+    c. `npm install --save @daffodil/checkout` - Install Checkout Daffodil Module
 3. `npm install --save @ngrx/store @ngrx/effects @ngrx/entity` - Install Necessary Peer Dependencies
 4. Add the following to your application's root `AppModule`.
     ```

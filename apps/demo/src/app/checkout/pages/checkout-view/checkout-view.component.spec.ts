@@ -6,10 +6,9 @@ import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 
 import { DaffodilAddress, PaymentInfo } from '@daffodil/core';
-import { DaffPaymentFactory,  DaffAddressFactory } from '@daffodil/core/testing';
+import { DaffPaymentFactory,  DaffAddressFactory, DaffCartFactory, DaffCartItemFactory } from '@daffodil/core/testing';
 import { Cart } from '@daffodil/cart';
-import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/core/testing';
-import { ShippingContainer } from '@daffodil/state';
+import { ShippingContainer } from '@daffodil/checkout';
 import { DaffAccordionModule, DaffAccordionItemComponent, DaffContainerModule, DaffLoadingIconModule } from '@daffodil/design';
 
 import * as fromDemoCheckout from '../../reducers/index';

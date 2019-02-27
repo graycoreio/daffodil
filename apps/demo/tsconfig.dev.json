@@ -5,7 +5,7 @@
       "@daffodil/core": ["libs/core/src"],
       "@daffodil/core/testing": ["libs/core/testing/src"],
       "@daffodil/cart": ["libs/cart/src"],
-      "@daffodil/state": ["libs/state/src"],
+      "@daffodil/checkout": ["libs/checkout/src"],
       "@daffodil/driver": ["libs/driver/src"],
       "@daffodil/driver/testing": ["libs/driver/testing/src"],
       "@daffodil/driver/in-memory": ["libs/driver/in-memory/src"],
