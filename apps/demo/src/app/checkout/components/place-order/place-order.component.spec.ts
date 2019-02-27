@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { of } from 'rxjs';
 
-import { PlaceOrder } from '@daffodil/state';
+import { PlaceOrder } from '@daffodil/checkout';
 import { Cart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/core/testing';
 import { DaffDriverTestingModule } from '@daffodil/driver/testing';

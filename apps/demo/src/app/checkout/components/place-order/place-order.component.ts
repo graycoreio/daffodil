@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
 import { fromCart, Cart } from '@daffodil/cart';
-import { PlaceOrder } from '@daffodil/state';
+import { PlaceOrder } from '@daffodil/checkout';
 
 import * as fromDemoCheckout from '../../reducers';
 
