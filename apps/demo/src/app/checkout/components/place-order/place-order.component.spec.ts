@@ -4,7 +4,7 @@ import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { of, Subscription } from 'rxjs';
 
 import { PlaceOrder } from '@daffodil/checkout';
-import { Cart } from '@daffodil/cart';
+import { Cart, fromCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/core/testing';
 import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
@@ -12,7 +12,7 @@ import * as fromDemoCheckout from '../../reducers';
 import { PlaceOrderComponent } from './place-order.component';
 
 // Because the fromCart selector is now being subscribed to, any test throws an error. Skipping tests until fromCart can be mocked.
-xdescribe('PlaceOrderComponent', () => {
+describe('PlaceOrderComponent', () => {
   let fixture: ComponentFixture<PlaceOrderComponent>;
   let component: PlaceOrderComponent;
   const stubEnablePlaceOrderButton = true;
@@ -24,7 +24,8 @@ xdescribe('PlaceOrderComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          checkout: combineReducers(fromDemoCheckout.reducers)
+          checkout: combineReducers(fromDemoCheckout.reducers),
+          cart: combineReducers(fromCart.reducers)
         }),
         DaffDriverTestingModule
       ],
@@ -66,7 +67,7 @@ xdescribe('PlaceOrderComponent', () => {
       });
     });
     
-    xit('should initialize cart$', () => {
+    it('should initialize cart', () => {
       // mocking fromCart selector only works if it's imported from libs/state/src in the `place-order.component.ts` file
     });
   });
