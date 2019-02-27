@@ -5,7 +5,7 @@ import { hot, cold } from 'jasmine-marbles';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-import { PlaceOrder } from '@daffodil/state';
+import { PlaceOrder } from '@daffodil/checkout';
 import { DaffCartFactory } from '@daffodil/core/testing';
 import { Cart } from '@daffodil/cart';
 

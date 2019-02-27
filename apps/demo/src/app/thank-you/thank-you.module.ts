@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DaffContainerModule, DaffAccordionModule, DaffLoadingIconModule } from '@daffodil/design';
-import { StateCheckoutModule } from '@daffodil/state';
+import { StateCheckoutModule } from '@daffodil/checkout';
 
 import { CartSummaryWrapperModule } from '../cart/components/cart-summary-wrapper/cart-summary-wrapper.module';
 import { ThankYouViewComponent } from './pages/thank-you-view.component';

@@ -4,9 +4,10 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
+import { OrderActionTypes } from '@daffodil/checkout';
+
 import { PaymentActionTypes } from '../actions/payment.actions';
 import { ShowReviewView } from '../actions/checkout.actions';
-import { OrderActionTypes } from '@daffodil/state';
 
 @Injectable()
 export class CheckoutEffects {
