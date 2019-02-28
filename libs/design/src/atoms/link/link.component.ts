@@ -15,7 +15,7 @@ export class DaffLinkBase {
   constructor(public _elementRef: ElementRef) {}
 }
 
-const _daffLinkBase = daffColorMixin(DaffLinkBase, 'black')
+const _daffLinkBase = daffColorMixin(DaffLinkBase, 'theme-contrast')
 
 @Component ({
   // tslint:disable-next-line: component-selector

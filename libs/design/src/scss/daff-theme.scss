@@ -1,4 +1,25 @@
 /**
-* Theme File for @daffodil/design
-* This contains a sample "theme" of @daffodil/design
+* @docs
+* 
+* `daff-theme` is a utility library for themeing the daffodil
+* design library. It contains many useful mixins, functions, 
+* and variables.
+*
+* @note You can import this as often as you like, as it only contains SCSS
+* variables, mixins, and functions; thus it won't effect your final
+* compiled stylesheet size.
+* 
+* @usage
+* ```
+* @import "daff-theme";
+* ```
 **/
+@import "./core/core";
+
+@import "./theming/variables";
+@import "./theming/color";
+@import "./theming/contrast";
+@import "./theming/illuminate/illuminate";
+@import "./theming/configure-palette";
+@import "./theming/configure-theme";
+@import "./theming/theme";

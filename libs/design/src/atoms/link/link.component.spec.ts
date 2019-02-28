@@ -53,9 +53,9 @@ describe('DaffLinkComponent', () => {
       expect(linkDE.nativeElement.classList.contains('daff-primary')).toEqual(true);
     });
 
-    it('should set the default color to black', () => {
+    it('should set the default color to the contrasting theme color', () => {
       linkDE = fixture.debugElement.query(By.css('a[daff-link]'));
-      expect(linkDE.nativeElement.classList.contains('daff-black')).toEqual(true);
+      expect(linkDE.nativeElement.classList.contains('daff-theme-contrast')).toEqual(true);
     });
   });
 });

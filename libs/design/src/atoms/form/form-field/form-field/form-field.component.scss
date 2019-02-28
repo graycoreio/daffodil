@@ -5,34 +5,13 @@
   position: relative;
 
   &__control {
-    background: $white;
     display: inline-block;
-    border: 1px solid daff-color($daff-gray, 400);
     border-radius: 3px;
-    color: daff-color($daff-gray, 700);
     font-size: 1rem;
     line-height: 1.5rem;
     height: inherit;
     padding: 10px 15px;
     width: 100%;
-
-    &:focus {
-      border: 1px solid $black;
-    }
-
-    &.daff-error {
-      border: 1px solid $error;
-  
-      &:focus {
-        border: 1px solid $error;
-      }
-    }
-  
-    &.daff-valid {
-      > * {
-        color: $black;
-      }
-    }
   }
 
   &__icon {

@@ -1,7 +1,6 @@
 @import '../../../scss/daff-util';
 
 .daff-accordion-item {
-  @include section-divider();
   display: block;
   width: 100%;
   padding: 15px 0;

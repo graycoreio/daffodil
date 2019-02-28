@@ -2,13 +2,7 @@
 
 .sub-footer {
   display: block;
-  background: linear-gradient(to bottom right, $accent, daff-color($daff-accent, 300));
-  color: $white;
-
-  &__content {
-    color: $white;
-  }
-
+  
   &__button-set {
     margin-top: 25px;
     justify-content: center;

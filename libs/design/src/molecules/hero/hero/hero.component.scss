@@ -102,25 +102,5 @@
     }
   }
 
-  // color variants
-
-  &.daff-primary {
-    background-color: $primary;
-    color: $white;
-  }
-
-  &.daff-accent {
-    background-color: $accent;
-    color: white;
-  }
-
-  &.daff-white {
-    background-color: $white;
-    color: $black;
-  }
-
-  &.daff-black {
-    background-color: $black;
-    color: $white;
-  }
+  
 }

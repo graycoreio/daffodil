@@ -1,0 +1,7 @@
+@import 'daff-theme';
+
+$primary: daff-configure-palette($daff-yellow, 60);
+$secondary: daff-configure-palette($daff-purple, 60);
+$tertiary: daff-configure-palette($daff-blue, 60);
+
+$theme: daff-configure-theme($primary, $secondary, $tertiary, "light");

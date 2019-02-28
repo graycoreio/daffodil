@@ -19,7 +19,7 @@ export class DaffButtonBase{
   constructor(public _elementRef: ElementRef) {}
 }
 
-const _daffButtonBase = daffColorMixin(DaffButtonBase, 'black') 
+const _daffButtonBase = daffColorMixin(DaffButtonBase, 'theme-contrast') 
 
 @Component({
   // tslint:disable-next-line: component-selector

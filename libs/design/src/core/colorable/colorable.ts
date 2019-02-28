@@ -11,12 +11,20 @@ export interface DaffColorable {
 /**
  * These are the valid options that can be passed to a DaffColorable component
  */
-export type DaffPalette = "primary" | "accent" | "black" | "white" | undefined;
+export type DaffPalette = 
+    "primary" | "secondary" | "accent" | "tertiary" | //TODO: damienwebdev Deprecate accent
+    "black" | "white" | 
+    "theme" | "theme-contrast" | undefined;
+
 export enum DaffPaletteEnum {
     PRIMARY = "primary",
-    ACCENT = "accent",
+    SECONDARY = "secondary",
+    ACCENT = "accent", //TODO: damienwebdev Deprecate accent
+    TERTIARY = "tertiary",
     BLACK = "black",
     WHITE = "white",
+    THEME = "theme",
+    THEMECONTRAST = "theme-contrast"
 }
 export interface HasElementRef {
     _elementRef: ElementRef;
@@ -30,7 +38,7 @@ export interface HasElementRef {
  * https://github.com/angular/material2/blob/master/src/lib/core/common-behaviors/color.ts
  */
 export function 
-    daffColorMixin<T extends Constructor<HasElementRef>>(Base: T, defaultColor? : DaffPalette) {
+    daffColorMixin<T extends Constructor<HasElementRef>>(Base: T, defaultColor?: DaffPalette) {
     return class extends Base {
         //TODO move this back to private in Typescript 3.1
         _color: DaffPalette;

@@ -1,9 +1,16 @@
 /***********************************
 * DO NOT IMPORT THIS FILE ANYWHERE ELSE
+* If you do, you will increase the final size of the css
+* footprint for each import. Obviously, this is undesirable.
 ************************************/
 
 // Imports
 @import 'daff-typography';
+@import 'daff-theme';
+
+@import "theme";
+
+@include daff-theme($theme);
 
 body {
   margin: 0;

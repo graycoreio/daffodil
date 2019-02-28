@@ -1,0 +1,10 @@
+@mixin daffio-homepage-theme($theme){
+    $primary: map-get($theme, primary);
+    $secondary: map-get($theme, secondary);
+    $tertiary: map-get($theme, tertiary);
+    $base: daff-map-deep-get($theme, "core.base");
+    
+    .pwa {
+        background: daff-illuminate($base, $daff-gray, 1);
+    }
+}

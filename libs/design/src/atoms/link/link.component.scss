@@ -7,44 +7,7 @@
   text-decoration: none;
   @include clickable();
 
-  &.daff-primary {
-    color: $primary;
-
-    &:hover {
-        color: daff-color($daff-primary, 700);
-    }
-  }
-
-  &.daff-accent {
-    color: $accent;
-    
-    &:hover {
-        color: daff-color($daff-accent, 700);
-    }
-  }
-
-  &.daff-black {
-    color: $black;
-    
-    &:hover {
-        color: daff-color($daff-gray, 800);
-    }
-  }
-
-  &.daff-white {
-    color: $white;
-    
-    &:hover {
-        color: daff-color($daff-gray, 100);
-    }
-  }
-
   &[disabled] {
     cursor: not-allowed;
-    color: daff-color($daff-gray, 600);
-
-    &:hover {
-        color: daff-color($daff-gray, 600);
-    }
   }
 }

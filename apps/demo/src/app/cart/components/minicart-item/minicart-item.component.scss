@@ -1,4 +1,5 @@
-@import 'daff-util';
+@import 'utilities';
+@import "theme";
 
 :host {
   display: grid;
@@ -24,13 +25,14 @@
   }
 
   &__price {
-    color: $accent;
+    font-size: 1rem;
+    color: daff-color($secondary);
     margin-bottom: 15px;
   }
 
   &__info {
     font-size: $small-font-size;
-    color: daff-color($daff-gray, 800);
+    color: daff-color($daff-gray, 90);
     line-height: 1.25rem;
   }
 
@@ -44,7 +46,7 @@
 
     > * {
       font-size: $small-font-size;
-      color: daff-color($daff-gray, 600);
+      color: daff-color($gray);
       text-decoration: underline;
     
       &:last-child {

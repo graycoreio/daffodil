@@ -1,0 +1,13 @@
+@mixin daff-accordion-item-theme($theme){
+    $primary: map-get($theme, primary);
+    $secondary: map-get($theme, secondary);
+    $tertiary: map-get($theme, tertiary);
+    $base: daff-map-deep-get($theme, "core.base");
+    $baseContrast: daff-map-deep-get($theme, "core.base-contrast");
+    $white: daff-map-deep-get($theme, 'core.white');
+    $black: daff-map-deep-get($theme, 'core.black');
+
+    .daff-accordion-item {
+        border-bottom: 1px solid daff-illuminate($base, $daff-gray, 2);
+    }
+}

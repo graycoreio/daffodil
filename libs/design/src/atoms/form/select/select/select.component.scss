@@ -6,7 +6,6 @@
   background-clip: padding-box;
   border: none;
   box-shadow: none;
-  color: daff-color($daff-gray, 700);
   font-size: 1rem;
   line-height: 1.5rem;
   margin: 0;
@@ -17,11 +16,5 @@
     border: none;
     box-shadow: none;
     outline: none;
-  }
-
-  // removes dotted border on in FF
-  &:-moz-focusring {
-    color: transparent;
-    text-shadow: 0 0 0 $black;
   }
 }

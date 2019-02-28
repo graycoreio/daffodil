@@ -1,0 +1,13 @@
+@mixin daff-select-theme($theme){
+  $baseContrast: daff-map-deep-get($theme, "core.base-contrast");
+
+  .daff-native-select {
+    color: daff-illuminate($baseContrast, $daff-gray, 4);
+
+    // removes dotted border on in FF
+    &:-moz-focusring {
+      color: transparent;
+      text-shadow: 0 0 0 $black;
+    }
+  }
+}

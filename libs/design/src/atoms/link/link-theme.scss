@@ -1,0 +1,49 @@
+@mixin daff-link-theme-variant($baseColor, $hoverColor) {
+    color: $baseColor;
+        
+    &:hover {
+        color: $hoverColor;
+    }
+}
+
+@mixin daff-link-theme($theme){
+    $primary: map-get($theme, primary);
+    $secondary: map-get($theme, secondary);
+    $tertiary: map-get($theme, tertiary);
+    $base: daff-map-deep-get($theme, "core.base");
+    $baseContrast: daff-map-deep-get($theme, "core.base-contrast");
+    $white: daff-map-deep-get($theme, 'core.white');
+    $black: daff-map-deep-get($theme, 'core.black');
+
+    .daff-link {
+        &.daff-primary {
+            @include daff-link-theme-variant(daff-color($primary), daff-color($primary, 70));
+        }
+        &.daff-secondary {
+            @include daff-link-theme-variant(daff-color($secondary), daff-color($secondary, 70));
+        }
+        //TODO: damienwebdev - Deprecate Accent 
+        &.daff-accent {
+            @include daff-link-theme-variant(daff-color($secondary), daff-color($secondary, 70));
+        }
+        &.daff-tertiary {
+            @include daff-link-theme-variant(daff-color($tertiary), daff-color($tertiary, 70));
+        }
+        &.daff-theme {
+            @include daff-link-theme-variant($base, daff-illuminate($base, $daff-gray, 1));
+        }
+        &.daff-theme-contrast {
+            @include daff-link-theme-variant($baseContrast, daff-illuminate($baseContrast, $daff-gray, 1));
+        }
+        &.daff-black {
+            @include daff-link-theme-variant($black, daff-color($daff-gray, 100));
+        }
+        &.daff-white {
+            @include daff-link-theme-variant($white, daff-color($daff-gray, 10));
+        }
+        &[disabled] {
+            @include daff-link-theme-variant(daff-color($daff-gray, 60), daff-color($daff-gray, 60));
+        }
+    }
+
+}

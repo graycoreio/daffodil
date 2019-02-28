@@ -639,8 +639,14 @@
               "apps/design-land/src/assets"
             ],
             "styles": [
-              "apps/design-land/src/styles.scss"
+              "apps/design-land/src/scss/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "apps/design-land/src/scss",
+                "libs/design/src/scss"
+              ]
+            },
             "scripts": []
           },
           "configurations": {

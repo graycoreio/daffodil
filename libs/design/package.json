@@ -13,7 +13,9 @@
     "postbuild:scss:util": "scss-bundle -c build/util.json",
     "postbuild:scss:theme": "scss-bundle -c build/theme.json",
     "postbuild:scss:typography": "scss-bundle -c build/typography.json",
-    "test": "ng test design --watch=false --browsers=ChromeHeadless"
+    "test": "npm run test:scss && npm run test:angular",
+    "test:scss": "jasmine src/test_scss.js",
+    "test:angular": "ng test design --watch=false --browsers=ChromeHeadless"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "description": "A consistent, sane api driver that works with different ecommerce systems.",

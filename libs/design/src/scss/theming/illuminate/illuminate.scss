@@ -1,0 +1,116 @@
+@import "../color";
+@import "../contrast";
+
+/**
+* Take a numeric map and sort it.
+* 
+* https://gist.github.com/Jakobud/a0ac11e80a1de453cd86f0d3fc0a1410
+* Credit to: https://gist.github.com/iamandrewluca
+*/
+@function _daff-illuminate-sort($map){
+    // Transform map to zipped list
+    $keys: ();
+    $values: ();
+
+    @each $key, $val in $map {
+        $keys: append($keys, $key);
+        $values: append($values, $val);
+    }
+
+    $list: zip($keys, $values);
+
+    $sortedMap: ();
+    @while length($list) > 0 {
+
+        // Find smallest pair
+        $smallestPair: nth($list, 1);
+        @each $pair in $list {
+            $value: nth($pair, 2);
+            $smallestValue: nth($smallestPair, 2);
+            @if $value < $smallestValue {
+                $smallestPair: $pair;
+            }
+        }
+
+        // Add smallest pair to sorted map
+        $key: nth($smallestPair, 1);
+        $value: nth($smallestPair, 2);
+        $sortedMap: map-merge($sortedMap, ($key: $value));
+
+        // Remove from list smallest pair
+        $smallestPairIndex: index($list, $smallestPair);
+        $newList: ();
+        @for $i from 1 through length($list) {
+        @if $i != $smallestPairIndex {
+            $newList: append($newList, nth($list, $i), "space");
+        }
+        }
+        $list: $newList;
+    }
+
+    @return $sortedMap;
+}
+
+/**
+* Given a map of key, luminance pairs, find the key 
+* of the value that is "nth" away from zero.
+*
+* @param $map: a map of key, luminance pairs, 
+* @param $nth: nth steps away from zero
+*/
+@function _daff-illuminate-get-key($map, $nth: 1) {
+    //Cap off "nth" to prevent going out-of-bounds.
+    @if($nth > length($map)){$nth: length(map)};
+    $map: _daff-illuminate-sort($map);
+    @return nth(nth($map, $nth),1);
+}
+
+
+/**
+* 
+* Takes a $color and palette and returns the color in 
+* the palette which would "illuminate" against that color.
+*
+* @usage
+* ```
+* daff-illuminate($palette);
+* ```
+*/
+@function daff-illuminate($color, $palette, $nth: 1) {
+    $luminanceMap: ();
+
+    //Validate
+    @each $key, $paletteColor in $palette {
+        @if (type-of($key) == "string"){
+            $palette: map-remove($palette, $key);
+        }
+    }
+
+    //Transform into usable values
+    @each $key, $paletteColor in $palette {
+        $luminanceMap: map-merge(
+            $luminanceMap, 
+            ($key: (daff-luminance($paletteColor) - daff-luminance($color)))
+        );
+    }
+
+    //Calculate which color to get
+    $brighterColors:();
+    $darkerColors:();
+    
+    @each $key, $luminance in $luminanceMap {
+        @if($luminance > 0) { $brighterColors: map-merge($brighterColors, ($key: $luminance)) }
+        @if($luminance < 0) { $darkerColors: map-merge($darkerColors, ($key: abs($luminance))) }
+    }
+
+    $key: null;
+    @if(daff-luminance($color) >= 0.5){ //If the color is bright
+        $key: _daff-illuminate-get-key($darkerColors, $nth);
+    }
+    @else { //If the color is dark
+        $key: _daff-illuminate-get-key($brighterColors, $nth);
+    }
+
+    @return map-get($palette, $key, );
+    
+};

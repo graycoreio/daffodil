@@ -1,4 +1,5 @@
-@import 'daff-util';
+@import 'utilities';
+@import "theme";
 
 .cart-summary {
   display: flex;
@@ -46,7 +47,7 @@
 
   &__item-count {
     float: right;
-    color: daff-color($daff-gray, 800);
+    color: daff-color($daff-gray, 80);
     font-size: $small-font-size;
   }
 }
