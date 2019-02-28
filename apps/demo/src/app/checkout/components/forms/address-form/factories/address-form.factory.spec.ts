@@ -37,7 +37,7 @@ describe('Daffodil Demo | Checkout | Forms | Address Form | Factories | AddressF
           lastname: '',
           street: '',
           city: '',
-          state: 'State',
+          state: '',
           postcode: '',
           telephone: ''
         };

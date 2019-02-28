@@ -1,31 +1,26 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
-import { DaffErrorStateMatcher } from '@daffodil/design';
+interface RegionOption {
+  label: string;
+  value: any;
+};
 
 @Component({
   selector: 'demo-address-form',
   templateUrl: './address-form.component.html',
   styleUrls: ['./address-form.component.scss']
 })
-export class AddressFormComponent implements OnInit {
+export class AddressFormComponent {
 
   @Input() formGroup: FormGroup;
   @Input() submitted: boolean;
 
-  stateErrorStateMatcher: DaffErrorStateMatcher;
-
   constructor() { }
 
-  stateSelectValues = [
-    'State',
-    'California'
+  stateSelectValues: RegionOption[] = [
+    {label:'State', value: ''},
+    {label: 'Alabama', value: 'AL'},
+    {label: 'Alaska', value: 'AK'}
   ];
-
-  ngOnInit() {
-    this.stateErrorStateMatcher = new DaffErrorStateMatcher();
-    this.stateErrorStateMatcher.isErrorState = (control: FormControl, formSubmitted: boolean) => {
-      return (control.errors || control.value === 'State') && (control.touched || formSubmitted);
-    }
-  }
 }

@@ -5,18 +5,20 @@ import { DaffFormFieldControl } from '../../form-field/form-field-control';
 
 @Component({
   // tslint:disable-next-line: component-selector
-  selector: 'input[daff-input]',
+  selector: 'select[daff-native-select]',
   template: '<ng-content></ng-content>',
-  styleUrls: ['./input.component.scss'],
+  styleUrls: ['./select.component.scss'],
   host: {
-    'class': 'daff-input'
+    'class': 'daff-native-select'
   },
   encapsulation: ViewEncapsulation.None,
-  providers: [{provide: DaffFormFieldControl, useExisting: DaffInputComponent}],
+  providers: [{provide: DaffFormFieldControl, useExisting: DaffNativeSelectComponent}],
 })
 
-export class DaffInputComponent implements DaffFormFieldControl<any> {
+export class DaffNativeSelectComponent implements DaffFormFieldControl<any> {
   @Input() formSubmitted: boolean;
+
+  controlType = "native-select";
   
   constructor(@Optional() @Self() public ngControl: NgControl) {}
 

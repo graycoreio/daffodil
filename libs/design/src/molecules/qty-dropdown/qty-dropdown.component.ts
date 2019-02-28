@@ -2,8 +2,8 @@ import { Component, OnInit, Input, Renderer2, Output, EventEmitter } from '@angu
 
 @Component({
   selector: 'daff-qty-dropdown',
-  templateUrl: './qty-dropdown.component.html',
-  styleUrls: ['./qty-dropdown.component.scss']
+  styleUrls: ['./qty-dropdown.component.scss'],
+  templateUrl: './qty-dropdown.component.html'
 })
 export class DaffQtyDropdownComponent implements OnInit {
   

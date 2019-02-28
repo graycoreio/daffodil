@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import {
   DaffInputModule,
-  DaffSelectModule,
+  DaffNativeSelectModule,
   DaffButtonModule
 } from '@daffodil/design';
 
@@ -17,7 +17,7 @@ import { PaymentInfoFormModule } from '../payment-info-form/payment-info-form.mo
     CommonModule,
     ReactiveFormsModule,
     DaffInputModule,
-    DaffSelectModule,
+    DaffNativeSelectModule,
     AddressFormModule,
     PaymentInfoFormModule,
     DaffButtonModule

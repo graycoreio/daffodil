@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DaffSelectValidatorComponent } from './select-validator/select-validator.component';
+import { DaffNativeSelectComponent } from './select/select.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   exports: [
-    DaffSelectValidatorComponent
+    DaffNativeSelectComponent
   ],
 
   declarations: [
-    DaffSelectValidatorComponent
+    DaffNativeSelectComponent
   ]
 })
-export class DaffSelectModule { }
+export class DaffNativeSelectModule { }
