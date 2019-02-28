@@ -1,8 +1,9 @@
-@import 'daff-util';
+@import 'utilities';
+@import "theme";
 
 :host{
   display: block;
-  background: $black;
+  background: daff-color($daff-gray, 100);
   color: $white;
   padding: 50px 25px;
   margin: 0;

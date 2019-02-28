@@ -1,42 +1,61 @@
 // Base colors
-$white: #fff;
+$daff-white: #fff;
 $error: #dd0000;
 
-// Daffodil primary color palette
-$daff-primary: (
-  100: #fff8e2,
-  200: #ffe488,
-  300: #ffd958,
-  400: #ffd034,
-  500: #ffc810,
-  600: #ffc20e,
-  700: #ffbb0c,
-  800: #ffb409,
-  900: #ffa705,
+$daff-yellow: (
+  10: #fff8e2,
+  20: #ffefb7,
+  30: #ffe488,
+  40: #ffd958,
+  50: #ffd034,
+  60: #ffc810,
+  70: #ffc20e,
+  80: #ffbb0c,
+  90: #ffb409,
+  100: #ffa705,
 );
 
-// Daffodil accent color palette
-$daff-accent: (
-  100: #e6e4f6,
-  200: #9691d9,
-  300: #6c64c9,
-  400: #4d43be,
-  500: #2d22b2,
-  600: #281eab,
-  700: #2219a2,
-  800: #1c1499,
-  900: #110c8a,
+$daff-primary: $daff-yellow;
+
+$daff-purple: (
+  10: #e6e4f6,
+  20: #c0bde8,
+  30: #9691d9,
+  40: #6c64c9,
+  50: #4d43be,
+  60: #2d22b2,
+  70: #281eab,
+  80: #2219a2,
+  90: #1c1499,
+  100: #110c8a,
 );
 
-// Daffodil gray color palette
+$daff-accent: $daff-purple; 
+
+$daff-blue: (
+  10: #E6E6E9,
+  20: #C0C1C8,
+  30: #9698A3,
+  40: #6C6E7E,
+  50: #4D4F63,
+  60: #2D3047,
+  70: #282B40,
+  80: #222437,
+  90: #1C1E2F,
+  100: #111320,
+);
+
 $daff-gray: (
-  100: #fafafa,
-  200: #eeeeee,
-  300: #e0e0e0,
-  400: #bdbdbd,
-  500: #9e9e9e,
-  600: #757575,
-  700: #616161,
-  800: #424242,
-  900: #212121,
+  0: #fff,
+  10: #fafafa,
+  20: #e6e6e6,
+  30: #d3d3d3,
+  40: #bfbfbf,
+  50: #a2a2a2,
+  60: #747474, // default hue
+  70: #5d5d5d,
+  80: #404040,
+  90: #2c2c2c,
+  100: #181818,
+  110: #050505,
 );

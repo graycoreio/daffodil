@@ -69,6 +69,7 @@
     "ng-packagr": "^4.7.0",
     "prettier": "1.15.2",
     "protractor": "~5.4.0",
+    "sass-true": "^4.0.0",
     "scss-bundle": "^2.4.0",
     "ts-node": "~7.0.1",
     "tsickle": "^0.34.0",

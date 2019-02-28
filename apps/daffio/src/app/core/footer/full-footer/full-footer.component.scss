@@ -1,9 +1,10 @@
 @import 'daff-util';
+@import 'theme';
 
 :host {
   display: block;
   padding: 50px 25px;
-  border-top: 1px solid daff-color($daff-gray, 200);
+  border-top: 1px solid daff-color($daff-gray, 20);
 
   @include breakpoint(tablet) {
     padding: 75px 50px;

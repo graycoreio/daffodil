@@ -1,3 +1,12 @@
+/**
+* Take a the list of breakpoints and retrieves the defined point.
+* If an invalid breakpoint is defined, it will display a warning.
+* 
+* @usage
+* ```
+@include breakpoint(mobile) {}
+* ```
+*/
 
 @mixin breakpoint($point) {
   @if not map-has-key($map: $breakpoints, $key: $point){

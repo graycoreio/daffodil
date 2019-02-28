@@ -1,11 +1,10 @@
-@import 'daff-util';
+@import 'utilities';
 
 .hero {
   text-align: center;
 }
 
 .pwa {
-  background-color: daff-color($daff-gray, 100);
   text-align: center;
 
   &__grid {
@@ -73,9 +72,6 @@
 }
 
 .platform {
-  color: $white;
-  background-color: #2D3047;
-
   &__logos {
     text-align: center;
     opacity: 0.5;

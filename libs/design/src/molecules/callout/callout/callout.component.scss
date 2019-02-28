@@ -74,25 +74,4 @@
       max-width: 100%;
     }
   }
-
-  // color variants
-  &.daff-primary {
-    background-color: $primary;
-    color: $black;
-  }
-
-  &.daff-accent {
-    background-color: $accent;
-    color: white;
-  }
-
-  &.daff-white {
-    background-color: $white;
-    color: $black;
-  }
-
-  &.daff-black {
-    background-color: $black;
-    color: $white;
-  }
 }

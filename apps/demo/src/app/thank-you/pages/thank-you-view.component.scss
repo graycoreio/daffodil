@@ -1,4 +1,5 @@
-@import 'daff-util';
+@import 'theme';
+@import 'utilities';
 
 .thank-you {
   padding: 24px 15px;
@@ -20,7 +21,7 @@
 
   &__mobile-cart {
     display: block;
-    border-top: 1px solid daff-color($daff-gray, 300);
+    border-top: 1px solid daff-color($daff-gray, 20);
     
     @include breakpoint(big-tablet) {
       display: none;

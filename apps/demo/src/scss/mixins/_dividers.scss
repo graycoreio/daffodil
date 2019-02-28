@@ -1,0 +1,5 @@
+@import 'theme';
+
+@mixin section-divider($size: 1px, $color: daff-color($daff-gray, 20)) {
+    border-bottom: solid 1px $color;
+}

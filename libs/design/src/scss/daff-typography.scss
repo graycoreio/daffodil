@@ -1,4 +1,23 @@
-@import "daff-util";
+/**
+* @docs
+* 
+* `daff-typography` is a generic typography library that
+* sets common typography settings for the daffodil design
+* package. It IS NOT necessary, but can be used.
+*
+* @note You SHOULD NOT import this as often as you like, as it only contains CSS
+* and will effect your final compiled stylesheet size.
+* 
+* @usage
+* ```
+* @import "daff-typography";
+* ```
+*/
+
+@import "./responsive/variables";
+@import "./responsive/breakpoint";
+@import "./typography/variables";
+@import "./typography/mixins";
 
 body,html {
     font-size: $mobile-font-size;
@@ -19,10 +38,6 @@ p {
 h1,h2,h3,h4,h5,h6 {
     margin: 0;
     padding: 0;
-}
-
-a {
-    color: $black;
 }
 
 .embolden {

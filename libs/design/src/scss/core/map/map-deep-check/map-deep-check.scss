@@ -1,0 +1,24 @@
+/**
+* Checks whether or not a map has a nested key
+* 
+* @param $map - the map being checked
+* @param $keys - an list of ordered keys to traverse down
+* 
+* @returns boolean
+* @throws error
+*/
+@function daff-map-deep-check($map, $keys){
+    @if (type-of($map) != "map" ){
+        @error "Expected first parameter to be of type `map`";
+    }
+
+    @each $key in $keys {
+        @if( not map-has-key($map, $key) ){
+            @return false;
+        }
+
+        $map: map-get($map, $key);
+    }
+
+    @return true;
+}

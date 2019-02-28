@@ -1,6 +1,6 @@
 @import '../../scss/daff-util';
 
-@mixin button-styles {
+@mixin daff-button {
     display: inline-block;
     position: relative;
     font-family: $body-font-family;
@@ -9,193 +9,43 @@
     overflow: hidden;
     text-align: center;
     text-decoration: none;
-    transition: 0.2s ease-in;
+    transition: all 0.2s ease;
     @include clickable();
 
     &:focus {
         outline: none;
     }
-}
-
-@mixin daff-button {
-    min-width: 90px;
-    padding: 15px 25px;
-
-    &.daff-primary {
-        background-color: $primary;
-        border: 1px solid $primary;
-        color: $black;
-
-        &:hover {
-            background-color: daff-color($daff-primary, 700);
-            border: 1px solid daff-color($daff-primary, 700);
-        }
-    }
-
-    &.daff-accent {
-        background-color: $accent;
-        border: 1px solid $accent;
-        color: $white;
-
-        &:hover {
-            background-color: daff-color($daff-accent, 700);
-            border: 1px solid daff-color($daff-accent, 700);
-        }
-    }
-
-    &.daff-black {
-        background-color: $black;
-        border: 1px solid $black;
-        color: $white;
-
-        &:hover {
-            background-color: daff-color($daff-gray, 800);
-            border: 1px solid daff-color($daff-gray, 800);
-        }
-    }
-
-    &.daff-white {
-        background-color: $white;
-        border: 1px solid $white;
-        color: $black;
-
-        &:hover {
-            background-color: daff-color($daff-gray, 100);
-            border: 1px solid daff-color($daff-gray, 100);
-        }
-    }
 
     &[disabled] {
         cursor: not-allowed;
-        background-color: daff-color($daff-gray, 300);
-        border: 1px solid daff-color($daff-gray, 300);
-        color: daff-color($daff-gray, 600);
-
-        &:hover {
-            background-color: daff-color($daff-gray, 300);
-            border: 1px solid daff-color($daff-gray, 300); 
-        }
     }
 }
 
 .daff-button {
-    @include button-styles();
     @include daff-button();
+    min-width: 90px;
+    padding: 15px 20px;
 }
 
 .daff-raised-button {
-    @include button-styles();
     @include daff-button();
-    box-shadow:
-        0 2px 10px rgba($black, 0.1),
-        0 1px 3px rgba($black, 0.08);
-
+    min-width: 90px;
+    padding: 15px 20px;
 }
 
 .daff-icon-button {
-    @include button-styles();
+    @include daff-button();
     height: 40px;
     width: 40px;
     line-height: 40px;
     background: none;
     padding: 0;
     border: 0;
-
-    &.daff-primary {
-        color: $primary;
-
-        &:hover {
-            color: daff-color($daff-primary, 700);
-        }
-    }
-
-    &.daff-accent {
-        color: $accent;
-
-        &:hover {
-            color: daff-color($daff-accent, 700);
-        }
-    }
-
-    &.daff-black {
-        color: $black;
-
-        &:hover {
-            color: daff-color($daff-gray, 800);
-        }
-    }
-
-    &.daff-white {
-        color: $white;
-
-        &:hover {
-            color: daff-color($daff-gray, 100);
-        }
-    }
-
-    &[disabled] {
-        cursor: not-allowed;
-        color: daff-color($daff-gray, 600);
-
-        &:hover {
-            color: daff-color($daff-gray, 600);
-        }
-    }
 }
 
 .daff-stroked-button {
-    @include button-styles();
+    @include daff-button();
+    background: transparent;
     min-width: 90px;
     padding: 15px 20px;
-
-    &.daff-primary {
-        border: 1px solid $primary;
-        color: $primary;
-
-        &:hover {
-            background-color: $primary;
-            color: $white;
-        }
-    }
-
-    &.daff-accent {
-        border: 1px solid $accent;
-        color: $accent;
-
-        &:hover {
-            background-color: $accent;
-            color: $white;
-        }
-    }
-
-    &.daff-black {
-        border: 1px solid $black;
-        color: $black;
-
-        &:hover {
-            background-color: $black;
-            color: $white;
-        }
-    }
-
-    &.daff-white {
-        border: 1px solid $white;
-        color: $white;
-
-        &:hover {
-            background-color: $white;
-            color: $black;
-        }
-    }
-
-    &[disabled] {
-        cursor: not-allowed;
-        border: 1px solid daff-color($daff-gray, 300);
-        color: daff-color($daff-gray, 600);
-
-        &:hover {
-            background-color: transparent;
-            color: daff-color($daff-gray, 600);
-        }
-    }
 }

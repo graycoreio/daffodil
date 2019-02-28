@@ -1,0 +1,48 @@
+@mixin daffio-pwa-theme($theme) {
+    $primary: map-get($theme, primary);
+    $secondary: map-get($theme, secondary);
+    $tertiary: map-get($theme, tertiary);
+    $base: daff-map-deep-get($theme, 'core.base');
+    $baseContrast: daff-map-deep-get($theme, 'core.base-contrast');
+    $shadowColor: daff-illuminate($base, $tertiary, 3);
+
+    .hero {
+        .highlight {
+          color: daff-color($primary);
+        }
+    }
+
+    .understanding {
+        background-color: daff-illuminate($base, $daff-gray);
+
+        &__feature {
+            background: linear-gradient(to bottom right, daff-color($secondary, 30), daff-color($secondary));
+            box-shadow:
+                0 40px 60px 0 rgba($shadowColor, 0.25);
+            color: daff-text-contrast(daff-color($secondary));
+            transition: all 0.2s ease;
+
+            &:hover {
+                box-shadow:
+                    0 40px 60px 0 rgba($shadowColor, 0.3);
+            }
+    }
+  }
+
+    .card-grid {
+        &__card {
+            background: daff-illuminate($base, $daff-gray);
+            color: daff-text-contrast(daff-illuminate($base, $daff-gray));
+            transition: all 0.2s ease;
+
+        &:hover {
+            box-shadow:
+                0 40px 60px 0 rgba($shadowColor, 0.2);
+        }
+    }
+  }
+
+    .comparison {
+        background-color: daff-illuminate($base, $daff-gray);
+    }
+}

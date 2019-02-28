@@ -1,4 +1,5 @@
 @import '../../../scss/daff-util';
+@import '../../../scss/daff-theme.scss';
 
 .daff-list {
   $root: &;
@@ -18,7 +19,7 @@
       text-decoration: none;
 
       &:hover {
-        color: daff-color($daff-gray, 800);
+        color: daff-color($daff-gray, 80);
       }
     }
   }

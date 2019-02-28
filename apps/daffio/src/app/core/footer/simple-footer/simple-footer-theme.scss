@@ -1,0 +1,25 @@
+@mixin daffio-simple-footer-theme($theme){
+    $primary: map-get($theme, primary);
+    $secondary: map-get($theme, secondary);
+    $tertiary: map-get($theme, tertiary);
+    $base: daff-map-deep-get($theme, "core.base");
+    $baseContrast: daff-map-deep-get($theme, "core.base-contrast");
+    
+    daffio-simple-footer {
+        border-top: 1px solid daff-illuminate($base, $daff-gray, 2);
+    }
+
+    .simple-footer {
+        &__copyright {
+            color: daff-text-contrast($base);
+        }
+
+        &__link, &__social-link {
+            color: daff-text-contrast($base);
+            
+            &:hover {
+                color: daff-illuminate($baseContrast, $daff-gray, 3);
+            }
+        }
+    }
+}

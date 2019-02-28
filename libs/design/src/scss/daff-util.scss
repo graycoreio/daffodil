@@ -1,15 +1,32 @@
-//Variables
+/**
+* @docs
+*
+* `daff-util` is a utility library that contains common functions,
+* mixins and variables that make writing SCSS style-sheets a bit
+* easier.
+* 
+*
+* @note You can import this as often as you like, as it only contains SCSS
+* variables, mixins, and functions; thus it won't effect your final
+* compiled stylesheet size.
+*
+* @usage
+* ```
+* @import "daff-util";
+* ```
+*/
+
+// Variables
 @import "typography/variables";
 @import 'responsive/variables';
-@import 'theming/variables';
+
+// Daffodil SASS Core
+@import "core/core";
 
 // Sass Mixins & Functions
-@import "interaction/mouse/clickable";
+@import 'interaction/mouse/clickable';
 @import 'responsive/breakpoint';
 @import 'typography/mixins';
-@import 'theming/theming';
 
-//TODO Remove these from @daffodil/design
-@import 'mixins/cart-total';
-@import 'mixins/dividers';
-@import 'mixins/chevron';
+// Sass Icon Mixins
+@import 'icons/chevron';

@@ -3,7 +3,6 @@
 :host { 
   display: block;
   padding: 50px 0;
-  border-top: 1px solid daff-color($daff-gray, 200);
   font-size: $small-font-size;
 
   @include breakpoint(tablet) {
@@ -72,10 +71,6 @@
       padding-right: 0;
     }
 
-    &:hover {
-      color: $accent;
-    }
-
     span {
       margin-left: 5px;
     }
@@ -83,7 +78,7 @@
 
   &__copyright {
     display: block;
-    color: daff-color($daff-gray, 700);
+    
     text-align: center;
     margin-top: 25px;
   }
