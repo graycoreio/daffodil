@@ -4,10 +4,10 @@ import { FormsModule, ReactiveFormsModule, FormControl, FormGroup, AbstractContr
 import { By } from '@angular/platform-browser';
 
 import { 
-  DaffSelectModule, 
+  DaffNativeSelectModule, 
+  DaffNativeSelectComponent,
   DaffInputModule, 
   DaffInputComponent,
-  DaffSelectValidatorComponent,
   DaffFormFieldModule
 } from '@daffodil/design';
 import { PaymentInfoFormComponent } from './payment-info-form.component';
@@ -34,7 +34,7 @@ describe('PaymentInfoFormComponent', () => {
       imports: [
         FormsModule,
         ReactiveFormsModule,
-        DaffSelectModule,
+        DaffNativeSelectModule,
         DaffInputModule,
         DaffFormFieldModule
       ],
@@ -72,295 +72,52 @@ describe('PaymentInfoFormComponent', () => {
 
   describe('on [daff-input]', () => {
 
-    let inputValidator: DaffInputComponent;
+    let input: DaffInputComponent;
 
     beforeEach(() => {
-      inputValidator = fixture.debugElement.queryAll(By.css('[daff-input]'))[0].componentInstance;
+      input = fixture.debugElement.queryAll(By.css('[daff-input]'))[0].componentInstance;
     });
     
     it('should set formControl', () => {
-      expect(<AbstractControl> inputValidator.formControl).toEqual(<AbstractControl> paymentInfoForm.formGroup.controls['name']);
+      expect(input.ngControl.control).toEqual(<AbstractControl> paymentInfoForm.formGroup.controls['name']);
     });
 
     it('should set formSubmitted', () => {
-      expect(inputValidator.formSubmitted).toEqual(paymentInfoForm.submitted);
+      expect(input.formSubmitted).toEqual(paymentInfoForm.submitted);
     });
   });
 
-  describe('on month [daff-select-validator]', () => {
+  describe('on month [daff-native-select]', () => {
 
-    let monthSelectValidator: DaffSelectValidatorComponent;
+    let monthSelect: DaffNativeSelectComponent;
 
     beforeEach(() => {
-      monthSelectValidator = fixture.debugElement.queryAll(By.css('[daff-select-validator]'))[0].componentInstance;
+      monthSelect = fixture.debugElement.queryAll(By.css('[daff-native-select]'))[0].componentInstance;
     });
     
     it('should set formControl', () => {
-      expect(<AbstractControl> monthSelectValidator.formControl).toEqual(<AbstractControl> paymentInfoForm.formGroup.controls['month']);
+      expect(monthSelect.ngControl.control).toEqual(paymentInfoForm.formGroup.controls['month']);
     });
 
     it('should set formSubmitted', () => {
-      expect(monthSelectValidator.formSubmitted).toEqual(paymentInfoForm.submitted);
-    });
-
-    it('should set ErrorStateMatcher', () => {
-      expect(monthSelectValidator.errorStateMatcher).toEqual(paymentInfoForm.monthErrorStateMatcher);
+      expect(monthSelect.formSubmitted).toEqual(paymentInfoForm.submitted);
     });
   });
 
-  describe('on year [daff-select-validator]', () => {
+  describe('on year [daff-native-select]', () => {
 
-    let yearSelectValidator: DaffSelectValidatorComponent;
+    let yearSelect: DaffNativeSelectComponent;
 
     beforeEach(() => {
-      yearSelectValidator = fixture.debugElement.queryAll(By.css('[daff-select-validator]'))[1].componentInstance;
+      yearSelect = fixture.debugElement.queryAll(By.css('[daff-native-select]'))[1].componentInstance;
     });
     
     it('should set formControl', () => {
-      expect(<AbstractControl> yearSelectValidator.formControl).toEqual(<AbstractControl> paymentInfoForm.formGroup.controls['year']);
+      expect(yearSelect.ngControl.control).toEqual(paymentInfoForm.formGroup.controls['year']);
     });
 
     it('should set formSubmitted', () => {
-      expect(yearSelectValidator.formSubmitted).toEqual(paymentInfoForm.submitted);
-    });
-
-    it('should set ErrorStateMatcher', () => {
-      expect(yearSelectValidator.errorStateMatcher).toEqual(paymentInfoForm.yearErrorStateMatcher);
-    });
-  });
-
-  describe('ngOnInit', () => {
-
-    describe('monthErrorStateMatcher.isErrorState', () => {
-
-      let formControl;
-
-      beforeEach(() => {
-        formControl = new FormControl();
-      });
-      
-      describe('when control.touched is true', () => {
-        
-        beforeEach(() => {
-          formControl.touched = true;
-        });
-
-        describe('and control.value is Month', () => {
-          
-          beforeEach(() => {
-            formControl.value = 'Month';            
-          });
-
-          it('should return true', () => {
-            expect(paymentInfoForm.monthErrorStateMatcher.isErrorState(formControl, false)).toBeTruthy();
-          });
-        });
-
-        describe('and value is not Month', () => {
-          
-          describe('and control has errors', () => {
-            
-            beforeEach(() => {
-              formControl.errors = true;
-            });
-
-            it('should return true', () => {
-              expect(paymentInfoForm.monthErrorStateMatcher.isErrorState(formControl, false)).toBeTruthy();              
-            });
-          });
-          
-          describe('and control has no errors', () => {
-            
-            beforeEach(() => {
-              formControl.errors = false;
-            });
-
-            it('should return false', () => {
-              expect(paymentInfoForm.monthErrorStateMatcher.isErrorState(formControl, false)).toBeFalsy();              
-            });
-          });
-        });
-      });
-
-      describe('when control.touched is false', () => {
-
-        let formSubmitted;
-        
-        beforeEach(() => {
-          formControl.touched = false;
-        });
-
-        describe('and formSubmitted is true', () => {
-          
-          beforeEach(() => {
-            formSubmitted = true;
-          });
-
-          describe('and control.value is Month', () => {
-            
-            beforeEach(() => {
-              formControl.value = 'Month';
-            });
-
-            it('should return true', () => {
-              expect(paymentInfoForm.monthErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeTruthy();              
-            });
-          });
-
-          describe('and control.value is not Month', () => {
-            
-            describe('and control has errors', () => {
-              
-              beforeEach(() => {
-                formControl.value = 'Not Month';
-                formControl.errors = true;
-              });
-
-              it('should return true', () => {
-                expect(paymentInfoForm.monthErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeTruthy();              
-              });
-            });
-
-            describe('and control has no errors', () => {
-              
-              beforeEach(() => {
-                formControl.errors = false;
-              });
-
-              it('should return false', () => {
-                expect(paymentInfoForm.monthErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeFalsy();              
-              });
-            });
-          });
-        });
-
-        describe('and formSubmitted is false', () => {
-          
-          beforeEach(() => {
-            formSubmitted = false;
-          });
-
-          it('should return false', () => {
-            expect(paymentInfoForm.monthErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeFalsy();              
-          });
-        });
-      });
-    });
-
-    describe('yearErrorStateMatcher.isErrorState', () => {
-
-      let formControl;
-
-      beforeEach(() => {
-        formControl = new FormControl();
-      });
-      
-      describe('when control.touched is true', () => {
-        
-        beforeEach(() => {
-          formControl.touched = true;
-        });
-
-        describe('and control.value is Year', () => {
-          
-          beforeEach(() => {
-            formControl.value = 'Year';            
-          });
-
-          it('should return true', () => {
-            expect(paymentInfoForm.yearErrorStateMatcher.isErrorState(formControl, false)).toBeTruthy();
-          });
-        });
-
-        describe('and value is not Year', () => {
-          
-          describe('and control has errors', () => {
-            
-            beforeEach(() => {
-              formControl.errors = true;
-            });
-
-            it('should return true', () => {
-              expect(paymentInfoForm.yearErrorStateMatcher.isErrorState(formControl, false)).toBeTruthy();              
-            });
-          });
-          
-          describe('and control has no errors', () => {
-            
-            beforeEach(() => {
-              formControl.errors = false;
-            });
-
-            it('should return false', () => {
-              expect(paymentInfoForm.yearErrorStateMatcher.isErrorState(formControl, false)).toBeFalsy();              
-            });
-          });
-        });
-      });
-
-      describe('when control.touched is false', () => {
-
-        let formSubmitted;
-        
-        beforeEach(() => {
-          formControl.touched = false;
-        });
-
-        describe('and formSubmitted is true', () => {
-          
-          beforeEach(() => {
-            formSubmitted = true;
-          });
-
-          describe('and control.value is Year', () => {
-            
-            beforeEach(() => {
-              formControl.value = 'Year';
-            });
-
-            it('should return true', () => {
-              expect(paymentInfoForm.yearErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeTruthy();              
-            });
-          });
-
-          describe('and control.value is not Year', () => {
-            
-            describe('and control has errors', () => {
-              
-              beforeEach(() => {
-                formControl.value = 'Not Year';
-                formControl.errors = true;
-              });
-
-              it('should return true', () => {
-                expect(paymentInfoForm.yearErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeTruthy();              
-              });
-            });
-
-            describe('and control has no errors', () => {
-              
-              beforeEach(() => {
-                formControl.errors = false;
-              });
-
-              it('should return false', () => {
-                expect(paymentInfoForm.yearErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeFalsy();              
-              });
-            });
-          });
-        });
-
-        describe('and formSubmitted is false', () => {
-          
-          beforeEach(() => {
-            formSubmitted = false;
-          });
-
-          it('should return false', () => {
-            expect(paymentInfoForm.yearErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeFalsy();              
-          });
-        });
-      });
+      expect(yearSelect.formSubmitted).toEqual(paymentInfoForm.submitted);
     });
   });
 });

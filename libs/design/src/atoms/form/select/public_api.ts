@@ -1,2 +1,2 @@
-export { DaffSelectValidatorComponent } from './select-validator/select-validator.component';
-export { DaffSelectModule } from './select.module';
+export { DaffNativeSelectComponent } from './select/select.component';
+export { DaffNativeSelectModule } from './select.module';

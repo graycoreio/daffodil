@@ -1,23 +1,5 @@
-@import '../../scss/daff-util';
-
-
-.qty-dropdown {
-  &__label > * {
-    width: 60px;
-    height: 35px;
-  }
-
-  &__selector, &__input {
-    border: 1px solid daff-color($daff-gray, 400);
-  }
-
+.daff-qty-dropdown {
   &__input {
-    padding-left: 10px;
-  }
-
-  &__selector {
-    font-size: 1rem;
-    padding-top: 5px;
-    margin-bottom: 0;
+    width: 50px;
   }
 }

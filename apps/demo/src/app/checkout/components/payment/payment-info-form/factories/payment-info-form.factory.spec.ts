@@ -40,8 +40,8 @@ describe('Daffodil Demo | Checkout | Forms | Payment Info Form | Factories | Pay
         expectedResult = paymentFactory.create({
           name: '',
           cardnumber: '',
-          month: 'Month',
-          year: 'Year',
+          month: '',
+          year: '',
           securitycode: ''
         });
   

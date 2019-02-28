@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, FormControl, FormGroup, AbstractControl, Validators, FormBuilder } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormGroup, AbstractControl, Validators, FormBuilder } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DaffInputModule, DaffFormFieldModule, DaffSelectModule, DaffInputComponent, DaffSelectValidatorComponent  } from '@daffodil/design';
+import { DaffInputModule, DaffNativeSelectComponent, DaffFormFieldModule, DaffNativeSelectModule, DaffInputComponent  } from '@daffodil/design';
 import { AddressFormComponent } from './address-form.component';
 
 @Component({
@@ -26,7 +26,7 @@ describe('AddressFormComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         DaffInputModule,
-        DaffSelectModule,
+        DaffNativeSelectModule,
         DaffFormFieldModule
       ],
       declarations: [ 
@@ -72,157 +72,35 @@ describe('AddressFormComponent', () => {
 
   describe('on [daff-input]', () => {
 
-    let inputValidator: DaffInputComponent;
+    let input: DaffInputComponent;
 
     beforeEach(() => {
-      inputValidator = fixture.debugElement.queryAll(By.css('[daff-input]'))[0].componentInstance;
+      input = fixture.debugElement.queryAll(By.css('[daff-input]'))[0].componentInstance;
     });
     
     it('should set formControl', () => {
-      expect(<AbstractControl> inputValidator.formControl).toEqual(<AbstractControl> addressForm.formGroup.controls['firstname']);
+      expect(input.ngControl.control).toEqual(addressForm.formGroup.controls['firstname']);
     });
 
     it('should set formSubmitted', () => {
-      expect(inputValidator.formSubmitted).toEqual(addressForm.submitted);
+      expect(input.formSubmitted).toEqual(addressForm.submitted);
     });
   });
 
-  describe('on [daff-select-validator]', () => {
+  describe('on [daff-native-select]', () => {
 
-    let selectValidator: DaffSelectValidatorComponent;
+    let select: DaffNativeSelectComponent;
 
     beforeEach(() => {
-      selectValidator = fixture.debugElement.query(By.css('[daff-select-validator]')).componentInstance;
+      select = fixture.debugElement.queryAll(By.css('[daff-native-select]'))[0].componentInstance;
     });
     
     it('should set formControl', () => {
-      expect(<AbstractControl> selectValidator.formControl).toEqual(<AbstractControl> addressForm.formGroup.controls['state']);
+      expect(select.ngControl.control).toEqual(<AbstractControl> addressForm.formGroup.controls['state']);
     });
 
     it('should set formSubmitted', () => {
-      expect(selectValidator.formSubmitted).toEqual(addressForm.submitted);
-    });
-
-    it('should set DaffErrorStateMatcher', () => {
-      expect(selectValidator.errorStateMatcher).toEqual(addressForm.stateErrorStateMatcher);
-    });
-  });
-
-  describe('ngOnInit', () => {
-
-    describe('stateErrorStateMatcher.isErrorState', () => {
-
-      let formControl;
-
-      beforeEach(() => {
-        formControl = new FormControl();
-      });
-      
-      describe('when control.touched is true', () => {
-        
-        beforeEach(() => {
-          formControl.touched = true;
-        });
-
-        describe('and control.value is State', () => {
-          
-          beforeEach(() => {
-            formControl.value = 'State';            
-          });
-
-          it('should return true', () => {
-            expect(addressForm.stateErrorStateMatcher.isErrorState(formControl, false)).toBeTruthy();
-          });
-        });
-
-        describe('and value is not State', () => {
-          
-          describe('and control has errors', () => {
-            
-            beforeEach(() => {
-              formControl.errors = true;
-            });
-
-            it('should return true', () => {
-              expect(addressForm.stateErrorStateMatcher.isErrorState(formControl, false)).toBeTruthy();              
-            });
-          });
-          
-          describe('and control has no errors', () => {
-            
-            beforeEach(() => {
-              formControl.errors = false;
-            });
-
-            it('should return false', () => {
-              expect(addressForm.stateErrorStateMatcher.isErrorState(formControl, false)).toBeFalsy();              
-            });
-          });
-        });
-      });
-
-      describe('when control.touched is false', () => {
-
-        let formSubmitted;
-        
-        beforeEach(() => {
-          formControl.touched = false;
-        });
-
-        describe('and formSubmitted is true', () => {
-          
-          beforeEach(() => {
-            formSubmitted = true;
-          });
-
-          describe('and control.value is State', () => {
-            
-            beforeEach(() => {
-              formControl.value = 'State';
-            });
-
-            it('should return true', () => {
-              expect(addressForm.stateErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeTruthy();              
-            });
-          });
-
-          describe('and control.value is not State', () => {
-            
-            describe('and control has errors', () => {
-              
-              beforeEach(() => {
-                formControl.errors = true;
-              });
-
-              it('should return true', () => {
-                expect(addressForm.stateErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeTruthy();              
-              });
-            });
-
-            describe('and control has no errors', () => {
-              
-              beforeEach(() => {
-                formControl.errors = false;
-              });
-
-              it('should return false', () => {
-                expect(addressForm.stateErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeFalsy();              
-              });
-            });
-          });
-        });
-
-        describe('and formSubmitted is false', () => {
-          
-          beforeEach(() => {
-            formSubmitted = false;
-          });
-
-          it('should return false', () => {
-            expect(addressForm.stateErrorStateMatcher.isErrorState(formControl, formSubmitted)).toBeFalsy();              
-          });
-        });
-      });
+      expect(select.formSubmitted).toEqual(addressForm.submitted);
     });
   });
 });

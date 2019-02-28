@@ -13,20 +13,24 @@
       [formControl]="formGroup.controls['cardnumber']"
       [formSubmitted]="submitted"/>
   </daff-form-field>
-  <select daff-select-validator class="payment-info-form__month"
-    name="month"
-    [formControl]="formGroup.controls['month']"
-    [formSubmitted]="submitted"
-    [errorStateMatcher]="monthErrorStateMatcher">
-    <option *ngFor="let month of monthSelectValues" [disabled]="month == 'Month'">{{month}}</option>
-  </select>
-  <select daff-select-validator class="payment-info-form__year"
-    name="year"
-    [formControl]="formGroup.controls['year']"
-    [formSubmitted]="submitted"
-    [errorStateMatcher]="yearErrorStateMatcher">
-    <option *ngFor="let year of yearSelectValues" [disabled]="year == 'Year'">{{year}}</option>
-  </select>
+  <daff-form-field class="payment-info-form__month">
+    <select daff-native-select
+      name="month"
+      [formControl]="formGroup.controls['month']"
+      [formSubmitted]="submitted">
+      <option *ngFor="let month of monthSelectValues" [value]="month.value">{{month.label}}</option>
+    </select>
+    <daff-error-message *ngIf="formGroup.controls['month'].errors && (formGroup.controls['month'].touched || submitted)">This field is required.</daff-error-message>
+  </daff-form-field>
+  <daff-form-field class="payment-info-form__year">
+    <select daff-native-select
+      name="year"
+      [formControl]="formGroup.controls['year']"
+      [formSubmitted]="submitted">
+      <option *ngFor="let year of yearSelectValues" [value]="year.value">{{year.label}}</option>
+    </select>
+    <daff-error-message *ngIf="formGroup.controls['year'].errors && (formGroup.controls['year'].touched || submitted)">This field is required.</daff-error-message>
+  </daff-form-field>
   <daff-form-field class="payment-info-form__security-code">
     <input daff-input type="text" class="payment-info-form__security-code"
       placeholder="Security Code (XXX)"

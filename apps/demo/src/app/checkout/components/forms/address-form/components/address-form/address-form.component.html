@@ -31,13 +31,15 @@
       [formSubmitted]="submitted"/>
     <daff-error-message *ngIf="formGroup.controls['city'].errors && (formGroup.controls['city'].touched || submitted)">This field is required.</daff-error-message>
   </daff-form-field>
-  <select daff-select-validator class="address-form__state"
-    name="state"
-    [formControl]="formGroup.controls['state']"
-    [formSubmitted]="submitted"
-    [errorStateMatcher]="stateErrorStateMatcher">
-    <option *ngFor="let state of stateSelectValues" [disabled]="state == 'State'">{{state}}</option>
-  </select>
+  <daff-form-field class="address-form__state">
+    <select daff-native-select
+      name="state"
+      [formControl]="formGroup.controls['state']"
+      [formSubmitted]="submitted">
+      <option *ngFor="let state of stateSelectValues" [value]="state.value" [disabled]="state.disabled">{{state.label}}</option>
+    </select>
+    <daff-error-message *ngIf="formGroup.controls['state'].errors && (formGroup.controls['state'].touched || submitted)">This field is required.</daff-error-message>
+  </daff-form-field>
   <daff-form-field class="address-form__postcode">
     <input daff-input type="text"
       placeholder="Zip Code"

@@ -14,8 +14,8 @@ export class PaymentInfoFormFactory {
     return this.fb.group({
       name: [paymentInfo ? paymentInfo.name : '', Validators.required],
       cardnumber: [paymentInfo ? paymentInfo.cardnumber : '', Validators.required],
-      month: [paymentInfo ? paymentInfo.month : 'Month', Validators.required],
-      year: [paymentInfo ? paymentInfo.year : 'Year', Validators.required],
+      month: [paymentInfo ? paymentInfo.month : '', Validators.required],
+      year: [paymentInfo ? paymentInfo.year : '', Validators.required],
       securitycode: [paymentInfo ? paymentInfo.securitycode : '', Validators.required]
     });
   }

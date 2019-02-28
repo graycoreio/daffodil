@@ -4,6 +4,9 @@ import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { DaffQtyDropdownComponent } from './qty-dropdown.component';
+import { DaffNativeSelectModule } from '../../atoms/form/select/select.module';
+import { DaffInputModule } from '../../atoms/form/input/input.module';
+import { DaffFormFieldModule } from '../../atoms/form/form-field/public_api';
 
 @Component({template: '<daff-qty-dropdown [qty]="qtyValue" [id]="idValue"></daff-qty-dropdown>'})
 class WrapperComponent {
@@ -21,7 +24,10 @@ describe('DaffQtyDropdownComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        FormsModule
+        FormsModule,
+        DaffFormFieldModule,
+        DaffNativeSelectModule,
+        DaffInputModule
       ],
       declarations: [ 
         WrapperComponent,

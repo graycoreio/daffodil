@@ -1,6 +1,6 @@
 # Error Message Component
 
-`daff-error-message` is a tagging element that helps the `daff-form-field` component place the error message and its associated form control element appropriately.
+`daff-error-message` is a component that works alongside the the `daff-form-field` component to style and place the error message and its associated form control element appropriately.
 
 ## Usage
 

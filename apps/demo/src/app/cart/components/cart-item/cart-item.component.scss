@@ -50,7 +50,7 @@
     display: none;
 
     @include breakpoint(big-tablet) {
-      display: inline;    
+      display: inline-block;    
     }
   }
 

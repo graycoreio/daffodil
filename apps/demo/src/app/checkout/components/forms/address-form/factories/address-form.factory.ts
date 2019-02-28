@@ -16,7 +16,7 @@ export class AddressFormFactory {
       lastname: [address ? address.lastname : '', Validators.required],
       street: [address ? address.street : '', Validators.required],
       city: [address ? address.city : '', Validators.required],
-      state: [address ? address.state : 'State', Validators.required],
+      state: [address ? address.state : '', Validators.required],
       postcode: [address ? address.postcode : '', Validators.required],
       telephone: [address ? address.telephone : '']
     });
