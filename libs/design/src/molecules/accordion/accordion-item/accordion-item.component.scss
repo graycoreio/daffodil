@@ -32,4 +32,16 @@
       padding-top: 30px;
     }
   }
+
+  &__open-icon {
+    &:after {
+      @include chevron($direction: "down");
+  }
+  }
+
+  &__close-icon {
+    &:after {
+      @include chevron($direction: "up");
+    }
+  }
 }
