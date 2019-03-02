@@ -1,0 +1,18 @@
+{
+  "name": "branding",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "ng build branding --prod && npm run build:assets",
+    "build:assets": "cp -R src/assets/ ../../dist/branding/assets/",
+    "lint": "ng lint branding",
+    "test": "ng test branding --watch=false --browsers=ChromeHeadless"
+  },
+  "peerDependencies": {
+    "@daffodil/design": "DAFFODIL_VERSION",
+    "@angular/common": "^7.2.0",
+    "@angular/core": "^7.2.0"
+  },
+  "devDependencies": {
+    "@daffodil/design": "DAFFODIL_VERSION"
+  }
+}

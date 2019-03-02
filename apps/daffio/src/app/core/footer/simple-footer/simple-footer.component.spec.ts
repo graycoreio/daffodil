@@ -3,9 +3,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 
 import { DaffioSimpleFooterComponent } from './simple-footer.component';
-import { DaffioLogoModule } from '../../logo/logo.module';
 
 import { DaffContainerModule } from '@daffodil/design';
+import { DaffLogoModule, DaffCopyrightModule } from '@daffodil/branding';
 
 describe('DaffioSimpleFooterComponent', () => {
   let component: DaffioSimpleFooterComponent;
@@ -19,7 +19,8 @@ describe('DaffioSimpleFooterComponent', () => {
       imports: [
         RouterTestingModule,
         DaffContainerModule,
-        DaffioLogoModule
+        DaffLogoModule,
+        DaffCopyrightModule
       ]
     })
     .compileComponents();
@@ -39,9 +40,14 @@ describe('DaffioSimpleFooterComponent', () => {
     expect(fixture.nativeElement.classList.contains('simple-footer')).toBeTruthy();
   });
 
-  describe('on <daffio-logo>', () => {
+
+  it('should show the copyright', () => {
+    expect(fixture.debugElement.query(By.css('daff-branding-copyright'))).toBeTruthy();
+  });
+
+  describe('on <daff-branding-logo>', () => {
     it('should set type="icon"', () => {
-      const logo = fixture.debugElement.query(By.css('daffio-logo'));
+      const logo = fixture.debugElement.query(By.css('daff-branding-logo'));
 
       expect(logo.componentInstance.type).toEqual('icon');
     });
