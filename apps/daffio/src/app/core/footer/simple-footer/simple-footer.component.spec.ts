@@ -3,9 +3,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 
 import { DaffioSimpleFooterComponent } from './simple-footer.component';
-import { DaffioLogoModule } from '../../logo/logo.module';
 
 import { DaffContainerModule } from '@daffodil/design';
+import { DaffLogoModule } from '@daffodil/branding';
 
 describe('DaffioSimpleFooterComponent', () => {
   let component: DaffioSimpleFooterComponent;
@@ -19,7 +19,7 @@ describe('DaffioSimpleFooterComponent', () => {
       imports: [
         RouterTestingModule,
         DaffContainerModule,
-        DaffioLogoModule
+        DaffLogoModule
       ]
     })
     .compileComponents();
@@ -39,9 +39,9 @@ describe('DaffioSimpleFooterComponent', () => {
     expect(fixture.nativeElement.classList.contains('simple-footer')).toBeTruthy();
   });
 
-  describe('on <daffio-logo>', () => {
+  describe('on <daff-logo>', () => {
     it('should set type="icon"', () => {
-      const logo = fixture.debugElement.query(By.css('daffio-logo'));
+      const logo = fixture.debugElement.query(By.css('daff-logo'));
 
       expect(logo.componentInstance.type).toEqual('icon');
     });

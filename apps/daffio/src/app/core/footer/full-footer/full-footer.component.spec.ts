@@ -3,13 +3,13 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 
 import { DaffioFullFooterComponent } from './full-footer.component';
-import { DaffioLogoModule } from '../../logo/logo.module';
 import { DaffioNewsletterModule } from '../../../newsletter/newsletter.module';
 
 import {
   DaffContainerModule,
   DaffListModule
 } from '@daffodil/design';
+import { DaffLogoModule } from '@daffodil/branding';
 
 describe('DaffioFullFooterComponent', () => {
   let component: DaffioFullFooterComponent;
@@ -23,7 +23,7 @@ describe('DaffioFullFooterComponent', () => {
       imports: [
         RouterTestingModule,
         DaffContainerModule,
-        DaffioLogoModule,
+        DaffLogoModule,
         DaffListModule,
         DaffioNewsletterModule
       ]
@@ -53,9 +53,9 @@ describe('DaffioFullFooterComponent', () => {
     });
   });
 
-  describe('on <daffio-logo>', () => {
+  describe('on <daff-logo>', () => {
     it('should set type="icon"', () => {
-      const logo = fixture.debugElement.query(By.css('daffio-logo'));
+      const logo = fixture.debugElement.query(By.css('daff-logo'));
 
       expect(logo.componentInstance.type).toEqual('icon');
     });

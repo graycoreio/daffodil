@@ -1,0 +1,10 @@
+@mixin daff-logo-theme($theme){
+    $base: daff-map-deep-get($theme, "core.base");
+    $baseContrast: daff-map-deep-get($theme, "core.base-contrast");
+
+    .daff-logo {
+        &--full {
+            path { fill: $baseContrast }    
+        }
+    }
+}

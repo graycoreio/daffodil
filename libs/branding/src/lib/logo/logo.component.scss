@@ -1,0 +1,39 @@
+$logo-daff-width: 48%;
+$logo-flower-width: 15%;
+$logo-dil-width: 31%;
+$logo-spacer-width: 3%;
+
+:host {
+    display: block;
+    width: 100%;
+}
+
+.daff-logo {
+    &--full {
+        display: flex;
+        align-items: center;
+    
+        .spacer {
+            flex: 1 0 $logo-spacer-width; 
+        }
+    
+        .daff {
+            flex: 1 0 $logo-daff-width;
+        }
+    
+        .flower {
+            display: block;
+            max-width: 100%;
+            min-width: 0;
+            flex: 1 0 $logo-flower-width;
+        }
+    
+        .dil {
+            flex: 1 0 $logo-dil-width;
+        }
+    
+        .daff, .dil {
+            width: 100%;
+        }
+    }
+}

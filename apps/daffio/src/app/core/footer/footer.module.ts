@@ -7,7 +7,7 @@ import { DaffioSimpleFooterComponent } from './simple-footer/simple-footer.compo
 import { DaffioSubFooterComponent } from './sub-footer/sub-footer.component';
 
 import { DaffioNewsletterModule } from '../../newsletter/newsletter.module';
-import { DaffioLogoModule } from '../logo/logo.module';
+
 
 import { 
   DaffCalloutModule,
@@ -18,6 +18,8 @@ import {
   DaffInputModule,
   DaffLinkModule
 } from '@daffodil/design';
+
+import { DaffLogoModule } from '@daffodil/branding';
 
 @NgModule({
   imports: [
@@ -31,7 +33,7 @@ import {
     DaffContainerModule,
     DaffInputModule,
     DaffLinkModule,
-    DaffioLogoModule,
+    DaffLogoModule,
     DaffioNewsletterModule
   ],
   declarations: [

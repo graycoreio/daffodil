@@ -19,7 +19,11 @@
             "assets": [
               "apps/demo/src/assets",
               "apps/demo/src/favicon.ico",
-              { "glob": "**/*", "input": "libs/core/assets/", "output": "/assets/" }
+              {
+                "glob": "**/*",
+                "input": "libs/core/assets/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
               "apps/demo/src/scss/styles.scss"
@@ -146,7 +150,11 @@
             "assets": [
               "apps/demo/src/assets",
               "apps/demo/src/favicon.ico",
-              { "glob": "**/*", "input": "libs/core/assets/", "output": "/assets/" }
+              {
+                "glob": "**/*",
+                "input": "libs/core/assets/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
               "apps/demo/src/scss/styles.scss"
@@ -466,7 +474,8 @@
             "assets": [
               "apps/daffio/src/favicon.ico",
               "apps/daffio/src/assets",
-              "apps/daffio/src/manifest.json"
+              "apps/daffio/src/manifest.json",
+              { "glob": "**/*", "input": "libs/branding/src/assets/", "output": "/assets/daff-branding/" }
             ],
             "styles": [
               "apps/daffio/src/scss/styles.scss"
@@ -474,7 +483,8 @@
             "stylePreprocessorOptions": {
               "includePaths": [
                 "apps/daffio/src/scss",
-                "libs/design/src/scss"
+                "libs/design/src/scss",
+                "libs/branding/src/scss"
               ]
             },
             "scripts": []
@@ -597,7 +607,8 @@
             "tsConfig": "apps/daffio/tsconfig.dev.json",
             "assets": [
               "apps/daffio/src/assets",
-              "apps/daffio/src/favicon.ico"
+              "apps/daffio/src/favicon.ico",
+              { "glob": "**/*", "input": "libs/branding/src/assets/", "output": "/assets/daff-branding/" }
             ],
             "styles": [
               "apps/daffio/src/scss/styles.scss"
@@ -605,7 +616,8 @@
             "stylePreprocessorOptions": {
               "includePaths": [
                 "apps/daffio/src/scss",
-                "libs/design/src/scss"
+                "libs/design/src/scss",
+                "libs/branding/src/scss"
               ]
             },
             "scripts": []
@@ -745,6 +757,46 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/design-land-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "branding": {
+      "root": "libs/branding",
+      "sourceRoot": "libs/branding/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/branding/tsconfig.lib.json",
+            "project": "libs/branding/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/branding/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/branding/src/test.ts",
+            "tsConfig": "libs/branding/tsconfig.spec.json",
+            "karmaConfig": "libs/branding/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/branding/tsconfig.lib.json",
+              "libs/branding/tsconfig.spec.json"
+            ],
             "exclude": [
               "**/node_modules/**"
             ]
