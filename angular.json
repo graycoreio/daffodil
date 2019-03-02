@@ -19,11 +19,7 @@
             "assets": [
               "apps/demo/src/assets",
               "apps/demo/src/favicon.ico",
-              {
-                "glob": "**/*",
-                "input": "libs/core/assets/",
-                "output": "/assets/"
-              }
+              { "glob": "**/*", "input": "libs/core/assets/", "output": "/assets/" }
             ],
             "styles": [
               "apps/demo/src/scss/styles.scss"
@@ -150,11 +146,7 @@
             "assets": [
               "apps/demo/src/assets",
               "apps/demo/src/favicon.ico",
-              {
-                "glob": "**/*",
-                "input": "libs/core/assets/",
-                "output": "/assets/"
-              }
+              { "glob": "**/*", "input": "libs/core/assets/", "output": "/assets/" }
             ],
             "styles": [
               "apps/demo/src/scss/styles.scss"
@@ -548,7 +540,8 @@
             "assets": [
               "apps/daffio/src/favicon.ico",
               "apps/daffio/src/assets",
-              "apps/daffio/src/manifest.json"
+              "apps/daffio/src/manifest.json",
+              { "glob": "**/*", "input": "libs/branding/src/assets/", "output": "/assets/daff-branding/" }
             ]
           }
         },
