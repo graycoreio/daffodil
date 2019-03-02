@@ -53,9 +53,9 @@ describe('DaffioFullFooterComponent', () => {
     });
   });
 
-  describe('on <daff-logo>', () => {
+  describe('on <daff-branding-logo>', () => {
     it('should set type="icon"', () => {
-      const logo = fixture.debugElement.query(By.css('daff-logo'));
+      const logo = fixture.debugElement.query(By.css('daff-branding-logo'));
 
       expect(logo.componentInstance.type).toEqual('icon');
     });

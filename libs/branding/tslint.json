@@ -4,13 +4,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "lib",
+      "daff-branding",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "lib",
+      "daff-branding",
       "kebab-case"
     ]
   }

@@ -15,7 +15,7 @@ export enum DaffLogoColorEnum {
 } 
 
 @Component({
-  selector: 'daff-logo',
+  selector: 'daff-branding-logo',
   templateUrl: './logo.component.html',
   styleUrls: ['./logo.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -540,7 +540,8 @@
             "stylePreprocessorOptions": {
               "includePaths": [
                 "apps/daffio/src/scss",
-                "libs/design/src/scss"
+                "libs/design/src/scss",
+                "libs/branding/src/scss"
               ]
             },
             "scripts": [],
@@ -768,7 +769,7 @@
       "root": "libs/branding",
       "sourceRoot": "libs/branding/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "daff-branding",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

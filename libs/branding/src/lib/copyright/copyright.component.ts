@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'daff-copyright',
+  selector: 'daff-branding-copyright',
   templateUrl: './copyright.component.html',
 })
 export class DaffCopyrightComponent {
