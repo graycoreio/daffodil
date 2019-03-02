@@ -19,7 +19,7 @@ import {
   DaffLinkModule
 } from '@daffodil/design';
 
-import { DaffLogoModule } from '@daffodil/branding';
+import { DaffLogoModule, DaffCopyrightModule } from '@daffodil/branding';
 
 @NgModule({
   imports: [
@@ -34,6 +34,7 @@ import { DaffLogoModule } from '@daffodil/branding';
     DaffInputModule,
     DaffLinkModule,
     DaffLogoModule,
+    DaffCopyrightModule,
     DaffioNewsletterModule
   ],
   declarations: [
