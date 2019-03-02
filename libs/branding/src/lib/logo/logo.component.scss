@@ -1,0 +1,41 @@
+// Forumala: $daff + $flower + $dil + 2*$spacer = 100%;
+
+$logo-daff-width: 47%;
+$logo-flower-width: 16%;
+$logo-dil-width: 30%;
+$logo-spacer-width: 3.5%;
+
+:host {
+    display: block;
+    width: 100%;
+}
+
+.daff-logo {
+    &--full {
+        display: flex;
+        align-items: center;
+    
+        .spacer {
+            flex: 1 0 $logo-spacer-width; 
+        }
+    
+        .daff {
+            flex: 1 0 $logo-daff-width;
+        }
+    
+        .flower {
+            display: block;
+            max-width: 100%;
+            min-width: 0;
+            flex: 1 0 $logo-flower-width;
+        }
+    
+        .dil {
+            flex: 1 0 $logo-dil-width;
+        }
+    
+        .daff, .dil {
+            width: 100%;
+        }
+    }
+}

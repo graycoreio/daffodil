@@ -1,0 +1,5 @@
+@import "../lib/logo/logo-theme.scss";
+
+@mixin daff-branding-theme($theme) {
+    @include daff-logo-theme($theme);
+}
