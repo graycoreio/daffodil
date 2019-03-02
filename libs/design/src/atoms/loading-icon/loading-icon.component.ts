@@ -1,4 +1,14 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, ElementRef } from '@angular/core';
+import { daffColorMixin, DaffColorable, DaffPalette } from '../../core/colorable/colorable';
+
+/**
+ * An _elementRef is needed for the Colorable mixin
+ */
+export class DaffLoadingIconBase{
+  constructor(public _elementRef: ElementRef) {}
+}
+
+const _daffLoadingIconBase = daffColorMixin(DaffLoadingIconBase, 'primary') 
 
 @Component({
   selector: 'daff-loading-icon',
@@ -6,13 +16,20 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
   styleUrls: ['./loading-icon.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[style.max-width]': 'diameter + "px"'
+    '[style.max-width]': 'diameter + "px"',
+    'class': 'daff-loading-icon'
   }
 })
-export class DaffLoadingIconComponent {
+export class DaffLoadingIconComponent extends _daffLoadingIconBase implements DaffColorable{
+
+  @Input() color: DaffPalette;
 
   /**
    * The (pixel) diameter of the animation
    */
   @Input() diameter = 60;
+
+  constructor(private elementRef: ElementRef) {
+    super(elementRef);
+  }
 }
