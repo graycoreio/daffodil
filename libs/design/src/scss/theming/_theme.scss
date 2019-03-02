@@ -4,6 +4,7 @@
 @import "../../atoms/form/form-field/form-field/form-field-theme";
 @import "../../atoms/form/input/input/input-theme";
 @import "../../atoms/form/select/select/select-theme";
+@import "../../atoms/progress-indicator/progress-indicator-theme";
 
 @import "../../molecules/accordion/accordion-item/accordion-item-theme";
 @import "../../molecules/callout/callout-theme";
@@ -28,6 +29,7 @@
     @include daff-input-theme($theme);
     @include daff-select-theme($theme);
     @include daff-link-theme($theme);
+    @include daff-progress-indicator-theme($theme);
 
     //Molecules
     @include daff-accordion-item-theme($theme);
