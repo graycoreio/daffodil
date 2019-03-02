@@ -21,7 +21,6 @@ $angle: 270 - $maxPercentageFill * 360;
 
 circle {
     fill: transparent;
-    stroke: black;
     stroke-width: 5px;
     stroke-linecap: round;
     stroke-dasharray: $maxStrokeLength 400;
