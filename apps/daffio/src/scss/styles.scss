@@ -3,8 +3,12 @@
 ************************************/
 
 // Imports
+// @daffodil/design
 @import 'daff-typography';
 @import 'daff-theme';
+
+// @daffodil/branding
+@import 'daff-branding-theme';
 
 @import "../app/content/homepage/component/homepage-theme.scss";
 @import "../app/content/pwa/components/feature-comparison/feature-comparison-theme";
@@ -15,6 +19,8 @@
 @import "theme";
 
 @include daff-theme($theme);
+
+@include daff-branding-theme($theme);
 
 @include daffio-homepage-theme($theme);
 @include daffio-pwa-theme($theme);

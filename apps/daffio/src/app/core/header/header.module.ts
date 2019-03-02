@@ -8,8 +8,9 @@ import {
   DaffContainerModule,
   DaffLinkModule
 } from '@daffodil/design';
+import { DaffLogoModule } from '@daffodil/branding';
 
-import { DaffioLogoModule } from '../logo/logo.module';
+
 import { DaffioHeaderComponent } from './component/header.component';
 import { DaffioHeaderContainer } from './containers/header.component';
 import { DaffioHeaderItemDirective } from './header-item/header-item.directive';
@@ -20,7 +21,7 @@ import { DaffioHeaderItemDirective } from './header-item/header-item.directive';
     RouterModule,
     
     DaffNavbarModule,
-    DaffioLogoModule,
+    DaffLogoModule,
     DaffButtonModule,
     DaffContainerModule,
     DaffLinkModule

@@ -59,7 +59,10 @@
       ],
       "@daffodil/design": [
         "dist/design"
-      ]
+      ],
+      "@daffodil/branding": [
+        "dist/branding"
+      ],
     }
   },
   "exclude": [
