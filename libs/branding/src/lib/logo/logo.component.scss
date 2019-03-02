@@ -1,11 +1,9 @@
-//I tried to approximate as best as possible. 
-//These variables must to sum to 100%. The formula is:
-//$daff + $flower + $dil + 2*$spacer = 100%;
+// Forumala: $daff + $flower + $dil + 2*$spacer = 100%;
 
-$logo-daff-width: 48%;
-$logo-flower-width: 15%;
-$logo-dil-width: 31%;
-$logo-spacer-width: 3%;
+$logo-daff-width: 47%;
+$logo-flower-width: 16%;
+$logo-dil-width: 30%;
+$logo-spacer-width: 3.5%;
 
 :host {
     display: block;

@@ -4,7 +4,13 @@
 
     .daff-logo {
         &--full {
-            path { fill: $baseContrast }    
+            @if(daff-luminance($base) >= 0.5) {
+                fill: daff-color($daff-blue, 60);
+            }
+
+            @if(daff-luminance($base) < 0.5) {
+                fill: $white;
+            }
         }
     }
 }
