@@ -18,7 +18,8 @@
       "url": "https://github.com/graycoreio/daffodil"
     },
     "devDependencies": {
-      "@daffodil/design": "1.1.0-a"
+      "@daffodil/design": "1.1.0-a",
+      "@daffodil/branding": "1.1.0-a"
     },
     "peerDependencies": {
       "@angular/common": "^6.0.1",
