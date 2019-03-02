@@ -12,7 +12,8 @@ export const appRoutes: Routes = [
   {path: 'card', loadChildren: './card/card.module#CardModule'},
   {path: 'feature', loadChildren: './feature/feature.module#FeatureModule'},
   {path: 'list', loadChildren: './list/list.module#ListModule'},
-  {path: 'form', loadChildren: './form/form.module#FormModule'}
+  {path: 'form', loadChildren: './form/form.module#FormModule'},
+  {path: 'progress-indicator', loadChildren: './progress-indicator/progress-indicator.module#ProgressIndicatorModule'},
 ]
 
 @NgModule({
