@@ -11,3 +11,6 @@ import * as fromCart from './reducers/index';
 export { fromCart };
 import * as fromCartReducer from './reducers/cart.reducer';
 export { fromCartReducer };
+
+export { DaffShopifyCartService } from './drivers/shopify/cart.service';
+export { DaffCartServiceInterface } from './drivers/interfaces/cart-service.interface';
