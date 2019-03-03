@@ -4,7 +4,7 @@
       <a routerLink="{{ link.path }}" *ngFor="let link of links" class="simple-footer__link">{{ link.title }}</a>
     </div>
     <a class="simple-footer__logo" routerLink="/">
-      <daffio-logo type="icon"></daffio-logo>
+      <daff-branding-logo type="icon"></daff-branding-logo>
     </a>
     <div class="simple-footer__social">
       <a href="https://github.com/graycoreio/daffodil" target="_blank" rel="noopener noreferrer" class="simple-footer__social-link">
@@ -15,7 +15,5 @@
       </a>
     </div>
   </div>
-  <div class="simple-footer__copyright">
-      &copy; 2019 Daffodil. All Rights Reserved.
-  </div>
+  <daff-branding-copyright class="simple-footer__copyright"></daff-branding-copyright>
 </daff-container>

@@ -1,0 +1,17 @@
+{
+  "extends": "../../tslint.json",
+  "rules": {
+    "directive-selector": [
+      true,
+      "attribute",
+      "daff-branding",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "daff-branding",
+      "kebab-case"
+    ]
+  }
+}

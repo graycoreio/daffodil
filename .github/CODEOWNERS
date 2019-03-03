@@ -150,6 +150,11 @@
 /libs/design/**                                                 @graycoreio/daff-design
 
 # ================================================
+#  @daffodil/branding
+# ================================================
+/libs/branding/**                                               @graycoreio/daff-marketing @graycoreio/daff-design
+
+# ================================================
 #  @daffodil/core
 # ================================================
 /libs/core/**                                                   @graycoreio/daff-core

@@ -1,10 +1,3 @@
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 import {
     animate,
     state,
@@ -14,17 +7,13 @@ import {
     AnimationTriggerMetadata,
   } from '@angular/animations';
   
-  /** Animations used by the Material drawers. */
-  export const daffSidebarAnimations: {
+export const daffSidebarAnimations: {
     readonly transformSidebar: AnimationTriggerMetadata,
     readonly transformContent: AnimationTriggerMetadata,
   } = {
-    /** Animation that slides a drawer in and out. */
     transformSidebar: trigger('transformSidebar', [
       // We remove the `transform` here completely, rather than setting it to zero, because:
-      // 1. Having a transform can cause elements with ripples or an animated
-      //    transform to shift around in Chrome with an RTL layout (see #10023).
-      // 2. 3d transforms causes text to appear blurry on IE and Edge.
+      // 1. 3d transforms causes text to appear blurry on IE and Edge.
       state('open', style({
         'transform': 'none',
         'visibility': 'visible',

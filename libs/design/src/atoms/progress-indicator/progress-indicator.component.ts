@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, ElementRef, Output, EventEmitter } from '@angular/core';
 
 import { daffColorMixin, DaffColorable, DaffPalette } from '../../core/colorable/colorable';
 import { daffProgressIndicatorAnimation } from './animation/progress-indicator-animation';
@@ -18,6 +18,9 @@ const _daffProgressIndicatorBase = daffColorMixin(DaffProgressIndicatorBase, 'pr
   templateUrl: './progress-indicator.component.html',
   styleUrls: ['./progress-indicator.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    'class': 'daff-progress-indicator'
+  },
   animations: [
     daffProgressIndicatorAnimation.fill
   ]
