@@ -1,6 +1,6 @@
 # Daffodil
 [![Join the chat at https://gitter.im/graycoreio/daffodil](https://badges.gitter.im/graycoreio/daffodil.svg)](https://gitter.im/graycoreio/daffodil?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://travis-ci.com/graycoreio/daffodil.svg?branch=master)](https://travis-ci.com/graycoreio/daffodil)
+[![Build Status](https://graycore.visualstudio.com/Daffodil/_apis/build/status/Daffodil-CI?branchName=develop)](https://graycore.visualstudio.com/Daffodil/_build/latest?definitionId=6&branchName=develop)
 [![npm version](https://badge.fury.io/js/%40daffodil%2Fcore.svg)](https://www.npmjs.com/@daffodil/checkout)
 
 ## Current Stability - Alpha
