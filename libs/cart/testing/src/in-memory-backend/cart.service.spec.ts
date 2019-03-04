@@ -5,11 +5,11 @@ import { ProductImage } from '@daffodil/product';
 import { DaffProductImageFactory } from '@daffodil/product/testing';
 import { Cart } from '@daffodil/cart';
 
-import { DaffInMemoryCartBackendService } from './cart.service';
+import { DaffInMemoryBackendCartService } from './cart.service';
 import { DaffCartFactory } from '../../../testing/src';
 
 describe('Driver | Cart | In Memory | CartService', () => {
-  let cartTestingService: DaffInMemoryCartBackendService;
+  let cartTestingService: DaffInMemoryBackendCartService;
   let stubCart: Cart;
   let stubProductImage: ProductImage;
   let daffCartFactory: jasmine.SpyObj<DaffCartFactory>;
@@ -23,7 +23,7 @@ describe('Driver | Cart | In Memory | CartService', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        DaffInMemoryCartBackendService,
+        DaffInMemoryBackendCartService,
         { provide: DaffCartFactory, useValue: daffCartFactorySpy},
         { provide: DaffProductImageFactory, useValue: daffProductImageFactorySpy}
       ]
@@ -34,7 +34,7 @@ describe('Driver | Cart | In Memory | CartService', () => {
     daffProductImageFactory.create.and.returnValue(stubProductImage);
     daffCartFactory.create.and.returnValue(stubCart);
 
-    cartTestingService = TestBed.get(DaffInMemoryCartBackendService);
+    cartTestingService = TestBed.get(DaffInMemoryBackendCartService);
   });
 
   it('should be created', () => {

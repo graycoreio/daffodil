@@ -5,4 +5,4 @@ export { DaffCartShippingRateFactory } from './factories/cart-shipping-rate.fact
 export { DaffCartFactory } from './factories/cart.factory';
 export { DaffTestingCartService } from './drivers/testing/cart.service';
 export { DaffInMemoryCartService } from './drivers/in-memory/cart.service';
-export { DaffInMemoryCartBackendService } from './in-memory-backend/cart.service';
+export { DaffInMemoryBackendCartService } from './in-memory-backend/cart.service';
