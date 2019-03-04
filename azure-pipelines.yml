@@ -1,0 +1,58 @@
+# specific branch build with batching
+trigger:
+  branches:
+    include:
+    - master
+    - develop
+pr:
+  autoCancel: true
+  branches:
+    include:
+    - master
+    - develop
+jobs:
+  - job: Lint
+    pool:
+      vmImage: "Ubuntu 16.04"
+    strategy:
+      matrix:
+        node_8_x:
+          node_version: 8.x
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: $(node_version)
+        displayName: Set Node Version
+
+      - script: npm install -g lerna @angular/cli
+        displayName: Install Build Tools
+
+      - script: npm install
+        displayName: Install Dependencies
+        condition: ne(variables['CacheRestored'], 'true')
+
+      - script: lerna run lint
+        displayName: Lint
+
+  - job: Build_And_Test
+    pool:
+      vmImage: "Ubuntu 16.04"
+    strategy:
+      matrix:
+        node_8_x:
+          node_version: 8.x
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: $(node_version)
+        displayName: Set Node Version
+
+      - script: npm install -g lerna @angular/cli
+        displayName: Install Build Tools
+
+      - script: npm install
+        displayName: Install Dependencies
+        condition: ne(variables['CacheRestored'], 'true')
+
+      - script: lerna run build && lerna run test
+        displayName: Build & Test
