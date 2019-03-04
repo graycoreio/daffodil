@@ -1,11 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { DaffLoadingIconComponent } from './loading-icon.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-@Component({ template: '<daff-loading-icon class="host-element" [diameter]="diameter"></daff-loading-icon>' })
+import { DaffLoadingIconComponent } from './loading-icon.component';
+import { DaffPalette } from '../../core/colorable/colorable';
+
+@Component({ template: '<daff-loading-icon class="host-element" [color]="color" [diameter]="diameter"></daff-loading-icon>' })
 class WrapperComponent {
+  color: DaffPalette;
   diameter = 100;
 }
 
@@ -37,10 +39,22 @@ describe('DaffLoadingIconComponent | Usage', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  it('can take a `diameter` as input which sets max-width of the `daffloading-icon` host', () => {
+  it('can take a `diameter` as input which sets max-width on the `daff-loading-icon` host', () => {
     wrapper.diameter = 50;
     fixture.detectChanges();
     expect(de.nativeElement.style.maxWidth).toEqual("50px");
+  });
+
+  describe('using a colored variant of a loading icon',() => {
+    let loadingIconDe;
+
+    it('should set a color class on the loading icon', () => {
+      wrapper.color = "secondary";
+      fixture.detectChanges();
+      
+      loadingIconDe = fixture.debugElement.query(By.css('daff-loading-icon'));
+      expect(loadingIconDe.nativeElement.classList.contains('daff-secondary')).toEqual(true);
+    });
   });
 });
 
@@ -70,6 +84,10 @@ describe('DaffLoadingIconComponent | Defaults', () => {
 
   it('has a default value of 60 for the diameter', () => {
     expect(component.diameter).toEqual(60);
+  });
+
+  it('should set the default color to primary', () => {
+    expect(component.color).toEqual("primary");
   });
 });
 
