@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { InMemoryDbService, STATUS } from 'angular-in-memory-web-api';
+import { STATUS } from 'angular-in-memory-web-api';
 
 import { DaffProductImageFactory } from '@daffodil/product/testing';
 
@@ -7,10 +7,8 @@ import { CartItem } from '@daffodil/cart';
 import { DaffCartFactory } from '../factories/cart.factory';
 import { DaffCartItemFactory } from '../factories/cart-item.factory';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class DaffInMemoryCartBackendService implements InMemoryDbService {
+@Injectable()
+export class DaffInMemoryBackendCartService {
   public cart;
 
   constructor(
