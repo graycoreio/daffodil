@@ -8,7 +8,11 @@
     "scripts": {
       "build": "ng build daffio",
       "test": "ng test daffio --watch=false --browsers=ChromeHeadless",
-      "lint": "ng lint daffio"
+      "lint": "ng lint daffio",
+      "compile:server": "webpack --config ./server/webpack.server.config.js --progress --colors",
+      "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
+      "build:client-and-server-bundles": "ng build daffio --prod && ng run daffio:server:production",
+      "serve:ssr": "node ../../dist/apps/daffio/server.js"
     },
     "homepage": "https://github.com/graycoreio/daffodil",
     "description": "A documentation site for the daffodil project",
