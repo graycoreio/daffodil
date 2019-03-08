@@ -1,0 +1,6 @@
+.git
+**/node_modules
+**/Dockerfile
+dist
+.DS_STORE
+.gitkeep

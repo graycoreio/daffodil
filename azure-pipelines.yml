@@ -33,7 +33,6 @@ jobs:
 
       - script: lerna run lint
         displayName: Lint
-
   - job: Build_And_Test
     pool:
       vmImage: "Ubuntu 16.04"
@@ -56,3 +55,44 @@ jobs:
 
       - script: lerna run build && lerna run test
         displayName: Build & Test
+  - job: Docker_Build
+    displayName: Docker Build
+    dependsOn: 'Build_And_Test'
+    pool:
+      vmImage: "Ubuntu 16.04"
+    steps:
+      - task: Docker@1
+        displayName: Container registry login
+        inputs:
+          command: login
+          azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+          azureContainerRegistry: $(azureContainerRegistry)
+      - task: Docker@1
+        displayName: Build image
+        inputs:
+          command: build
+          azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+          azureContainerRegistry: $(azureContainerRegistry)
+          dockerFile: Dockerfile
+          imageName: $(Build.Repository.Name)
+      - task: Docker@1
+        displayName: Tag image
+        inputs:
+          command: tag
+          azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+          azureContainerRegistry: $(azureContainerRegistry)
+          imageName: $(azureContainerRegistry)/$(Build.Repository.Name):latest
+          arguments: $(azureContainerRegistry)/$(Build.Repository.Name):$(Build.BuildId)
+      - task: Docker@1
+        displayName: Push image
+        inputs:
+          command: push
+          azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+          azureContainerRegistry: $(azureContainerRegistry)
+          imageName: $(Build.Repository.Name):$(Build.BuildId)
+      - task: Docker@1
+        displayName: Container registry logout
+        inputs:
+          command: logout
+          azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+          azureContainerRegistry: $(azureContainerRegistry)
