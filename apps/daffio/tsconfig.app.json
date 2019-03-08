@@ -2,10 +2,10 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc/apps/daffio",
-    "types": []
   },
   "exclude": [
     "test.ts",
+    "server/*.ts",
     "**/*.spec.ts"
   ],
   "include": [

@@ -8,7 +8,7 @@
 
 # dependencies
 /node_modules
-/apps/demo/node_modules
+/apps/**/node_modules
 
 # IDEs and editors
 /.idea

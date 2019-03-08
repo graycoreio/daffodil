@@ -16,7 +16,7 @@ import { environment } from '../environments/environment';
 
 @NgModule({
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     
     StoreModule.forRoot({}),
