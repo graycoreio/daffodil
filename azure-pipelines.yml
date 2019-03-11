@@ -55,8 +55,8 @@ jobs:
 
       - script: lerna run build && lerna run test
         displayName: Build & Test
-  - job: Docker_Build
-    displayName: Docker Build
+  - job: Daffio_Docker_Build
+    displayName: Docker Build Daffio
     dependsOn: 'Build_And_Test'
     pool:
       vmImage: "Ubuntu 16.04"
@@ -73,23 +73,23 @@ jobs:
           command: build
           azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
           azureContainerRegistry: $(azureContainerRegistry)
-          dockerFile: Dockerfile
-          imageName: $(Build.Repository.Name)
+          dockerFile: apps/daffio/docker/Dockerfile
+          imageName: daffodil/daffio
       - task: Docker@1
         displayName: Tag image
         inputs:
           command: tag
           azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
           azureContainerRegistry: $(azureContainerRegistry)
-          imageName: $(azureContainerRegistry)/$(Build.Repository.Name):latest
-          arguments: $(azureContainerRegistry)/$(Build.Repository.Name):$(Build.BuildId)
+          imageName: $(azureContainerRegistry)/daffodil/daffio:latest
+          arguments: $(azureContainerRegistry)/daffodil/daffio:$(Build.SourceVersion)
       - task: Docker@1
         displayName: Push image
         inputs:
           command: push
           azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
           azureContainerRegistry: $(azureContainerRegistry)
-          imageName: $(Build.Repository.Name):$(Build.BuildId)
+          imageName: daffodil/daffio:$(Build.SourceVersion)
       - task: Docker@1
         displayName: Container registry logout
         inputs:
