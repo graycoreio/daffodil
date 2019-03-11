@@ -75,6 +75,8 @@ jobs:
           azureContainerRegistry: $(azureContainerRegistry)
           dockerFile: apps/daffio/docker/Dockerfile
           imageName: daffodil/daffio
+          useDefaultContext: false
+          buildContext: './'
       - task: Docker@1
         displayName: Tag image
         inputs:
