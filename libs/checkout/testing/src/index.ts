@@ -9,5 +9,12 @@ export { DaffOrderFactory } from './order/factories/order.factory';
 export { DaffPaymentFactory } from './payment/factories/payment.factory';
 
 //Shipping
-export { DaffShippingOptionFactory } from "./shipping/factories/shipping-option.factory";
-export { DaffShippingRateFactory } from "./shipping/factories/shipping-rate.factory";
+export { DaffShippingOptionFactory } from './shipping/factories/shipping-option.factory';
+export { DaffShippingRateFactory } from './shipping/factories/shipping-rate.factory';
+
+// Drivers
+export { DaffTestingCheckoutService } from './drivers/testing/checkout.service';
+export { DaffInMemoryCheckoutService } from './drivers/in-memory/checkout.service';
+
+// inmemory-backend
+export { DaffInMemoryBackendCheckoutService } from './inmemory-backend/checkout.service';

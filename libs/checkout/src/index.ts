@@ -17,3 +17,6 @@ import * as fromOrder from './order/reducers/order.reducer';
 export { fromOrder };
 
 export { StateCheckoutModule } from './checkout.module';
+
+export { DaffCheckoutServiceInterface } from './drivers/interfaces/checkout-service.interface';
+export { DaffShopifyCheckoutService } from './drivers/shopify/checkout.service';
