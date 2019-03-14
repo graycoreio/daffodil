@@ -10,7 +10,6 @@ today! As a contributor, here are the guidelines we would like you to follow:
  - [Submission Guidelines](#submit)
  - [Coding Rules](#rules)
  - [Commit Message Guidelines](#commit)
- - [Signing the CLA](#cla)
 
 ## <a name="coc"></a> Code of Conduct
 Help us keep Daffodil open and inclusive. Please read and follow our [Code of Conduct][coc].
@@ -204,11 +203,17 @@ The scope should be the name of the npm package affected (as perceived by the pe
 
 The following is the list of supported scopes:
 
-* **all**
+#### Libraries
+* **branding**
 * **core**
+* **cart**
+* **checkout**
 * **design**
 * **driver**
-* **state**
+* **product**
+
+#### Apps
+* **all**
 * **demo**
 * **daffio**
 
@@ -240,5 +245,4 @@ A detailed explanation can be found in this [document][commit-message-format].
 [js-style-guide]: https://google.github.io/styleguide/jsguide.html
 [jsfiddle]: http://jsfiddle.net
 [plunker]: http://plnkr.co/edit
-[runnable]: http://runnable.com
 [stackoverflow]: http://stackoverflow.com/questions/tagged/daffodil
