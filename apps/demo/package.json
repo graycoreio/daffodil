@@ -1,6 +1,6 @@
 {
     "name": "@daffodil/demo",
-    "version": "1.1.0-a",
+    "version": "0.0.0",
     "author": "Graycore LLC",
     "license": "MIT",
     "bugs": {
@@ -18,12 +18,12 @@
       "url": "https://github.com/graycoreio/daffodil"
     },
     "devDependencies": {
-      "@daffodil/core": "1.1.0-a",
-      "@daffodil/design": "1.1.0-a",
-      "@daffodil/driver": "1.1.0-a",
-      "@daffodil/product": "1.1.0-a",
-      "@daffodil/cart": "1.1.0-a",
-      "@daffodil/checkout": "1.1.0-a"
+      "@daffodil/core": "0.0.0",
+      "@daffodil/design": "0.0.0",
+      "@daffodil/driver": "0.0.0",
+      "@daffodil/product": "0.0.0",
+      "@daffodil/cart": "0.0.0",
+      "@daffodil/checkout": "0.0.0"
     },
     "peerDependencies": {
       "@angular/common": "^6.0.1",

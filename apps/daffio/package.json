@@ -1,6 +1,5 @@
 {
     "name": "@daffodil/daffio",
-    "version": "1.1.0-a",
     "author": "Graycore LLC",
     "license": "MIT",
     "bugs": {
@@ -18,8 +17,8 @@
       "url": "https://github.com/graycoreio/daffodil"
     },
     "devDependencies": {
-      "@daffodil/design": "1.1.0-a",
-      "@daffodil/branding": "1.1.0-a"
+      "@daffodil/design": "0.0.0",
+      "@daffodil/branding": "0.0.0"
     },
     "peerDependencies": {
       "@angular/common": "^6.0.1",
