@@ -1,7 +1,7 @@
 # Daffodil
 [![Join the chat at https://gitter.im/graycoreio/daffodil](https://badges.gitter.im/graycoreio/daffodil.svg)](https://gitter.im/graycoreio/daffodil?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://travis-ci.com/graycoreio/daffodil.svg?branch=master)](https://travis-ci.com/graycoreio/daffodil)
-[![experimental](https://badges.github.io/stability-badges/dist/experimental.svg)](https://github.com/badges/stability-badges)
+[![Build Status](https://graycore.visualstudio.com/Daffodil/_apis/build/status/Daffodil-CI?branchName=develop)](https://graycore.visualstudio.com/Daffodil/_build/latest?definitionId=6&branchName=develop)
+[![experimental](https://img.shields.io/static/v1.svg?label=stability&message=experimental&color=orange)](https://www.github.com/graycoreio/daffodil)
 [![dependencies Status](https://david-dm.org/graycoreio/daffodil/status.svg)](https://david-dm.org/graycoreio/daffodil)
 [![devDependencies Status](https://david-dm.org/graycoreio/daffodil/dev-status.svg)](https://david-dm.org/graycoreio/daffodil?type=dev)
 
@@ -41,12 +41,12 @@ Daffodil is a frontend toolkit that intends to accomplish three things:
 ## Packages
 | Project | Package | Version | Stability |
 |---|---|---|---|
-| Core | [@daffodil/core](./libs/core/README.md) | [![latest](https://img.shields.io/npm/v/%40daffodil%2Fcore/latest.svg)](https://npmjs.com/package/@daffodil/core) | [![experimental](https://badges.github.io/stability-badges/dist/experimental.svg)](https://github.com/badges/stability-badges)
-| Checkout | [@daffodil/checkout](./libs/checkout/README.md) | [![latest](https://img.shields.io/npm/v/%40daffodil%2Fcheckout/latest.svg)](https://npmjs.com/package/@daffodil/checkout) | [![experimental](https://badges.github.io/stability-badges/dist/experimental.svg)](https://github.com/badges/stability-badges)
-| Cart | [@daffodil/cart](./libs/cart/README.md) | [![latest](https://img.shields.io/npm/v/%40daffodil%2Fcart/latest.svg)](https://npmjs.com/package/@daffodil/cart) | [![experimental](https://badges.github.io/stability-badges/dist/experimental.svg)](https://github.com/badges/stability-badges) |
-| Driver | [@daffodil/driver](./libs/driver/README.md) | [![latest](https://img.shields.io/npm/v/%40daffodil%2Fdriver/latest.svg)](https://npmjs.com/package/@daffodil/driver) | [![experimental](https://badges.github.io/stability-badges/dist/experimental.svg)](https://github.com/badges/stability-badges) |
-| Design | [@daffodil/design](./libs/design/README.md) | [![latest](https://img.shields.io/npm/v/%40daffodil%2Fdesign/latest.svg)](https://npmjs.com/package/@daffodil/design) | [![experimental](https://badges.github.io/stability-badges/dist/stable.svg)](https://github.com/badges/stability-badges) |
-| Product | [@daffodil/product](./libs/product/README.md) | [![latest](https://img.shields.io/npm/v/%40daffodil%2Fproduct/latest.svg)](https://npmjs.com/package/@daffodil/product) | [![experimental](https://badges.github.io/stability-badges/dist/experimental.svg)](https://github.com/badges/stability-badges) |
+| Core | [@daffodil/core](./libs/core/README.md) | [![latest](https://img.shields.io/npm/v/%40daffodil%2Fcore/latest.svg)](https://npmjs.com/package/@daffodil/core) | [![experimental](https://img.shields.io/static/v1.svg?label=stability&message=experimental&color=orange)](https://www.github.com/graycoreio/daffodil)
+| Checkout | [@daffodil/checkout](./libs/checkout/README.md) | [![latest](https://img.shields.io/npm/v/%40daffodil%2Fcheckout/latest.svg)](https://npmjs.com/package/@daffodil/checkout) | [![experimental](https://img.shields.io/static/v1.svg?label=stability&message=experimental&color=orange)](https://www.github.com/graycoreio/daffodil) |
+| Cart | [@daffodil/cart](./libs/cart/README.md) | [![latest](https://img.shields.io/npm/v/%40daffodil%2Fcart/latest.svg)](https://npmjs.com/package/@daffodil/cart) | [![experimental](https://img.shields.io/static/v1.svg?label=stability&message=experimental&color=orange)](https://www.github.com/graycoreio/daffodil) |
+| Driver | [@daffodil/driver](./libs/driver/README.md) | [![latest](https://img.shields.io/npm/v/%40daffodil%2Fdriver/latest.svg)](https://npmjs.com/package/@daffodil/driver) | [![experimental](https://img.shields.io/static/v1.svg?label=stability&message=experimental&color=orange)](https://www.github.com/graycoreio/daffodil) |
+| Design | [@daffodil/design](./libs/design/README.md) | [![latest](https://img.shields.io/npm/v/%40daffodil%2Fdesign/latest.svg)](https://npmjs.com/package/@daffodil/design) | [![experimental](https://img.shields.io/static/v1.svg?label=stability&message=experimental&color=orange)](https://www.github.com/graycoreio/daffodil) |
+| Product | [@daffodil/product](./libs/product/README.md) | [![latest](https://img.shields.io/npm/v/%40daffodil%2Fproduct/latest.svg)](https://npmjs.com/package/@daffodil/product) | [![experimental](https://img.shields.io/static/v1.svg?label=stability&message=experimental&color=orange)](https://www.github.com/graycoreio/daffodil) |
 
 ## Example Stores
 Currently none, but you can check our progress by following the steps [here](https://github.com/graycoreio/daffodil/blob/develop/docs/DEVELOPER.md#running-the-example-demo).
