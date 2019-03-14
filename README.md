@@ -1,81 +1,55 @@
 # Daffodil
 [![Join the chat at https://gitter.im/graycoreio/daffodil](https://badges.gitter.im/graycoreio/daffodil.svg)](https://gitter.im/graycoreio/daffodil?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://graycore.visualstudio.com/Daffodil/_apis/build/status/Daffodil-CI?branchName=develop)](https://graycore.visualstudio.com/Daffodil/_build/latest?definitionId=6&branchName=develop)
-[![npm version](https://badge.fury.io/js/%40daffodil%2Fcore.svg)](https://www.npmjs.com/@daffodil/checkout)
-
-## Current Stability - Alpha
-
-## Packages
-* @daffodil/core
-* @daffodil/product
-* @daffodil/cart
-* @daffodil/checkout
-* @daffodil/driver
+[![Build Status](https://travis-ci.com/graycoreio/daffodil.svg?branch=master)](https://travis-ci.com/graycoreio/daffodil)
+[![experimental](https://badges.github.io/stability-badges/dist/experimental.svg)](https://github.com/badges/stability-badges)
+[![dependencies Status](https://david-dm.org/graycoreio/daffodil/status.svg)](https://david-dm.org/graycoreio/daffodil)
+[![devDependencies Status](https://david-dm.org/graycoreio/daffodil/dev-status.svg)](https://david-dm.org/graycoreio/daffodil?type=dev)
 
 ## What is Daffodil?
-Daffodil is a set of frontend libraries that intends to accomplish three things:
-1. Improve the developer workflow when writing frontend software for online stores.
-2. Provide a consistent frontend developer tool-chain regardless of a business's chosen Ecommerce platform
+Daffodil is a frontend toolkit that intends to accomplish three things:
+
+1. Improve developer workflow when writing frontend software for online stores.
+2. Provide a consistent frontend developer tool-chain regardless of a business's chosen ecommerce platform
 3. Drastically improve the end-user experience of online-shopping.
 
-Currently, Daffodil provides several modules to improve different aspects of developer workflow:
+## Features
 
-1. `@daffodil/core` (partially complete) - Daffodil's core - a set of interfaces and factories for Ecommerce.
-2. `@daffodil/product` (partially complete) - An extendable redux store for Ecommerce products.
-2. `@daffodil/cart` (partially complete) - An extendable redux store for an Ecommerce cart.
-2. `@daffodil/checkout` (partially complete) - An extendable redux store for Ecommerce checkout.
-3. `@daffodil/driver` (todo) - An extendable API interface with configurable drivers for different Ecommerce platforms.
+* :free: Forever Free, Open Source, and MIT Licensed
+* :hammer: Platform Agnostic Drivers For Your Platform of Choice
+    * Shopify 
+    * Magento 2
+    * In-Memory Backend 
+        * Prebuilt 
+        * :zap: Great for lightning fast iteration and concepting.
+* :cake: Decoupled and Composable Packages for your use case
+    * Product
+    * Cart
+    * Checkout
+* :books: Well Documented
+    * Example Implementation
+    * API References
+    * Tutorials
+* :bulb: Component Kit
+    * Purely Functional
+    * Themeable
+    * Accessible
+    * Supports Server-side Rendering
+    * Well Tested
+    * Fantastic Performance
+    * IE 11+ Support
 
-### Benefits For Developers
-
-* Daffodil builds upon state-of-the-art development tools like Angular (6+) and Redux
-* Daffodil seamlessly integrates with the major Ecommerce platforms Shopify and Magento (2.3+)
-* Daffodil's codebase is fully-tested and CI covered (Unit, Integration, and E2E).
-* Daffodil's core team reviews every pull-request individually to ensure code quality remains high.
-* Daffodil's `demo` provides a sample for implementing technologies like:
-   * Server Side Rendering
-   * Progressive Web Apps
-* Daffodil is easily extensible so that you can:
-  * Append your own redux state 
-  * Add your own custom routing
-  * Add your own custom design
-
-### For End-users
-
-* Daffodil (with the help of Angular) is written with Progressive Web Apps in mind, this means:
-  * Offline Support
-  * Service Worker Caching
-  * App-like UX
-  * Mobile App-like Installation
-* Daffodil (with the help of Angular) supports simple Server Side Rendering for fantastic SEO
+## Packages
+| Project | Package | Version | Stability |
+|---|---|---|---|
+| Core | [@daffodil/core](./libs/core/README.md) | [![latest](https://img.shields.io/npm/v/%40daffodil%2Fcore/latest.svg)](https://npmjs.com/package/@daffodil/core) | [![experimental](https://badges.github.io/stability-badges/dist/experimental.svg)](https://github.com/badges/stability-badges)
+| Checkout | [@daffodil/checkout](./libs/checkout/README.md) | [![latest](https://img.shields.io/npm/v/%40daffodil%2Fcheckout/latest.svg)](https://npmjs.com/package/@daffodil/checkout) | [![experimental](https://badges.github.io/stability-badges/dist/experimental.svg)](https://github.com/badges/stability-badges)
+| Cart | [@daffodil/cart](./libs/cart/README.md) | [![latest](https://img.shields.io/npm/v/%40daffodil%2Fcart/latest.svg)](https://npmjs.com/package/@daffodil/cart) | [![experimental](https://badges.github.io/stability-badges/dist/experimental.svg)](https://github.com/badges/stability-badges) |
+| Driver | [@daffodil/driver](./libs/driver/README.md) | [![latest](https://img.shields.io/npm/v/%40daffodil%2Fdriver/latest.svg)](https://npmjs.com/package/@daffodil/driver) | [![experimental](https://badges.github.io/stability-badges/dist/experimental.svg)](https://github.com/badges/stability-badges) |
+| Design | [@daffodil/design](./libs/design/README.md) | [![latest](https://img.shields.io/npm/v/%40daffodil%2Fdesign/latest.svg)](https://npmjs.com/package/@daffodil/design) | [![experimental](https://badges.github.io/stability-badges/dist/stable.svg)](https://github.com/badges/stability-badges) |
+| Product | [@daffodil/product](./libs/product/README.md) | [![latest](https://img.shields.io/npm/v/%40daffodil%2Fproduct/latest.svg)](https://npmjs.com/package/@daffodil/product) | [![experimental](https://badges.github.io/stability-badges/dist/experimental.svg)](https://github.com/badges/stability-badges) |
 
 ## Example Stores
 Currently none, but you can check our progress by following the steps [here](https://github.com/graycoreio/daffodil/blob/develop/docs/DEVELOPER.md#running-the-example-demo).
 
 ## Using Daffodil To Build Your own Ecommerce Store
-1. Setup a new `@angular/cli` project
-2. Install Daffodil Modules
-    
-    a. `npm install --save @daffodil/product` - Install Product Daffodil Module
-    
-    b. `npm install --save @daffodil/cart` - Install Cart Daffodil Module
-    
-    c. `npm install --save @daffodil/checkout` - Install Checkout Daffodil Module
-3. `npm install --save @ngrx/store @ngrx/effects @ngrx/entity` - Install Necessary Peer Dependencies
-4. Add the following to your application's root `AppModule`.
-    ```
-    @NgModule({
-        ...
-        imports: [
-            ...
-            StoreModule.forRoot({}),
-            EffectsModule.forRoot([]),
-            DaffodilModule.forRoot({BASE_URL: "YOUR_STORE_URL_GOES_HERE"}),
-            ...
-        ],
-        ...
-    })
-    export class AppModule { }
-    ```
-5. Replace the defaults with your store's url in your `AppModule`
-6. Check out Daffodil's `Demo Theme` for code examples.
+[See the installation instructions](./docs/INSTALLATION.md).
