@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/cart",
-  "version": "1.1.0-a",
+  "version": "0.0.0",
   "description": "Interfaces built for daffodil/state",
   "repository": {
     "type": "git",
@@ -28,8 +28,8 @@
     "faker": "^4.1.0"
   },
   "devDependencies": {
-    "@daffodil/core": "1.1.0-a",
-    "@daffodil/product": "1.1.0-a",
-    "@daffodil/driver": "1.1.0-a"
+    "@daffodil/core": "0.0.0",
+    "@daffodil/product": "0.0.0",
+    "@daffodil/driver": "0.0.0"
   }
 }
