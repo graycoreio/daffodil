@@ -3,26 +3,26 @@ import { Observable ,  of } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { switchMap, map, catchError } from 'rxjs/operators';
 
-import { DaffDriverInterface, DaffDriver } from '@daffodil/driver';
-
 import { 
   BestSellersActionTypes, 
   BestSellersLoad, 
   BestSellersLoadSuccess, 
   BestSellersLoadFailure } from '../actions/best-sellers.actions';
+import { DaffProductDriver } from '../drivers/injection-tokens/product-driver.token';
+import { DaffProductServiceInterface } from '../drivers/interfaces/product-service.interface';
 
 @Injectable()
 export class BestSellersEffects {
 
   constructor(
     private actions$: Actions,
-    @Inject(DaffDriver) private driver: DaffDriverInterface){}
+    @Inject(DaffProductDriver) private driver: DaffProductServiceInterface){}
 
   @Effect()
   loadBestSellers$ : Observable<any> = this.actions$.pipe(
     ofType(BestSellersActionTypes.BestSellersLoadAction),
     switchMap((action: BestSellersLoad) =>
-      this.driver.productService.getBestSellers()
+      this.driver.getBestSellers()
         .pipe(
           map((resp) => {
             return new BestSellersLoadSuccess(resp);
