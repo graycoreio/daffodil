@@ -28,7 +28,6 @@
     "faker": "^4.1.0"
   },
   "devDependencies": {
-    "@daffodil/core": "0.0.0",
-    "@daffodil/driver": "0.0.0"
+    "@daffodil/core": "0.0.0"
   }
 }
