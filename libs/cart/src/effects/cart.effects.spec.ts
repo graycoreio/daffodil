@@ -3,14 +3,14 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
-import { DaffDriverInterface, DaffDriver } from '@daffodil/driver';
-import { DaffDriverTestingModule } from '@daffodil/driver/testing';
-
 import { CartEffects } from './cart.effects';
 import { CartLoad, CartLoadSuccess, CartLoadFailure, AddToCart,
   AddToCartSuccess, AddToCartFailure } from '../actions/cart.actions';
 import { Cart } from '../models/cart';
 import { DaffCartFactory } from '../../testing/src/factories/cart.factory';
+import { DaffCartDriver } from '../drivers/injection-tokens/cart-driver.token';
+import { DaffTestingCartService } from '../../testing/src';
+import { DaffCartServiceInterface } from '../drivers/interfaces/cart-service.interface';
 
 describe('Daffodil | Cart | CartEffects', () => {
   let actions$: Observable<any>;
@@ -20,21 +20,22 @@ describe('Daffodil | Cart | CartEffects', () => {
 
   let cartFactory: DaffCartFactory;
 
-  let daffDriver: DaffDriverInterface;
+  let daffDriver: DaffCartServiceInterface;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        DaffDriverTestingModule
-      ],
       providers: [
         CartEffects,
-        provideMockActions(() => actions$)
+        provideMockActions(() => actions$),
+        {
+          provide: DaffCartDriver, 
+          useValue: new DaffTestingCartService(new DaffCartFactory())
+        },
       ]
     });
 
     effects = TestBed.get(CartEffects);
-    daffDriver = TestBed.get(DaffDriver);
+    daffDriver = TestBed.get(DaffCartDriver);
     cartFactory = TestBed.get(DaffCartFactory);
 
     mockCart = cartFactory.create();
@@ -52,7 +53,7 @@ describe('Daffodil | Cart | CartEffects', () => {
     describe('and the call to CartService is successful', () => {
 
       beforeEach(() => {
-        spyOn(daffDriver.cartService, 'get').and.returnValue(of(mockCart));
+        spyOn(daffDriver, 'get').and.returnValue(of(mockCart));
         const cartLoadSuccessAction = new CartLoadSuccess(mockCart);
         actions$ = hot('--a', { a: cartLoadAction });
         expected = cold('--b', { b: cartLoadSuccessAction });
@@ -68,7 +69,7 @@ describe('Daffodil | Cart | CartEffects', () => {
       beforeEach(() => {
         const error = 'Failed to load cart';
         const response = cold('#', {}, error);
-        spyOn(daffDriver.cartService, 'get').and.returnValue(response);
+        spyOn(daffDriver, 'get').and.returnValue(response);
         const cartLoadFailureAction = new CartLoadFailure(error);
         actions$ = hot('--a', { a: cartLoadAction });
         expected = cold('--b', { b: cartLoadFailureAction });
@@ -94,7 +95,7 @@ describe('Daffodil | Cart | CartEffects', () => {
     describe('and the call to CartService is successful', () => {
 
       beforeEach(() => {
-        spyOn(daffDriver.cartService, 'addToCart').and.returnValue(of(mockCart));
+        spyOn(daffDriver, 'addToCart').and.returnValue(of(mockCart));
         const addToCartSuccessAction = new AddToCartSuccess(mockCart);
         actions$ = hot('--a', { a: addToCartAction });
         expected = cold('--b', { b: addToCartSuccessAction });
@@ -110,7 +111,7 @@ describe('Daffodil | Cart | CartEffects', () => {
       beforeEach(() => {
         const error = 'Failed to add item to cart';
         const response = cold('#', {}, error);
-        spyOn(daffDriver.cartService, 'addToCart').and.returnValue(response);
+        spyOn(daffDriver, 'addToCart').and.returnValue(response);
         const addToCartFailureAction = new AddToCartFailure(error);
         actions$ = hot('--a', { a: addToCartAction });
         expected = cold('--b', { b: addToCartFailureAction });
