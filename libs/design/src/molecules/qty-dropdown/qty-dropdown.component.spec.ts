@@ -237,21 +237,8 @@ describe('DaffQtyDropdownComponent', () => {
     beforeEach(() => {
       input = "2";
       spyOn(qtyDropdownComponent.componentInstance, 'selectInput').and.callThrough();      
-    });
-
-    it('calls onChange with argument', () => {
-      spyOn(qtyDropdownComponent.componentInstance, "onChange");
-      qtyDropdownComponent.componentInstance.onChangedWrapper(input);
-      
-      expect(qtyDropdownComponent.componentInstance.onChange).toHaveBeenCalledWith(parseInt(input, 10));
-    });
-
-    it('calls qtyChanged.emit', () => {
       spyOn(qtyDropdownComponent.componentInstance.qtyChanged, 'emit');
-
-      qtyDropdownComponent.componentInstance.onChangedWrapper(input);
-      
-      expect(qtyDropdownComponent.componentInstance.qtyChanged.emit).toHaveBeenCalledWith(parseInt(input, 10));
+      spyOn(qtyDropdownComponent.componentInstance, "onChange");
     });
     
     describe('when value is 10', () => {
@@ -275,6 +262,44 @@ describe('DaffQtyDropdownComponent', () => {
       
       it('does not call selectInput', () => {
         expect(qtyDropdownComponent.componentInstance.selectInput).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('when the given value is invalid', () => {
+      
+      beforeEach(() => {
+        qtyDropdownComponent.componentInstance.onChangedWrapper('-1');
+      });
+
+      it('should set the qty dropdown to invalid', () => {
+        expect(qtyDropdownComponent.componentInstance.valid).toBeFalsy();
+      });
+
+      it('should not emit the change', () => {
+        expect(qtyDropdownComponent.componentInstance.qtyChanged.emit).not.toHaveBeenCalled();
+      });
+
+      it('should not update the qty-dropdown with the change', () => {
+        expect(qtyDropdownComponent.componentInstance.onChange).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('when the given value is valid', () => {
+
+      beforeEach(() => {
+        qtyDropdownComponent.componentInstance.onChangedWrapper("2");        
+      });
+      
+      it('calls onChange with argument', () => {
+        qtyDropdownComponent.componentInstance.onChangedWrapper(input);
+        
+        expect(qtyDropdownComponent.componentInstance.onChange).toHaveBeenCalledWith(parseInt(input, 10));
+      });
+  
+      it('calls qtyChanged.emit', () => {
+        qtyDropdownComponent.componentInstance.onChangedWrapper(input);
+        
+        expect(qtyDropdownComponent.componentInstance.qtyChanged.emit).toHaveBeenCalledWith(parseInt(input, 10));
       });
     });
   });

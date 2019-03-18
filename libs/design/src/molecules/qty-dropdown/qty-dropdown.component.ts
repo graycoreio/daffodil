@@ -15,6 +15,7 @@ export class DaffQtyDropdownComponent implements OnInit {
 
   dropdownItemCounter: number[];
   inputHasBeenShown: boolean;
+  valid = true;
   onChange = (qty: number) => {};
   onTouched = () => {};
 
@@ -62,9 +63,14 @@ export class DaffQtyDropdownComponent implements OnInit {
     value = parseInt(value, 10);
     if (value === 10) {
       this.selectInput();
+    } 
+    
+    this.valid = this.isValid(value);
+    
+    if (this.valid) {
+      this.qtyChanged.emit(value);
+      this.onChange(value);
     }
-    this.qtyChanged.emit(value);
-    this.onChange(value);
   }
 
   private isQtyOutsideDropdownRange() {    
@@ -77,5 +83,9 @@ export class DaffQtyDropdownComponent implements OnInit {
       const input = document.getElementById("input_" + that.id) as HTMLInputElement;
       input.select();
     });
+  }
+
+  private isValid(value): boolean {
+    return value >= 0;
   }
 }
