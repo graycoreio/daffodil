@@ -1,8 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { DaffDriverTestingModule } from '@daffodil/driver/testing';
-
 import { DaffInMemoryBackendCheckoutService } from './checkout.service';
 
 describe('Driver | Checkout | In Memory | CheckoutTestingService', () => {
@@ -11,8 +9,7 @@ describe('Driver | Checkout | In Memory | CheckoutTestingService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule,
-        DaffDriverTestingModule
+        HttpClientTestingModule
       ],
       providers: [
         DaffInMemoryBackendCheckoutService
