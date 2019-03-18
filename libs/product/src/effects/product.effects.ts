@@ -5,27 +5,26 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { switchMap, map, catchError } from 'rxjs/operators';
 import { of ,  Observable } from 'rxjs';
 
-import { DaffDriverInterface, DaffDriver } from '@daffodil/driver';
-
-
 import { 
   ProductActionTypes, 
   ProductLoad, 
   ProductLoadSuccess, 
   ProductLoadFailure } from '../actions/product.actions';
+import { DaffProductDriver } from '../drivers/injection-tokens/product-driver.token';
+import { DaffProductServiceInterface } from '../drivers/interfaces/product-service.interface';
 
 @Injectable()
 export class ProductEffects {
 
   constructor(
     private actions$: Actions,
-    @Inject(DaffDriver) private driver: DaffDriverInterface){}
+    @Inject(DaffProductDriver) private driver: DaffProductServiceInterface){}
 
   @Effect()
   load$ : Observable<any> = this.actions$.pipe(
     ofType(ProductActionTypes.ProductLoadAction),
     switchMap((action: ProductLoad) =>
-      this.driver.productService.get(action.payload)
+      this.driver.get(action.payload)
         .pipe(
           map((resp) => {
             return new ProductLoadSuccess(resp);

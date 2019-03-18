@@ -106,6 +106,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
     git rebase master -i
     git push -f
     ```
+  * Note: don't squash your branch until after the reviewers comment "lgtm", so they don't need to re-review your entire branch every commit.
 
 That's it! Thank you for your contribution!
 

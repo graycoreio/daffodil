@@ -1,9 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
-import { switchMap, map, catchError, tap } from 'rxjs/operators';
+import { switchMap, map, catchError } from 'rxjs/operators';
 import { of , Observable } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-
-import { DaffDriver, DaffDriverInterface } from '@daffodil/driver';
 
 import { 
   CartActionTypes, 
@@ -13,19 +11,21 @@ import {
   AddToCartSuccess,
   AddToCartFailure,
   AddToCart} from '../actions/cart.actions';
+import { DaffCartDriver } from '../drivers/injection-tokens/cart-driver.token';
+import { DaffCartServiceInterface } from '../drivers/interfaces/cart-service.interface';
 
 @Injectable()
 export class CartEffects {
 
   constructor(
     private actions$: Actions,
-    @Inject(DaffDriver) private driver: DaffDriverInterface) {}
+    @Inject(DaffCartDriver) private driver: DaffCartServiceInterface) {}
 
   @Effect()
   load$ : Observable<any> = this.actions$.pipe(
     ofType(CartActionTypes.CartLoadAction),
     switchMap((action: CartLoad) =>
-      this.driver.cartService.get()
+      this.driver.get()
         .pipe(
           map((resp) => {
             return new CartLoadSuccess(resp);
@@ -41,7 +41,7 @@ export class CartEffects {
   addToCart$ = this.actions$.pipe(
     ofType(CartActionTypes.AddToCartAction),
     switchMap((action: AddToCart) =>
-      this.driver.cartService.addToCart(action.payload.productId, action.payload.qty)
+      this.driver.addToCart(action.payload.productId, action.payload.qty)
         .pipe(
           map((resp) => {
             return new AddToCartSuccess(resp);
