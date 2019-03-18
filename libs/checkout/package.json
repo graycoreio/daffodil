@@ -30,7 +30,6 @@
   "devDependencies": {
     "@daffodil/core": "0.0.0",
     "@daffodil/product": "0.0.0",
-    "@daffodil/cart": "0.0.0",
-    "@daffodil/driver": "0.0.0"
+    "@daffodil/cart": "0.0.0"
   }
 }

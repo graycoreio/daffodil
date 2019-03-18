@@ -3,28 +3,30 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { map, catchError, switchMap, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
-import { DaffDriverInterface, DaffDriver } from '@daffodil/driver';
-
 import { 
   OrderActionTypes,
   PlaceOrderSuccess,
   PlaceOrder,
   PlaceOrderFailure
 } from '../actions/order.actions';
+import { DaffCheckoutDriver } from '../../drivers/injection-tokens/driver-checkout.token';
+import { DaffCheckoutServiceInterface } from '../../drivers/interfaces/checkout-service.interface';
+import { DaffCartServiceInterface, DaffCartDriver } from '@daffodil/cart';
 
 @Injectable()
 export class OrderEffects {
 
   constructor(
     private actions$: Actions,
-    @Inject(DaffDriver) private driver: DaffDriverInterface
+    @Inject(DaffCheckoutDriver) private checkoutDriver: DaffCheckoutServiceInterface,
+    @Inject(DaffCartDriver) private cartDriver: DaffCartServiceInterface
   ) {}
 
   @Effect()
   onPlaceOrder$ : Observable<any> = this.actions$.pipe(
     ofType(OrderActionTypes.PlaceOrderAction),
     switchMap((action: PlaceOrder) => 
-      this.driver.checkoutService.placeOrder(action.payload.id.toString())
+      this.checkoutDriver.placeOrder(action.payload.id.toString())
         .pipe(
           map((resp) => {
             return new PlaceOrderSuccess(resp);
@@ -41,7 +43,7 @@ export class OrderEffects {
   onPlaceOrderSuccess$ : Observable<any> = this.actions$.pipe(
     ofType(OrderActionTypes.PlaceOrderSuccessAction),
     tap(() => { 
-      return this.driver.cartService.clear().subscribe();
+      return this.cartDriver.clear().subscribe();
     })
   )
 }

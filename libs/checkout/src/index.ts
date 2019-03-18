@@ -19,4 +19,4 @@ export { fromOrder };
 export { StateCheckoutModule } from './checkout.module';
 
 export { DaffCheckoutServiceInterface } from './drivers/interfaces/checkout-service.interface';
-export { DaffShopifyCheckoutService } from './drivers/shopify/checkout.service';
+export { DaffCheckoutDriver } from './drivers/injection-tokens/driver-checkout.token';
