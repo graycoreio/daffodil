@@ -1,7 +1,15 @@
-<daff-form-field class="daff-qty-dropdown">
-  <select daff-native-select *ngIf="!showQtyInputField" id="select_{{id}}" [(ngModel)]="qty" (ngModelChange)="onChangedWrapper(qty)" (blur)="onTouched()">
-    <option *ngFor="let item of dropdownItemCounter" [value]="item+1">{{ item+1 }}</option>
-    <option value="10">10+</option>
+<select daff-native-select
+    *ngIf="!showQtyInputField" 
+    [(ngModel)]="qty" (ngModelChange)="onChangedWrapper(qty)" 
+    (blur)="onTouched()" 
+    [disabled]="disabled">
+    <option *ngFor="let item of dropdownItemArray" [value]="item+1">{{ item+1 }}</option>
+    <option [value]="dropdownRange">{{ dropdownRange }}+</option>
   </select>
-  <input daff-input id="input_{{id}}" class="daff-qty-dropdown__input" [(ngModel)]="qty" (ngModelChange)="onChangedWrapper(qty)" (blur)="onTouched()" *ngIf="showQtyInputField">
-</daff-form-field>
+  <input 
+    type="number" min="1"
+    *ngIf="showQtyInputField" 
+    daff-input class="daff-qty-dropdown__input" 
+    [(ngModel)]="qty" (ngModelChange)="onChangedWrapper(qty)" 
+    (blur)="onTouched()" 
+    [disabled]="disabled">

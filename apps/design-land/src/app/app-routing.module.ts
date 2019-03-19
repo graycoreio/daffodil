@@ -13,6 +13,7 @@ export const appRoutes: Routes = [
   {path: 'feature', loadChildren: './feature/feature.module#FeatureModule'},
   {path: 'list', loadChildren: './list/list.module#ListModule'},
   {path: 'form', loadChildren: './form/form.module#FormModule'},
+  {path: 'qty-dropdown', loadChildren: './qty-dropdown/qty-dropdown.module#QtyDropdownModule'},
   {path: 'progress-indicator', loadChildren: './progress-indicator/progress-indicator.module#ProgressIndicatorModule'},
 ]
 

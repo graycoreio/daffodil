@@ -47,7 +47,7 @@ export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterC
    * observable to remove unnecessary change detection.
    */
   ngDoCheck() {
-    if(this._control) {
+    if(this._control!.ngControl) {
       this.isError = this._control.ngControl.errors && (this._control.ngControl.touched);
       this.isValid = !this._control.ngControl.errors && this._control.ngControl.touched;
     }
