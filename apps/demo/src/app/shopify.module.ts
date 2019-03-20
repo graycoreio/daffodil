@@ -1,16 +1,13 @@
 import { NgModule } from '@angular/core';
 
-import { environment } from '../environments/environment';
 import { ApolloBoostModule, ApolloBoost } from 'apollo-angular-boost';
-import { DaffShopifyDriverModule } from '@daffodil/driver/shopify';
+import { DaffProductShopifyDriverModule } from '@daffodil/product';
 
 @NgModule({
   imports: [
     //Shopify
     ApolloBoostModule,
-    DaffShopifyDriverModule.forRoot({
-      BASE_URL: environment.API_BASE
-    })
+    DaffProductShopifyDriverModule.forRoot()
   ]
 })
 export class ShopifyModule {

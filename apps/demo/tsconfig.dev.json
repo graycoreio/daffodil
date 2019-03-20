@@ -6,14 +6,11 @@
       "@daffodil/core/testing": ["libs/core/testing/src"],
       "@daffodil/cart": ["libs/cart/src"],
       "@daffodil/checkout": ["libs/checkout/src"],
-      "@daffodil/driver": ["libs/driver/src"],
-      "@daffodil/driver/testing": ["libs/driver/testing/src"],
-      "@daffodil/driver/in-memory": ["libs/driver/in-memory/src"],
-      "@daffodil/driver/shopify": ["libs/driver/shopify/src"],
-      "@daffodil/driver/magento": ["libs/driver/magento/src"],
       "@daffodil/design": ["libs/design/src"],
       "@daffodil/product": ["libs/product/src"],
-      "@daffodil/product/testing": ["libs/product/testing/src"]
+      "@daffodil/product/testing": ["libs/product/testing/src"],
+      "@daffodil/cart/testing": ["libs/cart/testing/src"],
+      "@daffodil/checkout/testing": ["libs/checkout/testing/src"]
     }
   }
 }

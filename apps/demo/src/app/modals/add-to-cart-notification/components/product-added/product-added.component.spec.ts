@@ -4,7 +4,6 @@ import { By } from '@angular/platform-browser';
 
 import { Product } from '@daffodil/core';
 import { DaffProductFactory, DaffProductImageFactory } from '@daffodil/core/testing';
-import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
 import { ProductAddedComponent } from './product-added.component';
 
@@ -29,9 +28,6 @@ describe('ProductAddedComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        DaffDriverTestingModule
-      ],
       declarations: [
         WrapperComponent,
         ProductAddedComponent
