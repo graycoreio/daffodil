@@ -1,7 +1,8 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DaffCheckoutDriver } from '../../../../src/drivers/injection-tokens/driver-checkout.token';
+import { DaffCheckoutDriver } from '@daffodil/checkout';
+
 import { DaffTestingCheckoutService } from './checkout.service';
 
 @NgModule({

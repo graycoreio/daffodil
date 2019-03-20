@@ -3,7 +3,6 @@ import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { Component, Input, Output, EventEmitter, Directive } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 import { DaffProductFactory } from '@daffodil/core/testing';
 import { Product } from '@daffodil/core';
 import { DaffLoadingIconModule } from '@daffodil/design';
@@ -72,7 +71,6 @@ describe('AddToCartNotificationComponent', () => {
         StoreModule.forRoot({
           product: combineReducers(fromProduct.reducers)
         }),
-        DaffDriverTestingModule,
         DaffLoadingIconModule
       ],
       declarations: [

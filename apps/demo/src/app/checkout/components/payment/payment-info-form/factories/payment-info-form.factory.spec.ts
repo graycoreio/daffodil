@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { PaymentInfoFormFactory } from './payment-info-form.factory';
-import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 import { DaffPaymentFactory } from '@daffodil/core/testing';
 
 describe('Daffodil Demo | Checkout | Forms | Payment Info Form | Factories | PaymentInfoFormFactory', () => {
@@ -13,8 +12,7 @@ describe('Daffodil Demo | Checkout | Forms | Payment Info Form | Factories | Pay
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ReactiveFormsModule,
-        DaffDriverTestingModule
+        ReactiveFormsModule
       ],
       providers: [PaymentInfoFormFactory]
     });

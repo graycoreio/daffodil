@@ -15,6 +15,8 @@ export { DaffShippingRateFactory } from './shipping/factories/shipping-rate.fact
 // Drivers
 export { DaffTestingCheckoutService } from './drivers/testing/checkout.service';
 export { DaffInMemoryCheckoutService } from './drivers/in-memory/checkout.service';
+export { DaffCheckoutInMemoryDriverModule } from './drivers/in-memory/checkout-driver.module';
+export { DaffCheckoutTestingDriverModule } from './drivers/testing/checkout-driver.module';
 
 // inmemory-backend
 export { DaffInMemoryBackendCheckoutService } from './inmemory-backend/checkout.service';

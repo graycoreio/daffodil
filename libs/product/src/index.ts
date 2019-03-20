@@ -10,3 +10,5 @@ export { StateProductModule } from './product.module';
 
 export { DaffShopifyProductService } from './drivers/shopify/product.service';
 export { DaffProductServiceInterface } from './drivers/interfaces/product-service.interface';
+export { DaffProductShopifyDriverModule } from './drivers/shopify/product-driver.module';
+export { DaffProductDriver } from './drivers/injection-tokens/product-driver.token';

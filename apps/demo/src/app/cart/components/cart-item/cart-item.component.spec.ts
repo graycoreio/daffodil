@@ -8,7 +8,6 @@ import { CartItemComponent } from './cart-item.component';
 
 import { CartItem } from '@daffodil/core';
 import { DaffCartItemFactory, DaffProductImageFactory } from '@daffodil/core/testing';
-import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 import { DaffQtyDropdownModule, DaffQtyDropdownComponent } from '@daffodil/design';
 
 @Component({template: '<demo-cart-item [item]="cartItemValue"></demo-cart-item>'})
@@ -30,7 +29,6 @@ describe('CartItemComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        DaffDriverTestingModule,
         DaffQtyDropdownModule
       ],
       declarations: [

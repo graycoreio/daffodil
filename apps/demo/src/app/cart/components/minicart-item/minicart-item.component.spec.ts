@@ -9,7 +9,6 @@ import { DaffCartItemFactory, DaffProductImageFactory } from '@daffodil/core/tes
 
 import { MiniCartItemComponent } from './minicart-item.component';
 import { CartItemComponent } from '../cart-item/cart-item.component';
-import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
 @Component({template: '<demo-minicart-item [item]="cartItemValue"></demo-minicart-item>'})
 class WrapperComponent {
@@ -28,8 +27,7 @@ describe('MiniCartItemComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
-        DaffDriverTestingModule
+        RouterTestingModule
       ],
       declarations: [
         MiniCartItemComponent,

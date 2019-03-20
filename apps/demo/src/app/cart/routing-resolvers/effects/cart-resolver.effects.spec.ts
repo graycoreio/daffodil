@@ -4,10 +4,9 @@ import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 import { StoreModule, combineReducers } from '@ngrx/store';
 
-import { fromCart, Cart } from '@daffodil/cart';
+import { fromCart, Cart, DaffCartDriver, DaffCartServiceInterface } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/core/testing';
-import { DaffDriverInterface, DaffDriver } from '@daffodil/driver';
-import { DaffDriverTestingModule } from '@daffodil/driver/testing';
+import { DaffTestingCartService } from '@daffodil/cart/testing';
 
 import { CartResolverEffects } from './cart-resolver.effects';
 import { ResolveCart, ResolveCartSuccess, ResolveCartFailure } from '../actions/cart-resolver.actions';
@@ -17,7 +16,7 @@ describe('CartResolverEffects', () => {
   let effects: CartResolverEffects;
   let cartFactory: DaffCartFactory;
   let stubCart: Cart;
-  let driver: DaffDriverInterface;
+  let driver: DaffCartServiceInterface;
 
   beforeEach(() => {
 
@@ -25,19 +24,22 @@ describe('CartResolverEffects', () => {
       imports: [
         StoreModule.forRoot({
           carts: combineReducers(fromCart.reducers),
-        }),
-        DaffDriverTestingModule
+        })
       ],
       providers: [
         CartResolverEffects,
-        provideMockActions(() => actions$)
+        provideMockActions(() => actions$),
+        { 
+          provide: DaffCartDriver, 
+          useValue: new DaffTestingCartService(new DaffCartFactory())
+        }
       ]
     });
 
     effects = TestBed.get(CartResolverEffects);
     cartFactory = TestBed.get(DaffCartFactory);
     stubCart = cartFactory.create();
-    driver = TestBed.get(DaffDriver);
+    driver = TestBed.get(DaffCartDriver);
   });
 
   it('should be created', () => {
@@ -73,7 +75,7 @@ describe('CartResolverEffects', () => {
       describe('and service call to cartService.get is successful', () => {
         
         beforeEach(() => {
-          spyOn(driver.cartService, 'get').and.returnValue(of(stubCart));
+          spyOn(driver, 'get').and.returnValue(of(stubCart));
         });
 
         it('should dispatch a ResolveCartSuccess action', () => {
@@ -89,7 +91,7 @@ describe('CartResolverEffects', () => {
         
         beforeEach(() => {
           const response = cold('#', {});
-          spyOn(driver.cartService, 'get').and.returnValue(response);
+          spyOn(driver, 'get').and.returnValue(response);
         });
 
         it('should dispatch a ResolveCartSuccessFailure action', () => {
