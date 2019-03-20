@@ -1,7 +1,14 @@
 import { AddToCart, AddToCartSuccess, Cart } from "@daffodil/cart";
-import { DaffCartFactory } from "@daffodil/core/testing";
+import { DaffCartFactory } from "@daffodil/cart/testing";
 
-import { initialState, reducer, getOpen, getProductQty, getLoading, getProductId } from "../reducers/add-to-cart-notification.reducer";
+import { 
+  initialState, 
+  reducer, 
+  getOpen, 
+  getProductQty, 
+  getLoading, 
+  getProductId 
+} from "../reducers/add-to-cart-notification.reducer";
 import { OpenAddToCartNotification, CloseAddToCartNotification } from "../actions/add-to-cart-notification.actions";
 
 describe('Add To Cart Notification | Reducer', () => {

@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-
 import {
   InMemoryDbService,
   RequestInfoUtilities,
   ParsedRequestUrl
 } from 'angular-in-memory-web-api';
-import { Product, Cart, Order } from '@daffodil/core';
 
-import { DaffInMemoryBackendCartService } from '@daffodil/cart/testing';
+import { Product } from '@daffodil/product';
+import { Cart } from '@daffodil/cart';
+import { Order } from '@daffodil/checkout';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
+import { DaffInMemoryBackendCartService } from '@daffodil/cart/testing';
 import { DaffInMemoryBackendCheckoutService } from '@daffodil/checkout/testing';
 
 @Injectable({

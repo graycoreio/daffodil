@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
 import { fromCart, Cart }  from '@daffodil/cart';
-import { DaffCartFactory } from '@daffodil/core/testing';
+import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { CartResolver } from './cart-resolver.service';
 import { ResolveCart, ResolveCartSuccess, ResolveCartFailure } from '../actions/cart-resolver.actions';

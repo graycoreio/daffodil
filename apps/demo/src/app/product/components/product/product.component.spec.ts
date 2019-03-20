@@ -1,12 +1,12 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { Component, Input } from '@angular/core';
-import { RouterTestingModule } from '@angular/router/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { Product } from '@daffodil/core';
-import { DaffProductFactory } from '@daffodil/core/testing';
+import { Product } from '@daffodil/product';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { ProductComponent } from './product.component';
 

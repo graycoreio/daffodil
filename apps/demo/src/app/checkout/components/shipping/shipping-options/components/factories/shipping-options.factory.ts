@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ShippingOption } from '@daffodil/core';
+
+import { ShippingOption } from '@daffodil/checkout';
 
 @Injectable({
   providedIn: 'root'

@@ -5,7 +5,7 @@ import { of, Subscription } from 'rxjs';
 
 import { PlaceOrder } from '@daffodil/checkout';
 import { Cart, fromCart } from '@daffodil/cart';
-import { DaffCartFactory } from '@daffodil/core/testing';
+import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import * as fromDemoCheckout from '../../reducers';
 import { PlaceOrderComponent } from './place-order.component';

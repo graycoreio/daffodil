@@ -5,8 +5,7 @@ import { hot, cold } from 'jasmine-marbles';
 import { StoreModule, combineReducers } from '@ngrx/store';
 
 import { fromCart, Cart, DaffCartDriver, DaffCartServiceInterface } from '@daffodil/cart';
-import { DaffCartFactory } from '@daffodil/core/testing';
-import { DaffTestingCartService } from '@daffodil/cart/testing';
+import { DaffTestingCartService, DaffCartFactory } from '@daffodil/cart/testing';
 
 import { CartResolverEffects } from './cart-resolver.effects';
 import { ResolveCart, ResolveCartSuccess, ResolveCartFailure } from '../actions/cart-resolver.actions';

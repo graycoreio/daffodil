@@ -1,14 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
 import { Observable, of } from 'rxjs';
 
-import { Product } from '@daffodil/core';
+import { Product } from '@daffodil/product';
 import { DaffLoadingIconModule } from '@daffodil/design';
 
 import { BestSellersComponent } from './best-sellers.component';
-
 
 const stubBestSellers: Product[] = [];
 

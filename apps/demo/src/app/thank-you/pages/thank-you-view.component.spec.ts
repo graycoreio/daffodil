@@ -1,17 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Observable, of } from 'rxjs';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { Observable, of } from 'rxjs';
 
-import { Cart } from '@daffodil/core';
+import { Cart } from '@daffodil/cart';
+import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 import { DaffAccordionModule, 
   DaffAccordionItemComponent, 
   DaffLoadingIconModule,
   DaffContainerModule, 
   DaffContainerComponent
 } from '@daffodil/design';
-import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/core/testing';
 
 import { ThankYouViewComponent } from './thank-you-view.component';
 

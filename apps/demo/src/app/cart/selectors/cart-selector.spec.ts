@@ -1,9 +1,8 @@
 import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
-import { DaffCoreTestingModule } from "@daffodil/core/testing";
-import { DaffCartFactory, DaffCartItemFactory } from "@daffodil/core/testing";
 import { CartReset, CartLoadSuccess, Cart } from "@daffodil/cart";
+import { DaffCartFactory, DaffCartItemFactory } from "@daffodil/cart/testing";
 
 import * as fromCart from './cart-selector';
 
@@ -17,7 +16,6 @@ describe('selectCartState', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffCoreTestingModule,
         StoreModule.forRoot({
           cart: combineReducers(fromCart.reducers),
         })

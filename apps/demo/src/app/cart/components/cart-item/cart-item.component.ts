@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CartItem } from '@daffodil/core';
 import { Router } from '@angular/router';
+
+import { CartItem } from '@daffodil/cart';
 
 @Component({
   selector: 'demo-cart-item',

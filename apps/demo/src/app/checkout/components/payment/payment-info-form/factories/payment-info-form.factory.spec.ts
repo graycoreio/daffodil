@@ -1,8 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
+import { DaffPaymentFactory } from '@daffodil/checkout/testing';
+
 import { PaymentInfoFormFactory } from './payment-info-form.factory';
-import { DaffPaymentFactory } from '@daffodil/core/testing';
 
 describe('Daffodil Demo | Checkout | Forms | Payment Info Form | Factories | PaymentInfoFormFactory', () => {
   

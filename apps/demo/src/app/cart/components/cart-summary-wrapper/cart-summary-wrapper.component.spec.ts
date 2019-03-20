@@ -2,15 +2,14 @@ import { Component, Input } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Observable ,  of } from 'rxjs';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
-import { Cart } from '@daffodil/core';
-import { DaffCartFactory } from '@daffodil/core/testing';
-
+import { Cart } from '@daffodil/cart';
+import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffLoadingIconModule } from '@daffodil/design';
 
 import { CartSummaryWrapperComponent } from './cart-summary-wrapper.component';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Router } from '@angular/router';
 import { CartSummaryComponent } from '../cart-summary/cart-summary.component';
 
 const cartFactory = new DaffCartFactory();
