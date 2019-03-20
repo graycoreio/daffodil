@@ -4,7 +4,8 @@ import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder } from '@angul
 import { By } from '@angular/platform-browser';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 
-import { DaffodilAddress, PaymentInfo } from '@daffodil/core';
+import { DaffodilAddress } from '@daffodil/core';
+import { PaymentInfo } from '@daffodil/checkout';
 
 import { PaymentFormComponent } from './payment-form.component';
 import * as fromDemoCheckout from '../../../reducers';

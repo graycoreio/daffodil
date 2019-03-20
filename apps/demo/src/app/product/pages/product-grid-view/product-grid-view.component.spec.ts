@@ -1,13 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Observable ,  of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
-import { Product } from '@daffodil/core';
-import { DaffProductFactory } from '@daffodil/core/testing';
+import { Product } from '@daffodil/product';
+import { DaffProductFactory } from '@daffodil/product/testing';
+import { DaffContainerModule, DaffLoadingIconModule } from '@daffodil/design';
 
 import { ProductGridViewComponent } from './product-grid-view.component';
-import { DaffContainerModule, DaffLoadingIconModule } from '@daffodil/design';
 
 const productFactory = new DaffProductFactory();
 const products$ = of(new Array(productFactory.create()));

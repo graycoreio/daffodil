@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-
-import { PaymentInfo, DaffodilAddress } from '@daffodil/core';
-
 import { Store } from '@ngrx/store';
+
+import { DaffodilAddress } from '@daffodil/core';
+import { PaymentInfo } from '@daffodil/checkout';
 
 import * as fromDemoCheckout from '../../../reducers';
 import { EnablePlaceOrderButton } from '../../../actions/checkout.actions';

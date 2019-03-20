@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Router } from '@angular/router';
 
-import { PlaceOrder } from '@daffodil/checkout';
-import { DaffCartFactory } from '@daffodil/core/testing';
 import { Cart } from '@daffodil/cart';
+import { DaffCartFactory } from '@daffodil/cart/testing';
+import { PlaceOrder } from '@daffodil/checkout';
 
 import { CheckoutEffects } from './checkout.effects';
 import { ToggleShowPaymentForm } from '../actions/payment.actions';

@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
-import { Cart, CartItem } from '@daffodil/core';
-import { DaffCartFactory, DaffCartItemFactory, DaffCoreTestingModule } from '@daffodil/core/testing';
-
-import { CartSummaryComponent } from './cart-summary.component';
 import { Component, Input } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
+
+import { Cart, CartItem } from '@daffodil/cart';
+import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
+
+import { CartSummaryComponent } from './cart-summary.component';
 
 @Component({template: '<demo-cart-summary [cart]="cartValue" [title]="titleValue"></demo-cart-summary>'})
 class WrapperComponent {
@@ -34,8 +34,7 @@ describe('CartSummaryComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
-        DaffCoreTestingModule
+        RouterTestingModule
       ],
       declarations: [
         CartSummaryComponent,

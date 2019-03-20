@@ -4,8 +4,10 @@ import { By } from '@angular/platform-browser';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { of } from 'rxjs';
 
-import { PaymentInfo, DaffodilAddress } from '@daffodil/core';
-import { DaffAddressFactory, DaffPaymentFactory } from '@daffodil/core/testing';
+import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddressFactory } from '@daffodil/core/testing';
+import { PaymentInfo } from '@daffodil/checkout';
+import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 
 import { ShowPaymentForm, ToggleShowPaymentForm, HidePaymentForm } from '../../../actions/payment.actions';
 import * as fromDemoCheckout from '../../../reducers';

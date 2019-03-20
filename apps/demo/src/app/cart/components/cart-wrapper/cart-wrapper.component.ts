@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { Cart } from '@daffodil/core';
+import { Cart } from '@daffodil/cart';
 
 import * as fromCart from '../../selectors/cart-selector';
 

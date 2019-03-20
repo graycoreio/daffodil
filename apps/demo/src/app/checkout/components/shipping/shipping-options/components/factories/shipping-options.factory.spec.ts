@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
+import { ShippingOption } from '@daffodil/checkout';
+
 import { ShippingOptionsFactory } from './shipping-options.factory';
-import { ShippingOption } from '@daffodil/core';
 
 describe('Daffodil Demo | Checkout | Shipping | Shipping Options | Factories | ShippingOptionsFactory', () => {
   

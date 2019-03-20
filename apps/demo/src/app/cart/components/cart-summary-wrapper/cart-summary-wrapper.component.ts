@@ -1,5 +1,6 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { Cart } from '@daffodil/core';
+
+import { Cart } from '@daffodil/cart';
 
 @Component({
   selector: 'demo-cart-summary-wrapper',

@@ -1,10 +1,10 @@
 import { Component, Input, OnInit, DoCheck } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
-import { ShippingOption } from '@daffodil/core';
+import { ShippingOption } from '@daffodil/checkout';
+import { DaffErrorStateMatcher } from '@daffodil/design';
 
 import { ShippingOptionsService } from '../services/shipping-options.service';
-import { DaffErrorStateMatcher } from '@daffodil/design';
 
 @Component({
   selector: 'demo-shipping-options',

@@ -1,10 +1,10 @@
+import { Component, Input, Output, EventEmitter, Directive } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
-import { Component, Input, Output, EventEmitter, Directive } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { DaffProductFactory } from '@daffodil/core/testing';
-import { Product } from '@daffodil/core';
+import { DaffProductFactory } from '@daffodil/product/testing';
+import { Product } from '@daffodil/product';
 import { DaffLoadingIconModule } from '@daffodil/design';
 
 // importing from @daffodil/product doesn't work.

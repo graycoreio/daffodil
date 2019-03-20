@@ -1,9 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { PaymentInfo, DaffodilAddress } from '@daffodil/core';
 import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import { DaffodilAddress } from '@daffodil/core';
+import { PaymentInfo } from '@daffodil/checkout';
+
 import * as fromDemoCheckout from '../../../reducers';
 import { ToggleShowPaymentForm, HidePaymentForm, ShowPaymentForm } from '../../../actions/payment.actions';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'demo-payment',

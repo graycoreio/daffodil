@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { PaymentInfo } from '@daffodil/core';
+
+import { PaymentInfo } from '@daffodil/checkout';
 
 @Component({
   selector: 'demo-payment-summary',
