@@ -11,6 +11,12 @@ import {
 import { DaffProductDriver } from '../drivers/injection-tokens/product-driver.token';
 import { DaffProductServiceInterface } from '../drivers/interfaces/product-service.interface';
 
+/**
+ * Effects for handling best seller actions and best seller service requests.
+ * 
+ * @Param action$: Actions - Redux action object
+ * @Param driver: DaffProductServiceInterface - A product service driver
+ */
 @Injectable()
 export class BestSellersEffects {
 
@@ -18,6 +24,10 @@ export class BestSellersEffects {
     private actions$: Actions,
     @Inject(DaffProductDriver) private driver: DaffProductServiceInterface){}
 
+  /**
+   * Handles BestSellersLoadAction by making a service call for best selling products and returning a success or failure action
+   * to the action stream.
+   */
   @Effect()
   loadBestSellers$ : Observable<any> = this.actions$.pipe(
     ofType(BestSellersActionTypes.BestSellersLoadAction),

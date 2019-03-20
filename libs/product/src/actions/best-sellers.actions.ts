@@ -2,6 +2,9 @@ import { Action } from '@ngrx/store';
 
 import { Product } from '../models/product';
 
+/**
+ * Action types for Best Seller Actions.
+ */
 export enum BestSellersActionTypes {
     BestSellersLoadAction = "[BestSellers] Load Action",
     BestSellersLoadSuccessAction = "[BestSellers] Load Success Action",
@@ -9,24 +12,40 @@ export enum BestSellersActionTypes {
     BestSellersResetAction = "[BestSellers] Reset Action"
 }
 
+/**
+ * Triggers a request for best selling products.
+ */
 export class BestSellersLoad implements Action {
   readonly type = BestSellersActionTypes.BestSellersLoadAction;
 
   constructor() {}
 }
 
+/**
+ * A request for best selling products succeeded.
+ * 
+ * payload: Product[] - an array of Products
+ */
 export class BestSellersLoadSuccess implements Action {
     readonly type = BestSellersActionTypes.BestSellersLoadSuccessAction;
 
     constructor(public payload: Product[]) {}
 }
 
+/**
+ * A request for best selling products failed.
+ * 
+ * payload: string - an error message
+ */
 export class BestSellersLoadFailure implements Action {
   readonly type = BestSellersActionTypes.BestSellersLoadFailureAction;
 
   constructor(public payload: string) {}
 }
 
+/**
+ * Resets the state of the best sellers redux store to its initial state.
+ */
 export class BestSellersReset implements Action {
   readonly type = BestSellersActionTypes.BestSellersResetAction;
 

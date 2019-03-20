@@ -1,6 +1,9 @@
 import { Action } from '@ngrx/store';
 import { Product } from '../models/product';
 
+/**
+ * Action types for Product Actions.
+ */
 export enum ProductActionTypes {
     ProductLoadAction = "[Product] Load Action",
     ProductLoadSuccessAction = "[Product] Load Success Action",
@@ -8,24 +11,44 @@ export enum ProductActionTypes {
     UpdateQtyAction = "[Product] Update Qty Action"
 }
 
+/**
+ * Triggers a request for a Product.
+ * 
+ * payload: string - id of requested Product
+ */
 export class ProductLoad implements Action {
   readonly type = ProductActionTypes.ProductLoadAction;
 
   constructor(public payload: string) {}
 }
 
+/**
+ * A request for a Product succeeded.
+ * 
+ * payload: Product - A Product
+ */
 export class ProductLoadSuccess implements Action {
     readonly type = ProductActionTypes.ProductLoadSuccessAction;
 
     constructor(public payload: Product) {}
 }
 
+/**
+ * A request for a Product failed.
+ * 
+ * payload: string - an error message
+ */
 export class ProductLoadFailure implements Action {
   readonly type = ProductActionTypes.ProductLoadFailureAction;
 
   constructor(public payload: string) {}
 }
 
+/**
+ * Update the qty of a product in an redux store.
+ * 
+ * payload: number - the qty of the product.
+ */
 export class UpdateQty implements Action {
     readonly type = ProductActionTypes.UpdateQtyAction;
 

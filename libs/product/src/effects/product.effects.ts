@@ -13,6 +13,12 @@ import {
 import { DaffProductDriver } from '../drivers/injection-tokens/product-driver.token';
 import { DaffProductServiceInterface } from '../drivers/interfaces/product-service.interface';
 
+/**
+ * Effects for handling product actions.
+ * 
+ * @Param action$: Actions - Redux action object
+ * @Param driver: DaffProductServiceInterface - A product service driver
+ */
 @Injectable()
 export class ProductEffects {
 
@@ -20,6 +26,10 @@ export class ProductEffects {
     private actions$: Actions,
     @Inject(DaffProductDriver) private driver: DaffProductServiceInterface){}
 
+  /**
+  * Handles ProductLoadAction by making a service call for a product and returning a success or 
+  * failure action to the action stream.
+  */
   @Effect()
   load$ : Observable<any> = this.actions$.pipe(
     ofType(ProductActionTypes.ProductLoadAction),

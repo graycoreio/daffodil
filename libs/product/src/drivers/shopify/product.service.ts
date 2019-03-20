@@ -40,7 +40,9 @@ interface Variables {
 };
 
 
-
+/**
+ * GraphQL query object for getting all products.
+ */
 export const GetAllProductsQuery = gql`
   query GetAllProducts($length: Int) {
     shop {
@@ -56,6 +58,9 @@ export const GetAllProductsQuery = gql`
   }
 `;
 
+/**
+ * GraphQL query object for getting a product by ID.
+ */
 export const GetAProduct = gql`
   query GetAProduct($id: ID!){
     node(id: $id) {
@@ -67,6 +72,10 @@ export const GetAProduct = gql`
   }
 `;
 
+/**
+ * Transforms a ProductNode into a different object.
+ * @param node ProductNode object
+ */
 export const DaffShopifyProductTransformer = (node: ProductNode) : Product => {
   return {
     id: node.id,
@@ -74,6 +83,11 @@ export const DaffShopifyProductTransformer = (node: ProductNode) : Product => {
   }
 }
 
+/**
+ * Driver for product shopify requests.
+ * 
+ * @Param apollo
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -83,6 +97,9 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
   
   constructor(private apollo: Apollo) {}
 
+  /**
+   * A query for retrieving all Products.
+   */
   getAll(): Observable<Product[]> {
     return this.apollo.query<GetAllProductsResponse>({
       query: GetAllProductsQuery,
@@ -96,6 +113,9 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
     );
   }
 
+  /**
+   * A query to retrieve all best selling products.
+   */
   //todo: add actual getBestSellers apollo call. Right now, it just makes the getAll() call
   getBestSellers(): Observable<Product[]> {
     return this.apollo.query<GetAllProductsResponse>({
@@ -110,6 +130,11 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
     );
   }
 
+  /**
+   * A query for retrieving a particular product.
+   * 
+   * @param productId string: a product ID
+   */
   get(productId: string): Observable<Product> {
     return this.apollo.query<GetAProductResponse>({
       query: GetAProduct,
