@@ -21,7 +21,7 @@
               "apps/demo/src/favicon.ico",
               {
                 "glob": "**/*",
-                "input": "libs/core/assets/",
+                "input": "libs/product/assets/",
                 "output": "/assets/"
               }
             ],
@@ -152,7 +152,7 @@
               "apps/demo/src/favicon.ico",
               {
                 "glob": "**/*",
-                "input": "libs/core/assets/",
+                "input": "libs/product/assets/",
                 "output": "/assets/"
               }
             ],
