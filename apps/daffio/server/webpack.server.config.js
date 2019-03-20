@@ -9,9 +9,13 @@ module.exports = {
     modules: [path.resolve(__dirname, './../../../node_modules')]
   },
   target: 'node',
+  node: {
+    __dirname: false,
+  },
   // this makes sure we include node_modules and other 3rd party libraries
   externals: [/(node_modules|main\..*\.js)/],
   output: {
+    libraryTarget: 'commonjs2',
     path: path.join(__dirname, '../../../dist/apps/daffio'),
     filename: '[name].js'
   },
