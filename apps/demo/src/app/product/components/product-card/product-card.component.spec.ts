@@ -8,7 +8,6 @@ import { Product } from '@daffodil/core';
 import { DaffProductFactory, DaffProductImageFactory } from '@daffodil/core/testing';
 
 import { ProductCardComponent } from './product-card.component';
-import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
 @Component({template: '<demo-product-card [product]="productValue"></demo-product-card>'})
 class WrapperComponent {
@@ -27,8 +26,7 @@ describe('ProductCardComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
-        DaffDriverTestingModule
+        RouterTestingModule
       ],
       declarations: [ 
         ProductCardComponent,

@@ -1,7 +1,6 @@
 import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
-import { DaffDriverTestingModule } from "@daffodil/driver/testing";
 import { Cart } from "@daffodil/core";
 import { DaffCoreTestingModule } from "@daffodil/core/testing";
 import { CartReset, CartLoadSuccess, fromCart } from "@daffodil/cart";
@@ -27,8 +26,7 @@ describe('selectDemoAddToCartNotificationState', () => {
         StoreModule.forRoot({
           demoAddToCartNotification: combineReducers(fromAddToCartNotification.reducers),
           cart: combineReducers(fromCart.reducers)
-        }),
-        DaffDriverTestingModule
+        })
       ]
     });
 

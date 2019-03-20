@@ -2,12 +2,11 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { DaffCoreTestingModule } from '@daffodil/core/testing';
-import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
-import { DaffInMemoryService } from './in-memory.service';
-import { DaffInMemoryCartTestingService } from './cart/in-mem/cart.testing.service';
-import { DaffInMemoryProductTestingService } from './product/in-mem/product.testing.service';
-import { DaffInMemoryCheckoutService } from './checkout/services/checkout.service';
+import { DemoInMemoryService } from './in-memory.service';
+import { DaffInMemoryBackendCartService } from '@daffodil/cart/testing';
+import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
+import { DaffInMemoryBackendCheckoutService } from '@daffodil/checkout/testing';
 
 describe('Driver | In Memory | InMemoryService', () => {
   let service;
@@ -16,18 +15,17 @@ describe('Driver | In Memory | InMemoryService', () => {
     TestBed.configureTestingModule({
       imports: [
         DaffCoreTestingModule,
-        DaffDriverTestingModule,
         HttpClientTestingModule
       ],
       providers: [
-        DaffInMemoryCartTestingService,
-        DaffInMemoryProductTestingService,
-        DaffInMemoryCheckoutService,
-        DaffInMemoryService
+        DaffInMemoryBackendCartService,
+        DaffInMemoryBackendProductService,
+        DaffInMemoryBackendCheckoutService,
+        DemoInMemoryService
       ]
     });
 
-    service = TestBed.get(DaffInMemoryService);
+    service = TestBed.get(DemoInMemoryService);
   });
 
   it('should be created', () => {

@@ -4,8 +4,7 @@ import { Observable, of } from 'rxjs';
 import { switchMap, take, map, catchError } from 'rxjs/operators';
 import { Action, select, Store } from '@ngrx/store';
 
-import { fromCart, Cart } from '@daffodil/cart';
-import { DaffDriver, DaffDriverInterface } from '@daffodil/driver';
+import { fromCart, Cart, DaffCartDriver, DaffCartServiceInterface } from '@daffodil/cart';
 
 import { ResolveCartSuccess, CartResolverActionTypes, ResolveCartFailure } from '../actions/cart-resolver.actions';
 
@@ -15,7 +14,7 @@ export class CartResolverEffects {
   constructor(
     private actions$: Actions,
     private store: Store<fromCart.State>,
-    @Inject(DaffDriver) private driver: DaffDriverInterface
+    @Inject(DaffCartDriver) private driver: DaffCartServiceInterface
   ) {}
 
   @Effect()
@@ -41,7 +40,7 @@ export class CartResolverEffects {
   }
 
   private getCartHandler(): Observable<Action> {
-    return this.driver.cartService.get()
+    return this.driver.get()
       .pipe(
         map((resp) => new ResolveCartSuccess(resp)),
         catchError(error => {

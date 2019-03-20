@@ -7,18 +7,18 @@ import {
 } from 'angular-in-memory-web-api';
 import { Product, Cart, Order } from '@daffodil/core';
 
-import { DaffInMemoryCartTestingService } from './cart/in-mem/cart.testing.service';
-import { DaffInMemoryProductTestingService } from './product/in-mem/product.testing.service';
-import { DaffInMemoryCheckoutTestingService } from './checkout/in-mem/checkout.testing.service';
+import { DaffInMemoryBackendCartService } from '@daffodil/cart/testing';
+import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
+import { DaffInMemoryBackendCheckoutService } from '@daffodil/checkout/testing';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffInMemoryService implements InMemoryDbService {
+export class DemoInMemoryService implements InMemoryDbService {
   constructor(
-    private productTestingService: DaffInMemoryProductTestingService,
-    private cartTestingService: DaffInMemoryCartTestingService,
-    private checkoutTestingService: DaffInMemoryCheckoutTestingService
+    private productTestingService: DaffInMemoryBackendProductService,
+    private cartTestingService: DaffInMemoryBackendCartService,
+    private checkoutTestingService: DaffInMemoryBackendCheckoutService
   ) {}
 
   parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {

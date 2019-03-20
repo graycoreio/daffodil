@@ -6,7 +6,6 @@ import { of, Subscription } from 'rxjs';
 import { PlaceOrder } from '@daffodil/checkout';
 import { Cart, fromCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/core/testing';
-import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
 import * as fromDemoCheckout from '../../reducers';
 import { PlaceOrderComponent } from './place-order.component';
@@ -26,8 +25,7 @@ describe('PlaceOrderComponent', () => {
         StoreModule.forRoot({
           checkout: combineReducers(fromDemoCheckout.reducers),
           cart: combineReducers(fromCart.reducers)
-        }),
-        DaffDriverTestingModule
+        })
       ],
       declarations: [ 
         PlaceOrderComponent
