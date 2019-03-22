@@ -1,5 +1,4 @@
-import { createEntityAdapter, EntityState, EntityAdapter } from '@ngrx/entity';
-import { Dictionary } from '@ngrx/entity/src/models';
+import { createEntityAdapter, EntityState, EntityAdapter, Dictionary } from '@ngrx/entity';
 
 import { ProductGridActionTypes, ProductGridActions } from '../actions/product-grid.actions';
 import { ProductActionTypes, ProductActions } from '../actions/product.actions';
