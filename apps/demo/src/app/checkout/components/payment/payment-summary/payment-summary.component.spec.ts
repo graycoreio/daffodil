@@ -21,7 +21,7 @@ const stubPaymentInfo: PaymentInfo = {
 })
 class WrapperComponent {
   paymentInfoValue: PaymentInfo = stubPaymentInfo;
-  editPaymentInfoFunction: Function = () => {};
+  editPaymentInfoFunction() {};
 }
 
 describe('PaymentSummaryComponent', () => {

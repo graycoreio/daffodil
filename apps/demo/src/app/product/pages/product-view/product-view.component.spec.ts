@@ -30,7 +30,7 @@ class MockProductContainer {
   product$: Observable<Product> = product$;
   loading$: Observable<boolean> = of(false);
   qty$: Observable<number> = of(stubQty);
-  updateQty: Function;
+  updateQty(){};
 }
 
 @Component({
@@ -40,7 +40,7 @@ class MockProductContainer {
   exportAs: 'CartContainer'
 })
 class MockCartContainer {
-  addToCart: Function;
+  addToCart(){};
 }
 
 @Component({
@@ -104,9 +104,7 @@ describe('ProductViewComponent', () => {
     fixture.detectChanges();
     productContainer = fixture.debugElement.query(By.css('[product-container]')).componentInstance;
     productContainer.loading$ = of(false);
-    productContainer.updateQty = (payload: number) => {};
     cartContainer = fixture.debugElement.query(By.css('[cart-container]')).componentInstance;
-    cartContainer.addToCart = (payload) => {};
 
     productComponent = fixture.debugElement.query(By.css('demo-product')).componentInstance;
     addToCartComponent = fixture.debugElement.query(By.css('demo-add-to-cart')).componentInstance;
