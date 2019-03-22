@@ -21,7 +21,7 @@ import {
 class WrapperComponent {
   productValue: Product;
   qtyValue: number;
-  updateQtyFunction: Function;
+  updateQtyFunction(){};
 }
 
 @Component({selector: 'demo-image-gallery-container', template: ''})
@@ -37,7 +37,6 @@ describe('ProductComponent', () => {
   const stubProduct: Product = productFactory.create();
   let stubQty = 1;
   let productComponent: ProductComponent;
-  const mockFunction = (payload) => {};
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -64,7 +63,6 @@ describe('ProductComponent', () => {
     spyOn(router, 'navigateByUrl');
     wrapper.productValue = stubProduct;
     wrapper.qtyValue = stubQty;
-    wrapper.updateQtyFunction = mockFunction;
     
     fixture.detectChanges();
 

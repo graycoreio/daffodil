@@ -17,7 +17,7 @@ import { AddressFormFactory } from '../../forms/address-form/factories/address-f
 class WrapperComponent {
   shippingAddressValue: DaffodilAddress;
   editModeValue: boolean;
-  submittedFunction: Function = () => {};
+  submittedFunction() {};
 }
 
 @Component({selector: 'demo-address-form', template: ''})

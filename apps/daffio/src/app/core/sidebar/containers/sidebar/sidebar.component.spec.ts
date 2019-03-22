@@ -9,11 +9,11 @@ import { DaffioSidebarContainer } from './sidebar.component';
 
 @Component({template: '<daffio-sidebar (close)="closeFunction()"></daffio-sidebar>'})
 class WrapperComponent {
-  closeFunction: Function = () => {}
+  closeFunction() {}
 }
 
 describe('DaffioSidebarContainer', () => {
-  let component: WrapperComponent;
+  let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let daffioSidebarContainer: DaffioSidebarContainer;
   let daffSidebar: DaffSidebarComponent;
@@ -35,7 +35,7 @@ describe('DaffioSidebarContainer', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
-    component = fixture.componentInstance;  
+    wrapper = fixture.componentInstance;  
     fixture.detectChanges();
 
     daffioSidebarContainer = fixture.debugElement.query(By.css('daffio-sidebar')).componentInstance;
@@ -44,17 +44,17 @@ describe('DaffioSidebarContainer', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(wrapper).toBeTruthy();
   });
 
   describe('when close is emitted', () => {
     
     it('should call close function on host component', () => {
-      spyOn(component, 'closeFunction');
+      spyOn(wrapper, 'closeFunction');
 
       daffioSidebarContainer.close.emit();
 
-      expect(component.closeFunction).toHaveBeenCalled();
+      expect(wrapper.closeFunction).toHaveBeenCalled();
     });
   });
 
