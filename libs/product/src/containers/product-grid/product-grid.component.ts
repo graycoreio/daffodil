@@ -11,7 +11,7 @@ import { Product } from '../../models/product';
 /**
  * A component for attaching a list of products to an application view.
  * 
- * @Param store - a redux store of Products.
+ * @param store - A redux store of Products.
  */
 @Component({
   selector: '[product-grid-container]',

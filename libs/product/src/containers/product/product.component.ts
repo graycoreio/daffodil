@@ -58,7 +58,7 @@ export class ProductContainer implements OnInit {
   /**
    * Update the qty of the selected Product.
    * 
-   * @param payload selected qty of the selected Product.
+   * @param payload - Selected qty of the selected Product.
    */
   updateQty(payload: number) {
     this.store.dispatch(new UpdateQty(payload));

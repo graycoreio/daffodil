@@ -109,12 +109,18 @@ const productImageUrlsList: string[] = [
   '/assets/products/100.jpg'
 ];
 
+/**
+ * Mocked ProductImage object.
+ */
 export class MockProductImage implements ProductImage {
   id = faker.random.number(10000).toString();
   url = productImageUrlsList[faker.random.number(productImageUrlsList.length-1)]
   label = faker.lorem.sentence();
 }
 
+/**
+ * A factory for creating ProductImages
+ */
 @Injectable({
   providedIn: 'root'
 })

@@ -14,7 +14,7 @@ export enum ProductActionTypes {
 /**
  * Triggers a request for a Product.
  * 
- * payload: string - id of requested Product
+ * @param payload - Id of requested Product
  */
 export class ProductLoad implements Action {
   readonly type = ProductActionTypes.ProductLoadAction;
@@ -25,7 +25,7 @@ export class ProductLoad implements Action {
 /**
  * A request for a Product succeeded.
  * 
- * payload: Product - A Product
+ * @param payload - A Product
  */
 export class ProductLoadSuccess implements Action {
     readonly type = ProductActionTypes.ProductLoadSuccessAction;
@@ -36,7 +36,7 @@ export class ProductLoadSuccess implements Action {
 /**
  * A request for a Product failed.
  * 
- * payload: string - an error message
+ * @param payload - An error message
  */
 export class ProductLoadFailure implements Action {
   readonly type = ProductActionTypes.ProductLoadFailureAction;
@@ -47,7 +47,7 @@ export class ProductLoadFailure implements Action {
 /**
  * Update the qty of a product in an redux store.
  * 
- * payload: number - the qty of the product.
+ * @param payload - The qty of the product.
  */
 export class UpdateQty implements Action {
     readonly type = ProductActionTypes.UpdateQtyAction;

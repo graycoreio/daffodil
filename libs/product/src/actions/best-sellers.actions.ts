@@ -24,7 +24,7 @@ export class BestSellersLoad implements Action {
 /**
  * A request for best selling products succeeded.
  * 
- * payload: Product[] - an array of Products
+ * @param payload - An array of Products
  */
 export class BestSellersLoadSuccess implements Action {
     readonly type = BestSellersActionTypes.BestSellersLoadSuccessAction;
@@ -35,7 +35,7 @@ export class BestSellersLoadSuccess implements Action {
 /**
  * A request for best selling products failed.
  * 
- * payload: string - an error message
+ * @param payload - An error message
  */
 export class BestSellersLoadFailure implements Action {
   readonly type = BestSellersActionTypes.BestSellersLoadFailureAction;

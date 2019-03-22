@@ -74,7 +74,9 @@ export const GetAProduct = gql`
 
 /**
  * Transforms a ProductNode into a different object.
- * @param node ProductNode object
+ * 
+ * @param node - ProductNode object
+ * @returns A Product object
  */
 export const DaffShopifyProductTransformer = (node: ProductNode) : Product => {
   return {
@@ -99,6 +101,8 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
 
   /**
    * A query for retrieving all Products.
+   * 
+   * @returns Observable<Product[]>
    */
   getAll(): Observable<Product[]> {
     return this.apollo.query<GetAllProductsResponse>({
@@ -115,6 +119,8 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
 
   /**
    * A query to retrieve all best selling products.
+   * 
+   * @returns Observable<Product[]>
    */
   //todo: add actual getBestSellers apollo call. Right now, it just makes the getAll() call
   getBestSellers(): Observable<Product[]> {
@@ -133,7 +139,8 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
   /**
    * A query for retrieving a particular product.
    * 
-   * @param productId string: a product ID
+   * @param productId - A product ID
+   * @returns Observable<Product>
    */
   get(productId: string): Observable<Product> {
     return this.apollo.query<GetAProductResponse>({

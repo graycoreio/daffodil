@@ -14,8 +14,8 @@ import { DaffProductDriver } from '../drivers/injection-tokens/product-driver.to
 /**
  * Effects for handling product grid actions.
  * 
- * @Param action$: Actions - Redux action object
- * @Param driver: DaffProductServiceInterface - A product service driver
+ * @param action$ - Redux action object
+ * @param driver - A product service driver
  */
 @Injectable()
 export class ProductGridEffects {
@@ -27,6 +27,8 @@ export class ProductGridEffects {
   /**
    * Handles ProductGridLoadAction by making a service call for products and returning a success or failure action
    * to the action stream.
+   * 
+   * @returns An Observable of a ProductGridLoadAction
    */
   @Effect()
   loadAll$ : Observable<any> = this.actions$.pipe(

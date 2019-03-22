@@ -14,8 +14,8 @@ import { DaffProductServiceInterface } from '../drivers/interfaces/product-servi
 /**
  * Effects for handling best seller actions and best seller service requests.
  * 
- * @Param action$: Actions - Redux action object
- * @Param driver: DaffProductServiceInterface - A product service driver
+ * @param action$ - Redux action object
+ * @param driver - A product service driver
  */
 @Injectable()
 export class BestSellersEffects {
@@ -27,6 +27,8 @@ export class BestSellersEffects {
   /**
    * Handles BestSellersLoadAction by making a service call for best selling products and returning a success or failure action
    * to the action stream.
+   * 
+   * @returns An Observable of a BestSellersLoad action
    */
   @Effect()
   loadBestSellers$ : Observable<any> = this.actions$.pipe(

@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { DaffProductDriver } from '../../../../src/drivers/injection-tokens/product-driver.token';
 import { DaffTestingProductService } from './product.service';
 
+/**
+ * Module for providing DaffProductTestingService driver.
+ */
 @NgModule({
   imports: [
     CommonModule

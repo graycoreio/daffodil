@@ -24,7 +24,7 @@ export class ProductGridLoad implements Action {
 /**
  * A request for of an array of products succeeded.
  * 
- * payload: Product[] - an array of Products
+ * @param payload - An array of Products
  */
 export class ProductGridLoadSuccess implements Action {
     readonly type = ProductGridActionTypes.ProductGridLoadSuccessAction;
@@ -35,7 +35,7 @@ export class ProductGridLoadSuccess implements Action {
 /**
  * A request for an array of products failed.
  * 
- * payload: string - an error message
+ * @param payload - An error message
  */
 export class ProductGridLoadFailure implements Action {
   readonly type = ProductGridActionTypes.ProductGridLoadFailureAction;

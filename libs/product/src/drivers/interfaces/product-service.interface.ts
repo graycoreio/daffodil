@@ -17,7 +17,7 @@ export interface DaffProductServiceInterface {
   /**
    * Get a product.
    * 
-   * @param productId A string of the product ID.
+   * @param productId - A string of the product ID.
    */
   get(productId: string): Observable<Product>;
 }

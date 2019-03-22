@@ -9,7 +9,7 @@ import { Product } from '../../models/product';
 /**
  * A component for attaching best selling products data to an application view.
  * 
- * @Param store - a redux store of Products.
+ * @param store - A redux store of Products.
  */
 @Component({
   selector: '[best-sellers-container]',
