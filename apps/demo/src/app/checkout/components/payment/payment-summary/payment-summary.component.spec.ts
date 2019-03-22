@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { PaymentInfo } from '@daffodil/core';
+import { PaymentInfo } from '@daffodil/checkout';
 
 import { PaymentSummaryComponent } from './payment-summary.component';
 
@@ -21,7 +21,7 @@ const stubPaymentInfo: PaymentInfo = {
 })
 class WrapperComponent {
   paymentInfoValue: PaymentInfo = stubPaymentInfo;
-  editPaymentInfoFunction: Function = () => {};
+  editPaymentInfoFunction() {};
 }
 
 describe('PaymentSummaryComponent', () => {

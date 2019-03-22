@@ -19,7 +19,7 @@ const stubDaffodilAddress = daffodilAddressFactory.create();
 class WrapperComponent {
   shippingAddressValue: DaffodilAddress = stubDaffodilAddress;
   selectedShippingOptionIdValue = '0';
-  editShippingInfoFunction: Function = () => {};
+  editShippingInfoFunction() {};
 }
 
 @Component({selector: 'demo-address-summary', template: ''})

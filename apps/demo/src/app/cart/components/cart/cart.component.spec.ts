@@ -2,10 +2,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component, Input } from '@angular/core';
 
-import { CartComponent } from './cart.component';
+import { Cart, CartItem } from '@daffodil/cart';
+import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 
-import { Cart, CartItem } from '@daffodil/core';
-import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/core/testing';
+import { CartComponent } from './cart.component';
 
 @Component({template: '<demo-cart [cart]="cartValue"></demo-cart>'})
 class WrapperComponent {

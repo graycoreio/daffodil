@@ -6,10 +6,10 @@ import { Router } from '@angular/router';
 
 import { CartItemComponent } from './cart-item.component';
 
-import { CartItem } from '@daffodil/core';
-import { DaffCartItemFactory, DaffProductImageFactory } from '@daffodil/core/testing';
-import { DaffDriverTestingModule } from '@daffodil/driver/testing';
+import { CartItem } from '@daffodil/cart';
+import { DaffProductImageFactory } from '@daffodil/product/testing';
 import { DaffQtyDropdownModule, DaffQtyDropdownComponent } from '@daffodil/design';
+import { DaffCartItemFactory } from '@daffodil/cart/testing';
 
 @Component({template: '<demo-cart-item [item]="cartItemValue"></demo-cart-item>'})
 class WrapperComponent {
@@ -30,7 +30,6 @@ describe('CartItemComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        DaffDriverTestingModule,
         DaffQtyDropdownModule
       ],
       declarations: [

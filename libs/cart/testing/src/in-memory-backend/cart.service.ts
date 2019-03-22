@@ -7,7 +7,9 @@ import { CartItem } from '@daffodil/cart';
 import { DaffCartFactory } from '../factories/cart.factory';
 import { DaffCartItemFactory } from '../factories/cart-item.factory';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DaffInMemoryBackendCartService implements InMemoryDbService {
   public cart;
 

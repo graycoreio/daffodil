@@ -1,8 +1,9 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { DaffCartDriver } from '@daffodil/cart';
+
 import { DaffTestingCartService } from './cart.service';
-import { DaffCartDriver } from '../../../../src/drivers/injection-tokens/cart-driver.token';
 
 @NgModule({
   imports: [

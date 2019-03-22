@@ -7,7 +7,7 @@ import { DaffSidebarModule, DaffSidebarComponent } from '@daffodil/design';
 
 @Component({template: '<demo-sidebar (close)="closeFunction()"></demo-sidebar>'})
 class WrapperComponent {
-  closeFunction: Function = () => {}
+  closeFunction() {}
 }
 
 describe('SidebarContainer', () => {

@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { StoreModule, combineReducers } from '@ngrx/store';
 
-import { DaffCartFactory } from '@daffodil/core/testing';
+import { DaffCartFactory } from '@daffodil/cart/testing';
 import { fromCart, Cart } from '@daffodil/cart';
 
 import { CartWrapperComponent } from './cart-wrapper.component';

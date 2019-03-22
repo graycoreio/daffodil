@@ -45,18 +45,6 @@
       "@daffodil/driver": [
         "dist/driver"
       ],
-      "@daffodil/driver/testing": [
-        "dist/driver/testing"
-      ],
-      "@daffodil/driver/shopify": [
-        "dist/driver/shopify"
-      ],
-      "@daffodil/driver/magento": [
-        "dist/driver/magento"
-      ],
-      "@daffodil/driver/in-memory": [
-        "dist/driver/in-memory"
-      ],
       "@daffodil/design": [
         "dist/design"
       ],

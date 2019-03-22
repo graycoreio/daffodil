@@ -1,12 +1,12 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { Component, Input } from '@angular/core';
-import { RouterTestingModule } from '@angular/router/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { Product } from '@daffodil/core';
-import { DaffProductFactory } from '@daffodil/core/testing';
+import { Product } from '@daffodil/product';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { ProductComponent } from './product.component';
 
@@ -21,7 +21,7 @@ import {
 class WrapperComponent {
   productValue: Product;
   qtyValue: number;
-  updateQtyFunction: Function;
+  updateQtyFunction(){};
 }
 
 @Component({selector: 'demo-image-gallery-container', template: ''})
@@ -37,7 +37,6 @@ describe('ProductComponent', () => {
   const stubProduct: Product = productFactory.create();
   let stubQty = 1;
   let productComponent: ProductComponent;
-  const mockFunction = (payload) => {};
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -64,7 +63,6 @@ describe('ProductComponent', () => {
     spyOn(router, 'navigateByUrl');
     wrapper.productValue = stubProduct;
     wrapper.qtyValue = stubQty;
-    wrapper.updateQtyFunction = mockFunction;
     
     fixture.detectChanges();
 

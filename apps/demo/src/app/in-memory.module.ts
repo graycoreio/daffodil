@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
-
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { DaffInMemoryDriverModule, DaffInMemoryService } from '@daffodil/driver/in-memory';
 
-
-import { environment } from '../environments/environment';
+import { DemoInMemoryService } from './drivers/in-memory-services/in-memory.service';
+import { DaffProductInMemoryDriverModule } from '@daffodil/product/testing';
+import { DaffCartInMemoryDriverModule } from '@daffodil/cart/testing';
+import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
 
 @NgModule({
   imports: [
-    HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryService),
-    DaffInMemoryDriverModule.forRoot({
-      BASE_URL: environment.API_BASE
-    })
+    HttpClientInMemoryWebApiModule.forRoot(DemoInMemoryService),
+    DaffProductInMemoryDriverModule.forRoot(),
+    DaffCartInMemoryDriverModule.forRoot(),
+    DaffCheckoutInMemoryDriverModule.forRoot(),
   ]
 })
 export class InMemoryModule {}

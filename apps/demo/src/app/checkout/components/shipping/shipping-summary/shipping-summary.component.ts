@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 
-import { DaffodilAddress, ShippingOption } from '@daffodil/core';
+import { DaffodilAddress } from '@daffodil/core';
+import { ShippingOption } from '@daffodil/checkout';
 
 import { ShippingOptionsService } from '../shipping-options/components/services/shipping-options.service';
 

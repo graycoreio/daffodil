@@ -1,14 +1,13 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
-import { Product } from '@daffodil/core';
-import { DaffProductFactory, DaffProductImageFactory } from '@daffodil/core/testing';
+import { Product } from '@daffodil/product';
+import { DaffProductFactory, DaffProductImageFactory } from '@daffodil/product/testing';
 
 import { ProductCardComponent } from './product-card.component';
-import { DaffDriverTestingModule } from '@daffodil/driver/testing';
 
 @Component({template: '<demo-product-card [product]="productValue"></demo-product-card>'})
 class WrapperComponent {
@@ -27,8 +26,7 @@ describe('ProductCardComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
-        DaffDriverTestingModule
+        RouterTestingModule
       ],
       declarations: [ 
         ProductCardComponent,

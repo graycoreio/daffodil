@@ -1,7 +1,8 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DaffProductDriver } from '../../../../src/drivers/injection-tokens/product-driver.token';
+import { DaffProductDriver } from '@daffodil/product';
+
 import { DaffTestingProductService } from './product.service';
 
 @NgModule({

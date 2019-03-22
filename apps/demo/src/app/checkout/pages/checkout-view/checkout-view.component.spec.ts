@@ -5,11 +5,18 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 
-import { DaffodilAddress, PaymentInfo } from '@daffodil/core';
-import { DaffPaymentFactory,  DaffAddressFactory, DaffCartFactory, DaffCartItemFactory } from '@daffodil/core/testing';
+import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddressFactory } from '@daffodil/core/testing';
 import { Cart } from '@daffodil/cart';
-import { ShippingContainer } from '@daffodil/checkout';
-import { DaffAccordionModule, DaffAccordionItemComponent, DaffContainerModule, DaffLoadingIconModule } from '@daffodil/design';
+import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
+import { ShippingContainer, PaymentInfo } from '@daffodil/checkout';
+import { DaffPaymentFactory } from '@daffodil/checkout/testing';
+import { 
+  DaffAccordionModule, 
+  DaffAccordionItemComponent, 
+  DaffContainerModule, 
+  DaffLoadingIconModule 
+} from '@daffodil/design';
 
 import * as fromDemoCheckout from '../../reducers/index';
 import { ShowPaymentView } from '../../actions/payment.actions';

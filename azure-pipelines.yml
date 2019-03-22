@@ -12,6 +12,7 @@ pr:
     - develop
 jobs:
   - job: Lint
+    displayName: Lint
     pool:
       vmImage: "Ubuntu 16.04"
     strategy:
@@ -29,12 +30,12 @@ jobs:
 
       - script: npm install
         displayName: Install Dependencies
-        condition: ne(variables['CacheRestored'], 'true')
 
       - script: lerna run lint
         displayName: Lint
 
   - job: Build_And_Test
+    displayName: Build And Test
     pool:
       vmImage: "Ubuntu 16.04"
     strategy:
@@ -52,7 +53,42 @@ jobs:
 
       - script: npm install
         displayName: Install Dependencies
-        condition: ne(variables['CacheRestored'], 'true')
 
       - script: lerna run build && lerna run test
         displayName: Build & Test
+
+      - task: CopyFiles@2
+        displayName: Prepare Artifact Staging Directory
+        inputs:
+          sourceFolder: dist
+          contents: '**/*' 
+          targetFolder: $(Build.ArtifactStagingDirectory)
+
+      - task: PublishBuildArtifacts@1
+        displayName: "Publish Daff.io Serverless Artifact"
+        inputs:
+          pathtoPublish: '$(Build.ArtifactStagingDirectory)/apps/daffio' 
+          artifactName: 'daffio-serverless' 
+          parallel: true
+          parallelCount: 8
+  
+  # - job: Deploy_Daffio_To_Now
+  #   displayName: Deploy Daffio To Now
+  #   pool: 
+  #     vmImage: "Ubuntu 16.04"
+  #   strategy:
+  #     matrix:
+  #       node_8_x:
+  #         node_version: 8.x
+  #   steps:
+  #     - task: NodeTool@0
+  #       inputs:
+  #         versionSpec: $(node_version)
+  #       displayName: Set Node Version
+      
+  #     - script: npm install -g lerna @angular/cli now
+  #       displayName: Install Build Tools
+        
+  #     - script: cd dist/apps/daffio && now --scope="graycoreio" --token=$(NOW_DEPLOYMENT_TOKEN)
+  #       displayName: Deploy to Now
+
