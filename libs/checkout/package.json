@@ -13,6 +13,7 @@
   },
   "scripts": {
     "build": "ng build checkout --prod",
+    "build:docs": "gulp dgeni",
     "lint": "ng lint checkout",
     "test": "ng test checkout --watch=false --browsers=ChromeHeadless"
   },
@@ -30,6 +31,12 @@
   "devDependencies": {
     "@daffodil/core": "0.0.0",
     "@daffodil/product": "0.0.0",
-    "@daffodil/cart": "0.0.0"
+    "@daffodil/cart": "0.0.0",
+    "gulp": "^4.0.0"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
   }
 }
