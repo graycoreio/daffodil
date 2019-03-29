@@ -9,6 +9,8 @@
       "build": "npm run build:client-and-server-bundles && npm run compile:server && npm run build:serverless",
       "build:client-and-server-bundles": "ng build daffio --prod && ng run daffio:server:production",
       "build:serverless": "cp ./serverless/* ../../dist/apps/daffio/",
+      "build:docs": "gulp docs",
+      "docs": "npm run build:docs",
       "test": "ng test daffio --watch=false --browsers=ChromeHeadless",
       "lint": "ng lint daffio",
       "compile:server": "webpack --config ./server/webpack.server.config.js --progress --colors",

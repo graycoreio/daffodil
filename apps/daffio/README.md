@@ -9,8 +9,12 @@
 2. `ng serve --project=daffio`
 3. Navigate to `localhost:4200` in your browser of choice
 
+### Building the docs
+1. `npm install -g gulp`
+2. `lerna run docs`
+
 ### Project Overview
-Daff.io is the web application that explains the features of `@daffodil` and house the documentation of `@daffodil`.
+Daff.io is the web application that explains the features of `@daffodil` and houses the documentation of all of the `@daffodil` packages. While each `@daffodil` package is responsible for generating its own docs, it is `@daffodil/daffio`'s responsibility to render the docs and make them viewable for other developers to utilize.
 
 ### Contributing to daff.io
 Generally speaking, you don't want to depend directly on the source of a dependency when developing, as that can cause unexpected issues at build and deployment time, as well as downstream effects for the developers that depend on your libraries. Yet, there are instances when quick development cycles that don't require a full rebuild can drastically improve development efficiency. E.g. changing styles in a component library. 

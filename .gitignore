@@ -5,6 +5,7 @@
 /dist-server
 /tmp
 /out-tsc
+/libs/checkout/docs/build
 
 # dependencies
 /node_modules
