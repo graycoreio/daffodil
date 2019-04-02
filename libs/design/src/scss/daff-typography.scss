@@ -19,6 +19,8 @@
 @import "./typography/variables";
 @import "./typography/mixins";
 
+@import '~normalize-scss/sass/normalize/_import-now.scss';
+
 body,html {
     font-size: $mobile-font-size;
     font-family: $body-font-family;
