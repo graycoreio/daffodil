@@ -1,0 +1,15 @@
+<h1 class="name">{$ doc.name $}</h1>
+
+<p class="description">{$ doc.description $}</p>
+
+{%- for i in range(0, doc.members.length) %}
+
+<div class="member">
+  <span class="member__name">{$ doc.members[i].name $}</span><span class="member__description">{$ doc.members[i].description $}</span>
+</div>
+{%- for j in range(0, doc.members[i].params.length) %}
+<div class="parameter">
+  <span class="parameter__name">{$ doc.members[i].params[j].name $}</span><span class="parameter__description">{$ doc.members[i].params[j].description $}</span>
+</div>
+{%- endfor -%}
+{% endfor -%}

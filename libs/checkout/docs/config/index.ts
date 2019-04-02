@@ -1,5 +1,6 @@
 import * as path from 'path';
 import { Package } from "dgeni";
+import { HelpfulLogger } from './helpful-logger';
 
 const jsdocPackage = require('dgeni-packages/jsdoc');
 const nunjucksPackage = require('dgeni-packages/nunjucks');
@@ -12,7 +13,7 @@ export let checkoutDocs =  new Package('checkout', [
 ]);
 
 // This processor is here temporarily to help get a better look at the docs objects (which are typed as "any") while we organize documentation.
-// checkoutDocs.processor(new HelpfulLogger());
+checkoutDocs.processor(new HelpfulLogger());
 
 // Configure our dgeni-example package. We can ask the Dgeni dependency injector
 // to provide us with access to services and processors that we wish to configure
@@ -30,7 +31,7 @@ checkoutDocs.config(function(readFilesProcessor, log, writeFilesProcessor, templ
   // Specify collections of source files that should contain the documentation to extract
   readTypeScriptModules.sourceFiles = [
     {
-      include: 'src/**/*.ts',
+      include: 'src/index.ts',
       exclude: 'src/**/*.spec.ts',
       basePath: 'src'
     }
@@ -46,8 +47,11 @@ checkoutDocs.config(function(readFilesProcessor, log, writeFilesProcessor, templ
   templateFinder.templateFolders.unshift(path.resolve('./docs/templates'));
 
   // Specify how to match docs to templates.
-  templateFinder.templatePatterns = ['common.template.html'];
+  templateFinder.templatePatterns = [
+    '${ doc.docType }.template.html',
+    'common.template.html'
+  ];
 
   // Specify where the writeFilesProcessor will write our generated doc files
-  writeFilesProcessor.outputFolder  = path.resolve('./docs/build');
+  writeFilesProcessor.outputFolder  = path.resolve('../../dist/checkout/build');
 });
