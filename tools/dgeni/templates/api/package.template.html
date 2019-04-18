@@ -1,0 +1,12 @@
+{% extends 'base.template.html' -%}
+
+{% block header %}
+<header class="api-header">
+  <h1>{$ doc.name $}</h1>
+  <label class="api-type-label {$ doc.docType $}">{$ doc.docType $}</label>
+</header>
+{% endblock %}
+
+{% block body -%}
+  {% if doc.description %}{$ doc.description | marked $}{% endif %}
+{%- endblock %}

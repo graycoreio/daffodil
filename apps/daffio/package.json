@@ -24,7 +24,8 @@
     },
     "devDependencies": {
       "@daffodil/design": "0.0.0",
-      "@daffodil/branding": "0.0.0"
+      "@daffodil/branding": "0.0.0",
+      "@daffodil/docs": "0.0.0"
     },
     "peerDependencies": {
       "@angular/common": "^6.0.1",

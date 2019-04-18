@@ -6,7 +6,7 @@
 /tmp
 /out-tsc
 /libs/checkout/docs/build
-/apps/daffio/docs
+/apps/daffio/src/generated
 
 # dependencies
 /node_modules

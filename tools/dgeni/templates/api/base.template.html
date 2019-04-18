@@ -1,0 +1,11 @@
+<article>
+  {% block header %}
+  <header class="api-header">
+    <h1>{$ doc.name $}</h1>
+  </header>
+  {% endblock %}
+
+  <div class="api-body">
+    {% block body %}{% endblock %}
+  </div>
+</article>

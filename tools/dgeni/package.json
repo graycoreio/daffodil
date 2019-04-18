@@ -1,0 +1,21 @@
+{
+    "name": "@daffodil/tools-dgeni",
+    "private": true,
+    "version": "0.0.0",
+    "author": "Graycore LLC",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/graycoreio/daffodil/issues"
+    },
+    "scripts": {
+      "docs": "ts-node -r tsconfig-paths/register build",
+      "test": "ts-node -r tsconfig-paths/register ../../node_modules/.bin/jasmine --config=jasmine.json"
+    },
+    "homepage": "https://github.com/graycoreio/daffodil",
+    "description": "Tooling for managing the documentation of the @daffodil project.",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/graycoreio/daffodil"
+    }
+  }
+  
