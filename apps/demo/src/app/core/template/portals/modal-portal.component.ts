@@ -26,7 +26,7 @@ import {
 })
 export class ModalPortalComponent implements AfterViewInit, OnDestroy {
   private portalHost: PortalHost;
-  @ViewChild('contentRef') contentRef: TemplateRef<any>;
+  @ViewChild('contentRef', { static: false }) contentRef: TemplateRef<any>;
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
