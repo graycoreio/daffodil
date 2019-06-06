@@ -1,11 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers, select } from '@ngrx/store';
 
-import { BestSellersContainer } from './best-sellers.component';
-import { BestSellersLoad } from '../../actions/best-sellers.actions';
-import * as fromProduct from '../../reducers/index';
-import { Product } from '../../models/product';
-import { DaffProductFactory } from '../../../testing/src';
+import { DaffProductFactory } from 'product/testing/src';
+
+import { BestSellersContainer } from 'product/src/containers/best-sellers/best-sellers.component';
+import { BestSellersLoad } from 'product/src/actions/best-sellers.actions';
+import * as fromProduct from 'product/src/reducers';
+import { Product } from 'product/src/models/product';
+
 
 describe('BestSellersContainer', () => {
   let component: BestSellersContainer;

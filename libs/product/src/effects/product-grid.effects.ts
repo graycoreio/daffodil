@@ -7,9 +7,9 @@ import {
   ProductGridActionTypes, 
   ProductGridLoad, 
   ProductGridLoadSuccess, 
-  ProductGridLoadFailure } from '../actions/product-grid.actions';
-import { DaffProductServiceInterface } from '../drivers/interfaces/product-service.interface';
-import { DaffProductDriver } from '../drivers/injection-tokens/product-driver.token';
+  ProductGridLoadFailure } from 'product/src/actions/product-grid.actions';
+import { DaffProductServiceInterface } from 'product/src/drivers/interfaces/product-service.interface';
+import { DaffProductDriver } from 'product/src/drivers/injection-tokens/product-driver.token';
 
 @Injectable()
 export class ProductGridEffects {

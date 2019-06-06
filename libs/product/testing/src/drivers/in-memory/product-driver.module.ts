@@ -1,9 +1,9 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DaffProductDriver } from '@daffodil/product';
+import { DaffProductDriver } from 'product/src';
 
-import { DaffInMemoryProductService } from './product.service';
+import { DaffInMemoryProductService } from 'product/testing/src/drivers/in-memory/product.service';
 
 @NgModule({
   imports: [

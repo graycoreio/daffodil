@@ -1,12 +1,12 @@
 import { TestBed } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
-import { DaffProductFactory } from '../../testing/src';
-import { ProductLoad } from "../actions/product.actions";
-import { ProductGridLoadSuccess, ProductGridReset } from "../actions/product-grid.actions";
-import * as fromProduct from './index';
-import { BestSellersLoadSuccess, BestSellersReset } from "../actions/best-sellers.actions";
-import { Product } from "../models/product";
+import { DaffProductFactory } from 'product/testing/src';
+import { ProductLoad } from "product/src/actions/product.actions";
+import { ProductGridLoadSuccess, ProductGridReset } from "product/src/actions/product-grid.actions";
+import * as fromProduct from 'product/src/reducers';
+import { BestSellersLoadSuccess, BestSellersReset } from "product/src/actions/best-sellers.actions";
+import { Product } from "product/src/models/product";
 
 describe('selectProductState', () => {
 

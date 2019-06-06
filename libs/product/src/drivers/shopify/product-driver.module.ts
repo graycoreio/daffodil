@@ -1,8 +1,8 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DaffProductDriver } from '../injection-tokens/product-driver.token';
-import { DaffShopifyProductService } from './product.service';
+import { DaffProductDriver } from 'product/src/drivers/injection-tokens/product-driver.token';
+import { DaffShopifyProductService } from 'product/src/drivers/shopify/product.service';
 
 @NgModule({
   imports: [

@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 
 import { Store, select } from '@ngrx/store';
 
-import * as fromProduct from '../../reducers/index';
-import { ProductGridLoad } from '../../actions/product-grid.actions';
-import { Product } from '../../models/product';
+import * as fromProduct from 'product/src/reducers';
+import { ProductGridLoad } from 'product/src/actions/product-grid.actions';
+import { Product } from 'product/src/models/product';
 
 @Component({
   selector: '[product-grid-container]',

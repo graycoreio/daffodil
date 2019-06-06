@@ -3,13 +3,13 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable ,  of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
-import { DaffProductFactory, DaffProductImageFactory } from '../../testing/src';
-import { BestSellersLoad, BestSellersLoadSuccess, BestSellersLoadFailure } from '../actions/best-sellers.actions';
-import { BestSellersEffects } from './best-seller.effects';
-import { Product } from '../models/product';
-import { DaffProductDriver } from '../drivers/injection-tokens/product-driver.token';
-import { DaffProductServiceInterface } from '../drivers/interfaces/product-service.interface';
-import { DaffTestingProductService } from '../../testing/src/drivers/testing/product.service';
+import { DaffProductFactory, DaffProductImageFactory, DaffTestingProductService } from 'product/testing/src';
+
+import { BestSellersLoad, BestSellersLoadSuccess, BestSellersLoadFailure } from 'product/src/actions/best-sellers.actions';
+import { BestSellersEffects } from 'product/src/effects/best-seller.effects';
+import { Product } from 'product/src/models/product';
+import { DaffProductDriver } from 'product/src/drivers/injection-tokens/product-driver.token';
+import { DaffProductServiceInterface } from 'product/src/drivers/interfaces/product-service.interface';
 
 describe('BestSellersEffects', () => {
   let actions$: Observable<any>;

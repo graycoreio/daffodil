@@ -1,4 +1,4 @@
-import { Product } from "@daffodil/product";
+import { Product } from "product/src";
 
 /**
  * A helper function to verify that a model is a Product.

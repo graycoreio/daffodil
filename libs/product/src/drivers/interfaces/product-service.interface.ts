@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
-import { Product } from '../../models/product';
+import { Product } from 'product/src/models/product';
 
 export interface DaffProductServiceInterface {
   getAll(): Observable<Product[]>;

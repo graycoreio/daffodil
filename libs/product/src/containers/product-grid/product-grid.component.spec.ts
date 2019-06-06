@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
-import { ProductGridContainer } from './product-grid.component';
-import { DaffProductFactory } from '../../../testing/src';
-import { ProductGridLoad } from '../../actions/product-grid.actions';
-import * as fromProduct from '../../reducers/index';
-import { Product } from '../../models/product';
+import { ProductGridContainer } from 'product/src/containers/product-grid/product-grid.component';
+import { DaffProductFactory } from 'product/testing/src';
+import { ProductGridLoad } from 'product/src/actions/product-grid.actions';
+import * as fromProduct from 'product/src/reducers';
+import { Product } from 'product/src/models/product';
 
 describe('ProductGridContainer', () => {
   let component: ProductGridContainer;

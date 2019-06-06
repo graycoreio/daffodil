@@ -3,13 +3,12 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of} from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
-import { DaffProductFactory, DaffProductImageFactory } from '../../testing/src';
-import { ProductGridLoad, ProductGridLoadSuccess, ProductGridLoadFailure } from '../actions/product-grid.actions';
-import { ProductGridEffects } from './product-grid.effects';
-import { Product } from '../models/product';
-import { DaffProductServiceInterface } from '../drivers/interfaces/product-service.interface';
-import { DaffProductDriver } from '../drivers/injection-tokens/product-driver.token';
-import { DaffTestingProductService } from '../../testing/src/drivers/testing/product.service';
+import { DaffProductFactory, DaffProductImageFactory, DaffTestingProductService } from 'product/testing/src';
+import { ProductGridLoad, ProductGridLoadSuccess, ProductGridLoadFailure } from 'product/src/actions/product-grid.actions';
+import { ProductGridEffects } from 'product/src/effects/product-grid.effects';
+import { Product } from 'product/src/models/product';
+import { DaffProductServiceInterface } from 'product/src/drivers/interfaces/product-service.interface';
+import { DaffProductDriver } from 'product/src/drivers/injection-tokens/product-driver.token';
 
 describe('ProductGridEffects', () => {
   let actions$: Observable<any>;

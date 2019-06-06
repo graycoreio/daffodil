@@ -1,4 +1,4 @@
-import { ProductActionTypes, ProductActions } from '../actions/product.actions';
+import { ProductActionTypes, ProductActions } from 'product/src/actions/product.actions';
 
 export interface State {
   selectedProductId: string,

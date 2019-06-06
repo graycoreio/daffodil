@@ -9,9 +9,9 @@ import {
   ProductActionTypes, 
   ProductLoad, 
   ProductLoadSuccess, 
-  ProductLoadFailure } from '../actions/product.actions';
-import { DaffProductDriver } from '../drivers/injection-tokens/product-driver.token';
-import { DaffProductServiceInterface } from '../drivers/interfaces/product-service.interface';
+  ProductLoadFailure } from 'product/src/actions/product.actions';
+import { DaffProductDriver } from 'product/src/drivers/injection-tokens/product-driver.token';
+import { DaffProductServiceInterface } from 'product/src/drivers/interfaces/product-service.interface';
 
 @Injectable()
 export class ProductEffects {

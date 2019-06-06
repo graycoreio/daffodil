@@ -1,9 +1,9 @@
-import { DaffProductFactory } from '../../testing/src';
-import { ProductLoadSuccess } from "../actions/product.actions";
-import { ProductGridLoadSuccess, ProductGridReset } from "../actions/product-grid.actions";
-import { initialState, reducer } from "../reducers/product-entities.reducer";
-import { BestSellersLoadSuccess } from "../actions/best-sellers.actions";
-import { Product } from "../models/product";
+import { DaffProductFactory } from 'product/testing/src';
+import { ProductLoadSuccess } from "product/src/actions/product.actions";
+import { ProductGridLoadSuccess, ProductGridReset } from "product/src/actions/product-grid.actions";
+import { initialState, reducer } from "product/src/reducers/product-entities.reducer";
+import { BestSellersLoadSuccess } from "product/src/actions/best-sellers.actions";
+import { Product } from "product/src/models/product";
 
 describe('Product | Product Entities Reducer', () => {
 

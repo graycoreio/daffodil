@@ -1,7 +1,18 @@
-import { BestSellersLoad, BestSellersLoadSuccess, BestSellersLoadFailure, BestSellersReset } from "../actions/best-sellers.actions";
-import { initialState, reducer, getBestSellersLoading, getBestSellersIds, State } from "../reducers/best-sellers.reducer";
-import { Product } from "../models/product";
-import { DaffProductFactory } from '../../testing/src';
+import {
+  BestSellersLoad,
+  BestSellersLoadSuccess,
+  BestSellersLoadFailure,
+  BestSellersReset
+} from "product/src/actions/best-sellers.actions";
+import {
+  initialState,
+  reducer,
+  getBestSellersLoading,
+  getBestSellersIds,
+  State
+} from "product/src/reducers/best-sellers.reducer";
+import { Product } from "product/src/models/product";
+import { DaffProductFactory } from 'product/testing/src';
 
 describe('Product | Best Sellers Reducer', () => {
 
@@ -29,7 +40,7 @@ describe('Product | Best Sellers Reducer', () => {
 
     it('sets loading state to true', () => {
       const productsLoadAction: BestSellersLoad = new BestSellersLoad();
-      
+
       const result = reducer(initialState, productsLoadAction);
 
       expect(result.loading).toEqual(true);
@@ -47,10 +58,10 @@ describe('Product | Best Sellers Reducer', () => {
         ...initialState,
         loading: true
       }
-  
+
       products = new Array(product);
       const productsLoadSuccess = new BestSellersLoadSuccess(products);
-      
+
       result = reducer(state, productsLoadSuccess);
     });
 
@@ -75,7 +86,7 @@ describe('Product | Best Sellers Reducer', () => {
         loading: true,
         errors: new Array('firstError'),
       }
-      error = 'error';      
+      error = 'error';
       const productsLoadFailure = new BestSellersLoadFailure(error);
 
       result = reducer(state, productsLoadFailure);
@@ -91,7 +102,7 @@ describe('Product | Best Sellers Reducer', () => {
   });
 
   describe('BestSellersReset', () => {
-    
+
     it('resets state to initialState', () => {
       const expectedState = {
         loading: false,
@@ -100,20 +111,20 @@ describe('Product | Best Sellers Reducer', () => {
       }
       const bestSellersReset = new BestSellersReset();
       const result = reducer(initialState, bestSellersReset);
-      
+
       expect(result).toEqual(expectedState);
     });
   });
 
   describe('getBestSellersLoading', () => {
-    
+
     it('returns loading state', () => {
       expect(getBestSellersLoading(initialState)).toEqual(initialState.loading);
     });
   });
 
   describe('getBestSellersIds', () => {
-    
+
     it('returns productIds state', () => {
       expect(getBestSellersIds(initialState)).toEqual(initialState.productIds);
     });

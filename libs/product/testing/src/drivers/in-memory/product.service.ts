@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { Product, DaffProductServiceInterface } from '@daffodil/product';
+import { Product, DaffProductServiceInterface } from 'product/src';
 
 @Injectable({
   providedIn: 'root'

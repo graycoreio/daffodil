@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffProductFactory } from '../../../testing/src/factories/product.factory'
+import { DaffProductFactory } from 'product/testing/src/factories/product.factory'
 
 import {
   ApolloTestingModule,

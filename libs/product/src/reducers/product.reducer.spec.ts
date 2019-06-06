@@ -1,3 +1,5 @@
+import { DaffProductFactory } from 'product/testing/src';
+
 import { 
   initialState, 
   reducer, 
@@ -5,10 +7,9 @@ import {
   getProductLoading, 
   getSelectedProductId, 
   getProductQty 
-} from "../reducers/product.reducer";
-import { ProductLoad, ProductLoadSuccess, ProductLoadFailure, UpdateQty } from "../actions/product.actions";
-import { Product } from "../models/product";
-import { DaffProductFactory } from '../../testing/src';
+} from "product/src/reducers/product.reducer";
+import { ProductLoad, ProductLoadSuccess, ProductLoadFailure, UpdateQty } from "product/src/actions/product.actions";
+import { Product } from "product/src/models/product";
 
 describe('Product | Product Reducer', () => {
 

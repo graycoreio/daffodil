@@ -7,9 +7,9 @@ import {
   BestSellersActionTypes, 
   BestSellersLoad, 
   BestSellersLoadSuccess, 
-  BestSellersLoadFailure } from '../actions/best-sellers.actions';
-import { DaffProductDriver } from '../drivers/injection-tokens/product-driver.token';
-import { DaffProductServiceInterface } from '../drivers/interfaces/product-service.interface';
+  BestSellersLoadFailure } from 'product/src/actions/best-sellers.actions';
+import { DaffProductDriver } from 'product/src/drivers/injection-tokens/product-driver.token';
+import { DaffProductServiceInterface } from 'product/src/drivers/interfaces/product-service.interface';
 
 @Injectable()
 export class BestSellersEffects {

@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { DaffInMemoryProductService } from './product.service';
-import { DaffProductFactory } from '../../factories/product.factory';
+import { DaffInMemoryProductService } from 'product/testing/src/drivers/in-memory/product.service';
+import { DaffProductFactory } from 'product/testing/src/factories/product.factory';
 
 describe('Driver | InMemory | Product | ProductService', () => {
   let productService;

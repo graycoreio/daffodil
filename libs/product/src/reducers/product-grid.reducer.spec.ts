@@ -1,7 +1,7 @@
-import { DaffProductFactory } from '../../testing/src';
-import { ProductGridLoad, ProductGridLoadSuccess, ProductGridLoadFailure } from "../actions/product-grid.actions";
-import { initialState, reducer, getProductGridLoading, State } from "../reducers/product-grid.reducer";
-import { Product } from "../models/product";
+import { DaffProductFactory } from 'product/testing/src';
+import { ProductGridLoad, ProductGridLoadSuccess, ProductGridLoadFailure } from "product/src/actions/product-grid.actions";
+import { initialState, reducer, getProductGridLoading, State } from "product/src/reducers/product-grid.reducer";
+import { Product } from "product/src/models/product";
 
 describe('Product | Product Grid Reducer', () => {
 

@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ProductImage } from '@daffodil/product';
+import { ProductImage } from 'product/src';
 
-import { DaffProductImageFactory } from './product-image.factory';
+import { DaffProductImageFactory } from 'product/testing/src/factories/product-image.factory';
 
 describe('Product | Testing | Factories | DaffProductImageFactory', () => {
   

@@ -1,11 +1,11 @@
 import { ActionReducerMap, createSelector, createFeatureSelector,MemoizedSelector } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
-import * as fromProductEntities from './product-entities.reducer';
-import * as fromProductGrid from './product-grid.reducer';
-import * as fromProduct from './product.reducer';
-import * as fromBestSellers from './best-sellers.reducer';
-import { Product } from '../models/product';
+import * as fromProductEntities from 'product/src/reducers/product-entities.reducer';
+import * as fromProductGrid from 'product/src/reducers/product-grid.reducer';
+import * as fromProduct from 'product/src/reducers/product.reducer';
+import * as fromBestSellers from 'product/src/reducers/best-sellers.reducer';
+import { Product } from 'product/src//models/product';
 
 export interface State {
   products : fromProductEntities.State;

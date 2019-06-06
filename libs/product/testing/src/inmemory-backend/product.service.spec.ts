@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffInMemoryBackendProductService } from './product.service';
-import { productHelper } from '..';
+import { DaffInMemoryBackendProductService } from 'product/testing/src/inmemory-backend/product.service';
+import { isProduct } from 'product/testing/src/helpers/product-helper';
 
 describe('Driver | InMemory | Product | DaffInMemoryBackendProductService', () => {
   let productTestingService;
@@ -28,7 +28,7 @@ describe('Driver | InMemory | Product | DaffInMemoryBackendProductService', () =
     it('should return a object with an array of Products', () => {
       expect(Array.isArray(result.products)).toEqual(true);
       expect(result.products.length).toBeGreaterThan(2);
-      expect(productHelper.isProduct(result.products[0])).toBeTruthy();
+      expect(isProduct(result.products[0])).toBeTruthy();
     });
 
     it('should return Products that have 5 images', () => {

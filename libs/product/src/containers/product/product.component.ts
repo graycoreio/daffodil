@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 
 import { Store, select } from '@ngrx/store';
 
-import * as fromProduct from '../../reducers/index';
-import { ProductLoad, UpdateQty } from '../../actions/product.actions';
-import { Product } from '../../models/product';
+import * as fromProduct from 'product/src/reducers';
+import { ProductLoad, UpdateQty } from 'product/src/actions/product.actions';
+import { Product } from 'product/src/models/product';
 
 @Component({
   selector: '[product-container]',

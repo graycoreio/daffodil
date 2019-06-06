@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
-import { ProductImage } from '@daffodil/product';
-
 import { ModelFactory } from "@daffodil/core/testing";
+
+import { ProductImage } from 'product/src';
 
 const productImageUrlsList: string[] = [
   '/assets/products/0.jpg',

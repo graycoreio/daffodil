@@ -1,5 +1,5 @@
-import { ProductGridActionTypes, ProductGridActions } from '../actions/product-grid.actions';
-import { Product } from '../models/product';
+import { ProductGridActionTypes, ProductGridActions } from 'product/src/actions/product-grid.actions';
+import { Product } from 'product/src/models/product';
 
 export interface State {
   products: Product[],

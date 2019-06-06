@@ -1,9 +1,9 @@
 import { createEntityAdapter, EntityState, EntityAdapter, Dictionary } from '@ngrx/entity';
 
-import { ProductGridActionTypes, ProductGridActions } from '../actions/product-grid.actions';
-import { ProductActionTypes, ProductActions } from '../actions/product.actions';
-import { BestSellersActionTypes, BestSellersActions } from '../actions/best-sellers.actions';
-import { Product } from '../models/product';
+import { ProductGridActionTypes, ProductGridActions } from 'product/src/actions/product-grid.actions';
+import { ProductActionTypes, ProductActions } from 'product/src/actions/product.actions';
+import { BestSellersActionTypes, BestSellersActions } from 'product/src/actions/best-sellers.actions';
+import { Product } from 'product/src/models/product';
 
 export interface State extends EntityState<Product> {}
 

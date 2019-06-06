@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Observable ,  combineLatest } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import * as fromProduct from '../../reducers/index';
-import { BestSellersLoad } from '../../actions/best-sellers.actions';
-import { Product } from '../../models/product';
+import * as fromProduct from 'product/src/reducers';
+import { BestSellersLoad } from 'product/src/actions/best-sellers.actions';
+import { Product } from 'product/src/models/product';
 
 @Component({
   selector: '[best-sellers-container]',

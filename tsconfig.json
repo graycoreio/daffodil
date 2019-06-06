@@ -21,14 +21,14 @@
       "@daffodil/core": [
         "dist/core"
       ],
+      "@daffodil/core/testing": [
+        "dist/core/testing"
+      ],
       "@daffodil/cart": [
         "dist/cart"
       ],
       "@daffodil/cart/testing": [
         "dist/cart/testing"
-      ],
-      "@daffodil/core/testing": [
-        "dist/core/testing"
       ],
       "@daffodil/product": [
         "dist/product"
@@ -36,6 +36,7 @@
       "@daffodil/product/testing": [
         "dist/product/testing"
       ],
+      "product/*": ["libs/product/*"],
       "@daffodil/checkout": [
         "dist/checkout"
       ],

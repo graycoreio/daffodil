@@ -6,8 +6,8 @@ import { map } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
-import { Product } from '../../models/product';
-import { DaffProductServiceInterface } from '../interfaces/product-service.interface';
+import { Product } from 'product/src/models/product';
+import { DaffProductServiceInterface } from 'product/src/drivers/interfaces/product-service.interface';
 
 interface GetAllProductsResponse {
   shop?: ShopGraph

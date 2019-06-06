@@ -3,12 +3,12 @@ import { Component } from '@angular/core';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { By } from '@angular/platform-browser';
 
-import { DaffProductFactory } from '../../../testing/src';
+import { DaffProductFactory } from 'product//testing/src';
 
-import { ProductContainer } from './product.component';
-import { ProductLoad, UpdateQty } from '../../actions/product.actions';
-import * as fromProduct from '../../reducers/index';
-import { Product } from '../../models/product';
+import { ProductContainer } from 'product/src/containers/product/product.component';
+import { ProductLoad, UpdateQty } from 'product/src/actions/product.actions';
+import * as fromProduct from 'product/src/reducers';
+import { Product } from 'product/src/models/product';
 
 @Component({template: '<div product-container #ProductContainer="ProductContainer" [selectedProductId]="selectedProductIdValue"></div>'})
 class WrapperComponent {

@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { Product } from '../models/product';
+import { Product } from 'product/src/models/product';
 
 export enum BestSellersActionTypes {
     BestSellersLoadAction = "[BestSellers] Load Action",

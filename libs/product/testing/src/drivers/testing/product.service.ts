@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { Product, DaffProductServiceInterface } from '@daffodil/product';
+import { Product, DaffProductServiceInterface } from 'product/src';
 
-import { DaffProductFactory } from '../../factories/product.factory';
-import { DaffProductImageFactory } from '../../factories/product-image.factory';
+import { DaffProductFactory } from 'product/testing/src/factories/product.factory';
+import { DaffProductImageFactory } from 'product/testing/src/factories/product-image.factory';
 
 @Injectable({
   providedIn: 'root'

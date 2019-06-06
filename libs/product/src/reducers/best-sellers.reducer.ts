@@ -1,5 +1,5 @@
-import { BestSellersActionTypes, BestSellersActions } from '../actions/best-sellers.actions';
-import { Product } from '../models/product';
+import { BestSellersActionTypes, BestSellersActions } from 'product/src/actions/best-sellers.actions';
+import { Product } from 'product/src/models/product';
 
 export interface State {
   productIds: string[],

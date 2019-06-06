@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
-import { Product } from '@daffodil/product';
+
 import { ModelFactory } from "@daffodil/core/testing";
+
+import { Product } from 'product/src';
 
 export class MockProduct implements Product {
   id = faker.random.number(10000).toString();
