@@ -1,10 +1,10 @@
-export { Product } from './models/product';
-export { ProductImage } from './models/product-image';
+export { DaffProduct } from './models/product';
+export { DaffProductImage } from './models/product-image';
 
 import * as fromProduct from './reducers/index';
 export { fromProduct };
-export { ProductGridContainer } from './containers/product-grid/product-grid.component';
-export { BestSellersContainer } from './containers/best-sellers/best-sellers.component';
+export { DaffProductGridContainer } from './containers/product-grid/product-grid.component';
+export { DaffBestSellersContainer } from './containers/best-sellers/best-sellers.component';
 
 export { StateProductModule } from './product.module';
 

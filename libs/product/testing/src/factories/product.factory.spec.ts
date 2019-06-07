@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffProductFactory } from './product.factory';
-import { Product } from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
 
 describe('Product | Testing | Factories | DaffProductFactory', () => {
   
@@ -21,7 +21,7 @@ describe('Product | Testing | Factories | DaffProductFactory', () => {
 
   describe('create', () => {
 
-    let result: Product;
+    let result: DaffProduct;
 
     beforeEach(() => {
       result = productFactory.create();
@@ -38,7 +38,7 @@ describe('Product | Testing | Factories | DaffProductFactory', () => {
   });
 
   describe('createMany', () => {
-    let result: Product[];
+    let result: DaffProduct[];
 
     it('should create as many products as desired', () => {
       result = productFactory.createMany(2);

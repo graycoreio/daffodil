@@ -1,25 +1,25 @@
 import { createEntityAdapter, EntityState, EntityAdapter, Dictionary } from '@ngrx/entity';
 
-import { ProductGridActionTypes, ProductGridActions } from '../actions/product-grid.actions';
-import { ProductActionTypes, ProductActions } from '../actions/product.actions';
-import { BestSellersActionTypes, BestSellersActions } from '../actions/best-sellers.actions';
-import { Product } from '../models/product';
+import { DaffProductGridActionTypes, DaffProductGridActions } from '../actions/product-grid.actions';
+import { DaffProductActionTypes, ProductActions } from '../actions/product.actions';
+import { DaffBestSellersActionTypes, DaffBestSellersActions } from '../actions/best-sellers.actions';
+import { DaffProduct } from '../models/product';
 
-export interface State extends EntityState<Product> {}
+export interface State extends EntityState<DaffProduct> {}
 
-export const productAdapter : EntityAdapter<Product> = createEntityAdapter<Product>();
+export const productAdapter : EntityAdapter<DaffProduct> = createEntityAdapter<DaffProduct>();
 
 export const initialState: State = productAdapter.getInitialState();
 
 export function reducer(
   state = initialState, 
-  action: ProductGridActions | BestSellersActions | ProductActions): State {
+  action: DaffProductGridActions | DaffBestSellersActions | ProductActions): State {
   switch (action.type) {
-    case ProductGridActionTypes.ProductGridLoadSuccessAction:
+    case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
       return productAdapter.upsertMany(action.payload, state);
-    case BestSellersActionTypes.BestSellersLoadSuccessAction:
+    case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
       return productAdapter.upsertMany(action.payload, state);
-    case ProductActionTypes.ProductLoadSuccessAction:
+    case DaffProductActionTypes.ProductLoadSuccessAction:
       return productAdapter.upsertOne(
         { 
           id: action.payload.id, 
@@ -27,7 +27,7 @@ export function reducer(
         },
         state
       );
-    case ProductGridActionTypes.ProductGridResetAction:
+    case DaffProductGridActionTypes.ProductGridResetAction:
       return productAdapter.removeAll(state);
     default:
       return state;
@@ -38,7 +38,7 @@ const { selectIds, selectEntities, selectAll, selectTotal } = productAdapter.get
 
 export const selectProductIds = selectIds;
 
-export const selectProductEntities : (state: EntityState<Product>) => Dictionary<Product> = selectEntities;
+export const selectProductEntities : (state: EntityState<DaffProduct>) => Dictionary<DaffProduct> = selectEntities;
 
 export const selectAllProducts = selectAll;
 

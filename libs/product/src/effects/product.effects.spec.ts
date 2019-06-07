@@ -3,18 +3,17 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable ,  of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
-import { DaffProductFactory, DaffProductImageFactory } from '../../testing/src';
-import { ProductEffects } from './product.effects';
-import { ProductLoad, ProductLoadSuccess, ProductLoadFailure } from '../actions/product.actions';
-import { Product } from '../models/product';
+import { DaffProductFactory, DaffProductImageFactory, DaffTestingProductService } from '@daffodil/product/testing';
+import { DaffProductEffects } from './product.effects';
+import { DaffProductLoad, DaffProductLoadSuccess, DaffProductLoadFailure } from '../actions/product.actions';
+import { DaffProduct } from '../models/product';
 import { DaffProductServiceInterface } from '../drivers/interfaces/product-service.interface';
 import { DaffProductDriver } from '../drivers/injection-tokens/product-driver.token';
-import { DaffTestingProductService } from '../../testing/src/drivers/testing/product.service';
 
-describe('ProductEffects', () => {
+describe('DaffProductEffects', () => {
   let actions$: Observable<any>;
-  let effects: ProductEffects;
-  let mockProduct: Product;
+  let effects: DaffProductEffects;
+  let mockProduct: DaffProduct;
   let daffProductDriver: DaffProductServiceInterface;
 
   let productFactory: DaffProductFactory;
@@ -25,7 +24,7 @@ describe('ProductEffects', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        ProductEffects,
+        DaffProductEffects,
         provideMockActions(() => actions$),
         {
           provide: DaffProductDriver, 
@@ -34,7 +33,7 @@ describe('ProductEffects', () => {
       ]
     });
 
-    effects = TestBed.get(ProductEffects);
+    effects = TestBed.get(DaffProductEffects);
     productFactory = TestBed.get(DaffProductFactory);
 
     daffProductDriver = TestBed.get(DaffProductDriver);
@@ -49,13 +48,13 @@ describe('ProductEffects', () => {
   describe('when ProductLoadAction is triggered', () => {
 
     let expected;
-    const productLoadAction = new ProductLoad(productId);
+    const productLoadAction = new DaffProductLoad(productId);
     
     describe('and the call to ProductService is successful', () => {
 
       beforeEach(() => {
         spyOn(daffProductDriver, 'get').and.returnValue(of(mockProduct));
-        const productLoadSuccessAction = new ProductLoadSuccess(mockProduct);
+        const productLoadSuccessAction = new DaffProductLoadSuccess(mockProduct);
         actions$ = hot('--a', { a: productLoadAction });
         expected = cold('--b', { b: productLoadSuccessAction });
       });
@@ -71,7 +70,7 @@ describe('ProductEffects', () => {
         const error = 'Failed to load product';
         const response = cold('#', {}, error);
         spyOn(daffProductDriver, 'get').and.returnValue(response);
-        const productLoadFailureAction = new ProductLoadFailure(error);
+        const productLoadFailureAction = new DaffProductLoadFailure(error);
         actions$ = hot('--a', { a: productLoadAction });
         expected = cold('--b', { b: productLoadFailureAction });
       });

@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
-import { Product } from '../../models/product';
+import { DaffProduct } from '../../models/product';
 import { DaffProductServiceInterface } from '../interfaces/product-service.interface';
 
 interface GetAllProductsResponse {
@@ -67,7 +67,7 @@ export const GetAProduct = gql`
   }
 `;
 
-export const DaffShopifyProductTransformer = (node: ProductNode) : Product => {
+export const DaffShopifyProductTransformer = (node: ProductNode) : DaffProduct => {
   return {
     id: node.id,
     name: node.title
@@ -83,7 +83,7 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
   
   constructor(private apollo: Apollo) {}
 
-  getAll(): Observable<Product[]> {
+  getAll(): Observable<DaffProduct[]> {
     return this.apollo.query<GetAllProductsResponse>({
       query: GetAllProductsQuery,
       variables: {
@@ -97,7 +97,7 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
   }
 
   //todo: add actual getBestSellers apollo call. Right now, it just makes the getAll() call
-  getBestSellers(): Observable<Product[]> {
+  getBestSellers(): Observable<DaffProduct[]> {
     return this.apollo.query<GetAllProductsResponse>({
       query: GetAllProductsQuery,
       variables: {
@@ -110,7 +110,7 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
     );
   }
 
-  get(productId: string): Observable<Product> {
+  get(productId: string): Observable<DaffProduct> {
     return this.apollo.query<GetAProductResponse>({
       query: GetAProduct,
       variables: {

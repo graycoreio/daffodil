@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { Product, fromProduct } from '@daffodil/product';
+import { DaffProduct, fromProduct } from '@daffodil/product';
 
 import * as fromDemoAddToCartNotification from '../../reducers/index';
 import { CloseAddToCartNotification } from '../../actions/add-to-cart-notification.actions';
@@ -17,7 +17,7 @@ export class AddToCartNotificationComponent implements OnInit {
   productQty$: Observable<number>;
   loading$: Observable<boolean>;
   productId$: Observable<string>;
-  product$: Observable<Product>;
+  product$: Observable<DaffProduct>;
 
   _verticalPosition = "center";
   _horizontalPosition = "center";

@@ -1,9 +1,10 @@
-import { DaffProductFactory } from '../../testing/src';
-import { ProductLoadSuccess } from "../actions/product.actions";
-import { ProductGridLoadSuccess, ProductGridReset } from "../actions/product-grid.actions";
+import { DaffProductFactory } from '@daffodil/product/testing';
+
+import { DaffProductLoadSuccess } from "../actions/product.actions";
+import { DaffProductGridLoadSuccess, DaffProductGridReset } from "../actions/product-grid.actions";
 import { initialState, reducer } from "../reducers/product-entities.reducer";
-import { BestSellersLoadSuccess } from "../actions/best-sellers.actions";
-import { Product } from "../models/product";
+import { DaffBestSellersLoadSuccess } from "../actions/best-sellers.actions";
+import { DaffProduct } from "../models/product";
 
 describe('Product | Product Entities Reducer', () => {
 
@@ -26,12 +27,12 @@ describe('Product | Product Entities Reducer', () => {
 
   describe('when ProductGridLoadSuccessAction is triggered', () => {
 
-    let products: Product[];
+    let products: DaffProduct[];
     let result;
 
     beforeEach(() => {
       products = productFactory.createMany(2);
-      const productGridLoadSuccess = new ProductGridLoadSuccess(products);
+      const productGridLoadSuccess = new DaffProductGridLoadSuccess(products);
       
       result = reducer(initialState, productGridLoadSuccess);
     });
@@ -47,13 +48,13 @@ describe('Product | Product Entities Reducer', () => {
 
   describe('when BestSellersLoadSuccessAction is triggered', () => {
 
-    let products: Product[];
+    let products: DaffProduct[];
     let result;
 
     beforeEach(() => {
       products = productFactory.createMany(2);
       
-      const bestSellersLoadSuccess = new BestSellersLoadSuccess(products);
+      const bestSellersLoadSuccess = new DaffBestSellersLoadSuccess(products);
       
       result = reducer(initialState, bestSellersLoadSuccess);
     });
@@ -69,7 +70,7 @@ describe('Product | Product Entities Reducer', () => {
 
   describe('when ProductLoadSuccessAction is triggered', () => {
     
-    let product: Product;
+    let product: DaffProduct;
     let result;
     let productId;
 
@@ -77,7 +78,7 @@ describe('Product | Product Entities Reducer', () => {
       product = productFactory.create();
       productId = product.id;
       
-      const productLoadSuccess = new ProductLoadSuccess(product);
+      const productLoadSuccess = new DaffProductLoadSuccess(product);
       
       result = reducer(initialState, productLoadSuccess);
     });
@@ -92,7 +93,7 @@ describe('Product | Product Entities Reducer', () => {
     let result;
 
     beforeEach(() => {
-      const productGridReset = new ProductGridReset();
+      const productGridReset = new DaffProductGridReset();
       
       result = reducer(initialState, productGridReset);
     });

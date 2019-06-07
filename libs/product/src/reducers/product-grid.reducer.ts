@@ -1,8 +1,8 @@
-import { ProductGridActionTypes, ProductGridActions } from '../actions/product-grid.actions';
-import { Product } from '../models/product';
+import { DaffProductGridActionTypes, DaffProductGridActions } from '../actions/product-grid.actions';
+import { DaffProduct } from '../models/product';
 
 export interface State {
-  products: Product[],
+  products: DaffProduct[],
   loading: boolean,
   errors: string[]
 }
@@ -13,13 +13,13 @@ export const initialState: State = {
   errors: []
 };
 
-export function reducer(state = initialState, action: ProductGridActions): State {
+export function reducer(state = initialState, action: DaffProductGridActions): State {
   switch (action.type) {
-    case ProductGridActionTypes.ProductGridLoadAction:
+    case DaffProductGridActionTypes.ProductGridLoadAction:
       return {...state, loading: true};
-    case ProductGridActionTypes.ProductGridLoadSuccessAction:
+    case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
       return {...state, loading: false};
-    case ProductGridActionTypes.ProductGridLoadFailureAction:
+    case DaffProductGridActionTypes.ProductGridLoadFailureAction:
       return {...state, 
         loading: false, 
         errors: state.errors.concat(new Array(action.payload))

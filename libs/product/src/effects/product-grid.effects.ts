@@ -4,15 +4,15 @@ import { of ,  Observable } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
 import { 
-  ProductGridActionTypes, 
-  ProductGridLoad, 
-  ProductGridLoadSuccess, 
-  ProductGridLoadFailure } from '../actions/product-grid.actions';
+  DaffProductGridActionTypes, 
+  DaffProductGridLoad, 
+  DaffProductGridLoadSuccess, 
+  DaffProductGridLoadFailure } from '../actions/product-grid.actions';
 import { DaffProductServiceInterface } from '../drivers/interfaces/product-service.interface';
 import { DaffProductDriver } from '../drivers/injection-tokens/product-driver.token';
 
 @Injectable()
-export class ProductGridEffects {
+export class DaffProductGridEffects {
 
   constructor(
     private actions$: Actions,
@@ -20,15 +20,15 @@ export class ProductGridEffects {
 
   @Effect()
   loadAll$ : Observable<any> = this.actions$.pipe(
-    ofType(ProductGridActionTypes.ProductGridLoadAction),
-    switchMap((action: ProductGridLoad) =>
+    ofType(DaffProductGridActionTypes.ProductGridLoadAction),
+    switchMap((action: DaffProductGridLoad) =>
       this.driver.getAll()
         .pipe(
           map((resp) => {
-            return new ProductGridLoadSuccess(resp);
+            return new DaffProductGridLoadSuccess(resp);
           }),
           catchError(error => {
-            return of(new ProductGridLoadFailure("Failed to load product grid"));
+            return of(new DaffProductGridLoadFailure("Failed to load product grid"));
           })
         )
     )

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { ProductGridContainer } from '@daffodil/product';
+import { DaffProductGridContainer } from '@daffodil/product';
 
 @Component({
   selector: 'demo-product-grid-view',
@@ -7,6 +7,6 @@ import { ProductGridContainer } from '@daffodil/product';
 })
 export class ProductGridViewComponent {
 
-  @ViewChild('ProductGridContainer') ProductGridContainer: ProductGridContainer;
+  @ViewChild('ProductGridContainer') DaffProductGridContainer: DaffProductGridContainer;
   constructor() { }
 }

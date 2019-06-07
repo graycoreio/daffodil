@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Product } from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
 
 @Component({
   selector: 'demo-product-card',
@@ -10,7 +10,7 @@ import { Product } from '@daffodil/product';
 })
 export class ProductCardComponent {
 
-  @Input() product: Product;
+  @Input() product: DaffProduct;
 
   constructor(
     private router: Router

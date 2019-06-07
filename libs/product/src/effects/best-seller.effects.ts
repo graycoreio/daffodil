@@ -4,15 +4,15 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { switchMap, map, catchError } from 'rxjs/operators';
 
 import { 
-  BestSellersActionTypes, 
-  BestSellersLoad, 
-  BestSellersLoadSuccess, 
-  BestSellersLoadFailure } from '../actions/best-sellers.actions';
+  DaffBestSellersActionTypes, 
+  DaffBestSellersLoad, 
+  DaffBestSellersLoadSuccess, 
+  DaffBestSellersLoadFailure } from '../actions/best-sellers.actions';
 import { DaffProductDriver } from '../drivers/injection-tokens/product-driver.token';
 import { DaffProductServiceInterface } from '../drivers/interfaces/product-service.interface';
 
 @Injectable()
-export class BestSellersEffects {
+export class DaffBestSellersEffects {
 
   constructor(
     private actions$: Actions,
@@ -20,15 +20,15 @@ export class BestSellersEffects {
 
   @Effect()
   loadBestSellers$ : Observable<any> = this.actions$.pipe(
-    ofType(BestSellersActionTypes.BestSellersLoadAction),
-    switchMap((action: BestSellersLoad) =>
+    ofType(DaffBestSellersActionTypes.BestSellersLoadAction),
+    switchMap((action: DaffBestSellersLoad) =>
       this.driver.getBestSellers()
         .pipe(
           map((resp) => {
-            return new BestSellersLoadSuccess(resp);
+            return new DaffBestSellersLoadSuccess(resp);
           }),
           catchError(error => {
-            return of(new BestSellersLoadFailure("Failed to load best selling products"));
+            return of(new DaffBestSellersLoadFailure("Failed to load best selling products"));
           })
         )
     )

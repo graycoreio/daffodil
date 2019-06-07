@@ -1,15 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ProductImage } from '@daffodil/product';
+import { DaffProductImage } from '@daffodil/product';
 
 import { DaffProductImageFactory } from '../../factories/product-image.factory';
 import { DaffTestingProductService } from './product.service';
-import * as productHelper from '../../helpers/product-helper';
+import { isProduct } from '../../helpers/product-helper';
 
 describe('Driver | Testing | Product | ProductService', () => {
   let productService;
   let productImageFactory: jasmine.SpyObj<DaffProductImageFactory>;
-  let stubProductImages: ProductImage[];
+  let stubProductImages: DaffProductImage[];
 
   beforeEach(() => {
     stubProductImages = new DaffProductImageFactory().createMany(5);
@@ -36,7 +36,7 @@ describe('Driver | Testing | Product | ProductService', () => {
 
     it('should return a list of products with images', () => {
       productService.getAll().subscribe(products => {
-        expect(productHelper.isProduct(products[0])).toBeTruthy();
+        expect(isProduct(products[0])).toBeTruthy();
 
         expect(products[0].images).toEqual(stubProductImages);
       });
@@ -47,7 +47,7 @@ describe('Driver | Testing | Product | ProductService', () => {
 
     it('should return an array of products with images', () => {
       productService.getBestSellers().subscribe(products => {
-        expect(productHelper.isProduct(products[0])).toBeTruthy();
+        expect(isProduct(products[0])).toBeTruthy();
         expect(products[0].images).toEqual(stubProductImages);
       });
     });
@@ -57,7 +57,7 @@ describe('Driver | Testing | Product | ProductService', () => {
 
     it('should return a single product with images', () => {
       productService.get('id').subscribe(product => {
-        expect(productHelper.isProduct(product)).toBeTruthy();
+        expect(isProduct(product)).toBeTruthy();
         expect(product.images).toEqual(stubProductImages);
       });
     });

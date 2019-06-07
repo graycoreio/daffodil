@@ -3,25 +3,25 @@ import { Observable ,  combineLatest } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
 import * as fromProduct from '../../reducers/index';
-import { BestSellersLoad } from '../../actions/best-sellers.actions';
-import { Product } from '../../models/product';
+import { DaffBestSellersLoad } from '../../actions/best-sellers.actions';
+import { DaffProduct } from '../../models/product';
 
 @Component({
   selector: '[best-sellers-container]',
   template: '<ng-content></ng-content>',
   exportAs: 'BestSellersContainer'
 })
-export class BestSellersContainer implements OnInit {
+export class DaffBestSellersContainer implements OnInit {
 
   loading$: Observable<boolean>;
-  bestSellers: Product[];
+  bestSellers: DaffProduct[];
 
   constructor(
     private store: Store<fromProduct.State>
   ) { }
 
   ngOnInit() {
-    this.store.dispatch(new BestSellersLoad());
+    this.store.dispatch(new DaffBestSellersLoad());
 
     this.loading$ = this.store.pipe(select(fromProduct.selectBestSellersLoadingState));
 
@@ -40,7 +40,7 @@ export class BestSellersContainer implements OnInit {
     });
   }
 
-  private getProducts(): Observable<Product[]> {
+  private getProducts(): Observable<DaffProduct[]> {
     return this.store.pipe(select(fromProduct.selectAllProducts));
   }
 

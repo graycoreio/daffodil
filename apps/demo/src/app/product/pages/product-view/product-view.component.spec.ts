@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { Observable ,  of } from 'rxjs';
 
-import { Product } from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffLoadingIconModule } from '@daffodil/design';
 
@@ -27,7 +27,7 @@ const stubQty = 1;
 class MockProductContainer {
   @Input() selectedProductId: string;
 
-  product$: Observable<Product> = product$;
+  product$: Observable<DaffProduct> = product$;
   loading$: Observable<boolean> = of(false);
   qty$: Observable<number> = of(stubQty);
   updateQty(){};
@@ -49,7 +49,7 @@ class MockCartContainer {
   encapsulation: ViewEncapsulation.None
 })
 class MockProductComponent { 
-  @Input() product: Product;
+  @Input() product: DaffProduct;
   @Input() qty: number;
   @Output() updateQty: EventEmitter<any> = new EventEmitter();
 }

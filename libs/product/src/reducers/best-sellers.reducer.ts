@@ -1,5 +1,5 @@
-import { BestSellersActionTypes, BestSellersActions } from '../actions/best-sellers.actions';
-import { Product } from '../models/product';
+import { DaffBestSellersActionTypes, DaffBestSellersActions } from '../actions/best-sellers.actions';
+import { DaffProduct } from '../models/product';
 
 export interface State {
   productIds: string[],
@@ -15,18 +15,18 @@ export const initialState: State = {
 
 export const resetState: State = Object.assign({}, initialState);
 
-export function reducer(state = initialState, action: BestSellersActions): State {
+export function reducer(state = initialState, action: DaffBestSellersActions): State {
   switch (action.type) {
-    case BestSellersActionTypes.BestSellersLoadAction:
+    case DaffBestSellersActionTypes.BestSellersLoadAction:
       return {...state, loading: true};
-    case BestSellersActionTypes.BestSellersLoadSuccessAction:
+    case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
       return {...state, loading: false, productIds: getIds(action.payload)};
-    case BestSellersActionTypes.BestSellersLoadFailureAction:
+    case DaffBestSellersActionTypes.BestSellersLoadFailureAction:
       return {...state, 
         loading: false, 
         errors: state.errors.concat(new Array(action.payload))
       };
-    case BestSellersActionTypes.BestSellersResetAction:
+    case DaffBestSellersActionTypes.BestSellersResetAction:
       return {
         ...resetState
       }
@@ -39,7 +39,7 @@ export const getBestSellersIds = (state: State) => state.productIds;
 
 export const getBestSellersLoading = (state: State) => state.loading;
 
-function getIds(products: Product[]): string[] {
+function getIds(products: DaffProduct[]): string[] {
   const ids: string[] = new Array();
 
   products.forEach(product => {

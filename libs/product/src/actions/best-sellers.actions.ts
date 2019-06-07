@@ -1,41 +1,41 @@
 import { Action } from '@ngrx/store';
 
-import { Product } from '../models/product';
+import { DaffProduct } from '../models/product';
 
-export enum BestSellersActionTypes {
+export enum DaffBestSellersActionTypes {
     BestSellersLoadAction = "[BestSellers] Load Action",
     BestSellersLoadSuccessAction = "[BestSellers] Load Success Action",
     BestSellersLoadFailureAction = "[BestSellers] Load Failure Action",
     BestSellersResetAction = "[BestSellers] Reset Action"
 }
 
-export class BestSellersLoad implements Action {
-  readonly type = BestSellersActionTypes.BestSellersLoadAction;
+export class DaffBestSellersLoad implements Action {
+  readonly type = DaffBestSellersActionTypes.BestSellersLoadAction;
 
   constructor() {}
 }
 
-export class BestSellersLoadSuccess implements Action {
-    readonly type = BestSellersActionTypes.BestSellersLoadSuccessAction;
+export class DaffBestSellersLoadSuccess implements Action {
+    readonly type = DaffBestSellersActionTypes.BestSellersLoadSuccessAction;
 
-    constructor(public payload: Product[]) {}
+    constructor(public payload: DaffProduct[]) {}
 }
 
-export class BestSellersLoadFailure implements Action {
-  readonly type = BestSellersActionTypes.BestSellersLoadFailureAction;
+export class DaffBestSellersLoadFailure implements Action {
+  readonly type = DaffBestSellersActionTypes.BestSellersLoadFailureAction;
 
   constructor(public payload: string) {}
 }
 
-export class BestSellersReset implements Action {
-  readonly type = BestSellersActionTypes.BestSellersResetAction;
+export class DaffBestSellersReset implements Action {
+  readonly type = DaffBestSellersActionTypes.BestSellersResetAction;
 
   constructor() {}
 }
 
-export type BestSellersActions = 
-    | BestSellersLoad 
-    | BestSellersLoadSuccess
-    | BestSellersLoadFailure
-    | BestSellersReset;
+export type DaffBestSellersActions = 
+    | DaffBestSellersLoad 
+    | DaffBestSellersLoadSuccess
+    | DaffBestSellersLoadFailure
+    | DaffBestSellersReset;
     

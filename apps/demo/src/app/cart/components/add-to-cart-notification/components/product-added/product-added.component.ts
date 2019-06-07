@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Product } from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
 
 @Component({
   selector: 'demo-product-added',
@@ -10,5 +10,5 @@ import { Product } from '@daffodil/product';
 export class ProductAddedComponent {
 
   @Input() qty: number;
-  @Input() product: Product;
+  @Input() product: DaffProduct;
 }

@@ -1,12 +1,13 @@
-import { DaffProductFactory } from '../../testing/src';
-import { ProductGridLoad, ProductGridLoadSuccess, ProductGridLoadFailure } from "../actions/product-grid.actions";
+import { DaffProductFactory } from '@daffodil/product/testing';
+
+import { DaffProductGridLoad, DaffProductGridLoadSuccess, DaffProductGridLoadFailure } from "../actions/product-grid.actions";
 import { initialState, reducer, getProductGridLoading, State } from "../reducers/product-grid.reducer";
-import { Product } from "../models/product";
+import { DaffProduct } from "../models/product";
 
 describe('Product | Product Grid Reducer', () => {
 
   let productFactory: DaffProductFactory;
-  let product: Product;
+  let product: DaffProduct;
 
   beforeEach(() => {
     productFactory = new DaffProductFactory();
@@ -28,7 +29,7 @@ describe('Product | Product Grid Reducer', () => {
   describe('when ProductGridLoadAction is triggered', () => {
 
     it('sets loading state to true', () => {
-      const productGridLoadAction: ProductGridLoad = new ProductGridLoad();
+      const productGridLoadAction: DaffProductGridLoad = new DaffProductGridLoad();
       
       const result = reducer(initialState, productGridLoadAction);
 
@@ -38,7 +39,7 @@ describe('Product | Product Grid Reducer', () => {
 
   describe('when ProductGridLoadSuccessAction is triggered', () => {
 
-    let products: Product[];
+    let products: DaffProduct[];
     let result;
     let state: State;
 
@@ -48,7 +49,7 @@ describe('Product | Product Grid Reducer', () => {
         loading: true,
       }
       products = new Array(product);
-      const productGridLoadSuccess = new ProductGridLoadSuccess(products);
+      const productGridLoadSuccess = new DaffProductGridLoadSuccess(products);
       
       result = reducer(state, productGridLoadSuccess);
     });
@@ -72,7 +73,7 @@ describe('Product | Product Grid Reducer', () => {
       }
       
       error = 'error';      
-      const productGridLoadFailure = new ProductGridLoadFailure(error);
+      const productGridLoadFailure = new DaffProductGridLoadFailure(error);
       result = reducer(state, productGridLoadFailure);
     });
 

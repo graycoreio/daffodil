@@ -1,40 +1,40 @@
 import { Action } from '@ngrx/store';
 
-import { Product } from '../models/product';
+import { DaffProduct } from '../models/product';
 
-export enum ProductGridActionTypes {
+export enum DaffProductGridActionTypes {
     ProductGridLoadAction = "[ProductGrid] Load Action",
     ProductGridLoadSuccessAction = "[ProductGrid] Load Success Action",
     ProductGridLoadFailureAction = "[ProductGrid] Load Failure Action",
     ProductGridResetAction = "[ProductGrid] Reset Action"
 }
 
-export class ProductGridLoad implements Action {
-  readonly type = ProductGridActionTypes.ProductGridLoadAction;
+export class DaffProductGridLoad implements Action {
+  readonly type = DaffProductGridActionTypes.ProductGridLoadAction;
 
   constructor() {}
 }
 
-export class ProductGridLoadSuccess implements Action {
-    readonly type = ProductGridActionTypes.ProductGridLoadSuccessAction;
+export class DaffProductGridLoadSuccess implements Action {
+    readonly type = DaffProductGridActionTypes.ProductGridLoadSuccessAction;
 
-    constructor(public payload: Product[]) {}
+    constructor(public payload: DaffProduct[]) {}
 }
 
-export class ProductGridLoadFailure implements Action {
-  readonly type = ProductGridActionTypes.ProductGridLoadFailureAction;
+export class DaffProductGridLoadFailure implements Action {
+  readonly type = DaffProductGridActionTypes.ProductGridLoadFailureAction;
 
   constructor(public payload: string) {}
 }
 
-export class ProductGridReset implements Action {
-    readonly type = ProductGridActionTypes.ProductGridResetAction;
+export class DaffProductGridReset implements Action {
+    readonly type = DaffProductGridActionTypes.ProductGridResetAction;
 
     constructor() {}
 }
 
-export type ProductGridActions = 
-    | ProductGridLoad 
-    | ProductGridLoadSuccess
-    | ProductGridLoadFailure
-    | ProductGridReset;
+export type DaffProductGridActions = 
+    | DaffProductGridLoad 
+    | DaffProductGridLoadSuccess
+    | DaffProductGridLoadFailure
+    | DaffProductGridReset;

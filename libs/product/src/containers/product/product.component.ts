@@ -5,20 +5,20 @@ import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
 import * as fromProduct from '../../reducers/index';
-import { ProductLoad, UpdateQty } from '../../actions/product.actions';
-import { Product } from '../../models/product';
+import { DaffProductLoad, DaffProductUpdateQty } from '../../actions/product.actions';
+import { DaffProduct } from '../../models/product';
 
 @Component({
   selector: '[product-container]',
   template: '<ng-content></ng-content>',
   exportAs: 'ProductContainer'
 })
-export class ProductContainer implements OnInit {
+export class DaffProductContainer implements OnInit {
 
   @Input() selectedProductId: string;
 
   loading$: Observable<boolean>;
-  product$: Observable<Product>;
+  product$: Observable<DaffProduct>;
   qty$: Observable<number>;
 
   constructor(
@@ -26,7 +26,7 @@ export class ProductContainer implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.store.dispatch(new ProductLoad(this.selectedProductId));
+    this.store.dispatch(new DaffProductLoad(this.selectedProductId));
 
     this.loading$ = this.store.pipe(select(fromProduct.selectSelectedProductLoadingState));
 
@@ -36,6 +36,6 @@ export class ProductContainer implements OnInit {
   }
 
   updateQty(payload: number) {
-    this.store.dispatch(new UpdateQty(payload));
+    this.store.dispatch(new DaffProductUpdateQty(payload));
   }
 }

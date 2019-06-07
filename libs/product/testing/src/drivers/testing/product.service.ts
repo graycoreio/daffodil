@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { Product, DaffProductServiceInterface } from '@daffodil/product';
+import { DaffProduct, DaffProductServiceInterface } from '@daffodil/product';
 
 import { DaffProductFactory } from '../../factories/product.factory';
 import { DaffProductImageFactory } from '../../factories/product-image.factory';
@@ -15,7 +15,7 @@ export class DaffTestingProductService implements DaffProductServiceInterface {
     private productFactory: DaffProductFactory,
     private productImageFactory: DaffProductImageFactory) {}
 
-  getAll(): Observable<Product[]> {
+  getAll(): Observable<DaffProduct[]> {
     return of([
       this.productFactory.create({ images: this.productImageFactory.createMany(5)}),
       this.productFactory.create({ images: this.productImageFactory.createMany(5)}),
@@ -25,7 +25,7 @@ export class DaffTestingProductService implements DaffProductServiceInterface {
     ]);
   }
 
-  getBestSellers(): Observable<Product[]> {
+  getBestSellers(): Observable<DaffProduct[]> {
     return of([
       this.productFactory.create({ images: this.productImageFactory.createMany(5)}),
       this.productFactory.create({ images: this.productImageFactory.createMany(5)}),
@@ -34,7 +34,7 @@ export class DaffTestingProductService implements DaffProductServiceInterface {
     ]);
   }
 
-  get(productId: string): Observable<Product> {
+  get(productId: string): Observable<DaffProduct> {
     return of(this.productFactory.create({ images: this.productImageFactory.createMany(5)}));
   }
 }
