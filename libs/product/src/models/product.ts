@@ -1,10 +1,10 @@
-import { ProductImage } from "./product-image";
+import { DaffProductImage } from "./product-image";
 
-export interface Product {
+export interface DaffProduct {
   id: string;
   price?: string;
   name?: string;
   brand?: string;
   description?: string;
-  images?: ProductImage[];
+  images?: DaffProductImage[];
 }

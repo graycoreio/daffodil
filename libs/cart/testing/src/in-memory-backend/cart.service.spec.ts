@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { STATUS } from 'angular-in-memory-web-api';
 
-import { ProductImage } from '@daffodil/product';
+import { DaffProductImage } from '@daffodil/product';
 import { DaffProductImageFactory } from '@daffodil/product/testing';
 import { Cart } from '@daffodil/cart';
 
@@ -11,7 +11,7 @@ import { DaffCartFactory } from '../../../testing/src';
 describe('Driver | Cart | In Memory | CartService', () => {
   let cartTestingService: DaffInMemoryBackendCartService;
   let stubCart: Cart;
-  let stubProductImage: ProductImage;
+  let stubProductImage: DaffProductImage;
   let daffCartFactory: jasmine.SpyObj<DaffCartFactory>;
   let daffProductImageFactory: jasmine.SpyObj<DaffProductImageFactory>;
   

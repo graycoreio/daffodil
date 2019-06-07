@@ -5,7 +5,7 @@ import * as fromProductEntities from './product-entities.reducer';
 import * as fromProductGrid from './product-grid.reducer';
 import * as fromProduct from './product.reducer';
 import * as fromBestSellers from './best-sellers.reducer';
-import { Product } from '../models/product';
+import { DaffProduct } from '../models/product';
 
 export interface State {
   products : fromProductEntities.State;
@@ -49,7 +49,7 @@ export const selectProductIds = createSelector(
   fromProductEntities.selectProductIds
 );
 
-export const selectProductEntities : MemoizedSelector<object, Dictionary<Product>> = createSelector(
+export const selectProductEntities : MemoizedSelector<object, Dictionary<DaffProduct>> = createSelector(
   selectProductEntitiesState,
   fromProductEntities.selectProductEntities
 );
@@ -108,7 +108,7 @@ export const selectSelectedProductLoadingState = createSelector(
   fromProduct.getProductLoading
 );
 
-export const selectSelectedProduct : MemoizedSelector<object, Product> = createSelector(
+export const selectSelectedProduct : MemoizedSelector<object, DaffProduct> = createSelector(
   selectProductState,
   selectSelectedProductId,
   (state: State, id: string) => state.products.entities[id]

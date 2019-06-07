@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
 
-import { Product } from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffContainerModule, DaffLoadingIconModule } from '@daffodil/design';
 
@@ -20,7 +20,7 @@ const loading$ = of(false);
   exportAs: 'ProductGridContainer'
 })
 class MockProductGridContainer {
-  products$: Observable<Product[]> = products$;
+  products$: Observable<DaffProduct[]> = products$;
   loading$: Observable<boolean> = loading$;
 }
 
@@ -29,7 +29,7 @@ class MockProductGridContainer {
   template: ''
 })
 class MockProductGridComponent { 
-  @Input() products: Product[];
+  @Input() products: DaffProduct[];
 }
 
 describe('ProductGridViewComponent', () => {

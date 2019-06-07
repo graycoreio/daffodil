@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { Product } from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
 import { DaffProductFactory, DaffProductImageFactory } from '@daffodil/product/testing';
 
 import { ProductAddedComponent } from './product-added.component';
@@ -14,7 +14,7 @@ const stubQty = 1;
 })
 class WrapperComponent { 
   qtyValue: number = stubQty;
-  productValue: Product;
+  productValue: DaffProduct;
 }
 
 describe('ProductAddedComponent', () => {
@@ -22,7 +22,7 @@ describe('ProductAddedComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let productFactory: DaffProductFactory;
   let productImageFactory: DaffProductImageFactory;
-  let stubProduct: Product;
+  let stubProduct: DaffProduct;
   let productAdded: ProductAddedComponent;
   let productAddedElement;
 

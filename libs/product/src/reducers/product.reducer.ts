@@ -1,4 +1,4 @@
-import { ProductActionTypes, ProductActions } from '../actions/product.actions';
+import { DaffProductActionTypes, ProductActions } from '../actions/product.actions';
 
 export interface State {
   selectedProductId: string,
@@ -16,16 +16,16 @@ export const initialState: State = {
 
 export function reducer(state = initialState, action: ProductActions): State {
   switch (action.type) {
-    case ProductActionTypes.ProductLoadAction:
+    case DaffProductActionTypes.ProductLoadAction:
       return {...state, loading: true, selectedProductId: action.payload};
-    case ProductActionTypes.ProductLoadSuccessAction:
+    case DaffProductActionTypes.ProductLoadSuccessAction:
       return {...state, loading: false};
-    case ProductActionTypes.ProductLoadFailureAction:
+    case DaffProductActionTypes.ProductLoadFailureAction:
       return {...state, 
         loading: false, 
         errors: state.errors.concat(new Array(action.payload))
       };
-    case ProductActionTypes.UpdateQtyAction:
+    case DaffProductActionTypes.UpdateQtyAction:
       return {...state, qty: action.payload}
     default:
       return state;

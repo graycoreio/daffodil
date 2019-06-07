@@ -3,18 +3,18 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
 
-import { Product } from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
 import { DaffLoadingIconModule } from '@daffodil/design';
 
 import { BestSellersComponent } from './best-sellers.component';
 
-const stubBestSellers: Product[] = [];
+const stubBestSellers: DaffProduct[] = [];
 
 // tslint:disable-next-line: component-selector
 @Component({selector: '[best-sellers-container]', exportAs: 'BestSellersContainer', template: '<ng-content></ng-content>'})
 class MockBestSellersContainer {
   loading$: Observable<boolean> = of(false);
-  bestSellers: Product[] = stubBestSellers;
+  bestSellers: DaffProduct[] = stubBestSellers;
 }
 
 @Component({
@@ -22,7 +22,7 @@ class MockBestSellersContainer {
   template: ''
 })
 class MockProductGridComponent { 
-  @Input() products: Product[];
+  @Input() products: DaffProduct[];
 }
 
 describe('BestSellersComponent', () => {
