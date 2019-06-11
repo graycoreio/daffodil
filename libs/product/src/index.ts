@@ -6,7 +6,7 @@ export { fromProduct };
 export { DaffProductGridContainer } from './containers/product-grid/product-grid.component';
 export { DaffBestSellersContainer } from './containers/best-sellers/best-sellers.component';
 
-export { StateProductModule } from './product.module';
+export { DaffProductModule } from './product.module';
 
 export { DaffShopifyProductService } from './drivers/shopify/product.service';
 export { DaffProductServiceInterface } from './drivers/interfaces/product-service.interface';
