@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DaffProductGridContainer } from './containers/product-grid/product-grid.component';
-import { StateProductStateModule } from './product-state.module';
+import { DaffProductStateModule } from './product-state.module';
 import { DaffProductContainer } from './containers/product/product.component';
 import { DaffBestSellersContainer } from './containers/best-sellers/best-sellers.component';
 
@@ -13,7 +13,7 @@ import { DaffBestSellersContainer } from './containers/best-sellers/best-sellers
     /**
      * Ngrx/store
      */
-    StateProductStateModule,
+    DaffProductStateModule,
   ],
   declarations: [
     DaffProductGridContainer,
@@ -26,4 +26,4 @@ import { DaffBestSellersContainer } from './containers/best-sellers/best-sellers
     DaffBestSellersContainer
   ]
 })
-export class StateProductModule { }
+export class DaffProductModule { }

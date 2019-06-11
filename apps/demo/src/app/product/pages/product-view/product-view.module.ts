@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { StateProductModule } from '@daffodil/product';
+import { DaffProductModule } from '@daffodil/product';
 import { StateCartModule } from '@daffodil/cart';
 import { DaffLoadingIconModule } from '@daffodil/design';
 
@@ -17,7 +17,7 @@ import { AddToCartNotificationModule } from '../../../cart/components/add-to-car
     ProductComponentModule,
     AddToCartModule,
     AddToCartNotificationModule,
-    StateProductModule,
+    DaffProductModule,
     StateCartModule
   ],
   declarations: [

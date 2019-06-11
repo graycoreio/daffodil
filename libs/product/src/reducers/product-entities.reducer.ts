@@ -1,7 +1,7 @@
 import { createEntityAdapter, EntityState, EntityAdapter, Dictionary } from '@ngrx/entity';
 
 import { DaffProductGridActionTypes, DaffProductGridActions } from '../actions/product-grid.actions';
-import { DaffProductActionTypes, ProductActions } from '../actions/product.actions';
+import { DaffProductActionTypes, DaffProductActions } from '../actions/product.actions';
 import { DaffBestSellersActionTypes, DaffBestSellersActions } from '../actions/best-sellers.actions';
 import { DaffProduct } from '../models/product';
 
@@ -13,7 +13,7 @@ export const initialState: State = productAdapter.getInitialState();
 
 export function reducer(
   state = initialState, 
-  action: DaffProductGridActions | DaffBestSellersActions | ProductActions): State {
+  action: DaffProductGridActions | DaffBestSellersActions | DaffProductActions): State {
   switch (action.type) {
     case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
       return productAdapter.upsertMany(action.payload, state);

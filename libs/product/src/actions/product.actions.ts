@@ -32,7 +32,7 @@ export class DaffProductUpdateQty implements Action {
     constructor(public payload: number) {}
 }
 
-export type ProductActions = 
+export type DaffProductActions = 
     | DaffProductLoad 
     | DaffProductLoadSuccess
     | DaffProductLoadFailure

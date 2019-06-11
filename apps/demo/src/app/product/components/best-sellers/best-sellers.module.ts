@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { StateProductModule } from '@daffodil/product';
+import { DaffProductModule } from '@daffodil/product';
 import { DaffLoadingIconModule } from '@daffodil/design';
 
 import { ProductGridModule } from '../product-grid/product-grid.module';
@@ -12,7 +12,7 @@ import { BestSellersComponent } from './best-sellers.component';
     CommonModule,
     DaffLoadingIconModule,
     ProductGridModule,
-    StateProductModule
+    DaffProductModule
   ],
   declarations: [
     BestSellersComponent

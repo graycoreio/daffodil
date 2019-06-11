@@ -17,4 +17,4 @@ import { DaffBestSellersEffects } from './effects/best-seller.effects';
       ]),
   ]
 })
-export class StateProductStateModule { }
+export class DaffProductStateModule { }
