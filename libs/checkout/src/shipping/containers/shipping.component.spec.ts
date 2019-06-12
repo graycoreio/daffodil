@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
 import { ShippingContainer } from './shipping.component';
@@ -12,7 +12,7 @@ describe('ShippingContainer', () => {
   let component: ShippingContainer;
   let fixture: ComponentFixture<ShippingContainer>;
   let store;
-  let initialShippingAddress: DaffodilAddress;
+  let initialShippingAddress: DaffAddress;
   let stubSelectedShippingOptionId: string;
   let stubIsShippingAddressValid: boolean;
   let addressFactory: DaffAddressFactory;

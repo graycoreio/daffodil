@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
 import { ShippingSummaryComponent } from './shipping-summary.component';
@@ -17,14 +17,14 @@ const stubDaffodilAddress = daffodilAddressFactory.create();
               '[shippingAddress]="shippingAddressValue" ' + 
               '(editShippingInfo)="editShippingInfoFunction()"></demo-shipping-summary>'})
 class WrapperComponent {
-  shippingAddressValue: DaffodilAddress = stubDaffodilAddress;
+  shippingAddressValue: DaffAddress = stubDaffodilAddress;
   selectedShippingOptionIdValue = '0';
   editShippingInfoFunction() {};
 }
 
 @Component({selector: 'demo-address-summary', template: ''})
 class MockAddressSummaryComponent {
-  @Input() address: DaffodilAddress;
+  @Input() address: DaffAddress;
 }
 
 describe('ShippingSummaryComponent', () => {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
 
 import * as fromBilling from '../reducers/index';
 import { UpdateBillingAddress, UpdatePaymentInfo, ToggleBillingAddressIsShippingAddress } from '../actions/billing.actions';
@@ -15,7 +15,7 @@ import { PaymentInfo } from '../../models/payment/payment-info';
 })
 export class BillingContainer implements OnInit {
   
-  billingAddress$: Observable<DaffodilAddress>;
+  billingAddress$: Observable<DaffAddress>;
   billingAddressIsShippingAddress$: Observable<boolean>;
   paymentInfo$: Observable<PaymentInfo>;
 
@@ -29,7 +29,7 @@ export class BillingContainer implements OnInit {
     this.paymentInfo$ = this.store.pipe(select(fromBilling.selectPaymentInfoState));
   }
 
-  updateBillingAddress(address: DaffodilAddress) {
+  updateBillingAddress(address: DaffAddress) {
     this.store.dispatch(new UpdateBillingAddress(address));
   }
 

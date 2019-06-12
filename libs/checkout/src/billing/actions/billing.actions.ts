@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
 
 import { PaymentInfo } from '../../models/payment/payment-info';
 
@@ -13,7 +13,7 @@ export enum BillingActionTypes {
 export class UpdateBillingAddress implements Action {
   readonly type = BillingActionTypes.UpdateBillingAddressAction;
 
-  constructor(public payload: DaffodilAddress) {}
+  constructor(public payload: DaffAddress) {}
 }
 
 export class UpdatePaymentInfo implements Action {

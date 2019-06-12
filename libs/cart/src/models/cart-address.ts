@@ -1,7 +1,7 @@
 import { CartShippingRate } from "./cart-shipping-rate";
-import { DaffodilAddress } from "@daffodil/core";
+import { DaffAddress } from "@daffodil/core";
 
-export interface CartAddress extends DaffodilAddress {
+export interface CartAddress extends DaffAddress {
   address_id: number;
   quote_id: number;
   created_at: Date;

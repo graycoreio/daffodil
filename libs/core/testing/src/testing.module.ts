@@ -6,6 +6,4 @@ import { DaffMockCurrencyPipe } from './angular/mocks/pipes/currency';
     DaffMockCurrencyPipe
   ]
 })
-export class DaffCoreTestingModule {
-  
-}
+export class DaffCoreTestingModule {}

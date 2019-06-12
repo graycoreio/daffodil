@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 
-import { DaffAddressFactory, MockDaffodilAddress } from './address.factory';
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddressFactory, MockDaffAddress } from './address.factory';
+import { DaffAddress } from '@daffodil/core';
 
 describe('Core | Interfaces | Factories | DaffAddressFactory', () => {
   
@@ -21,7 +21,7 @@ describe('Core | Interfaces | Factories | DaffAddressFactory', () => {
 
   describe('creating an address', () => {
 
-    let result: MockDaffodilAddress;
+    let result: MockDaffAddress;
 
     beforeEach(() => {
       result = daffodilAddressFactory.create();
@@ -61,7 +61,7 @@ describe('Core | Interfaces | Factories | DaffAddressFactory', () => {
   });
   
   describe('creating many addresses', () => {
-    let result: DaffodilAddress[];
+    let result: DaffAddress[];
 
     it('should create as many cart addresses as desired', () => {
       result = daffodilAddressFactory.createMany(2);

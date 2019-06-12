@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { CartAddress } from "@daffodil/cart";
 import * as faker from 'faker/locale/en_US';
 
-import { ModelFactory } from "@daffodil/core/testing";
+import { DaffModelFactory } from "@daffodil/core/testing";
 
 export class MockCartAddress implements CartAddress {
   address_id = faker.random.number(1000);
@@ -37,7 +37,7 @@ export class MockCartAddress implements CartAddress {
 @Injectable({
   providedIn: 'root'
 })
-export class DaffCartAddressFactory extends ModelFactory<CartAddress> {
+export class DaffCartAddressFactory extends DaffModelFactory<CartAddress> {
   
   constructor(){
     super(MockCartAddress);

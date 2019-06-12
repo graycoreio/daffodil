@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
 import { AddressSummaryComponent } from './address-summary.component';
@@ -12,7 +12,7 @@ const stubDaffodilAddress = daffodilAddressFactory.create();
 
 @Component({template: '<demo-address-summary [address]="addressValue"></demo-address-summary>'})
 class WrapperComponent {
-  addressValue: DaffodilAddress = stubDaffodilAddress;
+  addressValue: DaffAddress = stubDaffodilAddress;
 }
 
 describe('AddressSummaryComponent', () => {

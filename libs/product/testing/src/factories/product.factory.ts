@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 import { DaffProduct } from '@daffodil/product';
-import { ModelFactory } from "@daffodil/core/testing";
+import { DaffModelFactory } from "@daffodil/core/testing";
 
 export class MockProduct implements DaffProduct {
   id = faker.random.number(10000).toString();
@@ -14,7 +14,7 @@ export class MockProduct implements DaffProduct {
 @Injectable({
   providedIn: 'root'
 })
-export class DaffProductFactory extends ModelFactory<DaffProduct>{
+export class DaffProductFactory extends DaffModelFactory<DaffProduct>{
   constructor(){
     super(MockProduct);
   }

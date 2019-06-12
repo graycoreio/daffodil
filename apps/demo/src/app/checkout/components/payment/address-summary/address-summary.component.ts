@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
 
 @Component({
   selector: 'demo-address-summary',
@@ -7,5 +7,5 @@ import { DaffodilAddress } from '@daffodil/core';
 })
 export class AddressSummaryComponent {
   
-  @Input() address: DaffodilAddress;
+  @Input() address: DaffAddress;
 }

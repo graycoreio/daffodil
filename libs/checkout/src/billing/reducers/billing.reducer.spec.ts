@@ -1,4 +1,4 @@
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 import { PaymentInfo } from '@daffodil/checkout';
 
@@ -9,7 +9,7 @@ import { UpdateBillingAddress, UpdatePaymentInfo, ToggleBillingAddressIsShipping
 describe('Billing | Billing Reducer', () => {
 
   let addressFactory: DaffAddressFactory;
-  let billingAddress: DaffodilAddress;
+  let billingAddress: DaffAddress;
   let paymentFactory: DaffPaymentFactory;
   let paymentInfo: PaymentInfo;
 

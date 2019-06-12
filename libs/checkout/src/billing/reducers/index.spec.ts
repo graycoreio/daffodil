@@ -1,7 +1,7 @@
 import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
-import { DaffodilAddress } from "@daffodil/core";
+import { DaffAddress } from "@daffodil/core";
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
 import { UpdateBillingAddress, UpdatePaymentInfo } from "../actions/billing.actions";
@@ -13,7 +13,7 @@ describe('selectBillingState', () => {
 
   let store: Store<fromBilling.BillingState>;
   const addressFactory: DaffAddressFactory = new DaffAddressFactory();
-  let stubBillingAddress: DaffodilAddress;
+  let stubBillingAddress: DaffAddress;
 
   const paymentFactory: DaffPaymentFactory = new DaffPaymentFactory();
   let stubPaymentInfo: PaymentInfo;

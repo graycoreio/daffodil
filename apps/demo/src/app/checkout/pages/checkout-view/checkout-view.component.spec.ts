@@ -5,7 +5,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 import { Cart } from '@daffodil/cart';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
@@ -29,7 +29,7 @@ const cartItemFactory = new DaffCartItemFactory();
 
 const stubShippingAddress = daffodilAddressFactory.create();
 const stubPaymentInfo: PaymentInfo = paymentFactory.create();
-const stubBillingAddress: DaffodilAddress = daffodilAddressFactory.create();
+const stubBillingAddress: DaffAddress = daffodilAddressFactory.create();
 let stubCart: Cart;
 
 const stubIsShippingAddressValid = true;
@@ -41,7 +41,7 @@ const stubBillingAddressIsShippingAddress = false;
 @Component({selector: 'demo-shipping', template: ''})
 class MockShippingComponent {
   @Input() isShippingAddressValid: boolean;
-  @Input() shippingAddress: DaffodilAddress;
+  @Input() shippingAddress: DaffAddress;
   @Input() selectedShippingOptionId: number;
   @Input() showPaymentView: boolean;
   @Output() updateShippingAddress: EventEmitter<any> = new EventEmitter();
@@ -51,7 +51,7 @@ class MockShippingComponent {
 @Component({selector: 'demo-payment', template: ''})
 class MockPaymentComponent {
   @Input() paymentInfo: PaymentInfo;
-  @Input() billingAddress: DaffodilAddress;
+  @Input() billingAddress: DaffAddress;
   @Input() billingAddressIsShippingAddress: boolean;
   @Output() updatePaymentInfo: EventEmitter<any> = new EventEmitter();
   @Output() updateBillingAddress: EventEmitter<any> = new EventEmitter();
@@ -74,7 +74,7 @@ class MockPlaceOrderComponent {
 @Component({selector: '[shipping-container]', template: '<ng-content></ng-content>', exportAs: 'ShippingContainer'})
 class MockShippingContainer {
   isShippingAddressValid$: Observable<boolean> = of(stubIsShippingAddressValid);
-  shippingAddress$: Observable<DaffodilAddress> = of(stubShippingAddress);
+  shippingAddress$: Observable<DaffAddress> = of(stubShippingAddress);
   selectedShippingOptionId$: Observable<number> = of(stubSelectedShippingOptionIndex);
   updateShippingAddress = () => {};
   selectShippingOption = () => {};
@@ -84,7 +84,7 @@ class MockShippingContainer {
 @Component({selector: '[billing-container]', template: '<ng-content></ng-content>', exportAs: 'BillingContainer'})
 class MockBillingContainer {
   paymentInfo$: Observable<PaymentInfo> = of(stubPaymentInfo);
-  billingAddress$: Observable<DaffodilAddress> = of(stubBillingAddress);
+  billingAddress$: Observable<DaffAddress> = of(stubBillingAddress);
   billingAddressIsShippingAddress$: Observable<boolean> = of(stubBillingAddressIsShippingAddress);
   updatePaymentInfo = () => {};
   updateBillingAddress = () => {};
