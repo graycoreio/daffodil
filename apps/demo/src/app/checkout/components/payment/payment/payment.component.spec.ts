@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { of } from 'rxjs';
 
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 import { PaymentInfo } from '@daffodil/checkout';
 import { DaffPaymentFactory } from '@daffodil/checkout/testing';
@@ -31,7 +31,7 @@ const stubBillingAddressIsShippingAddress = false;
 })
 class WrapperComponent {
   paymentInfoValue: PaymentInfo = stubPaymentInfo;
-  billingAddressValue: DaffodilAddress = stubBillingAddress;
+  billingAddressValue: DaffAddress = stubBillingAddress;
   billingAddressIsShippingAddressValue: boolean = stubBillingAddressIsShippingAddress;
   updatePaymentInfoFunction = () => {};
   updateBillingAddressFunction = () => {};
@@ -41,7 +41,7 @@ class WrapperComponent {
 @Component({selector: 'demo-payment-form', template: ''})
 class MockPaymentFormComponent {
   @Input() paymentInfo: PaymentInfo;
-  @Input() billingAddress: DaffodilAddress;
+  @Input() billingAddress: DaffAddress;
   @Input() billingAddressIsShippingAddress: boolean;
   @Output() updatePaymentInfo: EventEmitter<any> = new EventEmitter();
   @Output() updateBillingAddress: EventEmitter<any> = new EventEmitter();
@@ -56,7 +56,7 @@ class MockPaymentSummaryComponent {
 
 @Component({selector: 'demo-billing-summary', template: ''})
 class MockBillingSummaryComponent {
-  @Input() billingAddress: DaffodilAddress;
+  @Input() billingAddress: DaffAddress;
   @Input() billingAddressIsShippingAddress: boolean;
 }
 

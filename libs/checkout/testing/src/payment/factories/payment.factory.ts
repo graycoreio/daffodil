@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { PaymentInfo } from '@daffodil/checkout';
 
-import { ModelFactory } from "@daffodil/core/testing";
+import { DaffModelFactory } from "@daffodil/core/testing";
 
 export class MockPaymentInfo implements PaymentInfo {
   name = 'name';
@@ -14,7 +14,7 @@ export class MockPaymentInfo implements PaymentInfo {
 @Injectable({
   providedIn: 'root'
 })
-export class DaffPaymentFactory extends ModelFactory<PaymentInfo> {
+export class DaffPaymentFactory extends DaffModelFactory<PaymentInfo> {
   constructor(){
     super(MockPaymentInfo);
   }

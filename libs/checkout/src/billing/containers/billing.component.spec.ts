@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
 import { BillingContainer } from './billing.component';
@@ -14,7 +14,7 @@ describe('BillingContainer', () => {
   let component: BillingContainer;
   let fixture: ComponentFixture<BillingContainer>;
   let store;
-  let initialBillingAddress: DaffodilAddress;
+  let initialBillingAddress: DaffAddress;
   let initialBillingAddressIsShippingAddress: boolean;
   let initialPaymentInfo: PaymentInfo;
   let addressFactory: DaffAddressFactory;

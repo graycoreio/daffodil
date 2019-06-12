@@ -1,3 +1,3 @@
-export { DaffodilAddress } from './address/address';
+export { DaffAddress } from './address/address';
 
 export { range } from './utils/range';

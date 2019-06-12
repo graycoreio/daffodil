@@ -1,4 +1,4 @@
-import { IModelFactory } from "./factory.interface";
+import { IDaffModelFactory } from "./factory.interface";
 import { range } from "@daffodil/core";
 
 interface ArglessConstructable<T> {
@@ -6,7 +6,7 @@ interface ArglessConstructable<T> {
 }
 
 
-export abstract class ModelFactory<T extends Object> implements IModelFactory<T> {
+export abstract class DaffModelFactory<T extends Object> implements IDaffModelFactory<T> {
     constructor(public type: ArglessConstructable<T>){
 
     }

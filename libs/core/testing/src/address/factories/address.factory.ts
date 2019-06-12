@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
 
 import * as faker from 'faker/locale/en_US';
-import { ModelFactory } from '../../factories/factory';
+import { DaffModelFactory } from '../../factories/factory';
 
-export class MockDaffodilAddress implements DaffodilAddress {
+export class MockDaffAddress implements DaffAddress {
   firstname = faker.name.firstName();
   lastname = faker.name.lastName();
   street = faker.address.streetName();
@@ -18,8 +18,8 @@ export class MockDaffodilAddress implements DaffodilAddress {
 @Injectable({
   providedIn: 'root'
 })
-export class DaffAddressFactory extends ModelFactory<DaffodilAddress>{
+export class DaffAddressFactory extends DaffModelFactory<DaffAddress>{
   constructor(){
-    super(MockDaffodilAddress);
+    super(MockDaffAddress);
   }
 }
