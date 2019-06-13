@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/design",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "Graycore LLC",
   "license": "MIT",
   "bugs": {
@@ -24,7 +24,8 @@
     "url": "https://github.com/graycoreio/daffodil"
   },
   "peerDependencies": {
-    "@angular/common": "^6.0.1",
-    "@angular/core": "^6.0.1"
+    "@angular/common": "^7.2.0",
+    "@angular/core": "^7.2.0",
+    "rxjs": "6.4.0"
   }
 }
