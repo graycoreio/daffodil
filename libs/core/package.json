@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/core",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Interfaces built for daffodil/state",
   "repository": {
     "type": "git",
@@ -18,13 +18,8 @@
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
-    "@angular/common": "NG_VERSION",
-    "@angular/core": "NG_VERSION",
-    "@angular/http": "NG_VERSION",
-    "@ngrx/effects": "NG_VERSION",
-    "@ngrx/entity": "NGRX_VERSION",
-    "@ngrx/store": "NGRX_VERSION",
-    "rxjs": "RXJS_VERSION",
-    "faker": "^4.1.0"
+    "@angular/common": "^7.2.0",
+    "@angular/core": "^7.2.0",
+    "rxjs": "6.4.0"
   }
 }

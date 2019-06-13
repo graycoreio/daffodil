@@ -1,32 +1,29 @@
 {
-    "name": "@daffodil/daffio",
-    "author": "Graycore LLC",
-    "license": "MIT",
-    "bugs": {
-      "url": "https://github.com/graycoreio/daffodil/issues"
-    },
-    "scripts": {
-      "build": "npm run build:client-and-server-bundles && npm run compile:server && npm run build:serverless",
-      "build:client-and-server-bundles": "ng build daffio --prod && ng run daffio:server:production",
-      "build:serverless": "cp ./serverless/* ../../dist/apps/daffio/",
-      "test": "ng test daffio --watch=false --browsers=ChromeHeadless",
-      "lint": "ng lint daffio",
-      "compile:server": "webpack --config ./server/webpack.server.config.js --progress --colors",
-      "serve:ssr": "node ../../dist/apps/daffio/server.js"
-    },
-    "homepage": "https://github.com/graycoreio/daffodil",
-    "description": "A documentation site for the daffodil project",
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/graycoreio/daffodil"
-    },
-    "devDependencies": {
-      "@daffodil/design": "0.0.0",
-      "@daffodil/branding": "0.0.0"
-    },
-    "peerDependencies": {
-      "@angular/common": "^6.0.1",
-      "@angular/core": "^6.0.1"
-    }
+  "name": "@daffodil/daffio",
+  "private": true,
+  "version": "0.0.1",
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "scripts": {
+    "build": "npm run build:client-and-server-bundles && npm run compile:server && npm run build:serverless",
+    "build:client-and-server-bundles": "ng build daffio --prod && ng run daffio:server:production",
+    "build:serverless": "cp ./serverless/* ../../dist/apps/daffio/",
+    "test": "ng test daffio --watch=false --browsers=ChromeHeadless",
+    "lint": "ng lint daffio",
+    "compile:server": "webpack --config ./server/webpack.server.config.js --progress --colors",
+    "serve:ssr": "node ../../dist/apps/daffio/server.js"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "description": "A documentation site for the daffodil project",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "devDependencies": {
+    "@daffodil/branding": "^0.0.1",
+    "@daffodil/design": "^0.0.1"
   }
-  
+}
