@@ -3,7 +3,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
-import { Cart, DaffCartDriver } from '@daffodil/cart';
+import { DaffCart, DaffCartDriver } from '@daffodil/cart';
 import { DaffCartFactory, DaffTestingCartService } from '@daffodil/cart/testing';
 
 import { OrderEffects } from './order.effects';
@@ -18,7 +18,7 @@ describe('Daffodil | State | Order | OrderEffects', () => {
   let effects: OrderEffects;
   let daffCheckoutDriver: DaffCheckoutServiceInterface;
   let daffCartDriver: DaffCartServiceInterface;
-  let stubCart: Cart;
+  let stubCart: DaffCart;
   let cartFactory: DaffCartFactory;
 
   beforeEach(() => {
