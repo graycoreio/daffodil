@@ -5,7 +5,6 @@ import { MockStore } from '@ngrx/store/testing';
 import { State, reducers } from '../../reducers';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
-import { DaffProductLoad } from '../../actions/product.actions';
 import { DaffProductGridLoad, DaffProductGridLoadSuccess } from '../../actions/product-grid.actions';
 
 describe('DaffProductGridFacade', () => {
@@ -34,7 +33,10 @@ describe('DaffProductGridFacade', () => {
 
   it('should be able to dispatch an action to the store', () => {
     spyOn(store, 'dispatch');
-    facade.dispatch({ type: 'SOME_TYPE' });
+    const action = {type: 'SOME_TYPE'};
+
+    facade.dispatch(action);
+    expect(store.dispatch).toHaveBeenCalledWith(action);
     expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 
