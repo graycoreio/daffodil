@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { Product } from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { ProductComponent } from './product.component';
@@ -19,7 +19,7 @@ import {
 
 @Component({template: '<demo-product [product]="productValue" [qty]="qtyValue" (updateQty)="updateQtyFunction($event)"></demo-product>'})
 class WrapperComponent {
-  productValue: Product;
+  productValue: DaffProduct;
   qtyValue: number;
   updateQtyFunction(){};
 }
@@ -34,7 +34,7 @@ describe('ProductComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   const productFactory = new DaffProductFactory();
   let router;
-  const stubProduct: Product = productFactory.create();
+  const stubProduct: DaffProduct = productFactory.create();
   let stubQty = 1;
   let productComponent: ProductComponent;
 

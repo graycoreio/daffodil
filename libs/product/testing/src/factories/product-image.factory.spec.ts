@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ProductImage } from '@daffodil/product';
+import { DaffProductImage } from '@daffodil/product';
 
 import { DaffProductImageFactory } from './product-image.factory';
 
@@ -22,7 +22,7 @@ describe('Product | Testing | Factories | DaffProductImageFactory', () => {
 
   describe('create', () => {
 
-    let result: ProductImage;
+    let result: DaffProductImage;
 
     beforeEach(() => {
       result = productImageFactory.create();
@@ -36,7 +36,7 @@ describe('Product | Testing | Factories | DaffProductImageFactory', () => {
   });
 
   describe('createMany', () => {
-    let result: ProductImage[];
+    let result: DaffProductImage[];
 
     it('should create as many products as desired', () => {
       result = productImageFactory.createMany(2);

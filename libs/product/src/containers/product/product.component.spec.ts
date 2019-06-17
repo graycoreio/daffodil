@@ -3,27 +3,27 @@ import { Component } from '@angular/core';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { By } from '@angular/platform-browser';
 
-import { DaffProductFactory } from '../../../testing/src';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { ProductContainer } from './product.component';
-import { ProductLoad, UpdateQty } from '../../actions/product.actions';
+import { DaffProductContainer } from './product.component';
+import { DaffProductLoad, DaffProductUpdateQty } from '../../actions/product.actions';
 import * as fromProduct from '../../reducers/index';
-import { Product } from '../../models/product';
+import { DaffProduct } from '../../models/product';
 
 @Component({template: '<div product-container #ProductContainer="ProductContainer" [selectedProductId]="selectedProductIdValue"></div>'})
 class WrapperComponent {
   selectedProductIdValue: string;
 }
 
-describe('ProductContainer', () => {
+describe('DaffProductContainer', () => {
   let component: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let store;
   let initialLoading: boolean;
-  let initialProduct: Product;
+  let initialProduct: DaffProduct;
   let initialQty: number;
   const productFactory = new DaffProductFactory();
-  let productContainer: ProductContainer;
+  let productContainer: DaffProductContainer;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -34,7 +34,7 @@ describe('ProductContainer', () => {
       ],
       declarations: [ 
         WrapperComponent,
-        ProductContainer
+        DaffProductContainer
       ]
     })
     .compileComponents();
@@ -72,7 +72,7 @@ describe('ProductContainer', () => {
   describe('ngInit', () => {
     
     it('dispatches a ProductLoad action', () => {
-      expect(store.dispatch).toHaveBeenCalledWith(new ProductLoad(productContainer.selectedProductId));
+      expect(store.dispatch).toHaveBeenCalledWith(new DaffProductLoad(productContainer.selectedProductId));
     });
 
     it('initializes loading$', () => {
@@ -100,7 +100,7 @@ describe('ProductContainer', () => {
       const qty = 3;
       productContainer.updateQty(qty);
 
-      expect(store.dispatch).toHaveBeenCalledWith(new UpdateQty(qty));
+      expect(store.dispatch).toHaveBeenCalledWith(new DaffProductUpdateQty(qty));
     });
   });
 });

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { ShippingOption } from '@daffodil/checkout';
-import { ModelFactory } from "@daffodil/core/testing";
+import { DaffModelFactory } from "@daffodil/core/testing";
 
 import * as faker from 'faker/locale/en_US';
 
@@ -13,7 +13,7 @@ export class MockShippingOption implements ShippingOption {
 @Injectable({
   providedIn: 'root'
 })
-export class DaffShippingOptionFactory extends ModelFactory<ShippingOption>{
+export class DaffShippingOptionFactory extends DaffModelFactory<ShippingOption>{
   constructor(){
     super(MockShippingOption);
   }

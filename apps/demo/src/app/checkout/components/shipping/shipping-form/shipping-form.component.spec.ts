@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
 
 import { ShippingFormComponent } from './shipping-form.component';
 import { ShippingOptionFormService } from '../shipping-options/components/services/shipping-option-form.service';
@@ -15,7 +15,7 @@ import { AddressFormFactory } from '../../forms/address-form/factories/address-f
                 '(submitted)="submittedFunction($event)"></demo-shipping-form>'
 })
 class WrapperComponent {
-  shippingAddressValue: DaffodilAddress;
+  shippingAddressValue: DaffAddress;
   editModeValue: boolean;
   submittedFunction() {};
 }

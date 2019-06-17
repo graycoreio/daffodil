@@ -1,4 +1,4 @@
-export interface DaffodilAddress {
+export interface DaffAddress {
   firstname: string;
   lastname: string;
   street: string;

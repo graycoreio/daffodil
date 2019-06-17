@@ -3,7 +3,7 @@ import * as faker from 'faker/locale/en_US';
 
 import { CartItem } from '@daffodil/cart';
 
-import { ModelFactory } from "@daffodil/core/testing";
+import { DaffModelFactory } from "@daffodil/core/testing";
 
 export class MockCartItem implements CartItem {
   item_id = faker.random.number(1000);
@@ -32,7 +32,7 @@ export class MockCartItem implements CartItem {
 @Injectable({
   providedIn: 'root'
 })
-export class DaffCartItemFactory extends ModelFactory<CartItem> {
+export class DaffCartItemFactory extends DaffModelFactory<CartItem> {
   
   constructor(){
     super(MockCartItem);

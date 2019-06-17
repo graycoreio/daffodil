@@ -4,14 +4,14 @@ import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { Product } from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
 import { DaffProductFactory, DaffProductImageFactory } from '@daffodil/product/testing';
 
 import { ProductCardComponent } from './product-card.component';
 
 @Component({template: '<demo-product-card [product]="productValue"></demo-product-card>'})
 class WrapperComponent {
-  productValue: Product;
+  productValue: DaffProduct;
 }
 
 describe('ProductCardComponent', () => {
@@ -21,7 +21,7 @@ describe('ProductCardComponent', () => {
   let productCardComponent;
   let productImageFactory: DaffProductImageFactory;
   let productFactory: DaffProductFactory;
-  let stubProduct: Product;
+  let stubProduct: DaffProduct;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

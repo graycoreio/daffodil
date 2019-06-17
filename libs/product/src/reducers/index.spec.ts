@@ -1,18 +1,18 @@
 import { TestBed } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
-import { DaffProductFactory } from '../../testing/src';
-import { ProductLoad } from "../actions/product.actions";
-import { ProductGridLoadSuccess, ProductGridReset } from "../actions/product-grid.actions";
+import { DaffProductFactory } from '@daffodil/product/testing';
+import { DaffProductLoad } from "../actions/product.actions";
+import { DaffProductGridLoadSuccess, DaffProductGridReset } from "../actions/product-grid.actions";
 import * as fromProduct from './index';
-import { BestSellersLoadSuccess, BestSellersReset } from "../actions/best-sellers.actions";
-import { Product } from "../models/product";
+import { DaffBestSellersLoadSuccess, DaffBestSellersReset } from "../actions/best-sellers.actions";
+import { DaffProduct } from "../models/product";
 
 describe('selectProductState', () => {
 
   let store: Store<fromProduct.State>;
   const productFactory: DaffProductFactory = new DaffProductFactory();
-  let mockProduct: Product;
+  let mockProduct: DaffProduct;
   
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -26,11 +26,11 @@ describe('selectProductState', () => {
     mockProduct = productFactory.create();
     store = TestBed.get(Store);
 
-    store.dispatch(new BestSellersReset());
-    store.dispatch(new ProductGridReset());
-    store.dispatch(new BestSellersLoadSuccess(new Array(mockProduct)));
-    store.dispatch(new ProductGridLoadSuccess(new Array(mockProduct)));
-    store.dispatch(new ProductLoad(mockProduct.id));
+    store.dispatch(new DaffBestSellersReset());
+    store.dispatch(new DaffProductGridReset());
+    store.dispatch(new DaffBestSellersLoadSuccess(new Array(mockProduct)));
+    store.dispatch(new DaffProductGridLoadSuccess(new Array(mockProduct)));
+    store.dispatch(new DaffProductLoad(mockProduct.id));
   });
 
   describe('ProductEntitiesState', () => {

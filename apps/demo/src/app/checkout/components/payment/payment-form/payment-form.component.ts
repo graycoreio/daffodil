@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
 import { PaymentInfo } from '@daffodil/checkout';
 
 import * as fromDemoCheckout from '../../../reducers';
@@ -18,7 +18,7 @@ import { PaymentInfoFormFactory } from '../payment-info-form/factories/payment-i
 export class PaymentFormComponent implements OnInit {
 
   @Input() paymentInfo: PaymentInfo;
-  @Input() billingAddress: DaffodilAddress;
+  @Input() billingAddress: DaffAddress;
   @Input() billingAddressIsShippingAddress: boolean;
   @Output() updatePaymentInfo: EventEmitter<any> = new EventEmitter();
   @Output() updateBillingAddress: EventEmitter<any> = new EventEmitter();

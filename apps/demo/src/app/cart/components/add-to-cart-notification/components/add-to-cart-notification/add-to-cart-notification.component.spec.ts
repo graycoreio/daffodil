@@ -4,7 +4,7 @@ import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { By } from '@angular/platform-browser';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
-import { Product } from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
 import { DaffLoadingIconModule } from '@daffodil/design';
 
 // importing from @daffodil/product doesn't work.
@@ -22,7 +22,7 @@ const stubCartItemCount = 2;
 
 @Component({ template: '<demo-add-to-cart-notification [verticalPosition]="verticalPositionValue" [horizontalPosition]="horizontalPositionValue"></demo-add-to-cart-notification>'})
 class WrapperComponent {
-  productValue: Product;
+  productValue: DaffProduct;
   verticalPositionValue = "bottom";
   horizontalPositionValue = "left";
 }
@@ -47,7 +47,7 @@ class MockModalPortalComponent {}
 
 @Component({ selector: 'demo-product-added', template: ''})
 class MockProductAddedComponent {
-  @Input() product: Product;
+  @Input() product: DaffProduct;
   @Input() qty: number;
 }
 
@@ -56,7 +56,7 @@ describe('AddToCartNotificationComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let store;
   let productFactory: DaffProductFactory;
-  let stubProduct: Product;
+  let stubProduct: DaffProduct;
   let stubProductId: string;
   let daffModal: MockDaffModalComponent;
   let addToCartNotification: AddToCartNotificationComponent;

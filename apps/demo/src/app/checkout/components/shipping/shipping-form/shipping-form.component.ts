@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
 
 import { ShippingOptionFormService } from '../shipping-options/components/services/shipping-option-form.service';
 import { AddressFormFactory } from '../../forms/address-form/factories/address-form.factory';
@@ -13,7 +13,7 @@ import { AddressFormFactory } from '../../forms/address-form/factories/address-f
 })
 export class ShippingFormComponent implements OnInit {
 
-  @Input() shippingAddress: DaffodilAddress;
+  @Input() shippingAddress: DaffAddress;
   @Input() editMode: boolean;
   @Output() submitted: EventEmitter<any> = new EventEmitter();
 

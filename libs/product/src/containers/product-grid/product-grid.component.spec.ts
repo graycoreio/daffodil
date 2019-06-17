@@ -1,18 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
-import { ProductGridContainer } from './product-grid.component';
-import { DaffProductFactory } from '../../../testing/src';
-import { ProductGridLoad } from '../../actions/product-grid.actions';
-import * as fromProduct from '../../reducers/index';
-import { Product } from '../../models/product';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
-describe('ProductGridContainer', () => {
-  let component: ProductGridContainer;
-  let fixture: ComponentFixture<ProductGridContainer>;
+import { DaffProductGridContainer } from './product-grid.component';
+import { DaffProductGridLoad } from '../../actions/product-grid.actions';
+import * as fromProduct from '../../reducers/index';
+import { DaffProduct } from '../../models/product';
+
+describe('DaffProductGridContainer', () => {
+  let component: DaffProductGridContainer;
+  let fixture: ComponentFixture<DaffProductGridContainer>;
   let store;
   let initialLoading: boolean;
-  let initialProducts: Product[];
+  let initialProducts: DaffProduct[];
   const productFactory = new DaffProductFactory();
 
   beforeEach(async(() => {
@@ -22,13 +23,13 @@ describe('ProductGridContainer', () => {
           products: combineReducers(fromProduct.reducers),
         })
       ],
-      declarations: [ ProductGridContainer ]
+      declarations: [ DaffProductGridContainer ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProductGridContainer);
+    fixture = TestBed.createComponent(DaffProductGridContainer);
     component = fixture.componentInstance;
     store = TestBed.get(Store);
 
@@ -49,7 +50,7 @@ describe('ProductGridContainer', () => {
   describe('ngInit', () => {
     
     it('dispatches a ProductGridLoad action', () => {
-      expect(store.dispatch).toHaveBeenCalledWith(new ProductGridLoad());
+      expect(store.dispatch).toHaveBeenCalledWith(new DaffProductGridLoad());
     });
 
     it('initializes loading$', () => {

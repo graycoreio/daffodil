@@ -1,12 +1,13 @@
-import { BestSellersLoad, BestSellersLoadSuccess, BestSellersLoadFailure, BestSellersReset } from "../actions/best-sellers.actions";
+import { DaffBestSellersLoad, DaffBestSellersLoadSuccess, DaffBestSellersLoadFailure, DaffBestSellersReset } from "../actions/best-sellers.actions";
 import { initialState, reducer, getBestSellersLoading, getBestSellersIds, State } from "../reducers/best-sellers.reducer";
-import { Product } from "../models/product";
-import { DaffProductFactory } from '../../testing/src';
+import { DaffProduct } from "../models/product";
+
+import { DaffProductFactory } from '@daffodil/product/testing';
 
 describe('Product | Best Sellers Reducer', () => {
 
   let productFactory: DaffProductFactory;
-  let product: Product;
+  let product: DaffProduct;
 
   beforeEach(() => {
     productFactory = new DaffProductFactory();
@@ -28,8 +29,8 @@ describe('Product | Best Sellers Reducer', () => {
   describe('when BestSellersLoadAction is triggered', () => {
 
     it('sets loading state to true', () => {
-      const productsLoadAction: BestSellersLoad = new BestSellersLoad();
-      
+      const productsLoadAction: DaffBestSellersLoad = new DaffBestSellersLoad();
+
       const result = reducer(initialState, productsLoadAction);
 
       expect(result.loading).toEqual(true);
@@ -38,7 +39,7 @@ describe('Product | Best Sellers Reducer', () => {
 
   describe('when BestSellersLoadSuccessAction is triggered', () => {
 
-    let products: Product[];
+    let products: DaffProduct[];
     let result;
     let state: State;
 
@@ -47,10 +48,10 @@ describe('Product | Best Sellers Reducer', () => {
         ...initialState,
         loading: true
       }
-  
+
       products = new Array(product);
-      const productsLoadSuccess = new BestSellersLoadSuccess(products);
-      
+      const productsLoadSuccess = new DaffBestSellersLoadSuccess(products);
+
       result = reducer(state, productsLoadSuccess);
     });
 
@@ -75,8 +76,8 @@ describe('Product | Best Sellers Reducer', () => {
         loading: true,
         errors: new Array('firstError'),
       }
-      error = 'error';      
-      const productsLoadFailure = new BestSellersLoadFailure(error);
+      error = 'error';
+      const productsLoadFailure = new DaffBestSellersLoadFailure(error);
 
       result = reducer(state, productsLoadFailure);
     });
@@ -91,29 +92,29 @@ describe('Product | Best Sellers Reducer', () => {
   });
 
   describe('BestSellersReset', () => {
-    
+
     it('resets state to initialState', () => {
       const expectedState = {
         loading: false,
         productIds: [],
         errors: []
       }
-      const bestSellersReset = new BestSellersReset();
+      const bestSellersReset = new DaffBestSellersReset();
       const result = reducer(initialState, bestSellersReset);
-      
+
       expect(result).toEqual(expectedState);
     });
   });
 
   describe('getBestSellersLoading', () => {
-    
+
     it('returns loading state', () => {
       expect(getBestSellersLoading(initialState)).toEqual(initialState.loading);
     });
   });
 
   describe('getBestSellersIds', () => {
-    
+
     it('returns productIds state', () => {
       expect(getBestSellersIds(initialState)).toEqual(initialState.productIds);
     });

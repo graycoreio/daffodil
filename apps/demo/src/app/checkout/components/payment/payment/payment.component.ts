@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
 import { PaymentInfo } from '@daffodil/checkout';
 
 import * as fromDemoCheckout from '../../../reducers';
@@ -15,7 +15,7 @@ import { ToggleShowPaymentForm, HidePaymentForm, ShowPaymentForm } from '../../.
 export class PaymentComponent implements OnInit {
 
   @Input() paymentInfo: PaymentInfo;
-  @Input() billingAddress: DaffodilAddress;
+  @Input() billingAddress: DaffAddress;
   @Input() billingAddressIsShippingAddress: boolean;
   @Output() updatePaymentInfo: EventEmitter<any> = new EventEmitter();
   @Output() updateBillingAddress: EventEmitter<any> = new EventEmitter();
@@ -51,7 +51,7 @@ export class PaymentComponent implements OnInit {
     this.togglePaymentView();
   }
 
-  onUpdateBillingAddress(billingAddress: DaffodilAddress) {
+  onUpdateBillingAddress(billingAddress: DaffAddress) {
     this.updateBillingAddress.emit(billingAddress);
   }
 

@@ -1,7 +1,7 @@
 import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
 import { UpdateShippingAddress, SelectShippingOption } from "../actions/shipping.actions";
@@ -11,7 +11,7 @@ describe('selectShippingState', () => {
 
   let store: Store<fromShipping.ShippingState>;
   let addressFactory: DaffAddressFactory;
-  let stubShippingAddress: DaffodilAddress;
+  let stubShippingAddress: DaffAddress;
   let stubSelectedShippingOptionId: string;
   
   beforeEach(async(() => {

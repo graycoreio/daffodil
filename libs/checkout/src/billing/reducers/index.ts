@@ -1,6 +1,6 @@
 import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
 
 import * as fromBilling from './billing.reducer';
 import { PaymentInfo } from '../../models/payment/payment-info';
@@ -27,7 +27,7 @@ export const billingStateSelector = createSelector(
   (state: BillingState) => state.billing
 )
 
-export const selectBillingAddressState: MemoizedSelector<object, DaffodilAddress> = createSelector(
+export const selectBillingAddressState: MemoizedSelector<object, DaffAddress> = createSelector(
   billingStateSelector,
   fromBilling.getBillingAddress
 )

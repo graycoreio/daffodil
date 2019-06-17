@@ -1,9 +1,9 @@
 import { BillingActionTypes, BillingActions } from '../actions/billing.actions';
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
 import { PaymentInfo } from '../../models/payment/payment-info';
 
 export interface State {
-  billingAddress: DaffodilAddress;
+  billingAddress: DaffAddress;
   billingAddressIsShippingAddress: boolean;
   paymentInfo: PaymentInfo;
 }

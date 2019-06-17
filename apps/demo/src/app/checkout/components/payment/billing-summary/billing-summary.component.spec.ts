@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
 import { BillingSummaryComponent } from './billing-summary.component';
@@ -13,13 +13,13 @@ const stubBillingAddressIsShippingAddress = false;
 
 @Component({template: '<demo-billing-summary [billingAddress]="billingAddressValue" [billingAddressIsShippingAddress]="billingAddressIsShippingAddressValue"></demo-billing-summary>'})
 class WrapperComponent {
-  billingAddressValue: DaffodilAddress = stubBillingAddress;
+  billingAddressValue: DaffAddress = stubBillingAddress;
   billingAddressIsShippingAddressValue: boolean = stubBillingAddressIsShippingAddress;
 }
 
 @Component({selector: 'demo-address-summary', template: ''})
 class MockAddressSummaryComponent {
-  @Input() address: DaffodilAddress;
+  @Input() address: DaffAddress;
 }
 
 describe('BillingSummaryComponent', () => {

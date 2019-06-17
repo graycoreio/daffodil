@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder } from '@angul
 import { By } from '@angular/platform-browser';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
 import { PaymentInfo } from '@daffodil/checkout';
 
 import { PaymentFormComponent } from './payment-form.component';
@@ -24,7 +24,7 @@ import { PaymentInfoFormFactory } from '../payment-info-form/factories/payment-i
 })
 class WrapperComponent {
   paymentInfoValue: PaymentInfo;
-  billingAddressValue: DaffodilAddress;
+  billingAddressValue: DaffAddress;
   billingAddressIsShippingAddressValue: boolean;
   updatePaymentInfoFunction = () => {};
   updateBillingAddressFunction = () => {};

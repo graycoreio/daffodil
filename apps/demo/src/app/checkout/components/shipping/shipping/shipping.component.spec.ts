@@ -4,14 +4,14 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
 
 import * as fromDemoCheckout from '../../../reducers';
 import { SetShowShippingForm, ToggleShowShippingForm } from '../../../actions/shipping.actions';
 import { ShippingComponent } from './shipping.component';
 
 const stubIsShippingAddressValidValue = true;
-const stubDaffodilAddress: DaffodilAddress = {
+const stubDaffodilAddress: DaffAddress = {
   firstname: '',
   lastname: '',
   street: '',
@@ -34,7 +34,7 @@ const stubShowPaymentView = false;
 })
 class WrapperComponent {
   isShippingAddressValidValue = stubIsShippingAddressValidValue;
-  shippingAddressValue: DaffodilAddress = stubDaffodilAddress;
+  shippingAddressValue: DaffAddress = stubDaffodilAddress;
   selectedShippingOptionIdValue: string = stubSelectedShippingOptionId;
   showPaymentViewValue: boolean = stubShowPaymentView;
   updateShippingAddressFunction() {};
@@ -43,14 +43,14 @@ class WrapperComponent {
 
 @Component({selector: 'demo-shipping-form', template: '<ng-content></ng-content>'})
 class MockShippingFormComponent {
-  @Input() shippingAddress: DaffodilAddress;
+  @Input() shippingAddress: DaffAddress;
   @Input() editMode: boolean;
   @Output() submitted: EventEmitter<any> = new EventEmitter();
 }
 
 @Component({selector: 'demo-shipping-summary', template: ''})
 class MockShippingSummaryComponent {
-  @Input() shippingAddress: DaffodilAddress;
+  @Input() shippingAddress: DaffAddress;
   @Input() selectedShippingOptionId: string;
   @Output() editShippingInfo: EventEmitter<any> = new EventEmitter();
 }

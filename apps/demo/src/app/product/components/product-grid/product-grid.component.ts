@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Product } from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
 
 @Component({
   selector: 'demo-product-grid',
@@ -8,5 +8,5 @@ import { Product } from '@daffodil/product';
   styleUrls: ['./product-grid.component.scss']
 })
 export class ProductGridComponent {
-  @Input() products: Product[];
+  @Input() products: DaffProduct[];
 }

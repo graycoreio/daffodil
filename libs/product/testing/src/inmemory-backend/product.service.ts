@@ -7,7 +7,7 @@ import {
   STATUS
 } from 'angular-in-memory-web-api';
 
-import { Product } from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
 import { DaffProductFactory } from '../factories/product.factory';
 import { DaffProductImageFactory } from '../factories/product-image.factory';
 
@@ -15,7 +15,7 @@ import { DaffProductImageFactory } from '../factories/product-image.factory';
   providedIn: 'root'
 })
 export class DaffInMemoryBackendProductService implements InMemoryDbService {
-  products: Product[];
+  products: DaffProduct[];
   
   constructor(
     private productFactory: DaffProductFactory,

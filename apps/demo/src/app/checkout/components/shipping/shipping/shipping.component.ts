@@ -2,7 +2,7 @@ import { Component, Input, ViewEncapsulation, Output, EventEmitter, OnInit } fro
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
 
 import { SetShowShippingForm, ToggleShowShippingForm } from '../../../actions/shipping.actions';
 import * as fromDemoCheckout from '../../../reducers';
@@ -15,7 +15,7 @@ import * as fromDemoCheckout from '../../../reducers';
 export class ShippingComponent implements OnInit {
 
   @Input() isShippingAddressValid: boolean;
-  @Input() shippingAddress: DaffodilAddress;
+  @Input() shippingAddress: DaffAddress;
   @Input() selectedShippingOptionId: string;
   @Input() showPaymentView: boolean;
   @Output() updateShippingAddress: EventEmitter<any> = new EventEmitter();

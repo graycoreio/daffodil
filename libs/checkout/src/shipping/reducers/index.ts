@@ -1,6 +1,6 @@
 import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
-import { DaffodilAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
 
 import * as fromShipping from './shipping.reducer';
 
@@ -26,7 +26,7 @@ export const shippingStateSelector = createSelector(
   (state: ShippingState) => state.shipping
 )
 
-export const selectShippingAddressState: MemoizedSelector<object, DaffodilAddress> = createSelector(
+export const selectShippingAddressState: MemoizedSelector<object, DaffAddress> = createSelector(
   shippingStateSelector,
   fromShipping.getShippingAddress
 )
