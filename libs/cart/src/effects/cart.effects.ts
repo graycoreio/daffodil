@@ -4,18 +4,18 @@ import { of , Observable } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
 import { 
-  CartActionTypes, 
-  CartLoad, 
-  CartLoadSuccess, 
-  CartLoadFailure, 
-  AddToCartSuccess,
-  AddToCartFailure,
-  AddToCart} from '../actions/cart.actions';
+  DaffCartActionTypes, 
+  DaffCartLoad, 
+  DaffCartLoadSuccess, 
+  DaffCartLoadFailure, 
+  DaffAddToCartSuccess,
+  DaffAddToCartFailure,
+  DaffAddToCart} from '../actions/cart.actions';
 import { DaffCartDriver } from '../drivers/injection-tokens/cart-driver.token';
 import { DaffCartServiceInterface } from '../drivers/interfaces/cart-service.interface';
 
 @Injectable()
-export class CartEffects {
+export class DaffCartEffects {
 
   constructor(
     private actions$: Actions,
@@ -23,15 +23,15 @@ export class CartEffects {
 
   @Effect()
   load$ : Observable<any> = this.actions$.pipe(
-    ofType(CartActionTypes.CartLoadAction),
-    switchMap((action: CartLoad) =>
+    ofType(DaffCartActionTypes.CartLoadAction),
+    switchMap((action: DaffCartLoad) =>
       this.driver.get()
         .pipe(
           map((resp) => {
-            return new CartLoadSuccess(resp);
+            return new DaffCartLoadSuccess(resp);
           }),
           catchError(error => {
-            return of(new CartLoadFailure("Failed to load cart"));
+            return of(new DaffCartLoadFailure("Failed to load cart"));
           })
         )
     )
@@ -39,15 +39,15 @@ export class CartEffects {
 
   @Effect()
   addToCart$ = this.actions$.pipe(
-    ofType(CartActionTypes.AddToCartAction),
-    switchMap((action: AddToCart) =>
+    ofType(DaffCartActionTypes.AddToCartAction),
+    switchMap((action: DaffAddToCart) =>
       this.driver.addToCart(action.payload.productId, action.payload.qty)
         .pipe(
           map((resp) => {
-            return new AddToCartSuccess(resp);
+            return new DaffAddToCartSuccess(resp);
           }),
           catchError(error => {
-            return of(new AddToCartFailure("Failed to add item to cart"));
+            return of(new DaffAddToCartFailure("Failed to add item to cart"));
           })
         )
     )

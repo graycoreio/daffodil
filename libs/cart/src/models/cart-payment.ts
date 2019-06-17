@@ -1,4 +1,4 @@
-export interface CartPayment {
+export interface DaffCartPayment {
   payment_id: number;
   quote_id: number;
   created_at: Date;

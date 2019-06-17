@@ -1,7 +1,7 @@
 import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
 import * as fromCart from './cart.reducer';
-import { Cart } from '../models/cart';
+import { DaffCart } from '../models/cart';
 
 export interface CartState {
   cart: fromCart.State;
@@ -25,7 +25,7 @@ export const cartStateSelector = createSelector(
   (state: CartState) => state.cart
 )
 
-export const selectCartValueState : MemoizedSelector<object, Cart> = createSelector(
+export const selectCartValueState : MemoizedSelector<object, DaffCart> = createSelector(
   cartStateSelector,
   fromCart.getCart
 )

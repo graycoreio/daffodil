@@ -1,12 +1,12 @@
 import { DaffCartFactory } from '../../testing/src/factories/cart.factory';
 import { initialState, reducer, getCartLoading, getCart, State } from "../reducers/cart.reducer";
-import { CartLoad, CartLoadSuccess, CartLoadFailure, CartReset, AddToCart, AddToCartSuccess, AddToCartFailure } from "../actions/cart.actions";
-import { Cart } from '../models/cart';
+import { DaffCartLoad, DaffCartLoadSuccess, DaffCartLoadFailure, DaffCartReset, DaffAddToCart, DaffAddToCartSuccess, DaffAddToCartFailure } from "../actions/cart.actions";
+import { DaffCart } from '../models/cart';
 
 describe('Cart | Cart List Reducer', () => {
 
   let cartFactory: DaffCartFactory;
-  let cart: Cart;
+  let cart: DaffCart;
 
   beforeEach(() => {
     cartFactory = new DaffCartFactory();
@@ -28,7 +28,7 @@ describe('Cart | Cart List Reducer', () => {
   describe('when CartLoadAction is triggered', () => {
 
     it('sets loading state to true', () => {
-      const cartListLoadAction: CartLoad = new CartLoad();
+      const cartListLoadAction: DaffCartLoad = new DaffCartLoad();
       
       const result = reducer(initialState, cartListLoadAction);
 
@@ -47,7 +47,7 @@ describe('Cart | Cart List Reducer', () => {
         loading: true
       }
   
-      const cartListLoadSuccess = new CartLoadSuccess(cart);
+      const cartListLoadSuccess = new DaffCartLoadSuccess(cart);
       
       result = reducer(state, cartListLoadSuccess);
     });
@@ -74,7 +74,7 @@ describe('Cart | Cart List Reducer', () => {
         errors: new Array('firstError')
        }
       
-      const cartListLoadFailure = new CartLoadFailure(error);
+      const cartListLoadFailure = new DaffCartLoadFailure(error);
 
       result = reducer(state, cartListLoadFailure);
     });
@@ -94,7 +94,7 @@ describe('Cart | Cart List Reducer', () => {
     const qty = 1;
     
     it('sets loading state to true', () => {
-      const addToCartAction: AddToCart = new AddToCart({productId, qty});
+      const addToCartAction: DaffAddToCart = new DaffAddToCart({productId, qty});
       
       const result = reducer(initialState, addToCartAction);
 
@@ -109,7 +109,7 @@ describe('Cart | Cart List Reducer', () => {
 
 
     beforeEach(() => {
-      const addToCartActionSuccess: AddToCartSuccess = new AddToCartSuccess(cart);
+      const addToCartActionSuccess: DaffAddToCartSuccess = new DaffAddToCartSuccess(cart);
       state = {
         ...initialState,
         loading: true
@@ -142,7 +142,7 @@ describe('Cart | Cart List Reducer', () => {
 
       error = 'error';      
 
-      const addToCartFailure = new AddToCartFailure(error);
+      const addToCartFailure = new DaffAddToCartFailure(error);
 
       result = reducer(state, addToCartFailure);
     });
@@ -178,7 +178,7 @@ describe('Cart | Cart List Reducer', () => {
         cart: null,
         errors: []
       }
-      const cartReset = new CartReset();
+      const cartReset = new DaffCartReset();
       const result = reducer(initialState, cartReset);
       
       expect(result).toEqual(expectedState);

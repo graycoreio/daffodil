@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs';
 
-import { Cart } from '../../models/cart';
+import { DaffCart } from '../../models/cart';
 
 export interface DaffCartServiceInterface {
-  get(): Observable<Cart>;
-  addToCart(productId: string, qty: number): Observable<Cart>;
+  get(): Observable<DaffCart>;
+  addToCart(productId: string, qty: number): Observable<DaffCart>;
   clear(): Observable<void>;
 }

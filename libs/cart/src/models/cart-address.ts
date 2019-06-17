@@ -1,7 +1,7 @@
-import { CartShippingRate } from "./cart-shipping-rate";
+import { DaffCartShippingRate } from "./cart-shipping-rate";
 import { DaffAddress } from "@daffodil/core";
 
-export interface CartAddress extends DaffAddress {
+export interface DaffCartAddress extends DaffAddress {
   address_id: number;
   quote_id: number;
   created_at: Date;
@@ -26,5 +26,5 @@ export interface CartAddress extends DaffAddress {
   fax: string;
   shipping_method?: string | null;
   shipping_description?: string | null;
-  shipping_rate?: CartShippingRate | null;
+  shipping_rate?: DaffCartShippingRate | null;
 }

@@ -3,14 +3,14 @@ import { STATUS } from 'angular-in-memory-web-api';
 
 import { DaffProductImage } from '@daffodil/product';
 import { DaffProductImageFactory } from '@daffodil/product/testing';
-import { Cart } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 
 import { DaffInMemoryBackendCartService } from './cart.service';
 import { DaffCartFactory } from '../../../testing/src';
 
 describe('Driver | Cart | In Memory | CartService', () => {
   let cartTestingService: DaffInMemoryBackendCartService;
-  let stubCart: Cart;
+  let stubCart: DaffCart;
   let stubProductImage: DaffProductImage;
   let daffCartFactory: jasmine.SpyObj<DaffCartFactory>;
   let daffProductImageFactory: jasmine.SpyObj<DaffProductImageFactory>;
