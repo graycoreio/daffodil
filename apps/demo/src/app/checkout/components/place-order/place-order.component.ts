@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import { fromCart, Cart } from '@daffodil/cart';
+import { fromCart, DaffCart } from '@daffodil/cart';
 import { PlaceOrder } from '@daffodil/checkout';
 
 import * as fromDemoCheckout from '../../reducers';
@@ -14,7 +14,7 @@ import * as fromDemoCheckout from '../../reducers';
 })
 export class PlaceOrderComponent implements OnInit, OnDestroy {
 
-  cart: Cart;
+  cart: DaffCart;
   cartSubscription: Subscription;
   enablePlaceOrderButton$: Observable<boolean>;
   

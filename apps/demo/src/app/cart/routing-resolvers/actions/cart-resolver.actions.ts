@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { Cart } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 
 export enum CartResolverActionTypes {
   ResolveCartAction = "[Cart-Resolver] Resolve Cart Action",
@@ -17,13 +17,13 @@ export class ResolveCart implements Action {
 export class ResolveCartSuccess implements Action {
   readonly type = CartResolverActionTypes.ResolveCartSuccessAction;
 
-  constructor(public payload: Cart) {}
+  constructor(public payload: DaffCart) {}
 }
 
 export class ResolveCartFailure implements Action {
   readonly type = CartResolverActionTypes.ResolveCartFailureAction;
 
-  constructor(public payload: Cart) {}
+  constructor(public payload: DaffCart) {}
 }
 
 export type CartResolverActions =

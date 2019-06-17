@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Cart } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 
 @Component({
   selector: 'demo-cart-summary',
@@ -10,7 +10,7 @@ import { Cart } from '@daffodil/cart';
 })
 export class CartSummaryComponent {
 
-  @Input() cart: Cart;
+  @Input() cart: DaffCart;
   @Input() title: string;
 
   constructor(

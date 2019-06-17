@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Cart } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 
 @Component({
   selector: 'demo-cart-totals',
@@ -9,7 +9,7 @@ import { Cart } from '@daffodil/cart';
 })
 export class CartTotalsComponent implements OnInit {
 
-  @Input() cart: Cart;
+  @Input() cart: DaffCart;
 
   cartTax: number;
 
@@ -17,7 +17,7 @@ export class CartTotalsComponent implements OnInit {
     this.cartTax = this.calculateTotalTax(this.cart);
   }
 
-  private calculateTotalTax(cart: Cart) {
+  private calculateTotalTax(cart: DaffCart) {
     let totalTax = 0;
 
     for (const item of cart.items) {

@@ -1,4 +1,4 @@
-import { AddToCart, AddToCartSuccess, Cart } from "@daffodil/cart";
+import { DaffAddToCart, DaffAddToCartSuccess, DaffCart } from "@daffodil/cart";
 import { DaffCartFactory } from "@daffodil/cart/testing";
 
 import { 
@@ -70,7 +70,7 @@ describe('Add To Cart Notification | Reducer', () => {
     beforeEach(() => {
       stubQty = 1;
       stubId = 'id';
-      const addToCartAction = new AddToCart({productId: stubId, qty: stubQty});
+      const addToCartAction = new DaffAddToCart({productId: stubId, qty: stubQty});
       
       result = reducer(initialState, addToCartAction);
     });
@@ -92,10 +92,10 @@ describe('Add To Cart Notification | Reducer', () => {
 
     let result;
     const cartFactory = new DaffCartFactory();
-    const stubCart: Cart = cartFactory.create();
+    const stubCart: DaffCart = cartFactory.create();
 
     beforeEach(() => {
-      const addToCartSuccessAction = new AddToCartSuccess(stubCart);
+      const addToCartSuccessAction = new DaffAddToCartSuccess(stubCart);
       
       result = reducer(initialState, addToCartSuccessAction);
     });

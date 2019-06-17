@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Observable, of } from 'rxjs';
 
-import { Cart } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 import { DaffAccordionModule, 
   DaffAccordionItemComponent, 
@@ -17,7 +17,7 @@ import { ThankYouViewComponent } from './thank-you-view.component';
 
 const cartFactory = new DaffCartFactory();
 const cartItemFactory = new DaffCartItemFactory();
-const stubCart: Cart = cartFactory.create({items: [cartItemFactory.create()]})
+const stubCart: DaffCart = cartFactory.create({items: [cartItemFactory.create()]})
 
 @Component({selector: 'demo-thank-you', template: ''})
 class MockThankYouComponent {}
@@ -25,13 +25,13 @@ class MockThankYouComponent {}
 // tslint:disable-next-line: component-selector
 @Component({selector: '[order-container]', template: '<ng-content></ng-content>', exportAs: 'OrderContainer'})
 class MockOrderContainer {
-  order$: Observable<Cart> = of(stubCart);
+  order$: Observable<DaffCart> = of(stubCart);
   loading$: Observable<boolean> = of(false);
 }
 
 @Component({selector: 'demo-cart-summary-wrapper', template: '<ng-content>', encapsulation: ViewEncapsulation.None})
 class MockCartSummaryWrapperComponent {
-  @Input() cart: Cart;
+  @Input() cart: DaffCart;
   @Input() loading: boolean;
   @Input() cartTitle: string;
 }

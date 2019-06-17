@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { StateCartModule } from '@daffodil/cart';
+import { DaffCartModule } from '@daffodil/cart';
 import { StateCheckoutModule } from '@daffodil/checkout';
 import {
   DaffAccordionModule,
@@ -20,7 +20,7 @@ import { PlaceOrderModule } from './components/place-order/place-order.module';
   imports: [
     CommonModule,
     StateCheckoutModule,
-    StateCartModule,
+    DaffCartModule,
     DaffLoadingIconModule,
     DemoCheckoutStateModule,
     CartSummaryWrapperModule,

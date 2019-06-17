@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 import { StoreModule, combineReducers } from '@ngrx/store';
 
-import { fromCart, Cart, DaffCartDriver, DaffCartServiceInterface } from '@daffodil/cart';
+import { fromCart, DaffCart, DaffCartDriver, DaffCartServiceInterface } from '@daffodil/cart';
 import { DaffTestingCartService, DaffCartFactory } from '@daffodil/cart/testing';
 
 import { CartResolverEffects } from './cart-resolver.effects';
@@ -14,7 +14,7 @@ describe('CartResolverEffects', () => {
   let actions$: Observable<any>;
   let effects: CartResolverEffects;
   let cartFactory: DaffCartFactory;
-  let stubCart: Cart;
+  let stubCart: DaffCart;
   let driver: DaffCartServiceInterface;
 
   beforeEach(() => {

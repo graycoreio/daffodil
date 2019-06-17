@@ -5,7 +5,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-import { fromCart, Cart }  from '@daffodil/cart';
+import { fromCart, DaffCart }  from '@daffodil/cart';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 
 import { EmptyCartResolver } from './empty-cart-resolver.service';
@@ -17,7 +17,7 @@ describe('EmptyCartResolver', () => {
   let store: Store<fromCart.State>;
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
-  let stubCart: Cart;
+  let stubCart: DaffCart;
   let router: Router;
   const cartResolverSpy = jasmine.createSpyObj('CartResolver', ['resolve']);
 

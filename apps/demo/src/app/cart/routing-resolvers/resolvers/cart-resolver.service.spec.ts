@@ -5,7 +5,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-import { fromCart, Cart }  from '@daffodil/cart';
+import { fromCart, DaffCart }  from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { CartResolver } from './cart-resolver.service';
@@ -16,7 +16,7 @@ describe('CartResolver', () => {
   let cartResolver: CartResolver;
   let store: Store<fromCart.State>;
   let cartFactory: DaffCartFactory;
-  let stubCart: Cart;
+  let stubCart: DaffCart;
   let router: Router;
 
   beforeEach(async(() => {

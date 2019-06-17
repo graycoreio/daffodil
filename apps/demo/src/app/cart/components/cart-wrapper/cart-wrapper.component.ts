@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { Cart } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 
 import * as fromCart from '../../selectors/cart-selector';
 
@@ -17,7 +17,7 @@ export class CartWrapperComponent {
     private store: Store<fromCart.State>
   ) {}
 
-  @Input() cart: Cart;
+  @Input() cart: DaffCart;
 
   get isCartEmpty$():Observable<boolean> {
     return this.store.pipe(select(fromCart.isCartEmpty));

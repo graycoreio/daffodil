@@ -6,7 +6,7 @@ import {
 } from 'angular-in-memory-web-api';
 
 import { DaffProduct } from '@daffodil/product';
-import { Cart } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 import { Order } from '@daffodil/checkout';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
 import { DaffInMemoryBackendCartService } from '@daffodil/cart/testing';
@@ -55,6 +55,6 @@ export class DemoInMemoryService implements InMemoryDbService {
 
 export interface MockDaffDatabase {
   products: DaffProduct[];
-  cart: Cart;
+  cart: DaffCart;
   order: Order;
 }

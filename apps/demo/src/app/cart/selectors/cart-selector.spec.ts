@@ -1,7 +1,7 @@
 import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
-import { CartReset, CartLoadSuccess, Cart } from "@daffodil/cart";
+import { DaffCartReset, DaffCartLoadSuccess, DaffCart } from "@daffodil/cart";
 import { DaffCartFactory, DaffCartItemFactory } from "@daffodil/cart/testing";
 
 import * as fromCart from './cart-selector';
@@ -11,7 +11,7 @@ describe('selectCartState', () => {
   let store: Store<fromCart.CartState>;
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
-  let mockCart: Cart;
+  let mockCart: DaffCart;
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -37,8 +37,8 @@ describe('selectCartState', () => {
       mockCart.items[0].qty = 2;
       mockCart.items[1].qty = 4;
       
-      store.dispatch(new CartReset());
-      store.dispatch(new CartLoadSuccess(mockCart));
+      store.dispatch(new DaffCartReset());
+      store.dispatch(new DaffCartLoadSuccess(mockCart));
     });
     
     it('selects total number of cartItems', () => {
@@ -54,8 +54,8 @@ describe('selectCartState', () => {
 
       beforeEach(() => {
         mockCart = cartFactory.create();
-        store.dispatch(new CartReset());        
-        store.dispatch(new CartLoadSuccess(mockCart));
+        store.dispatch(new DaffCartReset());        
+        store.dispatch(new DaffCartLoadSuccess(mockCart));
       });
       
       it('should return true', () => {
@@ -71,8 +71,8 @@ describe('selectCartState', () => {
         mockCart = cartFactory.create({
           items: cartItemFactory.createMany(2)
         });
-        store.dispatch(new CartReset());
-        store.dispatch(new CartLoadSuccess(mockCart));
+        store.dispatch(new DaffCartReset());
+        store.dispatch(new DaffCartLoadSuccess(mockCart));
       });
 
       it('should return false', () => {
