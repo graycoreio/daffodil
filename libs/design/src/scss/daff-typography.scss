@@ -19,7 +19,7 @@
 @import "./typography/variables";
 @import "./typography/mixins";
 
-@import '~normalize-scss/sass/normalize/_import-now.scss';
+@import '~normalize-scss/sass/normalize/import-now';
 
 body,html {
     font-size: $mobile-font-size;
