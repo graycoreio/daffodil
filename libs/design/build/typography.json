@@ -1,4 +1,5 @@
 {
-    "entry": "./src/scss/daff-typography.scss",
-    "dest": "../../dist/design/daff-typography.scss"
+    "entry": "./libs/design/src/scss/daff-typography.scss",
+    "dest": "../../dist/design/daff-typography.scss",
+    "project": "../../"
 }
