@@ -1,4 +1,4 @@
-import { CartActionTypes, CartActions } from '@daffodil/cart';
+import { DaffCartActionTypes, DaffCartActions } from '@daffodil/cart';
 
 import { AddToCartNotificationActionTypes, AddToCartNotificationActions } from '../actions/add-to-cart-notification.actions';
 
@@ -22,15 +22,15 @@ const handleAddToCartAction = (state, action) => {
   }
 }
 
-export function reducer(state = initialState, action: AddToCartNotificationActions | CartActions): State {
+export function reducer(state = initialState, action: AddToCartNotificationActions | DaffCartActions): State {
   switch (action.type) {
     case AddToCartNotificationActionTypes.OpenAddToCartNotificationAction:
       return {...state, open: !state.open};
     case AddToCartNotificationActionTypes.CloseAddToCartNotificationAction:
       return {...state, open: false};
-    case CartActionTypes.AddToCartAction:
+    case DaffCartActionTypes.AddToCartAction:
       return handleAddToCartAction(state, action);
-    case CartActionTypes.AddToCartSuccessAction:
+    case DaffCartActionTypes.AddToCartSuccessAction:
       return {...state, loading: false};
     default:
       return state;

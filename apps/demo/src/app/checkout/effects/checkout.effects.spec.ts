@@ -5,7 +5,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
-import { Cart } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { PlaceOrder } from '@daffodil/checkout';
 
@@ -18,7 +18,7 @@ describe('CheckoutEffects', () => {
   let effects: CheckoutEffects;
   let router: Router;
   const cartFactory: DaffCartFactory = new DaffCartFactory();
-  let stubCart: Cart;
+  let stubCart: DaffCart;
   
   beforeEach(() => {
     TestBed.configureTestingModule({

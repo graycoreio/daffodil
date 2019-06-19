@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { Cart } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { DaffInMemoryCheckoutService } from './checkout.service';
@@ -10,7 +10,7 @@ describe('Driver | In Memory | Checkout | CheckoutService', () => {
   let checkoutService: DaffInMemoryCheckoutService;
   let httpMock: HttpTestingController;
   let cartFactory: DaffCartFactory;
-  let stubOrder: Cart;
+  let stubOrder: DaffCart;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

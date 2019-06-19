@@ -1,16 +1,16 @@
 import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
-import { CartLoadSuccess, CartReset } from "../actions/cart.actions";
+import { DaffCartLoadSuccess, DaffCartReset } from "../actions/cart.actions";
 import * as fromCart from './index';
 import { DaffCartFactory } from '../../testing/src/factories/cart.factory';
-import { Cart } from "../models/cart";
+import { DaffCart } from "../models/cart";
 
 describe('selectCartState', () => {
 
   let store: Store<fromCart.CartState>;
   const cartFactory: DaffCartFactory = new DaffCartFactory();
-  let mockCart: Cart;
+  let mockCart: DaffCart;
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,8 +23,8 @@ describe('selectCartState', () => {
 
     mockCart = cartFactory.create();
     store = TestBed.get(Store);
-    store.dispatch(new CartReset());
-    store.dispatch(new CartLoadSuccess(mockCart));
+    store.dispatch(new DaffCartReset());
+    store.dispatch(new DaffCartLoadSuccess(mockCart));
   }));
 
   describe('cartStateSelector', () => {

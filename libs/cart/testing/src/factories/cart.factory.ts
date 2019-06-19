@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
-import { Cart } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
-export class MockCart implements Cart {
+export class MockCart implements DaffCart {
   id = faker.random.number(1000);
   created_at = new Date();
   updated_at = new Date();
@@ -24,7 +24,7 @@ export class MockCart implements Cart {
 @Injectable({
   providedIn: 'root'
 })
-export class DaffCartFactory extends DaffModelFactory<Cart>{
+export class DaffCartFactory extends DaffModelFactory<DaffCart>{
   constructor(){
     super(MockCart);
   }

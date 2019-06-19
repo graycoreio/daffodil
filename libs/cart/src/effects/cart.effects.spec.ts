@@ -3,10 +3,10 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
-import { CartEffects } from './cart.effects';
-import { CartLoad, CartLoadSuccess, CartLoadFailure, AddToCart,
-  AddToCartSuccess, AddToCartFailure } from '../actions/cart.actions';
-import { Cart } from '../models/cart';
+import { DaffCartEffects } from './cart.effects';
+import { DaffCartLoad, DaffCartLoadSuccess, DaffCartLoadFailure, DaffAddToCart,
+  DaffAddToCartSuccess, DaffAddToCartFailure } from '../actions/cart.actions';
+import { DaffCart } from '../models/cart';
 import { DaffCartFactory } from '../../testing/src/factories/cart.factory';
 import { DaffCartDriver } from '../drivers/injection-tokens/cart-driver.token';
 import { DaffTestingCartService } from '../../testing/src';
@@ -14,9 +14,9 @@ import { DaffCartServiceInterface } from '../drivers/interfaces/cart-service.int
 
 describe('Daffodil | Cart | CartEffects', () => {
   let actions$: Observable<any>;
-  let effects: CartEffects;
+  let effects: DaffCartEffects;
   
-  let mockCart: Cart;
+  let mockCart: DaffCart;
 
   let cartFactory: DaffCartFactory;
 
@@ -25,7 +25,7 @@ describe('Daffodil | Cart | CartEffects', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        CartEffects,
+        DaffCartEffects,
         provideMockActions(() => actions$),
         {
           provide: DaffCartDriver, 
@@ -34,7 +34,7 @@ describe('Daffodil | Cart | CartEffects', () => {
       ]
     });
 
-    effects = TestBed.get(CartEffects);
+    effects = TestBed.get(DaffCartEffects);
     daffDriver = TestBed.get(DaffCartDriver);
     cartFactory = TestBed.get(DaffCartFactory);
 
@@ -48,13 +48,13 @@ describe('Daffodil | Cart | CartEffects', () => {
   describe('when CartLoadAction is triggered', () => {
 
     let expected;
-    const cartLoadAction = new CartLoad();
+    const cartLoadAction = new DaffCartLoad();
     
     describe('and the call to CartService is successful', () => {
 
       beforeEach(() => {
         spyOn(daffDriver, 'get').and.returnValue(of(mockCart));
-        const cartLoadSuccessAction = new CartLoadSuccess(mockCart);
+        const cartLoadSuccessAction = new DaffCartLoadSuccess(mockCart);
         actions$ = hot('--a', { a: cartLoadAction });
         expected = cold('--b', { b: cartLoadSuccessAction });
       });
@@ -70,7 +70,7 @@ describe('Daffodil | Cart | CartEffects', () => {
         const error = 'Failed to load cart';
         const response = cold('#', {}, error);
         spyOn(daffDriver, 'get').and.returnValue(response);
-        const cartLoadFailureAction = new CartLoadFailure(error);
+        const cartLoadFailureAction = new DaffCartLoadFailure(error);
         actions$ = hot('--a', { a: cartLoadAction });
         expected = cold('--b', { b: cartLoadFailureAction });
       });
@@ -86,7 +86,7 @@ describe('Daffodil | Cart | CartEffects', () => {
     let expected;
     let productId: string;
     const qty = 1;
-    const addToCartAction = new AddToCart({productId, qty});
+    const addToCartAction = new DaffAddToCart({productId, qty});
 
     beforeEach(() => {
       productId =  '1001';
@@ -96,7 +96,7 @@ describe('Daffodil | Cart | CartEffects', () => {
 
       beforeEach(() => {
         spyOn(daffDriver, 'addToCart').and.returnValue(of(mockCart));
-        const addToCartSuccessAction = new AddToCartSuccess(mockCart);
+        const addToCartSuccessAction = new DaffAddToCartSuccess(mockCart);
         actions$ = hot('--a', { a: addToCartAction });
         expected = cold('--b', { b: addToCartSuccessAction });
       });
@@ -112,7 +112,7 @@ describe('Daffodil | Cart | CartEffects', () => {
         const error = 'Failed to add item to cart';
         const response = cold('#', {}, error);
         spyOn(daffDriver, 'addToCart').and.returnValue(response);
-        const addToCartFailureAction = new AddToCartFailure(error);
+        const addToCartFailureAction = new DaffAddToCartFailure(error);
         actions$ = hot('--a', { a: addToCartAction });
         expected = cold('--b', { b: addToCartFailureAction });
       });

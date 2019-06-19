@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { CartContainer } from './containers/cart/cart.component';
-import { StateCartStateModule } from './cart-state.module';
+import { DaffCartContainer } from './containers/cart/cart.component';
+import { DaffCartStateModule } from './cart-state.module';
 
 @NgModule({
   imports: [
@@ -11,13 +11,13 @@ import { StateCartStateModule } from './cart-state.module';
     /**
      * Ngrx/store
      */
-    StateCartStateModule,
+    DaffCartStateModule,
   ],
   declarations: [
-    CartContainer
+    DaffCartContainer
   ],
   exports: [
-    CartContainer
+    DaffCartContainer
   ]
 })
-export class StateCartModule { }
+export class DaffCartModule { }

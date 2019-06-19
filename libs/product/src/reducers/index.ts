@@ -131,3 +131,9 @@ export const selectBestSellersIdsState : MemoizedSelector<object, string[]> = cr
   selectBestSellersState,
   fromBestSellers.getBestSellersIds
 );
+
+export const selectBestSellersProducts: MemoizedSelector<object, DaffProduct[]> = createSelector(
+  selectBestSellersIdsState,
+  selectAllProducts,
+  (ids: string[], products: DaffProduct[]) => products.filter(product => ids.indexOf(product.id) > -1)
+)

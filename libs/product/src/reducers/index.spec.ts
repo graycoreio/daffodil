@@ -201,5 +201,13 @@ describe('selectProductState', () => {
         });
       });
     });
+
+    describe('selectBestSellersProducts', () =>{
+      it('should return the list of best sellers off the product entity state', () => {
+        store.pipe(select(fromProduct.selectBestSellersProducts)).subscribe((bestSellers) => {
+          expect(bestSellers).toEqual([mockProduct]);
+        });
+      });
+    });
   });
 });

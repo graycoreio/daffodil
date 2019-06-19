@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { Cart, DaffCartServiceInterface } from '@daffodil/cart';
+import { DaffCart, DaffCartServiceInterface } from '@daffodil/cart';
 
 import { DaffCartFactory } from '../../factories/cart.factory';
 
@@ -13,11 +13,11 @@ export class DaffTestingCartService implements DaffCartServiceInterface {
     private cartFactory: DaffCartFactory
   ) {}
 
-  get(): Observable<Cart> {
+  get(): Observable<DaffCart> {
     return of(this.cartFactory.create());
   }
 
-  addToCart(productId: string, qty: number): Observable<Cart> {
+  addToCart(productId: string, qty: number): Observable<DaffCart> {
     return of(this.cartFactory.create());
   }
 

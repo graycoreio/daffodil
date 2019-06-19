@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
 
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
-import { Cart } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 import { ShippingContainer, PaymentInfo } from '@daffodil/checkout';
 import { DaffPaymentFactory } from '@daffodil/checkout/testing';
@@ -30,7 +30,7 @@ const cartItemFactory = new DaffCartItemFactory();
 const stubShippingAddress = daffodilAddressFactory.create();
 const stubPaymentInfo: PaymentInfo = paymentFactory.create();
 const stubBillingAddress: DaffAddress = daffodilAddressFactory.create();
-let stubCart: Cart;
+let stubCart: DaffCart;
 
 const stubIsShippingAddressValid = true;
 const stubSelectedShippingOptionIndex = 0;
@@ -60,14 +60,14 @@ class MockPaymentComponent {
 
 @Component({selector: 'demo-cart-summary-wrapper', template: '<ng-content>', encapsulation: ViewEncapsulation.None})
 class MockCartSummaryWrapperComponent {
-  @Input() cart: Cart;
+  @Input() cart: DaffCart;
   @Input() loading: boolean;
   @Input() cartTitle: string;
 }
 
 @Component({selector: 'demo-place-order', template: ''})
 class MockPlaceOrderComponent {
-  @Input() cart: Cart;
+  @Input() cart: DaffCart;
 }
 
 // tslint:disable-next-line: component-selector
@@ -94,7 +94,7 @@ class MockBillingContainer {
 // tslint:disable-next-line: component-selector
 @Component({selector: '[cart-container]', template: '<ng-content></ng-content>', exportAs: 'CartContainer'})
 class MockCartContainer {
-  cart$: Observable<Cart>;
+  cart$: Observable<DaffCart>;
   loading$: Observable<boolean> = of(false);
 }
 

@@ -1,64 +1,64 @@
 import { Action } from '@ngrx/store';
 
-import { Cart } from '../models/cart';
+import { DaffCart } from '../models/cart';
 
-export enum CartActionTypes {
-    CartLoadAction = "[Cart] Load Action",
-    CartLoadSuccessAction = "[Cart] Load Success Action",
-    CartLoadFailureAction = "[Cart] Load Failure Action",
-    AddToCartAction = "[Cart] Add To Cart Action",
-    AddToCartSuccessAction = "[Cart] Add to Cart Success Action",
-    AddToCartFailureAction = "[Cart] Add to Cart Failure Action",    
-    CartResetAction = "[Cart] Reset Action"
+export enum DaffCartActionTypes {
+    CartLoadAction = "[DaffCart] Load Action",
+    CartLoadSuccessAction = "[DaffCart] Load Success Action",
+    CartLoadFailureAction = "[DaffCart] Load Failure Action",
+    AddToCartAction = "[DaffCart] Add To Cart Action",
+    AddToCartSuccessAction = "[DaffCart] Add to Cart Success Action",
+    AddToCartFailureAction = "[DaffCart] Add to Cart Failure Action",    
+    CartResetAction = "[DaffCart] Reset Action"
 }
 
-export class CartLoad implements Action {
-  readonly type = CartActionTypes.CartLoadAction;
+export class DaffCartLoad implements Action {
+  readonly type = DaffCartActionTypes.CartLoadAction;
 
   constructor() {}
 }
 
-export class CartLoadSuccess implements Action {
-    readonly type = CartActionTypes.CartLoadSuccessAction;
+export class DaffCartLoadSuccess implements Action {
+    readonly type = DaffCartActionTypes.CartLoadSuccessAction;
 
-    constructor(public payload: Cart) {}
+    constructor(public payload: DaffCart) {}
 }
 
-export class CartLoadFailure implements Action {
-  readonly type = CartActionTypes.CartLoadFailureAction;
+export class DaffCartLoadFailure implements Action {
+  readonly type = DaffCartActionTypes.CartLoadFailureAction;
 
   constructor(public payload: string) {}
 }
 
-export class AddToCart implements Action {
-    readonly type = CartActionTypes.AddToCartAction;
+export class DaffAddToCart implements Action {
+    readonly type = DaffCartActionTypes.AddToCartAction;
 
     constructor(public payload: {productId: string, qty: number}) {}
 }
 
-export class AddToCartSuccess implements Action {
-    readonly type = CartActionTypes.AddToCartSuccessAction;
+export class DaffAddToCartSuccess implements Action {
+    readonly type = DaffCartActionTypes.AddToCartSuccessAction;
 
-    constructor(public payload: Cart) {}
+    constructor(public payload: DaffCart) {}
 }
 
-export class AddToCartFailure implements Action {
-    readonly type = CartActionTypes.AddToCartFailureAction;
+export class DaffAddToCartFailure implements Action {
+    readonly type = DaffCartActionTypes.AddToCartFailureAction;
 
     constructor(public payload: string) {}
 }
 
-export class CartReset implements Action {
-    readonly type = CartActionTypes.CartResetAction;
+export class DaffCartReset implements Action {
+    readonly type = DaffCartActionTypes.CartResetAction;
 
     constructor() {}
 }
 
-export type CartActions = 
-    | CartLoad 
-    | CartLoadSuccess
-    | CartLoadFailure
-    | AddToCart
-    | AddToCartSuccess
-    | AddToCartFailure
-    | CartReset;
+export type DaffCartActions = 
+    | DaffCartLoad 
+    | DaffCartLoadSuccess
+    | DaffCartLoadFailure
+    | DaffAddToCart
+    | DaffAddToCartSuccess
+    | DaffAddToCartFailure
+    | DaffCartReset;

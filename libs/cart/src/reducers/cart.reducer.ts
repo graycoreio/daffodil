@@ -1,8 +1,8 @@
-import { CartActionTypes, CartActions } from '../actions/cart.actions';
-import { Cart } from '../models/cart';
+import { DaffCartActionTypes, DaffCartActions } from '../actions/cart.actions';
+import { DaffCart } from '../models/cart';
 
 export interface State {
-  cart: Cart,
+  cart: DaffCart,
   loading: boolean,
   errors: string[]
 }
@@ -15,21 +15,21 @@ export const initialState: State = Object.freeze({
 
 export const resetState: State = Object.assign({}, initialState);
 
-export function reducer(state = initialState, action: CartActions): State {
+export function reducer(state = initialState, action: DaffCartActions): State {
   switch (action.type) {
-    case CartActionTypes.CartLoadAction:
-    case CartActionTypes.AddToCartAction:
+    case DaffCartActionTypes.CartLoadAction:
+    case DaffCartActionTypes.AddToCartAction:
       return {...state, loading: true};
-    case CartActionTypes.CartLoadSuccessAction:
-    case CartActionTypes.AddToCartSuccessAction:
+    case DaffCartActionTypes.CartLoadSuccessAction:
+    case DaffCartActionTypes.AddToCartSuccessAction:
       return {...state, cart: action.payload, loading: false};
-    case CartActionTypes.CartLoadFailureAction:
-    case CartActionTypes.AddToCartFailureAction:
+    case DaffCartActionTypes.CartLoadFailureAction:
+    case DaffCartActionTypes.AddToCartFailureAction:
       return {...state,
         loading: false,
         errors: state.errors.concat(new Array(action.payload))
       };
-    case CartActionTypes.CartResetAction:
+    case DaffCartActionTypes.CartResetAction:
       return {
         ...resetState
       }

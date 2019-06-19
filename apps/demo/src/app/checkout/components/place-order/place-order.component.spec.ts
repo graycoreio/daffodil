@@ -4,7 +4,7 @@ import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { of, Subscription } from 'rxjs';
 
 import { PlaceOrder } from '@daffodil/checkout';
-import { Cart, fromCart } from '@daffodil/cart';
+import { DaffCart, fromCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import * as fromDemoCheckout from '../../reducers';
@@ -17,7 +17,7 @@ describe('PlaceOrderComponent', () => {
   const stubEnablePlaceOrderButton = true;
   let store;
   let cartFactory: DaffCartFactory;
-  let stubCart: Cart;
+  let stubCart: DaffCart;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

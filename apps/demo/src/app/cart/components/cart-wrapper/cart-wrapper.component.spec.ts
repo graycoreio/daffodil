@@ -4,14 +4,14 @@ import { By } from '@angular/platform-browser';
 import { StoreModule, combineReducers } from '@ngrx/store';
 
 import { DaffCartFactory } from '@daffodil/cart/testing';
-import { fromCart, Cart } from '@daffodil/cart';
+import { fromCart, DaffCart } from '@daffodil/cart';
 
 import { CartWrapperComponent } from './cart-wrapper.component';
 import * as cartSelector from '../../selectors/cart-selector';
 
 @Component({template: '<demo-cart-wrapper [cart]="cartValue"></demo-cart-wrapper>'})
 class WrapperComponent {
-  cartValue: Cart;
+  cartValue: DaffCart;
 }
 
 @Component({
@@ -19,7 +19,7 @@ class WrapperComponent {
   template: ''
 })
 class MockCartComponent { 
-  @Input() cart: Cart;
+  @Input() cart: DaffCart;
   @Input() title: string;
 }
 
@@ -28,7 +28,7 @@ class MockCartComponent {
   template: ''
 })
 class MockCartTotalsComponent {
-  @Input() cart: Cart;
+  @Input() cart: DaffCart;
 }
 
 @Component({

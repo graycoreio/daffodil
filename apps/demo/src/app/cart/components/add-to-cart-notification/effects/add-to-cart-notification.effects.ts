@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { map } from 'rxjs/operators';
 
-import { CartActionTypes } from '@daffodil/cart';
+import { DaffCartActionTypes } from '@daffodil/cart';
 
 import { OpenAddToCartNotification } from '../actions/add-to-cart-notification.actions';
 
@@ -13,7 +13,7 @@ export class AddToCartNotificationEffects {
     
   @Effect()
   addToCart$ = this.actions$.pipe(
-    ofType(CartActionTypes.AddToCartAction),
+    ofType(DaffCartActionTypes.AddToCartAction),
     map(() => new OpenAddToCartNotification())
   )
 }
