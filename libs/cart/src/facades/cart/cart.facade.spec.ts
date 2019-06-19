@@ -19,7 +19,7 @@ describe('DaffCartFacade', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          product: combineReducers(reducers),
+          cart: combineReducers(reducers),
         })
       ],
       providers: [
@@ -60,8 +60,8 @@ describe('DaffCartFacade', () => {
   });
 
   describe('cart$', () => {
-    it('should initially be an empty object', () => {
-      const expected = cold('a', { });
+    it('should initially be null', () => {
+      const expected = cold('a', { a: null});
       expect(facade.cart$).toBeObservable(expected);
     });
 

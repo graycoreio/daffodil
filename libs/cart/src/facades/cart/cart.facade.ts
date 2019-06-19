@@ -14,7 +14,7 @@ export class DaffCartFacade implements DaffStoreFacade<Action> {
   cart$: Observable<DaffCart>;
   
   constructor(private store: Store<fromCart.State>) {
-    this.store.pipe(select(fromCart.selectCartLoadingState));
+    this.loading$ = this.store.pipe(select(fromCart.selectCartLoadingState));
     this.cart$ = this.store.pipe(select(fromCart.selectCartValueState));
   }
 
