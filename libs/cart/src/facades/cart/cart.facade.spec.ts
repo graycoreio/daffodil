@@ -65,7 +65,7 @@ describe('DaffCartFacade', () => {
       expect(facade.cart$).toBeObservable(expected);
     });
 
-    it('should initially be an empty object', () => {
+    it('should be the cart upon a successful load', () => {
       const cart = cartFactory.create();
       const expected = cold('a', { a: cart});
       store.dispatch(new DaffCartLoadSuccess(cart));
