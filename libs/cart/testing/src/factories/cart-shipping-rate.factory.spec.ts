@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CartShippingRate } from '@daffodil/cart';
+import { DaffCartShippingRate } from '@daffodil/cart';
 import { DaffCartShippingRateFactory } from './cart-shipping-rate.factory';
 
 describe('Core | Testing | Cart | Factories | CartShippingRateFactory', () => {
@@ -21,7 +21,7 @@ describe('Core | Testing | Cart | Factories | CartShippingRateFactory', () => {
 
   describe('create', () => {
 
-    let result: CartShippingRate;
+    let result: DaffCartShippingRate;
 
     beforeEach(() => {
       result = cartShippingRateFactory.create();
@@ -33,7 +33,7 @@ describe('Core | Testing | Cart | Factories | CartShippingRateFactory', () => {
   });
 
   describe('createMany', () => {
-    let result: CartShippingRate[];
+    let result: DaffCartShippingRate[];
 
     it('should create as many cart shipping rates as desired', () => {
       result = cartShippingRateFactory.createMany(2);

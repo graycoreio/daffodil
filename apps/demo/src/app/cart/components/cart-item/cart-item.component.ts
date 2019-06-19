@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { CartItem } from '@daffodil/cart';
+import { DaffCartItem } from '@daffodil/cart';
 
 @Component({
   selector: 'demo-cart-item',
@@ -10,7 +10,7 @@ import { CartItem } from '@daffodil/cart';
 })
 export class CartItemComponent implements OnInit {
 
-  @Input() item: CartItem;
+  @Input() item: DaffCartItem;
 
   constructor(
     private router: Router

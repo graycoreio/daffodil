@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffCartItemFactory } from './cart-item.factory';
-import { CartItem } from '@daffodil/cart';
+import { DaffCartItem } from '@daffodil/cart';
 
 describe('Cart | Testing | Factories | CartItemFactory', () => {
   
@@ -21,7 +21,7 @@ describe('Cart | Testing | Factories | CartItemFactory', () => {
 
   describe('create', () => {
 
-    let result: CartItem;
+    let result: DaffCartItem;
 
     beforeEach(() => {
       result = cartItemFactory.create();
@@ -52,7 +52,7 @@ describe('Cart | Testing | Factories | CartItemFactory', () => {
   });
 
   describe('createMany', () => {
-    let result: CartItem[];
+    let result: DaffCartItem[];
 
     it('should create as many cart items as desired', () => {
       const spy = spyOn(cartItemFactory, 'create');

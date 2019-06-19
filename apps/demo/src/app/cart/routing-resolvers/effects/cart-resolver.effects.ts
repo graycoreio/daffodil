@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { switchMap, take, map, catchError } from 'rxjs/operators';
 import { Action, select, Store } from '@ngrx/store';
 
-import { fromCart, Cart, DaffCartDriver, DaffCartServiceInterface } from '@daffodil/cart';
+import { fromCart, DaffCart, DaffCartDriver, DaffCartServiceInterface } from '@daffodil/cart';
 
 import { ResolveCartSuccess, CartResolverActionTypes, ResolveCartFailure } from '../actions/cart-resolver.actions';
 
@@ -33,7 +33,7 @@ export class CartResolverEffects {
     )})
   )
 
-  selectStoreCart(): Observable<Cart> {
+  selectStoreCart(): Observable<DaffCart> {
     return this.store.pipe(
       select(fromCart.selectCartValueState)
     );

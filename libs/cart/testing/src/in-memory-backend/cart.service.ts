@@ -3,7 +3,7 @@ import { STATUS, InMemoryDbService } from 'angular-in-memory-web-api';
 
 import { DaffProductImageFactory } from '@daffodil/product/testing';
 
-import { CartItem } from '@daffodil/cart';
+import { DaffCartItem } from '@daffodil/cart';
 import { DaffCartFactory } from '../factories/cart.factory';
 import { DaffCartItemFactory } from '../factories/cart-item.factory';
 
@@ -64,7 +64,7 @@ export class DaffInMemoryBackendCartService implements InMemoryDbService {
   }
 
   private addProductToCart(reqBody) {
-    const cartItem: CartItem = this.cartItemFactory.create({image: this.productImageFactory.create()});
+    const cartItem: DaffCartItem = this.cartItemFactory.create({image: this.productImageFactory.create()});
     cartItem.product_id = reqBody.productId;
     cartItem.qty = reqBody.qty;
     this.cart.items.push(cartItem);

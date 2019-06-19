@@ -2,19 +2,19 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component, Input } from '@angular/core';
 
-import { Cart, CartItem } from '@daffodil/cart';
+import { DaffCart, DaffCartItem } from '@daffodil/cart';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 
 import { CartComponent } from './cart.component';
 
 @Component({template: '<demo-cart [cart]="cartValue"></demo-cart>'})
 class WrapperComponent {
-  cartValue: Cart;
+  cartValue: DaffCart;
 }
 
 @Component({selector: 'demo-cart-item', template: ''})
 class MockCartItemComponent {
-  @Input() item: CartItem;
+  @Input() item: DaffCartItem;
 }
 
 describe('CartComponent', () => {

@@ -1,6 +1,6 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 
-import { Cart } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 
 @Component({
   selector: 'demo-cart-summary-wrapper',
@@ -10,7 +10,7 @@ import { Cart } from '@daffodil/cart';
 })
 export class CartSummaryWrapperComponent {
 
-  @Input() cart: Cart;
+  @Input() cart: DaffCart;
   @Input() loading: boolean;
   @Input() cartTitle: string;
 }

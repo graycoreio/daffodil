@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CartPayment } from '@daffodil/cart';
+import { DaffCartPayment } from '@daffodil/cart';
 import { DaffCartPaymentFactory } from './cart-payment.factory';
 
 describe('Cart | Testing | Factories | CartPaymentFactory', () => {
@@ -21,7 +21,7 @@ describe('Cart | Testing | Factories | CartPaymentFactory', () => {
 
   describe('create', () => {
 
-    let result: CartPayment;
+    let result: DaffCartPayment;
 
     beforeEach(() => {
       result = cartPaymentFactory.create();
@@ -33,7 +33,7 @@ describe('Cart | Testing | Factories | CartPaymentFactory', () => {
   });
 
   describe('createMany', () => {
-    let result: CartPayment[];
+    let result: DaffCartPayment[];
 
     it('should create as many cart payments as desired', () => {
       result = cartPaymentFactory.createMany(2);

@@ -1,7 +1,7 @@
 import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
-import { Cart, CartReset, CartLoadSuccess, fromCart } from "@daffodil/cart";
+import { DaffCart, DaffCartReset, DaffCartLoadSuccess, fromCart } from "@daffodil/cart";
 import { DaffCartFactory, DaffCartItemFactory } from "@daffodil/cart/testing";
 
 import * as fromAddToCartNotification from './index';
@@ -82,7 +82,7 @@ describe('selectDemoAddToCartNotificationState', () => {
 
   describe('selectCartItemCount', () => {
 
-    let stubCart: Cart;
+    let stubCart: DaffCart;
 
     beforeEach(() => {
       stubCart = cartFactory.create({
@@ -91,8 +91,8 @@ describe('selectDemoAddToCartNotificationState', () => {
         })
       });
 
-      store.dispatch(new CartReset());
-      store.dispatch(new CartLoadSuccess(stubCart));
+      store.dispatch(new DaffCartReset());
+      store.dispatch(new DaffCartLoadSuccess(stubCart));
     });
     
     it('selects total number of cartItems', () => {

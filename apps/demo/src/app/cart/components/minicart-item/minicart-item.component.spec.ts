@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffProductImageFactory } from '@daffodil/product/testing';
-import { CartItem } from '@daffodil/cart';
+import { DaffCartItem } from '@daffodil/cart';
 import { DaffCartItemFactory } from '@daffodil/cart/testing';
 
 import { MiniCartItemComponent } from './minicart-item.component';
@@ -13,7 +13,7 @@ import { CartItemComponent } from '../cart-item/cart-item.component';
 
 @Component({template: '<demo-minicart-item [item]="cartItemValue"></demo-minicart-item>'})
 class WrapperComponent {
-  cartItemValue: CartItem;
+  cartItemValue: DaffCartItem;
 }
 
 describe('MiniCartItemComponent', () => {
@@ -22,7 +22,7 @@ describe('MiniCartItemComponent', () => {
   let cartItemComponent: CartItemComponent;
   let cartItemFactory: DaffCartItemFactory;
   let productImageFactory: DaffProductImageFactory;
-  let mockCartItem: CartItem;
+  let mockCartItem: DaffCartItem;
   let router: Router;
   
   beforeEach(async(() => {

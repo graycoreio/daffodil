@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component, Input } from '@angular/core';
 
-import { Cart } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 import { DaffCartItemFactory, DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffMockCurrencyPipe } from '@daffodil/core/testing';
 
@@ -11,7 +11,7 @@ import { CartTotalsItemModule } from '../cart-totals-item/cart-totals-item.modul
 
 @Component({template: '<demo-cart-totals [cart]="cartValue"></demo-cart-totals>'})
 class WrapperComponent {
-  @Input() cartValue: Cart;
+  @Input() cartValue: DaffCart;
 }
 
 describe('CartTotalsComponent', () => {

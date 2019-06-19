@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Observable ,  of } from 'rxjs';
 
-import { Cart } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffContainerModule, DaffLoadingIconModule } from '@daffodil/design';
 
@@ -19,7 +19,7 @@ const cart = cartFactory.create();
   exportAs: 'CartContainer'
 })
 class MockCartContainerComponent {
-  cart$: Observable<Cart> = of(cart);
+  cart$: Observable<DaffCart> = of(cart);
   loading$: Observable<boolean> = of(false);
 }
 
@@ -28,7 +28,7 @@ class MockCartContainerComponent {
   template: ''
 })
 class MockCartWrapperComponent { 
-  @Input() cart: Cart;
+  @Input() cart: DaffCart;
 }
 
 describe('CartViewComponent', () => {

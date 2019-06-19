@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 import { provideMockActions } from '@ngrx/effects/testing';
 
-import { AddToCart } from '@daffodil/cart';
+import { DaffAddToCart } from '@daffodil/cart';
 
 import { AddToCartNotificationEffects } from './add-to-cart-notification.effects';
 import { OpenAddToCartNotification } from '../actions/add-to-cart-notification.actions';
@@ -30,7 +30,7 @@ describe('AddToCartNotificationEffects', () => {
   describe('addToCart$', () => {
 
     let expected;
-    const addToCartAction = new AddToCart({productId: 'id', qty: 1});
+    const addToCartAction = new DaffAddToCart({productId: 'id', qty: 1});
   
     beforeEach(() => {
       const openAddToCartNotificationAction = new OpenAddToCartNotification();

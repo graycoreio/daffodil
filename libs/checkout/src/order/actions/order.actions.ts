@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Cart } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 
 import { Order } from '../../models/order/order';
 
@@ -12,7 +12,7 @@ export enum OrderActionTypes {
 export class PlaceOrder implements Action {
   readonly type = OrderActionTypes.PlaceOrderAction;
 
-  constructor(public payload: Cart) {}
+  constructor(public payload: DaffCart) {}
 }
 
 export class PlaceOrderSuccess implements Action {

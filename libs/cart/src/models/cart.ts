@@ -1,8 +1,8 @@
-import { CartItem } from './cart-item';
-import { CartAddress } from './cart-address';
-import { CartPayment } from './cart-payment';
+import { DaffCartItem } from './cart-item';
+import { DaffCartAddress } from './cart-address';
+import { DaffCartPayment } from './cart-payment';
 
-export interface Cart {
+export interface DaffCart {
   id: number;
   created_at: Date;
   updated_at: Date;
@@ -13,7 +13,7 @@ export interface Cart {
   coupon_code: string;
   subtotal: number;
   subtotal_with_discount: number;
-  items?: CartItem[];
-  addresses?: CartAddress[];
-  payment?: CartPayment | null;
+  items?: DaffCartItem[];
+  addresses?: DaffCartAddress[];
+  payment?: DaffCartPayment | null;
 }

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Cart } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 
 @Component({
   selector: 'demo-cart',
@@ -9,5 +9,5 @@ import { Cart } from '@daffodil/cart';
 })
 export class CartComponent {
 
-  @Input() cart: Cart;
+  @Input() cart: DaffCart;
 }

@@ -5,7 +5,7 @@ import { Observable ,  of } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-import { Cart } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffLoadingIconModule } from '@daffodil/design';
 
@@ -18,7 +18,7 @@ const stubCartTitle = 'cartTitle';
 
 @Component({template: '<demo-cart-summary-wrapper [cartTitle]="cartTitleValue" [cart]="cartValue$ | async" [loading]="loadingValue$ | async"><div class="transcluded-content"></div></demo-cart-summary-wrapper>'})
 class WrapperComponent {
-  cartValue$: Observable<Cart>;
+  cartValue$: Observable<DaffCart>;
   loadingValue$: Observable<boolean>;
   cartTitleValue: string;
 }
@@ -28,7 +28,7 @@ class WrapperComponent {
   template: ''
 })
 class MockCartSummaryComponent { 
-  @Input() cart: Cart;
+  @Input() cart: DaffCart;
   @Input() title: string;
 }
 
@@ -37,7 +37,7 @@ class MockCartSummaryComponent {
   template: ''
 })
 class MockCartTotalsComponent {
-  @Input() cart: Cart;
+  @Input() cart: DaffCart;
 }
 
 @Component({

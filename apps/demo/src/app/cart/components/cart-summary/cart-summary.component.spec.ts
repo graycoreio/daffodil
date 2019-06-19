@@ -4,20 +4,20 @@ import { Component, Input } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-import { Cart, CartItem } from '@daffodil/cart';
+import { DaffCart, DaffCartItem } from '@daffodil/cart';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 
 import { CartSummaryComponent } from './cart-summary.component';
 
 @Component({template: '<demo-cart-summary [cart]="cartValue" [title]="titleValue"></demo-cart-summary>'})
 class WrapperComponent {
-  cartValue: Cart;
+  cartValue: DaffCart;
   titleValue: string;
 }
 
 @Component({selector: 'demo-minicart-item', template: ''})
 class MockMiniCartItemComponent {
-  @Input() item: CartItem;
+  @Input() item: DaffCartItem;
 }
 
 describe('CartSummaryComponent', () => {
@@ -28,7 +28,7 @@ describe('CartSummaryComponent', () => {
   let router;
   let cartFactory: DaffCartFactory ;
   let cartItemFactory: DaffCartItemFactory;
-  let mockCart: Cart;
+  let mockCart: DaffCart;
   const stubTitle = 'title';
 
   beforeEach(() => {

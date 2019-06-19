@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffCartAddressFactory } from './cart-address.factory';
-import { CartAddress } from '@daffodil/cart';
+import { DaffCartAddress } from '@daffodil/cart';
 
 describe('Cart | Testing | Factories | CartAddressFactory', () => {
   
@@ -21,7 +21,7 @@ describe('Cart | Testing | Factories | CartAddressFactory', () => {
 
   describe('create', () => {
 
-    let result: CartAddress;
+    let result: DaffCartAddress;
 
     beforeEach(() => {
       result = cartAddressFactory.create();
@@ -33,7 +33,7 @@ describe('Cart | Testing | Factories | CartAddressFactory', () => {
   });
 
   describe('createMany', () => {
-    let result: CartAddress[];
+    let result: DaffCartAddress[];
 
     it('should create as many cart addresses as desired', () => {
       result = cartAddressFactory.createMany(2);

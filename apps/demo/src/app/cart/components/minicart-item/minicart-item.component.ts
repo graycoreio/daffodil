@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { CartItem } from '@daffodil/cart';
+import { DaffCartItem } from '@daffodil/cart';
 
 @Component({
   selector: 'demo-minicart-item',
@@ -11,7 +11,7 @@ import { CartItem } from '@daffodil/cart';
 })
 export class MiniCartItemComponent {
 
-  @Input() item: CartItem;
+  @Input() item: DaffCartItem;
 
   constructor(
     private router: Router
