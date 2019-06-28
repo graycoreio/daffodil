@@ -1,0 +1,10 @@
+{% if member.decorators[0].name === 'Input' %}
+<div class="members-table__cell">
+  @Input() {$ member.name $}: {% if member.type %}<a href="api/{$ member.type $}">{$ member.type $}</a>{% endif %}
+</div>
+<div class="members-table__cell">{$ member.description $}</div>
+{% endif %}
+{% if member.decorators[0].name === 'Output' %}
+<div class="members-table__cell">@Output() {$ member.name $}</div>
+<div class="members-table__cell">{$ member.description $}</div>
+{% endif %}
