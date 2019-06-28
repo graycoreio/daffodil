@@ -1,28 +1,28 @@
 import { NgModule } from '@angular/core';
 
 import { ApolloBoostModule, ApolloBoost } from 'apollo-angular-boost';
-import { DaffProductShopifyDriverModule } from '@daffodil/product';
+import { DaffProductMagentoDriverModule } from '@daffodil/product';
 import { DaffCartInMemoryDriverModule } from '@daffodil/cart/testing';
 import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
 
 @NgModule({
   imports: [
-    //Shopify
+    //Magento
     ApolloBoostModule,
-    DaffProductShopifyDriverModule.forRoot(),
+    DaffProductMagentoDriverModule.forRoot(),
     DaffCartInMemoryDriverModule.forRoot(),
     DaffCheckoutInMemoryDriverModule.forRoot()
   ]
 })
-export class ShopifyModule {
-  // Shopify
+export class MagentoModule {
+  // Magento
   constructor(boost: ApolloBoost) {
     boost.create({
-      uri: "https://daffodil-demo-alpha.myshopify.com/api/graphql",
+      uri: "https://release-dev-231-npzdaky-zddsyhrdimyra.us-4.magentosite.cloud/graphql",
       request: async operation => {
         operation.setContext({
           headers: {
-            "X-Shopify-Storefront-Access-Token": "9419ecdd446b983348bc3b47dccc8b84"
+            // "X-Magento-Storefront-Access-Token": "9419ecdd446b983348bc3b47dccc8b84"
           }
         });
       },
