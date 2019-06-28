@@ -5,10 +5,12 @@
 {% endmacro %}
 
 {% block body %}
+{% if doc.decorators[0].argumentInfo[0].selector %}
 <section class="selectors">
   <span class="selectors__label">Selector:</span>
   <span class="selectors__name"><code>{$ doc.decorators[0].argumentInfo[0].selector $}</code></span>
 </section>
+{% endif %}
 
 <section class="members">
   <h2>Properties</h2>

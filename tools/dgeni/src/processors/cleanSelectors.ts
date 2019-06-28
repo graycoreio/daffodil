@@ -12,7 +12,7 @@ export class CleanSelectorsProcessor implements Processor {
     let removeTicks = new RegExp('[^`]*[^`]');
     let removeQuotes = new RegExp('[^\']*[^\']');
 
-    docs.filter(doc => doc.decorators).forEach((doc) => {
+    docs.filter(doc => this.hasSelector(doc)).forEach((doc) => {
       doc.selectors = doc.decorators[0].argumentInfo[0].selector
         .match(removeTicks)[0]
         .match(removeQuotes)[0]
@@ -21,5 +21,9 @@ export class CleanSelectorsProcessor implements Processor {
     });
 
     return docs;
+  }
+
+  private hasSelector(doc) {
+    return doc.decorators && doc.decorators[0].argumentInfo.length && doc.decorators[0].argumentInfo[0].selector;
   }
 }

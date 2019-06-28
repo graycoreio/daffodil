@@ -37,7 +37,13 @@ export const apiDocs =  new Package('checkout', [
 
     // Specify collections of source files that should contain the documentation to extract
     readTypeScriptModules.sourceFiles = [
-      'design/src/index.ts'
+      'branding/src/index.ts',
+      'cart/src/index.ts',
+      'checkout/src/index.ts',
+      'core/src/index.ts',
+      'design/src/index.ts',
+      'driver/src/index.ts',
+      'product/src/index.ts'
     ];
   })
   // Configure jsdoc-style tag parsing
