@@ -1,0 +1,128 @@
+@import 'utilities';
+@import "theme";
+
+.api-doc {
+  margin: 25px;
+
+
+  & a {
+    color: daff-color($primary);
+  }
+}
+
+.api-header {
+  display: block;
+
+  @include breakpoint(mobile) {
+    display: flex;
+    align-items: center;
+  }
+
+  &__label {
+    @include embolden();
+    display: inline-block;
+    border-radius: 3px;
+    color: $white;
+    margin: 15px 0 0 0;
+    padding: 4px 8px;
+    text-transform: uppercase;
+    box-sizing: border-box;
+
+    @include breakpoint(mobile) {
+      margin: 0 0 0 15px;
+    }
+  }
+
+  &__label.class {
+    background: daff-color($primary);
+  }
+
+  &__label.type-alias {
+    background: daff-color($secondary);
+    color: $white;
+  }
+
+  &__label.interface {
+    background: daff-color($secondary);
+    color: $white;
+  }
+
+  &__label.const {
+    background: daff-color($secondary);
+  }
+}
+
+.api-subtitle {
+  margin: 15px 0 40px 0;
+}
+
+.selectors {
+  word-break: break-word;
+  
+  &__label {
+    font-size: 1rem;
+    line-height: 1em;
+    margin-right: 5px;
+  }
+}
+
+$border-color: 1px solid #ebebeb;
+
+.members-table {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: $border-color;
+  border-radius: 3px;
+  font-size: 1rem;
+  line-height: 1.5em;
+  margin-top: 15px;
+  box-sizing: border-box;
+
+  @include breakpoint(mobile) {
+    grid-template-columns: 1fr 3fr;
+  }
+
+  &__header {
+    display: flex;
+    background: #ebebeb;
+    border-bottom: $border-color;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    font-size: 1.125rem;
+    line-height: 1.5em;
+    padding: 15px;
+    box-sizing: border-box;
+
+    &:first-of-type {
+      border-right: $border-color;
+      border-top-right-radius: 0;
+    }
+  }
+
+  &__cell {
+    border-bottom: $border-color;
+    padding: 10px 15px;
+    word-break: break-word;
+    hyphens: auto;
+    box-sizing: border-box;
+
+    &:nth-child(odd) {
+      border-right: $border-color;
+    }
+
+    &:nth-last-child(-n+2) {
+      border-bottom: 0;
+    }
+  }
+}
+
+code {
+  background: #ebebeb;
+  border-radius: 3px;
+  color: $black;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1rem;
+  line-height: 1.75em;
+  padding: 4px 6px;
+  box-sizing: border-box;
+}

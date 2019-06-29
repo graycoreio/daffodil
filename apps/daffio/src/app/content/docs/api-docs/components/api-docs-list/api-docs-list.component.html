@@ -1,0 +1,9 @@
+<div class="api-docs-list">
+  <h1>API Index</h1>
+  <div class="api-docs-list__body">
+    <div class="list-item" *ngFor="let doc of docsList">
+      <label class="list-item__label {{ doc.docType }}">{{ doc.docType | slice:0:1 }}</label>
+      <a class="list-item__name" routerLink="{{doc.path}}">{{ doc.title }}</a>
+    </div>
+  </div>
+</div>
