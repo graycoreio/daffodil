@@ -1,0 +1,10 @@
+{% extends 'base.template.html' -%}
+
+{% block body %}
+<div class="members-table">
+  <div class="members-table__header">Type</div>
+  <div class="members-table__header">Options</div>
+  <div class="members-table__cell">{$ doc.name $}</div>
+  <div class="members-table__cell"><code>{$ doc.typeDefinition $}</code></div>
+</div>
+{% endblock %}

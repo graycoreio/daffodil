@@ -1,0 +1,27 @@
+{% extends 'base.template.html' -%}
+
+{% macro member(member) -%}
+  {% include 'member.template.html' %}
+{% endmacro %}
+
+{% block body %}
+{% if doc.decorators[0].argumentInfo[0].selector %}
+<section class="selectors">
+  <span class="selectors__label">Selector:</span>
+  <span class="selectors__name"><code>{$ doc.decorators[0].argumentInfo[0].selector $}</code></span>
+</section>
+{% endif %}
+
+<section class="members">
+  <h2>Properties</h2>
+  <div class="members-table">
+    <div class="members-table__header">Name</div>
+    <div class="members-table__header">Description</div>
+    {%- for i in range(0, doc.members.length) %}
+      {% if doc.members[i].decorators %}
+        {$ member(doc.members[i]) $}
+      {% endif %}
+    {% endfor -%}
+  </div>
+</section>
+{% endblock %}

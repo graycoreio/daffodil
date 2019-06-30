@@ -1,0 +1,12 @@
+{% block header %}
+<header class="api-header">
+  <h1 class="api-header__name">{$ doc.name $}</h1>
+  <label class="api-header__label {$ doc.docType $}">{$ doc.docType $}</label>
+</header>
+{% endblock %}
+
+<p class="api-subtitle">{$ doc.description $}</p>
+
+<div class="api-body">
+  {% block body %}{% endblock %}
+</div>
