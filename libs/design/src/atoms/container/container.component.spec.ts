@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DaffContainerComponent, DaffContainerSize, DaffContainerSizeEnum } from './container.component';
+import { DaffContainerComponent, DaffContainerSize } from './container.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
@@ -42,7 +42,7 @@ describe('DaffContainerComponent', () => {
   describe('setting the size of the container', () => {
     describe('when size is xs', () => {
       it('should set "daff-container--xs" on host element', () => {
-        wrapper.size = DaffContainerSizeEnum.XSmall;
+        wrapper.size = 'xs';
         fixture.detectChanges();
         expect(de.nativeElement.classList.contains('daff-container--xs')).toEqual(true);
       });
@@ -50,7 +50,7 @@ describe('DaffContainerComponent', () => {
 
     describe('when size is sm', () => {
       it('should set "daff-container--sm" on host element', () => {
-        wrapper.size = DaffContainerSizeEnum.Small;
+        wrapper.size = 'sm';
         fixture.detectChanges();
         expect(de.nativeElement.classList.contains('daff-container--sm')).toEqual(true);
       });
@@ -58,7 +58,7 @@ describe('DaffContainerComponent', () => {
 
     describe('when size is md', () => {
       it('should set "daff-container--md" on host element', () => {
-        wrapper.size = DaffContainerSizeEnum.Medium;
+        wrapper.size = 'md';
         fixture.detectChanges();
         expect(de.nativeElement.classList.contains('daff-container--md')).toEqual(true);
       });
@@ -66,7 +66,7 @@ describe('DaffContainerComponent', () => {
 
     describe('when size is lg', () => {
       it('should set "daff-container--lg" on host element', () => {
-        wrapper.size = DaffContainerSizeEnum.Large;
+        wrapper.size = 'lg';
         fixture.detectChanges();
         expect(de.nativeElement.classList.contains('daff-container--lg')).toEqual(true);
       });
@@ -74,7 +74,7 @@ describe('DaffContainerComponent', () => {
 
     describe('when size is xl', () => {
       it('should set "daff-container--xl" on host element', () => {
-        wrapper.size = DaffContainerSizeEnum.XLarge;
+        wrapper.size = 'xl';
         fixture.detectChanges();
         expect(de.nativeElement.classList.contains('daff-container--xl')).toEqual(true);
       });

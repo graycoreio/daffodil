@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, Input, ElementRef, ChangeDetectionStrategy } from '@angular/core';
+
 import { DaffColorable, DaffPalette, daffColorMixin } from '../../../core/colorable/colorable';
 
 export type DaffCalloutLayout = "centered" | undefined;
@@ -9,7 +10,7 @@ export enum DaffCalloutLayoutEnum {
 /**
  * An _elementRef is needed for the Colorable mixin
  */
-export class DaffCalloutBase {
+class DaffCalloutBase {
   constructor(public _elementRef: ElementRef) {}
 }
 
@@ -26,7 +27,6 @@ const _daffCalloutBase = daffColorMixin(DaffCalloutBase)
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-
 export class DaffCalloutComponent extends _daffCalloutBase implements DaffColorable {
   @Input() layout: DaffCalloutLayout;
   @Input() color: DaffPalette;

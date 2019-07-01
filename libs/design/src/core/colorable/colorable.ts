@@ -1,4 +1,4 @@
-import { ElementRef, Type } from "@angular/core";
+import { ElementRef } from "@angular/core";
 import { Constructor } from '../constructor';
 
 /**
@@ -16,7 +16,7 @@ export type DaffPalette =
     "black" | "white" | 
     "theme" | "theme-contrast" | undefined;
 
-export enum DaffPaletteEnum {
+enum DaffPaletteEnum {
     PRIMARY = "primary",
     SECONDARY = "secondary",
     ACCENT = "accent", //TODO: damienwebdev Deprecate accent
@@ -26,9 +26,9 @@ export enum DaffPaletteEnum {
     THEME = "theme",
     THEMECONTRAST = "theme-contrast"
 }
-export interface HasElementRef {
+interface HasElementRef {
     _elementRef: ElementRef;
-  }
+}
 
 /**
  * This should be a trait, but typescript only supports mixins.

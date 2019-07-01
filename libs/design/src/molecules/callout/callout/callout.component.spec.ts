@@ -2,8 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component, DebugElement } from '@angular/core';
 
-import {
-  DaffCalloutComponent, DaffCalloutLayout, DaffCalloutLayoutEnum} from './callout.component';
+import { DaffCalloutComponent, DaffCalloutLayout } from './callout.component';
 import { DaffPalette } from '../../../core/colorable/colorable';
 
 @Component ({
@@ -49,7 +48,7 @@ describe('DaffCalloutComponent', () => {
   describe('setting the layout of a callout', () => {
     describe('when layout is centered', () => {
       it('should set "daff-callout--centered" on host element', () => {
-        wrapper.layout = DaffCalloutLayoutEnum.Centered;
+        wrapper.layout = 'centered';
 
         fixture.detectChanges();
         expect(de.nativeElement.classList.contains('daff-callout--centered')).toEqual(true);

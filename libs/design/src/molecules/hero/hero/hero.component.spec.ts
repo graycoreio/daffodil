@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { DaffHeroComponent, DaffHeroLayout, DaffHeroLayoutEnum, DaffHeroSize, DaffHeroSizeEnum } from './hero.component';
+import { DaffHeroComponent, DaffHeroLayout, DaffHeroSize } from './hero.component';
 import { DaffPalette } from '../../../core/colorable/colorable';
 
 @Component({
@@ -45,7 +45,7 @@ describe('DaffHeroComponent', () => {
   describe('setting the layout of the hero', () => {
     describe('when layout is centered', () => {
       it('should set "daff-hero--centered" on host element', () => {
-        wrapper.layout = DaffHeroLayoutEnum.Centered;
+        wrapper.layout = 'centered';
         fixture.detectChanges();
 
         expect(de.nativeElement.classList.contains('daff-hero--centered')).toEqual(true);
@@ -60,7 +60,7 @@ describe('DaffHeroComponent', () => {
   describe('setting the size of the hero', () => {
     describe('when size is fullscreen', () => {
       it('should set "daff-hero--fullscreen" on host element', () => {
-        wrapper.size = DaffHeroSizeEnum.Fullscreen;
+        wrapper.size = 'fullscreen';
         fixture.detectChanges();
 
         expect(de.nativeElement.classList.contains('daff-hero--fullscreen')).toEqual(true);
@@ -69,7 +69,7 @@ describe('DaffHeroComponent', () => {
 
     describe('when size is small', () => {
       it('should set "daff-hero--small" on host element', () => {
-        wrapper.size = DaffHeroSizeEnum.Small;
+        wrapper.size = 'small';
         fixture.detectChanges();
 
         expect(de.nativeElement.classList.contains('daff-hero--small')).toEqual(true);

@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { DaffFeatureComponent, DaffFeatureMode, DaffFeatureModeEnum } from './feature.component';
+import { DaffFeatureComponent, DaffFeatureMode } from './feature.component';
 
 @Component({
   template: `<daff-feature [mode]="mode"></daff-feature>`
@@ -46,15 +46,12 @@ describe('DaffFeatureComponent', () => {
 
   describe('setting the mode of the feature', () => {
     it('should set default mode to normal', () => {
-      wrapper.mode = DaffFeatureModeEnum.Normal;
-      fixture.detectChanges();
-
       expect(de.nativeElement.classList.contains('daff-feature--normal')).toEqual(true);
     });
 
     describe('when mode is compact', () => {
       it('should set "daff-feature--compact" on host element', () => {
-        wrapper.mode = DaffFeatureModeEnum.Compact;
+        wrapper.mode = 'compact';
         fixture.detectChanges();
 
         expect(de.nativeElement.classList.contains('daff-feature--compact')).toEqual(true);
@@ -63,7 +60,7 @@ describe('DaffFeatureComponent', () => {
 
     describe('when mode is normal', () => {
       it('should set "daff-feature--normal" on host element', () => {
-        wrapper.mode = DaffFeatureModeEnum.Normal;
+        wrapper.mode = 'normal';
         fixture.detectChanges();
   
         expect(de.nativeElement.classList.contains('daff-feature--normal')).toEqual(true);
@@ -72,7 +69,7 @@ describe('DaffFeatureComponent', () => {
 
     describe('when mode is undefined', () => {
       it('should set "daff-feature--normal" as default', () => {
-        wrapper.mode = DaffFeatureModeEnum.Normal;
+        wrapper.mode = undefined;
         fixture.detectChanges();
 
         expect(de.nativeElement.classList.contains('daff-feature--normal')).toEqual(true);

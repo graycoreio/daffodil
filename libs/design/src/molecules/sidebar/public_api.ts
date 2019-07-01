@@ -1,4 +1,5 @@
 export { DaffSidebarModule } from './sidebar.module';
-export { DaffSidebarItemComponent } from './sidebar-item/sidebar-item.component';
-export { DaffSidebarViewportComponent } from './sidebar-viewport/sidebar-viewport.component';
-export { DaffSidebarComponent } from './sidebar/sidebar.component';
+export * from './sidebar-item/sidebar-item.component';
+export * from './sidebar-viewport/sidebar-viewport.component';
+export * from './sidebar/sidebar.component';
+export * from './helper/sidebar-mode';

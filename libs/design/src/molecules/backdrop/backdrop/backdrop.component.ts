@@ -14,26 +14,23 @@ import { daffBackdropAnimations } from '../animation/backdrop-animation';
 export class DaffBackdropComponent {
 
   /**
-   * @docs
    * Determines whether or not the backdrop is transparent.
    */
-  @Input() transparent = false;
+  // tslint:disable-next-line: no-inferrable-types
+  @Input() transparent: boolean = false;
 
   /**
-   * @docs
    * Output event triggered when the backdrop is clicked.
    */
   @Output() backdropClicked: EventEmitter<void> = new EventEmitter<void>();
 
   /**
-   * @docs
    * Animation hook for that controls the backdrops 
    * entrance and fade animations.
    */
   @HostBinding('@fadeBackdrop')
 
   /**
-   * @docs
    * @deprecated
    * Backdrop event that triggers when the backdrop element is clicked.
    */
