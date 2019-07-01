@@ -32,7 +32,8 @@ export class DaffSidebarViewportComponent implements OnInit{
    * Input state for whether or not the backdrop is 
    * "visible" to the human eye
    */
-  @Input() backdropIsVisible = true;
+  // tslint:disable-next-line: no-inferrable-types
+  @Input() backdropIsVisible: boolean = true;
   /**
    * Event fired when the backdrop is clicked
    * This is often used to close the sidebar

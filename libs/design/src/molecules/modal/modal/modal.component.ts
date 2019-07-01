@@ -25,7 +25,8 @@ export class DaffModalComponent implements OnInit {
    * Input state for whether or not the backdrop is 
    * "visible" to the human eye
    */
-  @Input() backdropIsVisible = true;
+  // tslint:disable-next-line: no-inferrable-types
+  @Input() backdropIsVisible: boolean = true;
   /**
    * Property for the "show" state of the modal
    */

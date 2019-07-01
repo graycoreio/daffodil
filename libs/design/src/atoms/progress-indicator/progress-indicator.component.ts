@@ -1,13 +1,13 @@
 import { Component, Input, ChangeDetectionStrategy, ElementRef, Output, EventEmitter } from '@angular/core';
+import { AnimationEvent } from '@angular/animations';
 
 import { daffColorMixin, DaffColorable, DaffPalette } from '../../core/colorable/colorable';
 import { daffProgressIndicatorAnimation } from './animation/progress-indicator-animation';
-import { AnimationEvent } from '@angular/animations';
 
 /**
  * An _elementRef is needed for the Colorable mixin
  */
-export class DaffProgressIndicatorBase{
+class DaffProgressIndicatorBase{
   constructor(public _elementRef: ElementRef) {}
 }
 
@@ -38,7 +38,8 @@ export class DaffProgressIndicatorComponent extends _daffProgressIndicatorBase i
    * expressed as a whole number between 0 and 100.
    * 
    */
-  @Input() percentage = 0;
+  // tslint:disable-next-line: no-inferrable-types
+  @Input() percentage: number = 0;
 
   /**
    * An event that emits each time the progression reaches 100% 

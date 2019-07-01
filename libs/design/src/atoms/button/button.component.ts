@@ -15,7 +15,7 @@ const BUTTON_HOST_ATTRIBUTES = [
 /**
  * An _elementRef is needed for the Colorable mixin
  */
-export class DaffButtonBase{
+class DaffButtonBase{
   constructor(public _elementRef: ElementRef) {}
 }
 

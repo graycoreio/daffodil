@@ -16,7 +16,7 @@ export enum DaffHeroSizeEnum {
 /**
  * An _elementRef is needed for the Colorable mixin
  */
-export class DaffHeroBase {
+class DaffHeroBase {
   constructor(public _elementRef: ElementRef) {}
 }
 

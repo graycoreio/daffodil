@@ -1,4 +1,4 @@
 export { DaffCardModule } from './card.module';
-export { DaffCardComponent } from './card/card.component';
-export { DaffCardTitleDirective } from './card-title/card-title.directive';
-export { DaffCardImageDirective } from './card-image/card-image.directive';
+export * from './card/card.component';
+export * from './card-title/card-title.directive';
+export * from './card-image/card-image.directive';

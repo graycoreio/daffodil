@@ -9,7 +9,6 @@ import { fromEvent } from 'rxjs';
  * a simplified version (with a different design) of `mat-drawer` which 
  * follows a stricter `dumb` component pattern than `mat-drawer`
  */
-
 @Component({
   selector: 'daff-sidebar',
   styleUrls: ['./sidebar.component.scss'],

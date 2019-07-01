@@ -15,13 +15,13 @@ import { DaffFormFieldMissingControlMessage } from "../form-field-errors";
 export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterContentChecked {
 
   /**
-   * @docs
    * The tracking property used to determine if the parent form has been submitted,
    * and thus show an error message (even if the field hasn't been touched).
    * 
    * @deprecated
    */
-  @Input() formSubmitted = false;
+  // tslint:disable-next-line: no-inferrable-types
+  @Input() formSubmitted: boolean = false;
 
   /**
    * The child form control that the form-field manages

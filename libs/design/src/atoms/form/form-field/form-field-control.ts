@@ -1,8 +1,6 @@
 import { NgControl } from "@angular/forms";
 
 /**
- * @docs
- * 
  * The class that an form control must **implement** in order to be 
  * used with the `DaffFormField`.
  * 

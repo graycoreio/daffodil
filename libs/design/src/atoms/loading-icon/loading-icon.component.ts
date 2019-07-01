@@ -4,7 +4,7 @@ import { daffColorMixin, DaffColorable, DaffPalette } from '../../core/colorable
 /**
  * An _elementRef is needed for the Colorable mixin
  */
-export class DaffLoadingIconBase{
+class DaffLoadingIconBase{
   constructor(public _elementRef: ElementRef) {}
 }
 
@@ -27,7 +27,8 @@ export class DaffLoadingIconComponent extends _daffLoadingIconBase implements Da
   /**
    * The (pixel) diameter of the animation
    */
-  @Input() diameter = 60;
+  // tslint:disable-next-line: no-inferrable-types
+  @Input() diameter: number = 60;
 
   constructor(private elementRef: ElementRef) {
     super(elementRef);

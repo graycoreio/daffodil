@@ -11,7 +11,7 @@ const LINK_HOST_ATTRIBUTES = [
 /**
  * An _elementRef is needed for the Colorable mixin
  */
-export class DaffLinkBase {
+class DaffLinkBase {
   constructor(public _elementRef: ElementRef) {}
 }
 
@@ -25,7 +25,6 @@ const _daffLinkBase = daffColorMixin(DaffLinkBase, 'theme-contrast')
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-
 export class DaffLinkComponent extends _daffLinkBase implements OnInit, DaffColorable {
 
   @Input() color: DaffPalette;
