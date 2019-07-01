@@ -3,11 +3,6 @@
 
 .api-doc {
   margin: 25px;
-
-
-  & a {
-    color: daff-color($primary);
-  }
 }
 
 .api-header {
@@ -32,25 +27,10 @@
       margin: 0 0 0 15px;
     }
   }
-
-  &__label.class {
-    background: daff-color($primary);
+  &__label {
+    @include type-label();
   }
-
-  &__label.type-alias {
-    background: daff-color($secondary);
-    color: $white;
-  }
-
-  &__label.interface {
-    background: daff-color($secondary);
-    color: $white;
-  }
-
-  &__label.const {
-    background: daff-color($secondary);
-  }
-}
+}s
 
 .api-subtitle {
   margin: 15px 0 40px 0;
@@ -66,7 +46,7 @@
   }
 }
 
-$border-color: 1px solid #ebebeb;
+$border-color: 1px solid daff-color($daff-gray, 10);
 
 .members-table {
   display: grid;
@@ -84,7 +64,7 @@ $border-color: 1px solid #ebebeb;
 
   &__header {
     display: flex;
-    background: #ebebeb;
+    background: daff-color($daff-gray, 10);
     border-bottom: $border-color;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
@@ -117,7 +97,7 @@ $border-color: 1px solid #ebebeb;
 }
 
 code {
-  background: #ebebeb;
+  background: daff-color($daff-gray, 10);
   border-radius: 3px;
   color: $black;
   font-family: 'Roboto Mono', monospace;

@@ -18,11 +18,11 @@
   }
 
   &.interface {
-    background: green;
+    background: daff-color($daff-gray, 50);
     color: $white;
   }
 
   &.const {
-    background: purple;
+    background: daff-color($daff-purple, 40);
   }
 }
