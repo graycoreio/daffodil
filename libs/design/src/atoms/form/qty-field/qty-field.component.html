@@ -1,0 +1,8 @@
+<daff-qty-select 
+    *ngIf="showSelectField" 
+    [ngModel]="qty" (ngModelChange)="onChangedWrapper($event)"
+    [max]="selectMax" [min]="min" [extendable]="true"></daff-qty-select>
+<daff-qty-text 
+    *ngIf="showTextField"
+    [ngModel]="qty" (ngModelChange)="onChangedWrapper($event)"
+    [min]="min" [max]="max"></daff-qty-text>

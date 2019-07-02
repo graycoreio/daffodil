@@ -1,0 +1,9 @@
+<input daff-input 
+    type="number" min="1"
+    [attr.max]="max"
+    [ngModel]="_value" (ngModelChange)="onValueChange($event)" 
+    (focus)="onFocus()"
+    (blur)="onBlur()" 
+    (keydown)="onInputKeyDown($event)"
+    (paste)="onInputPaste($event)"
+    [disabled]="disabled">

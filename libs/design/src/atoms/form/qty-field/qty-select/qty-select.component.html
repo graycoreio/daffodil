@@ -1,0 +1,5 @@
+<select daff-native-select [(ngModel)]="_value" (ngModelChange)="onValueChange($event)">
+    <option *ngFor="let item of valueArray" [value]="item+1">{{ item+1 }}</option>
+    <option [value]="max" *ngIf="extendable">{{ max }}+</option>
+    <option [value]="max" *ngIf="!extendable">{{ max }}</option>
+  </select>

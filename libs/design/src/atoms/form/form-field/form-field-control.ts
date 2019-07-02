@@ -16,4 +16,8 @@ export abstract class DaffFormFieldControl<T>{
   readonly ngControl: NgControl | null;
 
   readonly controlType?: any;
+
+  readonly focused: boolean;
+
+  abstract focus(event?: Event): void;
 };

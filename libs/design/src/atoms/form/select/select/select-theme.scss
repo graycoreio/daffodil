@@ -1,6 +1,7 @@
 @mixin daff-select-theme($theme){
   $baseContrast: daff-map-deep-get($theme, "core.base-contrast");
   $black: daff-map-deep-get($theme, 'core.black');
+  $primary: map-get($theme, primary);
 
   .daff-native-select {
     color: daff-illuminate($baseContrast, $daff-gray, 4);

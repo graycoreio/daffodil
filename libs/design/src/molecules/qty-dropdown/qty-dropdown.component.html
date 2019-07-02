@@ -1,5 +1,5 @@
 <select daff-native-select
-    *ngIf="!showQtyInputField" 
+    *ngIf="showSelectField" 
     [(ngModel)]="qty" (ngModelChange)="onChangedWrapper(qty)" 
     (blur)="onTouched()" 
     [disabled]="disabled">
@@ -8,8 +8,10 @@
   </select>
   <input 
     type="number" min="1"
-    *ngIf="showQtyInputField" 
+    *ngIf="showTextField" 
     daff-input class="daff-qty-dropdown__input" 
     [(ngModel)]="qty" (ngModelChange)="onChangedWrapper(qty)" 
     (blur)="onTouched()" 
+    (keydown)="onInputKeyDown($event)"
+    (paste)="onInputPaste($event)"
     [disabled]="disabled">

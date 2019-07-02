@@ -1,6 +1,10 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, Optional, Self } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, Optional, Self, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
+
+import { coerceNumberProperty } from '@angular/cdk/coercion'; 
+
 import { DaffFormFieldControl } from '../../atoms/form/form-field/public_api';
+import { DaffInputComponent } from '../../atoms/form/input/public_api';
 @Component({
   selector: 'daff-qty-dropdown',
   styleUrls: ['./qty-dropdown.component.scss'],
@@ -16,6 +20,16 @@ import { DaffFormFieldControl } from '../../atoms/form/form-field/public_api';
 })
 export class DaffQtyDropdownComponent implements ControlValueAccessor, DaffFormFieldControl<any> {
 
+  constructor(
+    @Optional() @Self() public ngControl: NgControl,
+    private _changeDetectorRef: ChangeDetectorRef,
+  ) {}
+  
+  @ViewChild(DaffInputComponent, {read: ElementRef}) textfield : ElementRef;
+
+  private _inputHasBeenShown: boolean = false;
+
+
   private _disabled: boolean = false;
 
   /**
@@ -28,19 +42,24 @@ export class DaffQtyDropdownComponent implements ControlValueAccessor, DaffFormF
 
   /**
    * @docs
-   * The range of elements acceptable in a qty dropdown
+   * The range of numbers acceptable in a qty dropdown
    * before it becomes an input element.
    */
   @Input() dropdownRange = 10;
 
+  private _qty: number = 1;
+
   /**
    * @docs
    * @deprecated
-   * The default value of the element
-   * Event emitted when the qty changes
-   * should just use the built in @angular/forms bindings
+   * The internal tracking property for the value of the form control.
+   * The @Input() will eventually be deprecated.
    */
-  @Input() qty = 1;
+  @Input()
+  get qty() { return this._qty }
+  set qty(value: number) { 
+    this._qty = coerceNumberProperty(value, null);
+  }
   
   /**
    * @docs
@@ -52,34 +71,24 @@ export class DaffQtyDropdownComponent implements ControlValueAccessor, DaffFormF
   /**
    * @docs
    * @deprecated
-   * Event emitted when the qty changes
-   * should just use the built in @angular/forms bindings
+   * Event emitted when the qty changes. 
+   * @see ControlValueAccessor
    */
   @Output() qtyChanged: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor(@Optional() @Self() public ngControl: NgControl) {
-  }
-
-  get controType() {
-    return this.inputHasBeenShown ? "native-select" : "input";
-  }
-
   /**
-   * @docs-private
-   * A helper value for easily making a `mat-option`
+   * 
+   * A helper value for easily making options for the `select`.
    */
   get dropdownItemArray() {
     return Array(this.dropdownRange-1).fill(0).map((x,i)=>i);
   }
-  inputHasBeenShown: boolean = false;
   
-  onChange = (qty: number) => {console.log("test1");};
-  onTouched = () => {};
+  private onChange(qty: number): void {};
+  private onTouched(qty: number): void {};
 
   writeValue(qty: number): void {
-    console.log("test2");
     this.qty = qty;
-    this.onChange(this.qty);
   }
 
   registerOnChange(fn: (qty: number) => void): void {
@@ -91,25 +100,60 @@ export class DaffQtyDropdownComponent implements ControlValueAccessor, DaffFormF
   }
 
   onChangedWrapper(value: any) {
-    value = parseInt(value, 10);
+    this.qty = value;
     this.qtyChanged.emit(value);
     this.onChange(value);
+
+    if(this.valueIsOutsideOfRange()){
+      this._inputHasBeenShown = true;
+    };
   }
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
 
-  get showQtyInputField() : boolean {
-    if (!this.isQtyOutsideDropdownRange() && !this.inputHasBeenShown) {
-      return false
-    } else {
-      this.inputHasBeenShown = true;
-      return true;
+  get showTextField() : boolean {
+    return this.valueIsOutsideOfRange() || this._inputHasBeenShown;
+  }
+
+  get showSelectField(): boolean {
+    return !this.showTextField;
+  }
+
+  private valueIsOutsideOfRange() {
+    if(this.ngControl){
+      return this.ngControl.value >= this.dropdownRange;
+    }
+    else {
+      return this.qty >= this.dropdownRange;
     }
   }
 
-  private isQtyOutsideDropdownRange() {
-    return this.qty >= this.dropdownRange;
+  private regex: RegExp = new RegExp(/^[0-9]+$/g);
+  private specialKeys: Array<string> = [ 'Backspace', 'Tab', 'End', 'Home', 'ArrowRight', 'ArrowLeft'];
+  onInputKeyDown(event: KeyboardEvent) {
+      if (
+        this.specialKeys.indexOf(event.key) !== -1 
+        || (
+          (event.key == "a" || event.key== "v" || event.key == "c") 
+          && (event.metaKey == true || event.ctrlKey == true )
+        )
+      ){
+          return;
+      }
+
+      let current: string = String(this.textfield.nativeElement.value);
+      let next: string = current.concat(event.key);
+
+      if (next && !String(next).match(this.regex)) {
+          event.preventDefault();
+      }
+  }
+
+  onInputPaste(event: ClipboardEvent) {
+    if(!String(event.clipboardData.getData('text').match(this.regex))){
+      event.preventDefault();
+    }
   }
 }
