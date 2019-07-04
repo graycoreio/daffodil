@@ -1,9 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { Component } from '@angular/core';
 
 import { ApiDocsListViewComponent } from './api-docs-list-view.component';
-import { DaffioDocsApiModule } from '../../api.module';
+
+@Component({selector: 'daffio-api-docs-list-container', template: ''})
+class MockDaffioApiDocsListContainer {}
 
 describe('ApiDocsListViewComponent', () => {
   let component: ApiDocsListViewComponent;
@@ -12,9 +14,11 @@ describe('ApiDocsListViewComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffioDocsApiModule,
-        RouterTestingModule,
-        NoopAnimationsModule
+        RouterTestingModule
+      ],
+      declarations: [
+        ApiDocsListViewComponent,
+        MockDaffioApiDocsListContainer
       ]
     })
     .compileComponents();

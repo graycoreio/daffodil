@@ -25,4 +25,8 @@
   &.const {
     background: daff-color($daff-purple, 40);
   }
+
+  &.enum {
+    background: daff-color($daff-blue, 80);
+  }
 }

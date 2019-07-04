@@ -12,7 +12,6 @@ export class DaffioDocService {
   constructor(private http: HttpClient) {}
 
   getDoc(path: string): Observable<any> {
-    console.log(path);
     return this.http.get('/assets/daffio/' + path + '.json');
   }
 

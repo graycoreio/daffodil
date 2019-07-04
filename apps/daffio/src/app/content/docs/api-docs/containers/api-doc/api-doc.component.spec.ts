@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute, UrlSegment } from '@angular/router';
 
 import { DaffioApiDocContainer } from './api-doc.component';
 import { DaffioApiDocModule } from '../../components/api-doc/api-doc.module';
@@ -20,21 +21,25 @@ describe('DaffioApiDocContainer', () => {
     contents: 'contents'
   };
 
+  const mockRoute: any = { snapshot: {} };
+  mockRoute.url = of([new UrlSegment('part1', {}), new UrlSegment('part2', {})]);
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         DaffioApiDocModule,
         ApiDocsListComponentModule,
-        RouterTestingModule
+        RouterTestingModule.withRoutes([])
       ],
       declarations: [
         DaffioApiDocContainer
       ],
       providers: [
-        { provide: DaffioDocService, useValue: daffioDocServiceSpy }
+        { provide: DaffioDocService, useValue: daffioDocServiceSpy },
+        { provide: ActivatedRoute, useValue: mockRoute }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -53,19 +58,22 @@ describe('DaffioApiDocContainer', () => {
   describe('on <daffio-api-doc>', () => {
 
     it('should set doc', () => {
-      expect(docsApiComponent.doc).toEqual(component.doc);
+      component.doc$.subscribe((doc) => {
+        expect(docsApiComponent.doc).toEqual(doc)
+      });
     });
   });
 
-  describe('when doc is null', () => {
+  describe('when the component initializes', () => {
 
-    it('should not render daffio-api-doc', () => {
-      daffioDocServiceSpy.getDoc.and.returnValue(of(null));
-      component.ngOnInit();
-      fixture.detectChanges();
-      const docsApiElement = fixture.debugElement.query(By.css('daffio-api-doc'));
+    it('should get the document for the associated url', () => {
+      expect(daffioDocServiceSpy.getDoc).toHaveBeenCalledWith('part1/part2');
+    });
 
-      expect(docsApiElement).toBeNull();
+    it('should set the doc$ from the docService', () => {
+      component.doc$.subscribe((doc) => {
+        expect(doc).toEqual(stubDoc);
+      });
     });
   });
 });

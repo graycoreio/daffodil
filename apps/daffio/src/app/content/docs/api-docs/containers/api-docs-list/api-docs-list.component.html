@@ -1,1 +1,1 @@
-<daffio-api-docs-list [docsList]="docsList"></daffio-api-docs-list>
+<daffio-api-docs-list *ngIf="docsList$ | async" [docsList]="docsList$ | async"></daffio-api-docs-list>

@@ -10,7 +10,7 @@ import { ToggleSidebar } from '../../sidebar/actions/sidebar.actions';
 })
 export class DaffioHeaderContainer {
   links: any[] = [
-    {path: '/docs', title: 'Documentation'},
+    {path: '/docs', title: 'Docs'},
     {path: '/why-pwa', title: 'Why PWA'}
   ];
   

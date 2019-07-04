@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { map, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { DaffioDocService } from '../../services/api-doc.service';
 import { DaffioApiDocReference } from '../../models/api-doc-reference';
@@ -12,19 +14,19 @@ export class ApiDocsListContainer implements OnInit {
   /**
    * A list of references for API documents.
    */
-  docsList: DaffioApiDocReference[];
+  docsList$: Observable<DaffioApiDocReference[]>;
 
   constructor(
     private docService: DaffioDocService
   ) {}
 
   ngOnInit() {
-    this.docService.getDocsList().subscribe(
-      (data) => {
-        console.log(data[0].items);
-        this.docsList = data[0].items;
-      },
-      (error) => {}
-    );
+    this.docsList$ = this.docService.getDocsList().pipe(
+      map(docsList => docsList[0].items),
+      catchError(error => {
+        //todo navigate to 404 page
+        return null;
+      })
+    )
   }
 }

@@ -47,4 +47,10 @@ describe('DaffioApiDocComponent', () => {
   it('should be able to take doc as input', () => {
     expect(component.doc).toEqual(wrapper.docValue);
   });
+
+  it('should set the innerText of the api-doc div', () => {
+    const apiDocElement = fixture.debugElement.query(By.css('.api-doc')).nativeElement;
+    
+    expect(apiDocElement.innerText).toEqual(wrapper.docValue.contents);
+  });
 });

@@ -64,7 +64,9 @@ describe('ApiDocsListContainer', () => {
   describe('on <daffio-api-docs-list>', () => {
 
     it('should set docsList', () => {
-      expect(apiDocsListComponent.docsList).toEqual(component.docsList);
+      component.docsList$.subscribe((docsList) => {
+        expect(apiDocsListComponent.docsList).toEqual(docsList);
+      })
     });
   });
 });
