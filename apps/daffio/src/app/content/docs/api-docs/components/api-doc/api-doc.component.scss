@@ -30,7 +30,7 @@
   &__label {
     @include type-label();
   }
-}s
+}
 
 .api-subtitle {
   margin: 15px 0 40px 0;
@@ -46,7 +46,7 @@
   }
 }
 
-$border-color: 1px solid daff-color($daff-gray, 30);
+$border-color: 1px solid daff-color($daff-gray, 20);
 
 .members-table {
   display: grid;
