@@ -1,11 +1,13 @@
 import { Action } from '@ngrx/store';
 import { DaffProduct } from '../models/product';
+import { DaffProductModification } from '../models/product-modification';
 
 export enum DaffProductActionTypes {
     ProductLoadAction = "[Product] Load Action",
     ProductLoadSuccessAction = "[Product] Load Success Action",
     ProductLoadFailureAction = "[Product] Load Failure Action",
-    UpdateQtyAction = "[Product] Update Qty Action"
+    UpdateQtyAction = "[Product] Update Qty Action",
+    ProductModifyAction = "[Product] Product Modify Action"
 }
 
 export class DaffProductLoad implements Action {
@@ -32,8 +34,15 @@ export class DaffProductUpdateQty implements Action {
     constructor(public payload: number) {}
 }
 
+export class DaffProductModify implements Action {
+  readonly type = DaffProductActionTypes.ProductModifyAction;
+
+  constructor(public payload: DaffProductModification) {}
+}
+
 export type DaffProductActions = 
     | DaffProductLoad 
     | DaffProductLoadSuccess
     | DaffProductLoadFailure
-    | DaffProductUpdateQty;
+    | DaffProductUpdateQty
+    | DaffProductModify;

@@ -27,6 +27,14 @@ export function reducer(
         },
         state
       );
+    case DaffProductActionTypes.ProductModifyAction:
+      return productAdapter.updateOne(
+        {
+          id: action.payload.id,
+          changes: action.payload.modification
+        },
+        state
+      );
     case DaffProductGridActionTypes.ProductGridResetAction:
       return productAdapter.removeAll(state);
     default:
