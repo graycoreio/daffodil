@@ -1,4 +1,6 @@
 export { DaffProduct } from './models/product';
+export { DaffProductUnion } from './models/product-union';
+export { DaffProductModification } from './models/product-modification';
 export { DaffProductImage } from './models/product-image';
 
 import * as fromProduct from './reducers/index';
