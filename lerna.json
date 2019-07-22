@@ -6,7 +6,10 @@
   ],
   "command": {
     "version": {
-      "allowBranch": "master"
+      "allowBranch": [
+        "master",
+        "release-*"
+      ]
     }
   },
   "version": "0.0.2-alpha.0"
