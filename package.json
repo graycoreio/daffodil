@@ -2,7 +2,7 @@
   "name": "@daffodil/daffodil",
   "license": "MIT",
   "scripts": {
-    "prepublishOnly": "lerna version && lerna run build",
+    "prepublishOnly": "lerna run build",
     "publish": "lerna run publish"
   },
   "private": true,
