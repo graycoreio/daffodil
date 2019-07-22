@@ -3,11 +3,11 @@ import { createEntityAdapter, EntityState, EntityAdapter, Dictionary } from '@ng
 import { DaffProductGridActionTypes, DaffProductGridActions } from '../actions/product-grid.actions';
 import { DaffProductActionTypes, DaffProductActions } from '../actions/product.actions';
 import { DaffBestSellersActionTypes, DaffBestSellersActions } from '../actions/best-sellers.actions';
-import { DaffProduct } from '../models/product';
+import { DaffProductUnion } from '../models/product-union';
 
-export interface State extends EntityState<DaffProduct> {}
+export interface State extends EntityState<DaffProductUnion> {}
 
-export const productAdapter : EntityAdapter<DaffProduct> = createEntityAdapter<DaffProduct>();
+export const productAdapter : EntityAdapter<DaffProductUnion> = createEntityAdapter<DaffProductUnion>();
 
 export const initialState: State = productAdapter.getInitialState();
 
@@ -46,7 +46,7 @@ const { selectIds, selectEntities, selectAll, selectTotal } = productAdapter.get
 
 export const selectProductIds = selectIds;
 
-export const selectProductEntities : (state: EntityState<DaffProduct>) => Dictionary<DaffProduct> = selectEntities;
+export const selectProductEntities : (state: EntityState<DaffProductUnion>) => Dictionary<DaffProductUnion> = selectEntities;
 
 export const selectAllProducts = selectAll;
 
