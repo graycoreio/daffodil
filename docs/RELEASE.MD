@@ -7,6 +7,7 @@
     * Semver major, bump `@daffodil` versions
 4. `git commit -m "chore(release): release vx.x.x"`
 5. `git tag -a vx.x.x -m "Release x.x.x"`
-5. `git branch -d develop && git checkout develop && git merge release-x.x.x`
-6. `git branch -d master && git checkout master && git merge release-x.x.x`
-7. `npm run publish`
+6. `git pull`
+7. `git branch -d develop && git checkout develop && git merge release-x.x.x`
+8. `git branch -d master && git checkout master && git merge release-x.x.x`
+9. `npm run publish`
