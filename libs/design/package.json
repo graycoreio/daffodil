@@ -16,7 +16,7 @@
     "test": "npm run test:scss && npm run test:angular",
     "test:scss": "jasmine src/test_scss.js",
     "test:angular": "ng test design --watch=false --browsers=ChromeHeadless",
-    "publish": "(cd ../../dist/design; npm publish --access=public --dry-run)"
+    "publish": "(cd ../../dist/design; npm publish --access=public)"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "description": "A consistent, sane api driver that works with different ecommerce systems.",
