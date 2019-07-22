@@ -10,4 +10,4 @@
 6. `git pull`
 7. `git branch -d develop && git checkout develop && git merge release-x.x.x`
 8. `git branch -d master && git checkout master && git merge release-x.x.x`
-9. `npm run publish`
+9. `npm run prepublishOnly && npm run publish`
