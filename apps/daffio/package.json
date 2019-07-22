@@ -1,7 +1,7 @@
 {
   "name": "@daffodil/daffio",
   "private": true,
-  "version": "0.0.2-alpha.0",
+  "version": "0.0.2-alpha.1",
   "author": "Graycore LLC",
   "license": "MIT",
   "bugs": {
@@ -23,7 +23,7 @@
     "url": "https://github.com/graycoreio/daffodil"
   },
   "devDependencies": {
-    "@daffodil/branding": "^0.0.2-alpha.0",
-    "@daffodil/design": "^0.0.2-alpha.0"
+    "@daffodil/branding": "^0.0.2-alpha.1",
+    "@daffodil/design": "^0.0.2-alpha.1"
   }
 }
