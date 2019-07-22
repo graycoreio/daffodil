@@ -2,12 +2,8 @@
   "name": "@daffodil/daffodil",
   "license": "MIT",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --app=demo",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "prepublishOnly": "lerna version && lerna run build",
+    "publish": "lerna run publish"
   },
   "private": true,
   "dependencies": {

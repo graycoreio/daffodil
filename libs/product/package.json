@@ -17,7 +17,8 @@
   "scripts": {
     "build": "ng build product --prod",
     "lint": "ng lint product",
-    "test": "ng test product --watch=false --browsers=ChromeHeadless"
+    "test": "ng test product --watch=false --browsers=ChromeHeadless",
+    "publish": "(cd ../../dist/product; npm publish --access=public --dry-run)"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {

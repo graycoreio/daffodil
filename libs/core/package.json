@@ -15,8 +15,7 @@
     "build": "ng build core --prod",
     "lint": "ng lint core",
     "test": "ng test core --watch=false --browsers=ChromeHeadless",
-    "prepublishOnly": "ng build core && mkdir -p ./dist/ && mv ../../dist/core ./dist/",
-    "postpublish": "rm -rf ./dist/"
+    "publish": "(cd ../../dist/core; npm publish --access=public --dry-run)"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {

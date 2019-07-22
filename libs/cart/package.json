@@ -11,13 +11,11 @@
   "bugs": {
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
-  "publishConfig": {
-    "directory": "../../dist/cart"
-  },
   "scripts": {
     "build": "ng build cart --prod",
     "lint": "ng lint cart",
-    "test": "ng test cart --watch=false --browsers=ChromeHeadless"
+    "test": "ng test cart --watch=false --browsers=ChromeHeadless",
+    "publish": "(cd ../../dist/cart; npm publish --access=public --dry-run)"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
