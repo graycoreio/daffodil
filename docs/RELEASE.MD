@@ -1,7 +1,12 @@
 # Generating A New Release
-
-1. `lerna version --no-push --no-git-tag-version`
-2. Reset head back a commit
+1. `git checkout -b release-x.x.x origin/develop`
+2. `lerna version --no-push --no-git-tag-version`
 3. Update `peerDependencies` within packages
-4. Run a build
-5. `lerna publish from-package --contents dist`
+    * Semver patch, no changes
+    * Semver minor, bump `@daffodil` versions
+    * Semver major, bump `@daffodil` versions
+4. `git commit -m "chore(release): release vx.x.x"`
+5. `git tag -a vx.x.x -m "Release x.x.x"`
+5. `git branch -d develop && git checkout develop && git merge release-x.x.x`
+6. `git branch -d master && git checkout master && git merge release-x.x.x`
+7. `npm run publish`
