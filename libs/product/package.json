@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/product",
-  "version": "0.0.1",
+  "version": "0.0.2-alpha.0",
   "description": "Interfaces built for daffodil/state",
   "repository": {
     "type": "git",
@@ -11,6 +11,9 @@
   "bugs": {
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
+  "publishConfig": {
+    "directory": "../../dist/product"
+  },
   "scripts": {
     "build": "ng build product --prod",
     "lint": "ng lint product",
@@ -20,7 +23,7 @@
   "peerDependencies": {
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0",
-    "@daffodil/core": "^0.0.1",
+    "@daffodil/core": "^0.0.2-alpha.0",
     "@ngrx/effects": "^7.3.0",
     "@ngrx/entity": "^7.3.0",
     "@ngrx/store": "^7.3.0",
@@ -28,6 +31,6 @@
     "rxjs": "6.4.0"
   },
   "devDependencies": {
-    "@daffodil/core": "^0.0.1"
+    "@daffodil/core": "^0.0.2-alpha.0"
   }
 }

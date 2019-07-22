@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/cart",
-  "version": "0.0.1",
+  "version": "0.0.2-alpha.0",
   "description": "Interfaces built for daffodil/state",
   "repository": {
     "type": "git",
@@ -11,6 +11,9 @@
   "bugs": {
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
+  "publishConfig": {
+    "directory": "../../dist/cart"
+  },
   "scripts": {
     "build": "ng build cart --prod",
     "lint": "ng lint cart",
@@ -20,8 +23,8 @@
   "peerDependencies": {
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0",
-    "@daffodil/core": "^0.0.1",
-    "@daffodil/product": "^0.0.1",
+    "@daffodil/core": "^0.0.2-alpha.0",
+    "@daffodil/product": "^0.0.2-alpha.0",
     "@ngrx/effects": "^7.3.0",
     "@ngrx/entity": "^7.3.0",
     "@ngrx/store": "^7.3.0",
@@ -32,7 +35,7 @@
     "angular-in-memory-web-api": "^0.7.0"
   },
   "devDependencies": {
-    "@daffodil/core": "^0.0.1",
-    "@daffodil/product": "^0.0.1"
+    "@daffodil/core": "^0.0.2-alpha.0",
+    "@daffodil/product": "^0.0.2-alpha.0"
   }
 }

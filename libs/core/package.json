@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/core",
-  "version": "0.0.1",
+  "version": "0.0.2-alpha.0",
   "description": "Interfaces built for daffodil/state",
   "repository": {
     "type": "git",
@@ -12,9 +12,11 @@
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
   "scripts": {
-    "build": "ng build core",
+    "build": "ng build core --prod",
     "lint": "ng lint core",
-    "test": "ng test core --watch=false --browsers=ChromeHeadless"
+    "test": "ng test core --watch=false --browsers=ChromeHeadless",
+    "prepublishOnly": "ng build core && mkdir -p ./dist/ && mv ../../dist/core ./dist/",
+    "postpublish": "rm -rf ./dist/"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
