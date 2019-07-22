@@ -5,7 +5,7 @@ import * as fromProductEntities from './product-entities.reducer';
 import * as fromProductGrid from './product-grid.reducer';
 import * as fromProduct from './product.reducer';
 import * as fromBestSellers from './best-sellers.reducer';
-import { DaffProduct } from '../models/product';
+import { DaffProductUnion } from '../models/product-union';
 
 export interface State {
   products : fromProductEntities.State;
@@ -49,7 +49,7 @@ export const selectProductIds = createSelector(
   fromProductEntities.selectProductIds
 );
 
-export const selectProductEntities : MemoizedSelector<object, Dictionary<DaffProduct>> = createSelector(
+export const selectProductEntities : MemoizedSelector<object, Dictionary<DaffProductUnion>> = createSelector(
   selectProductEntitiesState,
   fromProductEntities.selectProductEntities
 );
@@ -108,7 +108,7 @@ export const selectSelectedProductLoadingState = createSelector(
   fromProduct.getProductLoading
 );
 
-export const selectSelectedProduct : MemoizedSelector<object, DaffProduct> = createSelector(
+export const selectSelectedProduct : MemoizedSelector<object, DaffProductUnion> = createSelector(
   selectProductState,
   selectSelectedProductId,
   (state: State, id: string) => state.products.entities[id]
@@ -132,8 +132,8 @@ export const selectBestSellersIdsState : MemoizedSelector<object, string[]> = cr
   fromBestSellers.getBestSellersIds
 );
 
-export const selectBestSellersProducts: MemoizedSelector<object, DaffProduct[]> = createSelector(
+export const selectBestSellersProducts: MemoizedSelector<object, DaffProductUnion[]> = createSelector(
   selectBestSellersIdsState,
   selectAllProducts,
-  (ids: string[], products: DaffProduct[]) => products.filter(product => ids.indexOf(product.id) > -1)
+  (ids: string[], products: DaffProductUnion[]) => products.filter(product => ids.indexOf(product.id) > -1)
 )
