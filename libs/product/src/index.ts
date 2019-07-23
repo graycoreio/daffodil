@@ -1,4 +1,7 @@
 export { DaffProduct } from './models/product';
+export * from './actions/product.actions';
+export * from './actions/product-grid.actions';
+export * from './actions/best-sellers.actions';
 export { DaffProductUnion } from './models/product-union';
 export { DaffProductModification } from './models/product-modification';
 export { DaffProductImage } from './models/product-image';
