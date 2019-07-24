@@ -14,10 +14,9 @@ npm install @daffodil/product
 
 The InMemory driver is for rapid development without the need to set up a magento/shopify/etc backend. It will mock out the service calls to get products and return fake data. There are a few steps to wiring up the DaffInMemory driver:
 
-If you only plan on making serving calls for getting products, you can simply import `HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryBackendProductService)` and `DaffProductInMemoryDriverModule.forRoot()` into your AppModule, and it will just work. If you need to make service calls that involve a cart or anything else, you'll need to create a middle layer between your app and the `DaffProductInMemoryDriverModule` so that the `DaffInMemoryBackendProductService` only ever receives product-related requests. This middle layer can just be an `in-memory-web-api` service that uses the `DaffInMemoryBackendProductService` to handle database creation for products and product get requests:
+First, you'll need to create a layer between your app and the `DaffProductInMemoryDriverModule` so that the `DaffInMemoryBackendProductService` only ever receives product-related requests. This middle layer can just be an `in-memory-web-api` service that uses the `DaffInMemoryBackendProductService` to handle database creation for products and product get requests:
 
 ```
-
 @Injectable({
   providedIn: 'root'
 })
@@ -63,4 +62,30 @@ export interface MockMyAppDatabase {
 ```
 With this, you'll have all get requests for products handled by `@daffodil/product` and all other requests handled by your `MyAppTestingService`.
 
-The only other thing you need to do is to make the product images in `@daffodil/product/assets` available to your application, because these are the image references used in the mocked product data.
+The only other thing you need to do is to make the product images in `@daffodil/product/assets` available to your application, because these are the image references used in the mocked product data. You can do this by including assets from your node_modules directory to your application. For example, through angular-cli:
+
+```
+{
+  "projects": {
+    "myApp": {
+      **,
+      "architect": {
+        "build": {
+          **,
+          "options": {
+            **,
+            "assets": [
+              **,
+              {
+                "glob": "**/*",
+                "input": "node_modules/@daffodil/product/assets",
+                "output": "assets/"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
+```
