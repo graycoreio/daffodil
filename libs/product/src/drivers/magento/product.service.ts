@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
@@ -9,30 +9,21 @@ import gql from 'graphql-tag';
 import { DaffProduct } from '../../models/product';
 import { DaffProductServiceInterface } from '../interfaces/product-service.interface';
 
-interface GetAllProductsResponse {
-  shop?: ShopGraph
+interface MagentoGraph {
+  products?: MagentoProductsGraph
 }
 
-interface GetAProductResponse {
-  node: ProductNode
+interface MagentoProductNode {
+  sku?: string;
+  name?: string;
+  image: {
+    url: string;
+  }
 }
 
-interface ShopGraph {
-  products?: ProductGraph
-}
-
-interface ProductGraph {
-  edges: ProductEdge[]
-}
-
-interface ProductEdge {
-  node: ProductNode
-}
-
-interface ProductNode {
-  id: string;
-  title?: string;
-  price?: string;
+interface MagentoProductsGraph {
+  total_count: number;
+  items: MagentoProductNode[];
 }
 
 interface Variables {
@@ -40,16 +31,14 @@ interface Variables {
 };
 
 
-
 export const GetAllProductsQuery = gql`
+  query GetAllProducts($pageSize: Int)
   {
-    products(
-      search: "Yoga pants"
-      pageSize: 10
-    )
+    products(search: "Shirt", pageSize: $pageSize)
     {
       total_count
       items {
+        id
         name
         sku
         image {
@@ -72,21 +61,31 @@ export const GetAllProductsQuery = gql`
   }
 `;
 
-// export const GetAProduct = gql`
-//   query GetAProduct($id: ID!){
-//     node(id: $id) {
-//       id
-//       ... on Product {
-//         title
-//       }
-//     }
-//   }
-// `;
+export const GetAProduct = gql`
+  query GetAProduct($sku: String!){
+    products(filter: {sku: {
+      eq: $sku
+    }}){
+      items {
+        id
+        name
+        sku
+        image {
+          url
+        }
+        short_description {
+          html
+        }
+      }
+    }
+  }
+`;
 
-export const DaffMagentoProductTransformer = (node: ProductNode) : DaffProduct => {
+export const DaffMagentoProductTransformer = (node: MagentoProductNode) : DaffProduct => {
   return {
-    id: node.id,
-    name: node.title
+    id: node.sku,
+    name: node.name,
+    images: [{...node.image, id: "1", label: "Something"}]
   }
 }
 
@@ -100,14 +99,13 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
   constructor(private apollo: Apollo) {}
 
   getAll(): Observable<DaffProduct[]> {
-    console.log('magento getAll call');
-    return this.apollo.query<any>({
-      query: GetAllProductsQuery
+    return this.apollo.query<MagentoGraph>({
+      query: GetAllProductsQuery,
+      variables: {
+        pageSize: 10
+      }
     }).pipe(
-      map(result => {
-        console.log(result);
-        return null;
-      })
+      map(result => result.data.products.items.map(item => DaffMagentoProductTransformer(item)))
     );
   }
 
@@ -127,14 +125,13 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
   }
 
   get(productId: string): Observable<DaffProduct> {
-    return of(null);
-  //   return this.apollo.query<GetAProductResponse>({
-  //     query: GetAProduct,
-  //     variables: {
-  //       id: productId
-  //     }
-  //   }).pipe(
-  //     map(result => DaffMagentoProductTransformer(result.data.node))
-  //   );
+    return this.apollo.query<MagentoGraph>({
+      query: GetAProduct,
+      variables: {
+        sku: productId
+      }
+    }).pipe(
+      map(result => DaffMagentoProductTransformer(result.data.products.items[0]))
+    );
   }
 }

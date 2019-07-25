@@ -18,14 +18,7 @@ export class MagentoModule {
   // Magento
   constructor(boost: ApolloBoost) {
     boost.create({
-      uri: "https://release-dev-231-npzdaky-zddsyhrdimyra.us-4.magentosite.cloud/graphql",
-      request: async operation => {
-        operation.setContext({
-          headers: {
-            // "X-Magento-Storefront-Access-Token": "9419ecdd446b983348bc3b47dccc8b84"
-          }
-        });
-      },
+      uri: "https://magento2.test/graphql",
     })
   }
 }
