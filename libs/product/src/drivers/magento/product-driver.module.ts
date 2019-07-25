@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { DaffProductDriver } from '../injection-tokens/product-driver.token';
 import { DaffMagentoProductService } from './product.service';
 
+import { DaffProductTransformer } from '../injection-tokens/product-transformer.token';
+import { ProductTransformerService } from './transforms/product-transformer.service';
+
 @NgModule({
   imports: [
     CommonModule
@@ -17,6 +20,10 @@ export class DaffProductMagentoDriverModule {
         {
           provide: DaffProductDriver,
           useExisting: DaffMagentoProductService
+        },
+        {
+          provide: DaffProductTransformer,
+          useExisting: ProductTransformerService
         }
       ]
     };
