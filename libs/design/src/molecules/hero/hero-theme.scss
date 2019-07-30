@@ -7,34 +7,38 @@
     $primary: map-get($theme, primary);
     $secondary: map-get($theme, secondary);
     $tertiary: map-get($theme, tertiary);
-    $base: daff-map-deep-get($theme, "core.base");
-    $baseContrast: daff-map-deep-get($theme, "core.base-contrast");
+    $base: daff-map-deep-get($theme, 'core.base');
+    $baseContrast: daff-map-deep-get($theme, 'core.base-contrast');
     $white: daff-map-deep-get($theme, 'core.white');
     $black: daff-map-deep-get($theme, 'core.black');
 
     .daff-hero {
+        @include daff-hero-theme-variant(daff-illuminate($base, $daff-gray, 1));
+
         &.daff-primary {
             @include daff-hero-theme-variant(daff-color($primary));
         }
+
         &.daff-secondary {
             @include daff-hero-theme-variant(daff-color($secondary));
         }
-        //TODO: damienwebdev - Deprecate Accent 
-        &.daff-accent {
-            @include daff-hero-theme-variant(daff-color($secondary));
-        }
+
         &.daff-tertiary {
             @include daff-hero-theme-variant(daff-color($tertiary));
         }
+
         &.daff-theme {
             @include daff-hero-theme-variant($base);
         }
+
         &.daff-theme-contrast {
             @include daff-hero-theme-variant($baseContrast);
         }
+
         &.daff-black {
             @include daff-hero-theme-variant($black);
         }
+
         &.daff-white {
             @include daff-hero-theme-variant($white);
         }

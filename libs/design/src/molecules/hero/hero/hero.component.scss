@@ -3,9 +3,8 @@
 .daff-hero {
   $root: &;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  min-height: calc(70vh - 99px);
+  flex-direction: column;
+  justify-content: center;
   padding: 75px 25px;
 
   @include breakpoint(mobile) {
@@ -15,41 +14,41 @@
   &__title {
     @include embolden();
     font-size: 2.25rem;
-    line-height: 2.75rem;
+    line-height: 1.25em;
     max-width: 1040px;
-    text-align: left;
     margin: 0;
     padding: 0 25px;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    text-align: left;
+    width: 100%;
 
     @include breakpoint(mobile) {
       font-size: 3rem;
-      line-height: 3.75rem;
     }
 
     @include breakpoint(big-tablet) {
       font-size: 4.5rem;
-      line-height: 5.25rem;
       padding: 0;
     }
   }
 
   &__subtitle {
     font-size: $medium-font-size;
-    line-height: 1.75rem;
+    line-height: 1.5em;
     font-weight: normal;
     max-width: 700px;
-    text-align: left;
     margin-top: 10px;
     padding: 0 25px;
+    text-align: left;
+    width: 100%;
 
     @include breakpoint(mobile) {
       font-size: 1.25rem;
-      line-height: 2rem;
     }
 
     @include breakpoint(big-tablet) {
       font-size: 1.75rem;
-      line-height: 2.75rem;
       margin-top: 25px;
       padding: 0;
     }
@@ -60,7 +59,6 @@
   }
 
   &--centered {
-
     #{$root}__title {
       text-align: center;
       margin: 0 auto;
@@ -100,7 +98,5 @@
     img {
       max-width: 100%;
     }
-  }
-
-  
+  } 
 }

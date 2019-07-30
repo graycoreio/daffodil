@@ -1,5 +1,4 @@
 # Hero Component
-
 The `hero` component is a top level container that is large and captivating. It should only be used as the first container on any given page. It supports transcluding any content and optionally including a predefined `title` and `subtitle`.
 
 ## Supported Content Types
@@ -16,7 +15,7 @@ A `daff-hero` transcludes:
 
 ## Colors
 * To define a hero background color, add `color="[value]"` to the hero tag.
-* Values: `primary`, `accent`, `black`, and `white`
+* Values: `primary`, `secondary`, `tertiary`, and `black`, and `white`
 
 ## Sizing
 * To define a hero size, add `size="[value]"` to the hero tag.
