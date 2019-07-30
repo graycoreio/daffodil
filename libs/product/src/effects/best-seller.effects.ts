@@ -10,13 +10,14 @@ import {
   DaffBestSellersLoadFailure } from '../actions/best-sellers.actions';
 import { DaffProductDriver } from '../drivers/injection-tokens/product-driver.token';
 import { DaffProductServiceInterface } from '../drivers/interfaces/product-service.interface';
+import { DaffProduct } from '../models/product';
 
 @Injectable()
-export class DaffBestSellersEffects {
+export class DaffBestSellersEffects<T extends DaffProduct> {
 
   constructor(
     private actions$: Actions,
-    @Inject(DaffProductDriver) private driver: DaffProductServiceInterface){}
+    @Inject(DaffProductDriver) private driver: DaffProductServiceInterface<T>){}
 
   @Effect()
   loadBestSellers$ : Observable<any> = this.actions$.pipe(

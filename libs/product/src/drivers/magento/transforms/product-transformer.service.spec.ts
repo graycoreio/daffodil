@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ProductTransformerService } from './product-transformer.service';
+import { DaffMagentoProductTransformerService } from './product-transformer.service';
 
-describe('ProductTransformerService', () => {
+describe('DaffMagentoProductTransformerService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: ProductTransformerService = TestBed.get(ProductTransformerService);
+    const service: DaffMagentoProductTransformerService = TestBed.get(DaffMagentoProductTransformerService);
     expect(service).toBeTruthy();
   });
 });

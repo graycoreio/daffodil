@@ -5,54 +5,38 @@ import { map } from 'rxjs/operators';
 
 import { Apollo } from 'apollo-angular';
 
-import { DaffProduct } from '../../models/product';
 import { DaffProductServiceInterface } from '../interfaces/product-service.interface';
-import { MagentoGetAllProductsQuery, MagentoGetAProductQuery } from './queries/queries';
 import { DaffProductTransformer } from '../injection-tokens/product-transformer.token';
 import { DaffProductTransformerInterface } from '../interfaces/product-transformer.interface';
+import { DaffProductQueryManagerInterface } from '../interfaces/product-query-manager.interface';
+import { DaffProductQueryManager } from '../injection-tokens/product-query-manager.token';
+import { DaffProductUnion } from '../../models/product-union';
+import { DaffProductMagentoDriverModule } from './product-driver.module';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoProductService implements DaffProductServiceInterface {  
+export class DaffMagentoProductService implements DaffProductServiceInterface<DaffProductUnion> {  
   constructor(
     private apollo: Apollo, 
-    @Inject(DaffProductTransformer) public transformer: DaffProductTransformerInterface) {}
+    @Inject(DaffProductQueryManager) public queryManager: DaffProductQueryManagerInterface,
+    @Inject(DaffProductTransformer) public transformer: DaffProductTransformerInterface<DaffProductUnion>) {}
 
-  getAll(): Observable<DaffProduct[]> {
-    return this.apollo.query<any>({
-      query: MagentoGetAllProductsQuery,
-      variables: {
-        pageSize: 10
-      }
-    }).pipe(
-      map(result => this.transformer.transformMany(result.data.products))
+  get(productId: string): Observable<DaffProductUnion> {
+    return this.apollo.query<any>(this.queryManager.getAProductQuery(productId)).pipe(
+      map(result => this.transformer.transform(result.data))
     );
   }
 
-  //todo: add actual getBestSellers apollo call. Right now, it just makes the getAll() call
-  getBestSellers(): Observable<DaffProduct[]> {
+  getAll(): Observable<DaffProductUnion[]> {
+    return this.apollo.query<any>(this.queryManager.getAllProductsQuery()).pipe(
+      map(result => this.transformer.transformMany(result.data.products.items))
+    );
+  }
+
+  //todo: add actual getBestSellers apollo call for Magento.
+  //todo: move to a different bestsellers module.
+  getBestSellers(): Observable<DaffProductUnion[]> {
     return of(null);
-  //   return this.apollo.query<GetAllProductsResponse>({
-  //     query: GetAllProductsQuery,
-  //     variables: {
-  //       length: this.defaultLength
-  //     }
-  //   }).pipe(
-  //     map(result => {
-  //       return result.data.shop.products.edges.map(edge => DaffMagentoProductTransformer(edge.node))
-  //     })
-  //   );
-  }
-
-  get(productId: string): Observable<DaffProduct> {
-    return this.apollo.query<any>({
-      query: MagentoGetAProductQuery,
-      variables: {
-        sku: productId
-      }
-    }).pipe(
-      map(result => this.transformer.transform(result.data.products.items[0]))
-    );
   }
 }

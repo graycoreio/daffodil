@@ -5,7 +5,9 @@ import { DaffProductDriver } from '../injection-tokens/product-driver.token';
 import { DaffMagentoProductService } from './product.service';
 
 import { DaffProductTransformer } from '../injection-tokens/product-transformer.token';
-import { ProductTransformerService } from './transforms/product-transformer.service';
+import { DaffMagentoProductTransformerService } from './transforms/product-transformer.service';
+import { DaffProductQueryManager } from '../injection-tokens/product-query-manager.token';
+import { DaffMagentoProductGraphQlQueryManagerService } from './queries/product-query-manager.service';
 
 @NgModule({
   imports: [
@@ -13,7 +15,7 @@ import { ProductTransformerService } from './transforms/product-transformer.serv
   ]
 })
 export class DaffProductMagentoDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffProductMagentoDriverModule> {
     return {
       ngModule: DaffProductMagentoDriverModule,
       providers: [
@@ -23,7 +25,11 @@ export class DaffProductMagentoDriverModule {
         },
         {
           provide: DaffProductTransformer,
-          useExisting: ProductTransformerService
+          useExisting: DaffMagentoProductTransformerService
+        },
+        {
+          provide: DaffProductQueryManager,
+          useExisting: DaffMagentoProductGraphQlQueryManagerService
         }
       ]
     };
