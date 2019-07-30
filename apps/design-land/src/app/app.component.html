@@ -2,12 +2,19 @@
     <daff-sidebar>
         Atoms
         <a daff-sidebar-item routerLink="button">Button</a>
+        <a daff-sidebar-item routerLink="link">Link</a>
         <a daff-sidebar-item routerLink="loading-icon">Loading Icon</a>
         <a daff-sidebar-item routerLink="progress-indicator">Progress Indicator</a>
         Molecules
+        <a daff-sidebar-item routerLink="accordion">Accordion</a>
+        <a daff-sidebar-item routerLink="callout">Callout</a>
         <a daff-sidebar-item routerLink="card">Card</a>
         <a daff-sidebar-item routerLink="feature">Feature</a>
         <a daff-sidebar-item routerLink="form">Form</a>
+        <a daff-sidebar-item routerLink="hero">Hero</a>
+        <a daff-sidebar-item routerLink="list">List</a>
     </daff-sidebar>
-    <router-outlet></router-outlet>
+    <div class="design-land__content">
+        <router-outlet></router-outlet>
+    </div>
 </daff-sidebar-viewport>
