@@ -20,7 +20,7 @@ A `daff-callout` transcludes:
 
 ## Colors
 * To define a callout background color, add `color="[value]"` to the `daff-callout` tag.
-* Values: `primary`, `accent`, `black`, and `white`
+* Values: `primary`, `secondary`, `tertiary`, `theme`, `theme-contrast`, `black`, and `white`
 
 ## Layout
 * To define a callout layout, add `layout="[value]"` to the `daff-callout` tag.
