@@ -13,8 +13,6 @@
     }
 
     .understanding {
-        background-color: daff-illuminate($base, $daff-gray);
-
         &__feature {
             background: linear-gradient(to bottom right, daff-color($secondary, 30), daff-color($secondary));
             box-shadow:
@@ -41,8 +39,4 @@
         }
     }
   }
-
-    .comparison {
-        background-color: daff-illuminate($base, $daff-gray);
-    }
 }

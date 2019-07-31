@@ -13,28 +13,32 @@
     $black: daff-map-deep-get($theme, 'core.black');
     
     .daff-callout {
+        @include daff-callout-theme-variant(daff-illuminate($base, $daff-gray, 1));
+
         &.daff-primary {
             @include daff-callout-theme-variant(daff-color($primary));
         }
-        //TODO: damienwebdev - Deprecate Accent 
-        &.daff-accent {
-            @include daff-callout-theme-variant(daff-color($secondary));
-        }
+
         &.daff-secondary {
             @include daff-callout-theme-variant(daff-color($secondary));
         }
+
         &.daff-tertiary {
             @include daff-callout-theme-variant(daff-color($tertiary));
         }
+
         &.daff-theme {
             @include daff-callout-theme-variant($base);
         }
+
         &.daff-theme-contrast {
             @include daff-callout-theme-variant($baseContrast);
         }
+
         &.daff-black {
             @include daff-callout-theme-variant($black);
         }
+
         &.daff-white {
             @include daff-callout-theme-variant($white);
         }
