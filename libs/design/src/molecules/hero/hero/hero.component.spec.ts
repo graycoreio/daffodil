@@ -42,50 +42,68 @@ describe('DaffHeroComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('setting the layout of the hero', () => {
-    describe('when layout is centered', () => {
-      it('should set "daff-hero--centered" on host element', () => {
-        wrapper.layout = 'centered';
-        fixture.detectChanges();
-
-        expect(de.nativeElement.classList.contains('daff-hero--centered')).toEqual(true);
-      });
+  describe('<daff-hero>', () => {
+    it('should add a class of "daff-hero" to the host element', () => {
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-hero': true,
+      }));
     });
+  });
 
+  describe('setting the layout', () => {
     it('should not set a default layout', () => {
       expect(component.layout).toBeFalsy();
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-hero--centered': false,
+      }));
+    });
+
+    describe('when layout="centered"', () => {
+      it('should add a class of "daff-hero--centered" to the host element', () => {
+        wrapper.layout = 'centered';
+        fixture.detectChanges();
+        expect(de.classes).toEqual(jasmine.objectContaining({
+          'daff-hero--centered': true
+        }));
+      });
     });
   });
 
-  describe('setting the size of the hero', () => {
-    describe('when size is fullscreen', () => {
-      it('should set "daff-hero--fullscreen" on host element', () => {
+  describe('setting the size', () => {
+    it('should not set a default size', () => {
+      expect(component.layout).toBeFalsy();
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-hero--fullscreen': false,
+        'daff-hero--small': false,
+      }));
+    });
+
+    describe('when size="fullscreen"', () => {
+      it('should add a class of "daff-hero--fullscreen" to the host element', () => {
         wrapper.size = 'fullscreen';
         fixture.detectChanges();
-
-        expect(de.nativeElement.classList.contains('daff-hero--fullscreen')).toEqual(true);
+        expect(de.classes).toEqual(jasmine.objectContaining({
+          'daff-hero--fullscreen': true
+        }));
       });
     });
 
-    describe('when size is small', () => {
-      it('should set "daff-hero--small" on host element', () => {
+    describe('when size="small"', () => {
+      it('should add a class of "daff-hero--small" to the host element', () => {
         wrapper.size = 'small';
         fixture.detectChanges();
-
-        expect(de.nativeElement.classList.contains('daff-hero--small')).toEqual(true);
+        expect(de.classes).toEqual(jasmine.objectContaining({
+          'daff-hero--small': true
+        }));
       });
-    });
-
-    it('should not set a default size', () => {
-      expect(component.size).toBeFalsy();
     });
   });
 
-  describe('using a color variant of a hero',() => {
+  describe('using a color variant of a hero', () => {
     it('should set a color class on the hero', () => {
-      wrapper.color = "primary";
+      wrapper.color = 'primary';
       fixture.detectChanges();
-      
+
       expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
     });
 
