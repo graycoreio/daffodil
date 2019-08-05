@@ -4,42 +4,42 @@ $daff-modal-backdrop-z-index: 2;
 $daff-modal-z-index: 1;
 
 .daff-modal {
-  position: fixed;
-  width: 100%;
-  min-height: 100%;
-  z-index: 1;
-  display: grid;
+	display: grid;
+	min-height: 100%;
+	position: fixed;
+	width: 100%;
+	z-index: 1;
 
-  &__content {
-    position: absolute;
-    z-index: $daff-modal-content-z-index;
+	&__content {
+		position: absolute;
+		z-index: $daff-modal-content-z-index;
 
-    &--top {
-      align-self: start;
-    }
+		&--top {
+			align-self: start;
+		}
 
-    &--bottom {
-      align-self: end;
-    }
+		&--bottom {
+			align-self: end;
+		}
 
-    &--middle {
-      align-self: center;
-    }
+		&--middle {
+			align-self: center;
+		}
 
-    &--left {
-      justify-self: start;
-    }
+		&--left {
+			justify-self: start;
+		}
 
-    &--right {
-      justify-self: end;
-    }
+		&--right {
+			justify-self: end;
+		}
 
-    &--center {
-      justify-self: center;
-    }
-  }
+		&--center {
+			justify-self: center;
+		}
+	}
 
-  &__backdrop {
-    z-index: $daff-modal-backdrop-z-index;
-  }
+	&__backdrop {
+		z-index: $daff-modal-backdrop-z-index;
+	}
 }

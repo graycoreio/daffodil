@@ -1,37 +1,37 @@
 @import '../../../scss/daff-util';
 
 .daff-card {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	border-radius: 10px;
 
-  &__image {
-    display: block;
-    width: 100%;
-    border-top-left-radius: inherit;
-    border-top-right-radius: inherit;
-  }
+	&__image {
+		border-top-left-radius: inherit;
+		border-top-right-radius: inherit;
+		display: block;
+		width: 100%;
+	}
 
-  &__content {
-    padding: 25px;
+	&__content {
+		padding: 25px;
 
-    &:first-child {
-      border-top: 0;
-    }
+		&:first-child {
+			border-top: 0;
+		}
 
-    p {
-      margin: 0;
-      padding: 0;
-    }
-  }
+		p {
+			margin: 0;
+			padding: 0;
+		}
+	}
 
-  &__title {
-    font-size: 1.25rem;
-    margin-bottom: 10px;
+	&__title {
+		font-size: 1.25rem;
+		margin-bottom: 10px;
 
-    @include breakpoint(mobile) {
-      font-size: 1.5rem;
-    }
-  }
+		@include breakpoint(mobile) {
+			font-size: 1.5rem;
+		}
+	}
 }

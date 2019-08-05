@@ -1,12 +1,12 @@
-@mixin daff-sidebar-viewport-theme($theme){
-    $primary: map-get($theme, primary);
-    $secondary: map-get($theme, secondary);
-    $tertiary: map-get($theme, tertiary);
-    $base: daff-map-deep-get($theme, "core.base");
-    $font-color: daff-map-deep-get($theme, "core.font-color");
+@mixin daff-sidebar-viewport-theme($theme) {
+	$primary: map-get($theme, primary);
+	$secondary: map-get($theme, secondary);
+	$tertiary: map-get($theme, tertiary);
+	$base: daff-map-deep-get($theme, 'core.base');
+	$font-color: daff-map-deep-get($theme, 'core.font-color');
 
-    .daff-sidebar-viewport {
-        background: $base;
-        color: $font-color;
-    }
+	.daff-sidebar-viewport {
+		background: $base;
+		color: $font-color;
+	}
 }
