@@ -1,6 +1,6 @@
 # Sidebar Component
 
-## Usage 
+## Usage
 
 ```
 <daff-sidebar-viewport>

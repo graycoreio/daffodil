@@ -1,20 +1,20 @@
 @import '../../../scss/daff-util';
 
 :host {
-  display: block;
+	display: block;
 }
 
 .daff-sidebar {
-  display: block;
-  height: 100%;
+	display: block;
+	height: 100%;
 
-  &__item {
-    display: flex;
-    width: 100%;
-    padding: 15px 0;
-    font-size: 1rem;
-    @include embolden();
-    @include uppercase();
-    cursor: pointer;
-  }
+	&__item {
+		@include embolden();
+		@include uppercase();
+		cursor: pointer;
+		display: flex;
+		font-size: 1rem;
+		padding: 15px 0;
+		width: 100%;
+	}
 }

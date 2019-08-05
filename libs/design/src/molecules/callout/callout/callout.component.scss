@@ -1,77 +1,81 @@
 @import '../../../scss/daff-util';
 
 .daff-callout {
-  $root: &;
-  display: block;
-  padding: 75px 25px;
-    
-  @include breakpoint(mobile) {
-    padding: 100px 50px;
-  }
+	$root: &;
+	display: block;
+	padding: 75px 25px;
 
-  &__title {
-    @include embolden();
-    font-size: 1.5rem;
-    line-height: 1.25em;
-    margin: 0;
-    padding: 0;
-    text-align: left;
+	@include breakpoint(mobile) {
+		padding: 100px 50px;
+	}
 
-    @include breakpoint(mobile) {
-      font-size: 2rem;
-    }
+	&__title {
+		@include embolden();
+		font-size: 1.5rem;
+		line-height: 1.25em;
+		margin: 0;
+		padding: 0;
+		text-align: left;
 
-    @include breakpoint(big-tablet) {
-      font-size: 2.5rem;
-    }
-  }
+		&__title {
+			@include embolden();
+			font-size: 1.5rem;
+			margin: 0;
+			max-width: 1040px;
+			padding: 0;
+			text-align: left;
 
-  &__subtitle {
-    font-size: 1rem;
-    font-weight: normal;
-    line-height: 1.5em;
-    margin: 10px 0 0 0;
-    max-width: 600px;
-    padding: 0;
-    text-align: left;
+			@include breakpoint(big-tablet) {
+				font-size: 2.5rem;
+			}
+		}
 
-    @include breakpoint(mobile) {
-      font-size: $medium-font-size;
-      margin: 25px 0 0 0;
-    }
+		&__subtitle {
+			font-size: 1rem;
+			font-weight: normal;
+			line-height: 1.5em;
+			margin: 10px 0 0 0;
+			max-width: 600px;
+			padding: 0;
+			text-align: left;
 
-    + * {
-      margin: 50px 0 0 0;
-    }
-  }
+			@include breakpoint(mobile) {
+				font-size: $medium-font-size;
+				margin: 25px 0 0 0;
+			}
 
-  &--centered {
-    #{$root}__title {
-      margin: 0 auto;
-      text-align: center;
-    }
+			@include breakpoint(big-tablet) {
+				margin: 25px 0 0 0;
+			}
 
-    #{$root}__subtitle {
-      margin: 10px auto 0 auto;
-      text-align: center;
+			+ * {
+				margin: 50px 0 0 0;
+			}
+		}
 
-      @include breakpoint(mobile) {
-        margin: 25px auto 0 auto;
-      }
-    }
-  }
+		&--centered {
+			#{$root}__title {
+				margin: 0 auto;
+				text-align: center;
+			}
 
-  &--compact {
-    padding: 25px;
-    
-    @include breakpoint(mobile) {
-      padding: 25px 50px;
-    }
-  }
+			@include breakpoint(mobile) {
+				margin: 25px auto 0 auto;
+			}
+		}
+	}
 
-  &__image {
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
-  }
+	&--compact {
+		padding: 25px;
+
+		@include breakpoint(mobile) {
+			padding: 25px 50px;
+		}
+	}
+
+	&__image {
+		display: block;
+		margin: 0 auto;
+		max-width: 100%;
+	}
 }

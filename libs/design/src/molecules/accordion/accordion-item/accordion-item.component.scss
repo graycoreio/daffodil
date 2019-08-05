@@ -1,46 +1,46 @@
 @import '../../../scss/daff-util';
 
 .daff-accordion-item {
-  display: block;
-  width: 100%;
-  padding: 15px 0;
+	display: block;
+	padding: 15px 0;
+	width: 100%;
 
-  @include breakpoint(tablet) {
-    padding: 30px 0;
-  }
+	@include breakpoint(tablet) {
+		padding: 30px 0;
+	}
 
-  &__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    @include clickable();
-  }
+	&__header {
+		@include clickable();
+		align-items: center;
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+	}
 
-  &__title {
-    font-size: 1rem;
-    margin: 0;
-    @include embolden();
-    @include uppercase(); 
-  }
+	&__title {
+		@include embolden();
+		@include uppercase();
+		font-size: 1rem;
+		margin: 0;
+	}
 
-  &__content {
-    padding-top: 15px;
+	&__content {
+		padding-top: 15px;
 
-    @include breakpoint(tablet) {
-      padding-top: 30px;
-    }
-  }
+		@include breakpoint(tablet) {
+			padding-top: 30px;
+		}
+	}
 
-  &__open-icon {
-    &:after {
-      @include chevron($direction: "down");
-  }
-  }
+	&__open-icon {
+		&:after {
+			@include chevron($direction: 'down');
+		}
+	}
 
-  &__close-icon {
-    &:after {
-      @include chevron($direction: "up");
-    }
-  }
+	&__close-icon {
+		&:after {
+			@include chevron($direction: 'up');
+		}
+	}
 }

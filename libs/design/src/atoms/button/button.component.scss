@@ -1,115 +1,115 @@
 @import '../../scss/daff-util';
 
 @mixin daff-button {
-    appearance: none;
-    display: inline-block;
-    position: relative;
-    font-size: 1rem;
-    line-height: 1em;
-    border-radius: 3px;
-    overflow: hidden;
-    text-align: center;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    @include clickable();
+	@include clickable();
+	appearance: none;
+	border-radius: 3px;
+	display: inline-block;
+	font-size: 1rem;
+	line-height: 1em;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	transition: all 0.3s ease;
 
-    &:active {
-        transform: translateY(2px);
-    }
+	&:active {
+		transform: translateY(2px);
+	}
 
-    &[disabled] {
-        cursor: not-allowed;
-        transform: translateY(0);
-    }
+	&[disabled] {
+		cursor: not-allowed;
+		transform: translateY(0);
+	}
 }
 
 .daff-button {
-    @include daff-button();
-    min-width: 90px;
-    padding: 1rem 2.5rem;
+	@include daff-button();
+	min-width: 90px;
+	padding: 1rem 2.5rem;
 }
 
 .daff-raised-button {
-    @include daff-button();
-    min-width: 90px;
-    padding: 1rem 2.5rem;
+	@include daff-button();
+	min-width: 90px;
+	padding: 1rem 2.5rem;
 }
 
 .daff-icon-button {
-    @include daff-button();
-    height: 40px;
-    width: 40px;
-    line-height: 40px;
-    background: none;
-    padding: 0;
-    border: 0;
+	@include daff-button();
+	background: none;
+	border: 0;
+	height: 40px;
+	line-height: 40px;
+	padding: 0;
+	width: 40px;
 }
 
 .daff-stroked-button {
-    @include daff-button();
-    background: transparent;
-    min-width: 90px;
-    padding: 1rem 2.5rem;
+	@include daff-button();
+	background: transparent;
+	min-width: 90px;
+	padding: 1rem 2.5rem;
 }
 
 .daff-underline-button {
-    @include daff-button();
-    background: transparent;
-    border-radius: 0;
-    margin: 0;
-    padding: 0 0 5px 0;
-    vertical-align: middle;
-    text-decoration: underline;
+	@include daff-button();
+	background: transparent;
+	border-radius: 0;
+	margin: 0;
+	padding: 0 0 5px 0;
+	text-decoration: underline;
+	vertical-align: middle;
 
-    @include breakpoint(big-tablet) {
-        text-decoration: none;
-    }
+	@include breakpoint(big-tablet) {
+		text-decoration: none;
+	}
 
-    &[disabled] {                
-        &:hover {
-            &:after {
-                animation: none;
-            }
-        }
-    }
+	&[disabled] {
+		&:hover {
+			&:after {
+				animation: none;
+			}
+		}
+	}
 
-    &:after {
-        opacity: 0;
-        
-        @include breakpoint(big-tablet) {
-            content: '';
-            position: absolute;
-            opacity: 1;
-            left: 0;
-            bottom: 0px;
-            width: 100%;
-            height: 2px;
-            transition: all 0.7s ease;
-        }
-    }
+	&:after {
+		opacity: 0;
 
-    &:hover {
-        &:after {
-            animation: underline-button-hover .7s ease 0s 1;
-        }
-    }
+		@include breakpoint(big-tablet) {
+			bottom: 0px;
+			content: '';
+			height: 2px;
+			left: 0;
+			opacity: 1;
+			position: absolute;
+			transition: all 0.7s ease;
+			width: 100%;
+		}
+	}
+
+	&:hover {
+		&:after {
+			animation: underline-button-hover 0.7s ease 0s 1;
+		}
+	}
 }
 
 @keyframes underline-button-hover {
-    0% {
-        transform:translateX(0);
-        transform:translateX(0);
-    }
-    50% {
-        transform:translateX(100%);
-        transform:translateX(100%);
-    }
-    51% {
-        transform:translateX(-100%);
-        transform:translateX(-100%);
-    }
-    to {
-        transform:translateX(0);
-        transform:translateX(0);
-    }
+	0% {
+		transform: translateX(0);
+		transform: translateX(0);
+	}
+	50% {
+		transform: translateX(100%);
+		transform: translateX(100%);
+	}
+	51% {
+		transform: translateX(-100%);
+		transform: translateX(-100%);
+	}
+	to {
+		transform: translateX(0);
+		transform: translateX(0);
+	}
 }

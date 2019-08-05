@@ -1,17 +1,17 @@
-@mixin daff-sidebar-theme($theme){
-    $primary: map-get($theme, primary);
-    $secondary: map-get($theme, secondary);
-    $tertiary: map-get($theme, tertiary);
-    $base: daff-map-deep-get($theme, "core.base");
-    $font-color: daff-map-deep-get($theme, "core.font-color");
+@mixin daff-sidebar-theme($theme) {
+	$primary: map-get($theme, primary);
+	$secondary: map-get($theme, secondary);
+	$tertiary: map-get($theme, tertiary);
+	$base: daff-map-deep-get($theme, 'core.base');
+	$font-color: daff-map-deep-get($theme, 'core.font-color');
 
-    .daff-sidebar {
-        background: $base;
-        box-shadow: 6px 1px 9px 0px rgba(128,128, 128, 0.1);
-        color: $font-color;
+	.daff-sidebar {
+		background: $base;
+		box-shadow: 6px 1px 9px 0px rgba(128, 128, 128, 0.1);
+		color: $font-color;
 
-        &__item {
-            color: $font-color;
-        }
-    }
+		&__item {
+			color: $font-color;
+		}
+	}
 }
