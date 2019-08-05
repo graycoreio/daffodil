@@ -9,6 +9,7 @@ import { DaffProductContainer } from './product.component';
 import { DaffProductLoad, DaffProductUpdateQty } from '../../actions/product.actions';
 import * as fromProduct from '../../reducers/index';
 import { DaffProduct } from '../../models/product';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 @Component({template: '<div product-container #ProductContainer="ProductContainer" [selectedProductId]="selectedProductIdValue"></div>'})
 class WrapperComponent {
@@ -18,7 +19,7 @@ class WrapperComponent {
 describe('DaffProductContainer', () => {
   let component: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let store;
+  let store: MockStore<any>;
   let initialLoading: boolean;
   let initialProduct: DaffProduct;
   let initialQty: number;
@@ -27,14 +28,13 @@ describe('DaffProductContainer', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        StoreModule.forRoot({
-          products: combineReducers(fromProduct.reducers),
-        })
-      ],
+      imports: [],
       declarations: [ 
         WrapperComponent,
         DaffProductContainer
+      ],
+      providers: [
+        provideMockStore()
       ]
     })
     .compileComponents();
@@ -51,9 +51,10 @@ describe('DaffProductContainer', () => {
 
     component.selectedProductIdValue = initialProduct.id;
 
-    spyOn(fromProduct, 'selectSelectedProductLoadingState').and.returnValue(initialLoading);
-    spyOn(fromProduct, 'selectSelectedProduct').and.returnValue(initialProduct);
-    spyOn(fromProduct, 'selectSelectedProductQty').and.returnValue(initialQty);
+    store.overrideSelector(fromProduct.selectSelectedProductLoadingState, initialLoading);
+    store.overrideSelector(fromProduct.selectSelectedProduct, initialProduct);
+    store.overrideSelector(fromProduct.selectSelectedProductQty, initialQty);
+
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();

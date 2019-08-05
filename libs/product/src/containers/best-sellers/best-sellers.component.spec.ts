@@ -7,6 +7,7 @@ import { DaffBestSellersContainer } from './best-sellers.component';
 import { DaffBestSellersLoad } from '../../actions/best-sellers.actions';
 import * as fromProduct from '../../reducers/index';
 import { DaffProduct } from '../../models/product';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('DaffBestSellersContainer', () => {
   let component: DaffBestSellersContainer;
@@ -19,12 +20,11 @@ describe('DaffBestSellersContainer', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        StoreModule.forRoot({
-          products: combineReducers(fromProduct.reducers),
-        })
-      ],
-      declarations: [ DaffBestSellersContainer ]
+      imports: [],
+      declarations: [ DaffBestSellersContainer ],
+      providers: [
+        provideMockStore()
+      ]
     })
     .compileComponents();
   }));
@@ -38,9 +38,10 @@ describe('DaffBestSellersContainer', () => {
     initialProducts = new Array(productFactory.create(), productFactory.create());
     bestSeller = initialProducts[1];
 
-    spyOn(fromProduct, 'selectBestSellersLoadingState').and.returnValue(initialLoading);
-    spyOn(fromProduct, 'selectAllProducts').and.returnValue(initialProducts);
-    spyOn(fromProduct, 'selectBestSellersIdsState').and.returnValue([bestSeller.id]);
+    store.overrideSelector(fromProduct.selectBestSellersLoadingState, initialLoading);
+    store.overrideSelector(fromProduct.selectAllProducts, initialProducts);
+    store.overrideSelector(fromProduct.selectBestSellersIdsState, [bestSeller.id]);
+
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();
