@@ -1,34 +1,32 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { StoreModule, combineReducers, Store } from '@ngrx/store';
-import { of, Subscription } from 'rxjs';
+import { of } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { cold } from 'jasmine-marbles';
 
-import { PlaceOrder } from '@daffodil/checkout';
 import { DaffCart, fromCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
-
+import { PlaceOrder } from '@daffodil/checkout';
 import * as fromDemoCheckout from '../../reducers';
 import { PlaceOrderComponent } from './place-order.component';
 
-// Because the fromCart selector is now being subscribed to, any test throws an error. Skipping tests until fromCart can be mocked.
+
 describe('PlaceOrderComponent', () => {
   let fixture: ComponentFixture<PlaceOrderComponent>;
   let component: PlaceOrderComponent;
   const stubEnablePlaceOrderButton = true;
-  let store;
+  let store: MockStore<any>;
   let cartFactory: DaffCartFactory;
   let stubCart: DaffCart;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        StoreModule.forRoot({
-          checkout: combineReducers(fromDemoCheckout.reducers),
-          cart: combineReducers(fromCart.reducers)
-        })
-      ],
       declarations: [ 
         PlaceOrderComponent
+      ],
+      providers: [
+        provideMockStore({})
       ]
     })
     .compileComponents();
@@ -40,13 +38,16 @@ describe('PlaceOrderComponent', () => {
     store = TestBed.get(Store);
     cartFactory = TestBed.get(DaffCartFactory);
     stubCart = cartFactory.create();
-    component.cart = stubCart;
-    component.cartSubscription = null;
     
     spyOn(store, 'dispatch');
-    spyOn(fromDemoCheckout, 'selectEnablePlaceOrderButton').and.returnValue(stubEnablePlaceOrderButton);
+    store.overrideSelector(fromCart.selectCartValueState, stubCart);
+    store.overrideSelector(fromDemoCheckout.selectEnablePlaceOrderButton, stubEnablePlaceOrderButton);
     
     fixture.detectChanges();
+  });
+
+  afterAll(() => {
+    store.resetSelectors();
   });
   
   it('should create', () => {
@@ -60,26 +61,16 @@ describe('PlaceOrderComponent', () => {
   describe('ngOnInit', () => {
     
     it('should initialize enablePlaceOrderButton$', () => {
-      component.enablePlaceOrderButton$.subscribe((enablePlaceOrderButton) => {
-        expect(enablePlaceOrderButton).toEqual(stubEnablePlaceOrderButton);
-      });
+      const expected = cold('a', { a: stubEnablePlaceOrderButton });
+      expect(component.enablePlaceOrderButton$).toBeObservable(expected);
     });
     
-    it('should initialize cart', () => {
-      // mocking fromCart selector only works if it's imported from libs/state/src in the `place-order.component.ts` file
+    it('should initialize cart$', () => {
+      const expected = cold('a', { a: stubCart });
+      expect(component.cart$).toBeObservable(expected);
     });
   });
-  
-  describe('ngOnDestroy', () => {
-    
-    it('should unsubscribe from cartSubscription', () => {
-      component.cartSubscription = new Subscription();
-      spyOn(component.cartSubscription, "unsubscribe");
-      component.ngOnDestroy();
 
-      expect(component.cartSubscription.unsubscribe).toHaveBeenCalled();
-    });
-  });
 
   describe('when enablePlaceOrderButton$ is true', () => {
     
@@ -104,9 +95,7 @@ describe('PlaceOrderComponent', () => {
   describe('when button is clicked', () => {
     
     it('should call store.dispatch with a PlaceOrder action', () => {
-      component.cart = stubCart;
       fixture.debugElement.query(By.css('button')).nativeElement.click();
-
       expect(store.dispatch).toHaveBeenCalledWith(new PlaceOrder(stubCart));
     });
   });
