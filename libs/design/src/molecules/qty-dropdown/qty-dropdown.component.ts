@@ -7,7 +7,7 @@ import { Component, OnInit, Input, Renderer2, Output, EventEmitter } from '@angu
 })
 export class DaffQtyDropdownComponent implements OnInit {
   
-  static readonly dropdownRange = 9;
+  static readonly dropdownRange: number;
 
   @Input() qty: number;
   @Input() id: number;
