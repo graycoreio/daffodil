@@ -62,6 +62,10 @@ describe('DaffProductContainer', () => {
     productContainer = fixture.debugElement.query(By.css('[product-container]')).componentInstance;
   });
 
+  afterAll(() => {
+    store.resetSelectors();
+  });
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });

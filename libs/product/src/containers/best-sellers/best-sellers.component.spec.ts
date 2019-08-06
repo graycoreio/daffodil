@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Store, StoreModule, combineReducers, select } from '@ngrx/store';
+import { Store, select, ReducerManager, ActionsSubject } from '@ngrx/store';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
 
@@ -7,35 +8,33 @@ import { DaffBestSellersContainer } from './best-sellers.component';
 import { DaffBestSellersLoad } from '../../actions/best-sellers.actions';
 import * as fromProduct from '../../reducers/index';
 import { DaffProduct } from '../../models/product';
-import { provideMockStore } from '@ngrx/store/testing';
+import { of } from 'rxjs';
 
 describe('DaffBestSellersContainer', () => {
   let component: DaffBestSellersContainer;
   let fixture: ComponentFixture<DaffBestSellersContainer>;
-  let store;
+  let store: MockStore<any>;
   let initialLoading: boolean;
   let initialProducts: DaffProduct[];
   const productFactory = new DaffProductFactory();
   let bestSeller: DaffProduct;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
+
     TestBed.configureTestingModule({
-      imports: [],
       declarations: [ DaffBestSellersContainer ],
       providers: [
-        provideMockStore()
+        provideMockStore({})
       ]
     })
     .compileComponents();
-  }));
 
-  beforeEach(() => {
+    store = TestBed.get(Store);
     fixture = TestBed.createComponent(DaffBestSellersContainer);
     component = fixture.componentInstance;
-    store = TestBed.get(Store);
 
     initialLoading = false;
-    initialProducts = new Array(productFactory.create(), productFactory.create());
+    initialProducts = productFactory.createMany(2);
     bestSeller = initialProducts[1];
 
     store.overrideSelector(fromProduct.selectBestSellersLoadingState, initialLoading);
@@ -47,11 +46,16 @@ describe('DaffBestSellersContainer', () => {
     fixture.detectChanges();
   });
 
+  afterAll(() => {
+    store.resetSelectors();
+  });
+
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('ngInit', () => {
+  describe('ngOnInit', () => {
     
     it('dispatches a BestSellersLoad action', () => {
       expect(store.dispatch).toHaveBeenCalledWith(new DaffBestSellersLoad());

@@ -43,6 +43,10 @@ describe('DaffProductGridContainer', () => {
     fixture.detectChanges();
   });
 
+  afterAll(() => {
+    store.resetSelectors();
+  });
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
