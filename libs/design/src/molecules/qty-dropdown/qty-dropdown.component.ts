@@ -7,7 +7,7 @@ import { Component, OnInit, Input, Renderer2, Output, EventEmitter } from '@angu
 })
 export class DaffQtyDropdownComponent implements OnInit {
   
-  static readonly dropdownRange = 9;
+  private readonly dropdownRange = 9;
 
   @Input() qty: number;
   @Input() id: number;
@@ -21,7 +21,7 @@ export class DaffQtyDropdownComponent implements OnInit {
   constructor(private renderer: Renderer2) { }
 
   ngOnInit() {
-    this.dropdownItemCounter = Array.from(Array(DaffQtyDropdownComponent.dropdownRange),(x,i)=>i);
+    this.dropdownItemCounter = Array.from(Array(this.dropdownRange),(x,i)=>i);
 
     if (!this.qty) {
       this.qty = 1;
@@ -68,7 +68,7 @@ export class DaffQtyDropdownComponent implements OnInit {
   }
 
   private isQtyOutsideDropdownRange() {    
-    return this.qty > DaffQtyDropdownComponent.dropdownRange;
+    return this.qty > this.dropdownRange;
   }
 
   private selectInput() {
