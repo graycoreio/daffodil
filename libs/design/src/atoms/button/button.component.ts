@@ -9,7 +9,8 @@ const BUTTON_HOST_ATTRIBUTES: DaffButtonType[] = [
   'daff-button',
   'daff-stroked-button',
   'daff-raised-button',
-  'daff-icon-button'
+  'daff-icon-button',
+  'daff-underline-button'
 ];
 
 
@@ -28,6 +29,7 @@ enum DaffButtonTypeEnum {
   Stroked = 'daff-stroked-button',
   Raised = 'daff-raised-button',
   Icon = 'daff-icon-button',
+  Underline = 'daff-underline-button'
 }
 
 @Component({
@@ -37,10 +39,12 @@ enum DaffButtonTypeEnum {
     'button[daff-stroked-button]' + ',' +
     'button[daff-raised-button]' + ',' +
     'button[daff-icon-button]' + ',' +
+    'button[daff-underline-button]' + ',' +
     'a[daff-button]' + ',' +
     'a[daff-stroked-button]' + ',' +
     'a[daff-raised-button]' + ',' +
-    'a[daff-icon-button]',
+    'a[daff-icon-button]' + ',' +
+    'a[daff-underline-button]',
   template: '<ng-content></ng-content>',
   styleUrls: ['./button.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -84,6 +88,11 @@ export class DaffButtonComponent extends _daffButtonBase implements OnInit, Daff
     @HostBinding('class.daff-icon-button') get icon() {
       return this.buttonType === DaffButtonTypeEnum.Icon;
     }
+
+    @HostBinding('class.daff-underline-button') get underline() {
+      return this.buttonType === DaffButtonTypeEnum.Underline;
+    }
+
     _getHostElement() {
       return this.elementRef.nativeElement;
     }
