@@ -17,7 +17,6 @@
     line-height: 1.25em;
     max-width: 1040px;
     margin: 0;
-    padding: 0 25px;
     overflow-wrap: break-word;
     text-align: left;
     width: 100%;
@@ -28,7 +27,6 @@
 
     @include breakpoint(big-tablet) {
       font-size: 4.5rem;
-      padding: 0;
     }
   }
 
@@ -37,18 +35,17 @@
     line-height: 1.5em;
     font-weight: normal;
     max-width: 700px;
-    margin-top: 10px;
-    padding: 0 25px;
+    margin: 10px 0 0 0;
     text-align: left;
     width: 100%;
 
     @include breakpoint(mobile) {
       font-size: 1.25rem;
+      margin: 25px 0 0 0;
     }
 
     @include breakpoint(big-tablet) {
       font-size: 1.75rem;
-      margin-top: 25px;
       padding: 0;
     }
 
@@ -69,20 +66,9 @@
     }
   }
 
-  &--fullscreen {
-    min-height: calc(100vh - 99px);
-    padding: 75px 0;
-  
-    @include breakpoint(mobile) {
-      padding: 75px 50px;
-    }
-
-    @include breakpoint(small-laptop) {
-      padding: 25px 0;
-    }
-  }
-
-  &--small {
+  // Small will be deprecated in v1.0.0
+  &--small,
+  &--compact {
     padding: 50px 25px;
 
     @include breakpoint(mobile) {
@@ -91,11 +77,8 @@
   }
 
   &__image {
-    max-width: 800px;
+    display: block;
     margin: 0 auto;
-
-    img {
-      max-width: 100%;
-    }
+    max-width: 100%;
   } 
 }
