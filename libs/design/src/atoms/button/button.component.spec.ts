@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { DaffButtonComponent } from './button.component';
-import { By } from '@angular/platform-browser';
 import { DaffPalette } from '../../core/colorable/colorable';
 
 @Component({
@@ -17,13 +17,17 @@ import { DaffPalette } from '../../core/colorable/colorable';
     <button daff-icon-button [color]="color">Button Daff Icon Button</button>
   `
 })
+
 class WrapperComponent {
   color: DaffPalette;
 }
 
 describe('DaffButtonComponent', () => {
-  let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
+  let wrapper: WrapperComponent;
+  let de: DebugElement;
+  let buttonDE: DebugElement;
+  let anchorDE: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -38,6 +42,7 @@ describe('DaffButtonComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
+    de = fixture.debugElement.query(By.css('[daff-button]'));
     fixture.detectChanges();
   });
 
@@ -45,47 +50,83 @@ describe('DaffButtonComponent', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  describe('daff-button',() => {
-    it('should add a class of `daff-button` to its host element', () => {
-      expect(fixture.debugElement.query(By.css('a[daff-button]')).nativeElement.classList.contains('daff-button')).toEqual(true);
-
-      expect(fixture.debugElement.query(By.css('button[daff-button]')).nativeElement.classList.contains('daff-button')).toEqual(true);
+  describe('daff-button', () => {
+    beforeEach(() => {
+      buttonDE = fixture.debugElement.query(By.css('button[daff-button]'));
+      anchorDE = fixture.debugElement.query(By.css('a[daff-button]'));
     });
+
+    it('should add a class of "daff-button" to the host element', () => {
+      expect(buttonDE.classes).toEqual(jasmine.objectContaining({
+        'daff-button': true,
+      }));
+
+      expect(anchorDE.classes).toEqual(jasmine.objectContaining({
+        'daff-button': true,
+      }));
+    });
+    });
+
+  describe('daff-stroked-button', () => {
+    beforeEach(() => {
+      buttonDE = fixture.debugElement.query(By.css('button[daff-stroked-button]'));
+      anchorDE = fixture.debugElement.query(By.css('a[daff-stroked-button]'));
   });
 
-  describe('daff-stroked-button',() => {
     it('should add a class of `daff-stroked-button` to its host element', () => {
-      expect(fixture.debugElement.query(By.css('a[daff-stroked-button]')).nativeElement.classList.contains('daff-stroked-button')).toEqual(true);
+      expect(buttonDE.classes).toEqual(jasmine.objectContaining({
+        'daff-stroked-button': true,
+      }));
 
-      expect(fixture.debugElement.query(By.css('button[daff-stroked-button]')).nativeElement.classList.contains('daff-stroked-button')).toEqual(true);
+      expect(anchorDE.classes).toEqual(jasmine.objectContaining({
+        'daff-stroked-button': true,
+      }));
     });
+    });
+
+  describe('daff-raised-button', () => {
+    beforeEach(() => {
+      buttonDE = fixture.debugElement.query(By.css('button[daff-raised-button]'));
+      anchorDE = fixture.debugElement.query(By.css('a[daff-raised-button]'));
   });
 
-  describe('daff-raised-button',() => {
     it('should add a class of `daff-raised-button` to its host element', () => {
-      expect(fixture.debugElement.query(By.css('a[daff-raised-button]')).nativeElement.classList.contains('daff-raised-button')).toEqual(true);
+      expect(buttonDE.classes).toEqual(jasmine.objectContaining({
+        'daff-raised-button': true,
+      }));
 
-      expect(fixture.debugElement.query(By.css('button[daff-raised-button]')).nativeElement.classList.contains('daff-raised-button')).toEqual(true);
+      expect(anchorDE.classes).toEqual(jasmine.objectContaining({
+        'daff-raised-button': true,
+      }));
     });
   });
 
   describe('daff-icon-button', () => {
-    it('should add a class of `daff-icon-button` to its host element', () => {
-      expect(fixture.debugElement.query(By.css('a[daff-icon-button]')).nativeElement.classList.contains('daff-icon-button')).toEqual(true);
+    beforeEach(() => {
+      buttonDE = fixture.debugElement.query(By.css('button[daff-icon-button]'));
+      anchorDE = fixture.debugElement.query(By.css('a[daff-icon-button]'));
+    });
 
-      expect(fixture.debugElement.query(By.css('button[daff-icon-button]')).nativeElement.classList.contains('daff-icon-button')).toEqual(true);
+    it('should add a class of `daff-icon-button` to its host element', () => {
+      expect(buttonDE.classes).toEqual(jasmine.objectContaining({
+        'daff-icon-button': true,
+      }));
+
+      expect(anchorDE.classes).toEqual(jasmine.objectContaining({
+        'daff-icon-button': true,
+      }));
     });
   }); 
 
   describe('using a colored variant of a button',() => {
     let buttonDE;
 
+  describe('using a colored variant of a button', () => {
     it('should set a color class on the button', () => {
-      wrapper.color = "primary";
+      wrapper.color = 'primary';
       fixture.detectChanges();
       
-      buttonDE = fixture.debugElement.query(By.css('button[daff-button]'));
-      expect(buttonDE.nativeElement.classList.contains('daff-primary')).toEqual(true);
+      expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
     });
 
     it('should set the default color to the contrasting theme color', () => {
