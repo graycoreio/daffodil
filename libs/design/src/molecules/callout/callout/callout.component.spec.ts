@@ -2,18 +2,19 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component, DebugElement } from '@angular/core';
 
-import { DaffCalloutComponent, DaffCalloutLayout } from './callout.component';
 import { DaffPalette } from '../../../core/colorable/colorable';
+import { DaffCalloutComponent, DaffCalloutLayout, DaffCalloutSize } from './callout.component';
 
 @Component ({
   template: `
-    <daff-callout [layout]="layout" [color]="color"></daff-callout>
+    <daff-callout [color]="color" [layout]="layout" [size]="size"></daff-callout>
   `
 })
 
 class WrapperComponent {
-  layout: DaffCalloutLayout;
   color: DaffPalette;
+  layout: DaffCalloutLayout;
+  size: DaffCalloutSize;
 }
 
 describe('DaffCalloutComponent', () => {
@@ -52,6 +53,19 @@ describe('DaffCalloutComponent', () => {
     });
   });
 
+  describe('using a colored variant of a callout',() => {
+    it('should set a color class on the callout', () => {
+      wrapper.color = 'primary';
+      fixture.detectChanges();
+
+      expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
+    });
+
+    it('should not set a default color', () => {
+      expect(component.color).toBeFalsy();
+    });
+  });
+
   describe('setting the layout', () => {
     describe('when layout="centered"', () => {
       it('should add a class of "daff-callout--centered" to the host element', () => {
@@ -71,16 +85,22 @@ describe('DaffCalloutComponent', () => {
     });
   });
 
-  describe('using a colored variant of a callout',() => {
-    it('should set a color class on the callout', () => {
-      wrapper.color = 'primary';
-      fixture.detectChanges();
-
-      expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
+  describe('setting the size', () => {
+    describe('when size="compact"', () => {
+      it('should add a class of "daff-callout--compact" to the host element', () => {
+        wrapper.size = 'compact';
+        fixture.detectChanges();
+        expect(de.classes).toEqual(jasmine.objectContaining({
+          'daff-callout--compact': true
+        }));
+      });
     });
 
-    it('should not set a default color', () => {
-      expect(component.color).toBeFalsy();
+    it('should not set a default size', () => {
+      expect(component.size).toBeFalsy();
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-callout--compact': false,
+      }));
     });
   });
 });

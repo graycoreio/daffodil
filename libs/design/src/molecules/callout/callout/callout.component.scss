@@ -2,8 +2,7 @@
 
 .daff-callout {
   $root: &;
-  display: flex;
-  flex-direction: column;
+  display: block;
   padding: 75px 25px;
     
   @include breakpoint(mobile) {
@@ -14,7 +13,6 @@
     @include embolden();
     font-size: 1.5rem;
     line-height: 1.25em;
-    max-width: 1040px;
     margin: 0;
     padding: 0;
     text-align: left;
@@ -32,16 +30,12 @@
     font-size: 1rem;
     font-weight: normal;
     line-height: 1.5em;
-    max-width: 600px;
     margin: 10px 0 0 0;
     padding: 0;
     text-align: left;
 
     @include breakpoint(mobile) {
       font-size: $medium-font-size;
-    }
-
-    @include breakpoint(big-tablet) {
       margin: 25px 0 0 0;
     }
 
@@ -60,18 +54,23 @@
       margin: 10px auto 0 auto;
       text-align: center;
 
-      @include breakpoint(big-tablet) {
+      @include breakpoint(mobile) {
         margin: 25px auto 0 auto;
       }
     }
   }
 
-  &__image {
-    max-width: 800px;
-    margin: 0 auto;
-
-     img {
-      max-width: 100%;
+  &--compact {
+    padding: 25px;
+    
+    @include breakpoint(mobile) {
+      padding: 25px 50px;
     }
+  }
+
+  &__image {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
   }
 }

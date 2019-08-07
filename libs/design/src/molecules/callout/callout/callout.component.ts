@@ -2,9 +2,14 @@ import { Component, ViewEncapsulation, Input, ElementRef, ChangeDetectionStrateg
 
 import { DaffColorable, DaffPalette, daffColorMixin } from '../../../core/colorable/colorable';
 
-export type DaffCalloutLayout = "centered" | undefined;
+export type DaffCalloutLayout = 'centered' | undefined;
 export enum DaffCalloutLayoutEnum {
-  Centered = "centered"
+  Centered = 'centered'
+}
+
+export type DaffCalloutSize = 'compact' | undefined;
+export enum DaffCalloutSizeEnum {
+  Compact = 'compact'
 }
 
 /**
@@ -24,8 +29,9 @@ const _daffCalloutBase = daffColorMixin(DaffCalloutBase)
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DaffCalloutComponent extends _daffCalloutBase implements DaffColorable {
-  @Input() layout: DaffCalloutLayout;
   @Input() color: DaffPalette;
+  @Input() layout: DaffCalloutLayout;
+  @Input() size: DaffCalloutSize;
 
   constructor(private elementRef: ElementRef) {
     super(elementRef);
@@ -35,5 +41,9 @@ export class DaffCalloutComponent extends _daffCalloutBase implements DaffColora
 
   @HostBinding('class.daff-callout--centered') get centered() {
     return this.layout === DaffCalloutLayoutEnum.Centered;
+  }
+
+  @HostBinding('class.daff-callout--compact') get compact() {
+    return this.size === DaffCalloutSizeEnum.Compact;
   }
 }
