@@ -7,9 +7,10 @@ export enum DaffHeroLayoutEnum {
   Centered = 'centered'
 }
 
-export type DaffHeroSize = 'compact' | undefined;
+export type DaffHeroSize = 'compact' | 'small' | undefined;
 export enum DaffHeroSizeEnum {
-  Compact = 'compact'
+  Compact = 'compact',
+  Small = 'small' // Small will be deprecated in v1.0.0
 }
 
 /**
@@ -42,6 +43,10 @@ export class DaffHeroComponent extends _daffHeroBase implements DaffColorable {
 
   @HostBinding('class.daff-hero--centered') get centered() {
     return this.layout === DaffHeroLayoutEnum.Centered;
+  }
+
+  @HostBinding('class.daff-hero--small') get small() {
+    return this.size === DaffHeroSizeEnum.Small;
   }
 
   @HostBinding('class.daff-hero--compact') get compact() {

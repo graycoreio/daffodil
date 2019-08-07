@@ -66,6 +66,8 @@
     }
   }
 
+  // Small will be deprecated in v1.0.0
+  &--small,
   &--compact {
     padding: 50px 25px;
 

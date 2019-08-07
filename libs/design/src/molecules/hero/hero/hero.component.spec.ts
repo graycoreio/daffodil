@@ -73,8 +73,19 @@ describe('DaffHeroComponent', () => {
     it('should not set a default size', () => {
       expect(component.layout).toBeFalsy();
       expect(de.classes).toEqual(jasmine.objectContaining({
-        'daff-hero--compact': false,
+        'daff-hero--small': false,
+        'daff-hero--compact': false
       }));
+    });
+
+    describe('when size="small"', () => {
+      it('should add a class of "daff-hero--small" to the host element', () => {
+        wrapper.size = 'small';
+        fixture.detectChanges();
+        expect(de.classes).toEqual(jasmine.objectContaining({
+          'daff-hero--small': true
+        }));
+      });
     });
 
     describe('when size="compact"', () => {
