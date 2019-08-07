@@ -27,6 +27,22 @@
     }
 }
 
+@mixin daff-underline-button-theme-variant($baseColor, $hoverColor) {
+    color: $baseColor;
+    
+    &:after {
+        background-color: $baseColor;
+    }
+
+    &:hover {
+        color: $hoverColor;
+
+        &:after {
+            background: $hoverColor;
+        }
+    }
+}
+
 @mixin daff-button-theme($theme){
     $primary: map-get($theme, primary);
     $secondary: map-get($theme, secondary);
@@ -146,8 +162,38 @@
             @include daff-stroked-button-theme-variant(daff-color($daff-gray, 30));
             &:hover {
                 background: transparent;
-                color: currentColor;
+    .daff-underline-button {
+        
+        &.daff-primary {
+            @include daff-underline-button-theme-variant(daff-color($primary), daff-color($primary, 80));
+        }
+    
+        &.daff-secondary {
+            @include daff-underline-button-theme-variant(daff-color($secondary), daff-color($secondary, 80));
+        }
+
+        &.daff-tertiary {
+            @include daff-underline-button-theme-variant(daff-color($tertiary), daff-color($tertiary, 80));
+        }
+
+        &.daff-theme {
+            @include daff-underline-button-theme-variant($base, daff-illuminate($base, $daff-gray, 2));
+        }
+
+        &.daff-theme-contrast {
+            @include daff-underline-button-theme-variant($baseContrast, daff-illuminate($baseContrast, $daff-gray, 2));
+        }
+
+        &.daff-black {
+            @include daff-underline-button-theme-variant($black, daff-color($daff-gray, 90));
+        }
+    
+        &.daff-white {
+            @include daff-underline-button-theme-variant($white, daff-color($daff-gray, 30));
             }
+
+        &[disabled] {
+            @include daff-underline-button-theme-variant(daff-color($daff-gray, 60), daff-color($daff-gray, 60));
         }
     }
 }

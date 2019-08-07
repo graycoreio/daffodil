@@ -11,10 +11,12 @@ import { DaffPalette } from '../../core/colorable/colorable';
     <a daff-stroked-button [color]="color">Link Daff Stroked Button</a>
     <a daff-raised-button [color]="color">Link Daff Raised Button</a>
     <a daff-icon-button [color]="color">Link Daff Icon Button</a>
+    <a daff-underline-button [color]="color">Link Daff Underline Button</a>
     <button daff-button [color]="color">Button Daff Button</button>
     <button daff-stroked-button [color]="color">Button Daff Stroked Button</button>
     <button daff-raised-button [color]="color">Button Daff Raised Button</button>
     <button daff-icon-button [color]="color">Button Daff Icon Button</button>
+    <button daff-underline-button [color]="color">Button Daff Underline Button</button>
   `
 })
 
@@ -118,8 +120,22 @@ describe('DaffButtonComponent', () => {
     });
   }); 
 
-  describe('using a colored variant of a button',() => {
-    let buttonDE;
+  describe('daff-underline-button', () => {
+    beforeEach(() => {
+      buttonDE = fixture.debugElement.query(By.css('button[daff-underline-button]'));
+      anchorDE = fixture.debugElement.query(By.css('a[daff-underline-button]'));
+    });
+
+    it('should add a class of `daff-underline-button` to its host element', () => {
+      expect(buttonDE.classes).toEqual(jasmine.objectContaining({
+        'daff-underline-button': true,
+      }));
+
+      expect(anchorDE.classes).toEqual(jasmine.objectContaining({
+        'daff-underline-button': true,
+      }));
+    });
+  });
 
   describe('using a colored variant of a button', () => {
     it('should set a color class on the button', () => {
