@@ -2,11 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffProduct, fromProduct, DaffProductFacade } from '@daffodil/product';
+import { DaffProduct, fromProduct } from '@daffodil/product';
 
 import * as fromDemoAddToCartNotification from '../../reducers/index';
 import { CloseAddToCartNotification } from '../../actions/add-to-cart-notification.actions';
-import { DaffCartFacade } from '@daffodil/cart';
 import { switchMap } from 'rxjs/operators';
 
 @Component({

@@ -46,11 +46,9 @@ describe('AddToCartNotificationComponent', () => {
     cart: fromCart.State
     product: fromProduct.State
   }>;
-  let productFactory: DaffProductFactory = new DaffProductFactory();
-  let cartFactory: DaffCartFactory = new DaffCartFactory();
+  const productFactory: DaffProductFactory = new DaffProductFactory();
+  const cartFactory: DaffCartFactory = new DaffCartFactory();
 
-  let stubProduct: DaffProduct;
-  let stubProductId: string;
   let daffModal: MockDaffModalComponent;
   let addToCartNotification: AddToCartNotificationComponent;
   let productAdded: MockProductAddedComponent;
@@ -111,9 +109,9 @@ describe('AddToCartNotificationComponent', () => {
   });
 
   describe('on demo-product-added', () => {
-    let stubProduct = productFactory.create(1);
-    let productAddPayload = { productId: stubProduct.id, qty: 1 };
-    let stubCart = cartFactory.create();
+    const stubProduct = productFactory.create(1);
+    const productAddPayload = { productId: stubProduct.id, qty: 1 };
+    const stubCart = cartFactory.create();
 
     beforeEach(() => {
       store.dispatch(new DaffProductLoadSuccess(stubProduct))
@@ -190,9 +188,9 @@ describe('AddToCartNotificationComponent', () => {
   });
 
   describe('when loading$ is false', () => {
-    let stubProduct = productFactory.create(1);
-    let productAddPayload = { productId: stubProduct.id, qty: 1 };
-    let stubCart = cartFactory.create();
+    const stubProduct = productFactory.create(1);
+    const productAddPayload = { productId: stubProduct.id, qty: 1 };
+    const stubCart = cartFactory.create();
     
     beforeEach(() => {
       store.dispatch(new OpenAddToCartNotification());
@@ -248,8 +246,8 @@ describe('AddToCartNotificationComponent', () => {
   });
 
   describe('when loading$ is true', () => {
-    let stubProduct = productFactory.create(1);
-    let productAddPayload = { productId: stubProduct.id, qty: 1 };
+    const stubProduct = productFactory.create(1);
+    const productAddPayload = { productId: stubProduct.id, qty: 1 };
 
     beforeEach(() => {
       store.dispatch(new OpenAddToCartNotification());

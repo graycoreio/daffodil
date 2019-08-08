@@ -55,8 +55,8 @@ describe('CartWrapper', () => {
   let store: MockStore<any>;
   const cartFactory = new DaffCartFactory();
   const cart = cartFactory.create();
-  let stubIsCartEmpty = true;
-  let stubSelectCartItemCount: number = 0;
+  const stubIsCartEmpty = true;
+  let stubSelectCartItemCount = 0;
   let cartItemCountSelector: MemoizedSelector<object, number>;
   let cartEmptySelector: MemoizedSelector<object, boolean>;
 

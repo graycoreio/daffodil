@@ -13,11 +13,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { OpenSidebar, CloseSidebar, SetSidebarState } from '../../actions/sidebar.actions';
 import { cold } from 'jasmine-marbles';
 
-@Component({selector: 'daffio-sidebar', template: ''})
-class MockDaffioSidebarContainerComponent {
-  @Output() close: EventEmitter<any> = new EventEmitter();
-}
-
 describe('DaffioSidebarViewportContainer', () => {
   let component: DaffioSidebarViewportContainer;
   let fixture: ComponentFixture<DaffioSidebarViewportContainer>;
