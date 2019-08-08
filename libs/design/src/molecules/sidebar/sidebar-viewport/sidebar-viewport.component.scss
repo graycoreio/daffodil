@@ -44,6 +44,7 @@ $daff-sidebar-viewport-z-index: 1;
 			top: 0;
 			transform: translate3d(-$sidebar-width, 0, 0);
 		}
+
 		#{$root}__content {
 			transform: translate3d($sidebar-width, 0, 0);
 		}

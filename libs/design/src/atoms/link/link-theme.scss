@@ -22,12 +22,14 @@
 				daff-color($primary, 70)
 			);
 		}
+
 		&.daff-secondary {
 			@include daff-link-theme-variant(
 				daff-color($secondary),
 				daff-color($secondary, 70)
 			);
 		}
+
 		//TODO: damienwebdev - Deprecate Accent
 		&.daff-accent {
 			@include daff-link-theme-variant(
@@ -35,30 +37,36 @@
 				daff-color($secondary, 70)
 			);
 		}
+
 		&.daff-tertiary {
 			@include daff-link-theme-variant(
 				daff-color($tertiary),
 				daff-color($tertiary, 70)
 			);
 		}
+
 		&.daff-theme {
 			@include daff-link-theme-variant(
 				$base,
 				daff-illuminate($base, $daff-gray, 1)
 			);
 		}
+
 		&.daff-theme-contrast {
 			@include daff-link-theme-variant(
 				$baseContrast,
 				daff-illuminate($baseContrast, $daff-gray, 1)
 			);
 		}
+
 		&.daff-black {
 			@include daff-link-theme-variant($black, daff-color($daff-gray, 100));
 		}
+
 		&.daff-white {
 			@include daff-link-theme-variant($white, daff-color($daff-gray, 10));
 		}
+
 		&[disabled] {
 			@include daff-link-theme-variant(
 				daff-color($daff-gray, 60),

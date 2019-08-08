@@ -8,6 +8,7 @@
     "no-css-comments": 2,
     "extends-before-mixins": 2,
     "extends-before-declarations": 2,
+    "empty-line-between-blocks": 2,
     "placeholder-in-extend": 2,
     "mixins-before-declarations": [
       2,

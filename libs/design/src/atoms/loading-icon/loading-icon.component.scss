@@ -33,14 +33,17 @@ circle {
 		stroke-dasharray: $maxStrokeLength 400;
 		stroke-dashoffset: $maxStrokeLength;
 	}
+
 	50% {
 		stroke-dasharray: $maxStrokeLength 400;
 		stroke-dashoffset: $maxStrokeLength - $perimeter * 0.25;
 	}
+
 	75% {
 		stroke-dasharray: $maxStrokeLength 400;
 		stroke-dashoffset: 0;
 	}
+
 	100% {
 		stroke-dasharray: 0 400;
 		stroke-dashoffset: -$maxStrokeLength;
@@ -51,21 +54,27 @@ circle {
 	0% {
 		transform: rotate(-90deg);
 	}
+
 	50% {
 		transform: rotate(0deg);
 	}
+
 	50.5% {
 		transform: rotate(0deg);
 	}
+
 	75% {
 		transform: rotate(90deg);
 	}
+
 	75.5% {
 		transform: rotate(90deg);
 	}
+
 	99% {
 		transform: rotate(#{$angle}deg);
 	}
+
 	100% {
 		transform: rotate(#{$angle}deg);
 	}

@@ -16,31 +16,37 @@
 				background: daff-color($primary);
 			}
 		}
+
 		&.daff-secondary {
 			#{$root}__fill {
 				background: daff-color($secondary);
 			}
 		}
+
 		&.daff-tertiary {
 			#{$root}__fill {
 				background: daff-color($tertiary);
 			}
 		}
+
 		&.daff-theme {
 			#{$root}__fill {
 				background: $base;
 			}
 		}
+
 		&.daff-theme-contrast {
 			#{$root}__fill {
 				background: $baseContrast;
 			}
 		}
+
 		&.daff-black {
 			#{$root}__fill {
 				background: $black;
 			}
 		}
+
 		&.daff-white {
 			#{$root}__fill {
 				background: $white;

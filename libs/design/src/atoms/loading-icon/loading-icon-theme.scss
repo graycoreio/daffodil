@@ -13,26 +13,31 @@
 				stroke: daff-color($primary);
 			}
 		}
+
 		&.daff-secondary {
 			circle {
 				stroke: daff-color($secondary);
 			}
 		}
+
 		&.daff-tertiary {
 			circle {
 				stroke: daff-color($tertiary);
 			}
 		}
+
 		&.daff-theme {
 			circle {
 				stroke: $base;
 			}
 		}
+
 		&.daff-theme-contrast {
 			circle {
 				stroke: $baseContrast;
 			}
 		}
+
 		&.daff-black {
 			circle {
 				stroke: $black;
