@@ -1,5 +1,5 @@
 @import '../color';
-@import '../contrast';
+@import '../contrast/luminance/luminance';
 
 //
 // Take a numeric map and sort it.
@@ -104,6 +104,7 @@
 			)
 		);
 	}
+
 
 	//Calculate which color to get
 	$brighterColors: ();
