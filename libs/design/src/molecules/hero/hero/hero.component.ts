@@ -7,10 +7,10 @@ export enum DaffHeroLayoutEnum {
   Centered = 'centered'
 }
 
-export type DaffHeroSize = 'fullscreen' | 'small' | undefined;
+export type DaffHeroSize = 'compact' | 'small' | undefined;
 export enum DaffHeroSizeEnum {
-  Fullscreen = 'fullscreen',
-  Small = "small"
+  Compact = 'compact',
+  Small = 'small' // Small will be deprecated in v1.0.0
 }
 
 /**
@@ -45,11 +45,11 @@ export class DaffHeroComponent extends _daffHeroBase implements DaffColorable {
     return this.layout === DaffHeroLayoutEnum.Centered;
   }
 
-  @HostBinding('class.daff-hero--fullscreen') get fullscreen() {
-    return this.size === DaffHeroSizeEnum.Fullscreen;
-  }
-
   @HostBinding('class.daff-hero--small') get small() {
     return this.size === DaffHeroSizeEnum.Small;
+  }
+
+  @HostBinding('class.daff-hero--compact') get compact() {
+    return this.size === DaffHeroSizeEnum.Compact;
   }
 }

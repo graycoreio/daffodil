@@ -19,7 +19,7 @@ A `daff-hero` transcludes:
 
 ## Sizing
 * To define a hero size, add `size="[value]"` to the hero tag.
-* Values: `fullscreen` and `small`
+* Values: `compact`
 
 ## Layout
 * To define a hero layout, add `layout="[value]"` to the hero tag.
@@ -27,7 +27,7 @@ A `daff-hero` transcludes:
 
 ## Usage
 ```
-<daff-hero color="primary" size="small" layout="centered">
+<daff-hero color="primary" size="compact" layout="centered">
   <h1 daffHeroTitle>Hero Title</h1>
   <h2 daffHeroSubtitle>Hero subtitle</h2>
 </daff-hero>
