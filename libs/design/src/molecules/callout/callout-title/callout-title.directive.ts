@@ -1,8 +1,10 @@
-import { Directive } from '@angular/core';
+import { Directive, HostBinding } from '@angular/core';
 
 @Directive({
-  selector: '[daffCalloutTitle]',
-  host: {'class': 'daff-callout__title'}
+  selector: '[daffCalloutTitle]'
 })
 
-export class DaffCalloutTitleDirective {}
+export class DaffCalloutTitleDirective {
+
+  @HostBinding('class.daff-callout__title') class = true;
+}
