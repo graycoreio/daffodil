@@ -12,7 +12,7 @@ class WrapperComponent {}
 
 describe('DaffCalloutSubtitleDirective', () => {
   let wrapper: WrapperComponent;
-  let calloutSubtitle: DebugElement;
+  let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(async(() => {
@@ -27,8 +27,8 @@ describe('DaffCalloutSubtitleDirective', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
-    calloutSubtitle = fixture.debugElement.query(By.css('[daffCalloutSubtitle]'));
-    wrapper = calloutSubtitle.componentInstance;
+    wrapper = fixture.componentInstance;
+    de = fixture.debugElement.query(By.css('[daffCalloutSubtitle]'));
     fixture.detectChanges();
   });
 
@@ -38,7 +38,7 @@ describe('DaffCalloutSubtitleDirective', () => {
 
   describe('[daffCalloutSubtitle]',() => {
     it('should add a class of `daff-callout__subtitle` to its host element', () => {
-      expect(calloutSubtitle.nativeElement.classList.contains('daff-callout__subtitle')).toEqual(true);
+      expect(de.nativeElement.classList.contains('daff-callout__subtitle')).toEqual(true);
     });
   });
 }); 

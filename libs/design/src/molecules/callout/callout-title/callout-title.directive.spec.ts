@@ -11,7 +11,8 @@ import { DaffCalloutTitleDirective } from './callout-title.directive';
 class WrapperComponent {}
 
 describe('DaffCalloutTitleDirective', () => {
-  let calloutTitle: DebugElement;
+  let wrapper: WrapperComponent;
+  let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(async(() => {
@@ -26,17 +27,18 @@ describe('DaffCalloutTitleDirective', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
-    calloutTitle = fixture.debugElement.query(By.css('[daffCalloutTitle]'));
+    wrapper = fixture.componentInstance;
+    de = fixture.debugElement.query(By.css('[daffCalloutTitle]'));
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(calloutTitle).toBeTruthy();
+    expect(wrapper).toBeTruthy();
   });
 
   describe('[daffCalloutTitle]',() => {
     it('should add a class of `daff-callout__title` to its host element', () => {
-      expect(calloutTitle.nativeElement.classList.contains('daff-callout__title')).toEqual(true);
+      expect(de.nativeElement.classList.contains('daff-callout__title')).toEqual(true);
     });
   });
 }); 
