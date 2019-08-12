@@ -1,4 +1,4 @@
-/////
+//
 // @docs
 // 
 // Changes the weight (boldness) of text to 700
@@ -7,12 +7,12 @@
 // ```
 // @include embolden(500);
 // ```
-///
+//
 @mixin embolden($weight: 700) {
 	font-weight: $weight;
 }
 
-/////
+//
 // @docs
 // 
 // Changes the casing of a piece of text to uppercase
@@ -21,7 +21,7 @@
 // ```
 // @include uppercase();
 // ```
-///
+//
 @mixin uppercase() {
 	text-transform: uppercase;
 }
