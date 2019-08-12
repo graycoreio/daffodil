@@ -1,0 +1,15 @@
+@import './_variables';
+
+// Calculate the luminance for a color.
+// Luminance is defined as a decimal value between 0 and 1
+// with "0" corresponding to "no brightness"
+// and "1" corresponding to "full brightness".
+//
+// See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+@function daff-luminance($color) {
+	$red: nth($linear-channel-values, red($color) + 1);
+	$green: nth($linear-channel-values, green($color) + 1);
+	$blue: nth($linear-channel-values, blue($color) + 1);
+	
+	@return 0.2126 * $red + 0.7152 * $green + 0.0722 * $blue;
+}

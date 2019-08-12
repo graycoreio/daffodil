@@ -1,101 +1,101 @@
 @import '../../../scss/daff-util';
 
 .daff-feature {
-  $root: &;
-  display: flex;
-  border-radius: 10px;
-  
-  &__icon {
-    display: inline-block;
-    max-width: 30px;
-    
-    @include breakpoint(mobile) {
-      max-width: 50px;
-    }
-  }
+	$root: &;
+	border-radius: 10px;
+	display: flex;
 
-  &__subheader {
-    @include uppercase();
-    font-size: 0.75rem;
-    line-height: 1rem;
-    letter-spacing: 0.075rem;
+	&__icon {
+		display: inline-block;
+		max-width: 30px;
 
-    @include breakpoint(mobile) {
-      font-size: $small-font-size;
-    }
-   }
+		@include breakpoint(mobile) {
+			max-width: 50px;
+		}
+	}
 
-  &__title {
-    @include embolden();
-    padding: 0;
-    margin: 0 0 15px 0;
-  }
+	&__subheader {
+		@include uppercase();
+		font-size: 0.75rem;
+		letter-spacing: 0.075rem;
+		line-height: 1rem;
 
-  &__subtitle {
-    font-size: 1rem;
-    margin: 0;
-    padding: 0;
-  }
+		@include breakpoint(mobile) {
+			font-size: $small-font-size;
+		}
+	}
 
-  &--normal {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 25px;
+	&__title {
+		@include embolden();
+		margin: 0 0 15px 0;
+		padding: 0;
+	}
 
-    @include breakpoint(mobile) {
-      flex-direction: row;
-      align-items: center;
-      padding: 50px;
-    }
+	&__subtitle {
+		font-size: 1rem;
+		margin: 0;
+		padding: 0;
+	}
 
-    #{$root}__icon {
-      margin: 0 0 15px 0;
-      
-      @include breakpoint(mobile) {
-        margin: 0 25px 0 0;
-      }
-    }
+	&--normal {
+		align-items: flex-start;
+		flex-direction: column;
+		padding: 25px;
 
-    #{$root}__subheader {
-      margin: 0 0 15px 0;
+		@include breakpoint(mobile) {
+			align-items: center;
+			flex-direction: row;
+			padding: 50px;
+		}
 
-      @include breakpoint(mobile) {
-        margin: 0 0 30px 0;
-      }
-    }
+		#{$root}__icon {
+			margin: 0 0 15px 0;
 
-    #{$root}__title {
-      font-size: 1.25rem;
-      line-height: 1.25rem;
+			@include breakpoint(mobile) {
+				margin: 0 25px 0 0;
+			}
+		}
 
-      @include breakpoint(mobile) {
-        font-size: 2rem;
-        line-height: 2rem;
-      }
-    }
-  }
+		#{$root}__subheader {
+			margin: 0 0 15px 0;
 
-  &--compact {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 25px;
+			@include breakpoint(mobile) {
+				margin: 0 0 30px 0;
+			}
+		}
 
-    #{$root}__icon {
-      margin: 0 0 15px 0;
-    }
+		#{$root}__title {
+			font-size: 1.25rem;
+			line-height: 1.25rem;
 
-    #{$root}__subheader {
-      margin: 0 0 5px 0;
-    }
-  
-    #{$root}__title {
-      font-size: 1.25rem;
-      line-height: 1.25rem;
-      
-      @include breakpoint(mobile) {
-        font-size: 1.5rem;
-        line-height: 1.5rem;
-      }
-    }
-  }
+			@include breakpoint(mobile) {
+				font-size: 2rem;
+				line-height: 2rem;
+			}
+		}
+	}
+
+	&--compact {
+		align-items: flex-start;
+		flex-direction: column;
+		padding: 25px;
+
+		#{$root}__icon {
+			margin: 0 0 15px 0;
+		}
+
+		#{$root}__subheader {
+			margin: 0 0 5px 0;
+		}
+
+		#{$root}__title {
+			font-size: 1.25rem;
+			line-height: 1.25rem;
+
+			@include breakpoint(mobile) {
+				font-size: 1.5rem;
+				line-height: 1.5rem;
+			}
+		}
+	}
 }

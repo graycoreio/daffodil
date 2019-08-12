@@ -1,0 +1,24 @@
+@import 'true';
+@import './luminance';
+
+@include describe('luminance') {
+	@include it('should return 0 for black') {
+		@include assert-equal(daff-luminance(#000000), 0);
+	}
+
+	@include it('should return 1 for white') {
+		@include assert-equal(daff-luminance(#fff), 1);
+	}
+
+	@include it('should return 0.2126 for pure red') {
+		@include assert-equal(daff-luminance(#ff0000), 0.2126);
+	}
+
+	@include it('should return 0.7152 for pure green') {
+		@include assert-equal(daff-luminance(#00ff00), 0.7152);
+	}
+
+	@include it('should return 0.0722 for pure blue') {
+		@include assert-equal(daff-luminance(#0000ff), 0.0722);
+	}
+}

@@ -1,46 +1,46 @@
 @mixin daff-callout-theme-variant($color) {
-    background: $color;
-    color: daff-text-contrast($color);
+	background: $color;
+	color: daff-text-contrast($color);
 }
 
-@mixin daff-callout-theme($theme){
-    $primary: map-get($theme, primary);
-    $secondary: map-get($theme, secondary);
-    $tertiary: map-get($theme, tertiary);
-    $base: daff-map-deep-get($theme, "core.base");
-    $baseContrast: daff-map-deep-get($theme, "core.base-contrast");
-    $white: daff-map-deep-get($theme, 'core.white');
-    $black: daff-map-deep-get($theme, 'core.black');
-    
-    .daff-callout {
-        @include daff-callout-theme-variant(daff-illuminate($base, $daff-gray, 1));
+@mixin daff-callout-theme($theme) {
+	$primary: map-get($theme, primary);
+	$secondary: map-get($theme, secondary);
+	$tertiary: map-get($theme, tertiary);
+	$base: daff-map-deep-get($theme, 'core.base');
+	$baseContrast: daff-map-deep-get($theme, 'core.base-contrast');
+	$white: daff-map-deep-get($theme, 'core.white');
+	$black: daff-map-deep-get($theme, 'core.black');
 
-        &.daff-primary {
-            @include daff-callout-theme-variant(daff-color($primary));
-        }
+	.daff-callout {
+		@include daff-callout-theme-variant(daff-illuminate($base, $daff-gray, 1));
 
-        &.daff-secondary {
-            @include daff-callout-theme-variant(daff-color($secondary));
-        }
+		&.daff-primary {
+			@include daff-callout-theme-variant(daff-color($primary));
+		}
 
-        &.daff-tertiary {
-            @include daff-callout-theme-variant(daff-color($tertiary));
-        }
+		&.daff-secondary {
+			@include daff-callout-theme-variant(daff-color($secondary));
+		}
 
-        &.daff-theme {
-            @include daff-callout-theme-variant($base);
-        }
+		&.daff-tertiary {
+			@include daff-callout-theme-variant(daff-color($tertiary));
+		}
 
-        &.daff-theme-contrast {
-            @include daff-callout-theme-variant($baseContrast);
-        }
+		&.daff-theme {
+			@include daff-callout-theme-variant($base);
+		}
 
-        &.daff-black {
-            @include daff-callout-theme-variant($black);
-        }
+		&.daff-theme-contrast {
+			@include daff-callout-theme-variant($baseContrast);
+		}
 
-        &.daff-white {
-            @include daff-callout-theme-variant($white);
-        }
-    }
+		&.daff-black {
+			@include daff-callout-theme-variant($black);
+		}
+
+		&.daff-white {
+			@include daff-callout-theme-variant($white);
+		}
+	}
 }

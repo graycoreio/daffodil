@@ -1,10 +1,13 @@
 # List Component
+
 The `<daff-list>` component can be used to display a series of line items.
 
 ## Basic List
-* Consists of multiple `<daff-list-item>`s
+
+- Consists of multiple `<daff-list-item>`s
 
 ### Usage
+
 ```
 <daff-list>
   <h3 daffListSubheader>Lorem Ipsum</h3>
@@ -15,9 +18,11 @@ The `<daff-list>` component can be used to display a series of line items.
 ```
 
 ## Link List
-* `type="link"` is used for navigation lists
+
+- `type="link"` is used for navigation lists
 
 ### Usage
+
 ```
 <daff-list type="link">
   <h3 daffListSubheader>List Subheader</h3>
@@ -30,9 +35,11 @@ The `<daff-list>` component can be used to display a series of line items.
 ```
 
 ## Multi-line List
-* `type="multi-line"` allows you to have multiple lines per `daff-list-item`. 
+
+- `type="multi-line"` allows you to have multiple lines per `daff-list-item`.
 
 ### Usage
+
 ```
 <daff-list type="multi-line">
   <daff-list-item>
@@ -51,10 +58,12 @@ The `<daff-list>` component can be used to display a series of line items.
 ```
 
 ## Icon List
-* `[daffListItemIcon]` allows you to add an icon to your list item.
-* Add the attribute `[daffListItemIcon]` to any element.
+
+- `[daffListItemIcon]` allows you to add an icon to your list item.
+- Add the attribute `[daffListItemIcon]` to any element.
 
 ### Usage
+
 ```
 <daff-list>
   <daff-list-item>
