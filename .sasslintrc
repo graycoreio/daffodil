@@ -6,6 +6,12 @@
 	},
 	"rules": {
 		"bem-depth": 2,
+		"brace-style": [
+			2,
+			{
+				"style": "stroustrup"
+			}
+		],
 		"class-name-format": [
 			2,
 			{
@@ -32,7 +38,10 @@
 		"mixins-before-declarations": [
 			2,
 			{
-				"exclude": ["breakpoint", "mq"]
+				"exclude": [
+					"breakpoint",
+					"mq"
+				]
 			}
 		],
 		"no-css-comments": 2,
@@ -62,12 +71,6 @@
 		"space-before-brace": 2,
 		"space-between-parens": 2,
 		"trailing-semicolon": 2,
-		"url-quotes": 2,
-		"brace-style": [
-      2,
-      {
-        "style":"stroustrup"
-      }
-      ],
+		"url-quotes": 2
 	}
 }
