@@ -62,6 +62,12 @@
 		"space-before-brace": 2,
 		"space-between-parens": 2,
 		"trailing-semicolon": 2,
-		"url-quotes": 2
+		"url-quotes": 2,
+		"brace-style": [
+      2,
+      {
+        "style":"stroustrup"
+      }
+      ],
 	}
 }
