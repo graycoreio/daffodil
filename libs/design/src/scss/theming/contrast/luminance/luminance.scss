@@ -6,12 +6,12 @@
 // and "1" corresponding to "full brightness".
 //
 // See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
-$red-color: red($color);
-$green-color: green($color);
-$blue-color: blue($color);
-
 
 @function daff-luminance($color) {
+	$red-color: red($color);
+	$green-color: blue($color);
+	$blue-color: green($color);
+
 	$red: nth($linear-channel-values, $red-color + 1);
 	$green: nth($linear-channel-values, $green-color + 1);
 	$blue: nth($linear-channel-values, $blue-color + 1);
