@@ -1,48 +1,53 @@
-@mixin daff-loading-icon-theme($theme){
-    $primary: map-get($theme, primary);
-    $secondary: map-get($theme, secondary);
-    $tertiary: map-get($theme, tertiary);
-    $base: daff-map-deep-get($theme, "core.base");
-    $baseContrast: daff-map-deep-get($theme, "core.base-contrast");
-    $white: daff-map-deep-get($theme, 'core.white');
-    $black: daff-map-deep-get($theme, 'core.black');
+@mixin daff-loading-icon-theme($theme) {
+	$primary: map-get($theme, primary);
+	$secondary: map-get($theme, secondary);
+	$tertiary: map-get($theme, tertiary);
+	$base: daff-map-deep-get($theme, 'core.base');
+	$baseContrast: daff-map-deep-get($theme, 'core.base-contrast');
+	$white: daff-map-deep-get($theme, 'core.white');
+	$black: daff-map-deep-get($theme, 'core.black');
 
-    .daff-loading-icon {
-        &.daff-primary {
-            circle {
-                stroke: daff-color($primary);
-            }
-        }
-        &.daff-secondary {
-            circle {
-                stroke: daff-color($secondary);
-            }
-        }
-        &.daff-tertiary {
-            circle {
-                stroke: daff-color($tertiary);
-            }
-        }
-        &.daff-theme {
-            circle {
-                stroke: $base;
-            }
-        }
-        &.daff-theme-contrast {
-            circle {
-                stroke: $baseContrast;
-            }
-        }
-        &.daff-black {
-            circle {
-                stroke: $black;
-            }
-        }
-    
-        &.daff-white {
-            circle {
-                stroke: $white;
-            }
-        }
-    }
+	.daff-loading-icon {
+		&.daff-primary {
+			circle {
+				stroke: daff-color($primary);
+			}
+		}
+
+		&.daff-secondary {
+			circle {
+				stroke: daff-color($secondary);
+			}
+		}
+
+		&.daff-tertiary {
+			circle {
+				stroke: daff-color($tertiary);
+			}
+		}
+
+		&.daff-theme {
+			circle {
+				stroke: $base;
+			}
+		}
+
+		&.daff-theme-contrast {
+			circle {
+				stroke: $baseContrast;
+			}
+		}
+
+		&.daff-black {
+			circle {
+				stroke: $black;
+			}
+		}
+
+		&.daff-white {
+			circle {
+				stroke: $white;
+			}
+		}
+	}
 }

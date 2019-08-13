@@ -1,27 +1,27 @@
 @import '../../scss/daff-util';
 
 .daff-button-set {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
 
-  @include breakpoint(mobile) {
-    flex-direction: row;
-  }
+	@include breakpoint(mobile) {
+		flex-direction: row;
+	}
 
-  > * {
-    margin: 0 0 5px 0;
+	> * {
+		margin: 0 0 5px 0;
 
-    &:last-child {
-      margin: 0;
-    }
+		&:last-child {
+			margin: 0;
+		}
 
-    @include breakpoint(mobile) {
-      margin: 0 5px 0 0;
-  
-      &:last-child {
-        margin: 0;
-      }
-    }
-  }
+		@include breakpoint(mobile) {
+			margin: 0 5px 0 0;
+
+			&:last-child {
+				margin: 0;
+			}
+		}
+	}
 }

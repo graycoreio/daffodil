@@ -1,7 +1,9 @@
 # Button Set Component
+
 The button set component is used when there are two or more buttons grouped together in a row.
 
-## Usage 
+## Usage
+
 ```
 <daff-button-set>
     <button></button>

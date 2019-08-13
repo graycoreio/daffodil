@@ -1,15 +1,13 @@
-/**
-* @docs
-* 
-* Sensible breakpoints to be used for layouts and interfaces.
-* These breakpoints are based on common devices viewport widths.
-*/
-
+//
+// @docs
+// 
+// Sensible breakpoints to be used for layouts and interfaces.
+// These breakpoints are based on common devices viewport widths.
 $breakpoints: (
-  desktop: 1920px,
-  laptop: 1440px,
-  small-laptop: 1200px,
-  big-tablet: 1024px,
-  tablet: 768px,
-  mobile: 480px,
+	desktop: 1920px,
+	laptop: 1440px,
+	small-laptop: 1200px,
+	big-tablet: 1024px,
+	tablet: 768px,
+	mobile: 480px
 );

@@ -76,6 +76,7 @@
     "ng-packagr": "^4.7.1",
     "prettier": "1.15.2",
     "protractor": "^5.4.2",
+    "sass-lint": "^1.12.1",
     "sass-true": "^4.0.0",
     "scss-bundle": "^2.5.0",
     "ts-loader": "^5.2.0",

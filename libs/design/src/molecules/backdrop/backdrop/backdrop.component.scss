@@ -1,22 +1,24 @@
 @import '../../../scss/daff-util';
 
 :host {
-  display: block;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  -webkit-tap-highlight-color: transparent;
-  @include clickable();
+	@include clickable();
+	display: block;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-tap-highlight-color: transparent;
 }
 
 .daff-backdrop {
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.3);
+	background: rgba(0, 0, 0, 0.3);
+	height: 100%;
+	width: 100%;
 
-  &--transparent {
-    background: none;
-  }
+	&--transparent {
+		background: none;
+	}
 
-  &:focus, &:active, &:visited {
-    outline: 0;
-  }
+	&:focus,
+	&:active,
+	&:visited {
+		outline: 0;
+	}
 }

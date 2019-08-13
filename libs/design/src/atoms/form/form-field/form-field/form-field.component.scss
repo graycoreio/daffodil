@@ -1,27 +1,27 @@
 @import '../../../../scss/daff-util';
 
 .daff-form-field {
-  display: block;
-  position: relative;
+	display: block;
+	position: relative;
 
-  &__control {
-    display: inline-block;
-    border-radius: 3px;
-    font-size: 1rem;
-    line-height: 1.5rem;
-    height: inherit;
-    padding: 10px 15px;
-    width: 100%;
-  }
+	&__control {
+		border-radius: 3px;
+		display: inline-block;
+		font-size: 1rem;
+		height: inherit;
+		line-height: 1.5rem;
+		padding: 10px 15px;
+		width: 100%;
+	}
 
-  &__icon {
-    display: inline-block;
-    position: absolute;
-    right: 15px;
-    pointer-events: none;
+	&__icon {
+		display: inline-block;
+		pointer-events: none;
+		position: absolute;
+		right: 15px;
 
-    &:after {
-      @include chevron($direction: "down");
-    }
-  }
+		&:after {
+			@include chevron($direction: 'down');
+		}
+	}
 }

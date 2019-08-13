@@ -1,40 +1,35 @@
-@import "true";
-@import "./string-split.scss";
+@import 'true';
+@import './string-split';
 
 @include describe('daff-string-split') {
-    @include it('returns an empty map if the separator does not exist in the string') {
-      @include assert-equal(
-        daff-string-split("a", "."),
-        ()
-      );
-    }
+	@include it(
+		'returns an empty map if the separator does not exist in the string'
+	) {
+		@include assert-equal(daff-string-split('a', '.'), ());
+	}
 
-    @include it('returns a single element if there is only one separator at the beginning') {
-      @include assert-equal(
-        daff-string-split(".a", "."),
-        ("a",)
-      );
-    }
+	@include it(
+		'returns a single element if there is only one separator at the beginning'
+	) {
+		@include assert-equal(daff-string-split('.a', '.'), ('a',));
+	}
 
-    @include it('will treat duplicate separators as if there was only a single separator') {
-      @include assert-equal(
-        daff-string-split("..a..", "."),
-        ("a",)
-      );
-    }
+	@include it(
+		'will treat duplicate separators as if there was only a single separator'
+	) {
+		@include assert-equal(daff-string-split('..a..', '.'), ('a',));
+	}
 
-    @include it('returns a single element if there is only one separator at the end') {
-      @include assert-equal(
-        daff-string-split("a.", "."),
-        ("a",)
-      );
-    }
+	@include it(
+		'returns a single element if there is only one separator at the end'
+	) {
+		@include assert-equal(daff-string-split('a.', '.'), ('a',));
+	}
 
-
-    @include it('splits a string based on a separator') {
-      @include assert-equal(
-        daff-string-split("abc.xyz.csv", "."),
-        ("abc","xyz","csv")
-      );
-    }
-  }
+	@include it('splits a string based on a separator') {
+		@include assert-equal(
+			daff-string-split('abc.xyz.csv', '.'),
+			('abc', 'xyz', 'csv')
+		);
+	}
+}
