@@ -54,6 +54,7 @@
 		"no-important": 2,
 		"no-mergeable-selectors": 2,
 		"no-misspelled-properties": 2,
+		"no-transition-all": 2,
 		"no-trailing-zero": 2,
 		"one-declaration-per-line": 2,
 		"indentation": [

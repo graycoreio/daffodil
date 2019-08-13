@@ -11,7 +11,7 @@
 	position: relative;
 	text-align: center;
 	text-decoration: none;
-	transition: all 0.3s ease;
+	transition: all 0.3s ease; //sass-lint:disable-line no-transition-all
 
 	&:active {
 		transform: translateY(2px);
@@ -83,7 +83,8 @@
 			left: 0;
 			opacity: 1;
 			position: absolute;
-			transition: all 0.7s ease;
+			transition: all 0.7s ease; //sass-lint:disable-line no-transition-all
+
 			width: 100%;
 		}
 	}
