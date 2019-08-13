@@ -1,55 +1,60 @@
-/**
-* @docs
-* 
-* `daff-typography` is a generic typography library that
-* sets common typography settings for the daffodil design
-* package. It IS NOT necessary, but can be used.
-*
-* @note You SHOULD NOT import this as often as you like, as it only contains CSS
-* and will effect your final compiled stylesheet size.
-* 
-* @usage
-* ```
-* @import "daff-typography";
-* ```
-*/
+//
+// @docs
+// 
+// `daff-typography` is a generic typography library that
+// sets common typography settings for the daffodil design
+// package. It IS NOT necessary, but can be used.
+//
+// @note You SHOULD NOT import this as often as you like, as it only contains CSS
+// and will effect your final compiled stylesheet size.
+// 
+// @usage
+// ```
+// @import "daff-typography";
+// ```
 
-@import "./responsive/variables";
-@import "./responsive/breakpoint";
-@import "./typography/variables";
-@import "./typography/mixins";
+@import './responsive/variables';
+@import './responsive/breakpoint';
+@import './typography/variables';
+@import './typography/mixins';
 
 @import '~modern-normalize/modern-normalize';
 
-body,html {
-    font-size: $mobile-font-size;
-    font-family: $body-font-family;
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+body,
+html {
+	font-size: $mobile-font-size;
+	font-family: $body-font-family;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 
-    @include breakpoint(mobile) {
-        font-size: $desktop-font-size;
-    }
+	@include breakpoint(mobile) {
+		font-size: $desktop-font-size;
+	}
 }
 
 p {
-    line-height: 1.5rem;
+	line-height: 1.5rem;
 }
 
-h1,h2,h3,h4,h5,h6 {
-    margin: 0;
-    padding: 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+	padding: 0;
 }
 
 .embolden {
-    @include embolden();
+	@include embolden();
 }
 
 .uppercase {
-    @include uppercase();
+	@include uppercase();
 }
 
 .single-line-ellipsis {
-    @include single-line-ellipsis();
+	@include single-line-ellipsis();
 }

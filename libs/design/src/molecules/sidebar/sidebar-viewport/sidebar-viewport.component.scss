@@ -7,58 +7,57 @@ $daff-sidebar-content-z-index: 2;
 $daff-sidebar-viewport-z-index: 1;
 
 .daff-sidebar-viewport {
-  $root: &;
-  width: 100%;
-  overflow:hidden;
-  position: absolute;
-  z-index: $daff-sidebar-viewport-z-index;
-  min-height: 100%;
-  // fixes a bug where certain elements show in front of backdrop for a second.
-  display: flex;
+	$root: &;
+	// fixes a bug where certain elements show in front of backdrop for a second.
+	display: flex;
+	min-height: 100%;
+	overflow: hidden;
+	position: absolute;
+	width: 100%;
+	z-index: $daff-sidebar-viewport-z-index;
 
-  &__content {
-    width: 100%;
-    flex: 0 1 auto;
-    z-index: $daff-sidebar-content-z-index;
-  }
+	&__content {
+		flex: 0 1 auto;
+		width: 100%;
+		z-index: $daff-sidebar-content-z-index;
+	}
 
-  &__sidebar {
-    width: $sidebar-width;
-    z-index: $daff-sidebar-z-index; 
-  }
+	&__sidebar {
+		width: $sidebar-width;
+		z-index: $daff-sidebar-z-index;
+	}
 
-  &__backdrop {
-    position: absolute;
-    z-index: $daff-sidebar-backdrop-z-index;
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
-  }
+	&__backdrop {
+		cursor: pointer;
+		height: 100%;
+		position: absolute;
+		width: 100%;
+		z-index: $daff-sidebar-backdrop-z-index;
+	}
 
-  &.push {
-    #{$root}__sidebar {
-      position: absolute;
-      height: 100%;
-      top:0;
-      bottom:0;
-      left: 0;
-      transform: translate3d(-$sidebar-width, 0, 0);
-    }
-    #{$root}__content {
-      transform: translate3d($sidebar-width, 0, 0);
-    }
-  }
-  
+	&.push {
+		#{$root}__sidebar {
+			bottom: 0;
+			height: 100%;
+			left: 0;
+			position: absolute;
+			top: 0;
+			transform: translate3d(-$sidebar-width, 0, 0);
+		}
 
-  &.over {
-    #{$root}__sidebar {
-      position: fixed;
-      height: 100%;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      transform: translate3d(-$sidebar-width, 0, 0);
-    }
-  }
+		#{$root}__content {
+			transform: translate3d($sidebar-width, 0, 0);
+		}
+	}
+
+	&.over {
+		#{$root}__sidebar {
+			bottom: 0;
+			height: 100%;
+			left: 0;
+			position: fixed;
+			top: 0;
+			transform: translate3d(-$sidebar-width, 0, 0);
+		}
+	}
 }
-    

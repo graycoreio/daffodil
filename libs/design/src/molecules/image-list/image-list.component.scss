@@ -2,30 +2,31 @@
 @import '../../scss/daff-theme.scss';
 
 .daff-image-list {
-  overflow: scroll;
-  white-space: nowrap;
-  
-  & > * {
-    margin: 0 5px 0 0;
-    display: inline-block;
-    @include clickable();
-    
-    @include breakpoint(big-tablet) {
-      margin: 0 0 5px 0;
-      display: block;
-    }
+	overflow: scroll;
+	white-space: nowrap;
 
-    &:last-child {
-      margin: 0;
-    }
-  }
+	& > * {
+		@include clickable();
+		display: inline-block;
+		margin: 0 5px 0 0;
+
+		@include breakpoint(big-tablet) {
+			display: block;
+			margin: 0 0 5px 0;
+		}
+
+		&:last-child {
+			margin: 0;
+		}
+	}
 }
 
 ::-webkit-scrollbar {
-  height: 2px;
-  width: 2px;
+	height: 2px;
+	width: 2px;
 }
 
 ::-webkit-scrollbar-thumb {
-  -webkit-box-shadow: inset 0 0 3px daff-color($daff-gray, 40);
+	box-shadow: inset 0 0 3px daff-color($daff-gray, 40);
+	-webkit-box-shadow: inset 0 0 3px daff-color($daff-gray, 40);
 }

@@ -1,33 +1,33 @@
-/**
-* Splits a string into an array based on a separator
-* Remember, string arrays begin at 1 in SASS.
-*
-* @returns comma-list
-* @private
-*/
+//
+// @docs
+// @private
+// Splits a string into an array based on a separator
+// Remember, string arrays begin at 1 in SASS.
+//
+// @returns comma-list
+//
 @function daff-string-split($string, $separator) {
-    $list: ();
-    $index : str-index($string, $separator);
-    
-    @if($index == null){
-        @return $list;
-    }
+	$list: ();
+	$index: str-index($string, $separator);
 
+	@if ($index==null) {
+		@return $list;
+	}
 
-    @while $index != null {
-        $item: str-slice($string, 1, $index - 1);
+	@while $index !=null {
+		$item: str-slice($string, 1, $index - 1);
 
-        @if($item != ""){
-            $list: append($list, $item, "comma");    
-        }
+		@if ($item != '') {
+			$list: append($list, $item, 'comma');
+		}
 
-        $string: str-slice($string, $index + 1);
-        $index : str-index($string, $separator);
-    }
+		$string: str-slice($string, $index + 1);
+		$index: str-index($string, $separator);
+	}
 
-    @if($string != ""){
-        $list: append($list, $string, "comma");
-    }
+	@if ($string != '') {
+		$list: append($list, $string, 'comma');
+	}
 
-    @return $list;
+	@return $list;
 }

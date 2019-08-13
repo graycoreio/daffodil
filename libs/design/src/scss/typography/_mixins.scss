@@ -1,45 +1,44 @@
-/**
-* @docs
-* 
-* Changes the weight (boldness) of text to 700
-*
-* @usage
-* ```
-* @include embolden(500);
-* ```
-*/
+//
+// @docs
+// 
+// Changes the weight (boldness) of text to 700
+//
+// @usage
+// ```
+// @include embolden(500);
+// ```
+//
 @mixin embolden($weight: 700) {
-    font-weight: $weight;
+	font-weight: $weight;
 }
 
-/**
-* @docs
-* 
-* Changes the casing of a piece of text to uppercase
-*
-* @usage
-* ```
-* @include uppercase();
-* ```
-*/
+//
+// @docs
+// 
+// Changes the casing of a piece of text to uppercase
+//
+// @usage
+// ```
+// @include uppercase();
+// ```
+//
 @mixin uppercase() {
-    text-transform: uppercase;
+	text-transform: uppercase;
 }
 
-/**
-* @docs
-* 
-* Forces a line of text (with a fixed width) to ellipsis 
-* once it reaches the width of its container.
-*
-* @usage
-* ```
-* @include single-line-ellipsis();
-* ```
-*/
+//
+// @docs
+// 
+// Forces a line of text (with a fixed width) to ellipsis 
+// once it reaches the width of its container.
+//
+// @usage
+// ```
+// @include single-line-ellipsis();
+// ```
 @mixin single-line-ellipsis() {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    display: block;
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }

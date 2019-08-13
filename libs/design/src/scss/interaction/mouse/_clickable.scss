@@ -1,21 +1,22 @@
-/**
-* @docs
-* 
-* The clickable() mixin sets mouse cursor to display when the mouse 
-* pointer is over an element for all supported browsers
-*
-* Supported browsers: Chrome all/Safari all/Firefox all/IE 10+
-* 
-* @usage
-* ```
-* @include clickable();
-* ```
-*/
-
+//
+// @docs
+// 
+// The clickable() mixin sets mouse cursor to display when the mouse 
+// pointer is over an element for all supported browsers
+//
+// Supported browsers: Chrome all/Safari all/Firefox all/IE 10+
+// 
+// @usage
+// ```
+// @include clickable();
+// ```
 @mixin clickable() {
-    cursor: pointer;
-    -webkit-user-select: none;  /* Chrome all / Safari all */
-    -moz-user-select: none;     /* Firefox all */
-    -ms-user-select: none;      /* IE 10+ */
-    user-select: none;
+	cursor: pointer;
+	-webkit-user-select: none;
+	/// Chrome all / Safari all ///
+	-moz-user-select: none;
+	/// Firefox all ///
+	-ms-user-select: none;
+	/// IE 10+ ///
+	user-select: none;
 }
