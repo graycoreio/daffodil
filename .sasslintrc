@@ -80,6 +80,7 @@
 		],
 		"space-after-colon": 2,
 		"space-after-comma": 2,
+		"space-around-operator": 2,
 		"space-before-brace": 2,
 		"space-between-parens": 2,
 		"trailing-semicolon": 2,
