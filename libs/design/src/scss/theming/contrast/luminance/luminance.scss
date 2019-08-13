@@ -9,8 +9,8 @@
 
 @function daff-luminance($color) {
 	$red-color: red($color);
-	$green-color: blue($color);
-	$blue-color: green($color);
+	$green-color: green($color);
+	$blue-color: blue($color);
 
 	$red: nth($linear-channel-values, $red-color + 1);
 	$green: nth($linear-channel-values, $green-color + 1);
