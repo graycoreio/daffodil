@@ -58,8 +58,9 @@ $supportedThemeTypes: (
 // daff-build-theme-core("light")
 // ```
 @function daff-build-theme-core($type: 'light') {
+	$error-msg: "is not a valid theme type - valid types:";
 	@if (not map-has-key($supportedThemeTypes, $type)) {
-		@error "`#{$type}` is not a valid theme type - valid types: `#{map-keys($supportedThemeTypes)}`";
+		@error "`#{$type}` `#{error-msg}` `#{map-keys($supportedThemeTypes)}`";
 	}
 
 	@return map-get($supportedThemeTypes, $type);
