@@ -35,6 +35,12 @@
 				"exclude": ["breakpoint", "mq"]
 			}
 		],
+		"no-color-literals": [
+      2,
+      {
+        "allow-rgba": true
+      }
+    ],
 		"no-css-comments": 2,
 		"no-warn": 0,
 		"no-debug": 1,
