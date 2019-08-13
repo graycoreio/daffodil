@@ -9,11 +9,11 @@
 // ```
 // daff-configure-palette($daff-yellow, $hue);
 // ```
-@function daff-configure-palette($colorPalette, $hue: 60) {
+@function daff-configure-palette($color-palette, $hue: 60) {
 	@return map-merge(
-		$colorPalette,
+		$color-palette,
 		(
-			'default': daff-color($colorPalette, $hue)
+			'default': daff-color($color-palette, $hue)
 		)
 	);
 }

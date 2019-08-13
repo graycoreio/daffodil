@@ -3,8 +3,8 @@
     $secondary: map-get($theme, secondary);
     $tertiary: map-get($theme, tertiary);
     $base: daff-map-deep-get($theme, 'core.base');
-    $baseContrast: daff-map-deep-get($theme, 'core.base-contrast');
-    $shadowColor: daff-illuminate($base, $tertiary, 3);
+    $base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
+    $shadow-color: daff-illuminate($base, $tertiary, 3);
 
     .hero {
         .highlight {
@@ -16,13 +16,13 @@
         &__feature {
             background: linear-gradient(to bottom right, daff-color($secondary, 30), daff-color($secondary));
             box-shadow:
-                0 40px 60px 0 rgba($shadowColor, 0.25);
+                0 40px 60px 0 rgba($shadow-color, 0.25);
             color: daff-text-contrast(daff-color($secondary));
             transition: all 0.2s ease;
 
             &:hover {
                 box-shadow:
-                    0 40px 60px 0 rgba($shadowColor, 0.3);
+                    0 40px 60px 0 rgba($shadow-color, 0.3);
             }
     }
   }
@@ -35,7 +35,7 @@
 
         &:hover {
             box-shadow:
-                0 40px 60px 0 rgba($shadowColor, 0.2);
+                0 40px 60px 0 rgba($shadow-color, 0.2);
         }
     }
   }

@@ -3,7 +3,7 @@
     $secondary: map-get($theme, secondary);
     $tertiary: map-get($theme, tertiary);
     $base: daff-map-deep-get($theme, "core.base");
-    $baseContrast: daff-map-deep-get($theme, "core.base-contrast");
+    $base-contrast: daff-map-deep-get($theme, "core.base-contrast");
     
     daffio-simple-footer {
         border-top: 1px solid daff-illuminate($base, $daff-gray, 2);
@@ -18,7 +18,7 @@
             color: daff-text-contrast($base);
             
             &:hover {
-                color: daff-illuminate($baseContrast, $daff-gray, 3);
+                color: daff-illuminate($base-contrast, $daff-gray, 3);
             }
         }
     }
