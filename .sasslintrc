@@ -6,6 +6,7 @@
 	},
 	"rules": {
 		"bem-depth": 2,
+		"border-zero": 2,
 		"class-name-format": [
 			2,
 			{
@@ -29,10 +30,14 @@
 			}
 		],
 		"placeholder-in-extend": 2,
+		"max-line-length": 2,
 		"mixins-before-declarations": [
 			2,
 			{
-				"exclude": ["breakpoint", "mq"]
+				"exclude": [
+					"breakpoint",
+					"mq"
+				]
 			}
 		],
 		"no-css-comments": 2,
