@@ -30,6 +30,7 @@
 			}
 		],
 		"placeholder-in-extend": 2,
+		"max-line-length": 2,
 		"mixins-before-declarations": [
 			2,
 			{
