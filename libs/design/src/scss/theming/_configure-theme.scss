@@ -58,14 +58,9 @@ $supported-theme-types: (
 // daff-build-theme-core("light")
 // ```
 @function daff-build-theme-core($type: 'light') {
-<<<<<<< HEAD
 	$error-msg: "is not a valid theme type - valid types:";
-	@if (not map-has-key($supportedThemeTypes, $type)) {
-		@error "`#{$type}` `#{$error-msg}` `#{map-keys($supportedThemeTypes)}`";
-=======
 	@if (not map-has-key($supported-theme-types, $type)) {
-		@error "`#{$type}` is not a valid theme type - valid types: `#{map-keys($supported-theme-types)}`";
->>>>>>> style(design): added variable naming rules for sass linting and updated all files to follow convention
+		@error "`#{$type}` `#{$error-msg}` `#{map-keys($supportedThemeTypes)}`";
 	}
 
 	@return map-get($supported-theme-types, $type);
