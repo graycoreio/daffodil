@@ -15,6 +15,5 @@
 	$red: nth($linear-channel-values, $red-index);
 	$green: nth($linear-channel-values, $green-index);
 	$blue: nth($linear-channel-values, $blue-index);
-	
 	@return 0.2126 * $red + 0.7152 * $green + 0.0722 * $blue;
 }

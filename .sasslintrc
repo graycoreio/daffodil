@@ -64,6 +64,7 @@
 		"no-misspelled-properties": 2,
 		"no-transition-all": 2,
 		"no-trailing-zero": 2,
+		"no-trailing-whitespace": 2,
 		"one-declaration-per-line": 2,
 		"indentation": [
 			2,
