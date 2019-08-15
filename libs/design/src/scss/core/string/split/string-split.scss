@@ -10,7 +10,7 @@
 	$list: ();
 	$index: str-index($string, $separator);
 
-	@if ($index==null) {
+	@if ($index == null) {
 		@return $list;
 	}
 

@@ -17,5 +17,8 @@
             "indent_with_tabs": true,
             "keep_array_indentation": true
         }
+    },
+    "files.associations": {
+        ".sasslintrc": "json"
     }
 }

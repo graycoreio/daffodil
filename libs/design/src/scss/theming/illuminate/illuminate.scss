@@ -21,7 +21,7 @@
 
 	$sorted-map: ();
 
-	@while length($list) >0 {
+	@while length($list) > 0 {
 		// Find smallest pair
 		$smallest-pair: nth($list, 1);
 
@@ -49,7 +49,7 @@
 		$new-list: ();
 
 		@for $i from 1 through length($list) {
-			@if $i !=$smallest-pair-index {
+			@if $i != $smallest-pair-index {
 				$new-list: append($new-list, nth($list, $i), 'space');
 			}
 		}
@@ -132,7 +132,7 @@
 
 	$key: null;
 
-	@if (daff-luminance($color) >=0.5) {
+	@if (daff-luminance($color) >= 0.5) {
 		//If the color is bright
 		$key: _daff-illuminate-get-key($darker-colors, $nth);
 	}

@@ -22,19 +22,19 @@
 	vertical-align: middle;
 	backface-visibility: initial;
 
-	@if $direction== 'down' {
+	@if $direction == 'down' {
 		top: -0.15em;
 		transform: rotate(135deg);
 	}
-	@else if $direction== 'up' {
+	@else if $direction == 'up' {
 		transform: rotate(-45deg);
 	}
-	@else if $direction== 'left' {
+	@else if $direction == 'left' {
 		left: 0.15em;
 		top: -0.075em;
 		transform: rotate(-135deg);
 	}
-	@else if $direction== 'right' {
+	@else if $direction == 'right' {
 		top: -0.075em;
 		transform: rotate(45deg);
 	}
