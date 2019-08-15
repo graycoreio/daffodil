@@ -4,10 +4,11 @@
 	$tertiary: map-get($theme, tertiary);
 	$base: daff-map-deep-get($theme, 'core.base');
 	$font-color: daff-map-deep-get($theme, 'core.font-color');
+	$shadow-color: rgba(128, 128, 128, 0.1);
 
 	.daff-sidebar {
 		background: $base;
-		box-shadow: 6px 1px 9px 0px rgba(128, 128, 128, 0.1);
+		box-shadow: 6px 1px 9px 0px $shadow-color;
 		color: $font-color;
 
 		&__item {
