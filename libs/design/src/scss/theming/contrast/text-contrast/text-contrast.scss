@@ -28,7 +28,7 @@
 
 	@if ($lightContrast > $darkContrast) {
 		@return $white;
-	} 
+	}
 	@else {
 		@return $black;
 	}
