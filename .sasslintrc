@@ -79,11 +79,11 @@
 			}
 		],
 		"quotes": [
-      2,
-      {
-        "style": "single"
-      }
-    ],
+			2,
+			{
+				"style": "single"
+			}
+		],
 		"space-after-colon": 2,
 		"space-after-comma": 2,
 		"space-around-operator": 2,
