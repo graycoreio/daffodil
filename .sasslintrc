@@ -7,6 +7,12 @@
 	"rules": {
 		"bem-depth": 2,
 		"border-zero": 2,
+		"brace-style": [
+			2,
+			{
+				"style": "stroustrup"
+			}
+		],
 		"class-name-format": [
 			2,
 			{
