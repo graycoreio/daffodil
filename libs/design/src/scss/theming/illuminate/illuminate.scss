@@ -135,7 +135,8 @@
 	@if (daff-luminance($color) >=0.5) {
 		//If the color is bright
 		$key: _daff-illuminate-get-key($darkerColors, $nth);
-	} @else {
+	} 
+	@else {
 		//If the color is dark
 		$key: _daff-illuminate-get-key($brighterColors, $nth);
 	}
