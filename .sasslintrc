@@ -47,11 +47,11 @@
 			}
 		],
 		"no-color-literals": [
-      2,
-      {
-        "allow-rgba": true
-      }
-    ],
+			2,
+			{
+				"allow-rgba": true
+			}
+		],
 		"no-css-comments": 2,
 		"no-warn": 0,
 		"no-debug": 1,
@@ -85,10 +85,10 @@
 		"trailing-semicolon": 2,
 		"url-quotes": 2,
 		"variable-name-format": [
-      2,
-      {
-        "allow-leading-underscore": false
-      }
-    ]
+			2,
+			{
+				"allow-leading-underscore": false
+			}
+		]
 	}
 }
