@@ -6,7 +6,6 @@ $highlight-color: rgba(0, 0, 0, 0);
 	@include clickable();
 	display: block;
 	-webkit-tap-highlight-color: $highlight-color;
-	-webkit-tap-highlight-color: transparent;
 }
 
 .daff-backdrop {
