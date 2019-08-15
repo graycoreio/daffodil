@@ -3,8 +3,8 @@
 // Calculate the contrast ratio between two colors.
 // See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
 @function daff-contrast-ratio($back, $front) {
-	$backLum: daff-luminance($back) + 0.05;
-	$foreLum: daff-luminance($front) + 0.05;
+	$back-lum: daff-luminance($back) + 0.05;
+	$fore-lum: daff-luminance($front) + 0.05;
 
-	@return max($backLum, $foreLum) / min($backLum, $foreLum);
+	@return max($back-lum, $fore-lum) / min($back-lum, $fore-lum);
 }

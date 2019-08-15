@@ -1,8 +1,8 @@
-@mixin daff-link-theme-variant($baseColor, $hoverColor) {
-	color: $baseColor;
+@mixin daff-link-theme-variant($base-color, $hover-color) {
+	color: $base-color;
 
 	&:hover {
-		color: $hoverColor;
+		color: $hover-color;
 	}
 }
 
@@ -11,7 +11,7 @@
 	$secondary: map-get($theme, secondary);
 	$tertiary: map-get($theme, tertiary);
 	$base: daff-map-deep-get($theme, 'core.base');
-	$baseContrast: daff-map-deep-get($theme, 'core.base-contrast');
+	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
 	$white: daff-map-deep-get($theme, 'core.white');
 	$black: daff-map-deep-get($theme, 'core.black');
 
@@ -54,8 +54,8 @@
 
 		&.daff-theme-contrast {
 			@include daff-link-theme-variant(
-				$baseContrast,
-				daff-illuminate($baseContrast, $daff-gray, 1)
+				$base-contrast,
+				daff-illuminate($base-contrast, $daff-gray, 1)
 			);
 		}
 

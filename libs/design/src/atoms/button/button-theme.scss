@@ -1,69 +1,69 @@
 @mixin daff-button-theme-variant(
-	$baseColor,
-	$hoverColor,
-	$activeColor: $hoverColor
+	$base-color,
+	$hover-color,
+	$active-color: $hover-color
 ) {
-	background-color: $baseColor;
-	border: 2px solid $baseColor;
-	color: daff-text-contrast($baseColor);
+	background-color: $base-color;
+	border: 2px solid $base-color;
+	color: daff-text-contrast($base-color);
 
 	&:hover {
-		background-color: $hoverColor;
-		border: 2px solid $hoverColor;
+		background-color: $hover-color;
+		border: 2px solid $hover-color;
 	}
 
 	&:active {
-		background-color: $activeColor;
-		border: 2px solid $activeColor;
+		background-color: $active-color;
+		border: 2px solid $active-color;
 	}
 }
 
 @mixin daff-icon-button-theme-variant(
-	$baseColor,
-	$hoverColor,
-	$activeColor: $hoverColor
+	$base-color,
+	$hover-color,
+	$active-color: $hover-color
 ) {
-	color: $baseColor;
+	color: $base-color;
 
 	&:hover {
-		color: $hoverColor;
+		color: $hover-color;
 	}
 
 	&:active {
-		color: $activeColor;
+		color: $active-color;
 	}
 }
 
 @mixin daff-stroked-button-theme-variant(
-	$baseColor,
-	$activeColor: $hoverColor
+	$base-color,
+	$active-color: $hover-color
 ) {
-	border: 2px solid $baseColor;
+	border: 2px solid $base-color;
 	color: currentColor;
 
 	&:hover {
-		background-color: $baseColor;
-		color: daff-text-contrast($baseColor);
+		background-color: $base-color;
+		color: daff-text-contrast($base-color);
 	}
 
 	&:active {
-		background-color: $activeColor;
-		color: daff-text-contrast($activeColor);
+		background-color: $active-color;
+		color: daff-text-contrast($active-color);
 	}
 }
 
-@mixin daff-underline-button-theme-variant($baseColor, $hoverColor) {
-	color: $baseColor;
+@mixin daff-underline-button-theme-variant($base-color, $hover-color) {
+	color: $base-color;
 
 	&:after {
-		background-color: $baseColor;
+		background-color: $base-color;
 	}
 
 	&:hover {
-		color: $hoverColor;
+		color: $hover-color;
 
 		&:after {
-			background: $hoverColor;
+			background: $hover-color;
 		}
 	}
 }
@@ -73,7 +73,7 @@
 	$secondary: map-get($theme, secondary);
 	$tertiary: map-get($theme, tertiary);
 	$base: daff-map-deep-get($theme, 'core.base');
-	$baseContrast: daff-map-deep-get($theme, 'core.base-contrast');
+	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
 	$white: daff-map-deep-get($theme, 'core.white');
 	$black: daff-map-deep-get($theme, 'core.black');
 
@@ -113,9 +113,9 @@
 
 		&.daff-theme-contrast {
 			@include daff-button-theme-variant(
-				$baseContrast,
-				daff-illuminate($baseContrast, $daff-gray, 1),
-				daff-illuminate($baseContrast, $daff-gray, 2)
+				$base-contrast,
+				daff-illuminate($base-contrast, $daff-gray, 1),
+				daff-illuminate($base-contrast, $daff-gray, 2)
 			);
 		}
 
@@ -188,9 +188,9 @@
 
 		&.daff-theme-contrast {
 			@include daff-icon-button-theme-variant(
-				$baseContrast,
-				daff-illuminate($baseContrast, $daff-gray, 1),
-				daff-illuminate($baseContrast, $daff-gray, 2)
+				$base-contrast,
+				daff-illuminate($base-contrast, $daff-gray, 1),
+				daff-illuminate($base-contrast, $daff-gray, 2)
 			);
 		}
 
@@ -251,8 +251,8 @@
 
 		&.daff-theme-contrast {
 			@include daff-stroked-button-theme-variant(
-				$baseContrast,
-				daff-illuminate($baseContrast, $daff-gray, 2)
+				$base-contrast,
+				daff-illuminate($base-contrast, $daff-gray, 2)
 			);
 		}
 
@@ -315,8 +315,8 @@
 
 		&.daff-theme-contrast {
 			@include daff-underline-button-theme-variant(
-				$baseContrast,
-				daff-illuminate($baseContrast, $daff-gray, 2)
+				$base-contrast,
+				daff-illuminate($base-contrast, $daff-gray, 2)
 			);
 		}
 

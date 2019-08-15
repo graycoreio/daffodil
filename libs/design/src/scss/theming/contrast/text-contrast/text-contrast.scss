@@ -23,10 +23,10 @@
 	$black: daff-color($daff-gray, 110),
 	$white: $daff-white
 ) {
-	$lightContrast: daff-contrast-ratio($color, $white);
-	$darkContrast: daff-contrast-ratio($color, $black);
+	$light-contrast: daff-contrast-ratio($color, $white);
+	$dark-contrast: daff-contrast-ratio($color, $black);
 
-	@if ($lightContrast > $darkContrast) {
+	@if ($light-contrast > $dark-contrast) {
 		@return $white;
 	}
 	@else {

@@ -3,7 +3,7 @@
 	$secondary: map-get($theme, secondary);
 	$tertiary: map-get($theme, tertiary);
 	$base: daff-map-deep-get($theme, 'core.base');
-	$baseContrast: daff-map-deep-get($theme, 'core.base-contrast');
+	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
 	$white: daff-map-deep-get($theme, 'core.white');
 	$black: daff-map-deep-get($theme, 'core.black');
 
@@ -34,7 +34,7 @@
 
 		&.daff-theme-contrast {
 			circle {
-				stroke: $baseContrast;
+				stroke: $base-contrast;
 			}
 		}
 

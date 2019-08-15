@@ -20,7 +20,7 @@ $daff-dark-theme: (
 	'gray': $daff-gray
 );
 
-$supportedThemeTypes: (
+$supported-theme-types: (
 	'light': $daff-light-theme,
 	'dark': $daff-dark-theme
 );
@@ -59,9 +59,9 @@ $supportedThemeTypes: (
 // ```
 @function daff-build-theme-core($type: 'light') {
 	$error-msg: "is not a valid theme type - valid types:";
-	@if (not map-has-key($supportedThemeTypes, $type)) {
-		@error "`#{$type}` `#{$error-msg}` `#{map-keys($supportedThemeTypes)}`";
+	@if (not map-has-key($supported-theme-types, $type)) {
+		@error "`#{$type}` `#{$error-msg}` `#{map-keys($supported-theme-types)}`";
 	}
 
-	@return map-get($supportedThemeTypes, $type);
+	@return map-get($supported-theme-types, $type);
 }
