@@ -13,8 +13,17 @@ import { DaffCategoryModule } from '../category.module';
   providedIn: DaffCategoryModule
 })
 export class DaffCategoriesFacade implements DaffStoreFacade<Action> {
+  /**
+   * The loading state for retrieving all categories.
+   */
   loading$: Observable<boolean>;
+  /**
+   * All categories.
+   */
   categories$: Observable<DaffCategory[]>;
+  /**
+   * Errors associated with retrieving all categories.
+   */
   errors$: Observable<string[]>;
 
   constructor(private store: Store<fromCategory.State>) {
@@ -23,6 +32,10 @@ export class DaffCategoriesFacade implements DaffStoreFacade<Action> {
     this.errors$ = this.store.pipe(select(fromCategory.selectCategoriesErrors));
   }
 
+  /**
+   * Dispatches the given action.
+   * @param action action to dispatch.
+   */
   dispatch(action: Action) {
     this.store.dispatch(action);
   }

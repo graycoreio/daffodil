@@ -11,7 +11,7 @@ export enum DaffCategoriesActionTypes {
 export class DaffCategoriesLoad implements Action {
   readonly type = DaffCategoriesActionTypes.CategoriesLoadAction;
 
-  constructor(public payload: string) { }
+  constructor() { }
 }
 
 export class DaffCategoriesLoadSuccess implements Action {

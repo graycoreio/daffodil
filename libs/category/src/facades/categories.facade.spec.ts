@@ -12,7 +12,7 @@ import { DaffCategoriesLoad, DaffCategoriesLoadSuccess, DaffCategoriesLoadFailur
 describe('DaffCategoriesFacade', () => {
   let store: MockStore<Partial<State>>;
   let facade: DaffCategoriesFacade;
-  let categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
+  const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -51,7 +51,7 @@ describe('DaffCategoriesFacade', () => {
   
     it('should be true if the categories state is loading', () => {
       const expected = cold('a', { a: true });
-      store.dispatch(new DaffCategoriesLoad("1"));
+      store.dispatch(new DaffCategoriesLoad());
       expect(facade.loading$).toBeObservable(expected);
     });
   });
@@ -65,7 +65,7 @@ describe('DaffCategoriesFacade', () => {
     it('should be an observable of the currently selected categories', () => {
       const categories = categoryFactory.createMany(2);
       const expected = cold('a', { a: categories});
-      store.dispatch(new DaffCategoriesLoad('id'));
+      store.dispatch(new DaffCategoriesLoad());
       store.dispatch(new DaffCategoriesLoadSuccess(categories));
       expect(facade.categories$).toBeObservable(expected);
     });
@@ -81,7 +81,7 @@ describe('DaffCategoriesFacade', () => {
     it('should be an observable of an array of the current errors', () => {
       const error = 'error1';
       const expected = cold('a', { a: [error]});
-      store.dispatch(new DaffCategoriesLoad('id'));
+      store.dispatch(new DaffCategoriesLoad());
       store.dispatch(new DaffCategoriesLoadFailure(error));
       expect(facade.errors$).toBeObservable(expected);
     });

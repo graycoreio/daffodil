@@ -37,7 +37,7 @@ describe('Category | Categories Reducer', () => {
     let result;
 
     beforeEach(() => {
-      const categoriesLoadAction: DaffCategoriesLoad = new DaffCategoriesLoad(categoryId);
+      const categoriesLoadAction: DaffCategoriesLoad = new DaffCategoriesLoad();
 
       result = reducer(initialState, categoriesLoadAction);
     });
