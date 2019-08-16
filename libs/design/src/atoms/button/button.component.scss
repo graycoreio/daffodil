@@ -11,7 +11,7 @@
 	position: relative;
 	text-align: center;
 	text-decoration: none;
-	transition: all 0.3s ease;
+	transition: all 0.3s ease; //sass-lint:disable-line no-transition-all
 
 	&:active {
 		transform: translateY(2px);
@@ -77,13 +77,14 @@
 		opacity: 0;
 
 		@include breakpoint(big-tablet) {
-			bottom: 0px;
+			bottom: 0;
 			content: '';
 			height: 2px;
 			left: 0;
 			opacity: 1;
 			position: absolute;
-			transition: all 0.7s ease;
+			transition: all 0.7s ease; //sass-lint:disable-line no-transition-all
+
 			width: 100%;
 		}
 	}
@@ -98,21 +99,17 @@
 @keyframes underline-button-hover {
 	0% {
 		transform: translateX(0);
-		transform: translateX(0);
 	}
 
 	50% {
-		transform: translateX(100%);
 		transform: translateX(100%);
 	}
 
 	51% {
 		transform: translateX(-100%);
-		transform: translateX(-100%);
 	}
 
 	to {
-		transform: translateX(0);
 		transform: translateX(0);
 	}
 }

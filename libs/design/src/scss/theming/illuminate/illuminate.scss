@@ -19,45 +19,45 @@
 
 	$list: zip($keys, $values);
 
-	$sortedMap: ();
+	$sorted-map: ();
 
-	@while length($list) >0 {
+	@while length($list) > 0 {
 		// Find smallest pair
-		$smallestPair: nth($list, 1);
+		$smallest-pair: nth($list, 1);
 
 		@each $pair in $list {
 			$value: nth($pair, 2);
-			$smallestValue: nth($smallestPair, 2);
+			$smallest-value: nth($smallest-pair, 2);
 
-			@if $value < $smallestValue {
-				$smallestPair: $pair;
+			@if $value < $smallest-value {
+				$smallest-pair: $pair;
 			}
 		}
 
 		// Add smallest pair to sorted map
-		$key: nth($smallestPair, 1);
-		$value: nth($smallestPair, 2);
-		$sortedMap: map-merge(
-			$sortedMap,
+		$key: nth($smallest-pair, 1);
+		$value: nth($smallest-pair, 2);
+		$sorted-map: map-merge(
+			$sorted-map,
 			(
 				$key: $value
 			)
 		);
 
 		// Remove from list smallest pair
-		$smallestPairIndex: index($list, $smallestPair);
-		$newList: ();
+		$smallest-pair-index: index($list, $smallest-pair);
+		$new-list: ();
 
 		@for $i from 1 through length($list) {
-			@if $i !=$smallestPairIndex {
-				$newList: append($newList, nth($list, $i), 'space');
+			@if $i != $smallest-pair-index {
+				$new-list: append($new-list, nth($list, $i), 'space');
 			}
 		}
 
-		$list: $newList;
+		$list: $new-list;
 	}
 
-	@return $sortedMap;
+	@return $sorted-map;
 }
 
 // Given a map of key, luminance pairs, find the key 
@@ -84,22 +84,22 @@
 // ```
 //
 @function daff-illuminate($color, $palette, $nth: 1) {
-	$luminanceMap: ();
+	$luminance-map: ();
 
 	//Validate
-	@each $key, $paletteColor in $palette {
+	@each $key, $palette-color in $palette {
 		@if (type-of($key) == 'string') {
 			$palette: map-remove($palette, $key);
 		}
 	}
 
 	//Transform into usable values
-	@each $key, $paletteColor in $palette {
-		$luminanceMap: map-merge(
-			$luminanceMap,
+	@each $key, $palette-color in $palette {
+		$luminance-map: map-merge(
+			$luminance-map,
 			(
 				$key: (
-					daff-luminance($paletteColor) - daff-luminance($color)
+					daff-luminance($palette-color) - daff-luminance($color)
 				)
 			)
 		);
@@ -107,13 +107,13 @@
 
 
 	//Calculate which color to get
-	$brighterColors: ();
-	$darkerColors: ();
+	$brighter-colors: ();
+	$darker-colors: ();
 
-	@each $key, $luminance in $luminanceMap {
+	@each $key, $luminance in $luminance-map {
 		@if ($luminance > 0) {
-			$brighterColors: map-merge(
-				$brighterColors,
+			$brighter-colors: map-merge(
+				$brighter-colors,
 				(
 					$key: $luminance
 				)
@@ -121,8 +121,8 @@
 		}
 
 		@if ($luminance < 0) {
-			$darkerColors: map-merge(
-				$darkerColors,
+			$darker-colors: map-merge(
+				$darker-colors,
 				(
 					$key: abs($luminance)
 				)
@@ -132,12 +132,13 @@
 
 	$key: null;
 
-	@if (daff-luminance($color) >=0.5) {
+	@if (daff-luminance($color) >= 0.5) {
 		//If the color is bright
-		$key: _daff-illuminate-get-key($darkerColors, $nth);
-	} @else {
+		$key: _daff-illuminate-get-key($darker-colors, $nth);
+	}
+	@else {
 		//If the color is dark
-		$key: _daff-illuminate-get-key($brighterColors, $nth);
+		$key: _daff-illuminate-get-key($brighter-colors, $nth);
 	}
 
 	@return map-get($palette, $key);

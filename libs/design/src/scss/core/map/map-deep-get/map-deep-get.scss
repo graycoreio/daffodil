@@ -5,16 +5,17 @@
 // Return a the value of a nested key in a map if it exists.
 // If the key doesn't exist, it throw an error.
 // 
-// Note: This function doesn't support the use of the search character in your map key names.
+// Note: This function doesn't support the use 
+// of the search character in your map key names.
 // 
 // @usage daff-map-deep-get($map, "nested.map.key");
 // @returns any
 // @throws error
-@function daff-map-deep-get($map, $key, $searchCharacter: '.') {
-	$keys: daff-string-split($key, $searchCharacter);
+@function daff-map-deep-get($map, $key, $search-character: '.') {
+	$keys: daff-string-split($key, $search-character);
 
 	@if not daff-map-deep-check($map, $keys) {
-		@error "The map doesn't contain the $key: `#{$key}`";
+		@error 'The map doesn\'t contain the $key: `#{$key}`\'';
 	}
 
 	@each $key in $keys {

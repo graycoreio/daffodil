@@ -3,16 +3,16 @@
 	$secondary: map-get($theme, secondary);
 	$tertiary: map-get($theme, tertiary);
 	$base: daff-map-deep-get($theme, 'core.base');
-	$baseContrast: daff-map-deep-get($theme, 'core.base-contrast');
+	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
 
 	.daff-form-field {
 		&__control {
 			background: $base;
 			border: 1px solid daff-illuminate($base, $daff-gray, 3);
-			color: daff-illuminate($baseContrast, $daff-gray, 4);
+			color: daff-illuminate($base-contrast, $daff-gray, 4);
 
 			&:focus {
-				border: 1px solid $baseContrast;
+				border: 1px solid $base-contrast;
 			}
 
 			&.daff-error {
@@ -25,7 +25,7 @@
 
 			&.daff-valid {
 				> * {
-					color: $baseContrast;
+					color: $base-contrast;
 				}
 			}
 		}

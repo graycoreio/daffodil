@@ -1,14 +1,15 @@
 @import '../../../scss/daff-util';
+$bg-color: rgba(0, 0, 0, 0.3);
+$highlight-color: rgba(0, 0, 0, 0);
 
 :host {
 	@include clickable();
 	display: block;
-	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-	-webkit-tap-highlight-color: transparent;
+	-webkit-tap-highlight-color: $highlight-color;
 }
 
 .daff-backdrop {
-	background: rgba(0, 0, 0, 0.3);
+	background: $bg-color;
 	height: 100%;
 	width: 100%;
 

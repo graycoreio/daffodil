@@ -3,11 +3,11 @@
     $secondary: map-get($theme, secondary);
     $tertiary: map-get($theme, tertiary);
     $base: daff-map-deep-get($theme, "core.base");
-    $baseContrast: daff-map-deep-get($theme, "core.base-contrast");
+    $base-contrast: daff-map-deep-get($theme, "core.base-contrast");
     
     .feature-comparison {
         background: $base;
-        box-shadow: 0 0 30px 0 rgba($baseContrast, 0.05);
+        box-shadow: 0 0 30px 0 rgba($base-contrast, 0.05);
         
         > * {
             &:nth-child(4n-2) {

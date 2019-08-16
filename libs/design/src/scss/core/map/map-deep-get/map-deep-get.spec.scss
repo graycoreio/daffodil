@@ -2,7 +2,7 @@
 @import './map-deep-get';
 
 @include describe('map-deep-get') {
-	$nestedMap: (
+	$nested-map: (
 		'string': '3',
 		'number': 4
 	);
@@ -11,14 +11,14 @@
 		'nested': (
 			'string': '1',
 			'number': 2,
-			'map': $nestedMap
+			'map': $nested-map
 		)
 	);
 
 	@include it('returns the value of the nested key if it exists in the map') {
 		@include assert-equal(daff-map-deep-get($map, ('nested.string')), '1');
 		@include assert-equal(daff-map-deep-get($map, ('nested.number')), 2);
-		@include assert-equal(daff-map-deep-get($map, ('nested.map')), $nestedMap);
+		@include assert-equal(daff-map-deep-get($map, ('nested.map')), $nested-map);
 		@include assert-equal(daff-map-deep-get($map, ('nested.map.string')), '3');
 		@include assert-equal(daff-map-deep-get($map, ('nested.map.number')), 4);
 	}

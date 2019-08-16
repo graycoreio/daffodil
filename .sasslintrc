@@ -6,6 +6,13 @@
 	},
 	"rules": {
 		"bem-depth": 2,
+		"border-zero": 2,
+		"brace-style": [
+			2,
+			{
+				"style": "stroustrup"
+			}
+		],
 		"class-name-format": [
 			2,
 			{
@@ -29,21 +36,35 @@
 			}
 		],
 		"placeholder-in-extend": 2,
+		"max-line-length": 2,
 		"mixins-before-declarations": [
 			2,
 			{
-				"exclude": ["breakpoint", "mq"]
+				"exclude": [
+					"breakpoint",
+					"mq"
+				]
+			}
+		],
+		"no-color-literals": [
+			2,
+			{
+				"allow-rgba": true
 			}
 		],
 		"no-css-comments": 2,
 		"no-warn": 0,
 		"no-debug": 1,
+		"no-duplicate-properties": 2,
+		"no-empty-rulesets": 2,
 		"no-ids": 2,
 		"no-invalid-hex": 2,
 		"no-important": 2,
 		"no-mergeable-selectors": 2,
 		"no-misspelled-properties": 2,
+		"no-transition-all": 2,
 		"no-trailing-zero": 2,
+		"no-trailing-whitespace": 2,
 		"one-declaration-per-line": 2,
 		"indentation": [
 			2,
@@ -57,11 +78,25 @@
 				"ignore-custom-properties": true
 			}
 		],
+		"quotes": [
+			2,
+			{
+				"style": "single"
+			}
+		],
 		"space-after-colon": 2,
 		"space-after-comma": 2,
+		"space-around-operator": 2,
 		"space-before-brace": 2,
 		"space-between-parens": 2,
 		"trailing-semicolon": 2,
-		"url-quotes": 2
+		"url-quotes": 2,
+		"variable-name-format": [
+			2,
+			{
+				"allow-leading-underscore": false
+			}
+		],
+		"zero-unit": 2
 	}
 }
