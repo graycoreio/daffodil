@@ -16,14 +16,14 @@ Images need to be wrapped in daff-gallery-image components, so the images can be
 
 ```
 <daff-image-gallery>
-  <img daff-active-image src="selectedImage">
+  <img daff-active-image src="{{selectedImage.url}}">
   <daff-gallery-image 
     *ngFor="let image of images"
     [selected]="image.url === selectedImage">
 
     <img alt="{{image.label}}"
       src="{{image.url}}" 
-      (click)="select(image.url)">
+      (click)="selectedImage = image">
 
   </daff-gallery-image>
 </daff-image-gallery>
