@@ -7,6 +7,7 @@ import { DesignLandAppComponent } from './app.component';
 import { DaffSidebarModule } from '@daffodil/design';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -16,7 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DesignLandAppRoutingModule
   ],
   declarations: [
-    DesignLandAppComponent
+    DesignLandAppComponent,
   ],
   providers: [],
   bootstrap: [DesignLandAppComponent]
