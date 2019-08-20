@@ -3,19 +3,25 @@ import { MockStore } from '@ngrx/store/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
+import { DaffCategoryFactory } from '@daffodil/category/testing';
+
 import { DaffCategoryFacade } from './category.facade';
-import { State, reducers } from '../reducers';
-import { DaffCategoryLoad, DaffCategoryLoadFailure } from '../actions/category.actions';
+import { DaffCategoryLoad, DaffCategoryLoadFailure, DaffCategoryLoadSuccess } from '../actions/category.actions';
+import { DaffCategory } from '@daffodil/category';
+import { categoryReducers } from '../reducers/category-reducers';
+import { CategoryReducersState } from '../reducers/category-reducers.interface';
 
 describe('DaffCategoryFacade', () => {
-  let store: MockStore<Partial<State>>;
+  let store: MockStore<Partial<CategoryReducersState>>;
   let facade: DaffCategoryFacade;
+  let categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
+  let category: DaffCategory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports:[
         StoreModule.forRoot({
-          category: combineReducers(reducers),
+          category: combineReducers(categoryReducers),
         })
       ],
       providers: [
@@ -23,6 +29,7 @@ describe('DaffCategoryFacade', () => {
       ]
     })
 
+    category = categoryFactory.create();
     store = TestBed.get(Store);
     facade = TestBed.get(DaffCategoryFacade);
   });
@@ -38,6 +45,19 @@ describe('DaffCategoryFacade', () => {
     facade.dispatch(action);
     expect(store.dispatch).toHaveBeenCalledWith(action);
     expect(store.dispatch).toHaveBeenCalledTimes(1);
+  });
+
+  describe('category$', () => {
+    it('should be null initially', () => {
+      const expected = cold('a', { a: null });
+      expect(facade.category$).toBeObservable(expected);
+    });
+  
+    it('should be a category after a category is loaded successfully', () => {
+      const expected = cold('a', { a: category });
+      store.dispatch(new DaffCategoryLoadSuccess(category));
+      expect(facade.category$).toBeObservable(expected);
+    });
   });
 
   describe('loading$', () => {

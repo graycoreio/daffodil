@@ -11,10 +11,6 @@ import { DaffCategoryStateModule } from './category-state.module';
      * Ngrx/store
      */
     DaffCategoryStateModule,
-  ],
-  declarations: [
-  ],
-  exports: [
   ]
 })
 export class DaffCategoryModule { }

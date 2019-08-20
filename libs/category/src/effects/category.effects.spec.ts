@@ -9,7 +9,6 @@ import { DaffCategoryLoad, DaffCategoryLoadSuccess, DaffCategoryLoadFailure } fr
 import { DaffCategory } from '../models/category';
 import { DaffCategoryServiceInterface } from '../drivers/interfaces/category-service.interface';
 import { DaffCategoryDriver } from '../drivers/injection-tokens/category-driver.token';
-import { DaffCategoriesLoad, DaffCategoriesLoadSuccess, DaffCategoriesLoadFailure } from '../actions/categories.actions';
 
 describe('DaffCategoryEffects', () => {
   let actions$: Observable<any>;
@@ -78,42 +77,6 @@ describe('DaffCategoryEffects', () => {
       
       it('should dispatch a CategoryLoadFailure action', () => {
         expect(effects.loadCategory$).toBeObservable(expected);
-      });
-    });
-  });
-
-  describe('when CategoriesLoadAction is triggered', () => {
-
-    let expected;
-    const categoriesLoadAction = new DaffCategoriesLoad();
-    
-    describe('and the call to CategoryService is successful', () => {
-
-      beforeEach(() => {
-        spyOn(daffCategoryDriver, 'getAll').and.returnValue(of([mockCategory]));
-        const categoriesLoadSuccessAction = new DaffCategoriesLoadSuccess([mockCategory]);
-        actions$ = hot('--a', { a: categoriesLoadAction });
-        expected = cold('--b', { b: categoriesLoadSuccessAction });
-      });
-      
-      it('should dispatch a CategoriesLoadSuccess action', () => {
-        expect(effects.loadCategories$).toBeObservable(expected);
-      });
-    });
-
-    describe('and the call to CategoryService fails', () => {
-      
-      beforeEach(() => {
-        const error = 'Failed to load the categories';
-        const response = cold('#', {}, error);
-        spyOn(daffCategoryDriver, 'getAll').and.returnValue(response);
-        const categoriesLoadFailureAction = new DaffCategoriesLoadFailure(error);
-        actions$ = hot('--a', { a: categoriesLoadAction });
-        expected = cold('--b', { b: categoriesLoadFailureAction });
-      });
-      
-      it('should dispatch a CategoriesLoadFailure action', () => {
-        expect(effects.loadCategories$).toBeObservable(expected);
       });
     });
   });

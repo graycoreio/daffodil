@@ -3,7 +3,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
 import { switchMap, map, catchError } from 'rxjs/operators';
-import { of ,  Observable } from 'rxjs';
+import { of, Observable } from 'rxjs';
 
 import { 
   DaffCategoryActionTypes, 
@@ -12,7 +12,6 @@ import {
   DaffCategoryLoadFailure } from '../actions/category.actions';
 import { DaffCategoryDriver } from '../drivers/injection-tokens/category-driver.token';
 import { DaffCategoryServiceInterface } from '../drivers/interfaces/category-service.interface';
-import { DaffCategoriesActionTypes, DaffCategoriesLoad, DaffCategoriesLoadSuccess, DaffCategoriesLoadFailure } from '../actions/categories.actions';
 
 @Injectable()
 export class DaffCategoryEffects {
@@ -32,22 +31,6 @@ export class DaffCategoryEffects {
           }),
           catchError(error => {
             return of(new DaffCategoryLoadFailure('Failed to load the category'));
-          })
-        )
-    )
-  )
-
-  @Effect()
-  loadCategories$ : Observable<any> = this.actions$.pipe(
-    ofType(DaffCategoriesActionTypes.CategoriesLoadAction),
-    switchMap((action: DaffCategoriesLoad) =>
-      this.driver.getAll()
-        .pipe(
-          map((resp) => {
-            return new DaffCategoriesLoadSuccess(resp);
-          }),
-          catchError(error => {
-            return of(new DaffCategoriesLoadFailure('Failed to load the categories'));
           })
         )
     )

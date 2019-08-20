@@ -1,19 +1,20 @@
 import { DaffCategoryFactory } from '@daffodil/category/testing';
-import { 
-  initialState, 
-  reducer, 
-  State,
-  getCategoryLoading,
-  getCategoryErrors
-} from "../reducers/category.reducer";
-import { DaffCategoryLoad, DaffCategoryLoadSuccess, DaffCategoryLoadFailure } from "../actions/category.actions";
-import { DaffCategory } from "../models/category";
+
+import { DaffCategory } from '../../models/category';
+import { CategoryReducerState } from './category-reducer-state.interface';
+import { DaffCategoryLoad, DaffCategoryLoadSuccess, DaffCategoryLoadFailure } from '../../actions/category.actions';
+import { CategoryReducer } from './category.reducer';
 
 describe('Category | Category Reducer', () => {
 
   let categoryFactory: DaffCategoryFactory;
   let category: DaffCategory;
   let categoryId: string;
+  let initialState: CategoryReducerState = {
+    category: null,
+    loading: false,
+    errors: []
+  }
 
   beforeEach(() => {
     categoryFactory = new DaffCategoryFactory();
@@ -27,7 +28,7 @@ describe('Category | Category Reducer', () => {
     it('should return the current state', () => {
       const action = {} as any;
 
-      const result = reducer(initialState, action);
+      const result = CategoryReducer.reducer(initialState, action);
 
       expect(result).toBe(initialState);
     });
@@ -39,7 +40,7 @@ describe('Category | Category Reducer', () => {
     beforeEach(() => {
       const categoryLoadAction: DaffCategoryLoad = new DaffCategoryLoad(categoryId);
 
-      result = reducer(initialState, categoryLoadAction);
+      result = CategoryReducer.reducer(initialState, categoryLoadAction);
     });
 
     it('sets loading state to true', () => {
@@ -50,7 +51,7 @@ describe('Category | Category Reducer', () => {
   describe('when CategoryLoadSuccessAction is triggered', () => {
 
     let result;
-    let state: State;
+    let state: CategoryReducerState;
 
     beforeEach(() => {
       state = {
@@ -59,11 +60,15 @@ describe('Category | Category Reducer', () => {
       }
 
       const categoryLoadSuccess = new DaffCategoryLoadSuccess(category);
-      result = reducer(state, categoryLoadSuccess);
+      result = CategoryReducer.reducer(state, categoryLoadSuccess);
     });
 
     it('sets loading to false', () => {
       expect(result.loading).toEqual(false);
+    });
+
+    it('sets category to the payload', () => {
+      expect(result.category).toEqual(category);
     });
   });
 
@@ -71,7 +76,7 @@ describe('Category | Category Reducer', () => {
 
     const error = 'error message';
     let result;
-    let state: State;
+    let state: CategoryReducerState;
 
     beforeEach(() => {
       state = {
@@ -82,7 +87,7 @@ describe('Category | Category Reducer', () => {
 
       const categoryLoadFailure = new DaffCategoryLoadFailure(error);
 
-      result = reducer(state, categoryLoadFailure);
+      result = CategoryReducer.reducer(state, categoryLoadFailure);
     });
 
     it('sets loading to false', () => {
@@ -91,20 +96,6 @@ describe('Category | Category Reducer', () => {
 
     it('adds an error to state.errors', () => {
       expect(result.errors.length).toEqual(2);
-    });
-  });
-
-  describe('getCategoryLoading', () => {
-    
-    it('returns loading state', () => {
-      expect(getCategoryLoading(initialState)).toEqual(initialState.loading);
-    });
-  });
-
-  describe('getCategoryErrors', () => {
-    
-    it('returns errors state', () => {
-      expect(getCategoryErrors(initialState)).toEqual(initialState.errors);
     });
   });
 });

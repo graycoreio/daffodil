@@ -1,7 +1,7 @@
 {
   "name": "@daffodil/category",
   "version": "0.0.3",
-  "description": "Interfaces built for daffodil/state",
+  "description": "An ecommerce categories package that has multi-platform support and state management features.",
   "repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"

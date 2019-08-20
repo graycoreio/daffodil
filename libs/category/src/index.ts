@@ -1,8 +1,7 @@
 export { DaffCategory } from './models/category';
-export * from './actions/category.actions';
+export { DaffCategoryActionTypes, DaffCategoryActions, DaffCategoryLoad, DaffCategoryLoadFailure, DaffCategoryLoadSuccess } from './actions/category.actions';
 
-import * as fromCategory from './reducers/index';
-export { fromCategory };
+export { categoryReducers } from './reducers/category-reducers';
 
 export { DaffCategoryModule } from './category.module';
 export { DaffCategoryDriver } from './drivers/injection-tokens/category-driver.token';

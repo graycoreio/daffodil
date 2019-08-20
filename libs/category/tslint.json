@@ -14,8 +14,7 @@
     ],
     "component-class-suffix": [
       true,
-      "Component",
-      "Container"
+      "Component"
     ]
   }
 }
