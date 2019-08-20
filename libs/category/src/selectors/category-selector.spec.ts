@@ -1,5 +1,6 @@
 import { TestBed } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
+import { cold } from "jasmine-marbles";
 
 import { DaffCategoryFactory } from '@daffodil/category/testing';
 
@@ -35,27 +36,27 @@ describe('DaffCategorySelectors', () => {
     describe('selectCategory', () => {
 
       it('selects the category state', () => {
-        store.pipe(select(DaffCategorySelectors.selectCategory)).subscribe((categoryState) => {
-          expect(categoryState).toEqual(mockCategory);
-        });
+        const selector = store.pipe(select(DaffCategorySelectors.selectCategory));
+        const expected = cold('a', { a: mockCategory });
+        expect(selector).toBeObservable(expected);
       });
     });
 
     describe('selectCategoryLoading', () => {
 
       it('selects the loading state of the category', () => {
-        store.pipe(select(DaffCategorySelectors.selectCategoryLoading)).subscribe((categoryLoadingState) => {
-          expect(categoryLoadingState).toEqual(false);
-        });
+        const selector = store.pipe(select(DaffCategorySelectors.selectCategoryLoading));
+        const expected = cold('a', { a: false });
+        expect(selector).toBeObservable(expected);
       });
     });
 
     describe('selectCategoryErrors', () => {
 
       it('returns the selected category id', () => {
-        store.pipe(select(DaffCategorySelectors.selectCategoryErrors)).subscribe((categoryErrors) => {
-          expect(categoryErrors).toEqual([]);
-        });
+        const selector = store.pipe(select(DaffCategorySelectors.selectCategoryErrors));
+        const expected = cold('a', { a: [] });
+        expect(selector).toBeObservable(expected);
       });
     });
   });
