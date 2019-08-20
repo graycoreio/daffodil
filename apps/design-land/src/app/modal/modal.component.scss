@@ -1,3 +1,7 @@
+@import "daff-theme";
+
+$feature-color: #594fff;
+
 .modal-feature {
-  background-color: lightgray;
+  background-color: $feature-color;
 }
