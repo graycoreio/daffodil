@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { selectDemoImageGalleryState } from 'apps/demo/src/app/core/image-gallery/reducers';
+import { Image } from 'libs/design/src/interfaces/image';
 
 @Component({
   selector: 'design-land-image-gallery',
@@ -8,8 +10,9 @@ import { Component, OnInit } from '@angular/core';
 export class ImageGalleryComponent implements OnInit {
 
   constructor() { }
-
+  selectedImage = {url: '', label:''};
   ngOnInit() {
+    this.selectedImage = this.images[Math.floor(Math.random()*this.images.length)];
   }
   images = [
     {
