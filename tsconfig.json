@@ -30,6 +30,12 @@
       "@daffodil/core/testing": [
         "dist/core/testing"
       ],
+      "@daffodil/navigation": [
+        "dist/navigation"
+      ],
+      "@daffodil/navigation/testing": [
+        "dist/navigation/testing"
+      ],
       "@daffodil/product": [
         "dist/product"
       ],
