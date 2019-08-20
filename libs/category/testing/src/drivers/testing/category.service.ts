@@ -13,10 +13,6 @@ export class DaffTestingCategoryService implements DaffCategoryServiceInterface 
   constructor(
     private categoryFactory: DaffCategoryFactory) {}
 
-  getAll(): Observable<DaffCategory[]> {
-    return of(this.categoryFactory.createMany(5));
-  }
-
   get(categoryId: string): Observable<DaffCategory> {
     return of(this.categoryFactory.create());
   }

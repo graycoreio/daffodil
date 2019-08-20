@@ -32,21 +32,6 @@ describe('Driver | InMemory | Category | CategoryService', () => {
     expect(categoryService).toBeTruthy();
   });
 
-  describe('getAll | getting a list of categorys', () => {
-    it('should send a get request', () => {
-      const mockCategorys = categoryFactory.createMany();
-
-      categoryService.getAll().subscribe(categorys => {
-        expect(categorys).toEqual(mockCategorys);
-      });
-
-      const req = httpMock.expectOne(`${categoryService.url}`);
-      expect(req.request.method).toBe("GET");
-
-      req.flush(mockCategorys);
-    });
-  });
-
   describe('get | getting a single category', () => {
 
     it('should send a get request', () => {

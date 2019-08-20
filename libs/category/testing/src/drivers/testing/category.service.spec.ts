@@ -14,15 +14,6 @@ describe('Driver | Testing | Category | CategoryService', () => {
     expect(categoryService).toBeTruthy();
   });
 
-  describe('getAll', () => {
-
-    it('should return a list of categories', () => {
-      categoryService.getAll().subscribe(categories => {
-        expect(isCategory(categories[0])).toBeTruthy();
-      });
-    });
-  });
-
   describe('get', () => {
 
     it('should return a single category with images', () => {
