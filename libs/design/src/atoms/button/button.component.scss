@@ -77,7 +77,7 @@
 		opacity: 0;
 
 		@include breakpoint(big-tablet) {
-			bottom: 0px;
+			bottom: 0;
 			content: '';
 			height: 2px;
 			left: 0;

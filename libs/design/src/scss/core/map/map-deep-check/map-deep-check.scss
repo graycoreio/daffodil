@@ -9,7 +9,7 @@
 //
 @function daff-map-deep-check($map, $keys) {
 	@if (type-of($map) != 'map') {
-		@error "Expected first parameter to be of type `map`";
+		@error 'Expected first parameter to be of type `map`';
 	}
 
 	@each $key in $keys {
