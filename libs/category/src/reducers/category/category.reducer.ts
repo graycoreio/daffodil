@@ -7,21 +7,18 @@ const initialState: CategoryReducerState = {
   errors: []
 };
 
-export const CategoryReducer = {
-
-  reducer: (state = initialState, action: DaffCategoryActions): CategoryReducerState => {
-    switch (action.type) {
-      case DaffCategoryActionTypes.CategoryLoadAction:
-        return {...state, loading: true};
-      case DaffCategoryActionTypes.CategoryLoadSuccessAction:
-        return {...state, loading: false, category: action.payload};
-      case DaffCategoryActionTypes.CategoryLoadFailureAction:
-        return {...state, 
-          loading: false, 
-          errors: state.errors.concat(new Array(action.payload))
-        };
-      default:
-        return state;
-    }
+export function reducer(state = initialState, action: DaffCategoryActions): CategoryReducerState {
+  switch (action.type) {
+    case DaffCategoryActionTypes.CategoryLoadAction:
+      return {...state, loading: true};
+    case DaffCategoryActionTypes.CategoryLoadSuccessAction:
+      return {...state, loading: false, category: action.payload};
+    case DaffCategoryActionTypes.CategoryLoadFailureAction:
+      return {...state, 
+        loading: false, 
+        errors: state.errors.concat(new Array(action.payload))
+      };
+    default:
+      return state;
   }
 }

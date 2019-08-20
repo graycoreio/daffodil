@@ -3,11 +3,11 @@ import { MockStore } from '@ngrx/store/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
+import { DaffCategory } from '@daffodil/category';
 import { DaffCategoryFactory } from '@daffodil/category/testing';
 
 import { DaffCategoryFacade } from './category.facade';
 import { DaffCategoryLoad, DaffCategoryLoadFailure, DaffCategoryLoadSuccess } from '../actions/category.actions';
-import { DaffCategory } from '@daffodil/category';
 import { categoryReducers } from '../reducers/category-reducers';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
 
