@@ -14,7 +14,7 @@ import { CategoryReducersState } from '../reducers/category-reducers.interface';
 describe('DaffCategoryFacade', () => {
   let store: MockStore<Partial<CategoryReducersState>>;
   let facade: DaffCategoryFacade;
-  let categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
+  const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
   let category: DaffCategory;
 
   beforeEach(() => {

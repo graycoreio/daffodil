@@ -10,7 +10,7 @@ describe('Category | Category Reducer', () => {
   let categoryFactory: DaffCategoryFactory;
   let category: DaffCategory;
   let categoryId: string;
-  let initialState: CategoryReducerState = {
+  const initialState: CategoryReducerState = {
     category: null,
     loading: false,
     errors: []

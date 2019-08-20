@@ -44,7 +44,7 @@ export const GetACategory = gql`
 `;
 
 export const DaffMagentoCategoryTransformer = (node: CategoryNode) : DaffCategory => {
-  let category: DaffCategory = {
+  const category: DaffCategory = {
     id: node.id,
     name: node.name,
     total_products: node.products.total_count,
