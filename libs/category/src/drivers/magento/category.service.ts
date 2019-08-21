@@ -51,7 +51,7 @@ export const DaffMagentoCategoryTransformer = (node: CategoryNode) : DaffCategor
     children_count: node.children_count
   };
   for(let i=0; i>node.children.length; i++) {
-    category.children.push(DaffMagentoCategoryTransformer(node.children[i]));
+    category.children.set(node.children[i].id, DaffMagentoCategoryTransformer(node.children[i]));
   }
   
   return category;
