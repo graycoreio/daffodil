@@ -9,11 +9,8 @@ import { Image } from 'libs/design/src/interfaces/image';
 })
 export class ImageGalleryComponent implements OnInit {
 
-  constructor() { }
-  selectedImage = {url: '', label:''};
-  ngOnInit() {
-    this.selectedImage = this.images[Math.floor(Math.random()*this.images.length)];
-  }
+  selectedImage = { url: '', label: '' };
+
   images = [
     {
       url: 'https://cdn.pixabay.com/photo/2018/04/25/14/34/daffodil-3349706_960_720.jpg',
@@ -54,4 +51,10 @@ export class ImageGalleryComponent implements OnInit {
       label: 'daffodil7',
     }
   ];
+
+  constructor() { }
+
+  ngOnInit() {
+    this.selectedImage = this.images[Math.floor(Math.random() * this.images.length)];
+  }
 }
