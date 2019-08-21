@@ -78,6 +78,12 @@
 				"ignore-custom-properties": true
 			}
 		],
+		"quotes": [
+			2,
+			{
+				"style": "single"
+			}
+		],
 		"space-after-colon": 2,
 		"space-after-comma": 2,
 		"space-around-operator": 2,
@@ -90,6 +96,7 @@
 			{
 				"allow-leading-underscore": false
 			}
-		]
+		],
+		"zero-unit": 2
 	}
 }

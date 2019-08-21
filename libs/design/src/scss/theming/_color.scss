@@ -9,7 +9,7 @@
 // ```
 @function daff-color($palette, $color: 'default') {
 	@if (not(map-has-key($palette, $color))) {
-		@error "Color: `#{$color}` does not exist in palette";
+		@error 'Color: `#{$color}` does not exist in palette';
 	}
 
 	@return map-get($palette, $color);

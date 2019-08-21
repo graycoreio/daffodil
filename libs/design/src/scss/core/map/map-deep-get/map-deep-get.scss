@@ -15,7 +15,7 @@
 	$keys: daff-string-split($key, $search-character);
 
 	@if not daff-map-deep-check($map, $keys) {
-		@error "The map doesn't contain the $key: `#{$key}`";
+		@error 'The map doesn\'t contain the $key: `#{$key}`\'';
 	}
 
 	@each $key in $keys {
