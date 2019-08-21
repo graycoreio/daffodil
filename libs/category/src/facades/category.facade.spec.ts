@@ -3,13 +3,13 @@ import { MockStore } from '@ngrx/store/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffCategory } from '@daffodil/category';
 import { DaffCategoryFactory } from '@daffodil/category/testing';
 
 import { DaffCategoryFacade } from './category.facade';
 import { DaffCategoryLoad, DaffCategoryLoadFailure, DaffCategoryLoadSuccess } from '../actions/category.actions';
 import { categoryReducers } from '../reducers/category-reducers';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
+import { DaffCategory } from '../models/category';
 
 describe('DaffCategoryFacade', () => {
   let store: MockStore<Partial<CategoryReducersState>>;
@@ -47,16 +47,16 @@ describe('DaffCategoryFacade', () => {
     expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 
-  describe('category$', () => {
-    it('should be null initially', () => {
-      const expected = cold('a', { a: null });
-      expect(facade.category$).toBeObservable(expected);
+  describe('selectedCategory$', () => {
+    it('should be undefined initially', () => {
+      const expected = cold('a', { a: undefined });
+      expect(facade.selectedCategory$).toBeObservable(expected);
     });
   
     it('should be a category after a category is loaded successfully', () => {
       const expected = cold('a', { a: category });
       store.dispatch(new DaffCategoryLoadSuccess(category));
-      expect(facade.category$).toBeObservable(expected);
+      expect(facade.selectedCategory$).toBeObservable(expected);
     });
   });
 

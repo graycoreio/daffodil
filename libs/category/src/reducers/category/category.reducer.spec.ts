@@ -3,7 +3,7 @@ import { DaffCategoryFactory } from '@daffodil/category/testing';
 import { DaffCategory } from '../../models/category';
 import { CategoryReducerState } from './category-reducer-state.interface';
 import { DaffCategoryLoad, DaffCategoryLoadSuccess, DaffCategoryLoadFailure } from '../../actions/category.actions';
-import { reducer } from './category.reducer';
+import { categoryReducer } from './category.reducer';
 
 describe('Category | Category Reducer', () => {
 
@@ -11,7 +11,7 @@ describe('Category | Category Reducer', () => {
   let category: DaffCategory;
   let categoryId: string;
   const initialState: CategoryReducerState = {
-    category: null,
+    selectedCategoryId: null,
     loading: false,
     errors: []
   }
@@ -28,7 +28,7 @@ describe('Category | Category Reducer', () => {
     it('should return the current state', () => {
       const action = {} as any;
 
-      const result = reducer(initialState, action);
+      const result = categoryReducer(initialState, action);
 
       expect(result).toBe(initialState);
     });
@@ -40,7 +40,7 @@ describe('Category | Category Reducer', () => {
     beforeEach(() => {
       const categoryLoadAction: DaffCategoryLoad = new DaffCategoryLoad(categoryId);
 
-      result = reducer(initialState, categoryLoadAction);
+      result = categoryReducer(initialState, categoryLoadAction);
     });
 
     it('sets loading state to true', () => {
@@ -60,15 +60,15 @@ describe('Category | Category Reducer', () => {
       }
 
       const categoryLoadSuccess = new DaffCategoryLoadSuccess(category);
-      result = reducer(state, categoryLoadSuccess);
+      result = categoryReducer(state, categoryLoadSuccess);
     });
 
     it('sets loading to false', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('sets category to the payload', () => {
-      expect(result.category).toEqual(category);
+    it('sets selectedCategoryId from the payload.id', () => {
+      expect(result.selectedCategoryId).toEqual(category.id);
     });
   });
 
@@ -87,7 +87,7 @@ describe('Category | Category Reducer', () => {
 
       const categoryLoadFailure = new DaffCategoryLoadFailure(error);
 
-      result = reducer(state, categoryLoadFailure);
+      result = categoryReducer(state, categoryLoadFailure);
     });
 
     it('sets loading to false', () => {

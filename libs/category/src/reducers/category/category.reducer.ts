@@ -2,17 +2,17 @@ import { DaffCategoryActionTypes, DaffCategoryActions } from '../../actions/cate
 import { CategoryReducerState } from './category-reducer-state.interface';
 
 const initialState: CategoryReducerState = {
-  category: null,
+  selectedCategoryId: null,
   loading: false,
   errors: []
 };
 
-export function reducer(state = initialState, action: DaffCategoryActions): CategoryReducerState {
+export function categoryReducer(state = initialState, action: DaffCategoryActions): CategoryReducerState {
   switch (action.type) {
     case DaffCategoryActionTypes.CategoryLoadAction:
       return {...state, loading: true};
     case DaffCategoryActionTypes.CategoryLoadSuccessAction:
-      return {...state, loading: false, category: action.payload};
+      return {...state, loading: false, selectedCategoryId: action.payload.id};
     case DaffCategoryActionTypes.CategoryLoadFailureAction:
       return {...state, 
         loading: false, 

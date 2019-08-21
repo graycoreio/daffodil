@@ -6,7 +6,7 @@ import { DaffStoreFacade } from '@daffodil/core';
 
 import { DaffCategory } from '../models/category';
 import { DaffCategoryModule } from '../category.module';
-import { DaffCategorySelectors } from '../selectors/category.selector';
+import { selectCategoryLoading, selectCategoryErrors, selectSelectedCategory } from '../selectors/category.selector';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
 
 @Injectable({
@@ -16,7 +16,7 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
   /**
    * The category retrieved in a single category call.
    */
-  category$: Observable<DaffCategory>;
+  selectedCategory$: Observable<DaffCategory>;
   /**
    * The loading state for retrieving a single category.
    */
@@ -27,9 +27,9 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
   errors$: Observable<string[]>;
 
   constructor(private store: Store<CategoryReducersState>) {
-    this.category$ = this.store.pipe(select(DaffCategorySelectors.selectCategory));
-    this.loading$ = this.store.pipe(select(DaffCategorySelectors.selectCategoryLoading));
-    this.errors$ = this.store.pipe(select(DaffCategorySelectors.selectCategoryErrors));
+    this.selectedCategory$ = this.store.pipe(select(selectSelectedCategory));
+    this.loading$ = this.store.pipe(select(selectCategoryLoading));
+    this.errors$ = this.store.pipe(select(selectCategoryErrors));
   }
 
   /**

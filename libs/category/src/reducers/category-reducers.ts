@@ -1,8 +1,10 @@
 import { ActionReducerMap } from "@ngrx/store";
 
 import { CategoryReducersState } from "./category-reducers.interface";
-import { reducer } from "./category/category.reducer";
+import { categoryReducer } from "./category/category.reducer";
+import { categoryEntitiesReducer } from "./category-entities/category-entities.reducer";
 
 export const categoryReducers: ActionReducerMap<CategoryReducersState> = {
-  category: reducer
+  category: categoryReducer,
+  categoryEntities: categoryEntitiesReducer
 }
