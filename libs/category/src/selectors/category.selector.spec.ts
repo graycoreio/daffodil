@@ -70,7 +70,7 @@ describe('DaffCategorySelectors', () => {
   describe('selectCategoryEntities', () => {
 
     it('returns the categories as a dictionary object', () => {
-      let expectedDictionary = new Object();
+      const expectedDictionary = new Object();
       expectedDictionary[mockCategory.id] = mockCategory;
 
       const selector = store.pipe(select(selectCategoryEntities));
