@@ -57,12 +57,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
               total_count: category.total_products
             },
             children_count: category.children_count,
-            children: {
-              id: null,
-              level: null,
-              name: null,
-              path: null
-            }
+            children: []
           }
         }
       });

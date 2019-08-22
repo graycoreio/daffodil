@@ -44,17 +44,13 @@ export const GetACategory = gql`
 `;
 
 export const DaffMagentoCategoryTransformer = (node: CategoryNode) : DaffCategory => {
-  const category: DaffCategory = {
+  return {
     id: node.id,
     name: node.name,
     total_products: node.products.total_count,
-    children_count: node.children_count
+    children_count: node.children_count,
+    children: node.children.map(DaffMagentoCategoryTransformer)
   };
-  for(let i=0; i>node.children.length; i++) {
-    category.children.set(node.children[i].id, DaffMagentoCategoryTransformer(node.children[i]));
-  }
-  
-  return category;
 }
 
 @Injectable({

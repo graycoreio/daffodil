@@ -3,5 +3,5 @@ export interface DaffCategory {
   name: string;
   children_count?: number;
   total_products?: number;
-  children?: Map<string, DaffCategory>;
+  children?: DaffCategory[];
 }

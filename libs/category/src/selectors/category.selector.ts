@@ -11,12 +11,12 @@ const { selectIds, selectEntities, selectAll, selectTotal } = categoryEntitiesAd
 /**
  * Category Feature State
  */
-const selectCategoryFeatureState = createFeatureSelector<CategoryReducersState>('category');
+export const selectCategoryFeatureState = createFeatureSelector<CategoryReducersState>('category');
 
 /**
  * Category State
  */
-const selectCategoryState = createSelector(
+export const selectCategoryState = createSelector(
   selectCategoryFeatureState,
   (state: CategoryReducersState) => state.category
 );
@@ -39,7 +39,7 @@ export const selectCategoryErrors = createSelector(
 /**
  * Category Entities State
  */
-const selectCategoryEntitiesState = createSelector(
+export const selectCategoryEntitiesState = createSelector(
   selectCategoryFeatureState,
   (state: CategoryReducersState) => state.categoryEntities
 );
@@ -65,7 +65,7 @@ export const selectCategoryTotal = createSelector(
 );
 
 /**
- * Mixed Category Selectors
+ * Combinatoric Category Selectors
  */
 export const selectSelectedCategory = createSelector(
   selectCategoryEntities,

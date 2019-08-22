@@ -14,7 +14,7 @@ import { CategoryReducersState } from '../reducers/category-reducers.interface';
 })
 export class DaffCategoryFacade implements DaffStoreFacade<Action> {
   /**
-   * The category retrieved in a single category call.
+   * The currently selected category.
    */
   selectedCategory$: Observable<DaffCategory>;
   /**

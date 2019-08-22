@@ -10,13 +10,14 @@ const initialState: CategoryReducerState = {
 export function categoryReducer(state = initialState, action: DaffCategoryActions): CategoryReducerState {
   switch (action.type) {
     case DaffCategoryActionTypes.CategoryLoadAction:
-      return {...state, loading: true};
+      return { ...state, loading: true };
     case DaffCategoryActionTypes.CategoryLoadSuccessAction:
-      return {...state, loading: false, selectedCategoryId: action.payload.id};
+      return { ...state, loading: false, selectedCategoryId: action.payload.id };
     case DaffCategoryActionTypes.CategoryLoadFailureAction:
-      return {...state, 
-        loading: false, 
-        errors: state.errors.concat(new Array(action.payload))
+      return {
+        ...state,
+        loading: false,
+        errors: [action.payload]
       };
     default:
       return state;
