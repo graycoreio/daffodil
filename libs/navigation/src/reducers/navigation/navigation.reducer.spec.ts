@@ -95,7 +95,7 @@ describe('Navigation | Navigation Reducer', () => {
     });
 
     it('adds an error to state.errors', () => {
-      expect(result.errors.length).toEqual(2);
+      expect(result.errors).toEqual([error]);
     });
   });
 });

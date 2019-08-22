@@ -6,7 +6,8 @@ import {
 
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
-import { DaffMagentoNavigationService, GetCategoryTree } from './navigation.service';
+import { DaffMagentoNavigationService } from './navigation.service';
+import { GetCategoryTree } from './queries/get-category-tree';
 
 describe('Driver | Magento | Navigation | NavigationService', () => {
   let navigationService: DaffMagentoNavigationService;
@@ -57,12 +58,7 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
               total_count: navigation.total_products
             },
             children_count: navigation.children_count,
-            children: {
-              id: null,
-              level: null,
-              name: null,
-              path: null
-            }
+            children: []
           }
         }
       });

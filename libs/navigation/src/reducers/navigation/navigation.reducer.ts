@@ -16,7 +16,7 @@ export function reducer(state = initialState, action: DaffNavigationActions): Na
     case DaffNavigationActionTypes.NavigationLoadFailureAction:
       return {...state, 
         loading: false, 
-        errors: state.errors.concat(new Array(action.payload))
+        errors: [action.payload]
       };
     default:
       return state;

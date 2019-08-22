@@ -6,27 +6,27 @@ import { NavigationReducersState } from '../reducers/navigation-reducers.interfa
 /**
  * Navigation Feature State
  */
-const selectNavigationFeatureState = createFeatureSelector<NavigationReducersState>('navigation');
+export const selectNavigationFeatureState = createFeatureSelector<NavigationReducersState>('navigation');
 
 /**
  * Navigation State
  */
-const selectNavigationState = createSelector(
+export const selectNavigationState = createSelector(
   selectNavigationFeatureState,
   (state: NavigationReducersState) => state.navigation
 );
 
-export const DaffNavigationSelectors = {
-  selectNavigation: createSelector(
-    selectNavigationState,
-    (state: NavigationReducerState) => state.navigation
-  ),
-  selectNavigationLoading: createSelector(
-    selectNavigationState,
-    (state: NavigationReducerState) => state.loading
-  ),
-  selectNavigationErrors: createSelector(
-    selectNavigationState,
-    (state: NavigationReducerState) => state.errors
-  )
-}
+export const selectNavigation = createSelector(
+  selectNavigationState,
+  (state: NavigationReducerState) => state.navigation
+);
+
+export const selectNavigationLoading = createSelector(
+  selectNavigationState,
+  (state: NavigationReducerState) => state.loading
+);
+
+export const selectNavigationErrors = createSelector(
+  selectNavigationState,
+  (state: NavigationReducerState) => state.errors
+);
