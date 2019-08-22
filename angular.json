@@ -256,6 +256,46 @@
         }
       }
     },
+    "category": {
+      "root": "libs/category",
+      "sourceRoot": "libs/category/src",
+      "projectType": "library",
+      "prefix": "@daffodil",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/category/tsconfig.lib.json",
+            "project": "libs/category/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/category/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/category/test.ts",
+            "tsConfig": "libs/category/tsconfig.spec.json",
+            "karmaConfig": "libs/category/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/category/tsconfig.lib.json",
+              "libs/category/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
     "checkout": {
       "root": "libs/checkout",
       "sourceRoot": "libs/checkout/src",
