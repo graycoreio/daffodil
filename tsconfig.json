@@ -57,6 +57,12 @@
       "@daffodil/branding": [
         "dist/branding"
       ],
+      "@daffodil/category": [
+        "dist/category"
+      ],
+      "@daffodil/category/testing": [
+        "dist/category/testing"
+      ]
     }
   },
   "exclude": [
