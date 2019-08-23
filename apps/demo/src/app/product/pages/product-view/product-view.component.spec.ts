@@ -53,7 +53,7 @@ class MockDaffProductFacade {
   dispatch() { }
 }
 
-fdescribe('ProductViewComponent', () => {
+describe('ProductViewComponent', () => {
   const productFactory: DaffProductFactory = new DaffProductFactory();
   const mockProduct = productFactory.create();
   const idParam = '1001';
@@ -110,14 +110,14 @@ fdescribe('ProductViewComponent', () => {
     it('should initialize product$', () => {
       facade.product$ = hot('ab', { a: null, b: mockProduct });
       component.ngOnInit();
-      let expected = cold('ab', { a: null, b: mockProduct });
+      const expected = cold('ab', { a: null, b: mockProduct });
       expect(component.product$).toBeObservable(expected);
     });
 
     it('should initialize loading$', () => {
       facade.loading$ = hot('ab', { a: false, b: true });
       component.ngOnInit();
-      let expected = cold('ab', { a: false, b: true });
+      const expected = cold('ab', { a: false, b: true });
       expect(component.loading$).toBeObservable(expected);
     });
 

@@ -60,7 +60,7 @@ describe('ProductGridViewComponent', () => {
     it('should set loading$ to loading$ on the DaffProductGridFacade', () => {
       facade.loading$ = hot('ab', { a: false, b: true });
       component.ngOnInit();
-      let expected = cold('ab', { a: false, b: true });
+      const expected = cold('ab', { a: false, b: true });
       expect(component.loading$).toBeObservable(expected);
     });
 
@@ -68,7 +68,7 @@ describe('ProductGridViewComponent', () => {
       const products = new DaffProductFactory().createMany(2);
       facade.loading$ = hot('ab', { a: [], b: products });
       component.ngOnInit();
-      let expected = cold('ab', { a: [], b: products });
+      const expected = cold('ab', { a: [], b: products });
       expect(component.loading$).toBeObservable(expected);
     });
 
