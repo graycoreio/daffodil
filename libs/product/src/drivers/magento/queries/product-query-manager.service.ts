@@ -28,6 +28,7 @@ export class DaffMagentoProductGraphQlQueryManagerService implements DaffProduct
             sku
             image {
               url
+              label
             }
             media_gallery_entries {
               label
@@ -66,6 +67,7 @@ export class DaffMagentoProductGraphQlQueryManagerService implements DaffProduct
             url_key
             image {
               url
+              label
             }
             price {
               regularPrice {

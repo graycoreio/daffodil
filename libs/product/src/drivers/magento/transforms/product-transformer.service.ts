@@ -10,13 +10,13 @@ export class DaffMagentoProductTransformerService implements DaffProductTransfor
 
   transform(response: any): DaffProductUnion {
     const product = response.products.items[0];
-
+    console.log(product);
     return {
       id: product.sku,
       url: product.url_key,
       name: product.name,
       images: [
-        {url: product.image.url, id: "0", label: "My label"},
+        { url: product.image.url, id: "0", label: product.image.label},
         ...product.media_gallery_entries.map(image => {
           return {
             url: response.storeConfig.secure_base_media_url + "catalog/product" + image.file,
@@ -39,7 +39,7 @@ export class DaffMagentoProductTransformerService implements DaffProductTransfor
       url: product.url_key,
       name: product.name,
       images: [
-        {url: product.image.url, id: "0", label: "My label"}
+        {url: product.image.url, id: "0", label: product.image.url}
       ]
     }
   }
