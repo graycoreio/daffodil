@@ -1,6 +1,4 @@
 <daff-container size="lg">
-  <div product-grid-container #ProductGridContainer="ProductGridContainer">
-    <demo-product-grid *ngIf="!(ProductGridContainer.loading$ | async)" [products]="ProductGridContainer.products$ | async"></demo-product-grid>
-    <daff-loading-icon *ngIf="(ProductGridContainer.loading$ | async)"></daff-loading-icon>
-  </div>
+  <demo-product-grid *ngIf="!(loading$ | async)" [products]="products$ | async"></demo-product-grid>
+  <daff-loading-icon *ngIf="loading$ | async"></daff-loading-icon>
 <daff-container>
