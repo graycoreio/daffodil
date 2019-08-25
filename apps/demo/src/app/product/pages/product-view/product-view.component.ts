@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
 import { DaffProductFacade, DaffProductLoad, DaffProductUnion } from '@daffodil/product';
-import { tap, take, } from 'rxjs/operators';
+import { tap, take, filter, map, } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -13,6 +13,7 @@ export class ProductViewComponent implements OnInit {
 
   product$: Observable<DaffProductUnion>;
   loading$: Observable<boolean>;
+  routingId$: Observable<string>;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,17 +21,19 @@ export class ProductViewComponent implements OnInit {
   ) { }
 
   updateQty(qty: number) {
-    
+
   }
 
   ngOnInit() {
-    this.route.paramMap.pipe(
-      tap(
-        (params: ParamMap) => 
-        this.productViewFacade.dispatch(new DaffProductLoad(params.get('id')))
-      ),
-      take(1)
-    ).subscribe();
+    this.routingId$ = this.route.paramMap.pipe(
+      filter((params: ParamMap) => params.get('id') != null),
+      take(1),
+      map((params) => params.get('id'))
+    );
+
+    this.routingId$.subscribe((id) => {
+      this.productViewFacade.dispatch(new DaffProductLoad(id))
+    });
 
 
     this.product$ = this.productViewFacade.product$;

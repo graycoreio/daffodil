@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 
-import { DaffProduct, DaffProductFacade } from '@daffodil/product';
+import { DaffProduct, DaffProductFacade, DaffProductLoad } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffLoadingIconModule } from '@daffodil/design';
 
@@ -121,10 +121,18 @@ describe('ProductViewComponent', () => {
       expect(component.loading$).toBeObservable(expected);
     });
 
-    it('should dispatch a  DaffProductLoad with an `id`', () => {
+    it('should dispatch a DaffProductLoad with an `id`', () => {
       spyOn(facade, 'dispatch');
       component.ngOnInit();
-      expect(facade.dispatch).toHaveBeenCalled();
+      expect(facade.dispatch).toHaveBeenCalledWith(new DaffProductLoad(idParam))
+    });
+
+    it('should only ever dispatch a DaffProductLoad once per initialization', () => {
+      spyOn(facade, 'dispatch');
+      component.ngOnInit();
+      activatedRoute.setParamMap({ id: '12312313' });
+      activatedRoute.setParamMap({ id: '12311' });
+      expect(facade.dispatch).toHaveBeenCalledTimes(1);
     });
   })
 
