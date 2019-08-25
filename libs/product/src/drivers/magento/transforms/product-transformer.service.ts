@@ -10,7 +10,6 @@ export class DaffMagentoProductTransformerService implements DaffProductTransfor
 
   transform(response: any): DaffProductUnion {
     const product = response.products.items[0];
-    console.log(product);
     return {
       id: product.sku,
       url: product.url_key,
