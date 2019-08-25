@@ -1,21 +1,42 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
+import { DaffProductFacade, DaffProductLoad, DaffProductUnion } from '@daffodil/product';
+import { tap, take, filter, map, } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
 @Component({
   selector: 'demo-product-view',
   templateUrl: './product-view.component.html'
 })
 export class ProductViewComponent implements OnInit {
 
-  productId: string;
+  product$: Observable<DaffProductUnion>;
+  loading$: Observable<boolean>;
+  routingId$: Observable<string>;
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private productViewFacade: DaffProductFacade
   ) { }
 
+  updateQty(qty: number) {
+
+  }
+
   ngOnInit() {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      this.productId = params.get('id');
-    })
+    this.routingId$ = this.route.paramMap.pipe(
+      filter((params: ParamMap) => params.get('id') != null),
+      take(1),
+      map((params) => params.get('id'))
+    );
+
+    this.routingId$.subscribe((id) => {
+      this.productViewFacade.dispatch(new DaffProductLoad(id))
+    });
+
+
+    this.product$ = this.productViewFacade.product$;
+    this.loading$ = this.productViewFacade.loading$;
   }
 }

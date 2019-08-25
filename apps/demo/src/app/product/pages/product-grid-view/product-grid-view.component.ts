@@ -1,12 +1,21 @@
-import { Component, ViewChild } from '@angular/core';
-import { DaffProductGridContainer } from '@daffodil/product';
+import { Component, OnInit } from '@angular/core';
+import { DaffProductGridFacade, DaffProductUnion, DaffProductGridLoad } from '@daffodil/product';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'demo-product-grid-view',
   templateUrl: './product-grid-view.component.html'
 })
-export class ProductGridViewComponent {
+export class ProductGridViewComponent implements OnInit {
 
-  @ViewChild('ProductGridContainer') DaffProductGridContainer: DaffProductGridContainer;
-  constructor() { }
+  loading$: Observable<boolean>;
+  products$: Observable<DaffProductUnion[]>;
+
+  constructor(private facade: DaffProductGridFacade) { }
+
+  ngOnInit() {
+    this.products$ = this.facade.products$;
+    this.loading$ = this.facade.loading$;
+    this.facade.dispatch(new DaffProductGridLoad());
+  }
 }
