@@ -18,6 +18,7 @@ export const appRoutes: Routes = [
   {path: 'loading-icon', loadChildren: './loading-icon/loading-icon.module#LoadingIconModule'},
   {path: 'form', loadChildren: './form/form.module#FormModule'},
   {path: 'image-gallery', loadChildren: './image-gallery/image-gallery.module#ImageGalleryModule'},
+  {path: 'navbar', loadChildren: './navbar/navbar.module#NavbarModule'},
   {path: 'progress-indicator', loadChildren: './progress-indicator/progress-indicator.module#ProgressIndicatorModule'},
 ]
 

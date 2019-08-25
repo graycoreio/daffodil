@@ -6,6 +6,7 @@ import { DesignLandAppRoutingModule } from './app-routing.module';
 import { DesignLandAppComponent } from './app.component';
 import { DaffSidebarModule } from '@daffodil/design';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
