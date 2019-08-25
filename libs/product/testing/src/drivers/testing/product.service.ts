@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { DaffProduct, DaffProductServiceInterface } from '@daffodil/product';
+import { DaffProduct, DaffProductServiceInterface, DaffProductUnion } from '@daffodil/product';
 
 import { DaffProductFactory } from '../../factories/product.factory';
 import { DaffProductImageFactory } from '../../factories/product-image.factory';
@@ -9,7 +9,7 @@ import { DaffProductImageFactory } from '../../factories/product-image.factory';
 @Injectable({
   providedIn: 'root'
 })
-export class DaffTestingProductService implements DaffProductServiceInterface {
+export class DaffTestingProductService implements DaffProductServiceInterface<DaffProductUnion> {
  
   constructor(
     private productFactory: DaffProductFactory,

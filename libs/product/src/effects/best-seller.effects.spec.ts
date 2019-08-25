@@ -12,10 +12,10 @@ import { DaffProductServiceInterface } from '../drivers/interfaces/product-servi
 
 describe('BestSellersEffects', () => {
   let actions$: Observable<any>;
-  let effects: DaffBestSellersEffects;
+  let effects: DaffBestSellersEffects<DaffProduct>;
   let productFactory: DaffProductFactory;
   let mockBestSellers: DaffProduct[];
-  let daffProductDriver: DaffProductServiceInterface;
+  let daffProductDriver: DaffProductServiceInterface<DaffProduct>;
 
   beforeEach(() => {
 

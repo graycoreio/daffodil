@@ -8,6 +8,7 @@ import gql from 'graphql-tag';
 
 import { DaffProduct } from '../../models/product';
 import { DaffProductServiceInterface } from '../interfaces/product-service.interface';
+import { DaffProductUnion } from '../../models/product-union';
 
 interface GetAllProductsResponse {
   shop?: ShopGraph
@@ -77,7 +78,7 @@ export const DaffShopifyProductTransformer = (node: ProductNode) : DaffProduct =
 @Injectable({
   providedIn: 'root'
 })
-export class DaffShopifyProductService implements DaffProductServiceInterface {
+export class DaffShopifyProductService implements DaffProductServiceInterface<DaffProductUnion> {
 
   defaultLength = 20;
   

@@ -49,7 +49,7 @@ export const selectProductIds = createSelector(
   fromProductEntities.selectProductIds
 );
 
-export const selectProductEntities : MemoizedSelector<object, Dictionary<DaffProductUnion>> = createSelector(
+export const selectProductEntities = createSelector(
   selectProductEntitiesState,
   fromProductEntities.selectProductEntities
 );
@@ -80,7 +80,7 @@ export const selectProductGridState = createSelector(
   (state: State) => state.productGrid
 );
 
-export const selectProductGridLoadingState : MemoizedSelector<object, boolean> = createSelector(
+export const selectProductGridLoadingState = createSelector(
   selectProductGridState,
   fromProductGrid.getProductGridLoading
 );
@@ -108,7 +108,7 @@ export const selectSelectedProductLoadingState = createSelector(
   fromProduct.getProductLoading
 );
 
-export const selectSelectedProduct : MemoizedSelector<object, DaffProductUnion> = createSelector(
+export const selectSelectedProduct = createSelector(
   selectProductState,
   selectSelectedProductId,
   (state: State, id: string) => state.products.entities[id]
