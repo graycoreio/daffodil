@@ -20,5 +20,8 @@
     },
     "files.associations": {
         ".sasslintrc": "json"
-    }
+    },
+    "cSpell.words": [
+        "Daffio"
+    ]
 }
