@@ -9,7 +9,12 @@ export const appRoutes: Routes = [
       { path: 'why-pwa', loadChildren: './content/pwa/pwa.module#DaffioPwaModule' },
       { path: 'support', loadChildren: './content/support/support.module#DaffioSupportModule' },
       { path: 'docs', loadChildren: './docs/docs.module#DaffioDocsModule'}
+      { path: '404', loadChildren: './content/not-found/not-found.module#DaffioNotFoundModule' },
     ]
+  },
+  {
+    path: '**',
+    redirectTo: '/404'
   }
 ]
 
