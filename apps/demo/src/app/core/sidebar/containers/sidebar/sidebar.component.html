@@ -1,5 +1,5 @@
 <daff-sidebar class="sidebar" (escapePressed)="onClose()">
-  <span class="sidebar__close" (click)="onClose()"><i class="fa fa-times"></i></span>
+  <span class="sidebar__close" (click)="onClose()"><fa-icon [icon]="['fa', 'times']"></fa-icon></span>
   <div class="sidebar__list">
     <span><a daff-sidebar-item (click)="onClose()" routerLink="/">Women's</a></span>
     <span><a daff-sidebar-item (click)="onClose()" routerLink="/">Men's</a></span>

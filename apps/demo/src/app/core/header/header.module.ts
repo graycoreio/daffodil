@@ -8,6 +8,10 @@ import { DemoHeaderComponent } from './components/header/header.component';
 import { DemoHeaderContainer } from './containers/header/header.component';
 import { LogoModule } from '../logo/logo.module';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faBars, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,7 +19,8 @@ import { LogoModule } from '../logo/logo.module';
     LogoModule,
     SidebarModule,
     RouterModule,
-    DaffButtonModule
+    DaffButtonModule,
+    FontAwesomeModule
   ],
   declarations: [
     DemoHeaderComponent,
@@ -26,4 +31,9 @@ import { LogoModule } from '../logo/logo.module';
     DemoHeaderContainer
   ]
 })
-export class HeaderModule { }
+export class HeaderModule {
+  constructor() {
+    // Add an icon to the library for convenient access in other components
+    library.add(faBars, faShoppingCart);
+  }
+}

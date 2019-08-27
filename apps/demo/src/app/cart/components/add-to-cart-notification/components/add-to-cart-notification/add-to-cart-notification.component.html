@@ -3,11 +3,9 @@
     [horizontalPosition]="_horizontalPosition">
     <div class="add-to-cart-notification">
       <div class="add-to-cart-notification__header"  *ngIf="!(loading$ | async)">
-        <span class="add-to-cart-notification__check-icon"><i class="fa fa-check" aria-hidden="true"></i></span>
+        <span class="add-to-cart-notification__check-icon"><fa-icon [icon]="['fas', 'check']" aria-hidden="true"></fa-icon></span>
         <span>Added to Cart</span>
-        <span class="add-to-cart-notification__close">
-          <i (click)="onHide()" class="fa fa-times" aria-hidden="true"></i>
-        </span>
+        <span class="add-to-cart-notification__close"><fa-icon [icon]="['fas', 'times']" aria-hidden="true" (click)="onHide()"></fa-icon></span>
       </div>
       <demo-product-added *ngIf="!(loading$ | async)" class="add-to-cart-notification__product-added"
         [product]="product$ | async" [qty]="productQty$ | async"></demo-product-added>

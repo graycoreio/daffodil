@@ -11,6 +11,10 @@ import {
 
 import { FooterComponent } from './footer.component';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faTwitter, faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -19,7 +23,8 @@ import { FooterComponent } from './footer.component';
     DaffListModule,
     DaffButtonModule,
     DaffButtonSetModule,
-    DaffContainerModule
+    DaffContainerModule,
+    FontAwesomeModule
   ],
   declarations: [
     FooterComponent
@@ -28,4 +33,9 @@ import { FooterComponent } from './footer.component';
     FooterComponent
   ]
 })
-export class FooterModule { }
+export class FooterModule {
+  constructor() {
+    // Add an icon to the library for convenient access in other components
+    library.add(faTwitter, faFacebookF, faInstagram);
+  }
+}
