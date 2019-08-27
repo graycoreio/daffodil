@@ -15,6 +15,7 @@ import * as fromAddToCartNotification from '../../reducers/index';
 import { CloseAddToCartNotification, OpenAddToCartNotification } from '../../actions/add-to-cart-notification.actions';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({ template: '<demo-add-to-cart-notification [verticalPosition]="verticalPositionValue" [horizontalPosition]="horizontalPositionValue"></demo-add-to-cart-notification>' })
 class WrapperComponent {
@@ -63,7 +64,8 @@ describe('AddToCartNotificationComponent', () => {
         }),
         NoopAnimationsModule,
         DaffLoadingIconModule,
-        DaffModalModule
+        DaffModalModule,
+        FontAwesomeModule
       ],
       declarations: [
         WrapperComponent,

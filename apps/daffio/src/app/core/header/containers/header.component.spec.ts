@@ -9,6 +9,7 @@ import * as fromSidebar from '../../sidebar/reducers/index';
 import { ToggleSidebar } from '../../sidebar/actions/sidebar.actions';
 
 import { DaffioHeaderContainer } from './header.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({template: '<daffio-header-container></daffio-header-container>'})
 class WrapperComponent {}
@@ -24,7 +25,8 @@ describe('DaffioHeaderContainer', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({}),
-        RouterTestingModule
+        RouterTestingModule,
+        FontAwesomeModule
       ],
       declarations: [
         WrapperComponent,
