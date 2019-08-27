@@ -7,7 +7,6 @@ import { DaffioSubFooterComponent } from './sub-footer/sub-footer.component';
 
 import { DaffioNewsletterModule } from '../../newsletter/newsletter.module';
 
-
 import { 
   DaffCalloutModule,
   DaffListModule, 
@@ -18,6 +17,10 @@ import {
 } from '@daffodil/design';
 
 import { DaffLogoModule, DaffCopyrightModule } from '@daffodil/branding';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faGithub, faGitter } from '@fortawesome/free-brands-svg-icons';
 
 @NgModule({
   imports: [
@@ -32,7 +35,8 @@ import { DaffLogoModule, DaffCopyrightModule } from '@daffodil/branding';
     DaffInputModule,
     DaffLogoModule,
     DaffCopyrightModule,
-    DaffioNewsletterModule
+    DaffioNewsletterModule,
+    FontAwesomeModule
   ],
   declarations: [
     DaffioSimpleFooterComponent,
@@ -43,4 +47,9 @@ import { DaffLogoModule, DaffCopyrightModule } from '@daffodil/branding';
     DaffioSubFooterComponent
   ]
 })
-export class DaffioFooterModule { }
+export class DaffioFooterModule {
+  constructor() {
+    // Add an icon to the library for convenient access in other components
+    library.add(faGithub, faGitter);
+  }
+}

@@ -14,6 +14,10 @@ import { DaffioHeaderComponent } from './component/header.component';
 import { DaffioHeaderContainer } from './containers/header.component';
 import { DaffioHeaderItemDirective } from './header-item/header-item.directive';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -22,7 +26,8 @@ import { DaffioHeaderItemDirective } from './header-item/header-item.directive';
     DaffNavbarModule,
     DaffLogoModule,
     DaffButtonModule,
-    DaffContainerModule
+    DaffContainerModule,
+    FontAwesomeModule
   ],
   declarations: [
     DaffioHeaderComponent,
@@ -33,4 +38,9 @@ import { DaffioHeaderItemDirective } from './header-item/header-item.directive';
     DaffioHeaderContainer
   ]
 })
-export class DaffioHeaderModule { }
+export class DaffioHeaderModule {
+  constructor() {
+    // Add an icon to the library for convenient access in other components
+    library.add(faBars);
+  }
+}
