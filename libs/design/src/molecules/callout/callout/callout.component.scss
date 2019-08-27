@@ -50,19 +50,19 @@
 	}
 
 	&--centered {
-    #{$root}__title {
-      margin: 0 auto;
-      text-align: center;
-    }
+		#{$root}__title {
+			margin: 0 auto;
+			text-align: center;
+		}
 
-    #{$root}__subtitle {
-      margin: 10px auto 0 auto;
-      text-align: center;
+		#{$root}__subtitle {
+			margin: 10px auto 0 auto;
+			text-align: center;
 
-      @include breakpoint(mobile) {
-        margin: 25px auto 0 auto;
-      }
-    }
+			@include breakpoint(mobile) {
+				margin: 25px auto 0 auto;
+			}
+  	}
   }
 
 	&--compact {
