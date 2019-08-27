@@ -5,15 +5,12 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   templateUrl: './qty-dropdown.component.html',
   styleUrls: ['./qty-dropdown.component.scss']
 })
-export class QtyDropdownComponent implements OnInit {
+export class QtyDropdownComponent{
   selectedValue: number = 1;
-  constructor() { }
 
-  ngOnInit() {
-  }
   updateValue(qty:number){
     if(qty % 1 != 0){
-      this.selectedValue = 0;
+      this.selectedValue = 1;
     }
     else{
       this.selectedValue = qty;
