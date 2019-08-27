@@ -47,16 +47,16 @@ describe('DaffNavigationFacade', () => {
     expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 
-  describe('navigation$', () => {
+  describe('tree$', () => {
     it('should be null initially', () => {
       const expected = cold('a', { a: null });
-      expect(facade.navigation$).toBeObservable(expected);
+      expect(facade.tree$).toBeObservable(expected);
     });
   
     it('should be a navigation after a navigation is loaded successfully', () => {
       const expected = cold('a', { a: navigation });
       store.dispatch(new DaffNavigationLoadSuccess(navigation));
-      expect(facade.navigation$).toBeObservable(expected);
+      expect(facade.tree$).toBeObservable(expected);
     });
   });
 

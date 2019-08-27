@@ -1,7 +1,7 @@
 import { DaffNavigationTree } from '../../models/navigation-tree';
 
 export interface NavigationReducerState {
-  navigation: DaffNavigationTree,
+  navigationTree: DaffNavigationTree,
   loading: boolean,
   errors: string[]
 }

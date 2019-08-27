@@ -6,7 +6,7 @@ import { DaffStoreFacade } from '@daffodil/core';
 
 import { DaffNavigationTree } from '../models/navigation-tree';
 import { DaffNavigationModule } from '../navigation.module';
-import { selectNavigation, selectNavigationLoading, selectNavigationErrors } from '../selectors/navigation.selector';
+import { selectNavigationTree, selectNavigationLoading, selectNavigationErrors } from '../selectors/navigation.selector';
 import { NavigationReducersState } from '../reducers/navigation-reducers.interface';
 
 @Injectable({
@@ -16,7 +16,7 @@ export class DaffNavigationFacade implements DaffStoreFacade<Action> {
   /**
    * The navigation retrieved in a single navigation call.
    */
-  navigation$: Observable<DaffNavigationTree>;
+  tree$: Observable<DaffNavigationTree>;
   /**
    * The loading state for retrieving a single navigation.
    */
@@ -27,7 +27,7 @@ export class DaffNavigationFacade implements DaffStoreFacade<Action> {
   errors$: Observable<string[]>;
 
   constructor(private store: Store<NavigationReducersState>) {
-    this.navigation$ = this.store.pipe(select(selectNavigation));
+    this.tree$ = this.store.pipe(select(selectNavigationTree));
     this.loading$ = this.store.pipe(select(selectNavigationLoading));
     this.errors$ = this.store.pipe(select(selectNavigationErrors));
   }

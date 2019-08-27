@@ -9,7 +9,7 @@ export { DaffNavigationServiceInterface } from './drivers/interfaces/navigation-
 export {
   selectNavigationFeatureState,
   selectNavigationState,
-  selectNavigation,
+  selectNavigationTree,
   selectNavigationLoading,
   selectNavigationErrors
 } from './selectors/navigation.selector';

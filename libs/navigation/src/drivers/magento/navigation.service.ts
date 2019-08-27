@@ -13,8 +13,6 @@ import { GetCategoryTreeResponse } from './interfaces/get-category-tree-response
   providedIn: 'root'
 })
 export class DaffMagentoNavigationService implements DaffNavigationServiceInterface {
-
-  defaultLength = 20;
   
   constructor(private apollo: Apollo) {}
 

@@ -11,7 +11,7 @@ describe('Navigation | Navigation Reducer', () => {
   let navigation: DaffNavigationTree;
   let navigationId: string;
   const initialState: NavigationReducerState = {
-    navigation: null,
+    navigationTree: null,
     loading: false,
     errors: []
   }
@@ -68,7 +68,7 @@ describe('Navigation | Navigation Reducer', () => {
     });
 
     it('sets navigation to the payload', () => {
-      expect(result.navigation).toEqual(navigation);
+      expect(result.navigationTree).toEqual(navigation);
     });
   });
 

@@ -2,7 +2,7 @@ import { DaffNavigationActionTypes, DaffNavigationActions } from '../../actions/
 import { NavigationReducerState } from './navigation-reducer-state.interface';
 
 const initialState: NavigationReducerState = {
-  navigation: null,
+  navigationTree: null,
   loading: false,
   errors: []
 };
@@ -12,7 +12,7 @@ export function reducer(state = initialState, action: DaffNavigationActions): Na
     case DaffNavigationActionTypes.NavigationLoadAction:
       return {...state, loading: true};
     case DaffNavigationActionTypes.NavigationLoadSuccessAction:
-      return {...state, loading: false, navigation: action.payload};
+      return {...state, loading: false, navigationTree: action.payload};
     case DaffNavigationActionTypes.NavigationLoadFailureAction:
       return {...state, 
         loading: false, 

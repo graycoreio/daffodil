@@ -16,9 +16,9 @@ export const selectNavigationState = createSelector(
   (state: NavigationReducersState) => state.navigation
 );
 
-export const selectNavigation = createSelector(
+export const selectNavigationTree = createSelector(
   selectNavigationState,
-  (state: NavigationReducerState) => state.navigation
+  (state: NavigationReducerState) => state.navigationTree
 );
 
 export const selectNavigationLoading = createSelector(
