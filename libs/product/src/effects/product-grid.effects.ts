@@ -11,12 +11,14 @@ import {
 import { DaffProductServiceInterface } from '../drivers/interfaces/product-service.interface';
 import { DaffProductDriver } from '../drivers/injection-tokens/product-driver.token';
 
+import { DaffProduct } from '../models/product';
+
 @Injectable()
-export class DaffProductGridEffects {
+export class DaffProductGridEffects<T extends DaffProduct> {
 
   constructor(
     private actions$: Actions,
-    @Inject(DaffProductDriver) private driver: DaffProductServiceInterface){}
+    @Inject(DaffProductDriver) private driver: DaffProductServiceInterface<T>){}
 
   @Effect()
   loadAll$ : Observable<any> = this.actions$.pipe(
