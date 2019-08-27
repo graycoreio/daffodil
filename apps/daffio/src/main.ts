@@ -8,7 +8,7 @@ import * as WebFont from 'webfontloader';
 
 WebFont.load({
   typekit: {
-    id: 'axs4dey'
+    id: 'bvl8ycj'
   }
 });
 
