@@ -50,15 +50,20 @@
 	}
 
 	&--centered {
-		#{$root}__title {
-			margin: 0 auto;
-			text-align: center;
-		}
+    #{$root}__title {
+      margin: 0 auto;
+      text-align: center;
+    }
 
-		@include breakpoint(mobile) {
-			margin: 25px auto 0 auto;
-		}
-	}
+    #{$root}__subtitle {
+      margin: 10px auto 0 auto;
+      text-align: center;
+
+      @include breakpoint(mobile) {
+        margin: 25px auto 0 auto;
+      }
+    }
+  }
 
 	&--compact {
 		padding: 25px;
