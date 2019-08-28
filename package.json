@@ -82,6 +82,7 @@
     "scss-bundle": "^2.5.0",
     "ts-loader": "^5.2.0",
     "ts-node": "~7.0.1",
+    "ts-node-dev": "^1.0.0-pre.42",
     "tsconfig-paths": "^3.8.0",
     "tsickle": "^0.34.3",
     "tslib": "^1.9.3",

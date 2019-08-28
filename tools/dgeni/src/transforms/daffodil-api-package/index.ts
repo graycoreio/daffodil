@@ -37,7 +37,6 @@ export const apiDocs =  new Package('checkout', [
 
     // Specify collections of source files that should contain the documentation to extract
     readTypeScriptModules.sourceFiles = [
-      'branding/src/index.ts',
       'cart/src/index.ts',
       'checkout/src/index.ts',
       'core/src/index.ts',

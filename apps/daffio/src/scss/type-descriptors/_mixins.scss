@@ -1,0 +1,37 @@
+@import 'theme';
+
+@mixin type-label() {
+	display: inline-block;
+	border-radius: 2px;
+	color: $white;
+	font-size: 0.875rem;
+	text-transform: uppercase;
+	box-sizing: border-box;
+
+	&.class {
+		background: daff-color($primary);
+	}
+
+	&.type-alias {
+		background: daff-color($secondary);
+		color: $white;
+	}
+
+	&.interface {
+		background: daff-color($daff-gray, 50);
+		color: $white;
+	}
+
+	&.const {
+		background: daff-color($daff-purple, 40);
+	}
+
+	&.enum {
+		background: daff-color($daff-blue, 80);
+	}
+
+	&.package {
+		background: daff-color($daff-yellow, 70);
+		color: $black;
+	}
+}

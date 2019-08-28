@@ -519,6 +519,11 @@
                 "glob": "**/*",
                 "input": "libs/branding/src/assets/",
                 "output": "/assets/daff-branding/"
+              },
+              {
+                "glob": "**/*",
+                "input": "dist/docs",
+                "output": "/assets/daffio/docs"
               }
             ],
             "styles": [
@@ -687,6 +692,11 @@
                 "glob": "**/*",
                 "input": "libs/branding/src/assets/",
                 "output": "/assets/daff-branding/"
+              },
+              {
+                "glob": "**/*",
+                "input": "dist/docs",
+                "output": "/assets/daffio/docs"
               }
             ],
             "styles": [
