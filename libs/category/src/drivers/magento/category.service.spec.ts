@@ -5,17 +5,27 @@ import {
 } from 'apollo-angular/testing';
 
 import { DaffMagentoProductTransformerService } from '@daffodil/product';
+import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffCategoryFactory } from '@daffodil/category/testing';
 
 import { DaffMagentoCategoryService } from './category.service';
-import { DaffGetCategoryResponse } from '../../models/get-category-response';
 import { DaffMagentoCategoryGraphQlQueryManagerService } from './queries/category-query-manager.service';
+import { DaffMagentoCategoryTransformerService } from './transformers/category-transformer.service';
+import { DaffCategory } from '../../models/category';
 
 describe('Driver | Magento | Category | CategoryService', () => {
   let categoryService: DaffMagentoCategoryService;
-  let categoryFactory: DaffCategoryFactory;
+  const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
+  const productFactory: DaffProductFactory = new DaffProductFactory();
   let controller: ApolloTestingController;
-  let productTransformService: DaffMagentoProductTransformerService;
+
+  const transformedCategory = categoryFactory.create();
+  const transformedProducts = productFactory.createMany(3);
+  const productTransformService = jasmine.createSpyObj('DaffMagentoProductTransformerService', ['transformMany']);
+  productTransformService.transformMany.and.returnValue(transformedProducts);
+  const categoryTransformService = jasmine.createSpyObj('DaffMagentoCategoryTransformerService', ['transform']);
+  categoryTransformService.transform.and.returnValue(transformedCategory);
+
   let categoryGraphQlQueryManagerService: DaffMagentoCategoryGraphQlQueryManagerService;
 
   beforeEach(() => {
@@ -25,16 +35,14 @@ describe('Driver | Magento | Category | CategoryService', () => {
       ],
       providers: [
         DaffMagentoCategoryService,
-        DaffMagentoProductTransformerService,
+        { provide: DaffMagentoCategoryTransformerService, useValue: categoryTransformService },
+        { provide: DaffMagentoProductTransformerService, useValue: productTransformService },
         DaffMagentoCategoryGraphQlQueryManagerService
       ]
     });
 
-    productTransformService = TestBed.get(DaffMagentoProductTransformerService);
-    controller = TestBed.get(ApolloTestingController);
-
     categoryService = TestBed.get(DaffMagentoCategoryService);
-    categoryFactory = TestBed.get(DaffCategoryFactory);
+    controller = TestBed.get(ApolloTestingController);
     categoryGraphQlQueryManagerService = TestBed.get(DaffMagentoCategoryGraphQlQueryManagerService);
   });
 
@@ -43,37 +51,66 @@ describe('Driver | Magento | Category | CategoryService', () => {
   });
 
   describe('get | getting a single category', () => {
+    let stubCategory: DaffCategory;
+    let response;
 
     afterEach(() => {
       controller.verify();
     });
 
-    it('should return an observable single category', () => {
-      const category = categoryFactory.create();
+    beforeEach(() => {
+      stubCategory = categoryFactory.create();
+      response = {
+        category: {
+          id: stubCategory.id,
+          name: stubCategory.name,
+          products: {
+            total_count: stubCategory.total_products,
+            items: []
+          },
+          children_count: stubCategory.children_count,
+          children: []
+        }
+      };
+    });
 
-      categoryService.get(category.id).subscribe((result: DaffGetCategoryResponse) => {
-        expect(result.category.id).toEqual(category.id);
-        expect(result.category.name).toEqual(category.name);
-        expect(result.category.total_products).toEqual(category.total_products);
-        expect(result.category.children_count).toEqual(category.children_count);
+    it('should return an observable single category', () => {
+      categoryService.get(stubCategory.id).subscribe((category) => {
+        expect(category.category).toEqual(transformedCategory);
+        expect(category.products).toEqual(transformedProducts);
       });
       
-      const op = controller.expectOne(categoryGraphQlQueryManagerService.getACategoryQuery(category.id).query);
-
-      expect(op.operation.variables.id).toEqual(category.id);
+      const op = controller.expectOne(categoryGraphQlQueryManagerService.getACategoryQuery(stubCategory.id).query);
+      expect(op.operation.variables.id).toEqual(stubCategory.id);
 
       op.flush({
-        data: {
-          category: {
-            id: category.id,
-            name: category.name,
-            products: {
-              total_count: category.total_products
-            },
-            children_count: category.children_count,
-            children: []
-          }
-        }
+        data: response
+      });
+    });
+
+    it('should call the DaffMagentoCategoryTransformerService', () => {
+      categoryService.get(stubCategory.id).subscribe(() => {
+        expect(categoryTransformService.transform).toHaveBeenCalledWith(response.category);
+      });
+      
+      const op = controller.expectOne(categoryGraphQlQueryManagerService.getACategoryQuery(stubCategory.id).query);
+      expect(op.operation.variables.id).toEqual(stubCategory.id);
+
+      op.flush({
+        data: response
+      });
+    });
+
+    it('should call the DaffMagentoProductTransformerService', () => {      
+      categoryService.get(stubCategory.id).subscribe(() => {
+        expect(productTransformService.transformMany).toHaveBeenCalledWith([]);
+      });
+      
+      const op = controller.expectOne(categoryGraphQlQueryManagerService.getACategoryQuery(stubCategory.id).query);
+      expect(op.operation.variables.id).toEqual(stubCategory.id);
+
+      op.flush({
+        data: response
       });
     });
   });
