@@ -80,6 +80,15 @@ describe('selectProductState', () => {
       });
     });
   });
+
+  describe('selectProducts', () => {
+    
+    it('should select the products of the given ids', () => {
+      store.pipe(select(fromProduct.selectProducts, {ids: [mockProduct.id]})).subscribe((products) => {
+        expect(products).toEqual([mockProduct]);
+      });
+    });
+  });
   
   describe('ProductGridState', () => {
     
