@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { DaffCategory, DaffCategoryServiceInterface } from '@daffodil/category';
+import { DaffCategoryServiceInterface, DaffGetCategoryResponse } from '@daffodil/category';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class DaffInMemoryCategoryService implements DaffCategoryServiceInterface
 
   constructor(private http: HttpClient) {}
 
-  get(categoryId: string): Observable<DaffCategory> {
-    return this.http.get<DaffCategory>(this.url + categoryId);
+  get(categoryId: string): Observable<DaffGetCategoryResponse> {
+    return this.http.get<DaffGetCategoryResponse>(this.url + categoryId);
   }
 }

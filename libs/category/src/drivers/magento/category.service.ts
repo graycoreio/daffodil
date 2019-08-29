@@ -2,74 +2,39 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
 
-import { DaffCategory } from '../../models/category';
+import { DaffMagentoProductTransformerService } from '@daffodil/product';
+
 import { DaffCategoryServiceInterface } from '../interfaces/category-service.interface';
+import { DaffGetCategoryResponse } from '../../models/get-category-response';
+import { CategoryNode } from './models/category-node';
+import { DaffMagentoCategoryTransformerService } from './transformers/category-transformer.service';
+import { DaffMagentoCategoryGraphQlQueryManagerService } from './queries/category-query-manager.service';
 
 interface GetACategoryResponse {
-  category?: CategoryNode
-}
-
-interface CategoryNode {
-  id: string;
-  name?: string;
-  products?: CategoryProductNode;
-  level?: number;
-  children_count?: number;
-  children?: CategoryNode[];
-}
-
-interface CategoryProductNode {
-  total_count: number;
-}
-
-export const GetACategory = gql`
-  query GetACategory($id: ID!){
-    category(id: $id) {
-      id
-      name
-      products {
-        total_count
-      }
-      children_count
-      children {
-        id
-        level
-        name
-        path
-      }
-    }
-  }
-`;
-
-export const DaffMagentoCategoryTransformer = (node: CategoryNode) : DaffCategory => {
-  return {
-    id: node.id,
-    name: node.name,
-    total_products: node.products.total_count,
-    children_count: node.children_count,
-    children: node.children.map(DaffMagentoCategoryTransformer)
-  };
+  category: CategoryNode
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class DaffMagentoCategoryService implements DaffCategoryServiceInterface {
-
-  defaultLength = 20;
   
-  constructor(private apollo: Apollo) {}
+  constructor(
+    private apollo: Apollo,
+    private queryManager: DaffMagentoCategoryGraphQlQueryManagerService,
+    private magentoCategoryTransformerService: DaffMagentoCategoryTransformerService,
+    private magentoProductTransformerService: DaffMagentoProductTransformerService
+  ) {}
 
-  get(categoryId: string): Observable<DaffCategory> {
-    return this.apollo.query<GetACategoryResponse>({
-      query: GetACategory,
-      variables: {
-        id: categoryId
-      }
-    }).pipe(
-      map(result => DaffMagentoCategoryTransformer(result.data.category))
+  get(categoryId: string): Observable<DaffGetCategoryResponse> {
+    return this.apollo.query<GetACategoryResponse>(this.queryManager.getACategoryQuery(categoryId)).pipe(
+      map(result => {
+        return {
+          category: this.magentoCategoryTransformerService.transform(result.data.category),
+          products: this.magentoProductTransformerService.transformMany(result.data.category.products.items)
+        }
+      })
     );
   }
 }

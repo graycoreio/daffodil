@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { DaffCategory, DaffCategoryServiceInterface } from '@daffodil/category';
+import { DaffGetCategoryResponse, DaffCategoryServiceInterface } from '@daffodil/category';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffCategoryFactory } from '../../factories/category.factory';
 
@@ -11,9 +12,14 @@ import { DaffCategoryFactory } from '../../factories/category.factory';
 export class DaffTestingCategoryService implements DaffCategoryServiceInterface {
  
   constructor(
-    private categoryFactory: DaffCategoryFactory) {}
+    private categoryFactory: DaffCategoryFactory,
+    private productFactory: DaffProductFactory
+  ) {}
 
-  get(categoryId: string): Observable<DaffCategory> {
-    return of(this.categoryFactory.create());
+  get(categoryId: string): Observable<DaffGetCategoryResponse> {
+    return of({
+      category: this.categoryFactory.create(),
+      products: this.productFactory.createMany(3)
+    });
   }
 }

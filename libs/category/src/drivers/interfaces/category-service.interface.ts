@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 
-import { DaffCategory } from '../../models/category';
+import { DaffGetCategoryResponse } from '../../models/get-category-response';
 
 export interface DaffCategoryServiceInterface {
-  get(categoryId: string): Observable<DaffCategory>;
+  get(categoryId: string): Observable<DaffGetCategoryResponse>;
 }
