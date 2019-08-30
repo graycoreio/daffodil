@@ -1,57 +1,61 @@
 @import 'utilities';
-@import "theme";
+@import 'theme';
 
 .navbar {
-  justify-content: space-between;
-  padding: 25px;
+	justify-content: space-between;
+	padding: 25px;
 
-  @include breakpoint(mobile) {
-    padding: 25px 50px;
-  }
+	@include breakpoint(mobile) {
+		padding: 25px 50px;
+	}
 
-  @include breakpoint(small-laptop) {
-    padding: 25px 0;
-  }
+	@include breakpoint(small-laptop) {
+		padding: 25px 0;
+	}
 }
 
 .daffio-header {
-  display: block;
+	background: $white;
+	display: block;
+	position: sticky;
+	top: 0;
+	z-index: 10;
 
-  &__item {
-    padding: 0 30px;
-    font-size: $medium-font-size;
-  }
+	&__item {
+		font-size: $medium-font-size;
+		padding: 0 30px;
+	}
 
-  &__menu {
-    display: none;
-    margin: 0;
-    padding: 0;
+	&__menu {
+		display: none;
+		margin: 0;
+		padding: 0;
 
-    @include breakpoint(tablet) {
-      display: flex;
-      align-items: center;
-    }
-  }
+		@include breakpoint(tablet) {
+			display: flex;
+			align-items: center;
+		}
+	}
 
-  &__button {
-    display: flex;
-    margin-left: 15px;
-  }
+	&__button {
+		display: flex;
+		margin-left: 15px;
+	}
 
-  &__logo {
-    width: 125px;
+	&__logo {
+		width: 125px;
 
-    @include breakpoint(mobile) {
-      width: 150px;
-    }
-  }
+		@include breakpoint(mobile) {
+			width: 150px;
+		}
+	}
 
-  &__bars {
-    display: flex;
-    margin-right: -13px;
+	&__bars {
+		display: flex;
+		margin-right: -13px;
 
-    @include breakpoint(tablet) {
-      display: none;
-    }
-  }
+		@include breakpoint(tablet) {
+			display: none;
+		}
+	}
 }

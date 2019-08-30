@@ -7,6 +7,7 @@
 .daff-sidebar {
 	display: block;
 	height: 100%;
+	overflow-y: scroll;
 
 	&__item {
 		@include embolden();

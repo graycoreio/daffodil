@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 
-import { ToggleSidebar } from '../../sidebar/actions/sidebar.actions';
+import { ToggleSidebar, SetSidebarMode } from '../../sidebar/actions/sidebar.actions';
 
 @Component({
   selector: 'daffio-header-container',
