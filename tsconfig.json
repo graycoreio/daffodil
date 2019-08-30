@@ -65,9 +65,6 @@
       ],
       "@daffodil/newsletter": [
         "dist/newsletter"
-      ],
-      "@daffodil/newsletter/*": [
-        "dist/newsletter/*"
       ]
     }
   },
