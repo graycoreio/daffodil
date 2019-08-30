@@ -1,14 +1,14 @@
 {
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../out-tsc/spec",
+    "outDir": "../../dist/out-tsc/libs/newsletter",
     "types": [
       "jasmine",
       "node"
     ]
   },
   "files": [
-    "src/test.ts"
+    "test.ts"
   ],
   "include": [
     "**/*.spec.ts",
