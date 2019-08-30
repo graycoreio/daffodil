@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { DaffCardModule } from '@daffodil/design';
+
 import { CardComponent } from './card.component';
 
 describe('CardComponent', () => {
@@ -8,6 +10,9 @@ describe('CardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffCardModule
+      ],
       declarations: [
         CardComponent
       ]

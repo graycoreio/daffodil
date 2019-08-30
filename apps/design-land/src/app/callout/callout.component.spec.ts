@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { DaffCalloutModule } from '@daffodil/design';
+
 import { CalloutComponent } from './callout.component';
 
 describe('CalloutComponent', () => {
@@ -8,6 +10,9 @@ describe('CalloutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffCalloutModule
+      ],
       declarations: [
         CalloutComponent
       ]

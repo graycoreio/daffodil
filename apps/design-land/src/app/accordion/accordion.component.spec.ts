@@ -1,4 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { DaffAccordionModule } from '@daffodil/design';
 
 import { AccordionComponent } from './accordion.component';
 
@@ -8,6 +11,10 @@ describe('AccordionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffAccordionModule,
+        BrowserAnimationsModule
+      ],
       declarations: [
         AccordionComponent
       ]

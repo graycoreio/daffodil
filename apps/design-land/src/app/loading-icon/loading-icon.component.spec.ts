@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { DaffLoadingIconModule } from '@daffodil/design';
+
 import { LoadingIconComponent } from './loading-icon.component';
 
 describe('LoadingIconComponent', () => {
@@ -8,6 +10,9 @@ describe('LoadingIconComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffLoadingIconModule
+      ],
       declarations: [ LoadingIconComponent ]
     })
     .compileComponents();

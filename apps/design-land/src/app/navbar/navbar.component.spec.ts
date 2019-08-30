@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { DaffNavbarModule, DaffButtonModule, DaffLinkModule } from '@daffodil/design';
+
 import { NavbarComponent } from './navbar.component';
 
 describe('NavbarComponent', () => {
@@ -8,6 +10,11 @@ describe('NavbarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffNavbarModule,
+        DaffButtonModule,
+        DaffLinkModule
+      ],
       declarations: [ NavbarComponent ]
     })
     .compileComponents();

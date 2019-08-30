@@ -1,9 +1,17 @@
 import { TestBed, async } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+
+import { DaffSidebarModule } from '@daffodil/design';
+
 import { DesignLandAppComponent } from './app.component';
 
 describe('DesignLandAppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffSidebarModule,
+        RouterTestingModule
+      ],
       declarations: [
         DesignLandAppComponent
       ],

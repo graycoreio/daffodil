@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { DaffFeatureModule } from '@daffodil/design';
+
 import { FeatureComponent } from './feature.component';
 
 describe('FeatureComponent', () => {
@@ -8,6 +10,9 @@ describe('FeatureComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffFeatureModule
+      ],
       declarations: [
         FeatureComponent
       ]

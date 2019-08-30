@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { DaffImageGalleryModule } from '@daffodil/design';
+
 import { ImageGalleryComponent } from './image-gallery.component';
 
 describe('ImageGalleryComponent', () => {
@@ -8,6 +10,9 @@ describe('ImageGalleryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffImageGalleryModule
+      ],
       declarations: [ ImageGalleryComponent ]
     })
     .compileComponents();

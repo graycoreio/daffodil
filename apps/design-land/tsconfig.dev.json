@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "paths": {
+      "@daffodil/design": ["libs/design/src"]
+    }
+  }
+}
