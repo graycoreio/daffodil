@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   imports: [
@@ -33,6 +34,10 @@ import { HttpClientModule } from '@angular/common/http';
         This matches the key defined in the map of reducers
       */
       stateKey: 'router',
+    }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
     }),
     TemplateModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
