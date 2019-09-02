@@ -21,7 +21,7 @@ export class GenerateApiListProcessor implements Processor {
   $process(docs: Document[]) : Document[] {
     docs.push({
       docType: 'api-list-data',
-      template: 'json-doc.template.json',
+      template: 'api-list.template.json',
       path: this.config.outputFolder + '/api-list.json',
       outputPath: this.config.outputFolder + '/api-list.json',
       data: docs
