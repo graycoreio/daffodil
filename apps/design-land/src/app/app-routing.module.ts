@@ -17,12 +17,9 @@ export const appRoutes: Routes = [
   {path: 'list', loadChildren: './list/list.module#ListModule'},
   {path: 'loading-icon', loadChildren: './loading-icon/loading-icon.module#LoadingIconModule'},
   {path: 'form', loadChildren: './form/form.module#FormModule'},
-<<<<<<< HEAD
   {path: 'image-gallery', loadChildren: './image-gallery/image-gallery.module#ImageGalleryModule'},
   {path: 'navbar', loadChildren: './navbar/navbar.module#NavbarModule'},
-=======
   {path: 'modal', loadChildren: './modal/modal.module#ModalModule'},
->>>>>>> feat(design-land): added modal component to design-land
   {path: 'progress-indicator', loadChildren: './progress-indicator/progress-indicator.module#ProgressIndicatorModule'},
 ]
 
