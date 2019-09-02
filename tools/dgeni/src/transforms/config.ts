@@ -11,6 +11,7 @@ export const DIST_PATH = resolve(PROJECT_ROOT, 'dist');
 export const OUTPUT_PATH = resolve(DIST_PATH, '');
 export const DOCS_OUTPUT_PATH = resolve(OUTPUT_PATH, 'docs');
 export const API_SOURCE_PATH = resolve(PROJECT_ROOT, 'libs');
+export const GUIDES_TEMPLATES_PATH = resolve(TEMPLATES_PATH, 'guides');
 
 export const requireFolder = (dirname, folderPath) => {
   const absolutePath = resolve(dirname, folderPath);

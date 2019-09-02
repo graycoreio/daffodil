@@ -1,0 +1,37 @@
+{
+  "name": "@daffodil/navigation",
+  "version": "0.0.3",
+  "description": "Reducers, State, Selectors, and Drivers for retrieving navigation/category trees",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "publishConfig": {
+    "directory": "../../dist/navigation"
+  },
+  "scripts": {
+    "build": "ng build navigation --prod",
+    "lint": "ng lint navigation",
+    "test": "ng test navigation --watch=false --browsers=ChromeHeadless",
+    "publish": "(cd ../../dist/navigation; npm publish --access=public)"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "peerDependencies": {
+    "@angular/common": "^7.2.0",
+    "@angular/core": "^7.2.0",
+    "@daffodil/core": "^0.0.3",
+    "@ngrx/effects": "^7.3.0",
+    "@ngrx/entity": "^7.3.0",
+    "@ngrx/store": "^7.3.0",
+    "faker": "^4.1.0",
+    "rxjs": "6.4.0"
+  },
+  "devDependencies": {
+    "@daffodil/core": "^0.0.3"
+  }
+}
