@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
+
 import { DaffProductUnion } from '../../../models/product-union';
 import { DaffProductTransformerInterface } from '../../interfaces/product-transformer.interface';
-import { DaffProductMagentoDriverModule } from '../product-driver.module';
+import { ProductNode } from '../models/product-node';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { DaffProductMagentoDriverModule } from '../product-driver.module';
 export class DaffMagentoProductTransformerService implements DaffProductTransformerInterface<DaffProductUnion> {
 
   transform(response: any): DaffProductUnion {
-    const product = response.products.items[0];
+    const product: ProductNode = response.products.items[0];
     return {
       id: product.sku,
       url: product.url_key,
@@ -32,7 +33,7 @@ export class DaffMagentoProductTransformerService implements DaffProductTransfor
     return products.map(this.transformList);
   }
 
-  private transformList(product: any): DaffProductUnion {
+  private transformList(product: ProductNode): DaffProductUnion {
     return {
       id: product.sku,
       url: product.url_key,

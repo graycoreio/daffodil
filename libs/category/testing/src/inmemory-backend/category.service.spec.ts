@@ -27,9 +27,7 @@ describe('Driver | InMemory | Category | DaffInMemoryBackendCategoryService', ()
     });
 
     it('should return a object with an array of Categorys', () => {
-      expect(Array.isArray(result.categories)).toEqual(true);
-      expect(result.categories.length).toBeGreaterThan(2);
-      expect(isCategory(result.categories[0])).toBeTruthy();
+      expect(isCategory(result.category)).toBeTruthy();
     });
   });
 });

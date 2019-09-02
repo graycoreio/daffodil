@@ -32,6 +32,7 @@
     "rxjs": "6.4.0"
   },
   "devDependencies": {
-    "@daffodil/core": "^0.0.3"
+    "@daffodil/core": "^0.0.3",
+    "@daffodil/product": "^0.0.3"
   }
 }

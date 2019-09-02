@@ -20,6 +20,7 @@ export { DaffProductShopifyDriverModule } from './drivers/shopify/product-driver
 export { DaffProductMagentoDriverModule } from './drivers/magento/product-driver.module';
 export { DaffProductDriver } from './drivers/injection-tokens/product-driver.token';
 
-
 export { DaffProductGridFacade } from './facades/product-grid/product-grid.facade';
 export { DaffProductFacade } from './facades/product/product.facade';
+
+export * from './drivers/magento/public_api';
