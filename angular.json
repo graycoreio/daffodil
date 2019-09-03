@@ -761,9 +761,12 @@
             "polyfills": "apps/design-land/src/polyfills.ts",
             "tsConfig": "apps/design-land/tsconfig.spec.json",
             "karmaConfig": "apps/design-land/karma.conf.js",
-            "styles": [
-              "apps/design-land/src/styles.scss"
-            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "apps/design-land/src/scss",
+                "libs/design/src/scss"
+              ]
+            },
             "scripts": [],
             "assets": [
               "apps/design-land/src/favicon.ico",
