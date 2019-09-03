@@ -1,6 +1,6 @@
 # Theming
 
-The `daff-theme` utility library is for theming the daffodil
+The **daff-theme** utility library is for theming the daffodil
 design library. It contains many useful mixins, functions, 
 and variables.
 
