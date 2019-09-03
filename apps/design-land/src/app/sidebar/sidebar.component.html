@@ -1,10 +1,12 @@
-<ul>
-  <li><button (click)="mode='push'">Push Mode</button></li>
-  <li><button (click)="mode='side'">Side Mode</button></li>
-  <li><button (click)="mode='over'">Over Mode</button></li>
-</ul>
+<daff-form-field>
+  <select daff-native-select [(ngModel)]="mode">
+    <option value="push">Push (push)</option>
+    <option value="side">Side (side)</option>
+    <option value="over">Over (over)</option>
+  </select>
+</daff-form-field>
 
-<button (click)="open = !open">Toggle Visibility</button>
+<button daff-button (click)="open = !open">{{ open ? "Close" : "Open" }}</button>
 
 <daff-sidebar-viewport [mode]="mode" [opened]="open">
     <daff-sidebar>
