@@ -2,11 +2,11 @@ import { TestBed, async } from "@angular/core/testing";
 import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
 
 import * as fromSidebar from './index';
+import { initialState } from "./sidebar.reducer";
 
 describe('selectDaffioSidebarState', () => {
 
   let store: Store<fromSidebar.DaffioSidebarState>;
-  let expectedShowSidebar: boolean;
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -17,19 +17,14 @@ describe('selectDaffioSidebarState', () => {
       ]
     });
 
-    expectedShowSidebar = false;
     store = TestBed.get(Store);
   }));
 
   describe('daffioSidebarStateSelector', () => {
     
     it('selects sidebar state', () => {
-      const expectedSidebarState = {
-        showSidebar: expectedShowSidebar
-      }
-
       store.pipe(select(fromSidebar.daffioSidebarStateSelector)).subscribe((sidebarState) => {
-        expect(sidebarState).toEqual(expectedSidebarState);
+        expect(sidebarState).toEqual(initialState);
       });
     });
   });
@@ -38,8 +33,16 @@ describe('selectDaffioSidebarState', () => {
     
     it('selects showSidebar state', () => {
       store.pipe(select(fromSidebar.selectShowSidebar)).subscribe((showSidebar) => {
-        expect(showSidebar).toEqual(expectedShowSidebar);
+        expect(showSidebar).toEqual(initialState.showSidebar);
       });
     });
   });
+
+  describe('selectSidebarMode', () => {
+    it('selects mode state', () => {
+      store.pipe(select(fromSidebar.selectSidebarMode)).subscribe((mode) => {
+        expect(mode).toEqual(initialState.mode);
+      });
+    });
+  })
 });
