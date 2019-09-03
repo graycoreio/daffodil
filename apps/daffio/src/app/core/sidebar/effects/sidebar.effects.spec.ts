@@ -9,22 +9,22 @@ import { Actions } from '@ngrx/effects';
 
 import { hot, cold, getTestScheduler } from 'jasmine-marbles';
 
-import { SidebarEffects } from './sidebar.effects';
+import { DaffioSidebarEffects } from './sidebar.effects';
 import * as SidebarActions from '../actions/sidebar.actions';
 
-describe('Daffio | SidebarEffects', () => {
-  let effects: SidebarEffects;
+describe('Daffio | DaffioSidebarEffects', () => {
+  let effects: DaffioSidebarEffects;
   let actions$: Observable<any>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        SidebarEffects,
+        DaffioSidebarEffects,
         provideMockActions(() => actions$)
       ]
     });
 
-    effects = TestBed.get(SidebarEffects);
+    effects = TestBed.get(DaffioSidebarEffects);
   });
 
   it('should be created', () => {
