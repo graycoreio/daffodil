@@ -1,0 +1,21 @@
+<button daff-icon-button [disabled]="_disablePrev()" attr.aria-label="Go to Previous Page of {{_paginatorId}} Paginator" tabindex="0" (click)="_onNotifyPrevPageChange()" class="daff-paginator__prev">
+  <fa-icon [icon]="['fa', 'chevron-left']"></fa-icon>Prev
+</button>
+
+<button daff-icon-button tabindex="0" attr.aria-label="Go to Page 1 of {{_paginatorId}} Paginator" class="daff-paginator__page-link" (click)="_onNotifyPageChange(1)" [class.daff-paginator__page-link--selected]="_isSelected(1)">1</button>
+<span class="daff-paginator__ellipsis" *ngIf="_showFirstEllipsis()">...</span>
+<ng-container *ngFor="let pageNumber of _numberOfPagesArray">
+  <button daff-icon-button tabindex="0" attr.aria-label="Go to Page {{pageNumber}} of {{_paginatorId}} Paginator"
+    aria-current="_isSelected(pageNumber)"
+    class="daff-paginator__page-link" 
+    [class.daff-paginator__page-link--selected]="_isSelected(pageNumber)" 
+    *ngIf="_showNumber(pageNumber)"
+    (click)="_onNotifyPageChange(pageNumber)"
+  >{{ pageNumber }}</button>
+</ng-container>
+<span class="daff-paginator__ellipsis" *ngIf="_showLastEllipsis()">...</span>
+<button daff-icon-button tabindex="0" attr.aria-label="Go To Page {{numberOfPages}} of {{_paginatorId}} Paginator" class="daff-paginator__page-link" (click)="_onNotifyPageChange(numberOfPages)" [class.daff-paginator__page-link--selected]="_isSelected(numberOfPages)">{{ numberOfPages }}</button>
+
+<button daff-icon-button [disabled]="_disableNext()" attr.aria-label="Go to Next Page of {{_paginatorId}} Paginator" tabindex="0" (click)="_onNotifyNextPageChange()" class="daff-paginator__next">
+  Next<fa-icon [icon]="['fa', 'chevron-right']"></fa-icon>
+</button>
