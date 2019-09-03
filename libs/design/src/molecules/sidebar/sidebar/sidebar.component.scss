@@ -7,14 +7,4 @@
 .daff-sidebar {
 	display: block;
 	height: 100%;
-
-	&__item {
-		@include embolden();
-		@include uppercase();
-		cursor: pointer;
-		display: flex;
-		font-size: 1rem;
-		padding: 15px 0;
-		width: 100%;
-	}
 }
