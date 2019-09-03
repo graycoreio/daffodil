@@ -67,4 +67,14 @@ describe('DaffProductGridFacade', () => {
       expect(facade.products$).toBeObservable(expected);
     })
   });
+
+  describe('getProductsByIds$', () => {
+    
+    it('should return the products of the associated ids given', () => {
+      const products = [{id: '1', name: 'Some Name'}, {id: '2', name: 'Some Name 2'}];
+      const expected = cold('a', { a: products});
+      store.dispatch(new DaffProductGridLoadSuccess(products));
+      expect(facade.getProductsByIds$(['1', '2'])).toBeObservable(expected);
+    });
+  });
 });

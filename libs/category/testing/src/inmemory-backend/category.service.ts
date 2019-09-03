@@ -13,10 +13,10 @@ import { DaffCategoryFactory } from '../factories/category.factory';
   providedIn: 'root'
 })
 export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
-  categories: DaffCategory[];
+  category: DaffCategory;
 
   constructor(private categoryFactory: DaffCategoryFactory) {
-    this.categories = this.categoryFactory.createMany(9);
+    this.category = this.categoryFactory.create();
   }
 
   parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {
@@ -25,7 +25,7 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
 
   createDb(): any {
     return {
-      categories: this.categories
+      category: this.category
     };
   }
 }

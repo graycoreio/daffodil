@@ -21,6 +21,8 @@
     "@angular/pwa": "^0.11.4",
     "@angular/router": "^7.2.10",
     "@angular/service-worker": "^7.2.10",
+    "@daffodil/core": "0.0.3",
+    "@daffodil/product": "0.0.3",
     "@fortawesome/angular-fontawesome": "^0.3.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.20",
     "@fortawesome/free-brands-svg-icons": "^5.10.0",

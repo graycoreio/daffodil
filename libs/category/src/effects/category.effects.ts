@@ -1,7 +1,9 @@
 import { Injectable, Inject } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { switchMap, map, catchError } from 'rxjs/operators';
+import { switchMap, catchError } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
+
+import { DaffProductGridLoadSuccess } from '@daffodil/product';
 
 import { 
   DaffCategoryActionTypes, 
@@ -10,6 +12,7 @@ import {
   DaffCategoryLoadFailure } from '../actions/category.actions';
 import { DaffCategoryDriver } from '../drivers/injection-tokens/category-driver.token';
 import { DaffCategoryServiceInterface } from '../drivers/interfaces/category-service.interface';
+import { DaffGetCategoryResponse } from '../models/get-category-response';
 
 @Injectable()
 export class DaffCategoryEffects {
@@ -24,9 +27,10 @@ export class DaffCategoryEffects {
     switchMap((action: DaffCategoryLoad) =>
       this.driver.get(action.payload)
         .pipe(
-          map((resp) => {
-            return new DaffCategoryLoadSuccess(resp);
-          }),
+          switchMap((resp: DaffGetCategoryResponse) => [
+            new DaffProductGridLoadSuccess(resp.products),
+            new DaffCategoryLoadSuccess(resp.category)
+          ]),
           catchError(error => {
             return of(new DaffCategoryLoadFailure('Failed to load the category'));
           })
