@@ -22,7 +22,8 @@ export const appRoutes: Routes = [
   {path: 'modal', loadChildren: './modal/modal.module#ModalModule'},
   {path: 'paginator', loadChildren: './paginator/paginator.module#PaginatorModule'},
   {path: 'progress-indicator', loadChildren: './progress-indicator/progress-indicator.module#ProgressIndicatorModule'},
-  {path: 'qty-dropdown', loadChildren: './qty-dropdown/qty-dropdown.module#QtyDropdownModule'}
+  {path: 'qty-dropdown', loadChildren: './qty-dropdown/qty-dropdown.module#QtyDropdownModule'},
+  {path: 'sidebar', loadChildren: './sidebar/sidebar.module#SidebarModule'}
 ]
 
 @NgModule({
