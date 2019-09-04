@@ -15,14 +15,14 @@ describe('DaffioSimpleFooterComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DaffioSimpleFooterComponent,
-        FontAwesomeModule
+        DaffioSimpleFooterComponent
       ],
       imports: [
         RouterTestingModule,
         DaffContainerModule,
         DaffLogoModule,
-        DaffCopyrightModule
+        DaffCopyrightModule,
+        FontAwesomeModule
       ]
     })
     .compileComponents();
