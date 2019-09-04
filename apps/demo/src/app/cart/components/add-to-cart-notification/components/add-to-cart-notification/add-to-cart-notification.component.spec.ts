@@ -205,7 +205,7 @@ describe('AddToCartNotificationComponent', () => {
     describe('when time-icon is clicked', () => {
       it('should call dispatch a CloseAddToCartNotification action', () => {
         spyOn(store, 'dispatch');
-        fixture.debugElement.query(By.css('.fa-times')).nativeElement.click();
+        fixture.debugElement.query(By.css('.add-to-cart-notification__close')).nativeElement.click();
         expect(store.dispatch).toHaveBeenCalledWith(new CloseAddToCartNotification());
       });
     });
