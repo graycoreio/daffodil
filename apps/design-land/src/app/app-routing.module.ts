@@ -20,7 +20,9 @@ export const appRoutes: Routes = [
   {path: 'image-gallery', loadChildren: './image-gallery/image-gallery.module#ImageGalleryModule'},
   {path: 'navbar', loadChildren: './navbar/navbar.module#NavbarModule'},
   {path: 'modal', loadChildren: './modal/modal.module#ModalModule'},
+  {path: 'paginator', loadChildren: './paginator/paginator.module#PaginatorModule'},
   {path: 'progress-indicator', loadChildren: './progress-indicator/progress-indicator.module#ProgressIndicatorModule'},
+  {path: 'qty-dropdown', loadChildren: './qty-dropdown/qty-dropdown.module#QtyDropdownModule'}
 ]
 
 @NgModule({

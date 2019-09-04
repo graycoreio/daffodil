@@ -1,0 +1,209 @@
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { Component } from '@angular/core';
+
+import { DaffPaginatorComponent } from './paginator.component';
+import { DaffPaginatorModule } from './paginator.module';
+
+@Component({template: '<daff-paginator class="host-element" aria-label="id" [numberOfPages]="numberOfPagesValue" [currentPage]="currentPageValue"></ daff-paginator>'})
+class WrapperComponent {
+  numberOfPagesValue = 20;
+  currentPageValue = 2;
+}
+
+describe('DaffPaginatorComponent', () => {
+  let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<WrapperComponent>;
+  let hostElement;
+  let component: DaffPaginatorComponent;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        DaffPaginatorModule
+      ],
+      declarations: [ 
+        WrapperComponent,
+        
+      ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(WrapperComponent);
+    wrapper = fixture.componentInstance;
+    fixture.detectChanges();
+
+    hostElement = fixture.debugElement.query(By.css('.host-element'));
+    component = fixture.debugElement.query(By.css('daff-paginator')).componentInstance;
+  });
+
+  it('should create', () => {
+    expect(wrapper).toBeTruthy();
+  });
+
+  it('should add a daff-paginator class to the host component', () => {
+    expect(hostElement.nativeElement.classList.contains('daff-paginator')).toBeTruthy();
+  });
+
+  it('should be able to take currentPage as input', () => {
+    expect(component.currentPage).toEqual(wrapper.currentPageValue);
+  });
+
+  it('should be able to take numberOfPages as input', () => {
+    expect(component.numberOfPages).toEqual(wrapper.numberOfPagesValue);
+  });
+
+  it('should set _paginatorId from the aria-label of the host element', () => {
+    expect(component._paginatorId).toEqual("id");
+  });
+
+  it('should show page numbers within one of the current page', () => {
+    const paginatorText = fixture.debugElement.query(By.css('daff-paginator')).nativeElement.innerText;
+    const lesserPage = component.currentPage - 1;
+    const greaterPage = component.currentPage + 1;
+
+    expect(paginatorText.includes(lesserPage)).toBeTruthy();
+    expect(paginatorText.includes(greaterPage)).toBeTruthy();
+  });
+
+  describe('when prev is clicked', () => {
+    
+    it('should emit notifyPageChange with one less than the current page', () => {
+      spyOn(component.notifyPageChange, 'emit');
+      fixture.debugElement.query(By.css('.daff-paginator__prev')).nativeElement.click();
+
+      expect(component.notifyPageChange.emit).toHaveBeenCalledWith(wrapper.currentPageValue-1);
+    });
+  });
+
+  describe('when next is clicked', () => {
+    
+    it('should emit notifyPageChange with one more than the current page', () => {
+      spyOn(component.notifyPageChange, 'emit');
+      fixture.debugElement.query(By.css('.daff-paginator__next')).nativeElement.click();
+
+      expect(component.notifyPageChange.emit).toHaveBeenCalledWith(wrapper.currentPageValue+1);
+    });
+  });
+
+  describe('showNumber', () => {
+    
+    describe('when the current page is 1 or 2', () => {
+      
+      it('should show page numbers 3 and 4', () => {
+        wrapper.currentPageValue = 1;
+        fixture.detectChanges();
+        const paginator = fixture.debugElement.query(By.css('.daff-paginator'));
+
+        expect(paginator.nativeElement.innerText.includes('3')).toBeTruthy();
+        expect(paginator.nativeElement.innerText.includes('4')).toBeTruthy();
+      });
+    });
+    
+    describe('when the current page is one of the last two pages', () => {
+      
+      it('should show _numberOfPages-3 and lesser numbers', () => {
+        wrapper.currentPageValue = wrapper.numberOfPagesValue;
+        fixture.detectChanges();
+        const paginator = fixture.debugElement.query(By.css('.daff-paginator'));
+
+        expect(paginator.nativeElement.innerText.includes((wrapper.numberOfPagesValue - 3).toString())).toBeTruthy();
+        expect(paginator.nativeElement.innerText.includes((wrapper.numberOfPagesValue - 2).toString())).toBeTruthy();
+      });
+    });
+  });
+
+  describe('ellipsis appearance', () => {
+    
+    describe('when all pages between currentPage and page 1 are shown', () => {
+      
+      it('should not show an ellipsis between 1 and the current page', () => {
+        wrapper.currentPageValue = 3;
+        fixture.detectChanges();
+        const paginator = fixture.debugElement.query(By.css('.daff-paginator'));
+
+        expect(paginator.nativeElement.innerText.replace(/[\n\r]/g, '').includes('1...')).toBeFalsy();
+      });
+    });
+  
+    describe('when some pages between the currentPage and page 1 are not shown', () => {
+      
+      it('should show an ellipsis between 1 and the current page', () => {
+        wrapper.currentPageValue = 7;
+        fixture.detectChanges();
+        const paginator = fixture.debugElement.query(By.css('.daff-paginator'));
+
+        expect(paginator.nativeElement.innerText.replace(/[\n\r]/g, '').includes('1...')).toBeTruthy();
+      });
+    });
+  
+    describe('when some pages between the currentPage and the last page are not shown', () => {
+      
+      it('should show an ellipsis between the current page and the last page', () => {
+        wrapper.currentPageValue = wrapper.numberOfPagesValue - 8;
+        fixture.detectChanges();
+        const paginator = fixture.debugElement.query(By.css('.daff-paginator'));
+
+        expect(paginator.nativeElement.innerText.replace(/[\n\r]/g, '').includes('...20')).toBeTruthy();
+      });
+    });
+
+    describe('when all pages between the currentPage and the last page are shown', () => {
+      
+      it('should not show an ellipsis between the current page and the last page', () => {
+        wrapper.currentPageValue = wrapper.numberOfPagesValue - 1;
+        fixture.detectChanges();
+        const paginator = fixture.debugElement.query(By.css('.daff-paginator'));
+
+        expect(paginator.nativeElement.innerText.replace(/[\n\r]/g, '').includes('...20')).toBeFalsy();
+      });
+    });
+  });
+
+  describe('changing the current page number', () => {
+
+    describe('when the currentPage is 1', () => {
+      
+      it('should disable the prev page chevron', () => {
+        wrapper.currentPageValue = 1;
+        fixture.detectChanges();
+
+        expect(fixture.debugElement.query(By.css('.daff-paginator__prev')).nativeElement.disabled).toBeTruthy();
+      });
+    });
+  
+    describe('when the currentPage is the last page', () => {
+      
+      it('should disable the next page chevron', () => {
+        wrapper.currentPageValue = wrapper.numberOfPagesValue;
+        fixture.detectChanges();
+  
+        expect(fixture.debugElement.query(By.css('.daff-paginator__next')).nativeElement.disabled).toBeTruthy();
+      });
+    });
+  
+    describe('when a page number is clicked', () => {
+      
+      it('should emit notifyPageChange with the page number', () => {
+        spyOn(component.notifyPageChange, 'emit');
+        const paginatorElements = fixture.debugElement.queryAll(By.css('.daff-paginator__page-link'));
+        paginatorElements[4].nativeElement.click();
+  
+        expect(component.notifyPageChange.emit).toHaveBeenCalledWith(parseInt(paginatorElements[4].nativeElement.innerText, 10));
+      });
+    });
+  });
+
+  describe('when the numberOfPages is changed', () => {
+    
+    it('should update the view with the new number of pages', () => {
+      wrapper.numberOfPagesValue = 10;
+      fixture.detectChanges();
+      const paginator = fixture.debugElement.query(By.css('.daff-paginator'));
+
+      expect(paginator.nativeElement.innerText.replace(/[\n\r]/g, '').includes('20')).toBeFalsy();
+    });
+  });
+});
