@@ -12,7 +12,7 @@ export class DaffInMemoryNavigationService implements DaffNavigationServiceInter
 
   constructor(private http: HttpClient) {}
 
-  get(navigationId: number): Observable<DaffNavigationTree> {
+  get(navigationId: string): Observable<DaffNavigationTree> {
     return this.http.get<DaffNavigationTree>(this.url + navigationId);
   }
 }

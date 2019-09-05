@@ -68,7 +68,7 @@ describe('DaffNavigationFacade', () => {
   
     it('should be true if the navigation state is loading', () => {
       const expected = cold('a', { a: true });
-      store.dispatch(new DaffNavigationLoad(1));
+      store.dispatch(new DaffNavigationLoad('1'));
       expect(facade.loading$).toBeObservable(expected);
     });
   });
@@ -83,7 +83,7 @@ describe('DaffNavigationFacade', () => {
     it('should be an observable of an array of the current errors', () => {
       const error = 'error1';
       const expected = cold('a', { a: [error]});
-      store.dispatch(new DaffNavigationLoad(1));
+      store.dispatch(new DaffNavigationLoad('1'));
       store.dispatch(new DaffNavigationLoadFailure(error));
       expect(facade.errors$).toBeObservable(expected);
     });

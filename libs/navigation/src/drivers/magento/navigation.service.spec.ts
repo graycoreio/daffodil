@@ -38,7 +38,7 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
     it('should return an observable single navigation', () => {
       const navigation = navigationTreeFactory.create();
 
-      navigationService.get(parseInt(navigation.id, 10)).subscribe((result) => {
+      navigationService.get(navigation.id).subscribe((result) => {
         expect(result.id).toEqual(navigation.id);
         expect(result.name).toEqual(navigation.name);
         expect(result.total_products).toEqual(navigation.total_products);
