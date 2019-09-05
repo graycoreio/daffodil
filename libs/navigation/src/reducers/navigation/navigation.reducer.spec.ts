@@ -38,7 +38,7 @@ describe('Navigation | Navigation Reducer', () => {
     let result;
 
     beforeEach(() => {
-      const navigationLoadAction: DaffNavigationLoad = new DaffNavigationLoad(navigationId);
+      const navigationLoadAction: DaffNavigationLoad = new DaffNavigationLoad(parseInt(navigationId, 10));
 
       result = reducer(initialState, navigationLoadAction);
     });
