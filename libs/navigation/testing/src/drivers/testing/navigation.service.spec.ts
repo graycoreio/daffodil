@@ -29,7 +29,7 @@ describe('Driver | Testing | Navigation | NavigationService', () => {
 
     it('should return a single navigation', () => {
       const expected = cold('(a|)', { a: navigation });
-      expect(navigationService.get('id')).toBeObservable(expected);
+      expect(navigationService.get(1)).toBeObservable(expected);
     });
   });
 });

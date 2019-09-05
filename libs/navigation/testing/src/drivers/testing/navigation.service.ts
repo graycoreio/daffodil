@@ -13,7 +13,7 @@ export class DaffTestingNavigationService implements DaffNavigationServiceInterf
   constructor(
     private navigationTreeFactory: DaffNavigationTreeFactory) {}
 
-  get(navigationTreeId: string): Observable<DaffNavigationTree> {
+  get(navigationTreeId: number): Observable<DaffNavigationTree> {
     return of(this.navigationTreeFactory.create());
   }
 }

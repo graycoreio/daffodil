@@ -16,7 +16,7 @@ export class DaffMagentoNavigationService implements DaffNavigationServiceInterf
   
   constructor(private apollo: Apollo) {}
 
-  get(categoryId: string): Observable<DaffNavigationTree> {
+  get(categoryId: number): Observable<DaffNavigationTree> {
     return this.apollo.query<GetCategoryTreeResponse>({
       query: GetCategoryTree,
       variables: {
