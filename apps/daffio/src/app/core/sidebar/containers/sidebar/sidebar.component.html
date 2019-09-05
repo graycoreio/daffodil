@@ -1,9 +1,0 @@
-<daff-sidebar class="daffio-sidebar" (escapePressed)="onClose()">
-  <button daff-icon-button class="daffio-sidebar__close" (click)="onClose()"><i class="fa fa-times"></i></button>
-  <div class="daffio-sidebar__list">
-    <a [routerLink]="link.path" daff-sidebar-item *ngFor="let link of links">
-      {{ link.title }}
-    </a>
-  </div>
-  <button type="button" daff-button class="daffio-sidebar__button">Get Started</button>
-</daff-sidebar>

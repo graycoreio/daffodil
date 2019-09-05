@@ -1,5 +1,6 @@
-<daff-sidebar-viewport (backdropClicked)="close()" mode="over" [opened]="showSidebar$ | async">
-    <daffio-sidebar ngProjectAs="daff-sidebar" (close)="close()"></daffio-sidebar>
-    <ng-content></ng-content>
+<daff-sidebar-viewport (backdropClicked)="close()" [mode]="mode$ | async" [opened]="showSidebar$ | async">
+  <daff-sidebar class="daffio-sidebar" (escapePressed)="close()">
+    <button type="button" daff-button class="daffio-sidebar__button">Get Started</button>
+    </daff-sidebar>
+  <ng-content></ng-content>
 </daff-sidebar-viewport>
-

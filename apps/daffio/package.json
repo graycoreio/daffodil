@@ -23,6 +23,7 @@
     "url": "https://github.com/graycoreio/daffodil"
   },
   "devDependencies": {
+    "@daffodil/core": "^0.0.3",
     "@daffodil/branding": "^0.0.3",
     "@daffodil/design": "^0.0.3"
   }
