@@ -68,11 +68,11 @@ describe('DaffPaginatorComponent', () => {
     expect(paginatorText.includes(greaterPage)).toBeTruthy();
   });
 
-  describe('when prev is clicked', () => {
+  describe('when previous is clicked', () => {
     
     it('should emit notifyPageChange with one less than the current page', () => {
       spyOn(component.notifyPageChange, 'emit');
-      fixture.debugElement.query(By.css('.daff-paginator__prev')).nativeElement.click();
+      fixture.debugElement.query(By.css('.daff-paginator__navigation.previous')).nativeElement.click();
 
       expect(component.notifyPageChange.emit).toHaveBeenCalledWith(wrapper.currentPageValue-1);
     });
@@ -82,7 +82,7 @@ describe('DaffPaginatorComponent', () => {
     
     it('should emit notifyPageChange with one more than the current page', () => {
       spyOn(component.notifyPageChange, 'emit');
-      fixture.debugElement.query(By.css('.daff-paginator__next')).nativeElement.click();
+      fixture.debugElement.query(By.css('.daff-paginator__navigation.next')).nativeElement.click();
 
       expect(component.notifyPageChange.emit).toHaveBeenCalledWith(wrapper.currentPageValue+1);
     });
@@ -166,21 +166,21 @@ describe('DaffPaginatorComponent', () => {
 
     describe('when the currentPage is 1', () => {
       
-      it('should disable the prev page chevron', () => {
+      it('should disable the previous page button', () => {
         wrapper.currentPageValue = 1;
         fixture.detectChanges();
 
-        expect(fixture.debugElement.query(By.css('.daff-paginator__prev')).nativeElement.disabled).toBeTruthy();
+        expect(fixture.debugElement.query(By.css('.daff-paginator__navigation.previous')).nativeElement.disabled).toBeTruthy();
       });
     });
   
     describe('when the currentPage is the last page', () => {
       
-      it('should disable the next page chevron', () => {
+      it('should disable the next page button', () => {
         wrapper.currentPageValue = wrapper.numberOfPagesValue;
         fixture.detectChanges();
   
-        expect(fixture.debugElement.query(By.css('.daff-paginator__next')).nativeElement.disabled).toBeTruthy();
+        expect(fixture.debugElement.query(By.css('.daff-paginator__navigation.next')).nativeElement.disabled).toBeTruthy();
       });
     });
   

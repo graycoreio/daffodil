@@ -1,33 +1,47 @@
+@import '../../scss/daff-util';
+
 :host {
 	display: flex;
-	justify-content: center;
 }
 
 .daff-paginator {
+	&__navigation {
+		@include clickable();
+		display: flex;
+		align-items: center;
+		appearance: none;
+		background: transparent;
+		border-radius: 3px;
+		border: none;
+		line-height: 1em;
+		padding: 5px 10px;
+
+		&.previous {
+			fa-icon {
+				margin-right: 10px;
+			}
+		}
+
+		&.next {
+			fa-icon {
+				margin-left: 10px;
+			}
+		}
+	}
 
 	&__ellipsis {
-		margin-top: 13px;
+		padding: 5px 10px;
 	}
 
-	&__prev {
-		display: flex;
-		margin-right: 20px;
-		align-items: center;
-		width: 50px;
-
-		& fa-icon {
-			margin-right: 5px;
-		}
-	}
-
-	&__next {
-		display: flex;
-		margin-left: 20px;
-		align-items: center;
-		width: 50px;
-
-		& fa-icon {
-			margin-left: 5px;
-		}
+	&__page-link {
+		@include clickable();
+		display: inline-block;
+		appearance: none;
+		background-color: transparent;
+		border-radius: 3px;
+		border: none;
+		padding: 5px 10px;
+		margin: 0 5px;
+		transition: background 0.15s ease;
 	}
 }
