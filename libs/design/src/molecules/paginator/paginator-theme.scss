@@ -21,7 +21,7 @@
 		&__navigation {
 			color: currentColor;
 		}
-		
+
 		&.daff-primary {
 			.daff-paginator__page-link {
 				@include daff-paginator-theme-variant(daff-color($primary));
