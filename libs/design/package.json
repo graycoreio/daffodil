@@ -28,6 +28,9 @@
   "peerDependencies": {
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0",
+    "@fortawesome/angular-fontawesome": "^0.3.0",
+    "@fortawesome/free-solid-svg-icons": "^5.10.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.20",
     "rxjs": "6.4.0"
   }
 }

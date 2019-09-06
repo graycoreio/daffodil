@@ -5,26 +5,22 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 
-import { DaffSidebarModule, DaffSidebarViewportComponent } from '@daffodil/design';
+import { DaffSidebarModule, DaffSidebarViewportComponent, DaffSidebarComponent } from '@daffodil/design';
 
 import { DaffioSidebarViewportContainer } from './sidebar-viewport.component';
 import * as fromSidebar from '../../reducers/index';
-import { ToggleSidebar, OpenSidebar, CloseSidebar, SetSidebarState } from '../../actions/sidebar.actions';
-
-@Component({selector: 'daffio-sidebar', template: ''})
-class MockDaffioSidebarContainerComponent {
-  @Output() close: EventEmitter<any> = new EventEmitter();
-}
+import { OpenSidebar, CloseSidebar, SetSidebarState } from '../../actions/sidebar.actions';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('DaffioSidebarViewportContainer', () => {
   let component: DaffioSidebarViewportContainer;
   let fixture: ComponentFixture<DaffioSidebarViewportContainer>;
   
   let daffSidebarViewport: DaffSidebarViewportComponent;
+  let daffSidebar: DaffSidebarComponent;
 
   let store: Store<fromSidebar.State>;
   let stubShowSidebar: boolean;
-  let daffioSidebarContainer: MockDaffioSidebarContainerComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -32,12 +28,12 @@ describe('DaffioSidebarViewportContainer', () => {
         StoreModule.forRoot({
           daffioSidebar: combineReducers(fromSidebar.reducers),
         }),
+        RouterTestingModule,
         NoopAnimationsModule,
         DaffSidebarModule,
       ],
       declarations: [ 
-        DaffioSidebarViewportContainer,
-        MockDaffioSidebarContainerComponent
+        DaffioSidebarViewportContainer
       ]
     })
     .compileComponents();
@@ -50,17 +46,16 @@ describe('DaffioSidebarViewportContainer', () => {
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();
-
+    daffSidebar = fixture.debugElement.query(By.css("daff-sidebar")).componentInstance;
     daffSidebarViewport = fixture.debugElement.query(By.css("daff-sidebar-viewport")).componentInstance;
-    daffioSidebarContainer = fixture.debugElement.query(By.css("daffio-sidebar")).componentInstance;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set the `daff-sidebar-viewport` mode to over', () => {
-    expect(daffSidebarViewport.mode).toEqual("over");
+  it('should set the `daff-sidebar-viewport` mode to the default initialState (push)', () => {
+    expect(daffSidebarViewport.mode).toEqual("push");
   });
 
   describe('when the `daff-sidebar-viewport` emits `backdropClicked`', () => {
@@ -71,17 +66,6 @@ describe('DaffioSidebarViewportContainer', () => {
 
       expect(component.close).toHaveBeenCalledWith(); 
     });   
-  });
-
-  describe('when sidebarContainer emits close', () => {
-    
-    it('should call close', () => {
-      spyOn(component, 'close');
-
-      daffioSidebarContainer.close.emit();
-      
-      expect(component.close).toHaveBeenCalled();
-    });
   });
 
   describe('ngOnInit', () => {
@@ -97,6 +81,14 @@ describe('DaffioSidebarViewportContainer', () => {
     });
   });
 
+  it('should call `close` when the daff-sidebar emits `escapePressed`', () => {
+    spyOn(component, 'close');
+
+    daffSidebar.escapePressed.emit();
+
+    expect(component.close).toHaveBeenCalled();    
+  })
+
   describe('methods', () => {
     describe('close', () => {
       it('should call store.dispatch with a CloseSidebar action', () => {
@@ -111,14 +103,6 @@ describe('DaffioSidebarViewportContainer', () => {
         component.open();
   
         expect(store.dispatch).toHaveBeenCalledWith(new OpenSidebar());
-      });
-    });
-
-    describe('toggle', () => {
-      it('should call store.dispatch with a ToggleSidebar action', () => {
-        component.toggle();
-  
-        expect(store.dispatch).toHaveBeenCalledWith(new ToggleSidebar());
       });
     });
 

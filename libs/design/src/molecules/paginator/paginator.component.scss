@@ -1,0 +1,33 @@
+:host {
+	display: flex;
+	justify-content: center;
+}
+
+.daff-paginator {
+
+	&__ellipsis {
+		margin-top: 13px;
+	}
+
+	&__prev {
+		display: flex;
+		margin-right: 20px;
+		align-items: center;
+		width: 50px;
+
+		& fa-icon {
+			margin-right: 5px;
+		}
+	}
+
+	&__next {
+		display: flex;
+		margin-left: 20px;
+		align-items: center;
+		width: 50px;
+
+		& fa-icon {
+			margin-left: 5px;
+		}
+	}
+}
