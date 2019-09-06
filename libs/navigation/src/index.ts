@@ -14,3 +14,4 @@ export {
   selectNavigationLoading,
   selectNavigationErrors
 } from './selectors/navigation.selector';
+export { DaffNavigationMagentoDriverModule } from './drivers/magento/navigation-driver.module';

@@ -6,15 +6,17 @@ import { Apollo } from 'apollo-angular';
 import { DaffNavigationTree } from '../../models/navigation-tree';
 import { DaffNavigationServiceInterface } from '../interfaces/navigation-service.interface';
 import { GetCategoryTree } from './queries/get-category-tree';
-import { DaffMagentoCategoryTransformer } from './transformers/category-transformer';
+import { DaffMagentoNavigationTransformerService } from './transformers/navigation-transformer';
 import { GetCategoryTreeResponse } from './interfaces/get-category-tree-response';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoNavigationService implements DaffNavigationServiceInterface {
+export class DaffMagentoNavigationService implements DaffNavigationServiceInterface<DaffNavigationTree> {
   
-  constructor(private apollo: Apollo) {}
+  constructor(
+    private apollo: Apollo,
+    private transformer: DaffMagentoNavigationTransformerService) {}
 
   get(categoryId: string): Observable<DaffNavigationTree> {
     return this.apollo.query<GetCategoryTreeResponse>({
@@ -23,9 +25,7 @@ export class DaffMagentoNavigationService implements DaffNavigationServiceInterf
         id: parseInt(categoryId, 10)
       }
     }).pipe(
-      map(result => {
-        return DaffMagentoCategoryTransformer(result.data.category)
-      })
+      map(result => this.transformer.transform(result.data.category))
     );
   }
 }

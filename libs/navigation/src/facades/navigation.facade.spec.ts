@@ -3,13 +3,13 @@ import { MockStore } from '@ngrx/store/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
 import { DaffNavigationFacade } from './navigation.facade';
 import { DaffNavigationLoad, DaffNavigationLoadFailure, DaffNavigationLoadSuccess } from '../actions/navigation.actions';
 import { navigationReducers } from '../reducers/navigation-reducers';
 import { NavigationReducersState } from '../reducers/navigation-reducers.interface';
+import { DaffNavigationTree } from '../models/navigation-tree';
 
 describe('DaffNavigationFacade', () => {
   let store: MockStore<Partial<NavigationReducersState>>;
