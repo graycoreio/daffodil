@@ -11,7 +11,7 @@ describe('SidebarAnimationState Calculation', () => {
         expect(getAnimationState(true, false)).toEqual(DaffSidebarAnimationStates.OPEN);
     });
 
-    it('should return `void` if it is not open', () => {
-        expect(getAnimationState(false, true)).toEqual(DaffSidebarAnimationStates.VOID);
+    it('should return `closed` if it is not open', () => {
+        expect(getAnimationState(false, true)).toEqual(DaffSidebarAnimationStates.CLOSED);
     })
 })

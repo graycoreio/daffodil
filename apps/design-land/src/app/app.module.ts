@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { DesignLandAppRoutingModule } from './app-routing.module';
 
 import { DesignLandAppComponent } from './app.component';
-import { DaffSidebarModule } from '@daffodil/design';
+import { DaffSidebarModule, DaffListModule } from '@daffodil/design';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 
@@ -15,7 +15,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     BrowserAnimationsModule,
     
     DaffSidebarModule,
-    DesignLandAppRoutingModule
+    DaffListModule,
+    DesignLandAppRoutingModule,
   ],
   declarations: [
     DesignLandAppComponent,

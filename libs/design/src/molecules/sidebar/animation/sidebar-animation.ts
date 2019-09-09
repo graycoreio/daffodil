@@ -6,6 +6,11 @@ import {
     trigger,
     AnimationTriggerMetadata,
   } from '@angular/animations';
+
+const duration = "350ms";
+const sidebarAnimateRemainTransition = "cubic-bezier(0.4, 0.0, 0.2, 1)";
+const sidebarAnimateInTransition = "cubic-bezier(0.0, 0.0, 0.2, 1)";
+const sidebarAnimateOutTransition = "cubic-bezier(0.4, 0.0, 1, 1)";
   
 export const daffSidebarAnimations: {
     readonly transformSidebar: AnimationTriggerMetadata,
@@ -18,19 +23,19 @@ export const daffSidebarAnimations: {
         'transform': 'none',
         'visibility': 'visible',
       })),
-      transition('void <=> open',
-          animate('350ms cubic-bezier(0.25, 0.8, 0.25, 1)'))
+      transition('open => closed', animate(duration + ' ' + sidebarAnimateOutTransition)),
+      transition('closed => open', animate(duration + ' ' + sidebarAnimateInTransition))
     ]),
     transformContent: trigger('transformContent', [
-      state('void', style({
+      state('closed', style({
         'transform': 'none',
       })),
-      transition('void <=> open',
-          animate('350ms cubic-bezier(0.25, 0.8, 0.25, 1)'))
+      transition('open => closed', animate(duration + ' ' + sidebarAnimateOutTransition)),
+      transition('closed => open', animate(duration + ' ' + sidebarAnimateInTransition))
     ])
   };
 
 export enum DaffSidebarAnimationStates {
     OPEN =  'open',
-    VOID = 'void'
+    CLOSED = 'closed'
 }
