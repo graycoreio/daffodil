@@ -18,7 +18,8 @@
 	$black: daff-map-deep-get($theme, 'core.black');
 
 	.daff-paginator {
-		&__navigation {
+		&__previous,
+		&__next {
 			color: currentColor;
 		}
 

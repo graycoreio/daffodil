@@ -5,7 +5,8 @@
 }
 
 .daff-paginator {
-	&__navigation {
+	&__previous,
+	&__next {
 		@include clickable();
 		display: flex;
 		align-items: center;
@@ -15,17 +16,17 @@
 		border: 0;
 		line-height: 1em;
 		padding: 5px 10px;
+	}
 
-		&.previous {
-			fa-icon {
-				margin-right: 10px;
-			}
+	&__previous {
+		fa-icon {
+			margin-right: 10px;
 		}
+	}
 
-		&.next {
-			fa-icon {
-				margin-left: 10px;
-			}
+	&__next {
+		fa-icon {
+			margin-left: 10px;
 		}
 	}
 
