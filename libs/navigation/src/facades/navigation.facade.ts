@@ -4,10 +4,10 @@ import { Store, select, Action } from '@ngrx/store';
 
 import { DaffStoreFacade } from '@daffodil/core';
 
-import { DaffNavigationTree } from '../models/navigation-tree';
 import { DaffNavigationModule } from '../navigation.module';
 import { selectNavigationTree, selectNavigationLoading, selectNavigationErrors } from '../selectors/navigation.selector';
 import { NavigationReducersState } from '../reducers/navigation-reducers.interface';
+import { DaffNavigationTreeUnion } from '../models/navigation-tree-union';
 
 @Injectable({
   providedIn: DaffNavigationModule
@@ -16,7 +16,7 @@ export class DaffNavigationFacade implements DaffStoreFacade<Action> {
   /**
    * The navigation retrieved in a single navigation call.
    */
-  tree$: Observable<DaffNavigationTree>;
+  tree$: Observable<DaffNavigationTreeUnion>;
   /**
    * The loading state for retrieving a single navigation.
    */
