@@ -21,7 +21,6 @@ describe('DaffioSidebarViewportContainer', () => {
   let daffSidebar: DaffSidebarComponent;
 
   let store: Store<fromSidebar.State>;
-  let stubShowSidebar: boolean;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
