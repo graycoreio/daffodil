@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Store, StoreModule, combineReducers, select } from '@ngrx/store';
+import { Store, select, ReducerManager, ActionsSubject } from '@ngrx/store';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
 
@@ -7,50 +8,54 @@ import { DaffBestSellersContainer } from './best-sellers.component';
 import { DaffBestSellersLoad } from '../../actions/best-sellers.actions';
 import * as fromProduct from '../../reducers/index';
 import { DaffProduct } from '../../models/product';
+import { of } from 'rxjs';
 
 describe('DaffBestSellersContainer', () => {
   let component: DaffBestSellersContainer;
   let fixture: ComponentFixture<DaffBestSellersContainer>;
-  let store;
+  let store: MockStore<any>;
   let initialLoading: boolean;
   let initialProducts: DaffProduct[];
   const productFactory = new DaffProductFactory();
   let bestSeller: DaffProduct;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
+
     TestBed.configureTestingModule({
-      imports: [
-        StoreModule.forRoot({
-          products: combineReducers(fromProduct.reducers),
-        })
-      ],
-      declarations: [ DaffBestSellersContainer ]
+      declarations: [ DaffBestSellersContainer ],
+      providers: [
+        provideMockStore({})
+      ]
     })
     .compileComponents();
-  }));
 
-  beforeEach(() => {
+    store = TestBed.get(Store);
     fixture = TestBed.createComponent(DaffBestSellersContainer);
     component = fixture.componentInstance;
-    store = TestBed.get(Store);
 
     initialLoading = false;
-    initialProducts = new Array(productFactory.create(), productFactory.create());
+    initialProducts = productFactory.createMany(2);
     bestSeller = initialProducts[1];
 
-    spyOn(fromProduct, 'selectBestSellersLoadingState').and.returnValue(initialLoading);
-    spyOn(fromProduct, 'selectAllProducts').and.returnValue(initialProducts);
-    spyOn(fromProduct, 'selectBestSellersIdsState').and.returnValue([bestSeller.id]);
+    store.overrideSelector(fromProduct.selectBestSellersLoadingState, initialLoading);
+    store.overrideSelector(fromProduct.selectAllProducts, initialProducts);
+    store.overrideSelector(fromProduct.selectBestSellersIdsState, [bestSeller.id]);
+
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();
   });
 
+  afterAll(() => {
+    store.resetSelectors();
+  });
+
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('ngInit', () => {
+  describe('ngOnInit', () => {
     
     it('dispatches a BestSellersLoad action', () => {
       expect(store.dispatch).toHaveBeenCalledWith(new DaffBestSellersLoad());

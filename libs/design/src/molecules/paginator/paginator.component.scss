@@ -1,0 +1,48 @@
+@import '../../scss/daff-util';
+
+:host {
+	display: flex;
+}
+
+.daff-paginator {
+	&__previous,
+	&__next {
+		@include clickable();
+		display: flex;
+		align-items: center;
+		appearance: none;
+		background: transparent;
+		border-radius: 3px;
+		border: 0;
+		line-height: 1em;
+		padding: 5px 10px;
+	}
+
+	&__previous {
+		fa-icon {
+			margin-right: 10px;
+		}
+	}
+
+	&__next {
+		fa-icon {
+			margin-left: 10px;
+		}
+	}
+
+	&__ellipsis {
+		padding: 5px 10px;
+	}
+
+	&__page-link {
+		@include clickable();
+		display: inline-block;
+		appearance: none;
+		background-color: transparent;
+		border-radius: 3px;
+		border: 0;
+		padding: 5px 10px;
+		margin: 0 5px;
+		transition: background 0.15s ease;
+	}
+}

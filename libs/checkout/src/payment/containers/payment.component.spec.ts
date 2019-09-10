@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { DaffPaymentFactory } from '../../../testing/src';
 import { PaymentContainer } from './payment.component';
@@ -10,18 +11,16 @@ import { PaymentInfo } from '../../models/payment/payment-info';
 describe('PaymentContainer', () => {
   let component: PaymentContainer;
   let fixture: ComponentFixture<PaymentContainer>;
-  let store;
+  let store: MockStore<any>;
   let initialPaymentInfo: PaymentInfo;
   const paymentFactory: DaffPaymentFactory = new DaffPaymentFactory();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        StoreModule.forRoot({
-          payments: combineReducers(fromPayment.reducers),
-        })
-      ],
-      declarations: [ PaymentContainer ]
+      declarations: [ PaymentContainer ],
+      providers: [
+        provideMockStore({})
+      ]
     })
     .compileComponents();
   }));
@@ -31,13 +30,16 @@ describe('PaymentContainer', () => {
     component = fixture.componentInstance;
     store = TestBed.get(Store);
 
-    
     initialPaymentInfo = paymentFactory.create();
+    store.overrideSelector(fromPayment.selectPaymentInfoState, initialPaymentInfo)
 
-    spyOn(fromPayment, 'selectPaymentInfoState').and.returnValue(initialPaymentInfo);
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();
+  });
+
+  afterAll(() => {
+    store.resetSelectors();
   });
 
   it('should create', () => {

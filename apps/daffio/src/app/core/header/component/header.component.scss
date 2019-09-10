@@ -1,5 +1,5 @@
 @import 'utilities';
-@import "theme";
+@import 'theme';
 
 .navbar {
   justify-content: space-between;
@@ -18,8 +18,10 @@
   display: block;
 
   &__item {
-    padding: 0 30px;
+    color: currentColor;
     font-size: $medium-font-size;
+    padding: 0 30px;
+    text-decoration: none;
   }
 
   &__menu {

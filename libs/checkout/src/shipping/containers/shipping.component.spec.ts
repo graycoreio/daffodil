@@ -7,11 +7,12 @@ import { DaffAddressFactory } from '@daffodil/core/testing';
 import { ShippingContainer } from './shipping.component';
 import { UpdateShippingAddress, SelectShippingOption } from '../actions/shipping.actions';
 import * as fromShipping from '../reducers/index';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 describe('ShippingContainer', () => {
   let component: ShippingContainer;
   let fixture: ComponentFixture<ShippingContainer>;
-  let store;
+  let store: MockStore<any>;
   let initialShippingAddress: DaffAddress;
   let stubSelectedShippingOptionId: string;
   let stubIsShippingAddressValid: boolean;
@@ -19,12 +20,10 @@ describe('ShippingContainer', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        StoreModule.forRoot({
-          shipping: combineReducers(fromShipping.reducers),
-        })
-      ],
-      declarations: [ ShippingContainer ]
+      declarations: [ ShippingContainer ],
+      providers:[
+        provideMockStore({})
+      ]
     })
     .compileComponents();
   }));
@@ -40,13 +39,18 @@ describe('ShippingContainer', () => {
     stubSelectedShippingOptionId = '0';
     stubIsShippingAddressValid = true;
 
-    spyOn(fromShipping, 'selectShippingAddressState').and.returnValue(initialShippingAddress);
-    spyOn(fromShipping, 'selectShippingOptionState').and.returnValue(stubSelectedShippingOptionId);
-    spyOn(fromShipping, 'selectIsShippingAddressValid').and.returnValue(stubIsShippingAddressValid);
+    store.overrideSelector(fromShipping.selectShippingAddressState, initialShippingAddress);
+    store.overrideSelector(fromShipping.selectShippingOptionState, stubSelectedShippingOptionId);
+    store.overrideSelector(fromShipping.selectIsShippingAddressValid, stubIsShippingAddressValid);
+
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();
   });
+
+  afterAll(() => {
+    store.resetSelectors();
+  })
 
   it('should create', () => {
     expect(component).toBeTruthy();

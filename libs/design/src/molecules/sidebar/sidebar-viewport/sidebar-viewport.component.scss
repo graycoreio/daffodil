@@ -11,19 +11,21 @@ $daff-sidebar-viewport-z-index: 1;
 	// fixes a bug where certain elements show in front of backdrop for a second.
 	display: flex;
 	min-height: 100%;
-	overflow: hidden;
-	position: absolute;
+	position: relative;
 	width: 100%;
 	z-index: $daff-sidebar-viewport-z-index;
 
 	&__content {
 		flex: 0 1 auto;
 		width: 100%;
+		will-change: transform;
 		z-index: $daff-sidebar-content-z-index;
 	}
 
 	&__sidebar {
+		flex-shrink: 0;
 		width: $sidebar-width;
+		will-change: transform, visibility;
 		z-index: $daff-sidebar-z-index;
 	}
 
@@ -36,28 +38,30 @@ $daff-sidebar-viewport-z-index: 1;
 	}
 
 	&.push {
-		#{$root}__sidebar {
+		> #{$root}__sidebar {
 			bottom: 0;
 			height: 100%;
 			left: 0;
 			position: absolute;
 			top: 0;
 			transform: translate3d(-$sidebar-width, 0, 0);
+			visibility: hidden;
 		}
 
-		#{$root}__content {
+		> #{$root}__content {
 			transform: translate3d($sidebar-width, 0, 0);
 		}
 	}
 
 	&.over {
-		#{$root}__sidebar {
+		> #{$root}__sidebar {
 			bottom: 0;
 			height: 100%;
 			left: 0;
-			position: fixed;
+			position: absolute;
 			top: 0;
 			transform: translate3d(-$sidebar-width, 0, 0);
+			visibility: hidden;
 		}
 	}
 }

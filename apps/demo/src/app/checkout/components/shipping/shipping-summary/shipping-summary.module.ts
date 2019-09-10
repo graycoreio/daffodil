@@ -4,15 +4,10 @@ import { CommonModule } from '@angular/common';
 import { ShippingSummaryComponent } from './shipping-summary.component';
 import { AddressSummaryModule } from '../../payment/address-summary/address-summary.module';
 
-import {
-  DaffLinkModule
-} from '@daffodil/design';
-
 @NgModule({
   imports: [
     CommonModule,
-    AddressSummaryModule,
-    DaffLinkModule
+    AddressSummaryModule
   ],
   declarations: [
     ShippingSummaryComponent
