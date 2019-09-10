@@ -34,6 +34,14 @@ html {
 	}
 }
 
+a {
+	color: currentColor;
+
+	&:hover {
+		text-decoration: none;
+  }
+}
+
 p {
 	line-height: 1.5rem;
 }
