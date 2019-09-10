@@ -9,7 +9,6 @@ export * from './atoms/form/form-field/public_api';
 export * from './atoms/form/input/public_api';
 export * from './atoms/form/select/public_api';
 export * from './atoms/container/public_api';
-export * from './atoms/link/public_api';
 export * from './atoms/loading-icon/public_api';
 export * from './atoms/progress-indicator/public_api';
 
@@ -19,6 +18,7 @@ export * from './molecules/backdrop/public_api';
 export * from './molecules/button-set/public_api';
 export * from './molecules/image-gallery/public_api';
 export * from './molecules/image-list/public_api';
+export * from './molecules/link-set/public_api';
 export * from './molecules/list/public_api';
 export * from './molecules/modal/public_api';
 export * from './molecules/navbar/public_api';
