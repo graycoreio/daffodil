@@ -1,51 +1,56 @@
-@mixin daff-progress-indicator-theme($theme){
-    $primary: map-get($theme, primary);
-    $secondary: map-get($theme, secondary);
-    $tertiary: map-get($theme, tertiary);
-    $base: daff-map-deep-get($theme, "core.base");
-    $baseContrast: daff-map-deep-get($theme, "core.base-contrast");
-    $white: daff-map-deep-get($theme, 'core.white');
-    $black: daff-map-deep-get($theme, 'core.black');
+@mixin daff-progress-indicator-theme($theme) {
+	$primary: map-get($theme, primary);
+	$secondary: map-get($theme, secondary);
+	$tertiary: map-get($theme, tertiary);
+	$base: daff-map-deep-get($theme, 'core.base');
+	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
+	$white: daff-map-deep-get($theme, 'core.white');
+	$black: daff-map-deep-get($theme, 'core.black');
 
-    .daff-progress-indicator {
-        $root:&;
-        background: rgba($baseContrast,0.1);
+	.daff-progress-indicator {
+		$root: &;
+		background: rgba($base-contrast, 0.1);
 
-        &.daff-primary {
-            #{$root}__fill{
-                background: daff-color($primary);
-            }
-        }
-        &.daff-secondary {
-            #{$root}__fill{
-                background: daff-color($secondary);
-            }
-        }
-        &.daff-tertiary {
-            #{$root}__fill{
-                background: daff-color($tertiary);
-            }
-        }
-        &.daff-theme {
-            #{$root}__fill{
-                background: $base;
-            }
-        }
-        &.daff-theme-contrast {
-            #{$root}__fill{
-                background: $baseContrast;
-            }
-        }
-        &.daff-black {
-            #{$root}__fill{
-                background: $black;
-            }
-        }
-        &.daff-white {
-            #{$root}__fill{
-                background: $white;
-            }
-        }
-    }
+		&.daff-primary {
+			#{$root}__fill {
+				background: daff-color($primary);
+			}
+		}
 
+		&.daff-secondary {
+			#{$root}__fill {
+				background: daff-color($secondary);
+			}
+		}
+
+		&.daff-tertiary {
+			#{$root}__fill {
+				background: daff-color($tertiary);
+			}
+		}
+
+		&.daff-theme {
+			#{$root}__fill {
+				background: $base;
+			}
+		}
+
+		&.daff-theme-contrast {
+			#{$root}__fill {
+				background: $base-contrast;
+			}
+		}
+
+		&.daff-black {
+			#{$root}__fill {
+				background: $black;
+			}
+		}
+
+		&.daff-white {
+			#{$root}__fill {
+				background: $white;
+			}
+		}
+	}
 }

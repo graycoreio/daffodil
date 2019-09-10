@@ -1,18 +1,19 @@
-@import "./color";
+@import './color';
 
-/**
-* @docs
-*
-* Takes a color palette configures some sane defaults
-* Will set the "default" to 60 if $hue isn't specified
-*
-* @usage
-* ```
-* daff-configure-palette($daff-yellow, $hue);
-* ```
-*/
-@function daff-configure-palette($colorPalette, $hue: 60) {
-    @return map-merge($colorPalette, (
-        "default": daff-color($colorPalette, $hue)
-    ))
+// @docs
+//
+// Takes a color palette configures some sane defaults
+// Will set the "default" to 60 if $hue isn't specified
+//
+// @usage
+// ```
+// daff-configure-palette($daff-yellow, $hue);
+// ```
+@function daff-configure-palette($color-palette, $hue: 60) {
+	@return map-merge(
+		$color-palette,
+		(
+			'default': daff-color($color-palette, $hue)
+		)
+	);
 }

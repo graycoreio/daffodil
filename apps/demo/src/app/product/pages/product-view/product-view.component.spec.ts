@@ -3,44 +3,27 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
-import { Observable ,  of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 
-import { DaffProduct } from '@daffodil/product';
+import { DaffProduct, DaffProductFacade, DaffProductLoad } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffLoadingIconModule } from '@daffodil/design';
 
 import { ProductViewComponent } from './product-view.component';
 import { ActivatedRouteStub } from '../../../testing/ActivatedRouteStub';
 import { AddToCartComponent } from '../../components/add-to-cart/add-to-cart.component';
+import { ProductComponent } from '../../components/product/product.component';
+import { hot, cold } from 'jasmine-marbles';
 
-const productFactory: DaffProductFactory = new DaffProductFactory();
-const mockProduct = productFactory.create();
-const product$ = of(mockProduct);
-const stubQty = 1;
 
 @Component({
   // tslint:disable-next-line: component-selector
-  selector: '[product-container]', 
-  template: '<ng-content></ng-content>', 
-  exportAs: 'ProductContainer'
-})
-class MockProductContainer {
-  @Input() selectedProductId: string;
-
-  product$: Observable<DaffProduct> = product$;
-  loading$: Observable<boolean> = of(false);
-  qty$: Observable<number> = of(stubQty);
-  updateQty(){};
-}
-
-@Component({
-  // tslint:disable-next-line: component-selector
-  selector: '[cart-container]', 
-  template: '<ng-content></ng-content>', 
+  selector: '[cart-container]',
+  template: '<ng-content></ng-content>',
   exportAs: 'CartContainer'
 })
 class MockCartContainer {
-  addToCart(){};
+  addToCart() { };
 }
 
 @Component({
@@ -48,32 +31,41 @@ class MockCartContainer {
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None
 })
-class MockProductComponent { 
+class MockProductComponent {
   @Input() product: DaffProduct;
   @Input() qty: number;
   @Output() updateQty: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({selector: 'demo-add-to-cart', template: ''})
-class MockAddToCartComponent { 
+@Component({ selector: 'demo-add-to-cart', template: '' })
+class MockAddToCartComponent {
   @Input() additive: any;
   @Input() qty: number;
   @Output() addToCart: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({ selector: 'demo-add-to-cart-notification', template: ''})
-class MockAddToCartNotificationComponent {}
+@Component({ selector: 'demo-add-to-cart-notification', template: '' })
+class MockAddToCartNotificationComponent { }
+
+class MockDaffProductFacade {
+  loading$: Observable<boolean> = new BehaviorSubject(false);
+  product$: Observable<DaffProduct[]> = new BehaviorSubject(null);
+  dispatch() { }
+}
 
 describe('ProductViewComponent', () => {
-  let component: ProductViewComponent;
-  let fixture: ComponentFixture<ProductViewComponent>;
+  const productFactory: DaffProductFactory = new DaffProductFactory();
+  const mockProduct = productFactory.create();
   const idParam = '1001';
   const activatedRoute = new ActivatedRouteStub();
-  let productContainer: MockProductContainer;
+
+  let component: ProductViewComponent;
+  let fixture: ComponentFixture<ProductViewComponent>;
   let cartContainer: MockCartContainer;
-  let productComponent: MockProductComponent;
+  let productComponent: ProductComponent;
   let addToCartComponent: AddToCartComponent;
   let addToCartNotification: MockAddToCartNotificationComponent;
+  let facade: DaffProductFacade;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -81,29 +73,28 @@ describe('ProductViewComponent', () => {
         RouterTestingModule,
         DaffLoadingIconModule
       ],
-      declarations: [ 
+      declarations: [
         ProductViewComponent,
-        MockProductContainer,
         MockCartContainer,
         MockProductComponent,
         MockAddToCartComponent,
         MockAddToCartNotificationComponent
       ],
       providers: [
-        { provide: ActivatedRoute, useValue: activatedRoute }
+        { provide: ActivatedRoute, useValue: activatedRoute },
+        { provide: DaffProductFacade, useClass: MockDaffProductFacade }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProductViewComponent);
     component = fixture.componentInstance;
     activatedRoute.setParamMap({ id: idParam });
-    
+    facade = TestBed.get(DaffProductFacade);
+
     fixture.detectChanges();
-    productContainer = fixture.debugElement.query(By.css('[product-container]')).componentInstance;
-    productContainer.loading$ = of(false);
     cartContainer = fixture.debugElement.query(By.css('[cart-container]')).componentInstance;
 
     productComponent = fixture.debugElement.query(By.css('demo-product')).componentInstance;
@@ -115,45 +106,62 @@ describe('ProductViewComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set productId from id param', () => {
-    expect(component.productId).toEqual(idParam);
-  });
-
-  describe('on [product-container]', () => {
-    
-    it('should set selectedProductId', () => {
-      expect(productContainer.selectedProductId).toEqual(idParam);
+  describe('ngOnInit', () => {
+    it('should initialize product$', () => {
+      facade.product$ = hot('ab', { a: null, b: mockProduct });
+      component.ngOnInit();
+      const expected = cold('ab', { a: null, b: mockProduct });
+      expect(component.product$).toBeObservable(expected);
     });
-  });
+
+    it('should initialize loading$', () => {
+      facade.loading$ = hot('ab', { a: false, b: true });
+      component.ngOnInit();
+      const expected = cold('ab', { a: false, b: true });
+      expect(component.loading$).toBeObservable(expected);
+    });
+
+    it('should dispatch a DaffProductLoad with an `id`', () => {
+      spyOn(facade, 'dispatch');
+      component.ngOnInit();
+      expect(facade.dispatch).toHaveBeenCalledWith(new DaffProductLoad(idParam))
+    });
+
+    it('should only ever dispatch a DaffProductLoad once per initialization', () => {
+      spyOn(facade, 'dispatch');
+      component.ngOnInit();
+      activatedRoute.setParamMap({ id: '12312313' });
+      activatedRoute.setParamMap({ id: '12311' });
+      expect(facade.dispatch).toHaveBeenCalledTimes(1);
+    });
+  })
 
   describe('on <demo-product>', () => {
-    
-    it('should set product to value passed by product-container directive', () => {
+    it('should set product to current value of product$', () => {
+      component.product$ = of(mockProduct);
+      fixture.detectChanges();
       expect(productComponent.product).toEqual(mockProduct);
     });
 
-    it('should set qty to value passed by product-container directive', () => {
-      expect(productComponent.qty).toEqual(stubQty);
+    xit('should set qty to 1', () => {
+      expect(productComponent.qty).toEqual(1);
     });
 
-    it('should set updateQty to call function passed by product-container directive', () => {
-      spyOn(productContainer, 'updateQty');
-      const payload = 4;
+    xit('should set updateQty to call function passed by product-container directive', () => {
 
-      productComponent.updateQty.emit(payload);
-
-      expect(productContainer.updateQty).toHaveBeenCalledWith(payload);
     });
   });
 
   describe('on <demo-add-to-cart>', () => {
-    
+
     it('should set additive to product passed by product-container directive', () => {
+      component.product$ = of(mockProduct);
+      fixture.detectChanges();
       expect(addToCartComponent.additive).toEqual(mockProduct);
     });
-    
-    it('should set qty to qty passed by product-container directive', () => {
-      expect(addToCartComponent.qty).toEqual(stubQty);
+
+    xit('should set qty to 1', () => {
+      expect(addToCartComponent.qty).toEqual(1);
     });
 
     it('should set addToCart to call function passed by cart-container directive', () => {
@@ -167,7 +175,11 @@ describe('ProductViewComponent', () => {
   });
 
   describe('when loading$ is false', () => {
-    
+    beforeEach(() => {
+      component.loading$ = of(false);
+      fixture.detectChanges();
+    });
+
     it('should render <demo-product>', () => {
       expect(productComponent).not.toBeNull();
     });
@@ -179,18 +191,19 @@ describe('ProductViewComponent', () => {
 
   describe('when loading$ is true', () => {
     let productElement;
-    
-    beforeEach(() => {
-      productContainer.loading$ = of(true);
-      fixture.detectChanges();
 
+
+
+    beforeEach(() => {
+      component.loading$ = of(true);
+      fixture.detectChanges();
       productElement = fixture.debugElement.query(By.css('demo-product'));
     });
 
     it('should  not render <demo-product>', () => {
       expect(productElement).toBeNull();
     });
-    
+
     it('should render daff-loading-icon', () => {
       expect(fixture.debugElement.query(By.css('daff-loading-icon'))).not.toBeNull();
     });

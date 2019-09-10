@@ -12,13 +12,14 @@ import {
   DaffProductLoadFailure } from '../actions/product.actions';
 import { DaffProductDriver } from '../drivers/injection-tokens/product-driver.token';
 import { DaffProductServiceInterface } from '../drivers/interfaces/product-service.interface';
+import { DaffProduct } from '../models/product';
 
 @Injectable()
-export class DaffProductEffects {
+export class DaffProductEffects<T extends DaffProduct> {
 
   constructor(
     private actions$: Actions,
-    @Inject(DaffProductDriver) private driver: DaffProductServiceInterface){}
+    @Inject(DaffProductDriver) private driver: DaffProductServiceInterface<T>){}
 
   @Effect()
   load$ : Observable<any> = this.actions$.pipe(

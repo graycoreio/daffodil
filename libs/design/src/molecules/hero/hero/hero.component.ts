@@ -1,16 +1,16 @@
-import { Component, ViewEncapsulation, Input, ElementRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation, Input, ElementRef, ChangeDetectionStrategy, HostBinding } from '@angular/core';
 
 import { DaffPalette, daffColorMixin, DaffColorable } from '../../../core/colorable/colorable';
 
-export type DaffHeroLayout = "centered" | undefined;
+export type DaffHeroLayout = 'centered' | undefined;
 export enum DaffHeroLayoutEnum {
-  Centered = "centered"
+  Centered = 'centered'
 }
 
-export type DaffHeroSize = "fullscreen" | "small" | undefined;
+export type DaffHeroSize = 'compact' | 'small' | undefined;
 export enum DaffHeroSizeEnum {
-  Fullscreen = "fullscreen",
-  Small = "small"
+  Compact = 'compact',
+  Small = 'small' // Small will be deprecated in v1.0.0
 }
 
 /**
@@ -26,21 +26,30 @@ const _daffHeroBase = daffColorMixin(DaffHeroBase)
   selector: 'daff-hero',
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.scss'],
-  host: {
-    'class': 'daff-hero',
-    '[class.daff-hero--centered]':'layout === "' + DaffHeroLayoutEnum.Centered + '"',
-    '[class.daff-hero--fullscreen]':'size === "' + DaffHeroSizeEnum.Fullscreen + '"',
-    '[class.daff-hero--small]':'size === "' + DaffHeroSizeEnum.Small + '"'
-  },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DaffHeroComponent extends _daffHeroBase implements DaffColorable {
+  
   @Input() layout: DaffHeroLayout;
   @Input() size: DaffHeroSize;
   @Input() color: DaffPalette;
 
   constructor(private elementRef: ElementRef) {
     super(elementRef);
+  }
+
+  @HostBinding('class.daff-hero') class = true;
+
+  @HostBinding('class.daff-hero--centered') get centered() {
+    return this.layout === DaffHeroLayoutEnum.Centered;
+  }
+
+  @HostBinding('class.daff-hero--small') get small() {
+    return this.size === DaffHeroSizeEnum.Small;
+  }
+
+  @HostBinding('class.daff-hero--compact') get compact() {
+    return this.size === DaffHeroSizeEnum.Compact;
   }
 }

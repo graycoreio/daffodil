@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+        "glen-84.sass-lint",
+        "apollographql.vscode-apollo",
+        "naumovs.color-highlight",
+        "ms-vsliveshare.vsliveshare",
+        "bierner.markdown-preview-github-styles",
+        "mrmlnc.vscode-scss",
+        "tehnix.vscode-tidymarkdown"
+    ]
+}

@@ -1,3 +1,27 @@
 {
-    "typescript.tsdk": "node_modules/typescript/lib"
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "editor.tabSize": 2,
+    "beautify.language": {
+        "js": {
+        "type": ["javascript", "json"],
+        "filename": [".jshintrc", ".jsbeautifyrc"]
+        // "ext": ["js", "json"]
+        // ^^ to set extensions to be beautified using the javascript beautifier
+        },
+        "css": ["css"],
+        "html": ["htm", "html"]
+        // ^^ providing just an array sets the VS Code file type
+    },
+    "beautify.options": {
+        "scss": {
+            "indent_with_tabs": true,
+            "keep_array_indentation": true
+        }
+    },
+    "files.associations": {
+        ".sasslintrc": "json"
+    },
+    "cSpell.words": [
+        "Daffio"
+    ]
 }

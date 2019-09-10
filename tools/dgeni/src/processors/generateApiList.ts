@@ -19,40 +19,39 @@ export class GenerateApiListProcessor implements Processor {
   }
 
   $process(docs: Document[]) : Document[] {
-    
     docs.push({
       docType: 'api-list-data',
-      template: 'json-doc.template.json',
+      template: 'api-list.template.json',
       path: this.config.outputFolder + '/api-list.json',
       outputPath: this.config.outputFolder + '/api-list.json',
       data: docs
         .filter(doc => doc.docType === 'package')
-        .map(doc => getPackageInfo(doc, docs))
+        .map(doc => getPackageInfo(doc))
     });
 
     return docs;
   }
 }
 
-function getPackageInfo(packageDoc, filteredDocs) {
-  const packageName = packageDoc.id.replace(/\/src\/index$/, '');
+function getPackageInfo(packageDoc) {  
   return {
-    name: packageName.toLowerCase(),
-    title: packageName,
-    path: packageDoc.path,
-    items: filteredDocs
+    ...getExportInfo(packageDoc),
+    title: packageDoc.name,
+    docType: 'package',
+    docTypeShorthand: 'pk',
+    items: packageDoc.exports
       .filter(doc => doc.docType !== 'package')
       .map(getExportInfo)
-  };
+  }
 }
 
 function getExportInfo(exportDoc) {
   return {
-    name: exportDoc.name.toLowerCase(),
+    id: exportDoc.id,
     title: exportDoc.name,
-    path: exportDoc.path,
+    path: '/docs/' + exportDoc.path,
     docType: getDocType(exportDoc),
-    securityRisk: !!exportDoc.security
+    docTypeShorthand: exportDoc.docType.charAt(0)
   };
 }
 

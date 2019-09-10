@@ -1,4 +1,9 @@
 import { Dgeni } from 'dgeni';
 import { apiDocs } from './src/transforms/daffodil-api-package';
+import { guideDocPackage } from './src/transforms/daffodil-guides-package';
 
-new Dgeni([apiDocs]).generate().catch(() => process.exit(1));
+import * as rimraf  from 'rimraf';
+
+rimraf("../../dist/docs/**/*", function () { 
+  new Dgeni([apiDocs, guideDocPackage]).generate().catch(() => process.exit(1));
+});

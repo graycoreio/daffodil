@@ -63,7 +63,7 @@ describe('DaffQtyDropdownComponent', () => {
   describe('ngOnInit', () => {
     
     it('should create the dropdownItemCounter array', () => {
-      expect(qtyDropdownComponent.componentInstance.dropdownItemCounter.length).toEqual(DaffQtyDropdownComponent.dropdownRange);
+      expect(qtyDropdownComponent.componentInstance.dropdownItemCounter.length).toEqual(9);
     });
 
     describe('when qty is not given as input', () => {

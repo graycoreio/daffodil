@@ -1,0 +1,38 @@
+{
+  "name": "@daffodil/category",
+  "version": "0.0.3",
+  "description": "An ecommerce categories package that has multi-platform support and state management features.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "publishConfig": {
+    "directory": "../../dist/category"
+  },
+  "scripts": {
+    "build": "ng build category --prod",
+    "lint": "ng lint category",
+    "test": "ng test category --watch=false --browsers=ChromeHeadless",
+    "publish": "(cd ../../dist/category; npm publish --access=public)"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "peerDependencies": {
+    "@angular/common": "^7.2.0",
+    "@angular/core": "^7.2.0",
+    "@daffodil/core": "^0.0.3",
+    "@ngrx/effects": "^7.3.0",
+    "@ngrx/entity": "^7.3.0",
+    "@ngrx/store": "^7.3.0",
+    "faker": "^4.1.0",
+    "rxjs": "6.4.0"
+  },
+  "devDependencies": {
+    "@daffodil/core": "^0.0.3",
+    "@daffodil/product": "^0.0.3"
+  }
+}

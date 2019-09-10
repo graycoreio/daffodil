@@ -1,43 +1,46 @@
-@import "../../atoms/button/button-theme";
-@import "../../atoms/link/link-theme";
-@import "../../atoms/form/form-field/error-message/error-message-theme";
-@import "../../atoms/form/form-field/form-field/form-field-theme";
-@import "../../atoms/form/input/input/input-theme";
-@import "../../atoms/form/select/select/select-theme";
-@import "../../atoms/progress-indicator/progress-indicator-theme";
-@import "../../atoms/loading-icon/loading-icon-theme";
+@import '../../atoms/button/button-theme';
+@import '../../atoms/link/link-theme';
+@import '../../atoms/form/form-field/error-message/error-message-theme';
+@import '../../atoms/form/form-field/form-field/form-field-theme';
+@import '../../atoms/form/input/input/input-theme';
+@import '../../atoms/form/select/select/select-theme';
+@import '../../atoms/progress-indicator/progress-indicator-theme';
+@import '../../atoms/loading-icon/loading-icon-theme';
 
-@import "../../molecules/accordion/accordion-item/accordion-item-theme";
-@import "../../molecules/callout/callout-theme";
-@import "../../molecules/card/card/card-theme";
-@import "../../molecules/hero/hero-theme";
-@import "../../molecules/sidebar/sidebar/sidebar-theme";
-@import "../../molecules/sidebar/sidebar-viewport/sidebar-viewport-theme";
+@import '../../molecules/accordion/accordion-item/accordion-item-theme';
+@import '../../molecules/callout/callout-theme';
+@import '../../molecules/card/card/card-theme';
+@import '../../molecules/hero/hero-theme';
+@import '../../molecules/navbar/navbar-theme';
+@import '../../molecules/paginator/paginator-theme';
+@import '../../molecules/sidebar/sidebar/sidebar-theme';
+@import '../../molecules/sidebar/sidebar-viewport/sidebar-viewport-theme';
 
-/**
-* Generates the styles of a @daffodil/design theme.
-* 
-* Usage: 
-* ```
-* @include daff-theme($theme);
-* ```
-*/
+//
+// Generates the styles of a @daffodil/design theme.
+// 
+// Usage: 
+// ```
+// @include daff-theme($theme);
+// ```
 @mixin daff-theme($theme) {
-    //Atoms
-    @include daff-button-theme($theme);
-    @include daff-error-message-theme($theme);
-    @include daff-form-field-theme($theme);
-    @include daff-input-theme($theme);
-    @include daff-select-theme($theme);
-    @include daff-link-theme($theme);
-    @include daff-progress-indicator-theme($theme);
-    @include daff-loading-icon-theme($theme);
+	//Atoms
+	@include daff-button-theme($theme);
+	@include daff-error-message-theme($theme);
+	@include daff-form-field-theme($theme);
+	@include daff-input-theme($theme);
+	@include daff-select-theme($theme);
+	@include daff-link-theme($theme);
+	@include daff-progress-indicator-theme($theme);
+	@include daff-loading-icon-theme($theme);
 
-    //Molecules
-    @include daff-accordion-item-theme($theme);
-    @include daff-callout-theme($theme);
-    @include daff-card-theme($theme);
-    @include daff-hero-theme($theme);
-    @include daff-sidebar-theme($theme);
-    @include daff-sidebar-viewport-theme($theme);
+	//Molecules
+	@include daff-accordion-item-theme($theme);
+	@include daff-callout-theme($theme);
+	@include daff-card-theme($theme);
+	@include daff-hero-theme($theme);
+	@include daff-navbar-theme($theme);
+	@include daff-paginator-theme($theme);
+	@include daff-sidebar-theme($theme);
+	@include daff-sidebar-viewport-theme($theme);
 }

@@ -1,21 +1,18 @@
-@mixin daff-card-theme($theme){
-    $primary: map-get($theme, primary);
-    $secondary: map-get($theme, secondary);
-    $tertiary: map-get($theme, tertiary);
-    $base: daff-map-deep-get($theme, "core.base");
-    $baseContrast: daff-map-deep-get($theme, "core.base-contrast");
-    $white: daff-map-deep-get($theme, 'core.white');
-    $black: daff-map-deep-get($theme, 'core.black');
-    $shadowColor: daff-illuminate($base, $tertiary, 3);
+@mixin daff-card-theme($theme) {
+	$primary: map-get($theme, primary);
+	$secondary: map-get($theme, secondary);
+	$tertiary: map-get($theme, tertiary);
+	$base: daff-map-deep-get($theme, 'core.base');
+	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
+	$white: daff-map-deep-get($theme, 'core.white');
+	$black: daff-map-deep-get($theme, 'core.black');
+	$shadow-color: daff-illuminate($base, $tertiary, 3);
 
-    .daff-card {
-        box-shadow:
-            0 40px 60px 0 rgba($shadowColor, 0.15);
-            // 0 4px 15px rgba($shadowColor, 0.4),
-            // 0 1px 3px rgba($shadowColor, 0.2);
+	.daff-card {
+		box-shadow: 0 40px 60px 0 rgba($shadow-color, 0.15);
 
-        &__content {
-            border-top: 1px solid daff-color($daff-gray, 20);
-        }
-    }
+		&__content {
+			border-top: 1px solid daff-color($daff-gray, 20);
+		}
+	}
 }

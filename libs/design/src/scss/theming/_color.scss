@@ -1,16 +1,16 @@
-/**
-* Takes a color palette and retrieves the hue from the palette
-* If no color is selected, it will retrieve the default 
-* color from the palette
-* 
-* @usage
-* ```
-* daff-color($daff-yellow, 60);
-* ```
-*/
-@function daff-color($palette, $color: "default") {
-    @if(not(map-has-key($palette, $color))){
-        @error "Color: `#{$color}` does not exist in palette";
-    }
-    @return map-get($palette, $color);
+//
+// Takes a color palette and retrieves the hue from the palette
+// If no color is selected, it will retrieve the default 
+// color from the palette
+// 
+// @usage
+// ```
+// daff-color($daff-yellow, 60);
+// ```
+@function daff-color($palette, $color: 'default') {
+	@if (not(map-has-key($palette, $color))) {
+		@error 'Color: `#{$color}` does not exist in palette';
+	}
+
+	@return map-get($palette, $color);
 }

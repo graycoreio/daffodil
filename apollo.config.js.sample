@@ -1,0 +1,16 @@
+module.exports = {
+    client: {
+      name: "my-graphql-app",
+      includes: [
+        'apps/**/*.ts',
+        'libs/**/magento/**/*.ts',
+      ],
+      excludes: [
+        '**/*.spec.ts'
+      ],
+      service: {
+        name: 'magento2',
+        url: "https://magento2.test/graphql"
+      }
+    },
+  };

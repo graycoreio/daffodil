@@ -1,65 +1,67 @@
-@import "./variables";
-@import "./color";
-@import "./configure-palette";
+@import './variables';
+@import './color';
+@import './configure-palette';
 
 $daff-light-theme: (
-    "font-color": daff-color($daff-gray, 110),
-    "base": daff-color($daff-gray, 0), 
-    "base-contrast": daff-color($daff-gray, 110),
-    "white": daff-color($daff-gray, 0),
-    "black": daff-color($daff-gray, 110),
-    "gray": $daff-gray,
+	'font-color': daff-color($daff-gray, 110),
+	'base': daff-color($daff-gray, 0),
+	'base-contrast': daff-color($daff-gray, 110),
+	'white': daff-color($daff-gray, 0),
+	'black': daff-color($daff-gray, 110),
+	'gray': $daff-gray
 );
 
 $daff-dark-theme: (
-    "font-color": daff-color($daff-gray, 0),
-    "base": daff-color($daff-gray, 110), 
-    "base-contrast": daff-color($daff-gray, 0),
-    "white": daff-color($daff-gray, 0),
-    "black": daff-color($daff-gray, 110),
-    "gray": $daff-gray,
+	'font-color': daff-color($daff-gray, 0),
+	'base': daff-color($daff-gray, 110),
+	'base-contrast': daff-color($daff-gray, 0),
+	'white': daff-color($daff-gray, 0),
+	'black': daff-color($daff-gray, 110),
+	'gray': $daff-gray
 );
 
-
-$supportedThemeTypes: (
-    "light": $daff-light-theme,
-    "dark": $daff-dark-theme
+$supported-theme-types: (
+	'light': $daff-light-theme,
+	'dark': $daff-dark-theme
 );
 
-/**
-* @docs
-*
-* Create a theme object given some initial settings
-* 
-* @usage
-* ```
-* daff-configure-theme($daff-yellow, $daff-blue, $daff-purple)
-* ```
-*/
-@function daff-configure-theme($primary, $secondary, $tertiary, $type: "light") {
-    @return (
-        "primary": $primary, //palette
-        "secondary": $secondary, //palette
-        "tertiary": $tertiary, //palette
-        "core": daff-build-theme-core($type)
-    )
-};
+// @docs
+//
+// Create a theme object given some initial settings
+//
+// @usage
+// ```
+// daff-configure-theme($daff-yellow, $daff-blue, $daff-purple)
+// ```
+@function daff-configure-theme(
+	$primary,
+	$secondary,
+	$tertiary,
+	$type: 'light'
+) {
+	@return (
+	'primary': $primary,
+	'secondary': $secondary,
+	'tertiary': $tertiary,
+	'core': daff-build-theme-core($type)
+	);
+}
 
-/**
-* @docs
-* 
-* Create a core theme given a theme type
-* $type | ThemeType : "light" | "dark"
-*
-* ```
-* @usage
-* daff-build-theme-core("light")
-* ```
-*/
-@function daff-build-theme-core($type: "light") {
-    @if(not map-has-key($supportedThemeTypes, $type)){
-        @error "`#{$type}` is not a valid theme type - valid types: `#{map-keys($supportedThemeTypes)}`";
-    }
+//
+// @docs
+//
+// Create a core theme given a theme type
+// $type | ThemeType : "light" | "dark"
+//
+// ```
+// @usage
+// daff-build-theme-core("light")
+// ```
+@function daff-build-theme-core($type: 'light') {
+	$error-msg: 'is not a valid theme type - valid types:';
+	@if (not map-has-key($supported-theme-types, $type)) {
+		@error '`#{$type}` `#{$error-msg}` `#{map-keys($supported-theme-types)}`';
+	}
 
-    @return map-get($supportedThemeTypes, $type);
-};
+	@return map-get($supported-theme-types, $type);
+}

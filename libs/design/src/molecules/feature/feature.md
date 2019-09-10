@@ -1,32 +1,41 @@
 # Feature Component
+
 The `feature` component can be used to display feature-related content on a page.
 
 ## Supported Content Types
+
 A `daff-feature` transcludes:
-* `[daffFeatureIcon]`
-* `[daffFeatureSubheader]`
-* `[daffFeatureTitle]`
-* `[daffFeatureSubtitle]`
-* Any additional components
+
+- `[daffFeatureIcon]`
+- `[daffFeatureSubheader]`
+- `[daffFeatureTitle]`
+- `[daffFeatureSubtitle]`
+- Any additional components
 
 ### Icon
-* Feature icon is used by adding `[daffFeatureIcon]` to any tag.
+
+- Feature icon is used by adding `[daffFeatureIcon]` to any tag.
 
 ### Subheader
-* Feature subheader is used by adding `[daffFeatureSubheader]` to any tag.
+
+- Feature subheader is used by adding `[daffFeatureSubheader]` to any tag.
 
 ### Title
-* Feature title is used by adding `[daffFeatureTitle]` to any tag.
+
+- Feature title is used by adding `[daffFeatureTitle]` to any tag.
 
 ### Subtitle
-* Feature subtitle is used by adding `[daffFeatureSubtitle]` to any tag.
+
+- Feature subtitle is used by adding `[daffFeatureSubtitle]` to any tag.
 
 ## Modes
-* To define a feature mode, add `mode="[value]"` to the `<daff-feature>` tag.
-* The default mode is `normal`
-* Values: `compact` and `normal`
+
+- To define a feature mode, add `mode="[value]"` to the `<daff-feature>` tag.
+- The default mode is `normal`
+- Values: `compact` and `normal`
 
 ### Usage
+
 ```
 <daff-feature mode="compact">
   <img daffFeatureIcon src="" />

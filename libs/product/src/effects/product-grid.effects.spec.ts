@@ -12,9 +12,9 @@ import { DaffProductDriver } from '../drivers/injection-tokens/product-driver.to
 
 describe('DaffProductGridEffects', () => {
   let actions$: Observable<any>;
-  let effects: DaffProductGridEffects;
+  let effects: DaffProductGridEffects<DaffProduct>;
   let productFactory: DaffProductFactory;
-  let daffProductDriver: DaffProductServiceInterface;
+  let daffProductDriver: DaffProductServiceInterface<DaffProduct>;
   let mockProductGrid: DaffProduct[];
 
   beforeEach(() => {

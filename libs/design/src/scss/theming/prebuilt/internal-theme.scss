@@ -1,8 +1,8 @@
-@import "../variables";
-@import "../color";
-@import "../configure-palette";
-@import "../configure-theme";
-@import "../theme";
+@import '../variables';
+@import '../color';
+@import '../configure-palette';
+@import '../configure-theme';
+@import '../theme';
 
 $primary: daff-configure-palette($daff-yellow, 60);
 $secondary: daff-configure-palette($daff-purple, 60);

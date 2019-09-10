@@ -1,106 +1,84 @@
 @import '../../../scss/daff-util';
 
 .daff-hero {
-  $root: &;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  min-height: calc(70vh - 99px);
-  padding: 75px 25px;
+	$root: &;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 75px 25px;
 
-  @include breakpoint(mobile) {
-    padding: 100px 50px;
-  }
+	@include breakpoint(mobile) {
+		padding: 100px 50px;
+	}
 
-  &__title {
-    @include embolden();
-    font-size: 2.25rem;
-    line-height: 2.75rem;
-    max-width: 1040px;
-    text-align: left;
-    margin: 0;
-    padding: 0 25px;
+	&__title {
+		@include embolden();
+		font-size: 2.25rem;
+		line-height: 1.25em;
+		margin: 0;
+		max-width: 1040px;
+		overflow-wrap: break-word;
+		text-align: left;
+		width: 100%;
 
-    @include breakpoint(mobile) {
-      font-size: 3rem;
-      line-height: 3.75rem;
-    }
+		@include breakpoint(mobile) {
+			font-size: 3rem;
+		}
 
-    @include breakpoint(big-tablet) {
-      font-size: 4.5rem;
-      line-height: 5.25rem;
-      padding: 0;
-    }
-  }
+		@include breakpoint(big-tablet) {
+			font-size: 4.5rem;
+		}
+	}
 
-  &__subtitle {
-    font-size: $medium-font-size;
-    line-height: 1.75rem;
-    font-weight: normal;
-    max-width: 700px;
-    text-align: left;
-    margin-top: 10px;
-    padding: 0 25px;
+	&__subtitle {
+		font-size: $medium-font-size;
+		font-weight: normal;
+		line-height: 1.5em;
+		margin: 10px 0 0 0;
+		max-width: 700px;
+		text-align: left;
+		width: 100%;
 
-    @include breakpoint(mobile) {
-      font-size: 1.25rem;
-      line-height: 2rem;
-    }
+		@include breakpoint(mobile) {
+			font-size: 1.25rem;
+			margin: 25px 0 0 0;
+		}
 
-    @include breakpoint(big-tablet) {
-      font-size: 1.75rem;
-      line-height: 2.75rem;
-      margin-top: 25px;
-      padding: 0;
-    }
+		@include breakpoint(big-tablet) {
+			font-size: 1.75rem;
+			padding: 0;
+		}
 
-    + * {
-      margin-top: 50px;
-    }
-  }
+		+ * {
+			margin-top: 50px;
+		}
+	}
 
-  &--centered {
+	&--centered {
+		#{$root}__title {
+			margin: 0 auto;
+			text-align: center;
+		}
 
-    #{$root}__title {
-      text-align: center;
-      margin: 0 auto;
-    }
+		#{$root}__subtitle {
+			margin: 25px auto 0 auto;
+			text-align: center;
+		}
+	}
 
-    #{$root}__subtitle {
-      text-align: center;
-      margin: 25px auto 0 auto;
-    }
-  }
+	// Small will be deprecated in v1.0.0
+	&--small,
+	&--compact {
+		padding: 50px 25px;
 
-  &--fullscreen {
-    min-height: calc(100vh - 99px);
-    padding: 75px 0;
-  
-    @include breakpoint(mobile) {
-      padding: 75px 50px;
-    }
+		@include breakpoint(mobile) {
+			padding: 50px;
+		}
+	}
 
-    @include breakpoint(small-laptop) {
-      padding: 25px 0;
-    }
-  }
-
-  &--small {
-    padding: 50px 25px;
-
-    @include breakpoint(mobile) {
-      padding: 50px;
-    }
-  }
-
-  &__image {
-    max-width: 800px;
-    margin: 0 auto;
-
-    img {
-      max-width: 100%;
-    }
-  }
-
-  
+	&__image {
+		display: block;
+		margin: 0 auto;
+		max-width: 100%;
+	}
 }

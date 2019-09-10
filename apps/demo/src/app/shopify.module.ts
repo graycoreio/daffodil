@@ -2,12 +2,16 @@ import { NgModule } from '@angular/core';
 
 import { ApolloBoostModule, ApolloBoost } from 'apollo-angular-boost';
 import { DaffProductShopifyDriverModule } from '@daffodil/product';
+import { DaffCartInMemoryDriverModule } from '@daffodil/cart/testing';
+import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
 
 @NgModule({
   imports: [
     //Shopify
     ApolloBoostModule,
-    DaffProductShopifyDriverModule.forRoot()
+    DaffProductShopifyDriverModule.forRoot(),
+    DaffCartInMemoryDriverModule.forRoot(),
+    DaffCheckoutInMemoryDriverModule.forRoot()
   ]
 })
 export class ShopifyModule {

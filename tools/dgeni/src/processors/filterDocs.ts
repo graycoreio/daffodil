@@ -14,10 +14,6 @@ export class FilterContainedDocsProcessor implements Processor {
         return this.docTypes.indexOf(doc.docType) === -1;
     });
 
-    docs = docs.filter((doc) => {
-        return !doc.name.match('Module');
-    });
-
     return docs;
   }
 }

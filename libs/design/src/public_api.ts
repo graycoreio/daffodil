@@ -22,6 +22,7 @@ export * from './molecules/image-list/public_api';
 export * from './molecules/list/public_api';
 export * from './molecules/modal/public_api';
 export * from './molecules/navbar/public_api';
+export * from './molecules/paginator/public_api';
 export * from './molecules/qty-dropdown/public_api';
 export * from './molecules/sidebar/public_api';
 export * from './molecules/hero/public_api';
@@ -31,3 +32,4 @@ export * from './molecules/card/public_api';
 
 // Core
 export * from './core/colorable/colorable';
+export * from './core/breakpoints/breakpoints';

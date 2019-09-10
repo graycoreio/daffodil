@@ -1,14 +1,14 @@
-@mixin daff-select-theme($theme){
-  $baseContrast: daff-map-deep-get($theme, "core.base-contrast");
-  $black: daff-map-deep-get($theme, 'core.black');
+@mixin daff-select-theme($theme) {
+	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
+	$black: daff-map-deep-get($theme, 'core.black');
 
-  .daff-native-select {
-    color: daff-illuminate($baseContrast, $daff-gray, 4);
+	.daff-native-select {
+		color: daff-illuminate($base-contrast, $daff-gray, 4);
 
-    // removes dotted border on in FF
-    &:-moz-focusring {
-      color: transparent;
-      text-shadow: 0 0 0 $black;
-    }
-  }
+		// removes dotted border on in FF
+		&:-moz-focusring {
+			color: transparent;
+			text-shadow: 0 0 0 $black;
+		}
+	}
 }

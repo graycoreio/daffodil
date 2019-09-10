@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { ToggleSidebar, CloseSidebar, OpenSidebar, SetSidebarState } from '../../actions/sidebar.actions';
+import { CloseSidebar, OpenSidebar, SetSidebarState } from '../../actions/sidebar.actions';
 import * as fromDaffioSidebar from '../../reducers/index';
+import { DaffSidebarMode } from '@daffodil/design';
 
 @Component({
   selector: 'daffio-sidebar-viewport-container',
@@ -12,16 +13,14 @@ import * as fromDaffioSidebar from '../../reducers/index';
 export class DaffioSidebarViewportContainer implements OnInit{
   
   showSidebar$: Observable<boolean>;
+  mode$: Observable<DaffSidebarMode>;
 
   ngOnInit() {
-    this.showSidebar$ = this.store.pipe(
-      select(fromDaffioSidebar.selectShowSidebar)
-    );
+    this.showSidebar$ = this.store.pipe(select(fromDaffioSidebar.selectShowSidebar));
+    this.mode$ = this.store.pipe(select(fromDaffioSidebar.selectSidebarMode));
   }
 
-  constructor(
-    private store: Store<fromDaffioSidebar.State>
-  ) { }
+  constructor(private store: Store<fromDaffioSidebar.State>) { }
 
   close () {
     this.store.dispatch(new CloseSidebar);
@@ -29,10 +28,6 @@ export class DaffioSidebarViewportContainer implements OnInit{
 
   open () {
     this.store.dispatch(new OpenSidebar);
-  }
-
-  toggle() {
-    this.store.dispatch(new ToggleSidebar());
   }
 
   setVisibility(state: boolean) {

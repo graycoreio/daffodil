@@ -1,8 +1,8 @@
 import { Package } from "dgeni";
 const typescriptPackage = require('dgeni-packages/typescript');
+import { daffodilBasePackage } from "../daffodil-base-package";
 
-import { API_SOURCE_PATH, API_TEMPLATES_PATH, requireFolder } from '../config';
-import { basePackage } from '../daffodil-base-package';
+import { API_SOURCE_PATH, API_TEMPLATES_PATH } from '../config';
 
 import { GenerateApiListProcessor } from '../../processors/generateApiList';
 import { PackagesProcessor } from "../../processors/packages";
@@ -10,7 +10,7 @@ import { FilterContainedDocsProcessor } from "../../processors/filterDocs";
 import { CleanSelectorsProcessor } from '../../processors/cleanSelectors';
 
 export const apiDocs =  new Package('checkout', [
-  basePackage,
+  daffodilBasePackage,
   typescriptPackage
 ])
   //Register Processors for this package
@@ -19,7 +19,7 @@ export const apiDocs =  new Package('checkout', [
   .processor(new GenerateApiListProcessor())
   .processor(new PackagesProcessor())
   .factory(function API_DOC_TYPES_TO_RENDER(EXPORT_DOC_TYPES) {
-    return EXPORT_DOC_TYPES.concat(['decorator', 'directive', 'ngmodule', 'pipe', 'package']);
+    return EXPORT_DOC_TYPES.concat(['component', 'directive', 'pipe', 'package']);
   })
   //Configure our package
   .config(function(readFilesProcessor, readTypeScriptModules, tsParser) {
@@ -37,20 +37,12 @@ export const apiDocs =  new Package('checkout', [
 
     // Specify collections of source files that should contain the documentation to extract
     readTypeScriptModules.sourceFiles = [
-      'branding/src/index.ts',
       'cart/src/index.ts',
       'checkout/src/index.ts',
       'core/src/index.ts',
       'design/src/index.ts',
-      'driver/src/index.ts',
       'product/src/index.ts'
     ];
-  })
-  // Configure jsdoc-style tag parsing
-  .config(function(parseTagsProcessor, getInjectables) {
-    // Load up all the tag definitions in the tag-defs folder
-    parseTagsProcessor.tagDefinitions =
-        parseTagsProcessor.tagDefinitions.concat(getInjectables(requireFolder(__dirname, './tag-defs')));
   })
   .config(function(computePathsProcessor, EXPORT_DOC_TYPES, generateApiList) {
 
@@ -67,7 +59,7 @@ export const apiDocs =  new Package('checkout', [
       outputPathTemplate: '${moduleFolder}.json'
     });
     computePathsProcessor.pathTemplates.push({
-      docTypes: EXPORT_DOC_TYPES.concat(['decorator', 'directive', 'ngmodule', 'pipe']),
+      docTypes: EXPORT_DOC_TYPES,
       pathTemplate: '${moduleDoc.moduleFolder}/${name}',
       outputPathTemplate: '${moduleDoc.moduleFolder}/${name}.json',
     });

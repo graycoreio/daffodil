@@ -4,8 +4,10 @@ import { NgModule } from '@angular/core';
 import { DesignLandAppRoutingModule } from './app-routing.module';
 
 import { DesignLandAppComponent } from './app.component';
-import { DaffSidebarModule } from '@daffodil/design';
+import { DaffSidebarModule, DaffListModule } from '@daffodil/design';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavbarComponent } from './navbar/navbar.component';
+
 
 @NgModule({
   imports: [
@@ -13,10 +15,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     
     DaffSidebarModule,
-    DesignLandAppRoutingModule
+    DaffListModule,
+    DesignLandAppRoutingModule,
   ],
   declarations: [
-    DesignLandAppComponent
+    DesignLandAppComponent,
   ],
   providers: [],
   bootstrap: [DesignLandAppComponent]

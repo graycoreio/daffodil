@@ -1,13 +1,28 @@
 <daff-sidebar-viewport>
-    <daff-sidebar>
-        Atoms
-        <a daff-sidebar-item routerLink="button">Button</a>
-        <a daff-sidebar-item routerLink="loading-icon">Loading Icon</a>
-        <a daff-sidebar-item routerLink="progress-indicator">Progress Indicator</a>
-        Molecules
-        <a daff-sidebar-item routerLink="card">Card</a>
-        <a daff-sidebar-item routerLink="feature">Feature</a>
-        <a daff-sidebar-item routerLink="form">Form</a>
-    </daff-sidebar>
+  <daff-sidebar>
+    <daff-list type="link">
+      <h3 daffListSubheader>Atoms</h3>
+      <a daff-sidebar-item routerLink="button">Button</a>
+      <a daff-sidebar-item routerLink="link">Link</a>
+      <a daff-sidebar-item routerLink="loading-icon">Loading Icon</a>
+      <a daff-sidebar-item routerLink="progress-indicator">Progress Indicator</a>
+      <h3 daffListSubheader>Molecules</h3>
+      <a daff-sidebar-item routerLink="accordion">Accordion</a>
+      <a daff-sidebar-item routerLink="callout">Callout</a>
+      <a daff-sidebar-item routerLink="card">Card</a>
+      <a daff-sidebar-item routerLink="feature">Feature</a>
+      <a daff-sidebar-item routerLink="form">Form</a>
+      <a daff-sidebar-item routerLink="hero">Hero</a>
+      <a daff-sidebar-item routerLink="image-gallery">Image Gallery</a>
+      <a daff-sidebar-item routerLink="list">List</a>
+      <a daff-sidebar-item routerLink="navbar">Navigation Bar</a>
+      <a daff-sidebar-item routerLink="modal">Modal</a>
+      <a daff-sidebar-item routerLink="sidebar">Sidebar</a>
+      <a daff-sidebar-item routerLink="paginator">Paginator</a>
+      <a daff-sidebar-item routerLink="qty-dropdown">Quantity Dropdown</a>
+    </daff-list>
+  </daff-sidebar>
+  <div class="design-land__content">
     <router-outlet></router-outlet>
+  </div>
 </daff-sidebar-viewport>

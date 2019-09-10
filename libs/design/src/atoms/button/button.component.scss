@@ -1,51 +1,115 @@
 @import '../../scss/daff-util';
 
 @mixin daff-button {
-    display: inline-block;
-    position: relative;
-    font-family: $body-font-family;
-    font-size: $medium-font-size;
-    border-radius: 3px;
-    overflow: hidden;
-    text-align: center;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    @include clickable();
+	@include clickable();
+	appearance: none;
+	border-radius: 3px;
+	display: inline-block;
+	font-size: 1rem;
+	line-height: 1em;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	transition: all 0.3s ease; //sass-lint:disable-line no-transition-all
 
-    &:focus {
-        outline: none;
-    }
+	&:active {
+		transform: translateY(2px);
+	}
 
-    &[disabled] {
-        cursor: not-allowed;
-    }
+	&[disabled] {
+		cursor: not-allowed;
+		transform: translateY(0);
+	}
 }
 
 .daff-button {
-    @include daff-button();
-    min-width: 90px;
-    padding: 15px 20px;
+	@include daff-button();
+	min-width: 90px;
+	padding: 1rem 2.5rem;
 }
 
 .daff-raised-button {
-    @include daff-button();
-    min-width: 90px;
-    padding: 15px 20px;
+	@include daff-button();
+	min-width: 90px;
+	padding: 1rem 2.5rem;
 }
 
 .daff-icon-button {
-    @include daff-button();
-    height: 40px;
-    width: 40px;
-    line-height: 40px;
-    background: none;
-    padding: 0;
-    border: 0;
+	@include daff-button();
+	background: none;
+	border: 0;
+	height: 40px;
+	line-height: 40px;
+	padding: 0;
+	width: 40px;
 }
 
 .daff-stroked-button {
-    @include daff-button();
-    background: transparent;
-    min-width: 90px;
-    padding: 15px 20px;
+	@include daff-button();
+	background: transparent;
+	min-width: 90px;
+	padding: 1rem 2.5rem;
+}
+
+.daff-underline-button {
+	@include daff-button();
+	background: transparent;
+	border-radius: 0;
+	margin: 0;
+	padding: 0 0 5px 0;
+	text-decoration: underline;
+	vertical-align: middle;
+
+	@include breakpoint(big-tablet) {
+		text-decoration: none;
+	}
+
+	&[disabled] {
+		&:hover {
+			&:after {
+				animation: none;
+			}
+		}
+	}
+
+	&:after {
+		opacity: 0;
+
+		@include breakpoint(big-tablet) {
+			bottom: 0;
+			content: '';
+			height: 2px;
+			left: 0;
+			opacity: 1;
+			position: absolute;
+			transition: all 0.7s ease; //sass-lint:disable-line no-transition-all
+
+			width: 100%;
+		}
+	}
+
+	&:hover {
+		&:after {
+			animation: underline-button-hover 0.7s ease 0s 1;
+		}
+	}
+}
+
+@keyframes underline-button-hover {
+	0% {
+		transform: translateX(0);
+	}
+
+	50% {
+		transform: translateX(100%);
+	}
+
+	51% {
+		transform: translateX(-100%);
+	}
+
+	to {
+		transform: translateX(0);
+	}
 }
