@@ -7,23 +7,23 @@ export const appRoutes: Routes = [
     redirectTo: '/button',
     pathMatch: 'full'
   },
-  {path: 'accordion', loadChildren: './accordion/accordion.module#AccordionModule'},
-  {path: 'button', loadChildren: './button/button.module#ButtonModule'},
-  {path: 'callout', loadChildren: './callout/callout.module#CalloutModule'},
-  {path: 'card', loadChildren: './card/card.module#CardModule'},
-  {path: 'feature', loadChildren: './feature/feature.module#FeatureModule'},
-  {path: 'hero', loadChildren: './hero/hero.module#HeroModule'},
-  {path: 'link', loadChildren: './link/link.module#LinkModule'},
-  {path: 'list', loadChildren: './list/list.module#ListModule'},
-  {path: 'loading-icon', loadChildren: './loading-icon/loading-icon.module#LoadingIconModule'},
-  {path: 'form', loadChildren: './form/form.module#FormModule'},
-  {path: 'image-gallery', loadChildren: './image-gallery/image-gallery.module#ImageGalleryModule'},
-  {path: 'navbar', loadChildren: './navbar/navbar.module#NavbarModule'},
-  {path: 'modal', loadChildren: './modal/modal.module#ModalModule'},
-  {path: 'paginator', loadChildren: './paginator/paginator.module#PaginatorModule'},
-  {path: 'progress-indicator', loadChildren: './progress-indicator/progress-indicator.module#ProgressIndicatorModule'},
-  {path: 'qty-dropdown', loadChildren: './qty-dropdown/qty-dropdown.module#QtyDropdownModule'},
-  {path: 'sidebar', loadChildren: './sidebar/sidebar.module#SidebarModule'}
+  { path: 'accordion', loadChildren: () => import('./accordion/accordion.module').then(m => m.AccordionModule) }, 
+  { path: 'button', loadChildren: () => import('./button/button.module').then(m => m.ButtonModule) },
+  { path: 'callout', loadChildren: () => import('./callout/callout.module').then(m => m.CalloutModule) },
+  { path: 'card', loadChildren: () => import('./card/card.module').then(m => m.CardModule) },
+  { path: 'feature', loadChildren: () => import('./feature/feature.module').then(m => m.FeatureModule) },
+  { path: 'form', loadChildren: () => import('./form/form.module').then(m => m.FormModule) },
+  { path: 'hero', loadChildren: () => import('./hero/hero.module').then(m => m.HeroModule) },
+  { path: 'link', loadChildren: () => import('./link/link.module').then(m => m.LinkModule) },
+  { path: 'list', loadChildren: () => import('./list/list.module').then(m => m.ListModule) },
+  { path: 'loading-icon', loadChildren: () => import('./loading-icon/loading-icon.module').then(m => m.LoadingIconModule) },
+  { path: 'image-gallery', loadChildren: () => import('./image-gallery/image-gallery.module').then(m => m.ImageGalleryModule) },
+  { path: 'navbar', loadChildren: () => import('./navbar/navbar.module').then(m => m.NavbarModule) },
+  { path: 'modal', loadChildren: () => import('./modal/modal.module').then(m => m.ModalModule) },
+  { path: 'paginator', loadChildren: () => import('./paginator/paginator.module').then(m => m.PaginatorModule) },
+  { path: 'progress-indicator', loadChildren: () => import('./progress-indicator/progress-indicator.module').then(m => m.ProgressIndicatorModule) },
+  { path: 'qty-dropdown', loadChildren: () => import('./qty-dropdown/qty-dropdown.module').then(m => m.QtyDropdownModule) },
+  {path: 'sidebar', loadChildren: () => import('./sidebar/sidebar.module').then(m => m.SidebarModule)}
 ]
 
 @NgModule({
@@ -36,4 +36,4 @@ export const appRoutes: Routes = [
     RouterModule
   ]
 })
-export class DesignLandAppRoutingModule {}
+export class DesignLandAppRoutingModule { }

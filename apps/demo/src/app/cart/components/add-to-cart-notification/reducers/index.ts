@@ -1,17 +1,15 @@
 import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
-import { fromCartReducer, fromCart } from '@daffodil/cart';
+import { fromCart } from '@daffodil/cart';
 
 import * as fromDemoAddToCartNotification from './add-to-cart-notification.reducer';
 
 export interface State {
   addToCartNotification: fromDemoAddToCartNotification.State,
-  cart: fromCartReducer.State
 }
 
 export const reducers : ActionReducerMap<State> = {
   addToCartNotification: fromDemoAddToCartNotification.reducer,
-  cart: fromCartReducer.reducer
 }
 
 /**
