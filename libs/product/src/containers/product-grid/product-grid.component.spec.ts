@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
 
@@ -11,19 +12,18 @@ import { DaffProduct } from '../../models/product';
 describe('DaffProductGridContainer', () => {
   let component: DaffProductGridContainer;
   let fixture: ComponentFixture<DaffProductGridContainer>;
-  let store;
+  let store: MockStore<any>;
   let initialLoading: boolean;
   let initialProducts: DaffProduct[];
   const productFactory = new DaffProductFactory();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        StoreModule.forRoot({
-          products: combineReducers(fromProduct.reducers),
-        })
-      ],
-      declarations: [ DaffProductGridContainer ]
+      imports: [],
+      declarations: [ DaffProductGridContainer ],
+      providers:[
+        provideMockStore()
+      ]
     })
     .compileComponents();
   }));
@@ -31,16 +31,20 @@ describe('DaffProductGridContainer', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DaffProductGridContainer);
     component = fixture.componentInstance;
-    store = TestBed.get(Store);
+    store = TestBed.get<Store<any>>(Store);
 
     initialLoading = false;
     initialProducts = new Array(productFactory.create());
 
-    spyOn(fromProduct, 'selectProductGridLoadingState').and.returnValue(initialLoading);
-    spyOn(fromProduct, 'selectAllProducts').and.returnValue(initialProducts);
+    store.overrideSelector(fromProduct.selectProductGridLoadingState, initialLoading);
+    store.overrideSelector(fromProduct.selectAllProducts, initialProducts);
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();
+  });
+
+  afterAll(() => {
+    store.resetSelectors();
   });
 
   it('should create', () => {

@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
@@ -13,7 +14,7 @@ import { DaffPaymentFactory } from '../../../testing/src';
 describe('BillingContainer', () => {
   let component: BillingContainer;
   let fixture: ComponentFixture<BillingContainer>;
-  let store;
+  let store: MockStore<any>;
   let initialBillingAddress: DaffAddress;
   let initialBillingAddressIsShippingAddress: boolean;
   let initialPaymentInfo: PaymentInfo;
@@ -22,12 +23,10 @@ describe('BillingContainer', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        StoreModule.forRoot({
-          billing: combineReducers(fromBilling.reducers),
-        })
-      ],
-      declarations: [ BillingContainer ]
+      declarations: [ BillingContainer ],
+      providers: [
+        provideMockStore({})
+      ]
     })
     .compileComponents();
   }));
@@ -44,13 +43,18 @@ describe('BillingContainer', () => {
     initialBillingAddressIsShippingAddress = false;
     initialPaymentInfo = paymentFactory.create();
 
-    spyOn(fromBilling, 'selectPaymentInfoState').and.returnValue(initialPaymentInfo);
-    spyOn(fromBilling, 'selectBillingAddressState').and.returnValue(initialBillingAddress);
-    spyOn(fromBilling, 'selectBillingAddressIsShippingAddressState').and.returnValue(initialBillingAddressIsShippingAddress);
+    store.overrideSelector(fromBilling.selectPaymentInfoState, initialPaymentInfo);
+    store.overrideSelector(fromBilling.selectBillingAddressState, initialBillingAddress);
+    store.overrideSelector(fromBilling.selectBillingAddressIsShippingAddressState, initialBillingAddressIsShippingAddress);
+
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();
   });
+
+  afterAll(() => {
+    store.resetSelectors();
+  })
 
   it('should create', () => {
     expect(component).toBeTruthy();

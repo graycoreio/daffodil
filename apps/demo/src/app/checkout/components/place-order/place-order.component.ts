@@ -6,34 +6,29 @@ import { fromCart, DaffCart } from '@daffodil/cart';
 import { PlaceOrder } from '@daffodil/checkout';
 
 import * as fromDemoCheckout from '../../reducers';
+import { AsyncPipe } from '@angular/common';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'demo-place-order',
   templateUrl: './place-order.component.html',
   styleUrls: ['./place-order.component.scss']
 })
-export class PlaceOrderComponent implements OnInit, OnDestroy {
+export class PlaceOrderComponent implements OnInit {
 
-  cart: DaffCart;
-  cartSubscription: Subscription;
   enablePlaceOrderButton$: Observable<boolean>;
-  
-  ngOnDestroy() {
-    this.cartSubscription.unsubscribe();
-  }
-  
-  constructor(
-    private store: Store<fromCart.State>
-  ) { }
-    
+  cart$: Observable<DaffCart>;
+
+  constructor(private store: Store<fromCart.State>) { }
+
   ngOnInit() {
     this.enablePlaceOrderButton$ = this.store.pipe(select(fromDemoCheckout.selectEnablePlaceOrderButton));
-    this.cartSubscription = this.store.pipe(select(fromCart.selectCartValueState)).subscribe((cart) => {
-      this.cart = cart;
-    });
+    this.cart$ = this.store.pipe(select(fromCart.selectCartValueState));
   }
-  
+
   placeOrder() {
-    this.store.dispatch(new PlaceOrder(this.cart));
+    this.cart$.pipe(take(1)).subscribe((cart: DaffCart) => {
+      this.store.dispatch(new PlaceOrder(cart));
+    });
   }
 }
