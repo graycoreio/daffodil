@@ -109,12 +109,18 @@ const productImageUrlsList: string[] = [
   '/assets/products/100.jpg'
 ];
 
+/**
+ * Mocked DaffProductImage object.
+ */
 export class MockProductImage implements DaffProductImage {
   id = faker.random.number(10000).toString();
   url = productImageUrlsList[faker.random.number(productImageUrlsList.length-1)]
   label = faker.lorem.sentence();
 }
 
+/**
+ * A factory for creating DaffProductImage.
+ */
 @Injectable({
   providedIn: 'root'
 })
