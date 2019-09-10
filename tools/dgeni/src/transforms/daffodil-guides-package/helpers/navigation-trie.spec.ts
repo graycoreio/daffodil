@@ -1,10 +1,10 @@
-import { NavigationDocument, NavigationTree } from "./navigation-tree";
+import { NavigationDocument, generateNavigationTrieFromDocuments } from "./navigation-trie";
 
-describe('NavigationTree', () => {
+describe('NavigationTrie', () => {
 
   const assertTriesAreEqual = (a, b) => expect(JSON.parse(JSON.stringify(a))).toEqual(JSON.parse(JSON.stringify(b)));
 
-  describe('transformation of a NavigationDocument[] into a NavigationTree', () => {
+  describe('transformation of a NavigationDocument[] into a NavigationTrie', () => {
     it('should work with one document', () => {  
       const documents: NavigationDocument[] = [
         { id: 'cart', title: 'Overview', path: 'cart' }
@@ -16,7 +16,7 @@ describe('NavigationTree', () => {
         children: [{ id: 'cart', title: 'Overview', path: 'cart', children: [] }],
       }
 
-      assertTriesAreEqual(NavigationTree.generateTreeFromDocuments(documents), expected);
+      assertTriesAreEqual(generateNavigationTrieFromDocuments(documents), expected);
     });
 
     it('should work with nested documents', () => {
@@ -42,7 +42,7 @@ describe('NavigationTree', () => {
         ]
       }
   
-      assertTriesAreEqual(NavigationTree.generateTreeFromDocuments(documents), expected);
+      assertTriesAreEqual(generateNavigationTrieFromDocuments(documents), expected);
     })
   });
 
@@ -74,7 +74,7 @@ describe('NavigationTree', () => {
           ]
       }
       
-      assertTriesAreEqual(NavigationTree.generateTreeFromDocuments(documents), expected);
+      assertTriesAreEqual(generateNavigationTrieFromDocuments(documents), expected);
     });
 
     it('it should sort children into alphabetic order by id', () => {
@@ -104,7 +104,7 @@ describe('NavigationTree', () => {
         ]
       }
   
-      assertTriesAreEqual(NavigationTree.generateTreeFromDocuments(documents), expected);
+      assertTriesAreEqual(generateNavigationTrieFromDocuments(documents), expected);
     });
   });
 
@@ -130,7 +130,7 @@ describe('NavigationTree', () => {
         ]
       }
   
-      assertTriesAreEqual(NavigationTree.generateTreeFromDocuments(documents), expected);
+      assertTriesAreEqual(generateNavigationTrieFromDocuments(documents), expected);
     })
   });
 
@@ -140,7 +140,7 @@ describe('NavigationTree', () => {
       { id: 'cart/testing', title: 'Testing Cart', path: 'cart/testing' }
     ];
 
-    expect(() => NavigationTree.generateTreeFromDocuments(documents))
+    expect(() => generateNavigationTrieFromDocuments(documents))
       .toThrow(
         new Error("Error: attempted to insert a document with a duplicate path: cart/testing")
       );
