@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { DaffCartContainer } from './cart.component';
 import { DaffCartLoad, DaffAddToCart } from '../../actions/cart.actions';
@@ -11,19 +12,18 @@ import { DaffCartFactory } from '../../../testing/src/factories/cart.factory';
 describe('CartContainer', () => {
   let component: DaffCartContainer;
   let fixture: ComponentFixture<DaffCartContainer>;
-  let store;
+  let store: MockStore<any>;
   let initialLoading: boolean;
   let initialCart: DaffCart;
   let cartFactory: DaffCartFactory;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        StoreModule.forRoot({
-          carts: combineReducers(fromCart.reducers),
-        })
-      ],
-      declarations: [ DaffCartContainer ]
+      imports: [],
+      declarations: [ DaffCartContainer ],
+      providers:[
+        provideMockStore({})
+      ]
     })
     .compileComponents();
   }));
@@ -37,12 +37,16 @@ describe('CartContainer', () => {
     initialLoading = false;
     initialCart = cartFactory.create();
 
-    spyOn(fromCart, 'selectCartLoadingState').and.returnValue(initialLoading);
-    spyOn(fromCart, 'selectCartValueState').and.returnValue(initialCart);
+    store.overrideSelector(fromCart.selectCartLoadingState, initialLoading);
+    store.overrideSelector(fromCart.selectCartValueState, initialCart);
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();
   });
+
+  afterAll(() => {
+    store.resetSelectors();
+  })
 
   it('should create', () => {
     expect(component).toBeTruthy();

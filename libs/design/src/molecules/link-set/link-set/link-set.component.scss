@@ -1,0 +1,45 @@
+@import '../../../scss/daff-util';
+@import '../../../scss/daff-theme';
+
+.daff-link-set {
+	display: block;
+	margin: 0;
+	padding: 0;
+
+	&__heading {
+		@include embolden();
+		display: block;
+		font-size: 1rem;
+		line-height: 1em;
+		margin-bottom: 15px;
+		text-transform: uppercase;
+	}
+
+	&__subheading {
+		display: block;
+		font-size: 1rem;
+		line-height: 1.5em;
+	}
+
+	&__item {
+		@include clickable();
+		display: block;
+		color: currentColor;
+		font-size: 1em;
+		line-height: 1.5em;
+		text-decoration: none;
+		transition: color 0.15s ease;
+
+		&:hover {
+			text-decoration: underline;
+		}
+
+		&[disabled] {
+			cursor: not-allowed;
+		}
+	}
+
+	> .daff-link-set {
+		margin-left: 10px;
+	}
+}

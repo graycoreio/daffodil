@@ -8,7 +8,7 @@ import { DaffNavigationTreeFactory } from '../../factories/navigation-tree.facto
 @Injectable({
   providedIn: 'root'
 })
-export class DaffTestingNavigationService implements DaffNavigationServiceInterface {
+export class DaffTestingNavigationService implements DaffNavigationServiceInterface<DaffNavigationTree> {
  
   constructor(
     private navigationTreeFactory: DaffNavigationTreeFactory) {}

@@ -37,8 +37,8 @@ describe('TemplateComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render a <daffio-header-container> inside a <daffio-sidebar-viewport-container>', () => {
-    expect(sidebarViewport.query(By.css('daffio-header-container'))).not.toBeNull()
+  it('should render a <daffio-header-container>', () => {
+    expect(fixture.debugElement.query(By.css('daffio-header-container'))).not.toBeNull()
   });
 
   it('should render a <router-outlet> inside a <daffio-sidebar-viewport-container>', () => {

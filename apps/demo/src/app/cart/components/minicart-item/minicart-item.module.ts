@@ -3,14 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { MiniCartItemComponent } from './minicart-item.component';
 
-import {
-  DaffLinkModule
-} from '@daffodil/design';
-
 @NgModule({
   imports: [
-    CommonModule,
-    DaffLinkModule
+    CommonModule
   ],
   declarations: [
     MiniCartItemComponent

@@ -19,12 +19,12 @@
 @import './typography/variables';
 @import './typography/mixins';
 
-@import '~modern-normalize/modern-normalize';
+@import '~modern-normalize/modern-normalize.css';
 
 body,
 html {
-	font-size: $mobile-font-size;
 	font-family: $body-font-family;
+	font-size: $mobile-font-size;
 	font-weight: 400;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -32,6 +32,14 @@ html {
 	@include breakpoint(mobile) {
 		font-size: $desktop-font-size;
 	}
+}
+
+a {
+	color: currentColor;
+
+	&:hover {
+		text-decoration: none;
+  }
 }
 
 p {

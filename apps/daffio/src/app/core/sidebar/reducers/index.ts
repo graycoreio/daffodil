@@ -1,6 +1,7 @@
 import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
 import * as fromDaffioSidebar from './sidebar.reducer';
+import { DaffSidebarMode } from '@daffodil/design';
 
 export interface DaffioSidebarState {
   daffioSidebar: fromDaffioSidebar.State;
@@ -31,4 +32,9 @@ export const daffioSidebarStateSelector = createSelector(
 export const selectShowSidebar: MemoizedSelector<object, boolean> = createSelector(
   daffioSidebarStateSelector,
   fromDaffioSidebar.getShowSidebar
+);
+
+export const selectSidebarMode: MemoizedSelector<object, DaffSidebarMode> = createSelector(
+  daffioSidebarStateSelector,
+  fromDaffioSidebar.getMode
 );
