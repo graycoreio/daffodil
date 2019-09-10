@@ -113,7 +113,7 @@ export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChan
   }
 
   /**
-   * Determines when the Prev button should be disabled.
+   * Determines when the Previous button should be disabled.
    */
   _disablePrev(): boolean {
     return this.currentPage === 1;
