@@ -1,27 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DesignLandAppRoutingModule } from './app-routing.module';
 
 import { DesignLandAppComponent } from './app.component';
-import { DaffSidebarModule, DaffListModule } from '@daffodil/design';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavbarComponent } from './navbar/navbar.component';
+
+import {
+  DaffSidebarModule,
+  DaffLinkSetModule
+ } from '@daffodil/design';
 
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    
-    DaffSidebarModule,
-    DaffListModule,
     DesignLandAppRoutingModule,
+
+    DaffSidebarModule,
+    DaffLinkSetModule
   ],
   declarations: [
     DesignLandAppComponent,
   ],
   providers: [],
-  bootstrap: [DesignLandAppComponent]
+  bootstrap: [
+    DesignLandAppComponent
+  ]
 })
 export class AppModule { }
