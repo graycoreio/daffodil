@@ -1,12 +1,12 @@
 <h1>API Index</h1>
 
 <section *ngFor="let doc of docsList" class="api-docs-list__package">
-  <a class="api-docs-list__package-name" daff-link [routerLink]="doc.path">{{ doc.title }}</a>
+  <a class="api-docs-list__package-name" [routerLink]="doc.path">{{ doc.title }}</a>
   <div class="api-list-item__children">
     <div class="api-list-item" *ngFor="let childDoc of doc.items">
       <div class="api-list-item__title">
         <label class="api-list-item__label {{ childDoc.docType }}">{{ childDoc.docTypeShorthand }}</label>
-        <a class="api-list-item__name" daff-link [routerLink]="childDoc.path">{{ childDoc.title }}</a>
+        <a class="api-list-item__name" [routerLink]="childDoc.path">{{ childDoc.title }}</a>
       </div>
     </div>
   </div>

@@ -14,8 +14,7 @@ import {
   DaffButtonSetModule, 
   DaffButtonModule, 
   DaffContainerModule,
-  DaffInputModule,
-  DaffLinkModule
+  DaffInputModule
 } from '@daffodil/design';
 
 import { DaffLogoModule, DaffCopyrightModule } from '@daffodil/branding';
@@ -31,7 +30,6 @@ import { DaffLogoModule, DaffCopyrightModule } from '@daffodil/branding';
     DaffButtonSetModule,
     DaffContainerModule,
     DaffInputModule,
-    DaffLinkModule,
     DaffLogoModule,
     DaffCopyrightModule,
     DaffioNewsletterModule
