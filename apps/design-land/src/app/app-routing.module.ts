@@ -14,7 +14,7 @@ export const appRoutes: Routes = [
   { path: 'feature', loadChildren: () => import('./feature/feature.module').then(m => m.FeatureModule) },
   { path: 'form', loadChildren: () => import('./form/form.module').then(m => m.FormModule) },
   { path: 'hero', loadChildren: () => import('./hero/hero.module').then(m => m.HeroModule) },
-  { path: 'link', loadChildren: () => import('./link/link.module').then(m => m.LinkModule) },
+  { path: 'link-set', loadChildren: () => import('./link-set/link-set.module').then(m => m.LinkSetModule) },
   { path: 'list', loadChildren: () => import('./list/list.module').then(m => m.ListModule) },
   { path: 'loading-icon', loadChildren: () => import('./loading-icon/loading-icon.module').then(m => m.LoadingIconModule) },
   { path: 'image-gallery', loadChildren: () => import('./image-gallery/image-gallery.module').then(m => m.ImageGalleryModule) },
