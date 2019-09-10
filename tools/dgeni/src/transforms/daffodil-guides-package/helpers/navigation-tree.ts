@@ -21,7 +21,12 @@ export class NavigationTree {
   // Add the document to the `documents` of the relevant child
   //Check to see if there's a parent document that needs to moved down,
   //If there is, shift it down.
-  constructor(key: string = '', title: string = '', path: string = '', children: NavigationTree[] = []) {
+  constructor(
+    key: string = '', 
+    title: string = '', 
+    path: string = '', 
+    children: NavigationTree[] = []
+  ) {
     this.id = key;
     this.title = title;
     if(path){
@@ -50,24 +55,38 @@ export class NavigationTree {
    * @returns void
    */
   insert(path: string = '', doc: NavigationDocument): void {
+    //If we've hit a word
     if (path.indexOf('/') == -1) {
       let child = this.getExistingChild(path);
-      
-      if(child && !child.path){
-        child.title = doc.title;
-        delete(child.path);
-        child.appendChild(new NavigationTree('', 'Overview', doc.path));
-      }
-      else {
+
+      //If no child exists, simply append the node
+      if(!child){
         this.appendChild(new NavigationTree(path, doc.title, doc.path));
+        return;
       }
-      return;
+    
+      //Append a word node ('Overview Node') if the child already exists, but isn't a word.
+      if(!child.path){
+        child.title = doc.title;
+        child.appendChild(new NavigationTree('', 'Overview', doc.path));
+        return;
+      }
+
+      // If theres already a child, we've already inserted a document that matches the path
+      // of the document we're trying to insert. To ensure that we don't mysteriously lose 
+      // or overwrite any documents over time we throw an error.
+      if(child.path){
+        throw new Error(
+          "Error: attempted to insert a document with a duplicate path: " + child.path
+        );
+      }
     }
 
     const keyArray = path.split('/');
     const key = keyArray.shift();
     const newKey = keyArray.join('/');
 
+    //While on a branch
     let child = this.getExistingChild(key);
     if (!child) {
       child = new NavigationTree(key, capitalize(key), '');

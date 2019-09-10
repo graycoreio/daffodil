@@ -133,4 +133,16 @@ describe('NavigationTree', () => {
       assertTriesAreEqual(NavigationTree.generateTreeFromDocuments(documents), expected);
     })
   });
+
+  it('should throw an exception if two documents with the same path are inserted', () => {
+    const documents: NavigationDocument[] = [
+      { id: 'cart/testing', title: 'Installing @daffodil/cart', path: 'cart/testing' },
+      { id: 'cart/testing', title: 'Testing Cart', path: 'cart/testing' }
+    ];
+
+    expect(() => NavigationTree.generateTreeFromDocuments(documents))
+      .toThrow(
+        new Error("Error: attempted to insert a document with a duplicate path: cart/testing")
+      );
+  })
 });
