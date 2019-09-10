@@ -47,7 +47,7 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
 
       const op = controller.expectOne(GetCategoryTree);
 
-      expect(op.operation.variables.id).toEqual(navigation.id);
+      expect(op.operation.variables.id).toEqual(parseInt(navigation.id, 10));
 
       op.flush({
         data: {

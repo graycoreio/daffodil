@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 
-import { DaffNavigationTree } from '../../models/navigation-tree';
+import { DaffNavigationTreeUnion } from '../../models/navigation-tree-union';
 
-export interface DaffNavigationServiceInterface {
-  get(categoryId: string): Observable<DaffNavigationTree>;
+export interface DaffNavigationServiceInterface<T extends DaffNavigationTreeUnion> {
+  get(categoryId: string): Observable<T>;
 }
