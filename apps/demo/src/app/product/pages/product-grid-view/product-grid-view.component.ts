@@ -12,7 +12,7 @@ export class ProductGridViewComponent implements OnInit {
   products$: Observable<DaffProductUnion[]>;
 
   constructor(private facade: DaffProductGridFacade) { }
-xw
+
   ngOnInit() {
     this.products$ = this.facade.products$;
     this.loading$ = this.facade.loading$;
