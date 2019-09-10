@@ -1,5 +1,5 @@
 import { Processor, Document } from 'dgeni';
-import { NavigationTree } from '../helpers/navigation-tree';
+import { generateNavigationTrieFromDocuments } from '../helpers/navigation-trie';
 
 
 export type GenerateGuideListConfiguration = {
@@ -25,7 +25,7 @@ export class GenerateGuideListProcessor implements Processor {
       template: 'guide-list.template.json',
       path: this.config.outputFolder + '/guide-list.json',
       outputPath: this.config.outputFolder + '/guide-list.json',
-      data: NavigationTree.generateTreeFromDocuments(docs.map(transformGuideDoc)).children,
+      data: generateNavigationTrieFromDocuments(docs.map(transformGuideDoc)).children,
     });
 
     return docs;
