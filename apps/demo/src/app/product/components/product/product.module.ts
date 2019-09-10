@@ -5,8 +5,8 @@ import { CommonModule } from '@angular/common';
 import { ImageGalleryModule } from '../../../core/image-gallery/image-gallery.module';
 import { ProductComponent } from './product.component';
 
-import { DaffQtyDropdownModule, 
-  DaffLinkModule,
+import {
+  DaffQtyDropdownModule, 
   DaffAccordionModule, 
   DaffContainerModule, 
   DaffLoadingIconModule } from '@daffodil/design';
@@ -18,8 +18,7 @@ import { DaffQtyDropdownModule,
     DaffLoadingIconModule,
     DaffQtyDropdownModule,
     DaffAccordionModule,
-    DaffContainerModule,
-    DaffLinkModule
+    DaffContainerModule
   ],
   declarations: [
     ProductComponent

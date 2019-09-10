@@ -16,9 +16,9 @@ import {
   DaffListModule,
   DaffContainerModule,
   DaffAccordionModule,
-  DaffFeatureModule,
-  DaffLinkModule
+  DaffFeatureModule
 } from '@daffodil/design';
+
 import { IphoneModule } from '../../design/device/iphone/iphone.module';
 
 @NgModule({
@@ -39,8 +39,7 @@ import { IphoneModule } from '../../design/device/iphone/iphone.module';
     DaffListModule,
     DaffContainerModule,
     DaffAccordionModule,
-    DaffFeatureModule,
-    DaffLinkModule
+    DaffFeatureModule
   ],
   declarations: [
     DaffioHomepageComponent

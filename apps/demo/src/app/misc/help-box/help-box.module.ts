@@ -3,14 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { HelpBoxComponent } from './help-box.component';
 
-import {
-  DaffLinkModule
-} from '@daffodil/design';
-
 @NgModule({
   imports: [
-    CommonModule,
-    DaffLinkModule
+    CommonModule
   ],
   declarations: [
     HelpBoxComponent
