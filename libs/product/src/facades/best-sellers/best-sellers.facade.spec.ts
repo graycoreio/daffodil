@@ -1,16 +1,13 @@
 import { TestBed } from '@angular/core/testing';
-
-import { MockStore } from '@ngrx/store/testing';
+import { Store, StoreModule, combineReducers } from '@ngrx/store';
+import { cold } from 'jasmine-marbles';
 
 import { DaffBestSellersFacade } from './best-sellers.facade';
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
-import { State } from '../../reducers';
-import { cold } from 'jasmine-marbles';
+import { State, reducers } from '../../reducers';
 import { DaffBestSellersLoad, DaffBestSellersLoadSuccess } from '../../actions/best-sellers.actions';
-import { reducers } from '../../reducers';
 
 describe('DaffBestSellersFacade', () => {
-  let store: MockStore<{product: Partial<State>}>;
+  let store: Store<State>;
   let facade: DaffBestSellersFacade;
 
   beforeEach(() => {

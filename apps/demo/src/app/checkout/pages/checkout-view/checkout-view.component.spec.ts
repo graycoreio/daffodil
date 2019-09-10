@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angu
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreModule, combineReducers, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 
 import { DaffAddress } from '@daffodil/core';
@@ -21,6 +21,7 @@ import {
 import * as fromDemoCheckout from '../../reducers/index';
 import { ShowPaymentView } from '../../actions/payment.actions';
 import { CheckoutViewComponent } from './checkout-view.component';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 const daffodilAddressFactory = new DaffAddressFactory();
 const paymentFactory = new DaffPaymentFactory();
@@ -109,15 +110,12 @@ describe('CheckoutViewComponent', () => {
   let cartContainer: MockCartContainer;
   let accordionItem: DaffAccordionItemComponent;
   let placeOrders;
-  let store;
+  let store: MockStore<any>;
   stubCart = cartFactory.create();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        StoreModule.forRoot({
-          demoCheckout: combineReducers(fromDemoCheckout.reducers),
-        }),
         DaffAccordionModule,
         NoopAnimationsModule,
         DaffContainerModule,
@@ -132,6 +130,9 @@ describe('CheckoutViewComponent', () => {
         MockPlaceOrderComponent,
         MockBillingContainer,
         MockCartContainer
+      ],
+      providers: [
+        provideMockStore({})
       ]
     })
     .compileComponents();
@@ -141,8 +142,8 @@ describe('CheckoutViewComponent', () => {
     fixture = TestBed.createComponent(CheckoutViewComponent);
     component = fixture.componentInstance;
     store = TestBed.get(Store);
-    spyOn(fromDemoCheckout, 'selectShowPaymentView').and.returnValue(stubShowPaymentView);
-    spyOn(fromDemoCheckout, 'selectShowReviewView').and.returnValue(stubShowReviewView);
+    store.overrideSelector(fromDemoCheckout.selectShowPaymentView, stubShowPaymentView);
+    store.overrideSelector(fromDemoCheckout.selectShowReviewView, stubShowReviewView);
     spyOn(store, 'dispatch');
     fixture.detectChanges();
 
@@ -158,6 +159,11 @@ describe('CheckoutViewComponent', () => {
     cartContainer.cart$ = of(stubCart);
     fixture.detectChanges();
   });
+
+  afterAll(() => {
+    store.resetSelectors();
+  });
+
 
   it('should create', () => {
     expect(component).toBeTruthy();
