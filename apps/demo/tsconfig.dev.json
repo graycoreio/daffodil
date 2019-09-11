@@ -10,7 +10,9 @@
       "@daffodil/product": ["libs/product/src"],
       "@daffodil/product/testing": ["libs/product/testing/src"],
       "@daffodil/cart/testing": ["libs/cart/testing/src"],
-      "@daffodil/checkout/testing": ["libs/checkout/testing/src"]
+      "@daffodil/checkout/testing": ["libs/checkout/testing/src"],
+      "@daffodil/category": ["libs/category/src"],
+      "@daffodil/category/testing": ["libs/category/testing/src"]
     }
   }
 }

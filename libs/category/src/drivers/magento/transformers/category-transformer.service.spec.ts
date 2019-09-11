@@ -43,26 +43,7 @@ describe('DaffMagentoCategoryTransformerService', () => {
             }
           ]
         },
-        children_count: mockCategory.children_count,
-        children: [{
-          id: mockCategory.children[0].id,
-          name: mockCategory.children[0].name,
-          products: {
-            total_count: mockCategory.children[0].total_products,
-            items: [
-              {
-                id: parseInt(mockCategory.children[0].productIds[0], 10),
-                name: 'name',
-                sku: 'sku',
-                url_key: 'url_key',
-                image: null,
-                price: null
-              }
-            ]
-          },
-          children: [],
-          children_count: mockCategory.children[0].children_count
-        }]
+        children_count: mockCategory.children_count
       }
 
       expect(service.transform(categoryNodeInput)).toEqual(mockCategory);

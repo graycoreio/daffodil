@@ -9,10 +9,10 @@ import { DaffCategoryQueryManagerInterface } from '../../interfaces/category-que
 })
 export class DaffMagentoCategoryGraphQlQueryManagerService implements DaffCategoryQueryManagerInterface {
 
-  getACategoryQuery(identifier: string) : QueryOptions {
+  getACategoryQuery(identifier: number) : QueryOptions {
     return {
       query:  gql`
-      query GetACategory($id: ID!){
+      query GetACategory($id: Int){
         category(id: $id) {
           id
           name
@@ -38,12 +38,6 @@ export class DaffMagentoCategoryGraphQlQueryManagerService implements DaffCatego
             }
           }
           children_count
-          children {
-            id
-            level
-            name
-            path
-          }
         }
       }`,
       variables: {

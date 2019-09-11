@@ -11,6 +11,7 @@ import { DaffProductGridFacade, DaffProduct } from '@daffodil/product';
 import { ProductGridViewComponent } from './product-grid-view.component';
 import { ProductGridComponent } from '../../components/product-grid/product-grid.component';
 import { ProductGridModule } from '../../components/product-grid/product-grid.module';
+import { DaffCategoryLoad } from '@daffodil/category';
 
 class MockDaffProductGridFacade {
   loading$: Observable<boolean> = new BehaviorSubject(false);
@@ -72,10 +73,10 @@ describe('ProductGridViewComponent', () => {
       expect(component.loading$).toBeObservable(expected);
     });
 
-    it('should dispatch a DaffProductLoad', () => {
+    it('should dispatch a DaffCategoryLoad', () => {
       spyOn(facade, 'dispatch');
       component.ngOnInit();
-      expect(facade.dispatch).toHaveBeenCalled();
+      expect(facade.dispatch).toHaveBeenCalledWith(new DaffCategoryLoad("2"));
     });
   });
 
