@@ -8,6 +8,8 @@ import { DemoHeaderComponent } from './components/header/header.component';
 import { DemoHeaderContainer } from './containers/header/header.component';
 import { LogoModule } from '../logo/logo.module';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,7 +17,8 @@ import { LogoModule } from '../logo/logo.module';
     LogoModule,
     SidebarModule,
     RouterModule,
-    DaffButtonModule
+    DaffButtonModule,
+    FontAwesomeModule
   ],
   declarations: [
     DemoHeaderComponent,
@@ -26,4 +29,4 @@ import { LogoModule } from '../logo/logo.module';
     DemoHeaderContainer
   ]
 })
-export class HeaderModule { }
+export class HeaderModule {}

@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 
 import { SidebarContainer } from './sidebar.component';
 import { DaffSidebarModule, DaffSidebarComponent } from '@daffodil/design';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({template: '<demo-sidebar (close)="closeFunction()"></demo-sidebar>'})
 class WrapperComponent {
@@ -19,7 +20,8 @@ describe('SidebarContainer', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffSidebarModule
+        DaffSidebarModule,
+        FontAwesomeModule
       ],
       declarations: [ 
         WrapperComponent,

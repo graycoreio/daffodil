@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'design-land-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss']
 })
-export class ButtonComponent {}
+export class ButtonComponent {
+  faPlus = faPlus;
+}

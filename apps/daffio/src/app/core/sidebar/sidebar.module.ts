@@ -23,4 +23,4 @@ import { DaffioSidebarViewportContainer } from './containers/sidebar-viewport/si
     DaffioSidebarViewportContainer
   ]
 })
-export class DaffioSidebarModule { }
+export class DaffioSidebarModule {}

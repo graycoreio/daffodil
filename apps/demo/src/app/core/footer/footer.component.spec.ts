@@ -5,6 +5,7 @@ import { FooterComponent } from './footer.component';
 import { By } from '@angular/platform-browser';
 
 import { DaffContainerModule, DaffListModule, DaffButtonSetModule } from '@daffodil/design';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
@@ -19,7 +20,8 @@ describe('FooterComponent', () => {
         RouterTestingModule,
         DaffContainerModule,
         DaffListModule,
-        DaffButtonSetModule
+        DaffButtonSetModule,
+        FontAwesomeModule
       ]
     })
     .compileComponents();
