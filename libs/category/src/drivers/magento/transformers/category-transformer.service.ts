@@ -18,7 +18,7 @@ export class DaffMagentoCategoryTransformerService implements DaffCategoryTransf
       total_products: categoryNode.products.total_count,
       children_count: categoryNode.children_count,
       productIds: categoryNode.products.items.map(product => product.id.toString()),
-      breadcrumbs: categoryNode.breadcrumbs.map(this.transformBreadcrumb)
+      breadcrumbs: categoryNode.breadcrumbs ? categoryNode.breadcrumbs.map(breadcrumb => this.transformBreadcrumb(breadcrumb)) : null
     }
   }
 
