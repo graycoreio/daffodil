@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import {
   InMemoryDbService,
   RequestInfoUtilities,
-  ParsedRequestUrl
+  ParsedRequestUrl,
+  STATUS
 } from 'angular-in-memory-web-api';
 
 import { DaffNavigationTree } from '@daffodil/navigation';
@@ -25,7 +26,16 @@ export class DaffInMemoryBackendNavigationService implements InMemoryDbService {
 
   createDb(): any {
     return {
-      navigationTree: this.navigationTree
+      navigation: [this.navigationTree]
     };
+  }
+
+  get(reqInfo: any) {
+    return reqInfo.utils.createResponse$(() => {
+      return {
+        body: this.navigationTree,
+        status: STATUS.OK
+      };
+    });
   }
 }
