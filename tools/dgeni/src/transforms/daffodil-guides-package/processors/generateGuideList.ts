@@ -25,7 +25,7 @@ export class GenerateGuideListProcessor implements Processor {
       template: 'guide-list.template.json',
       path: this.config.outputFolder + '/guide-list.json',
       outputPath: this.config.outputFolder + '/guide-list.json',
-      data: generateNavigationTrieFromDocuments(docs.map(transformGuideDoc)).children,
+      data: generateNavigationTrieFromDocuments(docs.map(transformGuideDoc)),
     });
 
     return docs;
