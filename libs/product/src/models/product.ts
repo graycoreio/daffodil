@@ -1,5 +1,8 @@
 import { DaffProductImage } from "./product-image";
 
+/**
+ * An interface for a product usable by the @daffodil/product library.
+ */
 export interface DaffProduct {
   id: string;
   price?: string;

@@ -58,6 +58,8 @@ describe('ImageGalleryComponent', () => {
     daffGalleryImages = fixture.debugElement.queryAll(By.css('daff-gallery-image'));
   });
 
+  afterAll(() => store.resetSelectors());
+
   it('should create', () => {
     expect(imageGalleryContainer).toBeTruthy();
   });
