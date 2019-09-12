@@ -1,36 +1,54 @@
-# Theming
+# Daffodil Theming Documentation
 
-The **daff-theme** utility library is for theming the daffodil
-design library. It contains many useful mixins, functions, 
-and variables.
+## Theming Installation
 
-## Step 1: Add the path to your angular configuration file.
-Within your project's `angular.json`, append the following to the key `projects.project-name.architect.build.options`
+If you’d like to find out more about how to use the library and how to take advantage of its capabilities, see the [theming overview](../theming.md).
 
-```json
-"build":{
-  "options":{
-    "stylePreprocessorOptions": {
-        "includePaths": [
-            "./node_modules/@daffodil/design"
-          ]
+
+> This setup assumes that you’ve already installed the `@daffodil/design` package.
+
+**Add the package path to your angular configuration file**
+Within your project's `angular.json` file, include the path to the `@daffodil/design` package inside of  `stylePreprocessorOptions``.includePaths`:
+
+
+    json
+    ...
+    "build": {
+      "options": {
+        "stylePreprocessorOptions": {
+            "includePaths": [
+                "./node_modules/@daffodil/design"
+              ]
+          }
       }
-  }
-}
-```
-## Step 2: Import the style sheets inside of your project's global styling sheet.
+    }
+    ...
 
-In your project's global style sheet (typically `styles.scss` in the project's root directory; e.g.`src/` or `projects/my-project/src`), add the following code for all of Daffodil's styling tools to be available.
+**Import the SASS stylesheets in****to** **your project's global stylesheet**
+To make all of Daffodil's SASS styling utilities easily available, add the following code to your project's global stylesheet (typically `src/``styles.scss`):
 
-```scss
-@import 'daff-typography';
-@import 'daff-theme';
 
-$primary: daff-configure-palette($daff-yellow, 60);
-$secondary: daff-configure-palette($daff-purple, 60);
-$tertiary: daff-configure-palette($daff-blue, 60);
+    scss
+    
+    @import 'daff-theme';
 
-$theme: daff-configure-theme($primary, $secondary, $tertiary, "light");
 
-@include daff-theme($theme);
-```
+## Configure Your Theme
+
+Configure the global theme for the Daffodil components that will be used in your project.
+
+
+    scss
+    @import 'daff-theme';
+    ...
+    $primary: daff-configure-palette($daff-yellow, 60);
+    $secondary: daff-configure-palette($daff-purple, 60);
+    $tertiary: daff-configure-palette($daff-blue, 60);
+    $theme: daff-configure-theme($primary, $secondary, $tertiary, 'light');
+    ...
+    @include daff-theme($theme);
+
+
+> Note: This does not add the sass utilities into your individual component files. Those files are compiled by the Angular CLI separately, and currently need their own imports if you are planning on using the `daff-theme`  features within your component scss files.
+
+
