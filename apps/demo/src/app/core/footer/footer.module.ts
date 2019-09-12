@@ -12,8 +12,6 @@ import {
 import { FooterComponent } from './footer.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTwitter, faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 @NgModule({
   imports: [
@@ -33,9 +31,4 @@ import { faTwitter, faFacebookF, faInstagram } from '@fortawesome/free-brands-sv
     FooterComponent
   ]
 })
-export class FooterModule {
-  constructor() {
-    // Add an icon to the library for convenient access in other components
-    library.add(faTwitter, faFacebookF, faInstagram);
-  }
-}
+export class FooterModule {}

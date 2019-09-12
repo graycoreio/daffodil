@@ -3,7 +3,7 @@
   tabindex="0"
   attr.aria-label="Go to Previous Page of {{_paginatorId}} Paginator"
   (click)="_onNotifyPrevPageChange()">
-  <fa-icon [icon]="['fa', 'chevron-left']"></fa-icon> Previous
+  <fa-icon [icon]="faChevronLeft"></fa-icon> Previous
 </button>
 
 <button type="button" class="daff-paginator__page-link"
@@ -43,5 +43,5 @@
   tabindex="0"
   attr.aria-label="Go to Next Page of {{_paginatorId}} Paginator"
   (click)="_onNotifyNextPageChange()">
-  Next <fa-icon [icon]="['fa', 'chevron-right']"></fa-icon>
+  Next <fa-icon [icon]="faChevronRight"></fa-icon>
 </button>

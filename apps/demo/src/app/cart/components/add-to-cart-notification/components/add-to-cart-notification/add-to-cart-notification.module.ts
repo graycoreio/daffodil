@@ -11,8 +11,6 @@ import { TemplateModule } from '../../../../../core/template/template/template.m
 import { ModalPortalModule } from '../../../../../core/template/portals/modal-portal.module';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
   imports: [
@@ -36,9 +34,4 @@ import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
     AddToCartNotificationComponent
   ]
 })
-export class AddToCartNotificationComponentModule {
-  constructor() {
-    // Add an icon to the library for convenient access in other components
-    library.add(faCheck, faTimes);
-  }
-}
+export class AddToCartNotificationComponentModule {}

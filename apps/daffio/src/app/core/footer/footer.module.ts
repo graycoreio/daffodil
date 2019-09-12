@@ -19,8 +19,6 @@ import {
 import { DaffLogoModule, DaffCopyrightModule } from '@daffodil/branding';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faGithub, faGitter } from '@fortawesome/free-brands-svg-icons';
 
 @NgModule({
   imports: [
@@ -47,9 +45,4 @@ import { faGithub, faGitter } from '@fortawesome/free-brands-svg-icons';
     DaffioSubFooterComponent
   ]
 })
-export class DaffioFooterModule {
-  constructor() {
-    // Add an icon to the library for convenient access in other components
-    library.add(faGithub, faGitter);
-  }
-}
+export class DaffioFooterModule {}

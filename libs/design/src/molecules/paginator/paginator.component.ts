@@ -2,6 +2,8 @@ import { Component, Input, Output, EventEmitter, HostBinding, ElementRef, OnChan
 
 import { daffColorMixin, DaffPalette, DaffColorable } from '../../core/colorable/colorable';
 
+import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+
 /**
  * An _elementRef is needed for the Colorable mixin
  */
@@ -22,6 +24,9 @@ const visiblePageRange = 2;
 export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChanges, DaffColorable {
   @HostBinding('class.daff-paginator') class = true;
   @HostBinding('attr.role') role = 'navigation';
+
+  faChevronRight = faChevronRight;
+  faChevronLeft = faChevronLeft;
 
   /**
    * The color theme of the paginator.

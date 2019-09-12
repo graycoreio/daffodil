@@ -9,8 +9,6 @@ import { DemoHeaderContainer } from './containers/header/header.component';
 import { LogoModule } from '../logo/logo.module';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBars, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
   imports: [
@@ -31,9 +29,4 @@ import { faBars, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
     DemoHeaderContainer
   ]
 })
-export class HeaderModule {
-  constructor() {
-    // Add an icon to the library for convenient access in other components
-    library.add(faBars, faShoppingCart);
-  }
-}
+export class HeaderModule {}
