@@ -2,22 +2,32 @@ import { Action } from '@ngrx/store';
 import { DaffNewsletter } from './../models/newsletter.model';
 import { DaffNewsletterActions, DaffNewsletterActionTypes } from './../actions/newsletter.actions';
 
-const intialState: DaffNewsletter = {
-  firstName: "",
-  lastName: "",
-  address: ""
+export interface DaffNewsletterState {
+  success: boolean;
+  loading: boolean;
+  error: string | null;
 }
 
-export function newsletter_reducer(state: DaffNewsletter[] = [intialState], action: DaffNewsletterActions) {
+const initialState: DaffNewsletterState = {
+  success: false,
+  loading: false,
+  error: null
+}
+
+export function reducer(state: DaffNewsletterState = initialState, action: DaffNewsletterActions) {
   switch (action.type) {
+    case DaffNewsletterActionTypes.NewsletterRetry:
     case DaffNewsletterActionTypes.NewsletterSubscribeAction:
-      return [...state, action.payload];
-    case DaffNewsletterActionTypes.NewsletterCloseAction:
-      return [...state, action.payload];
+      return {...state, loading: true};
     case DaffNewsletterActionTypes.NewsletterFailedSubscribeAction:
-      return [...state, action.payload];
+      return { ...state, loading: false, error: action.payload };
+    case DaffNewsletterActionTypes.NewsletterCancelAction:
+      return { ...state, loading: false};
+    case DaffNewsletterActionTypes.NewsletterSuccessSubscribeAction:
+        return { ...state, success: true, loading: false};
+    case DaffNewsletterActionTypes.NewsletterReset:
+        return {...state, ...initialState};
     default:
       return state;
-
   }
 }

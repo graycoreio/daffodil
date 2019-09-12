@@ -6,17 +6,16 @@ import { DaffNewsletter } from '../models/newsletter.model';
 import { DaffNewsletterModule } from '../newsletter.module';
 import { isObject } from 'util';
 
-import { selectNewsletterFirstName, selectNewsletterLastName, selectNewsletterAddress } from '../selectors/newsletter.selector';
-
+import { State, selectDaffNewsletterSuccess, selectDaffNewsletterError, selectDaffNewsletterLoading } from '../selectors/newsletter.selector';
+import { DaffStoreFacade } from '@daffodil/core';
 
 @Injectable()
-export class DaffNewsletterFacade{
-  firstName$ = this.store.select(selectNewsletterFirstName);
-  lastName$ = this.store.select(selectNewsletterLastName);
-  address$ = this.store.select(selectNewsletterAddress);
+export class DaffNewsletterFacade implements DaffStoreFacade<Action>{
+  success$ : Observable<boolean> = this.store.select(selectDaffNewsletterSuccess);
+  error$: Observable<string> = this.store.select(selectDaffNewsletterError);
+  loading$: Observable<boolean> = this.store.select(selectDaffNewsletterLoading);
 
-
-  constructor(private store: Store<DaffNewsletter>){
+  constructor(private store: Store<State>){
 
   }
   dispatch(action: Action) {
