@@ -7,8 +7,6 @@ import { DesignLandListRoutingModule } from './list-routing.module';
 import { ListComponent } from './list.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 @NgModule({
   declarations: [
@@ -21,10 +19,4 @@ import { faTwitter } from '@fortawesome/free-brands-svg-icons';
     FontAwesomeModule
   ]
 })
-export class ListModule {
-  
-  constructor() {
-    // Add an icon to the library for convenient access in other components
-    library.add(faTwitter);
-  }
-}
+export class ListModule {}

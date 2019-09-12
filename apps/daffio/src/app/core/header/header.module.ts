@@ -7,12 +7,14 @@ import {
   DaffButtonModule,
   DaffContainerModule
 } from '@daffodil/design';
-import { DaffLogoModule } from '@daffodil/branding';
 
+import { DaffLogoModule } from '@daffodil/branding';
 
 import { DaffioHeaderComponent } from './component/header.component';
 import { DaffioHeaderContainer } from './containers/header.component';
 import { DaffioHeaderItemDirective } from './header-item/header-item.directive';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
@@ -22,7 +24,8 @@ import { DaffioHeaderItemDirective } from './header-item/header-item.directive';
     DaffNavbarModule,
     DaffLogoModule,
     DaffButtonModule,
-    DaffContainerModule
+    DaffContainerModule,
+    FontAwesomeModule
   ],
   declarations: [
     DaffioHeaderComponent,
@@ -33,4 +36,4 @@ import { DaffioHeaderItemDirective } from './header-item/header-item.directive';
     DaffioHeaderContainer
   ]
 })
-export class DaffioHeaderModule { }
+export class DaffioHeaderModule {}
