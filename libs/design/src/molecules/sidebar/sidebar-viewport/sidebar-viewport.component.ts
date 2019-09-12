@@ -14,20 +14,28 @@ import { getAnimationState } from '../animation/sidebar-animation-state';
     daffSidebarAnimations.transformContent
   ]
 })
-export class DaffSidebarViewportComponent implements OnInit{
+export class DaffSidebarViewportComponent implements OnInit {
 
   _animationState: string;
-  
-  
+
+
   /**
    * Internal tracking variable for the state of sidebar viewport.
    */
   _opened = false;
-  
+
+  _mode: DaffSidebarMode = "side";
+
   /**
    * The mode to put the sidebar in
    */
-  @Input() mode: DaffSidebarMode = "side";
+  @Input()
+  get mode(): DaffSidebarMode { return this._mode; }
+  set mode(value: DaffSidebarMode) {
+    this._mode = value;
+    this._animationState = getAnimationState(this.opened, this.animationsEnabled);
+  }
+
   /**
    * Input state for whether or not the backdrop is 
    * "visible" to the human eye
@@ -39,31 +47,31 @@ export class DaffSidebarViewportComponent implements OnInit{
    * This is often used to close the sidebar
    */
   @Output() backdropClicked: EventEmitter<void> = new EventEmitter<void>();
-  
-  get animationsEnabled() : boolean {
-    return ( this.mode === "over" || this.mode === "push" ) ? true : false;
+
+  get animationsEnabled(): boolean {
+    return (this.mode === "over" || this.mode === "push") ? true : false;
   }
 
   ngOnInit() {
     this._animationState = getAnimationState(this.opened, this.animationsEnabled);
   }
-  
+
   /**
    * Property for the "opened" state of the sidebar
    */
   @Input()
   get opened(): boolean { return this._opened; }
-  set opened(value: boolean) { 
+  set opened(value: boolean) {
     this._opened = value;
     this._animationState = getAnimationState(value, this.animationsEnabled);
   }
-  
-  
-  _backdropClicked() : void {
+
+
+  _backdropClicked(): void {
     this.backdropClicked.emit();
   }
-  
-  get hasBackdrop() : boolean {
+
+  get hasBackdrop(): boolean {
     return (this.mode === "over" || this.mode === "push");
   }
 }
