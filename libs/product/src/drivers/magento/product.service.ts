@@ -13,6 +13,9 @@ import { DaffProductQueryManager } from '../injection-tokens/product-query-manag
 import { DaffProductUnion } from '../../models/product-union';
 import { DaffProductMagentoDriverModule } from './product-driver.module';
 
+/**
+ * A service for making magento apollo queries for products of type, DaffProductUnion.
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -22,12 +25,19 @@ export class DaffMagentoProductService implements DaffProductServiceInterface<Da
     @Inject(DaffProductQueryManager) public queryManager: DaffProductQueryManagerInterface,
     @Inject(DaffProductTransformer) public transformer: DaffProductTransformerInterface<DaffProductUnion>) {}
 
+  /**
+   * Get an Observable of a DaffProductUnion by id.
+   * @param productId a product Id
+   */
   get(productId: string): Observable<DaffProductUnion> {
     return this.apollo.query<any>(this.queryManager.getAProductQuery(productId)).pipe(
       map(result => this.transformer.transform(result.data))
     );
   }
 
+  /**
+   * Get an Observable of an array of DaffProductUnions.
+   */
   getAll(): Observable<DaffProductUnion[]> {
     return this.apollo.query<any>(this.queryManager.getAllProductsQuery()).pipe(
       map(result => this.transformer.transformMany(result.data.products.items))

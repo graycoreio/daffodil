@@ -5,6 +5,9 @@ import { DaffProductDriver } from '@daffodil/product';
 
 import { DaffInMemoryProductService } from './product.service';
 
+/**
+ * Module for providing the DaffInMemoryProductService driver to your application.
+ */
 @NgModule({
   imports: [
     CommonModule
