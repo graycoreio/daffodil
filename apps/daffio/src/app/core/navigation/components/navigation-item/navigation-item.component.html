@@ -1,0 +1,19 @@
+<ng-container *ngIf="level === 0">
+    <daffio-navigation-item 
+      *ngFor="let child of tree.children" [tree]="child" [level]="nextLevel">
+    </daffio-navigation-item>
+</ng-container>
+
+<ng-container *ngIf="level > 0">
+  <daff-link-set class="level-{{ level }}">
+    <a *ngIf="level === 1 && tree.path" [routerLink]="'/docs/' + tree.path" daffLinkSetHeading daff-link-set-item>{{ tree.title }}</a>
+    <div *ngIf="level === 1 && !tree.path" daffLinkSetHeading>{{ tree.title }}</div>
+    <ng-container *ngFor="let child of tree.children">
+      <ng-container *ngIf="child.children.length > 0">
+        <a [routerLink]="'/docs/' + tree.path" daffLinkSetSubheading daff-link-set-item>{{ child.title }}</a>
+        <daffio-navigation-item [tree]="child" [level]="nextLevel"></daffio-navigation-item>
+      </ng-container>
+      <a *ngIf="child.children.length == 0" [routerLink]="'/docs/' + child.path" daff-link-set-item>{{ child.title }}</a>
+    </ng-container>
+  </daff-link-set>
+</ng-container> 

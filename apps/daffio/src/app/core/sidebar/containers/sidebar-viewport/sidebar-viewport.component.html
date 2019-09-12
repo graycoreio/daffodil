@@ -1,6 +1,10 @@
 <daff-sidebar-viewport (backdropClicked)="close()" [mode]="mode$ | async" [opened]="showSidebar$ | async">
   <daff-sidebar class="daffio-sidebar" (escapePressed)="close()">
+    <daffio-navigation-item [tree]="tree" *ngIf="tree$ | async as tree; else loading"></daffio-navigation-item>
+    <ng-template #loading>
+        <daff-loading-icon></daff-loading-icon>
+    </ng-template>   
     <button type="button" daff-button class="daffio-sidebar__button">Get Started</button>
-    </daff-sidebar>
+  </daff-sidebar>
   <ng-content></ng-content>
 </daff-sidebar-viewport>

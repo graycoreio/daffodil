@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { ROUTER_NAVIGATION, ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
+import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
 
-import { Observable, of, asyncScheduler, combineLatest } from 'rxjs';
-import { switchMap, delay, map, tap } from 'rxjs/operators';
+import { Observable, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Action } from '@ngrx/store';
 
 import * as SidebarActions from '../actions/sidebar.actions';

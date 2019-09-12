@@ -1,6 +1,7 @@
 .daffio-sidebar {
 	align-self: flex-start;
+	height: calc(100vh - 70px);
+	padding: 25px;
 	position: sticky;
 	top: 70px;
-	height: calc(100vh - 70px);
 }
