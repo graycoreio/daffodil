@@ -5,8 +5,7 @@ import { RouterModule } from '@angular/router';
 import {
   DaffNavbarModule,
   DaffButtonModule,
-  DaffContainerModule,
-  DaffLinkModule
+  DaffContainerModule
 } from '@daffodil/design';
 import { DaffLogoModule } from '@daffodil/branding';
 
@@ -23,8 +22,7 @@ import { DaffioHeaderItemDirective } from './header-item/header-item.directive';
     DaffNavbarModule,
     DaffLogoModule,
     DaffButtonModule,
-    DaffContainerModule,
-    DaffLinkModule
+    DaffContainerModule
   ],
   declarations: [
     DaffioHeaderComponent,

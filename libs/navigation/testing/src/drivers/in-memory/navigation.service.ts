@@ -7,7 +7,7 @@ import { DaffNavigationTree, DaffNavigationServiceInterface } from '@daffodil/na
 @Injectable({
   providedIn: 'root'
 })
-export class DaffInMemoryNavigationService implements DaffNavigationServiceInterface {
+export class DaffInMemoryNavigationService implements DaffNavigationServiceInterface<DaffNavigationTree> {
   url = '/api/navigation/';
 
   constructor(private http: HttpClient) {}

@@ -6,8 +6,7 @@ import {
   DaffListModule, 
   DaffButtonSetModule, 
   DaffButtonModule, 
-  DaffContainerModule,
-  DaffLinkModule
+  DaffContainerModule
 } from '@daffodil/design';
 
 import { FooterComponent } from './footer.component';
@@ -20,8 +19,7 @@ import { FooterComponent } from './footer.component';
     DaffListModule,
     DaffButtonModule,
     DaffButtonSetModule,
-    DaffContainerModule,
-    DaffLinkModule
+    DaffContainerModule
   ],
   declarations: [
     FooterComponent

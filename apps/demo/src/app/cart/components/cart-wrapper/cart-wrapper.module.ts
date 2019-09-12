@@ -8,8 +8,7 @@ import { HelpBoxModule } from '../../../misc/help-box/help-box.module';
 
 import {
   DaffButtonModule,
-  DaffButtonSetModule,
-  DaffLinkModule
+  DaffButtonSetModule
 } from '@daffodil/design';
 
 @NgModule({
@@ -20,8 +19,7 @@ import {
     ProceedToCheckoutModule,
     HelpBoxModule,
     DaffButtonModule,
-    DaffButtonSetModule,
-    DaffLinkModule
+    DaffButtonSetModule
   ],
   declarations: [
     CartWrapperComponent

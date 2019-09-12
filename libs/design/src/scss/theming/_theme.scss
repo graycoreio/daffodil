@@ -1,5 +1,4 @@
 @import '../../atoms/button/button-theme';
-@import '../../atoms/link/link-theme';
 @import '../../atoms/form/form-field/error-message/error-message-theme';
 @import '../../atoms/form/form-field/form-field/form-field-theme';
 @import '../../atoms/form/input/input/input-theme';
@@ -12,6 +11,7 @@
 @import '../../molecules/card/card/card-theme';
 @import '../../molecules/hero/hero-theme';
 @import '../../molecules/navbar/navbar-theme';
+@import '../../molecules/paginator/paginator-theme';
 @import '../../molecules/sidebar/sidebar/sidebar-theme';
 @import '../../molecules/sidebar/sidebar-viewport/sidebar-viewport-theme';
 
@@ -29,7 +29,6 @@
 	@include daff-form-field-theme($theme);
 	@include daff-input-theme($theme);
 	@include daff-select-theme($theme);
-	@include daff-link-theme($theme);
 	@include daff-progress-indicator-theme($theme);
 	@include daff-loading-icon-theme($theme);
 
@@ -39,6 +38,7 @@
 	@include daff-card-theme($theme);
 	@include daff-hero-theme($theme);
 	@include daff-navbar-theme($theme);
+	@include daff-paginator-theme($theme);
 	@include daff-sidebar-theme($theme);
 	@include daff-sidebar-viewport-theme($theme);
 }

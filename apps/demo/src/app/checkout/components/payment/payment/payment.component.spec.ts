@@ -12,6 +12,7 @@ import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 import { ShowPaymentForm, ToggleShowPaymentForm, HidePaymentForm } from '../../../actions/payment.actions';
 import * as fromDemoCheckout from '../../../reducers';
 import { PaymentComponent } from './payment.component';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 const paymentFactory = new DaffPaymentFactory();
 const daffodilAddressFactory = new DaffAddressFactory();
@@ -67,21 +68,19 @@ describe('PaymentComponent', () => {
   let paymentForm: MockPaymentFormComponent;
   let paymentSummary: MockPaymentSummaryComponent;
   let billingSummary: MockBillingSummaryComponent;
-  let store;
+  let store: MockStore<any>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        StoreModule.forRoot({
-          shippings: combineReducers(fromDemoCheckout.reducers),
-        })
-      ],
       declarations: [ 
         WrapperComponent,
         MockPaymentFormComponent,
         MockPaymentSummaryComponent,
         MockBillingSummaryComponent,
         PaymentComponent
+      ],
+      providers: [
+        provideMockStore({})
       ]
     })
     .compileComponents();
@@ -91,7 +90,7 @@ describe('PaymentComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     store = TestBed.get(Store);
-    spyOn(fromDemoCheckout, 'selectShowPaymentForm').and.returnValue(stubShowPaymentForm);
+    store.overrideSelector(fromDemoCheckout.selectShowPaymentForm, stubShowPaymentForm)
     spyOn(store, 'dispatch');
     
     fixture.detectChanges();
@@ -101,6 +100,10 @@ describe('PaymentComponent', () => {
     paymentSummary = fixture.debugElement.query(By.css('demo-payment-summary')).componentInstance;
     billingSummary = fixture.debugElement.query(By.css('demo-billing-summary')).componentInstance;
   });
+
+  afterAll(() => {
+    store.resetSelectors();
+  })
 
   it('should create', () => {
     expect(payment).toBeTruthy();
