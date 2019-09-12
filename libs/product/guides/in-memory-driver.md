@@ -1,4 +1,4 @@
-## Using the InMemory Driver
+# Using the InMemory Driver
 
 The InMemory driver is for rapid development without the need to set up a magento/shopify/etc backend. It will mock out the service calls to get products and return fake data. There are a few steps to wiring up the DaffInMemory driver:
 
