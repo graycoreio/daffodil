@@ -1,6 +1,6 @@
 import { ProductNode } from "@daffodil/product";
 
-export interface CategoryProductNode {
+export interface CategoryProductsNode {
   total_count: number;
   items: ProductNode[];
 }

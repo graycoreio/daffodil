@@ -64,6 +64,7 @@ describe('Driver | Magento | Category | CategoryService', () => {
         category: {
           id: stubCategory.id,
           name: stubCategory.name,
+          breadcrumbs: [],
           products: {
             total_count: stubCategory.total_products,
             items: []

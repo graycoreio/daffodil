@@ -16,6 +16,12 @@ export class DaffMagentoCategoryGraphQlQueryManagerService implements DaffCatego
         category(id: $id) {
           id
           name
+          breadcrumbs {
+            category_id
+            category_name
+            category_level
+            category_url_key
+          }
           products {
             total_count
             items {

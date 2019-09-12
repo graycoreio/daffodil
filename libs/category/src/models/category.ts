@@ -1,3 +1,5 @@
+import { DaffCategoryBreadcrumb } from "./category-breadcrumb";
+
 export interface DaffCategory {
   id: string;
   name: string;
@@ -5,4 +7,5 @@ export interface DaffCategory {
   total_products?: number;
   children?: DaffCategory[];
   productIds?: string[];
+  breadcrumbs?: DaffCategoryBreadcrumb[];
 }

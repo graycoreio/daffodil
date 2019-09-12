@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffMagentoCategoryTransformerService } from './category-transformer.service';
 import { DaffCategoryFactory } from '@daffodil/category/testing';
+
+import { DaffMagentoCategoryTransformerService } from './category-transformer.service';
 import { DaffCategory } from '../../../models/category';
 import { CategoryNode } from '../models/category-node';
 
@@ -30,6 +31,12 @@ describe('DaffMagentoCategoryTransformerService', () => {
       const categoryNodeInput: CategoryNode = {
         id: mockCategory.id,
         name: mockCategory.name,
+        breadcrumbs: [{
+          category_id: mockCategory.breadcrumbs[0].categoryId,
+          category_name: mockCategory.breadcrumbs[0].categoryName,
+          category_level: mockCategory.breadcrumbs[0].categoryLevel,
+          category_url_key: mockCategory.breadcrumbs[0].categoryUrlKey
+        }],
         products: {
           total_count: mockCategory.total_products,
           items: [
