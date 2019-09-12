@@ -27,7 +27,7 @@ describe('Driver | InMemory | Navigation | DaffInMemoryBackendNavigationService'
     });
 
     it('should return an object with a NavigationTree', () => {
-      expect(isNavigation(result.navigationTree)).toBeTruthy();
+      expect(isNavigation(result.navigation[0])).toBeTruthy();
     });
   });
 });
