@@ -15,9 +15,6 @@ export class DaffMagentoCategoryTransformerService implements DaffCategoryTransf
       name: categoryNode.name,
       total_products: categoryNode.products.total_count,
       children_count: categoryNode.children_count,
-      children: categoryNode.children.map((child) => {
-        return this.transform(child)
-      }),
       productIds: categoryNode.products.items.map(product => product.id.toString())
     }
   }
