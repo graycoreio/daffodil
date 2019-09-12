@@ -7,8 +7,6 @@ import { DaffSidebarModule, DaffButtonModule } from '@daffodil/design';
 import { DaffioSidebarStateModule } from './sidebar.state.module';
 import { DaffioSidebarViewportContainer } from './containers/sidebar-viewport/sidebar-viewport.component';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -16,8 +14,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     
     DaffioSidebarStateModule,
     DaffSidebarModule,
-    DaffButtonModule,
-    FontAwesomeModule
+    DaffButtonModule
   ],
   declarations: [
     DaffioSidebarViewportContainer
