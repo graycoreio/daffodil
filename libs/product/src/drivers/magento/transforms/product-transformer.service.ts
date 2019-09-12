@@ -4,11 +4,18 @@ import { DaffProductUnion } from '../../../models/product-union';
 import { DaffProductTransformerInterface } from '../../interfaces/product-transformer.interface';
 import { ProductNode } from '../models/product-node';
 
+/**
+ * Transforms magento products into an object usable by daffodil.
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class DaffMagentoProductTransformerService implements DaffProductTransformerInterface<DaffProductUnion> {
 
+  /**
+   * Transforms the magento ProductNode from the magento product query into a DaffProductUnion. 
+   * @param response the response from a magento product query.
+   */
   transform(response: any): DaffProductUnion {
     const product: ProductNode = response.products.items[0];
     return {
@@ -29,6 +36,9 @@ export class DaffMagentoProductTransformerService implements DaffProductTransfor
     }
   }
 
+  /**
+   * Transforms many magento ProductNodes from the magento product query into DaffProductUnions.
+   */
   transformMany(products: any[]): DaffProductUnion[] {
     return products.map(this.transformList);
   }
