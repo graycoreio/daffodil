@@ -150,6 +150,17 @@ describe('DaffSidebarViewportComponent | Usage', () => {
       expect(component._animationState).toEqual("open");
     });
   });
+
+  it('should recalculate the animation state when the mode changes', () => {
+    wrapper.mode = "side";
+    wrapper.open = false;
+    fixture.detectChanges();
+    expect(component._animationState).toEqual("open");
+
+    wrapper.mode = "push";
+    fixture.detectChanges();
+    expect(component._animationState).toEqual("closed");
+  });
 });
 
 describe('DaffSidebarViewportComponent | Defaults', () => {
