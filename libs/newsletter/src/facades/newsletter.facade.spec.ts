@@ -56,7 +56,7 @@ describe('DaffNewsletterFacade', () => {
       expect(facade.error$).toBeObservable(expected);
     });
     it('should return an error message when it fails to subscribe', () => {
-      const msg: string = 'Failed to subscribe';
+      const msg = 'Failed to subscribe';
       const expected = cold('a', { a: msg });
       store.dispatch(new DaffNewsletterFailedSubscribe(msg));
       expect(facade.error$).toBeObservable(expected);
