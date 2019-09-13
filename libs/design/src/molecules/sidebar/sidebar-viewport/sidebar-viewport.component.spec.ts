@@ -8,7 +8,8 @@ import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 import { DaffSidebarMode } from '../helper/sidebar-mode';
 import { DaffBackdropComponent, DaffBackdropModule } from '../../backdrop/public_api';
 
-@Component({template: `
+@Component({
+  template: `
   <div class="sidebar-content-wrapper">
     <daff-sidebar-viewport
       [backdropIsVisible]="backdropIsVisible"
@@ -23,7 +24,7 @@ class WrapperComponent {
   backdropIsVisible = false;
 
   mode: DaffSidebarMode = "side";
-  
+
   backdropClickedCounter = 0;
 
   incrementBackdropClicked() {
@@ -53,7 +54,7 @@ describe('DaffSidebarViewportComponent | Usage', () => {
         DaffSidebarComponent,
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -95,13 +96,13 @@ describe('DaffSidebarViewportComponent | Usage', () => {
 
       backdrop.backdropClicked.emit();
     });
-    
+
     it('should call component.backdropClicked.emit', () => {
       expect(component.backdropClicked.emit).toHaveBeenCalled();
     });
   });
 
-  describe('over mode' , () => {
+  describe('over mode', () => {
     beforeEach(() => {
       wrapper.mode = "over";
       fixture.detectChanges();
@@ -111,7 +112,7 @@ describe('DaffSidebarViewportComponent | Usage', () => {
       expect(backdrop).not.toBeNull();
     });
   });
-  
+
   describe('push mode', () => {
     beforeEach(() => {
       wrapper.mode = "push";
@@ -179,7 +180,7 @@ describe('DaffSidebarViewportComponent | Defaults', () => {
         DaffSidebarComponent,
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
