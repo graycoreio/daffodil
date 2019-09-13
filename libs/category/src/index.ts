@@ -1,4 +1,5 @@
 export { DaffCategory } from './models/category';
+export { DaffCategoryBreadcrumb } from './models/category-breadcrumb';
 export { DaffCategoryActionTypes, DaffCategoryActions, DaffCategoryLoad, DaffCategoryLoadFailure, DaffCategoryLoadSuccess } from './actions/category.actions';
 
 export { categoryReducers } from './reducers/category-reducers';
@@ -7,6 +8,7 @@ export { DaffCategoryFacade } from './facades/category.facade';
 export { DaffCategoryModule } from './category.module';
 export { DaffCategoryDriver } from './drivers/injection-tokens/category-driver.token';
 export { DaffCategoryServiceInterface } from './drivers/interfaces/category-service.interface';
+export { DaffCategoryMagentoDriverModule } from './drivers/magento/category-driver.module';
 
 export {
   selectCategoryFeatureState,

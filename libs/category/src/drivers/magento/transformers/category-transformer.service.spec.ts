@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffMagentoCategoryTransformerService } from './category-transformer.service';
 import { DaffCategoryFactory } from '@daffodil/category/testing';
+
+import { DaffMagentoCategoryTransformerService } from './category-transformer.service';
 import { DaffCategory } from '../../../models/category';
 import { CategoryNode } from '../models/category-node';
 
@@ -30,6 +31,12 @@ describe('DaffMagentoCategoryTransformerService', () => {
       const categoryNodeInput: CategoryNode = {
         id: mockCategory.id,
         name: mockCategory.name,
+        breadcrumbs: [{
+          category_id: mockCategory.breadcrumbs[0].categoryId,
+          category_name: mockCategory.breadcrumbs[0].categoryName,
+          category_level: mockCategory.breadcrumbs[0].categoryLevel,
+          category_url_key: mockCategory.breadcrumbs[0].categoryUrlKey
+        }],
         products: {
           total_count: mockCategory.total_products,
           items: [
@@ -43,26 +50,7 @@ describe('DaffMagentoCategoryTransformerService', () => {
             }
           ]
         },
-        children_count: mockCategory.children_count,
-        children: [{
-          id: mockCategory.children[0].id,
-          name: mockCategory.children[0].name,
-          products: {
-            total_count: mockCategory.children[0].total_products,
-            items: [
-              {
-                id: parseInt(mockCategory.children[0].productIds[0], 10),
-                name: 'name',
-                sku: 'sku',
-                url_key: 'url_key',
-                image: null,
-                price: null
-              }
-            ]
-          },
-          children: [],
-          children_count: mockCategory.children[0].children_count
-        }]
+        children_count: mockCategory.children_count
       }
 
       expect(service.transform(categoryNodeInput)).toEqual(mockCategory);

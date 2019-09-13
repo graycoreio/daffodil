@@ -9,13 +9,19 @@ import { DaffCategoryQueryManagerInterface } from '../../interfaces/category-que
 })
 export class DaffMagentoCategoryGraphQlQueryManagerService implements DaffCategoryQueryManagerInterface {
 
-  getACategoryQuery(identifier: string) : QueryOptions {
+  getACategoryQuery(identifier: number) : QueryOptions {
     return {
       query:  gql`
-      query GetACategory($id: ID!){
+      query GetACategory($id: Int){
         category(id: $id) {
           id
           name
+          breadcrumbs {
+            category_id
+            category_name
+            category_level
+            category_url_key
+          }
           products {
             total_count
             items {
@@ -38,12 +44,6 @@ export class DaffMagentoCategoryGraphQlQueryManagerService implements DaffCatego
             }
           }
           children_count
-          children {
-            id
-            level
-            name
-            path
-          }
         }
       }`,
       variables: {
