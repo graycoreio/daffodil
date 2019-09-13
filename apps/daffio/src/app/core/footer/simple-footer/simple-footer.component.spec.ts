@@ -6,6 +6,7 @@ import { DaffioSimpleFooterComponent } from './simple-footer.component';
 
 import { DaffContainerModule } from '@daffodil/design';
 import { DaffLogoModule, DaffCopyrightModule } from '@daffodil/branding';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 describe('DaffioSimpleFooterComponent', () => {
   let component: DaffioSimpleFooterComponent;
@@ -20,7 +21,8 @@ describe('DaffioSimpleFooterComponent', () => {
         RouterTestingModule,
         DaffContainerModule,
         DaffLogoModule,
-        DaffCopyrightModule
+        DaffCopyrightModule,
+        FontAwesomeModule
       ]
     })
     .compileComponents();

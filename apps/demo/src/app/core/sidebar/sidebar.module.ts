@@ -8,12 +8,15 @@ import { DemoSidebarStateModule } from './sidebar.state.module';
 import { SidebarViewportContainer } from './containers/sidebar-viewport/sidebar-viewport.component';
 import { SidebarContainer } from './containers/sidebar/sidebar.component';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     DemoSidebarStateModule,
-    DaffSidebarModule
+    DaffSidebarModule,
+    FontAwesomeModule
   ],
   declarations: [
     SidebarViewportContainer,
@@ -24,4 +27,5 @@ import { SidebarContainer } from './containers/sidebar/sidebar.component';
     SidebarContainer
   ]
 })
-export class SidebarModule { }
+
+export class SidebarModule {}
