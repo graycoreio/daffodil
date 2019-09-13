@@ -1,4 +1,4 @@
-# Daffodil Theming Documentation
+# Daffodil Theming Installation Guide
 
 ## Theming Installation
 
@@ -8,7 +8,7 @@ If you’d like to find out more about how to use the library and how to take ad
 > This setup assumes that you’ve already installed the `@daffodil/design` package.
 
 **Add the package path to your angular configuration file**
-Within your project's `angular.json` file, include the path to the `@daffodil/design` package inside of  `stylePreprocessorOptions``.includePaths`:
+Within your project's `angular.json` file, include the path to the `@daffodil/design` package inside of  `stylePreprocessorOptions.includePaths`:
 
 
     json
@@ -25,7 +25,7 @@ Within your project's `angular.json` file, include the path to the `@daffodil/de
     ...
 
 **Import the SASS stylesheets in****to** **your project's global stylesheet**
-To make all of Daffodil's SASS styling utilities easily available, add the following code to your project's global stylesheet (typically `src/``styles.scss`):
+To make all of Daffodil's SASS styling utilities easily available, add the following code to your project's global stylesheet (typically `src/styles.scss`):
 
 
     scss
