@@ -22,7 +22,7 @@ json
 }
 ```
 
-### Import the SASS stylesheets in to your project's global stylesheet
+### Import the SASS stylesheets into your project's global stylesheet
 To make all of Daffodil's SASS styling utilities easily available, add the following code to your project's global stylesheet (typically `src/styles.scss`):
 
 ```
