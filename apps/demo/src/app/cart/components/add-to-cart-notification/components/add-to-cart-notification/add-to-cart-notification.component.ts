@@ -8,12 +8,17 @@ import * as fromDemoAddToCartNotification from '../../reducers/index';
 import { CloseAddToCartNotification } from '../../actions/add-to-cart-notification.actions';
 import { switchMap } from 'rxjs/operators';
 
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'demo-add-to-cart-notification',
   templateUrl: './add-to-cart-notification.component.html',
   styleUrls: ['./add-to-cart-notification.component.scss']
 })
 export class AddToCartNotificationComponent implements OnInit {
+  faCheck = faCheck;
+  faTimes = faTimes;
+  
   open$: Observable<boolean>;
   productQty$: Observable<number>;
   cartItemCount$: Observable<number>;

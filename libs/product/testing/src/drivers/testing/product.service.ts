@@ -6,6 +6,12 @@ import { DaffProduct, DaffProductServiceInterface, DaffProductUnion } from '@daf
 import { DaffProductFactory } from '../../factories/product.factory';
 import { DaffProductImageFactory } from '../../factories/product-image.factory';
 
+/**
+ * The product testing driver to mock the backend product service.
+ * 
+ * @param productFactory - A DaffProductFactory instance
+ * @param productImageFactory - A DaffProductImageFactory instance
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +21,11 @@ export class DaffTestingProductService implements DaffProductServiceInterface<Da
     private productFactory: DaffProductFactory,
     private productImageFactory: DaffProductImageFactory) {}
 
+  /**
+   * Get all products as DaffProduct[].
+   * 
+   * @returns An Observable of Product[]
+   */
   getAll(): Observable<DaffProduct[]> {
     return of([
       this.productFactory.create({ images: this.productImageFactory.createMany(5)}),
@@ -25,6 +36,11 @@ export class DaffTestingProductService implements DaffProductServiceInterface<Da
     ]);
   }
 
+  /**
+   * Get all best selling products.
+   * 
+   * @returns An Observable of Product[]
+   */
   getBestSellers(): Observable<DaffProduct[]> {
     return of([
       this.productFactory.create({ images: this.productImageFactory.createMany(5)}),
@@ -34,6 +50,12 @@ export class DaffTestingProductService implements DaffProductServiceInterface<Da
     ]);
   }
 
+  /**
+   * Get product by ID
+   * 
+   * @param productId product ID
+   * @returns An Observable of a Product
+   */
   get(productId: string): Observable<DaffProduct> {
     return of(this.productFactory.create({ images: this.productImageFactory.createMany(5)}));
   }

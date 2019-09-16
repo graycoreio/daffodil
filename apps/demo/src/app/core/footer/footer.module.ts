@@ -11,6 +11,8 @@ import {
 
 import { FooterComponent } from './footer.component';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import { FooterComponent } from './footer.component';
     DaffListModule,
     DaffButtonModule,
     DaffButtonSetModule,
-    DaffContainerModule
+    DaffContainerModule,
+    FontAwesomeModule
   ],
   declarations: [
     FooterComponent
@@ -28,4 +31,4 @@ import { FooterComponent } from './footer.component';
     FooterComponent
   ]
 })
-export class FooterModule { }
+export class FooterModule {}

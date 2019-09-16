@@ -10,6 +10,8 @@ import { ProceedToCheckoutModule } from '../../../proceed-to-checkout/proceed-to
 import { TemplateModule } from '../../../../../core/template/template/template.module';
 import { ModalPortalModule } from '../../../../../core/template/portals/modal-portal.module';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { ModalPortalModule } from '../../../../../core/template/portals/modal-po
     ProductAddedModule,
     DemoAddToCartNotificationStateModule,
     DaffLoadingIconModule,
-    ModalPortalModule
+    ModalPortalModule,
+    FontAwesomeModule
   ],
   declarations: [
     AddToCartNotificationComponent
@@ -31,4 +34,4 @@ import { ModalPortalModule } from '../../../../../core/template/portals/modal-po
     AddToCartNotificationComponent
   ]
 })
-export class AddToCartNotificationComponentModule { }
+export class AddToCartNotificationComponentModule {}

@@ -34,6 +34,7 @@ describe('Category | Testing | Factories | DaffCategoryFactory', () => {
       expect(result.children_count).toBeDefined(); 
       expect(result.total_products).toBeDefined(); 
       expect(result.productIds).toBeDefined(); 
+      expect(result.breadcrumbs).toBeDefined(); 
     });
   });
 

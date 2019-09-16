@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/design",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "author": "Graycore LLC",
   "license": "MIT",
   "bugs": {
@@ -28,9 +28,9 @@
   "peerDependencies": {
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0",
-    "@fortawesome/angular-fontawesome": "^0.3.0",
+    "@fortawesome/angular-fontawesome": "^0.5.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.22",
     "@fortawesome/free-solid-svg-icons": "^5.10.0",
-    "@fortawesome/fontawesome-svg-core": "^1.2.20",
     "rxjs": "6.4.0"
   }
 }

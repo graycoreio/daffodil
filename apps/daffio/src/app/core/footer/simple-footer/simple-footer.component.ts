@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
+import { faGithub, faGitter } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'daffio-simple-footer',
@@ -7,7 +8,9 @@ import { Component, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./simple-footer.component.scss']
 })
 export class DaffioSimpleFooterComponent {
-
+  faGithub = faGithub;
+  faGitter = faGitter;
+  
   links: any[] = [
     {path: '/why-pwa', title: 'Why PWA'},
     {path: '/support', title: 'Support'}

@@ -4,11 +4,18 @@ import gql from 'graphql-tag';
 import { QueryOptions } from 'apollo-client';
 import { DaffProductMagentoDriverModule } from '../product-driver.module';
 
+/**
+ * The query manager for making magento product graphQL queries.
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class DaffMagentoProductGraphQlQueryManagerService implements DaffProductQueryManagerInterface {
 
+  /**
+   * Get a single product by identifier.
+   * @param identifier A product identifier.
+   */
   getAProductQuery(identifier: string) : QueryOptions {
     return {
       query:  gql`
@@ -52,6 +59,9 @@ export class DaffMagentoProductGraphQlQueryManagerService implements DaffProduct
     };
   }
 
+  /**
+   * Get all products.
+   */
   getAllProductsQuery() : QueryOptions {
     return {
       query: gql`
