@@ -64,12 +64,12 @@ describe('Driver | Magento | Category | CategoryService', () => {
         category: {
           id: stubCategory.id,
           name: stubCategory.name,
+          breadcrumbs: [],
           products: {
             total_count: stubCategory.total_products,
             items: []
           },
-          children_count: stubCategory.children_count,
-          children: []
+          children_count: stubCategory.children_count
         }
       };
     });
@@ -80,8 +80,8 @@ describe('Driver | Magento | Category | CategoryService', () => {
         expect(category.products).toEqual(transformedProducts);
       });
       
-      const op = controller.expectOne(categoryGraphQlQueryManagerService.getACategoryQuery(stubCategory.id).query);
-      expect(op.operation.variables.id).toEqual(stubCategory.id);
+      const op = controller.expectOne(categoryGraphQlQueryManagerService.getACategoryQuery(parseInt(stubCategory.id, 10)).query);
+      expect(op.operation.variables.id).toEqual(parseInt(stubCategory.id, 10));
 
       op.flush({
         data: response
@@ -93,8 +93,8 @@ describe('Driver | Magento | Category | CategoryService', () => {
         expect(categoryTransformService.transform).toHaveBeenCalledWith(response.category);
       });
       
-      const op = controller.expectOne(categoryGraphQlQueryManagerService.getACategoryQuery(stubCategory.id).query);
-      expect(op.operation.variables.id).toEqual(stubCategory.id);
+      const op = controller.expectOne(categoryGraphQlQueryManagerService.getACategoryQuery(parseInt(stubCategory.id, 10)).query);
+      expect(op.operation.variables.id).toEqual(parseInt(stubCategory.id, 10));
 
       op.flush({
         data: response
@@ -106,8 +106,8 @@ describe('Driver | Magento | Category | CategoryService', () => {
         expect(productTransformService.transformMany).toHaveBeenCalledWith([]);
       });
       
-      const op = controller.expectOne(categoryGraphQlQueryManagerService.getACategoryQuery(stubCategory.id).query);
-      expect(op.operation.variables.id).toEqual(stubCategory.id);
+      const op = controller.expectOne(categoryGraphQlQueryManagerService.getACategoryQuery(parseInt(stubCategory.id, 10)).query);
+      expect(op.operation.variables.id).toEqual(parseInt(stubCategory.id, 10));
 
       op.flush({
         data: response

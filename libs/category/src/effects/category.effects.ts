@@ -31,9 +31,7 @@ export class DaffCategoryEffects {
             new DaffProductGridLoadSuccess(resp.products),
             new DaffCategoryLoadSuccess(resp.category)
           ]),
-          catchError(error => {
-            return of(new DaffCategoryLoadFailure('Failed to load the category'));
-          })
+          catchError(error => of(new DaffCategoryLoadFailure('Failed to load the category')))
         )
     )
   )

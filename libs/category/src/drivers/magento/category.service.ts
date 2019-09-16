@@ -28,7 +28,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
   ) {}
 
   get(categoryId: string): Observable<DaffGetCategoryResponse> {
-    return this.apollo.query<GetACategoryResponse>(this.queryManager.getACategoryQuery(categoryId)).pipe(
+    return this.apollo.query<GetACategoryResponse>(this.queryManager.getACategoryQuery(parseInt(categoryId, 10))).pipe(
       map(result => {
         return {
           category: this.magentoCategoryTransformerService.transform(result.data.category),
