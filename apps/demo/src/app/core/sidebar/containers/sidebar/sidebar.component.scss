@@ -1,25 +1,17 @@
 @import 'utilities';
 
 .sidebar {
-  padding: 75px 25px 0 25px;
+	padding: 75px 25px 0 25px;
 
-  &__close {
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    font-size: $medium-font-size;
-    cursor: pointer;
-  }
+	&__close {
+		cursor: pointer;
+		font-size: $medium-font-size;
+		position: absolute;
+		right: 25px;
+		top: 25px;
+	}
 
-  &__list {
-
-    span {
-      display: block;
-      width: 100%;
-    }
-
-    a {
-      text-decoration: none;
-    }
-  }
+	&__error {
+		color: $error;
+	}
 }
