@@ -5,6 +5,7 @@ export const GetCategoryTree = gql`
     category(id: $id) {
       id
       name
+      include_in_menu
       products {
         total_count
       }
@@ -13,6 +14,7 @@ export const GetCategoryTree = gql`
         id
         level
         name
+        include_in_menu
         products {
           total_count
         }
@@ -22,6 +24,7 @@ export const GetCategoryTree = gql`
           id
           level
           name
+          include_in_menu
           products {
             total_count
           }
@@ -31,6 +34,7 @@ export const GetCategoryTree = gql`
             id
             level
             name
+            include_in_menu
             products {
               total_count
             }
@@ -40,6 +44,7 @@ export const GetCategoryTree = gql`
               id
               level
               name
+              include_in_menu
               products {
                 total_count
               }
@@ -49,6 +54,7 @@ export const GetCategoryTree = gql`
                 id
                 level
                 name
+                include_in_menu
                 products {
                   total_count
                 }
@@ -58,6 +64,7 @@ export const GetCategoryTree = gql`
                   id
                   level
                   name
+                  include_in_menu
                   products {
                     total_count
                   }
@@ -67,6 +74,7 @@ export const GetCategoryTree = gql`
                     id
                     level
                     name
+                    include_in_menu
                     products {
                       total_count
                     }
@@ -76,6 +84,7 @@ export const GetCategoryTree = gql`
                       id
                       level
                       name
+                      include_in_menu
                       products {
                         total_count
                       }
@@ -85,6 +94,7 @@ export const GetCategoryTree = gql`
                         id
                         level
                         name
+                        include_in_menu
                         products {
                           total_count
                         }
