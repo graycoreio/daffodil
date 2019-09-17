@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { DaffNewsletter } from './../models/newsletter.model';
+import { DaffNewsletterSubmission } from './../models/newsletter.model';
 import { DaffNewsletterActions, DaffNewsletterActionTypes } from './../actions/newsletter.actions';
 
 export interface DaffNewsletterState {

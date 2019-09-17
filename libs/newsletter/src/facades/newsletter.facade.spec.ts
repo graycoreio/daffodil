@@ -7,7 +7,7 @@ import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { reducer } from '../reducers/newsletter.reducer';
 import { cold } from 'jasmine-marbles';
 import { DaffNewsletterSubscribe, DaffNewsletterFailedSubscribe, DaffNewsletterSuccessSubscribe } from '../actions/newsletter.actions';
-import { DaffNewsletter } from '../models/newsletter.model';
+import { DaffNewsletterSubmission } from '../models/newsletter.model';
 
 describe('DaffNewsletterFacade', () => {
 
@@ -69,7 +69,7 @@ describe('DaffNewsletterFacade', () => {
     });
     it('it should be true if the newsletter is loading', () => {
       const expected = cold('a', { a: true });
-      const payload: DaffNewsletter = { email: 'yes@gmail.com'}
+      const payload: DaffNewsletterSubmission = { email: 'yes@gmail.com'}
       store.dispatch(new DaffNewsletterSubscribe(payload))
       expect(facade.loading$).toBeObservable(expected);
     });

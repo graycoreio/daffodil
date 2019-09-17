@@ -1,25 +1,25 @@
 import { Action } from '@ngrx/store';
 
-import { DaffNewsletter } from '../models/newsletter.model';
+import { DaffNewsletterSubmission } from '../models/newsletter.model';
 
 export enum DaffNewsletterActionTypes {
   NewsletterSubscribeAction = "[Daff-Newsletter] Newsletter Subscribe Action",
   NewsletterCancelAction = "[Daff-Newsletter] Newsletter Cancel Action",
   NewsletterSuccessSubscribeAction = "[Daff-Newsletter] Succeeded on Newsletter Subscribe Action",
   NewsletterFailedSubscribeAction = "[Daff-Newsletter] Failed on Newsletter Subscribe Action",
-  NewsletterRetry = "[Daff-Newsletter] Retrying to cancel newsletter",
+  NewsletterRetry = "[Daff-Newsletter] Retrying submission",
   NewsletterReset = "[Daff-Newsletter] Reset Newsletter"
 }
 
 export class DaffNewsletterSubscribe implements Action {
   readonly type = DaffNewsletterActionTypes.NewsletterSubscribeAction;
 
-  constructor(public payload: DaffNewsletter) { }
+  constructor(public payload: DaffNewsletterSubmission) { }
 }
 export class DaffNewsletterRetry implements Action {
   readonly type = DaffNewsletterActionTypes.NewsletterRetry;
 
-  constructor(public payload: DaffNewsletter) { }
+  constructor(public payload: DaffNewsletterSubmission) { }
 }
 
 export class DaffNewsletterCancel implements Action {

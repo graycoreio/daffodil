@@ -1,7 +1,7 @@
 import { DaffNewsletterState, reducer } from './newsletter.reducer';
 import { Action } from '@ngrx/store';
 import { DaffNewsletterSubscribe, DaffNewsletterRetry, DaffNewsletterCancel, DaffNewsletterFailedSubscribe, DaffNewsletterSuccessSubscribe, DaffNewsletterReset } from '../actions/newsletter.actions';
-import { DaffNewsletter } from '../models/newsletter.model';
+import { DaffNewsletterSubmission } from '../models/newsletter.model';
 import { any } from 'async';
 
 describe('the newsletter reducer', () => {
@@ -16,7 +16,7 @@ describe('the newsletter reducer', () => {
   });
 
   it('should start loading when a subscription attempt occurs', () =>{
-    const payload: DaffNewsletter = { email: 'yes@gmail.com'}
+    const payload: DaffNewsletterSubmission = { email: 'yes@gmail.com'}
     const action = new DaffNewsletterSubscribe(payload);
     const expectedState = {
       error: null,
@@ -26,7 +26,7 @@ describe('the newsletter reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedState);
   });
   it('should start loading when a retry occurs', () =>{
-    const payload: DaffNewsletter = { email: 'yes@gmail.com'}
+    const payload: DaffNewsletterSubmission = { email: 'yes@gmail.com'}
     const action = new DaffNewsletterRetry(payload);
     const expectedState = {
       error: null,

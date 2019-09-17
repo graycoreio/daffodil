@@ -1,3 +1,3 @@
-export interface DaffNewsletter {
+export interface DaffNewsletterSubmission {
   email: string;
 }

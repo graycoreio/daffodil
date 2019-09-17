@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select, Action } from '@ngrx/store';
 
-import { DaffNewsletter } from '../models/newsletter.model';
+import { DaffNewsletterSubmission } from '../models/newsletter.model';
 import { DaffNewsletterModule } from '../newsletter.module';
 import { isObject } from 'util';
 
