@@ -30,6 +30,38 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
       products: {
         total_count: 10
       },
+      children_count: 0,
+      children: [{
+        id: "2",
+        include_in_menu: false,
+        name: "Subcategory",
+        products: {
+          total_count: 10
+        },
+        children_count: 0,
+        children: []
+      }]
+    }
+
+    const navigation: DaffNavigationTreeUnion = {
+      id: "1",
+      name: "Root Category",
+      total_products: 10,
+      children: [],
+      children_count: 0,
+    }
+
+    expect(service.transform(categoryNode)).toEqual(navigation);
+  });
+
+  it('should filter out categories (and necessarily their children) that are include_in_menu false', () => {
+    const categoryNode: CategoryNode = {
+      id: "1",
+      name: "Root Category",
+      include_in_menu: true,
+      products: {
+        total_count: 10
+      },
       children_count: 1,
       children: [{
         id: "2",
@@ -41,9 +73,9 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
         children_count: 0,
         children: []
       }]
-    }
+    };
 
-    const navigation : DaffNavigationTreeUnion  = {
+    const navigation: DaffNavigationTreeUnion = {
       id: "1",
       name: "Root Category",
       total_products: 10,
@@ -58,5 +90,6 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
     }
 
     expect(service.transform(categoryNode)).toEqual(navigation);
-  });
+  })
+  
 });
