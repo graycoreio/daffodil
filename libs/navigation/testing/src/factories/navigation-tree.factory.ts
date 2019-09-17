@@ -5,19 +5,33 @@ import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffModelFactory } from "@daffodil/core/testing";
 
 export class MockNavigationTree implements DaffNavigationTree {
-  id = faker.random.number(10000).toString();
-  name = faker.commerce.productMaterial();
-  children_count = faker.random.number(10);
+  id = '1';
+  name = '';
   total_products = faker.random.number(10);
-  children = [
-    {
-      id: faker.random.number(10000).toString(),
-      name: faker.commerce.productMaterial(),
-      children_count: faker.random.number(10),
-      total_products: faker.random.number(10),
-      children: []
-    }
-  ]
+  children = [...Array(faker.random.number({min:1, max:3}))].map(() => this.fakeTree(3));
+  children_count = 0;
+
+  private fakeTree(depth: number = 0): DaffNavigationTree {
+    const children = depth !== 0 
+      ? [...Array(faker.random.number({min:1, max:3}))].map(() => this.fakeTree(depth - 1))
+      : [];
+
+    return depth <= 0 
+      ? {
+        id: faker.random.number({min:1, max:10000}).toString(),
+        name: faker.commerce.department(),
+        total_products: faker.random.number(20),
+        children: [],
+        children_count: 0
+      }
+      : {
+        id: faker.random.number({min:1, max:10000}).toString(),
+        name: faker.commerce.department(),
+        total_products: faker.random.number(20),
+        children: children,
+        children_count: children.length
+      }
+  }
 }
 
 @Injectable({

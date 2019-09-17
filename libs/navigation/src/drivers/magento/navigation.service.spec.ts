@@ -54,6 +54,7 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
           category: {
             id: navigation.id,
             name: navigation.name,
+            include_in_menu: true,
             products: {
               total_count: navigation.total_products
             },
