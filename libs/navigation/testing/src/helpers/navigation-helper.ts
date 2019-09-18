@@ -5,6 +5,5 @@ import { DaffNavigationTree } from "@daffodil/navigation";
  * @param navigation
  */
 export function isNavigation(navigation: DaffNavigationTree): boolean {
-  return !!navigation.id
-    && !!navigation.name;
+  return navigation.id != null && navigation.name != null;
 }
