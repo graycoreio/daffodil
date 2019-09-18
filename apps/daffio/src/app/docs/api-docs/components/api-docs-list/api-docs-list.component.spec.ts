@@ -6,10 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { DaffioApiDocReference } from '../../models/api-doc-reference';
 import { DaffioApiDocsListComponent } from './api-docs-list.component';
 
-import {
-  DaffLinkModule,
-  DaffContainerModule
-} from '@daffodil/design';
+import { DaffContainerModule } from '@daffodil/design';
 
 @Component({template: '<daffio-api-docs-list [docsList]="docsListValue"></daffio-api-docs-list>'})
 class WrapperComponent {
@@ -41,7 +38,6 @@ describe('ApiDocsListComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        DaffLinkModule,
         DaffContainerModule
       ],
       declarations: [

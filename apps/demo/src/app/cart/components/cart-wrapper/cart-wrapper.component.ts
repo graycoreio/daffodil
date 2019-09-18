@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -11,19 +11,20 @@ import * as fromCart from '../../selectors/cart-selector';
   templateUrl: './cart-wrapper.component.html',
   styleUrls: ['./cart-wrapper.component.scss']
 })
-export class CartWrapperComponent {
+export class CartWrapperComponent implements OnInit{
+  
+  @Input() cart: DaffCart;
+
+  isCartEmpty$ : Observable<boolean>;
+  itemCount$ : Observable<number>;
 
   constructor(
     private store: Store<fromCart.State>
   ) {}
 
-  @Input() cart: DaffCart;
+  ngOnInit(): void {
+    this.isCartEmpty$ = this.store.pipe(select(fromCart.isCartEmpty));
+    this.itemCount$ = this.store.pipe(select(fromCart.selectCartItemCount));
 
-  get isCartEmpty$():Observable<boolean> {
-    return this.store.pipe(select(fromCart.isCartEmpty));
-  }
-
-  get itemCount$():Observable<number> {
-    return this.store.pipe(select(fromCart.selectCartItemCount));
   }
 }

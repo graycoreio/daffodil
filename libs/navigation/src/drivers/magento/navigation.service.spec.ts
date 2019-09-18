@@ -47,13 +47,14 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
 
       const op = controller.expectOne(GetCategoryTree);
 
-      expect(op.operation.variables.id).toEqual(navigation.id);
+      expect(op.operation.variables.id).toEqual(parseInt(navigation.id, 10));
 
       op.flush({
         data: {
           category: {
             id: navigation.id,
             name: navigation.name,
+            include_in_menu: true,
             products: {
               total_count: navigation.total_products
             },

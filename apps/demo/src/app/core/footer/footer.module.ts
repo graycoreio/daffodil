@@ -6,11 +6,12 @@ import {
   DaffListModule, 
   DaffButtonSetModule, 
   DaffButtonModule, 
-  DaffContainerModule,
-  DaffLinkModule
+  DaffContainerModule
 } from '@daffodil/design';
 
 import { FooterComponent } from './footer.component';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
@@ -21,7 +22,7 @@ import { FooterComponent } from './footer.component';
     DaffButtonModule,
     DaffButtonSetModule,
     DaffContainerModule,
-    DaffLinkModule
+    FontAwesomeModule
   ],
   declarations: [
     FooterComponent
@@ -30,4 +31,4 @@ import { FooterComponent } from './footer.component';
     FooterComponent
   ]
 })
-export class FooterModule { }
+export class FooterModule {}

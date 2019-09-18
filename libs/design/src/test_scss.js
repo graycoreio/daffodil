@@ -10,6 +10,15 @@ describe('Sass', () => {
 
   // Run True on every file found with the describe and it methods provided
   sassTestFiles.forEach(file =>
-    sassTrue.runSass({ file }, describe, it)
+    sassTrue.runSass(
+      {
+        file: file,
+      },
+      {
+        sass: require('sass'),
+        describe,
+        it,
+      }
+    )
   )
 })

@@ -9,8 +9,9 @@ import { DaffSidebarModule, DaffSidebarViewportComponent, DaffSidebarComponent }
 
 import { DaffioSidebarViewportContainer } from './sidebar-viewport.component';
 import * as fromSidebar from '../../reducers/index';
-import { OpenSidebar, CloseSidebar, SetSidebarState } from '../../actions/sidebar.actions';
 import { RouterTestingModule } from '@angular/router/testing';
+import { OpenSidebar, CloseSidebar, SetSidebarState } from '../../actions/sidebar.actions';
+import { cold } from 'jasmine-marbles';
 
 describe('DaffioSidebarViewportContainer', () => {
   let component: DaffioSidebarViewportContainer;
@@ -20,7 +21,6 @@ describe('DaffioSidebarViewportContainer', () => {
   let daffSidebar: DaffSidebarComponent;
 
   let store: Store<fromSidebar.State>;
-  let stubShowSidebar: boolean;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -69,15 +69,11 @@ describe('DaffioSidebarViewportContainer', () => {
   });
 
   describe('ngOnInit', () => {
-    it('should initialize showSidebar$', () => {
-      stubShowSidebar = false;
-      spyOn(fromSidebar, 'selectShowSidebar').and.returnValue(stubShowSidebar);
-
+    it('should initialize showSidebar$ to a false observable', () => {
       component.ngOnInit();
 
-      component.showSidebar$.subscribe((showSidebar) => {
-        expect(showSidebar).toEqual(stubShowSidebar);
-      });
+      const expected = cold('(a)', { a: false });
+      expect(component.showSidebar$).toBeObservable(expected);
     });
   });
 

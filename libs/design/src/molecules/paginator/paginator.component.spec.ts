@@ -1,11 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 
 import { DaffPaginatorComponent } from './paginator.component';
 import { DaffPaginatorModule } from './paginator.module';
 
-@Component({template: '<daff-paginator class="host-element" aria-label="id" [numberOfPages]="numberOfPagesValue" [currentPage]="currentPageValue"></ daff-paginator>'})
+@Component({template: '<daff-paginator aria-label="id" [numberOfPages]="numberOfPagesValue" [currentPage]="currentPageValue"></daff-paginator>'})
+
 class WrapperComponent {
   numberOfPagesValue = 20;
   currentPageValue = 2;
@@ -14,7 +15,7 @@ class WrapperComponent {
 describe('DaffPaginatorComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let hostElement;
+  let de: DebugElement;
   let component: DaffPaginatorComponent;
 
   beforeEach(async(() => {
@@ -23,8 +24,7 @@ describe('DaffPaginatorComponent', () => {
         DaffPaginatorModule
       ],
       declarations: [ 
-        WrapperComponent,
-        
+        WrapperComponent
       ]
     })
     .compileComponents();
@@ -33,18 +33,20 @@ describe('DaffPaginatorComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    fixture.detectChanges();
+    de = fixture.debugElement.query(By.css('daff-paginator'));
+    component = de.componentInstance;
 
-    hostElement = fixture.debugElement.query(By.css('.host-element'));
-    component = fixture.debugElement.query(By.css('daff-paginator')).componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  it('should add a daff-paginator class to the host component', () => {
-    expect(hostElement.nativeElement.classList.contains('daff-paginator')).toBeTruthy();
+  it('should add a class of "daff-paginator" to the host element', () => {
+    expect(de.classes).toEqual(jasmine.objectContaining({
+      'daff-paginator': true,
+    }));
   });
 
   it('should be able to take currentPage as input', () => {
@@ -68,18 +70,16 @@ describe('DaffPaginatorComponent', () => {
     expect(paginatorText.includes(greaterPage)).toBeTruthy();
   });
 
-  describe('when prev is clicked', () => {
-    
+  describe('when the previous button is clicked', () => {
     it('should emit notifyPageChange with one less than the current page', () => {
       spyOn(component.notifyPageChange, 'emit');
-      fixture.debugElement.query(By.css('.daff-paginator__prev')).nativeElement.click();
+      fixture.debugElement.query(By.css('.daff-paginator__previous')).nativeElement.click();
 
       expect(component.notifyPageChange.emit).toHaveBeenCalledWith(wrapper.currentPageValue-1);
     });
   });
 
-  describe('when next is clicked', () => {
-    
+  describe('when the next button is clicked', () => {
     it('should emit notifyPageChange with one more than the current page', () => {
       spyOn(component.notifyPageChange, 'emit');
       fixture.debugElement.query(By.css('.daff-paginator__next')).nativeElement.click();
@@ -89,9 +89,7 @@ describe('DaffPaginatorComponent', () => {
   });
 
   describe('showNumber', () => {
-    
     describe('when the current page is 1 or 2', () => {
-      
       it('should show page numbers 3 and 4', () => {
         wrapper.currentPageValue = 1;
         fixture.detectChanges();
@@ -103,7 +101,6 @@ describe('DaffPaginatorComponent', () => {
     });
     
     describe('when the current page is one of the last two pages', () => {
-      
       it('should show _numberOfPages-3 and lesser numbers', () => {
         wrapper.currentPageValue = wrapper.numberOfPagesValue;
         fixture.detectChanges();
@@ -116,9 +113,7 @@ describe('DaffPaginatorComponent', () => {
   });
 
   describe('ellipsis appearance', () => {
-    
     describe('when all pages between currentPage and page 1 are shown', () => {
-      
       it('should not show an ellipsis between 1 and the current page', () => {
         wrapper.currentPageValue = 3;
         fixture.detectChanges();
@@ -129,7 +124,6 @@ describe('DaffPaginatorComponent', () => {
     });
   
     describe('when some pages between the currentPage and page 1 are not shown', () => {
-      
       it('should show an ellipsis between 1 and the current page', () => {
         wrapper.currentPageValue = 7;
         fixture.detectChanges();
@@ -140,7 +134,6 @@ describe('DaffPaginatorComponent', () => {
     });
   
     describe('when some pages between the currentPage and the last page are not shown', () => {
-      
       it('should show an ellipsis between the current page and the last page', () => {
         wrapper.currentPageValue = wrapper.numberOfPagesValue - 8;
         fixture.detectChanges();
@@ -151,7 +144,6 @@ describe('DaffPaginatorComponent', () => {
     });
 
     describe('when all pages between the currentPage and the last page are shown', () => {
-      
       it('should not show an ellipsis between the current page and the last page', () => {
         wrapper.currentPageValue = wrapper.numberOfPagesValue - 1;
         fixture.detectChanges();
@@ -163,20 +155,17 @@ describe('DaffPaginatorComponent', () => {
   });
 
   describe('changing the current page number', () => {
-
     describe('when the currentPage is 1', () => {
-      
-      it('should disable the prev page chevron', () => {
+      it('should disable the previous button', () => {
         wrapper.currentPageValue = 1;
         fixture.detectChanges();
 
-        expect(fixture.debugElement.query(By.css('.daff-paginator__prev')).nativeElement.disabled).toBeTruthy();
+        expect(fixture.debugElement.query(By.css('.daff-paginator__previous')).nativeElement.disabled).toBeTruthy();
       });
     });
   
     describe('when the currentPage is the last page', () => {
-      
-      it('should disable the next page chevron', () => {
+      it('should disable the next button', () => {
         wrapper.currentPageValue = wrapper.numberOfPagesValue;
         fixture.detectChanges();
   
@@ -185,7 +174,6 @@ describe('DaffPaginatorComponent', () => {
     });
   
     describe('when a page number is clicked', () => {
-      
       it('should emit notifyPageChange with the page number', () => {
         spyOn(component.notifyPageChange, 'emit');
         const paginatorElements = fixture.debugElement.queryAll(By.css('.daff-paginator__page-link'));
@@ -197,7 +185,6 @@ describe('DaffPaginatorComponent', () => {
   });
 
   describe('when the numberOfPages is changed', () => {
-    
     it('should update the view with the new number of pages', () => {
       wrapper.numberOfPagesValue = 10;
       fixture.detectChanges();

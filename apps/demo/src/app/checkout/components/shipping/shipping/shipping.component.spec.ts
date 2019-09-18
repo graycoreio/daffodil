@@ -9,6 +9,7 @@ import { DaffAddress } from '@daffodil/core';
 import * as fromDemoCheckout from '../../../reducers';
 import { SetShowShippingForm, ToggleShowShippingForm } from '../../../actions/shipping.actions';
 import { ShippingComponent } from './shipping.component';
+import { cold } from 'jasmine-marbles';
 
 const stubIsShippingAddressValidValue = true;
 const stubDaffodilAddress: DaffAddress = {
@@ -21,7 +22,6 @@ const stubDaffodilAddress: DaffAddress = {
   telephone: ''
 }
 const stubSelectedShippingOptionId = '0';
-const stubShowShippingForm = true;
 const stubShowPaymentView = false;
 
 @Component({
@@ -67,7 +67,7 @@ describe('ShippingComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          shippings: combineReducers(fromDemoCheckout.reducers),
+          demoCheckout: combineReducers(fromDemoCheckout.reducers),
         })
       ],
       declarations: [ 
@@ -84,8 +84,6 @@ describe('ShippingComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     store = TestBed.get(Store);
-    spyOn(fromDemoCheckout, 'selectShowShippingForm').and.returnValue(stubShowShippingForm);
-    spyOn(store, 'dispatch');
 
     fixture.detectChanges();
 
@@ -133,15 +131,16 @@ describe('ShippingComponent', () => {
   });
 
   describe('ngOnInit', () => {
-
+    
     it('should dispatch a SetShowShippingForm action', () => {
+      spyOn(store, 'dispatch');
+      shipping.ngOnInit();
       expect(store.dispatch).toHaveBeenCalledWith(new SetShowShippingForm(!stubIsShippingAddressValidValue));
     });
     
     it('should initialize showShippingForm$', () => {
-      shipping.showShippingForm$.subscribe((showShippingForm) => {
-        expect(showShippingForm).toEqual(stubShowShippingForm);
-      });
+      const expected = cold('a', { a: false });
+      expect(shipping.showShippingForm$).toBeObservable(expected);
     });
   });
 
@@ -196,8 +195,8 @@ describe('ShippingComponent', () => {
   describe('toggleShippingView', () => {
     
     it('should dispatch a ToggleShowShippingForm action', () => {
+      spyOn(store, 'dispatch');
       shipping.toggleShippingView();
-
       expect(store.dispatch).toHaveBeenCalledWith(new ToggleShowShippingForm());
     });
   });

@@ -1,10 +1,11 @@
 {
   "name": "@daffodil/tools-dgeni",
   "private": true,
-  "version": "0.0.3",
+  "version": "0.1.0",
   "scripts": {
     "build": "ts-node -r tsconfig-paths/register build",
     "watch": "ts-node-dev --respawn --debounce 100 -r tsconfig-paths/register build",
-    "test": "ts-node -r tsconfig-paths/register ../../node_modules/.bin/jasmine --config=jasmine.json"
+    "test": "ts-node -r tsconfig-paths/register ../../node_modules/.bin/jasmine --config=jasmine.json",
+    "test:watch": "ts-node-dev --respawn --debounce 100 -r tsconfig-paths/register ../../node_modules/.bin/jasmine --config=jasmine.json"
   }
 }

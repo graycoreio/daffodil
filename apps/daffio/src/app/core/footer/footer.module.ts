@@ -7,18 +7,18 @@ import { DaffioSubFooterComponent } from './sub-footer/sub-footer.component';
 
 import { DaffioNewsletterModule } from '../../newsletter/newsletter.module';
 
-
 import { 
   DaffCalloutModule,
   DaffListModule, 
   DaffButtonSetModule, 
   DaffButtonModule, 
   DaffContainerModule,
-  DaffInputModule,
-  DaffLinkModule
+  DaffInputModule
 } from '@daffodil/design';
 
 import { DaffLogoModule, DaffCopyrightModule } from '@daffodil/branding';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
@@ -31,10 +31,10 @@ import { DaffLogoModule, DaffCopyrightModule } from '@daffodil/branding';
     DaffButtonSetModule,
     DaffContainerModule,
     DaffInputModule,
-    DaffLinkModule,
     DaffLogoModule,
     DaffCopyrightModule,
-    DaffioNewsletterModule
+    DaffioNewsletterModule,
+    FontAwesomeModule
   ],
   declarations: [
     DaffioSimpleFooterComponent,
@@ -45,4 +45,4 @@ import { DaffLogoModule, DaffCopyrightModule } from '@daffodil/branding';
     DaffioSubFooterComponent
   ]
 })
-export class DaffioFooterModule { }
+export class DaffioFooterModule {}

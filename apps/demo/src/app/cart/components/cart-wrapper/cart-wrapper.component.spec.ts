@@ -1,15 +1,17 @@
 import { Component, Input, Directive } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { StoreModule, combineReducers } from '@ngrx/store';
+import { StoreModule, combineReducers, MemoizedSelector, Store } from '@ngrx/store';
 
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { fromCart, DaffCart } from '@daffodil/cart';
 
 import { CartWrapperComponent } from './cart-wrapper.component';
 import * as cartSelector from '../../selectors/cart-selector';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { cold } from 'jasmine-marbles';
 
-@Component({template: '<demo-cart-wrapper [cart]="cartValue"></demo-cart-wrapper>'})
+@Component({ template: '<demo-cart-wrapper [cart]="cartValue"></demo-cart-wrapper>' })
 class WrapperComponent {
   cartValue: DaffCart;
 }
@@ -18,7 +20,7 @@ class WrapperComponent {
   selector: 'demo-cart',
   template: ''
 })
-class MockCartComponent { 
+class MockCartComponent {
   @Input() cart: DaffCart;
   @Input() title: string;
 }
@@ -35,12 +37,12 @@ class MockCartTotalsComponent {
   selector: 'demo-help-box',
   template: ''
 })
-class MockHelpBoxComponent {}
+class MockHelpBoxComponent { }
 
 @Directive({
   selector: '[demoProceedToCheckout]'
 })
-class MockProceedToCheckoutDirective {}
+class MockProceedToCheckoutDirective { }
 
 describe('CartWrapper', () => {
   let wrapper: WrapperComponent;
@@ -50,173 +52,173 @@ describe('CartWrapper', () => {
   let cartTotalsComponent;
   let helpBoxComponent;
   let proceedToCheckoutDirective;
+  let store: MockStore<any>;
   const cartFactory = new DaffCartFactory();
   const cart = cartFactory.create();
-  let stubIsCartEmpty = true;
-  let stubSelectCartItemCount: number;
+  const stubIsCartEmpty = true;
+  let stubSelectCartItemCount = 0;
+  let cartItemCountSelector: MemoizedSelector<object, number>;
+  let cartEmptySelector: MemoizedSelector<object, boolean>;
 
+  
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        StoreModule.forRoot({
-          carts: combineReducers(fromCart.reducers),
-        })
-      ],
-      declarations: [ 
+      declarations: [
         WrapperComponent,
         MockCartComponent,
         MockCartTotalsComponent,
         MockHelpBoxComponent,
         MockProceedToCheckoutDirective,
         CartWrapperComponent
+      ],
+      providers: [
+        provideMockStore({})
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
+    store = TestBed.get(Store);
     wrapper.cartValue = cart;
     cartWrapperComponent = fixture.debugElement.query(By.css('demo-cart-wrapper')).componentInstance;
-    stubSelectCartItemCount = 1;
 
-    spyOn(cartSelector, 'isCartEmpty').and.returnValue(stubIsCartEmpty);
+    cartItemCountSelector = store.overrideSelector(cartSelector.selectCartItemCount, stubSelectCartItemCount);
+    cartEmptySelector = store.overrideSelector(cartSelector.isCartEmpty, stubIsCartEmpty);
+
+    cartComponent = fixture.debugElement.query(By.css('demo-cart'));
+    helpBoxComponent = fixture.debugElement.query(By.css('demo-help-box'));
+
+    fixture.detectChanges();
   });
 
-  describe('when cartItem count is 1', () => {
-
-    beforeEach(() => {
-      stubSelectCartItemCount = 1;
-      spyOn(cartSelector, 'selectCartItemCount').and.returnValue(stubSelectCartItemCount);
-
-      fixture.detectChanges();
-    });
-    
-    it('should set item count text to "Item"', () => {
-      const itemCountElement = fixture.debugElement.query(By.css('.cart-wrapper__item-count'));
-      
-      expect(itemCountElement.nativeElement.innerText).toEqual('1 Item');
-    });
+  afterAll(() => {
+    store.resetSelectors();
   });
 
-  describe('when cartItem count is not 1', () => {
+  it('should create', () => {
+    expect(cartWrapperComponent).toBeTruthy();
+  });
 
-    beforeEach(() => {
-      stubSelectCartItemCount = 24;
-      spyOn(cartSelector, 'selectCartItemCount').and.returnValue(stubSelectCartItemCount);
+  it('should be able to take cart as input', () => {
+    expect(cartWrapperComponent.cart).toEqual(cart);
+  });
 
-      fixture.detectChanges();
-    });
-    
-    it('should set item count text to "Items"', () => {
-      const itemCountElement = fixture.debugElement.query(By.css('.cart-wrapper__item-count'));
-
-      expect(itemCountElement.nativeElement.innerText).toEqual(stubSelectCartItemCount + ' Items');
+  describe('on <demo-cart>', () => {
+    it('should set cart to value passed by cart-container directive', () => {
+      expect(cartComponent.componentInstance.cart).toEqual(cart);
     });
   });
 
-  xdescribe('regardless of cartItem count', () => {
-    
+  describe('the item count message', () => {
+    let itemCountElement;
+
     beforeEach(() => {
-        spyOn(cartSelector, 'selectCartItemCount').and.returnValue(stubSelectCartItemCount);
-          fixture.detectChanges();
+      itemCountElement = fixture.debugElement.query(By.css('.cart-wrapper__item-count'));
+    })
 
-      cartComponent = fixture.debugElement.query(By.css('demo-cart'));
-      cartTotalsComponent = fixture.debugElement.query(By.css('demo-cart-totals'));
-      helpBoxComponent = fixture.debugElement.query(By.css('demo-help-box'));
-      proceedToCheckoutDirective = fixture.debugElement.query(By.css('[demoProceedToCheckout]'));
-    });
-
-    it('should create', () => {
-      expect(cartWrapperComponent).toBeTruthy();
-    });
-
-    it('should be able to take cart as input', () => {
-      expect(cartWrapperComponent.cart).toEqual(cart);
-    });
-
-    describe('on <demo-cart>', () => {
-      
-      it('should set cart to value passed by cart-container directive', () => {
-        expect(cartComponent.componentInstance.cart).toEqual(cart);
+    describe('when cartItem count is 1', () => {
+      it('should set item count text to "Item"', () => {
+        stubSelectCartItemCount = 1;
+        cartItemCountSelector.setResult(stubSelectCartItemCount);
+        store.setState({});
+        fixture.detectChanges();
+        expect(itemCountElement.nativeElement.innerText).toEqual('1 Item');
       });
     });
 
-    describe('when CartContainer.$loading is false', () => {
-      
-      it('should render <demo-cart>', () => {
-        expect(cartComponent).not.toBeNull();
+    describe('when cartItem count is not 1', () => {
+      it('should set item count text to "Items"', () => {
+        stubSelectCartItemCount = 24;
+        cartItemCountSelector.setResult(stubSelectCartItemCount);
+        store.setState({});
+
+        fixture.detectChanges();
+
+        expect(itemCountElement.nativeElement.innerText).toEqual(stubSelectCartItemCount + ' Items');
+      });
+    });
+  });
+
+  describe('when CartContainer.$loading is false', () => {
+
+    it('should render <demo-cart>', () => {
+      expect(cartComponent).not.toBeNull();
+    });
+
+    it('should render <demo-help-box>', () => {
+      expect(helpBoxComponent).not.toBeNull();
+    });
+
+    describe('and cart is empty', () => {
+
+      beforeEach(() => {
+        cartEmptySelector.setResult(true);
+        store.setState({});
+        fixture.detectChanges();
       });
 
-      it('should render <demo-help-box>', () => {
-        expect(helpBoxComponent).not.toBeNull();
+      it('should not render .cart-wrapper__summary-title', () => {
+        const summaryTitleElement = fixture.debugElement.query(By.css('.cart-wrapper__summary-title'));
+
+        expect(summaryTitleElement).toBeNull();
       });
 
-      describe('and cart is empty', () => {
-
-        beforeEach(() => {
-          stubIsCartEmpty = true;
-        });
-
-        it('should not render .cart-wrapper__summary-title', () => {
-          const summaryTitleElement = fixture.debugElement.query(By.css('.cart-wrapper__summary-title'));
-
-          expect(summaryTitleElement).toBeNull();
-        });
-
-        it('should not render <demo-cart-totals>', () => {
-          expect(cartTotalsComponent).toBeNull();
-        });
-        
-        it('should not render [demoProceedToCheckout]', () => {
-          expect(proceedToCheckoutDirective).toBeNull();
-        });
+      it('should not render <demo-cart-totals>', () => {
+        cartTotalsComponent = fixture.debugElement.query(By.css('demo-cart-totals'));
+        expect(cartTotalsComponent).toBeNull();
       });
 
-      describe('and cart is not empty', () => {
-        
-        beforeEach(() => {
-          stubIsCartEmpty = false;
-        });
-
-        it('should render .cart-wrapper__summary-title', () => {
-          const summaryTitleElement = fixture.debugElement.query(By.css('.cart-wrapper__summary-title'));
-          
-          expect(summaryTitleElement).not.toBeNull();
-        });
-
-        it('should render <demo-cart-totals>', () => {
-          const cartTotalsElement = fixture.debugElement.query(By.css('demo-cart-totals'))
-          expect(cartTotalsElement).not.toBeNull();
-        });
-      
-        it('should set cart to value passed by the cart-container directive', () => {
-          expect(cartTotalsComponent.componentInstance.cart).toEqual(cart);
-        });
-
-        it('should render [demoProceedToCheckout]', () => {
-          expect(proceedToCheckoutDirective).not.toBeNull();
-        });
+      it('should not render [demoProceedToCheckout]', () => {
+        proceedToCheckoutDirective = fixture.debugElement.query(By.css('[demoProceedToCheckout]'));
+        expect(proceedToCheckoutDirective).toBeNull();
       });
     });
 
-    describe('isCartEmpty$', () => {
+    describe('and cart is not empty', () => {
 
-      it('returns cartSelector.isCartEmpty', () => {
-        cartWrapperComponent.isCartEmpty$.subscribe(isCartEmpty => {
-          expect(isCartEmpty).toEqual(stubIsCartEmpty);
-        })
+      beforeEach(() => {
+        cartEmptySelector.setResult(false);
+        store.setState({});
+        fixture.detectChanges();
+        cartTotalsComponent = fixture.debugElement.query(By.css('demo-cart-totals'));
+      });
+
+      it('should render .cart-wrapper__summary-title', () => {
+        const summaryTitleElement = fixture.debugElement.query(By.css('.cart-wrapper__summary-title'));
+
+        expect(summaryTitleElement).not.toBeNull();
+      });
+
+      it('should render <demo-cart-totals>', () => {
+        const cartTotalsElement = fixture.debugElement.query(By.css('demo-cart-totals'))
+        expect(cartTotalsElement).not.toBeNull();
+      });
+
+      it('should set cart to value passed by the cart-container directive', () => {
+        expect(cartTotalsComponent.componentInstance.cart).toEqual(cart);
+      });
+
+      it('should render [demoProceedToCheckout]', () => {
+        proceedToCheckoutDirective = fixture.debugElement.query(By.css('[demoProceedToCheckout]'));
+        expect(proceedToCheckoutDirective).not.toBeNull();
       });
     });
+  });
 
-    describe('itemCount$', () => {
+  describe('isCartEmpty$', () => {
+    it('returns cartSelector.isCartEmpty', () => {
+      const expected = cold('(a)', { a: stubIsCartEmpty });
+      expect(cartWrapperComponent.isCartEmpty$).toBeObservable(expected);
+    });
+  });
 
-      it('returns cartSelector.itemCount', () => {
-        cartWrapperComponent.itemCount$.subscribe(itemCount => {
-          expect(itemCount).toEqual(stubSelectCartItemCount);
-        })
-      });
+  describe('itemCount$', () => {
+    it('returns cartSelector.itemCount', () => {
+      const expected = cold('(a)', { a: stubSelectCartItemCount });
+      expect(cartWrapperComponent.itemCount$).toBeObservable(expected);
     });
   });
 });

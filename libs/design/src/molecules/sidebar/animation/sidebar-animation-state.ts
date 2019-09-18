@@ -4,6 +4,6 @@ export const getAnimationState = (open : boolean, enabled: boolean = true) => {
         return "open";
     }
     else {
-        return "void";
+        return "closed";
     }
 }

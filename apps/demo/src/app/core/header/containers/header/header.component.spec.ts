@@ -10,6 +10,7 @@ import { ToggleSidebar } from '../../../sidebar/actions/sidebar.actions';
 import { LogoModule } from '../../../logo/logo.module';
 import { DemoHeaderContainer } from './header.component';
 import { DemoHeaderComponent } from '../../components/header/header.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 describe('DemoHeaderContainer', () => {
   let component: DemoHeaderContainer;
@@ -22,7 +23,8 @@ describe('DemoHeaderContainer', () => {
       imports: [
         StoreModule.forRoot({}),
         RouterTestingModule,
-        LogoModule
+        LogoModule,
+        FontAwesomeModule
       ],
       declarations: [
         DemoHeaderContainer,

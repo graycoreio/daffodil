@@ -1,14 +1,18 @@
 <demo-modal-portal>
-  <daff-modal [show]="open$ | async" (hide)="onHide()" [verticalPosition]="_verticalPosition" [horizontalPosition]="_horizontalPosition">
+  <daff-modal [show]="open$ | async" (hide)="onHide()" [verticalPosition]="_verticalPosition"
+    [horizontalPosition]="_horizontalPosition">
     <div class="add-to-cart-notification">
-      <div *ngIf="!(loading$ | async)" class="add-to-cart-notification__header">
-        <span class="add-to-cart-notification__check-icon"><i class="fa fa-check" aria-hidden="true"></i></span>
+      <div class="add-to-cart-notification__header"  *ngIf="!(loading$ | async)">
+        <span class="add-to-cart-notification__check-icon"><fa-icon [icon]="faCheck" aria-hidden="true"></fa-icon></span>
         <span>Added to Cart</span>
-        <span class="add-to-cart-notification__close"><i (click)="onHide()" class="fa fa-times" aria-hidden="true"></i></span>
+        <fa-icon [icon]="faTimes" aria-hidden="true" (click)="onHide()" class="add-to-cart-notification__close"></fa-icon>
       </div>
-      <demo-product-added *ngIf="!(loading$ | async)" class="add-to-cart-notification__product-added" [product]="product$ | async" [qty]="productQty$ | async"></demo-product-added>
+      <demo-product-added *ngIf="!(loading$ | async)" class="add-to-cart-notification__product-added"
+        [product]="product$ | async" [qty]="productQty$ | async"></demo-product-added>
       <div *ngIf="!(loading$ | async)" daff-button-set class="add-to-cart-notification__button-set">
-        <button type="button" daff-stroked-button (click)="onHide()" demoViewCart>View Cart ({{(cartItemCount$ | async)}})</button>
+        <button type="button" daff-stroked-button (click)="onHide()" demoViewCart>
+          View Cart ({{(cartItemCount$ | async)}})
+        </button>
         <button type="button" daff-button color="secondary" (click)="onHide()" demoProceedToCheckout>Checkout</button>
       </div>
       <daff-loading-icon *ngIf="(loading$ | async)"></daff-loading-icon>

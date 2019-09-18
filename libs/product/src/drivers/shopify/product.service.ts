@@ -41,7 +41,9 @@ interface Variables {
 };
 
 
-
+/**
+ * GraphQL query object for getting all products.
+ */
 export const GetAllProductsQuery = gql`
   query GetAllProducts($length: Int) {
     shop {
@@ -57,6 +59,9 @@ export const GetAllProductsQuery = gql`
   }
 `;
 
+/**
+ * GraphQL query object for getting a product by ID.
+ */
 export const GetAProduct = gql`
   query GetAProduct($id: ID!){
     node(id: $id) {
@@ -68,6 +73,12 @@ export const GetAProduct = gql`
   }
 `;
 
+/**
+ * Transforms a ProductNode into a different object.
+ * 
+ * @param node - ProductNode object
+ * @returns A Product object
+ */
 export const DaffShopifyProductTransformer = (node: ProductNode) : DaffProduct => {
   return {
     id: node.id,
@@ -75,6 +86,11 @@ export const DaffShopifyProductTransformer = (node: ProductNode) : DaffProduct =
   }
 }
 
+/**
+ * A service for getting DaffProducts from apollo shopify product requests.
+ * 
+ * @Param apollo
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -84,6 +100,11 @@ export class DaffShopifyProductService implements DaffProductServiceInterface<Da
   
   constructor(private apollo: Apollo) {}
 
+  /**
+   * A query for retrieving all Products as an Observable<DaffProduct[]>.
+   * 
+   * @returns Observable<Product[]>
+   */
   getAll(): Observable<DaffProduct[]> {
     return this.apollo.query<GetAllProductsResponse>({
       query: GetAllProductsQuery,
@@ -111,6 +132,12 @@ export class DaffShopifyProductService implements DaffProductServiceInterface<Da
     );
   }
 
+  /**
+   * A query for retrieving a particular product as an Observable<DaffProduct>.
+   * 
+   * @param productId - A product ID
+   * @returns Observable<Product>
+   */
   get(productId: string): Observable<DaffProduct> {
     return this.apollo.query<GetAProductResponse>({
       query: GetAProduct,

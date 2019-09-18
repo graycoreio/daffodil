@@ -26,13 +26,13 @@ export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterC
   /**
    * The child form control that the form-field manages
    */
-  @ContentChild(DaffFormFieldControl) _control: DaffFormFieldControl<any>;
+  @ContentChild(DaffFormFieldControl, { static: false }) _control: DaffFormFieldControl<any>;
 
   /**
    * Tracking property to keep a record of whether or not the
    * form field should be marked as error.
    */
-  isError  = false;
+  isError = false;
 
   /**
    * Tracking property to keep a record of whether or not the
@@ -47,7 +47,7 @@ export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterC
    * observable to remove unnecessary change detection.
    */
   ngDoCheck() {
-    if(this._control) {
+    if (this._control) {
       this.isError = this._control.ngControl.errors && (this._control.ngControl.touched);
       this.isValid = !this._control.ngControl.errors && this._control.ngControl.touched;
     }
@@ -58,8 +58,8 @@ export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterC
    * a "usable" state.
    */
   private _validateFormControl() {
-    if(!this._control){
-      throw new Error(DaffFormFieldMissingControlMessage); 
+    if (!this._control) {
+      throw new Error(DaffFormFieldMissingControlMessage);
     }
   }
 
@@ -69,7 +69,7 @@ export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterC
    * validation of usage.
    */
   ngAfterContentInit() {
-      this._validateFormControl();
+    this._validateFormControl();
   }
 
   /**
@@ -78,6 +78,6 @@ export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterC
    * validation of usage.
    */
   ngAfterContentChecked() {
-      this._validateFormControl();
+    this._validateFormControl();
   }
 }

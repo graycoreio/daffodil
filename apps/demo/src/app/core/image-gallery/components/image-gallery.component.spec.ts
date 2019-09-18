@@ -3,11 +3,13 @@ import { Component, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { DaffImageGalleryModule } from '@daffodil/design';
-import { StoreModule, combineReducers, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { ImageGalleryComponent } from './image-gallery.component';
-import * as fromDemoImageGallery from '../reducers/index';
 import { SetSelectedImageState } from '../actions/image-gallery.actions';
+import * as fromDemoImageGallery from '../reducers';
+import { cold } from 'jasmine-marbles';
 
 const stubImages = [
   { url: '/assets/mh01-black_main.jpg', label: 'testlabel'},
@@ -25,19 +27,19 @@ describe('ImageGalleryComponent', () => {
   let imageGalleryContainer: ImageGalleryComponent;
   const activeImageIndex = 0;
   let daffGalleryImages;
-  let store;
+  let store: MockStore<any>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        StoreModule.forRoot({
-          demoImageGallery: combineReducers(fromDemoImageGallery.reducers),
-        }),
         DaffImageGalleryModule
       ],
       declarations: [ 
         WrapperComponent,
         ImageGalleryComponent
+      ],
+      providers: [
+        provideMockStore({})
       ]
     })
     .compileComponents();
@@ -46,13 +48,17 @@ describe('ImageGalleryComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;  
-    fixture.detectChanges();
     
     store = TestBed.get(Store);
+    store.overrideSelector(fromDemoImageGallery.selectSelectedImage, stubImages[activeImageIndex].url);
+
+    fixture.detectChanges();
 
     imageGalleryContainer = fixture.debugElement.query(By.css('demo-image-gallery-container')).componentInstance;
     daffGalleryImages = fixture.debugElement.queryAll(By.css('daff-gallery-image'));
   });
+
+  afterAll(() => store.resetSelectors());
 
   it('should create', () => {
     expect(imageGalleryContainer).toBeTruthy();
@@ -67,20 +73,13 @@ describe('ImageGalleryComponent', () => {
   });
 
   describe('on daff-gallery-image', () => {
-
-    beforeEach(() => {
-      spyOn(fromDemoImageGallery, 'selectSelectedImage').and.returnValue(stubImages[activeImageIndex].url);      
-    });
-
     describe('when daff-gallery-image is the selectedImage', () => {
-      
       it('should set selected to true', () => {
         expect(daffGalleryImages[activeImageIndex].componentInstance.selected).toBeTruthy();
       });
     });
 
     describe('when daff-gallery-image is not the selectedImage', () => {
-
       it('should set selected to false', () => {
         expect(daffGalleryImages[1].componentInstance.selected).toBeFalsy();
       });
@@ -101,7 +100,6 @@ describe('ImageGalleryComponent', () => {
 
     beforeEach(() => {
       spyOn(imageGalleryContainer, 'select'); 
-      
       imageGalleryContainer.ngOnInit();
     });
       
@@ -110,9 +108,9 @@ describe('ImageGalleryComponent', () => {
     });
     
     it('should initialize selectedImage$', () => {
-      imageGalleryContainer.selectedImage$.subscribe((selectedImage) => {
-        expect(selectedImage).toEqual(stubImages[0].url);
-      })
+      const expected = cold('a', { a: imageGalleryContainer.images[0].url });
+      expect(imageGalleryContainer.selectedImage$).toBeObservable(expected);
+
     });
   });
 

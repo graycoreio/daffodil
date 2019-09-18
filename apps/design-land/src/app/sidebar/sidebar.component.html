@@ -1,0 +1,16 @@
+<daff-form-field>
+  <select daff-native-select [(ngModel)]="mode">
+    <option value="push">Push (push)</option>
+    <option value="side">Side (side)</option>
+    <option value="over">Over (over)</option>
+  </select>
+</daff-form-field>
+
+<button daff-button (click)="open = !open">{{ open ? "Close" : "Open" }}</button>
+
+<daff-sidebar-viewport [mode]="mode" [opened]="open">
+    <daff-sidebar>
+      sidebar
+    </daff-sidebar>
+    <p>Some Content</p>
+</daff-sidebar-viewport>

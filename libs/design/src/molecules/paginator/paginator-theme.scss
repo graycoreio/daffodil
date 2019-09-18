@@ -1,6 +1,11 @@
-@mixin daff-paginator-theme-variant($color) {
-	background: $color;
-	color: daff-text-contrast($color);
+@mixin daff-paginator-theme-variant($active-color) {
+	color: currentColor;
+
+	&:hover,
+	&.selected {
+		background: $active-color;
+		color: daff-text-contrast($active-color);
+	}
 }
 
 @mixin daff-paginator-theme($theme) {
@@ -13,44 +18,49 @@
 	$black: daff-map-deep-get($theme, 'core.black');
 
 	.daff-paginator {
+		&__previous,
+		&__next {
+			color: currentColor;
+		}
+
 		&.daff-primary {
-			.daff-paginator__page-link--selected {
+			.daff-paginator__page-link {
 				@include daff-paginator-theme-variant(daff-color($primary));
 			}
 		}
 
 		&.daff-secondary {
-			.daff-paginator__page-link--selected {
+			.daff-paginator__page-link {
 				@include daff-paginator-theme-variant(daff-color($secondary));
 			}
 		}
 
 		&.daff-tertiary {
-			.daff-paginator__page-link--selected {
+			.daff-paginator__page-link {
 				@include daff-paginator-theme-variant(daff-color($tertiary));
 			}
 		}
 
 		&.daff-theme {
-			.daff-paginator__page-link--selected {
+			.daff-paginator__page-link {
 				@include daff-paginator-theme-variant($base);
 			}
 		}
 
 		&.daff-theme-contrast {
-			.daff-paginator__page-link--selected {
+			.daff-paginator__page-link {
 				@include daff-paginator-theme-variant($base-contrast);
 			}
 		}
 
 		&.daff-black {
-			.daff-paginator__page-link--selected {
+			.daff-paginator__page-link {
 				@include daff-paginator-theme-variant($black);
 			}
 		}
 
 		&.daff-white {
-			.daff-paginator__page-link--selected {
+			.daff-paginator__page-link {
 				@include daff-paginator-theme-variant($white);
 			}
 		}

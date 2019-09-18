@@ -1,25 +1,29 @@
 <daff-sidebar-viewport>
-    <daff-sidebar>
-        Atoms
-        <a daff-sidebar-item routerLink="button">Button</a>
-        <a daff-sidebar-item routerLink="link">Link</a>
-        <a daff-sidebar-item routerLink="loading-icon">Loading Icon</a>
-        <a daff-sidebar-item routerLink="progress-indicator">Progress Indicator</a>
-        Molecules
-        <a daff-sidebar-item routerLink="accordion">Accordion</a>
-        <a daff-sidebar-item routerLink="callout">Callout</a>
-        <a daff-sidebar-item routerLink="card">Card</a>
-        <a daff-sidebar-item routerLink="feature">Feature</a>
-        <a daff-sidebar-item routerLink="form">Form</a>
-        <a daff-sidebar-item routerLink="hero">Hero</a>
-        <a daff-sidebar-item routerLink="image-gallery">Image Gallery</a>
-        <a daff-sidebar-item routerLink="list">List</a>
-        <a daff-sidebar-item routerLink="navbar">Navigation Bar</a>
-        <a daff-sidebar-item routerLink="modal">Modal</a>
-        <a daff-sidebar-item routerLink="paginator">Paginator</a>
-        <a daff-sidebar-item routerLink="qty-dropdown">Quantity Dropdown</a>
-    </daff-sidebar>
-    <div class="design-land__content">
-        <router-outlet></router-outlet>
-    </div>
+  <daff-sidebar class="design-land__sidebar">
+    <daff-link-set>
+      <div daffLinkSetHeading>Atoms</div>
+      <a daff-link-set-item routerLink="button">Button</a>
+      <a daff-link-set-item routerLink="loading-icon">Loading Icon</a>
+      <a daff-link-set-item routerLink="progress-indicator">Progress Indicator</a>
+    </daff-link-set>
+    <daff-link-set>
+      <div daffLinkSetHeading>Molecules</div>
+      <a daff-link-set-item routerLink="accordion">Accordion</a>
+      <a daff-link-set-item routerLink="callout">Callout</a>
+      <a daff-link-set-item routerLink="card">Card</a>
+      <a daff-link-set-item routerLink="feature">Feature</a>
+      <a daff-link-set-item routerLink="form">Form</a>
+      <a daff-link-set-item routerLink="hero">Hero</a>
+      <a daff-link-set-item routerLink="image-gallery">Image Gallery</a>
+      <a daff-link-set-item routerLink="link-set">Link Set</a>
+      <a daff-link-set-item routerLink="list">List</a>
+      <a daff-link-set-item routerLink="navbar">Navigation Bar</a>
+      <a daff-link-set-item routerLink="modal">Modal</a>
+      <a daff-link-set-item routerLink="paginator">Paginator</a>
+      <a daff-link-set-item routerLink="qty-dropdown">Quantity Dropdown</a>
+    </daff-link-set>
+  </daff-sidebar>
+  <div class="design-land__content">
+    <router-outlet></router-outlet>
+  </div>
 </daff-sidebar-viewport>
