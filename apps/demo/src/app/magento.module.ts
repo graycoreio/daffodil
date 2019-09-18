@@ -4,6 +4,7 @@ import { ApolloBoostModule, ApolloBoost } from 'apollo-angular-boost';
 import { DaffProductMagentoDriverModule } from '@daffodil/product';
 import { DaffCartInMemoryDriverModule } from '@daffodil/cart/testing';
 import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
+import { DaffNavigationMagentoDriverModule } from '@daffodil/navigation';
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
     ApolloBoostModule,
     DaffProductMagentoDriverModule.forRoot(),
     DaffCartInMemoryDriverModule.forRoot(),
-    DaffCheckoutInMemoryDriverModule.forRoot()
+    DaffCheckoutInMemoryDriverModule.forRoot(),
+    DaffNavigationMagentoDriverModule.forRoot()
   ]
 })
 export class MagentoModule {
