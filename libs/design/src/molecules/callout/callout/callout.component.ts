@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input, ElementRef, ChangeDetectionStrategy, HostBinding } from '@angular/core';
+import { Component, ViewEncapsulation, Input, ElementRef, ChangeDetectionStrategy, HostBinding, Renderer2 } from '@angular/core';
 
 import { DaffColorable, DaffPalette, daffColorMixin } from '../../../core/colorable/colorable';
 
@@ -13,10 +13,10 @@ export enum DaffCalloutSizeEnum {
 }
 
 /**
- * An _elementRef is needed for the Colorable mixin
+ * An _elementRef and an instance of renderer2 are needed for the Colorable mixin
  */
 class DaffCalloutBase {
-  constructor(public _elementRef: ElementRef) {}
+  constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
 const _daffCalloutBase = daffColorMixin(DaffCalloutBase)
@@ -33,8 +33,8 @@ export class DaffCalloutComponent extends _daffCalloutBase implements DaffColora
   @Input() layout: DaffCalloutLayout;
   @Input() size: DaffCalloutSize;
 
-  constructor(private elementRef: ElementRef) {
-    super(elementRef);
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+    super(elementRef, renderer);
   }
 
   @HostBinding('class.daff-callout') class = true;

@@ -1,14 +1,14 @@
-import { Component, Input, Output, EventEmitter, HostBinding, ElementRef, OnChanges, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostBinding, ElementRef, OnChanges, ChangeDetectionStrategy, Renderer2 } from '@angular/core';
 
 import { daffColorMixin, DaffPalette, DaffColorable } from '../../core/colorable/colorable';
 
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 /**
- * An _elementRef is needed for the Colorable mixin
+ * An _elementRef and an instance of renderer2 are needed for the Colorable mixin
  */
 class DaffPaginatorBase {
-  constructor(public _elementRef: ElementRef) {}
+  constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
 const _daffPaginatorBase = daffColorMixin(DaffPaginatorBase)
@@ -34,8 +34,8 @@ export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChan
   @Input() color: DaffPalette;
   _paginatorId: string;
 
-  constructor(private elementRef: ElementRef) {
-    super(elementRef);
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+    super(elementRef, renderer);
     const ariaLabel = elementRef.nativeElement.attributes['aria-label'];
     this._paginatorId = ariaLabel ? ariaLabel.nodeValue : null;
   }

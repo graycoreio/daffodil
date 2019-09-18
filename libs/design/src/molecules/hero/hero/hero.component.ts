@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input, ElementRef, ChangeDetectionStrategy, HostBinding } from '@angular/core';
+import { Component, ViewEncapsulation, Input, ElementRef, ChangeDetectionStrategy, HostBinding, Renderer2 } from '@angular/core';
 
 import { DaffPalette, daffColorMixin, DaffColorable } from '../../../core/colorable/colorable';
 
@@ -14,10 +14,10 @@ export enum DaffHeroSizeEnum {
 }
 
 /**
- * An _elementRef is needed for the Colorable mixin
+ * An _elementRef and an instance of renderer2 are needed for the Colorable mixin
  */
 class DaffHeroBase {
-  constructor(public _elementRef: ElementRef) {}
+  constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
 const _daffHeroBase = daffColorMixin(DaffHeroBase)
@@ -35,8 +35,8 @@ export class DaffHeroComponent extends _daffHeroBase implements DaffColorable {
   @Input() size: DaffHeroSize;
   @Input() color: DaffPalette;
 
-  constructor(private elementRef: ElementRef) {
-    super(elementRef);
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+    super(elementRef, renderer);
   }
 
   @HostBinding('class.daff-hero') class = true;
