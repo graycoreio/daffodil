@@ -1,16 +1,10 @@
-@mixin daff-logo-theme($theme){
-    $base: daff-map-deep-get($theme, "core.base");
-    $base-contrast: daff-map-deep-get($theme, "core.base-contrast");
+@mixin daff-logo-theme($theme) {
+	$base: daff-map-deep-get($theme, 'core.base');
+	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
 
-    .daff-logo {
-        &--full {
-            @if(daff-luminance($base) >= 0.5) {
-                fill: daff-color($daff-blue, 60);
-            }
-
-            @if(daff-luminance($base) < 0.5) {
-                fill: $white;
-            }
-        }
-    }
+	.daff-logo {
+		&--full {
+			fill: currentColor;
+		}
+	}
 }
