@@ -1,4 +1,4 @@
-import { computeDeepestSidebarMode } from "./computeDeepestSidebarMode";
+import { computeDeepestRouteDataKey } from "./computeDeepestRouteDataKey";
 import { ActivatedRouteSnapshot } from "@angular/router";
 
 describe('computeDeepestSidebarMode', () => {
@@ -12,12 +12,12 @@ describe('computeDeepestSidebarMode', () => {
       } 
     } as unknown as ActivatedRouteSnapshot;
     
-    expect(computeDeepestSidebarMode(tree)).toEqual("push");
+    expect(computeDeepestRouteDataKey(tree, 'mode')).toEqual("push");
   });
 
   it('should return undefined if there are no `sidebarMode`s in the tree', () => {
     const tree = { data: {}, firstChild: { data: { } } } as unknown as ActivatedRouteSnapshot;
-    expect(computeDeepestSidebarMode(tree)).toEqual(undefined);
+    expect(computeDeepestRouteDataKey(tree, 'mode')).toEqual(undefined);
 
   })
 })

@@ -6,7 +6,10 @@ const pwa: Routes = [
   { 
     path: '',
     pathMatch: 'full', 
-    component: DaffioPwaComponent
+    component: DaffioPwaComponent,
+    data: {
+      headerColor: 'secondary'
+    }
   }
 ];
 

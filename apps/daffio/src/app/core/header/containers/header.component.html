@@ -1,8 +1,15 @@
-<daffio-header>
+<div #stickyIndicator></div>
+<daffio-header [color]="color$ | async" [stuck]="stuck$ | async">
   <a routerLink="/" daffio-logo>
     <daff-branding-logo type="full"></daff-branding-logo>
   </a>
-  <a daffioHeaderItem routerLink="{{ link.path }}" *ngFor="let link of links">{{ link.title }}</a>
-  <a href="https://github.com/graycoreio/daffodil" rel="noopener noreferrer" target="_blank" daff-button type="button" quickstart-button>Get Started</a>
-  <button type="button" daff-icon-button sidebar-button (click)="openSidebar()"><fa-icon [icon]="faBars"></fa-icon></button>
+  <a daffioHeaderItem daff-underline-button routerLink="{{ link.path }}" *ngFor="let link of links">{{ link.title }}</a>
+  <a href="https://github.com/graycoreio/daffodil" 
+    rel="noopener noreferrer" target="_blank" 
+    type="button"
+    daff-button
+    quickstart-button>Get Started</a>
+  <button type="button" daff-icon-button sidebar-button (click)="openSidebar()">
+    <fa-icon [icon]="faBars"></fa-icon>
+  </button>
 </daffio-header>

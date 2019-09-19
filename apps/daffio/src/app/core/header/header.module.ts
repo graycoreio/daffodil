@@ -10,16 +10,18 @@ import {
 
 import { DaffLogoModule } from '@daffodil/branding';
 
-import { DaffioHeaderComponent } from './component/header.component';
+import { DaffioHeaderComponent } from './component/header/header.component';
+import { DaffioHeaderItemDirective } from './component/header-item/header-item.directive';
 import { DaffioHeaderContainer } from './containers/header.component';
-import { DaffioHeaderItemDirective } from './header-item/header-item.directive';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DaffioHeaderStateModule } from './header.state.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
+    DaffioHeaderStateModule,
     
     DaffNavbarModule,
     DaffLogoModule,

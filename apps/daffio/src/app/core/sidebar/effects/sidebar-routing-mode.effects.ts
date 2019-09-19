@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { ROUTER_NAVIGATION, ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
+import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
 
-import { Observable, of, asyncScheduler, combineLatest } from 'rxjs';
-import { switchMap, delay, map, tap } from 'rxjs/operators';
+import { Observable, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Action } from '@ngrx/store';
 
 import * as SidebarActions from '../actions/sidebar.actions';
-import { DaffBreakpoints } from '@daffodil/design';
+import { DaffBreakpoints, DaffSidebarMode } from '@daffodil/design';
 
-import { computeDeepestSidebarMode } from '../helpers/computeDeepestSidebarMode';
+import { computeDeepestRouteDataKey } from '../../helpers/computeDeepestRouteDataKey';
 
 
 @Injectable()
@@ -26,7 +26,7 @@ export class DaffioSidebarRoutingModeEffects {
     this.breakpointsObserver.observe(DaffBreakpoints.TABLET)
   ).pipe(
     map(([action, state]) => {
-      const mode = computeDeepestSidebarMode(action.payload.routerState.root);
+      const mode = computeDeepestRouteDataKey<DaffSidebarMode>(action.payload.routerState.root, 'sidebarMode');
       if(state.matches && mode){
         return new SidebarActions.SetSidebarMode(mode);
       }

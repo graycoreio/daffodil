@@ -1,0 +1,49 @@
+@import 'utilities';
+@import 'theme';
+
+.sticky-indicator {
+	height: 0;
+}
+
+:host {
+	display: block;
+	position: sticky;
+	top: 0;
+	z-index: 10;
+}
+
+.daffio-header {
+	&__navbar {
+		align-items: center;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__menu {
+		display: none;
+
+		@include breakpoint(tablet) {
+			align-items: center;
+			display: grid;
+			grid-auto-flow: column;
+			grid-gap: 24px;
+		}
+	}
+
+	&__logo {
+		width: 125px;
+
+		@include breakpoint(mobile) {
+			width: 150px;
+		}
+	}
+
+	&__bars {
+		display: flex;
+		margin-right: -13px;
+
+		@include breakpoint(tablet) {
+			display: none;
+		}
+	}
+}

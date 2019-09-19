@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 
 import { DaffioHeaderComponent } from './header.component';
 import {
@@ -34,11 +33,9 @@ describe('DaffioHeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('on <daff-container>', () => {
-    it('should set size="md"', () => {
-      const container = fixture.debugElement.query(By.css('daff-container'));
-
-      expect(container.componentInstance.size).toEqual('md');
-    });
-  });
+  it('should add a class of `daffio-header` to its host element', () => {
+    expect(fixture.debugElement.classes).toEqual(jasmine.objectContaining({
+      'daffio-header': true,
+    }));
+  })
 });
