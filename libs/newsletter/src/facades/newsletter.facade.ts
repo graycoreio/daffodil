@@ -7,7 +7,8 @@ import { DaffNewsletterModule } from '../newsletter.module';
 import { isObject } from 'util';
 
 import { State, selectDaffNewsletterSuccess, selectDaffNewsletterError, selectDaffNewsletterLoading } from '../selectors/newsletter.selector';
-import { DaffStoreFacade } from '@daffodil/core';
+import { DaffStoreFacade } from 'libs/core/src';
+
 
 @Injectable()
 export class DaffNewsletterFacade implements DaffStoreFacade<Action>{
