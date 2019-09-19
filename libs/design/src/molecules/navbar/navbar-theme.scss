@@ -1,3 +1,8 @@
+@mixin daff-navbar-theme-variant($color) {
+	background: $color;
+	color: daff-text-contrast($color);
+}
+
 @mixin daff-navbar-theme($theme) {
 	$primary: map-get($theme, primary);
 	$secondary: map-get($theme, secondary);
@@ -8,5 +13,17 @@
 	.daff-navbar {
 		background: $base;
 		color: $font-color;
+
+		&.daff-primary {
+			@include daff-navbar-theme-variant(daff-color($primary));
+		}
+
+		&.daff-secondary {
+			@include daff-navbar-theme-variant(daff-color($secondary));
+		}
+
+		&.daff-tertiary {
+			@include daff-navbar-theme-variant(daff-color($tertiary));
+		}
 	}
 }
