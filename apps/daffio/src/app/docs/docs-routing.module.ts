@@ -12,7 +12,7 @@ export const docsRoutes: Routes = [
       sidebarMode: 'side'
     },
     children: [
-    { path: 'api', loadChildren: './api-docs/api.module#DaffioDocsApiModule' },
+    { path: 'api', loadChildren: () => import('./api-docs/api.module').then(m => m.DaffioDocsApiModule) },
     {
       path: '**', 
       component: DaffioDocViewComponent, 
