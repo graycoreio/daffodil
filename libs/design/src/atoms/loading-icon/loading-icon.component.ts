@@ -1,11 +1,11 @@
-import { Component, ChangeDetectionStrategy, Input, ElementRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, ElementRef, Renderer2 } from '@angular/core';
 import { daffColorMixin, DaffColorable, DaffPalette } from '../../core/colorable/colorable';
 
 /**
- * An _elementRef is needed for the Colorable mixin
+ * An _elementRef and an instance of renderer2 are needed for the Colorable mixin
  */
 class DaffLoadingIconBase{
-  constructor(public _elementRef: ElementRef) {}
+  constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
 const _daffLoadingIconBase = daffColorMixin(DaffLoadingIconBase, 'primary') 
@@ -30,7 +30,7 @@ export class DaffLoadingIconComponent extends _daffLoadingIconBase implements Da
   // tslint:disable-next-line: no-inferrable-types
   @Input() diameter: number = 60;
 
-  constructor(private elementRef: ElementRef) {
-    super(elementRef);
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+    super(elementRef, renderer);
   }
 }

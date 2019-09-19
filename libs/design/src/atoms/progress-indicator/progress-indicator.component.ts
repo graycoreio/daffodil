@@ -1,14 +1,14 @@
-import { Component, Input, ChangeDetectionStrategy, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, ElementRef, Output, EventEmitter, Renderer2 } from '@angular/core';
 import { AnimationEvent } from '@angular/animations';
 
 import { daffColorMixin, DaffColorable, DaffPalette } from '../../core/colorable/colorable';
 import { daffProgressIndicatorAnimation } from './animation/progress-indicator-animation';
 
 /**
- * An _elementRef is needed for the Colorable mixin
+ * An _elementRef and an instance of renderer2 are needed for the Colorable mixin
  */
 class DaffProgressIndicatorBase{
-  constructor(public _elementRef: ElementRef) {}
+  constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
 const _daffProgressIndicatorBase = daffColorMixin(DaffProgressIndicatorBase, 'primary') 
@@ -69,7 +69,7 @@ export class DaffProgressIndicatorComponent extends _daffProgressIndicatorBase i
     };
   }
 
-  constructor(private elementRef: ElementRef) {
-    super(elementRef);
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+    super(elementRef, renderer);
   }
 }

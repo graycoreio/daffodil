@@ -1,10 +1,19 @@
 import { daffColorMixin, colorInPalette } from "./colorable";
-import { ElementRef } from "@angular/core";
+import { ElementRef, Renderer2 } from "@angular/core";
+import { TestBed } from "@angular/core/testing";
 
 class TestingClass {
   element: HTMLElement = document.createElement('div');
 
   _elementRef = new ElementRef<HTMLElement>(this.element);
+  _renderer : any = { 
+    addClass(el: HTMLElement, className: string) {
+      el.classList.add(className);
+    },
+    removeClass(el: HTMLElement, className: string) {
+      el.classList.remove(className);
+    }
+  } 
 }
 
 /**

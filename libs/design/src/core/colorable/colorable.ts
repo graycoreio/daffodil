@@ -1,4 +1,4 @@
-import { ElementRef } from "@angular/core";
+import { ElementRef, Renderer2 } from "@angular/core";
 import { Constructor } from '../constructor';
 
 /**
@@ -28,6 +28,7 @@ enum DaffPaletteEnum {
 }
 interface HasElementRef {
     _elementRef: ElementRef;
+    _renderer: Renderer2;
 }
 
 /**
@@ -55,11 +56,11 @@ export function
             if(incomingColor !== this._color){ //Only run the dom-render if a change occurs
                 //Remove the old color
                 if(this._color){
-                    this._elementRef.nativeElement.classList.remove(`daff-${this._color}`);
+                    this._renderer.removeClass(this._elementRef.nativeElement, `daff-${this._color}`);
                 }
 
                 if(incomingColor){
-                    this._elementRef.nativeElement.classList.add(`daff-${incomingColor}`);
+                    this._renderer.addClass(this._elementRef.nativeElement, `daff-${incomingColor}`);
                 }
 
                 this._color = incomingColor;

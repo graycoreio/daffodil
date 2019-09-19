@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ElementRef, Input, HostBinding } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ElementRef, Input, HostBinding, Renderer2 } from '@angular/core';
 
 import { daffColorMixin, DaffColorable, DaffPalette } from '../../core/colorable/colorable';
 
@@ -15,10 +15,10 @@ const BUTTON_HOST_ATTRIBUTES: DaffButtonType[] = [
 
 
 /**
- * An _elementRef is needed for the Colorable mixin
+ * An _elementRef and an instance of renderer2 are needed for the Colorable mixin
  */
 class DaffButtonBase{
-  constructor(public _elementRef: ElementRef) {}
+  constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
 const _daffButtonBase = daffColorMixin(DaffButtonBase, 'theme-contrast') 
@@ -55,8 +55,8 @@ export class DaffButtonComponent extends _daffButtonBase implements OnInit, Daff
     @Input() color: DaffPalette;
     buttonType: DaffButtonType;
 
-    constructor(private elementRef: ElementRef) {
-      super(elementRef);
+    constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+      super(elementRef, renderer);
 
       for (const attr of BUTTON_HOST_ATTRIBUTES) {
         if (this._hasHostAttributes(attr)) {
