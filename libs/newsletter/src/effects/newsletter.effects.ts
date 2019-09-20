@@ -1,7 +1,7 @@
-import { Injectable, Inject } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Inject } from '@angular/core';
+import { of } from 'rxjs';
 
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Actions, Effect, ofType, createEffect } from '@ngrx/effects';
 import { switchMap, map, catchError } from 'rxjs/operators';
 
 import { DaffNewsletterServiceInterface } from '../driver/interfaces/newsletter-service.interface';
@@ -16,8 +16,9 @@ export class DaffNewsletterEffects<T extends DaffNewsletterSubmission, V>{
     @Inject(DaffNewsletterDriver) private driver: DaffNewsletterServiceInterface<T, V>) { }
 
   @Effect()
-  trySubmission$: Observable<any> = this.actions$.pipe(ofType(DaffNewsletterActionTypes.NewsletterSubscribeAction),
-    switchMap((action: DaffNewsletterSubscribe) =>
+  trySubmission$ = createEffect(() => this.actions$.pipe(
+    ofType(DaffNewsletterActionTypes.NewsletterSubscribeAction),
+    switchMap((action: DaffNewsletterSubscribe<T>) =>
       this.driver.send(action.payload).pipe(
         map((resp: V) => {
           return new DaffNewsletterSuccessSubscribe();
@@ -26,7 +27,7 @@ export class DaffNewsletterEffects<T extends DaffNewsletterSubmission, V>{
           return of(new DaffNewsletterFailedSubscribe("Failed to subscribe to newsletter"));
         })
       )
-    )
+    ))
   )
 
 }

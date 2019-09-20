@@ -11,10 +11,10 @@ export enum DaffNewsletterActionTypes {
   NewsletterReset = "[Daff-Newsletter] Reset Newsletter"
 }
 
-export class DaffNewsletterSubscribe implements Action {
+export class DaffNewsletterSubscribe<T extends DaffNewsletterSubmission> implements Action {
   readonly type = DaffNewsletterActionTypes.NewsletterSubscribeAction;
 
-  constructor(public payload: DaffNewsletterSubmission) { }
+  constructor(public payload: T) { }
 }
 export class DaffNewsletterRetry implements Action {
   readonly type = DaffNewsletterActionTypes.NewsletterRetry;
@@ -37,8 +37,8 @@ export class DaffNewsletterReset implements Action {
   readonly type = DaffNewsletterActionTypes.NewsletterReset;
 }
 
-export type DaffNewsletterActions = 
-  DaffNewsletterSubscribe |
+export type DaffNewsletterActions<T extends DaffNewsletterSubmission> = 
+  DaffNewsletterSubscribe<T> |
   DaffNewsletterSuccessSubscribe |
   DaffNewsletterFailedSubscribe |
   DaffNewsletterReset |
