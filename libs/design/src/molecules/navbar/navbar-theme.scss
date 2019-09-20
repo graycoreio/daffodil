@@ -17,7 +17,7 @@
 		&--shadowed {
 			box-shadow: 0 3px 10px rgba($black, 0.08);
 		}
-		
+
 		&.daff-primary {
 			@include daff-navbar-theme-variant(
 				daff-color($primary)
