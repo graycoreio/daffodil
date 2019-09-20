@@ -72,60 +72,40 @@
 	}
 
 	.daff-raised-button {
-		box-shadow:
-			0 3px 5px rgba($black, 0.12),
-			0 1px 3px rgba($black, 0.08);
+		box-shadow: 0 3px 5px rgba($black, 0.12), 0 1px 3px rgba($black, 0.08);
 
 		&:hover {
-			box-shadow:
-				0 5px 14px rgba($black, 0.12),
-				0 3px 5px rgba($black, 0.08);
+			box-shadow: 0 5px 14px rgba($black, 0.12), 0 3px 5px rgba($black, 0.08);
 		}
 
-		@include daff-raised-button-theme-variant(
-			$base-contrast
-		);
+		@include daff-raised-button-theme-variant($base-contrast);
 
 		&.daff-primary {
-			@include daff-raised-button-theme-variant(
-				daff-color($primary)
-			);
+			@include daff-raised-button-theme-variant(daff-color($primary));
 		}
 
 		&.daff-secondary {
-			@include daff-raised-button-theme-variant(
-				daff-color($secondary)
-			);
+			@include daff-raised-button-theme-variant(daff-color($secondary));
 		}
 
 		&.daff-tertiary {
-			@include daff-raised-button-theme-variant(
-				daff-color($tertiary)
-			);
+			@include daff-raised-button-theme-variant(daff-color($tertiary));
 		}
 
 		&.daff-black {
-			@include daff-raised-button-theme-variant(
-				$black
-			);
+			@include daff-raised-button-theme-variant($black);
 		}
 
 		&.daff-white {
-			@include daff-raised-button-theme-variant(
-				$white
-			);
+			@include daff-raised-button-theme-variant($white);
 		}
 
 		&[disabled] {
-			@include daff-raised-button-theme-variant(
-				daff-color($daff-gray, 30)
-			);
+			@include daff-raised-button-theme-variant(daff-color($daff-gray, 30));
 			color: daff-color($daff-gray, 60);
 
 			&:hover {
-				box-shadow:
-					0 3px 5px rgba($black, 0.12),
-					0 1px 3px rgba($black, 0.08);
+				box-shadow: 0 3px 5px rgba($black, 0.12), 0 1px 3px rgba($black, 0.08);
 			}
 		}
 	}
@@ -211,26 +191,18 @@
 		}
 
 		&.daff-black {
-			@include daff-stroked-button-theme-variant(
-				$black,
-				0.08,
-				$black
-			);
+			@include daff-stroked-button-theme-variant($black, 0.08, $black);
 		}
 
 		&.daff-white {
-			@include daff-stroked-button-theme-variant(
-				$white,
-				0.08,
-				$white
-			);
+			@include daff-stroked-button-theme-variant($white, 0.08, $white);
 		}
 
 		&[disabled] {
 			@include daff-stroked-button-theme-variant(
 				daff-color($daff-gray, 30),
 				0,
-				daff-color($daff-gray, 30),
+				daff-color($daff-gray, 30)
 			);
 		}
 	}
@@ -239,39 +211,27 @@
 		@include daff-underline-button-theme-variant;
 
 		&.daff-primary {
-			@include daff-underline-button-theme-variant(
-				daff-color($primary)
-			);
+			@include daff-underline-button-theme-variant(daff-color($primary));
 		}
 
 		&.daff-secondary {
-			@include daff-underline-button-theme-variant(
-				daff-color($secondary)
-			);
+			@include daff-underline-button-theme-variant(daff-color($secondary));
 		}
 
 		&.daff-tertiary {
-			@include daff-underline-button-theme-variant(
-				daff-color($tertiary)
-			);
+			@include daff-underline-button-theme-variant(daff-color($tertiary));
 		}
 
 		&.daff-black {
-			@include daff-underline-button-theme-variant(
-				$black
-			);
+			@include daff-underline-button-theme-variant($black);
 		}
 
 		&.daff-white {
-			@include daff-underline-button-theme-variant(
-				$white
-			);
+			@include daff-underline-button-theme-variant($white);
 		}
 
 		&[disabled] {
-			@include daff-underline-button-theme-variant(
-				daff-color($daff-gray, 60)
-			);
+			@include daff-underline-button-theme-variant(daff-color($daff-gray, 60));
 		}
 	}
 }
