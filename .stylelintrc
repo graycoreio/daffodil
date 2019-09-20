@@ -98,6 +98,7 @@
     "scss/comment-no-loud": true,
     "scss/selector-nest-combinators": "always",
     "scss/selector-no-redundant-nesting-selector": true,
-    "scss/dollar-variable-pattern": "^_?[a-z\\-]+$"
+    "scss/dollar-variable-pattern": "^_?[a-z\\-]+$",
+    "scss/at-else-empty-line-before": "never"
   }
 }

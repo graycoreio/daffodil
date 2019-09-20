@@ -1,0 +1,19 @@
+@mixin daff-button-theme-variant(
+	$base-color,
+	$hover-color,
+	$active-color: $hover-color
+) {
+	background-color: $base-color;
+	border: 2px solid $base-color;
+	color: daff-text-contrast($base-color);
+
+	&:hover {
+		background-color: $hover-color;
+		border: 2px solid $hover-color;
+	}
+
+	&:active {
+		background-color: $active-color;
+		border: 2px solid $active-color;
+	}
+}
