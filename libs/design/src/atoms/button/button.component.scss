@@ -126,7 +126,7 @@
 	}
 
 	&:hover {
-		&:after {
+		&::after {
 			animation: underline-button-hover 700ms ease;
 		}
 	}
