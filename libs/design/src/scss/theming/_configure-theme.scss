@@ -40,10 +40,10 @@ $supported-theme-types: (
 	$type: 'light'
 ) {
 	@return (
-	'primary': $primary,
-	'secondary': $secondary,
-	'tertiary': $tertiary,
-	'core': daff-build-theme-core($type)
+		'primary': $primary,
+		'secondary': $secondary,
+		'tertiary': $tertiary,
+		'core': daff-build-theme-core($type)
 	);
 }
 

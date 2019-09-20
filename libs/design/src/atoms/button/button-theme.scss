@@ -55,14 +55,14 @@
 @mixin daff-underline-button-theme-variant($base-color, $hover-color) {
 	color: $base-color;
 
-	&:after {
+	&::after {
 		background-color: $base-color;
 	}
 
 	&:hover {
 		color: $hover-color;
 
-		&:after {
+		&::after {
 			background: $hover-color;
 		}
 	}

@@ -33,13 +33,13 @@
 	}
 
 	&__open-icon {
-		&:after {
+		&::after {
 			@include chevron($direction: 'down');
 		}
 	}
 
 	&__close-icon {
-		&:after {
+		&::after {
 			@include chevron($direction: 'up');
 		}
 	}

@@ -30,22 +30,22 @@
 		font-size: 1rem;
 		font-weight: normal;
 		line-height: 1.5em;
-		margin: 10px 0 0 0;
+		margin: 10px 0 0;
 		max-width: 600px;
 		padding: 0;
 		text-align: left;
 
 		@include breakpoint(mobile) {
 			font-size: $medium-font-size;
-			margin: 25px 0 0 0;
+			margin: 25px 0 0;
 		}
 
 		@include breakpoint(big-tablet) {
-			margin: 25px 0 0 0;
+			margin: 25px 0 0;
 		}
 
 		+ * {
-			margin: 50px 0 0 0;
+			margin: 50px 0 0;
 		}
 	}
 
@@ -56,14 +56,14 @@
 		}
 
 		#{$root}__subtitle {
-			margin: 10px auto 0 auto;
+			margin: 10px auto 0;
 			text-align: center;
 
 			@include breakpoint(mobile) {
-				margin: 25px auto 0 auto;
+				margin: 25px auto 0;
 			}
-  	}
-  }
+		}
+	}
 
 	&--compact {
 		padding: 25px;

@@ -5,14 +5,14 @@
 	overflow: scroll;
 	white-space: nowrap;
 
-	& > * {
+	> * {
 		@include clickable();
 		display: inline-block;
 		margin: 0 5px 0 0;
 
 		@include breakpoint(big-tablet) {
 			display: block;
-			margin: 0 0 5px 0;
+			margin: 0 0 5px;
 		}
 
 		&:last-child {

@@ -11,7 +11,7 @@
 		@include embolden();
 		@include uppercase();
 		font-size: 1rem;
-		padding: 0 0 25px 0;
+		padding: 0 0 25px;
 	}
 
 	&--link {
@@ -29,23 +29,23 @@
 			padding: 15px 0;
 
 			&:first-of-type {
-				padding: 0 0 15px 0;
+				padding: 0 0 15px;
 			}
 
 			&:last-of-type {
-				padding: 15px 0 0 0;
+				padding: 15px 0 0;
 			}
 
 			&__content {
-				*:nth-child(1) {
+				*:nth-child(1) { /* stylelint-disable-line scss/selector-nest-combinators */
 					@include embolden();
 					font-size: 1rem;
 					line-height: 1.5rem;
-					margin: 0 0 10px 0;
+					margin: 0 0 10px;
 					padding: 0;
 				}
 
-				*:nth-child(n + 2) {
+				*:nth-child(n + 2) { /* stylelint-disable-line scss/selector-nest-combinators */
 					margin: 0;
 					padding: 0;
 				}
@@ -61,7 +61,7 @@
 	text-align: left;
 
 	&:first-of-type {
-		padding: 0 0 8px 0;
+		padding: 0 0 8px;
 	}
 
 	&__icon {

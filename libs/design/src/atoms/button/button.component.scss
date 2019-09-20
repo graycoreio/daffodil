@@ -11,7 +11,7 @@
 	position: relative;
 	text-align: center;
 	text-decoration: none;
-	transition: all 0.3s ease; //sass-lint:disable-line no-transition-all
+	transition: all 300ms ease;
 
 	&:active {
 		transform: translateY(2px);
@@ -57,7 +57,7 @@
 	background: transparent;
 	border-radius: 0;
 	margin: 0;
-	padding: 0 0 5px 0;
+	padding: 0 0 5px;
 	text-decoration: underline;
 	vertical-align: middle;
 
@@ -67,13 +67,13 @@
 
 	&[disabled] {
 		&:hover {
-			&:after {
+			&::after {
 				animation: none;
 			}
 		}
 	}
 
-	&:after {
+	&::after {
 		opacity: 0;
 
 		@include breakpoint(big-tablet) {
@@ -83,15 +83,14 @@
 			left: 0;
 			opacity: 1;
 			position: absolute;
-			transition: all 0.7s ease; //sass-lint:disable-line no-transition-all
-
+			transition: all 700ms ease;
 			width: 100%;
 		}
 	}
 
 	&:hover {
-		&:after {
-			animation: underline-button-hover 0.7s ease 0s 1;
+		&::after {
+			animation: underline-button-hover 700ms ease 0 1;
 		}
 	}
 }

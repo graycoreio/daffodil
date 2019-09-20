@@ -23,12 +23,12 @@
 
 	&__item {
 		@include clickable();
-		display: block;
 		color: currentColor;
+		display: block;
 		font-size: 1em;
 		line-height: 1.5em;
 		text-decoration: none;
-		transition: color 0.15s ease;
+		transition: color 150ms ease;
 
 		&:hover {
 			text-decoration: underline;

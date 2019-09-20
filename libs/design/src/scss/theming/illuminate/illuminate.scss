@@ -3,7 +3,7 @@
 
 //
 // Take a numeric map and sort it.
-// 
+//
 // https://gist.github.com/Jakobud/a0ac11e80a1de453cd86f0d3fc0a1410
 // Credit to: https://gist.github.com/iamandrewluca
 //
@@ -60,10 +60,10 @@
 	@return $sorted-map;
 }
 
-// Given a map of key, luminance pairs, find the key 
+// Given a map of key, luminance pairs, find the key
 // of the value that is "nth" away from zero.
 //
-// @param $map: a map of key, luminance pairs, 
+// @param $map: a map of key, luminance pairs,
 // @param $nth: nth steps away from zero
 @function _daff-illuminate-get-key($map, $nth: 1) {
 	//Cap off "nth" to prevent going out-of-bounds.
@@ -75,7 +75,7 @@
 	@return nth(nth($map, $nth), 1);
 }
 
-// Takes a $color and palette and returns the color in 
+// Takes a $color and palette and returns the color in
 // the palette which would "illuminate" against that color.
 //
 // @usage

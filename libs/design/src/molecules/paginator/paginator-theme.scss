@@ -2,7 +2,7 @@
 	color: currentColor;
 
 	&:hover,
-	&.selected {
+	&.selected { /* stylelint-disable-line selector-class-pattern */
 		background: $active-color;
 		color: daff-text-contrast($active-color);
 	}

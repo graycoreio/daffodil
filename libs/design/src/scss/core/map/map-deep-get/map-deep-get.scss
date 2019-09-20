@@ -4,10 +4,10 @@
 //
 // Return a the value of a nested key in a map if it exists.
 // If the key doesn't exist, it throw an error.
-// 
-// Note: This function doesn't support the use 
+//
+// Note: This function doesn't support the use
 // of the search character in your map key names.
-// 
+//
 // @usage daff-map-deep-get($map, "nested.map.key");
 // @returns any
 // @throws error

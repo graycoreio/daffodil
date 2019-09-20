@@ -2,14 +2,13 @@
 @import '../../color';
 @import '../../variables';
 
-// sass-lint:disable-block max-line-length
 // @docs
-// 
+//
 // Given a color, get the font color that would be
 // easily visible on top of that color
-// 
+//
 // For an interesting read, see more about the topic:
-// https://robots.thoughtbot.com/closer-look-color-lightness 
+// https://robots.thoughtbot.com/closer-look-color-lightness
 //
 // Based on the code outlined by Sergio Gomes here:
 // https://medium.com/dev-channel/using-sass-to-automatically-pick-text-colors-4ba7645d2796

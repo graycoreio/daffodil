@@ -34,14 +34,14 @@
 		font-size: $medium-font-size;
 		font-weight: normal;
 		line-height: 1.5em;
-		margin: 10px 0 0 0;
+		margin: 10px 0 0;
 		max-width: 700px;
 		text-align: left;
 		width: 100%;
 
 		@include breakpoint(mobile) {
 			font-size: 1.25rem;
-			margin: 25px 0 0 0;
+			margin: 25px 0 0;
 		}
 
 		@include breakpoint(big-tablet) {
@@ -61,7 +61,7 @@
 		}
 
 		#{$root}__subtitle {
-			margin: 25px auto 0 auto;
+			margin: 25px auto 0;
 			text-align: center;
 		}
 	}
