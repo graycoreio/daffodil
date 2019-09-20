@@ -1,7 +1,43 @@
 <h1>Daff Navigation Bar</h1>
 <h2>Navigation bar with buttons</h2>
-<daff-navbar>
-  <button daff-button color="primary">Primary</button>
-  <button daff-button color="secondary">Home button</button>
-  <button daff-button color="tertiary">Home button</button>
+<daff-navbar class="navbar">
+  <div class="navbar__links">
+    <a href="/" class="navbar__link">Home</a>
+    <a href="/" class="navbar__link">About Us</a>
+  </div>
+  <button daff-button color="primary">Contact Us</button>
+</daff-navbar>
+
+<h2>Colorable Navigation Bar</h2>
+<daff-navbar color="primary" class="navbar">
+  <div class="navbar__links">
+    <a href="/" class="navbar__link">Home</a>
+    <a href="/" class="navbar__link">About Us</a>
+  </div>
+  <button daff-button color="secondary">Contact Us</button>
+</daff-navbar>
+
+<daff-navbar color="secondary" class="navbar">
+  <div class="navbar__links">
+    <a href="/" class="navbar__link">Home</a>
+    <a href="/" class="navbar__link">About Us</a>
+  </div>
+  <button daff-button color="primary">Contact Us</button>
+</daff-navbar>
+
+<daff-navbar color="tertiary" class="navbar">
+  <div class="navbar__links">
+    <a href="/" class="navbar__link">Home</a>
+    <a href="/" class="navbar__link">About Us</a>
+  </div>
+  <button daff-button color="primary">Contact Us</button>
+</daff-navbar>
+
+<h2>Shadowed Navigation Bar</h2>
+<daff-navbar shadowed="true" class="navbar">
+  <div class="navbar__links">
+    <a href="/" class="navbar__link">Home</a>
+    <a href="/" class="navbar__link">About Us</a>
+  </div>
+  <button daff-button color="primary">Contact Us</button>
 </daff-navbar>

@@ -1,4 +1,18 @@
+@import 'daff-util';
+
 .navbar {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+
+  &__link {
+    @include embolden();
+    font-size: 1.125rem;
+    padding: 0 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+}
+
+daff-navbar {
+  margin: 15px 0;
 }

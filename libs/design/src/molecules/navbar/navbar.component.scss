@@ -1,6 +1,6 @@
-@import '../../scss/daff-util.scss';
+@import '../../scss/daff-util';
 
-.daff-navbar {
+:host {
 	align-items: center;
 	display: flex;
 	height: 70px;
