@@ -89,6 +89,7 @@
 .daff-underline-button {
 	@include daff-button();
 	background: transparent;
+	border: 0;
 	border-radius: 0;
 	margin: 0;
 	padding: 0 0 5px;
@@ -125,8 +126,8 @@
 	}
 
 	&:hover {
-		&::after {
-			animation: underline-button-hover 700ms ease 0 1;
+		&:after {
+			animation: underline-button-hover 700ms ease;
 		}
 	}
 }
