@@ -59,7 +59,7 @@ circle {
 		transform: rotate(0deg);
 	}
 
-	50.5% {
+	50.5% { /* stylelint-disable-line scss/selector-nest-combinators */
 		transform: rotate(0deg);
 	}
 
@@ -67,7 +67,7 @@ circle {
 		transform: rotate(90deg);
 	}
 
-	75.5% {
+	75.5% { /* stylelint-disable-line scss/selector-nest-combinators */
 		transform: rotate(90deg);
 	}
 

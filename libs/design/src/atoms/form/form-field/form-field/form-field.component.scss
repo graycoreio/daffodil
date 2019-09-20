@@ -20,7 +20,7 @@
 		position: absolute;
 		right: 15px;
 
-		&:after {
+		&::after {
 			@include chevron($direction: 'down');
 		}
 	}

@@ -14,7 +14,7 @@
 	&__active-image {
 		grid-area: active-image;
 
-		& img {
+		img {
 			display: block;
 			max-width: 100%;
 		}
@@ -22,7 +22,7 @@
 
 	&__image-list {
 		grid-area: image-list;
-		margin: 5px 0 0 0;
+		margin: 5px 0 0;
 		max-height: 100%;
 
 		@include breakpoint(big-tablet) {
@@ -32,14 +32,16 @@
 	}
 
 	&__daff-gallery-image {
-		& img {
+		img {
 			display: block;
 			opacity: 0.6;
 			width: 90px;
 		}
 
-		&--selected img {
-			opacity: 1;
+		&--selected {
+			img {
+				opacity: 1;
+			}
 		}
 	}
 }

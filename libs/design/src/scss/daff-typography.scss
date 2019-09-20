@@ -1,14 +1,14 @@
 //
 // @docs
-// 
+//
 // `daff-typography` is a generic typography library that
 // sets common typography settings for the daffodil design
 // package. It IS NOT necessary, but can be used.
 //
-// @note You SHOULD NOT import this as often as you like, 
+// @note You SHOULD NOT import this as often as you like,
 // as it only contains CSS
 // and will effect your final compiled stylesheet size.
-// 
+//
 // @usage
 // ```
 // @import "daff-typography";
@@ -39,7 +39,7 @@ a {
 
 	&:hover {
 		text-decoration: none;
-  }
+	}
 }
 
 p {
@@ -56,14 +56,14 @@ h6 {
 	padding: 0;
 }
 
-.embolden {
+.embolden { /* stylelint-disable-line selector-class-pattern */
 	@include embolden();
 }
 
-.uppercase {
+.uppercase { /* stylelint-disable-line selector-class-pattern */
 	@include uppercase();
 }
 
-.single-line-ellipsis {
+.single-line-ellipsis { /* stylelint-disable-line selector-class-pattern */
 	@include single-line-ellipsis();
 }
