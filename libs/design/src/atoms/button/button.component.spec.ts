@@ -145,9 +145,9 @@ describe('DaffButtonComponent', () => {
       expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
     });
 
-    it('should set the default color to the contrasting theme color', () => {
+    it('should not set a default color', () => {
       buttonDE = fixture.debugElement.query(By.css('button[daff-button]'));
-      expect(buttonDE.nativeElement.classList.contains('daff-theme-contrast')).toEqual(true);
+      expect(buttonDE.nativeElement.classList.toString()).toEqual('daff-button');
     });
   });
 });
