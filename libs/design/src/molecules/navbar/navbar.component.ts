@@ -23,7 +23,7 @@ export class DaffNavbarComponent extends _daffNavbarBase implements DaffColorabl
    */
   @Input() color: DaffPalette;
 
-  @Input() shadowed: boolean = false;
+  @Input() shadowed = false;
 
   @HostBinding('class.daff-navbar--shadowed') get shadowClass() {
     return this.shadowed;
