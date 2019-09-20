@@ -12,7 +12,7 @@
 	$black: daff-map-deep-get($theme, 'core.black');
 
 	.daff-navbar {
-		@include daff-navbar-theme-variant(daff-color($base));
+		@include daff-navbar-theme-variant($base);
 
 		&.daff-primary {
 			@include daff-navbar-theme-variant(daff-color($primary));
