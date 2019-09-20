@@ -1,5 +1,4 @@
-@import '../../scss/daff-util.scss';
-$navbar-shadow-color: rgba(0, 0, 0, 1);
+@import '../../scss/daff-util';
 
 :host {
 	align-items: center;
@@ -7,8 +6,4 @@ $navbar-shadow-color: rgba(0, 0, 0, 1);
 	height: 70px;
 	padding: 0 15px;
 	width: 100%;
-
-	&.daff-navbar--shadowed {
-		box-shadow: 0 -2px 10px $navbar-shadow-color;
-	}
 }

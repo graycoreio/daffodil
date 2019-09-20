@@ -14,24 +14,38 @@
 	.daff-navbar {
 		@include daff-navbar-theme-variant($base);
 
+		&--shadowed {
+			box-shadow: 0 3px 10px rgba($black, 0.08);
+		}
+		
 		&.daff-primary {
-			@include daff-navbar-theme-variant(daff-color($primary));
+			@include daff-navbar-theme-variant(
+				daff-color($primary)
+			);
 		}
 
 		&.daff-secondary {
-			@include daff-navbar-theme-variant(daff-color($secondary));
+			@include daff-navbar-theme-variant(
+				daff-color($secondary)
+			);
 		}
 
 		&.daff-tertiary {
-			@include daff-navbar-theme-variant(daff-color($tertiary));
+			@include daff-navbar-theme-variant(
+				daff-color($tertiary)
+			);
 		}
 
 		&.daff-black {
-			@include daff-navbar-theme-variant($black);
+			@include daff-navbar-theme-variant(
+				$black
+			);
 		}
 
 		&.daff-white {
-			@include daff-navbar-theme-variant($white);
+			@include daff-navbar-theme-variant(
+				$white
+			);
 		}
 	}
 }
