@@ -21,7 +21,7 @@ class DaffButtonBase{
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffButtonBase = daffColorMixin(DaffButtonBase, 'theme-contrast') 
+const _daffButtonBase = daffColorMixin(DaffButtonBase); 
 
 export type DaffButtonType = 'daff-button' | 'daff-stroked-button' | 'daff-raised-button' | 'daff-icon-button' | 'daff-underline-button' | undefined;
 enum DaffButtonTypeEnum {
@@ -45,7 +45,10 @@ enum DaffButtonTypeEnum {
     'a[daff-raised-button]' + ',' +
     'a[daff-icon-button]' + ',' +
     'a[daff-underline-button]',
-  template: '<ng-content></ng-content>',
+  template: `
+    <div class="daff-button__bg" *ngIf="stroked"></div>
+    <div class="daff-button__content"><ng-content></ng-content></div>
+    `,
   styleUrls: ['./button.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
