@@ -138,7 +138,7 @@ describe('Driver | In Memory | InMemoryService', () => {
       productReturn = 'productReturn';
       cartReturn = 'cartReturn';
       orderReturn = 'orderReturn';
-      navigationReturn = 'orderReturn';
+      navigationReturn = 'navigationReturn';
       spyOn(service.productTestingService, 'createDb').and.returnValue(
         productReturn
       );
