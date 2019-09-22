@@ -11,6 +11,8 @@ import { Order } from '@daffodil/checkout';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
 import { DaffInMemoryBackendCartService } from '@daffodil/cart/testing';
 import { DaffInMemoryBackendCheckoutService } from '@daffodil/checkout/testing';
+import { DaffInMemoryBackendNavigationService } from '@daffodil/navigation/testing';
+import { DaffNavigationTree } from '@daffodil/navigation';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,8 @@ export class DemoInMemoryService implements InMemoryDbService {
   constructor(
     private productTestingService: DaffInMemoryBackendProductService,
     private cartTestingService: DaffInMemoryBackendCartService,
-    private checkoutTestingService: DaffInMemoryBackendCheckoutService
+    private checkoutTestingService: DaffInMemoryBackendCheckoutService,
+    private navigationTestingService: DaffInMemoryBackendNavigationService
   ) {}
 
   parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {
@@ -41,6 +44,8 @@ export class DemoInMemoryService implements InMemoryDbService {
     const collectionName = reqInfo.collectionName;
     if (collectionName === 'products') {
       return this.productTestingService.get(reqInfo);
+    } else if (collectionName === 'navigation') {
+      return this.navigationTestingService.get(reqInfo);
     }
   }
 
@@ -48,7 +53,8 @@ export class DemoInMemoryService implements InMemoryDbService {
     return {
       ...this.productTestingService.createDb(),
       ...this.cartTestingService.createDb(),
-      ...this.checkoutTestingService.createDb()
+      ...this.checkoutTestingService.createDb(),
+      ...this.navigationTestingService.createDb()
     };
   }
 }
@@ -57,4 +63,5 @@ export interface MockDaffDatabase {
   products: DaffProduct[];
   cart: DaffCart;
   order: Order;
+  navigation: DaffNavigationTree;
 }

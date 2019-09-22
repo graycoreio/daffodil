@@ -1,9 +1,6 @@
 <daff-sidebar class="sidebar" (escapePressed)="onClose()">
   <span class="sidebar__close" (click)="onClose()"><fa-icon [icon]="faTimes"></fa-icon></span>
-  <div class="sidebar__list">
-    <span><a daff-sidebar-item (click)="onClose()" routerLink="/">Women's</a></span>
-    <span><a daff-sidebar-item (click)="onClose()" routerLink="/">Men's</a></span>
-    <span><a daff-sidebar-item (click)="onClose()" routerLink="/">Accessories</a></span>
-    <span><a daff-sidebar-item (click)="onClose()" routerLink="/">Sale</a></span>
-  </div>
+  <demo-sidebar-list [tree]="tree$ | async" *ngIf="!(treeLoading$ | async)"></demo-sidebar-list>
+  <div class="sidebar__error" *ngFor="let error of (treeErrors$ | async)"> {{ error }}</div>
+  <daff-loading-icon *ngIf="treeLoading$ | async"></daff-loading-icon>
 </daff-sidebar>

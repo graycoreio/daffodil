@@ -1,9 +1,9 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DaffSidebarModule, DaffSidebarViewportComponent } from '@daffodil/design';
 
@@ -11,14 +11,10 @@ import { SidebarViewportContainer } from './sidebar-viewport.component';
 import * as fromDemoSidebar from '../../reducers';
 import { ToggleSidebar, OpenSidebar, CloseSidebar, SetSidebarState } from '../../actions/sidebar.actions';
 
-
-
 @Component({selector: 'demo-sidebar', template: ''})
-class MockSidebarContainer {
-  @Output() close: EventEmitter<any> = new EventEmitter();
-}
+class MockSidebarContainer {}
 
-describe('SidebarContainer', () => {
+describe('SidebarViewportContainer', () => {
   let component: SidebarViewportContainer;
   let fixture: ComponentFixture<SidebarViewportContainer>;
   
@@ -32,14 +28,14 @@ describe('SidebarContainer', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        DaffSidebarModule,
+        DaffSidebarModule
       ],
       declarations: [ 
         SidebarViewportContainer,
         MockSidebarContainer
       ],
       providers: [
-        provideMockStore({})
+        provideMockStore({}),
       ]
     })
     .compileComponents();
@@ -74,17 +70,6 @@ describe('SidebarContainer', () => {
     sidebarViewport.backdropClicked.emit()
 
     expect(component.close).toHaveBeenCalledWith();    
-  });
-
-  describe('when sidebarContainer emits close', () => {
-    
-    it('should call close', () => {
-      spyOn(component, 'close');
-
-      sidebarContainer.close.emit();
-      
-      expect(component.close).toHaveBeenCalled();
-    });
   });
 
   describe('ngOnInit', () => {

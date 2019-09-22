@@ -13,13 +13,13 @@ export class SidebarViewportContainer implements OnInit {
   
   showSidebar$: Observable<boolean>;
 
+  constructor(
+    private store: Store<fromDemoSidebar.State>,
+  ) { }
+
   ngOnInit() {
     this.showSidebar$ = this.store.pipe(select(fromDemoSidebar.selectShowSidebar));
   }
-
-  constructor(
-    private store: Store<fromDemoSidebar.State>
-  ) { }
 
   close () {
     this.store.dispatch(new CloseSidebar);
