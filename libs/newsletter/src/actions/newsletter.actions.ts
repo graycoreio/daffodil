@@ -16,10 +16,10 @@ export class DaffNewsletterSubscribe<T extends DaffNewsletterSubmission> impleme
 
   constructor(public payload: T) { }
 }
-export class DaffNewsletterRetry implements Action {
+export class DaffNewsletterRetry<T extends DaffNewsletterSubmission> implements Action {
   readonly type = DaffNewsletterActionTypes.NewsletterRetry;
 
-  constructor(public payload: DaffNewsletterSubmission) { }
+  constructor(public payload: T) { }
 }
 
 export class DaffNewsletterCancel implements Action {
@@ -42,5 +42,5 @@ export type DaffNewsletterActions<T extends DaffNewsletterSubmission> =
   DaffNewsletterSuccessSubscribe |
   DaffNewsletterFailedSubscribe |
   DaffNewsletterReset |
-  DaffNewsletterRetry |
+  DaffNewsletterRetry<T> |
   DaffNewsletterCancel;

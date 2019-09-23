@@ -5,7 +5,7 @@ import { Actions, Effect, ofType, createEffect } from '@ngrx/effects';
 import { switchMap, map, catchError } from 'rxjs/operators';
 
 import { DaffNewsletterServiceInterface } from '../driver/interfaces/newsletter-service.interface';
-import { DaffNewsletterActionTypes, DaffNewsletterSubscribe, DaffNewsletterSuccessSubscribe, DaffNewsletterFailedSubscribe } from '../actions/newsletter.actions';
+import { DaffNewsletterActionTypes, DaffNewsletterSubscribe, DaffNewsletterSuccessSubscribe, DaffNewsletterFailedSubscribe, DaffNewsletterRetry } from '../actions/newsletter.actions';
 import { DaffNewsletterSubmission } from '../models/newsletter.model';
 import { DaffNewsletterDriver } from '../driver/injection-tokens/newsletter-driver.token';
 
@@ -29,5 +29,18 @@ export class DaffNewsletterEffects<T extends DaffNewsletterSubmission, V>{
       )
     ))
   )
-
+  @Effect()
+  retrySubmission$ = createEffect(() => this.actions$.pipe(
+    ofType(DaffNewsletterActionTypes.NewsletterRetry),
+    switchMap((action: DaffNewsletterRetry<T>) =>
+      this.driver.send(action.payload).pipe(
+        map((resp: V) => {
+          return new DaffNewsletterSuccessSubscribe();
+        }),
+        catchError(error => {
+          return of(new DaffNewsletterFailedSubscribe("Failed to subscribe to newsletter"));
+        })
+      )
+    ))
+  )
 }

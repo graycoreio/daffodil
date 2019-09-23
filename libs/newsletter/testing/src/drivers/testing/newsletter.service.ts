@@ -1,7 +1,7 @@
-import { DaffNewsletterServiceInterface } from "libs/newsletter/src/driver/interfaces/newsletter-service.interface";
-import { DaffNewsletterSubmission } from "libs/newsletter/src/models/newsletter.model";
+import { DaffNewsletterSubmission } from "@daffodil/newsletter";
 import { Observable, of } from "rxjs";
 import { Injectable } from "@angular/core";
+import { DaffNewsletterServiceInterface } from "@daffodil/newsletter";
 
 @Injectable({
   providedIn: 'root'
