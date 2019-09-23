@@ -16,6 +16,7 @@
 
         &__link, &__social-link {
             color: daff-text-contrast($base);
+            transition: color 0.3s;
             
             &:hover {
                 color: daff-illuminate($base-contrast, $daff-gray, 3);
