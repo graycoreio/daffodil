@@ -65,7 +65,6 @@
     @include uppercase();
     padding-right: 30px;
     text-decoration: none;
-    transition: all 0.3s ease-out;
 
     &:last-child {
       padding-right: 0;
