@@ -76,7 +76,7 @@ describe('NewsletterEffects', () => {
 
         actions$ = hot('--a', {a: newsletterRetry})
         expected = cold('--b', {b: successAction})
-        expect(effects.retrySubmission$).toBeObservable(expected);
+        expect(effects.trySubmission$).toBeObservable(expected);
       });
     });
     describe('and the call to NewsletterService fails', () => {
@@ -89,7 +89,7 @@ describe('NewsletterEffects', () => {
 
         actions$ = hot('--a', {a: newsletterRetry});
         expected = cold('--b', {b: failedAction});
-        expect(effects.retrySubmission$).toBeObservable(expected);
+        expect(effects.trySubmission$).toBeObservable(expected);
       });
     });
   });

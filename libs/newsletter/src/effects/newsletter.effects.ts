@@ -17,22 +17,8 @@ export class DaffNewsletterEffects<T extends DaffNewsletterSubmission, V>{
 
   @Effect()
   trySubmission$ = createEffect(() => this.actions$.pipe(
-    ofType(DaffNewsletterActionTypes.NewsletterSubscribeAction),
+    ofType(DaffNewsletterActionTypes.NewsletterSubscribeAction, DaffNewsletterActionTypes.NewsletterRetry),
     switchMap((action: DaffNewsletterSubscribe<T>) =>
-      this.driver.send(action.payload).pipe(
-        map((resp: V) => {
-          return new DaffNewsletterSuccessSubscribe();
-        }),
-        catchError(error => {
-          return of(new DaffNewsletterFailedSubscribe("Failed to subscribe to newsletter"));
-        })
-      )
-    ))
-  )
-  @Effect()
-  retrySubmission$ = createEffect(() => this.actions$.pipe(
-    ofType(DaffNewsletterActionTypes.NewsletterRetry),
-    switchMap((action: DaffNewsletterRetry<T>) =>
       this.driver.send(action.payload).pipe(
         map((resp: V) => {
           return new DaffNewsletterSuccessSubscribe();
