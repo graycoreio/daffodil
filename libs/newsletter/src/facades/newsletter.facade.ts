@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Store, select, Action } from '@ngrx/store';
-
-import { DaffNewsletterSubmission } from '../models/newsletter.model';
-import { DaffNewsletterModule } from '../newsletter.module';
-import { isObject } from 'util';
+import { Store, Action } from '@ngrx/store';
 
 import { State, selectDaffNewsletterSuccess, selectDaffNewsletterError, selectDaffNewsletterLoading } from '../selectors/newsletter.selector';
 import { DaffStoreFacade } from '@daffodil/core';
+
 
 @Injectable()
 export class DaffNewsletterFacade implements DaffStoreFacade<Action>{

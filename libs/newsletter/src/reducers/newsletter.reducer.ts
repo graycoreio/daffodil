@@ -1,4 +1,3 @@
-import { Action } from '@ngrx/store';
 import { DaffNewsletterSubmission } from './../models/newsletter.model';
 import { DaffNewsletterActions, DaffNewsletterActionTypes } from './../actions/newsletter.actions';
 
@@ -14,7 +13,7 @@ const initialState: DaffNewsletterState = {
   error: null
 }
 
-export function reducer(state: DaffNewsletterState = initialState, action: DaffNewsletterActions) {
+export function reducer<T extends DaffNewsletterSubmission>(state: DaffNewsletterState = initialState, action: DaffNewsletterActions<T>) {
   switch (action.type) {
     case DaffNewsletterActionTypes.NewsletterRetry:
     case DaffNewsletterActionTypes.NewsletterSubscribeAction:
