@@ -3,8 +3,7 @@ import { HttpTestingController, HttpClientTestingModule } from '@angular/common/
 
 import { DaffInMemoryNewsletterService } from './newsletter.service';
 import { DaffNewsletterSubmission } from '@daffodil/newsletter';
-import { Observable } from 'apollo-link';
-import { cold } from 'jasmine-marbles';
+
 
 describe('Driver | InMemory | Newsletter | NewsletterService', () =>{
   let newsletterService;
@@ -31,7 +30,6 @@ describe('Driver | InMemory | Newsletter | NewsletterService', () =>{
   });
 
   describe('send', () =>{ 
-    let expected;
 
     it('should send a submission and return an observable of the same type', () => {
       const newsletterSubmission: DaffNewsletterSubmission = {email : 'test@email.com'};
