@@ -1,5 +1,4 @@
 import { createSelector, MemoizedSelector, createFeatureSelector } from '@ngrx/store';
-import { DaffNewsletterSubmission } from '../models/newsletter.model';
 import { DaffNewsletterState } from '../reducers/newsletter.reducer';
 
 export interface State {
