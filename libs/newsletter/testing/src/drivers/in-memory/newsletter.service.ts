@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { DaffNewsletterServiceInterface, DaffNewsletterSubmission } from '@daffodil/newsletter';
+import { DaffNewsletterUnion } from 'libs/newsletter/src/models/newsletter-union';
 
 /**
  * The newsletter inmemory driver to mock the newsletter backend service.
@@ -12,13 +12,10 @@ import { DaffNewsletterServiceInterface, DaffNewsletterSubmission } from '@daffo
 @Injectable({
   providedIn: 'root'
 })
-export class DaffInMemoryNewsletterService implements DaffNewsletterServiceInterface<DaffNewsletterSubmission, DaffNewsletterSubmission>{
-  url = 'api/submissions/submission';
+export class DaffInMemoryNewsletterService implements DaffNewsletterServiceInterface<DaffNewsletterUnion, DaffNewsletterUnion>{ 
+  constructor() {}
 
-  constructor(private http: HttpClient) {}
-
-  send(email: DaffNewsletterSubmission): Observable<DaffNewsletterSubmission> {
-    return this.http.post<DaffNewsletterSubmission>(this.url + 'submission', email)
+  send(email: DaffNewsletterUnion): Observable<DaffNewsletterUnion> {
+    return of(email);
   }
-
 }
