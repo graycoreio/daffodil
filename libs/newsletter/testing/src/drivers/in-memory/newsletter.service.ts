@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 
 import { DaffNewsletterServiceInterface, DaffNewsletterSubmission } from '@daffodil/newsletter';
-import { DaffNewsletterUnion } from 'libs/newsletter/src/models/newsletter-union';
+import { DaffNewsletterUnion } from '@daffodil/newsletter';
+import { catchError, map } from 'rxjs/operators';
 
 /**
  * The newsletter inmemory driver to mock the newsletter backend service.
@@ -12,10 +13,14 @@ import { DaffNewsletterUnion } from 'libs/newsletter/src/models/newsletter-union
 @Injectable({
   providedIn: 'root'
 })
-export class DaffInMemoryNewsletterService implements DaffNewsletterServiceInterface<DaffNewsletterUnion, DaffNewsletterUnion>{ 
-  constructor() {}
+export class DaffInMemoryNewsletterService implements DaffNewsletterServiceInterface<DaffNewsletterUnion, DaffNewsletterUnion>{
+  constructor() { }
 
-  send(email: DaffNewsletterUnion): Observable<DaffNewsletterUnion> {
-    return of(email);
+  send(payload: DaffNewsletterUnion): Observable<DaffNewsletterUnion> {
+    if (payload == undefined) {
+      return throwError('Failed to subscribe');
+    }
+    return of(payload);
   }
+
 }

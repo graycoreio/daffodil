@@ -8,7 +8,7 @@ import { DaffNewsletterServiceInterface } from '@daffodil/newsletter';
 })
 
 export class DaffTestingNewsletterService implements DaffNewsletterServiceInterface<DaffNewsletterSubmission, any>{
-  send(email: DaffNewsletterSubmission): Observable<any>{
+  send(payload: DaffNewsletterSubmission): Observable<any>{
     return of('Success');
   }
 }

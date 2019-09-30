@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { DaffNewsletterDriver } from "libs/newsletter/src/driver/injection-tokens/newsletter-driver.token";
+import { DaffNewsletterDriver } from "@daffodil/newsletter";
 import { DaffInMemoryNewsletterService } from "./newsletter.service";
 import { NgModule, ModuleWithProviders } from '@angular/core';
 /**
