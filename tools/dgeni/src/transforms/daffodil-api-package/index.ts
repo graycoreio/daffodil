@@ -1,12 +1,12 @@
-import { Package } from "dgeni";
+import { Package } from 'dgeni';
 const typescriptPackage = require('dgeni-packages/typescript');
-import { daffodilBasePackage } from "../daffodil-base-package";
+import { daffodilBasePackage } from '../daffodil-base-package';
 
 import { API_SOURCE_PATH, API_TEMPLATES_PATH } from '../config';
 
 import { GenerateApiListProcessor } from '../../processors/generateApiList';
-import { PackagesProcessor } from "../../processors/packages";
-import { FilterContainedDocsProcessor } from "../../processors/filterDocs";
+import { PackagesProcessor } from '../../processors/packages';
+import { FilterContainedDocsProcessor } from '../../processors/filterDocs';
 import { CleanSelectorsProcessor } from '../../processors/cleanSelectors';
 
 export const apiDocs =  new Package('checkout', [
@@ -27,8 +27,8 @@ export const apiDocs =  new Package('checkout', [
     // Tell TypeScript how to load modules that start with with `@daffodil`
     tsParser.options.paths = { '@daffodil/*': [API_SOURCE_PATH + '/*'] };
     tsParser.options.baseUrl = '.';
-    
-    // The typescriptPackage only uses the "readTypeScriptModules" processor, so disable readFilesProcessor.
+
+    // The typescriptPackage only uses the 'readTypeScriptModules' processor, so disable readFilesProcessor.
     readFilesProcessor.$enabled = false;
 
     // Specify the base path used when resolving relative paths to source and output files

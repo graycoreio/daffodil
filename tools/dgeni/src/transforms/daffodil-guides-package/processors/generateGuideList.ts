@@ -7,14 +7,14 @@ export type GenerateGuideListConfiguration = {
 }
 
 export const DefaultGenerateGuideListConfiguration : GenerateGuideListConfiguration = {
-  outputFolder: "guides"
-} 
+  outputFolder: 'guides'
+}
 export class GenerateGuideListProcessor implements Processor {
   name = 'generateGuideList';
   $runAfter = ['docs-processed'];
   $runBefore = ['rendering-docs'];
   config: GenerateGuideListConfiguration;
-  
+
   constructor(config?: GenerateGuideListConfiguration) {
     this.config = {...DefaultGenerateGuideListConfiguration, ...config};
   }
