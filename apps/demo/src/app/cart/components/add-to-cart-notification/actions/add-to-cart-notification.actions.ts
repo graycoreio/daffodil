@@ -1,8 +1,8 @@
 import { Action } from '@ngrx/store';
 
 export enum AddToCartNotificationActionTypes {
-  OpenAddToCartNotificationAction = "[Demo-Add-To-Cart-Notification] Show Add To Cart Notification Action",
-  CloseAddToCartNotificationAction = "[Demo-Add-To-Cart-Notification] Close Add To Cart Notification Action"
+  OpenAddToCartNotificationAction = '[Demo-Add-To-Cart-Notification] Show Add To Cart Notification Action',
+  CloseAddToCartNotificationAction = '[Demo-Add-To-Cart-Notification] Close Add To Cart Notification Action'
 }
 
 export class OpenAddToCartNotification implements Action {

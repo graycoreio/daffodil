@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { PaymentInfo } from '@daffodil/checkout';
 
-import { DaffModelFactory } from "@daffodil/core/testing";
+import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockPaymentInfo implements PaymentInfo {
   name = 'name';

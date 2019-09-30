@@ -1,4 +1,4 @@
-import { NgControl } from "@angular/forms";
+import { NgControl } from '@angular/forms';
 
 /**
  * The class that an form control must **implement** in order to be 

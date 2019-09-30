@@ -1,11 +1,11 @@
-import { TestBed, async } from "@angular/core/testing";
-import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
+import { TestBed, async } from '@angular/core/testing';
+import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 
-import { DaffCart, DaffCartReset, DaffCartLoadSuccess, fromCart } from "@daffodil/cart";
-import { DaffCartFactory, DaffCartItemFactory } from "@daffodil/cart/testing";
+import { DaffCart, DaffCartReset, DaffCartLoadSuccess, fromCart } from '@daffodil/cart';
+import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 
 import * as fromAddToCartNotification from './index';
-import { CloseAddToCartNotification } from "../actions/add-to-cart-notification.actions";
+import { CloseAddToCartNotification } from '../actions/add-to-cart-notification.actions';
 
 describe('selectDemoAddToCartNotificationState', () => {
 

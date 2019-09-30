@@ -1,12 +1,12 @@
 import { Component, Input, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 
-export type DaffContainerSize = "xs" | "sm" | "md" | "lg" | "xl" | undefined;
+export type DaffContainerSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | undefined;
 export enum DaffContainerSizeEnum {
-  XSmall = "xs",
-  Small = "sm",
-  Medium = "md",
-  Large = "lg",
-  XLarge = "xl"
+  XSmall = 'xs',
+  Small = 'sm',
+  Medium = 'md',
+  Large = 'lg',
+  XLarge = 'xl'
 }
 
 @Component({

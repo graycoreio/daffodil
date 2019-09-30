@@ -1,6 +1,6 @@
-import { DaffProductUnion } from "@daffodil/product";
+import { DaffProductUnion } from '@daffodil/product';
 
-import { DaffCategory } from "./category";
+import { DaffCategory } from './category';
 
 export interface DaffGetCategoryResponse {
   products: DaffProductUnion[];

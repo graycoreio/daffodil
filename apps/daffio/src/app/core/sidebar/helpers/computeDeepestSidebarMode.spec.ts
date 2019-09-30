@@ -1,18 +1,18 @@
-import { computeDeepestSidebarMode } from "./computeDeepestSidebarMode";
-import { ActivatedRouteSnapshot } from "@angular/router";
+import { computeDeepestSidebarMode } from './computeDeepestSidebarMode';
+import { ActivatedRouteSnapshot } from '@angular/router';
 
 describe('computeDeepestSidebarMode', () => {
   it('should compute the deepest `sidebarMode` of an ActivatedRouteSnapshot tree', () => {
     const tree = { 
-      data: {sidebarMode: "other"}, 
+      data: {sidebarMode: 'other'}, 
       firstChild: { 
         data: { 
-          sidebarMode: "push" 
+          sidebarMode: 'push' 
         } 
       } 
     } as unknown as ActivatedRouteSnapshot;
     
-    expect(computeDeepestSidebarMode(tree)).toEqual("push");
+    expect(computeDeepestSidebarMode(tree)).toEqual('push');
   });
 
   it('should return undefined if there are no `sidebarMode`s in the tree', () => {

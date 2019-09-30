@@ -1,6 +1,6 @@
-import { categoryReducers } from "./category-reducers";
-import { categoryReducer } from "./category/category.reducer";
-import { categoryEntitiesReducer } from "./category-entities/category-entities.reducer";
+import { categoryReducers } from './category-reducers';
+import { categoryReducer } from './category/category.reducer';
+import { categoryEntitiesReducer } from './category-entities/category-entities.reducer';
 
 describe('selectCategoryState', () => {
 

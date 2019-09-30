@@ -3,9 +3,9 @@ import { Action } from '@ngrx/store';
 import { DaffCart } from '@daffodil/cart';
 
 export enum CartResolverActionTypes {
-  ResolveCartAction = "[Cart-Resolver] Resolve Cart Action",
-  ResolveCartSuccessAction = "[Cart-Resolver] Resolve Cart Success Action",
-  ResolveCartFailureAction = "[Cart-Resolver] Resolve Cart Failure Action"
+  ResolveCartAction = '[Cart-Resolver] Resolve Cart Action',
+  ResolveCartSuccessAction = '[Cart-Resolver] Resolve Cart Success Action',
+  ResolveCartFailureAction = '[Cart-Resolver] Resolve Cart Failure Action'
 }
 
 export class ResolveCart implements Action {

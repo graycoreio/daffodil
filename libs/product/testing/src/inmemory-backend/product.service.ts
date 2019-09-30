@@ -69,7 +69,7 @@ export class DaffInMemoryBackendProductService implements InMemoryDbService {
    * @returns An http response object
    */
   get(reqInfo: any) {
-    if(reqInfo.id === "best-sellers") {
+    if(reqInfo.id === 'best-sellers') {
       return reqInfo.utils.createResponse$(() => {
           return {
             body: this.products.slice(0,4),

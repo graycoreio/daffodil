@@ -20,8 +20,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @Component({ template: '<demo-add-to-cart-notification [verticalPosition]="verticalPositionValue" [horizontalPosition]="horizontalPositionValue"></demo-add-to-cart-notification>' })
 class WrapperComponent {
   productValue: DaffProduct;
-  verticalPositionValue = "bottom";
-  horizontalPositionValue = "left";
+  verticalPositionValue = 'bottom';
+  horizontalPositionValue = 'left';
 }
 
 // tslint:disable-next-line: component-selector

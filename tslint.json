@@ -93,6 +93,10 @@
       "Component"
     ],
     "directive-class-suffix": true,
-    "no-focused-tests": true
+    "no-focused-tests": true,
+    "quotemark": [
+      true,
+      "single"
+    ]
   }
 }

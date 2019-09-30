@@ -20,7 +20,7 @@ export class MagentoModule {
   // Magento
   constructor(boost: ApolloBoost) {
     boost.create({
-      uri: "https://magento2.test/graphql",
+      uri: 'https://magento2.test/graphql',
     })
   }
 }

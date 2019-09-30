@@ -43,7 +43,7 @@ export class DaffProductEffects<T extends DaffProduct> {
             return new DaffProductLoadSuccess(resp);
           }),
           catchError(error => {
-            return of(new DaffProductLoadFailure("Failed to load product"));
+            return of(new DaffProductLoadFailure('Failed to load product'));
           })
         )
     )

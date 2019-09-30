@@ -1,9 +1,9 @@
-import { ModuleWithProviders } from "@angular/core";
+import { ModuleWithProviders } from '@angular/core';
 
-import { InMemoryModule } from "../in-memory.module";
-import { ShopifyModule } from "../shopify.module";
-import { DriverVariants } from "./driver-variant.enum";
-import { MagentoModule } from "../magento.module";
+import { InMemoryModule } from '../in-memory.module';
+import { ShopifyModule } from '../shopify.module';
+import { DriverVariants } from './driver-variant.enum';
+import { MagentoModule } from '../magento.module';
 
 export const getDriverVariant = (driver: string): any => {
     switch(driver) {

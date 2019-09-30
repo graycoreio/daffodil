@@ -6,10 +6,10 @@ import { DaffProduct } from '../models/product';
  * Action types for Best Seller Actions.
  */
 export enum DaffBestSellersActionTypes {
-  BestSellersLoadAction = "[BestSellers] Load Action",
-  BestSellersLoadSuccessAction = "[BestSellers] Load Success Action",
-  BestSellersLoadFailureAction = "[BestSellers] Load Failure Action",
-  BestSellersResetAction = "[BestSellers] Reset Action"
+  BestSellersLoadAction = '[BestSellers] Load Action',
+  BestSellersLoadSuccessAction = '[BestSellers] Load Success Action',
+  BestSellersLoadFailureAction = '[BestSellers] Load Failure Action',
+  BestSellersResetAction = '[BestSellers] Reset Action'
 }
 
 /**

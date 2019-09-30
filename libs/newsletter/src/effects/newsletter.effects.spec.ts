@@ -1,18 +1,18 @@
-import { DaffNewsletterEffects } from "./newsletter.effects";
-import { DaffNewsletterSubmission } from "../models/newsletter.model";
-import { Observable, of } from "rxjs";
-import { DaffNewsletterServiceInterface } from "../driver/interfaces/newsletter-service.interface";
-import { TestBed } from "@angular/core/testing";
-import { DaffNewsletterDriver } from "../driver/injection-tokens/newsletter-driver.token";
-import { provideMockActions } from "@ngrx/effects/testing";
-import { DaffNewsletterSubscribe, DaffNewsletterSuccessSubscribe, DaffNewsletterFailedSubscribe, DaffNewsletterRetry } from "../actions/newsletter.actions";
-import { hot, cold } from "jasmine-marbles";
-import { DaffTestingNewsletterService } from "@daffodil/newsletter/testing";
+import { DaffNewsletterEffects } from './newsletter.effects';
+import { DaffNewsletterSubmission } from '../models/newsletter.model';
+import { Observable, of } from 'rxjs';
+import { DaffNewsletterServiceInterface } from '../driver/interfaces/newsletter-service.interface';
+import { TestBed } from '@angular/core/testing';
+import { DaffNewsletterDriver } from '../driver/injection-tokens/newsletter-driver.token';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { DaffNewsletterSubscribe, DaffNewsletterSuccessSubscribe, DaffNewsletterFailedSubscribe, DaffNewsletterRetry } from '../actions/newsletter.actions';
+import { hot, cold } from 'jasmine-marbles';
+import { DaffTestingNewsletterService } from '@daffodil/newsletter/testing';
 
 describe('NewsletterEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffNewsletterEffects<DaffNewsletterSubmission, any>;//come back to this
-  const mockNewsletter = {email: "test@test.com"};
+  const mockNewsletter = {email: 'test@test.com'};
   let daffNewsletterDriver: DaffNewsletterServiceInterface<DaffNewsletterSubmission, any>;//and this
 
   beforeEach(() => {
@@ -43,7 +43,7 @@ describe('NewsletterEffects', () => {
     describe('and the call to NewsletterService is successful', () => {
       it('it should dispatch a NewsletterSuccessSubscribe', () => {
         const successAction = new DaffNewsletterSuccessSubscribe();
-        spyOn(daffNewsletterDriver, 'send').and.returnValue(of("mystring"));
+        spyOn(daffNewsletterDriver, 'send').and.returnValue(of('mystring'));
 
         actions$ = hot('--a', {a: newsletterSubscribe})
         expected = cold('--b', {b: successAction})
@@ -72,7 +72,7 @@ describe('NewsletterEffects', () => {
     describe('and the call to NewsletterService is successful', () => {
       it('it should dispatch a NewsletterSuccessSubscribe', () => {
         const successAction = new DaffNewsletterSuccessSubscribe();
-        spyOn(daffNewsletterDriver, 'send').and.returnValue(of("mystring"));
+        spyOn(daffNewsletterDriver, 'send').and.returnValue(of('mystring'));
 
         actions$ = hot('--a', {a: newsletterRetry})
         expected = cold('--b', {b: successAction})

@@ -23,7 +23,7 @@ class WrapperComponent {
 
   backdropIsVisible = false;
 
-  mode: DaffSidebarMode = "side";
+  mode: DaffSidebarMode = 'side';
 
   backdropClickedCounter = 0;
 
@@ -104,7 +104,7 @@ describe('DaffSidebarViewportComponent | Usage', () => {
 
   describe('over mode', () => {
     beforeEach(() => {
-      wrapper.mode = "over";
+      wrapper.mode = 'over';
       fixture.detectChanges();
     });
 
@@ -115,7 +115,7 @@ describe('DaffSidebarViewportComponent | Usage', () => {
 
   describe('push mode', () => {
     beforeEach(() => {
-      wrapper.mode = "push";
+      wrapper.mode = 'push';
       fixture.detectChanges();
     });
 
@@ -129,7 +129,7 @@ describe('DaffSidebarViewportComponent | Usage', () => {
     let backdropElement;
 
     beforeEach(() => {
-      wrapper.mode = "side";
+      wrapper.mode = 'side';
       fixture.detectChanges();
 
       backdropElement = fixture.debugElement.query(By.css('daff-backdrop'));
@@ -143,24 +143,24 @@ describe('DaffSidebarViewportComponent | Usage', () => {
       wrapper.open = false;
       fixture.detectChanges();
 
-      expect(component._animationState).toEqual("open");
+      expect(component._animationState).toEqual('open');
 
       wrapper.open = true;
       fixture.detectChanges();
 
-      expect(component._animationState).toEqual("open");
+      expect(component._animationState).toEqual('open');
     });
   });
 
   it('should recalculate the animation state when the mode changes', () => {
-    wrapper.mode = "side";
+    wrapper.mode = 'side';
     wrapper.open = false;
     fixture.detectChanges();
-    expect(component._animationState).toEqual("open");
+    expect(component._animationState).toEqual('open');
 
-    wrapper.mode = "push";
+    wrapper.mode = 'push';
     fixture.detectChanges();
-    expect(component._animationState).toEqual("closed");
+    expect(component._animationState).toEqual('closed');
   });
 });
 
@@ -197,7 +197,7 @@ describe('DaffSidebarViewportComponent | Defaults', () => {
   });
 
   it('should have the _animationState should be `open` by default', () => {
-    expect(component._animationState).toEqual("open");
+    expect(component._animationState).toEqual('open');
   });
 
   it('should not have the backdrop by default', () => {

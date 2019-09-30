@@ -1,4 +1,4 @@
-import { getAnimationState } from "./accordion-animation-state";
+import { getAnimationState } from './accordion-animation-state';
 
 describe('accordionAnimationState Calculation', () => {
   

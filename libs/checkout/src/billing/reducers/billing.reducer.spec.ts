@@ -3,8 +3,8 @@ import { DaffAddressFactory } from '@daffodil/core/testing';
 import { PaymentInfo } from '@daffodil/checkout';
 
 import { DaffPaymentFactory } from '../../../testing/src';
-import { initialState, reducer, getBillingAddress, getPaymentInfo, getBillingAddressIsShippingAddress } from "../reducers/billing.reducer";
-import { UpdateBillingAddress, UpdatePaymentInfo, ToggleBillingAddressIsShippingAddress } from "../actions/billing.actions";
+import { initialState, reducer, getBillingAddress, getPaymentInfo, getBillingAddressIsShippingAddress } from '../reducers/billing.reducer';
+import { UpdateBillingAddress, UpdatePaymentInfo, ToggleBillingAddressIsShippingAddress } from '../actions/billing.actions';
 
 describe('Billing | Billing Reducer', () => {
 

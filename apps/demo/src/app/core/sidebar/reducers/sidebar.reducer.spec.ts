@@ -1,5 +1,5 @@
-import { ToggleSidebar, CloseSidebar, OpenSidebar, SetSidebarState } from "../actions/sidebar.actions";
-import { initialState, reducer, getShowSidebar } from "../reducers/sidebar.reducer";
+import { ToggleSidebar, CloseSidebar, OpenSidebar, SetSidebarState } from '../actions/sidebar.actions';
+import { initialState, reducer, getShowSidebar } from '../reducers/sidebar.reducer';
 
 describe('Sidebar | Sidebar Reducer', () => {
   let action;

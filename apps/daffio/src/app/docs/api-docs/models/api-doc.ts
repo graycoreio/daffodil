@@ -1,4 +1,4 @@
-import { DaffioDoc } from "../../shared/models/doc";
+import { DaffioDoc } from '../../shared/models/doc';
 
 /**
  * An object for an API document.

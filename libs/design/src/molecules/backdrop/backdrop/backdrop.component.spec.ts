@@ -55,7 +55,7 @@ describe('DaffBackdropComponent | Usage', () => {
       wrapper.transparentValue = false;
       fixture.detectChanges();
       
-      expect(backdropEl.nativeElement.classList).not.toContain("daff-backdrop--transparent");
+      expect(backdropEl.nativeElement.classList).not.toContain('daff-backdrop--transparent');
     });
   });
 
@@ -64,7 +64,7 @@ describe('DaffBackdropComponent | Usage', () => {
       wrapper.transparentValue = true;
       fixture.detectChanges();
       
-      expect(backdropEl.nativeElement.classList).toContain("daff-backdrop--transparent");
+      expect(backdropEl.nativeElement.classList).toContain('daff-backdrop--transparent');
     });
   });
 

@@ -1,10 +1,10 @@
 import { Action } from '@ngrx/store';
 
 export enum SidebarActionTypes {
-  ToggleSidebarAction = "[Demo-Sidebar] Toggle Sidebar Action",
-  OpenSidebarAction = "[Demo-Sidebar] Open Sidebar Action",
-  CloseSidebarAction = "[Demo-Sidebar] Close Sidebar Action",
-  SetSidebarStateAction = "[Demo-Sidebar] Set Sidebar State Action"
+  ToggleSidebarAction = '[Demo-Sidebar] Toggle Sidebar Action',
+  OpenSidebarAction = '[Demo-Sidebar] Open Sidebar Action',
+  CloseSidebarAction = '[Demo-Sidebar] Close Sidebar Action',
+  SetSidebarStateAction = '[Demo-Sidebar] Set Sidebar State Action'
 }
 
 export class ToggleSidebar implements Action {

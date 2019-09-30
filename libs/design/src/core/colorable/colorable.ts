@@ -1,4 +1,4 @@
-import { ElementRef, Renderer2 } from "@angular/core";
+import { ElementRef, Renderer2 } from '@angular/core';
 import { Constructor } from '../constructor';
 
 /**
@@ -12,19 +12,19 @@ export interface DaffColorable {
  * These are the valid options that can be passed to a DaffColorable component
  */
 export type DaffPalette = 
-    "primary" | "secondary" | "accent" | "tertiary" | //TODO: damienwebdev Deprecate accent
-    "black" | "white" | 
-    "theme" | "theme-contrast" | undefined;
+    'primary' | 'secondary' | 'accent' | 'tertiary' | //TODO: damienwebdev Deprecate accent
+    'black' | 'white' | 
+    'theme' | 'theme-contrast' | undefined;
 
 enum DaffPaletteEnum {
-    PRIMARY = "primary",
-    SECONDARY = "secondary",
-    ACCENT = "accent", //TODO: damienwebdev Deprecate accent
-    TERTIARY = "tertiary",
-    BLACK = "black",
-    WHITE = "white",
-    THEME = "theme",
-    THEMECONTRAST = "theme-contrast"
+    PRIMARY = 'primary',
+    SECONDARY = 'secondary',
+    ACCENT = 'accent', //TODO: damienwebdev Deprecate accent
+    TERTIARY = 'tertiary',
+    BLACK = 'black',
+    WHITE = 'white',
+    THEME = 'theme',
+    THEMECONTRAST = 'theme-contrast'
 }
 interface HasElementRef {
     _elementRef: ElementRef;
@@ -50,7 +50,7 @@ export function
             const incomingColor = value || defaultColor;
 
             if(incomingColor !== undefined && !colorInPalette(incomingColor)){
-                throw new TypeError(incomingColor + " is not a valid color for the DaffPalette");   
+                throw new TypeError(incomingColor + ' is not a valid color for the DaffPalette');   
             }
 
             if(incomingColor !== this._color){ //Only run the dom-render if a change occurs

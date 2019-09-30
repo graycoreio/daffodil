@@ -1,4 +1,4 @@
-import { range } from "./range";
+import { range } from './range';
 
 describe('Core | Utils | range', () => {
     it('should return an array of a single element if both start and end are the same', () => {

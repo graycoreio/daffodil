@@ -48,7 +48,7 @@ describe('DaffProductFacade', () => {
   
     it('should be true if the product state is loading', () => {
       const expected = cold('a', { a: true });
-      store.dispatch(new DaffProductLoad("1"));
+      store.dispatch(new DaffProductLoad('1'));
       expect(facade.loading$).toBeObservable(expected);
     });
   });

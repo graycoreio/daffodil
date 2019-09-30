@@ -1,5 +1,5 @@
-import { navigationReducers } from "./navigation-reducers";
-import { reducer } from "./navigation/navigation.reducer";
+import { navigationReducers } from './navigation-reducers';
+import { reducer } from './navigation/navigation.reducer';
 
 describe('selectNavigationState', () => {
 

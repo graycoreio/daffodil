@@ -1,14 +1,14 @@
-import { TestBed } from "@angular/core/testing";
-import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
-import { cold } from "jasmine-marbles";
+import { TestBed } from '@angular/core/testing';
+import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
+import { cold } from 'jasmine-marbles';
 
 import { DaffCategoryFactory } from '@daffodil/category/testing';
 
-import { DaffCategoryLoadSuccess } from "../actions/category.actions";
+import { DaffCategoryLoadSuccess } from '../actions/category.actions';
 import { selectSelectedCategoryId, selectCategoryLoading, selectCategoryErrors, selectCategoryIds, selectCategoryEntities, selectAllCategories, selectCategoryTotal } from './category.selector';
-import { DaffCategory } from "../models/category";
-import { CategoryReducersState } from "../reducers/category-reducers.interface";
-import { categoryReducers } from "../reducers/category-reducers";
+import { DaffCategory } from '../models/category';
+import { CategoryReducersState } from '../reducers/category-reducers.interface';
+import { categoryReducers } from '../reducers/category-reducers';
 
 describe('DaffCategorySelectors', () => {
 

@@ -1,5 +1,5 @@
-import { initialState, reducer, getSelectedImage } from "../reducers/image-gallery.reducer";
-import { SetSelectedImageState } from "../actions/image-gallery.actions";
+import { initialState, reducer, getSelectedImage } from '../reducers/image-gallery.reducer';
+import { SetSelectedImageState } from '../actions/image-gallery.actions';
 
 describe('Image Gallery | Image Gallery Reducer', () => {
 

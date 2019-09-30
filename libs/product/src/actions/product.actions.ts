@@ -6,11 +6,11 @@ import { DaffProductModification } from '../models/product-modification';
  * Action types for Product Actions.
  */
 export enum DaffProductActionTypes {
-    ProductLoadAction = "[Product] Load Action",
-    ProductLoadSuccessAction = "[Product] Load Success Action",
-    ProductLoadFailureAction = "[Product] Load Failure Action",
-    UpdateQtyAction = "[Product] Update Qty Action",
-    ProductModifyAction = "[Product] Product Modify Action"
+    ProductLoadAction = '[Product] Load Action',
+    ProductLoadSuccessAction = '[Product] Load Success Action',
+    ProductLoadFailureAction = '[Product] Load Failure Action',
+    UpdateQtyAction = '[Product] Update Qty Action',
+    ProductModifyAction = '[Product] Product Modify Action'
 }
 
 /**

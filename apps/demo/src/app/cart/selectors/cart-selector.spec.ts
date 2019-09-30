@@ -1,8 +1,8 @@
-import { TestBed, async } from "@angular/core/testing";
-import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
+import { TestBed, async } from '@angular/core/testing';
+import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 
-import { DaffCartReset, DaffCartLoadSuccess, DaffCart } from "@daffodil/cart";
-import { DaffCartFactory, DaffCartItemFactory } from "@daffodil/cart/testing";
+import { DaffCartReset, DaffCartLoadSuccess, DaffCart } from '@daffodil/cart';
+import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 
 import * as fromCart from './cart-selector';
 

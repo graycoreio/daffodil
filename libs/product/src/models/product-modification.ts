@@ -1,4 +1,4 @@
-import { DaffProductUnion } from "./product-union";
+import { DaffProductUnion } from './product-union';
 
 /**
  * An interface to facilitate adding additional properties to a DaffProduct, unique to your particular application.

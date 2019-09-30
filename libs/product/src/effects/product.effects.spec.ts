@@ -20,7 +20,7 @@ describe('DaffProductEffects', () => {
   let productId;
 
   beforeEach(() => {
-    productId = "product id";
+    productId = 'product id';
 
     TestBed.configureTestingModule({
       providers: [

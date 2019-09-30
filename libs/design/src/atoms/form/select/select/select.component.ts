@@ -18,7 +18,7 @@ import { DaffFormFieldControl } from '../../form-field/form-field-control';
 export class DaffNativeSelectComponent implements DaffFormFieldControl<any> {
   @Input() formSubmitted: boolean;
 
-  controlType = "native-select";
+  controlType = 'native-select';
   
   constructor(@Optional() @Self() public ngControl: NgControl) {}
 

@@ -2,12 +2,12 @@ import { Action } from '@ngrx/store';
 import { DaffSidebarMode } from '@daffodil/design';
 
 export enum SidebarActionTypes {
-  ToggleSidebarAction = "[Daffio-Sidebar] Toggle Sidebar Action",
-  OpenSidebarAction = "[Daffio-Sidebar] Open Sidebar Action",
-  CloseSidebarAction = "[Daffio-Sidebar] Close Sidebar Action",
-  SetSidebarStateAction = "[Daffio-Sidebar] Set Sidebar State Action",
-  SetSidebarModeAction = "[Daffio-Sidebar] Set Sidebar Mode Action",
-  ResetModeAction = "[Daffio-Sidebar] Reset Mode Action"
+  ToggleSidebarAction = '[Daffio-Sidebar] Toggle Sidebar Action',
+  OpenSidebarAction = '[Daffio-Sidebar] Open Sidebar Action',
+  CloseSidebarAction = '[Daffio-Sidebar] Close Sidebar Action',
+  SetSidebarStateAction = '[Daffio-Sidebar] Set Sidebar State Action',
+  SetSidebarModeAction = '[Daffio-Sidebar] Set Sidebar Mode Action',
+  ResetModeAction = '[Daffio-Sidebar] Reset Mode Action'
 }
 
 export class ToggleSidebar implements Action {

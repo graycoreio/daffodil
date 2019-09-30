@@ -1,5 +1,5 @@
-import { initialState, reducer, getShowShippingForm } from "../reducers/shipping.reducer";
-import { ToggleShowShippingForm, SetShowShippingForm } from "../actions/shipping.actions";
+import { initialState, reducer, getShowShippingForm } from '../reducers/shipping.reducer';
+import { ToggleShowShippingForm, SetShowShippingForm } from '../actions/shipping.actions';
 
 
 describe('Checkout | Shipping Reducer', () => {

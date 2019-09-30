@@ -3,9 +3,9 @@ import { Action } from '@ngrx/store';
 import { DaffNavigationTree } from '../models/navigation-tree';
 
 export enum DaffNavigationActionTypes {
-  NavigationLoadAction = "[Daff-Navigation] Navigation Load Action",
-  NavigationLoadSuccessAction = "[Daff-Navigation] Navigation Load Success Action",
-  NavigationLoadFailureAction = "[Daff-Navigation] Navigation Load Failure Action"
+  NavigationLoadAction = '[Daff-Navigation] Navigation Load Action',
+  NavigationLoadSuccessAction = '[Daff-Navigation] Navigation Load Success Action',
+  NavigationLoadFailureAction = '[Daff-Navigation] Navigation Load Failure Action'
 }
 
 export class DaffNavigationLoad implements Action {

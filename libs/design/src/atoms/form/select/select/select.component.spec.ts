@@ -58,7 +58,7 @@ describe('DaffNativeSelectComponent', () => {
   });
 
   it('should set the control type to `native-select', () =>{
-    expect(component.controlType).toEqual("native-select");
+    expect(component.controlType).toEqual('native-select');
   });
 
   it('should set `daff-native-select` on host element', () => {

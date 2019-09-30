@@ -1,4 +1,4 @@
-import { NavigationReducerState } from "../reducers/navigation/navigation-reducer-state.interface";
+import { NavigationReducerState } from '../reducers/navigation/navigation-reducer-state.interface';
 
 export interface NavigationReducersState {
   navigation: NavigationReducerState;

@@ -50,7 +50,7 @@ describe('Driver | InMemory | Category | CategoryService', () => {
       });
 
       const req = httpMock.expectOne(`${categoryService.url}${mockCategory.id}`);
-      expect(req.request.method).toBe("GET");
+      expect(req.request.method).toBe('GET');
 
       req.flush({ category: mockCategory, products: mockProducts });
     });

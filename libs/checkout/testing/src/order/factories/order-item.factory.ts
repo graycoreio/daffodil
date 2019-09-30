@@ -3,7 +3,7 @@ import * as faker from 'faker/locale/en_US';
 
 import { OrderItem } from '@daffodil/checkout';
 
-import { DaffModelFactory } from "@daffodil/core/testing";
+import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockOrderItem implements OrderItem {
   item_id = faker.random.number(1000);

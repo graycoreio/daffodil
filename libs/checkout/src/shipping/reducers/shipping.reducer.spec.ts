@@ -1,10 +1,10 @@
-import { TestBed, async } from "@angular/core/testing";
+import { TestBed, async } from '@angular/core/testing';
 
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
-import { UpdateShippingAddress, SelectShippingOption } from "../actions/shipping.actions";
-import { initialState, reducer, getShippingAddress, getSelectedShippingOptionIndex, isShippingAddressValid, State } from "../reducers/shipping.reducer";
+import { UpdateShippingAddress, SelectShippingOption } from '../actions/shipping.actions';
+import { initialState, reducer, getShippingAddress, getSelectedShippingOptionIndex, isShippingAddressValid, State } from '../reducers/shipping.reducer';
 
 describe('Shipping | Shipping Reducer', () => {
 

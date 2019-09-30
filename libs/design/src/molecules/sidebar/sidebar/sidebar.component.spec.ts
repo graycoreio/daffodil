@@ -29,10 +29,10 @@ describe('DaffSidebarComponent', () => {
 
   describe('user interactions', () => {
     it('should emit `escapedPressed` when the `ESC` key is pressed', () => {
-      spyOn(component.escapePressed, "emit");
+      spyOn(component.escapePressed, 'emit');
 
-      fixture.nativeElement.dispatchEvent(new KeyboardEvent("keydown", {
-          key: "Escape"
+      fixture.nativeElement.dispatchEvent(new KeyboardEvent('keydown', {
+          key: 'Escape'
       }));
       
       fixture.detectChanges();
@@ -41,10 +41,10 @@ describe('DaffSidebarComponent', () => {
     });
 
     it('should not emit `escapedPressed` if the event is not triggered ON the `daff-sidebar`', () => {
-      spyOn(component.escapePressed, "emit");
+      spyOn(component.escapePressed, 'emit');
 
-      document.dispatchEvent(new KeyboardEvent("keydown", {
-        key: "Escape"
+      document.dispatchEvent(new KeyboardEvent('keydown', {
+        key: 'Escape'
       }));
 
       fixture.detectChanges();

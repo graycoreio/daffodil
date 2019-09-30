@@ -36,7 +36,7 @@ export class DaffSidebarComponent {
      */
     this._ngZone.runOutsideAngular(() => {
       fromEvent<KeyboardEvent>(this._elementRef.nativeElement, 'keydown').pipe(
-          filter(event => event.key === "Escape")
+          filter(event => event.key === 'Escape')
       ).subscribe(event => this._ngZone.run(() => {
           this.escapePressed.emit();
           event.stopPropagation();

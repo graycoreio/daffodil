@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { DaffCartAddress } from "@daffodil/cart";
+import { DaffCartAddress } from '@daffodil/cart';
 import * as faker from 'faker/locale/en_US';
 
-import { DaffModelFactory } from "@daffodil/core/testing";
+import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCartAddress implements DaffCartAddress {
   address_id = faker.random.number(1000);

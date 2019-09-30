@@ -1,4 +1,4 @@
-import { DaffProductImage } from "./product-image";
+import { DaffProductImage } from './product-image';
 
 /**
  * An interface for a product usable by the @daffodil/product library.

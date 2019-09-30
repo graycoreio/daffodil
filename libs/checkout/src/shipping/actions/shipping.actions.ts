@@ -3,8 +3,8 @@ import { Action } from '@ngrx/store';
 import { DaffAddress } from '@daffodil/core';
 
 export enum ShippingActionTypes {
-  UpdateShippingAddressAction = "[Shipping] Update Shipping Address Action",
-  SelectShippingOptionAction = "[Shipping] Select Shipping Option Action"
+  UpdateShippingAddressAction = '[Shipping] Update Shipping Address Action',
+  SelectShippingOptionAction = '[Shipping] Select Shipping Option Action'
 }
 
 export class UpdateShippingAddress implements Action {

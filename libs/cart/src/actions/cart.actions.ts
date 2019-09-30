@@ -3,13 +3,13 @@ import { Action } from '@ngrx/store';
 import { DaffCart } from '../models/cart';
 
 export enum DaffCartActionTypes {
-    CartLoadAction = "[DaffCart] Load Action",
-    CartLoadSuccessAction = "[DaffCart] Load Success Action",
-    CartLoadFailureAction = "[DaffCart] Load Failure Action",
-    AddToCartAction = "[DaffCart] Add To Cart Action",
-    AddToCartSuccessAction = "[DaffCart] Add to Cart Success Action",
-    AddToCartFailureAction = "[DaffCart] Add to Cart Failure Action",    
-    CartResetAction = "[DaffCart] Reset Action"
+    CartLoadAction = '[DaffCart] Load Action',
+    CartLoadSuccessAction = '[DaffCart] Load Success Action',
+    CartLoadFailureAction = '[DaffCart] Load Failure Action',
+    AddToCartAction = '[DaffCart] Add To Cart Action',
+    AddToCartSuccessAction = '[DaffCart] Add to Cart Success Action',
+    AddToCartFailureAction = '[DaffCart] Add to Cart Failure Action',    
+    CartResetAction = '[DaffCart] Reset Action'
 }
 
 export class DaffCartLoad implements Action {

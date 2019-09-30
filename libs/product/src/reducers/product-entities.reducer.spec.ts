@@ -1,10 +1,10 @@
 import { DaffProductFactory, DaffProductModificationFactory } from '@daffodil/product/testing';
 
-import { DaffProductLoadSuccess, DaffProductModify } from "../actions/product.actions";
-import { DaffProductGridLoadSuccess, DaffProductGridReset } from "../actions/product-grid.actions";
-import { initialState, reducer } from "../reducers/product-entities.reducer";
-import { DaffBestSellersLoadSuccess } from "../actions/best-sellers.actions";
-import { DaffProduct } from "../models/product";
+import { DaffProductLoadSuccess, DaffProductModify } from '../actions/product.actions';
+import { DaffProductGridLoadSuccess, DaffProductGridReset } from '../actions/product-grid.actions';
+import { initialState, reducer } from '../reducers/product-entities.reducer';
+import { DaffBestSellersLoadSuccess } from '../actions/best-sellers.actions';
+import { DaffProduct } from '../models/product';
 import { DaffProductModification } from '../models/product-modification';
 
 describe('Product | Product Entities Reducer', () => {
@@ -103,7 +103,7 @@ describe('Product | Product Entities Reducer', () => {
       productModify = productModificationFactory.create();
       productModify.id = product.id;
       productModify.modification = {
-        "customKey": "customValue"
+        'customKey': 'customValue'
       }
       productId = product.id;
 
@@ -116,7 +116,7 @@ describe('Product | Product Entities Reducer', () => {
 
     it('sets a modification object on an existing product entity', () => {
       expect(result.entities[productId].customKey)
-        .toEqual("customValue");
+        .toEqual('customValue');
     });
   });
 

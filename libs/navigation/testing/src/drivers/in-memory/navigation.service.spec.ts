@@ -42,7 +42,7 @@ describe('Driver | InMemory | Navigation | NavigationService', () => {
       });
 
       const req = httpMock.expectOne(`${navigationService.url}${mockNavigation.id}`);
-      expect(req.request.method).toBe("GET");
+      expect(req.request.method).toBe('GET');
 
       req.flush(mockNavigation);
     });

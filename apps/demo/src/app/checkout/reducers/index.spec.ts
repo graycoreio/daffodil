@@ -1,8 +1,8 @@
-import { TestBed, async } from "@angular/core/testing";
-import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
+import { TestBed, async } from '@angular/core/testing';
+import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 
 import * as fromCheckout from './index';
-import { SetShowShippingForm } from "../actions/shipping.actions";
+import { SetShowShippingForm } from '../actions/shipping.actions';
 
 describe('selectDemoCheckoutState', () => {
 

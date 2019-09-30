@@ -1,8 +1,8 @@
-import { TestBed, async } from "@angular/core/testing";
-import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
+import { TestBed, async } from '@angular/core/testing';
+import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 
 import * as fromDemoImageGallery from './index';
-import { SetSelectedImageState } from "../actions/image-gallery.actions";
+import { SetSelectedImageState } from '../actions/image-gallery.actions';
 
 describe('selectImageGalleryState', () => {
 

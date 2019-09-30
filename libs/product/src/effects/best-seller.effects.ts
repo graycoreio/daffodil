@@ -41,7 +41,7 @@ export class DaffBestSellersEffects<T extends DaffProduct> {
             return new DaffBestSellersLoadSuccess(resp);
           }),
           catchError(error => {
-            return of(new DaffBestSellersLoadFailure("Failed to load best selling products"));
+            return of(new DaffBestSellersLoadFailure('Failed to load best selling products'));
           })
         )
     )

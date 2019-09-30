@@ -1,10 +1,10 @@
-import { TestBed, async } from "@angular/core/testing";
-import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
+import { TestBed, async } from '@angular/core/testing';
+import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
-import { UpdateShippingAddress, SelectShippingOption } from "../actions/shipping.actions";
+import { UpdateShippingAddress, SelectShippingOption } from '../actions/shipping.actions';
 import * as fromShipping from './index';
 
 describe('selectShippingState', () => {

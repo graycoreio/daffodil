@@ -1,9 +1,9 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input } from '@angular/core';
 
-export type DaffFeatureMode = "compact" | "normal" | undefined;
+export type DaffFeatureMode = 'compact' | 'normal' | undefined;
 export enum DaffFeatureModeEnum {
-  Compact = "compact",
-  Normal = "normal"
+  Compact = 'compact',
+  Normal = 'normal'
 }
 
 @Component({

@@ -1,10 +1,10 @@
-import { TestBed, async } from "@angular/core/testing";
-import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
+import { TestBed, async } from '@angular/core/testing';
+import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 
 import { DaffPaymentFactory } from '../../../testing/src';
-import { UpdatePaymentInfo } from "../actions/payment.actions";
+import { UpdatePaymentInfo } from '../actions/payment.actions';
 import * as fromPayment from './index';
-import { PaymentInfo } from "../../models/payment/payment-info";
+import { PaymentInfo } from '../../models/payment/payment-info';
 
 describe('selectPaymentState', () => {
 

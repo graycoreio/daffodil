@@ -1,8 +1,8 @@
 import { DaffCategoryFactory } from '@daffodil/category/testing';
 
-import { DaffCategoryLoadSuccess } from "../../actions/category.actions";
-import { initialState, categoryEntitiesReducer } from "./category-entities.reducer";
-import { DaffCategory } from "../../models/category";
+import { DaffCategoryLoadSuccess } from '../../actions/category.actions';
+import { initialState, categoryEntitiesReducer } from './category-entities.reducer';
+import { DaffCategory } from '../../models/category';
 
 describe('Category | Category Entities Reducer', () => {
 
