@@ -7,10 +7,10 @@ export const environment = {
   production: false,
   useMocks: true,
   e2e: false,
-  name: "local",
-  driver: "MAGENTO",
+  name: 'local',
+  driver: 'MAGENTO',
 
-  API_BASE: "http://www.SOMEFAKEURL.com/",
+  API_BASE: 'http://www.SOMEFAKEURL.com/',
   httpServiceSettings: {
     endpoint: '/example/endpoint'
   }

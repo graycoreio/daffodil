@@ -1,10 +1,10 @@
-import { TestBed, async } from "@angular/core/testing";
-import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
+import { TestBed, async } from '@angular/core/testing';
+import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 
-import { DaffCartLoadSuccess, DaffCartReset } from "../actions/cart.actions";
+import { DaffCartLoadSuccess, DaffCartReset } from '../actions/cart.actions';
 import * as fromCart from './index';
 import { DaffCartFactory } from '../../testing/src/factories/cart.factory';
-import { DaffCart } from "../models/cart";
+import { DaffCart } from '../models/cart';
 
 describe('selectCartState', () => {
 

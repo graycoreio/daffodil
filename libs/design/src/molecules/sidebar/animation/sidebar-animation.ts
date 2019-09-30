@@ -7,10 +7,10 @@ import {
     AnimationTriggerMetadata,
   } from '@angular/animations';
 
-const duration = "350ms";
-const sidebarAnimateRemainTransition = "cubic-bezier(0.4, 0.0, 0.2, 1)";
-const sidebarAnimateInTransition = "cubic-bezier(0.0, 0.0, 0.2, 1)";
-const sidebarAnimateOutTransition = "cubic-bezier(0.4, 0.0, 1, 1)";
+const duration = '350ms';
+const sidebarAnimateRemainTransition = 'cubic-bezier(0.4, 0.0, 0.2, 1)';
+const sidebarAnimateInTransition = 'cubic-bezier(0.0, 0.0, 0.2, 1)';
+const sidebarAnimateOutTransition = 'cubic-bezier(0.4, 0.0, 1, 1)';
   
 export const daffSidebarAnimations: {
     readonly transformSidebar: AnimationTriggerMetadata,

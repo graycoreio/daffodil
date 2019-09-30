@@ -16,8 +16,8 @@ describe('DaffioApiDocViewComponent', () => {
   let fixture: ComponentFixture<DaffioApiDocViewComponent>;
   const doc: DaffioApiDoc = {
     ...new DaffioDocFactory().create(),
-    docType: "type",
-    docTypeShorthand: "t"
+    docType: 'type',
+    docTypeShorthand: 't'
   };
   const stubActivatedRoute = {
     data: new BehaviorSubject({})

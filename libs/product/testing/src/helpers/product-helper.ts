@@ -1,4 +1,4 @@
-import { DaffProduct } from "@daffodil/product";
+import { DaffProduct } from '@daffodil/product';
 
 /**
  * A helper function to verify that a model is a Product.

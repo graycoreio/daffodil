@@ -1,7 +1,7 @@
 export function guideFileReader() {
   const extractTitle = (doc: any) => {
     const matchesArray = doc.content.match(/^\#(.*?)$/m);
-    if(!matchesArray){throw "Guide doc " + doc.id + " is missing a title"};
+    if(!matchesArray){throw 'Guide doc ' + doc.id + ' is missing a title'};
     return matchesArray ? matchesArray[1].trim() : '';
   }
 

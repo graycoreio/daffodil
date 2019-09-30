@@ -17,8 +17,8 @@ class WrapperComponent {
 describe('DaffQtyDropdownComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  const mockQty = "3";
-  const mockId = "id";
+  const mockQty = '3';
+  const mockId = 'id';
   let qtyDropdownComponent;
 
   beforeEach(async(() => {
@@ -235,12 +235,12 @@ describe('DaffQtyDropdownComponent', () => {
     let input;
 
     beforeEach(() => {
-      input = "2";
+      input = '2';
       spyOn(qtyDropdownComponent.componentInstance, 'selectInput').and.callThrough();      
     });
 
     it('calls onChange with argument', () => {
-      spyOn(qtyDropdownComponent.componentInstance, "onChange");
+      spyOn(qtyDropdownComponent.componentInstance, 'onChange');
       qtyDropdownComponent.componentInstance.onChangedWrapper(input);
       
       expect(qtyDropdownComponent.componentInstance.onChange).toHaveBeenCalledWith(parseInt(input, 10));
@@ -259,7 +259,7 @@ describe('DaffQtyDropdownComponent', () => {
       beforeEach(() => {
         qtyDropdownComponent.componentInstance.inputHasBeenShown = true;
         fixture.detectChanges();
-        qtyDropdownComponent.componentInstance.onChangedWrapper("10");
+        qtyDropdownComponent.componentInstance.onChangedWrapper('10');
       });
       
       it('should calls selectInput', () => {
@@ -270,7 +270,7 @@ describe('DaffQtyDropdownComponent', () => {
     describe('when value is not 10', () => {
 
       beforeEach(() => {
-        qtyDropdownComponent.componentInstance.onChangedWrapper("2");
+        qtyDropdownComponent.componentInstance.onChangedWrapper('2');
       });
       
       it('does not call selectInput', () => {

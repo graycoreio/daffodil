@@ -46,8 +46,8 @@ describe('DaffioSidebarViewportContainer', () => {
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();
-    daffSidebar = fixture.debugElement.query(By.css("daff-sidebar")).componentInstance;
-    daffSidebarViewport = fixture.debugElement.query(By.css("daff-sidebar-viewport")).componentInstance;
+    daffSidebar = fixture.debugElement.query(By.css('daff-sidebar')).componentInstance;
+    daffSidebarViewport = fixture.debugElement.query(By.css('daff-sidebar-viewport')).componentInstance;
   });
 
   it('should create', () => {
@@ -55,7 +55,7 @@ describe('DaffioSidebarViewportContainer', () => {
   });
 
   it('should set the `daff-sidebar-viewport` mode to the default initialState (push)', () => {
-    expect(daffSidebarViewport.mode).toEqual("push");
+    expect(daffSidebarViewport.mode).toEqual('push');
   });
 
   describe('when the `daff-sidebar-viewport` emits `backdropClicked`', () => {

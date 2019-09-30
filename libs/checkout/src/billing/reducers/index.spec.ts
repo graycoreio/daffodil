@@ -1,12 +1,12 @@
-import { TestBed, async } from "@angular/core/testing";
-import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
+import { TestBed, async } from '@angular/core/testing';
+import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 
-import { DaffAddress } from "@daffodil/core";
+import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
-import { UpdateBillingAddress, UpdatePaymentInfo } from "../actions/billing.actions";
+import { UpdateBillingAddress, UpdatePaymentInfo } from '../actions/billing.actions';
 import * as fromBilling from './index';
-import { PaymentInfo } from "../../models/payment/payment-info";
+import { PaymentInfo } from '../../models/payment/payment-info';
 import { DaffPaymentFactory } from '../../../testing/src';
 
 describe('selectBillingState', () => {

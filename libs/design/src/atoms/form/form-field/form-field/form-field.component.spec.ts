@@ -65,44 +65,44 @@ describe('DaffFormFieldComponent | Usage', () => {
   describe('when the child control is in an error state', () => {
     it('should set the `daff-error` class on the `daff-form-field__control`', () => {
       wrapper.formControl.markAsTouched();
-      wrapper.formControl.setValue("");
+      wrapper.formControl.setValue('');
       fixture.detectChanges();
 
       expect(wrapper.formControl.errors).toBeTruthy();
-      expect(formFieldControlElement.classList.contains("daff-error")).toEqual(true);
+      expect(formFieldControlElement.classList.contains('daff-error')).toEqual(true);
     });
   });
 
   describe('when the control is not an in error state', () => {
     it('should NOT set the `daff-error` class on the `daff-form-field__control`', () => {
       wrapper.formControl.markAsTouched();
-      wrapper.formControl.setValue("Something Valid");
+      wrapper.formControl.setValue('Something Valid');
       fixture.detectChanges();
 
       expect(wrapper.formControl.errors).toBeFalsy();
-      expect(formFieldControlElement.classList.contains("daff-error")).toEqual(false);
+      expect(formFieldControlElement.classList.contains('daff-error')).toEqual(false);
     });
   });
 
   describe('when the child control is in a valid state', () => {
     it('should set the `daff-valid` class on the `daff-form-field__control`', () => {
       wrapper.formControl.markAsTouched();
-      wrapper.formControl.setValue("Something Valid");
+      wrapper.formControl.setValue('Something Valid');
       fixture.detectChanges();
 
       expect(wrapper.formControl.valid).toBeTruthy();
-      expect(formFieldControlElement.classList.contains("daff-valid")).toEqual(true);
+      expect(formFieldControlElement.classList.contains('daff-valid')).toEqual(true);
     });
   });
 
   describe('when the control is not in a valid state', () => {
     it('should NOT set the `daff-valid` class on the `daff-form-field__control`', () => {
       wrapper.formControl.markAsTouched();
-      wrapper.formControl.setValue("");
+      wrapper.formControl.setValue('');
       fixture.detectChanges();
 
       expect(wrapper.formControl.valid).toBeFalsy();
-      expect(formFieldControlElement.classList.contains("daff-valid")).toEqual(false);
+      expect(formFieldControlElement.classList.contains('daff-valid')).toEqual(false);
     });
   });
 

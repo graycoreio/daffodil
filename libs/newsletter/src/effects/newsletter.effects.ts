@@ -24,7 +24,7 @@ export class DaffNewsletterEffects<T extends DaffNewsletterSubmission, V>{
           return new DaffNewsletterSuccessSubscribe();
         }),
         catchError(error => {
-          return of(new DaffNewsletterFailedSubscribe("Failed to subscribe to newsletter"));
+          return of(new DaffNewsletterFailedSubscribe('Failed to subscribe to newsletter'));
         })
       )
     ))

@@ -1,1 +1,1 @@
-export { DaffTestingNewsletterService } from "./drivers/testing/newsletter.service";
+export { DaffTestingNewsletterService } from './drivers/testing/newsletter.service';

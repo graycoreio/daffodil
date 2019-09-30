@@ -42,14 +42,14 @@ describe('DaffLoadingIconComponent | Usage', () => {
   it('can take a `diameter` as input which sets max-width on the `daff-loading-icon` host', () => {
     wrapper.diameter = 50;
     fixture.detectChanges();
-    expect(de.nativeElement.style.maxWidth).toEqual("50px");
+    expect(de.nativeElement.style.maxWidth).toEqual('50px');
   });
 
   describe('using a colored variant of a loading icon',() => {
     let loadingIconDe;
 
     it('should set a color class on the loading icon', () => {
-      wrapper.color = "secondary";
+      wrapper.color = 'secondary';
       fixture.detectChanges();
       
       loadingIconDe = fixture.debugElement.query(By.css('daff-loading-icon'));
@@ -87,7 +87,7 @@ describe('DaffLoadingIconComponent | Defaults', () => {
   });
 
   it('should set the default color to primary', () => {
-    expect(component.color).toEqual("primary");
+    expect(component.color).toEqual('primary');
   });
 });
 

@@ -1,6 +1,6 @@
 import { DaffCartFactory } from '../../testing/src/factories/cart.factory';
-import { initialState, reducer, getCartLoading, getCart, State } from "../reducers/cart.reducer";
-import { DaffCartLoad, DaffCartLoadSuccess, DaffCartLoadFailure, DaffCartReset, DaffAddToCart, DaffAddToCartSuccess, DaffAddToCartFailure } from "../actions/cart.actions";
+import { initialState, reducer, getCartLoading, getCart, State } from '../reducers/cart.reducer';
+import { DaffCartLoad, DaffCartLoadSuccess, DaffCartLoadFailure, DaffCartReset, DaffAddToCart, DaffAddToCartSuccess, DaffAddToCartFailure } from '../actions/cart.actions';
 import { DaffCart } from '../models/cart';
 
 describe('Cart | Cart List Reducer', () => {

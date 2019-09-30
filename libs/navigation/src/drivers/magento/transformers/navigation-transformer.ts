@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { CategoryNode } from "../interfaces/category-node";
-import { DaffNavigationTransformerInterface } from "../../interfaces/navigation-transformer.interface";
+import { CategoryNode } from '../interfaces/category-node';
+import { DaffNavigationTransformerInterface } from '../../interfaces/navigation-transformer.interface';
 import { DaffNavigationTreeUnion } from '../../../models/navigation-tree-union';
 
 @Injectable({

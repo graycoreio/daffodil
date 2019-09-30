@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
 export enum ProductActionTypes {
-    RedirectToCartSuccess = "[Product] Redirect To Cart Success Action"
+    RedirectToCartSuccess = '[Product] Redirect To Cart Success Action'
 }
 
 export class RedirectToCartSuccess implements Action {

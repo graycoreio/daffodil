@@ -8,7 +8,7 @@ export interface State {
 
 export const initialState: State = {
   showSidebar: false,
-  mode: "push"
+  mode: 'push'
 };
 
 export function reducer(state = initialState, action: SidebarActions): State {

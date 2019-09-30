@@ -1,4 +1,4 @@
-export { DaffCategoryFactory } from "./factories/category.factory";
+export { DaffCategoryFactory } from './factories/category.factory';
 export { DaffInMemoryBackendCategoryService } from './inmemory-backend/category.service';
 export { DaffTestingCategoryService } from './drivers/testing/category.service';
 export { DaffInMemoryCategoryService } from './drivers/in-memory/category.service';

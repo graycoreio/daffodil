@@ -1,4 +1,4 @@
-import { QueryOptions } from "apollo-client";
+import { QueryOptions } from 'apollo-client';
 
 export interface DaffCategoryQueryManagerInterface {
   getACategoryQuery(identifier: string | number): QueryOptions;

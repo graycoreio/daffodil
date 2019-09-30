@@ -47,6 +47,6 @@ describe('DaffioDocViewerComponent', () => {
     wrapper.doc = docFactory.create({ contents: '<script>alert("Malicious")</script>' })
     fixture.detectChanges();
     const componentEl = fixture.debugElement.query(By.css('.doc-viewer')).nativeElement as HTMLElement;
-    expect(componentEl.innerHTML).toEqual("");
+    expect(componentEl.innerHTML).toEqual('');
   })
 });

@@ -3,12 +3,12 @@ import { Action } from '@ngrx/store';
 import { DaffNewsletterSubmission } from '../models/newsletter.model';
 
 export enum DaffNewsletterActionTypes {
-  NewsletterSubscribeAction = "[Daff-Newsletter] Newsletter Subscribe Action",
-  NewsletterCancelAction = "[Daff-Newsletter] Newsletter Cancel Action",
-  NewsletterSuccessSubscribeAction = "[Daff-Newsletter] Succeeded on Newsletter Subscribe Action",
-  NewsletterFailedSubscribeAction = "[Daff-Newsletter] Failed on Newsletter Subscribe Action",
-  NewsletterRetry = "[Daff-Newsletter] Retrying submission",
-  NewsletterReset = "[Daff-Newsletter] Reset Newsletter"
+  NewsletterSubscribeAction = '[Daff-Newsletter] Newsletter Subscribe Action',
+  NewsletterCancelAction = '[Daff-Newsletter] Newsletter Cancel Action',
+  NewsletterSuccessSubscribeAction = '[Daff-Newsletter] Succeeded on Newsletter Subscribe Action',
+  NewsletterFailedSubscribeAction = '[Daff-Newsletter] Failed on Newsletter Subscribe Action',
+  NewsletterRetry = '[Daff-Newsletter] Retrying submission',
+  NewsletterReset = '[Daff-Newsletter] Reset Newsletter'
 }
 
 export class DaffNewsletterSubscribe<T extends DaffNewsletterSubmission> implements Action {

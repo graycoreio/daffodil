@@ -3,7 +3,7 @@ import * as faker from 'faker/locale/en_US';
 
 import { DaffProductImage } from '@daffodil/product';
 
-import { DaffModelFactory } from "@daffodil/core/testing";
+import { DaffModelFactory } from '@daffodil/core/testing';
 
 const productImageUrlsList: string[] = [
   '/assets/products/0.jpg',

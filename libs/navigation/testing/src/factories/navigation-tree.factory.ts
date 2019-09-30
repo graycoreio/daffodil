@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
 import { DaffNavigationTree } from '@daffodil/navigation';
-import { DaffModelFactory } from "@daffodil/core/testing";
+import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockNavigationTree implements DaffNavigationTree {
   id = '1';

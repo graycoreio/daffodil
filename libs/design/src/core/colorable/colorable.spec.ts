@@ -1,6 +1,6 @@
-import { daffColorMixin, colorInPalette } from "./colorable";
-import { ElementRef, Renderer2 } from "@angular/core";
-import { TestBed } from "@angular/core/testing";
+import { daffColorMixin, colorInPalette } from './colorable';
+import { ElementRef, Renderer2 } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 
 class TestingClass {
   element: HTMLElement = document.createElement('div');
@@ -30,23 +30,23 @@ describe('daffColorMixin', () => {
   });
 
   it('should add a color property to an existing class', () => {
-      expect("color" in instance).toBeTruthy();
+      expect('color' in instance).toBeTruthy();
   });
 
   it('should allow the consuming class to optionally define a default color', () => {
-    classWithColor = daffColorMixin(TestingClass, "primary");
+    classWithColor = daffColorMixin(TestingClass, 'primary');
     instance = new classWithColor();
 
-    expect(instance.color).toEqual("primary");
+    expect(instance.color).toEqual('primary');
     expect(instance.element.classList).toContain('daff-primary');
   });
 
   describe('when a color is specified', () => {
     
     it('should set a namespaced color class', () => {
-      instance.color = "primary";
+      instance.color = 'primary';
 
-      expect(instance.element.classList).toContain("daff-primary");
+      expect(instance.element.classList).toContain('daff-primary');
     });
   });
 
@@ -61,10 +61,10 @@ describe('daffColorMixin', () => {
   describe('when `color` changes', () => {
 
     beforeEach(() => {
-      instance.color = "primary";
+      instance.color = 'primary';
       expect(instance.element.classList).toContain('daff-primary');
 
-      instance.color = "accent";
+      instance.color = 'accent';
     });
     
     it('should add the new color class', () => {
@@ -79,8 +79,8 @@ describe('daffColorMixin', () => {
   describe('when one of the `DaffPalette` types is not used', () => {
     it('should throw an error', () => {
       expect(function(){
-        instance.color = "SOMEFAKEPALETTE"
-      }).toThrow(new TypeError("SOMEFAKEPALETTE is not a valid color for the DaffPalette"));
+        instance.color = 'SOMEFAKEPALETTE'
+      }).toThrow(new TypeError('SOMEFAKEPALETTE is not a valid color for the DaffPalette'));
     });
   });
 
@@ -88,10 +88,10 @@ describe('daffColorMixin', () => {
     describe('and color is set to null or undefined', () => {
       it('should do nothing', () => {
         instance.color = null;
-        expect(instance.element.classList.value).toEqual("");
+        expect(instance.element.classList.value).toEqual('');
 
         instance.color = undefined;
-        expect(instance.element.classList.value).toEqual("");
+        expect(instance.element.classList.value).toEqual('');
       });
     });
   });
@@ -99,7 +99,7 @@ describe('daffColorMixin', () => {
   describe('when a default color is specified', () => {
 
     beforeEach(() => {
-      classWithColor = daffColorMixin(TestingClass, "primary");
+      classWithColor = daffColorMixin(TestingClass, 'primary');
       instance = new classWithColor();
     });
 
@@ -107,12 +107,12 @@ describe('daffColorMixin', () => {
       it('should set color to the default color ', () => {
         instance.color = null;
 
-        expect(instance.color).toEqual("primary");
+        expect(instance.color).toEqual('primary');
         expect(instance.element.classList).toContain('daff-primary');
 
         instance.color = undefined;
 
-        expect(instance.color).toEqual("primary");
+        expect(instance.color).toEqual('primary');
         expect(instance.element.classList).toContain('daff-primary');
       });
     })
@@ -122,19 +122,19 @@ describe('daffColorMixin', () => {
 describe('colorInPalette', () => {
   describe('when color is in the palette', () => {
     it('should return true', () => {
-        expect(colorInPalette("black")).toEqual(true);
-        expect(colorInPalette("white")).toEqual(true);
-        expect(colorInPalette("primary")).toEqual(true);
-        expect(colorInPalette("accent")).toEqual(true);
+        expect(colorInPalette('black')).toEqual(true);
+        expect(colorInPalette('white')).toEqual(true);
+        expect(colorInPalette('primary')).toEqual(true);
+        expect(colorInPalette('accent')).toEqual(true);
     });
   });
 
   describe('when color is NOT in the palette', () => {
     it('should return false', () => {
-        expect(colorInPalette("purple")).toEqual(false);
-        expect(colorInPalette("green")).toEqual(false);
-        expect(colorInPalette("red")).toEqual(false);
-        expect(colorInPalette("blarck")).toEqual(false);
+        expect(colorInPalette('purple')).toEqual(false);
+        expect(colorInPalette('green')).toEqual(false);
+        expect(colorInPalette('red')).toEqual(false);
+        expect(colorInPalette('blarck')).toEqual(false);
     });
   });
 

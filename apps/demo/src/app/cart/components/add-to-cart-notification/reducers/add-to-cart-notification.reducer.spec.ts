@@ -1,5 +1,5 @@
-import { DaffAddToCart, DaffAddToCartSuccess, DaffCart } from "@daffodil/cart";
-import { DaffCartFactory } from "@daffodil/cart/testing";
+import { DaffAddToCart, DaffAddToCartSuccess, DaffCart } from '@daffodil/cart';
+import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { 
   initialState, 
@@ -8,8 +8,8 @@ import {
   getProductQty, 
   getLoading, 
   getProductId 
-} from "../reducers/add-to-cart-notification.reducer";
-import { OpenAddToCartNotification, CloseAddToCartNotification } from "../actions/add-to-cart-notification.actions";
+} from '../reducers/add-to-cart-notification.reducer';
+import { OpenAddToCartNotification, CloseAddToCartNotification } from '../actions/add-to-cart-notification.actions';
 
 describe('Add To Cart Notification | Reducer', () => {
   

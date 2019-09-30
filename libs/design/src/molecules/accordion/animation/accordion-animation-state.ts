@@ -1,8 +1,8 @@
 export const getAnimationState = (open : boolean) => {
   if(open){
-    return "open";
+    return 'open';
   }
   else {
-    return "void";
+    return 'void';
   }
 }

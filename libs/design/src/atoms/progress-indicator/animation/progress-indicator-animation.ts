@@ -11,7 +11,7 @@ import {
     readonly fill: AnimationTriggerMetadata,
   } = {
     fill: trigger('fill', [
-        state('*', style({ width: "{{ percentage }}%"}), { params: { percentage: 0 } }),
+        state('*', style({ width: '{{ percentage }}%'}), { params: { percentage: 0 } }),
         transition('* <=> *', animate(1000))
     ])
   };

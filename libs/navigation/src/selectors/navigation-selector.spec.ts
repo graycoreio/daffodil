@@ -1,14 +1,14 @@
-import { TestBed } from "@angular/core/testing";
-import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
-import { cold } from "jasmine-marbles";
+import { TestBed } from '@angular/core/testing';
+import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
+import { cold } from 'jasmine-marbles';
 
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
-import { DaffNavigationLoadSuccess } from "../actions/navigation.actions";
+import { DaffNavigationLoadSuccess } from '../actions/navigation.actions';
 import { selectNavigationTree, selectNavigationLoading, selectNavigationErrors } from './navigation.selector';
-import { DaffNavigationTree } from "../models/navigation-tree";
-import { NavigationReducersState } from "../reducers/navigation-reducers.interface";
-import { navigationReducers } from "../reducers/navigation-reducers";
+import { DaffNavigationTree } from '../models/navigation-tree';
+import { NavigationReducersState } from '../reducers/navigation-reducers.interface';
+import { navigationReducers } from '../reducers/navigation-reducers';
 
 describe('DaffNavigationSelectors', () => {
 

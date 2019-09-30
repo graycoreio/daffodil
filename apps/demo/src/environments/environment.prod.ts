@@ -7,10 +7,10 @@ export const environment = {
   production: true,
   useMocks: false,
   e2e: false,
-  name: "prod",
-  driver: "INMEMORY",
+  name: 'prod',
+  driver: 'INMEMORY',
 
-  API_BASE: "http://www.SOMEREALFAKEURL.com/",
+  API_BASE: 'http://www.SOMEREALFAKEURL.com/',
   httpServiceSettings: {
     endpoint: '/example/endpoint'
   }

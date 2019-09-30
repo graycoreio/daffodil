@@ -1,6 +1,6 @@
-import { Component, ViewEncapsulation, DoCheck, ContentChild, Input, AfterContentInit, AfterContentChecked } from "@angular/core";
-import { DaffFormFieldControl } from "../form-field-control";
-import { DaffFormFieldMissingControlMessage } from "../form-field-errors";
+import { Component, ViewEncapsulation, DoCheck, ContentChild, Input, AfterContentInit, AfterContentChecked } from '@angular/core';
+import { DaffFormFieldControl } from '../form-field-control';
+import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
 
 @Component({
   selector: 'daff-form-field',

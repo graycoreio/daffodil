@@ -52,7 +52,7 @@ describe('Driver | In Memory | Checkout | CheckoutService', () => {
   
         const req = httpMock.expectOne(`${checkoutService.url}/placeOrder`);
   
-        expect(req.request.method).toBe("POST");
+        expect(req.request.method).toBe('POST');
         expect(req.request.body).toEqual({
           'cartId': cartId
         });

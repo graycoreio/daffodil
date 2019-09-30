@@ -4,9 +4,9 @@ import { DaffCart } from '@daffodil/cart';
 import { Order } from '../../models/order/order';
 
 export enum OrderActionTypes {
-  PlaceOrderAction = "[Order] Place Order Action",
-  PlaceOrderSuccessAction = "[Order] Place Order Success Action",
-  PlaceOrderFailureAction = "[Order] Place Order Failure Action"
+  PlaceOrderAction = '[Order] Place Order Action',
+  PlaceOrderSuccessAction = '[Order] Place Order Success Action',
+  PlaceOrderFailureAction = '[Order] Place Order Failure Action'
 }
 
 export class PlaceOrder implements Action {

@@ -1,6 +1,6 @@
-import { DaffBestSellersLoad, DaffBestSellersLoadSuccess, DaffBestSellersLoadFailure, DaffBestSellersReset } from "../actions/best-sellers.actions";
-import { initialState, reducer, getBestSellersLoading, getBestSellersIds, State } from "../reducers/best-sellers.reducer";
-import { DaffProduct } from "../models/product";
+import { DaffBestSellersLoad, DaffBestSellersLoadSuccess, DaffBestSellersLoadFailure, DaffBestSellersReset } from '../actions/best-sellers.actions';
+import { initialState, reducer, getBestSellersLoading, getBestSellersIds, State } from '../reducers/best-sellers.reducer';
+import { DaffProduct } from '../models/product';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
 

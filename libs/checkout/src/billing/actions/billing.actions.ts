@@ -5,9 +5,9 @@ import { DaffAddress } from '@daffodil/core';
 import { PaymentInfo } from '../../models/payment/payment-info';
 
 export enum BillingActionTypes {
-  UpdateBillingAddressAction = "[Billing] Update Billing Address Action",
-  UpdatePaymentInfoAction = "[Billing] Update Payment Info Action",
-  ToggleBillingAddressIsShippingAddressAction = "[Billing] Billing Address Is Shipping Address Action"
+  UpdateBillingAddressAction = '[Billing] Update Billing Address Action',
+  UpdatePaymentInfoAction = '[Billing] Update Payment Info Action',
+  ToggleBillingAddressIsShippingAddressAction = '[Billing] Billing Address Is Shipping Address Action'
 }
 
 export class UpdateBillingAddress implements Action {

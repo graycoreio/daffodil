@@ -1,4 +1,4 @@
-import { DaffProduct } from "./product";
+import { DaffProduct } from './product';
 
 /**
  * A DaffProduct that can hold unique modifications particular to the kind of product object your application needs.

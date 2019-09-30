@@ -1,4 +1,4 @@
-import { QueryOptions } from "apollo-client";
+import { QueryOptions } from 'apollo-client';
 
 /**
  * Interface that must be implemented by Product query managers.

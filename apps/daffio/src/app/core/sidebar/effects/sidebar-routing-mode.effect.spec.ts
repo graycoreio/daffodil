@@ -20,8 +20,8 @@ const configureStubNavigationAction = (snapshot: any) : RouterNavigatedAction =>
       },
       event: {
         id: 12,
-        url: "",
-        urlAfterRedirects: ""
+        url: '',
+        urlAfterRedirects: ''
       }
     }
   };
@@ -47,7 +47,7 @@ describe('Daffio | DaffioSidebarRoutingModeEffects', () => {
   describe('when a ROUTER_NAVIGATED occurs to a route with a `sidebarMode` in its tree', () => {
     const action = configureStubNavigationAction({
       data: {
-        sidebarMode: "side"
+        sidebarMode: 'side'
       }
     });
 
@@ -77,7 +77,7 @@ describe('Daffio | DaffioSidebarRoutingModeEffects', () => {
         actions$ = hot( '--a', { a: action });
         spyOn(breakpointObserver, 'observe').and.returnValue(hot( '--a', { a: state }));
         
-        expected = cold('--b', { b: new SetSidebarMode("side") });
+        expected = cold('--b', { b: new SetSidebarMode('side') });
 
         effects = new DaffioSidebarRoutingModeEffects(actions$, breakpointObserver);
 

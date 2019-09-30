@@ -1,7 +1,7 @@
-import { DaffOrderFactory } from "../../../testing/src";
-import { initialState, reducer, getLoading, getOrder, State, getErrors } from "../reducers/order.reducer";
-import { PlaceOrder, PlaceOrderSuccess, PlaceOrderFailure } from "../actions/order.actions";
-import { Order } from "../../models/order/order";
+import { DaffOrderFactory } from '../../../testing/src';
+import { initialState, reducer, getLoading, getOrder, State, getErrors } from '../reducers/order.reducer';
+import { PlaceOrder, PlaceOrderSuccess, PlaceOrderFailure } from '../actions/order.actions';
+import { Order } from '../../models/order/order';
 
 describe('Order | Order List Reducer', () => {
 

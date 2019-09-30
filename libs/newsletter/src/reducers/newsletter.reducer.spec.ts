@@ -50,7 +50,7 @@ describe('the newsletter reducer', () => {
     expect(reducer(loadingState, action)).toEqual(expectedState);
   });
   it('should cancel loading and have an error message if the subscribe fails', () =>{
-    const payload = "Failed to Subscribe";
+    const payload = 'Failed to Subscribe';
     const action = new DaffNewsletterFailedSubscribe(payload);
     const failedState = {
       error: null,

@@ -74,7 +74,7 @@ export class DaffQtyDropdownComponent implements OnInit {
   private selectInput() {
     const that = this;
     setTimeout(function() {
-      const input = document.getElementById("input_" + that.id) as HTMLInputElement;
+      const input = document.getElementById('input_' + that.id) as HTMLInputElement;
       input.select();
     });
   }

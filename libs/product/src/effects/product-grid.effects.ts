@@ -42,7 +42,7 @@ export class DaffProductGridEffects<T extends DaffProduct> {
             return new DaffProductGridLoadSuccess(resp);
           }),
           catchError(error => {
-            return of(new DaffProductGridLoadFailure("Failed to load product grid"));
+            return of(new DaffProductGridLoadFailure('Failed to load product grid'));
           })
         )
     )

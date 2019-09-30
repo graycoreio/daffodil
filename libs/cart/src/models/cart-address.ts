@@ -1,5 +1,5 @@
-import { DaffCartShippingRate } from "./cart-shipping-rate";
-import { DaffAddress } from "@daffodil/core";
+import { DaffCartShippingRate } from './cart-shipping-rate';
+import { DaffAddress } from '@daffodil/core';
 
 export interface DaffCartAddress extends DaffAddress {
   address_id: number;

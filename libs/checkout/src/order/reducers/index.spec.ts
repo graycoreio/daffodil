@@ -1,10 +1,10 @@
-import { TestBed, async } from "@angular/core/testing";
-import { StoreModule, combineReducers, Store, select } from "@ngrx/store";
+import { TestBed, async } from '@angular/core/testing';
+import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 
-import { PlaceOrderSuccess } from "../actions/order.actions";
+import { PlaceOrderSuccess } from '../actions/order.actions';
 import * as fromOrder from './index';
-import { DaffOrderFactory } from "../../../testing/src";
-import { Order } from "../../models/order/order";
+import { DaffOrderFactory } from '../../../testing/src';
+import { Order } from '../../models/order/order';
 
 describe('selectOrderState', () => {
 

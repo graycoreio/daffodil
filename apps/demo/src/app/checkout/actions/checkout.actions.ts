@@ -1,8 +1,8 @@
 import { Action } from '@ngrx/store';
 
 export enum CheckoutActionTypes {
-  EnablePlaceOrderButtonAction = "[Foundation-Checkout] Enable Place Order Button Action",
-  ShowReviewViewAction = "[Foundation-Checkout] Show Review View Action"
+  EnablePlaceOrderButtonAction = '[Foundation-Checkout] Enable Place Order Button Action',
+  ShowReviewViewAction = '[Foundation-Checkout] Show Review View Action'
 }
 
 export class EnablePlaceOrderButton implements Action {

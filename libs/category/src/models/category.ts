@@ -1,4 +1,4 @@
-import { DaffCategoryBreadcrumb } from "./category-breadcrumb";
+import { DaffCategoryBreadcrumb } from './category-breadcrumb';
 
 export interface DaffCategory {
   id: string;

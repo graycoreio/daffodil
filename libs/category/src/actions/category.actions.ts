@@ -3,9 +3,9 @@ import { Action } from '@ngrx/store';
 import { DaffCategory } from '../models/category';
 
 export enum DaffCategoryActionTypes {
-  CategoryLoadAction = "[Daff-Category] Category Load Action",
-  CategoryLoadSuccessAction = "[Daff-Category] Category Load Success Action",
-  CategoryLoadFailureAction = "[Daff-Category] Category Load Failure Action"
+  CategoryLoadAction = '[Daff-Category] Category Load Action',
+  CategoryLoadSuccessAction = '[Daff-Category] Category Load Success Action',
+  CategoryLoadFailureAction = '[Daff-Category] Category Load Failure Action'
 }
 
 export class DaffCategoryLoad implements Action {

@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { OrderPayment } from "@daffodil/checkout";
+import { OrderPayment } from '@daffodil/checkout';
 import * as faker from 'faker/locale/en_US';
 
-import { DaffModelFactory } from "@daffodil/core/testing";
+import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockOrderPayment implements OrderPayment {
     payment_id = faker.random.number(1000);

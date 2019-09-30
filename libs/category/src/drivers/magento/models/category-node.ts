@@ -1,5 +1,5 @@
-import { CategoryProductsNode } from "./category-products-node";
-import { BreadcrumbNode } from "./breadcrumb-node";
+import { CategoryProductsNode } from './category-products-node';
+import { BreadcrumbNode } from './breadcrumb-node';
 
 export interface CategoryNode {
   id: string;

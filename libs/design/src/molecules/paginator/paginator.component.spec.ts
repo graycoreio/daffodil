@@ -58,7 +58,7 @@ describe('DaffPaginatorComponent', () => {
   });
 
   it('should set _paginatorId from the aria-label of the host element', () => {
-    expect(component._paginatorId).toEqual("id");
+    expect(component._paginatorId).toEqual('id');
   });
 
   it('should show page numbers within one of the current page', () => {

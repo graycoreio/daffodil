@@ -48,8 +48,8 @@ describe('SidebarViewportContainer', () => {
     store.overrideSelector(fromDemoSidebar.selectShowSidebar, false);
     fixture.detectChanges();
 
-    sidebarViewport = fixture.debugElement.query(By.css("daff-sidebar-viewport")).componentInstance;
-    sidebarContainer = fixture.debugElement.query(By.css("demo-sidebar")).componentInstance;
+    sidebarViewport = fixture.debugElement.query(By.css('daff-sidebar-viewport')).componentInstance;
+    sidebarContainer = fixture.debugElement.query(By.css('demo-sidebar')).componentInstance;
   });
 
   afterAll(() => {
@@ -61,7 +61,7 @@ describe('SidebarViewportContainer', () => {
   });
 
   it('should set the `daff-sidebar-viewport` mode to over', () => {
-    expect(sidebarViewport.mode).toEqual("over");
+    expect(sidebarViewport.mode).toEqual('over');
   });
 
   it('should call close when the `daff-sidebar-viewport` emits `backdropClicked`', () => {

@@ -23,10 +23,10 @@ export class DaffMagentoProductTransformerService implements DaffProductTransfor
       url: product.url_key,
       name: product.name,
       images: [
-        { url: product.image.url, id: "0", label: product.image.label},
+        { url: product.image.url, id: '0', label: product.image.label},
         ...product.media_gallery_entries.map(image => {
           return {
-            url: response.storeConfig.secure_base_media_url + "catalog/product" + image.file,
+            url: response.storeConfig.secure_base_media_url + 'catalog/product' + image.file,
             label: image.label,
             id: image.id
           }
@@ -49,7 +49,7 @@ export class DaffMagentoProductTransformerService implements DaffProductTransfor
       url: product.url_key,
       name: product.name,
       images: [
-        {url: product.image.url, id: "0", label: product.image.url}
+        {url: product.image.url, id: '0', label: product.image.url}
       ]
     }
   }

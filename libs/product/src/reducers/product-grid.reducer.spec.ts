@@ -1,8 +1,8 @@
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffProductGridLoad, DaffProductGridLoadSuccess, DaffProductGridLoadFailure } from "../actions/product-grid.actions";
-import { initialState, reducer, getProductGridLoading, State } from "../reducers/product-grid.reducer";
-import { DaffProduct } from "../models/product";
+import { DaffProductGridLoad, DaffProductGridLoadSuccess, DaffProductGridLoadFailure } from '../actions/product-grid.actions';
+import { initialState, reducer, getProductGridLoading, State } from '../reducers/product-grid.reducer';
+import { DaffProduct } from '../models/product';
 
 describe('Product | Product Grid Reducer', () => {
 

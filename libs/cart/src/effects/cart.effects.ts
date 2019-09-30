@@ -31,7 +31,7 @@ export class DaffCartEffects {
             return new DaffCartLoadSuccess(resp);
           }),
           catchError(error => {
-            return of(new DaffCartLoadFailure("Failed to load cart"));
+            return of(new DaffCartLoadFailure('Failed to load cart'));
           })
         )
     )
@@ -47,7 +47,7 @@ export class DaffCartEffects {
             return new DaffAddToCartSuccess(resp);
           }),
           catchError(error => {
-            return of(new DaffAddToCartFailure("Failed to add item to cart"));
+            return of(new DaffAddToCartFailure('Failed to add item to cart'));
           })
         )
     )

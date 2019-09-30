@@ -25,7 +25,7 @@ describe('DaffCategoryEffects', () => {
   let productFactory: DaffProductFactory;
 
   beforeEach(() => {
-    categoryId = "category id";
+    categoryId = 'category id';
 
     TestBed.configureTestingModule({
       providers: [

@@ -1,5 +1,5 @@
-import { ToggleSidebar, CloseSidebar, OpenSidebar, SetSidebarState, ResetMode, SetSidebarMode } from "../actions/sidebar.actions";
-import { initialState, reducer, getShowSidebar } from "../reducers/sidebar.reducer";
+import { ToggleSidebar, CloseSidebar, OpenSidebar, SetSidebarState, ResetMode, SetSidebarMode } from '../actions/sidebar.actions';
+import { initialState, reducer, getShowSidebar } from '../reducers/sidebar.reducer';
 
 describe('Sidebar | Sidebar Reducer', () => {
   
@@ -65,7 +65,7 @@ describe('Sidebar | Sidebar Reducer', () => {
 
   describe('when SetSidebarModeAction is triggered', () => {
     it('should set the sidebar mode to the payload', () => {
-      const stubMode = "side";
+      const stubMode = 'side';
       const action = new SetSidebarMode(stubMode);
       const result = reducer(initialState, action);
       expect(result.mode).toEqual(stubMode);

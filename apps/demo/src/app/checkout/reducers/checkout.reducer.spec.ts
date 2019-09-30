@@ -1,5 +1,5 @@
-import { initialState, reducer, getEnablePlaceOrderButton, getShowReviewView } from "../reducers/checkout.reducer";
-import { EnablePlaceOrderButton, ShowReviewView } from "../actions/checkout.actions";
+import { initialState, reducer, getEnablePlaceOrderButton, getShowReviewView } from '../reducers/checkout.reducer';
+import { EnablePlaceOrderButton, ShowReviewView } from '../actions/checkout.actions';
 
 describe('Checkout | Checkout Reducer', () => {
   

@@ -1,5 +1,5 @@
-import { IDaffModelFactory } from "./factory.interface";
-import { range } from "@daffodil/core";
+import { IDaffModelFactory } from './factory.interface';
+import { range } from '@daffodil/core';
 
 interface ArglessConstructable<T> {
     new() : T;

@@ -1,5 +1,5 @@
-import { getAnimationState } from "./sidebar-animation-state";
-import { DaffSidebarAnimationStates } from "./sidebar-animation";
+import { getAnimationState } from './sidebar-animation-state';
+import { DaffSidebarAnimationStates } from './sidebar-animation';
 
 describe('SidebarAnimationState Calculation', () => {
     it('should return `open` if it is open', () => {

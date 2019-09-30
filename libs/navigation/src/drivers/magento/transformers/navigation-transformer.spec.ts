@@ -24,17 +24,17 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
 
   it('should transform a CategoryNode into a DaffNavigationTree', () => {
     const categoryNode: CategoryNode = {
-      id: "1",
-      name: "Root Category",
+      id: '1',
+      name: 'Root Category',
       include_in_menu: true,
       products: {
         total_count: 10
       },
       children_count: 0,
       children: [{
-        id: "2",
+        id: '2',
         include_in_menu: false,
-        name: "Subcategory",
+        name: 'Subcategory',
         products: {
           total_count: 10
         },
@@ -44,8 +44,8 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
     }
 
     const navigation: DaffNavigationTreeUnion = {
-      id: "1",
-      name: "Root Category",
+      id: '1',
+      name: 'Root Category',
       total_products: 10,
       children: [],
       children_count: 0,
@@ -56,17 +56,17 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
 
   it('should filter out categories (and necessarily their children) that are include_in_menu false', () => {
     const categoryNode: CategoryNode = {
-      id: "1",
-      name: "Root Category",
+      id: '1',
+      name: 'Root Category',
       include_in_menu: true,
       products: {
         total_count: 10
       },
       children_count: 1,
       children: [{
-        id: "2",
+        id: '2',
         include_in_menu: true,
-        name: "Subcategory",
+        name: 'Subcategory',
         products: {
           total_count: 10
         },
@@ -76,12 +76,12 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
     };
 
     const navigation: DaffNavigationTreeUnion = {
-      id: "1",
-      name: "Root Category",
+      id: '1',
+      name: 'Root Category',
       total_products: 10,
       children: [{
-        id: "2",
-        name: "Subcategory",
+        id: '2',
+        name: 'Subcategory',
         total_products: 10,
         children: [],
         children_count: 0,

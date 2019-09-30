@@ -71,7 +71,7 @@ describe('SidebarContainer', () => {
 
     wrapper = fixture.componentInstance;
     component = fixture.debugElement.query(By.css('demo-sidebar')).componentInstance;
-    daffSidebar = fixture.debugElement.query(By.css("daff-sidebar")).componentInstance;
+    daffSidebar = fixture.debugElement.query(By.css('daff-sidebar')).componentInstance;
   });
 
   it('should create', () => {

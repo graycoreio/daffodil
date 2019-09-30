@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { ShippingRate } from "@daffodil/checkout";
+import { ShippingRate } from '@daffodil/checkout';
 import * as faker from 'faker/locale/en_US';
 
-import { DaffModelFactory } from "@daffodil/core/testing";
+import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockShippingRate implements ShippingRate {
     rate_id = faker.random.number(1000);

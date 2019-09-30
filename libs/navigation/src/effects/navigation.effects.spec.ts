@@ -21,7 +21,7 @@ describe('DaffNavigationEffects', () => {
   let navigationId;
 
   beforeEach(() => {
-    navigationId = "navigation id";
+    navigationId = 'navigation id';
 
     TestBed.configureTestingModule({
       providers: [

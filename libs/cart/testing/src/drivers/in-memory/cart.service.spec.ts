@@ -45,7 +45,7 @@ describe('Driver | In Memory | Cart | CartService', () => {
 
       const req = httpMock.expectOne(`${cartService.url}`);
 
-      expect(req.request.method).toBe("GET");
+      expect(req.request.method).toBe('GET');
       req.flush(mockCart);
     });
   });
@@ -69,7 +69,7 @@ describe('Driver | In Memory | Cart | CartService', () => {
   
         const req = httpMock.expectOne(`${cartService.url}/addToCart`);
   
-        expect(req.request.method).toBe("POST");
+        expect(req.request.method).toBe('POST');
         expect(req.request.body).toEqual({
           'productId': productId,
           'qty': qty
@@ -92,7 +92,7 @@ describe('Driver | In Memory | Cart | CartService', () => {
         
         const req = httpMock.expectOne(`${cartService.url}/clear`);
 
-        expect(req.request.method).toBe("POST");
+        expect(req.request.method).toBe('POST');
         expect(req.request.body).toEqual({});
 
         req.flush(mockCart);

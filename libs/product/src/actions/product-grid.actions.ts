@@ -6,10 +6,10 @@ import { DaffProduct } from '../models/product';
  * Action types for Product Grid Actions.
 */
 export enum DaffProductGridActionTypes {
-    ProductGridLoadAction = "[ProductGrid] Load Action",
-    ProductGridLoadSuccessAction = "[ProductGrid] Load Success Action",
-    ProductGridLoadFailureAction = "[ProductGrid] Load Failure Action",
-    ProductGridResetAction = "[ProductGrid] Reset Action"
+    ProductGridLoadAction = '[ProductGrid] Load Action',
+    ProductGridLoadSuccessAction = '[ProductGrid] Load Success Action',
+    ProductGridLoadFailureAction = '[ProductGrid] Load Failure Action',
+    ProductGridResetAction = '[ProductGrid] Reset Action'
 }
 
 /**

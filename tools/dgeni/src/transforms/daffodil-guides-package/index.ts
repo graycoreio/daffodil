@@ -1,8 +1,8 @@
-import { Package, Processor } from "dgeni";
-import { daffodilBasePackage } from "../daffodil-base-package";
-import { guideFileReader } from "./reader/guide-file.reader";
-import { API_SOURCE_PATH, GUIDES_TEMPLATES_PATH } from "../config";
-import { GenerateGuideListProcessor } from "./processors/generateGuideList";
+import { Package, Processor } from 'dgeni';
+import { daffodilBasePackage } from '../daffodil-base-package';
+import { guideFileReader } from './reader/guide-file.reader';
+import { API_SOURCE_PATH, GUIDES_TEMPLATES_PATH } from '../config';
+import { GenerateGuideListProcessor } from './processors/generateGuideList';
 
 export const guideDocPackage = new Package('daffodil-guides', [daffodilBasePackage])
   .factory(guideFileReader)
@@ -12,19 +12,19 @@ export const guideDocPackage = new Package('daffodil-guides', [daffodilBasePacka
     readFilesProcessor.fileReaders.push(guideFileReader);
     readFilesProcessor.basePath = API_SOURCE_PATH;
     readFilesProcessor.sourceFiles = [
-      { include: ["cart/README.md", "cart/guides/**/*.md"]},
-      { include: ["category/README.md", "category/guides/**/*.md"]},
-      { include: ["checkout/README.md", "checkout/guides/**/*.md"]},
-      { include: ["core/README.md", "core/guides/**/*.md"]},
-      { include: ["design/README.md", "design/guides/**/*.md"]},
-      { include: ["product/README.md", "product/guides/**/*.md"]}
+      { include: ['cart/README.md', 'cart/guides/**/*.md']},
+      { include: ['category/README.md', 'category/guides/**/*.md']},
+      { include: ['checkout/README.md', 'checkout/guides/**/*.md']},
+      { include: ['core/README.md', 'core/guides/**/*.md']},
+      { include: ['design/README.md', 'design/guides/**/*.md']},
+      { include: ['product/README.md', 'product/guides/**/*.md']}
     ]
   })
   .config(function (convertToJson) {
     convertToJson.docTypes = convertToJson.docTypes.concat(['guide']);
   })
   .config(function (computePathsProcessor) {
-    const DOCS_SEGMENT = "guides";
+    const DOCS_SEGMENT = 'guides';
     computePathsProcessor.pathTemplates.push({
       docTypes: ['guide'],
       getPath: function computeModulePath(doc) {

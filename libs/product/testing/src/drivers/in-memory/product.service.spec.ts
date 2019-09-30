@@ -41,7 +41,7 @@ describe('Driver | InMemory | Product | ProductService', () => {
       });
 
       const req = httpMock.expectOne(`${productService.url}`);
-      expect(req.request.method).toBe("GET");
+      expect(req.request.method).toBe('GET');
 
       req.flush(mockProducts);
     });
@@ -56,7 +56,7 @@ describe('Driver | InMemory | Product | ProductService', () => {
       });
 
       const req = httpMock.expectOne(`${productService.url}best-sellers`);
-      expect(req.request.method).toBe("GET");
+      expect(req.request.method).toBe('GET');
 
       req.flush(mockProducts);
     });
@@ -72,7 +72,7 @@ describe('Driver | InMemory | Product | ProductService', () => {
       });
 
       const req = httpMock.expectOne(`${productService.url}${mockProduct.id}`);
-      expect(req.request.method).toBe("GET");
+      expect(req.request.method).toBe('GET');
 
       req.flush(mockProduct);
     });

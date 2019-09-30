@@ -1,4 +1,4 @@
-import { DaffProductImage } from "@daffodil/product";
+import { DaffProductImage } from '@daffodil/product';
 
 export interface DaffCartItem {
   item_id: number;

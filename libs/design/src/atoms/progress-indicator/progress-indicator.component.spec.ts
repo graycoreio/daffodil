@@ -73,9 +73,9 @@ describe('DaffProgressIndicatorComponent', () => {
   });
 
   it('should be colorable', () => {
-    wrapper.color = "primary";
+    wrapper.color = 'primary';
     fixture.detectChanges();
-    expect(component.color).toEqual("primary");
-    expect(de.nativeElement).toHaveClass("daff-primary");
+    expect(component.color).toEqual('primary');
+    expect(de.nativeElement).toHaveClass('daff-primary');
   });
 });

@@ -40,7 +40,7 @@ describe('CartTotalsItemComponent', () => {
   });
 
   it('can transclude a label', () => {
-    wrapper.label="label";
+    wrapper.label='label';
     fixture.detectChanges();
 
     cartTotalsItemComponent = fixture.debugElement.query(By.css('.cart-totals-item__label'));
@@ -48,7 +48,7 @@ describe('CartTotalsItemComponent', () => {
   });
 
   it('can transclude a value', () => {
-    wrapper.value="value";
+    wrapper.value='value';
     fixture.detectChanges();
 
     cartTotalsItemComponent = fixture.debugElement.query(By.css('.cart-totals-item__value'));

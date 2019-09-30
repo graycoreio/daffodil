@@ -5,9 +5,9 @@ import {
   getProductLoading, 
   getSelectedProductId, 
   getProductQty 
-} from "../reducers/product.reducer";
-import { DaffProductLoad, DaffProductLoadSuccess, DaffProductLoadFailure, DaffProductUpdateQty } from "../actions/product.actions";
-import { DaffProduct } from "../models/product";
+} from '../reducers/product.reducer';
+import { DaffProductLoad, DaffProductLoadSuccess, DaffProductLoadFailure, DaffProductUpdateQty } from '../actions/product.actions';
+import { DaffProduct } from '../models/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 describe('Product | Product Reducer', () => {

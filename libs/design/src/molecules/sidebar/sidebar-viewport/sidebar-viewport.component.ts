@@ -24,7 +24,7 @@ export class DaffSidebarViewportComponent implements OnInit {
    */
   _opened = false;
 
-  _mode: DaffSidebarMode = "side";
+  _mode: DaffSidebarMode = 'side';
 
   /**
    * The mode to put the sidebar in
@@ -49,7 +49,7 @@ export class DaffSidebarViewportComponent implements OnInit {
   @Output() backdropClicked: EventEmitter<void> = new EventEmitter<void>();
 
   get animationsEnabled(): boolean {
-    return (this.mode === "over" || this.mode === "push") ? true : false;
+    return (this.mode === 'over' || this.mode === 'push') ? true : false;
   }
 
   ngOnInit() {
@@ -72,6 +72,6 @@ export class DaffSidebarViewportComponent implements OnInit {
   }
 
   get hasBackdrop(): boolean {
-    return (this.mode === "over" || this.mode === "push");
+    return (this.mode === 'over' || this.mode === 'push');
   }
 }
