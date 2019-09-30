@@ -17,7 +17,7 @@ export class DaffInMemoryNewsletterService implements DaffNewsletterServiceInter
   constructor() { }
 
   send(payload: DaffNewsletterUnion): Observable<DaffNewsletterUnion> {
-    if (payload == undefined) {
+    if (payload === undefined) {
       return throwError('Failed to subscribe');
     }
     return of(payload);

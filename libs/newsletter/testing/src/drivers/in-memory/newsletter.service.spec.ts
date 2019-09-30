@@ -45,7 +45,7 @@ describe('Driver | InMemory | Newsletter | NewsletterService', () => {
 
 
     it('should throw an error when an undefined payload is sent', () => {
-      let newsletterSubmission;
+      const newsletterSubmission = undefined;
       const response = cold('#', {}, 'Failed to subscribe');
 
       newsletterService.send(newsletterSubmission).subscribe(submissionData => {
