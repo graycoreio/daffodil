@@ -59,7 +59,7 @@ export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChan
   @Output() notifyPageChange: EventEmitter<any> = new EventEmitter();
 
   ngOnChanges() {
-    this._numberOfPagesArray = Array(this.numberOfPages-2).fill(this.numberOfPages-2).map((x,i)=>i+2);
+    this._numberOfPagesArray = this.numberOfPages < 2 ? [] : Array(this.numberOfPages-2).fill(this.numberOfPages-2).map((x,i)=>i+2);
   }
 
   /**

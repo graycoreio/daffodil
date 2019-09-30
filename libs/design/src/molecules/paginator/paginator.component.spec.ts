@@ -70,6 +70,18 @@ describe('DaffPaginatorComponent', () => {
     expect(paginatorText.includes(greaterPage)).toBeTruthy();
   });
 
+  describe('when the numberOfPages is less than 2', () => {
+
+    it('should only render one .daff-paginator__page-link', () => {
+      wrapper.numberOfPagesValue = 1;
+      wrapper.currentPageValue = 1;
+      fixture.detectChanges();
+
+      const pageLinks = fixture.debugElement.queryAll(By.css('.daff-paginator__page-link'));
+      expect(pageLinks.length).toEqual(1);
+    });
+  });
+
   describe('when the previous button is clicked', () => {
     it('should emit notifyPageChange with one less than the current page', () => {
       spyOn(component.notifyPageChange, 'emit');

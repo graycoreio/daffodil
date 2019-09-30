@@ -34,7 +34,8 @@
   [class.selected]="_isSelected(numberOfPages)"
   tabindex="0"
   attr.aria-label="Go To Page {{numberOfPages}} of {{_paginatorId}} Paginator"
-  (click)="_onNotifyPageChange(numberOfPages)">
+  (click)="_onNotifyPageChange(numberOfPages)"
+  *ngIf="!(numberOfPages < 2)">
   {{ numberOfPages }}
 </button>
 
