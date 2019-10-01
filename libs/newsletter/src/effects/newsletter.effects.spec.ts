@@ -12,7 +12,7 @@ import { DaffTestingNewsletterService } from '@daffodil/newsletter/testing';
 describe('NewsletterEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffNewsletterEffects<DaffNewsletterSubmission, any>;
-  const mockNewsletter = {email: "test@test.com"};
+  const mockNewsletter = {email: 'test@test.com'};
   let daffNewsletterDriver: DaffNewsletterServiceInterface<DaffNewsletterSubmission, any>;
 
   beforeEach(() => {

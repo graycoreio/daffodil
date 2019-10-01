@@ -1,6 +1,6 @@
-import { CommonModule } from "@angular/common";
-import { DaffNewsletterDriver } from "@daffodil/newsletter";
-import { DaffInMemoryNewsletterService } from "./newsletter.service";
+import { CommonModule } from '@angular/common';
+import { DaffNewsletterDriver } from '@daffodil/newsletter';
+import { DaffInMemoryNewsletterService } from './newsletter.service';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 /**
  * Module for providing the DaffInMemoryNewsletterService driver to your application
