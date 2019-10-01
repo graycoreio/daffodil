@@ -917,7 +917,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/newsletter/src/test.ts",
+            "main": "libs/newsletter/test.ts",
             "tsConfig": "libs/newsletter/tsconfig.spec.json",
             "karmaConfig": "libs/newsletter/karma.conf.js"
           }
