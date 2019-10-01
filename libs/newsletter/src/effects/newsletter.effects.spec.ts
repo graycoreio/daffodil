@@ -11,15 +11,9 @@ import { DaffTestingNewsletterService } from '@daffodil/newsletter/testing';
 
 describe('NewsletterEffects', () => {
   let actions$: Observable<any>;
-<<<<<<< HEAD
-  let effects: DaffNewsletterEffects<DaffNewsletterSubmission, any>;//come back to this
-  const mockNewsletter = {email: 'test@test.com'};
-  let daffNewsletterDriver: DaffNewsletterServiceInterface<DaffNewsletterSubmission, any>;//and this
-=======
   let effects: DaffNewsletterEffects<DaffNewsletterSubmission, any>;
   const mockNewsletter = {email: "test@test.com"};
   let daffNewsletterDriver: DaffNewsletterServiceInterface<DaffNewsletterSubmission, any>;
->>>>>>> feat(newsletter): removed http requests and changed driver to use generic typing
 
   beforeEach(() => {
     TestBed.configureTestingModule({
