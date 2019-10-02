@@ -4,7 +4,17 @@
 Please read the [contributing guidelines here](https://github.com/graycoreio/daffodil/blob/develop/CONTRIBUTING.md).
 
 ## Building the Project
-We currently utilize [Lerna](https://github.com/lerna/lerna) along with the [Angular CLI](https://cli.angular.io/) to run our builds.
+### Prerequisites
+* [Angular CLI](https://cli.angular.io/)
+* [Lerna](https://github.com/lerna/lerna)
+* [Node](https://nodejs.org)
+* [Git](https://git-scm.com/)
+
+### Installing Dependencies
+```bash
+npm install
+npm install -g lerna @angular/cli
+```
 
 ### Full Build
 You can run a full build that builds all projects and libraries via:
