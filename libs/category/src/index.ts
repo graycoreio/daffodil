@@ -25,3 +25,4 @@ export {
 } from './selectors/category.selector';
 
 export { DaffGetCategoryResponse } from './models/get-category-response';
+export { DaffCategoryPageConfigurationState } from './models/category-page-configuration-state';

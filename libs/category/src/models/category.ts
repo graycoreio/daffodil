@@ -9,3 +9,11 @@ export interface DaffCategory {
   productIds?: string[];
   breadcrumbs?: DaffCategoryBreadcrumb[];
 }
+
+// we need a retain and reload action because of this.
+
+// changing filters, sort_mode, page_size, or sort_direction resets the current_page to 1.
+
+// The effect returns an additional success action called DaffCategoryPaginationStateSuccess.
+
+// List of available sorting modes and number of products per page options

@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 
 import { DaffCategory } from '../../../models/category';
 import { DaffCategoryBreadcrumb } from '../../../models/category-breadcrumb';
-import { CategoryNode } from '../models/category-node';
+import { CategoryNode } from '../models/outputs/category-node';
 import { DaffCategoryTransformerInterface } from '../../interfaces/category-transform.interface';
-import { BreadcrumbNode } from '../models/breadcrumb-node';
+import { BreadcrumbNode } from '../models/outputs/breadcrumb-node';
 
 @Injectable({
   providedIn: 'root'
