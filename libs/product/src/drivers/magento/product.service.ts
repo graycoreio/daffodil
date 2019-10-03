@@ -8,10 +8,10 @@ import { Apollo } from 'apollo-angular';
 import { DaffProductServiceInterface } from '../interfaces/product-service.interface';
 import { DaffProductTransformer } from '../injection-tokens/product-transformer.token';
 import { DaffProductTransformerInterface } from '../interfaces/product-transformer.interface';
-import { DaffProductQueryManagerInterface } from '../interfaces/product-query-manager.interface';
 import { DaffProductQueryManager } from '../injection-tokens/product-query-manager.token';
 import { DaffProductUnion } from '../../models/product-union';
-import { DaffProductMagentoDriverModule } from './product-driver.module';
+import { DaffMagentoProductQueryManagerInterface } from './interfaces/magento-product-query-manager.interface';
+import { DaffSortField } from './models/sort-field';
 
 /**
  * A service for making magento apollo queries for products of type, DaffProductUnion.
@@ -22,7 +22,7 @@ import { DaffProductMagentoDriverModule } from './product-driver.module';
 export class DaffMagentoProductService implements DaffProductServiceInterface<DaffProductUnion> {  
   constructor(
     private apollo: Apollo, 
-    @Inject(DaffProductQueryManager) public queryManager: DaffProductQueryManagerInterface,
+    @Inject(DaffProductQueryManager) public queryManager: DaffMagentoProductQueryManagerInterface,
     @Inject(DaffProductTransformer) public transformer: DaffProductTransformerInterface<DaffProductUnion>) {}
 
   /**
@@ -41,6 +41,12 @@ export class DaffMagentoProductService implements DaffProductServiceInterface<Da
   getAll(): Observable<DaffProductUnion[]> {
     return this.apollo.query<any>(this.queryManager.getAllProductsQuery()).pipe(
       map(result => this.transformer.transformMany(result.data.products.items))
+    );
+  }
+
+  getSortFieldsAndFiltersByCategory(categoryId: string): Observable<DaffSortField[]> {
+    return this.apollo.query<any>(this.queryManager.getSortFieldsAndFiltersByCategory(categoryId)).pipe(
+      map(result => result.data.products.sort_fields.options)
     );
   }
 
