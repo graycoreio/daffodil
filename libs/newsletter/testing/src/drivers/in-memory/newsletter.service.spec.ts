@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { DaffInMemoryNewsletterService } from './newsletter.service';
 import { DaffNewsletterSubmission } from '@daffodil/newsletter';
@@ -26,21 +25,15 @@ describe('Driver | InMemory | Newsletter | NewsletterService', () => {
 
     it('should send a submission and return an observable of the same type', () => {
       const newsletterSubmission: DaffNewsletterSubmission = { email: 'test@email.com' };
+      const response = cold('(a|)', {a: newsletterSubmission});
 
-      newsletterService.send(newsletterSubmission).subscribe(submissionData => {
-        expect(submissionData.email).toEqual('test@email.com');
-      });
+      expect(newsletterService.send(newsletterSubmission)).toBeObservable(response);
     });
     it('should send a submission an extended DaffNewsletter Submission and return an observable of the same type', () => {
       const newsletterSubmission: DaffNewsletterUnion = { email: 'test@email.com', name: 'James Arnold' };
+      const response = cold('(a|)', {a: newsletterSubmission});
 
-      newsletterService.send(newsletterSubmission).subscribe(submissionData => {
-        expect(submissionData.email).toEqual('test@email.com')
-      });
-
-      newsletterService.send(newsletterSubmission).subscribe(submissionData => {
-        expect(submissionData.name).toEqual('James Arnold')
-      });
+      expect(newsletterService.send(newsletterSubmission)).toBeObservable(response);
     });
 
 
@@ -48,9 +41,7 @@ describe('Driver | InMemory | Newsletter | NewsletterService', () => {
       const newsletterSubmission = undefined;
       const response = cold('#', {}, 'Failed to subscribe');
 
-      newsletterService.send(newsletterSubmission).subscribe(submissionData => {
-        expect(submissionData).toEqual(response);
-      });
+      expect(newsletterService.send(newsletterSubmission)).toBeObservable(response);      
     });
   });
 
