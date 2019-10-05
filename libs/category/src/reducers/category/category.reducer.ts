@@ -2,7 +2,17 @@ import { DaffCategoryActionTypes, DaffCategoryActions } from '../../actions/cate
 import { CategoryReducerState } from './category-reducer-state.interface';
 
 const initialState: CategoryReducerState = {
-  selectedCategoryId: null,
+  categoryPageConfigurationState: {
+    id: null,
+    applied_filters: null,
+    applied_sort_option: null,
+    applied_sort_direction: null,
+    current_page: null,
+    page_size: null,
+    total_pages: null,
+    filters: null,
+    sort_options: null
+  },
   loading: false,
   errors: []
 };
@@ -10,9 +20,33 @@ const initialState: CategoryReducerState = {
 export function categoryReducer(state = initialState, action: DaffCategoryActions): CategoryReducerState {
   switch (action.type) {
     case DaffCategoryActionTypes.CategoryLoadAction:
-      return { ...state, loading: true };
+      return { 
+        ...state, 
+        loading: true,
+        categoryPageConfigurationState: {
+          ...state.categoryPageConfigurationState,
+          id: action.payload.id,
+          applied_filters: action.payload.applied_filters,
+          applied_sort_option: action.payload.applied_sort_option,
+          applied_sort_direction: action.payload.applied_sort_direction,
+          current_page: action.payload.current_page,
+          page_size: action.payload.page_size
+        }
+      };
     case DaffCategoryActionTypes.CategoryLoadSuccessAction:
-      return { ...state, loading: false, selectedCategoryId: action.payload.id };
+      return { 
+        ...state, 
+        loading: false,
+        categoryPageConfigurationState: {
+          ...state.categoryPageConfigurationState,
+          id: action.payload.categoryPageConfigurationState.id,
+          current_page: action.payload.categoryPageConfigurationState.current_page,
+          page_size: action.payload.categoryPageConfigurationState.page_size,
+          filters: action.payload.categoryPageConfigurationState.filters,
+          sort_options: action.payload.categoryPageConfigurationState.sort_options,
+          total_pages: action.payload.categoryPageConfigurationState.total_pages
+        }
+      };
     case DaffCategoryActionTypes.CategoryLoadFailureAction:
       return {
         ...state,

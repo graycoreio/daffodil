@@ -42,7 +42,7 @@ describe('Driver | InMemory | Category | CategoryService', () => {
       const mockCategory = categoryFactory.create();
       const mockProducts = productFactory.createMany(3);
 
-      categoryService.get(mockCategory.id).subscribe(categoryResponse => {
+      categoryService.get({ id: mockCategory.id }).subscribe(categoryResponse => {
         expect(categoryResponse).toEqual({
           category: mockCategory,
           products: mockProducts

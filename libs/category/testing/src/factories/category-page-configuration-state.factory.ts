@@ -5,11 +5,9 @@ import { DaffCategoryPageConfigurationState } from '@daffodil/category';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCategoryPageConfigurationState implements DaffCategoryPageConfigurationState {
-  applied_filters = null;
-  applied_sort_option = null;
-  applied_sort_direction = null;
-  current_page = faker.random.number(10);
+  id = faker.random.number(100);
   page_size = faker.random.number(10, 20);
+  current_page = faker.random.number(10);
   filters = null;
   sort_options = [
     {
@@ -26,6 +24,9 @@ export class MockCategoryPageConfigurationState implements DaffCategoryPageConfi
     }
   ];
   total_pages = faker.random.number(4);
+  applied_filters = null;
+  applied_sort_option = null;
+  applied_sort_direction = null;
 }
 
 @Injectable({

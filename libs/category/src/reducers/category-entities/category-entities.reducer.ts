@@ -13,8 +13,8 @@ export function categoryEntitiesReducer(
     case DaffCategoryActionTypes.CategoryLoadSuccessAction:
       return categoryEntitiesAdapter.upsertOne(
         { 
-          id: action.payload.id, 
-          ...action.payload
+          id: action.payload.category.id, 
+          ...action.payload.category
         },
         state
       );

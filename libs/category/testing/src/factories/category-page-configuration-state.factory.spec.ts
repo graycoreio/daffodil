@@ -29,8 +29,7 @@ describe('Category | Testing | Factories | DaffCategoryPageConfigurationStateFac
     });
     
     it('should return a DaffCategoryPageConfigurationState with all required fields defined', () => {
-      expect(result.current_page).toBeDefined(); 
-      expect(result.page_size).toBeDefined(); 
+      expect(result.id).toBeDefined(); 
       expect(result.sort_options[0].label).toBeDefined(); 
       expect(result.sort_options[0].value).toBeDefined(); 
       expect(result.total_pages).toBeDefined(); 

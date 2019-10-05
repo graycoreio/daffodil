@@ -1,5 +1,7 @@
+import { DaffCategoryPageConfigurationState } from '../../models/category-page-configuration-state';
+
 export interface CategoryReducerState {
-  selectedCategoryId: string,
+  categoryPageConfigurationState: DaffCategoryPageConfigurationState,
   loading: boolean,
   errors: string[]
 }

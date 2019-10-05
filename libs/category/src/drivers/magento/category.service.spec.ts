@@ -101,7 +101,7 @@ xdescribe('Driver | Magento | Category | CategoryService', () => {
     });
 
     it('should return the correct observable', () => {
-      categoryService.get(stubCategory.id).subscribe((category) => {
+      categoryService.get({ id: stubCategory.id }).subscribe((category) => {
         expect(category.category).toEqual(transformedCategory);
         expect(category.products).toEqual(transformedProducts);
       });
@@ -114,7 +114,7 @@ xdescribe('Driver | Magento | Category | CategoryService', () => {
     });
 
     it('should call the DaffMagentoCategoryTransformerService', () => {
-      categoryService.get(stubCategory.id).subscribe(() => {
+      categoryService.get({ id: stubCategory.id }).subscribe(() => {
         expect(categoryTransformService.transform).toHaveBeenCalledWith(response.category);
       });
       
@@ -127,7 +127,7 @@ xdescribe('Driver | Magento | Category | CategoryService', () => {
     });
 
     it('should call the DaffMagentoCategoryPageConfigTransformerService', () => {
-      categoryService.get(stubCategory.id).subscribe(() => {
+      categoryService.get({ id: stubCategory.id }).subscribe(() => {
         expect(categoryPageConfigTransformService.transform).toHaveBeenCalledWith(response.category, );
       });
       
@@ -140,7 +140,7 @@ xdescribe('Driver | Magento | Category | CategoryService', () => {
     });
 
     it('should call the DaffMagentoProductTransformerService', () => {      
-      categoryService.get(stubCategory.id).subscribe(() => {
+      categoryService.get({ id: stubCategory.id }).subscribe(() => {
         expect(productTransformService.transformMany).toHaveBeenCalledWith([]);
       });
       

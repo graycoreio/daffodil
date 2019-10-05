@@ -74,9 +74,13 @@ describe('DaffCategoryEffects', () => {
       });
       
       it('should dispatch a DaffCategoryLoadSuccess and a DaffProductGridLoadSuccess action', () => {
-        const categoryLoadSuccessAction = new DaffCategoryLoadSuccess(stubCategory);
+        const categoryLoadSuccessAction = new DaffCategoryLoadSuccess({
+          category: stubCategory,
+          categoryPageConfigurationState: stubCategoryPageConfigurationState,
+          products: stubProducts
+        });
         const productGridLoadSuccessAction = new DaffProductGridLoadSuccess(stubProducts);
-        expected = cold('--(bc)', { c: categoryLoadSuccessAction, b: productGridLoadSuccessAction });
+        expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
         expect(effects.loadCategory$).toBeObservable(expected);
       });
     });

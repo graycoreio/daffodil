@@ -3,19 +3,22 @@ import { MockStore } from '@ngrx/store/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffCategoryFactory } from '@daffodil/category/testing';
+import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 
 import { DaffCategoryFacade } from './category.facade';
 import { DaffCategoryLoad, DaffCategoryLoadFailure, DaffCategoryLoadSuccess } from '../actions/category.actions';
 import { categoryReducers } from '../reducers/category-reducers';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
 import { DaffCategory } from '../models/category';
+import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
 
 describe('DaffCategoryFacade', () => {
   let store: MockStore<Partial<CategoryReducersState>>;
   let facade: DaffCategoryFacade;
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
+  const categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
   let category: DaffCategory;
+  let categoryPageConfigurationState: DaffCategoryPageConfigurationState;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -30,6 +33,8 @@ describe('DaffCategoryFacade', () => {
     })
 
     category = categoryFactory.create();
+    categoryPageConfigurationState = categoryPageConfigurationFactory.create();
+    categoryPageConfigurationState.id = category.id;
     store = TestBed.get(Store);
     facade = TestBed.get(DaffCategoryFacade);
   });
@@ -55,8 +60,21 @@ describe('DaffCategoryFacade', () => {
   
     it('should be a category after a category is loaded successfully', () => {
       const expected = cold('a', { a: category });
-      store.dispatch(new DaffCategoryLoadSuccess(category));
+      store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: null }));
       expect(facade.selectedCategory$).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCategoryPageConfigurationState$', () => {
+    it('should be undefined initially', () => {
+      const expected = cold('a', { a: undefined });
+      expect(facade.selectedCategory$).toBeObservable(expected);
+    });
+  
+    it('should return an observable of the CategoryPageConfigurationState', () => {
+      const expected = cold('a', { a: categoryPageConfigurationState });
+      store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: null }));
+      expect(facade.selectCategoryPageConfigurationState$).toBeObservable(expected);
     });
   });
 
@@ -68,7 +86,7 @@ describe('DaffCategoryFacade', () => {
   
     it('should be true if the category state is loading', () => {
       const expected = cold('a', { a: true });
-      store.dispatch(new DaffCategoryLoad('1'));
+      store.dispatch(new DaffCategoryLoad({ id: '1' }));
       expect(facade.loading$).toBeObservable(expected);
     });
   });
@@ -83,7 +101,7 @@ describe('DaffCategoryFacade', () => {
     it('should be an observable of an array of the current errors', () => {
       const error = 'error1';
       const expected = cold('a', { a: [error]});
-      store.dispatch(new DaffCategoryLoad('id'));
+      store.dispatch(new DaffCategoryLoad({ id: 'id' }));
       store.dispatch(new DaffCategoryLoadFailure(error));
       expect(facade.errors$).toBeObservable(expected);
     });

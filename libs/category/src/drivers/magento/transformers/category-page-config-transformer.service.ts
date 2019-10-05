@@ -5,9 +5,7 @@ import { CategoryNode } from '../models/outputs/category-node';
 import { DaffCategoryPageConfigTransformerInterface } from '../../interfaces/category-page-config.interface';
 import { CategorySortsAndFiltersNode } from '../models/outputs/sorts-and-filters-node';
 import { FilterNode } from '../models/outputs/filters-node';
-import { FilterItemNode } from '../models/outputs/filter-item-node';
 import { DaffCategoryFilter } from '../../../models/category-filter';
-import { DaffCategoryFilterOption } from '../../../models/category-filter-option';
 
 @Injectable({
   providedIn: 'root'
@@ -16,29 +14,28 @@ export class DaffMagentoCategoryPageConfigTransformerService implements DaffCate
 
   transform(categoryNode: CategoryNode, sortsAndFilters: CategorySortsAndFiltersNode): DaffCategoryPageConfigurationState {
     return {
-      current_page: categoryNode.products.page_info.current_page,
+      id: categoryNode.id,
       page_size: categoryNode.products.page_info.page_size,
+      current_page: categoryNode.products.page_info.current_page,
       total_pages: categoryNode.products.page_info.total_pages,
-      filters: sortsAndFilters.filters.map(this.transformFilter),
+      filters: sortsAndFilters.filters.map((filter) => this.transformFilter(filter)),
       sort_options: sortsAndFilters.sort_fields.options
     }
   }
 
-  private transformFilter(filter: FilterNode): DaffCategoryFilter {
+  transformFilter(filter: FilterNode): DaffCategoryFilter {
     return {
       name: filter.name,
       type: filter.__typename,
       items_count: filter.filter_items_count,
       attribute_name: filter.request_var,
-      options: filter.filter_items.map(this.transformFilterItem)
-    }
-  }
-
-  private transformFilterItem(filterItem: FilterItemNode): DaffCategoryFilterOption {
-    return {
-      items_count: filterItem.items_count,
-      value: filterItem.value_string,
-      label: filterItem.label
+      options: filter.filter_items.map((item) => {
+        return {
+          items_count: item.items_count,
+          value: item.value_string,
+          label: item.label
+        }
+      })
     }
   }
 }

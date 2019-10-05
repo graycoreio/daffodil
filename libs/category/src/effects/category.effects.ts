@@ -29,7 +29,7 @@ export class DaffCategoryEffects {
         .pipe(
           switchMap((resp: DaffGetCategoryResponse) => [
             new DaffProductGridLoadSuccess(resp.products),
-            new DaffCategoryLoadSuccess(resp.category)
+            new DaffCategoryLoadSuccess(resp)
           ]),
           catchError(error => of(new DaffCategoryLoadFailure('Failed to load the category')))
         )

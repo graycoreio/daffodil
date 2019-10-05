@@ -11,6 +11,7 @@ import { CategoryNode } from './models/outputs/category-node';
 import { DaffMagentoCategoryTransformerService } from './transformers/category-transformer.service';
 import { DaffMagentoCategoryGraphQlQueryManagerService } from './queries/category-query-manager.service';
 import { DaffMagentoCategoryPageConfigTransformerService } from './transformers/category-page-config-transformer.service';
+import { DaffCategoryRequest } from '../../models/category-request';
 
 interface GetACategoryResponse {
   category: CategoryNode
@@ -30,10 +31,12 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     private magentoProductTransformerService: DaffMagentoProductTransformerService
   ) {}
 
-  get(categoryId: string): Observable<DaffGetCategoryResponse> {
+  get(categoryRequest: DaffCategoryRequest): Observable<DaffGetCategoryResponse> {
     return combineLatest([
-      this.apollo.query<GetACategoryResponse>(this.queryManager.getACategoryQuery(parseInt(categoryId, 10))),
-      this.apollo.query<any>(this.productQueryManager.getSortFieldsAndFiltersByCategory(categoryId))
+      this.apollo.query<GetACategoryResponse>(this.queryManager.getACategoryQuery(
+        parseInt(categoryRequest.id, 10)
+      )),
+      this.apollo.query<any>(this.productQueryManager.getSortFieldsAndFiltersByCategory(categoryRequest.id))
     ]).pipe(
       map(result => {
         return {
