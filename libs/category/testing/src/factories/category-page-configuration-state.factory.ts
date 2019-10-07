@@ -8,7 +8,24 @@ export class MockCategoryPageConfigurationState implements DaffCategoryPageConfi
   id = faker.random.number(100);
   page_size = faker.random.number(10, 20);
   current_page = faker.random.number(10);
-  filters = null;
+  filters = [{
+    name: 'Category',
+    items_count: 2,
+    attribute_name: 'cat',
+    type: '',
+    options: [
+      {
+        label: 'Gear',
+        value: '3',
+        items_count: 34
+      },
+      {
+        label: 'Training',
+        value: '9',
+        items_count: 6
+      }
+    ]
+  }];
   sort_options = [
     {
       label: 'Position',

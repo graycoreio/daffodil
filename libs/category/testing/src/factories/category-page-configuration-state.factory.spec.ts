@@ -33,6 +33,7 @@ describe('Category | Testing | Factories | DaffCategoryPageConfigurationStateFac
       expect(result.sort_options[0].label).toBeDefined(); 
       expect(result.sort_options[0].value).toBeDefined(); 
       expect(result.total_pages).toBeDefined(); 
+      expect(result.filters).toBeDefined();
     });
   });
 
