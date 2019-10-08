@@ -1,6 +1,6 @@
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject } from 'rxjs';
 
-import { DaffNavigationTree, DaffNavigationFacadeInterface } from "@daffodil/navigation";
+import { DaffNavigationTree, DaffNavigationFacadeInterface } from '@daffodil/navigation';
 
 /**
  * A mock of the DaffNavigationFacade used to remove any interaction with the ngrx store.

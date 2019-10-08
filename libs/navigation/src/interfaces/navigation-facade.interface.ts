@@ -1,9 +1,9 @@
-import { Observable } from "rxjs";
-import { Action } from "@ngrx/store";
+import { Observable } from 'rxjs';
+import { Action } from '@ngrx/store';
 
-import { DaffStoreFacade } from "@daffodil/core";
+import { DaffStoreFacade } from '@daffodil/core';
 
-import { DaffNavigationTree } from "../models/navigation-tree";
+import { DaffNavigationTree } from '../models/navigation-tree';
 
 export interface DaffNavigationFacadeInterface extends DaffStoreFacade<Action> {
   loading$: Observable<boolean>;
