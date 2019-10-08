@@ -2,17 +2,16 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select, Action } from '@ngrx/store';
 
-import { DaffStoreFacade } from '@daffodil/core';
-
 import { DaffNavigationModule } from '../navigation.module';
 import { selectNavigationTree, selectNavigationLoading, selectNavigationErrors } from '../selectors/navigation.selector';
 import { NavigationReducersState } from '../reducers/navigation-reducers.interface';
 import { DaffNavigationTreeUnion } from '../models/navigation-tree-union';
+import { DaffNavigationFacadeInterface } from '../interfaces/navigation-facade.interface';
 
 @Injectable({
   providedIn: DaffNavigationModule
 })
-export class DaffNavigationFacade implements DaffStoreFacade<Action> {
+export class DaffNavigationFacade implements DaffNavigationFacadeInterface {
   /**
    * The navigation retrieved in a single navigation call.
    */
