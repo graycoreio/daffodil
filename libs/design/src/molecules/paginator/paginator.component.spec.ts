@@ -88,7 +88,6 @@ describe('DaffPaginatorComponent', () => {
     it('should throw an error', () => {
       wrapper.numberOfPagesValue = 0;
       wrapper.currentPageValue = 0;
-      ;
 
       expect(() => fixture.detectChanges()).toThrowError(DaffPaginatorNumberOfPagesErrorMessage);
     });
@@ -99,7 +98,6 @@ describe('DaffPaginatorComponent', () => {
     it('should throw an error', () => {
       wrapper.numberOfPagesValue = 5;
       wrapper.currentPageValue = 10;
-      ;
 
       expect(() => fixture.detectChanges()).toThrowError(DaffPaginatorPageOutOfRangeErrorMessage);
     });
