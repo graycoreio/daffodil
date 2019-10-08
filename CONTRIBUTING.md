@@ -70,7 +70,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
 
 1. Search [GitHub](https://github.com/graycoreio/daffodil/pulls) for an open or closed PR
   that relates to your submission. You don't want to duplicate effort.
-1. Fork the graycoreio/daffodil repo.
+1. Fork the [graycoreio/daffodil](https://github.com/graycoreio/daffodil) repo.
 1. Make your changes in a new git branch:
 
      ```shell
