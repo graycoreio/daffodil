@@ -40,7 +40,7 @@
     "graphql": "^14.1.1",
     "graphql-tag": "^2.10.1",
     "modern-normalize": "^0.5.0",
-    "rxjs": "6.5.3",
+    "rxjs": "6.4.0",
     "web-animations-js": "^2.3.2",
     "webfontloader": "^1.6.28",
     "zone.js": "~0.9.1"
