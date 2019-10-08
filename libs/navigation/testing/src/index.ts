@@ -5,3 +5,4 @@ export { DaffInMemoryNavigationService } from './drivers/in-memory/navigation.se
 export { DaffNavigationInMemoryDriverModule } from './drivers/in-memory/navigation-driver.module';
 export { DaffNavigationTestingDriverModule } from './drivers/testing/navigation-driver.module';
 export { DaffNavigationTestingModule } from './helpers/navigation-testing.module';
+export { MockDaffNavigationFacade } from './helpers/mocks/mock-navigation.facade';
