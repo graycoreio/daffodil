@@ -8,7 +8,7 @@ export const environment = {
   useMocks: true,
   e2e: false,
   name: 'local',
-  driver: 'MAGENTO',
+  driver: 'INMEMORY',
 
   API_BASE: 'http://www.SOMEFAKEURL.com/',
   httpServiceSettings: {
