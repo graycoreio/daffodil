@@ -8,11 +8,12 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { DaffNewsletterSubscribe, DaffNewsletterSuccessSubscribe, DaffNewsletterFailedSubscribe, DaffNewsletterRetry } from '../actions/newsletter.actions';
 import { hot, cold } from 'jasmine-marbles';
 import { DaffTestingNewsletterService } from '@daffodil/newsletter/testing';
+import { DaffNewsletterCancel } from '@daffodil/newsletter';
 
 describe('NewsletterEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffNewsletterEffects<DaffNewsletterSubmission, any>;
-  const mockNewsletter = {email: 'test@test.com'};
+  const mockNewsletter = { email: 'test@test.com' };
   let daffNewsletterDriver: DaffNewsletterServiceInterface<DaffNewsletterSubmission, any>;
 
   beforeEach(() => {
@@ -38,15 +39,15 @@ describe('NewsletterEffects', () => {
   describe('when NewsletterSubscribe is triggered', () => {
     let expected;
     const newsletterSubscribe = new DaffNewsletterSubscribe(mockNewsletter);
-    
+
 
     describe('and the call to NewsletterService is successful', () => {
       it('it should dispatch a NewsletterSuccessSubscribe', () => {
         const successAction = new DaffNewsletterSuccessSubscribe();
         spyOn(daffNewsletterDriver, 'send').and.returnValue(of('mystring'));
 
-        actions$ = hot('--a', {a: newsletterSubscribe})
-        expected = cold('--b', {b: successAction})
+        actions$ = hot('--a', { a: newsletterSubscribe })
+        expected = cold('--b', { b: successAction })
         expect(effects.trySubmission$).toBeObservable(expected);
       });
     });
@@ -58,8 +59,8 @@ describe('NewsletterEffects', () => {
         const failedAction = new DaffNewsletterFailedSubscribe(error);
 
 
-        actions$ = hot('--a', {a: newsletterSubscribe});
-        expected = cold('--b', {b: failedAction});
+        actions$ = hot('--a', { a: newsletterSubscribe });
+        expected = cold('--b', { b: failedAction });
         expect(effects.trySubmission$).toBeObservable(expected);
       });
     });
@@ -67,15 +68,15 @@ describe('NewsletterEffects', () => {
   describe('when NewsletterRetry is triggered', () => {
     let expected;
     const newsletterRetry = new DaffNewsletterRetry(mockNewsletter);
-    
+
 
     describe('and the call to NewsletterService is successful', () => {
       it('it should dispatch a NewsletterSuccessSubscribe', () => {
         const successAction = new DaffNewsletterSuccessSubscribe();
         spyOn(daffNewsletterDriver, 'send').and.returnValue(of('mystring'));
 
-        actions$ = hot('--a', {a: newsletterRetry})
-        expected = cold('--b', {b: successAction})
+        actions$ = hot('--a', { a: newsletterRetry })
+        expected = cold('--b', { b: successAction })
         expect(effects.trySubmission$).toBeObservable(expected);
       });
     });
@@ -87,10 +88,43 @@ describe('NewsletterEffects', () => {
         const failedAction = new DaffNewsletterFailedSubscribe(error);
 
 
-        actions$ = hot('--a', {a: newsletterRetry});
-        expected = cold('--b', {b: failedAction});
+        actions$ = hot('--a', { a: newsletterRetry });
+        expected = cold('--b', { b: failedAction });
         expect(effects.trySubmission$).toBeObservable(expected);
       });
     });
+  });
+  describe('when Newsletter cancel is triggered', () => {
+
+    let expected;
+    const newsletterSubscribe = new DaffNewsletterSubscribe(mockNewsletter);
+    const newsletterRetry = new DaffNewsletterRetry(mockNewsletter);
+    const newsletterCancel = new DaffNewsletterCancel;
+    const failedAction = new DaffNewsletterFailedSubscribe('Failed to Subscribe');
+    const newsletterSuccess = new DaffNewsletterSuccessSubscribe();
+
+
+    it('it should return an empty observable', () => {
+      actions$ = hot('---d----a-', {
+        a: newsletterSubscribe,
+        d: newsletterCancel,
+
+      });
+      expected = cold('--------a-', {a: newsletterSuccess});
+
+      expect(effects.trySubmission$).toBeObservable(expected);
+    });
+    fit('it should cancel a newsletter subscribe action', () => {
+      actions$ = hot('--a-d----', {
+        a: newsletterSubscribe,
+        d: newsletterCancel,
+
+      });
+      expected = cold('--------');
+
+      expect(effects.trySubmission$).toBeObservable(expected);
+    });
+
+
   });
 });
