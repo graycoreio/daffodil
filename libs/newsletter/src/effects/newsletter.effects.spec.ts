@@ -98,23 +98,19 @@ describe('NewsletterEffects', () => {
 
     let expected;
     const newsletterSubscribe = new DaffNewsletterSubscribe(mockNewsletter);
-    const newsletterRetry = new DaffNewsletterRetry(mockNewsletter);
     const newsletterCancel = new DaffNewsletterCancel;
-    const failedAction = new DaffNewsletterFailedSubscribe('Failed to Subscribe');
-    const newsletterSuccess = new DaffNewsletterSuccessSubscribe();
 
 
     it('it should return an empty observable', () => {
-      actions$ = hot('---d----a-', {
+      actions$ = hot('---d-----', {
         a: newsletterSubscribe,
-        d: newsletterCancel,
-
+        d: newsletterCancel
       });
-      expected = cold('--------a-', {a: newsletterSuccess});
+      expected = cold('---------');
 
       expect(effects.trySubmission$).toBeObservable(expected);
     });
-    fit('it should cancel a newsletter subscribe action', () => {
+    it('it should cancel a newsletter subscribe action', () => {
       actions$ = hot('--a-d----', {
         a: newsletterSubscribe,
         d: newsletterCancel,

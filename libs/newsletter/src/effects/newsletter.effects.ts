@@ -3,7 +3,7 @@ import { of, EMPTY } from 'rxjs';
 
 import { Actions, Effect, ofType, createEffect } from '@ngrx/effects';
 import { mergeMap, switchMap, map, catchError, tap, delay } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { Action } from '@ngrx/store';
 
 import { DaffNewsletterServiceInterface } from '../driver/interfaces/newsletter-service.interface';
@@ -24,7 +24,7 @@ export class DaffNewsletterEffects<T extends DaffNewsletterSubmission, V>{
       DaffNewsletterActionTypes.NewsletterRetry,
       DaffNewsletterActionTypes.NewsletterCancelAction),
     switchMap((action: DaffNewsletterSubscribe<T> | DaffNewsletterRetry<T> | DaffNewsletterCancel) => {
-      if ((action.type == DaffNewsletterActionTypes.NewsletterCancelAction)) {
+      if ((action.type === DaffNewsletterActionTypes.NewsletterCancelAction)) {
         console.log(action);
         return of(action);
       }
