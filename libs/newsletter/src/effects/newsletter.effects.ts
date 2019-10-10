@@ -2,15 +2,14 @@ import { Inject, Injectable } from '@angular/core';
 import { of, EMPTY } from 'rxjs';
 
 import { Actions, Effect, ofType, createEffect } from '@ngrx/effects';
-import { mergeMap, switchMap, map, catchError, tap, delay } from 'rxjs/operators';
-import { Observable } from 'rxjs/Observable';
+import { switchMap, map, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 
 import { DaffNewsletterServiceInterface } from '../driver/interfaces/newsletter-service.interface';
 import { DaffNewsletterActionTypes, DaffNewsletterSubscribe, DaffNewsletterSuccessSubscribe, DaffNewsletterFailedSubscribe, DaffNewsletterRetry, DaffNewsletterCancel } from '../actions/newsletter.actions';
 import { DaffNewsletterSubmission } from '../models/newsletter.model';
 import { DaffNewsletterDriver } from '../driver/injection-tokens/newsletter-driver.token';
-import { filter } from 'graphql-anywhere';
 
 @Injectable()
 export class DaffNewsletterEffects<T extends DaffNewsletterSubmission, V>{
@@ -25,11 +24,9 @@ export class DaffNewsletterEffects<T extends DaffNewsletterSubmission, V>{
       DaffNewsletterActionTypes.NewsletterCancelAction),
     switchMap((action: DaffNewsletterSubscribe<T> | DaffNewsletterRetry<T> | DaffNewsletterCancel) => {
       if ((action.type === DaffNewsletterActionTypes.NewsletterCancelAction)) {
-        console.log(action);
         return of(action);
       }
       else if (action instanceof DaffNewsletterSubscribe || action instanceof DaffNewsletterRetry){
-        console.log(action);
         return this.driver.send(action.payload).pipe(
           map((resp: V) => {
             return new DaffNewsletterSuccessSubscribe();
