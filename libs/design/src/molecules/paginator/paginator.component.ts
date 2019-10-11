@@ -1,8 +1,9 @@
-import { Component, Input, Output, EventEmitter, HostBinding, ElementRef, OnChanges, ChangeDetectionStrategy, Renderer2 } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostBinding, ElementRef, OnChanges, ChangeDetectionStrategy, Renderer2, OnInit } from '@angular/core';
 
 import { daffColorMixin, DaffPalette, DaffColorable } from '../../core/colorable/colorable';
 
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { DaffPaginatorNumberOfPagesErrorMessage, DaffPaginatorPageOutOfRangeErrorMessage } from './paginator-errors';
 
 /**
  * An _elementRef and an instance of renderer2 are needed for the Colorable mixin
@@ -59,7 +60,13 @@ export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChan
   @Output() notifyPageChange: EventEmitter<any> = new EventEmitter();
 
   ngOnChanges() {
-    this._numberOfPagesArray = Array(this.numberOfPages-2).fill(this.numberOfPages-2).map((x,i)=>i+2);
+    if(this.numberOfPages < 1) {
+      throw new Error(DaffPaginatorNumberOfPagesErrorMessage);
+    } else if(this.numberOfPages < this.currentPage) {
+      throw new Error(DaffPaginatorPageOutOfRangeErrorMessage);
+    }
+
+    this._numberOfPagesArray = this.numberOfPages < 2 ? [] : Array(this.numberOfPages-2).fill(this.numberOfPages-2).map((x,i)=>i+2);
   }
 
   /**

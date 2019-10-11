@@ -4,6 +4,7 @@ import { Component, DebugElement } from '@angular/core';
 
 import { DaffPaginatorComponent } from './paginator.component';
 import { DaffPaginatorModule } from './paginator.module';
+import { DaffPaginatorNumberOfPagesErrorMessage, DaffPaginatorPageOutOfRangeErrorMessage } from './paginator-errors';
 
 @Component({template: '<daff-paginator aria-label="id" [numberOfPages]="numberOfPagesValue" [currentPage]="currentPageValue"></daff-paginator>'})
 
@@ -68,6 +69,38 @@ describe('DaffPaginatorComponent', () => {
 
     expect(paginatorText.includes(lesserPage)).toBeTruthy();
     expect(paginatorText.includes(greaterPage)).toBeTruthy();
+  });
+
+  describe('when the numberOfPages is less than 2', () => {
+
+    it('should only render one .daff-paginator__page-link', () => {
+      wrapper.numberOfPagesValue = 1;
+      wrapper.currentPageValue = 1;
+      fixture.detectChanges();
+
+      const pageLinks = fixture.debugElement.queryAll(By.css('.daff-paginator__page-link'));
+      expect(pageLinks.length).toEqual(1);
+    });
+  });
+
+  describe('when the numberOfPages is less than 1', () => {
+
+    it('should throw an error', () => {
+      wrapper.numberOfPagesValue = 0;
+      wrapper.currentPageValue = 0;
+
+      expect(() => fixture.detectChanges()).toThrowError(DaffPaginatorNumberOfPagesErrorMessage);
+    });
+  });
+
+  describe('when the currentPage is greater than the numberOfPages', () => {
+
+    it('should throw an error', () => {
+      wrapper.numberOfPagesValue = 5;
+      wrapper.currentPageValue = 10;
+
+      expect(() => fixture.detectChanges()).toThrowError(DaffPaginatorPageOutOfRangeErrorMessage);
+    });
   });
 
   describe('when the previous button is clicked', () => {
