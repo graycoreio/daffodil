@@ -4,9 +4,11 @@ import { Store, Action } from '@ngrx/store';
 
 import { State, selectDaffNewsletterSuccess, selectDaffNewsletterError, selectDaffNewsletterLoading } from '../selectors/newsletter.selector';
 import { DaffStoreFacade } from '@daffodil/core';
+import { DaffNewsletterModule } from '../newsletter.module';
 
 
-@Injectable()
+
+@Injectable( {providedIn: DaffNewsletterModule} )
 export class DaffNewsletterFacade implements DaffStoreFacade<Action>{
   success$ : Observable<boolean> = this.store.select(selectDaffNewsletterSuccess);
   error$: Observable<string> = this.store.select(selectDaffNewsletterError);

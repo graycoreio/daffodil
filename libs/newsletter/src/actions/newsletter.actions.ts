@@ -24,6 +24,7 @@ export class DaffNewsletterRetry<T extends DaffNewsletterSubmission> implements 
 
 export class DaffNewsletterCancel implements Action {
   readonly type = DaffNewsletterActionTypes.NewsletterCancelAction;
+
 }
 export class DaffNewsletterFailedSubscribe implements Action {
   readonly type = DaffNewsletterActionTypes.NewsletterFailedSubscribeAction;
