@@ -111,7 +111,7 @@ describe('NewsletterEffects', () => {
       expect(effects.trySubmission$).toBeObservable(expected);
     });
     it('it should cancel a newsletter subscribe action', () => {
-      actions$ = hot('--a-d----', {
+      actions$ = hot('--(ad)----', {
         a: newsletterSubscribe,
         d: newsletterCancel,
 

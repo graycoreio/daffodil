@@ -10,6 +10,6 @@ import { delay } from 'rxjs/operators';
 
 export class DaffTestingNewsletterService implements DaffNewsletterServiceInterface<DaffNewsletterSubmission, any>{
   send(payload: DaffNewsletterSubmission): Observable<any>{
-    return of('Success').pipe(delay(100));
+    return of('Success').pipe(delay(10));
   }
 }
