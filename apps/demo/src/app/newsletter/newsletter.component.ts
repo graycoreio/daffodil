@@ -23,6 +23,5 @@ export class NewsletterComponent{
   }
   onNewsletterSubmit() {
     this.newsletterFacade.dispatch(new DaffNewsletterSubscribe<DaffNewsletterSubmission>(this.email.value));
-    console.log('test2')
   }
 }

@@ -6,6 +6,7 @@ import { NewsletterComponent } from './newsletter.component';
 import { DaffInputModule, DaffButtonModule, DaffContainerModule } from '@daffodil/design';
 import { DaffNewsletterModule } from '@daffodil/newsletter';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DaffNewsletterFacade } from 'libs/newsletter/src';
 
 @NgModule({
   imports: [
@@ -21,6 +22,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   exports: [
     NewsletterComponent
+  ],
+  providers: [
+    DaffNewsletterFacade
   ]
 })
 export class NewsletterModule { }
