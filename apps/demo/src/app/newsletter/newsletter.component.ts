@@ -3,6 +3,7 @@ import { DaffNewsletterFacade, DaffNewsletterActionTypes, DaffNewsletterSubmissi
 import { Observable } from 'rxjs';
 import { DaffNewsletterSubscribe } from '@daffodil/newsletter';
 import { FormControl } from '@angular/forms';
+import { DaffNewsletterCancel } from 'libs/newsletter/src';
 
 
 
@@ -23,5 +24,8 @@ export class NewsletterComponent{
   }
   onNewsletterSubmit() {
     this.newsletterFacade.dispatch(new DaffNewsletterSubscribe<DaffNewsletterSubmission>(this.email.value));
+  }
+  onNewsletterCancel() {
+    this.newsletterFacade.dispatch(new DaffNewsletterCancel);
   }
 }

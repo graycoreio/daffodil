@@ -10,8 +10,16 @@
     </div>
     <div>
       <div class="newsletter__right" *ngIf="!(success$ | async)">
-        <input [formControl]='email' daff-input type="text" class="newsletter__input" placeholder="Email" name="email"/>
-        <button type="submit" daff-button color="secondary" class="newsletter__button" (click)='onNewsletterSubmit()'>Sign Up</button>
+        <ng-container *ngIf="!(loading$ | async)">
+          <input [formControl]='email' daff-input type="text" class="newsletter__input" placeholder="Email"
+            name="email" />
+          <button type="submit" daff-button color="secondary" class="newsletter__button"
+            (click)='onNewsletterSubmit()'>Sign Up</button>
+        </ng-container>
+      </div>
+      <div *ngIf="loading$| async"> Loading
+        <button type="cancel" daff-button color="secondary" class="newsletter__button"
+          (click)='onNewsletterCancel()'>Cancel</button>
       </div>
       <div *ngIf="success$ | async"> Success </div>
     </div>
