@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { DaffNewsletterFacade, DaffNewsletterActionTypes, DaffNewsletterSubmission } from '@daffodil/newsletter';
-import { Observable } from 'rxjs';
+import { Component } from '@angular/core';
+import { DaffNewsletterFacade, DaffNewsletterActionTypes, DaffNewsletterSubmission, DaffNewsletterCancel, DaffNewsletterRetry } from '@daffodil/newsletter';
 import { DaffNewsletterSubscribe } from '@daffodil/newsletter';
 import { FormControl } from '@angular/forms';
-import { DaffNewsletterCancel } from 'libs/newsletter/src';
 
 
 
@@ -12,7 +10,7 @@ import { DaffNewsletterCancel } from 'libs/newsletter/src';
   templateUrl: './newsletter.component.html',
   styleUrls: ['./newsletter.component.scss']
 })
-export class NewsletterComponent{
+export class NewsletterComponent {
 
   success$ = this.newsletterFacade.success$;
   error$ = this.newsletterFacade.error$;
@@ -23,9 +21,14 @@ export class NewsletterComponent{
   constructor(public newsletterFacade: DaffNewsletterFacade) {
   }
   onNewsletterSubmit() {
-    this.newsletterFacade.dispatch(new DaffNewsletterSubscribe<DaffNewsletterSubmission>(this.email.value));
+    if (this.email.value != '') {
+      this.newsletterFacade.dispatch(new DaffNewsletterSubscribe<DaffNewsletterSubmission>(this.email.value));
+    }
   }
   onNewsletterCancel() {
     this.newsletterFacade.dispatch(new DaffNewsletterCancel);
+  }
+  onNewsletterRetry() {
+    this.newsletterFacade.dispatch(new DaffNewsletterRetry<DaffNewsletterSubmission>(this.email.value));
   }
 }

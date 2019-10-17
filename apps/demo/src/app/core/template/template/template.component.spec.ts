@@ -1,9 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TemplateComponent } from './template.component';
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NewsletterModule } from '../../../newsletter/newsletter.module';
+import { StoreModule } from '@ngrx/store';
 
 @Component({selector: 'demo-header-container', template: ''})
 class MockHeaderViewComponent {}
@@ -14,21 +15,18 @@ class MockSidebarViewComponent {}
 @Component({selector: 'demo-footer', template: ''})
 class MockFooterComponent {}
 
+
 describe('TemplateComponent', () => {
   let component: TemplateComponent;
   let fixture: ComponentFixture<TemplateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        NewsletterModule
-      ],
       declarations: [ 
-        MockHeaderViewComponent,
-        MockSidebarViewComponent,
-        MockFooterComponent,
         TemplateComponent
+      ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
       ]
     })
     .compileComponents();
