@@ -1,6 +1,6 @@
 # Daffodil
 [![Join the chat at https://gitter.im/graycoreio/daffodil](https://badges.gitter.im/graycoreio/daffodil.svg)](https://gitter.im/graycoreio/daffodil?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://graycore.visualstudio.com/Daffodil/_apis/build/status/Daffodil-CI?branchName=develop)](https://graycore.visualstudio.com/Daffodil/_build/latest?definitionId=6&branchName=develop)
+[![Build Status](https://graycore.visualstudio.com/Daffodil/_apis/build/status/graycoreio.daffodil?branchName=develop)](https://graycore.visualstudio.com/Daffodil/_build/latest?definitionId=6&branchName=develop)
 [![experimental](https://img.shields.io/static/v1.svg?label=stability&message=experimental&color=orange)](https://www.github.com/graycoreio/daffodil)
 [![dependencies Status](https://david-dm.org/graycoreio/daffodil/status.svg)](https://david-dm.org/graycoreio/daffodil)
 [![devDependencies Status](https://david-dm.org/graycoreio/daffodil/dev-status.svg)](https://david-dm.org/graycoreio/daffodil?type=dev)
