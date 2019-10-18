@@ -1,28 +1,33 @@
 import { TestBed } from '@angular/core/testing';
 
+import { SortFieldsAndFiltersNode } from '@daffodil/product';
 import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 
-import { DaffMagentoCategoryTransformerService } from './category-transformer.service';
+import { DaffMagentoCategoryPageConfigTransformerService } from './category-page-config-transformer.service';
 import { DaffCategory } from '../../../models/category';
 import { CategoryNode } from '../models/outputs/category-node';
 import { DaffCategoryPageConfigurationState } from '../../../models/category-page-configuration-state';
 
-describe('DaffMagentoCategoryTransformerService', () => {
+describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 
-  let service: DaffMagentoCategoryTransformerService;
+  let service: DaffMagentoCategoryPageConfigTransformerService;
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
   const stubCategory: DaffCategory = categoryFactory.create();
 
   const categoryPageConfigurationStateFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
   const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState = categoryPageConfigurationStateFactory.create();
+  delete stubCategoryPageConfigurationState.applied_filters;
+  delete stubCategoryPageConfigurationState.applied_sort_direction;
+  delete stubCategoryPageConfigurationState.applied_sort_option;
+  stubCategoryPageConfigurationState.id = stubCategory.id;
   
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffMagentoCategoryTransformerService
+        DaffMagentoCategoryPageConfigTransformerService
       ]
     });
-    service = TestBed.get(DaffMagentoCategoryTransformerService);
+    service = TestBed.get(DaffMagentoCategoryPageConfigTransformerService);
   });
 
   it('should be created', () => {
@@ -31,7 +36,7 @@ describe('DaffMagentoCategoryTransformerService', () => {
 
   describe('transform', () => {
     
-    it('should return a DaffCategory', () => {
+    it('should return a DaffCategoryPageConfigurationState', () => {
       const categoryNodeInput: CategoryNode = {
         id: stubCategory.id,
         name: stubCategory.name,
@@ -62,7 +67,31 @@ describe('DaffMagentoCategoryTransformerService', () => {
         children_count: stubCategory.children_count
       }
 
-      expect(service.transform(categoryNodeInput)).toEqual(stubCategory);
+      const sortsAndFilters: SortFieldsAndFiltersNode = {
+        filters: [{
+          name: stubCategoryPageConfigurationState.filters[0].name,
+          request_var: stubCategoryPageConfigurationState.filters[0].attribute_name,
+          filter_items_count: stubCategoryPageConfigurationState.filters[0].items_count,
+          __typename: stubCategoryPageConfigurationState.filters[0].type,
+          filter_items: [{
+            label: stubCategoryPageConfigurationState.filters[0].options[0].label,
+            value_string: stubCategoryPageConfigurationState.filters[0].options[0].value,
+            items_count: stubCategoryPageConfigurationState.filters[0].options[0].items_count
+          },
+          {
+            label: stubCategoryPageConfigurationState.filters[0].options[1].label,
+            value_string: stubCategoryPageConfigurationState.filters[0].options[1].value,
+            items_count: stubCategoryPageConfigurationState.filters[0].options[1].items_count
+          }
+        ]
+        }],
+        sortFields: {
+          default: '',
+          options: stubCategoryPageConfigurationState.sort_options
+        }
+      }
+
+      expect(service.transform(categoryNodeInput, sortsAndFilters)).toEqual(stubCategoryPageConfigurationState);
     });
   });
 });

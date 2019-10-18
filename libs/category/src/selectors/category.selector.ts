@@ -5,6 +5,7 @@ import { CategoryReducerState } from '../reducers/category/category-reducer-stat
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
 import { categoryEntitiesAdapter } from '../reducers/category-entities/category-entities-adapter';
 import { DaffCategory } from '../models/category';
+import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
 
 const { selectIds, selectEntities, selectAll, selectTotal } = categoryEntitiesAdapter.getSelectors();
 
@@ -21,16 +22,33 @@ export const selectCategoryState = createSelector(
   (state: CategoryReducersState) => state.category
 );
 
-export const selectSelectedCategoryId = createSelector(
+/**
+ * CategoryPageConfigurationState State
+ */
+export const selectCategoryPageConfigurationState = createSelector(
   selectCategoryState,
-  (state: CategoryReducerState) => state.selectedCategoryId
+  (state: CategoryReducerState) => state.categoryPageConfigurationState
 );
 
+/**
+ * Selected Category Id State
+ */
+export const selectSelectedCategoryId = createSelector(
+  selectCategoryPageConfigurationState,
+  (state: DaffCategoryPageConfigurationState) => state.id
+);
+
+/**
+ * Category Loading State
+ */
 export const selectCategoryLoading = createSelector(
   selectCategoryState,
   (state: CategoryReducerState) => state.loading
 );
 
+/**
+ * Load Category Errors
+ */
 export const selectCategoryErrors = createSelector(
   selectCategoryState,
   (state: CategoryReducerState) => state.errors

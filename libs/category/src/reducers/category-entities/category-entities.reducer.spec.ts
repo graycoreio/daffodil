@@ -33,7 +33,7 @@ describe('Category | Category Entities Reducer', () => {
       category = categoryFactory.create();
       categoryId = category.id;
       
-      const categoryLoadSuccess = new DaffCategoryLoadSuccess(category);
+      const categoryLoadSuccess = new DaffCategoryLoadSuccess({category: category, categoryPageConfigurationState: null, products: null});
       
       result = categoryEntitiesReducer(initialState, categoryLoadSuccess);
     });

@@ -5,22 +5,25 @@ import { hot, cold } from 'jasmine-marbles';
 
 import { DaffProduct, DaffProductGridLoadSuccess } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
-import { DaffCategoryFactory, DaffTestingCategoryService } from '@daffodil/category/testing';
+import { DaffCategoryFactory, DaffTestingCategoryService, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 
 import { DaffCategoryEffects } from './category.effects';
 import { DaffCategoryLoad, DaffCategoryLoadSuccess, DaffCategoryLoadFailure } from '../actions/category.actions';
 import { DaffCategory } from '../models/category';
 import { DaffCategoryServiceInterface } from '../drivers/interfaces/category-service.interface';
 import { DaffCategoryDriver } from '../drivers/injection-tokens/category-driver.token';
+import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
 
 describe('DaffCategoryEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCategoryEffects;
-  let mockCategory: DaffCategory;
-  let mockProducts: DaffProduct[];
+  let stubCategory: DaffCategory;
+  let stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState;
+  let stubProducts: DaffProduct[];
   let daffCategoryDriver: DaffCategoryServiceInterface;
 
   let categoryFactory: DaffCategoryFactory;
+  let categoryPageConfigurationStateFactory: DaffCategoryPageConfigurationStateFactory;
   let categoryId;
   let productFactory: DaffProductFactory;
 
@@ -33,19 +36,21 @@ describe('DaffCategoryEffects', () => {
         provideMockActions(() => actions$),
         {
           provide: DaffCategoryDriver, 
-          useValue: new DaffTestingCategoryService(new DaffCategoryFactory(), new DaffProductFactory())
+          useValue: new DaffTestingCategoryService(new DaffCategoryFactory(), new DaffCategoryPageConfigurationStateFactory(), new DaffProductFactory())
         },
       ]
     });
 
     effects = TestBed.get(DaffCategoryEffects);
     categoryFactory = TestBed.get(DaffCategoryFactory);
+    categoryPageConfigurationStateFactory = TestBed.get(DaffCategoryPageConfigurationStateFactory);
     productFactory = new DaffProductFactory();
 
     daffCategoryDriver = TestBed.get(DaffCategoryDriver);
 
-    mockCategory = categoryFactory.create();
-    mockProducts = productFactory.createMany(3);
+    stubCategory = categoryFactory.create();
+    stubCategoryPageConfigurationState = categoryPageConfigurationStateFactory.create();
+    stubProducts = productFactory.createMany(3);
   });
 
   it('should be created', () => {
@@ -61,16 +66,21 @@ describe('DaffCategoryEffects', () => {
 
       beforeEach(() => {
         spyOn(daffCategoryDriver, 'get').and.returnValue(of({
-          category: mockCategory,
-          products: mockProducts
+          category: stubCategory,
+          categoryPageConfigurationState: stubCategoryPageConfigurationState,
+          products: stubProducts
         }));
         actions$ = hot('--a', { a: categoryLoadAction });
       });
       
       it('should dispatch a DaffCategoryLoadSuccess and a DaffProductGridLoadSuccess action', () => {
-        const categoryLoadSuccessAction = new DaffCategoryLoadSuccess(mockCategory);
-        const productGridLoadSuccessAction = new DaffProductGridLoadSuccess(mockProducts);
-        expected = cold('--(bc)', { c: categoryLoadSuccessAction, b: productGridLoadSuccessAction });
+        const categoryLoadSuccessAction = new DaffCategoryLoadSuccess({
+          category: stubCategory,
+          categoryPageConfigurationState: stubCategoryPageConfigurationState,
+          products: stubProducts
+        });
+        const productGridLoadSuccessAction = new DaffProductGridLoadSuccess(stubProducts);
+        expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
         expect(effects.loadCategory$).toBeObservable(expected);
       });
     });

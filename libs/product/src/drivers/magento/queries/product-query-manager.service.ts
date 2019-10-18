@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { DaffProductQueryManagerInterface } from '../../interfaces/product-query-manager.interface';
 import gql from 'graphql-tag';
 import { QueryOptions } from 'apollo-client';
-import { DaffProductMagentoDriverModule } from '../product-driver.module';
+import { DaffMagentoProductQueryManagerInterface } from '../interfaces/magento-product-query-manager.interface';
 
 /**
  * The query manager for making magento product graphQL queries.
@@ -10,7 +9,7 @@ import { DaffProductMagentoDriverModule } from '../product-driver.module';
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoProductGraphQlQueryManagerService implements DaffProductQueryManagerInterface {
+export class DaffMagentoProductGraphQlQueryManagerService implements DaffMagentoProductQueryManagerInterface {
 
   /**
    * Get a single product by identifier.
@@ -94,6 +93,45 @@ export class DaffMagentoProductGraphQlQueryManagerService implements DaffProduct
           }
         }
       }`
+    }
+  }
+
+  getSortFieldsAndFiltersByCategory(categoryId) : QueryOptions {
+    return {
+      query: gql`
+      query getSortFieldsAndFiltersByCategory($categoryId: String!)
+      {
+        products(
+          filter: {
+            category_id: {
+              eq: $categoryId
+            }
+          }
+        )
+        {
+          sort_fields {
+            default
+            options {
+              label
+              value
+            }
+          }
+          filters {
+            name
+            filter_items_count
+            request_var
+            __typename
+            filter_items {
+              label
+              value_string
+              items_count
+            }
+          }
+        }
+      }`,
+      variables: {
+        categoryId: categoryId
+      }
     }
   }
 }

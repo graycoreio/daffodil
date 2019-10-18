@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 
-import { DaffCategory } from '../models/category';
+import { DaffGetCategoryResponse } from '../models/get-category-response';
+import { DaffCategoryRequest } from '../models/category-request';
 
 export enum DaffCategoryActionTypes {
   CategoryLoadAction = '[Daff-Category] Category Load Action',
@@ -11,13 +12,13 @@ export enum DaffCategoryActionTypes {
 export class DaffCategoryLoad implements Action {
   readonly type = DaffCategoryActionTypes.CategoryLoadAction;
 
-  constructor(public payload: string) { }
+  constructor(public payload: DaffCategoryRequest) { }
 }
 
 export class DaffCategoryLoadSuccess implements Action {
   readonly type = DaffCategoryActionTypes.CategoryLoadSuccessAction;
 
-  constructor(public payload: DaffCategory) { }
+  constructor(public payload: DaffGetCategoryResponse) { }
 }
 
 export class DaffCategoryLoadFailure implements Action {
