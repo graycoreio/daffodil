@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/checkout",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Interfaces built for daffodil/state",
   "repository": {
     "type": "git",
@@ -21,9 +21,9 @@
   "peerDependencies": {
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0",
-    "@daffodil/cart": "^0.1.1",
-    "@daffodil/core": "^0.1.1",
-    "@daffodil/product": "^0.1.1",
+    "@daffodil/cart": "^0.2.0",
+    "@daffodil/core": "^0.2.0",
+    "@daffodil/product": "^0.2.0",
     "@ngrx/effects": "^7.3.0",
     "@ngrx/entity": "^7.3.0",
     "@ngrx/store": "^7.3.0",
@@ -34,8 +34,8 @@
     "angular-in-memory-web-api": "^0.7.0"
   },
   "devDependencies": {
-    "@daffodil/cart": "^0.1.1",
-    "@daffodil/core": "^0.1.1",
-    "@daffodil/product": "^0.1.1"
+    "@daffodil/cart": "^0.2.0",
+    "@daffodil/core": "^0.2.0",
+    "@daffodil/product": "^0.2.0"
   }
 }
