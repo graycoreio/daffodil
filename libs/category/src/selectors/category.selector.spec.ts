@@ -6,7 +6,6 @@ import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '
 
 import { DaffCategoryLoadSuccess } from '../actions/category.actions';
 import { 
-  selectSelectedCategoryId, 
   selectCategoryLoading, 
   selectCategoryErrors, 
   selectCategoryIds, 
@@ -14,7 +13,8 @@ import {
   selectAllCategories, 
   selectCategoryTotal, 
   selectCategoryPageConfigurationState,
-  selectCategoryState 
+  selectCategoryState, 
+  selectSelectedCategoryId
 } from './category.selector';
 import { DaffCategory } from '../models/category';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
@@ -27,7 +27,7 @@ describe('DaffCategorySelectors', () => {
   const categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
   let stubCategory: DaffCategory;
   const stubCategoryPageConfigurationState = categoryPageConfigurationFactory.create();
-
+  
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -36,8 +36,9 @@ describe('DaffCategorySelectors', () => {
         })
       ]
     });
-
+    
     stubCategory = categoryFactory.create();
+    stubCategoryPageConfigurationState.id = stubCategory.id;
     store = TestBed.get(Store);
 
     store.dispatch(new DaffCategoryLoadSuccess({ category: stubCategory, categoryPageConfigurationState: stubCategoryPageConfigurationState, products: null }));
@@ -68,9 +69,9 @@ describe('DaffCategorySelectors', () => {
 
   describe('selectSelectedCategoryId', () => {
 
-    it('selects the selected categoryId state', () => {
+    it('selects the id of the selected category', () => {
       const selector = store.pipe(select(selectSelectedCategoryId));
-      const expected = cold('a', { a: stubCategoryPageConfigurationState.id });
+      const expected = cold('a', { a: stubCategory.id });
       expect(selector).toBeObservable(expected);
     });
   });

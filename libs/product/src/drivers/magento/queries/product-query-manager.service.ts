@@ -120,6 +120,7 @@ export class DaffMagentoProductGraphQlQueryManagerService implements DaffMagento
             name
             filter_items_count
             request_var
+            __typename
             filter_items {
               label
               value_string

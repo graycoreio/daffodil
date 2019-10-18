@@ -1,4 +1,4 @@
-import { DaffSortField } from '@daffodil/product';
+import { DaffSortField } from './sort-field';
 
 export interface SortFieldsNode {
   default: string;

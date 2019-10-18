@@ -1,21 +1,23 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Observable, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 
-import { DaffMagentoProductTransformerService, DaffMagentoProductGraphQlQueryManagerService } from '@daffodil/product';
+import {
+  DaffMagentoProductQueryManagerInterface,
+  DaffProductQueryManager,
+  GetSortFieldsAndFiltersProductResponse
+} from '@daffodil/product';
 
 import { DaffCategoryServiceInterface } from '../interfaces/category-service.interface';
 import { DaffGetCategoryResponse } from '../../models/get-category-response';
-import { CategoryNode } from './models/outputs/category-node';
-import { DaffMagentoCategoryTransformerService } from './transformers/category-transformer.service';
-import { DaffMagentoCategoryGraphQlQueryManagerService } from './queries/category-query-manager.service';
-import { DaffMagentoCategoryPageConfigTransformerService } from './transformers/category-page-config-transformer.service';
 import { DaffCategoryRequest } from '../../models/category-request';
-
-interface GetACategoryResponse {
-  category: CategoryNode
-}
+import { CompleteCategoryResponse } from './models/outputs/complete-category-response';
+import { GetACategoryResponse } from './models/outputs/get-category-response';
+import { DaffCategoryQueryManager } from '../injection-tokens/category-query-manager.token';
+import { DaffCategoryQueryManagerInterface } from '../interfaces/category-query-manager.interface';
+import { DaffCategoryTransformer } from '../injection-tokens/category-transformer.token';
+import { DaffCategoryResponseTransformerInterface } from '../interfaces/category-response-transformer.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -24,11 +26,9 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
   
   constructor(
     private apollo: Apollo,
-    private queryManager: DaffMagentoCategoryGraphQlQueryManagerService,
-    private productQueryManager: DaffMagentoProductGraphQlQueryManagerService,
-    private magentoCategoryTransformerService: DaffMagentoCategoryTransformerService,
-    private magentoCategoryPageConfigurationTransformerService: DaffMagentoCategoryPageConfigTransformerService,
-    private magentoProductTransformerService: DaffMagentoProductTransformerService
+    @Inject(DaffCategoryQueryManager) public queryManager: DaffCategoryQueryManagerInterface,
+    @Inject(DaffProductQueryManager) public productQueryManager: DaffMagentoProductQueryManagerInterface,
+    @Inject(DaffCategoryTransformer) public magentoCategoryResponseTransformerService: DaffCategoryResponseTransformerInterface<DaffGetCategoryResponse>
   ) {}
 
   get(categoryRequest: DaffCategoryRequest): Observable<DaffGetCategoryResponse> {
@@ -36,15 +36,15 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
       this.apollo.query<GetACategoryResponse>(this.queryManager.getACategoryQuery(
         parseInt(categoryRequest.id, 10)
       )),
-      this.apollo.query<any>(this.productQueryManager.getSortFieldsAndFiltersByCategory(categoryRequest.id))
+      this.apollo.query<GetSortFieldsAndFiltersProductResponse>(this.productQueryManager.getSortFieldsAndFiltersByCategory(categoryRequest.id))
     ]).pipe(
-      map(result => {
+      map((result): CompleteCategoryResponse => {
         return {
-          category: this.magentoCategoryTransformerService.transform(result[0].data.category),
-          categoryPageConfigurationState: this.magentoCategoryPageConfigurationTransformerService.transform(result[0].data.category, result[1].data.products),
-          products: this.magentoProductTransformerService.transformMany(result[0].data.category.products.items)
+          category: result[0].data.category,
+          sortsAndFilters: result[1].data.products[0].sortsAndFilters
         }
-      })
+      }),
+      map(result => this.magentoCategoryResponseTransformerService.transform(result))
     );
   }
 }

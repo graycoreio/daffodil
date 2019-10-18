@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
+import { SortFieldsAndFiltersNode } from '@daffodil/product';
 import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 
 import { DaffMagentoCategoryPageConfigTransformerService } from './category-page-config-transformer.service';
 import { DaffCategory } from '../../../models/category';
 import { CategoryNode } from '../models/outputs/category-node';
 import { DaffCategoryPageConfigurationState } from '../../../models/category-page-configuration-state';
-import { CategorySortsAndFiltersNode } from '../models/outputs/sorts-and-filters-node';
 
 describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 
@@ -67,7 +67,7 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
         children_count: stubCategory.children_count
       }
 
-      const sortsAndFilters: CategorySortsAndFiltersNode = {
+      const sortsAndFilters: SortFieldsAndFiltersNode = {
         filters: [{
           name: stubCategoryPageConfigurationState.filters[0].name,
           request_var: stubCategoryPageConfigurationState.filters[0].attribute_name,
@@ -76,18 +76,16 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
           filter_items: [{
             label: stubCategoryPageConfigurationState.filters[0].options[0].label,
             value_string: stubCategoryPageConfigurationState.filters[0].options[0].value,
-            items_count: stubCategoryPageConfigurationState.filters[0].options[0].items_count,
-            __typename: ''
+            items_count: stubCategoryPageConfigurationState.filters[0].options[0].items_count
           },
           {
             label: stubCategoryPageConfigurationState.filters[0].options[1].label,
             value_string: stubCategoryPageConfigurationState.filters[0].options[1].value,
-            items_count: stubCategoryPageConfigurationState.filters[0].options[1].items_count,
-            __typename: ''
+            items_count: stubCategoryPageConfigurationState.filters[0].options[1].items_count
           }
         ]
         }],
-        sort_fields: {
+        sortFields: {
           default: '',
           options: stubCategoryPageConfigurationState.sort_options
         }

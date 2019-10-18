@@ -24,13 +24,8 @@ export function categoryReducer(state = initialState, action: DaffCategoryAction
         ...state, 
         loading: true,
         categoryPageConfigurationState: {
-          ...state.categoryPageConfigurationState,
-          id: action.payload.id,
-          applied_filters: action.payload.applied_filters,
-          applied_sort_option: action.payload.applied_sort_option,
-          applied_sort_direction: action.payload.applied_sort_direction,
-          current_page: action.payload.current_page,
-          page_size: action.payload.page_size
+          ...initialState.categoryPageConfigurationState,
+          ...action.payload
         }
       };
     case DaffCategoryActionTypes.CategoryLoadSuccessAction:

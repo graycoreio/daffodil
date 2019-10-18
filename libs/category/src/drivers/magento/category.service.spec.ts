@@ -4,15 +4,14 @@ import {
   ApolloTestingController,
 } from 'apollo-angular/testing';
 
-import { DaffMagentoProductTransformerService, DaffMagentoProductGraphQlQueryManagerService } from '@daffodil/product';
+import { DaffMagentoProductGraphQlQueryManagerService } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 
 import { DaffMagentoCategoryService } from './category.service';
 import { DaffMagentoCategoryGraphQlQueryManagerService } from './queries/category-query-manager.service';
-import { DaffMagentoCategoryTransformerService } from './transformers/category-transformer.service';
 import { DaffCategory } from '../../models/category';
-import { DaffMagentoCategoryPageConfigTransformerService } from './transformers/category-page-config-transformer.service';
+import { DaffCategoryTransformer } from '../injection-tokens/category-transformer.token';
 
 // Because ApolloTestingModule doesn't support multiple apollo queries in the same get call, this file is difficult to test.
 // Maybe one of us can make a pull request to apollo-angular if we get the time.
@@ -28,8 +27,8 @@ xdescribe('Driver | Magento | Category | CategoryService', () => {
   const transformedProducts = productFactory.createMany(3);
   const productTransformService = jasmine.createSpyObj('DaffMagentoProductTransformerService', ['transformMany']);
   productTransformService.transformMany.and.returnValue(transformedProducts);
-  const categoryTransformService = jasmine.createSpyObj('DaffMagentoCategoryTransformerService', ['transform']);
-  categoryTransformService.transform.and.returnValue(transformedCategory);
+  const magentoCategoryResponseTransformerService = jasmine.createSpyObj('DaffMagentoCategoryTransformerService', ['transform']);
+  magentoCategoryResponseTransformerService.transform.and.returnValue(transformedCategory);
   const categoryPageConfigTransformService = jasmine.createSpyObj('DaffMagentoCategoryPageConfigTransformerService', ['transform']);
   categoryPageConfigTransformService.transform.and.returnValue(transformedCategoryPageConfigurationState);
 
@@ -43,9 +42,7 @@ xdescribe('Driver | Magento | Category | CategoryService', () => {
       ],
       providers: [
         DaffMagentoCategoryService,
-        { provide: DaffMagentoCategoryTransformerService, useValue: categoryTransformService },
-        { provide: DaffMagentoCategoryPageConfigTransformerService, useValue: categoryPageConfigTransformService },
-        { provide: DaffMagentoProductTransformerService, useValue: productTransformService },
+        { provide: DaffCategoryTransformer, useValue: magentoCategoryResponseTransformerService },
         DaffMagentoCategoryGraphQlQueryManagerService,
         DaffMagentoProductGraphQlQueryManagerService
       ]
@@ -113,35 +110,9 @@ xdescribe('Driver | Magento | Category | CategoryService', () => {
       });
     });
 
-    it('should call the DaffMagentoCategoryTransformerService', () => {
+    it('should call the DaffCategoryResponseTransformerInterface', () => {
       categoryService.get({ id: stubCategory.id }).subscribe(() => {
-        expect(categoryTransformService.transform).toHaveBeenCalledWith(response.category);
-      });
-      
-      const op = controller.expectOne(categoryGraphQlQueryManagerService.getACategoryQuery(parseInt(stubCategory.id, 10)).query);
-      expect(op.operation.variables.id).toEqual(parseInt(stubCategory.id, 10));
-
-      op.flush({
-        data: response
-      });
-    });
-
-    it('should call the DaffMagentoCategoryPageConfigTransformerService', () => {
-      categoryService.get({ id: stubCategory.id }).subscribe(() => {
-        expect(categoryPageConfigTransformService.transform).toHaveBeenCalledWith(response.category, );
-      });
-      
-      const op = controller.expectOne(categoryGraphQlQueryManagerService.getACategoryQuery(parseInt(stubCategory.id, 10)).query);
-      expect(op.operation.variables.id).toEqual(parseInt(stubCategory.id, 10));
-
-      op.flush({
-        data: response
-      });
-    });
-
-    it('should call the DaffMagentoProductTransformerService', () => {      
-      categoryService.get({ id: stubCategory.id }).subscribe(() => {
-        expect(productTransformService.transformMany).toHaveBeenCalledWith([]);
+        expect(magentoCategoryResponseTransformerService.transform).toHaveBeenCalledWith(response.category);
       });
       
       const op = controller.expectOne(categoryGraphQlQueryManagerService.getACategoryQuery(parseInt(stubCategory.id, 10)).query);
