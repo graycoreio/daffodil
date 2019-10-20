@@ -10,7 +10,6 @@ import {
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductFactory } from '../factories/product.factory';
 import { DaffProductImageFactory } from '../factories/product-image.factory';
-import { IN_MEMORY_PRODUCT_IDS } from '../helpers/in-memory-product-ids';
 
 /**
  * An in-memory service that stubs out the backend services for getting products.
@@ -29,15 +28,15 @@ export class DaffInMemoryBackendProductService implements InMemoryDbService {
     private productFactory: DaffProductFactory,
     private productImageFactory: DaffProductImageFactory) { 
     this.products = [
-      this.productFactory.create({id: IN_MEMORY_PRODUCT_IDS[0], images: this.productImageFactory.createMany(5)}),
-      this.productFactory.create({id: IN_MEMORY_PRODUCT_IDS[1], images: this.productImageFactory.createMany(5)}),
-      this.productFactory.create({id: IN_MEMORY_PRODUCT_IDS[2], images: this.productImageFactory.createMany(5)}),
-      this.productFactory.create({id: IN_MEMORY_PRODUCT_IDS[3], images: this.productImageFactory.createMany(5)}),
-      this.productFactory.create({id: IN_MEMORY_PRODUCT_IDS[4], images: this.productImageFactory.createMany(5)}),
-      this.productFactory.create({id: IN_MEMORY_PRODUCT_IDS[5], images: this.productImageFactory.createMany(5)}),
-      this.productFactory.create({id: IN_MEMORY_PRODUCT_IDS[6], images: this.productImageFactory.createMany(5)}),
-      this.productFactory.create({id: IN_MEMORY_PRODUCT_IDS[7], images: this.productImageFactory.createMany(5)}),
-      this.productFactory.create({id: IN_MEMORY_PRODUCT_IDS[8], images: this.productImageFactory.createMany(5)})
+      this.productFactory.create({id: '1001', images: this.productImageFactory.createMany(5)}),
+      this.productFactory.create({id: '1002', images: this.productImageFactory.createMany(5)}),
+      this.productFactory.create({id: '1003', images: this.productImageFactory.createMany(5)}),
+      this.productFactory.create({id: '1004', images: this.productImageFactory.createMany(5)}),
+      this.productFactory.create({id: '1005', images: this.productImageFactory.createMany(5)}),
+      this.productFactory.create({id: '1006', images: this.productImageFactory.createMany(5)}),
+      this.productFactory.create({id: '1007', images: this.productImageFactory.createMany(5)}),
+      this.productFactory.create({id: '1008', images: this.productImageFactory.createMany(5)}),
+      this.productFactory.create({id: '1009', images: this.productImageFactory.createMany(5)})
     ]
   }
 

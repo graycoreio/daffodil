@@ -6,4 +6,3 @@ export { DaffTestingProductService } from './drivers/testing/product.service';
 export { DaffInMemoryProductService } from './drivers/in-memory/product.service';
 export { DaffProductInMemoryDriverModule } from './drivers/in-memory/product-driver.module';
 export { DaffProductTestingDriverModule } from './drivers/testing/product-driver.module';
-export { IN_MEMORY_PRODUCT_IDS } from './helpers/in-memory-product-ids';
