@@ -1,17 +1,23 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffInMemoryBackendCategoryService } from './category.service';
+import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
 
+import { DaffInMemoryBackendCategoryService } from './category.service';
 import { isCategory } from '../helpers/category-helper';
 
 describe('Driver | InMemory | Category | DaffInMemoryBackendCategoryService', () => {
   let categoryTestingService;
+  let inMemoryBackendProductService: DaffInMemoryBackendProductService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffInMemoryBackendCategoryService]
+      providers: [
+        DaffInMemoryBackendCategoryService,
+        DaffInMemoryBackendProductService
+      ]
     });
 
+    inMemoryBackendProductService = TestBed.get(DaffInMemoryBackendProductService);
     categoryTestingService = TestBed.get(DaffInMemoryBackendCategoryService);
   });
 
@@ -26,8 +32,12 @@ describe('Driver | InMemory | Category | DaffInMemoryBackendCategoryService', ()
       result = categoryTestingService.createDb();
     });
 
-    it('should return a object with an array of Categorys', () => {
+    it('should return a category with productIds that match the products from the DaffInMemoryBackendProductService', () => {
+      const expectedIds = inMemoryBackendProductService.products.map(product => product.id);
       expect(isCategory(result.category)).toBeTruthy();
+      result.category.productIds.map(productId => {
+        expect(expectedIds.filter(id => id === productId).length).toBeGreaterThan(0);
+      })
     });
   });
 });
