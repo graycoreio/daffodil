@@ -1,5 +1,7 @@
-import { SortFieldsAndFiltersNode } from './sort-fields-and-filters-node';
+import { SortFieldsNode } from './sort-fields-node';
+import { FilterNode } from './filter-node';
 
 export interface SortFieldsAndFiltersProductNode {
-  sortsAndFilters: SortFieldsAndFiltersNode;
+  sort_fields: SortFieldsNode,
+  filters: FilterNode[];
 }

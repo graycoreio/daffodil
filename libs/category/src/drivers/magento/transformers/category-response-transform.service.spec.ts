@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 import { 
   DaffProduct,
-  SortFieldsAndFiltersNode,
+  SortFieldsAndFiltersProductNode,
   DaffProductTransformer
 } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
@@ -49,7 +49,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
   describe('transform', () => {
 
     let categoryNodeInput: CategoryNode;
-    let sortsAndFilters: SortFieldsAndFiltersNode;
+    let sortsAndFilters: SortFieldsAndFiltersProductNode;
 
     beforeEach(() => {
       magentoCategoryTransformerServiceSpy.transform.and.returnValue(stubCategory);
@@ -104,7 +104,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
           }
         ]
         }],
-        sortFields: {
+        sort_fields: {
           default: '',
           options: stubCategoryPageConfigurationState.sort_options
         }
