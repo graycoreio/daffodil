@@ -22,7 +22,6 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
     private productInMemoryBackendService: DaffInMemoryBackendProductService
   ) {
     this.category = this.categoryFactory.create();
-    this.category.id = '1';
 
     this.category.productIds = productInMemoryBackendService.products
       .map(product => product.id)
