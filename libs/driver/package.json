@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/driver",
-  "version": "0.2.0",
+  "version": "0.2.3",
   "private": true,
   "description": "A consistent, sane api driver that works with different ecommerce systems.",
   "repository": {
