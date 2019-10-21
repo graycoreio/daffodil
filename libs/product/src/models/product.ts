@@ -5,6 +5,7 @@ import { DaffProductImage } from './product-image';
  */
 export interface DaffProduct {
   id: string;
+  sku?: string;
   price?: string;
   name?: string;
   brand?: string;

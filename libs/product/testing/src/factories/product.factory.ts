@@ -8,6 +8,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
  */
 export class MockProduct implements DaffProduct {
   id = faker.random.number(10000).toString();
+  sku = faker.random.number(10000).toString();
   price = faker.random.number(1500).toString();
   name = faker.commerce.productName();
   brand = faker.company.companyName();

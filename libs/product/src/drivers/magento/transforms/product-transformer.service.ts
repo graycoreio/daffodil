@@ -19,7 +19,8 @@ export class DaffMagentoProductTransformerService implements DaffProductTransfor
   transform(response: any): DaffProductUnion {
     const product: ProductNode = response.products.items[0];
     return {
-      id: product.sku,
+      id: product.id.toString(),
+      sku: product.sku,
       url: product.url_key,
       name: product.name,
       images: [
@@ -45,7 +46,8 @@ export class DaffMagentoProductTransformerService implements DaffProductTransfor
 
   private transformList(product: ProductNode): DaffProductUnion {
     return {
-      id: product.sku,
+      id: product.id.toString(),
+      sku: product.sku,
       url: product.url_key,
       name: product.name,
       images: [
