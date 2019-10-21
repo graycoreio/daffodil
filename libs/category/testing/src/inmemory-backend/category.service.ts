@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import {
   InMemoryDbService,
   RequestInfoUtilities,
-  ParsedRequestUrl
+  ParsedRequestUrl,
+  STATUS
 } from 'angular-in-memory-web-api';
 
 import { DaffCategory } from '@daffodil/category';
@@ -21,6 +22,7 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
     private productInMemoryBackendService: DaffInMemoryBackendProductService
   ) {
     this.category = this.categoryFactory.create();
+    this.category.id = '1';
 
     this.category.productIds = productInMemoryBackendService.products
       .map(product => product.id)
@@ -35,5 +37,14 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
     return {
       category: this.category
     };
+  }
+
+  get(reqInfo: any) {
+    return reqInfo.utils.createResponse$(() => {
+      return {
+        body: this.category,
+        status: STATUS.OK
+      };
+    });
   }
 }
