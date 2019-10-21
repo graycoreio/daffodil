@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SortFieldsAndFiltersNode } from '@daffodil/product';
+import { SortFieldsAndFiltersProductNode } from '@daffodil/product';
 import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 
 import { DaffMagentoCategoryPageConfigTransformerService } from './category-page-config-transformer.service';
@@ -67,7 +67,7 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
         children_count: stubCategory.children_count
       }
 
-      const sortsAndFilters: SortFieldsAndFiltersNode = {
+      const sortsAndFilters: SortFieldsAndFiltersProductNode = {
         filters: [{
           name: stubCategoryPageConfigurationState.filters[0].name,
           request_var: stubCategoryPageConfigurationState.filters[0].attribute_name,
@@ -85,7 +85,7 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
           }
         ]
         }],
-        sortFields: {
+        sort_fields: {
           default: '',
           options: stubCategoryPageConfigurationState.sort_options
         }

@@ -1,8 +1,8 @@
 import { CategoryNode } from './category-node';
 
-import { SortFieldsAndFiltersNode } from '@daffodil/product';
+import { SortFieldsAndFiltersProductNode } from '@daffodil/product';
 
 export interface CompleteCategoryResponse {
   category: CategoryNode,
-  sortsAndFilters: SortFieldsAndFiltersNode
+  sortsAndFilters: SortFieldsAndFiltersProductNode
 }

@@ -1,10 +1,10 @@
 import { InjectionToken } from '@angular/core';
 
-import { DaffCategoryTransformerInterface } from '../interfaces/category-transformer.interface';
-import { DaffCategory } from '../../models/category';
+import { DaffCategoryResponseTransformerInterface } from '../interfaces/category-response-transformer.interface';
+import { DaffGetCategoryResponse } from '../../models/get-category-response';
 
 /**
- * Injection token that serves as a placeholder for any service that implements the DaffCategoryTransformerInterface.
+ * Injection token that serves as a placeholder for any service that implements the DaffCategoryResponseTransformerInterface.
  */
 export const DaffCategoryTransformer = 
-    new InjectionToken<DaffCategoryTransformerInterface<DaffCategory>>('DaffCategoryTransformer');
+    new InjectionToken<DaffCategoryResponseTransformerInterface<DaffGetCategoryResponse>>('DaffCategoryTransformer');

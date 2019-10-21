@@ -41,7 +41,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
       map((result): CompleteCategoryResponse => {
         return {
           category: result[0].data.category,
-          sortsAndFilters: result[1].data.products[0].sortsAndFilters
+          sortsAndFilters: result[1].data.products
         }
       }),
       map(result => this.magentoCategoryResponseTransformerService.transform(result))

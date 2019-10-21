@@ -25,7 +25,6 @@ export { DaffProductQueryManagerInterface } from './drivers/interfaces/product-q
 export { DaffProductTransformerInterface } from './drivers/interfaces/product-transformer.interface';
 
 export { SortFieldsNode } from './drivers/magento/models/sort-fields-node';
-export { SortFieldsAndFiltersNode } from './drivers/magento/models/sort-fields-and-filters-node';
 export { SortFieldsAndFiltersProductNode } from './drivers/magento/models/sort-fields-and-filters-product-node';
 export { GetSortFieldsAndFiltersProductResponse } from './drivers/magento/models/get-sort-fields-and-filters-product-response';
 export { FilterNode } from './drivers/magento/models/filter-node';
