@@ -40,4 +40,28 @@ describe('Driver | InMemory | Category | DaffInMemoryBackendCategoryService', ()
       })
     });
   });
+
+
+  describe('get - with any parameter', () => {
+      
+    let reqInfoStub;
+    let result;
+
+    beforeEach(() => {
+      reqInfoStub = {
+        id: 'any parameter',
+        utils: {
+          createResponse$: (func) => {
+            return func();
+          }
+        }
+      }
+
+      result = categoryTestingService.get(reqInfoStub);
+    });
+
+    it('should return a category', () => {
+      expect(result.body).toEqual(categoryTestingService.category);
+    });
+  });
 });
