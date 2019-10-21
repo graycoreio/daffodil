@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/branding",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "private": true,
   "scripts": {
     "build": "ng build branding --prod && npm run build:assets",

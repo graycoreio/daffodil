@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/cart",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Interfaces built for daffodil/state",
   "repository": {
     "type": "git",
@@ -34,6 +34,6 @@
   },
   "devDependencies": {
     "@daffodil/core": "^0.2.0",
-    "@daffodil/product": "^0.2.0"
+    "@daffodil/product": "^0.2.5"
   }
 }
