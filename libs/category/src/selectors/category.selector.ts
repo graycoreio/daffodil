@@ -1,7 +1,7 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
-import { fromProduct } from '@daffodil/product';
+import { fromProduct, DaffProductUnion } from '@daffodil/product';
 
 import { CategoryReducerState } from '../reducers/category/category-reducer-state.interface';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
@@ -101,5 +101,5 @@ export const selectCategoryProductIds = createSelector(
 export const selectCategoryProducts = createSelector(
   selectCategoryProductIds,
   fromProduct.selectAllProducts,
-  (ids, products) => products.filter(product => ids.indexOf(product.id) >= 0)
+  (ids, products: DaffProductUnion[]) => products.filter(product => ids.indexOf(product.id) >= 0)
 )
