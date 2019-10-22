@@ -46,6 +46,7 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
     const navigation: DaffNavigationTreeUnion = {
       id: '1',
       name: 'Root Category',
+      path: '1',
       total_products: 10,
       children: [],
       children_count: 0,
@@ -78,10 +79,12 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
     const navigation: DaffNavigationTreeUnion = {
       id: '1',
       name: 'Root Category',
+      path: '1',
       total_products: 10,
       children: [{
         id: '2',
         name: 'Subcategory',
+        path: '2',
         total_products: 10,
         children: [],
         children_count: 0,

@@ -17,3 +17,5 @@ export {
 } from './selectors/navigation.selector';
 export { DaffNavigationMagentoDriverModule } from './drivers/magento/navigation-driver.module';
 export { DaffNavigationFacadeInterface } from './interfaces/navigation-facade.interface';
+export { DaffNavigationTransformerInterface } from './drivers/interfaces/navigation-transformer.interface';
+export { DaffNavigationTransformer } from './drivers/injection-tokens/navigation-transformer.token';
