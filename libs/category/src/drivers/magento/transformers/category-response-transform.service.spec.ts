@@ -12,8 +12,8 @@ import { DaffMagentoCategoryResponseTransformService } from './category-response
 import { DaffCategory } from '../../../models/category';
 import { CategoryNode } from '../models/outputs/category-node';
 import { DaffCategoryPageConfigurationState } from '../../../models/category-page-configuration-state';
-import { DaffMagentoCategoryTransformerService } from './category-transformer.service';
 import { DaffMagentoCategoryPageConfigTransformerService } from './category-page-config-transformer.service';
+import { DaffCategoryTransformer } from '../../injection-tokens/category-transformer.token';
 
 describe('DaffMagentoCategoryResponseTransformService', () => {
 
@@ -34,7 +34,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
     TestBed.configureTestingModule({
       providers: [
         DaffMagentoCategoryResponseTransformService,
-        { provide: DaffMagentoCategoryTransformerService, useValue: magentoCategoryTransformerServiceSpy },
+        { provide: DaffCategoryTransformer, useValue: magentoCategoryTransformerServiceSpy },
         { provide: DaffMagentoCategoryPageConfigTransformerService, useValue: magentoCategoryPageConfigurationTransformerServiceSpy },
         { provide: DaffProductTransformer, useValue: magentoProductTransformerServiceSpy }
       ]

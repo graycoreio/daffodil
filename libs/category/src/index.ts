@@ -13,6 +13,7 @@ export { DaffCategoryServiceInterface } from './drivers/interfaces/category-serv
 export { DaffCategoryTransformerInterface } from './drivers/interfaces/category-transformer.interface';
 export { DaffCategoryDriver } from './drivers/injection-tokens/category-driver.token';
 export { DaffCategoryQueryManager } from './drivers/injection-tokens/category-query-manager.token';
+export { DaffCategoryResponseTransformer } from './drivers/injection-tokens/category-response-transformer.token';
 export { DaffCategoryTransformer } from './drivers/injection-tokens/category-transformer.token';
 
 export {

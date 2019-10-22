@@ -7,10 +7,12 @@ import {
 } from '@daffodil/product';
 
 import { DaffGetCategoryResponse } from '../../../models/get-category-response';
-import { DaffMagentoCategoryTransformerService } from './category-transformer.service';
 import { DaffMagentoCategoryPageConfigTransformerService } from './category-page-config-transformer.service';
 import { CompleteCategoryResponse } from '../models/outputs/complete-category-response';
 import { DaffCategoryResponseTransformerInterface } from '../../interfaces/category-response-transformer.interface';
+import { DaffCategoryTransformer } from '../../injection-tokens/category-transformer.token';
+import { DaffCategoryTransformerInterface } from '../../interfaces/category-transformer.interface';
+import { DaffCategory } from '../../../models/category';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,7 @@ import { DaffCategoryResponseTransformerInterface } from '../../interfaces/categ
 export class DaffMagentoCategoryResponseTransformService implements DaffCategoryResponseTransformerInterface<DaffGetCategoryResponse> {
 
   constructor(
-    private magentoCategoryTransformerService: DaffMagentoCategoryTransformerService,
+    @Inject(DaffCategoryTransformer) private magentoCategoryTransformerService: DaffCategoryTransformerInterface<DaffCategory>,
     private magentoCategoryPageConfigurationTransformerService: DaffMagentoCategoryPageConfigTransformerService,
     @Inject(DaffProductTransformer) private magentoProductTransformerService: DaffProductTransformerInterface<DaffProductUnion>
   ) {}
