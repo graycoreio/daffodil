@@ -50,9 +50,9 @@ describe('DaffMagentoCategoryTransformerService', () => {
           },
           items: [
             {
-              id: parseInt(stubCategory.productIds[0], 10),
+              id: 1,
               name: 'name',
-              sku: 'sku',
+              sku: stubCategory.productIds[0],
               url_key: 'url_key',
               image: null,
               price: null

@@ -1,6 +1,8 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
+import { fromProduct } from '@daffodil/product';
+
 import { CategoryReducerState } from '../reducers/category/category-reducer-state.interface';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
 import { categoryEntitiesAdapter } from '../reducers/category-entities/category-entities-adapter';
@@ -90,3 +92,14 @@ export const selectSelectedCategory = createSelector(
   selectSelectedCategoryId,
   (entities: Dictionary<DaffCategory>, selectedCategoryId: string) => entities[selectedCategoryId]
 );
+
+export const selectCategoryProductIds = createSelector(
+  selectSelectedCategory,
+  (category: DaffCategory) => category ? category.productIds : undefined
+)
+
+export const selectCategoryProducts = createSelector(
+  selectCategoryProductIds,
+  fromProduct.selectAllProducts,
+  (ids, products) => products.filter(product => ids.indexOf(product.id) >= 0)
+)
