@@ -31,6 +31,7 @@ describe('Navigation | Testing | Factories | DaffNavigationTreeFactory', () => {
     it('should return a Navigation with all required fields defined', () => {
       expect(result.id).toBeDefined(); 
       expect(result.name).toBeDefined(); 
+      expect(result.path).toBeDefined(); 
       expect(result.children_count).toBeDefined(); 
       expect(result.total_products).toBeDefined(); 
     });
