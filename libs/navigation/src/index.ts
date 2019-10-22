@@ -19,3 +19,4 @@ export { DaffNavigationMagentoDriverModule } from './drivers/magento/navigation-
 export { DaffNavigationFacadeInterface } from './interfaces/navigation-facade.interface';
 export { DaffNavigationTransformerInterface } from './drivers/interfaces/navigation-transformer.interface';
 export { DaffNavigationTransformer } from './drivers/injection-tokens/navigation-transformer.token';
+export { DaffMagentoNavigationService } from './drivers/magento/navigation.service';
