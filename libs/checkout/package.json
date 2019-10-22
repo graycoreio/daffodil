@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/checkout",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Interfaces built for daffodil/state",
   "repository": {
     "type": "git",
@@ -34,8 +34,8 @@
     "angular-in-memory-web-api": "^0.7.0"
   },
   "devDependencies": {
-    "@daffodil/cart": "^0.2.5",
+    "@daffodil/cart": "^0.2.6",
     "@daffodil/core": "^0.2.0",
-    "@daffodil/product": "^0.2.5"
+    "@daffodil/product": "^0.2.6"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/category",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "An ecommerce categories package that has multi-platform support and state management features.",
   "repository": {
     "type": "git",
@@ -34,6 +34,6 @@
   },
   "devDependencies": {
     "@daffodil/core": "^0.2.0",
-    "@daffodil/product": "^0.2.5"
+    "@daffodil/product": "^0.2.6"
   }
 }
