@@ -6,22 +6,26 @@ import {
   STATUS
 } from 'angular-in-memory-web-api';
 
-import { DaffCategory } from '@daffodil/category';
+import { DaffCategory, DaffCategoryPageConfigurationState } from '@daffodil/category';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
 
 import { DaffCategoryFactory } from '../factories/category.factory';
+import { DaffCategoryPageConfigurationStateFactory } from '../factories/category-page-configuration-state.factory';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
   category: DaffCategory;
+  categoryPageConfigurationState: DaffCategoryPageConfigurationState;
 
   constructor(
     private categoryFactory: DaffCategoryFactory,
+    private categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory,
     private productInMemoryBackendService: DaffInMemoryBackendProductService
   ) {
     this.category = this.categoryFactory.create();
+    this.categoryPageConfigurationState = this.categoryPageConfigurationFactory.create();
 
     this.category.productIds = productInMemoryBackendService.products
       .map(product => product.id)
@@ -33,15 +37,19 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
   }
 
   createDb(): any {
-    return {
-      category: this.category
-    };
+    return {};
   }
 
   get(reqInfo: any) {
+    this.category.id = reqInfo.id;
+    this.categoryPageConfigurationState.id = reqInfo.id;
     return reqInfo.utils.createResponse$(() => {
       return {
-        body: this.category,
+        body: {
+          category: this.category,
+          categoryPageConfigurationState: this.categoryPageConfigurationState,
+          products: this.productInMemoryBackendService.products
+        },
         status: STATUS.OK
       };
     });
