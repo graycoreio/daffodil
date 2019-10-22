@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/navigation",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "Reducers, State, Selectors, and Drivers for retrieving navigation/category trees",
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/checkout",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "Interfaces built for daffodil/state",
   "repository": {
     "type": "git",
