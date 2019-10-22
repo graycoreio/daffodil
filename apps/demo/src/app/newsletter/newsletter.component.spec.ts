@@ -70,7 +70,13 @@ describe('NewsletterComponent', () => {
     it('should render class newsletter__right', () => {
       expect(newsletterElement).not.toBeNull();
     });
-
+    it('should call onNewsletterSubmit on click', () => {
+      spyOn(component, 'onNewsletterSubmit');
+      
+      newsletterElement = fixture.debugElement.nativeElement.querySelector('button');
+      newsletterElement.click();
+      expect(component.onNewsletterSubmit).toHaveBeenCalled();
+    });
   });
   describe('when loading$ is true', () => {
     let newsletterElement;
@@ -85,6 +91,13 @@ describe('NewsletterComponent', () => {
     it('should render newsletter__loading', () => {
       expect(newsletterElement).not.toBeNull();
     });
+    it('should call onNewsletterCancel on click', () => {
+      spyOn(component, 'onNewsletterCancel');
+      
+      newsletterElement = fixture.debugElement.nativeElement.querySelector('button');
+      newsletterElement.click();
+      expect(component.onNewsletterCancel).toHaveBeenCalled();
+    });
   })
   describe('when success$ is true', () => {
     let newsletterElement;
@@ -96,10 +109,10 @@ describe('NewsletterComponent', () => {
 
       newsletterElement = fixture.debugElement.nativeElement.querySelector('.newsletter__success');
     });
-    it('should render newsletter__loading', () => {
+    it('should render newsletter__success', () => {
       expect(newsletterElement).not.toBeNull();
     });
-  })
+  });
   describe('when an error is thrown', () => {
     let newsletterElement;
 
@@ -111,8 +124,15 @@ describe('NewsletterComponent', () => {
 
       newsletterElement = fixture.debugElement.nativeElement.querySelector('.newsletter__retry');
     });
-    it('should render newsletter__loading', () => {
+    it('should render newsletter__retry', () => {
       expect(newsletterElement).not.toBeNull();
     });
-  })
+    it('should call onNewsletterRetry on click', () => {
+      spyOn(component, 'onNewsletterRetry');
+      
+      newsletterElement = fixture.debugElement.nativeElement.querySelector('button');
+      newsletterElement.click();
+      expect(component.onNewsletterRetry).toHaveBeenCalled();
+    });
+  });
 });

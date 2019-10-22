@@ -21,7 +21,7 @@ export class NewsletterComponent {
   constructor(public newsletterFacade: DaffNewsletterFacade) {
   }
   onNewsletterSubmit() {
-    if (this.email.value != '') {
+    if (this.email.value !== '') {
       this.newsletterFacade.dispatch(new DaffNewsletterSubscribe<DaffNewsletterSubmission>(this.email.value));
     }
   }
