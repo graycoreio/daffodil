@@ -8,6 +8,8 @@ import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
 import { DaffMagentoNavigationService } from './navigation.service';
 import { GetCategoryTree } from './queries/get-category-tree';
+import { DaffNavigationTransformer } from '../injection-tokens/navigation-transformer.token';
+import { DaffMagentoNavigationTransformerService } from './transformers/navigation-transformer';
 
 describe('Driver | Magento | Navigation | NavigationService', () => {
   let navigationService: DaffMagentoNavigationService;
@@ -20,7 +22,8 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
         ApolloTestingModule
       ],
       providers: [
-        DaffMagentoNavigationService
+        DaffMagentoNavigationService,
+        { provide: DaffNavigationTransformer, useExisting: DaffMagentoNavigationTransformerService }
       ]
     });
 
