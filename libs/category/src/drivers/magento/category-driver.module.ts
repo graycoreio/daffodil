@@ -7,6 +7,8 @@ import { DaffCategoryQueryManager } from '../injection-tokens/category-query-man
 import { DaffMagentoCategoryGraphQlQueryManagerService } from './queries/category-query-manager.service';
 import { DaffMagentoCategoryResponseTransformService } from './transformers/category-response-transform.service';
 import { DaffCategoryResponseTransformer } from '../injection-tokens/category-response-transformer.token';
+import { DaffCategoryTransformer } from '../injection-tokens/category-transformer.token';
+import { DaffMagentoCategoryTransformerService } from './transformers/category-transformer.service';
 
 @NgModule({
   imports: [
@@ -25,6 +27,10 @@ export class DaffCategoryMagentoDriverModule {
         {
           provide: DaffCategoryResponseTransformer,
           useExisting: DaffMagentoCategoryResponseTransformService
+        },
+        {
+          provide: DaffCategoryTransformer,
+          useExisting: DaffMagentoCategoryTransformerService
         },
         {
           provide: DaffCategoryQueryManager,
