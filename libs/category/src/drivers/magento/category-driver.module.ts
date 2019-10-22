@@ -3,11 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { DaffCategoryDriver } from '../injection-tokens/category-driver.token';
 import { DaffMagentoCategoryService } from './category.service';
-import { DaffCategoryTransformer } from '../injection-tokens/category-transformer.token';
-import { DaffMagentoCategoryTransformerService } from './transformers/category-transformer.service';
 import { DaffCategoryQueryManager } from '../injection-tokens/category-query-manager.token';
 import { DaffMagentoCategoryGraphQlQueryManagerService } from './queries/category-query-manager.service';
 import { DaffMagentoCategoryResponseTransformService } from './transformers/category-response-transform.service';
+import { DaffCategoryResponseTransformer } from '../injection-tokens/category-response-transformer.token';
 
 @NgModule({
   imports: [
@@ -24,7 +23,7 @@ export class DaffCategoryMagentoDriverModule {
           useExisting: DaffMagentoCategoryService
         },
         {
-          provide: DaffCategoryTransformer,
+          provide: DaffCategoryResponseTransformer,
           useExisting: DaffMagentoCategoryResponseTransformService
         },
         {
