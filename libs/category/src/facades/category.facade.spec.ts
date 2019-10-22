@@ -4,37 +4,42 @@ import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
 import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
+import { DaffProductFactory } from '@daffodil/product/testing';
+import { DaffProductUnion, fromProduct, DaffProductGridLoadSuccess } from '@daffodil/product';
 
 import { DaffCategoryFacade } from './category.facade';
 import { DaffCategoryLoad, DaffCategoryLoadFailure, DaffCategoryLoadSuccess } from '../actions/category.actions';
 import { categoryReducers } from '../reducers/category-reducers';
-import { CategoryReducersState } from '../reducers/category-reducers.interface';
 import { DaffCategory } from '../models/category';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
 
 describe('DaffCategoryFacade', () => {
-  let store: MockStore<Partial<CategoryReducersState>>;
+  let store: MockStore<any>;
   let facade: DaffCategoryFacade;
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
   const categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
+  const productFactory: DaffProductFactory = new DaffProductFactory();
   let category: DaffCategory;
   let categoryPageConfigurationState: DaffCategoryPageConfigurationState;
-
+  let product: DaffProductUnion;
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports:[
         StoreModule.forRoot({
           category: combineReducers(categoryReducers),
+          product: combineReducers(fromProduct.reducers)
         })
       ],
       providers: [
         DaffCategoryFacade,
       ]
     })
-
+    
     category = categoryFactory.create();
     categoryPageConfigurationState = categoryPageConfigurationFactory.create();
+    product = productFactory.create();
     categoryPageConfigurationState.id = category.id;
+    category.productIds = [product.id];
     store = TestBed.get(Store);
     facade = TestBed.get(DaffCategoryFacade);
   });
@@ -60,7 +65,7 @@ describe('DaffCategoryFacade', () => {
   
     it('should be a category after a category is loaded successfully', () => {
       const expected = cold('a', { a: category });
-      store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: null }));
+      store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
       expect(facade.selectedCategory$).toBeObservable(expected);
     });
   });
@@ -73,8 +78,22 @@ describe('DaffCategoryFacade', () => {
   
     it('should return an observable of the CategoryPageConfigurationState', () => {
       const expected = cold('a', { a: categoryPageConfigurationState });
-      store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: null }));
+      store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
       expect(facade.selectCategoryPageConfigurationState$).toBeObservable(expected);
+    });
+  });
+
+  describe('products$', () => {
+    it('should be undefined initially', () => {
+      const expected = cold('a', { a: [] });
+      expect(facade.products$).toBeObservable(expected);
+    });
+  
+    it('should return an observable of the selectCategoryProducts state', () => {
+      const expected = cold('a', { a: [product] });
+      store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+      store.dispatch(new DaffProductGridLoadSuccess([product]));
+      expect(facade.products$).toBeObservable(expected);
     });
   });
 

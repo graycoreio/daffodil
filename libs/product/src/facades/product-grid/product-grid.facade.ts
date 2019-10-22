@@ -31,13 +31,6 @@ export class DaffProductGridFacade implements DaffStoreFacade<Action> {
   }
 
   /**
-   * A selector that returns products on state by an array of ids.
-   */
-  getProductsByIds$(ids: string[]): Observable<DaffProductUnion[]> {
-    return this.store.pipe(select(fromProduct.selectProducts, {ids: ids}));
-  }
-
-  /**
    * Dispatches an action to the rxjs action stream.
    */
   dispatch(action: Action) {

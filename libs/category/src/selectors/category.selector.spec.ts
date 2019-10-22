@@ -2,7 +2,9 @@ import { TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
+import { fromProduct, DaffProductGridLoadSuccess, DaffProductUnion } from '@daffodil/product';
 import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffCategoryLoadSuccess } from '../actions/category.actions';
 import { 
@@ -14,7 +16,10 @@ import {
   selectCategoryTotal, 
   selectCategoryPageConfigurationState,
   selectCategoryState, 
-  selectSelectedCategoryId
+  selectSelectedCategoryId,
+  selectSelectedCategory,
+  selectCategoryProductIds,
+  selectCategoryProducts
 } from './category.selector';
 import { DaffCategory } from '../models/category';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
@@ -25,23 +30,29 @@ describe('DaffCategorySelectors', () => {
   let store: Store<CategoryReducersState>;
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
   const categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
+  const productFactory: DaffProductFactory = new DaffProductFactory();
   let stubCategory: DaffCategory;
   const stubCategoryPageConfigurationState = categoryPageConfigurationFactory.create();
-  
+  let product: DaffProductUnion;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
           category: combineReducers(categoryReducers),
+          product: combineReducers(fromProduct.reducers)
         })
       ]
     });
     
     stubCategory = categoryFactory.create();
+    product = productFactory.create();
     stubCategoryPageConfigurationState.id = stubCategory.id;
+    stubCategory.productIds = [product.id];
     store = TestBed.get(Store);
 
     store.dispatch(new DaffCategoryLoadSuccess({ category: stubCategory, categoryPageConfigurationState: stubCategoryPageConfigurationState, products: null }));
+    store.dispatch(new DaffProductGridLoadSuccess([product]));
   });
 
   describe('selectCategoryState', () => {
@@ -129,6 +140,33 @@ describe('DaffCategorySelectors', () => {
     it('returns the total number of categories', () => {
       const selector = store.pipe(select(selectCategoryTotal));
       const expected = cold('a', { a: 1 });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectSelectedCategory', () => {
+
+    it('selects the selected category', () => {
+      const selector = store.pipe(select(selectSelectedCategory));
+      const expected = cold('a', { a: stubCategory });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCategoryProductIds', () => {
+
+    it('selects the productIds of the selected category', () => {
+      const selector = store.pipe(select(selectCategoryProductIds));
+      const expected = cold('a', { a: stubCategory.productIds });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCategoryProducts', () => {
+
+    it('selects the products of the selected category', () => {
+      const selector = store.pipe(select(selectCategoryProducts));
+      const expected = cold('a', { a: [product] });
       expect(selector).toBeObservable(expected);
     });
   });

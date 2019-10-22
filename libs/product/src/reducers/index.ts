@@ -84,14 +84,6 @@ export const selectProduct = createSelector(
 );
 
 /**
- * Selector for a Product by Id.
- */
-export const selectProducts = createSelector(
-  selectProductEntitiesState,
-  (products, props) => props.ids.map(id => products.entities[id])
-);
-
-/**
  * Selector for Product Grid state.
  */
 export const selectProductGridState = createSelector(
