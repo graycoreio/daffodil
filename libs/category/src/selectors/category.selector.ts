@@ -95,11 +95,11 @@ export const selectSelectedCategory = createSelector(
 
 export const selectCategoryProductIds = createSelector(
   selectSelectedCategory,
-  (category: DaffCategory) => category ? category.productIds : undefined
-)
+  (category: DaffCategory) => category ? category.productIds : []
+);
 
 export const selectCategoryProducts = createSelector(
   selectCategoryProductIds,
   fromProduct.selectAllProducts,
   (ids, products: DaffProductUnion[]) => products.filter(product => ids.indexOf(product.id) >= 0)
-)
+);
