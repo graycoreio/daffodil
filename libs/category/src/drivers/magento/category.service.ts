@@ -16,7 +16,7 @@ import { CompleteCategoryResponse } from './models/outputs/complete-category-res
 import { GetACategoryResponse } from './models/outputs/get-category-response';
 import { DaffCategoryQueryManager } from '../injection-tokens/category-query-manager.token';
 import { DaffCategoryQueryManagerInterface } from '../interfaces/category-query-manager.interface';
-import { DaffCategoryTransformer } from '../injection-tokens/category-transformer.token';
+import { DaffCategoryResponseTransformer } from '../injection-tokens/category-response-transformer.token';
 import { DaffCategoryResponseTransformerInterface } from '../interfaces/category-response-transformer.interface';
 
 @Injectable({
@@ -28,7 +28,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     private apollo: Apollo,
     @Inject(DaffCategoryQueryManager) public queryManager: DaffCategoryQueryManagerInterface,
     @Inject(DaffProductQueryManager) public productQueryManager: DaffMagentoProductQueryManagerInterface,
-    @Inject(DaffCategoryTransformer) public magentoCategoryResponseTransformerService: DaffCategoryResponseTransformerInterface<DaffGetCategoryResponse>
+    @Inject(DaffCategoryResponseTransformer) public magentoCategoryResponseTransformerService: DaffCategoryResponseTransformerInterface<DaffGetCategoryResponse>
   ) {}
 
   get(categoryRequest: DaffCategoryRequest): Observable<DaffGetCategoryResponse> {
