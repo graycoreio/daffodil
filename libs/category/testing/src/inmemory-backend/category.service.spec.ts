@@ -3,7 +3,6 @@ import { TestBed } from '@angular/core/testing';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
 
 import { DaffInMemoryBackendCategoryService } from './category.service';
-import { isCategory } from '../helpers/category-helper';
 
 describe('Driver | InMemory | Category | DaffInMemoryBackendCategoryService', () => {
   let categoryTestingService;
@@ -25,23 +24,6 @@ describe('Driver | InMemory | Category | DaffInMemoryBackendCategoryService', ()
     expect(categoryTestingService).toBeTruthy();
   });
 
-  describe('createDb', () => {
-    let result;
-
-    beforeEach(() => {
-      result = categoryTestingService.createDb();
-    });
-
-    it('should return a category with productIds that match the products from the DaffInMemoryBackendProductService', () => {
-      const expectedIds = inMemoryBackendProductService.products.map(product => product.id);
-      expect(isCategory(result.category)).toBeTruthy();
-      result.category.productIds.map(productId => {
-        expect(expectedIds.filter(id => id === productId).length).toBeGreaterThan(0);
-      })
-    });
-  });
-
-
   describe('get - with any parameter', () => {
       
     let reqInfoStub;
@@ -60,8 +42,12 @@ describe('Driver | InMemory | Category | DaffInMemoryBackendCategoryService', ()
       result = categoryTestingService.get(reqInfoStub);
     });
 
-    it('should return a category', () => {
-      expect(result.body).toEqual(categoryTestingService.category);
+    it('should return a GetCategoryResponse', () => {
+      expect(result.body).toEqual({
+        category: categoryTestingService.category,
+        categoryPageConfigurationState: categoryTestingService.categoryPageConfigurationState,
+        products: inMemoryBackendProductService.products
+      });
     });
   });
 });
