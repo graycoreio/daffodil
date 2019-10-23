@@ -41,7 +41,8 @@ export const apiDocs =  new Package('checkout', [
       'checkout/src/index.ts',
       'core/src/index.ts',
       'design/src/index.ts',
-      'product/src/index.ts'
+      'product/src/index.ts',
+      'newsletter/src/index.ts'
     ];
   })
   .config(function(computePathsProcessor, EXPORT_DOC_TYPES, generateApiList) {
