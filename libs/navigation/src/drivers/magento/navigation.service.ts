@@ -1,24 +1,25 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 
-import { DaffNavigationTree } from '../../models/navigation-tree';
 import { DaffNavigationServiceInterface } from '../interfaces/navigation-service.interface';
 import { GetCategoryTree } from './queries/get-category-tree';
-import { DaffMagentoNavigationTransformerService } from './transformers/navigation-transformer';
 import { GetCategoryTreeResponse } from './interfaces/get-category-tree-response';
+import { DaffNavigationTransformer } from '../injection-tokens/navigation-transformer.token';
+import { DaffNavigationTransformerInterface } from '../interfaces/navigation-transformer.interface';
+import { DaffNavigationTreeUnion } from '../../models/navigation-tree-union';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoNavigationService implements DaffNavigationServiceInterface<DaffNavigationTree> {
+export class DaffMagentoNavigationService implements DaffNavigationServiceInterface<DaffNavigationTreeUnion> {
   
   constructor(
     private apollo: Apollo,
-    private transformer: DaffMagentoNavigationTransformerService) {}
+    @Inject(DaffNavigationTransformer) private transformer: DaffNavigationTransformerInterface<DaffNavigationTreeUnion>) {}
 
-  get(categoryId: string): Observable<DaffNavigationTree> {
+  get(categoryId: string): Observable<DaffNavigationTreeUnion> {
     return this.apollo.query<GetCategoryTreeResponse>({
       query: GetCategoryTree,
       variables: {
