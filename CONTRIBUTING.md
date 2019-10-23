@@ -212,6 +212,7 @@ The following is the list of supported scopes:
 * **design**
 * **driver**
 * **product**
+* **newsletter**
 
 #### Apps
 * **all**
