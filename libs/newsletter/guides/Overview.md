@@ -3,16 +3,16 @@
 The Daffodil Newsletter library manages your newsletter subscription service. It utilizes multiple different ecommerce API drivers to make implementing easy. What I learned in boating school...
 
 # Getting Started
-To get started, first import the `DaffNewsletterModule` in your app.module
+To get started, first import the `DaffNewsletterModule` in your app.module. Followed by including the `ngrx store`, this will be relevant later when utitlizing the redux features of the newsletter module.
 
 ```typescript
 @ngModule({
   imports:[
     DaffNewsletterModule
+    //store stuff 
   ]
 })
 ```
-
 Then to utilize the Newsletter Facade inside your component, include an instance of 'DaffNewsletterFacade' in your constructor
 
 ```typescript
@@ -31,7 +31,7 @@ export class NewsletterSubmission extends DaffNewsletterSubmission{
 }
 ```
 
-# Utilizing the Facade
+# Sending a subscription
 
 The Newsletter Library utilizes a packaged redux library using `ngrx` to help performance and simplify your app. The state contains three values of `success$`, `error$`, and `loading$`. When the the facade dispatches an action it will update the three values to be utilized in your app.
 
