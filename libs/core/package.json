@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/core",
-  "version": "0.2.13",
+  "version": "0.0.0-PLACEHOLDER",
   "description": "Interfaces built for daffodil/state",
   "repository": {
     "type": "git",
@@ -19,8 +19,6 @@
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
-    "@angular/common": "^7.2.0",
-    "@angular/core": "^7.2.0",
-    "rxjs": "6.4.0"
+    "@angular/core": "0.0.0-PLACEHOLDER"
   }
 }

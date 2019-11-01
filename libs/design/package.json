@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/design",
-  "version": "0.2.13",
+  "version": "0.0.0-PLACEHOLDER",
   "author": "Graycore LLC",
   "license": "MIT",
   "bugs": {
@@ -26,11 +26,16 @@
     "url": "https://github.com/graycoreio/daffodil"
   },
   "peerDependencies": {
-    "@angular/common": "^7.2.0",
-    "@angular/core": "^7.2.0",
-    "@fortawesome/angular-fontawesome": "^0.5.0",
-    "@fortawesome/fontawesome-svg-core": "^1.2.22",
-    "@fortawesome/free-solid-svg-icons": "^5.10.0",
-    "rxjs": "6.4.0"
+    "@angular/animations": "0.0.0-PLACEHOLDER",
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@angular/forms": "0.0.0-PLACEHOLDER",
+    "@fortawesome/angular-fontawesome": "0.0.0-PLACEHOLDER",
+    "@fortawesome/fontawesome-svg-core": "0.0.0-PLACEHOLDER",
+    "@fortawesome/free-solid-svg-icons": "0.0.0-PLACEHOLDER",
+    "rxjs": "0.0.0-PLACEHOLDER"
+  },
+  "optionalDependencies": {
+    "faker": "0.0.0-PLACEHOLDER"
   }
 }

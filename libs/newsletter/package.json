@@ -1,13 +1,17 @@
 {
   "name": "@daffodil/newsletter",
-  "version": "0.2.13",
+  "version": "0.0.0-PLACEHOLDER",
   "peerDependencies": {
-    "@angular/common": "^7.2.0",
-    "@angular/core": "^7.2.0",
-    "@daffodil/core": "^0.2.0",
-    "@ngrx/effects": "^8.0.0",
-    "@ngrx/store": "^8.0.0",
-    "rxjs": "6.5.3"
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@ngrx/effects": "0.0.0-PLACEHOLDER",
+    "@ngrx/store": "0.0.0-PLACEHOLDER",
+    "rxjs": "0.0.0-PLACEHOLDER"
+  },
+  "optionalDependencies": {
+    "faker": "0.0.0-PLACEHOLDER",
+    "angular-in-memory-web-api": "0.0.0-PLACEHOLDER"
   },
   "repository": {
     "type": "git",
@@ -20,7 +24,7 @@
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "devDependencies": {
-    "@daffodil/core": "^0.2.0"
+    "@daffodil/core": "0.0.0-PLACEHOLDER"
   },
   "scripts": {
     "build": "ng build newsletter --prod",
