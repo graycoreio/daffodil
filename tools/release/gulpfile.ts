@@ -6,6 +6,8 @@ import { build } from './build/build';
 import { commitChangelogAndTag } from './commit/commitChangelogAndTag';
 import { cleanup } from './cleanup/cleanup';
 import { publish } from './publish/publish';
+import { leafVersion } from './version/leaf-version';
+import { clean } from './prepare/clean';
 
 const release = series(
   prepare, 
@@ -18,6 +20,12 @@ const release = series(
 
 export default release;
 
+
+export const generateReleasablePackages = series(
+  clean,
+  build,
+  leafVersion
+);
 
 
 
