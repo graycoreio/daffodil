@@ -17,15 +17,12 @@ const release = series(
   publish,
   cleanup
 );
-
 export default release;
-
 
 export const generateReleasablePackages = series(
   clean,
   build,
   leafVersion
 );
-
 
 
