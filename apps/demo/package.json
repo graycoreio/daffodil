@@ -8,7 +8,7 @@
     "url": "https://github.com/graycoreio/daffodil/issues"
   },
   "scripts": {
-    "build": "ng build demo",
+    "build": "ng build demo --prod",
     "lint": "ng lint demo",
     "test": "ng test demo --watch=false --browsers=ChromeHeadless"
   },
