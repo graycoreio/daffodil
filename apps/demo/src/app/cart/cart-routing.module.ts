@@ -1,6 +1,6 @@
-import { DemoCartViewComponent } from "./pages/cart-view/cart-view.component";
-import { RouterModule, Routes } from "@angular/router";
-import { NgModule } from "@angular/core";
+import { DemoCartViewComponent } from './pages/cart-view/cart-view.component';
+import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
 
 const category: Routes = [
   {

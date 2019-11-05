@@ -18,8 +18,6 @@ import { DaffProgressIndicatorModule } from '@daffodil/design';
 import { AppComponent } from './app.component';
 
 import { ProductModule } from './product/product.module';
-
-import { CartModule } from './cart/cart.module';
 import { CheckoutModule } from './checkout/checkout.module';
 
 import { getDriverVariant } from './helper/driver-variant';
