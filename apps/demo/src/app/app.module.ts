@@ -20,12 +20,12 @@ import { AppComponent } from './app.component';
 import { ProductModule } from './product/product.module';
 import { CheckoutModule } from './checkout/checkout.module';
 
-import { getDriverVariant } from './helper/driver-variant';
 import { NotFoundModule } from './misc/not-found/not-found.module';
 import { TemplateModule } from './core/template/template/template.module';
 import { ThankYouModule } from './thank-you/thank-you.module';
 
 import { DemoRoutingComponentModule } from './routing/routing-component.module';
+import { InMemoryModule } from './in-memory.module';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,7 @@ import { DemoRoutingComponentModule } from './routing/routing-component.module';
 
     HttpClientModule,
 
-    getDriverVariant(environment.driver),
+    InMemoryModule,
     
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
