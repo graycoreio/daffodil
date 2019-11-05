@@ -53,7 +53,6 @@ import { DemoRoutingComponentModule } from './routing/routing-component.module';
     DemoRoutingComponentModule,
 
     ProductModule,
-    CartModule,
     CheckoutModule,
     ThankYouModule,
     TemplateModule,

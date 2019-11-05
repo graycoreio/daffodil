@@ -1,7 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { ProductGridViewComponent } from './product/pages/product-grid-view/product-grid-view.component';
-import { CartViewComponent } from './cart/pages/cart-view/cart-view.component';
 import { ProductViewComponent } from './product/pages/product-view/product-view.component';
 import { CheckoutViewComponent } from './checkout/pages/checkout-view/checkout-view.component';
 import { TemplateComponent } from './core/template/template/template.component';
@@ -18,7 +17,7 @@ export const appRoutes: Routes = [
   {
     path: '', component: TemplateComponent, children: [
       { path: 'product-grid', component: ProductGridViewComponent},
-      { path: 'cart', component: CartViewComponent },
+      { path: 'cart',       loadChildren: () => import('./cart/cart.module').then(m => m.DemoCartModule)},
       { path: 'product/:id', component: ProductViewComponent },
       { 
         path: 'checkout',

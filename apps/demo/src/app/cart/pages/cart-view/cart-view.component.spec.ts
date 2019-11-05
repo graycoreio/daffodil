@@ -7,7 +7,7 @@ import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffContainerModule, DaffLoadingIconModule } from '@daffodil/design';
 
-import { CartViewComponent } from './cart-view.component';
+import { DemoCartViewComponent } from './cart-view.component';
 
 const cartFactory = new DaffCartFactory();
 const cart = cartFactory.create();
@@ -31,15 +31,15 @@ class MockCartWrapperComponent {
   @Input() cart: DaffCart;
 }
 
-describe('CartViewComponent', () => {
-  let component: CartViewComponent;
-  let fixture: ComponentFixture<CartViewComponent>;
+describe('DemoCartViewComponent', () => {
+  let component: DemoCartViewComponent;
+  let fixture: ComponentFixture<DemoCartViewComponent>;
   let cartContainer: MockCartContainerComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        CartViewComponent,
+        DemoCartViewComponent,
         MockCartContainerComponent,
         MockCartWrapperComponent,
       ],
@@ -52,7 +52,7 @@ describe('CartViewComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CartViewComponent);
+    fixture = TestBed.createComponent(DemoCartViewComponent);
     component = fixture.componentInstance;
     
     cartContainer = fixture.debugElement.query(By.css('[cart-container]')).componentInstance;
