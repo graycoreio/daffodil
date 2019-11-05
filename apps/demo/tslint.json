@@ -17,6 +17,23 @@
       true,
       "Component",
       "Container"
+    ],
+    "import-blacklist": [
+      true,
+      "libs/product/src",
+      "libs/newsletter/src",
+      "libs/cart/src",
+      "libs/category/src",
+      "libs/core/src",
+      "libs/design/src",
+      "libs/driver/src",
+      "libs/product/testing",
+      "libs/newsletter/testing",
+      "libs/cart/testing",
+      "libs/category/testing",
+      "libs/core/testing",
+      "libs/design/testing",
+      "libs/driver/testing"
     ]
   }
 }
