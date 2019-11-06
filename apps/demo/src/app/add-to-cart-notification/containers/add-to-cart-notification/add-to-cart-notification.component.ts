@@ -3,8 +3,15 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { DaffProduct, fromProduct } from '@daffodil/product';
+import { State } from '../../reducers/add-to-cart-notification.reducer'; 
+import { 
+  selectOpen, 
+  selectProductQty, 
+  selectLoading, 
+  selectProductId,
+  selectCartItemCount
+} from '../../selectors/add-to-cart-notification.selector';
 
-import * as fromDemoAddToCartNotification from '../../reducers/index';
 import { CloseAddToCartNotification } from '../../actions/add-to-cart-notification.actions';
 import { switchMap } from 'rxjs/operators';
 
@@ -26,41 +33,30 @@ export class AddToCartNotificationComponent implements OnInit {
   productId$: Observable<string>;
   product$: Observable<DaffProduct>;
 
-  _verticalPosition = 'center';
-  _horizontalPosition = 'center';
-
-  @Input()
-  get verticalPosition(): string { return this._verticalPosition; }
-  set verticalPosition(value: string) { this._verticalPosition = value; }
-
-  @Input()
-  get horizontalPosition(): string { return this._horizontalPosition; }
-  set horizontalPosition(value: string) { this._horizontalPosition = value; }
-
-  constructor(private store: Store<fromDemoAddToCartNotification.State>) { }
+  constructor(private store: Store<State>) { }
 
   ngOnInit() {
     this.open$ = this.store.pipe(
-      select(fromDemoAddToCartNotification.selectOpen)
+      select(selectOpen)
     );
 
     this.productQty$ = this.store.pipe(
-      select(fromDemoAddToCartNotification.selectProductQty)
+      select(selectProductQty)
     );
 
     this.loading$ = this.store.pipe(
-      select(fromDemoAddToCartNotification.selectLoading)
+      select(selectLoading)
     );
 
     this.productId$ = this.store.pipe(
-      select(fromDemoAddToCartNotification.selectProductId)
+      select(selectProductId)
     );
 
     this.product$ = this.productId$.pipe(switchMap((id) => this.store.pipe(
       select(fromProduct.selectProduct, { id: id })
     )));
 
-    this.cartItemCount$ = this.store.pipe(select(fromDemoAddToCartNotification.selectCartItemCount))
+    this.cartItemCount$ = this.store.pipe(select(selectCartItemCount))
   }
 
   onHide() {

@@ -1,0 +1,29 @@
+<daff-modal (hide)="onHide()" verticalPosition="center" horizontalPosition="center">
+  <div class="add-to-cart-notification">
+    <ng-container *ngIf="!(loading$ | async); else loadingTemplate">
+      <div class="add-to-cart-notification__header">
+        <span class="add-to-cart-notification__check-icon">
+          <fa-icon [icon]="faCheck" aria-hidden="true"></fa-icon>
+        </span>
+        <span>Added to Cart</span>
+        <fa-icon [icon]="faTimes" aria-hidden="true" (click)="onHide()" class="add-to-cart-notification__close">
+        </fa-icon>
+      </div>
+      <demo-product-added 
+        class="add-to-cart-notification__product-added" 
+        *ngIf="product$ | async as product;"
+        [product]="product"
+        [qty]="productQty$ | async"></demo-product-added>
+      <div daff-button-set class="add-to-cart-notification__button-set">
+        <button type="button" daff-stroked-button (click)="onHide()">
+          View Cart ({{(cartItemCount$ | async)}})
+        </button>
+        <button type="button" daff-button color="secondary" (click)="onHide()">Checkout</button>
+      </div>
+    </ng-container>
+
+    <ng-template #loadingTemplate>
+      <daff-loading-icon></daff-loading-icon>
+    </ng-template>
+  </div>
+</daff-modal>

@@ -26,6 +26,7 @@ import { ThankYouModule } from './thank-you/thank-you.module';
 
 import { DemoRoutingComponentModule } from './routing/routing-component.module';
 import { InMemoryModule } from './in-memory.module';
+import { DemoAddToCartNotificationModule } from './add-to-cart-notification/add-to-cart-notification.module';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { InMemoryModule } from './in-memory.module';
     AppRoutingModule,
     DemoRoutingComponentModule,
 
+    DemoAddToCartNotificationModule.forRoot(),
     ProductModule,
     CheckoutModule,
     ThankYouModule,

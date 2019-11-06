@@ -1,28 +1,23 @@
-import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
+import { createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
 import { fromCart } from '@daffodil/cart';
 
-import * as fromDemoAddToCartNotification from './add-to-cart-notification.reducer';
+import * as fromDemoAddToCartNotification from '../reducers/add-to-cart-notification.reducer';
+import { State } from '../reducers/add-to-cart-notification.reducer';
 
-export interface State {
-  addToCartNotification: fromDemoAddToCartNotification.State,
-}
-
-export const reducers : ActionReducerMap<State> = {
-  addToCartNotification: fromDemoAddToCartNotification.reducer,
-}
+export const demoAddToCartNotificationFeatureKey = 'demoAddToCartNotification';
 
 /**
  * Demo AddToCartNotification State
  */
-export const selectDemoAddToCartNotificationState = createFeatureSelector<State>('demoAddToCartNotification');
+export const selectDemoAddToCartNotificationState = createFeatureSelector<State>(demoAddToCartNotificationFeatureKey);
 
 /**
  * Demo AddToCartNotification AddToCartNotification State
  */
 export const addToCartNotificationStateSelector = createSelector(
   selectDemoAddToCartNotificationState,
-  (state: State) => state.addToCartNotification
+  (state: State) => state
 );
 
 export const selectOpen: MemoizedSelector<object, boolean> = createSelector(

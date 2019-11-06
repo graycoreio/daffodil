@@ -1,9 +1,1 @@
-<div class="daff-modal" *ngIf="show" [@fade]="_animationState">
-  <div class="daff-modal__content" [ngClass]="_modalContentClasses">
-    <ng-content></ng-content>
-  </div>
-
-  <daff-backdrop class="daff-modal__backdrop" *ngIf="show"
-    [transparent]="!backdropIsVisible"
-    (backdropClicked)="_backdropClicked()"></daff-backdrop>
-</div>
+<ng-template cdkPortalOutlet></ng-template>

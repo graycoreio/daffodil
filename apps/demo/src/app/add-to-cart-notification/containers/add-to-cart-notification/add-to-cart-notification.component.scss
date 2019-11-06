@@ -1,0 +1,51 @@
+@import 'utilities';
+@import 'theme';
+
+.add-to-cart-notification {
+	background-color: $white;
+	padding: 25px;
+	position: relative;
+	width: 100vw;
+
+	@include breakpoint(tablet) {
+		width: 500px;
+	}
+
+	&__header {
+		margin-bottom: 25px;
+		@include embolden();
+		@include uppercase();
+	}
+
+	&__check-icon {
+		margin-right: 15px;
+		font-size: $medium-font-size;
+	}
+
+	&__close {
+		position: absolute;
+		right: 25px;
+		font-size: $medium-font-size;
+		@include clickable();
+	}
+
+	&__product-added {
+		display: block;
+		margin-bottom: 25px;
+	}
+
+	&__button-set {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-gap: 5px;
+
+		@include breakpoint(mobile) {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		> * {
+			font-size: $medium-font-size;
+			flex: 1;
+		}
+	}
+}

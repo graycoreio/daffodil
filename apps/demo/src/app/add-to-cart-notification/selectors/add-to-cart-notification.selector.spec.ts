@@ -1,15 +1,17 @@
 import { TestBed, async } from '@angular/core/testing';
-import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
+import { StoreModule, Store, select, combineReducers } from '@ngrx/store';
 
 import { DaffCart, DaffCartReset, DaffCartLoadSuccess, fromCart } from '@daffodil/cart';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 
-import * as fromAddToCartNotification from './index';
+import { State, reducer } from '../reducers/add-to-cart-notification.reducer';
+import * as fromAddToCartNotification from './add-to-cart-notification.selector';
+
 import { CloseAddToCartNotification } from '../actions/add-to-cart-notification.actions';
 
 describe('selectDemoAddToCartNotificationState', () => {
 
-  let store: Store<fromAddToCartNotification.State>;
+  let store: Store<State>;
   let expectedOpen: boolean;
   let expectedProductQty: number;
   let expectedProductId: string;
@@ -21,7 +23,7 @@ describe('selectDemoAddToCartNotificationState', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          demoAddToCartNotification: combineReducers(fromAddToCartNotification.reducers),
+          demoAddToCartNotification: reducer,
           cart: combineReducers(fromCart.reducers)
         })
       ]

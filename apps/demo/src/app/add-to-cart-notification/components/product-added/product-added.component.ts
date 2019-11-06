@@ -9,6 +9,14 @@ import { DaffProduct } from '@daffodil/product';
 })
 export class ProductAddedComponent {
 
+  /**
+   * The number of products added to the cart.
+   */
   @Input() qty: number;
+
+  /**
+   * The product added to the cart
+   * TODO(damienwebdev) change to CartItem
+   */
   @Input() product: DaffProduct;
 }

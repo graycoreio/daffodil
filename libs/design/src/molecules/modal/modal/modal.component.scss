@@ -3,43 +3,40 @@ $daff-modal-content-z-index: 3;
 $daff-modal-backdrop-z-index: 2;
 $daff-modal-z-index: 1;
 
-.daff-modal {
-	display: grid;
-	min-height: 100%;
+:host {
 	position: fixed;
-	width: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 	z-index: 1;
+	display: flex;
+}
 
-	&__content {
-		position: absolute;
-		z-index: $daff-modal-content-z-index;
+.daff-modal {
+	z-index: $daff-modal-content-z-index;
 
-		&--top {
-			align-self: start;
-		}
-
-		&--bottom {
-			align-self: end;
-		}
-
-		&--middle {
-			align-self: center;
-		}
-
-		&--left {
-			justify-self: start;
-		}
-
-		&--right {
-			justify-self: end;
-		}
-
-		&--center {
-			justify-self: center;
-		}
+	&--top {
+		align-self: start;
 	}
 
-	&__backdrop {
-		z-index: $daff-modal-backdrop-z-index;
+	&--bottom {
+		align-self: end;
+	}
+
+	&--middle {
+		align-self: center;
+	}
+
+	&--left {
+		justify-self: start;
+	}
+
+	&--right {
+		justify-self: end;
+	}
+
+	&--center {
+		justify-self: center;
 	}
 }
