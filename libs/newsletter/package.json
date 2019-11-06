@@ -9,12 +9,23 @@
     "@ngrx/store": "^8.0.0",
     "rxjs": "6.5.3"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
   "devDependencies": {
     "@daffodil/core": "^0.2.0"
   },
   "scripts": {
     "build": "ng build newsletter --prod",
     "lint": "ng lint newsletter",
-    "test": "ng test newsletter --watch=false --browsers=ChromeHeadless"
+    "test": "ng test newsletter --watch=false --browsers=ChromeHeadless",
+    "publish": "(cd ../../dist/newsletter; npm publish --access=public)"
   }
 }
