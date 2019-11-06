@@ -3,24 +3,26 @@ import { CommonModule } from '@angular/common';
 
 import { DaffCartModule } from '@daffodil/cart';
 
-import { CartViewComponent } from './pages/cart-view/cart-view.component';
+import { DemoCartViewComponent } from './pages/cart-view/cart-view.component';
 import { DaffLoadingIconModule } from '@daffodil/design';
 import { CartWrapperModule } from './components/cart-wrapper/cart-wrapper.module';
 import { DaffContainerModule } from '@daffodil/design';
+import { DemoCartRoutingModule } from './cart-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     DaffCartModule,
     DaffLoadingIconModule,
+    DaffContainerModule,
     CartWrapperModule,
-    DaffContainerModule
+    DemoCartRoutingModule,
   ],
   declarations: [
-    CartViewComponent
+    DemoCartViewComponent
   ],
   exports: [
-    CartViewComponent
+    DemoCartViewComponent
   ]
 })
-export class CartModule { }
+export class DemoCartModule { }
