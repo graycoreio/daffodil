@@ -180,6 +180,11 @@
 /libs/checkout/**                                               @graycoreio/daff-checkout
 
 # ================================================
+#  @daffodil/newsletter
+# ================================================
+/libs/newsletter/**                                             @Nolan-Arnold
+
+# ================================================
 #  Docs: Maintainers
 # ================================================
 /docs/**                                                        @graycoreio/daff-docs
