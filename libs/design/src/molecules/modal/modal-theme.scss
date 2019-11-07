@@ -1,0 +1,8 @@
+@mixin daff-modal-theme($theme) {
+	$base: daff-map-deep-get($theme, 'core.base');
+	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
+
+	.daff-modal {
+		background: $base;
+	}
+}

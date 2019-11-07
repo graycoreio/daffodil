@@ -1,3 +1,5 @@
+@import '../../../scss/daff-util';
+
 // Stacking Context Layers
 $daff-modal-content-z-index: 3;
 $daff-modal-backdrop-z-index: 2;
@@ -6,6 +8,11 @@ $daff-modal-z-index: 1;
 :host {
 	z-index: 3;
 	display: flex;
+	height: 100%;
+
+	@include breakpoint(mobile) {
+		height: auto;
+	}
 
 	&.daff-modal {
 		&--top {

@@ -4,6 +4,9 @@
 .header {
   padding: 0;
   @include section-divider;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 
   &__menu {
     border-right: 1px solid daff-color($daff-gray, 20);

@@ -11,10 +11,10 @@
     <demo-product-added class="add-to-cart-notification__product-added" *ngIf="product$ | async as product;"
       [product]="product" [qty]="productQty$ | async"></demo-product-added>
     <div daff-button-set class="add-to-cart-notification__button-set">
-      <button type="button" daff-stroked-button (click)="onHide()">
+      <button type="button" daff-stroked-button (click)="onHide()" demoViewCart>
         View Cart ({{(cartItemCount$ | async)}})
       </button>
-      <button type="button" daff-button color="secondary" (click)="onHide()">Checkout</button>
+      <button type="button" daff-button color="secondary" (click)="onHide()" demoProceedToCheckout>Checkout</button>
     </div>
   </ng-container>
 

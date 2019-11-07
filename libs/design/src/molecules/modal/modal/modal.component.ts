@@ -75,6 +75,8 @@ export class DaffModalComponent implements DaffModalConfiguration {
     this._horizontalPosition = value;
   }
 
+  @HostBinding('class.daff-modal') modalClass = true;
+
   @HostBinding('class.daff-modal--left') get left(): boolean {
     return this._horizontalPosition === 'left';
   }

@@ -51,7 +51,7 @@ import { DemoAddToCartNotificationModule } from './add-to-cart-notification/add-
     AppRoutingModule,
     DemoRoutingComponentModule,
 
-    DemoAddToCartNotificationModule.forRoot(),
+    DemoAddToCartNotificationModule,
     ProductModule,
     CheckoutModule,
     ThankYouModule,

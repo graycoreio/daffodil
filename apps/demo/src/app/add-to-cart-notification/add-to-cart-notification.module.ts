@@ -7,10 +7,9 @@ import { AddToCartNotificationComponent } from './containers/add-to-cart-notific
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { DaffModalModule, DaffLoadingIconModule, DaffButtonModule, DaffModalService } from '@daffodil/design';
-import { Store, select } from '@ngrx/store';
-import { selectOpen } from './selectors/add-to-cart-notification.selector';
-import { CloseAddToCartNotification } from './actions/add-to-cart-notification.actions';
+import { DaffModalModule, DaffLoadingIconModule, DaffButtonModule } from '@daffodil/design';
+import { ProceedToCheckoutModule } from '../cart/components/proceed-to-checkout/proceed-to-checkout.module';
+import { ViewCartModule } from '../cart/components/view-cart/view-cart.module';
 
 @NgModule({
   imports: [
@@ -19,6 +18,8 @@ import { CloseAddToCartNotification } from './actions/add-to-cart-notification.a
     DaffModalModule,
     DaffButtonModule,
     DaffLoadingIconModule,
+    ProceedToCheckoutModule,
+    ViewCartModule,
     DemoAddToCartNotificationStateModule
   ],
   declarations: [
@@ -29,28 +30,4 @@ import { CloseAddToCartNotification } from './actions/add-to-cart-notification.a
     AddToCartNotificationComponent
   ]
 })
-export class DemoAddToCartNotificationModule {
-  constructor(private modalService: DaffModalService, private store: Store<any>){
-    this.store.pipe(select(selectOpen)).subscribe((open) => {
-      open 
-        ? this.modalService.open(AddToCartNotificationComponent, {
-            modal: {
-              horizontalPosition: 'center',
-              verticalPosition: 'center'
-            },
-            backdrop: {
-              onBackdropClicked: () => {
-                this.store.dispatch(new CloseAddToCartNotification)
-              }
-            }
-          })
-        : this.modalService.close();
-    })
-  }
-
-  static forRoot(): ModuleWithProviders<DemoAddToCartNotificationModule>{
-    return {
-      ngModule: DemoAddToCartNotificationModule
-    }
-  }
-}
+export class DemoAddToCartNotificationModule {}
