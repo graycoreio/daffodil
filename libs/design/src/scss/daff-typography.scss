@@ -56,14 +56,26 @@ h6 {
 	padding: 0;
 }
 
-.embolden { /* stylelint-disable-line selector-class-pattern */
+.embolden {
+	/* stylelint-disable-line selector-class-pattern */
 	@include embolden();
 }
 
-.uppercase { /* stylelint-disable-line selector-class-pattern */
+.uppercase {
+	/* stylelint-disable-line selector-class-pattern */
 	@include uppercase();
 }
 
-.single-line-ellipsis { /* stylelint-disable-line selector-class-pattern */
+.single-line-ellipsis {
+	/* stylelint-disable-line selector-class-pattern */
 	@include single-line-ellipsis();
+}
+
+.daff-overlay-container {
+	position: fixed;
+	display: flex;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	z-index: 1;
 }

@@ -9,21 +9,13 @@ import { DaffBackdropComponent, DaffBackdropModule } from '../../backdrop/public
 @Component({template: `
   <div class="daff-modal-wrapper">
     <daff-modal
-      [backdropIsVisible]="backdropIsVisible"
-      [show]="show" 
       [verticalPosition]="verticalPositionValue"
-      [horizontalPosition]="horizontalPositionValue"
-      (hide)="backdropClickedFunction()"></daff-modal>
+      [horizontalPosition]="horizontalPositionValue"></daff-modal>
   </div>
 `})
 class WrapperComponent {
-  show = true;
   verticalPositionValue = 'top';
   horizontalPositionValue = 'right';
-
-  backdropIsVisible = false;
-
-  backdropClickedFunction() {}
 }
 
 describe('DaffModalComponent', () => {
@@ -59,81 +51,12 @@ describe('DaffModalComponent', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  it('should be able to take show as input', () => {
-    expect(modal.show).toEqual(wrapper.show);
-  });
-
-  it('should be able to take backdropIsVisible as input', () => {
-    expect(modal.backdropIsVisible).toEqual(wrapper.backdropIsVisible);
-  });
-
   it('should be able to take verticalPosition as input', () => {
     expect(modal.verticalPosition).toEqual(wrapper.verticalPositionValue);
   });
 
   it('should be able to take horizontalPosition as input', () => {
     expect(modal.horizontalPosition).toEqual(wrapper.horizontalPositionValue);
-  });
-
-  describe('when _show is true', () => {
-    
-    it('should render .daff-modal', () => {
-      daffModalElement = fixture.debugElement.query(By.css('.daff-modal'));
-      expect(daffModalElement).not.toBeNull();
-    });
-  });
-
-  describe('when _show is false', () => {
-
-
-    beforeEach(() => {
-      modal.show = false;
-      fixture.detectChanges();
-    
-      daffModalElement = fixture.debugElement.query(By.css('.daff-modal'));
-    });
-    
-    it('should not render .daff-modal', () => {
-      expect(daffModalElement).toBeNull();
-    });
-  });
-
-  describe('on <daff-backdrop>', () => {
-
-    beforeEach(() => {
-      backdrop = fixture.debugElement.query(By.css('daff-backdrop')).componentInstance;
-    });
-    
-    it('should add and remove the backdrop from the DOM as `show` changes', () => {
-      wrapper.show = false;
-      fixture.detectChanges();
-
-      expect(fixture.debugElement.query(By.css('daff-backdrop'))).toBe(null);
-
-      wrapper.show = true;
-      fixture.detectChanges();
-
-      expect(fixture.debugElement.query(By.css('daff-backdrop'))).toBeDefined();
-    });
-
-    it('should set transparent to the negation of `backdropIsVisible`', () => {
-      fixture.detectChanges();
-      expect(backdrop.transparent).toEqual(!modal.backdropIsVisible);
-    });
-  });
-
-  describe('when <daff-backdrop> emits backdropClicked', () => {
-
-    beforeEach(() => {
-      backdrop = fixture.debugElement.query(By.css('daff-backdrop')).componentInstance;
-      spyOn(wrapper, 'backdropClickedFunction');
-
-      backdrop.backdropClicked.emit();
-    });
-    
-    it('should call hostComponent.backdropClicked.emit', () => {
-      expect(wrapper.backdropClickedFunction).toHaveBeenCalled();
-    });
   });
 
   describe('when horizontalPosition', () => {

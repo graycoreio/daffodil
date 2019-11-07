@@ -1,8 +1,17 @@
-import { Component, Output, EventEmitter, Input, OnInit, HostBinding, ChangeDetectionStrategy, ViewChild, TemplateRef } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnInit, HostBinding, ChangeDetectionStrategy, ViewChild, TemplateRef, ChangeDetectorRef, HostListener } from '@angular/core';
 
 import { daffFadeAnimations } from '../animations/modal-animation';
 import { getAnimationState } from '../animations/modal-animation-state';
 import { CdkPortalOutlet, ComponentPortal } from '@angular/cdk/portal';
+
+export type DaffModalVerticalPosition = 'top' | 'center' | 'bottom';
+export type DaffModalHorizontalPosition = 'left' | 'center' | 'right';
+
+export type DaffModalConfiguration = {
+  verticalPosition: DaffModalVerticalPosition;
+  horizontalPosition: DaffModalHorizontalPosition;
+  open?: boolean;
+}
 
 @Component({
   selector: 'daff-modal',
@@ -13,29 +22,33 @@ import { CdkPortalOutlet, ComponentPortal } from '@angular/cdk/portal';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DaffModalComponent {
-  _animationState: string;
-  _verticalPosition = 'center';
-  _horizontalPosition = 'center';
+export class DaffModalComponent implements DaffModalConfiguration {
+  constructor(private cd: ChangeDetectorRef){}
+
+  @Input() open = false;
+
+  private _verticalPosition: DaffModalVerticalPosition = 'center';
+  private _horizontalPosition : DaffModalHorizontalPosition = 'center';
 
   @ViewChild(CdkPortalOutlet, {static: true}) _portalOutlet: CdkPortalOutlet;
 
-  attachContent(portal: ComponentPortal<any> | TemplateRef<any>): any {
-      this._portalOutlet.attach(portal)
+  attachContent(portal: ComponentPortal<any>): any {
+      this._portalOutlet.attachComponentPortal(portal)
   }
 
   /**
-   * Animation hook for that controls the backdrops 
-   * entrance and fade animations.
+   * Animation hook for that controls modals entrance and exit animations
    */
-  @HostBinding('@fade')
-  
-  /**
-   * Input state for whether or not the backdrop is 
-   * "visible" to the human eye
-   */
-  // tslint:disable-next-line: no-inferrable-types
-  @Input() backdropIsVisible: boolean = true;
+  @HostBinding('@fade') get fadeState() : string {
+    return getAnimationState(this.open)
+  }
+
+  @HostListener('@fade.done', ['$event'])
+	animationDone(event: AnimationEvent) {
+		this.animationCompleted.emit(event);
+  }
+
+  @Output() animationCompleted: EventEmitter<any> = new EventEmitter<any>();
 
   /**
    * Event fired when the backdrop is clicked
@@ -43,8 +56,8 @@ export class DaffModalComponent {
    */
   @Output() hide: EventEmitter<void> = new EventEmitter<void>();
   @Input()
-  get verticalPosition(): string { return this._verticalPosition; }
-  set verticalPosition(value: string) {
+  get verticalPosition(): DaffModalVerticalPosition { return this._verticalPosition; }
+  set verticalPosition(value: DaffModalVerticalPosition) {
     if (value !== 'center' && value !== 'top' && value !== 'bottom') {
       throw Error(`verticalPosition value must be either 'center', 'top', or 'bottom'.
       Example: <daff-modal verticalPosition="top"></daff-modal>`);
@@ -53,8 +66,8 @@ export class DaffModalComponent {
   }
 
   @Input()
-  get horizontalPosition(): string { return this._horizontalPosition; }
-  set horizontalPosition(value: string) {
+  get horizontalPosition(): DaffModalHorizontalPosition { return this._horizontalPosition; }
+  set horizontalPosition(value: DaffModalHorizontalPosition) {
     if (value !== 'center' && value !== 'left' && value !== 'right') {
       throw Error(`horizontalPosition value must be either 'center', 'left', or 'right'.
       Example: <daff-modal horizontalPosition="right"></daff-modal>`);
@@ -62,32 +75,27 @@ export class DaffModalComponent {
     this._horizontalPosition = value;
   }
 
-  
-  _backdropClicked() : void {
-    this.hide.emit();
-  }
-
-  @HostBinding('class.daff-modal--left') left (): boolean {
+  @HostBinding('class.daff-modal--left') get left(): boolean {
     return this._horizontalPosition === 'left';
   }
   
-  @HostBinding('class.daff-modal--right') right() : boolean {
+  @HostBinding('class.daff-modal--right') get right(): boolean {
     return this._horizontalPosition === 'right';
   }
 
-  @HostBinding('class.daff-modal--center') center() : boolean {
+  @HostBinding('class.daff-modal--center') get center(): boolean {
     return this._horizontalPosition === 'center';
   }
 
-  @HostBinding('class.daff-modal--top') top() : boolean {
+  @HostBinding('class.daff-modal--top') get top(): boolean {
     return this._verticalPosition === 'top';
   }
 
-  @HostBinding('class.daff-modal--bottom') bottom() : boolean {
+  @HostBinding('class.daff-modal--bottom') get bottom(): boolean {
     return this._verticalPosition === 'bottom';
   }
 
-  @HostBinding('class.daff-modal--middle') middle() : boolean {
+  @HostBinding('class.daff-modal--middle') get middle(): boolean {
     return this._verticalPosition === 'center';
   }
 
