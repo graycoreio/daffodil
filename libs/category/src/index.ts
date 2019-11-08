@@ -33,5 +33,7 @@ export {
 export { DaffGetCategoryResponse } from './models/get-category-response';
 export { DaffCategoryRequest } from './models/category-request';
 export { DaffCategoryPageConfigurationState } from './models/category-page-configuration-state';
+export { DaffCategoryFilter } from './models/category-filter';
+export { DaffCategorySortOption } from './models/category-sort-option';
 export { GetACategoryResponse } from './drivers/magento/models/outputs/get-category-response';
 export { CompleteCategoryResponse } from './drivers/magento/models/outputs/complete-category-response';

@@ -7,10 +7,26 @@ import { DaffProductUnion } from '@daffodil/product';
 
 import { DaffCategory } from '../models/category';
 import { DaffCategoryModule } from '../category.module';
-import { selectCategoryLoading, selectCategoryErrors, selectSelectedCategory, selectCategoryPageConfigurationState, selectCategoryProducts } from '../selectors/category.selector';
+import {
+  selectCategoryLoading,
+  selectCategoryErrors,
+  selectSelectedCategory,
+  selectCategoryPageConfigurationState,
+  selectCategoryProducts,
+  selectCategoryCurrentPage,
+  selectCategoryTotalPages,
+  selectCategoryPageSize,
+  selectCategoryFilters,
+  selectCategorySortOptions
+} from '../selectors/category.selector';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
+import { DaffCategoryFilter } from '../models/category-filter';
+import { DaffCategorySortOption } from '../models/category-sort-option';
 
+/**
+ * A facade for accessing state for the currently selected category.
+ */
 @Injectable({
   providedIn: DaffCategoryModule
 })
@@ -18,11 +34,31 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
   /**
    * The currently selected category.
    */
-  selectedCategory$: Observable<DaffCategory>;
+  category$: Observable<DaffCategory>;
   /**
    * The page configuration state for the selected category.
    */
-  selectCategoryPageConfigurationState$: Observable<DaffCategoryPageConfigurationState>;
+  pageConfigurationState$: Observable<DaffCategoryPageConfigurationState>;
+  /**
+   * The current page of products for the selected category.
+   */
+  currentPage$: Observable<number>;
+  /**
+   * The number of pages of product for the selected category.
+   */
+  totalPages$: Observable<number>;
+  /**
+   * The number of products per page for the selected category.
+   */
+  pageSize$: Observable<number>;
+  /**
+   * The filters available for the products of the selected category.
+   */
+  filters$: Observable<DaffCategoryFilter[]>;
+  /**
+   * The sort options available for the products of the selected category.
+   */
+  sortOptions$: Observable<DaffCategorySortOption[]>;
   /**
    * Products of the currently selected category.
    */
@@ -37,9 +73,14 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
   errors$: Observable<string[]>;
 
   constructor(private store: Store<CategoryReducersState>) {
-    this.selectedCategory$ = this.store.pipe(select(selectSelectedCategory));
+    this.category$ = this.store.pipe(select(selectSelectedCategory));
     this.products$ = this.store.pipe(select(selectCategoryProducts));
-    this.selectCategoryPageConfigurationState$ = this.store.pipe(select(selectCategoryPageConfigurationState));
+    this.pageConfigurationState$ = this.store.pipe(select(selectCategoryPageConfigurationState));
+    this.currentPage$ = this.store.pipe(select(selectCategoryCurrentPage));
+    this.totalPages$ = this.store.pipe(select(selectCategoryTotalPages));
+    this.pageSize$ = this.store.pipe(select(selectCategoryPageSize));
+    this.filters$ = this.store.pipe(select(selectCategoryFilters));
+    this.sortOptions$ = this.store.pipe(select(selectCategorySortOptions));
     this.loading$ = this.store.pipe(select(selectCategoryLoading));
     this.errors$ = this.store.pipe(select(selectCategoryErrors));
   }

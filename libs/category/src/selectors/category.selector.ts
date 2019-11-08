@@ -32,6 +32,31 @@ export const selectCategoryPageConfigurationState = createSelector(
   (state: CategoryReducerState) => state.categoryPageConfigurationState
 );
 
+export const selectCategoryCurrentPage = createSelector(
+  selectCategoryPageConfigurationState,
+  (state: DaffCategoryPageConfigurationState) => state.current_page
+);
+
+export const selectCategoryTotalPages = createSelector(
+  selectCategoryPageConfigurationState,
+  (state: DaffCategoryPageConfigurationState) => state.total_pages
+);
+
+export const selectCategoryPageSize = createSelector(
+  selectCategoryPageConfigurationState,
+  (state: DaffCategoryPageConfigurationState) => state.page_size
+);
+
+export const selectCategoryFilters = createSelector(
+  selectCategoryPageConfigurationState,
+  (state: DaffCategoryPageConfigurationState) => state.filters
+);
+
+export const selectCategorySortOptions = createSelector(
+  selectCategoryPageConfigurationState,
+  (state: DaffCategoryPageConfigurationState) => state.sort_options
+);
+
 /**
  * Selected Category Id State
  */

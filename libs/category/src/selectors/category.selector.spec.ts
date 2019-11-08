@@ -19,7 +19,12 @@ import {
   selectSelectedCategoryId,
   selectSelectedCategory,
   selectCategoryProductIds,
-  selectCategoryProducts
+  selectCategoryProducts,
+  selectCategoryCurrentPage,
+  selectCategoryTotalPages,
+  selectCategoryPageSize,
+  selectCategoryFilters,
+  selectCategorySortOptions
 } from './category.selector';
 import { DaffCategory } from '../models/category';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
@@ -74,6 +79,51 @@ describe('DaffCategorySelectors', () => {
     it('selects the selected categoryId state', () => {
       const selector = store.pipe(select(selectCategoryPageConfigurationState));
       const expected = cold('a', { a: stubCategoryPageConfigurationState });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCategoryCurrentPage', () => {
+
+    it('selects the current page of the current category', () => {
+      const selector = store.pipe(select(selectCategoryCurrentPage));
+      const expected = cold('a', { a: stubCategoryPageConfigurationState.current_page });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCategoryTotalPages', () => {
+
+    it('selects the current page of the current category', () => {
+      const selector = store.pipe(select(selectCategoryTotalPages));
+      const expected = cold('a', { a: stubCategoryPageConfigurationState.total_pages });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCategoryPageSize', () => {
+
+    it('selects the current page of the current category', () => {
+      const selector = store.pipe(select(selectCategoryPageSize));
+      const expected = cold('a', { a: stubCategoryPageConfigurationState.page_size });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCategoryFilters', () => {
+
+    it('selects the current page of the current category', () => {
+      const selector = store.pipe(select(selectCategoryFilters));
+      const expected = cold('a', { a: stubCategoryPageConfigurationState.filters });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCategorySortOptions', () => {
+
+    it('selects the current page of the current category', () => {
+      const selector = store.pipe(select(selectCategorySortOptions));
+      const expected = cold('a', { a: stubCategoryPageConfigurationState.sort_options });
       expect(selector).toBeObservable(expected);
     });
   });
