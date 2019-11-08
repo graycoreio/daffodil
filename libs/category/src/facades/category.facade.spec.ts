@@ -57,29 +57,90 @@ describe('DaffCategoryFacade', () => {
     expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 
-  describe('selectedCategory$', () => {
+  describe('category$', () => {
     it('should be undefined initially', () => {
       const expected = cold('a', { a: undefined });
-      expect(facade.selectedCategory$).toBeObservable(expected);
+      expect(facade.category$).toBeObservable(expected);
     });
   
     it('should be a category after a category is loaded successfully', () => {
       const expected = cold('a', { a: category });
       store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
-      expect(facade.selectedCategory$).toBeObservable(expected);
+      expect(facade.category$).toBeObservable(expected);
     });
   });
 
-  describe('selectCategoryPageConfigurationState$', () => {
-    it('should be undefined initially', () => {
-      const expected = cold('a', { a: undefined });
-      expect(facade.selectedCategory$).toBeObservable(expected);
-    });
+  describe('pageConfigurationState$', () => {
   
     it('should return an observable of the CategoryPageConfigurationState', () => {
       const expected = cold('a', { a: categoryPageConfigurationState });
       store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
-      expect(facade.selectCategoryPageConfigurationState$).toBeObservable(expected);
+      expect(facade.pageConfigurationState$).toBeObservable(expected);
+    });
+  });
+
+  describe('currentPage$', () => {
+    it('should be null initially', () => {
+      const expected = cold('a', { a: null });
+      expect(facade.currentPage$).toBeObservable(expected);
+    });
+  
+    it('should return an observable of the current page for the selected category', () => {
+      const expected = cold('a', { a: categoryPageConfigurationState.current_page });
+      store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+      expect(facade.currentPage$).toBeObservable(expected);
+    });
+  });
+
+  describe('totalPages$', () => {
+    it('should be null initially', () => {
+      const expected = cold('a', { a: null });
+      expect(facade.totalPages$).toBeObservable(expected);
+    });
+  
+    it('should return an observable of the total number of pages for the selected category', () => {
+      const expected = cold('a', { a: categoryPageConfigurationState.total_pages });
+      store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+      expect(facade.totalPages$).toBeObservable(expected);
+    });
+  });
+
+  describe('pageSize$', () => {
+    it('should be null initially', () => {
+      const expected = cold('a', { a: null });
+      expect(facade.pageSize$).toBeObservable(expected);
+    });
+  
+    it('should return an observable of the page size for the selected category page configuration', () => {
+      const expected = cold('a', { a: categoryPageConfigurationState.page_size });
+      store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+      expect(facade.pageSize$).toBeObservable(expected);
+    });
+  });
+
+  describe('filters$', () => {
+    it('should be undefined initially', () => {
+      const expected = cold('a', { a: undefined });
+      expect(facade.category$).toBeObservable(expected);
+    });
+  
+    it('should return an observable of the filters for the selected category', () => {
+      const expected = cold('a', { a: categoryPageConfigurationState.filters });
+      store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+      expect(facade.filters$).toBeObservable(expected);
+    });
+  });
+
+  describe('sortOptions$', () => {
+    it('should be undefined initially', () => {
+      const expected = cold('a', { a: undefined });
+      expect(facade.category$).toBeObservable(expected);
+    });
+  
+    it('should return an observable of the CategoryPageConfigurationState', () => {
+      const expected = cold('a', { a: categoryPageConfigurationState.sort_options });
+      store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+      expect(facade.sortOptions$).toBeObservable(expected);
     });
   });
 
