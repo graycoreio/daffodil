@@ -31,10 +31,16 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     @Inject(DaffCategoryResponseTransformer) public magentoCategoryResponseTransformerService: DaffCategoryResponseTransformerInterface<DaffGetCategoryResponse>
   ) {}
 
+  /**
+   * Gets a category based on parameters. Default current_page is 1, and default page_size is 20.
+   * @param categoryRequest A DaffCategoryRequest object.
+   */
   get(categoryRequest: DaffCategoryRequest): Observable<DaffGetCategoryResponse> {
     return combineLatest([
       this.apollo.query<GetACategoryResponse>(this.queryManager.getACategoryQuery(
-        parseInt(categoryRequest.id, 10)
+        parseInt(categoryRequest.id, 10),
+        categoryRequest.current_page ? categoryRequest.current_page : 1,
+        categoryRequest.page_size ? categoryRequest.page_size : 20
       )),
       this.apollo.query<GetSortFieldsAndFiltersProductResponse>(this.productQueryManager.getSortFieldsAndFiltersByCategory(categoryRequest.id))
     ]).pipe(
