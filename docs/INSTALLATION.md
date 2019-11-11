@@ -20,6 +20,8 @@ ng new my-store && cd my-store
     * `npm install --save @daffodil/product` - Install Product Module
     * `npm install --save @daffodil/cart` - Install Cart Module
     * `npm install --save @daffodil/checkout` - Install Checkout Module
+    * `npm install --save @daffodil/newsletter` - Install Newsletter Module
+
 
 ## Install Peer Dependencies
 
