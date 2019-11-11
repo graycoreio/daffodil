@@ -1,18 +1,18 @@
-# Generating a new Release
+# Generating a new release
 
-Daffodil releases follow [semver](https://semver.org/) and we have built an internal gulp pipeline to automate the workflow of generating a new release. To generate a new release, and update the project automatically simply:
+Daffodil releases follow [semver](https://semver.org/) and we have built an internal gulp pipeline to automate the workflow of generating a new release. To utilize this workflow, and create a new release for the project:
 
 ```bash
 npm run release
 ```
 
-This process will handle the process of updating develop and master, generating a tag, and updating the Github repo. 
+This will handle the process of bump develop and master, handling package versioning, generating a tag, and updating the Github repo. 
 
 ## Publishing to npm
 
-Currently, the pipeline does not handle publishing to npm, so that will still have to be done manually. 
+Currently, the pipeline does not handle publishing to npm, so if packages need to be published that will still have to be done manually. 
 
-To quickly publish the appropriate packages to `npm`.
+To quickly publish the appropriate packages to `npm`:
 
 ```bash
 npm run generate-packages && npm run publish
