@@ -10,10 +10,10 @@ import { ProductSortInput } from '../models/inputs/product-sort-input';
 })
 export class DaffMagentoCategoryGraphQlQueryManagerService implements DaffCategoryQueryManagerInterface {
 
-  getACategoryQuery(identifier: number, pageNumber?: number, pageSize?: number, sort?: ProductSortInput) : QueryOptions {
+  getACategoryQuery(identifier: number, currentPage?: number, pageSize?: number, sort?: ProductSortInput) : QueryOptions {
     return {
       query:  gql`
-      query GetACategory($id: Int!, $pageNumber: Int, $pageSize: Int, $sort: ProductSortInput ){
+      query GetACategory($id: Int!, $currentPage: Int, $pageSize: Int, $sort: ProductSortInput ){
         category(id: $id) {
           id
           name
@@ -24,7 +24,7 @@ export class DaffMagentoCategoryGraphQlQueryManagerService implements DaffCatego
             category_url_key
           }
           products(
-            currentPage: $pageNumber
+            currentPage: $currentPage
             pageSize: $pageSize
             sort: $sort
           ) {
@@ -58,7 +58,7 @@ export class DaffMagentoCategoryGraphQlQueryManagerService implements DaffCatego
       }`,
       variables: {
         id: identifier,
-        pageNumber: pageNumber,
+        currentPage: currentPage,
         pageSize: pageSize,
         sort: sort
       }
