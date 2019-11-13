@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/core",
-  "version": "0.2.12",
+  "version": "0.2.13",
   "description": "Interfaces built for daffodil/state",
   "repository": {
     "type": "git",
