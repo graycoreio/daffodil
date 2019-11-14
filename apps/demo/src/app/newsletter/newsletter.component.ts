@@ -16,22 +16,23 @@ export class NewsletterComponent {
   error$ = this.newsletterFacade.error$;
   loading$ = this.newsletterFacade.loading$;
 
-  send_email: FormControl = new FormControl('');
-  submission : DaffNewsletterSubmission = { email: ''};
-
+  email: FormControl = new FormControl('');
 
   constructor(public newsletterFacade: DaffNewsletterFacade) {
   }
   onNewsletterSubmit() {
-    this.submission.email = this.send_email.value;
-    if (this.send_email.value !== '') {
-      this.newsletterFacade.dispatch(new DaffNewsletterSubscribe<DaffNewsletterSubmission>(this.submission));
+    if (this.email.value !== '') {
+      this.newsletterFacade.dispatch(new DaffNewsletterSubscribe<DaffNewsletterSubmission>(this._makeSubmission(this.email.value)));
     }
   }
   onNewsletterCancel() {
     this.newsletterFacade.dispatch(new DaffNewsletterCancel);
   }
   onNewsletterRetry() {
-    this.newsletterFacade.dispatch(new DaffNewsletterRetry<DaffNewsletterSubmission>(this.submission));
+    this.newsletterFacade.dispatch(new DaffNewsletterRetry<DaffNewsletterSubmission>(this._makeSubmission(this.email.value)));
+  }
+
+  private _makeSubmission(email: string): DaffNewsletterSubmission {
+    return {email: email};
   }
 }

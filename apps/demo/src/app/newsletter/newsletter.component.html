@@ -11,7 +11,7 @@
     <div>
       <div class="newsletter__right" *ngIf="!(success$ | async) && !(error$ | async) && !(loading$ | async)">
         <input daff-input type="text" class="newsletter__input" placeholder="Email" name="email"
-          [formControl]="send_email" />
+          [formControl]="email" />
         <button type="submit" daff-button color="secondary" class="newsletter__button"
           (click)='onNewsletterSubmit()'>Sign Up</button>
       </div>
