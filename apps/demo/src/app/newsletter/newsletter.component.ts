@@ -33,6 +33,6 @@ export class NewsletterComponent {
   }
 
   private _makeSubmission(email: string): DaffNewsletterSubmission {
-    return {email: email};
+    return { email: email };
   }
 }
