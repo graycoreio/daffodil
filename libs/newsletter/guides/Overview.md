@@ -83,4 +83,4 @@ export class NewsletterComponent {
 >In this example, three observable streams are assigned from `newsletterFacade`. Then when `submitData` is called, the `newsletterFacade` will call its `dispatch` function which will send your data off to the backend and update the three observable streams.
 
 # Live Demo
-*Coming Soon*
+[Checkout a live example of the `DaffNewsletter` library in action!](https://stackblitz.com/edit/daff-newsletter-example)
