@@ -17,7 +17,7 @@ export class NewsletterComponent {
   loading$ = this.newsletterFacade.loading$;
 
   send_email: FormControl = new FormControl('');
-  submission : DaffNewsletterSubmission = { email: ""};
+  submission : DaffNewsletterSubmission = { email: ''};
 
 
   constructor(public newsletterFacade: DaffNewsletterFacade) {
