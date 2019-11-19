@@ -10,7 +10,7 @@ import { DaffCategory, DaffCategoryPageConfigurationState } from '@daffodil/cate
 import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
 
 import { DaffCategoryFactory } from '../factories/category.factory';
-import { DaffCategoryPageConfigurationStateFactory, DEFAULT_PAGE_SIZE } from '../factories/category-page-configuration-state.factory';
+import { DaffCategoryPageConfigurationStateFactory } from '../factories/category-page-configuration-state.factory';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +44,7 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
     this.category.id = reqInfo.id;
     this.categoryPageConfigurationState.id = reqInfo.id;
     this.categoryPageConfigurationState.current_page = reqInfo.current_page ? reqInfo.current_page : 1;
-    this.categoryPageConfigurationState.page_size = reqInfo.page_size ? reqInfo.page_size : DEFAULT_PAGE_SIZE;
+    this.categoryPageConfigurationState.page_size = reqInfo.page_size ? reqInfo.page_size : this.categoryPageConfigurationState.page_size;
     return reqInfo.utils.createResponse$(() => {
       return {
         body: {

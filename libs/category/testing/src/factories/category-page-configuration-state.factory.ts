@@ -4,11 +4,9 @@ import * as faker from 'faker/locale/en_US';
 import { DaffCategoryPageConfigurationState } from '@daffodil/category';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
-export const DEFAULT_PAGE_SIZE = 20;
-
 export class MockCategoryPageConfigurationState implements DaffCategoryPageConfigurationState {
   id = faker.random.number(100);
-  page_size = DEFAULT_PAGE_SIZE;
+  page_size = 20;
   current_page = 1;
   filters = [{
     name: 'Category',
