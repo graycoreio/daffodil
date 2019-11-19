@@ -24,14 +24,18 @@ describe('Driver | InMemory | Category | DaffInMemoryBackendCategoryService', ()
     expect(categoryTestingService).toBeTruthy();
   });
 
-  describe('get - with any parameter', () => {
+  describe('get', () => {
       
     let reqInfoStub;
     let result;
+    const stubPageSize = 5;
+    const stubCurrentPage = 2;
 
     beforeEach(() => {
       reqInfoStub = {
         id: 'any parameter',
+        page_size: stubPageSize,
+        current_page: stubCurrentPage,
         utils: {
           createResponse$: (func) => {
             return func();
@@ -48,6 +52,14 @@ describe('Driver | InMemory | Category | DaffInMemoryBackendCategoryService', ()
         categoryPageConfigurationState: categoryTestingService.categoryPageConfigurationState,
         products: inMemoryBackendProductService.products
       });
+    });
+
+    it('should set page_size when the page_size is provided', () => {
+      expect(result.body.categoryPageConfigurationState.page_size).toEqual(stubPageSize);
+    });
+
+    it('should set current_page when the current_page is provided', () => {
+      expect(result.body.categoryPageConfigurationState.current_page).toEqual(stubCurrentPage);
     });
   });
 });

@@ -43,6 +43,8 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
   get(reqInfo: any) {
     this.category.id = reqInfo.id;
     this.categoryPageConfigurationState.id = reqInfo.id;
+    this.categoryPageConfigurationState.current_page = reqInfo.current_page ? reqInfo.current_page : 1;
+    this.categoryPageConfigurationState.page_size = reqInfo.page_size ? reqInfo.page_size : this.categoryPageConfigurationState.page_size;
     return reqInfo.utils.createResponse$(() => {
       return {
         body: {
