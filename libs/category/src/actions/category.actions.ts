@@ -6,7 +6,11 @@ import { DaffCategoryRequest } from '../models/category-request';
 export enum DaffCategoryActionTypes {
   CategoryLoadAction = '[Daff-Category] Category Load Action',
   CategoryLoadSuccessAction = '[Daff-Category] Category Load Success Action',
-  CategoryLoadFailureAction = '[Daff-Category] Category Load Failure Action'
+  CategoryLoadFailureAction = '[Daff-Category] Category Load Failure Action',
+  ChangeCategoryPageSizeAction = '[Daff-Category] Change Category Page Size Action',
+  ChangeCategoryCurrentPageAction = '[Daff-Category] Change Category Current Page Action',
+  DaffChangeCategorySortingOptionAction = '[Daff-Category] Change Category Sorting Option Action',
+  ChangeCategoryFiltersAction = '[Daff-Category] Change Category Filters Action'
 }
 
 export class DaffCategoryLoad implements Action {
@@ -27,7 +31,34 @@ export class DaffCategoryLoadFailure implements Action {
   constructor(public payload: string) { }
 }
 
+export class DaffChangeCategoryPageSize implements Action {
+  readonly type = DaffCategoryActionTypes.ChangeCategoryPageSizeAction;
+
+  constructor(public payload: number) { }
+}
+
+export class DaffChangeCategoryCurrentPage implements Action {
+  readonly type = DaffCategoryActionTypes.ChangeCategoryCurrentPageAction;
+
+  constructor(public payload: number) { }
+}
+
+export class DaffChangeCategorySortingOption implements Action {
+  readonly type = DaffCategoryActionTypes.DaffChangeCategorySortingOptionAction;
+
+  constructor(public payload: number) { }
+}
+
+export class DaffChangeCategoryFilters implements Action {
+  readonly type = DaffCategoryActionTypes.ChangeCategoryFiltersAction;
+
+  constructor(public payload: number) { }
+}
+
 export type DaffCategoryActions =
   | DaffCategoryLoad
   | DaffCategoryLoadSuccess
-  | DaffCategoryLoadFailure;
+  | DaffCategoryLoadFailure
+  | DaffChangeCategoryPageSize
+  | DaffChangeCategorySortingOption
+  | DaffChangeCategoryFilters;
