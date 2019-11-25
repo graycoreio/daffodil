@@ -28,7 +28,7 @@ export function categoryReducer(state = initialState, action: DaffCategoryAction
         ...state, 
         loading: true,
         categoryPageConfigurationState: {
-          ...initialState.categoryPageConfigurationState,
+          ...state.categoryPageConfigurationState,
           ...action.payload
         }
       };
