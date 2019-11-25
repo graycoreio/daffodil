@@ -6,7 +6,7 @@ Daffodil releases follow [semver](https://semver.org/) and we have built an inte
 npm run release
 ```
 
-This will handle the process of bump develop and master, handling package versioning, generating a tag, and updating the Github repo. 
+This will handle the process of bumping develop and master, handling package versioning, generating a tag, and updating the Github repo. 
 
 ## Publishing to npm
 
