@@ -26,7 +26,6 @@ import { ThankYouModule } from './thank-you/thank-you.module';
 
 import { DemoRoutingComponentModule } from './routing/routing-component.module';
 import { InMemoryModule } from './in-memory.module';
-import { CartModule } from './cart/cart.module';
 
 @NgModule({
   declarations: [
