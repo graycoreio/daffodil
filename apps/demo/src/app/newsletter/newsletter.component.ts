@@ -24,9 +24,6 @@ export class NewsletterComponent {
     if (this.email.valid) {
       this.newsletterFacade.dispatch(new DaffNewsletterSubscribe<DaffNewsletterSubmission>(this._makeSubmission(this.email.value)));
     }
-    else{
-      this.email.reset;
-    }
   }
   onNewsletterCancel() {
     this.newsletterFacade.dispatch(new DaffNewsletterCancel);
