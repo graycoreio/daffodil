@@ -18,13 +18,10 @@ import { DaffNewsletterFacade } from 'libs/newsletter/src';
     ReactiveFormsModule
   ],
   declarations: [
-    NewsletterComponent,
+    NewsletterComponent
   ],
   exports: [
     NewsletterComponent
-  ],
-  providers: [
-    DaffNewsletterFacade
   ]
 })
 export class NewsletterModule { }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { DaffNewsletterFacade, DaffNewsletterActionTypes, DaffNewsletterSubmission, DaffNewsletterCancel, DaffNewsletterRetry } from '@daffodil/newsletter';
 import { DaffNewsletterSubscribe } from '@daffodil/newsletter';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 
 
@@ -16,13 +16,16 @@ export class NewsletterComponent {
   error$ = this.newsletterFacade.error$;
   loading$ = this.newsletterFacade.loading$;
 
-  email: FormControl = new FormControl('');
+  email: FormControl = new FormControl('', Validators.email);
 
   constructor(public newsletterFacade: DaffNewsletterFacade) {
   }
   onNewsletterSubmit() {
-    if (this.email.value !== '') {
+    if (this.email.valid) {
       this.newsletterFacade.dispatch(new DaffNewsletterSubscribe<DaffNewsletterSubmission>(this._makeSubmission(this.email.value)));
+    }
+    else{
+      this.email.reset;
     }
   }
   onNewsletterCancel() {

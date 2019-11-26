@@ -10,8 +10,9 @@
     </div>
     <div>
       <div class="newsletter__right" *ngIf="!(success$ | async) && !(error$ | async) && !(loading$ | async)">
-        <input daff-input type="text" class="newsletter__input" placeholder="Email" name="email"
-          [formControl]="email" />
+        <ng-container *ngIf="email.invalid && email.dirty">Please enter a valid email</ng-container>
+        <input daff-input type="text" class="newsletter__input" placeholder="Email" name="email" [formControl]="email"
+          required email />
         <button type="submit" daff-button color="secondary" class="newsletter__button"
           (click)='onNewsletterSubmit()'>Sign Up</button>
       </div>
