@@ -9,7 +9,7 @@ export enum DaffCategoryActionTypes {
   CategoryLoadFailureAction = '[Daff-Category] Category Load Failure Action',
   ChangeCategoryPageSizeAction = '[Daff-Category] Change Category Page Size Action',
   ChangeCategoryCurrentPageAction = '[Daff-Category] Change Category Current Page Action',
-  DaffChangeCategorySortingOptionAction = '[Daff-Category] Change Category Sorting Option Action',
+  ChangeCategorySortingOptionAction = '[Daff-Category] Change Category Sorting Option Action',
   ChangeCategoryFiltersAction = '[Daff-Category] Change Category Filters Action'
 }
 
@@ -44,7 +44,7 @@ export class DaffChangeCategoryCurrentPage implements Action {
 }
 
 export class DaffChangeCategorySortingOption implements Action {
-  readonly type = DaffCategoryActionTypes.DaffChangeCategorySortingOptionAction;
+  readonly type = DaffCategoryActionTypes.ChangeCategorySortingOptionAction;
 
   constructor(public payload: number) { }
 }
