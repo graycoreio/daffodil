@@ -7,10 +7,12 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({ template: `
 <daff-backdrop
+  [fullscreen]="fullscreen"
   [transparent]="transparentValue"
   (backdropClicked)="backdropFunction()"></daff-backdrop>
 `})
 class WrapperComponent {
+  fullscreen = true;
   showValue = true;
   transparentValue = true;
   backdropFunction: Function = () => {};
@@ -75,6 +77,20 @@ describe('DaffBackdropComponent | Usage', () => {
       backdropHost.nativeElement.click();
 
       expect(backdrop.backdropClicked.emit).toHaveBeenCalled();
+    });
+  });
+
+  describe('when fullscreen is set to true on the backdrop', () => {
+    it('should add the class `daff-backdrop--fullscreen to the host element', () => {
+        expect(backdrop.fullscreen).toEqual(true);
+        expect(backdropEl.classes).toEqual(jasmine.objectContaining({
+          'daff-backdrop--fullscreen': true,
+        }));
+        wrapper.fullscreen = false;
+        fixture.detectChanges();
+        expect(backdropEl.classes).toEqual(jasmine.objectContaining({
+          'daff-backdrop--fullscreen': false,
+        }));
     });
   });
 });

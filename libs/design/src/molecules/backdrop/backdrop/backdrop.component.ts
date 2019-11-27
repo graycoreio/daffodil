@@ -23,6 +23,7 @@ export class DaffBackdropComponent {
    * Boolean property that determines whether or not the 
    * backdrop should fill up its containing window.
    */
+  // tslint:disable-next-line: no-inferrable-types
   @Input() fullscreen: boolean = false;
 
   /**
