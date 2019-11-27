@@ -1,5 +1,5 @@
-<daff-container size="md"> 
- <div class="newsletter__grid">
+<daff-container size="md">
+  <div class="newsletter__grid">
     <div class="newsletter__left">
       <h3 class="newsletter__title">
         Gets news and offers from Daffodil!
@@ -8,9 +8,24 @@
         Be the first to know about the latest products, exclusives, and offers!
       </div>
     </div>
-    <div class="newsletter__right">
-      <input daff-input type="text" class="newsletter__input" placeholder="Email" name="email" />
-      <button type="submit" daff-button color="secondary" class="newsletter__button">Sign Up</button>
+    <div>
+      <div class="newsletter__right" *ngIf="!(success$ | async) && !(error$ | async) && !(loading$ | async)">
+        <ng-container *ngIf="email.invalid && email.dirty">Please enter a valid email</ng-container>
+        <input daff-input type="text" class="newsletter__input" placeholder="Email" name="email" [formControl]="email"
+          required email />
+        <button type="submit" daff-button color="secondary" class="newsletter__button"
+          (click)='onNewsletterSubmit()'>Sign Up</button>
+      </div>
+      <div class="newsletter__retry" *ngIf="(error$ | async) && !(loading$| async) && !(success$ | async)">
+        Error
+        <button type="submit" daff-button color="secondary" class="newsletter__button"
+          (click)='onNewsletterRetry()'>Retry</button>
+      </div>
+      <div class="newsletter__loading" *ngIf="(loading$| async)"> Loading
+        <button type="cancel" daff-button color="secondary" class="newsletter__button"
+          (click)='onNewsletterCancel()'>Cancel</button>
+      </div>
+      <div class="newsletter__success" *ngIf="success$ | async"> Success </div>
     </div>
   </div>
 </daff-container>
