@@ -1,42 +1,35 @@
 # Installation
 
 ## Table of Contents
-- [Installing with NPM](#installing-with-npm)
-- [Installing with yarn](#installing-with-yarn)
-- [Daffodil's In-Memory-Web-API](#in-memory-web-api)
+- Platforms
+  - [Installing with NPM](#installing-with-npm)
+  - [Installing with yarn](#installing-with-yarn)
+  - [Daffodil's In-Memory-Web-API](#in-memory-web-api)
 - [Magento](#magento)
 - [Shopify](#shopify)
 
 ## Installing with `npm`
 
-To install the newsletter library itself, use the following command in your terminal.
+To install the newsletter library and its dependencies, use the following command in your terminal.
 
 ```bash
-npm install @daffodil/newsletter --save
+npm install @daffodil/newsletter @daffodil/core @ngrx/store @ngrx/effects --save
 ```
 
-To install the peer dependencies, use the following command in your terminal.
-```bash
-npm install --save @daffodil/core @ngrx/store @ngrx/effects
-```
+After installing, an ecommerce platform driver needs to be set-up, we highly recommend installing the [In-Memory-Web-API](#in-memory-web-api) for fast, out-of-the-box development.
 
-After installing, we highly recommend also installing the [In-Memory-Web-API](#in-memory-web-api) for fast, out-of-the-box development.
 ## Installing with `yarn`
 
-To install the newsletter library itself, use the following command in your terminal.
+To install the newsletter library and its dependencies, use the following command in your terminal.
+
 ```bash
 yarn add @daffodil/newsletter
 ```
-<!--does yarn need to install the peer dependencies as well-->
-To install the peer dependencies, use the following command in your terminal.
-```bash
-yarn add @daffodil/core @ngrx/store @ngrx/effects
-```
 
-After installing, we highly recommend also installing the [In-Memory-Web-API](#in-memory-web-api) for fast, out-of-the-box development.
+After installing, an ecommerce platform driver needs to be set-up, we highly recommend installing the [In-Memory-Web-API](#in-memory-web-api) for fast, out-of-the-box development.
 ## In-Memory-Web-API
 
-The `In-Memory-Web-API` allows you to start working on your app's newsletter subscription service *without* having to configure an ecommerce backend. This is great for fast development and testing. To set this up, follow our [set up guide]().
+Optional, [but great for fast prototyping and development]().
 
 
 ## Magento

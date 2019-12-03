@@ -10,12 +10,13 @@ import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/testing
 
 @NgModule({
   imports: [
-  DaffNewsletterInMemoryDriverModule.forRoot()
+    DaffNewsletterInMemoryDriverModule.forRoot(),
+    HttpClientInMemoryWebApiModule.forRoot()
   ]
 })
 export class AppModule {}
 ```
 
 Now your `DaffNewsletter` implementation will have access to the In-Memory Driver to use while developing.
->It is important to note to only have one driver set up in your App.Module at a time. To set up a driver configuration to make switching between different backend drivers simple, follow the [advanced setup guide]().
-<!--later on this can link to a guide about setting up a config file for multiple drivers like demo-->
+
+> It is important to note to only have one driver set up in your App.Module at a time. To set up a driver configuration to make switching between different backend drivers simple, follow the [advanced setup guide](). <!-- later on this can link to a guide about setting up a config file for multiple drivers like demo -->

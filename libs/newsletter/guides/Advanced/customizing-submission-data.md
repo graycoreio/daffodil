@@ -1,5 +1,6 @@
 # Customizing Submission Data
-Whenever you are setting up your newsletter subscription within your application, you must decide what information is important for your user to include for the subscription. This guide will walk you through how to include all the desired information when the user submits their subscription using the `DaffNewsletter` library.
+Whenever you are setting up your newsletter feature within your application, you must decide what information is important for your user to include for the subscription. This guide will walk you through including your desired newsletter payload when a user submits their newsletter subscription using the DaffNewsletter library.
+
 
 ## Table of Contents
 - [The DaffNewsletterSubmission](#the-daff-newsletter-submission)
@@ -13,12 +14,12 @@ export interface DaffNewsletterSubmission {
   email: string;
 }
 ```
-It is simple and represents the baseline information needed in a subscription. 
+It is simple and represents the baseline information needed in a subscription. It also serves as an out-of-the-box payload for submitting a newsletter subscription.
 
 
 ## Creating your own submission object
 
-To include all of the information you want in your newsletter subscription, you must define your own newsletter payload, which is going to represent all of the data required from the user when subscribing to your application's newsletter. To do so using the `DaffNewsletter`, you must use `DaffNewsletterSubmission`, or alternatively define a class that implements the `DaffNewsletterSubmission`. The `DaffNewsletterSubmission` only contains one variable of `email` to be used as a standard template for the Newsletter library, so it must be included in your defined class.
+To customize `@daffodil/newsletter` to use your custom payload when sending a submission, you must define an object that implements the `DaffNewsletterSubmission`. The `DaffNewsletterSubmission` only contains one variable of `email` to be used as a standard template for the Newsletter library, so it must be included in your defined class.
 
 Here is an example of creating your own payload object that implements `DaffNewsletterSubscription`.
 
@@ -34,7 +35,7 @@ export class MyNewsletterSubmission implements DaffNewsletterSubmission {
 
 ## Utilizing your payload
 
-After customizing the payload, you can dispatch the `DaffNewsletterSubscribe` with your updated payload via the `DaffNewsletterFacade`'s `dispatch` method. Be sure to type the generic `DaffNewsletterSubscribe<MyNewsletterSubmission>` in order to get proper type safety.
+After customizing the payload, you can dispatch a `DaffNewsletterSubscribe` with your updated payload via the `DaffNewsletterFacade`'s `dispatch` method. Be sure to type the generic `DaffNewsletterSubscribe<MyNewsletterSubmission>` in order to get proper type safety.
 
 ```typescript
 import { DaffNewsletterSubscribe, DaffNewsletterSubmission, DaffNewsletterFacade } from '@daffodil/newsletter';
