@@ -69,6 +69,12 @@
       ],
       "@daffodil/newsletter/testing": [
         "dist/newsletter/testing"
+      ],
+      "@daffodil/contact": [
+        "dist/contact"
+      ],
+      "@daffodil/contact/testing": [
+        "dist/contact/testing"
       ]
     }
   },
