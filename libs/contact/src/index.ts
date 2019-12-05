@@ -1,1 +1,1 @@
-export { DaffContactForum } from './models/contact.model';
+export {}
