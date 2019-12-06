@@ -1,0 +1,20 @@
+{
+  "name": "@daffodil/contact",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "scripts": {
+    "build": "ng build contact --prod",
+    "lint": "ng lint contact",
+    "test": "ng test contact --watch=false --browsers=ChromeHeadless"
+  },
+  "peerDependencies": {
+    "@angular/common": "^8.2.9",
+    "@angular/core": "^8.2.9"
+  }
+}
