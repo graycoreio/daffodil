@@ -29,6 +29,7 @@
 #  damienwebdev - Damien Retzinger
 #  xelaint - Elain Tsai
 #  lderrickable - Luke Derrick
+#  NolanArnold - Nolan Arnold
 
 
 
@@ -56,36 +57,7 @@
 #
 #   - lderrickable
 #   - damienwebdev
-
-# ===========================================================
-#  @graycore/daff-driver
-# ===========================================================
-#
-#   - lderrickable
-#   - damienwebdev
-
-# ===========================================================
-#  @graycore/daff-product
-# ===========================================================
-#
-#   - lderrickable
-#   - damienwebdev
-
-
-# ===========================================================
-#  @graycore/daff-cart
-# ===========================================================
-#
-#   - lderrickable
-#   - damienwebdev
-
-
-# ===========================================================
-#  @graycore/daff-checkout
-# ===========================================================
-#
-#   - lderrickable
-#   - damienwebdev
+#   - NolanArnold
 
 # ===========================================================
 #  @graycore/daff-marketing
@@ -108,6 +80,7 @@
 #   - lderrickable
 #   - xelaint
 #   - damienwebdev
+#   - NolanArnold
 
 
 ######################################################################################################
@@ -130,6 +103,13 @@
 
 * @damienwebdev
 
+
+# ================================================
+#  Application Owners
+# ================================================
+apps/*                                                          @graycore/daff-core
+libs/*                                                          @graycore/daff-core
+
 # ================================================
 #  @daffodil/demo
 # ================================================
@@ -148,41 +128,7 @@
 /apps/design-land/**                                            @graycoreio/daff-design
 /apps/design-land-e2e/**                                        @graycoreio/daff-design    
 /libs/design/**                                                 @graycoreio/daff-design
-
-# ================================================
-#  @daffodil/branding
-# ================================================
 /libs/branding/**                                               @graycoreio/daff-marketing @graycoreio/daff-design
-
-# ================================================
-#  @daffodil/core
-# ================================================
-/libs/core/**                                                   @graycoreio/daff-core
-
-# ================================================
-#  @daffodil/driver
-# ================================================
-/libs/driver/**                                                 @graycoreio/daff-driver
-
-# ================================================
-#  @daffodil/product
-# ================================================
-/libs/product/**                                                @graycoreio/daff-product
-
-# ================================================
-#  @daffodil/cart
-# ================================================
-/libs/cart/**                                                   @graycoreio/daff-cart
-
-# ================================================
-#  @daffodil/checkout
-# ================================================
-/libs/checkout/**                                               @graycoreio/daff-checkout
-
-# ================================================
-#  @daffodil/newsletter
-# ================================================
-/libs/newsletter/**                                             @Nolan-Arnold
 
 # ================================================
 #  Docs: Maintainers
