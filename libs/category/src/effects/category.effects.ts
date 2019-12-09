@@ -11,7 +11,9 @@ import {
   DaffCategoryLoad, 
   DaffCategoryLoadSuccess, 
   DaffCategoryLoadFailure, 
-  DaffChangeCategoryPageSize} from '../actions/category.actions';
+  DaffChangeCategoryPageSize,
+  DaffChangeCategoryCurrentPage
+} from '../actions/category.actions';
 import { DaffCategoryDriver } from '../drivers/injection-tokens/category-driver.token';
 import { DaffCategoryServiceInterface } from '../drivers/interfaces/category-service.interface';
 import { DaffGetCategoryResponse } from '../models/get-category-response';
@@ -30,7 +32,7 @@ export class DaffCategoryEffects {
   @Effect()
   loadCategory$ : Observable<any> = this.actions$.pipe(
     ofType(DaffCategoryActionTypes.CategoryLoadAction),
-    switchMap((action: DaffCategoryLoad) => this.processCategoryGetRequest(action.payload))
+    switchMap((action: DaffCategoryLoad) => this.processCategoryGetRequest(action.categoryRequest))
   )
 
   @Effect()
@@ -40,7 +42,7 @@ export class DaffCategoryEffects {
     switchMap(([action, categoryId]: [DaffChangeCategoryPageSize, string]) =>
       this.processCategoryGetRequest({
         id: categoryId,
-        page_size: action.payload
+        page_size: action.pageSize
       })
     )
   )
@@ -52,11 +54,11 @@ export class DaffCategoryEffects {
       this.store.pipe(select(selectSelectedCategoryId)), 
       this.store.pipe(select(selectCategoryPageSize))
     ),
-    switchMap(([action, categoryId, pageSize]: [DaffChangeCategoryPageSize, string, number]) =>
+    switchMap(([action, categoryId, pageSize]: [DaffChangeCategoryCurrentPage, string, number]) =>
       this.processCategoryGetRequest({
         id: categoryId,
         page_size: pageSize,
-        current_page: action.payload
+        current_page: action.currentPage
       })
     )
   )

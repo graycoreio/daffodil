@@ -29,7 +29,7 @@ export function categoryReducer(state = initialState, action: DaffCategoryAction
         loading: true,
         categoryPageConfigurationState: {
           ...state.categoryPageConfigurationState,
-          ...action.payload
+          ...action.categoryRequest
         }
       };
     // This reducer cannot spread over state, because this would wipe out the applied filters on state. Applied filters are not
@@ -40,19 +40,19 @@ export function categoryReducer(state = initialState, action: DaffCategoryAction
         loading: false,
         categoryPageConfigurationState: {
           ...state.categoryPageConfigurationState,
-          id: action.payload.categoryPageConfigurationState.id,
-          current_page: action.payload.categoryPageConfigurationState.current_page,
-          page_size: action.payload.categoryPageConfigurationState.page_size,
-          filters: action.payload.categoryPageConfigurationState.filters,
-          sort_options: action.payload.categoryPageConfigurationState.sort_options,
-          total_pages: action.payload.categoryPageConfigurationState.total_pages
+          id: action.categoryResponse.categoryPageConfigurationState.id,
+          current_page: action.categoryResponse.categoryPageConfigurationState.current_page,
+          page_size: action.categoryResponse.categoryPageConfigurationState.page_size,
+          filters: action.categoryResponse.categoryPageConfigurationState.filters,
+          sort_options: action.categoryResponse.categoryPageConfigurationState.sort_options,
+          total_pages: action.categoryResponse.categoryPageConfigurationState.total_pages
         }
       };
     case DaffCategoryActionTypes.CategoryLoadFailureAction:
       return {
         ...state,
         loading: false,
-        errors: [action.payload]
+        errors: [action.errorMessage]
       };
     default:
       return state;
