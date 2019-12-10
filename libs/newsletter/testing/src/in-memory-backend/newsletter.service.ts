@@ -24,7 +24,7 @@ export class DaffInMemoryBackendNewsletterService implements InMemoryDbService {
     if(reqInfo === undefined){
       return Error('Payload is undefined');
     }
-    else if(this.newsletters.includes(reqInfo.body)){
+    else if(this.newsletters.indexOf(reqInfo.body)){
       return Error('Already contains submission');
     }
     else{
