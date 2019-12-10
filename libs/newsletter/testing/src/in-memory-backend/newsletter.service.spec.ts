@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { DaffInMemoryBackendNewsletterService } from './newsletter.service';
 import { DaffNewsletterSubmission } from '@daffodil/newsletter';
+import { of } from 'rxjs';
 
 describe('DaffNewsletterInMemoryBackend', () => {
   let newsletterTestingService;
@@ -38,6 +39,10 @@ describe('DaffNewsletterInMemoryBackend', () => {
       const newsletterSubmission: DaffNewsletterSubmission = { email: 'test@test.com' };
       newsletterTestingService.post(newsletterSubmission);
       expect(newsletterTestingService.post(newsletterSubmission)).toEqual(Error('Already contains submission'));
+    });
+    it('should not throw an error if it is in the 0th position', () => {
+      const newsletterSubmission: DaffNewsletterSubmission = { email: 'test2@test.com' };
+      expect(newsletterTestingService.post(newsletterSubmission)).toEqual(newsletterSubmission);
     });
   });
 });
