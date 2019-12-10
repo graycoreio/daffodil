@@ -1,6 +1,16 @@
 export { DaffCategory } from './models/category';
 export { DaffCategoryBreadcrumb } from './models/category-breadcrumb';
-export { DaffCategoryActionTypes, DaffCategoryActions, DaffCategoryLoad, DaffCategoryLoadFailure, DaffCategoryLoadSuccess } from './actions/category.actions';
+export { 
+  DaffCategoryActionTypes, 
+  DaffCategoryActions, 
+  DaffCategoryLoad, 
+  DaffCategoryLoadFailure, 
+  DaffCategoryLoadSuccess,
+  DaffChangeCategoryCurrentPage,
+  DaffChangeCategoryPageSize,
+  DaffChangeCategoryFilters,
+  DaffChangeCategorySortingOption
+} from './actions/category.actions';
 
 export { categoryReducers } from './reducers/category-reducers';
 export { DaffCategoryFacade } from './facades/category.facade';
