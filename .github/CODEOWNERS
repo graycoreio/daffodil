@@ -29,7 +29,7 @@
 #  damienwebdev - Damien Retzinger
 #  xelaint - Elain Tsai
 #  lderrickable - Luke Derrick
-#  NolanArnold - Nolan Arnold
+#  Nolan-Arnold - Nolan Arnold
 
 
 
@@ -57,7 +57,7 @@
 #
 #   - lderrickable
 #   - damienwebdev
-#   - NolanArnold
+#   - Nolan-Arnold
 
 # ===========================================================
 #  @graycore/daff-marketing
@@ -80,7 +80,7 @@
 #   - lderrickable
 #   - xelaint
 #   - damienwebdev
-#   - NolanArnold
+#   - Nolan-Arnold
 
 
 ######################################################################################################
@@ -107,8 +107,8 @@
 # ================================================
 #  Application Owners
 # ================================================
-apps/*                                                          @graycore/daff-core
-libs/*                                                          @graycore/daff-core
+apps/**                                                         @graycore/daff-core
+libs/**                                                         @graycore/daff-core
 
 # ================================================
 #  @daffodil/demo
