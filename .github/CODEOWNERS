@@ -107,8 +107,8 @@
 # ================================================
 #  Application Owners
 # ================================================
-apps/**                                                         @graycore/daff-core
-libs/**                                                         @graycore/daff-core
+apps/**                                                         @graycoreio/daff-core
+libs/**                                                         @graycoreio/daff-core
 
 # ================================================
 #  @daffodil/demo
