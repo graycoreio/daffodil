@@ -22,4 +22,8 @@ $highlight-color: rgba(0, 0, 0, 0);
 	&:visited {
 		outline: 0;
 	}
+
+	&--fullscreen {
+		position: absolute;
+	}
 }

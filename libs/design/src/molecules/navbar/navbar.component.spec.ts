@@ -3,7 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DaffNavbarComponent } from './navbar.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { DaffPalette } from 'dist/design/public_api';
+import { DaffPalette } from '../../core/colorable/colorable';
+
 
 @Component({ template: '<daff-navbar [color]="color" [shadowed]="shadowed"></ daff-navbar>' })
 class WrapperComponent {
