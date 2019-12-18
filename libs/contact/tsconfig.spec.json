@@ -7,7 +7,6 @@
       "node"
     ]
   },
-  "emitDecoratorMetadata": true,
   "files": [
     "test.ts"
   ],
