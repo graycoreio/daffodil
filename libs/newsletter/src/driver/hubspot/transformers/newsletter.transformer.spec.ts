@@ -1,9 +1,8 @@
-import { DaffNewsletterSubmission } from "libs/newsletter/src/models/newsletter.model";
-import { DaffNewsletterHubspotTransformer } from "./newsletter.transformer";
-import { jsonBuilder } from "./json-builder";
+import { DaffNewsletterSubmission } from 'libs/newsletter/src/models/newsletter.model';
+import { DaffNewsletterHubspotTransformer } from './newsletter.transformer';
+import { jsonBuilder } from './json-builder';
 
 describe('DaffNewsletterHubspotTransformer', () => {
-  let transformer: DaffNewsletterHubspotTransformer;
 
   describe('when using transformOut', () => {
 

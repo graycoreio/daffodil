@@ -1,11 +1,11 @@
-import { ModuleWithProviders, NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { ModuleWithProviders, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { DaffNewsletterHubspotConfig } from './models/config';
-import { DaffNewsletterDriver } from "../injection-tokens/newsletter-driver.token";
-import { DaffHubspotNewsletterService } from "./newsletter.service";
-import { DaffNewsletterConfig } from "../injection-tokens/newsletter-config.token";
-import { DaffNewsletterTransformer } from "../injection-tokens/newsletter-transformer.token";
-import { DaffNewsletterHubspotTransformer } from "./transformers/newsletter.transformer";
+import { DaffNewsletterDriver } from '../injection-tokens/newsletter-driver.token';
+import { DaffHubspotNewsletterService } from './newsletter.service';
+import { DaffNewsletterConfig } from '../injection-tokens/newsletter-config.token';
+import { DaffNewsletterTransformer } from '../injection-tokens/newsletter-transformer.token';
+import { DaffNewsletterHubspotTransformer } from './transformers/newsletter.transformer';
 
 @NgModule({
   imports: [

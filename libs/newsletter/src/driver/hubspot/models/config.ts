@@ -6,5 +6,5 @@ import { Injectable } from '@angular/core';
 export class DaffNewsletterHubspotConfig {
   portalId: string;
   guid: string;
-  version?: string = '';
+  version? = '';
 }

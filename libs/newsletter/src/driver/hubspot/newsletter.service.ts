@@ -22,7 +22,7 @@ export class DaffHubspotNewsletterService implements DaffNewsletterServiceInterf
   constructor(
     private http: HttpClient,
     @Inject(DaffNewsletterConfig) private newsletterConfig: DaffNewsletterHubspotConfig,
-    @Inject(DaffNewsletterTransformer) private transformer: DaffNewsletterTransformerInterface<DaffNewsletterUnion, HubspotRequest, HubspotResponse, any>,
+    @Inject(DaffNewsletterTransformer) private transformer: DaffNewsletterTransformerInterface<DaffNewsletterUnion, HubspotRequest, HubspotRequest, any>,
     @Optional() @Inject(DOCUMENT) private document: Document,
     @Optional() private route: Router,
     private title: Title) { }
@@ -30,10 +30,10 @@ export class DaffHubspotNewsletterService implements DaffNewsletterServiceInterf
   send(payload: DaffNewsletterUnion): any {
     console.log(this.generateUrl(this.newsletterConfig.portalId, this.newsletterConfig.guid, this.newsletterConfig.version));
     return this.http.post<HubspotRequest>(this.generateUrl(this.newsletterConfig.portalId, this.newsletterConfig.guid, this.newsletterConfig.version),{
-      ...this.transformer.transformOut(payload), "context": {
-        "hutk": this.getCookie(),
-        "pageUri": this.getPageURI(),
-        "pageName": this.title.getTitle()
+      ...this.transformer.transformOut(payload), 'context': {
+        'hutk': this.getCookie(),
+        'pageUri': this.getPageURI(),
+        'pageName': this.title.getTitle()
       }
     }).pipe(map(this.transformer.transformIn));
   }
@@ -49,7 +49,7 @@ export class DaffHubspotNewsletterService implements DaffNewsletterServiceInterf
       return null;
     }
     const name = 'hubspotutk';
-    var v = this.document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    const v = this.document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
     return v ? v[2] : null;
   }
   private getPageURI() {

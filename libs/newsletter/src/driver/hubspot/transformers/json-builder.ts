@@ -1,4 +1,4 @@
-import { FieldValue } from "../models/hubspot-response"
+import { FieldValue } from '../models/hubspot-response'
 
 
 export const jsonBuilder = (payload: object): FieldValue[] => {
