@@ -18,23 +18,23 @@ describe('DaffNewsletterInMemoryBackend', () => {
     expect(newsletterTestingService).toBeTruthy();
   });
 
-  describe('on intializiaton', () => {
+  describe('after intializiaton', () => {
     let result;
 
     beforeEach(() => {
       result = newsletterTestingService.createDb();
     });
 
-    it('should intialize empty on createDb', () => {
+    it('should be empty on createDb', () => {
       expect(result.newsletters).toEqual([]);
     });
 
-    it('should validate that its not empty', () => {
+    it('should validate that a submission is not empty', () => {
       const newsletterSubmission: DaffNewsletterSubmission = undefined;
       expect(newsletterTestingService.post(newsletterSubmission)).toEqual(Error('Payload is undefined'));
     });
 
-    it('should validate that it doesnt already exist', () => {
+    it('should validate that a submission already exists', () => {
 
       const newsletterSubmission: DaffNewsletterSubmission = { email: 'test@test.com' };
       newsletterTestingService.post(newsletterSubmission);
