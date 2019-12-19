@@ -1,7 +1,8 @@
-import { DaffNewsletterTransformerInterface, DaffNewsletterUnion } from 'libs/newsletter/src';
+import { Injectable } from '@angular/core';
 import { HubspotRequest } from '../models/hubspot-response';
 import { jsonBuilder } from './json-builder';
-import { Injectable } from '@angular/core';
+import { DaffNewsletterTransformerInterface } from '../../interfaces/newsletter-transformer.interface';
+import { DaffNewsletterUnion } from '../../../models/newsletter-union';
 
 @Injectable({
   providedIn: 'root'

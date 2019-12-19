@@ -1,17 +1,18 @@
 
-import { DaffNewsletterUnion } from 'libs/newsletter/src/models/newsletter-union';
 import { HttpClient } from '@angular/common/http';
-import { DaffNewsletterHubspotConfig } from './models/config';
-
-import { map } from 'rxjs/operators';
-import { HubspotRequest} from './models/hubspot-response';
-import { DaffNewsletterTransformer } from '../injection-tokens/newsletter-transformer.token';
-import { DaffNewsletterTransformerInterface } from '../interfaces/newsletter-transformer.interface';
-import { DaffNewsletterServiceInterface } from '../interfaces/newsletter-service.interface';
 import { Inject, Injectable, Optional } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+
+import { map } from 'rxjs/operators';
+
+import { DaffNewsletterUnion } from '../../models/newsletter-union';
+import { DaffNewsletterHubspotConfig } from './models/config';
+import { HubspotRequest} from './models/hubspot-response';
+import { DaffNewsletterTransformer } from '../injection-tokens/newsletter-transformer.token';
+import { DaffNewsletterTransformerInterface } from '../interfaces/newsletter-transformer.interface';
+import { DaffNewsletterServiceInterface } from '../interfaces/newsletter-service.interface';
 import { DaffNewsletterConfig } from '../injection-tokens/newsletter-config.token';
 
 @Injectable({

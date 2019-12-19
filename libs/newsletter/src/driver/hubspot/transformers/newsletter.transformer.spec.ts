@@ -1,5 +1,4 @@
 import { DaffNewsletterSubmission } from 'libs/newsletter/src/models/newsletter.model';
-import { DaffNewsletterHubspotTransformer } from './newsletter.transformer';
 import { jsonBuilder } from './json-builder';
 
 describe('DaffNewsletterHubspotTransformer', () => {
