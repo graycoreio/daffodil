@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ContentChild } from '@angular/core';
+import { DaffPrefixDirective, DaffSuffixDirective } from '../../../core/prefix-suffix/public_api';
 
 @Component({
   selector: 'daff-list-item',
@@ -9,4 +10,8 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class DaffListItemComponent {}
+export class DaffListItemComponent {
+
+  @ContentChild(DaffPrefixDirective, { static: false }) _prefix: DaffPrefixDirective;
+  @ContentChild(DaffSuffixDirective, { static: false }) _suffix: DaffSuffixDirective;
+}

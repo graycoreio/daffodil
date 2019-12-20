@@ -1,5 +1,5 @@
 @import '../../../scss/daff-util';
-@import '../../../scss/daff-theme.scss';
+@import '../../../scss/daff-theme';
 
 .daff-list {
 	$root: &;
@@ -64,7 +64,11 @@
 		padding: 0 0 8px;
 	}
 
-	&__icon {
-		margin-right: 15px;
+	.daff-prefix {
+		margin-right: 16px;
+	}
+
+	.daff-suffix {
+		margin-left: 16px;
 	}
 }
