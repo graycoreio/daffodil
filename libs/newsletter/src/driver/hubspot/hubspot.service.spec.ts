@@ -4,7 +4,7 @@ import { DaffHubspotNewsletterService } from './newsletter.service';
 import { DaffNewsletterHubSpotDriverModule } from './hubspot-driver.module';
 import { of } from 'rxjs';
 
-describe('HubSpotDriver', () => {
+describe('DaffHubspotNewsletterDriver', () => {
   let newsletterService;
   let httpMock: HttpTestingController;
   beforeEach(() => {
@@ -28,7 +28,6 @@ describe('HubSpotDriver', () => {
   });
   describe('when sending', () => {
     it('should send a submission', () => {
-
       const forumSubmission = { email: 'test@email.com' };
       const mockReq = of(forumSubmission);
       newsletterService.send(forumSubmission).subscribe();
@@ -38,7 +37,6 @@ describe('HubSpotDriver', () => {
           fields: [Object({ 'name': 'email', 'value': 'test@email.com' })],
           context: Object({ hutk: null, pageUri: null, pageName: '' })
         }
-
       );
       req.flush(mockReq);
       httpMock.verify();

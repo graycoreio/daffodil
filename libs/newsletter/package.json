@@ -13,9 +13,6 @@
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"
   },
-  "publishConfig": {
-    "directory": "../../dist/newsletter"
-  },
   "author": "Graycore LLC",
   "license": "MIT",
   "bugs": {
