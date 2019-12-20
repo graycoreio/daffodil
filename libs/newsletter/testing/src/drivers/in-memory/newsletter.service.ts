@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable} from 'rxjs';
 
-import { DaffNewsletterServiceInterface, DaffNewsletterSubmission } from '@daffodil/newsletter';
+import { DaffNewsletterServiceInterface} from '@daffodil/newsletter';
 import { DaffNewsletterUnion } from '@daffodil/newsletter';
-import { catchError, map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 /**
  * The newsletter inmemory driver to mock the newsletter backend service.
@@ -14,13 +14,18 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DaffInMemoryNewsletterService implements DaffNewsletterServiceInterface<DaffNewsletterUnion, DaffNewsletterUnion>{
-  constructor() { }
+  url = '/api/newsletters/';
 
+  constructor(private http: HttpClient) { }
+  
+  /**
+   * Sends your newsletter submission data.
+   * 
+   * @param payload DaffNewsletterUnion
+   * @returns An Observable of DaffNewsletterUnion
+   */
   send(payload: DaffNewsletterUnion): Observable<DaffNewsletterUnion> {
-    if (payload === undefined) {
-      return throwError('Failed to subscribe');
-    }
-    return of(payload);
+    return this.http.post<DaffNewsletterUnion>(this.url, payload);
   }
 
 }
