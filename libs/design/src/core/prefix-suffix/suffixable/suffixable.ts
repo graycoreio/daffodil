@@ -3,10 +3,7 @@ import { DaffSuffixDirective } from '../suffix.directive';
 import { Constructor } from '../../constructor';
 
 /**
- * A mixin for giving a form control component a prefixed symbol.
- *
- * This should be a trait, but typescript only supports mixins.
- * See: https://github.com/Microsoft/TypeScript/issues/311
+ * A mixin for giving a component the ability to place content after another piece of content.
  */
 export function daffSuffixableMixin<T extends Constructor>(Base: T) {
   class Suffixable extends Base {
