@@ -1,8 +1,8 @@
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { DaffHubspotNewsletterService } from './newsletter.service';
-import { DaffNewsletterHubSpotDriverModule } from './hubspot-driver.module';
 import { of } from 'rxjs';
+import { DaffNewsletterHubSpotDriverModule } from '../hubspot/hubspot-driver.module';
+import { DaffHubspotNewsletterService } from '../hubspot/newsletter.service';
 
 describe('DaffHubspotNewsletterDriver', () => {
   let newsletterService;

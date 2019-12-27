@@ -29,7 +29,6 @@ export class DaffHubspotNewsletterService implements DaffNewsletterServiceInterf
     private title: Title) { }
 
   send(payload: DaffNewsletterUnion): any {
-    console.log(this.generateUrl(this.newsletterConfig.portalId, this.newsletterConfig.guid, this.newsletterConfig.version));
     return this.http.post<HubspotRequest>(this.generateUrl(this.newsletterConfig.portalId, this.newsletterConfig.guid, this.newsletterConfig.version),{
       ...this.transformer.transformOut(payload), 'context': {
         'hutk': this.getCookie(),
