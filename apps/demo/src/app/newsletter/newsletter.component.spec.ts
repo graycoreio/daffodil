@@ -65,9 +65,9 @@ describe('NewsletterComponent', () => {
       component.success$ = of(false);
       fixture.detectChanges();
 
-      newsletterElement = fixture.debugElement.nativeElement.querySelector('.newsletter__right');
+      newsletterElement = fixture.debugElement.nativeElement.querySelector('.demo-newsletter__right');
     });
-    it('should render class newsletter__right', () => {
+    it('should render class .demo-newsletter__right', () => {
       expect(newsletterElement).not.toBeNull();
     });
     it('should call onNewsletterSubmit on click', () => {
@@ -86,9 +86,9 @@ describe('NewsletterComponent', () => {
       component.success$ = of(false);
       fixture.detectChanges();
 
-      newsletterElement = fixture.debugElement.nativeElement.querySelector('.newsletter__loading');
+      newsletterElement = fixture.debugElement.nativeElement.querySelector('.demo-newsletter__loading');
     });
-    it('should render newsletter__loading', () => {
+    it('should render .demo-newsletter__loading', () => {
       expect(newsletterElement).not.toBeNull();
     });
     it('should call onNewsletterCancel on click', () => {
@@ -107,9 +107,9 @@ describe('NewsletterComponent', () => {
       component.success$ = of(true);
       fixture.detectChanges();
 
-      newsletterElement = fixture.debugElement.nativeElement.querySelector('.newsletter__success');
+      newsletterElement = fixture.debugElement.nativeElement.querySelector('.demo-newsletter__success');
     });
-    it('should render newsletter__success', () => {
+    it('should render .demo-newsletter__success', () => {
       expect(newsletterElement).not.toBeNull();
     });
   });
@@ -122,9 +122,9 @@ describe('NewsletterComponent', () => {
       component.error$ = of('Error');
       fixture.detectChanges();
 
-      newsletterElement = fixture.debugElement.nativeElement.querySelector('.newsletter__retry');
+      newsletterElement = fixture.debugElement.nativeElement.querySelector('.demo-newsletter__retry');
     });
-    it('should render newsletter__retry', () => {
+    it('should render .demo-newsletter__retry', () => {
       expect(newsletterElement).not.toBeNull();
     });
     it('should call onNewsletterRetry on click', () => {

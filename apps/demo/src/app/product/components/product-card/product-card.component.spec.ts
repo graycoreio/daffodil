@@ -62,10 +62,10 @@ describe('ProductCardComponent', () => {
     expect(productCardComponent.componentInstance.product).toEqual(stubProduct);
   });
 
-  describe('when product-card is clicked', () => {
+  describe('when demo-product-card is clicked', () => {
 
     beforeEach(() => {
-      fixture.debugElement.query(By.css('.product-card')).nativeElement.click();
+      fixture.debugElement.query(By.css('.demo-product-card')).nativeElement.click();
     });
     
     it('should call router.navigateByUrl', () => {

@@ -1,10 +1,12 @@
-.template {
-  height: 100vh;
-  display: block;
+@import 'utilities';
 
-  &__modal {
-    height: 200px;
-    width: 200px;
-    background-color: white;
-  }
+.demo-template {
+	height: 100vh;
+	display: block;
+
+	&__modal {
+		height: 200px;
+		width: 200px;
+		background-color: $white;
+	}
 }

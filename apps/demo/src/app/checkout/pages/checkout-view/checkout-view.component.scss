@@ -1,62 +1,62 @@
 @import 'utilities';
-@import "theme";
+@import 'theme';
 
-.checkout {
-  display: grid;
-  grid-template-columns: 1fr;
-  padding: 50px 25px;
+.demo-checkout {
+	display: grid;
+	grid-template-columns: 1fr;
+	padding: 50px 25px;
 
-  @include breakpoint(big-tablet) {
-    grid-template-columns: 2fr 1fr;
-    column-gap: 50px;
-    padding: 75px 50px;
-  }
+	@include breakpoint(big-tablet) {
+		grid-template-columns: 2fr 1fr;
+		column-gap: 50px;
+		padding: 75px 50px;
+	}
 
-  @include breakpoint(laptop) {
-    padding: 75px 0;
-  }
+	@include breakpoint(laptop) {
+		padding: 75px 0;
+	}
 
-  &__payment {
-    align-self: start;
-  }
+	&__payment {
+		align-self: start;
+	}
 
-  &__review {
-    margin-top: 25px;
-  }
+	&__review {
+		margin-top: 25px;
+	}
 
-  &__shipping {
-    padding: 25px 0;
-    border-bottom: 1px solid daff-color($daff-gray, 20);
+	&__shipping {
+		padding: 25px 0;
+		border-bottom: 1px solid daff-color($daff-gray, 20);
 
-    @include breakpoint(big-tablet) {
-      border-top: 1px solid daff-color($daff-gray, 20);
-    }
-  }
+		@include breakpoint(big-tablet) {
+			border-top: 1px solid daff-color($daff-gray, 20);
+		}
+	}
 
-  &__payment {
-    padding-top: 30px;
-  }
+	&__payment {
+		padding-top: 30px;
+	}
 
-  &__review {
-    @include breakpoint(big-tablet) {
-      display: none;
-    }
-  }
-  
-  &__desktop-cart {
-    display: none;
+	&__review {
+		@include breakpoint(big-tablet) {
+			display: none;
+		}
+	}
 
-    @include breakpoint(big-tablet) {
-      display: block;
-    }
-  }
+	&__desktop-cart {
+		display: none;
 
-  &__mobile-cart {
-    display: block;
-    border-top: 1px solid daff-color($daff-gray, 20);
-    
-    @include breakpoint(big-tablet) {
-      display: none;
-    }
-  }
+		@include breakpoint(big-tablet) {
+			display: block;
+		}
+	}
+
+	&__mobile-cart {
+		display: block;
+		border-top: 1px solid daff-color($daff-gray, 20);
+
+		@include breakpoint(big-tablet) {
+			display: none;
+		}
+	}
 }

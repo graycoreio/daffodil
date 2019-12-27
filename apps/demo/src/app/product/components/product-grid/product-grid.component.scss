@@ -1,31 +1,31 @@
 @import 'utilities';
 
 :host {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 25px 5px;
-  padding: 50px 0;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 25px 5px;
+	padding: 50px 0;
 
-  /*
+	/*
   * This allows text-overflow: ellipsis elements to not break their
   * bounding grid items.
   */
-  > * {
-    min-width: 0;
-  }
-  
+	> * {
+		min-width: 0;
+	}
 
-  @include breakpoint(tablet) {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
 
-  @include breakpoint(big-tablet) {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-gap: 50px 10px;
-    padding: 50px 25px;
-  }
+	@include breakpoint(tablet) {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
 
-  @include breakpoint(laptop) {
-    padding: 50px 0;
-  }
+	@include breakpoint(big-tablet) {
+		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+		grid-gap: 50px 10px;
+		padding: 50px 25px;
+	}
+
+	@include breakpoint(laptop) {
+		padding: 50px 0;
+	}
 }

@@ -1,11 +1,11 @@
 @import 'utilities';
-@import "theme";
+@import 'theme';
 
-.cart {
-  display: block;
+.demo-cart {
+	display: block;
 
-  &__content {
-    padding: 25px 0;
-    @include section-divider();
-  }
+	&__content {
+		padding: 25px 0;
+		@include section-divider();
+	}
 }

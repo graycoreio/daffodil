@@ -1,11 +1,11 @@
 @import 'utilities';
 
-.add-to-cart {
-  display: inline-block;
-  width: 100%;
-  
-  button {
-    font-size: $medium-font-size;
-    width: 100%;
-  }
+.demo-add-to-cart {
+	display: inline-block;
+	width: 100%;
+
+	button {
+		font-size: $medium-font-size;
+		width: 100%;
+	}
 }

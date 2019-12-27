@@ -1,58 +1,58 @@
 @import 'utilities';
 
-.shipping-summary {
-  font-size: $small-font-size;
-  display: grid;
-  grid-template-columns: 4fr 1fr;
-  grid-template-areas: 
-    "   title  edit"
-    " address     ."
-    "subtitle     ."
-    "  option     .";
+.demo-shipping-summary {
+	font-size: $small-font-size;
+	display: grid;
+	grid-template-columns: 4fr 1fr;
+	grid-template-areas:
+		'   title  edit'
+		' address     .'
+		'subtitle     .'
+		'  option     .';
 
-  @include breakpoint(big-tablet) {
-    grid-template-columns: 1fr;
-    grid-template-areas: 
-      "title"
-      "address"
-      "subtitle"
-      "option"
-      "edit";
-  }
+	@include breakpoint(big-tablet) {
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			'title'
+			'address'
+			'subtitle'
+			'option'
+			'edit';
+	}
 
-  &__title {
-    font-size: 1rem;
-    margin-bottom: 15px;
-    @include embolden();
-    @include uppercase();
-    grid-area: title;
-  }
+	&__title {
+		font-size: 1rem;
+		margin-bottom: 15px;
+		@include embolden();
+		@include uppercase();
+		grid-area: title;
+	}
 
-  &__address {
-    grid-area: address;
-  }
+	&__address {
+		grid-area: address;
+	}
 
-  &__edit {
-    grid-area: edit;
-    display: block;
-    font-size: 0.875rem;
-    text-decoration: underline;
-    justify-self: end;
-    @include clickable();
+	&__edit {
+		grid-area: edit;
+		display: block;
+		font-size: 0.875rem;
+		text-decoration: underline;
+		justify-self: end;
+		@include clickable();
 
-    @include breakpoint(big-tablet) {
-      justify-self: start;
-      margin-top: 15px;
-    }
-  }
+		@include breakpoint(big-tablet) {
+			justify-self: start;
+			margin-top: 15px;
+		}
+	}
 
-  &__subtitle {
-    margin: 15px 0 5px 0;
-    @include embolden();
-    grid-area: subtitle;
-  }
+	&__subtitle {
+		margin: 15px 0 5px;
+		@include embolden();
+		grid-area: subtitle;
+	}
 
-  &__shipping-option {
-    grid-area: option;
-  }
+	&__shipping-option {
+		grid-area: option;
+	}
 }

@@ -1,26 +1,26 @@
 @import 'utilities';
 
-.product-card {
-  border: none;
-  cursor: pointer;
+.demo-product-card {
+	border: none;
+	cursor: pointer;
 
-  &__details {
-    padding: 15px 15px 0 15px;
-    font-size: $small-font-size;
-  }
+	&__details {
+		padding: 15px 15px 0;
+		font-size: $small-font-size;
+	}
 
-  &__brand {
-    @include embolden();
-    @include uppercase();
-  }
+	&__brand {
+		@include embolden();
+		@include uppercase();
+	}
 
-  &__brand, &__name, &__price {
-    margin: 0;
-    padding: 0;
-  }
+	&__brand, &__name, &__price {
+		margin: 0;
+		padding: 0;
+	}
 
-  &__image {
-    display: block;
-    max-width: 100%;
-  }
+	&__image {
+		display: block;
+		max-width: 100%;
+	}
 }

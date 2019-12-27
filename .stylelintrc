@@ -32,7 +32,8 @@
       "rem",
       "em",
       "vh",
-      "vw"
+      "vw",
+      "fr"
     ],
     "value-list-comma-space-after": "always-single-line",
     "value-list-comma-space-before": "never",

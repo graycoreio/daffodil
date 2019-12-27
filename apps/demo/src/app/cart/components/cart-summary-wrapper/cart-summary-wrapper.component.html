@@ -1,9 +1,9 @@
-<div class="cart-summary-wrapper">
-  <demo-cart-summary class="cart-summary-wrapper__content" [cart]="cart" [title]="cartTitle" *ngIf="!loading"></demo-cart-summary>
+<div class="demo-cart-summary-wrapper">
+  <demo-cart-summary class="demo-cart-summary-wrapper__content" [cart]="cart" [title]="cartTitle" *ngIf="!loading"></demo-cart-summary>
   <demo-cart-totals *ngIf="!(loading)" [cart]="cart"></demo-cart-totals>
   <ng-content></ng-content>
-  <demo-help-box class="cart-summary-wrapper__help-box" *ngIf="!(loading)"></demo-help-box>
-  <div *ngIf="(loading)" class="cart-summary-wrapper__loading-icon">
+  <demo-help-box class="demo-cart-summary-wrapper__help-box" *ngIf="!(loading)"></demo-help-box>
+  <div *ngIf="(loading)" class="demo-cart-summary-wrapper__loading-icon">
     <daff-loading-icon></daff-loading-icon>
   </div>
 </div>

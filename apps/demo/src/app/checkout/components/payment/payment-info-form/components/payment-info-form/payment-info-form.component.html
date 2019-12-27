@@ -1,19 +1,19 @@
-<div class="payment-info-form">
-  <daff-form-field class="payment-info-form__name">
-    <input daff-input type="text" class="payment-info-form__name"
+<div class="demo-payment-info-form">
+  <daff-form-field class="demo-payment-info-form__name">
+    <input daff-input type="text" class="demo-payment-info-form__name"
       placeholder="Cardholder's Name"
       name="name"
       [formControl]="formGroup.controls['name']"
       [formSubmitted]="submitted"/>
   </daff-form-field>
-  <daff-form-field class="payment-info-form__card-number">
-    <input daff-input type="text" class="payment-info-form__card-number"
+  <daff-form-field class="demo-payment-info-form__card-number">
+    <input daff-input type="text" class="demo-payment-info-form__card-number"
       placeholder="Card Number"
       name="cardnumber"
       [formControl]="formGroup.controls['cardnumber']"
       [formSubmitted]="submitted"/>
   </daff-form-field>
-  <daff-form-field class="payment-info-form__month">
+  <daff-form-field class="demo-payment-info-form__month">
     <select daff-native-select
       name="month"
       [formControl]="formGroup.controls['month']"
@@ -22,7 +22,7 @@
     </select>
     <daff-error-message *ngIf="formGroup.controls['month'].errors && (formGroup.controls['month'].touched || submitted)">This field is required.</daff-error-message>
   </daff-form-field>
-  <daff-form-field class="payment-info-form__year">
+  <daff-form-field class="demo-payment-info-form__year">
     <select daff-native-select
       name="year"
       [formControl]="formGroup.controls['year']"
@@ -31,8 +31,8 @@
     </select>
     <daff-error-message *ngIf="formGroup.controls['year'].errors && (formGroup.controls['year'].touched || submitted)">This field is required.</daff-error-message>
   </daff-form-field>
-  <daff-form-field class="payment-info-form__security-code">
-    <input daff-input type="text" class="payment-info-form__security-code"
+  <daff-form-field class="demo-payment-info-form__security-code">
+    <input daff-input type="text" class="demo-payment-info-form__security-code"
       placeholder="Security Code (XXX)"
       name="securitycode"
       [formControl]="formGroup.controls['securitycode']"

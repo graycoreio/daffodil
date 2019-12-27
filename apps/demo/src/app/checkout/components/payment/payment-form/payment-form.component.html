@@ -1,23 +1,23 @@
-<form class="payment-form" [formGroup]="form" #ngForm="ngForm" (ngSubmit)="onSubmit()">
-  <div class="payment-form__title">
+<form class="demo-payment-form" [formGroup]="form" #ngForm="ngForm" (ngSubmit)="onSubmit()">
+  <div class="demo-payment-form__title">
     Payment Details
   </div>
   
-  <div class="payment-form__subtitle">Payment Method</div>
-  <demo-payment-info-form class="payment-form__payment-info" [formGroup]="form.controls.paymentInfo" [submitted]="ngForm.submitted"></demo-payment-info-form>
+  <div class="demo-payment-form__subtitle">Payment Method</div>
+  <demo-payment-info-form class="demo-payment-form__payment-info" [formGroup]="form.controls.paymentInfo" [submitted]="ngForm.submitted"></demo-payment-info-form>
 
-  <div class="payment-form__subtitle">Billing Address</div>
-  <div class="payment-form__checkbox">
+  <div class="demo-payment-form__subtitle">Billing Address</div>
+  <div class="demo-payment-form__checkbox">
     <input type="checkbox"
       value="sameAsShipping"
       id="sameAsShipping"
       (click)="toggleBillingAddressIsShippingAddress.emit()">
     <label for="sameAsShipping">Same as shipping address</label>
   </div>
-  <demo-address-form *ngIf="!billingAddressIsShippingAddress" class="payment-form__address" [formGroup]="form.controls.address" [submitted]="ngForm.submitted"></demo-address-form>
+  <demo-address-form *ngIf="!billingAddressIsShippingAddress" class="demo-payment-form__address" [formGroup]="form.controls.address" [submitted]="ngForm.submitted"></demo-address-form>
   
-  <button type="submit" daff-button color="black" class="payment-form__button">Save & Review Order</button>
-  <div class="payment-form__note">
+  <button type="submit" daff-button color="black" class="demo-payment-form__button">Save & Review Order</button>
+  <div class="demo-payment-form__note">
     You can review this order before it's final.
   </div>
 </form>

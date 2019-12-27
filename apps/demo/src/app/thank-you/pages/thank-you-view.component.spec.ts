@@ -133,7 +133,7 @@ describe('ThankYouViewComponent', () => {
       orderContainer.loading$ = of(true);
       fixture.detectChanges();
 
-      thankYouElement = fixture.debugElement.query(By.css('.thank-you'));
+      thankYouElement = fixture.debugElement.query(By.css('.demo-thank-you'));
       loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
     });
     
@@ -155,11 +155,11 @@ describe('ThankYouViewComponent', () => {
       orderContainer.loading$ = of(false);
       fixture.detectChanges();
 
-      thankYouElement = fixture.debugElement.query(By.css('.thank-you'));
+      thankYouElement = fixture.debugElement.query(By.css('.demo-thank-you-view'));
       loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
     });
     
-    it('should render thank-you', () => {
+    it('should render demo-thank-you', () => {
       expect(thankYouElement).not.toBeNull();
     });
 

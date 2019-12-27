@@ -116,7 +116,7 @@ describe('CartWrapper', () => {
     let itemCountElement;
 
     beforeEach(() => {
-      itemCountElement = fixture.debugElement.query(By.css('.cart-wrapper__item-count'));
+      itemCountElement = fixture.debugElement.query(By.css('.demo-cart-wrapper__item-count'));
     })
 
     describe('when cartItem count is 1', () => {
@@ -160,8 +160,8 @@ describe('CartWrapper', () => {
         fixture.detectChanges();
       });
 
-      it('should not render .cart-wrapper__summary-title', () => {
-        const summaryTitleElement = fixture.debugElement.query(By.css('.cart-wrapper__summary-title'));
+      it('should not render .demo-cart-wrapper__summary-title', () => {
+        const summaryTitleElement = fixture.debugElement.query(By.css('.demo-cart-wrapper__summary-title'));
 
         expect(summaryTitleElement).toBeNull();
       });
@@ -186,8 +186,8 @@ describe('CartWrapper', () => {
         cartTotalsComponent = fixture.debugElement.query(By.css('demo-cart-totals'));
       });
 
-      it('should render .cart-wrapper__summary-title', () => {
-        const summaryTitleElement = fixture.debugElement.query(By.css('.cart-wrapper__summary-title'));
+      it('should render .demo-cart-wrapper__summary-title', () => {
+        const summaryTitleElement = fixture.debugElement.query(By.css('.demo-cart-wrapper__summary-title'));
 
         expect(summaryTitleElement).not.toBeNull();
       });

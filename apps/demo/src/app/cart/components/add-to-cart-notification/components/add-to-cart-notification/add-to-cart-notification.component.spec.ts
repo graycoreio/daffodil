@@ -205,23 +205,23 @@ describe('AddToCartNotificationComponent', () => {
     describe('when time-icon is clicked', () => {
       it('should call dispatch a CloseAddToCartNotification action', () => {
         spyOn(store, 'dispatch');
-        fixture.debugElement.query(By.css('.add-to-cart-notification__close')).nativeElement.click();
+        fixture.debugElement.query(By.css('.demo-add-to-cart-notification__close')).nativeElement.click();
         expect(store.dispatch).toHaveBeenCalledWith(new CloseAddToCartNotification());
       });
     });
 
     it('should render header', () => {
-      const topBarElement = fixture.debugElement.query(By.css('.add-to-cart-notification__header'));
+      const topBarElement = fixture.debugElement.query(By.css('.demo-add-to-cart-notification__header'));
       expect(topBarElement).not.toBeNull();
     });
 
     it('should render demo-product-added', () => {
-      const productAddedElement = fixture.debugElement.query(By.css('.add-to-cart-notification__product-added'));
+      const productAddedElement = fixture.debugElement.query(By.css('.demo-add-to-cart-notification__product-added'));
       expect(productAddedElement).not.toBeNull();
     });
 
     it('should render button-set', () => {
-      const buttonSetElement = fixture.debugElement.query(By.css('.add-to-cart-notification__button-set'));
+      const buttonSetElement = fixture.debugElement.query(By.css('.demo-add-to-cart-notification__button-set'));
       expect(buttonSetElement).not.toBeNull();
     });
 
@@ -258,19 +258,19 @@ describe('AddToCartNotificationComponent', () => {
     });
 
     it('should not render header', () => {
-      const topBarElement = fixture.debugElement.query(By.css('.add-to-cart-notification__header'));
+      const topBarElement = fixture.debugElement.query(By.css('.demo-add-to-cart-notification__header'));
 
       expect(topBarElement).toBeNull();
     });
 
     it('should not render demo-product-added', () => {
-      const productAddedElement = fixture.debugElement.query(By.css('.add-to-cart-notification__product-added'));
+      const productAddedElement = fixture.debugElement.query(By.css('.demo-add-to-cart-notification__product-added'));
 
       expect(productAddedElement).toBeNull();
     });
 
     it('should not render button-set', () => {
-      const buttonSetElement = fixture.debugElement.query(By.css('.add-to-cart-notification__button-set'));
+      const buttonSetElement = fixture.debugElement.query(By.css('.demo-add-to-cart-notification__button-set'));
 
       expect(buttonSetElement).toBeNull();
     });

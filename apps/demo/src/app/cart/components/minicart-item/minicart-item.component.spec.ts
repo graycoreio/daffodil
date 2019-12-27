@@ -84,7 +84,7 @@ describe('MiniCartItemComponent', () => {
     
     it('should call redirectToProduct', () => {
       spyOn(cartItemComponent, 'redirectToProduct');
-      fixture.debugElement.query(By.css('.minicart-item__name')).nativeElement.click();
+      fixture.debugElement.query(By.css('.demo-minicart-item__name')).nativeElement.click();
       
       expect(cartItemComponent.redirectToProduct).toHaveBeenCalled();
     });

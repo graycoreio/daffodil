@@ -1,5 +1,5 @@
-<div class="address-form">
-  <daff-form-field class="address-form__first-name">
+<div class="demo-address-form">
+  <daff-form-field class="demo-address-form__first-name">
     <input daff-input type="text"
       placeholder="First Name"
       name="firstname"
@@ -7,7 +7,7 @@
       [formSubmitted]="submitted"/>
     <daff-error-message *ngIf="formGroup.controls['firstname'].errors && (formGroup.controls['firstname'].touched || submitted)">This field is required.</daff-error-message>
   </daff-form-field>
-  <daff-form-field class="address-form__last-name">
+  <daff-form-field class="demo-address-form__last-name">
     <input daff-input type="text"
       placeholder="Last Name"
       name="lastname"
@@ -15,7 +15,7 @@
       [formSubmitted]="submitted"/>
     <daff-error-message *ngIf="formGroup.controls['lastname'].errors && (formGroup.controls['lastname'].touched || submitted)">This field is required.</daff-error-message>
   </daff-form-field>
-  <daff-form-field class="address-form__street">
+  <daff-form-field class="demo-address-form__street">
     <input daff-input type="text"
       placeholder="Street Address*"
       name="street"
@@ -23,7 +23,7 @@
       [formSubmitted]="submitted"/>
       <daff-error-message *ngIf="formGroup.controls['street'].errors && (formGroup.controls['street'].touched || submitted)">This field is required.</daff-error-message>
   </daff-form-field>
-  <daff-form-field class="address-form__city">
+  <daff-form-field class="demo-address-form__city">
     <input daff-input type="text"
       placeholder="City"
       name="city"
@@ -31,7 +31,7 @@
       [formSubmitted]="submitted"/>
     <daff-error-message *ngIf="formGroup.controls['city'].errors && (formGroup.controls['city'].touched || submitted)">This field is required.</daff-error-message>
   </daff-form-field>
-  <daff-form-field class="address-form__state">
+  <daff-form-field class="demo-address-form__state">
     <select daff-native-select
       name="state"
       [formControl]="formGroup.controls['state']"
@@ -40,7 +40,7 @@
     </select>
     <daff-error-message *ngIf="formGroup.controls['state'].errors && (formGroup.controls['state'].touched || submitted)">This field is required.</daff-error-message>
   </daff-form-field>
-  <daff-form-field class="address-form__postcode">
+  <daff-form-field class="demo-address-form__postcode">
     <input daff-input type="text"
       placeholder="Zip Code"
       name="postcode"
@@ -48,7 +48,7 @@
       [formSubmitted]="submitted"/>
     <daff-error-message *ngIf="formGroup.controls['postcode'].errors && (formGroup.controls['postcode'].touched || submitted)">This field is required.</daff-error-message>
     </daff-form-field>
-  <daff-form-field class="address-form__telephone">
+  <daff-form-field class="demo-address-form__telephone">
     <input daff-input type="text"
       placeholder="Phone Number"
       name="telephone"

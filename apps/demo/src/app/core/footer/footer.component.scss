@@ -1,28 +1,28 @@
 @import 'utilities';
 
 :host {
-  display: block;
-  padding: 50px 25px;
+	display: block;
+	padding: 50px 25px;
 
-  @include breakpoint(tablet) {
-    padding: 75px 50px;
-  }
+	@include breakpoint(tablet) {
+		padding: 75px 50px;
+	}
 
-  @include breakpoint(laptop) {
-    padding: 75px 0;
-  }
+	@include breakpoint(laptop) {
+		padding: 75px 0;
+	}
 }
 
-.footer {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 25px;
+.demo-footer {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-gap: 25px;
 
-  @include breakpoint(tablet) {
-    grid-template-columns: 1fr 1fr;
-  }
+	@include breakpoint(tablet) {
+		grid-template-columns: 1fr 1fr;
+	}
 
-  @include breakpoint(big-tablet) {
-    grid-template-columns: repeat(4, 1fr);
-  }
+	@include breakpoint(big-tablet) {
+		grid-template-columns: repeat(4, 1fr);
+	}
 }

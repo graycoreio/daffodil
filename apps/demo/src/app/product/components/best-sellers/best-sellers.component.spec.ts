@@ -67,14 +67,14 @@ describe('BestSellersComponent', () => {
 
   describe('when bestSellersContainer.loading$ is false', () => {
     
-    it('should render best-sellers', () => {
-      const bestSellersElement = fixture.debugElement.query(By.css('.best-sellers'));
+    it('should render .demo-best-sellers', () => {
+      const bestSellersElement = fixture.debugElement.query(By.css('.demo-best-sellers'));
 
       expect(bestSellersElement).not.toBeNull();
     });
 
-    it('should not render best-sellers__loading-icon', () => {
-      const loadingIconElement = fixture.debugElement.query(By.css('.best-sellers__loading-icon'));
+    it('should not render .demo-best-sellers__loading-icon', () => {
+      const loadingIconElement = fixture.debugElement.query(By.css('.demo-best-sellers__loading-icon'));
 
       expect(loadingIconElement).toBeNull();
     });
@@ -88,14 +88,14 @@ describe('BestSellersComponent', () => {
       fixture.detectChanges();
     });
     
-    it('should not render best-sellers element', () => {
-      const bestSellersElement = fixture.debugElement.query(By.css('.best-sellers'));
+    it('should not render .demo-best-sellers', () => {
+      const bestSellersElement = fixture.debugElement.query(By.css('.demo-best-sellers'));
 
       expect(bestSellersElement).toBeNull();
     });
 
-    it('should render best-sellers__loading-icon', () => {
-      const loadingIconElement = fixture.debugElement.query(By.css('.best-sellers__loading-icon'));
+    it('should render .demo-best-sellers__loading-icon', () => {
+      const loadingIconElement = fixture.debugElement.query(By.css('.demo-best-sellers__loading-icon'));
 
       expect(loadingIconElement).not.toBeNull();
     });

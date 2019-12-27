@@ -64,8 +64,8 @@ describe('ProductAddedComponent', () => {
   
   describe('when product is defined', () => {
     
-    it('should render .product-added', () => {
-      productAddedElement = fixture.debugElement.query(By.css('.product-added'));
+    it('should render .demo-product-added', () => {
+      productAddedElement = fixture.debugElement.query(By.css('.demo-product-added'));
 
       expect(productAddedElement).not.toBeNull();
     });
@@ -101,8 +101,8 @@ describe('ProductAddedComponent', () => {
       fixture.detectChanges();
     });
     
-    it('should not render .product-added', () => {
-      productAddedElement = fixture.debugElement.query(By.css('.product-added'));
+    it('should not render .demo-product-added', () => {
+      productAddedElement = fixture.debugElement.query(By.css('.demo-product-added'));
 
       expect(productAddedElement).toBeNull();
     });

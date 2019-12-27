@@ -102,7 +102,7 @@ describe('CartItemComponent', () => {
     
     it('should call redirectToProduct', () => {
       spyOn(cartItemComponent.componentInstance, 'redirectToProduct');
-      fixture.debugElement.query(By.css('.cart-item__name')).nativeElement.click();
+      fixture.debugElement.query(By.css('.demo-cart-item__name')).nativeElement.click();
       
       expect(cartItemComponent.componentInstance.redirectToProduct).toHaveBeenCalled();
     });

@@ -1,16 +1,16 @@
 @import 'utilities';
 
-.not-found {
-  padding-top: 50px;
+.demo-not-found {
+	padding-top: 50px;
 
-  @include breakpoint(big-tablet) {
-    padding: 50px 100px 0 100px;
-  }
+	@include breakpoint(big-tablet) {
+		padding: 50px 100px 0;
+	}
 
-  &__text {
-    margin-bottom: 50px;
-    text-align: center;
-    @include embolden();
-    @include uppercase();
-  }
+	&__text {
+		margin-bottom: 50px;
+		text-align: center;
+		@include embolden();
+		@include uppercase();
+	}
 }

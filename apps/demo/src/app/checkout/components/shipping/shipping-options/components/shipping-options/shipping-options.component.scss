@@ -1,46 +1,46 @@
 @import 'utilities';
 @import 'theme';
 
-.shipping-options {
-  border: 0;
-  margin: 25px 0;
-  padding: 0;
+.demo-shipping-options {
+	border: 0;
+	margin: 25px 0;
+	padding: 0;
 
-  &__title {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    margin-bottom: 15px;
+	&__title {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		margin-bottom: 15px;
 
-    @include breakpoint(mobile) {
-      flex-wrap: nowrap;
-    }
+		@include breakpoint(mobile) {
+			flex-wrap: nowrap;
+		}
 
-    legend {
-      @include embolden();
-      font-size: 1rem;
-      margin-right: 15px;
-    }
-  }
+		legend {
+			@include embolden();
+			font-size: 1rem;
+			margin-right: 15px;
+		}
+	}
 
-  &__invalid {
-    font-size: $small-font-size;
-    color: $error;
-  }
+	&__invalid {
+		font-size: $small-font-size;
+		color: $error;
+	}
 
-  &__radio {
-    margin: 0 0 5px 0;
+	&__radio {
+		margin: 0 0 5px;
 
-    &:last-child {
-      margin: 0;
-    }
+		&:last-child {
+			margin: 0;
+		}
 
-    input {
-      margin: 0;
-    }
+		input {
+			margin: 0;
+		}
 
-    label {
-      margin-left: 10px;
-    }
-  }
+		label {
+			margin-left: 10px;
+		}
+	}
 }

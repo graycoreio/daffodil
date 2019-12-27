@@ -1,22 +1,22 @@
-<div class="cart-item">
-  <img class="cart-item__image" src="{{item.image.url}}" (click)="redirectToProduct()">
-  <div class="cart-item__description">
-    <div class="cart-item__name" (click)="redirectToProduct()">{{item.name}}</div>
-    <div class="cart-item__price">${{item.price}}</div>
-    <div class="cart-item__attribute">
+<div class="demo-cart-item">
+  <img class="demo-cart-item__image" src="{{item.image.url}}" (click)="redirectToProduct()">
+  <div class="demo-cart-item__description">
+    <div class="demo-cart-item__name" (click)="redirectToProduct()">{{item.name}}</div>
+    <div class="demo-cart-item__price">${{item.price}}</div>
+    <div class="demo-cart-item__attribute">
       <span class="embolden">Color: </span><span>White (HC)</span><br>
     </div>
-    <div class="cart-item__size">
+    <div class="demo-cart-item__size">
       <span class="embolden">Size: </span><span>5 (HC)</span><br>
     </div>
-    <div class="cart-item__qty-wrapper">
-      <span class="cart-item__mobile-qty">Qty: </span>
-      <span class="cart-item__mobile-qty">{{item.qty}}</span>
-      <span class="cart-item__desktop-qty">
+    <div class="demo-cart-item__qty-wrapper">
+      <span class="demo-cart-item__mobile-qty">Qty: </span>
+      <span class="demo-cart-item__mobile-qty">{{item.qty}}</span>
+      <span class="demo-cart-item__desktop-qty">
         <daff-qty-dropdown [qty]="item.qty" [id]="item.item_id"></daff-qty-dropdown>
       </span>
     </div>
-    <div class="cart-item__change">
+    <div class="demo-cart-item__change">
       <a>Edit</a>
       <a>Remove</a>
     </div>

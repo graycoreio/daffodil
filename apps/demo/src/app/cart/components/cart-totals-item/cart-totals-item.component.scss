@@ -1,20 +1,20 @@
 @import 'utilities';
 
 :host {
-  display: block;
+	display: block;
 }
 
-.cart-totals-item {
-  line-height: 1.75rem;
+.demo-cart-totals-item {
+	line-height: 1.75rem;
 
-  &__label {
-    & + span {
-      float: right;
-    }
-  }
+	&__label {
+		+ span {
+			float: right;
+		}
+	}
 
-  &.emphasize {
-    @include uppercase();
-    @include embolden();
-  }
+	&.emphasize { /* stylelint-disable-line selector-class-pattern */
+		@include uppercase();
+		@include embolden();
+	}
 }

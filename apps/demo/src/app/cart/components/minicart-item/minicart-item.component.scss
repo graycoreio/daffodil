@@ -1,57 +1,57 @@
 @import 'utilities';
-@import "theme";
+@import 'theme';
 
 :host {
-  display: grid;
-  grid-column-gap: 20px;
-  grid-row-gap: 15px;
-  grid-template-columns: 1fr 3fr;
+	display: grid;
+	grid-column-gap: 20px;
+	grid-row-gap: 15px;
+	grid-template-columns: 1fr 3fr;
 }
 
-.minicart-item {
-  &__image {
-    display: block;
-    max-width: 100%;
-    @include clickable();
-  }
+.demo-minicart-item {
+	&__image {
+		display: block;
+		max-width: 100%;
+		@include clickable();
+	}
 
-  &__description {
-    display: block;
-  }
+	&__description {
+		display: block;
+	}
 
-  &__name {
-    @include embolden();
-    @include clickable();
-  }
+	&__name {
+		@include embolden();
+		@include clickable();
+	}
 
-  &__price {
-    font-size: 1rem;
-    color: daff-color($secondary);
-    margin-bottom: 15px;
-  }
+	&__price {
+		font-size: 1rem;
+		color: daff-color($secondary);
+		margin-bottom: 15px;
+	}
 
-  &__info {
-    font-size: $small-font-size;
-    color: daff-color($daff-gray, 90);
-    line-height: 1.25rem;
-  }
+	&__info {
+		font-size: $small-font-size;
+		color: daff-color($daff-gray, 90);
+		line-height: 1.25rem;
+	}
 
-  &__change {
-    margin-top: 15px;
-    display: none;
+	&__change {
+		margin-top: 15px;
+		display: none;
 
-    @include breakpoint(big-tablet) {
-      display: block;
-    }
+		@include breakpoint(big-tablet) {
+			display: block;
+		}
 
-    > * {
-      font-size: $small-font-size;
-      color: daff-color($gray);
-      text-decoration: underline;
-    
-      &:last-child {
-        margin-left: 10px;
-      }
-    }
-  }
+		> * {
+			font-size: $small-font-size;
+			color: daff-color($gray);
+			text-decoration: underline;
+
+			&:last-child {
+				margin-left: 10px;
+			}
+		}
+	}
 }

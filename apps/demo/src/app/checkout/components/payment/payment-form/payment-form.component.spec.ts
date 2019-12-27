@@ -181,7 +181,7 @@ describe('PaymentFormComponent', () => {
     });
     
     it('should not render firstname input', () => {
-      const firstnameElement = fixture.debugElement.query(By.css('.payment-form__first-name'));
+      const firstnameElement = fixture.debugElement.query(By.css('.demo-payment-form__first-name'));
 
       expect(firstnameElement).toBeNull();
     });

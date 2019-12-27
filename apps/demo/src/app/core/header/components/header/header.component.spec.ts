@@ -40,7 +40,7 @@ describe('DemoHeaderComponent', () => {
     
     it('should call router.navigateByUrl', () => {
       spyOn(router, 'navigateByUrl');
-      fixture.debugElement.query(By.css('.header__right-nav')).nativeElement.click();
+      fixture.debugElement.query(By.css('.demo-header__right-nav')).nativeElement.click();
 
       expect(router.navigateByUrl).toHaveBeenCalledWith('/cart');
     });
