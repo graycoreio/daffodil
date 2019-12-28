@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/navigation",
-  "version": "0.2.13",
+  "version": "0.0.0-PLACEHOLDER",
   "description": "Reducers, State, Selectors, and Drivers for retrieving navigation/category trees",
   "repository": {
     "type": "git",
@@ -22,16 +22,22 @@
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
-    "@angular/common": "^7.2.0",
-    "@angular/core": "^7.2.0",
-    "@daffodil/core": "^0.2.0",
-    "@ngrx/effects": "^7.3.0",
-    "@ngrx/entity": "^7.3.0",
-    "@ngrx/store": "^7.3.0",
-    "faker": "^4.1.0",
-    "rxjs": "6.4.0"
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@ngrx/effects": "0.0.0-PLACEHOLDER",
+    "@ngrx/entity": "0.0.0-PLACEHOLDER",
+    "@ngrx/store": "0.0.0-PLACEHOLDER",
+    "rxjs": "0.0.0-PLACEHOLDER"
+  },
+  "optionalDependencies": {
+    "faker": "0.0.0-PLACEHOLDER",
+    "angular-in-memory-web-api": "0.0.0-PLACEHOLDER",
+    "apollo-angular": "0.0.0-PLACEHOLDER",
+    "apollo-client": "0.0.0-PLACEHOLDER",
+    "graphql-tag": "0.0.0-PLACEHOLDER"
   },
   "devDependencies": {
-    "@daffodil/core": "^0.2.0"
+    "@daffodil/core": "0.0.0-PLACEHOLDER"
   }
 }

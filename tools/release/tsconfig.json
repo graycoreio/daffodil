@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig.tools.json",
+  "compilerOptions": {
+    "outDir": "../dist/out-tsc/tools",
+    "rootDir": ".",
+    "module": "commonjs",
+    "target": "esnext",
+    "types": [
+      "jasmine",
+      "node"
+    ],
+  },
+  "include": [
+    "**/*.ts"
+  ]
+}

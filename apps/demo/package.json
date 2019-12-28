@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/demo",
-  "version": "0.2.12",
+  "version": "0.0.0-PLACEHOLDER",
   "private": true,
   "author": "Graycore LLC",
   "license": "MIT",
@@ -19,10 +19,10 @@
     "url": "https://github.com/graycoreio/daffodil"
   },
   "devDependencies": {
-    "@daffodil/cart": "^0.2.6",
-    "@daffodil/checkout": "^0.2.6",
-    "@daffodil/core": "^0.2.0",
-    "@daffodil/design": "^0.2.0",
-    "@daffodil/product": "^0.2.6"
+    "@daffodil/cart": "0.0.0-PLACEHOLDER",
+    "@daffodil/checkout": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/design": "0.0.0-PLACEHOLDER",
+    "@daffodil/product": "0.0.0-PLACEHOLDER"
   }
 }

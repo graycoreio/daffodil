@@ -1,6 +1,6 @@
 {
   "name": "@daffodil/branding",
-  "version": "0.2.13",
+  "version": "0.0.0-PLACEHOLDER",
   "private": true,
   "scripts": {
     "build": "ng build branding --prod && npm run build:assets",
@@ -9,11 +9,11 @@
     "test": "ng test branding --watch=false --browsers=ChromeHeadless"
   },
   "peerDependencies": {
-    "@angular/common": "^7.2.0",
-    "@angular/core": "^7.2.0",
-    "@daffodil/design": "^0.2.0"
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/design": "0.0.0-PLACEHOLDER"
   },
   "devDependencies": {
-    "@daffodil/design": "^0.2.0"
+    "@daffodil/design": "0.0.0-PLACEHOLDER"
   }
 }
