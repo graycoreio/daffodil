@@ -1,13 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
 
 import { ShippingContainer } from './shipping.component';
-import { UpdateShippingAddress, SelectShippingOption } from '../actions/shipping.actions';
-import * as fromShipping from '../reducers/index';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { DaffUpdateShippingAddress, DaffSelectShippingOption } from '../actions/shipping.actions';
+import { selectShippingAddress, selectShippingOptionId, selectIsShippingAddressValid } from '../selectors/shipping.selectors';
 
 describe('ShippingContainer', () => {
   let component: ShippingContainer;
@@ -39,9 +39,9 @@ describe('ShippingContainer', () => {
     stubSelectedShippingOptionId = '0';
     stubIsShippingAddressValid = true;
 
-    store.overrideSelector(fromShipping.selectShippingAddressState, initialShippingAddress);
-    store.overrideSelector(fromShipping.selectShippingOptionState, stubSelectedShippingOptionId);
-    store.overrideSelector(fromShipping.selectIsShippingAddressValid, stubIsShippingAddressValid);
+    store.overrideSelector(selectShippingAddress, initialShippingAddress);
+    store.overrideSelector(selectShippingOptionId, stubSelectedShippingOptionId);
+    store.overrideSelector(selectIsShippingAddressValid, stubIsShippingAddressValid);
 
     spyOn(store, 'dispatch');
 
@@ -82,7 +82,7 @@ describe('ShippingContainer', () => {
     it('should call store.dispatch with UpdateShippingAddress action', () => {
       component.updateShippingAddress(initialShippingAddress);
 
-      expect(store.dispatch).toHaveBeenCalledWith(new UpdateShippingAddress(initialShippingAddress));
+      expect(store.dispatch).toHaveBeenCalledWith(new DaffUpdateShippingAddress(initialShippingAddress));
     });
   });
 
@@ -91,7 +91,7 @@ describe('ShippingContainer', () => {
     it('should call store.dispatch with SelectShippingOption action', () => {
       component.selectShippingOption(stubSelectedShippingOptionId);
 
-      expect(store.dispatch).toHaveBeenCalledWith(new SelectShippingOption(stubSelectedShippingOptionId));
+      expect(store.dispatch).toHaveBeenCalledWith(new DaffSelectShippingOption(stubSelectedShippingOptionId));
     });
   });
 });
