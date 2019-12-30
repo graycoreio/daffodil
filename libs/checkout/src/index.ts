@@ -46,7 +46,27 @@ export { DaffBillingReducerState } from './billing/reducers/billing/billing-redu
 export { daffBillingReducers } from './billing/reducers/billing-reducers';
 export { daffBillingReducer } from './billing/reducers/billing/billing.reducer';
 
+export { DaffShippingFacade } from './shipping/facades/shipping.facade';
+export { 
+	DaffShippingActionTypes,
+  DaffUpdateShippingAddress,
+  DaffSelectShippingOption,
+  DaffShippingActions
+} from './shipping/actions/shipping.actions';
+export { daffShippingReducer } from './shipping/reducers/shipping/shipping.reducer';
+export { DaffShippingReducerState } from './shipping/reducers/shipping/shipping-reducer.interface';
+export { daffShippingReducers } from './shipping/reducers/shipping-reducers';
+export { DaffShippingReducersState } from './shipping/reducers/shipping-reducers.interface';
+export {
+	selectShippingFeatureState,
+  selectShippingState,
+  selectShippingAddress,
+  selectShippingOptionId,
+  selectIsShippingAddressValid
+} from './shipping/selectors/shipping.selectors';
+
 export { DaffBillingModule } from './billing/billing.module';
+export { DaffShippingModule } from './shipping/shipping.module';
 export { StateCheckoutModule } from './checkout.module';
 
 export { DaffCheckoutServiceInterface } from './drivers/interfaces/checkout-service.interface';

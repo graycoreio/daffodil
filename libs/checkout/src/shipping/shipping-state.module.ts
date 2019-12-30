@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 
-import { reducers } from './reducers/index';
+import { daffShippingReducers } from './reducers/shipping-reducers';
 
 @NgModule({
   imports: [
-      StoreModule.forFeature('shipping', reducers)
+    StoreModule.forFeature('shipping', daffShippingReducers)
   ]
 })
-export class StateShippingStateModule { }
+export class DaffShippingStateModule { }
