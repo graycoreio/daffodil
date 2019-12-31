@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { StateOrderStateModule } from './order-state.module';
+import { DaffOrderStateModule } from './order-state.module';
 import { OrderContainer } from './containers/order.component';
 
 @NgModule({
@@ -10,7 +10,7 @@ import { OrderContainer } from './containers/order.component';
     /**
      * Ngrx/store
      */
-    StateOrderStateModule,
+    DaffOrderStateModule,
   ],
   declarations: [
     OrderContainer
@@ -19,4 +19,4 @@ import { OrderContainer } from './containers/order.component';
     OrderContainer
   ]
 })
-export class StateOrderModule { }
+export class DaffOrderModule { }
