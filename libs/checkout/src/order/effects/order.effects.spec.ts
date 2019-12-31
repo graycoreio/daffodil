@@ -7,7 +7,7 @@ import { DaffCart, DaffCartDriver } from '@daffodil/cart';
 import { DaffCartFactory, DaffTestingCartService } from '@daffodil/cart/testing';
 
 import { OrderEffects } from './order.effects';
-import { PlaceOrder, PlaceOrderSuccess, PlaceOrderFailure } from '../actions/order.actions';
+import { DaffPlaceOrder, DaffPlaceOrderSuccess, DaffPlaceOrderFailure } from '../actions/order.actions';
 import { DaffCheckoutServiceInterface } from '../../drivers/interfaces/checkout-service.interface';
 import { DaffCartServiceInterface } from '@daffodil/cart';
 import { DaffCheckoutDriver } from '../../drivers/injection-tokens/driver-checkout.token';
@@ -56,13 +56,13 @@ describe('Daffodil | State | Order | OrderEffects', () => {
       
       beforeEach(() => {
         spyOn(daffCheckoutDriver, 'placeOrder').and.returnValue(of(stubCart));
-        const placeOrderAction = new PlaceOrder(stubCart);
-        const placeOrderSuccessAction = new PlaceOrderSuccess(stubCart);
+        const placeOrderAction = new DaffPlaceOrder(stubCart);
+        const placeOrderSuccessAction = new DaffPlaceOrderSuccess(stubCart);
         actions$ = hot('--a', { a: placeOrderAction });
         expected = cold('--b', { b: placeOrderSuccessAction });
       });
       
-      it('should dispatch a PlaceOrderSuccess action', () => {
+      it('should dispatch a DaffPlaceOrderSuccess action', () => {
         expect(effects.onPlaceOrder$).toBeObservable(expected);
       });
     });
@@ -73,13 +73,13 @@ describe('Daffodil | State | Order | OrderEffects', () => {
         const error = 'Failed to place order';
         const response = cold('#', {}, error);
         spyOn(daffCheckoutDriver, 'placeOrder').and.returnValue(response);
-        const placeOrderAction = new PlaceOrder(stubCart);
-        const placeOrderFailureAction = new PlaceOrderFailure(error);
+        const placeOrderAction = new DaffPlaceOrder(stubCart);
+        const placeOrderFailureAction = new DaffPlaceOrderFailure(error);
         actions$ = hot('--a', { a: placeOrderAction });
         expected = cold('--b', { b: placeOrderFailureAction });
       });
       
-      it('should dispatch a PlaceOrderFailure action', () => {
+      it('should dispatch a DaffPlaceOrderFailure action', () => {
         expect(effects.onPlaceOrder$).toBeObservable(expected);
       });
     });
@@ -88,7 +88,7 @@ describe('Daffodil | State | Order | OrderEffects', () => {
   describe('when PlaceOrderSuccessAction is triggered', () => {
     
     let expected;
-    const placeOrderSuccessAction = new PlaceOrderSuccess(stubCart);
+    const placeOrderSuccessAction = new DaffPlaceOrderSuccess(stubCart);
 
     beforeEach(() => {
       spyOn(daffCartDriver, 'clear').and.returnValue(of());
