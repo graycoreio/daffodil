@@ -2,9 +2,9 @@ import { HttpTestingController, HttpClientTestingModule } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { DaffNewsletterHubSpotDriverModule } from '../hubspot/hubspot-driver.module';
-import { DaffHubspotNewsletterService } from '../hubspot/newsletter.service';
+import { DaffNewsletterHubspotService } from '../hubspot/newsletter.service';
 
-describe('DaffHubspotNewsletterDriver', () => {
+describe('DaffNewsletterHubspotDriver', () => {
   let newsletterService;
   let httpMock: HttpTestingController;
   beforeEach(() => {
@@ -14,11 +14,11 @@ describe('DaffHubspotNewsletterDriver', () => {
         DaffNewsletterHubSpotDriverModule.forRoot({ portalId: '123123', guid: '123123' })
       ],
       providers: [
-        DaffHubspotNewsletterService
+        DaffNewsletterHubspotService
       ]
     });
     httpMock = TestBed.get(HttpTestingController);
-    newsletterService = TestBed.get<DaffHubspotNewsletterService>(DaffHubspotNewsletterService);
+    newsletterService = TestBed.get<DaffNewsletterHubspotService>(DaffNewsletterHubspotService);
   });
   afterEach(() => {
     httpMock.verify();

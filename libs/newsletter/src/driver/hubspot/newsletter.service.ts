@@ -18,13 +18,13 @@ import { DaffNewsletterConfig } from '../injection-tokens/newsletter-config.toke
 @Injectable({
   providedIn: 'root'
 })
-export class DaffHubspotNewsletterService implements DaffNewsletterServiceInterface<DaffNewsletterUnion, any> {
+export class DaffNewsletterHubspotService implements DaffNewsletterServiceInterface<DaffNewsletterUnion, any> {
   
   constructor(
     private http: HttpClient,
     @Inject(DaffNewsletterConfig) private newsletterConfig: DaffNewsletterHubspotConfig,
     @Inject(DaffNewsletterTransformer) private transformer: DaffNewsletterTransformerInterface<DaffNewsletterUnion, HubspotRequest, HubspotRequest, any>,
-    @Optional() @Inject(DOCUMENT) private document: Document,
+    @Optional() @Inject(DOCUMENT) private doc: Document,
     @Optional() private route: Router,
     private title: Title) { }
 
@@ -45,11 +45,11 @@ export class DaffHubspotNewsletterService implements DaffNewsletterServiceInterf
       + portalId + '/' + guid;
   }
   private getCookie() {
-    if(!this.document) {
+    if(!this.doc) {
       return null;
     }
     const name = 'hubspotutk';
-    const v = this.document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    const v = this.doc.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
     return v ? v[2] : null;
   }
   private getPageURI() {
