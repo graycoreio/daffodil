@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { StatePaymentStateModule } from './payment-state.module';
-import { PaymentContainer } from './containers/payment.component';
+import { DaffPaymentStateModule } from './payment-state.module';
 
 @NgModule({
   imports: [
@@ -11,13 +10,7 @@ import { PaymentContainer } from './containers/payment.component';
     /**
      * Ngrx/store
      */
-    StatePaymentStateModule,
-  ],
-  declarations: [
-    PaymentContainer
-  ],
-  exports: [
-    PaymentContainer
+    DaffPaymentStateModule,
   ]
 })
-export class StatePaymentModule { }
+export class DaffPaymentModule { }

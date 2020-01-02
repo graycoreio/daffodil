@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 
-import { reducers } from './reducers/index';
+import { daffPaymentReducers } from './reducers/payment-reducers';
 
 @NgModule({
   imports: [
-      StoreModule.forFeature('payment', reducers)
+    StoreModule.forFeature('payment', daffPaymentReducers)
   ]
 })
-export class StatePaymentStateModule { }
+export class DaffPaymentStateModule { }

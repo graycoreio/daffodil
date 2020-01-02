@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { StateShippingModule } from './shipping/shipping.module';
 import { StateBillingModule } from './billing/billing.module';
-import { StatePaymentModule } from './payment/payment.module';
+import { DaffPaymentModule } from './payment/payment.module';
 import { StateOrderModule } from './order/order.module';
 
 @NgModule({
@@ -11,13 +11,13 @@ import { StateOrderModule } from './order/order.module';
     CommonModule,
     StateShippingModule,
     StateBillingModule,
-    StatePaymentModule,
+    DaffPaymentModule,
     StateOrderModule
   ],
   exports: [
     StateShippingModule,
     StateBillingModule,
-    StatePaymentModule,
+    DaffPaymentModule,
     StateOrderModule
   ]
 })
