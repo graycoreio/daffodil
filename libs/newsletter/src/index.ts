@@ -21,6 +21,6 @@ export { DaffNewsletterTransformerInterface } from './driver/interfaces/newslett
 export { DaffNewsletterDriver } from './driver/injection-tokens/newsletter-driver.token';
 export { DaffNewsletterTransformer } from './driver/injection-tokens/newsletter-transformer.token';
 
-
+export { DaffNewsletterHubSpotDriverModule } from './driver/hubspot/hubspot-driver.module';
 
 export { DaffNewsletterModule } from './newsletter.module'
