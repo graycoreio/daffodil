@@ -11,13 +11,17 @@ import { DaffNewsletterHubspotService } from './newsletter.service';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { DaffNewsletterHubspotConfig } from './models/config';
 
 describe('DaffNewsletterHubspotService', () => {
   let newsletterService: DaffNewsletterHubspotService;
   let httpMock: HttpTestingController;
   let doc: Document;
   let httpClient: HttpClient;
-
+  let config: DaffNewsletterHubspotConfig;
+  let transformer: DaffNewsletterHubspotTransformer;
+  let route: Router;
+  let title: Title;
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -35,6 +39,10 @@ describe('DaffNewsletterHubspotService', () => {
     newsletterService = TestBed.get(DaffNewsletterHubspotService);
     doc = TestBed.get(DOCUMENT);
     httpClient = TestBed.get(HttpClient);
+    config = TestBed.get(DaffNewsletterConfig)
+    transformer = TestBed.get(DaffNewsletterHubspotTransformer);
+    route = TestBed.get(Router);
+    title = TestBed.get(Title);
   });
   afterEach(() => {
     httpMock.verify();
@@ -45,21 +53,21 @@ describe('DaffNewsletterHubspotService', () => {
   });
 
   describe('sending a newsletter submission to hubspot', () => {
-    it('should take Hubspot configuration from the module configuration', async(inject([HttpClient, DaffNewsletterConfig], (http, config) => {
-      spyOn(http, 'post').and.callThrough();
+    it('should take Hubspot configuration from the module configuration', () => {
+      spyOn(httpClient, 'post').and.callThrough();
       const submission = { email: 'email@email.com', firstName: 'John', lastName: 'Doe' };
       const version = config.version === undefined ? 'v3' : config.version;
       const submissionString = 'https://api.hsforms.com/submissions/' + version + '/integration/submit/'
         + config.portalId + '/' + config.guid
       newsletterService.send(submission).subscribe(() => {
-        expect(http.post).toHaveBeenCalledWith(submissionString, jasmine.any(Object));
+        expect(httpClient.post).toHaveBeenCalledWith(submissionString, jasmine.any(Object));
       });
 
       const req = httpMock.expectOne('https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined');
 
       req.flush('');
-    })));
-    it('should transform a request send to hubspot', async(inject([DaffNewsletterTransformer], (transformer) => {
+    });
+    it('should transform a request sent to hubspot', () => {
       spyOn(transformer, 'transformOut').and.callThrough();
       const submission = { email: 'email@email.com', firstName: 'John', lastName: 'Doe' };
       newsletterService.send(submission).subscribe(() => {
@@ -68,8 +76,8 @@ describe('DaffNewsletterHubspotService', () => {
       const req = httpMock.expectOne('https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined');
 
       req.flush('');
-    })));
-    it('should transform the response recieved from Hubspot', async(inject([DaffNewsletterTransformer], (transformer) => {
+    });
+    it('should transform the response recieved from Hubspot', () => {
       spyOn(transformer, 'transformIn').and.callThrough();
       const submission = { email: 'email@email.com', firstName: 'John', lastName: 'Doe' };
       newsletterService.send(submission).subscribe(() => {
@@ -78,8 +86,8 @@ describe('DaffNewsletterHubspotService', () => {
       const req = httpMock.expectOne('https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined');
 
       req.flush('');
-    })));
-    it('should include a the hubspot UTK in the request, if it hubspot cookie exists', () => {
+    });
+    it('should include the hubspot UTK in the request, if it hubspot cookie exists', () => {
       doc.cookie = 'hubspotutk=mycookie;'
       const submission = { email: 'email@email.com', firstName: 'John', lastName: 'Doe' };
       newsletterService.send(submission).subscribe();
@@ -92,7 +100,7 @@ describe('DaffNewsletterHubspotService', () => {
 
       req.flush('');
     });
-    it('should not include a the hubspot UTK in the request, if the hubspot cookie exists', () => {
+    it('should not include the hubspot UTK in the request, if the hubspot does not cookie exists', () => {
       const submission = { email: 'email@email.com', firstName: 'John', lastName: 'Doe' };
       newsletterService.send(submission).subscribe();
 
@@ -103,15 +111,15 @@ describe('DaffNewsletterHubspotService', () => {
       });
       req.flush('');
     });
-    it('should include the pageUri in the request', async(inject([HttpClient, Router], (http, route) => {
+    it('should include the pageUri in the request', () => {
 
-      spyOn(http, 'post').and.callThrough();
+      spyOn(httpClient, 'post').and.callThrough();
       const submission = { email: 'email@email.com', firstName: 'John', lastName: 'Doe' };
       const containingObject = jasmine.objectContaining({
         'pageUri': route.url
       });
       newsletterService.send(submission).subscribe(() => {
-        expect(http.post).toHaveBeenCalledWith('https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined', jasmine.objectContaining({
+        expect(httpClient.post).toHaveBeenCalledWith('https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined', jasmine.objectContaining({
           'context': containingObject
         }));
       });
@@ -119,21 +127,21 @@ describe('DaffNewsletterHubspotService', () => {
       const req = httpMock.expectOne('https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined');
 
       req.flush('');
-    })));
-    it('should include the pageName in the request', async(inject([HttpClient, Title], (http, title) => {
-      spyOn(http, 'post').and.callThrough();
+    });
+    it('should include the pageName in the request', () => {
+      spyOn(httpClient, 'post').and.callThrough();
       const submission = { email: 'email@email.com', firstName: 'John', lastName: 'Doe' };
       const containingObject = jasmine.objectContaining({
         'pageName': title.getTitle()
       });
 
       newsletterService.send(submission).subscribe(() => {
-        expect(http.post).toHaveBeenCalledWith('https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined', jasmine.objectContaining({
+        expect(httpClient.post).toHaveBeenCalledWith('https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined', jasmine.objectContaining({
           'context': containingObject
         }));
       });
       const req = httpMock.expectOne('https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined');
       req.flush('');
-    })));
+    });
   });
 })
