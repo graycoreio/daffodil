@@ -14,6 +14,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { DaffNewsletterHubspotConfig } from './models/config';
 
 describe('DaffNewsletterHubspotService', () => {
+
   let newsletterService: DaffNewsletterHubspotService;
   let httpMock: HttpTestingController;
   let doc: Document;
@@ -22,6 +23,7 @@ describe('DaffNewsletterHubspotService', () => {
   let transformer: DaffNewsletterHubspotTransformer;
   let route: Router;
   let title: Title;
+  
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -30,7 +32,7 @@ describe('DaffNewsletterHubspotService', () => {
       ],
       providers: [
         DaffNewsletterHubspotService,
-        { provide: DaffNewsletterConfig, useValue: {} },
+        { provide: DaffNewsletterConfig, useValue: {portalId: '999', guid: '999', version: 'v3'} },
         { provide: DaffNewsletterTransformer, useExisting: DaffNewsletterHubspotTransformer }
       ]
     });
@@ -56,14 +58,13 @@ describe('DaffNewsletterHubspotService', () => {
     it('should take Hubspot configuration from the module configuration', () => {
       spyOn(httpClient, 'post').and.callThrough();
       const submission = { email: 'email@email.com', firstName: 'John', lastName: 'Doe' };
-      const version = config.version === undefined ? 'v3' : config.version;
-      const submissionString = 'https://api.hsforms.com/submissions/' + version + '/integration/submit/'
+      const submissionString = 'https://api.hsforms.com/submissions/' + config.version + '/integration/submit/'
         + config.portalId + '/' + config.guid
       newsletterService.send(submission).subscribe(() => {
         expect(httpClient.post).toHaveBeenCalledWith(submissionString, jasmine.any(Object));
       });
 
-      const req = httpMock.expectOne('https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined');
+      const req = httpMock.expectOne('https://api.hsforms.com/submissions/v3/integration/submit/999/999');
 
       req.flush('');
     });
@@ -73,7 +74,7 @@ describe('DaffNewsletterHubspotService', () => {
       newsletterService.send(submission).subscribe(() => {
         expect(transformer.transformOut).toHaveBeenCalled();
       });
-      const req = httpMock.expectOne('https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined');
+      const req = httpMock.expectOne('https://api.hsforms.com/submissions/v3/integration/submit/999/999');
 
       req.flush('');
     });
@@ -83,7 +84,7 @@ describe('DaffNewsletterHubspotService', () => {
       newsletterService.send(submission).subscribe(() => {
         expect(transformer.transformIn).toHaveBeenCalled();
       });
-      const req = httpMock.expectOne('https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined');
+      const req = httpMock.expectOne('https://api.hsforms.com/submissions/v3/integration/submit/999/999');
 
       req.flush('');
     });
@@ -93,9 +94,9 @@ describe('DaffNewsletterHubspotService', () => {
       newsletterService.send(submission).subscribe();
 
       const req = httpMock.expectOne((testReq: HttpRequest<any>) => {
-        expect(testReq.url).toEqual('https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined');
+        expect(testReq.url).toEqual('https://api.hsforms.com/submissions/v3/integration/submit/999/999');
         expect(testReq.body.context.hutk).toEqual('mycookie');
-        return testReq.url === 'https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined' && testReq.body.context.hutk === 'mycookie';
+        return testReq.url === 'https://api.hsforms.com/submissions/v3/integration/submit/999/999' && testReq.body.context.hutk === 'mycookie';
       });
 
       req.flush('');
@@ -105,9 +106,9 @@ describe('DaffNewsletterHubspotService', () => {
       newsletterService.send(submission).subscribe();
 
       const req = httpMock.expectOne((testReq: HttpRequest<any>) => {
-        expect(testReq.url).toEqual('https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined');
+        expect(testReq.url).toEqual('https://api.hsforms.com/submissions/v3/integration/submit/999/999');
         expect(testReq.body.context.hutk).toEqual(null);
-        return testReq.url === 'https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined' && testReq.body.context.hutk === null;
+        return testReq.url === 'https://api.hsforms.com/submissions/v3/integration/submit/999/999' && testReq.body.context.hutk === null;
       });
       req.flush('');
     });
@@ -119,12 +120,12 @@ describe('DaffNewsletterHubspotService', () => {
         'pageUri': route.url
       });
       newsletterService.send(submission).subscribe(() => {
-        expect(httpClient.post).toHaveBeenCalledWith('https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined', jasmine.objectContaining({
+        expect(httpClient.post).toHaveBeenCalledWith('https://api.hsforms.com/submissions/v3/integration/submit/999/999', jasmine.objectContaining({
           'context': containingObject
         }));
       });
 
-      const req = httpMock.expectOne('https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined');
+      const req = httpMock.expectOne('https://api.hsforms.com/submissions/v3/integration/submit/999/999');
 
       req.flush('');
     });
@@ -136,11 +137,11 @@ describe('DaffNewsletterHubspotService', () => {
       });
 
       newsletterService.send(submission).subscribe(() => {
-        expect(httpClient.post).toHaveBeenCalledWith('https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined', jasmine.objectContaining({
+        expect(httpClient.post).toHaveBeenCalledWith('https://api.hsforms.com/submissions/v3/integration/submit/999/999', jasmine.objectContaining({
           'context': containingObject
         }));
       });
-      const req = httpMock.expectOne('https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined');
+      const req = httpMock.expectOne('https://api.hsforms.com/submissions/v3/integration/submit/999/999');
       req.flush('');
     });
   });
