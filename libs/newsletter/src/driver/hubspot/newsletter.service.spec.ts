@@ -48,7 +48,7 @@ describe('DaffNewsletterHubspotService', () => {
     it('should take Hubspot configuration from the module configuration', async(inject([HttpClient, DaffNewsletterConfig], (http, config) => {
       spyOn(http, 'post').and.callThrough();
       const submission = { email: 'email@email.com', firstName: 'John', lastName: 'Doe' };
-      let version = config.version === undefined ? 'v3' : config.version;
+      const version = config.version === undefined ? 'v3' : config.version;
       const submissionString = 'https://api.hsforms.com/submissions/' + version + '/integration/submit/'
         + config.portalId + '/' + config.guid
       newsletterService.send(submission).subscribe(() => {
@@ -84,10 +84,10 @@ describe('DaffNewsletterHubspotService', () => {
       const submission = { email: 'email@email.com', firstName: 'John', lastName: 'Doe' };
       newsletterService.send(submission).subscribe();
 
-      const req = httpMock.expectOne((req: HttpRequest<any>) => {
-        expect(req.url).toEqual('https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined');
-        expect(req.body.context.hutk).toEqual('mycookie');
-        return req.url == 'https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined' && req.body.context.hutk == 'mycookie';
+      const req = httpMock.expectOne((testReq: HttpRequest<any>) => {
+        expect(testReq.url).toEqual('https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined');
+        expect(testReq.body.context.hutk).toEqual('mycookie');
+        return testReq.url === 'https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined' && testReq.body.context.hutk === 'mycookie';
       });
 
       req.flush('');
@@ -96,10 +96,10 @@ describe('DaffNewsletterHubspotService', () => {
       const submission = { email: 'email@email.com', firstName: 'John', lastName: 'Doe' };
       newsletterService.send(submission).subscribe();
 
-      const req = httpMock.expectOne((req: HttpRequest<any>) => {
-        expect(req.url).toEqual('https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined');
-        expect(req.body.context.hutk).toEqual(null);
-        return req.url == 'https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined' && req.body.context.hutk == null;
+      const req = httpMock.expectOne((testReq: HttpRequest<any>) => {
+        expect(testReq.url).toEqual('https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined');
+        expect(testReq.body.context.hutk).toEqual(null);
+        return testReq.url === 'https://api.hsforms.com/submissions/v3/integration/submit/undefined/undefined' && testReq.body.context.hutk === null;
       });
       req.flush('');
     });
