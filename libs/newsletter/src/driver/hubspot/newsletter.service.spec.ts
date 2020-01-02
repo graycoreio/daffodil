@@ -23,7 +23,7 @@ describe('DaffNewsletterHubspotService', () => {
   let transformer: DaffNewsletterHubspotTransformer;
   let route: Router;
   let title: Title;
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -32,7 +32,7 @@ describe('DaffNewsletterHubspotService', () => {
       ],
       providers: [
         DaffNewsletterHubspotService,
-        { provide: DaffNewsletterConfig, useValue: {portalId: '999', guid: '999', version: 'v3'} },
+        { provide: DaffNewsletterConfig, useValue: { portalId: '999', guid: '999', version: 'v3' } },
         { provide: DaffNewsletterTransformer, useExisting: DaffNewsletterHubspotTransformer }
       ]
     });
@@ -47,8 +47,7 @@ describe('DaffNewsletterHubspotService', () => {
     title = TestBed.get(Title);
   });
   afterEach(() => {
-    httpMock.verify();
-    document.cookie = 'hubspotutk=; expires=Thu, 01 Jan 1970 00:00:00 GMT'
+
   });
   it('should be created', () => {
     expect(newsletterService).toBeTruthy();
@@ -98,7 +97,8 @@ describe('DaffNewsletterHubspotService', () => {
         expect(testReq.body.context.hutk).toEqual('mycookie');
         return testReq.url === 'https://api.hsforms.com/submissions/v3/integration/submit/999/999' && testReq.body.context.hutk === 'mycookie';
       });
-
+      httpMock.verify();
+      document.cookie = 'hubspotutk=; expires=Thu, 01 Jan 1970 00:00:00 GMT'
       req.flush('');
     });
     it('should not include the hubspot UTK in the request, if the hubspot does not cookie exists', () => {
