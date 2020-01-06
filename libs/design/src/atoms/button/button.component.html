@@ -1,0 +1,8 @@
+<ng-container *ngIf="_prefix">
+  <ng-content select="[daffPrefix]"></ng-content>
+</ng-container>
+<div class="daff-button__bg" *ngIf="stroked"></div>
+<ng-content></ng-content>
+<ng-container *ngIf="_suffix">
+  <ng-content select="[daffSuffix]"></ng-content>
+</ng-container>

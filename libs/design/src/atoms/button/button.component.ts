@@ -1,6 +1,10 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ElementRef, Input, HostBinding, Renderer2 } from '@angular/core';
+import {
+  Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy,
+  ElementRef, Input, HostBinding, Renderer2, ContentChild
+} from '@angular/core';
 
 import { daffColorMixin, DaffColorable, DaffPalette } from '../../core/colorable/colorable';
+import { DaffPrefixDirective, DaffSuffixDirective } from '../../core/prefix-suffix/public_api';
 
 /**
 * List of classes to add to Daff Button instances based on host attributes to style as different variants.
@@ -12,7 +16,6 @@ const BUTTON_HOST_ATTRIBUTES: DaffButtonType[] = [
   'daff-icon-button',
   'daff-underline-button'
 ];
-
 
 /**
  * An _elementRef and an instance of renderer2 are needed for the Colorable mixin
@@ -45,10 +48,7 @@ enum DaffButtonTypeEnum {
     'a[daff-raised-button]' + ',' +
     'a[daff-icon-button]' + ',' +
     'a[daff-underline-button]',
-  template: `
-    <div class="daff-button__bg" *ngIf="stroked"></div>
-    <div class="daff-button__content"><ng-content></ng-content></div>
-    `,
+  templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -95,6 +95,9 @@ export class DaffButtonComponent extends _daffButtonBase implements OnInit, Daff
     @HostBinding('class.daff-underline-button') get underline() {
       return this.buttonType === DaffButtonTypeEnum.Underline;
     }
+
+    @ContentChild(DaffPrefixDirective, { static: false }) _prefix: DaffPrefixDirective;
+    @ContentChild(DaffSuffixDirective, { static: false }) _suffix: DaffSuffixDirective;
 
     _getHostElement() {
       return this.elementRef.nativeElement;

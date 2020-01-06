@@ -37,9 +37,25 @@
 	}
 }
 
+@mixin prefix-suffix {
+	.daff-prefix,
+	.daff-suffix {
+		vertical-align: middle;
+	}
+
+	.daff-prefix {
+		margin-right: 10px;
+	}
+
+	.daff-suffix {
+		margin-left: 10px;
+	}
+}
+
 .daff-button {
 	@include daff-button();
 	@include daff-button-animation();
+	@include prefix-suffix();
 	min-width: 90px;
 	padding: 1em 2.5em;
 }
@@ -47,6 +63,7 @@
 .daff-raised-button {
 	@include daff-button();
 	@include daff-button-animation(1px, true);
+	@include prefix-suffix();
 	min-width: 90px;
 	padding: 1em 2.5em;
 }
@@ -64,6 +81,7 @@
 .daff-stroked-button {
 	@include daff-button();
 	@include daff-button-animation();
+	@include prefix-suffix();
 	background: transparent;
 	min-width: 90px;
 	padding: 1em 2.5em;
@@ -79,19 +97,14 @@
 		width: 100%;
 		z-index: 1;
 	}
-
-	.daff-button__content {
-		position: relative;
-		z-index: 1;
-	}
 }
 
 .daff-underline-button {
 	@include daff-button();
+	@include prefix-suffix();
 	background: transparent;
 	border: 0;
 	border-radius: 0;
-	margin: 0;
 	padding: 0 0 5px;
 	text-decoration: underline;
 	vertical-align: middle;

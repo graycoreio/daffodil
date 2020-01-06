@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'design-land-button',
@@ -9,4 +9,6 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 })
 export class ButtonComponent {
   faPlus = faPlus;
+  faChevronLeft = faChevronLeft;
+  faChevronRight = faChevronRight;
 }
