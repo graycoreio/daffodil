@@ -1,6 +1,15 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ElementRef, Input, HostBinding, Renderer2 } from '@angular/core';
+import {
+  Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy,
+  ElementRef, Input, HostBinding, Renderer2, ContentChild
+} from '@angular/core';
 
 import { daffColorMixin, DaffColorable, DaffPalette } from '../../core/colorable/colorable';
+import { 
+  DaffPrefixable, 
+  DaffSuffixable, 
+  daffPrefixableMixin,
+  daffSuffixableMixin
+} from '../../core/prefix-suffix/public_api';
 
 /**
 * List of classes to add to Daff Button instances based on host attributes to style as different variants.
@@ -13,7 +22,6 @@ const BUTTON_HOST_ATTRIBUTES: DaffButtonType[] = [
   'daff-underline-button'
 ];
 
-
 /**
  * An _elementRef and an instance of renderer2 are needed for the Colorable mixin
  */
@@ -21,7 +29,7 @@ class DaffButtonBase{
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffButtonBase = daffColorMixin(DaffButtonBase); 
+const _daffButtonBase = daffColorMixin(daffSuffixableMixin(daffPrefixableMixin(DaffButtonBase))); 
 
 export type DaffButtonType = 'daff-button' | 'daff-stroked-button' | 'daff-raised-button' | 'daff-icon-button' | 'daff-underline-button' | undefined;
 enum DaffButtonTypeEnum {
@@ -45,16 +53,14 @@ enum DaffButtonTypeEnum {
     'a[daff-raised-button]' + ',' +
     'a[daff-icon-button]' + ',' +
     'a[daff-underline-button]',
-  template: `
-    <div class="daff-button__bg" *ngIf="stroked"></div>
-    <div class="daff-button__content"><ng-content></ng-content></div>
-    `,
+  templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class DaffButtonComponent extends _daffButtonBase implements OnInit, DaffColorable {
+export class DaffButtonComponent extends _daffButtonBase 
+  implements OnInit, DaffPrefixable, DaffSuffixable, DaffColorable {
     @Input() color: DaffPalette;
     buttonType: DaffButtonType;
 
