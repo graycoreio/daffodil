@@ -57,6 +57,9 @@ enum DaffButtonTypeEnum {
 export class DaffButtonComponent extends _daffButtonBase implements OnInit, DaffColorable {
     @Input() color: DaffPalette;
     buttonType: DaffButtonType;
+    
+    @ContentChild(DaffPrefixDirective, { static: false }) _prefix: DaffPrefixDirective;
+    @ContentChild(DaffSuffixDirective, { static: false }) _suffix: DaffSuffixDirective;
 
     constructor(private elementRef: ElementRef, private renderer: Renderer2) {
       super(elementRef, renderer);
@@ -95,9 +98,6 @@ export class DaffButtonComponent extends _daffButtonBase implements OnInit, Daff
     @HostBinding('class.daff-underline-button') get underline() {
       return this.buttonType === DaffButtonTypeEnum.Underline;
     }
-
-    @ContentChild(DaffPrefixDirective, { static: false }) _prefix: DaffPrefixDirective;
-    @ContentChild(DaffSuffixDirective, { static: false }) _suffix: DaffSuffixDirective;
 
     _getHostElement() {
       return this.elementRef.nativeElement;
