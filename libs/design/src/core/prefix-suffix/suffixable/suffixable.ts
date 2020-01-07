@@ -1,6 +1,6 @@
 import { ContentChild } from '@angular/core';
 import { DaffSuffixDirective } from '../suffix.directive';
-import { Constructor } from '../../constructor';
+import { Constructor } from '../../../core/public_api';
 
 /**
  * A mixin for giving a component the ability to place content after another piece of content.

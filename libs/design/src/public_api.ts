@@ -31,5 +31,4 @@ export * from './molecules/feature/public_api';
 export * from './molecules/card/public_api';
 
 // Core
-export * from './core/colorable/colorable';
-export * from './core/breakpoints/breakpoints';
+export * from './core/public_api';

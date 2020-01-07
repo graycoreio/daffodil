@@ -1,5 +1,5 @@
 import { ElementRef, Renderer2 } from '@angular/core';
-import { Constructor } from '../constructor';
+import { Constructor } from '../constructor/constructor';
 
 /**
  * In order to be colorable, our class must implement this property
