@@ -11,7 +11,8 @@
   "scripts": {
     "build": "ng build contact --prod",
     "lint": "ng lint contact",
-    "test": "ng test contact --watch=false --browsers=ChromeHeadless"
+    "test": "ng test contact --watch=false --browsers=ChromeHeadless",
+    "publish": "(cd ../../dist/contact; npm publish --access=public)"
   },
   "peerDependencies": {
     "@angular/common": "^8.2.9",
