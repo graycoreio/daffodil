@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { DaffHubspotFormsService } from './hubspot-forms.service';
 import { DaffHubspotRequest } from './models/hubspot-request';
-import { DaffHubspotConfig } from '@daffodil/driver/hubspot';
 import { DaffHubspotFormsTransformer } from './transformers/hubspot-forms.transformer';
+import { DaffHubspotConfig } from './models/config';
 
 describe('DaffHubspotFormsService', () => {
 
