@@ -4,7 +4,7 @@
 </ng-container>
 
 <ng-container *ngIf="level > 0">
-  <daff-link-set class="level-{{ level }}">
+  <daff-link-set class="demo-sidebar-list__level-{{ level }}">
     <a *ngIf="level === 1" [routerLink]="getNavigationPath(tree.id)" daffLinkSetHeading daff-link-set-item>
       {{ tree.name }}
     </a>

@@ -1,7 +1,7 @@
 <daff-container size="md">
   <div order-container #OrderContainer="OrderContainer">
-    <div class="thank-you" *ngIf="!(OrderContainer.loading$ | async)">
-      <daff-accordion class="thank-you__mobile-cart">
+    <div class="demo-thank-you-view" *ngIf="!(OrderContainer.loading$ | async)">
+      <daff-accordion class="demo-thank-you-view__mobile-cart">
         <daff-accordion-item [initiallyActive]="false">
           <h3 daffAccordionItemTitle>Cart Summary ({{(OrderContainer.order$ | async).items.length}})</h3>
           <demo-cart-summary-wrapper [cart]="OrderContainer.order$ | async" [loading]="OrderContainer.loading$ | async"></demo-cart-summary-wrapper>
@@ -10,8 +10,8 @@
 
       <demo-thank-you></demo-thank-you>
 
-      <div class="thank-you__cart">
-        <div class="thank-you__desktop-cart">
+      <div class="demo-thank-you-view__cart">
+        <div class="demo-thank-you-view__desktop-cart">
           <demo-cart-summary-wrapper [cartTitle]="'CART SUMMARY'" [cart]="OrderContainer.order$ | async" [loading]="OrderContainer.loading$ | async"></demo-cart-summary-wrapper>
         </div>
       </div>

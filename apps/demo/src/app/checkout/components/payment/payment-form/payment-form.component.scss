@@ -1,43 +1,43 @@
 @import 'utilities';
 
-.payment-form {
-  display: flex;
-  flex-direction: column;
-  max-width: 100%;
+.demo-payment-form {
+	display: flex;
+	flex-direction: column;
+	max-width: 100%;
 
-  @include breakpoint(big-tablet) {
-    max-width: 350px;
-  }
+	@include breakpoint(big-tablet) {
+		max-width: 350px;
+	}
 
-  &__title {
-    margin-bottom: 15px;
-    @include embolden();
-    @include uppercase();
-  }
+	&__title {
+		margin-bottom: 15px;
+		@include embolden();
+		@include uppercase();
+	}
 
-  &__subtitle {
-    @include embolden();
-    margin-bottom: 15px;
-  }
+	&__subtitle {
+		@include embolden();
+		margin-bottom: 15px;
+	}
 
-  &__payment-info {
-    margin-bottom: 25px;
-  }
+	&__payment-info {
+		margin-bottom: 25px;
+	}
 
-  &__address {
-    margin-top: 15px;
-  }
+	&__address {
+		margin-top: 15px;
+	}
 
-  &__button {
-    margin: 25px 0 10px 0;
-  }
+	&__button {
+		margin: 25px 0 10px;
+	}
 
-  &__note {
-    text-align: center;
-    font-size: $small-font-size;
+	&__note {
+		text-align: center;
+		font-size: $small-font-size;
 
-    @include breakpoint(big-tablet) {
-      text-align: left;
-    }
-  }
+		@include breakpoint(big-tablet) {
+			text-align: left;
+		}
+	}
 }

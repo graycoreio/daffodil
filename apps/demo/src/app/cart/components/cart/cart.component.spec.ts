@@ -55,7 +55,7 @@ describe('CartComponent', () => {
   });
 
   it('renders a cart', () => {
-    expect(fixture.debugElement.query(By.css('.cart'))).not.toBeNull();
+    expect(fixture.debugElement.query(By.css('.demo-cart'))).not.toBeNull();
   });
 
   it('can be passed a Cart object', () => {

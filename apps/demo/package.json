@@ -9,7 +9,8 @@
   },
   "scripts": {
     "build": "ng build demo --prod",
-    "lint": "ng lint demo",
+    "lint": "ng lint demo && npm run lint:scss",
+    "lint:scss": "stylelint '**/*.scss'",
     "test": "ng test demo --watch=false --browsers=ChromeHeadless"
   },
   "homepage": "https://github.com/graycoreio/daffodil",

@@ -120,8 +120,8 @@ describe('ShippingOptionsComponent', () => {
       fixture.detectChanges();
     });
     
-    it('should set hidden to false on shipping-options__invalid', () => {
-      const hostNativeElement = fixture.debugElement.query(By.css('.shipping-options__invalid')).nativeElement;
+    it('should set hidden to false on .demo-shipping-options__invalid', () => {
+      const hostNativeElement = fixture.debugElement.query(By.css('.demo-shipping-options__invalid')).nativeElement;
 
       expect(hostNativeElement.hidden).toBeFalsy();
     });
@@ -135,8 +135,8 @@ describe('ShippingOptionsComponent', () => {
       fixture.detectChanges();
     });
 
-    it('should set hidden to true on shipping-options__invalid', () => {
-      const hostNativeElement = fixture.debugElement.query(By.css('.shipping-options__invalid')).nativeElement;
+    it('should set hidden to true on .demo-shipping-options__invalid', () => {
+      const hostNativeElement = fixture.debugElement.query(By.css('.demo-shipping-options__invalid')).nativeElement;
 
       expect(hostNativeElement.hidden).toBeTruthy();
     });

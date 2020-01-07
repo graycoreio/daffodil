@@ -1,22 +1,22 @@
 <daff-container size="lg">
-  <div class="product" *ngIf="product">
-    <div class="product__image-gallery">
+  <div class="demo-product" *ngIf="product">
+    <div class="demo-product__image-gallery">
       <demo-image-gallery-container [images]="product.images"></demo-image-gallery-container>
     </div>
-    <div class="product__info">
-      <h2 class="product__brand">{{product.brand}}</h2>
-      <h1 class="product__name">{{product.name}}</h1>
-      <div class="product__price">${{product.price}}</div>
+    <div class="demo-product__info">
+      <h2 class="demo-product__brand">{{product.brand}}</h2>
+      <h1 class="demo-product__name">{{product.name}}</h1>
+      <div class="demo-product__price">${{product.price}}</div>
     </div>
-    <div class="product__details">
-      <div class="product__qty">
+    <div class="demo-product__details">
+      <div class="demo-product__qty">
         <span>Quantity</span>
         <daff-qty-dropdown id="{{product.id}}" [qty]="qty" (qtyChanged)="onUpdateQty($event)"></daff-qty-dropdown>
       </div>
-      <div class="product__button">
+      <div class="demo-product__button">
         <ng-content></ng-content>
       </div>
-      <div class="product__accordion">
+      <div class="demo-product__accordion">
         <daff-accordion>
           <daff-accordion-item initiallyActive="true">
             <h3 daffAccordionItemTitle>Details</h3>

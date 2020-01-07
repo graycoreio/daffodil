@@ -1,105 +1,105 @@
 @import 'utilities';
-@import "theme";
+@import 'theme';
 
-.cart-item {
-  display: grid;
-  font-size: $small-font-size;
-  grid-column-gap: 20px;
-  grid-row-gap: 15px;
-  grid-template-columns: 1fr 3fr;
+.demo-cart-item {
+	display: grid;
+	font-size: $small-font-size;
+	grid-column-gap: 20px;
+	grid-row-gap: 15px;
+	grid-template-columns: 1fr 3fr;
 
-  &__image {
-    cursor: pointer;
-    display: block;
-    max-width: 100%;
-  }
+	&__image {
+		cursor: pointer;
+		display: block;
+		max-width: 100%;
+	}
 
-  &__description {
-    display: grid;
-  }
+	&__description {
+		display: grid;
+	}
 
-  &__name {
-    cursor: pointer;
-    font-size: 1rem;
-    @include embolden();
+	&__name {
+		cursor: pointer;
+		font-size: 1rem;
+		@include embolden();
 
-    @include breakpoint(big-tablet) {
-      margin-bottom: 15px;
-    }
-  }
+		@include breakpoint(big-tablet) {
+			margin-bottom: 15px;
+		}
+	}
 
-  &__price {
-    font-size: 1rem;
-    color: daff-color($secondary);
-    margin-bottom: 15px;
+	&__price {
+		font-size: 1rem;
+		color: daff-color($secondary);
+		margin-bottom: 15px;
 
-    @include breakpoint(big-tablet) {
-      justify-self: end;
-    }
-  }
+		@include breakpoint(big-tablet) {
+			justify-self: end;
+		}
+	}
 
-  &__mobile-qty {
-    display: inline;
-    @include embolden();
+	&__mobile-qty {
+		display: inline;
+		@include embolden();
 
-    @include breakpoint(big-tablet) {
-      display: none;    
-    }
-  }
+		@include breakpoint(big-tablet) {
+			display: none;
+		}
+	}
 
-  &__desktop-qty {
-    display: none;
+	&__desktop-qty {
+		display: none;
 
-    @include breakpoint(big-tablet) {
-      display: inline-block;    
-    }
-  }
+		@include breakpoint(big-tablet) {
+			display: inline-block;
+		}
+	}
 
-  &__change {
-    color: daff-color($daff-gray, 80);
-    margin-top: 15px;
+	&__change {
+		color: daff-color($daff-gray, 80);
+		margin-top: 15px;
 
-    & > a {
-      text-decoration: underline;
-    
-      &:last-child {
-        margin-left: 10px;
-      }
-    }
-  }
-   
-  @include breakpoint(big-tablet) {
-    &__description {
-      grid-template-areas:
-        "name       qty price"
-        "attribute  qty price"
-        "size       qty price"
-        "change     qty price";
-      grid-template-rows: repeat(4, auto) 1fr;
-    }
-    
-    &__name {
-      grid-area: name;
-    }
+		> a {
+			text-decoration: underline;
 
-    &__price {
-      grid-area: price;
-    }
+			&:last-child {
+				margin-left: 10px;
+			}
+		}
+	}
 
-    &__attribute {
-      grid-area: attribute;
-    }
+	@include breakpoint(big-tablet) {
+		&__description {
+			grid-template-areas:
+				'name       qty price'
+				'attribute  qty price'
+				'size       qty price'
+				'change     qty price';
+			grid-template-rows: repeat(4, auto) 1fr;
+		}
 
-    &__size {
-      grid-area: size;  
-    }
+		&__name {
+			grid-area: name;
+		}
 
-    &__qty-wrapper {
-      grid-area: qty;
-    }
+		&__price {
+			grid-area: price;
+		}
 
-    &__change {
-      grid-area: change;    
-    }
-  }
+		&__attribute {
+			grid-area: attribute;
+		}
+
+		&__size {
+			grid-area: size;
+		}
+
+		&__qty-wrapper {
+			grid-area: qty;
+		}
+
+		&__change {
+			grid-area: change;
+		}
+	}
 }

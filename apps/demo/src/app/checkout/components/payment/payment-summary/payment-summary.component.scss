@@ -1,63 +1,63 @@
 @import 'utilities';
 
-.payment-summary {
-  font-size: $small-font-size;
-  display: grid;
-  grid-template-columns: 4fr 1fr;
-  grid-template-areas: 
-    "       title         edit"
-    "method-title method-title"
-    " card-number  card-number"
-    "  expiration   expiration";
+.demo-payment-summary {
+	font-size: $small-font-size;
+	display: grid;
+	grid-template-columns: 4fr 1fr;
+	grid-template-areas:
+		'       title         edit'
+		'method-title method-title'
+		' card-number  card-number'
+		'  expiration   expiration';
 
-  @include breakpoint(big-tablet) {
-    grid-template-columns: 1fr;
-    grid-template-areas: 
-    "       title"
-    "method-title"
-    " card-number"
-    "  expiration"
-    "        edit";
-  }
+	@include breakpoint(big-tablet) {
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			'       title'
+			'method-title'
+			' card-number'
+			'  expiration'
+			'        edit';
+	}
 
-  &__title {
-    margin-bottom: 5px;
-    grid-area: title;
-    @include embolden();
-    @include uppercase();
-  }
+	&__title {
+		margin-bottom: 5px;
+		grid-area: title;
+		@include embolden();
+		@include uppercase();
+	}
 
-  &__method-title {
-    @include embolden();
-    grid-area: method-title;
-  }
+	&__method-title {
+		@include embolden();
+		grid-area: method-title;
+	}
 
-  &__cardnumber {
-    grid-area: card-number;
-  }
+	&__cardnumber {
+		grid-area: card-number;
+	}
 
-  &__expiration {
-    grid-area: expiration;
-  }
+	&__expiration {
+		grid-area: expiration;
+	}
 
-  &__edit {
-    display: block;
-    grid-area: edit;
-    font-size: 0.875rem;
-    text-decoration: underline;
-    justify-self: end;
-    @include clickable();
+	&__edit {
+		display: block;
+		grid-area: edit;
+		font-size: 0.875rem;
+		text-decoration: underline;
+		justify-self: end;
+		@include clickable();
 
-    @include breakpoint(big-tablet) {
-      justify-self: start;
-      margin-top: 15px;
-    }
-  }
+		@include breakpoint(big-tablet) {
+			justify-self: start;
+			margin-top: 15px;
+		}
+	}
 
-  &__title {
-    font-size: 1rem;
-    margin-bottom: 15px;
-    @include embolden();
-    @include uppercase();
-  }
+	&__title {
+		font-size: 1rem;
+		margin-bottom: 15px;
+		@include embolden();
+		@include uppercase();
+	}
 }

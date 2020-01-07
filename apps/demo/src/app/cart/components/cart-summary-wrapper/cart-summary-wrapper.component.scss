@@ -1,27 +1,27 @@
 @import 'utilities';
-@import "theme";
+@import 'theme';
 
-.cart-summary-wrapper {
-  display: grid;
-  grid-row-gap: 15px;
+.demo-cart-summary-wrapper {
+	display: grid;
+	grid-row-gap: 15px;
 
-  &__content {
-    @include section-divider();
-  }
+	&__content {
+		@include section-divider();
+	}
 
-  &__help-box {
-    display: none;
+	&__help-box {
+		display: none;
 
-    @include breakpoint(big-tablet) {
-      display: block;
-    }
-  }
+		@include breakpoint(big-tablet) {
+			display: block;
+		}
+	}
 
-  &__loading-icon {
-    margin: 20px 44%;
+	&__loading-icon {
+		margin: 20px 44%;
 
-    @include breakpoint(big-tablet) {
-      grid-column: span 3;
-    }
-  }
+		@include breakpoint(big-tablet) {
+			grid-column: span 3;
+		}
+	}
 }

@@ -1,24 +1,24 @@
 @import 'utilities';
-@import "theme";
+@import 'theme';
 
-.header {
-  padding: 0;
-  @include section-divider;
+.demo-header {
+	padding: 0;
+	@include section-divider;
 
-  &__menu {
-    border-right: 1px solid daff-color($daff-gray, 20);
-    padding: 15px;
-  }
-  
-  &__logo {
-    padding: 0 0 0 25px;
-  }
+	&__menu {
+		border-right: 1px solid daff-color($daff-gray, 20);
+		padding: 15px;
+	}
 
-  &__right-nav {
-    padding: 0 25px 0 0;
-  }
+	&__logo {
+		padding: 0 0 0 25px;
+	}
 
-  &__spacer {
-    flex-grow: 1;
-  }
+	&__right-nav {
+		padding: 0 25px 0 0;
+	}
+
+	&__spacer {
+		flex-grow: 1;
+	}
 }

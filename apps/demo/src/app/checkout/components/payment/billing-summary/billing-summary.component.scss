@@ -1,10 +1,10 @@
 @import 'utilities';
 
-.billing-summary {
-  font-size: $small-font-size;
+.demo-billing-summary {
+	font-size: $small-font-size;
 
-  &__title {
-    @include embolden();
-    margin: 15px 0 5px 0;
-  }
+	&__title {
+		@include embolden();
+		margin: 15px 0 5px;
+	}
 }

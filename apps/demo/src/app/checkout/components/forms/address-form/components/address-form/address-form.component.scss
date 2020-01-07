@@ -1,47 +1,47 @@
 @import 'utilities';
 
-.address-form {
-  display: grid;
-  grid-gap: 10px;
+.demo-address-form {
+	display: grid;
+	grid-gap: 10px;
 
-  @include breakpoint(tablet) {
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-areas:
-      "firstname firstname   firstname    lastname    lastname    lastname"
-      "   street    street      street      street      street      street"
-      "     city      city       state       state    postcode    postcode"
-      "telephone telephone   telephone free-space1 free-space1 free-space1";
+	@include breakpoint(tablet) {
+		grid-template-columns: repeat(6, 1fr);
+		grid-template-areas:
+			'firstname firstname   firstname    lastname    lastname    lastname'
+			'   street    street      street      street      street      street'
+			'     city      city       state       state    postcode    postcode'
+			'telephone telephone   telephone free-space1 free-space1 free-space1';
 
-    &__first-name {
-      grid-area: firstname;
-    }
+		&__first-name {
+			grid-area: firstname;
+		}
 
-    &__last-name {
-      grid-area: lastname;
-    }
+		&__last-name {
+			grid-area: lastname;
+		}
 
-    &__street {
-      grid-area: street;
-    }
+		&__street {
+			grid-area: street;
+		}
 
-    &__city {
-      grid-area: city;
-    }
+		&__city {
+			grid-area: city;
+		}
 
-    &__state {
-      grid-area: state;
-    }
+		&__state {
+			grid-area: state;
+		}
 
-    &__postcode {
-      grid-area: postcode;
-    }
+		&__postcode {
+			grid-area: postcode;
+		}
 
-    &__telephone {
-      grid-area: telephone;
-    }
+		&__telephone {
+			grid-area: telephone;
+		}
 
-    &__free-space1 {
-      grid-area: free-space1;
-    }
-  }
+		&__free-space1 {
+			grid-area: free-space1;
+		}
+	}
 }

@@ -172,8 +172,8 @@ describe('CartSummaryWrapper', () => {
       expect(helpBoxComponentElement).toBeNull();
     });
 
-    it('should render loading-icon', () => {
-      const loadingIcon = fixture.debugElement.query(By.css('.cart-summary-wrapper__loading-icon'));
+    it('should render demo-loading-icon', () => {
+      const loadingIcon = fixture.debugElement.query(By.css('.demo-cart-summary-wrapper__loading-icon'));
       
       expect(loadingIcon).not.toBeNull();
     });

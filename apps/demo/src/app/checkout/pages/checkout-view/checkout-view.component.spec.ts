@@ -371,43 +371,43 @@ describe('CheckoutViewComponent', () => {
 
   describe('when showPaymentView$ is false', () => {
     
-    it('should not render checkout__payment', () => {
+    it('should not render .demo-checkout__payment', () => {
 
       component.showPaymentView$ = of(false);
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('.checkout__payment'))).toBeNull();
+      expect(fixture.debugElement.query(By.css('.demo-checkout__payment'))).toBeNull();
     });
   });
 
   describe('when showPaymentView$ is true', () => {
     
-    it('should render checkout__payment', () => {
+    it('should render .demo-checkout__payment', () => {
       component.showPaymentView$ = of(true);
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('.checkout__payment'))).not.toBeNull();
+      expect(fixture.debugElement.query(By.css('.demo-checkout__payment'))).not.toBeNull();
     });
   });
 
   describe('when showReviewView$ is false', () => {
     
-    it('should not render checkout__review', () => {
+    it('should not render .demo-checkout__review', () => {
 
       component.showReviewView$ = of(false);
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('.checkout__review'))).toBeNull();
+      expect(fixture.debugElement.query(By.css('.demo-checkout__review'))).toBeNull();
     });
   });
 
   describe('when showReviewView$ is true', () => {
     
-    it('should render checkout__review', () => {
+    it('should render .demo-checkout__review', () => {
       component.showReviewView$ = of(true);
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('.checkout__review'))).not.toBeNull();
+      expect(fixture.debugElement.query(By.css('.demo-checkout__review'))).not.toBeNull();
     });
   });
 
@@ -420,8 +420,8 @@ describe('CheckoutViewComponent', () => {
       cartContainer.loading$ = of(true);
       fixture.detectChanges();
 
-      checkoutElement = fixture.debugElement.query(By.css('.checkout'));
-      loadingIcon = fixture.debugElement.query(By.css('.checkout__loading-icon'));
+      checkoutElement = fixture.debugElement.query(By.css('.demo-checkout'));
+      loadingIcon = fixture.debugElement.query(By.css('.demo-checkout__loading-icon'));
     });
     
     it('should not render checkoutElement', () => {
@@ -442,8 +442,8 @@ describe('CheckoutViewComponent', () => {
       cartContainer.loading$ = of(false);
       fixture.detectChanges();
 
-      checkoutElement = fixture.debugElement.query(By.css('.checkout'));
-      loadingIcon = fixture.debugElement.query(By.css('.checkout__loading-icon'));
+      checkoutElement = fixture.debugElement.query(By.css('.demo-checkout'));
+      loadingIcon = fixture.debugElement.query(By.css('.demo-checkout__loading-icon'));
     });
     
     it('should render checkout', () => {

@@ -1,21 +1,21 @@
 @import 'utilities';
 @import 'theme';
 
-.help-box {
-  border: 1px solid daff-color($daff-gray, 20);
-  padding: 25px;
+.demo-help-box {
+	border: 1px solid daff-color($daff-gray, 20);
+	padding: 25px;
 
-  &__title {
-    @include embolden();
-    margin-bottom: 15px;
-  }
+	&__title {
+		@include embolden();
+		margin-bottom: 15px;
+	}
 
-  &__link {
-    display: block;
-    margin-top: 10px;
-  }
+	&__link {
+		display: block;
+		margin-top: 10px;
+	}
 
-  &__info {
-    margin-top: 15px;
-  }
+	&__info {
+		margin-top: 15px;
+	}
 }

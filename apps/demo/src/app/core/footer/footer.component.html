@@ -1,6 +1,6 @@
 <daff-container size="md">
-  <div class="footer">
-    <daff-list type="link" class="footer__links" *ngFor="let linkset of links">
+  <div class="demo-footer">
+    <daff-list type="link" class="demo-footer__links" *ngFor="let linkset of links">
       <h3 daffListSubheader>{{ linkset.title }}</h3>
       <daff-list-item *ngFor="let link of linkset.links">
         <a routerLink="{{ link.path }}">{{ link.title }}</a>
@@ -13,4 +13,3 @@
     </daff-button-set>
   </div>
 </daff-container>
-  

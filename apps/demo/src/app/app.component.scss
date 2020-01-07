@@ -1,5 +1,7 @@
-.indicator {
-    position: fixed;
-    width: 100%;
-    z-index: 200;
+.demo-app-root {
+	&__indicator {
+		position: fixed;
+		width: 100%;
+		z-index: 200;
+	}
 }

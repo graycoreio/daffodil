@@ -89,11 +89,11 @@ describe('CartSummaryComponent', () => {
 
   describe('when title is null', () => {
     
-    it('should not render .cart-summary__header', () => {
+    it('should not render .demo-cart-summary__header', () => {
       cartSummary.title = null;
       fixture.detectChanges();
 
-      const cartTitleElement = fixture.debugElement.query(By.css('.cart-summary__title'));
+      const cartTitleElement = fixture.debugElement.query(By.css('.demo-cart-summary__title'));
 
       expect(cartTitleElement).toBeNull();
     });
@@ -101,8 +101,8 @@ describe('CartSummaryComponent', () => {
 
   describe('when title is defined', () => {
     
-    it('should render .cart-summary__header', () => {
-      const cartTitleElement = fixture.debugElement.query(By.css('.cart-summary__title'));
+    it('should render .demo-cart-summary__header', () => {
+      const cartTitleElement = fixture.debugElement.query(By.css('.demo-cart-summary__title'));
 
       expect(cartTitleElement).not.toBeNull();
     });

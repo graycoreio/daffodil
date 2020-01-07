@@ -1,25 +1,25 @@
 @import 'utilities';
-@import "theme";
+@import 'theme';
 
-.thank-you {
-  padding: 25px 0px;
-  @include section-divider();
+.demo-thank-you {
+	padding: 25px 0;
+	@include section-divider();
 
-  @include breakpoint(big-tablet) {
-    padding: 50px 0px;
-    border-top: 1px solid daff-color($daff-gray, 20);
-  }
-  
-  &__title {
-    @include embolden();
-    @include uppercase();
-  }
+	@include breakpoint(big-tablet) {
+		padding: 50px 0;
+		border-top: 1px solid daff-color($daff-gray, 20);
+	}
 
-  &__body {
-    margin: 25px 0 50px;
+	&__title {
+		@include embolden();
+		@include uppercase();
+	}
 
-    span {
-      @include embolden();
-    }
-  }
+	&__body {
+		margin: 25px 0 50px;
+
+		span {
+			@include embolden();
+		}
+	}
 }

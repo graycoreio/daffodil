@@ -1,4 +1,6 @@
-.place-order-button {
-  display: block;
-  width: 100%;
+.demo-place-order {
+	&__button {
+		display: block;
+		width: 100%;
+	}
 }

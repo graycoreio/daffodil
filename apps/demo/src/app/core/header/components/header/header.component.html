@@ -1,13 +1,13 @@
-<daff-navbar class="header">
-  <div class="header__menu">
+<daff-navbar class="demo-header">
+  <div class="demo-header__menu">
     <ng-content select="[header-menu-button]"></ng-content>
   </div>
-  <div class="header__logo">
+  <div class="demo-header__logo">
     <ng-content select="[header-logo]"></ng-content>
   </div>
   <ng-content></ng-content>
-  <div class="header__spacer"></div>
-  <div class="header__right-nav" (click)="navigateToCart()">
+  <div class="demo-header__spacer"></div>
+  <div class="demo-header__right-nav" (click)="navigateToCart()">
       <ng-content select="[header-cart-button]"></ng-content>
   </div>
 </daff-navbar>

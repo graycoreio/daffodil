@@ -1,36 +1,36 @@
 :host {
-    display: block;
+	display: block;
 }
 
-.logo {
-    height: 40px;
-    width: 40px;
+.demo-logo {
+	height: 40px;
+	width: 40px;
 
-    svg {
-        height: 100%;
-    }
-}
+	svg {
+		height: 100%;
+	}
 
-.st0 {
-  fill:#FFF000;
-}
+	&__petal-1 {
+		fill:#fff000;
+	}
 
-.st1 {
-  fill:url(#linear-gradient-1);
-}
+	&__petal-2 {
+		fill:url(#linear-gradient-1); /* stylelint-disable-line function-url-quotes */
+	}
 
-.st2 {
-  fill:url(#linear-gradient-2);
-}
+	&__petal-3 {
+		fill:url(#linear-gradient-2); /* stylelint-disable-line function-url-quotes */
+	}
 
-.st3 {
-  fill:url(#linear-gradient-3);
-}
+	&__petal-4 {
+		fill:url(#linear-gradient-3); /* stylelint-disable-line function-url-quotes */
+	}
 
-.st4 {
-  fill:#FF8500;
-}
+	&__core {
+		fill:#ff8500;
+	}
 
-.st5 {
-  fill:#FFC000;
+	&__small-petal {
+		fill:#ffc000;
+	}
 }

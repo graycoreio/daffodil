@@ -43,7 +43,7 @@ describe('CartTotalsItemComponent', () => {
     wrapper.label='label';
     fixture.detectChanges();
 
-    cartTotalsItemComponent = fixture.debugElement.query(By.css('.cart-totals-item__label'));
+    cartTotalsItemComponent = fixture.debugElement.query(By.css('.demo-cart-totals-item__label'));
     expect(cartTotalsItemComponent.nativeElement.innerHTML).toContain('label');
   });
 
@@ -51,7 +51,7 @@ describe('CartTotalsItemComponent', () => {
     wrapper.value='value';
     fixture.detectChanges();
 
-    cartTotalsItemComponent = fixture.debugElement.query(By.css('.cart-totals-item__value'));
+    cartTotalsItemComponent = fixture.debugElement.query(By.css('.demo-cart-totals-item__value'));
     expect(cartTotalsItemComponent.nativeElement.innerHTML).toContain('value');
   });
 
@@ -59,7 +59,7 @@ describe('CartTotalsItemComponent', () => {
     wrapper.emphasize=true;
     fixture.detectChanges();
 
-    cartTotalsItemComponent = fixture.debugElement.query(By.css('.cart-totals-item'));
+    cartTotalsItemComponent = fixture.debugElement.query(By.css('.demo-cart-totals-item'));
     expect(cartTotalsItemComponent.nativeElement.classList).toContain('emphasize');
   });
 });

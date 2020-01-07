@@ -122,7 +122,7 @@ describe('BillingSummaryComponent', () => {
     });
 
     it('should render note', () => {
-      billingAddressIsShippingAddress = fixture.debugElement.query(By.css('.billing-summary__note'));
+      billingAddressIsShippingAddress = fixture.debugElement.query(By.css('.demo-billing-summary__note'));
 
       expect(billingAddressIsShippingAddress).not.toBeNull();
     });
@@ -136,7 +136,7 @@ describe('BillingSummaryComponent', () => {
     });
 
     it('should not render note', () => {
-      billingAddressIsShippingAddress = fixture.debugElement.query(By.css('.billing-summary__note'));
+      billingAddressIsShippingAddress = fixture.debugElement.query(By.css('.demo-billing-summary__note'));
 
       expect(billingAddressIsShippingAddress).toBeNull();
     });

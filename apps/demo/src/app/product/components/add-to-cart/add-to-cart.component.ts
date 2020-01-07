@@ -5,7 +5,7 @@ import { Component, Output, EventEmitter, Input, ViewEncapsulation } from '@angu
   templateUrl: './add-to-cart.component.html',
   styleUrls: ['./add-to-cart.component.scss'],
   host: {
-    'class': 'add-to-cart'
+    'class': 'demo-add-to-cart'
   },
   encapsulation: ViewEncapsulation.None
 })
