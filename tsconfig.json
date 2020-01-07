@@ -52,6 +52,9 @@
       "@daffodil/driver": [
         "dist/driver"
       ],
+      "@daffodil/driver/hubspot": [
+        "dist/driver/hubspot"
+      ],
       "@daffodil/design": [
         "dist/design"
       ],
