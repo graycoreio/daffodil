@@ -37,19 +37,20 @@ describe('DaffNewsletterHubspotService', () => {
 				},
 				{
 					provide: DaffNewsletterTransformer,
-					useExisting: DaffNewsletterHubspotTransformer,
+					useClass: DaffNewsletterHubspotTransformer,
 				},
 			],
 		});
 
 		httpMock = TestBed.get(HttpTestingController);
-		newsletterService = TestBed.get(DaffNewsletterHubspotService);
 		doc = TestBed.get(DOCUMENT);
 		httpClient = TestBed.get(HttpClient);
-		config = TestBed.get(DaffNewsletterConfig);
-		transformer = TestBed.get(DaffNewsletterHubspotTransformer);
 		route = TestBed.get(Router);
 		title = TestBed.get(Title);
+		
+		newsletterService = TestBed.get(DaffNewsletterHubspotService);
+		config = TestBed.get(DaffNewsletterConfig);
+		transformer = TestBed.get(DaffNewsletterTransformer);
 	});
 
 	afterEach(() => {

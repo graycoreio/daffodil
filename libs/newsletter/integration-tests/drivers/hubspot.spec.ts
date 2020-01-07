@@ -8,7 +8,7 @@ import {
 
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-fdescribe('DaffNewsletterHubspotDriver', () => {
+describe('DaffNewsletterHubspotDriver', () => {
 	let newsletterService: DaffNewsletterServiceInterface<any, any>;
 	let httpMock: HttpTestingController;
 
@@ -36,7 +36,9 @@ fdescribe('DaffNewsletterHubspotDriver', () => {
 	
 	it('should allow a developer to configure and send newsletter subscription requests to the HubspotForms API', () => {
 		const newsletterSubmission = { email: 'test@email.com' };
-		newsletterService.send(newsletterSubmission).subscribe();
+		newsletterService.send(newsletterSubmission).subscribe((resp) =>{
+			expect(resp).toEqual(newsletterSubmission);
+		});
 		const req = httpMock.expectOne('https://api.hsforms.com/submissions/v3/integration/submit/123123/123123');
 		req.flush(newsletterSubmission);
 		httpMock.verify();

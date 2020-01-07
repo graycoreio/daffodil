@@ -7,6 +7,12 @@ describe('DaffNewsletterHubspotTransformer', () => {
 	let transformer;
 
 	beforeEach(() => {
+		TestBed.configureTestingModule({
+			providers: [
+				DaffNewsletterHubspotTransformer
+			]
+		});
+
 		transformer = TestBed.get(DaffNewsletterHubspotTransformer);
 	});
 
