@@ -57,11 +57,6 @@ The `<daff-list>` component can be used to display a series of line items.
 </daff-list>
 ```
 
-## Icon List
-
-- `[daffListItemIcon]` allows you to add an icon to your list item.
-- Add the attribute `[daffListItemIcon]` to any element.
-
 ### Usage
 
 ```
