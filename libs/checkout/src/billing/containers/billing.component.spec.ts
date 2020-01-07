@@ -4,12 +4,12 @@ import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
+import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 
 import { BillingContainer } from './billing.component';
-import { UpdateBillingAddress, UpdatePaymentInfo, ToggleBillingAddressIsShippingAddress } from '../actions/billing.actions';
-import * as fromBilling from '../reducers/index';
+import { DaffUpdateBillingAddress, DaffUpdatePaymentInfo, DaffToggleBillingAddressIsShippingAddress } from '../actions/billing.actions';
 import { PaymentInfo } from '../../models/payment/payment-info';
-import { DaffPaymentFactory } from '../../../testing/src';
+import { selectPaymentInfo, selectBillingAddress, selectBillingAddressIsShippingAddress } from '../selectors/billing.selector';
 
 describe('BillingContainer', () => {
   let component: BillingContainer;
@@ -43,9 +43,9 @@ describe('BillingContainer', () => {
     initialBillingAddressIsShippingAddress = false;
     initialPaymentInfo = paymentFactory.create();
 
-    store.overrideSelector(fromBilling.selectPaymentInfoState, initialPaymentInfo);
-    store.overrideSelector(fromBilling.selectBillingAddressState, initialBillingAddress);
-    store.overrideSelector(fromBilling.selectBillingAddressIsShippingAddressState, initialBillingAddressIsShippingAddress);
+    store.overrideSelector(selectPaymentInfo, initialPaymentInfo);
+    store.overrideSelector(selectBillingAddress, initialBillingAddress);
+    store.overrideSelector(selectBillingAddressIsShippingAddress, initialBillingAddressIsShippingAddress);
 
     spyOn(store, 'dispatch');
 
@@ -83,28 +83,28 @@ describe('BillingContainer', () => {
 
   describe('updateBillingAddress', () => {
     
-    it('should call store.dispatch with UpdateBillingAddress action', () => {
+    it('should call store.dispatch with DaffUpdateBillingAddress action', () => {
       component.updateBillingAddress(initialBillingAddress);
 
-      expect(store.dispatch).toHaveBeenCalledWith(new UpdateBillingAddress(initialBillingAddress));
+      expect(store.dispatch).toHaveBeenCalledWith(new DaffUpdateBillingAddress(initialBillingAddress));
     });
   });
 
   describe('toggleBillingAddressIsShippingAddress', () => {
     
-    it('should call store.dispatch with ToggleBillingAddressIsShippingAddress action', () => {
+    it('should call store.dispatch with DaffToggleBillingAddressIsShippingAddress action', () => {
       component.toggleBillingAddressIsShippingAddress();
 
-      expect(store.dispatch).toHaveBeenCalledWith(new ToggleBillingAddressIsShippingAddress());
+      expect(store.dispatch).toHaveBeenCalledWith(new DaffToggleBillingAddressIsShippingAddress());
     });
   });
 
   describe('updatePaymentInfo', () => {
     
-    it('should call store.dispatch with UpdatePaymentInfo action', () => {
+    it('should call store.dispatch with DaffUpdatePaymentInfo action', () => {
       component.updatePaymentInfo(initialPaymentInfo);
 
-      expect(store.dispatch).toHaveBeenCalledWith(new UpdatePaymentInfo(initialPaymentInfo));
+      expect(store.dispatch).toHaveBeenCalledWith(new DaffUpdatePaymentInfo(initialPaymentInfo));
     });
   });
 });

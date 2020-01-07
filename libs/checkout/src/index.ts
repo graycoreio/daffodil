@@ -28,6 +28,25 @@ export {
   selectPaymentInfo
 } from './payment/selectors/payment.selector';
 
+export { 
+  DaffBillingActionTypes,
+  DaffUpdateBillingAddress,
+  DaffToggleBillingAddressIsShippingAddress,
+  DaffBillingActions
+} from './billing/actions/billing.actions';
+export {
+  selectBillingFeatureState,
+  selectBillingState,
+  selectBillingAddress,
+  selectBillingAddressIsShippingAddress
+} from './billing/selectors/billing.selector';
+export { DaffBillingFacade } from './billing/facades/billing.facade';
+export { DaffBillingReducersState } from './billing/reducers/billing-reducers.interface';
+export { DaffBillingReducerState } from './billing/reducers/billing/billing-reducer.interface';
+export { daffBillingReducers } from './billing/reducers/billing-reducers';
+export { daffBillingReducer } from './billing/reducers/billing/billing.reducer';
+
+export { DaffBillingModule } from './billing/billing.module';
 export { StateCheckoutModule } from './checkout.module';
 
 export { DaffCheckoutServiceInterface } from './drivers/interfaces/checkout-service.interface';

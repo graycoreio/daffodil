@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { StateBillingStateModule } from './billing-state.module';
+import { DaffBillingStateModule } from './billing-state.module';
 import { BillingContainer } from './containers/billing.component';
 
 @NgModule({
@@ -11,7 +11,7 @@ import { BillingContainer } from './containers/billing.component';
     /**
      * Ngrx/store
      */
-    StateBillingStateModule,
+    DaffBillingStateModule,
   ],
   declarations: [
     BillingContainer
@@ -20,4 +20,4 @@ import { BillingContainer } from './containers/billing.component';
     BillingContainer
   ]
 })
-export class StateBillingModule { }
+export class DaffBillingModule { }
