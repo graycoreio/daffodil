@@ -1,13 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { NgControl, FormsModule, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
 
 import { DaffFormFieldComponent } from './form-field.component';
 import { DaffErrorMessageComponent } from '../error-message/error-message.component';
 import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
 import { DaffFormFieldControl } from '../form-field-control';
 import { DaffInputModule } from '../../input/public_api';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({template: `
   <daff-form-field [formSubmitted]="formSubmittedValue">
@@ -31,7 +33,8 @@ describe('DaffFormFieldComponent | Usage', () => {
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
-        DaffInputModule
+        DaffInputModule,
+        FontAwesomeModule
       ],
       declarations: [ 
         WrapperComponent,
@@ -122,6 +125,9 @@ describe('DaffFormFieldComponent | Usage Without Control', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        FontAwesomeModule
+      ],
       declarations: [ 
         WrapperWithoutControlComponent,
         DaffFormFieldComponent,

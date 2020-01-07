@@ -2,6 +2,8 @@ import { Component, ViewEncapsulation, DoCheck, ContentChild, Input, AfterConten
 import { DaffFormFieldControl } from '../form-field-control';
 import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
 
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'daff-form-field',
   templateUrl: './form-field.component.html',
@@ -13,6 +15,7 @@ import { DaffFormFieldMissingControlMessage } from '../form-field-errors';
 })
 
 export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterContentChecked {
+  faChevronDown = faChevronDown;
 
   /**
    * The tracking property used to determine if the parent form has been submitted,

@@ -1,9 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DaffAccordionItemComponent } from './accordion-item.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({template: `
 <daff-accordion-item [initiallyActive]="initiallyActiveValue">
@@ -24,7 +26,8 @@ describe('DaffAccordionItemComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        NoopAnimationsModule
+        NoopAnimationsModule,
+        FontAwesomeModule
       ],
       declarations: [ 
         WrapperComponent,
