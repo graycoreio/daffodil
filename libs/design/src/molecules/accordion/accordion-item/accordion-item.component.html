@@ -1,8 +1,10 @@
 <div class="daff-accordion-item__header" (click)="toggleActive()">
   <ng-content select="[daffAccordionItemTitle]"></ng-content>
-  <span [hidden]="_open" class="daff-accordion-item__open-icon">
+  <span [hidden]="_open" daffSuffix>
+    <fa-icon [icon]="faChevronDown"></fa-icon>
   </span>
-  <span [hidden]="!_open" class="daff-accordion-item__close-icon">
+  <span [hidden]="!_open" daffSuffix>
+    <fa-icon [icon]="faChevronUp"></fa-icon>
   </span>
 </div>
 <div [@openAccordion]="_animationState">

@@ -3,9 +3,13 @@ import { CommonModule } from '@angular/common';
 import { DaffFormFieldComponent } from './form-field/form-field.component';
 import { DaffErrorMessageComponent } from './error-message/error-message.component';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+
+    FontAwesomeModule
   ],
   exports: [
     DaffFormFieldComponent,

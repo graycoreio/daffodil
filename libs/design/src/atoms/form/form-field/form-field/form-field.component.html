@@ -1,5 +1,7 @@
 <div class="daff-form-field__control" [class.daff-error]="isError" [class.daff-valid]="isValid">
   <ng-content></ng-content>
-  <div class="daff-form-field__icon" *ngIf="_control.controlType=='native-select'"></div>
+  <div class="daff-form-field__icon" *ngIf="_control.controlType=='native-select'">
+    <fa-icon [icon]="faChevronDown"></fa-icon>
+  </div>
 </div>
 <ng-content select="daff-error-message"></ng-content>
