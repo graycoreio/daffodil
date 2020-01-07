@@ -15,9 +15,7 @@ import { DaffNewsletterTransformerInterface } from '../interfaces/newsletter-tra
 import { DaffNewsletterServiceInterface } from '../interfaces/newsletter-service.interface';
 import { DaffNewsletterConfig } from '../injection-tokens/newsletter-config.token';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class DaffNewsletterHubspotService implements DaffNewsletterServiceInterface<DaffNewsletterUnion, any> {
   
   constructor(
