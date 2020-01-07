@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { StateShippingStateModule } from './shipping-state.module';
+import { DaffShippingStateModule } from './shipping-state.module';
 import { ShippingContainer } from './containers/shipping.component';
 
 @NgModule({
@@ -11,7 +11,7 @@ import { ShippingContainer } from './containers/shipping.component';
     /**
      * Ngrx/store
      */
-    StateShippingStateModule,
+    DaffShippingStateModule,
   ],
   declarations: [
     ShippingContainer
@@ -20,4 +20,4 @@ import { ShippingContainer } from './containers/shipping.component';
     ShippingContainer
   ]
 })
-export class StateShippingModule { }
+export class DaffShippingModule { }
