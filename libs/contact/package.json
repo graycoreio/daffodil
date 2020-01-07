@@ -14,6 +14,9 @@
     "test": "ng test contact --watch=false --browsers=ChromeHeadless",
     "publish": "(cd ../../dist/contact; npm publish --access=public)"
   },
+  "devDependencies": {
+    "@daffodil/driver": "0.0.0-PLACEHOLDER"
+  },
   "peerDependencies": {
     "@angular/common": "^8.2.9",
     "@angular/core": "^8.2.9"
