@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Optional } from '@angular/core';
+import { Inject, Optional, Injectable } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';

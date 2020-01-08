@@ -1,24 +1,23 @@
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { DaffContactHubspotService } from '../src/driver/hubspot/contact.service';
 import { DaffContactHubSpotDriverModule } from '../src/driver/hubspot/hubspot-driver.module';
 import { of } from 'rxjs';
+import { DaffContactDriver } from '../src';
+
 
 describe('DaffContactHubspotDriver', () => {
   let contactService;
+  let transformer;
   let httpMock: HttpTestingController;
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
         DaffContactHubSpotDriverModule.forRoot({ portalId: '123123', guid: '123123' })
-      ],
-      providers: [
-        DaffContactHubspotService
       ]
     });
     httpMock = TestBed.get(HttpTestingController);
-    contactService = TestBed.get<DaffContactHubspotService>(DaffContactHubspotService);
+    contactService = TestBed.get(DaffContactDriver);
   });
   afterEach(() => {
     httpMock.verify();

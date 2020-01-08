@@ -17,9 +17,9 @@ export class DaffContactHubSpotDriverModule {
     return {
       ngModule: DaffContactHubSpotDriverModule,
       providers: [
-        {provide: DaffContactDriver, useExisting: DaffContactHubspotService},
+        {provide: DaffContactDriver, useClass: DaffContactHubspotService},
         {provide: DaffContactConfig, useValue: config},
-        {provide: DaffContactTransformer, useExisting: DaffContactHubspotTransformer}
+        {provide: DaffContactTransformer, useClass: DaffContactHubspotTransformer}
       ]
     }
   }
