@@ -15,7 +15,8 @@
   "scripts": {
     "build": "ng build driver",
     "test": "ng test driver --watch=false --browsers=ChromeHeadless",
-    "lint": "ng lint driver"
+    "lint": "ng lint driver",
+    "publish": "(cd ../../dist/driver; npm publish --access=public)"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
