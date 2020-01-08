@@ -7,7 +7,6 @@ import { DaffContactDriver } from '../src';
 
 describe('DaffContactHubspotDriver', () => {
   let contactService;
-  let transformer;
   let httpMock: HttpTestingController;
   beforeEach(() => {
     TestBed.configureTestingModule({
