@@ -15,10 +15,13 @@
     "publish": "(cd ../../dist/contact; npm publish --access=public)"
   },
   "devDependencies": {
-    "@daffodil/driver": "0.0.0-PLACEHOLDER"
+    "@daffodil/driver": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER"
   },
   "peerDependencies": {
-    "@angular/common": "^8.2.9",
-    "@angular/core": "^8.2.9"
+    "@daffodil/driver": "0.0.0-PLACEHOLDER",
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER"
   }
 }

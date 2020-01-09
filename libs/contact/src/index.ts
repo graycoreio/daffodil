@@ -2,3 +2,4 @@ export { DaffContactServiceInterface } from './driver/interfaces/contact-service
 export { DaffContactUnion } from './models/contact-union';
 export { DaffContactDriver } from './driver/injection-tokens/contact-driver.token';
 export { DaffContactTransformerInterface } from './driver/interfaces/contact-transformer.interface';
+export { DaffContactHubSpotDriverModule } from './driver/hubspot/hubspot-driver.module';
