@@ -1,59 +1,31 @@
 
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable, Optional } from '@angular/core';
+import { Inject, Optional } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import { map } from 'rxjs/operators';
+
 
 import { DaffNewsletterUnion } from '../../models/newsletter-union';
-import { DaffNewsletterHubspotConfig } from './models/config';
-import { HubspotRequest} from './models/hubspot-response';
+
 import { DaffNewsletterTransformer } from '../injection-tokens/newsletter-transformer.token';
 import { DaffNewsletterTransformerInterface } from '../interfaces/newsletter-transformer.interface';
 import { DaffNewsletterServiceInterface } from '../interfaces/newsletter-service.interface';
 import { DaffNewsletterConfig } from '../injection-tokens/newsletter-config.token';
+import { DaffHubspotRequest, DaffHubspotFormsService, DaffHubspotConfig } from '@daffodil/driver/hubspot';
 
-@Injectable()
-export class DaffNewsletterHubspotService implements DaffNewsletterServiceInterface<DaffNewsletterUnion, any> {
+export class DaffNewsletterHubspotService extends DaffHubspotFormsService<DaffHubspotRequest> implements DaffNewsletterServiceInterface<DaffNewsletterUnion, any> {
   
   constructor(
-    private http: HttpClient,
-    @Inject(DaffNewsletterConfig) private newsletterConfig: DaffNewsletterHubspotConfig,
-    @Inject(DaffNewsletterTransformer) private transformer: DaffNewsletterTransformerInterface<DaffNewsletterUnion, HubspotRequest, HubspotRequest, any>,
-    @Optional() @Inject(DOCUMENT) private doc: Document,
-    @Optional() private route: Router,
-    private title: Title) { }
+    http: HttpClient,
+    @Inject(DaffNewsletterConfig) contactConfig: DaffHubspotConfig,
+    @Inject(DaffNewsletterTransformer) transformer: DaffNewsletterTransformerInterface<DaffNewsletterUnion, DaffHubspotRequest, any, any>,
+    @Optional() @Inject(DOCUMENT) document: Document,
+    @Optional() route: Router,
+    title: Title) {
+    super(http, contactConfig, transformer, document, route, title)
+  }
 
-  send(payload: DaffNewsletterUnion): any {
-    return this.http.post<HubspotRequest>(this.generateUrl(this.newsletterConfig.portalId, this.newsletterConfig.guid, this.newsletterConfig.version),{
-      ...this.transformer.transformOut(payload), 'context': {
-        'hutk': this.getCookie(),
-        'pageUri': this.getPageURI(),
-        'pageName': this.title.getTitle()
-      }
-    }).pipe(map(this.transformer.transformIn));
-  }
-  private generateUrl(portalId: string, guid: string, version: string): string {
-    if (version === undefined) {
-      version = 'v3'
-    }
-    return 'https://api.hsforms.com/submissions/' + version + '/integration/submit/'
-      + portalId + '/' + guid;
-  }
-  private getCookie() {
-    if(!this.doc) {
-      return null;
-    }
-    const name = 'hubspotutk';
-    const v = this.doc.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-    return v ? v[2] : null;
-  }
-  private getPageURI() {
-    if(!this.route) {
-      return null;
-    }
-    return this.route.url;
-  }
+  
 }

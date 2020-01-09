@@ -1,23 +1,14 @@
-import { Injectable } from '@angular/core';
-import { HubspotRequest } from '../models/hubspot-response';
-import { jsonBuilder } from './json-builder';
 import { DaffNewsletterTransformerInterface } from '../../interfaces/newsletter-transformer.interface';
 import { DaffNewsletterUnion } from '../../../models/newsletter-union';
+import { DaffHubspotFormsTransformer, DaffHubspotRequest } from '@daffodil/driver/hubspot';
 
-@Injectable()
 export class DaffNewsletterHubspotTransformer
+	extends DaffHubspotFormsTransformer
 	implements
 		DaffNewsletterTransformerInterface<
 			DaffNewsletterUnion,
-			HubspotRequest,
+			DaffHubspotRequest,
 			any,
 			any
 		> {
-	transformOut(newsletter: DaffNewsletterUnion): HubspotRequest {
-		return { fields: jsonBuilder(newsletter) };
-	}
-
-	transformIn(newsletter: any): any {
-		return newsletter;
-	}
 }
