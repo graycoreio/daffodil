@@ -27,6 +27,14 @@ export {
   selectPaymentState,
   selectPaymentInfo
 } from './payment/selectors/payment.selector';
+export { DaffCharge } from './models/payment/request/charge';
+export { DaffCreditCardInfo } from './models/payment/request/credit-card-info';
+export { DaffMerchantAuthentication } from './models/payment/request/merchant-authentication';
+export { DaffTransactionResponse } from './models/payment/response/transaction-response';
+export { DaffPaymentDriver } from './drivers/injection-tokens/payment-driver.token';
+export { DaffOrderDriver } from './drivers/injection-tokens/order-driver.token';
+export { DaffOrderServiceInterface } from './drivers/interfaces/order-service.interface';
+export { DaffPaymentServiceInterface } from './drivers/interfaces/payment-service.interface';
 
 export { 
   DaffBillingActionTypes,
