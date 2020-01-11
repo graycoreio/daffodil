@@ -1,4 +1,4 @@
-import { DaffCreditCard } from "../../models/payment/credit-card";
+import { DaffCreditCard } from '../../models/payment/credit-card';
 
 export interface DaffPaymentServiceInterface {
 	/**
