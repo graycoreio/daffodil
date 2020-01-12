@@ -5,7 +5,7 @@ import { DaffCartModule } from '@daffodil/cart';
 
 import { DemoCartViewComponent } from './pages/cart-view/cart-view.component';
 import { DaffLoadingIconModule } from '@daffodil/design';
-import { CartWrapperModule } from './components/cart-wrapper/cart-wrapper.module';
+import { CartModule } from './components/cart/cart.module';
 import { DaffContainerModule } from '@daffodil/design';
 import { DemoCartRoutingModule } from './cart-routing.module';
 
@@ -15,7 +15,7 @@ import { DemoCartRoutingModule } from './cart-routing.module';
     DaffCartModule,
     DaffLoadingIconModule,
     DaffContainerModule,
-    CartWrapperModule,
+    CartModule,
     DemoCartRoutingModule,
   ],
   declarations: [

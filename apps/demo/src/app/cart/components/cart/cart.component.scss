@@ -2,10 +2,40 @@
 @import 'theme';
 
 .demo-cart {
-	display: block;
+	display: grid;
+	grid-template-columns: 1fr;
+	padding: 50px 25px;
 
-	&__content {
-		padding: 25px 0;
+	@include breakpoint(big-tablet) {
+		grid-template-columns: 2fr 1fr;
+		column-gap: 50px;
+		padding: 75px 50px;
+	}
+
+	@include breakpoint(laptop) {
+		padding: 75px 0;
+	}
+
+	&__header {
 		@include section-divider();
+		padding-bottom: 15px;
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+
+		@include breakpoint(big-tablet) {
+			justify-content: flex-start;
+		}
+	}
+
+	&__title {
+		@include embolden();
+		@include uppercase();
+	}
+
+	&__item-count {
+		@include breakpoint(big-tablet) {
+			margin-left: 15px;
+		}
 	}
 }

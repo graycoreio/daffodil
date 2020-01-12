@@ -14,8 +14,8 @@ const cart = cartFactory.create();
 
 @Component({
   // tslint:disable-next-line: component-selector
-  selector: '[cart-container]', 
-  template: '<ng-content></ng-content>', 
+  selector: '[cart-container]',
+  template: '<ng-content></ng-content>',
   exportAs: 'CartContainer'
 })
 class MockCartContainerComponent {
@@ -24,10 +24,10 @@ class MockCartContainerComponent {
 }
 
 @Component({
-  selector: 'demo-cart-wrapper',
+  selector: 'demo-cart',
   template: ''
 })
-class MockCartWrapperComponent { 
+class MockCartWrapperComponent {
   @Input() cart: DaffCart;
 }
 
@@ -38,7 +38,7 @@ describe('DemoCartViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         DemoCartViewComponent,
         MockCartContainerComponent,
         MockCartWrapperComponent,
@@ -54,7 +54,7 @@ describe('DemoCartViewComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DemoCartViewComponent);
     component = fixture.componentInstance;
-    
+
     cartContainer = fixture.debugElement.query(By.css('[cart-container]')).componentInstance;
     cartContainer.loading$ = of(false);
 
@@ -65,14 +65,14 @@ describe('DemoCartViewComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('on <demo-cart-wrapper>', () => {
+  describe('on <demo-cart>', () => {
 
     let cartWrapperComponent;
 
     beforeEach(() => {
-      cartWrapperComponent = fixture.debugElement.query(By.css('demo-cart-wrapper'));
+      cartWrapperComponent = fixture.debugElement.query(By.css('demo-cart'));
     });
-    
+
     it('should set cart to value passed by cart-container directive', () => {
       expect(cartWrapperComponent.componentInstance.cart).toEqual(cart);
     });
@@ -87,11 +87,11 @@ describe('DemoCartViewComponent', () => {
       cartContainer.loading$ = of(true);
       fixture.detectChanges();
 
-      cartWrapper = fixture.debugElement.query(By.css('demo-cart-wrapper'));
+      cartWrapper = fixture.debugElement.query(By.css('demo-cart'));
       loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
     });
 
-    it('should not render demo-cart-wrapper', () => {
+    it('should not render demo-cart', () => {
       expect(cartWrapper).toBeNull();
     });
 
@@ -109,11 +109,11 @@ describe('DemoCartViewComponent', () => {
       cartContainer.loading$ = of(false);
       fixture.detectChanges();
 
-      cartWrapper = fixture.debugElement.query(By.css('demo-cart-wrapper'));
+      cartWrapper = fixture.debugElement.query(By.css('demo-cart'));
       loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
     });
 
-    it('should render demo-cart-wrapper', () => {
+    it('should render demo-cart', () => {
       expect(cartWrapper).not.toBeNull();
     });
 
