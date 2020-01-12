@@ -30,6 +30,7 @@ class MockCartItemsComponent {
 })
 class MockCartSidebarComponent {
   @Input() cart: DaffCart;
+  @Input() isCartEmpty: boolean;
 }
 
 @Component({
@@ -57,10 +58,12 @@ describe('Cart', () => {
 
   let store: MockStore<any>;
   let cartItemCountSelector: MemoizedSelector<object, number>;
+  let cartEmptySelector: MemoizedSelector<object, boolean>;
 
   const cartFactory = new DaffCartFactory();
   const cart = cartFactory.create();
   const stubSelectCartItemCount = 0;
+  const stubIsCartEmpty = true;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -86,6 +89,7 @@ describe('Cart', () => {
     component = fixture.debugElement.query(By.css('demo-cart')).componentInstance;
 
     cartItemCountSelector = store.overrideSelector(cartSelector.selectCartItemCount, stubSelectCartItemCount);
+    cartEmptySelector = store.overrideSelector(cartSelector.isCartEmpty, stubIsCartEmpty);
 
     cartItemsElement = fixture.debugElement.query(By.css('demo-cart-items'));
     cartItemsComponent = cartItemsElement.componentInstance;
@@ -120,6 +124,24 @@ describe('Cart', () => {
   describe('on <demo-cart-sidebar>', () => {
     it('should pass down the cart', () => {
       expect(cartSidebarComponent.cart).toEqual(cart);
+    });
+
+    it('should set isCartEmpty to false', () => {
+      const val = false;
+      cartEmptySelector.setResult(val);
+      store.setState({});
+      fixture.detectChanges();
+
+      expect(cartSidebarComponent.isCartEmpty).toEqual(val);
+    });
+
+    it('should set isCartEmpty to true', () => {
+      const val = true;
+      cartEmptySelector.setResult(val);
+      store.setState({});
+      fixture.detectChanges();
+
+      expect(cartSidebarComponent.isCartEmpty).toEqual(val);
     });
   });
 

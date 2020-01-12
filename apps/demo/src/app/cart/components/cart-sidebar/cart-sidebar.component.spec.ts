@@ -2,18 +2,15 @@ import { Component, Input, Directive, DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { StoreModule, combineReducers, MemoizedSelector, Store } from '@ngrx/store';
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
-
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffCart } from '@daffodil/cart';
 
 import { CartSidebarComponent } from './cart-sidebar.component'
-import * as cartSelector from '../../selectors/cart-selector';
 
-@Component({ template: '<demo-cart-sidebar [cart]="cartValue"></demo-cart-sidebar>' })
+@Component({ template: '<demo-cart-sidebar [cart]="cartValue" [isCartEmpty]="isCartEmptyValue"></demo-cart-sidebar>' })
 class WrapperComponent {
   cartValue: DaffCart;
+  isCartEmptyValue: boolean;
 }
 
 @Component({
@@ -45,12 +42,8 @@ describe('CartSidebar', () => {
 
   let summaryElement: DebugElement;
 
-  let store: MockStore<any>;
-  let cartEmptySelector: MemoizedSelector<object, boolean>;
-
   const cartFactory = new DaffCartFactory();
   const cart = cartFactory.create();
-  const stubIsCartEmpty = true;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -61,9 +54,6 @@ describe('CartSidebar', () => {
         MockProceedToCheckoutDirective,
         CartSidebarComponent
       ],
-      providers: [
-        provideMockStore({})
-      ]
     })
       .compileComponents();
   }));
@@ -71,12 +61,9 @@ describe('CartSidebar', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    store = TestBed.get(Store);
     wrapper.cartValue = cart;
 
     component = fixture.debugElement.query(By.css('demo-cart-sidebar')).componentInstance;
-
-    cartEmptySelector = store.overrideSelector(cartSelector.isCartEmpty, stubIsCartEmpty);
 
     fixture.detectChanges();
   });
@@ -91,8 +78,7 @@ describe('CartSidebar', () => {
 
   describe('when cart is empty', () => {
       beforeEach(() => {
-        cartEmptySelector.setResult(true);
-        store.setState({});
+        wrapper.isCartEmptyValue = true
         fixture.detectChanges();
 
         summaryElement = fixture.debugElement.query(By.css('.demo-cart-sidebar__summary'));
@@ -105,8 +91,7 @@ describe('CartSidebar', () => {
 
     describe('when cart is not empty', () => {
       beforeEach(() => {
-        cartEmptySelector.setResult(false);
-        store.setState({});
+        wrapper.isCartEmptyValue = false
         fixture.detectChanges();
 
         summaryElement = fixture.debugElement.query(By.css('.demo-cart-sidebar__summary'));
