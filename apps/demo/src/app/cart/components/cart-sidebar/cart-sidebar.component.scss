@@ -3,7 +3,7 @@
 
 .demo-cart-sidebar {
 	&__summary {
-		margin: 25px 0 50px;
+		margin: 0 0 50px;
 
 		@include breakpoint(big-tablet) {
 			margin: 0 0 50px;
