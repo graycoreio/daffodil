@@ -3,6 +3,12 @@ import { DaffCart } from '@daffodil/cart';
 
 import { Order } from '../../models/order/order';
 
+export enum DaffOrderActionTypes {
+  PlaceOrderAction = '[Order] Place Order Action',
+  PlaceOrderSuccessAction = '[Order] Place Order Success Action',
+  PlaceOrderFailureAction = '[Order] Place Order Failure Action'
+}
+
 export enum OrderActionTypes {
   PlaceOrderAction = '[Order] Place Order Action',
   PlaceOrderSuccessAction = '[Order] Place Order Success Action',
@@ -10,24 +16,31 @@ export enum OrderActionTypes {
 }
 
 export class PlaceOrder implements Action {
-  readonly type = OrderActionTypes.PlaceOrderAction;
+  readonly type = DaffOrderActionTypes.PlaceOrderAction;
 
   constructor(public payload: DaffCart) {}
 }
 
-export class PlaceOrderSuccess implements Action {
-  readonly type = OrderActionTypes.PlaceOrderSuccessAction;
+export class DaffPlaceOrder implements Action {
+  readonly type = DaffOrderActionTypes.PlaceOrderAction;
+
+  constructor(public payload: DaffCart) {}
+}
+
+export class DaffPlaceOrderSuccess implements Action {
+  readonly type = DaffOrderActionTypes.PlaceOrderSuccessAction;
 
   constructor(public payload: Order) {}
 }
 
-export class PlaceOrderFailure implements Action {
-  readonly type = OrderActionTypes.PlaceOrderFailureAction;
+export class DaffPlaceOrderFailure implements Action {
+  readonly type = DaffOrderActionTypes.PlaceOrderFailureAction;
 
   constructor(public payload: string) {}
 }
 
-export type OrderActions =
+export type DaffOrderActions =
+    | DaffPlaceOrder
     | PlaceOrder
-    | PlaceOrderSuccess
-    | PlaceOrderFailure;
+    | DaffPlaceOrderSuccess
+    | DaffPlaceOrderFailure;

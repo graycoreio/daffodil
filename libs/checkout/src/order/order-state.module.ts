@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 
-import { reducers } from './reducers/index';
 import { EffectsModule } from '@ngrx/effects';
 import { OrderEffects } from './effects/order.effects';
+import { daffOrderReducers } from './reducers/order-reducers';
 
 @NgModule({
   imports: [
-    StoreModule.forFeature('order', reducers),
+    StoreModule.forFeature('order', daffOrderReducers),
     EffectsModule.forFeature([
       OrderEffects
     ])
   ]
 })
-export class StateOrderStateModule { }
+export class DaffOrderStateModule { }

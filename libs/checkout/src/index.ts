@@ -11,9 +11,6 @@ export { ShippingOption } from './models/shipping/shipping-option';
 
 export { ShippingContainer } from './shipping/containers/shipping.component';
 export { OrderContainer } from './order/containers/order.component';
-export * from './order/actions/order.actions';
-import * as fromOrder from './order/reducers/order.reducer';
-export { fromOrder };
 
 export { DaffPaymentFacade } from './payment/facades/payment.facade';
 export { 
@@ -71,8 +68,31 @@ export {
   selectIsShippingAddressValid
 } from './shipping/selectors/shipping.selectors';
 
+export {
+	PlaceOrder,
+  OrderActionTypes,
+  DaffOrderActionTypes,
+  DaffOrderActions,
+  DaffPlaceOrder,
+  DaffPlaceOrderFailure,
+  DaffPlaceOrderSuccess
+} from './order/actions/order.actions';
+export {
+	selectErrors,
+  selectLoading,
+  selectOrder,
+  selectOrderState,
+  selectOrderFeatureState
+} from './order/selectors/order.selector';
+export { DaffOrderReducersState } from './order/reducers/order-reducers.interface';
+export { DaffOrderReducerState } from './order/reducers/order/order-reducer.interface';
+export { daffOrderReducers } from './order/reducers/order-reducers';
+export { daffOrderReducer } from './order/reducers/order/order.reducer';
+export { DaffOrderFacade } from './order/facades/order.facade';
+
 export { DaffBillingModule } from './billing/billing.module';
 export { DaffShippingModule } from './shipping/shipping.module';
+export { DaffOrderModule } from './order/order.module';
 export { StateCheckoutModule } from './checkout.module';
 
 export { DaffCheckoutServiceInterface } from './drivers/interfaces/checkout-service.interface';

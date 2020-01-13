@@ -1,13 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { Store } from '@ngrx/store';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { OrderContainer } from './order.component';
-import { PlaceOrder } from '../actions/order.actions';
-import * as fromOrder from '../reducers/index';
+import { DaffPlaceOrder } from '../actions/order.actions';
 import { DaffOrderFactory } from '../../../testing/src';
 import { Order } from '../../models/order/order';
+import { selectLoading, selectOrder } from '../selectors/order.selector';
 
 describe('OrderContainer', () => {
   let component: OrderContainer;
@@ -36,8 +35,8 @@ describe('OrderContainer', () => {
     stubLoading = false;
     stubOrder = cartFactory.create();
 
-    store.overrideSelector(fromOrder.selectLoadingState, stubLoading);
-    store.overrideSelector(fromOrder.selectOrderValueState, stubOrder);
+    store.overrideSelector(selectLoading, stubLoading);
+    store.overrideSelector(selectOrder, stubOrder);
 
     spyOn(store, 'dispatch');
 
@@ -69,10 +68,10 @@ describe('OrderContainer', () => {
 
   describe('placeOrder', () => {
     
-    it('should call store.dispatch with a PlaceOrder action', () => {
+    it('should call store.dispatch with a DaffPlaceOrder action', () => {
       component.placeOrder(stubOrder);
 
-      expect(store.dispatch).toHaveBeenCalledWith(new PlaceOrder(stubOrder));
+      expect(store.dispatch).toHaveBeenCalledWith(new DaffPlaceOrder(stubOrder));
     });
   });
 });
