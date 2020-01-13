@@ -14,7 +14,8 @@
       "@daffodil/navigation/testing": ["libs/navigation/testing/src"],
       "@daffodil/navigation": ["libs/navigation/src"],
       "@daffodil/newsletter": ["libs/newsletter/src"],
-      "@daffodil/newsletter/testing": ["libs/newsletter/testing/src"]
+      "@daffodil/newsletter/testing": ["libs/newsletter/testing/src"],
+      "@daffodil/driver/hubspot": ["libs/driver/hubspot/src"]
     }
   }
 }
