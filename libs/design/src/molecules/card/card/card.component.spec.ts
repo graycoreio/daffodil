@@ -4,29 +4,33 @@ import { By } from '@angular/platform-browser';
 
 import { DaffCardComponent } from './card.component';
 
-@Component({template: `<daff-card></daff-card>`})
+@Component ({
+  template: `<daff-card></daff-card>`
+})
 
 class WrapperComponent {}
 
 describe('DaffCardComponent', () => {
-  let wrapper: WrapperComponent;
-  let daffCard: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
+  let de: DebugElement;
+  let wrapper: WrapperComponent;
+  let component: DaffCardComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
-        WrapperComponent,
-        DaffCardComponent
-      ]
+      declarations: [
+        DaffCardComponent,
+        WrapperComponent
+       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
-    daffCard = fixture.debugElement.query(By.css('daff-card'));
-    wrapper = daffCard.componentInstance;
+    wrapper = fixture.componentInstance;
+    de = fixture.debugElement.query(By.css('daff-card'));
+    component = de.componentInstance;
     fixture.detectChanges();
   });
 
@@ -34,7 +38,11 @@ describe('DaffCardComponent', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  it('should add a class of `daff-card` to its host', () => {
-    expect(daffCard.nativeElement.classList.contains('daff-card')).toBeTruthy();
+  describe('<daff-card>', () => {
+    it('should add a class of "daff-card" to the host element', () => {
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-card': true,
+      }));
+    });
   });
 });
