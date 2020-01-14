@@ -38,9 +38,11 @@ describe('DaffAccordionItemContentDirective', () => {
     expect(accordionItemContent).toBeTruthy();
   });
 
-  describe('[daffAccordionItemContent]',() => {
-    it('should add a class of `daff-accordion-item__content` to its host element', () => {
-      expect(de.nativeElement.classList.contains('daff-accordion-item__content')).toEqual(true);
+  describe('[daffAccordionItemContent]', () => {
+    it('should add a class of "daff-accordion-item__content" to the host element', () => {
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-accordion-item__content': true,
+      }));
     });
   });
 });

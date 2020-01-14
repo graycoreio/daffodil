@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation, HostBinding } from '@angular/core';
 
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,9 +9,6 @@ import { getAnimationState } from '../animation/accordion-animation-state';
   selector: 'daff-accordion-item',
   templateUrl: './accordion-item.component.html',
   styleUrls: ['./accordion-item.component.scss'],
-  host: {
-    'class': 'daff-accordion-item'
-  },
   encapsulation: ViewEncapsulation.None,
   animations: [
     daffAccordionAnimations.openAccordion
@@ -20,6 +17,8 @@ import { getAnimationState } from '../animation/accordion-animation-state';
 export class DaffAccordionItemComponent implements OnInit {
   faChevronDown = faChevronDown;
   faChevronUp = faChevronUp;
+
+  @HostBinding('class.daff-accordion-item') class = true;
 
   @Input() initiallyActive: boolean;
   _open = false;
