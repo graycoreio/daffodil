@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DaffInputComponent } from './input/input.component';
+import { DaffInputComponent } from './input.component';
 
 @NgModule({
   imports: [

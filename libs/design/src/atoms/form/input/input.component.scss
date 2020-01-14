@@ -1,0 +1,19 @@
+@import '../../../scss/daff-util';
+
+:host {
+	border: none;
+	border-radius: 4px;
+	box-shadow: none;
+	font-size: 1rem;
+	margin: 0;
+	padding: 15px 15px 0;
+	height: 54px;
+	width: 100%;
+	box-sizing: border-box;
+
+	&:focus {
+		border: none;
+		box-shadow: none;
+		outline: none;
+	}
+}

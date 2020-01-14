@@ -2,12 +2,12 @@
 	$base: daff-map-deep-get($theme, 'core.base');
 	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
 
-	.daff-input {
+	:host {
 		background: $base;
-		color: daff-illuminate($base-contrast, $daff-gray, 4);
+		color: $base-contrast;
 
 		&::placeholder {
-			color: daff-illuminate($base-contrast, $daff-gray, 4);
+			color: transparent;
 		}
 	}
 }
