@@ -1,0 +1,45 @@
+<h1>Form Field</h1>
+<code>&lt;daff-form-field&gt;</code> is a wrapping component for form control elements. It is used to style certain form controls (<code>&lt;input&gt;'s</code>, <code>&lt;select&gt;'s</code>, and <code>&lt;textarea&gt;'s</code>) that would otherwise be impossible to style with normal css. It also organizes error messages and hints alongside their associated form controls.
+
+<h2>Prefix and Suffix</h2>
+<p>Additional text or button can be placed before and after a form control by using the <code>daffPrefix</code> and <code>daffSuffix</code> attributes.</p>
+
+<h2>Label</h2>
+<p><code>daffFormLabel</code> is applied to the <code>&lt;label&gt;</code> element. It is used to provide users with a short hint that assists with data entry. For accessibility considerations, it should always be used in conjuction with form elements within a <code>&lt;daff-form-field&gt;</code>. An error will occur if <code>daffFormLabel</code> is not defined.</p>
+
+<h3>Examples</h3>
+
+<h4>Default Form Field</h4>
+<daff-form-field>
+  <label daffFormLabel>Full Name</label>
+  <input daff-input type="text" name="full-name" [formControl]="fullname" />
+</daff-form-field>
+
+<h4>Form Field with Error Message</h4>
+<daff-form-field>
+  <label daffFormLabel>Email</label>
+  <input daff-input type="text" name="email" [formControl]="email" />
+  <daff-error-message *ngIf="email.invalid">This field is invalid.</daff-error-message>
+</daff-form-field>
+
+<h4>Form Field with Prefix</h4>
+<daff-form-field>
+  <fa-icon daffPrefix [icon]="faUser"></fa-icon>
+  <label daffFormLabel>First Name</label>
+  <input daff-input type="text" name="first-name" [formControl]="firstName" />
+</daff-form-field>
+
+<h4>Form Field with Suffix</h4>
+<daff-form-field>
+  <label daffFormLabel>Password</label>
+  <input daff-input type="text" name="password" [formControl]="password" />
+  <fa-icon daffSuffix [icon]="faEyeSlash"></fa-icon>
+</daff-form-field>
+
+<h4>Form Field with Prefix and Suffix</h4>
+<daff-form-field>
+  <fa-icon daffPrefix [icon]="faDollarSign"></fa-icon>
+  <label daffFormLabel>Amount</label>
+  <input daff-input type="text" name="amount" [formControl]="amount" />
+  <span daffSuffix>.00</span>
+</daff-form-field>

@@ -1,0 +1,62 @@
+@import '../../../scss/daff-util';
+
+.daff-form-field {
+	display: block;
+	position: relative;
+
+	&__control {
+		$root: &;
+		display: flex;
+		border-radius: 4px;
+		font-size: 1rem;
+		line-height: 1em;
+		height: inherit;
+		transition: border ease-in 150ms;
+		width: 100%;
+		box-sizing: border-box;
+
+		.daff-prefix,
+		.daff-suffix {
+			display: flex;
+			align-items: center;
+		}
+
+		.daff-prefix {
+			margin-left: 15px;
+		}
+
+		.daff-suffix {
+			margin-right: 15px;
+		}
+
+		&.daff-raised {
+			.daff-form-label {
+				transform: translateY(-10px) scale(0.8);
+			}
+		}
+	}
+
+	&__form {
+		position: relative;
+		width: 100%;
+
+		.daff-form-label {
+			display: block;
+			left: 15px;
+			pointer-events: none;
+			position: absolute;
+			top: 20px;
+			transform-origin: 0 0;
+			transition: transform 150ms, color 150ms;
+		}
+	}
+
+	&__icon {
+		display: inline-block;
+		position: absolute;
+		right: 15px;
+		top: 50%;
+		transform: translateY(-50%);
+		pointer-events: none;
+	}
+}

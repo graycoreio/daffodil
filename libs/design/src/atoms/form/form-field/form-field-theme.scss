@@ -8,10 +8,15 @@
 	.daff-form-field {
 		&__control {
 			background: $base;
-			border: 1px solid daff-illuminate($base, $daff-gray, 3);
+			border: 1px solid daff-illuminate($base-contrast, $daff-gray, 4);
 			color: daff-illuminate($base-contrast, $daff-gray, 4);
 
-			&:focus {
+			.daff-prefix,
+			.daff-suffix {
+				color: $base-contrast;
+			}
+
+			&.daff-focused {
 				border: 1px solid $base-contrast;
 			}
 
@@ -21,12 +26,17 @@
 				&:focus {
 					border: 1px solid $error;
 				}
-			}
 
-			&.daff-valid {
-				> * {
-					color: $base-contrast;
+				.daff-form-label {
+					color: $error;
 				}
+			}
+		}
+
+		&__form {
+			.daff-form-label {
+				background-color: $base;
+				color: daff-illuminate($base-contrast, $daff-gray, 4);
 			}
 		}
 	}

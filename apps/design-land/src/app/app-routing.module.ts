@@ -12,7 +12,7 @@ export const appRoutes: Routes = [
   { path: 'callout', loadChildren: () => import('./callout/callout.module').then(m => m.CalloutModule) },
   { path: 'card', loadChildren: () => import('./card/card.module').then(m => m.CardModule) },
   { path: 'feature', loadChildren: () => import('./feature/feature.module').then(m => m.FeatureModule) },
-  { path: 'form', loadChildren: () => import('./form/form.module').then(m => m.FormModule) },
+  { path: 'form-field', loadChildren: () => import('./form/form-field/form-field.module').then(m => m.DocsFormFieldModule) },
   { path: 'hero', loadChildren: () => import('./hero/hero.module').then(m => m.HeroModule) },
   { path: 'link-set', loadChildren: () => import('./link-set/link-set.module').then(m => m.LinkSetModule) },
   { path: 'list', loadChildren: () => import('./list/list.module').then(m => m.ListModule) },
