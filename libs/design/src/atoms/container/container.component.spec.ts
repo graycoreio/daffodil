@@ -39,44 +39,79 @@ describe('DaffContainerComponent', () => {
     expect(component).toBeTruthy();
   }); 
 
-  describe('setting the size of the container', () => {
-    describe('when size is xs', () => {
-      it('should set "daff-container--xs" on host element', () => {
+  describe('<daff-container>', () => {
+    it('should add a class of "daff-container" to the host element', () => {
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-container': true,
+      }));
+    });
+  });
+
+  describe('setting the size', () => {
+    it('should not set a default size', () => {
+      expect(component.size).toBeFalsy();
+
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-container--xs': false,
+        'daff-container--sm': false,
+        'daff-container--md': false,
+        'daff-container--lg': false,
+        'daff-container--xl': false
+      }));
+    });
+
+    describe('when size="xs"', () => {
+      it('should add a class of "daff-container--xs" to the host element', () => {
         wrapper.size = 'xs';
         fixture.detectChanges();
-        expect(de.nativeElement.classList.contains('daff-container--xs')).toEqual(true);
+
+        expect(de.classes).toEqual(jasmine.objectContaining({
+          'daff-container--xs': true
+        }));
       });
     });
 
-    describe('when size is sm', () => {
-      it('should set "daff-container--sm" on host element', () => {
+    describe('when size="sm"', () => {
+      it('should add a class of "daff-container--sm" to the host element', () => {
         wrapper.size = 'sm';
         fixture.detectChanges();
-        expect(de.nativeElement.classList.contains('daff-container--sm')).toEqual(true);
+
+        expect(de.classes).toEqual(jasmine.objectContaining({
+          'daff-container--sm': true
+        }));
       });
     });
 
-    describe('when size is md', () => {
-      it('should set "daff-container--md" on host element', () => {
+    describe('when size="md"', () => {
+      it('should add a class of "daff-container--md" to the host element', () => {
         wrapper.size = 'md';
         fixture.detectChanges();
-        expect(de.nativeElement.classList.contains('daff-container--md')).toEqual(true);
+
+        expect(de.classes).toEqual(jasmine.objectContaining({
+          'daff-container--md': true
+        }));
       });
     });
 
-    describe('when size is lg', () => {
-      it('should set "daff-container--lg" on host element', () => {
+    describe('when size="lg"', () => {
+      it('should add a class of "daff-container--lg" to the host element', () => {
         wrapper.size = 'lg';
         fixture.detectChanges();
-        expect(de.nativeElement.classList.contains('daff-container--lg')).toEqual(true);
+
+        expect(de.classes).toEqual(jasmine.objectContaining({
+          'daff-container--lg': true
+        }));
       });
     });
 
-    describe('when size is xl', () => {
-      it('should set "daff-container--xl" on host element', () => {
+    describe('when size="xl"', () => {
+      it('should add a class of "daff-container--xl" to the host element', () => {
         wrapper.size = 'xl';
         fixture.detectChanges();
-        expect(de.nativeElement.classList.contains('daff-container--xl')).toEqual(true);
+
+        expect(de.classes).toEqual(jasmine.objectContaining({
+          'daff-container--xl': true
+        }));
       });
     });
   });
