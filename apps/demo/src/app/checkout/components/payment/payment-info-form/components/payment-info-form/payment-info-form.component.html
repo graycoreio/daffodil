@@ -1,19 +1,20 @@
 <div class="demo-payment-info-form">
   <daff-form-field class="demo-payment-info-form__name">
+    <label daffFormLabel for="name">Cardholder's Name</label>
     <input daff-input type="text" class="demo-payment-info-form__name"
-      placeholder="Cardholder's Name"
       name="name"
       [formControl]="formGroup.controls['name']"
       [formSubmitted]="submitted"/>
   </daff-form-field>
   <daff-form-field class="demo-payment-info-form__card-number">
+    <label daffFormLabel for="cardnumber">Card Number</label>
     <input daff-input type="text" class="demo-payment-info-form__card-number"
-      placeholder="Card Number"
       name="cardnumber"
       [formControl]="formGroup.controls['cardnumber']"
       [formSubmitted]="submitted"/>
   </daff-form-field>
   <daff-form-field class="demo-payment-info-form__month">
+    <label daffFormLabel for="month">Month</label>
     <select daff-native-select
       name="month"
       [formControl]="formGroup.controls['month']"
@@ -23,6 +24,7 @@
     <daff-error-message *ngIf="formGroup.controls['month'].errors && (formGroup.controls['month'].touched || submitted)">This field is required.</daff-error-message>
   </daff-form-field>
   <daff-form-field class="demo-payment-info-form__year">
+    <label daffFormLabel for="year">Year</label>
     <select daff-native-select
       name="year"
       [formControl]="formGroup.controls['year']"
@@ -32,8 +34,8 @@
     <daff-error-message *ngIf="formGroup.controls['year'].errors && (formGroup.controls['year'].touched || submitted)">This field is required.</daff-error-message>
   </daff-form-field>
   <daff-form-field class="demo-payment-info-form__security-code">
+    <label daffFormLabel for="securitycode">Security Code (XXX)</label>
     <input daff-input type="text" class="demo-payment-info-form__security-code"
-      placeholder="Security Code (XXX)"
       name="securitycode"
       [formControl]="formGroup.controls['securitycode']"
       [formSubmitted]="submitted"/>

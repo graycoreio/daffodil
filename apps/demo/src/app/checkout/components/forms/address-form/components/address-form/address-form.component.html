@@ -1,37 +1,38 @@
 <div class="demo-address-form">
   <daff-form-field class="demo-address-form__first-name">
+    <label daffFormLabel for="firstname">First Name*</label>
     <input daff-input type="text"
-      placeholder="First Name"
       name="firstname"
       [formControl]="formGroup.controls['firstname']"
       [formSubmitted]="submitted"/>
     <daff-error-message *ngIf="formGroup.controls['firstname'].errors && (formGroup.controls['firstname'].touched || submitted)">This field is required.</daff-error-message>
   </daff-form-field>
   <daff-form-field class="demo-address-form__last-name">
+    <label daffFormLabel for="lastname">Last Name*</label>
     <input daff-input type="text"
-      placeholder="Last Name"
       name="lastname"
       [formControl]="formGroup.controls['lastname']"
       [formSubmitted]="submitted"/>
     <daff-error-message *ngIf="formGroup.controls['lastname'].errors && (formGroup.controls['lastname'].touched || submitted)">This field is required.</daff-error-message>
   </daff-form-field>
   <daff-form-field class="demo-address-form__street">
+    <label daffFormLabel for="street">Street Address*</label>
     <input daff-input type="text"
-      placeholder="Street Address*"
       name="street"
       [formControl]="formGroup.controls['street']"
       [formSubmitted]="submitted"/>
       <daff-error-message *ngIf="formGroup.controls['street'].errors && (formGroup.controls['street'].touched || submitted)">This field is required.</daff-error-message>
   </daff-form-field>
   <daff-form-field class="demo-address-form__city">
+    <label daffFormLabel for="city">City*</label>
     <input daff-input type="text"
-      placeholder="City"
       name="city"
       [formControl]="formGroup.controls['city']"
       [formSubmitted]="submitted"/>
     <daff-error-message *ngIf="formGroup.controls['city'].errors && (formGroup.controls['city'].touched || submitted)">This field is required.</daff-error-message>
   </daff-form-field>
   <daff-form-field class="demo-address-form__state">
+    <label daffFormLabel for="state">State*</label>
     <select daff-native-select
       name="state"
       [formControl]="formGroup.controls['state']"
@@ -41,16 +42,16 @@
     <daff-error-message *ngIf="formGroup.controls['state'].errors && (formGroup.controls['state'].touched || submitted)">This field is required.</daff-error-message>
   </daff-form-field>
   <daff-form-field class="demo-address-form__postcode">
+    <label daffFormLabel for="postcode">Zip Code*</label>
     <input daff-input type="text"
-      placeholder="Zip Code"
       name="postcode"
       [formControl]="formGroup.controls['postcode']"
       [formSubmitted]="submitted"/>
     <daff-error-message *ngIf="formGroup.controls['postcode'].errors && (formGroup.controls['postcode'].touched || submitted)">This field is required.</daff-error-message>
     </daff-form-field>
   <daff-form-field class="demo-address-form__telephone">
+    <label daffFormLabel for="telephone">Phone Number</label>
     <input daff-input type="text"
-      placeholder="Phone Number"
       name="telephone"
       [formControl]="formGroup.controls['telephone']"
       [formSubmitted]="submitted"/>
