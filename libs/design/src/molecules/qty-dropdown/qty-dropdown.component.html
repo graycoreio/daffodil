@@ -1,4 +1,5 @@
 <daff-form-field class="daff-qty-dropdown">
+  <label daffFormLabel>Qty</label>
   <select daff-native-select *ngIf="!showQtyInputField" id="select_{{id}}" [(ngModel)]="qty" (ngModelChange)="onChangedWrapper(qty)" (blur)="onTouched()">
     <option *ngFor="let item of dropdownItemCounter" [value]="item+1">{{ item+1 }}</option>
     <option value="10">10+</option>
