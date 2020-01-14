@@ -20,10 +20,10 @@ class WrapperComponent {
 }
 
 describe('DaffProgressIndicatorComponent', () => {
+  let fixture: ComponentFixture<WrapperComponent>;
+  let de: DebugElement;
   let wrapper: WrapperComponent;
   let component: DaffProgressIndicatorComponent;
-  let de: DebugElement;
-  let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -43,15 +43,25 @@ describe('DaffProgressIndicatorComponent', () => {
     wrapper = fixture.componentInstance;
     de = fixture.debugElement.query(By.css('daff-progress-indicator'));
     component = de.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
+  describe('<daff-progress-indicator>', () => {
+    it('should add a class of "daff-progress-indicator" to the host element', () => {
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-progress-indicator': true,
+      }));
+    });
+  });
+
   it('should be able to take `percentage` as an input', () =>{
     wrapper.percentage = 20;
     fixture.detectChanges();
+    
     expect(component.percentage).toEqual(20);
   });
 
@@ -69,13 +79,22 @@ describe('DaffProgressIndicatorComponent', () => {
   }));
 
   it('should be unfilled by default', () => {
+    wrapper.percentage = 0;
+    fixture.detectChanges();
+
     expect(component.percentage).toEqual(0);
   });
 
-  it('should be colorable', () => {
-    wrapper.color = 'primary';
-    fixture.detectChanges();
-    expect(component.color).toEqual('primary');
-    expect(de.nativeElement).toHaveClass('daff-primary');
+  describe('using a colored variant of a progress indicator', () => {
+    it('should set a color class on the progress indicator', () => {
+      wrapper.color = 'primary';
+      fixture.detectChanges();
+
+      expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
+    });
+
+    it('should set the default color to primary', () => {
+      expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
+    });
   });
 });
