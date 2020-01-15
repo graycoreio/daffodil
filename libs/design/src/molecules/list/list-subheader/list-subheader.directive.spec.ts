@@ -1,22 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { DaffListSubheaderDirective } from './list-subheader.directive';
-import { Component } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { DaffListSubheaderDirective } from './list-subheader.directive';
 
-@Component({template: '<h3 daffListSubheader></h3>'})
+@Component({
+  template: `
+    <div daffListSubheader>Lorem Ipsum</div>
+  `
+})
 class WrapperComponent {}
 
 describe('DaffListSubheaderDirective', () => {
   let wrapper: WrapperComponent;
+  let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
-  let listSubheader;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
-        WrapperComponent,
-        DaffListSubheaderDirective
+      declarations: [
+        DaffListSubheaderDirective,
+        WrapperComponent
       ]
     })
     .compileComponents();
@@ -24,18 +27,20 @@ describe('DaffListSubheaderDirective', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
-    wrapper = fixture.componentInstance;
-    
+    de = fixture.debugElement.query(By.css('[daffListSubheader]'));
+    wrapper = de.componentInstance;
     fixture.detectChanges();
-
-    listSubheader = fixture.debugElement.query(By.css('[daffListSubheader]'));
   });
 
   it('should create', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  it('should add a class of `daff-list__subheader` to its host', () => {
-    expect(listSubheader.nativeElement.classList.contains('daff-list__subheader')).toBeTruthy();
+  describe('[daffListSubheader]', () => {
+    it('should add a class of "daff-list__subheader" to the host element', () => {
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-list__subheader': true,
+      }));
+    });
   });
-});
+}); 
