@@ -6,7 +6,7 @@ import { DaffAccordionItemTitleDirective } from './accordion-item-title.directiv
 
 @Component({
   template: `
-    <h3 daffAccordionItemTitle>Title</h3>
+    <div daffAccordionItemTitle>Title</div>
   `
 })
 class WrapperComponent {}
@@ -38,9 +38,11 @@ describe('DaffAccordionItemTitleDirective', () => {
     expect(accordionItemTitle).toBeTruthy();
   });
 
-  describe('[daffAccordionItemTitle]',() => {
-    it('should add a class of `daff-accordion-item__title` to its host element', () => {
-      expect(de.nativeElement.classList.contains('daff-accordion-item__title')).toEqual(true);
+  describe('[daffAccordionItemTitle]', () => {
+    it('should add a class of "daff-accordion-item__title" to the host element', () => {
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-accordion-item__title': true,
+      }));
     });
   });
 });

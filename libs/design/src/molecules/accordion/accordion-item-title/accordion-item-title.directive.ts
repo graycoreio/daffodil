@@ -1,7 +1,9 @@
-import { Directive } from '@angular/core';
+import { Directive, HostBinding } from '@angular/core';
 
 @Directive({
   selector: '[daffAccordionItemTitle]',
-  host: {'class': 'daff-accordion-item__title'}
 })
-export class DaffAccordionItemTitleDirective{}
+export class DaffAccordionItemTitleDirective {
+  
+  @HostBinding('class.daff-accordion-item__title') class = true;
+}
