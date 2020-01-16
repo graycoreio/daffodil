@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -29,7 +29,7 @@ class WrapperComponent {
   value5: string;
 }
 
-describe('DaffRadioSetComponent', () => {
+describe('DaffRadioSetComponent | Usage', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;
   let wrapper: WrapperComponent;
@@ -153,47 +153,5 @@ describe('DaffRadioSetComponent', () => {
         expect(radio.componentInstance.selected).toBeFalsy();
       });
     });
-  });
-});
-
-@Component ({
-  template: `
-  <daff-radio-set>
-    <daff-radio [value]="value1"></daff-radio>
-    <daff-radio [value]="value2"></daff-radio>
-  </daff-radio-set>`
-})
-class WrapperErrorComponent {
-  value1: string;
-  value2: string;
-}
-
-describe('DaffRadioSetComponent', () => {
-  let fixture: ComponentFixture<WrapperErrorComponent>;
-  let wrapper: WrapperErrorComponent;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        ReactiveFormsModule
-      ],
-      declarations: [
-        DaffRadioSetComponent,
-        DaffRadioComponent,
-        WrapperErrorComponent
-       ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(WrapperErrorComponent);
-    wrapper = fixture.componentInstance;
-    wrapper.value1 = 'value1';
-    wrapper.value2 = 'value2';
-  });
-
-  it('should throw an error when not provided a formControl', () => {
-    expect(() => fixture.detectChanges()).toThrowError();
   });
 });
