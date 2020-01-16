@@ -1,6 +1,6 @@
 @import '../../../scss/daff-util';
 
-.daff-error-message {
+:host {
 	display: block;
 	font-size: $small-font-size;
 	margin-top: 5px;
