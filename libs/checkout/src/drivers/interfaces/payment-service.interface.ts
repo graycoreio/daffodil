@@ -1,8 +1,8 @@
-import { DaffCreditCard } from '../../models/payment/credit-card';
+import { DaffPaymentTokenRequest } from '../../models/payment/payment-token-request';
 
-export interface DaffPaymentServiceInterface {
+export interface DaffPaymentServiceInterface<T extends DaffPaymentTokenRequest> {
 	/**
 	 * Generate a token that represents a credit card.
 	 */
-	generateToken(card: DaffCreditCard): string;
+	generateToken(paymentTokenRequest: T): string;
 }

@@ -7,6 +7,7 @@ export { DaffOrderFactory } from './order/factories/order.factory';
 
 //Payment
 export { DaffPaymentFactory } from './payment/factories/payment.factory';
+export { DaffCreditCardFactory } from './payment/factories/credit-card.factory';
 
 //Shipping
 export { DaffShippingOptionFactory } from './shipping/factories/shipping-option.factory';
