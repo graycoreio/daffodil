@@ -1,0 +1,15 @@
+<label daffFormLabel [attr.for]="id">
+  <input type="radio" #nativeRadio class="cdk-visually-hidden" 
+  [id]="id" 
+  [attr.name]="name" 
+  [attr.value]="value"
+  [checked]="_selected"
+  (click)="_onRadioClicked()"
+  (focus)="onFocus()"
+  (blur)="onBlur()">
+  <div class="daff-radio__circle">
+    <span class="daff-radio__outer-circle"></span>
+    <span class="daff-radio__inner-circle"></span>
+  </div>
+  <ng-content></ng-content>
+</label>

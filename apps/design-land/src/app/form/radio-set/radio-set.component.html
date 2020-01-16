@@ -1,0 +1,29 @@
+<h1>Radio Set</h1>
+<p><code>&lt;daff-radio-set&gt;</code> wraps a set of <code>&lt;daff-radio&gt;</code>s and replaces the native HTML radio with a custom radio.</p>
+
+<p>The <code>&lt;daff-radio-set&gt;</code>'s focus state is derived from the states of the <code>&lt;daff-radio&gt;</code>s it contains, and as a <code>ControlValueAccessor</code>, it takes an Angular <code>FormControl</code> as an input. The value of the <code>FormControl</code> is the id of the selected radio, and this value will be managed by the <code>&lt;daff-radio-set&gt;</code> in conjunction with the contained <code>&lt;daff-radio&gt;</code>s.</p>
+
+<p>The <code>&lt;daff-radio-set&gt;</code> should never be used with the <code>&lt;daff-form-field&gt;</code> component.
+
+<h2>Direction</h2>
+<p>The direction of a radio set can be defined by using the <code>direction</code> property. By default, the direction of a radio set is <code>vertical</code>.</p>
+<p>Supported modes: <code>vertical | horizontal</code></p>
+
+<h2>Accessibility</h2>
+<p>The <code>&lt;daff-radio&gt;</code> component works with the native &lt;input type="radio"&gt; element to provide an accessible experience. This native input is automatically labelled by the content placed inside of <code>&lt;daff-radio&gt;</code>.</p>
+
+<p>A radio set should be given a meaningful label by using <code>aria-label</code> or <code>aria-labelledby</code>.</p>
+
+<h3>Examples</h3>
+
+<h4>Vertical Radio Set</h4>
+<daff-radio-set tabindex="0" [formControl]="simpleVerticalFormControl">
+  <daff-radio value="option-1">Select Option 1</daff-radio>
+  <daff-radio value="option-2">Select Option 2</daff-radio>
+</daff-radio-set>
+
+<h4>Horizonal Radio Set</h4>
+<daff-radio-set tabindex="0" direction="horizontal" [formControl]="simpleHorizonalFormControl">
+  <daff-radio value="option-1">Select Option 1</daff-radio>
+  <daff-radio value="option-2">Select Option 2</daff-radio>
+</daff-radio-set>

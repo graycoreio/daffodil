@@ -7,6 +7,8 @@ export * from './atoms/button/public_api';
 export * from './atoms/form/core/public_api';
 export * from './atoms/form/form-field/public_api';
 export * from './atoms/form/input/public_api';
+export * from './atoms/form/radio/public_api';
+export * from './atoms/form/radio-set/public_api';
 export * from './atoms/form/select/public_api';
 export * from './atoms/container/public_api';
 export * from './atoms/loading-icon/public_api';

@@ -1,0 +1,12 @@
+.daff-radio-set {
+	display: flex;
+
+	&--vertical {
+		flex-direction: column;
+	}
+
+	&--horizontal {
+		flex-direction: row;
+		width: 100%;
+	}
+}

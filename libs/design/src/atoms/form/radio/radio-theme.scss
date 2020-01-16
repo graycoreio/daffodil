@@ -1,0 +1,46 @@
+@mixin daff-radio-theme($theme) {
+	$primary: map-get($theme, primary);
+	$secondary: map-get($theme, secondary);
+	$tertiary: map-get($theme, tertiary);
+	$base: daff-map-deep-get($theme, 'core.base');
+	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
+
+	.daff-radio {
+		$root: &;
+
+		.daff-form-label {
+			&:hover {
+				#{$root}__outer-circle {
+					background-color: rgba(daff-color($primary), 0.15);
+					box-shadow: 0 0 0 8px rgba(daff-color($primary), 0.15);
+				}
+			}
+		}
+
+		#{$root}__outer-circle {
+			border: 2px solid daff-color($daff-gray, 50);
+			box-sizing: border-box;
+		}
+
+		#{$root}__inner-circle {
+			background: daff-color($primary);
+		}
+
+		&#{$root}--selected {
+			#{$root}__outer-circle {
+				border-color: daff-color($primary);
+			}
+
+			#{$root}__inner-circle {
+				background-color: daff-color($primary);
+			}
+		}
+
+		&#{$root}--focused {
+			#{$root}__outer-circle {
+				background-color: rgba(daff-color($primary), 0.15);
+				box-shadow: 0 0 0 8px rgba(daff-color($primary), 0.15);
+			}
+		}
+	}
+}

@@ -1,0 +1,71 @@
+@import '../../../scss/daff-util';
+
+@mixin radio-circle {
+	position: absolute;
+	border-radius: 50%;
+	left: 0;
+	top: 0;
+}
+
+@mixin radio-circle-dimensions {
+	height: 20px;
+	width: 20px;
+}
+
+:host {
+	$root: '.daff-radio';
+	display: flex;
+	align-items: center;
+	position: relative;
+
+	.daff-form-label {
+		@include clickable();
+		display: flex;
+		align-items: center;
+		width: 100%;
+	}
+
+	#{$root}__circle {
+		@include radio-circle-dimensions();
+		display: inline-block;
+		position: relative;
+		margin-right: 10px;
+	}
+
+	#{$root}__outer-circle,
+	#{$root}__inner-circle {
+		@include radio-circle();
+		@include radio-circle-dimensions();
+	}
+
+	#{$root}__outer-circle {
+		transition: box-shadow 300ms, background-color 300ms;
+	}
+
+	#{$root}__inner-circle {
+		transform: scale(0);
+		transition: transform 300ms;
+	}
+
+	&#{$root}--selected {
+		#{$root}__inner-circle {
+			transform: scale(0.6);
+		}
+	}
+}
+
+:host-context(.daff-radio-set--vertical) {
+	margin: 0 0 10px;
+
+	&:last-child {
+		margin: 0;
+	}
+}
+
+:host-context(.daff-radio-set--horizontal) {
+	margin: 0 25px 0 0;
+
+	&:last-child {
+		margin: 0;
+	}
+}

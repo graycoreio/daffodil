@@ -2,6 +2,7 @@
 @import '../../atoms/form/error-message/error-message-theme';
 @import '../../atoms/form/form-field/form-field/form-field-theme';
 @import '../../atoms/form/input/input-theme';
+@import '../../atoms/form/radio/radio-theme';
 @import '../../atoms/form/select/select/select-theme';
 @import '../../atoms/progress-indicator/progress-indicator-theme';
 @import '../../atoms/loading-icon/loading-icon-theme';
@@ -29,6 +30,7 @@
 	@include daff-error-message-theme($theme);
 	@include daff-form-field-theme($theme);
 	@include daff-input-theme($theme);
+	@include daff-radio-theme($theme);
 	@include daff-select-theme($theme);
 	@include daff-progress-indicator-theme($theme);
 	@include daff-loading-icon-theme($theme);

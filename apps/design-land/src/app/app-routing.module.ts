@@ -22,6 +22,7 @@ export const appRoutes: Routes = [
   { path: 'modal', loadChildren: () => import('./modal/modal.module').then(m => m.ModalModule) },
   { path: 'paginator', loadChildren: () => import('./paginator/paginator.module').then(m => m.PaginatorModule) },
   { path: 'progress-indicator', loadChildren: () => import('./progress-indicator/progress-indicator.module').then(m => m.ProgressIndicatorModule) },
+  { path: 'radio-set', loadChildren: () => import('./form/radio-set/radio-set.module').then(m => m.DocsRadioSetModule) },
   { path: 'qty-dropdown', loadChildren: () => import('./qty-dropdown/qty-dropdown.module').then(m => m.QtyDropdownModule) },
   {path: 'sidebar', loadChildren: () => import('./sidebar/sidebar.module').then(m => m.SidebarModule)}
 ]
