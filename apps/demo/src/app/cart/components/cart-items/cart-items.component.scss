@@ -3,9 +3,6 @@
 
 .demo-cart-items {
 	display: block;
-
-	&__content {
-		padding: 25px 0;
-		@include section-divider();
-	}
+  padding: 25px 0;
+  @include section-divider();
 }
