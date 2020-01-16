@@ -1,0 +1,5 @@
+{
+	"entry": "./libs/design/src/scss/daff-global.scss",
+	"dest": "../../dist/design/daff-global.scss",
+	"project": "../../"
+}
