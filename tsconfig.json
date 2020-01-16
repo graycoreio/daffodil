@@ -85,6 +85,9 @@
       "@daffodil/geography/testing": [
         "dist/geography/testing"
       ],
+			"@daffodil/authorizenet": [
+				"dist/authorizenet"
+			]
     }
   },
   "exclude": [
