@@ -126,15 +126,6 @@ describe('Cart', () => {
       expect(cartSidebarComponent.cart).toEqual(cart);
     });
 
-    it('should set isCartEmpty to false', () => {
-      const val = false;
-      cartEmptySelector.setResult(val);
-      store.setState({});
-      fixture.detectChanges();
-
-      expect(cartSidebarComponent.isCartEmpty).toEqual(val);
-    });
-
     it('should set isCartEmpty to true', () => {
       const val = true;
       cartEmptySelector.setResult(val);

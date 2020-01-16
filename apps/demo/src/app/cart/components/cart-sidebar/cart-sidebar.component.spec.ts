@@ -84,7 +84,7 @@ describe('CartSidebar', () => {
         summaryElement = fixture.debugElement.query(By.css('.demo-cart-sidebar__summary'));
       });
 
-      it('should not render <cart-sidebar__summary>', () => {
+      it('should not render .cart-sidebar__summary', () => {
         expect(summaryElement).toBeNull();
       });
     });
@@ -106,7 +106,7 @@ describe('CartSidebar', () => {
         });
       });
 
-      it('should render <cart-sidebar__summary>', () => {
+      it('should render .cart-sidebar__summary', () => {
         expect(summaryElement).not.toBeNull();
       });
     });

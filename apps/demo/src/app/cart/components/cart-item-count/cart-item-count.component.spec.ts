@@ -6,7 +6,7 @@ import { CartItemCountComponent } from './cart-item-count.component';
 
 @Component({ template: '<demo-cart-item-count [itemCount]="itemCountValue"></demo-cart-item-count>' })
 class WrapperComponent {
-  @Input() itemCountValue = 0;
+  itemCountValue = 0;
 }
 
 describe('CartItemCount', () => {
