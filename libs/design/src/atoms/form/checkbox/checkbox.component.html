@@ -1,0 +1,20 @@
+<label daffFormLabel [attr.for]="nativeInputId" [class.focused]="focused" [class.checked]="checked">
+  <span class="daff-checkbox__frame">
+    <input type="checkbox" #nativeCheckbox class="cdk-visually-hidden"
+      (change)="_onNativeInputChanged($event)"
+      (click)="_onNativeCheckboxClicked($event)"
+      (blur)="onBlur()"
+      (focus)="onFocus()"
+      tabindex="{{ tabindex }}"
+      [checked]="checked"
+      [id]="nativeInputId"
+      [required]="required"
+      [attr.name]="name"
+      [attr.value]="value || null"
+      [attr.aria-checked]="checked"
+      [attr.aria-label]="ariaLabel || null"
+      [attr.aria-labelledby]="ariaLabelledby || null">
+    <fa-icon [icon]="faCheck" size="xs" *ngIf="checked" class="daff-checkbox__check-icon"></fa-icon>
+  </span>
+  <span class="daff-checkbox__content"><ng-content></ng-content></span>
+</label>

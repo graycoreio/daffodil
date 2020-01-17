@@ -10,8 +10,9 @@
     "build": "ng build design",
     "lint": "ng lint design && npm run lint:scss",
     "lint:scss": "stylelint '**/*.scss'",
-    "postbuild": "npm run postbuild:scss:util && npm run postbuild:scss:theme && npm run postbuild:scss:typography",
+    "postbuild": "npm run postbuild:scss:util && npm run postbuild:scss:global && npm run postbuild:scss:theme && npm run postbuild:scss:typography",
     "postbuild:scss:util": "scss-bundle -c build/util.json",
+    "postbuild:scss:global": "scss-bundle -c build/global.json",
     "postbuild:scss:theme": "scss-bundle -c build/theme.json",
     "postbuild:scss:typography": "scss-bundle -c build/typography.json",
     "test": "npm run test:scss && npm run test:angular",
@@ -27,6 +28,7 @@
   },
   "peerDependencies": {
     "@angular/animations": "0.0.0-PLACEHOLDER",
+    "@angular/cdk": "0.0.0-PLACEHOLDER",
     "@angular/common": "0.0.0-PLACEHOLDER",
     "@angular/core": "0.0.0-PLACEHOLDER",
     "@angular/forms": "0.0.0-PLACEHOLDER",

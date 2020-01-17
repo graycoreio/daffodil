@@ -1,0 +1,25 @@
+<h1>Checkbox Set</h1>
+<p><code>&lt;daff-checkbox-set&gt;</code> wraps a set of <code>&lt;daff-checkbox&gt;</code>es and allows the addition of a 'required' <code>&lt;daff-error-message&gt;</code>.</p>
+
+<p>Its focus and touch states are derived from the states of the <code>&lt;daff-checkbox&gt;</code>es it contains. As a <code>ControlValueAccessor</code>, the <code>&lt;daff-checkbox-set&gt;</code> only takes a <code>formControl</code> as an input. Its initial value is an array of the names of the checkboxes that should be initially checked. The <code>&lt;daff-checkbox-set&gt;</code> should never be used in conjunction with the <code>&lt;daff-form-field&gt;</code> component.</p>
+
+<h3>Examples</h3>
+<h4>Vertical Checkbox Set (Default)</h4>
+<daff-checkbox-set [formControl]="brands">
+  <daff-checkbox id="titleist" value="titleist">Titleist</daff-checkbox>
+  <daff-checkbox id="callaway" value="callaway">Callaway</daff-checkbox>
+  <daff-checkbox id="nike" value="nike">Nike</daff-checkbox>
+  <daff-error-message *ngIf="brands.hasError('required')">Please choose at least one checkbox.</daff-error-message>
+</daff-checkbox-set>
+
+<p>Example Value: {{ brands.value | json }}</p>
+
+<h4>Horizontal Checkbox Set</h4>
+<daff-checkbox-set direction="horizontal" [formControl]="quantity">
+  <daff-checkbox id="12-pack"  value="12pack">12 Pack</daff-checkbox>
+  <daff-checkbox id="48-bucket" value="48bucket">48 Bucket</daff-checkbox>
+  <daff-checkbox id="96-bucket" value="96bucket">96 Bucket</daff-checkbox>
+  <daff-error-message *ngIf="quantity.hasError('required')">Please choose at least one checkbox.</daff-error-message>
+</daff-checkbox-set>
+
+<p>Example Value: {{ quantity.value | json }}</p>

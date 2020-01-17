@@ -13,6 +13,8 @@ export const appRoutes: Routes = [
   { path: 'card', loadChildren: () => import('./card/card.module').then(m => m.CardModule) },
   { path: 'feature', loadChildren: () => import('./feature/feature.module').then(m => m.FeatureModule) },
   { path: 'form', loadChildren: () => import('./form/form.module').then(m => m.FormModule) },
+  { path: 'checkbox', loadChildren: () => import('./form/checkbox/checkbox.module').then(m => m.DocsCheckboxModule) },
+  { path: 'checkbox-set', loadChildren: () => import('./form/checkbox-set/checkbox-set.module').then(m => m.DocsCheckboxSetModule) },
   { path: 'hero', loadChildren: () => import('./hero/hero.module').then(m => m.HeroModule) },
   { path: 'link-set', loadChildren: () => import('./link-set/link-set.module').then(m => m.LinkSetModule) },
   { path: 'list', loadChildren: () => import('./list/list.module').then(m => m.ListModule) },

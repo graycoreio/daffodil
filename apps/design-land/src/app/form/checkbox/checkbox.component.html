@@ -1,0 +1,19 @@
+<h1>Checkbox</h1>
+<p><code>&lt;daff-checkbox&gt;</code> is a custom <code>ControlValueAccessor</code> made to be compatible with <code>&lt;daff-checkbox-set&gt;</code>.</p>
+
+<p>When used as a standalone checkbox, it should be passed its own formControl. When used in conjunction with <code>&lt;daff-checkbox-set&gt;</code>, <code>&lt;daff-checkbox&gt;</code> should only be passed a value that identifies the checkbox, while the <code>&lt;daff-checkbox-set&gt;</code> takes care of managing the formControl. (View <a href="/checkbox-set">Checkbox Set Documentation</a>)</p>
+
+<h2>Checkbox Label</h2>
+If you don't want a checkbox to have a label, you can leave <code>&lt;daff-checkbox&gt;</code> blank and use <code>aria-label</code> or <code>aria-labelledby</code> to specify a label for accessibility considerations.
+
+<h2>Accessibility</h2>
+The <code>&lt;daff-checkbox&gt;</code> component works with the native &lt;input type="checkbox"&gt; element to provide an accessible experience. This native checkbox is automatically labelled by the content placed inside of <code>&lt;daff-checkbox&gt;</code>.
+
+<h2>Examples</h2>
+<h3>Simple Checkbox</h3>
+<daff-checkbox [formControl]="simpleCheckbox" id="an-example-checkbox" name="Example Checkbox">A Checkbox</daff-checkbox>
+Example Value: {{ simpleCheckbox.value }}
+
+<h3>Example with Value</h3>
+<daff-checkbox [formControl]="valueCheckbox" id="an-example-value-checkbox" name="Example Value Checkbox" value="example">A Checkbox With a Value</daff-checkbox>
+Example Value: {{ valueCheckbox.value | json }}

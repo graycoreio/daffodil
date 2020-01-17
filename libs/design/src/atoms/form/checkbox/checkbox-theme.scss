@@ -1,0 +1,36 @@
+@mixin daff-checkbox-theme($theme) {
+	$primary: map-get($theme, primary);
+	$secondary: map-get($theme, secondary);
+	$tertiary: map-get($theme, tertiary);
+	$base: daff-map-deep-get($theme, 'core.base');
+	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
+	$white: daff-map-deep-get($theme, 'core.white');
+	$black: daff-map-deep-get($theme, 'core.black');
+	$shadow-color: daff-illuminate($base, $tertiary, 3);
+
+	.daff-checkbox {
+		&__frame {
+			background-color: transparent;
+			border: 2px solid daff-illuminate($base-contrast, $daff-gray, 5);
+			box-sizing: border-box;
+		}
+
+		.daff-form-label {
+			&:hover,
+			&.focused { /* stylelint-disable-line selector-class-pattern */
+				background-color: rgba(daff-color($primary), 0.15);
+			}
+
+			&.checked { /* stylelint-disable-line selector-class-pattern */
+				.daff-checkbox__frame {
+					border: 2px solid daff-color($primary);
+					background-color: daff-color($primary);
+				}
+			}
+		}
+
+		&__check-icon {
+			color: $base;
+		}
+	}
+}

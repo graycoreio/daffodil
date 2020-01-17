@@ -1,0 +1,24 @@
+@import '../../../scss/daff-util';
+
+:host {
+	$root: '.daff-checkbox-set';
+	display: flex;
+
+	&#{$root}--vertical {
+		flex-direction: column;
+	}
+
+	&#{$root}--horizontal {
+		flex-direction: row;
+
+		::ng-deep { /* stylelint-disable-line selector-pseudo-element-no-unknown */
+			.daff-checkbox {
+				margin: 0 15px 0 0;
+
+				&:last-child {
+					margin: 0;
+				}
+			}
+		}
+	}
+}

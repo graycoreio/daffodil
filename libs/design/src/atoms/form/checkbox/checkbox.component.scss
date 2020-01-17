@@ -1,0 +1,38 @@
+@import '../../../scss/daff-util';
+
+:host {
+	display: flex;
+
+	.daff-form-label {
+		@include clickable();
+		display: flex;
+		align-items: center;
+		border-radius: 4px;
+		font-size: 1rem;
+		line-height: 1em;
+		padding: 5px;
+		transition: background-color 300ms;
+		box-sizing: border-box;
+	}
+}
+
+.daff-checkbox {
+	&__frame {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 4px;
+		height: 20px;
+		width: 20px;
+		transition: border 300ms, background-color 300ms;
+		box-sizing: border-box;
+	}
+
+	&__check-icon {
+		display: inline-flex;
+	}
+
+	&__content {
+		margin-left: 10px;
+	}
+}
