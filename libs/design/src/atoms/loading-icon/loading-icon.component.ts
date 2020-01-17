@@ -1,5 +1,6 @@
-import { Component, ChangeDetectionStrategy, Input, ElementRef, Renderer2 } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, ElementRef, Renderer2, HostBinding, SecurityContext } from '@angular/core';
 import { daffColorMixin, DaffColorable, DaffPalette } from '../../core/colorable/colorable';
+import { DomSanitizer } from '@angular/platform-browser';
 
 /**
  * An _elementRef and an instance of renderer2 are needed for the Colorable mixin
@@ -14,23 +15,25 @@ const _daffLoadingIconBase = daffColorMixin(DaffLoadingIconBase, 'primary')
   selector: 'daff-loading-icon',
   templateUrl: './loading-icon.component.html',
   styleUrls: ['./loading-icon.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[style.max-width]': 'diameter + "px"',
-    'class': 'daff-loading-icon'
-  }
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DaffLoadingIconComponent extends _daffLoadingIconBase implements DaffColorable{
 
   @Input() color: DaffPalette;
-
   /**
    * The (pixel) diameter of the animation
    */
   // tslint:disable-next-line: no-inferrable-types
   @Input() diameter: number = 60;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+  @HostBinding('class.daff-loading-icon') class = true;
+  @HostBinding('style.max-width') get maxWidth() {
+    return this.diameter
+      ? this.sanitizer.sanitize(SecurityContext.STYLE, this.diameter + 'px')
+      : '';
+  }
+
+  constructor(private elementRef: ElementRef, private renderer: Renderer2, private sanitizer: DomSanitizer) {
     super(elementRef, renderer);
   }
 }
