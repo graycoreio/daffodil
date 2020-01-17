@@ -18,7 +18,7 @@
 		}
 
 		#{$root}__outer-circle {
-			border: 2px solid daff-color($daff-gray, 50);
+			border: 2px solid daff-illuminate($base-contrast, $daff-gray, 5);
 			box-sizing: border-box;
 		}
 
