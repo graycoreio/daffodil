@@ -54,10 +54,6 @@ describe('CartItemsComponent', () => {
     expect(cart).toBeTruthy();
   });
 
-  it('renders a cart', () => {
-    expect(fixture.debugElement.query(By.css('.demo-cart-items'))).not.toBeNull();
-  });
-
   it('can be passed a Cart object', () => {
     expect(cart.cart).toEqual(mockCart);
   });
@@ -69,7 +65,9 @@ describe('CartItemsComponent', () => {
   describe('on <demo-cart-item>', () => {
 
     it('should set item', () => {
-      expect(cartItems[0].componentInstance.item).toEqual(mockCart.items[0]);
+      mockCart.items.forEach((item, index) => {
+        expect(cartItems[index].componentInstance.item).toEqual(item);
+      })
     });
   });
 });
