@@ -126,7 +126,7 @@ describe('Cart', () => {
       expect(cartSidebarComponent.cart).toEqual(cart);
     });
 
-    it('should set isCartEmpty to true', () => {
+    it('should set isCartEmpty from state', () => {
       const val = true;
       cartEmptySelector.setResult(val);
       store.setState({});
@@ -137,7 +137,7 @@ describe('Cart', () => {
   });
 
   describe('on <demo-cart-item-count>', () => {
-    it('should set itemCount to value grabbed from store during init', () => {
+    it('should set itemCount from state', () => {
       cartItemCountSelector.setResult(15);
       store.setState({});
       fixture.detectChanges();
