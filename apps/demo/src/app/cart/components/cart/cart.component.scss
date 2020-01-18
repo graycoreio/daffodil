@@ -42,4 +42,9 @@
 	&__sidebar {
 		margin-top: 25px;
 	}
+
+	&__items {
+		padding: 25px 0;
+		@include section-divider();
+	}
 }

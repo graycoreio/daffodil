@@ -4,7 +4,7 @@
       <span class="demo-cart__title">Your Cart</span>
       <demo-cart-item-count class="demo-cart__item-count" [itemCount]="itemCount$ | async"></demo-cart-item-count>
     </div>
-    <demo-cart-items [cart]="cart"></demo-cart-items>
+    <demo-cart-items class="demo-cart__items" [cart]="cart"></demo-cart-items>
   </div>
   <demo-cart-sidebar class="demo-cart__sidebar" [cart]="cart" [isCartEmpty]="isCartEmpty$ | async"></demo-cart-sidebar>
 </div>
