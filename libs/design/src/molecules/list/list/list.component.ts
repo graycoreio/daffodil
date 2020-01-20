@@ -24,6 +24,7 @@ export class DaffListComponent {
     return this.mode === DaffListModeEnum.Multiline;
   }
 
+  // Link will be deprecated in v1.0.0
   @HostBinding('class.daff-list--link') get link() {
     return this.mode === DaffListModeEnum.Link;
   }
