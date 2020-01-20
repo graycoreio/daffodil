@@ -1,23 +1,27 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { DaffImageListComponent } from './image-list.component';
 
-@Component({template: '<daff-image-list class="host-component"><div class="inner-element"></div></daff-image-list>'})
+@Component ({
+  template: `<daff-image-list></daff-image-list>`
+})
+
 class WrapperComponent {}
 
 describe('DaffImageListComponent', () => {
-  let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let hostElement;
+  let de: DebugElement;
+  let wrapper: WrapperComponent;
+  let component: DaffImageListComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
-        WrapperComponent,
-        DaffImageListComponent
-      ]
+      declarations: [
+        DaffImageListComponent,
+        WrapperComponent
+       ]
     })
     .compileComponents();
   }));
@@ -25,9 +29,8 @@ describe('DaffImageListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-
-    hostElement = fixture.debugElement.query(By.css('.host-component'));
-
+    de = fixture.debugElement.query(By.css('daff-image-list'));
+    component = de.componentInstance;
     fixture.detectChanges();
   });
 
@@ -35,11 +38,11 @@ describe('DaffImageListComponent', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  it('should add an daff-image-list class to host element', () => {
-    expect(hostElement.nativeElement.classList.contains('daff-image-list')).toBeTruthy();
-  });
-
-  it('should transclude', () => {
-    expect(hostElement.query(By.css('.inner-element'))).not.toBeNull();
+  describe('<daff-image-list>', () => {
+    it('should add a class of "daff-image-list" to the host element', () => {
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-image-list': true,
+      }));
+    });
   });
 });
