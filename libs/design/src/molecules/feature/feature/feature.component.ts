@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input, HostBinding } from '@angular/core';
 
 export type DaffFeatureMode = 'compact' | 'normal' | undefined;
 export enum DaffFeatureModeEnum {
@@ -10,30 +10,21 @@ export enum DaffFeatureModeEnum {
   selector: 'daff-feature',
   templateUrl: './feature.component.html',
   styleUrls: ['./feature.component.scss'],
-  host: {
-    'class': 'daff-feature', 
-    '[class.daff-feature--compact]': 'mode === "' + DaffFeatureModeEnum.Compact + '"',
-    '[class.daff-feature--normal]': 'mode === "' + DaffFeatureModeEnum.Normal + '"',
-  },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class DaffFeatureComponent {
 
-  _mode: DaffFeatureMode = 'normal';
+  @HostBinding('class.daff-feature') class = true;
 
-  get mode(): DaffFeatureMode {
-    return this._mode;
+  @Input() mode: DaffFeatureMode = DaffFeatureModeEnum.Normal;
+
+  @HostBinding('class.daff-feature--compact') get compact() {
+    return this.mode === DaffFeatureModeEnum.Compact;
   }
 
-  @Input()
-  set mode(value: DaffFeatureMode) {
-    switch(value) {
-      case 'compact':
-        this._mode='compact';
-        break;
-      default: this._mode='normal';
-    }
+  @HostBinding('class.daff-feature--normal') get normal() {
+    return this.mode === DaffFeatureModeEnum.Normal;
   }
 }

@@ -1,22 +1,24 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { DaffFeatureTitleDirective } from './feature-title.directive';
-import { Component } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { DaffFeatureTitleDirective } from './feature-title.directive';
 
-@Component({template: '<div daffFeatureTitle></div>'})
+@Component({
+  template: `<div daffFeatureTitle></div>`
+})
+
 class WrapperComponent {}
 
 describe('DaffFeatureTitleDirective', () => {
   let wrapper: WrapperComponent;
+  let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
-  let featureTitle;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
-        WrapperComponent,
-        DaffFeatureTitleDirective
+      declarations: [
+        DaffFeatureTitleDirective,
+        WrapperComponent
       ]
     })
     .compileComponents();
@@ -25,16 +27,19 @@ describe('DaffFeatureTitleDirective', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    
+    de = fixture.debugElement.query(By.css('[daffFeatureTitle]'));
     fixture.detectChanges();
-    featureTitle = fixture.debugElement.query(By.css('[daffFeatureTitle]'));
   });
 
   it('should create', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  it('should add a class of `daff-feature__title` to its host', () => {
-    expect(featureTitle.nativeElement.classList.contains('daff-feature__title')).toBeTruthy();
+  describe('[daffFeatureTitle]', () => {
+    it('should add a class of "daff-feature__title" to the host element', () => {
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-feature__title': true,
+      }));
+    });
   });
 });

@@ -1,7 +1,9 @@
-import { Directive } from '@angular/core';
+import { Directive, HostBinding } from '@angular/core';
 
 @Directive({
   selector: '[daffFeatureSubheader]',
-  host: {'class': 'daff-feature__subheader'}
 })
-export class DaffFeatureSubheaderDirective {}
+export class DaffFeatureSubheaderDirective {
+
+  @HostBinding('class.daff-feature__subheader') class = true;
+}

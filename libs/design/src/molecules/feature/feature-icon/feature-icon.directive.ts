@@ -1,7 +1,9 @@
-import { Directive } from '@angular/core';
+import { Directive, HostBinding } from '@angular/core';
 
 @Directive ({
   selector: '[daffFeatureIcon]',
-  host: {'class': 'daff-feature__icon'}
 })
-export class DaffFeatureIconDirective {}
+export class DaffFeatureIconDirective {
+
+  @HostBinding('class.daff-feature__icon') class = true;
+}

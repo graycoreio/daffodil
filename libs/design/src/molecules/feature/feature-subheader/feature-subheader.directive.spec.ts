@@ -1,22 +1,24 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { DaffFeatureSubheaderDirective } from './feature-subheader.directive';
-import { Component } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { DaffFeatureSubheaderDirective } from './feature-subheader.directive';
 
-@Component({template: '<div daffFeatureSubheader></div>'})
+@Component({
+  template: `<div daffFeatureSubheader></div>`
+})
+
 class WrapperComponent {}
 
 describe('DaffFeatureSubheaderDirective', () => {
   let wrapper: WrapperComponent;
+  let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
-  let featureSubheader;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
-        WrapperComponent,
-        DaffFeatureSubheaderDirective
+      declarations: [
+        DaffFeatureSubheaderDirective,
+        WrapperComponent
       ]
     })
     .compileComponents();
@@ -25,16 +27,19 @@ describe('DaffFeatureSubheaderDirective', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    
+    de = fixture.debugElement.query(By.css('[daffFeatureSubheader]'));
     fixture.detectChanges();
-    featureSubheader = fixture.debugElement.query(By.css('[daffFeatureSubheader]'));
   });
 
   it('should create', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  it('should add a class of `daff-feature__subheader` to its host', () => {
-    expect(featureSubheader.nativeElement.classList.contains('daff-feature__subheader')).toBeTruthy();
+  describe('[daffFeatureSubheader]', () => {
+    it('should add a class of "daff-feature__subheader" to the host element', () => {
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-feature__subheader': true,
+      }));
+    });
   });
 });

@@ -13,10 +13,10 @@ class WrapperComponent {
 }
 
 describe('DaffFeatureComponent', () => {
+  let fixture: ComponentFixture<WrapperComponent>;
+  let de: DebugElement;
   let wrapper: WrapperComponent;
   let component: DaffFeatureComponent;
-  let de: DebugElement;
-  let fixture: ComponentFixture<WrapperComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -30,7 +30,7 @@ describe('DaffFeatureComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
-    wrapper = fixture.debugElement.componentInstance;
+    wrapper = fixture.componentInstance;
     de = fixture.debugElement.query(By.css('daff-feature'));
     component = de.componentInstance;
     fixture.detectChanges();
@@ -40,39 +40,43 @@ describe('DaffFeatureComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should add a class of `daff-feature` to its host', () => {
-    expect(de.nativeElement.classList.contains('daff-feature')).toBeTruthy();
+  describe('<daff-feature>', () => {
+    it('should add a class of "daff-feature" to the host element', () => {
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-feature': true,
+      }));
+    });
   });
 
   describe('setting the mode of the feature', () => {
-    it('should set default mode to normal', () => {
-      expect(de.nativeElement.classList.contains('daff-feature--normal')).toEqual(true);
+    it('should set the default mode to normal', () => {
+      wrapper.mode = 'normal';
+      fixture.detectChanges();
+
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-feature--normal': true
+      }));
     });
 
-    describe('when mode is compact', () => {
-      it('should set "daff-feature--compact" on host element', () => {
+    describe('when mode="compact"', () => {
+      it('should add a class of "daff-feature--compact" to the host element', () => {
         wrapper.mode = 'compact';
         fixture.detectChanges();
 
-        expect(de.nativeElement.classList.contains('daff-feature--compact')).toEqual(true);
+        expect(de.classes).toEqual(jasmine.objectContaining({
+          'daff-feature--compact': true
+        }));
       });
     });
 
-    describe('when mode is normal', () => {
-      it('should set "daff-feature--normal" on host element', () => {
+    describe('when mode="normal"', () => {
+      it('should add a class of "daff-feature--normal" to the host element', () => {
         wrapper.mode = 'normal';
         fixture.detectChanges();
-  
-        expect(de.nativeElement.classList.contains('daff-feature--normal')).toEqual(true);
-      });
-    });
 
-    describe('when mode is undefined', () => {
-      it('should set "daff-feature--normal" as default', () => {
-        wrapper.mode = undefined;
-        fixture.detectChanges();
-
-        expect(de.nativeElement.classList.contains('daff-feature--normal')).toEqual(true);
+        expect(de.classes).toEqual(jasmine.objectContaining({
+          'daff-feature--normal': true
+        }));
       });
     });
   });
