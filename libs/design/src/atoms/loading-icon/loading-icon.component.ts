@@ -28,9 +28,7 @@ export class DaffLoadingIconComponent extends _daffLoadingIconBase implements Da
 
   @HostBinding('class.daff-loading-icon') class = true;
   @HostBinding('style.max-width') get maxWidth() {
-    return this.diameter
-      ? this.sanitizer.sanitize(SecurityContext.STYLE, this.diameter + 'px')
-      : '';
+    return this.diameter + 'px';
   }
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2, private sanitizer: DomSanitizer) {
