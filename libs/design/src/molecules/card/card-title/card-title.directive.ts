@@ -1,7 +1,9 @@
-import { Directive } from '@angular/core';
+import { Directive, HostBinding } from '@angular/core';
 
 @Directive({
-  selector: '[daffCardTitle]',
-  host: {'class': 'daff-card__title'}
+  selector: '[daffCardTitle]'
 })
-export class DaffCardTitleDirective {}
+export class DaffCardTitleDirective {
+
+  @HostBinding('class.daff-card__title') class = true;
+}
