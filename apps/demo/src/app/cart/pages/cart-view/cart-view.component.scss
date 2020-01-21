@@ -3,7 +3,6 @@
 		padding: 50px 25px;
 
 		@include breakpoint(big-tablet) {
-			column-gap: 50px;
 			padding: 75px 50px;
 		}
 
