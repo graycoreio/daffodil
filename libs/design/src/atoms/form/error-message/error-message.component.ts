@@ -1,12 +1,9 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'daff-error-message',
   template: '<ng-content></ng-content>',
   styleUrls: ['./error-message.component.scss'],
-  host: {
-    'class': 'daff-error-message'
-  },
-  encapsulation: ViewEncapsulation.None
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DaffErrorMessageComponent {}
