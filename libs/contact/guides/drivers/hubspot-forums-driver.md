@@ -2,15 +2,16 @@
 
 The Hubspot Forms Driver allows your Daffodil Contact Form feature to connect directly to your hubspot account to manage your contact form submissions. 
 
-To set up, inside of your `app.module` first import `DaffContactHubSpotDriverModule` from `@daffodil/contact`. Next, in your imports section include `DaffContactHubSpotDriverModule.forRoot(config)`, where config is an object containing information needed to connect to your hubspot form. This object should contain a `portalId`, `guid`, and can optionally contain a `version`. [Follow this link on where to find your form's information](https://knowledge.hubspot.com/forms/find-your-form-guid).
+To set up, inside of your `app.module` first import `DaffContactHubSpotDriverModule` from `@daffodil/contact`. Next, in your imports section include `DaffContactHubSpotDriverModule.forRoot(config)`, where config is a DaffHubspotConfig object containing information needed to connect to your hubspot form. [Follow this link on where to find your form's information](https://knowledge.hubspot.com/forms/find-your-form-guid).
 
 ```typescript
 import { DaffContactHubSpotDriverModule } from '@daffodil/contact';
 
+config : DaffHubspotConfig = {portalId: '123456', guid: 'ff9999'};
 
 @NgModule({
   imports: [
-    DaffContactHubSpotDriverModule.forRoot({portalId: '123456', guid: 'ff9999'})
+    DaffContactHubSpotDriverModule.forRoot(config)
   ]
 })
 export class AppModule {}
