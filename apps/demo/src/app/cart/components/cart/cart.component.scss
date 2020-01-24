@@ -9,7 +9,9 @@
 		grid-template-columns: 2fr 1fr;
 		column-gap: 50px;
 	}
+}
 
+.demo-cart {
 	&__header {
 		@include section-divider();
 		padding-bottom: 15px;
