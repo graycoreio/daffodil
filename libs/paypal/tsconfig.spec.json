@@ -1,0 +1,31 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc/libs/paypal",
+    "types": [
+      "jasmine",
+      "node"
+    ],
+    "paths": {
+      "@daffodil/core": [
+        "dist/core"
+      ],
+      "@daffodil/core/testing": [
+        "dist/core/testing"
+      ],
+      "@daffodil/paypal": [
+        "libs/paypal/src/index.ts"
+      ],
+      "@daffodil/paypal/testing": [
+        "libs/paypal/testing/src/index.ts"
+      ]
+    }
+  },
+  "files": [
+    "test.ts"
+  ],
+  "include": [
+    "**/*.spec.ts",
+    "**/*.d.ts"
+  ]
+}

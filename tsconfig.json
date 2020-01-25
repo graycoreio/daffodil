@@ -93,6 +93,12 @@
       ],
       "@daffodil/auth/testing": [
         "dist/auth/testing"
+			],
+      "@daffodil/paypal": [
+        "dist/paypal"
+      ],
+      "@daffodil/paypal/testing": [
+        "dist/paypal/testing"
       ]
     }
   },

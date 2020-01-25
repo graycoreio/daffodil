@@ -1075,19 +1075,19 @@
     "geography": {
       "projectType": "library",
       "root": "libs/geography",
-      "sourceRoot": "libs/geography/src",
-      "prefix": "@daffodil",
+			"sourceRoot": "libs/geography/src",
+			"prefix": "@daffodil",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "libs/geography/tsconfig.lib.json",
+						"tsConfig": "libs/geography/tsconfig.lib.json",
             "project": "libs/geography/ng-package.json"
           },
           "configurations": {
             "production": {
-              "project": "libs/geography/ng-package.json"
-            }
+							"project": "libs/geography/ng-package.json"
+						}
           }
         },
         "test": {
@@ -1096,15 +1096,55 @@
             "main": "libs/geography/src/test.ts",
             "codeCoverage": true,
             "tsConfig": "libs/geography/tsconfig.spec.json",
-            "karmaConfig": "libs/geography/karma.conf.js"
+						"karmaConfig": "libs/geography/karma.conf.js"
+					}
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+							"libs/geography/tsconfig.lib.json",
+							"libs/geography/tsconfig.spec.json"
+						],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+		},
+		"paypal": {
+      "root": "libs/paypal",
+      "sourceRoot": "libs/paypal/src",
+			"projectType": "library",
+			"prefix": "@daffodil",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+						"tsConfig": "libs/paypal/tsconfig.lib.json",
+            "project": "libs/paypal/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/paypal/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+						"main": "libs/paypal/test.ts",
+            "tsConfig": "libs/paypal/tsconfig.spec.json",
+            "karmaConfig": "libs/paypal/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/geography/tsconfig.lib.json",
-              "libs/geography/tsconfig.spec.json"
+							"libs/paypal/tsconfig.lib.json",
+              "libs/paypal/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
