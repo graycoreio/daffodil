@@ -1,17 +1,16 @@
 import { Injectable, Inject } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
-	import { 
-		DaffPaymentServiceInterface,
-		DaffPaymentTransformer,
-		DaffPaymentTransformerService
-	} from '@daffodil/checkout';
+import { 
+	DaffPaymentServiceInterface,
+	DaffPaymentTransformer
+} from '@daffodil/checkout';
 
-import { DaffAuthorizeNetGenerateTokenSuccess, DaffAuthorizeNetGenerateTokenFailure } from '../actions/authorizenet.actions';
-import { AuthorizeNetResponse } from '../models/response/authorize-net-response';
 import { DaffAuthorizeNetTokenRequest } from '../models/request/authorize-net-token-request';
+import { DaffAuthorizeNetTransformerService } from './transformers/authorize-net-transformer.service';
+import { AcceptType } from '../models/acceptJs/accept';
 
-declare var Accept: any;
+declare var Accept: AcceptType;
 
 @Injectable({
   providedIn: 'root'
@@ -19,25 +18,18 @@ declare var Accept: any;
 export class DaffAuthorizeNetPaymentService implements DaffPaymentServiceInterface<DaffAuthorizeNetTokenRequest> {
 
 	constructor(
-		@Inject(DaffPaymentTransformer) public paymentTransformer: DaffPaymentTransformerService<DaffAuthorizeNetTokenRequest>,
-		private store: Store<any>
+		@Inject(DaffPaymentTransformer) public paymentTransformer: DaffAuthorizeNetTransformerService
 	) {}
 
-	generateToken(paymentTokenRequest: DaffAuthorizeNetTokenRequest): string {
-		Accept.dispatchData(this.paymentTransformer.transformOut(paymentTokenRequest), this.responseHandler.bind(this));
-
-		return 'this string needs to be returned because authorize.net does not have a normal api';
-	}
-
-	private responseHandler(response: AuthorizeNetResponse) {
-		if (response.messages.resultCode === 'Error') {
-			this.store.dispatch(
-				new DaffAuthorizeNetGenerateTokenFailure(response.messages.message[0].code + ':' + response.messages.message[0].text)
-			);
-		} else {
-			this.store.dispatch(
-				new DaffAuthorizeNetGenerateTokenSuccess(this.paymentTransformer.transformIn(response))
-			);
-		}
+	generateToken(paymentTokenRequest: DaffAuthorizeNetTokenRequest): Observable<string> {
+		return new Observable(observer =>
+			Accept.dispatchData(this.paymentTransformer.transformOut(paymentTokenRequest), (response) => {
+				if (response.messages.resultCode === 'Error') {
+					throw new Error(response.messages[0].code + ':' + response.messages.message[0].text);
+				} else {
+					observer.next(this.paymentTransformer.transformIn(response));
+				}
+			})
+		);
 	}
 }

@@ -1,7 +1,7 @@
 {
   "name": "@daffodil/authorizenet",
   "version": "0.0.0-PLACEHOLDER",
-  "description": "An ecommerce categories package that has multi-platform support and state management features.",
+  "description": "An ecommerce package that has multi-platform support and state management features for managing authorize.net payments.",
   "repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"
@@ -29,13 +29,6 @@
     "@ngrx/entity": "0.0.0-PLACEHOLDER",
     "@ngrx/store": "0.0.0-PLACEHOLDER",
     "rxjs": "0.0.0-PLACEHOLDER"
-  },
-  "optionalDependencies": {
-    "faker": "0.0.0-PLACEHOLDER",
-    "angular-in-memory-web-api": "0.0.0-PLACEHOLDER",
-    "apollo-angular": "0.0.0-PLACEHOLDER",
-    "apollo-client": "0.0.0-PLACEHOLDER",
-    "graphql-tag": "0.0.0-PLACEHOLDER"
   },
   "devDependencies": {
     "@daffodil/checkout": "0.0.0-PLACEHOLDER"

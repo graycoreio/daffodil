@@ -18,11 +18,13 @@ export class DaffAuthorizeNetDriverModule {
       providers: [
         {
           provide: DaffPaymentDriver,
-          useExisting: DaffAuthorizeNetPaymentService
+					useExisting: DaffAuthorizeNetPaymentService,
+					multi: true
         },
         {
           provide: DaffPaymentTransformer,
-          useExisting: DaffAuthorizeNetTransformerService
+					useExisting: DaffAuthorizeNetTransformerService,
+					multi: true
         }
       ]
     };
