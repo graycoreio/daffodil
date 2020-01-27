@@ -6,9 +6,7 @@ export enum DaffAuthorizeNetActionTypes {
   GenerateTokenAction = '[Daff-Authorize-Net] Generate Token',
   GenerateTokenSuccessAction = '[Daff-Authorize-Net] Generate Token Success',
 	GenerateTokenFailureAction = '[Daff-Authorize-Net] Generate Token Failure',
-	LoadAcceptJsAction = '[Daff-Authorize-Net] Load Accept Js',
-	LoadAcceptJsSuccessAction = '[Daff-Authorize-Net] Load Accept Js Success',
-	LoadAcceptJsFailureAction = '[Daff-Authorize-Net] Load Accept Js Failure'
+	LoadAcceptJsAction = '[Daff-Authorize-Net] Load Accept Js'
 }
 
 /**
@@ -48,18 +46,8 @@ export class DaffLoadAcceptJs implements Action {
 	readonly type = DaffAuthorizeNetActionTypes.LoadAcceptJsAction;
 }
 
-export class DaffLoadAcceptJsSuccess implements Action {
-	readonly type = DaffAuthorizeNetActionTypes.LoadAcceptJsSuccessAction;
-}
-
-export class DaffLoadAcceptJsFailure implements Action {
-	readonly type = DaffAuthorizeNetActionTypes.LoadAcceptJsFailureAction;
-}
-
 export type DaffAuthorizeNetActions =
 	| DaffAuthorizeNetGenerateToken
 	| DaffAuthorizeNetGenerateTokenSuccess
 	| DaffAuthorizeNetGenerateTokenFailure
-	| DaffLoadAcceptJs
-	| DaffLoadAcceptJsSuccess
-	| DaffLoadAcceptJsFailure;
+	| DaffLoadAcceptJs;
