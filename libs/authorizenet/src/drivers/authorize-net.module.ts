@@ -1,10 +1,10 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DaffPaymentDriver, DaffPaymentTransformer } from '@daffodil/checkout';
-
-import { DaffAuthorizeNetPaymentService } from './authorize-net.service';
-import { DaffAuthorizeNetTransformerService } from './transformers/authorize-net-transformer.service';
+import { DaffAuthorizeNetDriver } from './injection-tokens/authorize-net-driver.token';
+import { DaffAuthorizeNetDefaultService } from './authorize-net.service';
+import { DaffAuthorizeNetTransformer } from './injection-tokens/authorize-net-transformer.tokens';
+import { DaffAuthorizeNetDefaultTransformerService } from './transformers/authorize-net-transformer.service';
 
 @NgModule({
   imports: [
@@ -17,14 +17,12 @@ export class DaffAuthorizeNetDriverModule {
       ngModule: DaffAuthorizeNetDriverModule,
       providers: [
         {
-          provide: DaffPaymentDriver,
-					useExisting: DaffAuthorizeNetPaymentService,
-					multi: true
+          provide: DaffAuthorizeNetDriver,
+					useExisting: DaffAuthorizeNetDefaultService
         },
         {
-          provide: DaffPaymentTransformer,
-					useExisting: DaffAuthorizeNetTransformerService,
-					multi: true
+          provide: DaffAuthorizeNetTransformer,
+					useExisting: DaffAuthorizeNetDefaultTransformerService
         }
       ]
     };

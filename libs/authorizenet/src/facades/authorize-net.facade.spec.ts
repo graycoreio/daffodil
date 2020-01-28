@@ -3,21 +3,23 @@ import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { MockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 
-import { DaffAuthorizeNetGenerateTokenSuccess } from '@daffodil/authorizenet';
-
 import { DaffAuthorizeNetFacade } from './authorize-net.facade';
-import { authorizeNetReducers } from '../reducers/authorize-net.reducers';
-import { DaffAuthorizeNetGenerateTokenFailure } from '../actions/authorizenet.actions';
+import { daffAuthorizeNetReducers } from '../reducers/authorize-net.reducers';
+import { DaffAuthorizeNetGenerateTokenFailure, DaffAuthorizeNetGenerateTokenSuccess } from '../actions/authorizenet.actions';
+import { DaffAuthorizeNetTokenResponse } from '../models/response/authorize-net-token-response';
 
 describe('DaffAuthorizeNetFacade', () => {
   let store: MockStore<any>;
-  let facade: DaffAuthorizeNetFacade;
+  let facade: DaffAuthorizeNetFacade<DaffAuthorizeNetTokenResponse>;
+	const stubAuthorizeTokenResponse = {
+		token: 'authorizeToken'
+	};
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          authorizenet: combineReducers(authorizeNetReducers),
+          authorizenet: combineReducers(daffAuthorizeNetReducers()),
         })
       ],
       providers: [
@@ -30,7 +32,7 @@ describe('DaffAuthorizeNetFacade', () => {
   });
 
   it('should be created', () => {
-    const service: DaffAuthorizeNetFacade = TestBed.get(DaffAuthorizeNetFacade);
+    const service: DaffAuthorizeNetFacade<DaffAuthorizeNetTokenResponse> = TestBed.get(DaffAuthorizeNetFacade);
     expect(service).toBeTruthy();
   });
 
@@ -43,13 +45,21 @@ describe('DaffAuthorizeNetFacade', () => {
     expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 
-  describe('paymentNonce$', () => {
+  describe('authorizeTokenResponse$', () => {
 
     it('should return the payment nonce', () => {
-			const stubPaymentNonce = 'paymentNonce';
-      const expected = cold('a', { a: stubPaymentNonce });
-      store.dispatch(new DaffAuthorizeNetGenerateTokenSuccess(stubPaymentNonce));
-      expect(facade.paymentNonce$).toBeObservable(expected);
+      const expected = cold('a', { a: stubAuthorizeTokenResponse });
+      store.dispatch(new DaffAuthorizeNetGenerateTokenSuccess(stubAuthorizeTokenResponse));
+      expect(facade.authorizeTokenResponse$).toBeObservable(expected);
+    });
+  });
+
+  describe('tokenNonce$', () => {
+
+    it('should return the payment nonce', () => {
+      const expected = cold('a', { a: stubAuthorizeTokenResponse.token });
+      store.dispatch(new DaffAuthorizeNetGenerateTokenSuccess(stubAuthorizeTokenResponse));
+      expect(facade.tokenNonce$).toBeObservable(expected);
     });
   });
 

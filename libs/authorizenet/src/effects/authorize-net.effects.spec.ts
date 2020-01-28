@@ -3,31 +3,27 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
-import { DaffPaymentDriver } from '@daffodil/checkout';
-
 import { DaffAuthorizeNetEffects } from './authorize-net.effects';
 import { DaffAuthorizeNetGenerateToken } from '../actions/authorizenet.actions';
 import { DaffAuthorizeNetTokenRequest } from '../models/request/authorize-net-token-request';
 import { DaffAuthorizeNetGenerateTokenSuccess, DaffAuthorizeNetGenerateTokenFailure } from '../actions/authorizenet.actions';
+import { DaffAuthorizeNetTokenResponse } from '../models/response/authorize-net-token-response';
+import { DaffAuthorizeNetDriver } from '../drivers/injection-tokens/authorize-net-driver.token';
 
 describe('DaffAuthorizeNetEffects', () => {
   let actions$: Observable<any>;
-  let effects: DaffAuthorizeNetEffects;
+  let effects: DaffAuthorizeNetEffects<DaffAuthorizeNetTokenRequest, DaffAuthorizeNetTokenResponse>;
 	const paymentTokenRequest: DaffAuthorizeNetTokenRequest = {
-		creditCard: null,
-		authData: {
-			apiLoginID: 'id',
-			clientKey: 'key'
-		}
+		creditCard: null
 	};
-	const paymentServiceSpy = jasmine.createSpyObj('DaffAuthorizeNetPaymentService', ['generateToken']);
+	const authorizeNetPaymentServiceSpy = jasmine.createSpyObj('DaffAuthorizeNetPaymentService', ['generateToken']);
   
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         DaffAuthorizeNetEffects,
 				provideMockActions(() => actions$),
-				{ provide: DaffPaymentDriver, useValue: paymentServiceSpy }
+				{ provide: DaffAuthorizeNetDriver, useValue: authorizeNetPaymentServiceSpy }
       ]
     });
 
@@ -46,12 +42,12 @@ describe('DaffAuthorizeNetEffects', () => {
     describe('when the call to the AuthorizeNetService is successful', () => {
 
       beforeEach(() => {
-        paymentServiceSpy.generateToken.and.returnValue(of('token'));
+        authorizeNetPaymentServiceSpy.generateToken.and.returnValue(of({token: 'token'}));
         actions$ = hot('--a', { a: authorizeNetGenerateToken });
       });
       
       it('should dispatch a DaffAuthorizeNetGenerateTokenSuccess action', () => {
-        const authorizeNetGenerateTokenSuccessAction = new DaffAuthorizeNetGenerateTokenSuccess('token');
+        const authorizeNetGenerateTokenSuccessAction = new DaffAuthorizeNetGenerateTokenSuccess({ token: 'token' });
         expected = cold('--a', { a: authorizeNetGenerateTokenSuccessAction });
         expect(effects.generateToken$).toBeObservable(expected);
 			});
@@ -62,7 +58,7 @@ describe('DaffAuthorizeNetEffects', () => {
       beforeEach(() => {
         const error = 'Failed to retrieve the token';
         const response = cold('#', {}, error);
-        paymentServiceSpy.generateToken.and.returnValue(response);
+        authorizeNetPaymentServiceSpy.generateToken.and.returnValue(response);
         const authorizeNetGenerateTokenFailureAction = new DaffAuthorizeNetGenerateTokenFailure(error);
         actions$ = hot('--a', { a: authorizeNetGenerateToken });
         expected = cold('--b', { b: authorizeNetGenerateTokenFailureAction });

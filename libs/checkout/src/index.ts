@@ -32,7 +32,6 @@ export { DaffPaymentTransformerService } from './drivers/interfaces/payment-tran
 export { DaffPaymentTransformer } from './drivers/injection-tokens/payment-transformer.token';
 export { DaffCreditCard } from './models/payment/credit-card';
 export { DaffCartProcessRequest } from './models/cart-process-request';
-export { DaffPaymentTokenRequest } from './models/payment/payment-token-request';
 
 export { 
   DaffBillingActionTypes,

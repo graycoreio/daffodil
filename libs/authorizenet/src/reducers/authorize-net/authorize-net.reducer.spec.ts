@@ -1,16 +1,17 @@
-import { authorizeNetReducer } from './authorize-net.reducer';
+import { daffAuthorizeNetReducer } from './authorize-net.reducer';
 import { DaffAuthorizeNetReducerState } from './authorize-net-reducer.interface';
 import { DaffAuthorizeNetGenerateTokenSuccess, DaffAuthorizeNetGenerateTokenFailure } from '../../actions/authorizenet.actions';
+import { DaffAuthorizeNetTokenResponse } from '../../models/response/authorize-net-token-response';
 
 describe('AuthorizeNet | AuthorizeNet Reducer', () => {
 
 	let stubPaymentNonce;
-	let initialState: DaffAuthorizeNetReducerState;
+	let initialState: DaffAuthorizeNetReducerState<DaffAuthorizeNetTokenResponse>;
 
   beforeEach(() => {
-		stubPaymentNonce = 'paymentNonce';
+		stubPaymentNonce = 'tokenResponse';
 		initialState = {
-			paymentNonce: null,
+			tokenResponse: null,
 			error: null
 		};
   });
@@ -20,23 +21,23 @@ describe('AuthorizeNet | AuthorizeNet Reducer', () => {
     it('should return the current state', () => {
       const action = {} as any;
 
-      const result = authorizeNetReducer(initialState, action);
+      const result = daffAuthorizeNetReducer(initialState, action);
 
       expect(result).toBe(initialState);
     });
   });
 
   describe('when DaffAuthorizeNetGenerateTokenSuccess is triggered', () => {
-    let result: DaffAuthorizeNetReducerState;
+    let result: DaffAuthorizeNetReducerState<DaffAuthorizeNetTokenResponse>;
 
     beforeEach(() => {
-      const paymentNonceLoadSuccess: DaffAuthorizeNetGenerateTokenSuccess = new DaffAuthorizeNetGenerateTokenSuccess(stubPaymentNonce);
+      const tokenLoadSuccess: DaffAuthorizeNetGenerateTokenSuccess<DaffAuthorizeNetTokenResponse> = new DaffAuthorizeNetGenerateTokenSuccess(stubPaymentNonce);
 
-      result = authorizeNetReducer(initialState, paymentNonceLoadSuccess);
+      result = daffAuthorizeNetReducer(initialState, tokenLoadSuccess);
     });
 
-    it('sets paymentNonce state to the action payload', () => {
-      expect(result.paymentNonce).toEqual(stubPaymentNonce);
+    it('sets tokenResponse state to the action payload', () => {
+      expect(result.tokenResponse).toEqual(stubPaymentNonce);
 		});
 		
 		it('clears the error message', () => {
@@ -45,20 +46,20 @@ describe('AuthorizeNet | AuthorizeNet Reducer', () => {
   });
 
   describe('when DaffAuthorizeNetGenerateTokenFailure is triggered', () => {
-    let result: DaffAuthorizeNetReducerState;
+    let result: DaffAuthorizeNetReducerState<DaffAuthorizeNetTokenResponse>;
 
     beforeEach(() => {
-      const paymentNonceLoadFailure: DaffAuthorizeNetGenerateTokenFailure = new DaffAuthorizeNetGenerateTokenFailure('error');
+      const tokenResponseLoadFailure: DaffAuthorizeNetGenerateTokenFailure = new DaffAuthorizeNetGenerateTokenFailure('error');
 
-      result = authorizeNetReducer(initialState, paymentNonceLoadFailure);
+      result = daffAuthorizeNetReducer(initialState, tokenResponseLoadFailure);
     });
 
     it('sets error state to the action payload', () => {
       expect(result.error).toEqual('error');
 		});
 		
-		it('clears the paymentNonce', () => {
-			expect(result.paymentNonce).toBeNull();
+		it('clears the tokenResponse', () => {
+			expect(result.tokenResponse).toBeNull();
 		});
   });
 });

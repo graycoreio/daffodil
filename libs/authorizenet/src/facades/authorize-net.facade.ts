@@ -5,21 +5,23 @@ import { Observable } from 'rxjs';
 import { DaffStoreFacade } from '@daffodil/core';
 
 import { DaffAuthorizeNetModule } from '../authorize-net.module';
-import { selectPaymentNonce } from '../selectors/authorize-net.selector';
-import { selectPaymentNonceRequestError } from '../selectors/authorize-net.selector';
+import { selectToken, selectError, selectTokenResponse } from '../selectors/authorize-net.selector';
 import { DaffAuthorizeNetReducersState } from '../reducers/authorize-net-reducers.interface';
+import { DaffAuthorizeNetTokenResponse } from '../models/response/authorize-net-token-response';
 
 @Injectable({
   providedIn: DaffAuthorizeNetModule
 })
-export class DaffAuthorizeNetFacade implements DaffStoreFacade<Action> {
+export class DaffAuthorizeNetFacade<T extends DaffAuthorizeNetTokenResponse> implements DaffStoreFacade<Action> {
 
-  paymentNonce$: Observable<string>;
+	authorizeTokenResponse$: Observable<T>
+  tokenNonce$: Observable<string>;
   error$: Observable<string>;
   
-  constructor(private store: Store<DaffAuthorizeNetReducersState>) {
-    this.paymentNonce$ = this.store.pipe(select(selectPaymentNonce));
-    this.error$ = this.store.pipe(select(selectPaymentNonceRequestError));
+  constructor(private store: Store<DaffAuthorizeNetReducersState<T>>) {
+    this.authorizeTokenResponse$ = this.store.pipe(select(selectTokenResponse()));
+    this.tokenNonce$ = this.store.pipe(select(selectToken()));
+    this.error$ = this.store.pipe(select(selectError()));
   }
 
   dispatch(action: Action) {

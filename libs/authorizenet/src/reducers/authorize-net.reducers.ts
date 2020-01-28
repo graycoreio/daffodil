@@ -1,8 +1,11 @@
 import { ActionReducerMap } from '@ngrx/store';
 
 import { DaffAuthorizeNetReducersState } from './authorize-net-reducers.interface';
-import { authorizeNetReducer } from './authorize-net/authorize-net.reducer';
+import { daffAuthorizeNetReducer } from './authorize-net/authorize-net.reducer';
+import { DaffAuthorizeNetTokenResponse } from '../models/response/authorize-net-token-response';
 
-export const authorizeNetReducers: ActionReducerMap<DaffAuthorizeNetReducersState> = {
-  authorizeNet: authorizeNetReducer
+export function daffAuthorizeNetReducers <T extends DaffAuthorizeNetTokenResponse>(): ActionReducerMap<DaffAuthorizeNetReducersState<T>> {
+  return {
+		authorizeNet: daffAuthorizeNetReducer
+	}
 }

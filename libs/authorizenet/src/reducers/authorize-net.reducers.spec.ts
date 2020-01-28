@@ -1,10 +1,9 @@
-import { authorizeNetReducers } from './authorize-net.reducers';
-import { authorizeNetReducer } from './authorize-net/authorize-net.reducer';
+import { daffAuthorizeNetReducers } from './authorize-net.reducers';
+import { daffAuthorizeNetReducer } from './authorize-net/authorize-net.reducer';
 
+describe('daffAuthorizeNetReducers', () => {
 
-describe('authorizeNetReducers', () => {
-
-  it('should return a reducer map with authorizeNetReducer', () => {
-    expect(authorizeNetReducers.authorizeNet).toEqual(authorizeNetReducer);
+  it('should return a reducer map with daffAuthorizeNetReducer', () => {
+    expect(daffAuthorizeNetReducers().authorizeNet).toEqual(daffAuthorizeNetReducer);
   });
 });

@@ -1,33 +1,45 @@
-import { createSelector, createFeatureSelector } from '@ngrx/store';
+import { createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
 import { DaffAuthorizeNetReducersState } from '../reducers/authorize-net-reducers.interface';
 import { DaffAuthorizeNetReducerState } from '../reducers/authorize-net/authorize-net-reducer.interface';
+import { DaffAuthorizeNetTokenResponse } from '../models/response/authorize-net-token-response';
 
 /**
  * AuthorizeNet Feature State
  */
-export const selectAuthorizeNetFeatureState = createFeatureSelector<DaffAuthorizeNetReducersState>('authorizenet');
+export function selectAuthorizeNetFeatureState<T extends DaffAuthorizeNetTokenResponse>(): 
+	MemoizedSelector<object, DaffAuthorizeNetReducersState<T>> {
+		return createFeatureSelector<DaffAuthorizeNetReducersState<T>>('authorizenet');
+	};
 
 /**
  * AuthorizeNet State
  */
-export const selectAuthorizeNetState = createSelector(
-  selectAuthorizeNetFeatureState,
-  (state: DaffAuthorizeNetReducersState) => state.authorizeNet
-);
+export function selectAuthorizeNetState<T extends DaffAuthorizeNetTokenResponse>():
+	MemoizedSelector<object, DaffAuthorizeNetReducerState<T>> { 
+		return createSelector(selectAuthorizeNetFeatureState(), (state: DaffAuthorizeNetReducersState<T>) => state.authorizeNet)
+	};
 
 /**
- * AuthorizeNet payment nonce
+ * AuthorizeNet token response
  */
-export const selectPaymentNonce = createSelector(
-  selectAuthorizeNetState,
-  (state: DaffAuthorizeNetReducerState) => state.paymentNonce
-);
+export function selectTokenResponse<T extends DaffAuthorizeNetTokenResponse>(): 
+	MemoizedSelector<object, T> {
+		return createSelector(selectAuthorizeNetState(),(state: DaffAuthorizeNetReducerState<T>) => state.tokenResponse);
+	}
+
+/**
+ * AuthorizeNet token nonce
+ */
+export function selectToken<T extends DaffAuthorizeNetTokenResponse>(): 
+	MemoizedSelector<object, string> {
+		return createSelector(selectTokenResponse(),(state: T) => state.token);
+	}
 
 /**
  * AuthorizeNet error
  */
-export const selectPaymentNonceRequestError = createSelector(
-  selectAuthorizeNetState,
-  (state: DaffAuthorizeNetReducerState) => state.error
-);
+export function selectError<T extends DaffAuthorizeNetTokenResponse>():
+	MemoizedSelector<object, string> {
+		return createSelector(selectAuthorizeNetState(), (state: DaffAuthorizeNetReducerState<T>) => state.error);
+	}

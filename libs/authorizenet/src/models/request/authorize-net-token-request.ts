@@ -1,7 +1,5 @@
-import { DaffPaymentTokenRequest } from '@daffodil/checkout';
+import { DaffCreditCard } from './credit-card';
 
-import { AuthorizeNetAuthData } from './authorize-net-auth-data';
-
-export interface DaffAuthorizeNetTokenRequest extends DaffPaymentTokenRequest {
-	authData: AuthorizeNetAuthData;
+export interface DaffAuthorizeNetTokenRequest {
+	creditCard: DaffCreditCard;
 }
