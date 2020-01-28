@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DaffAuthorizeNetDriver } from './injection-tokens/authorize-net-driver.token';
 import { DaffAuthorizeNetDefaultService } from './authorize-net.service';
-import { DaffAuthorizeNetTransformer } from './injection-tokens/authorize-net-transformer.tokens';
+import { DaffAuthorizeNetTransformer } from './injection-tokens/authorize-net-transformer.token';
 import { DaffAuthorizeNetDefaultTransformerService } from './transformers/authorize-net-transformer.service';
 
 @NgModule({

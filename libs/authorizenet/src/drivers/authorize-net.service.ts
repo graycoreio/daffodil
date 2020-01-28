@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 import { DaffAuthorizeNetTokenRequest } from '../models/request/authorize-net-token-request';
 import { AcceptType } from '../models/acceptJs/accept';
-import { DaffAuthorizeNetTransformer } from './injection-tokens/authorize-net-transformer.tokens';
+import { DaffAuthorizeNetTransformer } from './injection-tokens/authorize-net-transformer.token';
 import { DaffAuthorizeNetService } from './interfaces/authorize-net-service.interface';
 import { DaffAuthorizeNetTokenResponse } from '../models/response/authorize-net-token-response';
 import { DaffAuthorizeNetConfigToken } from './injection-tokens/authorize-net-config.token';
