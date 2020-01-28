@@ -40,6 +40,7 @@
 	}
 
 	&__items {
+		display: block;
 		padding: 25px 0;
 		@include section-divider();
 	}
