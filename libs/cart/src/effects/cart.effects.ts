@@ -13,13 +13,14 @@ import {
   DaffAddToCart} from '../actions/cart.actions';
 import { DaffCartDriver } from '../drivers/injection-tokens/cart-driver.token';
 import { DaffCartServiceInterface } from '../drivers/interfaces/cart-service.interface';
+import { DaffCart } from '../models/cart';
 
 @Injectable()
-export class DaffCartEffects {
+export class DaffCartEffects<T extends DaffCart> {
 
   constructor(
     private actions$: Actions,
-    @Inject(DaffCartDriver) private driver: DaffCartServiceInterface) {}
+    @Inject(DaffCartDriver) private driver: DaffCartServiceInterface<T>) {}
 
   @Effect()
   load$ : Observable<any> = this.actions$.pipe(

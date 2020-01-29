@@ -11,15 +11,15 @@ import {
 } from '../actions/order.actions';
 import { DaffCheckoutDriver } from '../../drivers/injection-tokens/driver-checkout.token';
 import { DaffCheckoutServiceInterface } from '../../drivers/interfaces/checkout-service.interface';
-import { DaffCartServiceInterface, DaffCartDriver } from '@daffodil/cart';
+import { DaffCartServiceInterface, DaffCartDriver, DaffCart } from '@daffodil/cart';
 
 @Injectable()
-export class OrderEffects {
+export class OrderEffects<T extends DaffCart> {
 
   constructor(
     private actions$: Actions,
     @Inject(DaffCheckoutDriver) private checkoutDriver: DaffCheckoutServiceInterface,
-    @Inject(DaffCartDriver) private cartDriver: DaffCartServiceInterface
+    @Inject(DaffCartDriver) private cartDriver: DaffCartServiceInterface<T>
   ) {}
 
   @Effect()
