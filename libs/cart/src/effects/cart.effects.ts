@@ -10,8 +10,11 @@ import {
   DaffCartLoadFailure, 
   DaffAddToCartSuccess,
   DaffAddToCartFailure,
-  DaffAddToCart} from '../actions/cart.actions';
-import { DaffCartServiceInterface, DaffCartDriver } from '../drivers/public_api';
+  DaffAddToCart,
+  DaffCartResetSuccess,
+  DaffCartResetFailure} from '../actions/cart.actions';
+import { DaffCartDriver } from '../drivers/injection-tokens/cart-driver.token';
+import { DaffCartServiceInterface } from '../drivers/interfaces/cart-service.interface';
 import { DaffCart } from '../models/cart';
 import { DaffCartStorageService } from '../storage/cart-storage.service';
 
@@ -50,6 +53,19 @@ export class DaffCartEffects<T extends DaffCart> {
           }),
           catchError(error => {
             return of(new DaffAddToCartFailure('Failed to add item to cart'));
+          })
+        )
+    )
+  )
+
+  @Effect()
+  clearCart$ = this.actions$.pipe(
+    ofType(DaffCartActionTypes.CartResetAction),
+    switchMap(() =>
+      this.driver.clear().pipe(
+          map((resp) => new DaffCartResetSuccess(resp)),
+          catchError(error => {
+            return of(new DaffCartResetFailure('Failed to clear the cart.'));
           })
         )
     )

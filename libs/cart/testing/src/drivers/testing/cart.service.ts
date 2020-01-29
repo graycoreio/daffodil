@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { DaffCart, DaffCartServiceInterface } from '@daffodil/cart';
 
 import { DaffCartFactory } from '../../factories/cart.factory';
+import { mergeMapTo } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,9 @@ export class DaffTestingCartService implements DaffCartServiceInterface<DaffCart
     return of(this.cartFactory.create());
   }
 
-  clear(): Observable<void> {
-    return of();
+  clear(): Observable<DaffCart> {
+    return of().pipe(
+      mergeMapTo(this.get())
+    );
   }
 }
