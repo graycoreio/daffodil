@@ -26,7 +26,8 @@
     "@angular/core": "0.0.0-PLACEHOLDER",
     "@ngrx/effects": "0.0.0-PLACEHOLDER",
     "@ngrx/entity": "0.0.0-PLACEHOLDER",
-    "@ngrx/store": "0.0.0-PLACEHOLDER",
+		"@ngrx/store": "0.0.0-PLACEHOLDER",
+		"@daffodil/core": "0.0.0-PLACEHOLDER",
     "rxjs": "0.0.0-PLACEHOLDER"
   }
 }
