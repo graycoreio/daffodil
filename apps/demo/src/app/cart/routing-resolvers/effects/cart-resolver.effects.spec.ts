@@ -15,7 +15,7 @@ describe('CartResolverEffects', () => {
   let effects: CartResolverEffects;
   let cartFactory: DaffCartFactory;
   let stubCart: DaffCart;
-  let driver: DaffCartServiceInterface;
+  let driver: DaffCartServiceInterface<DaffCart>;
 
   beforeEach(() => {
 
