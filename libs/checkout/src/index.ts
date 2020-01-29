@@ -27,10 +27,7 @@ export {
 export { DaffPaymentDriver } from './drivers/injection-tokens/payment-driver.token';
 export { DaffOrderDriver } from './drivers/injection-tokens/order-driver.token';
 export { DaffOrderServiceInterface } from './drivers/interfaces/order-service.interface';
-export { DaffPaymentServiceInterface } from './drivers/interfaces/payment-service.interface';
-export { DaffPaymentTransformerService } from './drivers/interfaces/payment-transformer.interface';
 export { DaffPaymentTransformer } from './drivers/injection-tokens/payment-transformer.token';
-export { DaffCreditCard } from './models/payment/credit-card';
 export { DaffCartProcessRequest } from './models/cart-process-request';
 
 export { 
