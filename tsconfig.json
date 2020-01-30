@@ -78,6 +78,12 @@
       ],
       "@daffodil/contact/testing": [
         "dist/contact/testing"
+      ],
+      "geography": [
+        "dist/geography"
+      ],
+      "geography/*": [
+        "dist/geography/*"
       ]
     }
   },
