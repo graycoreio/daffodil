@@ -75,7 +75,13 @@
       ],
       "@daffodil/contact/testing": [
         "dist/contact/testing"
-      ]
+      ],
+      "@daffodil/auth": [
+        "dist/auth"
+      ],
+      "@daffodil/auth/testing": [
+        "dist/auth/testing"
+      ],
     }
   },
   "exclude": [
