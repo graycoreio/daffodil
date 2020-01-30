@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 import { DaffLoadingIconComponent } from './loading-icon.component';
 import { DaffPalette } from '../../core/colorable/colorable';
 
-@Component({ template: '<daff-loading-icon class="host-element" [color]="color" [diameter]="diameter"></daff-loading-icon>' })
+@Component({ template: '<daff-loading-icon [color]="color" [diameter]="diameter"></daff-loading-icon>' })
 class WrapperComponent {
   color: DaffPalette;
   diameter = 100;
@@ -37,6 +37,14 @@ describe('DaffLoadingIconComponent | Usage', () => {
 
   it('should create', () => {
     expect(wrapper).toBeTruthy();
+  });
+
+  describe('<daff-loading-icon>', () => {
+    it('should add a class of "daff-loading-icon" to the host element', () => {
+      expect(de.classes).toEqual(jasmine.objectContaining({
+        'daff-loading-icon': true,
+      }));
+    });
   });
 
   it('can take a `diameter` as input which sets max-width on the `daff-loading-icon` host', () => {
