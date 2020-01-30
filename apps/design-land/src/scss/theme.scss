@@ -4,4 +4,9 @@ $primary: daff-configure-palette($daff-yellow, 60);
 $secondary: daff-configure-palette($daff-purple, 60);
 $tertiary: daff-configure-palette($daff-blue, 60);
 
-$theme: daff-configure-theme($primary, $secondary, $tertiary, "light");
+$theme: daff-configure-theme($primary, $secondary, $tertiary, 'light');
+
+$black: daff-map-deep-get($theme, 'core.black');
+$white: daff-map-deep-get($theme, 'core.white');
+
+$gray: daff-configure-palette($daff-gray, 60);
