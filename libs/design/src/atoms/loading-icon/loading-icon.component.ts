@@ -1,6 +1,5 @@
-import { Component, ChangeDetectionStrategy, Input, ElementRef, Renderer2, HostBinding, SecurityContext } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, ElementRef, Renderer2, HostBinding } from '@angular/core';
 import { daffColorMixin, DaffColorable, DaffPalette } from '../../core/colorable/colorable';
-import { DomSanitizer } from '@angular/platform-browser';
 
 /**
  * An _elementRef and an instance of renderer2 are needed for the Colorable mixin
@@ -17,7 +16,7 @@ const _daffLoadingIconBase = daffColorMixin(DaffLoadingIconBase, 'primary')
   styleUrls: ['./loading-icon.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DaffLoadingIconComponent extends _daffLoadingIconBase implements DaffColorable{
+export class DaffLoadingIconComponent extends _daffLoadingIconBase implements DaffColorable {
 
   @Input() color: DaffPalette;
   /**
@@ -31,7 +30,7 @@ export class DaffLoadingIconComponent extends _daffLoadingIconBase implements Da
     return this.diameter + 'px';
   }
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2, private sanitizer: DomSanitizer) {
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     super(elementRef, renderer);
   }
 }
