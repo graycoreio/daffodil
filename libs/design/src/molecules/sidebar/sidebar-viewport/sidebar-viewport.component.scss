@@ -1,67 +1,60 @@
-$sidebar-width: 250px;
+@import '../../../scss/daff-util';
+
+$sidebar-width: 290px;
 
 // Stacking Context Layers
-$daff-sidebar-z-index: 4;
 $daff-sidebar-backdrop-z-index: 3;
 $daff-sidebar-content-z-index: 2;
 $daff-sidebar-viewport-z-index: 1;
 
-.daff-sidebar-viewport {
-	$root: &;
-	// fixes a bug where certain elements show in front of backdrop for a second.
+:host {
+	$root: '.daff-sidebar-viewport';
 	display: flex;
-	min-height: 100%;
+	overflow: hidden;
 	position: relative;
 	width: 100%;
 	z-index: $daff-sidebar-viewport-z-index;
+	// fixes a bug where certain elements show in front of backdrop for a second.
 
-	&__content {
-		flex: 0 1 auto;
-		width: 100%;
-		will-change: transform;
-		z-index: $daff-sidebar-content-z-index;
-	}
-
-	&__sidebar {
-		flex-shrink: 0;
-		width: $sidebar-width;
-		will-change: transform, visibility;
-		z-index: $daff-sidebar-z-index;
-	}
-
-	&__backdrop {
-		cursor: pointer;
-		height: 100%;
-		position: absolute;
-		width: 100%;
-		z-index: $daff-sidebar-backdrop-z-index;
+	&.fullscreen { /* stylelint-disable-line selector-class-pattern */
+		> #{$root}__content {
+			min-height: 100vh;
+		}
 	}
 
 	&.push { /* stylelint-disable-line selector-class-pattern */
-		> #{$root}__sidebar {
-			bottom: 0;
-			height: 100%;
-			left: 0;
-			position: absolute;
-			top: 0;
-			transform: translate3d(-$sidebar-width, 0, 0);
-			visibility: hidden;
-		}
-
+		overflow: hidden;
 		> #{$root}__content {
 			transform: translate3d($sidebar-width, 0, 0);
 		}
 	}
 
-	&.over { /* stylelint-disable-line selector-class-pattern */
-		> #{$root}__sidebar {
-			bottom: 0;
-			height: 100%;
-			left: 0;
-			position: absolute;
-			top: 0;
-			transform: translate3d(-$sidebar-width, 0, 0);
-			visibility: hidden;
+	&.fixed-side { /* stylelint-disable-line selector-class-pattern */
+		> #{$root}__content {
+			position: relative;
+			width: calc(100% - #{$sidebar-width});
+			left: $sidebar-width;
 		}
+	}
+}
+
+.daff-sidebar-viewport {
+	$root: &;
+
+	&__content {
+		flex: 0 1 auto;
+		height: 100%;
+		min-width: 0;
+		width: 100%;
+		overflow: auto;
+		z-index: $daff-sidebar-content-z-index;
+	}
+
+	&__backdrop {
+		@include clickable();
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		z-index: $daff-sidebar-backdrop-z-index;
 	}
 }

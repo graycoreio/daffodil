@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DaffSidebarComponent } from './sidebar/sidebar.component';
 import { DaffSidebarViewportComponent } from './sidebar-viewport/sidebar-viewport.component';
 import { DaffBackdropModule } from '../backdrop/backdrop.module';
+import { DaffSidebarViewportContentDirective } from './sidebar-viewport-content/sidebar-viewport-content.directive';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { DaffBackdropModule } from '../backdrop/backdrop.module';
   ],
   declarations: [
     DaffSidebarComponent,
-    DaffSidebarViewportComponent
+    DaffSidebarViewportComponent,
+    DaffSidebarViewportContentDirective
   ],
   exports: [
     DaffSidebarComponent,

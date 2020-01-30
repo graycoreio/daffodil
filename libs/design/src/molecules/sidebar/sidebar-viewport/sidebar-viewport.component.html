@@ -1,16 +1,13 @@
-<div class="daff-sidebar-viewport {{ mode }}">
-  <div class="daff-sidebar-viewport__sidebar" [@transformSidebar]="_animationState">
-    <ng-content select="daff-sidebar"></ng-content>
-  </div>
+<ng-content select="daff-sidebar"></ng-content>
 
-  <daff-backdrop
-    class="daff-sidebar-viewport__backdrop"
-    *ngIf="hasBackdrop && _opened"
-    [transparent]="!backdropIsVisible"
-    (backdropClicked)="_backdropClicked()"></daff-backdrop>
+<daff-backdrop
+  class="daff-sidebar-viewport__backdrop"
+  *ngIf="hasBackdrop"
+  [transparent]="!backdropIsVisible"
+  (backdropClicked)="_backdropClicked()"></daff-backdrop>
 
-  <div class="daff-sidebar-viewport__content" [@transformContent]="_animationState">
-    <ng-content></ng-content>
-  </div>
-</div>
-    
+<div class="daff-sidebar-viewport__content"
+  golfSidebarViewportContent
+  [@transformContent]="_animationState">
+  <ng-content></ng-content>
+</div>    

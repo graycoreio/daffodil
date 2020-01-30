@@ -1,10 +1,28 @@
 @import '../../../scss/daff-util';
 
-:host {
-	display: block;
-}
+$sidebar-width: 290px;
+$daff-sidebar-z-index: 4;
 
-.daff-sidebar {
+:host {
+	$root: &;
 	display: block;
-	height: 100%;
+	width: $sidebar-width;
+	z-index: $daff-sidebar-z-index;
+	flex-shrink: 0;
+
+	&.push { /* stylelint-disable-line selector-class-pattern */
+		position: absolute;
+		transform: translate3d(-$sidebar-width, 0, 0);
+	}
+
+	&.over { /* stylelint-disable-line selector-class-pattern */
+		position: absolute;
+		transform: translate3d(-$sidebar-width, 0, 0);
+	}
+
+	&.fixed-in-viewport { /* stylelint-disable-line selector-class-pattern */
+		position: fixed;
+		top: 0;
+		bottom: 0;
+	}
 }
