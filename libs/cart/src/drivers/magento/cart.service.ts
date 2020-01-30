@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable, of, merge, forkJoin, zip, pipe, OperatorFunction } from 'rxjs';
-import { mergeMap, map, mergeMapTo } from 'rxjs/operators';
+import { mergeMap, map, mergeMapTo, mapTo } from 'rxjs/operators';
 
 import {
   DaffProductServiceInterface,
@@ -51,7 +51,7 @@ function mergeResponses<T extends Object>(
 })
 export class DaffMagentoCartService implements DaffCartServiceInterface {
   cartId: Observable<string>
-  uri: string = ''
+  uri = ''
 
   constructor(
     private http: HttpClient,
@@ -132,10 +132,12 @@ export class DaffMagentoCartService implements DaffCartServiceInterface {
     return this.getItems().pipe(
       mergeMap(items =>
         // collect each item deletion observable into a single one
-        forkJoin(...items.map(item =>
+        forkJoin(items.map(item =>
           this.deleteItem(item.item_id)
-        ))
-      )
+        )),
+      ),
+      // make type system happy, return void
+      map(() => {})
     )
   }
 }
