@@ -1,8 +1,8 @@
-<div class="demo-cart">
-  <div class="demo-cart__content">
-    <demo-cart-item *ngFor="let item of cart.items" [item]="item"></demo-cart-item>
-    <div *ngIf="cart.items.length === 0">
-      There are no items in your cart.
-    </div>
+<div class="demo-cart__main">
+  <div class="demo-cart__header">
+    <span class="demo-cart__title">Your Cart</span>
+    <demo-cart-item-count class="demo-cart__item-count" [itemCount]="itemCount$ | async"></demo-cart-item-count>
   </div>
+  <demo-cart-items class="demo-cart__items" [cart]="cart"></demo-cart-items>
 </div>
+<demo-cart-sidebar class="demo-cart__sidebar" [cart]="cart" [isCartEmpty]="isCartEmpty$ | async"></demo-cart-sidebar>

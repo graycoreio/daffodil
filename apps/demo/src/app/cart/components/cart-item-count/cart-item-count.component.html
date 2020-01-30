@@ -1,0 +1,5 @@
+<span class="demo-cart-item-count" [ngPlural]="itemCount">
+  {{itemCount}}
+  <ng-template ngPluralCase="other">Items</ng-template>
+  <ng-template ngPluralCase="=1">Item</ng-template>
+</span>

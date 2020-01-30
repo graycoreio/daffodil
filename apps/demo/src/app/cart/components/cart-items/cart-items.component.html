@@ -1,0 +1,4 @@
+<demo-cart-item *ngFor="let item of cart.items" [item]="item"></demo-cart-item>
+<div *ngIf="cart.items.length === 0">
+  There are no items in your cart.
+</div>

@@ -1,6 +1,6 @@
 <daff-container size="md">
-  <div class="cart-view" cart-container #CartContainer="CartContainer">
-    <demo-cart-wrapper *ngIf="!(CartContainer.loading$ | async)" [cart]="CartContainer.cart$ | async"></demo-cart-wrapper>
+  <div class="demo-cart-view" cart-container #CartContainer="CartContainer">
+    <demo-cart *ngIf="!(CartContainer.loading$ | async)" [cart]="CartContainer.cart$ | async" class="demo-cart-view__cart"></demo-cart>
     <daff-loading-icon *ngIf="CartContainer.loading$ | async"></daff-loading-icon>
   </div>
 </daff-container>

@@ -1,0 +1,16 @@
+@import 'utilities';
+@import 'theme';
+
+.demo-cart-view {
+	&__cart {
+		padding: 50px 25px;
+
+		@include breakpoint(big-tablet) {
+			padding: 75px 50px;
+		}
+
+		@include breakpoint(laptop) {
+			padding: 75px 0;
+		}
+	}
+}

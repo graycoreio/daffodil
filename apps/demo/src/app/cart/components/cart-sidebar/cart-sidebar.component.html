@@ -1,0 +1,8 @@
+<div *ngIf="!isCartEmpty" class="demo-cart-sidebar__summary">
+  <div class="demo-cart-sidebar__title">Cart Summary</div>
+  <demo-cart-totals class="demo-cart-sidebar__cart-totals" [cart]="cart"></demo-cart-totals>
+  <button type="button" daff-button color="secondary" class="demo-cart-sidebar__button" demoProceedToCheckout>
+    Proceed to Checkout
+  </button>
+</div>
+<demo-help-box class="demo-cart-sidebar__help-box"></demo-help-box>

@@ -1,0 +1,7 @@
+@import 'utilities';
+@import 'theme';
+
+.demo-cart-item-count {
+	color: daff-color($daff-gray, 80);
+	font-size: $small-font-size;
+}

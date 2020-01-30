@@ -1,0 +1,40 @@
+@import 'utilities';
+@import 'theme';
+
+.demo-cart-sidebar {
+	&__summary {
+		margin: 0 0 50px;
+
+		@include breakpoint(big-tablet) {
+			margin: 0 0 50px;
+		}
+	}
+
+	&__title {
+		display: none;
+		@include embolden();
+		@include uppercase();
+
+		@include breakpoint(big-tablet) {
+			display: block;
+			padding-bottom: 15px;
+			margin-bottom: 25px;
+			@include section-divider();
+		}
+	}
+
+	&__button {
+		margin: 25px 0 0;
+		justify-content: center;
+		width: 100%;
+		font-size: $medium-font-size;
+	}
+
+	&__cart-totals {
+		margin: 15px 0;
+
+		@include breakpoint(big-tablet) {
+			margin: 0;
+		}
+	}
+}
