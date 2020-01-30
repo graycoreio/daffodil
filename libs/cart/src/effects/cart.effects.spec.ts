@@ -14,13 +14,13 @@ import { DaffCartServiceInterface } from '../drivers/interfaces/cart-service.int
 
 describe('Daffodil | Cart | CartEffects', () => {
   let actions$: Observable<any>;
-  let effects: DaffCartEffects;
+  let effects: DaffCartEffects<DaffCart>;
   
   let mockCart: DaffCart;
 
   let cartFactory: DaffCartFactory;
 
-  let daffDriver: DaffCartServiceInterface;
+  let daffDriver: DaffCartServiceInterface<DaffCart>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -34,9 +34,9 @@ describe('Daffodil | Cart | CartEffects', () => {
       ]
     });
 
-    effects = TestBed.get(DaffCartEffects);
-    daffDriver = TestBed.get(DaffCartDriver);
-    cartFactory = TestBed.get(DaffCartFactory);
+    effects = TestBed.get<DaffCartEffects<DaffCart>>(DaffCartEffects);
+    daffDriver = TestBed.get<DaffCartServiceInterface<DaffCart>>(DaffCartDriver);
+    cartFactory = TestBed.get<DaffCartFactory>(DaffCartFactory);
 
     mockCart = cartFactory.create();
   });

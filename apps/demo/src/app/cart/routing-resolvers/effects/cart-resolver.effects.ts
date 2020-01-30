@@ -14,7 +14,7 @@ export class CartResolverEffects {
   constructor(
     private actions$: Actions,
     private store: Store<fromCart.State>,
-    @Inject(DaffCartDriver) private driver: DaffCartServiceInterface
+    @Inject(DaffCartDriver) private driver: DaffCartServiceInterface<DaffCart>
   ) {}
 
   @Effect()

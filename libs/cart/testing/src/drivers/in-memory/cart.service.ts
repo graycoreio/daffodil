@@ -7,7 +7,7 @@ import { DaffCart, DaffCartServiceInterface } from '@daffodil/cart';
 @Injectable({
   providedIn: 'root'
 })
-export class DaffInMemoryCartService implements DaffCartServiceInterface {
+export class DaffInMemoryCartService implements DaffCartServiceInterface<DaffCart> {
   url = '/api/cart';
 
   constructor(private http: HttpClient) {}
