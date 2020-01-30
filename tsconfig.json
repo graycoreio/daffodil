@@ -79,12 +79,9 @@
       "@daffodil/contact/testing": [
         "dist/contact/testing"
       ],
-      "geography": [
+      "@daffodil/geography": [
         "dist/geography"
       ],
-      "geography/*": [
-        "dist/geography/*"
-      ]
     }
   },
   "exclude": [
