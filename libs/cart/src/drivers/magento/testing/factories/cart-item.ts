@@ -1,5 +1,5 @@
-import { cartItemResponseFactory } from "./cart-item-response";
-import { cartItemTotalsResponseFactory } from "./cart-item-totals-response";
+import { cartItemResponseFactory } from './cart-item-response';
+import { cartItemTotalsResponseFactory } from './cart-item-totals-response';
 
 export function cartItemFactory () {
   return {

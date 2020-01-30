@@ -20,7 +20,7 @@ describe('DaffMagentoCartItemTransformerService', () => {
   });
 
   it('should be created', () => {
-    const service: DaffMagentoCartItemTransformerService = TestBed.get(DaffMagentoCartItemTransformerService);
+    service = TestBed.get(DaffMagentoCartItemTransformerService);
     expect(service).toBeTruthy();
   });
 

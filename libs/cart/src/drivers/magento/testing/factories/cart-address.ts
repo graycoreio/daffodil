@@ -1,4 +1,4 @@
-import { cartShippingMethodFactory } from "./cart-shipping-method";
+import { cartShippingMethodFactory } from './cart-shipping-method';
 
 export function cartAddressFactory () {
   return {
