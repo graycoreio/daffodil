@@ -37,7 +37,9 @@ export {
   selectCategoryEntities,
   selectAllCategories,
   selectCategoryTotal,
-  selectSelectedCategory
+	selectSelectedCategory,
+	selectProductsByCategory,
+	selectCategory
 } from './selectors/category.selector';
 
 export { DaffGetCategoryResponse } from './models/get-category-response';

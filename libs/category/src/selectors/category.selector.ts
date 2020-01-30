@@ -128,3 +128,21 @@ export const selectCategoryProducts = createSelector(
   fromProduct.selectAllProducts,
   (ids, products: DaffProductUnion[]) => products.filter(product => ids.indexOf(product.id) >= 0)
 );
+
+export const selectCategory = createSelector(
+	selectCategoryEntities,
+	(entities, props) => {
+		return entities[props.id];
+	}
+);
+
+export const selectProductsByCategory = createSelector(
+	selectCategoryEntities,
+	fromProduct.selectAllProducts,
+	(entities, products, props) => {
+		if (!entities[props.id]) {
+			return null;
+		}
+		return products.filter(product => entities[props.id].productIds.indexOf(product.id) >= 0);
+	}
+);

@@ -24,7 +24,9 @@ import {
   selectCategoryTotalPages,
   selectCategoryPageSize,
   selectCategoryFilters,
-  selectCategorySortOptions
+  selectCategorySortOptions,
+	selectCategory,
+	selectProductsByCategory
 } from './category.selector';
 import { DaffCategory } from '../models/category';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
@@ -36,7 +38,7 @@ describe('DaffCategorySelectors', () => {
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
   const categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
   const productFactory: DaffProductFactory = new DaffProductFactory();
-  let stubCategory: DaffCategory;
+	let stubCategory: DaffCategory;
   const stubCategoryPageConfigurationState = categoryPageConfigurationFactory.create();
   let product: DaffProductUnion;
 
@@ -216,6 +218,24 @@ describe('DaffCategorySelectors', () => {
 
     it('selects the products of the selected category', () => {
       const selector = store.pipe(select(selectCategoryProducts));
+      const expected = cold('a', { a: [product] });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCategory', () => {
+
+    it('selects the category by id', () => {
+      const selector = store.pipe(select(selectCategory, { id: stubCategory.id }));
+      const expected = cold('a', { a: stubCategory });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectProductsByCategory', () => {
+
+    it('selects products by category', () => {
+      const selector = store.pipe(select(selectProductsByCategory, { id: stubCategory.id }));
       const expected = cold('a', { a: [product] });
       expect(selector).toBeObservable(expected);
     });
