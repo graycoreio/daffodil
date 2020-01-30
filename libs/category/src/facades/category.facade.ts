@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Store, select, Action } from '@ngrx/store';
 
 import { DaffStoreFacade } from '@daffodil/core';
-import { DaffProductUnion, DaffProduct } from '@daffodil/product';
+import { DaffProductUnion } from '@daffodil/product';
 
 import { DaffCategory } from '../models/category';
 import { DaffCategoryModule } from '../category.module';
@@ -86,7 +86,7 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
 	 * Get products by a category Id.
 	 * @param categoryId 
 	 */
-	getProductsByCategory(categoryId: string): Observable<DaffProduct[]> {
+	getProductsByCategory(categoryId: string): Observable<DaffProductUnion[]> {
 		return this.store.pipe(select(selectProductsByCategory, {id: categoryId}))
 	}
 
