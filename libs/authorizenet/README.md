@@ -15,7 +15,7 @@ This package does most of the setup for you. All you need to do is import the `D
 Call the `DaffAuthorizeNetGenerateToken` action with a `DaffAuthorizeNetTokenRequest` to generate a payment nonce. Access the payment nonce through the `DaffAuthorizeNetFacade`.
 
 ## Extension and customization
-If you feel like what our services return just won't cut it for your business needs, no problem! All of the reducers, effects, selectors, actions, and facades are 100% reusable with a customized model and service. If the `DaffAuthorizeNetTokenResponse` doesn't have all of the necessary fields you require, you'll need to provide three things.
+If you feel like what our services return just won't cut it for your business needs, no problem! All of the reducers, effects, selectors, actions, and facades are 100% reusable with a customized model and service. If the `DaffAuthorizeNetTokenResponse` doesn't have all of the necessary fields you require, you'll need to provide two things.
 1. A custom service that implements the `DaffAuthorizeNetTransformerService`. This should be injected with the `DaffAuthorizeNetTransformer` injection token to override the default transformer.
 2. Define a model that extends the `DaffAuthorizeNetTokenResponse` and/or the `DaffAuthorizeNetTokenRequest`.
 These steps should allow you to make supported requests to authorizenet in whatever way you'd like, while still being compatible with the daffodil redux state, because all redux components are generically defined.
