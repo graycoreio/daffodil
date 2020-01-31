@@ -37,7 +37,7 @@ describe('DaffCategoryFacade', () => {
     
     category = categoryFactory.create();
     categoryPageConfigurationState = categoryPageConfigurationFactory.create();
-    product = productFactory.create();
+		product = productFactory.create();
     categoryPageConfigurationState.id = category.id;
     category.productIds = [product.id];
     store = TestBed.get(Store);
@@ -185,5 +185,25 @@ describe('DaffCategoryFacade', () => {
       store.dispatch(new DaffCategoryLoadFailure(error));
       expect(facade.errors$).toBeObservable(expected);
     });
+  });
+
+  describe('getCategoryById', () => {
+
+    it('should be an observable of a category that matches the provided id', () => {
+			const expected = cold('a', { a: category });
+			store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+			store.dispatch(new DaffProductGridLoadSuccess([product]));
+			expect(facade.getCategoryById(category.id)).toBeObservable(expected);
+		});
+  });
+
+  describe('getProductsByCategory', () => {
+
+    it('should be an observable of an array of products that are filtered by the provided category id', () => {
+			const expected = cold('a', { a: [product] });
+			store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+			store.dispatch(new DaffProductGridLoadSuccess([product]));
+			expect(facade.getProductsByCategory(category.id)).toBeObservable(expected);
+		});
   });
 });

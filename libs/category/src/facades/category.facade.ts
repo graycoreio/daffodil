@@ -17,7 +17,9 @@ import {
   selectCategoryTotalPages,
   selectCategoryPageSize,
   selectCategoryFilters,
-  selectCategorySortOptions
+  selectCategorySortOptions,
+	selectCategory,
+	selectProductsByCategory
 } from '../selectors/category.selector';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
@@ -71,6 +73,22 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
    * Errors associated with retrieving a single category.
    */
   errors$: Observable<string[]>;
+	
+	/**
+	 * Get a category by the provided Id.
+	 * @param id 
+	 */
+	getCategoryById(id: string): Observable<DaffCategory> {
+		return this.store.pipe(select(selectCategory, {id: id}));
+	}
+
+	/**
+	 * Get products by a category Id.
+	 * @param categoryId 
+	 */
+	getProductsByCategory(categoryId: string): Observable<DaffProductUnion[]> {
+		return this.store.pipe(select(selectProductsByCategory, {id: categoryId}))
+	}
 
   constructor(private store: Store<CategoryReducersState>) {
     this.category$ = this.store.pipe(select(selectSelectedCategory));
@@ -82,8 +100,8 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
     this.filters$ = this.store.pipe(select(selectCategoryFilters));
     this.sortOptions$ = this.store.pipe(select(selectCategorySortOptions));
     this.loading$ = this.store.pipe(select(selectCategoryLoading));
-    this.errors$ = this.store.pipe(select(selectCategoryErrors));
-  }
+		this.errors$ = this.store.pipe(select(selectCategoryErrors));
+	}
 
   /**
    * Dispatches the given action.
