@@ -82,6 +82,9 @@
       "@daffodil/geography": [
         "dist/geography"
       ],
+      "@daffodil/geography/testing": [
+        "dist/geography/testing"
+      ],
     }
   },
   "exclude": [
