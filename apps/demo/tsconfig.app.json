@@ -10,5 +10,9 @@
   ],
   "include": [
     "**/*.ts"
-  ]
+	],
+	"angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  },
 }
