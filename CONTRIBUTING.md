@@ -211,6 +211,7 @@ The following is the list of supported scopes:
 * **checkout**
 * **design**
 * **driver**
+* **geography**
 * **product**
 * **newsletter**
 

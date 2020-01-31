@@ -78,7 +78,10 @@
       ],
       "@daffodil/contact/testing": [
         "dist/contact/testing"
-      ]
+      ],
+      "@daffodil/geography": [
+        "dist/geography"
+      ],
     }
   },
   "exclude": [
