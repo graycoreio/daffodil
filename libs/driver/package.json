@@ -1,7 +1,6 @@
 {
   "name": "@daffodil/driver",
   "version": "0.0.0-PLACEHOLDER",
-  "private": true,
   "description": "A consistent, sane api driver that works with different ecommerce systems.",
   "repository": {
     "type": "git",
