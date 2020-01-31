@@ -1,4 +1,5 @@
 /*
  * Public API Surface of @daffodil/geography
  */
-export const holder = 'GEO';
+export { DaffAddress } from './address/address';
+export { DaffPersonalAddress } from './address/personal-address';
