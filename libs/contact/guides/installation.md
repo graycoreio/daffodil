@@ -32,8 +32,8 @@ After installing, an ecommerce platform driver needs to be set-up. We highly rec
 
 Optional, [but great for fast prototyping and development](./drivers/in-memory-driver).
 
-## [Hubspot Forms](./drivers/hubspot-forums-driver)
-Set up your app's contact forum feature to directly connect with your [Hubspot forms' service](https://www.hubspot.com).
+## [Hubspot Forms](./drivers/hubspot-forms-driver)
+Set up your app's contact form feature to directly connect with your [Hubspot forms' service](https://www.hubspot.com).
 ## Magento
 *Coming Soon*
 ## Shopify
