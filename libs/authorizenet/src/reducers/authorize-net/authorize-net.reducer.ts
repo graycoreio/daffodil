@@ -3,15 +3,13 @@ import { DaffAuthorizeNetActions, DaffAuthorizeNetActionTypes } from '../../acti
 import { DaffAuthorizeNetTokenResponse } from '../../models/response/authorize-net-token-response';
 import { DaffAuthorizeNetTokenRequest } from '../../models/request/authorize-net-token-request';
 
-function getInitialState <T extends DaffAuthorizeNetTokenResponse>(): DaffAuthorizeNetReducerState<T> {
-	return {
-		tokenResponse: null,
-		error: null
-	}
-};
+export const initialState: DaffAuthorizeNetReducerState<any> = {
+	tokenResponse: null,
+	error: null
+}
 
 export function daffAuthorizeNetReducer <T extends DaffAuthorizeNetTokenRequest, V extends DaffAuthorizeNetTokenResponse>
-	(state: DaffAuthorizeNetReducerState<V> = getInitialState(), action: DaffAuthorizeNetActions<T, V>): DaffAuthorizeNetReducerState<V> {
+	(state: DaffAuthorizeNetReducerState<V> = initialState, action: DaffAuthorizeNetActions<T, V>): DaffAuthorizeNetReducerState<V> {
   switch (action.type) {
     case DaffAuthorizeNetActionTypes.GenerateTokenSuccessAction:
       return { 

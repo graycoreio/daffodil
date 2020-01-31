@@ -16,7 +16,6 @@ Call the `DaffAuthorizeNetGenerateToken` action with a `DaffAuthorizeNetTokenReq
 
 ## Extension and customization
 If you feel like what our services return just won't cut it for your business needs, no problem! All of the reducers, effects, selectors, actions, and facades are 100% reusable with a customized model and service. If the `DaffAuthorizeNetTokenResponse` doesn't have all of the necessary fields you require, you'll need to provide three things.
-1. A custom service that implements the `DaffAuthorizeNetService`. This should be injected with the `DaffAuthorizeNetDriver` injection token to override the default service.
-2. A custom service that implements the `DaffAuthorizeNetTransformerService`. This should be injected with the `DaffAuthorizeNetTransformer` injection token to override the default transformer.
-3. Define a model that extends the `DaffAuthorizeNetTokenResponse` and/or the `DaffAuthorizeNetTokenRequest`.
+1. A custom service that implements the `DaffAuthorizeNetTransformerService`. This should be injected with the `DaffAuthorizeNetTransformer` injection token to override the default transformer.
+2. Define a model that extends the `DaffAuthorizeNetTokenResponse` and/or the `DaffAuthorizeNetTokenRequest`.
 These steps should allow you to make supported requests to authorizenet in whatever way you'd like, while still being compatible with the daffodil redux state, because all redux components are generically defined.
