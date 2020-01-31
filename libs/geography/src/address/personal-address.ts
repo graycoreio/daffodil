@@ -1,7 +1,7 @@
-import { DaffAddress } from "./address";
+import { DaffAddress } from './address';
 
 /**
- * A specialized type of address useful for associating a physical address 
+ * A specialized type of address useful for associating a physical address
  * with a particular individual.
  */
 export interface DaffPersonalAddress extends DaffAddress {

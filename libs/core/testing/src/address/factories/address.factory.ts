@@ -6,7 +6,7 @@ import { DaffModelFactory } from '../../factories/factory';
 
 /**
  * @deprecated
- * Prefer the `MockDaffAddress` of `@daffodil/geography/testing`
+ * Prefer the `MockDaffAddress` of daffodil/geography/testing`
  */
 export class MockDaffAddress implements DaffAddress {
   firstname = faker.name.firstName();
@@ -21,7 +21,7 @@ export class MockDaffAddress implements DaffAddress {
 
 /**
  * @deprecated
- * Prefer the `DaffAddressFactory` of `@daffodil/geography/testing`
+ * Prefer the `DaffAddressFactory` of `daffodil/geography/testing`
  */
 @Injectable({
   providedIn: 'root'

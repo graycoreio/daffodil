@@ -1,6 +1,6 @@
 /**
  * @deprecated
- * Prefer the `DaffAddress` of `@daffodil/geography`
+ * Prefer the `DaffAddress` of `daffodil/geography`
  */
 export interface DaffAddress {
   firstname: string;
