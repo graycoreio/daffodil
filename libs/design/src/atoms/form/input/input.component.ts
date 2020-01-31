@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation, Optional, Self, Input } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
-import { DaffFormFieldControl } from '../../form-field/form-field-control';
+import { DaffFormFieldControl } from '../form-field/form-field-control';
 
 @Component({
   // tslint:disable-next-line: component-selector
