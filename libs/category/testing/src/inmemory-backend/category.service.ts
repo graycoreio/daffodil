@@ -23,14 +23,7 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
     private categoryFactory: DaffCategoryFactory,
     private categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory,
     private productInMemoryBackendService: DaffInMemoryBackendProductService
-  ) {
-    this.category = this.categoryFactory.create();
-    this.categoryPageConfigurationState = this.categoryPageConfigurationFactory.create();
-
-    this.category.productIds = productInMemoryBackendService.products
-      .map(product => product.id)
-      .slice(0, Math.floor(Math.random() * 8 + 1));
-  }
+  ) {}
 
   parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {
     return utils.parseRequestUrl(url);
@@ -41,10 +34,21 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
   }
 
   get(reqInfo: any) {
-    this.category.id = reqInfo.id;
-    this.categoryPageConfigurationState.id = reqInfo.id;
-    this.categoryPageConfigurationState.current_page = reqInfo.current_page ? reqInfo.current_page : 1;
-    this.categoryPageConfigurationState.page_size = reqInfo.page_size ? reqInfo.page_size : this.categoryPageConfigurationState.page_size;
+		this.category = this.categoryFactory.create({
+			id: reqInfo.id,
+			total_products: this.generatePageSize(reqInfo),
+			page_size: this.generatePageSize(reqInfo),
+			productIds: this.productInMemoryBackendService.products
+				.map(product => product.id)
+				.slice(0, this.generatePageSize(reqInfo))
+		});
+
+    this.categoryPageConfigurationState = this.categoryPageConfigurationFactory.create({
+			id: reqInfo.id,
+			page_size: this.generatePageSize(reqInfo),
+			current_page: this.getCurrentPageParam(reqInfo)
+		});
+
     return reqInfo.utils.createResponse$(() => {
       return {
         body: {
@@ -55,5 +59,19 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
         status: STATUS.OK
       };
     });
-  }
+	}
+
+	private generatePageSize(reqInfo) {
+		if(reqInfo.req.params.map && reqInfo.req.params.map.get('page_size') && reqInfo.req.params.map.get('page_size')[0]) {
+			return parseInt(reqInfo.req.params.map.get('page_size')[0], 10);
+		}
+		return Math.floor(Math.random() * 8 + 1);
+	}
+
+	private getCurrentPageParam(reqInfo) {
+		if(reqInfo.req.params.map && reqInfo.req.params.map.get('current_page')) {
+			return parseInt(reqInfo.req.params.map.get('current_page')[0], 10);
+		}
+		return 1;
+	}
 }

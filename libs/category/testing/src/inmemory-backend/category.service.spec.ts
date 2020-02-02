@@ -32,10 +32,17 @@ describe('Driver | InMemory | Category | DaffInMemoryBackendCategoryService', ()
     const stubCurrentPage = 2;
 
     beforeEach(() => {
+			const paramsMap = new Map()
+				.set('id', 'id')
+				.set('page_size', [stubPageSize])
+				.set('current_page', [stubCurrentPage]);
       reqInfoStub = {
         id: 'any parameter',
-        page_size: stubPageSize,
-        current_page: stubCurrentPage,
+				req: {
+					params: {
+						map: paramsMap
+					}
+				},
         utils: {
           createResponse$: (func) => {
             return func();

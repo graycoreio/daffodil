@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { DaffCategoryServiceInterface, DaffGetCategoryResponse, DaffCategoryRequest } from '@daffodil/category';
@@ -13,6 +13,11 @@ export class DaffInMemoryCategoryService implements DaffCategoryServiceInterface
   constructor(private http: HttpClient) {}
 
   get(categoryRequest: DaffCategoryRequest): Observable<DaffGetCategoryResponse> {
-    return this.http.get<DaffGetCategoryResponse>(this.url + categoryRequest.id);
+		const params = new HttpParams()
+			.set('page_size', categoryRequest.page_size ? categoryRequest.page_size.toString() : null)
+			.set('current_page', categoryRequest.current_page ? categoryRequest.current_page.toString() : null)
+			.set('id', categoryRequest.id);
+		
+    return this.http.get<DaffGetCategoryResponse>(this.url + categoryRequest.id, {params: params});
   }
 }
