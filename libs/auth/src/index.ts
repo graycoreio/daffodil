@@ -13,6 +13,13 @@ export { DaffAuthFacadeInterface } from './interfaces/auth-facade.interface';
 
 export { authReducers } from './reducers/auth-reducers';
 
+export {
+  selectAuthFeatureState,
+  selectAuthLoading,
+  selectAuthErrors,
+  selectAuthToken
+} from './selectors/auth.selector';
+
 export { DaffAccountRegistration } from './models/account-registration'
 export { DaffCustomerRegistration } from './models/customer-registration'
 export { DaffAuth } from './models/auth'
