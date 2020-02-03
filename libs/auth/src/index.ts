@@ -1,3 +1,13 @@
+export {
+  DaffAuthActionTypes,
+  DaffAuthLogin,
+  DaffAuthLoginSuccess,
+  DaffAuthLoginFailure,
+  DaffAuthRegister,
+  DaffAuthRegisterSuccess,
+  DaffAuthRegisterFailure
+} from './actions/auth.actions';
+
 export { DaffAuthFacade } from './injection-tokens/auth-facade.token'
 export { DaffAuthFacadeInterface } from './interfaces/auth-facade.interface';
 
