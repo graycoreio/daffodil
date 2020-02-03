@@ -27,7 +27,7 @@ describe('DaffFormFieldComponent | Usage', () => {
   let component: DaffFormFieldComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let formFieldControlElement: HTMLElement;
-  let control: DaffFormFieldControl<any>;
+  let control: DaffFormFieldControl;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
