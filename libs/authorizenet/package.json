@@ -1,0 +1,36 @@
+{
+  "name": "@daffodil/authorizenet",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "An ecommerce package that has multi-platform support and state management features for managing authorize.net payments.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "publishConfig": {
+    "directory": "../../dist/authorizenet"
+  },
+  "scripts": {
+    "build": "ng build authorizenet --prod",
+    "lint": "ng lint authorizenet",
+    "test": "ng test authorizenet --watch=false --browsers=ChromeHeadless",
+    "publish": "(cd ../../dist/authorizenet; npm publish --access=public)"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "peerDependencies": {
+    "@angular/common": "0.0.0-PLACEHOLDER",
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@ngrx/effects": "0.0.0-PLACEHOLDER",
+    "@ngrx/entity": "0.0.0-PLACEHOLDER",
+		"@ngrx/store": "0.0.0-PLACEHOLDER",
+		"@daffodil/core": "0.0.0-PLACEHOLDER",
+    "rxjs": "0.0.0-PLACEHOLDER"
+	},
+	"devDependencies": {
+		"@daffodil/core": "0.0.0-PLACEHOLDER"
+	}
+}

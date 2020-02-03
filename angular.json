@@ -176,6 +176,46 @@
         }
       }
     },
+    "authorizenet": {
+      "root": "libs/authorizenet",
+      "sourceRoot": "libs/authorizenet/src",
+      "projectType": "library",
+      "prefix": "@daffodil",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/authorizenet/tsconfig.lib.json",
+            "project": "libs/authorizenet/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/authorizenet/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/authorizenet/test.ts",
+            "tsConfig": "libs/authorizenet/tsconfig.spec.json",
+            "karmaConfig": "libs/authorizenet/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/authorizenet/tsconfig.lib.json",
+              "libs/authorizenet/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
     "product": {
       "root": "libs/product",
       "sourceRoot": "libs/product/src",
