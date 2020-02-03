@@ -33,7 +33,6 @@ describe('Driver | InMemory | Category | DaffInMemoryBackendCategoryService', ()
 
     beforeEach(() => {
 			const paramsMap = new Map()
-				.set('id', 'id')
 				.set('page_size', [stubPageSize])
 				.set('current_page', [stubCurrentPage]);
       reqInfoStub = {
@@ -60,6 +59,16 @@ describe('Driver | InMemory | Category | DaffInMemoryBackendCategoryService', ()
         products: inMemoryBackendProductService.products
       });
     });
+
+    it('should set total_pages', () => {
+      expect(result.body.categoryPageConfigurationState.total_pages).toEqual(
+				Math.floor(result.body.category.total_products / result.body.categoryPageConfigurationState.page_size) + 1
+			);
+		});
+		
+		it('should set no more products on the category than the page_size', () => {
+			expect(result.body.category.productIds.length).toBeLessThanOrEqual(result.body.categoryPageConfigurationState.page_size);
+		});
 
     it('should set page_size when the page_size is provided', () => {
       expect(result.body.categoryPageConfigurationState.page_size).toEqual(stubPageSize);

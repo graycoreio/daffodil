@@ -50,7 +50,6 @@ describe('Driver | InMemory | Category | CategoryService', () => {
       });
 
 			const req = httpMock.expectOne(request => request.method === 'GET' && request.url.includes(`${categoryService.url}`));
-			expect(req.request.params.has('id')).toBeTruthy();
 			expect(req.request.params.has('page_size')).toBeTruthy();
 			expect(req.request.params.has('current_page')).toBeTruthy();
       expect(req.request.method).toBe('GET');

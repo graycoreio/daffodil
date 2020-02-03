@@ -15,8 +15,7 @@ export class DaffInMemoryCategoryService implements DaffCategoryServiceInterface
   get(categoryRequest: DaffCategoryRequest): Observable<DaffGetCategoryResponse> {
 		const params = new HttpParams()
 			.set('page_size', categoryRequest.page_size ? categoryRequest.page_size.toString() : null)
-			.set('current_page', categoryRequest.current_page ? categoryRequest.current_page.toString() : null)
-			.set('id', categoryRequest.id);
+			.set('current_page', categoryRequest.current_page ? categoryRequest.current_page.toString() : null);
 		
     return this.http.get<DaffGetCategoryResponse>(this.url + categoryRequest.id, {params: params});
   }
