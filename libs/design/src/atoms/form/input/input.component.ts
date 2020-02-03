@@ -14,8 +14,8 @@ import { DaffFormFieldControl } from '../form-field/form-field-control';
   encapsulation: ViewEncapsulation.None,
   providers: [{provide: DaffFormFieldControl, useExisting: DaffInputComponent}],
 })
+export class DaffInputComponent implements DaffFormFieldControl {
 
-export class DaffInputComponent implements DaffFormFieldControl<any> {
   @Input() formSubmitted: boolean;
   
   constructor(@Optional() @Self() public ngControl: NgControl) {}
