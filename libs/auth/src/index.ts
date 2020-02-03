@@ -17,3 +17,4 @@ export { DaffRegisterServiceInterface } from './drivers/interfaces/register-serv
 export { DaffLoginDriver } from './drivers/injection-tokens/login-driver.token';
 export { DaffLoginServiceInterface } from './drivers/interfaces/login-service.interface';
 
+export { DaffAuthMagentoDriverModule } from './drivers/magento/auth-driver.module';
