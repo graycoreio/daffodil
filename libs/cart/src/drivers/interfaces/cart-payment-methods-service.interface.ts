@@ -1,8 +1,9 @@
-import { InjectionToken } from "@angular/core";
+import { InjectionToken } from '@angular/core';
 
 export interface DaffCartPaymentMethodsServiceInterface {
-  list(): any[];
+	list(): any[];
 }
 
-export const DaffCartPaymentMethodsDriver 
-  = new InjectionToken<DaffCartPaymentMethodsServiceInterface>('DaffCartPaymentMethodsDriver');
+export const DaffCartPaymentMethodsDriver = new InjectionToken<
+	DaffCartPaymentMethodsServiceInterface
+>('DaffCartPaymentMethodsDriver');
