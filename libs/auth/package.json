@@ -2,7 +2,6 @@
   "name": "@daffodil/auth",
   "version": "0.0.0-PLACEHOLDER",
   "description": "Reducers, State, Selectors, and Drivers for logging in and registering users.",
-  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"
