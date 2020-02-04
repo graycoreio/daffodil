@@ -1,4 +1,3 @@
-export { DaffAuthFacade } from './injection-tokens/auth-facade.token'
 export { DaffAuthFacadeInterface } from './interfaces/auth-facade.interface';
 
 export { DaffAccountRegistration } from './models/account-registration'
