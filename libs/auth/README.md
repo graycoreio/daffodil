@@ -4,3 +4,11 @@ provides clear interfaces, models, services, and redux state for the frontend of
 
 The auth module manages the login and registration of users and their corresponding access tokens.
 
+## Installation
+
+```
+npm install @daffodil/auth \
+    @angular/common @angular/core @daffodil/core @ngrx/store rxjs \
+    --save
+```
+
