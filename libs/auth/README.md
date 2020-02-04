@@ -12,3 +12,35 @@ npm install @daffodil/auth \
     --save
 ```
 
+## Usage
+This package does most of the setup for you.
+
+1. Import the `DaffAuthModule` into your app.
+2. Provide the drivers.
+    1. Use default drivers by importing `DaffAuthDriverModule.forRoot()`.
+    2. Provide your own `DaffLoginDriver` and/or `DaffRegisterDriver`.
+
+### Register
+
+Dispatch the `DaffAuthRegister` action with `DaffRegisterRequest` to register a new user. This will automatically log the user in.
+
+### Login
+
+Dispatch the `DaffAuthLogin` action with `DaffLoginRequest` to log the user in.
+
+## Extension and Customization
+If you feel like what our services return just won't cut it for your business needs, no problem! All of the reducers, effects, selectors, actions, and facades are 100% reusable with a customized model and service.
+
+### Login
+If the `DaffLoginResponse` doesn't have all of the necessary fields you require, you'll need to provide two things.
+1. A custom service that implements the `DaffAuthTransformerService`. This should be injected with the `DaffAuthTransformer` injection token to override the default transformer.
+2. Define a model that extends the `DaffLoginResponse` and/or the `DaffLoginRequest`.
+
+These steps should allow you to make supported requests to login in whatever way you'd like, while still being compatible with the daffodil redux state, because all redux components are generically defined.
+
+### Register
+If the `DaffRegisterResponse` doesn't have all of the necessary fields you require, you'll need to provide two things.
+1. A customized login process as detailed above.
+2. Define a model that extends the `DaffRegisterResponse` and/or the `DaffRegisterRequest`.
+
+These steps should allow you to make supported requests to register in whatever way you'd like, while still being compatible with the daffodil redux state, because all redux components are generically defined.
