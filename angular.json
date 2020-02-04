@@ -77,6 +77,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "apps/demo/src/test.ts",
+            "codeCoverage": true,
             "polyfills": "apps/demo/src/polyfills.ts",
             "tsConfig": "apps/demo/tsconfig.spec.json",
             "karmaConfig": "apps/demo/karma.conf.js",
@@ -588,6 +589,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "apps/daffio/src/test.ts",
+            "codeCoverage": true,
             "polyfills": "apps/daffio/src/polyfills.ts",
             "tsConfig": "apps/daffio/tsconfig.spec.json",
             "karmaConfig": "apps/daffio/karma.conf.js",
@@ -806,6 +808,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "apps/design-land/src/test.ts",
+            "codeCoverage": true,
             "polyfills": "apps/design-land/src/polyfills.ts",
             "tsConfig": "apps/design-land/tsconfig.spec.json",
             "karmaConfig": "apps/design-land/karma.conf.js",
