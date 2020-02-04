@@ -87,7 +87,13 @@
       ],
 			"@daffodil/authorizenet": [
 				"dist/authorizenet"
-			]
+      ],
+      "@daffodil/auth": [
+        "dist/auth"
+      ],
+      "@daffodil/auth/testing": [
+        "dist/auth/testing"
+      ]
     }
   },
   "exclude": [
