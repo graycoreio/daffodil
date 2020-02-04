@@ -198,6 +198,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "libs/authorizenet/test.ts",
+            "codeCoverage": true,
             "tsConfig": "libs/authorizenet/tsconfig.spec.json",
             "karmaConfig": "libs/authorizenet/karma.conf.js"
           }
@@ -238,6 +239,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "libs/product/test.ts",
+            "codeCoverage": true,
             "tsConfig": "libs/product/tsconfig.spec.json",
             "karmaConfig": "libs/product/karma.conf.js"
           }
@@ -278,6 +280,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "libs/cart/test.ts",
+            "codeCoverage": true,
             "tsConfig": "libs/cart/tsconfig.spec.json",
             "karmaConfig": "libs/cart/karma.conf.js"
           }
@@ -318,6 +321,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "libs/category/test.ts",
+            "codeCoverage": true,
             "tsConfig": "libs/category/tsconfig.spec.json",
             "karmaConfig": "libs/category/karma.conf.js"
           }
@@ -358,6 +362,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "libs/checkout/test.ts",
+            "codeCoverage": true,
             "tsConfig": "libs/checkout/tsconfig.spec.json",
             "karmaConfig": "libs/checkout/karma.conf.js"
           }
@@ -398,6 +403,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "libs/core/test.ts",
+            "codeCoverage": true,
             "tsConfig": "libs/core/tsconfig.spec.json",
             "karmaConfig": "libs/core/karma.conf.js"
           }
@@ -438,6 +444,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "libs/driver/test.ts",
+            "codeCoverage": true,
             "tsConfig": "libs/driver/tsconfig.spec.json",
             "karmaConfig": "libs/driver/karma.conf.js"
           }
@@ -473,6 +480,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "libs/design/src/test.ts",
+            "codeCoverage": true,
             "tsConfig": "libs/design/tsconfig.spec.json",
             "karmaConfig": "libs/design/karma.conf.js",
             "stylePreprocessorOptions": {
@@ -878,6 +886,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "libs/branding/src/test.ts",
+            "codeCoverage": true,
             "tsConfig": "libs/branding/tsconfig.spec.json",
             "karmaConfig": "libs/branding/karma.conf.js"
           }
@@ -918,6 +927,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "libs/navigation/test.ts",
+            "codeCoverage": true,
             "tsConfig": "libs/navigation/tsconfig.spec.json",
             "karmaConfig": "libs/navigation/karma.conf.js"
           }
@@ -958,6 +968,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "libs/newsletter/test.ts",
+            "codeCoverage": true,
             "tsConfig": "libs/newsletter/tsconfig.spec.json",
             "karmaConfig": "libs/newsletter/karma.conf.js"
           }
@@ -998,6 +1009,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "libs/contact/test.ts",
+            "codeCoverage": true,
             "tsConfig": "libs/contact/tsconfig.spec.json",
             "karmaConfig": "libs/contact/karma.conf.js"
           }
@@ -1038,6 +1050,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "libs/geography/src/test.ts",
+            "codeCoverage": true,
             "tsConfig": "libs/geography/tsconfig.spec.json",
             "karmaConfig": "libs/geography/karma.conf.js"
           }
