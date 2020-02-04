@@ -1,6 +1,7 @@
 # Daffodil
 [![Join the chat at https://gitter.im/graycoreio/daffodil](https://badges.gitter.im/graycoreio/daffodil.svg)](https://gitter.im/graycoreio/daffodil?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://graycore.visualstudio.com/Daffodil/_apis/build/status/graycoreio.daffodil?branchName=develop)](https://graycore.visualstudio.com/Daffodil/_build/latest?definitionId=6&branchName=develop)
+[![Codecov](https://img.shields.io/codecov/c/gh/graycoreio/daffodil)](https://codecov.io/github/graycoreio/daffodil/)
 [![experimental](https://img.shields.io/static/v1.svg?label=stability&message=experimental&color=orange)](https://www.github.com/graycoreio/daffodil)
 [![dependencies Status](https://david-dm.org/graycoreio/daffodil/status.svg)](https://david-dm.org/graycoreio/daffodil)
 [![devDependencies Status](https://david-dm.org/graycoreio/daffodil/dev-status.svg)](https://david-dm.org/graycoreio/daffodil?type=dev)
@@ -16,10 +17,10 @@ Daffodil is a frontend toolkit that intends to accomplish three things:
 
 * :free: Forever Free, Open Source, and MIT Licensed
 * :hammer: Platform Agnostic Drivers For Your Platform of Choice
-    * Shopify 
+    * Shopify
     * Magento 2
-    * In-Memory Backend 
-        * Prebuilt 
+    * In-Memory Backend
+        * Prebuilt
         * :zap: Great for lightning fast iteration and concepting.
 * :cake: Decoupled and Composable Packages for your use case
     * Product
