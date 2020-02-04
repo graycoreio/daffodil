@@ -1,3 +1,3 @@
-import { DaffAuth } from './auth';
+import { DaffAuthToken } from './auth-token';
 
-export type DaffRegisterResponse = DaffAuth;
+export type DaffRegisterResponse = DaffAuthToken;
