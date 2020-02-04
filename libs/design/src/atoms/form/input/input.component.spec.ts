@@ -45,10 +45,6 @@ describe('DaffInputComponent', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  it('should set `daff-input` on host element', () => {
-    expect(fixture.debugElement.query(By.css('[daff-input]')).nativeElement.classList.contains('daff-input')).toEqual(true);
-  });
-
   it('should be able to take formSubmitted as input', () => {
     expect(component.formSubmitted).toEqual(stubFormSubmitted);
   });
