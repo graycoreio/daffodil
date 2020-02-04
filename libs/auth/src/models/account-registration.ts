@@ -1,6 +1,6 @@
 import { DaffCustomerRegistration } from './customer-registration';
 
-export interface DaffAccountRegistration {
-  customer: DaffCustomerRegistration;
+export interface DaffAccountRegistration<T extends DaffCustomerRegistration> {
+  customer: T;
   password: string;
 }
