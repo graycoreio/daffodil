@@ -42,14 +42,16 @@ describe('Driver | InMemory | Category | CategoryService', () => {
       const mockCategory = categoryFactory.create();
       const mockProducts = productFactory.createMany(3);
 
-      categoryService.get({ id: mockCategory.id }).subscribe(categoryResponse => {
+      categoryService.get({ id: mockCategory.id, page_size: 12 }).subscribe(categoryResponse => {
         expect(categoryResponse).toEqual({
           category: mockCategory,
           products: mockProducts
         });
       });
 
-      const req = httpMock.expectOne(`${categoryService.url}${mockCategory.id}`);
+			const req = httpMock.expectOne(request => request.method === 'GET' && request.url.includes(`${categoryService.url}`));
+			expect(req.request.params.has('page_size')).toBeTruthy();
+			expect(req.request.params.has('current_page')).toBeTruthy();
       expect(req.request.method).toBe('GET');
 
       req.flush({ category: mockCategory, products: mockProducts });

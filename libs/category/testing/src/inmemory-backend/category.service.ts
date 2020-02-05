@@ -11,6 +11,7 @@ import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
 
 import { DaffCategoryFactory } from '../factories/category.factory';
 import { DaffCategoryPageConfigurationStateFactory } from '../factories/category-page-configuration-state.factory';
+import { DaffProduct } from '@daffodil/product';
 
 @Injectable({
   providedIn: 'root'
@@ -23,14 +24,7 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
     private categoryFactory: DaffCategoryFactory,
     private categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory,
     private productInMemoryBackendService: DaffInMemoryBackendProductService
-  ) {
-    this.category = this.categoryFactory.create();
-    this.categoryPageConfigurationState = this.categoryPageConfigurationFactory.create();
-
-    this.category.productIds = productInMemoryBackendService.products
-      .map(product => product.id)
-      .slice(0, Math.floor(Math.random() * 8 + 1));
-  }
+  ) {}
 
   parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {
     return utils.parseRequestUrl(url);
@@ -41,10 +35,22 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
   }
 
   get(reqInfo: any) {
-    this.category.id = reqInfo.id;
-    this.categoryPageConfigurationState.id = reqInfo.id;
-    this.categoryPageConfigurationState.current_page = reqInfo.current_page ? reqInfo.current_page : 1;
-    this.categoryPageConfigurationState.page_size = reqInfo.page_size ? reqInfo.page_size : this.categoryPageConfigurationState.page_size;
+		const allCategoryProductIds = this.generateProductIdArray(this.productInMemoryBackendService.products);
+
+    this.categoryPageConfigurationState = this.categoryPageConfigurationFactory.create({
+			id: reqInfo.id,
+			page_size: this.generatePageSize(reqInfo),
+			current_page: this.getCurrentPageParam(reqInfo),
+			total_pages: this.getTotalPages(allCategoryProductIds, this.generatePageSize(reqInfo))
+		});
+
+		this.category = this.categoryFactory.create({
+			id: reqInfo.id,
+			total_products: allCategoryProductIds.length,
+			page_size: this.generatePageSize(reqInfo),
+			productIds: this.trimProductIdsToSinglePage(allCategoryProductIds, this.getCurrentPageParam(reqInfo), this.generatePageSize(reqInfo))
+		});
+
     return reqInfo.utils.createResponse$(() => {
       return {
         body: {
@@ -55,5 +61,45 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
         status: STATUS.OK
       };
     });
-  }
+	}
+	
+	private getTotalPages(allIds: number[], pageSize: number) {
+		return Math.floor(allIds.length / pageSize) + 1;
+	}
+
+	private trimProductIdsToSinglePage(allIds: number[], currentPage: number, pageSize: number) {
+		const tempIds = [...allIds];
+		tempIds.splice(0, (currentPage-1) * pageSize);
+		tempIds.splice(pageSize, tempIds.length-pageSize);
+
+		return tempIds;
+	}
+
+	private generateProductIdArray(products: DaffProduct[]) {
+		const arraySize = Math.floor(Math.random() * Math.floor(products.length/2) + Math.floor(products.length/2));
+		const productIdArray = [];
+		for(let i=0; i<arraySize; i++) {
+			const productIndex = Math.floor(Math.random() * products.length);
+			productIdArray.push(
+				products[productIndex].id
+			);
+			products.splice(productIndex, 1);
+		}
+
+		return productIdArray;
+	}
+
+	private generatePageSize(reqInfo) {
+		if(reqInfo.req.params.map && reqInfo.req.params.map.get('page_size') && reqInfo.req.params.map.get('page_size')[0]) {
+			return parseInt(reqInfo.req.params.map.get('page_size')[0], 10);
+		}
+		return 10;
+	}
+
+	private getCurrentPageParam(reqInfo) {
+		if(reqInfo.req.params.map && reqInfo.req.params.map.get('current_page')) {
+			return parseInt(reqInfo.req.params.map.get('current_page')[0], 10);
+		}
+		return 1;
+	}
 }
