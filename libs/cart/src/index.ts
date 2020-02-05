@@ -1,11 +1,7 @@
 export { DaffCart } from './models/cart';
 export { DaffCartItem } from './models/cart-item';
 export { DaffCartAddress } from './models/cart-address';
-export { 
-  DaffCartPaymentMethod, 
-  DaffCartPurchaseOrder, 
-  DaffCartTruncatedCreditCard 
-} from './models/cart-payment';
+export { DaffCartPaymentMethod } from './models/cart-payment';
 export { DaffCartShippingRate } from './models/cart-shipping-rate';
 export { DaffCartShippingInformation } from './models/cart-shipping-info';
 export { DaffCartTotal } from './models/cart-total';
