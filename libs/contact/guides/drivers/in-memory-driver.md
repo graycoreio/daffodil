@@ -1,6 +1,6 @@
 # Contact InMemory Driver
 
-The In-Memory driver is for rapid development without the need to set up a magento/shopify/etc backend. It will mock out the submission of a contact forum and operate like a functional backend.
+The In-Memory driver is for rapid development without the need to set up a magento/shopify/etc backend. It will mock out the submission of a contact form and operate like a functional backend.
 
 To set up, inside of your `app.module` make sure to include the `DaffContactInMemoryDriverModule.forRoot()` inside of your imports section, as well as to import the `DaffContactInMemoryDriverModule` from the `@daffodil/contact/testing` library and the `HttpClientInMemoryWebApiModule` from `angular-in-memory-web-api`.
 
