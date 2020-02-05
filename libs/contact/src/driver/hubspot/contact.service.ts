@@ -7,8 +7,8 @@ import { Title } from '@angular/platform-browser';
 import { DaffContactUnion } from '../../models/contact-union';
 import { DaffContactTransformerInterface } from '../interfaces/contact-transformer.interface';
 import { DaffContactServiceInterface } from '../interfaces/contact-service.interface';
-import { DaffContactConfig } from '../injection-tokens/contact-config.token';
-import { DaffContactTransformer } from '../injection-tokens/contact-transfomer.token';
+import { DaffContactConfig } from '../interfaces/injection-tokens/contact-config.token';
+import { DaffContactTransformer } from '../interfaces/contact-transfomer.token';
 import { DaffHubspotFormsService, DaffHubspotRequest, DaffHubspotConfig } from '@daffodil/driver/hubspot';
 
 export class DaffContactHubspotService extends DaffHubspotFormsService<DaffHubspotRequest> implements DaffContactServiceInterface<DaffContactUnion, any>{

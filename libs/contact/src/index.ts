@@ -1,5 +1,7 @@
-export { DaffContactServiceInterface } from './driver/interfaces/contact-service.interface'
+export * from './driver/public_api';
+export { DaffContactActions } from './actions/contact.actions';
 export { DaffContactUnion } from './models/contact-union';
-export { DaffContactDriver } from './driver/injection-tokens/contact-driver.token';
-export { DaffContactTransformerInterface } from './driver/interfaces/contact-transformer.interface';
-export { DaffContactHubSpotDriverModule } from './driver/hubspot/hubspot-driver.module';
+export { DaffContactEffects } from './effects/contact.effects';
+export { DaffContactFacade } from './facades/contact.facade';
+export * from './reducers/contact.reducer';
+export * from './selectors/contact.selector';
