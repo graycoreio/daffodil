@@ -18,8 +18,7 @@
   "scripts": {
     "build": "ng build auth --prod",
     "lint": "ng lint auth",
-    "test": "ng test auth --watch=false --browsers=ChromeHeadless",
-    "publish": "(cd ../../dist/auth; npm publish --access=public)"
+    "test": "ng test auth --watch=false --browsers=ChromeHeadless"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
