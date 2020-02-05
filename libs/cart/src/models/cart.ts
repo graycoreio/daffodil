@@ -1,19 +1,19 @@
 import { DaffCartItem } from './cart-item';
 import { DaffCartAddress } from './cart-address';
-import { DaffCartPayment } from './cart-payment';
+import { DaffCartPaymentMethod } from './cart-payment';
+import { DaffCartShippingInformation } from './cart-shipping-info';
+import { DaffCartCoupon } from './cart-coupon';
+import { DaffCartTotal } from './cart-total';
 
 export interface DaffCart {
-  id: number;
-  created_at: Date;
-  updated_at: Date;
-  store_to_base_rate: number;
-  grand_total: number;
-  checkout_method: string;
-  customer_id: number;
-  coupon_code: string;
+  id: number | string;
   subtotal: number;
-  subtotal_with_discount: number;
+  grand_total: number;
+  coupons: DaffCartCoupon[];
   items?: DaffCartItem[];
-  addresses?: DaffCartAddress[];
-  payment?: DaffCartPayment | null;
+  billing_address: DaffCartAddress | null;
+  shipping_address: DaffCartAddress | null;
+  payment?: DaffCartPaymentMethod;
+  totals: DaffCartTotal[];
+  shipping_information: DaffCartShippingInformation | null;
 }

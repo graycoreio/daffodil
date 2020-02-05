@@ -37,11 +37,15 @@ describe('Cart | Testing | Factories | DaffCartFactory', () => {
         expect(result.items.length).toEqual(0)
       });
 
-      it('should have no CartAddresses', () => {
-        expect(result.addresses.length).toEqual(0);
+      it('should not have a billing address', () => {
+        expect(result.billing_address).toBeNull();
       });
 
-      it('should not have a CartPayment', () => {
+      it('should not have a shipping address', () => {
+        expect(result.shipping_address).toBeNull();
+      });
+
+      it('should not have a payment', () => {
         expect(result.payment).toEqual(null);
       });
     });

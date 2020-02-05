@@ -19,19 +19,6 @@ describe('Cart | Testing | Factories | CartAddressFactory', () => {
     expect(cartAddressFactory).toBeTruthy();
   });
 
-  describe('create', () => {
-
-    let result: DaffCartAddress;
-
-    beforeEach(() => {
-      result = cartAddressFactory.create();
-    });
-    
-    xit('should return a CartAddress with all required fields defined', () => {
-
-    });
-  });
-
   describe('createMany', () => {
     let result: DaffCartAddress[];
 

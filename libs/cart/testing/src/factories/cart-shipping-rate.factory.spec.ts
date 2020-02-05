@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { DaffCartShippingRate } from '@daffodil/cart';
 import { DaffCartShippingRateFactory } from './cart-shipping-rate.factory';
 
-describe('Core | Testing | Cart | Factories | CartShippingRateFactory', () => {
+describe('Cart | Testing | Factories | CartShippingRateFactory', () => {
   
   let cartShippingRateFactory: DaffCartShippingRateFactory;
 
