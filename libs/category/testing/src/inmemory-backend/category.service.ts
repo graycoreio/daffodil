@@ -52,6 +52,8 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
 		});
 
     return reqInfo.utils.createResponse$(() => {
+			console.log(this.category.productIds);
+			console.log(this.productInMemoryBackendService.products);
       return {
         body: {
           category: this.category,
@@ -77,13 +79,14 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
 
 	private generateProductIdArray(products: DaffProduct[]) {
 		const arraySize = Math.floor(Math.random() * Math.floor(products.length/2) + Math.floor(products.length/2));
+		const availableProducts = [...products];
 		const productIdArray = [];
 		for(let i=0; i<arraySize; i++) {
-			const productIndex = Math.floor(Math.random() * products.length);
+			const productIndex = Math.floor(Math.random() * availableProducts.length);
 			productIdArray.push(
-				products[productIndex].id
+				availableProducts[productIndex].id
 			);
-			products.splice(productIndex, 1);
+			availableProducts.splice(productIndex, 1);
 		}
 
 		return productIdArray;
