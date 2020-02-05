@@ -1,16 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { DaffCart } from '@daffodil/cart';
-import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { DaffInMemoryCheckoutService } from './checkout.service';
+import { DaffOrderFactory } from '@daffodil/checkout/testing';
+import { Order } from '@daffodil/checkout';
 
 describe('Driver | In Memory | Checkout | CheckoutService', () => {
   let checkoutService: DaffInMemoryCheckoutService;
   let httpMock: HttpTestingController;
-  let cartFactory: DaffCartFactory;
-  let stubOrder: DaffCart;
+  let orderFactory: DaffOrderFactory;
+  let stubOrder: Order;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -23,7 +23,7 @@ describe('Driver | In Memory | Checkout | CheckoutService', () => {
     });
     
     httpMock = TestBed.get(HttpTestingController);
-    cartFactory = TestBed.get(DaffCartFactory);
+    orderFactory = TestBed.get(DaffOrderFactory);
     checkoutService = TestBed.get(DaffInMemoryCheckoutService);
   });
 
@@ -41,7 +41,7 @@ describe('Driver | In Memory | Checkout | CheckoutService', () => {
     beforeEach(() => {
       cartId = 'cartId';
 
-      stubOrder = cartFactory.create();
+      stubOrder = orderFactory.create();
     });
 
     describe('a successful placeOrder request', () => {

@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import { DaffPlaceOrder } from '../actions/order.actions';
-import { Order } from '../../models/order/order';
 import { DaffOrderReducersState } from '../reducers/order-reducers.interface';
 import { selectOrder, selectLoading } from '../selectors/order.selector';
+import { Order } from '../../models/order/order';
 
 @Component({
   selector: '[order-container]',
@@ -24,9 +23,5 @@ export class OrderContainer implements OnInit {
   ngOnInit() {
     this.order$ = this.store.pipe(select(selectOrder));
     this.loading$ = this.store.pipe(select(selectLoading));
-  }
-
-  placeOrder(cart: Order) {
-    this.store.dispatch(new DaffPlaceOrder(cart));
   }
 }
