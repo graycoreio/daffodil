@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DaffContactModule } from '../contact.module';
-import { DaffStoreFacade } from 'libs/core/src';
+import { DaffStoreFacade } from '@daffodil/core';
 import { Action, Store } from '@ngrx/store';
 import { DaffContactReducerState, selectDaffContactLoading, selectDaffContactError, selectDaffContactSuccess } from '../selectors/contact.selector';
 import { Observable } from 'rxjs';
