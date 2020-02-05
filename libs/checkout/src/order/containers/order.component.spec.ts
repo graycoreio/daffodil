@@ -65,13 +65,4 @@ describe('OrderContainer', () => {
       });
     });
   });
-
-  describe('placeOrder', () => {
-    
-    it('should call store.dispatch with a DaffPlaceOrder action', () => {
-      component.placeOrder(stubOrder);
-
-      expect(store.dispatch).toHaveBeenCalledWith(new DaffPlaceOrder(stubOrder));
-    });
-  });
 });

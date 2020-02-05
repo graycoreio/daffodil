@@ -1,17 +1,17 @@
-import { DaffCartTotal } from "../../../models/cart-totals";
-import { InjectionToken } from "@angular/core";
+import { DaffCartTotal } from '../../../models/cart-total';
+import { InjectionToken } from '@angular/core';
 
 /**
- * A transformer for coalescing a cart total of a given platform into a generic 
+ * A transformer for coalescing a cart total of a given platform into a generic
  * DaffCartTotal
  */
 export interface DaffCartTotalsTransformerInterface<T extends DaffCartTotal> {
-
-  /**
-   * Transform a total into a kind of DaffCartTotal.
-   */
-  transform(total: any): T;
+	/**
+	 * Transform a total into a kind of DaffCartTotal.
+	 */
+	transform(total: any): T;
 }
 
-export const DaffCartTotalTransformer = 
-  new InjectionToken<DaffCartTotalsTransformerInterface<any>>('DaffCartTotalTransformer');
+export const DaffCartTotalTransformer = new InjectionToken<
+	DaffCartTotalsTransformerInterface<any>
+>('DaffCartTotalTransformer');

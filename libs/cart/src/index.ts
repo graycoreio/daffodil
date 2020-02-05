@@ -2,7 +2,6 @@ export { DaffCart } from './models/cart';
 export { DaffCartItem } from './models/cart-item';
 export { DaffCartAddress } from './models/cart-address';
 export { 
-  DaffCartPayment, 
   DaffCartPaymentMethod, 
   DaffCartPurchaseOrder, 
   DaffCartTruncatedCreditCard 

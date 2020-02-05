@@ -1,5 +1,5 @@
-import { DaffCartShippingRate } from "./cart-shipping-rate";
+import { DaffCartShippingRate } from './cart-shipping-rate';
 
 export interface DaffCartShippingInformation extends DaffCartShippingRate {
-  address_id: string | number;
+	address_id: string | number;
 }

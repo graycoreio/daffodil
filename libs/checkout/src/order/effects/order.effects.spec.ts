@@ -4,19 +4,22 @@ import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
 import { DaffCart, DaffCartDriver, DaffCartServiceInterface } from '@daffodil/cart';
-import { DaffCartFactory, DaffTestingCartService } from '@daffodil/cart/testing';
-import { DaffTestingCheckoutService } from '@daffodil/checkout/testing';
+import { DaffTestingCartService, DaffCartFactory } from '@daffodil/cart/testing';
+import { DaffTestingCheckoutService, DaffOrderFactory } from '@daffodil/checkout/testing';
 
 import { OrderEffects } from './order.effects';
 import { DaffPlaceOrder, DaffPlaceOrderSuccess, DaffPlaceOrderFailure } from '../actions/order.actions';
 import { DaffCheckoutServiceInterface } from '../../drivers/interfaces/checkout-service.interface';
 import { DaffCheckoutDriver } from '../../drivers/injection-tokens/driver-checkout.token';
+import { Order } from '@daffodil/checkout';
 
 describe('Daffodil | State | Order | OrderEffects', () => {
   let actions$: Observable<any>;
   let effects: OrderEffects<DaffCart>;
   let daffCheckoutDriver: DaffCheckoutServiceInterface;
   let daffCartDriver: DaffCartServiceInterface<DaffCart>;
+  let stubOrder: Order;
+  let orderFactory: DaffOrderFactory;
   let stubCart: DaffCart;
   let cartFactory: DaffCartFactory;
 
@@ -37,11 +40,13 @@ describe('Daffodil | State | Order | OrderEffects', () => {
     });
 
     effects = TestBed.get(OrderEffects);
+    orderFactory = TestBed.get(DaffOrderFactory);
     cartFactory = TestBed.get(DaffCartFactory);
     daffCartDriver = TestBed.get(DaffCartDriver);
     daffCheckoutDriver = TestBed.get(DaffCheckoutDriver);
 
     stubCart = cartFactory.create();
+    stubOrder = orderFactory.create();
   });
 
   it('should be created', () => {
@@ -54,9 +59,9 @@ describe('Daffodil | State | Order | OrderEffects', () => {
     describe('and the call to CartService is successful', () => {
       
       beforeEach(() => {
-        spyOn(daffCheckoutDriver, 'placeOrder').and.returnValue(of(stubCart));
+        spyOn(daffCheckoutDriver, 'placeOrder').and.returnValue(of(stubOrder));
         const placeOrderAction = new DaffPlaceOrder(stubCart);
-        const placeOrderSuccessAction = new DaffPlaceOrderSuccess(stubCart);
+        const placeOrderSuccessAction = new DaffPlaceOrderSuccess(stubOrder);
         actions$ = hot('--a', { a: placeOrderAction });
         expected = cold('--b', { b: placeOrderSuccessAction });
       });
@@ -87,7 +92,7 @@ describe('Daffodil | State | Order | OrderEffects', () => {
   describe('when PlaceOrderSuccessAction is triggered', () => {
     
     let expected;
-    const placeOrderSuccessAction = new DaffPlaceOrderSuccess(stubCart);
+    const placeOrderSuccessAction = new DaffPlaceOrderSuccess(stubOrder);
 
     beforeEach(() => {
       spyOn(daffCartDriver, 'clear').and.returnValue(of());

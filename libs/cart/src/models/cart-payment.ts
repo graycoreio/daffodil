@@ -1,5 +1,3 @@
-export type DaffCartPayment = DaffCartPurchaseOrder | DaffCartTruncatedCreditCard;
-
 export interface DaffCartPaymentMethod {
   method: string;
 }

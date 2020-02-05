@@ -4,15 +4,18 @@ import { initialState, daffOrderReducer } from './order.reducer';
 import { DaffPlaceOrder, DaffPlaceOrderSuccess, DaffPlaceOrderFailure } from '../../actions/order.actions';
 import { Order } from '../../../models/order/order';
 import { DaffOrderReducerState } from './order-reducer.interface';
+import { DaffCartFactory } from '@daffodil/cart/testing';
+import { DaffCart } from '@daffodil/cart';
 
 describe('Order | Order Reducer', () => {
 
   let orderFactory: DaffOrderFactory;
   let stubOrder: Order;
+  let stubCart: DaffCart;
 
   beforeEach(() => {
     orderFactory = new DaffOrderFactory();
-
+    stubCart = new DaffCartFactory().create();
     stubOrder = orderFactory.create();
   });
 
@@ -30,7 +33,7 @@ describe('Order | Order Reducer', () => {
   describe('when PlaceOrderAction is triggered', () => {
 
     it('sets loading state to true', () => {
-      const placeOrderAction: DaffPlaceOrder = new DaffPlaceOrder(stubOrder);
+      const placeOrderAction: DaffPlaceOrder = new DaffPlaceOrder(stubCart);
       
       const result = daffOrderReducer(initialState, placeOrderAction);
 
