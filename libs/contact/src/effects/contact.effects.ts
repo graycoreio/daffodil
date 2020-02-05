@@ -4,8 +4,7 @@ import { Action } from '@ngrx/store';
 import { Observable, of, EMPTY } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
 
-import { DaffContactDriver } from '../driver/interfaces/injection-tokens/contact-driver.token';
-import { DaffContactServiceInterface } from '../driver/interfaces/contact-service.interface';
+import { DaffContactServiceInterface, DaffContactDriver } from '../driver/interfaces/contact-service.interface';
 
 import { DaffContactActionTypes, DaffContactSubmit, DaffContactCancel, DaffContactSuccessSubmit, DaffContactFailedSubmit, DaffContactRetry } from '../actions/contact.actions';
 

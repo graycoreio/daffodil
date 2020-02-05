@@ -1,12 +1,12 @@
 import { Observable, of } from 'rxjs';
 import { DaffContactEffects } from './contact.effects';
-import { DaffContactUnion, DaffContactServiceInterface } from '@daffodil/contact';
 import { TestBed } from '@angular/core/testing';
-import { DaffTestingContactService } from 'libs/contact/testing/src/drivers/testing/contact.service';
-import { DaffContactDriver } from '../driver/interfaces/injection-tokens/contact-driver.token';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { DaffContactSubmit, DaffContactSuccessSubmit, DaffContactFailedSubmit, DaffContactRetry, DaffContactCancel } from '../actions/contact.actions';
 import { hot, cold } from 'jasmine-marbles';
+import { DaffTestingContactService } from 'libs/contact/testing/src';
+import { DaffContactDriver, DaffContactServiceInterface } from '../driver/interfaces/contact-service.interface';
+import { DaffContactUnion } from '../models/contact-union';
 
 describe('DaffContactEffects', () => {
   let actions$: Observable<any>;
