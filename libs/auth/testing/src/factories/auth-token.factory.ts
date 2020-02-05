@@ -5,7 +5,7 @@ import { DaffAuthToken } from '@daffodil/auth';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockAuthToken implements DaffAuthToken {
-  token = faker.random.number(1000000).toString();
+  token = faker.random.alphaNumeric(16);
 };
 
 @Injectable({

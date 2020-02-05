@@ -7,7 +7,7 @@ import { DaffCustomerRegistrationFactory } from './customer-registration.factory
 
 export class MockAccountRegistration implements DaffAccountRegistration<DaffCustomerRegistration> {
   customer = this.fakeCustomer();
-  password = faker.random.number(1000000).toString();
+  password = faker.random.alphaNumeric(16);
 
   private fakeCustomer(): DaffCustomerRegistration {
     const factory = new DaffCustomerRegistrationFactory();

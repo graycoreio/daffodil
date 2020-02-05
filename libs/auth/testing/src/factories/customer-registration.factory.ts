@@ -5,9 +5,9 @@ import * as faker from 'faker/locale/en_US';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCustomerRegistration implements DaffCustomerRegistration {
-  email = faker.random.number(1000000).toString();
-  firstName = faker.random.number(1000000).toString();
-  lastName = faker.random.number(1000000).toString();
+  email = faker.internet.email();
+  firstName = faker.name.firstName();
+  lastName = faker.name.lastName();
 }
 
 @Injectable({
