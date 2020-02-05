@@ -60,19 +60,6 @@ describe('CartTotalsComponent', () => {
     expect(cartTotalsComponent.cart).toEqual(mockCart);
   });
 
-  describe('ngOnInit', () => {
-
-    let expectedTax: number;
-    
-    beforeEach(() => {
-      expectedTax = 2 * itemTaxValue;
-    });
-
-    it('should set cartTax to the aggregated tax of all cart items', () => {
-      expect(cartTotalsComponent.cartTax).toEqual(expectedTax);
-    });
-  });
-
   describe('on estimated shipping <demo-cart-totals-item>', () => {
 
     beforeEach(() => {
@@ -99,7 +86,7 @@ describe('CartTotalsComponent', () => {
     });
   
     it('should call the angular CurrencyPipe.transform with cartTax', () => {
-      expect(currencyPipe).toHaveBeenCalledWith(cartTotalsComponent.cartTax);
+      expect(currencyPipe).toHaveBeenCalledWith(0);
     });
   });
 
