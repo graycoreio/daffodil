@@ -9,21 +9,15 @@ import * as faker from 'faker/locale/en_US';
   providedIn: 'root'
 })
 export class DaffInMemoryBackendAuthService implements InMemoryDbService {
-  users = {};
-
   constructor() {}
 
   private generateToken(): string {
     return faker.random.alphaNumeric(16);
   }
 
-  private setUserInfo(email, password) {
-    this.users[email] = {password};
-  }
-
-  createDb(): any {
+  createDb() {
     return {
-      auth: this.users
+      auth: {}
     };
   }
 
@@ -37,46 +31,22 @@ export class DaffInMemoryBackendAuthService implements InMemoryDbService {
   }
 
   private login(reqInfo: any) {
-    const {
-      email,
-      password
-    } = reqInfo.utils.getJsonBody();
-    const user = this.users[email];
-
-    return reqInfo.utils.createResponse$(() => {
-      if (user) {
-        return user.password === password
-          ? {
-            body: {
-              token: this.generateToken()
-            },
-            status: STATUS.OK
-          }
-          : Error('Incorrect password');
-      } else {
-        return Error('User does not exist');
-      }
-    });
+    return reqInfo.utils.createResponse$(() => ({
+      body: {
+        token: this.generateToken()
+      },
+      status: STATUS.OK
+    }));
   }
 
   private register(reqInfo) {
     const {
       customer,
-      password
     } = reqInfo.utils.getJsonBody();
-    const user = this.users[customer.email];
 
-    return reqInfo.utils.createResponse$(() => {
-      if (user) {
-        return Error('User already exists');
-      } else {
-        this.setUserInfo(customer.email, password);
-
-        return {
-          body: customer,
-          status: STATUS.CREATED
-        };
-      }
-    })
+    return reqInfo.utils.createResponse$(() => ({
+      body: customer,
+      status: STATUS.CREATED
+    }))
   }
 }

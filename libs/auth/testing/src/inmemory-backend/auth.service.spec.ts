@@ -7,11 +7,13 @@ import {
 
 import { DaffInMemoryBackendAuthService } from './auth.service';
 import { DaffAccountRegistrationFactory } from '../factories/account-registration.factory';
+import { DaffAuthTokenFactory } from '../factories/auth-token.factory';
 
 describe('DaffAuthInMemoryBackend', () => {
   let authTestingService;
 
   const registrationFactory = new DaffAccountRegistrationFactory();
+  const authTokenFactory = new DaffAuthTokenFactory()
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -63,8 +65,6 @@ describe('DaffAuthInMemoryBackend', () => {
 
   describe('login', () => {
     let reqInfoStub;
-    let email: string;
-    let password: string;
 
     beforeEach(() => {
       reqInfoStub = {
@@ -72,42 +72,13 @@ describe('DaffAuthInMemoryBackend', () => {
           createResponse$: f => f()
         }
       };
-
-      email = 'email';
-      password = 'password'
-
-      authTestingService['setUserInfo'](email, password);
-    })
-
-    it('should return an error if the user is not registered', () => {
-      reqInfoStub.utils.getJsonBody = () => ({
-        email: '',
-        password: ''
-      });
-
-      expect(authTestingService.login(reqInfoStub)).toEqual(Error('User does not exist'));
-    })
-
-    it('should return an error if the password is incorrect', () => {
-      reqInfoStub.utils.getJsonBody = () => ({
-        email,
-        password: ''
-      });
-
-      expect(authTestingService.login(reqInfoStub)).toEqual(Error('Incorrect password'));
     })
 
     it('should generate a token if the user exists and password is correct', () => {
-      const token = 's78adf78sdaf';
-      const mockAuth: DaffAuthToken = {
-        token
-      }
+      const mockAuth: DaffAuthToken = authTokenFactory.create();
+      const token = mockAuth.token;
       const generateTokenSpy = spyOn(authTestingService, 'generateToken');
       generateTokenSpy.and.returnValue(token)
-      reqInfoStub.utils.getJsonBody = () => ({
-        email,
-        password
-      });
 
       expect(authTestingService.login(reqInfoStub).body).toEqual(mockAuth);
       expect(generateTokenSpy.calls.any()).toBeTruthy();
@@ -116,8 +87,6 @@ describe('DaffAuthInMemoryBackend', () => {
 
   describe('register', () => {
     let reqInfoStub;
-    let email: string;
-    let password: string;
     let registration: DaffAccountRegistration<DaffCustomerRegistration>;
 
     beforeEach(() => {
@@ -128,18 +97,9 @@ describe('DaffAuthInMemoryBackend', () => {
       };
 
       registration = registrationFactory.create();
-      email = registration.customer.email;
-      password = registration.password;
     })
 
-    it('should return an error if the user is already registered', () => {
-      authTestingService['setUserInfo'](email, password);
-      reqInfoStub.utils.getJsonBody = () => registration;
-
-      expect(authTestingService.register(reqInfoStub)).toEqual(Error('User already exists'));
-    })
-
-    it('should return the customer if the user does not already exist', () => {
+    it('should return the customer', () => {
       reqInfoStub.utils.getJsonBody = () => registration;
 
       expect(authTestingService.register(reqInfoStub).body).toEqual(registration.customer);
