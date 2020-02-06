@@ -2,3 +2,4 @@ export { DaffAccountRegistrationFactory } from './factories/account-registration
 export { DaffCustomerRegistrationFactory } from './factories/customer-registration.factory';
 export { DaffAuthTokenFactory } from './factories/auth-token.factory';
 
+export { DaffInMemoryBackendAuthService } from './inmemory-backend/auth.service';
