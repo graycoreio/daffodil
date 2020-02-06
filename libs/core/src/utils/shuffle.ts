@@ -6,7 +6,7 @@ export const shuffle = <T>(array: T[]): T[] => {
   const result = [];
   array.forEach((el, i) => {
     const s = Math.floor(Math.random() * i);
-    if( s != i ){
+    if( s !== i ){
       result[i] = result[s];
     }
     result[s] = el;
