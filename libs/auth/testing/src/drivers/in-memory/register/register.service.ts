@@ -30,7 +30,7 @@ export class DaffInMemoryRegisterService implements DaffRegisterServiceInterface
   ) {}
 
   register(registration: DaffRegisterRequest<DaffCustomerRegistration>): Observable<DaffRegisterResponse> {
-    return this.http.post<any>(`${this.url}register`, registration).pipe(
+    return this.http.post<DaffCustomerRegistration>(`${this.url}register`, registration).pipe(
       mergeMapTo(
         this.loginDriver.login({
           email: registration.customer.email,
