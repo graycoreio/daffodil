@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { DaffContactDriver } from '@daffodil/contact';
-import { DaffTestingContactService } from './drivers/testing/contact.service';
+import { DaffTestingContactService } from './contact.service';
 
 @NgModule()
 export class DaffContactTestingDriverModule {
