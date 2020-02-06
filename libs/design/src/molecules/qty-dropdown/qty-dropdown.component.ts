@@ -10,7 +10,7 @@ export class DaffQtyDropdownComponent implements OnInit {
   private readonly dropdownRange = 9;
 
   @Input() qty: number;
-  @Input() id: number;
+  @Input() id: number | string;
   @Output() qtyChanged: EventEmitter<number> = new EventEmitter<number>();
 
   dropdownItemCounter: number[];
