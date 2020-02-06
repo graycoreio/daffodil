@@ -1053,6 +1053,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "libs/auth/test.ts",
+            "codeCoverage": true,
             "tsConfig": "libs/auth/tsconfig.spec.json",
             "karmaConfig": "libs/auth/karma.conf.js"
           }
