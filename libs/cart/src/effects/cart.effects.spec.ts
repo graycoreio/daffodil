@@ -9,7 +9,8 @@ import { DaffCartLoad, DaffCartLoadSuccess, DaffCartLoadFailure, DaffAddToCart,
 import { DaffCart } from '../models/cart';
 import { DaffCartFactory } from '../../testing/src/factories/cart.factory';
 import { DaffTestingCartService } from '../../testing/src';
-import { DaffCartServiceInterface, DaffCartDriver } from '../drivers/interfaces/cart-service.interface';
+import { DaffCartServiceInterface } from '../drivers/interfaces/cart-service.interface';
+import { DaffCartDriver } from '../drivers/injection-tokens/cart-driver.token';
 
 describe('Daffodil | Cart | CartEffects', () => {
   let actions$: Observable<any>;

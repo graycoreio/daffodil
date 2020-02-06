@@ -11,7 +11,8 @@ import {
   DaffAddToCartSuccess,
   DaffAddToCartFailure,
   DaffAddToCart} from '../actions/cart.actions';
-import { DaffCartServiceInterface, DaffCartDriver } from '../drivers/interfaces/cart-service.interface';
+import { DaffCartDriver } from '../drivers/injection-tokens/cart-driver.token';
+import { DaffCartServiceInterface } from '../drivers/interfaces/cart-service.interface';
 import { DaffCart } from '../models/cart';
 
 @Injectable()
