@@ -11,7 +11,7 @@ import { OrderEffects } from './order.effects';
 import { DaffPlaceOrder, DaffPlaceOrderSuccess, DaffPlaceOrderFailure } from '../actions/order.actions';
 import { DaffCheckoutServiceInterface } from '../../drivers/interfaces/checkout-service.interface';
 import { DaffCheckoutDriver } from '../../drivers/injection-tokens/driver-checkout.token';
-import { Order } from '@daffodil/checkout';
+import { Order } from '../../models/order/order';
 
 describe('Daffodil | State | Order | OrderEffects', () => {
   let actions$: Observable<any>;
