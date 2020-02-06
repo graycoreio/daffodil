@@ -77,8 +77,8 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
 	}
 
 	private generateProductIdSubset(products: DaffProduct[]): string[] {
-		const arraySize = Math.floor(Math.random() * Math.floor(products.length/2) + Math.floor(products.length/2));
-		return randomSubset(products, arraySize).map(product => product.id);
+		const subsetSize = Math.floor(Math.random() * Math.floor(products.length/2) + Math.floor(products.length/2));
+		return randomSubset(products, subsetSize).map(product => product.id);
 	}
 
 	private generatePageSize(reqInfo) {
