@@ -16,7 +16,7 @@ export class DaffInMemoryLoginService implements DaffLoginServiceInterface<DaffL
 
   constructor(private http: HttpClient) {}
 
-  login({email, password}: DaffLoginRequest): Observable<DaffLoginResponse> {
-    return this.http.post<DaffLoginResponse>(`${this.url}login`, {email, password});
+  login(request: DaffLoginRequest): Observable<DaffLoginResponse> {
+    return this.http.post<DaffLoginResponse>(`${this.url}login`, request);
   }
 }
