@@ -20,9 +20,10 @@ describe('DaffAuthInMemoryBackend | Unit', () => {
     authTestingService = TestBed.get(DaffInMemoryBackendAuthService);
 
     reqInfoStub = {
+      req: {},
       utils: {
         createResponse$: f => f(),
-        getJsonBody: () => ({})
+        getJsonBody: req => req.body
       }
     };
   });
@@ -48,7 +49,7 @@ describe('DaffAuthInMemoryBackend | Unit', () => {
       reqInfoStub.id = 'login';
       const result = authTestingService.post(reqInfoStub);
 
-      expect(result.body).toBeDefined();
+      expect(result.body.token).toBeDefined();
       expect(result.status).toEqual(STATUS.OK);
     });
   });
@@ -56,7 +57,7 @@ describe('DaffAuthInMemoryBackend | Unit', () => {
   describe('processing a register request', () => {
     it('should process post requests of the form `/api/auth/register` and return the customer info with a CREATED status', () => {
       reqInfoStub.id = 'register';
-      reqInfoStub.utils.getJsonBody = () => registrationFactory.create();
+      reqInfoStub.req.body = registrationFactory.create();
       const result = authTestingService.post(reqInfoStub);
 
       expect(result.body).toBeDefined();
