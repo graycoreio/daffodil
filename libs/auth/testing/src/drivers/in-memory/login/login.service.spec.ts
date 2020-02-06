@@ -58,7 +58,7 @@ describe('Driver | InMemory | Auth | LoginService', () => {
       httpMock.verify();
     });
 
-    it('should send a post request', () => {
+    it('should send a post request and return an AuthToken', () => {
       loginService.login({email, password}).subscribe(auth => {
         expect(auth).toEqual(mockAuth);
       });

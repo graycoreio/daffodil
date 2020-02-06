@@ -79,7 +79,7 @@ describe('Driver | InMemory | Auth | RegisterService', () => {
       req.flush(mockRegistration.customer);
     });
 
-    it('should call DaffInMemoryLoginService#login', () => {
+    it('should return an AuthToken', () => {
       registerService.register(mockRegistration).subscribe(auth => {
         expect(auth).toEqual(mockAuth);
       });
@@ -87,8 +87,6 @@ describe('Driver | InMemory | Auth | RegisterService', () => {
       const req = httpMock.expectOne(`${registerService.url}register`);
 
       req.flush(mockRegistration.customer);
-
-      expect(loginServiceSpy.login.calls.any()).toBeTruthy();
     });
   });
 });
