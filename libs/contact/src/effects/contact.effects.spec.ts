@@ -4,9 +4,9 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { DaffContactSubmit, DaffContactSuccessSubmit, DaffContactFailedSubmit, DaffContactRetry, DaffContactCancel } from '../actions/contact.actions';
 import { hot, cold } from 'jasmine-marbles';
-import { DaffTestingContactService } from 'libs/contact/testing/src';
 import { DaffContactDriver, DaffContactServiceInterface } from '../driver/interfaces/contact-service.interface';
 import { DaffContactUnion } from '../models/contact-union';
+import { DaffTestingContactService } from '@daffodil/contact/testing';
 
 describe('DaffContactEffects', () => {
   let actions$: Observable<any>;
