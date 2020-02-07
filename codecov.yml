@@ -1,0 +1,18 @@
+coverage:
+  status:
+    project:
+      target: 80%
+      threshold: 5%
+    category:
+      flags: category
+      target: 85%
+    core:
+      target: 85%
+      flags: core
+flags:
+  category:  
+    paths:
+      - libs/category/src
+  core:
+    paths:
+      - libs/core/src
