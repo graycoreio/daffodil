@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { DaffContactDriver } from '@daffodil/contact';
-import { DaffTestingContactService } from './contact.service';
+import { DaffInMemoryContactService } from './contact.service';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
@@ -8,14 +8,14 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ]
 })
-export class DaffContactTestingDriverModule {
+export class DaffContactInMemoryDriverModule {
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: DaffContactTestingDriverModule,
+      ngModule: DaffContactInMemoryDriverModule,
       providers: [
         {
           provide: DaffContactDriver,
-          useClass: DaffTestingContactService
+          useClass: DaffInMemoryContactService
         }
       ]
     };
