@@ -8,10 +8,11 @@ import {
 
 import { DaffCategory, DaffCategoryPageConfigurationState } from '@daffodil/category';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
+import { randomSubset } from '@daffodil/core';
+import { DaffProduct } from '@daffodil/product';
 
 import { DaffCategoryFactory } from '../factories/category.factory';
 import { DaffCategoryPageConfigurationStateFactory } from '../factories/category-page-configuration-state.factory';
-import { DaffProduct } from '@daffodil/product';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,7 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
   }
 
   get(reqInfo: any) {
-		const allCategoryProductIds = this.generateProductIdArray(this.productInMemoryBackendService.products);
+		const allCategoryProductIds = this.generateProductIdSubset(this.productInMemoryBackendService.products);
 
     this.categoryPageConfigurationState = this.categoryPageConfigurationFactory.create({
 			id: reqInfo.id,
@@ -63,11 +64,11 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
     });
 	}
 	
-	private getTotalPages(allIds: number[], pageSize: number) {
-		return Math.floor(allIds.length / pageSize) + 1;
+	private getTotalPages(allIds: string[], pageSize: number) {
+		return Math.ceil(allIds.length/pageSize);
 	}
 
-	private trimProductIdsToSinglePage(allIds: number[], currentPage: number, pageSize: number) {
+	private trimProductIdsToSinglePage(allIds: any[], currentPage: number, pageSize: number) {
 		const tempIds = [...allIds];
 		tempIds.splice(0, (currentPage-1) * pageSize);
 		tempIds.splice(pageSize, tempIds.length-pageSize);
@@ -75,18 +76,8 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
 		return tempIds;
 	}
 
-	private generateProductIdArray(products: DaffProduct[]) {
-		const arraySize = Math.floor(Math.random() * Math.floor(products.length/2) + Math.floor(products.length/2));
-		const productIdArray = [];
-		for(let i=0; i<arraySize; i++) {
-			const productIndex = Math.floor(Math.random() * products.length);
-			productIdArray.push(
-				products[productIndex].id
-			);
-			products.splice(productIndex, 1);
-		}
-
-		return productIdArray;
+	private generateProductIdSubset(products: DaffProduct[]): string[] {
+		return randomSubset(products).map(product => product.id);
 	}
 
 	private generatePageSize(reqInfo) {
@@ -97,7 +88,7 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
 	}
 
 	private getCurrentPageParam(reqInfo) {
-		if(reqInfo.req.params.map && reqInfo.req.params.map.get('current_page')) {
+		if(reqInfo.req.params.map && reqInfo.req.params.map.get('current_page') && reqInfo.req.params.map.get('current_page')[0]) {
 			return parseInt(reqInfo.req.params.map.get('current_page')[0], 10);
 		}
 		return 1;
