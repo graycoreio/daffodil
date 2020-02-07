@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffCartPayment } from '@daffodil/cart';
+import { DaffCartPaymentMethod } from '@daffodil/cart';
 import { DaffCartPaymentFactory } from './cart-payment.factory';
 
 describe('Cart | Testing | Factories | CartPaymentFactory', () => {
@@ -19,21 +19,8 @@ describe('Cart | Testing | Factories | CartPaymentFactory', () => {
     expect(cartPaymentFactory).toBeTruthy();
   });
 
-  describe('create', () => {
-
-    let result: DaffCartPayment;
-
-    beforeEach(() => {
-      result = cartPaymentFactory.create();
-    });
-    
-    xit('should return a CartPayment with all required fields defined', () => {
-
-    });
-  });
-
   describe('createMany', () => {
-    let result: DaffCartPayment[];
+    let result: DaffCartPaymentMethod[];
 
     it('should create as many cart payments as desired', () => {
       result = cartPaymentFactory.createMany(2);

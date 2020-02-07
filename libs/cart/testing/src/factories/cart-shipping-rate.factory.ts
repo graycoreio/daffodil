@@ -5,18 +5,12 @@ import * as faker from 'faker/locale/en_US';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCartShippingRate implements DaffCartShippingRate {
-    rate_id = faker.random.number(1000);
-    address_id = faker.random.number(1000);
-    created_at = new Date();
-    updated_at = new Date();
+    id = faker.random.number(1000);
     carrier = 'Birds Inc.';
     carrier_title = 'laden';
-    code = 'code';
-    method = 'swallow';
+    method_title = 'swallow';
     method_description = 'efficient';
     price = faker.random.number(1500);
-    error_message = 'error message';
-    method_title = 'laden';
 }
 
 @Injectable({

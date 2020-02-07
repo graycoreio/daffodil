@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-
-import { DaffCartModule, fromCart, DaffCart } from '@daffodil/cart';
-import { Action, Store, select } from '@ngrx/store';
-import { DaffStoreFacade } from 'libs/core/src';
 import { Observable } from 'rxjs';
+import { Action, Store, select } from '@ngrx/store';
+
+import { DaffStoreFacade } from '@daffodil/core';
+import { DaffCart } from '../../models/cart';
+import * as fromCart from '../../reducers';
 
 @Injectable({
-  providedIn: DaffCartModule
+  providedIn: 'root'
 })
 export class DaffCartFacade implements DaffStoreFacade<Action> {
 

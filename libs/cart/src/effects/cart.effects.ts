@@ -23,7 +23,7 @@ export class DaffCartEffects<T extends DaffCart> {
     @Inject(DaffCartDriver) private driver: DaffCartServiceInterface<T>) {}
 
   @Effect()
-  load$ : Observable<any> = this.actions$.pipe(
+  load$ = this.actions$.pipe(
     ofType(DaffCartActionTypes.CartLoadAction),
     switchMap((action: DaffCartLoad) =>
       this.driver.get()
