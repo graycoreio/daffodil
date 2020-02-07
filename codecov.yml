@@ -5,7 +5,7 @@ coverage:
       threshold: 5%
     category:
       flags: category
-      target: 85%
+      target: 90%
     core:
       target: 85%
       flags: core
