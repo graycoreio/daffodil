@@ -15,6 +15,10 @@ export class DaffInMemoryBackendAuthService implements InMemoryDbService {
     return faker.random.alphaNumeric(16);
   }
 
+  private generateId(): string {
+    return faker.random.uuid();
+  }
+
   createDb() {
     return {
       auth: {}
@@ -45,7 +49,9 @@ export class DaffInMemoryBackendAuthService implements InMemoryDbService {
     } = reqInfo.utils.getJsonBody(reqInfo.req);
 
     return reqInfo.utils.createResponse$(() => ({
-      body: customer,
+      body: {
+        id: this.generateId()
+      },
       status: STATUS.CREATED
     }))
   }

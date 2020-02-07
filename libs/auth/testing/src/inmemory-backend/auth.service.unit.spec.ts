@@ -60,7 +60,7 @@ describe('DaffAuthInMemoryBackend | Unit', () => {
       reqInfoStub.req.body = registrationFactory.create();
       const result = authTestingService.post(reqInfoStub);
 
-      expect(result.body).toBeDefined();
+      expect(result.body.id).toBeDefined();
       expect(result.status).toEqual(STATUS.CREATED);
     });
   });
