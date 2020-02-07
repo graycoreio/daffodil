@@ -1,9 +1,5 @@
-<daff-modal [show]="showModal" (hide)="hideModal()" verticalPosition="center" horizontalPosition="center">
-  <daff-feature class="modal-feature">
-    <h3>You have clicked on the Modal</h3>
-  </daff-feature>
-</daff-modal>
-<h1>Daff Modal</h1>
-<button daff-button (click)="showModal = true">
-  Modal Button
-</button>
+<h1>Modal</h1>
+
+<p>The `daff-modal` is a dynamically rendered element that takes your content and renders it inside a modal.</p>
+
+<button (click)="showModal()">Show a modal</button>
