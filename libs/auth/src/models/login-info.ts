@@ -1,4 +1,4 @@
-export interface DaffLoginRequest {
+export interface DaffLoginInfo {
   email: string;
   password: string;
 }

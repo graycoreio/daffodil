@@ -1,12 +1,12 @@
 import { Observable } from 'rxjs';
-import { DaffRegisterRequest } from '../../models/register-request';
-import { DaffRegisterResponse } from '../../models/register-response';
 import { DaffCustomerRegistration } from '../../models/customer-registration';
+import { DaffAccountRegistration } from '../../models/account-registration';
+import { DaffAuthToken } from '../../models/auth-token';
 
 export interface DaffRegisterServiceInterface<
-  TRequest extends DaffRegisterRequest<TRequestT>,
-  TRequestT extends DaffCustomerRegistration,
-  TResponse extends DaffRegisterResponse
+TRequest extends DaffAccountRegistration<TRequestT>,
+TRequestT extends DaffCustomerRegistration,
+TResponse extends DaffAuthToken
 > {
 
   /**

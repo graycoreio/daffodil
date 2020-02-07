@@ -3,10 +3,7 @@ export { DaffAuthFacadeInterface } from './interfaces/auth-facade.interface';
 export { DaffAccountRegistration } from './models/account-registration'
 export { DaffCustomerRegistration } from './models/customer-registration'
 export { DaffAuthToken } from './models/auth-token'
-export { DaffRegisterRequest } from './models/register-request'
-export { DaffRegisterResponse } from './models/register-response'
-export { DaffLoginRequest } from './models/login-request'
-export { DaffLoginResponse } from './models/login-response'
+export { DaffLoginInfo } from './models/login-info'
 
 export { DaffAuthModule } from './auth.module';
 
@@ -21,4 +18,3 @@ export { DaffAuthQueryManagerInterface } from './drivers/interfaces/auth-query-m
 
 export { DaffAuthTransformer } from './drivers/injection-tokens/auth-transformer.token';
 export { DaffAuthTransformerInterface } from './drivers/interfaces/auth-transformer.interface';
-

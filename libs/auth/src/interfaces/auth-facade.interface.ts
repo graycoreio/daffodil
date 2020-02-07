@@ -9,5 +9,6 @@ export interface DaffAuthFacadeInterface<T extends DaffAuthToken> extends DaffSt
   loading$: Observable<boolean>;
   token$: Observable<string>;
   errors$: Observable<string[]>;
+
   dispatch(action: Action): void;
 }

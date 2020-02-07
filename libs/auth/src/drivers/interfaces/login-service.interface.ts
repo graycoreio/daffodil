@@ -1,8 +1,11 @@
 import { Observable } from 'rxjs';
-import { DaffLoginRequest } from '../../models/login-request';
-import { DaffLoginResponse } from '../../models/login-response';
+import { DaffLoginInfo } from '../../models/login-info';
+import { DaffAuthToken } from '../../models/auth-token';
 
-export interface DaffLoginServiceInterface<TRequest extends DaffLoginRequest, TResponse extends DaffLoginResponse> {
+export interface DaffLoginServiceInterface<
+  TRequest extends DaffLoginInfo,
+  TResponse extends DaffAuthToken
+> {
   /**
    * Logs the user in.
    *
