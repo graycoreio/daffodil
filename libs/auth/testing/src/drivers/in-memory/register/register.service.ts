@@ -7,29 +7,28 @@ import {
   DaffLoginDriver,
   DaffRegisterServiceInterface,
   DaffLoginServiceInterface,
-  DaffRegisterRequest,
-  DaffRegisterResponse,
-  DaffLoginRequest,
-  DaffLoginResponse,
-  DaffCustomerRegistration
+  DaffCustomerRegistration,
+  DaffAccountRegistration,
+  DaffAuthToken,
+  DaffLoginInfo
 } from '@daffodil/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DaffInMemoryRegisterService implements DaffRegisterServiceInterface<
-  DaffRegisterRequest<DaffCustomerRegistration>,
+  DaffAccountRegistration<DaffCustomerRegistration>,
   DaffCustomerRegistration,
-  DaffRegisterResponse
+  DaffAuthToken
 > {
   url = '/api/auth/';
 
   constructor(
     private http: HttpClient,
-    @Inject(DaffLoginDriver) private loginDriver: DaffLoginServiceInterface<DaffLoginRequest, DaffLoginResponse>
+    @Inject(DaffLoginDriver) private loginDriver: DaffLoginServiceInterface<DaffLoginInfo, DaffAuthToken>
   ) {}
 
-  register(registration: DaffRegisterRequest<DaffCustomerRegistration>): Observable<DaffRegisterResponse> {
+  register(registration: DaffAccountRegistration<DaffCustomerRegistration>): Observable<DaffAuthToken> {
     return this.http.post<DaffCustomerRegistration>(`${this.url}register`, registration).pipe(
       mergeMapTo(
         this.loginDriver.login({

@@ -4,19 +4,19 @@ import { Observable } from 'rxjs';
 
 import {
   DaffLoginServiceInterface,
-  DaffLoginRequest,
-  DaffLoginResponse
+  DaffLoginInfo,
+  DaffAuthToken,
 } from '@daffodil/auth';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffInMemoryLoginService implements DaffLoginServiceInterface<DaffLoginRequest, DaffLoginResponse> {
+export class DaffInMemoryLoginService implements DaffLoginServiceInterface<DaffLoginInfo, DaffAuthToken> {
   url = '/api/auth/';
 
   constructor(private http: HttpClient) {}
 
-  login(request: DaffLoginRequest): Observable<DaffLoginResponse> {
-    return this.http.post<DaffLoginResponse>(`${this.url}login`, request);
+  login(request: DaffLoginInfo): Observable<DaffAuthToken> {
+    return this.http.post<DaffAuthToken>(`${this.url}login`, request);
   }
 }
