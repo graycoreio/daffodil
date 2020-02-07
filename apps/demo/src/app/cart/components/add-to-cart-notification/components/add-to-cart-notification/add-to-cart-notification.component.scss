@@ -24,6 +24,7 @@
 
 	&__close {
 		position: absolute;
+		top: 20px;
 		right: 25px;
 		font-size: $medium-font-size;
 		@include clickable();

@@ -7,7 +7,7 @@ import { StoreModule, combineReducers, Store } from '@ngrx/store';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffProduct, fromProduct, DaffProductLoadSuccess } from '@daffodil/product';
-import { DaffLoadingIconModule, DaffModalModule } from '@daffodil/design';
+import { DaffLoadingIconModule } from '@daffodil/design';
 import { fromCart, DaffAddToCart, DaffAddToCartSuccess } from '@daffodil/cart';
 
 import { AddToCartNotificationComponent } from './add-to-cart-notification.component';
@@ -17,21 +17,8 @@ import { DaffCartFactory } from '@daffodil/cart/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-@Component({ template: '<demo-add-to-cart-notification [verticalPosition]="verticalPositionValue" [horizontalPosition]="horizontalPositionValue"></demo-add-to-cart-notification>' })
-class WrapperComponent {
-  productValue: DaffProduct;
-  verticalPositionValue = 'bottom';
-  horizontalPositionValue = 'left';
-}
-
-// tslint:disable-next-line: component-selector
-@Component({ selector: 'daff-modal', template: '<ng-content></ng-content>' })
-class MockDaffModalComponent {
-  @Input() show: boolean;
-  @Input() verticalPosition: string;
-  @Input() horizontalPosition: string;
-  @Output() hide: EventEmitter<any> = new EventEmitter();
-}
+@Component({ template: '<demo-add-to-cart-notification></demo-add-to-cart-notification>' })
+class WrapperComponent {}
 
 @Component({ selector: 'demo-product-added', template: '' })
 class MockProductAddedComponent {
@@ -50,7 +37,6 @@ describe('AddToCartNotificationComponent', () => {
   const productFactory: DaffProductFactory = new DaffProductFactory();
   const cartFactory: DaffCartFactory = new DaffCartFactory();
 
-  let daffModal: MockDaffModalComponent;
   let addToCartNotification: AddToCartNotificationComponent;
   let productAdded: MockProductAddedComponent;
 
@@ -64,7 +50,6 @@ describe('AddToCartNotificationComponent', () => {
         }),
         NoopAnimationsModule,
         DaffLoadingIconModule,
-        DaffModalModule,
         FontAwesomeModule
       ],
       declarations: [
@@ -86,28 +71,12 @@ describe('AddToCartNotificationComponent', () => {
 
     fixture.detectChanges();
 
-    daffModal = fixture.debugElement.query(By.css('daff-modal')).componentInstance;
     addToCartNotification = fixture.debugElement.query(By.css('demo-add-to-cart-notification')).componentInstance;
   });
 
 
   it('should create', () => {
     expect(addToCartNotification).toBeTruthy();
-  });
-
-  describe('on <daff-modal>', () => {
-
-    it('should set verticalPosition', () => {
-      expect(daffModal.verticalPosition).toEqual(addToCartNotification._verticalPosition);
-    });
-
-    it('should set horizontalPosition', () => {
-      expect(daffModal.horizontalPosition).toEqual(addToCartNotification._horizontalPosition);
-    });
-
-    it('should set show', () => {
-      expect(daffModal.show).toEqual(false);
-    });
   });
 
   describe('on demo-product-added', () => {
@@ -132,14 +101,6 @@ describe('AddToCartNotificationComponent', () => {
     it('should set qty to productQty$', () => {
       expect(productAdded.qty).toEqual(productAddPayload.qty);
     });
-  });
-
-  it('should be able to take verticalPosition as input', () => {
-    expect(addToCartNotification.verticalPosition).toEqual(wrapper.verticalPositionValue);
-  });
-
-  it('should be able to take horizontalPosition as input', () => {
-    expect(addToCartNotification.horizontalPosition).toEqual(wrapper.horizontalPositionValue);
   });
 
   describe('ngOnInit', () => {
@@ -181,14 +142,6 @@ describe('AddToCartNotificationComponent', () => {
     });
   });
 
-  describe('when daff-modal emits hide', () => {
-    it('should call dispatch a CloseAddToCartNotification action', () => {
-      spyOn(store, 'dispatch');
-      daffModal.hide.emit();
-      expect(store.dispatch).toHaveBeenCalledWith(new CloseAddToCartNotification());
-    });
-  });
-
   describe('when loading$ is false', () => {
     const stubProduct = productFactory.create(1);
     const productAddPayload = { productId: stubProduct.id, qty: 1 };
@@ -202,7 +155,7 @@ describe('AddToCartNotificationComponent', () => {
       fixture.detectChanges();
     });
 
-    describe('when time-icon is clicked', () => {
+    describe('when close button is clicked', () => {
       it('should call dispatch a CloseAddToCartNotification action', () => {
         spyOn(store, 'dispatch');
         fixture.debugElement.query(By.css('.demo-add-to-cart-notification__close')).nativeElement.click();
@@ -228,22 +181,6 @@ describe('AddToCartNotificationComponent', () => {
     it('should not render <daff-loading-icon>', () => {
       const loadingIcon = fixture.debugElement.query(By.css('daff-loading-icon'));
       expect(loadingIcon).toBeNull();
-    });
-
-    describe('when [demoViewCart] is clicked', () => {
-      it('should call dispatch a CloseAddToCartNotification action', () => {
-        spyOn(store, 'dispatch');
-        fixture.debugElement.query(By.css('[demoViewCart]')).nativeElement.click();
-        expect(store.dispatch).toHaveBeenCalledWith(new CloseAddToCartNotification());
-      });
-    });
-  
-    describe('when [demoProceedToCheckout] is clicked', () => {
-      it('should call dispatch a CloseAddToCartNotification action', () => {
-        spyOn(store, 'dispatch');
-        fixture.debugElement.query(By.css('[demoProceedToCheckout]')).nativeElement.click();
-        expect(store.dispatch).toHaveBeenCalledWith(new CloseAddToCartNotification());
-      });
     });
   });
 
