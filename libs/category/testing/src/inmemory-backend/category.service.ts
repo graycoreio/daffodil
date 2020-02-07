@@ -37,6 +37,7 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
 
   get(reqInfo: any) {
 		const allCategoryProductIds = this.generateProductIdSubset(this.productInMemoryBackendService.products);
+		console.log(allCategoryProductIds)
 
     this.categoryPageConfigurationState = this.categoryPageConfigurationFactory.create({
 			id: reqInfo.id,
@@ -65,10 +66,10 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
 	}
 	
 	private getTotalPages(allIds: string[], pageSize: number) {
-		return allIds.length % pageSize ? Math.floor(allIds.length / pageSize) + 1: allIds.length/pageSize;
+		return Math.ceil(allIds.length/pageSize);
 	}
 
-	private trimProductIdsToSinglePage(allIds: string[], currentPage: number, pageSize: number) {
+	private trimProductIdsToSinglePage(allIds: any[], currentPage: number, pageSize: number) {
 		const tempIds = [...allIds];
 		tempIds.splice(0, (currentPage-1) * pageSize);
 		tempIds.splice(pageSize, tempIds.length-pageSize);
@@ -77,8 +78,7 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
 	}
 
 	private generateProductIdSubset(products: DaffProduct[]): string[] {
-		const subsetSize = Math.floor(Math.random() * Math.floor(products.length/2) + Math.floor(products.length/2));
-		return randomSubset(products, subsetSize).map(product => product.id);
+		return randomSubset(products).map(product => product.id);
 	}
 
 	private generatePageSize(reqInfo) {
@@ -89,7 +89,7 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
 	}
 
 	private getCurrentPageParam(reqInfo) {
-		if(reqInfo.req.params.map && reqInfo.req.params.map.get('current_page')) {
+		if(reqInfo.req.params.map && reqInfo.req.params.map.get('current_page') && reqInfo.req.params.map.get('current_page')[0]) {
 			return parseInt(reqInfo.req.params.map.get('current_page')[0], 10);
 		}
 		return 1;

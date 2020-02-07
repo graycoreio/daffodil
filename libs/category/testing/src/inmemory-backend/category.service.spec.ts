@@ -63,9 +63,7 @@ describe('Driver | InMemory | Category | DaffInMemoryBackendCategoryService', ()
     it('should set total_pages', () => {
 			const totalProducts = result.body.category.total_products;
 			const pageSize = result.body.categoryPageConfigurationState.page_size;
-      expect(result.body.categoryPageConfigurationState.total_pages).toEqual(
-				totalProducts % pageSize ? Math.floor(totalProducts / pageSize) + 1 : totalProducts / pageSize
-			);
+      expect(result.body.categoryPageConfigurationState.total_pages).toEqual(Math.ceil(totalProducts/pageSize));
 		});
 		
 		it('should set no more products on the category than the page_size', () => {
