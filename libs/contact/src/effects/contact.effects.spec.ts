@@ -1,12 +1,15 @@
 import { Observable, of } from 'rxjs';
-import { DaffContactEffects } from './contact.effects';
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { DaffContactSubmit, DaffContactSuccessSubmit, DaffContactFailedSubmit, DaffContactRetry, DaffContactCancel } from '../actions/contact.actions';
 import { hot, cold } from 'jasmine-marbles';
-import { DaffContactDriver, DaffContactServiceInterface } from '../driver/interfaces/contact-service.interface';
+
+import { DaffContactSubmit, DaffContactSuccessSubmit, DaffContactFailedSubmit, DaffContactRetry, DaffContactCancel } from '../actions/contact.actions';
+import { DaffContactDriver } from '../driver/interfaces/contact-service.interface';
 import { DaffContactUnion } from '../models/contact-union';
-import { DaffContactTestingDriverModule } from '../../testing/src';
+import { DaffContactEffects } from './contact.effects';
+
+import { DaffTestingContactService } from '../../testing/src/drivers/testing/contact.service';
+
 
 describe('DaffContactEffects', () => {
   let actions$: Observable<any>;
@@ -16,12 +19,13 @@ describe('DaffContactEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports:[
-        DaffContactTestingDriverModule.forRoot()
-      ],
       providers: [
         DaffContactEffects,
-        provideMockActions(() => actions$)
+        provideMockActions(() => actions$),
+        {
+          provide: DaffContactDriver,
+          useClass: DaffTestingContactService
+        }
       ]
     })
     effects = TestBed.get(DaffContactEffects);
