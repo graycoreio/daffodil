@@ -1,84 +1,91 @@
-import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
+import {
+	Component,
+	Output,
+	EventEmitter,
+	Input,
+	HostBinding,
+	ChangeDetectionStrategy,
+	ViewChild,
+	HostListener,
+} from '@angular/core';
 
 import { daffFadeAnimations } from '../animations/modal-animation';
 import { getAnimationState } from '../animations/modal-animation-state';
+import { CdkPortalOutlet, ComponentPortal } from '@angular/cdk/portal';
+
+import { AnimationEvent } from '@angular/animations';
+import { map } from 'rxjs/operators';
+
+export type DaffModalVerticalPosition = 'top' | 'center' | 'bottom';
+export type DaffModalHorizontalPosition = 'left' | 'center' | 'right';
 
 @Component({
-  selector: 'daff-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss'],
-  animations: [
-    daffFadeAnimations.fade
-  ]
+	selector: 'daff-modal',
+	templateUrl: './modal.component.html',
+	styleUrls: ['./modal.component.scss'],
+	animations: [daffFadeAnimations.fade],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DaffModalComponent implements OnInit {
-  _modalContentClasses: {[key: string]: boolean} = {};
-  _animationState: string;
-  _verticalPosition = 'center';
-  _horizontalPosition = 'center';
-  /**
-   * Internal tracking variable for the state of modal.
-   */
-  private _show = false;
-  
-  /**
-   * Input state for whether or not the backdrop is 
-   * "visible" to the human eye
-   */
-  // tslint:disable-next-line: no-inferrable-types
-  @Input() backdropIsVisible: boolean = true;
-  /**
-   * Property for the "show" state of the modal
-   */
-  @Input()
-  get show(): boolean { return this._show; }
-  set show(value: boolean) { 
-    this._show = value;
-    this._animationState = getAnimationState(value);
-  }
-  /**
-   * Event fired when the backdrop is clicked
-   * This is often used to close the modal
-   */
-  @Output() hide: EventEmitter<void> = new EventEmitter<void>();
-  @Input()
-  get verticalPosition(): string { return this._verticalPosition; }
-  set verticalPosition(value: string) {
-    if (value !== 'center' && value !== 'top' && value !== 'bottom') {
-      throw Error(`verticalPosition value must be either 'center', 'top', or 'bottom'.
-      Example: <daff-modal verticalPosition="top"></daff-modal>`);
-    }
-    this._verticalPosition = value;
-    this.updatePositionClasses();
-  }
+export class DaffModalComponent {
+	/**
+	 * Dictates whether or not a modal is open or closed.
+	 */
+	@Input() open = false;
 
-  @Input()
-  get horizontalPosition(): string { return this._horizontalPosition; }
-  set horizontalPosition(value: string) {
-    if (value !== 'center' && value !== 'left' && value !== 'right') {
-      throw Error(`horizontalPosition value must be either 'center', 'left', or 'right'.
-      Example: <daff-modal horizontalPosition="right"></daff-modal>`);
-    }
-    this._horizontalPosition = value;
-    this.updatePositionClasses();
-  }
+	/**
+	 * The CDK Portal outlet used to portal content into the modal.
+	 */
+	@ViewChild(CdkPortalOutlet, { static: true }) _portalOutlet: CdkPortalOutlet;
 
-  ngOnInit() {
-    this._animationState = getAnimationState(this.show);
-    this.updatePositionClasses();
-  }
-  
-  _backdropClicked() : void {
-    this.hide.emit();
-  }
+	/**
+	 * Event fired when the close animation is completed.
+	 */
+	@Output() animationCompleted: EventEmitter<any> = new EventEmitter<any>();
 
-  private updatePositionClasses() {
-    const modalContentClasses = this._modalContentClasses;
-    modalContentClasses['daff-modal__content--left'] = this._horizontalPosition === 'left';
-    modalContentClasses['daff-modal__content--right'] = this._horizontalPosition === 'right';
-    modalContentClasses['daff-modal__content--center'] = this._horizontalPosition === 'center';
-    modalContentClasses['daff-modal__content--top'] = this._verticalPosition === 'top';
-    modalContentClasses['daff-modal__content--bottom'] = this._verticalPosition === 'bottom';
-    modalContentClasses['daff-modal__content--middle'] = this._verticalPosition === 'center';
-  }
+	/**
+	 * Event fired when the close animation is completed.
+	 */
+	@Output() closedAnimationCompleted: EventEmitter<any> = new EventEmitter<
+		any
+	>();
+
+	/**
+	 * Event fired when the backdrop is clicked
+	 * This is often used to close the modal
+	 */
+	@Output() hide: EventEmitter<void> = new EventEmitter<void>();
+
+	/**
+	 * Hostbinding to set the default modal class on the host element
+	 */
+	@HostBinding('class.daff-modal') modalClass = true;
+
+	/**
+	 * Helper method to attach portable content to modal
+	 */
+	attachContent(portal: ComponentPortal<any>): any {
+		this._portalOutlet.attachComponentPortal(portal);
+	}
+
+	/**
+	 * Animation hook that controls the entrance and exit animations
+	 * of the modal
+	 */
+	@HostBinding('@fade') get fadeState(): string {
+		return getAnimationState(this.open);
+	}
+
+	/**
+	 * Animation event that can used to hook into when
+	 * animations are fully completed. We use this in the DaffModalService
+	 * to determine when to actually remove the dynamically rendered element from the DOM
+	 * so that the animation does not clip as the element is removed.
+	 */
+	@HostListener('@fade.done', ['$event'])
+	animationDone(e: AnimationEvent) {
+		this.animationCompleted.emit(e);
+		if (e.toState === 'closed') {
+			this.closedAnimationCompleted.emit(e);
+		}
+	}
 }

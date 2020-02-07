@@ -1,45 +1,11 @@
-// Stacking Context Layers
-$daff-modal-content-z-index: 3;
-$daff-modal-backdrop-z-index: 2;
-$daff-modal-z-index: 1;
+@import '../../../scss/daff-util';
 
-.daff-modal {
-	display: grid;
-	min-height: 100%;
-	position: fixed;
-	width: 100%;
-	z-index: 1;
+:host {
+	z-index: 3;
+	display: flex;
+	height: 100%;
 
-	&__content {
-		position: absolute;
-		z-index: $daff-modal-content-z-index;
-
-		&--top {
-			align-self: start;
-		}
-
-		&--bottom {
-			align-self: end;
-		}
-
-		&--middle {
-			align-self: center;
-		}
-
-		&--left {
-			justify-self: start;
-		}
-
-		&--right {
-			justify-self: end;
-		}
-
-		&--center {
-			justify-self: center;
-		}
-	}
-
-	&__backdrop {
-		z-index: $daff-modal-backdrop-z-index;
+	@include breakpoint(mobile) {
+		height: auto;
 	}
 }

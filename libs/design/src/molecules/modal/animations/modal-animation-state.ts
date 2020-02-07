@@ -1,8 +1,3 @@
-export const getAnimationState = (show : boolean) => {
-  if(show){
-    return 'show';
-  }
-  else {
-    return 'void';
-  }
+export const getAnimationState = (open : boolean) => {
+  return open ? 'open' : 'closed';
 }
