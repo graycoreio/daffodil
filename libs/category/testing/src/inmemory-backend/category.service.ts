@@ -37,7 +37,6 @@ export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
 
   get(reqInfo: any) {
 		const allCategoryProductIds = this.generateProductIdSubset(this.productInMemoryBackendService.products);
-		console.log(allCategoryProductIds)
 
     this.categoryPageConfigurationState = this.categoryPageConfigurationFactory.create({
 			id: reqInfo.id,
