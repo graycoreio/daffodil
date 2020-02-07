@@ -6,7 +6,7 @@ import { DaffContactSubmit, DaffContactSuccessSubmit, DaffContactFailedSubmit, D
 import { hot, cold } from 'jasmine-marbles';
 import { DaffContactDriver, DaffContactServiceInterface } from '../driver/interfaces/contact-service.interface';
 import { DaffContactUnion } from '../models/contact-union';
-import { DaffContactTestingDriverModule } from '@daffodil/contact/testing';
+import { DaffContactTestingDriverModule } from '../../testing/src';
 
 describe('DaffContactEffects', () => {
   let actions$: Observable<any>;
@@ -16,13 +16,12 @@ describe('DaffContactEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports:[
+        DaffContactTestingDriverModule.forRoot()
+      ],
       providers: [
         DaffContactEffects,
-        provideMockActions(() => actions$),
-        {
-          provide: DaffContactDriver,
-          useExisting: DaffContactTestingDriverModule.forRoot().providers[0]['useClass']
-        }
+        provideMockActions(() => actions$)
       ]
     })
     effects = TestBed.get(DaffContactEffects);

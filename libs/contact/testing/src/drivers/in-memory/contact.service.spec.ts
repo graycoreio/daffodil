@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { DaffInMemoryContactService } from './contact.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { DaffContactUnion } from '@daffodil/contact';
 import { cold } from 'jasmine-marbles';
+import { DaffContactUnion } from '../../../../src';
 
 
 describe('The DaffInMemoryContactService', () => {

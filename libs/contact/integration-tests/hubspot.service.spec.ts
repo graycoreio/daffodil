@@ -1,8 +1,7 @@
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { DaffContactHubSpotDriverModule } from '../src/driver/hubspot/hubspot-driver.module';
 import { of } from 'rxjs';
-import { DaffContactDriver } from '../src';
+import { DaffContactDriver, DaffContactHubSpotDriverModule } from '@daffodil/contact';
 
 
 describe('DaffContactHubspotDriver', () => {
