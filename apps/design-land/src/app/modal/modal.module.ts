@@ -7,13 +7,13 @@ import {
   DaffCardModule 
 } from '@daffodil/design';
 
-import { ModalComponent } from './modal.component';
+import { DesignLandModalComponent } from './modal.component';
 import { DesignLandModalContentComponent } from './modal-content/modal-content.component';
 import { DesignLandModalRoutingModule } from './modal-routing.module';
 
 @NgModule({
   declarations: [
-    ModalComponent,
+    DesignLandModalComponent,
     DesignLandModalContentComponent,
   ],
   imports: [

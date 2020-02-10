@@ -9,7 +9,7 @@ import { DesignLandModalContentComponent } from './modal-content/modal-content.c
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss']
 })
-export class ModalComponent {
+export class DesignLandModalComponent {
   modal: any;
   constructor(private modalService: DaffModalService) {}
 

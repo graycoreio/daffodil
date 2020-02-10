@@ -1,9 +1,9 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { ModalComponent } from './modal.component';
+import { DesignLandModalComponent } from './modal.component';
 
 export const modalRoutes: Routes = [
-  {path: '', component: ModalComponent}
+  {path: '', component: DesignLandModalComponent}
 ]
 
 @NgModule({
