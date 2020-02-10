@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import {
@@ -13,7 +13,7 @@ import { DaffAuthTokenFactory } from '../../../factories/auth-token.factory';
   providedIn: 'root'
 })
 export class DaffTestingLoginService implements DaffLoginServiceInterface<DaffLoginInfo, DaffAuthToken> {
-  factory = new DaffAuthTokenFactory();
+  constructor (@Inject(DaffAuthTokenFactory) private factory: DaffAuthTokenFactory) {}
 
   login(loginInfo: DaffLoginInfo): Observable<DaffAuthToken> {
     return of(this.factory.create());

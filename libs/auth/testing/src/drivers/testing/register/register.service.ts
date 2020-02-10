@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import {
@@ -18,7 +18,7 @@ export class DaffTestingRegisterService implements DaffRegisterServiceInterface<
   DaffCustomerRegistration,
   DaffAuthToken
 > {
-  factory = new DaffAuthTokenFactory();
+  constructor (@Inject(DaffAuthTokenFactory) private factory: DaffAuthTokenFactory) {}
 
   register(registration: DaffAccountRegistration<DaffCustomerRegistration>): Observable<DaffAuthToken> {
     return of(this.factory.create());
