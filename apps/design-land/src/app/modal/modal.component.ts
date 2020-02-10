@@ -11,13 +11,10 @@ import { DesignLandModalContentComponent } from './modal-content/modal-content.c
 })
 export class DesignLandModalComponent {
   modal: any;
+  
   constructor(private modalService: DaffModalService) {}
 
   showModal() {
     this.modal = this.modalService.open(DesignLandModalContentComponent);
-  }
-
-  hideModal() {
-    this.modalService.close(this.modal);
   }
 }
