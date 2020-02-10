@@ -1,7 +1,8 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
 import { DaffContactDriver } from '@daffodil/contact';
 import { DaffInMemoryContactService } from './contact.service';
-import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
