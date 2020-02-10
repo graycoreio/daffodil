@@ -18,7 +18,7 @@ export class DaffTestingRegisterService implements DaffRegisterServiceInterface<
   DaffCustomerRegistration,
   DaffAuthToken
 > {
-  constructor (@Inject(DaffAuthTokenFactory) private factory: DaffAuthTokenFactory) {}
+  constructor (private factory: DaffAuthTokenFactory) {}
 
   register(registration: DaffAccountRegistration<DaffCustomerRegistration>): Observable<DaffAuthToken> {
     return of(this.factory.create());

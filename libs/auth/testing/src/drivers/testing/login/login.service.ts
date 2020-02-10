@@ -13,7 +13,7 @@ import { DaffAuthTokenFactory } from '../../../factories/auth-token.factory';
   providedIn: 'root'
 })
 export class DaffTestingLoginService implements DaffLoginServiceInterface<DaffLoginInfo, DaffAuthToken> {
-  constructor (@Inject(DaffAuthTokenFactory) private factory: DaffAuthTokenFactory) {}
+  constructor (private factory: DaffAuthTokenFactory) {}
 
   login(loginInfo: DaffLoginInfo): Observable<DaffAuthToken> {
     return of(this.factory.create());
