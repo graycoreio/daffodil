@@ -14,10 +14,6 @@ import { getAnimationState } from '../animations/modal-animation-state';
 import { CdkPortalOutlet, ComponentPortal } from '@angular/cdk/portal';
 
 import { AnimationEvent } from '@angular/animations';
-import { map } from 'rxjs/operators';
-
-export type DaffModalVerticalPosition = 'top' | 'center' | 'bottom';
-export type DaffModalHorizontalPosition = 'left' | 'center' | 'right';
 
 @Component({
 	selector: 'daff-modal',
