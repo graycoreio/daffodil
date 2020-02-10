@@ -3,4 +3,6 @@ export { DaffCustomerRegistrationFactory } from './factories/customer-registrati
 export { DaffAuthTokenFactory } from './factories/auth-token.factory';
 
 export { DaffInMemoryBackendAuthService } from './inmemory-backend/auth.service';
+
+export { DaffAuthTestingDriverModule } from './drivers/testing/auth-driver.module';
 export { DaffAuthInMemoryDriverModule } from './drivers/in-memory/auth-driver.module';
