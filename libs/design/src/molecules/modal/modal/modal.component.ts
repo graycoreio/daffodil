@@ -30,7 +30,7 @@ export class DaffModalComponent {
 	/**
 	 * Dictates whether or not a modal is open or closed.
 	 */
-	@Input() open = false;
+	open = false;
 
 	/**
 	 * The CDK Portal outlet used to portal content into the modal.
@@ -40,12 +40,12 @@ export class DaffModalComponent {
 	/**
 	 * Event fired when the close animation is completed.
 	 */
-	@Output() animationCompleted: EventEmitter<any> = new EventEmitter<any>();
+	animationCompleted: EventEmitter<any> = new EventEmitter<any>();
 
 	/**
 	 * Event fired when the close animation is completed.
 	 */
-	@Output() closedAnimationCompleted: EventEmitter<any> = new EventEmitter<
+	closedAnimationCompleted: EventEmitter<any> = new EventEmitter<
 		any
 	>();
 
@@ -53,7 +53,7 @@ export class DaffModalComponent {
 	 * Event fired when the backdrop is clicked
 	 * This is often used to close the modal
 	 */
-	@Output() hide: EventEmitter<void> = new EventEmitter<void>();
+	hide: EventEmitter<void> = new EventEmitter<void>();
 
 	/**
 	 * Hostbinding to set the default modal class on the host element
