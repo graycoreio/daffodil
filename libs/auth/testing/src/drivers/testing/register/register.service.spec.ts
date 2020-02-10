@@ -5,8 +5,7 @@ import {
   DaffRegisterServiceInterface,
   DaffAccountRegistration,
   DaffCustomerRegistration
-} from '@daffodil/auth';
-
+} from '../../../../../src';
 import { DaffTestingRegisterService } from './register.service';
 import { DaffAccountRegistrationFactory } from '../../../factories/account-registration.factory';
 
