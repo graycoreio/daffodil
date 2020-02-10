@@ -22,7 +22,7 @@ export {
   selectDaffContactError,
   selectDaffContactLoading,
   selectDaffContactSuccess,
-  DaffContactFeatureState
+  selectContactFeatureState
 } from './selectors/contact.selector';
 
 export * from './driver/public_api';

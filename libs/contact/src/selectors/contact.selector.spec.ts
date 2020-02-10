@@ -2,11 +2,11 @@ import { Store, StoreModule, select } from '@ngrx/store';
 import { reducer, DaffContactState } from '../reducers/contact.reducer';
 import { TestBed } from '@angular/core/testing';
 import { cold } from 'jasmine-marbles';
-import { selectDaffContactLoading, selectDaffContactSuccess, selectDaffContactError, DaffContactReducerState } from './contact.selector';
+import { selectDaffContactLoading, selectDaffContactSuccess, selectDaffContactError, DaffContactFeatureState } from './contact.selector';
 
 describe('the contact selectors', () => {
 
-  let store: Store<DaffContactReducerState>;
+  let store: Store<DaffContactFeatureState>;
   let mockContactState: DaffContactState;
   beforeEach(() => {
     TestBed.configureTestingModule({

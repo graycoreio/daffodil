@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@daffodil/core": [
+        "dist/core"
+      ],
+      "@daffodil/driver": [
+        "dist/driver"
+      ],
+      "@daffodil/driver/hubspot": [
+        "dist/driver/hubspot"
+      ],
+      "@daffodil/contact": [
+        "libs/contact/src"
+      ],
+      "@daffodil/contact/testing": [
+        "libs/contact/testing/src"
+      ],
+    }
+  }
+}

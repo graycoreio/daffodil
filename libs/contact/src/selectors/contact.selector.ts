@@ -5,7 +5,7 @@ export interface DaffContactFeatureState {
   contact: DaffContactState
 }
 
-const selectContactFeatureState:
+export const selectContactFeatureState:
   MemoizedSelector<DaffContactFeatureState, DaffContactState> = createFeatureSelector<DaffContactState>('contact');
 
 export const selectDaffContactLoading = createSelector(

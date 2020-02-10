@@ -1,14 +1,20 @@
-import { DaffContactReducerState } from '../selectors/contact.selector';
-import { MockStore } from '@ngrx/store/testing';
 import { TestBed } from '@angular/core/testing';
 import { StoreModule, Store } from '@ngrx/store';
-import { reducer } from '../reducers/contact.reducer';
+import { MockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
-import { DaffContactSuccessSubmit, DaffContactSubmit, DaffContactFailedSubmit } from '../actions/contact.actions';
+
+import {
+  reducer,
+  DaffContactSuccessSubmit, 
+  DaffContactSubmit, 
+  DaffContactFailedSubmit
+} from '@daffodil/contact';
+
+import { DaffContactFeatureState } from '../selectors/contact.selector';
 import { DaffContactFacade } from './contact.facade';
 
 describe('the DaffContactFacade', () => {
-  let store: MockStore<Partial<DaffContactReducerState>>;
+  let store: MockStore<Partial<DaffContactFeatureState>>;
   let facade: DaffContactFacade;
 
   beforeEach(() => {
