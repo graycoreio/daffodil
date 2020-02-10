@@ -18,3 +18,5 @@ export { DaffAuthQueryManagerInterface } from './drivers/interfaces/auth-query-m
 
 export { DaffAuthTransformer } from './drivers/injection-tokens/auth-transformer.token';
 export { DaffAuthTransformerInterface } from './drivers/interfaces/auth-transformer.interface';
+
+export { DaffAuthMagentoDriverModule } from './drivers/magento/auth-driver.module';
