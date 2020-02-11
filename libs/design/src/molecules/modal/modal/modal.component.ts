@@ -26,7 +26,7 @@ export class DaffModalComponent {
 	/**
 	 * Dictates whether or not a modal is open or closed.
 	 */
-	open = false;
+	@Input() open = false;
 
 	/**
 	 * The CDK Portal outlet used to portal content into the modal.
