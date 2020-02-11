@@ -6,13 +6,13 @@ export interface DaffContactState {
   errors: string[] | null;
 }
 
-const intialState: DaffContactState = {
+const initialState: DaffContactState = {
   success: false,
   loading: false,
   errors: null
 }
 
-export function reducer<T>(state: DaffContactState = intialState, 
+export function reducer<T>(state: DaffContactState = initialState, 
   action: DaffContactActions<T>){
     switch(action.type){
       case DaffContactActionTypes.ContactRetryAction:
@@ -25,7 +25,7 @@ export function reducer<T>(state: DaffContactState = intialState,
       case DaffContactActionTypes.ContactCancelAction:
         return {...state, loading: false};
       case DaffContactActionTypes.ContactResetAction:
-        return {...state, ... intialState};
+        return {...state, ... initialState};
       default:
         return state;
     }

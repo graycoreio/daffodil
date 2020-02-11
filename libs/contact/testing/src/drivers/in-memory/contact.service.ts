@@ -1,8 +1,8 @@
-import { DaffContactServiceInterface } from '@daffodil/contact';
-import { DaffContactUnion } from '@daffodil/contact';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+import { DaffContactServiceInterface, DaffContactUnion } from '@daffodil/contact';
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { DaffInMemoryBackendContactService } from './contact-in-memory-backend.service';
 import { DaffContactUnion } from '@daffodil/contact';
+import { DaffInMemoryBackendContactService } from './contact-in-memory-backend.service';
 
 describe('DaffContactInMemoryBackend', () => {
   let contactTestingService;

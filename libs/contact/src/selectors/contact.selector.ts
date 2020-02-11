@@ -1,12 +1,12 @@
 import { MemoizedSelector, createFeatureSelector, createSelector } from '@ngrx/store';
 import { DaffContactState } from '../reducers/contact.reducer';
 
-export interface DaffContactReducerState {
+export interface DaffContactFeatureState {
   contact: DaffContactState
 }
 
-const selectContactFeatureState:
-  MemoizedSelector<DaffContactReducerState, DaffContactState> = createFeatureSelector<DaffContactState>('contact');
+export const selectContactFeatureState:
+  MemoizedSelector<DaffContactFeatureState, DaffContactState> = createFeatureSelector<DaffContactState>('contact');
 
 export const selectDaffContactLoading = createSelector(
   selectContactFeatureState, (state: DaffContactState) => state.loading
