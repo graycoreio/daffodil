@@ -1,8 +1,17 @@
 import { InjectionToken } from '@angular/core';
 import { DaffCartShippingRate } from '../../models/cart-shipping-rate';
+import { DaffCart } from '../../models/cart';
 
-export interface DaffCartShippingMethodsServiceInterface<T extends DaffCartShippingRate> {
-	list(): T[];
+/**
+ * The interface responsible for retrieving the available shipping methods of a cart.
+ */
+export interface DaffCartShippingMethodsServiceInterface<
+	T extends DaffCartShippingRate
+> {
+	/**
+	 * List the available shipping methods for a cart.
+	 */
+	list(cartId: DaffCart['id']): T[];
 }
 
 export const DaffCartShippingMethodsDriver = new InjectionToken<

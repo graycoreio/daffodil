@@ -1,18 +1,25 @@
-import { DaffPersonalAddress } from '@daffodil/geography';
-import { DaffCartAddress } from '../../models/cart-address';
 import { InjectionToken } from '@angular/core';
 
+import { DaffCartAddress } from '../../models/cart-address';
+import { DaffCart } from '../../models/cart';
+
 /**
- * The interface responsible for managing the shipping address of a cart.
+ * The interface responsible for managing the billing address of a cart.
  */
 export interface DaffCartBillingAddressServiceInterface<
-	T extends DaffPersonalAddress,
 	V extends DaffCartAddress
 > {
-	get(): V;
-	update(address: T): V;
+	/**
+	 * Retrieve the billing address of a cart
+	 */
+	get(cartId: DaffCart['id']): V;
+
+	/**
+	 * Update the billing address of a cart
+	 */
+	update(cartId: DaffCart['id'], address: Partial<V>): V;
 }
 
 export const DaffCartBillingAddressDriver = new InjectionToken<
-	DaffCartBillingAddressServiceInterface<any, any>
+	DaffCartBillingAddressServiceInterface<any>
 >('DaffCartBillingAddressDriver');
