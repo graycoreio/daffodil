@@ -11,7 +11,7 @@ export interface DaffCartPaymentMethodsServiceInterface<T extends DaffCartPaymen
 	/**
 	 * List the available payment methods of a cart.
 	 */
-	list(cartId: DaffCart['id']): Observable<T>[];
+	list(cartId: DaffCart['id']): Observable<T[]>;
 }
 
 export const DaffCartPaymentMethodsDriver = new InjectionToken<
