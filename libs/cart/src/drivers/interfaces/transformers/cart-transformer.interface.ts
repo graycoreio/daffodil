@@ -7,10 +7,10 @@ import { InjectionToken } from '@angular/core';
  * This transformer is responsible for transforming the returned
  * cart from a given platform into a Generic DaffCart.
  */
-export interface DaffCartTransformerInterface<RES, T extends DaffCart> {
-  transform(response: RES): T;
+export interface DaffCartTransformerInterface<T extends DaffCart> {
+  transform(response: any): T;
 }
 
 export const DaffCartTransformer 
-  = new InjectionToken<DaffCartTransformerInterface<any, any>>('DaffCartTransformer');
+  = new InjectionToken<DaffCartTransformerInterface<any>>('DaffCartTransformer');
 
