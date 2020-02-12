@@ -24,17 +24,17 @@ export class DaffNativeSelectComponent implements DaffFormFieldControl {
    */
   @Input() formSubmitted: boolean;
 
-  @HostListener('focus') onFocus() {
+  @HostListener('focus') focus() {
     this.focused = true;
   }
 
-  @HostListener('blur') onBlur() {
+  @HostListener('blur') blur() {
     this.focused = false;
   }
 
   constructor(@Optional() @Self() public ngControl: NgControl, private _elementRef: ElementRef<HTMLInputElement>) {}
 
-  focus() {
+  onFocus() {
     this._elementRef.nativeElement.focus();
   }
 

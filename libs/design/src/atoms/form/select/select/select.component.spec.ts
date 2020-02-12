@@ -51,7 +51,7 @@ describe('DaffNativeSelectComponent', () => {
     wrapper.formSubmittedValue = stubFormSubmitted;
     fixture.detectChanges();
 
-    componentDE = fixture.debugElement.query(By.css('[daff-native-select]'));
+    componentDE = fixture.debugElement.query(By.css('select[daff-native-select]'));
     component = componentDE.componentInstance;
   });
 
@@ -71,7 +71,17 @@ describe('DaffNativeSelectComponent', () => {
     expect(component.formSubmitted).toEqual(stubFormSubmitted);
   });
 
-  describe('when <daff-native-select> is focused', () => {
+  describe('onFocus', () => {
+    it('should call focus on the native element', () => {
+      spyOn(componentDE.nativeElement, 'focus');
+      
+      component.onFocus();
+
+      expect(componentDE.nativeElement.focus).toHaveBeenCalled();
+    });
+  });
+
+  describe('when [daff-native-select] is focused', () => {
     it('should set focused to true', () => {
       componentDE.triggerEventHandler('focus', {});
 
@@ -79,7 +89,7 @@ describe('DaffNativeSelectComponent', () => {
     });
   });
 
-  describe('when <daff-native-select> is blurred', () => {
+  describe('when [daff-native-select] is blurred', () => {
     it('should set focused to false', () => {
       componentDE.triggerEventHandler('blur', {});
 
