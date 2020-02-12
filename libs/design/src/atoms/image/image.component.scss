@@ -1,0 +1,15 @@
+@import '../../scss/daff-util';
+
+:host {
+	display: block;
+	position: relative;
+	height: 0;
+
+	img {
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: auto;
+		max-width: 100%;
+	}
+}
