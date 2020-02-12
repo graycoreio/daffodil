@@ -51,7 +51,7 @@ describe('DaffInputComponent', () => {
     expect(component.formSubmitted).toEqual(stubFormSubmitted);
   });
 
-  describe('when <daff-native-select> is focused', () => {
+  describe('when <daff-input> is focused', () => {
     it('should set focused to true', () => {
       componentDE.triggerEventHandler('focus', {});
 
@@ -59,7 +59,7 @@ describe('DaffInputComponent', () => {
     });
   });
 
-  describe('when <daff-native-select> is blurred', () => {
+  describe('when <daff-input> is blurred', () => {
     it('should set focused to false', () => {
       componentDE.triggerEventHandler('blur', {});
 
