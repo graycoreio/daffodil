@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
@@ -26,6 +26,7 @@ describe('DaffNativeSelectComponent', () => {
   let stubFormControl;
   let stubFormSubmitted: boolean;
   let component: DaffNativeSelectComponent;
+  let componentDE: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -50,7 +51,8 @@ describe('DaffNativeSelectComponent', () => {
     wrapper.formSubmittedValue = stubFormSubmitted;
     fixture.detectChanges();
 
-    component = fixture.debugElement.query(By.css('[daff-native-select]')).componentInstance;
+    componentDE = fixture.debugElement.query(By.css('[daff-native-select]'));
+    component = componentDE.componentInstance;
   });
 
   it('should create', () => {
@@ -67,5 +69,21 @@ describe('DaffNativeSelectComponent', () => {
 
   it('should be able to take formSubmitted as input', () => {
     expect(component.formSubmitted).toEqual(stubFormSubmitted);
+  });
+
+  describe('when <daff-native-select> is focused', () => {
+    it('should set focused to true', () => {
+      componentDE.triggerEventHandler('focus', {});
+
+      expect(component.focused).toBe(true);
+    });
+  });
+
+  describe('when <daff-native-select> is blurred', () => {
+    it('should set focused to false', () => {
+      componentDE.triggerEventHandler('blur', {});
+
+      expect(component.focused).toBe(false);
+    });
   });
 });
