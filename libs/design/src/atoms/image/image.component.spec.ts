@@ -15,7 +15,7 @@ class WrapperComponent {
   height = 100;
 }
 
-fdescribe('DaffImageComponent', () => {
+describe('DaffImageComponent', () => {
   let wrapper: WrapperComponent;
   let component: DaffImageComponent;
   let de: DebugElement;
