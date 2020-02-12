@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import {
   DaffLoginServiceInterface,
@@ -18,5 +18,9 @@ export class DaffInMemoryLoginService implements DaffLoginServiceInterface<DaffL
 
   login(request: DaffLoginInfo): Observable<DaffAuthToken> {
     return this.http.post<DaffAuthToken>(`${this.url}login`, request);
+  }
+
+  logout(): Observable<void> {
+    return of();
   }
 }

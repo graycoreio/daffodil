@@ -9,10 +9,12 @@ export interface DaffLoginServiceInterface<
   /**
    * Logs the user in.
    *
-   * @param {string} username
-   * @param {string} password
-   * @returns {Observable<string>} An access token.
-   * @memberof DaffLoginServiceInterface
+   * @returns An access token.
    */
   login(loginInfo: TRequest): Observable<TResponse>;
+
+  /**
+   * Logs the user out by revoking their access token.
+   */
+  logout(): Observable<void>;
 }

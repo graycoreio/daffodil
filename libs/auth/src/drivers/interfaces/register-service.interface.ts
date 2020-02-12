@@ -14,7 +14,6 @@ TResponse extends DaffAuthToken
    *
    * @param {T} registration
    * @returns {Observable<string>} An access token.
-   * @memberof DaffRegisterServiceInterface
    */
   register(registration: TRequest): Observable<TResponse>;
 }

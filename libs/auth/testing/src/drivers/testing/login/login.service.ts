@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import {
@@ -17,5 +17,9 @@ export class DaffTestingLoginService implements DaffLoginServiceInterface<DaffLo
 
   login(loginInfo: DaffLoginInfo): Observable<DaffAuthToken> {
     return of(this.factory.create());
+  }
+
+  logout(): Observable<void> {
+    return of();
   }
 }
