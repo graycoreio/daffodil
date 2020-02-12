@@ -1,4 +1,6 @@
 import { InjectionToken } from '@angular/core';
+import { Observable } from 'rxjs';
+
 import { DaffCartPaymentMethod } from '../../models/cart-payment';
 import { DaffCart } from '../../models/cart';
 
@@ -9,17 +11,17 @@ export interface DaffCartPaymentServiceInterface<T extends DaffCartPaymentMethod
 	/**
 	 * Get the currently applied payment method of a cart.
 	 */
-	get(cartId: DaffCart['id']): T;
+	get(cartId: DaffCart['id']): Observable<T>;
 
 	/**
 	 * Update the payment method applied to a cart. 
 	 */
-	update(cartId: DaffCart['id'], payment: Partial<T>): T;
+	update(cartId: DaffCart['id'], payment: Partial<T>): Observable<T>;
 
 	/**
 	 * Remove the payment method applied to a cart.
 	 */
-	remove(cartId: DaffCart['id']): void;
+	remove(cartId: DaffCart['id']): Observable<void>;
 }
 
 export const DaffCartPaymentDriver = new InjectionToken<

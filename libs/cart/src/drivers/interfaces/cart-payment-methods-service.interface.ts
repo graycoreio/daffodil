@@ -1,4 +1,5 @@
 import { InjectionToken } from '@angular/core';
+import { Observable } from 'rxjs';
 import { DaffCartPaymentMethod } from '../../models/cart-payment';
 import { DaffCart } from '../../models/cart';
 
@@ -9,7 +10,7 @@ export interface DaffCartPaymentMethodsServiceInterface<T extends DaffCartPaymen
 	/**
 	 * List the available payment methods of a cart.
 	 */
-	list(cartId: DaffCart['id']): T[];
+	list(cartId: DaffCart['id']): Observable<T>[];
 }
 
 export const DaffCartPaymentMethodsDriver = new InjectionToken<

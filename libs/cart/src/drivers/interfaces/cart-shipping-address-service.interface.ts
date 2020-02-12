@@ -1,4 +1,5 @@
 import { InjectionToken } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { DaffCart } from '../../models/cart';
 import { DaffCartAddress } from '../../models/cart-address';
@@ -12,12 +13,12 @@ export interface DaffCartShippingAddressServiceInterface<
 	/**
 	 * Retrieve the shipping address of a cart.
 	 */
-	get(cartId: DaffCart['id']): V;
+	get(cartId: DaffCart['id']): Observable<V>;
 
 	/**
 	 * Update the shipping address of a cart.
 	 */
-	update(cartId: DaffCart['id'], address: Partial<V>): V;
+	update(cartId: DaffCart['id'], address: Partial<V>): Observable<V>;
 }
 
 export const DaffCartShippingAddressDriver = new InjectionToken<

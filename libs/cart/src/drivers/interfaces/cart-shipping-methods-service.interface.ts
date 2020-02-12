@@ -1,4 +1,6 @@
 import { InjectionToken } from '@angular/core';
+import { Observable } from 'rxjs';
+
 import { DaffCartShippingRate } from '../../models/cart-shipping-rate';
 import { DaffCart } from '../../models/cart';
 
@@ -11,7 +13,7 @@ export interface DaffCartShippingMethodsServiceInterface<
 	/**
 	 * List the available shipping methods for a cart.
 	 */
-	list(cartId: DaffCart['id']): T[];
+	list(cartId: DaffCart['id']): Observable<T[]>;
 }
 
 export const DaffCartShippingMethodsDriver = new InjectionToken<
