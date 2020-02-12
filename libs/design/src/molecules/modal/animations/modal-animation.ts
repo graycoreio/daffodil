@@ -12,7 +12,7 @@ export const daffFadeAnimations: {
 } = {
 	fade: trigger('fade', [
 		state('open', style({ opacity: 1, })),
-		state('closed', style({ opacity: 0, transform: 'translateY(-20px)' })),
-		transition('open <=> closed', animate('100ms cubic-bezier(0.25, 0.8, 0.25, 1)')),
+		state('closed', style({ opacity: 0 })),
+		transition('open <=> closed', animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)')),
 	]),
 };

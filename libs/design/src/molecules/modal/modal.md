@@ -1,10 +1,13 @@
 # Modal Component
 
-The `DaffModalComponent` component is a dynamically rendered component that allows you to render a component of your choice on the page above the rest of the content. This component can be especially useful for interstitials that require additional user feedback.
+The `DaffModalComponent` is a dynamically rendered component that floats above the rest of a page's content. It can be especially useful for interstitials that require additional user feedback.
 
 ## Usage
 
-Using the `DaffModalComponent` relies upon using the `entryComponents` of your particular Angular module. To use the features of the `DaffModalComponent` you will have to both import the `DaffModalModule` as you would with any other `@daffodil/design` component, but you will also have to additionally add the component that you would like to render inside the `DaffModalComponent` to your module's `entryComponents`.
+`DaffModalComponent` relies on using the `entryComponents` of the particular Angular `@NgModule`. To use the features of the `DaffModalComponent`:
+
+* Import the `DaffModalModule` as you would with any other `@daffodil/design` component
+* Add the component that you want rendered inside the modal to your `@NgModule`'s `entryComponents`
 
 ```ts
 my.module.ts
@@ -24,7 +27,7 @@ export class ModalModule {
 }
 ```
 
-Once your module is setup, you can take advantage of the `DaffModalService` that is provided by the `DaffModalModule` to open and close your instance of the `DaffModalComponent`. 
+Once you have configured your `@NgModule` you can take advantage of the `DaffModalService` that is provided by the `DaffModalModule` to `open` and `close` the instance of the `DaffModalComponent`. 
 
 ```ts
 my-other.component.ts

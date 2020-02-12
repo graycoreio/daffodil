@@ -87,6 +87,7 @@ export class DaffModalService {
 
 	close(modal: DaffModal): void {
 		modal.modal.instance.open = false;
+		modal.overlay.detachBackdrop();
 		modal.modal.instance.closedAnimationCompleted.subscribe(
 			(e: AnimationEvent) => this._removeModal(modal),
 		);
