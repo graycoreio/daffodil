@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
+import { By, DomSanitizer } from '@angular/platform-browser';
 
 import { DaffImageComponent } from './image.component';
 
@@ -15,7 +15,7 @@ class WrapperComponent {
   height = 100;
 }
 
-describe('DaffImageComponent', () => {
+fdescribe('DaffImageComponent', () => {
   let wrapper: WrapperComponent;
   let component: DaffImageComponent;
   let de: DebugElement;
@@ -26,6 +26,15 @@ describe('DaffImageComponent', () => {
       declarations: [
         DaffImageComponent,
         WrapperComponent
+      ],
+      providers: [
+        {
+          provide: DomSanitizer,
+          useValue: {
+            sanitize: () => 'safeString',
+            bypassSecurityTrustStyle: () => 'safeString'
+          }
+        }
       ]
     })
     .compileComponents();
