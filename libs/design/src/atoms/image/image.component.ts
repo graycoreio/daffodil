@@ -70,15 +70,16 @@ export class DaffImageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('test');
     validateProperties(this, ['src', 'alt', 'width', 'height'])
   }
 
   constructor(private sanitizer: DomSanitizer) {}
 
   @HostBinding('style.padding-top') get paddingTop() {
-    return this.height && this.width
-      ? this.sanitizer.bypassSecurityTrustStyle('calc(' + this.height + ' / ' + this.width + ' * 100%)')
-      : '';
+    if (!this.height || !this.width ) {
+      return undefined;
+    }
+    
+    return this.sanitizer.bypassSecurityTrustStyle('calc(' + this.height + ' / ' + this.width + ' * 100%)');
   }
 }

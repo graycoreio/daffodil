@@ -26,15 +26,6 @@ describe('DaffImageComponent', () => {
       declarations: [
         DaffImageComponent,
         WrapperComponent
-      ],
-      providers: [
-        {
-          provide: DomSanitizer,
-          useValue: {
-            sanitize: () => 'safeString',
-            bypassSecurityTrustStyle: () => 'safeString'
-          }
-        }
       ]
     })
     .compileComponents();
@@ -56,24 +47,28 @@ describe('DaffImageComponent', () => {
   it('should be able to take `src` as an input', () => {
     wrapper.src = '/assets/image.svg';
     fixture.detectChanges();
+
     expect(component.src).toEqual('/assets/image.svg');
   });
 
   it('should be able to take `alt` as an input', () => {
     wrapper.alt = 'alt tag';
     fixture.detectChanges();
+
     expect(component.alt).toEqual('alt tag');
   });
 
   it('should be able to take `width` as an input', () => {
     wrapper.width = 100;
     fixture.detectChanges();
+
     expect(component.width).toEqual(100);
   });
 
   it('should be able to take `height` as an input', () => {
     wrapper.height = 100;
     fixture.detectChanges();
+    
     expect(component.height).toEqual(100);
   });
 
@@ -95,5 +90,23 @@ describe('DaffImageComponent', () => {
   it('should throw an error when height is invalid', () => {
     wrapper.height = null;
     expect(() => fixture.detectChanges()).toThrowError(/height/);
+  });
+
+  it('sets padding-top to an empty string on the host element if width is `0`', () => {
+    wrapper.height = 100;
+    wrapper.width = 0;
+
+    fixture.detectChanges();
+
+    expect(de.styles['padding-top']).toEqual(null);
+  });
+
+  it('calculates and sets `padding-top` on the host element based on height and width', () => {
+    wrapper.height = 100;
+    wrapper.width = 300;
+
+    fixture.detectChanges();
+
+    expect(de.styles['padding-top']).toEqual('calc(' + wrapper.height + ' / ' + wrapper.width + ' * 100%)');
   });
 });
