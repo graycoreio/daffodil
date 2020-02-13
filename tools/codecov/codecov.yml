@@ -13,7 +13,7 @@ coverage:
 flags:
   category:
     paths:
-      - coverage/libs/category/
+      - ../../libs/category/src
   core:
     paths:
-      - coverage/libs/core/
+      - ../../libs/core/src
