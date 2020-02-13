@@ -12,6 +12,9 @@ import { DaffBackdropComponent } from './backdrop/backdrop.component';
   ],
   exports: [
     DaffBackdropComponent
+  ],
+  entryComponents: [
+    DaffBackdropComponent
   ]
 })
 export class DaffBackdropModule { }

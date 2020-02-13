@@ -26,17 +26,6 @@ export class AddToCartNotificationComponent implements OnInit {
   productId$: Observable<string>;
   product$: Observable<DaffProduct>;
 
-  _verticalPosition = 'center';
-  _horizontalPosition = 'center';
-
-  @Input()
-  get verticalPosition(): string { return this._verticalPosition; }
-  set verticalPosition(value: string) { this._verticalPosition = value; }
-
-  @Input()
-  get horizontalPosition(): string { return this._horizontalPosition; }
-  set horizontalPosition(value: string) { this._horizontalPosition = value; }
-
   constructor(private store: Store<fromDemoAddToCartNotification.State>) { }
 
   ngOnInit() {

@@ -44,9 +44,6 @@ class MockAddToCartComponent {
   @Output() addToCart: EventEmitter<any> = new EventEmitter();
 }
 
-@Component({ selector: 'demo-add-to-cart-notification', template: '' })
-class MockAddToCartNotificationComponent { }
-
 class MockDaffProductFacade {
   loading$: Observable<boolean> = new BehaviorSubject(false);
   product$: Observable<DaffProduct[]> = new BehaviorSubject(null);
@@ -64,7 +61,6 @@ describe('ProductViewComponent', () => {
   let cartContainer: MockCartContainer;
   let productComponent: ProductComponent;
   let addToCartComponent: AddToCartComponent;
-  let addToCartNotification: MockAddToCartNotificationComponent;
   let facade: DaffProductFacade;
 
   beforeEach(async(() => {
@@ -77,8 +73,7 @@ describe('ProductViewComponent', () => {
         ProductViewComponent,
         MockCartContainer,
         MockProductComponent,
-        MockAddToCartComponent,
-        MockAddToCartNotificationComponent
+        MockAddToCartComponent
       ],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRoute },
@@ -99,7 +94,6 @@ describe('ProductViewComponent', () => {
 
     productComponent = fixture.debugElement.query(By.css('demo-product')).componentInstance;
     addToCartComponent = fixture.debugElement.query(By.css('demo-add-to-cart')).componentInstance;
-    addToCartNotification = fixture.debugElement.query(By.css('demo-add-to-cart-notification')).componentInstance;
   });
 
   it('should create', () => {

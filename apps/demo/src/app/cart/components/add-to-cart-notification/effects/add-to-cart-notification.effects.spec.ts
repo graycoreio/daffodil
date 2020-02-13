@@ -1,12 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 import { Observable } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
-import { provideMockActions } from '@ngrx/effects/testing';
-
 import { DaffAddToCart } from '@daffodil/cart';
+import { DaffModalModule } from '@daffodil/design';
+
+import { provideMockActions } from '@ngrx/effects/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { AddToCartNotificationEffects } from './add-to-cart-notification.effects';
 import { OpenAddToCartNotification } from '../actions/add-to-cart-notification.actions';
+
 
 describe('AddToCartNotificationEffects', () => {
   let actions$: Observable<any>;
@@ -14,8 +17,12 @@ describe('AddToCartNotificationEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffModalModule
+      ],
       providers: [
         AddToCartNotificationEffects,
+        provideMockStore(),
         provideMockActions(() => actions$)
       ]
     });

@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { DaffModalService } from '@daffodil/design';
+
+import { DesignLandModalContentComponent } from './modal-content/modal-content.component';
 
 @Component({
   selector: 'design-land-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss']
 })
-export class ModalComponent implements OnInit {
+export class DesignLandModalComponent {
+  modal: any;
+  
+  constructor(private modalService: DaffModalService) {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-  private showModal : boolean;
-  hideModal() {
-    this.showModal = false;
+  showModal() {
+    this.modal = this.modalService.open(DesignLandModalContentComponent);
   }
 }

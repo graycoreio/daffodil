@@ -3,15 +3,17 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { DaffModalComponent } from './modal.component';
-import { DaffBackdropComponent, DaffBackdropModule } from '../../backdrop/public_api';
+import { DaffModalComponent } from '../modal.component';
+import { DaffBackdropModule } from '../../../backdrop/public_api';
 
 @Component({template: `
   <div class="daff-modal-wrapper">
-    <daff-modal></daff-modal>
+    <daff-modal [open]="open"></daff-modal>
   </div>
 `})
-class WrapperComponent {}
+class WrapperComponent {
+  open = true;
+}
 
 describe('DaffModalComponent', () => {
   let wrapper: WrapperComponent;
@@ -42,7 +44,14 @@ describe('DaffModalComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(wrapper).toBeTruthy();
+  describe('the entrance and exit animations', () => {
+    it('should change animation states depending on whether or not the modal is open or closed', () => {
+      wrapper.open = true;
+      fixture.detectChanges();
+      expect(modal.fadeState).toBe('open');
+      wrapper.open = false;
+      fixture.detectChanges();
+      expect(modal.fadeState).toBe('closed');
+    });
   });
 });
