@@ -27,7 +27,7 @@ export class ModalModule {
 }
 ```
 
-Once you have configured your `@NgModule` you can take advantage of the `DaffModalService` that is provided by the `DaffModalModule` to `open` and `close` the instance of the `DaffModalComponent`. 
+Once your `@NgModule` has been configured, you can take advantage of the `DaffModalService` that is provided by the `DaffModalModule` to `open` and `close` the instance of the `DaffModalComponent`. 
 
 ```ts
 my-other.component.ts
