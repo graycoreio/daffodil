@@ -64,4 +64,15 @@ describe('DaffAuthInMemoryBackend | Unit', () => {
       expect(result.status).toEqual(STATUS.CREATED);
     });
   });
+
+  describe('processing a logout request', () => {
+    it('should process post requests of the form `/api/auth/logout` and return the true with an OK status', () => {
+      reqInfoStub.id = 'logout';
+      reqInfoStub.req.body = {};
+      const result = authTestingService.post(reqInfoStub);
+
+      expect(result.body).toEqual(jasmine.objectContaining({success: true}));
+      expect(result.status).toEqual(STATUS.OK);
+    });
+  });
 });

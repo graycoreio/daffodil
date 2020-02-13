@@ -7,6 +7,7 @@ import {
   DaffLoginInfo,
   DaffAuthToken,
 } from '@daffodil/auth';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,9 @@ export class DaffInMemoryLoginService implements DaffLoginServiceInterface<DaffL
     return this.http.post<DaffAuthToken>(`${this.url}login`, request);
   }
 
-  logout(): Observable<void> {
-    return of();
+  logout(): Observable<boolean> {
+    return this.http.post<{success: boolean}>(`${this.url}logout`, {}).pipe(
+      map(({success}) => success)
+    );
   }
 }

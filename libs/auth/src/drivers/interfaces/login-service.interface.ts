@@ -16,5 +16,5 @@ export interface DaffLoginServiceInterface<
   /**
    * Logs the user out by revoking their access token.
    */
-  logout(): Observable<void>;
+  logout(): Observable<boolean>;
 }

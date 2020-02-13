@@ -19,7 +19,7 @@ export class DaffTestingLoginService implements DaffLoginServiceInterface<DaffLo
     return of(this.factory.create());
   }
 
-  logout(): Observable<void> {
-    return of();
+  logout(): Observable<boolean> {
+    return of(true);
   }
 }

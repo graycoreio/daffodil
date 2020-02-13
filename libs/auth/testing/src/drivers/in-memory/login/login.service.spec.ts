@@ -70,4 +70,21 @@ describe('Driver | InMemory | Auth | LoginService', () => {
       req.flush(mockAuth);
     });
   });
+
+  describe('logout | getting a truthy response', () => {
+    afterEach(() => {
+      httpMock.verify();
+    });
+
+    it('should send a post request and return an AuthToken', () => {
+      loginService.logout().subscribe(resp => {
+        expect(resp).toEqual(true);
+      });
+
+      const req = httpMock.expectOne(`${loginService.url}logout`);
+      expect(req.request.method).toBe('POST');
+
+      req.flush({success: true});
+    });
+  });
 });

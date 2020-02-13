@@ -45,4 +45,12 @@ describe('Driver | Testing | Auth | LoginService', () => {
       });
     });
   });
+
+  describe('logout | obtaining a true response', () => {
+    it('should return true', () => {
+      loginService.logout().subscribe(resp => {
+        expect(resp).toEqual(true);
+      });
+    });
+  });
 });

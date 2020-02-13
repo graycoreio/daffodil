@@ -35,4 +35,13 @@ describe('DaffAuthInMemoryBackend | Integration', () => {
       });
     });
   });
+
+  describe('processing a logout request', () => {
+    it('should process post requests of the form `/api/auth/logout` and return the login info', done => {
+      httpClient.post('/api/auth/logout', {}).subscribe(result => {
+        expect(result).toEqual(jasmine.objectContaining({success: true}));
+        done();
+      });
+    });
+  });
 });
