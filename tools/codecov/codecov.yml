@@ -1,16 +1,17 @@
 coverage:
   status:
     project:
-      target: 80%
-      threshold: 5%
-    category:
-      flags: category
-      target: 90%
-    core:
-      target: 85%
-      flags: core
+      default:
+        target: 80%
+        threshold: 5%
+      category:
+        flags: category
+        target: 90%
+      core:
+        target: 85%
+        flags: core
 flags:
-  category:  
+  category:
     paths:
       - libs/category/src
   core:
