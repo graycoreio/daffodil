@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { DaffTestingNewsletterService } from '@daffodil/newsletter/testing'
 import { DaffNewsletterDriver } from '@daffodil/newsletter';
+import { DaffTestingNewsletterService } from './newsletter.service';
 
 @NgModule()
 export class DaffNewsletterTestingDriverModule {
