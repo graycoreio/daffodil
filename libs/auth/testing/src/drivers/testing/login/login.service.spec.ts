@@ -39,9 +39,19 @@ describe('Driver | Testing | Auth | LoginService', () => {
   });
 
   describe('login | obtaining a token', () => {
-    it('should return a token', () => {
+    it('should return a token', done => {
       loginService.login({email, password}).subscribe(auth => {
         expect(auth.token).toBeTruthy();
+        done();
+      });
+    });
+  });
+
+  describe('logout | emitting undefined without error', () => {
+    it('should emit undefined without throwing an error', done => {
+      loginService.logout().subscribe(auth => {
+        expect(auth).toBeUndefined();
+        done();
       });
     });
   });

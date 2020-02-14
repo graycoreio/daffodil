@@ -58,9 +58,10 @@ describe('Driver | InMemory | Auth | LoginService', () => {
       httpMock.verify();
     });
 
-    it('should send a post request and return an AuthToken', () => {
+    it('should send a post request and return an AuthToken', done => {
       loginService.login({email, password}).subscribe(auth => {
         expect(auth).toEqual(mockAuth);
+        done();
       });
 
       const req = httpMock.expectOne(`${loginService.url}login`);
@@ -68,6 +69,24 @@ describe('Driver | InMemory | Auth | LoginService', () => {
       expect(req.request.body).toEqual({email, password});
 
       req.flush(mockAuth);
+    });
+  });
+
+  describe('logout | getting an empty Observable', () => {
+    afterEach(() => {
+      httpMock.verify();
+    });
+
+    it('should send a post request and return an empty Observable', done => {
+      loginService.logout().subscribe(resp => {
+        expect(resp).toBeUndefined();
+        done();
+      });
+
+      const req = httpMock.expectOne(`${loginService.url}logout`);
+      expect(req.request.method).toBe('POST');
+
+      req.flush({success: true});
     });
   });
 });

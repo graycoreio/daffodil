@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 
 import {
   DaffLoginServiceInterface,
   DaffLoginInfo,
   DaffAuthToken,
 } from '@daffodil/auth';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,8 @@ export class DaffInMemoryLoginService implements DaffLoginServiceInterface<DaffL
   }
 
   logout(): Observable<void> {
-    return of();
+    return this.http.post<{success: boolean}>(`${this.url}logout`, {}).pipe(
+      switchMap(({success}) => success ? of(undefined) : throwError(new Error('Logout failed')))
+    );
   }
 }

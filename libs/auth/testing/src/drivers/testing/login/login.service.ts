@@ -20,6 +20,6 @@ export class DaffTestingLoginService implements DaffLoginServiceInterface<DaffLo
   }
 
   logout(): Observable<void> {
-    return of();
+    return of(undefined);
   }
 }
