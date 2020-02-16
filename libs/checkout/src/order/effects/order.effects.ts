@@ -11,15 +11,13 @@ import {
 } from '../actions/order.actions';
 import { DaffCheckoutDriver } from '../../drivers/injection-tokens/driver-checkout.token';
 import { DaffCheckoutServiceInterface } from '../../drivers/interfaces/checkout-service.interface';
-import { DaffCartServiceInterface, DaffCartDriver, DaffCart } from '@daffodil/cart';
 
 @Injectable()
-export class OrderEffects<T extends DaffCart> {
+export class OrderEffects {
 
   constructor(
     private actions$: Actions,
-    @Inject(DaffCheckoutDriver) private checkoutDriver: DaffCheckoutServiceInterface,
-    @Inject(DaffCartDriver) private cartDriver: DaffCartServiceInterface<T>
+    @Inject(DaffCheckoutDriver) private checkoutDriver: DaffCheckoutServiceInterface
   ) {}
 
   @Effect()
@@ -36,14 +34,5 @@ export class OrderEffects<T extends DaffCart> {
           })
         )
     )
-  )
-
-  // Only here temporarily, until we figure out how to simulate a cart clear on placeOrder in the in memory service
-  @Effect({ dispatch: false })
-  onPlaceOrderSuccess$ : Observable<any> = this.actions$.pipe(
-    ofType(DaffOrderActionTypes.PlaceOrderSuccessAction),
-    tap(() => { 
-      return this.cartDriver.clear().subscribe();
-    })
   )
 }

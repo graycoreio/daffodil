@@ -13,19 +13,21 @@ import {
   DaffAddToCart} from '../actions/cart.actions';
 import { DaffCartServiceInterface, DaffCartDriver } from '../drivers/public_api';
 import { DaffCart } from '../models/cart';
+import { DaffCartStorageService } from '../storage/cart-storage.service';
 
 @Injectable()
 export class DaffCartEffects<T extends DaffCart> {
 
   constructor(
     private actions$: Actions,
-    @Inject(DaffCartDriver) private driver: DaffCartServiceInterface<T>) {}
+    @Inject(DaffCartDriver) private driver: DaffCartServiceInterface<T>,
+    private storage: DaffCartStorageService) {}
 
   @Effect()
   load$ = this.actions$.pipe(
     ofType(DaffCartActionTypes.CartLoadAction),
     switchMap((action: DaffCartLoad) =>
-      this.driver.get()
+      this.driver.get(this.storage.getCartId())
         .pipe(
           map((resp) => {
             return new DaffCartLoadSuccess(resp);
