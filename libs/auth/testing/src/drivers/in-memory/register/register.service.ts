@@ -17,8 +17,7 @@ import {
   providedIn: 'root'
 })
 export class DaffInMemoryRegisterService implements DaffRegisterServiceInterface<
-  DaffAccountRegistration<DaffCustomerRegistration>,
-  DaffCustomerRegistration,
+  DaffAccountRegistration,
   DaffAuthToken
 > {
   url = '/api/auth/';
@@ -28,7 +27,7 @@ export class DaffInMemoryRegisterService implements DaffRegisterServiceInterface
     @Inject(DaffLoginDriver) private loginDriver: DaffLoginServiceInterface<DaffLoginInfo, DaffAuthToken>
   ) {}
 
-  register(registration: DaffAccountRegistration<DaffCustomerRegistration>): Observable<DaffAuthToken> {
+  register(registration: DaffAccountRegistration): Observable<DaffAuthToken> {
     return this.http.post<DaffCustomerRegistration>(`${this.url}register`, registration).pipe(
       mergeMapTo(
         this.loginDriver.login({

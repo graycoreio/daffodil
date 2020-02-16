@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffAccountRegistration,
-  DaffCustomerRegistration
 } from '@daffodil/auth';
 
 import { DaffAccountRegistrationFactory } from './account-registration.factory';
@@ -23,7 +22,7 @@ describe('Auth | Testing | Factories | DaffAccountRegistrationFactory', () => {
   });
 
   describe('create', () => {
-    let result: DaffAccountRegistration<DaffCustomerRegistration>;
+    let result: DaffAccountRegistration;
 
     beforeEach(() => {
       result = accountRegistrationFactory.create();
@@ -36,7 +35,7 @@ describe('Auth | Testing | Factories | DaffAccountRegistrationFactory', () => {
   });
 
   describe('createMany', () => {
-    let result: DaffAccountRegistration<DaffCustomerRegistration>[];
+    let result: DaffAccountRegistration[];
 
     it('should create as many AccountRegistrations as desired', () => {
       result = accountRegistrationFactory.createMany(2);

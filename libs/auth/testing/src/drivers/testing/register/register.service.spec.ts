@@ -11,14 +11,13 @@ import { DaffAccountRegistrationFactory } from '../../../factories/account-regis
 
 describe('Driver | Testing | Auth | RegisterService', () => {
   let registerService: DaffRegisterServiceInterface<
-    DaffAccountRegistration<DaffCustomerRegistration>,
-    DaffCustomerRegistration,
+    DaffAccountRegistration,
     DaffAuthToken
   >;
 
   const registrationFactory: DaffAccountRegistrationFactory = new DaffAccountRegistrationFactory();
 
-  let mockRegistration: DaffAccountRegistration<DaffCustomerRegistration>;
+  let mockRegistration: DaffAccountRegistration;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

@@ -5,7 +5,6 @@ import {
   DaffAccountRegistration,
   DaffAuthToken,
   DaffRegisterServiceInterface,
-  DaffCustomerRegistration,
 } from '@daffodil/auth';
 
 import { DaffAuthTokenFactory } from '../../../factories/auth-token.factory';
@@ -14,13 +13,12 @@ import { DaffAuthTokenFactory } from '../../../factories/auth-token.factory';
   providedIn: 'root'
 })
 export class DaffTestingRegisterService implements DaffRegisterServiceInterface<
-  DaffAccountRegistration<DaffCustomerRegistration>,
-  DaffCustomerRegistration,
+  DaffAccountRegistration,
   DaffAuthToken
 > {
   constructor (private factory: DaffAuthTokenFactory) {}
 
-  register(registration: DaffAccountRegistration<DaffCustomerRegistration>): Observable<DaffAuthToken> {
+  register(registration: DaffAccountRegistration): Observable<DaffAuthToken> {
     return of(this.factory.create());
   }
 }

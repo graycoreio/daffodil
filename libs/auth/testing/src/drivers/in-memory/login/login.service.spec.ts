@@ -4,7 +4,6 @@ import { HttpTestingController, HttpClientTestingModule } from '@angular/common/
 import {
   DaffAuthToken,
   DaffAccountRegistration,
-  DaffCustomerRegistration
 } from '@daffodil/auth';
 
 import { DaffInMemoryLoginService } from './login.service';
@@ -23,7 +22,7 @@ describe('Driver | InMemory | Auth | LoginService', () => {
   let password: string;
   let firstName: string;
   let lastName: string;
-  let mockRegistration: DaffAccountRegistration<DaffCustomerRegistration>;
+  let mockRegistration: DaffAccountRegistration;
   let mockAuth: DaffAuthToken;
 
   beforeEach(() => {

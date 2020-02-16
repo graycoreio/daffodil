@@ -5,7 +5,6 @@ import {
   DaffAuthToken,
   DaffLoginServiceInterface,
   DaffAccountRegistration,
-  DaffCustomerRegistration,
 } from '../../../../../src';
 import { DaffTestingLoginService } from './login.service';
 import { DaffAccountRegistrationFactory } from '../../../factories/account-registration.factory';
@@ -17,7 +16,7 @@ describe('Driver | Testing | Auth | LoginService', () => {
 
   let email: string;
   let password: string;
-  let mockRegistration: DaffAccountRegistration<DaffCustomerRegistration>;
+  let mockRegistration: DaffAccountRegistration;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

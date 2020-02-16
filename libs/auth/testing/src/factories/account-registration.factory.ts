@@ -5,7 +5,7 @@ import { DaffAccountRegistration, DaffCustomerRegistration } from '@daffodil/aut
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffCustomerRegistrationFactory } from './customer-registration.factory';
 
-export class MockAccountRegistration implements DaffAccountRegistration<DaffCustomerRegistration> {
+export class MockAccountRegistration implements DaffAccountRegistration {
   customer = this.fakeCustomer();
   password = faker.random.alphaNumeric(16);
 
@@ -19,7 +19,7 @@ export class MockAccountRegistration implements DaffAccountRegistration<DaffCust
 @Injectable({
   providedIn: 'root'
 })
-export class DaffAccountRegistrationFactory extends DaffModelFactory<DaffAccountRegistration<DaffCustomerRegistration>> {
+export class DaffAccountRegistrationFactory extends DaffModelFactory<DaffAccountRegistration> {
   constructor() {
     super(MockAccountRegistration);
   }
