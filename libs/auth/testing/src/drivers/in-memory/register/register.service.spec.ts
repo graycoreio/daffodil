@@ -6,7 +6,6 @@ import {
   DaffAuthToken,
   DaffAccountRegistration,
   DaffLoginDriver,
-  DaffCustomerRegistration
 } from '@daffodil/auth';
 
 import { DaffInMemoryRegisterService } from './register.service';
@@ -27,7 +26,7 @@ describe('Driver | InMemory | Auth | RegisterService', () => {
   let password: string;
   let firstName: string;
   let lastName: string;
-  let mockRegistration: DaffAccountRegistration<DaffCustomerRegistration>;
+  let mockRegistration: DaffAccountRegistration;
   let mockAuth: DaffAuthToken;
 
   beforeEach(() => {
