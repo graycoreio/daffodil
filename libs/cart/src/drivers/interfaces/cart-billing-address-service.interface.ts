@@ -9,19 +9,20 @@ import { DaffCart } from '../../models/cart';
  * The interface responsible for managing the billing address of a cart.
  */
 export interface DaffCartBillingAddressServiceInterface<
-	V extends DaffCartAddress
+	T extends DaffCartAddress,
+	V extends DaffCart
 > {
 	/**
 	 * Retrieve the billing address of a cart
 	 */
-	get(cartId: DaffCart['id']): Observable<V>;
+	get(cartId: DaffCart['id']): Observable<T>;
 
 	/**
 	 * Update the billing address of a cart
 	 */
-	update(cartId: DaffCart['id'], address: Partial<V>): Observable<V>;
+	update(cartId: DaffCart['id'], address: Partial<T>): Observable<Partial<V>>;
 }
 
 export const DaffCartBillingAddressDriver = new InjectionToken<
-	DaffCartBillingAddressServiceInterface<any>
+	DaffCartBillingAddressServiceInterface<any, any>
 >('DaffCartBillingAddressDriver');

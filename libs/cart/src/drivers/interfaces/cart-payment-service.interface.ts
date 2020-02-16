@@ -7,7 +7,7 @@ import { DaffCart } from '../../models/cart';
 /**
  * The interface responsible for managing the selected payment method of a cart.
  */
-export interface DaffCartPaymentServiceInterface<T extends DaffCartPaymentMethod> {
+export interface DaffCartPaymentServiceInterface<T extends DaffCartPaymentMethod, V extends DaffCart> {
 	/**
 	 * Get the currently applied payment method of a cart.
 	 */
@@ -16,7 +16,7 @@ export interface DaffCartPaymentServiceInterface<T extends DaffCartPaymentMethod
 	/**
 	 * Update the payment method applied to a cart. 
 	 */
-	update(cartId: DaffCart['id'], payment: Partial<T>): Observable<T>;
+	update(cartId: DaffCart['id'], payment: Partial<T>): Observable<Partial<V>>;
 
 	/**
 	 * Remove the payment method applied to a cart.
@@ -25,5 +25,5 @@ export interface DaffCartPaymentServiceInterface<T extends DaffCartPaymentMethod
 }
 
 export const DaffCartPaymentDriver = new InjectionToken<
-	DaffCartPaymentServiceInterface<any>
+	DaffCartPaymentServiceInterface<any, any>
 >('DaffCartPaymentDriver');
