@@ -3,32 +3,28 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import { map } from 'rxjs/operators';
 
 import { DaffHubspotConfig } from './models/config';
 import { DaffHubspotRequest } from './models/hubspot-request';
 
-import { DaffHubspotFormsTransformer } from './transformers/hubspot-forms.transformer';
 
 
 export class DaffHubspotFormsService<T extends DaffHubspotRequest> {
 
   constructor(
     private http: HttpClient,
-    private config: DaffHubspotConfig,
-    private transformer: DaffHubspotFormsTransformer,
     private document: Document,
     private route: Router,
     private title: Title) { }
 
-  send(payload: Object): any {
-    return this.http.post<T>(this.generateUrl(this.config.portalId, this.config.guid, this.config.version), {
-      ...this.transformer.transformOut(payload), 'context': {
+  submit(payload: Object, config: DaffHubspotConfig): any {
+    return this.http.post<T>(this.generateUrl(config.portalId, config.guid, config.version), {
+      payload, 'context': {
         'hutk': this.getCookie(),
         'pageUri': this.getPageURI(),
         'pageName': this.title.getTitle()
       }
-    }).pipe(map(this.transformer.transformIn));
+    });
   }
   private generateUrl(portalId: string, guid: string, version: string): string {
     if (version === undefined) {

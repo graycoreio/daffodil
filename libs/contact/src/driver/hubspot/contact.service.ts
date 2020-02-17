@@ -9,16 +9,20 @@ import { DaffContactTransformerInterface, DaffContactTransformer } from '../inte
 import { DaffContactServiceInterface } from '../interfaces/contact-service.interface';
 import { DaffContactConfig } from '../interfaces/injection-tokens/contact-config.token';
 import { DaffHubspotFormsService, DaffHubspotRequest, DaffHubspotConfig } from '@daffodil/driver/hubspot';
+import { map } from 'rxjs/operators';
 
-export class DaffContactHubspotService extends DaffHubspotFormsService<DaffHubspotRequest> implements DaffContactServiceInterface<DaffContactUnion, any>{
-
+export class DaffContactHubspotService implements DaffContactServiceInterface<DaffContactUnion, any>{
   constructor(
+    private hubspotService: DaffHubspotFormsService<DaffHubspotRequest>,
     http: HttpClient,
-    @Inject(DaffContactConfig) contactConfig: DaffHubspotConfig,
-    @Inject(DaffContactTransformer) transformer: DaffContactTransformerInterface<DaffContactUnion, DaffHubspotRequest, any, any>,
+    private transformer: DaffContactTransformerInterface<DaffContactUnion, DaffHubspotRequest, any, any>,
     @Optional() @Inject(DOCUMENT) document: Document,
     @Optional() route: Router,
     title: Title) {
-    super(http, contactConfig, transformer, document, route, title)
   }
+  send(payload: DaffContactUnion, config: DaffHubspotConfig): any {
+    this.hubspotService.submit(this.transformer.transformOut(payload)).pipe(map(this.transformer.transformIn));
+  }
+
+    
 }
