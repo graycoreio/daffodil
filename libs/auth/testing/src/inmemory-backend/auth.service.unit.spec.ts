@@ -1,14 +1,20 @@
 import { TestBed } from '@angular/core/testing';
 import { STATUS } from 'angular-in-memory-web-api';
 
+import { DaffAuthToken } from '@daffodil/auth';
+
 import { DaffInMemoryBackendAuthService } from './auth.service';
 import { DaffAccountRegistrationFactory } from '../factories/account-registration.factory';
+import { DaffAuthTokenFactory } from '../factories/auth-token.factory';
 
 describe('DaffAuthInMemoryBackend | Unit', () => {
   let authTestingService;
   let reqInfoStub;
 
   const registrationFactory = new DaffAccountRegistrationFactory();
+  const authFactory = new DaffAuthTokenFactory();
+
+  let mockAuth: DaffAuthToken;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -18,6 +24,8 @@ describe('DaffAuthInMemoryBackend | Unit', () => {
     });
 
     authTestingService = TestBed.get(DaffInMemoryBackendAuthService);
+
+    mockAuth = authFactory.create();
 
     reqInfoStub = {
       req: {},
@@ -77,6 +85,17 @@ describe('DaffAuthInMemoryBackend | Unit', () => {
       const result = authTestingService.post(reqInfoStub);
 
       expect(result.body).toEqual(jasmine.objectContaining({success: true}));
+      expect(result.status).toEqual(STATUS.OK);
+    });
+  });
+
+  describe('processing a check request', () => {
+    it('should process post requests of the form `/api/auth/check` and return true with a OK status', () => {
+      reqInfoStub.id = 'check';
+      reqInfoStub.req.body = mockAuth;
+      const result = authTestingService.post(reqInfoStub);
+
+      expect(result.body).toEqual(jasmine.objectContaining({valid: true}));
       expect(result.status).toEqual(STATUS.OK);
     });
   });

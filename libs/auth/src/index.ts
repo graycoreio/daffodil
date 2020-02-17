@@ -13,6 +13,9 @@ export { DaffRegisterServiceInterface } from './drivers/interfaces/register-serv
 export { DaffLoginDriver } from './drivers/injection-tokens/login-driver.token';
 export { DaffLoginServiceInterface } from './drivers/interfaces/login-service.interface';
 
+export { DaffAuthDriver } from './drivers/injection-tokens/auth-driver.token';
+export { DaffAuthServiceInterface } from './drivers/interfaces/auth-service.interface';
+
 export { DaffAuthQueryManager } from './drivers/injection-tokens/auth-query-manager.token';
 export { DaffAuthQueryManagerInterface } from './drivers/interfaces/auth-query-manager.interface';
 

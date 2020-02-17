@@ -32,6 +32,8 @@ export class DaffInMemoryBackendAuthService implements InMemoryDbService {
       return this.register(reqInfo);
     } else if (reqInfo.id === 'logout') {
       return this.logout(reqInfo);
+    } else if (reqInfo.id === 'check') {
+      return this.check(reqInfo);
     }
   }
 
@@ -62,6 +64,16 @@ export class DaffInMemoryBackendAuthService implements InMemoryDbService {
   private logout(reqInfo) {
     return reqInfo.utils.createResponse$(() => ({
       body: {success: true},
+      status: STATUS.OK
+    }))
+  }
+
+  private check(reqInfo) {
+    return reqInfo.utils.createResponse$(() => ({
+      // need to return true as part of an object due to HTTP testing limitations
+      body: {
+        valid: true
+      },
       status: STATUS.OK
     }))
   }
