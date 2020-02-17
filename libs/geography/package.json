@@ -14,7 +14,8 @@
   "scripts": {
     "build": "ng build geography --prod",
     "lint": "ng lint geography",
-    "test": "ng test geography --watch=false --browsers=ChromeHeadless"
+    "test": "ng test geography --watch=false --browsers=ChromeHeadless",
+    "publish": "(cd ../../dist/geography; npm publish --access=public)"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
