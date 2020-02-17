@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { catchError } from 'rxjs/operators';
 
 import {
   DaffAuthToken,
@@ -9,7 +10,7 @@ import { DaffTestingAuthService } from './auth.service';
 import { DaffAuthTokenFactory } from '../../../factories/auth-token.factory';
 
 describe('Driver | Testing | Auth | AuthService', () => {
-  let service: DaffAuthServiceInterface<DaffAuthToken>;
+  let service: DaffAuthServiceInterface;
 
   const authFactory = new DaffAuthTokenFactory();
 
@@ -32,9 +33,14 @@ describe('Driver | Testing | Auth | AuthService', () => {
   });
 
   describe('check | checking a token', () => {
-    it('should return true', () => {
-      service.check(mockAuth).subscribe(res => {
-        expect(res).toEqual(true);
+    it('should not throw an error', () => {
+      service.check().pipe(
+        catchError((err, caught) => {
+          fail('Check threw an error');
+          return caught
+        })
+      ).subscribe(res => {
+        expect(res).toBeUndefined();
       });
     });
   });

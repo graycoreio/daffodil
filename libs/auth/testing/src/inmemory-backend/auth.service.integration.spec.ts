@@ -60,9 +60,9 @@ describe('DaffAuthInMemoryBackend | Integration', () => {
   });
 
   describe('processing a check request', () => {
-    it('should process post requests of the form `/api/auth/check` and return true', done => {
-      httpClient.post('/api/auth/check', mockAuth).subscribe(result => {
-        expect(result).toEqual(jasmine.objectContaining({valid: true}));
+    it('should process post requests of the form `/api/auth/check` and return nothing', done => {
+      httpClient.post('/api/auth/check').subscribe(result => {
+        expect(result).toEqual(jasmine.objectContaining({}));
         done();
       });
     });

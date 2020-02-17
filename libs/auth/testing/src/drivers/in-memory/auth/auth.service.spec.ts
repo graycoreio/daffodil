@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
+import { catchError } from 'rxjs/operators';
 
 import {
   DaffAuthToken,
@@ -41,16 +42,20 @@ describe('Driver | InMemory | Auth | AuthService', () => {
       httpMock.verify();
     });
 
-    it('should send a post request and return true', () => {
-      service.check(mockAuth).subscribe(res => {
-        expect(res).toEqual(true);
+    it('should send a post request and not throw an error', () => {
+      service.check().pipe(
+        catchError((err, caught) => {
+          fail('Check threw an error');
+          return caught
+        })
+      ).subscribe(res => {
+        expect(res).toBeUndefined();
       });
 
       const req = httpMock.expectOne(`${service.url}check`);
       expect(req.request.method).toBe('POST');
-      expect(req.request.body).toEqual(jasmine.objectContaining(mockAuth));
 
-      req.flush({valid: true});
+      req.flush({});
     });
   });
 });

@@ -3,14 +3,13 @@ import { Observable, of } from 'rxjs';
 
 import {
   DaffAuthServiceInterface,
-  DaffAuthToken
 } from '@daffodil/auth';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffTestingAuthService implements DaffAuthServiceInterface<DaffAuthToken> {
-  check(auth: DaffAuthToken): Observable<boolean> {
-    return of(true);
+export class DaffTestingAuthService implements DaffAuthServiceInterface {
+  check(): Observable<void> {
+    return of(undefined);
   }
 }

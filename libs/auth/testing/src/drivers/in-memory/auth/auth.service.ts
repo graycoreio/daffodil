@@ -1,24 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { mapTo } from 'rxjs/operators';
 
 import {
   DaffAuthServiceInterface,
-  DaffAuthToken,
 } from '@daffodil/auth';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffInMemoryAuthService implements DaffAuthServiceInterface<DaffAuthToken> {
+export class DaffInMemoryAuthService implements DaffAuthServiceInterface {
   url = '/api/auth/';
 
   constructor(private http: HttpClient) {}
 
-  check(request: DaffAuthToken): Observable<boolean> {
-    return this.http.post<{valid: boolean}>(`${this.url}check`, request).pipe(
-      map(({valid}) => valid)
+  check(): Observable<void> {
+    return this.http.post(`${this.url}check`, {}).pipe(
+      mapTo(undefined)
     );
   }
 }

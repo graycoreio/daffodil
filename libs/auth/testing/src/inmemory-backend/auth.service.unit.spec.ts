@@ -90,12 +90,11 @@ describe('DaffAuthInMemoryBackend | Unit', () => {
   });
 
   describe('processing a check request', () => {
-    it('should process post requests of the form `/api/auth/check` and return true with a OK status', () => {
+    it('should process post requests of the form `/api/auth/check` and return nothing with a OK status', () => {
       reqInfoStub.id = 'check';
-      reqInfoStub.req.body = mockAuth;
       const result = authTestingService.post(reqInfoStub);
 
-      expect(result.body).toEqual(jasmine.objectContaining({valid: true}));
+      expect(result.body).toEqual(jasmine.objectContaining({}));
       expect(result.status).toEqual(STATUS.OK);
     });
   });

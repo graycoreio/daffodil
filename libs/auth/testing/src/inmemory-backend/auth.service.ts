@@ -70,10 +70,7 @@ export class DaffInMemoryBackendAuthService implements InMemoryDbService {
 
   private check(reqInfo) {
     return reqInfo.utils.createResponse$(() => ({
-      // need to return true as part of an object due to HTTP testing limitations
-      body: {
-        valid: true
-      },
+      body: {},
       status: STATUS.OK
     }))
   }
