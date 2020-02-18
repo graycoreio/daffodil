@@ -6,10 +6,9 @@ import { switchMap, map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 
-import { DaffNewsletterServiceInterface } from '../driver/interfaces/newsletter-service.interface';
 import { DaffNewsletterActionTypes, DaffNewsletterSubscribe, DaffNewsletterSuccessSubscribe, DaffNewsletterFailedSubscribe, DaffNewsletterRetry, DaffNewsletterCancel } from '../actions/newsletter.actions';
 import { DaffNewsletterSubmission } from '../models/newsletter.model';
-import { DaffNewsletterDriver } from '../driver/injection-tokens/newsletter-driver.token';
+import { DaffNewsletterDriver, DaffNewsletterServiceInterface } from '../driver/public_api';
 
 @Injectable()
 export class DaffNewsletterEffects<T extends DaffNewsletterSubmission, V>{
