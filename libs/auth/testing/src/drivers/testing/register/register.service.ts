@@ -3,22 +3,21 @@ import { Observable, of } from 'rxjs';
 
 import {
   DaffAccountRegistration,
-  DaffAuthToken,
+  DaffLoginInfo,
   DaffRegisterServiceInterface,
 } from '@daffodil/auth';
-
-import { DaffAuthTokenFactory } from '../../../factories/auth-token.factory';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DaffTestingRegisterService implements DaffRegisterServiceInterface<
   DaffAccountRegistration,
-  DaffAuthToken
+  DaffLoginInfo
 > {
-  constructor (private factory: DaffAuthTokenFactory) {}
-
-  register(registration: DaffAccountRegistration): Observable<DaffAuthToken> {
-    return of(this.factory.create());
+  register(registration: DaffAccountRegistration): Observable<DaffLoginInfo> {
+    return of({
+      email: registration.customer.email,
+      password: registration.password
+    });
   }
 }

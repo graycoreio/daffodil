@@ -6,6 +6,7 @@ import {
   DaffAuthToken,
   DaffAccountRegistration,
   DaffLoginDriver,
+  DaffLoginInfo
 } from '@daffodil/auth';
 
 import { DaffInMemoryRegisterService } from './register.service';
@@ -16,18 +17,14 @@ describe('Driver | InMemory | Auth | RegisterService', () => {
   let registerService;
   let httpMock: HttpTestingController;
 
-  const loginServiceSpy = jasmine.createSpyObj('DaffInMemoryLoginService', ['login'])
-
   const registrationFactory: DaffAccountRegistrationFactory = new DaffAccountRegistrationFactory();
-  const authFactory: DaffAuthTokenFactory = new DaffAuthTokenFactory();
 
-  let token: string;
   let email: string;
   let password: string;
   let firstName: string;
   let lastName: string;
   let mockRegistration: DaffAccountRegistration;
-  let mockAuth: DaffAuthToken;
+  let mockLoginInfo: DaffLoginInfo;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -35,11 +32,7 @@ describe('Driver | InMemory | Auth | RegisterService', () => {
         HttpClientTestingModule
       ],
       providers: [
-        DaffInMemoryRegisterService,
-        {
-          provide: DaffLoginDriver,
-          useValue: loginServiceSpy
-        }
+        DaffInMemoryRegisterService
       ]
     });
 
@@ -47,15 +40,16 @@ describe('Driver | InMemory | Auth | RegisterService', () => {
     registerService = TestBed.get(DaffInMemoryRegisterService);
 
     mockRegistration = registrationFactory.create();
-    mockAuth = authFactory.create();
 
-    token = mockAuth.token;
     firstName = mockRegistration.customer.firstName;
     lastName = mockRegistration.customer.lastName;
     email = mockRegistration.customer.email;
     password = mockRegistration.password;
 
-    loginServiceSpy.login.withArgs({email, password}).and.returnValue(of(mockAuth));
+    mockLoginInfo = {
+      email,
+      password
+    };
   });
 
   it('should be created', () => {
@@ -78,9 +72,9 @@ describe('Driver | InMemory | Auth | RegisterService', () => {
       req.flush(mockRegistration.customer);
     });
 
-    it('should return an AuthToken', () => {
-      registerService.register(mockRegistration).subscribe(auth => {
-        expect(auth).toEqual(mockAuth);
+    it('should return a DaffLoginInfo', () => {
+      registerService.register(mockRegistration).subscribe(loginInfo => {
+        expect(loginInfo).toEqual(mockLoginInfo);
       });
 
       const req = httpMock.expectOne(`${registerService.url}register`);

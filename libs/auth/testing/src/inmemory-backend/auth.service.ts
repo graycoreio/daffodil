@@ -47,11 +47,13 @@ export class DaffInMemoryBackendAuthService implements InMemoryDbService {
   private register(reqInfo) {
     const {
       customer,
+      password
     } = reqInfo.utils.getJsonBody(reqInfo.req);
 
     return reqInfo.utils.createResponse$(() => ({
       body: {
-        id: this.generateId()
+        email: customer.email,
+        password
       },
       status: STATUS.CREATED
     }))

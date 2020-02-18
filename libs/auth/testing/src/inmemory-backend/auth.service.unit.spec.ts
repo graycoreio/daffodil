@@ -55,12 +55,17 @@ describe('DaffAuthInMemoryBackend | Unit', () => {
   });
 
   describe('processing a register request', () => {
-    it('should process post requests of the form `/api/auth/register` and return the customer info with a CREATED status', () => {
+    it('should process post requests of the form `/api/auth/register` and return the login info with a CREATED status', () => {
+      const mockRegistration = registrationFactory.create();
+      const mockLoginInfo = {
+        email: mockRegistration.customer.email,
+        password: mockRegistration.password
+      };
       reqInfoStub.id = 'register';
-      reqInfoStub.req.body = registrationFactory.create();
+      reqInfoStub.req.body = mockRegistration;
       const result = authTestingService.post(reqInfoStub);
 
-      expect(result.body.id).toBeDefined();
+      expect(result.body).toEqual(mockLoginInfo);
       expect(result.status).toEqual(STATUS.CREATED);
     });
   });
