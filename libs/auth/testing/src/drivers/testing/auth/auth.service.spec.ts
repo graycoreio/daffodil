@@ -33,14 +33,10 @@ describe('Driver | Testing | Auth | AuthService', () => {
   });
 
   describe('check | checking a token', () => {
-    it('should not throw an error', () => {
-      service.check().pipe(
-        catchError((err, caught) => {
-          fail('Check threw an error');
-          return caught
-        })
-      ).subscribe(res => {
+    it('should not throw an error', done => {
+      service.check().subscribe(res => {
         expect(res).toBeUndefined();
+        done();
       });
     });
   });
