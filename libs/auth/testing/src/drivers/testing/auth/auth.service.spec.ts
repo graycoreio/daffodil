@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { catchError } from 'rxjs/operators';
 
 import {
   DaffAuthToken,
