@@ -42,14 +42,10 @@ describe('Driver | InMemory | Auth | AuthService', () => {
       httpMock.verify();
     });
 
-    it('should send a post request and not throw an error', () => {
-      service.check().pipe(
-        catchError((err, caught) => {
-          fail('Check threw an error');
-          return caught
-        })
-      ).subscribe(res => {
+    it('should send a post request and not throw an error', done => {
+      service.check().subscribe(res => {
         expect(res).toBeUndefined();
+        done();
       });
 
       const req = httpMock.expectOne(`${service.url}check`);
