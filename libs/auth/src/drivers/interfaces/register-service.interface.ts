@@ -1,17 +1,17 @@
 import { Observable } from 'rxjs';
 import { DaffAccountRegistration } from '../../models/account-registration';
-import { DaffAuthToken } from '../../models/auth-token';
+import { DaffLoginInfo } from '../../models/login-info';
 
 export interface DaffRegisterServiceInterface<
-TRequest extends DaffAccountRegistration,
-TResponse extends DaffAuthToken
+  TRequest extends DaffAccountRegistration,
+  TResponse extends DaffLoginInfo
 > {
 
   /**
    * Registers an account for the specified customer.
    *
-   * @param {T} registration
-   * @returns {Observable<string>} An access token.
+   * @param registration The account registration info.
+   * @returns Login info.
    */
   register(registration: TRequest): Observable<TResponse>;
 }
