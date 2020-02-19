@@ -1,62 +1,44 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClient } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Router } from '@angular/router';
-import { Title } from '@angular/platform-browser';
-import { DOCUMENT } from '@angular/common';
 
-import { DaffHubspotFormsService, daffHubspotFormsServiceFactory } from '@daffodil/driver/hubspot';
-import { DaffNewsletterConfigToken } from './config/newsletter-config.interface';
+import { DaffHubspotFormsService } from '@daffodil/driver/hubspot';
+
 import { DaffNewsletterHubspotService } from './newsletter.service';
+import { Observable } from 'rxjs';
+import { cold, hot } from 'jasmine-marbles';
 
 describe('DaffNewsletterHubspotService', () => {
-  let newsletterService;
-  let httpMock: HttpTestingController;
+	let newsletterService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        RouterTestingModule
-      ],
-      providers: [
-        DaffNewsletterHubspotService,
-        { provide: DaffNewsletterConfigToken, useValue: { portalId: '123123', guid: '123123' } },
-        {
-          provide: DaffHubspotFormsService,
-          useFactory: daffHubspotFormsServiceFactory,
-          deps: [
-            HttpClient,
-            DOCUMENT,
-            Router,
-            Title,
-            DaffNewsletterConfigToken
-          ],
+	beforeEach(() => {
+		TestBed.configureTestingModule({
+			providers: [
+				DaffNewsletterHubspotService,
+				{
+					provide: DaffHubspotFormsService,
+          useValue: {
+            submit(): Observable<any> {
+              return hot('--a', { a: {test: "123"}});
+            }
+          }
         }
-      ]
-    })
-    httpMock = TestBed.get(HttpTestingController);
+			],
+    });
+    
     newsletterService = TestBed.get(DaffNewsletterHubspotService);
   });
-  afterEach(() => {
-    httpMock.verify();
-  });
-  it('should be created', () => {
-    expect(newsletterService).toBeTruthy();
-  });
-  describe('when sending', () => {
 
-    it('should return an observable of HubspotResponse', () => {
+	it('should be created', () => {
+		expect(newsletterService).toBeTruthy();
+  });
+  
+	describe('when sending', () => {
+
+		it('should return an observable of HubspotResponse', () => {
       const payload = { email: 'email@email.edu' };
-      newsletterService.send(payload).subscribe((resp) => {
-        expect(resp).toBeObservable();
-      });
-      const req = httpMock.expectOne(
-        `${'https://api.hsforms.com/submissions/v3/integration/submit/123123/123123'}`,
-      );
-      req.flush(req);
-      httpMock.verify();
+      const expected = cold('--b', { b: { test: '123'} });
+
+      expect(newsletterService.send(payload)).toBeObservable(expected);
     });
-  })
+    
+	});
 });
