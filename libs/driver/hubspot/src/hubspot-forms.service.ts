@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+
+import { Observable } from 'rxjs';
 
 import { jsonBuilder } from './transformers/json-builder';
 import { DaffHubspotConfig } from './models/config';
 import { DaffHubspotRequest } from './models/hubspot-request';
 import { HubspotResponse } from './models/hubspot-response';
-import { Observable } from 'rxjs';
 
 export class DaffHubspotFormsService {
 
@@ -28,7 +28,7 @@ export class DaffHubspotFormsService {
 
   private makeRequest(payload): DaffHubspotRequest {
     return {
-      "fields": [
+      'fields': [
         ...jsonBuilder(payload)
       ], 
       'context': {

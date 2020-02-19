@@ -9,6 +9,7 @@ import {
 	DaffContactDriver,
 	DaffContactHubSpotDriverModule,
 } from '@daffodil/contact';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('DaffContactHubspotDriver', () => {
 	let contactService;
@@ -17,6 +18,7 @@ describe('DaffContactHubspotDriver', () => {
 		TestBed.configureTestingModule({
 			imports: [
 				HttpClientTestingModule,
+				RouterTestingModule,
 				DaffContactHubSpotDriverModule.forRoot({
 					portalId: '123123',
 					guid: '123123',
@@ -44,7 +46,7 @@ describe('DaffContactHubspotDriver', () => {
 			);
 			expect(req.request.body).toEqual({
 				fields: [Object({ name: 'email', value: 'test@email.com' })],
-				context: Object({ hutk: null, pageUri: null, pageName: '' }),
+				context: Object({ hutk: null, pageUri: '/', pageName: '' }),
 			});
 			req.flush(mockReq);
 			httpMock.verify();

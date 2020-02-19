@@ -1,18 +1,19 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { DaffContactHubspotService } from './contact.service';
-
-import {  
-  DaffHubspotFormsService, 
-  daffHubspotFormsServiceFactory 
-} from '@daffodil/driver/hubspot';
-
-import { DaffContactDriver } from '../interfaces/contact-service.interface';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { DaffContactConfig, DaffContactConfigToken } from '../interfaces/contact-config.interface';
+
+import {  
+  DaffHubspotFormsService, 
+  daffHubspotFormsServiceFactory, 
+  DaffHubspotConfig
+} from '@daffodil/driver/hubspot';
+
+import { DaffContactHubspotService } from './contact.service';
+
+import { DaffContactDriver } from '../interfaces/contact-service.interface';
+import { DaffContactConfigToken } from './config/contact-config.interface';
 
 @NgModule({
   imports: [
@@ -20,7 +21,7 @@ import { DaffContactConfig, DaffContactConfigToken } from '../interfaces/contact
   ]
 })
 export class DaffContactHubSpotDriverModule {
-  static forRoot(config: DaffContactConfig): ModuleWithProviders<DaffContactHubSpotDriverModule> {
+  static forRoot(config: DaffHubspotConfig): ModuleWithProviders<DaffContactHubSpotDriverModule> {
     return {
       ngModule: DaffContactHubSpotDriverModule,
       providers: [
@@ -31,7 +32,7 @@ export class DaffContactHubSpotDriverModule {
           useFactory: daffHubspotFormsServiceFactory, 
           deps: [
             HttpClient,
-            Document, 
+            DOCUMENT, 
             Router, 
             Title, 
             DaffContactConfigToken
