@@ -1,12 +1,19 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
-import { DaffContactConfig } from '../interfaces/injection-tokens/contact-config.token';
+import {  
+  DaffHubspotFormsService, 
+  daffHubspotFormsServiceFactory, 
+  DaffHubspotConfig
+} from '@daffodil/driver/hubspot';
+
 import { DaffContactHubspotService } from './contact.service';
-import { DaffContactHubspotTransformer } from './transformers/contact.transformer';
-import { DaffHubspotConfig } from '@daffodil/driver/hubspot';
+
 import { DaffContactDriver } from '../interfaces/contact-service.interface';
-import { DaffContactTransformer } from '../interfaces/contact-transformer.interface';
+import { DaffContactConfigToken } from './config/contact-config.interface';
 
 @NgModule({
   imports: [
@@ -19,8 +26,18 @@ export class DaffContactHubSpotDriverModule {
       ngModule: DaffContactHubSpotDriverModule,
       providers: [
         {provide: DaffContactDriver, useClass: DaffContactHubspotService},
-        {provide: DaffContactConfig, useValue: config},
-        {provide: DaffContactTransformer, useClass: DaffContactHubspotTransformer}
+        {provide: DaffContactConfigToken, useValue: config},
+        {
+          provide: DaffHubspotFormsService, 
+          useFactory: daffHubspotFormsServiceFactory, 
+          deps: [
+            HttpClient,
+            DOCUMENT, 
+            Router, 
+            Title, 
+            DaffContactConfigToken
+          ],
+        }
       ]
     }
   }

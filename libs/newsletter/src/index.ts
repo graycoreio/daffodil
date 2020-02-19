@@ -16,11 +16,6 @@ export {
 
 export { DaffNewsletterFacade } from './facades/newsletter.facade';
 
-export { DaffNewsletterServiceInterface } from './driver/interfaces/newsletter-service.interface';
-export { DaffNewsletterTransformerInterface } from './driver/interfaces/newsletter-transformer.interface';
-export { DaffNewsletterDriver } from './driver/injection-tokens/newsletter-driver.token';
-export { DaffNewsletterTransformer } from './driver/injection-tokens/newsletter-transformer.token';
-
-export { DaffNewsletterHubSpotDriverModule } from './driver/hubspot/hubspot-driver.module';
+export * from './driver/public_api';
 
 export { DaffNewsletterModule } from './newsletter.module'

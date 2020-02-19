@@ -1,11 +1,14 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DaffNewsletterDriver } from '../injection-tokens/newsletter-driver.token';
-import { DaffNewsletterConfig } from '../injection-tokens/newsletter-config.token';
-import { DaffNewsletterTransformer } from '../injection-tokens/newsletter-transformer.token';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+
+import { DaffHubspotConfig, DaffHubspotFormsService, daffHubspotFormsServiceFactory } from '@daffodil/driver/hubspot';
+
 import { DaffNewsletterHubspotService } from './newsletter.service';
-import { DaffNewsletterHubspotTransformer } from './transformers/newsletter.transformer';
-import { DaffHubspotConfig } from '@daffodil/driver/hubspot';
+import { DaffNewsletterDriver } from '../interfaces/newsletter-service.interface';
+import { DaffNewsletterConfigToken } from './config/newsletter-config.interface';
 
 @NgModule({
 	imports: [CommonModule],
@@ -22,13 +25,20 @@ export class DaffNewsletterHubSpotDriverModule {
 					useClass: DaffNewsletterHubspotService,
 				},
 				{
-					provide: DaffNewsletterConfig,
+					provide: DaffNewsletterConfigToken,
 					useValue: config,
 				},
 				{
-					provide: DaffNewsletterTransformer,
-					useClass: DaffNewsletterHubspotTransformer,
-				},
+          provide: DaffHubspotFormsService, 
+          useFactory: daffHubspotFormsServiceFactory, 
+          deps: [
+            HttpClient,
+            DOCUMENT, 
+            Router, 
+            Title, 
+            DaffNewsletterConfigToken
+          ],
+        }
 			],
 		};
 	}
