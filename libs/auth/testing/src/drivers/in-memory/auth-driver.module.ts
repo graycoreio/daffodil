@@ -4,10 +4,12 @@ import { CommonModule } from '@angular/common';
 import {
   DaffLoginDriver,
   DaffRegisterDriver,
+  DaffAuthDriver,
 } from '@daffodil/auth';
 
 import { DaffInMemoryLoginService } from './login/login.service';
 import { DaffInMemoryRegisterService } from './register/register.service';
+import { DaffInMemoryAuthService } from './auth/auth.service';
 
 @NgModule({
   imports: [
@@ -26,6 +28,10 @@ export class DaffAuthInMemoryDriverModule {
         {
           provide: DaffRegisterDriver,
           useExisting: DaffInMemoryRegisterService
+        },
+        {
+          provide: DaffAuthDriver,
+          useExisting: DaffInMemoryAuthService
         }
       ]
     };

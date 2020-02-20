@@ -2,16 +2,24 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
-import { DaffAccountRegistrationFactory } from '@daffodil/auth/testing';
-import { DaffAccountRegistration, DaffLoginInfo } from '@daffodil/auth';
+import {
+  DaffAccountRegistration,
+  DaffCustomerRegistration,
+  DaffLoginInfo,
+  DaffAuthToken
+} from '@daffodil/auth';
 
 import { DaffInMemoryBackendAuthService } from './auth.service';
+import { DaffAccountRegistrationFactory } from '@daffodil/auth/testing';
+import { DaffAuthTokenFactory } from '../factories/auth-token.factory';
 
 describe('DaffAuthInMemoryBackend | Integration', () => {
   let httpClient;
 
   const registrationFactory = new DaffAccountRegistrationFactory();
+  const authFactory = new DaffAuthTokenFactory();
 
+  let mockAuth: DaffAuthToken;
   let mockRegistration: DaffAccountRegistration;
   let mockLoginInfo: DaffLoginInfo;
 
@@ -26,6 +34,7 @@ describe('DaffAuthInMemoryBackend | Integration', () => {
     httpClient = TestBed.get(HttpClient);
 
     mockRegistration = registrationFactory.create();
+    mockAuth = authFactory.create();
     mockLoginInfo = {
       email: mockRegistration.customer.email,
       password: mockRegistration.password
@@ -45,6 +54,15 @@ describe('DaffAuthInMemoryBackend | Integration', () => {
     it('should process post requests of the form `/api/auth/register` and return the login info', done => {
       httpClient.post('/api/auth/register', mockRegistration).subscribe(result => {
         expect(result).toEqual(mockLoginInfo);
+        done();
+      });
+    });
+  });
+
+  describe('processing a check request', () => {
+    it('should process post requests of the form `/api/auth/check` and return nothing', done => {
+      httpClient.post('/api/auth/check').subscribe(result => {
+        expect(result).toEqual(jasmine.objectContaining({}));
         done();
       });
     });
