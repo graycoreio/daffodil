@@ -14,7 +14,7 @@ export class DaffTestingCartService implements DaffCartServiceInterface<DaffCart
     private cartFactory: DaffCartFactory
   ) {}
 
-  get(): Observable<DaffCart> {
+  get(id: number | string): Observable<DaffCart> {
     return of(this.cartFactory.create());
   }
 
@@ -22,9 +22,7 @@ export class DaffTestingCartService implements DaffCartServiceInterface<DaffCart
     return of(this.cartFactory.create());
   }
 
-  clear(): Observable<DaffCart> {
-    return of().pipe(
-      mergeMapTo(this.get())
-    );
+  clear(id: number | string): Observable<void> {
+    return of();
   }
 }

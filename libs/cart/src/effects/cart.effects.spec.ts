@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable, of } from 'rxjs';
+import { Observable, of, EMPTY } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
 import { DaffCartEffects } from './cart.effects';
@@ -136,10 +136,10 @@ describe('Daffodil | Cart | CartEffects', () => {
     describe('and the clear call to driver is successful', () => {
 
       beforeEach(() => {
-        spyOn(daffDriver, 'clear').and.returnValue(of(mockCart));
-        const resetCartSuccessAction = new DaffCartResetSuccess(mockCart);
+        spyOn(daffDriver, 'clear').and.returnValue(of());
+        const resetCartSuccessAction = new DaffCartResetSuccess();
         actions$ = hot('--a', { a: resetAction });
-        expected = cold('--b', { b: resetCartSuccessAction });
+        expected = cold('---', { b: resetCartSuccessAction });
       });
       it('should return a DaffCartResetSucess action', () => {
         expect(effects.clearCart$).toBeObservable(expected);

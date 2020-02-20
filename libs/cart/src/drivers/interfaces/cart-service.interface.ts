@@ -1,7 +1,6 @@
 import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffCartServiceInterface } from '../interfaces/cart-service.interface';
 import { DaffCart } from '../../models/cart';
 
 /**

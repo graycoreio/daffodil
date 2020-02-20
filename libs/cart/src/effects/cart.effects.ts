@@ -1,20 +1,20 @@
 import { Injectable, Inject } from '@angular/core';
 import { switchMap, map, catchError } from 'rxjs/operators';
-import { of , Observable } from 'rxjs';
+import { of } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
-import { 
-  DaffCartActionTypes, 
-  DaffCartLoad, 
-  DaffCartLoadSuccess, 
-  DaffCartLoadFailure, 
+import {
+  DaffCartActionTypes,
+  DaffCartLoad,
+  DaffCartLoadSuccess,
+  DaffCartLoadFailure,
   DaffAddToCartSuccess,
   DaffAddToCartFailure,
   DaffAddToCart,
   DaffCartResetSuccess,
-  DaffCartResetFailure} from '../actions/cart.actions';
-import { DaffCartDriver } from '../drivers/injection-tokens/cart-driver.token';
-import { DaffCartServiceInterface } from '../drivers/interfaces/cart-service.interface';
+  DaffCartResetFailure
+} from '../actions/cart.actions';
+import { DaffCartServiceInterface, DaffCartDriver } from '../drivers/interfaces/cart-service.interface';
 import { DaffCart } from '../models/cart';
 import { DaffCartStorageService } from '../storage/cart-storage.service';
 
@@ -24,7 +24,7 @@ export class DaffCartEffects<T extends DaffCart> {
   constructor(
     private actions$: Actions,
     @Inject(DaffCartDriver) private driver: DaffCartServiceInterface<T>,
-    private storage: DaffCartStorageService) {}
+    private storage: DaffCartStorageService) { }
 
   @Effect()
   load$ = this.actions$.pipe(
@@ -62,12 +62,15 @@ export class DaffCartEffects<T extends DaffCart> {
   clearCart$ = this.actions$.pipe(
     ofType(DaffCartActionTypes.CartResetAction),
     switchMap(() =>
-      this.driver.clear().pipe(
-          map((resp) => new DaffCartResetSuccess(resp)),
-          catchError(error => {
-            return of(new DaffCartResetFailure('Failed to clear the cart.'));
-          })
-        )
+      this.driver.clear(this.storage.getCartId()).pipe(
+        map(() => {
+          return new DaffCartResetSuccess();
+        }
+        ),
+        catchError(error => {
+          return of(new DaffCartResetFailure('Failed to clear the cart.'));
+        })
+      )
     )
   )
 }

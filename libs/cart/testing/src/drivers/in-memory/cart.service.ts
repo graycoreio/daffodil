@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { DaffCart, DaffCartServiceInterface } from '@daffodil/cart';
 import { mergeMapTo } from 'rxjs/operators';
@@ -11,9 +11,9 @@ import { mergeMapTo } from 'rxjs/operators';
 export class DaffInMemoryCartService implements DaffCartServiceInterface<DaffCart> {
   url = '/api/cart';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  get(): Observable<DaffCart> {
+  get(id: number | string): Observable<DaffCart> {
     return this.http.get<DaffCart>(this.url);
   }
 
@@ -21,7 +21,7 @@ export class DaffInMemoryCartService implements DaffCartServiceInterface<DaffCar
     return this.http.post<DaffCart>(this.url + '/addToCart', { productId, qty });
   }
 
-  clear(): Observable<DaffCart> {
-    return this.http.post<DaffCart>(this.url + '/clear', {});
+  clear(id: number | string): Observable<void> {
+    return this.http.post<void>(this.url + '/clear', {});
   }
 }
