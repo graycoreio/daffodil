@@ -8,7 +8,7 @@ import { DaffCart } from '@daffodil/cart';
 import { DaffInMemoryBackendCartService } from './cart.service';
 import { DaffCartFactory } from '../../../testing/src';
 
-describe('Driver | Cart | In Memory | CartService | Unit', () => {
+describe('DaffInMemoryBackendCartService | Unit', () => {
   let cartTestingService: DaffInMemoryBackendCartService;
   let stubCart: DaffCart;
   let cartId;

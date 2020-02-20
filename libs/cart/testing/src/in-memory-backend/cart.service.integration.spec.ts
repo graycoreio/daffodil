@@ -10,7 +10,7 @@ import { DaffCart } from '@daffodil/cart';
 import { DaffInMemoryBackendCartService } from './cart.service';
 import { DaffCartFactory } from '..';
 
-describe('Driver | Cart | In Memory | CartService | Integration', () => {
+describe('DaffInMemoryBackendCartService | Integration', () => {
   let cartTestingService: DaffInMemoryBackendCartService;
   let stubCart: DaffCart;
   let stubProductImage: DaffProductImage;
