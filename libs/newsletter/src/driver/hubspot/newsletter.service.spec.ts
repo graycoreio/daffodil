@@ -15,30 +15,28 @@ describe('DaffNewsletterHubspotService', () => {
 				DaffNewsletterHubspotService,
 				{
 					provide: DaffHubspotFormsService,
-          useValue: {
-            submit(): Observable<any> {
-              return hot('--a', { a: {test: "123"}});
-            }
-          }
-        }
+					useValue: {
+						submit(): Observable<any> {
+							return hot('--a', { a: { test: '123' } });
+						},
+					},
+				},
 			],
-    });
-    
-    newsletterService = TestBed.get(DaffNewsletterHubspotService);
-  });
+		});
+
+		newsletterService = TestBed.get(DaffNewsletterHubspotService);
+	});
 
 	it('should be created', () => {
 		expect(newsletterService).toBeTruthy();
-  });
-  
+	});
+
 	describe('when sending', () => {
-
 		it('should return an observable of HubspotResponse', () => {
-      const payload = { email: 'email@email.edu' };
-      const expected = cold('--b', { b: { test: '123'} });
+			const payload = { email: 'email@email.edu' };
+			const expected = cold('--b', { b: { test: '123' } });
 
-      expect(newsletterService.send(payload)).toBeObservable(expected);
-    });
-    
+			expect(newsletterService.send(payload)).toBeObservable(expected);
+		});
 	});
 });
