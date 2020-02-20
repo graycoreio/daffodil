@@ -63,8 +63,8 @@ export class DaffCartEffects<T extends DaffCart> {
     ofType(DaffCartActionTypes.CartResetAction),
     switchMap(() =>
       this.driver.clear(this.storage.getCartId()).pipe(
-        map(() => {
-          return new DaffCartResetSuccess();
+        map((resp) => {
+          return new DaffCartResetSuccess(resp);
         }
         ),
         catchError(error => {

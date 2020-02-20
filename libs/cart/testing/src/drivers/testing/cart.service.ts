@@ -22,7 +22,7 @@ export class DaffTestingCartService implements DaffCartServiceInterface<DaffCart
     return of(this.cartFactory.create());
   }
 
-  clear(id: number | string): Observable<void> {
-    return of();
+  clear(id: number | string): Observable<DaffCart> {
+    return of(this.cartFactory.create());
   }
 }

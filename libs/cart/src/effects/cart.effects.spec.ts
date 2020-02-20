@@ -136,10 +136,10 @@ describe('Daffodil | Cart | CartEffects', () => {
     describe('and the clear call to driver is successful', () => {
 
       beforeEach(() => {
-        spyOn(daffDriver, 'clear').and.returnValue(of());
-        const resetCartSuccessAction = new DaffCartResetSuccess();
+        spyOn(daffDriver, 'clear').and.returnValue(of(mockCart));
+        const resetCartSuccessAction = new DaffCartResetSuccess(mockCart);
         actions$ = hot('--a', { a: resetAction });
-        expected = cold('---', { b: resetCartSuccessAction });
+        expected = cold('--b', { b: resetCartSuccessAction });
       });
       it('should return a DaffCartResetSucess action', () => {
         expect(effects.clearCart$).toBeObservable(expected);

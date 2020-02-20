@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { DaffCart, DaffCartServiceInterface } from '@daffodil/cart';
 import { mergeMapTo } from 'rxjs/operators';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,7 +22,7 @@ export class DaffInMemoryCartService implements DaffCartServiceInterface<DaffCar
     return this.http.post<DaffCart>(this.url + '/addToCart', { productId, qty });
   }
 
-  clear(id: number | string): Observable<void> {
-    return this.http.post<void>(this.url + '/clear', {});
+  clear(id: number | string): Observable<DaffCart> {
+    return this.http.post<DaffCart>(this.url + '/clear', {});
   }
 }
