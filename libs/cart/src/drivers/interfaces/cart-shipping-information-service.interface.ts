@@ -12,17 +12,17 @@ export interface DaffCartShippingInformationServiceInterface<T extends DaffCartS
 	/**
 	 * Get the currently selected shipping method of a cart.
 	 */
-	get(cartId: DaffCart['id']): Observable<T>;
+	get(cartId: V['id']): Observable<T>;
 
 	/**
 	 * Update the currently selected shipping method of a cart.
 	 */
-	update(cartId: DaffCart['id'], shippingInfo: Partial<T>): Observable<Partial<V>>;
+	update(cartId: V['id'], shippingInfo: Partial<T>): Observable<Partial<V>>;
 
 	/**
 	 * Remove the currently selected shipping method from a cart.
 	 */
-	delete(cartId: DaffCart['id'], id?: string | number): Observable<Partial<V>>;
+	delete(cartId: V['id'], id?: string | number): Observable<Partial<V>>;
 }
 
 export const DaffCartShippingInformationDriver = new InjectionToken<

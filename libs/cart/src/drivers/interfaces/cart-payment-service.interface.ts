@@ -11,17 +11,17 @@ export interface DaffCartPaymentServiceInterface<T extends DaffCartPaymentMethod
 	/**
 	 * Get the currently applied payment method of a cart.
 	 */
-	get(cartId: DaffCart['id']): Observable<T>;
+	get(cartId: V['id']): Observable<T>;
 
 	/**
 	 * Update the payment method applied to a cart. 
 	 */
-	update(cartId: DaffCart['id'], payment: Partial<T>): Observable<Partial<V>>;
+	update(cartId: V['id'], payment: Partial<T>): Observable<Partial<V>>;
 
 	/**
 	 * Remove the payment method applied to a cart.
 	 */
-	remove(cartId: DaffCart['id']): Observable<void>;
+	remove(cartId: V['id']): Observable<void>;
 }
 
 export const DaffCartPaymentDriver = new InjectionToken<

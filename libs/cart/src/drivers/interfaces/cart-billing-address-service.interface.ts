@@ -15,12 +15,12 @@ export interface DaffCartBillingAddressServiceInterface<
 	/**
 	 * Retrieve the billing address of a cart
 	 */
-	get(cartId: DaffCart['id']): Observable<T>;
+	get(cartId: V['id']): Observable<T>;
 
 	/**
 	 * Update the billing address of a cart
 	 */
-	update(cartId: DaffCart['id'], address: Partial<T>): Observable<Partial<V>>;
+	update(cartId: V['id'], address: Partial<T>): Observable<Partial<V>>;
 }
 
 export const DaffCartBillingAddressDriver = new InjectionToken<

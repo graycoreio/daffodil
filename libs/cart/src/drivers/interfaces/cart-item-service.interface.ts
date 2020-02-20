@@ -16,23 +16,23 @@ export interface DaffCartItemServiceInterface<
 	/**
 	 * List all of the available items of a cart
 	 */
-	list(cartId: DaffCart['id']): Observable<T[]>;
+	list(cartId: V['id']): Observable<T[]>;
 
 	/**
 	 * Get a specific cart item of a cart.
 	 */
-	get(cartId: DaffCart['id'], item_id: DaffCartItem['item_id']): Observable<T>;
+	get(cartId: V['id'], item_id: DaffCartItem['item_id']): Observable<T>;
 
 	/**
 	 * Add something to a cart.
 	 */
-	add(id: DaffCart['id'], product: U): Observable<Partial<V>>;
+	add(id: V['id'], product: U): Observable<Partial<V>>;
 
 	/**
 	 * Update an existing item in a cart
 	 */
 	update(
-		cartId: DaffCart['id'],
+		cartId: V['id'],
 		itemId: T['item_id'],
 		changes: Partial<T>,
 	): Observable<Partial<V>>;
@@ -40,7 +40,7 @@ export interface DaffCartItemServiceInterface<
 	/**
 	 * Remove an item from a cart.
 	 */
-	delete(cartId: DaffCart['id'], itemId: T['item_id']): Observable<Partial<V>>;
+	delete(cartId: V['id'], itemId: T['item_id']): Observable<Partial<V>>;
 }
 
 export const DaffCartItemDriver = new InjectionToken<

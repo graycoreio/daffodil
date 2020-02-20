@@ -11,7 +11,7 @@ export interface DaffCartServiceInterface<T extends DaffCart> {
 	/**
 	 * Retrieve a cart
 	 */
-	get(id: DaffCart['id']): Observable<T>;
+	get(id: T['id']): Observable<T>;
 
 	/**
 	 * @deprecated
@@ -24,7 +24,7 @@ export interface DaffCartServiceInterface<T extends DaffCart> {
 	/**
 	 * Remove all items from a cart.
 	 */
-	clear(id: DaffCart['id']): Observable<void>;
+	clear(id: T['id']): Observable<void>;
 }
 
 export const DaffCartDriver = new InjectionToken<DaffCartServiceInterface<any>>(
