@@ -14,7 +14,7 @@ describe('Driver | Cart | In Memory | CartService', () => {
   let stubProductImage: DaffProductImage;
   let daffCartFactory: jasmine.SpyObj<DaffCartFactory>;
   let daffProductImageFactory: jasmine.SpyObj<DaffProductImageFactory>;
-  
+
   beforeEach(() => {
     const daffCartFactorySpy = jasmine.createSpyObj('DaffCartFactory', ['create']);
     const daffProductImageFactorySpy = jasmine.createSpyObj('DaffProductImageFactory', ['create']);
@@ -28,7 +28,7 @@ describe('Driver | Cart | In Memory | CartService', () => {
         { provide: DaffProductImageFactory, useValue: daffProductImageFactorySpy}
       ]
     });
-    
+
     daffCartFactory = TestBed.get(DaffCartFactory);
     daffProductImageFactory = TestBed.get(DaffProductImageFactory);
     daffProductImageFactory.create.and.returnValue(stubProductImage);
@@ -47,10 +47,36 @@ describe('Driver | Cart | In Memory | CartService', () => {
     beforeEach(() => {
       result = cartTestingService.createDb();
     });
-    
+
     it('should return a cart', () => {
       result = cartTestingService.createDb();
       expect(result.cart).toEqual(stubCart);
+    });
+  });
+
+  describe('get', () => {
+    let reqInfoStub;
+    let result;
+
+    beforeEach(() => {
+      reqInfoStub = {
+        req: {
+          body: 'body'
+        },
+        utils: {
+          createResponse$: func => {
+            return func();
+          }
+        }
+      };
+      result = cartTestingService.get(reqInfoStub);
+    });
+
+    it('should return the returned value from createResponse$', () => {
+      expect(result).toEqual({
+        body: stubCart,
+        status: STATUS.OK
+      });
     });
   });
 
@@ -187,7 +213,7 @@ describe('Driver | Cart | In Memory | CartService', () => {
 
       it('should remove the items in the cart', () => {
         result = cartTestingService.post(reqInfoStub);
-        
+
         expect(result.body.items.length).toEqual(0);
       });
     });

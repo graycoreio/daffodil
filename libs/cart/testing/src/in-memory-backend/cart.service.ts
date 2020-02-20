@@ -21,6 +21,15 @@ export class DaffInMemoryBackendCartService implements InMemoryDbService {
     this.cart = this.cartFactory.create();
   }
 
+  get(reqInfo: any) {
+    return reqInfo.utils.createResponse$(() => {
+      return {
+        body: this.cart,
+        status: STATUS.OK
+      };
+    })
+  }
+
   post(reqInfo: any) {
     return reqInfo.utils.createResponse$(() => {
       if (reqInfo.id === 'addToCart') {
