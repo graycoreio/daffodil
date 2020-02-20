@@ -10,7 +10,12 @@ export interface DaffCartServiceInterface<T extends DaffCart> {
 	/**
 	 * Retrieve a cart
 	 */
-	get(id: T['id']): Observable<T>;
+  get(id: T['id']): Observable<T>;
+
+  /**
+   * Creates a cart.
+   */
+  create(): Observable<Partial<T>>
 
 	/**
 	 * @deprecated
