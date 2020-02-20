@@ -15,5 +15,6 @@ export { fromCart };
 import * as fromCartReducer from './reducers/cart.reducer';
 export { fromCartReducer };
 
-export { DaffCartServiceInterface } from './drivers/interfaces/cart-service.interface';
-export { DaffCartDriver } from './drivers/injection-tokens/cart-driver.token';
+export { DaffCartStorageService } from './storage/cart-storage.service';
+
+export * from './drivers/public_api';
