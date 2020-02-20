@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { STATUS, InMemoryDbService } from 'angular-in-memory-web-api';
 
 import { DaffProductImageFactory } from '@daffodil/product/testing';
+import { DaffCartItem, DaffCart } from '@daffodil/cart';
 
-import { DaffCartItem } from '@daffodil/cart';
 import { DaffCartFactory } from '../factories/cart.factory';
 import { DaffCartItemFactory } from '../factories/cart-item.factory';
 
@@ -11,33 +11,43 @@ import { DaffCartItemFactory } from '../factories/cart-item.factory';
   providedIn: 'root'
 })
 export class DaffInMemoryBackendCartService implements InMemoryDbService {
-  public cart;
+  public carts: DaffCart[] = [];
 
   constructor(
     private cartFactory: DaffCartFactory,
     private cartItemFactory: DaffCartItemFactory,
     private productImageFactory: DaffProductImageFactory
-  ) {
-    this.cart = this.cartFactory.create();
-  }
+  ) {}
 
   post(reqInfo: any) {
     return reqInfo.utils.createResponse$(() => {
+      let body: any = this.findCart(reqInfo.req.body.cartId);
+
       if (reqInfo.id === 'addToCart') {
         const matchedProductIndex = this.getMatchedProductIndex(
+          reqInfo.req.body.cartId,
           reqInfo.req.body.productId
         );
         if (matchedProductIndex > -1) {
-          this.addQtyToCartProduct(reqInfo.req.body.qty, matchedProductIndex);
+          this.addQtyToCartProduct(
+            reqInfo.req.body.cartId,
+            reqInfo.req.body.qty,
+            matchedProductIndex
+          );
         } else {
-          this.addProductToCart(reqInfo.req.body);
+          this.addProductToCart(
+            reqInfo.req.body.cartId,
+            reqInfo.req.body
+          );
         }
       } else if (reqInfo.id === 'clear') {
-        this.clearCart();
+        this.clearCart(reqInfo.req.body.cartId);
+      } else if (reqInfo.id === 'create') {
+        body = this.create();
       }
 
       return {
-        body: this.cart,
+        body,
         status: STATUS.OK
       };
     });
@@ -45,13 +55,18 @@ export class DaffInMemoryBackendCartService implements InMemoryDbService {
 
   createDb() {
     return {
-      cart: this.cart
+      cart: this.carts
     };
   }
 
-  private getMatchedProductIndex(productId: string) {
-    for (let i = 0; i < this.cart.items.length; i++) {
-      if (productId === this.cart.items[i].product_id) {
+  private findCart(cartId: string): DaffCart {
+    return this.carts.find(cart => cart.id === cartId)
+  }
+
+  private getMatchedProductIndex(cartId: string, productId: string) {
+    const cart = this.findCart(cartId);
+    for (let i = 0; i < cart.items.length; i++) {
+      if (productId === cart.items[i].product_id.toString()) {
         return i;
       }
     }
@@ -59,18 +74,28 @@ export class DaffInMemoryBackendCartService implements InMemoryDbService {
     return -1;
   }
 
-  private addQtyToCartProduct(qty: number, matchedProductIndex: number) {
-    this.cart.items[matchedProductIndex].qty += qty;
+  private addQtyToCartProduct(cartId: string, qty: number, matchedProductIndex: number) {
+    this.findCart(cartId).items[matchedProductIndex].qty += qty;
   }
 
-  private addProductToCart(reqBody) {
+  private addProductToCart(cartId: string, reqBody) {
     const cartItem: DaffCartItem = this.cartItemFactory.create({image: this.productImageFactory.create()});
     cartItem.product_id = reqBody.productId;
     cartItem.qty = reqBody.qty;
-    this.cart.items.push(cartItem);
+    this.findCart(cartId).items.push(cartItem);
   }
 
-  private clearCart(): void {
-    this.cart.items = [];
+  private clearCart(cartId: string): void {
+    this.findCart(cartId).items = [];
+  }
+
+  private create(): Partial<DaffCart> {
+    const cart = this.cartFactory.create();
+
+    this.carts.push(cart);
+
+    return {
+      id: cart.id
+    };
   }
 }
