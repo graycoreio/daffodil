@@ -3,52 +3,27 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { switchMap, tap } from 'rxjs/operators';
 
-import { DaffProductImage } from '@daffodil/product';
-import { DaffProductImageFactory } from '@daffodil/product/testing';
-import { DaffCart } from '@daffodil/cart';
-
 import { DaffInMemoryBackendCartService } from './cart.service';
-import { DaffCartFactory } from '..';
 
 describe('DaffInMemoryBackendCartService | Integration', () => {
   let cartTestingService: DaffInMemoryBackendCartService;
-  let stubCart: DaffCart;
-  let stubProductImage: DaffProductImage;
-  let daffCartFactory: jasmine.SpyObj<DaffCartFactory>;
-  let daffProductImageFactory: jasmine.SpyObj<DaffProductImageFactory>;
   let httpClient: HttpClient;
 
   beforeEach(() => {
-    const daffCartFactorySpy = jasmine.createSpyObj('DaffCartFactory', ['create']);
-    const daffProductImageFactorySpy = jasmine.createSpyObj('DaffProductImageFactory', ['create']);
-
-    stubProductImage = new DaffProductImageFactory().create();
-    stubCart = new DaffCartFactory().create({image: stubProductImage});
-
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
         HttpClientInMemoryWebApiModule.forRoot(DaffInMemoryBackendCartService)
       ],
-      providers: [
-        { provide: DaffCartFactory, useValue: daffCartFactorySpy},
-        { provide: DaffProductImageFactory, useValue: daffProductImageFactorySpy}
-      ]
     });
 
     httpClient = TestBed.get(HttpClient);
-
-    daffCartFactory = TestBed.get(DaffCartFactory);
-    daffProductImageFactory = TestBed.get(DaffProductImageFactory);
-    daffProductImageFactory.create.and.returnValue(stubProductImage);
-    daffCartFactory.create.and.returnValue(stubCart);
-
     cartTestingService = TestBed.get(DaffInMemoryBackendCartService);
   });
 
   describe('processing a create request', () => {
     it('should return a partial with id', done => {
-      httpClient.post<any>('/api/cart/create', {}).subscribe(result => {
+      httpClient.post<any>('/api/cart', {}).subscribe(result => {
         expect(result.id).toBeDefined();
         done();
       });
@@ -59,7 +34,7 @@ describe('DaffInMemoryBackendCartService | Integration', () => {
     let cartId;
 
     beforeEach(done => {
-      httpClient.post<any>('/api/cart/create', {}).pipe(
+      httpClient.post<any>('/api/cart', {}).pipe(
         switchMap(({id}) => {
           cartId = id;
           return httpClient.post<any>('/api/cart/addToCart', {
@@ -84,7 +59,7 @@ describe('DaffInMemoryBackendCartService | Integration', () => {
     let productIdValue;
 
     beforeEach(done => {
-      httpClient.post<any>('/api/cart/create', {}).pipe(
+      httpClient.post<any>('/api/cart', {}).pipe(
         tap(({id}) => {
           cartId = id;
         }),
@@ -124,7 +99,7 @@ describe('DaffInMemoryBackendCartService | Integration', () => {
         productIdValue = 'imageTest';
 
         httpClient.post<any>('/api/cart/addToCart', {cartId, productId: productIdValue}).subscribe(result => {
-          expect(result.items[0].image).toEqual(stubProductImage);
+          expect(result.items[0].image).toBeDefined();
           done();
         });
       });
@@ -152,31 +127,11 @@ describe('DaffInMemoryBackendCartService | Integration', () => {
     });
   });
 
-  describe('processing a post request', () => {
-    let cartId;
-
-    beforeEach(done => {
-      httpClient.post<any>('/api/cart/create', {}).pipe(
-        tap(({id}) => {
-          cartId = id;
-        }),
-      ).subscribe(() => done());
-    });
-
-
-    it('should return the correct cart', done => {
-      httpClient.post<any>('/api/cart', {cartId}).subscribe(result => {
-        expect(result.id).toEqual(cartId);
-        done();
-      });
-    });
-  });
-
   describe('processing a get request', () => {
     let cartId;
 
     beforeEach(done => {
-      httpClient.post<any>('/api/cart/create', {}).pipe(
+      httpClient.post<any>('/api/cart', {}).pipe(
         tap(({id}) => {
           cartId = id;
         }),
