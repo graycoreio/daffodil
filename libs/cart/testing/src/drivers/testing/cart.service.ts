@@ -27,6 +27,8 @@ export class DaffTestingCartService implements DaffCartServiceInterface<DaffCart
   }
 
   create() {
-    return this.get();
+    return of({
+      id: this.cartFactory.create().id
+    });
   }
 }
