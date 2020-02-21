@@ -25,24 +25,22 @@ export class DaffInMemoryBackendCartService implements InMemoryDbService {
 
       if (reqInfo.id === 'addToCart') {
         const matchedProductIndex = this.getMatchedProductIndex(
-          reqInfo.req.body.cartId,
           reqInfo.req.body.productId
         );
         if (matchedProductIndex > -1) {
           this.addQtyToCartProduct(
-            reqInfo.req.body.cartId,
             reqInfo.req.body.qty,
             matchedProductIndex
           );
         } else {
           this.addProductToCart(
-            reqInfo.req.body.cartId,
             reqInfo.req.body
           );
         }
+        body = this.carts[0];
       } else if (reqInfo.id === 'clear') {
         this.clearCart(reqInfo.req.body.cartId);
-      } else if (reqInfo.id === 'create') {
+      } else if (!reqInfo.id || reqInfo.id === '') {
         body = this.create();
       }
 
@@ -63,8 +61,8 @@ export class DaffInMemoryBackendCartService implements InMemoryDbService {
     return this.carts.find(cart => cart.id === cartId)
   }
 
-  private getMatchedProductIndex(cartId: string, productId: string) {
-    const cart = this.findCart(cartId);
+  private getMatchedProductIndex(productId: string) {
+    const cart = this.carts[0];
     for (let i = 0; i < cart.items.length; i++) {
       if (productId === cart.items[i].product_id.toString()) {
         return i;
@@ -74,15 +72,15 @@ export class DaffInMemoryBackendCartService implements InMemoryDbService {
     return -1;
   }
 
-  private addQtyToCartProduct(cartId: string, qty: number, matchedProductIndex: number) {
-    this.findCart(cartId).items[matchedProductIndex].qty += qty;
+  private addQtyToCartProduct(qty: number, matchedProductIndex: number) {
+    this.carts[0].items[matchedProductIndex].qty += qty;
   }
 
-  private addProductToCart(cartId: string, reqBody) {
+  private addProductToCart(reqBody) {
     const cartItem: DaffCartItem = this.cartItemFactory.create({image: this.productImageFactory.create()});
     cartItem.product_id = reqBody.productId;
     cartItem.qty = reqBody.qty;
-    this.findCart(cartId).items.push(cartItem);
+    this.carts[0].items.push(cartItem);
   }
 
   private clearCart(cartId: string): void {
