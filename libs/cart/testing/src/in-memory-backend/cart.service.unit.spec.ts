@@ -1,42 +1,46 @@
 import { TestBed } from '@angular/core/testing';
 import { STATUS } from 'angular-in-memory-web-api';
 
-import { DaffProductImage } from '@daffodil/product';
-import { DaffProductImageFactory } from '@daffodil/product/testing';
-import { DaffCart } from '@daffodil/cart';
+import {
+  DaffCart,
+  DaffCartItemInput,
+  DaffCartItem
+} from '@daffodil/cart';
+import {
+  DaffCartFactory,
+  DaffCartItemFactory
+} from '@daffodil/cart/testing';
 
 import { DaffInMemoryBackendCartService } from './cart.service';
-import { DaffCartFactory } from '../../../testing/src';
 
 describe('DaffInMemoryBackendCartService | Unit', () => {
   let cartTestingService: DaffInMemoryBackendCartService;
-  let stubCart: DaffCart;
+  let cartFactory: DaffCartFactory;
+  let cartItemFactory: DaffCartItemFactory;
+
+  let mockCart: DaffCart;
+  let mockCartItemInput: DaffCartItemInput;
+  let mockCartItem: DaffCartItem;
   let cartId;
-  let stubProductImage: DaffProductImage;
-  let daffCartFactory: jasmine.SpyObj<DaffCartFactory>;
-  let daffProductImageFactory: jasmine.SpyObj<DaffProductImageFactory>;
 
   beforeEach(() => {
-    const daffCartFactorySpy = jasmine.createSpyObj('DaffCartFactory', ['create']);
-    const daffProductImageFactorySpy = jasmine.createSpyObj('DaffProductImageFactory', ['create']);
-    stubProductImage = new DaffProductImageFactory().create();
-    stubCart = new DaffCartFactory().create({image: stubProductImage});
-    cartId = stubCart.id;
-
     TestBed.configureTestingModule({
       providers: [
         DaffInMemoryBackendCartService,
-        { provide: DaffCartFactory, useValue: daffCartFactorySpy},
-        { provide: DaffProductImageFactory, useValue: daffProductImageFactorySpy}
       ]
     });
-
-    daffCartFactory = TestBed.get(DaffCartFactory);
-    daffProductImageFactory = TestBed.get(DaffProductImageFactory);
-    daffProductImageFactory.create.and.returnValue(stubProductImage);
-    daffCartFactory.create.and.returnValue(stubCart);
-
     cartTestingService = TestBed.get(DaffInMemoryBackendCartService);
+
+    cartFactory = TestBed.get(DaffCartFactory);
+    cartItemFactory = TestBed.get(DaffCartItemFactory);
+
+    mockCart = cartFactory.create();
+    mockCartItem = cartItemFactory.create();
+    mockCartItemInput = {
+      productId: mockCartItem.product_id,
+      qty: mockCartItem.qty
+    };
+    cartId = mockCart.id;
   });
 
   it('should be created', () => {
@@ -62,7 +66,7 @@ describe('DaffInMemoryBackendCartService | Unit', () => {
 
     beforeEach(() => {
       reqInfoStub = {
-        id: 'create',
+        id: '',
         req: {
           body: {}
         },
@@ -73,7 +77,7 @@ describe('DaffInMemoryBackendCartService | Unit', () => {
         }
       };
 
-      cartTestingService.carts.push(stubCart);
+      cartTestingService.carts.push(mockCart);
     });
 
     it('should return a partial with id', () => {
@@ -98,23 +102,8 @@ describe('DaffInMemoryBackendCartService | Unit', () => {
     let result;
 
     beforeEach(() => {
-      cartTestingService.carts.push(stubCart);
-      //add cartItems
-      cartTestingService.post({
-        id: 'addToCart',
-        req: {
-          body: {
-            cartId,
-            productId: 'replaceme',
-            qty: 4
-          }
-        },
-        utils: {
-          createResponse$: func => {
-            return func();
-          }
-        }
-      });
+      mockCart.items.push(mockCartItem);
+      cartTestingService.carts.push(mockCart);
 
       //test clear endpoint
       reqInfoStub = {
@@ -148,11 +137,7 @@ describe('DaffInMemoryBackendCartService | Unit', () => {
       reqInfoStub = {
         id: 'addToCart',
         req: {
-          body: {
-            cartId,
-            productId: 'replaceme',
-            qty: 4
-          }
+          body: mockCartItemInput
         },
         utils: {
           createResponse$: func => {
@@ -161,7 +146,7 @@ describe('DaffInMemoryBackendCartService | Unit', () => {
         }
       };
 
-      cartTestingService.carts.push(stubCart);
+      cartTestingService.carts.push(mockCart);
     });
 
     describe('and product is unique', () => {
@@ -195,7 +180,7 @@ describe('DaffInMemoryBackendCartService | Unit', () => {
 
         result = cartTestingService.post(reqInfoStub);
 
-        expect(result.body.items[0].image).toEqual(stubProductImage);
+        expect(result.body.items[0].image).toBeDefined();
       });
     });
 
@@ -232,13 +217,13 @@ describe('DaffInMemoryBackendCartService | Unit', () => {
           }
         }
       };
-      cartTestingService.carts.push(stubCart);
+      cartTestingService.carts.push(mockCart);
       result = cartTestingService.post(reqInfoStub);
     });
 
     it('should return the correct cart with an OK status', () => {
       expect(result).toEqual({
-        body: stubCart,
+        body: mockCart,
         status: STATUS.OK
       });
     });
