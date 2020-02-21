@@ -14,16 +14,16 @@ export class DaffInMemoryCartService implements DaffCartServiceInterface<DaffCar
 
   constructor(private http: HttpClient) { }
 
-  get(id: number | string): Observable<DaffCart> {
-    return this.http.get<DaffCart>(this.url);
+  get(cartId: DaffCart['id']): Observable<DaffCart> {
+    return this.http.get<DaffCart>(`${this.url}/${cartId}`);
   }
 
   addToCart(productId: string, qty: number): Observable<DaffCart> {
     return this.http.post<DaffCart>(this.url + '/addToCart', { productId, qty });
   }
 
-  clear(id: number | string): Observable<DaffCart> {
-    return this.http.post<DaffCart>(this.url + '/clear', {});
+  clear(cartId: DaffCart['id']): Observable<void> {
+    return this.http.post<void>(this.url + '/clear', {cartId});
   }
 
   create(): Observable<Partial<DaffCart>> {
