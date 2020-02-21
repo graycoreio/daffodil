@@ -1,5 +1,6 @@
 export { DaffCart } from './models/cart';
 export { DaffCartItem } from './models/cart-item';
+export { DaffCartItemInput } from './models/cart-item-input';
 export { DaffCartAddress } from './models/cart-address';
 export { DaffCartPaymentMethod } from './models/cart-payment';
 export { DaffCartShippingRate } from './models/cart-shipping-rate';

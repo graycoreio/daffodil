@@ -1,4 +1,4 @@
 export interface DaffCartItemInput {
-  productId: string;
+  productId: number;
   qty: number;
 }
