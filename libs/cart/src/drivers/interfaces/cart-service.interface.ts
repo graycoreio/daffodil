@@ -23,7 +23,7 @@ export interface DaffCartServiceInterface<T extends DaffCart> {
 	/**
 	 * Remove all items from a cart.
 	 */
-	clear(id: T['id']): Observable<T>;
+	clear(id: T['id']): Observable<Partial<T>>;
 }
 
 export const DaffCartDriver = new InjectionToken<DaffCartServiceInterface<any>>(

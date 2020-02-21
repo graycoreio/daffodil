@@ -1,7 +1,8 @@
 import { DaffCartFactory } from '../../testing/src/factories/cart.factory';
 import { initialState, reducer, getCartLoading, getCart, State } from '../reducers/cart.reducer';
-import { DaffCartLoad, DaffCartLoadSuccess, DaffCartLoadFailure, DaffCartReset, DaffAddToCart, DaffAddToCartSuccess, DaffAddToCartFailure } from '../actions/cart.actions';
+import { DaffCartLoad, DaffCartLoadSuccess, DaffCartLoadFailure, DaffCartReset, DaffAddToCart, DaffAddToCartSuccess, DaffAddToCartFailure, DaffCartResetSuccess } from '../actions/cart.actions';
 import { DaffCart } from '../models/cart';
+
 
 describe('Cart | Cart List Reducer', () => {
 
@@ -29,7 +30,7 @@ describe('Cart | Cart List Reducer', () => {
 
     it('sets loading state to true', () => {
       const cartListLoadAction: DaffCartLoad = new DaffCartLoad();
-      
+
       const result = reducer(initialState, cartListLoadAction);
 
       expect(result.loading).toEqual(true);
@@ -46,9 +47,9 @@ describe('Cart | Cart List Reducer', () => {
         ...initialState,
         loading: true
       }
-  
+
       const cartListLoadSuccess = new DaffCartLoadSuccess(cart);
-      
+
       result = reducer(state, cartListLoadSuccess);
     });
 
@@ -68,12 +69,12 @@ describe('Cart | Cart List Reducer', () => {
     let state: State;
 
     beforeEach(() => {
-       state = {
+      state = {
         ...initialState,
         loading: true,
         errors: new Array('firstError')
-       }
-      
+      }
+
       const cartListLoadFailure = new DaffCartLoadFailure(error);
 
       result = reducer(state, cartListLoadFailure);
@@ -92,10 +93,10 @@ describe('Cart | Cart List Reducer', () => {
 
     const productId = 'productId';
     const qty = 1;
-    
+
     it('sets loading state to true', () => {
-      const addToCartAction: DaffAddToCart = new DaffAddToCart({productId, qty});
-      
+      const addToCartAction: DaffAddToCart = new DaffAddToCart({ productId, qty });
+
       const result = reducer(initialState, addToCartAction);
 
       expect(result.loading).toEqual(true);
@@ -121,7 +122,7 @@ describe('Cart | Cart List Reducer', () => {
     it('sets cart from action.payload', () => {
       expect(result.cart).toEqual(cart)
     });
-    
+
     it('sets loading state to false', () => {
       expect(result.loading).toEqual(false);
     });
@@ -138,9 +139,9 @@ describe('Cart | Cart List Reducer', () => {
         ...initialState,
         loading: true,
         errors: new Array('firstError')
-       }
+      }
 
-      error = 'error';      
+      error = 'error';
 
       const addToCartFailure = new DaffAddToCartFailure(error);
 
@@ -157,30 +158,46 @@ describe('Cart | Cart List Reducer', () => {
   });
 
   describe('getCart', () => {
-    
+
     it('returns cart state', () => {
       expect(getCart(initialState)).toEqual(initialState.cart);
     });
   });
 
   describe('getCartLoading', () => {
-    
+
     it('returns loading state', () => {
       expect(getCartLoading(initialState)).toEqual(initialState.loading);
     });
   });
 
   describe('CartReset', () => {
-    
-    it('resets state to initialState', () => {
+
+    it('should indicate that the cart is loading', () => {
       const expectedState = {
-        loading: false,
+        loading: true,
         cart: null,
         errors: []
       }
       const cartReset = new DaffCartReset();
       const result = reducer(initialState, cartReset);
-      
+
+      expect(result).toEqual(expectedState);
+    });
+  });
+  describe('CartResetSuccess', () => {
+    it('should gurantee there are no items in the cart', () => {
+      const expectedState = {
+        ...initialState,
+        cart: {
+          ...initialState.cart,
+          items: [],
+          ...cart
+        },
+        loading: false
+      }
+      const cartResetSuccess = new DaffCartResetSuccess(cart);
+      const result = reducer(initialState, cartResetSuccess)
       expect(result).toEqual(expectedState);
     });
   });

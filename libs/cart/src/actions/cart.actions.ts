@@ -56,7 +56,7 @@ export class DaffCartReset implements Action {
 
 export class DaffCartResetSuccess implements Action {
     readonly type = DaffCartActionTypes.CartResetSuccessAction;
-    constructor(public payload: DaffCart){}
+    constructor(public payload: Partial<DaffCart>){}
 }
 
 export class DaffCartResetFailure implements Action {
