@@ -199,33 +199,4 @@ describe('DaffInMemoryBackendCartService | Unit', () => {
       });
     });
   });
-
-  describe('processing a post request', () => {
-    let reqInfoStub;
-    let result;
-
-    beforeEach(() => {
-      reqInfoStub = {
-        req: {
-          body: {
-            cartId
-          }
-        },
-        utils: {
-          createResponse$: func => {
-            return func();
-          }
-        }
-      };
-      cartTestingService.carts.push(mockCart);
-      result = cartTestingService.post(reqInfoStub);
-    });
-
-    it('should return the correct cart with an OK status', () => {
-      expect(result).toEqual({
-        body: mockCart,
-        status: STATUS.OK
-      });
-    });
-  });
 });
