@@ -102,7 +102,7 @@ describe('Driver | In Memory | Cart | CartService', () => {
   });
 
   describe('create | creating a cart', () => {
-    it('should send a post request to `api/cart/create` and return the cart', done => {
+    it('should send a post request to `api/cart` and return the cart', done => {
       cartService.create().subscribe(result => {
         expect(result).toEqual(mockCart);
         done();
