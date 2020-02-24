@@ -85,9 +85,9 @@ describe('Driver | In Memory | Cart | CartService', () => {
 
   describe('clear', () => {
     describe('a successful clear request', () => {
-      it('should send a post request to `api/cart/clear` and not return a value', done => {
+      it('should send a post request to `api/cart/clear` and return the cart', done => {
         cartService.clear(cartId).subscribe(res => {
-          expect(res).not.toBeTruthy();
+          expect(res).toEqual(mockCart);
           done();
         });
 
@@ -96,7 +96,9 @@ describe('Driver | In Memory | Cart | CartService', () => {
         expect(req.request.method).toBe('POST');
         expect(req.request.body).toEqual({cartId});
 
-        req.flush(null);
+        mockCart.items = [];
+
+        req.flush(mockCart);
       });
     });
   });
