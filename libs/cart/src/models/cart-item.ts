@@ -1,9 +1,12 @@
-import { DaffProductImage } from '@daffodil/product';
+import {
+  DaffProductImage,
+  DaffProduct
+} from '@daffodil/product';
 
 export interface DaffCartItem {
   item_id: number | string;
   image?: DaffProductImage;
-  product_id: number;
+  product_id: DaffProduct['id'];
   parent_item_id: number;
   sku: string;
   name: string;

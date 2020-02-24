@@ -1,4 +1,6 @@
+import { DaffProduct } from '@daffodil/product';
+
 export interface DaffCartItemInput {
-  productId: number;
+  productId: DaffProduct['id'];
   qty: number;
 }
