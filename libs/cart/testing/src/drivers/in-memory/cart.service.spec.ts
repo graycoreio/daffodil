@@ -10,7 +10,9 @@ describe('Driver | In Memory | Cart | CartService', () => {
   let cartService: DaffInMemoryCartService;
   let httpMock: HttpTestingController;
   let cartFactory: DaffCartFactory;
+
   let mockCart: DaffCart;
+  let cartId;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -21,10 +23,13 @@ describe('Driver | In Memory | Cart | CartService', () => {
         DaffInMemoryCartService
       ]
     });
-    
+
     httpMock = TestBed.get(HttpTestingController);
     cartFactory = TestBed.get(DaffCartFactory);
     cartService = TestBed.get(DaffInMemoryCartService);
+
+    mockCart = cartFactory.create();
+    cartId = mockCart.id;
   });
 
   afterEach(() => {
@@ -36,14 +41,13 @@ describe('Driver | In Memory | Cart | CartService', () => {
   });
 
   describe('get | getting a cart', () => {
-    it('should send a get request', () => {
-      mockCart = cartFactory.create();
-
-      cartService.get(mockCart.id).subscribe(cart => {
+    it('should send a get request and return cart', done => {
+      cartService.get(cartId).subscribe(cart => {
         expect(cart).toEqual(mockCart);
+        done();
       });
 
-      const req = httpMock.expectOne(`${cartService.url}`);
+      const req = httpMock.expectOne(`${cartService.url}/${cartId}`);
 
       expect(req.request.method).toBe('GET');
       req.flush(mockCart);
@@ -57,45 +61,62 @@ describe('Driver | In Memory | Cart | CartService', () => {
     beforeEach(() => {
       productId = 'productId';
       qty = 1;
-
-      mockCart = cartFactory.create();
     });
 
     describe('a successful addToCart request', () => {
-      it('should send a post request to `api/cart/addToCart` and respond with a cart', () => {
+      it('should send a post request to `api/cart/addToCart` and respond with a cart', done => {
         cartService.addToCart(productId, qty).subscribe(cart => {
           expect(cart).toEqual(mockCart);
-        });  
-  
+          done();
+        });
+
         const req = httpMock.expectOne(`${cartService.url}/addToCart`);
-  
+
         expect(req.request.method).toBe('POST');
         expect(req.request.body).toEqual({
-          'productId': productId,
-          'qty': qty
+          productId,
+          qty
         });
-        
+
         req.flush(mockCart);
       });
     });
   });
 
   describe('clear', () => {
-
-    beforeEach(() => {
-      mockCart = cartFactory.create();
-    });
-
     describe('a successful clear request', () => {
-      it('should send a post request to `api/cart/clear` and not return a value', () => {
-        cartService.clear(mockCart.id).subscribe();
-        
+      it('should send a post request to `api/cart/clear` and return the cart', done => {
+        cartService.clear(cartId).subscribe(res => {
+          expect(res).toEqual(mockCart);
+          done();
+        });
+
         const req = httpMock.expectOne(`${cartService.url}/clear`);
 
         expect(req.request.method).toBe('POST');
-        expect(req.request.body).toEqual({});
+        expect(req.request.body).toEqual({cartId});
+
+        mockCart.items = [];
 
         req.flush(mockCart);
+      });
+    });
+  });
+
+  describe('create | creating a cart', () => {
+    it('should send a post request to `api/cart` and return the cart', done => {
+      cartService.create().subscribe(result => {
+        expect(result).toEqual(jasmine.objectContaining({id: cartId}));
+        done();
+      });
+
+      const req = httpMock.expectOne(`${cartService.url}`);
+
+      expect(req.request.method).toBe('POST');
+      expect(req.request.body).toEqual({});
+
+      req.flush({
+        id: cartId
       });
     });
   });
