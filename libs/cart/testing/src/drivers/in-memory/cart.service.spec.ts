@@ -104,7 +104,7 @@ describe('Driver | In Memory | Cart | CartService', () => {
   describe('create | creating a cart', () => {
     it('should send a post request to `api/cart` and return the cart', done => {
       cartService.create().subscribe(result => {
-        expect(result).toEqual(mockCart);
+        expect(result).toEqual(jasmine.objectContaining({id: cartId}));
         done();
       });
 
@@ -113,7 +113,9 @@ describe('Driver | In Memory | Cart | CartService', () => {
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual({});
 
-      req.flush(mockCart);
+      req.flush({
+        id: cartId
+      });
     });
   });
 });
