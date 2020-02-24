@@ -39,7 +39,7 @@ describe('Driver | In Memory | Cart | CartService', () => {
     it('should send a get request', () => {
       mockCart = cartFactory.create();
 
-      cartService.get().subscribe(cart => {
+      cartService.get(mockCart.id).subscribe(cart => {
         expect(cart).toEqual(mockCart);
       });
 
@@ -88,7 +88,7 @@ describe('Driver | In Memory | Cart | CartService', () => {
 
     describe('a successful clear request', () => {
       it('should send a post request to `api/cart/clear` and not return a value', () => {
-        cartService.clear().subscribe();
+        cartService.clear(mockCart.id).subscribe();
         
         const req = httpMock.expectOne(`${cartService.url}/clear`);
 

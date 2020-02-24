@@ -1,7 +1,6 @@
 import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffCartServiceInterface } from '../interfaces/cart-service.interface';
 import { DaffCart } from '../../models/cart';
 
 /**
@@ -24,7 +23,7 @@ export interface DaffCartServiceInterface<T extends DaffCart> {
 	/**
 	 * Remove all items from a cart.
 	 */
-	clear(id: T['id']): Observable<void>;
+	clear(id: T['id']): Observable<Partial<T>>;
 }
 
 export const DaffCartDriver = new InjectionToken<DaffCartServiceInterface<any>>(

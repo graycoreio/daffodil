@@ -13,26 +13,32 @@ export const initialState: State = Object.freeze({
   errors: []
 });
 
-export const resetState: State = Object.assign({}, initialState);
-
 export function reducer(state = initialState, action: DaffCartActions): State {
   switch (action.type) {
     case DaffCartActionTypes.CartLoadAction:
+    case DaffCartActionTypes.CartResetAction:
     case DaffCartActionTypes.AddToCartAction:
-      return {...state, loading: true};
+      return { ...state, loading: true };
     case DaffCartActionTypes.CartLoadSuccessAction:
     case DaffCartActionTypes.AddToCartSuccessAction:
-      return {...state, cart: action.payload, loading: false};
+      return { ...state, cart: action.payload, loading: false };
     case DaffCartActionTypes.CartLoadFailureAction:
     case DaffCartActionTypes.AddToCartFailureAction:
-      return {...state,
+      return {
+        ...state,
         loading: false,
         errors: state.errors.concat(new Array(action.payload))
       };
-    case DaffCartActionTypes.CartResetAction:
+    case DaffCartActionTypes.CartResetSuccessAction:
       return {
-        ...resetState
-      }
+        ...state,
+        loading: false,
+        cart: {
+          ...state.cart,
+          items: [],
+          ...action.payload
+        }
+      };
     default:
       return state;
   }
