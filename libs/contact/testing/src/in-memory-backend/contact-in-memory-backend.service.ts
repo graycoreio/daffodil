@@ -20,16 +20,18 @@ export class DaffInMemoryBackendContactService implements InMemoryDbService {
   }
   //validate that its not empty
   //validate that it doesn't already exist
-  post(reqInfo: any) {
+  post(reqInfo: any): any {
     if(reqInfo === undefined){
       return Error('Payload is undefined');
     }
-    else if(this.forums.indexOf(reqInfo.body)){
+    else if(this.forums.indexOf(reqInfo.body) !== -1){
+      console.log('not here')
       return Error('Already contains submission');
     }
     else{
+      console.log(reqInfo)
       this.forums.push(reqInfo.body);
-      return of(reqInfo.body);
+      return of(reqInfo);
     }
   }
 }

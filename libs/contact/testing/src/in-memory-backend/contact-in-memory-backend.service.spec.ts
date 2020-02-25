@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { DaffContactUnion } from '@daffodil/contact';
 import { DaffInMemoryBackendContactService } from './contact-in-memory-backend.service';
+import { of } from 'rxjs';
 
 describe('DaffContactInMemoryBackend', () => {
   let contactTestingService;
@@ -36,6 +37,12 @@ describe('DaffContactInMemoryBackend', () => {
       const forumSubmission: DaffContactUnion = { email: 'test@test.com' };
       contactTestingService.post(forumSubmission);
       expect(contactTestingService.post(forumSubmission)).toEqual(Error('Already contains submission'));
+    });
+    it('should be able to submit a valid form', () => {
+      const forumSubmission: DaffContactUnion = { email: 'new@test.com' };
+      contactTestingService.post(forumSubmission).subscribe((resp) => {
+        expect(resp).toEqual(forumSubmission)
+      });
     });
   });
 });
