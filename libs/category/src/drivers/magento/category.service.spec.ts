@@ -4,7 +4,6 @@ import {
   ApolloTestingController,
 } from 'apollo-angular/testing';
 
-import { DaffMagentoProductGraphQlQueryManagerService } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 
@@ -33,7 +32,6 @@ xdescribe('Driver | Magento | Category | CategoryService', () => {
   categoryPageConfigTransformService.transform.and.returnValue(transformedCategoryPageConfigurationState);
 
   let categoryGraphQlQueryManagerService: DaffMagentoCategoryGraphQlQueryManagerService;
-  let productGraphQlQueryManagerService: DaffMagentoProductGraphQlQueryManagerService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -43,15 +41,13 @@ xdescribe('Driver | Magento | Category | CategoryService', () => {
       providers: [
         DaffMagentoCategoryService,
         { provide: DaffCategoryTransformer, useValue: magentoCategoryResponseTransformerService },
-        DaffMagentoCategoryGraphQlQueryManagerService,
-        DaffMagentoProductGraphQlQueryManagerService
+        DaffMagentoCategoryGraphQlQueryManagerService
       ]
     });
 
     categoryService = TestBed.get(DaffMagentoCategoryService);
     controller = TestBed.get(ApolloTestingController);
     categoryGraphQlQueryManagerService = TestBed.get(DaffMagentoCategoryGraphQlQueryManagerService);
-    productGraphQlQueryManagerService = TestBed.get(DaffMagentoProductGraphQlQueryManagerService);
   });
 
   it('should be created', () => {

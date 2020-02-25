@@ -19,9 +19,7 @@ export { DaffProductServiceInterface } from './drivers/interfaces/product-servic
 export { DaffProductShopifyDriverModule } from './drivers/shopify/product-driver.module';
 export { DaffProductMagentoDriverModule } from './drivers/magento/product-driver.module';
 export { DaffProductDriver } from './drivers/injection-tokens/product-driver.token';
-export { DaffProductQueryManager } from './drivers/injection-tokens/product-query-manager.token';
 export { DaffProductTransformer } from './drivers/injection-tokens/product-transformer.token';
-export { DaffProductQueryManagerInterface } from './drivers/interfaces/product-query-manager.interface';
 export { DaffProductTransformerInterface } from './drivers/interfaces/product-transformer.interface';
 
 export { SortFieldsNode } from './drivers/magento/models/sort-fields-node';

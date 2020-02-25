@@ -4,9 +4,8 @@ import { map } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 
 import {
-  DaffMagentoProductQueryManagerInterface,
-  DaffProductQueryManager,
-  GetSortFieldsAndFiltersProductResponse
+	GetSortFieldsAndFiltersProductResponse,
+	GetSortFieldsAndFiltersByCategory
 } from '@daffodil/product';
 
 import { DaffCategoryServiceInterface } from '../interfaces/category-service.interface';
@@ -27,7 +26,6 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
   constructor(
     private apollo: Apollo,
     @Inject(DaffCategoryQueryManager) public queryManager: DaffCategoryQueryManagerInterface,
-    @Inject(DaffProductQueryManager) public productQueryManager: DaffMagentoProductQueryManagerInterface,
     @Inject(DaffCategoryResponseTransformer) public magentoCategoryResponseTransformerService: DaffCategoryResponseTransformerInterface<DaffGetCategoryResponse>
   ) {}
 
@@ -42,7 +40,12 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
         categoryRequest.current_page ? categoryRequest.current_page : 1,
         categoryRequest.page_size ? categoryRequest.page_size : 20
       )),
-      this.apollo.query<GetSortFieldsAndFiltersProductResponse>(this.productQueryManager.getSortFieldsAndFiltersByCategory(categoryRequest.id))
+      this.apollo.query<GetSortFieldsAndFiltersProductResponse>({
+				query: GetSortFieldsAndFiltersByCategory,
+				variables: {
+					categoryId: categoryRequest.id
+				}
+			})
     ]).pipe(
       map((result): CompleteCategoryResponse => {
         return {
