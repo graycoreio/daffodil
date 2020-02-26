@@ -1,4 +1,5 @@
 export * from './factories';
+export * from './helpers/magento/mocks';
 
 export { DaffTestingCartService } from './drivers/testing/cart.service';
 export { DaffInMemoryCartService } from './drivers/in-memory/cart.service';
