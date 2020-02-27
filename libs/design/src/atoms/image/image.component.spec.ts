@@ -20,6 +20,7 @@ describe('DaffImageComponent', () => {
   let component: DaffImageComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
+  let wrapperDE: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -35,6 +36,7 @@ describe('DaffImageComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     de = fixture.debugElement.query(By.css('daff-image'));
+    wrapperDE = fixture.debugElement.query(By.css('.daff-image__wrapper'));
     component = de.componentInstance;
 
     fixture.detectChanges();
@@ -92,21 +94,29 @@ describe('DaffImageComponent', () => {
     expect(() => fixture.detectChanges()).toThrowError(/height/);
   });
 
-  it('sets padding-top to an empty string on the host element if width is `0`', () => {
+  it('sets padding-top to an empty string on `.daff-image__wrapper` if width is `0`', () => {
     wrapper.height = 100;
     wrapper.width = 0;
 
     fixture.detectChanges();
 
-    expect(de.styles['padding-top']).toEqual(null);
+    expect(wrapperDE.styles['paddingTop']).toEqual(null);
   });
 
-  it('calculates and sets `padding-top` on the host element based on height and width', () => {
+  it('calculates and sets `padding-top` on `.daff-image__wrapper` based on height and width', () => {
     wrapper.height = 100;
     wrapper.width = 300;
 
     fixture.detectChanges();
 
-    expect(de.styles['padding-top']).toEqual('calc(' + wrapper.height + ' / ' + wrapper.width + ' * 100%)');
+    expect(wrapperDE.styles['paddingTop']).toEqual('calc(' + wrapper.height + ' / ' + wrapper.width + ' * 100%)');
+  });
+
+  it('sets `max-width` on the host element based on the dwidth', () => {
+    wrapper.width = 300;
+
+    fixture.detectChanges();
+
+    expect(de.styles['max-width']).toEqual(wrapper.width + 'px');
   });
 });

@@ -1,9 +1,8 @@
 @import '../../scss/daff-util';
 
 :host {
-	display: block;
-	position: relative;
-	height: 0;
+	display: inline-block;
+	width: 100%;
 
 	img {
 		position: absolute;
@@ -11,5 +10,12 @@
 		top: 0;
 		height: auto;
 		max-width: 100%;
+	}
+}
+
+.daff-image {
+	&__wrapper {
+		position: relative;
+		height: 0;
 	}
 }

@@ -75,11 +75,15 @@ export class DaffImageComponent implements OnInit {
 
   constructor(private sanitizer: DomSanitizer) {}
 
-  @HostBinding('style.padding-top') get paddingTop() {
+  get paddingTop(): any {
     if (!this.height || !this.width ) {
       return undefined;
     }
     
     return this.sanitizer.bypassSecurityTrustStyle('calc(' + this.height + ' / ' + this.width + ' * 100%)');
+  }
+
+  @HostBinding('style.max-width') get maxWidth(): string {
+    return this.width + 'px';
   }
 }
