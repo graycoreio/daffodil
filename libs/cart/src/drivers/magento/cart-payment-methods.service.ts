@@ -5,10 +5,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { DaffCartPaymentMethodsServiceInterface } from '../interfaces/cart-payment-methods-service.interface';
-import { DaffCart } from '../../models/cart';
 import { DaffCartPaymentMethod } from '../../models/cart-payment';
 import { listPaymentMethods } from './queries';
-import { unwrapResult } from './utils/unwrapResult';
 import { DaffMagentoCartPaymentTransformer } from './transforms/outputs/cart-payment.service';
 import { ListPaymentMethodsResponse } from './models/responses/list-payment-methods';
 
@@ -24,13 +22,12 @@ export class DaffMagentoCartPaymentMethodsService implements DaffCartPaymentMeth
     public paymentTransformer: DaffMagentoCartPaymentTransformer
   ) {}
 
-  list(cartId: DaffCart['id']): Observable<DaffCartPaymentMethod[]> {
+  list(cartId: string): Observable<DaffCartPaymentMethod[]> {
     return this.apollo.query<ListPaymentMethodsResponse>({
       query: listPaymentMethods,
       variables: {cartId}
     }).pipe(
-      unwrapResult,
-      map((result: ListPaymentMethodsResponse) => result.cart.available_payment_methods.map(item => this.paymentTransformer.transform(item)))
+      map(result => result.data.cart.available_payment_methods.map(item => this.paymentTransformer.transform(item)))
     )
   }
 }

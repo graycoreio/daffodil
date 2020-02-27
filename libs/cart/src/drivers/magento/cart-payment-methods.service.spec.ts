@@ -1,4 +1,3 @@
-/* tslint:disable */
 import { TestBed } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
 
