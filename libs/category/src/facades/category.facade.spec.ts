@@ -21,7 +21,8 @@ describe('DaffCategoryFacade', () => {
   const productFactory: DaffProductFactory = new DaffProductFactory();
   let category: DaffCategory;
   let categoryPageConfigurationState: DaffCategoryPageConfigurationState;
-  let product: DaffProductUnion;
+	let product: DaffProductUnion;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports:[
@@ -36,9 +37,10 @@ describe('DaffCategoryFacade', () => {
     })
     
     category = categoryFactory.create();
-    categoryPageConfigurationState = categoryPageConfigurationFactory.create();
+		categoryPageConfigurationState = categoryPageConfigurationFactory.create();
 		product = productFactory.create();
     categoryPageConfigurationState.id = category.id;
+    categoryPageConfigurationState.product_ids = [product.id];
     category.productIds = [product.id];
     store = TestBed.get(Store);
     facade = TestBed.get(DaffCategoryFacade);
@@ -102,6 +104,19 @@ describe('DaffCategoryFacade', () => {
       const expected = cold('a', { a: categoryPageConfigurationState.total_pages });
       store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
       expect(facade.totalPages$).toBeObservable(expected);
+    });
+  });
+
+  describe('totalProducts$', () => {
+    it('should be null initially', () => {
+      const expected = cold('a', { a: null });
+      expect(facade.totalProducts$).toBeObservable(expected);
+    });
+  
+    it('should return an observable of the total number of pages for the selected category', () => {
+      const expected = cold('a', { a: categoryPageConfigurationState.total_products });
+      store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+      expect(facade.totalProducts$).toBeObservable(expected);
     });
   });
 
