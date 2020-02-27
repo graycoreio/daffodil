@@ -1,12 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SortFieldsAndFiltersProductNode } from '@daffodil/product';
+import { ProductNode } from '@daffodil/product';
 import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 
 import { DaffMagentoCategoryPageConfigTransformerService } from './category-page-config-transformer.service';
-import { DaffCategory } from '../../../models/category';
-import { CategoryNode } from '../models/outputs/category-node';
-import { DaffCategoryPageConfigurationState } from '../../../models/category-page-configuration-state';
+import { DaffCategory } from '../../../models/inputs/category';
+import { DaffCategoryPageConfigurationState } from '../../../models/inputs/category-page-configuration-state';
+import { MagentoAggregation } from '../models/inputs/products/aggregation';
+import { MagentoPageInfo } from '../models/inputs/products/page-info';
+import { MagentoSortFields } from '../models/inputs/products/sort-fields';
 
 describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 
@@ -16,10 +18,10 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 
   const categoryPageConfigurationStateFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
   const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState = categoryPageConfigurationStateFactory.create();
-  delete stubCategoryPageConfigurationState.applied_filters;
-  delete stubCategoryPageConfigurationState.applied_sort_direction;
-  delete stubCategoryPageConfigurationState.applied_sort_option;
-  stubCategoryPageConfigurationState.id = stubCategory.id;
+	stubCategoryPageConfigurationState.id = stubCategory.id;
+	delete stubCategoryPageConfigurationState.applied_filters;
+	delete stubCategoryPageConfigurationState.applied_sort_option;
+	delete stubCategoryPageConfigurationState.applied_sort_direction;
   
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -37,61 +39,57 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
   describe('transform', () => {
     
     it('should return a DaffCategoryPageConfigurationState', () => {
-      const categoryNodeInput: CategoryNode = {
-        id: stubCategory.id,
-        name: stubCategory.name,
-        breadcrumbs: [{
-          category_id: stubCategory.breadcrumbs[0].categoryId,
-          category_name: stubCategory.breadcrumbs[0].categoryName,
-          category_level: stubCategory.breadcrumbs[0].categoryLevel,
-          category_url_key: stubCategory.breadcrumbs[0].categoryUrlKey
-        }],
-        products: {
-          total_count: stubCategory.total_products,
-          page_info: {
-            current_page: stubCategoryPageConfigurationState.current_page,
-            page_size: stubCategoryPageConfigurationState.page_size,
-            total_pages: stubCategoryPageConfigurationState.total_pages 
-          },
-          items: [
-            {
-              id: parseInt(stubCategory.productIds[0], 10),
-              name: 'name',
-              sku: 'sku',
-              url_key: 'url_key',
-              image: null,
-              price: null
-            }
-          ]
-        },
-        children_count: stubCategory.children_count
-      }
+      const aggregates: MagentoAggregation[] = [{
+				attribute_code: stubCategoryPageConfigurationState.filters[0].attribute_name,
+				count: stubCategoryPageConfigurationState.filters[0].count,
+				label: stubCategoryPageConfigurationState.filters[0].label,
+				options: [{
+					value: stubCategoryPageConfigurationState.filters[0].options[0].value,
+					count: stubCategoryPageConfigurationState.filters[0].options[0].count,
+					label: stubCategoryPageConfigurationState.filters[0].options[0].label
+				},
+				{
+					value: stubCategoryPageConfigurationState.filters[0].options[1].value,
+					count: stubCategoryPageConfigurationState.filters[0].options[1].count,
+					label: stubCategoryPageConfigurationState.filters[0].options[1].label
+				}]
+			}];
+			
+			const page_info: MagentoPageInfo = {
+				page_size: stubCategoryPageConfigurationState.page_size,
+				current_page: stubCategoryPageConfigurationState.current_page,
+				total_pages: stubCategoryPageConfigurationState.total_pages
+			};
 
-      const sortsAndFilters: SortFieldsAndFiltersProductNode = {
-        filters: [{
-          name: stubCategoryPageConfigurationState.filters[0].name,
-          request_var: stubCategoryPageConfigurationState.filters[0].attribute_name,
-          filter_items_count: stubCategoryPageConfigurationState.filters[0].items_count,
-          __typename: stubCategoryPageConfigurationState.filters[0].type,
-          filter_items: [{
-            label: stubCategoryPageConfigurationState.filters[0].options[0].label,
-            value_string: stubCategoryPageConfigurationState.filters[0].options[0].value,
-            items_count: stubCategoryPageConfigurationState.filters[0].options[0].items_count
-          },
-          {
-            label: stubCategoryPageConfigurationState.filters[0].options[1].label,
-            value_string: stubCategoryPageConfigurationState.filters[0].options[1].value,
-            items_count: stubCategoryPageConfigurationState.filters[0].options[1].items_count
-          }
-        ]
-        }],
-        sort_fields: {
-          default: '',
-          options: stubCategoryPageConfigurationState.sort_options
-        }
-      }
+			const sort_fields: MagentoSortFields = {
+				default: stubCategoryPageConfigurationState.sort_options[0].value,
+				options: stubCategoryPageConfigurationState.sort_options
+			};
 
-      expect(service.transform(categoryNodeInput, sortsAndFilters)).toEqual(stubCategoryPageConfigurationState);
+			const products: ProductNode[] = [
+				{
+					sku: stubCategoryPageConfigurationState.product_ids[0],
+					id: 2,
+					name: 'name',
+					price: {
+						regularPrice: 123
+					},
+					url_key: 'url_key',
+					image: {
+						url: 'url',
+						label: 'label'
+					}
+				}
+			];
+
+      expect(service.transform(
+				stubCategoryPageConfigurationState.id,
+				aggregates,
+				page_info,
+				sort_fields,
+				stubCategoryPageConfigurationState.total_products,
+				products
+			)).toEqual(stubCategoryPageConfigurationState);
     });
   });
 });

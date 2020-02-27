@@ -10,8 +10,8 @@ import { DaffProductUnion, fromProduct, DaffProductGridLoadSuccess } from '@daff
 import { DaffCategoryFacade } from './category.facade';
 import { DaffCategoryLoad, DaffCategoryLoadFailure, DaffCategoryLoadSuccess } from '../actions/category.actions';
 import { categoryReducers } from '../reducers/category-reducers';
-import { DaffCategory } from '../models/category';
-import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
+import { DaffCategory } from '../models/inputs/category';
+import { DaffCategoryPageConfigurationState } from '../models/inputs/category-page-configuration-state';
 
 describe('DaffCategoryFacade', () => {
   let store: MockStore<any>;
@@ -21,7 +21,8 @@ describe('DaffCategoryFacade', () => {
   const productFactory: DaffProductFactory = new DaffProductFactory();
   let category: DaffCategory;
   let categoryPageConfigurationState: DaffCategoryPageConfigurationState;
-  let product: DaffProductUnion;
+	let product: DaffProductUnion;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports:[
@@ -36,9 +37,10 @@ describe('DaffCategoryFacade', () => {
     })
     
     category = categoryFactory.create();
-    categoryPageConfigurationState = categoryPageConfigurationFactory.create();
+		categoryPageConfigurationState = categoryPageConfigurationFactory.create();
 		product = productFactory.create();
     categoryPageConfigurationState.id = category.id;
+    categoryPageConfigurationState.product_ids = [product.id];
     category.productIds = [product.id];
     store = TestBed.get(Store);
     facade = TestBed.get(DaffCategoryFacade);

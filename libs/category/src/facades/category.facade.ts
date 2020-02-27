@@ -5,14 +5,14 @@ import { Store, select, Action } from '@ngrx/store';
 import { DaffStoreFacade } from '@daffodil/core';
 import { DaffProductUnion } from '@daffodil/product';
 
-import { DaffCategory } from '../models/category';
+import { DaffCategory } from '../models/inputs/category';
 import { DaffCategoryModule } from '../category.module';
 import {
   selectCategoryLoading,
   selectCategoryErrors,
   selectSelectedCategory,
   selectCategoryPageConfigurationState,
-  selectCategoryProducts,
+  selectCategoryPageProducts,
   selectCategoryCurrentPage,
   selectCategoryTotalPages,
   selectCategoryPageSize,
@@ -22,8 +22,8 @@ import {
 	selectProductsByCategory
 } from '../selectors/category.selector';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
-import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
-import { DaffCategoryFilter } from '../models/category-filter';
+import { DaffCategoryPageConfigurationState } from '../models/inputs/category-page-configuration-state';
+import { DaffCategoryFilter } from '../models/inputs/category-filter';
 import { DaffCategorySortOption } from '../models/category-sort-option';
 
 /**
@@ -92,7 +92,7 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
 
   constructor(private store: Store<CategoryReducersState>) {
     this.category$ = this.store.pipe(select(selectSelectedCategory));
-    this.products$ = this.store.pipe(select(selectCategoryProducts));
+    this.products$ = this.store.pipe(select(selectCategoryPageProducts));
     this.pageConfigurationState$ = this.store.pipe(select(selectCategoryPageConfigurationState));
     this.currentPage$ = this.store.pipe(select(selectCategoryCurrentPage));
     this.totalPages$ = this.store.pipe(select(selectCategoryTotalPages));

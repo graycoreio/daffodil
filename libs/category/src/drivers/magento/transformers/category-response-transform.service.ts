@@ -6,21 +6,18 @@ import {
   DaffProductUnion
 } from '@daffodil/product';
 
-import { DaffGetCategoryResponse } from '../../../models/get-category-response';
 import { DaffMagentoCategoryPageConfigTransformerService } from './category-page-config-transformer.service';
-import { CompleteCategoryResponse } from '../models/outputs/complete-category-response';
-import { DaffCategoryResponseTransformerInterface } from '../../interfaces/category-response-transformer.interface';
-import { DaffCategoryTransformer } from '../../injection-tokens/category-transformer.token';
-import { DaffCategoryTransformerInterface } from '../../interfaces/category-transformer.interface';
-import { DaffCategory } from '../../../models/category';
+import { CompleteCategoryResponse } from '../models/inputs/complete-category-response';
+import { DaffGetCategoryResponse } from '../../../models/inputs/get-category-response';
+import { DaffMagentoCategoryTransformerService } from './category-transformer.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoCategoryResponseTransformService implements DaffCategoryResponseTransformerInterface<DaffGetCategoryResponse> {
+export class DaffMagentoCategoryResponseTransformService {
 
   constructor(
-    @Inject(DaffCategoryTransformer) private magentoCategoryTransformerService: DaffCategoryTransformerInterface<DaffCategory>,
+    private magentoCategoryTransformerService: DaffMagentoCategoryTransformerService,
     private magentoCategoryPageConfigurationTransformerService: DaffMagentoCategoryPageConfigTransformerService,
     @Inject(DaffProductTransformer) private magentoProductTransformerService: DaffProductTransformerInterface<DaffProductUnion>
   ) {}
@@ -28,8 +25,15 @@ export class DaffMagentoCategoryResponseTransformService implements DaffCategory
   transform(completeCategory: CompleteCategoryResponse): DaffGetCategoryResponse {
     return {
       category: this.magentoCategoryTransformerService.transform(completeCategory.category),
-      categoryPageConfigurationState: this.magentoCategoryPageConfigurationTransformerService.transform(completeCategory.category, completeCategory.sortsAndFilters),
-      products: this.magentoProductTransformerService.transformMany(completeCategory.category.products.items)
+      categoryPageConfigurationState: this.magentoCategoryPageConfigurationTransformerService.transform(
+				completeCategory.category.id,
+				completeCategory.aggregates,
+				completeCategory.page_info,
+				completeCategory.sort_fields,
+				completeCategory.total_count,
+				completeCategory.products
+			),
+      products: this.magentoProductTransformerService.transformMany(completeCategory.products)
     }
   }
 }

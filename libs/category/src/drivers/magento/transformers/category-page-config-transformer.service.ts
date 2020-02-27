@@ -1,41 +1,62 @@
 import { Injectable } from '@angular/core';
 
-import { SortFieldsAndFiltersProductNode, FilterNode } from '@daffodil/product';
+import { ProductNode } from '@daffodil/product';
 
-import { DaffCategoryPageConfigurationState } from '../../../models/category-page-configuration-state';
-import { CategoryNode } from '../models/outputs/category-node';
-import { DaffCategoryPageConfigTransformerInterface } from '../../interfaces/category-page-configuration-transformer.interface';
-import { DaffCategoryFilter } from '../../../models/category-filter';
+import { DaffCategoryPageConfigurationState } from '../../../models/inputs/category-page-configuration-state';
+import { DaffCategoryFilter, DaffCategoryFilterTypes } from '../../../models/inputs/category-filter';
+import { MagentoAggregation } from '../models/inputs/products/aggregation';
+import { MagentoPageInfo } from '../models/inputs/products/page-info';
+import { MagentoSortFields } from '../models/inputs/products/sort-fields';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoCategoryPageConfigTransformerService implements DaffCategoryPageConfigTransformerInterface<DaffCategoryPageConfigurationState> {
+export class DaffMagentoCategoryPageConfigTransformerService {
 
-  transform(categoryNode: CategoryNode, sortsAndFilters: SortFieldsAndFiltersProductNode): DaffCategoryPageConfigurationState {
-    return {
-      id: categoryNode.id,
-      page_size: categoryNode.products.page_info.page_size,
-      current_page: categoryNode.products.page_info.current_page,
-      total_pages: categoryNode.products.page_info.total_pages,
-      filters: sortsAndFilters.filters.map((filter) => this.transformFilter(filter)),
-      sort_options: sortsAndFilters.sort_fields.options
+  transform(
+		categoryId: string,
+		aggregates: MagentoAggregation[],
+		page_info: MagentoPageInfo,
+		sort_fields: MagentoSortFields,
+		total_count: number,
+		products: ProductNode[]
+	): DaffCategoryPageConfigurationState {
+		return {
+      id: categoryId,
+      page_size: page_info.page_size,
+      current_page: page_info.current_page,
+			total_pages: page_info.total_pages,
+			total_products: total_count,
+      filters: aggregates.map(this.transformAggregate),
+			sort_options: this.makeDefaultOptionFirst(sort_fields).options,
+			product_ids: products.map(product => product.sku)
     }
   }
 
-  transformFilter(filter: FilterNode): DaffCategoryFilter {
+  private transformAggregate(filter: MagentoAggregation): DaffCategoryFilter {
     return {
-      name: filter.name,
-      type: filter.__typename,
-      items_count: filter.filter_items_count,
-      attribute_name: filter.request_var,
-      options: filter.filter_items.map((item) => {
-        return {
-          items_count: item.items_count,
-          value: item.value_string,
-          label: item.label
-        }
-      })
+      label: filter.label,
+      type: DaffCategoryFilterTypes.Match,
+			attribute_name: filter.attribute_code,
+			count: filter.count,
+			options: filter.options.map(option => {
+				return {
+					label: option.label,
+					value: option.value,
+					count: option.count
+				}
+			})
     }
-  }
+	}
+
+	private makeDefaultOptionFirst(sort_fields: MagentoSortFields): MagentoSortFields {
+		sort_fields.options.forEach((sort, index) => {
+			if(sort_fields.default === sort.value) {
+				const temp = sort_fields.options[0];
+				sort_fields.options[0] = sort;
+				sort_fields.options[index] = temp;
+			}
+		})
+		return sort_fields;
+	}
 }

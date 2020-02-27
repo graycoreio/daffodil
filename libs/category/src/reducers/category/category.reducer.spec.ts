@@ -1,11 +1,11 @@
 import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 
-import { DaffCategory } from '../../models/category';
 import { CategoryReducerState } from './category-reducer-state.interface';
 import { DaffCategoryLoad, DaffCategoryLoadSuccess, DaffCategoryLoadFailure } from '../../actions/category.actions';
 import { categoryReducer } from './category.reducer';
-import { DaffCategoryPageConfigurationState } from '../../models/category-page-configuration-state';
-import { DaffCategoryRequest } from '../../models/category-request';
+import { DaffCategory } from '../../models/inputs/category';
+import { DaffCategoryPageConfigurationState } from '../../models/inputs/category-page-configuration-state';
+import { DaffCategoryRequest } from '../../models/outputs/category-request';
 
 describe('Category | Category Reducer', () => {
 
@@ -24,7 +24,9 @@ describe('Category | Category Reducer', () => {
       page_size: null,
       total_pages: null,
       filters: null,
-      sort_options: null
+			sort_options: null,
+			total_products: null,
+			product_ids: []
     },
     loading: false,
     errors: []
@@ -35,7 +37,7 @@ describe('Category | Category Reducer', () => {
     categoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
 
     category = categoryFactory.create();
-    categoryPageConfigurationState = categoryPageConfigurationStateFactory.create();
+		categoryPageConfigurationState = categoryPageConfigurationStateFactory.create();
     categoryId = category.id;
   });
 

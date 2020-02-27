@@ -2,7 +2,7 @@ import { DaffCategoryFactory } from '@daffodil/category/testing';
 
 import { DaffCategoryLoadSuccess } from '../../actions/category.actions';
 import { initialState, categoryEntitiesReducer } from './category-entities.reducer';
-import { DaffCategory } from '../../models/category';
+import { DaffCategory } from '../../models/inputs/category';
 
 describe('Category | Category Entities Reducer', () => {
 

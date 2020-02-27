@@ -2,7 +2,7 @@ import { EntityState } from '@ngrx/entity';
 
 import { categoryEntitiesAdapter } from './category-entities-adapter';
 import { DaffCategoryActionTypes, DaffCategoryActions } from '../../actions/category.actions';
-import { DaffCategory } from '../../models/category';
+import { DaffCategory } from '../../models/inputs/category';
 
 export const initialState: EntityState<DaffCategory> = categoryEntitiesAdapter.getInitialState();
 

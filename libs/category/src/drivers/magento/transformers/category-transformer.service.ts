@@ -1,28 +1,24 @@
 import { Injectable } from '@angular/core';
 
-import { DaffCategory } from '../../../models/category';
-import { DaffCategoryBreadcrumb } from '../../../models/category-breadcrumb';
-import { CategoryNode } from '../models/outputs/category-node';
-import { DaffCategoryTransformerInterface } from '../../interfaces/category-transformer.interface';
-import { BreadcrumbNode } from '../models/outputs/breadcrumb-node';
+import { DaffCategory } from '../../../models/inputs/category';
+import { DaffCategoryBreadcrumb } from '../../../models/inputs/category-breadcrumb';
+import { MagentoBreadcrumb, MagentoCategory } from '../models/inputs/category/category';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoCategoryTransformerService implements DaffCategoryTransformerInterface<DaffCategory> {
+export class DaffMagentoCategoryTransformerService {
 
-  transform(categoryNode: CategoryNode): DaffCategory {
+  transform(categoryNode: MagentoCategory): DaffCategory {
     return {
       id: categoryNode.id,
       name: categoryNode.name,
-      total_products: categoryNode.products.total_count,
       children_count: categoryNode.children_count,
-      productIds: categoryNode.products.items.map(product => product.sku),
       breadcrumbs: categoryNode.breadcrumbs ? categoryNode.breadcrumbs.map(breadcrumb => this.transformBreadcrumb(breadcrumb)) : null
     }
   }
 
-  private transformBreadcrumb(breadcrumb: BreadcrumbNode): DaffCategoryBreadcrumb {
+  private transformBreadcrumb(breadcrumb: MagentoBreadcrumb): DaffCategoryBreadcrumb {
     return {
       categoryId: breadcrumb.category_id,
       categoryName: breadcrumb.category_name,

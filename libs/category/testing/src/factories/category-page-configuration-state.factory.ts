@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
-import { DaffCategoryPageConfigurationState } from '@daffodil/category';
+import { DaffCategoryPageConfigurationState, DaffCategoryFilterTypes } from '@daffodil/category';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCategoryPageConfigurationState implements DaffCategoryPageConfigurationState {
@@ -9,20 +9,20 @@ export class MockCategoryPageConfigurationState implements DaffCategoryPageConfi
   page_size = 20;
   current_page = 1;
   filters = [{
-    name: 'Category',
-    items_count: 2,
+    label: 'Category',
+    count: 2,
     attribute_name: 'cat',
-    type: '',
+    type: DaffCategoryFilterTypes.Match,
     options: [
       {
         label: 'Gear',
         value: '3',
-        items_count: 34
+        count: 34
       },
       {
         label: 'Training',
         value: '9',
-        items_count: 6
+        count: 6
       }
     ]
   }];
@@ -39,11 +39,13 @@ export class MockCategoryPageConfigurationState implements DaffCategoryPageConfi
         label: 'Price',
         value: 'price'
     }
-  ];
-  total_pages = faker.random.number(4);
-  applied_filters = null;
-  applied_sort_option = null;
-  applied_sort_direction = null;
+	];
+	total_products = faker.random.number(3);
+	total_pages = faker.random.number(4);
+	product_ids = [faker.random.number(100).toString()];
+	applied_filters = null;
+	applied_sort_direction = null;
+	applied_sort_option = null;
 }
 
 @Injectable({

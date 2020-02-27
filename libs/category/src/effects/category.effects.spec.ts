@@ -11,10 +11,10 @@ import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '
 
 import { DaffCategoryEffects } from './category.effects';
 import { DaffCategoryLoad, DaffCategoryLoadSuccess, DaffCategoryLoadFailure, DaffChangeCategoryPageSize, DaffChangeCategoryCurrentPage } from '../actions/category.actions';
-import { DaffCategory } from '../models/category';
+import { DaffCategory } from '../models/inputs/category';
 import { DaffCategoryServiceInterface } from '../drivers/interfaces/category-service.interface';
 import { DaffCategoryDriver } from '../drivers/injection-tokens/category-driver.token';
-import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
+import { DaffCategoryPageConfigurationState } from '../models/inputs/category-page-configuration-state';
 import { selectSelectedCategoryId, selectCategoryPageSize } from '../selectors/category.selector';
 
 describe('DaffCategoryEffects', () => {

@@ -1,4 +1,4 @@
-import { DaffCategoryPageConfigurationState } from '../../models/category-page-configuration-state';
+import { DaffCategoryPageConfigurationState } from '../../models/inputs/category-page-configuration-state';
 
 export interface CategoryReducerState {
   categoryPageConfigurationState: DaffCategoryPageConfigurationState,

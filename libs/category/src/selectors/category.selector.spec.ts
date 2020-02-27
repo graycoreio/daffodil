@@ -18,19 +18,20 @@ import {
   selectCategoryState, 
   selectSelectedCategoryId,
   selectSelectedCategory,
-  selectCategoryProductIds,
-  selectCategoryProducts,
+  selectCategoryPageProducts,
   selectCategoryCurrentPage,
   selectCategoryTotalPages,
   selectCategoryPageSize,
   selectCategoryFilters,
   selectCategorySortOptions,
 	selectCategory,
-	selectProductsByCategory
+	selectProductsByCategory,
+	selectCategoryPageProductIds
 } from './category.selector';
-import { DaffCategory } from '../models/category';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
 import { categoryReducers } from '../reducers/category-reducers';
+import { DaffCategory } from '../models/inputs/category';
+import { DaffCategoryPageConfigurationState } from '../models/inputs/category-page-configuration-state';
 
 describe('DaffCategorySelectors', () => {
 
@@ -39,8 +40,8 @@ describe('DaffCategorySelectors', () => {
   const categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
   const productFactory: DaffProductFactory = new DaffProductFactory();
 	let stubCategory: DaffCategory;
-  const stubCategoryPageConfigurationState = categoryPageConfigurationFactory.create();
-  let product: DaffProductUnion;
+  const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState = categoryPageConfigurationFactory.create();
+	let product: DaffProductUnion;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -55,6 +56,7 @@ describe('DaffCategorySelectors', () => {
     stubCategory = categoryFactory.create();
     product = productFactory.create();
     stubCategoryPageConfigurationState.id = stubCategory.id;
+		stubCategoryPageConfigurationState.product_ids = [product.id];
     stubCategory.productIds = [product.id];
     store = TestBed.get(Store);
 
@@ -78,7 +80,7 @@ describe('DaffCategorySelectors', () => {
 
   describe('selectCategoryPageConfigurationState', () => {
 
-    it('selects the selected categoryId state', () => {
+    it('selects the category page configuration state', () => {
       const selector = store.pipe(select(selectCategoryPageConfigurationState));
       const expected = cold('a', { a: stubCategoryPageConfigurationState });
       expect(selector).toBeObservable(expected);
@@ -126,6 +128,15 @@ describe('DaffCategorySelectors', () => {
     it('selects the current page of the current category', () => {
       const selector = store.pipe(select(selectCategorySortOptions));
       const expected = cold('a', { a: stubCategoryPageConfigurationState.sort_options });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCategoryPageProductIds', () => {
+
+    it('selects the productIds of the current category page', () => {
+      const selector = store.pipe(select(selectCategoryPageProductIds));
+      const expected = cold('a', { a: stubCategoryPageConfigurationState.product_ids });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -205,19 +216,10 @@ describe('DaffCategorySelectors', () => {
     });
   });
 
-  describe('selectCategoryProductIds', () => {
-
-    it('selects the productIds of the selected category', () => {
-      const selector = store.pipe(select(selectCategoryProductIds));
-      const expected = cold('a', { a: stubCategory.productIds });
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCategoryProducts', () => {
+  describe('selectCategoryPageProducts', () => {
 
     it('selects the products of the selected category', () => {
-      const selector = store.pipe(select(selectCategoryProducts));
+      const selector = store.pipe(select(selectCategoryPageProducts));
       const expected = cold('a', { a: [product] });
       expect(selector).toBeObservable(expected);
     });

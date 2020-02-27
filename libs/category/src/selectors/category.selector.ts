@@ -6,8 +6,8 @@ import { fromProduct, DaffProductUnion } from '@daffodil/product';
 import { CategoryReducerState } from '../reducers/category/category-reducer-state.interface';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
 import { categoryEntitiesAdapter } from '../reducers/category-entities/category-entities-adapter';
-import { DaffCategory } from '../models/category';
-import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
+import { DaffCategoryPageConfigurationState } from '../models/inputs/category-page-configuration-state';
+import { DaffCategory } from '../models/inputs/category';
 
 const { selectIds, selectEntities, selectAll, selectTotal } = categoryEntitiesAdapter.getSelectors();
 
@@ -55,6 +55,11 @@ export const selectCategoryFilters = createSelector(
 export const selectCategorySortOptions = createSelector(
   selectCategoryPageConfigurationState,
   (state: DaffCategoryPageConfigurationState) => state.sort_options
+);
+
+export const selectCategoryPageProductIds = createSelector(
+  selectCategoryPageConfigurationState,
+  (state: DaffCategoryPageConfigurationState) => state.product_ids
 );
 
 /**
@@ -118,13 +123,8 @@ export const selectSelectedCategory = createSelector(
   (entities: Dictionary<DaffCategory>, selectedCategoryId: string) => entities[selectedCategoryId]
 );
 
-export const selectCategoryProductIds = createSelector(
-  selectSelectedCategory,
-  (category: DaffCategory) => category ? category.productIds : []
-);
-
-export const selectCategoryProducts = createSelector(
-  selectCategoryProductIds,
+export const selectCategoryPageProducts = createSelector(
+  selectCategoryPageProductIds,
   fromProduct.selectAllProducts,
   (ids, products: DaffProductUnion[]) => products.filter(product => ids.indexOf(product.id) >= 0)
 );
