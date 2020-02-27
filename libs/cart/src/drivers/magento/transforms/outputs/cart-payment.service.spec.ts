@@ -39,17 +39,28 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartPayment', () => {
   });
 
   describe('transform | transforming a cart payment method', () => {
-    let transformedCartPayment: DaffCartPaymentMethod;
+    let transformedCartPayment;
     let method;
+    let passThrough;
 
     beforeEach(() => {
       method = 'method';
+      passThrough = 'passThrough';
+
       mockMagentoPaymentMethod.code = method;
-      transformedCartPayment = service.transform(mockMagentoPaymentMethod);
+
+      transformedCartPayment = service.transform({
+        ...mockMagentoPaymentMethod,
+        passThrough
+      });
     });
 
     it('should return an object with the correct values', () => {
       expect(transformedCartPayment.method).toEqual(method);
     });
+
+    it('should pass through values not touched by the transformer', () => {
+      expect(transformedCartPayment.passThrough).toEqual(passThrough);
+    })
   });
 });
