@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { DaffCartPaymentMethod } from '../../../../models/cart-payment';
+import { MagentoCartPaymentMethod } from '../../models/outputs/cart-payment-method';
 
 /**
  * Transforms magento carts into an object usable by daffodil.
@@ -14,7 +15,7 @@ export class DaffMagentoCartPaymentTransformer {
    * Transforms the magento CartPayment from the magento cart query into a DaffCartPaymentMethod.
    * @param response the response from a magento cart query.
    */
-  transform(responsePayment): DaffCartPaymentMethod {
+  transform(responsePayment: MagentoCartPaymentMethod): DaffCartPaymentMethod {
     return {
       ...responsePayment,
       method: responsePayment.code

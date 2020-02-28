@@ -16,7 +16,7 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartPayment', () => {
   let magentoPaymentMethodFactory: MagentoCartPaymentMethodFactory;
 
   let mockDaffCartPayment: DaffCartPaymentMethod;
-  let mockMagentoPaymentMethod: MagentoCartPaymentMethod;
+  let mockMagentoPaymentMethod;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -48,11 +48,9 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartPayment', () => {
       passThrough = 'passThrough';
 
       mockMagentoPaymentMethod.code = method;
+      mockMagentoPaymentMethod.passThrough = passThrough;
 
-      transformedCartPayment = service.transform({
-        ...mockMagentoPaymentMethod,
-        passThrough
-      });
+      transformedCartPayment = service.transform(mockMagentoPaymentMethod);
     });
 
     it('should return an object with the correct values', () => {
