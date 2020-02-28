@@ -13,7 +13,7 @@ import {
 import { DaffMagentoCartShippingMethodsService } from './cart-shipping-methods.service';
 import { DaffMagentoCartShippingRateTransformer } from './transforms/outputs/cart-shipping-rate.service';
 import { listShippingMethods } from './queries';
-import { ListShippingMethodsResponse } from './models/responses';
+import { MagentoListShippingMethodsResponse } from './models/responses';
 import { MagentoCartShippingMethod } from './models/outputs/cart-shipping-method';
 
 describe('Driver | Magento | Cart | CartShippingMethodsService', () => {
@@ -28,7 +28,7 @@ describe('Driver | Magento | Cart | CartShippingMethodsService', () => {
   let cartId;
   let mockDaffCartShippingRate: DaffCartShippingRate;
   let mockMagentoShippingMethod: MagentoCartShippingMethod;
-  let mockListCartShippingMethodsResponse: ListShippingMethodsResponse;
+  let mockListCartShippingMethodsResponse: MagentoListShippingMethodsResponse;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

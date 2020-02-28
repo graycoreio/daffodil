@@ -1,2 +1,2 @@
-export { ListPaymentMethodsResponse } from './list-payment-methods';
-export { ListShippingMethodsResponse } from './list-shipping-methods';
+export { MagentoListPaymentMethodsResponse } from './list-payment-methods';
+export { MagentoListShippingMethodsResponse } from './list-shipping-methods';

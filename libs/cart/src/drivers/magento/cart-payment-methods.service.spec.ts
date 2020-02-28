@@ -12,7 +12,7 @@ import {
 import { DaffMagentoCartPaymentMethodsService } from './cart-payment-methods.service';
 import { DaffMagentoCartPaymentTransformer } from './transforms/outputs/cart-payment.service';
 import { listPaymentMethods } from './queries';
-import { ListPaymentMethodsResponse } from './models/responses';
+import { MagentoListPaymentMethodsResponse } from './models/responses';
 import { MagentoCartPaymentMethod } from './models/outputs/cart-payment-method';
 
 describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
@@ -27,7 +27,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
   let cartId;
   let mockDaffCartPayment: DaffCartPaymentMethod;
   let mockMagentoPaymentMethod: MagentoCartPaymentMethod;
-  let mockListCartPaymentMethodsResponse: ListPaymentMethodsResponse;
+  let mockListCartPaymentMethodsResponse: MagentoListPaymentMethodsResponse;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

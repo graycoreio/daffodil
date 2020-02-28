@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 import { DaffCartShippingMethodsServiceInterface } from '../interfaces/cart-shipping-methods-service.interface';
 import { listShippingMethods } from './queries';
 import { DaffCartShippingRate } from '../../models/cart-shipping-rate';
-import { ListShippingMethodsResponse } from './models/responses/list-shipping-methods';
+import { MagentoListShippingMethodsResponse } from './models/responses/list-shipping-methods';
 import { DaffMagentoCartShippingRateTransformer } from './transforms/outputs/cart-shipping-rate.service';
 
 /**
@@ -23,7 +23,7 @@ export class DaffMagentoCartShippingMethodsService implements DaffCartShippingMe
   ) {}
 
   list(cartId: string): Observable<DaffCartShippingRate[]> {
-    return this.apollo.query<ListShippingMethodsResponse>({
+    return this.apollo.query<MagentoListShippingMethodsResponse>({
       query: listShippingMethods,
       variables: {cartId}
     }).pipe(

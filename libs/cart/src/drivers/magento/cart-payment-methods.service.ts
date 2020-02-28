@@ -8,7 +8,7 @@ import { DaffCartPaymentMethodsServiceInterface } from '../interfaces/cart-payme
 import { DaffCartPaymentMethod } from '../../models/cart-payment';
 import { listPaymentMethods } from './queries';
 import { DaffMagentoCartPaymentTransformer } from './transforms/outputs/cart-payment.service';
-import { ListPaymentMethodsResponse } from './models/responses/list-payment-methods';
+import { MagentoListPaymentMethodsResponse } from './models/responses/list-payment-methods';
 
 /**
  * A service for making Magento GraphQL queries for carts.
@@ -23,7 +23,7 @@ export class DaffMagentoCartPaymentMethodsService implements DaffCartPaymentMeth
   ) {}
 
   list(cartId: string): Observable<DaffCartPaymentMethod[]> {
-    return this.apollo.query<ListPaymentMethodsResponse>({
+    return this.apollo.query<MagentoListPaymentMethodsResponse>({
       query: listPaymentMethods,
       variables: {cartId}
     }).pipe(
