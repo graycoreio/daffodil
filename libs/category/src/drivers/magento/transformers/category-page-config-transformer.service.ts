@@ -19,7 +19,9 @@ export class DaffMagentoCategoryPageConfigTransformerService implements DaffCate
       current_page: categoryNode.products.page_info.current_page,
       total_pages: categoryNode.products.page_info.total_pages,
       filters: sortsAndFilters.filters.map((filter) => this.transformFilter(filter)),
-      sort_options: sortsAndFilters.sort_fields.options
+      sort_options: sortsAndFilters.sort_fields.options,
+			product_ids: null,
+			total_products: null
     }
   }
 

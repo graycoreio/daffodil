@@ -19,7 +19,9 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
   delete stubCategoryPageConfigurationState.applied_filters;
   delete stubCategoryPageConfigurationState.applied_sort_direction;
   delete stubCategoryPageConfigurationState.applied_sort_option;
-  stubCategoryPageConfigurationState.id = stubCategory.id;
+	stubCategoryPageConfigurationState.id = stubCategory.id;
+	stubCategoryPageConfigurationState.product_ids = null;
+	stubCategoryPageConfigurationState.total_products = null;
   
   beforeEach(() => {
     TestBed.configureTestingModule({

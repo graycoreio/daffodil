@@ -12,14 +12,15 @@ import {
   selectCategoryErrors,
   selectSelectedCategory,
   selectCategoryPageConfigurationState,
-  selectCategoryProducts,
+  selectCategoryPageProducts,
   selectCategoryCurrentPage,
   selectCategoryTotalPages,
   selectCategoryPageSize,
   selectCategoryFilters,
   selectCategorySortOptions,
 	selectCategory,
-	selectProductsByCategory
+	selectProductsByCategory,
+	selectCategoryPageTotalProducts
 } from '../selectors/category.selector';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
@@ -48,7 +49,11 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
   /**
    * The number of pages of product for the selected category.
    */
-  totalPages$: Observable<number>;
+	totalPages$: Observable<number>;
+	/**
+	 * The total number of products for the filters applied.
+	 */
+	totalProducts$: Observable<number>;
   /**
    * The number of products per page for the selected category.
    */
@@ -92,7 +97,8 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
 
   constructor(private store: Store<CategoryReducersState>) {
     this.category$ = this.store.pipe(select(selectSelectedCategory));
-    this.products$ = this.store.pipe(select(selectCategoryProducts));
+		this.products$ = this.store.pipe(select(selectCategoryPageProducts));
+		this.totalProducts$ = this.store.pipe(select(selectCategoryPageTotalProducts));
     this.pageConfigurationState$ = this.store.pipe(select(selectCategoryPageConfigurationState));
     this.currentPage$ = this.store.pipe(select(selectCategoryCurrentPage));
     this.totalPages$ = this.store.pipe(select(selectCategoryTotalPages));

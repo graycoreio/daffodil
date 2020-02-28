@@ -11,7 +11,9 @@ const initialState: CategoryReducerState = {
     page_size: null,
     total_pages: null,
     filters: null,
-    sort_options: null
+		sort_options: null,
+		total_products: null,
+		product_ids: []
   },
   loading: false,
   errors: []
@@ -45,7 +47,9 @@ export function categoryReducer(state = initialState, action: DaffCategoryAction
           page_size: action.categoryResponse.categoryPageConfigurationState.page_size,
           filters: action.categoryResponse.categoryPageConfigurationState.filters,
           sort_options: action.categoryResponse.categoryPageConfigurationState.sort_options,
-          total_pages: action.categoryResponse.categoryPageConfigurationState.total_pages
+					total_pages: action.categoryResponse.categoryPageConfigurationState.total_pages,
+					total_products: action.categoryResponse.categoryPageConfigurationState.total_products,
+					product_ids: action.categoryResponse.categoryPageConfigurationState.product_ids
         }
       };
     case DaffCategoryActionTypes.CategoryLoadFailureAction:
