@@ -9,6 +9,7 @@ import { DaffMagentoCartPaymentMethodsService } from './cart-payment-methods.ser
 
 import { DaffMagentoCartShippingRateTransformer } from './transforms/outputs/cart-shipping-rate.service';
 import { DaffMagentoCartPaymentTransformer } from './transforms/outputs/cart-payment.service';
+import { DaffMagentoCartAddressInputTransformer } from './transforms/inputs/cart-address.service';
 
 @NgModule({
   imports: [
@@ -29,7 +30,9 @@ export class DaffCartMagentoDriverModule {
           useExisting: DaffMagentoCartPaymentMethodsService
         },
         DaffMagentoCartShippingRateTransformer,
-        DaffMagentoCartPaymentTransformer
+        DaffMagentoCartPaymentTransformer,
+
+        DaffMagentoCartAddressInputTransformer,
       ]
     };
   }
