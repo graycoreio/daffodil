@@ -30,22 +30,4 @@ describe('Cart | Testing | Factories | MoneyFactory', () => {
       expect(result.value).toBeDefined();
     });
   });
-
-  describe('createMany', () => {
-    let result: MagentoMoney[];
-
-    it('should create as many cart items as desired', () => {
-      const spy = spyOn(cartItemFactory, 'create');
-
-      result = cartItemFactory.createMany(2);
-      expect(result.length).toEqual(2);
-      expect(cartItemFactory.create).toHaveBeenCalledTimes(2);
-
-      spy.calls.reset();
-
-      result = cartItemFactory.createMany(3);
-      expect(result.length).toEqual(3);
-      expect(cartItemFactory.create).toHaveBeenCalledTimes(3);
-    });
-  })
 });
