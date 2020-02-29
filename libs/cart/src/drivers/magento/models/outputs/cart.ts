@@ -10,6 +10,7 @@ import { MagentoShippingAddress } from './shipping-address';
  */
 export interface MagentoCart {
   id: number;
+  email: string;
   billing_address: MagentoCartAddress;
   shipping_addresses: MagentoShippingAddress[];
   items: MagentoCartItem[];
