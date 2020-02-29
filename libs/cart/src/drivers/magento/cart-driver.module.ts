@@ -9,6 +9,7 @@ import { DaffMagentoCartPaymentMethodsService } from './cart-payment-methods.ser
 
 import { DaffMagentoCartShippingRateTransformer } from './transforms/outputs/cart-shipping-rate.service';
 import { DaffMagentoCartPaymentTransformer } from './transforms/outputs/cart-payment.service';
+import { DaffMagentoCartAddressTransformer } from './transforms/outputs/cart-address.service';
 
 import { DaffMagentoCartAddressInputTransformer } from './transforms/inputs/cart-address.service';
 import { DaffMagentoShippingAddressInputTransformer } from './transforms/inputs/shipping-address.service';
@@ -31,6 +32,7 @@ export class DaffCartMagentoDriverModule {
           provide: DaffCartPaymentMethodsDriver,
           useExisting: DaffMagentoCartPaymentMethodsService
         },
+        DaffMagentoCartAddressTransformer,
         DaffMagentoCartShippingRateTransformer,
         DaffMagentoCartPaymentTransformer,
 
