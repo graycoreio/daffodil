@@ -42,3 +42,5 @@ export { DaffCategory } from './models/category'
 export { DaffCategoryRequest } from './models/requests/category-request';
 export { DaffCategorySortOption } from './models/category-sort-option';
 export { DaffCategoryFilterAction } from './models/requests/filter-action';
+
+export * from './drivers/magento/public_api';

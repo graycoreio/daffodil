@@ -2,9 +2,9 @@ import { Injectable, Inject } from '@angular/core';
 
 import { DaffMagentoProductTransformerService } from '@daffodil/product';
 
-import { DaffGetCategoryResponse } from '../../../models/get-category-response';
 import { DaffMagentoCategoryPageConfigTransformerService } from './category-page-config-transformer.service';
-import { CompleteCategoryResponse } from '../models/outputs/complete-category-response';
+import { CompleteCategoryResponse } from '../models/complete-category-response';
+import { DaffGetCategoryResponse } from '../../../models/get-category-response';
 import { DaffMagentoCategoryTransformerService } from './category-transformer.service';
 
 @Injectable({
@@ -21,8 +21,15 @@ export class DaffMagentoCategoryResponseTransformService {
   transform(completeCategory: CompleteCategoryResponse): DaffGetCategoryResponse {
     return {
       category: this.magentoCategoryTransformerService.transform(completeCategory.category),
-      categoryPageConfigurationState: this.magentoCategoryPageConfigurationTransformerService.transform(completeCategory.category, completeCategory.sortsAndFilters),
-      products: this.magentoProductTransformerService.transformMany(completeCategory.category.products.items)
+      categoryPageConfigurationState: this.magentoCategoryPageConfigurationTransformerService.transform(
+				completeCategory.category.id,
+				completeCategory.aggregates,
+				completeCategory.page_info,
+				completeCategory.sort_fields,
+				completeCategory.total_count,
+				completeCategory.products
+			),
+      products: this.magentoProductTransformerService.transformMany(completeCategory.products)
     }
   }
 }
