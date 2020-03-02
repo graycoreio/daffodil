@@ -1,3 +1,4 @@
+export { MagentoCartAddressFactory } from './cart-address.factory';
 export { MagentoCartCouponFactory } from './cart-coupon.factory';
 export { MagentoCartPaymentMethodFactory } from './cart-payment-method.factory';
 export { MagentoCartShippingMethodFactory } from './cart-shipping-method.factory';
