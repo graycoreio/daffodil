@@ -18,7 +18,7 @@ import { DaffCategoryDriver } from '../drivers/injection-tokens/category-driver.
 import { DaffCategoryServiceInterface } from '../drivers/interfaces/category-service.interface';
 import { DaffGetCategoryResponse } from '../models/get-category-response';
 import { selectSelectedCategoryId, selectCategoryPageSize } from '../selectors/category.selector';
-import { DaffCategoryRequest } from '../models/category-request';
+import { DaffCategoryRequest } from '../models/requests/category-request';
 
 @Injectable()
 export class DaffCategoryEffects {

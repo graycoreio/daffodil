@@ -5,7 +5,7 @@ import { DaffCategoryLoad, DaffCategoryLoadSuccess, DaffCategoryLoadFailure } fr
 import { categoryReducer } from './category.reducer';
 import { DaffCategory } from '../../models/category';
 import { DaffCategoryPageConfigurationState } from '../../models/category-page-configuration-state';
-import { DaffCategoryRequest } from '../../models/category-request';
+import { DaffCategoryRequest } from '../../models/requests/category-request';
 
 describe('Category | Category Reducer', () => {
 

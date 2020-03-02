@@ -10,7 +10,7 @@ import {
 
 import { DaffCategoryServiceInterface } from '../interfaces/category-service.interface';
 import { DaffGetCategoryResponse } from '../../models/get-category-response';
-import { DaffCategoryRequest } from '../../models/category-request';
+import { DaffCategoryRequest } from '../../models/requests/category-request';
 import { CompleteCategoryResponse } from './models/outputs/complete-category-response';
 import { GetACategoryResponse } from './models/outputs/get-category-response';
 import { DaffMagentoCategoryResponseTransformService } from './transformers/category-response-transform.service';
