@@ -11,7 +11,7 @@ export class DaffMagentoAppliedFiltersTransformService {
   transform(daffFilters: DaffCategoryFilterAction[]): MagentoCategoryFilters {
 		const magentoFilters: MagentoCategoryFilters = {};
 
-		daffFilters.map(filter => {
+		daffFilters.forEach(filter => {
 			magentoFilters[filter.code] = {
 				[filter.action]: filter.value
 			}
