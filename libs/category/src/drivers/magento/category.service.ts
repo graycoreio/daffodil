@@ -40,26 +40,32 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
 			}),
       this.apollo.query<MagentoGetProductsResponse>({
 				query: GetProductsQuery,
-				variables: {
-					filter: this.magentoAppliedFiltersTransformer.transform(categoryRequest.applied_filters),
-					search: null,
-					pageSize: categoryRequest.page_size,
-					currentPage: categoryRequest.current_page,
-					sort: this.magentoAppliedSortTransformer.transform(categoryRequest.applied_sort_option, categoryRequest.applied_sort_direction)
-				}
+				variables: this.getProductsQueryVariables(categoryRequest)
 			})
     ]).pipe(
-      map((result): CompleteCategoryResponse => {
-        return {
-          category: result[0].data.category,
-					products: result[1].data.products,
-					aggregates: result[1].data.aggregates,
-					sort_fields: result[1].data.sort_fields,
-					total_count: result[1].data.total_count,
-					page_info: result[1].data.page_info
-        }
-      }),
+      map((result): CompleteCategoryResponse => this.buildCompleteCategoryResponse(result[0].data, result[1].data)),
       map((result: CompleteCategoryResponse) => this.magentoCategoryResponseTransformer.transform(result))
     );
-  }
+	}
+	
+	private getProductsQueryVariables(request: DaffCategoryRequest) {
+		return {
+			filter: this.magentoAppliedFiltersTransformer.transform(request.applied_filters),
+			search: null,
+			pageSize: request.page_size,
+			currentPage: request.current_page,
+			sort: this.magentoAppliedSortTransformer.transform(request.applied_sort_option, request.applied_sort_direction)
+		}
+	}
+
+	private buildCompleteCategoryResponse(categoryReponse: GetACategoryResponse, productsResponse: MagentoGetProductsResponse) {
+		return {
+			category: categoryReponse.category,
+			products: productsResponse.products,
+			aggregates: productsResponse.aggregates,
+			sort_fields: productsResponse.sort_fields,
+			total_count: productsResponse.total_count,
+			page_info: productsResponse.page_info
+		};
+	}
 }
