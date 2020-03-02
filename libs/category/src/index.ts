@@ -35,9 +35,10 @@ export {
 } from './selectors/category.selector';
 
 export { DaffGetCategoryResponse } from './models/get-category-response';
-export { DaffCategoryFilter } from './models/category-filter';
+export { DaffCategoryFilter, DaffCategoryFilterTypes, DaffCategoryFilterOption } from './models/category-filter';
 export { DaffCategoryPageConfigurationState } from './models/category-page-configuration-state';
 export { DaffCategoryBreadcrumb } from './models/category-breadcrumb'
 export { DaffCategory } from './models/category'
-export { DaffCategoryRequest } from './models/category-request';
+export { DaffCategoryRequest } from './models/requests/category-request';
 export { DaffCategorySortOption } from './models/category-sort-option';
+export { DaffCategoryFilterAction } from './models/requests/filter-action';

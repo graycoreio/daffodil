@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
 import { DaffGetCategoryResponse } from '../models/get-category-response';
-import { DaffCategoryRequest } from '../models/category-request';
+import { DaffCategoryRequest } from '../models/requests/category-request';
 
 export enum DaffCategoryActionTypes {
   CategoryLoadAction = '[Daff-Category] Category Load Action',

@@ -4,7 +4,7 @@ import { SortFieldsAndFiltersProductNode, FilterNode } from '@daffodil/product';
 
 import { DaffCategoryPageConfigurationState } from '../../../models/category-page-configuration-state';
 import { CategoryNode } from '../models/outputs/category-node';
-import { DaffCategoryFilter } from '../../../models/category-filter';
+import { DaffCategoryFilter, DaffCategoryFilterTypes } from '../../../models/category-filter';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ export class DaffMagentoCategoryPageConfigTransformerService {
   transformFilter(filter: FilterNode): DaffCategoryFilter {
     return {
       name: filter.name,
-      type: filter.__typename,
+      type: DaffCategoryFilterTypes.Equal,
       items_count: filter.filter_items_count,
       attribute_name: filter.request_var,
       options: filter.filter_items.map((item) => {
