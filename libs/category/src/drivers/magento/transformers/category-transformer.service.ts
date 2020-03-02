@@ -3,13 +3,12 @@ import { Injectable } from '@angular/core';
 import { DaffCategory } from '../../../models/category';
 import { DaffCategoryBreadcrumb } from '../../../models/category-breadcrumb';
 import { CategoryNode } from '../models/outputs/category-node';
-import { DaffCategoryTransformerInterface } from '../../interfaces/category-transformer.interface';
 import { BreadcrumbNode } from '../models/outputs/breadcrumb-node';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoCategoryTransformerService implements DaffCategoryTransformerInterface<DaffCategory> {
+export class DaffMagentoCategoryTransformerService {
 
   transform(categoryNode: CategoryNode): DaffCategory {
     return {

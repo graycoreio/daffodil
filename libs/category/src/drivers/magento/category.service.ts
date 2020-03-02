@@ -13,10 +13,8 @@ import { DaffGetCategoryResponse } from '../../models/get-category-response';
 import { DaffCategoryRequest } from '../../models/category-request';
 import { CompleteCategoryResponse } from './models/outputs/complete-category-response';
 import { GetACategoryResponse } from './models/outputs/get-category-response';
-import { DaffCategoryQueryManager } from '../injection-tokens/category-query-manager.token';
-import { DaffCategoryQueryManagerInterface } from '../interfaces/category-query-manager.interface';
-import { DaffCategoryResponseTransformer } from '../injection-tokens/category-response-transformer.token';
-import { DaffCategoryResponseTransformerInterface } from '../interfaces/category-response-transformer.interface';
+import { DaffMagentoCategoryResponseTransformService } from './transformers/category-response-transform.service';
+import { GetACategoryQuery } from './queries/get-a-category';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +23,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
   
   constructor(
     private apollo: Apollo,
-    @Inject(DaffCategoryQueryManager) public queryManager: DaffCategoryQueryManagerInterface,
-    @Inject(DaffCategoryResponseTransformer) public magentoCategoryResponseTransformerService: DaffCategoryResponseTransformerInterface<DaffGetCategoryResponse>
+    private magentoCategoryResponseTransformerService: DaffMagentoCategoryResponseTransformService
   ) {}
 
   /**
@@ -35,11 +32,14 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
    */
   get(categoryRequest: DaffCategoryRequest): Observable<DaffGetCategoryResponse> {
     return combineLatest([
-      this.apollo.query<GetACategoryResponse>(this.queryManager.getACategoryQuery(
-        parseInt(categoryRequest.id, 10),
-        categoryRequest.current_page ? categoryRequest.current_page : 1,
-        categoryRequest.page_size ? categoryRequest.page_size : 20
-      )),
+      this.apollo.query<GetACategoryResponse>({
+				query: GetACategoryQuery,
+				variables: {
+					id: parseInt(categoryRequest.id, 10),
+					current_page: categoryRequest.current_page ? categoryRequest.current_page : 1,
+					page_size: categoryRequest.page_size ? categoryRequest.page_size : 20
+				}
+			}),
       this.apollo.query<GetSortFieldsAndFiltersProductResponse>({
 				query: GetSortFieldsAndFiltersByCategory,
 				variables: {

@@ -9,18 +9,15 @@ import {
 import { DaffGetCategoryResponse } from '../../../models/get-category-response';
 import { DaffMagentoCategoryPageConfigTransformerService } from './category-page-config-transformer.service';
 import { CompleteCategoryResponse } from '../models/outputs/complete-category-response';
-import { DaffCategoryResponseTransformerInterface } from '../../interfaces/category-response-transformer.interface';
-import { DaffCategoryTransformer } from '../../injection-tokens/category-transformer.token';
-import { DaffCategoryTransformerInterface } from '../../interfaces/category-transformer.interface';
-import { DaffCategory } from '../../../models/category';
+import { DaffMagentoCategoryTransformerService } from './category-transformer.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoCategoryResponseTransformService implements DaffCategoryResponseTransformerInterface<DaffGetCategoryResponse> {
+export class DaffMagentoCategoryResponseTransformService {
 
   constructor(
-    @Inject(DaffCategoryTransformer) private magentoCategoryTransformerService: DaffCategoryTransformerInterface<DaffCategory>,
+    private magentoCategoryTransformerService: DaffMagentoCategoryTransformerService,
     private magentoCategoryPageConfigurationTransformerService: DaffMagentoCategoryPageConfigTransformerService,
     @Inject(DaffProductTransformer) private magentoProductTransformerService: DaffProductTransformerInterface<DaffProductUnion>
   ) {}

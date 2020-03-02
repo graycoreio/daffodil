@@ -4,13 +4,12 @@ import { SortFieldsAndFiltersProductNode, FilterNode } from '@daffodil/product';
 
 import { DaffCategoryPageConfigurationState } from '../../../models/category-page-configuration-state';
 import { CategoryNode } from '../models/outputs/category-node';
-import { DaffCategoryPageConfigTransformerInterface } from '../../interfaces/category-page-configuration-transformer.interface';
 import { DaffCategoryFilter } from '../../../models/category-filter';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoCategoryPageConfigTransformerService implements DaffCategoryPageConfigTransformerInterface<DaffCategoryPageConfigurationState> {
+export class DaffMagentoCategoryPageConfigTransformerService {
 
   transform(categoryNode: CategoryNode, sortsAndFilters: SortFieldsAndFiltersProductNode): DaffCategoryPageConfigurationState {
     return {
