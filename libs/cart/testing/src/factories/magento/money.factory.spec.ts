@@ -4,25 +4,25 @@ import { MagentoMoneyFactory } from './money.factory';
 import { MagentoMoney } from '@daffodil/cart';
 
 describe('Cart | Testing | Factories | MoneyFactory', () => {
-  let cartItemFactory: MagentoMoneyFactory;
+  let factory: MagentoMoneyFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [MagentoMoneyFactory]
     });
 
-    cartItemFactory = TestBed.get(MagentoMoneyFactory);
+    factory = TestBed.get(MagentoMoneyFactory);
   });
 
   it('should be created', () => {
-    expect(cartItemFactory).toBeTruthy();
+    expect(factory).toBeTruthy();
   });
 
   describe('create', () => {
     let result: MagentoMoney;
 
     beforeEach(() => {
-      result = cartItemFactory.create();
+      result = factory.create();
     });
 
     it('should return a Money with all required fields defined', () => {
