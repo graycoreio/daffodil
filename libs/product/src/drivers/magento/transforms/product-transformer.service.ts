@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
 import { DaffProductUnion } from '../../../models/product-union';
-import { DaffProductTransformerInterface } from '../../interfaces/product-transformer.interface';
 import { ProductNode } from '../models/product-node';
 
 /**
@@ -10,7 +9,7 @@ import { ProductNode } from '../models/product-node';
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoProductTransformerService implements DaffProductTransformerInterface<DaffProductUnion> {
+export class DaffMagentoProductTransformerService {
 
   /**
    * Transforms the magento ProductNode from the magento product query into a DaffProductUnion. 
