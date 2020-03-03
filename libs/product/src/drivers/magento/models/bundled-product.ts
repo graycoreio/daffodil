@@ -1,5 +1,5 @@
-import { ProductNode } from "./product-node";
-import { MagentoSimpleProduct } from "./simple-product";
+import { ProductNode } from './product-node';
+import { MagentoSimpleProduct } from './simple-product';
 
 export enum MagentoPriceViewEnum {
 	price_range = 'PRICE_RANGE',

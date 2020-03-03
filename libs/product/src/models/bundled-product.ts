@@ -1,5 +1,5 @@
-import { DaffProduct } from "./product";
-import { DaffBundledProductItem } from "./bundled-product-item";
+import { DaffProduct } from './product';
+import { DaffBundledProductItem } from './bundled-product-item';
 
 export enum MagentoPriceViewEnum {
 	price_range = 'PRICE_RANGE',

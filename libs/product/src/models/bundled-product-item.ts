@@ -1,4 +1,4 @@
-import { DaffProduct } from "./product";
+import { DaffProduct } from './product';
 
 export enum DaffPriceTypeEnum {
 	fixed = 'FIXED',
