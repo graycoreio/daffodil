@@ -6,3 +6,5 @@ export { DaffTestingProductService } from './drivers/testing/product.service';
 export { DaffInMemoryProductService } from './drivers/in-memory/product.service';
 export { DaffProductInMemoryDriverModule } from './drivers/in-memory/product-driver.module';
 export { DaffProductTestingDriverModule } from './drivers/testing/product-driver.module';
+
+export * from './factories/magento';
