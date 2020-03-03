@@ -13,6 +13,7 @@ import { MagentoAggregation } from '../models/aggregation';
 import { MagentoPageInfo } from '../models/page-info';
 import { MagentoSortFields } from '../models/sort-fields';
 import { DaffMagentoCategoryTransformerService } from './category-transformer.service';
+import { CompleteCategoryResponse } from '../models/complete-category-response';
 
 describe('DaffMagentoCategoryResponseTransformService', () => {
 
@@ -46,18 +47,14 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
 
   describe('transform', () => {
 
-    let category: MagentoCategory;
-		let aggregates: MagentoAggregation[];
-		let page_info: MagentoPageInfo;
-		let sort_fields: MagentoSortFields;
-		let products: ProductNode[];
+		let completeCategory: CompleteCategoryResponse;
 
     beforeEach(() => {
       magentoCategoryTransformerServiceSpy.transform.and.returnValue(stubCategory);
       magentoCategoryPageConfigurationTransformerServiceSpy.transform.and.returnValue(stubCategoryPageConfigurationState);
       magentoProductTransformerServiceSpy.transformMany.and.returnValue(stubProducts);
   
-      category = {
+      const category: MagentoCategory = {
         id: stubCategory.id,
         name: stubCategory.name,
         breadcrumbs: [{
@@ -68,24 +65,24 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
         }],
         children_count: stubCategory.children_count
 			}
-			aggregates = [{
+			const aggregates: MagentoAggregation[] = [{
 				attribute_code: stubCategoryPageConfigurationState.filters[0].attribute_name,
 				count: stubCategoryPageConfigurationState.filters[0].items_count,
 				label: stubCategoryPageConfigurationState.filters[0].name
 			}];
 			
-			page_info = {
+			const page_info: MagentoPageInfo = {
 				page_size: stubCategoryPageConfigurationState.page_size,
 				current_page: stubCategoryPageConfigurationState.current_page,
 				total_pages: stubCategoryPageConfigurationState.total_pages
 			};
 
-			sort_fields = {
+			const sort_fields: MagentoSortFields = {
 				default: stubCategoryPageConfigurationState.sort_options[0].value,
 				options: stubCategoryPageConfigurationState.sort_options
 			};
 
-			products = [
+			const products: ProductNode[] = [
 				{
 					sku: stubCategoryPageConfigurationState.product_ids[0],
 					id: 2,
@@ -100,64 +97,38 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
 					}
 				}
 			];
+
+			completeCategory = {
+				category: category,
+				aggregates: aggregates,
+				page_info: page_info,
+				sort_fields: sort_fields,
+				products: products,
+				total_count: products.length
+			}
     });
 
     it('should call transform on the magentoCategoryTransformerService', () => {
-      service.transform({
-				category: category,
-				aggregates: aggregates,
-				page_info: page_info,
-				sort_fields: sort_fields,
-				total_count: products.length,
-				products: products
-			});
+      service.transform(completeCategory);
 
-      expect(magentoCategoryTransformerServiceSpy.transform).toHaveBeenCalledWith(category);
+      expect(magentoCategoryTransformerServiceSpy.transform).toHaveBeenCalledWith(completeCategory.category);
     });
 
     it('should call transform on the magentoCategoryPageConfigurationService', () => {
-      service.transform({
-				category: category,
-				aggregates: aggregates,
-				page_info: page_info,
-				sort_fields: sort_fields,
-				total_count: products.length,
-				products: products
-			});
+      service.transform(completeCategory);
       
-      expect(magentoCategoryPageConfigurationTransformerServiceSpy.transform).toHaveBeenCalledWith(
-				category.id,
-				aggregates,
-				page_info,
-				sort_fields,
-				products.length,
-				products
-			);
+      expect(magentoCategoryPageConfigurationTransformerServiceSpy.transform).toHaveBeenCalledWith(completeCategory);
     });
 
     it('should call transformMany on the magentoCategoryTransformerService', () => {
-      service.transform({
-				category: category,
-				aggregates: aggregates,
-				page_info: page_info,
-				sort_fields: sort_fields,
-				total_count: products.length,
-				products: products
-			});
+      service.transform(completeCategory);
       
-      expect(magentoProductTransformerServiceSpy.transformMany).toHaveBeenCalledWith(products);
+      expect(magentoProductTransformerServiceSpy.transformMany).toHaveBeenCalledWith(completeCategory.products);
     });
     
     it('should return a DaffGetCategoryResponse compiled from the other injected transformers', () => {
 
-      expect(service.transform({
-				category: category,
-				aggregates: aggregates,
-				page_info: page_info,
-				sort_fields: sort_fields,
-				total_count: products.length,
-				products: products
-			})).toEqual(
+      expect(service.transform(completeCategory)).toEqual(
         {
           category: stubCategory,
           products: stubProducts,

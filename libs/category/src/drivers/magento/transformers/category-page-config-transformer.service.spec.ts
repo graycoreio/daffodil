@@ -10,6 +10,7 @@ import { MagentoCategory } from '../models/category';
 import { MagentoAggregation } from '../models/aggregation';
 import { MagentoPageInfo } from '../models/page-info';
 import { MagentoSortFields } from '../models/sort-fields';
+import { CompleteCategoryResponse } from '../models/complete-category-response';
 
 describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 
@@ -38,14 +39,10 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
   });
 
   describe('transform', () => {
-		let category: MagentoCategory;
-		let aggregates: MagentoAggregation[];
-		let page_info: MagentoPageInfo;
-		let sort_fields: MagentoSortFields;
-		let products: ProductNode[];
+		let completeCategoryResponse: CompleteCategoryResponse;
     
     it('should return a DaffCategoryPageConfigurationState', () => {
-      category = {
+      const category: MagentoCategory = {
         id: stubCategory.id,
         name: stubCategory.name,
         breadcrumbs: [{
@@ -56,7 +53,8 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
         }],
         children_count: stubCategory.children_count
 			}
-			aggregates = [{
+			
+			const aggregates: MagentoAggregation[] = [{
 				attribute_code: stubCategoryPageConfigurationState.filters[0].attribute_name,
 				count: stubCategoryPageConfigurationState.filters[0].items_count,
 				label: stubCategoryPageConfigurationState.filters[0].name,
@@ -74,18 +72,18 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 				]
 			}];
 			
-			page_info = {
+			const page_info: MagentoPageInfo = {
 				page_size: stubCategoryPageConfigurationState.page_size,
 				current_page: stubCategoryPageConfigurationState.current_page,
 				total_pages: stubCategoryPageConfigurationState.total_pages
 			};
 
-			sort_fields = {
+			const sort_fields: MagentoSortFields = {
 				default: stubCategoryPageConfigurationState.sort_options[0].value,
 				options: stubCategoryPageConfigurationState.sort_options
 			};
 
-			products = [
+			const products: ProductNode[] = [
 				{
 					sku: stubCategoryPageConfigurationState.product_ids[0],
 					id: 2,
@@ -101,14 +99,16 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 				}
 			];
 
-      expect(service.transform(
-				category.id,
-				aggregates,
-				page_info,
-				sort_fields,
-				stubCategoryPageConfigurationState.total_products,
-				products
-			)).toEqual(stubCategoryPageConfigurationState);
+			completeCategoryResponse = {
+				category: category,
+				aggregates: aggregates,
+				page_info: page_info,
+				sort_fields: sort_fields,
+				products: products,
+				total_count: stubCategoryPageConfigurationState.total_products
+			}
+
+      expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
     });
   });
 });

@@ -1,35 +1,26 @@
 import { Injectable } from '@angular/core';
 
-import { ProductNode } from '@daffodil/product';
-
 import { DaffCategoryPageConfigurationState } from '../../../models/category-page-configuration-state';
 import { DaffCategoryFilter, DaffCategoryFilterTypes } from '../../../models/category-filter';
 import { MagentoAggregation } from '../models/aggregation';
-import { MagentoPageInfo } from '../models/page-info';
 import { MagentoSortFields } from '../models/sort-fields';
+import { CompleteCategoryResponse } from '../models/complete-category-response';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DaffMagentoCategoryPageConfigTransformerService {
 
-  transform(
-		categoryId: string,
-		aggregates: MagentoAggregation[],
-		page_info: MagentoPageInfo,
-		sort_fields: MagentoSortFields,
-		total_count: number,
-		products: ProductNode[]
-	): DaffCategoryPageConfigurationState {
+  transform(categoryResponse: CompleteCategoryResponse): DaffCategoryPageConfigurationState {
 		return {
-      id: categoryId,
-      page_size: page_info.page_size,
-      current_page: page_info.current_page,
-			total_pages: page_info.total_pages,
-			total_products: total_count,
-      filters: aggregates.map(this.transformAggregate),
-			sort_options: this.makeDefaultOptionFirst(sort_fields).options,
-			product_ids: products.map(product => product.sku)
+      id: categoryResponse.category.id,
+      page_size: categoryResponse.page_info.page_size,
+      current_page: categoryResponse.page_info.current_page,
+			total_pages: categoryResponse.page_info.total_pages,
+			total_products: categoryResponse.total_count,
+      filters: categoryResponse.aggregates.map(this.transformAggregate),
+			sort_options: this.makeDefaultOptionFirst(categoryResponse.sort_fields).options,
+			product_ids: categoryResponse.products.map(product => product.sku)
     }
   }
 

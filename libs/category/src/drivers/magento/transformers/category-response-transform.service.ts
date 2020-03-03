@@ -21,14 +21,7 @@ export class DaffMagentoCategoryResponseTransformService {
   transform(completeCategory: CompleteCategoryResponse): DaffGetCategoryResponse {
     return {
       category: this.magentoCategoryTransformerService.transform(completeCategory.category),
-      categoryPageConfigurationState: this.magentoCategoryPageConfigurationTransformerService.transform(
-				completeCategory.category.id,
-				completeCategory.aggregates,
-				completeCategory.page_info,
-				completeCategory.sort_fields,
-				completeCategory.total_count,
-				completeCategory.products
-			),
+      categoryPageConfigurationState: this.magentoCategoryPageConfigurationTransformerService.transform(completeCategory),
       products: this.magentoProductTransformerService.transformMany(completeCategory.products)
     }
   }
