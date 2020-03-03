@@ -26,6 +26,7 @@ export { SortFieldsNode } from './drivers/magento/models/sort-fields-node';
 export { SortFieldsAndFiltersProductNode } from './drivers/magento/models/sort-fields-and-filters-product-node';
 export { GetSortFieldsAndFiltersProductResponse } from './drivers/magento/models/get-sort-fields-and-filters-product-response';
 export { FilterNode } from './drivers/magento/models/filter-node';
+export { ProductNode as MagentoProduct } from './drivers/magento/models/product-node';
 
 export { DaffProductGridFacade } from './facades/product-grid/product-grid.facade';
 export { DaffProductFacade } from './facades/product/product.facade';
