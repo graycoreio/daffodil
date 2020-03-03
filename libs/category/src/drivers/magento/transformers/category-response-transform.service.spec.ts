@@ -4,7 +4,7 @@ import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '
 import { 
   DaffProduct,
   SortFieldsAndFiltersProductNode,
-  DaffProductTransformer
+	DaffMagentoProductTransformerService
 } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
@@ -36,7 +36,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
         DaffMagentoCategoryResponseTransformService,
         { provide: DaffMagentoCategoryTransformerService, useValue: magentoCategoryTransformerServiceSpy },
         { provide: DaffMagentoCategoryPageConfigTransformerService, useValue: magentoCategoryPageConfigurationTransformerServiceSpy },
-        { provide: DaffProductTransformer, useValue: magentoProductTransformerServiceSpy }
+        { provide: DaffMagentoProductTransformerService, useValue: magentoProductTransformerServiceSpy }
       ]
     });
     service = TestBed.get(DaffMagentoCategoryResponseTransformService);

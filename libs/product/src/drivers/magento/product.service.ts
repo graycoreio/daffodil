@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -6,13 +6,12 @@ import { map } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 
 import { DaffProductServiceInterface } from '../interfaces/product-service.interface';
-import { DaffProductTransformer } from '../injection-tokens/product-transformer.token';
-import { DaffProductTransformerInterface } from '../interfaces/product-transformer.interface';
 import { DaffProductUnion } from '../../models/product-union';
 import { DaffSortField } from './models/sort-field';
 import { GetSortFieldsAndFiltersByCategory } from './queries/get-sort-fields-and-filters-by-category';
 import { GetAllProductsQuery } from './queries/get-all-products';
 import { GetProductQuery } from './queries/get-product';
+import { DaffMagentoProductTransformerService } from './transforms/product-transformer.service';
 
 /**
  * A service for making magento apollo queries for products of type, DaffProductUnion.
@@ -23,7 +22,7 @@ import { GetProductQuery } from './queries/get-product';
 export class DaffMagentoProductService implements DaffProductServiceInterface<DaffProductUnion> {  
   constructor(
     private apollo: Apollo,
-    @Inject(DaffProductTransformer) public transformer: DaffProductTransformerInterface<DaffProductUnion>) {}
+    public productTransformer: DaffMagentoProductTransformerService) {}
 
   /**
    * Get an Observable of a DaffProductUnion by id.
@@ -36,7 +35,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface<Da
 				sku: productId
 			}
 		}).pipe(
-      map(result => this.transformer.transform(result.data))
+      map(result => this.productTransformer.transform(result.data))
     );
   }
 
@@ -47,7 +46,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface<Da
     return this.apollo.query<any>({
 			query: GetAllProductsQuery
 		}).pipe(
-      map(result => this.transformer.transformMany(result.data.products.items))
+      map(result => this.productTransformer.transformMany(result.data.products.items))
     );
   }
 
