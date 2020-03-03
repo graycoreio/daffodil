@@ -4,25 +4,25 @@ import { MagentoCartShippingMethodFactory } from './cart-shipping-method.factory
 import { MagentoCartShippingMethod } from '@daffodil/cart';
 
 describe('Cart | Testing | Factories | CartShippingMethodFactory', () => {
-  let cartItemFactory: MagentoCartShippingMethodFactory;
+  let factory: MagentoCartShippingMethodFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [MagentoCartShippingMethodFactory]
     });
 
-    cartItemFactory = TestBed.get(MagentoCartShippingMethodFactory);
+    factory = TestBed.get(MagentoCartShippingMethodFactory);
   });
 
   it('should be created', () => {
-    expect(cartItemFactory).toBeTruthy();
+    expect(factory).toBeTruthy();
   });
 
   describe('create', () => {
     let result: MagentoCartShippingMethod;
 
     beforeEach(() => {
-      result = cartItemFactory.create();
+      result = factory.create();
     });
 
     it('should return a CartShippingMethod with all required fields defined', () => {

@@ -4,25 +4,25 @@ import { MagentoCartPaymentMethodFactory } from './cart-payment-method.factory';
 import { MagentoCartPaymentMethod } from '@daffodil/cart';
 
 describe('Cart | Testing | Factories | CartPaymentMethodFactory', () => {
-  let cartItemFactory: MagentoCartPaymentMethodFactory;
+  let factory: MagentoCartPaymentMethodFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [MagentoCartPaymentMethodFactory]
     });
 
-    cartItemFactory = TestBed.get(MagentoCartPaymentMethodFactory);
+    factory = TestBed.get(MagentoCartPaymentMethodFactory);
   });
 
   it('should be created', () => {
-    expect(cartItemFactory).toBeTruthy();
+    expect(factory).toBeTruthy();
   });
 
   describe('create', () => {
     let result: MagentoCartPaymentMethod;
 
     beforeEach(() => {
-      result = cartItemFactory.create();
+      result = factory.create();
     });
 
     it('should return a CartPaymentMethod with all required fields defined', () => {
