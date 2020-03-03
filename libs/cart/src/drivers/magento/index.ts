@@ -1,3 +1,4 @@
+export { DaffMagentoBillingAddressTransformer } from './transforms/outputs/billing-address.service';
 export { DaffMagentoCartAddressTransformer } from './transforms/outputs/cart-address.service';
 export { DaffMagentoCartPaymentTransformer } from './transforms/outputs/cart-payment.service';
 export { DaffMagentoCartShippingRateTransformer } from './transforms/outputs/cart-shipping-rate.service';
