@@ -36,18 +36,15 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartAddress', () => {
     let street;
     let city;
     let firstname;
-    let passThrough;
 
     beforeEach(() => {
       street = 'street';
       city = 'city';
       firstname = 'firstname';
-      passThrough = 'passThrough';
 
       mockDaffCartAddress.street = street;
       mockDaffCartAddress.city = city;
       mockDaffCartAddress.firstname = firstname;
-      mockDaffCartAddress.passThrough = passThrough;
 
       transformedCartAddress = service.transform(mockDaffCartAddress);
     });
@@ -57,9 +54,5 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartAddress', () => {
       expect(transformedCartAddress.city).toEqual(city);
       expect(transformedCartAddress.firstname).toEqual(firstname);
     });
-
-    it('should pass through values not touched by the transformer', () => {
-      expect(transformedCartAddress.passThrough).toEqual(passThrough);
-    });
-  })
+  });
 });

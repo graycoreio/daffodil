@@ -7,8 +7,6 @@ import { MagentoCartAddressInput } from '../../models/inputs/cart-address';
 export class DaffMagentoCartAddressInputTransformer {
   transform(cartAddress: Partial<DaffCartAddress>): MagentoCartAddressInput {
     return {
-      ...cartAddress,
-
       city: cartAddress.city,
       country_code: cartAddress.country,
       firstname: cartAddress.firstname,
