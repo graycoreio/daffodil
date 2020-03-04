@@ -16,7 +16,7 @@ export class DaffMagentoCartAddressTransformer {
    */
   transform(address: MagentoCartAddress): DaffCartAddress {
     return {
-      ...address,
+      ...{magento_address: address},
 
       // address
       street: address.street[0],
