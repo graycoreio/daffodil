@@ -41,14 +41,11 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartPayment', () => {
   describe('transform | transforming a cart payment method', () => {
     let transformedCartPayment;
     let method;
-    let passThrough;
 
     beforeEach(() => {
       method = 'method';
-      passThrough = 'passThrough';
 
       mockMagentoPaymentMethod.code = method;
-      mockMagentoPaymentMethod.passThrough = passThrough;
 
       transformedCartPayment = service.transform(mockMagentoPaymentMethod);
     });
@@ -57,8 +54,8 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartPayment', () => {
       expect(transformedCartPayment.method).toEqual(method);
     });
 
-    it('should pass through values not touched by the transformer', () => {
-      expect(transformedCartPayment.passThrough).toEqual(passThrough);
+    it('should set magento_payment_method', () => {
+      expect(transformedCartPayment.magento_payment_method).toEqual(mockMagentoPaymentMethod);
     })
   });
 });
