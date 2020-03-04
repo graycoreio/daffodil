@@ -10,8 +10,6 @@ export class DaffMagentoShippingAddressInputTransformer {
 
   transform(cartAddress: Partial<DaffCartAddress>): MagentoShippingAddressInput {
     return {
-      ...cartAddress,
-
       address: this.cartAddressTransformer.transform(cartAddress),
       customer_address_id: cartAddress.address_id
     }
