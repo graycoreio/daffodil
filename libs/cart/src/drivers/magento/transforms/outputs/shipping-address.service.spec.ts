@@ -49,14 +49,8 @@ describe('Driver | Magento | Cart | Transformer | MagentoShippingAddress', () =>
 
   describe('transform | transforming a shipping address', () => {
     let transformedShippingAddress;
-    let passThrough;
 
     beforeEach(() => {
-      passThrough = 'passThrough';
-
-      mockMagentoShippingAddress.passThrough = passThrough;
-      mockDaffShippingAddress.passThrough = passThrough;
-
       transformedShippingAddress = service.transform(mockMagentoShippingAddress);
     });
 
@@ -67,9 +61,5 @@ describe('Driver | Magento | Cart | Transformer | MagentoShippingAddress', () =>
     it('should call the cart address transformer with the address', () => {
       expect(cartAddressTransformerSpy.transform).toHaveBeenCalledWith(mockMagentoShippingAddress);
     });
-
-    it('should pass through values not touched by the transformer', () => {
-      expect(transformedShippingAddress.passThrough).toEqual(passThrough);
-    });
-  })
+  });
 });
