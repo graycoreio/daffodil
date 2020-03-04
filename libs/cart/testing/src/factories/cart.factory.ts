@@ -15,6 +15,8 @@ export class MockCart implements DaffCart {
   shipping_information = null;
   totals = [];
   payment = null;
+  available_shipping_methods = [];
+  available_payment_methods = [];
 };
 
 
