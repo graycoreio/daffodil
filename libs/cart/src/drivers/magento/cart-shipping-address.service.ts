@@ -13,7 +13,7 @@ import { DaffMagentoShippingAddressTransformer } from './transforms/outputs/ship
 import { MagentoGetShippingAddressResponse, MagentoUpdateShippingAddressResponse } from './models/responses';
 
 /**
- * A service for making Magento GraphQL queries for carts.
+ * A service for making Magento GraphQL queries for a cart's shipping address.
  */
 @Injectable({
   providedIn: 'root'
