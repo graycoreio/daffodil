@@ -10,7 +10,7 @@ import { MagentoCategory } from '../models/category';
 import { MagentoAggregation } from '../models/aggregation';
 import { MagentoPageInfo } from '../models/page-info';
 import { MagentoSortFields } from '../models/sort-fields';
-import { CompleteCategoryResponse } from '../models/complete-category-response';
+import { MagentoCompleteCategoryResponse } from '../models/complete-category-response';
 
 describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 
@@ -39,7 +39,7 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
   });
 
   describe('transform', () => {
-		let completeCategoryResponse: CompleteCategoryResponse;
+		let completeCategoryResponse: MagentoCompleteCategoryResponse;
     
     it('should return a DaffCategoryPageConfigurationState', () => {
       const category: MagentoCategory = {

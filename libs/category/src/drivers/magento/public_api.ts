@@ -1,7 +1,7 @@
 export { DaffMagentoCategoryService } from './category.service';
 export { DaffCategoryMagentoDriverModule } from './category-driver.module';
 
-export { CompleteCategoryResponse } from './models/complete-category-response';
+export { MagentoCompleteCategoryResponse } from './models/complete-category-response';
 export { MagentoCategory, MagentoBreadcrumb } from './models/category';
 export { GetACategoryResponse } from './models/get-category-response';
 export { MagentoSortFields, MagentoSortOption } from './models/sort-fields';

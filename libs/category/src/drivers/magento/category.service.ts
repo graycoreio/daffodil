@@ -6,7 +6,7 @@ import { Apollo } from 'apollo-angular';
 import { DaffCategoryServiceInterface } from '../interfaces/category-service.interface';
 import { DaffGetCategoryResponse } from '../../models/get-category-response';
 import { DaffCategoryRequest } from '../../models/requests/category-request';
-import { CompleteCategoryResponse } from './models/complete-category-response';
+import { MagentoCompleteCategoryResponse } from './models/complete-category-response';
 import { GetACategoryResponse } from './models/get-category-response';
 import { GetCategoryQuery } from './queries/get-category';
 import { MagentoGetProductsResponse } from './models/get-products-response';
@@ -43,8 +43,8 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
 				variables: this.getProductsQueryVariables(categoryRequest)
 			})
     ]).pipe(
-      map((result): CompleteCategoryResponse => this.buildCompleteCategoryResponse(result[0].data, result[1].data)),
-      map((result: CompleteCategoryResponse) => this.magentoCategoryResponseTransformer.transform(result))
+      map((result): MagentoCompleteCategoryResponse => this.buildCompleteCategoryResponse(result[0].data, result[1].data)),
+      map((result: MagentoCompleteCategoryResponse) => this.magentoCategoryResponseTransformer.transform(result))
     );
 	}
 	

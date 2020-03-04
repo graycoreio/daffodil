@@ -13,7 +13,7 @@ import { MagentoAggregation } from '../models/aggregation';
 import { MagentoPageInfo } from '../models/page-info';
 import { MagentoSortFields } from '../models/sort-fields';
 import { DaffMagentoCategoryTransformerService } from './category-transformer.service';
-import { CompleteCategoryResponse } from '../models/complete-category-response';
+import { MagentoCompleteCategoryResponse } from '../models/complete-category-response';
 
 describe('DaffMagentoCategoryResponseTransformService', () => {
 
@@ -47,7 +47,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
 
   describe('transform', () => {
 
-		let completeCategory: CompleteCategoryResponse;
+		let completeCategory: MagentoCompleteCategoryResponse;
 
     beforeEach(() => {
       magentoCategoryTransformerServiceSpy.transform.and.returnValue(stubCategory);
@@ -127,14 +127,18 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
     });
     
     it('should return a DaffGetCategoryResponse compiled from the other injected transformers', () => {
-
       expect(service.transform(completeCategory)).toEqual(
         {
+					...{ magentoCompleteCategoryResponse: completeCategory },
           category: stubCategory,
           products: stubProducts,
           categoryPageConfigurationState: stubCategoryPageConfigurationState
         }
       );
-    });
+		});
+		
+		it('should return the magento MagentoCompleteCategoryResponse on the daffodil reponse', () => {
+			expect((<any>service.transform(completeCategory)).magentoCompleteCategoryResponse).toEqual(completeCategory);
+		});
   });
 });

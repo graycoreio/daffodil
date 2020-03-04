@@ -4,14 +4,14 @@ import { DaffCategoryPageConfigurationState } from '../../../models/category-pag
 import { DaffCategoryFilter, DaffCategoryFilterTypes } from '../../../models/category-filter';
 import { MagentoAggregation } from '../models/aggregation';
 import { MagentoSortFields } from '../models/sort-fields';
-import { CompleteCategoryResponse } from '../models/complete-category-response';
+import { MagentoCompleteCategoryResponse } from '../models/complete-category-response';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DaffMagentoCategoryPageConfigTransformerService {
 
-  transform(categoryResponse: CompleteCategoryResponse): DaffCategoryPageConfigurationState {
+  transform(categoryResponse: MagentoCompleteCategoryResponse): DaffCategoryPageConfigurationState {
 		return {
       id: categoryResponse.category.id,
       page_size: categoryResponse.page_info.page_size,
