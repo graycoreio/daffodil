@@ -13,6 +13,7 @@ import { DaffMagentoBillingAddressTransformer } from './transforms/outputs/billi
 import { DaffMagentoCartAddressTransformer } from './transforms/outputs/cart-address.service';
 import { DaffMagentoCartItemTransformer } from './transforms/outputs/cart-item.service';
 import { DaffMagentoCartShippingInformationTransformer } from './transforms/outputs/cart-shipping-information.service';
+import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { DaffMagentoShippingAddressTransformer } from './transforms/outputs/shipping-address.service';
 
 import { DaffMagentoCartAddressInputTransformer } from './transforms/inputs/cart-address.service';
@@ -42,6 +43,7 @@ export class DaffCartMagentoDriverModule {
         DaffMagentoCartShippingInformationTransformer,
         DaffMagentoCartShippingRateTransformer,
         DaffMagentoCartPaymentTransformer,
+        DaffMagentoCartTransformer,
         DaffMagentoShippingAddressTransformer,
 
         DaffMagentoCartAddressInputTransformer,
