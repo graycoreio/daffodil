@@ -35,16 +35,13 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartShippingRate', () =
     let transformedCartShippingRate;
     let carrier;
     let price;
-    let passThrough;
 
     beforeEach(() => {
       carrier = 'carrier';
       price = 54.30;
-      passThrough = 'passThrough';
 
       mockMagentoShippingMethod.carrier_code = carrier;
       mockMagentoShippingMethod.amount.value = price;
-      mockMagentoShippingMethod.passThrough = passThrough;
 
       transformedCartShippingRate = service.transform(mockMagentoShippingMethod);
     });
@@ -54,8 +51,8 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartShippingRate', () =
       expect(transformedCartShippingRate.price).toEqual(price);
     });
 
-    it('should pass through values not touched by the transformer', () => {
-      expect(transformedCartShippingRate.passThrough).toEqual(passThrough);
+    it('should set magento_shipping_method', () => {
+      expect(transformedCartShippingRate.magento_shipping_method).toEqual(mockMagentoShippingMethod);
     });
   });
 });
