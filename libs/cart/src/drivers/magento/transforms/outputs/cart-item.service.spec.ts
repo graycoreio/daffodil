@@ -41,18 +41,15 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartItem', () => {
     let sku;
     let qty;
     let price;
-    let passThrough;
 
     beforeEach(() => {
       sku = 'sku';
       qty = 3;
       price = 3.34;
-      passThrough = 'passThrough';
 
       mockMagentoCartItem.product.sku = sku;
       mockMagentoCartItem.quantity = qty;
       mockMagentoCartItem.prices.price.value = price;
-      mockMagentoCartItem.passThrough = passThrough;
 
       transformedCartItem = service.transform(mockMagentoCartItem);
     });
@@ -63,8 +60,8 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartItem', () => {
       expect(transformedCartItem.price).toEqual(price);
     });
 
-    it('should pass through values not touched by the transformer', () => {
-      expect(transformedCartItem.passThrough).toEqual(passThrough);
+    it('should set magento_cart_item', () => {
+      expect(transformedCartItem.magento_cart_item).toEqual(mockMagentoCartItem);
     });
   })
 });

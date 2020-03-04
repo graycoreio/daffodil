@@ -17,7 +17,7 @@ export class DaffMagentoCartItemTransformer {
    */
   transform(cartItem: MagentoCartItem): DaffCartItem {
     return {
-      ...cartItem,
+      ...{magento_cart_item: cartItem},
 
       // base
       item_id: cartItem.id,
