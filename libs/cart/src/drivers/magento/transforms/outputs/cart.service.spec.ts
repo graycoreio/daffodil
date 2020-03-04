@@ -134,12 +134,10 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
       id = 5;
       subtotal = 20;
       grand_total = 20.20;
-      passThrough = 'passThrough';
 
       mockMagentoCart.id = id;
       mockMagentoCart.prices.subtotal_excluding_tax.value = subtotal;
       mockMagentoCart.prices.grand_total.value = grand_total;
-      mockMagentoCart.passThrough = passThrough;
 
       transformedCart = service.transform(mockMagentoCart);
     });
@@ -182,8 +180,8 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
       expect(shippingAddressTransformerSpy.transform).toHaveBeenCalledWith(mockShippingAddress);
     });
 
-    it('should pass through values not touched by the transformer', () => {
-      expect(transformedCart.passThrough).toEqual(passThrough);
+    it('should set the magento_cart field', () => {
+      expect(transformedCart.magento_cart).toEqual(mockMagentoCart);
     });
-  })
+  });
 });
