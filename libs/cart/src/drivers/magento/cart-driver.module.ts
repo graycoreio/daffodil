@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { DaffCartShippingMethodsDriver } from '../interfaces/cart-shipping-methods-service.interface';
 import { DaffMagentoCartShippingMethodsService } from './cart-shipping-methods.service';
 
+import { DaffCartShippingAddressDriver } from '../interfaces/cart-shipping-address-service.interface';
+import { DaffMagentoCartShippingAddressService } from './cart-shipping-address.service';
+
 import { DaffCartPaymentMethodsDriver } from '../interfaces/cart-payment-methods-service.interface';
 import { DaffMagentoCartPaymentMethodsService } from './cart-payment-methods.service';
 
@@ -29,6 +32,10 @@ export class DaffCartMagentoDriverModule {
     return {
       ngModule: DaffCartMagentoDriverModule,
       providers: [
+        {
+          provide: DaffCartShippingAddressDriver,
+          useExisting: DaffMagentoCartShippingAddressService
+        },
         {
           provide: DaffCartShippingMethodsDriver,
           useExisting: DaffMagentoCartShippingMethodsService
