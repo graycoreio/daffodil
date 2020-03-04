@@ -128,7 +128,6 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
     let id;
     let subtotal;
     let grand_total;
-    let passThrough;
 
     beforeEach(() => {
       id = 5;
