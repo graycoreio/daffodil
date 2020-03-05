@@ -10,6 +10,8 @@ export { DaffMagentoCartShippingInformationTransformer } from './transforms/outp
 export { DaffMagentoCartAddressInputTransformer } from './transforms/inputs/cart-address.service';
 export { DaffMagentoShippingAddressInputTransformer } from './transforms/inputs/shipping-address.service';
 export { DaffMagentoBillingAddressInputTransformer } from './transforms/inputs/billing-address.service';
+export { DaffMagentoCartItemInputTransformer } from './transforms/inputs/cart-item.service';
+export { DaffMagentoCartItemUpdateInputTransformer } from './transforms/inputs/cart-item-update.service';
 export { DaffMagentoPaymentMethodInputTransformer } from './transforms/inputs/payment-method.service';
 export { DaffMagentoShippingMethodInputTransformer } from './transforms/inputs/shipping-method.service';
 
