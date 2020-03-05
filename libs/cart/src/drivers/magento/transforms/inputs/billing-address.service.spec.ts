@@ -6,15 +6,15 @@ import {
 } from '@daffodil/cart/testing';
 
 import { DaffMagentoCartAddressInputTransformer } from './cart-address.service';
-import { DaffMagentoShippingAddressInputTransformer } from './shipping-address.service';
+import { DaffMagentoBillingAddressInputTransformer } from './billing-address.service';
 
-describe('Driver | Magento | Cart | Transformer | MagentoShippingAddressInput', () => {
-  let service: DaffMagentoShippingAddressInputTransformer;
+describe('Driver | Magento | Cart | Transformer | MagentoBillingAddressInput', () => {
+  let service: DaffMagentoBillingAddressInputTransformer;
 
   let daffCartAddressFactory: DaffCartAddressFactory;
   let magentoCartAddressInputFactory: MagentoCartAddressInputFactory;
 
-  let mockDaffShippingAddress;
+  let mockDaffBillingAddress;
   let mockMagentoCartAddressInput;
 
   let cartAddressTransformerSpy;
@@ -22,7 +22,7 @@ describe('Driver | Magento | Cart | Transformer | MagentoShippingAddressInput', 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffMagentoShippingAddressInputTransformer,
+        DaffMagentoBillingAddressInputTransformer,
         {
           provide: DaffMagentoCartAddressInputTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoCartAddressInputTransformer', ['transform'])
@@ -30,14 +30,14 @@ describe('Driver | Magento | Cart | Transformer | MagentoShippingAddressInput', 
       ]
     });
 
-    service = TestBed.get(DaffMagentoShippingAddressInputTransformer);
+    service = TestBed.get(DaffMagentoBillingAddressInputTransformer);
 
     cartAddressTransformerSpy = TestBed.get(DaffMagentoCartAddressInputTransformer);
 
     daffCartAddressFactory = TestBed.get(DaffCartAddressFactory);
     magentoCartAddressInputFactory = TestBed.get(MagentoCartAddressInputFactory);
 
-    mockDaffShippingAddress = daffCartAddressFactory.create();
+    mockDaffBillingAddress = daffCartAddressFactory.create();
     mockMagentoCartAddressInput = magentoCartAddressInputFactory.create();
 
     cartAddressTransformerSpy.transform.and.returnValue(mockMagentoCartAddressInput);
@@ -48,23 +48,23 @@ describe('Driver | Magento | Cart | Transformer | MagentoShippingAddressInput', 
   });
 
   describe('transform | transforming a shipping address input', () => {
-    let transformedShippingAddress;
+    let transformedBillingAddress;
     let addressId;
 
     beforeEach(() => {
       addressId = '15';
 
-      mockDaffShippingAddress.address_id = addressId;
+      mockDaffBillingAddress.address_id = addressId;
 
-      transformedShippingAddress = service.transform(mockDaffShippingAddress);
+      transformedBillingAddress = service.transform(mockDaffBillingAddress);
     });
 
     it('should return an object with the correct values', () => {
-      expect(transformedShippingAddress.customer_address_id).toEqual(addressId);
+      expect(transformedBillingAddress.customer_address_id).toEqual(addressId);
     });
 
     it('should call the cart address transformer with the address', () => {
-      expect(cartAddressTransformerSpy.transform).toHaveBeenCalledWith(mockDaffShippingAddress);
+      expect(cartAddressTransformerSpy.transform).toHaveBeenCalledWith(mockDaffBillingAddress);
     });
-  })
+  });
 });

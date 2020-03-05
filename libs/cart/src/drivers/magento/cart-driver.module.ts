@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { DaffCartShippingMethodsDriver } from '../interfaces/cart-shipping-methods-service.interface';
 import { DaffMagentoCartShippingMethodsService } from './cart-shipping-methods.service';
 
+import { DaffCartBillingAddressDriver } from '../interfaces/cart-billing-address-service.interface';
+import { DaffMagentoCartBillingAddressService } from './cart-billing-address.service';
+
 import { DaffCartShippingAddressDriver } from '../interfaces/cart-shipping-address-service.interface';
 import { DaffMagentoCartShippingAddressService } from './cart-shipping-address.service';
 
@@ -19,8 +22,10 @@ import { DaffMagentoCartShippingInformationTransformer } from './transforms/outp
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { DaffMagentoShippingAddressTransformer } from './transforms/outputs/shipping-address.service';
 
+
 import { DaffMagentoCartAddressInputTransformer } from './transforms/inputs/cart-address.service';
 import { DaffMagentoShippingAddressInputTransformer } from './transforms/inputs/shipping-address.service';
+import { DaffMagentoBillingAddressInputTransformer } from './transforms/inputs/billing-address.service';
 
 @NgModule({
   imports: [
@@ -33,6 +38,10 @@ export class DaffCartMagentoDriverModule {
       ngModule: DaffCartMagentoDriverModule,
       providers: [
         {
+          provide: DaffCartBillingAddressDriver,
+          useExisting: DaffMagentoCartBillingAddressService
+        },
+        {
           provide: DaffCartShippingAddressDriver,
           useExisting: DaffMagentoCartShippingAddressService
         },
@@ -44,17 +53,22 @@ export class DaffCartMagentoDriverModule {
           provide: DaffCartPaymentMethodsDriver,
           useExisting: DaffMagentoCartPaymentMethodsService
         },
+
+        // output transformers
         DaffMagentoBillingAddressTransformer,
         DaffMagentoCartAddressTransformer,
         DaffMagentoCartItemTransformer,
+        DaffMagentoCartPaymentTransformer,
         DaffMagentoCartShippingInformationTransformer,
         DaffMagentoCartShippingRateTransformer,
         DaffMagentoCartPaymentTransformer,
         DaffMagentoCartTransformer,
         DaffMagentoShippingAddressTransformer,
 
+        // input transformers
         DaffMagentoCartAddressInputTransformer,
-        DaffMagentoShippingAddressInputTransformer
+        DaffMagentoShippingAddressInputTransformer,
+        DaffMagentoBillingAddressInputTransformer,
       ]
     };
   }
