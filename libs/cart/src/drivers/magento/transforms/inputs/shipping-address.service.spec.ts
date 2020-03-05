@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
-  MagentoShippingAddressFactory,
+  MagentoCartAddressInputFactory,
   DaffCartAddressFactory
 } from '@daffodil/cart/testing';
 
@@ -12,10 +12,10 @@ describe('Driver | Magento | Cart | Transformer | MagentoShippingAddressInput', 
   let service: DaffMagentoShippingAddressInputTransformer;
 
   let daffCartAddressFactory: DaffCartAddressFactory;
-  let magentoShippingAddressFactory: MagentoShippingAddressFactory;
+  let magentoCartAddressInputFactory: MagentoCartAddressInputFactory;
 
   let mockDaffShippingAddress;
-  let mockMagentoShippingAddress;
+  let mockMagentoCartAddressInput;
 
   let cartAddressTransformerSpy;
 
@@ -35,12 +35,12 @@ describe('Driver | Magento | Cart | Transformer | MagentoShippingAddressInput', 
     cartAddressTransformerSpy = TestBed.get(DaffMagentoCartAddressInputTransformer);
 
     daffCartAddressFactory = TestBed.get(DaffCartAddressFactory);
-    magentoShippingAddressFactory = TestBed.get(MagentoShippingAddressFactory);
+    magentoCartAddressInputFactory = TestBed.get(MagentoCartAddressInputFactory);
 
     mockDaffShippingAddress = daffCartAddressFactory.create();
-    mockMagentoShippingAddress = magentoShippingAddressFactory.create();
+    mockMagentoCartAddressInput = magentoCartAddressInputFactory.create();
 
-    cartAddressTransformerSpy.transform.and.returnValue(mockDaffShippingAddress);
+    cartAddressTransformerSpy.transform.and.returnValue(mockMagentoCartAddressInput);
   });
 
   it('should be created', () => {
