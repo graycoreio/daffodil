@@ -8,7 +8,7 @@ export class DaffMagentoShippingMethodInputTransformer {
   transform(method: Partial<DaffCartShippingRate>): MagentoShippingMethodInput {
     return {
       carrier_code: method.carrier,
-      method_code: method.method_title
+      method_code: method.method_code
     }
   }
 }
