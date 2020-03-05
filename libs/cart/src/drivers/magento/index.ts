@@ -13,6 +13,7 @@ export { DaffMagentoShippingAddressInputTransformer } from './transforms/inputs/
 export * from './models/outputs';
 
 export { DaffMagentoCartPaymentMethodsService } from './cart-payment-methods.service';
+export { DaffMagentoCartShippingAddressService } from './cart-shipping-address.service';
 export { DaffMagentoCartShippingMethodsService } from './cart-shipping-methods.service';
 
 export { MagentoCartAddressInput } from './models/inputs/cart-address';
