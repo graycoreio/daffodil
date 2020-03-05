@@ -17,6 +17,7 @@ export { DaffMagentoShippingMethodInputTransformer } from './transforms/inputs/s
 
 export * from './models/outputs';
 
+export { DaffMagentoCartService } from './cart.service';
 export { DaffMagentoCartItemService } from './cart-item.service';
 export { DaffMagentoCartPaymentService } from './cart-payment.service';
 export { DaffMagentoCartPaymentMethodsService } from './cart-payment-methods.service';

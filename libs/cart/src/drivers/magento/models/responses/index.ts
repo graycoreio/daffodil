@@ -13,4 +13,5 @@ export { MagentoUpdateBillingAddressResponse } from './update-billing-address';
 export { MagentoGetShippingAddressResponse } from './get-shipping-address';
 export { MagentoUpdateShippingAddressResponse } from './update-shipping-address';
 export { MagentoGetCartResponse } from './get-cart';
+export { MagentoCreateCartResponse } from './create-cart';
 export { MagentoSetGuestEmailResponse } from './set-guest-email';
