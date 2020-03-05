@@ -1,5 +1,9 @@
 import { MagentoGetCartResponse } from './get-cart';
 
 export interface MagentoSetGuestEmailResponse {
-  setGuestEmailOnCart: MagentoGetCartResponse
+  setGuestEmailOnCart: {
+    cart: {
+      email: MagentoGetCartResponse['cart']['email']
+    }
+  }
 }

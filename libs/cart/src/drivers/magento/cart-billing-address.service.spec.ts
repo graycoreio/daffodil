@@ -104,7 +104,9 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
     };
     mockSetGuestEmailResponse = {
       setGuestEmailOnCart: {
-        cart: mockMagentoCart
+        cart: {
+          email
+        }
       }
     };
 

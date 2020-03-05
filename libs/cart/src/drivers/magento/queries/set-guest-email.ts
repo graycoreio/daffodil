@@ -9,7 +9,7 @@ export const setGuestEmail = gql`
       email: $email
     ) {
       cart {
-        ...cart
+        email
       }
     }
   }
