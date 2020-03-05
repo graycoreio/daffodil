@@ -65,7 +65,6 @@ export class DaffMagentoCartBillingAddressService implements DaffCartBillingAddr
     ).pipe(
       map(([updateResult, setEmailResult]) => this.cartTransformer.transform({
         ...updateResult.data.setBillingAddressOnCart.cart,
-        // only set the email from the set email result since we don't know if the billing address update is included in the response
         email: setEmailResult.data.setGuestEmailOnCart.cart.email
       }))
     )
