@@ -2,6 +2,8 @@ export { MagentoListPaymentMethodsResponse } from './list-payment-methods';
 export { MagentoGetSelectedPaymentMethodResponse } from './get-selected-payment-method';
 export { MagentoSetSelectedPaymentMethodResponse } from './set-selected-payment-method';
 export { MagentoListShippingMethodsResponse } from './list-shipping-methods';
+export { MagentoGetSelectedShippingMethodResponse } from './get-selected-shipping-method';
+export { MagentoSetSelectedShippingMethodResponse } from './set-selected-shipping-method';
 export { MagentoGetBillingAddressResponse } from './get-billing-address';
 export { MagentoUpdateBillingAddressResponse } from './update-billing-address';
 export { MagentoGetShippingAddressResponse } from './get-shipping-address';

@@ -11,6 +11,7 @@ export { DaffMagentoCartAddressInputTransformer } from './transforms/inputs/cart
 export { DaffMagentoShippingAddressInputTransformer } from './transforms/inputs/shipping-address.service';
 export { DaffMagentoBillingAddressInputTransformer } from './transforms/inputs/billing-address.service';
 export { DaffMagentoPaymentMethodInputTransformer } from './transforms/inputs/payment-method.service';
+export { DaffMagentoShippingMethodInputTransformer } from './transforms/inputs/shipping-method.service';
 
 export * from './models/outputs';
 
@@ -19,10 +20,12 @@ export { DaffMagentoCartPaymentMethodsService } from './cart-payment-methods.ser
 export { DaffMagentoCartBillingAddressService } from './cart-billing-address.service';
 export { DaffMagentoCartShippingAddressService } from './cart-shipping-address.service';
 export { DaffMagentoCartShippingMethodsService } from './cart-shipping-methods.service';
+export { DaffMagentoCartShippingInformationService } from './cart-shipping-information.service';
 
 export { MagentoBillingAddressInput } from './models/inputs/billing-address';
 export { MagentoCartAddressInput } from './models/inputs/cart-address';
 export { MagentoPaymentMethodInput } from './models/inputs/payment-method';
 export { MagentoShippingAddressInput } from './models/inputs/shipping-address';
+export { MagentoShippingMethodInput } from './models/inputs/shipping-method';
 
 export { DaffCartMagentoDriverModule } from './cart-driver.module';
