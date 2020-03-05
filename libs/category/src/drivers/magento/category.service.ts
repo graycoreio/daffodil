@@ -7,10 +7,10 @@ import { DaffCategoryServiceInterface } from '../interfaces/category-service.int
 import { DaffGetCategoryResponse } from '../../models/get-category-response';
 import { DaffCategoryRequest } from '../../models/requests/category-request';
 import { MagentoCompleteCategoryResponse } from './models/complete-category-response';
-import { GetACategoryResponse } from './models/get-category-response';
-import { GetCategoryQuery } from './queries/get-category';
+import { MagentoGetACategoryResponse } from './models/get-category-response';
+import { MagentoGetCategoryQuery } from './queries/get-category';
 import { MagentoGetProductsResponse } from './models/get-products-response';
-import { GetProductsQuery } from './queries/get-products';
+import { MagentoGetProductsQuery } from './queries/get-products';
 import { DaffMagentoAppliedFiltersTransformService } from './transformers/applied-filter-transformer.service';
 import { DaffMagentoAppliedSortOptionTransformService } from './transformers/applied-sort-option-transformer.service';
 import { DaffMagentoCategoryResponseTransformService } from './transformers/category-response-transform.service';
@@ -27,19 +27,19 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
 		private magentoAppliedSortTransformer: DaffMagentoAppliedSortOptionTransformService
   ) {}
 
-	//todo the GetCategoryQuery needs to get its own product ids.
+	//todo the MagentoGetCategoryQuery needs to get its own product ids.
   /**
    * Gets a category based on parameters. Default current_page is 1, and default page_size is 20.
    * @param categoryRequest A DaffCategoryRequest object.
    */
   get(categoryRequest: DaffCategoryRequest): Observable<DaffGetCategoryResponse> {
     return combineLatest([
-      this.apollo.query<GetACategoryResponse>({
-				query: GetCategoryQuery,
+      this.apollo.query<MagentoGetACategoryResponse>({
+				query: MagentoGetCategoryQuery,
 				variables: { id: { eq: categoryRequest.id}}
 			}),
       this.apollo.query<MagentoGetProductsResponse>({
-				query: GetProductsQuery,
+				query: MagentoGetProductsQuery,
 				variables: this.getProductsQueryVariables(categoryRequest)
 			})
     ]).pipe(
@@ -58,7 +58,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
 		}
 	}
 
-	private buildCompleteCategoryResponse(categoryReponse: GetACategoryResponse, productsResponse: MagentoGetProductsResponse) {
+	private buildCompleteCategoryResponse(categoryReponse: MagentoGetACategoryResponse, productsResponse: MagentoGetProductsResponse) {
 		return {
 			category: categoryReponse.category,
 			products: productsResponse.products,

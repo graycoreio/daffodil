@@ -3,7 +3,7 @@ export { DaffCategoryMagentoDriverModule } from './category-driver.module';
 
 export { MagentoCompleteCategoryResponse } from './models/complete-category-response';
 export { MagentoCategory, MagentoBreadcrumb } from './models/category';
-export { GetACategoryResponse } from './models/get-category-response';
+export { MagentoGetACategoryResponse } from './models/get-category-response';
 export { MagentoSortFields, MagentoSortOption } from './models/sort-fields';
 export { MagentoPageInfo } from './models/page-info';
 export { MagentoGetProductsResponse } from './models/get-products-response';
@@ -12,8 +12,8 @@ export { MagentoGetProductsByCategoriesRequest } from './models/requests/get-pro
 export { MagentoCategoryFilters, MagentoFilterAction } from './models/requests/filters';
 export { MagentoSortFieldAction } from './models/requests/sort';
 
-export { GetCategoryQuery } from './queries/get-category';
-export { GetProductsQuery } from './queries/get-products';
+export { MagentoGetCategoryQuery } from './queries/get-category';
+export { MagentoGetProductsQuery } from './queries/get-products';
 
 export { DaffMagentoAppliedFiltersTransformService } from './transformers/applied-filter-transformer.service';
 export { DaffMagentoAppliedSortOptionTransformService } from './transformers/applied-sort-option-transformer.service';

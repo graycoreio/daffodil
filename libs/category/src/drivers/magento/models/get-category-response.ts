@@ -1,5 +1,5 @@
 import { MagentoCategory } from './category';
 
-export interface GetACategoryResponse {
+export interface MagentoGetACategoryResponse {
   category: MagentoCategory;
 }
