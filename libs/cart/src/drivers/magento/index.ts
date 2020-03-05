@@ -24,6 +24,8 @@ export { DaffMagentoCartShippingInformationService } from './cart-shipping-infor
 
 export { MagentoBillingAddressInput } from './models/inputs/billing-address';
 export { MagentoCartAddressInput } from './models/inputs/cart-address';
+export { MagentoCartItemInput } from './models/inputs/cart-item';
+export { MagentoCartItemUpdateInput } from './models/inputs/cart-item-update';
 export { MagentoPaymentMethodInput } from './models/inputs/payment-method';
 export { MagentoShippingAddressInput } from './models/inputs/shipping-address';
 export { MagentoShippingMethodInput } from './models/inputs/shipping-method';
