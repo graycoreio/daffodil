@@ -6,6 +6,8 @@ import { DaffMagentoCategoryResponseTransformService } from './transformers/cate
 import { DaffMagentoCategoryTransformerService } from './transformers/category-transformer.service';
 import { DaffMagentoCategoryPageConfigTransformerService } from './transformers/category-page-config-transformer.service';
 import { DaffCategoryDriver } from '../injection-tokens/category-driver.token';
+import { DaffMagentoAppliedSortOptionTransformService } from './transformers/applied-sort-option-transformer.service';
+import { DaffMagentoAppliedFiltersTransformService } from './transformers/applied-filter-transformer.service';
 
 @NgModule({
   imports: [
@@ -23,7 +25,9 @@ export class DaffCategoryMagentoDriverModule {
 				},
 				DaffMagentoCategoryPageConfigTransformerService,
 				DaffMagentoCategoryResponseTransformService,
-				DaffMagentoCategoryTransformerService
+				DaffMagentoCategoryTransformerService,
+				DaffMagentoAppliedFiltersTransformService,
+				DaffMagentoAppliedSortOptionTransformService
       ]
     };
   }

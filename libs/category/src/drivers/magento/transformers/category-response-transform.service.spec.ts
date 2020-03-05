@@ -1,19 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
-import { 
-  DaffProduct,
-  SortFieldsAndFiltersProductNode,
-	DaffMagentoProductTransformerService
-} from '@daffodil/product';
+import { DaffProduct, DaffMagentoProductTransformerService, ProductNode } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffMagentoCategoryResponseTransformService } from './category-response-transform.service';
 import { DaffCategory } from '../../../models/category';
-import { CategoryNode } from '../models/outputs/category-node';
 import { DaffCategoryPageConfigurationState } from '../../../models/category-page-configuration-state';
+import { MagentoCategory } from '../models/category';
 import { DaffMagentoCategoryPageConfigTransformerService } from './category-page-config-transformer.service';
+import { MagentoAggregation } from '../models/aggregation';
+import { MagentoPageInfo } from '../models/page-info';
+import { MagentoSortFields } from '../models/sort-fields';
 import { DaffMagentoCategoryTransformerService } from './category-transformer.service';
+import { MagentoCompleteCategoryResponse } from '../models/complete-category-response';
 
 describe('DaffMagentoCategoryResponseTransformService', () => {
 
@@ -29,7 +29,6 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
   const magentoCategoryPageConfigurationTransformerServiceSpy = jasmine.createSpyObj('DaffMagentoCategoryPageConfigTransformerService', ['transform']);
   const magentoProductTransformerServiceSpy = jasmine.createSpyObj('DaffProductTransformerInterface', ['transformMany']);
 
-  
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -48,15 +47,14 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
 
   describe('transform', () => {
 
-    let categoryNodeInput: CategoryNode;
-    let sortsAndFilters: SortFieldsAndFiltersProductNode;
+		let completeCategory: MagentoCompleteCategoryResponse;
 
     beforeEach(() => {
       magentoCategoryTransformerServiceSpy.transform.and.returnValue(stubCategory);
       magentoCategoryPageConfigurationTransformerServiceSpy.transform.and.returnValue(stubCategoryPageConfigurationState);
       magentoProductTransformerServiceSpy.transformMany.and.returnValue(stubProducts);
   
-      categoryNodeInput = {
+      const category: MagentoCategory = {
         id: stubCategory.id,
         name: stubCategory.name,
         breadcrumbs: [{
@@ -65,79 +63,82 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
           category_level: stubCategory.breadcrumbs[0].categoryLevel,
           category_url_key: stubCategory.breadcrumbs[0].categoryUrlKey
         }],
-        products: {
-          total_count: stubCategory.total_products,
-          page_info: {
-            current_page: stubCategoryPageConfigurationState.current_page,
-            page_size: stubCategoryPageConfigurationState.page_size,
-            total_pages: stubCategoryPageConfigurationState.total_pages 
-          },
-          items: [
-            {
-              id: parseInt(stubCategory.productIds[0], 10),
-              name: 'name',
-              sku: 'sku',
-              url_key: 'url_key',
-              image: null,
-              price: null
-            }
-          ]
-        },
         children_count: stubCategory.children_count
-      }
-  
-      sortsAndFilters = {
-        filters: [{
-          name: stubCategoryPageConfigurationState.filters[0].name,
-          request_var: stubCategoryPageConfigurationState.filters[0].attribute_name,
-          filter_items_count: stubCategoryPageConfigurationState.filters[0].items_count,
-          __typename: stubCategoryPageConfigurationState.filters[0].type,
-          filter_items: [{
-            label: stubCategoryPageConfigurationState.filters[0].options[0].label,
-            value_string: stubCategoryPageConfigurationState.filters[0].options[0].value,
-            items_count: stubCategoryPageConfigurationState.filters[0].options[0].items_count
-          },
-          {
-            label: stubCategoryPageConfigurationState.filters[0].options[1].label,
-            value_string: stubCategoryPageConfigurationState.filters[0].options[1].value,
-            items_count: stubCategoryPageConfigurationState.filters[0].options[1].items_count
-          }
-        ]
-        }],
-        sort_fields: {
-          default: '',
-          options: stubCategoryPageConfigurationState.sort_options
-        }
-      }
+			}
+			const aggregates: MagentoAggregation[] = [{
+				attribute_code: stubCategoryPageConfigurationState.filters[0].attribute_name,
+				count: stubCategoryPageConfigurationState.filters[0].items_count,
+				label: stubCategoryPageConfigurationState.filters[0].name
+			}];
+			
+			const page_info: MagentoPageInfo = {
+				page_size: stubCategoryPageConfigurationState.page_size,
+				current_page: stubCategoryPageConfigurationState.current_page,
+				total_pages: stubCategoryPageConfigurationState.total_pages
+			};
+
+			const sort_fields: MagentoSortFields = {
+				default: stubCategoryPageConfigurationState.sort_options[0].value,
+				options: stubCategoryPageConfigurationState.sort_options
+			};
+
+			const products: ProductNode[] = [
+				{
+					sku: stubCategoryPageConfigurationState.product_ids[0],
+					id: 2,
+					name: 'name',
+					price: {
+						regularPrice: 123
+					},
+					url_key: 'url_key',
+					image: {
+						url: 'url',
+						label: 'label'
+					}
+				}
+			];
+
+			completeCategory = {
+				category: category,
+				aggregates: aggregates,
+				page_info: page_info,
+				sort_fields: sort_fields,
+				products: products,
+				total_count: products.length
+			}
     });
 
     it('should call transform on the magentoCategoryTransformerService', () => {
-      service.transform({category: categoryNodeInput, sortsAndFilters: sortsAndFilters});
+      service.transform(completeCategory);
 
-      expect(magentoCategoryTransformerServiceSpy.transform).toHaveBeenCalledWith(categoryNodeInput);
+      expect(magentoCategoryTransformerServiceSpy.transform).toHaveBeenCalledWith(completeCategory.category);
     });
 
     it('should call transform on the magentoCategoryPageConfigurationService', () => {
-      service.transform({category: categoryNodeInput, sortsAndFilters: sortsAndFilters});
+      service.transform(completeCategory);
       
-      expect(magentoCategoryPageConfigurationTransformerServiceSpy.transform).toHaveBeenCalledWith(categoryNodeInput, sortsAndFilters);
+      expect(magentoCategoryPageConfigurationTransformerServiceSpy.transform).toHaveBeenCalledWith(completeCategory);
     });
 
     it('should call transformMany on the magentoCategoryTransformerService', () => {
-      service.transform({category: categoryNodeInput, sortsAndFilters: sortsAndFilters});
+      service.transform(completeCategory);
       
-      expect(magentoProductTransformerServiceSpy.transformMany).toHaveBeenCalledWith(categoryNodeInput.products.items);
+      expect(magentoProductTransformerServiceSpy.transformMany).toHaveBeenCalledWith(completeCategory.products);
     });
     
     it('should return a DaffGetCategoryResponse compiled from the other injected transformers', () => {
-
-      expect(service.transform({category: categoryNodeInput, sortsAndFilters: sortsAndFilters})).toEqual(
+      expect(service.transform(completeCategory)).toEqual(
         {
+					...{ magentoCompleteCategoryResponse: completeCategory },
           category: stubCategory,
           products: stubProducts,
           categoryPageConfigurationState: stubCategoryPageConfigurationState
         }
       );
-    });
+		});
+		
+		it('should return the magento MagentoCompleteCategoryResponse on the daffodil reponse', () => {
+			expect((<any>service.transform(completeCategory)).magentoCompleteCategoryResponse).toEqual(completeCategory);
+		});
   });
 });

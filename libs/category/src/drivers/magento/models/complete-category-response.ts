@@ -4,7 +4,7 @@ import { MagentoAggregation } from './aggregation';
 import { ProductNode } from '@daffodil/product';
 import { MagentoPageInfo } from './page-info';
 
-export interface CompleteCategoryResponse {
+export interface MagentoCompleteCategoryResponse {
   category: MagentoCategory;
 	aggregates: MagentoAggregation[];
 	products: ProductNode[];
