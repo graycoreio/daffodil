@@ -16,6 +16,9 @@ import { DaffMagentoCartPaymentMethodsService } from './cart-payment-methods.ser
 import { DaffCartPaymentDriver } from '../interfaces/cart-payment-service.interface';
 import { DaffMagentoCartPaymentService } from './cart-payment.service';
 
+import { DaffCartShippingInformationDriver } from '../interfaces/cart-shipping-information-service.interface';
+import { DaffMagentoCartShippingInformationService } from './cart-shipping-information.service';
+
 import { DaffMagentoCartShippingRateTransformer } from './transforms/outputs/cart-shipping-rate.service';
 import { DaffMagentoCartPaymentTransformer } from './transforms/outputs/cart-payment.service';
 import { DaffMagentoBillingAddressTransformer } from './transforms/outputs/billing-address.service';
@@ -30,6 +33,7 @@ import { DaffMagentoCartAddressInputTransformer } from './transforms/inputs/cart
 import { DaffMagentoShippingAddressInputTransformer } from './transforms/inputs/shipping-address.service';
 import { DaffMagentoBillingAddressInputTransformer } from './transforms/inputs/billing-address.service';
 import { DaffMagentoPaymentMethodInputTransformer } from './transforms/inputs/payment-method.service';
+import { DaffMagentoShippingMethodInputTransformer } from './transforms/inputs/shipping-method.service';
 
 @NgModule({
   imports: [
@@ -52,6 +56,10 @@ export class DaffCartMagentoDriverModule {
         {
           provide: DaffCartShippingMethodsDriver,
           useExisting: DaffMagentoCartShippingMethodsService
+        },
+        {
+          provide: DaffCartShippingInformationDriver,
+          useExisting: DaffMagentoCartShippingInformationService
         },
         {
           provide: DaffCartPaymentDriver,
@@ -78,6 +86,7 @@ export class DaffCartMagentoDriverModule {
         DaffMagentoShippingAddressInputTransformer,
         DaffMagentoBillingAddressInputTransformer,
         DaffMagentoPaymentMethodInputTransformer,
+        DaffMagentoShippingMethodInputTransformer
       ]
     };
   }

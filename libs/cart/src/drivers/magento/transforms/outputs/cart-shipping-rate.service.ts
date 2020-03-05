@@ -21,6 +21,7 @@ export class DaffMagentoCartShippingRateTransformer {
       carrier: shippingMethod.carrier_code,
       carrier_title: shippingMethod.carrier_title,
       price: shippingMethod.amount.value,
+      method_code: shippingMethod.method_code,
       method_title: shippingMethod.method_title,
 
       // TODO: implement

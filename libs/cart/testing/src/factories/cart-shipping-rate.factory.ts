@@ -8,6 +8,7 @@ export class MockCartShippingRate implements DaffCartShippingRate {
     id = faker.random.number(1000);
     carrier = 'Birds Inc.';
     carrier_title = 'laden';
+    method_code = faker.random.word();
     method_title = 'swallow';
     method_description = 'efficient';
     price = faker.random.number(1500);
