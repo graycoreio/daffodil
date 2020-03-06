@@ -47,7 +47,7 @@ export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart
   }
 
   addToCart(productId: string, qty: number): Observable<DaffCart> {
-    throw new Error('Method not implemented.');
+    throw new Error('Method is deprecated. Use DaffCartItemServiceInterface#add instead.');
   }
 
   clear(cartId: string): Observable<Partial<DaffCart>> {
