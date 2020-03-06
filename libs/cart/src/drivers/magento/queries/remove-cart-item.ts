@@ -8,7 +8,9 @@ export const removeCartItem = gql`
       cart_id: $cartId,
       cart_item_id: $itemId
     ) {
-      ...cart
+      cart {
+        ...cart
+      }
     }
   }
   ${cartFragment}

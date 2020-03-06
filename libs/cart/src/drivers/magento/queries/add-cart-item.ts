@@ -10,7 +10,9 @@ export const addCartItem = gql`
         data: $input
       }]
     ) {
-      ...cart
+      cart {
+        ...cart
+      }
     }
   }
   ${cartFragment}
