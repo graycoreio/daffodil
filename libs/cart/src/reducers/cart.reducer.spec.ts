@@ -1,204 +1,39 @@
-import { DaffCartFactory } from '../../testing/src/factories/cart.factory';
-import { initialState, reducer, getCartLoading, getCart, State } from '../reducers/cart.reducer';
-import { DaffCartLoad, DaffCartLoadSuccess, DaffCartLoadFailure, DaffCartReset, DaffAddToCart, DaffAddToCartSuccess, DaffAddToCartFailure, DaffCartResetSuccess } from '../actions/cart.actions';
-import { DaffCart } from '../models/cart';
+import { reducer, composeReducers } from '../reducers/cart.reducer';
+import { initialState } from './cart-initial-state';
 
-
-describe('Cart | Cart List Reducer', () => {
-
-  let cartFactory: DaffCartFactory;
-  let cart: DaffCart;
-
-  beforeEach(() => {
-    cartFactory = new DaffCartFactory();
-
-    cart = cartFactory.create();
-  });
-
+describe('Cart | Reducer | Cart', () => {
   describe('when an unknown action is triggered', () => {
-
     it('should return the current state', () => {
       const action = {} as any;
-
       const result = reducer(initialState, action);
 
-      expect(result).toBe(initialState);
+      expect(result).toEqual(initialState);
     });
   });
 
-  describe('when CartLoadAction is triggered', () => {
-
-    it('sets loading state to true', () => {
-      const cartListLoadAction: DaffCartLoad = new DaffCartLoad();
-
-      const result = reducer(initialState, cartListLoadAction);
-
-      expect(result.loading).toEqual(true);
-    });
-  });
-
-  describe('when CartLoadSuccessAction is triggered', () => {
-
-    let result;
-    let state: State;
+  describe('composeReducers', () => {
+    let action;
 
     beforeEach(() => {
-      state = {
-        ...initialState,
-        loading: true
-      }
-
-      const cartListLoadSuccess = new DaffCartLoadSuccess(cart);
-
-      result = reducer(state, cartListLoadSuccess);
+      action = {} as any;
     });
 
-    it('sets cart from action.payload', () => {
-      expect(result.cart).toEqual(cart)
+    it('should return state when there are no reducers', () => {
+      const result = composeReducers(initialState, action, []);
+
+      expect(result).toEqual(initialState);
     });
 
-    it('sets loading to false', () => {
-      expect(result.loading).toEqual(false);
-    });
-  });
+    it('should pass the return from the first reducer into the second reducer', () => {
+      const firstReturn = {state: 'thing'};
+      const firstReducer = jasmine.createSpy();
+      const secondReducer = jasmine.createSpy();
 
-  describe('when CartLoadFailureAction is triggered', () => {
+      firstReducer.withArgs(initialState, action).and.returnValue(firstReturn);
 
-    const error = 'error message';
-    let result;
-    let state: State;
+      composeReducers(initialState, action, [firstReducer, secondReducer]);
 
-    beforeEach(() => {
-      state = {
-        ...initialState,
-        loading: true,
-        errors: new Array('firstError')
-      }
-
-      const cartListLoadFailure = new DaffCartLoadFailure(error);
-
-      result = reducer(state, cartListLoadFailure);
-    });
-
-    it('sets loading to false', () => {
-      expect(result.loading).toEqual(false);
-    });
-
-    it('adds an error to state.errors', () => {
-      expect(result.errors.length).toEqual(2);
-    });
-  });
-
-  describe('when AddToCartAction is triggered', () => {
-
-    const productId = 'productId';
-    const qty = 1;
-
-    it('sets loading state to true', () => {
-      const addToCartAction: DaffAddToCart = new DaffAddToCart({ productId, qty });
-
-      const result = reducer(initialState, addToCartAction);
-
-      expect(result.loading).toEqual(true);
-    });
-  });
-
-  describe('when AddToCartActionSuccess is triggered', () => {
-
-    let result;
-    let state: State;
-
-
-    beforeEach(() => {
-      const addToCartActionSuccess: DaffAddToCartSuccess = new DaffAddToCartSuccess(cart);
-      state = {
-        ...initialState,
-        loading: true
-      }
-
-      result = reducer(state, addToCartActionSuccess);
-    });
-
-    it('sets cart from action.payload', () => {
-      expect(result.cart).toEqual(cart)
-    });
-
-    it('sets loading state to false', () => {
-      expect(result.loading).toEqual(false);
-    });
-  });
-
-  describe('when AddToCartFailureAction is triggered', () => {
-
-    let error: string;
-    let result;
-    let state: State;
-
-    beforeEach(() => {
-      state = {
-        ...initialState,
-        loading: true,
-        errors: new Array('firstError')
-      }
-
-      error = 'error';
-
-      const addToCartFailure = new DaffAddToCartFailure(error);
-
-      result = reducer(state, addToCartFailure);
-    });
-
-    it('sets loading to false', () => {
-      expect(result.loading).toEqual(false);
-    });
-
-    it('adds an error to state.errors', () => {
-      expect(result.errors.length).toEqual(2);
-    });
-  });
-
-  describe('getCart', () => {
-
-    it('returns cart state', () => {
-      expect(getCart(initialState)).toEqual(initialState.cart);
-    });
-  });
-
-  describe('getCartLoading', () => {
-
-    it('returns loading state', () => {
-      expect(getCartLoading(initialState)).toEqual(initialState.loading);
-    });
-  });
-
-  describe('CartReset', () => {
-
-    it('should indicate that the cart is loading', () => {
-      const expectedState = {
-        loading: true,
-        cart: null,
-        errors: []
-      }
-      const cartReset = new DaffCartReset();
-      const result = reducer(initialState, cartReset);
-
-      expect(result).toEqual(expectedState);
-    });
-  });
-  describe('CartResetSuccess', () => {
-    it('should gurantee there are no items in the cart', () => {
-      const expectedState = {
-        ...initialState,
-        cart: {
-          ...initialState.cart,
-          items: [],
-          ...cart
-        },
-        loading: false
-      }
-      const cartResetSuccess = new DaffCartResetSuccess(cart);
-      const result = reducer(initialState, cartResetSuccess)
-      expect(result).toEqual(expectedState);
+      expect(secondReducer).toHaveBeenCalledWith(firstReturn, action);
     });
   });
 });
