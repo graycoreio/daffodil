@@ -1,8 +1,8 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DaffCartShippingMethodsDriver } from '../interfaces/cart-shipping-methods-service.interface';
-import { DaffMagentoCartShippingMethodsService } from './cart-shipping-methods.service';
+import { DaffCartDriver } from '../interfaces/cart-service.interface';
+import { DaffMagentoCartService } from './cart.service';
 
 import { DaffCartItemDriver } from '../interfaces/cart-item-service.interface';
 import { DaffMagentoCartItemService } from './cart-item.service';
@@ -12,6 +12,9 @@ import { DaffMagentoCartBillingAddressService } from './cart-billing-address.ser
 
 import { DaffCartShippingAddressDriver } from '../interfaces/cart-shipping-address-service.interface';
 import { DaffMagentoCartShippingAddressService } from './cart-shipping-address.service';
+
+import { DaffCartShippingMethodsDriver } from '../interfaces/cart-shipping-methods-service.interface';
+import { DaffMagentoCartShippingMethodsService } from './cart-shipping-methods.service';
 
 import { DaffCartPaymentMethodsDriver } from '../interfaces/cart-payment-methods-service.interface';
 import { DaffMagentoCartPaymentMethodsService } from './cart-payment-methods.service';
@@ -31,7 +34,6 @@ import { DaffMagentoCartShippingInformationTransformer } from './transforms/outp
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { DaffMagentoShippingAddressTransformer } from './transforms/outputs/shipping-address.service';
 
-
 import { DaffMagentoCartAddressInputTransformer } from './transforms/inputs/cart-address.service';
 import { DaffMagentoShippingAddressInputTransformer } from './transforms/inputs/shipping-address.service';
 import { DaffMagentoBillingAddressInputTransformer } from './transforms/inputs/billing-address.service';
@@ -50,6 +52,10 @@ export class DaffCartMagentoDriverModule {
     return {
       ngModule: DaffCartMagentoDriverModule,
       providers: [
+        {
+          provide: DaffCartDriver,
+          useExisting: DaffMagentoCartService
+        },
         {
           provide: DaffCartItemDriver,
           useExisting: DaffMagentoCartItemService
@@ -86,7 +92,6 @@ export class DaffCartMagentoDriverModule {
         DaffMagentoCartPaymentTransformer,
         DaffMagentoCartShippingInformationTransformer,
         DaffMagentoCartShippingRateTransformer,
-        DaffMagentoCartPaymentTransformer,
         DaffMagentoCartTransformer,
         DaffMagentoShippingAddressTransformer,
 
