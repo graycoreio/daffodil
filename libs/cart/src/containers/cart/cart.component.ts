@@ -3,10 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import * as fromCart from '../../reducers/index';
+import * as fromCart from '../../reducers';
 import { DaffCartLoad, DaffAddToCart } from '../../actions/cart.actions';
 import { DaffCart } from '../../models/cart';
-
+import {
+  selectCartLoading,
+  selectCartValue
+} from '../../selectors';
 @Component({
   selector: '[cart-container]',
   template: '<ng-content></ng-content>',
@@ -24,8 +27,8 @@ export class DaffCartContainer implements OnInit {
   ngOnInit() {
     this.store.dispatch(new DaffCartLoad());
 
-    this.loading$ = this.store.pipe(select(fromCart.selectCartLoadingState));
-    this.cart$ = this.store.pipe(select(fromCart.selectCartValueState));
+    this.loading$ = this.store.pipe(select(selectCartLoading));
+    this.cart$ = this.store.pipe(select(selectCartValue));
   }
 
   addToCart(payload) {

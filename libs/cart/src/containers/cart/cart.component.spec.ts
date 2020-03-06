@@ -3,11 +3,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
+import { DaffCartFactory } from '@daffodil/cart/testing';
+
 import { DaffCartContainer } from './cart.component';
-import { DaffCartLoad, DaffAddToCart } from '../../actions/cart.actions';
-import * as fromCart from '../../reducers/index';
+import { DaffCartLoad, DaffAddToCart } from '../../actions';
 import { DaffCart } from '../../models/cart';
-import { DaffCartFactory } from '../../../testing/src/factories/cart.factory';
+import {
+  selectCartLoading,
+  selectCartValue
+} from '../../selectors';
 
 describe('CartContainer', () => {
   let component: DaffCartContainer;
@@ -37,8 +41,8 @@ describe('CartContainer', () => {
     initialLoading = false;
     initialCart = cartFactory.create();
 
-    store.overrideSelector(fromCart.selectCartLoadingState, initialLoading);
-    store.overrideSelector(fromCart.selectCartValueState, initialCart);
+    store.overrideSelector(selectCartLoading, initialLoading);
+    store.overrideSelector(selectCartValue, initialCart);
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();
@@ -53,7 +57,7 @@ describe('CartContainer', () => {
   });
 
   describe('ngInit', () => {
-    
+
     it('dispatches a CartLoad action', () => {
       expect(store.dispatch).toHaveBeenCalledWith(new DaffCartLoad());
     });
@@ -72,7 +76,7 @@ describe('CartContainer', () => {
   });
 
   describe('addToCart', () => {
-    
+
     it('should call store.dispatch', () => {
       const qty = 3;
       const payload = {productId: '', qty: qty};

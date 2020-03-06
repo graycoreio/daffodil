@@ -4,7 +4,7 @@ import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { MockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 
-import { DaffCartLoad, DaffCartLoadSuccess } from '@daffodil/cart';
+import { DaffCartLoad, DaffCartLoadSuccess, DaffCartLoadFailure } from '@daffodil/cart';
 
 import { DaffCartFacade } from './cart.facade';
 import { State, reducers } from '../../reducers';
@@ -71,5 +71,19 @@ describe('DaffCartFacade', () => {
       store.dispatch(new DaffCartLoadSuccess(cart));
       expect(facade.cart$).toBeObservable(expected);
     });
-  })
+  });
+
+  describe('errors$', () => {
+    it('should initially be an empty array', () => {
+      const expected = cold('a', { a: []});
+      expect(facade.errors$).toBeObservable(expected);
+    });
+
+    it('should contain an error upon a failed load', () => {
+      const error = 'error';
+      const expected = cold('a', { a: [error]});
+      store.dispatch(new DaffCartLoadFailure(error));
+      expect(facade.errors$).toBeObservable(expected);
+    });
+  });
 });
