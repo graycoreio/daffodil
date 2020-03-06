@@ -19,7 +19,6 @@ export class DaffMagentoCategoryResponseTransformService {
   ) {}
 
   transform(completeCategory: MagentoCompleteCategoryResponse): DaffGetCategoryResponse {
-		console.log(completeCategory);
     return {
 			...{ magentoCompleteCategoryResponse: completeCategory },
       category: this.magentoCategoryTransformerService.transform(completeCategory.category),
