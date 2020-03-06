@@ -13,7 +13,7 @@ export const initialState: State = Object.freeze({
   errors: []
 });
 
-export function reducer(state = initialState, action: DaffCartActions): State {
+export function reducer(state = initialState, action: DaffCartActions<DaffCart>): State {
   switch (action.type) {
     case DaffCartActionTypes.CartLoadAction:
     case DaffCartActionTypes.CartResetAction:
