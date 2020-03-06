@@ -49,7 +49,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
 	}
 	
 	private getProductsQueryVariables(request: DaffCategoryRequest) {
-		let queryVariables = {
+		const queryVariables = {
 			filter: this.magentoAppliedFiltersTransformer.transform(request.id, request.applied_filters)
 		};
 		if(request.page_size) queryVariables['pageSize'] = request.page_size;
