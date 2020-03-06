@@ -130,38 +130,6 @@ describe('Driver | Magento | Cart | CartService', () => {
     });
   });
 
-  // skip deprecated method
-  xdescribe('addToCart | adding a product to the cart', () => {
-
-    beforeEach(() => {
-
-    })
-
-    it('should send a post request to the cart items url with the correct payload', () => {
-      // const product = daffProductFactory.create();
-      // const qty = 3;
-
-      // magentoProductSpy.get.withArgs(product.id).and.returnValue(of(product));
-
-      // service.addToCart(product.id, qty).subscribe((result) => {
-      //   // expect(result.id).toEqual(product.id);
-      // });
-
-      // const {
-      //   method,
-      //   body
-      // } = controller.expectOne(cartItemsURI).request;
-
-      // expect(method).toEqual('POST')
-      // expect(body.qty).toEqual(qty)
-      // expect(body.id).toEqual(product.id)
-    });
-
-    afterEach(() => {
-      controller.verify();
-    });
-  });
-
   describe('clear | remove all items from the cart', () => {
     it('should make a delete cart item request for every item in the cart', done => {
       service.clear(cartId).subscribe(() => {
