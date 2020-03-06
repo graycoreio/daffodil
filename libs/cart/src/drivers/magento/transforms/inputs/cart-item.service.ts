@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 
 import { MagentoCartItemInput } from '../../models/inputs/cart-item';
-import { MagentoDaffCartItemInputWithSku } from '../../models/inputs/cart-item-with-sku';
+import { DaffCartItemInput } from '../../../../models/cart-item-input';
 
 @Injectable()
 export class DaffMagentoCartItemInputTransformer {
-  transform(item: MagentoDaffCartItemInputWithSku): MagentoCartItemInput {
+  transform(item: DaffCartItemInput): MagentoCartItemInput {
     return {
       quantity: item.qty,
-      sku: item.sku
+      sku: item.productId
     }
   }
 }

@@ -3,8 +3,6 @@ import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/tes
 import { of } from 'rxjs';
 
 import {
-  DaffProductDriver,
-  DaffProductServiceInterface,
   DaffProductUnion
 } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
@@ -56,7 +54,6 @@ describe('Driver | Magento | Cart | CartItemService', () => {
   let magentoCartItemTransformerSpy: jasmine.SpyObj<DaffMagentoCartItemTransformer>;
   let magentoCartItemInputTransformerSpy: jasmine.SpyObj<DaffMagentoCartItemInputTransformer>;
   let magentoCartItemUpdateInputTransformerSpy: jasmine.SpyObj<DaffMagentoCartItemUpdateInputTransformer>;
-  let daffProductDriverSpy: jasmine.SpyObj<DaffProductServiceInterface<DaffProductUnion>>;
 
   let cartId;
   let itemId;
@@ -96,10 +93,6 @@ describe('Driver | Magento | Cart | CartItemService', () => {
         {
           provide: DaffMagentoCartItemUpdateInputTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoCartItemUpdateInputTransformer', ['transform'])
-        },
-        {
-          provide: DaffProductDriver,
-          useValue: jasmine.createSpyObj('DaffProductDriver', ['get'])
         }
       ]
     });
@@ -111,7 +104,6 @@ describe('Driver | Magento | Cart | CartItemService', () => {
     magentoCartItemTransformerSpy = TestBed.get(DaffMagentoCartItemTransformer);
     magentoCartItemInputTransformerSpy = TestBed.get(DaffMagentoCartItemInputTransformer);
     magentoCartItemUpdateInputTransformerSpy = TestBed.get(DaffMagentoCartItemUpdateInputTransformer);
-    daffProductDriverSpy = TestBed.get(DaffProductDriver);
 
     daffProductFactory = TestBed.get(DaffProductFactory);
     daffCartFactory = TestBed.get(DaffCartFactory);
@@ -128,7 +120,6 @@ describe('Driver | Magento | Cart | CartItemService', () => {
     cartId = mockDaffCart.id;
     itemId = mockDaffCartItem.item_id;
     sku = mockDaffCartItem.sku;
-    mockDaffProduct.sku = sku;
     mockMagentoCartItem.id = itemId;
     mockDaffCart.items = [mockDaffCartItem];
     mockMagentoCart.items = [mockMagentoCartItem];
@@ -169,7 +160,6 @@ describe('Driver | Magento | Cart | CartItemService', () => {
     magentoCartItemTransformerSpy.transform.withArgs(mockMagentoCartItem).and.returnValue(mockDaffCartItem);
     magentoCartItemInputTransformerSpy.transform.and.returnValue(mockMagentoCartItemInput);
     magentoCartItemUpdateInputTransformerSpy.transform.and.returnValue(mockMagentoCartItemUpdateInput);
-    daffProductDriverSpy.get.withArgs(mockDaffProduct.id).and.returnValue(of(mockDaffProduct))
   });
 
   it('should be created', () => {

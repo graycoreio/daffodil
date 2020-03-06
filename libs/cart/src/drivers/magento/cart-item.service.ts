@@ -4,12 +4,6 @@ import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
-import {
-  DaffProductServiceInterface,
-  DaffProductUnion,
-  DaffProductDriver
-} from '@daffodil/product'
-
 import { DaffCartItemServiceInterface } from '../interfaces/cart-item-service.interface';
 import { DaffCart } from '../../models/cart';
 import { DaffCartItem } from '../../models/cart-item';
@@ -42,7 +36,6 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface<
 > {
   constructor(
     private apollo: Apollo,
-    @Inject(DaffProductDriver) private product: DaffProductServiceInterface<DaffProductUnion>,
     public cartTransformer: DaffMagentoCartTransformer,
     public cartItemTransformer: DaffMagentoCartItemTransformer,
     public cartItemInputTransformer: DaffMagentoCartItemInputTransformer,
@@ -67,17 +60,13 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface<
   }
 
   add(cartId: string, product: DaffCartItemInput): Observable<Partial<DaffCart>> {
-    return this.product.get(product.productId).pipe(
-      switchMap(({sku}) => this.apollo.mutate<MagentoAddCartItemResponse>({
-        mutation: addCartItem,
-        variables: {
-          cartId,
-          input: this.cartItemInputTransformer.transform({
-            ...product,
-            sku
-          })
-        }
-      })),
+    return this.apollo.mutate<MagentoAddCartItemResponse>({
+      mutation: addCartItem,
+      variables: {
+        cartId,
+        input: this.cartItemInputTransformer.transform(product)
+      }
+    }).pipe(
       map(result => this.cartTransformer.transform(result.data.addSimpleProductsToCart.cart))
     )
   }

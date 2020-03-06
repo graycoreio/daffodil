@@ -19,7 +19,6 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartItemInput', () => {
     mockDaffCartItemInput = {
       productId: '3',
       qty: 2,
-      sku: 'sku'
     };
   });
 
