@@ -27,7 +27,8 @@ describe('Product | Testing | Factories | MagentoProductFactory', () => {
     });
 
     it('should return a MagentoProduct with all required fields defined', () => {
-      expect(result.id).toBeDefined();
+			expect(result.id).toBeDefined();
+			expect(result.__typename).toBeDefined();
       expect(result.image.label).toBeDefined();
       expect(result.image.url).toBeDefined();
       expect(result.url_key).toBeDefined();
