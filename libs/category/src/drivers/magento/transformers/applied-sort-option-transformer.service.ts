@@ -9,7 +9,6 @@ import { DaffSortDirectionEnum } from '../../../models/requests/category-request
 export class DaffMagentoAppliedSortOptionTransformService {
 
   transform(appliedOption: string, appliedDirection: DaffSortDirectionEnum): MagentoSortFieldAction {
-		if(!appliedOption) return null;
 		return {
 			[appliedOption]: this.transformDirection(appliedDirection)
 		}

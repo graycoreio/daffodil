@@ -14,7 +14,6 @@ import { MagentoGetProductsQuery } from './queries/get-products';
 import { DaffMagentoAppliedFiltersTransformService } from './transformers/applied-filter-transformer.service';
 import { DaffMagentoAppliedSortOptionTransformService } from './transformers/applied-sort-option-transformer.service';
 import { DaffMagentoCategoryResponseTransformService } from './transformers/category-response-transform.service';
-import { CompleteCategoryResponse } from './models/outputs/complete-category-response';
 
 @Injectable({
   providedIn: 'root'
@@ -51,16 +50,13 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
 	
 	private getProductsQueryVariables(request: DaffCategoryRequest) {
 		const queryVariables = {
-			filter: this.magentoAppliedFiltersTransformer.transform(request.id, request.applied_filters),
-			search: null,
-			pageSize: request.page_size,
-			currentPage: request.current_page,
-			sort: this.magentoAppliedSortTransformer.transform(request.applied_sort_option, request.applied_sort_direction)
+			filter: this.magentoAppliedFiltersTransformer.transform(request.id, request.applied_filters)
+		};
+		if(request.page_size) queryVariables['pageSize'] = request.page_size;
+		if(request.current_page) queryVariables['currentPage'] = request.current_page;
+		if(request.applied_sort_option && request.applied_sort_direction) {
+			queryVariables['sort'] = this.magentoAppliedSortTransformer.transform(request.applied_sort_option, request.applied_sort_direction);
 		}
-
-		if(!queryVariables.pageSize) delete queryVariables.pageSize;
-		if(!queryVariables.currentPage) delete queryVariables.currentPage;
-		if(!queryVariables.sort) delete queryVariables.sort;
 
 		return queryVariables;
 	}
