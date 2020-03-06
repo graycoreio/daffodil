@@ -14,6 +14,7 @@ import { MagentoGetProductsQuery } from './queries/get-products';
 import { DaffMagentoAppliedFiltersTransformService } from './transformers/applied-filter-transformer.service';
 import { DaffMagentoAppliedSortOptionTransformService } from './transformers/applied-sort-option-transformer.service';
 import { DaffMagentoCategoryResponseTransformService } from './transformers/category-response-transform.service';
+import { CompleteCategoryResponse } from './models/outputs/complete-category-response';
 
 @Injectable({
   providedIn: 'root'
@@ -49,23 +50,32 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
 	}
 	
 	private getProductsQueryVariables(request: DaffCategoryRequest) {
-		return {
-			filter: this.magentoAppliedFiltersTransformer.transform(request.applied_filters),
+		const queryVariables = {
+			filter: this.magentoAppliedFiltersTransformer.transform(request.id, request.applied_filters),
 			search: null,
 			pageSize: request.page_size,
 			currentPage: request.current_page,
 			sort: this.magentoAppliedSortTransformer.transform(request.applied_sort_option, request.applied_sort_direction)
 		}
+
+		if(!queryVariables.pageSize) delete queryVariables.pageSize;
+		if(!queryVariables.currentPage) delete queryVariables.currentPage;
+		if(!queryVariables.sort) delete queryVariables.sort;
+
+		return queryVariables;
 	}
 
-	private buildCompleteCategoryResponse(categoryReponse: MagentoGetACategoryResponse, productsResponse: MagentoGetProductsResponse) {
+	private buildCompleteCategoryResponse(
+		categoryResponse: MagentoGetACategoryResponse, 
+		productsResponse: MagentoGetProductsResponse
+	): MagentoCompleteCategoryResponse {
 		return {
-			category: categoryReponse.category,
-			products: productsResponse.products,
-			aggregates: productsResponse.aggregates,
-			sort_fields: productsResponse.sort_fields,
-			total_count: productsResponse.total_count,
-			page_info: productsResponse.page_info
+			category: categoryResponse.categoryList[0],
+			products: productsResponse.products.items,
+			aggregates: productsResponse.products.aggregations,
+			sort_fields: productsResponse.products.sort_fields,
+			total_count: productsResponse.products.total_count,
+			page_info: productsResponse.products.page_info
 		};
 	}
 }

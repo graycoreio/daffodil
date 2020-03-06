@@ -7,6 +7,7 @@ import { DaffCategoryFilterAction } from '../../../models/requests/filter-action
 describe('DaffMagentoAppliedFiltersTransformService', () => {
 
 	let service: DaffMagentoAppliedFiltersTransformService;
+	const categoryId = 'id';
 	const categoryFilterActions: DaffCategoryFilterAction[] = [
 		{
 			action: 'action',
@@ -37,6 +38,9 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
     
     it('should transform an array of DafFCategoryFilterAction into a MagentoCategoryFilters', () => {
 			const expectedReturn: MagentoCategoryFilters = {
+				category_id: {
+					eq: 'id'
+				},
 				code: {
 					action: 'value'
 				},
@@ -44,7 +48,7 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
 					action2: 'value2'
 				}
 			}
-      expect(service.transform(categoryFilterActions)).toEqual(expectedReturn);
+      expect(service.transform(categoryId, categoryFilterActions)).toEqual(expectedReturn);
     });
   });
 });
