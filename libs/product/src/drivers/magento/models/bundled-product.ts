@@ -1,12 +1,12 @@
 import { ProductNode } from './product-node';
 import { MagentoSimpleProduct } from './simple-product';
 
-export enum MagentoPriceViewEnum {
+export enum MagentoBundledPriceViewEnum {
 	price_range = 'PRICE_RANGE',
 	as_low_as = 'AS_LOW_AS'
 }
 
-export enum MagentoBundleItemsEnum {
+export enum MagentoBundledItemsEnum {
 	together = 'TOGETHER',
 	separately = 'SEPARATELY'
 }
@@ -18,17 +18,17 @@ export enum MagentoPriceTypeEnum {
 }
 
 export interface MagentoBundledProduct extends ProductNode {
-	dynamic_price: boolean;
-	dynamic_sku: boolean;
-	dynamic_weight: boolean;
-	price_view: MagentoPriceViewEnum;
-	ship_bundle_items: MagentoBundleItemsEnum;
+	dynamic_price?: boolean;
+	dynamic_sku?: boolean;
+	dynamic_weight?: boolean;
+	price_view: MagentoBundledPriceViewEnum;
+	ship_bundle_items: MagentoBundledItemsEnum;
 	items: MagentoBundledProductItem[];
 }
 
 export interface MagentoBundledProductItem {
 	option_id: number;
-	position: number;
+	position?: number;
 	required: boolean;
 	sku: string;
 	title: string;
@@ -39,11 +39,11 @@ export interface MagentoBundledProductItem {
 export interface MagentoBundledProductItemOption {
 	can_change_quantity: boolean;
 	id: number;
-	is_default: boolean;
+	is_default?: boolean;
 	label: string;
-	position: number;
-	price_type: MagentoPriceTypeEnum;
-	price: number;
+	position?: number;
+	price_type?: MagentoPriceTypeEnum;
+	price?: number;
 	quantity: number;
-	product: MagentoSimpleProduct;
+	product?: MagentoSimpleProduct;
 }

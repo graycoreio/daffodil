@@ -6,18 +6,23 @@ export enum DaffPriceTypeEnum {
 	dynamic = 'DYNAMIC'
 }
 
+export enum DaffBundledProductItemType {
+	radio = 'RADIO',
+	checkbox = 'CHECKBOX',
+	select = 'SELECT'
+}
+
 export interface DaffBundledProductItem {
 	bundle_id: string;
 	bundle_option_id: number;
 	required: boolean;
 	title: string;
-	type: string;
+	type: DaffBundledProductItemType;
 	options: DaffBundledProductItemOption[];
 }
 
 export interface DaffBundledProductItemOption extends DaffProduct {
 	can_change_quantity: boolean;
-	id: string;
 	name?: string;
 	price?: string;
 	price_type?: DaffPriceTypeEnum;

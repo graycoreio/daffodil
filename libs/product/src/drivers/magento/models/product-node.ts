@@ -1,8 +1,15 @@
+export enum MagentoProductTypeEnum {
+	BundledProduct = 'BundleProduct',
+	ConfigurableProduct = 'ConfigurableProduct',
+	SimpleProduct = 'SimpleProduct'
+}
+
 /**
  * An object for defining what the product service requests and retrieves from a magento backend.
  */
 export interface ProductNode {
-  id: number;
+	id: number;
+	__typename?: MagentoProductTypeEnum;
   name: string;
   sku: string;
   url_key: string;

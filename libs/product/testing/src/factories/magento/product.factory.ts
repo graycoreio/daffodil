@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
+import { MagentoProductTypeEnum } from '@daffodil/product';
+
 import {
   DaffModelFactory,
 } from '@daffodil/core/testing';
 import { MagentoProduct } from '@daffodil/product';
 
 export class MockMagentoProduct implements MagentoProduct {
-  id = faker.random.number(1000);
+	id = faker.random.number(1000);
+	__typename = MagentoProductTypeEnum.SimpleProduct;
   image = {
     label: faker.random.words(3),
     url: faker.image.imageUrl()
