@@ -1,7 +1,5 @@
 import gql from 'graphql-tag';
 
-import { moneyFragment } from './money';
-
 export const productFragment = gql`
   fragment product on MagnetoProduct {
     id
@@ -9,18 +7,14 @@ export const productFragment = gql`
       label,
       url
     }
-    manufacturer
     name
     description
-    price_range {
-      maximum_price {
-        ...money
-      }
-      minumum_price {
-        ...money
-      }
-    }
     sku
+    url_key
+    price {
+      regularPrice
+    }
+    media_gallery_entries
+    short_description
   }
-  ${moneyFragment}
 `;

@@ -1,5 +1,9 @@
 export * from './fragments';
 
+export { listCartItems } from './list-cart-items';
+export { addCartItem } from './add-cart-item';
+export { removeCartItem } from './remove-cart-item';
+export { updateCartItem } from './update-cart-item';
 export { listPaymentMethods } from './list-payment-methods';
 export { getSelectedPaymentMethod } from './get-selected-payment-method';
 export { setSelectedPaymentMethod } from './set-selected-payment-method';

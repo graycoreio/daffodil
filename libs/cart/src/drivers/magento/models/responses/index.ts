@@ -1,3 +1,7 @@
+export { MagentoListCartItemsResponse } from './list-cart-items';
+export { MagentoAddCartItemResponse } from './add-cart-item';
+export { MagentoUpdateCartItemResponse } from './update-cart-item';
+export { MagentoRemoveCartItemResponse } from './remove-cart-item';
 export { MagentoListPaymentMethodsResponse } from './list-payment-methods';
 export { MagentoGetSelectedPaymentMethodResponse } from './get-selected-payment-method';
 export { MagentoSetSelectedPaymentMethodResponse } from './set-selected-payment-method';
