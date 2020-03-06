@@ -14,6 +14,7 @@ import { MagentoGetProductsQuery } from './queries/get-products';
 import { DaffMagentoAppliedFiltersTransformService } from './transformers/applied-filter-transformer.service';
 import { DaffMagentoAppliedSortOptionTransformService } from './transformers/applied-sort-option-transformer.service';
 import { DaffMagentoCategoryResponseTransformService } from './transformers/category-response-transform.service';
+import { MagentoGetProductsByCategoriesRequest } from './models/requests/get-products-by-categories-request';
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +49,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     );
 	}
 	
-	private getProductsQueryVariables(request: DaffCategoryRequest) {
+	private getProductsQueryVariables(request: DaffCategoryRequest): MagentoGetProductsByCategoriesRequest {
 		const queryVariables = {
 			filter: this.magentoAppliedFiltersTransformer.transform(request.id, request.applied_filters)
 		};
