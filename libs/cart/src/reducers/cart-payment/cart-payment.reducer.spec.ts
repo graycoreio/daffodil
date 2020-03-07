@@ -161,9 +161,8 @@ describe('Cart | Reducer | Cart Payment', () => {
   describe('when CartPaymentRemoveAction is triggered', () => {
     it('should indicate that the cart is loading', () => {
       const expectedState = {
+        ...initialState,
         loading: true,
-        cart: null,
-        errors: []
       }
       const cartPaymentRemove = new DaffCartPaymentRemove();
       const result = reducer(initialState, cartPaymentRemove);

@@ -173,9 +173,8 @@ describe('Cart | Reducer | Cart Shipping Information', () => {
   describe('when CartShippingInformationDeleteAction is triggered', () => {
     it('should indicate that the cart is loading', () => {
       const expectedState = {
+        ...initialState,
         loading: true,
-        cart: null,
-        errors: []
       }
       const cartShippingInformationRemove = new DaffCartShippingInformationDelete();
       const result = reducer(initialState, cartShippingInformationRemove);

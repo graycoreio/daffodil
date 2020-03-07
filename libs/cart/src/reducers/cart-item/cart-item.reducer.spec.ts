@@ -236,9 +236,8 @@ describe('Cart | Reducer | Cart Item', () => {
   describe('when CartItemLoadAction is triggered', () => {
     it('should indicate that the cart is loading', () => {
       const expectedState = {
+        ...initialState,
         loading: true,
-        cart: null,
-        errors: []
       }
       const cartItemLoad = new DaffCartItemLoad('itemId');
       const result = reducer(initialState, cartItemLoad);
@@ -307,9 +306,8 @@ describe('Cart | Reducer | Cart Item', () => {
   describe('when CartItemListAction is triggered', () => {
     it('should indicate that the cart is loading', () => {
       const expectedState = {
+        ...initialState,
         loading: true,
-        cart: null,
-        errors: []
       }
       const cartItemList = new DaffCartItemList();
       const result = reducer(initialState, cartItemList);

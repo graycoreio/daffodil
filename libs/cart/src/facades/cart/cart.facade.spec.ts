@@ -7,7 +7,7 @@ import { cold } from 'jasmine-marbles';
 import { DaffCartLoad, DaffCartLoadSuccess, DaffCartLoadFailure } from '@daffodil/cart';
 
 import { DaffCartFacade } from './cart.facade';
-import { State, reducers } from '../../reducers';
+import { State, reducers, initialState } from '../../reducers';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
 describe('DaffCartFacade', () => {
@@ -60,8 +60,8 @@ describe('DaffCartFacade', () => {
   });
 
   describe('cart$', () => {
-    it('should initially be null', () => {
-      const expected = cold('a', { a: null});
+    it('should initially be cart with no defined properties', () => {
+      const expected = cold('a', { a: initialState.cart});
       expect(facade.cart$).toBeObservable(expected);
     });
 

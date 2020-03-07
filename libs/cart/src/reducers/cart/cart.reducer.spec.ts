@@ -227,9 +227,8 @@ describe('Cart | Reducer | Cart', () => {
   describe('when CartClearAction is triggered', () => {
     it('should indicate that the cart is loading', () => {
       const expectedState = {
+        ...initialState,
         loading: true,
-        cart: null,
-        errors: []
       }
       const cartClear = new DaffCartClear();
       const result = reducer(initialState, cartClear);
