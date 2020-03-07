@@ -27,12 +27,8 @@ export class DaffCartShippingMethodsEffects<T extends DaffCartShippingRate> {
     ofType(DaffCartShippingMethodsActionTypes.CartShippingMethodsLoadAction),
     switchMap((action: DaffCartShippingMethodsLoad) =>
       this.driver.list(this.storage.getCartId()).pipe(
-        map(resp => {
-          return new DaffCartShippingMethodsLoadSuccess(resp);
-        }),
-        catchError(error => {
-          return of(new DaffCartShippingMethodsLoadFailure('Failed to list cart shipping methods'));
-        })
+        map(resp => new DaffCartShippingMethodsLoadSuccess(resp)),
+        catchError(error => of(new DaffCartShippingMethodsLoadFailure('Failed to list cart shipping methods')))
       )
     )
   )

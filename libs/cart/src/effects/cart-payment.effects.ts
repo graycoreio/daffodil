@@ -33,12 +33,8 @@ export class DaffCartPaymentEffects<T extends DaffCartPaymentMethod, V extends D
     ofType(DaffCartPaymentActionTypes.CartPaymentLoadAction),
     switchMap((action: DaffCartPaymentLoad) =>
       this.driver.get(this.storage.getCartId()).pipe(
-        map(resp => {
-          return new DaffCartPaymentLoadSuccess(resp);
-        }),
-        catchError(error => {
-          return of(new DaffCartPaymentLoadFailure('Failed to load cart payment'));
-        })
+        map(resp => new DaffCartPaymentLoadSuccess(resp)),
+        catchError(error => of(new DaffCartPaymentLoadFailure('Failed to load cart payment')))
       )
     )
   )
@@ -48,12 +44,8 @@ export class DaffCartPaymentEffects<T extends DaffCartPaymentMethod, V extends D
     ofType(DaffCartPaymentActionTypes.CartPaymentUpdateAction),
     switchMap((action: DaffCartPaymentUpdate<T>) =>
       this.driver.update(this.storage.getCartId(), action.payload).pipe(
-        map(resp => {
-          return new DaffCartPaymentUpdateSuccess(resp);
-        }),
-        catchError(error => {
-          return of(new DaffCartPaymentUpdateFailure('Failed to update cart payment'));
-        })
+        map(resp => new DaffCartPaymentUpdateSuccess(resp)),
+        catchError(error => of(new DaffCartPaymentUpdateFailure('Failed to update cart payment')))
       )
     )
   )
@@ -63,12 +55,8 @@ export class DaffCartPaymentEffects<T extends DaffCartPaymentMethod, V extends D
     ofType(DaffCartPaymentActionTypes.CartPaymentRemoveAction),
     switchMap((action: DaffCartPaymentRemove) =>
       this.driver.remove(this.storage.getCartId()).pipe(
-        map(resp => {
-          return new DaffCartPaymentRemoveSuccess();
-        }),
-        catchError(error => {
-          return of(new DaffCartPaymentRemoveFailure('Failed to remove the cart payment'));
-        })
+        map(resp => new DaffCartPaymentRemoveSuccess()),
+        catchError(error => of(new DaffCartPaymentRemoveFailure('Failed to remove the cart payment')))
       )
     )
   )

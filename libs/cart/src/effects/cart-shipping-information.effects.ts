@@ -33,12 +33,8 @@ export class DaffCartShippingInformationEffects<T extends DaffCartShippingInform
     ofType(DaffCartShippingInformationActionTypes.CartShippingInformationLoadAction),
     switchMap((action: DaffCartShippingInformationLoad) =>
       this.driver.get(this.storage.getCartId()).pipe(
-        map(resp => {
-          return new DaffCartShippingInformationLoadSuccess(resp);
-        }),
-        catchError(error => {
-          return of(new DaffCartShippingInformationLoadFailure('Failed to load cart shipping information'));
-        })
+        map(resp => new DaffCartShippingInformationLoadSuccess(resp)),
+        catchError(error => of(new DaffCartShippingInformationLoadFailure('Failed to load cart shipping information')))
       )
     )
   )
@@ -48,12 +44,8 @@ export class DaffCartShippingInformationEffects<T extends DaffCartShippingInform
     ofType(DaffCartShippingInformationActionTypes.CartShippingInformationUpdateAction),
     switchMap((action: DaffCartShippingInformationUpdate<T>) =>
       this.driver.update(this.storage.getCartId(), action.payload).pipe(
-        map(resp => {
-          return new DaffCartShippingInformationUpdateSuccess(resp);
-        }),
-        catchError(error => {
-          return of(new DaffCartShippingInformationUpdateFailure('Failed to update cart shipping information'));
-        })
+        map(resp => new DaffCartShippingInformationUpdateSuccess(resp)),
+        catchError(error => of(new DaffCartShippingInformationUpdateFailure('Failed to update cart shipping information')))
       )
     )
   )
@@ -63,12 +55,8 @@ export class DaffCartShippingInformationEffects<T extends DaffCartShippingInform
     ofType(DaffCartShippingInformationActionTypes.CartShippingInformationDeleteAction),
     switchMap((action: DaffCartShippingInformationDelete) =>
       this.driver.delete(this.storage.getCartId()).pipe(
-        map(resp => {
-          return new DaffCartShippingInformationDeleteSuccess(resp);
-        }),
-        catchError(error => {
-          return of(new DaffCartShippingInformationDeleteFailure('Failed to delete the cart shipping information'));
-        })
+        map(resp => new DaffCartShippingInformationDeleteSuccess(resp)),
+        catchError(error => of(new DaffCartShippingInformationDeleteFailure('Failed to delete the cart shipping information')))
       )
     )
   )

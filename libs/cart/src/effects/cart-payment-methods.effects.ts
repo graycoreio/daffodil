@@ -27,12 +27,8 @@ export class DaffCartPaymentMethodsEffects<T extends DaffCartPaymentMethod> {
     ofType(DaffCartPaymentMethodsActionTypes.CartPaymentMethodsLoadAction),
     switchMap((action: DaffCartPaymentMethodsLoad) =>
       this.driver.list(this.storage.getCartId()).pipe(
-        map(resp => {
-          return new DaffCartPaymentMethodsLoadSuccess(resp);
-        }),
-        catchError(error => {
-          return of(new DaffCartPaymentMethodsLoadFailure('Failed to list cart payment methods'));
-        })
+        map(resp => new DaffCartPaymentMethodsLoadSuccess(resp)),
+        catchError(error => of(new DaffCartPaymentMethodsLoadFailure('Failed to list cart payment methods')))
       )
     )
   )

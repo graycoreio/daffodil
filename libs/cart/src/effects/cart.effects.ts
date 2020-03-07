@@ -35,12 +35,8 @@ export class DaffCartEffects<T extends DaffCart> {
     ofType(DaffCartActionTypes.CartCreateAction),
     switchMap((action: DaffCartCreate) =>
       this.driver.create().pipe(
-        map(resp => {
-          return new DaffCartCreateSuccess(resp);
-        }),
-        catchError(error => {
-          return of(new DaffCartCreateFailure('Failed to create cart'));
-        })
+        map(resp => new DaffCartCreateSuccess(resp)),
+        catchError(error => of(new DaffCartCreateFailure('Failed to create cart')))
       )
     )
   )
@@ -61,12 +57,8 @@ export class DaffCartEffects<T extends DaffCart> {
     ofType(DaffCartActionTypes.CartLoadAction),
     switchMap((action: DaffCartLoad) =>
       this.driver.get(this.storage.getCartId()).pipe(
-        map(resp => {
-          return new DaffCartLoadSuccess(resp);
-        }),
-        catchError(error => {
-          return of(new DaffCartLoadFailure('Failed to load cart'));
-        })
+        map(resp => new DaffCartLoadSuccess(resp)),
+        catchError(error => of(new DaffCartLoadFailure('Failed to load cart')))
       )
     )
   )
@@ -76,12 +68,8 @@ export class DaffCartEffects<T extends DaffCart> {
     ofType(DaffCartActionTypes.AddToCartAction),
     switchMap((action: DaffAddToCart) =>
       this.driver.addToCart(action.payload.productId, action.payload.qty).pipe(
-        map(resp => {
-          return new DaffAddToCartSuccess(resp);
-        }),
-        catchError(error => {
-          return of(new DaffAddToCartFailure('Failed to add item to cart'));
-        })
+        map(resp => new DaffAddToCartSuccess(resp)),
+        catchError(error => of(new DaffAddToCartFailure('Failed to add item to cart')))
       )
     )
   )
@@ -91,12 +79,8 @@ export class DaffCartEffects<T extends DaffCart> {
     ofType(DaffCartActionTypes.CartClearAction),
     switchMap((action: DaffCartClear) =>
       this.driver.clear(this.storage.getCartId()).pipe(
-        map(resp => {
-          return new DaffCartClearSuccess(resp);
-        }),
-        catchError(error => {
-          return of(new DaffCartClearFailure('Failed to clear the cart.'));
-        })
+        map(resp => new DaffCartClearSuccess(resp)),
+        catchError(error => of(new DaffCartClearFailure('Failed to clear the cart.')))
       )
     )
   )
