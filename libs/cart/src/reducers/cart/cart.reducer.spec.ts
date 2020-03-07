@@ -238,7 +238,7 @@ describe('Cart | Reducer | Cart', () => {
   });
 
   describe('when CartClearSuccessAction is triggered', () => {
-    it('should guarantee there are no items in the cart', () => {
+    it('should set the cart payload on state', () => {
       const expectedState = {
         ...initialState,
         cart: {
