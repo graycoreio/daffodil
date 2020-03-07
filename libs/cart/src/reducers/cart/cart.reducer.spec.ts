@@ -17,7 +17,7 @@ import {
 } from '../../actions';
 import { DaffCart } from '../../models/cart';
 import { reducer } from './cart.reducer';
-import { CartState } from '../cart-state.interface';
+import { DaffCartReducerState } from '../cart-state.interface';
 
 
 describe('Cart | Reducer | Cart', () => {
@@ -52,7 +52,7 @@ describe('Cart | Reducer | Cart', () => {
 
   describe('when CartLoadSuccessAction is triggered', () => {
     let result;
-    let state: CartState;
+    let state: DaffCartReducerState;
 
     beforeEach(() => {
       state = {
@@ -77,7 +77,7 @@ describe('Cart | Reducer | Cart', () => {
   describe('when CartLoadFailureAction is triggered', () => {
     const error = 'error message';
     let result;
-    let state: CartState;
+    let state: DaffCartReducerState;
 
     beforeEach(() => {
       state = {
@@ -112,7 +112,7 @@ describe('Cart | Reducer | Cart', () => {
 
   describe('when CartCreateSuccessAction is triggered', () => {
     let result;
-    let state: CartState;
+    let state: DaffCartReducerState;
 
     beforeEach(() => {
       state = {
@@ -137,7 +137,7 @@ describe('Cart | Reducer | Cart', () => {
   describe('when CartCreateFailureAction is triggered', () => {
     const error = 'error message';
     let result;
-    let state: CartState;
+    let state: DaffCartReducerState;
 
     beforeEach(() => {
       state = {
@@ -175,7 +175,7 @@ describe('Cart | Reducer | Cart', () => {
 
   describe('when AddToCartActionSuccess is triggered', () => {
     let result;
-    let state: CartState;
+    let state: DaffCartReducerState;
 
     beforeEach(() => {
       const addToCartActionSuccess: DaffAddToCartSuccess = new DaffAddToCartSuccess(cart);
@@ -199,7 +199,7 @@ describe('Cart | Reducer | Cart', () => {
   describe('when AddToCartFailureAction is triggered', () => {
     let error: string;
     let result;
-    let state: CartState;
+    let state: DaffCartReducerState;
 
     beforeEach(() => {
       state = {
@@ -258,7 +258,7 @@ describe('Cart | Reducer | Cart', () => {
   describe('when CartClearFailureAction is triggered', () => {
     let error: string;
     let result;
-    let state: CartState;
+    let state: DaffCartReducerState;
 
     beforeEach(() => {
       state = {

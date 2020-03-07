@@ -6,7 +6,7 @@ import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { DaffCartLoadSuccess } from '../actions';
-import { reducers, State } from '../reducers';
+import { daffCartReducers, DaffCartReducersState } from '../reducers';
 import {
   selectCartValue,
   selectCartLoading,
@@ -27,7 +27,7 @@ import {
 
 
 describe('Cart | Selector | Cart', () => {
-  let store: Store<State>;
+  let store: Store<DaffCartReducersState>;
 
   let cartFactory: DaffCartFactory;
 
@@ -39,7 +39,7 @@ describe('Cart | Selector | Cart', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          cart: combineReducers(reducers),
+          cart: combineReducers(daffCartReducers),
         })
       ]
     });

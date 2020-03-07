@@ -1,6 +1,6 @@
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { initialState } from '../cart-initial-state';
-import { CartState } from '../cart-state.interface';
+import { DaffCartReducerState } from '../cart-state.interface';
 import {
   DaffCartPaymentMethodsLoad,
   DaffCartPaymentMethodsLoadSuccess,
@@ -42,7 +42,7 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
 
   describe('when CartPaymentMethodsLoadSuccessAction is triggered', () => {
     let result;
-    let state: CartState;
+    let state: DaffCartReducerState;
 
     beforeEach(() => {
       state = {
@@ -67,7 +67,7 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
   describe('when CartPaymentMethodsLoadFailureAction is triggered', () => {
     const error = 'error message';
     let result;
-    let state: CartState;
+    let state: DaffCartReducerState;
 
     beforeEach(() => {
       state = {

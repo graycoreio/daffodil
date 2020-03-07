@@ -1,8 +1,8 @@
 import { ActionReducerMap } from '@ngrx/store';
 
-import { reducer } from './cart.reducer';
-import { State } from './cart-reducers-state.interface';
+import { daffCartReducer } from './cart.reducer';
+import { DaffCartReducersState } from './cart-reducers-state.interface';
 
-export const reducers: ActionReducerMap<State> = {
-  cart: reducer
+export const daffCartReducers: ActionReducerMap<DaffCartReducersState> = {
+  cart: daffCartReducer
 }

@@ -21,7 +21,7 @@ export class DaffCartContainer implements OnInit {
   cart$: Observable<DaffCart>;
 
   constructor(
-    private store: Store<fromCart.State>
+    private store: Store<fromCart.DaffCartReducersState>
   ) { }
 
   ngOnInit() {

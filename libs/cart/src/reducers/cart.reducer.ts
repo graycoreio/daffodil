@@ -6,7 +6,7 @@ import { reducer as cartShippingMethodsReducer } from './cart-shipping-methods/c
 import { reducer as cartShippingInformationReducer } from './cart-shipping-information/cart-shipping-information.reducer';
 import { reducer as cartPaymentReducer } from './cart-payment/cart-payment.reducer';
 import { reducer as cartPaymentMethodsReducer } from './cart-payment-methods/cart-payment-methods.reducer';
-import { CartState } from './cart-state.interface';
+import { DaffCartReducerState } from './cart-state.interface';
 import { ActionTypes } from './action-types.type';
 import { initialState } from './cart-initial-state';
 
@@ -25,10 +25,10 @@ export function composeReducers(state, action, reducers) {
     : state
 }
 
-export function reducer(
+export function daffCartReducer(
   state = initialState,
   action: ActionTypes
-): CartState {
+): DaffCartReducerState {
   return composeReducers(
     state,
     action,

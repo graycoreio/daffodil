@@ -1,6 +1,6 @@
 import { DaffCart } from '../models/cart';
 
-export interface CartState {
+export interface DaffCartReducerState {
   cart: DaffCart,
   loading: boolean,
   errors: string[]

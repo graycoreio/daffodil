@@ -1,6 +1,6 @@
-import { CartState } from './cart-state.interface';
+import { DaffCartReducerState } from './cart-state.interface';
 
-export const initialState: CartState = Object.freeze({
+export const initialState: DaffCartReducerState = Object.freeze({
   cart: {
     id: null,
     subtotal: null,

@@ -1,7 +1,7 @@
 import { DaffCartFactory, DaffCartShippingRateFactory } from '@daffodil/cart/testing';
 
 import { initialState } from '../cart-initial-state';
-import { CartState } from '../cart-state.interface';
+import { DaffCartReducerState } from '../cart-state.interface';
 import {
   DaffCartShippingMethodsLoad,
   DaffCartShippingMethodsLoadSuccess,
@@ -51,7 +51,7 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
 
   describe('when CartShippingMethodsLoadSuccessAction is triggered', () => {
     let result;
-    let state: CartState;
+    let state: DaffCartReducerState;
 
     beforeEach(() => {
       state = {
@@ -76,7 +76,7 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
   describe('when CartShippingMethodsLoadFailureAction is triggered', () => {
     const error = 'error message';
     let result;
-    let state: CartState;
+    let state: DaffCartReducerState;
 
     beforeEach(() => {
       state = {

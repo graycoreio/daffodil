@@ -5,7 +5,7 @@ import {
 } from '@daffodil/cart/testing';
 
 import { initialState } from '../cart-initial-state';
-import { CartState } from '../cart-state.interface';
+import { DaffCartReducerState } from '../cart-state.interface';
 import {
   DaffCartShippingInformationLoad,
   DaffCartShippingInformationLoadSuccess,
@@ -60,7 +60,7 @@ describe('Cart | Reducer | Cart Shipping Information', () => {
 
   describe('when CartShippingInformationLoadSuccessAction is triggered', () => {
     let result;
-    let state: CartState;
+    let state: DaffCartReducerState;
 
     beforeEach(() => {
       state = {
@@ -86,7 +86,7 @@ describe('Cart | Reducer | Cart Shipping Information', () => {
   describe('when CartShippingInformationLoadFailureAction is triggered', () => {
     const error = 'error message';
     let result;
-    let state: CartState;
+    let state: DaffCartReducerState;
 
     beforeEach(() => {
       state = {
@@ -121,7 +121,7 @@ describe('Cart | Reducer | Cart Shipping Information', () => {
 
   describe('when CartShippingInformationUpdateActionSuccess is triggered', () => {
     let result;
-    let state: CartState;
+    let state: DaffCartReducerState;
 
     beforeEach(() => {
       const cartShippingInformationUpdateActionSuccess = new DaffCartShippingInformationUpdateSuccess(cart);
@@ -145,7 +145,7 @@ describe('Cart | Reducer | Cart Shipping Information', () => {
   describe('when CartShippingInformationUpdateFailureAction is triggered', () => {
     let error: string;
     let result;
-    let state: CartState;
+    let state: DaffCartReducerState;
 
     beforeEach(() => {
       state = {
@@ -206,7 +206,7 @@ describe('Cart | Reducer | Cart Shipping Information', () => {
   describe('when CartShippingInformationDeleteFailureAction is triggered', () => {
     let error: string;
     let result;
-    let state: CartState;
+    let state: DaffCartReducerState;
 
     beforeEach(() => {
       state = {

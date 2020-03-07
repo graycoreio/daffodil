@@ -2,7 +2,7 @@ import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { initialState } from '../cart-initial-state';
-import { CartState } from '../cart-state.interface';
+import { DaffCartReducerState } from '../cart-state.interface';
 import {
   DaffCartBillingAddressLoad,
   DaffCartBillingAddressLoadSuccess,
@@ -46,7 +46,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
 
   describe('when CartBillingAddressLoadSuccessAction is triggered', () => {
     let result;
-    let state: CartState;
+    let state: DaffCartReducerState;
 
     beforeEach(() => {
       state = {
@@ -71,7 +71,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
   describe('when CartBillingAddressLoadFailureAction is triggered', () => {
     const error = 'error message';
     let result;
-    let state: CartState;
+    let state: DaffCartReducerState;
 
     beforeEach(() => {
       state = {
@@ -106,7 +106,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
 
   describe('when CartBillingAddressUpdateActionSuccess is triggered', () => {
     let result;
-    let state: CartState;
+    let state: DaffCartReducerState;
 
     beforeEach(() => {
       const cartBillingAddressUpdateActionSuccess = new DaffCartBillingAddressUpdateSuccess(cart);
@@ -130,7 +130,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
   describe('when CartBillingAddressUpdateFailureAction is triggered', () => {
     let error: string;
     let result;
-    let state: CartState;
+    let state: DaffCartReducerState;
 
     beforeEach(() => {
       state = {

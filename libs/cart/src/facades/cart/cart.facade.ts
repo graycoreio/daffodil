@@ -4,7 +4,7 @@ import { Action, Store, select } from '@ngrx/store';
 
 import { DaffStoreFacade } from '@daffodil/core';
 import { DaffCart } from '../../models/cart';
-import { State } from '../../reducers';
+import { DaffCartReducersState } from '../../reducers';
 import {
   selectCartLoading,
   selectCartValue,
@@ -43,7 +43,7 @@ export class DaffCartFacade implements DaffStoreFacade<Action> {
   cartAvailableShippingMethods$: Observable<DaffCart['available_shipping_methods']>;
   cartAvailablePaymentMethods$: Observable<DaffCart['available_payment_methods']>;
 
-  constructor(private store: Store<State>) {
+  constructor(private store: Store<DaffCartReducersState>) {
     this.loading$ = this.store.pipe(select(selectCartLoading));
     this.cart$ = this.store.pipe(select(selectCartValue));
     this.errors$ = this.store.pipe(select(selectCartErrors));

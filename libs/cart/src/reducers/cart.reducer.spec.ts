@@ -1,11 +1,11 @@
-import { reducer, composeReducers } from '../reducers/cart.reducer';
+import { daffCartReducer, composeReducers } from '../reducers/cart.reducer';
 import { initialState } from './cart-initial-state';
 
 describe('Cart | Reducer | Cart', () => {
   describe('when an unknown action is triggered', () => {
     it('should return the current state', () => {
       const action = {} as any;
-      const result = reducer(initialState, action);
+      const result = daffCartReducer(initialState, action);
 
       expect(result).toEqual(initialState);
     });

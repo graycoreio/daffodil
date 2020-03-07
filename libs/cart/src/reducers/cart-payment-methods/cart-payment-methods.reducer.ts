@@ -2,13 +2,13 @@ import {
   DaffCartPaymentMethodsActionTypes
 } from '../../actions';
 import { initialState } from '../cart-initial-state';
-import { CartState } from '../cart-state.interface';
+import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
 
 export function reducer(
   state = initialState,
   action: ActionTypes
-): CartState {
+): DaffCartReducerState {
   switch (action.type) {
     case DaffCartPaymentMethodsActionTypes.CartPaymentMethodsLoadAction:
       return { ...state, loading: true };

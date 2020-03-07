@@ -1,5 +1,5 @@
-import { CartState } from './cart-state.interface';
+import { DaffCartReducerState } from './cart-state.interface';
 
-export interface State {
-  cart: CartState
+export interface DaffCartReducersState {
+  cart: DaffCartReducerState
 }

@@ -5,91 +5,91 @@ import {
 } from '@ngrx/store';
 
 import {
-  State,
-  CartState
+  DaffCartReducersState,
+  DaffCartReducerState
 } from '../reducers';
 
 /**
- * Cart State
+ * Cart DaffCartReducersState
  */
-export const selectCartState = createFeatureSelector<State>('cart');
+export const selectCartState = createFeatureSelector<DaffCartReducersState>('cart');
 
-export const cartStateSelector: MemoizedSelector<object, State['cart']> = createSelector(
+export const cartStateSelector: MemoizedSelector<object, DaffCartReducersState['cart']> = createSelector(
   selectCartState,
-  (state: State) => state.cart
+  (state: DaffCartReducersState) => state.cart
 )
 
-export const selectCartValue: MemoizedSelector<object, CartState['cart']> = createSelector(
+export const selectCartValue: MemoizedSelector<object, DaffCartReducerState['cart']> = createSelector(
   cartStateSelector,
-  (state: CartState) => state.cart
+  (state: DaffCartReducerState) => state.cart
 )
 
-export const selectCartLoading: MemoizedSelector<object, CartState['loading']> = createSelector(
+export const selectCartLoading: MemoizedSelector<object, DaffCartReducerState['loading']> = createSelector(
   cartStateSelector,
-  (state: CartState) => state.loading
+  (state: DaffCartReducerState) => state.loading
 )
 
-export const selectCartErrors: MemoizedSelector<object, CartState['errors']> = createSelector(
+export const selectCartErrors: MemoizedSelector<object, DaffCartReducerState['errors']> = createSelector(
   cartStateSelector,
-  (state: CartState) => state.errors
+  (state: DaffCartReducerState) => state.errors
 )
 
-export const selectCartId: MemoizedSelector<object, CartState['cart']['id']> = createSelector(
+export const selectCartId: MemoizedSelector<object, DaffCartReducerState['cart']['id']> = createSelector(
   selectCartValue,
-  (state: CartState['cart']) => state.id
+  (state: DaffCartReducerState['cart']) => state.id
 )
 
-export const selectCartSubtotal: MemoizedSelector<object, CartState['cart']['subtotal']> = createSelector(
+export const selectCartSubtotal: MemoizedSelector<object, DaffCartReducerState['cart']['subtotal']> = createSelector(
   selectCartValue,
-  (state: CartState['cart']) => state.subtotal
+  (state: DaffCartReducerState['cart']) => state.subtotal
 )
 
-export const selectCartGrandTotal: MemoizedSelector<object, CartState['cart']['grand_total']> = createSelector(
+export const selectCartGrandTotal: MemoizedSelector<object, DaffCartReducerState['cart']['grand_total']> = createSelector(
   selectCartValue,
-  (state: CartState['cart']) => state.grand_total
+  (state: DaffCartReducerState['cart']) => state.grand_total
 )
 
-export const selectCartCoupons: MemoizedSelector<object, CartState['cart']['coupons']> = createSelector(
+export const selectCartCoupons: MemoizedSelector<object, DaffCartReducerState['cart']['coupons']> = createSelector(
   selectCartValue,
-  (state: CartState['cart']) => state.coupons
+  (state: DaffCartReducerState['cart']) => state.coupons
 )
 
-export const selectCartItems: MemoizedSelector<object, CartState['cart']['items']> = createSelector(
+export const selectCartItems: MemoizedSelector<object, DaffCartReducerState['cart']['items']> = createSelector(
   selectCartValue,
-  (state: CartState['cart']) => state.items
+  (state: DaffCartReducerState['cart']) => state.items
 )
 
-export const selectCartBillingAddress: MemoizedSelector<object, CartState['cart']['billing_address']> = createSelector(
+export const selectCartBillingAddress: MemoizedSelector<object, DaffCartReducerState['cart']['billing_address']> = createSelector(
   selectCartValue,
-  (state: CartState['cart']) => state.billing_address
+  (state: DaffCartReducerState['cart']) => state.billing_address
 )
 
-export const selectCartShippingAddress: MemoizedSelector<object, CartState['cart']['shipping_address']> = createSelector(
+export const selectCartShippingAddress: MemoizedSelector<object, DaffCartReducerState['cart']['shipping_address']> = createSelector(
   selectCartValue,
-  (state: CartState['cart']) => state.shipping_address
+  (state: DaffCartReducerState['cart']) => state.shipping_address
 )
 
-export const selectCartPayment: MemoizedSelector<object, CartState['cart']['payment']> = createSelector(
+export const selectCartPayment: MemoizedSelector<object, DaffCartReducerState['cart']['payment']> = createSelector(
   selectCartValue,
-  (state: CartState['cart']) => state.payment
+  (state: DaffCartReducerState['cart']) => state.payment
 )
 
-export const selectCartTotals: MemoizedSelector<object, CartState['cart']['totals']> = createSelector(
+export const selectCartTotals: MemoizedSelector<object, DaffCartReducerState['cart']['totals']> = createSelector(
   selectCartValue,
-  (state: CartState['cart']) => state.totals
+  (state: DaffCartReducerState['cart']) => state.totals
 )
 
-export const selectCartShippingInformation: MemoizedSelector<object, CartState['cart']['shipping_information']> = createSelector(
+export const selectCartShippingInformation: MemoizedSelector<object, DaffCartReducerState['cart']['shipping_information']> = createSelector(
   selectCartValue,
-  (state: CartState['cart']) => state.shipping_information
+  (state: DaffCartReducerState['cart']) => state.shipping_information
 )
 
-export const selectCartAvailableShippingMethods: MemoizedSelector<object, CartState['cart']['available_shipping_methods']> = createSelector(
+export const selectCartAvailableShippingMethods: MemoizedSelector<object, DaffCartReducerState['cart']['available_shipping_methods']> = createSelector(
   selectCartValue,
-  (state: CartState['cart']) => state.available_shipping_methods
+  (state: DaffCartReducerState['cart']) => state.available_shipping_methods
 )
 
-export const selectCartAvailablePaymentMethods: MemoizedSelector<object, CartState['cart']['available_payment_methods']> = createSelector(
+export const selectCartAvailablePaymentMethods: MemoizedSelector<object, DaffCartReducerState['cart']['available_payment_methods']> = createSelector(
   selectCartValue,
-  (state: CartState['cart']) => state.available_payment_methods
+  (state: DaffCartReducerState['cart']) => state.available_payment_methods
 )

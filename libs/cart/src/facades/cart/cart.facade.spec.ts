@@ -19,11 +19,11 @@ import {
 } from '@daffodil/cart';
 
 import { DaffCartFacade } from './cart.facade';
-import { State, reducers, initialState } from '../../reducers';
+import { DaffCartReducersState, daffCartReducers, initialState } from '../../reducers';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
 describe('DaffCartFacade', () => {
-  let store: MockStore<{ product: Partial<State> }>;
+  let store: MockStore<{ product: Partial<DaffCartReducersState> }>;
   let facade: DaffCartFacade;
   let cartFactory: DaffCartFactory;
 
@@ -31,7 +31,7 @@ describe('DaffCartFacade', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          cart: combineReducers(reducers),
+          cart: combineReducers(daffCartReducers),
         })
       ],
       providers: [
