@@ -149,14 +149,14 @@ describe('Daffodil | Cart | CartPaymentEffects', () => {
 
   describe('when CartPaymentRemoveAction is triggered', () => {
     let expected;
-    const resetAction = new DaffCartPaymentRemove();
+    const cartPaymentRemoveAction = new DaffCartPaymentRemove();
 
     describe('and the clear call to driver is successful', () => {
       beforeEach(() => {
         daffPaymentDriverSpy.remove.and.returnValue(of(undefined));
-        const resetCartSuccessAction = new DaffCartPaymentRemoveSuccess();
-        actions$ = hot('--a', { a: resetAction });
-        expected = cold('--b', { b: resetCartSuccessAction });
+        const cartPaymentRemoveSuccessAction = new DaffCartPaymentRemoveSuccess();
+        actions$ = hot('--a', { a: cartPaymentRemoveAction });
+        expected = cold('--b', { b: cartPaymentRemoveSuccessAction });
       });
       it('should return a DaffCartPaymentRemoveSucess action', () => {
         expect(effects.remove$).toBeObservable(expected);
@@ -168,9 +168,9 @@ describe('Daffodil | Cart | CartPaymentEffects', () => {
         const error = 'Failed to remove the cart payment';
         const response = cold('#', {}, error);
         daffPaymentDriverSpy.remove.and.returnValue(response);
-        const resetCartFailureAction = new DaffCartPaymentRemoveFailure(error);
-        actions$ = hot('--a', { a: resetAction });
-        expected = cold('--b', { b: resetCartFailureAction });
+        const cartPaymentRemoveFailureAction = new DaffCartPaymentRemoveFailure(error);
+        actions$ = hot('--a', { a: cartPaymentRemoveAction });
+        expected = cold('--b', { b: cartPaymentRemoveFailureAction });
       });
       it('should return a DaffCartPaymentRemoveFailure action', () => {
         expect(effects.remove$).toBeObservable(expected);

@@ -152,15 +152,15 @@ describe('Daffodil | Cart | CartShippingInformationEffects', () => {
 
   describe('when CartShippingInformationDeleteAction is triggered', () => {
     let expected;
-    const resetAction = new DaffCartShippingInformationDelete();
+    const cartShippingInformationDeleteAction = new DaffCartShippingInformationDelete();
 
     describe('and the clear call to driver is successful', () => {
       beforeEach(() => {
         mockCart.shipping_information = null;
         daffShippingInformationDriverSpy.delete.and.returnValue(of(mockCart));
-        const resetCartSuccessAction = new DaffCartShippingInformationDeleteSuccess(mockCart);
-        actions$ = hot('--a', { a: resetAction });
-        expected = cold('--b', { b: resetCartSuccessAction });
+        const cartShippingInformationDeleteSuccessAction = new DaffCartShippingInformationDeleteSuccess(mockCart);
+        actions$ = hot('--a', { a: cartShippingInformationDeleteAction });
+        expected = cold('--b', { b: cartShippingInformationDeleteSuccessAction });
       });
       it('should return a DaffCartShippingInformationDeleteSucess action', () => {
         expect(effects.delete$).toBeObservable(expected);
@@ -172,9 +172,9 @@ describe('Daffodil | Cart | CartShippingInformationEffects', () => {
         const error = 'Failed to delete the cart shipping information';
         const response = cold('#', {}, error);
         daffShippingInformationDriverSpy.delete.and.returnValue(response);
-        const resetCartFailureAction = new DaffCartShippingInformationDeleteFailure(error);
-        actions$ = hot('--a', { a: resetAction });
-        expected = cold('--b', { b: resetCartFailureAction });
+        const cartShippingInformationDeleteFailureAction = new DaffCartShippingInformationDeleteFailure(error);
+        actions$ = hot('--a', { a: cartShippingInformationDeleteAction });
+        expected = cold('--b', { b: cartShippingInformationDeleteFailureAction });
       });
       it('should return a DaffCartShippingInformationDeleteFailure action', () => {
         expect(effects.delete$).toBeObservable(expected);

@@ -41,7 +41,7 @@ describe('Cart | Reducer | Cart', () => {
   });
 
   describe('when CartLoadAction is triggered', () => {
-    it('should setloading state to true', () => {
+    it('should set loading state to true', () => {
       const cartListLoadAction: DaffCartLoad = new DaffCartLoad();
 
       const result = reducer(initialState, cartListLoadAction);
@@ -65,11 +65,11 @@ describe('Cart | Reducer | Cart', () => {
       result = reducer(state, cartListLoadSuccess);
     });
 
-    it('should setcart from action.payload', () => {
+    it('should set cart from action.payload', () => {
       expect(result.cart).toEqual(cart)
     });
 
-    it('should setloading to false', () => {
+    it('should set loading to false', () => {
       expect(result.loading).toEqual(false);
     });
   });
@@ -91,7 +91,7 @@ describe('Cart | Reducer | Cart', () => {
       result = reducer(state, cartListLoadFailure);
     });
 
-    it('should setloading to false', () => {
+    it('should set loading to false', () => {
       expect(result.loading).toEqual(false);
     });
 
@@ -101,7 +101,7 @@ describe('Cart | Reducer | Cart', () => {
   });
 
   describe('when CartCreateAction is triggered', () => {
-    it('should setloading state to true', () => {
+    it('should set loading state to true', () => {
       const cartCreateAction: DaffCartCreate = new DaffCartCreate();
 
       const result = reducer(initialState, cartCreateAction);
@@ -125,11 +125,11 @@ describe('Cart | Reducer | Cart', () => {
       result = reducer(state, cartCreateSuccess);
     });
 
-    it('should setcart from action.payload', () => {
+    it('should set cart from action.payload', () => {
       expect(result.cart.id).toEqual(cart.id)
     });
 
-    it('should setloading to false', () => {
+    it('should set loading to false', () => {
       expect(result.loading).toEqual(false);
     });
   });
@@ -151,7 +151,7 @@ describe('Cart | Reducer | Cart', () => {
       result = reducer(state, cartCreateFailure);
     });
 
-    it('should setloading to false', () => {
+    it('should set loading to false', () => {
       expect(result.loading).toEqual(false);
     });
 
@@ -164,7 +164,7 @@ describe('Cart | Reducer | Cart', () => {
     const productId = 'productId';
     const qty = 1;
 
-    it('should setloading state to true', () => {
+    it('should set loading state to true', () => {
       const addToCartAction: DaffAddToCart = new DaffAddToCart({ productId, qty });
 
       const result = reducer(initialState, addToCartAction);
@@ -187,11 +187,11 @@ describe('Cart | Reducer | Cart', () => {
       result = reducer(state, addToCartActionSuccess);
     });
 
-    it('should setcart from action.payload', () => {
+    it('should set cart from action.payload', () => {
       expect(result.cart).toEqual(cart)
     });
 
-    it('should setloading state to false', () => {
+    it('should set loading state to false', () => {
       expect(result.loading).toEqual(false);
     });
   });
@@ -215,7 +215,7 @@ describe('Cart | Reducer | Cart', () => {
       result = reducer(state, addToCartFailure);
     });
 
-    it('should setloading to false', () => {
+    it('should set loading to false', () => {
       expect(result.loading).toEqual(false);
     });
 
@@ -231,8 +231,8 @@ describe('Cart | Reducer | Cart', () => {
         cart: null,
         errors: []
       }
-      const cartReset = new DaffCartClear();
-      const result = reducer(initialState, cartReset);
+      const cartClear = new DaffCartClear();
+      const result = reducer(initialState, cartClear);
 
       expect(result).toEqual(expectedState);
     });
@@ -249,8 +249,8 @@ describe('Cart | Reducer | Cart', () => {
         },
         loading: false
       }
-      const cartResetSuccess = new DaffCartClearSuccess(cart);
-      const result = reducer(initialState, cartResetSuccess)
+      const cartClearSuccess = new DaffCartClearSuccess(cart);
+      const result = reducer(initialState, cartClearSuccess)
 
       expect(result).toEqual(expectedState);
     });
@@ -270,12 +270,12 @@ describe('Cart | Reducer | Cart', () => {
 
       error = 'error';
 
-      const cartResetFailure = new DaffCartClearFailure(error);
+      const cartClearFailure = new DaffCartClearFailure(error);
 
-      result = reducer(state, cartResetFailure);
+      result = reducer(state, cartClearFailure);
     });
 
-    it('should setloading to false', () => {
+    it('should set loading to false', () => {
       expect(result.loading).toEqual(false);
     });
 

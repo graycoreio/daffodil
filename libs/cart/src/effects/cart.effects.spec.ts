@@ -189,14 +189,14 @@ describe('Daffodil | Cart | CartEffects', () => {
   });
   describe('when CartClearAction is triggered', () => {
     let expected;
-    const resetAction = new DaffCartClear();
+    const cartClearAction = new DaffCartClear();
 
     describe('and the clear call to driver is successful', () => {
       beforeEach(() => {
         daffDriverSpy.clear.and.returnValue(of(mockCart));
-        const resetCartSuccessAction = new DaffCartClearSuccess(mockCart);
-        actions$ = hot('--a', { a: resetAction });
-        expected = cold('--b', { b: resetCartSuccessAction });
+        const cartClearSuccessAction = new DaffCartClearSuccess(mockCart);
+        actions$ = hot('--a', { a: cartClearAction });
+        expected = cold('--b', { b: cartClearSuccessAction });
       });
       it('should return a DaffCartClearSucess action', () => {
         expect(effects.clear$).toBeObservable(expected);
@@ -208,9 +208,9 @@ describe('Daffodil | Cart | CartEffects', () => {
         const error = 'Failed to clear the cart.';
         const response = cold('#', {}, error);
         daffDriverSpy.clear.and.returnValue(response);
-        const resetCartFailureAction = new DaffCartClearFailure(error);
-        actions$ = hot('--a', { a: resetAction });
-        expected = cold('--b', { b: resetCartFailureAction });
+        const cartClearFailureAction = new DaffCartClearFailure(error);
+        actions$ = hot('--a', { a: cartClearAction });
+        expected = cold('--b', { b: cartClearFailureAction });
       });
       it('should return a DaffCartClearFailure action', () => {
         expect(effects.clear$).toBeObservable(expected);
