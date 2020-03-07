@@ -20,12 +20,17 @@ import {
   selectCategorySortOptions,
 	selectCategory,
 	selectProductsByCategory,
-	selectCategoryPageTotalProducts
+	selectCategoryPageTotalProducts,
+	selectCategoryPageAppliedFilters,
+	selectCategoryPageAppliedSortOption,
+	selectCategoryPageAppliedSortDirection
 } from '../selectors/category.selector';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
 import { DaffCategoryFilter } from '../models/category-filter';
 import { DaffCategorySortOption } from '../models/category-sort-option';
+import { DaffSortDirectionEnum } from '../models/requests/category-request';
+import { DaffCategoryFilterAction } from '../models/requests/filter-action';
 
 /**
  * A facade for accessing state for the currently selected category.
@@ -67,6 +72,18 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
    */
   sortOptions$: Observable<DaffCategorySortOption[]>;
   /**
+   * The sort options available for the products of the selected category.
+   */
+  appliedFilters$: Observable<DaffCategoryFilterAction[]>;
+  /**
+   * The sort options available for the products of the selected category.
+   */
+  appliedSortOption$: Observable<string>;
+  /**
+   * The sort options available for the products of the selected category.
+   */
+  appliedSortDirection$: Observable<DaffSortDirectionEnum>;
+  /**
    * Products of the currently selected category.
    */
   products$: Observable<DaffProductUnion[]>;
@@ -105,6 +122,9 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
     this.pageSize$ = this.store.pipe(select(selectCategoryPageSize));
     this.filters$ = this.store.pipe(select(selectCategoryFilters));
     this.sortOptions$ = this.store.pipe(select(selectCategorySortOptions));
+    this.appliedFilters$ = this.store.pipe(select(selectCategoryPageAppliedFilters));
+    this.appliedSortOption$ = this.store.pipe(select(selectCategoryPageAppliedSortOption));
+    this.appliedSortDirection$ = this.store.pipe(select(selectCategoryPageAppliedSortDirection));
     this.loading$ = this.store.pipe(select(selectCategoryLoading));
 		this.errors$ = this.store.pipe(select(selectCategoryErrors));
 	}

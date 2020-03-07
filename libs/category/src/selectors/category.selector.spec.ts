@@ -27,7 +27,10 @@ import {
 	selectCategory,
 	selectProductsByCategory,
 	selectCategoryPageProductIds,
-	selectCategoryPageTotalProducts
+	selectCategoryPageTotalProducts,
+	selectCategoryPageAppliedFilters,
+	selectCategoryPageAppliedSortOption,
+	selectCategoryPageAppliedSortDirection
 } from './category.selector';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
 import { categoryReducers } from '../reducers/category-reducers';
@@ -147,6 +150,33 @@ describe('DaffCategorySelectors', () => {
     it('selects the productIds of the current category page', () => {
       const selector = store.pipe(select(selectCategoryPageTotalProducts));
       const expected = cold('a', { a: stubCategoryPageConfigurationState.total_products });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCategoryPageAppliedFilters', () => {
+
+    it('selects the applied filters of the current category page', () => {
+      const selector = store.pipe(select(selectCategoryPageAppliedFilters));
+      const expected = cold('a', { a: stubCategoryPageConfigurationState.applied_filters });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCategoryPageAppliedSortOption', () => {
+
+    it('selects the applied sort option of the current category page', () => {
+      const selector = store.pipe(select(selectCategoryPageAppliedSortOption));
+      const expected = cold('a', { a: stubCategoryPageConfigurationState.applied_sort_option });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCategoryPageAppliedSortDirection', () => {
+
+    it('selects the applied sort direction of the current category page', () => {
+      const selector = store.pipe(select(selectCategoryPageAppliedSortDirection));
+      const expected = cold('a', { a: stubCategoryPageConfigurationState.applied_sort_direction });
       expect(selector).toBeObservable(expected);
     });
   });
