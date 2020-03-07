@@ -10,11 +10,14 @@ export { DaffCartCoupon } from './models/cart-coupon';
 
 export { DaffCartModule } from './cart.module';
 export { DaffCartContainer } from './containers/cart/cart.component';
+
 export * from './actions';
 export * from './selectors';
-import * as fromCart from './reducers';
+export * from './reducers';
+
+import * as fromCart from './from-cart';
 export { fromCart };
-import * as fromCartReducer from './reducers/cart.reducer';
+import * as fromCartReducer from './from-cart-reducer';
 export { fromCartReducer };
 
 export { DaffCartStorageService } from './storage/cart-storage.service';
