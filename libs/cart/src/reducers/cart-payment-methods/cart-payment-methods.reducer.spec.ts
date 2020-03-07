@@ -55,7 +55,7 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
       result = reducer(state, cartPaymentMethodsLoadSuccess);
     });
 
-    it('should set loading to false', () => {
+    it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
     });
 
@@ -81,7 +81,7 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
       result = reducer(state, cartPaymentMethodsLoadFailure);
     });
 
-    it('should set loading to false', () => {
+    it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
     });
 

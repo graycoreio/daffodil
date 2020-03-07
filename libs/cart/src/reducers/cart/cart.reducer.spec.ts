@@ -69,7 +69,7 @@ describe('Cart | Reducer | Cart', () => {
       expect(result.cart).toEqual(cart)
     });
 
-    it('should set loading to false', () => {
+    it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
     });
   });
@@ -91,7 +91,7 @@ describe('Cart | Reducer | Cart', () => {
       result = reducer(state, cartListLoadFailure);
     });
 
-    it('should set loading to false', () => {
+    it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
     });
 
@@ -129,7 +129,7 @@ describe('Cart | Reducer | Cart', () => {
       expect(result.cart.id).toEqual(cart.id)
     });
 
-    it('should set loading to false', () => {
+    it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
     });
   });
@@ -151,7 +151,7 @@ describe('Cart | Reducer | Cart', () => {
       result = reducer(state, cartCreateFailure);
     });
 
-    it('should set loading to false', () => {
+    it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
     });
 
@@ -191,7 +191,7 @@ describe('Cart | Reducer | Cart', () => {
       expect(result.cart).toEqual(cart)
     });
 
-    it('should set loading state to false', () => {
+    it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
     });
   });
@@ -215,7 +215,7 @@ describe('Cart | Reducer | Cart', () => {
       result = reducer(state, addToCartFailure);
     });
 
-    it('should set loading to false', () => {
+    it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
     });
 
@@ -275,7 +275,7 @@ describe('Cart | Reducer | Cart', () => {
       result = reducer(state, cartClearFailure);
     });
 
-    it('should set loading to false', () => {
+    it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
     });
 

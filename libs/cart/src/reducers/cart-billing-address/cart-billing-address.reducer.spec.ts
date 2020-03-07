@@ -59,7 +59,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
       result = reducer(state, cartListLoadSuccess);
     });
 
-    it('should set loading to false', () => {
+    it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
     });
 
@@ -85,7 +85,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
       result = reducer(state, cartListLoadFailure);
     });
 
-    it('should set loading to false', () => {
+    it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
     });
 
@@ -122,7 +122,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
       expect(result.cart).toEqual(cart)
     });
 
-    it('should set loading state to false', () => {
+    it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
     });
   });
@@ -146,7 +146,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
       result = reducer(state, cartBillingAddressUpdateFailure);
     });
 
-    it('should set loading to false', () => {
+    it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
     });
 
