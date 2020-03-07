@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffMagentoAppliedSortOptionTransformService } from './applied-sort-option-transformer.service';
-import { MagentoSortFieldAction } from '../models/requests/sort';
+import { MagentoSortFieldAction, MagentoSortDirectionEnum } from '../models/requests/sort';
+import { DaffSortDirectionEnum } from '../../../models/requests/category-request';
 
 describe('DaffMagentoAppliedSortOptionTransformService', () => {
 
@@ -24,9 +25,9 @@ describe('DaffMagentoAppliedSortOptionTransformService', () => {
     
     it('should return a MagentoSortOptionAction', () => {
 			const expectedReturn: MagentoSortFieldAction = {
-				sortOption: 'ASCE'
+				sortOption: MagentoSortDirectionEnum.Ascending
 			}
-      expect(service.transform('sortOption', 'ASCE')).toEqual(expectedReturn);
+      expect(service.transform('sortOption', DaffSortDirectionEnum.Ascending)).toEqual(expectedReturn);
     });
   });
 });

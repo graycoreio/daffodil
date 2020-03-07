@@ -14,6 +14,7 @@ import { MagentoGetProductsQuery } from './queries/get-products';
 import { DaffMagentoAppliedFiltersTransformService } from './transformers/applied-filter-transformer.service';
 import { DaffMagentoAppliedSortOptionTransformService } from './transformers/applied-sort-option-transformer.service';
 import { DaffMagentoCategoryResponseTransformService } from './transformers/category-response-transform.service';
+import { MagentoGetProductsByCategoriesRequest } from './models/requests/get-products-by-categories-request';
 
 @Injectable({
   providedIn: 'root'
@@ -48,24 +49,30 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     );
 	}
 	
-	private getProductsQueryVariables(request: DaffCategoryRequest) {
-		return {
-			filter: this.magentoAppliedFiltersTransformer.transform(request.applied_filters),
-			search: null,
-			pageSize: request.page_size,
-			currentPage: request.current_page,
-			sort: this.magentoAppliedSortTransformer.transform(request.applied_sort_option, request.applied_sort_direction)
+	private getProductsQueryVariables(request: DaffCategoryRequest): MagentoGetProductsByCategoriesRequest {
+		const queryVariables = {
+			filter: this.magentoAppliedFiltersTransformer.transform(request.id, request.applied_filters)
+		};
+		if(request.page_size) queryVariables['pageSize'] = request.page_size;
+		if(request.current_page) queryVariables['currentPage'] = request.current_page;
+		if(request.applied_sort_option && request.applied_sort_direction) {
+			queryVariables['sort'] = this.magentoAppliedSortTransformer.transform(request.applied_sort_option, request.applied_sort_direction);
 		}
+
+		return queryVariables;
 	}
 
-	private buildCompleteCategoryResponse(categoryReponse: MagentoGetACategoryResponse, productsResponse: MagentoGetProductsResponse) {
+	private buildCompleteCategoryResponse(
+		categoryResponse: MagentoGetACategoryResponse, 
+		productsResponse: MagentoGetProductsResponse
+	): MagentoCompleteCategoryResponse {
 		return {
-			category: categoryReponse.category,
-			products: productsResponse.products,
-			aggregates: productsResponse.aggregates,
-			sort_fields: productsResponse.sort_fields,
-			total_count: productsResponse.total_count,
-			page_info: productsResponse.page_info
+			category: categoryResponse.categoryList[0],
+			products: productsResponse.products.items,
+			aggregates: productsResponse.products.aggregations,
+			sort_fields: productsResponse.products.sort_fields,
+			total_count: productsResponse.products.total_count,
+			page_info: productsResponse.products.page_info
 		};
 	}
 }

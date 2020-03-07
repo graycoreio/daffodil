@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const MagentoGetCategoryQuery = gql`
-query MagentoGetCategoryQuery($filters: MagentoCategoryFilters){
+query MagentoGetCategoryQuery($filters: CategoryFilterInput){
 	categoryList(filters: $filters) {
 		id
 		name

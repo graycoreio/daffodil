@@ -1,3 +1,8 @@
+export enum MagentoSortDirectionEnum {
+	Ascending = 'ASC',
+	Decending = 'DESC'
+}
+
 export interface MagentoSortFieldAction {
-	[x: string]: string;
+	[x: string]: MagentoSortDirectionEnum;
 }

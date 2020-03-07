@@ -2,9 +2,9 @@ import { MagentoCategoryFilters } from './filters';
 import { MagentoSortFieldAction } from './sort';
 
 export interface MagentoGetProductsByCategoriesRequest {
-	filters: MagentoCategoryFilters;
+	filter: MagentoCategoryFilters;
 	search?: string;
-	page_size?: number;
-	current_page?: number;
+	pageSize?: number;
+	currentPage?: number;
 	sort?: MagentoSortFieldAction;
 }

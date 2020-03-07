@@ -8,11 +8,16 @@ import { DaffCategoryFilterAction } from '../../../models/requests/filter-action
 })
 export class DaffMagentoAppliedFiltersTransformService {
 
-  transform(daffFilters: DaffCategoryFilterAction[]): MagentoCategoryFilters {
-		const magentoFilters: MagentoCategoryFilters = {};
+  transform(categoryId: string, daffFilters: DaffCategoryFilterAction[] = []): MagentoCategoryFilters {
+		const magentoFilters: MagentoCategoryFilters = {
+			category_id: {
+				eq: categoryId
+			}
+		};
 
 		daffFilters.forEach(filter => {
 			magentoFilters[filter.code] = {
+				...magentoFilters[filter.code],
 				[filter.action]: filter.value
 			}
 		});
