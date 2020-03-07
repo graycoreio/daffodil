@@ -27,7 +27,7 @@ export class DaffMagentoProductTransformerService {
           return {
             url: response.storeConfig.secure_base_media_url + 'catalog/product' + image.file,
             label: image.label,
-            id: image.id
+            id: image.id.toString()
           }
         })
       ],

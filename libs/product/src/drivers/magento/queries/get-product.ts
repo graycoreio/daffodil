@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 import { bundledProductFragment } from './fragments/bundled-product';
+import { magentoProductFragment } from './fragments/product';
 
 export const GetProductQuery = gql`
 query GetAProduct($sku: String!){
@@ -12,33 +13,13 @@ query GetAProduct($sku: String!){
 		}
 	}){
 		items {
-			__typename
-			id
-			url_key
-			name
-			sku
-			image {
-				url
-				label
-			}
-			media_gallery_entries {
-				label
-				file
-				position
-				disabled
-				id
-			}
-			short_description {
-				html
-			}
-			description {
-				html
-			}
+			...product
 			... on BundleProduct {
 				...bundledProductFragment
 			}
 		}
 	}
 }
+${magentoProductFragment}
 ${bundledProductFragment}
 `
