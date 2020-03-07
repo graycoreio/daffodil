@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { switchMap, map, catchError, mapTo, tap } from 'rxjs/operators';
+import { switchMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
@@ -27,7 +27,7 @@ export class DaffCartPaymentMethodsEffects<T extends DaffCartPaymentMethod> {
     ofType(DaffCartPaymentMethodsActionTypes.CartPaymentMethodsLoadAction),
     switchMap((action: DaffCartPaymentMethodsLoad) =>
       this.driver.list(this.storage.getCartId()).pipe(
-        map(resp => new DaffCartPaymentMethodsLoadSuccess(resp)),
+        map((resp: T[]) => new DaffCartPaymentMethodsLoadSuccess(resp)),
         catchError(error => of(new DaffCartPaymentMethodsLoadFailure('Failed to list cart payment methods')))
       )
     )

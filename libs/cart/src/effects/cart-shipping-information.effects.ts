@@ -33,7 +33,7 @@ export class DaffCartShippingInformationEffects<T extends DaffCartShippingInform
     ofType(DaffCartShippingInformationActionTypes.CartShippingInformationLoadAction),
     switchMap((action: DaffCartShippingInformationLoad) =>
       this.driver.get(this.storage.getCartId()).pipe(
-        map(resp => new DaffCartShippingInformationLoadSuccess(resp)),
+        map((resp: T) => new DaffCartShippingInformationLoadSuccess(resp)),
         catchError(error => of(new DaffCartShippingInformationLoadFailure('Failed to load cart shipping information')))
       )
     )
@@ -44,7 +44,7 @@ export class DaffCartShippingInformationEffects<T extends DaffCartShippingInform
     ofType(DaffCartShippingInformationActionTypes.CartShippingInformationUpdateAction),
     switchMap((action: DaffCartShippingInformationUpdate<T>) =>
       this.driver.update(this.storage.getCartId(), action.payload).pipe(
-        map(resp => new DaffCartShippingInformationUpdateSuccess(resp)),
+        map((resp: V) => new DaffCartShippingInformationUpdateSuccess(resp)),
         catchError(error => of(new DaffCartShippingInformationUpdateFailure('Failed to update cart shipping information')))
       )
     )
@@ -55,7 +55,7 @@ export class DaffCartShippingInformationEffects<T extends DaffCartShippingInform
     ofType(DaffCartShippingInformationActionTypes.CartShippingInformationDeleteAction),
     switchMap((action: DaffCartShippingInformationDelete) =>
       this.driver.delete(this.storage.getCartId()).pipe(
-        map(resp => new DaffCartShippingInformationDeleteSuccess(resp)),
+        map((resp: V) => new DaffCartShippingInformationDeleteSuccess(resp)),
         catchError(error => of(new DaffCartShippingInformationDeleteFailure('Failed to delete the cart shipping information')))
       )
     )

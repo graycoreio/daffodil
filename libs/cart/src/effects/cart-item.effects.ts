@@ -44,7 +44,7 @@ export class DaffCartItemEffects<
     ofType(DaffCartItemActionTypes.CartItemListAction),
     switchMap((action: DaffCartItemList) =>
       this.driver.list(this.storage.getCartId()).pipe(
-        map(resp => new DaffCartItemListSuccess(resp)),
+        map((resp: T[]) => new DaffCartItemListSuccess(resp)),
         catchError(error => of(new DaffCartItemListFailure('Failed to list cart items')))
       )
     )
@@ -55,7 +55,7 @@ export class DaffCartItemEffects<
     ofType(DaffCartItemActionTypes.CartItemLoadAction),
     switchMap((action: DaffCartItemLoad<T>) =>
       this.driver.get(this.storage.getCartId(), action.itemId).pipe(
-        map(resp => new DaffCartItemLoadSuccess(resp)),
+        map((resp: T) => new DaffCartItemLoadSuccess(resp)),
         catchError(error => of(new DaffCartItemLoadFailure('Failed to load cart item')))
       )
     )
@@ -69,7 +69,7 @@ export class DaffCartItemEffects<
         this.storage.getCartId(),
         action.input
       ).pipe(
-        map(resp => new DaffCartItemAddSuccess(resp)),
+        map((resp: V) => new DaffCartItemAddSuccess(resp)),
         catchError(error => of(new DaffCartItemAddFailure('Failed to add cart item')))
       )
     )
@@ -84,7 +84,7 @@ export class DaffCartItemEffects<
         action.itemId,
         action.changes
       ).pipe(
-        map(resp => new DaffCartItemUpdateSuccess(resp)),
+        map((resp: V) => new DaffCartItemUpdateSuccess(resp)),
         catchError(error => of(new DaffCartItemUpdateFailure('Failed to update cart item')))
       )
     )
@@ -95,7 +95,7 @@ export class DaffCartItemEffects<
     ofType(DaffCartItemActionTypes.CartItemDeleteAction),
     switchMap((action: DaffCartItemDelete<T>) =>
       this.driver.delete(this.storage.getCartId(), action.itemId).pipe(
-        map(resp => new DaffCartItemDeleteSuccess(resp)),
+        map((resp: V) => new DaffCartItemDeleteSuccess(resp)),
         catchError(error => of(new DaffCartItemDeleteFailure('Failed to remove the cart item')))
       )
     )

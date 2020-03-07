@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { switchMap, map, catchError } from 'rxjs/operators';
+import { switchMap, map, catchError, mapTo } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
@@ -33,7 +33,7 @@ export class DaffCartPaymentEffects<T extends DaffCartPaymentMethod, V extends D
     ofType(DaffCartPaymentActionTypes.CartPaymentLoadAction),
     switchMap((action: DaffCartPaymentLoad) =>
       this.driver.get(this.storage.getCartId()).pipe(
-        map(resp => new DaffCartPaymentLoadSuccess(resp)),
+        map((resp: T) => new DaffCartPaymentLoadSuccess(resp)),
         catchError(error => of(new DaffCartPaymentLoadFailure('Failed to load cart payment')))
       )
     )
@@ -44,7 +44,7 @@ export class DaffCartPaymentEffects<T extends DaffCartPaymentMethod, V extends D
     ofType(DaffCartPaymentActionTypes.CartPaymentUpdateAction),
     switchMap((action: DaffCartPaymentUpdate<T>) =>
       this.driver.update(this.storage.getCartId(), action.payload).pipe(
-        map(resp => new DaffCartPaymentUpdateSuccess(resp)),
+        map((resp: V) => new DaffCartPaymentUpdateSuccess(resp)),
         catchError(error => of(new DaffCartPaymentUpdateFailure('Failed to update cart payment')))
       )
     )
@@ -55,7 +55,7 @@ export class DaffCartPaymentEffects<T extends DaffCartPaymentMethod, V extends D
     ofType(DaffCartPaymentActionTypes.CartPaymentRemoveAction),
     switchMap((action: DaffCartPaymentRemove) =>
       this.driver.remove(this.storage.getCartId()).pipe(
-        map(resp => new DaffCartPaymentRemoveSuccess()),
+        mapTo(new DaffCartPaymentRemoveSuccess()),
         catchError(error => of(new DaffCartPaymentRemoveFailure('Failed to remove the cart payment')))
       )
     )

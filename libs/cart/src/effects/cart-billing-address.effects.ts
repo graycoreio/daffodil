@@ -30,7 +30,7 @@ export class DaffCartBillingAddressEffects<T extends DaffCartAddress, V extends 
     ofType(DaffCartBillingAddressActionTypes.CartBillingAddressLoadAction),
     switchMap((action: DaffCartBillingAddressLoad) =>
       this.driver.get(this.storage.getCartId()).pipe(
-        map(resp => new DaffCartBillingAddressLoadSuccess(resp)),
+        map((resp: T) => new DaffCartBillingAddressLoadSuccess(resp)),
         catchError(error => of(new DaffCartBillingAddressLoadFailure('Failed to load cart billing address')))
       )
     )
@@ -41,7 +41,7 @@ export class DaffCartBillingAddressEffects<T extends DaffCartAddress, V extends 
     ofType(DaffCartBillingAddressActionTypes.CartBillingAddressUpdateAction),
     switchMap((action: DaffCartBillingAddressUpdate<T>) =>
       this.driver.update(this.storage.getCartId(), action.payload).pipe(
-        map(resp => new DaffCartBillingAddressUpdateSuccess(resp)),
+        map((resp: V) => new DaffCartBillingAddressUpdateSuccess(resp)),
         catchError(error => of(new DaffCartBillingAddressUpdateFailure('Failed to update cart billing address')))
       )
     )

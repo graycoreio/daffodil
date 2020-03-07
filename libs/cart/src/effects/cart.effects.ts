@@ -35,7 +35,7 @@ export class DaffCartEffects<T extends DaffCart> {
     ofType(DaffCartActionTypes.CartCreateAction),
     switchMap((action: DaffCartCreate) =>
       this.driver.create().pipe(
-        map(resp => new DaffCartCreateSuccess(resp)),
+        map((resp: {id: T['id']}) => new DaffCartCreateSuccess(resp)),
         catchError(error => of(new DaffCartCreateFailure('Failed to create cart')))
       )
     )
@@ -57,7 +57,7 @@ export class DaffCartEffects<T extends DaffCart> {
     ofType(DaffCartActionTypes.CartLoadAction),
     switchMap((action: DaffCartLoad) =>
       this.driver.get(this.storage.getCartId()).pipe(
-        map(resp => new DaffCartLoadSuccess(resp)),
+        map((resp: T) => new DaffCartLoadSuccess(resp)),
         catchError(error => of(new DaffCartLoadFailure('Failed to load cart')))
       )
     )
@@ -68,7 +68,7 @@ export class DaffCartEffects<T extends DaffCart> {
     ofType(DaffCartActionTypes.AddToCartAction),
     switchMap((action: DaffAddToCart) =>
       this.driver.addToCart(action.payload.productId, action.payload.qty).pipe(
-        map(resp => new DaffAddToCartSuccess(resp)),
+        map((resp: T) => new DaffAddToCartSuccess(resp)),
         catchError(error => of(new DaffAddToCartFailure('Failed to add item to cart')))
       )
     )
@@ -79,7 +79,7 @@ export class DaffCartEffects<T extends DaffCart> {
     ofType(DaffCartActionTypes.CartClearAction),
     switchMap((action: DaffCartClear) =>
       this.driver.clear(this.storage.getCartId()).pipe(
-        map(resp => new DaffCartClearSuccess(resp)),
+        map((resp: T) => new DaffCartClearSuccess(resp)),
         catchError(error => of(new DaffCartClearFailure('Failed to clear the cart.')))
       )
     )
