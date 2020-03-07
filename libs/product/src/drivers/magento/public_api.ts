@@ -1,3 +1,4 @@
+export { ProductNode } from './models/product-node';
 export { 
 	MagentoBundledProduct, 
 	MagentoBundledProductItemOption,

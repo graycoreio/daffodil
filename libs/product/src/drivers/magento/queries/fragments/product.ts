@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const magentoProductFragment = gql`
-  fragment product on MagnetoProduct {
+  fragment product on ProductInterface {
 		id
 		url_key
 		name
