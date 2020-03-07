@@ -27,7 +27,7 @@ export class DaffMagentoCartItemTransformer {
       price: cartItem.prices.price.value,
       row_total: cartItem.prices.row_total.value,
       product_id: String(cartItem.product.id),
-      description: cartItem.product.description,
+      description: cartItem.product.description.html,
 
       // TODO: implement
       parent_item_id: 0
