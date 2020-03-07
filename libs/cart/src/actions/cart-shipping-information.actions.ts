@@ -49,10 +49,10 @@ export class DaffCartShippingInformationUpdateFailure implements Action {
   constructor(public payload: string) {}
 }
 
-export class DaffCartShippingInformationDelete implements Action {
+export class DaffCartShippingInformationDelete<T extends DaffCartShippingRate> implements Action {
   readonly type = DaffCartShippingInformationActionTypes.CartShippingInformationDeleteAction;
 
-  constructor(public id?: string | number) {}
+  constructor(public id?: T['id']) {}
 }
 
 export class DaffCartShippingInformationDeleteSuccess<T extends DaffCart> implements Action {
@@ -77,6 +77,6 @@ export type DaffCartShippingInformationActions<
   | DaffCartShippingInformationUpdate<T>
   | DaffCartShippingInformationUpdateSuccess<V>
   | DaffCartShippingInformationUpdateFailure
-  | DaffCartShippingInformationDelete
+  | DaffCartShippingInformationDelete<T>
   | DaffCartShippingInformationDeleteSuccess<V>
   | DaffCartShippingInformationDeleteFailure

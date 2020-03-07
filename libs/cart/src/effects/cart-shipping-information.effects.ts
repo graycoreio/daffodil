@@ -19,6 +19,7 @@ import { DaffCart } from '../models/cart';
 import { DaffCartShippingInformation } from '../models/cart-shipping-info';
 import { DaffCartShippingInformationServiceInterface, DaffCartShippingInformationDriver } from '../drivers/interfaces/cart-shipping-information-service.interface';
 import { DaffCartStorageService } from '../storage/cart-storage.service';
+import { DaffCartShippingRate } from '../models/cart-shipping-rate';
 
 @Injectable()
 export class DaffCartShippingInformationEffects<T extends DaffCartShippingInformation, V extends DaffCart> {
@@ -53,7 +54,7 @@ export class DaffCartShippingInformationEffects<T extends DaffCartShippingInform
   @Effect()
   delete$ = this.actions$.pipe(
     ofType(DaffCartShippingInformationActionTypes.CartShippingInformationDeleteAction),
-    switchMap((action: DaffCartShippingInformationDelete) =>
+    switchMap((action: DaffCartShippingInformationDelete<DaffCartShippingRate>) =>
       this.driver.delete(this.storage.getCartId()).pipe(
         map((resp: V) => new DaffCartShippingInformationDeleteSuccess(resp)),
         catchError(error => of(new DaffCartShippingInformationDeleteFailure('Failed to delete the cart shipping information')))
