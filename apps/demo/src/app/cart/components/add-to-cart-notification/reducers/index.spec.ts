@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 
-import { DaffCart, DaffCartReset, DaffCartLoadSuccess, fromCart } from '@daffodil/cart';
+import { DaffCart, DaffCartClear, DaffCartLoadSuccess, fromCart } from '@daffodil/cart';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 
 import * as fromAddToCartNotification from './index';
@@ -38,14 +38,14 @@ describe('selectDemoAddToCartNotificationState', () => {
   }));
 
   describe('addToCartNotificationStateSelector', () => {
-    
+
     it('selects add to cart notification state', () => {
       const expectedAddToCartNotificationState = {
         open: expectedOpen,
         productQty: expectedProductQty,
         productId: expectedProductId,
         loading: expectedLoading
-      } 
+      }
 
       store.pipe(select(fromAddToCartNotification.addToCartNotificationStateSelector)).subscribe((addToCartNotificationState) => {
         expect(addToCartNotificationState).toEqual(expectedAddToCartNotificationState);
@@ -54,7 +54,7 @@ describe('selectDemoAddToCartNotificationState', () => {
   });
 
   describe('selectOpen', () => {
-    
+
     it('selects showAddToCartNotification state', () => {
       store.pipe(select(fromAddToCartNotification.selectOpen)).subscribe((open) => {
         expect(open).toEqual(expectedOpen);
@@ -63,7 +63,7 @@ describe('selectDemoAddToCartNotificationState', () => {
   });
 
   describe('selectProductQty', () => {
-    
+
     it('selects productQty state', () => {
       store.pipe(select(fromAddToCartNotification.selectProductQty)).subscribe((productQty) => {
         expect(productQty).toEqual(expectedProductQty);
@@ -72,7 +72,7 @@ describe('selectDemoAddToCartNotificationState', () => {
   });
 
   describe('selectLoading', () => {
-    
+
     it('selects loading state', () => {
       store.pipe(select(fromAddToCartNotification.selectLoading)).subscribe((loading) => {
         expect(loading).toEqual(expectedLoading);
@@ -91,10 +91,10 @@ describe('selectDemoAddToCartNotificationState', () => {
         })
       });
 
-      store.dispatch(new DaffCartReset());
+      store.dispatch(new DaffCartClear());
       store.dispatch(new DaffCartLoadSuccess(stubCart));
     });
-    
+
     it('selects total number of cartItems', () => {
       store.pipe(select(fromAddToCartNotification.selectCartItemCount)).subscribe((count) => {
         expect(count).toEqual(4);
