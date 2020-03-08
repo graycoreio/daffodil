@@ -71,24 +71,28 @@ export class DaffChangeCategoryCurrentPage implements Action {
 /**
  * An action for changing the sorting option for the selected category.
  * 
- * @param sortingOption - A sorting option for the selected category.
+ * @param sort - The sort option to be applied.
  */
 export class DaffChangeCategorySortingOption implements Action {
   readonly type = DaffCategoryActionTypes.ChangeCategorySortingOptionAction;
 
-  constructor(public sortingOption: string) { }
+  constructor(
+		public sort: { 
+			option: DaffCategoryRequest['applied_sort_option'], 
+			direction: DaffCategoryRequest['applied_sort_direction']
+		}
+	) { }
 }
 
 /**
  * An action for changing the filters for the selected category.
  * 
- * todo: determine if this payload should be DaffCategoryFilter[] or string[].
  * @param categoryFilters - Filters to be applied to the selected category.
  */
 export class DaffChangeCategoryFilters implements Action {
   readonly type = DaffCategoryActionTypes.ChangeCategoryFiltersAction;
 
-  constructor(public categoryFilters: string[]) { }
+  constructor(public categoryFilters: DaffCategoryRequest['applied_filters']) { }
 }
 
 export type DaffCategoryActions =
