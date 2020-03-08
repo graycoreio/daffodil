@@ -5,8 +5,8 @@ export enum DaffCategoryFilterTypes {
 }
 
 export interface DaffCategoryFilter {
-  name: string;
-	attribute_name: string;
+  label: string;
+	name: string;
 	type: DaffCategoryFilterTypes;
 	items_count: number;
 	options: DaffCategoryFilterOption[];

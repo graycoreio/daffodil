@@ -55,9 +55,9 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 			}
 			
 			const aggregates: MagentoAggregation[] = [{
-				attribute_code: stubCategoryPageConfigurationState.filters[0].attribute_name,
+				attribute_code: stubCategoryPageConfigurationState.filters[0].name,
 				count: stubCategoryPageConfigurationState.filters[0].items_count,
-				label: stubCategoryPageConfigurationState.filters[0].name,
+				label: stubCategoryPageConfigurationState.filters[0].label,
 				options: [
 					{
 						value: stubCategoryPageConfigurationState.filters[0].options[0].value,
