@@ -67,6 +67,21 @@ export const selectCategoryPageTotalProducts = createSelector(
   (state: DaffCategoryPageConfigurationState) => state.total_products
 );
 
+export const selectCategoryPageAppliedFilters = createSelector(
+	selectCategoryPageConfigurationState,
+	(state: DaffCategoryPageConfigurationState) => state.applied_filters
+);
+
+export const selectCategoryPageAppliedSortOption = createSelector(
+	selectCategoryPageConfigurationState,
+	(state: DaffCategoryPageConfigurationState) => state.applied_sort_option
+);
+
+export const selectCategoryPageAppliedSortDirection = createSelector(
+	selectCategoryPageConfigurationState,
+	(state: DaffCategoryPageConfigurationState) => state.applied_sort_direction
+);
+
 /**
  * Selected Category Id State
  */

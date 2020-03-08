@@ -9,9 +9,9 @@ export class MockCategoryPageConfigurationState implements DaffCategoryPageConfi
   page_size = 20;
   current_page = 1;
   filters = [{
-    name: 'Category',
+    label: 'Category',
     items_count: 2,
-    attribute_name: 'cat',
+    name: 'cat',
     type: DaffCategoryFilterTypes.Equal,
     options: [
       {

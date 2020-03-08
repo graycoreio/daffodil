@@ -26,9 +26,9 @@ export class DaffMagentoCategoryPageConfigTransformerService {
 
   private transformAggregate(filter: MagentoAggregation): DaffCategoryFilter {
     return {
-      name: filter.label,
+      label: filter.label,
       type: DaffCategoryFilterTypes.Equal,
-			attribute_name: filter.attribute_code,
+			name: filter.attribute_code,
 			items_count: filter.count,
 			options: filter.options.map(option => {
 				return {
