@@ -16,8 +16,8 @@ export class DaffMagentoAppliedFiltersTransformService {
 		};
 
 		daffFilters.forEach(filter => {
-			magentoFilters[filter.code] = {
-				...magentoFilters[filter.code],
+			magentoFilters[filter.name] = {
+				...magentoFilters[filter.name],
 				[filter.action]: filter.value
 			}
 		});

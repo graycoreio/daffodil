@@ -1,5 +1,5 @@
 export interface DaffCategoryFilterAction {
 	action: string;
-	code: string;
+	name: string;
 	value: string;
 }

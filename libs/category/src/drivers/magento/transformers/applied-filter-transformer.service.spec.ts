@@ -11,12 +11,12 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
 	const categoryFilterActions: DaffCategoryFilterAction[] = [
 		{
 			action: 'action',
-			code: 'code',
+			name: 'name',
 			value: 'value'
 		},
 		{
 			action: 'action2',
-			code: 'code2',
+			name: 'name2',
 			value: 'value2'
 		}
 	]
@@ -36,15 +36,15 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
 
   describe('transform', () => {
     
-    it('should transform an array of DafFCategoryFilterAction into a MagentoCategoryFilters', () => {
+    it('should transform an array of DaffCategoryFilterAction into a MagentoCategoryFilters', () => {
 			const expectedReturn: MagentoCategoryFilters = {
 				category_id: {
 					eq: 'id'
 				},
-				code: {
+				name: {
 					action: 'value'
 				},
-				code2: {
+				name2: {
 					action2: 'value2'
 				}
 			}
