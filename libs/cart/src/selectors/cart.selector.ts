@@ -8,6 +8,7 @@ import {
   DaffCartReducersState,
   DaffCartReducerState
 } from '../reducers';
+import { DaffCartErrorType } from '../reducers/cart-error-type.enum';
 
 /**
  * Cart DaffCartReducersState
@@ -29,9 +30,44 @@ export const selectCartLoading: MemoizedSelector<object, DaffCartReducerState['l
   (state: DaffCartReducerState) => state.loading
 )
 
-export const selectCartErrors: MemoizedSelector<object, DaffCartReducerState['errors']> = createSelector(
+export const selectCartErrors: MemoizedSelector<object, DaffCartReducerState['errors'][DaffCartErrorType.Cart]> = createSelector(
   cartStateSelector,
-  (state: DaffCartReducerState) => state.errors
+  (state: DaffCartReducerState) => state.errors[DaffCartErrorType.Cart]
+)
+
+export const selectBillingAddressErrors: MemoizedSelector<object, DaffCartReducerState['errors'][DaffCartErrorType.BillingAddress]> = createSelector(
+  cartStateSelector,
+  (state: DaffCartReducerState) => state.errors[DaffCartErrorType.BillingAddress]
+)
+
+export const selectShippingAddressErrors: MemoizedSelector<object, DaffCartReducerState['errors'][DaffCartErrorType.ShippingAddress]> = createSelector(
+  cartStateSelector,
+  (state: DaffCartReducerState) => state.errors[DaffCartErrorType.ShippingAddress]
+)
+
+export const selectShippingInformationErrors: MemoizedSelector<object, DaffCartReducerState['errors'][DaffCartErrorType.ShippingInformation]> = createSelector(
+  cartStateSelector,
+  (state: DaffCartReducerState) => state.errors[DaffCartErrorType.ShippingInformation]
+)
+
+export const selectShippingMethodsErrors: MemoizedSelector<object, DaffCartReducerState['errors'][DaffCartErrorType.ShippingMethods]> = createSelector(
+  cartStateSelector,
+  (state: DaffCartReducerState) => state.errors[DaffCartErrorType.ShippingMethods]
+)
+
+export const selectPaymentErrors: MemoizedSelector<object, DaffCartReducerState['errors'][DaffCartErrorType.Payment]> = createSelector(
+  cartStateSelector,
+  (state: DaffCartReducerState) => state.errors[DaffCartErrorType.Payment]
+)
+
+export const selectPaymentMethodsErrors: MemoizedSelector<object, DaffCartReducerState['errors'][DaffCartErrorType.PaymentMethods]> = createSelector(
+  cartStateSelector,
+  (state: DaffCartReducerState) => state.errors[DaffCartErrorType.PaymentMethods]
+)
+
+export const selectItemErrors: MemoizedSelector<object, DaffCartReducerState['errors'][DaffCartErrorType.Item]> = createSelector(
+  cartStateSelector,
+  (state: DaffCartReducerState) => state.errors[DaffCartErrorType.Item]
 )
 
 export const selectCartId: MemoizedSelector<object, DaffCartReducerState['cart']['id']> = createSelector(

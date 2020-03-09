@@ -8,6 +8,7 @@ import {
 } from '../../actions';
 import { DaffCart } from '../../models/cart';
 import { reducer } from './cart-payment-methods.reducer';
+import { DaffCartErrorType } from '../cart-error-type.enum';
 
 describe('Cart | Reducer | Cart Payment Methods', () => {
   let cartFactory: DaffCartFactory;
@@ -73,7 +74,10 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError')
+        errors: {
+          ...initialState.errors,
+          [DaffCartErrorType.PaymentMethods]: new Array('firstError')
+        }
       }
 
       const cartPaymentMethodsLoadFailure = new DaffCartPaymentMethodsLoadFailure(error);
@@ -85,8 +89,8 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('adds an error to state.errors', () => {
-      expect(result.errors.length).toEqual(2);
+    it('adds an error to the payment methods section of state.errors', () => {
+      expect(result.errors[DaffCartErrorType.PaymentMethods].length).toEqual(2);
     });
   });
 });

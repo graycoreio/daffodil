@@ -20,7 +20,7 @@ import {
 import { DaffCart } from '../../models/cart';
 import { reducer } from './cart-item.reducer';
 import { DaffCartItemList, DaffCartItemListSuccess, DaffCartItemListFailure } from '../../actions';
-
+import { DaffCartErrorType } from '../cart-error-type.enum';
 
 describe('Cart | Reducer | Cart Item', () => {
   let cartFactory: DaffCartFactory;
@@ -92,7 +92,10 @@ describe('Cart | Reducer | Cart Item', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError')
+        errors: {
+          ...initialState.errors,
+          [DaffCartErrorType.Item]: new Array('firstError')
+        }
       }
 
       const cartItemUpdateFailure = new DaffCartItemUpdateFailure(error);
@@ -104,8 +107,8 @@ describe('Cart | Reducer | Cart Item', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('adds an error to state.errors', () => {
-      expect(result.errors.length).toEqual(2);
+    it('adds an error to the item section of state.errors', () => {
+      expect(result.errors[DaffCartErrorType.Item].length).toEqual(2);
     });
   });
 
@@ -152,7 +155,10 @@ describe('Cart | Reducer | Cart Item', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError')
+        errors: {
+          ...initialState.errors,
+          [DaffCartErrorType.Item]: new Array('firstError')
+        }
       }
 
       const cartItemRemoveFailure = new DaffCartItemDeleteFailure(error);
@@ -164,8 +170,8 @@ describe('Cart | Reducer | Cart Item', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('adds an error to state.errors', () => {
-      expect(result.errors.length).toEqual(2);
+    it('adds an error to the item section of state.errors', () => {
+      expect(result.errors[DaffCartErrorType.Item].length).toEqual(2);
     });
   });
 
@@ -214,7 +220,10 @@ describe('Cart | Reducer | Cart Item', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError')
+        errors: {
+          ...initialState.errors,
+          [DaffCartErrorType.Item]: new Array('firstError')
+        }
       }
 
       error = 'error';
@@ -228,8 +237,8 @@ describe('Cart | Reducer | Cart Item', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('adds an error to state.errors', () => {
-      expect(result.errors.length).toEqual(2);
+    it('adds an error to the item section of state.errors', () => {
+      expect(result.errors[DaffCartErrorType.Item].length).toEqual(2);
     });
   });
 
@@ -284,7 +293,10 @@ describe('Cart | Reducer | Cart Item', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError')
+        errors: {
+          ...initialState.errors,
+          [DaffCartErrorType.Item]: new Array('firstError')
+        }
       }
 
       error = 'error';
@@ -298,8 +310,8 @@ describe('Cart | Reducer | Cart Item', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('adds an error to state.errors', () => {
-      expect(result.errors.length).toEqual(2);
+    it('adds an error to the item section of state.errors', () => {
+      expect(result.errors[DaffCartErrorType.Item].length).toEqual(2);
     });
   });
 
@@ -348,7 +360,10 @@ describe('Cart | Reducer | Cart Item', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError')
+        errors: {
+          ...initialState.errors,
+          [DaffCartErrorType.Item]: new Array('firstError')
+        }
       }
 
       error = 'error';
@@ -362,8 +377,8 @@ describe('Cart | Reducer | Cart Item', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('adds an error to state.errors', () => {
-      expect(result.errors.length).toEqual(2);
+    it('adds an error to the item section of state.errors', () => {
+      expect(result.errors[DaffCartErrorType.Item].length).toEqual(2);
     });
   });
 });

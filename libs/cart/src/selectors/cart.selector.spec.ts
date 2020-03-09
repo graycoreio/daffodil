@@ -22,8 +22,17 @@ import {
   selectCartTotals,
   selectCartShippingInformation,
   selectCartAvailableShippingMethods,
-  selectCartAvailablePaymentMethods
+  selectCartAvailablePaymentMethods,
+  selectItemErrors,
+  selectBillingAddressErrors,
+  selectShippingAddressErrors,
+  selectShippingInformationErrors,
+  selectShippingMethodsErrors,
+  selectPaymentErrors,
+  selectPaymentMethodsErrors
 } from './cart.selector';
+import { DaffCartErrorType } from '../reducers/cart-error-type.enum';
+import { DaffCartErrors } from '../reducers/cart-errors.type';
 
 
 describe('Cart | Selector | Cart', () => {
@@ -33,7 +42,7 @@ describe('Cart | Selector | Cart', () => {
 
   let cart: DaffCart;
   let loading: boolean;
-  let errors: string[];
+  let errors: DaffCartErrors;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -50,7 +59,16 @@ describe('Cart | Selector | Cart', () => {
 
     cart = cartFactory.create();
     loading = false;
-    errors = [];
+    errors = {
+      [DaffCartErrorType.Cart]: [],
+      [DaffCartErrorType.Item]: [],
+      [DaffCartErrorType.ShippingAddress]: [],
+      [DaffCartErrorType.BillingAddress]: [],
+      [DaffCartErrorType.ShippingInformation]: [],
+      [DaffCartErrorType.ShippingMethods]: [],
+      [DaffCartErrorType.Payment]: [],
+      [DaffCartErrorType.PaymentMethods]: [],
+    };
 
     store.dispatch(new DaffCartLoadSuccess(cart));
   });
@@ -74,9 +92,72 @@ describe('Cart | Selector | Cart', () => {
   });
 
   describe('selectCartErrors', () => {
-    it('returns errors state', () => {
+    it('returns cart errors state', () => {
       const selector = store.pipe(select(selectCartErrors));
-      const expected = cold('a', {a: errors});
+      const expected = cold('a', {a: errors[DaffCartErrorType.Cart]});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectItemErrors', () => {
+    it('returns item errors state', () => {
+      const selector = store.pipe(select(selectItemErrors));
+      const expected = cold('a', {a: errors[DaffCartErrorType.Item]});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectBillingAddressErrors', () => {
+    it('returns billing address errors state', () => {
+      const selector = store.pipe(select(selectBillingAddressErrors));
+      const expected = cold('a', {a: errors[DaffCartErrorType.BillingAddress]});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectShippingAddressErrors', () => {
+    it('returns shipping address errors state', () => {
+      const selector = store.pipe(select(selectShippingAddressErrors));
+      const expected = cold('a', {a: errors[DaffCartErrorType.ShippingAddress]});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectShippingInformationErrors', () => {
+    it('returns shipping information errors state', () => {
+      const selector = store.pipe(select(selectShippingInformationErrors));
+      const expected = cold('a', {a: errors[DaffCartErrorType.ShippingInformation]});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectShippingMethodsErrors', () => {
+    it('returns shipping methods errors state', () => {
+      const selector = store.pipe(select(selectShippingMethodsErrors));
+      const expected = cold('a', {a: errors[DaffCartErrorType.ShippingMethods]});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectPaymentErrors', () => {
+    it('returns payment errors state', () => {
+      const selector = store.pipe(select(selectPaymentErrors));
+      const expected = cold('a', {a: errors[DaffCartErrorType.Payment]});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectPaymentMethodsErrors', () => {
+    it('returns payment methods errors state', () => {
+      const selector = store.pipe(select(selectPaymentMethodsErrors));
+      const expected = cold('a', {a: errors[DaffCartErrorType.PaymentMethods]});
 
       expect(selector).toBeObservable(expected);
     });

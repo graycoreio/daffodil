@@ -15,7 +15,7 @@ import {
   DaffCartPaymentRemoveFailure
 } from '../../actions';
 import { reducer } from './cart-payment.reducer';
-
+import { DaffCartErrorType } from '../cart-error-type.enum';
 
 describe('Cart | Reducer | Cart Payment', () => {
   let cartFactory: DaffCartFactory;
@@ -80,7 +80,10 @@ describe('Cart | Reducer | Cart Payment', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError')
+        errors: {
+          ...initialState.errors,
+          [DaffCartErrorType.Payment]: new Array('firstError')
+        }
       }
 
       const cartListLoadFailure = new DaffCartPaymentLoadFailure(error);
@@ -92,8 +95,8 @@ describe('Cart | Reducer | Cart Payment', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('adds an error to state.errors', () => {
-      expect(result.errors.length).toEqual(2);
+    it('adds an error to the payment section of state.errors', () => {
+      expect(result.errors[DaffCartErrorType.Payment].length).toEqual(2);
     });
   });
 
@@ -139,7 +142,10 @@ describe('Cart | Reducer | Cart Payment', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError')
+        errors: {
+          ...initialState.errors,
+          [DaffCartErrorType.Payment]: new Array('firstError')
+        }
       }
 
       error = 'error';
@@ -153,8 +159,8 @@ describe('Cart | Reducer | Cart Payment', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('adds an error to state.errors', () => {
-      expect(result.errors.length).toEqual(2);
+    it('adds an error to the payment section of state.errors', () => {
+      expect(result.errors[DaffCartErrorType.Payment].length).toEqual(2);
     });
   });
 
@@ -199,7 +205,10 @@ describe('Cart | Reducer | Cart Payment', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError')
+        errors: {
+          ...initialState.errors,
+          [DaffCartErrorType.Payment]: new Array('firstError')
+        }
       }
 
       error = 'error';
@@ -213,8 +222,8 @@ describe('Cart | Reducer | Cart Payment', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('adds an error to state.errors', () => {
-      expect(result.errors.length).toEqual(2);
+    it('adds an error to the payment section of state.errors', () => {
+      expect(result.errors[DaffCartErrorType.Payment].length).toEqual(2);
     });
   });
 });

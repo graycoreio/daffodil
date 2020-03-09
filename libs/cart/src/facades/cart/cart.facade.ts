@@ -20,8 +20,17 @@ import {
   selectCartTotals,
   selectCartShippingInformation,
   selectCartAvailableShippingMethods,
-  selectCartAvailablePaymentMethods
+  selectCartAvailablePaymentMethods,
+  selectItemErrors,
+  selectBillingAddressErrors,
+  selectShippingAddressErrors,
+  selectShippingInformationErrors,
+  selectShippingMethodsErrors,
+  selectPaymentErrors,
+  selectPaymentMethodsErrors
 } from '../../selectors';
+import { DaffCartErrors } from '../../reducers/cart-errors.type';
+import { DaffCartErrorType } from '../../reducers/cart-error-type.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +38,16 @@ import {
 export class DaffCartFacade implements DaffStoreFacade<Action> {
   loading$: Observable<boolean>;
   cart$: Observable<DaffCart>;
-  errors$: Observable<string[]>;
+
+  cartErrors$: Observable<DaffCartErrors[DaffCartErrorType.Cart]>;
+  itemErrors$: Observable<DaffCartErrors[DaffCartErrorType.Item]>;
+  billingAddressErrors$: Observable<DaffCartErrors[DaffCartErrorType.BillingAddress]>;
+  shippingAddressErrors$: Observable<DaffCartErrors[DaffCartErrorType.ShippingAddress]>;
+  shippingInformationErrors$: Observable<DaffCartErrors[DaffCartErrorType.ShippingInformation]>;
+  shippingMethodsErrors$: Observable<DaffCartErrors[DaffCartErrorType.ShippingMethods]>;
+  paymentErrors$: Observable<DaffCartErrors[DaffCartErrorType.Payment]>;
+  paymentMethodsErrors$: Observable<DaffCartErrors[DaffCartErrorType.PaymentMethods]>;
+
   id$: Observable<DaffCart['id']>;
   subtotal$: Observable<DaffCart['subtotal']>;
   grandTotal$: Observable<DaffCart['grand_total']>;
@@ -46,7 +64,16 @@ export class DaffCartFacade implements DaffStoreFacade<Action> {
   constructor(private store: Store<DaffCartReducersState>) {
     this.loading$ = this.store.pipe(select(selectCartLoading));
     this.cart$ = this.store.pipe(select(selectCartValue));
-    this.errors$ = this.store.pipe(select(selectCartErrors));
+
+    this.cartErrors$ = this.store.pipe(select(selectCartErrors));
+    this.itemErrors$ = this.store.pipe(select(selectItemErrors));
+    this.billingAddressErrors$ = this.store.pipe(select(selectBillingAddressErrors));
+    this.shippingAddressErrors$ = this.store.pipe(select(selectShippingAddressErrors));
+    this.shippingInformationErrors$ = this.store.pipe(select(selectShippingInformationErrors));
+    this.shippingMethodsErrors$ = this.store.pipe(select(selectShippingMethodsErrors));
+    this.paymentErrors$ = this.store.pipe(select(selectPaymentErrors));
+    this.paymentMethodsErrors$ = this.store.pipe(select(selectPaymentMethodsErrors));
+
     this.id$ = this.store.pipe(select(selectCartId));
     this.subtotal$ = this.store.pipe(select(selectCartSubtotal));
     this.grandTotal$ = this.store.pipe(select(selectCartGrandTotal));

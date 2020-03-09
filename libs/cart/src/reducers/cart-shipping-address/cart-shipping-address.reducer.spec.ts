@@ -12,7 +12,7 @@ import {
   DaffCartShippingAddressUpdateFailure,
 } from '../../actions';
 import { reducer } from './cart-shipping-address.reducer';
-
+import { DaffCartErrorType } from '../cart-error-type.enum';
 
 describe('Cart | Reducer | Cart Shipping Address', () => {
   let cartFactory: DaffCartFactory;
@@ -77,7 +77,10 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError')
+        errors: {
+          ...initialState.errors,
+          [DaffCartErrorType.ShippingAddress]: new Array('firstError')
+        }
       }
 
       const cartListLoadFailure = new DaffCartShippingAddressLoadFailure(error);
@@ -89,8 +92,8 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('adds an error to state.errors', () => {
-      expect(result.errors.length).toEqual(2);
+    it('adds an error to the shipping address section of state.errors', () => {
+      expect(result.errors[DaffCartErrorType.ShippingAddress].length).toEqual(2);
     });
   });
 
@@ -136,7 +139,10 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError')
+        errors: {
+          ...initialState.errors,
+          [DaffCartErrorType.ShippingAddress]: new Array('firstError')
+        }
       }
 
       error = 'error';
@@ -150,8 +156,8 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('adds an error to state.errors', () => {
-      expect(result.errors.length).toEqual(2);
+    it('adds an error to the shipping address section of state.errors', () => {
+      expect(result.errors[DaffCartErrorType.ShippingAddress].length).toEqual(2);
     });
   });
 });

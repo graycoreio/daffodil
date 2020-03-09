@@ -4,6 +4,7 @@ import {
 import { initialState } from '../cart-initial-state';
 import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
+import { DaffCartErrorType } from '../cart-error-type.enum';
 
 export function reducer(
   state = initialState,
@@ -22,7 +23,11 @@ export function reducer(
           ...state.cart,
           payment: action.payload
         },
-        loading: false
+        loading: false,
+        errors: {
+          ...state.errors,
+          [DaffCartErrorType.Payment]: []
+        }
       };
 
     case DaffCartPaymentActionTypes.CartPaymentRemoveSuccessAction:
@@ -32,7 +37,11 @@ export function reducer(
           ...state.cart,
           payment: null
         },
-        loading: false
+        loading: false,
+        errors: {
+          ...state.errors,
+          [DaffCartErrorType.Payment]: []
+        }
       };
 
     case DaffCartPaymentActionTypes.CartPaymentUpdateSuccessAction:
@@ -42,7 +51,11 @@ export function reducer(
           ...state.cart,
           ...action.payload
         },
-        loading: false
+        loading: false,
+        errors: {
+          ...state.errors,
+          [DaffCartErrorType.Payment]: []
+        }
       };
 
     case DaffCartPaymentActionTypes.CartPaymentLoadFailureAction:
@@ -51,7 +64,10 @@ export function reducer(
       return {
         ...state,
         loading: false,
-        errors: state.errors.concat(new Array(action.payload))
+        errors: {
+          ...state.errors,
+          [DaffCartErrorType.Payment]: state.errors[DaffCartErrorType.Payment].concat(new Array(action.payload))
+        }
       };
 
     default:

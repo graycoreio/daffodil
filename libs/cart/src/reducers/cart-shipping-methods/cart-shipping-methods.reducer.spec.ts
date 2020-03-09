@@ -1,3 +1,4 @@
+import { DaffCartShippingRate } from '@daffodil/cart';
 import { DaffCartFactory, DaffCartShippingRateFactory } from '@daffodil/cart/testing';
 
 import { initialState } from '../cart-initial-state';
@@ -9,8 +10,8 @@ import {
 } from '../../actions';
 import { DaffCart } from '../../models/cart';
 import { reducer } from './cart-shipping-methods.reducer';
-import { DaffCartShippingRate } from '@daffodil/cart';
 import { TestBed } from '@angular/core/testing';
+import { DaffCartErrorType } from '../cart-error-type.enum';
 
 describe('Cart | Reducer | Cart Shipping Methods', () => {
   let cartFactory: DaffCartFactory;
@@ -82,7 +83,10 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
       state = {
         ...initialState,
         loading: true,
-        errors: new Array('firstError')
+        errors: {
+          ...initialState.errors,
+          [DaffCartErrorType.ShippingMethods]: new Array('firstError')
+        }
       }
 
       const cartShippingMethodsLoadFailure = new DaffCartShippingMethodsLoadFailure(error);
@@ -94,8 +98,8 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('adds an error to state.errors', () => {
-      expect(result.errors.length).toEqual(2);
+    it('adds an error to the shipping methods section of state.errors', () => {
+      expect(result.errors[DaffCartErrorType.ShippingMethods].length).toEqual(2);
     });
   });
 });

@@ -15,7 +15,14 @@ import {
   DaffCartPaymentLoadSuccess,
   DaffCartShippingInformationLoadSuccess,
   DaffCartShippingMethodsLoadSuccess,
-  DaffCartPaymentMethodsLoadSuccess
+  DaffCartPaymentMethodsLoadSuccess,
+  DaffCartItemLoadFailure,
+  DaffCartBillingAddressLoadFailure,
+  DaffCartShippingAddressLoadFailure,
+  DaffCartShippingInformationLoadFailure,
+  DaffCartShippingMethodsLoadFailure,
+  DaffCartPaymentLoadFailure,
+  DaffCartPaymentMethodsLoadFailure
 } from '@daffodil/cart';
 
 import { DaffCartFacade } from './cart.facade';
@@ -85,17 +92,115 @@ describe('DaffCartFacade', () => {
     });
   });
 
-  describe('errors$', () => {
+  describe('cartErrors$', () => {
     it('should initially be an empty array', () => {
       const expected = cold('a', { a: []});
-      expect(facade.errors$).toBeObservable(expected);
+      expect(facade.cartErrors$).toBeObservable(expected);
     });
 
-    it('should contain an error upon a failed load', () => {
+    it('should contain an error upon a failed cart load', () => {
       const error = 'error';
       const expected = cold('a', { a: [error]});
       store.dispatch(new DaffCartLoadFailure(error));
-      expect(facade.errors$).toBeObservable(expected);
+      expect(facade.cartErrors$).toBeObservable(expected);
+    });
+  });
+
+  describe('itemErrors$', () => {
+    it('should initially be an empty array', () => {
+      const expected = cold('a', { a: []});
+      expect(facade.itemErrors$).toBeObservable(expected);
+    });
+
+    it('should contain an error upon a failed item load', () => {
+      const error = 'error';
+      const expected = cold('a', { a: [error]});
+      store.dispatch(new DaffCartItemLoadFailure(error));
+      expect(facade.itemErrors$).toBeObservable(expected);
+    });
+  });
+
+  describe('billingAddressErrors$', () => {
+    it('should initially be an empty array', () => {
+      const expected = cold('a', { a: []});
+      expect(facade.billingAddressErrors$).toBeObservable(expected);
+    });
+
+    it('should contain an error upon a failed billing address load', () => {
+      const error = 'error';
+      const expected = cold('a', { a: [error]});
+      store.dispatch(new DaffCartBillingAddressLoadFailure(error));
+      expect(facade.billingAddressErrors$).toBeObservable(expected);
+    });
+  });
+
+  describe('shippingAddressErrors$', () => {
+    it('should initially be an empty array', () => {
+      const expected = cold('a', { a: []});
+      expect(facade.shippingAddressErrors$).toBeObservable(expected);
+    });
+
+    it('should contain an error upon a failed shipping address load', () => {
+      const error = 'error';
+      const expected = cold('a', { a: [error]});
+      store.dispatch(new DaffCartShippingAddressLoadFailure(error));
+      expect(facade.shippingAddressErrors$).toBeObservable(expected);
+    });
+  });
+
+  describe('shippingInformationErrors$', () => {
+    it('should initially be an empty array', () => {
+      const expected = cold('a', { a: []});
+      expect(facade.shippingInformationErrors$).toBeObservable(expected);
+    });
+
+    it('should contain an error upon a failed shipping information load', () => {
+      const error = 'error';
+      const expected = cold('a', { a: [error]});
+      store.dispatch(new DaffCartShippingInformationLoadFailure(error));
+      expect(facade.shippingInformationErrors$).toBeObservable(expected);
+    });
+  });
+
+  describe('shippingMethodsErrors$', () => {
+    it('should initially be an empty array', () => {
+      const expected = cold('a', { a: []});
+      expect(facade.shippingMethodsErrors$).toBeObservable(expected);
+    });
+
+    it('should contain an error upon a failed shipping methods load', () => {
+      const error = 'error';
+      const expected = cold('a', { a: [error]});
+      store.dispatch(new DaffCartShippingMethodsLoadFailure(error));
+      expect(facade.shippingMethodsErrors$).toBeObservable(expected);
+    });
+  });
+
+  describe('paymentErrors$', () => {
+    it('should initially be an empty array', () => {
+      const expected = cold('a', { a: []});
+      expect(facade.paymentErrors$).toBeObservable(expected);
+    });
+
+    it('should contain an error upon a failed payment load', () => {
+      const error = 'error';
+      const expected = cold('a', { a: [error]});
+      store.dispatch(new DaffCartPaymentLoadFailure(error));
+      expect(facade.paymentErrors$).toBeObservable(expected);
+    });
+  });
+
+  describe('paymentMethodsErrors$', () => {
+    it('should initially be an empty array', () => {
+      const expected = cold('a', { a: []});
+      expect(facade.paymentMethodsErrors$).toBeObservable(expected);
+    });
+
+    it('should contain an error upon a failed payment methods load', () => {
+      const error = 'error';
+      const expected = cold('a', { a: [error]});
+      store.dispatch(new DaffCartPaymentMethodsLoadFailure(error));
+      expect(facade.paymentMethodsErrors$).toBeObservable(expected);
     });
   });
 

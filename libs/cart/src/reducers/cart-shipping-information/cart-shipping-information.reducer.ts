@@ -4,6 +4,7 @@ import {
 import { initialState } from '../cart-initial-state';
 import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
+import { DaffCartErrorType } from '../cart-error-type.enum';
 
 export function reducer(
   state = initialState,
@@ -23,7 +24,11 @@ export function reducer(
           // TODO: remove workaround
           shipping_information: {...action.payload, address_id: null}
         },
-        loading: false
+        loading: false,
+        errors: {
+          ...state.errors,
+          [DaffCartErrorType.ShippingInformation]: []
+        }
       };
 
     case DaffCartShippingInformationActionTypes.CartShippingInformationUpdateSuccessAction:
@@ -36,7 +41,11 @@ export function reducer(
           shipping_information: null,
           ...action.payload
         },
-        loading: false
+        loading: false,
+        errors: {
+          ...state.errors,
+          [DaffCartErrorType.ShippingInformation]: []
+        }
       };
 
     case DaffCartShippingInformationActionTypes.CartShippingInformationLoadFailureAction:
@@ -45,7 +54,10 @@ export function reducer(
       return {
         ...state,
         loading: false,
-        errors: state.errors.concat(new Array(action.payload))
+        errors: {
+          ...state.errors,
+          [DaffCartErrorType.ShippingInformation]: state.errors[DaffCartErrorType.ShippingInformation].concat(new Array(action.payload))
+        }
       };
 
     default:

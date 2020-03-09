@@ -1,4 +1,5 @@
 import { DaffCartReducerState } from './cart-state.interface';
+import { DaffCartErrorType } from './cart-error-type.enum';
 
 export const initialState: DaffCartReducerState = Object.freeze({
   cart: {
@@ -16,5 +17,14 @@ export const initialState: DaffCartReducerState = Object.freeze({
     available_payment_methods: [],
   },
   loading: false,
-  errors: []
+  errors: {
+    [DaffCartErrorType.Cart]: [],
+    [DaffCartErrorType.Item]: [],
+    [DaffCartErrorType.ShippingAddress]: [],
+    [DaffCartErrorType.BillingAddress]: [],
+    [DaffCartErrorType.ShippingInformation]: [],
+    [DaffCartErrorType.ShippingMethods]: [],
+    [DaffCartErrorType.Payment]: [],
+    [DaffCartErrorType.PaymentMethods]: [],
+  }
 });
