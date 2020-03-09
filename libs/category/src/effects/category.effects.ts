@@ -42,7 +42,7 @@ export class DaffCategoryEffects {
   @Effect()
   loadCategory$ : Observable<any> = this.actions$.pipe(
     ofType(DaffCategoryActionTypes.CategoryLoadAction),
-    switchMap((action: DaffCategoryLoad) => this.processCategoryGetRequest(action.categoryRequest))
+    switchMap((action: DaffCategoryLoad) => this.processCategoryGetRequest(action.request))
   )
 
   @Effect()
@@ -109,7 +109,7 @@ export class DaffCategoryEffects {
       this.processCategoryGetRequest({
         id: categoryId,
         page_size: pageSize,
-				applied_filters: action.categoryFilters,
+				applied_filters: action.filters,
 				applied_sort_option: appliedSortOption,
 				applied_sort_direction: appliedSortDirection
       })
@@ -133,7 +133,7 @@ export class DaffCategoryEffects {
 			return this.processCategoryGetRequest({
         id: categoryId,
         page_size: pageSize,
-				applied_filters: this.toggleCategoryFilter(action.categoryFilter, appliedFilters),
+				applied_filters: this.toggleCategoryFilter(action.filter, appliedFilters),
 				applied_sort_option: appliedSortOption,
 				applied_sort_direction: appliedSortDirection
       })
