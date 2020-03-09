@@ -17,7 +17,8 @@ import {
 	DaffChangeCategoryPageSize, 
 	DaffChangeCategoryCurrentPage, 
 	DaffChangeCategoryFilters, 
-	DaffChangeCategorySortingOption 
+	DaffChangeCategorySortingOption, 
+	DaffToggleCategoryFilter
 } from '../actions/category.actions';
 import { DaffCategory } from '../models/category';
 import { DaffCategoryServiceInterface } from '../drivers/interfaces/category-service.interface';
@@ -31,6 +32,7 @@ import {
 	selectCategoryPageAppliedSortDirection 
 } from '../selectors/category.selector';
 import { DaffSortDirectionEnum } from '../models/requests/category-request';
+import { DaffCategoryFilterAction } from '../models/requests/filter-action';
 
 describe('DaffCategoryEffects', () => {
   let actions$: Observable<any>;
@@ -223,6 +225,63 @@ describe('DaffCategoryEffects', () => {
 				}]
       });
     });
+  });
+
+  describe('when ToggleCategoryFilterAction is triggered', () => {
+
+		let expected;
+		let toggledFilter: DaffCategoryFilterAction;
+
+		beforeEach(() => {
+			toggledFilter = {
+				name: 'name',
+				action: 'action',
+				value: 'value'
+			};
+		});
+		
+		describe('and the toggled filter is an applied filter', () => {
+			
+			it('should call get category with the toggled filter', () => {
+				const toggleCategoryFilterAction = new DaffToggleCategoryFilter(toggledFilter);
+				actions$ = hot('--a', { a: toggleCategoryFilterAction });
+				
+				expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
+				expect(effects.toggleCategoryFilter$).toBeObservable(expected);
+	
+				expect(daffCategoryDriver.get).toHaveBeenCalledWith({ 
+					id: categoryId,
+					page_size: stubCategoryPageConfigurationState.page_size,
+					applied_sort_direction: stubCategoryPageConfigurationState.applied_sort_direction,
+					applied_sort_option: stubCategoryPageConfigurationState.applied_sort_option,
+					applied_filters: [toggledFilter]
+				});
+			});
+		});
+
+		describe('and toggled filter is not an applied filter', () => {
+
+			beforeEach(() => {
+				store.overrideSelector(selectCategoryPageAppliedFilters, [toggledFilter]);
+				store.setState({});
+			});
+			
+			it('should not call get category with the toggled filter', () => {
+				const toggleCategoryFilterAction = new DaffToggleCategoryFilter(toggledFilter);
+				actions$ = hot('--a', { a: toggleCategoryFilterAction });
+				
+				expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
+				expect(effects.toggleCategoryFilter$).toBeObservable(expected);
+	
+				expect(daffCategoryDriver.get).toHaveBeenCalledWith({ 
+					id: categoryId,
+					page_size: stubCategoryPageConfigurationState.page_size,
+					applied_sort_direction: stubCategoryPageConfigurationState.applied_sort_direction,
+					applied_sort_option: stubCategoryPageConfigurationState.applied_sort_option,
+					applied_filters: null
+				});
+			});
+		});
   });
 
   describe('when ChangeCategorySortAction is triggered', () => {

@@ -2,6 +2,7 @@ import { Action } from '@ngrx/store';
 
 import { DaffGetCategoryResponse } from '../models/get-category-response';
 import { DaffCategoryRequest } from '../models/requests/category-request';
+import { DaffCategoryFilterAction } from '../models/requests/filter-action';
 
 export enum DaffCategoryActionTypes {
   CategoryLoadAction = '[Daff-Category] Category Load Action',
@@ -10,7 +11,8 @@ export enum DaffCategoryActionTypes {
   ChangeCategoryPageSizeAction = '[Daff-Category] Change Category Page Size Action',
   ChangeCategoryCurrentPageAction = '[Daff-Category] Change Category Current Page Action',
   ChangeCategorySortingOptionAction = '[Daff-Category] Change Category Sorting Option Action',
-  ChangeCategoryFiltersAction = '[Daff-Category] Change Category Filters Action'
+	ChangeCategoryFiltersAction = '[Daff-Category] Change Category Filters Action',
+	ToggleCategoryFilterAction = '[Daff-Category] Toggle Category Filter Action'
 }
 
 /**
@@ -95,10 +97,22 @@ export class DaffChangeCategoryFilters implements Action {
   constructor(public categoryFilters: DaffCategoryRequest['applied_filters']) { }
 }
 
+/**
+ * An action for toggling a filters for the selected category.
+ * 
+ * @param categoryFilter - Filter to be toggle on the selected category.
+ */
+export class DaffToggleCategoryFilter implements Action {
+  readonly type = DaffCategoryActionTypes.ToggleCategoryFilterAction;
+
+  constructor(public categoryFilter: DaffCategoryFilterAction) { }
+}
+
 export type DaffCategoryActions =
   | DaffCategoryLoad
   | DaffCategoryLoadSuccess
   | DaffCategoryLoadFailure
   | DaffChangeCategoryPageSize
   | DaffChangeCategorySortingOption
-  | DaffChangeCategoryFilters;
+  | DaffChangeCategoryFilters
+  | DaffToggleCategoryFilter;

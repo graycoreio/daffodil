@@ -14,7 +14,8 @@ import {
   DaffChangeCategoryPageSize,
   DaffChangeCategoryCurrentPage,
 	DaffChangeCategoryFilters,
-	DaffChangeCategorySortingOption
+	DaffChangeCategorySortingOption,
+	DaffToggleCategoryFilter
 } from '../actions/category.actions';
 import { DaffCategoryDriver } from '../drivers/injection-tokens/category-driver.token';
 import { DaffCategoryServiceInterface } from '../drivers/interfaces/category-service.interface';
@@ -116,6 +117,30 @@ export class DaffCategoryEffects {
   )
 
   @Effect()
+  toggleCategoryFilter$ : Observable<any> = this.actions$.pipe(
+    ofType(DaffCategoryActionTypes.ToggleCategoryFilterAction),
+    withLatestFrom(
+      this.store.pipe(select(selectSelectedCategoryId)), 
+      this.store.pipe(select(selectCategoryPageSize)),
+      this.store.pipe(select(selectCategoryPageAppliedFilters)),
+      this.store.pipe(select(selectCategoryPageAppliedSortOption)),
+      this.store.pipe(select(selectCategoryPageAppliedSortDirection))
+    ),
+    switchMap((
+			[action, categoryId, pageSize, appliedFilters, appliedSortOption, appliedSortDirection]: 
+			[DaffToggleCategoryFilter, string, number, DaffCategoryFilterAction[], string, DaffSortDirectionEnum]
+		) => {
+			return this.processCategoryGetRequest({
+        id: categoryId,
+        page_size: pageSize,
+				applied_filters: this.toggleCategoryFilter(action.categoryFilter, appliedFilters),
+				applied_sort_option: appliedSortOption,
+				applied_sort_direction: appliedSortDirection
+      })
+		})
+  )
+
+  @Effect()
   changeCategorySort$ : Observable<any> = this.actions$.pipe(
     ofType(DaffCategoryActionTypes.ChangeCategorySortingOptionAction),
     withLatestFrom(
@@ -135,7 +160,20 @@ export class DaffCategoryEffects {
 				applied_sort_direction: action.sort.direction
       })
     )
-  )
+	)
+	
+	private toggleCategoryFilter(
+		toggledFilter: DaffCategoryFilterAction, 
+		appliedFilters: DaffCategoryFilterAction[]
+	): DaffCategoryFilterAction[] {
+		if(!appliedFilters) return [toggledFilter];
+
+		const nonMatchingFilters = appliedFilters.filter(filter => filter !== toggledFilter);
+
+		if(nonMatchingFilters.length === appliedFilters.length) nonMatchingFilters.push(toggledFilter);
+
+		return nonMatchingFilters.length ? nonMatchingFilters : null;
+	}
 
   private processCategoryGetRequest(payload: DaffCategoryRequest) {
     return this.driver.get(payload).pipe(
