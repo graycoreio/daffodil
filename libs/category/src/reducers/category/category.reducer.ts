@@ -4,14 +4,14 @@ import { CategoryReducerState } from './category-reducer-state.interface';
 const initialState: CategoryReducerState = {
   categoryPageConfigurationState: {
     id: null,
-    applied_filters: null,
+    applied_filters: [],
     applied_sort_option: null,
     applied_sort_direction: null,
     current_page: null,
     page_size: null,
     total_pages: null,
-    filters: null,
-		sort_options: null,
+    filters: [],
+		sort_options: [],
 		total_products: null,
 		product_ids: []
   },
@@ -26,6 +26,7 @@ export function categoryReducer(state = initialState, action: DaffCategoryAction
     // applied by Magento, then this will result in a bug. Until Magento returns applied filters with a category call, this is
     // unavoidable.
     case DaffCategoryActionTypes.CategoryLoadAction:
+			if(!action.request.applied_filters) action.request.applied_filters = [];
       return { 
         ...state, 
         loading: true,

@@ -166,13 +166,11 @@ export class DaffCategoryEffects {
 		toggledFilter: DaffCategoryFilterAction, 
 		appliedFilters: DaffCategoryFilterAction[]
 	): DaffCategoryFilterAction[] {
-		if(!appliedFilters) return [toggledFilter];
-
-		const nonMatchingFilters = appliedFilters.filter(filter => filter !== toggledFilter);
-
-		if(nonMatchingFilters.length === appliedFilters.length) nonMatchingFilters.push(toggledFilter);
-
-		return nonMatchingFilters.length ? nonMatchingFilters : null;
+		return appliedFilters.indexOf(toggledFilter) 
+		// filter is applied, remove it
+		? appliedFilters.filter(filter => filter !== toggledFilter)
+		// filter is not applied, add it
+		: appliedFilters.concat(toggledFilter);
 	}
 
   private processCategoryGetRequest(payload: DaffCategoryRequest) {

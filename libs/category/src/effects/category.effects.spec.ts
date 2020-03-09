@@ -278,7 +278,7 @@ describe('DaffCategoryEffects', () => {
 					page_size: stubCategoryPageConfigurationState.page_size,
 					applied_sort_direction: stubCategoryPageConfigurationState.applied_sort_direction,
 					applied_sort_option: stubCategoryPageConfigurationState.applied_sort_option,
-					applied_filters: null
+					applied_filters: []
 				});
 			});
 		});
