@@ -6,6 +6,25 @@ import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
 import { DaffCartErrorType } from '../cart-error-type.enum';
 
+function addError(state: DaffCartReducerState, error: string) {
+  return {
+    ...state,
+    errors: {
+      ...state.errors,
+      [DaffCartErrorType.BillingAddress]: state.errors[DaffCartErrorType.BillingAddress].concat(new Array(error))
+    }
+  };
+}
+
+function resetErrors(state: DaffCartReducerState) {
+  return {
+    errors: {
+      ...state.errors,
+      [DaffCartErrorType.BillingAddress]: []
+    }
+  };
+}
+
 export function reducer(
   state = initialState,
   action: ActionTypes
@@ -18,40 +37,31 @@ export function reducer(
     case DaffCartBillingAddressActionTypes.CartBillingAddressLoadSuccessAction:
       return {
         ...state,
+        ...resetErrors(state),
         cart: {
           ...state.cart,
           billing_address: action.payload
         },
         loading: false,
-        errors: {
-          ...state.errors,
-          [DaffCartErrorType.BillingAddress]: []
-        }
       };
 
     case DaffCartBillingAddressActionTypes.CartBillingAddressUpdateSuccessAction:
       return {
         ...state,
+        ...resetErrors(state),
         cart: {
           ...state.cart,
           ...action.payload
         },
         loading: false,
-        errors: {
-          ...state.errors,
-          [DaffCartErrorType.BillingAddress]: []
-        }
       };
 
     case DaffCartBillingAddressActionTypes.CartBillingAddressLoadFailureAction:
     case DaffCartBillingAddressActionTypes.CartBillingAddressUpdateFailureAction:
       return {
         ...state,
+        ...addError(state, action.payload),
         loading: false,
-        errors: {
-          ...state.errors,
-          [DaffCartErrorType.BillingAddress]: state.errors[DaffCartErrorType.BillingAddress].concat(new Array(action.payload))
-        }
       };
 
     default:

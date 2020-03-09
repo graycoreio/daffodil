@@ -6,6 +6,25 @@ import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
 import { DaffCartErrorType } from '../cart-error-type.enum';
 
+function addError(state: DaffCartReducerState, error: string) {
+  return {
+    ...state,
+    errors: {
+      ...state.errors,
+      [DaffCartErrorType.Item]: state.errors[DaffCartErrorType.Item].concat(new Array(error))
+    }
+  };
+}
+
+function resetErrors(state: DaffCartReducerState) {
+  return {
+    errors: {
+      ...state.errors,
+      [DaffCartErrorType.Item]: []
+    }
+  };
+}
+
 export function reducer(
   state = initialState,
   action: ActionTypes
@@ -21,20 +40,18 @@ export function reducer(
     case DaffCartItemActionTypes.CartItemListSuccessAction:
       return {
         ...state,
+        ...resetErrors(state),
         cart: {
           ...state.cart,
           items: action.payload
         },
         loading: false,
-        errors: {
-          ...state.errors,
-          [DaffCartErrorType.Item]: []
-        }
       };
 
     case DaffCartItemActionTypes.CartItemLoadSuccessAction:
       return {
         ...state,
+        ...resetErrors(state),
         cart: {
           ...state.cart,
           items: state.cart.items.map(item =>
@@ -44,10 +61,6 @@ export function reducer(
           )
         },
         loading: false,
-        errors: {
-          ...state.errors,
-          [DaffCartErrorType.Item]: []
-        }
       };
 
     case DaffCartItemActionTypes.CartItemUpdateSuccessAction:
@@ -55,15 +68,12 @@ export function reducer(
     case DaffCartItemActionTypes.CartItemDeleteSuccessAction:
       return {
         ...state,
+        ...resetErrors(state),
         cart: {
           ...state.cart,
           ...action.payload
         },
         loading: false,
-        errors: {
-          ...state.errors,
-          [DaffCartErrorType.Item]: []
-        }
       };
 
     case DaffCartItemActionTypes.CartItemListFailureAction:
@@ -73,11 +83,8 @@ export function reducer(
     case DaffCartItemActionTypes.CartItemDeleteFailureAction:
       return {
         ...state,
+        ...addError(state, action.payload),
         loading: false,
-        errors: {
-          ...state.errors,
-          [DaffCartErrorType.Item]: state.errors[DaffCartErrorType.Item].concat(new Array(action.payload))
-        }
       };
 
     default:

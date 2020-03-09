@@ -6,6 +6,25 @@ import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
 import { DaffCartErrorType } from '../cart-error-type.enum';
 
+function addError(state: DaffCartReducerState, error: string) {
+  return {
+    ...state,
+    errors: {
+      ...state.errors,
+      [DaffCartErrorType.ShippingInformation]: state.errors[DaffCartErrorType.ShippingInformation].concat(new Array(error))
+    }
+  };
+}
+
+function resetErrors(state: DaffCartReducerState) {
+  return {
+    errors: {
+      ...state.errors,
+      [DaffCartErrorType.ShippingInformation]: []
+    }
+  };
+}
+
 export function reducer(
   state = initialState,
   action: ActionTypes
@@ -19,22 +38,20 @@ export function reducer(
     case DaffCartShippingInformationActionTypes.CartShippingInformationLoadSuccessAction:
       return {
         ...state,
+        ...resetErrors(state),
         cart: {
           ...state.cart,
           // TODO: remove workaround
           shipping_information: {...action.payload, address_id: null}
         },
         loading: false,
-        errors: {
-          ...state.errors,
-          [DaffCartErrorType.ShippingInformation]: []
-        }
       };
 
     case DaffCartShippingInformationActionTypes.CartShippingInformationUpdateSuccessAction:
     case DaffCartShippingInformationActionTypes.CartShippingInformationDeleteSuccessAction:
       return {
         ...state,
+        ...resetErrors(state),
         cart: {
           ...state.cart,
           // ensure that shipping_information is set to null in case its not included in action.payload
@@ -42,10 +59,6 @@ export function reducer(
           ...action.payload
         },
         loading: false,
-        errors: {
-          ...state.errors,
-          [DaffCartErrorType.ShippingInformation]: []
-        }
       };
 
     case DaffCartShippingInformationActionTypes.CartShippingInformationLoadFailureAction:
@@ -53,11 +66,8 @@ export function reducer(
     case DaffCartShippingInformationActionTypes.CartShippingInformationDeleteFailureAction:
       return {
         ...state,
+        ...addError(state, action.payload),
         loading: false,
-        errors: {
-          ...state.errors,
-          [DaffCartErrorType.ShippingInformation]: state.errors[DaffCartErrorType.ShippingInformation].concat(new Array(action.payload))
-        }
       };
 
     default:

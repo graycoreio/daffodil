@@ -6,6 +6,25 @@ import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
 import { DaffCartErrorType } from '../cart-error-type.enum';
 
+function addError(state: DaffCartReducerState, error: string) {
+  return {
+    ...state,
+    errors: {
+      ...state.errors,
+      [DaffCartErrorType.Payment]: state.errors[DaffCartErrorType.Payment].concat(new Array(error))
+    }
+  };
+}
+
+function resetErrors(state: DaffCartReducerState) {
+  return {
+    errors: {
+      ...state.errors,
+      [DaffCartErrorType.Payment]: []
+    }
+  };
+}
+
 export function reducer(
   state = initialState,
   action: ActionTypes
@@ -19,43 +38,34 @@ export function reducer(
     case DaffCartPaymentActionTypes.CartPaymentLoadSuccessAction:
       return {
         ...state,
+        ...resetErrors(state),
         cart: {
           ...state.cart,
           payment: action.payload
         },
         loading: false,
-        errors: {
-          ...state.errors,
-          [DaffCartErrorType.Payment]: []
-        }
       };
 
     case DaffCartPaymentActionTypes.CartPaymentRemoveSuccessAction:
       return {
         ...state,
+        ...resetErrors(state),
         cart: {
           ...state.cart,
           payment: null
         },
         loading: false,
-        errors: {
-          ...state.errors,
-          [DaffCartErrorType.Payment]: []
-        }
       };
 
     case DaffCartPaymentActionTypes.CartPaymentUpdateSuccessAction:
       return {
         ...state,
+        ...resetErrors(state),
         cart: {
           ...state.cart,
           ...action.payload
         },
         loading: false,
-        errors: {
-          ...state.errors,
-          [DaffCartErrorType.Payment]: []
-        }
       };
 
     case DaffCartPaymentActionTypes.CartPaymentLoadFailureAction:
@@ -63,11 +73,8 @@ export function reducer(
     case DaffCartPaymentActionTypes.CartPaymentRemoveFailureAction:
       return {
         ...state,
+        ...addError(state, action.payload),
         loading: false,
-        errors: {
-          ...state.errors,
-          [DaffCartErrorType.Payment]: state.errors[DaffCartErrorType.Payment].concat(new Array(action.payload))
-        }
       };
 
     default:

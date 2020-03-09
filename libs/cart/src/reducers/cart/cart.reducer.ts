@@ -6,6 +6,25 @@ import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
 import { DaffCartErrorType } from '../cart-error-type.enum';
 
+function addError(state: DaffCartReducerState, error: string) {
+  return {
+    ...state,
+    errors: {
+      ...state.errors,
+      [DaffCartErrorType.Cart]: state.errors[DaffCartErrorType.Cart].concat(new Array(error))
+    }
+  };
+}
+
+function resetErrors(state: DaffCartReducerState) {
+  return {
+    errors: {
+      ...state.errors,
+      [DaffCartErrorType.Cart]: []
+    }
+  };
+}
+
 export function reducer(
   state = initialState,
   action: ActionTypes
@@ -23,15 +42,12 @@ export function reducer(
     case DaffCartActionTypes.CartCreateSuccessAction:
       return {
         ...state,
+        ...resetErrors(state),
         cart: {
           ...state.cart,
           ...action.payload
         },
         loading: false,
-        errors: {
-          ...state.errors,
-          [DaffCartErrorType.Cart]: []
-        }
       };
 
     case DaffCartActionTypes.CartLoadFailureAction:
@@ -40,11 +56,8 @@ export function reducer(
     case DaffCartActionTypes.CartCreateFailureAction:
       return {
         ...state,
+        ...addError(state, action.payload),
         loading: false,
-        errors: {
-          ...state.errors,
-          [DaffCartErrorType.Cart]: state.errors[DaffCartErrorType.Cart].concat(new Array(action.payload))
-        }
       };
 
     default:
