@@ -57,15 +57,13 @@ export class DaffCategoryEffects {
     switchMap((
 			[action, categoryId, appliedFilters, appliedSortOption, appliedSortDirection]: 
 			[DaffChangeCategoryPageSize, string, DaffCategoryFilterAction[], string, DaffSortDirectionEnum]
-		) =>
-      this.processCategoryGetRequest({
-        id: categoryId,
-        page_size: action.pageSize,
-				applied_filters: appliedFilters,
-				applied_sort_option: appliedSortOption,
-				applied_sort_direction: appliedSortDirection
-      })
-    )
+		) => of(new DaffCategoryLoad({
+      id: categoryId,
+			page_size: action.pageSize,
+			applied_filters: appliedFilters,
+			applied_sort_option: appliedSortOption,
+			applied_sort_direction: appliedSortDirection
+		})))
   )
 
   @Effect()
@@ -81,16 +79,14 @@ export class DaffCategoryEffects {
     switchMap((
 			[action, categoryId, pageSize, appliedFilters, appliedSortOption, appliedSortDirection]: 
 			[DaffChangeCategoryCurrentPage, string, number, DaffCategoryFilterAction[], string, DaffSortDirectionEnum]
-		) =>
-      this.processCategoryGetRequest({
-        id: categoryId,
-        page_size: pageSize,
-				current_page: action.currentPage,
-				applied_filters: appliedFilters,
-				applied_sort_option: appliedSortOption,
-				applied_sort_direction: appliedSortDirection
-      })
-    )
+		) => of(new DaffCategoryLoad({
+			id: categoryId,
+			page_size: pageSize,
+			current_page: action.currentPage,
+			applied_filters: appliedFilters,
+			applied_sort_option: appliedSortOption,
+			applied_sort_direction: appliedSortDirection
+		})))
   )
 
   @Effect()
@@ -105,15 +101,13 @@ export class DaffCategoryEffects {
     switchMap((
 			[action, categoryId, pageSize, appliedSortOption, appliedSortDirection]: 
 			[DaffChangeCategoryFilters, string, number, string, DaffSortDirectionEnum]
-		) =>
-      this.processCategoryGetRequest({
-        id: categoryId,
-        page_size: pageSize,
-				applied_filters: action.filters,
-				applied_sort_option: appliedSortOption,
-				applied_sort_direction: appliedSortDirection
-      })
-    )
+		) => of(new DaffCategoryLoad({
+			id: categoryId,
+			page_size: pageSize,
+			applied_filters: action.filters,
+			applied_sort_option: appliedSortOption,
+			applied_sort_direction: appliedSortDirection
+		})))
   )
 
   @Effect()
@@ -129,15 +123,13 @@ export class DaffCategoryEffects {
     switchMap((
 			[action, categoryId, pageSize, appliedFilters, appliedSortOption, appliedSortDirection]: 
 			[DaffToggleCategoryFilter, string, number, DaffCategoryFilterAction[], string, DaffSortDirectionEnum]
-		) => {
-			return this.processCategoryGetRequest({
-        id: categoryId,
-        page_size: pageSize,
-				applied_filters: this.toggleCategoryFilter(action.filter, appliedFilters),
-				applied_sort_option: appliedSortOption,
-				applied_sort_direction: appliedSortDirection
-      })
-		})
+		) => of(new DaffCategoryLoad({
+			id: categoryId,
+			page_size: pageSize,
+			applied_filters: this.toggleCategoryFilter(action.filter, appliedFilters),
+			applied_sort_option: appliedSortOption,
+			applied_sort_direction: appliedSortDirection
+		})))
   )
 
   @Effect()
@@ -151,15 +143,13 @@ export class DaffCategoryEffects {
     switchMap((
 			[action, categoryId, pageSize, appliedFilters]: 
 			[DaffChangeCategorySortingOption, string, number, DaffCategoryFilterAction[]]
-		) =>
-      this.processCategoryGetRequest({
-        id: categoryId,
-        page_size: pageSize,
-				applied_filters: appliedFilters,
-				applied_sort_option: action.sort.option,
-				applied_sort_direction: action.sort.direction
-      })
-    )
+		) => of(new DaffCategoryLoad({
+			id: categoryId,
+			page_size: pageSize,
+			applied_filters: appliedFilters,
+			applied_sort_option: action.sort.option,
+			applied_sort_direction: action.sort.direction
+		})))
 	)
 	
 	private toggleCategoryFilter(
