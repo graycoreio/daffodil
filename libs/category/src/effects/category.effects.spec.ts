@@ -240,7 +240,11 @@ describe('DaffCategoryEffects', () => {
 			};
 		});
 		
-		describe('and the toggled filter is an applied filter', () => {
+		describe('and the toggled filter is not an applied filter', () => {
+
+			beforeEach(() => {
+				store.overrideSelector(selectCategoryPageAppliedFilters, []);
+			});
 			
 			it('should call get category with the toggled filter', () => {
 				const toggleCategoryFilterAction = new DaffToggleCategoryFilter(toggledFilter);
@@ -259,11 +263,10 @@ describe('DaffCategoryEffects', () => {
 			});
 		});
 
-		describe('and toggled filter is not an applied filter', () => {
+		describe('and toggled filter is an applied filter', () => {
 
 			beforeEach(() => {
 				store.overrideSelector(selectCategoryPageAppliedFilters, [toggledFilter]);
-				store.setState({});
 			});
 			
 			it('should not call get category with the toggled filter', () => {
