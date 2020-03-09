@@ -14,7 +14,8 @@ import {
   DaffChangeCategoryPageSize,
   DaffChangeCategoryCurrentPage,
 	DaffChangeCategoryFilters,
-	DaffChangeCategorySortingOption
+	DaffChangeCategorySortingOption,
+	DaffToggleCategoryFilter
 } from '../actions/category.actions';
 import { DaffCategoryDriver } from '../drivers/injection-tokens/category-driver.token';
 import { DaffCategoryServiceInterface } from '../drivers/interfaces/category-service.interface';
@@ -41,7 +42,7 @@ export class DaffCategoryEffects {
   @Effect()
   loadCategory$ : Observable<any> = this.actions$.pipe(
     ofType(DaffCategoryActionTypes.CategoryLoadAction),
-    switchMap((action: DaffCategoryLoad) => this.processCategoryGetRequest(action.categoryRequest))
+    switchMap((action: DaffCategoryLoad) => this.processCategoryGetRequest(action.request))
   )
 
   @Effect()
@@ -108,11 +109,35 @@ export class DaffCategoryEffects {
       this.processCategoryGetRequest({
         id: categoryId,
         page_size: pageSize,
-				applied_filters: action.categoryFilters,
+				applied_filters: action.filters,
 				applied_sort_option: appliedSortOption,
 				applied_sort_direction: appliedSortDirection
       })
     )
+  )
+
+  @Effect()
+  toggleCategoryFilter$ : Observable<any> = this.actions$.pipe(
+    ofType(DaffCategoryActionTypes.ToggleCategoryFilterAction),
+    withLatestFrom(
+      this.store.pipe(select(selectSelectedCategoryId)), 
+      this.store.pipe(select(selectCategoryPageSize)),
+      this.store.pipe(select(selectCategoryPageAppliedFilters)),
+      this.store.pipe(select(selectCategoryPageAppliedSortOption)),
+      this.store.pipe(select(selectCategoryPageAppliedSortDirection))
+    ),
+    switchMap((
+			[action, categoryId, pageSize, appliedFilters, appliedSortOption, appliedSortDirection]: 
+			[DaffToggleCategoryFilter, string, number, DaffCategoryFilterAction[], string, DaffSortDirectionEnum]
+		) => {
+			return this.processCategoryGetRequest({
+        id: categoryId,
+        page_size: pageSize,
+				applied_filters: this.toggleCategoryFilter(action.filter, appliedFilters),
+				applied_sort_option: appliedSortOption,
+				applied_sort_direction: appliedSortDirection
+      })
+		})
   )
 
   @Effect()
@@ -135,7 +160,18 @@ export class DaffCategoryEffects {
 				applied_sort_direction: action.sort.direction
       })
     )
-  )
+	)
+	
+	private toggleCategoryFilter(
+		toggledFilter: DaffCategoryFilterAction, 
+		appliedFilters: DaffCategoryFilterAction[]
+	): DaffCategoryFilterAction[] {
+		return appliedFilters.indexOf(toggledFilter) < 0
+		// filter is not applied, add it
+		? appliedFilters.concat(toggledFilter)
+		// filter is applied, remove it
+		: appliedFilters.filter(filter => filter !== toggledFilter);
+	}
 
   private processCategoryGetRequest(payload: DaffCategoryRequest) {
     return this.driver.get(payload).pipe(

@@ -7,7 +7,8 @@ export {
   DaffChangeCategoryCurrentPage,
   DaffChangeCategoryPageSize,
   DaffChangeCategoryFilters,
-  DaffChangeCategorySortingOption
+	DaffChangeCategorySortingOption,
+	DaffToggleCategoryFilter
 } from './actions/category.actions';
 
 export { categoryReducers } from './reducers/category-reducers';

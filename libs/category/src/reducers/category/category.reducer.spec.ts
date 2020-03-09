@@ -17,14 +17,14 @@ describe('Category | Category Reducer', () => {
   const initialState: CategoryReducerState = {
     categoryPageConfigurationState: {
       id: null,
-      applied_filters: null,
+      applied_filters: [],
       applied_sort_option: null,
       applied_sort_direction: null,
       current_page: null,
       page_size: null,
       total_pages: null,
-      filters: null,
-			sort_options: null,
+      filters: [],
+			sort_options: [],
 			total_products: null,
 			product_ids: []
     },
@@ -81,7 +81,22 @@ describe('Category | Category Reducer', () => {
       expect(result.categoryPageConfigurationState.applied_filters).toEqual(categoryRequest.applied_filters);
       expect(result.categoryPageConfigurationState.applied_sort_direction).toEqual(categoryRequest.applied_sort_direction);
       expect(result.categoryPageConfigurationState.applied_sort_option).toEqual(categoryRequest.applied_sort_option);
-    });
+		});
+		
+		it('should set applied filters to an empty array if the user passes null', () => {
+			categoryRequest = {
+        id: categoryId,
+        page_size: categoryPageConfigurationState.page_size,
+        applied_filters: null,
+        applied_sort_option: categoryPageConfigurationState.applied_sort_option,
+        applied_sort_direction: categoryPageConfigurationState.applied_sort_direction,
+        current_page: categoryPageConfigurationState.current_page
+      }
+      const categoryLoadAction: DaffCategoryLoad = new DaffCategoryLoad(categoryRequest);
+
+      result = categoryReducer(initialState, categoryLoadAction);
+      expect(result.categoryPageConfigurationState.applied_filters).toEqual([]);
+		});
   });
 
   describe('when CategoryLoadSuccessAction is triggered', () => {

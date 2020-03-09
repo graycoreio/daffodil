@@ -2,6 +2,7 @@ import { Action } from '@ngrx/store';
 
 import { DaffGetCategoryResponse } from '../models/get-category-response';
 import { DaffCategoryRequest } from '../models/requests/category-request';
+import { DaffCategoryFilterAction } from '../models/requests/filter-action';
 
 export enum DaffCategoryActionTypes {
   CategoryLoadAction = '[Daff-Category] Category Load Action',
@@ -10,29 +11,30 @@ export enum DaffCategoryActionTypes {
   ChangeCategoryPageSizeAction = '[Daff-Category] Change Category Page Size Action',
   ChangeCategoryCurrentPageAction = '[Daff-Category] Change Category Current Page Action',
   ChangeCategorySortingOptionAction = '[Daff-Category] Change Category Sorting Option Action',
-  ChangeCategoryFiltersAction = '[Daff-Category] Change Category Filters Action'
+	ChangeCategoryFiltersAction = '[Daff-Category] Change Category Filters Action',
+	ToggleCategoryFilterAction = '[Daff-Category] Toggle Category Filter Action'
 }
 
 /**
  * An action triggered to initialize a category load request.
  * 
- * @param categoryRequest - DaffCategoryRequest object
+ * @param request - DaffCategoryRequest object
  */
 export class DaffCategoryLoad implements Action {
   readonly type = DaffCategoryActionTypes.CategoryLoadAction;
 
-  constructor(public categoryRequest: DaffCategoryRequest) { }
+  constructor(public request: DaffCategoryRequest) { }
 }
 
 /**
  * An action triggered upon a successful category request.
  * 
- * @param categoryResponse - DaffGetCategoryResponse object
+ * @param response - DaffGetCategoryResponse object
  */
 export class DaffCategoryLoadSuccess implements Action {
   readonly type = DaffCategoryActionTypes.CategoryLoadSuccessAction;
 
-  constructor(public categoryResponse: DaffGetCategoryResponse) { }
+  constructor(public response: DaffGetCategoryResponse) { }
 }
 
 /**
@@ -87,12 +89,23 @@ export class DaffChangeCategorySortingOption implements Action {
 /**
  * An action for changing the filters for the selected category.
  * 
- * @param categoryFilters - Filters to be applied to the selected category.
+ * @param filters - Filters to be applied to the selected category.
  */
 export class DaffChangeCategoryFilters implements Action {
   readonly type = DaffCategoryActionTypes.ChangeCategoryFiltersAction;
 
-  constructor(public categoryFilters: DaffCategoryRequest['applied_filters']) { }
+  constructor(public filters: DaffCategoryRequest['applied_filters']) { }
+}
+
+/**
+ * An action for toggling a filters for the selected category.
+ * 
+ * @param filter - Filter to be toggle on the selected category.
+ */
+export class DaffToggleCategoryFilter implements Action {
+  readonly type = DaffCategoryActionTypes.ToggleCategoryFilterAction;
+
+  constructor(public filter: DaffCategoryFilterAction) { }
 }
 
 export type DaffCategoryActions =
@@ -101,4 +114,5 @@ export type DaffCategoryActions =
   | DaffCategoryLoadFailure
   | DaffChangeCategoryPageSize
   | DaffChangeCategorySortingOption
-  | DaffChangeCategoryFilters;
+  | DaffChangeCategoryFilters
+  | DaffToggleCategoryFilter;

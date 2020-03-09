@@ -41,7 +41,7 @@ export class MockCategoryPageConfigurationState implements DaffCategoryPageConfi
     }
   ];
   total_pages = faker.random.number(4);
-  applied_filters = null;
+  applied_filters = [];
   applied_sort_option = null;
 	applied_sort_direction = null;
 	total_products = faker.random.number(3);
