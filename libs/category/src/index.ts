@@ -48,6 +48,6 @@ export {
 	DaffSortDirectionEnum
 } from './models/requests/category-request';
 export { DaffCategorySortOption } from './models/category-sort-option';
-export { DaffCategoryFilterAction } from './models/requests/filter-action';
+export { DaffCategoryFilterAction, DaffCategoryFilterActionEnum } from './models/requests/filter-action';
 
 export * from './drivers/magento/public_api';

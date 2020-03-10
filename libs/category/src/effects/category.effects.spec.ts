@@ -32,7 +32,7 @@ import {
 	selectCategoryPageAppliedSortDirection 
 } from '../selectors/category.selector';
 import { DaffSortDirectionEnum } from '../models/requests/category-request';
-import { DaffCategoryFilterAction } from '../models/requests/filter-action';
+import { DaffCategoryFilterAction, DaffCategoryFilterActionEnum } from '../models/requests/filter-action';
 
 describe('DaffCategoryEffects', () => {
   let actions$: Observable<any>;
@@ -203,7 +203,7 @@ describe('DaffCategoryEffects', () => {
     it('should dispatch a category load with an id, page size, applied filters, and an applied sorting option', () => {
       const changeCategoryFiltersAction = new DaffChangeCategoryFilters([{
 				name: 'name',
-				action: 'action',
+				action: DaffCategoryFilterActionEnum.Equal,
 				value: 'value'
 			}]);
       actions$ = hot('--a', { a: changeCategoryFiltersAction });
@@ -215,7 +215,7 @@ describe('DaffCategoryEffects', () => {
 				applied_sort_option: stubCategoryPageConfigurationState.applied_sort_option,
 				applied_filters: [{
 					name: 'name',
-					action: 'action',
+					action: DaffCategoryFilterActionEnum.Equal,
 					value: 'value'
 				}]
       });
@@ -234,12 +234,12 @@ describe('DaffCategoryEffects', () => {
 		beforeEach(() => {
 			existingFilter = {
 				name: 'name',
-				action: 'action',
+				action: DaffCategoryFilterActionEnum.Equal,
 				value: 'value'
 			};
 			newFilter = {
 				name: 'name',
-				action: 'action',
+				action: DaffCategoryFilterActionEnum.Equal,
 				value: 'value'
 			};
 		});

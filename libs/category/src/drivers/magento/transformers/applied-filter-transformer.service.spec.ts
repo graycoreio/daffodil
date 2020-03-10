@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffMagentoAppliedFiltersTransformService } from './applied-filter-transformer.service';
-import { MagentoCategoryFilters } from '../models/requests/filters';
-import { DaffCategoryFilterAction } from '../../../models/requests/filter-action';
+import { MagentoCategoryFilters, MagentoCategoryFilterActionEnum } from '../models/requests/filters';
+import { DaffCategoryFilterAction, DaffCategoryFilterActionEnum } from '../../../models/requests/filter-action';
 
 describe('DaffMagentoAppliedFiltersTransformService', () => {
 
@@ -10,12 +10,12 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
 	const categoryId = 'id';
 	const categoryFilterActions: DaffCategoryFilterAction[] = [
 		{
-			action: 'action',
+			action: DaffCategoryFilterActionEnum.Equal,
 			name: 'name',
 			value: 'value'
 		},
 		{
-			action: 'action2',
+			action: DaffCategoryFilterActionEnum.Equal,
 			name: 'name2',
 			value: 'value2'
 		}
@@ -42,10 +42,10 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
 					eq: 'id'
 				},
 				name: {
-					action: 'value'
+					[MagentoCategoryFilterActionEnum.Equal]: 'value'
 				},
 				name2: {
-					action2: 'value2'
+					[MagentoCategoryFilterActionEnum.Equal]: 'value2'
 				}
 			}
       expect(service.transform(categoryId, categoryFilterActions)).toEqual(expectedReturn);
