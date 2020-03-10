@@ -1,7 +1,15 @@
+export enum MagentoCategoryFilterActionEnum {
+	Equal = 'eq',
+	To = 'to',
+	From = 'from',
+	In = 'in',
+	Match = 'match'
+}
+
 export interface MagentoCategoryFilters {
 	[x: string]: MagentoFilterAction;
 }
 
-export interface MagentoFilterAction {
-	[x: string]: string;
+export type MagentoFilterAction = {
+	[key in MagentoCategoryFilterActionEnum]?: string;
 }
