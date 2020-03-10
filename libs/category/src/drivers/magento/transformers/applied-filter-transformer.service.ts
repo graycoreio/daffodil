@@ -26,16 +26,10 @@ export class DaffMagentoAppliedFiltersTransformService {
 	}
 	
 	private transformActionEnum(daffEnum: DaffCategoryFilterActionEnum): MagentoCategoryFilterActionEnum {
-		if(daffEnum === DaffCategoryFilterActionEnum.Equal) {
-			return MagentoCategoryFilterActionEnum.Equal
-		} else if(daffEnum === DaffCategoryFilterActionEnum.From) {
-			return MagentoCategoryFilterActionEnum.From
-		} else if(daffEnum === DaffCategoryFilterActionEnum.To) {
-			return MagentoCategoryFilterActionEnum.To
-		} else if(daffEnum === DaffCategoryFilterActionEnum.In) {
-			return MagentoCategoryFilterActionEnum.In
-		} else if(daffEnum === DaffCategoryFilterActionEnum.Match) {
-			return MagentoCategoryFilterActionEnum.Match
-		}
+		if(daffEnum === DaffCategoryFilterActionEnum.Equal) return MagentoCategoryFilterActionEnum.Equal;
+		else if(daffEnum === DaffCategoryFilterActionEnum.From) return MagentoCategoryFilterActionEnum.From;
+		else if(daffEnum === DaffCategoryFilterActionEnum.To) return MagentoCategoryFilterActionEnum.To;
+		else if(daffEnum === DaffCategoryFilterActionEnum.In) return MagentoCategoryFilterActionEnum.In;
+		else if(daffEnum === DaffCategoryFilterActionEnum.Match) return MagentoCategoryFilterActionEnum.Match;
 	}
 }
