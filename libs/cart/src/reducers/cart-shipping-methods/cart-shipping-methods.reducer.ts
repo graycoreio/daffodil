@@ -25,7 +25,7 @@ function resetErrors(state: DaffCartReducerState) {
   };
 }
 
-export function reducer(
+export function cartShippingMethodsReducer(
   state = initialState,
   action: ActionTypes
 ): DaffCartReducerState {

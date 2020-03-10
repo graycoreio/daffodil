@@ -11,7 +11,7 @@ import {
   DaffCartShippingAddressUpdateSuccess,
   DaffCartShippingAddressUpdateFailure,
 } from '../../actions';
-import { reducer } from './cart-shipping-address.reducer';
+import { cartShippingAddressReducer } from './cart-shipping-address.reducer';
 import { DaffCartErrorType } from '../cart-error-type.enum';
 
 describe('Cart | Reducer | Cart Shipping Address', () => {
@@ -28,7 +28,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
     it('should return the current state', () => {
       const action = {} as any;
 
-      const result = reducer(initialState, action);
+      const result = cartShippingAddressReducer(initialState, action);
 
       expect(result).toBe(initialState);
     });
@@ -38,7 +38,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
     it('should set loading state to true', () => {
       const cartListLoadAction = new DaffCartShippingAddressLoad();
 
-      const result = reducer(initialState, cartListLoadAction);
+      const result = cartShippingAddressReducer(initialState, cartListLoadAction);
 
       expect(result.loading).toEqual(true);
     });
@@ -56,7 +56,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
 
       const cartListLoadSuccess = new DaffCartShippingAddressLoadSuccess(cart.shipping_address);
 
-      result = reducer(state, cartListLoadSuccess);
+      result = cartShippingAddressReducer(state, cartListLoadSuccess);
     });
 
     it('should indicate that the cart is not loading', () => {
@@ -65,6 +65,10 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
 
     it('should set shipping_address from action.payload', () => {
       expect(result.cart.shipping_address).toEqual(cart.shipping_address)
+    });
+
+    it('should reset the errors in the shipping address section of state.errors to an empty array', () => {
+      expect(result.errors[DaffCartErrorType.ShippingAddress]).toEqual([]);
     });
   });
 
@@ -85,14 +89,14 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
 
       const cartListLoadFailure = new DaffCartShippingAddressLoadFailure(error);
 
-      result = reducer(state, cartListLoadFailure);
+      result = cartShippingAddressReducer(state, cartListLoadFailure);
     });
 
     it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('adds an error to the shipping address section of state.errors', () => {
+    it('should add an error to the shipping address section of state.errors', () => {
       expect(result.errors[DaffCartErrorType.ShippingAddress].length).toEqual(2);
     });
   });
@@ -101,7 +105,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
     it('should set loading state to true', () => {
       const cartShippingAddressUpdateAction = new DaffCartShippingAddressUpdate(cart.shipping_address);
 
-      const result = reducer(initialState, cartShippingAddressUpdateAction);
+      const result = cartShippingAddressReducer(initialState, cartShippingAddressUpdateAction);
 
       expect(result.loading).toEqual(true);
     });
@@ -118,7 +122,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
         loading: true
       }
 
-      result = reducer(state, cartShippingAddressUpdateActionSuccess);
+      result = cartShippingAddressReducer(state, cartShippingAddressUpdateActionSuccess);
     });
 
     it('should set cart from action.payload', () => {
@@ -127,6 +131,10 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
 
     it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
+    });
+
+    it('should reset the errors in the shipping address section of state.errors to an empty array', () => {
+      expect(result.errors[DaffCartErrorType.ShippingAddress]).toEqual([]);
     });
   });
 
@@ -149,14 +157,14 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
 
       const cartShippingAddressUpdateFailure = new DaffCartShippingAddressUpdateFailure(error);
 
-      result = reducer(state, cartShippingAddressUpdateFailure);
+      result = cartShippingAddressReducer(state, cartShippingAddressUpdateFailure);
     });
 
     it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('adds an error to the shipping address section of state.errors', () => {
+    it('should add an error to the shipping address section of state.errors', () => {
       expect(result.errors[DaffCartErrorType.ShippingAddress].length).toEqual(2);
     });
   });

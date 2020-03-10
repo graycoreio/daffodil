@@ -9,7 +9,7 @@ import {
   DaffCartShippingMethodsLoadFailure
 } from '../../actions';
 import { DaffCart } from '../../models/cart';
-import { reducer } from './cart-shipping-methods.reducer';
+import { cartShippingMethodsReducer } from './cart-shipping-methods.reducer';
 import { TestBed } from '@angular/core/testing';
 import { DaffCartErrorType } from '../cart-error-type.enum';
 
@@ -34,7 +34,7 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
     it('should return the current state', () => {
       const action = {} as any;
 
-      const result = reducer(initialState, action);
+      const result = cartShippingMethodsReducer(initialState, action);
 
       expect(result).toBe(initialState);
     });
@@ -44,7 +44,7 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
 
     it('should set loading state to true', () => {
       const cartShippingMethodsLoadAction = new DaffCartShippingMethodsLoad();
-      const result = reducer(initialState, cartShippingMethodsLoadAction);
+      const result = cartShippingMethodsReducer(initialState, cartShippingMethodsLoadAction);
 
       expect(result.loading).toEqual(true);
     });
@@ -62,7 +62,7 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
 
       const cartShippingMethodsLoadSuccess = new DaffCartShippingMethodsLoadSuccess(cart.available_shipping_methods);
 
-      result = reducer(state, cartShippingMethodsLoadSuccess);
+      result = cartShippingMethodsReducer(state, cartShippingMethodsLoadSuccess);
     });
 
     it('should indicate that the cart is not loading', () => {
@@ -71,6 +71,10 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
 
     it('should set available_shipping_methods from action.payload', () => {
       expect(result.cart.available_shipping_methods).toEqual(cart.available_shipping_methods)
+    });
+
+    it('should reset the errors in the shipping methods section of state.errors to an empty array', () => {
+      expect(result.errors[DaffCartErrorType.ShippingMethods]).toEqual([]);
     });
   });
 
@@ -91,14 +95,14 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
 
       const cartShippingMethodsLoadFailure = new DaffCartShippingMethodsLoadFailure(error);
 
-      result = reducer(state, cartShippingMethodsLoadFailure);
+      result = cartShippingMethodsReducer(state, cartShippingMethodsLoadFailure);
     });
 
     it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('adds an error to the shipping methods section of state.errors', () => {
+    it('should add an error to the shipping methods section of state.errors', () => {
       expect(result.errors[DaffCartErrorType.ShippingMethods].length).toEqual(2);
     });
   });

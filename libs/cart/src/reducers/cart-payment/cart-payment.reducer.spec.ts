@@ -14,7 +14,7 @@ import {
   DaffCartPaymentRemoveSuccess,
   DaffCartPaymentRemoveFailure
 } from '../../actions';
-import { reducer } from './cart-payment.reducer';
+import { cartPaymentReducer } from './cart-payment.reducer';
 import { DaffCartErrorType } from '../cart-error-type.enum';
 
 describe('Cart | Reducer | Cart Payment', () => {
@@ -31,7 +31,7 @@ describe('Cart | Reducer | Cart Payment', () => {
     it('should return the current state', () => {
       const action = {} as any;
 
-      const result = reducer(initialState, action);
+      const result = cartPaymentReducer(initialState, action);
 
       expect(result).toBe(initialState);
     });
@@ -41,7 +41,7 @@ describe('Cart | Reducer | Cart Payment', () => {
     it('should set loading state to true', () => {
       const cartListLoadAction = new DaffCartPaymentLoad();
 
-      const result = reducer(initialState, cartListLoadAction);
+      const result = cartPaymentReducer(initialState, cartListLoadAction);
 
       expect(result.loading).toEqual(true);
     });
@@ -59,7 +59,7 @@ describe('Cart | Reducer | Cart Payment', () => {
 
       const cartListLoadSuccess = new DaffCartPaymentLoadSuccess(cart.payment);
 
-      result = reducer(state, cartListLoadSuccess);
+      result = cartPaymentReducer(state, cartListLoadSuccess);
     });
 
     it('should indicate that the cart is not loading', () => {
@@ -68,6 +68,10 @@ describe('Cart | Reducer | Cart Payment', () => {
 
     it('should set payment from action.payload', () => {
       expect(result.cart.payment).toEqual(cart.payment)
+    });
+
+    it('should reset the errors in the payment section of state.errors to an empty array', () => {
+      expect(result.errors[DaffCartErrorType.Payment]).toEqual([]);
     });
   });
 
@@ -88,14 +92,14 @@ describe('Cart | Reducer | Cart Payment', () => {
 
       const cartListLoadFailure = new DaffCartPaymentLoadFailure(error);
 
-      result = reducer(state, cartListLoadFailure);
+      result = cartPaymentReducer(state, cartListLoadFailure);
     });
 
     it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('adds an error to the payment section of state.errors', () => {
+    it('should add an error to the payment section of state.errors', () => {
       expect(result.errors[DaffCartErrorType.Payment].length).toEqual(2);
     });
   });
@@ -104,7 +108,7 @@ describe('Cart | Reducer | Cart Payment', () => {
     it('should set loading state to true', () => {
       const cartPaymentUpdateAction = new DaffCartPaymentUpdate(cart.payment);
 
-      const result = reducer(initialState, cartPaymentUpdateAction);
+      const result = cartPaymentReducer(initialState, cartPaymentUpdateAction);
 
       expect(result.loading).toEqual(true);
     });
@@ -121,7 +125,7 @@ describe('Cart | Reducer | Cart Payment', () => {
         loading: true
       }
 
-      result = reducer(state, cartPaymentUpdateActionSuccess);
+      result = cartPaymentReducer(state, cartPaymentUpdateActionSuccess);
     });
 
     it('should set cart from action.payload', () => {
@@ -130,6 +134,10 @@ describe('Cart | Reducer | Cart Payment', () => {
 
     it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
+    });
+
+    it('should reset the errors in the payment section of state.errors to an empty array', () => {
+      expect(result.errors[DaffCartErrorType.Payment]).toEqual([]);
     });
   });
 
@@ -152,14 +160,14 @@ describe('Cart | Reducer | Cart Payment', () => {
 
       const cartPaymentUpdateFailure = new DaffCartPaymentUpdateFailure(error);
 
-      result = reducer(state, cartPaymentUpdateFailure);
+      result = cartPaymentReducer(state, cartPaymentUpdateFailure);
     });
 
     it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('adds an error to the payment section of state.errors', () => {
+    it('should add an error to the payment section of state.errors', () => {
       expect(result.errors[DaffCartErrorType.Payment].length).toEqual(2);
     });
   });
@@ -171,7 +179,7 @@ describe('Cart | Reducer | Cart Payment', () => {
         loading: true,
       }
       const cartPaymentRemove = new DaffCartPaymentRemove();
-      const result = reducer(initialState, cartPaymentRemove);
+      const result = cartPaymentReducer(initialState, cartPaymentRemove);
 
       expect(result).toEqual(expectedState);
     });
@@ -184,7 +192,7 @@ describe('Cart | Reducer | Cart Payment', () => {
       cart.payment = null;
       const cartPaymentRemoveSuccess = new DaffCartPaymentRemoveSuccess();
 
-      result = reducer(initialState, cartPaymentRemoveSuccess);
+      result = cartPaymentReducer(initialState, cartPaymentRemoveSuccess);
     });
 
     it('should remove the payment from the cart', () => {
@@ -193,6 +201,10 @@ describe('Cart | Reducer | Cart Payment', () => {
 
     it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
+    });
+
+    it('should reset the errors in the payment section of state.errors to an empty array', () => {
+      expect(result.errors[DaffCartErrorType.Payment]).toEqual([]);
     });
   });
 
@@ -215,14 +227,14 @@ describe('Cart | Reducer | Cart Payment', () => {
 
       const cartPaymentRemoveFailure = new DaffCartPaymentRemoveFailure(error);
 
-      result = reducer(state, cartPaymentRemoveFailure);
+      result = cartPaymentReducer(state, cartPaymentRemoveFailure);
     });
 
     it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('adds an error to the payment section of state.errors', () => {
+    it('should add an error to the payment section of state.errors', () => {
       expect(result.errors[DaffCartErrorType.Payment].length).toEqual(2);
     });
   });

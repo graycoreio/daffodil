@@ -7,7 +7,7 @@ import {
   DaffCartPaymentMethodsLoadFailure
 } from '../../actions';
 import { DaffCart } from '../../models/cart';
-import { reducer } from './cart-payment-methods.reducer';
+import { cartPaymentMethodsReducer } from './cart-payment-methods.reducer';
 import { DaffCartErrorType } from '../cart-error-type.enum';
 
 describe('Cart | Reducer | Cart Payment Methods', () => {
@@ -25,7 +25,7 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
     it('should return the current state', () => {
       const action = {} as any;
 
-      const result = reducer(initialState, action);
+      const result = cartPaymentMethodsReducer(initialState, action);
 
       expect(result).toBe(initialState);
     });
@@ -35,7 +35,7 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
 
     it('should set loading state to true', () => {
       const cartPaymentMethodsLoadAction = new DaffCartPaymentMethodsLoad();
-      const result = reducer(initialState, cartPaymentMethodsLoadAction);
+      const result = cartPaymentMethodsReducer(initialState, cartPaymentMethodsLoadAction);
 
       expect(result.loading).toEqual(true);
     });
@@ -53,7 +53,7 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
 
       const cartPaymentMethodsLoadSuccess = new DaffCartPaymentMethodsLoadSuccess(cart.available_payment_methods);
 
-      result = reducer(state, cartPaymentMethodsLoadSuccess);
+      result = cartPaymentMethodsReducer(state, cartPaymentMethodsLoadSuccess);
     });
 
     it('should indicate that the cart is not loading', () => {
@@ -62,6 +62,10 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
 
     it('should set available_payment_methods from action.payload', () => {
       expect(result.cart.available_payment_methods).toEqual(cart.available_payment_methods)
+    });
+
+    it('should reset the errors in the payment methods section of state.errors to an empty array', () => {
+      expect(result.errors[DaffCartErrorType.PaymentMethods]).toEqual([]);
     });
   });
 
@@ -82,14 +86,14 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
 
       const cartPaymentMethodsLoadFailure = new DaffCartPaymentMethodsLoadFailure(error);
 
-      result = reducer(state, cartPaymentMethodsLoadFailure);
+      result = cartPaymentMethodsReducer(state, cartPaymentMethodsLoadFailure);
     });
 
     it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('adds an error to the payment methods section of state.errors', () => {
+    it('should add an error to the payment methods section of state.errors', () => {
       expect(result.errors[DaffCartErrorType.PaymentMethods].length).toEqual(2);
     });
   });

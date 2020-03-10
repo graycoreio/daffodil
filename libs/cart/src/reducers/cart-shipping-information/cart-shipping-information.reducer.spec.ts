@@ -17,7 +17,7 @@ import {
   DaffCartShippingInformationDeleteSuccess,
   DaffCartShippingInformationDeleteFailure
 } from '../../actions';
-import { reducer } from './cart-shipping-information.reducer';
+import { cartShippingInformationReducer } from './cart-shipping-information.reducer';
 import { DaffCartShippingInformation } from '../../models/cart-shipping-info';
 import { DaffCartErrorType } from '../cart-error-type.enum';
 
@@ -42,7 +42,7 @@ describe('Cart | Reducer | Cart Shipping Information', () => {
     it('should return the current state', () => {
       const action = {} as any;
 
-      const result = reducer(initialState, action);
+      const result = cartShippingInformationReducer(initialState, action);
 
       expect(result).toBe(initialState);
     });
@@ -52,7 +52,7 @@ describe('Cart | Reducer | Cart Shipping Information', () => {
     it('should set loading state to true', () => {
       const cartShippingInformationLoadAction = new DaffCartShippingInformationLoad();
 
-      const result = reducer(initialState, cartShippingInformationLoadAction);
+      const result = cartShippingInformationReducer(initialState, cartShippingInformationLoadAction);
 
       expect(result.loading).toEqual(true);
     });
@@ -71,7 +71,7 @@ describe('Cart | Reducer | Cart Shipping Information', () => {
 
       const cartShippingInformationLoadSuccess = new DaffCartShippingInformationLoadSuccess(mockCartShippingInformation);
 
-      result = reducer(state, cartShippingInformationLoadSuccess);
+      result = cartShippingInformationReducer(state, cartShippingInformationLoadSuccess);
     });
 
     it('should indicate that the cart is not loading', () => {
@@ -80,6 +80,10 @@ describe('Cart | Reducer | Cart Shipping Information', () => {
 
     it('should set shipping_information from action.payload', () => {
       expect(result.cart.shipping_information).toEqual(mockCartShippingInformation)
+    });
+
+    it('should reset the errors in the shipping information section of state.errors to an empty array', () => {
+      expect(result.errors[DaffCartErrorType.ShippingInformation]).toEqual([]);
     });
   });
 
@@ -100,14 +104,14 @@ describe('Cart | Reducer | Cart Shipping Information', () => {
 
       const cartShippingInformationLoadFailure = new DaffCartShippingInformationLoadFailure(error);
 
-      result = reducer(state, cartShippingInformationLoadFailure);
+      result = cartShippingInformationReducer(state, cartShippingInformationLoadFailure);
     });
 
     it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('adds an error to the shipping information section of state.errors', () => {
+    it('should add an error to the shipping information section of state.errors', () => {
       expect(result.errors[DaffCartErrorType.ShippingInformation].length).toEqual(2);
     });
   });
@@ -116,7 +120,7 @@ describe('Cart | Reducer | Cart Shipping Information', () => {
     it('should set loading state to true', () => {
       const cartShippingInformationUpdateAction = new DaffCartShippingInformationUpdate(cart.shipping_information);
 
-      const result = reducer(initialState, cartShippingInformationUpdateAction);
+      const result = cartShippingInformationReducer(initialState, cartShippingInformationUpdateAction);
 
       expect(result.loading).toEqual(true);
     });
@@ -133,7 +137,7 @@ describe('Cart | Reducer | Cart Shipping Information', () => {
         loading: true
       }
 
-      result = reducer(state, cartShippingInformationUpdateActionSuccess);
+      result = cartShippingInformationReducer(state, cartShippingInformationUpdateActionSuccess);
     });
 
     it('should set cart from action.payload', () => {
@@ -142,6 +146,10 @@ describe('Cart | Reducer | Cart Shipping Information', () => {
 
     it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
+    });
+
+    it('should reset the errors in the shipping information section of state.errors to an empty array', () => {
+      expect(result.errors[DaffCartErrorType.ShippingInformation]).toEqual([]);
     });
   });
 
@@ -164,14 +172,14 @@ describe('Cart | Reducer | Cart Shipping Information', () => {
 
       const cartShippingInformationUpdateFailure = new DaffCartShippingInformationUpdateFailure(error);
 
-      result = reducer(state, cartShippingInformationUpdateFailure);
+      result = cartShippingInformationReducer(state, cartShippingInformationUpdateFailure);
     });
 
     it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('adds an error to the shipping information section of state.errors', () => {
+    it('should add an error to the shipping information section of state.errors', () => {
       expect(result.errors[DaffCartErrorType.ShippingInformation].length).toEqual(2);
     });
   });
@@ -183,15 +191,21 @@ describe('Cart | Reducer | Cart Shipping Information', () => {
         loading: true,
       }
       const cartShippingInformationRemove = new DaffCartShippingInformationDelete();
-      const result = reducer(initialState, cartShippingInformationRemove);
+      const result = cartShippingInformationReducer(initialState, cartShippingInformationRemove);
 
       expect(result).toEqual(expectedState);
     });
   });
 
   describe('when CartShippingInformationDeleteSuccessAction is triggered', () => {
-    it('should remove the shipping information from the cart', () => {
+    let result;
+
+    beforeEach(() => {
       cart.shipping_information = null;
+      const cartShippingInformationRemoveSuccess = new DaffCartShippingInformationDeleteSuccess(cart);
+      result = cartShippingInformationReducer(initialState, cartShippingInformationRemoveSuccess);
+    });
+    it('should remove the shipping information from the cart', () => {
 
       const expectedState = {
         ...initialState,
@@ -202,10 +216,12 @@ describe('Cart | Reducer | Cart Shipping Information', () => {
         },
         loading: false
       };
-      const cartShippingInformationRemoveSuccess = new DaffCartShippingInformationDeleteSuccess(cart);
-      const result = reducer(initialState, cartShippingInformationRemoveSuccess)
 
       expect(result).toEqual(expectedState);
+    });
+
+    it('should reset the errors in the shipping information section of state.errors to an empty array', () => {
+      expect(result.errors[DaffCartErrorType.ShippingInformation]).toEqual([]);
     });
   });
 
@@ -228,14 +244,14 @@ describe('Cart | Reducer | Cart Shipping Information', () => {
 
       const cartShippingInformationRemoveFailure = new DaffCartShippingInformationDeleteFailure(error);
 
-      result = reducer(state, cartShippingInformationRemoveFailure);
+      result = cartShippingInformationReducer(state, cartShippingInformationRemoveFailure);
     });
 
     it('should indicate that the cart is not loading', () => {
       expect(result.loading).toEqual(false);
     });
 
-    it('adds an error to the shipping information section of state.errors', () => {
+    it('should add an error to the shipping information section of state.errors', () => {
       expect(result.errors[DaffCartErrorType.ShippingInformation].length).toEqual(2);
     });
   });
