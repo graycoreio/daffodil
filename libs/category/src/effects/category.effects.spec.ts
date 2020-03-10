@@ -227,10 +227,17 @@ describe('DaffCategoryEffects', () => {
   describe('when ToggleCategoryFilterAction is triggered', () => {
 
 		let expected;
-		let toggledFilter: DaffCategoryFilterAction;
+		// We need the filters to exist in separate memory to simulate a true object to object comparison.
+		let existingFilter: DaffCategoryFilterAction;
+		let newFilter: DaffCategoryFilterAction;
 
 		beforeEach(() => {
-			toggledFilter = {
+			existingFilter = {
+				name: 'name',
+				action: 'action',
+				value: 'value'
+			};
+			newFilter = {
 				name: 'name',
 				action: 'action',
 				value: 'value'
@@ -244,7 +251,7 @@ describe('DaffCategoryEffects', () => {
 			});
 			
 			it('should dispatch a category load with the toggled filter', () => {
-				const toggleCategoryFilterAction = new DaffToggleCategoryFilter(toggledFilter);
+				const toggleCategoryFilterAction = new DaffToggleCategoryFilter(newFilter);
 				actions$ = hot('--a', { a: toggleCategoryFilterAction });
 				
 				const categoryLoadAction = new DaffCategoryLoad({ 
@@ -252,7 +259,7 @@ describe('DaffCategoryEffects', () => {
 					page_size: stubCategoryPageConfigurationState.page_size,
 					applied_sort_direction: stubCategoryPageConfigurationState.applied_sort_direction,
 					applied_sort_option: stubCategoryPageConfigurationState.applied_sort_option,
-					applied_filters: [toggledFilter]
+					applied_filters: [newFilter]
 				});
 				expected = cold('--(a)', { a: categoryLoadAction });
 				expect(effects.toggleCategoryFilter$).toBeObservable(expected);
@@ -262,11 +269,11 @@ describe('DaffCategoryEffects', () => {
 		describe('and toggled filter is an applied filter', () => {
 
 			beforeEach(() => {
-				store.overrideSelector(selectCategoryPageAppliedFilters, [toggledFilter]);
+				store.overrideSelector(selectCategoryPageAppliedFilters, [existingFilter]);
 			});
 			
 			it('should not dispatch a category load with the toggled filter', () => {
-				const toggleCategoryFilterAction = new DaffToggleCategoryFilter(toggledFilter);
+				const toggleCategoryFilterAction = new DaffToggleCategoryFilter(newFilter);
 				actions$ = hot('--a', { a: toggleCategoryFilterAction });
 				
 				const categoryLoadAction = new DaffCategoryLoad({ 
