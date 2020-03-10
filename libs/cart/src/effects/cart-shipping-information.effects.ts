@@ -54,7 +54,7 @@ export class DaffCartShippingInformationEffects<T extends DaffCartShippingInform
   @Effect()
   delete$ = this.actions$.pipe(
     ofType(DaffCartShippingInformationActionTypes.CartShippingInformationDeleteAction),
-    switchMap((action: DaffCartShippingInformationDelete<DaffCartShippingRate>) =>
+    switchMap((action: DaffCartShippingInformationDelete<V['shipping_information']>) =>
       this.driver.delete(this.storage.getCartId()).pipe(
         map((resp: V) => new DaffCartShippingInformationDeleteSuccess(resp)),
         catchError(error => of(new DaffCartShippingInformationDeleteFailure('Failed to delete the cart shipping information')))
