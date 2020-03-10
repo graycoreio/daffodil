@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const bundledProductFragment = gql`
-  fragment BundledProduct on Product {
+  fragment BundledProduct on BundleProduct {
 		dynamic_price
 		dynamic_sku
 		dynamic_weight

@@ -1,6 +1,3 @@
-import { ProductImageNode } from './product-image-node';
-import { ProductPriceNode } from './product-price-node';
-
 /**
  * An object for defining what the product service requests and retrieves from a magento backend.
  */
@@ -9,9 +6,29 @@ export interface ProductNode {
   name: string;
   sku: string;
   url_key: string;
-  image: ProductImageNode;
-  price: ProductPriceNode;
-  media_gallery_entries?: any;
-  short_description?: any;
-  description?: any;
+  image: {
+		url: string,
+		label: string
+	};
+  price: {
+		regularPrice: {
+			amount: {
+				value: number
+				currency: any
+			}
+		}
+	};
+  media_gallery_entries?: {
+		label: string,
+		file: string,
+		position: number,
+		disabled: boolean,
+		id: number
+	}[];
+  short_description?: {
+		html: string;
+	};
+  description?: {
+		html: string;
+	};
 }

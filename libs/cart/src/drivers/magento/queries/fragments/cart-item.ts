@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 
-import { productFragment } from './product';
+import { magentoProductFragment } from '@daffodil/product';
+
 import { moneyFragment } from './money';
 
 export const cartItemFragment = gql`
@@ -26,6 +27,6 @@ export const cartItemFragment = gql`
       }
     }
   }
-  ${productFragment}
+  ${magentoProductFragment}
   ${moneyFragment}
 `;

@@ -89,7 +89,12 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 					id: 2,
 					name: 'name',
 					price: {
-						regularPrice: 123
+						regularPrice: {
+							amount: {
+								value: 123,
+								currency: null
+							}
+						}
 					},
 					url_key: 'url_key',
 					image: {

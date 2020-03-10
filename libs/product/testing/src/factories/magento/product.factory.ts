@@ -13,13 +13,22 @@ export class MockMagentoProduct implements MagentoProduct {
     url: faker.image.imageUrl()
   };
   name = faker.random.word();
-  description = faker.random.words(5);
+  description = {
+		html: faker.random.words(5)
+	}
   sku = faker.random.alphaNumeric(16);
   url_key = faker.random.alphaNumeric(16);
   price = {
-    regularPrice: faker.random.number(1000)
+    regularPrice: {
+			amount: {
+				value: faker.random.number(1000),
+				currency: null
+			}
+		}
   };
-  short_description = faker.random.words(3);
+  short_description = {
+		html: faker.random.words(3)
+	}
   media_gallery_entries = null;
 }
 
