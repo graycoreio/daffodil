@@ -42,7 +42,7 @@ export class DaffMagentoCategoryPageConfigTransformerService {
 
 	// There is no way to determine what type these filters are except through the
 	// Magento documentation.
-	private transformAggregateType(attribute_code: string): DaffCategoryFilterType {
+	private transformAggregateType(attribute_code: MagentoAggregation['attribute_code']): DaffCategoryFilterType {
 		if(attribute_code === 'category_id') return DaffCategoryFilterType.Equal;
 		else if(attribute_code === 'description') return DaffCategoryFilterType.Match;
 		else if(attribute_code === 'name') return DaffCategoryFilterType.Match;
