@@ -27,7 +27,8 @@ import {
   selectShippingInformationErrors,
   selectShippingMethodsErrors,
   selectPaymentErrors,
-  selectPaymentMethodsErrors
+  selectPaymentMethodsErrors,
+  selectCartErrorsObject
 } from '../../selectors';
 import { DaffCartErrors } from '../../reducers/cart-errors.type';
 import { DaffCartErrorType } from '../../reducers/cart-error-type.enum';
@@ -39,6 +40,7 @@ export class DaffCartFacade implements DaffStoreFacade<Action> {
   loading$: Observable<boolean>;
   cart$: Observable<DaffCart>;
 
+  errors$: Observable<DaffCartErrors>;
   cartErrors$: Observable<DaffCartErrors[DaffCartErrorType.Cart]>;
   itemErrors$: Observable<DaffCartErrors[DaffCartErrorType.Item]>;
   billingAddressErrors$: Observable<DaffCartErrors[DaffCartErrorType.BillingAddress]>;
@@ -65,6 +67,7 @@ export class DaffCartFacade implements DaffStoreFacade<Action> {
     this.loading$ = this.store.pipe(select(selectCartLoading));
     this.cart$ = this.store.pipe(select(selectCartValue));
 
+    this.errors$ = this.store.pipe(select(selectCartErrorsObject));
     this.cartErrors$ = this.store.pipe(select(selectCartErrors));
     this.itemErrors$ = this.store.pipe(select(selectItemErrors));
     this.billingAddressErrors$ = this.store.pipe(select(selectBillingAddressErrors));

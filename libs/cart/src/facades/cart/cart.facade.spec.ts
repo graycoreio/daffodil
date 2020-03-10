@@ -28,11 +28,15 @@ import {
 import { DaffCartFacade } from './cart.facade';
 import { DaffCartReducersState, daffCartReducers, initialState } from '../../reducers';
 import { DaffCartFactory } from '@daffodil/cart/testing';
+import { DaffCartErrors } from '../../reducers/cart-errors.type';
+import { DaffCartErrorType } from '../../reducers/cart-error-type.enum';
 
 describe('DaffCartFacade', () => {
   let store: MockStore<{ product: Partial<DaffCartReducersState> }>;
   let facade: DaffCartFacade;
   let cartFactory: DaffCartFactory;
+
+  let errors: DaffCartErrors;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -49,6 +53,17 @@ describe('DaffCartFacade', () => {
     store = TestBed.get(Store);
     facade = TestBed.get(DaffCartFacade);
     cartFactory = TestBed.get(DaffCartFactory);
+
+    errors = {
+      [DaffCartErrorType.Cart]: [],
+      [DaffCartErrorType.Item]: [],
+      [DaffCartErrorType.ShippingAddress]: [],
+      [DaffCartErrorType.BillingAddress]: [],
+      [DaffCartErrorType.ShippingInformation]: [],
+      [DaffCartErrorType.ShippingMethods]: [],
+      [DaffCartErrorType.Payment]: [],
+      [DaffCartErrorType.PaymentMethods]: [],
+    };
   });
 
   it('should be created', () => {
@@ -89,6 +104,13 @@ describe('DaffCartFacade', () => {
       const expected = cold('a', { a: cart});
       store.dispatch(new DaffCartLoadSuccess(cart));
       expect(facade.cart$).toBeObservable(expected);
+    });
+  });
+
+  describe('errors$', () => {
+    it('should initially be an empty errors object', () => {
+      const expected = cold('a', { a: errors});
+      expect(facade.errors$).toBeObservable(expected);
     });
   });
 

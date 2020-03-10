@@ -29,7 +29,8 @@ import {
   selectShippingInformationErrors,
   selectShippingMethodsErrors,
   selectPaymentErrors,
-  selectPaymentMethodsErrors
+  selectPaymentMethodsErrors,
+  selectCartErrorsObject
 } from './cart.selector';
 import { DaffCartErrorType } from '../reducers/cart-error-type.enum';
 import { DaffCartErrors } from '../reducers/cart-errors.type';
@@ -86,6 +87,15 @@ describe('Cart | Selector | Cart', () => {
     it('returns loading state', () => {
       const selector = store.pipe(select(selectCartLoading));
       const expected = cold('a', {a: loading});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCartErrorsObject', () => {
+    it('returns cart errors object state', () => {
+      const selector = store.pipe(select(selectCartErrorsObject));
+      const expected = cold('a', {a: errors});
 
       expect(selector).toBeObservable(expected);
     });
