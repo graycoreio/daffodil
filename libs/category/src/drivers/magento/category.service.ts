@@ -37,7 +37,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     return combineLatest([
       this.apollo.query<MagentoGetACategoryResponse>({
 				query: MagentoGetCategoryQuery,
-				variables: { id: { eq: categoryRequest.id}}
+				variables: { filters: {ids: { eq: categoryRequest.id}}}
 			}),
       this.apollo.query<MagentoGetProductsResponse>({
 				query: MagentoGetProductsQuery,
