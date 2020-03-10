@@ -11,6 +11,7 @@ import { MagentoAggregation } from '../models/aggregation';
 import { MagentoPageInfo } from '../models/page-info';
 import { MagentoSortFields } from '../models/sort-fields';
 import { MagentoCompleteCategoryResponse } from '../models/complete-category-response';
+import { DaffCategoryFilterType } from '../../../models/category-filter';
 
 describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 
@@ -40,9 +41,14 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 
   describe('transform', () => {
 		let completeCategoryResponse: MagentoCompleteCategoryResponse;
-    
-    it('should return a DaffCategoryPageConfigurationState', () => {
-      const category: MagentoCategory = {
+		let category: MagentoCategory;
+		let aggregates: MagentoAggregation[];
+		let page_info: MagentoPageInfo;
+		let sort_fields: MagentoSortFields;
+		let products: ProductNode[];
+
+		beforeEach(() => {
+			category = {
         id: stubCategory.id,
         name: stubCategory.name,
         breadcrumbs: [{
@@ -54,7 +60,7 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
         children_count: stubCategory.children_count
 			}
 			
-			const aggregates: MagentoAggregation[] = [{
+			aggregates = [{
 				attribute_code: stubCategoryPageConfigurationState.filters[0].name,
 				count: stubCategoryPageConfigurationState.filters[0].items_count,
 				label: stubCategoryPageConfigurationState.filters[0].label,
@@ -72,18 +78,18 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 				]
 			}];
 			
-			const page_info: MagentoPageInfo = {
+			page_info = {
 				page_size: stubCategoryPageConfigurationState.page_size,
 				current_page: stubCategoryPageConfigurationState.current_page,
 				total_pages: stubCategoryPageConfigurationState.total_pages
 			};
 
-			const sort_fields: MagentoSortFields = {
+			sort_fields = {
 				default: stubCategoryPageConfigurationState.sort_options[0].value,
 				options: stubCategoryPageConfigurationState.sort_options
 			};
 
-			const products: ProductNode[] = [
+			products = [
 				{
 					sku: stubCategoryPageConfigurationState.product_ids[0],
 					id: 2,
@@ -112,8 +118,94 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 				products: products,
 				total_count: stubCategoryPageConfigurationState.total_products
 			}
+		});
+		
+		describe('when the filter type is category_id', () => {
+			
+			it('should return a DaffCategoryPageConfigurationState with an equal filter type', () => {
+				aggregates[0].attribute_code = 'category_id';
+				stubCategoryPageConfigurationState.filters[0].name = 'category_id';
+				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Equal;
 
-      expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
-    });
+				expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
+			});
+		});
+		
+		describe('when the filter type is description', () => {
+			
+			it('should return a DaffCategoryPageConfigurationState with a match filter type', () => {
+				aggregates[0].attribute_code = 'description';
+				stubCategoryPageConfigurationState.filters[0].name = 'description';
+				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Match;
+
+				expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
+			});
+		});
+		
+		describe('when the filter type is name', () => {
+			
+			it('should return a DaffCategoryPageConfigurationState with a match filter type', () => {
+				aggregates[0].attribute_code = 'name';
+				stubCategoryPageConfigurationState.filters[0].name = 'name';
+				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Match;
+
+				expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
+			});
+		});
+		
+		describe('when the filter type is price', () => {
+			
+			it('should return a DaffCategoryPageConfigurationState with a range filter type', () => {
+				aggregates[0].attribute_code = 'price';
+				stubCategoryPageConfigurationState.filters[0].name = 'price';
+				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Range;
+
+				expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
+			});
+		});
+		
+		describe('when the filter type is short_description', () => {
+			
+			it('should return a DaffCategoryPageConfigurationState with a match filter type', () => {
+				aggregates[0].attribute_code = 'short_description';
+				stubCategoryPageConfigurationState.filters[0].name = 'short_description';
+				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Match;
+
+				expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
+			});
+		});
+		
+		describe('when the filter type is sku', () => {
+			
+			it('should return a DaffCategoryPageConfigurationState with an equal filter type', () => {
+				aggregates[0].attribute_code = 'sku';
+				stubCategoryPageConfigurationState.filters[0].name = 'sku';
+				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Equal;
+
+				expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
+			});
+		});
+		
+		describe('when the filter type is url_key', () => {
+			
+			it('should return a DaffCategoryPageConfigurationState with an equal filter type', () => {
+				aggregates[0].attribute_code = 'url_key';
+				stubCategoryPageConfigurationState.filters[0].name = 'url_key';
+				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Equal;
+
+				expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
+			});
+		});
+		
+		describe('when the filter type is a custom type', () => {
+			
+			it('should return a DaffCategoryPageConfigurationState with an equal filter type', () => {
+				aggregates[0].attribute_code = 'anything_else';
+				stubCategoryPageConfigurationState.filters[0].name = 'anything_else';
+				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Equal;
+
+				expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
+			});
+		});
   });
 });

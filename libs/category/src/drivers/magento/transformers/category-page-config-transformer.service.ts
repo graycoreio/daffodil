@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { DaffCategoryPageConfigurationState } from '../../../models/category-page-configuration-state';
-import { DaffCategoryFilter, DaffCategoryFilterTypes } from '../../../models/category-filter';
+import { DaffCategoryFilter, DaffCategoryFilterType } from '../../../models/category-filter';
 import { MagentoAggregation } from '../models/aggregation';
 import { MagentoSortFields } from '../models/sort-fields';
 import { MagentoCompleteCategoryResponse } from '../models/complete-category-response';
@@ -18,7 +18,7 @@ export class DaffMagentoCategoryPageConfigTransformerService {
       current_page: categoryResponse.page_info.current_page,
 			total_pages: categoryResponse.page_info.total_pages,
 			total_products: categoryResponse.total_count,
-      filters: categoryResponse.aggregates.map(this.transformAggregate),
+      filters: categoryResponse.aggregates.map(this.transformAggregate.bind(this)),
 			sort_options: this.makeDefaultOptionFirst(categoryResponse.sort_fields).options,
 			product_ids: categoryResponse.products.map(product => product.sku)
     }
@@ -27,7 +27,7 @@ export class DaffMagentoCategoryPageConfigTransformerService {
   private transformAggregate(filter: MagentoAggregation): DaffCategoryFilter {
     return {
       label: filter.label,
-      type: DaffCategoryFilterTypes.Equal,
+      type: this.transformAggregateType(filter.attribute_code),
 			name: filter.attribute_code,
 			items_count: filter.count,
 			options: filter.options.map(option => {
@@ -38,6 +38,19 @@ export class DaffMagentoCategoryPageConfigTransformerService {
 				}
 			})
     }
+	}
+
+	// There is no way to determine what type these filters are except through the
+	// Magento documentation.
+	private transformAggregateType(attribute_code: MagentoAggregation['attribute_code']): DaffCategoryFilterType {
+		if(attribute_code === 'category_id') return DaffCategoryFilterType.Equal;
+		else if(attribute_code === 'description') return DaffCategoryFilterType.Match;
+		else if(attribute_code === 'name') return DaffCategoryFilterType.Match;
+		else if(attribute_code === 'price') return DaffCategoryFilterType.Range;
+		else if(attribute_code === 'short_description') return DaffCategoryFilterType.Match;
+		else if(attribute_code === 'sku') return DaffCategoryFilterType.Equal;
+		else if(attribute_code === 'url_key') return DaffCategoryFilterType.Equal;
+		else return DaffCategoryFilterType.Equal;
 	}
 
 	private makeDefaultOptionFirst(sort_fields: MagentoSortFields): MagentoSortFields {

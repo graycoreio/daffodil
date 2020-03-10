@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
-import { DaffCategoryPageConfigurationState, DaffCategoryFilterTypes } from '@daffodil/category';
+import { DaffCategoryPageConfigurationState, DaffCategoryFilterType } from '@daffodil/category';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCategoryPageConfigurationState implements DaffCategoryPageConfigurationState {
@@ -12,7 +12,7 @@ export class MockCategoryPageConfigurationState implements DaffCategoryPageConfi
     label: 'Category',
     items_count: 2,
     name: 'cat',
-    type: DaffCategoryFilterTypes.Equal,
+    type: DaffCategoryFilterType.Equal,
     options: [
       {
         label: 'Gear',
