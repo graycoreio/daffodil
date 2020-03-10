@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 
-import { DaffCartReset, DaffCartLoadSuccess, DaffCart } from '@daffodil/cart';
+import { DaffCartClear, DaffCartLoadSuccess, DaffCart } from '@daffodil/cart';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 
 import * as fromCart from './cart-selector';
@@ -12,7 +12,7 @@ describe('selectCartState', () => {
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
   let mockCart: DaffCart;
-  
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -36,11 +36,11 @@ describe('selectCartState', () => {
 
       mockCart.items[0].qty = 2;
       mockCart.items[1].qty = 4;
-      
-      store.dispatch(new DaffCartReset());
+
+      store.dispatch(new DaffCartClear());
       store.dispatch(new DaffCartLoadSuccess(mockCart));
     });
-    
+
     it('selects total number of cartItems', () => {
       store.pipe(select(fromCart.selectCartItemCount)).subscribe((count) => {
         expect(count).toEqual(6);
@@ -54,10 +54,10 @@ describe('selectCartState', () => {
 
       beforeEach(() => {
         mockCart = cartFactory.create();
-        store.dispatch(new DaffCartReset());        
+        store.dispatch(new DaffCartClear());
         store.dispatch(new DaffCartLoadSuccess(mockCart));
       });
-      
+
       it('should return true', () => {
         store.pipe(select(fromCart.isCartEmpty)).subscribe((isCartEmpty) => {
           expect(isCartEmpty).toBeTruthy();
@@ -66,12 +66,12 @@ describe('selectCartState', () => {
     });
 
     describe('when cart is not empty', () => {
-      
+
       beforeEach(() => {
         mockCart = cartFactory.create({
           items: cartItemFactory.createMany(2)
         });
-        store.dispatch(new DaffCartReset());
+        store.dispatch(new DaffCartClear());
         store.dispatch(new DaffCartLoadSuccess(mockCart));
       });
 

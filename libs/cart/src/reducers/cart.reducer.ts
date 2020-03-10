@@ -1,49 +1,46 @@
-import { DaffCartActionTypes, DaffCartActions } from '../actions/cart.actions';
-import { DaffCart } from '../models/cart';
+import { cartReducer } from './cart/cart.reducer';
+import { cartItemReducer } from './cart-item/cart-item.reducer';
+import { cartBillingAddressReducer } from './cart-billing-address/cart-billing-address.reducer';
+import { cartShippingAddressReducer } from './cart-shipping-address/cart-shipping-address.reducer';
+import { cartShippingMethodsReducer } from './cart-shipping-methods/cart-shipping-methods.reducer';
+import { cartShippingInformationReducer } from './cart-shipping-information/cart-shipping-information.reducer';
+import { cartPaymentReducer } from './cart-payment/cart-payment.reducer';
+import { cartPaymentMethodsReducer } from './cart-payment-methods/cart-payment-methods.reducer';
+import { DaffCartReducerState } from './cart-state.interface';
+import { ActionTypes } from './action-types.type';
+import { initialState } from './cart-initial-state';
 
-export interface State {
-  cart: DaffCart,
-  loading: boolean,
-  errors: string[]
+/**
+ * Recursively invoke reducers, passing the returned state from one into the next.
+ */
+export function composeReducers(state, action, reducers) {
+  return reducers.length > 0
+    // if there are still more reducers, invoke the first one and recurse on the remaining ones
+    ? composeReducers(
+      reducers[0](state, action),
+      action,
+      reducers.slice(1)
+    )
+    // if there are no more reducers, just return state
+    : state
 }
 
-export const initialState: State = Object.freeze({
-  cart: null,
-  loading: false,
-  errors: []
-});
-
-export function reducer(state = initialState, action: DaffCartActions): State {
-  switch (action.type) {
-    case DaffCartActionTypes.CartLoadAction:
-    case DaffCartActionTypes.CartResetAction:
-    case DaffCartActionTypes.AddToCartAction:
-      return { ...state, loading: true };
-    case DaffCartActionTypes.CartLoadSuccessAction:
-    case DaffCartActionTypes.AddToCartSuccessAction:
-      return { ...state, cart: action.payload, loading: false };
-    case DaffCartActionTypes.CartLoadFailureAction:
-    case DaffCartActionTypes.AddToCartFailureAction:
-      return {
-        ...state,
-        loading: false,
-        errors: state.errors.concat(new Array(action.payload))
-      };
-    case DaffCartActionTypes.CartResetSuccessAction:
-      return {
-        ...state,
-        loading: false,
-        cart: {
-          ...state.cart,
-          items: [],
-          ...action.payload
-        }
-      };
-    default:
-      return state;
-  }
+export function daffCartReducer(
+  state = initialState,
+  action: ActionTypes
+): DaffCartReducerState {
+  return composeReducers(
+    state,
+    action,
+    [
+      cartReducer,
+      cartItemReducer,
+      cartBillingAddressReducer,
+      cartShippingAddressReducer,
+      cartShippingMethodsReducer,
+      cartShippingInformationReducer,
+      cartPaymentReducer,
+      cartPaymentMethodsReducer
+    ]
+  )
 }
-
-export const getCart = (state: State) => state.cart;
-
-export const getCartLoading = (state: State) => state.loading;

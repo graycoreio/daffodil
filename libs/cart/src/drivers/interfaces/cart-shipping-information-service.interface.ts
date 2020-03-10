@@ -22,7 +22,7 @@ export interface DaffCartShippingInformationServiceInterface<T extends DaffCartS
 	/**
 	 * Remove the currently selected shipping method from a cart.
 	 */
-	delete(cartId: V['id'], id?: string | number): Observable<Partial<V>>;
+	delete(cartId: V['id'], id?: T['id']): Observable<Partial<V>>;
 }
 
 export const DaffCartShippingInformationDriver = new InjectionToken<

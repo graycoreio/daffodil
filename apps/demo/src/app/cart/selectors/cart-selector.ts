@@ -15,7 +15,7 @@ export const reducers : ActionReducerMap<CartState> = {
 }
 
 export const selectCartItemCount : MemoizedSelector<object, number> = createSelector(
-  fromCart.selectCartValueState,
+  fromCart.selectCartValue,
   cart => {
     let itemCount = 0;
     cart.items.forEach(cartItem => {
@@ -26,7 +26,7 @@ export const selectCartItemCount : MemoizedSelector<object, number> = createSele
 )
 
 export const isCartEmpty : MemoizedSelector<object, boolean> = createSelector(
-  fromCart.selectCartValueState,
+  fromCart.selectCartValue,
   cart => {
     return cart.items.length === 0;
   }

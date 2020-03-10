@@ -45,7 +45,7 @@ export class CartResolverEffects {
 	);
 
 	selectStoreCart(): Observable<DaffCart> {
-		return this.store.pipe(select(fromCart.selectCartValueState));
+		return this.store.pipe(select(fromCart.selectCartValue));
 	}
 
 	private getCartHandler(): Observable<Action> {

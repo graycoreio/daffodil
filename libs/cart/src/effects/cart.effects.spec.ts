@@ -1,22 +1,30 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable, of, EMPTY } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
+
+import {
+  DaffCart,
+} from '@daffodil/cart';
+import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { DaffCartEffects } from './cart.effects';
 import {
-  DaffCartLoad, DaffCartLoadSuccess, DaffCartLoadFailure, DaffAddToCart,
-  DaffAddToCartSuccess, DaffAddToCartFailure, DaffCartReset, DaffCartResetSuccess, DaffCartResetFailure
-} from '../actions/cart.actions';
-import { DaffCart } from '../models/cart';
-import { DaffCartFactory } from '../../testing/src/factories/cart.factory';
-import { DaffTestingCartService } from '../../testing/src';
-import {
-	DaffCartServiceInterface,
-	DaffCartDriver,
-} from '../drivers/interfaces/cart-service.interface';
+  DaffCartLoad,
+  DaffCartLoadSuccess,
+  DaffCartLoadFailure,
+  DaffAddToCart,
+  DaffAddToCartSuccess,
+  DaffAddToCartFailure,
+  DaffCartClear,
+  DaffCartClearSuccess,
+  DaffCartClearFailure,
+  DaffCartCreate,
+  DaffCartCreateSuccess,
+  DaffCartCreateFailure
+} from '../actions';
 import { DaffCartStorageService } from '../storage/cart-storage.service';
-import { Actions } from '@ngrx/effects';
+import { DaffCartServiceInterface, DaffCartDriver } from '../drivers/interfaces/cart-service.interface';
 
 describe('Daffodil | Cart | CartEffects', () => {
   let actions$: Observable<any>;
@@ -26,7 +34,9 @@ describe('Daffodil | Cart | CartEffects', () => {
 
   let cartFactory: DaffCartFactory;
 
-  let daffDriver: DaffCartServiceInterface<DaffCart>;
+  let daffDriverSpy: jasmine.SpyObj<DaffCartServiceInterface<DaffCart>>;
+
+  let daffCartStorageSpy: jasmine.SpyObj<DaffCartStorageService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -35,16 +45,23 @@ describe('Daffodil | Cart | CartEffects', () => {
         provideMockActions(() => actions$),
         {
           provide: DaffCartDriver,
-          useValue: new DaffTestingCartService(new DaffCartFactory())
+          useValue: jasmine.createSpyObj('DaffCartDriver', ['get', 'create', 'clear', 'addToCart'])
         },
+        {
+          provide: DaffCartStorageService,
+          useValue: jasmine.createSpyObj('DaffCartStorageService', ['setCartId', 'getCartId'])
+        }
       ]
     });
 
     effects = TestBed.get<DaffCartEffects<DaffCart>>(DaffCartEffects);
-    daffDriver = TestBed.get<DaffCartServiceInterface<DaffCart>>(DaffCartDriver);
+    daffDriverSpy = TestBed.get<DaffCartServiceInterface<DaffCart>>(DaffCartDriver);
+    daffCartStorageSpy = TestBed.get(DaffCartStorageService);
     cartFactory = TestBed.get<DaffCartFactory>(DaffCartFactory);
 
     mockCart = cartFactory.create();
+
+    daffCartStorageSpy.getCartId.and.returnValue(String(mockCart.id));
   });
 
   it('should be created', () => {
@@ -52,43 +69,87 @@ describe('Daffodil | Cart | CartEffects', () => {
   });
 
   describe('when CartLoadAction is triggered', () => {
-
     let expected;
     const cartLoadAction = new DaffCartLoad();
 
     describe('and the call to CartService is successful', () => {
-
       beforeEach(() => {
-        spyOn(daffDriver, 'get').and.returnValue(of(mockCart));
+        daffDriverSpy.get.and.returnValue(of(mockCart));
         const cartLoadSuccessAction = new DaffCartLoadSuccess(mockCart);
         actions$ = hot('--a', { a: cartLoadAction });
         expected = cold('--b', { b: cartLoadSuccessAction });
       });
 
       it('should dispatch a CartLoadSuccess action', () => {
-        expect(effects.load$).toBeObservable(expected);
+        expect(effects.get$).toBeObservable(expected);
       });
     });
 
     describe('and the call to CartService fails', () => {
-
       beforeEach(() => {
         const error = 'Failed to load cart';
         const response = cold('#', {}, error);
-        spyOn(daffDriver, 'get').and.returnValue(response);
+        daffDriverSpy.get.and.returnValue(response);
         const cartLoadFailureAction = new DaffCartLoadFailure(error);
         actions$ = hot('--a', { a: cartLoadAction });
         expected = cold('--b', { b: cartLoadFailureAction });
       });
 
       it('should dispatch a CartLoadFailure action', () => {
-        expect(effects.load$).toBeObservable(expected);
+        expect(effects.get$).toBeObservable(expected);
       });
     });
   });
 
-  describe('when AddToCartAction is triggered', () => {
+  describe('when CartCreateAction is triggered', () => {
+    let expected;
+    const cartCreateAction = new DaffCartCreate();
 
+    describe('and the call to CartService is successful', () => {
+      beforeEach(() => {
+        daffDriverSpy.create.and.returnValue(of({id: mockCart.id}));
+        const cartCreateSuccessAction = new DaffCartCreateSuccess({id: mockCart.id});
+        actions$ = hot('--a', { a: cartCreateAction });
+        expected = cold('--b', { b: cartCreateSuccessAction });
+      });
+
+      it('should dispatch a CartCreateSuccess action', () => {
+        expect(effects.create$).toBeObservable(expected);
+      });
+    });
+
+    describe('and the call to CartService fails', () => {
+      beforeEach(() => {
+        const error = 'Failed to create cart';
+        const response = cold('#', {}, error);
+        daffDriverSpy.create.and.returnValue(response);
+        const cartCreateFailureAction = new DaffCartCreateFailure(error);
+        actions$ = hot('--a', { a: cartCreateAction });
+        expected = cold('--b', { b: cartCreateFailureAction });
+      });
+
+      it('should dispatch a CartCreateFailure action', () => {
+        expect(effects.create$).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('when CartCreateSuccessAction is triggered', () => {
+    let expected;
+
+    beforeEach(() => {
+      const cartCreateSuccessAction = new DaffCartCreateSuccess({id: mockCart.id});
+      actions$ = hot('--a', { a: cartCreateSuccessAction });
+      expected = cold('---');
+    });
+
+    it('should set the cart ID in storage', () => {
+      expect(effects.storeId$).toBeObservable(expected);
+      expect(daffCartStorageSpy.setCartId).toHaveBeenCalledWith(String(mockCart.id));
+    });
+  });
+
+  describe('when AddToCartAction is triggered', () => {
     let expected;
     let productId: string;
     const qty = 1;
@@ -99,9 +160,8 @@ describe('Daffodil | Cart | CartEffects', () => {
     });
 
     describe('and the call to CartService is successful', () => {
-
       beforeEach(() => {
-        spyOn(daffDriver, 'addToCart').and.returnValue(of(mockCart));
+        daffDriverSpy.addToCart.and.returnValue(of(mockCart));
         const addToCartSuccessAction = new DaffAddToCartSuccess(mockCart);
         actions$ = hot('--a', { a: addToCartAction });
         expected = cold('--b', { b: addToCartSuccessAction });
@@ -113,11 +173,10 @@ describe('Daffodil | Cart | CartEffects', () => {
     });
 
     describe('and the call to CartService fails', () => {
-
       beforeEach(() => {
         const error = 'Failed to add item to cart';
         const response = cold('#', {}, error);
-        spyOn(daffDriver, 'addToCart').and.returnValue(response);
+        daffDriverSpy.addToCart.and.returnValue(response);
         const addToCartFailureAction = new DaffAddToCartFailure(error);
         actions$ = hot('--a', { a: addToCartAction });
         expected = cold('--b', { b: addToCartFailureAction });
@@ -128,21 +187,19 @@ describe('Daffodil | Cart | CartEffects', () => {
       });
     });
   });
-  describe('when CartResetAction is triggered', () => {
-
+  describe('when CartClearAction is triggered', () => {
     let expected;
-    const resetAction = new DaffCartReset();
+    const cartClearAction = new DaffCartClear();
 
     describe('and the clear call to driver is successful', () => {
-
       beforeEach(() => {
-        spyOn(daffDriver, 'clear').and.returnValue(of(mockCart));
-        const resetCartSuccessAction = new DaffCartResetSuccess(mockCart);
-        actions$ = hot('--a', { a: resetAction });
-        expected = cold('--b', { b: resetCartSuccessAction });
+        daffDriverSpy.clear.and.returnValue(of(mockCart));
+        const cartClearSuccessAction = new DaffCartClearSuccess(mockCart);
+        actions$ = hot('--a', { a: cartClearAction });
+        expected = cold('--b', { b: cartClearSuccessAction });
       });
-      it('should return a DaffCartResetSucess action', () => {
-        expect(effects.clearCart$).toBeObservable(expected);
+      it('should return a DaffCartClearSucess action', () => {
+        expect(effects.clear$).toBeObservable(expected);
       });
     });
 
@@ -150,13 +207,13 @@ describe('Daffodil | Cart | CartEffects', () => {
       beforeEach(() => {
         const error = 'Failed to clear the cart.';
         const response = cold('#', {}, error);
-        spyOn(daffDriver, 'clear').and.returnValue(response);
-        const resetCartFailureAction = new DaffCartResetFailure(error);
-        actions$ = hot('--a', { a: resetAction });
-        expected = cold('--b', { b: resetCartFailureAction });
+        daffDriverSpy.clear.and.returnValue(response);
+        const cartClearFailureAction = new DaffCartClearFailure(error);
+        actions$ = hot('--a', { a: cartClearAction });
+        expected = cold('--b', { b: cartClearFailureAction });
       });
-      it('should return a DaffCartResetFailure action', () => {
-        expect(effects.clearCart$).toBeObservable(expected);
+      it('should return a DaffCartClearFailure action', () => {
+        expect(effects.clear$).toBeObservable(expected);
       });
     });
   });
