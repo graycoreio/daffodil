@@ -20,6 +20,8 @@ export { fromCart };
 import * as fromCartReducer from './from-cart-reducer';
 export { fromCartReducer };
 
+export { DaffCartFacade } from './facades/cart/cart.facade'
+
 export { DaffCartStorageService } from './storage/cart-storage.service';
 
 export * from './drivers/public_api';
