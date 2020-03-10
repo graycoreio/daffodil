@@ -15,6 +15,8 @@ import { DaffMagentoAppliedFiltersTransformService } from './transformers/applie
 import { DaffMagentoAppliedSortOptionTransformService } from './transformers/applied-sort-option-transformer.service';
 import { DaffMagentoCategoryResponseTransformService } from './transformers/category-response-transform.service';
 import { MagentoGetProductsByCategoriesRequest } from './models/requests/get-products-by-categories-request';
+import { MagentoGetCategoryAggregations } from './queries/get-category-aggregations';
+import { MagentoGetCategoryAggregationsResponse } from './models/get-category-aggregations-response';
 
 @Injectable({
   providedIn: 'root'
@@ -39,12 +41,16 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
 				query: MagentoGetCategoryQuery,
 				variables: { filters: {ids: { eq: categoryRequest.id}}}
 			}),
+      this.apollo.query<MagentoGetCategoryAggregationsResponse>({
+				query: MagentoGetCategoryAggregations,
+				variables: {filter: {category_id: {eq: categoryRequest.id}}}
+			}),
       this.apollo.query<MagentoGetProductsResponse>({
 				query: MagentoGetProductsQuery,
 				variables: this.getProductsQueryVariables(categoryRequest)
 			})
     ]).pipe(
-      map((result): MagentoCompleteCategoryResponse => this.buildCompleteCategoryResponse(result[0].data, result[1].data)),
+      map((result): MagentoCompleteCategoryResponse => this.buildCompleteCategoryResponse(result[0].data, result[1].data, result[2].data)),
       map((result: MagentoCompleteCategoryResponse) => this.magentoCategoryResponseTransformer.transform(result))
     );
 	}
@@ -64,13 +70,14 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
 
 	private buildCompleteCategoryResponse(
 		categoryResponse: MagentoGetACategoryResponse, 
+		aggregationsAndSortsResponse: MagentoGetCategoryAggregationsResponse,
 		productsResponse: MagentoGetProductsResponse
 	): MagentoCompleteCategoryResponse {
 		return {
 			category: categoryResponse.categoryList[0],
 			products: productsResponse.products.items,
-			aggregates: productsResponse.products.aggregations,
-			sort_fields: productsResponse.products.sort_fields,
+			aggregates: aggregationsAndSortsResponse.products.aggregations,
+			sort_fields: aggregationsAndSortsResponse.products.sort_fields,
 			total_count: productsResponse.products.total_count,
 			page_info: productsResponse.products.page_info
 		};

@@ -28,27 +28,10 @@ query MagentoGetProducts($filter: ProductAttributeFilterInput!, $search: String,
 				}
 			}
 		}
-		aggregations {
-			label
-			count
-			attribute_code
-			options {
-					count
-					label
-					value
-			}
-		}
 		page_info {
 			page_size
 			current_page
 			total_pages
-		}
-		sort_fields {
-			default
-			options {
-				label
-				value
-			}
 		}
 	}
 }`
