@@ -11,7 +11,7 @@ import { MagentoAggregation } from '../models/aggregation';
 import { MagentoPageInfo } from '../models/page-info';
 import { MagentoSortFields } from '../models/sort-fields';
 import { MagentoCompleteCategoryResponse } from '../models/complete-category-response';
-import { DaffCategoryFilterType } from 'libs/category/src/models/category-filter';
+import { DaffCategoryFilterType } from '../../../models/category-filter';
 
 describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 
