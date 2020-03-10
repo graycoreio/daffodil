@@ -1,4 +1,4 @@
-export enum DaffCategoryFilterTypes {
+export enum DaffCategoryFilterType {
 	Match = 'match',
 	Equal = 'equal',
 	Range = 'range'
@@ -7,7 +7,7 @@ export enum DaffCategoryFilterTypes {
 export interface DaffCategoryFilter {
   label: string;
 	name: string;
-	type: DaffCategoryFilterTypes;
+	type: DaffCategoryFilterType;
 	items_count: number;
 	options: DaffCategoryFilterOption[];
 }

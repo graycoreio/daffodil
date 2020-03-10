@@ -8,18 +8,6 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
 
 	let service: DaffMagentoAppliedFiltersTransformService;
 	const categoryId = 'id';
-	const categoryFilterActions: DaffCategoryFilterAction[] = [
-		{
-			action: DaffCategoryFilterActionEnum.Equal,
-			name: 'name',
-			value: 'value'
-		},
-		{
-			action: DaffCategoryFilterActionEnum.Equal,
-			name: 'name2',
-			value: 'value2'
-		}
-	]
   
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -35,20 +23,59 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
   });
 
   describe('transform', () => {
-    
-    it('should transform an array of DaffCategoryFilterAction into a MagentoCategoryFilters', () => {
-			const expectedReturn: MagentoCategoryFilters = {
-				category_id: {
-					eq: 'id'
-				},
-				name: {
-					[MagentoCategoryFilterActionEnum.Equal]: 'value'
-				},
-				name2: {
-					[MagentoCategoryFilterActionEnum.Equal]: 'value2'
+		
+		describe('when the filter action is FromTo', () => {
+			
+			it('should transform into a valid magento FromTo filter', () => {
+				const categoryFilterActions: DaffCategoryFilterAction[] = [
+					{
+						action: DaffCategoryFilterActionEnum.FromTo,
+						name: 'any',
+						value: '30-40'
+					}
+				];
+				const expectedReturn: MagentoCategoryFilters = {
+					category_id: {
+						eq: 'id'
+					},
+					any: {
+						[MagentoCategoryFilterActionEnum.From]: '30',
+						[MagentoCategoryFilterActionEnum.To]: '40'
+					}
+				};
+
+				expect(service.transform(categoryId, categoryFilterActions)).toEqual(expectedReturn);
+			});
+		});
+
+		describe('when the filter action is not FromTo', () => {
+			
+			it('should transform an array of DaffCategoryFilterAction into a MagentoCategoryFilters', () => {
+				const categoryFilterActions: DaffCategoryFilterAction[] = [
+					{
+						action: DaffCategoryFilterActionEnum.Equal,
+						name: 'name',
+						value: 'value'
+					},
+					{
+						action: DaffCategoryFilterActionEnum.Equal,
+						name: 'name2',
+						value: 'value2'
+					}
+				]
+				const expectedReturn: MagentoCategoryFilters = {
+					category_id: {
+						eq: 'id'
+					},
+					name: {
+						[MagentoCategoryFilterActionEnum.Equal]: 'value'
+					},
+					name2: {
+						[MagentoCategoryFilterActionEnum.Equal]: 'value2'
+					}
 				}
-			}
-      expect(service.transform(categoryId, categoryFilterActions)).toEqual(expectedReturn);
-    });
+				expect(service.transform(categoryId, categoryFilterActions)).toEqual(expectedReturn);
+			});
+		});
   });
 });

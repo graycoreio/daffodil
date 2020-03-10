@@ -16,9 +16,18 @@ export class DaffMagentoAppliedFiltersTransformService {
 		};
 
 		daffFilters.forEach(filter => {
-			magentoFilters[filter.name] = {
-				...magentoFilters[filter.name],
-				[this.transformActionEnum(filter.action)]: filter.value
+			if(filter.action === DaffCategoryFilterActionEnum.FromTo) {
+				const fromToValues = filter.value.split('-');
+				magentoFilters[filter.name] = {
+					...magentoFilters[filter.name],
+					[MagentoCategoryFilterActionEnum.From]: fromToValues[0],
+					[MagentoCategoryFilterActionEnum.To]: fromToValues[1]
+				}
+			} else {
+				magentoFilters[filter.name] = {
+					...magentoFilters[filter.name],
+					[this.transformActionEnum(filter.action)]: filter.value
+				}
 			}
 		});
 
@@ -27,8 +36,6 @@ export class DaffMagentoAppliedFiltersTransformService {
 	
 	private transformActionEnum(daffEnum: DaffCategoryFilterActionEnum): MagentoCategoryFilterActionEnum {
 		if(daffEnum === DaffCategoryFilterActionEnum.Equal) return MagentoCategoryFilterActionEnum.Equal;
-		else if(daffEnum === DaffCategoryFilterActionEnum.From) return MagentoCategoryFilterActionEnum.From;
-		else if(daffEnum === DaffCategoryFilterActionEnum.To) return MagentoCategoryFilterActionEnum.To;
 		else if(daffEnum === DaffCategoryFilterActionEnum.In) return MagentoCategoryFilterActionEnum.In;
 		else if(daffEnum === DaffCategoryFilterActionEnum.Match) return MagentoCategoryFilterActionEnum.Match;
 	}
