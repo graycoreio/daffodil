@@ -156,7 +156,7 @@ export class DaffCategoryEffects {
 		toggledFilter: DaffCategoryFilterAction, 
 		appliedFilters: DaffCategoryFilterAction[]
 	): DaffCategoryFilterAction[] {
-		return appliedFilters.filter(filter => this.areFiltersEqual(toggledFilter, filter)).length > 0
+		return appliedFilters.find(filter => this.areFiltersEqual(toggledFilter, filter))
 		// filter is applied, remove it
 		? appliedFilters.filter(filter => !this.areFiltersEqual(filter, toggledFilter))
 		// filter is not applied, add it
