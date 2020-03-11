@@ -67,7 +67,7 @@ describe('Driver | InMemory | Category | DaffInMemoryBackendCategoryService', ()
 		});
 		
 		it('should set no more products on the category than the page_size', () => {
-			expect(result.body.category.productIds.length).toBeLessThanOrEqual(result.body.categoryPageConfigurationState.page_size);
+			expect(result.body.categoryPageConfigurationState.product_ids.length).toBeLessThanOrEqual(result.body.categoryPageConfigurationState.page_size);
 		});
 
     it('should set page_size when the page_size is provided', () => {
