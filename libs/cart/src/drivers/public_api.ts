@@ -8,4 +8,6 @@ export { DaffCartShippingAddressServiceInterface, DaffCartShippingAddressDriver 
 export { DaffCartShippingInformationServiceInterface, DaffCartShippingInformationDriver } from './interfaces/cart-shipping-information-service.interface';
 export { DaffCartShippingMethodsServiceInterface, DaffCartShippingMethodsDriver } from './interfaces/cart-shipping-methods-service.interface';
 
-export * from './magento';
+// this needs to be pointing at index
+// see https://github.com/ng-packagr/ng-packagr/issues/195
+export * from './magento/index';

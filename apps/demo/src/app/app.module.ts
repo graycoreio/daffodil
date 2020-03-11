@@ -39,7 +39,7 @@ import { DemoCartRootModule } from './cart/cart-root.module';
     HttpClientModule,
 
     InMemoryModule,
-    
+
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
 
@@ -47,7 +47,7 @@ import { DemoCartRootModule } from './cart/cart-root.module';
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
-    
+
     AppRoutingModule,
     DemoRoutingComponentModule,
     DemoCartRootModule,
