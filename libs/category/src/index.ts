@@ -1,15 +1,4 @@
-export { 
-  DaffCategoryActionTypes, 
-  DaffCategoryActions, 
-  DaffCategoryLoad, 
-  DaffCategoryLoadFailure, 
-  DaffCategoryLoadSuccess,
-  DaffChangeCategoryCurrentPage,
-  DaffChangeCategoryPageSize,
-  DaffChangeCategoryFilters,
-	DaffChangeCategorySortingOption,
-	DaffToggleCategoryFilter
-} from './actions/category.actions';
+export * from './actions/category.actions';
 
 export { categoryReducers } from './reducers/category-reducers';
 export { DaffCategoryFacade } from './facades/category.facade';
@@ -19,24 +8,7 @@ export { DaffCategoryMagentoDriverModule } from './drivers/magento/category-driv
 export { DaffCategoryServiceInterface } from './drivers/interfaces/category-service.interface';
 export { DaffCategoryDriver } from './drivers/injection-tokens/category-driver.token';
 
-export {
-  selectCategoryFeatureState,
-  selectCategoryState,
-  selectCategoryEntitiesState,
-  selectSelectedCategoryId,
-  selectCategoryLoading,
-  selectCategoryErrors,
-  selectCategoryIds,
-  selectCategoryEntities,
-  selectAllCategories,
-  selectCategoryTotal,
-	selectSelectedCategory,
-	selectProductsByCategory,
-	selectCategory,
-	selectCategoryPageAppliedFilters,
-	selectCategoryPageAppliedSortDirection,
-	selectCategoryPageAppliedSortOption
-} from './selectors/category.selector';
+export * from './selectors/category.selector';
 
 export { DaffGetCategoryResponse } from './models/get-category-response';
 export { DaffCategoryFilter, DaffCategoryFilterType, DaffCategoryFilterOption } from './models/category-filter';
