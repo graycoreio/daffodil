@@ -27,7 +27,6 @@ import { ThankYouModule } from './thank-you/thank-you.module';
 import { DemoRoutingComponentModule } from './routing/routing-component.module';
 import { InMemoryModule } from './in-memory.module';
 import { DemoCartRootModule } from './cart/cart-root.module';
-import { MagentoModule } from './magento.module';
 
 @NgModule({
   declarations: [
@@ -39,8 +38,7 @@ import { MagentoModule } from './magento.module';
 
     HttpClientModule,
 
-    // InMemoryModule,
-    MagentoModule,
+    InMemoryModule,
 
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
