@@ -5,7 +5,6 @@ export const bundledProductFragment = gql`
 		dynamic_price
 		dynamic_sku
 		dynamic_weight
-		price_view
 		ship_bundle_items
 		items {
 			option_id

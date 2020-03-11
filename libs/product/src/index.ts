@@ -5,8 +5,8 @@ export * from './actions/best-sellers.actions';
 export { DaffProductUnion } from './models/product-union';
 export { DaffProductModification } from './models/product-modification';
 export { DaffProductImage } from './models/product-image';
-export * from './models/bundled-product';
-export * from './models/bundled-product-item';
+export * from './models/composite-product';
+export * from './models/composite-product-item';
 
 import * as fromProduct from './reducers/index';
 export { fromProduct };

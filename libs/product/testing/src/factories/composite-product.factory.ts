@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
 import {
-	DaffBundledProduct, 
-	DaffBundledProductPriceViewEnum,
+	DaffCompositeProduct, 
 	DaffPriceTypeEnum,
-	DaffBundledProductItemType,
+	DaffCompositeProductItemEnum,
 	DaffProductTypeEnum
 } from '@daffodil/product';
 import { DaffModelFactory } from '@daffodil/core/testing';
@@ -13,17 +12,15 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { MockProduct } from './product.factory';
 
 /**
- * Mocked DaffBundledProduct object.
+ * Mocked DaffCompositeProduct object.
  */
-export class MockBundledProduct extends MockProduct implements DaffBundledProduct {
+export class MockCompositeProduct extends MockProduct implements DaffCompositeProduct {
 	__typename = DaffProductTypeEnum.Composite;
-	price_view = DaffBundledProductPriceViewEnum.as_low_as;
 	items = [{
-		bundle_id: faker.random.alphaNumeric(10),
-		bundle_option_id: faker.random.number(10),
+		id: faker.random.number(10),
 		required: faker.random.boolean(),
 		title: faker.random.words(2),
-		type: DaffBundledProductItemType.select,
+		type: DaffCompositeProductItemEnum.select,
 		options: [{
 			id: faker.random.alphaNumeric(10),
 			can_change_quantity: faker.random.boolean,
@@ -36,13 +33,13 @@ export class MockBundledProduct extends MockProduct implements DaffBundledProduc
 }
 
 /**
- * Factory for creating DaffBundledProducts.
+ * Factory for creating DaffCompositeProducts.
  */
 @Injectable({
   providedIn: 'root'
 })
-export class DaffBundledProductFactory extends DaffModelFactory<DaffBundledProduct>{
+export class DaffCompositeProductFactory extends DaffModelFactory<DaffCompositeProduct>{
   constructor(){
-    super(MockBundledProduct);
+    super(MockCompositeProduct);
   }
 }
