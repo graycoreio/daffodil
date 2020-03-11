@@ -27,6 +27,7 @@ import { ThankYouModule } from './thank-you/thank-you.module';
 import { DemoRoutingComponentModule } from './routing/routing-component.module';
 import { InMemoryModule } from './in-memory.module';
 import { DemoCartRootModule } from './cart/cart-root.module';
+import { MagentoModule } from './magento.module';
 
 @NgModule({
   declarations: [
@@ -38,8 +39,9 @@ import { DemoCartRootModule } from './cart/cart-root.module';
 
     HttpClientModule,
 
-    InMemoryModule,
-    
+    // InMemoryModule,
+    MagentoModule,
+
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
 
@@ -47,7 +49,7 @@ import { DemoCartRootModule } from './cart/cart-root.module';
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
-    
+
     AppRoutingModule,
     DemoRoutingComponentModule,
     DemoCartRootModule,
