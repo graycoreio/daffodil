@@ -27,7 +27,6 @@ describe('Cart | Testing | Factories | CartItemFactory', () => {
 
     it('should return a CartItem with all required fields defined', () => {
       expect(result.id).toBeDefined();
-      expect(result.prices.discounts).toBeDefined();
       expect(result.prices.price).toBeDefined();
       expect(result.prices.row_total).toBeDefined();
       expect(result.prices.row_total_including_tax).toBeDefined();

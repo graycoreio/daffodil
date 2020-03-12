@@ -8,7 +8,6 @@ import { MagentoMoney } from './money'
 export interface MagentoCartItem {
   id: string;
   prices: {
-    discounts: any[];
     price: MagentoMoney;
     row_total: MagentoMoney;
     row_total_including_tax: MagentoMoney;

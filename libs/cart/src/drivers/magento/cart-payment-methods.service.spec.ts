@@ -52,7 +52,12 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
     magentoPaymentMethodFactory = TestBed.get(MagentoCartPaymentMethodFactory);
 
     mockDaffCartPayment = daffCartPaymentFactory.create();
-    mockMagentoPaymentMethod = magentoPaymentMethodFactory.create();
+    // TODO: create a factory and model for MagentoAvailablePaymentMethod
+    const temp = magentoPaymentMethodFactory.create();
+    mockMagentoPaymentMethod = {
+      code: temp.code,
+      title: temp.title
+    };
 
     cartId = '15';
     mockListCartPaymentMethodsResponse = {
