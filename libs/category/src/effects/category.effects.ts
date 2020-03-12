@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { switchMap, catchError, withLatestFrom } from 'rxjs/operators';
+import { switchMap, catchError, withLatestFrom, mergeMap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
@@ -42,7 +42,7 @@ export class DaffCategoryEffects {
   @Effect()
   loadCategory$ : Observable<any> = this.actions$.pipe(
     ofType(DaffCategoryActionTypes.CategoryLoadAction),
-    switchMap((action: DaffCategoryLoad) => this.processCategoryGetRequest(action.request))
+    mergeMap((action: DaffCategoryLoad) => this.processCategoryGetRequest(action.request))
   )
 
   @Effect()
