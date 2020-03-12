@@ -23,7 +23,8 @@ import {
 	selectCategoryPageTotalProducts,
 	selectCategoryPageAppliedFilters,
 	selectCategoryPageAppliedSortOption,
-	selectCategoryPageAppliedSortDirection
+	selectCategoryPageAppliedSortDirection,
+	selectTotalProductsByCategory
 } from '../selectors/category.selector';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
@@ -31,7 +32,6 @@ import { DaffCategoryFilter } from '../models/category-filter';
 import { DaffCategorySortOption } from '../models/category-sort-option';
 import { DaffSortDirectionEnum } from '../models/requests/category-request';
 import { DaffCategoryFilterAction } from '../models/requests/filter-action';
-import { selectTotalProductsByCategory } from '@daffodil/category';
 
 /**
  * A facade for accessing state for the currently selected category.
