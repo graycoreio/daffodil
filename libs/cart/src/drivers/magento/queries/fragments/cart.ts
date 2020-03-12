@@ -2,12 +2,15 @@ import gql from 'graphql-tag';
 
 import { moneyFragment } from './money';
 import { cartAddressFragment } from './cart-address';
-import { cartPaymentMethodFragment } from './cart-payment-method';
+import { availablePaymentMethodFragment } from './available-payment-method';
+import { selectedPaymentMethodFragment } from './selected-payment-method';
 import { cartItemFragment } from './cart-item';
 import { cartCouponFragment } from './cart-coupon';
+import { availableShippingMethodFragment } from './available-shipping-method';
+import { selectedShippingMethodFragment } from './selected-shipping-method';
 
 export const cartFragment = gql`
-  fragment cart on MagentoCart {
+  fragment cart on Cart {
     id
     email
     billing_address {
@@ -15,17 +18,23 @@ export const cartFragment = gql`
     }
     shipping_addresses {
       ...cartAddress
-      available_shipping_methods
-      selected_shipping_method
+      ... on ShippingCartAddress {
+        available_shipping_methods {
+          ...availableShippingMethod
+        }
+        selected_shipping_method {
+          ...selectedShippingMethod
+        }
+      }
     }
     items {
       ...cartItem
     }
     available_payment_methods {
-      ...cartPaymentMethod
+      ...availablePaymentMethod
     }
     selected_payment_method {
-      ...cartPaymentMethod
+      ...selectedPaymentMethod
     }
     applied_coupons {
       ...cartCoupon
@@ -46,7 +55,10 @@ export const cartFragment = gql`
     }
   }
   ${cartAddressFragment}
-  ${cartPaymentMethodFragment}
+  ${availablePaymentMethodFragment}
+  ${selectedPaymentMethodFragment}
+  ${availableShippingMethodFragment}
+  ${selectedShippingMethodFragment}
   ${cartItemFragment}
   ${moneyFragment}
   ${cartCouponFragment}

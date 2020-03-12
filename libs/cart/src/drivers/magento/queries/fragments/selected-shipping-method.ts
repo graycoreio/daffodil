@@ -2,8 +2,8 @@ import gql from 'graphql-tag';
 
 import { moneyFragment } from './money';
 
-export const cartShippingMethodFragment = gql`
-  fragment cartShippingMethod on AvailableShippingMethod {
+export const selectedShippingMethodFragment = gql`
+  fragment selectedShippingMethod on SelectedShippingMethod {
     carrier_code
     method_code
     carrier_title

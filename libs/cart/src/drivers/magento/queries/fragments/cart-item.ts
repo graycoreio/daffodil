@@ -12,7 +12,6 @@ export const cartItemFragment = gql`
     }
     quantity
     prices {
-      discounts
       price {
         ...money
       }
