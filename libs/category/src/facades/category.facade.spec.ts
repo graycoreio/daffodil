@@ -41,7 +41,7 @@ describe('DaffCategoryFacade', () => {
 		product = productFactory.create();
     categoryPageConfigurationState.id = category.id;
     categoryPageConfigurationState.product_ids = [product.id];
-    category.productIds = [product.id];
+    category.product_ids = [product.id];
     store = TestBed.get(Store);
     facade = TestBed.get(DaffCategoryFacade);
   });
@@ -258,6 +258,16 @@ describe('DaffCategoryFacade', () => {
 			store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
 			store.dispatch(new DaffProductGridLoadSuccess([product]));
 			expect(facade.getProductsByCategory(category.id)).toBeObservable(expected);
+		});
+  });
+
+  describe('getTotalProductsByCategory', () => {
+
+    it('should be an observable of an array of products that are filtered by the provided category id', () => {
+			const expected = cold('a', { a: 1 });
+			store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+			store.dispatch(new DaffProductGridLoadSuccess([product]));
+			expect(facade.getTotalProductsByCategory(category.id)).toBeObservable(expected);
 		});
   });
 });

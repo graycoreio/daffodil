@@ -11,9 +11,6 @@ describe('DaffMagentoCategoryTransformerService', () => {
   let service: DaffMagentoCategoryTransformerService;
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
 	const stubCategory: DaffCategory = categoryFactory.create();
-	//todo category should have its own product ids.
-	delete stubCategory.productIds;
-	delete stubCategory.total_products;
   
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -39,7 +36,17 @@ describe('DaffMagentoCategoryTransformerService', () => {
           category_name: stubCategory.breadcrumbs[0].categoryName,
           category_level: stubCategory.breadcrumbs[0].categoryLevel,
           category_url_key: stubCategory.breadcrumbs[0].categoryUrlKey
-        }],
+				}],
+				products: {
+					items: [{
+						id: 1,
+						name: 'name',
+						sku: stubCategory.product_ids[0],
+						url_key: 'url_key',
+						image: null,
+						price: null
+					}]
+				},
         children_count: stubCategory.children_count
       }
 

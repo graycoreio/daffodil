@@ -23,7 +23,8 @@ import {
 	selectCategoryPageTotalProducts,
 	selectCategoryPageAppliedFilters,
 	selectCategoryPageAppliedSortOption,
-	selectCategoryPageAppliedSortDirection
+	selectCategoryPageAppliedSortDirection,
+	selectTotalProductsByCategory
 } from '../selectors/category.selector';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
@@ -110,6 +111,14 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
 	 */
 	getProductsByCategory(categoryId: string): Observable<DaffProductUnion[]> {
 		return this.store.pipe(select(selectProductsByCategory, {id: categoryId}))
+	}
+
+	/**
+	 * Get products by a category Id.
+	 * @param categoryId 
+	 */
+	getTotalProductsByCategory(categoryId: string): Observable<number> {
+		return this.store.pipe(select(selectTotalProductsByCategory, {id: categoryId}))
 	}
 
   constructor(private store: Store<CategoryReducersState>) {

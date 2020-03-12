@@ -9,12 +9,14 @@ import { MagentoBreadcrumb, MagentoCategory } from '../models/category';
 })
 export class DaffMagentoCategoryTransformerService {
 
-  transform(categoryNode: MagentoCategory): DaffCategory {
+  transform(category: MagentoCategory): DaffCategory {
     return {
-      id: categoryNode.id,
-      name: categoryNode.name,
-      children_count: categoryNode.children_count,
-      breadcrumbs: categoryNode.breadcrumbs ? categoryNode.breadcrumbs.map(breadcrumb => this.transformBreadcrumb(breadcrumb)) : null
+      id: category.id,
+      name: category.name,
+      children_count: category.children_count,
+			breadcrumbs: category.breadcrumbs ? category.breadcrumbs.map(breadcrumb => this.transformBreadcrumb(breadcrumb)) : null,
+			product_ids: category.products.items.map(product => product.sku),
+			total_products: category.products.items.length
     }
   }
 
