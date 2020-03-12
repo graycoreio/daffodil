@@ -35,7 +35,10 @@ export class DaffMagentoCartShippingInformationService implements DaffCartShippi
       query: getSelectedShippingMethod,
       variables: {cartId}
     }).pipe(
-      map(result => this.shippingRateTransformer.transform(result.data.cart.selected_shipping_method))
+      map(result => result.data.cart.shipping_addresses.length > 0 && result.data.cart.shipping_addresses[0].selected_shipping_method
+        ? this.shippingRateTransformer.transform(result.data.cart.shipping_addresses[0].selected_shipping_method)
+        : null
+      )
     );
   }
 

@@ -27,19 +27,23 @@ export class DaffMagentoCartTransformer {
 
   private transformShippingAddress(cart: MagentoCart): {shipping_address: DaffCart['shipping_address']} {
     return {
-      shipping_address: this.shippingAddressTransformer.transform({
-        ...cart.shipping_addresses[0],
-        email: cart.email
-      })
+      shipping_address: cart.shipping_addresses.length > 0
+        ? this.shippingAddressTransformer.transform({
+          ...cart.shipping_addresses[0],
+          email: cart.email
+        })
+        : null
     }
   }
 
   private transformBillingAddress(cart: MagentoCart): {billing_address: DaffCart['billing_address']} {
     return {
-      billing_address: this.billingAddressTransformer.transform({
-        ...cart.billing_address,
-        email: cart.email
-      }),
+      billing_address: cart.billing_address
+        ? this.billingAddressTransformer.transform({
+          ...cart.billing_address,
+          email: cart.email
+        })
+        : null
     }
   }
 
@@ -89,11 +93,13 @@ export class DaffMagentoCartTransformer {
   private transformCoupons(cart: MagentoCart): {coupons: DaffCart['coupons']} {
     return {
       // TODO: extract into separate transformer
-      coupons: cart.applied_coupons.map(({code}) => ({
-        coupon_id: 0,
-        code,
-        description: ''
-      })),
+      coupons: cart.applied_coupons
+        ? cart.applied_coupons.map(({code}) => ({
+          coupon_id: 0,
+          code,
+          description: ''
+        }))
+        : []
     }
   }
 
@@ -105,15 +111,19 @@ export class DaffMagentoCartTransformer {
 
   private transformShippingInformation(cart: MagentoCart): {shipping_information: DaffCart['shipping_information']} {
     return {
-      shipping_information: this.shippingInformationTransformer.transform(cart.shipping_addresses[0].selected_shipping_method),
+      shipping_information: cart.shipping_addresses.length > 0 && cart.shipping_addresses[0].selected_shipping_method
+        ? this.shippingInformationTransformer.transform(cart.shipping_addresses[0].selected_shipping_method)
+        : null
     }
   }
 
   private transformShippingMethods(cart: MagentoCart): {available_shipping_methods: DaffCart['available_shipping_methods']} {
     return {
-      available_shipping_methods: cart.shipping_addresses[0].available_shipping_methods.map(method =>
-        this.shippingRateTransformer.transform(method)
-      )
+      available_shipping_methods: cart.shipping_addresses.length > 0
+        ? cart.shipping_addresses[0].available_shipping_methods.map(method =>
+          this.shippingRateTransformer.transform(method)
+        )
+        : []
     }
   }
 

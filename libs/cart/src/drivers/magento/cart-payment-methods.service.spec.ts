@@ -66,7 +66,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
       }
     };
 
-    magentoCartPaymentTransformerSpy.transform.withArgs(mockMagentoPaymentMethod).and.returnValue(mockDaffCartPayment);
+    magentoCartPaymentTransformerSpy.transform.withArgs(jasmine.objectContaining(mockMagentoPaymentMethod)).and.returnValue(mockDaffCartPayment);
   });
 
   it('should be created', () => {

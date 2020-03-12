@@ -97,7 +97,9 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
     mockMagentoCart.shipping_addresses = [mockMagentoShippingAddress];
     mockGetSelectedShippingMethodResponse = {
       cart: {
-        selected_shipping_method: mockMagentoShippingMethod
+        shipping_addresses: [{
+          selected_shipping_method: mockMagentoShippingMethod
+        }]
       }
     };
     mockSetSelectedShippingMethodResponse = {
@@ -138,6 +140,25 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
 
       op.flush({
         data: mockGetSelectedShippingMethodResponse
+      });
+    });
+
+    describe('when the response is an empty array', () => {
+      beforeEach(() => {
+        mockGetSelectedShippingMethodResponse.cart.shipping_addresses = [];
+      });
+
+      it('should return null and not throw', done => {
+        service.get(cartId).subscribe(result => {
+          expect(result).toBeNull();
+          done();
+        });
+
+        const op = controller.expectOne(getSelectedShippingMethod);
+
+        op.flush({
+          data: mockGetSelectedShippingMethodResponse
+        });
       });
     });
 
