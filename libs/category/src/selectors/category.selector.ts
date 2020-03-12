@@ -165,7 +165,7 @@ export const selectProductsByCategory = createSelector(
 export const selectTotalProductsByCategory = createSelector(
 	selectCategoryEntities,
 	fromProduct.selectAllProducts,
-	(entities, products, props) => entities[props.id] && entities[props.id].product_ids
-		? products.filter(product => entities[props.id].product_ids.indexOf(product.id) >= 0).length
+	(entities, products, props) => selectProductsByCategory.projector(entities, products, { id: props.id })
+		? selectProductsByCategory.projector(entities, products, { id: props.id }).length
 		: null
 );
