@@ -58,5 +58,15 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartAddress', () => {
     it('should set magento_address', () => {
       expect(transformedCartAddress.magento_address).toEqual(mockMagentoCartAddress);
     });
+
+    describe('when the argument is null', () => {
+      beforeEach(() => {
+        transformedCartAddress = service.transform(null);
+      });
+
+      it('should return null and not throw an error', () => {
+        expect(transformedCartAddress).toBeNull();
+      });
+    });
   });
 });

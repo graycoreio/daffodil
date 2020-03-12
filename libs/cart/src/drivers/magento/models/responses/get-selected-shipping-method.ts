@@ -2,6 +2,8 @@ import { MagentoCartShippingMethod } from '../outputs/cart-shipping-method';
 
 export interface MagentoGetSelectedShippingMethodResponse {
   cart: {
-    selected_shipping_method: MagentoCartShippingMethod;
+    shipping_addresses: {
+      selected_shipping_method: MagentoCartShippingMethod;
+    }[];
   };
 }

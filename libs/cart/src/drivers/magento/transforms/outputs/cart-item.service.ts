@@ -16,7 +16,7 @@ export class DaffMagentoCartItemTransformer {
    * @param response the response from a magento cart query.
    */
   transform(cartItem: MagentoCartItem): DaffCartItem {
-    return {
+    return cartItem ? {
       ...{magento_cart_item: cartItem},
 
       // base
@@ -31,6 +31,6 @@ export class DaffMagentoCartItemTransformer {
 
       // TODO: implement
       parent_item_id: 0
-    }
+    } : null
   }
 }

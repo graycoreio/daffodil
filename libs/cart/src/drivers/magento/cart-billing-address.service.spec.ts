@@ -145,6 +145,25 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
       });
     });
 
+    describe('when the response is null', () => {
+      beforeEach(() => {
+        mockGetBillingAddressResponse.cart.billing_address = null;
+      });
+
+      it('should return null and not throw', done => {
+        service.get(cartId).subscribe(result => {
+          expect(result).toBeNull();
+          done();
+        });
+
+        const op = controller.expectOne(getBillingAddress);
+
+        op.flush({
+          data: mockGetBillingAddressResponse
+        });
+      });
+    });
+
     afterEach(() => {
       controller.verify();
     });

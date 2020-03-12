@@ -39,7 +39,7 @@ export class DaffMagentoCartTransformer {
       billing_address: this.billingAddressTransformer.transform({
         ...cart.billing_address,
         email: cart.email
-      }),
+      })
     }
   }
 
@@ -89,11 +89,13 @@ export class DaffMagentoCartTransformer {
   private transformCoupons(cart: MagentoCart): {coupons: DaffCart['coupons']} {
     return {
       // TODO: extract into separate transformer
-      coupons: cart.applied_coupons.map(({code}) => ({
-        coupon_id: 0,
-        code,
-        description: ''
-      })),
+      coupons: cart.applied_coupons
+        ? cart.applied_coupons.map(({code}) => ({
+          coupon_id: 0,
+          code,
+          description: ''
+        }))
+        : []
     }
   }
 
@@ -105,7 +107,7 @@ export class DaffMagentoCartTransformer {
 
   private transformShippingInformation(cart: MagentoCart): {shipping_information: DaffCart['shipping_information']} {
     return {
-      shipping_information: this.shippingInformationTransformer.transform(cart.shipping_addresses[0].selected_shipping_method),
+      shipping_information: this.shippingInformationTransformer.transform(cart.shipping_addresses[0].selected_shipping_method)
     }
   }
 
@@ -130,7 +132,7 @@ export class DaffMagentoCartTransformer {
    * @param cart the cart from a magento cart query.
    */
   transform(cart: MagentoCart): DaffCart {
-    return {
+    return cart ? {
       // add the magento cart in this way to avoid 'object literal may only specify known proerties'
       ...{magento_cart: cart},
 
@@ -146,6 +148,6 @@ export class DaffMagentoCartTransformer {
       ...this.transformPaymentMethods(cart),
 
       id: cart.id
-    }
+    } : null
   }
 }

@@ -39,10 +39,13 @@ export class DaffMagentoCartBillingAddressService implements DaffCartBillingAddr
       query: getBillingAddress,
       variables: {cartId}
     }).pipe(
-      map(result => this.billingAddressTransformer.transform({
-        ...result.data.cart.billing_address,
-        email: result.data.cart.email
-      }))
+      map(result => result.data.cart.billing_address
+        ? this.billingAddressTransformer.transform({
+          ...result.data.cart.billing_address,
+          email: result.data.cart.email
+        })
+        : null
+      )
     )
   }
 

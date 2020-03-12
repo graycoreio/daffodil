@@ -15,7 +15,7 @@ export class DaffMagentoCartShippingRateTransformer {
    * @param shippingMethod the shippingMethod from a magento cart query.
    */
   transform(shippingMethod: MagentoCartShippingMethod): DaffCartShippingRate {
-    return {
+    return shippingMethod ? {
       ...{magento_shipping_method: shippingMethod},
 
       carrier: shippingMethod.carrier_code,
@@ -27,6 +27,6 @@ export class DaffMagentoCartShippingRateTransformer {
       // TODO: implement
       id: null,
       method_description: null
-    }
+    } : null
   }
 }

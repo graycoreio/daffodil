@@ -54,5 +54,15 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartShippingRate', () =
     it('should set magento_shipping_method', () => {
       expect(transformedCartShippingRate.magento_shipping_method).toEqual(mockMagentoShippingMethod);
     });
+
+    describe('when the argument is null', () => {
+      beforeEach(() => {
+        transformedCartShippingRate = service.transform(null);
+      });
+
+      it('should return null and not throw an error', () => {
+        expect(transformedCartShippingRate).toBeNull();
+      });
+    });
   });
 });

@@ -16,10 +16,10 @@ export class DaffMagentoCartPaymentTransformer {
    * @param response the response from a magento cart query.
    */
   transform(responsePayment: MagentoCartPaymentMethod): DaffCartPaymentMethod {
-    return {
+    return responsePayment ? {
       ...{magento_payment_method: responsePayment},
 
       method: responsePayment.code
-    }
+    } : null
   }
 }

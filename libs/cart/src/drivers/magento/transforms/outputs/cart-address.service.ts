@@ -15,7 +15,7 @@ export class DaffMagentoCartAddressTransformer {
    * @param address the address from a magento cart query.
    */
   transform(address: MagentoCartAddress): DaffCartAddress {
-    return {
+    return address ? {
       ...{magento_address: address},
 
       // address
@@ -39,6 +39,6 @@ export class DaffMagentoCartAddressTransformer {
       middlename: null,
       prefix: null,
       address_type: null,
-    }
+    } : null
   }
 }

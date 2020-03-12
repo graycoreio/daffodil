@@ -9,7 +9,8 @@ import {
   DaffCartFactory,
   MagentoShippingAddressFactory,
   MagentoCartItemFactory,
-  MagentoCartAddressFactory
+  MagentoCartAddressFactory,
+  MagentoCartShippingMethodFactory
 } from '@daffodil/cart/testing';
 
 import { DaffMagentoCartTransformer } from './cart.service';
@@ -32,6 +33,7 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
   let magentoShippingAddressFactory: MagentoShippingAddressFactory;
   let magentoCartAddressFactory: MagentoCartAddressFactory;
   let magentoCartItemFactory: MagentoCartItemFactory;
+  let magentoShippingMethodFactory: MagentoCartShippingMethodFactory;
 
   let mockDaffCart: DaffCart;
   let mockMagentoCart;
@@ -86,6 +88,7 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
     magentoShippingAddressFactory = TestBed.get(MagentoShippingAddressFactory);
     magentoCartAddressFactory = TestBed.get(MagentoCartAddressFactory);
     magentoCartItemFactory = TestBed.get(MagentoCartItemFactory);
+    magentoShippingMethodFactory = TestBed.get(MagentoCartShippingMethodFactory);
 
     cartItemTransformerSpy = TestBed.get(DaffMagentoCartItemTransformer);
     cartAddressTransformerSpy = TestBed.get(DaffMagentoCartAddressTransformer);
@@ -105,11 +108,13 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
       email: mockMagentoCart.email
     };
     mockCartItem = magentoCartItemFactory.create();
+    mockShippingMethod = magentoShippingMethodFactory.create();
     mockMagentoCart.shipping_addresses = [mockShippingAddress];
     mockMagentoCart.billing_address = mockBillingAddress;
     mockMagentoCart.items = [mockCartItem];
     mockPaymentMethod = mockMagentoCart.selected_payment_method;
-    mockShippingMethod = mockShippingAddress.selected_shipping_method;
+    mockShippingAddress.selected_shipping_method = mockShippingMethod;
+    mockShippingAddress.available_shipping_methods = [mockShippingMethod];
 
     cartItemTransformerSpy.transform.withArgs(mockCartItem).and.returnValue(mockDaffCart.items[0]);
     cartAddressTransformerSpy.transform.withArgs(mockBillingAddress).and.returnValue(mockDaffCart.billing_address);
@@ -125,62 +130,81 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
 
   describe('transform | transforming a cart', () => {
     let transformedCart;
-    let id;
-    let subtotal;
-    let grand_total;
 
-    beforeEach(() => {
-      id = 5;
-      subtotal = 20;
-      grand_total = 20.20;
+    describe('when the cart has all its fields defined', () => {
+      let id;
+      let subtotal;
+      let grand_total;
 
-      mockMagentoCart.id = id;
-      mockMagentoCart.prices.subtotal_excluding_tax.value = subtotal;
-      mockMagentoCart.prices.grand_total.value = grand_total;
+      beforeEach(() => {
+        id = 5;
+        subtotal = 20;
+        grand_total = 20.20;
 
-      transformedCart = service.transform(mockMagentoCart);
+        mockMagentoCart.id = id;
+        mockMagentoCart.prices.subtotal_excluding_tax.value = subtotal;
+        mockMagentoCart.prices.grand_total.value = grand_total;
+
+        transformedCart = service.transform(mockMagentoCart);
+      });
+
+      it('should return an object with the correct values', () => {
+        expect(String(transformedCart.id)).toEqual(String(id));
+        expect(transformedCart.subtotal).toEqual(subtotal);
+        expect(transformedCart.grand_total).toEqual(grand_total);
+      });
+
+      it('should call the cart address transformer with the billing address', () => {
+        expect(cartAddressTransformerSpy.transform).toHaveBeenCalledWith(mockBillingAddress);
+      });
+
+      it('should call the shipping address transformer with the shipping address', () => {
+        expect(shippingAddressTransformerSpy.transform).toHaveBeenCalledWith(jasmine.objectContaining({
+          email: mockShippingAddress.email,
+          street: mockShippingAddress.street,
+          region: mockShippingAddress.region,
+        }));
+      });
+
+      it('should call the cart item transformer with the cart item', () => {
+        expect(cartItemTransformerSpy.transform).toHaveBeenCalledWith(mockCartItem);
+      });
+
+      it('should call the shipping information transformer with the shipping method', () => {
+        expect(cartShippingInformationTransformerSpy.transform).toHaveBeenCalledWith(mockShippingMethod);
+      });
+
+      it('should call the shipping rate transformer with each of the available shipping methods', () => {
+        mockShippingAddress.available_shipping_methods.forEach(method => {
+          expect(cartShippingRateTransformerSpy.transform).toHaveBeenCalledWith(method);
+        });
+      });
+
+      it('should call the cart payment transformer with the payment method', () => {
+        expect(cartPaymentTransformerSpy.transform).toHaveBeenCalledWith(mockPaymentMethod);
+      });
+
+      it('should call the cart address transformer with the billing address', () => {
+        expect(cartAddressTransformerSpy.transform).toHaveBeenCalledWith(mockBillingAddress);
+      });
+
+      it('should call the shipping address transformer with the shipping address', () => {
+        expect(shippingAddressTransformerSpy.transform).toHaveBeenCalledWith(mockShippingAddress);
+      });
+
+      it('should set the magento_cart field', () => {
+        expect(transformedCart.magento_cart).toEqual(mockMagentoCart);
+      });
     });
 
-    it('should return an object with the correct values', () => {
-      expect(String(transformedCart.id)).toEqual(String(id));
-      expect(transformedCart.subtotal).toEqual(subtotal);
-      expect(transformedCart.grand_total).toEqual(grand_total);
-    });
+    describe('when the argument is null', () => {
+      beforeEach(() => {
+        transformedCart = service.transform(null);
+      });
 
-    it('should call the cart address transformer with the billing address', () => {
-      expect(cartAddressTransformerSpy.transform).toHaveBeenCalledWith(mockBillingAddress);
-    });
-
-    it('should call the shipping address transformer with the shipping address', () => {
-      expect(shippingAddressTransformerSpy.transform).toHaveBeenCalledWith(jasmine.objectContaining({
-        email: mockShippingAddress.email,
-        street: mockShippingAddress.street,
-        region: mockShippingAddress.region,
-      }));
-    });
-
-    it('should call the cart item transformer with the cart item', () => {
-      expect(cartItemTransformerSpy.transform).toHaveBeenCalledWith(mockCartItem);
-    });
-
-    it('should call the shipping information transformer with the shipping method', () => {
-      expect(cartShippingInformationTransformerSpy.transform).toHaveBeenCalledWith(mockShippingMethod);
-    });
-
-    it('should call the cart payment transformer with the payment method', () => {
-      expect(cartPaymentTransformerSpy.transform).toHaveBeenCalledWith(mockPaymentMethod);
-    });
-
-    it('should call the cart address transformer with the billing address', () => {
-      expect(cartAddressTransformerSpy.transform).toHaveBeenCalledWith(mockBillingAddress);
-    });
-
-    it('should call the shipping address transformer with the shipping address', () => {
-      expect(shippingAddressTransformerSpy.transform).toHaveBeenCalledWith(mockShippingAddress);
-    });
-
-    it('should set the magento_cart field', () => {
-      expect(transformedCart.magento_cart).toEqual(mockMagentoCart);
+      it('should return null and not throw an error', () => {
+        expect(transformedCart).toBeNull();
+      });
     });
   });
 });
