@@ -12,6 +12,11 @@ query MagentoGetCategoryQuery($filters: CategoryFilterInput){
 			category_level
 			category_url_key
 		}
+		products {
+			items {
+				sku
+			}
+		}
 		children_count
 	}
 }`

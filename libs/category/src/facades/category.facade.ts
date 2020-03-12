@@ -31,6 +31,7 @@ import { DaffCategoryFilter } from '../models/category-filter';
 import { DaffCategorySortOption } from '../models/category-sort-option';
 import { DaffSortDirectionEnum } from '../models/requests/category-request';
 import { DaffCategoryFilterAction } from '../models/requests/filter-action';
+import { selectTotalProductsByCategory } from '@daffodil/category';
 
 /**
  * A facade for accessing state for the currently selected category.
@@ -110,6 +111,14 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
 	 */
 	getProductsByCategory(categoryId: string): Observable<DaffProductUnion[]> {
 		return this.store.pipe(select(selectProductsByCategory, {id: categoryId}))
+	}
+
+	/**
+	 * Get products by a category Id.
+	 * @param categoryId 
+	 */
+	getTotalProductsByCategory(categoryId: string): Observable<number> {
+		return this.store.pipe(select(selectTotalProductsByCategory, {id: categoryId}))
 	}
 
   constructor(private store: Store<CategoryReducersState>) {

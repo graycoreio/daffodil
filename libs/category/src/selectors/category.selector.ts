@@ -151,18 +151,21 @@ export const selectCategoryPageProducts = createSelector(
 
 export const selectCategory = createSelector(
 	selectCategoryEntities,
-	(entities, props) => {
-		return entities[props.id];
-	}
+	(entities, props) =>  entities[props.id]
 );
 
 export const selectProductsByCategory = createSelector(
 	selectCategoryEntities,
 	fromProduct.selectAllProducts,
-	(entities, products, props) => {
-		if (!entities[props.id]) {
-			return null;
-		}
-		return products.filter(product => entities[props.id].productIds.indexOf(product.id) >= 0);
-	}
+	(entities, products, props) => entities[props.id] && entities[props.id].product_ids
+		? products.filter(product => entities[props.id].product_ids.indexOf(product.id) >= 0)
+		: null
+);
+
+export const selectTotalProductsByCategory = createSelector(
+	selectCategoryEntities,
+	fromProduct.selectAllProducts,
+	(entities, products, props) => entities[props.id] && entities[props.id].product_ids
+		? products.filter(product => entities[props.id].product_ids.indexOf(product.id) >= 0).length
+		: null
 );

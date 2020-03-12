@@ -30,7 +30,8 @@ import {
 	selectCategoryPageTotalProducts,
 	selectCategoryPageAppliedFilters,
 	selectCategoryPageAppliedSortOption,
-	selectCategoryPageAppliedSortDirection
+	selectCategoryPageAppliedSortDirection,
+	selectTotalProductsByCategory
 } from './category.selector';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
 import { categoryReducers } from '../reducers/category-reducers';
@@ -61,7 +62,7 @@ describe('DaffCategorySelectors', () => {
     product = productFactory.create();
     stubCategoryPageConfigurationState.id = stubCategory.id;
 		stubCategoryPageConfigurationState.product_ids = [product.id];
-    stubCategory.productIds = [product.id];
+    stubCategory.product_ids = [product.id];
     store = TestBed.get(Store);
 
     store.dispatch(new DaffCategoryLoadSuccess({ category: stubCategory, categoryPageConfigurationState: stubCategoryPageConfigurationState, products: null }));
@@ -138,7 +139,7 @@ describe('DaffCategorySelectors', () => {
 
   describe('selectCategoryPageProductIds', () => {
 
-    it('selects the productIds of the current category page', () => {
+    it('selects the product_ids of the current category page', () => {
       const selector = store.pipe(select(selectCategoryPageProductIds));
       const expected = cold('a', { a: stubCategoryPageConfigurationState.product_ids });
       expect(selector).toBeObservable(expected);
@@ -147,7 +148,7 @@ describe('DaffCategorySelectors', () => {
 
   describe('selectCategoryPageTotalProducts', () => {
 
-    it('selects the productIds of the current category page', () => {
+    it('selects the product_ids of the current category page', () => {
       const selector = store.pipe(select(selectCategoryPageTotalProducts));
       const expected = cold('a', { a: stubCategoryPageConfigurationState.total_products });
       expect(selector).toBeObservable(expected);
@@ -279,6 +280,15 @@ describe('DaffCategorySelectors', () => {
     it('selects products by category', () => {
       const selector = store.pipe(select(selectProductsByCategory, { id: stubCategory.id }));
       const expected = cold('a', { a: [product] });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectTotalProductsByCategory', () => {
+
+    it('selects products by category', () => {
+      const selector = store.pipe(select(selectTotalProductsByCategory, { id: stubCategory.id }));
+      const expected = cold('a', { a: 1 });
       expect(selector).toBeObservable(expected);
     });
   });

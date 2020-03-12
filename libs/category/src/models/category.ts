@@ -6,6 +6,6 @@ export interface DaffCategory {
   children_count?: number;
   total_products?: number;
   children?: DaffCategory[];
-  productIds?: string[];
+  product_ids?: string[];
   breadcrumbs?: DaffCategoryBreadcrumb[];
 }
