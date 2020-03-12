@@ -65,5 +65,15 @@ describe('Driver | Magento | Cart | Transformer | MagentoShippingInformation', (
     it('should call the cart shipping rate transformer with the address', () => {
       expect(cartShippingRateTransformerSpy.transform).toHaveBeenCalledWith(mockMagentoShippingMethod);
     });
+
+    describe('when the argument is null', () => {
+      beforeEach(() => {
+        transformedShippingInformation = service.transform(null);
+      });
+
+      it('should return null and not throw an error', () => {
+        expect(transformedShippingInformation).toBeNull();
+      });
+    });
   })
 });

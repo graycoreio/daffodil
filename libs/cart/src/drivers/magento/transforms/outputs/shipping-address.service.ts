@@ -18,9 +18,9 @@ export class DaffMagentoShippingAddressTransformer {
    * @param address the address from a magento cart query.
    */
   transform(address: MagentoShippingAddress): DaffCartAddress {
-    return {
+    return address ? {
       ...this.addressTransformer.transform(address),
       address_type: 'shipping',
-    }
+    } : null
   }
 }

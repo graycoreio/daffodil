@@ -197,28 +197,13 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
       });
     });
 
-    describe('when the cart has empty and uninitialized fields', () => {
+    describe('when the argument is null', () => {
       beforeEach(() => {
-        mockMagentoCart.shipping_addresses = [];
-        mockMagentoCart.billing_address = null;
-
-        transformedCart = service.transform(mockMagentoCart);
+        transformedCart = service.transform(null);
       });
 
-      it('should not call the cart address transformer', () => {
-        expect(cartAddressTransformerSpy.transform).not.toHaveBeenCalled();
-      });
-
-      it('should not call the shipping address transformer', () => {
-        expect(shippingAddressTransformerSpy.transform).not.toHaveBeenCalled();
-      });
-
-      it('should not call the shipping information transformer', () => {
-        expect(cartShippingInformationTransformerSpy.transform).not.toHaveBeenCalled();
-      });
-
-      it('should not call the shipping rate transformer', () => {
-        expect(cartShippingRateTransformerSpy.transform).not.toHaveBeenCalled();
+      it('should return null and not throw an error', () => {
+        expect(transformedCart).toBeNull();
       });
     });
   });

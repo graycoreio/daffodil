@@ -20,9 +20,9 @@ export class DaffMagentoBillingAddressTransformer {
    * @param address the address from a magento cart query.
    */
   transform(address: MagentoCartAddress): DaffCartAddress {
-    return {
+    return address ? {
       ...this.addressTransformer.transform(address),
       address_type: 'billing',
-    }
+    } : null
   }
 }

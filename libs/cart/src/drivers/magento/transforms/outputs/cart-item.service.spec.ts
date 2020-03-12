@@ -63,5 +63,15 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartItem', () => {
     it('should set magento_cart_item', () => {
       expect(transformedCartItem.magento_cart_item).toEqual(mockMagentoCartItem);
     });
-  })
+
+    describe('when the argument is null', () => {
+      beforeEach(() => {
+        transformedCartItem = service.transform(null);
+      });
+
+      it('should return null and not throw an error', () => {
+        expect(transformedCartItem).toBeNull();
+      });
+    });
+  });
 });

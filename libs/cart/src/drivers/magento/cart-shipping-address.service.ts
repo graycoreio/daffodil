@@ -31,7 +31,7 @@ export class DaffMagentoCartShippingAddressService implements DaffCartShippingAd
       query: getShippingAddress,
       variables: {cartId}
     }).pipe(
-      map(result => result.data.cart.shipping_addresses.length > 0
+      map(result => result.data.cart.shipping_addresses[0]
         ? this.shippingAddressTransformer.transform({
           ...result.data.cart.shipping_addresses[0],
           email: result.data.cart.email
