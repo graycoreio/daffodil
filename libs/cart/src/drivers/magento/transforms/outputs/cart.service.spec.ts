@@ -206,5 +206,31 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
         expect(transformedCart).toBeNull();
       });
     });
+
+    describe('when the billing address is null', () => {
+      beforeEach(() => {
+        mockMagentoCart.billing_address = null;
+        transformedCart = service.transform(mockMagentoCart);
+      });
+
+      it('should not call the cart address transformer', () => {
+        expect(cartAddressTransformerSpy.transform).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('when the shipping address is null', () => {
+      beforeEach(() => {
+        mockMagentoCart.shipping_addresses = [];
+        transformedCart = service.transform(mockMagentoCart);
+      });
+
+      it('should not call the shipping address transformer', () => {
+        expect(shippingAddressTransformerSpy.transform).not.toHaveBeenCalled();
+      });
+
+      it('should not call the shipping rate transformer', () => {
+        expect(cartShippingRateTransformerSpy.transform).not.toHaveBeenCalled();
+      });
+    });
   });
 });
