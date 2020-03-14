@@ -9,10 +9,20 @@ export enum DaffCategoryActionTypes {
   CategoryLoadSuccessAction = '[Daff-Category] Category Load Success Action',
   CategoryLoadFailureAction = '[Daff-Category] Category Load Failure Action',
   ChangeCategoryPageSizeAction = '[Daff-Category] Change Category Page Size Action',
+  ChangeCategoryPageSizeSuccessAction = '[Daff-Category] Category Load Success Action',
+  ChangeCategoryPageSizeFailureAction = '[Daff-Category] Category Load Failure Action',
   ChangeCategoryCurrentPageAction = '[Daff-Category] Change Category Current Page Action',
+  ChangeCategoryCurrentPageSuccessAction = '[Daff-Category] Category Load Success Action',
+  ChangeCategoryCurrentPageFailureAction = '[Daff-Category] Category Load Failure Action',
   ChangeCategorySortingOptionAction = '[Daff-Category] Change Category Sorting Option Action',
+  ChangeCategorySortingOptionSuccessAction = '[Daff-Category] Category Load Success Action',
+  ChangeCategorySortingOptionFailureAction = '[Daff-Category] Category Load Failure Action',
 	ChangeCategoryFiltersAction = '[Daff-Category] Change Category Filters Action',
-	ToggleCategoryFilterAction = '[Daff-Category] Toggle Category Filter Action'
+  ChangeCategoryFiltersSuccessAction = '[Daff-Category] Category Load Success Action',
+  ChangeCategoryFiltersFailureAction = '[Daff-Category] Category Load Failure Action',
+	ToggleCategoryFilterAction = '[Daff-Category] Toggle Category Filter Action',
+  ToggleCategoryFilterSuccessAction = '[Daff-Category] Category Load Success Action',
+  ToggleCategoryFilterFailureAction = '[Daff-Category] Category Load Failure Action'
 }
 
 /**
@@ -60,6 +70,28 @@ export class DaffChangeCategoryPageSize implements Action {
 }
 
 /**
+ * An action triggered upon a successful category page size change.
+ * 
+ * @param response - DaffGetCategoryResponse object
+ */
+export class DaffChangeCategoryPageSizeSuccess implements Action {
+  readonly type = DaffCategoryActionTypes.ChangeCategoryPageSizeSuccessAction;
+
+  constructor(public response: DaffGetCategoryResponse) { }
+}
+
+/**
+ * An action triggered upon a failed category page size change.
+ * 
+ * @param error - an error message
+ */
+export class DaffChangeCategoryPageSizeFailure implements Action {
+  readonly type = DaffCategoryActionTypes.ChangeCategoryPageSizeFailureAction;
+
+  constructor(public error: string) { }
+}
+
+/**
  * An action for changing the current page of products for the selected category.
  * 
  * @param currentPage - The current page of products for the selected category.
@@ -68,6 +100,28 @@ export class DaffChangeCategoryCurrentPage implements Action {
   readonly type = DaffCategoryActionTypes.ChangeCategoryCurrentPageAction;
 
   constructor(public currentPage: number) { }
+}
+
+/**
+ * An action triggered upon a successful category current page change.
+ * 
+ * @param response - DaffGetCategoryResponse object
+ */
+export class DaffChangeCategoryCurrentPageSuccess implements Action {
+  readonly type = DaffCategoryActionTypes.ChangeCategoryCurrentPageSuccessAction;
+
+  constructor(public response: DaffGetCategoryResponse) { }
+}
+
+/**
+ * An action triggered upon a failed category current page change.
+ * 
+ * @param error - an error message
+ */
+export class DaffChangeCategoryCurrentPageFailure implements Action {
+  readonly type = DaffCategoryActionTypes.ChangeCategoryCurrentPageFailureAction;
+
+  constructor(public error: string) { }
 }
 
 /**
@@ -87,6 +141,28 @@ export class DaffChangeCategorySortingOption implements Action {
 }
 
 /**
+ * An action triggered upon a successful category sorting option change.
+ * 
+ * @param response - DaffGetCategoryResponse object
+ */
+export class DaffChangeCategorySortingOptionSuccess implements Action {
+  readonly type = DaffCategoryActionTypes.ChangeCategorySortingOptionSuccessAction;
+
+  constructor(public response: DaffGetCategoryResponse) { }
+}
+
+/**
+ * An action triggered upon a failed category sorting option change.
+ * 
+ * @param error - an error message
+ */
+export class DaffChangeCategorySortingOptionFailure implements Action {
+  readonly type = DaffCategoryActionTypes.ChangeCategorySortingOptionFailureAction;
+
+  constructor(public error: string) { }
+}
+
+/**
  * An action for changing the filters for the selected category.
  * 
  * @param filters - Filters to be applied to the selected category.
@@ -95,6 +171,28 @@ export class DaffChangeCategoryFilters implements Action {
   readonly type = DaffCategoryActionTypes.ChangeCategoryFiltersAction;
 
   constructor(public filters: DaffCategoryRequest['applied_filters']) { }
+}
+
+/**
+ * An action triggered upon a successful category filters change.
+ * 
+ * @param response - DaffGetCategoryResponse object
+ */
+export class DaffChangeCategoryFiltersSuccess implements Action {
+  readonly type = DaffCategoryActionTypes.ChangeCategoryFiltersSuccessAction;
+
+  constructor(public response: DaffGetCategoryResponse) { }
+}
+
+/**
+ * An action triggered upon a failed category filters change.
+ * 
+ * @param error - an error message
+ */
+export class DaffChangeCategoryFiltersFailure implements Action {
+  readonly type = DaffCategoryActionTypes.ChangeCategoryFiltersFailureAction;
+
+  constructor(public error: string) { }
 }
 
 /**
@@ -108,11 +206,41 @@ export class DaffToggleCategoryFilter implements Action {
   constructor(public filter: DaffCategoryFilterAction) { }
 }
 
+/**
+ * An action triggered upon successfully toggling a filter.
+ * 
+ * @param response - DaffGetCategoryResponse object
+ */
+export class DaffToggleCategoryFilterSuccess implements Action {
+  readonly type = DaffCategoryActionTypes.ToggleCategoryFilterSuccessAction;
+
+  constructor(public response: DaffGetCategoryResponse) { }
+}
+
+/**
+ * An action triggered upon a failed filter toggle.
+ * 
+ * @param error - an error message
+ */
+export class DaffToggleCategoryFilterFailure implements Action {
+  readonly type = DaffCategoryActionTypes.ToggleCategoryFilterFailureAction;
+
+  constructor(public error: string) { }
+}
+
 export type DaffCategoryActions =
   | DaffCategoryLoad
   | DaffCategoryLoadSuccess
   | DaffCategoryLoadFailure
   | DaffChangeCategoryPageSize
+  | DaffChangeCategoryPageSizeSuccess
+  | DaffChangeCategoryPageSizeFailure
   | DaffChangeCategorySortingOption
+  | DaffChangeCategorySortingOptionSuccess
+  | DaffChangeCategorySortingOptionFailure
   | DaffChangeCategoryFilters
-  | DaffToggleCategoryFilter;
+  | DaffChangeCategoryFiltersSuccess
+  | DaffChangeCategoryFiltersFailure
+  | DaffToggleCategoryFilter
+  | DaffToggleCategoryFilterSuccess
+  | DaffToggleCategoryFilterFailure;
