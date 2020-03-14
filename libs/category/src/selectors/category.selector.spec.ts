@@ -31,7 +31,8 @@ import {
 	selectCategoryPageAppliedFilters,
 	selectCategoryPageAppliedSortOption,
 	selectCategoryPageAppliedSortDirection,
-	selectTotalProductsByCategory
+	selectTotalProductsByCategory,
+	selectCategoryProductsLoading
 } from './category.selector';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
 import { categoryReducers } from '../reducers/category-reducers';
@@ -74,7 +75,8 @@ describe('DaffCategorySelectors', () => {
     it('selects CategoryReducerState for category', () => {
       const expectedFeatureState = {
         categoryPageConfigurationState: stubCategoryPageConfigurationState,
-        loading: false,
+        categoryLoading: false,
+        productsLoading: false,
         errors: []
       }
       const selector = store.pipe(select(selectCategoryState));
@@ -195,6 +197,15 @@ describe('DaffCategorySelectors', () => {
 
     it('selects the loading state of the category', () => {
       const selector = store.pipe(select(selectCategoryLoading));
+      const expected = cold('a', { a: false });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCategoryProductsLoading', () => {
+
+    it('selects the loading state of the category products', () => {
+      const selector = store.pipe(select(selectCategoryProductsLoading));
       const expected = cold('a', { a: false });
       expect(selector).toBeObservable(expected);
     });

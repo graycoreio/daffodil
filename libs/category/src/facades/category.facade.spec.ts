@@ -212,16 +212,29 @@ describe('DaffCategoryFacade', () => {
     });
   });
 
-  describe('loading$', () => {
+  describe('categoryLoading$', () => {
     it('should be false if the category state is not loading', () => {
       const expected = cold('a', { a: false });
-      expect(facade.loading$).toBeObservable(expected);
+      expect(facade.categoryLoading$).toBeObservable(expected);
     });
   
     it('should be true if the category state is loading', () => {
       const expected = cold('a', { a: true });
       store.dispatch(new DaffCategoryLoad({ id: '1' }));
-      expect(facade.loading$).toBeObservable(expected);
+      expect(facade.categoryLoading$).toBeObservable(expected);
+    });
+  });
+
+  describe('productsLoading$', () => {
+    it('should be false if the category products are not loading', () => {
+      const expected = cold('a', { a: false });
+      expect(facade.productsLoading$).toBeObservable(expected);
+    });
+  
+    it('should be true if the category products are loading', () => {
+      const expected = cold('a', { a: true });
+      store.dispatch(new DaffCategoryLoad({ id: '1' }));
+      expect(facade.productsLoading$).toBeObservable(expected);
     });
   });
 

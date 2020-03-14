@@ -2,6 +2,7 @@ import { DaffCategoryPageConfigurationState } from '../../models/category-page-c
 
 export interface CategoryReducerState {
   categoryPageConfigurationState: DaffCategoryPageConfigurationState,
-  loading: boolean,
+  categoryLoading: boolean,
+  productsLoading: boolean,
   errors: string[]
 }

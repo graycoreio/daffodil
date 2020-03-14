@@ -15,7 +15,8 @@ const initialState: CategoryReducerState = {
 		total_products: null,
 		product_ids: []
   },
-  loading: false,
+	categoryLoading: false,
+	productsLoading: false,
   errors: []
 };
 
@@ -29,18 +30,57 @@ export function categoryReducer(state = initialState, action: DaffCategoryAction
 			if(!action.request.applied_filters) action.request.applied_filters = [];
       return { 
         ...state, 
-        loading: true,
+				categoryLoading: true,
+				productsLoading: true,
         categoryPageConfigurationState: {
           ...state.categoryPageConfigurationState,
           ...action.request
         }
-      };
+			};
+		case DaffCategoryActionTypes.ChangeCategoryPageSizeAction:
+			return { 
+				...state, 
+				productsLoading: true,
+				categoryPageConfigurationState: {
+					...state.categoryPageConfigurationState,
+					page_size: action.pageSize
+				}
+			};
+		case DaffCategoryActionTypes.ChangeCategoryCurrentPageAction:
+			return { 
+				...state, 
+				productsLoading: true,
+				categoryPageConfigurationState: {
+					...state.categoryPageConfigurationState,
+					current_page: action.currentPage
+				}
+			};
+		case DaffCategoryActionTypes.ChangeCategorySortingOptionAction:
+			return { 
+				...state, 
+				productsLoading: true,
+				categoryPageConfigurationState: {
+					...state.categoryPageConfigurationState,
+					applied_sort_option: action.sort.option,
+					applied_sort_direction: action.sort.direction
+				}
+			};
+		case DaffCategoryActionTypes.ChangeCategoryFiltersAction:
+			return { 
+				...state, 
+				productsLoading: true,
+				categoryPageConfigurationState: {
+					...state.categoryPageConfigurationState,
+					applied_filters: action.filters
+				}
+			};
     // This reducer cannot spread over state, because this would wipe out the applied filters on state. Applied filters are not
     // set here for reasons stated above.
     case DaffCategoryActionTypes.CategoryLoadSuccessAction:
       return { 
         ...state, 
-        loading: false,
+				categoryLoading: false,
+				productsLoading: false,
         categoryPageConfigurationState: {
           ...state.categoryPageConfigurationState,
           id: action.response.categoryPageConfigurationState.id,
@@ -56,7 +96,8 @@ export function categoryReducer(state = initialState, action: DaffCategoryAction
     case DaffCategoryActionTypes.CategoryLoadFailureAction:
       return {
         ...state,
-        loading: false,
+				categoryLoading: false,
+				productsLoading: false,
         errors: [action.errorMessage]
       };
     default:
