@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { switchMap, catchError, withLatestFrom, mergeMap, concatMap } from 'rxjs/operators';
+import { switchMap, catchError, withLatestFrom } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
@@ -42,7 +42,7 @@ export class DaffCategoryEffects {
   @Effect()
   loadCategory$ : Observable<any> = this.actions$.pipe(
     ofType(DaffCategoryActionTypes.CategoryLoadAction),
-    mergeMap((action: DaffCategoryLoad) => this.processCategoryGetRequest(action.request))
+    switchMap((action: DaffCategoryLoad) => this.processCategoryGetRequest(action.request))
   )
 
   @Effect()
@@ -54,7 +54,7 @@ export class DaffCategoryEffects {
       this.store.pipe(select(selectCategoryPageAppliedSortOption)),
       this.store.pipe(select(selectCategoryPageAppliedSortDirection))
 		),
-    mergeMap((
+    switchMap((
 			[action, categoryId, appliedFilters, appliedSortOption, appliedSortDirection]: 
 			[DaffChangeCategoryPageSize, string, DaffCategoryFilterAction[], string, DaffSortDirectionEnum]
 		) => this.processCategoryGetRequest({
@@ -76,7 +76,7 @@ export class DaffCategoryEffects {
       this.store.pipe(select(selectCategoryPageAppliedSortOption)),
       this.store.pipe(select(selectCategoryPageAppliedSortDirection))
     ),
-    mergeMap((
+    switchMap((
 			[action, categoryId, pageSize, appliedFilters, appliedSortOption, appliedSortDirection]: 
 			[DaffChangeCategoryCurrentPage, string, number, DaffCategoryFilterAction[], string, DaffSortDirectionEnum]
 		) => this.processCategoryGetRequest({
@@ -98,7 +98,7 @@ export class DaffCategoryEffects {
       this.store.pipe(select(selectCategoryPageAppliedSortOption)),
       this.store.pipe(select(selectCategoryPageAppliedSortDirection))
     ),
-    mergeMap((
+    switchMap((
 			[action, categoryId, pageSize, appliedSortOption, appliedSortDirection]: 
 			[DaffChangeCategoryFilters, string, number, string, DaffSortDirectionEnum]
 		) => this.processCategoryGetRequest({
@@ -116,7 +116,7 @@ export class DaffCategoryEffects {
     withLatestFrom(
       this.store.pipe(select(selectCategoryPageAppliedFilters))
     ),
-    mergeMap((
+    switchMap((
 			[action, appliedFilters]: 
 			[DaffToggleCategoryFilter, DaffCategoryFilterAction[]]
 		) => of(new DaffChangeCategoryFilters(this.toggleCategoryFilter(action.filter, appliedFilters))))
@@ -130,7 +130,7 @@ export class DaffCategoryEffects {
 			this.store.pipe(select(selectCategoryPageSize)),
       this.store.pipe(select(selectCategoryPageAppliedFilters))
     ),
-    mergeMap((
+    switchMap((
 			[action, categoryId, pageSize, appliedFilters]: 
 			[DaffChangeCategorySortingOption, string, number, DaffCategoryFilterAction[]]
 		) => this.processCategoryGetRequest({
@@ -159,7 +159,7 @@ export class DaffCategoryEffects {
 
   private processCategoryGetRequest(payload: DaffCategoryRequest) {
     return this.driver.get(payload).pipe(
-      concatMap((resp: DaffGetCategoryResponse) => [
+      switchMap((resp: DaffGetCategoryResponse) => [
         new DaffProductGridLoadSuccess(resp.products),
         new DaffCategoryLoadSuccess(resp)
       ]),
