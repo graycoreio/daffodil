@@ -95,7 +95,15 @@ export const selectSelectedCategoryId = createSelector(
  */
 export const selectCategoryLoading = createSelector(
   selectCategoryState,
-  (state: CategoryReducerState) => state.loading
+  (state: CategoryReducerState) => state.categoryLoading
+);
+
+/**
+ * Category Products Loading State
+ */
+export const selectCategoryProductsLoading = createSelector(
+  selectCategoryState,
+  (state: CategoryReducerState) => state.productsLoading
 );
 
 /**

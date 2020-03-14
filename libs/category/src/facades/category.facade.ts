@@ -24,7 +24,8 @@ import {
 	selectCategoryPageAppliedFilters,
 	selectCategoryPageAppliedSortOption,
 	selectCategoryPageAppliedSortDirection,
-	selectTotalProductsByCategory
+	selectTotalProductsByCategory,
+	selectCategoryProductsLoading
 } from '../selectors/category.selector';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
@@ -91,7 +92,11 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
   /**
    * The loading state for retrieving a single category.
    */
-  loading$: Observable<boolean>;
+  categoryLoading$: Observable<boolean>;
+  /**
+   * The loading state for retrieving only the products of the category.
+   */
+  productsLoading$: Observable<boolean>;
   /**
    * Errors associated with retrieving a single category.
    */
@@ -134,7 +139,8 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
     this.appliedFilters$ = this.store.pipe(select(selectCategoryPageAppliedFilters));
     this.appliedSortOption$ = this.store.pipe(select(selectCategoryPageAppliedSortOption));
     this.appliedSortDirection$ = this.store.pipe(select(selectCategoryPageAppliedSortDirection));
-    this.loading$ = this.store.pipe(select(selectCategoryLoading));
+    this.categoryLoading$ = this.store.pipe(select(selectCategoryLoading));
+    this.productsLoading$ = this.store.pipe(select(selectCategoryProductsLoading));
 		this.errors$ = this.store.pipe(select(selectCategoryErrors));
 	}
 

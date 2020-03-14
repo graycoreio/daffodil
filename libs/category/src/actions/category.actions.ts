@@ -112,7 +112,8 @@ export type DaffCategoryActions =
   | DaffCategoryLoad
   | DaffCategoryLoadSuccess
   | DaffCategoryLoadFailure
-  | DaffChangeCategoryPageSize
+	| DaffChangeCategoryPageSize
+	| DaffChangeCategoryCurrentPage
   | DaffChangeCategorySortingOption
   | DaffChangeCategoryFilters
   | DaffToggleCategoryFilter;
