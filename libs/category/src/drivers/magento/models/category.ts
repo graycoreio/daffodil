@@ -2,7 +2,8 @@ import { MagentoProduct } from '@daffodil/product';
 
 export interface MagentoCategory {
   id: string;
-  name?: string;
+	name?: string;
+	description?: string;
   breadcrumbs?: MagentoBreadcrumb[];
   level?: number;
 	children_count?: number;
