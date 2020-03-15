@@ -12,7 +12,8 @@ export class DaffMagentoCategoryTransformerService {
   transform(category: MagentoCategory): DaffCategory {
     return {
       id: category.id,
-      name: category.name,
+			name: category.name,
+			description: category.description,
       children_count: category.children_count,
 			breadcrumbs: category.breadcrumbs ? category.breadcrumbs.map(breadcrumb => this.transformBreadcrumb(breadcrumb)) : null,
 			product_ids: category.products.items.map(product => product.sku),

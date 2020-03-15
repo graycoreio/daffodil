@@ -6,6 +6,7 @@ query MagentoGetCategoryQuery($filters: CategoryFilterInput){
 		id
 		name
 		level
+		description
 		breadcrumbs {
 			category_id
 			category_name

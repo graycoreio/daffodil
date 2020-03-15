@@ -30,7 +30,8 @@ describe('DaffMagentoCategoryTransformerService', () => {
     it('should return a DaffCategory', () => {
       const magentoCategory: MagentoCategory = {
         id: stubCategory.id,
-        name: stubCategory.name,
+				name: stubCategory.name,
+				description: stubCategory.description,
         breadcrumbs: [{
           category_id: stubCategory.breadcrumbs[0].categoryId,
           category_name: stubCategory.breadcrumbs[0].categoryName,
