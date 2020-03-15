@@ -120,34 +120,31 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 			}
 		});
 		
-		describe('when the filter type is category_id', () => {
+		describe('when the filter type is select', () => {
 			
 			it('should return a DaffCategoryPageConfigurationState with an equal filter type', () => {
-				aggregates[0].attribute_code = 'category_id';
-				stubCategoryPageConfigurationState.filters[0].name = 'category_id';
+				aggregates[0].type = 'select';
 				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Equal;
 
 				expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
 			});
 		});
 		
-		describe('when the filter type is description', () => {
+		describe('when the filter type is boolean', () => {
 			
-			it('should return a DaffCategoryPageConfigurationState with a match filter type', () => {
-				aggregates[0].attribute_code = 'description';
-				stubCategoryPageConfigurationState.filters[0].name = 'description';
-				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Match;
+			it('should return a DaffCategoryPageConfigurationState with a equal filter type', () => {
+				aggregates[0].type = 'boolean';
+				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Equal;
 
 				expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
 			});
 		});
 		
-		describe('when the filter type is name', () => {
+		describe('when the filter type is multiselect', () => {
 			
-			it('should return a DaffCategoryPageConfigurationState with a match filter type', () => {
-				aggregates[0].attribute_code = 'name';
-				stubCategoryPageConfigurationState.filters[0].name = 'name';
-				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Match;
+			it('should return a DaffCategoryPageConfigurationState with a equal filter type', () => {
+				aggregates[0].type = 'multiselect';
+				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Equal;
 
 				expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
 			});
@@ -156,53 +153,18 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 		describe('when the filter type is price', () => {
 			
 			it('should return a DaffCategoryPageConfigurationState with a range filter type', () => {
-				aggregates[0].attribute_code = 'price';
-				stubCategoryPageConfigurationState.filters[0].name = 'price';
+				aggregates[0].type = 'price';
 				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Range;
 
 				expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
 			});
 		});
 		
-		describe('when the filter type is short_description', () => {
+		describe('when the filter type is anything else', () => {
 			
 			it('should return a DaffCategoryPageConfigurationState with a match filter type', () => {
-				aggregates[0].attribute_code = 'short_description';
-				stubCategoryPageConfigurationState.filters[0].name = 'short_description';
+				aggregates[0].type = 'textfield';
 				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Match;
-
-				expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
-			});
-		});
-		
-		describe('when the filter type is sku', () => {
-			
-			it('should return a DaffCategoryPageConfigurationState with an equal filter type', () => {
-				aggregates[0].attribute_code = 'sku';
-				stubCategoryPageConfigurationState.filters[0].name = 'sku';
-				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Equal;
-
-				expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
-			});
-		});
-		
-		describe('when the filter type is url_key', () => {
-			
-			it('should return a DaffCategoryPageConfigurationState with an equal filter type', () => {
-				aggregates[0].attribute_code = 'url_key';
-				stubCategoryPageConfigurationState.filters[0].name = 'url_key';
-				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Equal;
-
-				expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
-			});
-		});
-		
-		describe('when the filter type is a custom type', () => {
-			
-			it('should return a DaffCategoryPageConfigurationState with an equal filter type', () => {
-				aggregates[0].attribute_code = 'anything_else';
-				stubCategoryPageConfigurationState.filters[0].name = 'anything_else';
-				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Equal;
 
 				expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
 			});

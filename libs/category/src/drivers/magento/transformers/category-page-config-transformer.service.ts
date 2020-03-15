@@ -27,7 +27,7 @@ export class DaffMagentoCategoryPageConfigTransformerService {
   private transformAggregate(filter: MagentoAggregation): DaffCategoryFilter {
     return {
       label: filter.label,
-      type: this.transformAggregateType(filter.attribute_code),
+      type: this.transformAggregateType(filter.type),
 			name: filter.attribute_code,
 			items_count: filter.count,
 			options: filter.options.map(option => {
@@ -40,17 +40,12 @@ export class DaffMagentoCategoryPageConfigTransformerService {
     }
 	}
 
-	// There is no way to determine what type these filters are except through the
-	// Magento documentation.
-	private transformAggregateType(attribute_code: MagentoAggregation['attribute_code']): DaffCategoryFilterType {
-		if(attribute_code === 'category_id') return DaffCategoryFilterType.Equal;
-		else if(attribute_code === 'description') return DaffCategoryFilterType.Match;
-		else if(attribute_code === 'name') return DaffCategoryFilterType.Match;
-		else if(attribute_code === 'price') return DaffCategoryFilterType.Range;
-		else if(attribute_code === 'short_description') return DaffCategoryFilterType.Match;
-		else if(attribute_code === 'sku') return DaffCategoryFilterType.Equal;
-		else if(attribute_code === 'url_key') return DaffCategoryFilterType.Equal;
-		else return DaffCategoryFilterType.Equal;
+	private transformAggregateType(type: MagentoAggregation['type']): DaffCategoryFilterType {
+		if(type === 'select') return DaffCategoryFilterType.Equal;
+		else if(type === 'boolean') return DaffCategoryFilterType.Equal;
+		else if(type === 'multiselect') return DaffCategoryFilterType.Equal;
+		else if(type === 'price') return DaffCategoryFilterType.Range;
+		else return DaffCategoryFilterType.Match;
 	}
 
 	private makeDefaultOptionFirst(sort_fields: MagentoSortFields): MagentoSortFields {

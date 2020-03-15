@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, combineLatest } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, combineLatest, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 
 import { DaffCategoryServiceInterface } from '../interfaces/category-service.interface';
@@ -17,6 +17,9 @@ import { DaffMagentoCategoryResponseTransformService } from './transformers/cate
 import { MagentoGetProductsByCategoriesRequest } from './models/requests/get-products-by-categories-request';
 import { MagentoGetCategoryAggregations } from './queries/get-category-aggregations';
 import { MagentoGetCategoryAggregationsResponse } from './models/get-category-aggregations-response';
+import { MagentoCustomAttributeMetadataResponse } from './models/custom-attribute-metadata-response';
+import { MagentoGetCustomAttributeMetadata } from './queries/custom-attribute-metadata';
+import { DaffMagentoCustomMetadataAttributeTransformerService } from './transformers/custom-metadata-attributes-transformer.service';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +30,8 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     private apollo: Apollo,
 		private magentoCategoryResponseTransformer: DaffMagentoCategoryResponseTransformService,
 		private magentoAppliedFiltersTransformer: DaffMagentoAppliedFiltersTransformService,
-		private magentoAppliedSortTransformer: DaffMagentoAppliedSortOptionTransformService
+		private magentoAppliedSortTransformer: DaffMagentoAppliedSortOptionTransformService,
+		private magentoCustomMetadataAttributeTransformer: DaffMagentoCustomMetadataAttributeTransformerService
   ) {}
 
 	//todo the MagentoGetCategoryQuery needs to get its own product ids.
@@ -51,8 +55,22 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
 			})
     ]).pipe(
       map((result): MagentoCompleteCategoryResponse => this.buildCompleteCategoryResponse(result[0].data, result[1].data, result[2].data)),
-      map((result: MagentoCompleteCategoryResponse) => this.magentoCategoryResponseTransformer.transform(result))
-    );
+			switchMap((categoryResult: MagentoCompleteCategoryResponse) => {
+				return this.apollo.query<MagentoCustomAttributeMetadataResponse>({
+					query: MagentoGetCustomAttributeMetadata,
+					variables: { 
+						attributes: categoryResult.aggregates
+							.filter(aggregate => aggregate.attribute_code !== 'category_id')
+							.map(aggregate => this.magentoCustomMetadataAttributeTransformer.transform(aggregate))
+					}
+				}).pipe(
+					map(response => {
+						return this.magentoCustomMetadataAttributeTransformer.addTypesToAggregates(response.data, categoryResult)
+					}),
+					map((finalResult: MagentoCompleteCategoryResponse) => this.magentoCategoryResponseTransformer.transform(finalResult))
+				)
+			})
+		);
 	}
 	
 	private getProductsQueryVariables(request: DaffCategoryRequest): MagentoGetProductsByCategoriesRequest {
