@@ -1,7 +1,7 @@
 import { MagentoAggregation } from '../models/aggregation';
 import { MagentoCustomMetadataAttribute } from '../models/requests/custom-metadata-attribute';
 import { MagentoCustomAttributeMetadataResponse } from '../models/custom-attribute-metadata-response';
-import { MagentoCompleteCategoryResponse } from '../models/complete-category-response';
+import { MagentoGetCategoryAggregationsResponse } from '../models/get-category-aggregations-response';
 
 export function buildCustomMetadataAttribute(filter: MagentoAggregation): MagentoCustomMetadataAttribute {
 	return {
@@ -10,19 +10,24 @@ export function buildCustomMetadataAttribute(filter: MagentoAggregation): Magent
 	}
 }
 
-export function addMetadataTypesToAggregates(attributeResponse: MagentoCustomAttributeMetadataResponse, completeResponse: MagentoCompleteCategoryResponse)
-	: MagentoCompleteCategoryResponse {
+export function addMetadataTypesToAggregates(
+	attributeResponse: MagentoCustomAttributeMetadataResponse, 
+	aggregationResponse: MagentoGetCategoryAggregationsResponse
+): MagentoGetCategoryAggregationsResponse {
 
 	return {
-		...completeResponse,
-		aggregates: [
-			...completeResponse.aggregates.map((aggregate) => {
-				return {
-					...aggregate,
-					type: getMatchedAttributeType(aggregate, attributeResponse)
-				}
-			})
-		]
+		...aggregationResponse,
+		products: {
+			...aggregationResponse.products,
+			aggregations: [
+				...aggregationResponse.products.aggregations.map((aggregate) => {
+					return {
+						...aggregate,
+						type: getMatchedAttributeType(aggregate, attributeResponse)
+					}
+				})
+			]
+		}
 	}
 }
 

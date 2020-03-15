@@ -47,26 +47,27 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
       this.apollo.query<MagentoGetCategoryAggregationsResponse>({
 				query: MagentoGetCategoryAggregations,
 				variables: {filter: {category_id: {eq: categoryRequest.id}}}
-			}),
+			}).pipe(
+				switchMap((aggregationResult): Observable<MagentoGetCategoryAggregationsResponse> => 
+					this.apollo.query<MagentoCustomAttributeMetadataResponse>({
+						query: MagentoGetCustomAttributeMetadata,
+						variables: { 
+							attributes: aggregationResult.data.products.aggregations
+								.filter(aggregate => aggregate.attribute_code !== 'category_id')
+								.map(aggregate => buildCustomMetadataAttribute(aggregate))
+						}
+					}).pipe(
+						map(response => addMetadataTypesToAggregates(response.data, aggregationResult.data))
+					)
+				),
+			),
       this.apollo.query<MagentoGetProductsResponse>({
 				query: MagentoGetProductsQuery,
 				variables: this.getProductsQueryVariables(categoryRequest)
 			})
     ]).pipe(
-      map((result): MagentoCompleteCategoryResponse => this.buildCompleteCategoryResponse(result[0].data, result[1].data, result[2].data)),
-			switchMap((categoryResult: MagentoCompleteCategoryResponse) => {
-				return this.apollo.query<MagentoCustomAttributeMetadataResponse>({
-					query: MagentoGetCustomAttributeMetadata,
-					variables: { 
-						attributes: categoryResult.aggregates
-							.filter(aggregate => aggregate.attribute_code !== 'category_id')
-							.map(aggregate => buildCustomMetadataAttribute(aggregate))
-					}
-				}).pipe(
-					map(response => addMetadataTypesToAggregates(response.data, categoryResult)),
-					map((finalResult: MagentoCompleteCategoryResponse) => this.magentoCategoryResponseTransformer.transform(finalResult))
-				)
-			})
+      map((result): MagentoCompleteCategoryResponse => this.buildCompleteCategoryResponse(result[0].data, result[1], result[2].data)),
+			map((finalResult: MagentoCompleteCategoryResponse) => this.magentoCategoryResponseTransformer.transform(finalResult))
 		);
 	}
 	
