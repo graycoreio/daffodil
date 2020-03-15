@@ -2,15 +2,14 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 
-import { DaffMagentoCustomMetadataAttributeTransformerService } from './custom-metadata-attributes-transformer.service';
+import { buildCustomMetadataAttribute, addMetadataTypesToAggregates } from './custom-metadata-attributes-methods';
 import { DaffCategoryPageConfigurationState } from '../../../models/category-page-configuration-state';
 import { MagentoCompleteCategoryResponse } from '../models/complete-category-response';
 import { MagentoCustomAttributeMetadataResponse } from '../models/custom-attribute-metadata-response';
 import { MagentoAggregation } from '../models/aggregation';
 
-describe('DaffMagentoCustomMetadataAttributeTransformerService', () => {
+describe('Custom Metadata Attributes Methods', () => {
 
-  let service: DaffMagentoCustomMetadataAttributeTransformerService;
   const categoryPageConfigurationStateFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
   const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState = categoryPageConfigurationStateFactory.create();
   delete stubCategoryPageConfigurationState.applied_filters;
@@ -18,19 +17,10 @@ describe('DaffMagentoCustomMetadataAttributeTransformerService', () => {
   delete stubCategoryPageConfigurationState.applied_sort_option;
   
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        DaffMagentoCustomMetadataAttributeTransformerService
-      ]
-    });
-    service = TestBed.get(DaffMagentoCustomMetadataAttributeTransformerService);
+    TestBed.configureTestingModule({});
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-
-	describe('transform', () => {
+	describe('buildCustomMetadataAttribute', () => {
 		
 		it('should transform an aggregation into a custom metadata attribute', () => {
 			const aggregate: MagentoAggregation = {
@@ -41,11 +31,11 @@ describe('DaffMagentoCustomMetadataAttributeTransformerService', () => {
 				entity_type: '4'
 			}
 
-			expect(service.transform(aggregate)).toEqual(expectedAttribute);
+			expect(buildCustomMetadataAttribute(aggregate)).toEqual(expectedAttribute);
 		});
 	});
 
-  describe('addTypesToAggregates', () => {
+  describe('addMetadataTypesToAggregates', () => {
 		let initialCategoryResponse: MagentoCompleteCategoryResponse;
 		let outputCategoryResponse: MagentoCompleteCategoryResponse;
 		let attributeResponse: MagentoCustomAttributeMetadataResponse;
@@ -111,7 +101,7 @@ describe('DaffMagentoCustomMetadataAttributeTransformerService', () => {
 				total_count: null
 			}
 
-      expect(service.addTypesToAggregates(attributeResponse, initialCategoryResponse)).toEqual(outputCategoryResponse);
+      expect(addMetadataTypesToAggregates(attributeResponse, initialCategoryResponse)).toEqual(outputCategoryResponse);
 		});
   });
 });

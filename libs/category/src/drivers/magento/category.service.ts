@@ -19,7 +19,7 @@ import { MagentoGetCategoryAggregations } from './queries/get-category-aggregati
 import { MagentoGetCategoryAggregationsResponse } from './models/get-category-aggregations-response';
 import { MagentoCustomAttributeMetadataResponse } from './models/custom-attribute-metadata-response';
 import { MagentoGetCustomAttributeMetadata } from './queries/custom-attribute-metadata';
-import { DaffMagentoCustomMetadataAttributeTransformerService } from './transformers/custom-metadata-attributes-transformer.service';
+import { buildCustomMetadataAttribute, addMetadataTypesToAggregates } from './transformers/custom-metadata-attributes-methods';
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +30,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
     private apollo: Apollo,
 		private magentoCategoryResponseTransformer: DaffMagentoCategoryResponseTransformService,
 		private magentoAppliedFiltersTransformer: DaffMagentoAppliedFiltersTransformService,
-		private magentoAppliedSortTransformer: DaffMagentoAppliedSortOptionTransformService,
-		private magentoCustomMetadataAttributeTransformer: DaffMagentoCustomMetadataAttributeTransformerService
+		private magentoAppliedSortTransformer: DaffMagentoAppliedSortOptionTransformService
   ) {}
 
 	//todo the MagentoGetCategoryQuery needs to get its own product ids.
@@ -61,12 +60,10 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
 					variables: { 
 						attributes: categoryResult.aggregates
 							.filter(aggregate => aggregate.attribute_code !== 'category_id')
-							.map(aggregate => this.magentoCustomMetadataAttributeTransformer.transform(aggregate))
+							.map(aggregate => buildCustomMetadataAttribute(aggregate))
 					}
 				}).pipe(
-					map(response => {
-						return this.magentoCustomMetadataAttributeTransformer.addTypesToAggregates(response.data, categoryResult)
-					}),
+					map(response => addMetadataTypesToAggregates(response.data, categoryResult)),
 					map((finalResult: MagentoCompleteCategoryResponse) => this.magentoCategoryResponseTransformer.transform(finalResult))
 				)
 			})
