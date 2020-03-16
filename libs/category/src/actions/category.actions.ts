@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 
 import { DaffGetCategoryResponse } from '../models/get-category-response';
 import { DaffCategoryRequest } from '../models/requests/category-request';
-import { DaffCategoryFilterAction } from '../models/requests/filter-action';
+import { DaffCategoryFilterRequest, DaffToggledCategoryFilterRequest } from '../models/requests/filter-request';
 
 export enum DaffCategoryActionTypes {
   CategoryLoadAction = '[Daff-Category] Category Load Action',
@@ -94,7 +94,7 @@ export class DaffChangeCategorySortingOption implements Action {
 export class DaffChangeCategoryFilters implements Action {
   readonly type = DaffCategoryActionTypes.ChangeCategoryFiltersAction;
 
-  constructor(public filters: DaffCategoryRequest['applied_filters']) { }
+  constructor(public filters: DaffCategoryFilterRequest[]) { }
 }
 
 /**
@@ -105,7 +105,7 @@ export class DaffChangeCategoryFilters implements Action {
 export class DaffToggleCategoryFilter implements Action {
   readonly type = DaffCategoryActionTypes.ToggleCategoryFilterAction;
 
-  constructor(public filter: DaffCategoryFilterAction) { }
+  constructor(public filter: DaffToggledCategoryFilterRequest) { }
 }
 
 export type DaffCategoryActions =

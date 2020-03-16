@@ -32,7 +32,7 @@ import { DaffCategoryPageConfigurationState } from '../models/category-page-conf
 import { DaffCategoryFilter } from '../models/category-filter';
 import { DaffCategorySortOption } from '../models/category-sort-option';
 import { DaffSortDirectionEnum } from '../models/requests/category-request';
-import { DaffCategoryFilterAction } from '../models/requests/filter-action';
+import { DaffCategoryFilterRequest } from '../models/requests/filter-request';
 
 /**
  * A facade for accessing state for the currently selected category.
@@ -76,7 +76,7 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
   /**
    * The sort options available for the products of the selected category.
    */
-  appliedFilters$: Observable<DaffCategoryFilterAction[]>;
+  appliedFilters$: Observable<DaffCategoryFilterRequest[]>;
   /**
    * The sort options available for the products of the selected category.
    */
