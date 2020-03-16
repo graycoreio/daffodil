@@ -6,7 +6,7 @@ import { categoryReducer } from './category.reducer';
 import { DaffCategory } from '../../models/category';
 import { DaffCategoryPageConfigurationState } from '../../models/category-page-configuration-state';
 import { DaffCategoryRequest, DaffSortDirectionEnum } from '../../models/requests/category-request';
-import { DaffCategoryFilterRequest, DaffCategoryFilterMatchRequest, DaffToggledCategoryFilterRequest, DaffCategoryFilterEqualRequest, DaffCategoryFilterRangeRequest } from '../../models/requests/filter-request';
+import { DaffCategoryFilterRequest, DaffCategoryFilterMatchRequest, DaffCategoryFilterEqualRequest, DaffCategoryFilterRangeRequest, DaffToggleCategoryFilterRequest } from '../../models/requests/filter-request';
 import { DaffCategoryFilterType } from '../../models/category-filter';
 
 describe('Category | Category Reducer', () => {
@@ -198,7 +198,7 @@ describe('Category | Category Reducer', () => {
 						applied_filters: [existingMatchFilter]
 					}	
 				}
-				const toggledFilter: DaffToggledCategoryFilterRequest = {
+				const toggledFilter: DaffCategoryFilterRequest = {
 					...existingMatchFilter
 				}
 
@@ -222,7 +222,7 @@ describe('Category | Category Reducer', () => {
 						applied_filters: [existingEqualFilter]
 					}	
 				}
-				const toggledFilter: DaffToggledCategoryFilterRequest = {
+				const toggledFilter: DaffToggleCategoryFilterRequest = {
 					name: existingEqualFilter.name,
 					value: existingEqualFilter.value[0],
 					type: existingEqualFilter.type,
@@ -248,7 +248,7 @@ describe('Category | Category Reducer', () => {
 						applied_filters: [existingEqualFilter]
 					}	
 				}
-				const toggledFilter: DaffToggledCategoryFilterRequest = {
+				const toggledFilter: DaffToggleCategoryFilterRequest = {
 					name: existingEqualFilter.name,
 					value: existingEqualFilter.value[0],
 					type: existingEqualFilter.type,
@@ -277,7 +277,7 @@ describe('Category | Category Reducer', () => {
 						applied_filters: []
 					}	
 				}
-				const toggledFilter: DaffToggledCategoryFilterRequest = {
+				const toggledFilter: DaffCategoryFilterRequest = {
 					name: 'name',
 					value: 'value',
 					type: DaffCategoryFilterType.Match,
@@ -303,7 +303,7 @@ describe('Category | Category Reducer', () => {
 						applied_filters: []
 					}	
 				}
-				const toggledFilter: DaffToggledCategoryFilterRequest = {
+				const toggledFilter: DaffToggleCategoryFilterRequest = {
 					name: 'name',
 					value: 'value',
 					type: DaffCategoryFilterType.Equal,
@@ -336,7 +336,7 @@ describe('Category | Category Reducer', () => {
 						applied_filters: [existingEqualFilter]
 					}	
 				}
-				const toggledFilter: DaffToggledCategoryFilterRequest = {
+				const toggledFilter: DaffToggleCategoryFilterRequest = {
 					name: 'name',
 					value: 'value',
 					type: DaffCategoryFilterType.Equal,
@@ -363,7 +363,7 @@ describe('Category | Category Reducer', () => {
 						applied_filters: []
 					}	
 				}
-				const toggledFilter: DaffToggledCategoryFilterRequest = {
+				const toggledFilter: DaffToggleCategoryFilterRequest = {
 					name: 'name',
 					value: 'value',
 					type: DaffCategoryFilterType.Range,
@@ -396,7 +396,7 @@ describe('Category | Category Reducer', () => {
 						applied_filters: [existingRangeFilter]
 					}	
 				}
-				const toggledFilter: DaffToggledCategoryFilterRequest = {
+				const toggledFilter: DaffToggleCategoryFilterRequest = {
 					type: DaffCategoryFilterType.Range,
 					name: 'name',
 					value: '70-90',
@@ -427,7 +427,7 @@ describe('Category | Category Reducer', () => {
 				...initialState,
 				applied_filters: [matchFilter]
 			}
-			const toggledFilter: DaffToggledCategoryFilterRequest = {
+			const toggledFilter: DaffCategoryFilterRequest = {
 				...matchFilter
 			}
 
@@ -448,7 +448,7 @@ describe('Category | Category Reducer', () => {
 				...initialState,
 				applied_filters: [matchFilter]
 			}
-			const toggledFilter: DaffToggledCategoryFilterRequest = {
+			const toggledFilter: DaffCategoryFilterRequest = {
 				...matchFilter
 			}
 

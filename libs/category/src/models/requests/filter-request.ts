@@ -6,8 +6,22 @@ import { DaffCategoryFilterType } from '../category-filter';
  */
 export const DaffCategoryFromToFilterSeparator = '-';
 
-export interface DaffToggledCategoryFilterRequest {
-	type: DaffCategoryFilterType;
+export interface DaffToggleCategoryFilterMatchRequest {
+	type: DaffCategoryFilterType.Match;
+	name: string;
+	value: string;
+	label?: string;
+}
+
+export interface DaffToggleCategoryFilterEqualRequest {
+	type: DaffCategoryFilterType.Equal;
+	name: string;
+	value: string;
+	label?: string;
+}
+
+export interface DaffToggleCategoryFilterRangeRequest {
+	type: DaffCategoryFilterType.Range;
 	name: string;
 	value: string;
 	label?: string;
@@ -33,6 +47,11 @@ export interface DaffCategoryFilterRangeRequest {
 	value: string[];
 	label?: string;
 }
+
+export type DaffToggleCategoryFilterRequest =
+	DaffToggleCategoryFilterMatchRequest |
+	DaffToggleCategoryFilterEqualRequest |
+	DaffToggleCategoryFilterRangeRequest;
 
 export type DaffCategoryFilterRequest = 
 	DaffCategoryFilterMatchRequest | 

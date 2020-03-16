@@ -32,7 +32,7 @@ import {
 	selectCategoryPageAppliedSortDirection 
 } from '../selectors/category.selector';
 import { DaffSortDirectionEnum } from '../models/requests/category-request';
-import { DaffCategoryFilterRequest, DaffToggledCategoryFilterRequest, DaffCategoryFilterEqualRequest } from '../models/requests/filter-request';
+import { DaffCategoryFilterEqualRequest } from '../models/requests/filter-request';
 import { DaffCategoryFilterType } from '../models/category-filter';
 
 describe('DaffCategoryEffects', () => {
@@ -285,66 +285,6 @@ describe('DaffCategoryEffects', () => {
       });
     });
 	});
-
-  // describe('when ToggleCategoryFilterAction is triggered', () => {
-
-	// 	let expected;
-	// 	// We need the filters to exist in separate memory to simulate a true object to object comparison.
-	// 	let existingFilter: DaffCategoryFilterRequest;
-	// 	let newFilter: DaffToggledCategoryFilterRequest;
-
-	// 	beforeEach(() => {
-	// 		existingFilter = {
-	// 			name: 'name',
-	// 			type: DaffCategoryFilterType.Equal,
-	// 			value: ['value'],
-	// 			label: 'label'
-	// 		};
-	// 		newFilter = {
-	// 			name: 'name',
-	// 			type: DaffCategoryFilterType.Equal,
-	// 			value: 'value',
-	// 			label: 'label'
-	// 		};
-	// 	});
-		
-		// describe('and the toggled filter is not an applied filter', () => {
-
-		// 	beforeEach(() => {
-		// 		store.overrideSelector(selectCategoryPageAppliedFilters, []);
-		// 	});
-			
-		// 	it('should dispatch a DaffChangeCategoryFilters action with the toggled filter', () => {
-		// 		const toggleCategoryFilterAction = new DaffToggleCategoryFilter(newFilter);
-		// 		actions$ = hot('--a', { a: toggleCategoryFilterAction });
-				
-		// 		const changeCategoryFilters = new DaffChangeCategoryFilters([{
-		// 			name: newFilter.name,
-		// 			value: [newFilter.value],
-		// 			type: DaffCategoryFilterType.Equal,
-		// 			label: newFilter.label
-		// 		}]);
-		// 		expected = cold('--(a)', { a: changeCategoryFilters });
-		// 		expect(effects.toggleCategoryFilter$).toBeObservable(expected);
-		// 	});
-		// });
-
-		// describe('and toggled filter is an applied filter', () => {
-
-		// 	beforeEach(() => {
-		// 		store.overrideSelector(selectCategoryPageAppliedFilters, [existingFilter]);
-		// 	});
-			
-		// 	it('should dispatch a DaffChangeCategoryFilters action without the toggled filter', () => {
-		// 		const toggleCategoryFilterAction = new DaffToggleCategoryFilter(newFilter);
-		// 		actions$ = hot('--a', { a: toggleCategoryFilterAction });
-				
-		// 		const changeCategoryFilters = new DaffChangeCategoryFilters([]);
-		// 		expected = cold('--(a)', { a: changeCategoryFilters });
-		// 		expect(effects.toggleCategoryFilter$).toBeObservable(expected);
-		// 	});
-		// });
-  // });
 
   describe('when ChangeCategorySortAction is triggered', () => {
 

@@ -28,7 +28,7 @@ import {
 	selectCategoryPageAppliedSortDirection 
 } from '../selectors/category.selector';
 import { DaffCategoryRequest, DaffSortDirectionEnum } from '../models/requests/category-request';
-import { DaffCategoryFilterRequest, DaffCategoryFromToFilterSeparator, DaffToggledCategoryFilterRequest, DaffCategoryFilterEqualRequest } from '../models/requests/filter-request';
+import { DaffCategoryFilterRequest, DaffCategoryFromToFilterSeparator } from '../models/requests/filter-request';
 import { DaffCategoryFilterType } from '../models/category-filter';
 
 @Injectable()
