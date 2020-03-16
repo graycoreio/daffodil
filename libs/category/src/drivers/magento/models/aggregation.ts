@@ -3,6 +3,7 @@
  */
 export interface MagentoAggregation {
 	attribute_code: string;
+	type?: string;
 	count?: number;
 	label?: string;
 	options?: MagentoAggregationOption[];

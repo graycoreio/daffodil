@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, combineLatest } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, combineLatest, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 
 import { DaffCategoryServiceInterface } from '../interfaces/category-service.interface';
@@ -17,6 +17,9 @@ import { DaffMagentoCategoryResponseTransformService } from './transformers/cate
 import { MagentoGetProductsByCategoriesRequest } from './models/requests/get-products-by-categories-request';
 import { MagentoGetCategoryAggregations } from './queries/get-category-aggregations';
 import { MagentoGetCategoryAggregationsResponse } from './models/get-category-aggregations-response';
+import { MagentoCustomAttributeMetadataResponse } from './models/custom-attribute-metadata-response';
+import { MagentoGetCustomAttributeMetadata } from './queries/custom-attribute-metadata';
+import { buildCustomMetadataAttribute, addMetadataTypesToAggregates } from './transformers/custom-metadata-attributes-methods';
 
 @Injectable({
   providedIn: 'root'
@@ -44,15 +47,28 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
       this.apollo.query<MagentoGetCategoryAggregationsResponse>({
 				query: MagentoGetCategoryAggregations,
 				variables: {filter: {category_id: {eq: categoryRequest.id}}}
-			}),
+			}).pipe(
+				switchMap((aggregationResult): Observable<MagentoGetCategoryAggregationsResponse> => 
+					this.apollo.query<MagentoCustomAttributeMetadataResponse>({
+						query: MagentoGetCustomAttributeMetadata,
+						variables: { 
+							attributes: aggregationResult.data.products.aggregations
+								.filter(aggregate => aggregate.attribute_code !== 'category_id')
+								.map(aggregate => buildCustomMetadataAttribute(aggregate))
+						}
+					}).pipe(
+						map(response => addMetadataTypesToAggregates(response.data, aggregationResult.data))
+					)
+				),
+			),
       this.apollo.query<MagentoGetProductsResponse>({
 				query: MagentoGetProductsQuery,
 				variables: this.getProductsQueryVariables(categoryRequest)
 			})
     ]).pipe(
-      map((result): MagentoCompleteCategoryResponse => this.buildCompleteCategoryResponse(result[0].data, result[1].data, result[2].data)),
-      map((result: MagentoCompleteCategoryResponse) => this.magentoCategoryResponseTransformer.transform(result))
-    );
+      map((result): MagentoCompleteCategoryResponse => this.buildCompleteCategoryResponse(result[0].data, result[1], result[2].data)),
+			map((finalResult: MagentoCompleteCategoryResponse) => this.magentoCategoryResponseTransformer.transform(finalResult))
+		);
 	}
 	
 	private getProductsQueryVariables(request: DaffCategoryRequest): MagentoGetProductsByCategoriesRequest {
