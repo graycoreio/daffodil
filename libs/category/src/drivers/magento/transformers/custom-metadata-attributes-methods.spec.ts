@@ -4,9 +4,9 @@ import { DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/te
 
 import { buildCustomMetadataAttribute, addMetadataTypesToAggregates } from './custom-metadata-attributes-methods';
 import { DaffCategoryPageConfigurationState } from '../../../models/category-page-configuration-state';
-import { MagentoCompleteCategoryResponse } from '../models/complete-category-response';
 import { MagentoCustomAttributeMetadataResponse } from '../models/custom-attribute-metadata-response';
 import { MagentoAggregation } from '../models/aggregation';
+import { MagentoGetCategoryAggregationsResponse } from '../models/get-category-aggregations-response';
 
 describe('Custom Metadata Attributes Methods', () => {
 
@@ -36,34 +36,32 @@ describe('Custom Metadata Attributes Methods', () => {
 	});
 
   describe('addMetadataTypesToAggregates', () => {
-		let initialCategoryResponse: MagentoCompleteCategoryResponse;
-		let outputCategoryResponse: MagentoCompleteCategoryResponse;
+		let initialCategoryResponse: MagentoGetCategoryAggregationsResponse;
+		let outputCategoryResponse: MagentoGetCategoryAggregationsResponse;
 		let attributeResponse: MagentoCustomAttributeMetadataResponse;
 
     it('should add the attribute types to the aggregates', () => {
 			initialCategoryResponse = {
-				category: null,
-				page_info: null,
-				products: null,
-				sort_fields: null,
-				total_count: null,
-				aggregates: [{
-					attribute_code: stubCategoryPageConfigurationState.filters[0].name,
-					count: stubCategoryPageConfigurationState.filters[0].items_count,
-					label: stubCategoryPageConfigurationState.filters[0].label,
-					options: [
-						{
-							value: stubCategoryPageConfigurationState.filters[0].options[0].value,
-							count: stubCategoryPageConfigurationState.filters[0].options[0].items_count,
-							label: stubCategoryPageConfigurationState.filters[0].options[0].label
-						},
-						{
-							value: stubCategoryPageConfigurationState.filters[0].options[1].value,
-							count: stubCategoryPageConfigurationState.filters[0].options[1].items_count,
-							label: stubCategoryPageConfigurationState.filters[0].options[1].label
-						}
-					]
-				}]
+				products: {
+					aggregations: [{
+						attribute_code: stubCategoryPageConfigurationState.filters[0].name,
+						count: stubCategoryPageConfigurationState.filters[0].items_count,
+						label: stubCategoryPageConfigurationState.filters[0].label,
+						options: [
+							{
+								value: stubCategoryPageConfigurationState.filters[0].options[0].value,
+								count: stubCategoryPageConfigurationState.filters[0].options[0].items_count,
+								label: stubCategoryPageConfigurationState.filters[0].options[0].label
+							},
+							{
+								value: stubCategoryPageConfigurationState.filters[0].options[1].value,
+								count: stubCategoryPageConfigurationState.filters[0].options[1].items_count,
+								label: stubCategoryPageConfigurationState.filters[0].options[1].label
+							}
+						]
+					}],
+					sort_fields: null
+				}
 			};
 			attributeResponse = {
 				customAttributeMetadata: {
@@ -76,29 +74,27 @@ describe('Custom Metadata Attributes Methods', () => {
 			}
 
 			outputCategoryResponse = {
-				category: null,
-				aggregates: [{
-					attribute_code: stubCategoryPageConfigurationState.filters[0].name,
-					count: stubCategoryPageConfigurationState.filters[0].items_count,
-					label: stubCategoryPageConfigurationState.filters[0].label,
-					type: 'select',
-					options: [
-						{
-							value: stubCategoryPageConfigurationState.filters[0].options[0].value,
-							count: stubCategoryPageConfigurationState.filters[0].options[0].items_count,
-							label: stubCategoryPageConfigurationState.filters[0].options[0].label
-						},
-						{
-							value: stubCategoryPageConfigurationState.filters[0].options[1].value,
-							count: stubCategoryPageConfigurationState.filters[0].options[1].items_count,
-							label: stubCategoryPageConfigurationState.filters[0].options[1].label
-						}
-					]
-				}],
-				page_info: null,
-				products: null,
-				sort_fields: null,
-				total_count: null
+				products: {
+					aggregations: [{
+						attribute_code: stubCategoryPageConfigurationState.filters[0].name,
+						count: stubCategoryPageConfigurationState.filters[0].items_count,
+						label: stubCategoryPageConfigurationState.filters[0].label,
+						type: 'select',
+						options: [
+							{
+								value: stubCategoryPageConfigurationState.filters[0].options[0].value,
+								count: stubCategoryPageConfigurationState.filters[0].options[0].items_count,
+								label: stubCategoryPageConfigurationState.filters[0].options[0].label
+							},
+							{
+								value: stubCategoryPageConfigurationState.filters[0].options[1].value,
+								count: stubCategoryPageConfigurationState.filters[0].options[1].items_count,
+								label: stubCategoryPageConfigurationState.filters[0].options[1].label
+							}
+						]
+					}],
+					sort_fields: null,
+				}
 			}
 
       expect(addMetadataTypesToAggregates(attributeResponse, initialCategoryResponse)).toEqual(outputCategoryResponse);
