@@ -3,6 +3,7 @@ import { Action } from '@ngrx/store';
 import { DaffCart } from '../models/cart';
 
 export enum DaffCartActionTypes {
+  CartStorageFailureAction = '[DaffCart] Cart Storage Failure Action',
   CartLoadAction = '[DaffCart] Cart Load Action',
   CartLoadSuccessAction = '[DaffCart] Cart Load Success Action',
   CartLoadFailureAction = '[DaffCart] Cart Load Failure Action',
@@ -15,6 +16,10 @@ export enum DaffCartActionTypes {
   CartClearAction = '[DaffCart] Cart Reset Action',
   CartClearSuccessAction = '[DaffCart] Cart Reset Success Action',
   CartClearFailureAction = '[DaffCart] Cart Reset Failure Action'
+}
+
+export class DaffCartStorageFailure implements Action {
+  readonly type = DaffCartActionTypes.CartStorageFailureAction;
 }
 
 export class DaffCartLoad implements Action {
@@ -84,6 +89,7 @@ export class DaffCartClearFailure implements Action {
 }
 
 export type DaffCartActions<T extends DaffCart> =
+  | DaffCartStorageFailure
   | DaffCartLoad
   | DaffCartLoadSuccess<T>
   | DaffCartLoadFailure
