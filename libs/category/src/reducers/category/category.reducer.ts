@@ -1,5 +1,6 @@
 import { DaffCategoryActionTypes, DaffCategoryActions } from '../../actions/category.actions';
 import { CategoryReducerState } from './category-reducer-state.interface';
+import { toggleCategoryFilter } from './toggle-filter/core';
 
 const initialState: CategoryReducerState = {
   categoryPageConfigurationState: {
@@ -74,6 +75,15 @@ export function categoryReducer(state = initialState, action: DaffCategoryAction
 					applied_filters: action.filters
 				}
 			};
+		case DaffCategoryActionTypes.ToggleCategoryFilterAction:
+			return {
+				...state,
+				productsLoading: true,
+				categoryPageConfigurationState: {
+					...state.categoryPageConfigurationState,
+					applied_filters: toggleCategoryFilter(action.filter, state.categoryPageConfigurationState.applied_filters)
+				}
+			}
     // This reducer cannot spread over state, because this would wipe out the applied filters on state. Applied filters are not
     // set here for reasons stated above.
     case DaffCategoryActionTypes.CategoryLoadSuccessAction:

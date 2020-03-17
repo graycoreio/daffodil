@@ -20,10 +20,6 @@ export {
 	DaffSortDirectionEnum
 } from './models/requests/category-request';
 export { DaffCategorySortOption } from './models/category-sort-option';
-export { 
-	DaffCategoryFilterAction, 
-	DaffCategoryFilterActionEnum,
-	DaffCategoryFromToFilterSeparator 
-} from './models/requests/filter-action';
+export * from './models/requests/filter-request';
 
 export * from './drivers/magento/public_api';

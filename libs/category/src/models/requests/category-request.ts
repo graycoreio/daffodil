@@ -1,4 +1,4 @@
-import { DaffCategoryFilterAction } from './filter-action';
+import { DaffCategoryFilterRequest } from './filter-request';
 
 export enum DaffSortDirectionEnum {
 	Ascending = 'ASC',
@@ -7,7 +7,7 @@ export enum DaffSortDirectionEnum {
 
 export interface DaffCategoryRequest {
   id: string;
-  applied_filters?: DaffCategoryFilterAction[];
+  applied_filters?: DaffCategoryFilterRequest[];
   applied_sort_option?: string;
   applied_sort_direction?: DaffSortDirectionEnum;
   current_page?: number;

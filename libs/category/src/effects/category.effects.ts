@@ -28,7 +28,8 @@ import {
 	selectCategoryPageAppliedSortDirection 
 } from '../selectors/category.selector';
 import { DaffCategoryRequest, DaffSortDirectionEnum } from '../models/requests/category-request';
-import { DaffCategoryFilterAction } from '../models/requests/filter-action';
+import { DaffCategoryFilterRequest, DaffCategoryFromToFilterSeparator } from '../models/requests/filter-request';
+import { DaffCategoryFilterType } from '../models/category-filter';
 
 @Injectable()
 export class DaffCategoryEffects {
@@ -42,7 +43,10 @@ export class DaffCategoryEffects {
   @Effect()
   loadCategory$ : Observable<any> = this.actions$.pipe(
     ofType(DaffCategoryActionTypes.CategoryLoadAction),
-    switchMap((action: DaffCategoryLoad) => this.processCategoryGetRequest(action.request))
+    switchMap((action: DaffCategoryLoad) => {
+			this.validateFilters(action.request.applied_filters);
+			return this.processCategoryGetRequest(action.request)
+		})
   )
 
   @Effect()
@@ -56,7 +60,7 @@ export class DaffCategoryEffects {
 		),
     switchMap((
 			[action, categoryId, appliedFilters, appliedSortOption, appliedSortDirection]: 
-			[DaffChangeCategoryPageSize, string, DaffCategoryFilterAction[], string, DaffSortDirectionEnum]
+			[DaffChangeCategoryPageSize, string, DaffCategoryFilterRequest[], string, DaffSortDirectionEnum]
 		) => this.processCategoryGetRequest({
       id: categoryId,
 			page_size: action.pageSize,
@@ -78,7 +82,7 @@ export class DaffCategoryEffects {
     ),
     switchMap((
 			[action, categoryId, pageSize, appliedFilters, appliedSortOption, appliedSortDirection]: 
-			[DaffChangeCategoryCurrentPage, string, number, DaffCategoryFilterAction[], string, DaffSortDirectionEnum]
+			[DaffChangeCategoryCurrentPage, string, number, DaffCategoryFilterRequest[], string, DaffSortDirectionEnum]
 		) => this.processCategoryGetRequest({
 			id: categoryId,
 			page_size: pageSize,
@@ -101,25 +105,41 @@ export class DaffCategoryEffects {
     switchMap((
 			[action, categoryId, pageSize, appliedSortOption, appliedSortDirection]: 
 			[DaffChangeCategoryFilters, string, number, string, DaffSortDirectionEnum]
-		) => this.processCategoryGetRequest({
-			id: categoryId,
-			page_size: pageSize,
-			applied_filters: action.filters,
-			applied_sort_option: appliedSortOption,
-			applied_sort_direction: appliedSortDirection
-		}))
+		) => {
+			this.validateFilters(action.filters);
+			return this.processCategoryGetRequest({
+				id: categoryId,
+				page_size: pageSize,
+				applied_filters: action.filters,
+				applied_sort_option: appliedSortOption,
+				applied_sort_direction: appliedSortDirection
+			})
+		})
   )
 
   @Effect()
   toggleCategoryFilter$ : Observable<any> = this.actions$.pipe(
     ofType(DaffCategoryActionTypes.ToggleCategoryFilterAction),
     withLatestFrom(
-      this.store.pipe(select(selectCategoryPageAppliedFilters))
+      this.store.pipe(select(selectSelectedCategoryId)),
+      this.store.pipe(select(selectCategoryPageSize)),
+      this.store.pipe(select(selectCategoryPageAppliedFilters)),
+      this.store.pipe(select(selectCategoryPageAppliedSortOption)),
+      this.store.pipe(select(selectCategoryPageAppliedSortDirection))
     ),
     switchMap((
-			[action, appliedFilters]: 
-			[DaffToggleCategoryFilter, DaffCategoryFilterAction[]]
-		) => of(new DaffChangeCategoryFilters(this.toggleCategoryFilter(action.filter, appliedFilters))))
+			[action, categoryId, pageSize, appliedFilters, appliedSortOption, appliedSortDirection]: 
+			[DaffToggleCategoryFilter, string, number, DaffCategoryFilterRequest[], string, DaffSortDirectionEnum]
+		) => {
+			this.validateFilters(appliedFilters);
+			return this.processCategoryGetRequest({
+				id: categoryId,
+				page_size: pageSize,
+				applied_filters: appliedFilters,
+				applied_sort_option: appliedSortOption,
+				applied_sort_direction: appliedSortDirection
+			})
+		})
   )
 
   @Effect()
@@ -132,7 +152,7 @@ export class DaffCategoryEffects {
     ),
     switchMap((
 			[action, categoryId, pageSize, appliedFilters]: 
-			[DaffChangeCategorySortingOption, string, number, DaffCategoryFilterAction[]]
+			[DaffChangeCategorySortingOption, string, number, DaffCategoryFilterRequest[]]
 		) => this.processCategoryGetRequest({
 			id: categoryId,
 			page_size: pageSize,
@@ -142,19 +162,21 @@ export class DaffCategoryEffects {
 		}))
 	)
 	
-	private toggleCategoryFilter(
-		toggledFilter: DaffCategoryFilterAction, 
-		appliedFilters: DaffCategoryFilterAction[]
-	): DaffCategoryFilterAction[] {
-		return appliedFilters.find(filter => this.areFiltersEqual(toggledFilter, filter))
-		// filter is applied, remove it
-		? appliedFilters.filter(filter => !this.areFiltersEqual(filter, toggledFilter))
-		// filter is not applied, add it
-		: appliedFilters.concat(toggledFilter);
-	}
+	validateFilters(filters: DaffCategoryFilterRequest[]): void {
+		if(!filters) return;
+		filters.forEach((filter, i) => {
+			if(filter.type === DaffCategoryFilterType.Range &&
+				filter.value[0].split(DaffCategoryFromToFilterSeparator).length !== 2) {
+				throw new Error('Category range filter is in an invalid format. Should be **-**');
+			}
 
-	private areFiltersEqual(filter1: DaffCategoryFilterAction, filter2: DaffCategoryFilterAction): boolean {
-		return filter1.name === filter2.name && filter1.value === filter2.value;
+			for(let j=i+1; j < filters.length; j++) {
+				if(filters[i].name === filters[j].name) {
+					throw new Error('More than one category filter of the same name exists. These should' +
+						' be combined into a single filter action with multiple values.')
+				}
+			}
+		})
 	}
 
   private processCategoryGetRequest(payload: DaffCategoryRequest) {
@@ -165,5 +187,5 @@ export class DaffCategoryEffects {
       ]),
       catchError(error => of(new DaffCategoryLoadFailure('Failed to load the category')))
     )
-  }
+	}
 }
