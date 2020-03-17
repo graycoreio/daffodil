@@ -3,7 +3,10 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
-import { DaffErrorStorageService } from '@daffodil/core'
+import {
+  DaffErrorStorageService,
+  DaffStorageServiceError
+} from '@daffodil/core'
 import {
   DaffCart,
 } from '@daffodil/cart';
@@ -41,6 +44,7 @@ describe('Daffodil | Cart | CartEffects', () => {
   let daffCartStorageSpy: jasmine.SpyObj<DaffCartStorageService>;
 
   const cartStorageFailureAction = new DaffCartStorageFailure();
+  const throwStorageError = () => { throw new DaffStorageServiceError() };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -65,7 +69,6 @@ describe('Daffodil | Cart | CartEffects', () => {
 
     mockCart = cartFactory.create();
 
-    effects.isPlatformBrowser = true;
     daffCartStorageSpy.getCartId.and.returnValue(String(mockCart.id));
   });
 
@@ -107,7 +110,7 @@ describe('Daffodil | Cart | CartEffects', () => {
 
     describe('and the storage service throws an error', () => {
       beforeEach(() => {
-        daffCartStorageSpy.getCartId.and.throwError(DaffErrorStorageService.ERROR_MESSAGE)
+        daffCartStorageSpy.getCartId.and.callFake(throwStorageError)
 
         actions$ = hot('--a', { a: cartLoadAction });
         expected = cold('--(b|)', { b: cartStorageFailureAction });
@@ -150,23 +153,6 @@ describe('Daffodil | Cart | CartEffects', () => {
         expect(effects.create$).toBeObservable(expected);
       });
     });
-
-    describe('and the platform is not the browser', () => {
-      beforeEach(() => {
-        effects.isPlatformBrowser = false;
-
-        actions$ = hot('--a', { a: cartCreateAction });
-        expected = cold('--b', { b: cartStorageFailureAction });
-      });
-
-      it('should not make a driver call', () => {
-        expect(daffDriverSpy.create).not.toHaveBeenCalled();
-      });
-
-      it('should return a DaffCartStorageFailure', () => {
-        expect(effects.create$).toBeObservable(expected);
-      });
-    });
   });
 
   describe('when CartCreateSuccessAction is triggered', () => {
@@ -186,7 +172,7 @@ describe('Daffodil | Cart | CartEffects', () => {
 
     describe('and the storage service throws an error', () => {
       beforeEach(() => {
-        daffCartStorageSpy.setCartId.and.throwError(DaffErrorStorageService.ERROR_MESSAGE)
+        daffCartStorageSpy.setCartId.and.callFake(throwStorageError)
 
         actions$ = hot('--a', { a: cartCreateSuccessAction });
         expected = cold('--(b|)', { b: cartStorageFailureAction });

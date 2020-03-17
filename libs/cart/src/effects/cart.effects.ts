@@ -1,10 +1,11 @@
-import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Injectable, Inject } from '@angular/core';
 import { switchMap, map, catchError, switchMapTo, tap } from 'rxjs/operators';
 import { of, EMPTY } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
-import { DaffErrorStorageService } from '@daffodil/core'
+import {
+  DaffStorageServiceError
+} from '@daffodil/core'
 
 import {
   DaffCartActionTypes,
@@ -28,27 +29,19 @@ import { DaffCartStorageService } from '../storage/cart-storage.service';
 
 @Injectable()
 export class DaffCartEffects<T extends DaffCart> {
-  isPlatformBrowser: boolean;
-
   constructor(
     private actions$: Actions,
     @Inject(DaffCartDriver) private driver: DaffCartServiceInterface<T>,
     private storage: DaffCartStorageService,
-    @Inject(PLATFORM_ID) platformId: string
-  ) {
-    this.isPlatformBrowser = isPlatformBrowser(platformId);
-  }
+  ) {}
 
   @Effect()
   create$ = this.actions$.pipe(
     ofType(DaffCartActionTypes.CartCreateAction),
-    switchMap((action: DaffCartCreate) => this.isPlatformBrowser
-      ? this.driver.create().pipe(
-        map((resp: {id: T['id']}) => new DaffCartCreateSuccess(resp)),
-        catchError(error => of(new DaffCartCreateFailure('Failed to create cart')))
-      )
-      : of(new DaffCartStorageFailure())
-    )
+    switchMap((action: DaffCartCreate) => this.driver.create().pipe(
+      map((resp: {id: T['id']}) => new DaffCartCreateSuccess(resp)),
+      catchError(error => of(new DaffCartCreateFailure('Failed to create cart')))
+    ))
   )
 
   @Effect({
@@ -69,7 +62,7 @@ export class DaffCartEffects<T extends DaffCart> {
     switchMap((action: DaffCartLoad) => this.driver.get(this.storage.getCartId()).pipe(
       map((resp: T) => new DaffCartLoadSuccess(resp)),
     )),
-    catchError(error => of(error.message === DaffErrorStorageService.ERROR_MESSAGE
+    catchError(error => of(error instanceof DaffStorageServiceError
       ? new DaffCartStorageFailure()
       : new DaffCartLoadFailure('Failed to load cart')
     ))
