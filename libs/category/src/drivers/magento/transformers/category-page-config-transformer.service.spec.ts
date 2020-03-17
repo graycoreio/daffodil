@@ -12,6 +12,7 @@ import { MagentoPageInfo } from '../models/page-info';
 import { MagentoSortFields } from '../models/sort-fields';
 import { MagentoCompleteCategoryResponse } from '../models/complete-category-response';
 import { DaffCategoryFilterType } from '../../../models/category-filter';
+import { DaffCategoryFromToFilterSeparator } from 'libs/category/src/models/requests/filter-request';
 
 describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 
@@ -155,6 +156,15 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 			it('should return a DaffCategoryPageConfigurationState with a range filter type', () => {
 				aggregates[0].type = 'price';
 				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Range;
+
+				expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
+			});
+
+			it('should transform the price range', () => {
+				aggregates[0].type = 'price';
+				aggregates[0].options[0].value = '70_80';
+				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Range;
+				stubCategoryPageConfigurationState.filters[0].options[0].value = '70' + DaffCategoryFromToFilterSeparator + '80';
 
 				expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
 			});
