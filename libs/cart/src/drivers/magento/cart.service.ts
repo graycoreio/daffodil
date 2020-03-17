@@ -61,7 +61,7 @@ export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart
       ),
       // find the most up to date delete response by looking for one with no items
       // make a get request if there were no items in the cart
-			switchMap(updatedCarts => !!updatedCarts ? 
+			switchMap(updatedCarts => updatedCarts ? 
 				of(updatedCarts.filter(cart => cart.items.length === 0).shift()) : 
 				this.get(cartId))
     )
