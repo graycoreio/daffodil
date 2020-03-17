@@ -10,7 +10,6 @@ export interface DaffCartItem {
   parent_item_id: number;
   sku: string;
   name: string;
-  description: string;
   qty: number;
   price: number;
   row_total: number;

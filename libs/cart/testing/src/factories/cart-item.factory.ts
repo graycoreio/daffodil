@@ -11,7 +11,6 @@ export class MockCartItem implements DaffCartItem {
   parent_item_id = faker.random.number(1000);
   sku = 'sku';
   name = 'Product Name';
-  description = 'description';
   qty = faker.random.number({min:1, max:100});
   price = faker.random.number(1500);
   row_total = this.qty * this.price

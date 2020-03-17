@@ -43,7 +43,6 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartItem', () => {
 		let price;
 		let url;
 		let label;
-		let short_description;
 
     beforeEach(() => {
       sku = 'sku';
@@ -51,7 +50,6 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartItem', () => {
 			price = 3.34;
 			url = 'url';
 			label = 'label';
-			short_description = 'short_description';
 
       mockMagentoCartItem.product.sku = sku;
       mockMagentoCartItem.quantity = qty;
@@ -60,7 +58,6 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartItem', () => {
 				url: url,
 				label: label
 			}
-			mockMagentoCartItem.product.short_description.html = short_description
 
       transformedCartItem = service.transform(mockMagentoCartItem);
     });
@@ -72,7 +69,6 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartItem', () => {
       expect(transformedCartItem.image.id).toEqual(label);
       expect(transformedCartItem.image.url).toEqual(url);
       expect(transformedCartItem.image.label).toEqual(label);
-      expect(transformedCartItem.abridged_description).toEqual(short_description);
     });
 
     it('should set magento_cart_item', () => {
