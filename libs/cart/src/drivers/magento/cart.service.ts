@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 
-import { Observable, zip } from 'rxjs';
+import { Observable, zip, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 import { DaffCartServiceInterface } from '../interfaces/cart-service.interface';
@@ -53,14 +53,17 @@ export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart
   clear(cartId: string): Observable<Partial<DaffCart>> {
     return this.cartItemDriver.list(cartId).pipe(
       switchMap(items =>
-        // make the delete requests in parallel and collect them into a single observable
-        zip(...items.map(item =>
+				// make the delete requests in parallel and collect them into a single observable
+				// return null if there are no items in the cart
+        items.length ? zip(...items.map(item =>
           this.cartItemDriver.delete(cartId, item.item_id)
-        ))
+        )) : of(null)
       ),
       // find the most up to date delete response by looking for one with no items
-      // it might be necessary to make a get request instead if delete does not return needed fields
-      map(updatedCarts => updatedCarts.find(cart => cart.items.length === 0))
+      // make a get request if there were no items in the cart
+			switchMap(updatedCarts => !!updatedCarts ? 
+				of(updatedCarts.filter(cart => cart.items.length === 0).shift()) : 
+				this.get(cartId))
     )
   }
 }
