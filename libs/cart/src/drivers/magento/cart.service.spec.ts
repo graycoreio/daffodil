@@ -145,7 +145,20 @@ describe('Driver | Magento | Cart | CartService', () => {
         expect(result.items.length).toEqual(0);
         done();
       });
-    });
+		});
+		
+		describe('when there are no items in the cart', () => {
+			
+			it('should return the cart', done => {
+				mockDaffCart.items = [];
+				magentoCartItemSpy.list.and.returnValue(of(mockDaffCart.items));
+
+				service.clear(cartId).subscribe((result) => {
+					expect(result).toEqual(mockDaffCart);
+					done();
+				})
+			});
+		});
   });
 
   describe('create | creates the cart', () => {
