@@ -5,6 +5,7 @@ import { DaffCategoryFilter, DaffCategoryFilterType } from '../../../models/cate
 import { MagentoAggregation } from '../models/aggregation';
 import { MagentoSortFields } from '../models/sort-fields';
 import { MagentoCompleteCategoryResponse } from '../models/complete-category-response';
+import { DaffCategoryFromToFilterSeparator } from '../../../models/requests/filter-request';
 
 @Injectable({
   providedIn: 'root'
@@ -25,15 +26,16 @@ export class DaffMagentoCategoryPageConfigTransformerService {
   }
 
   private transformAggregate(filter: MagentoAggregation): DaffCategoryFilter {
+		const filterType = this.transformAggregateType(filter.type)
     return {
       label: filter.label,
-      type: this.transformAggregateType(filter.type),
+      type: filterType,
 			name: filter.attribute_code,
 			items_count: filter.count,
 			options: filter.options.map(option => {
 				return {
 					label: option.label,
-					value: option.value,
+					value: filterType === DaffCategoryFilterType.Range ? this.transformRangeValue(option.value) : option.value,
 					items_count: option.count
 				}
 			})
@@ -46,6 +48,10 @@ export class DaffMagentoCategoryPageConfigTransformerService {
 		else if(type === 'multiselect') return DaffCategoryFilterType.Equal;
 		else if(type === 'price') return DaffCategoryFilterType.Range;
 		else return DaffCategoryFilterType.Match;
+	}
+
+	private transformRangeValue(value: string): string {
+		return value.replace('_', DaffCategoryFromToFilterSeparator);
 	}
 
 	private makeDefaultOptionFirst(sort_fields: MagentoSortFields): MagentoSortFields {
