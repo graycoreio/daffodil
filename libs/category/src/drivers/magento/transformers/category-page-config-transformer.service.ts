@@ -35,7 +35,7 @@ export class DaffMagentoCategoryPageConfigTransformerService {
 			options: filter.options.map(option => {
 				return {
 					label: option.label,
-					value: filterType !== DaffCategoryFilterType.Range ? option.value : this.transformRangeValue(option.value),
+					value: filterType === DaffCategoryFilterType.Range ? this.transformRangeValue(option.value) : option.value,
 					items_count: option.count
 				}
 			})
