@@ -8,7 +8,7 @@ import {
   DaffCartPaymentMethodsLoad,
   DaffCartPaymentMethodsLoadSuccess,
   DaffCartPaymentMethodsLoadFailure,
-} from '../actions';
+} from '../actions/public_api';
 import { DaffCartPaymentMethodsServiceInterface, DaffCartPaymentMethodsDriver } from '../drivers/interfaces/cart-payment-methods-service.interface';
 import { DaffCartStorageService } from '../storage/cart-storage.service';
 import { DaffCartPaymentMethod } from '../models/cart-payment';

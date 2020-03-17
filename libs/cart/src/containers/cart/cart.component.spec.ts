@@ -6,12 +6,12 @@ import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { DaffCartContainer } from './cart.component';
-import { DaffCartLoad, DaffAddToCart } from '../../actions';
+import { DaffCartLoad, DaffAddToCart } from '../../actions/public_api';
 import { DaffCart } from '../../models/cart';
 import {
   selectCartLoading,
   selectCartValue
-} from '../../selectors';
+} from '../../selectors/public_api';
 
 describe('CartContainer', () => {
   let component: DaffCartContainer;

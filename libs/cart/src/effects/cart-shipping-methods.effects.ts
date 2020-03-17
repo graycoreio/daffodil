@@ -8,7 +8,7 @@ import {
   DaffCartShippingMethodsLoad,
   DaffCartShippingMethodsLoadSuccess,
   DaffCartShippingMethodsLoadFailure,
-} from '../actions';
+} from '../actions/public_api';
 import { DaffCartShippingMethodsServiceInterface, DaffCartShippingMethodsDriver } from '../drivers/interfaces/cart-shipping-methods-service.interface';
 import { DaffCartShippingRate } from '../models/cart-shipping-rate';
 import { DaffCartStorageService } from '../storage/cart-storage.service';

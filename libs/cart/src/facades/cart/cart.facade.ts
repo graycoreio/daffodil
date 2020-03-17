@@ -4,7 +4,7 @@ import { Action, Store, select } from '@ngrx/store';
 
 import { DaffStoreFacade } from '@daffodil/core';
 import { DaffCart } from '../../models/cart';
-import { DaffCartReducersState } from '../../reducers';
+import { DaffCartReducersState } from '../../reducers/public_api';
 import {
   selectCartLoading,
   selectCartValue,
@@ -29,7 +29,7 @@ import {
   selectPaymentErrors,
   selectPaymentMethodsErrors,
   selectCartErrorsObject
-} from '../../selectors';
+} from '../../selectors/public_api';
 import { DaffCartErrors } from '../../reducers/cart-errors.type';
 import { DaffCartErrorType } from '../../reducers/cart-error-type.enum';
 

@@ -5,8 +5,8 @@ import { cold } from 'jasmine-marbles';
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
-import { DaffCartLoadSuccess } from '../actions';
-import { daffCartReducers, DaffCartReducersState } from '../reducers';
+import { DaffCartLoadSuccess } from '../actions/public_api';
+import { daffCartReducers, DaffCartReducersState } from '../reducers/public_api';
 import {
   selectCartValue,
   selectCartLoading,

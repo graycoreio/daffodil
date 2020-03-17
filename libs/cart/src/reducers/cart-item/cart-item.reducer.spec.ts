@@ -16,10 +16,10 @@ import {
   DaffCartItemDelete,
   DaffCartItemDeleteSuccess,
   DaffCartItemDeleteFailure
-} from '../../actions';
+} from '../../actions/public_api';
 import { DaffCart } from '../../models/cart';
 import { cartItemReducer } from './cart-item.reducer';
-import { DaffCartItemList, DaffCartItemListSuccess, DaffCartItemListFailure } from '../../actions';
+import { DaffCartItemList, DaffCartItemListSuccess, DaffCartItemListFailure } from '../../actions/public_api';
 import { DaffCartErrorType } from '../cart-error-type.enum';
 
 describe('Cart | Reducer | Cart Item', () => {

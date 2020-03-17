@@ -13,7 +13,7 @@ import {
   DaffCartPaymentUpdateFailure,
   DaffCartPaymentRemoveSuccess,
   DaffCartPaymentRemoveFailure
-} from '../../actions';
+} from '../../actions/public_api';
 import { cartPaymentReducer } from './cart-payment.reducer';
 import { DaffCartErrorType } from '../cart-error-type.enum';
 

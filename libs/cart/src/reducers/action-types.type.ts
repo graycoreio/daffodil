@@ -7,7 +7,7 @@ import {
   DaffCartShippingInformationActions,
   DaffCartPaymentActions,
   DaffCartPaymentMethodsActions
-} from '../actions';
+} from '../actions/public_api';
 import { DaffCart } from '../models/cart';
 import { DaffCartItem } from '../models/cart-item';
 import { DaffCartItemInput } from '../models/cart-item-input';

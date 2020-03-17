@@ -23,7 +23,7 @@ import {
   DaffCartPaymentUpdate,
   DaffCartPaymentUpdateSuccess,
   DaffCartPaymentUpdateFailure
-} from '../actions';
+} from '../actions/public_api';
 import { DaffCartStorageService } from '../storage/cart-storage.service';
 import { DaffCartPaymentServiceInterface, DaffCartPaymentDriver } from '../drivers/interfaces/cart-payment-service.interface';
 

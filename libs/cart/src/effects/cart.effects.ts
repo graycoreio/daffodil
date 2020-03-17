@@ -17,7 +17,7 @@ import {
   DaffCartCreate,
   DaffCartCreateSuccess,
   DaffCartCreateFailure,
-} from '../actions';
+} from '../actions/public_api';
 import { DaffCart } from '../models/cart';
 import { DaffCartServiceInterface, DaffCartDriver } from '../drivers/interfaces/cart-service.interface';
 import { DaffCartStorageService } from '../storage/cart-storage.service';

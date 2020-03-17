@@ -14,7 +14,7 @@ import {
   DaffCartPaymentUpdate,
   DaffCartPaymentUpdateSuccess,
   DaffCartPaymentUpdateFailure,
-} from '../actions';
+} from '../actions/public_api';
 import { DaffCart } from '../models/cart';
 import { DaffCartPaymentMethod } from '../models/cart-payment';
 import { DaffCartPaymentServiceInterface, DaffCartPaymentDriver } from '../drivers/interfaces/cart-payment-service.interface';

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { daffCartReducers } from './reducers';
+import { daffCartReducers } from './reducers/public_api';
 import { DaffCartEffects } from './effects/cart.effects';
 import { DaffCartItemEffects } from './effects/cart-item.effects';
 import { DaffCartBillingAddressEffects } from './effects/cart-billing-address.effects';

@@ -1,6 +1,6 @@
 import {
   DaffCartBillingAddressActionTypes,
-} from '../../actions';
+} from '../../actions/public_api';
 import { initialState } from '../cart-initial-state';
 import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';

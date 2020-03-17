@@ -5,7 +5,7 @@ import {
   DaffCartPaymentMethodsLoad,
   DaffCartPaymentMethodsLoadSuccess,
   DaffCartPaymentMethodsLoadFailure
-} from '../../actions';
+} from '../../actions/public_api';
 import { DaffCart } from '../../models/cart';
 import { cartPaymentMethodsReducer } from './cart-payment-methods.reducer';
 import { DaffCartErrorType } from '../cart-error-type.enum';

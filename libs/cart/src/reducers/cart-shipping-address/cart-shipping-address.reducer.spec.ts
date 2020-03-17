@@ -10,7 +10,7 @@ import {
   DaffCartShippingAddressUpdate,
   DaffCartShippingAddressUpdateSuccess,
   DaffCartShippingAddressUpdateFailure,
-} from '../../actions';
+} from '../../actions/public_api';
 import { cartShippingAddressReducer } from './cart-shipping-address.reducer';
 import { DaffCartErrorType } from '../cart-error-type.enum';
 

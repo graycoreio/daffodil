@@ -3,13 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import * as fromCart from '../../reducers';
+import * as fromCart from '../../reducers/public_api';
 import { DaffCartLoad, DaffAddToCart } from '../../actions/cart.actions';
 import { DaffCart } from '../../models/cart';
 import {
   selectCartLoading,
   selectCartValue
-} from '../../selectors';
+} from '../../selectors/public_api';
 @Component({
   selector: '[cart-container]',
   template: '<ng-content></ng-content>',
