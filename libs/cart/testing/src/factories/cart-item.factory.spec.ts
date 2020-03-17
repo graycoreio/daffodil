@@ -33,7 +33,6 @@ describe('Cart | Testing | Factories | CartItemFactory', () => {
       expect(result.parent_item_id).not.toBeNull();
       expect(result.sku).not.toBeNull();
       expect(result.name).not.toBeNull();
-      expect(result.description).not.toBeNull();
       expect(result.qty).not.toBeNull();
       expect(result.price).not.toBeNull();
       expect(result.row_total).not.toBeNull();
