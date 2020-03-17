@@ -15,7 +15,7 @@ import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { DaffCart } from '@daffodil/cart';
 import { MagentoCart } from './models/outputs/cart';
 import { MagentoCreateCartResponse } from './models/responses/create-cart';
-import { getCart, createCart } from './queries';
+import { getCart, createCart } from './queries/public_api';
 import { DaffCartItemDriver } from '../interfaces/cart-item-service.interface';
 import { MagentoGetCartResponse } from './models/responses/get-cart';
 import { MagentoCartItem } from './models/outputs/cart-item';

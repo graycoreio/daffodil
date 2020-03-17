@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-import { cartFragment } from './fragments';
+import { cartFragment } from './fragments/public_api';
 
 export const removeCartItem = gql`
   mutation RemoveCartItem($cartId: String!, $itemId: Int!) {

@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-import { cartItemFragment } from './fragments';
+import { cartItemFragment } from './fragments/public_api';
 
 export const listCartItems = gql`
   query ListCartItems($cartId: String!) {

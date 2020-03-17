@@ -1,4 +1,4 @@
-export * from './fragments';
+export * from './fragments/public_api';
 
 export { listCartItems } from './list-cart-items';
 export { addCartItem } from './add-cart-item';

@@ -6,11 +6,11 @@ import { map } from 'rxjs/operators';
 import { DaffCartShippingAddressServiceInterface } from '../interfaces/cart-shipping-address-service.interface';
 import { DaffCart } from '../../models/cart';
 import { DaffCartAddress } from '../../models/cart-address';
-import { getShippingAddress, updateShippingAddress } from './queries';
+import { getShippingAddress, updateShippingAddress } from './queries/public_api';
 import { DaffMagentoShippingAddressInputTransformer } from './transforms/inputs/shipping-address.service';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { DaffMagentoShippingAddressTransformer } from './transforms/outputs/shipping-address.service';
-import { MagentoGetShippingAddressResponse, MagentoUpdateShippingAddressResponse } from './models/responses';
+import { MagentoGetShippingAddressResponse, MagentoUpdateShippingAddressResponse } from './models/responses/public_api';
 
 /**
  * A service for making Magento GraphQL queries for a cart's shipping address.

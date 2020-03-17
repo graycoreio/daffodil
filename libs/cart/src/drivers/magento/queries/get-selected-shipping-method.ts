@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-import { selectedShippingMethodFragment } from './fragments';
+import { selectedShippingMethodFragment } from './fragments/public_api';
 
 export const getSelectedShippingMethod = gql`
   query GetSelectedShippingMethod($cartId: String!) {

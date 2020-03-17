@@ -17,7 +17,7 @@ import { DaffMagentoCartShippingAddressService } from './cart-shipping-address.s
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { MagentoCart } from './models/outputs/cart';
 import { MagentoGetShippingAddressResponse } from './models/responses/get-shipping-address';
-import { getShippingAddress, updateShippingAddress } from './queries';
+import { getShippingAddress, updateShippingAddress } from './queries/public_api';
 import { MagentoUpdateShippingAddressResponse } from './models/responses/update-shipping-address';
 import { DaffMagentoShippingAddressTransformer } from './transforms/outputs/shipping-address.service';
 import { DaffMagentoShippingAddressInputTransformer } from './transforms/inputs/shipping-address.service';

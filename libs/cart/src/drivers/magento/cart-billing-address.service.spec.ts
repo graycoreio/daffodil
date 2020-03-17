@@ -16,12 +16,12 @@ import { DaffMagentoCartBillingAddressService } from './cart-billing-address.ser
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { MagentoCart } from './models/outputs/cart';
 import { MagentoGetBillingAddressResponse } from './models/responses/get-billing-address';
-import { getBillingAddress, updateBillingAddress, setGuestEmail } from './queries';
+import { getBillingAddress, updateBillingAddress, setGuestEmail } from './queries/public_api';
 import { MagentoUpdateBillingAddressResponse } from './models/responses/update-billing-address';
 import { DaffMagentoBillingAddressTransformer } from './transforms/outputs/billing-address.service';
 import { DaffMagentoBillingAddressInputTransformer } from './transforms/inputs/billing-address.service';
 import { MagentoCartAddress } from './models/outputs/cart-address';
-import { MagentoSetGuestEmailResponse } from './models/responses';
+import { MagentoSetGuestEmailResponse } from './models/responses/public_api';
 
 describe('Driver | Magento | Cart | CartBillingAddressService', () => {
   let service: DaffMagentoCartBillingAddressService;

@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-import { availablePaymentMethodFragment } from './fragments';
+import { availablePaymentMethodFragment } from './fragments/public_api';
 
 export const listPaymentMethods = gql`
   query ListPaymentMethods($cartId: String!) {

@@ -10,12 +10,12 @@ import {
   getBillingAddress,
   updateBillingAddress,
   setGuestEmail
-} from './queries';
+} from './queries/public_api';
 import {
   MagentoGetBillingAddressResponse,
   MagentoUpdateBillingAddressResponse,
   MagentoSetGuestEmailResponse
-} from './models/responses';
+} from './models/responses/public_api';
 import { DaffMagentoBillingAddressInputTransformer } from './transforms/inputs/billing-address.service';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { DaffMagentoBillingAddressTransformer } from './transforms/outputs/billing-address.service';

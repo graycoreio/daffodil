@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { DaffCartShippingMethodsServiceInterface } from '../interfaces/cart-shipping-methods-service.interface';
-import { listShippingMethods } from './queries';
+import { listShippingMethods } from './queries/public_api';
 import { DaffCartShippingRate } from '../../models/cart-shipping-rate';
 import { MagentoListShippingMethodsResponse } from './models/responses/list-shipping-methods';
 import { DaffMagentoCartShippingRateTransformer } from './transforms/outputs/cart-shipping-rate.service';

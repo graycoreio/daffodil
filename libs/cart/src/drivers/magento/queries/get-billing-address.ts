@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-import { cartAddressFragment } from './fragments';
+import { cartAddressFragment } from './fragments/public_api';
 
 export const getBillingAddress = gql`
   query GetBillingAddress($cartId: String!) {

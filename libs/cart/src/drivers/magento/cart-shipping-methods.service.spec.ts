@@ -11,8 +11,8 @@ import {
 
 import { DaffMagentoCartShippingMethodsService } from './cart-shipping-methods.service';
 import { DaffMagentoCartShippingRateTransformer } from './transforms/outputs/cart-shipping-rate.service';
-import { listShippingMethods } from './queries';
-import { MagentoListShippingMethodsResponse } from './models/responses';
+import { listShippingMethods } from './queries/public_api';
+import { MagentoListShippingMethodsResponse } from './models/responses/public_api';
 import { MagentoCartShippingMethod } from './models/outputs/cart-shipping-method';
 
 describe('Driver | Magento | Cart | CartShippingMethodsService', () => {
