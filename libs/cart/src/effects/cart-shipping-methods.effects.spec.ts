@@ -17,7 +17,7 @@ import {
   DaffCartShippingMethodsLoad,
   DaffCartShippingMethodsLoadSuccess,
   DaffCartShippingMethodsLoadFailure
-} from '../actions';
+} from '../actions/public_api';
 import {
 	DaffCartShippingMethodsServiceInterface,
 	DaffCartShippingMethodsDriver,

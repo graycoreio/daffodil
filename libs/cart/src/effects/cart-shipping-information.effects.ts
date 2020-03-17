@@ -14,7 +14,7 @@ import {
   DaffCartShippingInformationUpdate,
   DaffCartShippingInformationUpdateSuccess,
   DaffCartShippingInformationUpdateFailure,
-} from '../actions';
+} from '../actions/public_api';
 import { DaffCart } from '../models/cart';
 import { DaffCartShippingInformation } from '../models/cart-shipping-info';
 import { DaffCartShippingInformationServiceInterface, DaffCartShippingInformationDriver } from '../drivers/interfaces/cart-shipping-information-service.interface';

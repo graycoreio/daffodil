@@ -20,7 +20,7 @@ import {
   DaffCartBillingAddressUpdate,
   DaffCartBillingAddressUpdateSuccess,
   DaffCartBillingAddressUpdateFailure
-} from '../actions';
+} from '../actions/public_api';
 import { DaffCartStorageService } from '../storage/cart-storage.service';
 import { DaffCartBillingAddressServiceInterface, DaffCartBillingAddressDriver } from '../drivers/interfaces/cart-billing-address-service.interface';
 

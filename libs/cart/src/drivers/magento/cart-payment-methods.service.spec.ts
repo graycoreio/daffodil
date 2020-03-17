@@ -11,8 +11,8 @@ import {
 
 import { DaffMagentoCartPaymentMethodsService } from './cart-payment-methods.service';
 import { DaffMagentoCartPaymentTransformer } from './transforms/outputs/cart-payment.service';
-import { listPaymentMethods } from './queries';
-import { MagentoListPaymentMethodsResponse } from './models/responses';
+import { listPaymentMethods } from './queries/public_api';
+import { MagentoListPaymentMethodsResponse } from './models/responses/public_api';
 import { MagentoCartPaymentMethod } from './models/outputs/cart-payment-method';
 
 describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {

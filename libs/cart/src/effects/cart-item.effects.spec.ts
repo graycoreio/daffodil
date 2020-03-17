@@ -30,7 +30,7 @@ import {
   DaffCartItemAdd,
   DaffCartItemAddSuccess,
   DaffCartItemAddFailure,
-} from '../actions';
+} from '../actions/public_api';
 import { DaffCartStorageService } from '../storage/cart-storage.service';
 import { DaffCartItemServiceInterface, DaffCartItemDriver } from '../drivers/interfaces/cart-item-service.interface';
 

@@ -14,14 +14,14 @@ import {
   addCartItem,
   removeCartItem,
   updateCartItem
-} from './queries';
+} from './queries/public_api';
 import { DaffMagentoCartItemTransformer } from './transforms/outputs/cart-item.service';
 import { DaffMagentoCartItemInputTransformer } from './transforms/inputs/cart-item.service';
 import { MagentoListCartItemsResponse } from './models/responses/list-cart-items';
 import { MagentoAddCartItemResponse } from './models/responses/add-cart-item';
 import { MagentoRemoveCartItemResponse } from './models/responses/remove-cart-item';
 import { DaffMagentoCartItemUpdateInputTransformer } from './transforms/inputs/cart-item-update.service';
-import { MagentoUpdateCartItemResponse } from './models/responses';
+import { MagentoUpdateCartItemResponse } from './models/responses/public_api';
 
 /**
  * A service for making Magento GraphQL queries for carts.

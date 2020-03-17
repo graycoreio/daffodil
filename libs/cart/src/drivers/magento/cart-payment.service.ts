@@ -11,13 +11,13 @@ import { DaffMagentoCartPaymentTransformer } from './transforms/outputs/cart-pay
 import {
   getSelectedPaymentMethod,
   setSelectedPaymentMethod
-} from './queries';
+} from './queries/public_api';
 import { DaffMagentoPaymentMethodInputTransformer } from './transforms/inputs/payment-method.service';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import {
   MagentoGetSelectedPaymentMethodResponse,
   MagentoSetSelectedPaymentMethodResponse
-} from './models/responses';
+} from './models/responses/public_api';
 
 /**
  * A service for making Magento GraphQL queries for carts.

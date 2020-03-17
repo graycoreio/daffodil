@@ -18,7 +18,7 @@ import { MagentoCartPaymentMethod } from './models/outputs/cart-payment-method';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { MagentoGetSelectedPaymentMethodResponse } from './models/responses/get-selected-payment-method';
 import { MagentoSetSelectedPaymentMethodResponse } from './models/responses/set-selected-payment-method';
-import { getSelectedPaymentMethod, setSelectedPaymentMethod } from './queries';
+import { getSelectedPaymentMethod, setSelectedPaymentMethod } from './queries/public_api';
 import { DaffMagentoCartPaymentTransformer } from './transforms/outputs/cart-payment.service';
 import { DaffMagentoPaymentMethodInputTransformer } from './transforms/inputs/payment-method.service';
 

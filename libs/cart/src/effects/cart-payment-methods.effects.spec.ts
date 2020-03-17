@@ -17,7 +17,7 @@ import {
   DaffCartPaymentMethodsLoad,
   DaffCartPaymentMethodsLoadSuccess,
   DaffCartPaymentMethodsLoadFailure
-} from '../actions';
+} from '../actions/public_api';
 import {
 	DaffCartPaymentMethodsServiceInterface,
 	DaffCartPaymentMethodsDriver,

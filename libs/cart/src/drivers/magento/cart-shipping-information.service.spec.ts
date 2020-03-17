@@ -19,7 +19,7 @@ import { MagentoCartShippingMethod } from './models/outputs/cart-shipping-method
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { MagentoGetSelectedShippingMethodResponse } from './models/responses/get-selected-shipping-method';
 import { MagentoSetSelectedShippingMethodResponse } from './models/responses/set-selected-shipping-method';
-import { getSelectedShippingMethod, setSelectedShippingMethod } from './queries';
+import { getSelectedShippingMethod, setSelectedShippingMethod } from './queries/public_api';
 import { DaffMagentoCartShippingRateTransformer } from './transforms/outputs/cart-shipping-rate.service';
 import { DaffMagentoShippingMethodInputTransformer } from './transforms/inputs/shipping-method.service';
 import { MagentoShippingAddress } from './models/outputs/shipping-address';

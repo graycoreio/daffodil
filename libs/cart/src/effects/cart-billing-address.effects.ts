@@ -11,7 +11,7 @@ import {
   DaffCartBillingAddressUpdate,
   DaffCartBillingAddressUpdateSuccess,
   DaffCartBillingAddressUpdateFailure,
-} from '../actions';
+} from '../actions/public_api';
 import { DaffCart } from '../models/cart';
 import { DaffCartAddress } from '../models/cart-address';
 import { DaffCartBillingAddressServiceInterface, DaffCartBillingAddressDriver } from '../drivers/interfaces/cart-billing-address-service.interface';

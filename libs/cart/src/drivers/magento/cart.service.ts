@@ -7,7 +7,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { DaffCartServiceInterface } from '../interfaces/cart-service.interface';
 import { DaffCart } from '../../models/cart';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
-import { getCart, createCart } from './queries';
+import { getCart, createCart } from './queries/public_api';
 import { DaffCartItemDriver, DaffCartItemServiceInterface } from '../interfaces/cart-item-service.interface';
 import { DaffCartItem } from '../../models/cart-item';
 import { DaffCartItemInput } from '../../models/cart-item-input';

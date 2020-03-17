@@ -29,13 +29,13 @@ import {
   addCartItem,
   removeCartItem,
   updateCartItem
-} from './queries';
+} from './queries/public_api';
 import {
   MagentoUpdateCartItemResponse,
   MagentoRemoveCartItemResponse,
   MagentoAddCartItemResponse,
   MagentoListCartItemsResponse
-} from './models/responses';
+} from './models/responses/public_api';
 import { MagentoCartItemInput } from './models/inputs/cart-item';
 import { MagentoCartItemUpdateInput } from './models/inputs/cart-item-update';
 import { DaffCartItemInput } from '../../models/cart-item-input';

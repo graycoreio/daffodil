@@ -7,7 +7,7 @@ import {
 import {
   DaffCartReducersState,
   DaffCartReducerState
-} from '../reducers';
+} from '../reducers/public_api';
 import { DaffCartErrorType } from '../reducers/cart-error-type.enum';
 
 /**

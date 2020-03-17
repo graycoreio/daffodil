@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-import { cartFragment } from './fragments';
+import { cartFragment } from './fragments/public_api';
 
 export const setSelectedPaymentMethod = gql`
   mutation SetSelectedPaymentMethod($cartId: String!, $payment: PaymentMethodInput!) {

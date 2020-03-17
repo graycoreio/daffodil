@@ -10,11 +10,11 @@ import { DaffMagentoCartShippingRateTransformer } from './transforms/outputs/car
 import {
   getSelectedShippingMethod,
   setSelectedShippingMethod
-} from './queries';
+} from './queries/public_api';
 import { DaffMagentoShippingMethodInputTransformer } from './transforms/inputs/shipping-method.service';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { DaffCartShippingRate } from '../../models/cart-shipping-rate';
-import { MagentoGetSelectedShippingMethodResponse, MagentoSetSelectedShippingMethodResponse } from './models/responses';
+import { MagentoGetSelectedShippingMethodResponse, MagentoSetSelectedShippingMethodResponse } from './models/responses/public_api';
 
 /**
  * A service for making Magento GraphQL queries for carts.

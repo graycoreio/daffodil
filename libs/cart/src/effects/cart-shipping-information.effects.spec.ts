@@ -23,7 +23,7 @@ import {
   DaffCartShippingInformationUpdate,
   DaffCartShippingInformationUpdateSuccess,
   DaffCartShippingInformationUpdateFailure
-} from '../actions';
+} from '../actions/public_api';
 import { DaffCartStorageService } from '../storage/cart-storage.service';
 import { DaffCartShippingInformationServiceInterface, DaffCartShippingInformationDriver } from '../drivers/interfaces/cart-shipping-information-service.interface';
 

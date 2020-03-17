@@ -14,7 +14,7 @@ import {
   DaffCartCreate,
   DaffCartCreateSuccess,
   DaffCartCreateFailure
-} from '../../actions';
+} from '../../actions/public_api';
 import { DaffCart } from '../../models/cart';
 import { cartReducer } from './cart.reducer';
 import { DaffCartReducerState } from '../cart-state.interface';

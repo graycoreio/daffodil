@@ -7,7 +7,7 @@ import {
   DaffCartShippingMethodsLoad,
   DaffCartShippingMethodsLoadSuccess,
   DaffCartShippingMethodsLoadFailure
-} from '../../actions';
+} from '../../actions/public_api';
 import { DaffCart } from '../../models/cart';
 import { cartShippingMethodsReducer } from './cart-shipping-methods.reducer';
 import { TestBed } from '@angular/core/testing';

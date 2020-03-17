@@ -11,7 +11,7 @@ import {
   DaffCartShippingAddressUpdate,
   DaffCartShippingAddressUpdateSuccess,
   DaffCartShippingAddressUpdateFailure,
-} from '../actions';
+} from '../actions/public_api';
 import { DaffCart } from '../models/cart';
 import { DaffCartAddress } from '../models/cart-address';
 import { DaffCartShippingAddressServiceInterface, DaffCartShippingAddressDriver } from '../drivers/interfaces/cart-shipping-address-service.interface';

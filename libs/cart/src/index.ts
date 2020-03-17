@@ -11,9 +11,9 @@ export { DaffCartCoupon } from './models/cart-coupon';
 export { DaffCartModule } from './cart.module';
 export { DaffCartContainer } from './containers/cart/cart.component';
 
-export * from './actions';
-export * from './selectors';
-export * from './reducers';
+export * from './actions/public_api';
+export * from './selectors/public_api';
+export * from './reducers/public_api';
 
 import * as fromCart from './from-cart';
 export { fromCart };

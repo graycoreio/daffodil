@@ -26,7 +26,7 @@ import {
 } from '@daffodil/cart';
 
 import { DaffCartFacade } from './cart.facade';
-import { DaffCartReducersState, daffCartReducers, initialState } from '../../reducers';
+import { DaffCartReducersState, daffCartReducers, initialState } from '../../reducers/public_api';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffCartErrors } from '../../reducers/cart-errors.type';
 import { DaffCartErrorType } from '../../reducers/cart-error-type.enum';

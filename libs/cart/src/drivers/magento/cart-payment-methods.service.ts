@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 import { DaffCartPaymentMethodsServiceInterface } from '../interfaces/cart-payment-methods-service.interface';
 import { DaffCartPaymentMethod } from '../../models/cart-payment';
-import { listPaymentMethods } from './queries';
+import { listPaymentMethods } from './queries/public_api';
 import { DaffMagentoCartPaymentTransformer } from './transforms/outputs/cart-payment.service';
 import { MagentoListPaymentMethodsResponse } from './models/responses/list-payment-methods';
 
