@@ -1,5 +1,3 @@
-import { TestBed } from '@angular/core/testing';
-
 import { DaffCategoryAppliedFilter } from '../../models/category-applied-filter';
 import { DaffCategoryFilterType } from '../../models/category-filter-base';
 import { DaffCategoryFilter } from '../../models/category-filter';
@@ -7,10 +5,6 @@ import { buildAppliedFilter } from './applied-filter-methods';
 import { DaffCategoryFilterRequest } from '../../models/requests/filter-request';
 
 describe('Applied Filter Methods', () => {
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-	});
 	
 	describe('when the filter request is an equal type with a single option', () => {
 		
