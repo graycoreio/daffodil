@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.15](https://github.com/graycoreio/daffodil/compare/v0.4.14...v0.4.15) (2020-03-18)
+
+
+### Features
+
+* **cart:** add image and abridged_description to the cart item ([#706](https://github.com/graycoreio/daffodil/issues/706)) ([bcf7ceb](https://github.com/graycoreio/daffodil/commit/bcf7ceb9fc5be9e1f06ff1a280970cf2a399b698))
+* **core, cart:** add core storage service, catch storage errors in cart during SSR ([#710](https://github.com/graycoreio/daffodil/issues/710)) ([539bf43](https://github.com/graycoreio/daffodil/commit/539bf43b5e0208ce764074f987ce5981bc1a7a73))
+
+
+### Bug Fixes
+
+* **cart:** fix paths to use public_api instead of index ([#709](https://github.com/graycoreio/daffodil/issues/709)) ([6835e05](https://github.com/graycoreio/daffodil/commit/6835e0597626703a54dd15bb8a10759290a598c2))
+* **cart:** return proper types to accommodate cart with no items ([#707](https://github.com/graycoreio/daffodil/issues/707)) ([ae7a640](https://github.com/graycoreio/daffodil/commit/ae7a6406051942c09cca66808328b0bc6c5edc13))
+
 ### [0.4.14](https://github.com/graycoreio/daffodil/compare/v0.4.13...v0.4.14) (2020-03-17)
 
 
