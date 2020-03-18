@@ -12,6 +12,7 @@ import { DaffCategoryLoad, DaffCategoryLoadFailure, DaffCategoryLoadSuccess } fr
 import { categoryReducers } from '../reducers/category-reducers';
 import { DaffCategory } from '../models/category';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
+import { DaffCategoryFilterType } from '../models/category-filter-base';
 
 describe('DaffCategoryFacade', () => {
   let store: MockStore<any>;
@@ -38,6 +39,18 @@ describe('DaffCategoryFacade', () => {
     
     category = categoryFactory.create();
 		categoryPageConfigurationState = categoryPageConfigurationFactory.create();
+		categoryPageConfigurationState.filters = [
+			{
+				name: 'name',
+				label: 'label',
+				type: DaffCategoryFilterType.Equal,
+				options: [{
+					value: 'value',
+					label: 'option_label',
+					count: 2
+				}]
+			}
+		]
 		product = productFactory.create();
     categoryPageConfigurationState.id = category.id;
     categoryPageConfigurationState.product_ids = [product.id];
@@ -159,18 +172,28 @@ describe('DaffCategoryFacade', () => {
     });
   });
 
-  // describe('appliedFilters$', () => {
-  //   it('should be an empty array initially', () => {
-  //     const expected = cold('a', { a: [] });
-  //     expect(facade.appliedFilters$).toBeObservable(expected);
-  //   });
+  describe('appliedFilters$', () => {
   
-  //   it('should return an observable of the applied filters on the selected category', () => {
-  //     const expected = cold('a', { a: [] });
-	// 		store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
-  //     expect(facade.appliedFilters$).toBeObservable(expected);
-  //   });
-  // });
+    it('should return an observable of the applied filters on the selected category', () => {
+			store.dispatch(new DaffCategoryLoad({ id: categoryPageConfigurationState.id, filter_requests: [{
+				name: 'name',
+				value: ['value'],
+				type: DaffCategoryFilterType.Equal
+			}]}));
+			const expected = cold('a', { a: [{
+					name: 'name',
+					label: 'label',
+					type: DaffCategoryFilterType.Equal,
+					options: [{
+						value: 'value',
+						label: 'option_label'
+					}]
+				}] 
+			});
+			store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+      expect(facade.appliedFilters$).toBeObservable(expected);
+    });
+  });
 
   describe('appliedSortOption$', () => {
     it('should be null initially', () => {
