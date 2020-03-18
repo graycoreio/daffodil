@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 
-import { DaffLocalStorageService } from '@daffodil/core';
+import { DaffPersistenceService, DaffPersistenceServiceToken } from '@daffodil/core';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ import { DaffLocalStorageService } from '@daffodil/core';
 export class DaffCartStorageService {
   private readonly CART_STORAGE_ID = 'DAFF_CART_ID';
 
-  constructor(private storageService: DaffLocalStorageService){}
+  constructor(@Inject(DaffPersistenceServiceToken) private storageService: DaffPersistenceService){}
 
   getCartId(): string {
     return this.storageService.getItem(this.CART_STORAGE_ID);
