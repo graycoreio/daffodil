@@ -5,7 +5,7 @@ import { toggleCategoryFilter } from './toggle-filter/core';
 const initialState: CategoryReducerState = {
   categoryPageConfigurationState: {
     id: null,
-    applied_filters: [],
+		filter_requests: [],
     applied_sort_option: null,
     applied_sort_direction: null,
     current_page: null,
@@ -28,7 +28,6 @@ export function categoryReducer(state = initialState, action: DaffCategoryAction
     // applied by Magento, then this will result in a bug. Until Magento returns applied filters with a category call, this is
     // unavoidable.
     case DaffCategoryActionTypes.CategoryLoadAction:
-			if(!action.request.applied_filters) action.request.applied_filters = [];
       return { 
         ...state, 
 				categoryLoading: true,
@@ -72,7 +71,7 @@ export function categoryReducer(state = initialState, action: DaffCategoryAction
 				productsLoading: true,
 				categoryPageConfigurationState: {
 					...state.categoryPageConfigurationState,
-					applied_filters: action.filters
+					filter_requests: action.filters
 				}
 			};
 		case DaffCategoryActionTypes.ToggleCategoryFilterAction:
@@ -81,7 +80,7 @@ export function categoryReducer(state = initialState, action: DaffCategoryAction
 				productsLoading: true,
 				categoryPageConfigurationState: {
 					...state.categoryPageConfigurationState,
-					applied_filters: toggleCategoryFilter(action.filter, state.categoryPageConfigurationState.applied_filters)
+					filter_requests: toggleCategoryFilter(action.filter, state.categoryPageConfigurationState.filter_requests)
 				}
 			}
     // This reducer cannot spread over state, because this would wipe out the applied filters on state. Applied filters are not

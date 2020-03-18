@@ -67,7 +67,6 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
 			}
 			const aggregates: MagentoAggregation[] = [{
 				attribute_code: stubCategoryPageConfigurationState.filters[0].name,
-				count: stubCategoryPageConfigurationState.filters[0].items_count,
 				label: stubCategoryPageConfigurationState.filters[0].label
 			}];
 			

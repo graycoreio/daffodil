@@ -3,7 +3,6 @@ import { Action } from '@ngrx/store';
 import { DaffGetCategoryResponse } from '../models/get-category-response';
 import { DaffCategoryRequest } from '../models/requests/category-request';
 import { DaffCategoryFilterRequest, DaffToggleCategoryFilterRequest } from '../models/requests/filter-request';
-import { DaffCategoryFilterType } from '../models/category-filter';
 
 export enum DaffCategoryActionTypes {
   CategoryLoadAction = '[Daff-Category] Category Load Action',

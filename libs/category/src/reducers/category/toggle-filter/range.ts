@@ -1,6 +1,6 @@
 import { DaffToggleCategoryFilterRangeRequest, DaffCategoryFilterRequest, DaffCategoryFilterRangeRequest } from '../../../models/requests/filter-request';
 import { getAppliedFilterByName, toggledFilterNameExists, addToExistingFilter } from './util';
-import { DaffCategoryFilterType } from '../../../models/category-filter';
+import { DaffCategoryFilterType } from '../../../models/category-filter-base';
 
 export function isRangeFilterApplied(toggledFilter: DaffToggleCategoryFilterRangeRequest, appliedFilters: DaffCategoryFilterRequest[]): boolean {
 	const filterMatchingName = <DaffCategoryFilterRangeRequest>getAppliedFilterByName(toggledFilter.name, appliedFilters);
@@ -29,7 +29,6 @@ export function addNewRangeFilter(toggledFilter: DaffToggleCategoryFilterRangeRe
 : DaffCategoryFilterRequest[] {
 	return appliedFilters.concat([{
 		name: toggledFilter.name,
-		label: toggledFilter.label,
 		value: [toggledFilter.value],
 		type: DaffCategoryFilterType.Range
 	}]);

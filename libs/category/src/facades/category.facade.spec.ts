@@ -159,18 +159,18 @@ describe('DaffCategoryFacade', () => {
     });
   });
 
-  describe('appliedFilters$', () => {
-    it('should be an empty array initially', () => {
-      const expected = cold('a', { a: [] });
-      expect(facade.appliedFilters$).toBeObservable(expected);
-    });
+  // describe('appliedFilters$', () => {
+  //   it('should be an empty array initially', () => {
+  //     const expected = cold('a', { a: [] });
+  //     expect(facade.appliedFilters$).toBeObservable(expected);
+  //   });
   
-    it('should return an observable of the applied filters on the selected category', () => {
-      const expected = cold('a', { a: [] });
-			store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
-      expect(facade.appliedFilters$).toBeObservable(expected);
-    });
-  });
+  //   it('should return an observable of the applied filters on the selected category', () => {
+  //     const expected = cold('a', { a: [] });
+	// 		store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+  //     expect(facade.appliedFilters$).toBeObservable(expected);
+  //   });
+  // });
 
   describe('appliedSortOption$', () => {
     it('should be null initially', () => {

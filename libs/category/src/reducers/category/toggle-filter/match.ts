@@ -1,5 +1,5 @@
 import { DaffToggleCategoryFilterMatchRequest, DaffCategoryFilterRequest } from '../../../models/requests/filter-request';
-import { DaffCategoryFilterType } from '../../../models/category-filter';
+import { DaffCategoryFilterType } from '../../../models/category-filter-base';
 import { getAppliedFilterByName } from './util';
 
 export function isMatchFilterApplied(toggledFilter: DaffToggleCategoryFilterMatchRequest, appliedFilters: DaffCategoryFilterRequest[]): boolean {
@@ -14,7 +14,6 @@ export function addMatchFilter(toggledFilter: DaffToggleCategoryFilterMatchReque
 : DaffCategoryFilterRequest[] {
 	return appliedFilters.concat([{
 		name: toggledFilter.name,
-		label: toggledFilter.label,
 		value: toggledFilter.value,
 		type: DaffCategoryFilterType.Match
 	}]);

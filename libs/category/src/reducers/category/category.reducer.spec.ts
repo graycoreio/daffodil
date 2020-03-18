@@ -7,7 +7,7 @@ import { DaffCategory } from '../../models/category';
 import { DaffCategoryPageConfigurationState } from '../../models/category-page-configuration-state';
 import { DaffCategoryRequest, DaffSortDirectionEnum } from '../../models/requests/category-request';
 import { DaffCategoryFilterRequest, DaffCategoryFilterMatchRequest, DaffCategoryFilterEqualRequest, DaffCategoryFilterRangeRequest, DaffToggleCategoryFilterRequest } from '../../models/requests/filter-request';
-import { DaffCategoryFilterType } from '../../models/category-filter';
+import { DaffCategoryFilterType } from '../../models/category-filter-base';
 
 describe('Category | Category Reducer', () => {
 
@@ -19,7 +19,7 @@ describe('Category | Category Reducer', () => {
   const initialState: CategoryReducerState = {
     categoryPageConfigurationState: {
       id: null,
-      applied_filters: [],
+      filter_requests: [],
       applied_sort_option: null,
       applied_sort_direction: null,
       current_page: null,
@@ -63,7 +63,7 @@ describe('Category | Category Reducer', () => {
       categoryRequest = {
         id: categoryId,
         page_size: categoryPageConfigurationState.page_size,
-        applied_filters: categoryPageConfigurationState.applied_filters,
+        filter_requests: categoryPageConfigurationState.filter_requests,
         applied_sort_option: categoryPageConfigurationState.applied_sort_option,
         applied_sort_direction: categoryPageConfigurationState.applied_sort_direction,
         current_page: categoryPageConfigurationState.current_page
@@ -85,24 +85,9 @@ describe('Category | Category Reducer', () => {
       expect(result.categoryPageConfigurationState.id).toEqual(categoryRequest.id);
       expect(result.categoryPageConfigurationState.page_size).toEqual(categoryRequest.page_size);
       expect(result.categoryPageConfigurationState.current_page).toEqual(categoryRequest.current_page);
-      expect(result.categoryPageConfigurationState.applied_filters).toEqual(categoryRequest.applied_filters);
+      expect(result.categoryPageConfigurationState.filter_requests).toEqual(categoryRequest.filter_requests);
       expect(result.categoryPageConfigurationState.applied_sort_direction).toEqual(categoryRequest.applied_sort_direction);
       expect(result.categoryPageConfigurationState.applied_sort_option).toEqual(categoryRequest.applied_sort_option);
-		});
-		
-		it('should set applied filters to an empty array if the user passes null', () => {
-			categoryRequest = {
-        id: categoryId,
-        page_size: categoryPageConfigurationState.page_size,
-        applied_filters: null,
-        applied_sort_option: categoryPageConfigurationState.applied_sort_option,
-        applied_sort_direction: categoryPageConfigurationState.applied_sort_direction,
-        current_page: categoryPageConfigurationState.current_page
-      }
-      const categoryLoadAction: DaffCategoryLoad = new DaffCategoryLoad(categoryRequest);
-
-      result = categoryReducer(initialState, categoryLoadAction);
-      expect(result.categoryPageConfigurationState.applied_filters).toEqual([]);
 		});
   });
 
@@ -188,14 +173,13 @@ describe('Category | Category Reducer', () => {
 				const existingMatchFilter: DaffCategoryFilterMatchRequest = {
 					type: DaffCategoryFilterType.Match,
 					name: 'name',
-					value: 'value',
-					label: 'label'
+					value: 'value'
 				}
 				const initialStateWithFilter = {
 					...initialState,
 					categoryPageConfigurationState: {
 						...initialState.categoryPageConfigurationState,
-						applied_filters: [existingMatchFilter]
+						filter_requests: [existingMatchFilter]
 					}	
 				}
 				const toggledFilter: DaffCategoryFilterRequest = {
@@ -205,54 +189,50 @@ describe('Category | Category Reducer', () => {
 				const toggleCategoryFilter: DaffToggleCategoryFilter = new DaffToggleCategoryFilter(toggledFilter);
 				result = categoryReducer(initialStateWithFilter, toggleCategoryFilter);
 
-				expect(result.categoryPageConfigurationState.applied_filters).toEqual([]);
+				expect(result.categoryPageConfigurationState.filter_requests).toEqual([]);
 			});
 
 			it('should remove an equal/range type filter - one existing applied filter value', () => {
 				const existingEqualFilter: DaffCategoryFilterEqualRequest = {
 					type: DaffCategoryFilterType.Equal,
 					name: 'name',
-					value: ['value'],
-					label: 'label'
+					value: ['value']
 				}
 				const initialStateWithFilter = {
 					...initialState,
 					categoryPageConfigurationState: {
 						...initialState.categoryPageConfigurationState,
-						applied_filters: [existingEqualFilter]
+						filter_requests: [existingEqualFilter]
 					}	
 				}
 				const toggledFilter: DaffToggleCategoryFilterRequest = {
 					name: existingEqualFilter.name,
 					value: existingEqualFilter.value[0],
-					type: existingEqualFilter.type,
-					label: existingEqualFilter.label
+					type: existingEqualFilter.type
 				}
 
 				const toggleCategoryFilter: DaffToggleCategoryFilter = new DaffToggleCategoryFilter(toggledFilter);
 				result = categoryReducer(initialStateWithFilter, toggleCategoryFilter);
-				expect(result.categoryPageConfigurationState.applied_filters).toEqual([]);
+				expect(result.categoryPageConfigurationState.filter_requests).toEqual([]);
 			});
 
 			it('should remove an equal/range type filter - multiple existing applied filter values', () => {
 				const existingEqualFilter: DaffCategoryFilterEqualRequest = {
 					type: DaffCategoryFilterType.Equal,
 					name: 'name',
-					value: ['value', 'value2'],
-					label: 'label'
+					value: ['value', 'value2']
 				}
 				const initialStateWithFilter = {
 					...initialState,
 					categoryPageConfigurationState: {
 						...initialState.categoryPageConfigurationState,
-						applied_filters: [existingEqualFilter]
+						filter_requests: [existingEqualFilter]
 					}	
 				}
 				const toggledFilter: DaffToggleCategoryFilterRequest = {
 					name: existingEqualFilter.name,
 					value: existingEqualFilter.value[0],
-					type: existingEqualFilter.type,
-					label: existingEqualFilter.label
+					type: existingEqualFilter.type
 				}
 				const expectedFilters: DaffCategoryFilterRequest[] = [
 					{
@@ -263,7 +243,7 @@ describe('Category | Category Reducer', () => {
 
 				const toggleCategoryFilter: DaffToggleCategoryFilter = new DaffToggleCategoryFilter(toggledFilter);
 				result = categoryReducer(initialStateWithFilter, toggleCategoryFilter);
-				expect(result.categoryPageConfigurationState.applied_filters).toEqual(expectedFilters);
+				expect(result.categoryPageConfigurationState.filter_requests).toEqual(expectedFilters);
 			});
 		});
 
@@ -274,14 +254,13 @@ describe('Category | Category Reducer', () => {
 					...initialState,
 					categoryPageConfigurationState: {
 						...initialState.categoryPageConfigurationState,
-						applied_filters: []
+						filter_requests: []
 					}	
 				}
 				const toggledFilter: DaffCategoryFilterRequest = {
 					name: 'name',
 					value: 'value',
-					type: DaffCategoryFilterType.Match,
-					label: 'label'
+					type: DaffCategoryFilterType.Match
 				}
 				const expectedFilters: DaffCategoryFilterRequest[] = [
 					{
@@ -292,7 +271,7 @@ describe('Category | Category Reducer', () => {
 
 				const toggleCategoryFilter: DaffToggleCategoryFilter = new DaffToggleCategoryFilter(toggledFilter);
 				result = categoryReducer(initialStateWithFilter, toggleCategoryFilter);
-				expect(result.categoryPageConfigurationState.applied_filters).toEqual(expectedFilters);
+				expect(result.categoryPageConfigurationState.filter_requests).toEqual(expectedFilters);
 			});
 
 			it('should add an equal type filter - no matched filter name', () => {
@@ -300,14 +279,13 @@ describe('Category | Category Reducer', () => {
 					...initialState,
 					categoryPageConfigurationState: {
 						...initialState.categoryPageConfigurationState,
-						applied_filters: []
+						filter_requests: []
 					}	
 				}
 				const toggledFilter: DaffToggleCategoryFilterRequest = {
 					name: 'name',
 					value: 'value',
-					type: DaffCategoryFilterType.Equal,
-					label: 'label'
+					type: DaffCategoryFilterType.Equal
 				}
 				const expectedFilters: DaffCategoryFilterRequest[] = [
 					{
@@ -319,28 +297,26 @@ describe('Category | Category Reducer', () => {
 
 				const toggleCategoryFilter: DaffToggleCategoryFilter = new DaffToggleCategoryFilter(toggledFilter);
 				result = categoryReducer(initialStateWithFilter, toggleCategoryFilter);
-				expect(result.categoryPageConfigurationState.applied_filters).toEqual(expectedFilters);
+				expect(result.categoryPageConfigurationState.filter_requests).toEqual(expectedFilters);
 			});
 
 			it('should add an equal type filter - with existing matched filter name', () => {
 				const existingEqualFilter: DaffCategoryFilterEqualRequest = {
 					type: DaffCategoryFilterType.Equal,
 					name: 'name',
-					value: ['value2'],
-					label: 'label'
+					value: ['value2']
 				}
 				const initialStateWithFilter = {
 					...initialState,
 					categoryPageConfigurationState: {
 						...initialState.categoryPageConfigurationState,
-						applied_filters: [existingEqualFilter]
+						filter_requests: [existingEqualFilter]
 					}	
 				}
 				const toggledFilter: DaffToggleCategoryFilterRequest = {
 					name: 'name',
 					value: 'value',
-					type: DaffCategoryFilterType.Equal,
-					label: 'label'
+					type: DaffCategoryFilterType.Equal
 				}
 				const expectedFilters: DaffCategoryFilterRequest[] = [
 					{
@@ -352,7 +328,7 @@ describe('Category | Category Reducer', () => {
 
 				const toggleCategoryFilter: DaffToggleCategoryFilter = new DaffToggleCategoryFilter(toggledFilter);
 				result = categoryReducer(initialStateWithFilter, toggleCategoryFilter);
-				expect(result.categoryPageConfigurationState.applied_filters).toEqual(expectedFilters);
+				expect(result.categoryPageConfigurationState.filter_requests).toEqual(expectedFilters);
 			});
 
 			it('should add a range type filter - no matched filter name', () => {
@@ -360,14 +336,13 @@ describe('Category | Category Reducer', () => {
 					...initialState,
 					categoryPageConfigurationState: {
 						...initialState.categoryPageConfigurationState,
-						applied_filters: []
+						filter_requests: []
 					}	
 				}
 				const toggledFilter: DaffToggleCategoryFilterRequest = {
 					name: 'name',
 					value: 'value',
-					type: DaffCategoryFilterType.Range,
-					label: 'label'
+					type: DaffCategoryFilterType.Range
 				}
 				const expectedFilters: DaffCategoryFilterRequest[] = [
 					{
@@ -379,28 +354,26 @@ describe('Category | Category Reducer', () => {
 
 				const toggleCategoryFilter: DaffToggleCategoryFilter = new DaffToggleCategoryFilter(toggledFilter);
 				result = categoryReducer(initialStateWithFilter, toggleCategoryFilter);
-				expect(result.categoryPageConfigurationState.applied_filters).toEqual(expectedFilters);
+				expect(result.categoryPageConfigurationState.filter_requests).toEqual(expectedFilters);
 			});
 
 			it('should add a range type filter - with existing matched filter name', () => {
 				const existingRangeFilter: DaffCategoryFilterRangeRequest = {
 					type: DaffCategoryFilterType.Range,
 					name: 'name',
-					value: ['80-90'],
-					label: 'label'
+					value: ['80-90']
 				}
 				const initialStateWithFilter = {
 					...initialState,
 					categoryPageConfigurationState: {
 						...initialState.categoryPageConfigurationState,
-						applied_filters: [existingRangeFilter]
+						filter_requests: [existingRangeFilter]
 					}	
 				}
 				const toggledFilter: DaffToggleCategoryFilterRequest = {
 					type: DaffCategoryFilterType.Range,
 					name: 'name',
-					value: '70-90',
-					label: 'label'
+					value: '70-90'
 				}
 				const expectedFilters: DaffCategoryFilterRequest[] = [
 					{
@@ -412,7 +385,7 @@ describe('Category | Category Reducer', () => {
 
 				const toggleCategoryFilter: DaffToggleCategoryFilter = new DaffToggleCategoryFilter(toggledFilter);
 				result = categoryReducer(initialStateWithFilter, toggleCategoryFilter);
-				expect(result.categoryPageConfigurationState.applied_filters).toEqual(expectedFilters);
+				expect(result.categoryPageConfigurationState.filter_requests).toEqual(expectedFilters);
 			});
 		});
 
@@ -420,12 +393,11 @@ describe('Category | Category Reducer', () => {
 			const matchFilter: DaffCategoryFilterMatchRequest = {
 				type: DaffCategoryFilterType.Match,
 				name: 'name',
-				value: 'value',
-				label: 'label'
+				value: 'value'
 			}
 			const initialStateWithFilter = {
 				...initialState,
-				applied_filters: [matchFilter]
+				filter_requests: [matchFilter]
 			}
 			const toggledFilter: DaffCategoryFilterRequest = {
 				...matchFilter
@@ -441,12 +413,11 @@ describe('Category | Category Reducer', () => {
 			const matchFilter: DaffCategoryFilterMatchRequest = {
 				type: DaffCategoryFilterType.Match,
 				name: 'name',
-				value: 'value',
-				label: 'label'
+				value: 'value'
 			}
 			const initialStateWithFilter = {
 				...initialState,
-				applied_filters: [matchFilter]
+				filter_requests: [matchFilter]
 			}
 			const toggledFilter: DaffCategoryFilterRequest = {
 				...matchFilter
@@ -483,7 +454,7 @@ describe('Category | Category Reducer', () => {
 		});
 		
 		it('should set the categoryPageConfigurationState applied filters', () => {
-			expect(result.categoryPageConfigurationState.applied_filters).toEqual(expectedFilters);
+			expect(result.categoryPageConfigurationState.filter_requests).toEqual(expectedFilters);
 		});
   });
 

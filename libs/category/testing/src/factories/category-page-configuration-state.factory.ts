@@ -10,19 +10,18 @@ export class MockCategoryPageConfigurationState implements DaffCategoryPageConfi
   current_page = 1;
   filters = [{
     label: 'Category',
-    items_count: 2,
     name: 'cat',
     type: DaffCategoryFilterType.Equal,
     options: [
       {
         label: 'Gear',
         value: '3',
-        items_count: 34
+        count: 34
       },
       {
         label: 'Training',
         value: '9',
-        items_count: 6
+        count: 6
       }
     ]
   }];
@@ -41,7 +40,7 @@ export class MockCategoryPageConfigurationState implements DaffCategoryPageConfi
     }
   ];
   total_pages = faker.random.number(4);
-  applied_filters = [];
+  filter_requests = [];
   applied_sort_option = null;
 	applied_sort_direction = null;
 	total_products = faker.random.number(3);

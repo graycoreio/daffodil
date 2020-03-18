@@ -27,13 +27,13 @@ import { DaffCategoryPageConfigurationState } from '../models/category-page-conf
 import { 
 	selectSelectedCategoryId, 
 	selectCategoryPageSize,
-	selectCategoryPageAppliedFilters, 
+	selectCategoryPageFilterRequests, 
 	selectCategoryPageAppliedSortOption, 
 	selectCategoryPageAppliedSortDirection 
 } from '../selectors/category.selector';
 import { DaffSortDirectionEnum } from '../models/requests/category-request';
 import { DaffCategoryFilterEqualRequest } from '../models/requests/filter-request';
-import { DaffCategoryFilterType } from '../models/category-filter';
+import { DaffCategoryFilterType } from '../models/category-filter-base';
 
 describe('DaffCategoryEffects', () => {
   let actions$: Observable<any>;
@@ -80,7 +80,7 @@ describe('DaffCategoryEffects', () => {
     daffCategoryDriver = TestBed.get(DaffCategoryDriver);
     store.overrideSelector(selectSelectedCategoryId, categoryId);
     store.overrideSelector(selectCategoryPageSize, stubCategoryPageConfigurationState.page_size);
-    store.overrideSelector(selectCategoryPageAppliedFilters, stubCategoryPageConfigurationState.applied_filters);
+    store.overrideSelector(selectCategoryPageFilterRequests, stubCategoryPageConfigurationState.filter_requests);
     store.overrideSelector(selectCategoryPageAppliedSortOption, stubCategoryPageConfigurationState.applied_sort_option);
 		store.overrideSelector(selectCategoryPageAppliedSortDirection, stubCategoryPageConfigurationState.applied_sort_direction);
 		
@@ -199,7 +199,7 @@ describe('DaffCategoryEffects', () => {
       expect(daffCategoryDriver.get).toHaveBeenCalledWith({ 
         id: categoryId,
 				page_size: 3,
-				applied_filters: stubCategoryPageConfigurationState.applied_filters,
+				filter_requests: stubCategoryPageConfigurationState.filter_requests,
 				applied_sort_option: stubCategoryPageConfigurationState.applied_sort_option,
 				applied_sort_direction: stubCategoryPageConfigurationState.applied_sort_direction
       });
@@ -222,7 +222,7 @@ describe('DaffCategoryEffects', () => {
 				current_page: 3,
 				applied_sort_direction: stubCategoryPageConfigurationState.applied_sort_direction,
 				applied_sort_option: stubCategoryPageConfigurationState.applied_sort_option,
-				applied_filters: stubCategoryPageConfigurationState.applied_filters
+				filter_requests: stubCategoryPageConfigurationState.filter_requests
       });
     });
   });
@@ -246,7 +246,7 @@ describe('DaffCategoryEffects', () => {
         page_size: stubCategoryPageConfigurationState.page_size,
 				applied_sort_direction: stubCategoryPageConfigurationState.applied_sort_direction,
 				applied_sort_option: stubCategoryPageConfigurationState.applied_sort_option,
-				applied_filters: [{
+				filter_requests: [{
 					name: 'name',
 					type: DaffCategoryFilterType.Equal,
 					value: ['value']
@@ -265,7 +265,7 @@ describe('DaffCategoryEffects', () => {
 				type: DaffCategoryFilterType.Equal,
 				value: ['value']
 			}
-			store.overrideSelector(selectCategoryPageAppliedFilters, [appliedFilter]);
+			store.overrideSelector(selectCategoryPageFilterRequests, [appliedFilter]);
 			store.setState({});
       const toggleCategoryFilterAction = new DaffToggleCategoryFilter({
 				name: 'name',
@@ -281,7 +281,7 @@ describe('DaffCategoryEffects', () => {
         page_size: stubCategoryPageConfigurationState.page_size,
 				applied_sort_direction: stubCategoryPageConfigurationState.applied_sort_direction,
 				applied_sort_option: stubCategoryPageConfigurationState.applied_sort_option,
-				applied_filters: [appliedFilter]
+				filter_requests: [appliedFilter]
       });
     });
 	});
@@ -304,7 +304,7 @@ describe('DaffCategoryEffects', () => {
         page_size: stubCategoryPageConfigurationState.page_size,
 				applied_sort_direction: DaffSortDirectionEnum.Ascending,
 				applied_sort_option: 'option',
-				applied_filters: stubCategoryPageConfigurationState.applied_filters
+				filter_requests: stubCategoryPageConfigurationState.filter_requests
       });
     });
   });

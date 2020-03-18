@@ -1,19 +1,10 @@
-export enum DaffCategoryFilterType {
-	Match = 'match',
-	Equal = 'equal',
-	Range = 'range'
-}
+import { DaffCategoryFilterBase } from './category-filter-base';
+import { DaffCategoryAppliedFilterOption } from './category-applied-filter';
 
-export interface DaffCategoryFilter {
-  label: string;
-	name: string;
-	type: DaffCategoryFilterType;
-	items_count: number;
+export interface DaffCategoryFilter extends DaffCategoryFilterBase {
 	options: DaffCategoryFilterOption[];
 }
 
-export interface DaffCategoryFilterOption {
-	label: string;
-	value: string;
-	items_count: number;
+export interface DaffCategoryFilterOption extends DaffCategoryAppliedFilterOption {
+	count: number;
 }

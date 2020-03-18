@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { DaffMagentoAppliedFiltersTransformService } from './applied-filter-transformer.service';
 import { MagentoCategoryFilters, MagentoCategoryFilterActionEnum } from '../models/requests/filters';
 import { DaffCategoryFilterRequest } from '../../../models/requests/filter-request';
-import { DaffCategoryFilterType } from '../../../models/category-filter';
+import { DaffCategoryFilterType } from '../../../models/category-filter-base';
 
 describe('DaffMagentoAppliedFiltersTransformService', () => {
 

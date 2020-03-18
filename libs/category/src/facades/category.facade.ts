@@ -21,7 +21,7 @@ import {
 	selectCategory,
 	selectProductsByCategory,
 	selectCategoryPageTotalProducts,
-	selectCategoryPageAppliedFilters,
+	// selectCategoryPageAppliedFilters,
 	selectCategoryPageAppliedSortOption,
 	selectCategoryPageAppliedSortDirection,
 	selectTotalProductsByCategory,
@@ -76,7 +76,7 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
   /**
    * The sort options available for the products of the selected category.
    */
-  appliedFilters$: Observable<DaffCategoryFilterRequest[]>;
+  // appliedFilters$: Observable<DaffCategoryFilterRequest[]>;
   /**
    * The sort options available for the products of the selected category.
    */
@@ -136,7 +136,7 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
     this.pageSize$ = this.store.pipe(select(selectCategoryPageSize));
     this.filters$ = this.store.pipe(select(selectCategoryFilters));
     this.sortOptions$ = this.store.pipe(select(selectCategorySortOptions));
-    this.appliedFilters$ = this.store.pipe(select(selectCategoryPageAppliedFilters));
+    // this.appliedFilters$ = this.store.pipe(select(selectCategoryPageAppliedFilters));
     this.appliedSortOption$ = this.store.pipe(select(selectCategoryPageAppliedSortOption));
     this.appliedSortDirection$ = this.store.pipe(select(selectCategoryPageAppliedSortDirection));
     this.categoryLoading$ = this.store.pipe(select(selectCategoryLoading));

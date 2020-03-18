@@ -28,11 +28,11 @@ import {
 	selectProductsByCategory,
 	selectCategoryPageProductIds,
 	selectCategoryPageTotalProducts,
-	selectCategoryPageAppliedFilters,
 	selectCategoryPageAppliedSortOption,
 	selectCategoryPageAppliedSortDirection,
 	selectTotalProductsByCategory,
-	selectCategoryProductsLoading
+	selectCategoryProductsLoading,
+	selectCategoryPageFilterRequests
 } from './category.selector';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
 import { categoryReducers } from '../reducers/category-reducers';
@@ -157,11 +157,11 @@ describe('DaffCategorySelectors', () => {
     });
   });
 
-  describe('selectCategoryPageAppliedFilters', () => {
+  describe('selectCategoryPageFilterRequests', () => {
 
     it('selects the applied filters of the current category page', () => {
-      const selector = store.pipe(select(selectCategoryPageAppliedFilters));
-      const expected = cold('a', { a: stubCategoryPageConfigurationState.applied_filters });
+      const selector = store.pipe(select(selectCategoryPageFilterRequests));
+      const expected = cold('a', { a: stubCategoryPageConfigurationState.filter_requests });
       expect(selector).toBeObservable(expected);
     });
   });

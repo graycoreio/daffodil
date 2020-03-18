@@ -67,9 +67,9 @@ export const selectCategoryPageTotalProducts = createSelector(
   (state: DaffCategoryPageConfigurationState) => state.total_products
 );
 
-export const selectCategoryPageAppliedFilters = createSelector(
+export const selectCategoryPageFilterRequests = createSelector(
 	selectCategoryPageConfigurationState,
-	(state: DaffCategoryPageConfigurationState) => state.applied_filters
+	(state: DaffCategoryPageConfigurationState) => state.filter_requests
 );
 
 export const selectCategoryPageAppliedSortOption = createSelector(
