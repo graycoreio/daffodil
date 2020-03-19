@@ -8,6 +8,11 @@ import { CategoryReducersState } from '../reducers/category-reducers.interface';
 import { categoryEntitiesAdapter } from '../reducers/category-entities/category-entities-adapter';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
 import { DaffCategory } from '../models/category';
+import { DaffCategoryAppliedFilter, DaffCategoryAppliedFilterOption } from '../models/category-applied-filter';
+import { DaffCategoryFilterRequest, DaffCategoryFilterEqualRequest, DaffCategoryFilterRangeRequest, DaffCategoryFilterMatchRequest } from '../models/requests/filter-request';
+import { DaffCategoryFilter, DaffCategoryFilterOption } from '../models/category-filter';
+import { DaffCategoryFilterType } from '../models/category-filter-base';
+import { buildAppliedFilter } from './applied-filter/applied-filter-methods';
 
 const { selectIds, selectEntities, selectAll, selectTotal } = categoryEntitiesAdapter.getSelectors();
 
@@ -67,9 +72,22 @@ export const selectCategoryPageTotalProducts = createSelector(
   (state: DaffCategoryPageConfigurationState) => state.total_products
 );
 
-export const selectCategoryPageAppliedFilters = createSelector(
+export const selectCategoryPageFilterRequests = createSelector(
 	selectCategoryPageConfigurationState,
-	(state: DaffCategoryPageConfigurationState) => state.applied_filters
+	(state: DaffCategoryPageConfigurationState) => state.filter_requests
+);
+
+export const selectCategoryPageAppliedFilters = createSelector(
+	selectCategoryPageFilterRequests,
+	selectCategoryFilters,
+	(filterRequests: DaffCategoryFilterRequest[], availableFilters: DaffCategoryFilter[]): DaffCategoryAppliedFilter[] => {
+		if(!availableFilters || !availableFilters.length) return null;
+		return filterRequests.map(request => 
+			availableFilters
+				.filter(availableFilter => availableFilter.name === request.name)
+				.map(filter => buildAppliedFilter(filter, request)).shift()
+		);
+	}
 );
 
 export const selectCategoryPageAppliedSortOption = createSelector(

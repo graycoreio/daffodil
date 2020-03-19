@@ -11,8 +11,8 @@ import { MagentoAggregation } from '../models/aggregation';
 import { MagentoPageInfo } from '../models/page-info';
 import { MagentoSortFields } from '../models/sort-fields';
 import { MagentoCompleteCategoryResponse } from '../models/complete-category-response';
-import { DaffCategoryFilterType } from '../../../models/category-filter';
 import { DaffCategoryFromToFilterSeparator } from 'libs/category/src/models/requests/filter-request';
+import { DaffCategoryFilterType } from '../../../models/category-filter-base';
 
 describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 
@@ -22,7 +22,7 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 
   const categoryPageConfigurationStateFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
   const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState = categoryPageConfigurationStateFactory.create();
-  delete stubCategoryPageConfigurationState.applied_filters;
+  delete stubCategoryPageConfigurationState.filter_requests;
   delete stubCategoryPageConfigurationState.applied_sort_direction;
   delete stubCategoryPageConfigurationState.applied_sort_option;
 	stubCategoryPageConfigurationState.id = stubCategory.id;
@@ -63,17 +63,16 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 			
 			aggregates = [{
 				attribute_code: stubCategoryPageConfigurationState.filters[0].name,
-				count: stubCategoryPageConfigurationState.filters[0].items_count,
 				label: stubCategoryPageConfigurationState.filters[0].label,
 				options: [
 					{
 						value: stubCategoryPageConfigurationState.filters[0].options[0].value,
-						count: stubCategoryPageConfigurationState.filters[0].options[0].items_count,
+						count: stubCategoryPageConfigurationState.filters[0].options[0].count,
 						label: stubCategoryPageConfigurationState.filters[0].options[0].label
 					},
 					{
 						value: stubCategoryPageConfigurationState.filters[0].options[1].value,
-						count: stubCategoryPageConfigurationState.filters[0].options[1].items_count,
+						count: stubCategoryPageConfigurationState.filters[0].options[1].count,
 						label: stubCategoryPageConfigurationState.filters[0].options[1].label
 					}
 				]

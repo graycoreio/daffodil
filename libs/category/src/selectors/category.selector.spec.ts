@@ -28,16 +28,21 @@ import {
 	selectProductsByCategory,
 	selectCategoryPageProductIds,
 	selectCategoryPageTotalProducts,
-	selectCategoryPageAppliedFilters,
 	selectCategoryPageAppliedSortOption,
 	selectCategoryPageAppliedSortDirection,
 	selectTotalProductsByCategory,
-	selectCategoryProductsLoading
+	selectCategoryProductsLoading,
+	selectCategoryPageFilterRequests,
+	selectCategoryPageAppliedFilters
 } from './category.selector';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
 import { categoryReducers } from '../reducers/category-reducers';
 import { DaffCategory } from '../models/category';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
+import { DaffCategoryFilterType } from '../models/category-filter-base';
+import { DaffCategoryAppliedFilter } from '../models/category-applied-filter';
+import { DaffCategoryLoad } from '@daffodil/category';
+import { DaffCategoryFilterRequest } from '../models/requests/filter-request';
 
 describe('DaffCategorySelectors', () => {
 
@@ -63,7 +68,29 @@ describe('DaffCategorySelectors', () => {
     product = productFactory.create();
     stubCategoryPageConfigurationState.id = stubCategory.id;
 		stubCategoryPageConfigurationState.product_ids = [product.id];
-    stubCategory.product_ids = [product.id];
+		stubCategory.product_ids = [product.id];
+		stubCategoryPageConfigurationState.filters = [
+			{
+				name: 'name',
+				type: DaffCategoryFilterType.Equal,
+				label: 'label',
+				options: [{
+					label: 'option_label',
+					value: 'value',
+					count: 2
+				}]
+			},
+			{
+				name: 'name2',
+				type: DaffCategoryFilterType.Equal,
+				label: 'label2',
+				options: [{
+					label: 'option_label2',
+					value: 'value2',
+					count: 2
+				}]
+			}
+		];
     store = TestBed.get(Store);
 
     store.dispatch(new DaffCategoryLoadSuccess({ category: stubCategory, categoryPageConfigurationState: stubCategoryPageConfigurationState, products: null }));
@@ -105,7 +132,7 @@ describe('DaffCategorySelectors', () => {
 
   describe('selectCategoryTotalPages', () => {
 
-    it('selects the current page of the current category', () => {
+    it('selects the total pages of products of the current category', () => {
       const selector = store.pipe(select(selectCategoryTotalPages));
       const expected = cold('a', { a: stubCategoryPageConfigurationState.total_pages });
       expect(selector).toBeObservable(expected);
@@ -114,7 +141,7 @@ describe('DaffCategorySelectors', () => {
 
   describe('selectCategoryPageSize', () => {
 
-    it('selects the current page of the current category', () => {
+    it('selects the page size of the current category', () => {
       const selector = store.pipe(select(selectCategoryPageSize));
       const expected = cold('a', { a: stubCategoryPageConfigurationState.page_size });
       expect(selector).toBeObservable(expected);
@@ -123,16 +150,46 @@ describe('DaffCategorySelectors', () => {
 
   describe('selectCategoryFilters', () => {
 
-    it('selects the current page of the current category', () => {
+    it('selects filters of the current category', () => {
       const selector = store.pipe(select(selectCategoryFilters));
       const expected = cold('a', { a: stubCategoryPageConfigurationState.filters });
       expect(selector).toBeObservable(expected);
     });
   });
 
+  describe('selectCategoryPageAppliedFilters', () => {
+
+    it('selects the applied filters of the current category', () => {
+			stubCategory.product_ids = [product.id];
+			const filterRequests: DaffCategoryFilterRequest[] = [
+				{
+					name: 'name',
+					type: DaffCategoryFilterType.Equal,
+					value: ['value']
+				}
+			];
+			const expectedAppliedFilters: DaffCategoryAppliedFilter[] = [{
+				name: 'name',
+				label: 'label',
+				type: DaffCategoryFilterType.Equal,
+				options: [{
+					label: 'option_label',
+					value: 'value'
+				}]
+			}]
+			store.dispatch(new DaffCategoryLoad({
+				id: stubCategoryPageConfigurationState.id,
+				filter_requests: filterRequests
+			}));
+      const selector = store.pipe(select(selectCategoryPageAppliedFilters));
+      const expected = cold('a', { a: expectedAppliedFilters });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
   describe('selectCategorySortOptions', () => {
 
-    it('selects the current page of the current category', () => {
+    it('selects the category sort options of the current category', () => {
       const selector = store.pipe(select(selectCategorySortOptions));
       const expected = cold('a', { a: stubCategoryPageConfigurationState.sort_options });
       expect(selector).toBeObservable(expected);
@@ -150,18 +207,18 @@ describe('DaffCategorySelectors', () => {
 
   describe('selectCategoryPageTotalProducts', () => {
 
-    it('selects the product_ids of the current category page', () => {
+    it('selects the total number of products of the current category page', () => {
       const selector = store.pipe(select(selectCategoryPageTotalProducts));
       const expected = cold('a', { a: stubCategoryPageConfigurationState.total_products });
       expect(selector).toBeObservable(expected);
     });
   });
 
-  describe('selectCategoryPageAppliedFilters', () => {
+  describe('selectCategoryPageFilterRequests', () => {
 
-    it('selects the applied filters of the current category page', () => {
-      const selector = store.pipe(select(selectCategoryPageAppliedFilters));
-      const expected = cold('a', { a: stubCategoryPageConfigurationState.applied_filters });
+    it('selects the filter requests of the current category page', () => {
+      const selector = store.pipe(select(selectCategoryPageFilterRequests));
+      const expected = cold('a', { a: stubCategoryPageConfigurationState.filter_requests });
       expect(selector).toBeObservable(expected);
     });
   });

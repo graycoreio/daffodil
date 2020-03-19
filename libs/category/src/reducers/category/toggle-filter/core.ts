@@ -1,5 +1,5 @@
 import { DaffToggleCategoryFilterRequest, DaffCategoryFilterRequest } from '../../../models/requests/filter-request';
-import { DaffCategoryFilterType } from '../../../models/category-filter';
+import { DaffCategoryFilterType } from '../../../models/category-filter-base';
 import { isEqualFilterApplied, removeEqualFilter, addEqualFilter } from './equal';
 import { isRangeFilterApplied, removeRangeFilter, addRangeFilter } from './range';
 import { isMatchFilterApplied, removeMatchFilter, addMatchFilter } from './match';

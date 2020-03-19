@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { MagentoCategoryFilters, MagentoCategoryFilterActionEnum } from '../models/requests/filters';
 import { DaffCategoryFilterRequest, DaffCategoryFromToFilterSeparator } from '../../../models/requests/filter-request';
-import { DaffCategoryFilterType } from '../../../models/category-filter';
+import { DaffCategoryFilterType } from '../../../models/category-filter-base';
 
 @Injectable({
   providedIn: 'root'

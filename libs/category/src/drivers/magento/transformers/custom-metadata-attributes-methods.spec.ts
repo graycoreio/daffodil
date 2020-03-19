@@ -12,7 +12,7 @@ describe('Custom Metadata Attributes Methods', () => {
 
   const categoryPageConfigurationStateFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
   const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState = categoryPageConfigurationStateFactory.create();
-  delete stubCategoryPageConfigurationState.applied_filters;
+  delete stubCategoryPageConfigurationState.filter_requests;
   delete stubCategoryPageConfigurationState.applied_sort_direction;
   delete stubCategoryPageConfigurationState.applied_sort_option;
   
@@ -45,17 +45,16 @@ describe('Custom Metadata Attributes Methods', () => {
 				products: {
 					aggregations: [{
 						attribute_code: stubCategoryPageConfigurationState.filters[0].name,
-						count: stubCategoryPageConfigurationState.filters[0].items_count,
 						label: stubCategoryPageConfigurationState.filters[0].label,
 						options: [
 							{
 								value: stubCategoryPageConfigurationState.filters[0].options[0].value,
-								count: stubCategoryPageConfigurationState.filters[0].options[0].items_count,
+								count: stubCategoryPageConfigurationState.filters[0].options[0].count,
 								label: stubCategoryPageConfigurationState.filters[0].options[0].label
 							},
 							{
 								value: stubCategoryPageConfigurationState.filters[0].options[1].value,
-								count: stubCategoryPageConfigurationState.filters[0].options[1].items_count,
+								count: stubCategoryPageConfigurationState.filters[0].options[1].count,
 								label: stubCategoryPageConfigurationState.filters[0].options[1].label
 							}
 						]
@@ -77,18 +76,17 @@ describe('Custom Metadata Attributes Methods', () => {
 				products: {
 					aggregations: [{
 						attribute_code: stubCategoryPageConfigurationState.filters[0].name,
-						count: stubCategoryPageConfigurationState.filters[0].items_count,
 						label: stubCategoryPageConfigurationState.filters[0].label,
 						type: 'select',
 						options: [
 							{
 								value: stubCategoryPageConfigurationState.filters[0].options[0].value,
-								count: stubCategoryPageConfigurationState.filters[0].options[0].items_count,
+								count: stubCategoryPageConfigurationState.filters[0].options[0].count,
 								label: stubCategoryPageConfigurationState.filters[0].options[0].label
 							},
 							{
 								value: stubCategoryPageConfigurationState.filters[0].options[1].value,
-								count: stubCategoryPageConfigurationState.filters[0].options[1].items_count,
+								count: stubCategoryPageConfigurationState.filters[0].options[1].count,
 								label: stubCategoryPageConfigurationState.filters[0].options[1].label
 							}
 						]

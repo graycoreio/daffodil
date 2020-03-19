@@ -1,6 +1,6 @@
 import { DaffToggleCategoryFilterEqualRequest, DaffCategoryFilterRequest, DaffCategoryFilterEqualRequest } from '../../../models/requests/filter-request';
 import { getAppliedFilterByName, toggledFilterNameExists, addToExistingFilter } from './util';
-import { DaffCategoryFilterType } from '../../../models/category-filter';
+import { DaffCategoryFilterType } from '../../../models/category-filter-base';
 
 export function isEqualFilterApplied(toggledFilter: DaffToggleCategoryFilterEqualRequest, appliedFilters: DaffCategoryFilterRequest[]): boolean {
 	const filterMatchingName = <DaffCategoryFilterEqualRequest>getAppliedFilterByName(toggledFilter.name, appliedFilters);
@@ -29,7 +29,6 @@ export function addNewEqualFilter(toggledFilter: DaffToggleCategoryFilterEqualRe
 : DaffCategoryFilterRequest[] {
 	return appliedFilters.concat([{
 		name: toggledFilter.name,
-		label: toggledFilter.label,
 		value: [toggledFilter.value],
 		type: DaffCategoryFilterType.Equal
 	}]);

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 
 import { DaffCategoryPageConfigurationState } from '../../../models/category-page-configuration-state';
-import { DaffCategoryFilter, DaffCategoryFilterType } from '../../../models/category-filter';
+import { DaffCategoryFilter } from '../../../models/category-filter';
 import { MagentoAggregation } from '../models/aggregation';
 import { MagentoSortFields } from '../models/sort-fields';
 import { MagentoCompleteCategoryResponse } from '../models/complete-category-response';
 import { DaffCategoryFromToFilterSeparator } from '../../../models/requests/filter-request';
+import { DaffCategoryFilterType } from '../../../models/category-filter-base';
 
 @Injectable({
   providedIn: 'root'
@@ -31,12 +32,11 @@ export class DaffMagentoCategoryPageConfigTransformerService {
       label: filter.label,
       type: filterType,
 			name: filter.attribute_code,
-			items_count: filter.count,
 			options: filter.options.map(option => {
 				return {
 					label: option.label,
 					value: filterType === DaffCategoryFilterType.Range ? this.transformRangeValue(option.value) : option.value,
-					items_count: option.count
+					count: option.count
 				}
 			})
     }

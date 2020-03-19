@@ -11,7 +11,8 @@ export { DaffCategoryDriver } from './drivers/injection-tokens/category-driver.t
 export * from './selectors/category.selector';
 
 export { DaffGetCategoryResponse } from './models/get-category-response';
-export { DaffCategoryFilter, DaffCategoryFilterType, DaffCategoryFilterOption } from './models/category-filter';
+export { DaffCategoryFilter, DaffCategoryFilterOption } from './models/category-filter';
+export { DaffCategoryFilterType } from './models/category-filter-base';
 export { DaffCategoryPageConfigurationState } from './models/category-page-configuration-state';
 export { DaffCategoryBreadcrumb } from './models/category-breadcrumb'
 export { DaffCategory } from './models/category'
@@ -21,5 +22,7 @@ export {
 } from './models/requests/category-request';
 export { DaffCategorySortOption } from './models/category-sort-option';
 export * from './models/requests/filter-request';
+export * from './models/category-filter-base';
+export * from './models/category-applied-filter';
 
 export * from './drivers/magento/public_api';
