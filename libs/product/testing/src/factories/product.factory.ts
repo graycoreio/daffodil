@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
-import { DaffProduct } from '@daffodil/product';
+import { DaffProduct, DaffProductTypeEnum } from '@daffodil/product';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 /**
  * Mocked DaffProduct object.
  */
 export class MockProduct implements DaffProduct {
+	__typename = DaffProductTypeEnum.Simple;
   id = faker.random.number(10000).toString();
   price = faker.random.number(1500).toString();
   name = faker.commerce.productName();

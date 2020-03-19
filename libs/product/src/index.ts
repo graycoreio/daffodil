@@ -1,4 +1,4 @@
-export { DaffProduct } from './models/product';
+export { DaffProduct, DaffProductTypeEnum } from './models/product';
 export * from './actions/product.actions';
 export * from './actions/product-grid.actions';
 export * from './actions/best-sellers.actions';
