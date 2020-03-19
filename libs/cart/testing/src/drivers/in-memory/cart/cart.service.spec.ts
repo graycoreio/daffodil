@@ -83,22 +83,20 @@ describe('Driver | In Memory | Cart | CartService', () => {
     });
   });
 
-  describe('clear', () => {
-    describe('a successful clear request', () => {
-      it('should send a post request and return the cart', done => {
-        cartService.clear(cartId).subscribe(result => {
-          expect(result).toEqual(mockCart);
-          done();
-        });
-
-        const req = httpMock.expectOne(`${cartService.url}/${cartId}/clear`);
-
-        expect(req.request.method).toBe('POST');
-
-        mockCart.items = [];
-
-        req.flush(mockCart);
+  describe('clear | removing all items from the cart', () => {
+    it('should send a post request and return the cart that has no items', done => {
+      cartService.clear(cartId).subscribe(result => {
+        expect(result).toEqual(mockCart);
+        done();
       });
+
+      const req = httpMock.expectOne(`${cartService.url}/${cartId}/clear`);
+
+      expect(req.request.method).toBe('POST');
+
+      mockCart.items = [];
+
+      req.flush(mockCart);
     });
   });
 
