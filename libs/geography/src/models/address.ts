@@ -3,7 +3,7 @@
  */
 export interface DaffAddress {
 	street: string;
-	street2: string;
+	street2?: string;
   city: string;
   region: string;
   region_id?: string | number;
