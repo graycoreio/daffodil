@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.16](https://github.com/graycoreio/daffodil/compare/v0.4.15...v0.4.16) (2020-03-19)
+
+
+### Features
+
+* **category:** differentiate applied filters and filter requests ([#711](https://github.com/graycoreio/daffodil/issues/711)) ([8b1465b](https://github.com/graycoreio/daffodil/commit/8b1465b6aa36b41296c3753071383d2a85932980))
+* **product, category:** add product type to DaffProduct ([#713](https://github.com/graycoreio/daffodil/issues/713)) ([fe39515](https://github.com/graycoreio/daffodil/commit/fe39515321aa9c000f740de03965a2009645beea))
+
 ### [0.4.15](https://github.com/graycoreio/daffodil/compare/v0.4.14...v0.4.15) (2020-03-18)
 
 
