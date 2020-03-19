@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { DaffProductUnion } from '../../../models/product-union';
 import { ProductNode, MagentoProductTypeEnum } from '../models/product-node';
-import { DaffProductTypeEnum } from 'libs/product/src/models/product';
+import { DaffProductTypeEnum } from '../../../models/product';
 
 /**
  * Transforms magento products into an object usable by daffodil.
