@@ -7,6 +7,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
  * Mocked DaffProduct object.
  */
 export class MockProduct implements DaffProduct {
+	type = DaffProductTypeEnum.Simple;
 	__typename = DaffProductTypeEnum.Simple;
   id = faker.random.number(10000).toString();
   price = faker.random.number(1500).toString();

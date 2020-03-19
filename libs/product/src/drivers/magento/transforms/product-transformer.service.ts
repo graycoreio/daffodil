@@ -19,6 +19,7 @@ export class DaffMagentoProductTransformerService {
   transform(response: any): DaffProductUnion {
     const product: ProductNode = response.products.items[0];
     return {
+			type: this.transformProductType(product.__typename),
 			__typename: this.transformProductType(product.__typename),
 			id: product.sku,
       url: product.url_key,
@@ -46,6 +47,7 @@ export class DaffMagentoProductTransformerService {
 
   private transformList(product: ProductNode): DaffProductUnion {
     return {
+			type: this.transformProductType(product.__typename),
 			__typename: this.transformProductType(product.__typename),
       id: product.sku,
       url: product.url_key,
