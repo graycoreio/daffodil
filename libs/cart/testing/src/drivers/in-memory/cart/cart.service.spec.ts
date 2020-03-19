@@ -3,7 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 
 import { DaffCart } from '@daffodil/cart';
 
-import { DaffCartFactory } from '../../factories/cart.factory';
+import { DaffCartFactory } from '../../../factories/cart.factory';
 import { DaffInMemoryCartService } from './cart.service';
 
 describe('Driver | In Memory | Cart | CartService', () => {
@@ -85,16 +85,15 @@ describe('Driver | In Memory | Cart | CartService', () => {
 
   describe('clear', () => {
     describe('a successful clear request', () => {
-      it('should send a post request to `api/cart/clear` and return the cart', done => {
-        cartService.clear(cartId).subscribe(res => {
-          expect(res).toEqual(mockCart);
+      it('should send a post request and return the cart', done => {
+        cartService.clear(cartId).subscribe(result => {
+          expect(result).toEqual(mockCart);
           done();
         });
 
-        const req = httpMock.expectOne(`${cartService.url}/clear`);
+        const req = httpMock.expectOne(`${cartService.url}/${cartId}/clear`);
 
         expect(req.request.method).toBe('POST');
-        expect(req.request.body).toEqual({cartId});
 
         mockCart.items = [];
 
@@ -104,7 +103,7 @@ describe('Driver | In Memory | Cart | CartService', () => {
   });
 
   describe('create | creating a cart', () => {
-    it('should send a post request to `api/cart` and return the cart', done => {
+    it('should send a post request and return the cart', done => {
       cartService.create().subscribe(result => {
         expect(result).toEqual(jasmine.objectContaining({id: cartId}));
         done();
@@ -113,7 +112,6 @@ describe('Driver | In Memory | Cart | CartService', () => {
       const req = httpMock.expectOne(`${cartService.url}`);
 
       expect(req.request.method).toBe('POST');
-      expect(req.request.body).toEqual({});
 
       req.flush({
         id: cartId
