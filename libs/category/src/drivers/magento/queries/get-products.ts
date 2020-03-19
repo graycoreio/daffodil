@@ -11,6 +11,7 @@ query MagentoGetProducts($filter: ProductAttributeFilterInput!, $search: String,
 	{
 		total_count
 		items {
+			__typename
 			id
 			name
 			sku

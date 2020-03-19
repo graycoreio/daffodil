@@ -4,9 +4,10 @@ import * as faker from 'faker/locale/en_US';
 import {
   DaffModelFactory,
 } from '@daffodil/core/testing';
-import { MagentoProduct } from '@daffodil/product';
+import { MagentoProduct, MagentoProductTypeEnum } from '@daffodil/product';
 
 export class MockMagentoProduct implements MagentoProduct {
+	__typename = MagentoProductTypeEnum.SimpleProduct;
   id = faker.random.number(1000);
   image = {
     label: faker.random.words(3),

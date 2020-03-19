@@ -1,4 +1,4 @@
-export { ProductNode } from './models/product-node';
+export { ProductNode, MagentoProductTypeEnum } from './models/product-node';
 export { 
 	MagentoBundledProduct, 
 	MagentoBundledProductItemOption,

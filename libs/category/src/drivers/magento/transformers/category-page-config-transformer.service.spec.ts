@@ -91,6 +91,7 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 
 			products = [
 				{
+					__typename: 'simple',
 					sku: stubCategoryPageConfigurationState.product_ids[0],
 					id: 2,
 					name: 'name',

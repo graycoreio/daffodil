@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { DaffProductUnion } from '../../../models/product-union';
-import { ProductNode } from '../models/product-node';
+import { ProductNode, MagentoProductTypeEnum } from '../models/product-node';
+import { DaffProductTypeEnum } from '../../../models/product';
 
 /**
  * Transforms magento products into an object usable by daffodil.
@@ -18,7 +19,9 @@ export class DaffMagentoProductTransformerService {
   transform(response: any): DaffProductUnion {
     const product: ProductNode = response.products.items[0];
     return {
-      id: product.sku,
+			type: this.transformProductType(product.__typename),
+			__typename: this.transformProductType(product.__typename),
+			id: product.sku,
       url: product.url_key,
       name: product.name,
       images: [
@@ -39,11 +42,13 @@ export class DaffMagentoProductTransformerService {
    * Transforms many magento ProductNodes from the magento product query into DaffProductUnions.
    */
   transformMany(products: any[]): DaffProductUnion[] {
-    return products.map(this.transformList);
+    return products.map(this.transformList.bind(this));
   }
 
   private transformList(product: ProductNode): DaffProductUnion {
     return {
+			type: this.transformProductType(product.__typename),
+			__typename: this.transformProductType(product.__typename),
       id: product.sku,
       url: product.url_key,
       name: product.name,
@@ -51,5 +56,16 @@ export class DaffMagentoProductTransformerService {
         {url: product.image.url, id: '0', label: product.image.url}
       ]
     }
-  }
+	}
+	
+	private transformProductType(type: string): DaffProductTypeEnum {
+		switch(type) {
+			case(MagentoProductTypeEnum.BundledProduct) :
+				return DaffProductTypeEnum.Composite;
+			case(MagentoProductTypeEnum.SimpleProduct) : 
+				return DaffProductTypeEnum.Simple;
+			default :
+				return null;
+		}
+	}
 }
