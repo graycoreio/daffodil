@@ -1,5 +1,7 @@
 import { DaffCountry } from '../../models/country';
+import { InjectionToken } from '@angular/core';
 
+export const DaffGeopgraphyDriver = new InjectionToken('DaffGeographyDriver');
 export interface DaffGeographyServiceInterface {
 	/**
 	 * Retrieves the list of countries available to the given store.
