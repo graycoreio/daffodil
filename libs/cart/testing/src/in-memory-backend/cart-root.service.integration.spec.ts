@@ -167,7 +167,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     });
 
     it('should return the updated cart without the item', () => {
-      expect(result.items.find(({item_id}) => String(item_id) === String(itemId))).toBeFalsy();
+      expect(result.items).not.toContain(mockCartItem);
     });
   });
 });

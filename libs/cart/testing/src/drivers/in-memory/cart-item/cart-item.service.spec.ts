@@ -51,9 +51,8 @@ describe('Driver | In Memory | Cart | CartItemService', () => {
   });
 
   describe('list | getting all the cart items', () => {
-    it('should send a get request and return the cart item', done => {
+    it('should send a get request', done => {
       cartItemService.list(cartId).subscribe(res => {
-        expect(res).toEqual(mockCart.items);
         done();
       });
 
@@ -65,9 +64,8 @@ describe('Driver | In Memory | Cart | CartItemService', () => {
   });
 
   describe('get | getting a cart item', () => {
-    it('should send a get request and return the cart item', done => {
+    it('should send a get request with the item id', done => {
       cartItemService.get(cartId, itemId).subscribe(res => {
-        expect(res).toEqual(jasmine.objectContaining(mockCartItem));
         done();
       });
 
@@ -80,7 +78,6 @@ describe('Driver | In Memory | Cart | CartItemService', () => {
 
   describe('add | adding an item to the cart', () => {
     let cartItemInput: DaffCartItemInput;
-    let expected: DaffCartItem;
     let productId;
     let qty;
 
@@ -91,14 +88,10 @@ describe('Driver | In Memory | Cart | CartItemService', () => {
         productId,
         qty
       };
-      expected = cartItemFactory.create();
-      expected.product_id = productId;
-      mockCart.items.push(expected);
     });
 
-    it('should send a post request and respond with a cart containing the new item', done => {
+    it('should send a post request', done => {
       cartItemService.add(cartId, cartItemInput).subscribe(cart => {
-        expect(cart.items).toContain(jasmine.objectContaining(expected));
         done();
       });
 
@@ -120,9 +113,8 @@ describe('Driver | In Memory | Cart | CartItemService', () => {
       mockCart.items = [newCartItem];
     });
 
-    it('should send a put request and respond with an updated cart', done => {
+    it('should send a put request', done => {
       cartItemService.update(cartId, itemId, newCartItem).subscribe(cart => {
-        expect(cart).toEqual(jasmine.objectContaining(mockCart));
         done();
       });
 
@@ -136,9 +128,8 @@ describe('Driver | In Memory | Cart | CartItemService', () => {
   });
 
   describe('delete | removing an item from the cart', () => {
-    it('should send a delete request and return the cart without the item', done => {
+    it('should send a delete request', done => {
       cartItemService.delete(cartId, itemId).subscribe(result => {
-        expect(result.items).not.toContain(mockCartItem);
         done();
       });
 

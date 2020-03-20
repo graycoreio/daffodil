@@ -109,8 +109,8 @@ describe('DaffInMemoryBackendCartItemsService', () => {
       result = service.post(reqInfoStub);
     });
 
-    it('should return a cart item with the product id', () => {
-      expect(result.body.items[3].product_id).toEqual(productId);
+    it('should return a cart with the added item', () => {
+      expect(result.body.items).toContain(jasmine.objectContaining({product_id: productId}));
     });
   });
 
