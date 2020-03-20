@@ -15,7 +15,8 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
   let mockCart: DaffCart;
   let mockCartItem: DaffCartItem;
-  let cartId;
+  let cartId: DaffCart['id'];
+  let itemId: DaffCartItem['item_id'];
 
   beforeEach(done => {
     TestBed.configureTestingModule({
@@ -33,6 +34,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     mockCart = cartFactory.create();
     mockCartItem = cartItemFactory.create();
     cartId = mockCart.id;
+    itemId = mockCartItem.item_id;
     mockCart.items.push(mockCartItem);
 
     httpClient.post<any>('commands/resetDb', {carts: [mockCart]}).subscribe(() => done());
@@ -75,6 +77,97 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
         expect(result).toEqual({});
         done();
       });
+    });
+  });
+
+  // cart-item
+  describe('processing a list items request', () => {
+    let result;
+
+    beforeEach(done => {
+      httpClient.get<any>(`api/cart-items/${cartId}/`).subscribe(res => {
+        result = res;
+        done();
+      });
+    });
+
+    it('should return the items', () => {
+      expect(result).toEqual(mockCart.items);
+    });
+  });
+
+  describe('processing a get item request', () => {
+    let productId;
+    let qty;
+    let result;
+
+    beforeEach(done => {
+      productId = 'productId';
+      qty = 4;
+      httpClient.get<any>(`api/cart-items/${cartId}/${itemId}`).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return the item', () => {
+      expect(result).toEqual(mockCartItem);
+    });
+  });
+
+  describe('processing an update item request', () => {
+    let qty;
+    let result;
+
+    beforeEach(done => {
+      qty = mockCartItem.qty + 1;
+      httpClient.put<any>(`api/cart-items/${cartId}/${itemId}`, {qty}).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return the updated cart with the updated item', () => {
+      expect(result.items[0].qty).toEqual(qty);
+    });
+  });
+
+  describe('processing an add item request', () => {
+    let productId;
+    let qty;
+    let result;
+
+    beforeEach(done => {
+      productId = mockCartItem.product_id;
+      qty = mockCartItem.qty;
+
+      httpClient.post<any>(`api/cart-items/${cartId}/`, {
+        productId,
+        qty
+      }).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return the updated cart with the added item', () => {
+      expect(result.items[0].product_id).toEqual(productId);
+      expect(result.items[0].qty).toEqual(qty);
+    });
+  });
+
+  describe('processing a delete item request', () => {
+    let result;
+
+    beforeEach(done => {
+      httpClient.delete<any>(`api/cart-items/${cartId}/${itemId}`).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return the updated cart without the item', () => {
+      expect(result.items.find(({item_id}) => String(item_id) === String(itemId))).toBeFalsy();
     });
   });
 });

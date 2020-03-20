@@ -13,11 +13,13 @@ import {
 
 import { DaffInMemoryBackendCartRootService } from './cart-root.service';
 import { DaffInMemoryBackendCartService } from './cart/cart.service';
+import { DaffInMemoryBackendCartItemsService } from './cart-items/cart-items.service';
 
 describe('DaffInMemoryBackendCartRootService | Unit', () => {
   let service: DaffInMemoryBackendCartRootService;
 
   let cartBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartService>;
+  let cartItemsBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartItemsService>;
 
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
@@ -29,6 +31,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
   let reqInfoStub;
   let baseUrl;
   let cartUrl;
+  let collection: DaffCart[];
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -37,12 +40,17 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
         {
           provide: DaffInMemoryBackendCartService,
           useValue: jasmine.createSpyObj('DaffInMemoryBackendCartService', ['get', 'post'])
+        },
+        {
+          provide: DaffInMemoryBackendCartItemsService,
+          useValue: jasmine.createSpyObj('DaffInMemoryBackendCartItemsService', ['get', 'post', 'put', 'delete'])
         }
       ]
     });
     service = TestBed.get(DaffInMemoryBackendCartRootService);
 
     cartBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartService);
+    cartItemsBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartItemsService);
 
     cartFactory = TestBed.get(DaffCartFactory);
     cartItemFactory = TestBed.get(DaffCartItemFactory);
@@ -56,12 +64,12 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
     cartId = mockCart.id;
     baseUrl = 'api/cart';
     cartUrl = `${baseUrl}/${cartId}`;
+    collection = [mockCart];
+    service.carts = collection;
     reqInfoStub = {
       id: '',
       resourceUrl: baseUrl,
-      collection: [
-        mockCart
-      ],
+      collection,
       collectionName: '',
       method: '',
       req: {
@@ -83,6 +91,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
     let result;
 
     beforeEach(() => {
+      service.carts = [];
       result = service.createDb(reqInfoStub);
     });
 
@@ -109,6 +118,20 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
         expect(cartBackendServiceSpy.get).toHaveBeenCalledWith(reqInfoStub);
       });
     });
+
+    describe('when the collectionName is cart-items', () => {
+      let result;
+
+      beforeEach(() => {
+        reqInfoStub.collectionName = 'cart-items';
+
+        result = service.get(reqInfoStub);
+      });
+
+      it('should delegate the request to the cart service', () => {
+        expect(cartItemsBackendServiceSpy.get).toHaveBeenCalledWith(reqInfoStub);
+      });
+    });
   });
 
   describe('processing a post request', () => {
@@ -129,9 +152,59 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
         expect(cartBackendServiceSpy.post).toHaveBeenCalledWith(reqInfoStub);
       });
     });
+
+    describe('when the collectionName is cart-items', () => {
+      let result;
+
+      beforeEach(() => {
+        reqInfoStub.collectionName = 'cart-items';
+
+        result = service.post(reqInfoStub);
+      });
+
+      it('should delegate the request to the cart service', () => {
+        expect(cartItemsBackendServiceSpy.post).toHaveBeenCalledWith(reqInfoStub);
+      });
+    });
   });
 
-  xdescribe('processing an put request', () => {});
+  describe('processing an put request', () => {
+    beforeEach(() => {
+      reqInfoStub.method = 'put';
+    });
 
-  xdescribe('processing an put request', () => {});
+    describe('when the collectionName is cart-items', () => {
+      let result;
+
+      beforeEach(() => {
+        reqInfoStub.collectionName = 'cart-items';
+
+        result = service.put(reqInfoStub);
+      });
+
+      it('should delegate the request to the cart service', () => {
+        expect(cartItemsBackendServiceSpy.put).toHaveBeenCalledWith(reqInfoStub);
+      });
+    });
+  });
+
+  describe('processing an delete request', () => {
+    beforeEach(() => {
+      reqInfoStub.method = 'delete';
+    });
+
+    describe('when the collectionName is cart-items', () => {
+      let result;
+
+      beforeEach(() => {
+        reqInfoStub.collectionName = 'cart-items';
+
+        result = service.delete(reqInfoStub);
+      });
+
+      it('should delegate the request to the cart service', () => {
+        expect(cartItemsBackendServiceSpy.delete).toHaveBeenCalledWith(reqInfoStub);
+      });
+    });
+  });
 });
