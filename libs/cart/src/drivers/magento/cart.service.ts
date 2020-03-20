@@ -1,8 +1,8 @@
 import { Injectable, Inject } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 
-import { Observable, zip, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { Observable, zip, of, throwError } from 'rxjs';
+import { map, switchMap, catchError } from 'rxjs/operators';
 
 import { DaffCartServiceInterface } from '../interfaces/cart-service.interface';
 import { DaffCart } from '../../models/cart';
@@ -13,6 +13,7 @@ import { DaffCartItem } from '../../models/cart-item';
 import { DaffCartItemInput } from '../../models/cart-item-input';
 import { MagentoGetCartResponse } from './models/responses/get-cart';
 import { MagentoCreateCartResponse } from './models/responses/create-cart';
+import { transformError } from './errors/transform';
 
 /**
  * A service for making Magento GraphQL queries for carts.
@@ -36,6 +37,7 @@ export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart
       query: getCart,
       variables: {cartId}
     }).pipe(
+      catchError((error: Error) => throwError(transformError(error))),
       map(result => this.cartTransformer.transform(result.data.cart))
     );
   }
