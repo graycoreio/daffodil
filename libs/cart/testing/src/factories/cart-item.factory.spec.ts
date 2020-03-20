@@ -4,7 +4,7 @@ import { DaffCartItemFactory } from './cart-item.factory';
 import { DaffCartItem } from '@daffodil/cart';
 
 describe('Cart | Testing | Factories | CartItemFactory', () => {
-  
+
   let cartItemFactory: DaffCartItemFactory;
 
   beforeEach(() => {
@@ -26,7 +26,7 @@ describe('Cart | Testing | Factories | CartItemFactory', () => {
     beforeEach(() => {
       result = cartItemFactory.create();
     });
-    
+
     it('should return a CartItem with all required fields defined', () => {
       expect(result.item_id).not.toBeNull();
       expect(result.product_id).not.toBeNull();
@@ -36,6 +36,7 @@ describe('Cart | Testing | Factories | CartItemFactory', () => {
       expect(result.qty).not.toBeNull();
       expect(result.price).not.toBeNull();
       expect(result.row_total).not.toBeNull();
+      expect(result.discounted_row_total).not.toBeNull();
     });
   });
 
@@ -49,9 +50,9 @@ describe('Cart | Testing | Factories | CartItemFactory', () => {
       expect(result.length).toEqual(2);
       expect(cartItemFactory.create).toHaveBeenCalledTimes(2);
 
-      
+
       spy.calls.reset();
-      
+
       result = cartItemFactory.createMany(3);
       expect(result.length).toEqual(3);
       expect(cartItemFactory.create).toHaveBeenCalledTimes(3);
