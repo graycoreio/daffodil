@@ -5,6 +5,7 @@ export { DaffTestingCartService } from './drivers/testing/cart.service';
 export { DaffInMemoryCartService } from './drivers/in-memory/cart/cart.service';
 export { DaffInMemoryCartItemService } from './drivers/in-memory/cart-item/cart-item.service';
 export { DaffInMemoryCartBillingAddressService } from './drivers/in-memory/cart-billing-address/cart-billing-address.service';
+export { DaffInMemoryCartPaymentService } from './drivers/in-memory/cart-payment/cart-payment.service';
 export { DaffInMemoryCartShippingAddressService } from './drivers/in-memory/cart-shipping-address/cart-shipping-address.service';
 export { DaffInMemoryCartShippingInformationService } from './drivers/in-memory/cart-shipping-information/cart-shipping-information.service';
 export { DaffInMemoryCartShippingMethodsService } from './drivers/in-memory/cart-shipping-methods/cart-shipping-methods.service';
