@@ -1,4 +1,9 @@
-type Constructor<T> = new (...args: any[]) => T;
+import { Constructable } from "../constructable/constructable";
+
+/**
+ * A type for a dictionary of error codes to
+ * errors.
+ */
 export interface DaffErrorCodeMap {
-	[x: string]: Constructor<Error>;
+	[x: string]: Constructable<Error>;
 };
