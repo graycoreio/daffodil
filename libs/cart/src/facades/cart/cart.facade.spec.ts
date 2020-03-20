@@ -396,4 +396,13 @@ describe('DaffCartFacade', () => {
       expect(facade.availablePaymentMethods$).toBeObservable(expected);
     });
   });
+
+  describe('isCartEmpty$', () => {
+
+    it('should return whether the cart is empty', () => {
+      const cart = cartFactory.create();
+      const expected = cold('a', { a: cart.items.length === 0});
+      expect(facade.isCartEmpty$).toBeObservable(expected);
+    });
+  });
 });

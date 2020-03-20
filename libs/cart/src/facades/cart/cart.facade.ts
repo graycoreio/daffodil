@@ -28,7 +28,8 @@ import {
   selectShippingMethodsErrors,
   selectPaymentErrors,
   selectPaymentMethodsErrors,
-  selectCartErrorsObject
+	selectCartErrorsObject,
+	selectIsCartEmpty
 } from '../../selectors/public_api';
 import { DaffCartErrors } from '../../reducers/cart-errors.type';
 import { DaffCartErrorType } from '../../reducers/cart-error-type.enum';
@@ -62,6 +63,7 @@ export class DaffCartFacade implements DaffStoreFacade<Action> {
   shippingInformation$: Observable<DaffCart['shipping_information']>;
   availableShippingMethods$: Observable<DaffCart['available_shipping_methods']>;
   availablePaymentMethods$: Observable<DaffCart['available_payment_methods']>;
+  isCartEmpty$: Observable<boolean>;
 
   constructor(private store: Store<DaffCartReducersState>) {
     this.loading$ = this.store.pipe(select(selectCartLoading));
@@ -89,6 +91,7 @@ export class DaffCartFacade implements DaffStoreFacade<Action> {
     this.shippingInformation$ = this.store.pipe(select(selectCartShippingInformation));
     this.availableShippingMethods$ = this.store.pipe(select(selectCartAvailableShippingMethods));
     this.availablePaymentMethods$ = this.store.pipe(select(selectCartAvailablePaymentMethods));
+    this.isCartEmpty$ = this.store.pipe(select(selectIsCartEmpty));
   }
 
   dispatch(action: Action) {
