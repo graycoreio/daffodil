@@ -1,4 +1,4 @@
 type Constructor<T> = new (...args: any[]) => T;
-export type DaffErrorCodeMap = {
+export interface DaffErrorCodeMap {
 	[x: string]: Constructor<Error>;
 };
