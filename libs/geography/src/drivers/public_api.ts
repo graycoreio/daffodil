@@ -1,1 +1,3 @@
-export { DaffGeographyServiceInterface } from './interfaces/geography-service.interface';
+export {
+	DaffGeographyServiceInterface,
+} from './interfaces/geography-service.interface';

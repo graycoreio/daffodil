@@ -1,6 +1,13 @@
-import { DaffCountry } from "../../models/subdivision";
+import { DaffCountry } from '../../models/country';
 
 export interface DaffGeographyServiceInterface {
-    list(): DaffCountry[];
-    get(id: DaffCountry['id']): DaffCountry;
+	/**
+	 * Retrieves the list of countries available to the given store.
+	 */
+	list(): DaffCountry[];
+
+	/**
+	 * Retrieve precise information about a specific country.
+	 */
+	get(id: DaffCountry['id']): DaffCountry;
 }
