@@ -7,5 +7,7 @@ export { shuffle } from './utils/shuffle';
 export { randomSubset } from './utils/random-subset';
 export { randomSlice } from './utils/random-slice';
 
+export { Constructable } from './constructable/constructable';
+
 export * from './errors/public_api';
 export * from './storage/public_api';
