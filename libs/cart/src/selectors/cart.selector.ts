@@ -134,3 +134,8 @@ export const selectCartAvailablePaymentMethods: MemoizedSelector<object, DaffCar
   selectCartValue,
   (state: DaffCartReducerState['cart']) => state.available_payment_methods
 )
+
+export const selectIsCartEmpty : MemoizedSelector<object, boolean> = createSelector(
+  selectCartValue,
+  cart => !cart || !cart.items || cart.items.length === 0
+)

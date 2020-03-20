@@ -30,7 +30,8 @@ import {
   selectShippingMethodsErrors,
   selectPaymentErrors,
   selectPaymentMethodsErrors,
-  selectCartErrorsObject
+  selectCartErrorsObject,
+	selectIsCartEmpty
 } from './cart.selector';
 import { DaffCartErrorType } from '../reducers/cart-error-type.enum';
 import { DaffCartErrors } from '../reducers/cart-errors.type';
@@ -276,6 +277,15 @@ describe('Cart | Selector | Cart', () => {
     it('returns cart available payment methods', () => {
       const selector = store.pipe(select(selectCartAvailablePaymentMethods));
       const expected = cold('a', {a: cart.available_payment_methods});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectIsCartEmpty', () => {
+    it('selects whether the cart is empty', () => {
+      const selector = store.pipe(select(selectIsCartEmpty));
+      const expected = cold('a', {a: cart.items.length === 0});
 
       expect(selector).toBeObservable(expected);
     });
