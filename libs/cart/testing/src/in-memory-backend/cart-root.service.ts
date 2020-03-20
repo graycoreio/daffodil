@@ -4,6 +4,7 @@ import { InMemoryDbService, RequestInfo, STATUS } from 'angular-in-memory-web-ap
 import { DaffCart } from '@daffodil/cart';
 
 import { DaffInMemoryBackendCartService } from './cart/cart.service';
+import { DaffInMemoryBackendCartItemsService } from './cart-items/cart-items.service';
 
 /**
  * The root cart in-memory backend.
@@ -19,12 +20,14 @@ export class DaffInMemoryBackendCartRootService implements InMemoryDbService {
    */
   public static readonly COLLECTION_NAMES = [
     'cart',
+    'cart-items',
   ]
 
   public carts: DaffCart[] = [];
 
   constructor(
     private cartService: DaffInMemoryBackendCartService,
+    private cartItemsService: DaffInMemoryBackendCartItemsService,
   ) {}
 
   createDb(reqInfo: RequestInfo) {
@@ -57,9 +60,14 @@ export class DaffInMemoryBackendCartRootService implements InMemoryDbService {
   }
 
   private delegateRequest(reqInfo: RequestInfo) {
+    reqInfo.collection = this.carts;
+
     switch (reqInfo.collectionName) {
       case 'cart':
         return this.cartService[reqInfo.method](reqInfo);
+
+      case 'cart-items':
+        return this.cartItemsService[reqInfo.method](reqInfo);
 
       default:
         return reqInfo.utils.createResponse$(() => ({
