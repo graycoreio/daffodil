@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import {
   DaffCartDriver,
+  DaffCartItemDriver,
 } from '@daffodil/cart';
 
 import { DaffInMemoryCartService } from './cart/cart.service';
+import { DaffInMemoryCartItemService } from './cart-item/cart-item.service';
 
 @NgModule({
   imports: [
@@ -20,6 +22,10 @@ export class DaffCartInMemoryDriverModule {
         {
           provide: DaffCartDriver,
           useExisting: DaffInMemoryCartService
+        },
+        {
+          provide: DaffCartItemDriver,
+          useExisting: DaffInMemoryCartItemService
         }
       ]
     };
