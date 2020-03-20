@@ -7,4 +7,5 @@ export { shuffle } from './utils/shuffle';
 export { randomSubset } from './utils/random-subset';
 export { randomSlice } from './utils/random-slice';
 
+export * from './errors/public_api';
 export * from './storage/public_api';
