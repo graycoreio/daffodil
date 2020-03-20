@@ -29,9 +29,10 @@ export class DaffMagentoCartItemTransformer {
       product_id: String(cartItem.product.id),
 			image: {
 				id: cartItem.product.image.label,
-				url: cartItem.product.image.url, 
+				url: cartItem.product.image.url,
 				label: cartItem.product.image.label
-			},
+      },
+      discounted_row_total: cartItem.prices.row_total.value - cartItem.prices.total_item_discount.value,
 
       // TODO: implement
       parent_item_id: 0
