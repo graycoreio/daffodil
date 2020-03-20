@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.17](https://github.com/graycoreio/daffodil/compare/v0.4.16...v0.4.17) (2020-03-20)
+
+
+### Features
+
+* **cart:** add a selector for whether the cart is empty ([#714](https://github.com/graycoreio/daffodil/issues/714)) ([0ad387c](https://github.com/graycoreio/daffodil/commit/0ad387c27a06c89737c4fbb20148bfada66e856a))
+* **cart:** add cart in-memory driver ([#645](https://github.com/graycoreio/daffodil/issues/645)) ([9464455](https://github.com/graycoreio/daffodil/commit/946445585dc6043687cebc9aa5d849d48ef2047a))
+
 ### [0.4.16](https://github.com/graycoreio/daffodil/compare/v0.4.15...v0.4.16) (2020-03-19)
 
 
