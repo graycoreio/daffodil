@@ -20,7 +20,7 @@ export class DaffInMemoryCartShippingInformationService implements DaffCartShipp
     return this.http.get<DaffCartShippingRate>(`${this.url}/${cartId}`);
   }
 
-  update(cartId: DaffCart['id'], info: Partial<DaffCartShippingRate>): Observable<DaffCart> {
+  update(cartId: DaffCart['id'], info: Partial<DaffCartShippingRate>): Observable<Partial<DaffCart>> {
     return this.http.put<DaffCart>(`${this.url}/${cartId}`, info);
   }
 
