@@ -36,7 +36,7 @@ describe('Cart | Testing | Factories | CartItemFactory', () => {
       expect(result.qty).not.toBeNull();
       expect(result.price).not.toBeNull();
       expect(result.row_total).not.toBeNull();
-      expect(result.discounted_row_total).not.toBeNull();
+      expect(result.total_discount).not.toBeNull();
     });
   });
 

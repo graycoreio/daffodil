@@ -41,9 +41,7 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartItem', () => {
     let sku;
     let qty;
     let price;
-    let rowTotal;
     let discount;
-    let discountedPrice;
 		let url;
 		let label;
 
@@ -52,15 +50,12 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartItem', () => {
       qty = 3;
       price = 3.34;
       discount = 1;
-      rowTotal = price * qty;
-      discountedPrice = rowTotal - discount;
 			url = 'url';
 			label = 'label';
 
       mockMagentoCartItem.product.sku = sku;
       mockMagentoCartItem.quantity = qty;
       mockMagentoCartItem.prices.price.value = price;
-      mockMagentoCartItem.prices.row_total.value = rowTotal;
 			mockMagentoCartItem.prices.total_item_discount.value = discount;
 			mockMagentoCartItem.product.image = {
 				url: url,
@@ -74,7 +69,7 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartItem', () => {
       expect(transformedCartItem.sku).toEqual(sku);
       expect(transformedCartItem.qty).toEqual(qty);
       expect(transformedCartItem.price).toEqual(price);
-      expect(transformedCartItem.discounted_row_total).toEqual(discountedPrice);
+      expect(transformedCartItem.total_discount).toEqual(discount);
       expect(transformedCartItem.image.id).toEqual(label);
       expect(transformedCartItem.image.url).toEqual(url);
       expect(transformedCartItem.image.label).toEqual(label);

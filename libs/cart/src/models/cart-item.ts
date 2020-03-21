@@ -13,5 +13,5 @@ export interface DaffCartItem {
   qty: number;
   price: number;
   row_total: number;
-  discounted_row_total: number;
+  total_discount: number;
 }

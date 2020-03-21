@@ -14,7 +14,7 @@ export class MockCartItem implements DaffCartItem {
   qty = faker.random.number({min:1, max:100});
   price = faker.random.number(1500);
   row_total = this.qty * this.price
-  discounted_row_total = faker.random.number(1000);
+  total_discount = faker.random.number(1000);
 }
 
 @Injectable({
