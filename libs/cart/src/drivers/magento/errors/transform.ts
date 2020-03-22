@@ -1,6 +1,6 @@
 import { ApolloError } from 'apollo-client';
-import { DaffCartMagentoErrorMap } from './map';
 import { DaffErrorCodeMap } from '@daffodil/core';
+import { DaffCartMagentoErrorMap } from './map';
 
 const transformGraphQlError = (
 	error: ApolloError,
