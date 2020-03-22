@@ -1,6 +1,6 @@
 import { ApolloError } from 'apollo-client';
 import { MagentoCartGraphQlErrorCode } from './codes';
-import { transformError, lookupDaffCartError } from './transform';
+import { transformError } from './transform';
 import { DaffCartNotFoundError } from 'libs/cart/src/errors/not-found';
 
 describe('Transforming Magento GraphQlErrors into DaffCartErrors', () => {
