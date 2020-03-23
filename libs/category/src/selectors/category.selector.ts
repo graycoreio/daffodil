@@ -170,9 +170,10 @@ export const selectSelectedCategory = createSelector(
 );
 
 export const selectCategoryPageProducts = createSelector(
-  selectCategoryPageProductIds,
-  fromProduct.selectAllProducts,
-  (ids, products: DaffProductUnion[]) => products.filter(product => ids.indexOf(product.id) >= 0)
+	selectCategoryPageProductIds,
+	fromProduct.selectProductEntities,
+	(ids, products: Dictionary<DaffProductUnion>) =>
+		ids.map(id => products[id]).filter(p => p != null),
 );
 
 export const selectCategory = createSelector(

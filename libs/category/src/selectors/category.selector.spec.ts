@@ -326,13 +326,68 @@ describe('DaffCategorySelectors', () => {
   });
 
   describe('selectCategoryPageProducts', () => {
+		it('selects the products of the selected category', () => {
+			const selector = store.pipe(select(selectCategoryPageProducts));
+			const expected = cold('a', { a: [product] });
+			expect(selector).toBeObservable(expected);
+		});
 
-    it('selects the products of the selected category', () => {
-      const selector = store.pipe(select(selectCategoryPageProducts));
-      const expected = cold('a', { a: [product] });
-      expect(selector).toBeObservable(expected);
-    });
-  });
+		it('selects the products in the right order', () => {
+			const selector = store.pipe(select(selectCategoryPageProducts));
+
+			const productA = productFactory.create();
+			const productB = productFactory.create();
+
+			//Load a set of products
+			stubCategory.product_ids = [productA.id, productB.id];
+			stubCategoryPageConfigurationState.product_ids = [
+				productA.id,
+				productB.id,
+			];
+			const loadA = new DaffCategoryLoadSuccess({
+				category: {
+					...stubCategory,
+				},
+				categoryPageConfigurationState: {
+					...stubCategoryPageConfigurationState,
+				},
+				products: [productA, productB],
+			});
+			const loadAProducts = new DaffProductGridLoadSuccess([
+				productA,
+				productB,
+			]);
+			store.dispatch(loadAProducts);
+			store.dispatch(loadA);
+			const expectedA = cold('a', { a: [productA, productB] });
+			expect(selector).toBeObservable(expectedA);
+
+			//Load the same products in a different order
+			stubCategory.product_ids = [productB.id, productA.id];
+			stubCategoryPageConfigurationState.product_ids = [
+				productB.id,
+				productA.id,
+			];
+			const loadB = new DaffCategoryLoadSuccess({
+				category: {
+					...stubCategory,
+				},
+				categoryPageConfigurationState: {
+					...stubCategoryPageConfigurationState,
+				},
+				products: [productA, productB],
+			});
+			const loadBProducts = new DaffProductGridLoadSuccess([
+				productA,
+				productB,
+			]);
+
+			const expectedB = cold('b', { b: [productB, productA] });
+			store.dispatch(loadBProducts);
+			store.dispatch(loadB);
+			expect(selector).toBeObservable(expectedB);
+		});
+	});
 
   describe('selectCategory', () => {
 
