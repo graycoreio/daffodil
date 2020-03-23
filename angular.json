@@ -1093,7 +1093,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/geography/src/test.ts",
+            "main": "libs/geography/test.ts",
             "codeCoverage": true,
             "tsConfig": "libs/geography/tsconfig.spec.json",
 						"karmaConfig": "libs/geography/karma.conf.js"

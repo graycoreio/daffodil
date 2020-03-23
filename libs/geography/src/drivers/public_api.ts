@@ -1,4 +1,4 @@
 export {
 	DaffGeographyServiceInterface,
-	DaffGeopgraphyDriver
+	DaffGeographyDriver
 } from './interfaces/geography-service.interface';
