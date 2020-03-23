@@ -159,6 +159,27 @@ describe('DaffCategorySelectors', () => {
 
   describe('selectCategoryPageAppliedFilters', () => {
 
+    it('sets applied filters to [] if the available filters is []', () => {
+			stubCategory.product_ids = [product.id];
+			stubCategoryPageConfigurationState.filters = [];
+			store.dispatch(new DaffCategoryLoadSuccess({ category: stubCategory, categoryPageConfigurationState: stubCategoryPageConfigurationState, products: null }));
+			const filterRequests: DaffCategoryFilterRequest[] = [
+				{
+					name: 'name',
+					type: DaffCategoryFilterType.Equal,
+					value: ['value']
+				}
+			];
+			const expectedAppliedFilters: DaffCategoryAppliedFilter[] = [];
+			store.dispatch(new DaffCategoryLoad({
+				id: stubCategoryPageConfigurationState.id,
+				filter_requests: filterRequests
+			}));
+      const selector = store.pipe(select(selectCategoryPageAppliedFilters));
+      const expected = cold('a', { a: expectedAppliedFilters });
+      expect(selector).toBeObservable(expected);
+    });
+
     it('selects the applied filters of the current category', () => {
 			stubCategory.product_ids = [product.id];
 			const filterRequests: DaffCategoryFilterRequest[] = [

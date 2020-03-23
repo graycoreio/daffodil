@@ -81,7 +81,7 @@ export const selectCategoryPageAppliedFilters = createSelector(
 	selectCategoryPageFilterRequests,
 	selectCategoryFilters,
 	(filterRequests: DaffCategoryFilterRequest[], availableFilters: DaffCategoryFilter[]): DaffCategoryAppliedFilter[] => {
-		if(!availableFilters || !availableFilters.length) return null;
+		if(!availableFilters.length) return [];
 		return filterRequests.map(request => 
 			availableFilters
 				.filter(availableFilter => availableFilter.name === request.name)
