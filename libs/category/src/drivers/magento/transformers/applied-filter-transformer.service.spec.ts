@@ -37,7 +37,7 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
 		
 		describe('when the filter type is Range', () => {
 			
-			it('should transform into a valid magento FromTo filter', () => {
+			it('should transform a format of ##-## into a valid magento FromTo filter', () => {
 				const categoryFilterActions: DaffCategoryFilterRequest[] = [
 					{
 						type: DaffCategoryFilterType.Range,
@@ -52,6 +52,46 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
 					any: {
 						[MagentoCategoryFilterActionEnum.From]: '30',
 						[MagentoCategoryFilterActionEnum.To]: '40'
+					}
+				};
+
+				expect(service.transform(categoryId, categoryFilterActions)).toEqual(expectedReturn);
+			});
+
+			it('should transform a format of *-## into a valid magento FromTo filter', () => {
+				const categoryFilterActions: DaffCategoryFilterRequest[] = [
+					{
+						type: DaffCategoryFilterType.Range,
+						name: 'any',
+						value: ['*-30']
+					}
+				];
+				const expectedReturn: MagentoCategoryFilters = {
+					category_id: {
+						eq: 'id'
+					},
+					any: {
+						[MagentoCategoryFilterActionEnum.To]: '30'
+					}
+				};
+
+				expect(service.transform(categoryId, categoryFilterActions)).toEqual(expectedReturn);
+			});
+
+			it('should transform a format of ##-* into a valid magento FromTo filter', () => {
+				const categoryFilterActions: DaffCategoryFilterRequest[] = [
+					{
+						type: DaffCategoryFilterType.Range,
+						name: 'any',
+						value: ['30-*']
+					}
+				];
+				const expectedReturn: MagentoCategoryFilters = {
+					category_id: {
+						eq: 'id'
+					},
+					any: {
+						[MagentoCategoryFilterActionEnum.From]: '30'
 					}
 				};
 
