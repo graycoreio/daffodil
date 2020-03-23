@@ -1,2 +1,1 @@
-// Address
-export { DaffAddressFactory } from './address/factories/address.factory';
+export * from './factories/public_api';
