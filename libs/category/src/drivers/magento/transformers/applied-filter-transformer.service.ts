@@ -25,8 +25,8 @@ export class DaffMagentoAppliedFiltersTransformService {
 				const fromToValues = filter.value[0].split(DaffCategoryFromToFilterSeparator);
 				magentoFilters[filter.name] = {
 					...magentoFilters[filter.name],
-					[MagentoCategoryFilterActionEnum.From]: fromToValues[0],
-					...this.getRangeTo(fromToValues[1])
+					...this.getRangeFromValue(fromToValues[0]),
+					...this.getRangeToValue(fromToValues[1])
 				}
 			} else {
 				magentoFilters[filter.name] = {
@@ -55,7 +55,11 @@ export class DaffMagentoAppliedFiltersTransformService {
 		return type === DaffCategoryFilterType.Equal ? value : value[0];
 	}
 
-	private getRangeTo(toValue: string) {
+	private getRangeFromValue(fromValue: string) {
+		return fromValue !== '*' ? {[MagentoCategoryFilterActionEnum.From]: fromValue} : null;
+	}
+
+	private getRangeToValue(toValue: string) {
 		return toValue !== '*' ? {[MagentoCategoryFilterActionEnum.To]: toValue} : null;
 	}
 }

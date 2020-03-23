@@ -58,6 +58,26 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
 				expect(service.transform(categoryId, categoryFilterActions)).toEqual(expectedReturn);
 			});
 
+			it('should transform a format of *-## into a valid magento FromTo filter', () => {
+				const categoryFilterActions: DaffCategoryFilterRequest[] = [
+					{
+						type: DaffCategoryFilterType.Range,
+						name: 'any',
+						value: ['*-30']
+					}
+				];
+				const expectedReturn: MagentoCategoryFilters = {
+					category_id: {
+						eq: 'id'
+					},
+					any: {
+						[MagentoCategoryFilterActionEnum.To]: '30'
+					}
+				};
+
+				expect(service.transform(categoryId, categoryFilterActions)).toEqual(expectedReturn);
+			});
+
 			it('should transform a format of ##-* into a valid magento FromTo filter', () => {
 				const categoryFilterActions: DaffCategoryFilterRequest[] = [
 					{
