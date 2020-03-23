@@ -14,13 +14,14 @@ export class MockCartItem implements DaffCartItem {
   qty = faker.random.number({min:1, max:100});
   price = faker.random.number(1500);
   row_total = this.qty * this.price
+  total_discount = faker.random.number({min: 0, max: this.price - 1});
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class DaffCartItemFactory extends DaffModelFactory<DaffCartItem> {
-  
+
   constructor(){
     super(MockCartItem);
   }
