@@ -3,6 +3,7 @@ import { regionFragment } from './region';
 
 export const countryFragment = gql`
   fragment country on Country {
+    id
     available_regions {
       ...region
     }

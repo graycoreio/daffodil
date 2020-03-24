@@ -15,7 +15,9 @@ export class DaffMagentoCountryTransformer {
 
   private transformSubdivisions(country: MagentoCountry) {
     return {
-      subdivisions: country.available_regions.map(region => this.subdivisionTransformer.transform(region))
+      subdivisions: country.available_regions
+        ? country.available_regions.map(region => this.subdivisionTransformer.transform(region))
+        : []
     }
   }
 
@@ -29,7 +31,7 @@ export class DaffMagentoCountryTransformer {
 
       ...this.transformSubdivisions(country),
 
-      id: country.two_letter_abbreviation,
+      id: country.id,
       name: country.full_name_locale,
       name_en: country.full_name_english,
       alpha2: country.two_letter_abbreviation,

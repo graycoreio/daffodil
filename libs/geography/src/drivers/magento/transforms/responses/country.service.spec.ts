@@ -54,6 +54,7 @@ describe('Driver | Magento | Geography | Transformer | Country', () => {
       code: mockDaffSubdivision.iso_3166_2
     };
     mockMagentoCountry = {
+      id: mockDaffCountry.id,
       two_letter_abbreviation: mockDaffCountry.alpha2,
       three_letter_abbreviation: mockDaffCountry.alpha3,
       full_name_english: mockDaffCountry.name_en,
