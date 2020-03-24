@@ -4,3 +4,8 @@
     <daff-loading-icon *ngIf="CartContainer.loading$ | async"></daff-loading-icon>
   </div>
 </daff-container>
+
+<button (click)="removeFirstItem()">remove first item</button>
+<button (click)="clearCart()">clear cart</button>
+<button (click)="updateQty()">update qty on first item</button>
+<button (click)="addToCart()">add to cart</button>

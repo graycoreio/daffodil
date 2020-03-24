@@ -16,7 +16,9 @@
       "@daffodil/newsletter": ["libs/newsletter/src"],
       "@daffodil/newsletter/testing": ["libs/newsletter/testing/src"],
 			"@daffodil/driver/hubspot": ["libs/driver/hubspot/src"],
-			"@daffodil/geography": ["libs/geography/src"]
+			"@daffodil/geography": ["libs/geography/src"],
+      "@daffodil/category": ["libs/category/src"],
+      "@daffodil/category/testing": ["libs/category/testing/src"],
     }
   }
 }

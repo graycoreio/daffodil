@@ -6,6 +6,7 @@ import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
 import { DaffNavigationMagentoDriverModule } from '@daffodil/navigation';
 import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/testing';
 import { DaffCartMagentoDriverModule } from '@daffodil/cart';
+import { DaffCategoryMagentoDriverModule } from '@daffodil/category';
 
 @NgModule({
   imports: [
@@ -15,7 +16,9 @@ import { DaffCartMagentoDriverModule } from '@daffodil/cart';
     DaffCartMagentoDriverModule.forRoot(),
     DaffCheckoutInMemoryDriverModule.forRoot(),
     DaffNavigationMagentoDriverModule.forRoot(),
-    DaffNewsletterInMemoryDriverModule.forRoot()
+		DaffNewsletterInMemoryDriverModule.forRoot(),
+		DaffCategoryMagentoDriverModule.forRoot()
+
   ]
 })
 export class MagentoModule {
