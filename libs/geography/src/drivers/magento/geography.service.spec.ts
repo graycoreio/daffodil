@@ -11,13 +11,13 @@ import {
   DaffSubdivisionFactory
 } from '@daffodil/geography/testing';
 
-import { DaffMagentoGeographyService } from './geography.service';
+import { DaffGeographyMagentoService } from './geography.service';
 import { DaffMagentoCountryTransformer } from './transforms/responses/country.service';
 import { getCountries, MagentoGetCountriesResponse } from './queries/public_api';
 import { MagentoRegion, MagentoCountry } from './models/responses/public_api';
 
 describe('Driver | Magento | Geography | GeographyService', () => {
-  let service: DaffMagentoGeographyService;
+  let service: DaffGeographyMagentoService;
   let controller: ApolloTestingController;
 
   let daffCountryFactory: DaffCountryFactory;
@@ -38,7 +38,7 @@ describe('Driver | Magento | Geography | GeographyService', () => {
         ApolloTestingModule
       ],
       providers: [
-        DaffMagentoGeographyService,
+        DaffGeographyMagentoService,
         {
           provide: DaffMagentoCountryTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoCountryTransformer', ['transform'])
@@ -46,7 +46,7 @@ describe('Driver | Magento | Geography | GeographyService', () => {
       ]
     });
 
-    service = TestBed.get(DaffMagentoGeographyService);
+    service = TestBed.get(DaffGeographyMagentoService);
     controller = TestBed.get(ApolloTestingController);
 
     daffSubdivisionFactory = TestBed.get(DaffSubdivisionFactory);

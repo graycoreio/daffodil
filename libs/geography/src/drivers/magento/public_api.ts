@@ -3,6 +3,6 @@ export { DaffMagentoSubdivisionTransformer } from './transforms/responses/subdiv
 
 export * from './models/responses/public_api';
 
-export { DaffMagentoGeographyService } from './geography.service';
+export { DaffGeographyMagentoService } from './geography.service';
 
 export { DaffGeographyMagentoDriverModule } from './geography-driver.module';

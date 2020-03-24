@@ -2,7 +2,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DaffGeographyDriver } from '../interfaces/geography-service.interface';
-import { DaffMagentoGeographyService } from './geography.service';
+import { DaffGeographyMagentoService } from './geography.service';
 
 @NgModule({
   imports: [
@@ -16,7 +16,7 @@ export class DaffGeographyMagentoDriverModule {
       providers: [
         {
           provide: DaffGeographyDriver,
-          useExisting: DaffMagentoGeographyService
+          useExisting: DaffGeographyMagentoService
         }
       ]
     };

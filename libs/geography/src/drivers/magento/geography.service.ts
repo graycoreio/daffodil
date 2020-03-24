@@ -15,7 +15,7 @@ import { getCountries, MagentoGetCountriesResponse } from './queries/public_api'
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoGeographyService implements DaffGeographyServiceInterface<DaffCountry> {
+export class DaffGeographyMagentoService implements DaffGeographyServiceInterface<DaffCountry> {
   constructor(
     private apollo: Apollo,
     public countryTransformer: DaffMagentoCountryTransformer,
