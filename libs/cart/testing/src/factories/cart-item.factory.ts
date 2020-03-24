@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
 import { DaffCartItem } from '@daffodil/cart';
+import { DaffProductImage } from '@daffodil/product';
 import { DaffProductImageFactory } from '@daffodil/product/testing';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
@@ -9,7 +10,7 @@ export class MockCartItem implements DaffCartItem {
   item_id = faker.random.number(1000);
   product_id = faker.random.number(1000);
 	parent_item_id = faker.random.number(1000);
-	image = new DaffProductImageFactory().create();
+	image = <DaffProductImage>new DaffProductImageFactory().create();
   sku = 'sku';
   name = 'Product Name';
   qty = faker.random.number({min:1, max:100});

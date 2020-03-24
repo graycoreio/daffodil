@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffInMemoryCartDataService } from './cart-data.service';
-import { DaffCartFactory, DaffCartItemFactory } from '../factories';
+import { DaffCartFactory, DaffCartItemFactory } from '../factories/public_api';
 
 describe('Cart | Testing | In Memory Backend | DaffInMemoryCartDataService', () => {
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { DaffCart, DaffCartItem } from '@daffodil/cart';
 
-import { DaffCartFactory } from '../factories/cart.factory';
+import { DaffCartFactory } from '../factories/public_api';
 
 /**
  * A service for sharing common data across all cart inmemory services.

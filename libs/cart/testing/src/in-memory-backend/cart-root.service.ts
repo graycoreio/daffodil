@@ -4,6 +4,7 @@ import { InMemoryDbService, RequestInfo, STATUS } from 'angular-in-memory-web-ap
 import { DaffInMemoryBackendCartService } from './cart/cart.service';
 import { DaffInMemoryBackendCartItemService } from './cart-item/cart-item.service';
 import { DaffInMemoryCartDataService } from './cart-data.service';
+import { DaffCart } from '@daffodil/cart';
 
 /**
  * The root cart in-memory backend.
@@ -28,7 +29,7 @@ export class DaffInMemoryBackendCartRootService implements InMemoryDbService {
     private cartInMemoryDataService: DaffInMemoryCartDataService
   ) {}
 
-  createDb() {
+  createDb(): {cart: DaffCart} {
     return {
       cart: this.cartInMemoryDataService.get()
     };
