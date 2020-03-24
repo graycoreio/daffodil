@@ -47,7 +47,7 @@ describe('DaffInMemoryBackendCartService', () => {
     };
     cartId = mockCart.id;
     baseUrl = 'api/cart/';
-    cartUrl = `${baseUrl}${cartId}/`;
+    cartUrl = `/${baseUrl}${cartId}/`;
     reqInfoStub = {
       id: cartId,
       resourceUrl: baseUrl,

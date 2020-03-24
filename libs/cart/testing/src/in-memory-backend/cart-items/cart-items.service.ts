@@ -62,7 +62,7 @@ export class DaffInMemoryBackendCartItemsService implements InMemoryDbService {
    * Gets whatever follows the cart ID section of the request URL.
    */
   private getAction(reqInfo: RequestInfo): string {
-    return reqInfo.url.replace(`${reqInfo.resourceUrl}${reqInfo.id}/`, '')
+    return reqInfo.url.replace(`/${reqInfo.resourceUrl}${reqInfo.id}/`, '')
   }
 
   private getCart(reqInfo: RequestInfo): DaffCart {

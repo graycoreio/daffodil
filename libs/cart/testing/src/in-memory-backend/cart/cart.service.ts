@@ -27,7 +27,7 @@ export class DaffInMemoryBackendCartService implements InMemoryDbService {
   post(reqInfo: RequestInfo) {
     return reqInfo.utils.createResponse$(() => {
       let body;
-      const action = this.getAction(reqInfo);
+			const action = this.getAction(reqInfo);
 
       if (reqInfo.id === 'addToCart') {
         // deprecated
@@ -49,7 +49,7 @@ export class DaffInMemoryBackendCartService implements InMemoryDbService {
    * Gets whatever follows the cart ID section of the request URL.
    */
   private getAction(reqInfo: RequestInfo): string {
-    return reqInfo.url.replace(`${reqInfo.resourceUrl}${reqInfo.id}/`, '')
+    return reqInfo.url.replace(`/${reqInfo.resourceUrl}${reqInfo.id}/`, '')
   }
 
   private clear(reqInfo: RequestInfo): DaffCart {
