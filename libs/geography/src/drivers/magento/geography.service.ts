@@ -8,6 +8,8 @@ import { DaffGeographyServiceInterface } from '../interfaces/geography-service.i
 import { DaffCountry } from '../../models/country';
 import { DaffMagentoCountryTransformer } from './transforms/responses/country.service';
 import { getCountries, MagentoGetCountriesResponse } from './queries/public_api';
+import { getCountry } from './queries/get-country';
+import { MagentoGetCountryResponse } from './queries/responses/get-country';
 
 /**
  * A service for making Magento GraphQL queries for carts.
@@ -33,10 +35,13 @@ export class DaffGeographyMagentoService implements DaffGeographyServiceInterfac
   }
 
   get(countryId: DaffCountry['id']): Observable<DaffCountry> {
-    return this.list().pipe(
-      map(countries =>
-        countries.find(country => country.id === countryId)
-      )
-    )
+    return this.apollo.query<MagentoGetCountryResponse>({
+      query: getCountry,
+      variables: {
+        countryId
+      }
+    }).pipe(
+      map(result => this.countryTransformer.transform(result.data.country))
+    );
   }
 }

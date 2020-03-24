@@ -15,6 +15,8 @@ import { DaffGeographyMagentoService } from './geography.service';
 import { DaffMagentoCountryTransformer } from './transforms/responses/country.service';
 import { getCountries, MagentoGetCountriesResponse } from './queries/public_api';
 import { MagentoRegion, MagentoCountry } from './models/responses/public_api';
+import { getCountry } from './queries/get-country';
+import { MagentoGetCountryResponse } from './queries/responses/get-country';
 
 describe('Driver | Magento | Geography | GeographyService', () => {
   let service: DaffGeographyMagentoService;
@@ -31,6 +33,7 @@ describe('Driver | Magento | Geography | GeographyService', () => {
   let mockMagentoRegion: MagentoRegion;
   let mockMagentoCountry: MagentoCountry;
   let mockGetCountriesResponse: MagentoGetCountriesResponse;
+  let mockGetCountryResponse: MagentoGetCountryResponse;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -69,14 +72,15 @@ describe('Driver | Magento | Geography | GeographyService', () => {
       three_letter_abbreviation: mockDaffCountry.alpha3,
       full_name_english: mockDaffCountry.name_en,
       full_name_locale: mockDaffCountry.name,
-      available_regions: [mockMagentoRegion]
     };
-    mockDaffCountry.subdivisions = [mockDaffSubdivision];
     mockGetCountriesResponse = {
       countries: [mockMagentoCountry]
     };
+    mockGetCountryResponse = {
+      country: mockMagentoCountry
+    };
 
-    countryTransformerSpy.transform.withArgs(mockMagentoCountry).and.returnValue(mockDaffCountry);
+    countryTransformerSpy.transform.and.returnValue(mockDaffCountry);
   });
 
   it('should be created', () => {
@@ -85,13 +89,33 @@ describe('Driver | Magento | Geography | GeographyService', () => {
 
   describe('get | getting a single country by ID', () => {
     beforeEach(() => {
-      spyOn(service, 'list').and.returnValue(of([mockDaffCountry]));
+      mockDaffCountry.subdivisions = [mockDaffSubdivision];
+      mockMagentoCountry.available_regions = [mockMagentoRegion];
+    });
+
+    it('should call the transformer with the correct argument', done => {
+      service.get(countryId).subscribe(() => {
+        expect(countryTransformerSpy.transform).toHaveBeenCalledWith(mockMagentoCountry);
+        done();
+      });
+
+      const op = controller.expectOne(getCountry);
+
+      op.flush({
+        data: mockGetCountryResponse
+      });
     });
 
     it('should return the correct country', done => {
       service.get(countryId).subscribe(result => {
         expect(result).toEqual(jasmine.objectContaining(mockDaffCountry));
         done();
+      });
+
+      const op = controller.expectOne(getCountry);
+
+      op.flush({
+        data: mockGetCountryResponse
       });
     });
   });
