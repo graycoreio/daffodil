@@ -13,10 +13,8 @@ import { DaffCountry } from '../../../../models/country';
 export class DaffMagentoCountryTransformer {
   constructor(public subdivisionTransformer: DaffMagentoSubdivisionTransformer) {}
 
-  private transformSubdivisions(country: MagentoCountry): DaffCountry['subdivisions'] {
-    return country.available_regions
-      ? country.available_regions.map(region => this.subdivisionTransformer.transform(region))
-      : []
+  private transformSubdivisions(regions: MagentoCountry['available_regions']): DaffCountry['subdivisions'] {
+    return regions.map(region => this.subdivisionTransformer.transform(region))
   }
 
   /**
@@ -26,7 +24,7 @@ export class DaffMagentoCountryTransformer {
     return country ? {
       ...{magento_country: country},
 
-      subdivisions: this.transformSubdivisions(country),
+      subdivisions: this.transformSubdivisions(country.available_regions || []),
 
       id: country.id,
       name: country.full_name_locale,
