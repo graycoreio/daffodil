@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { STATUS } from 'angular-in-memory-web-api';
 
 import {
   DaffCart,
@@ -13,13 +12,13 @@ import {
 
 import { DaffInMemoryBackendCartRootService } from './cart-root.service';
 import { DaffInMemoryBackendCartService } from './cart/cart.service';
-import { DaffInMemoryBackendCartItemsService } from './cart-items/cart-items.service';
+import { DaffInMemoryBackendCartItemService } from './cart-item/cart-item.service';
 
 describe('DaffInMemoryBackendCartRootService | Unit', () => {
   let service: DaffInMemoryBackendCartRootService;
 
   let cartBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartService>;
-  let cartItemsBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartItemsService>;
+  let cartItemsBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartItemService>;
 
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
@@ -42,15 +41,15 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
           useValue: jasmine.createSpyObj('DaffInMemoryBackendCartService', ['get', 'post'])
         },
         {
-          provide: DaffInMemoryBackendCartItemsService,
-          useValue: jasmine.createSpyObj('DaffInMemoryBackendCartItemsService', ['get', 'post', 'put', 'delete'])
+          provide: DaffInMemoryBackendCartItemService,
+          useValue: jasmine.createSpyObj('DaffInMemoryBackendCartItemService', ['get', 'post', 'put', 'delete'])
         }
       ]
     });
     service = TestBed.get(DaffInMemoryBackendCartRootService);
 
     cartBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartService);
-    cartItemsBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartItemsService);
+    cartItemsBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartItemService);
 
     cartFactory = TestBed.get(DaffCartFactory);
     cartItemFactory = TestBed.get(DaffCartItemFactory);
@@ -65,7 +64,6 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
     baseUrl = 'api/cart';
     cartUrl = `${baseUrl}/${cartId}`;
     collection = [mockCart];
-    service.carts = collection;
     reqInfoStub = {
       id: '',
       resourceUrl: baseUrl,
@@ -87,19 +85,6 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('after initialization', () => {
-    let result;
-
-    beforeEach(() => {
-      service.carts = [];
-      result = service.createDb(reqInfoStub);
-    });
-
-    it('should have an empty array in DB', () => {
-      expect(result.cart).toEqual([]);
-    });
-  });
-
   describe('processing a get request', () => {
     beforeEach(() => {
       reqInfoStub.method = 'get';
@@ -119,11 +104,11 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
     });
 
-    describe('when the collectionName is cart-items', () => {
+    describe('when the collectionName is cart-item', () => {
       let result;
 
       beforeEach(() => {
-        reqInfoStub.collectionName = 'cart-items';
+        reqInfoStub.collectionName = 'cart-item';
 
         result = service.get(reqInfoStub);
       });
@@ -153,11 +138,11 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
     });
 
-    describe('when the collectionName is cart-items', () => {
+    describe('when the collectionName is cart-item', () => {
       let result;
 
       beforeEach(() => {
-        reqInfoStub.collectionName = 'cart-items';
+        reqInfoStub.collectionName = 'cart-item';
 
         result = service.post(reqInfoStub);
       });
@@ -173,11 +158,11 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       reqInfoStub.method = 'put';
     });
 
-    describe('when the collectionName is cart-items', () => {
+    describe('when the collectionName is cart-item', () => {
       let result;
 
       beforeEach(() => {
-        reqInfoStub.collectionName = 'cart-items';
+        reqInfoStub.collectionName = 'cart-item';
 
         result = service.put(reqInfoStub);
       });
@@ -193,11 +178,11 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       reqInfoStub.method = 'delete';
     });
 
-    describe('when the collectionName is cart-items', () => {
+    describe('when the collectionName is cart-item', () => {
       let result;
 
       beforeEach(() => {
-        reqInfoStub.collectionName = 'cart-items';
+        reqInfoStub.collectionName = 'cart-item';
 
         result = service.delete(reqInfoStub);
       });

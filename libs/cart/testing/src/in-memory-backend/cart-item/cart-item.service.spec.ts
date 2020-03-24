@@ -1,57 +1,39 @@
 import { TestBed } from '@angular/core/testing';
 
-import {
-  DaffCart,
-  DaffCartItemInput,
-  DaffCartItem
-} from '@daffodil/cart';
-import {
-  DaffCartFactory,
-  DaffCartItemFactory
-} from '@daffodil/cart/testing';
+import { DaffCartItemFactory } from '@daffodil/cart/testing';
 
-import { DaffInMemoryBackendCartItemsService } from './cart-items.service';
+import { DaffInMemoryBackendCartItemService } from './cart-item.service';
+import { DaffInMemoryCartDataService } from '../cart-data.service';
 
-describe('DaffInMemoryBackendCartItemsService', () => {
-  let service: DaffInMemoryBackendCartItemsService;
-  let cartFactory: DaffCartFactory;
-  let cartItemFactory: DaffCartItemFactory;
+describe('DaffInMemoryBackendCartItemService', () => {
+  let service: DaffInMemoryBackendCartItemService;
+	let cartItemFactory: DaffCartItemFactory;
+	let cartDataService: DaffInMemoryCartDataService;
 
-  let mockCart: DaffCart;
-  let mockCartItemInput: DaffCartItemInput;
-  let mockCartItems: DaffCartItem[];
   let cartId;
   let reqInfoStub;
   let baseUrl;
   let cartUrl;
-  let collection: DaffCart[];
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffInMemoryBackendCartItemsService,
+				DaffInMemoryBackendCartItemService,
+				DaffInMemoryCartDataService
       ]
     });
-    service = TestBed.get(DaffInMemoryBackendCartItemsService);
+    service = TestBed.get(DaffInMemoryBackendCartItemService);
 
-    cartFactory = TestBed.get(DaffCartFactory);
     cartItemFactory = TestBed.get(DaffCartItemFactory);
+    cartDataService = TestBed.get(DaffInMemoryCartDataService);
 
-    mockCart = cartFactory.create();
-    mockCartItems = cartItemFactory.createMany(3);
-    mockCart.items = mockCartItems;
-    collection = [mockCart];
-    mockCartItemInput = {
-      productId: mockCartItems[0].product_id,
-      qty: mockCartItems[0].qty
-    };
-    cartId = mockCart.id;
-    baseUrl = 'api/cart-items/';
-    cartUrl = `${baseUrl}${cartId}/`;
+    cartDataService.get().items = cartItemFactory.createMany(3);
+    cartId = cartDataService.getId();
+    baseUrl = 'api/cart-item/';
+    cartUrl = `/${baseUrl}${cartId}/`;
     reqInfoStub = {
       id: cartId,
       resourceUrl: baseUrl,
-      collection,
       req: {
         body: {}
       },
@@ -77,40 +59,41 @@ describe('DaffInMemoryBackendCartItemsService', () => {
     });
 
     it('should return the cart items', () => {
-      expect(result.body).toEqual(mockCartItems);
+      expect(result.body).toEqual(cartDataService.getItems());
     });
   });
 
   describe('processing a get item request', () => {
     let result;
-    let itemId;
+    let item;
 
     beforeEach(() => {
-      itemId = mockCartItems[0].item_id;
-      reqInfoStub.url = `${cartUrl}${itemId}`;
+      item = cartDataService.getItem(0);
+      reqInfoStub.url = `${cartUrl}${item.item_id}`;
 
       result = service.get(reqInfoStub);
     });
 
     it('should return the cart item', () => {
-      expect(result.body.item_id).toEqual(itemId);
+      expect(result.body).toEqual(item);
     });
   });
 
   describe('processing an add item request', () => {
     let result;
-    let productId;
 
     beforeEach(() => {
       reqInfoStub.url = cartUrl;
-      reqInfoStub.req.body = mockCartItemInput;
-      productId = mockCartItemInput.productId;
+      reqInfoStub.req.body = {
+				productId: 'id',
+				qty: 2
+			};
 
       result = service.post(reqInfoStub);
     });
 
     it('should return a cart with the added item', () => {
-      expect(result.body.items).toContain(jasmine.objectContaining({product_id: productId}));
+      expect(result.body.items).toContain(jasmine.objectContaining({product_id: 'id'}));
     });
   });
 
@@ -120,10 +103,14 @@ describe('DaffInMemoryBackendCartItemsService', () => {
     let itemId;
 
     beforeEach(() => {
-      itemId = mockCartItems[0].item_id;
+			itemId = cartDataService.getItem(0).item_id;
+			console.log(itemId);
       reqInfoStub.url = `${cartUrl}${itemId}`;
-      qty = mockCartItems[0].qty + 1;
-      reqInfoStub.req.body = {qty};
+      qty = cartDataService.getItem(0).qty + 1;
+      reqInfoStub.req.body = {
+				itemId: itemId,
+				item: {qty}
+			};
 
       result = service.put(reqInfoStub);
     });
@@ -138,14 +125,14 @@ describe('DaffInMemoryBackendCartItemsService', () => {
     let itemId;
 
     beforeEach(() => {
-      itemId = mockCartItems[0].item_id;
+      itemId = cartDataService.getItem(0).item_id;
       reqInfoStub.url = `${cartUrl}${itemId}`;
 
       result = service.delete(reqInfoStub);
     });
 
     it('should remove the cart item from the cart', () => {
-      expect(result.body.items.find(({item_id}) => String(itemId) === String(item_id))).toBeFalsy();
+      expect(result.body.items.findIndex((item) => item.item_id === itemId) > -1).toBeFalsy();
     });
   });
 });

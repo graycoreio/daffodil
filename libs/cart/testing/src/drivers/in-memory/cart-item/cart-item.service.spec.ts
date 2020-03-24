@@ -121,7 +121,7 @@ describe('Driver | In Memory | Cart | CartItemService', () => {
       const req = httpMock.expectOne(`${cartItemService.url}/${cartId}/${itemId}`);
 
       expect(req.request.method).toBe('PUT');
-      expect(req.request.body).toEqual(newCartItem);
+      expect(req.request.body).toEqual({itemId, item: newCartItem});
 
       req.flush(mockCart);
     });

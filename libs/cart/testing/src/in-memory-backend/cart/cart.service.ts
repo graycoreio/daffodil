@@ -1,21 +1,17 @@
 import { Injectable } from '@angular/core';
-import { STATUS, InMemoryDbService, RequestInfo } from 'angular-in-memory-web-api';
+import { STATUS, RequestInfo } from 'angular-in-memory-web-api';
 
 import { DaffCart } from '@daffodil/cart';
 
-import { DaffCartFactory } from '../../factories/cart.factory';
+import { DaffInMemoryCartDataService } from '../cart-data.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffInMemoryBackendCartService implements InMemoryDbService {
+export class DaffInMemoryBackendCartService {
   constructor(
-    private cartFactory: DaffCartFactory,
+    private cartDataService: DaffInMemoryCartDataService
   ) {}
-
-  createDb() {
-    return {};
-  }
 
   get(reqInfo: RequestInfo) {
     return reqInfo.utils.createResponse$(() => ({
@@ -26,13 +22,12 @@ export class DaffInMemoryBackendCartService implements InMemoryDbService {
 
   post(reqInfo: RequestInfo) {
     return reqInfo.utils.createResponse$(() => {
-      let body;
-      const action = this.getAction(reqInfo);
+			let body;
 
-      if (reqInfo.id === 'addToCart') {
+      if (reqInfo.url.includes('/addToCart')) {
         // deprecated
         body = {};
-      } else if (action === 'clear') {
+      } else if (reqInfo.url.includes('/clear')) {
         body = this.clear(reqInfo);
       } else {
         body = this.create(reqInfo);
@@ -45,32 +40,19 @@ export class DaffInMemoryBackendCartService implements InMemoryDbService {
     });
   }
 
-  /**
-   * Gets whatever follows the cart ID section of the request URL.
-   */
-  private getAction(reqInfo: RequestInfo): string {
-    return reqInfo.url.replace(`${reqInfo.resourceUrl}${reqInfo.id}/`, '')
-  }
-
   private clear(reqInfo: RequestInfo): DaffCart {
-    const cart = this.getCart(reqInfo);
+		this.cartDataService.get().items = [];
 
-    cart.items = [];
-
-    return cart
+    return this.cartDataService.get();
   }
 
   private create(reqInfo: RequestInfo): Partial<{id: DaffCart['id']}> {
-    const cart = this.cartFactory.create();
-
-    reqInfo.collection.push(cart);
-
-    return {
-      id: cart.id
+		return {
+			id: this.cartDataService.getId()
     };
   }
-
+	
   private getCart(reqInfo: RequestInfo): DaffCart {
-    return reqInfo.utils.findById<DaffCart>(reqInfo.collection, reqInfo.id)
+    return this.cartDataService.get()
   }
 }

@@ -17,7 +17,7 @@ export class DaffInMemoryCartItemService implements DaffCartItemServiceInterface
   DaffCartItemInput,
   DaffCart
 > {
-  url = '/api/cart-items';
+  url = '/api/cart-item';
 
   constructor(private http: HttpClient) {}
 
@@ -38,7 +38,7 @@ export class DaffInMemoryCartItemService implements DaffCartItemServiceInterface
     itemId: DaffCartItem['item_id'],
     item: Partial<DaffCartItem>
   ): Observable<Partial<DaffCart>> {
-    return this.http.put<Partial<DaffCart>>(`${this.url}/${cartId}/${itemId}`, item);
+    return this.http.put<Partial<DaffCart>>(`${this.url}/${cartId}/${itemId}`, {itemId, item});
   }
 
   delete(cartId: string, itemId: string): Observable<Partial<DaffCart>> {

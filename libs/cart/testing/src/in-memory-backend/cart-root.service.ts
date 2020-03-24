@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService, RequestInfo, STATUS } from 'angular-in-memory-web-api';
 
-import { DaffCart } from '@daffodil/cart';
-
 import { DaffInMemoryBackendCartService } from './cart/cart.service';
-import { DaffInMemoryBackendCartItemsService } from './cart-items/cart-items.service';
+import { DaffInMemoryBackendCartItemService } from './cart-item/cart-item.service';
+import { DaffInMemoryCartDataService } from './cart-data.service';
 
 /**
  * The root cart in-memory backend.
@@ -20,26 +19,18 @@ export class DaffInMemoryBackendCartRootService implements InMemoryDbService {
    */
   public static readonly COLLECTION_NAMES = [
     'cart',
-    'cart-items',
+    'cart-item',
   ]
-
-  public carts: DaffCart[] = [];
 
   constructor(
     private cartService: DaffInMemoryBackendCartService,
-    private cartItemsService: DaffInMemoryBackendCartItemsService,
+		private cartItemsService: DaffInMemoryBackendCartItemService,
+    private cartInMemoryDataService: DaffInMemoryCartDataService
   ) {}
 
-  createDb(reqInfo: RequestInfo) {
-    if (reqInfo) {
-      const seedData = reqInfo.utils.getJsonBody(reqInfo.req).carts;
-      if (seedData) {
-        this.carts = seedData;
-      }
-    }
-
+  createDb() {
     return {
-      cart: this.carts
+      cart: this.cartInMemoryDataService.get()
     };
   }
 
@@ -60,13 +51,12 @@ export class DaffInMemoryBackendCartRootService implements InMemoryDbService {
   }
 
   private delegateRequest(reqInfo: RequestInfo) {
-    reqInfo.collection = this.carts;
 
     switch (reqInfo.collectionName) {
       case 'cart':
         return this.cartService[reqInfo.method](reqInfo);
 
-      case 'cart-items':
+      case 'cart-item':
         return this.cartItemsService[reqInfo.method](reqInfo);
 
       default:
