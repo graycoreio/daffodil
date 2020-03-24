@@ -105,13 +105,21 @@ describe('DaffInMemoryBackendCartItemsService', () => {
       reqInfoStub.url = cartUrl;
       reqInfoStub.req.body = mockCartItemInput;
       productId = mockCartItemInput.productId;
-
-      result = service.post(reqInfoStub);
     });
-
+		
     it('should return a cart with the added item', () => {
+			result = service.post(reqInfoStub);
       expect(result.body.items).toContain(jasmine.objectContaining({product_id: productId}));
-    });
+		});
+		
+		it('should add the given qty to an existing cart item qty', () => {
+			productId = reqInfoStub.collection[0].items[0].product_id;
+			const cart_item_qty = reqInfoStub.collection[0].items[0].qty;
+			reqInfoStub.req.body = { productId, qty: 2};
+			result = service.post(reqInfoStub);
+
+			expect(result.body.items[0].qty).toEqual(cart_item_qty + 2);
+		});
   });
 
   describe('processing an update request', () => {
