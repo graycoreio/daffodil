@@ -12,7 +12,6 @@ import { MagentoRegion } from '../../models/responses/region';
 export class DaffMagentoSubdivisionTransformer {
   /**
    * Transforms the MagentoRegion from the magento region query into a DaffSubdivision.
-   * @param region the region from a magento region query.
    */
   transform(region: MagentoRegion): DaffSubdivision {
     return region ? {

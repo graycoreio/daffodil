@@ -23,7 +23,6 @@ export class DaffMagentoCountryTransformer {
 
   /**
    * Transforms the MagentoCountry from the magento country query into a DaffCountry.
-   * @param country the country from a magento country query.
    */
   transform(country: MagentoCountry): DaffCountry {
     return country ? {
