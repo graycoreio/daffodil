@@ -27,10 +27,8 @@ export class DaffGeographyMagentoService implements DaffGeographyServiceInterfac
     return this.apollo.query<MagentoGetCountriesResponse>({
       query: getCountries,
     }).pipe(
-      map(result => result.data.countries
-        ? result.data.countries.map(country => this.countryTransformer.transform(country))
-        : []
-      )
+      map(result => result.data.countries || []),
+      map(result => result.map(country => this.countryTransformer.transform(country)))
     );
   }
 
