@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.18](https://github.com/graycoreio/daffodil/compare/v0.4.17...v0.4.18) (2020-03-24)
+
+
+### Features
+
+* **cart:** add cart item in-memory driver and backend ([#718](https://github.com/graycoreio/daffodil/issues/718)) ([b8d3674](https://github.com/graycoreio/daffodil/commit/b8d367420fe65eb9e9f3ac4d13ad0bfde76c9edc))
+* **cart:** add error handling and specific error for cart not found ([#717](https://github.com/graycoreio/daffodil/issues/717)) ([da06b44](https://github.com/graycoreio/daffodil/commit/da06b447a0f69b65e9e5f3fe9e7f4774accc1f1e))
+* **cart:** add in-memory drivers ([#724](https://github.com/graycoreio/daffodil/issues/724)) ([08fef81](https://github.com/graycoreio/daffodil/commit/08fef81ebaccb513c8b1387c9b1ab42dda7dd5c6))
+* **cart:** add total_discount to DaffCartItem ([#720](https://github.com/graycoreio/daffodil/issues/720)) ([5beb1ff](https://github.com/graycoreio/daffodil/commit/5beb1ff21e0735c6b12397ac5199b06b4c348bca))
+* **core:** add DaffErrorCodeMap to enable error transformation and mapping ([#715](https://github.com/graycoreio/daffodil/issues/715)) ([d9dc4ca](https://github.com/graycoreio/daffodil/commit/d9dc4ca69beb9b19b22b5d0db02c219760c75a19))
+* **geography:** add testing factories for subdivision and country ([#729](https://github.com/graycoreio/daffodil/issues/729)) ([75516a7](https://github.com/graycoreio/daffodil/commit/75516a741ec2370790f7ef28432e5ccc7f444684))
+* **geography:** make driver service interface generic and observable ([#728](https://github.com/graycoreio/daffodil/issues/728)) ([d44ffb1](https://github.com/graycoreio/daffodil/commit/d44ffb14a803c4d9617737ef778bcb309b25467e))
+* **geography:** outline basic driver model and types ([#716](https://github.com/graycoreio/daffodil/issues/716)) ([dcc4d69](https://github.com/graycoreio/daffodil/commit/dcc4d69cd2c08ca086c1af897447a8f75324c7fa))
+
+
+### Bug Fixes
+
+* **cart:** fix cart in-memory service ([#733](https://github.com/graycoreio/daffodil/issues/733)) ([e7ac069](https://github.com/graycoreio/daffodil/commit/e7ac069dd33e7bb26a4f63f2a256b2d222a1d326))
+* **category:** allow categories to be sorted based on platform response ([#727](https://github.com/graycoreio/daffodil/issues/727)) ([39fc180](https://github.com/graycoreio/daffodil/commit/39fc1806774bb93387f793dbb9bdcd7e0d0288a6))
+* **category:** allow magento price filters with a wildcard "*" ([#726](https://github.com/graycoreio/daffodil/issues/726)) ([9d5e7a9](https://github.com/graycoreio/daffodil/commit/9d5e7a98f2492c99becdb273befd9caa0fab10bb))
+* **category:** applied filters are now an empty array instead of null ([#730](https://github.com/graycoreio/daffodil/issues/730)) ([dc9eed3](https://github.com/graycoreio/daffodil/commit/dc9eed3356f3d27f47fe125fdb0b138f9f38f339))
+
 ### [0.4.17](https://github.com/graycoreio/daffodil/compare/v0.4.16...v0.4.17) (2020-03-20)
 
 
