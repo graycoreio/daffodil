@@ -43,7 +43,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
   // cart
   describe('processing a clear request', () => {
     it('should remove the items in the cart', done => {
-      httpClient.post<any>(`api/cart/${cartId}/clear`, {}).subscribe(result => {
+      httpClient.post<any>(`/api/cart/${cartId}/clear`, {}).subscribe(result => {
         expect(result.items.length).toEqual(0);
         done();
       });
@@ -85,7 +85,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     let result;
 
     beforeEach(done => {
-      httpClient.get<any>(`api/cart-items/${cartId}/`).subscribe(res => {
+      httpClient.get<any>(`/api/cart-items/${cartId}/`).subscribe(res => {
         result = res;
         done();
       });
@@ -104,7 +104,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     beforeEach(done => {
       productId = 'productId';
       qty = 4;
-      httpClient.get<any>(`api/cart-items/${cartId}/${itemId}`).subscribe(res => {
+      httpClient.get<any>(`/api/cart-items/${cartId}/${itemId}`).subscribe(res => {
         result = res
         done();
       });
@@ -121,7 +121,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
     beforeEach(done => {
       qty = mockCartItem.qty + 1;
-      httpClient.put<any>(`api/cart-items/${cartId}/${itemId}`, {qty}).subscribe(res => {
+      httpClient.put<any>(`/api/cart-items/${cartId}/${itemId}`, {qty}).subscribe(res => {
         result = res
         done();
       });
@@ -141,7 +141,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
       productId = mockCartItem.product_id;
       qty = mockCartItem.qty;
 
-      httpClient.post<any>(`api/cart-items/${cartId}/`, {
+      httpClient.post<any>(`/api/cart-items/${cartId}/`, {
         productId,
         qty
       }).subscribe(res => {
@@ -160,7 +160,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     let result;
 
     beforeEach(done => {
-      httpClient.delete<any>(`api/cart-items/${cartId}/${itemId}`).subscribe(res => {
+      httpClient.delete<any>(`/api/cart-items/${cartId}/${itemId}`).subscribe(res => {
         result = res
         done();
       });
