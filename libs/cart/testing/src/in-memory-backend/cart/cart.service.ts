@@ -2,20 +2,17 @@ import { Injectable } from '@angular/core';
 import { STATUS, InMemoryDbService, RequestInfo } from 'angular-in-memory-web-api';
 
 import { DaffCart } from '@daffodil/cart';
+import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
 
 import { DaffCartFactory } from '../../factories/cart.factory';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffInMemoryBackendCartService implements InMemoryDbService {
+export class DaffInMemoryBackendCartService implements DaffInMemoryDataServiceInterface {
   constructor(
     private cartFactory: DaffCartFactory,
   ) {}
-
-  createDb() {
-    return {};
-  }
 
   get(reqInfo: RequestInfo) {
 		const cart = this.getCart(reqInfo)

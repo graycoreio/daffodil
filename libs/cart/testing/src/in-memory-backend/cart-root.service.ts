@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { InMemoryDbService, RequestInfo, STATUS } from 'angular-in-memory-web-api';
 
 import { DaffCart } from '@daffodil/cart';
+import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
 
 import { DaffInMemoryBackendCartService } from './cart/cart.service';
 import { DaffInMemoryBackendCartItemsService } from './cart-items/cart-items.service';
@@ -13,7 +14,7 @@ import { DaffInMemoryBackendCartItemsService } from './cart-items/cart-items.ser
 @Injectable({
   providedIn: 'root'
 })
-export class DaffInMemoryBackendCartRootService implements InMemoryDbService {
+export class DaffInMemoryBackendCartRootService implements InMemoryDbService, DaffInMemoryDataServiceInterface {
   /**
    * The collections that the root service manages.
    * Useful for a higher-level backend that delegates to this one based on collection name.
