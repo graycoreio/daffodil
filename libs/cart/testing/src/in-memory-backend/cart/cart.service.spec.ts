@@ -73,12 +73,20 @@ describe('DaffInMemoryBackendCartService', () => {
     beforeEach(() => {
       reqInfoStub.url = baseUrl;
 
-      result = service.get(reqInfoStub);
     });
-
+		
     it('should return the cart', () => {
+			result = service.get(reqInfoStub);
       expect(result.body).toEqual(mockCart);
-    });
+      expect(result.status).toEqual(STATUS.OK);
+		});
+		
+		it('should return an error response when the cart does not exist', () => {
+			reqInfoStub.id = null;
+			result = service.get(reqInfoStub);
+
+			expect(result.status).toEqual(STATUS.NOT_FOUND);
+		});
   });
 
   describe('processing a create request', () => {

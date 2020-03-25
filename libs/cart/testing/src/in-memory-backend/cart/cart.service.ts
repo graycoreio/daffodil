@@ -18,10 +18,11 @@ export class DaffInMemoryBackendCartService implements InMemoryDbService {
   }
 
   get(reqInfo: RequestInfo) {
-    return reqInfo.utils.createResponse$(() => ({
-      body: this.getCart(reqInfo),
-      status: STATUS.OK
-    }))
+		const cart = this.getCart(reqInfo)
+		return reqInfo.utils.createResponse$(() => ({
+			body: cart,
+			status: cart ? STATUS.OK : STATUS.NOT_FOUND
+		}));
   }
 
   post(reqInfo: RequestInfo) {
@@ -71,6 +72,6 @@ export class DaffInMemoryBackendCartService implements InMemoryDbService {
   }
 
   private getCart(reqInfo: RequestInfo): DaffCart {
-    return reqInfo.utils.findById<DaffCart>(reqInfo.collection, reqInfo.id)
+		return reqInfo.utils.findById<DaffCart>(reqInfo.collection, reqInfo.id);
   }
 }
