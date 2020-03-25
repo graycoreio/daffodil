@@ -306,4 +306,21 @@ describe('DaffCategoryFacade', () => {
 			expect(facade.getTotalProductsByCategory(category.id)).toBeObservable(expected);
 		});
   });
+
+  describe('isCategoryEmpty$', () => {
+  
+    it('should return false when the category has products', () => {
+			const expected = cold('a', { a: false });
+			store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [product] }));
+      expect(facade.isCategoryEmpty$).toBeObservable(expected);
+		});
+		
+    it('should return true when the category has no products', () => {
+			const expected = cold('a', { a: true });
+			categoryPageConfigurationState.product_ids = [];
+			categoryPageConfigurationState.total_products = 0;
+			store.dispatch(new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: [] }));
+      expect(facade.isCategoryEmpty$).toBeObservable(expected);
+    });
+  });
 });

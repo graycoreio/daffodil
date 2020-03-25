@@ -25,7 +25,8 @@ import {
 	selectCategoryPageAppliedSortOption,
 	selectCategoryPageAppliedSortDirection,
 	selectTotalProductsByCategory,
-	selectCategoryProductsLoading
+	selectCategoryProductsLoading,
+	selectIsCategoryPageEmpty
 } from '../selectors/category.selector';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
@@ -100,7 +101,11 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
   /**
    * Errors associated with retrieving a single category.
    */
-  errors$: Observable<string[]>;
+	errors$: Observable<string[]>;
+	/**
+	 * Is the category page empty of products.
+	 */
+	isCategoryEmpty$: Observable<boolean>;
 	
 	/**
 	 * Get a category by the provided Id.
@@ -142,6 +147,7 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
     this.categoryLoading$ = this.store.pipe(select(selectCategoryLoading));
     this.productsLoading$ = this.store.pipe(select(selectCategoryProductsLoading));
 		this.errors$ = this.store.pipe(select(selectCategoryErrors));
+		this.isCategoryEmpty$ = this.store.pipe(select(selectIsCategoryPageEmpty));
 	}
 
   /**
