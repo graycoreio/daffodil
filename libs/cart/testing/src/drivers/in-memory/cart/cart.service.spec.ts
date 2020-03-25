@@ -1,10 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { DaffCart } from '@daffodil/cart';
+import { DaffCart, DaffCartNotFoundError } from '@daffodil/cart';
 
 import { DaffCartFactory } from '../../../factories/cart.factory';
 import { DaffInMemoryCartService } from './cart.service';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 describe('Driver | In Memory | Cart | CartService', () => {
   let cartService: DaffInMemoryCartService;
@@ -51,6 +53,21 @@ describe('Driver | In Memory | Cart | CartService', () => {
 
       expect(req.request.method).toBe('GET');
       req.flush(mockCart);
+		});
+
+    it('should throw a daffodil error when it receives an error', (done) => {
+			cartService.get(cartId).pipe(
+				catchError((error) => {
+					expect(error).toEqual(DaffCartNotFoundError);
+					done();
+					return of(null);
+				})
+			).subscribe();
+					
+			const req = httpMock.expectOne(`${cartService.url}/${cartId}`);
+
+			expect(req.request.method).toBe('GET');
+			req.error(new ErrorEvent('404'));
     });
   });
 
