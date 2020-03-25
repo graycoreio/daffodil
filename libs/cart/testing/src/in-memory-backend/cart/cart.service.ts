@@ -56,7 +56,6 @@ export class DaffInMemoryBackendCartService implements InMemoryDbService {
     const cart = this.getCart(reqInfo);
 
     cart.items = [];
-		cart.items = Object.assign([], cart.items);
 
     return cart
   }
