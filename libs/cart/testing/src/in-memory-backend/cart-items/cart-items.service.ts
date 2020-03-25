@@ -96,6 +96,7 @@ export class DaffInMemoryBackendCartItemsService implements InMemoryDbService {
       ...cart.items[itemIndex],
       ...item
     };
+		cart.items = Object.assign([], cart.items);
 
     return cart
   }
@@ -109,6 +110,7 @@ export class DaffInMemoryBackendCartItemsService implements InMemoryDbService {
 		} else {
 			cart.items.push(this.transformItemInput(itemInput));
 		}
+		cart.items = Object.assign([], cart.items);
 
     return cart;
   }
@@ -117,7 +119,8 @@ export class DaffInMemoryBackendCartItemsService implements InMemoryDbService {
     const cart = this.getCart(reqInfo);
     const itemIndex = cart.items.findIndex(({item_id}) => String(itemId) === String(item_id));
 
-    cart.items.splice(itemIndex, 1);
+		cart.items.splice(itemIndex, 1);
+		cart.items = Object.assign([], cart.items);
 
     return cart;
   }
