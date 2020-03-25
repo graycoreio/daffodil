@@ -134,16 +134,16 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
   describe('processing an add item request', () => {
     let productId;
-    let qty;
+    let initialQty;
     let result;
 
     beforeEach(done => {
       productId = mockCartItem.product_id;
-      qty = mockCartItem.qty;
+      initialQty = mockCartItem.qty;
 
       httpClient.post<any>(`/api/cart-items/${cartId}/`, {
         productId,
-        qty
+        qty: 2
       }).subscribe(res => {
         result = res
         done();
@@ -152,7 +152,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
     it('should return the updated cart with the added item', () => {
       expect(result.items[0].product_id).toEqual(productId);
-      expect(result.items[0].qty).toEqual(qty);
+      expect(result.items[0].qty).toEqual(initialQty + 2);
     });
   });
 

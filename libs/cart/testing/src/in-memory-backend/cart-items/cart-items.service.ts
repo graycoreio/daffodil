@@ -102,9 +102,13 @@ export class DaffInMemoryBackendCartItemsService implements InMemoryDbService {
 
   private addItem(reqInfo: RequestInfo): DaffCart {
     const cart = this.getCart(reqInfo);
-    const itemInput = reqInfo.utils.getJsonBody(reqInfo.req);
-
-    cart.items.push(this.transformItemInput(itemInput));
+		const itemInput = reqInfo.utils.getJsonBody(reqInfo.req);
+		const existingCartItemIndex = cart.items.findIndex(item => item.product_id === itemInput.productId);
+		if(existingCartItemIndex > -1) {
+			cart.items[existingCartItemIndex].qty = cart.items[existingCartItemIndex].qty + itemInput.qty;
+		} else {
+			cart.items.push(this.transformItemInput(itemInput));
+		}
 
     return cart;
   }
