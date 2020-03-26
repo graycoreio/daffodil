@@ -229,7 +229,7 @@ describe('DaffCategorySelectors', () => {
 
   describe('selectIsCategoryPageEmpty', () => {
 
-    it('selects the product_ids of the current category page', () => {
+    it('selects whether the current category page is empty of products', () => {
       const selector = store.pipe(select(selectIsCategoryPageEmpty));
       const expected = cold('a', { a: !stubCategoryPageConfigurationState.product_ids.length });
       expect(selector).toBeObservable(expected);
