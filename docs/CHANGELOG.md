@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.20](https://github.com/graycoreio/daffodil/compare/v0.4.19...v0.4.20) (2020-03-26)
+
+
+### Features
+
+* **cart:** throw error when in memory cart does not exist ([#737](https://github.com/graycoreio/daffodil/issues/737)) ([5c109e2](https://github.com/graycoreio/daffodil/commit/5c109e263379972611ef1ff178b8804a3f524f0d))
+* **category:** add the isCategoryEmpty selector ([#741](https://github.com/graycoreio/daffodil/issues/741)) ([0c54e47](https://github.com/graycoreio/daffodil/commit/0c54e476559ccf46d1ea6960594538f1093700fe))
+* **core, cart:** add interface for in memory angular web api services ([#739](https://github.com/graycoreio/daffodil/issues/739)) ([809debd](https://github.com/graycoreio/daffodil/commit/809debd9026b96b5981b17a86bf686f21474f3a9))
+* **geography:** export magento driver ([#736](https://github.com/graycoreio/daffodil/issues/736)) ([5a1d65f](https://github.com/graycoreio/daffodil/commit/5a1d65f9bd4765df07d94614853062f98087616a))
+* **product:** add price to magento product responses ([#742](https://github.com/graycoreio/daffodil/issues/742)) ([2decb85](https://github.com/graycoreio/daffodil/commit/2decb85fd02de533544c2ab0ad8037d12b032b5e))
+
 ### [0.4.19](https://github.com/graycoreio/daffodil/compare/v0.4.18...v0.4.19) (2020-03-25)
 
 
