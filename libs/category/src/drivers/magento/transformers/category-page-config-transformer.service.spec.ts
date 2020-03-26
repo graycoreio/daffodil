@@ -95,9 +95,9 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 					sku: stubCategoryPageConfigurationState.product_ids[0],
 					id: 2,
 					name: 'name',
-					price: {
-						regularPrice: {
-							amount: {
+					price_range: {
+						maximum_price: {
+							regular_price: {
 								value: 123,
 								currency: null
 							}

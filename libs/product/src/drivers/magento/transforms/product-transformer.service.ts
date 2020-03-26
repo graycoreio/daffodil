@@ -75,10 +75,10 @@ export class DaffMagentoProductTransformerService {
 	 * A function for null checking an object.
 	 */
 	private getPrice(product: ProductNode): string {
-		return !product.price || 
-			!product.price.regularPrice || 
-			!product.price.regularPrice.amount || 
-			!!product.price.regularPrice.amount.value
-		? product.price.regularPrice.amount.value.toString() : '';
+		return !product.price_range || 
+			!product.price_range.maximum_price || 
+			!product.price_range.maximum_price.regular_price || 
+			!!product.price_range.maximum_price.regular_price.value
+		? product.price_range.maximum_price.regular_price.value.toString() : '';
 	}
 }

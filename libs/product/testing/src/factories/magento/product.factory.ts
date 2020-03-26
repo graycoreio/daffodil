@@ -19,9 +19,9 @@ export class MockMagentoProduct implements MagentoProduct {
 	}
   sku = faker.random.alphaNumeric(16);
   url_key = faker.random.alphaNumeric(16);
-  price = {
-    regularPrice: {
-			amount: {
+  price_range = {
+		maximum_price: {
+			regular_price: {
 				value: faker.random.number(1000),
 				currency: null
 			}
