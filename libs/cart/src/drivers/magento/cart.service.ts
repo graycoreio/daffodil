@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 
-import { Observable, zip, of, throwError } from 'rxjs';
+import { Observable, zip, of, throwError, forkJoin } from 'rxjs';
 import { map, switchMap, catchError } from 'rxjs/operators';
 
 import { DaffCartServiceInterface } from '../interfaces/cart-service.interface';
@@ -57,15 +57,26 @@ export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart
       switchMap(items =>
 				// make the delete requests in parallel and collect them into a single observable
 				// return null if there are no items in the cart
-        items.length ? zip(...items.map(item =>
+        items.length ? forkJoin(...items.map(item =>
           this.cartItemDriver.delete(cartId, item.item_id)
         )) : of(null)
       ),
-      // find the most up to date delete response by looking for one with no items
-      // make a get request if there were no items in the cart
+			// make a get request if there were no items in the cart
+			// todo: find a better way to do this. Because all of the remove item requests are made
+			// asynchronously, there is no guarantee that any cart response will be the "last" one, i.e.
+			// the one with no more items.
 			switchMap(updatedCarts => updatedCarts ? 
-				of(updatedCarts.filter(cart => cart.items.length === 0).shift()) : 
+				of(this.removeLeftoverItems(updatedCarts)) : 
 				this.get(cartId))
     )
-  }
+	}
+	
+	/**
+	 * This assumes that the remove requests all succeed, and manually sets the cart items to an empty array.
+	 */
+	private removeLeftoverItems(carts: DaffCart[]): DaffCart {
+		carts[0].items = [];
+
+		return carts[0];
+	}
 }
