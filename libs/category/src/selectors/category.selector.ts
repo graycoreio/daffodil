@@ -67,6 +67,11 @@ export const selectCategoryPageProductIds = createSelector(
   (state: DaffCategoryPageConfigurationState) => state.product_ids
 );
 
+export const selectIsCategoryPageEmpty = createSelector(
+	selectCategoryPageProductIds,
+	(state: string[]) => !state.length
+);
+
 export const selectCategoryPageTotalProducts = createSelector(
   selectCategoryPageConfigurationState,
   (state: DaffCategoryPageConfigurationState) => state.total_products

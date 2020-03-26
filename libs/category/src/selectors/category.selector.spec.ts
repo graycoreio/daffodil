@@ -33,7 +33,8 @@ import {
 	selectTotalProductsByCategory,
 	selectCategoryProductsLoading,
 	selectCategoryPageFilterRequests,
-	selectCategoryPageAppliedFilters
+	selectCategoryPageAppliedFilters,
+	selectIsCategoryPageEmpty
 } from './category.selector';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
 import { categoryReducers } from '../reducers/category-reducers';
@@ -225,6 +226,16 @@ describe('DaffCategorySelectors', () => {
       expect(selector).toBeObservable(expected);
     });
   });
+
+  describe('selectIsCategoryPageEmpty', () => {
+
+    it('selects whether the current category page is empty of products', () => {
+      const selector = store.pipe(select(selectIsCategoryPageEmpty));
+      const expected = cold('a', { a: !stubCategoryPageConfigurationState.product_ids.length });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
 
   describe('selectCategoryPageTotalProducts', () => {
 
