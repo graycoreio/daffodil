@@ -53,7 +53,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
       magentoCategoryTransformerServiceSpy.transform.and.returnValue(stubCategory);
       magentoCategoryPageConfigurationTransformerServiceSpy.transform.and.returnValue(stubCategoryPageConfigurationState);
       magentoProductTransformerServiceSpy.transformMany.and.returnValue(stubProducts);
-  
+
       const category: MagentoCategory = {
         id: stubCategory.id,
         name: stubCategory.name,
@@ -69,7 +69,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
 				attribute_code: stubCategoryPageConfigurationState.filters[0].name,
 				label: stubCategoryPageConfigurationState.filters[0].label
 			}];
-			
+
 			const page_info: MagentoPageInfo = {
 				page_size: stubCategoryPageConfigurationState.page_size,
 				current_page: stubCategoryPageConfigurationState.current_page,
@@ -99,6 +99,10 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
 					image: {
 						url: 'url',
 						label: 'label'
+					},
+          thumbnail: {
+						url: 'url',
+						label: 'label'
 					}
 				}
 			];
@@ -121,16 +125,16 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
 
     it('should call transform on the magentoCategoryPageConfigurationService', () => {
       service.transform(completeCategory);
-      
+
       expect(magentoCategoryPageConfigurationTransformerServiceSpy.transform).toHaveBeenCalledWith(completeCategory);
     });
 
     it('should call transformMany on the magentoCategoryTransformerService', () => {
       service.transform(completeCategory);
-      
+
       expect(magentoProductTransformerServiceSpy.transformMany).toHaveBeenCalledWith(completeCategory.products);
     });
-    
+
     it('should return a DaffGetCategoryResponse compiled from the other injected transformers', () => {
       expect(service.transform(completeCategory)).toEqual(
         {
@@ -141,7 +145,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
         }
       );
 		});
-		
+
 		it('should return the magento MagentoCompleteCategoryResponse on the daffodil reponse', () => {
 			expect((<any>service.transform(completeCategory)).magentoCompleteCategoryResponse).toEqual(completeCategory);
 		});

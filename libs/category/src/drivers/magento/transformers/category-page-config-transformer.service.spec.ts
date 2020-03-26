@@ -26,7 +26,7 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
   delete stubCategoryPageConfigurationState.applied_sort_direction;
   delete stubCategoryPageConfigurationState.applied_sort_option;
 	stubCategoryPageConfigurationState.id = stubCategory.id;
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -60,7 +60,7 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
         }],
         children_count: stubCategory.children_count
 			}
-			
+
 			aggregates = [{
 				attribute_code: stubCategoryPageConfigurationState.filters[0].name,
 				label: stubCategoryPageConfigurationState.filters[0].label,
@@ -77,7 +77,7 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 					}
 				]
 			}];
-			
+
 			page_info = {
 				page_size: stubCategoryPageConfigurationState.page_size,
 				current_page: stubCategoryPageConfigurationState.current_page,
@@ -107,6 +107,10 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 					image: {
 						url: 'url',
 						label: 'label'
+          },
+          thumbnail: {
+						url: 'url',
+						label: 'label'
 					}
 				}
 			];
@@ -120,9 +124,9 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 				total_count: stubCategoryPageConfigurationState.total_products
 			}
 		});
-		
+
 		describe('when the filter type is select', () => {
-			
+
 			it('should return a DaffCategoryPageConfigurationState with an equal filter type', () => {
 				aggregates[0].type = 'select';
 				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Equal;
@@ -130,9 +134,9 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 				expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
 			});
 		});
-		
+
 		describe('when the filter type is boolean', () => {
-			
+
 			it('should return a DaffCategoryPageConfigurationState with a equal filter type', () => {
 				aggregates[0].type = 'boolean';
 				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Equal;
@@ -140,9 +144,9 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 				expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
 			});
 		});
-		
+
 		describe('when the filter type is multiselect', () => {
-			
+
 			it('should return a DaffCategoryPageConfigurationState with a equal filter type', () => {
 				aggregates[0].type = 'multiselect';
 				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Equal;
@@ -150,9 +154,9 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 				expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
 			});
 		});
-		
+
 		describe('when the filter type is price', () => {
-			
+
 			it('should return a DaffCategoryPageConfigurationState with a range filter type', () => {
 				aggregates[0].type = 'price';
 				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Range;
@@ -169,9 +173,9 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 				expect(service.transform(completeCategoryResponse)).toEqual(stubCategoryPageConfigurationState);
 			});
 		});
-		
+
 		describe('when the filter type is anything else', () => {
-			
+
 			it('should return a DaffCategoryPageConfigurationState with a match filter type', () => {
 				aggregates[0].type = 'textfield';
 				stubCategoryPageConfigurationState.filters[0].type = DaffCategoryFilterType.Match;

@@ -11,7 +11,7 @@ describe('DaffMagentoCategoryTransformerService', () => {
   let service: DaffMagentoCategoryTransformerService;
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
 	const stubCategory: DaffCategory = categoryFactory.create();
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -26,7 +26,7 @@ describe('DaffMagentoCategoryTransformerService', () => {
   });
 
   describe('transform', () => {
-    
+
     it('should return a DaffCategory', () => {
       const magentoCategory: MagentoCategory = {
         id: stubCategory.id,
@@ -46,7 +46,11 @@ describe('DaffMagentoCategoryTransformerService', () => {
 						sku: stubCategory.product_ids[0],
 						url_key: 'url_key',
 						image: null,
-						price_range: null
+						price_range: null,
+            thumbnail: {
+              url: 'url',
+              label: 'label'
+            }
 					}]
 				},
         children_count: stubCategory.children_count

@@ -13,6 +13,10 @@ export class MockMagentoProduct implements MagentoProduct {
     label: faker.random.words(3),
     url: faker.image.imageUrl()
   };
+  thumbnail = {
+    label: faker.random.words(3),
+    url: faker.image.imageUrl()
+  };
   name = faker.random.word();
   description = {
 		html: faker.random.words(5)

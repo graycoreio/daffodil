@@ -57,7 +57,7 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartItem', () => {
       mockMagentoCartItem.quantity = qty;
       mockMagentoCartItem.prices.price.value = price;
 			mockMagentoCartItem.prices.total_item_discount.value = discount;
-			mockMagentoCartItem.product.image = {
+			mockMagentoCartItem.product.thumbnail = {
 				url: url,
 				label: label
 			}
