@@ -9,6 +9,10 @@ export const cartItemFragment = gql`
     id
     product {
       ...product
+      thumbnail {
+        url
+        label
+      }
     }
     quantity
     prices {

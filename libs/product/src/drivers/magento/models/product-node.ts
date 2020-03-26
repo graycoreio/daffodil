@@ -16,6 +16,10 @@ export interface ProductNode {
   image: {
 		url: string,
 		label: string
+  };
+  thumbnail: {
+		url: string,
+		label: string
 	};
   price_range: {
 		maximum_price: {

@@ -19,6 +19,10 @@ export const magentoProductFragment = gql`
 			url
 			label
 		}
+    thumbnail {
+			url
+			label
+		}
 		media_gallery_entries {
 			label
 			file

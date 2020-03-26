@@ -28,9 +28,9 @@ export class DaffMagentoCartItemTransformer {
       row_total: cartItem.prices.row_total.value,
       product_id: String(cartItem.product.id),
 			image: {
-				id: cartItem.product.image.label,
-				url: cartItem.product.image.url,
-				label: cartItem.product.image.label
+				id: cartItem.product.thumbnail.label,
+				url: cartItem.product.thumbnail.url,
+				label: cartItem.product.thumbnail.label
       },
       total_discount: cartItem.prices.total_item_discount.value,
 
