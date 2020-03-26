@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.21](https://github.com/graycoreio/daffodil/compare/v0.4.20...v0.4.21) (2020-03-26)
+
+
+### Bug Fixes
+
+* **category:** fix category product query ([#743](https://github.com/graycoreio/daffodil/issues/743)) ([d0b94ae](https://github.com/graycoreio/daffodil/commit/d0b94ae69ce497a4daee9cfe84e4c07d4812f7f4))
+
 ### [0.4.20](https://github.com/graycoreio/daffodil/compare/v0.4.19...v0.4.20) (2020-03-26)
 
 
