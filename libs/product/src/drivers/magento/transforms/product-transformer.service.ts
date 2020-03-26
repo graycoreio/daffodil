@@ -23,7 +23,8 @@ export class DaffMagentoProductTransformerService {
 			__typename: this.transformProductType(product.__typename),
 			id: product.sku,
       url: product.url_key,
-      name: product.name,
+			name: product.name,
+			price: this.getPrice(product),
       images: [
         { url: product.image.url, id: '0', label: product.image.label},
         ...product.media_gallery_entries.map(image => {
@@ -52,7 +53,8 @@ export class DaffMagentoProductTransformerService {
       id: product.sku,
       url: product.url_key,
       name: product.name,
-      images: [
+			price: this.getPrice(product),
+			images: [
         {url: product.image.url, id: '0', label: product.image.url}
       ]
     }
@@ -67,5 +69,16 @@ export class DaffMagentoProductTransformerService {
 			default :
 				return null;
 		}
+	}
+
+	/**
+	 * A function for null checking an object.
+	 */
+	private getPrice(product: ProductNode): string {
+		return !product.price_range || 
+			!product.price_range.maximum_price || 
+			!product.price_range.maximum_price.regular_price || 
+			!!product.price_range.maximum_price.regular_price.value
+		? product.price_range.maximum_price.regular_price.value.toString() : '';
 	}
 }

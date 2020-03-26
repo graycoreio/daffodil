@@ -7,9 +7,9 @@ export const magentoProductFragment = gql`
 		url_key
 		name
 		sku
-		price {
-			regularPrice {
-				amount {
+		price_range {
+			maximum_price {
+				regular_price {
 					value
 					currency
 				}
