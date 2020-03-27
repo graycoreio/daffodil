@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.22](https://github.com/graycoreio/daffodil/compare/v0.4.21...v0.4.22) (2020-03-27)
+
+
+### Bug Fixes
+
+* **cart:** allow clearing a Magento cart with more than one item ([#745](https://github.com/graycoreio/daffodil/issues/745)) ([fd8dde1](https://github.com/graycoreio/daffodil/commit/fd8dde1a310bf15ea098c21d544603e4f4655d16))
+* **cart, product:** magento cart item has bad image URL ([#744](https://github.com/graycoreio/daffodil/issues/744)) ([9db323b](https://github.com/graycoreio/daffodil/commit/9db323beabb6dfc7ccf887444d034af1d67e64a5))
+
 ### [0.4.21](https://github.com/graycoreio/daffodil/compare/v0.4.20...v0.4.21) (2020-03-26)
 
 
