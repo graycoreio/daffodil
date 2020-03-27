@@ -132,6 +132,7 @@ describe('Driver | Magento | Cart | CartService', () => {
 
   describe('clear | remove all items from the cart', () => {
     it('should make a delete cart item request for every item in the cart', done => {
+			spyOn(service, 'get').and.returnValue(of(mockDaffCart));
       service.clear(cartId).subscribe(() => {
         mockDaffCart.items.forEach(item => {
           expect(magentoCartItemSpy.delete).toHaveBeenCalledWith(cartId, item.item_id)
@@ -140,24 +141,12 @@ describe('Driver | Magento | Cart | CartService', () => {
       });
     });
 
-    it('should return an cart observable with no items', done => {
+    it('should return the cart from the get cart call', done => {
+			spyOn(service, 'get').and.returnValue(of(mockDaffCart));
       service.clear(cartId).subscribe(result => {
-        expect(result.items.length).toEqual(0);
+        expect(result).toEqual(mockDaffCart);
         done();
       });
-		});
-		
-		describe('when there are no items in the cart', () => {
-			
-			it('should return the cart', done => {
-				mockDaffCart.items = [];
-				magentoCartItemSpy.list.and.returnValue(of(mockDaffCart.items));
-
-				service.clear(cartId).subscribe((result) => {
-					expect(result).toEqual(mockDaffCart);
-					done();
-				})
-			});
 		});
   });
 
