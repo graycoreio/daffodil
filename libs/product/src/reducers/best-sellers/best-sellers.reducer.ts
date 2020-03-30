@@ -1,21 +1,16 @@
-import { DaffBestSellersActionTypes, DaffBestSellersActions } from '../actions/best-sellers.actions';
-import { DaffProduct } from '../models/product';
+import { DaffBestSellersActionTypes, DaffBestSellersActions } from '../../actions/best-sellers.actions';
+import { DaffProduct } from '../../models/product';
+import { DaffBestSellersReducerState } from './best-sellers-reducer-state.interface';
 
-export interface State {
-  productIds: string[],
-  loading: boolean,
-  errors: string[]
-}
-
-export const initialState: State = {
+export const initialState: DaffBestSellersReducerState = {
   productIds: [],
   loading: false,
   errors: []
 };
 
-export const resetState: State = Object.assign({}, initialState);
+export const resetState: DaffBestSellersReducerState = Object.assign({}, initialState);
 
-export function reducer(state = initialState, action: DaffBestSellersActions): State {
+export function reducer(state = initialState, action: DaffBestSellersActions): DaffBestSellersReducerState {
   switch (action.type) {
     case DaffBestSellersActionTypes.BestSellersLoadAction:
       return {...state, loading: true};
@@ -35,9 +30,9 @@ export function reducer(state = initialState, action: DaffBestSellersActions): S
   }
 }
 
-export const getBestSellersIds = (state: State) => state.productIds;
+export const getBestSellersIds = (state: DaffBestSellersReducerState) => state.productIds;
 
-export const getBestSellersLoading = (state: State) => state.loading;
+export const getBestSellersLoading = (state: DaffBestSellersReducerState) => state.loading;
 
 function getIds(products: DaffProduct[]): string[] {
   const ids: string[] = new Array();

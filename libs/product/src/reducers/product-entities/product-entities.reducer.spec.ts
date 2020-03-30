@@ -1,11 +1,11 @@
 import { DaffProductFactory, DaffProductModificationFactory } from '@daffodil/product/testing';
 
-import { DaffProductLoadSuccess, DaffProductModify } from '../actions/product.actions';
-import { DaffProductGridLoadSuccess, DaffProductGridReset } from '../actions/product-grid.actions';
-import { initialState, reducer } from '../reducers/product-entities.reducer';
-import { DaffBestSellersLoadSuccess } from '../actions/best-sellers.actions';
-import { DaffProduct } from '../models/product';
-import { DaffProductModification } from '../models/product-modification';
+import { DaffProductLoadSuccess, DaffProductModify } from '../../actions/product.actions';
+import { DaffProductGridLoadSuccess, DaffProductGridReset } from '../../actions/product-grid.actions';
+import { initialState, reducer } from './product-entities.reducer';
+import { DaffBestSellersLoadSuccess } from '../../actions/best-sellers.actions';
+import { DaffProduct } from '../../models/product';
+import { DaffProductModification } from '../../models/product-modification';
 
 describe('Product | Product Entities Reducer', () => {
 

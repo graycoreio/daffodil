@@ -1,8 +1,9 @@
-import { DaffBestSellersLoad, DaffBestSellersLoadSuccess, DaffBestSellersLoadFailure, DaffBestSellersReset } from '../actions/best-sellers.actions';
-import { initialState, reducer, getBestSellersLoading, getBestSellersIds, State } from '../reducers/best-sellers.reducer';
-import { DaffProduct } from '../models/product';
+import { DaffBestSellersLoad, DaffBestSellersLoadSuccess, DaffBestSellersLoadFailure, DaffBestSellersReset } from '../../actions/best-sellers.actions';
+import { initialState, reducer, getBestSellersLoading, getBestSellersIds } from './best-sellers.reducer';
+import { DaffProduct } from '../../models/product';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
+import { DaffBestSellersReducerState } from './best-sellers-reducer-state.interface';
 
 describe('Product | Best Sellers Reducer', () => {
 
@@ -41,7 +42,7 @@ describe('Product | Best Sellers Reducer', () => {
 
     let products: DaffProduct[];
     let result;
-    let state: State;
+    let state: DaffBestSellersReducerState;
 
     beforeEach(() => {
       state = {
@@ -68,7 +69,7 @@ describe('Product | Best Sellers Reducer', () => {
 
     let error: string;
     let result;
-    let state: State;
+    let state: DaffBestSellersReducerState;
 
     beforeEach(() => {
       state = {

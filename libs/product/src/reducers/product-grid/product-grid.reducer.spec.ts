@@ -1,8 +1,9 @@
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffProductGridLoad, DaffProductGridLoadSuccess, DaffProductGridLoadFailure } from '../actions/product-grid.actions';
-import { initialState, reducer, getProductGridLoading, State } from '../reducers/product-grid.reducer';
-import { DaffProduct } from '../models/product';
+import { DaffProductGridLoad, DaffProductGridLoadSuccess, DaffProductGridLoadFailure } from '../../actions/product-grid.actions';
+import { initialState, reducer, getProductGridLoading } from './product-grid.reducer';
+import { DaffProduct } from '../../models/product';
+import { DaffProductGridReducerState } from './product-grid-reducer-state.interface';
 
 describe('Product | Product Grid Reducer', () => {
 
@@ -41,7 +42,7 @@ describe('Product | Product Grid Reducer', () => {
 
     let products: DaffProduct[];
     let result;
-    let state: State;
+    let state: DaffProductGridReducerState;
 
     beforeEach(() => {
       state = {
@@ -63,7 +64,7 @@ describe('Product | Product Grid Reducer', () => {
 
     let error: string;
     let result;
-    let state: State;
+    let state: DaffProductGridReducerState;
 
     beforeEach(() => {
       state = {

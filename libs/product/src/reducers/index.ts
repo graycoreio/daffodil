@@ -1,19 +1,24 @@
 import { ActionReducerMap, createSelector, createFeatureSelector,MemoizedSelector } from '@ngrx/store';
+import { EntityState } from '@ngrx/entity';
 
-import * as fromProductEntities from './product-entities.reducer';
-import * as fromProductGrid from './product-grid.reducer';
-import * as fromProduct from './product.reducer';
-import * as fromBestSellers from './best-sellers.reducer';
+import * as fromProductEntities from './product-entities/product-entities.reducer';
+import * as fromProductGrid from './product-grid/product-grid.reducer';
+import * as fromProduct from './product/product.reducer';
+import * as fromBestSellers from './best-sellers/best-sellers.reducer';
 import { DaffProductUnion } from '../models/product-union';
+import { DaffProduct } from '../models/product';
+import { DaffProductGridReducerState } from './product-grid/product-grid-reducer-state.interface';
+import { DaffProductReducerState } from './product/product-reducer-state.interface';
+import { DaffBestSellersReducerState } from './best-sellers/best-sellers-reducer-state.interface';
 
 /**
  * Interface for product redux store.
  */
 export interface State {
-  products : fromProductEntities.State;
-  productGrid: fromProductGrid.State;
-  product: fromProduct.State;
-  bestSellers: fromBestSellers.State;
+  products : EntityState<DaffProduct>;
+  productGrid: DaffProductGridReducerState;
+  product: DaffProductReducerState;
+  bestSellers: DaffBestSellersReducerState;
 }
 
 /**
