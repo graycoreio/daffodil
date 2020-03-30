@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DaffNavigationTree, DaffNavigationFacade, DaffNavigationLoad } from '@daffodil/navigation';
+import { DaffSpecificNavigationTree, DaffNavigationFacade, DaffNavigationLoad } from '@daffodil/navigation';
 
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
@@ -15,13 +15,13 @@ import { CloseSidebar } from '../../actions/sidebar.actions';
 })
 export class SidebarContainer implements OnInit {
   faTimes = faTimes;
-  tree$: Observable<DaffNavigationTree>;
+  tree$: Observable<DaffSpecificNavigationTree>;
   treeLoading$: Observable<boolean>;
   treeErrors$: Observable<string[]>;
 
   constructor(
     private store: Store<fromDemoSidebar.State>,
-    private navigationFacade: DaffNavigationFacade
+    private navigationFacade: DaffNavigationFacade<DaffSpecificNavigationTree>
     ) {}
 
   ngOnInit() {

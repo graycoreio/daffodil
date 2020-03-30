@@ -1,6 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import { DaffNavigationTree } from '@daffodil/navigation';
+import { DaffSpecificNavigationTree } from '@daffodil/navigation';
 
 @Component({
   selector: 'demo-sidebar-list',
@@ -8,7 +8,7 @@ import { DaffNavigationTree } from '@daffodil/navigation';
   styleUrls: ['./sidebar-list.component.scss']
 })
 export class SidebarListComponent {
-  @Input() tree: DaffNavigationTree;
+  @Input() tree: DaffSpecificNavigationTree;
 
   @Input() level = 0;
 
