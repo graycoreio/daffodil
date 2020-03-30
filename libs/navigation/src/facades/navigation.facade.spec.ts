@@ -9,19 +9,19 @@ import { DaffNavigationFacade } from './navigation.facade';
 import { DaffNavigationLoad, DaffNavigationLoadFailure, DaffNavigationLoadSuccess } from '../actions/navigation.actions';
 import { navigationReducers } from '../reducers/navigation-reducers';
 import { NavigationReducersState } from '../reducers/navigation-reducers.interface';
-import { DaffNavigationTree } from '../models/navigation-tree';
+import { DaffSpecificNavigationTree } from '../models/specific-navigation-tree';
 
 describe('DaffNavigationFacade', () => {
-  let store: MockStore<Partial<NavigationReducersState>>;
-  let facade: DaffNavigationFacade;
+  let store: MockStore<Partial<NavigationReducersState<DaffSpecificNavigationTree>>>;
+  let facade: DaffNavigationFacade<DaffSpecificNavigationTree>;
   const navigationTreeFactory: DaffNavigationTreeFactory = new DaffNavigationTreeFactory();
-  let navigation: DaffNavigationTree;
+  let navigation: DaffSpecificNavigationTree;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports:[
         StoreModule.forRoot({
-          navigation: combineReducers(navigationReducers),
+          navigation: combineReducers(navigationReducers()),
         })
       ],
       providers: [

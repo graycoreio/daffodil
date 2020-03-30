@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 
 import { CategoryNode } from '../interfaces/category-node';
 import { DaffNavigationTransformerInterface } from '../../interfaces/navigation-transformer.interface';
-import { DaffNavigationTree } from '../../../models/navigation-tree';
+import { DaffSpecificNavigationTree } from '../../../models/specific-navigation-tree';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoNavigationTransformerService implements DaffNavigationTransformerInterface<DaffNavigationTree> {
+export class DaffMagentoNavigationTransformerService implements DaffNavigationTransformerInterface<DaffSpecificNavigationTree> {
 
-  transform(node: CategoryNode): DaffNavigationTree {
+  transform(node: CategoryNode): DaffSpecificNavigationTree {
     return {
       id: node.id,
       path: node.id,

@@ -6,21 +6,21 @@ import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
 import { DaffNavigationLoadSuccess } from '../actions/navigation.actions';
 import { selectNavigationTree, selectNavigationLoading, selectNavigationErrors } from './navigation.selector';
-import { DaffNavigationTree } from '../models/navigation-tree';
 import { NavigationReducersState } from '../reducers/navigation-reducers.interface';
 import { navigationReducers } from '../reducers/navigation-reducers';
+import { DaffSpecificNavigationTree } from '../models/specific-navigation-tree';
 
 describe('DaffNavigationSelectors', () => {
 
-  let store: Store<NavigationReducersState>;
+  let store: Store<NavigationReducersState<DaffSpecificNavigationTree>>;
   const navigationTreeFactory: DaffNavigationTreeFactory = new DaffNavigationTreeFactory();
-  let mockNavigation: DaffNavigationTree;
+  let mockNavigation: DaffSpecificNavigationTree;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          navigation: combineReducers(navigationReducers),
+          navigation: combineReducers(navigationReducers()),
         })
       ]
     });
@@ -36,7 +36,7 @@ describe('DaffNavigationSelectors', () => {
     describe('selectNavigationTree', () => {
 
       it('selects the navigation state', () => {
-        const selector = store.pipe(select(selectNavigationTree));
+        const selector = store.pipe(select(selectNavigationTree()));
         const expected = cold('a', { a: mockNavigation });
         expect(selector).toBeObservable(expected);
       });
@@ -45,7 +45,7 @@ describe('DaffNavigationSelectors', () => {
     describe('selectNavigationLoading', () => {
 
       it('selects the loading state of the navigation', () => {
-        const selector = store.pipe(select(selectNavigationLoading));
+        const selector = store.pipe(select(selectNavigationLoading()));
         const expected = cold('a', { a: false });
         expect(selector).toBeObservable(expected);
       });
@@ -54,7 +54,7 @@ describe('DaffNavigationSelectors', () => {
     describe('selectNavigationErrors', () => {
 
       it('returns the selected navigation id', () => {
-        const selector = store.pipe(select(selectNavigationErrors));
+        const selector = store.pipe(select(selectNavigationErrors()));
         const expected = cold('a', { a: [] });
         expect(selector).toBeObservable(expected);
       });

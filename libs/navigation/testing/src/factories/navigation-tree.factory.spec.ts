@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffNavigationTree } from '@daffodil/navigation';
+import { DaffSpecificNavigationTree } from '@daffodil/navigation';
 
 import { DaffNavigationTreeFactory } from './navigation-tree.factory';
 
@@ -22,7 +22,7 @@ describe('Navigation | Testing | Factories | DaffNavigationTreeFactory', () => {
 
   describe('create', () => {
 
-    let result: DaffNavigationTree;
+    let result: DaffSpecificNavigationTree;
 
     beforeEach(() => {
       result = navigationTreeFactory.create();
@@ -38,7 +38,7 @@ describe('Navigation | Testing | Factories | DaffNavigationTreeFactory', () => {
   });
 
   describe('createMany', () => {
-    let result: DaffNavigationTree[];
+    let result: DaffSpecificNavigationTree[];
 
     it('should create as many categories as desired', () => {
       result = navigationTreeFactory.createMany(2);

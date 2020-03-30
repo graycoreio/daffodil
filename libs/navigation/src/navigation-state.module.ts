@@ -7,7 +7,7 @@ import { DaffNavigationEffects } from './effects/navigation.effects';
 
 @NgModule({
   imports: [
-    StoreModule.forFeature('navigation', navigationReducers),
+    StoreModule.forFeature('navigation', navigationReducers()),
     EffectsModule.forFeature([DaffNavigationEffects]),
   ]
 })

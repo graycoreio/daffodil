@@ -14,10 +14,10 @@ export class DaffNavigationLoad implements Action {
   constructor(public payload: string) { }
 }
 
-export class DaffNavigationLoadSuccess implements Action {
+export class DaffNavigationLoadSuccess<T extends DaffNavigationTree<T>> implements Action {
   readonly type = DaffNavigationActionTypes.NavigationLoadSuccessAction;
 
-  constructor(public payload: DaffNavigationTree) { }
+  constructor(public payload: T) { }
 }
 
 export class DaffNavigationLoadFailure implements Action {
@@ -26,7 +26,7 @@ export class DaffNavigationLoadFailure implements Action {
   constructor(public payload: string) { }
 }
 
-export type DaffNavigationActions =
+export type DaffNavigationActions<T extends DaffNavigationTree<T>> =
   | DaffNavigationLoad
-  | DaffNavigationLoadSuccess
+  | DaffNavigationLoadSuccess<T>
   | DaffNavigationLoadFailure;

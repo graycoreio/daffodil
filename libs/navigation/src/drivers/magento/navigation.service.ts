@@ -8,18 +8,18 @@ import { GetCategoryTree } from './queries/get-category-tree';
 import { GetCategoryTreeResponse } from './interfaces/get-category-tree-response';
 import { DaffNavigationTransformer } from '../injection-tokens/navigation-transformer.token';
 import { DaffNavigationTransformerInterface } from '../interfaces/navigation-transformer.interface';
-import { DaffNavigationTreeUnion } from '../../models/navigation-tree-union';
+import { DaffSpecificNavigationTree } from '../../models/specific-navigation-tree';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoNavigationService implements DaffNavigationServiceInterface<DaffNavigationTreeUnion> {
+export class DaffMagentoNavigationService implements DaffNavigationServiceInterface<DaffSpecificNavigationTree> {
   
   constructor(
     private apollo: Apollo,
-    @Inject(DaffNavigationTransformer) private transformer: DaffNavigationTransformerInterface<DaffNavigationTreeUnion>) {}
+    @Inject(DaffNavigationTransformer) private transformer: DaffNavigationTransformerInterface<DaffSpecificNavigationTree>) {}
 
-  get(categoryId: string): Observable<DaffNavigationTreeUnion> {
+  get(categoryId: string): Observable<DaffSpecificNavigationTree> {
     return this.apollo.query<GetCategoryTreeResponse>({
       query: GetCategoryTree,
       variables: {

@@ -1,12 +1,10 @@
-import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 import { TestBed } from '@angular/core/testing';
 
 import { CategoryNode } from '../interfaces/category-node';
 import { DaffMagentoNavigationTransformerService } from './navigation-transformer';
-import { DaffNavigationTreeUnion } from 'libs/navigation/src/models/navigation-tree-union';
+import { DaffSpecificNavigationTree } from '../../../models/specific-navigation-tree';
 
 describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTransformerService', () => {
-  const navigationTreeFactory: DaffNavigationTreeFactory = new DaffNavigationTreeFactory();
   let service: DaffMagentoNavigationTransformerService;
 
   beforeEach(() => {
@@ -43,7 +41,7 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
       }]
     }
 
-    const navigation: DaffNavigationTreeUnion = {
+    const navigation: DaffSpecificNavigationTree = {
       id: '1',
       name: 'Root Category',
       path: '1',
@@ -76,7 +74,7 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
       }]
     };
 
-    const navigation: DaffNavigationTreeUnion = {
+    const navigation: DaffSpecificNavigationTree = {
       id: '1',
       name: 'Root Category',
       path: '1',

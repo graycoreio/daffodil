@@ -6,16 +6,15 @@ import { hot, cold } from 'jasmine-marbles';
 import { DaffNavigationTreeFactory, DaffTestingNavigationService } from '@daffodil/navigation/testing';
 import { DaffNavigationEffects } from './navigation.effects';
 import { DaffNavigationLoad, DaffNavigationLoadSuccess, DaffNavigationLoadFailure } from '../actions/navigation.actions';
-import { DaffNavigationTree } from '../models/navigation-tree';
 import { DaffNavigationServiceInterface } from '../drivers/interfaces/navigation-service.interface';
 import { DaffNavigationDriver } from '../drivers/injection-tokens/navigation-driver.token';
-import { DaffNavigationTreeUnion } from '../models/navigation-tree-union';
+import { DaffSpecificNavigationTree } from '../models/specific-navigation-tree';
 
 describe('DaffNavigationEffects', () => {
   let actions$: Observable<any>;
-  let effects: DaffNavigationEffects;
-  let mockNavigation: DaffNavigationTree;
-  let daffNavigationDriver: DaffNavigationServiceInterface<DaffNavigationTreeUnion>;
+  let effects: DaffNavigationEffects<DaffSpecificNavigationTree>;
+  let mockNavigation: DaffSpecificNavigationTree;
+  let daffNavigationDriver: DaffNavigationServiceInterface<DaffSpecificNavigationTree>;
 
   let navigationTreeFactory: DaffNavigationTreeFactory;
   let navigationId;

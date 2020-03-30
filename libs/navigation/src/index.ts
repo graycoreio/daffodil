@@ -1,5 +1,5 @@
 export { DaffNavigationTree } from './models/navigation-tree';
-export { DaffNavigationTreeUnion } from './models/navigation-tree-union';
+export { DaffSpecificNavigationTree } from './models/specific-navigation-tree';
 export { DaffNavigationActionTypes, DaffNavigationActions, DaffNavigationLoad, DaffNavigationLoadFailure, DaffNavigationLoadSuccess } from './actions/navigation.actions';
 
 export { DaffNavigationFacade } from './facades/navigation.facade';

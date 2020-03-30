@@ -5,9 +5,9 @@ import { DaffStoreFacade } from '@daffodil/core';
 
 import { DaffNavigationTree } from '../models/navigation-tree';
 
-export interface DaffNavigationFacadeInterface extends DaffStoreFacade<Action> {
+export interface DaffNavigationFacadeInterface<T extends DaffNavigationTree<T>> extends DaffStoreFacade<Action> {
   loading$: Observable<boolean>;
-  tree$: Observable<DaffNavigationTree>;
+  tree$: Observable<T>;
   errors$: Observable<string[]>;
   dispatch(action: Action): void;
 }

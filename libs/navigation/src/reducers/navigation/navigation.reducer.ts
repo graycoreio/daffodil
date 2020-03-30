@@ -1,13 +1,15 @@
 import { DaffNavigationActionTypes, DaffNavigationActions } from '../../actions/navigation.actions';
 import { NavigationReducerState } from './navigation-reducer-state.interface';
+import { DaffNavigationTree } from '../../models/navigation-tree';
 
-const initialState: NavigationReducerState = {
-  navigationTree: null,
-  loading: false,
-  errors: []
+export const initialState: NavigationReducerState<any> = {
+	navigationTree: null,
+	loading: false,
+	errors: []
 };
 
-export function reducer(state = initialState, action: DaffNavigationActions): NavigationReducerState {
+export function daffNavigationReducer <T extends DaffNavigationTree<T>>
+	(state: NavigationReducerState<T> = initialState, action: DaffNavigationActions<T>): NavigationReducerState<T> {
   switch (action.type) {
     case DaffNavigationActionTypes.NavigationLoadAction:
       return {...state, loading: true};
