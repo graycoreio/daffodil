@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const GetCategoryTree = gql`
-  query GetCategoryTree($id: Int!){
-    category(id: $id) {
+  query GetCategoryTree($filters: CategoryFilterInput!){
+    categoryList(filters: $filters) {
       id
       name
       include_in_menu
