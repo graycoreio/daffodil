@@ -30,10 +30,11 @@ import { DaffCartReducersState, daffCartReducers, initialState } from '../../red
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffCartErrors } from '../../reducers/cart-errors.type';
 import { DaffCartErrorType } from '../../reducers/cart-error-type.enum';
+import { DaffCart } from '../../models/cart';
 
 describe('DaffCartFacade', () => {
-  let store: MockStore<{ product: Partial<DaffCartReducersState> }>;
-  let facade: DaffCartFacade;
+  let store: MockStore<{ product: Partial<DaffCartReducersState<DaffCart>> }>;
+  let facade: DaffCartFacade<DaffCart>;
   let cartFactory: DaffCartFactory;
 
   let errors: DaffCartErrors;
@@ -42,7 +43,7 @@ describe('DaffCartFacade', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          cart: combineReducers(daffCartReducers),
+          cart: combineReducers(daffCartReducers()),
         })
       ],
       providers: [
@@ -67,7 +68,7 @@ describe('DaffCartFacade', () => {
   });
 
   it('should be created', () => {
-    const service: DaffCartFacade = TestBed.get(DaffCartFacade);
+    const service: DaffCartFacade<DaffCart> = TestBed.get(DaffCartFacade);
     expect(service).toBeTruthy();
   });
 

@@ -1,5 +1,6 @@
 import { DaffCartReducerState } from './cart-state.interface';
+import { DaffCart } from '../models/cart';
 
-export interface DaffCartReducersState {
-  cart: DaffCartReducerState
+export interface DaffCartReducersState<T extends DaffCart> {
+  cart: DaffCartReducerState<T>
 }

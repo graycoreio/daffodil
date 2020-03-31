@@ -46,7 +46,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
 
   describe('when CartShippingAddressLoadSuccessAction is triggered', () => {
     let result;
-    let state: DaffCartReducerState;
+    let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
       state = {
@@ -75,7 +75,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
   describe('when CartShippingAddressLoadFailureAction is triggered', () => {
     const error = 'error message';
     let result;
-    let state: DaffCartReducerState;
+    let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
       state = {
@@ -113,7 +113,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
 
   describe('when CartShippingAddressUpdateActionSuccess is triggered', () => {
     let result;
-    let state: DaffCartReducerState;
+    let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
       const cartShippingAddressUpdateActionSuccess = new DaffCartShippingAddressUpdateSuccess(cart);
@@ -141,7 +141,7 @@ describe('Cart | Reducer | Cart Shipping Address', () => {
   describe('when CartShippingAddressUpdateFailureAction is triggered', () => {
     let error: string;
     let result;
-    let state: DaffCartReducerState;
+    let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
       state = {

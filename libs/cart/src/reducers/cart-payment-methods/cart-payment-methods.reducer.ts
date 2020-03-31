@@ -5,8 +5,9 @@ import { initialState } from '../cart-initial-state';
 import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
 import { DaffCartErrorType } from '../cart-error-type.enum';
+import { DaffCart } from '../../models/cart';
 
-function addError(state: DaffCartReducerState, error: string) {
+function addError<T extends DaffCart>(state: DaffCartReducerState<T>, error: string) {
   return {
     ...state,
     errors: {
@@ -16,7 +17,7 @@ function addError(state: DaffCartReducerState, error: string) {
   };
 }
 
-function resetErrors(state: DaffCartReducerState) {
+function resetErrors<T extends DaffCart>(state: DaffCartReducerState<T>) {
   return {
     errors: {
       ...state.errors,
@@ -25,10 +26,10 @@ function resetErrors(state: DaffCartReducerState) {
   };
 }
 
-export function cartPaymentMethodsReducer(
+export function cartPaymentMethodsReducer<T extends DaffCart>(
   state = initialState,
   action: ActionTypes
-): DaffCartReducerState {
+): DaffCartReducerState<T> {
   switch (action.type) {
     case DaffCartPaymentMethodsActionTypes.CartPaymentMethodsLoadAction:
       return { ...state, loading: true };

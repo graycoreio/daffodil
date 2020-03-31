@@ -37,7 +37,7 @@ import { DaffCartErrorType } from '../../reducers/cart-error-type.enum';
 @Injectable({
   providedIn: 'root'
 })
-export class DaffCartFacade implements DaffStoreFacade<Action> {
+export class DaffCartFacade<T extends DaffCart> implements DaffStoreFacade<Action> {
   loading$: Observable<boolean>;
   cart$: Observable<DaffCart>;
 
@@ -65,33 +65,33 @@ export class DaffCartFacade implements DaffStoreFacade<Action> {
   availablePaymentMethods$: Observable<DaffCart['available_payment_methods']>;
   isCartEmpty$: Observable<boolean>;
 
-  constructor(private store: Store<DaffCartReducersState>) {
-    this.loading$ = this.store.pipe(select(selectCartLoading));
-    this.cart$ = this.store.pipe(select(selectCartValue));
+  constructor(private store: Store<DaffCartReducersState<T>>) {
+    this.loading$ = this.store.pipe(select(selectCartLoading()));
+    this.cart$ = this.store.pipe(select(selectCartValue()));
 
-    this.errors$ = this.store.pipe(select(selectCartErrorsObject));
-    this.cartErrors$ = this.store.pipe(select(selectCartErrors));
-    this.itemErrors$ = this.store.pipe(select(selectItemErrors));
-    this.billingAddressErrors$ = this.store.pipe(select(selectBillingAddressErrors));
-    this.shippingAddressErrors$ = this.store.pipe(select(selectShippingAddressErrors));
-    this.shippingInformationErrors$ = this.store.pipe(select(selectShippingInformationErrors));
-    this.shippingMethodsErrors$ = this.store.pipe(select(selectShippingMethodsErrors));
-    this.paymentErrors$ = this.store.pipe(select(selectPaymentErrors));
-    this.paymentMethodsErrors$ = this.store.pipe(select(selectPaymentMethodsErrors));
+    this.errors$ = this.store.pipe(select(selectCartErrorsObject()));
+    this.cartErrors$ = this.store.pipe(select(selectCartErrors()));
+    this.itemErrors$ = this.store.pipe(select(selectItemErrors()));
+    this.billingAddressErrors$ = this.store.pipe(select(selectBillingAddressErrors()));
+    this.shippingAddressErrors$ = this.store.pipe(select(selectShippingAddressErrors()));
+    this.shippingInformationErrors$ = this.store.pipe(select(selectShippingInformationErrors()));
+    this.shippingMethodsErrors$ = this.store.pipe(select(selectShippingMethodsErrors()));
+    this.paymentErrors$ = this.store.pipe(select(selectPaymentErrors()));
+    this.paymentMethodsErrors$ = this.store.pipe(select(selectPaymentMethodsErrors()));
 
-    this.id$ = this.store.pipe(select(selectCartId));
-    this.subtotal$ = this.store.pipe(select(selectCartSubtotal));
-    this.grandTotal$ = this.store.pipe(select(selectCartGrandTotal));
-    this.coupons$ = this.store.pipe(select(selectCartCoupons));
-    this.items$ = this.store.pipe(select(selectCartItems));
-    this.billingAddress$ = this.store.pipe(select(selectCartBillingAddress));
-    this.shippingAddress$ = this.store.pipe(select(selectCartShippingAddress));
-    this.payment$ = this.store.pipe(select(selectCartPayment));
-    this.totals$ = this.store.pipe(select(selectCartTotals));
-    this.shippingInformation$ = this.store.pipe(select(selectCartShippingInformation));
-    this.availableShippingMethods$ = this.store.pipe(select(selectCartAvailableShippingMethods));
-    this.availablePaymentMethods$ = this.store.pipe(select(selectCartAvailablePaymentMethods));
-    this.isCartEmpty$ = this.store.pipe(select(selectIsCartEmpty));
+    this.id$ = this.store.pipe(select(selectCartId()));
+    this.subtotal$ = this.store.pipe(select(selectCartSubtotal()));
+    this.grandTotal$ = this.store.pipe(select(selectCartGrandTotal()));
+    this.coupons$ = this.store.pipe(select(selectCartCoupons()));
+    this.items$ = this.store.pipe(select(selectCartItems()));
+    this.billingAddress$ = this.store.pipe(select(selectCartBillingAddress()));
+    this.shippingAddress$ = this.store.pipe(select(selectCartShippingAddress()));
+    this.payment$ = this.store.pipe(select(selectCartPayment()));
+    this.totals$ = this.store.pipe(select(selectCartTotals()));
+    this.shippingInformation$ = this.store.pipe(select(selectCartShippingInformation()));
+    this.availableShippingMethods$ = this.store.pipe(select(selectCartAvailableShippingMethods()));
+    this.availablePaymentMethods$ = this.store.pipe(select(selectCartAvailablePaymentMethods()));
+    this.isCartEmpty$ = this.store.pipe(select(selectIsCartEmpty()));
   }
 
   dispatch(action: Action) {

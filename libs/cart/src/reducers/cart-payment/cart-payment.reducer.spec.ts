@@ -49,7 +49,7 @@ describe('Cart | Reducer | Cart Payment', () => {
 
   describe('when CartPaymentLoadSuccessAction is triggered', () => {
     let result;
-    let state: DaffCartReducerState;
+    let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
       state = {
@@ -78,7 +78,7 @@ describe('Cart | Reducer | Cart Payment', () => {
   describe('when CartPaymentLoadFailureAction is triggered', () => {
     const error = 'error message';
     let result;
-    let state: DaffCartReducerState;
+    let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
       state = {
@@ -116,7 +116,7 @@ describe('Cart | Reducer | Cart Payment', () => {
 
   describe('when CartPaymentUpdateActionSuccess is triggered', () => {
     let result;
-    let state: DaffCartReducerState;
+    let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
       const cartPaymentUpdateActionSuccess = new DaffCartPaymentUpdateSuccess(cart);
@@ -144,7 +144,7 @@ describe('Cart | Reducer | Cart Payment', () => {
   describe('when CartPaymentUpdateFailureAction is triggered', () => {
     let error: string;
     let result;
-    let state: DaffCartReducerState;
+    let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
       state = {
@@ -211,7 +211,7 @@ describe('Cart | Reducer | Cart Payment', () => {
   describe('when CartPaymentRemoveFailureAction is triggered', () => {
     let error: string;
     let result;
-    let state: DaffCartReducerState;
+    let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
       state = {

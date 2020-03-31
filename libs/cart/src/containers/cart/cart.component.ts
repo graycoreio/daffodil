@@ -15,20 +15,20 @@ import {
   template: '<ng-content></ng-content>',
   exportAs: 'CartContainer'
 })
-export class DaffCartContainer implements OnInit {
+export class DaffCartContainer<T extends DaffCart> implements OnInit {
 
   loading$: Observable<boolean>;
   cart$: Observable<DaffCart>;
 
   constructor(
-    private store: Store<fromCart.DaffCartReducersState>
+    private store: Store<fromCart.DaffCartReducersState<T>>
   ) { }
 
   ngOnInit() {
     this.store.dispatch(new DaffCartLoad());
 
-    this.loading$ = this.store.pipe(select(selectCartLoading));
-    this.cart$ = this.store.pipe(select(selectCartValue));
+    this.loading$ = this.store.pipe(select(selectCartLoading()));
+    this.cart$ = this.store.pipe(select(selectCartValue()));
   }
 
   addToCart(payload) {

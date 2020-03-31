@@ -15,7 +15,7 @@ import { DaffCartPaymentMethodsEffects } from './effects/cart-payment-methods.ef
 
 @NgModule({
   imports: [
-    StoreModule.forFeature('cart', daffCartReducers),
+    StoreModule.forFeature('cart', daffCartReducers()),
     EffectsModule.forFeature([
       DaffCartEffects,
       DaffCartItemEffects,
