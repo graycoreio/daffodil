@@ -1,0 +1,9 @@
+{
+  "builders": {
+    "generateFragmentTypes": {
+      "implementation": "./dist/generate-fragment-types",
+      "schema": "./dist/generate-fragment-types/schema.json",
+      "description": "Generates GraphQL fragment type data."
+    }
+  }
+}
