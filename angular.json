@@ -8,6 +8,18 @@
       "sourceRoot": "apps/demo/src",
       "projectType": "application",
       "architect": {
+        "generateFragmentTypes": {
+          "builder": "@daffodil/builders:generateFragmentTypes",
+          "options": {
+            "url": "",
+            "path": "apps/demo/src/app/fragmentTypes.json"
+          },
+          "configurations": {
+            "mage2docker": {
+              "url": "https://magento2.test/graphql"
+            }
+          }
+        },
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {

@@ -36,6 +36,7 @@ testem.log
 /typings
 lerna-debug.log
 apollo.config.js
+fragmentTypes.json
 
 # e2e
 /e2e/*.js
