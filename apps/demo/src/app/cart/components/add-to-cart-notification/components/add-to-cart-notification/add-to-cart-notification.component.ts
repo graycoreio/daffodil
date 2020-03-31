@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffProduct, fromProduct } from '@daffodil/product';
+import { DaffProduct, selectProduct } from '@daffodil/product';
 
 import * as fromDemoAddToCartNotification from '../../reducers/index';
 import { CloseAddToCartNotification } from '../../actions/add-to-cart-notification.actions';
@@ -46,7 +46,7 @@ export class AddToCartNotificationComponent implements OnInit {
     );
 
     this.product$ = this.productId$.pipe(switchMap((id) => this.store.pipe(
-      select(fromProduct.selectProduct, { id: id })
+      select(selectProduct, { id: id })
     )));
 
     this.cartItemCount$ = this.store.pipe(select(fromDemoAddToCartNotification.selectCartItemCount))
