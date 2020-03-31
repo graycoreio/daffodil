@@ -1,19 +1,10 @@
-import { DaffProductActionTypes, DaffProductActions } from '../actions/product.actions';
-
-/**
- * Interface for product state.
- */
-export interface State {
-  selectedProductId: string,
-  qty: number,
-  loading: boolean,
-  errors: string[]
-}
+import { DaffProductReducerState } from './product-reducer-state.interface';
+import { DaffProductActionTypes, DaffProductActions } from '../../actions/product.actions';
 
 /**
  * Initial values of the product state.
  */
-export const initialState: State = {
+export const initialState: DaffProductReducerState = {
   selectedProductId: null,
   qty: 1,
   loading: false,
@@ -27,7 +18,7 @@ export const initialState: State = {
  * @param action a product action
  * @returns product state
  */
-export function reducer(state = initialState, action: DaffProductActions): State {
+export function reducer(state = initialState, action: DaffProductActions): DaffProductReducerState {
   switch (action.type) {
     case DaffProductActionTypes.ProductLoadAction:
       return {...state, loading: true, selectedProductId: action.payload};
@@ -50,18 +41,18 @@ export function reducer(state = initialState, action: DaffProductActions): State
  * 
  * @param state current redux state object
  */
-export const getSelectedProductId = (state: State) => state.selectedProductId;
+export const getSelectedProductId = (state: DaffProductReducerState) => state.selectedProductId;
 
 /**
  * Selects the product's quantity.
  * 
  * @param state current redux state object
  */
-export const getProductQty = (state: State) => state.qty;
+export const getProductQty = (state: DaffProductReducerState) => state.qty;
 
 /**
  * Selects the loading status of the product state.
  * 
  * @param state current redux state object
  */
-export const getProductLoading = (state: State) => state.loading;
+export const getProductLoading = (state: DaffProductReducerState) => state.loading;

@@ -1,19 +1,10 @@
-import { DaffProductGridActionTypes, DaffProductGridActions } from '../actions/product-grid.actions';
-import { DaffProduct } from '../models/product';
-
-/**
- * Interface for product grid state.
- */
-export interface State {
-  products: DaffProduct[],
-  loading: boolean,
-  errors: string[]
-}
+import { DaffProductGridActionTypes, DaffProductGridActions } from '../../actions/product-grid.actions';
+import { DaffProductGridReducerState } from './product-grid-reducer-state.interface';
 
 /**
  * Initial values of the product grid state.
  */
-export const initialState: State = {
+export const initialState: DaffProductGridReducerState = {
   products: [],
   loading: false,
   errors: []
@@ -26,7 +17,7 @@ export const initialState: State = {
  * @param action a product grid action
  * @returns Product grid state
  */
-export function reducer(state = initialState, action: DaffProductGridActions): State {
+export function reducer(state = initialState, action: DaffProductGridActions): DaffProductGridReducerState {
   switch (action.type) {
     case DaffProductGridActionTypes.ProductGridLoadAction:
       return {...state, loading: true};
@@ -47,4 +38,4 @@ export function reducer(state = initialState, action: DaffProductGridActions): S
  * 
  * @param state current redux state object
  */
-export const getProductGridLoading = (state: State) => state.loading;
+export const getProductGridLoading = (state: DaffProductGridReducerState) => state.loading;

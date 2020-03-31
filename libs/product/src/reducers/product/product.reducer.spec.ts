@@ -1,14 +1,14 @@
 import { 
   initialState, 
   reducer, 
-  State,
   getProductLoading, 
   getSelectedProductId, 
   getProductQty 
-} from '../reducers/product.reducer';
-import { DaffProductLoad, DaffProductLoadSuccess, DaffProductLoadFailure, DaffProductUpdateQty } from '../actions/product.actions';
-import { DaffProduct } from '../models/product';
+} from './product.reducer';
+import { DaffProductLoad, DaffProductLoadSuccess, DaffProductLoadFailure, DaffProductUpdateQty } from '../../actions/product.actions';
+import { DaffProduct } from '../../models/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
+import { DaffProductReducerState } from './product-reducer-state.interface';
 
 describe('Product | Product Reducer', () => {
 
@@ -55,7 +55,7 @@ describe('Product | Product Reducer', () => {
   describe('when ProductLoadSuccessAction is triggered', () => {
 
     let result;
-    let state: State;
+    let state: DaffProductReducerState;
 
     beforeEach(() => {
       state = {
@@ -76,7 +76,7 @@ describe('Product | Product Reducer', () => {
 
     const error = 'error message';
     let result;
-    let state: State;
+    let state: DaffProductReducerState;
 
     beforeEach(() => {
       state = {
