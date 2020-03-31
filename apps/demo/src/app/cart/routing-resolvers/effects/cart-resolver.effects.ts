@@ -22,7 +22,7 @@ import {
 export class CartResolverEffects {
 	constructor(
 		private actions$: Actions,
-		private store: Store<fromCart.State>,
+		private store: Store<fromCart.State<DaffCart>>,
 		private cartStorage: DaffCartStorageService,
 		@Inject(DaffCartDriver) private driver: DaffCartServiceInterface<DaffCart>,
 	) {}
@@ -45,7 +45,7 @@ export class CartResolverEffects {
 	);
 
 	selectStoreCart(): Observable<DaffCart> {
-		return this.store.pipe(select(fromCart.selectCartValue));
+		return this.store.pipe(select(fromCart.selectCartValue()));
 	}
 
 	private getCartHandler(): Observable<Action> {

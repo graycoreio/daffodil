@@ -30,7 +30,7 @@ describe('AddToCartNotificationComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let store: Store<{
     demoAddToCartNotification: fromAddToCartNotification.State,
-    cart: fromCart.State,
+    cart: fromCart.State<DaffCart>,
     product: DaffProductReducersState
   }>;
   const productFactory: DaffProductFactory = new DaffProductFactory();
@@ -44,7 +44,7 @@ describe('AddToCartNotificationComponent', () => {
       imports: [
         StoreModule.forRoot({
           demoAddToCartNotification: combineReducers(fromAddToCartNotification.reducers),
-          cart: combineReducers(fromCart.reducers),
+          cart: combineReducers(fromCart.reducers()),
           product: combineReducers(daffProductReducers)
         }),
         NoopAnimationsModule,

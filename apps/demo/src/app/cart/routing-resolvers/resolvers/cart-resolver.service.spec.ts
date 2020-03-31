@@ -14,7 +14,7 @@ import { ResolveCart, ResolveCartSuccess, ResolveCartFailure } from '../actions/
 describe('CartResolver', () => {
   const actions$: Observable<any> = null;
   let cartResolver: CartResolver;
-  let store: Store<fromCart.State>;
+  let store: Store<fromCart.State<DaffCart>>;
   let cartFactory: DaffCartFactory;
   let stubCart: DaffCart;
   let router: Router;

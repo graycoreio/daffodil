@@ -46,7 +46,7 @@ export const selectLoading: MemoizedSelector<object, boolean> = createSelector(
 );
 
 export const selectCartItemCount : MemoizedSelector<object, number> = createSelector(
-  fromCart.cartStateSelector,
+  fromCart.cartStateSelector(),
   cartState => {
     let itemCount = 0;
     if(cartState.cart) {
