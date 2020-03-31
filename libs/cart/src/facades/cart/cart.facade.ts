@@ -39,7 +39,7 @@ import { DaffCartErrorType } from '../../reducers/cart-error-type.enum';
 })
 export class DaffCartFacade<T extends DaffCart> implements DaffStoreFacade<Action> {
   loading$: Observable<boolean>;
-  cart$: Observable<DaffCart>;
+  cart$: Observable<T>;
 
   errors$: Observable<DaffCartErrors>;
   cartErrors$: Observable<DaffCartErrors[DaffCartErrorType.Cart]>;
@@ -67,7 +67,7 @@ export class DaffCartFacade<T extends DaffCart> implements DaffStoreFacade<Actio
 
   constructor(private store: Store<DaffCartReducersState<T>>) {
     this.loading$ = this.store.pipe(select(selectCartLoading()));
-    this.cart$ = this.store.pipe(select(selectCartValue()));
+    this.cart$ = this.store.pipe(select(selectCartValue<T>()));
 
     this.errors$ = this.store.pipe(select(selectCartErrorsObject()));
     this.cartErrors$ = this.store.pipe(select(selectCartErrors()));
