@@ -1,7 +1,7 @@
 {
   "name": "@daffodil/builders",
   "version": "0.0.1",
-  "description": "Daffodil builders",
+  "description": "Custom Angular builders for Daffodil projects.",
   "builders": "builders.json",
   "scripts": {
     "build": "tsc && cp src/generate-fragment-types/schema.json ./dist/generate-fragment-types/schema.json"
