@@ -1,10 +1,4 @@
-import { 
-  initialState, 
-  reducer, 
-  getProductLoading, 
-  getSelectedProductId, 
-  getProductQty 
-} from './product.reducer';
+import { initialState, daffProductReducer } from './product.reducer';
 import { DaffProductLoad, DaffProductLoadSuccess, DaffProductLoadFailure, DaffProductUpdateQty } from '../../actions/product.actions';
 import { DaffProduct } from '../../models/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
@@ -28,7 +22,7 @@ describe('Product | Product Reducer', () => {
     it('should return the current state', () => {
       const action = {} as any;
 
-      const result = reducer(initialState, action);
+      const result = daffProductReducer(initialState, action);
 
       expect(result).toBe(initialState);
     });
@@ -40,7 +34,7 @@ describe('Product | Product Reducer', () => {
     beforeEach(() => {
       const productLoadAction: DaffProductLoad = new DaffProductLoad(productId);
 
-      result = reducer(initialState, productLoadAction);
+      result = daffProductReducer(initialState, productLoadAction);
     });
 
     it('sets loading state to true', () => {
@@ -64,7 +58,7 @@ describe('Product | Product Reducer', () => {
       }
 
       const productLoadSuccess = new DaffProductLoadSuccess(product);
-      result = reducer(state, productLoadSuccess);
+      result = daffProductReducer(state, productLoadSuccess);
     });
 
     it('sets loading to false', () => {
@@ -87,7 +81,7 @@ describe('Product | Product Reducer', () => {
 
       const productLoadFailure = new DaffProductLoadFailure(error);
 
-      result = reducer(state, productLoadFailure);
+      result = daffProductReducer(state, productLoadFailure);
     });
 
     it('sets loading to false', () => {
@@ -108,32 +102,11 @@ describe('Product | Product Reducer', () => {
       givenQty = 3;
       const productLoadFailure = new DaffProductUpdateQty(givenQty);
 
-      result = reducer(initialState, productLoadFailure);
+      result = daffProductReducer(initialState, productLoadFailure);
     });
 
     it('sets qty to payload', () => {
       expect(result.qty).toEqual(givenQty);
-    });
-  });
-
-  describe('getSelectedProductId', () => {
-    
-    it('returns selectedProductId', () => {
-      expect(getSelectedProductId(initialState)).toEqual(initialState.selectedProductId);
-    });
-  });
-
-  describe('getProductQty', () => {
-    
-    it('returns selectedProductId', () => {
-      expect(getProductQty(initialState)).toEqual(initialState.qty);
-    });
-  });
-
-  describe('getProductLoading', () => {
-    
-    it('returns loading state', () => {
-      expect(getProductLoading(initialState)).toEqual(initialState.loading);
     });
   });
 });

@@ -4,4 +4,4 @@ import { DaffProductUnion } from '../../models/product-union';
 /**
  * Product Adapter for changing/overwriting entity state.
  */
-export const productEntitiesAdapter : EntityAdapter<DaffProductUnion> = createEntityAdapter<DaffProductUnion>();
+export const daffProductEntitiesAdapter : EntityAdapter<DaffProductUnion> = createEntityAdapter<DaffProductUnion>();

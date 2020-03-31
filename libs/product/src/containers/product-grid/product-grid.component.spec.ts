@@ -6,8 +6,9 @@ import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffProductGridContainer } from './product-grid.component';
 import { DaffProductGridLoad } from '../../actions/product-grid.actions';
-import * as fromProduct from '../../reducers/index';
 import { DaffProduct } from '../../models/product';
+import { selectProductGridLoadingState } from '../../selectors/product-grid.selectors';
+import { selectAllProducts } from '../../selectors/product-entities.selectors';
 
 describe('DaffProductGridContainer', () => {
   let component: DaffProductGridContainer;
@@ -36,8 +37,8 @@ describe('DaffProductGridContainer', () => {
     initialLoading = false;
     initialProducts = new Array(productFactory.create());
 
-    store.overrideSelector(fromProduct.selectProductGridLoadingState, initialLoading);
-    store.overrideSelector(fromProduct.selectAllProducts, initialProducts);
+    store.overrideSelector(selectProductGridLoadingState, initialLoading);
+    store.overrideSelector(selectAllProducts, initialProducts);
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();

@@ -1,15 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { Store, StoreModule, combineReducers } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { By } from '@angular/platform-browser';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffProductContainer } from './product.component';
 import { DaffProductLoad, DaffProductUpdateQty } from '../../actions/product.actions';
-import * as fromProduct from '../../reducers/index';
 import { DaffProduct } from '../../models/product';
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { selectSelectedProductLoadingState, selectSelectedProduct, selectSelectedProductQty } from '../../selectors/product.selectors';
 
 @Component({template: '<div product-container #ProductContainer="ProductContainer" [selectedProductId]="selectedProductIdValue"></div>'})
 class WrapperComponent {
@@ -51,9 +51,9 @@ describe('DaffProductContainer', () => {
 
     component.selectedProductIdValue = initialProduct.id;
 
-    store.overrideSelector(fromProduct.selectSelectedProductLoadingState, initialLoading);
-    store.overrideSelector(fromProduct.selectSelectedProduct, initialProduct);
-    store.overrideSelector(fromProduct.selectSelectedProductQty, initialQty);
+    store.overrideSelector(selectSelectedProductLoadingState, initialLoading);
+    store.overrideSelector(selectSelectedProduct, initialProduct);
+    store.overrideSelector(selectSelectedProductQty, initialQty);
 
     spyOn(store, 'dispatch');
 

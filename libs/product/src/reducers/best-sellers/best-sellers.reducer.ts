@@ -10,7 +10,7 @@ export const initialState: DaffBestSellersReducerState = {
 
 export const resetState: DaffBestSellersReducerState = Object.assign({}, initialState);
 
-export function reducer(state = initialState, action: DaffBestSellersActions): DaffBestSellersReducerState {
+export function daffBestSellersReducer(state = initialState, action: DaffBestSellersActions): DaffBestSellersReducerState {
   switch (action.type) {
     case DaffBestSellersActionTypes.BestSellersLoadAction:
       return {...state, loading: true};
@@ -29,10 +29,6 @@ export function reducer(state = initialState, action: DaffBestSellersActions): D
       return state;
   }
 }
-
-export const getBestSellersIds = (state: DaffBestSellersReducerState) => state.productIds;
-
-export const getBestSellersLoading = (state: DaffBestSellersReducerState) => state.loading;
 
 function getIds(products: DaffProduct[]): string[] {
   const ids: string[] = new Array();

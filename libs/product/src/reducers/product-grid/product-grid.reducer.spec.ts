@@ -1,7 +1,7 @@
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffProductGridLoad, DaffProductGridLoadSuccess, DaffProductGridLoadFailure } from '../../actions/product-grid.actions';
-import { initialState, reducer, getProductGridLoading } from './product-grid.reducer';
+import { initialState, daffProductGridReducer } from './product-grid.reducer';
 import { DaffProduct } from '../../models/product';
 import { DaffProductGridReducerState } from './product-grid-reducer-state.interface';
 
@@ -21,7 +21,7 @@ describe('Product | Product Grid Reducer', () => {
     it('should return the current state', () => {
       const action = {} as any;
 
-      const result = reducer(initialState, action);
+      const result = daffProductGridReducer(initialState, action);
 
       expect(result).toBe(initialState);
     });
@@ -32,7 +32,7 @@ describe('Product | Product Grid Reducer', () => {
     it('sets loading state to true', () => {
       const productGridLoadAction: DaffProductGridLoad = new DaffProductGridLoad();
       
-      const result = reducer(initialState, productGridLoadAction);
+      const result = daffProductGridReducer(initialState, productGridLoadAction);
 
       expect(result.loading).toEqual(true);
     });
@@ -52,7 +52,7 @@ describe('Product | Product Grid Reducer', () => {
       products = new Array(product);
       const productGridLoadSuccess = new DaffProductGridLoadSuccess(products);
       
-      result = reducer(state, productGridLoadSuccess);
+      result = daffProductGridReducer(state, productGridLoadSuccess);
     });
 
     it('sets loading to false', () => {
@@ -75,7 +75,7 @@ describe('Product | Product Grid Reducer', () => {
       
       error = 'error';      
       const productGridLoadFailure = new DaffProductGridLoadFailure(error);
-      result = reducer(state, productGridLoadFailure);
+      result = daffProductGridReducer(state, productGridLoadFailure);
     });
 
     it('sets loading to false', () => {
@@ -84,13 +84,6 @@ describe('Product | Product Grid Reducer', () => {
 
     it('adds an error to state.errors', () => {
       expect(result.errors.length).toEqual(2);
-    });
-  });
-
-  describe('getProductGridLoading', () => {
-    
-    it('returns loading state', () => {
-      expect(getProductGridLoading(initialState)).toEqual(initialState.loading);
     });
   });
 });

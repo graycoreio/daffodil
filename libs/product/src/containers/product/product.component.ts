@@ -4,9 +4,10 @@ import { Observable } from 'rxjs';
 
 import { Store, select } from '@ngrx/store';
 
-import * as fromProduct from '../../reducers/index';
 import { DaffProductLoad, DaffProductUpdateQty } from '../../actions/product.actions';
 import { DaffProduct } from '../../models/product';
+import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
+import { selectSelectedProductLoadingState, selectSelectedProduct, selectSelectedProductQty } from '../../selectors/product.selectors';
 
 @Component({
   selector: '[product-container]',
@@ -22,17 +23,17 @@ export class DaffProductContainer implements OnInit {
   qty$: Observable<number>;
 
   constructor(
-    private store: Store<fromProduct.State>
+    private store: Store<DaffProductReducersState>
   ) { }
 
   ngOnInit() {
     this.store.dispatch(new DaffProductLoad(this.selectedProductId));
 
-    this.loading$ = this.store.pipe(select(fromProduct.selectSelectedProductLoadingState));
+    this.loading$ = this.store.pipe(select(selectSelectedProductLoadingState));
 
-    this.product$ = this.store.pipe(select(fromProduct.selectSelectedProduct));
+    this.product$ = this.store.pipe(select(selectSelectedProduct));
 
-    this.qty$ = this.store.pipe(select(fromProduct.selectSelectedProductQty));
+    this.qty$ = this.store.pipe(select(selectSelectedProductQty));
   }
 
   updateQty(payload: number) {

@@ -3,18 +3,19 @@ import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
 import { DaffBestSellersFacade } from './best-sellers.facade';
-import { State, reducers } from '../../reducers';
 import { DaffBestSellersLoad, DaffBestSellersLoadSuccess } from '../../actions/best-sellers.actions';
+import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
+import { daffProductReducers } from '../../reducers/product-reducers';
 
 describe('DaffBestSellersFacade', () => {
-  let store: Store<State>;
+  let store: Store<DaffProductReducersState>;
   let facade: DaffBestSellersFacade;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports:[
         StoreModule.forRoot({
-          product: combineReducers(reducers),
+          product: combineReducers(daffProductReducers),
         })
       ],
       providers: [

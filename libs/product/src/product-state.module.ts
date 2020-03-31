@@ -4,12 +4,12 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { DaffProductGridEffects } from './effects/product-grid.effects';
 import { DaffProductEffects } from './effects/product.effects';
-import { reducers } from './reducers/index';
 import { DaffBestSellersEffects } from './effects/best-seller.effects';
+import { daffProductReducers } from './reducers/product-reducers';
 
 @NgModule({
   imports: [
-      StoreModule.forFeature('product', reducers),
+      StoreModule.forFeature('product', daffProductReducers),
       EffectsModule.forFeature([
         DaffProductGridEffects,
         DaffProductEffects,

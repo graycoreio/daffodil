@@ -1,14 +1,14 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Store, select, ReducerManager, ActionsSubject } from '@ngrx/store';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Store, select } from '@ngrx/store';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffBestSellersContainer } from './best-sellers.component';
 import { DaffBestSellersLoad } from '../../actions/best-sellers.actions';
-import * as fromProduct from '../../reducers/index';
 import { DaffProduct } from '../../models/product';
-import { of } from 'rxjs';
+import { selectBestSellersLoadingState, selectBestSellersIdsState } from '../../selectors/best-sellers.selectors';
+import { selectAllProducts } from '../../selectors/product-entities.selectors';
 
 describe('DaffBestSellersContainer', () => {
   let component: DaffBestSellersContainer;
@@ -37,9 +37,9 @@ describe('DaffBestSellersContainer', () => {
     initialProducts = productFactory.createMany(2);
     bestSeller = initialProducts[1];
 
-    store.overrideSelector(fromProduct.selectBestSellersLoadingState, initialLoading);
-    store.overrideSelector(fromProduct.selectAllProducts, initialProducts);
-    store.overrideSelector(fromProduct.selectBestSellersIdsState, [bestSeller.id]);
+    store.overrideSelector(selectBestSellersLoadingState, initialLoading);
+    store.overrideSelector(selectAllProducts, initialProducts);
+    store.overrideSelector(selectBestSellersIdsState, [bestSeller.id]);
 
     spyOn(store, 'dispatch');
 
@@ -68,9 +68,9 @@ describe('DaffBestSellersContainer', () => {
     });
 
     it('sets bestSellers', () => {
-      store.pipe(select(fromProduct.selectAllProducts)).subscribe();
+      store.pipe(select(selectAllProducts)).subscribe();
 
-      store.pipe(select(fromProduct.selectBestSellersIdsState)).subscribe(() => {
+      store.pipe(select(selectBestSellersIdsState)).subscribe(() => {
         expect(component.bestSellers).toEqual([bestSeller]);
       });
     });
