@@ -1,13 +1,13 @@
 # Daffodil Contact
 
-The `@daffodil/contact` library allows you quickly to scaffold a contact form UI feature in an Angular application. It supports drivers for a variety of ecommerce platforms in order to make connecting your UI to your platform's contact feature easy. <!-- talk about supported platforms -->
+The `@daffodil/contact` library allows you quickly to scaffold a contact form UI feature in an Angular application. It supports drivers for a variety of ecommerce platforms in order to make connecting your UI to your platform's contact feature easy.
 
 ## Table of Contents
 
 - [Getting Started](#getting-started)
 
   - [Setting up your AppModule](#setting-up-your-appmodule)
-  - [Utilizing inside your Component](#utilizing-inside-your-component)
+  - [Using inside your Component](#using-inside-your-component)
 
 - [Sending a Contact Form](#sending-a-contact-form-to-your-platform's-backend)
 
@@ -19,13 +19,16 @@ The `@daffodil/contact` library allows you quickly to scaffold a contact form UI
 
 # Getting Started
 
-This overview assumes that you have already set up an Angular project and have gone through the [contact installation guide](./installation.md). If you have not, we recommend you do that first.
+This overview assumes that you have already set up an Angular project and have gone through the [contact installation guide](./installation.md).
 
 ## Setting up your AppModule
 
-To get started, import the `DaffContactModule` in your app.module. Next, import `StoreModule.forRoot({})`, which will be relevant later on when utilizing the redux and state management features of the contact module.
+To get started, import the `DaffContactModule` and `StoreModule.forRoot({})` into your `app.module`.
 
 ```typescript
+import { StoreModule } from '@ngrx/store';
+import { DaffContactModule } from '@daffodil/contact';
+
 @ngModule({
   imports:[
     StoreModule.forRoot({}),
@@ -34,14 +37,14 @@ To get started, import the `DaffContactModule` in your app.module. Next, import 
 })
 ```
 
-## Utilizing inside your component
+## Using inside your component
 
-The `DaffContactModule` provides a `DaffContactFacade` that wraps the complexities of the library into one place. This facade will handle sending your contact form to your application's backend and can also be utilized to build your UI with behaviors common to a contact.
+The `DaffContactModule` provides a `DaffContactFacade` that wraps the complexities of the library into one place. This facade will handle sending your contact form to your application's backend and can also be used to build your UI with behaviors common to a contact.
 
-To inject the facade inside your component, include an instance of `DaffContactFacade` in your component's constructor.
+To inject the facade into your component, include an instance of `DaffContactFacade` in your component's constructor.
 
 ```typescript
-export class contactComponent {
+export class ContactComponent {
   constructor(public contactFacade: DaffContactFacade) {}
 }
 ```
@@ -60,26 +63,27 @@ The `ContactForm` only contains a value of `email` and will represent the payloa
 
 ## Using the facade
 
-Once the `DaffContactFacade` has been set up in your component, it can now be used to send off your contact data. To do so, use the `facade.dispatch()` method to dispatch a `DaffContactSubscribe<T>()` action with T being the type of submission object you are using. In addition, it will also update three observable streams of `success$`, `error$`, and `loading$`. These can be used to enhance your application's UI.
+Once the `DaffContactFacade` has been set up in your component, it can be used to send off your contact data. To do so, use the `facade.dispatch()` method to dispatch a `DaffContactSubscribe(T)` action with T being the type of submission object you are using. In addition, it will also update three observable streams of `success$`, `error$`, and `loading$`. These can be used to enhance your application's UI.
 
 ```typescript
 import { DaffContactSubscribe, DaffContactSubmission, DaffContactFacade } from '@daffodil/contact';
 
-export class contactComponent implements OnInit{
-  ngOnInit(){
-    success$: Observable<boolean> = this.contactFacade.success$;
-    error$: Observable<string> = this.contactFacade.error$;
-    loading$: Observable<boolean> = this.contactFacade.loading$;
+export class ContactComponent implements OnInit {
+	email:string = "JohnDoe@email.com"
+	success$: Observable<boolean>;
+	error$: Observable<string>;
+	loading$: Observable<boolean>;
+	constructor(public contactFacade: DaffContactFacade){}
+	
+	ngOnInit(){
+    success$ = this.contactFacade.success$;
+    error$ = this.contactFacade.error$;
+    loading$ = this.contactFacade.loading$;
   }
 
-
-  email:string = "JohnDoe@email.com"
-
-  constructor(public contactFacade: DaffContactFacade){}
-  submitData(){
-    this.contactFacade.dispatch(new DaffContactSubscribe<DaffContactSubmission>(this.email));
+	submitData(){
+    this.contactFacade.dispatch(new DaffContactSubscribe(this.email));
   }
-
 }
 ```
 
