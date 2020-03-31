@@ -52,6 +52,7 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
+    "@angular-devkit/architect": "^0.901.0",
     "@angular-devkit/build-angular": "^0.803.4",
     "@angular-devkit/build-ng-packagr": "^0.803.4",
     "@angular-devkit/core": "^8.3.4",
@@ -59,6 +60,8 @@
     "@angular/cli": "^8.0.1",
     "@angular/compiler-cli": "^8.2.6",
     "@angular/language-service": "^8.2.6",
+    "@graphql-codegen/cli": "^1.13.1",
+    "@graphql-codegen/fragment-matcher": "^1.13.1",
     "@types/gulp": "^4.0.6",
     "@types/jasmine": "3.4.0",
     "@types/jasminewd2": "2.0.3",
