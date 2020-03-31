@@ -50,11 +50,11 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
 
       const op = controller.expectOne(GetCategoryTree);
 
-      expect(op.operation.variables.id).toEqual(parseInt(navigation.id, 10));
+      expect(op.operation.variables.filters).toEqual({ ids: { eq: navigation.id}});
 
       op.flush({
         data: {
-          category: {
+          categoryList: [{
             id: navigation.id,
             name: navigation.name,
             include_in_menu: true,
@@ -63,7 +63,7 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
             },
             children_count: navigation.children_count,
             children: []
-          }
+          }]
         }
       });
     });
