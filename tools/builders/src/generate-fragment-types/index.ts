@@ -12,7 +12,7 @@ const failure = error => ({
   success: false,
   error
 });
-const nullPromise: Promise<{success: boolean}> = new Promise(r => r(success()));
+const noopPromise: Promise<{success: boolean}> = Promise.resolve(success());
 
 export default createBuilder(generateFragmentTypesBuilder);
 
@@ -27,5 +27,5 @@ function generateFragmentTypesBuilder(
         plugins: ['fragment-matcher']
       }
     }
-  }).then(success, failure) : nullPromise;
+  }).then(success, failure) : noopPromise;
 }
