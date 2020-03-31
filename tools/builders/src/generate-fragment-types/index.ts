@@ -12,6 +12,7 @@ const failure = error => ({
   success: false,
   error
 });
+const nullPromise: Promise<{success: boolean}> = new Promise(r => r(success()));
 
 export default createBuilder(generateFragmentTypesBuilder);
 
@@ -19,12 +20,12 @@ function generateFragmentTypesBuilder(
   options: Options,
   context: BuilderContext,
 ): Promise<BuilderOutput> {
-  return generate({
+  return options.url && options.path ? generate({
     schema: options.url,
     generates: {
       [options.path]: {
         plugins: ['fragment-matcher']
       }
     }
-  }).then(success, failure);
+  }).then(success, failure) : nullPromise;
 }
