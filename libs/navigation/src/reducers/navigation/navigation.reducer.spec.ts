@@ -1,16 +1,16 @@
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
-import { NavigationReducerState } from './navigation-reducer-state.interface';
+import { DaffNavigationReducerState } from './navigation-reducer-state.interface';
 import { DaffNavigationLoad, DaffNavigationLoadSuccess, DaffNavigationLoadFailure } from '../../actions/navigation.actions';
 import { daffNavigationReducer } from './navigation.reducer';
-import { DaffSpecificNavigationTree } from '../../models/specific-navigation-tree';
+import { DaffNavigationTree } from '../../models/navigation-tree';
 
 describe('Navigation | Navigation Reducer', () => {
 
   let navigationTreeFactory: DaffNavigationTreeFactory;
-  let navigation: DaffSpecificNavigationTree;
+  let navigation: DaffNavigationTree;
   let navigationId: string;
-  const initialState: NavigationReducerState<DaffSpecificNavigationTree> = {
+  const initialState: DaffNavigationReducerState<DaffNavigationTree> = {
     navigationTree: null,
     loading: false,
     errors: []
@@ -51,7 +51,7 @@ describe('Navigation | Navigation Reducer', () => {
   describe('when NavigationLoadSuccessAction is triggered', () => {
 
     let result;
-    let state: NavigationReducerState<DaffSpecificNavigationTree>;
+    let state: DaffNavigationReducerState<DaffNavigationTree>;
 
     beforeEach(() => {
       state = {
@@ -76,7 +76,7 @@ describe('Navigation | Navigation Reducer', () => {
 
     const error = 'error message';
     let result;
-    let state: NavigationReducerState<DaffSpecificNavigationTree>;
+    let state: DaffNavigationReducerState<DaffNavigationTree>;
 
     beforeEach(() => {
       state = {

@@ -1,6 +1,6 @@
-import { NavigationReducerState } from '../reducers/navigation/navigation-reducer-state.interface';
-import { DaffNavigationTree } from '../models/navigation-tree';
+import { DaffNavigationReducerState } from '../reducers/navigation/navigation-reducer-state.interface';
+import { DaffGenericNavigationTree } from '../models/generic-navigation-tree';
 
-export interface NavigationReducersState<T extends DaffNavigationTree<T>> {
-  navigation: NavigationReducerState<T>;
+export interface DaffNavigationReducersState<T extends DaffGenericNavigationTree<T>> {
+  navigation: DaffNavigationReducerState<T>;
 }

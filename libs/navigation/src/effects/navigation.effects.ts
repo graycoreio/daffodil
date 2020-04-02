@@ -10,10 +10,10 @@ import {
   DaffNavigationLoadFailure } from '../actions/navigation.actions';
 import { DaffNavigationDriver } from '../drivers/injection-tokens/navigation-driver.token';
 import { DaffNavigationServiceInterface } from '../drivers/interfaces/navigation-service.interface';
-import { DaffNavigationTree } from '../models/navigation-tree';
+import { DaffGenericNavigationTree } from '../models/generic-navigation-tree';
 
 @Injectable()
-export class DaffNavigationEffects<T extends DaffNavigationTree<T>> {
+export class DaffNavigationEffects<T extends DaffGenericNavigationTree<T>> {
 
   constructor(
     private actions$: Actions,

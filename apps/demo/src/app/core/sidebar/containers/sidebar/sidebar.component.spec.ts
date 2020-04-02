@@ -6,7 +6,7 @@ import { Observable, BehaviorSubject, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 import { provideMockStore } from '@ngrx/store/testing';
 
-import { DaffNavigationFacade, DaffNavigationLoad, DaffSpecificNavigationTree } from '@daffodil/navigation';
+import { DaffNavigationFacade, DaffNavigationLoad, DaffNavigationTree } from '@daffodil/navigation';
 import { DaffSidebarModule, DaffSidebarComponent, DaffLoadingIconModule, DaffLinkSetModule } from '@daffodil/design';
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
@@ -20,7 +20,7 @@ class WrapperComponent {}
 
 class MockDaffNavigationFacade {
   loading$: Observable<boolean> = new BehaviorSubject(false);
-  tree$: Observable<DaffSpecificNavigationTree> = new BehaviorSubject(null);
+  tree$: Observable<DaffNavigationTree> = new BehaviorSubject(null);
   errors$: Observable<string[]> = new BehaviorSubject([]);
   dispatch() { }
 }
@@ -32,7 +32,7 @@ describe('SidebarContainer', () => {
   let daffSidebar: DaffSidebarComponent;
   let navFacade: MockDaffNavigationFacade;
   const daffNavigationTreeFactory: DaffNavigationTreeFactory = new DaffNavigationTreeFactory();
-  const tree: DaffSpecificNavigationTree = daffNavigationTreeFactory.create();
+  const tree: DaffNavigationTree = daffNavigationTreeFactory.create();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

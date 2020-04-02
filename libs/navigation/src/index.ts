@@ -1,9 +1,9 @@
+export { DaffGenericNavigationTree } from './models/generic-navigation-tree';
 export { DaffNavigationTree } from './models/navigation-tree';
-export { DaffSpecificNavigationTree } from './models/specific-navigation-tree';
 export { DaffNavigationActionTypes, DaffNavigationActions, DaffNavigationLoad, DaffNavigationLoadFailure, DaffNavigationLoadSuccess } from './actions/navigation.actions';
 
 export { DaffNavigationFacade } from './facades/navigation.facade';
-export { navigationReducers } from './reducers/navigation-reducers';
+export { daffNavigationReducers } from './reducers/navigation-reducers';
 
 export { DaffNavigationModule } from './navigation.module';
 export { DaffNavigationDriver } from './drivers/injection-tokens/navigation-driver.token';

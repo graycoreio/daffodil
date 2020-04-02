@@ -8,13 +8,13 @@ import { DaffNavigationEffects } from './navigation.effects';
 import { DaffNavigationLoad, DaffNavigationLoadSuccess, DaffNavigationLoadFailure } from '../actions/navigation.actions';
 import { DaffNavigationServiceInterface } from '../drivers/interfaces/navigation-service.interface';
 import { DaffNavigationDriver } from '../drivers/injection-tokens/navigation-driver.token';
-import { DaffSpecificNavigationTree } from '../models/specific-navigation-tree';
+import { DaffNavigationTree } from '../models/navigation-tree';
 
 describe('DaffNavigationEffects', () => {
   let actions$: Observable<any>;
-  let effects: DaffNavigationEffects<DaffSpecificNavigationTree>;
-  let mockNavigation: DaffSpecificNavigationTree;
-  let daffNavigationDriver: DaffNavigationServiceInterface<DaffSpecificNavigationTree>;
+  let effects: DaffNavigationEffects<DaffNavigationTree>;
+  let mockNavigation: DaffNavigationTree;
+  let daffNavigationDriver: DaffNavigationServiceInterface<DaffNavigationTree>;
 
   let navigationTreeFactory: DaffNavigationTreeFactory;
   let navigationId;

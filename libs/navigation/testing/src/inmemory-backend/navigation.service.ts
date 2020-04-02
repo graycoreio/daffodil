@@ -6,7 +6,7 @@ import {
   STATUS
 } from 'angular-in-memory-web-api';
 
-import { DaffSpecificNavigationTree } from '@daffodil/navigation';
+import { DaffNavigationTree } from '@daffodil/navigation';
 
 import { DaffNavigationTreeFactory } from '../factories/navigation-tree.factory';
 
@@ -14,7 +14,7 @@ import { DaffNavigationTreeFactory } from '../factories/navigation-tree.factory'
   providedIn: 'root'
 })
 export class DaffInMemoryBackendNavigationService implements InMemoryDbService {
-  navigationTree: DaffSpecificNavigationTree;
+  navigationTree: DaffNavigationTree;
 
   constructor(private navigationTreeFactory: DaffNavigationTreeFactory) {
     this.navigationTree = this.navigationTreeFactory.create();

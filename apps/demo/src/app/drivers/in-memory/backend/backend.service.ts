@@ -9,7 +9,7 @@ import {
 import { DaffProduct } from '@daffodil/product';
 import { DaffCart } from '@daffodil/cart';
 import { Order } from '@daffodil/checkout';
-import { DaffSpecificNavigationTree } from '@daffodil/navigation';
+import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
 import { DaffInMemoryBackendCartRootService } from '@daffodil/cart/testing';
 import { DaffInMemoryBackendCheckoutService } from '@daffodil/checkout/testing';
@@ -64,5 +64,5 @@ export interface MockDaffDatabase {
   products: DaffProduct[];
   cart: DaffCart;
   order: Order;
-  navigation: DaffSpecificNavigationTree;
+  navigation: DaffNavigationTree;
 }

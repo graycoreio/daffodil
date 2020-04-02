@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { DaffNavigationTree } from '../models/navigation-tree';
+import { DaffGenericNavigationTree } from '../models/generic-navigation-tree';
 
 export enum DaffNavigationActionTypes {
   NavigationLoadAction = '[Daff-Navigation] Navigation Load Action',
@@ -14,7 +14,7 @@ export class DaffNavigationLoad implements Action {
   constructor(public payload: string) { }
 }
 
-export class DaffNavigationLoadSuccess<T extends DaffNavigationTree<T>> implements Action {
+export class DaffNavigationLoadSuccess<T extends DaffGenericNavigationTree<T>> implements Action {
   readonly type = DaffNavigationActionTypes.NavigationLoadSuccessAction;
 
   constructor(public payload: T) { }
@@ -26,7 +26,7 @@ export class DaffNavigationLoadFailure implements Action {
   constructor(public payload: string) { }
 }
 
-export type DaffNavigationActions<T extends DaffNavigationTree<T>> =
+export type DaffNavigationActions<T extends DaffGenericNavigationTree<T>> =
   | DaffNavigationLoad
   | DaffNavigationLoadSuccess<T>
   | DaffNavigationLoadFailure;

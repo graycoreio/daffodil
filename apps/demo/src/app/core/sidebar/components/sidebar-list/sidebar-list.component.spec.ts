@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { DaffSpecificNavigationTree } from '@daffodil/navigation';
+import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 import { DaffLinkSetModule } from '@daffodil/design';
 
@@ -11,7 +11,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 @Component({template: '<demo-sidebar-list [tree]="tree"></demo-sidebar-list>'})
 class WrapperComponent {
-  tree: DaffSpecificNavigationTree;
+  tree: DaffNavigationTree;
   closeFunction() {};
 }
 

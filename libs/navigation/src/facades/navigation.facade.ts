@@ -4,14 +4,14 @@ import { Store, select, Action } from '@ngrx/store';
 
 import { DaffNavigationModule } from '../navigation.module';
 import { selectNavigationTree, selectNavigationLoading, selectNavigationErrors } from '../selectors/navigation.selector';
-import { NavigationReducersState } from '../reducers/navigation-reducers.interface';
+import { DaffNavigationReducersState } from '../reducers/navigation-reducers.interface';
 import { DaffNavigationFacadeInterface } from '../interfaces/navigation-facade.interface';
-import { DaffNavigationTree } from '../models/navigation-tree';
+import { DaffGenericNavigationTree } from '../models/generic-navigation-tree';
 
 @Injectable({
   providedIn: DaffNavigationModule
 })
-export class DaffNavigationFacade<T extends DaffNavigationTree<T>> implements DaffNavigationFacadeInterface<T> {
+export class DaffNavigationFacade<T extends DaffGenericNavigationTree<T>> implements DaffNavigationFacadeInterface<T> {
   /**
    * The navigation retrieved in a single navigation call.
    */
@@ -25,7 +25,7 @@ export class DaffNavigationFacade<T extends DaffNavigationTree<T>> implements Da
    */
   errors$: Observable<string[]>;
 
-  constructor(private store: Store<NavigationReducersState<T>>) {
+  constructor(private store: Store<DaffNavigationReducersState<T>>) {
     this.tree$ = this.store.pipe(select(selectNavigationTree()));
     this.loading$ = this.store.pipe(select(selectNavigationLoading()));
     this.errors$ = this.store.pipe(select(selectNavigationErrors()));

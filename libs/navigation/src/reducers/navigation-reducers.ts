@@ -1,10 +1,10 @@
 import { ActionReducerMap } from '@ngrx/store';
 
-import { NavigationReducersState } from './navigation-reducers.interface';
+import { DaffNavigationReducersState } from './navigation-reducers.interface';
 import { daffNavigationReducer } from './navigation/navigation.reducer';
-import { DaffNavigationTree } from '../models/navigation-tree';
+import { DaffGenericNavigationTree } from '../models/generic-navigation-tree';
 
-export function navigationReducers <T extends DaffNavigationTree<T>>(): ActionReducerMap<NavigationReducersState<T>> {
+export function daffNavigationReducers <T extends DaffGenericNavigationTree<T>>(): ActionReducerMap<DaffNavigationReducersState<T>> {
 	return {
 		navigation: daffNavigationReducer
 	}

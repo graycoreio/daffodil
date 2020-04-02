@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { DaffSpecificNavigationTree } from '@daffodil/navigation';
+import { DaffNavigationTree } from '@daffodil/navigation';
 
 @Component({
   selector: 'demo-sidebar-list',
@@ -8,7 +8,7 @@ import { DaffSpecificNavigationTree } from '@daffodil/navigation';
   styleUrls: ['./sidebar-list.component.scss']
 })
 export class SidebarListComponent {
-  @Input() tree: DaffSpecificNavigationTree;
+  @Input() tree: DaffNavigationTree;
 
   @Input() level = 0;
 

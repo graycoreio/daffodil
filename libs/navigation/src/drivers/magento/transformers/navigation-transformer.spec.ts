@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { CategoryNode } from '../interfaces/category-node';
 import { DaffMagentoNavigationTransformerService } from './navigation-transformer';
-import { DaffSpecificNavigationTree } from '../../../models/specific-navigation-tree';
+import { DaffNavigationTree } from '../../../models/navigation-tree';
 
 describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTransformerService', () => {
   let service: DaffMagentoNavigationTransformerService;
@@ -41,7 +41,7 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
       }]
     }
 
-    const navigation: DaffSpecificNavigationTree = {
+    const navigation: DaffNavigationTree = {
       id: '1',
       name: 'Root Category',
       path: '1',
@@ -74,7 +74,7 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
       }]
     };
 
-    const navigation: DaffSpecificNavigationTree = {
+    const navigation: DaffNavigationTree = {
       id: '1',
       name: 'Root Category',
       path: '1',
