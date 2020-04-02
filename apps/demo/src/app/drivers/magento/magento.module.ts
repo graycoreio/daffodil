@@ -7,9 +7,11 @@ import { DaffNavigationMagentoDriverModule } from '@daffodil/navigation';
 import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/testing';
 import { DaffCartMagentoDriverModule } from '@daffodil/cart';
 
+import { environment } from '../../../environments/environment';
+import { MagentoEnvironmentDriverConfiguration } from '../../../environments/environment.interface';
+
 @NgModule({
   imports: [
-    //Magento
     ApolloBoostModule,
     DaffProductMagentoDriverModule.forRoot(),
     DaffCartMagentoDriverModule.forRoot(),
@@ -18,11 +20,11 @@ import { DaffCartMagentoDriverModule } from '@daffodil/cart';
     DaffNewsletterInMemoryDriverModule.forRoot()
   ]
 })
-export class MagentoModule {
+export class DemoMagentoDriverModule { 
   // Magento
   constructor(boost: ApolloBoost) {
     boost.create({
-      uri: 'https://magento2.test/graphql',
+      uri: (<MagentoEnvironmentDriverConfiguration>environment.driver).domain + '/graphql',
     })
   }
 }

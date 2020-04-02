@@ -25,8 +25,8 @@ import { TemplateModule } from './core/template/template/template.module';
 import { ThankYouModule } from './thank-you/thank-you.module';
 
 import { DemoRoutingComponentModule } from './routing/routing-component.module';
-import { InMemoryModule } from './in-memory.module';
 import { DemoCartRootModule } from './cart/cart-root.module';
+import { DemoDriverMap } from './drivers/map';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,7 @@ import { DemoCartRootModule } from './cart/cart-root.module';
 
     HttpClientModule,
 
-    InMemoryModule,
+    DemoDriverMap[environment.driver.variant],
 
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
