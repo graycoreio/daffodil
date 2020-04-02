@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Store, select, Action } from '@ngrx/store';
 
 import { DaffStoreFacade } from '@daffodil/core';
 
-import { Store, select, Action } from '@ngrx/store';
-
-import * as fromProduct from '../../reducers/index';
 import { DaffProductModule } from '../../product.module';
 import { DaffProductUnion } from '../../models/product-union';
+import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
+import { selectProductGridLoadingState } from '../../selectors/product-grid.selectors';
+import { selectAllProducts } from '../../selectors/product-entities.selectors';
 
 /**
  * A facade for accessing state for a list of products from an application component.
@@ -25,9 +26,9 @@ export class DaffProductGridFacade implements DaffStoreFacade<Action> {
    */
   products$: Observable<DaffProductUnion[]>;
 
-  constructor(private store: Store<fromProduct.State>) {
-    this.loading$ = this.store.pipe(select(fromProduct.selectProductGridLoadingState));
-    this.products$ = this.store.pipe(select(fromProduct.selectAllProducts));
+  constructor(private store: Store<DaffProductReducersState>) {
+    this.loading$ = this.store.pipe(select(selectProductGridLoadingState));
+    this.products$ = this.store.pipe(select(selectAllProducts));
   }
 
   /**

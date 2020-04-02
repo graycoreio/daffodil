@@ -1,21 +1,20 @@
-import { Component, Input, Output, EventEmitter, Directive, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, Input, NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { of } from 'rxjs';
 import { cold } from 'jasmine-marbles';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
-import { DaffProduct, fromProduct, DaffProductLoadSuccess } from '@daffodil/product';
+import { DaffProduct, DaffProductLoadSuccess, DaffProductReducersState, daffProductReducers } from '@daffodil/product';
 import { DaffLoadingIconModule } from '@daffodil/design';
 import { fromCart, DaffAddToCart, DaffAddToCartSuccess } from '@daffodil/cart';
+import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { AddToCartNotificationComponent } from './add-to-cart-notification.component';
 import * as fromAddToCartNotification from '../../reducers/index';
 import { CloseAddToCartNotification, OpenAddToCartNotification } from '../../actions/add-to-cart-notification.actions';
-import { DaffCartFactory } from '@daffodil/cart/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({ template: '<demo-add-to-cart-notification></demo-add-to-cart-notification>' })
 class WrapperComponent {}
@@ -31,8 +30,8 @@ describe('AddToCartNotificationComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let store: Store<{
     demoAddToCartNotification: fromAddToCartNotification.State,
-    cart: fromCart.State
-    product: fromProduct.State
+    cart: fromCart.State,
+    product: DaffProductReducersState
   }>;
   const productFactory: DaffProductFactory = new DaffProductFactory();
   const cartFactory: DaffCartFactory = new DaffCartFactory();
@@ -46,7 +45,7 @@ describe('AddToCartNotificationComponent', () => {
         StoreModule.forRoot({
           demoAddToCartNotification: combineReducers(fromAddToCartNotification.reducers),
           cart: combineReducers(fromCart.reducers),
-          product: combineReducers(fromProduct.reducers)
+          product: combineReducers(daffProductReducers)
         }),
         NoopAnimationsModule,
         DaffLoadingIconModule,

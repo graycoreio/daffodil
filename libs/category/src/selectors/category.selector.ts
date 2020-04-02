@@ -1,17 +1,16 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
-import { fromProduct, DaffProductUnion } from '@daffodil/product';
+import { DaffProductUnion, selectProductEntities, selectAllProducts } from '@daffodil/product';
 
 import { CategoryReducerState } from '../reducers/category/category-reducer-state.interface';
 import { CategoryReducersState } from '../reducers/category-reducers.interface';
 import { categoryEntitiesAdapter } from '../reducers/category-entities/category-entities-adapter';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
 import { DaffCategory } from '../models/category';
-import { DaffCategoryAppliedFilter, DaffCategoryAppliedFilterOption } from '../models/category-applied-filter';
-import { DaffCategoryFilterRequest, DaffCategoryFilterEqualRequest, DaffCategoryFilterRangeRequest, DaffCategoryFilterMatchRequest } from '../models/requests/filter-request';
-import { DaffCategoryFilter, DaffCategoryFilterOption } from '../models/category-filter';
-import { DaffCategoryFilterType } from '../models/category-filter-base';
+import { DaffCategoryAppliedFilter } from '../models/category-applied-filter';
+import { DaffCategoryFilterRequest } from '../models/requests/filter-request';
+import { DaffCategoryFilter } from '../models/category-filter';
 import { buildAppliedFilter } from './applied-filter/applied-filter-methods';
 
 const { selectIds, selectEntities, selectAll, selectTotal } = categoryEntitiesAdapter.getSelectors();
@@ -176,7 +175,7 @@ export const selectSelectedCategory = createSelector(
 
 export const selectCategoryPageProducts = createSelector(
 	selectCategoryPageProductIds,
-	fromProduct.selectProductEntities,
+	selectProductEntities,
 	(ids, products: Dictionary<DaffProductUnion>) =>
 		ids.map(id => products[id]).filter(p => p != null),
 );
@@ -188,7 +187,7 @@ export const selectCategory = createSelector(
 
 export const selectProductsByCategory = createSelector(
 	selectCategoryEntities,
-	fromProduct.selectAllProducts,
+	selectAllProducts,
 	(entities, products, props) => entities[props.id] && entities[props.id].product_ids
 		? products.filter(product => entities[props.id].product_ids.indexOf(product.id) >= 0)
 		: null
@@ -196,7 +195,7 @@ export const selectProductsByCategory = createSelector(
 
 export const selectTotalProductsByCategory = createSelector(
 	selectCategoryEntities,
-	fromProduct.selectAllProducts,
+	selectAllProducts,
 	(entities, products, props) => selectProductsByCategory.projector(entities, products, { id: props.id })
 		? selectProductsByCategory.projector(entities, products, { id: props.id }).length
 		: null

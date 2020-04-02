@@ -5,9 +5,10 @@ import { DaffStoreFacade } from '@daffodil/core';
 
 import { Store, select, Action } from '@ngrx/store';
 
-import * as fromProduct from '../../reducers/index';
 import { DaffProductModule } from '../../product.module';
 import { DaffProductUnion } from '../../models/product-union';
+import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
+import { selectSelectedProductLoadingState, selectSelectedProduct } from '../../selectors/product.selectors';
 
 /**
  * A facade for accessing product state from an application component.
@@ -25,9 +26,9 @@ export class DaffProductFacade implements DaffStoreFacade<Action> {
    */
   product$: Observable<DaffProductUnion>;
 
-  constructor(private store: Store<fromProduct.State>) {
-    this.loading$ = this.store.pipe(select(fromProduct.selectSelectedProductLoadingState));
-    this.product$ = this.store.pipe(select(fromProduct.selectSelectedProduct));
+  constructor(private store: Store<DaffProductReducersState>) {
+    this.loading$ = this.store.pipe(select(selectSelectedProductLoadingState));
+    this.product$ = this.store.pipe(select(selectSelectedProduct));
   }
 
   /**

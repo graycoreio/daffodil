@@ -17,7 +17,7 @@ export const initialState: DaffProductGridReducerState = {
  * @param action a product grid action
  * @returns Product grid state
  */
-export function reducer(state = initialState, action: DaffProductGridActions): DaffProductGridReducerState {
+export function daffProductGridReducer(state = initialState, action: DaffProductGridActions): DaffProductGridReducerState {
   switch (action.type) {
     case DaffProductGridActionTypes.ProductGridLoadAction:
       return {...state, loading: true};
@@ -32,10 +32,3 @@ export function reducer(state = initialState, action: DaffProductGridActions): D
       return state;
   }
 }
-
-/**
- * Selects loading status of product grid state.
- * 
- * @param state current redux state object
- */
-export const getProductGridLoading = (state: DaffProductGridReducerState) => state.loading;

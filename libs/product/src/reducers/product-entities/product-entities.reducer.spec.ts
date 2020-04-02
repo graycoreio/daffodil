@@ -2,7 +2,7 @@ import { DaffProductFactory, DaffProductModificationFactory } from '@daffodil/pr
 
 import { DaffProductLoadSuccess, DaffProductModify } from '../../actions/product.actions';
 import { DaffProductGridLoadSuccess, DaffProductGridReset } from '../../actions/product-grid.actions';
-import { initialState, reducer } from './product-entities.reducer';
+import { initialState, daffProductEntitiesReducer } from './product-entities.reducer';
 import { DaffBestSellersLoadSuccess } from '../../actions/best-sellers.actions';
 import { DaffProduct } from '../../models/product';
 import { DaffProductModification } from '../../models/product-modification';
@@ -22,7 +22,7 @@ describe('Product | Product Entities Reducer', () => {
     it('should return the current state', () => {
       const action = {} as any;
 
-      const result = reducer(initialState, action);
+      const result = daffProductEntitiesReducer(initialState, action);
 
       expect(result).toBe(initialState);
     });
@@ -37,7 +37,7 @@ describe('Product | Product Entities Reducer', () => {
       products = productFactory.createMany(2);
       const productGridLoadSuccess = new DaffProductGridLoadSuccess(products);
       
-      result = reducer(initialState, productGridLoadSuccess);
+      result = daffProductEntitiesReducer(initialState, productGridLoadSuccess);
     });
 
     it('sets expected number of products on state', () => {
@@ -59,7 +59,7 @@ describe('Product | Product Entities Reducer', () => {
       
       const bestSellersLoadSuccess = new DaffBestSellersLoadSuccess(products);
       
-      result = reducer(initialState, bestSellersLoadSuccess);
+      result = daffProductEntitiesReducer(initialState, bestSellersLoadSuccess);
     });
 
     it('sets expected number of products on state', () => {
@@ -83,7 +83,7 @@ describe('Product | Product Entities Reducer', () => {
       
       const productLoadSuccess = new DaffProductLoadSuccess(product);
       
-      result = reducer(initialState, productLoadSuccess);
+      result = daffProductEntitiesReducer(initialState, productLoadSuccess);
     });
 
     it('sets expected product on state', () => {
@@ -110,8 +110,8 @@ describe('Product | Product Entities Reducer', () => {
       const productLoadSuccess = new DaffProductLoadSuccess(product);
       const productModifyAction = new DaffProductModify(productModify);
       
-      const testingState = reducer(initialState, productLoadSuccess);
-      result = reducer(testingState, productModifyAction);
+      const testingState = daffProductEntitiesReducer(initialState, productLoadSuccess);
+      result = daffProductEntitiesReducer(testingState, productModifyAction);
     });
 
     it('sets a modification object on an existing product entity', () => {
@@ -127,7 +127,7 @@ describe('Product | Product Entities Reducer', () => {
     beforeEach(() => {
       const productGridReset = new DaffProductGridReset();
       
-      result = reducer(initialState, productGridReset);
+      result = daffProductEntitiesReducer(initialState, productGridReset);
     });
 
     it('removes all entities from state', () => {

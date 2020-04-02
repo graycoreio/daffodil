@@ -1,21 +1,22 @@
 import { TestBed } from '@angular/core/testing';
-
-import { DaffProductGridFacade } from './product-grid.facade';
 import { MockStore } from '@ngrx/store/testing';
-import { State, reducers } from '../../reducers';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
+
+import { DaffProductGridFacade } from './product-grid.facade';
 import { DaffProductGridLoad, DaffProductGridLoadSuccess } from '../../actions/product-grid.actions';
+import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
+import { daffProductReducers } from '../../reducers/product-reducers';
 
 describe('DaffProductGridFacade', () => {
-  let store: MockStore<Partial<State>>;
+  let store: MockStore<Partial<DaffProductReducersState>>;
   let facade: DaffProductGridFacade;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports:[
         StoreModule.forRoot({
-          product: combineReducers(reducers),
+          product: combineReducers(daffProductReducers),
         })
       ],
       providers: [

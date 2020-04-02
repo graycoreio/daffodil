@@ -5,7 +5,7 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
-import { DaffProductUnion, fromProduct, DaffProductGridLoadSuccess } from '@daffodil/product';
+import { DaffProductUnion, DaffProductGridLoadSuccess, daffProductReducers } from '@daffodil/product';
 
 import { DaffCategoryFacade } from './category.facade';
 import { DaffCategoryLoad, DaffCategoryLoadFailure, DaffCategoryLoadSuccess } from '../actions/category.actions';
@@ -29,7 +29,7 @@ describe('DaffCategoryFacade', () => {
       imports:[
         StoreModule.forRoot({
           category: combineReducers(categoryReducers),
-          product: combineReducers(fromProduct.reducers)
+          product: combineReducers(daffProductReducers)
         })
       ],
       providers: [

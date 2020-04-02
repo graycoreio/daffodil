@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
+import { Store, select, Action } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { DaffStoreFacade } from '@daffodil/core';
 
-import { Store, select, Action } from '@ngrx/store';
-
-import { Observable, combineLatest } from 'rxjs';
-
-import * as fromProduct from '../../reducers/index';
 import { DaffProduct } from '../../models/product';
-
 import { DaffProductModule } from '../../product.module';
+import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
+import { selectBestSellersProducts, selectBestSellersLoadingState } from '../../selectors/best-sellers.selectors';
 
 /**
  * A facade for accessing best sellers state from an application component.
@@ -27,9 +25,9 @@ export class DaffBestSellersFacade implements DaffStoreFacade<Action> {
    */
   bestSellers$: Observable<DaffProduct[]>;
 
-  constructor(private store: Store<fromProduct.State>) {
-    this.loading$ = this.store.pipe(select(fromProduct.selectBestSellersLoadingState));
-    this.bestSellers$ = this.store.pipe(select(fromProduct.selectBestSellersProducts));
+  constructor(private store: Store<DaffProductReducersState>) {
+    this.loading$ = this.store.pipe(select(selectBestSellersLoadingState));
+    this.bestSellers$ = this.store.pipe(select(selectBestSellersProducts));
   }
 
   /**

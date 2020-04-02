@@ -8,8 +8,8 @@ export { DaffProductImage } from './models/product-image';
 export { DaffBundledProduct } from './models/bundled-product';
 export { DaffBundledProductItem, DaffPriceTypeEnum, DaffBundledProductItemOption } from './models/bundled-product-item';
 
-import * as fromProduct from './reducers/index';
-export { fromProduct };
+export * from './reducers/public_api';
+export * from './selectors/public_api';
 export { DaffProductGridContainer } from './containers/product-grid/product-grid.component';
 export { DaffBestSellersContainer } from './containers/best-sellers/best-sellers.component';
 

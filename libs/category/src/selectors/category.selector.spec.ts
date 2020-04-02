@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { fromProduct, DaffProductGridLoadSuccess, DaffProductUnion } from '@daffodil/product';
+import { DaffProductGridLoadSuccess, DaffProductUnion, daffProductReducers } from '@daffodil/product';
 import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
@@ -60,7 +60,7 @@ describe('DaffCategorySelectors', () => {
       imports: [
         StoreModule.forRoot({
           category: combineReducers(categoryReducers),
-          product: combineReducers(fromProduct.reducers)
+          product: combineReducers(daffProductReducers)
         })
       ]
     });
