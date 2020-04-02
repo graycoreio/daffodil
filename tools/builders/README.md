@@ -34,8 +34,8 @@ If either `url` or `path` are falsey, the builder will do nothing and exit succe
 }
 ```
 
-Run the builder, optionally passing in the configuration token.
+Run the builder, optionally passing in the configuration token (`test` in this case).
 
 ```
-ng run <project>:generateGraphQLFragmentTypes -c configuration
+ng run <project>:generateGraphQLFragmentTypes -c test
 ```
