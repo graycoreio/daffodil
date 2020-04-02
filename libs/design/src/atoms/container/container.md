@@ -1,13 +1,13 @@
-# Container Component
+# Container
+`DaffContainerComponent` is a basic structural element that can be used to restric content to a specific width. Containers are not responsible for providing padding or margin.
 
-The container component is a basic layout element that can be used to contain layouts or individual components to a fixed width.
-
-The component has `xs`, `sm`, `md`, `lg`, and `xl` variants that are set through the size property.
+## Size
+The size of a container can be defined by using the `size` property. There is no default size set.
+- Supported sizes: `xs | sm | md | lg | xl`
 
 ## Usage
-
 ```
 <daff-container size="lg">
-    <!-- Content here -->
+  <!-- Content here -->
 </daff-container> 
 ```
