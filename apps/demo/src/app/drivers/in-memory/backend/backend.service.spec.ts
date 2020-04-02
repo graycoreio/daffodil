@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { DemoInMemoryService } from './in-memory.service';
+import { DemoInMemoryBackendService } from './backend.service';
 import { DaffInMemoryBackendCartRootService } from '@daffodil/cart/testing';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
 import { DaffInMemoryBackendCheckoutService } from '@daffodil/checkout/testing';
@@ -20,11 +20,11 @@ describe('Driver | In Memory | InMemoryService', () => {
         DaffInMemoryBackendProductService,
         DaffInMemoryBackendCheckoutService,
         DaffInMemoryBackendNavigationService,
-        DemoInMemoryService
+        DemoInMemoryBackendService
       ]
     });
 
-    service = TestBed.get(DemoInMemoryService);
+    service = TestBed.get(DemoInMemoryBackendService);
   });
 
   it('should be created', () => {

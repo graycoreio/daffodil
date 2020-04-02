@@ -18,7 +18,7 @@ import { DaffNavigationTree } from '@daffodil/navigation';
 @Injectable({
   providedIn: 'root'
 })
-export class DemoInMemoryService implements InMemoryDbService {
+export class DemoInMemoryBackendService implements InMemoryDbService {
   constructor(
     private productTestingService: DaffInMemoryBackendProductService,
     private cartTestingService: DaffInMemoryBackendCartRootService,
