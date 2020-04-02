@@ -7,7 +7,7 @@ import { DaffCategoryEffects } from './effects/category.effects';
 
 @NgModule({
   imports: [
-    StoreModule.forFeature('category', categoryReducers),
+    StoreModule.forFeature('category', categoryReducers()),
     EffectsModule.forFeature([DaffCategoryEffects]),
   ]
 })

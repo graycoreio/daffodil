@@ -5,7 +5,6 @@ import { Store, select, Action } from '@ngrx/store';
 import { DaffStoreFacade } from '@daffodil/core';
 import { DaffProductUnion } from '@daffodil/product';
 
-import { DaffCategory } from '../models/category';
 import { DaffCategoryModule } from '../category.module';
 import {
   selectCategoryLoading,
@@ -34,6 +33,7 @@ import { DaffCategoryFilter } from '../models/category-filter';
 import { DaffCategorySortOption } from '../models/category-sort-option';
 import { DaffSortDirectionEnum } from '../models/requests/category-request';
 import { DaffCategoryAppliedFilter } from '../models/category-applied-filter';
+import { DaffGenericCategory } from '../models/generic-category';
 
 /**
  * A facade for accessing state for the currently selected category.
@@ -41,15 +41,15 @@ import { DaffCategoryAppliedFilter } from '../models/category-applied-filter';
 @Injectable({
   providedIn: DaffCategoryModule
 })
-export class DaffCategoryFacade implements DaffStoreFacade<Action> {
+export class DaffCategoryFacade<T extends DaffGenericCategory<T>, U extends DaffCategoryPageConfigurationState> implements DaffStoreFacade<Action> {
   /**
    * The currently selected category.
    */
-  category$: Observable<DaffCategory>;
+  category$: Observable<T>;
   /**
    * The page configuration state for the selected category.
    */
-  pageConfigurationState$: Observable<DaffCategoryPageConfigurationState>;
+  pageConfigurationState$: Observable<U>;
   /**
    * The current page of products for the selected category.
    */
@@ -111,8 +111,8 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
 	 * Get a category by the provided Id.
 	 * @param id 
 	 */
-	getCategoryById(id: string): Observable<DaffCategory> {
-		return this.store.pipe(select(selectCategory, {id: id}));
+	getCategoryById(id: string): Observable<T> {
+		return this.store.pipe(select(selectCategory(), {id: id}));
 	}
 
 	/**
@@ -120,7 +120,7 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
 	 * @param categoryId 
 	 */
 	getProductsByCategory(categoryId: string): Observable<DaffProductUnion[]> {
-		return this.store.pipe(select(selectProductsByCategory, {id: categoryId}))
+		return this.store.pipe(select(selectProductsByCategory(), {id: categoryId}))
 	}
 
 	/**
@@ -128,26 +128,26 @@ export class DaffCategoryFacade implements DaffStoreFacade<Action> {
 	 * @param categoryId 
 	 */
 	getTotalProductsByCategory(categoryId: string): Observable<number> {
-		return this.store.pipe(select(selectTotalProductsByCategory, {id: categoryId}))
+		return this.store.pipe(select(selectTotalProductsByCategory(), {id: categoryId}))
 	}
 
-  constructor(private store: Store<CategoryReducersState>) {
-    this.category$ = this.store.pipe(select(selectSelectedCategory));
-		this.products$ = this.store.pipe(select(selectCategoryPageProducts));
-		this.totalProducts$ = this.store.pipe(select(selectCategoryPageTotalProducts));
-    this.pageConfigurationState$ = this.store.pipe(select(selectCategoryPageConfigurationState));
-    this.currentPage$ = this.store.pipe(select(selectCategoryCurrentPage));
-    this.totalPages$ = this.store.pipe(select(selectCategoryTotalPages));
-    this.pageSize$ = this.store.pipe(select(selectCategoryPageSize));
-    this.filters$ = this.store.pipe(select(selectCategoryFilters));
-    this.sortOptions$ = this.store.pipe(select(selectCategorySortOptions));
-    this.appliedFilters$ = this.store.pipe(select(selectCategoryPageAppliedFilters));
-    this.appliedSortOption$ = this.store.pipe(select(selectCategoryPageAppliedSortOption));
-    this.appliedSortDirection$ = this.store.pipe(select(selectCategoryPageAppliedSortDirection));
-    this.categoryLoading$ = this.store.pipe(select(selectCategoryLoading));
-    this.productsLoading$ = this.store.pipe(select(selectCategoryProductsLoading));
-		this.errors$ = this.store.pipe(select(selectCategoryErrors));
-		this.isCategoryEmpty$ = this.store.pipe(select(selectIsCategoryPageEmpty));
+  constructor(private store: Store<CategoryReducersState<T, U>>) {
+    this.category$ = this.store.pipe(select(selectSelectedCategory()));
+		this.products$ = this.store.pipe(select(selectCategoryPageProducts()));
+		this.totalProducts$ = this.store.pipe(select(selectCategoryPageTotalProducts()));
+    this.pageConfigurationState$ = this.store.pipe(select(selectCategoryPageConfigurationState()));
+    this.currentPage$ = this.store.pipe(select(selectCategoryCurrentPage()));
+    this.totalPages$ = this.store.pipe(select(selectCategoryTotalPages()));
+    this.pageSize$ = this.store.pipe(select(selectCategoryPageSize()));
+    this.filters$ = this.store.pipe(select(selectCategoryFilters()));
+    this.sortOptions$ = this.store.pipe(select(selectCategorySortOptions()));
+    this.appliedFilters$ = this.store.pipe(select(selectCategoryPageAppliedFilters()));
+    this.appliedSortOption$ = this.store.pipe(select(selectCategoryPageAppliedSortOption()));
+    this.appliedSortDirection$ = this.store.pipe(select(selectCategoryPageAppliedSortDirection()));
+    this.categoryLoading$ = this.store.pipe(select(selectCategoryLoading()));
+    this.productsLoading$ = this.store.pipe(select(selectCategoryProductsLoading()));
+		this.errors$ = this.store.pipe(select(selectCategoryErrors()));
+		this.isCategoryEmpty$ = this.store.pipe(select(selectIsCategoryPageEmpty()));
 	}
 
   /**

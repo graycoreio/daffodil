@@ -1,10 +1,13 @@
 import { DaffProductUnion } from '@daffodil/product';
 
-import { DaffCategory } from './category';
 import { DaffCategoryPageConfigurationState } from './category-page-configuration-state';
+import { DaffGenericCategory } from './generic-category';
 
-export interface DaffGetCategoryResponse {
+export interface DaffGetCategoryResponse<
+	T extends DaffGenericCategory<T>, 
+	U extends DaffCategoryPageConfigurationState
+> {
   products: DaffProductUnion[];
-  category: DaffCategory;
-  categoryPageConfigurationState: DaffCategoryPageConfigurationState;
+  category: T;
+  categoryPageConfigurationState: U;
 }

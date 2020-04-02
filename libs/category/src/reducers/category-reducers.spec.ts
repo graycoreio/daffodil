@@ -5,10 +5,10 @@ import { categoryEntitiesReducer } from './category-entities/category-entities.r
 describe('selectCategoryState', () => {
 
   it('should return a reducer map with CategoryReducer', () => {
-    expect(categoryReducers.category).toEqual(categoryReducer);
+    expect(categoryReducers().category).toEqual(categoryReducer);
   });
 
   it('should return a reducer map with CategoryEntitiesReducer', () => {
-    expect(categoryReducers.categoryEntities).toEqual(categoryEntitiesReducer);
+    expect(categoryReducers().categoryEntities).toEqual(categoryEntitiesReducer);
   });
 });
