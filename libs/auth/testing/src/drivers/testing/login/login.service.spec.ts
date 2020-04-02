@@ -5,7 +5,8 @@ import {
   DaffAuthToken,
   DaffLoginServiceInterface,
   DaffAccountRegistration,
-} from '../../../../../src';
+} from '@daffodil/auth';
+
 import { DaffTestingLoginService } from './login.service';
 import { DaffAccountRegistrationFactory } from '../../../factories/account-registration.factory';
 
