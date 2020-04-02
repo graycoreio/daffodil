@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import { DaffProductModule } from '@daffodil/product';
 import { DaffLoadingIconModule } from '@daffodil/design';
 
-import { ProductGridModule } from '../product-grid/product-grid.module';
 import { BestSellersComponent } from './best-sellers.component';
+import { ProductGridModule } from '../../components/product-grid/product-grid.module';
 
 @NgModule({
   imports: [

@@ -1,0 +1,8 @@
+<div class="demo-best-sellers" *ngIf="!(loading$ | async)">
+	<div class="demo-best-sellers__title">best sellers</div>
+	<demo-product-grid [products]="bestSellers$ | async"></demo-product-grid>
+</div>
+
+<div *ngIf="(loading$ | async)" class="demo-best-sellers__loading-icon">
+	<daff-loading-icon></daff-loading-icon>
+</div>
