@@ -12,3 +12,5 @@ export { DaffAuthModule } from './auth.module';
 export { DaffRegisterDriver, DaffRegisterServiceInterface } from './drivers/interfaces/register-service.interface';
 export { DaffLoginDriver, DaffLoginServiceInterface } from './drivers/interfaces/login-service.interface';
 export { DaffAuthDriver, DaffAuthServiceInterface } from './drivers/interfaces/auth-service.interface';
+
+export * from './drivers/magento/public_api';
