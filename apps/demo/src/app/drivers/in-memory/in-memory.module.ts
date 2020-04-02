@@ -6,12 +6,12 @@ import { DaffCartInMemoryDriverModule } from '@daffodil/cart/testing';
 import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
 import { DaffNavigationInMemoryDriverModule } from '@daffodil/navigation/testing';
 import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/testing';
-import { DemoInMemoryService } from './backend/backend';
+import { DemoInMemoryBackendService } from './backend/backend.service';
 
 
 @NgModule({
   imports: [
-    HttpClientInMemoryWebApiModule.forRoot(DemoInMemoryService),
+    HttpClientInMemoryWebApiModule.forRoot(DemoInMemoryBackendService),
     DaffProductInMemoryDriverModule.forRoot(),
     DaffCartInMemoryDriverModule.forRoot(),
     DaffCheckoutInMemoryDriverModule.forRoot(),
