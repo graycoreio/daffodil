@@ -1,3 +1,5 @@
+export * from './actions/auth.actions';
+
 export { DaffAuthFacadeInterface } from './interfaces/auth-facade.interface';
 
 export { DaffAccountRegistration } from './models/account-registration'
