@@ -13,7 +13,7 @@ import { PlaceOrderComponent } from './place-order.component';
 
 class MockDaffCartFacade {
 	cart$: BehaviorSubject<DaffCart> = new BehaviorSubject(null);
-	dispatch(){};
+	dispatch = jasmine.createSpy();
 }
 
 describe('PlaceOrderComponent', () => {
