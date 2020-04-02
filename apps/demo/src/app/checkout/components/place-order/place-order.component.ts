@@ -30,7 +30,7 @@ export class PlaceOrderComponent implements OnInit {
 
   placeOrder() {
     this.cart$.pipe(take(1)).subscribe((cart: DaffCart) => {
-      this.store.dispatch(new PlaceOrder(cart));
+      this.cartFacade.dispatch(new PlaceOrder(cart));
     });
   }
 }

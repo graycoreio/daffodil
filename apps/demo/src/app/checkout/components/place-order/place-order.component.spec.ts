@@ -13,6 +13,7 @@ import { PlaceOrderComponent } from './place-order.component';
 
 class MockDaffCartFacade {
 	cart$: BehaviorSubject<DaffCart> = new BehaviorSubject(null);
+	dispatch(){};
 }
 
 describe('PlaceOrderComponent', () => {
@@ -103,7 +104,7 @@ describe('PlaceOrderComponent', () => {
 
     it('should call store.dispatch with a PlaceOrder action', () => {
       fixture.debugElement.query(By.css('button')).nativeElement.click();
-      expect(store.dispatch).toHaveBeenCalledWith(new PlaceOrder(stubCart));
+      expect(cartFacade.dispatch).toHaveBeenCalledWith(new PlaceOrder(stubCart));
     });
   });
 });
