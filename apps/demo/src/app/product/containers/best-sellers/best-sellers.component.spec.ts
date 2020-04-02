@@ -27,7 +27,7 @@ describe('BestSellersComponent', () => {
   let fixture: ComponentFixture<BestSellersComponent>;
   let bestSellersFacade: MockDaffBestSellersFacade;
 	let productGridComponent: MockProductGridComponent;
-	let stubProducts: DaffProduct[] = new DaffProductFactory().createMany(2);
+	const stubProducts: DaffProduct[] = new DaffProductFactory().createMany(2);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
