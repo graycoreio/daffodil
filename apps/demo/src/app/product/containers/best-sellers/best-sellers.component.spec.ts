@@ -1,20 +1,17 @@
 import { Component, Input } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
-import { DaffProduct } from '@daffodil/product';
+import { DaffProduct, DaffBestSellersFacade } from '@daffodil/product';
 import { DaffLoadingIconModule } from '@daffodil/design';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { BestSellersComponent } from './best-sellers.component';
 
-const stubBestSellers: DaffProduct[] = [];
-
-// tslint:disable-next-line: component-selector
-@Component({selector: '[best-sellers-container]', exportAs: 'BestSellersContainer', template: '<ng-content></ng-content>'})
-class MockBestSellersContainer {
-  loading$: Observable<boolean> = of(false);
-  bestSellers: DaffProduct[] = stubBestSellers;
+class MockDaffBestSellersFacade {
+  loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  bestSellers$: BehaviorSubject<DaffProduct[]> = new BehaviorSubject([]);
 }
 
 @Component({
@@ -28,8 +25,9 @@ class MockProductGridComponent {
 describe('BestSellersComponent', () => {
   let component: BestSellersComponent;
   let fixture: ComponentFixture<BestSellersComponent>;
-  let bestSellersContainer: MockBestSellersContainer;
-  let productGridComponent: MockProductGridComponent;
+  let bestSellersFacade: MockDaffBestSellersFacade;
+	let productGridComponent: MockProductGridComponent;
+	const stubProducts: DaffProduct[] = new DaffProductFactory().createMany(2);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -38,19 +36,22 @@ describe('BestSellersComponent', () => {
       ],
       declarations: [ 
         BestSellersComponent,
-        MockBestSellersContainer,
         MockProductGridComponent
-      ]
+			],
+			providers: [
+				{ provide: DaffBestSellersFacade, useClass: MockDaffBestSellersFacade }
+			]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BestSellersComponent);
+		bestSellersFacade = TestBed.get(DaffBestSellersFacade);
+		bestSellersFacade.bestSellers$.next(stubProducts)
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    bestSellersContainer = fixture.debugElement.query(By.css('[best-sellers-container]')).componentInstance;
     productGridComponent = fixture.debugElement.query(By.css('demo-product-grid')).componentInstance;
   });
 
@@ -60,12 +61,18 @@ describe('BestSellersComponent', () => {
 
   describe('on <demo-product-grid>', () => {
     
-    it('should set products to bestSellersContainer.bestSellers', () => {
-      expect(productGridComponent.products).toEqual(bestSellersContainer.bestSellers);
+    it('should set products', () => {
+      expect(productGridComponent.products).toEqual(stubProducts);
     });
   });
 
   describe('when bestSellersContainer.loading$ is false', () => {
+
+    beforeEach(() => {
+			bestSellersFacade.loading$.next(false)
+
+      fixture.detectChanges();
+    });
     
     it('should render .demo-best-sellers', () => {
       const bestSellersElement = fixture.debugElement.query(By.css('.demo-best-sellers'));
@@ -83,7 +90,7 @@ describe('BestSellersComponent', () => {
   describe('when bestSellersContainer.loading$ is true', () => {
 
     beforeEach(() => {
-      bestSellersContainer.loading$ = of(true);
+			bestSellersFacade.loading$.next(true)
 
       fixture.detectChanges();
     });

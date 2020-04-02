@@ -10,8 +10,6 @@ export { DaffBundledProductItem, DaffPriceTypeEnum, DaffBundledProductItemOption
 
 export * from './reducers/public_api';
 export * from './selectors/public_api';
-export { DaffProductGridContainer } from './containers/product-grid/product-grid.component';
-export { DaffBestSellersContainer } from './containers/best-sellers/best-sellers.component';
 
 export { DaffProductModule } from './product.module';
 
@@ -30,5 +28,6 @@ export { ProductNode as MagentoProduct } from './drivers/magento/models/product-
 
 export { DaffProductGridFacade } from './facades/product-grid/product-grid.facade';
 export { DaffProductFacade } from './facades/product/product.facade';
+export { DaffBestSellersFacade } from './facades/best-sellers/best-sellers.facade';
 
 export * from './drivers/magento/public_api';
