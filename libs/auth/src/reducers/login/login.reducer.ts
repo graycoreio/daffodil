@@ -1,37 +1,28 @@
-import { DaffAuthActionTypes, DaffAuthActions } from '../actions/auth.actions';
-import { DaffAuthReducerState } from './auth-reducer-state.interface';
-import { DaffAuthToken } from '../models/auth-token';
-import { DaffLoginInfo } from '../models/login-info';
-import { DaffAccountRegistration } from '../models/account-registration';
-import { daffAuthInitialState } from './auth-initial-state';
+import { DaffAuthActionTypes, DaffAuthActions } from '../../actions/auth.actions';
+import { DaffAuthLoginReducerState } from './login-reducer-state.interface';
+import { DaffAuthToken } from '../../models/auth-token';
+import { DaffLoginInfo } from '../../models/login-info';
+import { DaffAccountRegistration } from '../../models/account-registration';
+import { daffAuthLoginInitialState } from './login-initial-state';
 
-export function daffAuthReducer<
+export function daffAuthLoginReducer<
   T extends DaffLoginInfo,
   U extends DaffAuthToken,
   S extends DaffAccountRegistration,
 >(
-  state = daffAuthInitialState,
+  state = daffAuthLoginInitialState,
   action: DaffAuthActions<
     T,
     U,
     S
   >
-): DaffAuthReducerState<U> {
+): DaffAuthLoginReducerState<U> {
   switch (action.type) {
     case DaffAuthActionTypes.AuthLoginAction:
     case DaffAuthActionTypes.AuthLogoutAction:
-    case DaffAuthActionTypes.AuthCheckAction:
-    case DaffAuthActionTypes.AuthRegisterAction:
       return {
         ...state,
         loading: true
-      };
-
-    case DaffAuthActionTypes.AuthRegisterSuccessAction:
-    case DaffAuthActionTypes.AuthCheckSuccessAction:
-      return {
-        ...state,
-        loading: false
       };
 
     case DaffAuthActionTypes.AuthLoginSuccessAction:
@@ -50,8 +41,6 @@ export function daffAuthReducer<
 
     case DaffAuthActionTypes.AuthLoginFailureAction:
     case DaffAuthActionTypes.AuthLogoutFailureAction:
-    case DaffAuthActionTypes.AuthCheckFailureAction:
-    case DaffAuthActionTypes.AuthRegisterFailureAction:
       return {
         ...state,
         loading: false,

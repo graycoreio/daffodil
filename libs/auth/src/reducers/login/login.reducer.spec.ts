@@ -3,7 +3,7 @@ import {
   DaffAccountRegistrationFactory
 } from '@daffodil/auth/testing';
 
-import { DaffAuthReducerState } from './auth-reducer-state.interface';
+import { DaffAuthLoginReducerState } from './login-reducer-state.interface';
 import {
   DaffAuthLogin,
   DaffAuthLoginSuccess,
@@ -11,21 +11,14 @@ import {
   DaffAuthLogout,
   DaffAuthLogoutSuccess,
   DaffAuthLogoutFailure,
-  DaffAuthCheck,
-  DaffAuthCheckSuccess,
-  DaffAuthCheckFailure,
-  DaffAuthRegister,
-  DaffAuthRegisterSuccess,
-  DaffAuthRegisterFailure,
-} from '../actions/auth.actions';
-import { daffAuthReducer as reducer } from './auth.reducer';
-import { DaffAccountRegistration } from '../models/account-registration';
-import { DaffLoginInfo } from '../models/login-info';
-import { DaffAuthToken } from '../models/auth-token';
-import { DaffCustomerRegistration } from '../models/customer-registration';
+} from '../../actions/auth.actions';
+import { daffAuthLoginReducer as reducer } from './login.reducer';
+import { daffAuthLoginInitialState as initialState } from './login-initial-state'
+import { DaffAccountRegistration } from '../../models/account-registration';
+import { DaffLoginInfo } from '../../models/login-info';
+import { DaffAuthToken } from '../../models/auth-token';
 
-
-describe('Auth | Auth Reducer', () => {
+describe('Auth | Reducer | Login', () => {
   const registrationFactory: DaffAccountRegistrationFactory = new DaffAccountRegistrationFactory();
   const authTokenFactory: DaffAuthTokenFactory = new DaffAuthTokenFactory();
 
@@ -36,12 +29,6 @@ describe('Auth | Auth Reducer', () => {
   let password: string;
   let firstName: string;
   let lastName: string;
-
-  const initialState: DaffAuthReducerState<DaffAuthToken> = {
-    auth: null,
-    loading: false,
-    errors: []
-  }
 
   beforeEach(() => {
     mockRegistration = registrationFactory.create();
@@ -80,7 +67,7 @@ describe('Auth | Auth Reducer', () => {
 
   describe('when AuthLoginSuccessAction is triggered', () => {
     let result;
-    let state: DaffAuthReducerState<DaffAuthToken>;
+    let state: DaffAuthLoginReducerState<DaffAuthToken>;
 
     beforeEach(() => {
       state = {
@@ -104,7 +91,7 @@ describe('Auth | Auth Reducer', () => {
   describe('when AuthLoginFailureAction is triggered', () => {
     const error = 'error message';
     let result;
-    let state: DaffAuthReducerState<DaffAuthToken>;
+    let state: DaffAuthLoginReducerState<DaffAuthToken>;
 
     beforeEach(() => {
       state = {
@@ -143,7 +130,7 @@ describe('Auth | Auth Reducer', () => {
 
   describe('when AuthLogoutSuccessAction is triggered', () => {
     let result;
-    let state: DaffAuthReducerState<DaffAuthToken>;
+    let state: DaffAuthLoginReducerState<DaffAuthToken>;
 
     beforeEach(() => {
       state = {
@@ -168,7 +155,7 @@ describe('Auth | Auth Reducer', () => {
   describe('when AuthLogoutFailureAction is triggered', () => {
     const error = 'error message';
     let result;
-    let state: DaffAuthReducerState<DaffAuthToken>;
+    let state: DaffAuthLoginReducerState<DaffAuthToken>;
 
     beforeEach(() => {
       state = {
@@ -180,124 +167,6 @@ describe('Auth | Auth Reducer', () => {
       const authLogoutFailure = new DaffAuthLogoutFailure(error);
 
       result = reducer(state, authLogoutFailure);
-    });
-
-    it('sets loading to false', () => {
-      expect(result.loading).toEqual(false);
-    });
-
-    it('adds an error to state.errors', () => {
-      expect(result.errors).toEqual([error]);
-    });
-  });
-
-  describe('when AuthCheckAction is triggered', () => {
-    let result;
-
-    beforeEach(() => {
-      const authCheckAction = new DaffAuthCheck();
-
-      result = reducer(initialState, authCheckAction);
-    });
-
-    it('sets loading state to true', () => {
-      expect(result.loading).toEqual(true);
-    });
-  });
-
-  describe('when AuthCheckSuccessAction is triggered', () => {
-    let result;
-    let state: DaffAuthReducerState<DaffAuthToken>;
-
-    beforeEach(() => {
-      state = {
-        ...initialState,
-        loading: true
-      }
-
-      const authCheckSuccess = new DaffAuthCheckSuccess();
-      result = reducer(state, authCheckSuccess);
-    });
-
-    it('sets loading to false', () => {
-      expect(result.loading).toEqual(false);
-    });
-  });
-
-  describe('when AuthCheckFailureAction is triggered', () => {
-    const error = 'error message';
-    let result;
-    let state: DaffAuthReducerState<DaffAuthToken>;
-
-    beforeEach(() => {
-      state = {
-        ...initialState,
-        loading: true,
-        errors: new Array('firstError')
-      }
-
-      const authCheckFailure = new DaffAuthCheckFailure(error);
-
-      result = reducer(state, authCheckFailure);
-    });
-
-    it('sets loading to false', () => {
-      expect(result.loading).toEqual(false);
-    });
-
-    it('adds an error to state.errors', () => {
-      expect(result.errors).toEqual([error]);
-    });
-  });
-
-  describe('when AuthRegisterAction is triggered', () => {
-    let result;
-
-    beforeEach(() => {
-      const authRegisterAction: DaffAuthRegister<DaffAccountRegistration> = new DaffAuthRegister(mockRegistration);
-
-      result = reducer(initialState, authRegisterAction);
-    });
-
-    it('sets loading state to true', () => {
-      expect(result.loading).toEqual(true);
-    });
-  });
-
-  describe('when AuthRegisterSuccessAction is triggered', () => {
-    let result;
-    let state: DaffAuthReducerState<DaffAuthToken>;
-
-    beforeEach(() => {
-      state = {
-        ...initialState,
-        loading: true
-      }
-
-      const authRegisterSuccess = new DaffAuthRegisterSuccess(mockLoginInfo);
-      result = reducer(state, authRegisterSuccess);
-    });
-
-    it('sets loading to false', () => {
-      expect(result.loading).toEqual(false);
-    });
-  });
-
-  describe('when AuthRegisterFailureAction is triggered', () => {
-    const error = 'error message';
-    let result;
-    let state: DaffAuthReducerState<DaffAuthToken>;
-
-    beforeEach(() => {
-      state = {
-        ...initialState,
-        loading: true,
-        errors: new Array('firstError')
-      }
-
-      const authRegisterFailure = new DaffAuthRegisterFailure(error);
-
-      result = reducer(state, authRegisterFailure);
     });
 
     it('sets loading to false', () => {
