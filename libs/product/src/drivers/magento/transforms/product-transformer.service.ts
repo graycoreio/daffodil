@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { DaffProductUnion } from '../../../models/product-union';
+import { DaffProduct } from '../../../models/product';
 import { ProductNode, MagentoProductTypeEnum } from '../models/product-node';
 import { DaffProductTypeEnum } from '../../../models/product';
 
@@ -13,10 +13,10 @@ import { DaffProductTypeEnum } from '../../../models/product';
 export class DaffMagentoProductTransformerService {
 
   /**
-   * Transforms the magento ProductNode from the magento product query into a DaffProductUnion. 
+   * Transforms the magento ProductNode from the magento product query into a DaffProduct. 
    * @param response the response from a magento product query.
    */
-  transform(response: any): DaffProductUnion {
+  transform(response: any): DaffProduct {
     const product: ProductNode = response.products.items[0];
     return {
 			type: this.transformProductType(product.__typename),
@@ -40,13 +40,13 @@ export class DaffMagentoProductTransformerService {
   }
 
   /**
-   * Transforms many magento ProductNodes from the magento product query into DaffProductUnions.
+   * Transforms many magento ProductNodes from the magento product query into DaffProducts.
    */
-  transformMany(products: any[]): DaffProductUnion[] {
+  transformMany(products: any[]): DaffProduct[] {
     return products.map(this.transformList.bind(this));
   }
 
-  private transformList(product: ProductNode): DaffProductUnion {
+  private transformList(product: ProductNode): DaffProduct {
     return {
 			type: this.transformProductType(product.__typename),
 			__typename: this.transformProductType(product.__typename),

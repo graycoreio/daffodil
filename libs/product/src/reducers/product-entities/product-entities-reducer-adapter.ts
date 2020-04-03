@@ -1,7 +1,10 @@
 import { EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { DaffProductUnion } from '../../models/product-union';
+
+import { DaffProduct } from '../../models/product';
 
 /**
  * Product Adapter for changing/overwriting entity state.
  */
-export const daffProductEntitiesAdapter : EntityAdapter<DaffProductUnion> = createEntityAdapter<DaffProductUnion>();
+export function daffProductEntitiesAdapter<T extends DaffProduct>(): EntityAdapter<T> {
+	return createEntityAdapter<T>();
+}

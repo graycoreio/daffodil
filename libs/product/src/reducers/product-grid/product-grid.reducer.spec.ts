@@ -42,7 +42,7 @@ describe('Product | Product Grid Reducer', () => {
 
     let products: DaffProduct[];
     let result;
-    let state: DaffProductGridReducerState;
+    let state: DaffProductGridReducerState<DaffProduct>;
 
     beforeEach(() => {
       state = {
@@ -64,7 +64,7 @@ describe('Product | Product Grid Reducer', () => {
 
     let error: string;
     let result;
-    let state: DaffProductGridReducerState;
+    let state: DaffProductGridReducerState<DaffProduct>;
 
     beforeEach(() => {
       state = {

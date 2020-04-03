@@ -14,7 +14,7 @@ import { selectProductGridState, selectProductGridLoadingState } from './product
 
 describe('selectProductState', () => {
 
-  let store: Store<DaffProductReducersState>;
+  let store: Store<DaffProductReducersState<DaffProduct>>;
   const productFactory: DaffProductFactory = new DaffProductFactory();
   let mockProduct: DaffProduct;
   
@@ -22,7 +22,7 @@ describe('selectProductState', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          product: combineReducers(daffProductReducers),
+          product: combineReducers(daffProductReducers()),
         })
       ]
     });
@@ -47,7 +47,7 @@ describe('selectProductState', () => {
           loading: false,
           errors: []
         }
-				const selector = store.pipe(select(selectProductGridState));
+				const selector = store.pipe(select(selectProductGridState()));
 				const expected = cold('a', { a: expectedGridState });
 
 				expect(selector).toBeObservable(expected);
@@ -57,7 +57,7 @@ describe('selectProductState', () => {
     describe('selectProductGridLoadingState', () => {
       
       it('selects product grid loading state', () => {
-				const selector = store.pipe(select(selectProductGridLoadingState));
+				const selector = store.pipe(select(selectProductGridLoadingState()));
 				const expected = cold('a', { a: false });
 
 				expect(selector).toBeObservable(expected);

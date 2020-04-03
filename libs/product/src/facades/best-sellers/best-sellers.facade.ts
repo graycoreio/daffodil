@@ -15,7 +15,7 @@ import { selectBestSellersProducts, selectBestSellersLoadingState } from '../../
 @Injectable({
   providedIn: DaffProductModule
 })
-export class DaffBestSellersFacade implements DaffStoreFacade<Action> {
+export class DaffBestSellersFacade<T extends DaffProduct> implements DaffStoreFacade<Action> {
   /**
    * The loading state for getting best selling products.
    */
@@ -25,9 +25,9 @@ export class DaffBestSellersFacade implements DaffStoreFacade<Action> {
    */
   bestSellers$: Observable<DaffProduct[]>;
 
-  constructor(private store: Store<DaffProductReducersState>) {
-    this.loading$ = this.store.pipe(select(selectBestSellersLoadingState));
-    this.bestSellers$ = this.store.pipe(select(selectBestSellersProducts));
+  constructor(private store: Store<DaffProductReducersState<T>>) {
+    this.loading$ = this.store.pipe(select(selectBestSellersLoadingState()));
+    this.bestSellers$ = this.store.pipe(select(selectBestSellersProducts()));
   }
 
   /**

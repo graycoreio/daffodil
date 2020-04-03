@@ -7,16 +7,17 @@ import { DaffProductGridFacade } from './product-grid.facade';
 import { DaffProductGridLoad, DaffProductGridLoadSuccess } from '../../actions/product-grid.actions';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
 import { daffProductReducers } from '../../reducers/product-reducers';
+import { DaffProduct } from '../../models/product';
 
 describe('DaffProductGridFacade', () => {
-  let store: MockStore<Partial<DaffProductReducersState>>;
-  let facade: DaffProductGridFacade;
+  let store: MockStore<Partial<DaffProductReducersState<DaffProduct>>>;
+  let facade: DaffProductGridFacade<DaffProduct>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports:[
         StoreModule.forRoot({
-          product: combineReducers(daffProductReducers),
+          product: combineReducers(daffProductReducers()),
         })
       ],
       providers: [

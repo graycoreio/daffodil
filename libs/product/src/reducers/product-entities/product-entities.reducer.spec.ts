@@ -1,20 +1,18 @@
-import { DaffProductFactory, DaffProductModificationFactory } from '@daffodil/product/testing';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffProductLoadSuccess, DaffProductModify } from '../../actions/product.actions';
+import { DaffProductLoadSuccess } from '../../actions/product.actions';
 import { DaffProductGridLoadSuccess, DaffProductGridReset } from '../../actions/product-grid.actions';
-import { initialState, daffProductEntitiesReducer } from './product-entities.reducer';
+import { daffProductEntitiesReducer } from './product-entities.reducer';
 import { DaffBestSellersLoadSuccess } from '../../actions/best-sellers.actions';
 import { DaffProduct } from '../../models/product';
-import { DaffProductModification } from '../../models/product-modification';
+import { daffProductEntitiesAdapter } from './product-entities-reducer-adapter';
 
 describe('Product | Product Entities Reducer', () => {
 
   let productFactory: DaffProductFactory;
-  let productModificationFactory: DaffProductModificationFactory;
 
   beforeEach(() => {
     productFactory = new DaffProductFactory();
-    productModificationFactory = new DaffProductModificationFactory();
   });
 
   describe('when an unknown action is triggered', () => {
@@ -22,9 +20,9 @@ describe('Product | Product Entities Reducer', () => {
     it('should return the current state', () => {
       const action = {} as any;
 
-      const result = daffProductEntitiesReducer(initialState, action);
+      const result = daffProductEntitiesReducer(daffProductEntitiesAdapter<DaffProduct>().getInitialState(), action);
 
-      expect(result).toBe(initialState);
+      expect(result).toEqual(daffProductEntitiesAdapter<DaffProduct>().getInitialState());
     });
   });
 
@@ -37,7 +35,7 @@ describe('Product | Product Entities Reducer', () => {
       products = productFactory.createMany(2);
       const productGridLoadSuccess = new DaffProductGridLoadSuccess(products);
       
-      result = daffProductEntitiesReducer(initialState, productGridLoadSuccess);
+      result = daffProductEntitiesReducer(daffProductEntitiesAdapter<DaffProduct>().getInitialState(), productGridLoadSuccess);
     });
 
     it('sets expected number of products on state', () => {
@@ -59,7 +57,7 @@ describe('Product | Product Entities Reducer', () => {
       
       const bestSellersLoadSuccess = new DaffBestSellersLoadSuccess(products);
       
-      result = daffProductEntitiesReducer(initialState, bestSellersLoadSuccess);
+      result = daffProductEntitiesReducer(daffProductEntitiesAdapter<DaffProduct>().getInitialState(), bestSellersLoadSuccess);
     });
 
     it('sets expected number of products on state', () => {
@@ -83,40 +81,11 @@ describe('Product | Product Entities Reducer', () => {
       
       const productLoadSuccess = new DaffProductLoadSuccess(product);
       
-      result = daffProductEntitiesReducer(initialState, productLoadSuccess);
+      result = daffProductEntitiesReducer(daffProductEntitiesAdapter<DaffProduct>().getInitialState(), productLoadSuccess);
     });
 
     it('sets expected product on state', () => {
       expect(result.entities[productId]).toEqual(product);
-    });
-  });
-
-  describe('when ProductModifyAction is triggered', () => {
-    let product: DaffProduct;
-
-    let productModify: DaffProductModification;
-    let result;
-    let productId;
-
-    beforeEach(() => {
-      product = productFactory.create();
-      productModify = productModificationFactory.create();
-      productModify.id = product.id;
-      productModify.modification = {
-        'customKey': 'customValue'
-      }
-      productId = product.id;
-
-      const productLoadSuccess = new DaffProductLoadSuccess(product);
-      const productModifyAction = new DaffProductModify(productModify);
-      
-      const testingState = daffProductEntitiesReducer(initialState, productLoadSuccess);
-      result = daffProductEntitiesReducer(testingState, productModifyAction);
-    });
-
-    it('sets a modification object on an existing product entity', () => {
-      expect(result.entities[productId].customKey)
-        .toEqual('customValue');
     });
   });
 
@@ -127,7 +96,7 @@ describe('Product | Product Entities Reducer', () => {
     beforeEach(() => {
       const productGridReset = new DaffProductGridReset();
       
-      result = daffProductEntitiesReducer(initialState, productGridReset);
+      result = daffProductEntitiesReducer(daffProductEntitiesAdapter<DaffProduct>().getInitialState(), productGridReset);
     });
 
     it('removes all entities from state', () => {

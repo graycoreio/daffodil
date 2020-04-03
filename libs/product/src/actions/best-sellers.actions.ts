@@ -26,10 +26,10 @@ export class DaffBestSellersLoad implements Action {
  * 
  * @param payload - An array of Products
  */
-export class DaffBestSellersLoadSuccess implements Action {
+export class DaffBestSellersLoadSuccess<T extends DaffProduct> implements Action {
   readonly type = DaffBestSellersActionTypes.BestSellersLoadSuccessAction;
 
-  constructor(public payload: DaffProduct[]) {}
+  constructor(public payload: T[]) {}
 }
 
 /**
@@ -52,9 +52,9 @@ export class DaffBestSellersReset implements Action {
   constructor() {}
 }
 
-export type DaffBestSellersActions = 
+export type DaffBestSellersActions<T extends DaffProduct> = 
     | DaffBestSellersLoad 
-    | DaffBestSellersLoadSuccess
+    | DaffBestSellersLoadSuccess<T>
     | DaffBestSellersLoadFailure
     | DaffBestSellersReset;
     

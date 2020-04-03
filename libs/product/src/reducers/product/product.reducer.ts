@@ -1,5 +1,6 @@
 import { DaffProductReducerState } from './product-reducer-state.interface';
 import { DaffProductActionTypes, DaffProductActions } from '../../actions/product.actions';
+import { DaffProduct } from '../../models/product';
 
 /**
  * Initial values of the product state.
@@ -18,7 +19,7 @@ export const initialState: DaffProductReducerState = {
  * @param action a product action
  * @returns product state
  */
-export function daffProductReducer(state = initialState, action: DaffProductActions): DaffProductReducerState {
+export function daffProductReducer<T extends DaffProduct>(state = initialState, action: DaffProductActions<T>): DaffProductReducerState {
   switch (action.type) {
     case DaffProductActionTypes.ProductLoadAction:
       return {...state, loading: true, selectedProductId: action.payload};

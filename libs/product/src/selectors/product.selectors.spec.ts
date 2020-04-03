@@ -13,7 +13,7 @@ import { selectSelectedProductState, selectSelectedProductId, selectSelectedProd
 
 describe('selectProductState', () => {
 
-  let store: Store<DaffProductReducersState>;
+  let store: Store<DaffProductReducersState<DaffProduct>>;
   const productFactory: DaffProductFactory = new DaffProductFactory();
   let mockProduct: DaffProduct;
   
@@ -21,7 +21,7 @@ describe('selectProductState', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          product: combineReducers(daffProductReducers),
+          product: combineReducers(daffProductReducers()),
         })
       ]
     });
@@ -49,7 +49,7 @@ describe('selectProductState', () => {
       });
       
       it('returns the selected product state', () => {
-				const selector = store.pipe(select(selectSelectedProductState));
+				const selector = store.pipe(select(selectSelectedProductState()));
 				const expected = cold('a', { a: expectedProductState });
 
 				expect(selector).toBeObservable(expected);
@@ -59,7 +59,7 @@ describe('selectProductState', () => {
     describe('selectSelectedProductId', () => {
       
       it('returns the selected product id', () => {
-				const selector = store.pipe(select(selectSelectedProductId));
+				const selector = store.pipe(select(selectSelectedProductId()));
 				const expected = cold('a', { a: mockProduct.id });
 
 				expect(selector).toBeObservable(expected);
@@ -69,7 +69,7 @@ describe('selectProductState', () => {
     describe('selectSelectedProductQty', () => {
       
       it('returns the selected product qty', () => {
-				const selector = store.pipe(select(selectSelectedProductQty));
+				const selector = store.pipe(select(selectSelectedProductQty()));
 				const expected = cold('a', { a: 1 });
 
 				expect(selector).toBeObservable(expected);
@@ -79,7 +79,7 @@ describe('selectProductState', () => {
     describe('selectSelectedProductLoadingState', () => {
       
       it('selects the loading state of the selected product', () => {
-				const selector = store.pipe(select(selectSelectedProductLoadingState));
+				const selector = store.pipe(select(selectSelectedProductLoadingState()));
 				const expected = cold('a', { a: true });
 
 				expect(selector).toBeObservable(expected);
@@ -90,7 +90,7 @@ describe('selectProductState', () => {
   describe('selectSelectedProduct', () => {
     
     it('selects the selected product', () => {
-			const selector = store.pipe(select(selectSelectedProduct));
+			const selector = store.pipe(select(selectSelectedProduct()));
 			const expected = cold('a', { a: mockProduct });
 
 			expect(selector).toBeObservable(expected);

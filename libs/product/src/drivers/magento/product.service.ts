@@ -6,29 +6,29 @@ import { map } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 
 import { DaffProductServiceInterface } from '../interfaces/product-service.interface';
-import { DaffProductUnion } from '../../models/product-union';
 import { DaffSortField } from './models/sort-field';
 import { GetSortFieldsAndFiltersByCategory } from './queries/get-sort-fields-and-filters-by-category';
 import { GetAllProductsQuery } from './queries/get-all-products';
 import { GetProductQuery } from './queries/get-product';
 import { DaffMagentoProductTransformerService } from './transforms/product-transformer.service';
+import { DaffProduct } from '../../models/product';
 
 /**
- * A service for making magento apollo queries for products of type, DaffProductUnion.
+ * A service for making magento apollo queries for products of type, DaffProduct.
  */
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoProductService implements DaffProductServiceInterface<DaffProductUnion> {  
+export class DaffMagentoProductService implements DaffProductServiceInterface<DaffProduct> {  
   constructor(
     private apollo: Apollo,
     public productTransformer: DaffMagentoProductTransformerService) {}
 
   /**
-   * Get an Observable of a DaffProductUnion by id.
+   * Get an Observable of a DaffProduct by id.
    * @param productId a product Id
    */
-  get(productId: string): Observable<DaffProductUnion> {
+  get(productId: string): Observable<DaffProduct> {
     return this.apollo.query<any>({
 			query: GetProductQuery,
 			variables: {
@@ -42,7 +42,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface<Da
   /**
    * Get an Observable of an array of DaffProductUnions.
    */
-  getAll(): Observable<DaffProductUnion[]> {
+  getAll(): Observable<DaffProduct[]> {
     return this.apollo.query<any>({
 			query: GetAllProductsQuery
 		}).pipe(
@@ -63,7 +63,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface<Da
 
   //todo: add actual getBestSellers apollo call for Magento.
   //todo: move to a different bestsellers module.
-  getBestSellers(): Observable<DaffProductUnion[]> {
+  getBestSellers(): Observable<DaffProduct[]> {
     return of(null);
   }
 }

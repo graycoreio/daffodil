@@ -9,6 +9,7 @@ import { DaffProductModule } from '../../product.module';
 import { DaffProductUnion } from '../../models/product-union';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
 import { selectSelectedProductLoadingState, selectSelectedProduct } from '../../selectors/product.selectors';
+import { DaffProduct } from '../../models/product';
 
 /**
  * A facade for accessing product state from an application component.
@@ -16,7 +17,7 @@ import { selectSelectedProductLoadingState, selectSelectedProduct } from '../../
 @Injectable({
   providedIn: DaffProductModule
 })
-export class DaffProductFacade implements DaffStoreFacade<Action> {
+export class DaffProductFacade<T extends DaffProduct> implements DaffStoreFacade<Action> {
   /**
    * The loading state of the currently selected product.
    */
@@ -26,9 +27,9 @@ export class DaffProductFacade implements DaffStoreFacade<Action> {
    */
   product$: Observable<DaffProductUnion>;
 
-  constructor(private store: Store<DaffProductReducersState>) {
-    this.loading$ = this.store.pipe(select(selectSelectedProductLoadingState));
-    this.product$ = this.store.pipe(select(selectSelectedProduct));
+  constructor(private store: Store<DaffProductReducersState<T>>) {
+    this.loading$ = this.store.pipe(select(selectSelectedProductLoadingState()));
+    this.product$ = this.store.pipe(select(selectSelectedProduct()));
   }
 
   /**
