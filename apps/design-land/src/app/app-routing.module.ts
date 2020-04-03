@@ -11,6 +11,7 @@ export const appRoutes: Routes = [
   { path: 'button', loadChildren: () => import('./button/button.module').then(m => m.ButtonModule) },
   { path: 'callout', loadChildren: () => import('./callout/callout.module').then(m => m.CalloutModule) },
   { path: 'card', loadChildren: () => import('./card/card.module').then(m => m.CardModule) },
+  { path: 'container', loadChildren: () => import('./container/container.module').then(m => m.DesignLandContainerModule) },
   { path: 'feature', loadChildren: () => import('./feature/feature.module').then(m => m.FeatureModule) },
   { path: 'form', loadChildren: () => import('./form/form.module').then(m => m.FormModule) },
   { path: 'hero', loadChildren: () => import('./hero/hero.module').then(m => m.HeroModule) },

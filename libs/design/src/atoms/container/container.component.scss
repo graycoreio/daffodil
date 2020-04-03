@@ -1,28 +1,29 @@
 @import '../../scss/daff-util';
 
-.daff-container {
+:host {
+	$root: '.daff-container';
 	display: block;
 	margin: 0 auto;
 	padding: 0;
 	width: 100%;
 
-	&--xs {
+	&#{$root}--xs {
 		max-width: 640px;
 	}
 
-	&--sm {
+	&#{$root}--sm {
 		max-width: 800px;
 	}
 
-	&--md {
+	&#{$root}--md {
 		max-width: 1040px;
 	}
 
-	&--lg {
+	&#{$root}--lg {
 		max-width: 1340px;
 	}
 
-	&--xl {
+	&#{$root}--xl {
 		max-width: 1920px;
 	}
 }
