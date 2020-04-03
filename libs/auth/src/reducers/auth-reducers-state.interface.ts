@@ -3,8 +3,8 @@ import { DaffAuthReducerState } from './auth/public_api';
 import { DaffAuthLoginReducerState } from './login/public_api';
 import { DaffAuthRegisterReducerState } from './register/public_api';
 
-export interface DaffAuthReducersState {
+export interface DaffAuthReducersState<T extends DaffAuthToken> {
   auth: DaffAuthReducerState,
-  login: DaffAuthLoginReducerState<DaffAuthToken>,
+  login: DaffAuthLoginReducerState<T>,
   register: DaffAuthRegisterReducerState
 }
