@@ -18,20 +18,18 @@
 @import './responsive/breakpoint';
 @import './typography/variables';
 @import './typography/mixins';
+@import './typography/sizes/mixins';
 
 @import '~modern-normalize/modern-normalize.css';
 
 body,
 html {
 	font-family: $body-font-family;
-	font-size: $mobile-font-size;
+	font-size: 16px;
 	font-weight: 400;
+	line-height: 1.5;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-
-	@include breakpoint(mobile) {
-		font-size: $desktop-font-size;
-	}
 }
 
 a {
@@ -40,10 +38,6 @@ a {
 	&:hover {
 		text-decoration: none;
 	}
-}
-
-p {
-	line-height: 1.5rem;
 }
 
 h1,

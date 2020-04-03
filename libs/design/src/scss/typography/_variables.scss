@@ -1,8 +1,11 @@
 $body-font-family: proxima-nova, sans-serif;
 $base-font-family: $body-font-family;
-$desktop-font-size: 14px;
+
+// deprecated
+$desktop-font-size: 16px;
 $mobile-font-size: 16px;
 
-$large-font-size: 2rem;
-$medium-font-size: 1.125rem;
-$small-font-size: 0.875rem;
+$large-font-size: 1.5rem;
+$medium-font-size: 1.25rem;
+$normal-font-size: 1rem;
+$small-font-size: 0.75rem;
