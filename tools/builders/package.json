@@ -4,7 +4,8 @@
   "description": "Custom Angular builders for Daffodil projects.",
   "builders": "builders.json",
   "scripts": {
-    "build": "tsc && cp src/generate-fragment-types/schema.json ./dist/generate-fragment-types/schema.json"
+    "build": "tsc && cp src/generate-fragment-types/schema.json ../../dist/builders/generate-fragment-types/schema.json && cp builders.json ../../dist/builders/builders.json && cp package.json ../../dist/builders/package.json",
+    "postbuild": "cp -r ../../dist/builders ../../node_modules/@daffodil/builders"
   },
-  "main": "./dist/index.js"
+  "main": "./index.js"
 }
