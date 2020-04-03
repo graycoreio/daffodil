@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
-import { DaffProductFacade, DaffProductLoad, DaffProductUnion } from '@daffodil/product';
+import { DaffProductFacade, DaffProductLoad, DaffProductUnion, DaffProduct } from '@daffodil/product';
 import { tap, take, filter, map, } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { DaffAddToCart, DaffCartFacade, DaffCart } from '@daffodil/cart';
@@ -18,7 +18,7 @@ export class ProductViewComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-		private productViewFacade: DaffProductFacade,
+		private productViewFacade: DaffProductFacade<DaffProduct>,
 		private cartFacade: DaffCartFacade<DaffCart>
   ) { }
 

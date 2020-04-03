@@ -55,7 +55,7 @@ describe('ProductViewComponent', () => {
   let cartFacade: MockDaffCartFacade;
   let productComponent: ProductComponent;
   let addToCartComponent: AddToCartComponent;
-  let facade: DaffProductFacade;
+  let facade: DaffProductFacade<DaffProduct>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

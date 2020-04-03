@@ -31,7 +31,7 @@ describe('AddToCartNotificationComponent', () => {
   let store: Store<{
     demoAddToCartNotification: fromAddToCartNotification.State,
     cart: DaffCartReducersState<DaffCart>,
-    product: DaffProductReducersState
+    product: DaffProductReducersState<DaffProduct>
   }>;
   const productFactory: DaffProductFactory = new DaffProductFactory();
   const cartFactory: DaffCartFactory = new DaffCartFactory();

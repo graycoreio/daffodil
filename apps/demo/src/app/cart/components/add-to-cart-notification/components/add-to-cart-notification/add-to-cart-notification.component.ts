@@ -46,7 +46,7 @@ export class AddToCartNotificationComponent implements OnInit {
     );
 
     this.product$ = this.productId$.pipe(switchMap((id) => this.store.pipe(
-      select(selectProduct, { id: id })
+      select(selectProduct(), { id: id })
     )));
 
     this.cartItemCount$ = this.store.pipe(select(fromDemoAddToCartNotification.selectCartItemCount))

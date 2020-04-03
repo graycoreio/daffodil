@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DaffProductGridFacade, DaffProductUnion, DaffProductGridLoad } from '@daffodil/product';
+import { DaffProductGridFacade, DaffProductUnion, DaffProductGridLoad, DaffProduct } from '@daffodil/product';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,7 +11,7 @@ export class ProductGridViewComponent implements OnInit {
   loading$: Observable<boolean>;
   products$: Observable<DaffProductUnion[]>;
 
-  constructor(private facade: DaffProductGridFacade) { }
+  constructor(private facade: DaffProductGridFacade<DaffProduct>) { }
 
   ngOnInit() {
     this.products$ = this.facade.products$;
