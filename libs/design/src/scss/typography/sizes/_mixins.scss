@@ -1,0 +1,66 @@
+// Sets the font size to 52/64px
+@mixin heading-xl() {
+	@include embolden();
+	font-size: 3.25rem;
+	line-height: 1.1em;
+	letter-spacing: -1.5px;
+
+	@include breakpoint(tablet) {
+		font-size: 4rem;
+	}
+}
+
+// Sets the font size to 36/48px
+@mixin heading-lg() {
+	@include embolden();
+	font-size: 2.25rem;
+	line-height: 1.1em;
+	letter-spacing: -0.5px;
+
+	@include breakpoint(tablet) {
+		font-size: 3rem;
+	}
+}
+
+// Sets the font size to 28/40px
+@mixin heading-md() {
+	@include embolden();
+	font-size: 1.75rem;
+	line-height: 1.1em;
+	letter-spacing: 0;
+
+	@include breakpoint(tablet) {
+		font-size: 2.5rem;
+	}
+}
+
+// Sets the font size to 24/32px
+@mixin heading-sm() {
+	@include embolden();
+	font-size: 1.5rem;
+	line-height: 1.1em;
+	letter-spacing: 0;
+
+	@include breakpoint(tablet) {
+		font-size: 2rem;
+	}
+}
+
+// Sets the font size to 20/24px
+@mixin heading-xs() {
+	@include embolden();
+	font-size: 1.25rem;
+	line-height: 1.1em;
+	letter-spacing: 0;
+
+	@include breakpoint(tablet) {
+		font-size: 1.5rem;
+	}
+}
+
+@mixin subheading() {
+	@include embolden();
+	@include uppercase();
+	font-size: 1rem;
+	letter-spacing: 1px;
+}
