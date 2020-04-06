@@ -10,6 +10,7 @@ import {
 	DaffCartDriver,
 	DaffCartServiceInterface,
 	DaffCartStorageService,
+	getDaffCartSelectors,
 } from '@daffodil/cart';
 
 import {
@@ -45,7 +46,7 @@ export class CartResolverEffects {
 	);
 
 	selectStoreCart(): Observable<DaffCart> {
-		return this.store.pipe(select(fromCart.selectCartValue()));
+		return this.store.pipe(select(getDaffCartSelectors<DaffCart>().selectCartValue));
 	}
 
 	private getCartHandler(): Observable<Action> {

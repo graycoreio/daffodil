@@ -1,6 +1,6 @@
 import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
-import { fromCart } from '@daffodil/cart';
+import { DaffCart, getDaffCartSelectors } from '@daffodil/cart';
 
 import * as fromDemoAddToCartNotification from './add-to-cart-notification.reducer';
 
@@ -46,11 +46,11 @@ export const selectLoading: MemoizedSelector<object, boolean> = createSelector(
 );
 
 export const selectCartItemCount : MemoizedSelector<object, number> = createSelector(
-  fromCart.cartStateSelector(),
-  cartState => {
+  getDaffCartSelectors<DaffCart>().selectCartValue,
+  cart => {
     let itemCount = 0;
-    if(cartState.cart) {
-      cartState.cart.items.forEach(cartItem => {
+    if(cart) {
+      cart.items.forEach(cartItem => {
         itemCount += cartItem.qty;
       })
     }
