@@ -6,10 +6,8 @@ import { Store, select } from '@ngrx/store';
 import * as fromCart from '../../reducers/public_api';
 import { DaffCartLoad, DaffAddToCart } from '../../actions/cart.actions';
 import { DaffCart } from '../../models/cart';
-import {
-  selectCartLoading,
-  selectCartValue
-} from '../../selectors/public_api';
+import { getDaffCartSelectors } from '../../selectors/public_api';
+
 @Component({
   selector: '[cart-container]',
   template: '<ng-content></ng-content>',
@@ -27,8 +25,8 @@ export class DaffCartContainer<T extends DaffCart> implements OnInit {
   ngOnInit() {
     this.store.dispatch(new DaffCartLoad());
 
-    this.loading$ = this.store.pipe(select(selectCartLoading()));
-    this.cart$ = this.store.pipe(select(selectCartValue()));
+    this.loading$ = this.store.pipe(select(getDaffCartSelectors<T>().selectCartLoading));
+    this.cart$ = this.store.pipe(select(getDaffCartSelectors<T>().selectCartValue));
   }
 
   addToCart(payload) {

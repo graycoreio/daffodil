@@ -5,32 +5,7 @@ import { Action, Store, select } from '@ngrx/store';
 import { DaffStoreFacade } from '@daffodil/core';
 import { DaffCart } from '../../models/cart';
 import { DaffCartReducersState } from '../../reducers/public_api';
-import {
-  selectCartLoading,
-  selectCartValue,
-  selectCartErrors,
-  selectCartId,
-  selectCartSubtotal,
-  selectCartGrandTotal,
-  selectCartCoupons,
-  selectCartItems,
-  selectCartBillingAddress,
-  selectCartShippingAddress,
-  selectCartPayment,
-  selectCartTotals,
-  selectCartShippingInformation,
-  selectCartAvailableShippingMethods,
-  selectCartAvailablePaymentMethods,
-  selectItemErrors,
-  selectBillingAddressErrors,
-  selectShippingAddressErrors,
-  selectShippingInformationErrors,
-  selectShippingMethodsErrors,
-  selectPaymentErrors,
-  selectPaymentMethodsErrors,
-	selectCartErrorsObject,
-	selectIsCartEmpty
-} from '../../selectors/public_api';
+import { getDaffCartSelectors } from '../../selectors/public_api';
 import { DaffCartErrors } from '../../reducers/cart-errors.type';
 import { DaffCartErrorType } from '../../reducers/cart-error-type.enum';
 
@@ -66,32 +41,31 @@ export class DaffCartFacade<T extends DaffCart> implements DaffStoreFacade<Actio
   isCartEmpty$: Observable<boolean>;
 
   constructor(private store: Store<DaffCartReducersState<T>>) {
-    this.loading$ = this.store.pipe(select(selectCartLoading()));
-    this.cart$ = this.store.pipe(select(selectCartValue<T>()));
+    this.loading$ = this.store.pipe(select(getDaffCartSelectors<T>().selectCartLoading));
+		this.cart$ = this.store.pipe(select(getDaffCartSelectors<T>().selectCartValue));
+    this.errors$ = this.store.pipe(select(getDaffCartSelectors<T>().selectCartErrorsObject));
+    this.cartErrors$ = this.store.pipe(select(getDaffCartSelectors<T>().selectCartErrors));
+    this.itemErrors$ = this.store.pipe(select(getDaffCartSelectors<T>().selectItemErrors));
+    this.billingAddressErrors$ = this.store.pipe(select(getDaffCartSelectors<T>().selectBillingAddressErrors));
+    this.shippingAddressErrors$ = this.store.pipe(select(getDaffCartSelectors<T>().selectShippingAddressErrors));
+    this.shippingInformationErrors$ = this.store.pipe(select(getDaffCartSelectors<T>().selectShippingInformationErrors));
+    this.shippingMethodsErrors$ = this.store.pipe(select(getDaffCartSelectors<T>().selectShippingMethodsErrors));
+    this.paymentErrors$ = this.store.pipe(select(getDaffCartSelectors<T>().selectPaymentErrors));
+    this.paymentMethodsErrors$ = this.store.pipe(select(getDaffCartSelectors<T>().selectPaymentMethodsErrors));
 
-    this.errors$ = this.store.pipe(select(selectCartErrorsObject()));
-    this.cartErrors$ = this.store.pipe(select(selectCartErrors()));
-    this.itemErrors$ = this.store.pipe(select(selectItemErrors()));
-    this.billingAddressErrors$ = this.store.pipe(select(selectBillingAddressErrors()));
-    this.shippingAddressErrors$ = this.store.pipe(select(selectShippingAddressErrors()));
-    this.shippingInformationErrors$ = this.store.pipe(select(selectShippingInformationErrors()));
-    this.shippingMethodsErrors$ = this.store.pipe(select(selectShippingMethodsErrors()));
-    this.paymentErrors$ = this.store.pipe(select(selectPaymentErrors()));
-    this.paymentMethodsErrors$ = this.store.pipe(select(selectPaymentMethodsErrors()));
-
-    this.id$ = this.store.pipe(select(selectCartId()));
-    this.subtotal$ = this.store.pipe(select(selectCartSubtotal()));
-    this.grandTotal$ = this.store.pipe(select(selectCartGrandTotal()));
-    this.coupons$ = this.store.pipe(select(selectCartCoupons()));
-    this.items$ = this.store.pipe(select(selectCartItems()));
-    this.billingAddress$ = this.store.pipe(select(selectCartBillingAddress()));
-    this.shippingAddress$ = this.store.pipe(select(selectCartShippingAddress()));
-    this.payment$ = this.store.pipe(select(selectCartPayment()));
-    this.totals$ = this.store.pipe(select(selectCartTotals()));
-    this.shippingInformation$ = this.store.pipe(select(selectCartShippingInformation()));
-    this.availableShippingMethods$ = this.store.pipe(select(selectCartAvailableShippingMethods()));
-    this.availablePaymentMethods$ = this.store.pipe(select(selectCartAvailablePaymentMethods()));
-    this.isCartEmpty$ = this.store.pipe(select(selectIsCartEmpty()));
+    this.id$ = this.store.pipe(select(getDaffCartSelectors<T>().selectCartId));
+    this.subtotal$ = this.store.pipe(select(getDaffCartSelectors<T>().selectCartSubtotal));
+    this.grandTotal$ = this.store.pipe(select(getDaffCartSelectors<T>().selectCartGrandTotal));
+    this.coupons$ = this.store.pipe(select(getDaffCartSelectors<T>().selectCartCoupons));
+    this.items$ = this.store.pipe(select(getDaffCartSelectors<T>().selectCartItems));
+    this.billingAddress$ = this.store.pipe(select(getDaffCartSelectors<T>().selectCartBillingAddress));
+    this.shippingAddress$ = this.store.pipe(select(getDaffCartSelectors<T>().selectCartShippingAddress));
+    this.payment$ = this.store.pipe(select(getDaffCartSelectors<T>().selectCartPayment));
+    this.totals$ = this.store.pipe(select(getDaffCartSelectors<T>().selectCartTotals));
+    this.shippingInformation$ = this.store.pipe(select(getDaffCartSelectors<T>().selectCartShippingInformation));
+    this.availableShippingMethods$ = this.store.pipe(select(getDaffCartSelectors<T>().selectCartAvailableShippingMethods));
+    this.availablePaymentMethods$ = this.store.pipe(select(getDaffCartSelectors<T>().selectCartAvailablePaymentMethods));
+    this.isCartEmpty$ = this.store.pipe(select(getDaffCartSelectors<T>().selectIsCartEmpty));
   }
 
   dispatch(action: Action) {
