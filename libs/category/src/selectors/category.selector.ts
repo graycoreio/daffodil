@@ -13,7 +13,7 @@ import { DaffCategoryFilter } from '../models/category-filter';
 import { buildAppliedFilter } from './applied-filter/applied-filter-methods';
 import { DaffGenericCategory } from '../models/generic-category';
 
-interface DaffCategoryMemoizedSelectors<T extends DaffGenericCategory<T>, V extends DaffCategoryPageConfigurationState> {
+export interface DaffCategoryMemoizedSelectors<T extends DaffGenericCategory<T>, V extends DaffCategoryPageConfigurationState> {
 	selectCategoryFeatureState: MemoizedSelector<object, DaffCategoryReducersState<T, V>>;
 	selectCategoryState: MemoizedSelector<object, DaffCategoryReducerState<V>>;
 	selectCategoryPageConfigurationState: MemoizedSelector<object, V>;
@@ -45,7 +45,7 @@ interface DaffCategoryMemoizedSelectors<T extends DaffGenericCategory<T>, V exte
 	selectTotalProductsByCategory: MemoizedSelectorWithProps<object, object, number>;
 }
 
-export const createCategoryFeatureSelectors = <T extends DaffGenericCategory<T>, V extends DaffCategoryPageConfigurationState>(): DaffCategoryMemoizedSelectors<T, V> => {
+const createCategoryFeatureSelectors = <T extends DaffGenericCategory<T>, V extends DaffCategoryPageConfigurationState>(): DaffCategoryMemoizedSelectors<T, V> => {
 	const selectCategoryFeatureState = createFeatureSelector<DaffCategoryReducersState<T, V>>('category');
 
 	/**
@@ -261,7 +261,7 @@ export const createCategoryFeatureSelectors = <T extends DaffGenericCategory<T>,
 	}
 }
 
-export const memoizeDaffCategoryFeatureSelectors = () => {
+const memoizeDaffCategoryFeatureSelectors = () => {
 	let cache;
 	return <T extends DaffGenericCategory<T>, V extends DaffCategoryPageConfigurationState>(): DaffCategoryMemoizedSelectors<T, V> => cache = cache 
 		? cache 
