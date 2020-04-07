@@ -43,7 +43,7 @@ describe('DaffCartFacade', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          cart: combineReducers(daffCartReducers()),
+          cart: combineReducers(daffCartReducers),
         })
       ],
       providers: [

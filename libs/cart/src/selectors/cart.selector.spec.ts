@@ -24,7 +24,7 @@ describe('Cart | Selector | Cart', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          cart: combineReducers(daffCartReducers()),
+          cart: combineReducers(daffCartReducers),
         })
       ]
     });

@@ -21,7 +21,7 @@ describe('CartContainer', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          cart: combineReducers(daffCartReducers()),
+          cart: combineReducers(daffCartReducers),
 				})
 			],
       declarations: [ DaffCartContainer ]
