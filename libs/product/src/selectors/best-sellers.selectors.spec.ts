@@ -7,7 +7,7 @@ import { DaffProduct } from '../models/product';
 import { DaffProductReducersState } from '../reducers/product-reducers-state.interface';
 import { daffProductReducers } from '../reducers/product-reducers';
 import { cold } from 'jasmine-marbles';
-import { selectBestSellersState, selectBestSellersLoadingState, selectBestSellersIdsState, selectBestSellersProducts } from './best-sellers.selectors';
+import { getDaffBestSellersSelectors } from './best-sellers.selectors';
 
 describe('selectBestSellersState', () => {
 
@@ -19,7 +19,7 @@ describe('selectBestSellersState', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          product: combineReducers(daffProductReducers()),
+          product: combineReducers(daffProductReducers),
         })
       ]
     });
@@ -40,7 +40,7 @@ describe('selectBestSellersState', () => {
           loading: false,
           errors: []
         }
-				const selector = store.pipe(select(selectBestSellersState()));
+				const selector = store.pipe(select(getDaffBestSellersSelectors<DaffProduct>().selectBestSellersState));
 				const expected = cold('a', { a: expectedState });
 	
 				expect(selector).toBeObservable(expected);
@@ -50,7 +50,7 @@ describe('selectBestSellersState', () => {
     describe('selectBestSellersLoadingState', () => {
       
       it('selects best sellers loading state', () => {
-				const selector = store.pipe(select(selectBestSellersLoadingState()));
+				const selector = store.pipe(select(getDaffBestSellersSelectors<DaffProduct>().selectBestSellersLoadingState));
 				const expected = cold('a', { a: false });
 	
 				expect(selector).toBeObservable(expected);
@@ -60,7 +60,7 @@ describe('selectBestSellersState', () => {
     describe('selectBestSellersIdsState', () => {
       
       it('selects best sellers ids state', () => {
-				const selector = store.pipe(select(selectBestSellersIdsState()));
+				const selector = store.pipe(select(getDaffBestSellersSelectors<DaffProduct>().selectBestSellersIdsState));
 				const expected = cold('a', { a: [mockProduct.id] });
 	
 				expect(selector).toBeObservable(expected);
@@ -69,7 +69,7 @@ describe('selectBestSellersState', () => {
 
     describe('selectBestSellersProducts', () => {
 			it('should return the list of best sellers off the product entity state', () => {
-				const selector = store.pipe(select(selectBestSellersProducts()));
+				const selector = store.pipe(select(getDaffBestSellersSelectors<DaffProduct>().selectBestSellersProducts));
 				const expected = cold('a', { a: [mockProduct] });
 	
 				expect(selector).toBeObservable(expected);

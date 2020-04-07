@@ -5,10 +5,9 @@ import { Store, select, Action } from '@ngrx/store';
 import { DaffStoreFacade } from '@daffodil/core';
 
 import { DaffProductModule } from '../../product.module';
-import { DaffProductUnion } from '../../models/product-union';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
-import { selectProductGridLoadingState } from '../../selectors/product-grid.selectors';
-import { selectAllProducts } from '../../selectors/product-entities.selectors';
+import { getDaffProductGridSelectors } from '../../selectors/product-grid.selectors';
+import { getDaffProductEntitiesSelectors } from '../../selectors/product-entities.selectors';
 import { DaffProduct } from '../../models/product';
 
 /**
@@ -28,8 +27,8 @@ export class DaffProductGridFacade<T extends DaffProduct> implements DaffStoreFa
   products$: Observable<T[]>;
 
   constructor(private store: Store<DaffProductReducersState<T>>) {
-    this.loading$ = this.store.pipe(select(selectProductGridLoadingState()));
-    this.products$ = this.store.pipe(select(selectAllProducts()));
+    this.loading$ = this.store.pipe(select(getDaffProductGridSelectors<T>().selectProductGridLoadingState));
+    this.products$ = this.store.pipe(select(getDaffProductEntitiesSelectors<T>().selectAllProducts));
   }
 
   /**

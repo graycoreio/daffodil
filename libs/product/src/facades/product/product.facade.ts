@@ -8,7 +8,7 @@ import { Store, select, Action } from '@ngrx/store';
 import { DaffProductModule } from '../../product.module';
 import { DaffProductUnion } from '../../models/product-union';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
-import { selectSelectedProductLoadingState, selectSelectedProduct } from '../../selectors/product.selectors';
+import { getDaffProductSelectors } from '../../selectors/product.selectors';
 import { DaffProduct } from '../../models/product';
 
 /**
@@ -28,8 +28,8 @@ export class DaffProductFacade<T extends DaffProduct> implements DaffStoreFacade
   product$: Observable<DaffProductUnion>;
 
   constructor(private store: Store<DaffProductReducersState<T>>) {
-    this.loading$ = this.store.pipe(select(selectSelectedProductLoadingState()));
-    this.product$ = this.store.pipe(select(selectSelectedProduct()));
+    this.loading$ = this.store.pipe(select(getDaffProductSelectors<T>().selectSelectedProductLoadingState));
+    this.product$ = this.store.pipe(select(getDaffProductSelectors<T>().selectSelectedProduct));
   }
 
   /**

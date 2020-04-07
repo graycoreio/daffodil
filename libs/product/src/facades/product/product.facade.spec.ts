@@ -17,7 +17,7 @@ describe('DaffProductFacade', () => {
     TestBed.configureTestingModule({
       imports:[
         StoreModule.forRoot({
-          product: combineReducers(daffProductReducers()),
+          product: combineReducers(daffProductReducers),
         })
       ],
       providers: [

@@ -9,7 +9,7 @@ import { daffProductReducers } from './reducers/product-reducers';
 
 @NgModule({
   imports: [
-      StoreModule.forFeature('product', daffProductReducers()),
+      StoreModule.forFeature('product', daffProductReducers),
       EffectsModule.forFeature([
         DaffProductGridEffects,
         DaffProductEffects,

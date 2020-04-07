@@ -10,7 +10,7 @@ import { DaffBestSellersLoadSuccess, DaffBestSellersReset } from '../actions/bes
 import { DaffProduct } from '../models/product';
 import { DaffProductReducersState } from '../reducers/product-reducers-state.interface';
 import { daffProductReducers } from '../reducers/product-reducers';
-import { selectProductGridState, selectProductGridLoadingState } from './product-grid.selectors';
+import { getDaffProductGridSelectors } from './product-grid.selectors';
 
 describe('selectProductState', () => {
 
@@ -22,7 +22,7 @@ describe('selectProductState', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          product: combineReducers(daffProductReducers()),
+          product: combineReducers(daffProductReducers),
         })
       ]
     });
@@ -47,7 +47,7 @@ describe('selectProductState', () => {
           loading: false,
           errors: []
         }
-				const selector = store.pipe(select(selectProductGridState()));
+				const selector = store.pipe(select(getDaffProductGridSelectors<DaffProduct>().selectProductGridState));
 				const expected = cold('a', { a: expectedGridState });
 
 				expect(selector).toBeObservable(expected);
@@ -57,7 +57,7 @@ describe('selectProductState', () => {
     describe('selectProductGridLoadingState', () => {
       
       it('selects product grid loading state', () => {
-				const selector = store.pipe(select(selectProductGridLoadingState()));
+				const selector = store.pipe(select(getDaffProductGridSelectors<DaffProduct>().selectProductGridLoadingState));
 				const expected = cold('a', { a: false });
 
 				expect(selector).toBeObservable(expected);

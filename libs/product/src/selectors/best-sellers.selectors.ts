@@ -1,52 +1,65 @@
 import { createSelector, MemoizedSelector } from '@ngrx/store';
 
-import { selectProductState } from './product-feature.selector';
+import { getDaffProductFeatureSelector } from './product-feature.selector';
 import { DaffProductReducersState } from '../reducers/product-reducers-state.interface';
 import { DaffBestSellersReducerState } from '../reducers/best-sellers/best-sellers-reducer-state.interface';
-import { selectAllProducts } from './product-entities.selectors';
+import { getDaffProductEntitiesSelectors } from './product-entities.selectors';
 import { DaffProduct } from '../models/product';
 
-/**
- * Selector for Best Seller State
- */
-export function selectBestSellersState<T extends DaffProduct>():
-	MemoizedSelector<object, DaffBestSellersReducerState> {
-	return createSelector(
-		selectProductState(),
+export interface DaffBestSellersMemoizedSelectors<T extends DaffProduct> {
+	selectBestSellersState: MemoizedSelector<object, DaffBestSellersReducerState>;
+	selectBestSellersLoadingState: MemoizedSelector<object, boolean>;
+	selectBestSellersIdsState: MemoizedSelector<object, string[]>;
+	selectBestSellersProducts: MemoizedSelector<object, T[]>;
+}
+
+const createBestSellersSelectors = <T extends DaffProduct>(): DaffBestSellersMemoizedSelectors<T> => {
+	/**
+	 * Selector for Best Seller State
+	 */
+	const selectBestSellersState = createSelector(
+		getDaffProductFeatureSelector,
 		(state: DaffProductReducersState<T>) => state.bestSellers
 	);
-}
 
-/**
- * Selector for the loading state of best selling products.
- */
-export function selectBestSellersLoadingState(): 
-	MemoizedSelector<object, boolean> {
-	return createSelector(
-		selectBestSellersState(),
+	/**
+	 * Selector for the loading state of best selling products.
+	 */
+	const selectBestSellersLoadingState = createSelector(
+		selectBestSellersState,
 		(state: DaffBestSellersReducerState) => state.loading
 	);
-}
 
-/**
- * Selector for the IDs of best selling products.
- */
-export function selectBestSellersIdsState(): 
-	MemoizedSelector<object, string[]> {
-	return createSelector(
-		selectBestSellersState(),
+	/**
+	 * Selector for the IDs of best selling products.
+	 */
+	const selectBestSellersIdsState = createSelector(
+		selectBestSellersState,
 		(state: DaffBestSellersReducerState) => state.productIds
 	);
-}
 
-/**
- * Selector for the best selling products.
- */
-export function selectBestSellersProducts<T extends DaffProduct>(): 
-	MemoizedSelector<object, T[]> {
-	return createSelector(
-		selectBestSellersIdsState(),
-		selectAllProducts(),
+	/**
+	 * Selector for the best selling products.
+	 */
+	const selectBestSellersProducts = createSelector(
+		selectBestSellersIdsState,
+		getDaffProductEntitiesSelectors<T>().selectAllProducts,
 		(ids: string[], products: T[]) => products.filter(product => ids.indexOf(product.id) > -1)
 	)
+
+	return { 
+		selectBestSellersState,
+		selectBestSellersLoadingState,
+		selectBestSellersIdsState,
+		selectBestSellersProducts
+	}
 }
+
+const memoizeDaffBestSellersSelectors = () => {
+	let cache;
+	return <T extends DaffProduct>(): DaffBestSellersMemoizedSelectors<T> => cache = cache 
+		? cache 
+		: createBestSellersSelectors<T>();
+}
+
+export const getDaffBestSellersSelectors = memoizeDaffBestSellersSelectors();
