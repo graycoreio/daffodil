@@ -10,11 +10,11 @@ import { selectGeographyFeatureState } from './geography-feature.selector';
 import { DaffCountry } from '../models/country';
 
 export interface DaffCountryEntitySelectors<T extends DaffCountry> {
-  selectCountryEntitiesState: MemoizedSelector<DaffGeographyFeatureState<T>, DaffCountryEntityState<T>>;
-  selectCountryIds: MemoizedSelector<DaffCountryEntityState<T>, string[] | number[]>;
-  selectCountryEntities: MemoizedSelector<DaffCountryEntityState<T>, Dictionary<T>>;
-  selectAllCountries: MemoizedSelector<DaffCountryEntityState<T>, T[]>;
-  selectCountryTotal: MemoizedSelector<DaffCountryEntityState<T>, number>;
+  selectCountryEntitiesState: MemoizedSelector<object, DaffCountryEntityState<T>>;
+  selectCountryIds: MemoizedSelector<object, string[] | number[]>;
+  selectCountryEntities: MemoizedSelector<object, Dictionary<T>>;
+  selectAllCountries: MemoizedSelector<object, T[]>;
+  selectCountryTotal: MemoizedSelector<object, number>;
 }
 
 const createCountryEntitySelectors = <T extends DaffCountry>() => {

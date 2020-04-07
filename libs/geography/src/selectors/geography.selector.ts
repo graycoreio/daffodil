@@ -13,9 +13,9 @@ import {
 } from '../reducers/public_api';
 
 export interface DaffGeographySelectors<T extends DaffCountry> extends DaffCountryEntitySelectors<T> {
-  selectGeographyState: MemoizedSelector<DaffGeographyFeatureState<T>, DaffGeographyReducerState>;
-  selectGeographyLoading: MemoizedSelector<DaffCountryEntityState<T>, boolean>;
-  selectGeographyErrors: MemoizedSelector<DaffCountryEntityState<T>, string[]>;
+  selectGeographyState: MemoizedSelector<object, DaffGeographyReducerState>;
+  selectGeographyLoading: MemoizedSelector<object, boolean>;
+  selectGeographyErrors: MemoizedSelector<object, string[]>;
 }
 
 export const createGeographySelectors = <T extends DaffCountry>() => {
