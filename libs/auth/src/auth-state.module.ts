@@ -5,7 +5,7 @@ import { DAFF_AUTH_STORE_FEATURE_KEY, daffAuthReducers } from './reducers/public
 
 @NgModule({
   imports: [
-    StoreModule.forFeature(DAFF_AUTH_STORE_FEATURE_KEY, daffAuthReducers()),
+    StoreModule.forFeature(DAFF_AUTH_STORE_FEATURE_KEY, daffAuthReducers),
   ]
 })
 export class DaffAuthStateModule {}
