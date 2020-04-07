@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DaffioGuidesViewerComponent } from './guides-viewer.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { DaffLinkSetModule } from '@daffodil/design';
 
 describe('GuidesViewerComponent', () => {
   let component: DaffioGuidesViewerComponent;
@@ -8,9 +10,13 @@ describe('GuidesViewerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DaffioGuidesViewerComponent ]
+      declarations: [DaffioGuidesViewerComponent],
+      imports: [
+        RouterTestingModule,
+        DaffLinkSetModule
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
