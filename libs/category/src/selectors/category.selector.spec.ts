@@ -31,7 +31,7 @@ describe('DaffCategorySelectors', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          category: combineReducers(daffCategoryReducers()),
+          category: combineReducers(daffCategoryReducers),
           product: combineReducers(daffProductReducers)
         })
       ]

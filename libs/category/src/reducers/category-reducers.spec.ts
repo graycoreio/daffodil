@@ -5,10 +5,10 @@ import { daffCategoryEntitiesReducer } from './category-entities/category-entiti
 describe('selectCategoryState', () => {
 
   it('should return a reducer map with CategoryReducer', () => {
-    expect(daffCategoryReducers().category).toEqual(daffCategoryReducer);
+    expect(daffCategoryReducers.category).toEqual(daffCategoryReducer);
   });
 
   it('should return a reducer map with CategoryEntitiesReducer', () => {
-    expect(daffCategoryReducers().categoryEntities).toEqual(daffCategoryEntitiesReducer);
+    expect(daffCategoryReducers.categoryEntities).toEqual(daffCategoryEntitiesReducer);
   });
 });
