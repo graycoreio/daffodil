@@ -9,7 +9,7 @@ import { DaffProductUnion, DaffProductGridLoadSuccess, daffProductReducers } fro
 
 import { DaffCategoryFacade } from './category.facade';
 import { DaffCategoryLoad, DaffCategoryLoadFailure, DaffCategoryLoadSuccess } from '../actions/category.actions';
-import { categoryReducers } from '../reducers/category-reducers';
+import { daffCategoryReducers } from '../reducers/category-reducers';
 import { DaffCategory } from '../models/category';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
 import { DaffCategoryFilterType } from '../models/category-filter-base';
@@ -28,7 +28,7 @@ describe('DaffCategoryFacade', () => {
     TestBed.configureTestingModule({
       imports:[
         StoreModule.forRoot({
-          category: combineReducers(categoryReducers()),
+          category: combineReducers(daffCategoryReducers()),
           product: combineReducers(daffProductReducers)
         })
       ],

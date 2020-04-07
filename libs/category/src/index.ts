@@ -1,6 +1,6 @@
 export * from './actions/category.actions';
 
-export { categoryReducers } from './reducers/category-reducers';
+export { daffCategoryReducers } from './reducers/category-reducers';
 export { DaffCategoryFacade } from './facades/category.facade';
 
 export { DaffCategoryModule } from './category.module';

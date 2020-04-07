@@ -1,11 +1,11 @@
 import { DaffCategoryActionTypes, DaffCategoryActions } from '../../actions/category.actions';
-import { CategoryReducerState } from './category-reducer-state.interface';
+import { DaffCategoryReducerState } from './category-reducer-state.interface';
 import { toggleCategoryFilter } from './toggle-filter/core';
 import { DaffCategoryRequest } from '../../models/requests/category-request';
 import { DaffCategoryPageConfigurationState } from '../../models/category-page-configuration-state';
 import { DaffGenericCategory } from '../../models/generic-category';
 
-const initialState: CategoryReducerState<any> = {
+const initialState: DaffCategoryReducerState<any> = {
   categoryPageConfigurationState: {
     id: null,
 		filter_requests: [],
@@ -24,8 +24,8 @@ const initialState: CategoryReducerState<any> = {
   errors: []
 };
 
-export function categoryReducer<T extends DaffCategoryRequest, U extends DaffGenericCategory<U>, V extends DaffCategoryPageConfigurationState>
-	(state = initialState, action: DaffCategoryActions<T, U, V>): CategoryReducerState<V> {
+export function daffCategoryReducer<T extends DaffCategoryRequest, U extends DaffGenericCategory<U>, V extends DaffCategoryPageConfigurationState>
+	(state = initialState, action: DaffCategoryActions<T, U, V>): DaffCategoryReducerState<V> {
   switch (action.type) {
     // This reducer must assume the call will be successful, and immediately set the applied filters to state, because the 
     // GetCategory magento call doesn't return currently applied filters. If there is a bug where the wrong filters are somehow

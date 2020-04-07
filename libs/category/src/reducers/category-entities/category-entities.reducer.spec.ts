@@ -1,9 +1,9 @@
 import { DaffCategoryFactory } from '@daffodil/category/testing';
 
 import { DaffCategoryLoadSuccess } from '../../actions/category.actions';
-import { categoryEntitiesReducer } from './category-entities.reducer';
+import { daffCategoryEntitiesReducer } from './category-entities.reducer';
 import { DaffCategory } from '../../models/category';
-import { categoryEntitiesAdapter } from './category-entities-adapter';
+import { daffCategoryEntitiesAdapter } from './category-entities-adapter';
 
 describe('Category | Category Entities Reducer', () => {
 
@@ -18,9 +18,9 @@ describe('Category | Category Entities Reducer', () => {
     it('should return the current state', () => {
       const action = {} as any;
 
-      const result = categoryEntitiesReducer(categoryEntitiesAdapter<DaffCategory>().getInitialState(), action);
+      const result = daffCategoryEntitiesReducer(daffCategoryEntitiesAdapter<DaffCategory>().getInitialState(), action);
 
-      expect(result).toEqual(categoryEntitiesAdapter<DaffCategory>().getInitialState());
+      expect(result).toEqual(daffCategoryEntitiesAdapter<DaffCategory>().getInitialState());
     });
   });
 
@@ -36,7 +36,7 @@ describe('Category | Category Entities Reducer', () => {
       
       const categoryLoadSuccess = new DaffCategoryLoadSuccess({category: category, categoryPageConfigurationState: null, products: null});
       
-      result = categoryEntitiesReducer(categoryEntitiesAdapter<DaffCategory>().getInitialState(), categoryLoadSuccess);
+      result = daffCategoryEntitiesReducer(daffCategoryEntitiesAdapter<DaffCategory>().getInitialState(), categoryLoadSuccess);
     });
 
     it('sets expected category on state', () => {

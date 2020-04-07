@@ -27,7 +27,7 @@ import { DaffCategoryPageConfigurationState } from '../models/category-page-conf
 import { DaffSortDirectionEnum, DaffCategoryRequest } from '../models/requests/category-request';
 import { DaffCategoryFilterEqualRequest } from '../models/requests/filter-request';
 import { DaffCategoryFilterType } from '../models/category-filter-base';
-import { categoryReducers } from '../reducers/category-reducers';
+import { daffCategoryReducers } from '../reducers/category-reducers';
 
 class MockCategoryDriver implements DaffCategoryServiceInterface<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState> {
 	get(categoryRequest: any): Observable<any> {
@@ -56,7 +56,7 @@ describe('DaffCategoryEffects', () => {
     TestBed.configureTestingModule({
 			imports: [
         StoreModule.forRoot({
-          category: combineReducers(categoryReducers()),
+          category: combineReducers(daffCategoryReducers()),
           product: combineReducers(daffProductReducers)
         })
 			],
