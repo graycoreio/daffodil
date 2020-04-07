@@ -4,45 +4,52 @@ import { DaffNavigationReducerState } from '../reducers/navigation/navigation-re
 import { DaffNavigationReducersState } from '../reducers/navigation-reducers.interface';
 import { DaffGenericNavigationTree } from '../models/generic-navigation-tree';
 
-/**
- * Navigation Feature State
- */
-export function selectNavigationFeatureState<T extends DaffGenericNavigationTree<T>>():
-	MemoizedSelector<object, DaffNavigationReducersState<T>> {
-	return createFeatureSelector<DaffNavigationReducersState<T>>('navigation');
+export interface DaffNavigationMemoizedSelectors<T extends DaffGenericNavigationTree<T>> {
+	selectNavigationFeatureState: MemoizedSelector<object, DaffNavigationReducersState<T>>;
+	selectNavigationState: MemoizedSelector<object, DaffNavigationReducerState<T>>;
+	selectNavigationTree: MemoizedSelector<object, T>;
+	selectNavigationLoading: MemoizedSelector<object, boolean>;
+	selectNavigationErrors: MemoizedSelector<object, string[]>;
 }
 
-/**
- * Navigation State
- */
-export function selectNavigationState<T extends DaffGenericNavigationTree<T>>():
-	MemoizedSelector<object, DaffNavigationReducerState<T>> {
-		return createSelector(
-			selectNavigationFeatureState(), 
-			(state: DaffNavigationReducersState<T>) => state.navigation
-		);
-	}
+const createNavigationFeatureSelectors = <T extends DaffGenericNavigationTree<T>>(): DaffNavigationMemoizedSelectors<T> => {
 
-export function selectNavigationTree<T extends DaffGenericNavigationTree<T>>():
-	MemoizedSelector<object, T> {
-		return createSelector(
-  		selectNavigationState(),
-			(state: DaffNavigationReducerState<T>) => state.navigationTree
-		);
-	}
+	const selectNavigationFeatureState = createFeatureSelector<DaffNavigationReducersState<T>>('navigation');
 
-export function selectNavigationLoading<T extends DaffGenericNavigationTree<T>>():
-	MemoizedSelector<object, boolean> {
-		return createSelector(
-  		selectNavigationState(),
-			(state: DaffNavigationReducerState<T>) => state.loading
-		);
-	}
+	const selectNavigationState = createSelector(
+		selectNavigationFeatureState, 
+		(state: DaffNavigationReducersState<T>) => state.navigation
+	);
 
-export function selectNavigationErrors<T extends DaffGenericNavigationTree<T>>():
-	MemoizedSelector<object, string[]> {
-		return createSelector(
-  		selectNavigationState(),
-			(state: DaffNavigationReducerState<T>) => state.errors
-		);
+	const selectNavigationTree = createSelector(
+		selectNavigationState,
+		(state: DaffNavigationReducerState<T>) => state.navigationTree
+	);
+
+	const selectNavigationLoading = createSelector(
+		selectNavigationState,
+		(state: DaffNavigationReducerState<T>) => state.loading
+	);
+
+	const selectNavigationErrors = createSelector(
+		selectNavigationState,
+		(state: DaffNavigationReducerState<T>) => state.errors
+	);
+
+	return { 
+		selectNavigationFeatureState,
+		selectNavigationState,
+		selectNavigationTree,
+		selectNavigationLoading,
+		selectNavigationErrors
 	}
+}
+
+const memoizeDaffNavigationFeatureSelectors = () => {
+	let cache;
+	return <T extends DaffGenericNavigationTree<T>>(): DaffNavigationMemoizedSelectors<T> => cache = cache 
+		? cache 
+		: createNavigationFeatureSelectors<T>();
+}
+
+export const getDaffNavigationSelectors = memoizeDaffNavigationFeatureSelectors();

@@ -8,13 +8,7 @@ export { daffNavigationReducers } from './reducers/navigation-reducers';
 export { DaffNavigationModule } from './navigation.module';
 export { DaffNavigationDriver } from './drivers/injection-tokens/navigation-driver.token';
 export { DaffNavigationServiceInterface } from './drivers/interfaces/navigation-service.interface';
-export {
-  selectNavigationFeatureState,
-  selectNavigationState,
-  selectNavigationTree,
-  selectNavigationLoading,
-  selectNavigationErrors
-} from './selectors/navigation.selector';
+export * from './selectors/navigation.selector';
 export { DaffNavigationMagentoDriverModule } from './drivers/magento/navigation-driver.module';
 export { DaffNavigationFacadeInterface } from './interfaces/navigation-facade.interface';
 export { DaffNavigationTransformerInterface } from './drivers/interfaces/navigation-transformer.interface';

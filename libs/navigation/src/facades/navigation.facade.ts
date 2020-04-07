@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Store, select, Action } from '@ngrx/store';
 
 import { DaffNavigationModule } from '../navigation.module';
-import { selectNavigationTree, selectNavigationLoading, selectNavigationErrors } from '../selectors/navigation.selector';
+import { getDaffNavigationSelectors } from '../selectors/navigation.selector';
 import { DaffNavigationReducersState } from '../reducers/navigation-reducers.interface';
 import { DaffNavigationFacadeInterface } from '../interfaces/navigation-facade.interface';
 import { DaffGenericNavigationTree } from '../models/generic-navigation-tree';
@@ -26,9 +26,9 @@ export class DaffNavigationFacade<T extends DaffGenericNavigationTree<T>> implem
   errors$: Observable<string[]>;
 
   constructor(private store: Store<DaffNavigationReducersState<T>>) {
-    this.tree$ = this.store.pipe(select(selectNavigationTree()));
-    this.loading$ = this.store.pipe(select(selectNavigationLoading()));
-    this.errors$ = this.store.pipe(select(selectNavigationErrors()));
+    this.tree$ = this.store.pipe(select(getDaffNavigationSelectors<T>().selectNavigationTree));
+    this.loading$ = this.store.pipe(select(getDaffNavigationSelectors<T>().selectNavigationLoading));
+    this.errors$ = this.store.pipe(select(getDaffNavigationSelectors<T>().selectNavigationErrors));
   }
 
   /**
