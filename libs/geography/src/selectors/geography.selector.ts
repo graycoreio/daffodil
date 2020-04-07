@@ -41,7 +41,7 @@ export const createGeographySelectors = <T extends DaffCountry>() => {
   }
 }
 
-export const geographySelectors = (() => {
+export const daffGeographySelectors = (() => {
   let cache;
   return <T extends DaffCountry>(): DaffGeographySelectors<T> =>
     cache = cache || {
