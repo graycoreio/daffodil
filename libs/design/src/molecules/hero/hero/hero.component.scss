@@ -2,9 +2,7 @@
 
 .daff-hero {
 	$root: &;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+	display: block;
 	padding: 75px 25px;
 
 	@include breakpoint(mobile) {
@@ -12,42 +10,21 @@
 	}
 
 	&__title {
-		@include embolden();
-		font-size: 2.25rem;
-		line-height: 1.25em;
+		@include heading-xl();
 		margin: 0;
 		max-width: 1040px;
 		overflow-wrap: break-word;
 		text-align: left;
 		width: 100%;
-
-		@include breakpoint(mobile) {
-			font-size: 3rem;
-		}
-
-		@include breakpoint(big-tablet) {
-			font-size: 4.5rem;
-		}
 	}
 
 	&__subtitle {
-		font-size: $medium-font-size;
+		font-size: $large-font-size;
 		font-weight: normal;
-		line-height: 1.5em;
-		margin: 10px 0 0;
+		margin: 15px 0 0;
 		max-width: 700px;
 		text-align: left;
 		width: 100%;
-
-		@include breakpoint(mobile) {
-			font-size: 1.25rem;
-			margin: 25px 0 0;
-		}
-
-		@include breakpoint(big-tablet) {
-			font-size: 1.75rem;
-			padding: 0;
-		}
 
 		+ * {
 			margin-top: 50px;
@@ -74,11 +51,5 @@
 		@include breakpoint(mobile) {
 			padding: 50px;
 		}
-	}
-
-	&__image {
-		display: block;
-		margin: 0 auto;
-		max-width: 100%;
 	}
 }
