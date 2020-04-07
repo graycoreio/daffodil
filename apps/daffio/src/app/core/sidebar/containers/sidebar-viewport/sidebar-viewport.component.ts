@@ -5,6 +5,9 @@ import { Observable } from 'rxjs';
 import { CloseSidebar, OpenSidebar, SetSidebarState } from '../../actions/sidebar.actions';
 import * as fromDaffioSidebar from '../../reducers/index';
 import { DaffSidebarMode } from '@daffodil/design';
+import { DaffioGuideList } from 'apps/daffio/src/app/docs/shared/models/guide-list';
+import { DaffioDocService } from 'apps/daffio/src/app/docs/shared/services/docs.service';
+import { DaffioDoc } from 'apps/daffio/src/app/docs/shared/models/doc';
 
 @Component({
   selector: 'daffio-sidebar-viewport-container',
@@ -13,14 +16,17 @@ import { DaffSidebarMode } from '@daffodil/design';
 export class DaffioSidebarViewportContainer implements OnInit{
   
   showSidebar$: Observable<boolean>;
+  sidebarContents$: Observable<DaffioGuideList>;
   mode$: Observable<DaffSidebarMode>;
 
   ngOnInit() {
+    this.sidebarContents$ = this.docService.getGuideList();
     this.showSidebar$ = this.store.pipe(select(fromDaffioSidebar.selectShowSidebar));
     this.mode$ = this.store.pipe(select(fromDaffioSidebar.selectSidebarMode));
   }
 
-  constructor(private store: Store<fromDaffioSidebar.State>) { }
+  constructor(private store: Store<fromDaffioSidebar.State>,
+    private docService: DaffioDocService<DaffioDoc, DaffioGuideList>) { }
 
   close () {
     this.store.dispatch(new CloseSidebar);

@@ -1,0 +1,13 @@
+<daff-link-set>
+    <div *ngFor="let guide of guideList.children">
+        <div *ngIf="guide.path; else noPath">
+            <a routerLink="/docs/{{ guide.path }}" routerLinkActive="active">{{guide.title}}</a>
+        </div>
+        <ng-template #noPath>
+            {{guide.title}}
+        </ng-template>
+        <div *ngIf="guide.children.length > 0">
+            <daffio-guides-viewer [guideList]="guide"></daffio-guides-viewer>
+        </div>
+    </div>
+</daff-link-set>
