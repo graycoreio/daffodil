@@ -6,31 +6,35 @@ import { DaffCountry } from '../../models/country';
 /**
  * Interface for country entity state.
  */
-export interface DaffCountryEntityState extends EntityState<DaffCountry> {}
+export interface DaffCountryEntityState<T extends DaffCountry> extends EntityState<T> {}
 
 /**
  * Country Adapter for changing/overwriting entity state.
  */
-export const countryAdapter: EntityAdapter<DaffCountry> = createEntityAdapter<DaffCountry>();
+export const getCountryAdapter = (() => {
+  let cache;
+  return <T extends DaffCountry>(): EntityAdapter<T> =>
+    cache = cache || createEntityAdapter<T>();
+})();
 
 /**
  * Initial state for country entity state.
  */
-export const initialState: DaffCountryEntityState = countryAdapter.getInitialState();
+export const initialState: DaffCountryEntityState<any> = getCountryAdapter().getInitialState();
 
 /**
  * Reducer function that catches actions and changes/overwrites country entities state.
  */
-export function daffCountryEntitiesReducer(
+export function daffCountryEntitiesReducer<T extends DaffCountry>(
   state = initialState,
-  action: DaffGeographyActions<DaffCountry>
-): DaffCountryEntityState {
+  action: DaffGeographyActions<T>
+): DaffCountryEntityState<T> {
   switch (action.type) {
     case DaffGeographyActionTypes.CountryLoadSuccessAction:
-      return countryAdapter.upsertOne(action.payload, state);
+      return getCountryAdapter<T>().upsertOne(action.payload, state);
 
     case DaffGeographyActionTypes.CountryListSuccessAction:
-      return countryAdapter.upsertMany(action.payload, state);
+      return getCountryAdapter<T>().upsertMany(action.payload, state);
 
     default:
       return state;

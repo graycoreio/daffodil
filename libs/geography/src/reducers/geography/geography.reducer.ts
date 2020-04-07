@@ -3,9 +3,9 @@ import { DaffGeographyReducerState } from './geography-state.interface';
 import { DaffGeographyActions, DaffGeographyActionTypes } from '../../actions/public_api';
 import { DaffCountry } from '../../models/country';
 
-export function daffGeographyReducer(
+export function daffGeographyReducer<T extends DaffCountry>(
   state = initialState,
-  action: DaffGeographyActions<DaffCountry>
+  action: DaffGeographyActions<T>
 ): DaffGeographyReducerState {
   switch (action.type) {
     case DaffGeographyActionTypes.CountryLoadAction:

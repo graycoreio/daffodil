@@ -5,7 +5,7 @@ import { daffGeographyReducers, DAFF_GEOGRAPHY_STORE_FEATURE_KEY } from './reduc
 
 @NgModule({
   imports: [
-    StoreModule.forFeature(DAFF_GEOGRAPHY_STORE_FEATURE_KEY, daffGeographyReducers),
+    StoreModule.forFeature(DAFF_GEOGRAPHY_STORE_FEATURE_KEY, daffGeographyReducers()),
   ]
 })
 export class DaffGeographyStateModule {}
