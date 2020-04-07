@@ -20,7 +20,7 @@ describe('DaffNavigationSelectors', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          navigation: combineReducers(daffNavigationReducers()),
+          navigation: combineReducers(daffNavigationReducers),
         })
       ]
     });
