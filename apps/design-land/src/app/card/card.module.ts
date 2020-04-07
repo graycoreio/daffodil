@@ -4,7 +4,10 @@ import { CommonModule } from '@angular/common';
 import { CardComponent } from './card.component';
 import { DesignLandCardRoutingModule } from './card-routing.module';
 
-import { DaffCardModule } from '@daffodil/design';
+import {
+  DaffCardModule,
+  DaffImageModule
+} from '@daffodil/design';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,8 @@ import { DaffCardModule } from '@daffodil/design';
     CommonModule,
     DesignLandCardRoutingModule,
     
-    DaffCardModule
+    DaffCardModule,
+    DaffImageModule
   ]
 })
 export class CardModule { }

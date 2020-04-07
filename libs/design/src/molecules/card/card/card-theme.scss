@@ -6,13 +6,74 @@
 	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
 	$white: daff-map-deep-get($theme, 'core.white');
 	$black: daff-map-deep-get($theme, 'core.black');
-	$shadow-color: daff-illuminate($base, $tertiary, 3);
 
 	.daff-card {
-		box-shadow: 0 40px 60px 0 rgba($shadow-color, 0.15);
+		$root: &;
+		box-shadow: 0 5px 10px 0 rgba($black, 0.12);
+		color: daff-text-contrast($base);
 
 		&__content {
-			border-top: 1px solid daff-color($daff-gray, 20);
+			background: daff-illuminate($base, $daff-gray, 1);
+		}
+
+		&:hover {
+			box-shadow: 0 30px 60px 0 rgba($black, 0.15);
+		}
+
+		&.daff-primary {
+			color: daff-text-contrast(daff-color($primary));
+
+			#{$root}__content {
+				background: daff-color($primary);
+			}
+		}
+
+		&.daff-secondary {
+			color: daff-text-contrast(daff-color($secondary));
+
+			#{$root}__content {
+				background: daff-color($secondary);
+			}
+		}
+
+		&.daff-tertiary {
+			color: daff-text-contrast(daff-color($tertiary));
+
+			#{$root}__content {
+				background: daff-color($tertiary);
+			}
+		}
+
+		&.daff-theme {
+			color: daff-text-contrast($base);
+
+			#{$root}__content {
+				background: $base;
+			}
+		}
+
+		&.daff-theme-contrast {
+			color: daff-text-contrast($base-contrast);
+
+			#{$root}__content {
+				background: $base-contrast;
+			}
+		}
+
+		&.daff-black {
+			color: daff-text-contrast($black);
+
+			#{$root}__content {
+				background: $black;
+			}
+		}
+
+		&.daff-white {
+			color: daff-text-contrast($white);
+
+			#{$root}__content {
+				background: $white;
+			}
 		}
 	}
 }
