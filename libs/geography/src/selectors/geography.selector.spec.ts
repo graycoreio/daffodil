@@ -11,13 +11,12 @@ import {
   DAFF_GEOGRAPHY_STORE_FEATURE_KEY
 } from '../reducers/public_api';
 import {
-  selectGeographyLoading,
-  selectGeographyErrors,
+  geographySelectors,
 } from './geography.selector';
 import { DaffCountryListSuccess } from '../actions/public_api';
 
 describe('Geography | Selector | Geography', () => {
-  let store: Store<DaffGeographyFeatureState>;
+  let store: Store<DaffGeographyFeatureState<DaffCountry>>;
 
   let countryFactory: DaffCountryFactory
 
@@ -25,11 +24,16 @@ describe('Geography | Selector | Geography', () => {
   let errors: string[];
   let mockCountry: DaffCountry;
 
+  const {
+    selectGeographyLoading,
+    selectGeographyErrors,
+  } = geographySelectors();
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          [DAFF_GEOGRAPHY_STORE_FEATURE_KEY]: combineReducers(daffGeographyReducers)
+          [DAFF_GEOGRAPHY_STORE_FEATURE_KEY]: combineReducers(daffGeographyReducers())
         })
       ]
     });

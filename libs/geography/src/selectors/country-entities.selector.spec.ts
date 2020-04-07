@@ -11,26 +11,30 @@ import {
   DAFF_GEOGRAPHY_STORE_FEATURE_KEY
 } from '../reducers/public_api';
 import {
-  selectAllCountries,
-  selectCountryEntities,
-  selectCountryIds,
-  selectCountryTotal,
+  daffCountryEntitySelectors,
 } from './country-entities.selector';
 import { DaffCountryListSuccess } from '../actions/public_api';
 
 describe('Geography | Selector | CountryEntities', () => {
-  let store: Store<DaffCountryEntityState>;
+  let store: Store<DaffCountryEntityState<DaffCountry>>;
 
   let countryFactory: DaffCountryFactory
 
   let mockCountry: DaffCountry;
   let countryId: DaffCountry['id'];
 
+  const {
+    selectAllCountries,
+    selectCountryEntities,
+    selectCountryIds,
+    selectCountryTotal,
+  } = daffCountryEntitySelectors();
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          [DAFF_GEOGRAPHY_STORE_FEATURE_KEY]: combineReducers(daffGeographyReducers)
+          [DAFF_GEOGRAPHY_STORE_FEATURE_KEY]: combineReducers(daffGeographyReducers())
         })
       ]
     });

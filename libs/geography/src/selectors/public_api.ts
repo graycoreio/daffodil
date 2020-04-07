@@ -1,2 +1,2 @@
 export * from './geography.selector';
-export * from './country-entities.selector';
+export * from './geography-feature.selector';
