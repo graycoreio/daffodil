@@ -7,7 +7,8 @@ export const appRoutes: Routes = [
     redirectTo: '/button',
     pathMatch: 'full'
   },
-  { path: 'accordion', loadChildren: () => import('./accordion/accordion.module').then(m => m.AccordionModule) }, 
+  { path: 'accordion', loadChildren: () => import('./accordion/accordion.module').then(m => m.AccordionModule) },
+  { path: 'article', loadChildren: () => import('./article/article.module').then(m => m.DesignLandArticleModule) },
   { path: 'button', loadChildren: () => import('./button/button.module').then(m => m.ButtonModule) },
   { path: 'callout', loadChildren: () => import('./callout/callout.module').then(m => m.CalloutModule) },
   { path: 'card', loadChildren: () => import('./card/card.module').then(m => m.CardModule) },

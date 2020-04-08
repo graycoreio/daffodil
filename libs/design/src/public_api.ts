@@ -15,6 +15,7 @@ export * from './atoms/progress-indicator/public_api';
 
 // Molecules
 export * from './molecules/accordion/public_api';
+export * from './molecules/article/public_api';
 export * from './molecules/backdrop/public_api';
 export * from './molecules/button-set/public_api';
 export * from './molecules/image-gallery/public_api';

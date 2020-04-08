@@ -1,0 +1,46 @@
+@mixin daff-article-theme($theme) {
+	$primary: map-get($theme, primary);
+	$secondary: map-get($theme, secondary);
+	$tertiary: map-get($theme, tertiary);
+	$base: daff-map-deep-get($theme, 'core.base');
+	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
+	$white: daff-map-deep-get($theme, 'core.white');
+	$black: daff-map-deep-get($theme, 'core.black');
+	$gray: daff-configure-palette($daff-gray, 60);
+
+	$text-color: daff-illuminate($base-contrast, $daff-gray, 2);
+
+	.daff-article {
+		&__meta {
+			color: daff-illuminate($base-contrast, $daff-gray, 3);
+		}
+
+		p {
+			color: $text-color;
+		}
+
+		pre {
+			background: daff-illuminate($base, $daff-gray, 1);
+			color: $text-color;
+
+			code {
+				background: daff-illuminate($base, $daff-gray, 1);
+				color: $text-color;
+			}
+		}
+
+		code {
+			background: daff-illuminate($base, $daff-gray, 1);
+			color: $text-color;
+		}
+
+		hr {
+			background: daff-illuminate($base, $daff-gray, 3);
+		}
+
+		blockquote {
+			border-left: 4px solid $base-contrast;
+			color: $text-color;
+		}
+	}
+}
