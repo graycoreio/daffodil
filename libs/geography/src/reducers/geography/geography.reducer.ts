@@ -1,10 +1,10 @@
-import { initialState } from './geography-initial-state';
+import { daffGeographyInitialState } from './geography-initial-state';
 import { DaffGeographyReducerState } from './geography-state.interface';
 import { DaffGeographyActions, DaffGeographyActionTypes } from '../../actions/public_api';
 import { DaffCountry } from '../../models/country';
 
 export function daffGeographyReducer<T extends DaffCountry>(
-  state = initialState,
+  state = daffGeographyInitialState,
   action: DaffGeographyActions<T>
 ): DaffGeographyReducerState {
   switch (action.type) {
