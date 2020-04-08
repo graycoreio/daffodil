@@ -31,6 +31,7 @@
 		}
 	}
 
+	// centered will be deprecated in v1.0.0
 	&--centered {
 		#{$root}__title {
 			margin: 0 auto;
@@ -43,7 +44,7 @@
 		}
 	}
 
-	// Small will be deprecated in v1.0.0
+	// small and compact will be deprecated in v1.0.0
 	&--small,
 	&--compact {
 		padding: 50px 25px;
