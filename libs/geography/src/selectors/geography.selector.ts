@@ -12,7 +12,7 @@ export interface DaffGeographySelectors {
   selectGeographyErrors: MemoizedSelector<object, string[]>;
 }
 
-export const createGeographySelectors = <T extends DaffCountry>() => {
+const createGeographySelectors = <T extends DaffCountry>() => {
   const { selectGeographyFeatureState } = daffGeographyFeatureStateSelector<T>();
   const selectGeographyState = createSelector(
     selectGeographyFeatureState,
