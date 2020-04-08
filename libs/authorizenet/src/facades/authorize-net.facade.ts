@@ -19,10 +19,15 @@ export class DaffAuthorizeNetFacade<T extends DaffAuthorizeNetTokenResponse> imp
   error$: Observable<string>;
   
   constructor(private store: Store<DaffAuthorizeNetReducersState<T>>) {
-		const selectors = getDaffAuthorizeNetSelectors<T>();
-    this.authorizeTokenResponse$ = this.store.pipe(select(selectors.selectTokenResponse));
-    this.tokenNonce$ = this.store.pipe(select(selectors.selectToken));
-    this.error$ = this.store.pipe(select(selectors.selectError));
+		const {
+			selectTokenResponse,
+			selectToken,
+			selectError
+		} = getDaffAuthorizeNetSelectors<T>();
+
+    this.authorizeTokenResponse$ = this.store.pipe(select(selectTokenResponse));
+    this.tokenNonce$ = this.store.pipe(select(selectToken));
+    this.error$ = this.store.pipe(select(selectError));
   }
 
   dispatch(action: Action) {

@@ -12,6 +12,12 @@ describe('DaffAuthorizeNetSelectors', () => {
 
 	let store: Store<DaffAuthorizeNetReducersState<DaffAuthorizeNetTokenResponse>>;
 	const stubTokenNonce = 'tokenNonce';
+	const {
+		selectAuthorizeNetState,
+		selectTokenResponse,
+		selectToken,
+		selectError
+	} = getDaffAuthorizeNetSelectors<DaffAuthorizeNetTokenResponse>();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -36,7 +42,7 @@ describe('DaffAuthorizeNetSelectors', () => {
 				},
 				error: null
       }
-      const selector = store.pipe(select(getDaffAuthorizeNetSelectors<DaffAuthorizeNetTokenResponse>().selectAuthorizeNetState));
+      const selector = store.pipe(select(selectAuthorizeNetState));
       const expected = cold('a', { a: expectedFeatureState });
       expect(selector).toBeObservable(expected);
     });
@@ -48,7 +54,7 @@ describe('DaffAuthorizeNetSelectors', () => {
 			const tokenResponse = {
 				token: stubTokenNonce
       }
-      const selector = store.pipe(select(getDaffAuthorizeNetSelectors<DaffAuthorizeNetTokenResponse>().selectTokenResponse));
+      const selector = store.pipe(select(selectTokenResponse));
       const expected = cold('a', { a: tokenResponse });
       expect(selector).toBeObservable(expected);
     });
@@ -57,7 +63,7 @@ describe('DaffAuthorizeNetSelectors', () => {
   describe('selectToken', () => {
 
     it('selects the token nonce state', () => {
-      const selector = store.pipe(select(getDaffAuthorizeNetSelectors<DaffAuthorizeNetTokenResponse>().selectToken));
+      const selector = store.pipe(select(selectToken));
       const expected = cold('a', { a: stubTokenNonce });
       expect(selector).toBeObservable(expected);
     });
@@ -68,7 +74,7 @@ describe('DaffAuthorizeNetSelectors', () => {
     it('selects the error message state', () => {
 			store.dispatch(new DaffAuthorizeNetGenerateTokenFailure('error'));
 
-      const selector = store.pipe(select(getDaffAuthorizeNetSelectors<DaffAuthorizeNetTokenResponse>().selectError));
+      const selector = store.pipe(select(selectError));
       const expected = cold('a', { a: 'error' });
       expect(selector).toBeObservable(expected);
     });
