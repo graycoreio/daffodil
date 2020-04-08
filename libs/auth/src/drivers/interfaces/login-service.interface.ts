@@ -1,4 +1,6 @@
+import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { DaffLoginInfo } from '../../models/login-info';
 import { DaffAuthToken } from '../../models/auth-token';
 
@@ -18,3 +20,5 @@ export interface DaffLoginServiceInterface<
    */
   logout(): Observable<void>;
 }
+
+export const DaffLoginDriver = new InjectionToken('DaffLoginDriver');
