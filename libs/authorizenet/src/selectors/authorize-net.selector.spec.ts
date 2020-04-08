@@ -5,7 +5,7 @@ import { cold } from 'jasmine-marbles';
 import { DaffAuthorizeNetReducersState } from '../reducers/authorize-net-reducers.interface';
 import { daffAuthorizeNetReducers } from '../reducers/authorize-net.reducers';
 import { DaffAuthorizeNetGenerateTokenSuccess, DaffAuthorizeNetGenerateTokenFailure } from '../actions/authorizenet.actions';
-import { selectAuthorizeNetState, selectToken, selectError, selectTokenResponse } from './authorize-net.selector';
+import { getDaffAuthorizeNetSelectors } from './authorize-net.selector';
 import { DaffAuthorizeNetTokenResponse } from '../models/response/authorize-net-token-response';
 
 describe('DaffAuthorizeNetSelectors', () => {
@@ -17,7 +17,7 @@ describe('DaffAuthorizeNetSelectors', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          authorizenet: combineReducers(daffAuthorizeNetReducers())
+          authorizenet: combineReducers(daffAuthorizeNetReducers)
         })
       ]
     });
@@ -36,7 +36,7 @@ describe('DaffAuthorizeNetSelectors', () => {
 				},
 				error: null
       }
-      const selector = store.pipe(select(selectAuthorizeNetState()));
+      const selector = store.pipe(select(getDaffAuthorizeNetSelectors<DaffAuthorizeNetTokenResponse>().selectAuthorizeNetState));
       const expected = cold('a', { a: expectedFeatureState });
       expect(selector).toBeObservable(expected);
     });
@@ -48,7 +48,7 @@ describe('DaffAuthorizeNetSelectors', () => {
 			const tokenResponse = {
 				token: stubTokenNonce
       }
-      const selector = store.pipe(select(selectTokenResponse()));
+      const selector = store.pipe(select(getDaffAuthorizeNetSelectors<DaffAuthorizeNetTokenResponse>().selectTokenResponse));
       const expected = cold('a', { a: tokenResponse });
       expect(selector).toBeObservable(expected);
     });
@@ -57,7 +57,7 @@ describe('DaffAuthorizeNetSelectors', () => {
   describe('selectToken', () => {
 
     it('selects the token nonce state', () => {
-      const selector = store.pipe(select(selectToken()));
+      const selector = store.pipe(select(getDaffAuthorizeNetSelectors<DaffAuthorizeNetTokenResponse>().selectToken));
       const expected = cold('a', { a: stubTokenNonce });
       expect(selector).toBeObservable(expected);
     });
@@ -68,7 +68,7 @@ describe('DaffAuthorizeNetSelectors', () => {
     it('selects the error message state', () => {
 			store.dispatch(new DaffAuthorizeNetGenerateTokenFailure('error'));
 
-      const selector = store.pipe(select(selectError()));
+      const selector = store.pipe(select(getDaffAuthorizeNetSelectors<DaffAuthorizeNetTokenResponse>().selectError));
       const expected = cold('a', { a: 'error' });
       expect(selector).toBeObservable(expected);
     });
