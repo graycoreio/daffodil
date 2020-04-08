@@ -1,36 +1,24 @@
-import { createEntityAdapter, EntityState, EntityAdapter } from '@ngrx/entity';
-
 import { DaffGeographyActions, DaffGeographyActionTypes } from '../../actions/public_api';
 import { DaffCountry } from '../../models/country';
-
-/**
- * Interface for country entity state.
- */
-export interface DaffCountryEntityState extends EntityState<DaffCountry> {}
-
-/**
- * Country Adapter for changing/overwriting entity state.
- */
-export const countryAdapter: EntityAdapter<DaffCountry> = createEntityAdapter<DaffCountry>();
-
-/**
- * Initial state for country entity state.
- */
-export const initialState: DaffCountryEntityState = countryAdapter.getInitialState();
+import { getCountryAdapter } from './country-entities-adapter';
+import { DaffCountryEntityState } from './country-entities-state.interface';
+import { daffCountryEntitiesInitialState } from './country-entities-initial-state';
 
 /**
  * Reducer function that catches actions and changes/overwrites country entities state.
  */
-export function daffCountryEntitiesReducer(
-  state = initialState,
-  action: DaffGeographyActions<DaffCountry>
-): DaffCountryEntityState {
+export function daffCountryEntitiesReducer<T extends DaffCountry>(
+  state = daffCountryEntitiesInitialState,
+  action: DaffGeographyActions<T>
+): DaffCountryEntityState<T> {
+  const adapter = getCountryAdapter<T>();
+
   switch (action.type) {
     case DaffGeographyActionTypes.CountryLoadSuccessAction:
-      return countryAdapter.upsertOne(action.payload, state);
+      return adapter.upsertOne(action.payload, state);
 
     case DaffGeographyActionTypes.CountryListSuccessAction:
-      return countryAdapter.upsertMany(action.payload, state);
+      return adapter.upsertMany(action.payload, state);
 
     default:
       return state;

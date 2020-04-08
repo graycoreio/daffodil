@@ -5,9 +5,9 @@ import {
   DaffCountryListSuccess,
 } from '../../actions/public_api';
 import {
-  initialState,
   daffCountryEntitiesReducer as reducer,
 } from './country-entities.reducer';
+import { daffCountryEntitiesInitialState as initialState } from './country-entities-initial-state';
 import { DaffCountry } from '../../models/country';
 
 describe('Geography | Reducer | CountryEntities', () => {

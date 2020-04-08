@@ -1,6 +1,6 @@
 import { DaffGeographyReducerState } from './geography-state.interface';
 
-export const initialState: DaffGeographyReducerState = Object.freeze({
+export const daffGeographyInitialState: DaffGeographyReducerState = Object.freeze({
   loading: false,
   errors: []
 });

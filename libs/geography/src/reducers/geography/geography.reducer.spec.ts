@@ -1,6 +1,6 @@
 import { DaffCountryFactory } from '@daffodil/geography/testing';
 
-import { initialState } from './geography-initial-state';
+import { daffGeographyInitialState as initialState } from './geography-initial-state';
 import {
   DaffCountryLoad,
   DaffCountryLoadSuccess,
