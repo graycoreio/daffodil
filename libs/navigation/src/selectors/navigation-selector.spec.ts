@@ -5,7 +5,7 @@ import { cold } from 'jasmine-marbles';
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
 import { DaffNavigationLoadSuccess } from '../actions/navigation.actions';
-import { getDaffNavigationSelectors } from './navigation.selector';
+import { daffNavigationSelectors } from './navigation.selector';
 import { DaffNavigationReducersState } from '../reducers/navigation-reducers.interface';
 import { daffNavigationReducers } from '../reducers/navigation-reducers';
 import { DaffNavigationTree } from '../models/navigation-tree';
@@ -19,7 +19,7 @@ describe('DaffNavigationSelectors', () => {
 		selectNavigationTree,
 		selectNavigationLoading,
 		selectNavigationErrors
-	} = getDaffNavigationSelectors<DaffNavigationTree>();
+	} = daffNavigationSelectors<DaffNavigationTree>();
 
   beforeEach(() => {
     TestBed.configureTestingModule({

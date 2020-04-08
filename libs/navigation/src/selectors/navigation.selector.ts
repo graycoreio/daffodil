@@ -45,11 +45,9 @@ const createNavigationFeatureSelectors = <T extends DaffGenericNavigationTree<T>
 	}
 }
 
-const memoizeDaffNavigationFeatureSelectors = () => {
+export const daffNavigationSelectors = (() => {
 	let cache;
 	return <T extends DaffGenericNavigationTree<T>>(): DaffNavigationMemoizedSelectors<T> => cache = cache 
 		? cache 
 		: createNavigationFeatureSelectors<T>();
-}
-
-export const getDaffNavigationSelectors = memoizeDaffNavigationFeatureSelectors();
+})();
