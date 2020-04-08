@@ -2,9 +2,10 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffioDocService } from './docs.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { DaffioDocFactory, mockGuides } from '../../testing/factories/doc.factory';
+import { DaffioDocFactory } from '../../testing/factories/doc.factory';
 import { DaffioDoc } from '../models/doc';
 import { DaffioGuideList } from '../models/guide-list';
+import { mockGuides } from '../../testing/factories/guide-list.factory';
 
 describe('DaffioDocService', () => {
   let service: DaffioDocService<DaffioDoc, DaffioGuideList>;

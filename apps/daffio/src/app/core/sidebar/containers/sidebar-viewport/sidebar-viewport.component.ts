@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 import { CloseSidebar, OpenSidebar, SetSidebarState } from '../../actions/sidebar.actions';
 import * as fromDaffioSidebar from '../../reducers/index';
 import { DaffSidebarMode } from '@daffodil/design';
-import { DaffioGuideList } from 'apps/daffio/src/app/docs/shared/models/guide-list';
-import { DaffioDocService } from 'apps/daffio/src/app/docs/shared/services/docs.service';
+import { DaffioGuideList } from '../../../../docs/shared/models/guide-list';
+import { DaffioDocService } from '../../../../docs/shared/services/docs.service';
 import { DaffioDoc } from 'apps/daffio/src/app/docs/shared/models/doc';
 
 @Component({

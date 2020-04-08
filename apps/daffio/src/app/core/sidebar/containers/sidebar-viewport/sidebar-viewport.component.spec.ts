@@ -12,8 +12,8 @@ import * as fromSidebar from '../../reducers/index';
 import { RouterTestingModule } from '@angular/router/testing';
 import { OpenSidebar, CloseSidebar, SetSidebarState } from '../../actions/sidebar.actions';
 import { cold } from 'jasmine-marbles';
-import { DaffioGuidesViewerModule } from 'apps/daffio/src/app/docs/shared/components/guides-viewer/guides-viewer.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { DaffioGuidesViewerModule } from '../../../../docs/shared/components/guides-viewer/guides-viewer.module';
 
 describe('DaffioSidebarViewportContainer', () => {
   let component: DaffioSidebarViewportContainer;

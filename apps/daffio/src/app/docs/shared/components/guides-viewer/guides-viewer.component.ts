@@ -8,7 +8,9 @@ import { DaffioGuideList } from '../../models/guide-list';
 })
 export class DaffioGuidesViewerComponent {
 
+  /**
+   * The guide list to render
+   */
   @Input() guideList: DaffioGuideList;
-  constructor() { }
 
 }
