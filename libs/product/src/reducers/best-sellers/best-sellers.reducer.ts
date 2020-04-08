@@ -15,7 +15,7 @@ export function daffBestSellersReducer<T extends DaffProduct>(state = initialSta
     case DaffBestSellersActionTypes.BestSellersLoadAction:
       return {...state, loading: true};
     case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
-      return {...state, loading: false, productIds: getIds(action.payload)};
+      return {...state, loading: false, productIds: getIds<T>(action.payload)};
     case DaffBestSellersActionTypes.BestSellersLoadFailureAction:
       return {...state, 
         loading: false, 

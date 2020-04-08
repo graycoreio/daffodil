@@ -29,6 +29,8 @@ export class AddToCartNotificationComponent implements OnInit {
   constructor(private store: Store<fromDemoAddToCartNotification.State>) { }
 
   ngOnInit() {
+		const { selectProduct } = daffProductSelectors<DaffProduct>();
+
     this.open$ = this.store.pipe(
       select(fromDemoAddToCartNotification.selectOpen)
     );
@@ -46,7 +48,7 @@ export class AddToCartNotificationComponent implements OnInit {
     );
 
     this.product$ = this.productId$.pipe(switchMap((id) => this.store.pipe(
-      select(daffProductSelectors<DaffProduct>().selectProduct, { id: id })
+      select(selectProduct, { id: id })
     )));
 
     this.cartItemCount$ = this.store.pipe(select(fromDemoAddToCartNotification.selectCartItemCount))
