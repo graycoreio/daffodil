@@ -6,9 +6,8 @@ import { DaffStoreFacade } from '@daffodil/core';
 
 import { DaffProductModule } from '../../product.module';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
-import { getDaffProductGridSelectors } from '../../selectors/product-grid.selectors';
-import { getDaffProductEntitiesSelectors } from '../../selectors/product-entities.selectors';
 import { DaffProduct } from '../../models/product';
+import { daffProductSelectors } from '../../selectors/public_api';
 
 /**
  * A facade for accessing state for a list of products from an application component.
@@ -28,11 +27,9 @@ export class DaffProductGridFacade<T extends DaffProduct> implements DaffStoreFa
 
   constructor(private store: Store<DaffProductReducersState<T>>) {
 		const {
-			selectProductGridLoadingState
-		} = getDaffProductGridSelectors<T>();
-		const {
+			selectProductGridLoadingState,
 			selectAllProducts
-		} = getDaffProductEntitiesSelectors<T>();
+		} = daffProductSelectors<T>();
 
     this.loading$ = this.store.pipe(select(selectProductGridLoadingState));
     this.products$ = this.store.pipe(select(selectAllProducts));

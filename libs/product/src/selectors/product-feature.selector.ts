@@ -25,4 +25,4 @@ const memoizeDaffProductFeatureSelectors = () => {
 		: createProductFeatureSelectors<T>();
 }
 
-export const getDaffProductFeatureSelector = memoizeDaffProductFeatureSelectors()().selectProductState;
+export const getDaffProductFeatureSelectors = memoizeDaffProductFeatureSelectors();

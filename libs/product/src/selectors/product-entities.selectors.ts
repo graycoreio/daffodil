@@ -2,7 +2,7 @@ import { createSelector, MemoizedSelector, MemoizedSelectorWithProps } from '@ng
 import { EntityState } from '@ngrx/entity';
 
 import { daffProductEntitiesAdapter } from '../reducers/product-entities/product-entities-reducer-adapter';
-import { getDaffProductFeatureSelector } from './product-feature.selector';
+import { getDaffProductFeatureSelectors } from './product-feature.selector';
 import { DaffProductReducersState } from '../reducers/product-reducers-state.interface';
 import { DaffProduct } from '../models/product';
 
@@ -16,11 +16,14 @@ export interface DaffProductEntitiesMemoizedSelectors<T extends DaffProduct> {
 }
 
 const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEntitiesMemoizedSelectors<T> => {
+	const {
+		selectProductState
+	} = getDaffProductFeatureSelectors<T>();
 	/**
 	 * Product Entities State
 	 */
 	const selectProductEntitiesState = createSelector(
-		getDaffProductFeatureSelector,
+		selectProductState,
 		(state: DaffProductReducersState<T>) => state.products
 	);
 

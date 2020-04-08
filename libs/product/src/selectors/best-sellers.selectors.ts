@@ -1,6 +1,6 @@
 import { createSelector, MemoizedSelector } from '@ngrx/store';
 
-import { getDaffProductFeatureSelector } from './product-feature.selector';
+import { getDaffProductFeatureSelectors } from './product-feature.selector';
 import { DaffProductReducersState } from '../reducers/product-reducers-state.interface';
 import { DaffBestSellersReducerState } from '../reducers/best-sellers/best-sellers-reducer-state.interface';
 import { getDaffProductEntitiesSelectors } from './product-entities.selectors';
@@ -17,11 +17,14 @@ const createBestSellersSelectors = <T extends DaffProduct>(): DaffBestSellersMem
 	const {
 		selectAllProducts
 	} = getDaffProductEntitiesSelectors<T>();
+	const {
+		selectProductState
+	} = getDaffProductFeatureSelectors<T>();
 	/**
 	 * Selector for Best Seller State
 	 */
 	const selectBestSellersState = createSelector(
-		getDaffProductFeatureSelector,
+		selectProductState,
 		(state: DaffProductReducersState<T>) => state.bestSellers
 	);
 

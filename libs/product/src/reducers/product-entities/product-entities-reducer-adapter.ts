@@ -5,6 +5,8 @@ import { DaffProduct } from '../../models/product';
 /**
  * Product Adapter for changing/overwriting entity state.
  */
-export function daffProductEntitiesAdapter<T extends DaffProduct>(): EntityAdapter<T> {
-	return createEntityAdapter<T>();
-}
+export const daffProductEntitiesAdapter = (() => {
+	let cache;
+  return <T extends DaffProduct>(): EntityAdapter<T> =>
+    cache = cache || createEntityAdapter<T>();
+})();

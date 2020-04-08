@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffProduct, getDaffProductEntitiesSelectors } from '@daffodil/product';
+import { DaffProduct, daffProductSelectors } from '@daffodil/product';
 
 import * as fromDemoAddToCartNotification from '../../reducers/index';
 import { CloseAddToCartNotification } from '../../actions/add-to-cart-notification.actions';
@@ -46,7 +46,7 @@ export class AddToCartNotificationComponent implements OnInit {
     );
 
     this.product$ = this.productId$.pipe(switchMap((id) => this.store.pipe(
-      select(getDaffProductEntitiesSelectors<DaffProduct>().selectProduct, { id: id })
+      select(daffProductSelectors<DaffProduct>().selectProduct, { id: id })
     )));
 
     this.cartItemCount$ = this.store.pipe(select(fromDemoAddToCartNotification.selectCartItemCount))
