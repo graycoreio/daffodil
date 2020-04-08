@@ -1,20 +1,22 @@
 @import '../../../scss/daff-util';
 
 .daff-card {
+	$root: &;
 	display: flex;
 	flex-direction: column;
-	position: relative;
-	border-radius: 10px;
+	border-radius: 8px;
 
 	&__image {
+		display: block;
 		border-top-left-radius: inherit;
 		border-top-right-radius: inherit;
-		display: block;
 		width: 100%;
 	}
 
 	&__content {
-		padding: 25px;
+		padding: 24px;
+		border-bottom-left-radius: inherit;
+		border-bottom-right-radius: inherit;
 
 		&:first-child {
 			border-top: 0;
@@ -27,11 +29,7 @@
 	}
 
 	&__title {
-		font-size: 1.25rem;
-		margin-bottom: 10px;
-
-		@include breakpoint(mobile) {
-			font-size: 1.5rem;
-		}
+		@include heading-xs();
+		margin-bottom: 8px;
 	}
 }

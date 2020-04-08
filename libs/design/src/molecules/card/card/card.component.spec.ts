@@ -4,11 +4,15 @@ import { By } from '@angular/platform-browser';
 
 import { DaffCardComponent } from './card.component';
 
+import { DaffPalette } from '../../../core/colorable/colorable';
+
 @Component ({
-  template: `<daff-card></daff-card>`
+  template: `<daff-card [color]="color"></daff-card>`
 })
 
-class WrapperComponent {}
+class WrapperComponent {
+  color: DaffPalette;
+}
 
 describe('DaffCardComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
@@ -43,6 +47,19 @@ describe('DaffCardComponent', () => {
       expect(de.classes).toEqual(jasmine.objectContaining({
         'daff-card': true,
       }));
+    });
+  });
+
+  describe('using a color variant of a card', () => {
+    it('should set a color class on the card', () => {
+      wrapper.color = 'primary';
+      fixture.detectChanges();
+
+      expect(de.nativeElement.classList.contains('daff-primary')).toEqual(true);
+    });
+
+    it('should not set a default color', () => {
+      expect(component.color).toBeFalsy();
     });
   });
 });
