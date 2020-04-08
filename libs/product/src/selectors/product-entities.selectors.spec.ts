@@ -13,7 +13,14 @@ describe('selectProductEntitiesState', () => {
 
   let store: Store<DaffProductReducersState<DaffProduct>>;
   const productFactory: DaffProductFactory = new DaffProductFactory();
-  let mockProduct: DaffProduct;
+	let mockProduct: DaffProduct;
+	const {
+		selectProductIds,
+		selectProductEntities,
+		selectAllProducts,
+		selectProductTotal,
+		selectProduct
+	} = getDaffProductEntitiesSelectors<DaffProduct>();
   
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -35,7 +42,7 @@ describe('selectProductEntitiesState', () => {
     describe('selectIds', () => {
     
       it('selects product ids', () => {
-				const selector = store.pipe(select(getDaffProductEntitiesSelectors<DaffProduct>().selectProductIds));
+				const selector = store.pipe(select(selectProductIds));
 				const expected = cold('a', { a: [mockProduct.id] });
 
 				expect(selector).toBeObservable(expected);
@@ -48,7 +55,7 @@ describe('selectProductEntitiesState', () => {
 				const expectedDictionary = new Object();
 				expectedDictionary[mockProduct.id] = mockProduct;
 
-				const selector = store.pipe(select(getDaffProductEntitiesSelectors<DaffProduct>().selectProductEntities));
+				const selector = store.pipe(select(selectProductEntities));
 				const expected = cold('a', { a: expectedDictionary });
 
 				expect(selector).toBeObservable(expected);
@@ -58,7 +65,7 @@ describe('selectProductEntitiesState', () => {
     describe('selectAllProducts', () => {
       
       it('selects all products as an array', () => {
-        const selector = store.pipe(select(getDaffProductEntitiesSelectors<DaffProduct>().selectAllProducts));
+        const selector = store.pipe(select(selectAllProducts));
 				const expected = cold('a', { a: [mockProduct] });
 
 				expect(selector).toBeObservable(expected);
@@ -68,7 +75,7 @@ describe('selectProductEntitiesState', () => {
     describe('selectProductTotal', () => {
       
       it('selects the total number of products', () => {
-        const selector = store.pipe(select(getDaffProductEntitiesSelectors<DaffProduct>().selectProductTotal));
+        const selector = store.pipe(select(selectProductTotal));
 				const expected = cold('a', { a: 1 });
 
 				expect(selector).toBeObservable(expected);
@@ -79,7 +86,7 @@ describe('selectProductEntitiesState', () => {
   describe('selectProduct', () => {
     
     it('should select the product of the given id', () => {
-			const selector = store.pipe(select(getDaffProductEntitiesSelectors<DaffProduct>().selectProduct, { id: mockProduct.id }));
+			const selector = store.pipe(select(selectProduct, { id: mockProduct.id }));
 			const expected = cold('a', { a: mockProduct });
 
 			expect(selector).toBeObservable(expected);

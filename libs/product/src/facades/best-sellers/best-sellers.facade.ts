@@ -26,8 +26,13 @@ export class DaffBestSellersFacade<T extends DaffProduct> implements DaffStoreFa
   bestSellers$: Observable<DaffProduct[]>;
 
   constructor(private store: Store<DaffProductReducersState<T>>) {
-    this.loading$ = this.store.pipe(select(getDaffBestSellersSelectors<T>().selectBestSellersLoadingState));
-    this.bestSellers$ = this.store.pipe(select(getDaffBestSellersSelectors<T>().selectBestSellersProducts));
+		const {
+			selectBestSellersProducts,
+			selectBestSellersLoadingState
+		} = getDaffBestSellersSelectors<T>();
+
+    this.loading$ = this.store.pipe(select(selectBestSellersLoadingState));
+    this.bestSellers$ = this.store.pipe(select(selectBestSellersProducts));
   }
 
   /**

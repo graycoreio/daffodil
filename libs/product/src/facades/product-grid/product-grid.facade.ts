@@ -27,8 +27,15 @@ export class DaffProductGridFacade<T extends DaffProduct> implements DaffStoreFa
   products$: Observable<T[]>;
 
   constructor(private store: Store<DaffProductReducersState<T>>) {
-    this.loading$ = this.store.pipe(select(getDaffProductGridSelectors<T>().selectProductGridLoadingState));
-    this.products$ = this.store.pipe(select(getDaffProductEntitiesSelectors<T>().selectAllProducts));
+		const {
+			selectProductGridLoadingState
+		} = getDaffProductGridSelectors<T>();
+		const {
+			selectAllProducts
+		} = getDaffProductEntitiesSelectors<T>();
+
+    this.loading$ = this.store.pipe(select(selectProductGridLoadingState));
+    this.products$ = this.store.pipe(select(selectAllProducts));
   }
 
   /**

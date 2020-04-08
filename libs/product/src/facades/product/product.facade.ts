@@ -28,8 +28,13 @@ export class DaffProductFacade<T extends DaffProduct> implements DaffStoreFacade
   product$: Observable<DaffProductUnion>;
 
   constructor(private store: Store<DaffProductReducersState<T>>) {
-    this.loading$ = this.store.pipe(select(getDaffProductSelectors<T>().selectSelectedProductLoadingState));
-    this.product$ = this.store.pipe(select(getDaffProductSelectors<T>().selectSelectedProduct));
+		const {
+			selectSelectedProductLoadingState,
+			selectSelectedProduct
+		} = getDaffProductSelectors<T>();
+
+    this.loading$ = this.store.pipe(select(selectSelectedProductLoadingState));
+    this.product$ = this.store.pipe(select(selectSelectedProduct));
   }
 
   /**

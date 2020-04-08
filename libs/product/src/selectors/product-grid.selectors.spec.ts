@@ -16,7 +16,11 @@ describe('selectProductState', () => {
 
   let store: Store<DaffProductReducersState<DaffProduct>>;
   const productFactory: DaffProductFactory = new DaffProductFactory();
-  let mockProduct: DaffProduct;
+	let mockProduct: DaffProduct;
+	const {
+		selectProductGridState,
+		selectProductGridLoadingState
+	} = getDaffProductGridSelectors<DaffProduct>();
   
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -47,7 +51,7 @@ describe('selectProductState', () => {
           loading: false,
           errors: []
         }
-				const selector = store.pipe(select(getDaffProductGridSelectors<DaffProduct>().selectProductGridState));
+				const selector = store.pipe(select(selectProductGridState));
 				const expected = cold('a', { a: expectedGridState });
 
 				expect(selector).toBeObservable(expected);
@@ -57,7 +61,7 @@ describe('selectProductState', () => {
     describe('selectProductGridLoadingState', () => {
       
       it('selects product grid loading state', () => {
-				const selector = store.pipe(select(getDaffProductGridSelectors<DaffProduct>().selectProductGridLoadingState));
+				const selector = store.pipe(select(selectProductGridLoadingState));
 				const expected = cold('a', { a: false });
 
 				expect(selector).toBeObservable(expected);

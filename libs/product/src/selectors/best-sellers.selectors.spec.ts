@@ -13,7 +13,13 @@ describe('selectBestSellersState', () => {
 
   let store: Store<DaffProductReducersState<DaffProduct>>;
   const productFactory: DaffProductFactory = new DaffProductFactory();
-  let mockProduct: DaffProduct;
+	let mockProduct: DaffProduct;
+	const {
+		selectBestSellersProducts,
+		selectBestSellersLoadingState,
+		selectBestSellersState,
+		selectBestSellersIdsState
+	} = getDaffBestSellersSelectors<DaffProduct>();
   
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -40,7 +46,7 @@ describe('selectBestSellersState', () => {
           loading: false,
           errors: []
         }
-				const selector = store.pipe(select(getDaffBestSellersSelectors<DaffProduct>().selectBestSellersState));
+				const selector = store.pipe(select(selectBestSellersState));
 				const expected = cold('a', { a: expectedState });
 	
 				expect(selector).toBeObservable(expected);
@@ -50,7 +56,7 @@ describe('selectBestSellersState', () => {
     describe('selectBestSellersLoadingState', () => {
       
       it('selects best sellers loading state', () => {
-				const selector = store.pipe(select(getDaffBestSellersSelectors<DaffProduct>().selectBestSellersLoadingState));
+				const selector = store.pipe(select(selectBestSellersLoadingState));
 				const expected = cold('a', { a: false });
 	
 				expect(selector).toBeObservable(expected);
@@ -60,7 +66,7 @@ describe('selectBestSellersState', () => {
     describe('selectBestSellersIdsState', () => {
       
       it('selects best sellers ids state', () => {
-				const selector = store.pipe(select(getDaffBestSellersSelectors<DaffProduct>().selectBestSellersIdsState));
+				const selector = store.pipe(select(selectBestSellersIdsState));
 				const expected = cold('a', { a: [mockProduct.id] });
 	
 				expect(selector).toBeObservable(expected);
@@ -69,7 +75,7 @@ describe('selectBestSellersState', () => {
 
     describe('selectBestSellersProducts', () => {
 			it('should return the list of best sellers off the product entity state', () => {
-				const selector = store.pipe(select(getDaffBestSellersSelectors<DaffProduct>().selectBestSellersProducts));
+				const selector = store.pipe(select(selectBestSellersProducts));
 				const expected = cold('a', { a: [mockProduct] });
 	
 				expect(selector).toBeObservable(expected);

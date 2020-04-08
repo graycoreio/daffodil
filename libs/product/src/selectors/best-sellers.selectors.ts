@@ -14,6 +14,9 @@ export interface DaffBestSellersMemoizedSelectors<T extends DaffProduct> {
 }
 
 const createBestSellersSelectors = <T extends DaffProduct>(): DaffBestSellersMemoizedSelectors<T> => {
+	const {
+		selectAllProducts
+	} = getDaffProductEntitiesSelectors<T>();
 	/**
 	 * Selector for Best Seller State
 	 */
@@ -43,7 +46,7 @@ const createBestSellersSelectors = <T extends DaffProduct>(): DaffBestSellersMem
 	 */
 	const selectBestSellersProducts = createSelector(
 		selectBestSellersIdsState,
-		getDaffProductEntitiesSelectors<T>().selectAllProducts,
+		selectAllProducts,
 		(ids: string[], products: T[]) => products.filter(product => ids.indexOf(product.id) > -1)
 	)
 
