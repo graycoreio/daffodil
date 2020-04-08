@@ -23,10 +23,14 @@ export class DaffCartContainer<T extends DaffCart> implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.store.dispatch(new DaffCartLoad());
+		this.store.dispatch(new DaffCartLoad());
+		const {
+			selectCartLoading,
+			selectCartValue
+		} = getDaffCartSelectors<T>();
 
-    this.loading$ = this.store.pipe(select(getDaffCartSelectors<T>().selectCartLoading));
-    this.cart$ = this.store.pipe(select(getDaffCartSelectors<T>().selectCartValue));
+    this.loading$ = this.store.pipe(select(selectCartLoading));
+    this.cart$ = this.store.pipe(select(selectCartValue));
   }
 
   addToCart(payload) {
