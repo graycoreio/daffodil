@@ -261,11 +261,9 @@ const createCategoryFeatureSelectors = <T extends DaffGenericCategory<T>, V exte
 	}
 }
 
-const memoizeDaffCategoryFeatureSelectors = () => {
+export const getDaffCategorySelectors = (() => {
 	let cache;
 	return <T extends DaffGenericCategory<T>, V extends DaffCategoryPageConfigurationState>(): DaffCategoryMemoizedSelectors<T, V> => cache = cache 
 		? cache 
 		: createCategoryFeatureSelectors<T, V>();
-}
-
-export const getDaffCategorySelectors = memoizeDaffCategoryFeatureSelectors();
+})();
