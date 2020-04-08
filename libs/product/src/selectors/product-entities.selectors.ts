@@ -19,6 +19,7 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
 	const {
 		selectProductState
 	} = getDaffProductFeatureSelector<T>();
+	const adapterSelectors = daffProductEntitiesAdapter<T>().getSelectors();
 	/**
 	 * Product Entities State
 	 */
@@ -40,7 +41,7 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
 	 */
 	const selectProductIds = createSelector(
 		selectProductEntitiesState,
-		daffProductEntitiesAdapter<T>().getSelectors().selectIds
+		adapterSelectors.selectIds
 	);
 
 	/**
@@ -48,7 +49,7 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
 	 */
 	const selectProductEntities = createSelector(
 		selectProductEntitiesState,
-		daffProductEntitiesAdapter<T>().getSelectors().selectEntities
+		adapterSelectors.selectEntities
 	);
 
 	/**
@@ -56,7 +57,7 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
 	 */
 	const selectAllProducts = createSelector(
 		selectProductEntitiesState,
-		daffProductEntitiesAdapter<T>().getSelectors().selectAll
+		adapterSelectors.selectAll
 	);
 
 	/**
@@ -64,7 +65,7 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
 	 */
 	const selectProductTotal = createSelector(
 		selectProductEntitiesState,
-		daffProductEntitiesAdapter<T>().getSelectors().selectTotal
+		adapterSelectors.selectTotal
 	);
 
 	const selectProduct = createSelector(

@@ -16,13 +16,14 @@ import { DaffProduct } from '../../models/product';
 export function daffProductEntitiesReducer<T extends DaffProduct>(
   state = daffProductEntitiesAdapter<T>().getInitialState(), 
   action: DaffProductGridActions<T> | DaffBestSellersActions<T> | DaffProductActions<T>): EntityState<T> {
+	const adapter = daffProductEntitiesAdapter<T>();
   switch (action.type) {
     case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
-      return daffProductEntitiesAdapter<T>().upsertMany(action.payload, state);
+      return adapter.upsertMany(action.payload, state);
     case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
-      return daffProductEntitiesAdapter<T>().upsertMany(action.payload, state);
+      return adapter.upsertMany(action.payload, state);
     case DaffProductActionTypes.ProductLoadSuccessAction:
-      return daffProductEntitiesAdapter<T>().upsertOne(
+      return adapter.upsertOne(
         { 
           id: action.payload.id, 
           ...action.payload
@@ -30,7 +31,7 @@ export function daffProductEntitiesReducer<T extends DaffProduct>(
         state
       );
     case DaffProductGridActionTypes.ProductGridResetAction:
-      return daffProductEntitiesAdapter<T>().removeAll(state);
+      return adapter.removeAll(state);
     default:
       return state;
   }
