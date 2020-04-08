@@ -2,11 +2,13 @@ import { Component, ViewEncapsulation, Input, ElementRef, ChangeDetectionStrateg
 
 import { DaffPalette, daffColorMixin, DaffColorable } from '../../../core/colorable/colorable';
 
+// DaffHeroLayout will be deprecated in v1.0.0
 export type DaffHeroLayout = 'centered' | undefined;
 export enum DaffHeroLayoutEnum {
   Centered = 'centered'
 }
 
+// DaffHeroSize will be deprecated in v1.0.0 and replaced with a DaffCompactable interface
 export type DaffHeroSize = 'compact' | 'small' | undefined;
 export enum DaffHeroSizeEnum {
   Compact = 'compact',
@@ -31,8 +33,8 @@ const _daffHeroBase = daffColorMixin(DaffHeroBase)
 })
 export class DaffHeroComponent extends _daffHeroBase implements DaffColorable {
   
-  @Input() layout: DaffHeroLayout;
-  @Input() size: DaffHeroSize;
+  @Input() layout: DaffHeroLayout; // Will be deprecated in v1.0.0
+  @Input() size: DaffHeroSize; // Will be deprecated in v1.0.0
   @Input() color: DaffPalette;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
@@ -41,14 +43,17 @@ export class DaffHeroComponent extends _daffHeroBase implements DaffColorable {
 
   @HostBinding('class.daff-hero') class = true;
 
+  // Will be deprecated in v1.0.0
   @HostBinding('class.daff-hero--centered') get centered() {
     return this.layout === DaffHeroLayoutEnum.Centered;
   }
 
+  // Will be deprecated in v1.0.0
   @HostBinding('class.daff-hero--small') get small() {
     return this.size === DaffHeroSizeEnum.Small;
   }
 
+  // Will be deprecated in v1.0.0
   @HostBinding('class.daff-hero--compact') get compact() {
     return this.size === DaffHeroSizeEnum.Compact;
   }

@@ -11,19 +11,19 @@
 
 	&__title {
 		@include heading-xl();
+		display: inline-block;
 		margin: 0;
 		max-width: 1040px;
 		overflow-wrap: break-word;
-		text-align: left;
 		width: 100%;
 	}
 
 	&__subtitle {
+		display: inline-block;
 		font-size: $large-font-size;
 		font-weight: normal;
 		margin: 15px 0 0;
 		max-width: 700px;
-		text-align: left;
 		width: 100%;
 
 		+ * {
@@ -31,6 +31,7 @@
 		}
 	}
 
+	// centered will be deprecated in v1.0.0
 	&--centered {
 		#{$root}__title {
 			margin: 0 auto;
@@ -43,7 +44,7 @@
 		}
 	}
 
-	// Small will be deprecated in v1.0.0
+	// small and compact will be deprecated in v1.0.0
 	&--small,
 	&--compact {
 		padding: 50px 25px;

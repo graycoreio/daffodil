@@ -2,7 +2,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { DaffHeroComponent, DaffHeroLayout, DaffHeroSize } from './hero.component';
+import {
+  DaffHeroComponent,
+  DaffHeroLayout,
+  DaffHeroSize
+} from './hero.component';
+
 import { DaffPalette } from '../../../core/colorable/colorable';
 
 @Component({

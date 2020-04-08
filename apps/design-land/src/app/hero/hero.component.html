@@ -1,8 +1,35 @@
-<h1>Daff Hero</h1>
+<h1>Hero</h1>
+<p><code>DaffHeroComponent</code> is a top level container that is large and captivating. It should only be used as the first container on any given page. It supports transcluding any content and optionally including a predefined <code>title</code> and <code>subtitle</code>.</p>
 
+<h2>Supported Content Types</h2>
+A <code>&lt;daff-hero&gt;</code> transcludes:
+<ul>
+  <li><code>[daffHeroTitle]</code></li>
+  <li><code>[daffHeroSubtitle]</code></li>
+  <li>Any additional components</li>
+</ul>
+
+<h3>Title</h3>
+<p>Hero title is used by adding <code>&lt;daffHeroTitle&gt;</code> to a <code>&lt;h1&gt;</code> tag.</p>
+
+<h3>Subtitle</h3>
+<p>Hero subtitle is used by adding <code>&lt;daffHeroSubtitle&gt;</code> to a <code>&lt;h2&gt;</code> tag.</p>
+
+<h2>Colors</h2>
+<p>To define a hero background color, add <code>color="[value]"</code> to the hero tag.</p>
+<p>Values: <code>primary | secondary | tertiary | black | white</code></p>
+
+<h2>Size</h2>
+<p>The <code>size</code> property will be deprecated in v1.0.0</p>
+
+<h2>Layout</h2>
+<p>The <code>layout</code> property will be deprecated in v1.0.0</p>
+
+<h2>Examples</h2>
 <daff-hero color="primary">
   <h1 daffHeroTitle>Hero Title</h1>
   <h2 daffHeroSubtitle>Hero subtitle</h2>
+  <div>Random Content</div>
 </daff-hero>
 
 <daff-hero color="secondary">
@@ -31,8 +58,8 @@
   <h2 daffHeroSubtitle>Hero subtitle</h2>
 </daff-hero>
 
-<h3>Centered Hero</h3>
-<daff-hero layout="centered">
+<h3>Center Hero - Deprecated</h3>
+<daff-hero alignment="center">
   <h1 daffHeroTitle>Hero Title</h1>
   <h2 daffHeroSubtitle>Hero subtitle</h2>
 </daff-hero>
