@@ -3,7 +3,6 @@ import { Dictionary } from '@ngrx/entity';
 
 import {
   getCountryAdapter,
-  DaffGeographyFeatureState,
   DaffCountryEntityState
 } from '../reducers/public_api';
 import { selectGeographyFeatureState } from './geography-feature.selector';

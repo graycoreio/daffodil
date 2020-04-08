@@ -8,8 +8,6 @@ import {
 } from './country-entities.selector';
 import {
   DaffGeographyReducerState,
-  DaffGeographyFeatureState,
-  DaffCountryEntityState
 } from '../reducers/public_api';
 
 export interface DaffGeographySelectors<T extends DaffCountry> extends DaffCountryEntitySelectors<T> {
