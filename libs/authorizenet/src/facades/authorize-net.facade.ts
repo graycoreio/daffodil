@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { DaffStoreFacade } from '@daffodil/core';
 
 import { DaffAuthorizeNetModule } from '../authorize-net.module';
-import { getDaffAuthorizeNetSelectors } from '../selectors/authorize-net.selector';
+import { daffAuthorizeNetSelectors } from '../selectors/authorize-net.selector';
 import { DaffAuthorizeNetReducersState } from '../reducers/authorize-net-reducers.interface';
 import { DaffAuthorizeNetTokenResponse } from '../models/response/authorize-net-token-response';
 
@@ -23,7 +23,7 @@ export class DaffAuthorizeNetFacade<T extends DaffAuthorizeNetTokenResponse> imp
 			selectTokenResponse,
 			selectToken,
 			selectError
-		} = getDaffAuthorizeNetSelectors<T>();
+		} = daffAuthorizeNetSelectors<T>();
 
     this.authorizeTokenResponse$ = this.store.pipe(select(selectTokenResponse));
     this.tokenNonce$ = this.store.pipe(select(selectToken));

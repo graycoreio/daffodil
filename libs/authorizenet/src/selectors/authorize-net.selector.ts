@@ -48,11 +48,9 @@ const createAuthorizeNetSelectors = <T extends DaffAuthorizeNetTokenResponse>():
 	}
 }
 
-const memoizeDaffAuthorizeNetSelectors = () => {
+export const daffAuthorizeNetSelectors = (() => {
 	let cache;
 	return <T extends DaffAuthorizeNetTokenResponse>(): DaffAuthorizeNetMemoizedSelectors<T> => cache = cache 
 		? cache 
 		: createAuthorizeNetSelectors<T>();
-}
-
-export const getDaffAuthorizeNetSelectors = memoizeDaffAuthorizeNetSelectors();
+})();

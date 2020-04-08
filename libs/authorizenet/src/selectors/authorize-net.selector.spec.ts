@@ -5,7 +5,7 @@ import { cold } from 'jasmine-marbles';
 import { DaffAuthorizeNetReducersState } from '../reducers/authorize-net-reducers.interface';
 import { daffAuthorizeNetReducers } from '../reducers/authorize-net.reducers';
 import { DaffAuthorizeNetGenerateTokenSuccess, DaffAuthorizeNetGenerateTokenFailure } from '../actions/authorizenet.actions';
-import { getDaffAuthorizeNetSelectors } from './authorize-net.selector';
+import { daffAuthorizeNetSelectors } from './authorize-net.selector';
 import { DaffAuthorizeNetTokenResponse } from '../models/response/authorize-net-token-response';
 
 describe('DaffAuthorizeNetSelectors', () => {
@@ -17,7 +17,7 @@ describe('DaffAuthorizeNetSelectors', () => {
 		selectTokenResponse,
 		selectToken,
 		selectError
-	} = getDaffAuthorizeNetSelectors<DaffAuthorizeNetTokenResponse>();
+	} = daffAuthorizeNetSelectors<DaffAuthorizeNetTokenResponse>();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
