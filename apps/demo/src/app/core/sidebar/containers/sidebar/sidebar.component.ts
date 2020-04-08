@@ -21,7 +21,7 @@ export class SidebarContainer implements OnInit {
 
   constructor(
     private store: Store<fromDemoSidebar.State>,
-    private navigationFacade: DaffNavigationFacade
+    private navigationFacade: DaffNavigationFacade<DaffNavigationTree>
     ) {}
 
   ngOnInit() {

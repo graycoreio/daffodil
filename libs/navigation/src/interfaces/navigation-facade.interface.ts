@@ -3,11 +3,11 @@ import { Action } from '@ngrx/store';
 
 import { DaffStoreFacade } from '@daffodil/core';
 
-import { DaffNavigationTree } from '../models/navigation-tree';
+import { DaffGenericNavigationTree } from '../models/generic-navigation-tree';
 
-export interface DaffNavigationFacadeInterface extends DaffStoreFacade<Action> {
+export interface DaffNavigationFacadeInterface<T extends DaffGenericNavigationTree<T>> extends DaffStoreFacade<Action> {
   loading$: Observable<boolean>;
-  tree$: Observable<DaffNavigationTree>;
+  tree$: Observable<T>;
   errors$: Observable<string[]>;
   dispatch(action: Action): void;
 }

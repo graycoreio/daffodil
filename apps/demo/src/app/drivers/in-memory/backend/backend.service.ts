@@ -9,11 +9,11 @@ import {
 import { DaffProduct } from '@daffodil/product';
 import { DaffCart } from '@daffodil/cart';
 import { Order } from '@daffodil/checkout';
+import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
 import { DaffInMemoryBackendCartRootService } from '@daffodil/cart/testing';
 import { DaffInMemoryBackendCheckoutService } from '@daffodil/checkout/testing';
 import { DaffInMemoryBackendNavigationService } from '@daffodil/navigation/testing';
-import { DaffNavigationTree } from '@daffodil/navigation';
 
 @Injectable({
   providedIn: 'root'

@@ -5,22 +5,27 @@ import { cold } from 'jasmine-marbles';
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
 import { DaffNavigationLoadSuccess } from '../actions/navigation.actions';
-import { selectNavigationTree, selectNavigationLoading, selectNavigationErrors } from './navigation.selector';
+import { getDaffNavigationSelectors } from './navigation.selector';
+import { DaffNavigationReducersState } from '../reducers/navigation-reducers.interface';
+import { daffNavigationReducers } from '../reducers/navigation-reducers';
 import { DaffNavigationTree } from '../models/navigation-tree';
-import { NavigationReducersState } from '../reducers/navigation-reducers.interface';
-import { navigationReducers } from '../reducers/navigation-reducers';
 
 describe('DaffNavigationSelectors', () => {
 
-  let store: Store<NavigationReducersState>;
+  let store: Store<DaffNavigationReducersState<DaffNavigationTree>>;
   const navigationTreeFactory: DaffNavigationTreeFactory = new DaffNavigationTreeFactory();
-  let mockNavigation: DaffNavigationTree;
+	let mockNavigation: DaffNavigationTree;
+	const {
+		selectNavigationTree,
+		selectNavigationLoading,
+		selectNavigationErrors
+	} = getDaffNavigationSelectors<DaffNavigationTree>();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          navigation: combineReducers(navigationReducers),
+          navigation: combineReducers(daffNavigationReducers),
         })
       ]
     });

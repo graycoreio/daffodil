@@ -7,13 +7,13 @@ import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
 import { DaffNavigationFacade } from './navigation.facade';
 import { DaffNavigationLoad, DaffNavigationLoadFailure, DaffNavigationLoadSuccess } from '../actions/navigation.actions';
-import { navigationReducers } from '../reducers/navigation-reducers';
-import { NavigationReducersState } from '../reducers/navigation-reducers.interface';
+import { daffNavigationReducers } from '../reducers/navigation-reducers';
+import { DaffNavigationReducersState } from '../reducers/navigation-reducers.interface';
 import { DaffNavigationTree } from '../models/navigation-tree';
 
 describe('DaffNavigationFacade', () => {
-  let store: MockStore<Partial<NavigationReducersState>>;
-  let facade: DaffNavigationFacade;
+  let store: MockStore<Partial<DaffNavigationReducersState<DaffNavigationTree>>>;
+  let facade: DaffNavigationFacade<DaffNavigationTree>;
   const navigationTreeFactory: DaffNavigationTreeFactory = new DaffNavigationTreeFactory();
   let navigation: DaffNavigationTree;
 
@@ -21,7 +21,7 @@ describe('DaffNavigationFacade', () => {
     TestBed.configureTestingModule({
       imports:[
         StoreModule.forRoot({
-          navigation: combineReducers(navigationReducers),
+          navigation: combineReducers(daffNavigationReducers),
         })
       ],
       providers: [

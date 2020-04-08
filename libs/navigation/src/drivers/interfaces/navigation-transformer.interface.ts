@@ -1,5 +1,5 @@
-import { DaffNavigationTree } from '../../models/navigation-tree';
+import { DaffGenericNavigationTree } from '../../models/generic-navigation-tree';
 
-export interface DaffNavigationTransformerInterface<T extends DaffNavigationTree> {
+export interface DaffNavigationTransformerInterface<T extends DaffGenericNavigationTree<T>> {
   transform(navigationTree: any): T;
 }
