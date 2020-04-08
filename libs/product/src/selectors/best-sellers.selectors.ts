@@ -1,6 +1,6 @@
 import { createSelector, MemoizedSelector } from '@ngrx/store';
 
-import { getDaffProductFeatureSelectors } from './product-feature.selector';
+import { getDaffProductFeatureSelector } from './product-feature.selector';
 import { DaffProductReducersState } from '../reducers/product-reducers-state.interface';
 import { DaffBestSellersReducerState } from '../reducers/best-sellers/best-sellers-reducer-state.interface';
 import { getDaffProductEntitiesSelectors } from './product-entities.selectors';
@@ -19,7 +19,7 @@ const createBestSellersSelectors = <T extends DaffProduct>(): DaffBestSellersMem
 	} = getDaffProductEntitiesSelectors<T>();
 	const {
 		selectProductState
-	} = getDaffProductFeatureSelectors<T>();
+	} = getDaffProductFeatureSelector<T>();
 	/**
 	 * Selector for Best Seller State
 	 */
@@ -61,11 +61,9 @@ const createBestSellersSelectors = <T extends DaffProduct>(): DaffBestSellersMem
 	}
 }
 
-const memoizeDaffBestSellersSelectors = () => {
+export const getDaffBestSellersSelectors = (() => {
 	let cache;
 	return <T extends DaffProduct>(): DaffBestSellersMemoizedSelectors<T> => cache = cache 
 		? cache 
 		: createBestSellersSelectors<T>();
-}
-
-export const getDaffBestSellersSelectors = memoizeDaffBestSellersSelectors();
+})();

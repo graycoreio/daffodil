@@ -1,7 +1,7 @@
 import { createSelector, MemoizedSelector } from '@ngrx/store';
 
 import { DaffProductReducersState } from '../reducers/product-reducers-state.interface';
-import { getDaffProductFeatureSelectors } from './product-feature.selector';
+import { getDaffProductFeatureSelector } from './product-feature.selector';
 import { DaffProductReducerState } from '../reducers/product/product-reducer-state.interface';
 import { DaffProduct } from '../models/product';
 
@@ -17,7 +17,7 @@ const createProductSelectors = <T extends DaffProduct>(): DaffProductMemoizedSel
 
 	const {
 		selectProductState
-	} = getDaffProductFeatureSelectors<T>();
+	} = getDaffProductFeatureSelector<T>();
 
 	/**
 	 * Selector for the selected product.

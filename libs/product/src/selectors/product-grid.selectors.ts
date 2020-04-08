@@ -2,7 +2,7 @@ import { createSelector, MemoizedSelector } from '@ngrx/store';
 
 import { DaffProductGridReducerState } from '../reducers/product-grid/product-grid-reducer-state.interface';
 import { DaffProductReducersState } from '../reducers/product-reducers-state.interface';
-import { getDaffProductFeatureSelectors } from './product-feature.selector';
+import { getDaffProductFeatureSelector } from './product-feature.selector';
 import { DaffProduct } from '../models/product';
 
 export interface DaffProductGridMemoizedSelectors<T extends DaffProduct> {
@@ -13,7 +13,7 @@ export interface DaffProductGridMemoizedSelectors<T extends DaffProduct> {
 const createProductGridSelectors = <T extends DaffProduct>(): DaffProductGridMemoizedSelectors<T> => {
 	const {
 		selectProductState
-	} = getDaffProductFeatureSelectors<T>();
+	} = getDaffProductFeatureSelector<T>();
 	/**
 	 * Selector for Product Grid state.
 	 */
