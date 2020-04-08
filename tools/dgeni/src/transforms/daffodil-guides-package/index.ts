@@ -12,11 +12,18 @@ export const guideDocPackage = new Package('daffodil-guides', [daffodilBasePacka
     readFilesProcessor.fileReaders.push(guideFileReader);
     readFilesProcessor.basePath = API_SOURCE_PATH;
     readFilesProcessor.sourceFiles = [
+      { include: ['auth/README.md', 'auth/guides/**/*.md']},
+      { include: ['authorizenet/README.md', 'authorizenet/guides/**/*.md']},
       { include: ['cart/README.md', 'cart/guides/**/*.md']},
       { include: ['category/README.md', 'category/guides/**/*.md']},
       { include: ['checkout/README.md', 'checkout/guides/**/*.md']},
+      { include: ['contact/README.md', 'contact/guides/**/*.md']},
       { include: ['core/README.md', 'core/guides/**/*.md']},
       { include: ['design/README.md', 'design/guides/**/*.md']},
+      { include: ['geography/README.md', 'geography/guides/**/*.md']},
+      { include: ['navigation/README.md', 'navigation/guides/**/*.md']},
+      { include: ['newsletter/README.md', 'newsletter/guides/**/*.md']},
+      { include: ['paypal/README.md', 'paypal/guides/**/*.md']},
       { include: ['product/README.md', 'product/guides/**/*.md']}
     ]
   })
