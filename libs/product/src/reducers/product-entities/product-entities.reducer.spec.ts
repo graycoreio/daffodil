@@ -9,7 +9,8 @@ import { daffProductEntitiesAdapter } from './product-entities-reducer-adapter';
 
 describe('Product | Product Entities Reducer', () => {
 
-  let productFactory: DaffProductFactory;
+	let productFactory: DaffProductFactory;
+	let initialState = daffProductEntitiesAdapter<DaffProduct>().getInitialState();
 
   beforeEach(() => {
     productFactory = new DaffProductFactory();
@@ -20,9 +21,9 @@ describe('Product | Product Entities Reducer', () => {
     it('should return the current state', () => {
       const action = {} as any;
 
-      const result = daffProductEntitiesReducer(daffProductEntitiesAdapter<DaffProduct>().getInitialState(), action);
+      const result = daffProductEntitiesReducer(initialState, action);
 
-      expect(result).toEqual(daffProductEntitiesAdapter<DaffProduct>().getInitialState());
+      expect(result).toEqual(initialState);
     });
   });
 
@@ -35,7 +36,7 @@ describe('Product | Product Entities Reducer', () => {
       products = productFactory.createMany(2);
       const productGridLoadSuccess = new DaffProductGridLoadSuccess(products);
       
-      result = daffProductEntitiesReducer(daffProductEntitiesAdapter<DaffProduct>().getInitialState(), productGridLoadSuccess);
+      result = daffProductEntitiesReducer(initialState, productGridLoadSuccess);
     });
 
     it('sets expected number of products on state', () => {
@@ -57,7 +58,7 @@ describe('Product | Product Entities Reducer', () => {
       
       const bestSellersLoadSuccess = new DaffBestSellersLoadSuccess(products);
       
-      result = daffProductEntitiesReducer(daffProductEntitiesAdapter<DaffProduct>().getInitialState(), bestSellersLoadSuccess);
+      result = daffProductEntitiesReducer(initialState, bestSellersLoadSuccess);
     });
 
     it('sets expected number of products on state', () => {
@@ -81,7 +82,7 @@ describe('Product | Product Entities Reducer', () => {
       
       const productLoadSuccess = new DaffProductLoadSuccess(product);
       
-      result = daffProductEntitiesReducer(daffProductEntitiesAdapter<DaffProduct>().getInitialState(), productLoadSuccess);
+      result = daffProductEntitiesReducer(initialState, productLoadSuccess);
     });
 
     it('sets expected product on state', () => {
@@ -96,7 +97,7 @@ describe('Product | Product Entities Reducer', () => {
     beforeEach(() => {
       const productGridReset = new DaffProductGridReset();
       
-      result = daffProductEntitiesReducer(daffProductEntitiesAdapter<DaffProduct>().getInitialState(), productGridReset);
+      result = daffProductEntitiesReducer(initialState, productGridReset);
     });
 
     it('removes all entities from state', () => {
