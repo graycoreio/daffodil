@@ -8,7 +8,7 @@ import { DaffPaypalReducersState } from '../reducers/paypal-reducers.interface';
 import { DaffPaypalTokenResponse } from '../models/paypal-token-response';
 import { daffPaypalReducers } from '../reducers/paypal-reducers';
 import { DaffGeneratePaypalExpressTokenSuccess, DaffGeneratePaypalExpressTokenFailure } from '../actions/paypal.actions';
-import { getDaffPaypalSelectors } from './paypal.selector';
+import { daffPaypalSelectors } from './paypal.selector';
 
 describe('Daff Paypal Selectors', () => {
 
@@ -23,7 +23,7 @@ describe('Daff Paypal Selectors', () => {
 		selectPaypalEditUrl,
 		selectPaypalLoading,
 		selectPaypalError
-	} = getDaffPaypalSelectors<DaffPaypalTokenResponse>();
+	} = daffPaypalSelectors<DaffPaypalTokenResponse>();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
