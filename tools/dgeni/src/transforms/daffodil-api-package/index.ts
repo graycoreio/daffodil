@@ -9,6 +9,10 @@ import { PackagesProcessor } from '../../processors/packages';
 import { FilterContainedDocsProcessor } from '../../processors/filterDocs';
 import { CleanSelectorsProcessor } from '../../processors/cleanSelectors';
 
+//List of packages to be left out of API generation
+const excludedPackages = ['branding'];
+const excludedPackagesRegex: string = '!(' + excludedPackages.join('|') + ')';
+
 export const apiDocs =  new Package('checkout', [
   daffodilBasePackage,
   typescriptPackage
@@ -37,12 +41,7 @@ export const apiDocs =  new Package('checkout', [
 
     // Specify collections of source files that should contain the documentation to extract
     readTypeScriptModules.sourceFiles = [
-      'cart/src/index.ts',
-      'checkout/src/index.ts',
-      'core/src/index.ts',
-      'design/src/index.ts',
-      'product/src/index.ts',
-      'newsletter/src/index.ts'
+      excludedPackagesRegex + '/src/index.ts'
     ];
   })
   .config(function(computePathsProcessor, EXPORT_DOC_TYPES, generateApiList) {

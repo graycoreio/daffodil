@@ -4,6 +4,10 @@ import { guideFileReader } from './reader/guide-file.reader';
 import { API_SOURCE_PATH, GUIDES_TEMPLATES_PATH } from '../config';
 import { GenerateGuideListProcessor } from './processors/generateGuideList';
 
+//List of packages to be left out of Guide generation
+const excludedPackages = ['branding'];
+const excludedPackagesRegex: string = '!(' + excludedPackages.join('|') + ')';
+
 export const guideDocPackage = new Package('daffodil-guides', [daffodilBasePackage])
   .factory(guideFileReader)
   .processor(new GenerateGuideListProcessor())
@@ -12,12 +16,7 @@ export const guideDocPackage = new Package('daffodil-guides', [daffodilBasePacka
     readFilesProcessor.fileReaders.push(guideFileReader);
     readFilesProcessor.basePath = API_SOURCE_PATH;
     readFilesProcessor.sourceFiles = [
-      { include: ['cart/README.md', 'cart/guides/**/*.md']},
-      { include: ['category/README.md', 'category/guides/**/*.md']},
-      { include: ['checkout/README.md', 'checkout/guides/**/*.md']},
-      { include: ['core/README.md', 'core/guides/**/*.md']},
-      { include: ['design/README.md', 'design/guides/**/*.md']},
-      { include: ['product/README.md', 'product/guides/**/*.md']}
+      { include: [excludedPackagesRegex + '/README.md', excludedPackagesRegex + '/guides/**/*.md']}
     ]
   })
   .config(function (convertToJson) {
