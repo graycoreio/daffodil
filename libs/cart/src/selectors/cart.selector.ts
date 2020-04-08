@@ -172,11 +172,9 @@ const createCartFeatureSelectors = <T extends DaffCart>(): DaffCartMemoizedSelec
 	}
 }
 
-const memoizeDaffCartFeatureSelectors = () => {
+export const getDaffCartSelectors = (() => {
 	let cache;
 	return <V extends DaffCart>(): DaffCartMemoizedSelectors<V> => cache = cache 
 		? cache 
 		: createCartFeatureSelectors<V>();
-}
-
-export const getDaffCartSelectors = memoizeDaffCartFeatureSelectors();
+})();
