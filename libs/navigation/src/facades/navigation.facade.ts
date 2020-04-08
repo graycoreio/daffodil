@@ -26,9 +26,10 @@ export class DaffNavigationFacade<T extends DaffGenericNavigationTree<T>> implem
   errors$: Observable<string[]>;
 
   constructor(private store: Store<DaffNavigationReducersState<T>>) {
-    this.tree$ = this.store.pipe(select(getDaffNavigationSelectors<T>().selectNavigationTree));
-    this.loading$ = this.store.pipe(select(getDaffNavigationSelectors<T>().selectNavigationLoading));
-    this.errors$ = this.store.pipe(select(getDaffNavigationSelectors<T>().selectNavigationErrors));
+		const selectors = getDaffNavigationSelectors<T>();
+    this.tree$ = this.store.pipe(select(selectors.selectNavigationTree));
+    this.loading$ = this.store.pipe(select(selectors.selectNavigationLoading));
+    this.errors$ = this.store.pipe(select(selectors.selectNavigationErrors));
   }
 
   /**
