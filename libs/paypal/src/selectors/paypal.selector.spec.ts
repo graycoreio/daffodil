@@ -14,7 +14,16 @@ describe('Daff Paypal Selectors', () => {
 
   let store: Store<DaffPaypalReducersState<DaffPaypalTokenResponse>>;
   const navigationTreeFactory: DaffPaypalTokenResponseFactory = new DaffPaypalTokenResponseFactory();
-  let stubPaypalTokenResponse: DaffPaypalTokenResponse;
+	let stubPaypalTokenResponse: DaffPaypalTokenResponse;
+	const {
+		selectPaypalState,
+		selectPaypalTokenResponse,
+		selectPaypalToken,
+		selectPaypalStartUrl,
+		selectPaypalEditUrl,
+		selectPaypalLoading,
+		selectPaypalError
+	} = getDaffPaypalSelectors<DaffPaypalTokenResponse>();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -39,7 +48,7 @@ describe('Daff Paypal Selectors', () => {
         loading: false,
         error: null
 			};
-			const selector = store.pipe(select(getDaffPaypalSelectors<DaffPaypalTokenResponse>().selectPaypalState));
+			const selector = store.pipe(select(selectPaypalState));
 			const expected = cold('a', { a: expectedState });
 			expect(selector).toBeObservable(expected);
 		});
@@ -48,7 +57,7 @@ describe('Daff Paypal Selectors', () => {
 	describe('selectPaypalTokenResponse', () => {
 
 		it('returns the paypal token response', () => {
-			const selector = store.pipe(select(getDaffPaypalSelectors<DaffPaypalTokenResponse>().selectPaypalTokenResponse));
+			const selector = store.pipe(select(selectPaypalTokenResponse));
 			const expected = cold('a', { a: stubPaypalTokenResponse });
 			expect(selector).toBeObservable(expected);
 		});
@@ -57,7 +66,7 @@ describe('Daff Paypal Selectors', () => {
 	describe('selectPaypalLoading', () => {
 
 		it('returns the loading state for generating a paypal token nonce', () => {
-			const selector = store.pipe(select(getDaffPaypalSelectors<DaffPaypalTokenResponse>().selectPaypalLoading));
+			const selector = store.pipe(select(selectPaypalLoading));
 			const expected = cold('a', { a: false });
 			expect(selector).toBeObservable(expected);
 		});
@@ -68,7 +77,7 @@ describe('Daff Paypal Selectors', () => {
 		it('returns any current errors', () => {
 			const errorMessage = 'there has been an error';
 			store.dispatch(new DaffGeneratePaypalExpressTokenFailure(errorMessage));
-			const selector = store.pipe(select(getDaffPaypalSelectors<DaffPaypalTokenResponse>().selectPaypalError));
+			const selector = store.pipe(select(selectPaypalError));
 			const expected = cold('a', { a: errorMessage });
 			expect(selector).toBeObservable(expected);
 		});
@@ -77,7 +86,7 @@ describe('Daff Paypal Selectors', () => {
 	describe('selectPaypalToken', () => {
 
 		it('returns the paypal token nonce', () => {
-			const selector = store.pipe(select(getDaffPaypalSelectors<DaffPaypalTokenResponse>().selectPaypalToken));
+			const selector = store.pipe(select(selectPaypalToken));
 			const expected = cold('a', { a: stubPaypalTokenResponse.token });
 			expect(selector).toBeObservable(expected);
 		});
@@ -86,7 +95,7 @@ describe('Daff Paypal Selectors', () => {
 	describe('selectPaypalStartUrl', () => {
 
 		it('returns the paypal start url', () => {
-			const selector = store.pipe(select(getDaffPaypalSelectors<DaffPaypalTokenResponse>().selectPaypalStartUrl));
+			const selector = store.pipe(select(selectPaypalStartUrl));
 			const expected = cold('a', { a: stubPaypalTokenResponse.urls.start });
 			expect(selector).toBeObservable(expected);
 		});
@@ -95,7 +104,7 @@ describe('Daff Paypal Selectors', () => {
 	describe('selectPaypalEditUrl', () => {
 
 		it('returns the paypal edit url', () => {
-			const selector = store.pipe(select(getDaffPaypalSelectors<DaffPaypalTokenResponse>().selectPaypalEditUrl));
+			const selector = store.pipe(select(selectPaypalEditUrl));
 			const expected = cold('a', { a: stubPaypalTokenResponse.urls.edit });
 			expect(selector).toBeObservable(expected);
 		});
