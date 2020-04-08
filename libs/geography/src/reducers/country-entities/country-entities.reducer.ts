@@ -11,12 +11,14 @@ export function daffCountryEntitiesReducer<T extends DaffCountry>(
   state = daffCountryEntitiesInitialState,
   action: DaffGeographyActions<T>
 ): DaffCountryEntityState<T> {
+  const adapter = getCountryAdapter<T>();
+
   switch (action.type) {
     case DaffGeographyActionTypes.CountryLoadSuccessAction:
-      return getCountryAdapter<T>().upsertOne(action.payload, state);
+      return adapter.upsertOne(action.payload, state);
 
     case DaffGeographyActionTypes.CountryListSuccessAction:
-      return getCountryAdapter<T>().upsertMany(action.payload, state);
+      return adapter.upsertMany(action.payload, state);
 
     default:
       return state;
