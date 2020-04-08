@@ -1,13 +1,13 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DaffRegisterDriver } from '../injection-tokens/register-driver.token';
+import { DaffRegisterDriver } from '../interfaces/register-service.interface';
 import { DaffMagentoRegisterService } from './register.service';
 
-import { DaffLoginDriver } from '../injection-tokens/login-driver.token';
+import { DaffLoginDriver } from '../interfaces/login-service.interface';
 import { DaffMagentoLoginService } from './login.service';
 
-import { DaffAuthDriver } from '../injection-tokens/auth-driver.token';
+import { DaffAuthDriver } from '../interfaces/auth-service.interface';
 import { DaffMagentoAuthService } from './auth.service';
 
 @NgModule({
