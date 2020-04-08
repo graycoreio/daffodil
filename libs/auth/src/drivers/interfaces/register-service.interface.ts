@@ -1,4 +1,6 @@
+import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { DaffAccountRegistration } from '../../models/account-registration';
 import { DaffLoginInfo } from '../../models/login-info';
 
@@ -15,3 +17,5 @@ export interface DaffRegisterServiceInterface<
    */
   register(registration: TRequest): Observable<TResponse>;
 }
+
+export const DaffRegisterDriver = new InjectionToken('DaffRegisterDriver');

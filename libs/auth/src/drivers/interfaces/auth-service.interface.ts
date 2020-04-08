@@ -1,5 +1,5 @@
+import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DaffAuthToken } from '../../models/auth-token';
 
 export interface DaffAuthServiceInterface {
   /**
@@ -7,3 +7,5 @@ export interface DaffAuthServiceInterface {
    */
   check(): Observable<void>;
 }
+
+export const DaffAuthDriver = new InjectionToken<DaffAuthServiceInterface>('DaffAuthDriver')
