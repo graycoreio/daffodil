@@ -5,7 +5,7 @@ import { API_SOURCE_PATH, GUIDES_TEMPLATES_PATH } from '../config';
 import { GenerateGuideListProcessor } from './processors/generateGuideList';
 
 //List of packages to be left out of Guide generation
-const excludedPackages = ['branding', 'driver'];
+const excludedPackages = ['branding'];
 const excludedPackagesRegex: string = '!(' + excludedPackages.join('|') + ')';
 
 export const guideDocPackage = new Package('daffodil-guides', [daffodilBasePackage])
@@ -16,7 +16,6 @@ export const guideDocPackage = new Package('daffodil-guides', [daffodilBasePacka
     readFilesProcessor.fileReaders.push(guideFileReader);
     readFilesProcessor.basePath = API_SOURCE_PATH;
     readFilesProcessor.sourceFiles = [
-
       { include: [excludedPackagesRegex + '/README.md', excludedPackagesRegex + '/guides/**/*.md']}
     ]
   })

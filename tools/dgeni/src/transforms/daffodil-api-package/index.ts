@@ -10,7 +10,7 @@ import { FilterContainedDocsProcessor } from '../../processors/filterDocs';
 import { CleanSelectorsProcessor } from '../../processors/cleanSelectors';
 
 //List of packages to be left out of API generation
-const excludedPackages = ['branding', 'driver'];
+const excludedPackages = ['branding'];
 const excludedPackagesRegex: string = '!(' + excludedPackages.join('|') + ')';
 
 export const apiDocs =  new Package('checkout', [
