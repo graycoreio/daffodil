@@ -14,7 +14,12 @@ describe('DaffNavigationSelectors', () => {
 
   let store: Store<DaffNavigationReducersState<DaffNavigationTree>>;
   const navigationTreeFactory: DaffNavigationTreeFactory = new DaffNavigationTreeFactory();
-  let mockNavigation: DaffNavigationTree;
+	let mockNavigation: DaffNavigationTree;
+	const {
+		selectNavigationTree,
+		selectNavigationLoading,
+		selectNavigationErrors
+	} = getDaffNavigationSelectors<DaffNavigationTree>();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -36,7 +41,7 @@ describe('DaffNavigationSelectors', () => {
     describe('selectNavigationTree', () => {
 
       it('selects the navigation state', () => {
-        const selector = store.pipe(select(getDaffNavigationSelectors<DaffNavigationTree>().selectNavigationTree));
+        const selector = store.pipe(select(selectNavigationTree));
         const expected = cold('a', { a: mockNavigation });
         expect(selector).toBeObservable(expected);
       });
@@ -45,7 +50,7 @@ describe('DaffNavigationSelectors', () => {
     describe('selectNavigationLoading', () => {
 
       it('selects the loading state of the navigation', () => {
-        const selector = store.pipe(select(getDaffNavigationSelectors<DaffNavigationTree>().selectNavigationLoading));
+        const selector = store.pipe(select(selectNavigationLoading));
         const expected = cold('a', { a: false });
         expect(selector).toBeObservable(expected);
       });
@@ -54,7 +59,7 @@ describe('DaffNavigationSelectors', () => {
     describe('selectNavigationErrors', () => {
 
       it('returns the selected navigation id', () => {
-        const selector = store.pipe(select(getDaffNavigationSelectors<DaffNavigationTree>().selectNavigationErrors));
+        const selector = store.pipe(select(selectNavigationErrors));
         const expected = cold('a', { a: [] });
         expect(selector).toBeObservable(expected);
       });
