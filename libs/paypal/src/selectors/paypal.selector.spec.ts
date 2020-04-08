@@ -8,15 +8,7 @@ import { DaffPaypalReducersState } from '../reducers/paypal-reducers.interface';
 import { DaffPaypalTokenResponse } from '../models/paypal-token-response';
 import { daffPaypalReducers } from '../reducers/paypal-reducers';
 import { DaffGeneratePaypalExpressTokenSuccess, DaffGeneratePaypalExpressTokenFailure } from '../actions/paypal.actions';
-import {
-	selectPaypalState,
-	selectPaypalEditUrl,
-	selectPaypalError,
-	selectPaypalLoading,
-	selectPaypalStartUrl,
-	selectPaypalToken,
-	selectPaypalTokenResponse
-} from './paypal.selector';
+import { getDaffPaypalSelectors } from './paypal.selector';
 
 describe('Daff Paypal Selectors', () => {
 
@@ -28,7 +20,7 @@ describe('Daff Paypal Selectors', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          paypal: combineReducers(daffPaypalReducers()),
+          paypal: combineReducers(daffPaypalReducers),
         })
       ]
     });
@@ -47,7 +39,7 @@ describe('Daff Paypal Selectors', () => {
         loading: false,
         error: null
 			};
-			const selector = store.pipe(select(selectPaypalState()));
+			const selector = store.pipe(select(getDaffPaypalSelectors<DaffPaypalTokenResponse>().selectPaypalState));
 			const expected = cold('a', { a: expectedState });
 			expect(selector).toBeObservable(expected);
 		});
@@ -56,7 +48,7 @@ describe('Daff Paypal Selectors', () => {
 	describe('selectPaypalTokenResponse', () => {
 
 		it('returns the paypal token response', () => {
-			const selector = store.pipe(select(selectPaypalTokenResponse()));
+			const selector = store.pipe(select(getDaffPaypalSelectors<DaffPaypalTokenResponse>().selectPaypalTokenResponse));
 			const expected = cold('a', { a: stubPaypalTokenResponse });
 			expect(selector).toBeObservable(expected);
 		});
@@ -65,7 +57,7 @@ describe('Daff Paypal Selectors', () => {
 	describe('selectPaypalLoading', () => {
 
 		it('returns the loading state for generating a paypal token nonce', () => {
-			const selector = store.pipe(select(selectPaypalLoading()));
+			const selector = store.pipe(select(getDaffPaypalSelectors<DaffPaypalTokenResponse>().selectPaypalLoading));
 			const expected = cold('a', { a: false });
 			expect(selector).toBeObservable(expected);
 		});
@@ -76,7 +68,7 @@ describe('Daff Paypal Selectors', () => {
 		it('returns any current errors', () => {
 			const errorMessage = 'there has been an error';
 			store.dispatch(new DaffGeneratePaypalExpressTokenFailure(errorMessage));
-			const selector = store.pipe(select(selectPaypalError()));
+			const selector = store.pipe(select(getDaffPaypalSelectors<DaffPaypalTokenResponse>().selectPaypalError));
 			const expected = cold('a', { a: errorMessage });
 			expect(selector).toBeObservable(expected);
 		});
@@ -85,7 +77,7 @@ describe('Daff Paypal Selectors', () => {
 	describe('selectPaypalToken', () => {
 
 		it('returns the paypal token nonce', () => {
-			const selector = store.pipe(select(selectPaypalToken()));
+			const selector = store.pipe(select(getDaffPaypalSelectors<DaffPaypalTokenResponse>().selectPaypalToken));
 			const expected = cold('a', { a: stubPaypalTokenResponse.token });
 			expect(selector).toBeObservable(expected);
 		});
@@ -94,7 +86,7 @@ describe('Daff Paypal Selectors', () => {
 	describe('selectPaypalStartUrl', () => {
 
 		it('returns the paypal start url', () => {
-			const selector = store.pipe(select(selectPaypalStartUrl()));
+			const selector = store.pipe(select(getDaffPaypalSelectors<DaffPaypalTokenResponse>().selectPaypalStartUrl));
 			const expected = cold('a', { a: stubPaypalTokenResponse.urls.start });
 			expect(selector).toBeObservable(expected);
 		});
@@ -103,7 +95,7 @@ describe('Daff Paypal Selectors', () => {
 	describe('selectPaypalEditUrl', () => {
 
 		it('returns the paypal edit url', () => {
-			const selector = store.pipe(select(selectPaypalEditUrl()));
+			const selector = store.pipe(select(getDaffPaypalSelectors<DaffPaypalTokenResponse>().selectPaypalEditUrl));
 			const expected = cold('a', { a: stubPaypalTokenResponse.urls.edit });
 			expect(selector).toBeObservable(expected);
 		});

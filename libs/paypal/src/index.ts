@@ -22,3 +22,4 @@ export { DaffPaypalReducerState } from './reducers/paypal/paypal-reducer.interfa
 export { daffPaypalReducer } from './reducers/paypal/paypal.reducer';
 export { DaffPaypalStateModule } from './paypal-state.module';
 export { DaffPaypalModule } from './paypal.module';
+export * from './selectors/paypal.selector';

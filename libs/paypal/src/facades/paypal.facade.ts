@@ -6,14 +6,7 @@ import { DaffPaypalModule } from '../paypal.module';
 import { DaffPaypalReducersState } from '../reducers/paypal-reducers.interface';
 import { DaffPaypalFacadeInterface } from '../interfaces/paypal-facade.interface';
 import { DaffPaypalTokenResponse } from '../models/paypal-token-response';
-import { 
-	selectPaypalTokenResponse,
-	selectPaypalToken,
-	selectPaypalStartUrl,
-	selectPaypalLoading,
-	selectPaypalError,
-	selectPaypalEditUrl
-} from '../selectors/paypal.selector';
+import { getDaffPaypalSelectors } from '../selectors/paypal.selector';
 
 @Injectable({
   providedIn: DaffPaypalModule
@@ -45,12 +38,13 @@ export class DaffPaypalFacade<T extends DaffPaypalTokenResponse> implements Daff
   error$: Observable<string>;
 
   constructor(private store: Store<DaffPaypalReducersState<T>>) {
-    this.paypalTokenResponse$ = this.store.pipe(select(selectPaypalTokenResponse()));
-    this.paypalToken$ = this.store.pipe(select(selectPaypalToken()));
-    this.paypalStartUrl$ = this.store.pipe(select(selectPaypalStartUrl()));
-    this.paypalEditUrl$ = this.store.pipe(select(selectPaypalEditUrl()));
-    this.loading$ = this.store.pipe(select(selectPaypalLoading()));
-    this.error$ = this.store.pipe(select(selectPaypalError()));
+		const selectors = getDaffPaypalSelectors<T>();
+    this.paypalTokenResponse$ = this.store.pipe(select(selectors.selectPaypalTokenResponse));
+    this.paypalToken$ = this.store.pipe(select(selectors.selectPaypalToken));
+    this.paypalStartUrl$ = this.store.pipe(select(selectors.selectPaypalStartUrl));
+    this.paypalEditUrl$ = this.store.pipe(select(selectors.selectPaypalEditUrl));
+    this.loading$ = this.store.pipe(select(selectors.selectPaypalLoading));
+    this.error$ = this.store.pipe(select(selectors.selectPaypalError));
   }
 
   /**

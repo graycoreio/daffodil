@@ -7,7 +7,7 @@ import { daffPaypalReducers } from './reducers/paypal-reducers';
 
 @NgModule({
   imports: [
-    StoreModule.forFeature('paypal', daffPaypalReducers()),
+    StoreModule.forFeature('paypal', daffPaypalReducers),
     EffectsModule.forFeature([DaffPaypalEffects])
   ]
 })
