@@ -69,7 +69,7 @@ const createProductPageSelectors = <T extends DaffProduct>(): DaffProductPageMem
 	}
 }
 
-export const daffProductPageSelectors = (() => {
+export const getDaffProductPageSelectors = (() => {
 	let cache;
 	return <T extends DaffProduct>(): DaffProductPageMemoizedSelectors<T> => cache = cache 
 		? cache 

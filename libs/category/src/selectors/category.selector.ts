@@ -1,7 +1,7 @@
 import { createSelector, MemoizedSelector, MemoizedSelectorWithProps } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
-import { DaffProductUnion, daffProductSelectors } from '@daffodil/product';
+import { DaffProductUnion, getDaffProductSelectors } from '@daffodil/product';
 
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
 import { DaffGenericCategory } from '../models/generic-category';

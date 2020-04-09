@@ -9,7 +9,7 @@ import { DaffProductModule } from '../../product.module';
 import { DaffProductUnion } from '../../models/product-union';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
 import { DaffProduct } from '../../models/product';
-import { daffProductSelectors } from '../../selectors/public_api';
+import { getDaffProductSelectors } from '../../selectors/public_api';
 
 /**
  * A facade for accessing product state from an application component.
@@ -31,7 +31,7 @@ export class DaffProductFacade<T extends DaffProduct> implements DaffStoreFacade
 		const {
 			selectSelectedProductLoadingState,
 			selectSelectedProduct
-		} = daffProductSelectors<T>();
+		} = getDaffProductSelectors<T>();
 
     this.loading$ = this.store.pipe(select(selectSelectedProductLoadingState));
     this.product$ = this.store.pipe(select(selectSelectedProduct));
