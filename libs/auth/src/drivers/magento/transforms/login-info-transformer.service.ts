@@ -11,9 +11,9 @@ import { DaffAccountRegistration } from '../../../models/account-registration'
 })
 export class DaffMagentoLoginInfoTransformerService {
   transform(registration: DaffAccountRegistration): DaffLoginInfo {
-    return registration ? {
+    return {
       email: registration.customer.email,
       password: registration.password
-    } : null
+    }
   }
 }

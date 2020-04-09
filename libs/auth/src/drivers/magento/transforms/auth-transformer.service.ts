@@ -16,8 +16,8 @@ export class DaffMagentoAuthTransformerService {
    * @param auth the auth from a magento auth query.
    */
   transform(auth: MagentoAuth): DaffAuthToken {
-    return auth ? {
+    return {
       token: auth.token
-    } : null
+    }
   }
 }

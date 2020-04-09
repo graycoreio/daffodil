@@ -43,15 +43,5 @@ describe('DaffMagentoLoginInfoTransformerService', () => {
         password: mockRegistration.password
       }));
     });
-
-    describe('when the argument is null', () => {
-      beforeEach(() => {
-        transformedLoginInfo = service.transform(null);
-      });
-
-      it('should return null and not throw an error', () => {
-        expect(transformedLoginInfo).toBeNull();
-      });
-    });
   });
 });

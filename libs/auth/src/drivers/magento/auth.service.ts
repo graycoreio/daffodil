@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, mapTo } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 
 import { DaffAuthServiceInterface } from '../interfaces/auth-service.interface';
@@ -17,13 +17,7 @@ export class DaffMagentoAuthService implements DaffAuthServiceInterface {
 
   check(): Observable<void> {
     return this.apollo.query<MagentoCheckTokenResponse>({query: checkTokenQuery}).pipe(
-      switchMap(resp => {
-        if (resp.data.customer.id) {
-          return of(undefined);
-        } else {
-          return throwError(new Error('Unauthenticated'));
-        }
-      })
+      mapTo(undefined)
     )
   }
 }

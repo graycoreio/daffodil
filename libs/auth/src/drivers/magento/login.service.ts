@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, mapTo } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 
 import { DaffLoginServiceInterface } from '../interfaces/login-service.interface';
@@ -37,13 +37,7 @@ export class DaffMagentoLoginService implements DaffLoginServiceInterface<DaffLo
 
   logout() {
     return this.apollo.mutate<MagentoRevokeCustomerTokenResponse>({mutation: revokeCustomerTokenMutation}).pipe(
-      switchMap(resp => {
-        if (resp.data.revokeCustomerToken.result) {
-          return of(undefined);
-        } else {
-          return throwError(new Error('Token revocation failed'));
-        }
-      })
+      mapTo(undefined)
     )
   }
 }

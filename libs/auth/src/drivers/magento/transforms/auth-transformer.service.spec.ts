@@ -38,15 +38,5 @@ describe('DaffMagentoAuthTransformerService', () => {
     it('should return a DaffAuthToken with the correct token field', () => {
       expect(transformedAuthToken).toEqual(mockAuthToken);
     });
-
-    describe('when the argument is null', () => {
-      beforeEach(() => {
-        transformedAuthToken = service.transform(null);
-      });
-
-      it('should return null and not throw an error', () => {
-        expect(transformedAuthToken).toBeNull();
-      });
-    });
   });
 });

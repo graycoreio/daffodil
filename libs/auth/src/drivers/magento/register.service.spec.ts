@@ -52,7 +52,7 @@ describe('Driver | Magento | Auth | RegisterService', () => {
     expect(registerService).toBeTruthy();
   });
 
-  describe('register | getting login info', () => {
+  describe('register | creating a customer and getting login info', () => {
     let response;
 
     afterEach(() => {
@@ -67,7 +67,7 @@ describe('Driver | Magento | Auth | RegisterService', () => {
       };
     });
 
-    it('should return the correct observable', done => {
+    it('should return the login info', done => {
       registerService.register(mockRegistration).subscribe(loginInfo => {
         expect(loginInfo).toEqual(mockLoginInfo);
         done();
