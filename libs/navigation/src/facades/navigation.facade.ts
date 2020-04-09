@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Store, select, Action } from '@ngrx/store';
 
 import { DaffNavigationModule } from '../navigation.module';
-import { daffNavigationSelectors } from '../selectors/navigation.selector';
+import { getDaffNavigationSelectors } from '../selectors/navigation.selector';
 import { DaffNavigationReducersState } from '../reducers/navigation-reducers.interface';
 import { DaffNavigationFacadeInterface } from '../interfaces/navigation-facade.interface';
 import { DaffGenericNavigationTree } from '../models/generic-navigation-tree';
@@ -30,7 +30,7 @@ export class DaffNavigationFacade<T extends DaffGenericNavigationTree<T>> implem
 			selectNavigationTree, 
 			selectNavigationLoading, 
 			selectNavigationErrors 
-		} = daffNavigationSelectors<T>();
+		} = getDaffNavigationSelectors<T>();
 
     this.tree$ = this.store.pipe(select(selectNavigationTree));
     this.loading$ = this.store.pipe(select(selectNavigationLoading));
