@@ -45,6 +45,7 @@ describe('Daffodil | Geography | GeographyEffects', () => {
     countryFactory = TestBed.get<DaffCountryFactory>(DaffCountryFactory);
 
     mockCountry = countryFactory.create();
+    countryId = mockCountry.id;
   });
 
   it('should be created', () => {
@@ -88,7 +89,7 @@ describe('Daffodil | Geography | GeographyEffects', () => {
     let expected;
     const countryListAction = new DaffCountryList();
 
-    describe('and the list call to driver is successful', () => {
+    describe('and the call to GeographyService is successful', () => {
       beforeEach(() => {
         daffDriverSpy.list.and.returnValue(of([mockCountry]));
         const countryListSuccessAction = new DaffCountryListSuccess([mockCountry]);
@@ -100,7 +101,7 @@ describe('Daffodil | Geography | GeographyEffects', () => {
       });
     });
 
-    describe('and the list call to driver fails', () => {
+    describe('and the call to GeographyService fails', () => {
       beforeEach(() => {
         const error = 'Failed to list the countries';
         const response = cold('#', {}, error);
