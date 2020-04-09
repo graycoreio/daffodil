@@ -12,11 +12,12 @@
           "builder": "@daffodil/builders:generateFragmentTypes",
           "options": {
             "url": "",
-            "path": "apps/demo/src/app/fragmentTypes.json"
+            "path": ""
           },
           "configurations": {
-            "mage2docker": {
-              "url": "https://magento2.test/graphql"
+            "magento": {
+              "url": "https://magento2.test/graphql",
+              "path": "apps/demo/src/app/drivers/magento/fragmentTypes.json"
             }
           }
         },
