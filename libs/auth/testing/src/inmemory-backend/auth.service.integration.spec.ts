@@ -4,22 +4,17 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import {
   DaffAccountRegistration,
-  DaffCustomerRegistration,
   DaffLoginInfo,
-  DaffAuthToken
 } from '@daffodil/auth';
+import { DaffAccountRegistrationFactory } from '@daffodil/auth/testing';
 
 import { DaffInMemoryBackendAuthService } from './auth.service';
-import { DaffAccountRegistrationFactory } from '@daffodil/auth/testing';
-import { DaffAuthTokenFactory } from '../factories/auth-token.factory';
 
 describe('DaffAuthInMemoryBackend | Integration', () => {
   let httpClient;
 
   const registrationFactory = new DaffAccountRegistrationFactory();
-  const authFactory = new DaffAuthTokenFactory();
 
-  let mockAuth: DaffAuthToken;
   let mockRegistration: DaffAccountRegistration;
   let mockLoginInfo: DaffLoginInfo;
 
@@ -34,7 +29,6 @@ describe('DaffAuthInMemoryBackend | Integration', () => {
     httpClient = TestBed.get(HttpClient);
 
     mockRegistration = registrationFactory.create();
-    mockAuth = authFactory.create();
     mockLoginInfo = {
       email: mockRegistration.customer.email,
       password: mockRegistration.password
