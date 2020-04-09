@@ -3,6 +3,8 @@ import {
   ApolloTestingModule,
   ApolloTestingController,
 } from 'apollo-angular/testing';
+import { GraphQLError } from 'graphql';
+import { catchError } from 'rxjs/operators';
 
 import {
   DaffAccountRegistrationFactory,
@@ -12,10 +14,11 @@ import { DaffMagentoRegisterService } from './register.service';
 import { DaffAccountRegistration } from '../../models/account-registration';
 import { DaffLoginInfo } from '../../models/login-info';
 import { createCustomerMutation } from './queries/public_api';
+import { DaffBadInputError } from '../../errors/public_api';
 
 describe('Driver | Magento | Auth | RegisterService', () => {
   let controller: ApolloTestingController;
-  let registerService: DaffMagentoRegisterService;
+  let service: DaffMagentoRegisterService;
 
   const registrationFactory: DaffAccountRegistrationFactory = new DaffAccountRegistrationFactory();
 
@@ -36,7 +39,7 @@ describe('Driver | Magento | Auth | RegisterService', () => {
       ]
     });
 
-    registerService = TestBed.get(DaffMagentoRegisterService);
+    service = TestBed.get(DaffMagentoRegisterService);
     controller = TestBed.get(ApolloTestingController);
 
     mockRegistration = registrationFactory.create();
@@ -49,7 +52,7 @@ describe('Driver | Magento | Auth | RegisterService', () => {
   });
 
   it('should be created', () => {
-    expect(registerService).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 
   describe('register | creating a customer and getting login info', () => {
@@ -59,24 +62,50 @@ describe('Driver | Magento | Auth | RegisterService', () => {
       controller.verify();
     });
 
-    beforeEach(() => {
-      response = {
-        createCustomer: {
-          customer: mockRegistration.customer
-        }
-      };
-    });
-
-    it('should return the login info', done => {
-      registerService.register(mockRegistration).subscribe(loginInfo => {
-        expect(loginInfo).toEqual(mockLoginInfo);
-        done();
+    describe('when the call to the Magento API is successful', () => {
+      beforeEach(() => {
+        response = {
+          createCustomer: {
+            customer: mockRegistration.customer
+          }
+        };
       });
 
-      const op = controller.expectOne(createCustomerMutation);
+      it('should return the login info and not throw an error', done => {
+        service.register(mockRegistration).subscribe(loginInfo => {
+          expect(loginInfo).toEqual(mockLoginInfo);
+          done();
+        });
 
-      op.flush({
-        data: response
+        const op = controller.expectOne(createCustomerMutation);
+
+        op.flush({
+          data: response
+        });
+      });
+    });
+
+    describe('when the call to the Magento API is unsuccessful', () => {
+      it('should throw a DaffBadInputError', done => {
+        service.register(mockRegistration).pipe(
+          catchError(err => {
+            expect(err).toEqual(jasmine.any(DaffBadInputError));
+            done();
+            return [];
+          })
+        ).subscribe();
+
+        const op = controller.expectOne(createCustomerMutation);
+
+        op.graphqlErrors([new GraphQLError(
+          'Required parameters are missing: First Name',
+          null,
+          null,
+          null,
+          null,
+          null,
+          {category: 'graphql-input'}
+        )]);
       });
     });
   });

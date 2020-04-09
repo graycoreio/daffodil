@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
-import { switchMap, mapTo } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError, mapTo } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 
 import { DaffAuthServiceInterface } from '../interfaces/auth-service.interface';
@@ -8,6 +8,8 @@ import {
   checkTokenQuery,
   MagentoCheckTokenResponse
 } from './queries/public_api';
+import { validateCheckTokenResponse } from './validators/public_api';
+import { transformError } from './errors/transform';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,9 @@ export class DaffMagentoAuthService implements DaffAuthServiceInterface {
 
   check(): Observable<void> {
     return this.apollo.query<MagentoCheckTokenResponse>({query: checkTokenQuery}).pipe(
-      mapTo(undefined)
+      map(validateCheckTokenResponse),
+      mapTo(undefined),
+      catchError(err => throwError(transformError(err)))
     )
   }
 }
