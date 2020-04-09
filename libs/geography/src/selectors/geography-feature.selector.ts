@@ -7,7 +7,7 @@ export interface DaffGeographyFeatureSelector<T extends DaffCountry> {
   selectGeographyFeatureState: MemoizedSelector<object, DaffGeographyFeatureState<T>>
 }
 
-export const daffGeographyFeatureStateSelector = (() => {
+export const getDaffGeographyFeatureStateSelector = (() => {
   let cache;
   return <T extends DaffCountry>(): DaffGeographyFeatureSelector<T> =>
     cache = cache || {

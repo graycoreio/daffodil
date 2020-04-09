@@ -5,7 +5,7 @@ import {
   getCountryAdapter,
   DaffCountryEntityState
 } from '../reducers/public_api';
-import { daffGeographyFeatureStateSelector } from './geography-feature.selector';
+import { getDaffGeographyFeatureStateSelector } from './geography-feature.selector';
 import { DaffCountry } from '../models/country';
 
 export interface DaffCountryEntitySelectors<T extends DaffCountry> {
@@ -17,7 +17,7 @@ export interface DaffCountryEntitySelectors<T extends DaffCountry> {
 }
 
 const createCountryEntitySelectors = <T extends DaffCountry>() => {
-  const { selectGeographyFeatureState } = daffGeographyFeatureStateSelector<T>();
+  const { selectGeographyFeatureState } = getDaffGeographyFeatureStateSelector<T>();
   const selectCountryEntitiesState = createSelector(
     selectGeographyFeatureState,
     state => state.countries
@@ -45,7 +45,7 @@ const createCountryEntitySelectors = <T extends DaffCountry>() => {
   }
 }
 
-export const daffCountryEntitySelectors = (() => {
+export const getDaffCountryEntitySelectors = (() => {
   let cache;
   return <T extends DaffCountry>(): DaffCountryEntitySelectors<T> =>
     cache = cache || createCountryEntitySelectors<T>()

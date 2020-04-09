@@ -11,7 +11,7 @@ import {
   DAFF_GEOGRAPHY_STORE_FEATURE_KEY
 } from '../reducers/public_api';
 import {
-  daffCountryEntitySelectors,
+  getDaffCountryEntitySelectors,
 } from './country-entities.selector';
 import { DaffCountryListSuccess } from '../actions/public_api';
 
@@ -28,7 +28,7 @@ describe('Geography | Selector | CountryEntities', () => {
     selectCountryEntities,
     selectCountryIds,
     selectCountryTotal,
-  } = daffCountryEntitySelectors();
+  } = getDaffCountryEntitySelectors();
 
   beforeEach(() => {
     TestBed.configureTestingModule({

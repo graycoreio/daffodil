@@ -11,7 +11,7 @@ import {
   DAFF_GEOGRAPHY_STORE_FEATURE_KEY
 } from '../reducers/public_api';
 import {
-  daffGeographySelectors,
+  getDaffGeographySelectors,
 } from './geography.selector';
 import { DaffCountryListSuccess } from '../actions/public_api';
 
@@ -27,7 +27,7 @@ describe('Geography | Selector | Geography', () => {
   const {
     selectGeographyLoading,
     selectGeographyErrors,
-  } = daffGeographySelectors();
+  } = getDaffGeographySelectors();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
