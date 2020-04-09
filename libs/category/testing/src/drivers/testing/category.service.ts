@@ -11,7 +11,7 @@ import { DaffCategoryPageConfigurationStateFactory } from '../../factories/categ
 @Injectable({
   providedIn: 'root'
 })
-export class DaffTestingCategoryService implements DaffCategoryServiceInterface<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState> {
+export class DaffTestingCategoryService implements DaffCategoryServiceInterface<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>> {
  
   constructor(
     private categoryFactory: DaffCategoryFactory,
@@ -19,7 +19,7 @@ export class DaffTestingCategoryService implements DaffCategoryServiceInterface<
     private productFactory: DaffProductFactory
   ) {}
 
-  get(categoryRequest: DaffCategoryRequest): Observable<DaffGetCategoryResponse<DaffCategory, DaffCategoryPageConfigurationState>> {
+  get(categoryRequest: DaffCategoryRequest): Observable<DaffGetCategoryResponse<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>> {
     return of({
       category: this.categoryFactory.create(),
       categoryPageConfigurationState: this.categoryPageConfigurationStateFactory.create(),

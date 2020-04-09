@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
-import { DaffCategoryPageConfigurationState, DaffCategoryFilterType } from '@daffodil/category';
+import { DaffCategoryPageConfigurationState, DaffCategoryFilterType, DaffCategoryRequest } from '@daffodil/category';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
-export class MockCategoryPageConfigurationState implements DaffCategoryPageConfigurationState {
+export class MockCategoryPageConfigurationState implements DaffCategoryPageConfigurationState<DaffCategoryRequest> {
   id = faker.random.number(100);
   page_size = 20;
   current_page = 1;
@@ -50,7 +50,7 @@ export class MockCategoryPageConfigurationState implements DaffCategoryPageConfi
 @Injectable({
   providedIn: 'root'
 })
-export class DaffCategoryPageConfigurationStateFactory extends DaffModelFactory<DaffCategoryPageConfigurationState>{
+export class DaffCategoryPageConfigurationStateFactory extends DaffModelFactory<DaffCategoryPageConfigurationState<DaffCategoryRequest>>{
   constructor(){
     super(MockCategoryPageConfigurationState);
   }

@@ -26,7 +26,7 @@ import { DaffCategoryPageConfigurationState } from '../../models/category-page-c
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoCategoryService implements DaffCategoryServiceInterface<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState> {
+export class DaffMagentoCategoryService implements DaffCategoryServiceInterface<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>> {
   
   constructor(
     private apollo: Apollo,
@@ -40,7 +40,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface<
    * Gets a category based on parameters. Default current_page is 1, and default page_size is 20.
    * @param categoryRequest A DaffCategoryRequest object.
    */
-  get(categoryRequest: DaffCategoryRequest): Observable<DaffGetCategoryResponse<DaffCategory, DaffCategoryPageConfigurationState>> {
+  get(categoryRequest: DaffCategoryRequest): Observable<DaffGetCategoryResponse<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>> {
     return combineLatest([
       this.apollo.query<MagentoGetACategoryResponse>({
 				query: MagentoGetCategoryQuery,

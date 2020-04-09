@@ -16,17 +16,18 @@ import { DaffCategoryFilterType } from '../models/category-filter-base';
 import { DaffCategoryAppliedFilter } from '../models/category-applied-filter';
 import { DaffCategoryLoad } from '@daffodil/category';
 import { DaffCategoryFilterRequest } from '../models/requests/filter-request';
+import { DaffCategoryRequest } from '../models/requests/category-request';
 
 describe('DaffCategorySelectors', () => {
 
-  let store: Store<DaffCategoryReducersState<DaffCategory, DaffCategoryPageConfigurationState>>;
+  let store: Store<DaffCategoryReducersState<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>>;
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
   const categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
   const productFactory: DaffProductFactory = new DaffProductFactory();
 	let stubCategory: DaffCategory;
-  const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState = categoryPageConfigurationFactory.create();
+  const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest> = categoryPageConfigurationFactory.create();
 	let product: DaffProductUnion;
-	const categorySelectors = getDaffCategorySelectors<DaffCategory, DaffCategoryPageConfigurationState>();
+	const categorySelectors = getDaffCategorySelectors<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>();
 
   beforeEach(() => {
     TestBed.configureTestingModule({

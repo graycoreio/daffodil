@@ -7,8 +7,8 @@ import { DaffGenericCategory } from '../../models/generic-category';
 
 export interface DaffCategoryServiceInterface<
 	T extends DaffCategoryRequest, 
-	U extends DaffGenericCategory<U>,
-	V extends DaffCategoryPageConfigurationState
+	V extends DaffGenericCategory<V>,
+	U extends DaffCategoryPageConfigurationState<T>
 > {
-  get(categoryRequest: T): Observable<DaffGetCategoryResponse<U, V>>;
+  get(categoryRequest: T): Observable<DaffGetCategoryResponse<T, V, U>>;
 }

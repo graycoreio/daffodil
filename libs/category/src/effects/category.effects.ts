@@ -30,17 +30,17 @@ import { DaffGenericCategory } from '../models/generic-category';
 @Injectable()
 export class DaffCategoryEffects<
 	T extends DaffCategoryRequest,
-	U extends DaffGenericCategory<U>,
-	V extends DaffCategoryPageConfigurationState
+	V extends DaffGenericCategory<V>,
+	U extends DaffCategoryPageConfigurationState<T>
 > {
 
   constructor(
     private actions$: Actions,
-    @Inject(DaffCategoryDriver) private driver: DaffCategoryServiceInterface<T, U, V>,
+    @Inject(DaffCategoryDriver) private driver: DaffCategoryServiceInterface<T, V, U>,
     private store: Store<any>
 	){}
 	
-	private categorySelectors = getDaffCategorySelectors<U, V>();
+	private categorySelectors = getDaffCategorySelectors<T, V, U>();
 
   @Effect()
   loadCategory$ : Observable<any> = this.actions$.pipe(
@@ -183,7 +183,7 @@ export class DaffCategoryEffects<
 
   private processCategoryGetRequest(payload: T) {
     return this.driver.get(payload).pipe(
-      switchMap((resp: DaffGetCategoryResponse<U, V>) => [
+      switchMap((resp: DaffGetCategoryResponse<T, V, U>) => [
         new DaffProductGridLoadSuccess(resp.products),
         new DaffCategoryLoadSuccess(resp)
       ]),

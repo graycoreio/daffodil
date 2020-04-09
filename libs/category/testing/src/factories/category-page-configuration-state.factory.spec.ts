@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffCategoryPageConfigurationState } from '@daffodil/category';
+import { DaffCategoryPageConfigurationState, DaffCategoryRequest } from '@daffodil/category';
 
 import { DaffCategoryPageConfigurationStateFactory } from './category-page-configuration-state.factory';
 
@@ -22,7 +22,7 @@ describe('Category | Testing | Factories | DaffCategoryPageConfigurationStateFac
 
   describe('create', () => {
 
-    let result: DaffCategoryPageConfigurationState;
+    let result: DaffCategoryPageConfigurationState<DaffCategoryRequest>;
 
     beforeEach(() => {
       result = categoryPageConfigurationStateFactory.create();
@@ -41,7 +41,7 @@ describe('Category | Testing | Factories | DaffCategoryPageConfigurationStateFac
   });
 
   describe('createMany', () => {
-    let result: DaffCategoryPageConfigurationState[];
+    let result: DaffCategoryPageConfigurationState<DaffCategoryRequest>[];
 
     it('should create as many categories as desired', () => {
       result = categoryPageConfigurationStateFactory.createMany(2);

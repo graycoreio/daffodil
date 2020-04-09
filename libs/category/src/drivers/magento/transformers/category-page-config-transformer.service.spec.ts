@@ -13,6 +13,7 @@ import { MagentoSortFields } from '../models/sort-fields';
 import { MagentoCompleteCategoryResponse } from '../models/complete-category-response';
 import { DaffCategoryFromToFilterSeparator } from 'libs/category/src/models/requests/filter-request';
 import { DaffCategoryFilterType } from '../../../models/category-filter-base';
+import { DaffCategoryRequest } from '../../../models/requests/category-request';
 
 describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 
@@ -21,7 +22,7 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
   const stubCategory: DaffCategory = categoryFactory.create();
 
   const categoryPageConfigurationStateFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
-  const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState = categoryPageConfigurationStateFactory.create();
+  const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest> = categoryPageConfigurationStateFactory.create();
   delete stubCategoryPageConfigurationState.filter_requests;
   delete stubCategoryPageConfigurationState.applied_sort_direction;
   delete stubCategoryPageConfigurationState.applied_sort_option;
