@@ -1,12 +1,6 @@
-import { DaffCategoryBreadcrumb } from './category-breadcrumb';
+import { DaffGenericCategory } from './generic-category';
 
-export interface DaffCategory {
-  id: string;
-	name: string;
-	description?: string;
-  children_count?: number;
-  total_products?: number;
-  children?: DaffCategory[];
-  product_ids?: string[];
-  breadcrumbs?: DaffCategoryBreadcrumb[];
-}
+/**
+ * This model is needed as a reference in concrete classes, because the DaffGenericCategory is recursive.
+ */
+export interface DaffCategory extends DaffGenericCategory<DaffCategory> {}

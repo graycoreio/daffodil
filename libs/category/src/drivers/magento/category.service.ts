@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, combineLatest, of } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 
@@ -20,11 +20,13 @@ import { MagentoGetCategoryAggregationsResponse } from './models/get-category-ag
 import { MagentoCustomAttributeMetadataResponse } from './models/custom-attribute-metadata-response';
 import { MagentoGetCustomAttributeMetadata } from './queries/custom-attribute-metadata';
 import { buildCustomMetadataAttribute, addMetadataTypesToAggregates } from './transformers/custom-metadata-attributes-methods';
+import { DaffCategory } from '../../models/category';
+import { DaffCategoryPageConfigurationState } from '../../models/category-page-configuration-state';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoCategoryService implements DaffCategoryServiceInterface {
+export class DaffMagentoCategoryService implements DaffCategoryServiceInterface<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState> {
   
   constructor(
     private apollo: Apollo,
@@ -38,7 +40,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
    * Gets a category based on parameters. Default current_page is 1, and default page_size is 20.
    * @param categoryRequest A DaffCategoryRequest object.
    */
-  get(categoryRequest: DaffCategoryRequest): Observable<DaffGetCategoryResponse> {
+  get(categoryRequest: DaffCategoryRequest): Observable<DaffGetCategoryResponse<DaffCategory, DaffCategoryPageConfigurationState>> {
     return combineLatest([
       this.apollo.query<MagentoGetACategoryResponse>({
 				query: MagentoGetCategoryQuery,

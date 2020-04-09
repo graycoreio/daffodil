@@ -1,14 +1,14 @@
-import { categoryReducers } from './category-reducers';
-import { categoryReducer } from './category/category.reducer';
-import { categoryEntitiesReducer } from './category-entities/category-entities.reducer';
+import { daffCategoryReducers } from './category-reducers';
+import { daffCategoryReducer } from './category/category.reducer';
+import { daffCategoryEntitiesReducer } from './category-entities/category-entities.reducer';
 
 describe('selectCategoryState', () => {
 
   it('should return a reducer map with CategoryReducer', () => {
-    expect(categoryReducers.category).toEqual(categoryReducer);
+    expect(daffCategoryReducers.category).toEqual(daffCategoryReducer);
   });
 
   it('should return a reducer map with CategoryEntitiesReducer', () => {
-    expect(categoryReducers.categoryEntities).toEqual(categoryEntitiesReducer);
+    expect(daffCategoryReducers.categoryEntities).toEqual(daffCategoryEntitiesReducer);
   });
 });

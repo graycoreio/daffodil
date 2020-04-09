@@ -3,6 +3,8 @@ import { Action } from '@ngrx/store';
 import { DaffGetCategoryResponse } from '../models/get-category-response';
 import { DaffCategoryRequest } from '../models/requests/category-request';
 import { DaffCategoryFilterRequest, DaffToggleCategoryFilterRequest } from '../models/requests/filter-request';
+import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
+import { DaffGenericCategory } from '../models/generic-category';
 
 export enum DaffCategoryActionTypes {
   CategoryLoadAction = '[Daff-Category] Category Load Action',
@@ -20,10 +22,10 @@ export enum DaffCategoryActionTypes {
  * 
  * @param request - DaffCategoryRequest object
  */
-export class DaffCategoryLoad implements Action {
+export class DaffCategoryLoad<T extends DaffCategoryRequest> implements Action {
   readonly type = DaffCategoryActionTypes.CategoryLoadAction;
 
-  constructor(public request: DaffCategoryRequest) { }
+  constructor(public request: T) { }
 }
 
 /**
@@ -31,10 +33,10 @@ export class DaffCategoryLoad implements Action {
  * 
  * @param response - DaffGetCategoryResponse object
  */
-export class DaffCategoryLoadSuccess implements Action {
+export class DaffCategoryLoadSuccess<T extends DaffGenericCategory<T>, U extends DaffCategoryPageConfigurationState> implements Action {
   readonly type = DaffCategoryActionTypes.CategoryLoadSuccessAction;
 
-  constructor(public response: DaffGetCategoryResponse) { }
+  constructor(public response: DaffGetCategoryResponse<T, U>) { }
 }
 
 /**
@@ -108,9 +110,13 @@ export class DaffToggleCategoryFilter implements Action {
   constructor(public filter: DaffToggleCategoryFilterRequest) { }
 }
 
-export type DaffCategoryActions =
-  | DaffCategoryLoad
-  | DaffCategoryLoadSuccess
+export type DaffCategoryActions<
+	T extends DaffCategoryRequest, 
+	U extends DaffGenericCategory<U>, 
+	V extends DaffCategoryPageConfigurationState
+> =
+  | DaffCategoryLoad<T>
+  | DaffCategoryLoadSuccess<U, V>
   | DaffCategoryLoadFailure
 	| DaffChangeCategoryPageSize
 	| DaffChangeCategoryCurrentPage

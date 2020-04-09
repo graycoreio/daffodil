@@ -1,6 +1,6 @@
 export * from './actions/category.actions';
 
-export { categoryReducers } from './reducers/category-reducers';
+export { daffCategoryReducers } from './reducers/category-reducers';
 export { DaffCategoryFacade } from './facades/category.facade';
 
 export { DaffCategoryModule } from './category.module';
@@ -16,6 +16,7 @@ export { DaffCategoryFilterType } from './models/category-filter-base';
 export { DaffCategoryPageConfigurationState } from './models/category-page-configuration-state';
 export { DaffCategoryBreadcrumb } from './models/category-breadcrumb'
 export { DaffCategory } from './models/category'
+export { DaffGenericCategory } from './models/generic-category'
 export { 
 	DaffCategoryRequest,
 	DaffSortDirectionEnum

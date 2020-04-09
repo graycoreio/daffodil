@@ -1,4 +1,6 @@
 import { EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { DaffCategory } from '../../models/category';
+import { DaffGenericCategory } from '../../models/generic-category';
 
-export const categoryEntitiesAdapter : EntityAdapter<DaffCategory> = createEntityAdapter<DaffCategory>();
+export function daffCategoryEntitiesAdapter<T extends DaffGenericCategory<T>>(): EntityAdapter<T> {
+	return createEntityAdapter<T>();
+} 
