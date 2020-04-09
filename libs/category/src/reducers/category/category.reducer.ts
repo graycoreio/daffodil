@@ -5,8 +5,8 @@ import { DaffCategoryRequest } from '../../models/requests/category-request';
 import { DaffCategoryPageConfigurationState } from '../../models/category-page-configuration-state';
 import { DaffGenericCategory } from '../../models/generic-category';
 
-const initialState: DaffCategoryReducerState<any> = {
-  categoryPageConfigurationState: {
+const initialState: DaffCategoryReducerState<any, any> = {
+	categoryPageConfigurationState: {
     id: null,
 		filter_requests: [],
     applied_sort_option: null,
@@ -18,14 +18,14 @@ const initialState: DaffCategoryReducerState<any> = {
 		sort_options: [],
 		total_products: null,
 		product_ids: []
-  },
+	},
 	categoryLoading: false,
 	productsLoading: false,
   errors: []
 };
 
-export function daffCategoryReducer<T extends DaffCategoryRequest, U extends DaffGenericCategory<U>, V extends DaffCategoryPageConfigurationState>
-	(state = initialState, action: DaffCategoryActions<T, U, V>): DaffCategoryReducerState<V> {
+export function daffCategoryReducer<T extends DaffCategoryRequest, U extends DaffGenericCategory<U>, V extends DaffCategoryPageConfigurationState<T>>
+	(state = initialState, action: DaffCategoryActions<T, U, V>): DaffCategoryReducerState<T, V> {
   switch (action.type) {
     // This reducer must assume the call will be successful, and immediately set the applied filters to state, because the 
     // GetCategory magento call doesn't return currently applied filters. If there is a bug where the wrong filters are somehow
@@ -39,7 +39,7 @@ export function daffCategoryReducer<T extends DaffCategoryRequest, U extends Daf
         categoryPageConfigurationState: {
           ...state.categoryPageConfigurationState,
           ...action.request
-        }
+				}
 			};
 		case DaffCategoryActionTypes.ChangeCategoryPageSizeAction:
 			return { 

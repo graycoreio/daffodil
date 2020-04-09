@@ -6,13 +6,13 @@ import { DaffCategoryRequest } from '../../models/requests/category-request';
 import { DaffCategoryPageConfigurationState } from '../../models/category-page-configuration-state';
 import { DaffGenericCategory } from '../../models/generic-category';
 
-export function daffCategoryEntitiesReducer<T extends DaffCategoryRequest, U extends DaffGenericCategory<U>, V extends DaffCategoryPageConfigurationState>(
-  state = daffCategoryEntitiesAdapter<U>().getInitialState(), 
-	action: DaffCategoryActions<T, U, V>
-): EntityState<U> {
+export function daffCategoryEntitiesReducer<T extends DaffCategoryRequest, V extends DaffGenericCategory<V>, U extends DaffCategoryPageConfigurationState<T>>(
+  state = daffCategoryEntitiesAdapter<V>().getInitialState(), 
+	action: DaffCategoryActions<T, V, U>
+): EntityState<V> {
   switch (action.type) {
     case DaffCategoryActionTypes.CategoryLoadSuccessAction:
-      return daffCategoryEntitiesAdapter<U>().upsertOne(
+      return daffCategoryEntitiesAdapter<V>().upsertOne(
         { 
           id: action.response.category.id, 
           ...action.response.category

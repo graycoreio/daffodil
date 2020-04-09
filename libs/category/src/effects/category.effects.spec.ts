@@ -29,7 +29,7 @@ import { DaffCategoryFilterEqualRequest } from '../models/requests/filter-reques
 import { DaffCategoryFilterType } from '../models/category-filter-base';
 import { daffCategoryReducers } from '../reducers/category-reducers';
 
-class MockCategoryDriver implements DaffCategoryServiceInterface<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState> {
+class MockCategoryDriver implements DaffCategoryServiceInterface<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>> {
 	get(categoryRequest: any): Observable<any> {
 		return null;
 	}
@@ -37,18 +37,18 @@ class MockCategoryDriver implements DaffCategoryServiceInterface<DaffCategoryReq
 
 describe('DaffCategoryEffects', () => {
   let actions$: Observable<any>;
-  let effects: DaffCategoryEffects<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState>;
+  let effects: DaffCategoryEffects<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>;
   let stubCategory: DaffCategory;
-  let stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState;
+  let stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest>;
   let stubProducts: DaffProduct[];
-  let daffCategoryDriver: DaffCategoryServiceInterface<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState>;
+  let daffCategoryDriver: DaffCategoryServiceInterface<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>;
   const daffCategoryDriverSpy = jasmine.createSpyObj('DaffCategoryDriver', ['get']);
   let store: MockStore<any>;
 
   let categoryFactory: DaffCategoryFactory;
   let categoryPageConfigurationStateFactory: DaffCategoryPageConfigurationStateFactory;
 	let productFactory: DaffProductFactory;
-	let categoryLoadSuccessAction: DaffCategoryLoadSuccess<DaffCategory, DaffCategoryPageConfigurationState>;
+	let categoryLoadSuccessAction: DaffCategoryLoadSuccess<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>;
 	let productGridLoadSuccessAction: DaffProductGridLoadSuccess;
 
   beforeEach(() => {

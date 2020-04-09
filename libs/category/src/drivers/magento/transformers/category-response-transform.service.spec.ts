@@ -14,6 +14,7 @@ import { MagentoPageInfo } from '../models/page-info';
 import { MagentoSortFields } from '../models/sort-fields';
 import { DaffMagentoCategoryTransformerService } from './category-transformer.service';
 import { MagentoCompleteCategoryResponse } from '../models/complete-category-response';
+import { DaffCategoryRequest } from '../../../models/requests/category-request';
 
 describe('DaffMagentoCategoryResponseTransformService', () => {
 
@@ -21,7 +22,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
   const stubCategory: DaffCategory = categoryFactory.create();
   const categoryPageConfigurationStateFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
-  const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState = categoryPageConfigurationStateFactory.create();
+  const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest> = categoryPageConfigurationStateFactory.create();
   const productFactory: DaffProductFactory = new DaffProductFactory();
   const stubProducts: DaffProduct[] = productFactory.createMany(4);
 

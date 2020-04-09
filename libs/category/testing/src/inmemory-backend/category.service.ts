@@ -6,7 +6,7 @@ import {
   STATUS
 } from 'angular-in-memory-web-api';
 
-import { DaffCategory, DaffCategoryPageConfigurationState } from '@daffodil/category';
+import { DaffCategory, DaffCategoryPageConfigurationState, DaffCategoryRequest } from '@daffodil/category';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
 import { randomSubset } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
@@ -19,7 +19,7 @@ import { DaffCategoryPageConfigurationStateFactory } from '../factories/category
 })
 export class DaffInMemoryBackendCategoryService implements InMemoryDbService {
   category: DaffCategory;
-  categoryPageConfigurationState: DaffCategoryPageConfigurationState;
+  categoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest>;
 
   constructor(
     private categoryFactory: DaffCategoryFactory,

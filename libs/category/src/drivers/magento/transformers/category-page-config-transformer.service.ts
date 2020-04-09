@@ -7,13 +7,14 @@ import { MagentoSortFields } from '../models/sort-fields';
 import { MagentoCompleteCategoryResponse } from '../models/complete-category-response';
 import { DaffCategoryFromToFilterSeparator } from '../../../models/requests/filter-request';
 import { DaffCategoryFilterType } from '../../../models/category-filter-base';
+import { DaffCategoryRequest } from '../../../models/requests/category-request';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DaffMagentoCategoryPageConfigTransformerService {
 
-  transform(categoryResponse: MagentoCompleteCategoryResponse): DaffCategoryPageConfigurationState {
+  transform(categoryResponse: MagentoCompleteCategoryResponse): DaffCategoryPageConfigurationState<DaffCategoryRequest> {
 		return {
       id: categoryResponse.category.id,
       page_size: categoryResponse.page_info.page_size,

@@ -11,7 +11,7 @@ import { DaffCategoryReducersState } from '../reducers/category-reducers.interfa
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
 import { DaffCategoryFilter } from '../models/category-filter';
 import { DaffCategorySortOption } from '../models/category-sort-option';
-import { DaffSortDirectionEnum } from '../models/requests/category-request';
+import { DaffSortDirectionEnum, DaffCategoryRequest } from '../models/requests/category-request';
 import { DaffCategoryAppliedFilter } from '../models/category-applied-filter';
 import { DaffGenericCategory } from '../models/generic-category';
 
@@ -21,17 +21,17 @@ import { DaffGenericCategory } from '../models/generic-category';
 @Injectable({
   providedIn: DaffCategoryModule
 })
-export class DaffCategoryFacade<T extends DaffGenericCategory<T>, V extends DaffCategoryPageConfigurationState> implements DaffStoreFacade<Action> {
-	private categorySelectors = getDaffCategorySelectors<T, V>();
+export class DaffCategoryFacade<T extends DaffCategoryRequest, V extends DaffGenericCategory<V>, U extends DaffCategoryPageConfigurationState<T>> implements DaffStoreFacade<Action> {
+	private categorySelectors = getDaffCategorySelectors<T, V, U>();
 	
 	/**
    * The currently selected category.
    */
-  category$: Observable<T>;
+  category$: Observable<V>;
   /**
    * The page configuration state for the selected category.
    */
-  pageConfigurationState$: Observable<V>;
+  pageConfigurationState$: Observable<U>;
   /**
    * The current page of products for the selected category.
    */
@@ -93,7 +93,7 @@ export class DaffCategoryFacade<T extends DaffGenericCategory<T>, V extends Daff
 	 * Get a category by the provided Id.
 	 * @param id 
 	 */
-	getCategoryById(id: string): Observable<T> {
+	getCategoryById(id: string): Observable<V> {
 		return this.store.pipe(select(this.categorySelectors.selectCategory, {id: id}));
 	}
 
@@ -113,7 +113,7 @@ export class DaffCategoryFacade<T extends DaffGenericCategory<T>, V extends Daff
 		return this.store.pipe(select(this.categorySelectors.selectTotalProductsByCategory, {id: categoryId}))
 	}
 
-  constructor(private store: Store<DaffCategoryReducersState<T, V>>) {
+  constructor(private store: Store<DaffCategoryReducersState<T, V, U>>) {
     this.category$ = this.store.pipe(select(this.categorySelectors.selectSelectedCategory));
 		this.products$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageProducts));
 		this.totalProducts$ = this.store.pipe(select(this.categorySelectors.selectCategoryPageTotalProducts));

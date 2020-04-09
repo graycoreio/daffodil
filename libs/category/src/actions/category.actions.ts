@@ -33,10 +33,10 @@ export class DaffCategoryLoad<T extends DaffCategoryRequest> implements Action {
  * 
  * @param response - DaffGetCategoryResponse object
  */
-export class DaffCategoryLoadSuccess<T extends DaffGenericCategory<T>, U extends DaffCategoryPageConfigurationState> implements Action {
+export class DaffCategoryLoadSuccess<T extends DaffCategoryRequest, V extends DaffGenericCategory<V>, U extends DaffCategoryPageConfigurationState<T>> implements Action {
   readonly type = DaffCategoryActionTypes.CategoryLoadSuccessAction;
 
-  constructor(public response: DaffGetCategoryResponse<T, U>) { }
+  constructor(public response: DaffGetCategoryResponse<T, V, U>) { }
 }
 
 /**
@@ -113,10 +113,10 @@ export class DaffToggleCategoryFilter implements Action {
 export type DaffCategoryActions<
 	T extends DaffCategoryRequest, 
 	U extends DaffGenericCategory<U>, 
-	V extends DaffCategoryPageConfigurationState
+	V extends DaffCategoryPageConfigurationState<T>
 > =
   | DaffCategoryLoad<T>
-  | DaffCategoryLoadSuccess<U, V>
+  | DaffCategoryLoadSuccess<T, U, V>
   | DaffCategoryLoadFailure
 	| DaffChangeCategoryPageSize
 	| DaffChangeCategoryCurrentPage

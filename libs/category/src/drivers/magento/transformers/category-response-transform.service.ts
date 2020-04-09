@@ -8,6 +8,7 @@ import { DaffGetCategoryResponse } from '../../../models/get-category-response';
 import { DaffMagentoCategoryTransformerService } from './category-transformer.service';
 import { DaffCategory } from '../../../models/category';
 import { DaffCategoryPageConfigurationState } from '../../../models/category-page-configuration-state';
+import { DaffCategoryRequest } from '../../../models/requests/category-request';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class DaffMagentoCategoryResponseTransformService {
     private magentoProductTransformerService: DaffMagentoProductTransformerService
   ) {}
 
-  transform(completeCategory: MagentoCompleteCategoryResponse): DaffGetCategoryResponse<DaffCategory, DaffCategoryPageConfigurationState> {
+  transform(completeCategory: MagentoCompleteCategoryResponse): DaffGetCategoryResponse<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>> {
     return {
 			...{ magentoCompleteCategoryResponse: completeCategory },
       category: this.magentoCategoryTransformerService.transform(completeCategory.category),

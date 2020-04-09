@@ -13,15 +13,16 @@ import { daffCategoryReducers } from '../reducers/category-reducers';
 import { DaffCategory } from '../models/category';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
 import { DaffCategoryFilterType } from '../models/category-filter-base';
+import { DaffCategoryRequest } from '../models/requests/category-request';
 
 describe('DaffCategoryFacade', () => {
   let store: MockStore<any>;
-  let facade: DaffCategoryFacade<DaffCategory, DaffCategoryPageConfigurationState>;
+  let facade: DaffCategoryFacade<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>;
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
   const categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
   const productFactory: DaffProductFactory = new DaffProductFactory();
   let category: DaffCategory;
-  let categoryPageConfigurationState: DaffCategoryPageConfigurationState;
+  let categoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest>;
 	let product: DaffProductUnion;
 
   beforeEach(() => {

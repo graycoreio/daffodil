@@ -7,11 +7,12 @@ import { DaffCategoryPageConfigurationState } from '../../../models/category-pag
 import { MagentoCustomAttributeMetadataResponse } from '../models/custom-attribute-metadata-response';
 import { MagentoAggregation } from '../models/aggregation';
 import { MagentoGetCategoryAggregationsResponse } from '../models/get-category-aggregations-response';
+import { DaffCategoryRequest } from '../../../models/requests/category-request';
 
 describe('Custom Metadata Attributes Methods', () => {
 
   const categoryPageConfigurationStateFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
-  const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState = categoryPageConfigurationStateFactory.create();
+  const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest> = categoryPageConfigurationStateFactory.create();
   delete stubCategoryPageConfigurationState.filter_requests;
   delete stubCategoryPageConfigurationState.applied_sort_direction;
   delete stubCategoryPageConfigurationState.applied_sort_option;
