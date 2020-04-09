@@ -119,7 +119,7 @@
             ],
             "exclude": [
               "**/node_modules/**",
-              "*.json"
+              "**/fragmentTypes.json"
             ]
           }
         }
