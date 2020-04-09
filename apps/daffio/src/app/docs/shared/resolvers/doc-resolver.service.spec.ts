@@ -9,16 +9,20 @@ import { DaffioDocService } from '../services/docs.service';
 import { DaffioDocFactory } from '../../testing/factories/doc.factory';
 import { DaffioDocServiceInterface } from '../services/docs-service.interface';
 import { DaffioDoc } from '../models/doc';
+import { DaffioGuideList } from '../models/guide-list';
 
 describe('DocResolver', () => {
-  let resolver: DocResolver<DaffioDoc>;
-  let docService: DaffioDocService<DaffioDoc>;
+  let resolver: DocResolver<DaffioDoc, DaffioGuideList>;
+  let docService: DaffioDocService<DaffioDoc, DaffioGuideList>;
   let router: Router;
 
   const doc = new DaffioDocFactory().create();
-  const stubDocService: DaffioDocServiceInterface<DaffioDoc> = {
+  const stubDocService: DaffioDocServiceInterface<DaffioDoc, DaffioGuideList> = {
     get(path: string): Observable<DaffioDoc> {
       return of(doc);
+    },
+    getGuideList(){
+      return of();
     }
   }
 

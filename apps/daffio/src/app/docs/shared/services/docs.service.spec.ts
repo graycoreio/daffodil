@@ -4,11 +4,14 @@ import { DaffioDocService } from './docs.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { DaffioDocFactory } from '../../testing/factories/doc.factory';
 import { DaffioDoc } from '../models/doc';
+import { DaffioGuideList } from '../models/guide-list';
+import { mockGuides } from '../../testing/factories/guide-list.factory';
 
 describe('DaffioDocService', () => {
-  let service: DaffioDocService<DaffioDoc>;
+  let service: DaffioDocService<DaffioDoc, DaffioGuideList>;
   let httpTestingController: HttpTestingController;
   const doc = new DaffioDocFactory().create();
+  const mockGuideList = mockGuides;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -37,5 +40,15 @@ describe('DaffioDocService', () => {
     expect(req.request.method).toEqual('GET');
 
     req.flush(doc);
+  });
+  it('should be able to retrieve a guide list', () => {
+    service.getGuideList().subscribe((guides) => {
+      expect(guides).toEqual(mockGuideList);
+    });
+    const req = httpTestingController.expectOne('/assets/daffio/docs/guides/guide-list.json');
+
+    expect(req.request.method).toEqual('GET');
+
+    req.flush(mockGuideList);
   });
 });

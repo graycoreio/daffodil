@@ -4,13 +4,14 @@ import { DaffioDocService } from '../services/docs.service';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve, Router } from '@angular/router';
 import { Observable, of, EMPTY } from 'rxjs';
 import { take, mergeMap, catchError, tap } from 'rxjs/operators';
+import { DaffioGuideList } from '../models/guide-list';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DocResolver<T extends DaffioDoc> implements Resolve<T> {
+export class DocResolver<T extends DaffioDoc, V extends DaffioGuideList> implements Resolve<T> {
 
-  constructor(private docService: DaffioDocService<T>, private router: Router) { }
+  constructor(private docService: DaffioDocService<T, V>, private router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<T> {
     return this.docService
