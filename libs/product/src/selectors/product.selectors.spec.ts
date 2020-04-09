@@ -9,7 +9,7 @@ import { DaffProductGridLoadSuccess } from '../actions/product-grid.actions';
 import { DaffProduct } from '../models/product';
 import { DaffProductReducersState } from '../reducers/product-reducers-state.interface';
 import { daffProductReducers } from '../reducers/product-reducers';
-import { getDaffProductSelectors } from './product.selectors';
+import { daffProductPageSelectors } from './product.selectors';
 
 describe('selectProductState', () => {
 
@@ -22,7 +22,7 @@ describe('selectProductState', () => {
 		selectSelectedProductState,
 		selectSelectedProductId,
 		selectSelectedProductQty
-	} = getDaffProductSelectors<DaffProduct>();
+	} = daffProductPageSelectors<DaffProduct>();
   
   beforeEach(() => {
     TestBed.configureTestingModule({

@@ -36,11 +36,9 @@ const createProductGridSelectors = <T extends DaffProduct>(): DaffProductGridMem
 	}
 }
 
-const memoizeDaffProductGridSelectors = () => {
+export const daffProductGridSelectors = (() => {
 	let cache;
 	return <T extends DaffProduct>(): DaffProductGridMemoizedSelectors<T> => cache = cache 
 		? cache 
 		: createProductGridSelectors<T>();
-}
-
-export const getDaffProductGridSelectors = memoizeDaffProductGridSelectors();
+})();
