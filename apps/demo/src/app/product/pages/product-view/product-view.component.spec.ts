@@ -14,16 +14,10 @@ import { ActivatedRouteStub } from '../../../testing/ActivatedRouteStub';
 import { AddToCartComponent } from '../../components/add-to-cart/add-to-cart.component';
 import { ProductComponent } from '../../components/product/product.component';
 import { hot, cold } from 'jasmine-marbles';
+import { DaffCartFacade, DaffAddToCart } from '@daffodil/cart';
 
-
-@Component({
-  // tslint:disable-next-line: component-selector
-  selector: '[cart-container]',
-  template: '<ng-content></ng-content>',
-  exportAs: 'CartContainer'
-})
-class MockCartContainer {
-  addToCart() { };
+class MockDaffCartFacade {
+  dispatch() {};
 }
 
 @Component({
@@ -58,7 +52,7 @@ describe('ProductViewComponent', () => {
 
   let component: ProductViewComponent;
   let fixture: ComponentFixture<ProductViewComponent>;
-  let cartContainer: MockCartContainer;
+  let cartFacade: MockDaffCartFacade;
   let productComponent: ProductComponent;
   let addToCartComponent: AddToCartComponent;
   let facade: DaffProductFacade;
@@ -71,13 +65,13 @@ describe('ProductViewComponent', () => {
       ],
       declarations: [
         ProductViewComponent,
-        MockCartContainer,
         MockProductComponent,
         MockAddToCartComponent
       ],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRoute },
-        { provide: DaffProductFacade, useClass: MockDaffProductFacade }
+        { provide: DaffProductFacade, useClass: MockDaffProductFacade },
+        { provide: DaffCartFacade, useClass: MockDaffCartFacade }
       ]
     })
       .compileComponents();
@@ -87,10 +81,10 @@ describe('ProductViewComponent', () => {
     fixture = TestBed.createComponent(ProductViewComponent);
     component = fixture.componentInstance;
     activatedRoute.setParamMap({ id: idParam });
-    facade = TestBed.get(DaffProductFacade);
+		facade = TestBed.get(DaffProductFacade);
+		cartFacade = TestBed.get(DaffCartFacade);
 
     fixture.detectChanges();
-    cartContainer = fixture.debugElement.query(By.css('[cart-container]')).componentInstance;
 
     productComponent = fixture.debugElement.query(By.css('demo-product')).componentInstance;
     addToCartComponent = fixture.debugElement.query(By.css('demo-add-to-cart')).componentInstance;
@@ -159,12 +153,15 @@ describe('ProductViewComponent', () => {
     });
 
     it('should set addToCart to call function passed by cart-container directive', () => {
-      spyOn(cartContainer, 'addToCart');
-      const payload = 'test';
+      spyOn(cartFacade, 'dispatch');
+      const payload = {
+				productId: 'id',
+				qty: 1
+			};
 
       addToCartComponent.addToCart.emit(payload);
 
-      expect(cartContainer.addToCart).toHaveBeenCalledWith(payload);
+      expect(cartFacade.dispatch).toHaveBeenCalledWith(new DaffAddToCart(payload));
     });
   });
 

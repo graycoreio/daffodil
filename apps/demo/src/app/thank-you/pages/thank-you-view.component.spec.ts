@@ -146,7 +146,7 @@ describe('ThankYouViewComponent', () => {
     });
   });
 
-  describe('when CartContainer.loading$ is false', () => {
+  describe('when the cart is loading', () => {
 
     let thankYouElement;
     let loadingIcon;
