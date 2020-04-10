@@ -6,6 +6,8 @@ export interface CartState {
   cart: fromCartReducer.State<DaffCart>;
 }
 
+export const daffCartSelectors = getDaffCartSelectors<DaffCart>();
+
 export interface State {
   cart: CartState
 }
@@ -15,7 +17,7 @@ export const reducers : ActionReducerMap<CartState> = {
 }
 
 export const selectCartItemCount : MemoizedSelector<object, number> = createSelector(
-  getDaffCartSelectors<DaffCart>().selectCartValue,
+  daffCartSelectors.selectCartValue,
   cart => {
     let itemCount = 0;
     cart.items.forEach(cartItem => {
