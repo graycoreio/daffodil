@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Observable ,  of } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
-import { DaffCart } from '@daffodil/cart';
+import { DaffCart, DaffCartFacade } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffContainerModule, DaffLoadingIconModule } from '@daffodil/design';
 
@@ -12,15 +12,9 @@ import { DemoCartViewComponent } from './cart-view.component';
 const cartFactory = new DaffCartFactory();
 const cart = cartFactory.create();
 
-@Component({
-  // tslint:disable-next-line: component-selector
-  selector: '[cart-container]',
-  template: '<ng-content></ng-content>',
-  exportAs: 'CartContainer'
-})
-class MockCartContainerComponent {
-  cart$: Observable<DaffCart> = of(cart);
-  loading$: Observable<boolean> = of(false);
+class MockDaffCartFacade {
+  cart$: BehaviorSubject<DaffCart>;
+  loading$: BehaviorSubject<boolean>;
 }
 
 @Component({
@@ -33,30 +27,33 @@ class MockCartWrapperComponent {
 
 describe('DemoCartViewComponent', () => {
   let component: DemoCartViewComponent;
-  let fixture: ComponentFixture<DemoCartViewComponent>;
-  let cartContainer: MockCartContainerComponent;
+	let fixture: ComponentFixture<DemoCartViewComponent>;
+	let cartFacade: MockDaffCartFacade;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         DemoCartViewComponent,
-        MockCartContainerComponent,
         MockCartWrapperComponent,
       ],
       imports: [
         DaffContainerModule,
         DaffLoadingIconModule
-      ]
+			],
+			providers: [
+				{ provide: DaffCartFacade, useClass: MockDaffCartFacade }
+			]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DemoCartViewComponent);
-    component = fixture.componentInstance;
+		component = fixture.componentInstance;
+		cartFacade = TestBed.get(DaffCartFacade);
 
-    cartContainer = fixture.debugElement.query(By.css('[cart-container]')).componentInstance;
-    cartContainer.loading$ = of(false);
+		cartFacade.cart$ = new BehaviorSubject(cart);
+		cartFacade.loading$ = new BehaviorSubject(false);
 
     fixture.detectChanges();
   });
@@ -78,13 +75,13 @@ describe('DemoCartViewComponent', () => {
     });
   });
 
-  describe('when CartContainer.loading$ is true', () => {
+  describe('when the cart is loading', () => {
 
     let loadingIcon;
     let cartWrapper;
 
     beforeEach(() => {
-      cartContainer.loading$ = of(true);
+      cartFacade.loading$.next(true);
       fixture.detectChanges();
 
       cartWrapper = fixture.debugElement.query(By.css('demo-cart'));
@@ -100,13 +97,13 @@ describe('DemoCartViewComponent', () => {
     });
   });
 
-  describe('when CartContainer.loading$ is false', () => {
+  describe('when the cart is not loading', () => {
 
     let loadingIcon;
     let cartWrapper;
 
     beforeEach(() => {
-      cartContainer.loading$ = of(false);
+      cartFacade.loading$.next(false);
       fixture.detectChanges();
 
       cartWrapper = fixture.debugElement.query(By.css('demo-cart'));

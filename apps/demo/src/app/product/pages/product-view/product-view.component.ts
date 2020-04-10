@@ -4,6 +4,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { DaffProductFacade, DaffProductLoad, DaffProductUnion } from '@daffodil/product';
 import { tap, take, filter, map, } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { DaffAddToCart, DaffCartFacade, DaffCart } from '@daffodil/cart';
 
 @Component({
   selector: 'demo-product-view',
@@ -17,7 +18,8 @@ export class ProductViewComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productViewFacade: DaffProductFacade
+		private productViewFacade: DaffProductFacade,
+		private cartFacade: DaffCartFacade<DaffCart>
   ) { }
 
   updateQty(qty: number) {
@@ -38,5 +40,9 @@ export class ProductViewComponent implements OnInit {
 
     this.product$ = this.productViewFacade.product$;
     this.loading$ = this.productViewFacade.loading$;
-  }
+	}
+	
+	onAddToCart(cartItem) {
+		this.cartFacade.dispatch(new DaffAddToCart(cartItem));
+	}
 }

@@ -3,11 +3,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
-import { DaffCart } from '@daffodil/cart';
+import { DaffCart, DaffCartFacade } from '@daffodil/cart';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 import { ShippingContainer, PaymentInfo } from '@daffodil/checkout';
 import { DaffPaymentFactory } from '@daffodil/checkout/testing';
@@ -92,11 +92,9 @@ class MockBillingContainer {
   toggleBillingAddressIsShippingAddress = () => {};
 }
 
-// tslint:disable-next-line: component-selector
-@Component({selector: '[cart-container]', template: '<ng-content></ng-content>', exportAs: 'CartContainer'})
-class MockCartContainer {
-  cart$: Observable<DaffCart>;
-  loading$: Observable<boolean> = of(false);
+class MockDaffCartFacade {
+  cart$: BehaviorSubject<DaffCart>;
+  loading$: BehaviorSubject<boolean>;
 }
 
 describe('CheckoutViewComponent', () => {
@@ -107,11 +105,11 @@ describe('CheckoutViewComponent', () => {
   let cartSummaryWrappers;
   let shippingContainer: ShippingContainer;
   let billingContainer: MockBillingContainer;
-  let cartContainer: MockCartContainer;
   let accordionItem: DaffAccordionItemComponent;
   let placeOrders;
   let store: MockStore<any>;
   stubCart = cartFactory.create();
+	let cartFacade: MockDaffCartFacade;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -129,10 +127,10 @@ describe('CheckoutViewComponent', () => {
         MockPaymentComponent,
         MockPlaceOrderComponent,
         MockBillingContainer,
-        MockCartContainer
       ],
       providers: [
-        provideMockStore({})
+				provideMockStore({}),
+				{ provide: DaffCartFacade, useClass: MockDaffCartFacade }
       ]
     })
     .compileComponents();
@@ -144,7 +142,11 @@ describe('CheckoutViewComponent', () => {
     store = TestBed.get(Store);
     store.overrideSelector(fromDemoCheckout.selectShowPaymentView, stubShowPaymentView);
     store.overrideSelector(fromDemoCheckout.selectShowReviewView, stubShowReviewView);
-    spyOn(store, 'dispatch');
+		spyOn(store, 'dispatch');
+		cartFacade = TestBed.get(DaffCartFacade);
+		cartFacade.cart$ = new BehaviorSubject(stubCart);
+		cartFacade.loading$ = new BehaviorSubject(false);
+
     fixture.detectChanges();
 
     shipping = fixture.debugElement.query(By.css('demo-shipping')).componentInstance;
@@ -152,18 +154,15 @@ describe('CheckoutViewComponent', () => {
     cartSummaryWrappers = fixture.debugElement.queryAll(By.css('demo-cart-summary-wrapper'));
     shippingContainer = fixture.debugElement.query(By.css('[shipping-container]')).componentInstance;
     billingContainer = fixture.debugElement.query(By.css('[billing-container]')).componentInstance;
-    cartContainer = fixture.debugElement.query(By.css('[cart-container]')).componentInstance;
     accordionItem = fixture.debugElement.query(By.css('daff-accordion-item')).componentInstance;
     placeOrders = fixture.debugElement.queryAll(By.css('demo-place-order'));
 
-    cartContainer.cart$ = of(stubCart);
     fixture.detectChanges();
   });
 
   afterAll(() => {
     store.resetSelectors();
   });
-
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -326,7 +325,7 @@ describe('CheckoutViewComponent', () => {
 
     describe('when cart is null', () => {
       beforeEach(() => {
-        cartContainer.cart$ = of(null);
+        cartFacade.cart$.next(null);
  
         fixture.detectChanges();
       });
@@ -338,7 +337,7 @@ describe('CheckoutViewComponent', () => {
 
     describe('when cart is not null', () => {
       beforeEach(() => {
-        cartContainer.cart$ = of({
+        cartFacade.cart$.next({
           ...stubCart,
           items: [
             ...stubCart.items,
@@ -411,13 +410,13 @@ describe('CheckoutViewComponent', () => {
     });
   });
 
-  describe('when CartContainer.loading$ is true', () => {
+  describe('when the cart is loading', () => {
 
     let checkoutElement;
     let loadingIcon;
 
     beforeEach(() => {
-      cartContainer.loading$ = of(true);
+      cartFacade.loading$.next(true);
       fixture.detectChanges();
 
       checkoutElement = fixture.debugElement.query(By.css('.demo-checkout'));
@@ -433,13 +432,13 @@ describe('CheckoutViewComponent', () => {
     });
   });
 
-  describe('when CartContainer.loading$ is false', () => {
+  describe('when the cart is not loading', () => {
 
     let checkoutElement;
     let loadingIcon;
 
     beforeEach(() => {
-      cartContainer.loading$ = of(false);
+      cartFacade.loading$.next(false);
       fixture.detectChanges();
 
       checkoutElement = fixture.debugElement.query(By.css('.demo-checkout'));

@@ -128,7 +128,7 @@ describe('CartSummaryWrapper', () => {
     });
   });
 
-  describe('when CartContainer.$loading is false', () => {
+  describe('when the cart is not loading', () => {
     
     it('should render <demo-cart-summary>', () => {
       expect(cartSummaryComponent).not.toBeNull();
@@ -150,7 +150,7 @@ describe('CartSummaryWrapper', () => {
     });
   });
 
-  describe('when CartContainer.$loading is true', () => {
+  describe('when the cart is loading', () => {
 
     beforeEach(() => {
       wrapper.loadingValue$ = of(true);

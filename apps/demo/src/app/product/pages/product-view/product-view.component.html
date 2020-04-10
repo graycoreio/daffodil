@@ -1,7 +1,4 @@
 <demo-product [product]="product$ | async" [qty]="1" (updateQty)="updateQty($event)" *ngIf="!(loading$ | async)">
-  <div cart-container #CartContainer="CartContainer">
-    <demo-add-to-cart (addToCart)="CartContainer.addToCart($event)" [additive]="product$ | async" [qty]="1">
-    </demo-add-to-cart>
-  </div>
+	<demo-add-to-cart (addToCart)="onAddToCart($event)" [additive]="product$ | async" [qty]="1"></demo-add-to-cart>
 </demo-product>
 <daff-loading-icon *ngIf="(loading$ | async)"></daff-loading-icon>
