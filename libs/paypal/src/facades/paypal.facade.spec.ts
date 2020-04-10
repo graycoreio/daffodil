@@ -24,7 +24,7 @@ describe('DaffPaypalFacade', () => {
     TestBed.configureTestingModule({
       imports:[
         StoreModule.forRoot({
-          paypal: combineReducers(daffPaypalReducers())
+          paypal: combineReducers(daffPaypalReducers)
         })
       ],
       providers: [

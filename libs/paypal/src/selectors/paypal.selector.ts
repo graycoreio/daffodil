@@ -4,48 +4,56 @@ import { DaffPaypalReducerState } from '../reducers/paypal/paypal-reducer.interf
 import { DaffPaypalReducersState } from '../reducers/paypal-reducers.interface';
 import { DaffPaypalTokenResponse } from '../models/paypal-token-response';
 
-/**
- * Paypal Feature State
- */
-export function selectPaypalFeatureState<T extends DaffPaypalTokenResponse>(): 
-	MemoizedSelector<object, DaffPaypalReducersState<T>> {
-		return createFeatureSelector<DaffPaypalReducersState<T>>('paypal');
-	}
+export interface DaffPaypalMemoizedSelectors<T extends DaffPaypalTokenResponse> {
+	selectPaypalFeatureState: MemoizedSelector<object, DaffPaypalReducersState<T>>;
+	selectPaypalState: MemoizedSelector<object, DaffPaypalReducerState<T>>;
+	selectPaypalTokenResponse: MemoizedSelector<object, T>;
+	selectPaypalLoading: MemoizedSelector<object, boolean>;
+	selectPaypalError: MemoizedSelector<object, string>;
+	selectPaypalToken: MemoizedSelector<object, string>;
+	selectPaypalStartUrl: MemoizedSelector<object, string>;
+	selectPaypalEditUrl: MemoizedSelector<object, string>;
+}
 
-/**
- * Paypal State
- */
-export function selectPaypalState<T extends DaffPaypalTokenResponse>(): 
-	MemoizedSelector<object, DaffPaypalReducerState<T>> {
-		return createSelector(selectPaypalFeatureState(), (state: DaffPaypalReducersState<T>) => state.paypal);
-	}
+const createPaypalSelectors = <T extends DaffPaypalTokenResponse>(): DaffPaypalMemoizedSelectors<T> => {
 
-export function selectPaypalTokenResponse<T extends DaffPaypalTokenResponse>(): 
-	MemoizedSelector<object, T> {
-		return createSelector(selectPaypalState(),(state: DaffPaypalReducerState<T>) => state.paypalTokenResponse);
-	}
+	/**
+	 * Paypal Feature State
+	 */
+	const selectPaypalFeatureState = createFeatureSelector<DaffPaypalReducersState<T>>('paypal');
 
-export function selectPaypalLoading<T extends DaffPaypalTokenResponse>(): 
-	MemoizedSelector<object, boolean> {
-		return createSelector(selectPaypalState(),(state: DaffPaypalReducerState<T>) => state.loading);
-	}
+	/**
+	 * Paypal State
+	 */
+	const selectPaypalState = createSelector(selectPaypalFeatureState, (state: DaffPaypalReducersState<T>) => state.paypal);
 
-export function selectPaypalError<T extends DaffPaypalTokenResponse>(): 
-	MemoizedSelector<object, string> {
-		return createSelector(selectPaypalState(),(state: DaffPaypalReducerState<T>) => state.error);
-	}
+	const selectPaypalTokenResponse = createSelector(selectPaypalState,(state: DaffPaypalReducerState<T>) => state.paypalTokenResponse);
 
-export function selectPaypalToken<T extends DaffPaypalTokenResponse>(): 
-	MemoizedSelector<object, string> {
-		return createSelector(selectPaypalTokenResponse(),(state: T) => state.token);
-	}
+	const selectPaypalLoading = createSelector(selectPaypalState,(state: DaffPaypalReducerState<T>) => state.loading);
 
-export function selectPaypalStartUrl<T extends DaffPaypalTokenResponse>(): 
-	MemoizedSelector<object, string> {
-		return createSelector(selectPaypalTokenResponse(),(state: T) => state.urls.start);
-	}
+	const selectPaypalError = createSelector(selectPaypalState,(state: DaffPaypalReducerState<T>) => state.error);
 
-export function selectPaypalEditUrl<T extends DaffPaypalTokenResponse>(): 
-	MemoizedSelector<object, string> {
-		return createSelector(selectPaypalTokenResponse(),(state: T) => state.urls.edit);
+	const selectPaypalToken = createSelector(selectPaypalTokenResponse,(state: T) => state.token);
+
+	const selectPaypalStartUrl = createSelector(selectPaypalTokenResponse,(state: T) => state.urls.start);
+
+	const selectPaypalEditUrl = createSelector(selectPaypalTokenResponse,(state: T) => state.urls.edit);
+	
+	return { 
+		selectPaypalFeatureState,
+		selectPaypalState,
+		selectPaypalTokenResponse,
+		selectPaypalLoading,
+		selectPaypalError,
+		selectPaypalToken,
+		selectPaypalStartUrl,
+		selectPaypalEditUrl
 	}
+}
+
+export const daffPaypalSelectors = (() => {
+	let cache;
+	return <T extends DaffPaypalTokenResponse>(): DaffPaypalMemoizedSelectors<T> => cache = cache 
+		? cache 
+		: createPaypalSelectors<T>();
+})();
