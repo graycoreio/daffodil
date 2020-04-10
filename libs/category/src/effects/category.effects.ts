@@ -4,7 +4,7 @@ import { switchMap, catchError, withLatestFrom, map } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import { DaffProductGridLoadSuccess } from '@daffodil/product';
+import { DaffProductGridLoadSuccess, DaffProduct } from '@daffodil/product';
 
 import { 
   DaffCategoryActionTypes, 
@@ -31,7 +31,8 @@ import { DaffGenericCategory } from '../models/generic-category';
 export class DaffCategoryEffects<
 	T extends DaffCategoryRequest,
 	V extends DaffGenericCategory<V>,
-	U extends DaffCategoryPageConfigurationState<T>
+	U extends DaffCategoryPageConfigurationState<T>,
+	W extends DaffProduct
 > {
 
   constructor(
@@ -40,7 +41,7 @@ export class DaffCategoryEffects<
     private store: Store<any>
 	){}
 	
-	private categorySelectors = getDaffCategorySelectors<T, V, U>();
+	private categorySelectors = getDaffCategorySelectors<T, V, U, W>();
 
   @Effect()
   loadCategory$ : Observable<any> = this.actions$.pipe(

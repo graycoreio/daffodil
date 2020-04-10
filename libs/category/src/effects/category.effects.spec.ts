@@ -37,7 +37,7 @@ class MockCategoryDriver implements DaffCategoryServiceInterface<DaffCategoryReq
 
 describe('DaffCategoryEffects', () => {
   let actions$: Observable<any>;
-  let effects: DaffCategoryEffects<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>;
+  let effects: DaffCategoryEffects<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>, DaffProduct>;
   let stubCategory: DaffCategory;
   let stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest>;
   let stubProducts: DaffProduct[];
@@ -49,7 +49,7 @@ describe('DaffCategoryEffects', () => {
   let categoryPageConfigurationStateFactory: DaffCategoryPageConfigurationStateFactory;
 	let productFactory: DaffProductFactory;
 	let categoryLoadSuccessAction: DaffCategoryLoadSuccess<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>;
-	let productGridLoadSuccessAction: DaffProductGridLoadSuccess;
+	let productGridLoadSuccessAction: DaffProductGridLoadSuccess<DaffProduct>;
 
   beforeEach(() => {
 

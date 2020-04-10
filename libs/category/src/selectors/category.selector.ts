@@ -1,7 +1,7 @@
 import { createSelector, MemoizedSelector, MemoizedSelectorWithProps } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
-import { DaffProductUnion, getDaffProductSelectors } from '@daffodil/product';
+import { DaffProductUnion, getDaffProductSelectors, DaffProduct } from '@daffodil/product';
 
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
 import { DaffGenericCategory } from '../models/generic-category';
@@ -81,7 +81,12 @@ const createCategorySelectors = <T extends DaffCategoryRequest, V extends DaffGe
 
 export const getDaffCategorySelectors = (() => {
 	let cache;
-	return <T extends DaffCategoryRequest, V extends DaffGenericCategory<V>, U extends DaffCategoryPageConfigurationState<T>>(): DaffCategoryMemoizedSelectors<T, V, U> => cache = cache 
+	return <
+		T extends DaffCategoryRequest, 
+		V extends DaffGenericCategory<V>, 
+		U extends DaffCategoryPageConfigurationState<T>, 
+		W extends DaffProduct
+	>(): DaffCategoryMemoizedSelectors<T, V, U> => cache = cache 
 		? cache 
 		: createCategorySelectors<T, V, U>();
 })();
