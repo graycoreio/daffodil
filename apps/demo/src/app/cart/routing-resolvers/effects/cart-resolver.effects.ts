@@ -5,11 +5,11 @@ import { switchMap, take, map, catchError } from 'rxjs/operators';
 import { Action, select, Store } from '@ngrx/store';
 
 import {
-	fromCart,
 	DaffCart,
 	DaffCartDriver,
 	DaffCartServiceInterface,
-	DaffCartStorageService
+	DaffCartStorageService,
+	DaffCartReducersState
 } from '@daffodil/cart';
 
 import {
@@ -23,7 +23,7 @@ import { daffCartSelectors } from '../../selectors/cart-selector';
 export class CartResolverEffects {
 	constructor(
 		private actions$: Actions,
-		private store: Store<fromCart.State<DaffCart>>,
+		private store: Store<DaffCartReducersState<DaffCart>>,
 		private cartStorage: DaffCartStorageService,
 		@Inject(DaffCartDriver) private driver: DaffCartServiceInterface<DaffCart>,
 	) {}

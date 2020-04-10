@@ -1,15 +1,14 @@
-import { Component, Input, Directive, DebugElement } from '@angular/core';
+import { Component, Input, DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { StoreModule, combineReducers, MemoizedSelector, Store } from '@ngrx/store';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { DaffCartFactory } from '@daffodil/cart/testing';
-import { fromCart, DaffCart } from '@daffodil/cart';
+import { DaffCart, DaffCartItem, DaffCartFacade } from '@daffodil/cart';
 
 import { CartComponent } from './cart.component';
-import * as cartSelector from '../../selectors/cart-selector';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({ template: '<demo-cart [cart]="cartValue"></demo-cart>' })
 class WrapperComponent {
@@ -41,11 +40,16 @@ class MockCartItemCountComponent {
   @Input() itemCount: number;
 }
 
+class MockDaffCartFacade {
+	items$: BehaviorSubject<DaffCartItem[]>;
+	isCartEmpty$: BehaviorSubject<boolean>;
+}
 
 describe('Cart', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
-  let component: CartComponent;
+	let component: CartComponent;
+	let daffCartFacade: MockDaffCartFacade;
 
   let cartItemsElement: DebugElement;
   let cartItemsComponent: MockCartItemsComponent
@@ -56,14 +60,8 @@ describe('Cart', () => {
   let cartItemCountElement: DebugElement;
   let cartItemCountComponent: MockCartItemCountComponent;
 
-  let store: MockStore<any>;
-  let cartItemCountSelector: MemoizedSelector<object, number>;
-  let cartEmptySelector: MemoizedSelector<object, boolean>;
-
   const cartFactory = new DaffCartFactory();
   const cart = cartFactory.create();
-  const stubSelectCartItemCount = 0;
-  const stubIsCartEmpty = true;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -75,7 +73,8 @@ describe('Cart', () => {
         CartComponent
       ],
       providers: [
-        provideMockStore({})
+				provideMockStore({}),
+				{ provide: DaffCartFacade, useClass: MockDaffCartFacade }
       ]
     })
       .compileComponents();
@@ -84,12 +83,11 @@ describe('Cart', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    store = TestBed.get(Store);
+		daffCartFacade = TestBed.get(DaffCartFacade);
+		daffCartFacade.items$ = new BehaviorSubject(cart.items);
+		daffCartFacade.isCartEmpty$ = new BehaviorSubject(true);
     wrapper.cartValue = cart;
     component = fixture.debugElement.query(By.css('demo-cart')).componentInstance;
-
-    cartItemCountSelector = store.overrideSelector(cartSelector.selectCartItemCount, stubSelectCartItemCount);
-    cartEmptySelector = store.overrideSelector(cartSelector.isCartEmpty, stubIsCartEmpty);
 
     cartItemsElement = fixture.debugElement.query(By.css('demo-cart-items'));
     cartItemsComponent = cartItemsElement.componentInstance;
@@ -101,10 +99,6 @@ describe('Cart', () => {
     cartSidebarComponent = cartSidebarElement.componentInstance;
 
     fixture.detectChanges();
-  });
-
-  afterAll(() => {
-    store.resetSelectors();
   });
 
   it('should create', () => {
@@ -126,10 +120,9 @@ describe('Cart', () => {
       expect(cartSidebarComponent.cart).toEqual(cart);
     });
 
-    it('should set isCartEmpty from state', () => {
+    it('should set isCartEmpty from the daffCartFacade', () => {
       const val = true;
-      cartEmptySelector.setResult(val);
-      store.setState({});
+      daffCartFacade.isCartEmpty$.next(val);
       fixture.detectChanges();
 
       expect(cartSidebarComponent.isCartEmpty).toEqual(val);
@@ -137,12 +130,8 @@ describe('Cart', () => {
   });
 
   describe('on <demo-cart-item-count>', () => {
-    it('should set itemCount from state', () => {
-      cartItemCountSelector.setResult(15);
-      store.setState({});
-      fixture.detectChanges();
-
-      expect(cartItemCountComponent.itemCount).toEqual(15);
+    it('should set itemCount from the daffCartFacade', () => {
+      expect(cartItemCountComponent.itemCount).toEqual(cart.items.length);
     });
   });
 });

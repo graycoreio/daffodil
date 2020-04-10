@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 
-import { DaffCart, DaffCartClear, DaffCartLoadSuccess, fromCart } from '@daffodil/cart';
+import { DaffCart, DaffCartClear, DaffCartLoadSuccess, daffCartReducers } from '@daffodil/cart';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 
 import * as fromAddToCartNotification from './index';
@@ -22,7 +22,7 @@ describe('selectDemoAddToCartNotificationState', () => {
       imports: [
         StoreModule.forRoot({
           demoAddToCartNotification: combineReducers(fromAddToCartNotification.reducers),
-          cart: combineReducers(fromCart.reducers)
+          cart: combineReducers(daffCartReducers)
         })
       ]
     });

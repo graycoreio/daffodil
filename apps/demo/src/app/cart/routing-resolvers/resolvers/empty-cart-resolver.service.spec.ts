@@ -5,7 +5,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-import { fromCart, DaffCart }  from '@daffodil/cart';
+import { DaffCart, DaffCartReducersState, daffCartReducers }  from '@daffodil/cart';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 
 import { EmptyCartResolver } from './empty-cart-resolver.service';
@@ -14,7 +14,7 @@ import { ResolveCartSuccess } from '../actions/cart-resolver.actions';
 describe('EmptyCartResolver', () => {
   const actions$: Observable<any> = null;
   let emptyCartResolver: EmptyCartResolver;
-  let store: Store<fromCart.State<DaffCart>>;
+  let store: Store<DaffCartReducersState<DaffCart>>;
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
   let stubCart: DaffCart;
@@ -25,7 +25,7 @@ describe('EmptyCartResolver', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          cart: combineReducers(fromCart.reducers),
+          cart: combineReducers(daffCartReducers),
         }),
         RouterTestingModule
       ],

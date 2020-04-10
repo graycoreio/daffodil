@@ -1,14 +1,14 @@
 import { TestBed, async } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 
-import { DaffCartClear, DaffCartLoadSuccess, DaffCart } from '@daffodil/cart';
+import { DaffCartClear, DaffCartLoadSuccess, DaffCart, DaffCartReducersState, daffCartReducers } from '@daffodil/cart';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 
-import * as fromCart from './cart-selector';
+import { isCartEmpty, selectCartItemCount } from './cart-selector';
 
 describe('selectCartState', () => {
 
-  let store: Store<fromCart.CartState>;
+  let store: Store<DaffCartReducersState<DaffCart>>;
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
   let mockCart: DaffCart;
@@ -17,7 +17,7 @@ describe('selectCartState', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          cart: combineReducers(fromCart.reducers),
+          cart: combineReducers(daffCartReducers),
         })
       ]
     });
@@ -42,7 +42,7 @@ describe('selectCartState', () => {
     });
 
     it('selects total number of cartItems', () => {
-      store.pipe(select(fromCart.selectCartItemCount)).subscribe((count) => {
+      store.pipe(select(selectCartItemCount)).subscribe((count) => {
         expect(count).toEqual(6);
       });
     });
@@ -59,8 +59,8 @@ describe('selectCartState', () => {
       });
 
       it('should return true', () => {
-        store.pipe(select(fromCart.isCartEmpty)).subscribe((isCartEmpty) => {
-          expect(isCartEmpty).toBeTruthy();
+        store.pipe(select(isCartEmpty)).subscribe((isCartEmptyValue) => {
+          expect(isCartEmptyValue).toBeTruthy();
         });
       });
     });
@@ -76,8 +76,8 @@ describe('selectCartState', () => {
       });
 
       it('should return false', () => {
-        store.pipe(select(fromCart.isCartEmpty)).subscribe((isCartEmpty) => {
-          expect(isCartEmpty).toBeFalsy();
+        store.pipe(select(isCartEmpty)).subscribe((isCartEmptyValue) => {
+          expect(isCartEmptyValue).toBeFalsy();
         });
       });
     });
