@@ -213,11 +213,8 @@ describe('DaffCategoryEffects', () => {
       expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
 			expect(effects.changeCategoryPageSize$).toBeObservable(expected);
       expect(daffCategoryDriver.get).toHaveBeenCalledWith({ 
-        id: stubCategory.id,
-				page_size: 3,
-				filter_requests: stubCategoryPageConfigurationState.filter_requests,
-				applied_sort_option: stubCategoryPageConfigurationState.applied_sort_option,
-				applied_sort_direction: stubCategoryPageConfigurationState.applied_sort_direction
+				...stubCategoryPageConfigurationState,
+				page_size: 3
       });
     });
   });
@@ -238,12 +235,8 @@ describe('DaffCategoryEffects', () => {
 			expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
 			expect(effects.changeCategoryCurrentPage$).toBeObservable(expected);
 			expect(daffCategoryDriver.get).toHaveBeenCalledWith({ 
-        id: stubCategory.id,
-        page_size: stubCategoryPageConfigurationState.page_size,
-				current_page: 3,
-				applied_sort_direction: stubCategoryPageConfigurationState.applied_sort_direction,
-				applied_sort_option: stubCategoryPageConfigurationState.applied_sort_option,
-				filter_requests: stubCategoryPageConfigurationState.filter_requests
+				...stubCategoryPageConfigurationState,
+				current_page: 3
       });
     });
   });
@@ -268,10 +261,7 @@ describe('DaffCategoryEffects', () => {
 			expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
 			expect(effects.changeCategoryFilters$).toBeObservable(expected);
 			expect(daffCategoryDriver.get).toHaveBeenCalledWith({ 
-				id: stubCategory.id,
-        page_size: stubCategoryPageConfigurationState.page_size,
-				applied_sort_direction: stubCategoryPageConfigurationState.applied_sort_direction,
-				applied_sort_option: stubCategoryPageConfigurationState.applied_sort_option,
+				...stubCategoryPageConfigurationState,
 				filter_requests: [{
 					name: 'name',
 					type: DaffCategoryFilterType.Equal,
@@ -307,10 +297,7 @@ describe('DaffCategoryEffects', () => {
 			expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
 			expect(effects.toggleCategoryFilter$).toBeObservable(expected);
 			expect(daffCategoryDriver.get).toHaveBeenCalledWith({ 
-				id: stubCategory.id,
-        page_size: stubCategoryPageConfigurationState.page_size,
-				applied_sort_direction: stubCategoryPageConfigurationState.applied_sort_direction,
-				applied_sort_option: stubCategoryPageConfigurationState.applied_sort_option,
+        ...stubCategoryPageConfigurationState,
 				filter_requests: [appliedFilter]
       });
     });
@@ -335,11 +322,9 @@ describe('DaffCategoryEffects', () => {
 			expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
 			expect(effects.changeCategorySort$).toBeObservable(expected);
 			expect(daffCategoryDriver.get).toHaveBeenCalledWith({ 
-				id: stubCategory.id,
-        page_size: stubCategoryPageConfigurationState.page_size,
+				...stubCategoryPageConfigurationState,
 				applied_sort_direction: DaffSortDirectionEnum.Ascending,
-				applied_sort_option: 'option',
-				filter_requests: stubCategoryPageConfigurationState.filter_requests
+				applied_sort_option: 'option'
       });
     });
   });
