@@ -9,6 +9,7 @@ import { cartPaymentMethodsReducer } from './cart-payment-methods/cart-payment-m
 import { DaffCartReducerState } from './cart-state.interface';
 import { ActionTypes } from './action-types.type';
 import { initialState } from './cart-initial-state';
+import { DaffCart } from '../models/cart';
 
 /**
  * Recursively invoke reducers, passing the returned state from one into the next.
@@ -25,10 +26,10 @@ export function composeReducers(state, action, reducers) {
     : state
 }
 
-export function daffCartReducer(
+export function daffCartReducer<T extends DaffCart>(
   state = initialState,
   action: ActionTypes
-): DaffCartReducerState {
+): DaffCartReducerState<T> {
   return composeReducers(
     state,
     action,

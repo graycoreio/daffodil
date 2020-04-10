@@ -52,7 +52,7 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
 
   describe('when CartShippingMethodsLoadSuccessAction is triggered', () => {
     let result;
-    let state: DaffCartReducerState;
+    let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
       state = {
@@ -81,7 +81,7 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
   describe('when CartShippingMethodsLoadFailureAction is triggered', () => {
     const error = 'error message';
     let result;
-    let state: DaffCartReducerState;
+    let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
       state = {

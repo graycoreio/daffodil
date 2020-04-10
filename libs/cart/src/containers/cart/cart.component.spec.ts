@@ -1,33 +1,30 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { Store } from '@ngrx/store';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { Store, StoreModule, combineReducers } from '@ngrx/store';
+import { MockStore } from '@ngrx/store/testing';
+import { cold } from 'jasmine-marbles';
 
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { DaffCartContainer } from './cart.component';
-import { DaffCartLoad, DaffAddToCart } from '../../actions/public_api';
+import { DaffCartLoad, DaffAddToCart, DaffCartLoadSuccess } from '../../actions/public_api';
 import { DaffCart } from '../../models/cart';
-import {
-  selectCartLoading,
-  selectCartValue
-} from '../../selectors/public_api';
+import { daffCartReducers } from '../../reducers/public_api';
 
 describe('CartContainer', () => {
-  let component: DaffCartContainer;
-  let fixture: ComponentFixture<DaffCartContainer>;
+  let component: DaffCartContainer<DaffCart>;
+  let fixture: ComponentFixture<DaffCartContainer<DaffCart>>;
   let store: MockStore<any>;
-  let initialLoading: boolean;
   let initialCart: DaffCart;
   let cartFactory: DaffCartFactory;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [],
-      declarations: [ DaffCartContainer ],
-      providers:[
-        provideMockStore({})
-      ]
+      imports: [
+        StoreModule.forRoot({
+          cart: combineReducers(daffCartReducers),
+				})
+			],
+      declarations: [ DaffCartContainer ]
     })
     .compileComponents();
   }));
@@ -38,19 +35,14 @@ describe('CartContainer', () => {
     component = fixture.componentInstance;
     store = TestBed.get(Store);
 
-    initialLoading = false;
     initialCart = cartFactory.create();
 
-    store.overrideSelector(selectCartLoading, initialLoading);
-    store.overrideSelector(selectCartValue, initialCart);
+		store.dispatch(new DaffCartLoadSuccess(initialCart));
+
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();
   });
-
-  afterAll(() => {
-    store.resetSelectors();
-  })
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -63,15 +55,15 @@ describe('CartContainer', () => {
     });
 
     it('initializes loading$', () => {
-      component.loading$.subscribe((loading) => {
-        expect(loading).toEqual(initialLoading);
-      });
+      const expected = cold('a', { a: false});
+			
+			expect(component.loading$).toBeObservable(expected);
     });
 
     it('initializes cart$', () => {
-      component.cart$.subscribe((cart) => {
-        expect(cart).toEqual(initialCart);
-      });
+      const expected = cold('a', { a: initialCart });
+
+			expect(component.cart$).toBeObservable(expected);
     });
   });
 

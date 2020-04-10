@@ -1,16 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { of } from 'rxjs';
+import { of, BehaviorSubject } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 
-import { DaffCart, fromCart } from '@daffodil/cart';
+import { DaffCart, DaffCartFacade } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { PlaceOrder } from '@daffodil/checkout';
 import * as fromDemoCheckout from '../../reducers';
 import { PlaceOrderComponent } from './place-order.component';
 
+class MockDaffCartFacade {
+	cart$: BehaviorSubject<DaffCart> = new BehaviorSubject(null);
+	dispatch = jasmine.createSpy();
+}
 
 describe('PlaceOrderComponent', () => {
   let fixture: ComponentFixture<PlaceOrderComponent>;
@@ -18,7 +22,8 @@ describe('PlaceOrderComponent', () => {
   const stubEnablePlaceOrderButton = true;
   let store: MockStore<any>;
   let cartFactory: DaffCartFactory;
-  let stubCart: DaffCart;
+	let stubCart: DaffCart;
+	let cartFacade: MockDaffCartFacade;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -26,7 +31,8 @@ describe('PlaceOrderComponent', () => {
         PlaceOrderComponent
       ],
       providers: [
-        provideMockStore({})
+				provideMockStore({}),
+				{ provide: DaffCartFacade, useClass: MockDaffCartFacade }
       ]
     })
     .compileComponents();
@@ -37,10 +43,12 @@ describe('PlaceOrderComponent', () => {
     component = fixture.componentInstance;
     store = TestBed.get(Store);
     cartFactory = TestBed.get(DaffCartFactory);
-    stubCart = cartFactory.create();
+		stubCart = cartFactory.create();
+		cartFacade = TestBed.get(DaffCartFacade);
+		cartFacade.cart$.next(stubCart);
 
     spyOn(store, 'dispatch');
-    store.overrideSelector(fromCart.selectCartValue, stubCart);
+
     store.overrideSelector(fromDemoCheckout.selectEnablePlaceOrderButton, stubEnablePlaceOrderButton);
 
     fixture.detectChanges();
@@ -96,7 +104,7 @@ describe('PlaceOrderComponent', () => {
 
     it('should call store.dispatch with a PlaceOrder action', () => {
       fixture.debugElement.query(By.css('button')).nativeElement.click();
-      expect(store.dispatch).toHaveBeenCalledWith(new PlaceOrder(stubCart));
+      expect(cartFacade.dispatch).toHaveBeenCalledWith(new PlaceOrder(stubCart));
     });
   });
 });

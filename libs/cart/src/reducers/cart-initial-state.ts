@@ -1,7 +1,7 @@
 import { DaffCartReducerState } from './cart-state.interface';
 import { DaffCartErrorType } from './cart-error-type.enum';
 
-export const initialState: DaffCartReducerState = Object.freeze({
+export const initialState: DaffCartReducerState<any> = Object.freeze({
   cart: {
     id: null,
     subtotal: null,

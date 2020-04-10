@@ -5,41 +5,16 @@ import { Action, Store, select } from '@ngrx/store';
 import { DaffStoreFacade } from '@daffodil/core';
 import { DaffCart } from '../../models/cart';
 import { DaffCartReducersState } from '../../reducers/public_api';
-import {
-  selectCartLoading,
-  selectCartValue,
-  selectCartErrors,
-  selectCartId,
-  selectCartSubtotal,
-  selectCartGrandTotal,
-  selectCartCoupons,
-  selectCartItems,
-  selectCartBillingAddress,
-  selectCartShippingAddress,
-  selectCartPayment,
-  selectCartTotals,
-  selectCartShippingInformation,
-  selectCartAvailableShippingMethods,
-  selectCartAvailablePaymentMethods,
-  selectItemErrors,
-  selectBillingAddressErrors,
-  selectShippingAddressErrors,
-  selectShippingInformationErrors,
-  selectShippingMethodsErrors,
-  selectPaymentErrors,
-  selectPaymentMethodsErrors,
-	selectCartErrorsObject,
-	selectIsCartEmpty
-} from '../../selectors/public_api';
+import { getDaffCartSelectors } from '../../selectors/public_api';
 import { DaffCartErrors } from '../../reducers/cart-errors.type';
 import { DaffCartErrorType } from '../../reducers/cart-error-type.enum';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffCartFacade implements DaffStoreFacade<Action> {
+export class DaffCartFacade<T extends DaffCart> implements DaffStoreFacade<Action> {
   loading$: Observable<boolean>;
-  cart$: Observable<DaffCart>;
+  cart$: Observable<T>;
 
   errors$: Observable<DaffCartErrors>;
   cartErrors$: Observable<DaffCartErrors[DaffCartErrorType.Cart]>;
@@ -65,10 +40,36 @@ export class DaffCartFacade implements DaffStoreFacade<Action> {
   availablePaymentMethods$: Observable<DaffCart['available_payment_methods']>;
   isCartEmpty$: Observable<boolean>;
 
-  constructor(private store: Store<DaffCartReducersState>) {
-    this.loading$ = this.store.pipe(select(selectCartLoading));
-    this.cart$ = this.store.pipe(select(selectCartValue));
+  constructor(private store: Store<DaffCartReducersState<T>>) {
+		const { 
+			selectCartLoading,
+			selectCartValue,
+			selectCartErrorsObject,
+			selectCartErrors,
+			selectItemErrors,
+			selectBillingAddressErrors,
+			selectShippingAddressErrors,
+			selectShippingInformationErrors,
+			selectShippingMethodsErrors,
+			selectPaymentErrors,
+			selectPaymentMethodsErrors,
+			selectCartId,
+			selectCartSubtotal,
+			selectCartGrandTotal,
+			selectCartCoupons,
+			selectCartItems,
+			selectCartBillingAddress,
+			selectCartShippingAddress,
+			selectCartPayment,
+			selectCartTotals,
+			selectCartShippingInformation,
+			selectCartAvailableShippingMethods,
+			selectCartAvailablePaymentMethods,
+			selectIsCartEmpty
+		} = getDaffCartSelectors<T>();
 
+    this.loading$ = this.store.pipe(select(selectCartLoading));
+		this.cart$ = this.store.pipe(select(selectCartValue));
     this.errors$ = this.store.pipe(select(selectCartErrorsObject));
     this.cartErrors$ = this.store.pipe(select(selectCartErrors));
     this.itemErrors$ = this.store.pipe(select(selectItemErrors));

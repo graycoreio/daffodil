@@ -7,44 +7,44 @@ import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { DaffCartLoadSuccess } from '../actions/public_api';
 import { daffCartReducers, DaffCartReducersState } from '../reducers/public_api';
-import {
-  selectCartValue,
-  selectCartLoading,
-  selectCartErrors,
-  selectCartId,
-  selectCartSubtotal,
-  selectCartGrandTotal,
-  selectCartCoupons,
-  selectCartItems,
-  selectCartBillingAddress,
-  selectCartShippingAddress,
-  selectCartPayment,
-  selectCartTotals,
-  selectCartShippingInformation,
-  selectCartAvailableShippingMethods,
-  selectCartAvailablePaymentMethods,
-  selectItemErrors,
-  selectBillingAddressErrors,
-  selectShippingAddressErrors,
-  selectShippingInformationErrors,
-  selectShippingMethodsErrors,
-  selectPaymentErrors,
-  selectPaymentMethodsErrors,
-  selectCartErrorsObject,
-	selectIsCartEmpty
-} from './cart.selector';
+import { getDaffCartSelectors } from './cart.selector';
 import { DaffCartErrorType } from '../reducers/cart-error-type.enum';
 import { DaffCartErrors } from '../reducers/cart-errors.type';
 
-
 describe('Cart | Selector | Cart', () => {
-  let store: Store<DaffCartReducersState>;
+  let store: Store<DaffCartReducersState<DaffCart>>;
 
   let cartFactory: DaffCartFactory;
 
   let cart: DaffCart;
   let loading: boolean;
-  let errors: DaffCartErrors;
+	let errors: DaffCartErrors;
+	const { 
+		selectCartLoading,
+		selectCartValue,
+		selectCartErrorsObject,
+		selectCartErrors,
+		selectItemErrors,
+		selectBillingAddressErrors,
+		selectShippingAddressErrors,
+		selectShippingInformationErrors,
+		selectShippingMethodsErrors,
+		selectPaymentErrors,
+		selectPaymentMethodsErrors,
+		selectCartId,
+		selectCartSubtotal,
+		selectCartGrandTotal,
+		selectCartCoupons,
+		selectCartItems,
+		selectCartBillingAddress,
+		selectCartShippingAddress,
+		selectCartPayment,
+		selectCartTotals,
+		selectCartShippingInformation,
+		selectCartAvailableShippingMethods,
+		selectCartAvailablePaymentMethods,
+		selectIsCartEmpty
+	} = getDaffCartSelectors<DaffCart>();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
