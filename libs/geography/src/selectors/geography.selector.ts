@@ -1,6 +1,6 @@
 import { createSelector, MemoizedSelector } from '@ngrx/store';
 
-import { daffGeographyFeatureStateSelector } from './geography-feature.selector';
+import { getDaffGeographyFeatureStateSelector } from './geography-feature.selector';
 import { DaffCountry } from '../models/country';
 import {
   DaffGeographyReducerState,
@@ -13,7 +13,7 @@ export interface DaffGeographySelectors {
 }
 
 const createGeographySelectors = <T extends DaffCountry>() => {
-  const { selectGeographyFeatureState } = daffGeographyFeatureStateSelector<T>();
+  const { selectGeographyFeatureState } = getDaffGeographyFeatureStateSelector<T>();
   const selectGeographyState = createSelector(
     selectGeographyFeatureState,
     state => state.geography
@@ -36,7 +36,7 @@ const createGeographySelectors = <T extends DaffCountry>() => {
   }
 }
 
-export const daffGeographySelectors = (() => {
+export const getGeographySelectors = (() => {
   let cache;
   return <T extends DaffCountry>(): DaffGeographySelectors =>
     cache = cache || createGeographySelectors<T>()
