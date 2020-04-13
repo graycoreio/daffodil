@@ -8,7 +8,7 @@ import { DaffLoginInfo } from '../../models/login-info';
 import { DaffAccountRegistration } from '../../models/account-registration';
 import { DaffMagentoLoginInfoTransformerService } from './transforms/login-info-transformer.service';
 import { createCustomerMutation } from './queries/public_api';
-import { transformError } from './errors/transform';
+import { transformMagentoAuthError } from './errors/transform';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +30,7 @@ export class DaffMagentoRegisterService implements DaffRegisterServiceInterface<
       }
     }).pipe(
       mapTo(this.loginInfoTransformer.transform(registration)),
-      catchError(err => throwError(transformError(err)))
+      catchError(err => throwError(transformMagentoAuthError(err)))
     )
   }
 }

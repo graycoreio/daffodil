@@ -9,7 +9,7 @@ import {
   MagentoCheckTokenResponse
 } from './queries/public_api';
 import { validateCheckTokenResponse } from './validators/public_api';
-import { transformError } from './errors/transform';
+import { transformMagentoAuthError } from './errors/transform';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class DaffMagentoAuthService implements DaffAuthServiceInterface {
     return this.apollo.query<MagentoCheckTokenResponse>({query: checkTokenQuery}).pipe(
       map(validateCheckTokenResponse),
       mapTo(undefined),
-      catchError(err => throwError(transformError(err)))
+      catchError(err => throwError(transformMagentoAuthError(err)))
     )
   }
 }

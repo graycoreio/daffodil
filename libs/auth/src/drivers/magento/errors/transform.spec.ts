@@ -2,7 +2,7 @@ import { ApolloError } from 'apollo-client';
 
 import { DaffUnauthorizedError } from '../../../errors/public_api';
 import { MagentoAuthGraphQlErrorCode } from './codes';
-import { transformError } from './transform';
+import { transformMagentoAuthError } from './transform';
 
 describe('Transforming Magento GraphQlErrors into DaffAuthErrors', () => {
 	const unhandledGraphQlError = {
@@ -33,7 +33,7 @@ describe('Transforming Magento GraphQlErrors into DaffAuthErrors', () => {
 		const error = new ApolloError({
 			graphQLErrors: [handledGraphQlError],
     });
-    const result = transformError(error);
+    const result = transformMagentoAuthError(error);
 
 		expect(result).toEqual(jasmine.any(DaffUnauthorizedError));
 	});
@@ -42,14 +42,14 @@ describe('Transforming Magento GraphQlErrors into DaffAuthErrors', () => {
 		const error = new ApolloError({
 			graphQLErrors: [unhandledGraphQlError, handledGraphQlError],
 		});
-		expect(transformError(error)).toEqual(error);
+		expect(transformMagentoAuthError(error)).toEqual(error);
 	});
 
 	it('should not crash if the extension is not defined', () => {
 		const error = new ApolloError({
 			graphQLErrors: [{ ...unhandledGraphQlError, extensions: {} }],
 		});
-		expect(transformError(error)).toEqual(error);
+		expect(transformMagentoAuthError(error)).toEqual(error);
 	});
 
 	it('should not touch the error if there is no mapping', () => {
@@ -61,11 +61,11 @@ describe('Transforming Magento GraphQlErrors into DaffAuthErrors', () => {
 				},
 			],
 		});
-		expect(transformError(error)).toEqual(error);
+		expect(transformMagentoAuthError(error)).toEqual(error);
 	});
 
 	it('should not touch errors that are not GraphQl errors', () => {
 		const error = new Error('an error');
-		expect(transformError(error)).toEqual(error);
+		expect(transformMagentoAuthError(error)).toEqual(error);
 	});
 });
