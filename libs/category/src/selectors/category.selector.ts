@@ -22,7 +22,8 @@ export interface DaffCategoryMemoizedSelectors<T extends DaffCategoryRequest, V 
 	selectTotalProductsByCategory: MemoizedSelectorWithProps<object, object, number>;
 }
 
-const createCategorySelectors = <T extends DaffCategoryRequest, V extends DaffGenericCategory<V>, U extends DaffCategoryPageConfigurationState<T>>(): DaffCategoryMemoizedSelectors<T, V, U> => {
+const createCategorySelectors = <T extends DaffCategoryRequest, V extends DaffGenericCategory<V>, U extends DaffCategoryPageConfigurationState<T>, W extends DaffProduct>(): DaffCategoryMemoizedSelectors<T, V, U> => {
+	const { selectProductEntities, selectAllProducts } = getDaffProductSelectors<W>();
 
 	const {
 		selectCategoryEntities
@@ -88,5 +89,5 @@ export const getDaffCategorySelectors = (() => {
 		W extends DaffProduct
 	>(): DaffCategoryMemoizedSelectors<T, V, U> => cache = cache 
 		? cache 
-		: createCategorySelectors<T, V, U>();
+		: createCategorySelectors<T, V, U, W>();
 })();
