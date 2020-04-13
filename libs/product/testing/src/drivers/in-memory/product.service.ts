@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { DaffProduct, DaffProductServiceInterface, DaffProductUnion } from '@daffodil/product';
+import { DaffProduct, DaffProductServiceInterface } from '@daffodil/product';
 
 /**
  * The product inmemory driver to mock the product backend service.
@@ -12,7 +12,7 @@ import { DaffProduct, DaffProductServiceInterface, DaffProductUnion } from '@daf
 @Injectable({
   providedIn: 'root'
 })
-export class DaffInMemoryProductService implements DaffProductServiceInterface<DaffProductUnion> {
+export class DaffInMemoryProductService implements DaffProductServiceInterface<DaffProduct> {
   url = '/api/products/';
 
   constructor(private http: HttpClient) {}
@@ -20,18 +20,18 @@ export class DaffInMemoryProductService implements DaffProductServiceInterface<D
   /**
    * Gets all products.
    * 
-   * @returns An Observable of DaffProductUnion[]
+   * @returns An Observable of DaffProduct[]
    */
-  getAll(): Observable<DaffProductUnion[]> {
+  getAll(): Observable<DaffProduct[]> {
     return this.http.get<DaffProduct[]>(this.url);
   }
 
   /**
    * Gets all best selling products.
    * 
-   * @returns An Observable of DaffProductUnion[]
+   * @returns An Observable of DaffProduct[]
    */
-  getBestSellers(): Observable<DaffProductUnion[]> {
+  getBestSellers(): Observable<DaffProduct[]> {
     return this.http.get<DaffProduct[]>(this.url + 'best-sellers');
   }
 
@@ -39,9 +39,9 @@ export class DaffInMemoryProductService implements DaffProductServiceInterface<D
    * Get a product by ID.
    * 
    * @param productId string - product ID
-   * @returns An Observable of a DaffProductUnion
+   * @returns An Observable of a DaffProduct
    */
-  get(productId: string): Observable<DaffProductUnion> {
+  get(productId: string): Observable<DaffProduct> {
     return this.http.get<DaffProduct>(this.url + productId);
   }
 }

@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Store, select, Action } from '@ngrx/store';
 
 import { DaffStoreFacade } from '@daffodil/core';
-import { DaffProductUnion } from '@daffodil/product';
+import { DaffProductUnion, DaffProduct } from '@daffodil/product';
 
 import { DaffCategoryModule } from '../category.module';
 import { getDaffCategorySelectors } from '../selectors/category.selector';
@@ -21,8 +21,13 @@ import { DaffGenericCategory } from '../models/generic-category';
 @Injectable({
   providedIn: DaffCategoryModule
 })
-export class DaffCategoryFacade<T extends DaffCategoryRequest, V extends DaffGenericCategory<V>, U extends DaffCategoryPageConfigurationState<T>> implements DaffStoreFacade<Action> {
-	private categorySelectors = getDaffCategorySelectors<T, V, U>();
+export class DaffCategoryFacade<
+	T extends DaffCategoryRequest, 
+	V extends DaffGenericCategory<V>, 
+	U extends DaffCategoryPageConfigurationState<T>,
+	W extends DaffProduct
+> implements DaffStoreFacade<Action> {
+	private categorySelectors = getDaffCategorySelectors<T, V, U, W>();
 	
 	/**
    * The currently selected category.

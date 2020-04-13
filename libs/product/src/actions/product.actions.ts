@@ -1,6 +1,5 @@
 import { Action } from '@ngrx/store';
 import { DaffProduct } from '../models/product';
-import { DaffProductModification } from '../models/product-modification';
 
 /**
  * Action types for Product Actions.
@@ -29,10 +28,10 @@ export class DaffProductLoad implements Action {
  * 
  * @param payload - A Product
  */
-export class DaffProductLoadSuccess implements Action {
+export class DaffProductLoadSuccess<T extends DaffProduct> implements Action {
     readonly type = DaffProductActionTypes.ProductLoadSuccessAction;
 
-    constructor(public payload: DaffProduct) {}
+    constructor(public payload: T) {}
 }
 
 /**
@@ -57,20 +56,8 @@ export class DaffProductUpdateQty implements Action {
     constructor(public payload: number) {}
 }
 
-/**
- * An action for adding additional fields to a product that are not tracked by Daffodil
- * 
- * @param payload - The DaffProductModification to be made to the product.
- */
-export class DaffProductModify implements Action {
-  readonly type = DaffProductActionTypes.ProductModifyAction;
-
-  constructor(public payload: DaffProductModification) {}
-}
-
-export type DaffProductActions = 
+export type DaffProductActions<T extends DaffProduct> = 
     | DaffProductLoad 
-    | DaffProductLoadSuccess
+    | DaffProductLoadSuccess<T>
     | DaffProductLoadFailure
-    | DaffProductUpdateQty
-    | DaffProductModify;
+    | DaffProductUpdateQty;

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffProduct, selectProduct } from '@daffodil/product';
+import { DaffProduct, getDaffProductSelectors } from '@daffodil/product';
 
 import * as fromDemoAddToCartNotification from '../../reducers/index';
 import { CloseAddToCartNotification } from '../../actions/add-to-cart-notification.actions';
@@ -29,6 +29,8 @@ export class AddToCartNotificationComponent implements OnInit {
   constructor(private store: Store<fromDemoAddToCartNotification.State>) { }
 
   ngOnInit() {
+		const { selectProduct } = getDaffProductSelectors<DaffProduct>();
+
     this.open$ = this.store.pipe(
       select(fromDemoAddToCartNotification.selectOpen)
     );

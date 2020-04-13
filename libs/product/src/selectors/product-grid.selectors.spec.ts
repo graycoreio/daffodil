@@ -10,13 +10,17 @@ import { DaffBestSellersLoadSuccess, DaffBestSellersReset } from '../actions/bes
 import { DaffProduct } from '../models/product';
 import { DaffProductReducersState } from '../reducers/product-reducers-state.interface';
 import { daffProductReducers } from '../reducers/product-reducers';
-import { selectProductGridState, selectProductGridLoadingState } from './product-grid.selectors';
+import { getDaffProductGridSelectors } from './product-grid.selectors';
 
 describe('selectProductState', () => {
 
-  let store: Store<DaffProductReducersState>;
+  let store: Store<DaffProductReducersState<DaffProduct>>;
   const productFactory: DaffProductFactory = new DaffProductFactory();
-  let mockProduct: DaffProduct;
+	let mockProduct: DaffProduct;
+	const {
+		selectProductGridState,
+		selectProductGridLoadingState
+	} = getDaffProductGridSelectors<DaffProduct>();
   
   beforeEach(() => {
     TestBed.configureTestingModule({

@@ -9,13 +9,20 @@ import { DaffProductGridLoadSuccess } from '../actions/product-grid.actions';
 import { DaffProduct } from '../models/product';
 import { DaffProductReducersState } from '../reducers/product-reducers-state.interface';
 import { daffProductReducers } from '../reducers/product-reducers';
-import { selectSelectedProductState, selectSelectedProductId, selectSelectedProductQty, selectSelectedProductLoadingState, selectSelectedProduct } from './product.selectors';
+import { getDaffProductPageSelectors } from './product.selectors';
 
 describe('selectProductState', () => {
 
-  let store: Store<DaffProductReducersState>;
+  let store: Store<DaffProductReducersState<DaffProduct>>;
   const productFactory: DaffProductFactory = new DaffProductFactory();
-  let mockProduct: DaffProduct;
+	let mockProduct: DaffProduct;
+	const {
+		selectSelectedProductLoadingState,
+		selectSelectedProduct,
+		selectSelectedProductState,
+		selectSelectedProductId,
+		selectSelectedProductQty
+	} = getDaffProductPageSelectors<DaffProduct>();
   
   beforeEach(() => {
     TestBed.configureTestingModule({

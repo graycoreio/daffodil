@@ -5,7 +5,7 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
-import { DaffProductUnion, DaffProductGridLoadSuccess, daffProductReducers } from '@daffodil/product';
+import { DaffProductUnion, DaffProductGridLoadSuccess, daffProductReducers, DaffProduct } from '@daffodil/product';
 
 import { DaffCategoryFacade } from './category.facade';
 import { DaffCategoryLoad, DaffCategoryLoadFailure, DaffCategoryLoadSuccess } from '../actions/category.actions';
@@ -17,7 +17,7 @@ import { DaffCategoryRequest } from '../models/requests/category-request';
 
 describe('DaffCategoryFacade', () => {
   let store: MockStore<any>;
-  let facade: DaffCategoryFacade<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>;
+  let facade: DaffCategoryFacade<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>, DaffProduct>;
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
   const categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
   const productFactory: DaffProductFactory = new DaffProductFactory();

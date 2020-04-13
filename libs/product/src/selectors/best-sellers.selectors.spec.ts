@@ -7,13 +7,19 @@ import { DaffProduct } from '../models/product';
 import { DaffProductReducersState } from '../reducers/product-reducers-state.interface';
 import { daffProductReducers } from '../reducers/product-reducers';
 import { cold } from 'jasmine-marbles';
-import { selectBestSellersState, selectBestSellersLoadingState, selectBestSellersIdsState, selectBestSellersProducts } from './best-sellers.selectors';
+import { getDaffBestSellersSelectors } from './best-sellers.selectors';
 
-describe('selectProductState', () => {
+describe('selectBestSellersState', () => {
 
-  let store: Store<DaffProductReducersState>;
+  let store: Store<DaffProductReducersState<DaffProduct>>;
   const productFactory: DaffProductFactory = new DaffProductFactory();
-  let mockProduct: DaffProduct;
+	let mockProduct: DaffProduct;
+	const {
+		selectBestSellersProducts,
+		selectBestSellersLoadingState,
+		selectBestSellersState,
+		selectBestSellersIdsState
+	} = getDaffBestSellersSelectors<DaffProduct>();
   
   beforeEach(() => {
     TestBed.configureTestingModule({

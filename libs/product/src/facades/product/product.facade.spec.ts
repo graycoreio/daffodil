@@ -7,10 +7,11 @@ import { DaffProductFacade } from './product.facade';
 import { DaffProductLoad, DaffProductLoadSuccess } from '../../actions/product.actions';
 import { daffProductReducers } from '../../reducers/product-reducers';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
+import { DaffProduct } from '../../models/product';
 
 describe('DaffProductFacade', () => {
-  let store: MockStore<Partial<DaffProductReducersState>>;
-  let facade: DaffProductFacade;
+  let store: MockStore<Partial<DaffProductReducersState<DaffProduct>>>;
+  let facade: DaffProductFacade<DaffProduct>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

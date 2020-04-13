@@ -13,6 +13,7 @@ export interface DaffProduct {
 	type?: DaffProductTypeEnum;
 	/** @deprecated use type instead */
 	__typename?: DaffProductTypeEnum;
+	url?: string;
   price?: string;
   name?: string;
   brand?: string;

@@ -10,7 +10,7 @@ import { DaffBestSellersFacade, DaffProduct } from '@daffodil/product';
 })
 export class BestSellersComponent implements OnInit {
 
-	constructor(private facade: DaffBestSellersFacade) {}
+	constructor(private facade: DaffBestSellersFacade<DaffProduct>) {}
 
 	bestSellers$: Observable<DaffProduct[]>;
 	loading$: Observable<boolean>;

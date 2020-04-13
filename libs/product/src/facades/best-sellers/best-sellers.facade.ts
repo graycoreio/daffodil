@@ -7,7 +7,7 @@ import { DaffStoreFacade } from '@daffodil/core';
 import { DaffProduct } from '../../models/product';
 import { DaffProductModule } from '../../product.module';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
-import { selectBestSellersProducts, selectBestSellersLoadingState } from '../../selectors/best-sellers.selectors';
+import { getDaffProductSelectors } from '../../selectors/public_api';
 
 /**
  * A facade for accessing best sellers state from an application component.
@@ -15,7 +15,7 @@ import { selectBestSellersProducts, selectBestSellersLoadingState } from '../../
 @Injectable({
   providedIn: DaffProductModule
 })
-export class DaffBestSellersFacade implements DaffStoreFacade<Action> {
+export class DaffBestSellersFacade<T extends DaffProduct> implements DaffStoreFacade<Action> {
   /**
    * The loading state for getting best selling products.
    */
@@ -25,7 +25,12 @@ export class DaffBestSellersFacade implements DaffStoreFacade<Action> {
    */
   bestSellers$: Observable<DaffProduct[]>;
 
-  constructor(private store: Store<DaffProductReducersState>) {
+  constructor(private store: Store<DaffProductReducersState<T>>) {
+		const {
+			selectBestSellersProducts,
+			selectBestSellersLoadingState
+		} = getDaffProductSelectors<T>();
+
     this.loading$ = this.store.pipe(select(selectBestSellersLoadingState));
     this.bestSellers$ = this.store.pipe(select(selectBestSellersProducts));
   }

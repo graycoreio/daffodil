@@ -1,19 +1,26 @@
 import { TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
+import { cold } from 'jasmine-marbles';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffProductGridLoadSuccess } from '../actions/product-grid.actions';
 import { DaffProduct } from '../models/product';
 import { DaffProductReducersState } from '../reducers/product-reducers-state.interface';
 import { daffProductReducers } from '../reducers/product-reducers';
-import { selectProductIds, selectProductEntities, selectAllProducts, selectProductTotal, selectProduct } from './product-entities.selectors';
-import { cold } from 'jasmine-marbles';
+import { getDaffProductEntitiesSelectors } from './product-entities.selectors';
 
-describe('selectProductState', () => {
+describe('selectProductEntitiesState', () => {
 
-  let store: Store<DaffProductReducersState>;
+  let store: Store<DaffProductReducersState<DaffProduct>>;
   const productFactory: DaffProductFactory = new DaffProductFactory();
-  let mockProduct: DaffProduct;
+	let mockProduct: DaffProduct;
+	const {
+		selectProductIds,
+		selectProductEntities,
+		selectAllProducts,
+		selectProductTotal,
+		selectProduct
+	} = getDaffProductEntitiesSelectors<DaffProduct>();
   
   beforeEach(() => {
     TestBed.configureTestingModule({

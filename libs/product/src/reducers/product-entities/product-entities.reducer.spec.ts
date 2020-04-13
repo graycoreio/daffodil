@@ -1,20 +1,19 @@
-import { DaffProductFactory, DaffProductModificationFactory } from '@daffodil/product/testing';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffProductLoadSuccess, DaffProductModify } from '../../actions/product.actions';
+import { DaffProductLoadSuccess } from '../../actions/product.actions';
 import { DaffProductGridLoadSuccess, DaffProductGridReset } from '../../actions/product-grid.actions';
-import { initialState, daffProductEntitiesReducer } from './product-entities.reducer';
+import { daffProductEntitiesReducer } from './product-entities.reducer';
 import { DaffBestSellersLoadSuccess } from '../../actions/best-sellers.actions';
 import { DaffProduct } from '../../models/product';
-import { DaffProductModification } from '../../models/product-modification';
+import { daffProductEntitiesAdapter } from './product-entities-reducer-adapter';
 
 describe('Product | Product Entities Reducer', () => {
 
-  let productFactory: DaffProductFactory;
-  let productModificationFactory: DaffProductModificationFactory;
+	let productFactory: DaffProductFactory;
+	const initialState = daffProductEntitiesAdapter<DaffProduct>().getInitialState();
 
   beforeEach(() => {
     productFactory = new DaffProductFactory();
-    productModificationFactory = new DaffProductModificationFactory();
   });
 
   describe('when an unknown action is triggered', () => {
@@ -24,7 +23,7 @@ describe('Product | Product Entities Reducer', () => {
 
       const result = daffProductEntitiesReducer(initialState, action);
 
-      expect(result).toBe(initialState);
+      expect(result).toEqual(initialState);
     });
   });
 
@@ -88,35 +87,6 @@ describe('Product | Product Entities Reducer', () => {
 
     it('sets expected product on state', () => {
       expect(result.entities[productId]).toEqual(product);
-    });
-  });
-
-  describe('when ProductModifyAction is triggered', () => {
-    let product: DaffProduct;
-
-    let productModify: DaffProductModification;
-    let result;
-    let productId;
-
-    beforeEach(() => {
-      product = productFactory.create();
-      productModify = productModificationFactory.create();
-      productModify.id = product.id;
-      productModify.modification = {
-        'customKey': 'customValue'
-      }
-      productId = product.id;
-
-      const productLoadSuccess = new DaffProductLoadSuccess(product);
-      const productModifyAction = new DaffProductModify(productModify);
-      
-      const testingState = daffProductEntitiesReducer(initialState, productLoadSuccess);
-      result = daffProductEntitiesReducer(testingState, productModifyAction);
-    });
-
-    it('sets a modification object on an existing product entity', () => {
-      expect(result.entities[productId].customKey)
-        .toEqual('customValue');
     });
   });
 

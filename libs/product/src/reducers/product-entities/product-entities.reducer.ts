@@ -3,13 +3,8 @@ import { EntityState } from '@ngrx/entity';
 import { DaffProductGridActionTypes, DaffProductGridActions } from '../../actions/product-grid.actions';
 import { DaffProductActionTypes, DaffProductActions } from '../../actions/product.actions';
 import { DaffBestSellersActionTypes, DaffBestSellersActions } from '../../actions/best-sellers.actions';
-import { DaffProductUnion } from '../../models/product-union';
 import { daffProductEntitiesAdapter } from './product-entities-reducer-adapter';
-
-/**
- * Initial state for product entity state.
- */
-export const initialState: EntityState<DaffProductUnion> = daffProductEntitiesAdapter.getInitialState();
+import { DaffProduct } from '../../models/product';
 
 /**
  * Reducer function that catches actions and changes/overwrites product entities state.
@@ -18,32 +13,25 @@ export const initialState: EntityState<DaffProductUnion> = daffProductEntitiesAd
  * @param action ProductGrid, BestSellers, or Product actions
  * @returns Product entities state
  */
-export function daffProductEntitiesReducer(
-  state = initialState, 
-  action: DaffProductGridActions | DaffBestSellersActions | DaffProductActions): EntityState<DaffProductUnion> {
+export function daffProductEntitiesReducer<T extends DaffProduct>(
+  state = daffProductEntitiesAdapter<T>().getInitialState(), 
+  action: DaffProductGridActions<T> | DaffBestSellersActions<T> | DaffProductActions<T>): EntityState<T> {
+	const adapter = daffProductEntitiesAdapter<T>();
   switch (action.type) {
     case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
-      return daffProductEntitiesAdapter.upsertMany(action.payload, state);
+      return adapter.upsertMany(action.payload, state);
     case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
-      return daffProductEntitiesAdapter.upsertMany(action.payload, state);
+      return adapter.upsertMany(action.payload, state);
     case DaffProductActionTypes.ProductLoadSuccessAction:
-      return daffProductEntitiesAdapter.upsertOne(
+      return adapter.upsertOne(
         { 
           id: action.payload.id, 
           ...action.payload
         },
         state
       );
-    case DaffProductActionTypes.ProductModifyAction:
-      return daffProductEntitiesAdapter.updateOne(
-        {
-          id: action.payload.id,
-          changes: action.payload.modification
-        },
-        state
-      );
     case DaffProductGridActionTypes.ProductGridResetAction:
-      return daffProductEntitiesAdapter.removeAll(state);
+      return adapter.removeAll(state);
     default:
       return state;
   }
