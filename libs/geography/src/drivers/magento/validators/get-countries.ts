@@ -7,6 +7,6 @@ export const validateGetCountriesResponse = (response: ApolloQueryResult<Magento
   if (response.data.countries) {
     return response
   } else {
-    throw new DaffInvalidAPIResponseError('Get countries response is invalid.')
+    throw new DaffInvalidAPIResponseError('Get countries response does not contain a valid list of countries.')
   }
 }
