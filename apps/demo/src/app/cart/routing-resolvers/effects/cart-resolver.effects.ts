@@ -23,9 +23,9 @@ import { daffCartSelectors } from '../../selectors/cart-selector';
 export class CartResolverEffects {
 	constructor(
 		private actions$: Actions,
-		private store: Store<DaffCartReducersState<DaffCart>>,
+		private store: Store<DaffCartReducersState>,
 		private cartStorage: DaffCartStorageService,
-		@Inject(DaffCartDriver) private driver: DaffCartServiceInterface<DaffCart>,
+		@Inject(DaffCartDriver) private driver: DaffCartServiceInterface,
 	) {}
 
 	@Effect()

@@ -46,7 +46,7 @@ export const selectLoading: MemoizedSelector<object, boolean> = createSelector(
 );
 
 export const selectCartItemCount : MemoizedSelector<object, number> = createSelector(
-  getDaffCartSelectors<DaffCart>().selectCartValue,
+  getDaffCartSelectors().selectCartValue,
   cart => {
     let itemCount = 0;
     if(cart) {
