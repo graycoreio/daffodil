@@ -30,5 +30,8 @@
   },
   "devDependencies": {
     "@daffodil/core": "0.0.0-PLACEHOLDER"
-  }
+	},
+	"optionalDependencies": {
+		"@daffodil/driver": "0.0.0-PLACEHOLDER"
+	}
 }
