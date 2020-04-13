@@ -1,3 +1,5 @@
+import { DaffProduct } from '@daffodil/product';
+
 import { DaffCategoryActionTypes, DaffCategoryActions } from '../../actions/category.actions';
 import { DaffCategoryReducerState } from './category-reducer-state.interface';
 import { toggleCategoryFilter } from './toggle-filter/core';
@@ -24,8 +26,8 @@ const initialState: DaffCategoryReducerState<any, any> = {
   errors: []
 };
 
-export function daffCategoryReducer<T extends DaffCategoryRequest, U extends DaffGenericCategory<U>, V extends DaffCategoryPageConfigurationState<T>>
-	(state = initialState, action: DaffCategoryActions<T, U, V>): DaffCategoryReducerState<T, V> {
+export function daffCategoryReducer<T extends DaffCategoryRequest, U extends DaffGenericCategory<U>, V extends DaffCategoryPageConfigurationState<T>, W extends DaffProduct>
+	(state = initialState, action: DaffCategoryActions<T, U, V, W>): DaffCategoryReducerState<T, V> {
   switch (action.type) {
     // This reducer must assume the call will be successful, and immediately set the applied filters to state, because the 
     // GetCategory magento call doesn't return currently applied filters. If there is a bug where the wrong filters are somehow

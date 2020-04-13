@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Store, select, Action } from '@ngrx/store';
 
 import { DaffStoreFacade } from '@daffodil/core';
-import { DaffProductUnion, DaffProduct } from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
 
 import { DaffCategoryModule } from '../category.module';
 import { getDaffCategorySelectors } from '../selectors/category.selector';
@@ -76,7 +76,7 @@ export class DaffCategoryFacade<
   /**
    * Products of the currently selected category.
    */
-  products$: Observable<DaffProductUnion[]>;
+  products$: Observable<W[]>;
   /**
    * The loading state for retrieving a single category.
    */
@@ -106,7 +106,7 @@ export class DaffCategoryFacade<
 	 * Get products by a category Id.
 	 * @param categoryId 
 	 */
-	getProductsByCategory(categoryId: string): Observable<DaffProductUnion[]> {
+	getProductsByCategory(categoryId: string): Observable<W[]> {
 		return this.store.pipe(select(this.categorySelectors.selectProductsByCategory, {id: categoryId}))
 	}
 

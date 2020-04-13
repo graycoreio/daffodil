@@ -37,7 +37,7 @@ export class DaffCategoryEffects<
 
   constructor(
     private actions$: Actions,
-    @Inject(DaffCategoryDriver) private driver: DaffCategoryServiceInterface<T, V, U>,
+    @Inject(DaffCategoryDriver) private driver: DaffCategoryServiceInterface<T, V, U, W>,
     private store: Store<any>
 	){}
 	
@@ -152,7 +152,7 @@ export class DaffCategoryEffects<
 
   private processCategoryGetRequest(payload: T) {
     return this.driver.get(payload).pipe(
-      switchMap((resp: DaffGetCategoryResponse<T, V, U>) => [
+      switchMap((resp: DaffGetCategoryResponse<T, V, U, W>) => [
         new DaffProductGridLoadSuccess(resp.products),
         new DaffCategoryLoadSuccess(resp)
       ]),
