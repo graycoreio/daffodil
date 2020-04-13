@@ -15,7 +15,7 @@ import {
 } from '../reducers/public_api';
 import { DaffAuthToken } from '../models/auth-token';
 import {
-  daffAuthLoginSelectors
+  getDaffAuthLoginSelectors
 } from './login.selector';
 
 describe('Auth | Selector | Login', () => {
@@ -35,7 +35,7 @@ describe('Auth | Selector | Login', () => {
     selectAuthLoginTokenValue,
     selectAuthLoginLoading,
     selectAuthLoginErrors
-  } = daffAuthLoginSelectors();
+  } = getDaffAuthLoginSelectors();
 
   beforeEach(() => {
     TestBed.configureTestingModule({

@@ -3,7 +3,7 @@ import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
 import {
-  daffAuthSelectors
+  getDaffAuthSelectors
 } from './auth.selector';
 import {
   DaffAuthFeatureState,
@@ -24,7 +24,7 @@ describe('Auth | Selector | Auth', () => {
     selectAuthLoading,
     selectAuthErrors,
     selectAuthState
-  } = daffAuthSelectors();
+  } = getDaffAuthSelectors();
 
   beforeEach(() => {
     TestBed.configureTestingModule({

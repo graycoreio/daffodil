@@ -1,13 +1,12 @@
 import { createSelector, MemoizedSelector } from '@ngrx/store';
 
-import { selectAuthFeatureState } from './auth-feature.selector';
+import { getDaffAuthFeatureStateSelector } from './auth-feature.selector';
 import { DaffAuthToken } from '../models/auth-token';
 import {
   DaffAuthRegisterReducerState,
-  DaffAuthFeatureState
 } from '../reducers/public_api';
 
-export interface DaffAuthRegisterSelectors<T extends DaffAuthToken> {
+export interface DaffAuthRegisterSelectors {
   selectAuthRegisterState: MemoizedSelector<object, DaffAuthRegisterReducerState>;
   selectAuthRegisterLoading: MemoizedSelector<object, boolean>;
   selectAuthRegisterErrors: MemoizedSelector<object, string[]>;
@@ -15,7 +14,7 @@ export interface DaffAuthRegisterSelectors<T extends DaffAuthToken> {
 
 const createRegisterSelectors = <T extends DaffAuthToken>() => {
   const selectAuthRegisterState = createSelector(
-    selectAuthFeatureState<T>(),
+    getDaffAuthFeatureStateSelector<T>(),
     state => state.register
   )
 
@@ -36,8 +35,8 @@ const createRegisterSelectors = <T extends DaffAuthToken>() => {
   }
 };
 
-export const daffAuthRegisterSelectors = (() => {
+export const getDaffAuthRegisterSelectors = (() => {
   let cache;
-  return <T extends DaffAuthToken>(): DaffAuthRegisterSelectors<T> =>
+  return <T extends DaffAuthToken>(): DaffAuthRegisterSelectors =>
     cache = cache || createRegisterSelectors<T>()
 })();

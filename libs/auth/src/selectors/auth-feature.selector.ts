@@ -6,7 +6,7 @@ import { DaffAuthToken } from '../models/auth-token';
 /**
  * Feature State Selector
  */
-export const selectAuthFeatureState = (() => {
+export const getDaffAuthFeatureStateSelector = (() => {
   let cache;
   return <T extends DaffAuthToken>(): MemoizedSelector<object, DaffAuthFeatureState<T>> =>
     cache = cache || createFeatureSelector<DaffAuthFeatureState<T>>(DAFF_AUTH_STORE_FEATURE_KEY)

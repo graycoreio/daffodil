@@ -10,7 +10,7 @@ import {
 } from '../reducers/public_api';
 import { DaffAuthToken } from '../models/auth-token';
 import {
-  daffAuthRegisterSelectors
+  getDaffAuthRegisterSelectors
 } from './register.selector';
 
 describe('Auth | Selector | Register', () => {
@@ -24,7 +24,7 @@ describe('Auth | Selector | Register', () => {
     selectAuthRegisterState,
     selectAuthRegisterLoading,
     selectAuthRegisterErrors
-  } = daffAuthRegisterSelectors();
+  } = getDaffAuthRegisterSelectors();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
