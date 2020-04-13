@@ -7,6 +7,6 @@ export const validateRevokeTokenResponse = (response: ApolloQueryResult<MagentoR
   if (response.data.revokeCustomerToken.result) {
     return response
   } else {
-    throw new DaffInvalidAPIResponseError('Revoke token response is invalid.')
+    throw new DaffInvalidAPIResponseError('Revoke token response does not contain a successful result.')
   }
 }

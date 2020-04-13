@@ -7,6 +7,6 @@ export const validateCheckTokenResponse = (response: ApolloQueryResult<MagentoCh
   if (response.data.customer.id) {
     return response
   } else {
-    throw new DaffInvalidAPIResponseError('Check token response is invalid.')
+    throw new DaffInvalidAPIResponseError('Check token response does not contain a valid customer ID.')
   }
 }

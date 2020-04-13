@@ -7,6 +7,6 @@ export const validateGenerateTokenResponse = (response: ApolloQueryResult<Magent
   if (response.data.generateCustomerToken.token) {
     return response
   } else {
-    throw new DaffInvalidAPIResponseError('Generate token response is invalid.')
+    throw new DaffInvalidAPIResponseError('Generate token response does not contain an auth token.')
   }
 }
