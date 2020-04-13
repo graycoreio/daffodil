@@ -95,12 +95,12 @@ describe('DaffAuthEffects', () => {
     expect(effects).toBeTruthy();
   });
 
-  describe('when AuthLoginAction is triggered', () => {
+  describe('login$ | when the user logs in', () => {
     let expected;
 
     const mockAuthLoginAction = new DaffAuthLogin(mockLoginInfo);
 
-    describe('and the call to AuthService is successful', () => {
+    describe('and the login is successful', () => {
       beforeEach(() => {
         daffLoginDriver.login.and.returnValue(of(mockAuth));
         const mockAuthLoginSuccessAction = new DaffAuthLoginSuccess(mockAuth);
@@ -109,12 +109,12 @@ describe('DaffAuthEffects', () => {
         expected = cold('--b', { b: mockAuthLoginSuccessAction });
       });
 
-      it('should dispatch a AuthLoginSuccess action', () => {
+      it('should notify state that the login was successful', () => {
         expect(effects.login$).toBeObservable(expected);
       });
     });
 
-    describe('and the call to AuthService fails', () => {
+    describe('and the login fails', () => {
       beforeEach(() => {
         const error = 'Failed to log in';
         const response = cold('#', {}, error);
@@ -125,18 +125,18 @@ describe('DaffAuthEffects', () => {
         expected = cold('--b', { b: mockAuthLoginFailureAction });
       });
 
-      it('should dispatch a AuthLoginFailure action', () => {
+      it('should notify state that the login failed', () => {
         expect(effects.login$).toBeObservable(expected);
       });
     });
   });
 
-  describe('when AuthCheckAction is triggered', () => {
+  describe('check$ | when the user checks if their auth token is valid', () => {
     let expected;
 
     const mockAuthCheckAction = new DaffAuthCheck();
 
-    describe('and the call to AuthService is successful', () => {
+    describe('and the check is successful', () => {
       beforeEach(() => {
         daffAuthDriver.check.and.returnValue(of(undefined));
         const mockAuthCheckSuccessAction = new DaffAuthCheckSuccess();
@@ -145,12 +145,12 @@ describe('DaffAuthEffects', () => {
         expected = cold('--b', { b: mockAuthCheckSuccessAction });
       });
 
-      it('should dispatch a AuthCheckSuccess action', () => {
+      it('should notify state that the check succeeded', () => {
         expect(effects.check$).toBeObservable(expected);
       });
     });
 
-    describe('and the call to AuthService fails', () => {
+    describe('and the check fails', () => {
       beforeEach(() => {
         const error = 'Auth token is not valid';
         const response = cold('#', {}, error);
@@ -161,18 +161,18 @@ describe('DaffAuthEffects', () => {
         expected = cold('--b', { b: mockAuthCheckFailureAction });
       });
 
-      it('should dispatch a AuthCheckFailure action', () => {
+      it('should notify state that the check failed', () => {
         expect(effects.check$).toBeObservable(expected);
       });
     });
   });
 
-  describe('when AuthLogoutAction is triggered', () => {
+  describe('logout$ | when the user logs out', () => {
     let expected;
 
     const mockAuthLogoutAction = new DaffAuthLogout();
 
-    describe('and the call to AuthService is successful', () => {
+    describe('and the logout is successful', () => {
       beforeEach(() => {
         daffLoginDriver.logout.and.returnValue(of(mockAuth));
         const mockAuthLogoutSuccessAction = new DaffAuthLogoutSuccess();
@@ -181,12 +181,12 @@ describe('DaffAuthEffects', () => {
         expected = cold('--b', { b: mockAuthLogoutSuccessAction });
       });
 
-      it('should dispatch a AuthLogoutSuccess action', () => {
+      it('should notify state that the logout succeeded', () => {
         expect(effects.logout$).toBeObservable(expected);
       });
     });
 
-    describe('and the call to AuthService fails', () => {
+    describe('and the logout fails', () => {
       beforeEach(() => {
         const error = 'Failed to log out';
         const response = cold('#', {}, error);
@@ -197,18 +197,18 @@ describe('DaffAuthEffects', () => {
         expected = cold('--b', { b: mockAuthLogoutFailureAction });
       });
 
-      it('should dispatch a AuthLogoutFailure action', () => {
+      it('should notify state that the logout failed', () => {
         expect(effects.logout$).toBeObservable(expected);
       });
     });
   });
 
-  describe('when AuthRegisterAction is triggered', () => {
+  describe('register$ | when the user registers an account', () => {
     let expected;
 
     const mockAuthRegisterAction = new DaffAuthRegister(mockRegistration);
 
-    describe('and the call to AuthService is successful', () => {
+    describe('and the registration is successful', () => {
       beforeEach(() => {
         daffRegisterDriver.register.and.returnValue(of(mockLoginInfo));
         const mockAuthRegisterSuccessAction = new DaffAuthRegisterSuccess(mockLoginInfo);
@@ -217,12 +217,12 @@ describe('DaffAuthEffects', () => {
         expected = cold('--b', { b: mockAuthRegisterSuccessAction });
       });
 
-      it('should dispatch a AuthRegisterSuccess action', () => {
+      it('should notify state that the registration succeeded', () => {
         expect(effects.register$).toBeObservable(expected);
       });
     });
 
-    describe('and the call to AuthService fails', () => {
+    describe('and the registration fails', () => {
       beforeEach(() => {
         const error = 'Failed to register a new user';
         const response = cold('#', {}, error);
@@ -233,13 +233,13 @@ describe('DaffAuthEffects', () => {
         expected = cold('--b', { b: mockAuthLoginFailureAction });
       });
 
-      it('should dispatch a AuthRegisterFailure action', () => {
+      it('should notify state that the registration failed', () => {
         expect(effects.register$).toBeObservable(expected);
       });
     });
   });
 
-  describe('when DaffAuthRegisterSuccess is triggered', () => {
+  describe('loginAfterRegister$ | when registration completes successfully', () => {
     let expected;
 
     const mockAuthLoginAction = new DaffAuthLogin(mockLoginInfo);
@@ -250,7 +250,7 @@ describe('DaffAuthEffects', () => {
       expected = cold('--b', { b: mockAuthLoginAction });
     });
 
-    it('should dispatch a AuthRegisterSuccess action', () => {
+    it('should trigger a login', () => {
       expect(effects.loginAfterRegister$).toBeObservable(expected);
     });
   });
