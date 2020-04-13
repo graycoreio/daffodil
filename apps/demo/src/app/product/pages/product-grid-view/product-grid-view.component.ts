@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DaffProductGridFacade, DaffProductUnion, DaffProductGridLoad, DaffProduct } from '@daffodil/product';
+import { DaffProductGridFacade, DaffProductGridLoad, DaffProduct } from '@daffodil/product';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class ProductGridViewComponent implements OnInit {
 
   loading$: Observable<boolean>;
-  products$: Observable<DaffProductUnion[]>;
+  products$: Observable<DaffProduct[]>;
 
   constructor(private facade: DaffProductGridFacade<DaffProduct>) { }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
-import { DaffProductFacade, DaffProductLoad, DaffProductUnion, DaffProduct } from '@daffodil/product';
+import { DaffProductFacade, DaffProductLoad, DaffProduct } from '@daffodil/product';
 import { tap, take, filter, map, } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { DaffAddToCart, DaffCartFacade, DaffCart } from '@daffodil/cart';
@@ -12,7 +12,7 @@ import { DaffAddToCart, DaffCartFacade, DaffCart } from '@daffodil/cart';
 })
 export class ProductViewComponent implements OnInit {
 
-  product$: Observable<DaffProductUnion>;
+  product$: Observable<DaffProduct>;
   loading$: Observable<boolean>;
   routingId$: Observable<string>;
 
