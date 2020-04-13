@@ -55,6 +55,9 @@
       "@daffodil/driver/hubspot": [
         "dist/driver/hubspot"
       ],
+      "@daffodil/driver/magento": [
+        "dist/driver/magento"
+      ],
       "@daffodil/design": [
         "dist/design"
       ],

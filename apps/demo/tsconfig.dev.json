@@ -16,6 +16,7 @@
       "@daffodil/newsletter": ["libs/newsletter/src"],
       "@daffodil/newsletter/testing": ["libs/newsletter/testing/src"],
 			"@daffodil/driver/hubspot": ["libs/driver/hubspot/src"],
+			"@daffodil/driver/magento": ["libs/driver/magento/src"],
 			"@daffodil/geography": ["libs/geography/src"]
     }
   }
