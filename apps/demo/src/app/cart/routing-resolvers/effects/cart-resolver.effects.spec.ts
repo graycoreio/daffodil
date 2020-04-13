@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 import { StoreModule, combineReducers } from '@ngrx/store';
 
-import { fromCart, DaffCart, DaffCartDriver, DaffCartServiceInterface } from '@daffodil/cart';
+import { DaffCart, DaffCartDriver, DaffCartServiceInterface, daffCartReducers } from '@daffodil/cart';
 import { DaffTestingCartService, DaffCartFactory } from '@daffodil/cart/testing';
 
 import { CartResolverEffects } from './cart-resolver.effects';
@@ -22,7 +22,7 @@ describe('CartResolverEffects', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          carts: combineReducers(fromCart.reducers),
+          carts: combineReducers(daffCartReducers),
         })
       ],
       providers: [

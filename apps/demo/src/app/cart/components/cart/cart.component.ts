@@ -1,10 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffCart } from '@daffodil/cart';
-
-import * as fromCart from '../../selectors/cart-selector';
+import { DaffCart, DaffCartFacade } from '@daffodil/cart';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'demo-cart',
@@ -19,11 +17,13 @@ export class CartComponent implements OnInit {
   isCartEmpty$: Observable<boolean>;
 
   constructor(
-    private store: Store<fromCart.State>
+		private facade: DaffCartFacade<DaffCart>
   ) {}
 
   ngOnInit(): void {
-    this.itemCount$ = this.store.pipe(select(fromCart.selectCartItemCount));
-    this.isCartEmpty$ = this.store.pipe(select(fromCart.isCartEmpty));
+    this.itemCount$ = this.facade.items$.pipe(
+			map(items => items.length)
+		);
+    this.isCartEmpty$ = this.facade.isCartEmpty$;
   }
 }
