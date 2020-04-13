@@ -5,11 +5,9 @@ import { DaffAuthToken } from '../models/auth-token';
 import {
   DaffAuthReducerState
 } from '../reducers/public_api';
-import { DaffAuthRegisterSelectors, getDaffAuthRegisterSelectors } from './register.selector';
-import { DaffAuthLoginSelectors, getDaffAuthLoginSelectors } from './login.selector';
 
 
-export interface DaffAuthSelectors<T extends DaffAuthToken> extends DaffAuthRegisterSelectors, DaffAuthLoginSelectors<T> {
+export interface AuthSelectors {
   selectAuthState: MemoizedSelector<object, DaffAuthReducerState>;
   selectAuthLoading: MemoizedSelector<object, boolean>;
   selectAuthErrors: MemoizedSelector<object, string[]>;
@@ -38,12 +36,8 @@ const createAuthSelectors = <T extends DaffAuthToken>() => {
   }
 };
 
-export const getDaffAuthSelectors = (() => {
+export const getAuthSelectors = (() => {
   let cache;
-  return <T extends DaffAuthToken>(): DaffAuthSelectors<T> =>
-    cache = cache || {
-      ...createAuthSelectors<T>(),
-      ...getDaffAuthLoginSelectors<T>(),
-      ...getDaffAuthRegisterSelectors<T>()
-    }
+  return <T extends DaffAuthToken>(): AuthSelectors =>
+    cache = cache || createAuthSelectors<T>()
 })();
