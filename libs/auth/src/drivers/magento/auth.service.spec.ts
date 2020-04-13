@@ -5,6 +5,7 @@ import {
 } from 'apollo-angular/testing';
 import { cold } from 'jasmine-marbles';
 import { catchError } from 'rxjs/operators';
+import { GraphQLError } from 'graphql';
 
 import {
   DaffAccountRegistrationFactory,
@@ -16,6 +17,8 @@ import { DaffAccountRegistration } from '../../models/account-registration';
 import { DaffAuthToken } from '../../models/auth-token';
 import { DaffLoginInfo } from '../../models/login-info';
 import { checkTokenQuery, MagentoCheckTokenResponse } from './queries/public_api';
+import { DaffUnauthorizedError, DaffInvalidAPIResponseError } from '../../errors/public_api';
+import * as validators from './validators/public_api';
 
 describe('Driver | Magento | Auth | AuthService', () => {
   let controller: ApolloTestingController;
@@ -23,6 +26,8 @@ describe('Driver | Magento | Auth | AuthService', () => {
 
   const registrationFactory: DaffAccountRegistrationFactory = new DaffAccountRegistrationFactory();
   const authTokenFactory: DaffAuthTokenFactory = new DaffAuthTokenFactory();
+
+  let validatorSpy: jasmine.Spy;
 
   let mockAuth: DaffAuthToken;
   let mockLoginInfo: DaffLoginInfo;
@@ -49,6 +54,9 @@ describe('Driver | Magento | Auth | AuthService', () => {
     mockRegistration = registrationFactory.create();
     mockAuth = authTokenFactory.create();
 
+    validatorSpy = jasmine.createSpy();
+    spyOnProperty(validators, 'validateCheckTokenResponse').and.returnValue(validatorSpy);
+
     token = mockAuth.token;
     firstName = mockRegistration.customer.firstName;
     lastName = mockRegistration.customer.lastName;
@@ -61,7 +69,7 @@ describe('Driver | Magento | Auth | AuthService', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('check | checking an access token', () => {
+  describe('check | checking the status of an access token', () => {
     let response: MagentoCheckTokenResponse;
     let id: number;
 
@@ -69,7 +77,7 @@ describe('Driver | Magento | Auth | AuthService', () => {
       controller.verify();
     });
 
-    describe('when the id is present', () => {
+    describe('when the call to the Magento API is successful', () => {
       beforeEach(() => {
         id = 4;
         response = {
@@ -79,43 +87,70 @@ describe('Driver | Magento | Auth | AuthService', () => {
         };
       });
 
-      it('should return void and not throw an error', () => {
-        const expected = cold('-', {});
+      describe('and the response passes validation', () => {
+        beforeEach(() => {
+          validatorSpy.and.returnValue({data: response})
+        });
 
-        expect(service.check()).toBeObservable(expected);
+        it('should return void and not throw an error', () => {
+          const expected = cold('-', {});
 
-        const op = controller.expectOne(checkTokenQuery);
+          expect(service.check()).toBeObservable(expected);
 
-        op.flush({
-          data: response
+          const op = controller.expectOne(checkTokenQuery);
+
+          op.flush({
+            data: response
+          });
+        });
+      });
+
+      describe('and the response fails validation', () => {
+        beforeEach(() => {
+          validatorSpy.and.callFake(() => {
+            throw new DaffInvalidAPIResponseError('Check token response is invalid.')
+          });
+        });
+
+        it('should throw a DaffInvalidAPIResponseError', done => {
+          service.check().pipe(
+            catchError(err => {
+              expect(err).toEqual(jasmine.any(DaffInvalidAPIResponseError));
+              done();
+              return [];
+            })
+          ).subscribe();
+
+          const op = controller.expectOne(checkTokenQuery);
+
+          op.flush({
+            data: response
+          });
         });
       });
     });
 
-    // TODO: add error handling
-    xdescribe('when the id is falsey', () => {
-      beforeEach(() => {
-        response = {
-          customer: {
-            id: null
-          },
-        };
-      });
-
-      it('should throw an error', done => {
+    describe('when the call to the Magento API is unsuccessful', () => {
+      it('should throw a DaffUnauthorizedError', done => {
         service.check().pipe(
           catchError(err => {
-            expect(err).toEqual(new Error('Unauthenticated'));
+            expect(err).toEqual(jasmine.any(DaffUnauthorizedError));
             done();
-            return null;
+            return [];
           })
         ).subscribe();
 
         const op = controller.expectOne(checkTokenQuery);
 
-        op.flush({
-          data: response
-        });
+        op.graphqlErrors([new GraphQLError(
+          'The current customer isn\'t authorized.',
+          null,
+          null,
+          null,
+          null,
+          null,
+          {category: 'graphql-authorization'}
+        )]);
       });
     });
   });

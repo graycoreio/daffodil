@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
-import { map, switchMap, mapTo } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError, mapTo } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 
 import { DaffLoginServiceInterface } from '../interfaces/login-service.interface';
@@ -13,6 +13,8 @@ import {
   revokeCustomerTokenMutation
 } from './queries/public_api';
 import { DaffMagentoAuthTransformerService } from './transforms/auth-transformer.service';
+import { transformMagentoAuthError } from './errors/transform';
+import { validateRevokeTokenResponse, validateGenerateTokenResponse } from './validators/public_api';
 
 @Injectable({
   providedIn: 'root'
@@ -31,13 +33,17 @@ export class DaffMagentoLoginService implements DaffLoginServiceInterface<DaffLo
         password
       }
     }).pipe(
-      map(res => this.authTransformer.transform(res.data.generateCustomerToken))
+      map(validateGenerateTokenResponse),
+      map(res => this.authTransformer.transform(res.data.generateCustomerToken)),
+      catchError(err => throwError(transformMagentoAuthError(err)))
     )
   }
 
   logout() {
     return this.apollo.mutate<MagentoRevokeCustomerTokenResponse>({mutation: revokeCustomerTokenMutation}).pipe(
-      mapTo(undefined)
+      map(validateRevokeTokenResponse),
+      mapTo(undefined),
+      catchError(err => throwError(transformMagentoAuthError(err)))
     )
   }
 }
