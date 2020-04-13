@@ -1,4 +1,4 @@
-import { daffTransformMagentoError } from '@daffodil/driver';
+import { daffTransformMagentoError } from '@daffodil/driver/magento';
 
 import { DaffGeographyMagentoErrorMap } from './map';
 
