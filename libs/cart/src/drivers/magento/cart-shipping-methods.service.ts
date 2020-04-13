@@ -16,7 +16,7 @@ import { DaffMagentoCartShippingRateTransformer } from './transforms/outputs/car
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoCartShippingMethodsService implements DaffCartShippingMethodsServiceInterface<DaffCartShippingRate> {
+export class DaffMagentoCartShippingMethodsService implements DaffCartShippingMethodsServiceInterface {
   constructor(
     private apollo: Apollo,
     public shippingRateTransformer: DaffMagentoCartShippingRateTransformer

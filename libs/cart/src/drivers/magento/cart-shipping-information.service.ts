@@ -22,7 +22,7 @@ import { MagentoGetSelectedShippingMethodResponse, MagentoSetSelectedShippingMet
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoCartShippingInformationService implements DaffCartShippingInformationServiceInterface<DaffCartShippingRate, DaffCart> {
+export class DaffMagentoCartShippingInformationService implements DaffCartShippingInformationServiceInterface {
   constructor(
     private apollo: Apollo,
     public cartTransformer: DaffMagentoCartTransformer,

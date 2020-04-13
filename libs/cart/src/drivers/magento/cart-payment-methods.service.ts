@@ -16,7 +16,7 @@ import { MagentoListPaymentMethodsResponse } from './models/responses/list-payme
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoCartPaymentMethodsService implements DaffCartPaymentMethodsServiceInterface<DaffCartPaymentMethod> {
+export class DaffMagentoCartPaymentMethodsService implements DaffCartPaymentMethodsServiceInterface {
   constructor(
     private apollo: Apollo,
     public paymentTransformer: DaffMagentoCartPaymentTransformer

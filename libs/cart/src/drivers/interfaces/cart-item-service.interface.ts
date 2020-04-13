@@ -9,9 +9,9 @@ import { DaffCartItemInput } from '../../models/cart-item-input';
  * The interface responsible for managing the items of a cart.
  */
 export interface DaffCartItemServiceInterface<
-	T extends DaffCartItem,
-	U extends DaffCartItemInput,
-	V extends DaffCart
+	T extends DaffCartItem = DaffCartItem,
+	U extends DaffCartItemInput = DaffCartItemInput,
+	V extends DaffCart = DaffCart
 > {
 	/**
 	 * List all of the available items of a cart

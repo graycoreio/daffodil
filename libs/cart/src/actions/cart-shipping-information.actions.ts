@@ -19,7 +19,7 @@ export class DaffCartShippingInformationLoad implements Action {
   readonly type = DaffCartShippingInformationActionTypes.CartShippingInformationLoadAction;
 }
 
-export class DaffCartShippingInformationLoadSuccess<T extends DaffCartShippingRate> implements Action {
+export class DaffCartShippingInformationLoadSuccess<T extends DaffCartShippingRate = DaffCartShippingRate> implements Action {
   readonly type = DaffCartShippingInformationActionTypes.CartShippingInformationLoadSuccessAction;
 
   constructor(public payload: T) {}
@@ -31,13 +31,13 @@ export class DaffCartShippingInformationLoadFailure implements Action {
   constructor(public payload: string) {}
 }
 
-export class DaffCartShippingInformationUpdate<T extends DaffCartShippingRate> implements Action {
+export class DaffCartShippingInformationUpdate<T extends DaffCartShippingRate = DaffCartShippingRate> implements Action {
   readonly type = DaffCartShippingInformationActionTypes.CartShippingInformationUpdateAction;
 
   constructor(public payload: Partial<T>) {}
 }
 
-export class DaffCartShippingInformationUpdateSuccess<T extends DaffCart> implements Action {
+export class DaffCartShippingInformationUpdateSuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartShippingInformationActionTypes.CartShippingInformationUpdateSuccessAction;
 
   constructor(public payload: Partial<T>) {}
@@ -49,13 +49,13 @@ export class DaffCartShippingInformationUpdateFailure implements Action {
   constructor(public payload: string) {}
 }
 
-export class DaffCartShippingInformationDelete<T extends DaffCartShippingRate> implements Action {
+export class DaffCartShippingInformationDelete<T extends DaffCartShippingRate = DaffCartShippingRate> implements Action {
   readonly type = DaffCartShippingInformationActionTypes.CartShippingInformationDeleteAction;
 
   constructor(public id?: T['id']) {}
 }
 
-export class DaffCartShippingInformationDeleteSuccess<T extends DaffCart> implements Action {
+export class DaffCartShippingInformationDeleteSuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartShippingInformationActionTypes.CartShippingInformationDeleteSuccessAction;
 
   constructor(public payload: Partial<T>) {}
@@ -68,8 +68,8 @@ export class DaffCartShippingInformationDeleteFailure implements Action {
 }
 
 export type DaffCartShippingInformationActions<
-  T extends DaffCartShippingRate,
-  V extends DaffCart
+  T extends DaffCartShippingRate = DaffCartShippingRate,
+  V extends DaffCart = DaffCart
 > =
   | DaffCartShippingInformationLoad
   | DaffCartShippingInformationLoadSuccess<T>

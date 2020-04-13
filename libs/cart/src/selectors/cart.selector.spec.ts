@@ -12,7 +12,7 @@ import { DaffCartErrorType } from '../reducers/cart-error-type.enum';
 import { DaffCartErrors } from '../reducers/cart-errors.type';
 
 describe('Cart | Selector | Cart', () => {
-  let store: Store<DaffCartReducersState<DaffCart>>;
+  let store: Store<DaffCartReducersState>;
 
   let cartFactory: DaffCartFactory;
 
@@ -44,7 +44,7 @@ describe('Cart | Selector | Cart', () => {
 		selectCartAvailableShippingMethods,
 		selectCartAvailablePaymentMethods,
 		selectIsCartEmpty
-	} = getDaffCartSelectors<DaffCart>();
+	} = getDaffCartSelectors();
 
   beforeEach(() => {
     TestBed.configureTestingModule({

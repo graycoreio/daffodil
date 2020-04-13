@@ -34,7 +34,7 @@ describe('Daffodil | Cart | DaffCartShippingMethodsEffects', () => {
   let cartFactory: DaffCartFactory;
   let cartShippingRateFactory: DaffCartShippingRateFactory;
 
-  let shippingMethodsDriverSpy: jasmine.SpyObj<DaffCartShippingMethodsServiceInterface<DaffCartShippingRate>>;
+  let shippingMethodsDriverSpy: jasmine.SpyObj<DaffCartShippingMethodsServiceInterface>;
 
   let daffCartStorageSpy: jasmine.SpyObj<DaffCartStorageService>;
 
@@ -56,7 +56,7 @@ describe('Daffodil | Cart | DaffCartShippingMethodsEffects', () => {
 
     effects = TestBed.get<DaffCartShippingMethodsEffects<DaffCartShippingRate>>(DaffCartShippingMethodsEffects);
 
-    shippingMethodsDriverSpy = TestBed.get<DaffCartShippingMethodsServiceInterface<DaffCartShippingRate>>(DaffCartShippingMethodsDriver);
+    shippingMethodsDriverSpy = TestBed.get<DaffCartShippingMethodsServiceInterface>(DaffCartShippingMethodsDriver);
     daffCartStorageSpy = TestBed.get(DaffCartStorageService);
 
     cartFactory = TestBed.get<DaffCartFactory>(DaffCartFactory);

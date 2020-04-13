@@ -26,7 +26,7 @@ export class DaffCartItemList implements Action {
   readonly type = DaffCartItemActionTypes.CartItemListAction;
 }
 
-export class DaffCartItemListSuccess<T extends DaffCartItem> implements Action {
+export class DaffCartItemListSuccess<T extends DaffCartItem = DaffCartItem> implements Action {
   readonly type = DaffCartItemActionTypes.CartItemListSuccessAction;
 
   constructor(public payload: T[]) {}
@@ -38,13 +38,13 @@ export class DaffCartItemListFailure implements Action {
   constructor(public payload: string) {}
 }
 
-export class DaffCartItemLoad<T extends DaffCartItem> implements Action {
+export class DaffCartItemLoad<T extends DaffCartItem = DaffCartItem> implements Action {
   readonly type = DaffCartItemActionTypes.CartItemLoadAction;
 
   constructor(public itemId: T['item_id']) {}
 }
 
-export class DaffCartItemLoadSuccess<T extends DaffCartItem> implements Action {
+export class DaffCartItemLoadSuccess<T extends DaffCartItem = DaffCartItem> implements Action {
   readonly type = DaffCartItemActionTypes.CartItemLoadSuccessAction;
 
   constructor(public payload: T) {}
@@ -56,13 +56,13 @@ export class DaffCartItemLoadFailure implements Action {
   constructor(public payload: string) {}
 }
 
-export class DaffCartItemUpdate<T extends DaffCartItem> implements Action {
+export class DaffCartItemUpdate<T extends DaffCartItem = DaffCartItem> implements Action {
   readonly type = DaffCartItemActionTypes.CartItemUpdateAction;
 
   constructor(public itemId: T['item_id'], public changes: Partial<T>) {}
 }
 
-export class DaffCartItemUpdateSuccess<T extends DaffCart> implements Action {
+export class DaffCartItemUpdateSuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartItemActionTypes.CartItemUpdateSuccessAction;
 
   constructor(public payload: Partial<T>) {}
@@ -74,13 +74,13 @@ export class DaffCartItemUpdateFailure implements Action {
   constructor(public payload: string) {}
 }
 
-export class DaffCartItemAdd<T extends DaffCartItemInput> implements Action {
+export class DaffCartItemAdd<T extends DaffCartItemInput = DaffCartItemInput> implements Action {
   readonly type = DaffCartItemActionTypes.CartItemAddAction;
 
   constructor(public input: T) {}
 }
 
-export class DaffCartItemAddSuccess<T extends DaffCart> implements Action {
+export class DaffCartItemAddSuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartItemActionTypes.CartItemAddSuccessAction;
 
   constructor(public payload: Partial<T>) {}
@@ -92,13 +92,13 @@ export class DaffCartItemAddFailure implements Action {
   constructor(public payload: string) {}
 }
 
-export class DaffCartItemDelete<T extends DaffCartItem> implements Action {
+export class DaffCartItemDelete<T extends DaffCartItem = DaffCartItem> implements Action {
   readonly type = DaffCartItemActionTypes.CartItemDeleteAction;
 
   constructor(public itemId: T['item_id']) {}
 }
 
-export class DaffCartItemDeleteSuccess<T extends DaffCart> implements Action {
+export class DaffCartItemDeleteSuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartItemActionTypes.CartItemDeleteSuccessAction;
 
   constructor(public payload: Partial<T>) {}
@@ -111,9 +111,9 @@ export class DaffCartItemDeleteFailure implements Action {
 }
 
 export type DaffCartItemActions<
-  T extends DaffCartItem,
-  U extends DaffCartItemInput,
-  V extends DaffCart
+  T extends DaffCartItem = DaffCartItem,
+  U extends DaffCartItemInput = DaffCartItemInput,
+  V extends DaffCart = DaffCart
 > =
   | DaffCartItemList
   | DaffCartItemListSuccess<T>

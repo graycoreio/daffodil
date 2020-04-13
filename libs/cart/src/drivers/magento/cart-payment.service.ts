@@ -25,7 +25,7 @@ import {
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoCartPaymentService implements DaffCartPaymentServiceInterface<DaffCartPaymentMethod, DaffCart> {
+export class DaffMagentoCartPaymentService implements DaffCartPaymentServiceInterface {
   constructor(
     private apollo: Apollo,
     public cartTransformer: DaffMagentoCartTransformer,

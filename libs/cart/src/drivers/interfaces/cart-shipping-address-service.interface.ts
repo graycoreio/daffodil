@@ -8,8 +8,8 @@ import { DaffCartAddress } from '../../models/cart-address';
  * The interface responsible for managing the shipping address of a cart.
  */
 export interface DaffCartShippingAddressServiceInterface<
-	T extends DaffCartAddress,
-	V extends DaffCart
+	T extends DaffCartAddress = DaffCartAddress,
+	V extends DaffCart = DaffCart
 > {
 	/**
 	 * Retrieve the shipping address of a cart.
