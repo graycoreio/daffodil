@@ -15,7 +15,7 @@
             "path": ""
           },
           "configurations": {
-            "magento": {
+            "magento-local": {
               "url": "https://magento2.test/graphql",
               "path": "apps/demo/src/app/drivers/magento/fragmentTypes.json"
             }
