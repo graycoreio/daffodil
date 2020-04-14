@@ -3,12 +3,12 @@ import { Observable } from 'rxjs';
 import { Action, Store, select } from '@ngrx/store';
 
 import { DaffStoreFacade } from '@daffodil/core';
-import { DaffAuthToken } from '@daffodil/auth';
 
 import { DaffAuthFeatureState } from '../reducers/public_api';
 import {
   getDaffAuthSelectors
 } from '../selectors/public_api';
+import { DaffAuthToken } from '../models/auth-token';
 
 @Injectable({
   providedIn: 'root'
