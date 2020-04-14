@@ -51,7 +51,7 @@ const createPaypalSelectors = <T extends DaffPaypalTokenResponse>(): DaffPaypalM
 	}
 }
 
-export const daffPaypalSelectors = (() => {
+export const getDaffPaypalSelectors = (() => {
 	let cache;
 	return <T extends DaffPaypalTokenResponse = DaffPaypalTokenResponse>(): DaffPaypalMemoizedSelectors<T> => cache = cache 
 		? cache 
