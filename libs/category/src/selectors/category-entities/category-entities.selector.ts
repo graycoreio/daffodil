@@ -7,8 +7,9 @@ import { DaffCategoryPageConfigurationState } from '../../models/category-page-c
 import { DaffCategoryReducersState } from '../../reducers/category-reducers.interface';
 import { daffCategoryEntitiesAdapter } from '../../reducers/category-entities/category-entities-adapter';
 import { getDaffCategoryFeatureSelector } from '../category-feature.selector';
+import { DaffCategory } from '../../models/category';
 
-export interface DaffCategoryEntitiesMemoizedSelectors<V extends DaffGenericCategory<V>> {
+export interface DaffCategoryEntitiesMemoizedSelectors<V extends DaffGenericCategory<V> = DaffCategory> {
 	selectCategoryEntitiesState: MemoizedSelector<object, EntityState<V>>;
 	selectCategoryIds: MemoizedSelector<object, EntityState<V>['ids']>;
 	selectCategoryEntities: MemoizedSelector<object, Dictionary<V>>;

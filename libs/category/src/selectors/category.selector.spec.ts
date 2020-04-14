@@ -24,7 +24,7 @@ describe('DaffCategorySelectors', () => {
 	let stubCategory: DaffCategory;
   const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest> = categoryPageConfigurationFactory.create();
 	let product: DaffProduct;
-	const categorySelectors = getDaffCategorySelectors<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>, DaffProduct>();
+	const categorySelectors = getDaffCategorySelectors();
 
   beforeEach(() => {
     TestBed.configureTestingModule({

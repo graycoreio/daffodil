@@ -7,6 +7,7 @@ import { DaffCategoryRequest } from '../models/requests/category-request';
 import { DaffCategoryFilterRequest, DaffToggleCategoryFilterRequest } from '../models/requests/filter-request';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
 import { DaffGenericCategory } from '../models/generic-category';
+import { DaffCategory } from '../models/category';
 
 export enum DaffCategoryActionTypes {
   CategoryLoadAction = '[Daff-Category] Category Load Action',
@@ -24,7 +25,7 @@ export enum DaffCategoryActionTypes {
  * 
  * @param request - DaffCategoryRequest object
  */
-export class DaffCategoryLoad<T extends DaffCategoryRequest> implements Action {
+export class DaffCategoryLoad<T extends DaffCategoryRequest = DaffCategoryRequest> implements Action {
   readonly type = DaffCategoryActionTypes.CategoryLoadAction;
 
   constructor(public request: T) { }
@@ -36,10 +37,10 @@ export class DaffCategoryLoad<T extends DaffCategoryRequest> implements Action {
  * @param response - DaffGetCategoryResponse object
  */
 export class DaffCategoryLoadSuccess<
-	T extends DaffCategoryRequest, 
-	V extends DaffGenericCategory<V>, 
-	U extends DaffCategoryPageConfigurationState<T>,
-	W extends DaffProduct
+	T extends DaffCategoryRequest = DaffCategoryRequest, 
+	V extends DaffGenericCategory<V> = DaffCategory, 
+	U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
+	W extends DaffProduct = DaffProduct
 > implements Action {
   readonly type = DaffCategoryActionTypes.CategoryLoadSuccessAction;
 
@@ -118,10 +119,10 @@ export class DaffToggleCategoryFilter implements Action {
 }
 
 export type DaffCategoryActions<
-	T extends DaffCategoryRequest, 
-	U extends DaffGenericCategory<U>, 
-	V extends DaffCategoryPageConfigurationState<T>,
-	W extends DaffProduct
+	T extends DaffCategoryRequest = DaffCategoryRequest, 
+	U extends DaffGenericCategory<U> = DaffCategory, 
+	V extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
+	W extends DaffProduct = DaffProduct
 > =
   | DaffCategoryLoad<T>
   | DaffCategoryLoadSuccess<T, U, V, W>
