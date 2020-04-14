@@ -2,8 +2,8 @@ import { BehaviorSubject } from 'rxjs';
 
 import { DaffProduct, DaffProductGridFacadeInterface } from '@daffodil/product';
 
-export class MockDaffProductGridFacade<T extends DaffProduct> implements DaffProductGridFacadeInterface<T> {
+export class MockDaffProductGridFacade implements DaffProductGridFacadeInterface {
 	loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-	products$: BehaviorSubject<T[]> = new BehaviorSubject([]);
+	products$: BehaviorSubject<DaffProduct[]> = new BehaviorSubject([]);
 	dispatch() {};
 }
