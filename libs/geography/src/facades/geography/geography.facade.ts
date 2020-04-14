@@ -19,7 +19,7 @@ export class DaffGeographyFacade<T extends DaffCountry> implements DaffStoreFaca
   errors$: Observable<string[]>;
 
   countries$: Observable<T[]>;
-  ids$: Observable<(string | number)[]>;
+  countryIds$: Observable<(string | number)[]>;
   countryCount$: Observable<number>;
   countryEntities$: Observable<Dictionary<T>>;
 
@@ -37,7 +37,7 @@ export class DaffGeographyFacade<T extends DaffCountry> implements DaffStoreFaca
     this.errors$ = this.store.pipe(select(selectGeographyErrors));
 
     this.countries$ = this.store.pipe(select(selectAllCountries));
-    this.ids$ = this.store.pipe(select(selectCountryIds));
+    this.countryIds$ = this.store.pipe(select(selectCountryIds));
     this.countryCount$ = this.store.pipe(select(selectCountryTotal));
     this.countryEntities$ = this.store.pipe(select(selectCountryEntities));
   }

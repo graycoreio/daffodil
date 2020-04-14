@@ -99,16 +99,16 @@ describe('DaffGeographyFacade', () => {
     });
   });
 
-  describe('ids$', () => {
+  describe('countryIds$', () => {
     it('should initially be an empty array', () => {
       const expected = cold('a', { a: [] });
-      expect(facade.ids$).toBeObservable(expected);
+      expect(facade.countryIds$).toBeObservable(expected);
     });
 
     it('should contain the country id upon a successful country load', () => {
       const expected = cold('a', { a: [countryId] });
       store.dispatch(new DaffCountryLoadSuccess(mockCountry));
-      expect(facade.ids$).toBeObservable(expected);
+      expect(facade.countryIds$).toBeObservable(expected);
     });
   });
 
