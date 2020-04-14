@@ -14,7 +14,7 @@ describe('DaffProductGridEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffProductGridEffects<DaffProduct>;
   let productFactory: DaffProductFactory;
-  let daffProductDriver: DaffProductServiceInterface<DaffProduct>;
+  let daffProductDriver: DaffProductServiceInterface;
   let mockProductGrid: DaffProduct[];
 
   beforeEach(() => {

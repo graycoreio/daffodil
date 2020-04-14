@@ -26,7 +26,7 @@ export class DaffProductGridLoad implements Action {
  * 
  * @param payload - An array of Products
  */
-export class DaffProductGridLoadSuccess<T extends DaffProduct> implements Action {
+export class DaffProductGridLoadSuccess<T extends DaffProduct = DaffProduct> implements Action {
     readonly type = DaffProductGridActionTypes.ProductGridLoadSuccessAction;
 
     constructor(public payload: T[]) {}
@@ -52,7 +52,7 @@ export class DaffProductGridReset implements Action {
     constructor() {}
 }
 
-export type DaffProductGridActions<T extends DaffProduct> = 
+export type DaffProductGridActions<T extends DaffProduct = DaffProduct> = 
     | DaffProductGridLoad 
     | DaffProductGridLoadSuccess<T>
     | DaffProductGridLoadFailure

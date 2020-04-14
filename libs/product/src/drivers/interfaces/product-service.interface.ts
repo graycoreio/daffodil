@@ -5,7 +5,7 @@ import { DaffProduct } from '../../models/product';
 /**
  * An interface for any Product service drivers.
  */
-export interface DaffProductServiceInterface<T extends DaffProduct> {
+export interface DaffProductServiceInterface<T extends DaffProduct = DaffProduct> {
   /**
    * Get all products.
    */

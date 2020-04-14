@@ -15,7 +15,7 @@ import { getDaffProductSelectors } from '../../selectors/public_api';
 @Injectable({
   providedIn: DaffProductModule
 })
-export class DaffProductGridFacade<T extends DaffProduct> implements DaffStoreFacade<Action> {
+export class DaffProductGridFacade<T extends DaffProduct = DaffProduct> implements DaffStoreFacade<Action> {
   /**
    * The loading state for retrieving a list of products.
    */

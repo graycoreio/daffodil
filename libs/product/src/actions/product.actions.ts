@@ -28,7 +28,7 @@ export class DaffProductLoad implements Action {
  * 
  * @param payload - A Product
  */
-export class DaffProductLoadSuccess<T extends DaffProduct> implements Action {
+export class DaffProductLoadSuccess<T extends DaffProduct = DaffProduct> implements Action {
     readonly type = DaffProductActionTypes.ProductLoadSuccessAction;
 
     constructor(public payload: T) {}
@@ -56,7 +56,7 @@ export class DaffProductUpdateQty implements Action {
     constructor(public payload: number) {}
 }
 
-export type DaffProductActions<T extends DaffProduct> = 
+export type DaffProductActions<T extends DaffProduct = DaffProduct> = 
     | DaffProductLoad 
     | DaffProductLoadSuccess<T>
     | DaffProductLoadFailure

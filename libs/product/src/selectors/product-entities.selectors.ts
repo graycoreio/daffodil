@@ -6,7 +6,7 @@ import { getDaffProductFeatureSelector } from './product-feature.selector';
 import { DaffProductReducersState } from '../reducers/product-reducers-state.interface';
 import { DaffProduct } from '../models/product';
 
-export interface DaffProductEntitiesMemoizedSelectors<T extends DaffProduct> {
+export interface DaffProductEntitiesMemoizedSelectors<T extends DaffProduct = DaffProduct> {
 	selectProductEntitiesState: MemoizedSelector<object, EntityState<T>>;
 	selectProductIds: MemoizedSelector<object, EntityState<T>['ids']>;
 	selectProductEntities: MemoizedSelector<object, EntityState<T>['entities']>;

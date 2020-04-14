@@ -14,7 +14,7 @@ describe('DaffProductEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffProductEffects<DaffProduct>;
   let mockProduct: DaffProduct;
-  let daffProductDriver: DaffProductServiceInterface<DaffProduct>;
+  let daffProductDriver: DaffProductServiceInterface;
 
   let productFactory: DaffProductFactory;
   let productId;

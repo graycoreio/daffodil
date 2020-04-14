@@ -12,7 +12,7 @@ import { DaffProduct, DaffProductServiceInterface } from '@daffodil/product';
 @Injectable({
   providedIn: 'root'
 })
-export class DaffInMemoryProductService implements DaffProductServiceInterface<DaffProduct> {
+export class DaffInMemoryProductService implements DaffProductServiceInterface {
   url = '/api/products/';
 
   constructor(private http: HttpClient) {}

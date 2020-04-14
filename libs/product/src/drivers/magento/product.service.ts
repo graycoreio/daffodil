@@ -19,7 +19,7 @@ import { DaffProduct } from '../../models/product';
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoProductService implements DaffProductServiceInterface<DaffProduct> {  
+export class DaffMagentoProductService implements DaffProductServiceInterface {  
   constructor(
     private apollo: Apollo,
     public productTransformer: DaffMagentoProductTransformerService) {}

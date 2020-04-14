@@ -6,7 +6,7 @@ import { DaffBestSellersReducerState } from '../reducers/best-sellers/best-selle
 import { getDaffProductEntitiesSelectors } from './product-entities.selectors';
 import { DaffProduct } from '../models/product';
 
-export interface DaffBestSellersMemoizedSelectors<T extends DaffProduct> {
+export interface DaffBestSellersMemoizedSelectors<T extends DaffProduct = DaffProduct> {
 	selectBestSellersState: MemoizedSelector<object, DaffBestSellersReducerState>;
 	selectBestSellersLoadingState: MemoizedSelector<object, boolean>;
 	selectBestSellersIdsState: MemoizedSelector<object, string[]>;

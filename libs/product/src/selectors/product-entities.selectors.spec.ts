@@ -11,7 +11,7 @@ import { getDaffProductEntitiesSelectors } from './product-entities.selectors';
 
 describe('selectProductEntitiesState', () => {
 
-  let store: Store<DaffProductReducersState<DaffProduct>>;
+  let store: Store<DaffProductReducersState>;
   const productFactory: DaffProductFactory = new DaffProductFactory();
 	let mockProduct: DaffProduct;
 	const {
@@ -20,7 +20,7 @@ describe('selectProductEntitiesState', () => {
 		selectAllProducts,
 		selectProductTotal,
 		selectProduct
-	} = getDaffProductEntitiesSelectors<DaffProduct>();
+	} = getDaffProductEntitiesSelectors();
   
   beforeEach(() => {
     TestBed.configureTestingModule({
