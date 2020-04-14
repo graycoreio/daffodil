@@ -8,6 +8,7 @@ import { DaffProductModule } from '../../product.module';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
 import { DaffProduct } from '../../models/product';
 import { getDaffProductSelectors } from '../../selectors/public_api';
+import { DaffProductGridFacadeInterface } from './product-grid-facade.interface';
 
 /**
  * A facade for accessing state for a list of products from an application component.
@@ -15,7 +16,7 @@ import { getDaffProductSelectors } from '../../selectors/public_api';
 @Injectable({
   providedIn: DaffProductModule
 })
-export class DaffProductGridFacade<T extends DaffProduct = DaffProduct> implements DaffStoreFacade<Action> {
+export class DaffProductGridFacade<T extends DaffProduct = DaffProduct> implements DaffStoreFacade<Action>, DaffProductGridFacadeInterface<T> {
   /**
    * The loading state for retrieving a list of products.
    */
