@@ -4,7 +4,7 @@ import { Dictionary } from '@ngrx/entity';
 
 import { DaffGeographyFacadeInterface, DaffCountry } from '@daffodil/geography';
 
-export class MockDaffGeographyFacade extends DaffGeographyFacadeInterface {
+export class MockDaffGeographyFacade implements DaffGeographyFacadeInterface {
   loading$: BehaviorSubject<boolean> = new BehaviorSubject(null);
   errors$: BehaviorSubject<string[]> = new BehaviorSubject([]);
   countries$: BehaviorSubject<DaffCountry[]> = new BehaviorSubject([]);

@@ -4,7 +4,7 @@ import { Dictionary } from '@ngrx/entity';
 
 import { DaffCountry } from '../../models/country';
 
-export interface DaffGeographyFacadeInterface<T extends DaffCountry> {
+export interface DaffGeographyFacadeInterface<T extends DaffCountry = DaffCountry> {
   loading$: Observable<boolean>;
   errors$: Observable<string[]>;
   countries$: Observable<T[]>;
