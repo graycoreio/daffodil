@@ -24,7 +24,7 @@ export class DaffGeographyFacade<T extends DaffCountry> implements DaffStoreFaca
   countryEntities$: Observable<Dictionary<T>>;
 
   constructor(private store: Store<DaffGeographyFeatureState<T>>) {
-    const  {
+    const {
       selectCountryIds,
       selectCountryEntities,
       selectAllCountries,
