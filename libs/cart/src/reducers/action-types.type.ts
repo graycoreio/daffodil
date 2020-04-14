@@ -15,11 +15,18 @@ import { DaffCartAddress } from '../models/cart-address';
 import { DaffCartShippingRate } from '../models/cart-shipping-rate';
 import { DaffCartPaymentMethod } from '../models/cart-payment';
 
-export type ActionTypes = DaffCartActions<DaffCart>
-  | DaffCartItemActions<DaffCartItem, DaffCartItemInput, DaffCart>
-  | DaffCartBillingAddressActions<DaffCartAddress, DaffCart>
-  | DaffCartShippingAddressActions<DaffCartAddress, DaffCart>
-  | DaffCartShippingMethodsActions<DaffCartShippingRate>
-  | DaffCartShippingInformationActions<DaffCartShippingRate, DaffCart>
-  | DaffCartPaymentActions<DaffCartPaymentMethod, DaffCart>
-  | DaffCartPaymentMethodsActions<DaffCartPaymentMethod>
+export type ActionTypes<
+	T extends DaffCart = DaffCart,
+	V extends DaffCartItem = DaffCartItem,
+	U extends DaffCartItemInput = DaffCartItemInput,
+	W extends DaffCartAddress = DaffCartAddress,
+	X extends DaffCartShippingRate = DaffCartShippingRate,
+	Y extends DaffCartPaymentMethod = DaffCartPaymentMethod
+> = DaffCartActions<T>
+  | DaffCartItemActions<V, U, T>
+  | DaffCartBillingAddressActions<W, T>
+  | DaffCartShippingAddressActions<W, T>
+  | DaffCartShippingMethodsActions<X>
+  | DaffCartShippingInformationActions<X, T>
+  | DaffCartPaymentActions<Y, T>
+  | DaffCartPaymentMethodsActions<Y>

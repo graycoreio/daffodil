@@ -29,11 +29,7 @@ import { MagentoUpdateCartItemResponse } from './models/responses/public_api';
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoCartItemService implements DaffCartItemServiceInterface<
-  DaffCartItem,
-  DaffCartItemInput,
-  DaffCart
-> {
+export class DaffMagentoCartItemService implements DaffCartItemServiceInterface {
   constructor(
     private apollo: Apollo,
     public cartTransformer: DaffMagentoCartTransformer,

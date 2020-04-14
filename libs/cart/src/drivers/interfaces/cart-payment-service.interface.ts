@@ -7,7 +7,7 @@ import { DaffCart } from '../../models/cart';
 /**
  * The interface responsible for managing the selected payment method of a cart.
  */
-export interface DaffCartPaymentServiceInterface<T extends DaffCartPaymentMethod, V extends DaffCart> {
+export interface DaffCartPaymentServiceInterface<T extends DaffCartPaymentMethod = DaffCartPaymentMethod, V extends DaffCart = DaffCart> {
 	/**
 	 * Get the currently applied payment method of a cart.
 	 */

@@ -12,7 +12,7 @@ import { DaffCartErrorType } from '../../reducers/cart-error-type.enum';
 @Injectable({
   providedIn: 'root'
 })
-export class DaffCartFacade<T extends DaffCart> implements DaffStoreFacade<Action> {
+export class DaffCartFacade<T extends DaffCart = DaffCart> implements DaffStoreFacade<Action> {
   loading$: Observable<boolean>;
   cart$: Observable<T>;
 

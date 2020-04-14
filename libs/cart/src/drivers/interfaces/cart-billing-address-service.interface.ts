@@ -9,8 +9,8 @@ import { DaffCart } from '../../models/cart';
  * The interface responsible for managing the billing address of a cart.
  */
 export interface DaffCartBillingAddressServiceInterface<
-	T extends DaffCartAddress,
-	V extends DaffCart
+	T extends DaffCartAddress = DaffCartAddress,
+	V extends DaffCart = DaffCart
 > {
 	/**
 	 * Retrieve the billing address of a cart

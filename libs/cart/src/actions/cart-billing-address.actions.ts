@@ -28,13 +28,13 @@ export class DaffCartBillingAddressLoadFailure implements Action {
   constructor(public payload: string) {}
 }
 
-export class DaffCartBillingAddressUpdate<T extends DaffCartAddress> implements Action {
+export class DaffCartBillingAddressUpdate<T extends DaffCartAddress = DaffCartAddress> implements Action {
   readonly type = DaffCartBillingAddressActionTypes.CartBillingAddressUpdateAction;
 
   constructor(public payload: Partial<T>) {}
 }
 
-export class DaffCartBillingAddressUpdateSuccess<T extends DaffCart> implements Action {
+export class DaffCartBillingAddressUpdateSuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartBillingAddressActionTypes.CartBillingAddressUpdateSuccessAction;
 
   constructor(public payload: Partial<T>) {}
@@ -47,8 +47,8 @@ export class DaffCartBillingAddressUpdateFailure implements Action {
 }
 
 export type DaffCartBillingAddressActions<
-  T extends DaffCartAddress,
-  V extends DaffCart
+  T extends DaffCartAddress = DaffCartAddress,
+  V extends DaffCart = DaffCart
 > =
   | DaffCartBillingAddressLoad
   | DaffCartBillingAddressLoadSuccess<T>

@@ -18,7 +18,7 @@ import { MagentoGetShippingAddressResponse, MagentoUpdateShippingAddressResponse
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoCartShippingAddressService implements DaffCartShippingAddressServiceInterface<DaffCartAddress, DaffCart> {
+export class DaffMagentoCartShippingAddressService implements DaffCartShippingAddressServiceInterface {
   constructor(
     private apollo: Apollo,
     public cartTransformer: DaffMagentoCartTransformer,

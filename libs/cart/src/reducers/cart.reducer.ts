@@ -26,7 +26,7 @@ export function composeReducers(state, action, reducers) {
     : state
 }
 
-export function daffCartReducer<T extends DaffCart>(
+export function daffCartReducer<T extends DaffCart = DaffCart>(
   state = initialState,
   action: ActionTypes
 ): DaffCartReducerState<T> {

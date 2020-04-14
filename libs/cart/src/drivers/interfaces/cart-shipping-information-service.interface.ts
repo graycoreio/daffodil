@@ -8,7 +8,7 @@ import { DaffCart } from '../../models/cart';
  * The interface responsible for mediating the interaction of the shipping
  * information of a cart with a given platform.
  */
-export interface DaffCartShippingInformationServiceInterface<T extends DaffCartShippingRate, V extends DaffCart>{
+export interface DaffCartShippingInformationServiceInterface<T extends DaffCartShippingRate = DaffCartShippingRate, V extends DaffCart = DaffCart>{
 	/**
 	 * Get the currently selected shipping method of a cart.
 	 */

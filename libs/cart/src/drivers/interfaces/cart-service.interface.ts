@@ -6,7 +6,7 @@ import { DaffCart } from '../../models/cart';
 /**
  * The interface responsible for managing a customer's cart.
  */
-export interface DaffCartServiceInterface<T extends DaffCart> {
+export interface DaffCartServiceInterface<T extends DaffCart = DaffCart> {
 	/**
 	 * Retrieve a cart
 	 */

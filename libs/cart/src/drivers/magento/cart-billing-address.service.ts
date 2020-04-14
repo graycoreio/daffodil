@@ -26,7 +26,7 @@ import { DaffMagentoBillingAddressTransformer } from './transforms/outputs/billi
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoCartBillingAddressService implements DaffCartBillingAddressServiceInterface<DaffCartAddress, DaffCart> {
+export class DaffMagentoCartBillingAddressService implements DaffCartBillingAddressServiceInterface {
   constructor(
     private apollo: Apollo,
     public cartTransformer: DaffMagentoCartTransformer,

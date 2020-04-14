@@ -19,7 +19,7 @@ export class DaffCartPaymentLoad implements Action {
   readonly type = DaffCartPaymentActionTypes.CartPaymentLoadAction;
 }
 
-export class DaffCartPaymentLoadSuccess<T extends DaffCartPaymentMethod> implements Action {
+export class DaffCartPaymentLoadSuccess<T extends DaffCartPaymentMethod = DaffCartPaymentMethod> implements Action {
   readonly type = DaffCartPaymentActionTypes.CartPaymentLoadSuccessAction;
 
   constructor(public payload: T) {}
@@ -31,13 +31,13 @@ export class DaffCartPaymentLoadFailure implements Action {
   constructor(public payload: string) {}
 }
 
-export class DaffCartPaymentUpdate<T extends DaffCartPaymentMethod> implements Action {
+export class DaffCartPaymentUpdate<T extends DaffCartPaymentMethod = DaffCartPaymentMethod> implements Action {
   readonly type = DaffCartPaymentActionTypes.CartPaymentUpdateAction;
 
   constructor(public payload: Partial<T>) {}
 }
 
-export class DaffCartPaymentUpdateSuccess<T extends DaffCart> implements Action {
+export class DaffCartPaymentUpdateSuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartPaymentActionTypes.CartPaymentUpdateSuccessAction;
 
   constructor(public payload: Partial<T>) {}
@@ -64,8 +64,8 @@ export class DaffCartPaymentRemoveFailure implements Action {
 }
 
 export type DaffCartPaymentActions<
-  T extends DaffCartPaymentMethod,
-  V extends DaffCart
+  T extends DaffCartPaymentMethod = DaffCartPaymentMethod,
+  V extends DaffCart = DaffCart
 > =
   | DaffCartPaymentLoad
   | DaffCartPaymentLoadSuccess<T>

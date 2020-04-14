@@ -1,12 +1,12 @@
 import { createSelector, MemoizedSelector, ActionReducerMap } from '@ngrx/store';
 
-import { DaffCart, getDaffCartSelectors, DaffCartReducerState, daffCartReducer } from '@daffodil/cart';
+import { getDaffCartSelectors, DaffCartReducerState, daffCartReducer } from '@daffodil/cart';
 
 export interface CartState {
-  cart: DaffCartReducerState<DaffCart>;
+  cart: DaffCartReducerState;
 }
 
-export const daffCartSelectors = getDaffCartSelectors<DaffCart>();
+export const daffCartSelectors = getDaffCartSelectors();
 
 export interface State {
   cart: CartState
@@ -28,7 +28,7 @@ export const selectCartItemCount : MemoizedSelector<object, number> = createSele
 )
 
 export const isCartEmpty : MemoizedSelector<object, boolean> = createSelector(
-  getDaffCartSelectors<DaffCart>().selectCartValue,
+  daffCartSelectors.selectCartValue,
   cart => {
     return cart.items.length === 0;
   }

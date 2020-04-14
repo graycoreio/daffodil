@@ -11,7 +11,7 @@ import {
 import { DaffCartErrorType } from '../reducers/cart-error-type.enum';
 import { DaffCart } from '../models/cart';
 
-export interface DaffCartMemoizedSelectors<T extends DaffCart> {
+export interface DaffCartMemoizedSelectors<T extends DaffCart = DaffCart> {
 	selectCartFeatureState: MemoizedSelector<object, DaffCartReducersState<T>>;
 	selectCartState: MemoizedSelector<object, DaffCartReducerState<T>>;
 	selectCartValue: MemoizedSelector<object, T>;
@@ -174,7 +174,7 @@ const createCartFeatureSelectors = <T extends DaffCart>(): DaffCartMemoizedSelec
 
 export const getDaffCartSelectors = (() => {
 	let cache;
-	return <V extends DaffCart>(): DaffCartMemoizedSelectors<V> => cache = cache 
+	return <V extends DaffCart = DaffCart>(): DaffCartMemoizedSelectors<V> => cache = cache 
 		? cache 
 		: createCartFeatureSelectors<V>();
 })();

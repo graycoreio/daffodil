@@ -33,8 +33,8 @@ import { DaffCartErrorType } from '../../reducers/cart-error-type.enum';
 import { DaffCart } from '../../models/cart';
 
 describe('DaffCartFacade', () => {
-  let store: MockStore<{ product: Partial<DaffCartReducersState<DaffCart>> }>;
-  let facade: DaffCartFacade<DaffCart>;
+  let store: MockStore<{ product: Partial<DaffCartReducersState> }>;
+  let facade: DaffCartFacade;
   let cartFactory: DaffCartFactory;
 
   let errors: DaffCartErrors;

@@ -14,7 +14,7 @@ import { ResolveCartSuccess } from '../actions/cart-resolver.actions';
 describe('EmptyCartResolver', () => {
   const actions$: Observable<any> = null;
   let emptyCartResolver: EmptyCartResolver;
-  let store: Store<DaffCartReducersState<DaffCart>>;
+  let store: Store<DaffCartReducersState>;
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
   let stubCart: DaffCart;

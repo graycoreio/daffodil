@@ -8,7 +8,7 @@ import { isCartEmpty, selectCartItemCount } from './cart-selector';
 
 describe('selectCartState', () => {
 
-  let store: Store<DaffCartReducersState<DaffCart>>;
+  let store: Store<DaffCartReducersState>;
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
   let mockCart: DaffCart;

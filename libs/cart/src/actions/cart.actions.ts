@@ -26,7 +26,7 @@ export class DaffCartLoad implements Action {
   readonly type = DaffCartActionTypes.CartLoadAction;
 }
 
-export class DaffCartLoadSuccess<T extends DaffCart> implements Action {
+export class DaffCartLoadSuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartActionTypes.CartLoadSuccessAction;
 
   constructor(public payload: T) {}
@@ -42,7 +42,7 @@ export class DaffCartCreate implements Action {
   readonly type = DaffCartActionTypes.CartCreateAction;
 }
 
-export class DaffCartCreateSuccess<T extends DaffCart> implements Action {
+export class DaffCartCreateSuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartActionTypes.CartCreateSuccessAction;
 
   constructor(public payload: {id: T['id']}) {}
@@ -76,7 +76,7 @@ export class DaffCartClear implements Action {
   readonly type = DaffCartActionTypes.CartClearAction;
 }
 
-export class DaffCartClearSuccess<T extends DaffCart> implements Action {
+export class DaffCartClearSuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartActionTypes.CartClearSuccessAction;
 
   constructor(public payload: Partial<T>) {}
@@ -88,7 +88,7 @@ export class DaffCartClearFailure implements Action {
   constructor(public payload: string) {}
 }
 
-export type DaffCartActions<T extends DaffCart> =
+export type DaffCartActions<T extends DaffCart = DaffCart> =
   | DaffCartStorageFailure
   | DaffCartLoad
   | DaffCartLoadSuccess<T>
