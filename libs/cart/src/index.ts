@@ -14,7 +14,8 @@ export * from './actions/public_api';
 export * from './selectors/public_api';
 export * from './reducers/public_api';
 
-export { DaffCartFacade } from './facades/cart/cart.facade'
+export { DaffCartFacade } from './facades/cart/cart.facade';
+export { DaffCartFacadeInterface } from './facades/cart/cart-facade.interface';
 
 export { DaffCartStorageService } from './storage/cart-storage.service';
 
