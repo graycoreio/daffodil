@@ -14,13 +14,13 @@ import { getDaffProductGridSelectors } from './product-grid.selectors';
 
 describe('selectProductState', () => {
 
-  let store: Store<DaffProductReducersState<DaffProduct>>;
+  let store: Store<DaffProductReducersState>;
   const productFactory: DaffProductFactory = new DaffProductFactory();
 	let mockProduct: DaffProduct;
 	const {
 		selectProductGridState,
 		selectProductGridLoadingState
-	} = getDaffProductGridSelectors<DaffProduct>();
+	} = getDaffProductGridSelectors();
   
   beforeEach(() => {
     TestBed.configureTestingModule({

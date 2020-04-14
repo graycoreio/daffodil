@@ -15,7 +15,7 @@ describe('BestSellersEffects', () => {
   let effects: DaffBestSellersEffects<DaffProduct>;
   let productFactory: DaffProductFactory;
   let mockBestSellers: DaffProduct[];
-  let daffProductDriver: DaffProductServiceInterface<DaffProduct>;
+  let daffProductDriver: DaffProductServiceInterface;
 
   beforeEach(() => {
 

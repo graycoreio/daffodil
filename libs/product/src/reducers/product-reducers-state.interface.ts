@@ -8,7 +8,7 @@ import { DaffBestSellersReducerState } from './best-sellers/best-sellers-reducer
 /**
  * Interface for product redux store.
  */
-export interface DaffProductReducersState<T extends DaffProduct> {
+export interface DaffProductReducersState<T extends DaffProduct = DaffProduct> {
   products : EntityState<T>;
   productGrid: DaffProductGridReducerState<T>;
   product: DaffProductReducerState;

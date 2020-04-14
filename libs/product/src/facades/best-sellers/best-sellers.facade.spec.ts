@@ -6,11 +6,10 @@ import { DaffBestSellersFacade } from './best-sellers.facade';
 import { DaffBestSellersLoad, DaffBestSellersLoadSuccess } from '../../actions/best-sellers.actions';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
 import { daffProductReducers } from '../../reducers/product-reducers';
-import { DaffProduct } from '../../models/product';
 
 describe('DaffBestSellersFacade', () => {
-  let store: Store<DaffProductReducersState<DaffProduct>>;
-  let facade: DaffBestSellersFacade<DaffProduct>;
+  let store: Store<DaffProductReducersState>;
+  let facade: DaffBestSellersFacade;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

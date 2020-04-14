@@ -10,7 +10,7 @@ import { daffProductEntitiesAdapter } from './product-entities-reducer-adapter';
 describe('Product | Product Entities Reducer', () => {
 
 	let productFactory: DaffProductFactory;
-	const initialState = daffProductEntitiesAdapter<DaffProduct>().getInitialState();
+	const initialState = daffProductEntitiesAdapter().getInitialState();
 
   beforeEach(() => {
     productFactory = new DaffProductFactory();

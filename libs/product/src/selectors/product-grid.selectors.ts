@@ -5,7 +5,7 @@ import { DaffProductReducersState } from '../reducers/product-reducers-state.int
 import { getDaffProductFeatureSelector } from './product-feature.selector';
 import { DaffProduct } from '../models/product';
 
-export interface DaffProductGridMemoizedSelectors<T extends DaffProduct> {
+export interface DaffProductGridMemoizedSelectors<T extends DaffProduct = DaffProduct> {
 	selectProductGridState: MemoizedSelector<object, DaffProductGridReducerState<T>>;
 	selectProductGridLoadingState: MemoizedSelector<object, boolean>;
 }

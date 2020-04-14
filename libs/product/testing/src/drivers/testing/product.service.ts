@@ -15,7 +15,7 @@ import { DaffProductImageFactory } from '../../factories/product-image.factory';
 @Injectable({
   providedIn: 'root'
 })
-export class DaffTestingProductService implements DaffProductServiceInterface<DaffProduct> {
+export class DaffTestingProductService implements DaffProductServiceInterface {
  
   constructor(
     private productFactory: DaffProductFactory,

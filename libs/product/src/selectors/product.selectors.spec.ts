@@ -13,7 +13,7 @@ import { getDaffProductPageSelectors } from './product.selectors';
 
 describe('selectProductState', () => {
 
-  let store: Store<DaffProductReducersState<DaffProduct>>;
+  let store: Store<DaffProductReducersState>;
   const productFactory: DaffProductFactory = new DaffProductFactory();
 	let mockProduct: DaffProduct;
 	const {
@@ -22,7 +22,7 @@ describe('selectProductState', () => {
 		selectSelectedProductState,
 		selectSelectedProductId,
 		selectSelectedProductQty
-	} = getDaffProductPageSelectors<DaffProduct>();
+	} = getDaffProductPageSelectors();
   
   beforeEach(() => {
     TestBed.configureTestingModule({

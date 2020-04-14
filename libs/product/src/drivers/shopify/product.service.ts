@@ -93,7 +93,7 @@ export const DaffShopifyProductTransformer = (node: ProductNode) : DaffProduct =
 @Injectable({
   providedIn: 'root'
 })
-export class DaffShopifyProductService implements DaffProductServiceInterface<DaffProduct> {
+export class DaffShopifyProductService implements DaffProductServiceInterface {
 
   defaultLength = 20;
   
