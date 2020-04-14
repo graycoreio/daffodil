@@ -15,6 +15,7 @@ import { DaffSortDirectionEnum, DaffCategoryRequest } from '../models/requests/c
 import { DaffCategoryAppliedFilter } from '../models/category-applied-filter';
 import { DaffGenericCategory } from '../models/generic-category';
 import { DaffCategory } from '../models/category';
+import { DaffCategoryFacadeInterface } from './category-facade.interface';
 
 /**
  * A facade for accessing state for the currently selected category.
@@ -27,7 +28,7 @@ export class DaffCategoryFacade<
 	V extends DaffGenericCategory<V> = DaffCategory, 
 	U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
 	W extends DaffProduct = DaffProduct
-> implements DaffStoreFacade<Action> {
+> implements DaffStoreFacade<Action>, DaffCategoryFacadeInterface<T, V, U, W> {
 	private categorySelectors = getDaffCategorySelectors<T, V, U, W>();
 	
 	/**

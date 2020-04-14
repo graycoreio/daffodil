@@ -2,6 +2,7 @@ export * from './actions/category.actions';
 
 export { daffCategoryReducers } from './reducers/category-reducers';
 export { DaffCategoryFacade } from './facades/category.facade';
+export { DaffCategoryFacadeInterface } from './facades/category-facade.interface';
 
 export { DaffCategoryModule } from './category.module';
 export { DaffCategoryMagentoDriverModule } from './drivers/magento/category-driver.module';
