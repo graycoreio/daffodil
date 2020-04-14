@@ -2,9 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
 import { of } from 'rxjs';
 
-import {
-  DaffProductUnion
-} from '@daffodil/product';
+import { DaffProduct } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 import {
   DaffCart,
@@ -58,7 +56,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
   let cartId;
   let itemId;
   let sku;
-  let mockDaffProduct: DaffProductUnion;
+  let mockDaffProduct: DaffProduct;
   let mockDaffCart: DaffCart;
   let mockMagentoCart: MagentoCart;
   let mockMagentoCartItem: MagentoCartItem;

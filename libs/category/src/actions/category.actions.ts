@@ -1,5 +1,7 @@
 import { Action } from '@ngrx/store';
 
+import { DaffProduct } from '@daffodil/product';
+
 import { DaffGetCategoryResponse } from '../models/get-category-response';
 import { DaffCategoryRequest } from '../models/requests/category-request';
 import { DaffCategoryFilterRequest, DaffToggleCategoryFilterRequest } from '../models/requests/filter-request';
@@ -33,10 +35,15 @@ export class DaffCategoryLoad<T extends DaffCategoryRequest> implements Action {
  * 
  * @param response - DaffGetCategoryResponse object
  */
-export class DaffCategoryLoadSuccess<T extends DaffCategoryRequest, V extends DaffGenericCategory<V>, U extends DaffCategoryPageConfigurationState<T>> implements Action {
+export class DaffCategoryLoadSuccess<
+	T extends DaffCategoryRequest, 
+	V extends DaffGenericCategory<V>, 
+	U extends DaffCategoryPageConfigurationState<T>,
+	W extends DaffProduct
+> implements Action {
   readonly type = DaffCategoryActionTypes.CategoryLoadSuccessAction;
 
-  constructor(public response: DaffGetCategoryResponse<T, V, U>) { }
+  constructor(public response: DaffGetCategoryResponse<T, V, U, W>) { }
 }
 
 /**
@@ -113,10 +120,11 @@ export class DaffToggleCategoryFilter implements Action {
 export type DaffCategoryActions<
 	T extends DaffCategoryRequest, 
 	U extends DaffGenericCategory<U>, 
-	V extends DaffCategoryPageConfigurationState<T>
+	V extends DaffCategoryPageConfigurationState<T>,
+	W extends DaffProduct
 > =
   | DaffCategoryLoad<T>
-  | DaffCategoryLoadSuccess<T, U, V>
+  | DaffCategoryLoadSuccess<T, U, V, W>
   | DaffCategoryLoadFailure
 	| DaffChangeCategoryPageSize
 	| DaffChangeCategoryCurrentPage

@@ -29,7 +29,7 @@ import { DaffCategoryFilterEqualRequest } from '../models/requests/filter-reques
 import { DaffCategoryFilterType } from '../models/category-filter-base';
 import { daffCategoryReducers } from '../reducers/category-reducers';
 
-class MockCategoryDriver implements DaffCategoryServiceInterface<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>> {
+class MockCategoryDriver implements DaffCategoryServiceInterface<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>, DaffProduct> {
 	get(categoryRequest: any): Observable<any> {
 		return null;
 	}
@@ -41,14 +41,14 @@ describe('DaffCategoryEffects', () => {
   let stubCategory: DaffCategory;
   let stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest>;
   let stubProducts: DaffProduct[];
-  let daffCategoryDriver: DaffCategoryServiceInterface<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>;
+  let daffCategoryDriver: DaffCategoryServiceInterface<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>, DaffProduct>;
   const daffCategoryDriverSpy = jasmine.createSpyObj('DaffCategoryDriver', ['get']);
   let store: MockStore<any>;
 
   let categoryFactory: DaffCategoryFactory;
   let categoryPageConfigurationStateFactory: DaffCategoryPageConfigurationStateFactory;
 	let productFactory: DaffProductFactory;
-	let categoryLoadSuccessAction: DaffCategoryLoadSuccess<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>;
+	let categoryLoadSuccessAction: DaffCategoryLoadSuccess<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>, DaffProduct>;
 	let productGridLoadSuccessAction: DaffProductGridLoadSuccess<DaffProduct>;
 
   beforeEach(() => {

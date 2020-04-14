@@ -40,7 +40,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface<Da
   }
 
   /**
-   * Get an Observable of an array of DaffProductUnions.
+   * Get an Observable of an array of DaffProducts.
    */
   getAll(): Observable<DaffProduct[]> {
     return this.apollo.query<any>({

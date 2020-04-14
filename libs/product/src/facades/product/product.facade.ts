@@ -6,7 +6,6 @@ import { DaffStoreFacade } from '@daffodil/core';
 import { Store, select, Action } from '@ngrx/store';
 
 import { DaffProductModule } from '../../product.module';
-import { DaffProductUnion } from '../../models/product-union';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
 import { DaffProduct } from '../../models/product';
 import { getDaffProductSelectors } from '../../selectors/public_api';
@@ -25,7 +24,7 @@ export class DaffProductFacade<T extends DaffProduct> implements DaffStoreFacade
   /**
    * The currently selected product.
    */
-  product$: Observable<DaffProductUnion>;
+  product$: Observable<T>;
 
   constructor(private store: Store<DaffProductReducersState<T>>) {
 		const {

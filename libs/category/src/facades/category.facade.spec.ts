@@ -5,7 +5,7 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
-import { DaffProductUnion, DaffProductGridLoadSuccess, daffProductReducers, DaffProduct } from '@daffodil/product';
+import { DaffProductGridLoadSuccess, daffProductReducers, DaffProduct } from '@daffodil/product';
 
 import { DaffCategoryFacade } from './category.facade';
 import { DaffCategoryLoad, DaffCategoryLoadFailure, DaffCategoryLoadSuccess } from '../actions/category.actions';
@@ -23,7 +23,7 @@ describe('DaffCategoryFacade', () => {
   const productFactory: DaffProductFactory = new DaffProductFactory();
   let category: DaffCategory;
   let categoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest>;
-	let product: DaffProductUnion;
+	let product: DaffProduct;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

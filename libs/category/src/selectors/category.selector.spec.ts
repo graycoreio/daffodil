@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffProductGridLoadSuccess, DaffProductUnion, daffProductReducers, DaffProduct } from '@daffodil/product';
+import { DaffProductGridLoadSuccess, daffProductReducers, DaffProduct } from '@daffodil/product';
 import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
@@ -23,7 +23,7 @@ describe('DaffCategorySelectors', () => {
   const productFactory: DaffProductFactory = new DaffProductFactory();
 	let stubCategory: DaffCategory;
   const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest> = categoryPageConfigurationFactory.create();
-	let product: DaffProductUnion;
+	let product: DaffProduct;
 	const categorySelectors = getDaffCategorySelectors<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>, DaffProduct>();
 
   beforeEach(() => {
