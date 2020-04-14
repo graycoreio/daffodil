@@ -3,8 +3,6 @@ import { Observable, combineLatest } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 
-import { DaffProduct } from '@daffodil/product';
-
 import { DaffCategoryServiceInterface } from '../interfaces/category-service.interface';
 import { DaffGetCategoryResponse } from '../../models/get-category-response';
 import { DaffCategoryRequest } from '../../models/requests/category-request';
@@ -22,13 +20,11 @@ import { MagentoGetCategoryAggregationsResponse } from './models/get-category-ag
 import { MagentoCustomAttributeMetadataResponse } from './models/custom-attribute-metadata-response';
 import { MagentoGetCustomAttributeMetadata } from './queries/custom-attribute-metadata';
 import { buildCustomMetadataAttribute, addMetadataTypesToAggregates } from './transformers/custom-metadata-attributes-methods';
-import { DaffCategory } from '../../models/category';
-import { DaffCategoryPageConfigurationState } from '../../models/category-page-configuration-state';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoCategoryService implements DaffCategoryServiceInterface<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>, DaffProduct> {
+export class DaffMagentoCategoryService implements DaffCategoryServiceInterface {
   
   constructor(
     private apollo: Apollo,
@@ -42,7 +38,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface<
    * Gets a category based on parameters. Default current_page is 1, and default page_size is 20.
    * @param categoryRequest A DaffCategoryRequest object.
    */
-  get(categoryRequest: DaffCategoryRequest): Observable<DaffGetCategoryResponse<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>, DaffProduct>> {
+  get(categoryRequest: DaffCategoryRequest): Observable<DaffGetCategoryResponse> {
     return combineLatest([
       this.apollo.query<MagentoGetACategoryResponse>({
 				query: MagentoGetCategoryQuery,

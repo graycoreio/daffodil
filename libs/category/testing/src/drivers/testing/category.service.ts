@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { DaffGetCategoryResponse, DaffCategoryServiceInterface, DaffCategory, DaffCategoryPageConfigurationState, DaffCategoryRequest } from '@daffodil/category';
-import { DaffProduct } from '@daffodil/product';
+import { DaffGetCategoryResponse, DaffCategoryServiceInterface, DaffCategoryRequest } from '@daffodil/category';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffCategoryFactory } from '../../factories/category.factory';
@@ -11,7 +10,7 @@ import { DaffCategoryPageConfigurationStateFactory } from '../../factories/categ
 @Injectable({
   providedIn: 'root'
 })
-export class DaffTestingCategoryService implements DaffCategoryServiceInterface<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>, DaffProduct> {
+export class DaffTestingCategoryService implements DaffCategoryServiceInterface {
  
   constructor(
     private categoryFactory: DaffCategoryFactory,
@@ -19,7 +18,7 @@ export class DaffTestingCategoryService implements DaffCategoryServiceInterface<
     private productFactory: DaffProductFactory
   ) {}
 
-  get(categoryRequest: DaffCategoryRequest): Observable<DaffGetCategoryResponse<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>, DaffProduct>> {
+  get(categoryRequest: DaffCategoryRequest): Observable<DaffGetCategoryResponse> {
     return of({
       category: this.categoryFactory.create(),
       categoryPageConfigurationState: this.categoryPageConfigurationStateFactory.create(),

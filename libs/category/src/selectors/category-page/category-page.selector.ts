@@ -10,8 +10,13 @@ import { getDaffCategoryFeatureSelector } from '../category-feature.selector';
 import { DaffCategoryFilterRequest } from '../../models/requests/filter-request';
 import { DaffCategoryFilter } from '../../models/category-filter';
 import { buildAppliedFilter } from '../applied-filter/applied-filter-methods';
+import { DaffCategory } from '../../models/category';
 
-export interface DaffCategoryPageMemoizedSelectors<T extends DaffCategoryRequest, V extends DaffGenericCategory<V>, U extends DaffCategoryPageConfigurationState<T>> {
+export interface DaffCategoryPageMemoizedSelectors<
+	T extends DaffCategoryRequest = DaffCategoryRequest, 
+	V extends DaffGenericCategory<V> = DaffCategory, 
+	U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>
+> {
 	selectCategoryState: MemoizedSelector<object, DaffCategoryReducerState<T, U>>;
 	selectCategoryPageConfigurationState: MemoizedSelector<object, U>;
 	selectCategoryCurrentPage: MemoizedSelector<object, U['current_page']>;
