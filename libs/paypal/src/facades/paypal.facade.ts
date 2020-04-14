@@ -11,7 +11,7 @@ import { daffPaypalSelectors } from '../selectors/paypal.selector';
 @Injectable({
   providedIn: DaffPaypalModule
 })
-export class DaffPaypalFacade<T extends DaffPaypalTokenResponse> implements DaffPaypalFacadeInterface<T> {
+export class DaffPaypalFacade<T extends DaffPaypalTokenResponse = DaffPaypalTokenResponse> implements DaffPaypalFacadeInterface<T> {
   /**
    * The entire DaffPaypalTokenResponse object.
    */

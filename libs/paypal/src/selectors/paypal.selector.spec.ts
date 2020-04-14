@@ -12,7 +12,7 @@ import { daffPaypalSelectors } from './paypal.selector';
 
 describe('Daff Paypal Selectors', () => {
 
-  let store: Store<DaffPaypalReducersState<DaffPaypalTokenResponse>>;
+  let store: Store<DaffPaypalReducersState>;
   const navigationTreeFactory: DaffPaypalTokenResponseFactory = new DaffPaypalTokenResponseFactory();
 	let stubPaypalTokenResponse: DaffPaypalTokenResponse;
 	const {
@@ -23,7 +23,7 @@ describe('Daff Paypal Selectors', () => {
 		selectPaypalEditUrl,
 		selectPaypalLoading,
 		selectPaypalError
-	} = daffPaypalSelectors<DaffPaypalTokenResponse>();
+	} = daffPaypalSelectors();
 
   beforeEach(() => {
     TestBed.configureTestingModule({

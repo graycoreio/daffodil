@@ -16,7 +16,7 @@ import {
 
 describe('DaffPaypalFacade', () => {
   let store: MockStore<any>;
-  let facade: DaffPaypalFacade<DaffPaypalTokenResponse>;
+  let facade: DaffPaypalFacade;
   const paypalTokenResponseFactory: DaffPaypalTokenResponseFactory = new DaffPaypalTokenResponseFactory();
 	let stubPaypalTokenResponse: DaffPaypalTokenResponse;
 

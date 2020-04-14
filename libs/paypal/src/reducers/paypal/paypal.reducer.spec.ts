@@ -15,7 +15,7 @@ describe('Paypal | Paypal Reducer', () => {
   let paypalTokenResponseFactory: DaffPaypalTokenResponseFactory;
   let paypalTokenResponse: DaffPaypalTokenResponse;
   let paypalRequest: DaffPaypalTokenRequest;
-  const initialState: DaffPaypalReducerState<DaffPaypalTokenResponse> = {
+  const initialState: DaffPaypalReducerState = {
     paypalTokenResponse: null,
     loading: false,
     error: null
