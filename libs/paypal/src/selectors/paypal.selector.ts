@@ -4,7 +4,7 @@ import { DaffPaypalReducerState } from '../reducers/paypal/paypal-reducer.interf
 import { DaffPaypalReducersState } from '../reducers/paypal-reducers.interface';
 import { DaffPaypalTokenResponse } from '../models/paypal-token-response';
 
-export interface DaffPaypalMemoizedSelectors<T extends DaffPaypalTokenResponse> {
+export interface DaffPaypalMemoizedSelectors<T extends DaffPaypalTokenResponse = DaffPaypalTokenResponse> {
 	selectPaypalFeatureState: MemoizedSelector<object, DaffPaypalReducersState<T>>;
 	selectPaypalState: MemoizedSelector<object, DaffPaypalReducerState<T>>;
 	selectPaypalTokenResponse: MemoizedSelector<object, T>;
@@ -51,9 +51,9 @@ const createPaypalSelectors = <T extends DaffPaypalTokenResponse>(): DaffPaypalM
 	}
 }
 
-export const daffPaypalSelectors = (() => {
+export const getDaffPaypalSelectors = (() => {
 	let cache;
-	return <T extends DaffPaypalTokenResponse>(): DaffPaypalMemoizedSelectors<T> => cache = cache 
+	return <T extends DaffPaypalTokenResponse = DaffPaypalTokenResponse>(): DaffPaypalMemoizedSelectors<T> => cache = cache 
 		? cache 
 		: createPaypalSelectors<T>();
 })();

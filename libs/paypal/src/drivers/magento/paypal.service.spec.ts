@@ -18,7 +18,7 @@ import { DaffMagentoPaypalConfig } from './models/config';
 import { MagentoPaypalExpressToken } from './models/response/magento-paypal-express-token';
 
 describe('Driver | Magento | Paypal | PaypalService', () => {
-  let service: DaffMagentoPaypalService<DaffPaypalTokenRequest, DaffPaypalTokenResponse>;
+  let service: DaffMagentoPaypalService;
   let paypalTokenResponseFactory: DaffPaypalTokenResponseFactory;
 	let controller: ApolloTestingController;
 	const paypalConfig: DaffMagentoPaypalConfig = {

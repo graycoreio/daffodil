@@ -9,13 +9,13 @@ export enum DaffPaypalActionTypes {
   GeneratePaypalExpressTokenFailureAction = '[Daff Paypal] Generate Express Token Failure Action'
 }
 
-export class DaffGeneratePaypalExpressToken<T extends DaffPaypalTokenRequest> implements Action {
+export class DaffGeneratePaypalExpressToken<T extends DaffPaypalTokenRequest = DaffPaypalTokenRequest> implements Action {
   readonly type = DaffPaypalActionTypes.GeneratePaypalExpressTokenAction;
 
   constructor(public payload: T) {}
 }
 
-export class DaffGeneratePaypalExpressTokenSuccess<T extends DaffPaypalTokenResponse> implements Action {
+export class DaffGeneratePaypalExpressTokenSuccess<T extends DaffPaypalTokenResponse = DaffPaypalTokenResponse> implements Action {
   readonly type = DaffPaypalActionTypes.GeneratePaypalExpressTokenSuccessAction;
 
   constructor(public payload: T) {}
@@ -27,7 +27,10 @@ export class DaffGeneratePaypalExpressTokenFailure implements Action {
 	constructor(public payload: string) {}
 }
 
-export type DaffPaypalActions<T extends DaffPaypalTokenRequest, V extends DaffPaypalTokenResponse> =
+export type DaffPaypalActions<
+	T extends DaffPaypalTokenRequest = DaffPaypalTokenRequest, 
+	V extends DaffPaypalTokenResponse = DaffPaypalTokenResponse
+> =
     | DaffGeneratePaypalExpressToken<T>
     | DaffGeneratePaypalExpressTokenSuccess<V>
     | DaffGeneratePaypalExpressTokenFailure;

@@ -20,7 +20,7 @@ describe('DaffPaypalEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffPaypalEffects<DaffPaypalTokenRequest, DaffPaypalTokenResponse>;
   let stubPaypalTokenResponse: DaffPaypalTokenResponse;
-  let daffPaypalDriver: DaffPaypalServiceInterface<DaffPaypalTokenRequest, DaffPaypalTokenResponse>;
+  let daffPaypalDriver: DaffPaypalServiceInterface;
 
   let paypalTokenResponseFactory: DaffPaypalTokenResponseFactory;
   let paypalTokenRequest: DaffPaypalTokenRequest;

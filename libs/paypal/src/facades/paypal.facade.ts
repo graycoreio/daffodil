@@ -6,12 +6,12 @@ import { DaffPaypalModule } from '../paypal.module';
 import { DaffPaypalReducersState } from '../reducers/paypal-reducers.interface';
 import { DaffPaypalFacadeInterface } from '../interfaces/paypal-facade.interface';
 import { DaffPaypalTokenResponse } from '../models/paypal-token-response';
-import { daffPaypalSelectors } from '../selectors/paypal.selector';
+import { getDaffPaypalSelectors } from '../selectors/paypal.selector';
 
 @Injectable({
   providedIn: DaffPaypalModule
 })
-export class DaffPaypalFacade<T extends DaffPaypalTokenResponse> implements DaffPaypalFacadeInterface<T> {
+export class DaffPaypalFacade<T extends DaffPaypalTokenResponse = DaffPaypalTokenResponse> implements DaffPaypalFacadeInterface<T> {
   /**
    * The entire DaffPaypalTokenResponse object.
    */
@@ -45,7 +45,7 @@ export class DaffPaypalFacade<T extends DaffPaypalTokenResponse> implements Daff
 			selectPaypalEditUrl,
 			selectPaypalLoading,
 			selectPaypalError
-		} = daffPaypalSelectors<T>();
+		} = getDaffPaypalSelectors<T>();
 
     this.paypalTokenResponse$ = this.store.pipe(select(selectPaypalTokenResponse));
     this.paypalToken$ = this.store.pipe(select(selectPaypalToken));

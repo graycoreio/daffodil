@@ -16,15 +16,15 @@ import { DaffPaypalConfig } from '../injection-tokens/paypal-config.token';
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoPaypalService<T extends DaffPaypalTokenRequest, V extends DaffPaypalTokenResponse> implements DaffPaypalServiceInterface<T, V> {
+export class DaffMagentoPaypalService implements DaffPaypalServiceInterface {
   
   constructor(
     private apollo: Apollo,
-		@Inject(DaffPaypalTransformer) private transformer: DaffPaypalTransformerInterface<T, V>,
+		@Inject(DaffPaypalTransformer) private transformer: DaffPaypalTransformerInterface<DaffPaypalTokenRequest, DaffPaypalTokenResponse>,
 		@Inject(DaffPaypalConfig) private config: DaffMagentoPaypalConfig
 	) {}
 
-  generateToken(tokenRequest: T): Observable<V> {
+  generateToken(tokenRequest: DaffPaypalTokenRequest): Observable<DaffPaypalTokenResponse> {
     return this.apollo.mutate<MagentoPaypalTokenResponse>({
       mutation: GenerateTokenMutation,
       variables: {
