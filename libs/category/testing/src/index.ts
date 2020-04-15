@@ -5,3 +5,5 @@ export { DaffTestingCategoryService } from './drivers/testing/category.service';
 export { DaffInMemoryCategoryService } from './drivers/in-memory/category.service';
 export { DaffCategoryInMemoryDriverModule } from './drivers/in-memory/category-driver.module';
 export { DaffCategoryTestingDriverModule } from './drivers/testing/category-driver.module';
+export { DaffCategoryTestingModule } from './helpers/category-testing.module';
+export { MockDaffCategoryFacade } from './helpers/mock-category-facade';
