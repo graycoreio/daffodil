@@ -2,7 +2,7 @@ export * from './actions/auth.actions';
 export * from './reducers/public_api';
 export * from './selectors/public_api';
 
-export { DaffAuthFacadeInterface } from './interfaces/auth-facade.interface';
+export { DaffAuthFacade } from './facades/auth.facade';
 
 export { DaffAccountRegistration } from './models/account-registration'
 export { DaffCustomerRegistration } from './models/customer-registration'
