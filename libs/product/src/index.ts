@@ -18,10 +18,6 @@ export { DaffProductShopifyDriverModule } from './drivers/shopify/product-driver
 export { DaffProductMagentoDriverModule } from './drivers/magento/product-driver.module';
 export { DaffProductDriver } from './drivers/injection-tokens/product-driver.token';
 
-export { SortFieldsNode } from './drivers/magento/models/sort-fields-node';
-export { SortFieldsAndFiltersProductNode } from './drivers/magento/models/sort-fields-and-filters-product-node';
-export { GetSortFieldsAndFiltersProductResponse } from './drivers/magento/models/get-sort-fields-and-filters-product-response';
-export { FilterNode } from './drivers/magento/models/filter-node';
 export { ProductNode as MagentoProduct } from './drivers/magento/models/product-node';
 
 export { DaffProductGridFacade } from './facades/product-grid/product-grid.facade';
