@@ -15,3 +15,4 @@ export { MagentoUpdateShippingAddressResponse } from './update-shipping-address'
 export { MagentoGetCartResponse } from './get-cart';
 export { MagentoCreateCartResponse } from './create-cart';
 export { MagentoSetGuestEmailResponse } from './set-guest-email';
+export { MagentoPlaceOrderResponse } from './place-order';
