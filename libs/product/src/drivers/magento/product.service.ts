@@ -6,8 +6,6 @@ import { map } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 
 import { DaffProductServiceInterface } from '../interfaces/product-service.interface';
-import { DaffSortField } from './models/sort-field';
-import { GetSortFieldsAndFiltersByCategory } from './queries/get-sort-fields-and-filters-by-category';
 import { GetAllProductsQuery } from './queries/get-all-products';
 import { GetProductQuery } from './queries/get-product';
 import { DaffMagentoProductTransformerService } from './transforms/product-transformer.service';
@@ -47,17 +45,6 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
 			query: GetAllProductsQuery
 		}).pipe(
       map(result => this.productTransformer.transformMany(result.data.products.items))
-    );
-  }
-
-  getSortFieldsAndFiltersByCategory(categoryId: string): Observable<DaffSortField[]> {
-    return this.apollo.query<any>({
-			query: GetSortFieldsAndFiltersByCategory,
-			variables: {
-				categoryId: categoryId
-			}
-		}).pipe(
-      map(result => result.data.products.sort_fields.options)
     );
   }
 
