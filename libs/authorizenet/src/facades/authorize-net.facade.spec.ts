@@ -19,7 +19,7 @@ describe('DaffAuthorizeNetFacade', () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          authorizenet: combineReducers(daffAuthorizeNetReducers()),
+          authorizenet: combineReducers(daffAuthorizeNetReducers),
         })
       ],
       providers: [

@@ -17,13 +17,7 @@ export { DaffAuthorizeNetFacade } from './facades/authorize-net.facade';
 export { DaffAuthorizeNetTokenRequest } from './models/request/authorize-net-token-request';
 export { DaffAuthorizeNetTokenResponse } from './models/response/authorize-net-token-response';
 
-export { 
-	selectAuthorizeNetFeatureState,
-	selectAuthorizeNetState, 
-	selectTokenResponse, 
-	selectToken, 
-	selectError 
-} from './selectors/authorize-net.selector';
+export * from './selectors/authorize-net.selector';
 export { DaffAuthorizeNetReducersState } from './reducers/authorize-net-reducers.interface';
 export { daffAuthorizeNetReducers } from './reducers/authorize-net.reducers';
 export { DaffAuthorizeNetReducerState } from './reducers/authorize-net/authorize-net-reducer.interface';
