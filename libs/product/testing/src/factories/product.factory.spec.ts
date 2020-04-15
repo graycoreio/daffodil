@@ -29,8 +29,8 @@ describe('Product | Testing | Factories | DaffProductFactory', () => {
     
     it('should return a Product with all required fields defined', () => {
       expect(result.type).toBeDefined();
-      expect(result.__typename).toBeDefined();
-      expect(result.id).toBeDefined();
+			expect(result.id).toBeDefined();
+      expect(result.url).toBeDefined();
       expect(result.price).toBeDefined();
       expect(result.name).toBeDefined();
       expect(result.brand).toBeDefined(); 
