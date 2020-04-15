@@ -13,6 +13,7 @@ export {
 
 export { DaffContactEffects } from './effects/contact.effects';
 export { DaffContactFacade } from './facades/contact.facade';
+export { DaffContactFacadeInterface } from './facades/contact-facade.interface';
 export {
   DaffContactState,
   reducer
