@@ -9,11 +9,12 @@ import {
   getDaffAuthSelectors
 } from '../selectors/public_api';
 import { DaffAuthToken } from '../models/auth-token';
+import { DaffAuthFacadeInterface } from '../interfaces/auth-facade.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffAuthFacade<T extends DaffAuthToken = DaffAuthToken> implements DaffStoreFacade<Action> {
+export class DaffAuthFacade<T extends DaffAuthToken = DaffAuthToken> implements DaffAuthFacadeInterface<T> {
   auth$: Observable<T>;
   token$: Observable<T['token']>
 
