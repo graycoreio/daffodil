@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { ProductNode } from '@daffodil/product';
+import { MagentoProductFactory } from '@daffodil/product/testing';
 import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 
 import { DaffMagentoCategoryPageConfigTransformerService } from './category-page-config-transformer.service';
@@ -90,31 +91,7 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 				options: stubCategoryPageConfigurationState.sort_options
 			};
 
-			products = [
-				{
-					__typename: 'simple',
-					sku: stubCategoryPageConfigurationState.product_ids[0],
-					id: 2,
-					name: 'name',
-					price_range: {
-						maximum_price: {
-							regular_price: {
-								value: 123,
-								currency: null
-							}
-						}
-					},
-					url_key: 'url_key',
-					image: {
-						url: 'url',
-						label: 'label'
-          },
-          thumbnail: {
-						url: 'url',
-						label: 'label'
-					}
-				}
-			];
+			products = [new MagentoProductFactory().create({ sku: stubCategoryPageConfigurationState.product_ids[0]})];
 
 			completeCategoryResponse = {
 				category: category,

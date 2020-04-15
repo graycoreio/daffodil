@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+import { magentoProductFragment } from '@daffodil/product';
 
 /**
  * This query only exists because products and their associated aggregations/filter cannot
@@ -11,23 +12,7 @@ query MagentoGetProducts($filter: ProductAttributeFilterInput!, $search: String,
 	{
 		total_count
 		items {
-			__typename
-			id
-			name
-			sku
-			url_key
-			image {
-				url
-				label
-			}
-			price_range {
-				maximum_price {
-					regular_price {
-						value
-						currency
-					}
-				}
-			}
+			...product
 		}
 		page_info {
 			page_size
@@ -35,4 +20,6 @@ query MagentoGetProducts($filter: ProductAttributeFilterInput!, $search: String,
 			total_pages
 		}
 	}
-}`
+}
+${magentoProductFragment}
+`
