@@ -7,7 +7,7 @@ export enum MagentoProductTypeEnum {
 /**
  * An object for defining what the product service requests and retrieves from a magento backend.
  */
-export interface ProductNode {
+export interface MagentoProduct {
 	__typename: string;
   id: number;
   name: string;

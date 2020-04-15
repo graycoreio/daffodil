@@ -12,13 +12,9 @@ export * from './selectors/public_api';
 export { DaffProductModule } from './product.module';
 
 export { DaffShopifyProductService } from './drivers/shopify/product.service';
-export { DaffMagentoProductService } from './drivers/magento/product.service';
 export { DaffProductServiceInterface } from './drivers/interfaces/product-service.interface';
 export { DaffProductShopifyDriverModule } from './drivers/shopify/product-driver.module';
-export { DaffProductMagentoDriverModule } from './drivers/magento/product-driver.module';
 export { DaffProductDriver } from './drivers/injection-tokens/product-driver.token';
-
-export { ProductNode as MagentoProduct } from './drivers/magento/models/product-node';
 
 export { DaffProductGridFacade } from './facades/product-grid/product-grid.facade';
 export { DaffProductGridFacadeInterface } from './facades/product-grid/product-grid-facade.interface';

@@ -1,4 +1,4 @@
-import { ProductNode } from './product-node';
+import { MagentoProduct } from './magento-product';
 import { MagentoSimpleProduct } from './simple-product';
 
 export enum MagentoPriceViewEnum {
@@ -17,7 +17,7 @@ export enum MagentoPriceTypeEnum {
 	dynamic = 'DYNAMIC'
 }
 
-export interface MagentoBundledProduct extends ProductNode {
+export interface MagentoBundledProduct extends MagentoProduct {
 	dynamic_price: boolean;
 	dynamic_sku: boolean;
 	dynamic_weight: boolean;

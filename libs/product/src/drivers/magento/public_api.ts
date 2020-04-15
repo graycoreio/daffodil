@@ -1,4 +1,4 @@
-export { ProductNode, MagentoProductTypeEnum } from './models/product-node';
+export { MagentoProduct, MagentoProductTypeEnum } from './models/magento-product';
 export { 
 	MagentoBundledProduct, 
 	MagentoBundledProductItemOption,
@@ -12,3 +12,5 @@ export { GetProductQuery } from './queries/get-product';
 export { GetAllProductsQuery } from './queries/get-all-products';
 export { bundledProductFragment } from './queries/fragments/bundled-product';
 export { magentoProductFragment } from './queries/fragments/product';
+export { DaffMagentoProductService } from './product.service';
+export { DaffProductMagentoDriverModule } from './product-driver.module';
