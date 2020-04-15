@@ -9,6 +9,7 @@ import { DaffProductModule } from '../../product.module';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
 import { DaffProduct } from '../../models/product';
 import { getDaffProductSelectors } from '../../selectors/public_api';
+import { DaffProductFacadeInterface } from './product-facade.interface';
 
 /**
  * A facade for accessing product state from an application component.
@@ -16,7 +17,7 @@ import { getDaffProductSelectors } from '../../selectors/public_api';
 @Injectable({
   providedIn: DaffProductModule
 })
-export class DaffProductFacade<T extends DaffProduct = DaffProduct> implements DaffStoreFacade<Action> {
+export class DaffProductFacade<T extends DaffProduct = DaffProduct> implements DaffStoreFacade<Action>, DaffProductFacadeInterface<T> {
   /**
    * The loading state of the currently selected product.
    */

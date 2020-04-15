@@ -25,7 +25,9 @@ export { FilterNode } from './drivers/magento/models/filter-node';
 export { ProductNode as MagentoProduct } from './drivers/magento/models/product-node';
 
 export { DaffProductGridFacade } from './facades/product-grid/product-grid.facade';
+export { DaffProductGridFacadeInterface } from './facades/product-grid/product-grid-facade.interface';
 export { DaffProductFacade } from './facades/product/product.facade';
+export { DaffProductFacadeInterface } from './facades/product/product-facade.interface';
 export { DaffBestSellersFacade } from './facades/best-sellers/best-sellers.facade';
 
 export * from './drivers/magento/public_api';
