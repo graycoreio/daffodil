@@ -11,8 +11,6 @@ export enum DaffProductTypeEnum {
 export interface DaffProduct {
 	id: string;
 	type?: DaffProductTypeEnum;
-	/** @deprecated use type instead */
-	__typename?: DaffProductTypeEnum;
 	url?: string;
   price?: string;
   name?: string;

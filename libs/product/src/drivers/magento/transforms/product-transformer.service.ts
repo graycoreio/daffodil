@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { DaffProduct } from '../../../models/product';
+import { DaffProduct, DaffProductTypeEnum } from '../../../models/product';
 import { ProductNode, MagentoProductTypeEnum } from '../models/product-node';
-import { DaffProductTypeEnum } from '../../../models/product';
 
 /**
  * Transforms magento products into an object usable by daffodil.
@@ -20,7 +19,6 @@ export class DaffMagentoProductTransformerService {
     const product: ProductNode = response.products.items[0];
     return {
 			type: this.transformProductType(product.__typename),
-			__typename: this.transformProductType(product.__typename),
 			id: product.sku,
       url: product.url_key,
 			name: product.name,
@@ -49,7 +47,6 @@ export class DaffMagentoProductTransformerService {
   private transformList(product: ProductNode): DaffProduct {
     return {
 			type: this.transformProductType(product.__typename),
-			__typename: this.transformProductType(product.__typename),
       id: product.sku,
       url: product.url_key,
       name: product.name,

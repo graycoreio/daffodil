@@ -8,8 +8,8 @@ import { DaffModelFactory } from '@daffodil/core/testing';
  */
 export class MockProduct implements DaffProduct {
 	type = DaffProductTypeEnum.Simple;
-	__typename = DaffProductTypeEnum.Simple;
-  id = faker.random.number(10000).toString();
+	id = faker.random.number(10000).toString();
+	url = faker.random.alphaNumeric(16);
   price = faker.random.number(1500).toString();
   name = faker.commerce.productName();
   brand = faker.company.companyName();
