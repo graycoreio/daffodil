@@ -8,11 +8,12 @@ import { DaffAuthorizeNetModule } from '../authorize-net.module';
 import { selectToken, selectError, selectTokenResponse } from '../selectors/authorize-net.selector';
 import { DaffAuthorizeNetReducersState } from '../reducers/authorize-net-reducers.interface';
 import { DaffAuthorizeNetTokenResponse } from '../models/response/authorize-net-token-response';
+import { DaffAuthorizeNetFacadeInterface } from './authorize-net-facade.interface';
 
 @Injectable({
   providedIn: DaffAuthorizeNetModule
 })
-export class DaffAuthorizeNetFacade<T extends DaffAuthorizeNetTokenResponse> implements DaffStoreFacade<Action> {
+export class DaffAuthorizeNetFacade<T extends DaffAuthorizeNetTokenResponse> implements DaffStoreFacade<Action>, DaffAuthorizeNetFacadeInterface<T> {
 
 	authorizeTokenResponse$: Observable<T>
   tokenNonce$: Observable<string>;
