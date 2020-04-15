@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 import { DaffGeographyServiceInterface } from '../interfaces/geography-service.interface';
 import { DaffCountry } from '../../models/country';
@@ -10,6 +10,8 @@ import { DaffMagentoCountryTransformer } from './transforms/responses/country.se
 import { getCountries, MagentoGetCountriesResponse } from './queries/public_api';
 import { getCountry } from './queries/get-country';
 import { MagentoGetCountryResponse } from './queries/responses/get-country';
+import { validateGetCountriesResponse } from './validators/public_api';
+import { transformMagentoGeographyError } from './errors/transform';
 
 /**
  * A service for making Magento GraphQL queries for carts.
@@ -27,8 +29,9 @@ export class DaffGeographyMagentoService implements DaffGeographyServiceInterfac
     return this.apollo.query<MagentoGetCountriesResponse>({
       query: getCountries,
     }).pipe(
-      map(result => result.data.countries || []),
-      map(result => result.map(country => this.countryTransformer.transform(country)))
+      map(validateGetCountriesResponse),
+      map(result => result.data.countries.map(country => this.countryTransformer.transform(country))),
+      catchError(err => throwError(transformMagentoGeographyError(err)))
     );
   }
 
@@ -39,7 +42,8 @@ export class DaffGeographyMagentoService implements DaffGeographyServiceInterfac
         countryId
       }
     }).pipe(
-      map(result => this.countryTransformer.transform(result.data.country))
+      map(result => this.countryTransformer.transform(result.data.country)),
+      catchError(err => throwError(transformMagentoGeographyError(err)))
     );
   }
 }
