@@ -1,37 +1,88 @@
-<h1>Daff Callout</h1>
+<h1>Callout</h1>
+<p><code>DaffCalloutComponent</code> is a versatile component that can be used to easily highlight a piece of content. It supports transcluding any content and optionally including a predefined <code>title</code> and <code>subtitle</code>.</p>
 
+<h2>Use Cases</h2>
+<ul>
+  <li>It can be used alongside a product list to highlight a set of products.</li>
+  <li>It can be used to quickly lay out an accordion.</li>
+  <li>It can be used to showcase a set of features.</li>
+</ul>
+
+<h2>Supported Content Types</h2>
+<p>A <code>&lt;daff-callout&gt;</code> transcludes:</p>
+<ul>
+  <li><code>[daffCalloutTitle]</code></li>
+  <li><code>[daffCalloutSubtitle]</code></li>
+  <li>Any additional components</li>
+</ul>
+
+<h3>Title</h3>
+<p>Callout title is used by adding <code>[daffCalloutTitle]</code> to any tag.</p>
+
+<h3>Subtitle</h3>
+<p>Callout subtitle is used by adding <code>[daffCalloutSubtitle]</code> to any tag.</p>
+
+<h2>Colors</h2>
+<p>The color of a callout can be changed by using the `color` property. By default, the color of a callout is `gray`. This can be changed to one of the supported colors.</p>
+<p>Supported colors: <code>primary | secondary | tertiary | theme | theme-contrast | black | white</code></p>
+
+<h2>Layout</h2>
+<p>The <code>layout</code> property will be deprecated in v1.0.0</p>
+
+<h2>Size</h2>
+<p>The <code>size</code> property will be deprecated in v1.0.0</p>
+
+<h2>Examples</h2>
+
+<h3>Color - Primary</h3>
 <daff-callout color="primary">
   <h3 daffCalloutTitle>Callout Title</h3>
   <p daffCalloutSubtitle>Callout subtitle</p>
 </daff-callout>
 
+<h3>Color - Secondary</h3>
 <daff-callout color="secondary">
   <h3 daffCalloutTitle>Callout Title</h3>
   <p daffCalloutSubtitle>Callout subtitle</p>
 </daff-callout>
 
+<h3>Color - Tertiary</h3>
 <daff-callout color="tertiary">
   <h3 daffCalloutTitle>Callout Title</h3>
   <p daffCalloutSubtitle>Callout subtitle</p>
 </daff-callout>
 
+<h3>Color - Theme</h3>
+<daff-callout color="theme">
+  <h3 daffCalloutTitle>Callout Title</h3>
+  <p daffCalloutSubtitle>Callout subtitle</p>
+</daff-callout>
+
+<h3>Color - Theme Contrast</h3>
+<daff-callout color="theme-contrast">
+  <h3 daffCalloutTitle>Callout Title</h3>
+  <p daffCalloutSubtitle>Callout subtitle</p>
+</daff-callout>
+
+<h3>Color - Black</h3>
 <daff-callout color="black">
   <h3 daffCalloutTitle>Callout Title</h3>
   <p daffCalloutSubtitle>Callout subtitle</p>
 </daff-callout>
 
+<h3>Color - White</h3>
 <daff-callout color="white">
   <h3 daffCalloutTitle>Callout Title</h3>
   <p daffCalloutSubtitle>Callout subtitle</p>
 </daff-callout>
 
-<h3>Centered Callout</h3>
+<h3>Centered Callout - Deprecated</h3>
 <daff-callout layout="centered">
   <h3 daffCalloutTitle>Callout Title</h3>
   <p daffCalloutSubtitle>Callout subtitle</p>
 </daff-callout>
 
-<h3>Compact Callout</h3>
+<h3>Compact Callout - Deprecated</h3>
 <daff-callout size="compact">
   <h3 daffCalloutTitle>Callout Title</h3>
   <p daffCalloutSubtitle>Callout subtitle</p>

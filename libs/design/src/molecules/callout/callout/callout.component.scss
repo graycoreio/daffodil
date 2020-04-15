@@ -12,8 +12,8 @@
 	&__title {
 		@include heading-lg();
 		margin: 0;
-		padding: 0;
-		text-align: left;
+		max-width: 1040px;
+		width: 100%;
 	}
 
 	&__subtitle {
@@ -21,13 +21,10 @@
 		margin: 15px 0 0;
 		max-width: 600px;
 		padding: 0;
-		text-align: left;
-
-		@include breakpoint(tablet) {
-			margin: 25px 0 0;
-		}
+		width: 100%;
 	}
 
+	// centered will be deprecated in v1.0.0
 	&--centered {
 		#{$root}__title {
 			margin: 0 auto;
@@ -44,6 +41,7 @@
 		}
 	}
 
+	// compact will be deprecated in v1.0.0
 	&--compact {
 		padding: 25px;
 
