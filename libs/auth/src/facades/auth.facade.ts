@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Action, Store, select } from '@ngrx/store';
 
-import { DaffStoreFacade } from '@daffodil/core';
-
 import { DaffAuthFeatureState } from '../reducers/public_api';
 import {
   getDaffAuthSelectors
