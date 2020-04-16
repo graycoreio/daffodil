@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { DaffCart } from '../../models/cart';
@@ -23,7 +23,7 @@ export class DaffMagentoCartOrderService implements DaffCartOrderServiceInterfac
     public cartTransformer: DaffMagentoCartTransformer,
   ) {}
 
-  placeOrder(cartId: DaffCart['id']) {
+  placeOrder(cartId: DaffCart['id']): Observable<{id: string}> {
     return this.apollo.mutate<MagentoPlaceOrderResponse>({
       mutation: placeOrder,
       variables: {
