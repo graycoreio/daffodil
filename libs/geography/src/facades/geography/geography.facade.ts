@@ -3,18 +3,17 @@ import { Observable } from 'rxjs';
 import { Action, Store, select } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
-import { DaffStoreFacade } from '@daffodil/core';
-
 import { DaffGeographyFeatureState } from '../../reducers/public_api';
 import {
   getDaffGeographySelectors
 } from '../../selectors/public_api';
 import { DaffCountry } from '../../models/country';
+import { DaffGeographyFacadeInterface } from './geography-facade.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffGeographyFacade<T extends DaffCountry> implements DaffStoreFacade<Action> {
+export class DaffGeographyFacade<T extends DaffCountry> implements DaffGeographyFacadeInterface<T> {
   loading$: Observable<boolean>;
   errors$: Observable<string[]>;
 
