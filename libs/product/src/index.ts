@@ -3,7 +3,7 @@ export * from './actions/product.actions';
 export * from './actions/product-grid.actions';
 export * from './actions/best-sellers.actions';
 export { DaffProductImage } from './models/product-image';
-export { DaffCompositeProduct } from './models/composite-product';
+export * from './models/composite-product';
 export * from './models/composite-product-item';
 
 export * from './reducers/public_api';

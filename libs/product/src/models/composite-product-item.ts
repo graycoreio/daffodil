@@ -1,11 +1,5 @@
 import { DaffProduct } from './product';
 
-export enum DaffCompositeProductPriceTypeEnum {
-	fixed = 'FIXED',
-	percent = 'PERCENT',
-	dynamic = 'DYNAMIC'
-}
-
 export interface DaffCompositeProductItem {
 	id: number;
 	required: boolean;
@@ -19,6 +13,5 @@ export interface DaffCompositeProductItemOption extends DaffProduct {
 	id: string;
 	name?: string;
 	price?: string;
-	price_type?: DaffCompositeProductPriceTypeEnum;
 	quantity: number;
 }
