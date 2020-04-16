@@ -19,6 +19,6 @@ export { DaffCartFacadeInterface } from './facades/cart/cart-facade.interface';
 
 export { DaffCartStorageService } from './storage/cart-storage.service';
 
-export { DaffCartNotFoundError } from './errors/not-found';
+export * from './errors/public_api';
 
 export * from './drivers/public_api';
