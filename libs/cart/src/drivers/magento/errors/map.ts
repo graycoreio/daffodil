@@ -1,5 +1,5 @@
 import { DaffErrorCodeMap } from '@daffodil/core';
-import { DaffBadInputError } from '@daffodil/driver/magento';
+import { DaffBadInputError } from '@daffodil/driver';
 
 import { MagentoCartGraphQlErrorCode } from './codes';
 import {

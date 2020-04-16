@@ -7,7 +7,7 @@ import { DaffCart } from '@daffodil/cart';
 import {
   DaffCartFactory,
 } from '@daffodil/cart/testing';
-import { DaffBadInputError } from '@daffodil/driver/magento';
+import { DaffBadInputError } from '@daffodil/driver';
 
 import { DaffMagentoCartOrderService } from './cart-order.service';
 import { MagentoPlaceOrderResponse } from './models/responses/place-order';
