@@ -91,6 +91,9 @@
 			"@daffodil/authorizenet": [
 				"dist/authorizenet"
       ],
+			"@daffodil/authorizenet/testing": [
+				"dist/authorizenet/testing"
+      ],
       "@daffodil/auth": [
         "dist/auth"
       ],
