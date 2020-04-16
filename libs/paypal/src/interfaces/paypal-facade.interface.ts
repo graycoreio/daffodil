@@ -12,5 +12,4 @@ export interface DaffPaypalFacadeInterface<T extends DaffPaypalTokenResponse = D
 	paypalStartUrl$: Observable<string>;
 	paypalEditUrl$: Observable<string>;
   error$: Observable<string>;
-  dispatch(action: Action): void;
 }

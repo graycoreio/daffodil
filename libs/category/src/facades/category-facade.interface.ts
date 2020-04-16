@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 
+import { DaffStoreFacade } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
 
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
@@ -16,7 +17,7 @@ export interface DaffCategoryFacadeInterface<
 	V extends DaffGenericCategory<V> = DaffCategory, 
 	U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
 	W extends DaffProduct = DaffProduct
-> {
+> extends DaffStoreFacade<Action> {
 	/**
    * The currently selected category.
    */
@@ -99,10 +100,4 @@ export interface DaffCategoryFacadeInterface<
 	 * @param categoryId 
 	 */
 	getTotalProductsByCategory(categoryId: string): Observable<number>;
-
-  /**
-   * Dispatches the given action.
-   * @param action action to dispatch.
-   */
-  dispatch(action: Action): void;
 }
