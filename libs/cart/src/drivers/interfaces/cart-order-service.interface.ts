@@ -5,14 +5,14 @@ import { DaffCart } from '../../models/cart';
 import { DaffCartPaymentMethod } from '../../models/cart-payment';
 
 /**
- * The interface responsible for managing a customer's cart.
+ * The interface responsible for placing an order for the customer's cart.
  */
 export interface DaffCartOrderServiceInterface<
   T extends DaffCart = DaffCart,
   V extends DaffCartPaymentMethod = DaffCartPaymentMethod
 > {
 	/**
-	 * Place an order.
+	 * Place an order and return the order ID.
 	 */
   placeOrder(id: T['id'], payment?: V): Observable<{id: string | number}>;
 }
