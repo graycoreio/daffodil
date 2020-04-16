@@ -13,6 +13,4 @@ export interface DaffGeographyFacadeInterface<T extends DaffCountry = DaffCountr
   countryIds$: Observable<(string | number)[]>;
   countryCount$: Observable<number>;
   countryEntities$: Observable<Dictionary<T>>;
-
-  dispatch(action: Action): void;
 }
