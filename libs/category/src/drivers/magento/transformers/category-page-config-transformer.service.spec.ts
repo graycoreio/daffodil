@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ProductNode } from '@daffodil/product';
 import { MagentoProductFactory } from '@daffodil/product/testing';
+import { MagentoProduct } from '@daffodil/product';
 import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 
 import { DaffMagentoCategoryPageConfigTransformerService } from './category-page-config-transformer.service';
@@ -48,7 +48,7 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
 		let aggregates: MagentoAggregation[];
 		let page_info: MagentoPageInfo;
 		let sort_fields: MagentoSortFields;
-		let products: ProductNode[];
+		let products: MagentoProduct[];
 
 		beforeEach(() => {
 			category = {

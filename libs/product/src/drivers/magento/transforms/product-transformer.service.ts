@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { DaffProduct, DaffProductTypeEnum } from '../../../models/product';
-import { ProductNode, MagentoProductTypeEnum } from '../models/product-node';
+import { MagentoProduct, MagentoProductTypeEnum } from '../models/magento-product';
 
 /**
  * Transforms magento products into an object usable by daffodil.
@@ -12,11 +12,11 @@ import { ProductNode, MagentoProductTypeEnum } from '../models/product-node';
 export class DaffMagentoProductTransformerService {
 
   /**
-   * Transforms the magento ProductNode from the magento product query into a DaffProduct. 
+   * Transforms the magento MagentoProduct from the magento product query into a DaffProduct. 
    * @param response the response from a magento product query.
    */
   transform(response: any): DaffProduct {
-    const product: ProductNode = response.products.items[0];
+    const product: MagentoProduct = response.products.items[0];
     return {
 			type: this.transformProductType(product.__typename),
 			id: product.sku,
@@ -38,13 +38,13 @@ export class DaffMagentoProductTransformerService {
   }
 
   /**
-   * Transforms many magento ProductNodes from the magento product query into DaffProducts.
+   * Transforms many magento MagentoProducts from the magento product query into DaffProducts.
    */
   transformMany(products: any[]): DaffProduct[] {
     return products.map(this.transformList.bind(this));
   }
 
-  private transformList(product: ProductNode): DaffProduct {
+  private transformList(product: MagentoProduct): DaffProduct {
     return {
 			type: this.transformProductType(product.__typename),
       id: product.sku,
@@ -71,7 +71,7 @@ export class DaffMagentoProductTransformerService {
 	/**
 	 * A function for null checking an object.
 	 */
-	private getPrice(product: ProductNode): string {
+	private getPrice(product: MagentoProduct): string {
 		return !product.price_range || 
 			!product.price_range.maximum_price || 
 			!product.price_range.maximum_price.regular_price || 
