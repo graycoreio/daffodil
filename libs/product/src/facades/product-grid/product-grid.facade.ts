@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select, Action } from '@ngrx/store';
 
-import { DaffStoreFacade } from '@daffodil/core';
-
 import { DaffProductModule } from '../../product.module';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
 import { DaffProduct } from '../../models/product';
@@ -16,7 +14,7 @@ import { DaffProductGridFacadeInterface } from './product-grid-facade.interface'
 @Injectable({
   providedIn: DaffProductModule
 })
-export class DaffProductGridFacade<T extends DaffProduct = DaffProduct> implements DaffStoreFacade<Action>, DaffProductGridFacadeInterface<T> {
+export class DaffProductGridFacade<T extends DaffProduct = DaffProduct> implements DaffProductGridFacadeInterface<T> {
   /**
    * The loading state for retrieving a list of products.
    */

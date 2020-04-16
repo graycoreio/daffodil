@@ -9,5 +9,4 @@ export interface DaffNavigationFacadeInterface<T extends DaffGenericNavigationTr
   loading$: Observable<boolean>;
   tree$: Observable<T>;
   errors$: Observable<string[]>;
-  dispatch(action: Action): void;
 }

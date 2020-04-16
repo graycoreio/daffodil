@@ -2,14 +2,12 @@ import { Injectable } from '@angular/core';
 import { Action, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffStoreFacade } from '@daffodil/core';
-
 import { DaffContactFeatureState, selectDaffContactLoading, selectDaffContactError, selectDaffContactSuccess } from '../selectors/contact.selector';
 import { DaffContactModule } from '../contact.module';
 import { DaffContactFacadeInterface } from './contact-facade.interface';
 
 @Injectable({ providedIn: DaffContactModule })
-export class DaffContactFacade implements DaffStoreFacade<Action>, DaffContactFacadeInterface {
+export class DaffContactFacade implements DaffContactFacadeInterface {
 
   success$: Observable<boolean> = this.store.select(selectDaffContactSuccess);
   error$: Observable<string[]> = this.store.select(selectDaffContactError);

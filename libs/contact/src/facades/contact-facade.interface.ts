@@ -1,10 +1,10 @@
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-export interface DaffContactFacadeInterface {
+import { DaffStoreFacade } from '@daffodil/core';
+
+export interface DaffContactFacadeInterface extends DaffStoreFacade<Action> {
   success$: Observable<boolean>;
   error$: Observable<string[]>;
   loading$: Observable<boolean>;
-
-  dispatch(action: Action): void;
 }

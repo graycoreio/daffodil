@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select, Action } from '@ngrx/store';
 
-import { DaffStoreFacade } from '@daffodil/core';
 import { DaffProduct } from '@daffodil/product';
 
 import { DaffCategoryModule } from '../category.module';
@@ -28,7 +27,7 @@ export class DaffCategoryFacade<
 	V extends DaffGenericCategory<V> = DaffCategory, 
 	U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
 	W extends DaffProduct = DaffProduct
-> implements DaffStoreFacade<Action>, DaffCategoryFacadeInterface<T, V, U, W> {
+> implements DaffCategoryFacadeInterface<T, V, U, W> {
 	private categorySelectors = getDaffCategorySelectors<T, V, U, W>();
 	
 	/**

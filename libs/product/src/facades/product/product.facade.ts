@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DaffStoreFacade } from '@daffodil/core';
-
 import { Store, select, Action } from '@ngrx/store';
 
 import { DaffProductModule } from '../../product.module';
@@ -17,7 +15,7 @@ import { DaffProductFacadeInterface } from './product-facade.interface';
 @Injectable({
   providedIn: DaffProductModule
 })
-export class DaffProductFacade<T extends DaffProduct = DaffProduct> implements DaffStoreFacade<Action>, DaffProductFacadeInterface<T> {
+export class DaffProductFacade<T extends DaffProduct = DaffProduct> implements DaffProductFacadeInterface<T> {
   /**
    * The loading state of the currently selected product.
    */
