@@ -7,11 +7,12 @@ import { DaffCart } from '@daffodil/cart';
 import {
   DaffCartFactory,
 } from '@daffodil/cart/testing';
+import { DaffBadInputError } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartOrderService } from './cart-order.service';
 import { MagentoPlaceOrderResponse } from './models/responses/place-order';
 import { placeOrder } from './queries/public_api';
-import { DaffCartNotFoundError, DaffBadInputError } from '../../errors/public_api';
+import { DaffCartNotFoundError } from '../../errors/public_api';
 
 describe('Driver | Magento | Cart | CartOrderService', () => {
   let service: DaffMagentoCartOrderService;

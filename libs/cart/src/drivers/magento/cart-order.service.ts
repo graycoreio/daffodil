@@ -7,7 +7,7 @@ import { map, catchError } from 'rxjs/operators';
 import { DaffCart } from '../../models/cart';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { placeOrder } from './queries/public_api';
-import { transformError } from './errors/transform';
+import { transformCartMagentoError } from './errors/transform';
 import { DaffCartOrderServiceInterface } from '../interfaces/cart-order-service.interface';
 import { MagentoPlaceOrderResponse } from './models/responses/public_api';
 
@@ -31,7 +31,7 @@ export class DaffMagentoCartOrderService implements DaffCartOrderServiceInterfac
       }
     }).pipe(
       map(result => ({id: result.data.placeOrder.order.order_number})),
-      catchError(err => throwError(transformError(err))),
+      catchError(err => throwError(transformCartMagentoError(err))),
     )
   }
 }
