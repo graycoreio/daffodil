@@ -1,11 +1,13 @@
 import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 
+import { DaffStoreFacade } from '@daffodil/core';
+
 import { DaffCart } from '../../models/cart';
 import { DaffCartErrors } from '../../reducers/cart-errors.type';
 import { DaffCartErrorType } from '../../reducers/cart-error-type.enum';
 
-export interface DaffCartFacadeInterface<T extends DaffCart = DaffCart> {
+export interface DaffCartFacadeInterface<T extends DaffCart = DaffCart> extends DaffStoreFacade<Action> {
   loading$: Observable<boolean>;
   cart$: Observable<T>;
   errors$: Observable<DaffCartErrors>;
@@ -31,6 +33,4 @@ export interface DaffCartFacadeInterface<T extends DaffCart = DaffCart> {
   availableShippingMethods$: Observable<DaffCart['available_shipping_methods']>;
   availablePaymentMethods$: Observable<DaffCart['available_payment_methods']>;
   isCartEmpty$: Observable<boolean>;
-
-  dispatch(action: Action);
 }

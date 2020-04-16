@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Action, Store, select } from '@ngrx/store';
 
-import { DaffStoreFacade } from '@daffodil/core';
 import { DaffCart } from '../../models/cart';
 import { DaffCartReducersState } from '../../reducers/public_api';
 import { getDaffCartSelectors } from '../../selectors/public_api';
@@ -13,7 +12,7 @@ import { DaffCartFacadeInterface } from './cart-facade.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class DaffCartFacade<T extends DaffCart = DaffCart> implements DaffStoreFacade<Action>, DaffCartFacadeInterface<T> {
+export class DaffCartFacade<T extends DaffCart = DaffCart> implements DaffCartFacadeInterface<T> {
   loading$: Observable<boolean>;
   cart$: Observable<T>;
 
