@@ -1,5 +1,8 @@
 export * from './factories';
 
+export { DaffCartTestingModule } from './helpers/cart-testing.module';
+export { MockDaffCartFacade } from './helpers/mock-cart-facade';
+
 export { DaffTestingCartService } from './drivers/testing/cart.service';
 
 export { DaffInMemoryCartService } from './drivers/in-memory/cart/cart.service';
