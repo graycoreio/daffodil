@@ -4,8 +4,7 @@ export {
 	MagentoBundledProductItemOption,
 	MagentoBundledProductItem,
 	MagentoBundleItemsEnum,
-	MagentoPriceTypeEnum,
-	MagentoPriceViewEnum
+	MagentoPriceTypeEnum
 } from './models/bundled-product';
 export { DaffMagentoProductTransformerService } from './transforms/product-transformer.service';
 export { GetProductQuery } from './queries/get-product';
