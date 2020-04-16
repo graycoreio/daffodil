@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { Action, Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffStoreFacade } from '@daffodil/core';
-
 import { DaffAuthorizeNetModule } from '../authorize-net.module';
 import { selectToken, selectError, selectTokenResponse } from '../selectors/authorize-net.selector';
 import { DaffAuthorizeNetReducersState } from '../reducers/authorize-net-reducers.interface';
@@ -13,7 +11,7 @@ import { DaffAuthorizeNetFacadeInterface } from './authorize-net-facade.interfac
 @Injectable({
   providedIn: DaffAuthorizeNetModule
 })
-export class DaffAuthorizeNetFacade<T extends DaffAuthorizeNetTokenResponse> implements DaffStoreFacade<Action>, DaffAuthorizeNetFacadeInterface<T> {
+export class DaffAuthorizeNetFacade<T extends DaffAuthorizeNetTokenResponse> implements DaffAuthorizeNetFacadeInterface<T> {
 
 	authorizeTokenResponse$: Observable<T>
   tokenNonce$: Observable<string>;
