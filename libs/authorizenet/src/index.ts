@@ -14,6 +14,7 @@ export { DaffAuthorizeNetConfig } from './drivers/interfaces/authorize-net-confi
 export { DaffAuthorizeNetService } from './drivers/interfaces/authorize-net-service.interface';
 export { DaffAuthorizeNetTransformerService } from './drivers/interfaces/authorize-net-transformer.interface';
 export { DaffAuthorizeNetFacade } from './facades/authorize-net.facade';
+export { DaffAuthorizeNetFacadeInterface } from './facades/authorize-net-facade.interface';
 export { DaffAuthorizeNetTokenRequest } from './models/request/authorize-net-token-request';
 export { DaffAuthorizeNetTokenResponse } from './models/response/authorize-net-token-response';
 
