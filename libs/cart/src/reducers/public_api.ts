@@ -1,7 +1,13 @@
 export { daffCartReducers } from './cart-reducers';
-export { daffCartReducer } from './cart.reducer';
 export { DaffCartReducersState } from './cart-reducers-state.interface';
-export { DaffCartReducerState } from './cart-state.interface';
-export { initialState } from './cart-initial-state';
+
 export { DaffCartErrors } from './cart-errors.type';
 export { DaffCartErrorType } from './cart-error-type.enum';
+
+export { daffCartReducer } from './cart.reducer';
+export { DaffCartReducerState } from './cart-state.interface';
+export { initialState } from './cart-initial-state';
+
+export { daffCartOrderReducer } from './cart-order.reducer';
+export { DaffCartOrderReducerState } from './cart-order-state.interface';
+export { daffCartOrderInitialState } from './cart-order-initial-state';
