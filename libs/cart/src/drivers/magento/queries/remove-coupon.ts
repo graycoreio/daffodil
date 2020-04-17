@@ -3,13 +3,12 @@ import gql from 'graphql-tag';
 import { cartItemFragment } from './fragments/cart-item';
 import { moneyFragment } from './fragments/money';
 
-export const applyCoupon = gql`
-  mutation ApplyCoupon($cartId: String!, $couponCode: String!) {
+export const removeAllCoupons = gql`
+  mutation RemoveAllCoupons($cartId: String!) {
     mutation {
-      applyCouponToCart(
+      removeCouponFromCart(
         input: {
-					cart_id: $cartId,
-					coupon_code: $couponCode
+					cart_id: $cartId
         }
       ) {
 				cart {
