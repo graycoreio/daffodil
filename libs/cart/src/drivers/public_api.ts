@@ -1,6 +1,7 @@
 // Drivers
 export { DaffCartServiceInterface, DaffCartDriver } from './interfaces/cart-service.interface';
 export { DaffCartBillingAddressServiceInterface, DaffCartBillingAddressDriver } from './interfaces/cart-billing-address-service.interface';
+export { DaffCartCouponServiceInterface, DaffCartCouponDriver } from './interfaces/cart-coupon-service.interface';
 export { DaffCartItemServiceInterface, DaffCartItemDriver } from './interfaces/cart-item-service.interface';
 export { DaffCartPaymentMethodsServiceInterface, DaffCartPaymentMethodsDriver} from './interfaces/cart-payment-methods-service.interface';
 export { DaffCartPaymentServiceInterface, DaffCartPaymentDriver} from './interfaces/cart-payment-service.interface';
