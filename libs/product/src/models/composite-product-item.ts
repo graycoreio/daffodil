@@ -1,15 +1,14 @@
 import { DaffProduct } from './product';
 
 export interface DaffCompositeProductItem {
-	id: number;
+	id: number | string;
 	required: boolean;
 	title: string;
-	type: string;
+	input_type: string;
 	options: DaffCompositeProductItemOption[];
 }
 
 export interface DaffCompositeProductItemOption extends DaffProduct {
-	can_change_quantity: boolean;
 	id: string;
 	name?: string;
 	price?: string;
