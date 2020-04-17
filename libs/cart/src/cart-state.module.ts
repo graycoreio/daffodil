@@ -12,6 +12,7 @@ import { DaffCartShippingInformationEffects } from './effects/cart-shipping-info
 import { DaffCartShippingMethodsEffects } from './effects/cart-shipping-methods.effects';
 import { DaffCartPaymentEffects } from './effects/cart-payment.effects';
 import { DaffCartPaymentMethodsEffects } from './effects/cart-payment-methods.effects';
+import { DaffCartOrderEffects } from './effects/cart-order.effects';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { DaffCartPaymentMethodsEffects } from './effects/cart-payment-methods.ef
       DaffCartShippingInformationEffects,
       DaffCartShippingMethodsEffects,
       DaffCartPaymentEffects,
-      DaffCartPaymentMethodsEffects
+      DaffCartPaymentMethodsEffects,
+      DaffCartOrderEffects
     ]),
   ]
 })
