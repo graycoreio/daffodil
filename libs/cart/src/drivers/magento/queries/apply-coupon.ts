@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 import { cartItemFragment } from './fragments/cart-item';
-import { moneyFragment } from './fragments/money';
+import { pricesFragment } from './fragments/prices';
 
 export const applyCoupon = gql`
   mutation ApplyCoupon($cartId: String!, $couponCode: String!) {
@@ -21,23 +21,12 @@ export const applyCoupon = gql`
 						code
 					}
 					prices {
-						grand_total {
-							...money
-						}
-						subtotal_excluding_tax {
-							...money
-						}
-						subtotal_including_tax {
-							...money
-						}
-						subtotal_with_discount_excluding_tax {
-							...money
-						}
+						...prices
 					}
 				}
 			}
     }
   }
   ${cartItemFragment}
-  ${moneyFragment}
+  ${pricesFragment}
 `;

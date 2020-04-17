@@ -1,6 +1,5 @@
 import gql from 'graphql-tag';
 
-import { moneyFragment } from './money';
 import { cartAddressFragment } from './cart-address';
 import { availablePaymentMethodFragment } from './available-payment-method';
 import { selectedPaymentMethodFragment } from './selected-payment-method';
@@ -8,6 +7,7 @@ import { cartItemFragment } from './cart-item';
 import { cartCouponFragment } from './cart-coupon';
 import { availableShippingMethodFragment } from './available-shipping-method';
 import { selectedShippingMethodFragment } from './selected-shipping-method';
+import { pricesFragment } from './prices';
 
 export const cartFragment = gql`
   fragment cart on Cart {
@@ -40,18 +40,7 @@ export const cartFragment = gql`
       ...cartCoupon
     }
     prices {
-      grand_total {
-        ...money
-      }
-      subtotal_excluding_tax {
-        ...money
-      }
-      subtotal_including_tax {
-        ...money
-      }
-      subtotal_with_discount_excluding_tax {
-        ...money
-      }
+      ...prices
     }
   }
   ${cartAddressFragment}
@@ -60,6 +49,6 @@ export const cartFragment = gql`
   ${availableShippingMethodFragment}
   ${selectedShippingMethodFragment}
   ${cartItemFragment}
-  ${moneyFragment}
+  ${pricesFragment}
   ${cartCouponFragment}
 `;
