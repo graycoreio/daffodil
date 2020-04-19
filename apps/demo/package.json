@@ -20,6 +20,7 @@
     "url": "https://github.com/graycoreio/daffodil"
   },
   "devDependencies": {
+    "@daffodil/builders": "0.0.0-PLACEHOLDER",
     "@daffodil/cart": "0.0.0-PLACEHOLDER",
     "@daffodil/checkout": "0.0.0-PLACEHOLDER",
     "@daffodil/core": "0.0.0-PLACEHOLDER",
