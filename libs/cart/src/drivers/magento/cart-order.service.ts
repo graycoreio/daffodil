@@ -10,6 +10,7 @@ import { placeOrder } from './queries/public_api';
 import { transformCartMagentoError } from './errors/transform';
 import { DaffCartOrderServiceInterface } from '../interfaces/cart-order-service.interface';
 import { MagentoPlaceOrderResponse } from './models/responses/public_api';
+import { DaffCartOrderResult } from '../../models/cart-order-result';
 
 /**
  * A service for making Magento GraphQL queries for carts.
@@ -17,13 +18,13 @@ import { MagentoPlaceOrderResponse } from './models/responses/public_api';
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoCartOrderService implements DaffCartOrderServiceInterface<DaffCart> {
+export class DaffMagentoCartOrderService implements DaffCartOrderServiceInterface {
   constructor(
     private apollo: Apollo,
     public cartTransformer: DaffMagentoCartTransformer,
   ) {}
 
-  placeOrder(cartId: DaffCart['id']): Observable<{id: string}> {
+  placeOrder(cartId: DaffCart['id']): Observable<DaffCartOrderResult> {
     return this.apollo.mutate<MagentoPlaceOrderResponse>({
       mutation: placeOrder,
       variables: {
