@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 
-import { DaffProduct, DaffProductTypeEnum } from '../../../models/product';
+import { DaffProduct } from '../../../models/product';
 import { MagentoProduct, MagentoProductTypeEnum } from '../models/magento-product';
+import { DaffMagentoSimpleProductTransformerService } from './simple-product-transformer.service';
+import { DaffMagentoBundledProductTransformerService } from './bundled-product-transformer.service';
+import { MagentoBundledProduct } from '../models/bundled-product';
 
 /**
  * Transforms magento products into an object usable by daffodil.
@@ -11,71 +14,29 @@ import { MagentoProduct, MagentoProductTypeEnum } from '../models/magento-produc
 })
 export class DaffMagentoProductTransformerService {
 
+	constructor(
+		private simpleProductTransformer: DaffMagentoSimpleProductTransformerService,
+		private bundledProductTransformer: DaffMagentoBundledProductTransformerService
+	) {}
+
   /**
    * Transforms the magento MagentoProduct from the magento product query into a DaffProduct. 
-   * @param response the response from a magento product query.
+   * @param product a magento product
    */
-  transform(response: any): DaffProduct {
-    const product: MagentoProduct = response.products.items[0];
-    return {
-			type: this.transformProductType(product.__typename),
-			id: product.sku,
-      url: product.url_key,
-			name: product.name,
-			price: this.getPrice(product),
-      images: [
-        { url: product.image.url, id: '0', label: product.image.label},
-        ...product.media_gallery_entries.map(image => {
-          return {
-            url: response.storeConfig.secure_base_media_url + 'catalog/product' + image.file,
-            label: image.label,
-            id: image.id.toString()
-          }
-        })
-      ],
-      description: product.description.html
-    }
+  transform(product: MagentoProduct, mediaUrl?: string): DaffProduct {
+		if(product.__typename === MagentoProductTypeEnum.BundledProduct) {
+			console.log('bundled')
+			return this.bundledProductTransformer.transform(<MagentoBundledProduct>product, mediaUrl);
+		} else {
+			console.log('simple')
+			return this.simpleProductTransformer.transform(product, mediaUrl);
+		}
   }
 
   /**
    * Transforms many magento MagentoProducts from the magento product query into DaffProducts.
    */
-  transformMany(products: any[]): DaffProduct[] {
-    return products.map(this.transformList.bind(this));
+  transformMany(products: MagentoProduct[], mediaUrl?: string): DaffProduct[] {
+    return products.map(product => this.transform(product, mediaUrl));
   }
-
-  private transformList(product: MagentoProduct): DaffProduct {
-    return {
-			type: this.transformProductType(product.__typename),
-      id: product.sku,
-      url: product.url_key,
-      name: product.name,
-			price: this.getPrice(product),
-			images: [
-        {url: product.image.url, id: '0', label: product.image.url}
-      ]
-    }
-	}
-	
-	private transformProductType(type: string): DaffProductTypeEnum {
-		switch(type) {
-			case(MagentoProductTypeEnum.BundledProduct) :
-				return DaffProductTypeEnum.Composite;
-			case(MagentoProductTypeEnum.SimpleProduct) : 
-				return DaffProductTypeEnum.Simple;
-			default :
-				return null;
-		}
-	}
-
-	/**
-	 * A function for null checking an object.
-	 */
-	private getPrice(product: MagentoProduct): string {
-		return !product.price_range || 
-			!product.price_range.maximum_price || 
-			!product.price_range.maximum_price.regular_price || 
-			!!product.price_range.maximum_price.regular_price.value
-		? product.price_range.maximum_price.regular_price.value.toString() : '';
-	}
 }
