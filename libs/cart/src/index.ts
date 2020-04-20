@@ -7,6 +7,7 @@ export { DaffCartShippingRate } from './models/cart-shipping-rate';
 export { DaffCartShippingInformation } from './models/cart-shipping-info';
 export { DaffCartTotal } from './models/cart-total';
 export { DaffCartCoupon } from './models/cart-coupon';
+export { DaffCartOrderResult } from './models/cart-order-result';
 
 export { DaffCartModule } from './cart.module';
 

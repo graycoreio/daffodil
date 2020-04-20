@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { DaffCartOrderResult } from '../models/cart-order-result';
 
 export enum DaffCartOrderActionTypes {
   CartPlaceOrderAction = '[DaffCart] Cart Place Order Action',
@@ -10,10 +11,10 @@ export class DaffCartPlaceOrder implements Action {
   readonly type = DaffCartOrderActionTypes.CartPlaceOrderAction;
 }
 
-export class DaffCartPlaceOrderSuccess implements Action {
+export class DaffCartPlaceOrderSuccess<T extends DaffCartOrderResult = DaffCartOrderResult> implements Action {
   readonly type = DaffCartOrderActionTypes.CartPlaceOrderSuccessAction;
 
-  constructor(public payload: {id: string | number}) {}
+  constructor(public payload: T) {}
 }
 
 export class DaffCartPlaceOrderFailure implements Action {
@@ -22,7 +23,7 @@ export class DaffCartPlaceOrderFailure implements Action {
   constructor(public payload: string) {}
 }
 
-export type DaffCartOrderActions =
+export type DaffCartOrderActions<T extends DaffCartOrderResult = DaffCartOrderResult> =
   | DaffCartPlaceOrder
-  | DaffCartPlaceOrderSuccess
+  | DaffCartPlaceOrderSuccess<T>
   | DaffCartPlaceOrderFailure;
