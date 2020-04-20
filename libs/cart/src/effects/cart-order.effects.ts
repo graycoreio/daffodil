@@ -18,15 +18,17 @@ import { DaffCart } from '../models/cart';
 import { DaffCartOrderServiceInterface, DaffCartOrderDriver } from '../drivers/interfaces/cart-order-service.interface';
 import { DaffCartStorageService } from '../storage/cart-storage.service';
 import { DaffCartPaymentMethod } from '../models/cart-payment';
+import { DaffCartOrderResult } from '../models/cart-order-result';
 
 @Injectable()
 export class DaffCartOrderEffects<
   T extends DaffCart = DaffCart,
-  V extends DaffCartPaymentMethod = DaffCartPaymentMethod
+  V extends DaffCartPaymentMethod = DaffCartPaymentMethod,
+  R extends DaffCartOrderResult = DaffCartOrderResult
 > {
   constructor(
     private actions$: Actions,
-    @Inject(DaffCartOrderDriver) private driver: DaffCartOrderServiceInterface<T, V>,
+    @Inject(DaffCartOrderDriver) private driver: DaffCartOrderServiceInterface<T, V, R>,
     private storage: DaffCartStorageService,
   ) {}
 
