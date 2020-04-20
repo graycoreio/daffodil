@@ -4,11 +4,12 @@ import {
   DaffCartOrderActionTypes
 } from '../actions/public_api';
 import { DaffCartOrderReducerState } from './cart-order-state.interface';
+import { DaffCartOrderResult } from '../models/cart-order-result';
 
-export function daffCartOrderReducer(
+export function daffCartOrderReducer<T extends DaffCartOrderResult = DaffCartOrderResult>(
   state = daffCartOrderInitialState,
-  action: DaffCartOrderActions
-): DaffCartOrderReducerState {
+  action: DaffCartOrderActions<T>
+): DaffCartOrderReducerState<T> {
   switch (action.type) {
     case DaffCartOrderActionTypes.CartPlaceOrderAction:
       return {

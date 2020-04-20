@@ -1,6 +1,6 @@
 import { DaffCartOrderReducerState } from './cart-order-state.interface';
 
-export const daffCartOrderInitialState: DaffCartOrderReducerState = {
+export const daffCartOrderInitialState: DaffCartOrderReducerState<any> = {
   order: {
     id: null
   },
