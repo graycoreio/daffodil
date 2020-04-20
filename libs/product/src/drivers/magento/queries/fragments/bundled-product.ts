@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
-export const bundledProductFragment = gql`
-  fragment BundledProduct on BundleProduct {
+export const magentoBundledProductFragment = gql`
+  fragment bundledProduct on BundleProduct {
 		dynamic_price
 		dynamic_sku
 		dynamic_weight

@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+import { magentoBundledProductFragment } from './bundled-product';
 
 export const magentoProductFragment = gql`
   fragment product on ProductInterface {
@@ -36,5 +37,7 @@ export const magentoProductFragment = gql`
 		description {
 			html
 		}
-  }
+		...bundledProduct
+	}
+	${magentoBundledProductFragment}
 `;

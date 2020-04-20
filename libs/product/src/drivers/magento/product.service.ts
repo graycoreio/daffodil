@@ -33,7 +33,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
 				sku: productId
 			}
 		}).pipe(
-      map(result => this.productTransformer.transform(result.data))
+      map(result => this.productTransformer.transform(result.data.products.items[0], result.data.storeConfig.secure_base_media_url))
     );
   }
 
@@ -44,7 +44,7 @@ export class DaffMagentoProductService implements DaffProductServiceInterface {
     return this.apollo.query<any>({
 			query: GetAllProductsQuery
 		}).pipe(
-      map(result => this.productTransformer.transformMany(result.data.products.items))
+      map(result => this.productTransformer.transformMany(result.data.products.items, result.data.storeConfig.secure_base_media_url))
     );
   }
 
