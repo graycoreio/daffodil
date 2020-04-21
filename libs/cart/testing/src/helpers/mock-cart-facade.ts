@@ -1,11 +1,12 @@
 import { BehaviorSubject } from 'rxjs';
 import { Action } from '@ngrx/store';
 
-import { 
-	DaffCart, 
+import {
+	DaffCart,
 	DaffCartFacadeInterface,
 	DaffCartErrors,
-	DaffCartErrorType
+	DaffCartErrorType,
+  DaffCartOrderResult
 } from '@daffodil/cart';
 
 export class MockDaffCartFacade implements DaffCartFacadeInterface {
@@ -34,6 +35,11 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
   availableShippingMethods$: BehaviorSubject<DaffCart['available_shipping_methods']> = new BehaviorSubject([]);
   availablePaymentMethods$: BehaviorSubject<DaffCart['available_payment_methods']> = new BehaviorSubject([]);
   isCartEmpty$: BehaviorSubject<boolean> = new BehaviorSubject(true);
+
+  orderResultLoading$ = new BehaviorSubject<boolean>(false);
+	orderResultErrors$ = new BehaviorSubject<string[]>([]);
+	orderResult$ = new BehaviorSubject<DaffCartOrderResult>({id: null});
+	orderResultId$ = new BehaviorSubject<DaffCartOrderResult['id']>(null);
 
   dispatch(action: Action) {};
 }
