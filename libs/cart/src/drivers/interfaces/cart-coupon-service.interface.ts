@@ -16,7 +16,7 @@ export interface DaffCartCouponServiceInterface<T extends DaffCart = DaffCart, V
 	/**
 	 * List coupon codes applied to a cart.
 	 */
-	list(cartId: T['id']): Observable<Partial<T>>;
+	list(cartId: T['id']): Observable<V[]>;
 	
 	/**
 	 * Remove a coupon from the cart and return a partial of the cart.
