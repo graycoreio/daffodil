@@ -18,3 +18,4 @@ export { getCart } from './get-cart';
 export { createCart } from './create-cart';
 export { setGuestEmail } from './set-guest-email';
 export { placeOrder } from './place-order';
+export { listCartCoupons } from './list-cart-coupons';
