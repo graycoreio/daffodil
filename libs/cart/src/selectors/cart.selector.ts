@@ -6,13 +6,18 @@ import {
 
 import {
   DaffCartReducersState,
-  DaffCartReducerState
+  DaffCartReducerState,
+  DaffCartOrderReducerState
 } from '../reducers/public_api';
 import { DaffCartErrorType } from '../reducers/cart-error-type.enum';
 import { DaffCart } from '../models/cart';
+import { DaffCartOrderResult } from '../models/cart-order-result';
 
-export interface DaffCartMemoizedSelectors<T extends DaffCart = DaffCart> {
-	selectCartFeatureState: MemoizedSelector<object, DaffCartReducersState<T>>;
+export interface DaffCartMemoizedSelectors<
+  T extends DaffCart = DaffCart,
+  V extends DaffCartOrderResult = DaffCartOrderResult
+> {
+	selectCartFeatureState: MemoizedSelector<object, DaffCartReducersState<T, V>>;
 	selectCartState: MemoizedSelector<object, DaffCartReducerState<T>>;
 	selectCartValue: MemoizedSelector<object, T>;
 	selectCartLoading: MemoizedSelector<object, boolean>;
@@ -37,14 +42,23 @@ export interface DaffCartMemoizedSelectors<T extends DaffCart = DaffCart> {
 	selectCartShippingInformation: MemoizedSelector<object, T['shipping_information']>;
 	selectCartAvailableShippingMethods: MemoizedSelector<object, T['available_shipping_methods']>;
 	selectCartAvailablePaymentMethods: MemoizedSelector<object, T['available_payment_methods']>;
-	selectIsCartEmpty: MemoizedSelector<object, boolean>;
+  selectIsCartEmpty: MemoizedSelector<object, boolean>;
+
+  selectCartOrderState: MemoizedSelector<object, DaffCartOrderReducerState<V>>;
+  selectCartOrderLoading: MemoizedSelector<object, boolean>;
+	selectCartOrderErrors: MemoizedSelector<object, DaffCartOrderReducerState<V>['errors']>;
+	selectCartOrderValue: MemoizedSelector<object, DaffCartOrderReducerState<V>['cartOrderResult']>;
+	selectCartOrderId: MemoizedSelector<object, DaffCartOrderReducerState<V>['cartOrderResult']['id']>;
 }
 
-const createCartFeatureSelectors = <T extends DaffCart>(): DaffCartMemoizedSelectors<T> => {
-	const selectCartFeatureState = createFeatureSelector<DaffCartReducersState<T>>('cart');
+const createCartFeatureSelectors = <
+  T extends DaffCart = DaffCart,
+  V extends DaffCartOrderResult = DaffCartOrderResult
+>(): DaffCartMemoizedSelectors<T> => {
+	const selectCartFeatureState = createFeatureSelector<DaffCartReducersState<T, V>>('cart');
 	const selectCartState = createSelector(
-		selectCartFeatureState, 
-		(state: DaffCartReducersState<T>) => state.cart
+		selectCartFeatureState,
+		(state: DaffCartReducersState<T, V>) => state.cart
 	);
 	const selectCartValue = createSelector(
 		selectCartState,
@@ -141,8 +155,30 @@ const createCartFeatureSelectors = <T extends DaffCart>(): DaffCartMemoizedSelec
 	const selectIsCartEmpty = createSelector(
 		selectCartValue,
 		cart => !cart || !cart.items || cart.items.length === 0
+  );
+
+  const selectCartOrderState = createSelector(
+		selectCartFeatureState,
+		(state: DaffCartReducersState<T, V>) => state.order
+  );
+  const selectCartOrderValue = createSelector(
+		selectCartOrderState,
+		(state: DaffCartOrderReducerState<V>) => state.cartOrderResult
+  );
+  const selectCartOrderId = createSelector(
+		selectCartOrderValue,
+		(state: DaffCartOrderReducerState<V>['cartOrderResult']) => state.id
+  );
+  const selectCartOrderLoading = createSelector(
+		selectCartOrderState,
+		(state: DaffCartOrderReducerState<V>) => state.loading
 	);
-	return { 
+	const selectCartOrderErrors = createSelector(
+		selectCartOrderState,
+		(state: DaffCartOrderReducerState<V>) => state.errors
+  );
+
+	return {
 		selectCartFeatureState,
 		selectCartState,
 		selectCartValue,
@@ -167,14 +203,23 @@ const createCartFeatureSelectors = <T extends DaffCart>(): DaffCartMemoizedSelec
 		selectCartTotals,
 		selectCartShippingInformation,
 		selectCartAvailableShippingMethods,
-		selectCartAvailablePaymentMethods,
-		selectIsCartEmpty
+    selectCartAvailablePaymentMethods,
+    selectIsCartEmpty,
+
+    selectCartOrderState,
+    selectCartOrderLoading,
+    selectCartOrderErrors,
+    selectCartOrderValue,
+    selectCartOrderId
 	}
 }
 
 export const getDaffCartSelectors = (() => {
 	let cache;
-	return <V extends DaffCart = DaffCart>(): DaffCartMemoizedSelectors<V> => cache = cache 
-		? cache 
-		: createCartFeatureSelectors<V>();
+	return <
+    T extends DaffCart = DaffCart,
+    V extends DaffCartOrderResult = DaffCartOrderResult
+  >(): DaffCartMemoizedSelectors<T, V> => cache = cache
+		? cache
+		: createCartFeatureSelectors<T, V>();
 })();
