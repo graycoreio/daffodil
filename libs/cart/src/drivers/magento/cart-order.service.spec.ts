@@ -3,9 +3,10 @@ import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/tes
 import { catchError } from 'rxjs/operators';
 import { GraphQLError } from 'graphql';
 
-import { DaffCart } from '@daffodil/cart';
+import { DaffCart, DaffCartPaymentMethod } from '@daffodil/cart';
 import {
   DaffCartFactory,
+  DaffCartPaymentFactory,
 } from '@daffodil/cart/testing';
 import { DaffBadInputError } from '@daffodil/driver';
 
@@ -19,10 +20,12 @@ describe('Driver | Magento | Cart | CartOrderService', () => {
   let controller: ApolloTestingController;
 
   let daffCartFactory: DaffCartFactory;
+  let daffCartPaymentFactory: DaffCartPaymentFactory;
 
   let cartId;
   let orderNumber;
   let mockDaffCart: DaffCart;
+  let mockDaffCartPayment: DaffCartPaymentMethod;
   let mockPlaceOrderResponse: MagentoPlaceOrderResponse;
 
   beforeEach(() => {
@@ -39,8 +42,10 @@ describe('Driver | Magento | Cart | CartOrderService', () => {
     controller = TestBed.get(ApolloTestingController);
 
     daffCartFactory = TestBed.get(DaffCartFactory);
+    daffCartPaymentFactory = TestBed.get(DaffCartPaymentFactory);
 
     mockDaffCart = daffCartFactory.create();
+    mockDaffCartPayment = daffCartPaymentFactory.create();
 
     cartId = mockDaffCart.id;
     orderNumber = '28349539482';
@@ -60,7 +65,7 @@ describe('Driver | Magento | Cart | CartOrderService', () => {
   describe('placeOrder | placing an order for the specified cart', () => {
     describe('when the call to the Magento API is successful', () => {
       it('should return the order ID', done => {
-        service.placeOrder(cartId).subscribe(result => {
+        service.placeOrder(cartId, mockDaffCartPayment).subscribe(result => {
           expect(String(result.id)).toEqual(String(orderNumber));
           done();
         });
@@ -76,7 +81,7 @@ describe('Driver | Magento | Cart | CartOrderService', () => {
     describe('when the call to the Magento API is unsuccessful', () => {
       describe('because of a graphql-no-such-entity error', () => {
         it('should throw a DaffCartNotFoundError', done => {
-          service.placeOrder(cartId).pipe(
+          service.placeOrder(cartId, mockDaffCartPayment).pipe(
             catchError(err => {
               expect(err).toEqual(jasmine.any(DaffCartNotFoundError));
               done();
@@ -100,7 +105,7 @@ describe('Driver | Magento | Cart | CartOrderService', () => {
 
       describe('because of a graphql-input error', () => {
         it('should throw a DaffBadInputError', done => {
-          service.placeOrder(cartId).pipe(
+          service.placeOrder(cartId, mockDaffCartPayment).pipe(
             catchError(err => {
               expect(err).toEqual(jasmine.any(DaffBadInputError));
               done();

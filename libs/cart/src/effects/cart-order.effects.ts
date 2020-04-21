@@ -35,7 +35,7 @@ export class DaffCartOrderEffects<
   @Effect()
   placeOrder$ = this.actions$.pipe(
     ofType(DaffCartOrderActionTypes.CartPlaceOrderAction),
-    switchMap((action: DaffCartPlaceOrder) => this.driver.placeOrder(this.storage.getCartId()).pipe(
+    switchMap((action: DaffCartPlaceOrder<V>) => this.driver.placeOrder(this.storage.getCartId(), action.payload).pipe(
       map((resp: R) => new DaffCartPlaceOrderSuccess<R>(resp)),
     )),
     catchError(error => of(error instanceof DaffStorageServiceError

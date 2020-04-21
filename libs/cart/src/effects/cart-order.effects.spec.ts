@@ -4,11 +4,16 @@ import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
 import {
-  DaffErrorStorageService,
   DaffStorageServiceError
 } from '@daffodil/core'
-import { DaffCart } from '@daffodil/cart';
-import { DaffCartFactory } from '@daffodil/cart/testing';
+import {
+  DaffCart,
+  DaffCartPaymentMethod
+} from '@daffodil/cart';
+import {
+  DaffCartFactory,
+  DaffCartPaymentFactory
+} from '@daffodil/cart/testing';
 
 import { DaffCartOrderEffects } from './cart-order.effects';
 import {
@@ -24,10 +29,12 @@ describe('Cart | Effect | CartOrderEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCartOrderEffects;
 
+  let mockDaffCartPayment: DaffCartPaymentMethod;
   let mockCart: DaffCart;
   let orderId: string;
 
   let cartFactory: DaffCartFactory;
+  let daffCartPaymentFactory: DaffCartPaymentFactory;
 
   let cartOrderDriverSpy: jasmine.SpyObj<DaffCartOrderServiceInterface>;
   let daffCartStorageSpy: jasmine.SpyObj<DaffCartStorageService>;
@@ -55,8 +62,10 @@ describe('Cart | Effect | CartOrderEffects', () => {
     cartOrderDriverSpy = TestBed.get(DaffCartOrderDriver);
     daffCartStorageSpy = TestBed.get(DaffCartStorageService);
     cartFactory = TestBed.get(DaffCartFactory);
+    daffCartPaymentFactory = TestBed.get(DaffCartPaymentFactory);
 
     mockCart = cartFactory.create();
+    mockDaffCartPayment = daffCartPaymentFactory.create();
     orderId = 'id';
 
     daffCartStorageSpy.getCartId.and.returnValue(String(mockCart.id));
@@ -68,7 +77,7 @@ describe('Cart | Effect | CartOrderEffects', () => {
 
   describe('placeOrder$ | placing an order', () => {
     let expected;
-    const cartPlaceOrderAction = new DaffCartPlaceOrder();
+    const cartPlaceOrderAction = new DaffCartPlaceOrder(mockDaffCartPayment);
 
     describe('when the call to CartOrderService is successful', () => {
       beforeEach(() => {
