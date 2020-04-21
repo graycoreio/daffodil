@@ -24,7 +24,7 @@ export class DaffMagentoCartOrderService implements DaffCartOrderServiceInterfac
     public cartTransformer: DaffMagentoCartTransformer,
   ) {}
 
-  placeOrder(cartId: DaffCart['id']): Observable<DaffCartOrderResult> {
+  placeOrder(cartId: DaffCart['id'], payment?: any): Observable<DaffCartOrderResult> {
     return this.apollo.mutate<MagentoPlaceOrderResponse>({
       mutation: placeOrder,
       variables: {
