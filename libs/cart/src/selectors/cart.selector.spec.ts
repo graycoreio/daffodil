@@ -5,7 +5,7 @@ import { cold } from 'jasmine-marbles';
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
-import { DaffCartLoadSuccess } from '../actions/public_api';
+import { DaffCartLoadSuccess, DaffCartPlaceOrderSuccess } from '../actions/public_api';
 import { daffCartReducers, DaffCartReducersState } from '../reducers/public_api';
 import { getDaffCartSelectors } from './cart.selector';
 import { DaffCartErrorType } from '../reducers/cart-error-type.enum';
@@ -16,10 +16,11 @@ describe('Cart | Selector | Cart', () => {
 
   let cartFactory: DaffCartFactory;
 
+  let orderId: string;
   let cart: DaffCart;
   let loading: boolean;
 	let errors: DaffCartErrors;
-	const { 
+	const {
 		selectCartLoading,
 		selectCartValue,
 		selectCartErrorsObject,
@@ -43,7 +44,13 @@ describe('Cart | Selector | Cart', () => {
 		selectCartShippingInformation,
 		selectCartAvailableShippingMethods,
 		selectCartAvailablePaymentMethods,
-		selectIsCartEmpty
+    selectIsCartEmpty,
+
+    selectCartOrderState,
+    selectCartOrderLoading,
+    selectCartOrderErrors,
+    selectCartOrderValue,
+    selectCartOrderId
 	} = getDaffCartSelectors();
 
   beforeEach(() => {
@@ -59,6 +66,7 @@ describe('Cart | Selector | Cart', () => {
 
     cartFactory = TestBed.get(DaffCartFactory);
 
+    orderId = 'id';
     cart = cartFactory.create();
     loading = false;
     errors = {
@@ -73,6 +81,7 @@ describe('Cart | Selector | Cart', () => {
     };
 
     store.dispatch(new DaffCartLoadSuccess(cart));
+    store.dispatch(new DaffCartPlaceOrderSuccess({id: orderId}));
   });
 
   describe('selectCartValue', () => {
@@ -286,6 +295,42 @@ describe('Cart | Selector | Cart', () => {
     it('selects whether the cart is empty', () => {
       const selector = store.pipe(select(selectIsCartEmpty));
       const expected = cold('a', {a: cart.items.length === 0});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCartOrderLoading', () => {
+    it('selects whether the place order operation is in progress', () => {
+      const selector = store.pipe(select(selectCartOrderLoading));
+      const expected = cold('a', {a: false});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCartOrderErrors', () => {
+    it('selects the errors associated with place order', () => {
+      const selector = store.pipe(select(selectCartOrderErrors));
+      const expected = cold('a', {a: []});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCartOrderValue', () => {
+    it('selects the order object', () => {
+      const selector = store.pipe(select(selectCartOrderValue));
+      const expected = cold('a', {a: {id: orderId}});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCartOrderId', () => {
+    it('selects the ID of the order object', () => {
+      const selector = store.pipe(select(selectCartOrderId));
+      const expected = cold('a', {a: orderId});
 
       expect(selector).toBeObservable(expected);
     });
