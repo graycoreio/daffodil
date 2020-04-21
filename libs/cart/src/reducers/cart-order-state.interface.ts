@@ -1,7 +1,7 @@
 import { DaffCartOrderResult } from '../models/cart-order-result';
 
 export interface DaffCartOrderReducerState<T extends DaffCartOrderResult = DaffCartOrderResult> {
-  order: T;
+  cartOrderResult: T;
   loading: boolean;
   errors: string[];
 }

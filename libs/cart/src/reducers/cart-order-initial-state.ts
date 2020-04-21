@@ -1,7 +1,7 @@
 import { DaffCartOrderReducerState } from './cart-order-state.interface';
 
 export const daffCartOrderInitialState: DaffCartOrderReducerState<any> = {
-  order: {
+  cartOrderResult: {
     id: null
   },
   loading: false,

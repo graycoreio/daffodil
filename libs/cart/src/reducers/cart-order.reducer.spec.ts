@@ -45,7 +45,7 @@ describe('Cart | Reducer | CartOrder', () => {
     });
 
     it('should set the order ID from action.payload', () => {
-      expect(result.order.id).toEqual(orderId)
+      expect(result.cartOrderResult.id).toEqual(orderId)
     });
 
     it('should indicate that the place order operation is not in progress', () => {

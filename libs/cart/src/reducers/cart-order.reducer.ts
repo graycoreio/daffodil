@@ -22,7 +22,7 @@ export function daffCartOrderReducer<T extends DaffCartOrderResult = DaffCartOrd
         ...state,
         errors: [],
         loading: false,
-        order: action.payload,
+        cartOrderResult: action.payload,
       };
 
     case DaffCartOrderActionTypes.CartPlaceOrderFailureAction:
