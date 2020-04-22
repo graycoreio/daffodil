@@ -7,4 +7,5 @@ export enum DaffCartErrorType {
   PaymentMethods = 'Payment Methods',
   ShippingInformation = 'Shipping Information',
   ShippingMethods = 'Shipping Methods',
+  Coupon = 'Coupon',
 }

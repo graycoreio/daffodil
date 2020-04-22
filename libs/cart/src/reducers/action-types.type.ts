@@ -6,7 +6,8 @@ import {
   DaffCartShippingMethodsActions,
   DaffCartShippingInformationActions,
   DaffCartPaymentActions,
-  DaffCartPaymentMethodsActions
+  DaffCartPaymentMethodsActions,
+  DaffCartCouponActions
 } from '../actions/public_api';
 import { DaffCart } from '../models/cart';
 import { DaffCartItem } from '../models/cart-item';
@@ -14,6 +15,7 @@ import { DaffCartItemInput } from '../models/cart-item-input';
 import { DaffCartAddress } from '../models/cart-address';
 import { DaffCartShippingRate } from '../models/cart-shipping-rate';
 import { DaffCartPaymentMethod } from '../models/cart-payment';
+import { DaffCartCoupon } from '../models/cart-coupon';
 
 export type ActionTypes<
 	T extends DaffCart = DaffCart,
@@ -21,7 +23,8 @@ export type ActionTypes<
 	U extends DaffCartItemInput = DaffCartItemInput,
 	W extends DaffCartAddress = DaffCartAddress,
 	X extends DaffCartShippingRate = DaffCartShippingRate,
-	Y extends DaffCartPaymentMethod = DaffCartPaymentMethod
+  Y extends DaffCartPaymentMethod = DaffCartPaymentMethod,
+  Z extends DaffCartCoupon = DaffCartCoupon
 > = DaffCartActions<T>
   | DaffCartItemActions<V, U, T>
   | DaffCartBillingAddressActions<W, T>
@@ -30,3 +33,4 @@ export type ActionTypes<
   | DaffCartShippingInformationActions<X, T>
   | DaffCartPaymentActions<Y, T>
   | DaffCartPaymentMethodsActions<Y>
+  | DaffCartCouponActions<T, Z>

@@ -72,6 +72,7 @@ describe('Cart | Selector | Cart', () => {
       [DaffCartErrorType.ShippingMethods]: [],
       [DaffCartErrorType.Payment]: [],
       [DaffCartErrorType.PaymentMethods]: [],
+      [DaffCartErrorType.Coupon]: [],
     };
 
     store.dispatch(new DaffCartLoadSuccess(cart));

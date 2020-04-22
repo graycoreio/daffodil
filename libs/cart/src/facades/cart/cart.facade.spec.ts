@@ -69,6 +69,7 @@ describe('DaffCartFacade', () => {
       [DaffCartErrorType.ShippingMethods]: [],
       [DaffCartErrorType.Payment]: [],
       [DaffCartErrorType.PaymentMethods]: [],
+      [DaffCartErrorType.Coupon]: [],
     };
     mockCartOrderResult = {
       id: 'id'
