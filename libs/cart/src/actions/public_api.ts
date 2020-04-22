@@ -7,3 +7,4 @@ export * from './cart-shipping-methods.actions';
 export * from './cart-payment.actions';
 export * from './cart-payment-methods.actions';
 export * from './cart-order.actions';
+export * from './cart-coupon.actions';
