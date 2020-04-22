@@ -25,6 +25,9 @@ import { DaffMagentoCartPaymentService } from './cart-payment.service';
 import { DaffCartShippingInformationDriver } from '../interfaces/cart-shipping-information-service.interface';
 import { DaffMagentoCartShippingInformationService } from './cart-shipping-information.service';
 
+import { DaffCartOrderDriver } from '../interfaces/cart-order-service.interface';
+import { DaffMagentoCartOrderService } from './cart-order.service';
+
 import { DaffMagentoCartShippingRateTransformer } from './transforms/outputs/cart-shipping-rate.service';
 import { DaffMagentoCartPaymentTransformer } from './transforms/outputs/cart-payment.service';
 import { DaffMagentoBillingAddressTransformer } from './transforms/outputs/billing-address.service';
@@ -83,6 +86,10 @@ export class DaffCartMagentoDriverModule {
         {
           provide: DaffCartPaymentMethodsDriver,
           useExisting: DaffMagentoCartPaymentMethodsService
+        },
+        {
+          provide: DaffCartOrderDriver,
+          useExisting: DaffMagentoCartOrderService
         },
 
         // output transformers
