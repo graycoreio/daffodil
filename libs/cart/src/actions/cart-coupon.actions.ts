@@ -27,7 +27,7 @@ export class DaffCartCouponApply<T extends DaffCartCoupon = DaffCartCoupon> impl
 export class DaffCartCouponApplySuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartCouponActionTypes.CartCouponApplySuccessAction;
 
-  constructor(public payload: T) {}
+  constructor(public payload: Partial<T>) {}
 }
 
 export class DaffCartCouponApplyFailure implements Action {
@@ -61,7 +61,7 @@ export class DaffCartCouponRemove<T extends DaffCartCoupon = DaffCartCoupon> imp
 export class DaffCartCouponRemoveSuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartCouponActionTypes.CartCouponRemoveSuccessAction;
 
-  constructor(public payload: T) {}
+  constructor(public payload: Partial<T>) {}
 }
 
 export class DaffCartCouponRemoveFailure implements Action {
