@@ -184,11 +184,12 @@ describe('Cart | Reducer | Cart Item', () => {
   });
 
   describe('when CartItemAddAction is triggered', () => {
+		const type = DaffCartItemInputType.Simple;
     const productId = 'productId';
     const qty = 1;
 
     it('should set loading state to true', () => {
-      const cartItemAddAction = new DaffCartItemAdd({ productId, qty });
+      const cartItemAddAction = new DaffCartItemAdd({ type, productId, qty });
 
       const result = cartItemReducer(initialState, cartItemAddAction);
 

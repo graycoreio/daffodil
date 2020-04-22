@@ -3,7 +3,8 @@ import { TestBed } from '@angular/core/testing';
 import {
   DaffCart,
   DaffCartItemInput,
-  DaffCartItem
+	DaffCartItem,
+	DaffCartItemInputType
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
@@ -42,6 +43,7 @@ describe('DaffInMemoryBackendCartItemsService', () => {
     mockCart.items = mockCartItems;
     collection = [mockCart];
     mockCartItemInput = {
+			type: DaffCartItemInputType.Simple,
       productId: mockCartItems[0].product_id,
       qty: mockCartItems[0].qty
     };

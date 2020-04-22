@@ -1,5 +1,5 @@
 export { MagentoListCartItemsResponse } from './list-cart-items';
-export { MagentoAddCartItemResponse } from './add-cart-item';
+export * from './add-cart-item';
 export { MagentoUpdateCartItemResponse } from './update-cart-item';
 export { MagentoRemoveCartItemResponse } from './remove-cart-item';
 export { MagentoListPaymentMethodsResponse } from './list-payment-methods';

@@ -4,11 +4,6 @@ import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
 import {
-  DaffCart,
-  DaffCartItem,
-  DaffCartItemInput,
-} from '@daffodil/cart';
-import {
   DaffCartFactory,
   DaffCartItemFactory
 } from '@daffodil/cart/testing';
@@ -33,6 +28,9 @@ import {
 } from '../actions/public_api';
 import { DaffCartStorageService } from '../storage/cart-storage.service';
 import { DaffCartItemServiceInterface, DaffCartItemDriver } from '../drivers/interfaces/cart-item-service.interface';
+import { DaffCartItem } from '../models/cart-item';
+import { DaffCartItemInput, DaffCartItemInputType } from '../models/cart-item-input';
+import { DaffCart } from '../models/cart';
 
 describe('Daffodil | Cart | CartItemEffects', () => {
   let actions$: Observable<any>;
@@ -76,6 +74,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
     mockCart = cartFactory.create();
     mockCartItem = cartPaymentFactory.create();
     mockCartItemInput = {
+			type: DaffCartItemInputType.Simple,
       productId: '3',
       qty: 3
     };

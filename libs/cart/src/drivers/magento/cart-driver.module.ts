@@ -40,7 +40,6 @@ import { DaffMagentoShippingAddressTransformer } from './transforms/outputs/ship
 import { DaffMagentoCartAddressInputTransformer } from './transforms/inputs/cart-address.service';
 import { DaffMagentoShippingAddressInputTransformer } from './transforms/inputs/shipping-address.service';
 import { DaffMagentoBillingAddressInputTransformer } from './transforms/inputs/billing-address.service';
-import { DaffMagentoCartItemInputTransformer } from './transforms/inputs/cart-item.service';
 import { DaffMagentoCartItemUpdateInputTransformer } from './transforms/inputs/cart-item-update.service';
 import { DaffMagentoPaymentMethodInputTransformer } from './transforms/inputs/payment-method.service';
 import { DaffMagentoShippingMethodInputTransformer } from './transforms/inputs/shipping-method.service';
@@ -106,7 +105,6 @@ export class DaffCartMagentoDriverModule {
         DaffMagentoCartAddressInputTransformer,
         DaffMagentoShippingAddressInputTransformer,
         DaffMagentoBillingAddressInputTransformer,
-        DaffMagentoCartItemInputTransformer,
         DaffMagentoCartItemUpdateInputTransformer,
         DaffMagentoPaymentMethodInputTransformer,
         DaffMagentoShippingMethodInputTransformer
