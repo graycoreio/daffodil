@@ -7,10 +7,9 @@ import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { DaffCartLoadSuccess, DaffCartPlaceOrderSuccess } from '../../actions/public_api';
 import { daffCartReducers, DaffCartReducersState, DaffCartOrderReducerState } from '../../reducers/public_api';
-import { DaffCartErrors } from '../../reducers/cart-errors.type';
 import { getCartOrderSelectors } from './cart-order.selector';
 
-describe('Cart | Selector | Cart', () => {
+describe('Cart | Selector | CartOrder', () => {
   let store: Store<DaffCartReducersState>;
 
   let cartFactory: DaffCartFactory;
