@@ -8,6 +8,6 @@ export { daffCartReducer } from './cart.reducer';
 export { DaffCartReducerState } from './cart-state.interface';
 export { initialState } from './cart-initial-state';
 
-export { daffCartOrderReducer } from './cart-order.reducer';
-export { DaffCartOrderReducerState } from './cart-order-state.interface';
-export { daffCartOrderInitialState } from './cart-order-initial-state';
+export { daffCartOrderReducer } from './cart-order/cart-order.reducer';
+export { DaffCartOrderReducerState } from './cart-order/cart-order-state.interface';
+export { daffCartOrderInitialState } from './cart-order/cart-order-initial-state';

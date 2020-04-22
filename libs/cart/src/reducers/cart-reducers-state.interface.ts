@@ -1,6 +1,6 @@
 import { DaffCartReducerState } from './cart-state.interface';
 import { DaffCart } from '../models/cart';
-import { DaffCartOrderReducerState } from './cart-order-state.interface';
+import { DaffCartOrderReducerState } from './cart-order/cart-order-state.interface';
 import { DaffCartOrderResult } from '../models/cart-order-result';
 
 export interface DaffCartReducersState<

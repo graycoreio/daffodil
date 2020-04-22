@@ -2,9 +2,9 @@ import { daffCartOrderInitialState } from './cart-order-initial-state';
 import {
   DaffCartOrderActions,
   DaffCartOrderActionTypes
-} from '../actions/public_api';
+} from '../../actions/public_api';
 import { DaffCartOrderReducerState } from './cart-order-state.interface';
-import { DaffCartOrderResult } from '../models/cart-order-result';
+import { DaffCartOrderResult } from '../../models/cart-order-result';
 
 export function daffCartOrderReducer<T extends DaffCartOrderResult = DaffCartOrderResult>(
   state = daffCartOrderInitialState,
