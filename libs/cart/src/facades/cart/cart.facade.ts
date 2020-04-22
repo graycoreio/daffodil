@@ -8,11 +8,15 @@ import { getDaffCartSelectors } from '../../selectors/public_api';
 import { DaffCartErrors } from '../../reducers/cart-errors.type';
 import { DaffCartErrorType } from '../../reducers/cart-error-type.enum';
 import { DaffCartFacadeInterface } from './cart-facade.interface';
+import { DaffCartOrderResult } from '../../models/cart-order-result';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffCartFacade<T extends DaffCart = DaffCart> implements DaffCartFacadeInterface<T> {
+export class DaffCartFacade<
+  T extends DaffCart = DaffCart,
+  V extends DaffCartOrderResult = DaffCartOrderResult
+> implements DaffCartFacadeInterface<T, V> {
   loading$: Observable<boolean>;
   cart$: Observable<T>;
 
@@ -40,8 +44,13 @@ export class DaffCartFacade<T extends DaffCart = DaffCart> implements DaffCartFa
   availablePaymentMethods$: Observable<DaffCart['available_payment_methods']>;
   isCartEmpty$: Observable<boolean>;
 
-  constructor(private store: Store<DaffCartReducersState<T>>) {
-		const { 
+  orderResultLoading$: Observable<boolean>;
+	orderResultErrors$: Observable<string[]>;
+	orderResult$: Observable<V>;
+	orderResultId$: Observable<V['id']>;
+
+  constructor(private store: Store<DaffCartReducersState<T, V>>) {
+		const {
 			selectCartLoading,
 			selectCartValue,
 			selectCartErrorsObject,
@@ -65,8 +74,13 @@ export class DaffCartFacade<T extends DaffCart = DaffCart> implements DaffCartFa
 			selectCartShippingInformation,
 			selectCartAvailableShippingMethods,
 			selectCartAvailablePaymentMethods,
-			selectIsCartEmpty
-		} = getDaffCartSelectors<T>();
+      selectIsCartEmpty,
+
+      selectCartOrderLoading,
+      selectCartOrderErrors,
+      selectCartOrderValue,
+      selectCartOrderId,
+		} = getDaffCartSelectors<T, V>();
 
     this.loading$ = this.store.pipe(select(selectCartLoading));
 		this.cart$ = this.store.pipe(select(selectCartValue));
@@ -93,6 +107,11 @@ export class DaffCartFacade<T extends DaffCart = DaffCart> implements DaffCartFa
     this.availableShippingMethods$ = this.store.pipe(select(selectCartAvailableShippingMethods));
     this.availablePaymentMethods$ = this.store.pipe(select(selectCartAvailablePaymentMethods));
     this.isCartEmpty$ = this.store.pipe(select(selectIsCartEmpty));
+
+    this.orderResultLoading$ = this.store.pipe(select(selectCartOrderLoading));
+    this.orderResultErrors$ = this.store.pipe(select(selectCartOrderErrors));
+    this.orderResult$ = this.store.pipe(select(selectCartOrderValue));
+    this.orderResultId$ = this.store.pipe(select(selectCartOrderId));
   }
 
   dispatch(action: Action) {

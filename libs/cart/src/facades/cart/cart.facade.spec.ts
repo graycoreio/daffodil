@@ -22,7 +22,10 @@ import {
   DaffCartShippingInformationLoadFailure,
   DaffCartShippingMethodsLoadFailure,
   DaffCartPaymentLoadFailure,
-  DaffCartPaymentMethodsLoadFailure
+  DaffCartPaymentMethodsLoadFailure,
+  DaffCartPlaceOrder,
+  DaffCartPlaceOrderFailure,
+  DaffCartPlaceOrderSuccess
 } from '@daffodil/cart';
 
 import { DaffCartFacade } from './cart.facade';
@@ -31,6 +34,7 @@ import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffCartErrors } from '../../reducers/cart-errors.type';
 import { DaffCartErrorType } from '../../reducers/cart-error-type.enum';
 import { DaffCart } from '../../models/cart';
+import { DaffCartOrderResult } from '../../models/cart-order-result';
 
 describe('DaffCartFacade', () => {
   let store: MockStore<{ product: Partial<DaffCartReducersState> }>;
@@ -38,6 +42,7 @@ describe('DaffCartFacade', () => {
   let cartFactory: DaffCartFactory;
 
   let errors: DaffCartErrors;
+  let mockCartOrderResult: DaffCartOrderResult;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -64,6 +69,9 @@ describe('DaffCartFacade', () => {
       [DaffCartErrorType.ShippingMethods]: [],
       [DaffCartErrorType.Payment]: [],
       [DaffCartErrorType.PaymentMethods]: [],
+    };
+    mockCartOrderResult = {
+      id: 'id'
     };
   });
 
@@ -399,11 +407,85 @@ describe('DaffCartFacade', () => {
   });
 
   describe('isCartEmpty$', () => {
-
     it('should return whether the cart is empty', () => {
       const cart = cartFactory.create();
       const expected = cold('a', { a: cart.items.length === 0});
       expect(facade.isCartEmpty$).toBeObservable(expected);
+    });
+  });
+
+  describe('orderResultLoading$', () => {
+    it('should initially be false', () => {
+      const expected = cold('a', { a: false });
+      expect(facade.orderResultLoading$).toBeObservable(expected);
+    });
+
+    describe('when there is a place order request in progress', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartPlaceOrder());
+      });
+
+      it('should be true', () => {
+        const expected = cold('a', { a: true });
+        expect(facade.orderResultLoading$).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('orderResultErrors$', () => {
+    it('should initially be empty', () => {
+      const expected = cold('a', { a: [] });
+      expect(facade.orderResultErrors$).toBeObservable(expected);
+    });
+
+    describe('when a place order request has failed', () => {
+      let error;
+
+      beforeEach(() => {
+        error = 'error';
+        store.dispatch(new DaffCartPlaceOrderFailure(error));
+      });
+
+      it('should contain the error', () => {
+        const expected = cold('a', { a: [error] });
+        expect(facade.orderResultErrors$).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('orderResult$', () => {
+    it('should initially be a cart order result object with a null ID', () => {
+      const expected = cold('a', { a: {id: null} });
+      expect(facade.orderResult$).toBeObservable(expected);
+    });
+
+    describe('when a place order request has succeeded', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartPlaceOrderSuccess(mockCartOrderResult));
+      });
+
+      it('should be the cart order result object', () => {
+        const expected = cold('a', { a: mockCartOrderResult });
+        expect(facade.orderResult$).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('orderResultId$', () => {
+    it('should initially be null', () => {
+      const expected = cold('a', { a: null});
+      expect(facade.orderResultId$).toBeObservable(expected);
+    });
+
+    describe('when a place order request has succeeded', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartPlaceOrderSuccess(mockCartOrderResult));
+      });
+
+      it('should be the cart order result ID', () => {
+        const expected = cold('a', { a: mockCartOrderResult.id });
+        expect(facade.orderResultId$).toBeObservable(expected);
+      });
     });
   });
 });

@@ -6,8 +6,12 @@ import { DaffStoreFacade } from '@daffodil/core';
 import { DaffCart } from '../../models/cart';
 import { DaffCartErrors } from '../../reducers/cart-errors.type';
 import { DaffCartErrorType } from '../../reducers/cart-error-type.enum';
+import { DaffCartOrderResult } from '../../models/cart-order-result';
 
-export interface DaffCartFacadeInterface<T extends DaffCart = DaffCart> extends DaffStoreFacade<Action> {
+export interface DaffCartFacadeInterface<
+  T extends DaffCart = DaffCart,
+  V extends DaffCartOrderResult = DaffCartOrderResult
+> extends DaffStoreFacade<Action> {
   loading$: Observable<boolean>;
   cart$: Observable<T>;
   errors$: Observable<DaffCartErrors>;
@@ -33,4 +37,9 @@ export interface DaffCartFacadeInterface<T extends DaffCart = DaffCart> extends 
   availableShippingMethods$: Observable<DaffCart['available_shipping_methods']>;
   availablePaymentMethods$: Observable<DaffCart['available_payment_methods']>;
   isCartEmpty$: Observable<boolean>;
+
+  orderResultLoading$: Observable<boolean>;
+	orderResultErrors$: Observable<string[]>;
+	orderResult$: Observable<V>;
+	orderResultId$: Observable<V['id']>;
 }
