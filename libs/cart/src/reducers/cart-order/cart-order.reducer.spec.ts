@@ -4,7 +4,7 @@ import {
   DaffCartPlaceOrder,
   DaffCartPlaceOrderSuccess,
   DaffCartPlaceOrderFailure
-} from '../actions/public_api';
+} from '../../actions/public_api';
 import { DaffCartOrderReducerState } from './cart-order-state.interface';
 
 describe('Cart | Reducer | CartOrder', () => {
