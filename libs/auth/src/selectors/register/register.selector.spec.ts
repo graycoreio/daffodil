@@ -7,8 +7,8 @@ import {
   DAFF_AUTH_STORE_FEATURE_KEY,
   daffAuthReducers,
   DaffAuthRegisterReducerState
-} from '../reducers/public_api';
-import { DaffAuthToken } from '../models/auth-token';
+} from '../../reducers/public_api';
+import { DaffAuthToken } from '../../models/auth-token';
 import {
   getDaffAuthRegisterSelectors
 } from './register.selector';

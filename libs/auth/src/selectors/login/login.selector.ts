@@ -1,9 +1,9 @@
 import { createSelector, MemoizedSelector } from '@ngrx/store';
 
-import { getDaffAuthFeatureStateSelector } from './auth-feature.selector';
-import { DaffAuthToken } from '../models/auth-token';
-import { DaffAuthFeatureState } from '../reducers/auth-feature-state.interface';
-import { DaffAuthLoginReducerState } from '../reducers/public_api';
+import { getDaffAuthFeatureStateSelector } from '../auth-feature.selector';
+import { DaffAuthToken } from '../../models/auth-token';
+import { DaffAuthFeatureState } from '../../reducers/auth-feature-state.interface';
+import { DaffAuthLoginReducerState } from '../../reducers/public_api';
 
 export interface DaffAuthLoginSelectors<T extends DaffAuthToken> {
   selectAuthLoginState: MemoizedSelector<object, DaffAuthLoginReducerState<T>>;
