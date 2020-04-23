@@ -6,12 +6,10 @@ import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { DaffCartLoadSuccess, DaffCartPlaceOrderSuccess } from '../../actions/public_api';
-import { daffCartReducers, DaffCartReducersState } from '../../reducers/public_api';
-import { DaffCartErrors } from '../../reducers/cart-errors.type';
+import { daffCartReducers, DaffCartReducersState, DaffCartOrderReducerState } from '../../reducers/public_api';
 import { getCartOrderSelectors } from './cart-order.selector';
-import { DaffCartOrderReducerState } from '../../reducers/cart-order-state.interface';
 
-describe('Cart | Selector | Cart', () => {
+describe('Cart | Selector | CartOrder', () => {
   let store: Store<DaffCartReducersState>;
 
   let cartFactory: DaffCartFactory;

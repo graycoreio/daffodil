@@ -4,10 +4,9 @@ import {
 } from '@ngrx/store';
 
 import { DaffCartOrderResult } from '../../models/cart-order-result';
-import { DaffCartOrderReducerState } from '../../reducers/cart-order-state.interface';
 import { getDaffCartFeatureSelector } from '../cart-feature.selector';
 import { DaffCart } from '../../models/cart';
-import { DaffCartReducersState } from '../../reducers/public_api';
+import { DaffCartReducersState, DaffCartOrderReducerState } from '../../reducers/public_api';
 
 export interface DaffCartOrderMemoizedSelectors<
   T extends DaffCartOrderResult = DaffCartOrderResult
