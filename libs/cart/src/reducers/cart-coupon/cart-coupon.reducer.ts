@@ -6,10 +6,10 @@ import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
 import { DaffCartErrorType } from '../errors/cart-error-type.enum';
 import { DaffCart } from '../../models/cart';
-import { initializeErrorAdder, initializeErrorReseter } from '../errors/error-state-helpers';
+import { initializeErrorAdder, initializeErrorResetter } from '../errors/error-state-helpers';
 
 const addError = initializeErrorAdder(DaffCartErrorType.Coupon);
-const resetErrors = initializeErrorReseter(DaffCartErrorType.Coupon);
+const resetErrors = initializeErrorResetter(DaffCartErrorType.Coupon);
 
 export function cartCouponReducer<T extends DaffCart>(
   state = initialState,

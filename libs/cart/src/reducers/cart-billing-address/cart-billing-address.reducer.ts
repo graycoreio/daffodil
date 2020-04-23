@@ -5,11 +5,11 @@ import { initialState } from '../cart-initial-state';
 import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
 import { DaffCart } from '../../models/cart';
-import { initializeErrorAdder, initializeErrorReseter } from '../errors/error-state-helpers';
+import { initializeErrorAdder, initializeErrorResetter } from '../errors/error-state-helpers';
 import { DaffCartErrorType } from '../errors/cart-error-type.enum';
 
 const addError = initializeErrorAdder(DaffCartErrorType.BillingAddress);
-const resetErrors = initializeErrorReseter(DaffCartErrorType.BillingAddress);
+const resetErrors = initializeErrorResetter(DaffCartErrorType.BillingAddress);
 
 export function cartBillingAddressReducer<T extends DaffCart>(
   state = initialState,

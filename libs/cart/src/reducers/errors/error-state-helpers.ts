@@ -12,7 +12,7 @@ export const initializeErrorAdder = (errorSpace: DaffCartErrorType) => {
 	}
 }
 
-export const initializeErrorReseter = (errorSpace: DaffCartErrorType) => {
+export const initializeErrorResetter = (errorSpace: DaffCartErrorType) => {
 	return (errors: DaffCartErrors) => {
 		return {
 			errors: {
