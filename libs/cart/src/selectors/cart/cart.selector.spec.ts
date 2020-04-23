@@ -22,7 +22,8 @@ describe('Cart | Selector | Cart', () => {
 	let errors: DaffCartErrors;
 	const {
 		selectCartLoading,
-		selectCartValue,
+    selectCartValue,
+
 		selectCartErrorsObject,
 		selectCartErrors,
 		selectItemErrors,
@@ -31,7 +32,9 @@ describe('Cart | Selector | Cart', () => {
 		selectShippingInformationErrors,
 		selectShippingMethodsErrors,
 		selectPaymentErrors,
-		selectPaymentMethodsErrors,
+    selectPaymentMethodsErrors,
+    selectCouponErrors,
+
 		selectCartId,
 		selectCartSubtotal,
 		selectCartGrandTotal,
@@ -173,6 +176,15 @@ describe('Cart | Selector | Cart', () => {
     it('returns payment methods errors state', () => {
       const selector = store.pipe(select(selectPaymentMethodsErrors));
       const expected = cold('a', {a: errors[DaffCartErrorType.PaymentMethods]});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCouponErrors', () => {
+    it('returns coupon errors state', () => {
+      const selector = store.pipe(select(selectCouponErrors));
+      const expected = cold('a', {a: errors[DaffCartErrorType.Coupon]});
 
       expect(selector).toBeObservable(expected);
     });

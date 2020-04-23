@@ -29,6 +29,7 @@ export class DaffCartFacade<
   shippingMethodsErrors$: Observable<DaffCartErrors[DaffCartErrorType.ShippingMethods]>;
   paymentErrors$: Observable<DaffCartErrors[DaffCartErrorType.Payment]>;
   paymentMethodsErrors$: Observable<DaffCartErrors[DaffCartErrorType.PaymentMethods]>;
+  couponErrors$: Observable<DaffCartErrors[DaffCartErrorType.Coupon]>;
 
   id$: Observable<DaffCart['id']>;
   subtotal$: Observable<DaffCart['subtotal']>;
@@ -61,7 +62,9 @@ export class DaffCartFacade<
 			selectShippingInformationErrors,
 			selectShippingMethodsErrors,
 			selectPaymentErrors,
-			selectPaymentMethodsErrors,
+      selectPaymentMethodsErrors,
+      selectCouponErrors,
+
 			selectCartId,
 			selectCartSubtotal,
 			selectCartGrandTotal,
@@ -93,6 +96,7 @@ export class DaffCartFacade<
     this.shippingMethodsErrors$ = this.store.pipe(select(selectShippingMethodsErrors));
     this.paymentErrors$ = this.store.pipe(select(selectPaymentErrors));
     this.paymentMethodsErrors$ = this.store.pipe(select(selectPaymentMethodsErrors));
+    this.couponErrors$ = this.store.pipe(select(selectCouponErrors));
 
     this.id$ = this.store.pipe(select(selectCartId));
     this.subtotal$ = this.store.pipe(select(selectCartSubtotal));

@@ -21,6 +21,7 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
   shippingMethodsErrors$: BehaviorSubject<DaffCartErrors[DaffCartErrorType.ShippingMethods]> = new BehaviorSubject([]);
   paymentErrors$: BehaviorSubject<DaffCartErrors[DaffCartErrorType.Payment]> = new BehaviorSubject([]);
   paymentMethodsErrors$: BehaviorSubject<DaffCartErrors[DaffCartErrorType.PaymentMethods]> = new BehaviorSubject([]);
+  couponErrors$: BehaviorSubject<DaffCartErrors[DaffCartErrorType.Coupon]> = new BehaviorSubject([]);
 
   id$: BehaviorSubject<DaffCart['id']> = new BehaviorSubject(null);
   subtotal$: BehaviorSubject<DaffCart['subtotal']> = new BehaviorSubject(null);

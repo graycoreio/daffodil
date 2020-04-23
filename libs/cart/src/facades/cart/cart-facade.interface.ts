@@ -23,6 +23,7 @@ export interface DaffCartFacadeInterface<
   shippingMethodsErrors$: Observable<DaffCartErrors[DaffCartErrorType.ShippingMethods]>;
   paymentErrors$: Observable<DaffCartErrors[DaffCartErrorType.Payment]>;
   paymentMethodsErrors$: Observable<DaffCartErrors[DaffCartErrorType.PaymentMethods]>;
+  couponErrors$: Observable<DaffCartErrors[DaffCartErrorType.Coupon]>;
 
   id$: Observable<DaffCart['id']>;
   subtotal$: Observable<DaffCart['subtotal']>;

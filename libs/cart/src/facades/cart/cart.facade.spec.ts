@@ -25,7 +25,8 @@ import {
   DaffCartPaymentMethodsLoadFailure,
   DaffCartPlaceOrder,
   DaffCartPlaceOrderFailure,
-  DaffCartPlaceOrderSuccess
+  DaffCartPlaceOrderSuccess,
+  DaffCartCouponListFailure
 } from '@daffodil/cart';
 
 import { DaffCartFacade } from './cart.facade';
@@ -233,6 +234,20 @@ describe('DaffCartFacade', () => {
       const expected = cold('a', { a: [error]});
       store.dispatch(new DaffCartPaymentMethodsLoadFailure(error));
       expect(facade.paymentMethodsErrors$).toBeObservable(expected);
+    });
+  });
+
+  describe('couponErrors$', () => {
+    it('should initially be an empty array', () => {
+      const expected = cold('a', { a: []});
+      expect(facade.couponErrors$).toBeObservable(expected);
+    });
+
+    it('should contain an error upon a failed coupon list', () => {
+      const error = 'error';
+      const expected = cold('a', { a: [error]});
+      store.dispatch(new DaffCartCouponListFailure(error));
+      expect(facade.couponErrors$).toBeObservable(expected);
     });
   });
 

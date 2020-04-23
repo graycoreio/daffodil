@@ -13,7 +13,8 @@ export interface DaffCartStateMemoizedSelectors<
 > {
 	selectCartState: MemoizedSelector<object, DaffCartReducerState<T>>;
 	selectCartValue: MemoizedSelector<object, T>;
-	selectCartLoading: MemoizedSelector<object, boolean>;
+  selectCartLoading: MemoizedSelector<object, boolean>;
+
 	selectCartErrorsObject: MemoizedSelector<object, DaffCartReducerState<T>['errors']>;
 	selectCartErrors: MemoizedSelector<object, string[]>;
 	selectBillingAddressErrors: MemoizedSelector<object, string[]>;
@@ -22,6 +23,8 @@ export interface DaffCartStateMemoizedSelectors<
 	selectShippingMethodsErrors: MemoizedSelector<object, string[]>;
 	selectPaymentErrors: MemoizedSelector<object, string[]>;
 	selectPaymentMethodsErrors: MemoizedSelector<object, string[]>;
+  selectCouponErrors: MemoizedSelector<object, string[]>;
+
 	selectItemErrors: MemoizedSelector<object, string[]>;
 	selectCartId: MemoizedSelector<object, T['id']>;
 	selectCartSubtotal: MemoizedSelector<object, T['subtotal']>;
@@ -54,7 +57,8 @@ const createCartSelectors = <
 	const selectCartLoading = createSelector(
 		selectCartState,
 		(state: DaffCartReducerState<T>) => state.loading
-	);
+  );
+
 	const selectCartErrorsObject = createSelector(
 		selectCartState,
 		(state: DaffCartReducerState<T>) => state.errors
@@ -90,7 +94,12 @@ const createCartSelectors = <
 	const selectItemErrors = createSelector(
 		selectCartErrorsObject,
 		(state: DaffCartReducerState<T>['errors']) => state[DaffCartErrorType.Item]
-	);
+  );
+  const selectCouponErrors = createSelector(
+		selectCartErrorsObject,
+		(state: DaffCartReducerState<T>['errors']) => state[DaffCartErrorType.Coupon]
+  );
+
 	const selectCartId = createSelector(
 		selectCartValue,
 		(state: DaffCartReducerState<T>['cart']) => state.id
@@ -147,7 +156,8 @@ const createCartSelectors = <
 	return {
 		selectCartState,
 		selectCartValue,
-		selectCartLoading,
+    selectCartLoading,
+
 		selectCartErrorsObject,
 		selectCartErrors,
 		selectBillingAddressErrors,
@@ -156,7 +166,9 @@ const createCartSelectors = <
 		selectShippingMethodsErrors,
 		selectPaymentErrors,
 		selectPaymentMethodsErrors,
-		selectItemErrors,
+    selectItemErrors,
+    selectCouponErrors,
+
 		selectCartId,
 		selectCartSubtotal,
 		selectCartGrandTotal,
