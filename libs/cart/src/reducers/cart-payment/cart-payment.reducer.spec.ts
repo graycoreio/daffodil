@@ -15,7 +15,7 @@ import {
   DaffCartPaymentRemoveFailure
 } from '../../actions/public_api';
 import { cartPaymentReducer } from './cart-payment.reducer';
-import { DaffCartErrorType } from '../cart-error-type.enum';
+import { DaffCartErrorType } from '../errors/cart-error-type.enum';
 
 describe('Cart | Reducer | Cart Payment', () => {
   let cartFactory: DaffCartFactory;

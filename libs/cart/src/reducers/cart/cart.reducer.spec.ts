@@ -18,7 +18,7 @@ import {
 import { DaffCart } from '../../models/cart';
 import { cartReducer } from './cart.reducer';
 import { DaffCartReducerState } from '../cart-state.interface';
-import { DaffCartErrorType } from '../cart-error-type.enum';
+import { DaffCartErrorType } from '../errors/cart-error-type.enum';
 
 
 describe('Cart | Reducer | Cart', () => {

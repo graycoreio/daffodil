@@ -4,27 +4,12 @@ import {
 import { initialState } from '../cart-initial-state';
 import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
-import { DaffCartErrorType } from '../cart-error-type.enum';
+import { DaffCartErrorType } from '../errors/cart-error-type.enum';
 import { DaffCart } from '../../models/cart';
+import { initializeErrorAdder, initializeErrorResetter } from '../errors/error-state-helpers';
 
-function addError<T extends DaffCart>(state: DaffCartReducerState<T>, error: string) {
-  return {
-    ...state,
-    errors: {
-      ...state.errors,
-      [DaffCartErrorType.PaymentMethods]: state.errors[DaffCartErrorType.PaymentMethods].concat(new Array(error))
-    }
-  };
-}
-
-function resetErrors<T extends DaffCart>(state: DaffCartReducerState<T>) {
-  return {
-    errors: {
-      ...state.errors,
-      [DaffCartErrorType.PaymentMethods]: []
-    }
-  };
-}
+const addError = initializeErrorAdder(DaffCartErrorType.PaymentMethods);
+const resetErrors = initializeErrorResetter(DaffCartErrorType.PaymentMethods);
 
 export function cartPaymentMethodsReducer<T extends DaffCart>(
   state = initialState,
@@ -37,7 +22,7 @@ export function cartPaymentMethodsReducer<T extends DaffCart>(
     case DaffCartPaymentMethodsActionTypes.CartPaymentMethodsLoadSuccessAction:
       return {
         ...state,
-        ...resetErrors(state),
+        ...resetErrors(state.errors),
         cart: {
           ...state.cart,
           available_payment_methods: action.payload
@@ -48,7 +33,7 @@ export function cartPaymentMethodsReducer<T extends DaffCart>(
     case DaffCartPaymentMethodsActionTypes.CartPaymentMethodsLoadFailureAction:
       return {
         ...state,
-        ...addError(state, action.payload),
+        ...addError(state.errors, action.payload),
         loading: false,
       };
 

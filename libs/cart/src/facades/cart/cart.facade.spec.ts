@@ -31,8 +31,8 @@ import {
 import { DaffCartFacade } from './cart.facade';
 import { DaffCartReducersState, daffCartReducers, initialState } from '../../reducers/public_api';
 import { DaffCartFactory } from '@daffodil/cart/testing';
-import { DaffCartErrors } from '../../reducers/cart-errors.type';
-import { DaffCartErrorType } from '../../reducers/cart-error-type.enum';
+import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
+import { DaffCartErrorType } from '../../reducers/errors/cart-error-type.enum';
 import { DaffCart } from '../../models/cart';
 import { DaffCartOrderResult } from '../../models/cart-order-result';
 

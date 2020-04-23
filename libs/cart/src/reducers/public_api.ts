@@ -1,8 +1,8 @@
 export { daffCartReducers } from './cart-reducers';
 export { DaffCartReducersState } from './cart-reducers-state.interface';
 
-export { DaffCartErrors } from './cart-errors.type';
-export { DaffCartErrorType } from './cart-error-type.enum';
+export { DaffCartErrors } from './errors/cart-errors.type';
+export { DaffCartErrorType } from './errors/cart-error-type.enum';
 
 export { daffCartReducer } from './cart.reducer';
 export { DaffCartReducerState } from './cart-state.interface';

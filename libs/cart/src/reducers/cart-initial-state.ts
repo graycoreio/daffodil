@@ -1,5 +1,5 @@
 import { DaffCartReducerState } from './cart-state.interface';
-import { DaffCartErrorType } from './cart-error-type.enum';
+import { DaffCartErrorType } from './errors/cart-error-type.enum';
 
 export const initialState: DaffCartReducerState<any> = Object.freeze({
   cart: {

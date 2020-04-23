@@ -4,27 +4,12 @@ import {
 import { initialState } from '../cart-initial-state';
 import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
-import { DaffCartErrorType } from '../cart-error-type.enum';
+import { DaffCartErrorType } from '../errors/cart-error-type.enum';
 import { DaffCart } from '../../models/cart';
+import { initializeErrorAdder, initializeErrorResetter } from '../errors/error-state-helpers';
 
-function addError<T extends DaffCart>(state: DaffCartReducerState<T>, error: string) {
-  return {
-    ...state,
-    errors: {
-      ...state.errors,
-      [DaffCartErrorType.Coupon]: state.errors[DaffCartErrorType.Coupon].concat(new Array(error))
-    }
-  };
-}
-
-function resetErrors<T extends DaffCart>(state: DaffCartReducerState<T>) {
-  return {
-    errors: {
-      ...state.errors,
-      [DaffCartErrorType.Coupon]: []
-    }
-  };
-}
+const addError = initializeErrorAdder(DaffCartErrorType.Coupon);
+const resetErrors = initializeErrorResetter(DaffCartErrorType.Coupon);
 
 export function cartCouponReducer<T extends DaffCart>(
   state = initialState,
@@ -45,7 +30,7 @@ export function cartCouponReducer<T extends DaffCart>(
     case DaffCartCouponActionTypes.CartCouponRemoveAllSuccessAction:
       return {
         ...state,
-        ...resetErrors(state),
+        ...resetErrors(state.errors),
         cart: {
           ...state.cart,
           ...action.payload
@@ -56,7 +41,7 @@ export function cartCouponReducer<T extends DaffCart>(
     case DaffCartCouponActionTypes.CartCouponListSuccessAction:
       return {
         ...state,
-        ...resetErrors(state),
+        ...resetErrors(state.errors),
         cart: {
           ...state.cart,
           coupons: action.payload
@@ -70,7 +55,7 @@ export function cartCouponReducer<T extends DaffCart>(
     case DaffCartCouponActionTypes.CartCouponRemoveFailureAction:
       return {
         ...state,
-        ...addError(state, action.payload),
+        ...addError(state.errors, action.payload),
         loading: false,
       };
 

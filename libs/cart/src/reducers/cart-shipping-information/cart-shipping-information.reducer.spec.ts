@@ -19,7 +19,7 @@ import {
 } from '../../actions/public_api';
 import { cartShippingInformationReducer } from './cart-shipping-information.reducer';
 import { DaffCartShippingInformation } from '../../models/cart-shipping-info';
-import { DaffCartErrorType } from '../cart-error-type.enum';
+import { DaffCartErrorType } from '../errors/cart-error-type.enum';
 
 describe('Cart | Reducer | Cart Shipping Information', () => {
   let cartFactory: DaffCartFactory;

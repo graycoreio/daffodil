@@ -8,8 +8,8 @@ import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffCartLoadSuccess, DaffCartPlaceOrderSuccess } from '../../actions/public_api';
 import { daffCartReducers, DaffCartReducersState } from '../../reducers/public_api';
 import { getCartSelectors } from './cart.selector';
-import { DaffCartErrorType } from '../../reducers/cart-error-type.enum';
-import { DaffCartErrors } from '../../reducers/cart-errors.type';
+import { DaffCartErrorType } from '../../reducers/errors/cart-error-type.enum';
+import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
 
 describe('Cart | Selector | Cart', () => {
   let store: Store<DaffCartReducersState>;

@@ -8,7 +8,7 @@ import {
 } from '../../actions/public_api';
 import { DaffCart } from '../../models/cart';
 import { cartPaymentMethodsReducer } from './cart-payment-methods.reducer';
-import { DaffCartErrorType } from '../cart-error-type.enum';
+import { DaffCartErrorType } from '../errors/cart-error-type.enum';
 
 describe('Cart | Reducer | Cart Payment Methods', () => {
   let cartFactory: DaffCartFactory;

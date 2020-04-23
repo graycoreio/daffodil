@@ -4,27 +4,12 @@ import {
 import { initialState } from '../cart-initial-state';
 import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
-import { DaffCartErrorType } from '../cart-error-type.enum';
+import { DaffCartErrorType } from '../errors/cart-error-type.enum';
 import { DaffCart } from '../../models/cart';
+import { initializeErrorAdder, initializeErrorResetter } from '../errors/error-state-helpers';
 
-function addError<T extends DaffCart>(state: DaffCartReducerState<T>, error: string) {
-  return {
-    ...state,
-    errors: {
-      ...state.errors,
-      [DaffCartErrorType.Cart]: state.errors[DaffCartErrorType.Cart].concat(new Array(error))
-    }
-  };
-}
-
-function resetErrors<T extends DaffCart>(state: DaffCartReducerState<T>) {
-  return {
-    errors: {
-      ...state.errors,
-      [DaffCartErrorType.Cart]: []
-    }
-  };
-}
+const addError = initializeErrorAdder(DaffCartErrorType.Cart);
+const resetErrors = initializeErrorResetter(DaffCartErrorType.Cart);
 
 export function cartReducer<T extends DaffCart>(
   state = initialState,
@@ -43,7 +28,7 @@ export function cartReducer<T extends DaffCart>(
     case DaffCartActionTypes.CartCreateSuccessAction:
       return {
         ...state,
-        ...resetErrors(state),
+        ...resetErrors(state.errors),
         cart: {
           ...state.cart,
           ...action.payload
@@ -57,7 +42,7 @@ export function cartReducer<T extends DaffCart>(
     case DaffCartActionTypes.CartCreateFailureAction:
       return {
         ...state,
-        ...addError(state, action.payload),
+        ...addError(state.errors, action.payload),
         loading: false,
       };
 

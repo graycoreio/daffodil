@@ -5,8 +5,8 @@ import { Action, Store, select } from '@ngrx/store';
 import { DaffCart } from '../../models/cart';
 import { DaffCartReducersState } from '../../reducers/public_api';
 import { getDaffCartSelectors } from '../../selectors/public_api';
-import { DaffCartErrors } from '../../reducers/cart-errors.type';
-import { DaffCartErrorType } from '../../reducers/cart-error-type.enum';
+import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
+import { DaffCartErrorType } from '../../reducers/errors/cart-error-type.enum';
 import { DaffCartFacadeInterface } from './cart-facade.interface';
 import { DaffCartOrderResult } from '../../models/cart-order-result';
 
