@@ -6,14 +6,14 @@ import {
   DaffAuthTokenFactory
 } from '@daffodil/auth/testing';
 
-import { DaffAuthLoginSuccess } from '../actions/auth.actions';
+import { DaffAuthLoginSuccess } from '../../actions/auth.actions';
 import {
   DaffAuthFeatureState,
   DAFF_AUTH_STORE_FEATURE_KEY,
   daffAuthReducers,
   DaffAuthLoginReducerState
-} from '../reducers/public_api';
-import { DaffAuthToken } from '../models/auth-token';
+} from '../../reducers/public_api';
+import { DaffAuthToken } from '../../models/auth-token';
 import {
   getDaffAuthLoginSelectors
 } from './login.selector';

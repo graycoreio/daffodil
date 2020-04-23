@@ -10,8 +10,8 @@ import {
   daffAuthReducers,
   DAFF_AUTH_STORE_FEATURE_KEY,
   DaffAuthReducerState
-} from '../reducers/public_api';
-import { DaffAuthToken } from '../models/auth-token';
+} from '../../reducers/public_api';
+import { DaffAuthToken } from '../../models/auth-token';
 
 describe('Auth | Selector | Auth', () => {
   let store: Store<DaffAuthFeatureState<DaffAuthToken>>;

@@ -1,8 +1,8 @@
 import { MemoizedSelector } from '@ngrx/store';
 
-import { getAuthSelectors, AuthSelectors } from './auth.selector';
-import { getDaffAuthLoginSelectors, DaffAuthLoginSelectors } from './login.selector';
-import { getDaffAuthRegisterSelectors, DaffAuthRegisterSelectors } from './register.selector';
+import { getAuthSelectors, AuthSelectors } from './auth/auth.selector';
+import { getDaffAuthLoginSelectors, DaffAuthLoginSelectors } from './login/login.selector';
+import { getDaffAuthRegisterSelectors, DaffAuthRegisterSelectors } from './register/register.selector';
 import { DaffAuthToken } from '../models/auth-token';
 import { DaffAuthFeatureState } from '../reducers/public_api';
 import { getDaffAuthFeatureStateSelector } from './auth-feature.selector';

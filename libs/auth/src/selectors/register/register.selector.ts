@@ -1,10 +1,10 @@
 import { createSelector, MemoizedSelector } from '@ngrx/store';
 
-import { getDaffAuthFeatureStateSelector } from './auth-feature.selector';
-import { DaffAuthToken } from '../models/auth-token';
+import { getDaffAuthFeatureStateSelector } from '../auth-feature.selector';
+import { DaffAuthToken } from '../../models/auth-token';
 import {
   DaffAuthRegisterReducerState,
-} from '../reducers/public_api';
+} from '../../reducers/public_api';
 
 export interface DaffAuthRegisterSelectors {
   selectAuthRegisterState: MemoizedSelector<object, DaffAuthRegisterReducerState>;
