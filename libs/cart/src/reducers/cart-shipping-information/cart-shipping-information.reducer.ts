@@ -4,27 +4,12 @@ import {
 import { initialState } from '../cart-initial-state';
 import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
-import { DaffCartErrorType } from '../cart-error-type.enum';
+import { DaffCartErrorType } from '../errors/cart-error-type.enum';
 import { DaffCart } from '../../models/cart';
+import { initializeErrorAdder, initializeErrorReseter } from '../errors/error-state-helpers';
 
-function addError<T extends DaffCart>(state: DaffCartReducerState<T>, error: string) {
-  return {
-    ...state,
-    errors: {
-      ...state.errors,
-      [DaffCartErrorType.ShippingInformation]: state.errors[DaffCartErrorType.ShippingInformation].concat(new Array(error))
-    }
-  };
-}
-
-function resetErrors<T extends DaffCart>(state: DaffCartReducerState<T>) {
-  return {
-    errors: {
-      ...state.errors,
-      [DaffCartErrorType.ShippingInformation]: []
-    }
-  };
-}
+const addError = initializeErrorAdder(DaffCartErrorType.ShippingInformation);
+const resetErrors = initializeErrorReseter(DaffCartErrorType.ShippingInformation);
 
 export function cartShippingInformationReducer<T extends DaffCart>(
   state = initialState,
@@ -39,7 +24,7 @@ export function cartShippingInformationReducer<T extends DaffCart>(
     case DaffCartShippingInformationActionTypes.CartShippingInformationLoadSuccessAction:
       return {
         ...state,
-        ...resetErrors(state),
+        ...resetErrors(state.errors),
         cart: {
           ...state.cart,
           // TODO: remove workaround
@@ -52,7 +37,7 @@ export function cartShippingInformationReducer<T extends DaffCart>(
     case DaffCartShippingInformationActionTypes.CartShippingInformationDeleteSuccessAction:
       return {
         ...state,
-        ...resetErrors(state),
+        ...resetErrors(state.errors),
         cart: {
           ...state.cart,
           // ensure that shipping_information is set to null in case its not included in action.payload
@@ -67,7 +52,7 @@ export function cartShippingInformationReducer<T extends DaffCart>(
     case DaffCartShippingInformationActionTypes.CartShippingInformationDeleteFailureAction:
       return {
         ...state,
-        ...addError(state, action.payload),
+        ...addError(state.errors, action.payload),
         loading: false,
       };
 

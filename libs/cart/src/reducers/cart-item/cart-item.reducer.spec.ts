@@ -20,7 +20,7 @@ import {
 import { DaffCart } from '../../models/cart';
 import { cartItemReducer } from './cart-item.reducer';
 import { DaffCartItemList, DaffCartItemListSuccess, DaffCartItemListFailure } from '../../actions/public_api';
-import { DaffCartErrorType } from '../cart-error-type.enum';
+import { DaffCartErrorType } from '../errors/cart-error-type.enum';
 
 describe('Cart | Reducer | Cart Item', () => {
   let cartFactory: DaffCartFactory;

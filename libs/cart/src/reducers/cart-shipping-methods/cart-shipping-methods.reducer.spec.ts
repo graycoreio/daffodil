@@ -11,7 +11,7 @@ import {
 import { DaffCart } from '../../models/cart';
 import { cartShippingMethodsReducer } from './cart-shipping-methods.reducer';
 import { TestBed } from '@angular/core/testing';
-import { DaffCartErrorType } from '../cart-error-type.enum';
+import { DaffCartErrorType } from '../errors/cart-error-type.enum';
 
 describe('Cart | Reducer | Cart Shipping Methods', () => {
   let cartFactory: DaffCartFactory;

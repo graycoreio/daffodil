@@ -4,27 +4,12 @@ import {
 import { initialState } from '../cart-initial-state';
 import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
-import { DaffCartErrorType } from '../cart-error-type.enum';
+import { DaffCartErrorType } from '../errors/cart-error-type.enum';
 import { DaffCart } from '../../models/cart';
+import { initializeErrorAdder, initializeErrorReseter } from '../errors/error-state-helpers';
 
-function addError<T extends DaffCart>(state: DaffCartReducerState<T>, error: string) {
-  return {
-    ...state,
-    errors: {
-      ...state.errors,
-      [DaffCartErrorType.Payment]: state.errors[DaffCartErrorType.Payment].concat(new Array(error))
-    }
-  };
-}
-
-function resetErrors<T extends DaffCart>(state: DaffCartReducerState<T>) {
-  return {
-    errors: {
-      ...state.errors,
-      [DaffCartErrorType.Payment]: []
-    }
-  };
-}
+const addError = initializeErrorAdder(DaffCartErrorType.Payment);
+const resetErrors = initializeErrorReseter(DaffCartErrorType.Payment);
 
 export function cartPaymentReducer<T extends DaffCart>(
   state = initialState,
@@ -39,7 +24,7 @@ export function cartPaymentReducer<T extends DaffCart>(
     case DaffCartPaymentActionTypes.CartPaymentLoadSuccessAction:
       return {
         ...state,
-        ...resetErrors(state),
+        ...resetErrors(state.errors),
         cart: {
           ...state.cart,
           payment: action.payload
@@ -50,7 +35,7 @@ export function cartPaymentReducer<T extends DaffCart>(
     case DaffCartPaymentActionTypes.CartPaymentRemoveSuccessAction:
       return {
         ...state,
-        ...resetErrors(state),
+        ...resetErrors(state.errors),
         cart: {
           ...state.cart,
           payment: null
@@ -61,7 +46,7 @@ export function cartPaymentReducer<T extends DaffCart>(
     case DaffCartPaymentActionTypes.CartPaymentUpdateSuccessAction:
       return {
         ...state,
-        ...resetErrors(state),
+        ...resetErrors(state.errors),
         cart: {
           ...state.cart,
           ...action.payload
@@ -74,7 +59,7 @@ export function cartPaymentReducer<T extends DaffCart>(
     case DaffCartPaymentActionTypes.CartPaymentRemoveFailureAction:
       return {
         ...state,
-        ...addError(state, action.payload),
+        ...addError(state.errors, action.payload),
         loading: false,
       };
 

@@ -12,7 +12,7 @@ import {
   DaffCartBillingAddressUpdateFailure,
 } from '../../actions/public_api';
 import { cartBillingAddressReducer } from './cart-billing-address.reducer';
-import { DaffCartErrorType } from '../cart-error-type.enum';
+import { DaffCartErrorType } from '../errors/cart-error-type.enum';
 
 describe('Cart | Reducer | Cart Billing Address', () => {
   let cartFactory: DaffCartFactory;

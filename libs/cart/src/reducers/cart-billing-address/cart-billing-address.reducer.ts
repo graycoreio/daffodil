@@ -4,27 +4,12 @@ import {
 import { initialState } from '../cart-initial-state';
 import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
-import { DaffCartErrorType } from '../cart-error-type.enum';
 import { DaffCart } from '../../models/cart';
+import { initializeErrorAdder, initializeErrorReseter } from '../errors/error-state-helpers';
+import { DaffCartErrorType } from '../errors/cart-error-type.enum';
 
-function addError<T extends DaffCart>(state: DaffCartReducerState<T>, error: string) {
-  return {
-    ...state,
-    errors: {
-      ...state.errors,
-      [DaffCartErrorType.BillingAddress]: state.errors[DaffCartErrorType.BillingAddress].concat(new Array(error))
-    }
-  };
-}
-
-function resetErrors<T extends DaffCart>(state: DaffCartReducerState<T>) {
-  return {
-    errors: {
-      ...state.errors,
-      [DaffCartErrorType.BillingAddress]: []
-    }
-  };
-}
+const addError = initializeErrorAdder(DaffCartErrorType.BillingAddress);
+const resetErrors = initializeErrorReseter(DaffCartErrorType.BillingAddress);
 
 export function cartBillingAddressReducer<T extends DaffCart>(
   state = initialState,
@@ -38,7 +23,7 @@ export function cartBillingAddressReducer<T extends DaffCart>(
     case DaffCartBillingAddressActionTypes.CartBillingAddressLoadSuccessAction:
       return {
         ...state,
-        ...resetErrors(state),
+        ...resetErrors(state.errors),
         cart: {
           ...state.cart,
           billing_address: action.payload
@@ -49,7 +34,7 @@ export function cartBillingAddressReducer<T extends DaffCart>(
     case DaffCartBillingAddressActionTypes.CartBillingAddressUpdateSuccessAction:
       return {
         ...state,
-        ...resetErrors(state),
+        ...resetErrors(state.errors),
         cart: {
           ...state.cart,
           ...action.payload
@@ -61,7 +46,7 @@ export function cartBillingAddressReducer<T extends DaffCart>(
     case DaffCartBillingAddressActionTypes.CartBillingAddressUpdateFailureAction:
       return {
         ...state,
-        ...addError(state, action.payload),
+        ...addError(state.errors, action.payload),
         loading: false,
       };
 

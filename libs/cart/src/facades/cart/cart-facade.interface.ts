@@ -4,8 +4,8 @@ import { Action } from '@ngrx/store';
 import { DaffStoreFacade } from '@daffodil/core';
 
 import { DaffCart } from '../../models/cart';
-import { DaffCartErrors } from '../../reducers/cart-errors.type';
-import { DaffCartErrorType } from '../../reducers/cart-error-type.enum';
+import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
+import { DaffCartErrorType } from '../../reducers/errors/cart-error-type.enum';
 import { DaffCartOrderResult } from '../../models/cart-order-result';
 
 export interface DaffCartFacadeInterface<

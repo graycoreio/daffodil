@@ -4,27 +4,12 @@ import {
 import { initialState } from '../cart-initial-state';
 import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
-import { DaffCartErrorType } from '../cart-error-type.enum';
+import { DaffCartErrorType } from '../errors/cart-error-type.enum';
 import { DaffCart } from '../../models/cart';
+import { initializeErrorAdder, initializeErrorReseter } from '../errors/error-state-helpers';
 
-function addError<T extends DaffCart>(state: DaffCartReducerState<T>, error: string) {
-  return {
-    ...state,
-    errors: {
-      ...state.errors,
-      [DaffCartErrorType.ShippingAddress]: state.errors[DaffCartErrorType.ShippingAddress].concat(new Array(error))
-    }
-  };
-}
-
-function resetErrors<T extends DaffCart>(state: DaffCartReducerState<T>) {
-  return {
-    errors: {
-      ...state.errors,
-      [DaffCartErrorType.ShippingAddress]: []
-    }
-  };
-}
+const addError = initializeErrorAdder(DaffCartErrorType.ShippingAddress);
+const resetErrors = initializeErrorReseter(DaffCartErrorType.ShippingAddress);
 
 export function cartShippingAddressReducer<T extends DaffCart>(
   state = initialState,
@@ -38,7 +23,7 @@ export function cartShippingAddressReducer<T extends DaffCart>(
     case DaffCartShippingAddressActionTypes.CartShippingAddressLoadSuccessAction:
       return {
         ...state,
-        ...resetErrors(state),
+        ...resetErrors(state.errors),
         cart: {
           ...state.cart,
           shipping_address: action.payload
@@ -49,7 +34,7 @@ export function cartShippingAddressReducer<T extends DaffCart>(
     case DaffCartShippingAddressActionTypes.CartShippingAddressUpdateSuccessAction:
       return {
         ...state,
-        ...resetErrors(state),
+        ...resetErrors(state.errors),
         cart: {
           ...state.cart,
           ...action.payload
@@ -61,7 +46,7 @@ export function cartShippingAddressReducer<T extends DaffCart>(
     case DaffCartShippingAddressActionTypes.CartShippingAddressUpdateFailureAction:
       return {
         ...state,
-        ...addError(state, action.payload),
+        ...addError(state.errors, action.payload),
         loading: false,
       };
 
