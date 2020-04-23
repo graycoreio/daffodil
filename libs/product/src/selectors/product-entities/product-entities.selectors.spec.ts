@@ -3,10 +3,10 @@ import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
-import { DaffProductGridLoadSuccess } from '../actions/product-grid.actions';
-import { DaffProduct } from '../models/product';
-import { DaffProductReducersState } from '../reducers/product-reducers-state.interface';
-import { daffProductReducers } from '../reducers/product-reducers';
+import { DaffProductGridLoadSuccess } from '../../actions/product-grid.actions';
+import { DaffProduct } from '../../models/product';
+import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
+import { daffProductReducers } from '../../reducers/product-reducers';
 import { getDaffProductEntitiesSelectors } from './product-entities.selectors';
 
 describe('selectProductEntitiesState', () => {

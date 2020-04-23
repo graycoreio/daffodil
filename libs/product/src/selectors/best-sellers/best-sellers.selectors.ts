@@ -1,10 +1,10 @@
 import { createSelector, MemoizedSelector } from '@ngrx/store';
 
-import { getDaffProductFeatureSelector } from './product-feature.selector';
-import { DaffProductReducersState } from '../reducers/product-reducers-state.interface';
-import { DaffBestSellersReducerState } from '../reducers/best-sellers/best-sellers-reducer-state.interface';
-import { getDaffProductEntitiesSelectors } from './product-entities.selectors';
-import { DaffProduct } from '../models/product';
+import { getDaffProductFeatureSelector } from '../product-feature.selector';
+import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
+import { DaffBestSellersReducerState } from '../../reducers/best-sellers/best-sellers-reducer-state.interface';
+import { getDaffProductEntitiesSelectors } from '../product-entities/product-entities.selectors';
+import { DaffProduct } from '../../models/product';
 
 export interface DaffBestSellersMemoizedSelectors<T extends DaffProduct = DaffProduct> {
 	selectBestSellersState: MemoizedSelector<object, DaffBestSellersReducerState>;

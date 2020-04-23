@@ -2,10 +2,10 @@ import { TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
-import { DaffBestSellersLoadSuccess } from '../actions/best-sellers.actions';
-import { DaffProduct } from '../models/product';
-import { DaffProductReducersState } from '../reducers/product-reducers-state.interface';
-import { daffProductReducers } from '../reducers/product-reducers';
+import { DaffBestSellersLoadSuccess } from '../../actions/best-sellers.actions';
+import { DaffProduct } from '../../models/product';
+import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
+import { daffProductReducers } from '../../reducers/product-reducers';
 import { cold } from 'jasmine-marbles';
 import { getDaffBestSellersSelectors } from './best-sellers.selectors';
 

@@ -4,11 +4,11 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffProductLoad } from '../actions/product.actions';
-import { DaffProductGridLoadSuccess } from '../actions/product-grid.actions';
-import { DaffProduct } from '../models/product';
-import { DaffProductReducersState } from '../reducers/product-reducers-state.interface';
-import { daffProductReducers } from '../reducers/product-reducers';
+import { DaffProductLoad } from '../../actions/product.actions';
+import { DaffProductGridLoadSuccess } from '../../actions/product-grid.actions';
+import { DaffProduct } from '../../models/product';
+import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
+import { daffProductReducers } from '../../reducers/product-reducers';
 import { getDaffProductPageSelectors } from './product.selectors';
 
 describe('selectProductState', () => {
