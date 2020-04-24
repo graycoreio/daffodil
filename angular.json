@@ -761,7 +761,12 @@
             "tsConfig": "apps/design-land/tsconfig.app.json",
             "assets": [
               "apps/design-land/src/favicon.ico",
-              "apps/design-land/src/assets"
+              "apps/design-land/src/assets",
+              {
+                "glob": "**/*",
+                "input": "dist/docs/design-examples",
+                "output": "/assets/design-examples"
+              }
             ],
             "styles": [
               "apps/design-land/src/scss/styles.scss"
