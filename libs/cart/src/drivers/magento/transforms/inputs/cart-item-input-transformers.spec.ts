@@ -66,6 +66,7 @@ describe('Driver | Magento | Cart | Transformers | MagentoCartItemInput', () => 
 		it('should return the correct values when options is null', () => {
 			mockDaffCompositeCartItemInput.options = null;
 			transformedCartItem = transformCompositeCartItem(mockDaffCompositeCartItemInput);
+			expect(transformedCartItem.options).toEqual([]);
 		});
   });
 });
