@@ -1,0 +1,51 @@
+<daff-article>
+	<h1 daffArticleTitle>Article</h1>
+	<p daffArticleLead>Daffodil's article component provides styles to common element selectors to create an article in a content page.</p>
+	<p>The <code>daff-article</code> component can be used on any content pages that display long-form text-driven information. It is meant to be used as a standalone element. It should not be nested inside any other components that may change the background color from the anticipated one. In the event that you must nest a <code>daff-article</code> inside another component, please ensure that you set the article's background color to the default body color.</p>
+
+	<h2>Headings</h2>
+	<p>The article component provides designs for the <code>h1</code> through <code>h6</code> headings.</p>
+	<design-land-example-viewer example="article-headings"></design-land-example-viewer>
+
+	<h2>Article Lead</h2>
+	<p>Lead is used for the opening paragraph of an article. It should be used to provide a summary or leading information for an article.</p>
+	<design-land-example-viewer example="article-lead"></design-land-example-viewer>
+
+	<h2>Article Meta</h2>
+	<p>The article meta directive can be used to highlight metadata about your article (i.e. author name, date, etc).</p>
+	<design-land-example-viewer example="article-meta"></design-land-example-viewer>
+
+	<h2>Link</h2>
+	<p>The link style in an article uses the default browser link style.</p>
+	<design-land-example-viewer example="article-link"></design-land-example-viewer>
+
+	<h2>Lists</h2>
+	<p>Native <code>ul</code> and <code>ol</code> list elements are also styled intentionally within articles.</p>
+	<h3>Unordered List</h3>
+	
+	<design-land-example-viewer example="article-ul"></design-land-example-viewer>
+
+	<h3>Ordered List</h3>
+	<design-land-example-viewer example="article-ol"></design-land-example-viewer>
+
+	<h2>Code</h2>
+	<p>Since articles are often prone to containing code blocks, we also provide support for inline and multiline blocks of code.</p>
+
+	<h3>Inline code</h3>
+	<p>Use inline code elements where you would like to highlight a short snippet of code, like an individual function name or a type.</p>
+	<design-land-example-viewer example="article-code-inline"></design-land-example-viewer>
+
+	<h3>Code blocks</h3>
+	<p>Use code blocks within the article to render a chunk of code that can be easily consumed by a fellow developer.</p>
+	<p><code>&lt;pre&gt;</code>s are used for multiple lines of code. A scrollbar will appear if you choose to set a
+    <code>max-height</code> or <code>max-width</code> to your code block.</p>
+	<design-land-example-viewer example="article-code-block"></design-land-example-viewer>
+
+	<h2>Horizontal Rules</h2>
+	<p>Horizontal Rules can be use to separate sections of content.</p>
+	<design-land-example-viewer example="article-hr"></design-land-example-viewer>
+
+	<h2>Blockquote</h2>
+	<p>Blockquotes are used to quote blocks of content.</p>
+	<design-land-example-viewer example="article-blockquote"></design-land-example-viewer>
+</daff-article>

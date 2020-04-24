@@ -1,0 +1,11 @@
+:host {
+	border: 1px solid gray;
+	display: block;
+}
+
+.code-example {
+	&__content {
+		padding: 8px;
+		min-height: 20px;
+	}
+}

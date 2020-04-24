@@ -1,46 +1,37 @@
-import { NgModule, Injector, ComponentFactoryResolver } from '@angular/core';
+import { NgModule, Injector, ComponentFactoryResolver, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { CardComponent } from './card.component';
-import { DesignLandCardRoutingModule } from './card-routing.module';
+import { DesignLandArticleComponent } from './article.component';
+import { DesignLandArticleRoutingModule } from './article-routing.module';
 
-import {
-  DaffCardModule,
-  DaffImageModule
-} from '@daffodil/design';
+import { DaffArticleModule } from '@daffodil/design';
 
-import { CARD_EXAMPLES, CardWithColorComponent } from './examples/public_api';
-import { createCustomElement } from '@angular/elements';
+import { ARTICLE_EXAMPLES } from './examples/examples';
 import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
-import { ReactiveFormsModule } from '@angular/forms';
-import { CARD_EXAMPLE_MODULES } from './examples/examples';
+import { createCustomElement } from '@angular/elements';
 
 @NgModule({
   declarations: [
-    CardComponent
+    DesignLandArticleComponent,
+    ...ARTICLE_EXAMPLES
   ],
   imports: [
     CommonModule,
-    DesignLandCardRoutingModule,
+    DesignLandArticleRoutingModule,
     DesignLandExampleViewerModule,
-    ReactiveFormsModule,
-
-    ...CARD_EXAMPLE_MODULES,
-
-    DaffCardModule,
-    DaffImageModule
+    DaffArticleModule
   ],
-  entryComponents: [
-    ...CARD_EXAMPLES
+  entryComponents: ARTICLE_EXAMPLES,
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ]
 })
-export class CardModule { 
-
+export class DesignLandArticleModule {
   constructor(
     injector: Injector, 
     private componentFactoryResolver: ComponentFactoryResolver
   ) {
-    CARD_EXAMPLES
+    ARTICLE_EXAMPLES
       .map((classConstructor) => {
         return {
           element: createCustomElement(classConstructor, {injector}),
@@ -55,4 +46,4 @@ export class CardModule {
         );
       });
   }
-}
+ }
