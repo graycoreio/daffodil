@@ -21,6 +21,7 @@ import { DaffCart } from '../../models/cart';
 import { cartItemReducer } from './cart-item.reducer';
 import { DaffCartItemList, DaffCartItemListSuccess, DaffCartItemListFailure } from '../../actions/public_api';
 import { DaffCartErrorType } from '../errors/cart-error-type.enum';
+import { DaffCartItemInputType } from '../../models/cart-item-input';
 
 describe('Cart | Reducer | Cart Item', () => {
   let cartFactory: DaffCartFactory;
@@ -184,11 +185,12 @@ describe('Cart | Reducer | Cart Item', () => {
   });
 
   describe('when CartItemAddAction is triggered', () => {
+		const type = DaffCartItemInputType.Simple;
     const productId = 'productId';
     const qty = 1;
 
     it('should set loading state to true', () => {
-      const cartItemAddAction = new DaffCartItemAdd({ productId, qty });
+      const cartItemAddAction = new DaffCartItemAdd({ type, productId, qty });
 
       const result = cartItemReducer(initialState, cartItemAddAction);
 

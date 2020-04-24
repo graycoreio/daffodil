@@ -4,7 +4,8 @@ import { STATUS } from 'angular-in-memory-web-api';
 import {
   DaffCart,
   DaffCartItemInput,
-  DaffCartItem
+	DaffCartItem,
+	DaffCartItemInputType
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
@@ -58,6 +59,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
     mockCart = cartFactory.create();
     mockCartItem = cartItemFactory.create();
     mockCartItemInput = {
+			type: DaffCartItemInputType.Simple,
       productId: mockCartItem.product_id,
       qty: mockCartItem.qty
     };
