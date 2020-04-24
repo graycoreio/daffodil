@@ -4,7 +4,7 @@ import { DaffCartItemInput, DaffCompositeCartItemInput, DaffCompositeCartItemOpt
 export function transformCompositeCartItem(item: DaffCompositeCartItemInput): MagentoBundledCartItemInput {
 	return {
 		input: transformSimpleCartItem(item),
-		options: item.options ? item.options.map(transformCompositeCartItemOption) : null
+		options: item.options ? item.options.map(transformCompositeCartItemOption) : []
 	}
 }
 

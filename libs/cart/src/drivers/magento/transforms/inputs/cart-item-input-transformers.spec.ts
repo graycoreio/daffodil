@@ -52,16 +52,20 @@ describe('Driver | Magento | Cart | Transformers | MagentoCartItemInput', () => 
 					value: 'value'
 				}]
 			};
-
-      transformedCartItem = transformCompositeCartItem(mockDaffCompositeCartItemInput);
     });
-
+		
     it('should return an object with the correct values', () => {
+			transformedCartItem = transformCompositeCartItem(mockDaffCompositeCartItemInput);
       expect(transformedCartItem.input.sku).toEqual(mockDaffCompositeCartItemInput.productId);
       expect(transformedCartItem.input.quantity).toEqual(mockDaffCompositeCartItemInput.qty);
       expect(transformedCartItem.options[0].id).toEqual(Number(mockDaffCompositeCartItemInput.options[0].id));
       expect(transformedCartItem.options[0].quantity).toEqual(mockDaffCompositeCartItemInput.options[0].quantity);
       expect(transformedCartItem.options[0].value).toEqual([mockDaffCompositeCartItemInput.options[0].value]);
-    });
+		});
+		
+		it('should return the correct values when options is null', () => {
+			mockDaffCompositeCartItemInput.options = null;
+			transformedCartItem = transformCompositeCartItem(mockDaffCompositeCartItemInput);
+		});
   });
 });

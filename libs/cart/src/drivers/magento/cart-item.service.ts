@@ -43,10 +43,7 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
       query: listCartItems,
       variables: {cartId}
     }).pipe(
-      map(result => {
-				console.log(result);
-        return result.data.cart.items.map(item => this.cartItemTransformer.transform(item))
-			})
+      map(result => result.data.cart.items.map(item => this.cartItemTransformer.transform(item)))
     )
   }
 
@@ -57,10 +54,11 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
   }
 
   add(cartId: string, cartItemInput: DaffCartItemInput): Observable<Partial<DaffCart>> {
-		if(cartItemInput.type === DaffCartItemInputType.Composite) {
-			return this.addBundledProduct(cartId, <DaffCompositeCartItemInput>cartItemInput);
-		} else {
-			return this.addSimpleProduct(cartId, cartItemInput);
+		switch(cartItemInput.type) {
+			case (DaffCartItemInputType.Composite):
+				return this.addBundledProduct(cartId, <DaffCompositeCartItemInput>cartItemInput);
+			default:
+				return this.addSimpleProduct(cartId, cartItemInput);		
 		}
   }
 
