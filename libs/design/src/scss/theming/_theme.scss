@@ -7,6 +7,7 @@
 @import '../../atoms/loading-icon/loading-icon-theme';
 
 @import '../../molecules/accordion/accordion-item/accordion-item-theme';
+@import '../../molecules/article/article/article-theme';
 @import '../../molecules/callout/callout-theme';
 @import '../../molecules/card/card/card-theme';
 @import '../../molecules/hero/hero-theme';
@@ -35,6 +36,7 @@
 
 	//Molecules
 	@include daff-accordion-item-theme($theme);
+	@include daff-article-theme($theme);
 	@include daff-callout-theme($theme);
 	@include daff-card-theme($theme);
 	@include daff-hero-theme($theme);
