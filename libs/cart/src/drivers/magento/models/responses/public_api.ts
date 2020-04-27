@@ -16,3 +16,6 @@ export { MagentoGetCartResponse } from './get-cart';
 export { MagentoCreateCartResponse } from './create-cart';
 export { MagentoSetGuestEmailResponse } from './set-guest-email';
 export { MagentoPlaceOrderResponse } from './place-order';
+export { MagentoListCartCouponsResponse } from './list-cart-coupons';
+export { MagentoApplyCouponResponse } from './apply-coupon';
+export { MagentoRemoveAllCouponsResponse } from './remove-all-coupons';
