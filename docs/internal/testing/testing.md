@@ -31,7 +31,7 @@ The hidden problem here is that the `SomeImport` is not being accessed from the 
 
 To address this problem, we have elected to write our unit tests as if we are looking at our code from a slightly different perspective. We assume that all code that is NOT UNDER TEST comes from the public API of the package (unless the code in question is intentionally private).
 
-To achieve this we change the `@daffodil/library` `tsconfig.json`'s `compilerOptions.paths` to point to the public entrypoint of the package. As a result, our tests give us an additional guarantee: if `SomeImport` is meant to be public, we can guarantee that it is via while we're unit testing. This leads to lower maintenance overheads, and ensures better consumer-side guarantees.
+To achieve this we change the `@daffodil/library` `tsconfig.json`'s `compilerOptions.paths` to point to the public entrypoint of the package. As a result, our tests give us an additional guarantee: if `SomeImport` is meant to be public, we can guarantee that it is while we are unit testing. This leads to lower maintenance overheads, and ensures better consumer-side guarantees.
 
 ```ts
 import { SomeImport } from '@daffodil/library';
@@ -45,7 +45,7 @@ describe('My Library Function', () => {
 });
 ```
 
-### An unintentional benefit
+### Improved Import Path Readability
 Secondarily, this also makes package imports and maintenance much simpler. Instead of having to worry about silly path references like:
 
 ```ts
