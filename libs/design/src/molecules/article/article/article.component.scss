@@ -16,28 +16,37 @@
 		font-size: $small-font-size;
 	}
 
-	h1,h2,h3,h4,h5,h6 {
+	> h1,
+	> h2,
+	> h3,
+	> h4,
+	> h5,
+	> h6 {
 		margin-bottom: 1rem;
 	}
 
-	h2,h3,h4,h5,h6 {
+	> h2,
+	> h3,
+	> h4,
+	> h5,
+	> h6 {
 		margin-top: 1.5rem;
 	}
 
-	h1,
+	> h1,
 	&__title {
 		@include heading-lg();
 	}
 
-	h2 {
+	> h2 {
 		@include heading-md();
 	}
 
-	h3 {
+	> h3 {
 		@include heading-sm();
 	}
 
-	h4 {
+	> h4 {
 		@include heading-xs();
 	}
 
@@ -49,7 +58,7 @@
 		}
 	}
 
-	h6 {
+	> h6 {
 		font-size: 1rem;
 
 		@include breakpoint(tablet) {
@@ -57,16 +66,16 @@
 		}
 	}
 
-	ul,
-	ol {
+	> ul,
+	> ol {
 		padding-left: 1rem;
 	}
 
-	strong {
+	> strong {
 		@include embolden();
 	}
 
-	pre {
+	> pre {
 		display: block;
 		border-radius: 4px;
 		font-size: $small-font-size;
@@ -81,20 +90,20 @@
 		}
 	}
 
-	code {
+	> code {
 		border-radius: 4px;
 		font-size: $small-font-size;
 		line-height: 1.5em;
 		padding: 4px;
 	}
 
-	hr {
+	> hr {
 		border: 0;
 		height: 1px;
 		margin: 2rem 0;
 	}
 
-	blockquote {
+	> blockquote {
 		font-size: $medium-font-size;
 		margin: 0;
 		padding: 1rem 1.5rem;
