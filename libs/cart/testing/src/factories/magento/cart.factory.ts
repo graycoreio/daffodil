@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
-import { MagentoCart, MagentoMoney } from '@daffodil/cart';
+import { MagentoCart } from '@daffodil/cart';
 import { DaffModelFactory } from '@daffodil/core/testing';
-import { MagentoMoneyFactory } from './money.factory';
+import { MagentoMoney } from '@daffodil/driver/magento';
+import { MagentoMoneyFactory } from '@daffodil/driver/magento/testing';
 
 export class MockMagentoCart implements MagentoCart {
   id = faker.random.number(1000);
