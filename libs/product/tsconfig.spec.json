@@ -5,7 +5,21 @@
     "types": [
       "jasmine",
       "node"
-    ]
+    ],
+    "paths": {
+      "@daffodil/core": [
+        "dist/core"
+      ],
+      "@daffodil/core/testing": [
+        "dist/core/testing"
+      ],
+      "@daffodil/product": [
+        "libs/product/src/index.ts"
+      ],
+      "@daffodil/product/testing": [
+        "libs/product/testing/src/index.ts"
+      ],
+    }
   },
   "files": [
     "test.ts"
