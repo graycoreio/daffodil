@@ -1,4 +1,4 @@
-import { MagentoMoney } from './money';
+import { MagentoMoney } from '@daffodil/driver/magento'
 
 export interface MagentoCartShippingMethod {
   carrier_code: string;

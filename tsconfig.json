@@ -58,6 +58,9 @@
       "@daffodil/driver/magento": [
         "dist/driver/magento"
       ],
+      "@daffodil/driver/magento/testing": [
+        "dist/driver/magento/testing"
+      ],
       "@daffodil/design": [
         "dist/design"
       ],

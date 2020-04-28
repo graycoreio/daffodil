@@ -1,9 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoMoneyFactory } from './money.factory';
-import { MagentoMoney } from '@daffodil/cart';
+import { MagentoMoney } from '@daffodil/driver/magento';
 
-describe('Cart | Testing | Factories | MoneyFactory', () => {
+import { MagentoMoneyFactory } from './money.factory';
+
+describe('Driver | Magento | Testing | Factories | MagentoMoneyFactory', () => {
   let factory: MagentoMoneyFactory;
 
   beforeEach(() => {

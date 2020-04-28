@@ -1,6 +1,5 @@
 import { MagentoProduct } from '@daffodil/product';
-
-import { MagentoMoney } from './money'
+import { MagentoMoney } from '@daffodil/driver/magento'
 
 /**
  * An object for defining what the cart service requests and retrieves from a magento backend.

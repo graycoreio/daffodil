@@ -21,6 +21,7 @@
 			"@daffodil/driver": ["libs/driver/src"],
 			"@daffodil/driver/hubspot": ["libs/driver/hubspot/src"],
 			"@daffodil/driver/magento": ["libs/driver/magento/src"],
+			"@daffodil/driver/magento/testing": ["libs/driver/magento/testing/src"],
 			"@daffodil/geography": ["libs/geography/src"],
 			"@daffodil/geography/testing": ["libs/geography/testing/src"],
       "@daffodil/navigation": ["libs/navigation/src"],
