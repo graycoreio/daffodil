@@ -5,25 +5,23 @@ import { pricesFragment } from './fragments/prices';
 
 export const removeAllCoupons = gql`
   mutation RemoveAllCoupons($cartId: String!) {
-    mutation {
-      removeCouponFromCart(
-        input: {
-					cart_id: $cartId
+    removeCouponFromCart(
+      input: {
+        cart_id: $cartId
+      }
+    ) {
+      cart {
+        id
+        items {
+          ...cartItem
         }
-      ) {
-				cart {
-					id
-					items {
-						...cartItem
-					}
-					applied_coupons {
-						code
-					}
-					prices {
-						...prices
-					}
-				}
-			}
+        applied_coupons {
+          code
+        }
+        prices {
+          ...prices
+        }
+      }
     }
   }
   ${cartItemFragment}
