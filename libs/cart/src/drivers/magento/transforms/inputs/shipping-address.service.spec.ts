@@ -49,22 +49,41 @@ describe('Driver | Magento | Cart | Transformer | MagentoShippingAddressInput', 
 
   describe('transform | transforming a shipping address input', () => {
     let transformedShippingAddress;
-    let addressId;
 
-    beforeEach(() => {
-      addressId = '15';
+    describe('when address_id is set', () => {
+      let addressId;
 
-      mockDaffShippingAddress.address_id = addressId;
+      beforeEach(() => {
+        addressId = '15';
 
-      transformedShippingAddress = service.transform(mockDaffShippingAddress);
+        mockDaffShippingAddress.address_id = addressId;
+
+        transformedShippingAddress = service.transform(mockDaffShippingAddress);
+      });
+
+      it('should return an object with the correct customer_address_id', () => {
+        expect(transformedShippingAddress.customer_address_id).toEqual(addressId);
+      });
+
+      it('should return an object without the address field set', () => {
+        expect(transformedShippingAddress.address).toBeFalsy();
+      });
     });
 
-    it('should return an object with the correct values', () => {
-      expect(transformedShippingAddress.customer_address_id).toEqual(addressId);
-    });
+    describe('when address_id is not set', () => {
+      beforeEach(() => {
+        mockDaffShippingAddress.address_id = null;
 
-    it('should call the cart address transformer with the address', () => {
-      expect(cartAddressTransformerSpy.transform).toHaveBeenCalledWith(mockDaffShippingAddress);
+        transformedShippingAddress = service.transform(mockDaffShippingAddress);
+      });
+
+      it('should call the cart address transformer with the address', () => {
+        expect(cartAddressTransformerSpy.transform).toHaveBeenCalledWith(mockDaffShippingAddress);
+      });
+
+      it('should return an object without the customer_address_id field set', () => {
+        expect(transformedShippingAddress.customer_address_id).toBeFalsy();
+      });
     });
-  })
+  });
 });
