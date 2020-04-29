@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { DaffCart } from '@daffodil/cart';
 
-import { Order } from '../../models/order/order';
+import { DaffOrder } from '../../models/order/order';
 
 export enum DaffOrderActionTypes {
   PlaceOrderAction = '[Order] Place Order Action',
@@ -30,7 +30,7 @@ export class DaffPlaceOrder implements Action {
 export class DaffPlaceOrderSuccess implements Action {
   readonly type = DaffOrderActionTypes.PlaceOrderSuccessAction;
 
-  constructor(public payload: Order) {}
+  constructor(public payload: DaffOrder) {}
 }
 
 export class DaffPlaceOrderFailure implements Action {

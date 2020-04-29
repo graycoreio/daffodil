@@ -4,7 +4,7 @@ import { Store, select } from '@ngrx/store';
 
 import { DaffOrderReducersState } from '../reducers/order-reducers.interface';
 import { selectOrder, selectLoading } from '../selectors/order.selector';
-import { Order } from '../../models/order/order';
+import { DaffOrder } from '../../models/order/order';
 
 @Component({
   selector: '[order-container]',
@@ -12,8 +12,8 @@ import { Order } from '../../models/order/order';
   exportAs: 'OrderContainer'
 })
 export class OrderContainer implements OnInit {
-  
-  order$: Observable<Order>;
+
+  order$: Observable<DaffOrder>;
   loading$: Observable<boolean>;
 
   constructor(

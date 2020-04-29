@@ -4,7 +4,7 @@ import { Store, select, Action } from '@ngrx/store';
 
 import { DaffStoreFacade } from '@daffodil/core';
 import { DaffOrderModule } from '../order.module';
-import { Order } from '../../models/order/order';
+import { DaffOrder } from '../../models/order/order';
 import { DaffOrderReducersState } from '../reducers/order-reducers.interface';
 import { selectOrder, selectLoading, selectErrors } from '../selectors/order.selector';
 
@@ -18,7 +18,7 @@ export class DaffOrderFacade implements DaffStoreFacade<Action> {
   /**
    * The current order.
    */
-  order$: Observable<Order>;
+  order$: Observable<DaffOrder>;
   /**
    * The loading state for the current order.
    */

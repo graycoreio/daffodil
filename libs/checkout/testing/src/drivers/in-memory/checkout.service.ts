@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { DaffCheckoutServiceInterface, Order } from '@daffodil/checkout';
+import { DaffCheckoutServiceInterface, DaffOrder } from '@daffodil/checkout';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class DaffInMemoryCheckoutService implements DaffCheckoutServiceInterface
 
   constructor(private http: HttpClient) {}
 
-  placeOrder(cartId: string): Observable<Order> {
-    return this.http.post<Order>(this.url + '/placeOrder', { cartId });
+  placeOrder(cartId: string): Observable<DaffOrder> {
+    return this.http.post<DaffOrder>(this.url + '/placeOrder', { cartId });
   }
 }

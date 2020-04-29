@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import { OrderPayment } from '@daffodil/checkout';
+import { DaffOrderPayment } from '@daffodil/checkout';
 import { DaffOrderPaymentFactory } from './order-payment.factory';
 
 describe('Checkout | Testing | Order | Factories | OrderPaymentFactory', () => {
-  
+
   let orderPaymentFactory: DaffOrderPaymentFactory;
 
   beforeEach(() => {
@@ -21,19 +21,19 @@ describe('Checkout | Testing | Order | Factories | OrderPaymentFactory', () => {
 
   describe('create', () => {
 
-    let result: OrderPayment;
+    let result: DaffOrderPayment;
 
     beforeEach(() => {
       result = orderPaymentFactory.create();
     });
-    
-    xit('should return a OrderPayment with all required fields defined', () => {
+
+    xit('should return a DaffOrderPayment with all required fields defined', () => {
 
     });
   });
 
   describe('createMany', () => {
-    let result: OrderPayment[];
+    let result: DaffOrderPayment[];
 
     it('should create as many order payments as desired', () => {
       result = orderPaymentFactory.createMany(2);

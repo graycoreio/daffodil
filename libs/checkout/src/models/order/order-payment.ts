@@ -1,4 +1,4 @@
-export interface OrderPayment {
+export interface DaffOrderPayment {
   payment_id: number;
   quote_id: number;
   created_at: Date;

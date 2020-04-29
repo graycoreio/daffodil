@@ -1,8 +1,8 @@
-import { OrderItem } from './order-item';
-import { OrderAddress } from './order-address';
-import { OrderPayment } from './order-payment';
+import { DaffOrderItem } from './order-item';
+import { DaffOrderAddress } from './order-address';
+import { DaffOrderPayment } from './order-payment';
 
-export interface Order {
+export interface DaffOrder {
   id: number;
   created_at: Date;
   updated_at: Date;
@@ -13,7 +13,7 @@ export interface Order {
   coupon_code: string;
   subtotal: number;
   subtotal_with_discount: number;
-  items?: OrderItem[];
-  addresses?: OrderAddress[];
-  payment?: OrderPayment | null;
+  items?: DaffOrderItem[];
+  addresses?: DaffOrderAddress[];
+  payment?: DaffOrderPayment;
 }

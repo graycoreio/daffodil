@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Order } from '@daffodil/checkout';
+import { DaffOrder } from '@daffodil/checkout';
 
 import { DaffTestingCheckoutService } from './checkout.service';
 import { DaffOrderFactory } from '../../order/factories/order.factory';
@@ -9,7 +9,7 @@ describe('Driver | Testing | Checkout | CheckoutService', () => {
   let testingCheckoutService: DaffTestingCheckoutService;
   const orderFactorySpy = jasmine.createSpyObj('DaffOrderFactory', ['create']);
 
-  let stubOrder: Order;
+  let stubOrder: DaffOrder;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
