@@ -93,7 +93,6 @@ export class DaffMagentoCartTransformer {
 
   private transformCoupons(cart: MagentoCart): {coupons: DaffCart['coupons']} {
     return {
-      // TODO: extract into separate transformer
       coupons: cart.applied_coupons
         ? cart.applied_coupons.map(daffMagentoCouponTransform)
         : []
