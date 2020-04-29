@@ -28,6 +28,9 @@ import { DaffMagentoCartShippingInformationService } from './cart-shipping-infor
 import { DaffCartOrderDriver } from '../interfaces/cart-order-service.interface';
 import { DaffMagentoCartOrderService } from './cart-order.service';
 
+import { DaffCartCouponDriver } from '../interfaces/cart-coupon-service.interface';
+import { DaffMagentoCartCouponService } from './cart-coupon.service';
+
 import { DaffMagentoCartShippingRateTransformer } from './transforms/outputs/cart-shipping-rate.service';
 import { DaffMagentoCartPaymentTransformer } from './transforms/outputs/cart-payment.service';
 import { DaffMagentoBillingAddressTransformer } from './transforms/outputs/billing-address.service';
@@ -36,6 +39,7 @@ import { DaffMagentoCartItemTransformer } from './transforms/outputs/cart-item.s
 import { DaffMagentoCartShippingInformationTransformer } from './transforms/outputs/cart-shipping-information.service';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { DaffMagentoShippingAddressTransformer } from './transforms/outputs/shipping-address.service';
+import { DaffMagentoCartCouponResponseTransformer } from './transforms/outputs/cart-coupon-response.service';
 
 import { DaffMagentoCartAddressInputTransformer } from './transforms/inputs/cart-address.service';
 import { DaffMagentoShippingAddressInputTransformer } from './transforms/inputs/shipping-address.service';
@@ -90,6 +94,10 @@ export class DaffCartMagentoDriverModule {
           provide: DaffCartOrderDriver,
           useExisting: DaffMagentoCartOrderService
         },
+        {
+          provide: DaffCartCouponDriver,
+          useExisting: DaffMagentoCartCouponService
+        },
 
         // output transformers
         DaffMagentoBillingAddressTransformer,
@@ -100,6 +108,7 @@ export class DaffCartMagentoDriverModule {
         DaffMagentoCartShippingRateTransformer,
         DaffMagentoCartTransformer,
         DaffMagentoShippingAddressTransformer,
+        DaffMagentoCartCouponResponseTransformer,
 
         // input transformers
         DaffMagentoCartAddressInputTransformer,
