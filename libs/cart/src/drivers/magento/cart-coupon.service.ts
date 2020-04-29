@@ -5,7 +5,6 @@ import { throwError, Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { DaffCart } from '../../models/cart';
-import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import {
   listCartCoupons,
   applyCoupon,
@@ -20,7 +19,7 @@ import {
 import { DaffCartCouponServiceInterface } from '../interfaces/cart-coupon-service.interface';
 import { DaffCartCoupon } from '../../models/cart-coupon';
 import { daffMagentoCouponTransform } from './transforms/outputs/cart-coupon';
-import { MagentoCart } from './models/outputs/cart';
+import { DaffMagentoCartCouponResponseTransformer } from './transforms/outputs/cart-coupon-response.service';
 
 /**
  * A service for making Magento GraphQL queries for carts.
@@ -31,7 +30,7 @@ import { MagentoCart } from './models/outputs/cart';
 export class DaffMagentoCartCouponService implements DaffCartCouponServiceInterface {
   constructor(
     private apollo: Apollo,
-    public cartTransformer: DaffMagentoCartTransformer,
+    public cartTransformer: DaffMagentoCartCouponResponseTransformer,
   ) {}
 
   apply(cartId: DaffCart['id'], coupon: DaffCartCoupon): Observable<Partial<DaffCart>> {
@@ -42,7 +41,7 @@ export class DaffMagentoCartCouponService implements DaffCartCouponServiceInterf
         couponCode: coupon.code
       }
     }).pipe(
-      map(result => this.cartTransformer.transform(result.data.applyCouponToCart.cart as MagentoCart)),
+      map(result => this.cartTransformer.transform(result.data.applyCouponToCart.cart)),
       catchError(err => throwError(transformCartMagentoError(err))),
     )
   }
@@ -70,7 +69,7 @@ export class DaffMagentoCartCouponService implements DaffCartCouponServiceInterf
         cartId
       }
     }).pipe(
-      map(result => this.cartTransformer.transform(result.data.removeCouponFromCart.cart as MagentoCart)),
+      map(result => this.cartTransformer.transform(result.data.removeCouponFromCart.cart)),
       catchError(err => throwError(transformCartMagentoError(err))),
     )
   }
