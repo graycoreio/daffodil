@@ -8,6 +8,7 @@ import { DaffMagentoBillingAddressTransformer } from './billing-address.service'
 import { MagentoCart } from '../../models/outputs/cart';
 import { DaffCart } from '../../../../models/cart';
 import { DaffMagentoCartShippingRateTransformer } from './cart-shipping-rate.service';
+import { daffMagentoCouponTransform } from './cart-coupon';
 
 /**
  * Transforms magento carts into an object usable by daffodil.
@@ -92,13 +93,8 @@ export class DaffMagentoCartTransformer {
 
   private transformCoupons(cart: MagentoCart): {coupons: DaffCart['coupons']} {
     return {
-      // TODO: extract into separate transformer
       coupons: cart.applied_coupons
-        ? cart.applied_coupons.map(({code}) => ({
-          coupon_id: 0,
-          code,
-          description: ''
-        }))
+        ? cart.applied_coupons.map(daffMagentoCouponTransform)
         : []
     }
   }
