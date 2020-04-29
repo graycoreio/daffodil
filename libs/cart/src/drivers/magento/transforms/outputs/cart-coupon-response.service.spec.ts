@@ -16,7 +16,7 @@ import { DaffMagentoCartTransformer } from './cart.service';
 import { DaffMagentoCartItemTransformer } from './cart-item.service';
 import { MagentoCartItem } from '../../models/outputs/cart-item';
 
-describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
+describe('Driver | Magento | Cart | Transformer | CartCouponResponse', () => {
   let service: DaffMagentoCartTransformer;
 
   let daffCartFactory: DaffCartFactory;
