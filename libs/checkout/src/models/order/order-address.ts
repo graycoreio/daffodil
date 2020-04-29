@@ -1,7 +1,7 @@
-import { OrderShippingRate } from './order-shipping-rate';
-import { DaffAddress } from '@daffodil/core';
+import { DaffOrderShippingRate } from './order-shipping-rate';
+import { DaffAddress } from '@daffodil/geography';
 
-export interface OrderAddress extends DaffAddress {
+export interface DaffOrderAddress extends DaffAddress {
   address_id: number;
   quote_id: number;
   created_at: Date;
@@ -26,5 +26,5 @@ export interface OrderAddress extends DaffAddress {
   fax: string;
   shipping_method?: string | null;
   shipping_description?: string | null;
-  shipping_rate?: OrderShippingRate | null;
+  shipping_rate?: DaffOrderShippingRate | null;
 }

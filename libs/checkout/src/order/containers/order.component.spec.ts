@@ -5,7 +5,7 @@ import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { OrderContainer } from './order.component';
 import { DaffPlaceOrder } from '../actions/order.actions';
 import { DaffOrderFactory } from '../../../testing/src';
-import { Order } from '../../models/order/order';
+import { DaffOrder } from '../../models/order/order';
 import { selectLoading, selectOrder } from '../selectors/order.selector';
 
 describe('OrderContainer', () => {
@@ -13,7 +13,7 @@ describe('OrderContainer', () => {
   let fixture: ComponentFixture<OrderContainer>;
   let store: MockStore<any>;
   let stubLoading: boolean;
-  let stubOrder: Order;
+  let stubOrder: DaffOrder;
   let cartFactory: DaffOrderFactory;
 
   beforeEach(async(() => {

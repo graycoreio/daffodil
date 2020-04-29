@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffOrderAddressFactory } from './order-address.factory';
-import { OrderAddress } from '@daffodil/checkout';
+import { DaffOrderAddress } from '@daffodil/checkout';
 
 describe('Checkout | Testing | Order | Factories | OrderAddressFactory', () => {
-  
+
   let orderAddressFactory: DaffOrderAddressFactory;
 
   beforeEach(() => {
@@ -21,19 +21,19 @@ describe('Checkout | Testing | Order | Factories | OrderAddressFactory', () => {
 
   describe('create', () => {
 
-    let result: OrderAddress;
+    let result: DaffOrderAddress;
 
     beforeEach(() => {
       result = orderAddressFactory.create();
     });
-    
-    xit('should return a OrderAddress with all required fields defined', () => {
+
+    xit('should return a DaffOrderAddress with all required fields defined', () => {
 
     });
   });
 
   describe('createMany', () => {
-    let result: OrderAddress[];
+    let result: DaffOrderAddress[];
 
     it('should create as many order addresses as desired', () => {
       result = orderAddressFactory.createMany(2);

@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffOrderFactory } from './order.factory';
-import { Order } from '@daffodil/checkout';
+import { DaffOrder } from '@daffodil/checkout';
 
 describe('Checkout | Testing | Order | Factories | DaffOrderFactory', () => {
-  
+
   let orderFactory: DaffOrderFactory;
 
   beforeEach(() => {
@@ -21,7 +21,7 @@ describe('Checkout | Testing | Order | Factories | DaffOrderFactory', () => {
 
   describe('create', () => {
 
-    let result : Order;
+    let result : DaffOrder;
 
     beforeEach(() => {
       result = orderFactory.create();
@@ -32,7 +32,7 @@ describe('Checkout | Testing | Order | Factories | DaffOrderFactory', () => {
     });
 
     describe('Order object', () => {
-      
+
       it('should have no OrderItems', () => {
         expect(result.items.length).toEqual(0)
       });
@@ -41,14 +41,14 @@ describe('Checkout | Testing | Order | Factories | DaffOrderFactory', () => {
         expect(result.addresses.length).toEqual(0);
       });
 
-      it('should not have a OrderPayment', () => {
+      it('should not have a DaffOrderPayment', () => {
         expect(result.payment).toEqual(null);
       });
     });
   });
 
   describe('createMany', () => {
-    let result: Order[];
+    let result: DaffOrder[];
 
     it('should create as many orders as desired', () => {
       result = orderFactory.createMany(2);

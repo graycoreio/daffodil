@@ -11,13 +11,13 @@ import { OrderEffects } from './order.effects';
 import { DaffPlaceOrder, DaffPlaceOrderSuccess, DaffPlaceOrderFailure } from '../actions/order.actions';
 import { DaffCheckoutServiceInterface } from '../../drivers/interfaces/checkout-service.interface';
 import { DaffCheckoutDriver } from '../../drivers/injection-tokens/driver-checkout.token';
-import { Order } from '../../models/order/order';
+import { DaffOrder } from '../../models/order/order';
 
 describe('Daffodil | State | Order | OrderEffects', () => {
   let actions$: Observable<any>;
   let effects: OrderEffects;
   let daffCheckoutDriver: DaffCheckoutServiceInterface;
-  let stubOrder: Order;
+  let stubOrder: DaffOrder;
   let orderFactory: DaffOrderFactory;
   let stubCart: DaffCart;
   let cartFactory: DaffCartFactory;
@@ -51,7 +51,7 @@ describe('Daffodil | State | Order | OrderEffects', () => {
     let expected;
 
     describe('and the call to CartService is successful', () => {
-      
+
       beforeEach(() => {
         spyOn(daffCheckoutDriver, 'placeOrder').and.returnValue(of(stubOrder));
         const placeOrderAction = new DaffPlaceOrder(stubCart);
@@ -59,14 +59,14 @@ describe('Daffodil | State | Order | OrderEffects', () => {
         actions$ = hot('--a', { a: placeOrderAction });
         expected = cold('--b', { b: placeOrderSuccessAction });
       });
-      
+
       it('should dispatch a DaffPlaceOrderSuccess action', () => {
         expect(effects.onPlaceOrder$).toBeObservable(expected);
       });
     });
-    
+
     describe('and the call to CartService fails', () => {
-      
+
       beforeEach(() => {
         const error = 'Failed to place order';
         const response = cold('#', {}, error);
@@ -76,7 +76,7 @@ describe('Daffodil | State | Order | OrderEffects', () => {
         actions$ = hot('--a', { a: placeOrderAction });
         expected = cold('--b', { b: placeOrderFailureAction });
       });
-      
+
       it('should dispatch a DaffPlaceOrderFailure action', () => {
         expect(effects.onPlaceOrder$).toBeObservable(expected);
       });

@@ -6,14 +6,14 @@ import { cold } from 'jasmine-marbles';
 import { DaffOrderFactory } from '@daffodil/checkout/testing';
 
 import { daffOrderReducers } from '../reducers/order-reducers';
-import { Order } from '../../models/order/order';
+import { DaffOrder } from '../../models/order/order';
 import { DaffPlaceOrderSuccess } from '../actions/order.actions';
 import { DaffOrderFacade } from './order.facade';
 
 describe('DaffOrderFacade', () => {
   let store: MockStore<any>;
   let facade: DaffOrderFacade;
-  let stubOrder: Order;
+  let stubOrder: DaffOrder;
   const orderFactory: DaffOrderFactory = new DaffOrderFactory();
 
   beforeEach(() => {

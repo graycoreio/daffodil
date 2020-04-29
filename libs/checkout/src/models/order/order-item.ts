@@ -1,6 +1,6 @@
 import { DaffProductImage } from '@daffodil/product';
 
-export interface OrderItem {
+export interface DaffOrderItem {
   item_id: number;
   image: DaffProductImage;
   quote_id: number;

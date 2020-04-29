@@ -1,8 +1,8 @@
-export { Order } from './models/order/order';
-export { OrderItem } from './models/order/order-item';
-export { OrderAddress } from './models/order/order-address';
-export { OrderPayment } from './models/order/order-payment';
-export { OrderShippingRate } from './models/order/order-shipping-rate';
+export { DaffOrder } from './models/order/order';
+export { DaffOrderItem } from './models/order/order-item';
+export { DaffOrderAddress } from './models/order/order-address';
+export { DaffOrderPayment } from './models/order/order-payment';
+export { DaffOrderShippingRate } from './models/order/order-shipping-rate';
 
 export { PaymentInfo } from './models/payment/payment-info';
 
@@ -13,9 +13,9 @@ export { ShippingContainer } from './shipping/containers/shipping.component';
 export { OrderContainer } from './order/containers/order.component';
 
 export { DaffPaymentFacade } from './payment/facades/payment.facade';
-export { 
-  DaffPaymentActionTypes, 
-  DaffPaymentActions, 
+export {
+  DaffPaymentActionTypes,
+  DaffPaymentActions,
   DaffUpdatePaymentInfo
 } from './payment/actions/payment.actions';
 export { daffPaymentReducers } from './payment/reducers/payment-reducers';
@@ -25,12 +25,11 @@ export {
   selectPaymentInfo
 } from './payment/selectors/payment.selector';
 export { DaffPaymentDriver } from './drivers/injection-tokens/payment-driver.token';
-export { DaffOrderDriver } from './drivers/injection-tokens/order-driver.token';
-export { DaffOrderServiceInterface } from './drivers/interfaces/order-service.interface';
+export { DaffOrderDriver, DaffOrderServiceInterface } from './drivers/interfaces/order-service.interface';
 export { DaffPaymentTransformer } from './drivers/injection-tokens/payment-transformer.token';
 export { DaffCartProcessRequest } from './models/cart-process-request';
 
-export { 
+export {
   DaffBillingActionTypes,
   DaffUpdateBillingAddress,
   DaffToggleBillingAddressIsShippingAddress,
@@ -49,7 +48,7 @@ export { daffBillingReducers } from './billing/reducers/billing-reducers';
 export { daffBillingReducer } from './billing/reducers/billing/billing.reducer';
 
 export { DaffShippingFacade } from './shipping/facades/shipping.facade';
-export { 
+export {
 	DaffShippingActionTypes,
   DaffUpdateShippingAddress,
   DaffSelectShippingOption,

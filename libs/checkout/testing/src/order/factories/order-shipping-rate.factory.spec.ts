@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import {  OrderShippingRate } from '@daffodil/checkout';
+import {  DaffOrderShippingRate } from '@daffodil/checkout';
 import { DaffOrderShippingRateFactory } from './order-shipping-rate.factory';
 
 describe('Checkout | Testing | Order | Factories | OrderShippingRateFactory', () => {
-  
+
   let orderShippingRateFactory: DaffOrderShippingRateFactory;
 
   beforeEach(() => {
@@ -21,19 +21,19 @@ describe('Checkout | Testing | Order | Factories | OrderShippingRateFactory', ()
 
   describe('create', () => {
 
-    let result: OrderShippingRate;
+    let result: DaffOrderShippingRate;
 
     beforeEach(() => {
       result = orderShippingRateFactory.create();
     });
-    
-    xit('should return a OrderShippingRate with all required fields defined', () => {
+
+    xit('should return a DaffOrderShippingRate with all required fields defined', () => {
 
     });
   });
 
   describe('createMany', () => {
-    let result: OrderShippingRate[];
+    let result: DaffOrderShippingRate[];
 
     it('should create as many order shipping rates as desired', () => {
       result = orderShippingRateFactory.createMany(2);

@@ -4,13 +4,13 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 
 import { DaffInMemoryCheckoutService } from './checkout.service';
 import { DaffOrderFactory } from '@daffodil/checkout/testing';
-import { Order } from '@daffodil/checkout';
+import { DaffOrder } from '@daffodil/checkout';
 
 describe('Driver | In Memory | Checkout | CheckoutService', () => {
   let checkoutService: DaffInMemoryCheckoutService;
   let httpMock: HttpTestingController;
   let orderFactory: DaffOrderFactory;
-  let stubOrder: Order;
+  let stubOrder: DaffOrder;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -21,7 +21,7 @@ describe('Driver | In Memory | Checkout | CheckoutService', () => {
         DaffInMemoryCheckoutService
       ]
     });
-    
+
     httpMock = TestBed.get(HttpTestingController);
     orderFactory = TestBed.get(DaffOrderFactory);
     checkoutService = TestBed.get(DaffInMemoryCheckoutService);
@@ -48,15 +48,15 @@ describe('Driver | In Memory | Checkout | CheckoutService', () => {
       it('should send a post request to `api/checkout/placeOrder` and respond with an order', () => {
         checkoutService.placeOrder(cartId).subscribe(order => {
           expect(order).toEqual(stubOrder);
-        });  
-  
+        });
+
         const req = httpMock.expectOne(`${checkoutService.url}/placeOrder`);
-  
+
         expect(req.request.method).toBe('POST');
         expect(req.request.body).toEqual({
           'cartId': cartId
         });
-        
+
         req.flush(stubOrder);
       });
     });

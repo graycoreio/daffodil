@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 
 import * as faker from 'faker/locale/en_US';
 
-import { OrderAddress } from '@daffodil/checkout';
+import { DaffOrderAddress } from '@daffodil/checkout';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
-export class MockOrderAddress implements OrderAddress {
+export class MockOrderAddress implements DaffOrderAddress {
   address_id = faker.random.number(1000);
   quote_id = faker.random.number(1000);
   created_at = new Date();
@@ -37,8 +37,8 @@ export class MockOrderAddress implements OrderAddress {
 @Injectable({
   providedIn: 'root'
 })
-export class DaffOrderAddressFactory extends DaffModelFactory<OrderAddress> {
-  
+export class DaffOrderAddressFactory extends DaffModelFactory<DaffOrderAddress> {
+
   constructor(){
     super(MockOrderAddress);
   }

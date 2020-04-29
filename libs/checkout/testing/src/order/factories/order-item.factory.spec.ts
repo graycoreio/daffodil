@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffOrderItemFactory } from './order-item.factory';
-import { OrderItem } from '@daffodil/checkout';
+import { DaffOrderItem } from '@daffodil/checkout';
 
 describe('Checkout | Testing | Order | Factories | OrderItemFactory', () => {
-  
+
   let orderItemFactory: DaffOrderItemFactory;
 
   beforeEach(() => {
@@ -21,13 +21,13 @@ describe('Checkout | Testing | Order | Factories | OrderItemFactory', () => {
 
   describe('create', () => {
 
-    let result: OrderItem;
+    let result: DaffOrderItem;
 
     beforeEach(() => {
       result = orderItemFactory.create();
     });
-    
-    it('should return a OrderItem with all required fields defined', () => {
+
+    it('should return a DaffOrderItem with all required fields defined', () => {
       expect(result.item_id).not.toBeNull();
       expect(result.quote_id).not.toBeNull();
       expect(result.created_at).not.toBeNull();
@@ -52,7 +52,7 @@ describe('Checkout | Testing | Order | Factories | OrderItemFactory', () => {
   });
 
   describe('createMany', () => {
-    let result: OrderItem[];
+    let result: DaffOrderItem[];
 
     it('should create as many order items as desired', () => {
       const spy = spyOn(orderItemFactory, 'create');
@@ -61,9 +61,9 @@ describe('Checkout | Testing | Order | Factories | OrderItemFactory', () => {
       expect(result.length).toEqual(2);
       expect(orderItemFactory.create).toHaveBeenCalledTimes(2);
 
-      
+
       spy.calls.reset();
-      
+
       result = orderItemFactory.createMany(3);
       expect(result.length).toEqual(3);
       expect(orderItemFactory.create).toHaveBeenCalledTimes(3);

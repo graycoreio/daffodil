@@ -2,7 +2,7 @@ import { DaffOrderFactory } from '@daffodil/checkout/testing';
 
 import { initialState, daffOrderReducer } from './order.reducer';
 import { DaffPlaceOrder, DaffPlaceOrderSuccess, DaffPlaceOrderFailure } from '../../actions/order.actions';
-import { Order } from '../../../models/order/order';
+import { DaffOrder } from '../../../models/order/order';
 import { DaffOrderReducerState } from './order-reducer.interface';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffCart } from '@daffodil/cart';
@@ -10,7 +10,7 @@ import { DaffCart } from '@daffodil/cart';
 describe('Order | Order Reducer', () => {
 
   let orderFactory: DaffOrderFactory;
-  let stubOrder: Order;
+  let stubOrder: DaffOrder;
   let stubCart: DaffCart;
 
   beforeEach(() => {
@@ -34,7 +34,7 @@ describe('Order | Order Reducer', () => {
 
     it('sets loading state to true', () => {
       const placeOrderAction: DaffPlaceOrder = new DaffPlaceOrder(stubCart);
-      
+
       const result = daffOrderReducer(initialState, placeOrderAction);
 
       expect(result.loading).toEqual(true);
@@ -51,9 +51,9 @@ describe('Order | Order Reducer', () => {
         ...initialState,
         loading: true
       }
-  
+
       const placeOrderSuccess = new DaffPlaceOrderSuccess(stubOrder);
-      
+
       result = daffOrderReducer(state, placeOrderSuccess);
     });
 
@@ -79,9 +79,9 @@ describe('Order | Order Reducer', () => {
         loading: true,
         errors: ['existing error']
       }
-  
+
       const placeOrderFailureAction = new DaffPlaceOrderFailure(stubError);
-      
+
       result = daffOrderReducer(state, placeOrderFailureAction);
     });
 

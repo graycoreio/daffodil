@@ -1,6 +1,6 @@
 import { createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
-import { Order } from '../../models/order/order';
+import { DaffOrder } from '../../models/order/order';
 import { DaffOrderReducersState } from '../reducers/order-reducers.interface';
 import { DaffOrderReducerState } from '../reducers/order/order-reducer.interface';
 
@@ -17,7 +17,7 @@ export const selectOrderState = createSelector(
   (state: DaffOrderReducersState) => state.order
 )
 
-export const selectOrder: MemoizedSelector<object, Order> = createSelector(
+export const selectOrder: MemoizedSelector<object, DaffOrder> = createSelector(
   selectOrderState,
   (state: DaffOrderReducerState) => state.order
 )

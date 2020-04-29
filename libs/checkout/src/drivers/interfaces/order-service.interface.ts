@@ -1,11 +1,21 @@
+import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Order } from '../../models/order/order';
-import { DaffCartProcessRequest } from '../../models/cart-process-request';
+import { DaffOrder } from '../../models/order/order';
+
+export const DaffOrderDriver = new InjectionToken<DaffOrderServiceInterface>('DaffOrderDriver');
 
 /**
- * Place an order with a cart of the provided id.
+ * Query order objects accessible by the logged-in user.
  */
-export interface DaffOrderServiceInterface {
-  placeOrder(cartProcessRequest: DaffCartProcessRequest): Observable<Order>;
+export interface DaffOrderServiceInterface<T extends DaffOrder = DaffOrder> {
+  /**
+   * Get an order object with the specified order ID.
+   */
+  get(orderId: T['id']): Observable<T>;
+
+  /**
+   * List all order objects for the logged-in user.
+   */
+  list(): Observable<T[]>;
 }

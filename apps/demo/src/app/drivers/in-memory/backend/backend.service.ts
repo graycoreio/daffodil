@@ -8,7 +8,7 @@ import {
 
 import { DaffProduct } from '@daffodil/product';
 import { DaffCart } from '@daffodil/cart';
-import { Order } from '@daffodil/checkout';
+import { DaffOrder } from '@daffodil/checkout';
 import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
 import { DaffInMemoryBackendCartRootService } from '@daffodil/cart/testing';
@@ -63,6 +63,6 @@ export class DemoInMemoryBackendService implements InMemoryDbService {
 export interface MockDaffDatabase {
   products: DaffProduct[];
   cart: DaffCart;
-  order: Order;
+  order: DaffOrder;
   navigation: DaffNavigationTree;
 }

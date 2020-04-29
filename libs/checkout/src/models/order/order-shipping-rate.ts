@@ -1,4 +1,4 @@
-export interface OrderShippingRate {
+export interface DaffOrderShippingRate {
   rate_id: number;
   address_id: number;
   created_at: Date;
