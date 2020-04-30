@@ -2,6 +2,10 @@
 
 .daff-article {
 	display: block;
+	
+	&__title {
+		@include heading-lg();
+	}
 
 	&__lead {
 		font-size: $medium-font-size;
@@ -34,8 +38,7 @@
 			margin-top: 1.5rem;
 		}
 
-		h1,
-		&__title {
+		h1 {
 			@include heading-lg();
 		}
 
