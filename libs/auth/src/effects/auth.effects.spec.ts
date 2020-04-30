@@ -190,7 +190,7 @@ describe('DaffAuthEffects', () => {
       expected = cold('---');
     });
 
-    it('should set the cart ID in storage', () => {
+    it('should set the auth token in storage', () => {
       expect(effects.storeAuthToken$).toBeObservable(expected);
       expect(daffAuthStorageSpy.setAuthToken).toHaveBeenCalledWith(mockAuth.token);
     });
