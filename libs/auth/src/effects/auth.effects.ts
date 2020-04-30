@@ -16,7 +16,9 @@ import {
   DaffAuthCheck,
   DaffAuthLogoutSuccess,
   DaffAuthLogoutFailure,
-  DaffAuthLogout
+  DaffAuthLogout,
+  DaffAuthGuardCheckCompletion,
+  DaffAuthGuardCheck
 } from '../actions/auth.actions';
 import { DaffRegisterDriver, DaffRegisterServiceInterface } from '../drivers/interfaces/register-service.interface';
 import { DaffLoginDriver, DaffLoginServiceInterface } from '../drivers/interfaces/login-service.interface';
@@ -42,7 +44,7 @@ export class DaffAuthEffects<
   check$ : Observable<DaffAuthCheckSuccess | DaffAuthCheckFailure> = this.actions$.pipe(
     ofType(DaffAuthActionTypes.AuthCheckAction),
     switchMap((action: DaffAuthCheck) =>
-      this.authDriver.check().pipe(
+      this.checkToken().pipe(
         mapTo(new DaffAuthCheckSuccess()),
         catchError(error =>
           of(new DaffAuthCheckFailure('Auth token is not valid'))
@@ -99,4 +101,21 @@ export class DaffAuthEffects<
       )
     )
   )
+
+  @Effect()
+  guardCheck$: Observable<DaffAuthGuardCheckCompletion> = this.actions$.pipe(
+    ofType(DaffAuthActionTypes.AuthGuardCheckAction),
+    switchMap((action: DaffAuthGuardCheck) =>
+      this.checkToken().pipe(
+        mapTo(new DaffAuthGuardCheckCompletion(true)),
+        catchError(error =>
+          of(new DaffAuthGuardCheckCompletion(false))
+        )
+      )
+    )
+  )
+
+  private checkToken() {
+    return this.authDriver.check()
+  }
 }
