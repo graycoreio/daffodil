@@ -1,6 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
+import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
+import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-angular-boost';
+import { addTypenameToDocument } from 'apollo-utilities';
 
+import { schema } from '@daffodil/driver/magento';
 import {
   DaffCart,
   DaffCartShippingInformation
@@ -24,6 +27,10 @@ import { DaffMagentoCartShippingRateTransformer } from './transforms/outputs/car
 import { DaffMagentoShippingMethodInputTransformer } from './transforms/inputs/shipping-method.service';
 import { MagentoShippingAddress } from './models/outputs/shipping-address';
 
+interface MagentoCartSelectedShippingMethod extends MagentoCartShippingMethod {
+	__typename: string;
+}
+
 describe('Driver | Magento | Cart | CartShippingInformationService', () => {
   let service: DaffMagentoCartShippingInformationService;
   let controller: ApolloTestingController;
@@ -42,7 +49,7 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
   let mockDaffCart: DaffCart;
   let mockMagentoCart: MagentoCart;
   let mockMagentoShippingAddress: MagentoShippingAddress;
-  let mockMagentoShippingMethod: MagentoCartShippingMethod;
+  let mockMagentoShippingMethod: MagentoCartSelectedShippingMethod;
   let mockDaffCartShippingInformation: DaffCartShippingInformation;
   let mockSetSelectedShippingMethodResponse: MagentoSetSelectedShippingMethodResponse;
   let mockGetSelectedShippingMethodResponse: MagentoGetSelectedShippingMethodResponse;
@@ -66,6 +73,15 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
           provide: DaffMagentoShippingMethodInputTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoShippingMethodInputTransformer', ['transform'])
         },
+				{
+					provide: APOLLO_TESTING_CACHE,
+					useValue: new InMemoryCache({
+						addTypename: true,
+						fragmentMatcher: new IntrospectionFragmentMatcher({
+							introspectionQueryResultData: schema,
+						}),
+					}),
+				}
       ]
     });
 
@@ -84,7 +100,10 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
 
     mockDaffCart = daffCartFactory.create();
     mockMagentoCart = magentoCartFactory.create();
-    mockMagentoShippingMethod = magentoShippingMethodFactory.create();
+		mockMagentoShippingMethod = {
+			__typename: 'SelectedShippingMethod',
+			...magentoShippingMethodFactory.create()
+		}
     mockDaffCartShippingInformation = {
       ...daffCartShippingRateFactory.create(),
       address_id: 0
@@ -97,18 +116,21 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
     mockMagentoCart.shipping_addresses = [mockMagentoShippingAddress];
     mockGetSelectedShippingMethodResponse = {
       cart: {
+				__typename: 'Cart',
         shipping_addresses: [{
+					__typename: 'CartShippingAddresses',
           selected_shipping_method: mockMagentoShippingMethod
         }]
       }
     };
     mockSetSelectedShippingMethodResponse = {
       setShippingMethodsOnCart: {
+				__typename: 'CartShippingMethods',
         cart: mockMagentoCart
       }
     };
 
-    magentoCartTransformerSpy.transform.withArgs(mockMagentoCart).and.returnValue(mockDaffCart);
+    magentoCartTransformerSpy.transform.and.returnValue(mockDaffCart);
     magentoShippingRateTransformerSpy.transform.and.returnValue(mockDaffCartShippingInformation)
   });
 
@@ -123,7 +145,7 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
         done();
       });
 
-      const op = controller.expectOne(getSelectedShippingMethod);
+      const op = controller.expectOne(addTypenameToDocument(getSelectedShippingMethod));
 
       op.flush({
         data: mockGetSelectedShippingMethodResponse
@@ -136,7 +158,7 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
         done();
       });
 
-      const op = controller.expectOne(getSelectedShippingMethod);
+      const op = controller.expectOne(addTypenameToDocument(getSelectedShippingMethod));
 
       op.flush({
         data: mockGetSelectedShippingMethodResponse
@@ -154,7 +176,7 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
           done();
         });
 
-        const op = controller.expectOne(getSelectedShippingMethod);
+        const op = controller.expectOne(addTypenameToDocument(getSelectedShippingMethod));
 
         op.flush({
           data: mockGetSelectedShippingMethodResponse
@@ -183,7 +205,7 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
         done();
       });
 
-      const op = controller.expectOne(setSelectedShippingMethod);
+      const op = controller.expectOne(addTypenameToDocument(setSelectedShippingMethod));
 
       op.flush({
         data: mockSetSelectedShippingMethodResponse
@@ -207,7 +229,7 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
         done();
       });
 
-      const op = controller.expectOne(setSelectedShippingMethod);
+      const op = controller.expectOne(addTypenameToDocument(setSelectedShippingMethod));
 
       op.flush({
         data: mockSetSelectedShippingMethodResponse

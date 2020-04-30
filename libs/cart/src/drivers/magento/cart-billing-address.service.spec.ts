@@ -1,6 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
+import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
+import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-angular-boost';
+import { addTypenameToDocument } from 'apollo-utilities';
 
+import { schema } from '@daffodil/driver/magento';
 import {
   DaffCart,
   DaffCartAddress
@@ -65,6 +68,15 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
           provide: DaffMagentoBillingAddressInputTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoBillingAddressInputTransformer', ['transform'])
         },
+				{
+					provide: APOLLO_TESTING_CACHE,
+					useValue: new InMemoryCache({
+						addTypename: true,
+						fragmentMatcher: new IntrospectionFragmentMatcher({
+							introspectionQueryResultData: schema,
+						}),
+					}),
+				}
       ]
     });
 
@@ -93,12 +105,14 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
     mockDaffCart.billing_address = mockDaffCartAddress;
     mockGetBillingAddressResponse = {
       cart: {
+				__typename: 'Cart',
         billing_address: mockMagentoBillingAddress,
         email
       }
     };
     mockUpdateBillingAddressResponse = {
       setBillingAddressOnCart: {
+				__typename: 'SetBillingAddressOnCart',
         cart: mockMagentoCart
       }
     };
@@ -110,7 +124,7 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
       }
     };
 
-    magentoCartTransformerSpy.transform.withArgs(mockMagentoCart).and.returnValue(mockDaffCart);
+    magentoCartTransformerSpy.transform.and.returnValue(mockDaffCart);
     magentoBillingAddressTransformerSpy.transform.and.returnValue(mockDaffCartAddress)
   });
 
@@ -125,7 +139,7 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
         done();
       });
 
-      const op = controller.expectOne(getBillingAddress);
+      const op = controller.expectOne(addTypenameToDocument(getBillingAddress));
 
       op.flush({
         data: mockGetBillingAddressResponse
@@ -138,7 +152,7 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
         done();
       });
 
-      const op = controller.expectOne(getBillingAddress);
+      const op = controller.expectOne(addTypenameToDocument(getBillingAddress));
 
       op.flush({
         data: mockGetBillingAddressResponse
@@ -156,7 +170,7 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
           done();
         });
 
-        const op = controller.expectOne(getBillingAddress);
+        const op = controller.expectOne(addTypenameToDocument(getBillingAddress));
 
         op.flush({
           data: mockGetBillingAddressResponse
@@ -186,8 +200,8 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
         done();
       });
 
-      const billingOp = controller.expectOne(updateBillingAddress);
-      const emailOp = controller.expectOne(setGuestEmail);
+      const billingOp = controller.expectOne(addTypenameToDocument(updateBillingAddress));
+      const emailOp = controller.expectOne(addTypenameToDocument(setGuestEmail));
 
       billingOp.flush({
         data: mockUpdateBillingAddressResponse
