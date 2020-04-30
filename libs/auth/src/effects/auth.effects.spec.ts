@@ -82,7 +82,7 @@ describe('DaffAuthEffects', () => {
         },
         {
           provide: DaffAuthStorageService,
-          useValue: jasmine.createSpyObj('DaffCartStorageService', ['setAuthToken'])
+          useValue: jasmine.createSpyObj('DaffAuthStorageService', ['setAuthToken'])
         }
       ]
     });
@@ -203,7 +203,7 @@ describe('DaffAuthEffects', () => {
         expected = cold('--(b|)', { b: authStorageFailureAction });
       });
 
-      it('should return a DaffCartStorageFailure', () => {
+      it('should return a DaffAuthStorageFailure', () => {
         expect(effects.storeAuthToken$).toBeObservable(expected);
       });
     });
