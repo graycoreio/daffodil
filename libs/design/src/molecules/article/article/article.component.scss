@@ -16,104 +16,106 @@
 		font-size: $small-font-size;
 	}
 
-	> h1,
-	> h2,
-	> h3,
-	> h4,
-	> h5,
-	> h6 {
-		margin-bottom: 1rem;
-	}
-
-	> h2,
-	> h3,
-	> h4,
-	> h5,
-	> h6 {
-		margin-top: 1.5rem;
-	}
-
-	> h1,
-	&__title {
-		@include heading-lg();
-	}
-
-	> h2 {
-		@include heading-md();
-	}
-
-	> h3 {
-		@include heading-sm();
-	}
-
-	> h4 {
-		@include heading-xs();
-	}
-
-	h5 {
-		font-size: 1.125rem;
-
-		@include breakpoint(tablet) {
-			font-size: 1.25rem;
+	> {
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			margin-bottom: 1rem;
 		}
-	}
 
-	> h6 {
-		font-size: 1rem;
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			margin-top: 1.5rem;
+		}
 
-		@include breakpoint(tablet) {
+		h1,
+		&__title {
+			@include heading-lg();
+		}
+
+		h2 {
+			@include heading-md();
+		}
+
+		h3 {
+			@include heading-sm();
+		}
+
+		h4 {
+			@include heading-xs();
+		}
+
+		h5 {
 			font-size: 1.125rem;
+
+			@include breakpoint(tablet) {
+				font-size: 1.25rem;
+			}
 		}
-	}
 
-	> ul,
-	> ol {
-		padding-left: 1rem;
-	}
+		h6 {
+			font-size: 1rem;
 
-	> strong {
-		@include embolden();
-	}
+			@include breakpoint(tablet) {
+				font-size: 1.125rem;
+			}
+		}
 
-	> pre {
-		display: block;
-		border-radius: 4px;
-		font-size: $small-font-size;
-		line-height: 1.5em;
-		margin: 0;
-		padding: 1.5rem;
-		overflow: auto;
+		ul,
+		ol {
+			padding-left: 1rem;
+		}
+
+		strong {
+			@include embolden();
+		}
+
+		pre {
+			display: block;
+			border-radius: 4px;
+			font-size: $small-font-size;
+			line-height: 1.5em;
+			margin: 0;
+			padding: 1.5rem;
+			overflow: auto;
+
+			code {
+				display: block;
+				padding: 0;
+			}
+		}
 
 		code {
-			display: block;
-			padding: 0;
-		}
-	}
-
-	> code {
-		border-radius: 4px;
-		font-size: $small-font-size;
-		line-height: 1.5em;
-		padding: 4px;
-	}
-
-	> hr {
-		border: 0;
-		height: 1px;
-		margin: 2rem 0;
-	}
-
-	> blockquote {
-		font-size: $medium-font-size;
-		margin: 0;
-		padding: 1rem 1.5rem;
-
-		cite {
-			@include uppercase();
-			@include embolden();
-			display: block;
+			border-radius: 4px;
 			font-size: $small-font-size;
-			margin-top: 16px;
+			line-height: 1.5em;
+			padding: 4px;
+		}
+
+		hr {
+			border: 0;
+			height: 1px;
+			margin: 2rem 0;
+		}
+
+		blockquote {
+			font-size: $medium-font-size;
+			margin: 0;
+			padding: 1rem 1.5rem;
+
+			cite {
+				@include uppercase();
+				@include embolden();
+				display: block;
+				font-size: $small-font-size;
+				margin-top: 16px;
+			}
 		}
 	}
 }
