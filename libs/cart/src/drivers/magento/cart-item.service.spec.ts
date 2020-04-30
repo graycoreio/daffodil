@@ -1,7 +1,10 @@
 import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
+import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
 import { of } from 'rxjs';
+import { addTypenameToDocument } from 'apollo-utilities';
+import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-angular-boost';
 
+import { schema } from '@daffodil/driver/magento';
 import { DaffProduct } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 import {
@@ -38,6 +41,7 @@ import {
 import { MagentoCartItemInput } from './models/inputs/cart-item';
 import { MagentoCartItemUpdateInput } from './models/inputs/cart-item-update';
 import { DaffCartItemInputType, DaffCompositeCartItemInput, DaffSimpleCartItemInput } from '../../models/cart-item-input';
+import { DaffCartItemInput } from '../../models/cart-item-input';
 
 describe('Driver | Magento | Cart | CartItemService', () => {
   let service: DaffMagentoCartItemService;
@@ -89,7 +93,16 @@ describe('Driver | Magento | Cart | CartItemService', () => {
         {
           provide: DaffMagentoCartItemUpdateInputTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoCartItemUpdateInputTransformer', ['transform'])
-        }
+        },
+				{
+					provide: APOLLO_TESTING_CACHE,
+					useValue: new InMemoryCache({
+						addTypename: true,
+						fragmentMatcher: new IntrospectionFragmentMatcher({
+							introspectionQueryResultData: schema,
+						}),
+					}),
+				}
       ]
     });
 
@@ -139,32 +152,37 @@ describe('Driver | Magento | Cart | CartItemService', () => {
     }
     mockListCartItemResponse = {
       cart: {
+				__typename: 'Cart',
         items: [mockMagentoCartItem]
       }
     };
     mockAddSimpleCartItemResponse = {
       addSimpleProductsToCart: {
+				__typename: 'AddSimpleProducts',
         cart: mockMagentoCart
       }
     };
     mockAddBundleCartItemResponse = {
       addBundleProductsToCart: {
+				__typename: 'AddBundleProductsToCart',
         cart: mockMagentoCart
       }
     };
     mockUpdateCartItemResponse = {
       updateCartItems: {
+				__typename: 'UpdateCartItems',
         cart: mockMagentoCart
       }
     };
     mockRemoveCartItemResponse = {
       removeItemFromCart: {
+				__typename: 'RemoveItemFromCart',
         cart: mockMagentoCart
       }
     };
 
-    magentoCartTransformerSpy.transform.withArgs(mockMagentoCart).and.returnValue(mockDaffCart);
-    magentoCartItemTransformerSpy.transform.withArgs(mockMagentoCartItem).and.returnValue(mockDaffCartItem);
+    magentoCartTransformerSpy.transform.and.returnValue(mockDaffCart);
+    magentoCartItemTransformerSpy.transform.and.returnValue(mockDaffCartItem);
     magentoCartItemUpdateInputTransformerSpy.transform.and.returnValue(mockMagentoCartItemUpdateInput);
   });
 
@@ -179,7 +197,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
         done();
       });
 
-      const op = controller.expectOne(listCartItems);
+      const op = controller.expectOne(addTypenameToDocument(listCartItems));
 
       op.flush({
         data: mockListCartItemResponse
@@ -192,7 +210,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
         done();
       });
 
-      const op = controller.expectOne(listCartItems);
+      const op = controller.expectOne(addTypenameToDocument(listCartItems));
 
       op.flush({
         data: mockListCartItemResponse
@@ -229,7 +247,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
 					done();
 				});
 	
-				const op = controller.expectOne(addBundleCartItem);
+				const op = controller.expectOne(addTypenameToDocument(addBundleCartItem));
 	
 				op.flush({
 					data: mockAddBundleCartItemResponse
@@ -244,7 +262,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
 					done();
 				});
 	
-				const op = controller.expectOne(addSimpleCartItem);
+				const op = controller.expectOne(addTypenameToDocument(addSimpleCartItem));
 	
 				op.flush({
 					data: mockAddSimpleCartItemResponse
@@ -274,7 +292,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
         done();
       });
 
-      const op = controller.expectOne(updateCartItem);
+      const op = controller.expectOne(addTypenameToDocument(updateCartItem));
 
       op.flush({
         data: mockUpdateCartItemResponse
@@ -300,7 +318,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
         done();
       });
 
-      const op = controller.expectOne(removeCartItem);
+      const op = controller.expectOne(addTypenameToDocument(removeCartItem));
 
       op.flush({
         data: mockRemoveCartItemResponse

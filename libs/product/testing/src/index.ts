@@ -8,4 +8,4 @@ export { DaffProductTestingDriverModule } from './drivers/testing/product-driver
 export { MockDaffProductFacade } from './helpers/mock-product-facade';
 export { DaffProductTestingModule } from './helpers/product-testing.module';
 
-export * from './factories/magento';
+export * from './factories/magento/public_api';

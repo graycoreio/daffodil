@@ -13,6 +13,9 @@
       "@daffodil/core/testing": [
         "dist/core/testing"
       ],
+      "@daffodil/driver/magento": [
+        "dist/driver/magento"
+      ],
       "@daffodil/product": [
         "libs/product/src/index.ts"
       ],

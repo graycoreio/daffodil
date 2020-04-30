@@ -32,6 +32,7 @@
     "rxjs": "0.0.0-PLACEHOLDER"
   },
   "optionalDependencies": {
+    "@daffodil/driver": "0.0.0-PLACEHOLDER",
     "faker": "0.0.0-PLACEHOLDER",
     "angular-in-memory-web-api": "0.0.0-PLACEHOLDER",
     "apollo-angular": "0.0.0-PLACEHOLDER",
@@ -39,6 +40,7 @@
     "graphql-tag": "0.0.0-PLACEHOLDER"
   },
   "devDependencies": {
-    "@daffodil/core": "0.0.0-PLACEHOLDER"
+    "@daffodil/core": "0.0.0-PLACEHOLDER",
+    "@daffodil/driver": "0.0.0-PLACEHOLDER"
   }
 }

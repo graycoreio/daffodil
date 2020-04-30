@@ -6,6 +6,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { MockMagentoCartAddress } from './cart-address.factory';
 
 export class MockMagentoShippingAddress extends MockMagentoCartAddress implements MagentoShippingAddress {
+	__typename = 'ShippingCartAddress';
   available_shipping_methods = [];
   selected_shipping_method = null;
 }

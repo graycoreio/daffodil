@@ -87,11 +87,13 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
     mockMagentoCart.selected_payment_method = mockMagentoCartPaymentMethod;
     mockGetSelectedPaymentMethodResponse = {
       cart: {
+				__typename: 'Cart',
         selected_payment_method: mockMagentoCartPaymentMethod
       }
     };
     mockSetSelectedPaymentMethodResponse = {
       setPaymentMethodOnCart: {
+				__typename: 'SetPaymetnMethod',
         cart: mockMagentoCart
       }
     };

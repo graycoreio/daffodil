@@ -5,6 +5,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { MagentoMoney } from '@daffodil/driver/magento';
 
 export class MockMagentoMoney implements MagentoMoney {
+	__typename = 'Money';
   value = faker.random.number(10000);
   currency = faker.random.word();
 };

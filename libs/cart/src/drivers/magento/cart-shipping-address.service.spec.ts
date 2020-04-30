@@ -1,6 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
+import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
+import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-angular-boost';
+import { addTypenameToDocument } from 'apollo-utilities';
 
+import { schema } from '@daffodil/driver/magento';
 import {
   DaffCart,
   DaffCartAddress
@@ -67,6 +70,15 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
           provide: DaffMagentoShippingAddressInputTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoShippingAddressInputTransformer', ['transform'])
         },
+				{
+					provide: APOLLO_TESTING_CACHE,
+					useValue: new InMemoryCache({
+						addTypename: true,
+						fragmentMatcher: new IntrospectionFragmentMatcher({
+							introspectionQueryResultData: schema,
+						}),
+					}),
+				}
       ]
     });
 
@@ -98,12 +110,14 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
     mockDaffCart.shipping_address = mockDaffCartAddress;
     mockGetShippingAddressResponse = {
       cart: {
+				__typename: 'Cart',
         shipping_addresses: [mockMagentoShippingAddress],
         email
       }
     };
     mockUpdateShippingAddressResponse = {
       setShippingAddressesOnCart: {
+				__typename: 'SetShippingAddresses',
         cart: mockMagentoCart
       }
     };
@@ -129,7 +143,7 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
         done();
       });
 
-      const op = controller.expectOne(getShippingAddress);
+      const op = controller.expectOne(addTypenameToDocument(getShippingAddress));
 
       op.flush({
         data: mockGetShippingAddressResponse
@@ -142,7 +156,7 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
         done();
       });
 
-      const op = controller.expectOne(getShippingAddress);
+      const op = controller.expectOne(addTypenameToDocument(getShippingAddress));
 
       op.flush({
         data: mockGetShippingAddressResponse
@@ -160,7 +174,7 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
           done();
         });
 
-        const op = controller.expectOne(getShippingAddress);
+        const op = controller.expectOne(addTypenameToDocument(getShippingAddress));
 
         op.flush({
           data: mockGetShippingAddressResponse
@@ -189,7 +203,7 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
         done();
       });
 
-      const op = controller.expectOne(updateShippingAddress);
+      const op = controller.expectOne(addTypenameToDocument(updateShippingAddress));
 
       op.flush({
         data: mockUpdateShippingAddressResponse

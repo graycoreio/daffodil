@@ -7,8 +7,10 @@ import { MagentoMoney } from '@daffodil/driver/magento';
 import { MagentoMoneyFactory } from '@daffodil/driver/magento/testing';
 
 export class MockMagentoCart implements MagentoCart {
+	__typename = 'Cart';
   id = faker.random.number(1000);
   prices = {
+		__typename: 'CartPrices',
     subtotal_excluding_tax: this.money(),
     grand_total: this.money(),
     subtotal_including_tax: this.money(),

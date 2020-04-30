@@ -2,17 +2,17 @@ import { TestBed } from '@angular/core/testing';
 
 import { MagentoProduct } from '@daffodil/product';
 
-import { MagentoProductFactory } from './product.factory';
+import { MagentoCoreProductFactory } from './product.factory';
 
-describe('Product | Testing | Factories | MagentoProductFactory', () => {
-  let factory: MagentoProductFactory;
+describe('Product | Testing | Factories | MagentoCoreProductFactory', () => {
+  let factory: MagentoCoreProductFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MagentoProductFactory]
+      providers: [MagentoCoreProductFactory]
     });
 
-    factory = TestBed.get(MagentoProductFactory);
+    factory = TestBed.get(MagentoCoreProductFactory);
   });
 
   it('should be created', () => {
