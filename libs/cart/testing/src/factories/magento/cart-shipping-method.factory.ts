@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
-import { MagentoCartShippingMethod, MagentoMoney } from '@daffodil/cart';
-import { DaffModelFactory } from '@daffodil/core/testing';
-
-import { MagentoMoneyFactory } from './money.factory';
+import { MagentoMoney } from '@daffodil/driver/magento';
+import { MagentoMoneyFactory } from '@daffodil/driver/magento/testing';
+import {
+  DaffModelFactory,
+} from '@daffodil/core/testing';
+import { MagentoCartShippingMethod } from '@daffodil/cart';
 
 export class MockCartShippingMethod implements MagentoCartShippingMethod {
   carrier_code = faker.random.word();

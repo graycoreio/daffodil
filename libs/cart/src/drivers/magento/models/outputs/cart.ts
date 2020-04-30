@@ -1,8 +1,9 @@
+import { MagentoMoney } from '@daffodil/driver/magento'
+
 import { MagentoCartItem } from './cart-item'
 import { MagentoCartPaymentMethod } from './cart-payment-method';
 import { MagentoCartAddress } from './cart-address';
 import { MagentoCartCoupon } from './cart-coupon';
-import { MagentoMoney } from './money';
 import { MagentoShippingAddress } from './shipping-address';
 
 /**

@@ -3,13 +3,12 @@ import * as faker from 'faker/locale/en_US';
 
 import {
   MagentoCartItem,
-  MagentoMoney,
 } from '@daffodil/cart';
 import { MagentoProduct } from '@daffodil/product';
 import { MagentoProductFactory } from '@daffodil/product/testing';
 import { DaffModelFactory } from '@daffodil/core/testing';
-
-import { MagentoMoneyFactory } from './money.factory';
+import { MagentoMoney } from '@daffodil/driver/magento';
+import { MagentoMoneyFactory } from '@daffodil/driver/magento/testing';
 
 export class MockMagentoCartItem implements MagentoCartItem {
   id = faker.random.number(1000);
