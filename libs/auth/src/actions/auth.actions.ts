@@ -7,6 +7,7 @@ import { DaffAccountRegistration } from '../models/account-registration';
 export enum DaffAuthActionTypes {
   AuthGuardCheckAction = '[Daff-Auth] Auth Guard Check Action',
   AuthGuardCheckCompletionAction = '[Daff-Auth] Auth Guard Check Completion Action',
+  AuthStorageFailureAction = '[Daff-Auth] Auth Storage Failure Action',
   AuthLoginAction = '[Daff-Auth] Auth Login Action',
   AuthLoginSuccessAction = '[Daff-Auth] Auth Login Success Action',
   AuthLoginFailureAction = '[Daff-Auth] Auth Login Failure Action',
@@ -35,6 +36,15 @@ export class DaffAuthGuardCheckCompletion implements Action {
   readonly type = DaffAuthActionTypes.AuthGuardCheckCompletionAction;
 
   constructor(public result: boolean) {}
+}
+
+/*
+ * An action triggered upon a failed auth storage operation.
+ */
+export class DaffAuthStorageFailure implements Action {
+  readonly type = DaffAuthActionTypes.AuthStorageFailureAction;
+
+  constructor(public errorMessage: string) {}
 }
 
 /**
@@ -163,6 +173,7 @@ export type DaffAuthActions<
 > =
   | DaffAuthGuardCheckCompletion
   | DaffAuthGuardCheck
+  | DaffAuthStorageFailure
   | DaffAuthLogin<T>
   | DaffAuthLoginSuccess<U>
   | DaffAuthLoginFailure

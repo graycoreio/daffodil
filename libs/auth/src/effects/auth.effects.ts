@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { switchMap, map, catchError, mapTo } from 'rxjs/operators';
-import { of, Observable } from 'rxjs';
+import { switchMap, map, catchError, mapTo, tap, switchMapTo } from 'rxjs/operators';
+import { of, Observable, EMPTY } from 'rxjs';
 
 import {
   DaffAuthActionTypes,
@@ -18,7 +18,8 @@ import {
   DaffAuthLogoutFailure,
   DaffAuthLogout,
   DaffAuthGuardCheckCompletion,
-  DaffAuthGuardCheck
+  DaffAuthGuardCheck,
+  DaffAuthStorageFailure
 } from '../actions/auth.actions';
 import { DaffRegisterDriver, DaffRegisterServiceInterface } from '../drivers/interfaces/register-service.interface';
 import { DaffLoginDriver, DaffLoginServiceInterface } from '../drivers/interfaces/login-service.interface';
@@ -26,6 +27,7 @@ import { DaffAuthToken } from '../models/auth-token';
 import { DaffAccountRegistration } from '../models/account-registration';
 import { DaffLoginInfo } from '../models/login-info';
 import { DaffAuthDriver, DaffAuthServiceInterface } from '../drivers/interfaces/auth-service.interface';
+import { DaffAuthStorageService } from '../storage/auth-storage.service';
 
 @Injectable()
 export class DaffAuthEffects<
@@ -37,7 +39,8 @@ export class DaffAuthEffects<
     private actions$: Actions,
     @Inject(DaffRegisterDriver) private registerDriver: DaffRegisterServiceInterface<S, T>,
     @Inject(DaffLoginDriver) private loginDriver: DaffLoginServiceInterface<T, U>,
-    @Inject(DaffAuthDriver) private authDriver: DaffAuthServiceInterface
+    @Inject(DaffAuthDriver) private authDriver: DaffAuthServiceInterface,
+    private storage: DaffAuthStorageService
   ) {}
 
   @Effect()
@@ -66,6 +69,18 @@ export class DaffAuthEffects<
         )
       )
     )
+  )
+
+  @Effect({
+    dispatch: false
+  })
+  storeAuthToken$ = this.actions$.pipe(
+    ofType(DaffAuthActionTypes.AuthLoginSuccessAction),
+    tap((action: DaffAuthLoginSuccess<U>) => {
+      this.storage.setAuthToken(action.auth.token)
+    }),
+    switchMapTo(EMPTY),
+    catchError(error => of(new DaffAuthStorageFailure('Storage of auth token has failed.')))
   )
 
   @Effect()
