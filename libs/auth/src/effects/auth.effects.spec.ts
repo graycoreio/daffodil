@@ -3,6 +3,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable ,  of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
+import { DaffStorageServiceError } from '@daffodil/core';
 import {
   DaffAccountRegistrationFactory,
   DaffAuthTokenFactory
@@ -23,7 +24,8 @@ import {
   DaffAuthLogoutSuccess,
   DaffAuthLogoutFailure,
   DaffAuthGuardCheck,
-  DaffAuthGuardCheckCompletion
+  DaffAuthGuardCheckCompletion,
+  DaffAuthStorageFailure
 } from '../actions/auth.actions';
 import { DaffRegisterDriver } from '../drivers/interfaces/register-service.interface';
 import { DaffLoginDriver } from '../drivers/interfaces/login-service.interface';
@@ -31,6 +33,7 @@ import { DaffAccountRegistration } from '../models/account-registration';
 import { DaffAuthToken } from '../models/auth-token';
 import { DaffLoginInfo } from '../models/login-info';
 import { DaffAuthDriver } from '../drivers/interfaces/auth-service.interface';
+import { DaffAuthStorageService } from '../storage/auth-storage.service';
 
 describe('DaffAuthEffects', () => {
   let actions$: Observable<any>;
@@ -43,9 +46,13 @@ describe('DaffAuthEffects', () => {
   let daffLoginDriver;
   let daffRegisterDriver;
   let daffAuthDriver;
+  let daffAuthStorageSpy: jasmine.SpyObj<DaffAuthStorageService>;
 
   const registrationFactory: DaffAccountRegistrationFactory = new DaffAccountRegistrationFactory();
   const authFactory: DaffAuthTokenFactory = new DaffAuthTokenFactory();
+
+  const authStorageFailureAction = new DaffAuthStorageFailure('Storage of auth token has failed.');
+  const throwStorageError = () => { throw new DaffStorageServiceError() };
 
   let mockAuth: DaffAuthToken;
   let mockLoginInfo: DaffLoginInfo;
@@ -72,6 +79,10 @@ describe('DaffAuthEffects', () => {
         {
           provide: DaffAuthDriver,
           useValue: jasmine.createSpyObj('DaffAuthService', ['check'])
+        },
+        {
+          provide: DaffAuthStorageService,
+          useValue: jasmine.createSpyObj('DaffAuthStorageService', ['setAuthToken'])
         }
       ]
     });
@@ -81,6 +92,7 @@ describe('DaffAuthEffects', () => {
     daffLoginDriver = TestBed.get(DaffLoginDriver);
     daffRegisterDriver = TestBed.get(DaffRegisterDriver);
     daffAuthDriver = TestBed.get(DaffAuthDriver);
+    daffAuthStorageSpy = TestBed.get(DaffAuthStorageService);
 
     mockRegistration = registrationFactory.create();
     mockAuth = authFactory.create();
@@ -164,6 +176,35 @@ describe('DaffAuthEffects', () => {
 
       it('should notify state that the login failed', () => {
         expect(effects.login$).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('storeAuthToken$ | storing the auth token after a successful login', () => {
+    let expected;
+    let authLoginSuccessAction;
+
+    beforeEach(() => {
+      authLoginSuccessAction = new DaffAuthLoginSuccess(mockAuth);
+      actions$ = hot('--a', { a: authLoginSuccessAction });
+      expected = cold('---');
+    });
+
+    it('should set the auth token in storage', () => {
+      expect(effects.storeAuthToken$).toBeObservable(expected);
+      expect(daffAuthStorageSpy.setAuthToken).toHaveBeenCalledWith(mockAuth.token);
+    });
+
+    describe('and the storage service throws an error', () => {
+      beforeEach(() => {
+        daffAuthStorageSpy.setAuthToken.and.callFake(throwStorageError)
+
+        actions$ = hot('--a', { a: authLoginSuccessAction });
+        expected = cold('--(b|)', { b: authStorageFailureAction });
+      });
+
+      it('should return a DaffAuthStorageFailure', () => {
+        expect(effects.storeAuthToken$).toBeObservable(expected);
       });
     });
   });
