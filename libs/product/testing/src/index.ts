@@ -1,4 +1,5 @@
 export { DaffProductFactory } from './factories/product.factory';
+export { DaffCompositeProductFactory } from './factories/composite-product.factory';
 export { DaffProductImageFactory } from './factories/product-image.factory';
 export { DaffInMemoryBackendProductService } from './inmemory-backend/product.service';
 export { DaffTestingProductService } from './drivers/testing/product.service';
