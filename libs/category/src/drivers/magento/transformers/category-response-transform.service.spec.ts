@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 import { DaffProductFactory, MagentoProductFactory } from '@daffodil/product/testing';
-import { DaffProduct, DaffMagentoProductTransformerService, MagentoProduct } from '@daffodil/product';
+import { DaffProduct, MagentoProduct, transformManyMagentoProducts } from '@daffodil/product';
 
 import { DaffMagentoCategoryResponseTransformService } from './category-response-transform.service';
 import { DaffCategory } from '../../../models/category';
@@ -35,8 +35,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
       providers: [
         DaffMagentoCategoryResponseTransformService,
         { provide: DaffMagentoCategoryTransformerService, useValue: magentoCategoryTransformerServiceSpy },
-        { provide: DaffMagentoCategoryPageConfigTransformerService, useValue: magentoCategoryPageConfigurationTransformerServiceSpy },
-        { provide: DaffMagentoProductTransformerService, useValue: magentoProductTransformerServiceSpy }
+        { provide: DaffMagentoCategoryPageConfigTransformerService, useValue: magentoCategoryPageConfigurationTransformerServiceSpy }
       ]
     });
     service = TestBed.get(DaffMagentoCategoryResponseTransformService);
@@ -106,10 +105,8 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
       expect(magentoCategoryPageConfigurationTransformerServiceSpy.transform).toHaveBeenCalledWith(completeCategory);
     });
 
-    it('should call transformMany on the magentoCategoryTransformerService', () => {
-      service.transform(completeCategory);
-
-      expect(magentoProductTransformerServiceSpy.transformMany).toHaveBeenCalledWith(completeCategory.products);
+    it('should return the same number of products it receives', () => {
+      expect(service.transform(completeCategory).products.length).toEqual(completeCategory.products.length);
     });
 
     it('should return a DaffGetCategoryResponse compiled from the other injected transformers', () => {
@@ -117,7 +114,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
         {
 					...{ magentoCompleteCategoryResponse: completeCategory },
           category: stubCategory,
-          products: stubProducts,
+          products: transformManyMagentoProducts(completeCategory.products),
           categoryPageConfigurationState: stubCategoryPageConfigurationState
         }
       );
