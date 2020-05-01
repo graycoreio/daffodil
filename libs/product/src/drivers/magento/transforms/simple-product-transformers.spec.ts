@@ -2,24 +2,18 @@ import { TestBed } from '@angular/core/testing';
 
 import { MagentoProductFactory } from '@daffodil/product/testing';
 
-import { DaffMagentoSimpleProductTransformerService } from './simple-product-transformer.service';
 import { MagentoProduct } from '../models/magento-product';
 import { DaffProduct, DaffProductTypeEnum } from '../../../models/product';
+import { transformMagentoSimpleProduct } from './simple-product-transformers';
 
 describe('DaffMagentoSimpleProductTransformerService', () => {
-	let service: DaffMagentoSimpleProductTransformerService;
 	let stubMagentoProduct: MagentoProduct;
 	const mediaUrl = 'media url';
-	let expectedDaffProduct: DaffProduct
+	let expectedDaffProduct: DaffProduct;
 
 	beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-				DaffMagentoSimpleProductTransformerService
-      ]
-    });
+    TestBed.configureTestingModule({});
 
-		service = TestBed.get(DaffMagentoSimpleProductTransformerService);
 		stubMagentoProduct = new MagentoProductFactory().create();
 
 		expectedDaffProduct = {
@@ -35,14 +29,10 @@ describe('DaffMagentoSimpleProductTransformerService', () => {
 		}
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-	});
-
-	describe('transform', () => {
+	describe('transformMagentoSimpleProduct', () => {
 		
 		it('should transform a MagentoProduct to a DaffProduct', () => {
-			expect(service.transform(stubMagentoProduct, mediaUrl)).toEqual(expectedDaffProduct);
+			expect(transformMagentoSimpleProduct(stubMagentoProduct, mediaUrl)).toEqual(expectedDaffProduct);
 		});
 	});
 });

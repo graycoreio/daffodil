@@ -9,7 +9,6 @@ export {
 	MagentoSimpleProduct
 } from './models/simple-product';
 
-export { DaffMagentoProductTransformerService } from './transforms/product-transformer.service';
 export { GetProductQuery } from './queries/get-product';
 export { GetAllProductsQuery } from './queries/get-all-products';
 export { magentoBundledProductFragment } from './queries/fragments/bundled-product';

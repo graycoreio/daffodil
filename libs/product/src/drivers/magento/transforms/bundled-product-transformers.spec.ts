@@ -1,20 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoProductFactory, DaffCompositeProductFactory } from '@daffodil/product/testing';
+import { DaffCompositeProductFactory, MagentoBundledProductFactory } from '@daffodil/product/testing';
 
-import { DaffMagentoBundledProductTransformerService } from './bundled-product-transformer.service';
-import { DaffMagentoSimpleProductTransformerService } from './simple-product-transformer.service';
 import { DaffCompositeProduct } from '../../../models/composite-product';
 import { MagentoBundledProduct } from '../models/bundled-product';
 import { DaffCompositeProductItemInputEnum } from '../../../models/composite-product-item';
+import { transformMagentoBundledProduct } from './bundled-product-transformers';
 
-describe('DaffMagentoBundledProductTransformerService', () => {
-	let service: DaffMagentoBundledProductTransformerService;
-	let stubMagentoProduct;
+describe('DaffMagentoBundledProductTransformers', () => {
 	const mediaUrl = 'media url';
 	let mockMagentoSimpleProductTransformerSpy; 
 	const daffCompositeProduct: DaffCompositeProduct = new DaffCompositeProductFactory().create();
-	const magentoSimpleProduct = new MagentoProductFactory().create();
 	let magentoBundledProduct: MagentoBundledProduct;
 	daffCompositeProduct.items[0].options[0].id = '1';
 	daffCompositeProduct.items[0].options[1].id = '2';
@@ -22,21 +18,34 @@ describe('DaffMagentoBundledProductTransformerService', () => {
 	beforeEach(() => {
 		mockMagentoSimpleProductTransformerSpy = jasmine.createSpyObj('DaffMagentoSimpleProductTransformerService', ['transform']);
 		mockMagentoSimpleProductTransformerSpy.transform.and.returnValue(daffCompositeProduct);
-    TestBed.configureTestingModule({
-      providers: [
-				DaffMagentoBundledProductTransformerService,
-				{ 
-					provide: DaffMagentoSimpleProductTransformerService, 
-					useValue: mockMagentoSimpleProductTransformerSpy
-				}
-      ]
-    });
+    TestBed.configureTestingModule({});
 
-		service = TestBed.get(DaffMagentoBundledProductTransformerService);
-		stubMagentoProduct = new MagentoProductFactory().create();
+		magentoBundledProduct = new MagentoBundledProductFactory().create();
+		delete daffCompositeProduct.brand;
+		daffCompositeProduct.images = [
+			{
+				url: magentoBundledProduct.image.url,
+				label: magentoBundledProduct.image.label,
+				id: '0'
+			}
+		];
 
 		magentoBundledProduct = {
-			...magentoSimpleProduct,
+			...magentoBundledProduct,
+			sku: daffCompositeProduct.id,
+			url_key: daffCompositeProduct.url,
+			description: {
+				html: daffCompositeProduct.description,
+			},
+			price_range: {
+				maximum_price: {
+					regular_price: {
+						value: parseInt(daffCompositeProduct.price, 10), 
+						currency: null
+					}
+				}
+			},
+			name: daffCompositeProduct.name,
 			items: [
 				{
 					sku: <string>daffCompositeProduct.items[0].id,
@@ -62,20 +71,10 @@ describe('DaffMagentoBundledProductTransformerService', () => {
 		}
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-	});
-
 	describe('transform', () => {
-
-		it('should call the simpleProductTransformer for the simple product fields', () => {
-			service.transform(magentoBundledProduct, mediaUrl);
-
-			expect(mockMagentoSimpleProductTransformerSpy.transform).toHaveBeenCalledWith(magentoBundledProduct, mediaUrl);
-		});
 		
 		it('should transform a MagentoBundledProduct to a DaffProduct', () => {
-			expect(service.transform(magentoBundledProduct, mediaUrl)).toEqual(daffCompositeProduct);
+			expect(transformMagentoBundledProduct(magentoBundledProduct, mediaUrl)).toEqual(daffCompositeProduct);
 		});
 	});
 });
