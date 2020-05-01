@@ -1,10 +1,15 @@
 import { DaffProduct } from './product';
 
+export enum DaffCompositeProductItemInputEnum {
+	select = 'select',
+	radio = 'radio'
+}
+
 export interface DaffCompositeProductItem {
 	id: number | string;
 	required: boolean;
 	title: string;
-	input_type: string;
+	input_type: DaffCompositeProductItemInputEnum;
 	options: DaffCompositeProductItemOption[];
 }
 

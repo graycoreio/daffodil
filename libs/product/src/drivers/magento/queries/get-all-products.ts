@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+import { magentoProductFragment } from './fragments/product';
 
 export const GetAllProductsQuery = gql`
 query GetAllProducts($pageSize: Int)
@@ -7,26 +8,13 @@ query GetAllProducts($pageSize: Int)
 	{
 		total_count
 		items {
-			id
-			name
-			sku
-			url_key
-			image {
-				url
-				label
-			}
-			price_range {
-				maximum_price {
-					regular_price {
-						value
-						currency
-					}
-				}
-			}
+			...product
 		}
 		page_info {
 			page_size
 			current_page
 		}
 	}
-}`
+}
+${magentoProductFragment}
+`
