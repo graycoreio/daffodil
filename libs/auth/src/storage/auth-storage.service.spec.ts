@@ -35,6 +35,8 @@ describe('DaffAuthStorageService', () => {
   });
 
   it('should be able to remove a auth token', () => {
+    service.setAuthToken('id');
+    expect(service.getAuthToken()).toEqual('id');
     service.removeAuthToken();
     expect(service.getAuthToken()).toEqual(null);
   });
