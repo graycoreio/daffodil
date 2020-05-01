@@ -21,7 +21,9 @@ import {
   DaffAuthCheckFailure,
   DaffAuthLogout,
   DaffAuthLogoutSuccess,
-  DaffAuthLogoutFailure
+  DaffAuthLogoutFailure,
+  DaffAuthGuardCheck,
+  DaffAuthGuardCheckCompletion
 } from '../actions/auth.actions';
 import { DaffRegisterDriver } from '../drivers/interfaces/register-service.interface';
 import { DaffLoginDriver } from '../drivers/interfaces/login-service.interface';
@@ -93,6 +95,41 @@ describe('DaffAuthEffects', () => {
 
   it('should be created', () => {
     expect(effects).toBeTruthy();
+  });
+
+  describe('guardCheck$ | indicating the completion and result of an auth token check operation', () => {
+    let expected;
+    const mockAuthCheckAction = new DaffAuthGuardCheck();
+
+    describe('and the check is successful', () => {
+      beforeEach(() => {
+        const mockAuthCheckCompletionAction = new DaffAuthGuardCheckCompletion(true);
+        daffAuthDriver.check.and.returnValue(of(undefined));
+
+        actions$ = hot('--a', { a: mockAuthCheckAction });
+        expected = cold('--b', { b: mockAuthCheckCompletionAction });
+      });
+
+      it('should notify state that the check succeeded', () => {
+        expect(effects.guardCheck$).toBeObservable(expected);
+      });
+    });
+
+    describe('and the check fails', () => {
+      beforeEach(() => {
+        const error = 'Auth token is not valid';
+        const response = cold('#', {}, error);
+        const mockAuthCheckCompletionAction = new DaffAuthGuardCheckCompletion(false);
+        daffAuthDriver.check.and.returnValue(response);
+
+        actions$ = hot('--a', { a: mockAuthCheckAction });
+        expected = cold('--b', { b: mockAuthCheckCompletionAction });
+      });
+
+      it('should notify state that the check failed', () => {
+        expect(effects.guardCheck$).toBeObservable(expected);
+      });
+    });
   });
 
   describe('login$ | when the user logs in', () => {

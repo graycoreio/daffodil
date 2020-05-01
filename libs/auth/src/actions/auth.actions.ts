@@ -5,6 +5,8 @@ import { DaffAuthToken } from '../models/auth-token';
 import { DaffAccountRegistration } from '../models/account-registration';
 
 export enum DaffAuthActionTypes {
+  AuthGuardCheckAction = '[Daff-Auth] Auth Guard Check Action',
+  AuthGuardCheckCompletionAction = '[Daff-Auth] Auth Guard Check Completion Action',
   AuthLoginAction = '[Daff-Auth] Auth Login Action',
   AuthLoginSuccessAction = '[Daff-Auth] Auth Login Success Action',
   AuthLoginFailureAction = '[Daff-Auth] Auth Login Failure Action',
@@ -17,6 +19,22 @@ export enum DaffAuthActionTypes {
   AuthRegisterAction = '[Daff-Auth] Auth Register Action',
   AuthRegisterSuccessAction = '[Daff-Auth] Auth Register Success Action',
   AuthRegisterFailureAction = '[Daff-Auth] Auth Register Failure Action',
+}
+
+/**
+ * An action triggered by guards to initialize an auth check request.
+ */
+export class DaffAuthGuardCheck implements Action {
+  readonly type = DaffAuthActionTypes.AuthGuardCheckAction;
+}
+
+/**
+ * An action triggered on the completion of a guard token check.
+ */
+export class DaffAuthGuardCheckCompletion implements Action {
+  readonly type = DaffAuthActionTypes.AuthGuardCheckCompletionAction;
+
+  constructor(public result: boolean) {}
 }
 
 /**
@@ -143,6 +161,8 @@ export type DaffAuthActions<
   U extends DaffAuthToken,
   S extends DaffAccountRegistration,
 > =
+  | DaffAuthGuardCheckCompletion
+  | DaffAuthGuardCheck
   | DaffAuthLogin<T>
   | DaffAuthLoginSuccess<U>
   | DaffAuthLoginFailure
