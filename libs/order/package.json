@@ -17,5 +17,8 @@
     "test": "ng test order --watch=false --browsers=ChromeHeadless",
     "publish": "(cd ../../dist/order; npm publish --access=public)"
   },
-  "homepage": "https://github.com/graycoreio/daffodil"
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "peerDependencies": {
+    "@angular/core": "0.0.0-PLACEHOLDER"
+  }
 }
