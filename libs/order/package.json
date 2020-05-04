@@ -1,7 +1,7 @@
 {
   "name": "@daffodil/order",
   "version": "0.0.0-PLACEHOLDER",
-  "description": "A package for interacting with platforms that provide geographic data information like States and Countries",
+  "description": "A client-side Angular package for managing ecommerce orders agnostic to the ecommerce platform.",
   "repository": {
     "type": "git",
     "url": "https://github.com/graycoreio/daffodil"
@@ -17,13 +17,5 @@
     "test": "ng test order --watch=false --browsers=ChromeHeadless",
     "publish": "(cd ../../dist/order; npm publish --access=public)"
   },
-  "homepage": "https://github.com/graycoreio/daffodil",
-  "peerDependencies": {
-    "@angular/core": "0.0.0-PLACEHOLDER",
-    "@daffodil/core": "0.0.0-PLACEHOLDER"
-  },
-  "devDependencies": {
-    "@daffodil/core": "0.0.0-PLACEHOLDER",
-    "@daffodil/geography": "0.0.0-PLACEHOLDER"
-  }
+  "homepage": "https://github.com/graycoreio/daffodil"
 }
