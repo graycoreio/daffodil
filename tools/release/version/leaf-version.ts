@@ -103,13 +103,27 @@ const updateDependenciesFromRoot = (lib: PackageJson, rootPackage: PackageJson) 
  * 5. We're releasing 1.1.0-alpha.1, the set value would be 1.1.0-alpha.1
  */
 const updateDaffodilPeerDependenciesFromNewVersion = (lib: PackageJson, rootPackage: PackageJson)  => {
-  const daffVersions = Object.keys(lib.peerDependencies).filter((k) => k.includes("@daffodil"))
+	if(!lib.peerDependencies) {
+		return lib;
+	}
+  lib.peerDependencies = updateObjectFromObject(lib.peerDependencies, createDaffodilDependenciesObject(lib.peerDependencies, rootPackage.version));
+  return lib;
+}
+
+const updateDaffodilOptionalDependenciesFromNewVersion = (lib: PackageJson, rootPackage: PackageJson)  => {
+  if(!lib.optionalDependencies) {
+		return lib;
+	}
+	lib.optionalDependencies = updateObjectFromObject(lib.optionalDependencies, createDaffodilDependenciesObject(lib.optionalDependencies, rootPackage.version));
+  return lib;
+}
+
+const createDaffodilDependenciesObject = (dependencies: Object, version: string) => {
+	return Object.keys(dependencies).filter((k) => k.includes("@daffodil"))
   .reduce((obj, key) => {
-    obj[key] = rootPackage.version; 
+    obj[key] = version; 
     return obj;
   }, {});
-  lib.peerDependencies = updateObjectFromObject(lib.peerDependencies, daffVersions);
-  return lib;
 }
 
 const validateNoRemainingPlaceholders = (lib: PackageJson) => {
@@ -124,6 +138,7 @@ const transfomLeafPackage = (lib: PackageJson, rootPackage: PackageJson) => {
   lib = updatePackageVersion(lib, rootPackage);
   lib = updateDependenciesFromRoot(lib, rootPackage);
   lib = updateDaffodilPeerDependenciesFromNewVersion(lib, rootPackage);
+  lib = updateDaffodilOptionalDependenciesFromNewVersion(lib, rootPackage);
   lib = validateNoRemainingPlaceholders(lib);
   return lib;
 }
