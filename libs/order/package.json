@@ -1,0 +1,25 @@
+{
+  "name": "@daffodil/order",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "A client-side Angular package for managing ecommerce orders agnostic to the ecommerce platform.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graycoreio/daffodil"
+  },
+  "author": "Graycore LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graycoreio/daffodil/issues"
+  },
+  "scripts": {
+    "build": "ng build order --prod",
+    "lint": "ng lint order",
+    "test": "ng test order --watch=false --browsers=ChromeHeadless",
+    "publish": "(cd ../../dist/order; npm publish --access=public)"
+  },
+  "homepage": "https://github.com/graycoreio/daffodil",
+  "peerDependencies": {
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "@angular/common": "0.0.0-PLACEHOLDER"
+  }
+}

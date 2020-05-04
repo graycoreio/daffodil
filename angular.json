@@ -1172,7 +1172,48 @@
           }
         }
       }
-    }
+    },
+    "order": {
+      "projectType": "library",
+      "root": "libs/order",
+			"sourceRoot": "libs/order/src",
+			"prefix": "@daffodil",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+						"tsConfig": "libs/order/tsconfig.lib.json",
+            "project": "libs/order/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+							"project": "libs/order/ng-package.json"
+						}
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/order/test.ts",
+            "codeCoverage": true,
+            "tsConfig": "libs/order/tsconfig.spec.json",
+						"karmaConfig": "libs/order/karma.conf.js"
+					}
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+							"libs/order/tsconfig.lib.json",
+							"libs/order/tsconfig.spec.json"
+						],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+		}
   },
   "defaultProject": "demo",
   "schematics": {

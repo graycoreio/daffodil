@@ -108,6 +108,15 @@
       ],
       "@daffodil/paypal/testing": [
         "dist/paypal/testing"
+      ],
+      "@daffodil/order": [
+        "dist/order"
+      ],
+      "@daffodil/order/testing": [
+        "dist/order/testing"
+      ],
+      "@daffodil/order/driver": [
+        "dist/order/driver"
       ]
     }
   },
