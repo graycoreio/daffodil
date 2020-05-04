@@ -5,6 +5,9 @@ import * as faker from 'faker/locale/en_US';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
 
+/**
+ * @deprecated
+ */
 export class MockOrderPayment implements DaffOrderPayment {
     payment_id = faker.random.number(1000);
     quote_id = faker.random.number(1000);
@@ -25,6 +28,9 @@ export class MockOrderPayment implements DaffOrderPayment {
     cc_ss_issue = 'issue';
 }
 
+/**
+ * @deprecated
+ */
 @Injectable({
     providedIn: 'root'
 })

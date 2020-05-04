@@ -4,6 +4,9 @@ import { DaffOrderShippingRate } from '@daffodil/checkout';
 import * as faker from 'faker/locale/en_US';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
+/**
+ * @deprecated
+ */
 export class MockOrderShippingRate implements DaffOrderShippingRate {
   rate_id = faker.random.number(1000);
   address_id = faker.random.number(1000);
@@ -19,6 +22,9 @@ export class MockOrderShippingRate implements DaffOrderShippingRate {
   method_title = 'laden';
 }
 
+/**
+ * @deprecated
+ */
 @Injectable({
     providedIn: 'root'
 })

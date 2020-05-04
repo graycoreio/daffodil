@@ -4,6 +4,9 @@ import * as faker from 'faker/locale/en_US';
 import { DaffOrder } from '@daffodil/checkout';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
+/**
+ * @deprecated
+ */
 export class MockOrder implements DaffOrder {
   id = faker.random.number(1000);
   created_at = new Date();
@@ -21,6 +24,9 @@ export class MockOrder implements DaffOrder {
 };
 
 
+/**
+ * @deprecated
+ */
 @Injectable({
   providedIn: 'root'
 })

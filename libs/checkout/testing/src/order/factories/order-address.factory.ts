@@ -5,6 +5,9 @@ import * as faker from 'faker/locale/en_US';
 import { DaffOrderAddress } from '@daffodil/checkout';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
+/**
+ * @deprecated
+ */
 export class MockOrderAddress implements DaffOrderAddress {
   address_id = faker.random.number(1000);
   quote_id = faker.random.number(1000);
@@ -34,6 +37,9 @@ export class MockOrderAddress implements DaffOrderAddress {
   shipping_rate = null;
 }
 
+/**
+ * @deprecated
+ */
 @Injectable({
   providedIn: 'root'
 })
