@@ -1,14 +1,16 @@
 # Import Pathing Guidelines for Spec files
 
 ## The Problem
-One of the difficult problems that we deal with as library developers is defining the API that we expose to consuming application developers. This essentially means one of two things:
+One of the difficult problems that we deal with as library authors is defining the API that we expose to consuming application developers. This essentially means one of two things:
   
-  1. We have to provide all the library exports to consumers
+  1. We provide all the library exports that we use internally to consumers
     * This is often a very bad idea for long term maintenance
-  2. We have to provide only a subset of the libraries' exports so that we can allow our consumers to use the parts of the library we intend them to use.
-    * Smaller API surface means lower maintenance
+  2. We provide only a subset of the libraries' exports.
+    *  We can allow our consumers to use the parts of the library we intend them to use, leading to a smaller API surface.
 
-Unfortunately, when we, the authors of Daffodil, are writing tests we are often prone to depending upon `imports` that are only available to us as library authors. This means that the tests are from a very specific perspective, our internal view. So tests that pass for us, won't necessarily pass for our consumers because they may not have an import available. Subsequently, this also means that code that actually works for in `@daffodil/demo` for example, may not work for consuming applications. 
+Unfortunately, we (the authors of Daffodil) often view the world from the first perspective. We often write our internal tests depending upon `imports` that are only available to us as library authors. 
+
+This means that the tests are from a very specific perspective, our internal view. So tests that pass for us won't necessarily pass for our consumers, as they may not have a necessary import available. Subsequently, this also means that code that works for us for example, may not work for consuming applications. 
 
 ### An Example
 Consider the code in the file `my-library-function.spec.ts` in the fake package `@daffodil/library`:
@@ -25,13 +27,15 @@ describe('My Library Function', () => {
 });
 ```
 
-The hidden problem here is that the `SomeImport` is not being accessed from the public-facing api, so we aren't adequately testing a true consumer interaction. A consuming application developer could attempt to write this example same code, with this same dependency, and the code wouldn't work, because `SomeImport` may not be a publicly available token. 
+The issue at hand here is that the `SomeImport` is not being accessed from the public-facing api of `@daffodil/library`, so we aren't adequately testing a true consumer interaction. A consuming application developer could attempt to write this same code with this exact dependency set and the code wouldn't work, because `SomeImport` may not be publicly exposed.
 
 ## The Solution
 
-To address this problem, we have elected to write our unit tests as if we are looking at our code from a slightly different perspective. We assume that all code that is NOT UNDER TEST comes from the public API of the package (unless the code in question is intentionally private).
+To address this problem, we have decided to assume that all code that is **not under test** comes from the public API of the package (unless the code in question is intentionally private). 
 
-To achieve this we change the `@daffodil/library` `tsconfig.json`'s `compilerOptions.paths` to point to the public entrypoint of the package. As a result, our tests give us an additional guarantee: if `SomeImport` is meant to be public, we can guarantee that it is while we are unit testing. This leads to lower maintenance overheads, and ensures better consumer-side guarantees.
+To achieve this we change the `@daffodil/library` `tsconfig.json`'s `compilerOptions.paths` to point to the public entrypoint of the package. 
+
+As a result, we can guarantee that if `SomeImport` is meant to be public, then our unit tests will only consume it as a public import. This leads to lower maintenance overheads, and ensures better consumer-side guarantees.
 
 ```ts
 import { SomeImport } from '@daffodil/library';
