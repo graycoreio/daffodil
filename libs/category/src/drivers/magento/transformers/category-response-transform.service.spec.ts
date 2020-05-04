@@ -109,7 +109,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
       expect(service.transform(completeCategory).products.length).toEqual(completeCategory.products.length);
     });
 
-    it('should return a DaffGetCategoryResponse compiled from the other injected transformers', () => {
+    it('should return a DaffGetCategoryResponse', () => {
       expect(service.transform(completeCategory)).toEqual(
         {
 					...{ magentoCompleteCategoryResponse: completeCategory },
@@ -120,7 +120,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
       );
 		});
 
-		it('should return the magento MagentoCompleteCategoryResponse on the daffodil reponse', () => {
+		it('should return the magento MagentoCompleteCategoryResponse on the daffodil response', () => {
 			expect((<any>service.transform(completeCategory)).magentoCompleteCategoryResponse).toEqual(completeCategory);
 		});
   });

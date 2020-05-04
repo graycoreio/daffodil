@@ -16,5 +16,3 @@ export { magentoProductFragment } from './queries/fragments/product';
 export { DaffMagentoProductService } from './product.service';
 export { DaffProductMagentoDriverModule } from './product-driver.module';
 export { transformMagentoProduct, transformManyMagentoProducts } from './transforms/product-transformers';
-export { transformMagentoBundledProduct } from './transforms/bundled-product-transformers';
-export { transformMagentoSimpleProduct } from './transforms/simple-product-transformers';
