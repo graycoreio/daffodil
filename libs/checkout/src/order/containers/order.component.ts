@@ -6,6 +6,9 @@ import { DaffOrderReducersState } from '../reducers/order-reducers.interface';
 import { selectOrder, selectLoading } from '../selectors/order.selector';
 import { DaffOrder } from '../../models/order/order';
 
+/**
+ * @deprecated
+ */
 @Component({
   selector: '[order-container]',
   template: '<ng-content></ng-content>',

@@ -1,3 +1,6 @@
+/**
+ * @deprecated
+ */
 export interface DaffOrderShippingRate {
   rate_id: number;
   address_id: number;

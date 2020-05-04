@@ -1,6 +1,9 @@
 import { DaffOrderShippingRate } from './order-shipping-rate';
 import { DaffAddress } from '@daffodil/geography';
 
+/**
+ * @deprecated
+ */
 export interface DaffOrderAddress extends DaffAddress {
   address_id: number;
   quote_id: number;

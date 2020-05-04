@@ -1,3 +1,6 @@
+/**
+ * @deprecated
+ */
 export interface DaffOrderPayment {
   payment_id: number;
   quote_id: number;
