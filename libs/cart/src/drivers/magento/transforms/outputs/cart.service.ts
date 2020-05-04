@@ -119,7 +119,7 @@ export class DaffMagentoCartTransformer {
         ? cart.shipping_addresses[0].available_shipping_methods.map(method =>
           this.shippingRateTransformer.transform(method)
         )
-        : null
+        : []
     }
   }
 
