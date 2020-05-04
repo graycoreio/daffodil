@@ -25,4 +25,4 @@ export const generateReleasablePackages = series(
   leafVersion
 );
 
-
+export const updateLeafVersions = leafVersion;
