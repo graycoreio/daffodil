@@ -114,6 +114,9 @@
       ],
       "@daffodil/order/testing": [
         "dist/order/testing"
+      ],
+      "@daffodil/order/driver": [
+        "dist/order/driver"
       ]
     }
   },
