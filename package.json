@@ -41,6 +41,8 @@
     "apollo-angular-link-http": "^1.10.0",
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.8",
+    "apollo-link": "^1.2.14",
+    "apollo-link-error": "^1.1.13",
     "classlist.js": "^1.1.20150312",
     "core-js": "^3.2.1",
     "express": "^4.17.1",
