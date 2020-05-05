@@ -4,7 +4,7 @@ import { DaffAddressFactory, MockDaffAddress } from './address.factory';
 import { DaffAddress } from '@daffodil/geography';
 
 describe('Core | Interfaces | Factories | DaffAddressFactory', () => {
-  
+
   let daffodilAddressFactory;
 
   beforeEach(async(() => {
@@ -27,14 +27,6 @@ describe('Core | Interfaces | Factories | DaffAddressFactory', () => {
       result = daffodilAddressFactory.create();
     });
 
-    it('should return an Address with firstname', () => {
-      expect(result.firstname).toBeDefined();
-    });
-
-    it('should return an Address with lastname', () => {
-      expect(result.lastname).toBeDefined();
-    });
-
     it('should return an Address with street', () => {
       expect(result.street).toBeDefined();
     });
@@ -47,19 +39,11 @@ describe('Core | Interfaces | Factories | DaffAddressFactory', () => {
       expect(result.region).toBeDefined();
     });
 
-    it('should return an Address with an email', () => {
-      expect(result.email).toBeDefined();
-    });
-
     it('should return an Address with postcode', () => {
       expect(result.postcode).toBeDefined();
     });
-
-    it('should return an Address with telephone', () => {
-      expect(result.telephone).toBeDefined();
-    });
   });
-  
+
   describe('creating many addresses', () => {
     let result: DaffAddress[];
 
