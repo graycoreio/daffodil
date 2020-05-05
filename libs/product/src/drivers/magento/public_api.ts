@@ -8,6 +8,7 @@ export {
 export {
 	MagentoSimpleProduct
 } from './models/simple-product';
+export * from './models/configurable-product';
 
 export { GetProductQuery } from './queries/get-product';
 export { GetAllProductsQuery } from './queries/get-all-products';
