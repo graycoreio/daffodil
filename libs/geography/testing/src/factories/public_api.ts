@@ -1,3 +1,4 @@
-export { DaffAddressFactory } from './address.factory';
-export { DaffCountryFactory } from './country.factory';
-export { DaffSubdivisionFactory } from './subdivision.factory';
+export * from './address.factory';
+export * from './personal-address.factory';
+export * from './country.factory';
+export * from './subdivision.factory';
