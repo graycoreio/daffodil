@@ -4,7 +4,7 @@ import { DaffOrderPayment } from './order-payment';
 import { DaffOrderCoupon } from './order-coupon';
 
 export interface DaffOrder {
-  id: number;
+  id: number | string;
   created_at: string;
   updated_at: string;
   totals: {
