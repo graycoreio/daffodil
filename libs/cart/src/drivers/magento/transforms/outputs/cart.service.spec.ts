@@ -232,5 +232,20 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
         expect(cartShippingRateTransformerSpy.transform).not.toHaveBeenCalled();
       });
     });
+
+    describe('when the shipping methods are null', () => {
+      beforeEach(() => {
+        mockMagentoCart.shipping_addresses[0].available_shipping_methods = null;
+        transformedCart = service.transform(mockMagentoCart);
+      });
+
+      it('should set available_shipping_methods to an empty array', () => {
+        expect(transformedCart.available_shipping_methods).toEqual([]);
+      });
+
+      it('should not call the shipping rate transformer', () => {
+        expect(cartShippingRateTransformerSpy.transform).not.toHaveBeenCalled();
+      });
+    });
   });
 });
