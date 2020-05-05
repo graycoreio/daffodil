@@ -5,9 +5,7 @@ export interface DaffOrderPayment {
   updated_at: Date;
   method: string; //todo: actually an enum
   cc_type: string;
-  cc_number_enc: string;
   cc_last4: string;
-  cc_cid_enc: string;
   cc_owner: string;
   cc_exp_month: string;
   cc_exp_year: string;

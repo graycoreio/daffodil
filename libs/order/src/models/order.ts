@@ -1,18 +1,19 @@
 import { DaffOrderItem } from './order-item';
 import { DaffOrderAddress } from './order-address';
 import { DaffOrderPayment } from './order-payment';
+import { DaffOrderCoupon } from './order-coupon';
 
 export interface DaffOrder {
   id: number;
-  created_at: Date;
-  updated_at: Date;
-  store_to_base_rate: number;
-  grand_total: number;
-  checkout_method: string;
+  created_at: string;
+  updated_at: string;
+  totals: {
+    grand_total: number;
+    subtotal: number;
+    subtotal_with_discount: number;
+  };
   customer_id: number;
-  coupon_code: string;
-  subtotal: number;
-  subtotal_with_discount: number;
+  applied_codes: DaffOrderCoupon[];
   items?: DaffOrderItem[];
   addresses?: DaffOrderAddress[];
   payment?: DaffOrderPayment;

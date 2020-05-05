@@ -1,16 +1,19 @@
 import { DaffProductImage } from '@daffodil/product';
+import { DaffOrder } from './order';
 
 export interface DaffOrderItem {
   item_id: number;
+  qty_ordered: number;
+  qty_canceled: number;
+  qty_fulfilled: number;
   image: DaffProductImage;
-  quote_id: number;
+  order_id: DaffOrder['id'];
   created_at: Date;
   updated_at: Date;
   product_id: number;
   parent_item_id: number;
   sku: string;
   name: string;
-  description: string;
   weight: number;
   qty: number;
   price: number;

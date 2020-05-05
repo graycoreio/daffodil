@@ -3,3 +3,4 @@ export { DaffOrderItem } from './order-item';
 export { DaffOrderAddress } from './order-address';
 export { DaffOrderPayment } from './order-payment';
 export { DaffOrderShippingRate } from './order-shipping-rate';
+export { DaffOrderCoupon } from './order-coupon';
