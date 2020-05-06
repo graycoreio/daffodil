@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-
-import { DaffOrderShippingRate } from '@daffodil/order';
 import * as faker from 'faker/locale/en_US';
+
+import { DaffOrderShippingMethod } from '@daffodil/order';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
-export class MockOrderShippingRate implements DaffOrderShippingRate {
+export class MockOrderShippingMethod implements DaffOrderShippingMethod {
   rate_id = faker.random.number(1000);
   address_id = faker.random.number(1000);
-  created_at = new Date();
-  updated_at = new Date();
+  order_id = faker.random.number(1000);
+  created_at = faker.date.past();
+  updated_at = faker.date.past();
   carrier = 'Birds Inc.';
   carrier_title = 'laden';
   code = 'code';
@@ -22,8 +23,8 @@ export class MockOrderShippingRate implements DaffOrderShippingRate {
 @Injectable({
     providedIn: 'root'
 })
-export class DaffOrderShippingRateFactory extends DaffModelFactory<DaffOrderShippingRate>{
+export class DaffOrderShippingMethodFactory extends DaffModelFactory<DaffOrderShippingMethod>{
   constructor(){
-    super(MockOrderShippingRate);
+    super(MockOrderShippingMethod);
   }
 }

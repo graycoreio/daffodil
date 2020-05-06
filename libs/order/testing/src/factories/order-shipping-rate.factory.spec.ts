@@ -1,18 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 
-import {  DaffOrderShippingRate } from '@daffodil/order';
-import { DaffOrderShippingRateFactory } from './order-shipping-rate.factory';
+import {  DaffOrderShippingMethod } from '@daffodil/order';
+import { DaffOrderShippingMethodFactory } from './order-shipping-rate.factory';
 
 describe('Checkout | Testing | Order | Factories | OrderShippingRateFactory', () => {
 
-  let orderShippingRateFactory: DaffOrderShippingRateFactory;
+  let orderShippingRateFactory: DaffOrderShippingMethodFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffOrderShippingRateFactory]
+      providers: [DaffOrderShippingMethodFactory]
     });
 
-    orderShippingRateFactory = TestBed.get(DaffOrderShippingRateFactory);
+    orderShippingRateFactory = TestBed.get(DaffOrderShippingMethodFactory);
   });
 
   it('should be created', () => {
@@ -21,19 +21,19 @@ describe('Checkout | Testing | Order | Factories | OrderShippingRateFactory', ()
 
   describe('create', () => {
 
-    let result: DaffOrderShippingRate;
+    let result: DaffOrderShippingMethod;
 
     beforeEach(() => {
       result = orderShippingRateFactory.create();
     });
 
-    xit('should return a DaffOrderShippingRate with all required fields defined', () => {
+    xit('should return a DaffOrderShippingMethod with all required fields defined', () => {
 
     });
   });
 
   describe('createMany', () => {
-    let result: DaffOrderShippingRate[];
+    let result: DaffOrderShippingMethod[];
 
     it('should create as many order shipping rates as desired', () => {
       result = orderShippingRateFactory.createMany(2);

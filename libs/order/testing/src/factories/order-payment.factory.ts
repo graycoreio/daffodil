@@ -7,22 +7,15 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockOrderPayment implements DaffOrderPayment {
     payment_id = faker.random.number(1000);
-    quote_id = faker.random.number(1000);
-    created_at = new Date();
-    updated_at = new Date();
+    order_id = faker.random.number(1000);
+    created_at = faker.date.past();
+    updated_at = faker.date.past();
     method = 'card';
     cc_type = 'visa';
-    cc_number_enc = faker.random.number(1000).toString();
     cc_last4 = faker.random.number(1000).toString();
-    cc_cid_enc = faker.random.number(1000).toString();
     cc_owner = 'owner';
     cc_exp_month = 'month';
     cc_exp_year = 'year';
-    cc_ss_owner = 'owner';
-    cc_ss_start_month = 'start month';
-    cc_ss_start_year = 'start year';
-    po_number = 'po';
-    cc_ss_issue = 'issue';
 }
 
 @Injectable({

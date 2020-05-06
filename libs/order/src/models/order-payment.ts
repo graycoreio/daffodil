@@ -1,17 +1,16 @@
-export interface DaffOrderPayment {
+import { DaffOrder } from './order';
+
+export interface DaffOrderCreditCardPayment {
   payment_id: number;
-  quote_id: number;
-  created_at: Date;
-  updated_at: Date;
+  order_id: DaffOrder['id'];
+  created_at: string;
+  updated_at: string;
   method: string; //todo: actually an enum
   cc_type: string;
   cc_last4: string;
   cc_owner: string;
   cc_exp_month: string;
   cc_exp_year: string;
-  cc_ss_owner: string;
-  cc_ss_start_month: string;
-  cc_ss_start_year: string;
-  po_number: string;
-  cc_ss_issue: string;
 }
+
+export type DaffOrderPayment = DaffOrderCreditCardPayment;

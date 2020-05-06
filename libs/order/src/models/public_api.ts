@@ -1,6 +1,11 @@
-export { DaffOrder } from './order';
-export { DaffOrderItem } from './order-item';
 export { DaffOrderAddress } from './order-address';
-export { DaffOrderPayment } from './order-payment';
-export { DaffOrderShippingRate } from './order-shipping-rate';
 export { DaffOrderCoupon } from './order-coupon';
+export { DaffOrderInvoice } from './order-invoice';
+export { DaffOrderItem } from './order-item';
+export { DaffOrderPayment } from './order-payment';
+export { DaffOrderShipmentItem } from './order-shipment-item';
+export { DaffOrderShipmentTracking } from './order-shipment-tracking';
+export { DaffOrderShipment } from './order-shipment';
+export { DaffOrderShippingMethod } from './order-shipping-method';
+export { DaffOrderTotal } from './order-total';
+export { DaffOrder } from './order';

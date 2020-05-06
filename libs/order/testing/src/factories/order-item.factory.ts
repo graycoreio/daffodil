@@ -8,9 +8,12 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 export class MockOrderItem implements DaffOrderItem {
   item_id = faker.random.number(1000);
   image = null;
-  quote_id = faker.random.number(1000);
-  created_at = new Date();
-  updated_at = new Date();
+  order_id = faker.random.number(1000);
+  qty_ordered = faker.random.number(1000);
+  qty_canceled = faker.random.number(1000);
+  qty_fulfilled = faker.random.number(1000);
+  created_at = faker.date.past();
+  updated_at = faker.date.past();
   product_id = faker.random.number(1000);
   parent_item_id = faker.random.number(1000);
   sku = 'sku';

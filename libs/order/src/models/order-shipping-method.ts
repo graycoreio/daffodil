@@ -1,6 +1,7 @@
-export interface DaffOrderShippingRate {
-  rate_id: number;
-  address_id: number;
+import { DaffOrder } from './order';
+
+export interface DaffOrderShippingMethod {
+  order_id: DaffOrder['id'];
   created_at: string;
   updated_at: string;
   carrier: string;
@@ -8,7 +9,5 @@ export interface DaffOrderShippingRate {
   code: string;
   method: string;
   method_description: string;
-  price: number;
-  error_message: string;
   method_title: string;
 }

@@ -29,14 +29,16 @@ describe('Checkout | Testing | Order | Factories | OrderItemFactory', () => {
 
     it('should return a DaffOrderItem with all required fields defined', () => {
       expect(result.item_id).not.toBeNull();
-      expect(result.quote_id).not.toBeNull();
+      expect(result.order_id).not.toBeNull();
+      expect(result.qty_canceled).not.toBeNull();
+      expect(result.qty_fulfilled).not.toBeNull();
+      expect(result.qty_ordered).not.toBeNull();
       expect(result.created_at).not.toBeNull();
       expect(result.updated_at).not.toBeNull();
       expect(result.product_id).not.toBeNull();
       expect(result.parent_item_id).not.toBeNull();
       expect(result.sku).not.toBeNull();
       expect(result.name).not.toBeNull();
-      expect(result.description).not.toBeNull();
       expect(result.weight).not.toBeNull();
       expect(result.qty).not.toBeNull();
       expect(result.price).not.toBeNull();
