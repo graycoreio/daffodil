@@ -6,6 +6,7 @@ export * from './actions/best-sellers.actions';
 export { DaffProductImage } from './models/product-image';
 export * from './models/composite-product';
 export * from './models/composite-product-item';
+export * from './models/configurable-product';
 
 export * from './reducers/public_api';
 export * from './selectors/public_api';
