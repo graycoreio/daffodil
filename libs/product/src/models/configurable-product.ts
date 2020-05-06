@@ -1,3 +1,5 @@
+import { DaffSortable } from '@daffodil/core';
+
 import { DaffProduct } from './product';
 
 export interface DaffConfigurableProduct extends DaffProduct {
@@ -5,25 +7,28 @@ export interface DaffConfigurableProduct extends DaffProduct {
 	variants?: DaffConfigurableProductVariant[];
 }
 
-export interface DaffConfigurableProductOption {
+export interface DaffConfigurableProductOption extends DaffSortable {
 	code:	string;
-	id:	number;
 	label: string;
 	values:	DaffConfigurableProductOptionValue[];
 }
 
-export interface DaffSwatchOption {
-	value: string;
-	thumbnail: string;
+export interface DaffConfigurableProductVariant {
+	appliedAttributes: DaffProductVariantAttributesDictionary;
+	product: DaffProduct;
 }
 
-export interface DaffConfigurableProductVariant {
-	appliedAttributes: DaffConfigurableProductOptionValue[];
-	product: DaffProduct;
+export interface DaffProductVariantAttributesDictionary {
+	[x: string]:  DaffConfigurableProductOptionValue['value'];
 }
 
 export interface DaffConfigurableProductOptionValue {
 	value: string;
 	label: string;
 	swatch?: DaffSwatchOption;
+}
+
+export interface DaffSwatchOption {
+	value: string;
+	thumbnail: string;
 }
