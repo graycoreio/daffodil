@@ -5,6 +5,7 @@ import { DaffOrderCoupon } from './order-coupon';
 import { DaffOrderTotal } from './order-total';
 import { DaffOrderShipment } from './order-shipment';
 import { DaffOrderInvoice } from './order-invoice';
+import { DaffOrderCredit } from './order-credit';
 
 export interface DaffOrder {
   id: number | string;
@@ -19,5 +20,5 @@ export interface DaffOrder {
   shipments?: DaffOrderShipment[];
   payment?: DaffOrderPayment;
   invoices?: DaffOrderInvoice[];
-  credits?: DaffOrderInvoice[];
+  credits?: DaffOrderCredit[];
 }

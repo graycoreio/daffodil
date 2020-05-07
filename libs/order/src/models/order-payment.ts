@@ -1,7 +1,7 @@
 import { DaffOrder } from './order';
 
 export interface DaffOrderCreditCardPayment {
-  payment_id: number;
+  payment_id: number | string;
   order_id: DaffOrder['id'];
   created_at: string;
   updated_at: string;
