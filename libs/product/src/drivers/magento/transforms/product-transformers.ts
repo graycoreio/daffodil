@@ -3,6 +3,8 @@ import { MagentoProduct, MagentoProductTypeEnum } from '../models/magento-produc
 import { MagentoBundledProduct } from '../models/bundled-product';
 import { transformMagentoBundledProduct } from './bundled-product-transformers';
 import { transformMagentoSimpleProduct } from './simple-product-transformers';
+import { transformMagentoConfigurableProduct } from './configurable-product-transformers';
+import { MagentoConfigurableProduct } from '../models/configurable-product';
 
 /**
  * Transforms the magento MagentoProduct from the magento product query into a DaffProduct. 
@@ -12,6 +14,8 @@ export function transformMagentoProduct(product: MagentoProduct, mediaUrl?: stri
 	switch(product.__typename) {
 		case MagentoProductTypeEnum.BundledProduct:
 			return transformMagentoBundledProduct(<MagentoBundledProduct>product, mediaUrl);
+		case MagentoProductTypeEnum.ConfigurableProduct:
+			return transformMagentoConfigurableProduct(<MagentoConfigurableProduct>product, mediaUrl);
 		default:
 			return transformMagentoSimpleProduct(product, mediaUrl);
 	}
