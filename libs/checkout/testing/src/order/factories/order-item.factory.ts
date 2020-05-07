@@ -5,6 +5,9 @@ import { DaffOrderItem } from '@daffodil/checkout';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
 
+/**
+ * @deprecated
+ */
 export class MockOrderItem implements DaffOrderItem {
   item_id = faker.random.number(1000);
   image = null;
@@ -29,6 +32,9 @@ export class MockOrderItem implements DaffOrderItem {
   tax_before_discount = faker.random.number(100);
 }
 
+/**
+ * @deprecated
+ */
 @Injectable({
   providedIn: 'root'
 })

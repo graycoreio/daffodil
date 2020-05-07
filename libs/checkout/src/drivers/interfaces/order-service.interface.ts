@@ -7,6 +7,7 @@ export const DaffOrderDriver = new InjectionToken<DaffOrderServiceInterface>('Da
 
 /**
  * Query order objects accessible by the logged-in user.
+ * @deprecated
  */
 export interface DaffOrderServiceInterface<T extends DaffOrder = DaffOrder> {
   /**

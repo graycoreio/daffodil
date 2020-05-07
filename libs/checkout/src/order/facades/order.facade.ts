@@ -11,6 +11,9 @@ import { selectOrder, selectLoading, selectErrors } from '../selectors/order.sel
 /**
  * A facade for accessing state for the currently selected category.
  */
+/**
+ * @deprecated
+ */
 @Injectable({
   providedIn: DaffOrderModule
 })

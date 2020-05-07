@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { DaffOrderStateModule } from './order-state.module';
 import { OrderContainer } from './containers/order.component';
 
+/**
+ * @deprecated
+ */
 @NgModule({
   imports: [
     CommonModule,

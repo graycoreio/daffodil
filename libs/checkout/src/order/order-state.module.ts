@@ -5,6 +5,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { OrderEffects } from './effects/order.effects';
 import { daffOrderReducers } from './reducers/order-reducers';
 
+/**
+ * @deprecated
+ */
 @NgModule({
   imports: [
     StoreModule.forFeature('order', daffOrderReducers),

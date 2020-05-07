@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { map, catchError, switchMap, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
-import { 
+import {
   DaffOrderActionTypes,
   DaffPlaceOrderSuccess,
   DaffPlaceOrder,
@@ -12,6 +12,9 @@ import {
 import { DaffCheckoutDriver } from '../../drivers/injection-tokens/driver-checkout.token';
 import { DaffCheckoutServiceInterface } from '../../drivers/interfaces/checkout-service.interface';
 
+/**
+ * @deprecated
+ */
 @Injectable()
 export class OrderEffects {
 
@@ -23,7 +26,7 @@ export class OrderEffects {
   @Effect()
   onPlaceOrder$ : Observable<any> = this.actions$.pipe(
     ofType(DaffOrderActionTypes.PlaceOrderAction),
-    switchMap((action: DaffPlaceOrder) => 
+    switchMap((action: DaffPlaceOrder) =>
       this.checkoutDriver.placeOrder(action.payload.id.toString())
         .pipe(
           map((resp) => {

@@ -1,5 +1,8 @@
 import { DaffProductImage } from '@daffodil/product';
 
+/**
+ * @deprecated
+ */
 export interface DaffOrderItem {
   item_id: number;
   image: DaffProductImage;

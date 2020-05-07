@@ -2,6 +2,9 @@ import { DaffOrderItem } from './order-item';
 import { DaffOrderAddress } from './order-address';
 import { DaffOrderPayment } from './order-payment';
 
+/**
+ * @deprecated
+ */
 export interface DaffOrder {
   id: number;
   created_at: Date;
