@@ -7,3 +7,7 @@ export interface MagentoAddSimpleCartItemResponse {
 export interface MagentoAddBundleCartItemResponse {
   addBundleProductsToCart: MagentoGetCartResponse;
 }
+
+export interface MagentoAddConfigurableCartItemResponse {
+  addConfigurableProductsToCart: MagentoGetCartResponse;
+}

@@ -13,3 +13,8 @@ export interface MagentoBundledCartItemOption {
 	quantity: number;
 	value: string[];
 }
+
+export interface MagentoConfigurableCartItemInput {
+	input: MagentoCartItemInput,
+	variantSku: string
+}

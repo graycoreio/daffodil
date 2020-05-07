@@ -34,3 +34,20 @@ export const addBundleCartItem = gql`
   }
   ${cartFragment}
 `;
+
+export const addConfigurableCartItem = gql`
+  mutation AddConfigurableCartItem($cartId: String!, $input: CartItemInput!, $variantSku: String) {
+    addConfigurableProductsToCart(input: {
+      cart_id: $cartId,
+      cart_items: [{
+				data: $input,
+				variant_sku: $variantSku
+      }]
+    }) {
+      cart {
+        ...cart
+      }
+    }
+  }
+  ${cartFragment}
+`;

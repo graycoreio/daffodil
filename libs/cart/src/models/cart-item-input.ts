@@ -2,7 +2,8 @@ import { DaffProduct } from '@daffodil/product';
 
 export enum DaffCartItemInputType {
 	Simple = 'simple',
-	Composite = 'composite'
+	Composite = 'composite',
+	Configurable = 'configurable'
 }
 
 export interface DaffCartItemInput {
@@ -24,4 +25,9 @@ export interface DaffCompositeCartItemOption {
 	id: string | number;
 	quantity: number;
 	value: string;
+}
+
+export interface DaffConfigurableCartItemInput extends DaffCartItemInput {
+	type: DaffCartItemInputType.Configurable;
+	variantId: string | number;
 }

@@ -7,19 +7,21 @@ import { map } from 'rxjs/operators';
 import { DaffCartItemServiceInterface } from '../interfaces/cart-item-service.interface';
 import { DaffCart } from '../../models/cart';
 import { DaffCartItem } from '../../models/cart-item';
-import { DaffCartItemInput, DaffCartItemInputType, DaffCompositeCartItemInput } from '../../models/cart-item-input';
+import { DaffCartItemInput, DaffCartItemInputType, DaffCompositeCartItemInput, DaffConfigurableCartItemInput } from '../../models/cart-item-input';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import {
-  listCartItems,
+	listCartItems,
+	addConfigurableCartItem,
 	addBundleCartItem,
 	addSimpleCartItem,
   removeCartItem,
   updateCartItem
 } from './queries/public_api';
+import { MagentoConfigurableCartItemInput } from './models/inputs/cart-item';
 import { DaffMagentoCartItemTransformer } from './transforms/outputs/cart-item.service';
-import { transformCompositeCartItem, transformSimpleCartItem } from './transforms/inputs/cart-item-input-transformers';
+import { transformCompositeCartItem, transformSimpleCartItem, transformConfigurableCartItem } from './transforms/inputs/cart-item-input-transformers';
 import { MagentoListCartItemsResponse } from './models/responses/list-cart-items';
-import { MagentoAddSimpleCartItemResponse, MagentoAddBundleCartItemResponse } from './models/responses/add-cart-item';
+import { MagentoAddSimpleCartItemResponse, MagentoAddBundleCartItemResponse, MagentoAddConfigurableCartItemResponse } from './models/responses/add-cart-item';
 import { MagentoRemoveCartItemResponse } from './models/responses/remove-cart-item';
 import { DaffMagentoCartItemUpdateInputTransformer } from './transforms/inputs/cart-item-update.service';
 import { MagentoUpdateCartItemResponse } from './models/responses/public_api';
@@ -57,6 +59,8 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
 		switch(cartItemInput.type) {
 			case (DaffCartItemInputType.Composite):
 				return this.addBundledProduct(cartId, <DaffCompositeCartItemInput>cartItemInput);
+			case (DaffCartItemInputType.Configurable):
+				return this.addConfigurableProduct(cartId, <DaffConfigurableCartItemInput>cartItemInput);
 			default:
 				return this.addSimpleProduct(cartId, cartItemInput);		
 		}
@@ -100,6 +104,20 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
       }
     }).pipe(
       map(result => this.cartTransformer.transform(result.data.addBundleProductsToCart.cart))
+    )
+	}
+
+	private addConfigurableProduct(cartId: string, cartItemInput: DaffConfigurableCartItemInput): Observable<Partial<DaffCart>> {
+		const configurableInput: MagentoConfigurableCartItemInput = transformConfigurableCartItem(cartItemInput);
+		return this.apollo.mutate<MagentoAddConfigurableCartItemResponse>({
+      mutation: addConfigurableCartItem,
+      variables: {
+        cartId,
+				input: configurableInput.input,
+				variantSku: configurableInput.variantSku
+      }
+    }).pipe(
+      map(result => this.cartTransformer.transform(result.data.addConfigurableProductsToCart.cart))
     )
 	}
 
