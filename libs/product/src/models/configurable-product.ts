@@ -1,13 +1,14 @@
 import { DaffSortable } from '@daffodil/core';
 
 import { DaffProduct } from './product';
+import { DaffProductImage } from './product-image';
 
 export interface DaffConfigurableProduct extends DaffProduct {
-	configurableOptions: DaffConfigurableProductOption[];
-	variants?: DaffConfigurableProductVariant[];
+	configurableAttributes: DaffConfigurableProductAttribute[];
+	variants: DaffConfigurableProductVariant[];
 }
 
-export interface DaffConfigurableProductOption extends DaffSortable {
+export interface DaffConfigurableProductAttribute extends DaffSortable {
 	code:	string;
 	label: string;
 	values:	DaffConfigurableProductOptionValue[];
@@ -15,7 +16,9 @@ export interface DaffConfigurableProductOption extends DaffSortable {
 
 export interface DaffConfigurableProductVariant {
 	appliedAttributes: DaffProductVariantAttributesDictionary;
-	product: DaffProduct;
+	id: string;
+	price: string;
+	image?: DaffProductImage;
 }
 
 export interface DaffProductVariantAttributesDictionary {
@@ -30,5 +33,5 @@ export interface DaffConfigurableProductOptionValue {
 
 export interface DaffSwatchOption {
 	value: string;
-	thumbnail: string;
+	thumbnail?: string;
 }
