@@ -15,6 +15,6 @@ export interface MagentoBundledCartItemOption {
 }
 
 export interface MagentoConfigurableCartItemInput {
-	input: MagentoCartItemInput,
-	variantSku: string
+	parentSku: string;
+	data: MagentoCartItemInput;
 }

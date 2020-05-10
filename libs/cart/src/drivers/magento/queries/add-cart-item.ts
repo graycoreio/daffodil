@@ -36,12 +36,12 @@ export const addBundleCartItem = gql`
 `;
 
 export const addConfigurableCartItem = gql`
-  mutation AddConfigurableCartItem($cartId: String!, $input: CartItemInput!, $variantSku: String) {
+  mutation AddConfigurableCartItem($cartId: String!, $parentSku: String, $data: CartItemInput!) {
     addConfigurableProductsToCart(input: {
       cart_id: $cartId,
       cart_items: [{
-				data: $input,
-				variant_sku: $variantSku
+				parent_sku: $parentSku
+				data: $data,
       }]
     }) {
       cart {

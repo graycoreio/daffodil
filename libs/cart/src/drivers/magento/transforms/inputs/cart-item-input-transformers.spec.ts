@@ -86,9 +86,9 @@ describe('Driver | Magento | Cart | Transformers | MagentoCartItemInput', () => 
 		
     it('should return an object with the correct values', () => {
 			transformedCartItem = transformConfigurableCartItem(mockDaffConfigurableCartItemInput);
-      expect(transformedCartItem.input.sku).toEqual(mockDaffConfigurableCartItemInput.productId);
-			expect(transformedCartItem.input.quantity).toEqual(mockDaffConfigurableCartItemInput.qty);
-			expect(transformedCartItem.variantSku).toEqual(String(mockDaffConfigurableCartItemInput.variantId));
+      expect(transformedCartItem.parentSku).toEqual(mockDaffConfigurableCartItemInput.productId);
+			expect(transformedCartItem.data.quantity).toEqual(mockDaffConfigurableCartItemInput.qty);
+			expect(transformedCartItem.data.sku).toEqual(String(mockDaffConfigurableCartItemInput.variantId));
 		});
   });
 });

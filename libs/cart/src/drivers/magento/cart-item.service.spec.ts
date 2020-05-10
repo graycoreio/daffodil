@@ -156,7 +156,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
     };
     mockDaffConfigurableCartItemInput = {
 			type: DaffCartItemInputType.Configurable,
-			variantId: mockDaffConfigurableProduct.variants[0].product.id,
+			variantId: mockDaffConfigurableProduct.variants[0].id,
 			productId: mockDaffConfigurableProduct.id,
 			qty: 2
     };

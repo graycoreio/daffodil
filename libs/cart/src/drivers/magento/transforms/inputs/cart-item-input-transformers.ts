@@ -17,11 +17,11 @@ export function transformSimpleCartItem(item: DaffCartItemInput): MagentoCartIte
 
 export function transformConfigurableCartItem(item: DaffConfigurableCartItemInput): MagentoConfigurableCartItemInput {
 	return {
-		input: {
+		parentSku: item.productId,
+		data: {
 			quantity: item.qty,
-			sku: item.productId,
+			sku: String(item.variantId)
 		},
-		variantSku: String(item.variantId)
 	}
 }
 

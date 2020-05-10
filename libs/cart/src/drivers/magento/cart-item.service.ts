@@ -112,9 +112,9 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
 		return this.apollo.mutate<MagentoAddConfigurableCartItemResponse>({
       mutation: addConfigurableCartItem,
       variables: {
-        cartId,
-				input: configurableInput.input,
-				variantSku: configurableInput.variantSku
+				cartId,
+				parentSku: configurableInput.parentSku,
+				data: configurableInput.data
       }
     }).pipe(
       map(result => this.cartTransformer.transform(result.data.addConfigurableProductsToCart.cart))
