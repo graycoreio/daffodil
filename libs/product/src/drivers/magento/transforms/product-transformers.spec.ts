@@ -44,7 +44,7 @@ describe('DaffMagentoProductTransformers', () => {
 				magentoConfigurableProduct = new MagentoConfigurableProductFactory().create();
 			});
 
-			it('should return a composite product', () => {
+			it('should return a configurable product', () => {
 				expect(transformMagentoProduct(magentoConfigurableProduct, mediaUrl).type).toEqual(DaffProductTypeEnum.Configurable);
 			});
 		});

@@ -11,9 +11,6 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
 	let mockMagentoSimpleProductTransformerSpy; 
 	const daffConfigurableProduct: DaffConfigurableProduct = new DaffConfigurableProductFactory().create();
 	let magentoConfigurableProduct: MagentoConfigurableProduct;
-	daffConfigurableProduct.configurableAttributes[0].values[0].value = '0';
-	daffConfigurableProduct.configurableAttributes[0].values[1].value = '1';
-	daffConfigurableProduct.configurableAttributes[0].values[2].value = '2';
 	daffConfigurableProduct.variants[0].image = new DaffProductImageFactory().create();
 	daffConfigurableProduct.variants[1].image = new DaffProductImageFactory().create();
 	daffConfigurableProduct.variants[2].image = new DaffProductImageFactory().create();
@@ -57,6 +54,7 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
 			name: daffConfigurableProduct.name,
 			configurable_options: [
 				{
+					...magentoConfigurableProduct.configurable_options[0],
 					position: daffConfigurableProduct.configurableAttributes[0].order,
 					attribute_code: daffConfigurableProduct.configurableAttributes[0].code,
 					label: daffConfigurableProduct.configurableAttributes[0].label,
@@ -85,10 +83,7 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
 								thumbnail: null
 							}
 						}
-					],
-					attribute_id: null,
-					product_id: null,
-					id: null
+					]
 				}
 			],
 			variants: [
@@ -101,6 +96,7 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
 						}
 					],
 					product: {
+						...magentoConfigurableProduct,
 						image: {
 							url: daffConfigurableProduct.variants[0].image.url,
 							label: daffConfigurableProduct.variants[0].image.label
@@ -113,12 +109,7 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
 								}
 							}
 						},
-						sku: daffConfigurableProduct.variants[0].id, 
-						id: null, 
-						name: null, 
-						__typename: null,
-						url_key: null, 
-						thumbnail: null
+						sku: daffConfigurableProduct.variants[0].id
 					}
 				},
 				{
@@ -130,6 +121,7 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
 						}
 					],
 					product: {
+						...magentoConfigurableProduct,
 						image: {
 							url: daffConfigurableProduct.variants[1].image.url,
 							label: daffConfigurableProduct.variants[1].image.label
@@ -142,12 +134,7 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
 								}
 							}
 						},
-						sku: daffConfigurableProduct.variants[1].id, 
-						id: null, 
-						name: null, 
-						__typename: null,
-						url_key: null, 
-						thumbnail: null
+						sku: daffConfigurableProduct.variants[1].id
 					}
 				},
 				{
@@ -159,6 +146,7 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
 						}
 					],
 					product: {
+						...magentoConfigurableProduct,
 						image: {
 							url: daffConfigurableProduct.variants[2].image.url,
 							label: daffConfigurableProduct.variants[2].image.label
@@ -171,12 +159,7 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
 								}
 							}
 						},
-						sku: daffConfigurableProduct.variants[2].id, 
-						id: null, 
-						name: null, 
-						__typename: null,
-						url_key: null, 
-						thumbnail: null
+						sku: daffConfigurableProduct.variants[2].id
 					}
 				}
 			]
