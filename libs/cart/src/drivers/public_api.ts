@@ -8,6 +8,6 @@ export { DaffCartPaymentServiceInterface, DaffCartPaymentDriver} from './interfa
 export { DaffCartShippingAddressServiceInterface, DaffCartShippingAddressDriver } from './interfaces/cart-shipping-address-service.interface';
 export { DaffCartShippingInformationServiceInterface, DaffCartShippingInformationDriver } from './interfaces/cart-shipping-information-service.interface';
 export { DaffCartShippingMethodsServiceInterface, DaffCartShippingMethodsDriver } from './interfaces/cart-shipping-methods-service.interface';
-
+export { DaffCartOrderServiceInterface, DaffCartOrderDriver } from './interfaces/cart-order-service.interface';
 
 export * from './magento/public_api';
