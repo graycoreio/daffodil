@@ -1,175 +1,128 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffConfigurableProductFactory, MagentoConfigurableProductFactory, DaffProductImageFactory } from '@daffodil/product/testing';
+import { DaffConfigurableProductFactory, DaffProductImageFactory, MagentoConfigurableProductFactory } from '@daffodil/product/testing';
 
 import { DaffConfigurableProduct } from '../../../models/configurable-product';
-import { MagentoConfigurableProduct } from '../models/configurable-product';
-import { transformMagentoConfigurableProduct } from './configurable-product-transformers';
+import { MagentoConfigurableProduct, MagentoConfigurableProductOption, MagentoConfigurableProductVariant, MagentoConfigurableAttributeOption } from '../models/configurable-product';
+import { transformOption, transformOptionValue, transformVariant, transformVariantAttributes } from './configurable-product-transformers';
 
 describe('DaffMagentoConfigurableProductTransformers', () => {
-	const mediaUrl = 'media url';
-	let mockMagentoSimpleProductTransformerSpy; 
 	const daffConfigurableProduct: DaffConfigurableProduct = new DaffConfigurableProductFactory().create();
-	let magentoConfigurableProduct: MagentoConfigurableProduct;
+	const magentoConfigurableProduct: MagentoConfigurableProduct = new MagentoConfigurableProductFactory().create();
 	daffConfigurableProduct.variants[0].image = new DaffProductImageFactory().create();
 	daffConfigurableProduct.variants[1].image = new DaffProductImageFactory().create();
 	daffConfigurableProduct.variants[2].image = new DaffProductImageFactory().create();
-	daffConfigurableProduct.configurableAttributes[0].values[0].swatch.thumbnail = null;
-	daffConfigurableProduct.configurableAttributes[0].values[1].swatch.thumbnail = null;
-	daffConfigurableProduct.configurableAttributes[0].values[2].swatch.thumbnail = null;
 	daffConfigurableProduct.variants[0].image.id = '0';
 	daffConfigurableProduct.variants[1].image.id = '0';
 	daffConfigurableProduct.variants[2].image.id = '0';
 
 	beforeEach(() => {
-		mockMagentoSimpleProductTransformerSpy = jasmine.createSpyObj('DaffMagentoSimpleProductTransformerService', ['transform']);
-		mockMagentoSimpleProductTransformerSpy.transform.and.returnValue(daffConfigurableProduct);
     TestBed.configureTestingModule({});
+	});
 
-		magentoConfigurableProduct = new MagentoConfigurableProductFactory().create();
-		delete daffConfigurableProduct.brand;
-		daffConfigurableProduct.images = [
-			{
-				url: magentoConfigurableProduct.image.url,
-				label: magentoConfigurableProduct.image.label,
-				id: '0'
-			}
-		];
-
-		magentoConfigurableProduct = {
-			...magentoConfigurableProduct,
-			sku: daffConfigurableProduct.id,
-			url_key: daffConfigurableProduct.url,
-			description: {
-				html: daffConfigurableProduct.description,
-			},
-			price_range: {
-				maximum_price: {
-					regular_price: {
-						value: parseInt(daffConfigurableProduct.price, 10), 
-						currency: null
-					}
-				}
-			},
-			name: daffConfigurableProduct.name,
-			configurable_options: [
-				{
-					...magentoConfigurableProduct.configurable_options[0],
-					position: daffConfigurableProduct.configurableAttributes[0].order,
-					attribute_code: daffConfigurableProduct.configurableAttributes[0].code,
-					label: daffConfigurableProduct.configurableAttributes[0].label,
-					values: [
-						{
-							value_index: parseInt(daffConfigurableProduct.configurableAttributes[0].values[0].value, 10),
-							label: daffConfigurableProduct.configurableAttributes[0].values[0].label,
-							swatch_data: {
-								value: daffConfigurableProduct.configurableAttributes[0].values[0].swatch.value,
-								thumbnail: null
-							}
-						},
-						{
-							value_index: parseInt(daffConfigurableProduct.configurableAttributes[0].values[1].value, 10),
-							label: daffConfigurableProduct.configurableAttributes[0].values[1].label,
-							swatch_data: {
-								value: daffConfigurableProduct.configurableAttributes[0].values[1].swatch.value,
-								thumbnail: null
-							}
-						},
-						{
-							value_index: parseInt(daffConfigurableProduct.configurableAttributes[0].values[2].value, 10),
-							label: daffConfigurableProduct.configurableAttributes[0].values[2].label,
-							swatch_data: {
-								value: daffConfigurableProduct.configurableAttributes[0].values[2].swatch.value,
-								thumbnail: null
-							}
-						}
-					]
-				}
-			],
-			variants: [
-				{
-					attributes: [
-						{
-							code: daffConfigurableProduct.configurableAttributes[0].code,
-							label: daffConfigurableProduct.configurableAttributes[0].label,
-							value_index: parseInt(daffConfigurableProduct.configurableAttributes[0].values[0].value, 10)
-						}
-					],
-					product: {
-						...magentoConfigurableProduct,
-						image: {
-							url: daffConfigurableProduct.variants[0].image.url,
-							label: daffConfigurableProduct.variants[0].image.label
-						},
-						price_range: {
-							maximum_price: {
-								regular_price: {
-									value: parseInt(daffConfigurableProduct.variants[0].price, 10),
-									currency: null
-								}
-							}
-						},
-						sku: daffConfigurableProduct.variants[0].id
-					}
-				},
-				{
-					attributes: [
-						{
-							code: daffConfigurableProduct.configurableAttributes[0].code,
-							label: daffConfigurableProduct.configurableAttributes[0].label,
-							value_index: parseInt(daffConfigurableProduct.configurableAttributes[0].values[1].value, 10)
-						}
-					],
-					product: {
-						...magentoConfigurableProduct,
-						image: {
-							url: daffConfigurableProduct.variants[1].image.url,
-							label: daffConfigurableProduct.variants[1].image.label
-						},
-						price_range: {
-							maximum_price: {
-								regular_price: {
-									value: parseInt(daffConfigurableProduct.variants[1].price, 10),
-									currency: null
-								}
-							}
-						},
-						sku: daffConfigurableProduct.variants[1].id
-					}
-				},
-				{
-					attributes: [
-						{
-							code: daffConfigurableProduct.configurableAttributes[0].code,
-							label: daffConfigurableProduct.configurableAttributes[0].label,
-							value_index: parseInt(daffConfigurableProduct.configurableAttributes[0].values[2].value, 10)
-						}
-					],
-					product: {
-						...magentoConfigurableProduct,
-						image: {
-							url: daffConfigurableProduct.variants[2].image.url,
-							label: daffConfigurableProduct.variants[2].image.label
-						},
-						price_range: {
-							maximum_price: {
-								regular_price: {
-									value: parseInt(daffConfigurableProduct.variants[2].price, 10),
-									currency: null
-								}
-							}
-						},
-						sku: daffConfigurableProduct.variants[2].id
-					}
-				}
-			]
-		}
-  });
-
-	describe('transform', () => {
+	describe('transformOption', () => {
 		
-		it('should transform a MagentoConfigurableProduct to a DaffConfigurableProduct', () => {
-			expect(transformMagentoConfigurableProduct(magentoConfigurableProduct, mediaUrl)).toEqual(daffConfigurableProduct);
+		it('should transform a MagentoConfigurableProductOption to a DaffConfigurableProductAttribute', () => {
+			const magentoConfigurableProductOption: MagentoConfigurableProductOption = {
+				attribute_id: null,
+				product_id: null,
+				id: null,
+				position: daffConfigurableProduct.configurableAttributes[0].order,
+				attribute_code: daffConfigurableProduct.configurableAttributes[0].code,
+				label: daffConfigurableProduct.configurableAttributes[0].label,
+				values: [
+					{
+						value_index: parseInt(daffConfigurableProduct.configurableAttributes[0].values[0].value, 10),
+						label: daffConfigurableProduct.configurableAttributes[0].values[0].label,
+						swatch_data: {
+							value: daffConfigurableProduct.configurableAttributes[0].values[0].swatch.value,
+							thumbnail: daffConfigurableProduct.configurableAttributes[0].values[0].swatch.thumbnail
+						}
+					},
+					{
+						value_index: parseInt(daffConfigurableProduct.configurableAttributes[0].values[1].value, 10),
+						label: daffConfigurableProduct.configurableAttributes[0].values[1].label,
+						swatch_data: {
+							value: daffConfigurableProduct.configurableAttributes[0].values[1].swatch.value,
+							thumbnail: daffConfigurableProduct.configurableAttributes[0].values[0].swatch.thumbnail
+						}
+					},
+					{
+						value_index: parseInt(daffConfigurableProduct.configurableAttributes[0].values[2].value, 10),
+						label: daffConfigurableProduct.configurableAttributes[0].values[2].label,
+						swatch_data: {
+							value: daffConfigurableProduct.configurableAttributes[0].values[2].swatch.value,
+							thumbnail: daffConfigurableProduct.configurableAttributes[0].values[0].swatch.thumbnail
+						}
+					}
+				]
+			};
+
+			expect(transformOption(magentoConfigurableProductOption)).toEqual(daffConfigurableProduct.configurableAttributes[0]);
+		});
+	});
+
+	describe('transformOptionValue', () => {
+		
+		it('should transform a MagentoConfigurableProductOptionsValue into a DaffConfigurableProductOptionValue', () => {
+			const magentoConfigurableOptionValue = {
+				value_index: parseInt(daffConfigurableProduct.configurableAttributes[0].values[0].value, 10),
+				label: daffConfigurableProduct.configurableAttributes[0].values[0].label,
+				swatch_data: {
+					value: daffConfigurableProduct.configurableAttributes[0].values[0].swatch.value,
+					thumbnail: daffConfigurableProduct.configurableAttributes[0].values[0].swatch.thumbnail
+				}
+			};
+
+			expect(transformOptionValue(magentoConfigurableOptionValue)).toEqual(daffConfigurableProduct.configurableAttributes[0].values[0]);
+		});
+	});
+
+	describe('transformVariant', () => {
+		
+		it('should transform a MagentoConfigurableProductVariant into a DaffConfigurableProductVariant', () => {
+			const magnetoConfigurableProductVariant: MagentoConfigurableProductVariant = {
+				attributes: [
+					{
+						code: daffConfigurableProduct.configurableAttributes[0].code,
+						label: daffConfigurableProduct.configurableAttributes[0].label,
+						value_index: parseInt(daffConfigurableProduct.configurableAttributes[0].values[0].value, 10)
+					}
+				],
+				product: {
+					...magentoConfigurableProduct,
+					image: {
+						url: daffConfigurableProduct.variants[0].image.url,
+						label: daffConfigurableProduct.variants[0].image.label
+					},
+					price_range: {
+						maximum_price: {
+							regular_price: {
+								value: parseInt(daffConfigurableProduct.variants[0].price, 10),
+								currency: null
+							}
+						}
+					},
+					sku: daffConfigurableProduct.variants[0].id
+				}
+			};
+
+			expect(transformVariant(magnetoConfigurableProductVariant)).toEqual(daffConfigurableProduct.variants[0]);
+		});
+	});
+
+	describe('transformVariantAttributes', () => {
+		
+		it('should transform an array of MagentoConfigurableAttributeOptions into a DaffProductVariantAttributesDictionary', () => {
+			const magentoAttributeOptions: MagentoConfigurableAttributeOption[] = [
+				{
+					code: daffConfigurableProduct.configurableAttributes[0].code,
+					label: daffConfigurableProduct.configurableAttributes[0].label,
+					value_index: parseInt(daffConfigurableProduct.configurableAttributes[0].values[0].value, 10)
+				}
+			];
+
+			expect(transformVariantAttributes(magentoAttributeOptions)).toEqual(daffConfigurableProduct.variants[0].appliedAttributes);
 		});
 	});
 });

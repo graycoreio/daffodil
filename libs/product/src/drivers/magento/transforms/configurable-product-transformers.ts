@@ -29,7 +29,7 @@ export function transformMagentoConfigurableProduct(product: MagentoConfigurable
 	}
 }
 
-function transformOption(option: MagentoConfigurableProductOption): DaffConfigurableProductAttribute {
+export function transformOption(option: MagentoConfigurableProductOption): DaffConfigurableProductAttribute {
 	return {
 		order: option.position,
 		code: option.attribute_code,
@@ -38,7 +38,7 @@ function transformOption(option: MagentoConfigurableProductOption): DaffConfigur
 	}
 }
 
-function transformOptionValue(value: MagentoConfigurableProductOptionsValue): DaffConfigurableProductOptionValue {
+export function transformOptionValue(value: MagentoConfigurableProductOptionsValue): DaffConfigurableProductOptionValue {
 	return {
 		value: value.value_index.toString(),
 		label: value.label,
@@ -49,7 +49,7 @@ function transformOptionValue(value: MagentoConfigurableProductOptionsValue): Da
 	}
 }
 
-function transformVariant(variant: MagentoConfigurableProductVariant): DaffConfigurableProductVariant {
+export function transformVariant(variant: MagentoConfigurableProductVariant): DaffConfigurableProductVariant {
 	return {
 		id: variant.product.sku,
 		appliedAttributes: transformVariantAttributes(variant.attributes),
@@ -62,7 +62,7 @@ function transformVariant(variant: MagentoConfigurableProductVariant): DaffConfi
 	}
 }
 
-function transformVariantAttributes(attributes: MagentoConfigurableAttributeOption[]): DaffProductVariantAttributesDictionary {
+export function transformVariantAttributes(attributes: MagentoConfigurableAttributeOption[]): DaffProductVariantAttributesDictionary {
 	let appliedAttributes: DaffProductVariantAttributesDictionary = {};
 	attributes.forEach(attribute => {
 		appliedAttributes = {

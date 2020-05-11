@@ -25,20 +25,23 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 					label: 'Blue',
 					swatch: {
 						value: '#0000FF',
+						thumbnail: null
 					}
 				},
 				{
 					value: '1',
 					label: 'Yellow',
 					swatch: {
-						value: '#FFFF00'
+						value: '#FFFF00',
+						thumbnail: null
 					}
 				},
 				{
 					value: '2',
 					label: 'Red',
 					swatch: {
-						value: '#FF0000'
+						value: '#FF0000',
+						thumbnail: null
 					}
 				}
 			]
