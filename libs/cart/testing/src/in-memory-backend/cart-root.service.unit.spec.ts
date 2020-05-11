@@ -15,12 +15,14 @@ import {
 import { DaffInMemoryBackendCartRootService } from './cart-root.service';
 import { DaffInMemoryBackendCartService } from './cart/cart.service';
 import { DaffInMemoryBackendCartItemsService } from './cart-items/cart-items.service';
+import { DaffInMemoryBackendCartOrderService } from './cart-order/cart-order.service';
 
 describe('DaffInMemoryBackendCartRootService | Unit', () => {
   let service: DaffInMemoryBackendCartRootService;
 
   let cartBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartService>;
   let cartItemsBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartItemsService>;
+  let cartOrderBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartOrderService>;
 
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
@@ -45,6 +47,10 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
         {
           provide: DaffInMemoryBackendCartItemsService,
           useValue: jasmine.createSpyObj('DaffInMemoryBackendCartItemsService', ['get', 'post', 'put', 'delete'])
+        },
+        {
+          provide: DaffInMemoryBackendCartOrderService,
+          useValue: jasmine.createSpyObj('DaffInMemoryBackendCartOrderService', ['post'])
         }
       ]
     });
@@ -52,6 +58,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
 
     cartBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartService);
     cartItemsBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartItemsService);
+    cartOrderBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartOrderService);
 
     cartFactory = TestBed.get(DaffCartFactory);
     cartItemFactory = TestBed.get(DaffCartItemFactory);
@@ -166,6 +173,20 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
 
       it('should delegate the request to the cart service', () => {
         expect(cartItemsBackendServiceSpy.post).toHaveBeenCalledWith(reqInfoStub);
+      });
+    });
+
+    describe('when the collectionName is cart-order', () => {
+      let result;
+
+      beforeEach(() => {
+        reqInfoStub.collectionName = 'cart-order';
+
+        result = service.post(reqInfoStub);
+      });
+
+      it('should delegate the request to the cart service', () => {
+        expect(cartOrderBackendServiceSpy.post).toHaveBeenCalledWith(reqInfoStub);
       });
     });
   });

@@ -6,6 +6,7 @@ import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
 
 import { DaffInMemoryBackendCartService } from './cart/cart.service';
 import { DaffInMemoryBackendCartItemsService } from './cart-items/cart-items.service';
+import { DaffInMemoryBackendCartOrderService } from './cart-order/cart-order.service';
 
 /**
  * The root cart in-memory backend.
@@ -22,6 +23,7 @@ export class DaffInMemoryBackendCartRootService implements InMemoryDbService, Da
   public static readonly COLLECTION_NAMES = [
     'cart',
     'cart-items',
+    'cart-order',
   ]
 
   public carts: DaffCart[] = [];
@@ -29,6 +31,7 @@ export class DaffInMemoryBackendCartRootService implements InMemoryDbService, Da
   constructor(
     private cartService: DaffInMemoryBackendCartService,
     private cartItemsService: DaffInMemoryBackendCartItemsService,
+    private cartOrderService: DaffInMemoryBackendCartOrderService,
   ) {}
 
   createDb(reqInfo: RequestInfo) {
@@ -69,6 +72,9 @@ export class DaffInMemoryBackendCartRootService implements InMemoryDbService, Da
 
       case 'cart-items':
         return this.cartItemsService[reqInfo.method](reqInfo);
+
+      case 'cart-order':
+        return this.cartOrderService[reqInfo.method](reqInfo);
 
       default:
         return reqInfo.utils.createResponse$(() => ({
