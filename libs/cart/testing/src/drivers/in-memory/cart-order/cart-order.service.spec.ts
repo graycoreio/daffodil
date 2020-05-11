@@ -13,7 +13,7 @@ import {
 
 import { DaffInMemoryCartOrderService } from './cart-order.service';
 
-describe('Driver | In Memory | Cart | CartItemService', () => {
+describe('Driver | In Memory | Cart | CartOrderService', () => {
   let service: DaffInMemoryCartOrderService;
   let httpMock: HttpTestingController;
   let cartFactory: DaffCartFactory;
@@ -56,8 +56,8 @@ describe('Driver | In Memory | Cart | CartItemService', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('list | getting all the cart items', () => {
-    it('should send a get request and return the order result', done => {
+  describe('placeOrder | placing an order and getting an order result', () => {
+    it('should send a post request and return the order result', done => {
       service.placeOrder(cartId, mockCartPayment).subscribe(res => {
         expect(res).toEqual(mockCartOrderResult);
         done();
