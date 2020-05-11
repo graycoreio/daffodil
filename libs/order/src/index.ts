@@ -3,3 +3,4 @@ export { DaffOrderDriver, DaffOrderServiceInterface } from './drivers/interfaces
 export { DaffOrderModule } from './order.module';
 
 export * from './models/public_api';
+export * from './actions/order.actions';
