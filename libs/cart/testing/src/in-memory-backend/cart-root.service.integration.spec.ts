@@ -170,4 +170,19 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
       expect(result.items).not.toContain(mockCartItem);
     });
   });
+
+  describe('processing a place order request', () => {
+    let result;
+
+    beforeEach(done => {
+      httpClient.post<any>(`/api/cart-order/${cartId}/`, {}).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return a cart order result with a defined ID', () => {
+      expect(result.id).toBeDefined();
+    });
+  });
 });
