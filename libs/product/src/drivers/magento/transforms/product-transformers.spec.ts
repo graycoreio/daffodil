@@ -1,10 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MagentoProductFactory, MagentoBundledProductFactory } from '@daffodil/product/testing';
+import { DaffProductTypeEnum, MagentoBundledProduct } from '@daffodil/product';
+import { MagentoProductFactory, MagentoBundledProductFactory, MagentoConfigurableProductFactory } from '@daffodil/product/testing';
 
 import { MagentoProduct } from '../models/magento-product';
-import { DaffProductTypeEnum, MagentoBundledProduct } from '@daffodil/product';
 import { transformMagentoProduct, transformManyMagentoProducts } from './product-transformers';
+import { MagentoConfigurableProduct } from '../models/configurable-product';
 
 describe('DaffMagentoProductTransformers', () => {
 	const mediaUrl = 'media url';
@@ -33,6 +34,18 @@ describe('DaffMagentoProductTransformers', () => {
 
 			it('should return a composite product', () => {
 				expect(transformMagentoProduct(magentoBundledProduct, mediaUrl).type).toEqual(DaffProductTypeEnum.Composite);
+			});
+		});
+
+		describe('when the product is a configurable product', () => {
+			let magentoConfigurableProduct: MagentoConfigurableProduct;
+
+			beforeEach(() => {
+				magentoConfigurableProduct = new MagentoConfigurableProductFactory().create();
+			});
+
+			it('should return a configurable product', () => {
+				expect(transformMagentoProduct(magentoConfigurableProduct, mediaUrl).type).toEqual(DaffProductTypeEnum.Configurable);
 			});
 		});
 	});

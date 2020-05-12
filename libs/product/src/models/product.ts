@@ -2,7 +2,8 @@ import { DaffProductImage } from './product-image';
 
 export enum DaffProductTypeEnum {
 	Simple = 'simple',
-	Composite = 'composite'
+	Composite = 'composite',
+	Configurable = 'configurable'
 }
 
 /**
