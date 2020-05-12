@@ -5,8 +5,8 @@ import { addTypenameToDocument } from 'apollo-utilities';
 import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-angular-boost';
 
 import { schema } from '@daffodil/driver/magento';
-import { DaffProduct } from '@daffodil/product';
-import { DaffProductFactory } from '@daffodil/product/testing';
+import { DaffProduct, DaffConfigurableProduct } from '@daffodil/product';
+import { DaffProductFactory, DaffConfigurableProductFactory } from '@daffodil/product/testing';
 import {
   DaffCart,
   DaffCartItem
@@ -29,25 +29,28 @@ import {
   addSimpleCartItem,
   addBundleCartItem,
   removeCartItem,
-  updateCartItem
+  updateCartItem,
+	addConfigurableCartItem
 } from './queries/public_api';
 import {
   MagentoUpdateCartItemResponse,
   MagentoRemoveCartItemResponse,
   MagentoAddSimpleCartItemResponse,
   MagentoAddBundleCartItemResponse,
-  MagentoListCartItemsResponse
+  MagentoListCartItemsResponse,
+	MagentoAddConfigurableCartItemResponse
 } from './models/responses/public_api';
 import { MagentoCartItemInput } from './models/inputs/cart-item';
 import { MagentoCartItemUpdateInput } from './models/inputs/cart-item-update';
-import { DaffCartItemInputType, DaffCompositeCartItemInput, DaffSimpleCartItemInput } from '../../models/cart-item-input';
-import { DaffCartItemInput } from '../../models/cart-item-input';
+import { DaffCartItemInputType, DaffCompositeCartItemInput, DaffSimpleCartItemInput, DaffConfigurableCartItemInput } from '../../models/cart-item-input';
+
 
 describe('Driver | Magento | Cart | CartItemService', () => {
   let service: DaffMagentoCartItemService;
   let controller: ApolloTestingController;
 
   let daffProductFactory: DaffProductFactory;
+  let daffConfigurableProductFactory: DaffConfigurableProductFactory;
   let daffCartFactory: DaffCartFactory;
   let magentoCartFactory: MagentoCartFactory;
   let daffCartItemFactory: DaffCartItemFactory;
@@ -61,16 +64,19 @@ describe('Driver | Magento | Cart | CartItemService', () => {
   let itemId;
   let sku;
   let mockDaffProduct: DaffProduct;
+  let mockDaffConfigurableProduct: DaffConfigurableProduct;
   let mockDaffCart: DaffCart;
   let mockMagentoCart: MagentoCart;
   let mockMagentoCartItem: MagentoCartItem;
   let mockDaffCartItemInput: DaffSimpleCartItemInput;
   let mockDaffCompositeCartItemInput: DaffCompositeCartItemInput;
+  let mockDaffConfigurableCartItemInput: DaffConfigurableCartItemInput;
   let mockMagentoCartItemInput: MagentoCartItemInput;
   let mockMagentoCartItemUpdateInput: MagentoCartItemUpdateInput;
   let mockDaffCartItem: DaffCartItem;
   let mockAddSimpleCartItemResponse: MagentoAddSimpleCartItemResponse;
   let mockAddBundleCartItemResponse: MagentoAddBundleCartItemResponse;
+  let mockAddConfigurableCartItemResponse: MagentoAddConfigurableCartItemResponse;
   let mockListCartItemResponse: MagentoListCartItemsResponse;
   let mockUpdateCartItemResponse: MagentoUpdateCartItemResponse;
   let mockRemoveCartItemResponse: MagentoRemoveCartItemResponse;
@@ -113,13 +119,15 @@ describe('Driver | Magento | Cart | CartItemService', () => {
     magentoCartItemTransformerSpy = TestBed.get(DaffMagentoCartItemTransformer);
     magentoCartItemUpdateInputTransformerSpy = TestBed.get(DaffMagentoCartItemUpdateInputTransformer);
 
-    daffProductFactory = TestBed.get(DaffProductFactory);
+		daffProductFactory = TestBed.get(DaffProductFactory);
+		daffConfigurableProductFactory = TestBed.get(DaffConfigurableProductFactory);
     daffCartFactory = TestBed.get(DaffCartFactory);
     magentoCartFactory = TestBed.get(MagentoCartFactory);
     daffCartItemFactory = TestBed.get(DaffCartItemFactory);
     magentoCartItemFactory = TestBed.get(MagentoCartItemFactory);
 
     mockDaffProduct = daffProductFactory.create();
+    mockDaffConfigurableProduct = daffConfigurableProductFactory.create();
     mockDaffCart = daffCartFactory.create();
     mockMagentoCart = magentoCartFactory.create();
     mockDaffCartItem = daffCartItemFactory.create();
@@ -146,6 +154,12 @@ describe('Driver | Magento | Cart | CartItemService', () => {
 			qty: 3,
 			options: []
     };
+    mockDaffConfigurableCartItemInput = {
+			type: DaffCartItemInputType.Configurable,
+			variantId: mockDaffConfigurableProduct.variants[0].id,
+			productId: mockDaffConfigurableProduct.id,
+			qty: 2
+    };
     mockMagentoCartItemUpdateInput = {
       cart_item_id: itemId,
       quantity: 3
@@ -165,6 +179,12 @@ describe('Driver | Magento | Cart | CartItemService', () => {
     mockAddBundleCartItemResponse = {
       addBundleProductsToCart: {
 				__typename: 'AddBundleProductsToCart',
+        cart: mockMagentoCart
+      }
+    };
+    mockAddConfigurableCartItemResponse = {
+      addConfigurableProductsToCart: {
+				__typename: 'AddConfigurableProductsToCart',
         cart: mockMagentoCart
       }
     };
@@ -266,6 +286,21 @@ describe('Driver | Magento | Cart | CartItemService', () => {
 	
 				op.flush({
 					data: mockAddSimpleCartItemResponse
+				});
+			});
+		});
+
+		describe('when the given cartItem is a configurable product', () => {
+			it('should make a addConfigurableCartItem query', done => {
+				service.add(cartId, mockDaffConfigurableCartItemInput).subscribe(result => {
+					expect(result.items[0]).toEqual(jasmine.objectContaining(mockDaffCartItem));
+					done();
+				});
+	
+				const op = controller.expectOne(addTypenameToDocument(addConfigurableCartItem));
+	
+				op.flush({
+					data: mockAddConfigurableCartItemResponse
 				});
 			});
 		});

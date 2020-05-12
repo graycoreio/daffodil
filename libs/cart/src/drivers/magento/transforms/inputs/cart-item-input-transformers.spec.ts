@@ -2,14 +2,16 @@ import { TestBed } from '@angular/core/testing';
 
 import { 
 	transformCompositeCartItem,
-	transformSimpleCartItem
+	transformSimpleCartItem,
+	transformConfigurableCartItem
 } from './cart-item-input-transformers';
 import { 
 	DaffCartItemInput, 
 	DaffCartItemInputType, 
-	DaffCompositeCartItemInput 
+	DaffCompositeCartItemInput, 
+	DaffConfigurableCartItemInput
 } from '../../../../models/cart-item-input';
-import { MagentoBundledCartItemInput, MagentoCartItemInput } from '../../models/inputs/cart-item';
+import { MagentoBundledCartItemInput, MagentoCartItemInput, MagentoConfigurableCartItemInput } from '../../models/inputs/cart-item';
 
 describe('Driver | Magento | Cart | Transformers | MagentoCartItemInput', () => {
 
@@ -67,6 +69,26 @@ describe('Driver | Magento | Cart | Transformers | MagentoCartItemInput', () => 
 			mockDaffCompositeCartItemInput.options = null;
 			transformedCartItem = transformCompositeCartItem(mockDaffCompositeCartItemInput);
 			expect(transformedCartItem.options).toEqual([]);
+		});
+  });
+
+  describe('transformConfigurableCartItem', () => {
+    let transformedCartItem: MagentoConfigurableCartItemInput;
+		let mockDaffConfigurableCartItemInput: DaffConfigurableCartItemInput;
+
+    beforeEach(() => {
+			mockDaffConfigurableCartItemInput = {
+				...mockDaffCartItemInput,
+				type: DaffCartItemInputType.Configurable,
+				variantId: 'variantId'
+			};
+    });
+		
+    it('should return an object with the correct values', () => {
+			transformedCartItem = transformConfigurableCartItem(mockDaffConfigurableCartItemInput);
+      expect(transformedCartItem.parentSku).toEqual(mockDaffConfigurableCartItemInput.productId);
+			expect(transformedCartItem.data.quantity).toEqual(mockDaffConfigurableCartItemInput.qty);
+			expect(transformedCartItem.data.sku).toEqual(String(mockDaffConfigurableCartItemInput.variantId));
 		});
   });
 });
