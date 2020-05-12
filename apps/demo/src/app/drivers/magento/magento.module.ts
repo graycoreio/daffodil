@@ -10,6 +10,7 @@ import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
 import { DaffNavigationMagentoDriverModule } from '@daffodil/navigation';
 import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/testing';
 import { DaffCartMagentoDriverModule } from '@daffodil/cart';
+import { DaffAuthMagentoDriverModule } from '@daffodil/auth';
 
 import { environment } from '../../../environments/environment';
 import { MagentoEnvironmentDriverConfiguration } from '../../../environments/environment.interface';
@@ -26,6 +27,7 @@ const cache = new InMemoryCache({ fragmentMatcher });
     //Magento
     ApolloModule,
     HttpLinkModule,
+    DaffAuthMagentoDriverModule.forRoot(),
     DaffProductMagentoDriverModule.forRoot(),
     DaffCartMagentoDriverModule.forRoot(),
     DaffCheckoutInMemoryDriverModule.forRoot(),
