@@ -2,6 +2,8 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc/libs/product",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
     "types": [
       "jasmine",
       "node"

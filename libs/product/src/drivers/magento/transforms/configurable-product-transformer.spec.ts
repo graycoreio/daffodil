@@ -4,7 +4,10 @@ import { DaffConfigurableProductFactory, DaffProductImageFactory, MagentoConfigu
 
 import { DaffConfigurableProduct } from '../../../models/configurable-product';
 import { MagentoConfigurableProduct, MagentoConfigurableProductOption, MagentoConfigurableProductVariant, MagentoConfigurableAttributeOption } from '../models/configurable-product';
-import { transformOption, transformOptionValue, transformVariant, transformVariantAttributes } from './configurable-product-transformers';
+import { transformOption, transformOptionValue, transformVariant, transformVariantAttributes, transformMagentoConfigurableProduct } from './configurable-product-transformers';
+import daffConfigurableProductData from './spec-data/daff-configurable-product.json';
+import magentoConfigurableProductData from './spec-data/magento-configurable-product.json';
+import { DaffProductTypeEnum } from '../../../models/product';
 
 describe('DaffMagentoConfigurableProductTransformers', () => {
 	const daffConfigurableProduct: DaffConfigurableProduct = new DaffConfigurableProductFactory().create();
@@ -15,9 +18,20 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
 	daffConfigurableProduct.variants[0].image.id = '0';
 	daffConfigurableProduct.variants[1].image.id = '0';
 	daffConfigurableProduct.variants[2].image.id = '0';
+	const mediaUrl = 'mediaUrl';
 
 	beforeEach(() => {
     TestBed.configureTestingModule({});
+	});
+
+	describe('transformMagentoConfigurableProduct', () => {
+		
+		it('should transform a magento configurable product into a daffodil configurable product', () => {
+			expect(transformMagentoConfigurableProduct(magentoConfigurableProductData, mediaUrl)).toEqual({
+				...daffConfigurableProductData,
+				type: DaffProductTypeEnum.Configurable
+			});
+		});
 	});
 
 	describe('transformOption', () => {
