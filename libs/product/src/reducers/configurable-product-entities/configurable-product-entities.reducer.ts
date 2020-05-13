@@ -6,24 +6,23 @@ import { DaffBestSellersActionTypes, DaffBestSellersActions } from '../../action
 import { daffConfigurableProductAppliedAttributesEntitiesAdapter } from './configurable-product-entities-reducer-adapter';
 import { DaffProduct, DaffProductTypeEnum } from '../../models/product';
 import { DaffConfigurableProductActions, DaffConfigurableProductActionTypes } from '../../actions/configurable-product.actions';
-import { DaffProductVariantAttributesDictionary } from '../../models/configurable-product';
+import { DaffProductVariantAttributesDictionary, DaffConfigurableProduct } from '../../models/configurable-product';
 
 /**
  * Reducer function that catches actions and changes/overwrites product entities state.
  * 
  * @param state current State of the redux store
- * @param action ProductGrid, BestSellers, or Product actions
+ * @param action ProductGrid, BestSellers, Product, or Configurable Product actions
  * @returns Product entities state
  */
-export function daffConfigurableProductEntitiesReducer<T extends DaffProduct>(
+export function daffConfigurableProductEntitiesReducer<T extends DaffProduct, V extends DaffConfigurableProduct>(
   state = daffConfigurableProductAppliedAttributesEntitiesAdapter().getInitialState(), 
-  action: DaffProductGridActions<T> | DaffBestSellersActions<T> | DaffProductActions<T> | DaffConfigurableProductActions): EntityState<DaffProductVariantAttributesDictionary> {
+  action: DaffProductGridActions<T> | DaffBestSellersActions<T> | DaffProductActions<T> | DaffConfigurableProductActions<V>): EntityState<DaffProductVariantAttributesDictionary> {
 	const adapter = daffConfigurableProductAppliedAttributesEntitiesAdapter();
   switch (action.type) {
     case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
+			case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
 			return adapter.upsertMany(buildConfigurableProductAppliedAttributesEntities(action.payload), state);
-    case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
-      return adapter.upsertMany(buildConfigurableProductAppliedAttributesEntities(action.payload), state);
     case DaffProductActionTypes.ProductLoadSuccessAction:
 			if(action.payload.type === DaffProductTypeEnum.Configurable) {
 				return adapter.upsertOne(
