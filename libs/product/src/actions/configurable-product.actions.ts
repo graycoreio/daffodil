@@ -37,7 +37,9 @@ export class DaffConfigurableProductRemoveAttribute<T extends DaffConfigurablePr
 }
 
 /**
- * Toggles an attribute of a particular configurable product.
+ * Toggles an attribute of a particular configurable product. If the attribute type of the configurable product already has 
+ * a different value than the one provided in the action, the attribute value in state will be overwritten by the value provided 
+ * in the action.
  * 
  * @param id - Id of the Configurable Product
  * @param attributeId - Id of the attribute to be toggled
