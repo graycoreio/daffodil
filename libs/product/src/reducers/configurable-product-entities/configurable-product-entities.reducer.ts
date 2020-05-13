@@ -21,7 +21,7 @@ export function daffConfigurableProductEntitiesReducer<T extends DaffProduct, V 
 	const adapter = daffConfigurableProductAppliedAttributesEntitiesAdapter();
   switch (action.type) {
     case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
-			case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
+		case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
 			return adapter.upsertMany(buildConfigurableProductAppliedAttributesEntities(action.payload), state);
     case DaffProductActionTypes.ProductLoadSuccessAction:
 			if(action.payload.type === DaffProductTypeEnum.Configurable) {
