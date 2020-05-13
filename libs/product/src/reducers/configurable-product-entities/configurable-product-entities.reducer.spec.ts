@@ -168,7 +168,7 @@ describe('Product | Product Entities Reducer', () => {
   describe('when ConfigurableProductToggleAttributeAction is triggered', () => {
 		let result;
 		
-		describe('and the attribute already has a value selected', () => {
+		describe('and the attribute type of the same value is already selected', () => {
 	
 			beforeEach(() => {
 				const specInitialState = {
@@ -197,7 +197,7 @@ describe('Product | Product Entities Reducer', () => {
 			});
 		});
 
-		describe('and the attribute does not have a value selected', () => {
+		describe('and the attribute type does not have a value selected', () => {
 			
 			beforeEach(() => {
 				const specInitialState = {
@@ -222,6 +222,36 @@ describe('Product | Product Entities Reducer', () => {
 				expect(result.entities[configurableProduct.id]).toEqual({ 
 					id: configurableProduct.id, 
 					[configurableProduct.configurableAttributes[0].code]: configurableProduct.configurableAttributes[0].values[0].value
+				});
+			});
+		});
+
+		describe('and the attribute type is selected with a different value', () => {
+			
+			beforeEach(() => {
+				const specInitialState = {
+					ids: [configurableProduct.id],
+					entities: {
+						[configurableProduct.id]: {
+							id: configurableProduct.id,
+							[configurableProduct.configurableAttributes[0].code]: configurableProduct.configurableAttributes[0].values[0].value
+						}
+					}
+				}
+				
+				const configurableProductToggleAttribute = new DaffConfigurableProductToggleAttribute(
+					configurableProduct.id,
+					configurableProduct.configurableAttributes[0].code,
+					configurableProduct.configurableAttributes[0].values[1].value
+				);
+				
+				result = daffConfigurableProductEntitiesReducer(specInitialState, configurableProductToggleAttribute);
+			});
+
+			it('adds a configurable product attribute to its corresponding entity', () => {
+				expect(result.entities[configurableProduct.id]).toEqual({ 
+					id: configurableProduct.id, 
+					[configurableProduct.configurableAttributes[0].code]: configurableProduct.configurableAttributes[0].values[1].value
 				});
 			});
 		});

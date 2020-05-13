@@ -53,7 +53,7 @@ export function daffConfigurableProductEntitiesReducer<T extends DaffProduct, V 
 		case DaffConfigurableProductActionTypes.ConfigurableProductToggleAttributeAction:
 			let entity = state.entities[action.id];
 
-			if(entity[action.attributeId]) {
+			if(entity[action.attributeId] && entity[action.attributeId] === action.attributeValue) {
 				delete entity[action.attributeId];
 			} else {
 				entity = {
