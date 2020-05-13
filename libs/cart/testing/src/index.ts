@@ -18,6 +18,8 @@ export { DaffInMemoryCartOrderService } from './drivers/in-memory/cart-order/car
 export { DaffInMemoryBackendCartRootService } from './in-memory-backend/cart-root.service';
 export { DaffInMemoryBackendCartService } from './in-memory-backend/cart/cart.service';
 export { DaffInMemoryBackendCartItemsService } from './in-memory-backend/cart-items/cart-items.service';
+export { DaffInMemoryBackendCartOrderService } from './in-memory-backend/cart-order/cart-order.service';
+export { DaffInMemoryBackendCartCouponService } from './in-memory-backend/cart-coupon/cart-coupon.service';
 
 export { DaffCartInMemoryDriverModule } from './drivers/in-memory/cart-driver.module';
 export { DaffTestingCartDriverModule } from './drivers/testing/cart-driver.module';

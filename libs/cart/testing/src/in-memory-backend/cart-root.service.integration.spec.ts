@@ -2,8 +2,16 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule, } from 'angular-in-memory-web-api';
 
-import { DaffCart, DaffCartItem } from '@daffodil/cart';
-import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
+import {
+  DaffCart,
+  DaffCartItem,
+  DaffCartCoupon
+} from '@daffodil/cart';
+import {
+  DaffCartFactory,
+  DaffCartItemFactory,
+  DaffCartCouponFactory
+} from '@daffodil/cart/testing';
 
 import { DaffInMemoryBackendCartRootService } from './cart-root.service';
 
@@ -12,9 +20,11 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
+  let cartCouponFactory: DaffCartCouponFactory;
 
   let mockCart: DaffCart;
   let mockCartItem: DaffCartItem;
+  let mockCartCoupon: DaffCartCoupon;
   let cartId: DaffCart['id'];
   let itemId: DaffCartItem['item_id'];
 
@@ -30,12 +40,15 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
     cartFactory = TestBed.get(DaffCartFactory);
     cartItemFactory = TestBed.get(DaffCartItemFactory);
+    cartCouponFactory = TestBed.get(DaffCartCouponFactory);
 
     mockCart = cartFactory.create();
     mockCartItem = cartItemFactory.create();
+    mockCartCoupon = cartCouponFactory.create();
     cartId = mockCart.id;
     itemId = mockCartItem.item_id;
     mockCart.items.push(mockCartItem);
+    mockCart.coupons.push(mockCartCoupon);
 
     httpClient.post<any>('commands/resetDb', {carts: [mockCart]}).subscribe(() => done());
   });
@@ -171,6 +184,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     });
   });
 
+  // cart order
   describe('processing a place order request', () => {
     let result;
 
@@ -183,6 +197,73 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
     it('should return a cart order result with a defined ID', () => {
       expect(result.id).toBeDefined();
+    });
+  });
+
+  // cart coupon
+  describe('processing a list coupons request', () => {
+    let result;
+
+    beforeEach(done => {
+      httpClient.get<any>(`/api/cart-coupon/${cartId}/`).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return the cart coupons', () => {
+      expect(result).toEqual([mockCartCoupon]);
+    });
+  });
+
+  describe('processing an apply coupon request', () => {
+    let result;
+
+    beforeEach(done => {
+      mockCart.coupons = [];
+      httpClient.post<any>('commands/resetDb', {carts: [mockCart]}).subscribe(() => done());
+
+      httpClient.post<any>(`/api/cart-coupon/${cartId}/`, mockCartCoupon).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return a cart with the added item', () => {
+      expect(result.coupons).toContain(mockCartCoupon);
+		});
+  });
+
+  describe('processing a remove coupon request', () => {
+    let result;
+    let couponCode;
+
+    beforeEach(done => {
+      couponCode = mockCartCoupon.code;
+
+      httpClient.delete<any>(`/api/cart-coupon/${cartId}/${couponCode}`, {}).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should remove the coupon from the cart', () => {
+      expect(result.coupons.find(({code}) => couponCode === code)).toBeFalsy();
+    });
+  });
+
+  describe('processing a remove all coupons request', () => {
+    let result;
+
+    beforeEach(done => {
+      httpClient.delete<any>(`/api/cart-coupon/${cartId}/`, {}).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return a cart with no coupons', () => {
+      expect(result.coupons).toEqual([]);
     });
   });
 });

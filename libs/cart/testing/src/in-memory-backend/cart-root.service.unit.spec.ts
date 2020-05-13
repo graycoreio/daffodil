@@ -16,6 +16,7 @@ import { DaffInMemoryBackendCartRootService } from './cart-root.service';
 import { DaffInMemoryBackendCartService } from './cart/cart.service';
 import { DaffInMemoryBackendCartItemsService } from './cart-items/cart-items.service';
 import { DaffInMemoryBackendCartOrderService } from './cart-order/cart-order.service';
+import { DaffInMemoryBackendCartCouponService } from './cart-coupon/cart-coupon.service';
 
 describe('DaffInMemoryBackendCartRootService | Unit', () => {
   let service: DaffInMemoryBackendCartRootService;
@@ -23,6 +24,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
   let cartBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartService>;
   let cartItemsBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartItemsService>;
   let cartOrderBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartOrderService>;
+  let cartCouponBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartCouponService>;
 
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
@@ -51,6 +53,10 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
         {
           provide: DaffInMemoryBackendCartOrderService,
           useValue: jasmine.createSpyObj('DaffInMemoryBackendCartOrderService', ['post'])
+        },
+        {
+          provide: DaffInMemoryBackendCartCouponService,
+          useValue: jasmine.createSpyObj('DaffInMemoryBackendCartCouponService', ['get', 'post', 'delete'])
         }
       ]
     });
@@ -59,6 +65,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
     cartBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartService);
     cartItemsBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartItemsService);
     cartOrderBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartOrderService);
+    cartCouponBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartCouponService);
 
     cartFactory = TestBed.get(DaffCartFactory);
     cartItemFactory = TestBed.get(DaffCartItemFactory);
@@ -137,8 +144,22 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
         result = service.get(reqInfoStub);
       });
 
-      it('should delegate the request to the cart service', () => {
+      it('should delegate the request to the cart items service', () => {
         expect(cartItemsBackendServiceSpy.get).toHaveBeenCalledWith(reqInfoStub);
+      });
+    });
+
+    describe('when the collectionName is cart-coupon', () => {
+      let result;
+
+      beforeEach(() => {
+        reqInfoStub.collectionName = 'cart-coupon';
+
+        result = service.get(reqInfoStub);
+      });
+
+      it('should delegate the request to the cart coupon service', () => {
+        expect(cartCouponBackendServiceSpy.get).toHaveBeenCalledWith(reqInfoStub);
       });
     });
   });
@@ -171,7 +192,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
         result = service.post(reqInfoStub);
       });
 
-      it('should delegate the request to the cart service', () => {
+      it('should delegate the request to the cart items service', () => {
         expect(cartItemsBackendServiceSpy.post).toHaveBeenCalledWith(reqInfoStub);
       });
     });
@@ -185,8 +206,22 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
         result = service.post(reqInfoStub);
       });
 
-      it('should delegate the request to the cart service', () => {
+      it('should delegate the request to the cart order service', () => {
         expect(cartOrderBackendServiceSpy.post).toHaveBeenCalledWith(reqInfoStub);
+      });
+    });
+
+    describe('when the collectionName is cart-coupon', () => {
+      let result;
+
+      beforeEach(() => {
+        reqInfoStub.collectionName = 'cart-coupon';
+
+        result = service.post(reqInfoStub);
+      });
+
+      it('should delegate the request to the cart coupon service', () => {
+        expect(cartCouponBackendServiceSpy.post).toHaveBeenCalledWith(reqInfoStub);
       });
     });
   });
@@ -205,7 +240,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
         result = service.put(reqInfoStub);
       });
 
-      it('should delegate the request to the cart service', () => {
+      it('should delegate the request to the cart items service', () => {
         expect(cartItemsBackendServiceSpy.put).toHaveBeenCalledWith(reqInfoStub);
       });
     });
@@ -225,8 +260,22 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
         result = service.delete(reqInfoStub);
       });
 
-      it('should delegate the request to the cart service', () => {
+      it('should delegate the request to the cart items service', () => {
         expect(cartItemsBackendServiceSpy.delete).toHaveBeenCalledWith(reqInfoStub);
+      });
+    });
+
+    describe('when the collectionName is cart-coupon', () => {
+      let result;
+
+      beforeEach(() => {
+        reqInfoStub.collectionName = 'cart-coupon';
+
+        result = service.delete(reqInfoStub);
+      });
+
+      it('should delegate the request to the cart coupon service', () => {
+        expect(cartCouponBackendServiceSpy.delete).toHaveBeenCalledWith(reqInfoStub);
       });
     });
   });
