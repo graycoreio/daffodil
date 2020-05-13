@@ -23,6 +23,8 @@ export { DaffProductGridFacade } from './facades/product-grid/product-grid.facad
 export { DaffProductGridFacadeInterface } from './facades/product-grid/product-grid-facade.interface';
 export { DaffProductFacade } from './facades/product/product.facade';
 export { DaffProductFacadeInterface } from './facades/product/product-facade.interface';
+export { DaffConfigurableProductFacade } from './facades/configurable-product/configurable-product.facade';
+export { DaffConfigurableProductFacadeInterface } from './facades/configurable-product/configurable-product-facade.interface';
 export { DaffBestSellersFacade } from './facades/best-sellers/best-sellers.facade';
 
 export * from './drivers/magento/public_api';
