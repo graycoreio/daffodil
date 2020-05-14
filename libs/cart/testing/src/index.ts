@@ -14,10 +14,13 @@ export { DaffInMemoryCartShippingAddressService } from './drivers/in-memory/cart
 export { DaffInMemoryCartShippingInformationService } from './drivers/in-memory/cart-shipping-information/cart-shipping-information.service';
 export { DaffInMemoryCartShippingMethodsService } from './drivers/in-memory/cart-shipping-methods/cart-shipping-methods.service';
 export { DaffInMemoryCartOrderService } from './drivers/in-memory/cart-order/cart-order.service';
+export { DaffInMemoryCartCouponService } from './drivers/in-memory/cart-coupon/cart-coupon.service';
 
 export { DaffInMemoryBackendCartRootService } from './in-memory-backend/cart-root.service';
 export { DaffInMemoryBackendCartService } from './in-memory-backend/cart/cart.service';
 export { DaffInMemoryBackendCartItemsService } from './in-memory-backend/cart-items/cart-items.service';
+export { DaffInMemoryBackendCartOrderService } from './in-memory-backend/cart-order/cart-order.service';
+export { DaffInMemoryBackendCartCouponService } from './in-memory-backend/cart-coupon/cart-coupon.service';
 
 export { DaffCartInMemoryDriverModule } from './drivers/in-memory/cart-driver.module';
 export { DaffTestingCartDriverModule } from './drivers/testing/cart-driver.module';
