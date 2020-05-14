@@ -221,7 +221,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
     beforeEach(done => {
       mockCart.coupons = [];
-      httpClient.post<any>('commands/resetDb', {carts: [mockCart]}).subscribe(() => done());
+      httpClient.post<any>('commands/resetDb', {carts: [mockCart]});
 
       httpClient.post<any>(`/api/cart-coupon/${cartId}/`, mockCartCoupon).subscribe(res => {
         result = res
