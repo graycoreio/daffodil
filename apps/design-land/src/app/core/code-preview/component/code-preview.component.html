@@ -1,0 +1,10 @@
+<daff-navbar color="primary" *ngIf="title">
+  <div>{{ title }}</div>
+</daff-navbar>
+<div #content class="code-example__content">
+  
+</div>
+<div *ngIf="example">
+  <button (click)="selectedFile = file" *ngFor="let file of example.files">{{ file.name }}</button>
+  <pre><code [class]="example.language" [highlight]="selectedFile.content"></code></pre>
+</div>
