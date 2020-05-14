@@ -5,7 +5,8 @@ import {
 } from 'angular-in-memory-web-api';
 
 import { DaffCountry } from '@daffodil/geography';
-import { DaffCountryFactory } from '@daffodil/geography/testing';
+
+import { DaffCountryFactory } from '../factories/public_api';
 
 /**
  * An in-memory service that stubs out the backend services for getting countries.
