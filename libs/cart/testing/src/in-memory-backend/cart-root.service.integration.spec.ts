@@ -218,19 +218,19 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
   describe('processing an apply coupon request', () => {
     let result;
+    let newCoupon: DaffCartCoupon;
 
     beforeEach(done => {
-      mockCart.coupons = [];
-      httpClient.post<any>('commands/resetDb', {carts: [mockCart]}).subscribe(() => done());
+      newCoupon = cartCouponFactory.create();
 
-      httpClient.post<any>(`/api/cart-coupon/${cartId}/`, mockCartCoupon).subscribe(res => {
+      httpClient.post<any>(`/api/cart-coupon/${cartId}/`, newCoupon).subscribe(res => {
         result = res
         done();
       });
     });
 
-    it('should return a cart with the added item', () => {
-      expect(result.coupons).toContain(mockCartCoupon);
+    it('should return a cart with the added coupon', () => {
+      expect(result.coupons).toContain(newCoupon);
 		});
   });
 
@@ -248,7 +248,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     });
 
     it('should remove the coupon from the cart', () => {
-      expect(result.coupons.find(({code}) => couponCode === code)).toBeFalsy();
+      expect(result.coupons).not.toContain(mockCartCoupon);
     });
   });
 
