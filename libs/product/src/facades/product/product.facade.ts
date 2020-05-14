@@ -17,23 +17,25 @@ import { DaffProductFacadeInterface } from './product-facade.interface';
 })
 export class DaffProductFacade<T extends DaffProduct = DaffProduct> implements DaffProductFacadeInterface<T> {
   /**
-   * The loading state of the currently selected product.
+   * The loading state of the product.
    */
   loading$: Observable<boolean>;
   /**
    * The currently selected product.
+	 * @deprecate use getProduct instead.
    */
   product$: Observable<T>;
 
-  constructor(private store: Store<DaffProductReducersState<T>>) {
-		const {
-			selectSelectedProductLoadingState,
-			selectSelectedProduct
-		} = getDaffProductSelectors<T>();
+	private selectors = getDaffProductSelectors<T>();
 
-    this.loading$ = this.store.pipe(select(selectSelectedProductLoadingState));
-    this.product$ = this.store.pipe(select(selectSelectedProduct));
-  }
+  constructor(private store: Store<DaffProductReducersState<T>>) {
+    this.loading$ = this.store.pipe(select(this.selectors.selectSelectedProductLoadingState));
+		this.product$ = this.store.pipe(select(this.selectors.selectSelectedProduct));
+	}
+	
+	getProduct(id: string): Observable<T> {
+		return this.store.pipe(select(this.selectors.selectProduct, { id }));
+	}
 
   /**
    * Dispatches an action to the rxjs action stream.
