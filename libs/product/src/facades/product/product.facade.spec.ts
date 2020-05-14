@@ -3,10 +3,14 @@ import { MockStore } from '@ngrx/store/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
+import {
+	DaffProductLoad, 
+	DaffProductLoadSuccess,
+	daffProductReducers,
+	DaffProductReducersState
+} from '@daffodil/product';
+
 import { DaffProductFacade } from './product.facade';
-import { DaffProductLoad, DaffProductLoadSuccess } from '../../actions/product.actions';
-import { daffProductReducers } from '../../reducers/product-reducers';
-import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
 
 describe('DaffProductFacade', () => {
   let store: MockStore<Partial<DaffProductReducersState>>;
@@ -67,5 +71,15 @@ describe('DaffProductFacade', () => {
       store.dispatch(new DaffProductLoadSuccess(product));
       expect(facade.product$).toBeObservable(expected);
     })
-  });
+	});
+	
+	describe('getProduct()', () => {
+		it('should be an observable of a product', () => {
+			const product = {id: '1', name: 'Some Name'};
+      const expected = cold('a', { a: product});
+      store.dispatch(new DaffProductLoad(product.id));
+      store.dispatch(new DaffProductLoadSuccess(product));
+      expect(facade.getProduct(product.id)).toBeObservable(expected);
+		});
+	});
 });

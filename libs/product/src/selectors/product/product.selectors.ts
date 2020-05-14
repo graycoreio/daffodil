@@ -20,7 +20,7 @@ const createProductPageSelectors = <T extends DaffProduct>(): DaffProductPageMem
 	} = getDaffProductFeatureSelector<T>();
 
 	/**
-	 * Selector for the selected product.
+	 * Selector for product state.
 	 */
 	const selectSelectedProductState = createSelector(
 		selectProductState,
@@ -29,6 +29,7 @@ const createProductPageSelectors = <T extends DaffProduct>(): DaffProductPageMem
 
 	/**
 	 * Selector for the selected product's ID.
+	 * @deprecated
 	 */
 	const selectSelectedProductId = createSelector(
 		selectSelectedProductState,
@@ -37,6 +38,7 @@ const createProductPageSelectors = <T extends DaffProduct>(): DaffProductPageMem
 
 	/**
 	 * Selector for the quantity of the product.
+	 * @deprecated
 	 */
 	const selectSelectedProductQty = createSelector(
 		selectSelectedProductState,
@@ -53,6 +55,7 @@ const createProductPageSelectors = <T extends DaffProduct>(): DaffProductPageMem
 
 	/**
 	 * Selects the selected product from product state and the selected product ID.
+	 * @deprecated use selectProduct entities selector instead.
 	 */
 	const selectSelectedProduct = createSelector(
 		selectProductState,
