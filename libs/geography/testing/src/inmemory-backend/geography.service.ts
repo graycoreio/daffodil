@@ -8,7 +8,10 @@ import {
 import { DaffCountry } from '@daffodil/geography';
 import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
 
-import { DaffCountryFactory } from '../factories/public_api';
+import {
+  DaffCountryFactory,
+  DaffSubdivisionFactory
+} from '../factories/public_api';
 
 /**
  * An in-memory service that stubs out the backend services for getting countries.
@@ -19,8 +22,12 @@ import { DaffCountryFactory } from '../factories/public_api';
 export class DaffInMemoryBackendGeographyService implements InMemoryDbService, DaffInMemoryDataServiceInterface {
   countries: DaffCountry[];
 
-  constructor(private countryFactory: DaffCountryFactory) {
+  constructor(
+    private countryFactory: DaffCountryFactory,
+    private subdivisionFactory: DaffSubdivisionFactory
+  ) {
     this.countries = this.countryFactory.createMany(5);
+    this.countries.forEach(country => country.subdivisions = this.subdivisionFactory.createMany(5))
   }
 
   /**
