@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.1](https://github.com/graycoreio/daffodil/compare/v0.5.0...v0.5.1) (2020-05-14)
+
+
+### Features
+
+* **cart:** add coupon in-memory driver and backend ([#886](https://github.com/graycoreio/daffodil/issues/886)) ([5bcc80c](https://github.com/graycoreio/daffodil/commit/5bcc80c6fad7e87eb2c8005a8852ccd03d53d34b))
+* **cart:** add order in-memory driver ([#880](https://github.com/graycoreio/daffodil/issues/880)) ([085bcc0](https://github.com/graycoreio/daffodil/commit/085bcc0f7b290e1a73ccde357e279e26f9a698e0))
+* **cart:** implement adding configurable products to cart ([#877](https://github.com/graycoreio/daffodil/issues/877)) ([a537365](https://github.com/graycoreio/daffodil/commit/a53736538744d0b585e28ccdda25a1aeb2de7df1))
+* **checkout:** deprecate checkout/order ([#868](https://github.com/graycoreio/daffodil/issues/868)) ([3b75e0c](https://github.com/graycoreio/daffodil/commit/3b75e0c75158a33fec1d447e64823684625b8bb3))
+* **demo:** add auth module ([#866](https://github.com/graycoreio/daffodil/issues/866)) ([38de3fd](https://github.com/graycoreio/daffodil/commit/38de3fdab094cb55cc1e234fbf4f3f63737e20aa))
+* **geography:** add in-memory driver and backend ([#888](https://github.com/graycoreio/daffodil/issues/888)) ([ef996cb](https://github.com/graycoreio/daffodil/commit/ef996cbeebdd273046bd30f0aa9fd6f2c834612b))
+* **geography:** add personal address factory ([#873](https://github.com/graycoreio/daffodil/issues/873)) ([1e48abd](https://github.com/graycoreio/daffodil/commit/1e48abde35b1cdc81b7945e10c10c348f7a05288))
+* **order:** add actions for loading many and individual orders ([#879](https://github.com/graycoreio/daffodil/issues/879)) ([5adf0c0](https://github.com/graycoreio/daffodil/commit/5adf0c042a9b8de2934931dee513cf7f53b8c38d))
+* **order:** add basic driver interface ([#878](https://github.com/graycoreio/daffodil/issues/878)) ([8f08415](https://github.com/graycoreio/daffodil/commit/8f084154bb097009f96a7683a37b42b912906d8a))
+* **order:** add models and model factories ([#872](https://github.com/graycoreio/daffodil/issues/872)) ([d0f8558](https://github.com/graycoreio/daffodil/commit/d0f855897bc2af5f3c8f39c7d52245a2aaa0c25b))
+* **order:** add order package and module ([#870](https://github.com/graycoreio/daffodil/issues/870)) ([5199d6b](https://github.com/graycoreio/daffodil/commit/5199d6b3bdfdd4053ab2c447aa8293d7f7560a77))
+* **product:** add configurable product actions and reducers ([#884](https://github.com/graycoreio/daffodil/issues/884)) ([49165e5](https://github.com/graycoreio/daffodil/commit/49165e5bf785e448856d9ee337e5e42f524fdc45))
+* **product:** add configurable product transformer and factories ([#876](https://github.com/graycoreio/daffodil/issues/876)) ([fd761d8](https://github.com/graycoreio/daffodil/commit/fd761d87c17afb4c004de0909a000e9c13f3a2b1))
+* **product:** add DaffProductFacade.getProduct method ([#889](https://github.com/graycoreio/daffodil/issues/889)) ([dd4c777](https://github.com/graycoreio/daffodil/commit/dd4c7774b0ce68d8c0d00221f10ebd1c33bdc6b1))
+* **product:** add models for magento and daffodil configurable produ… ([#874](https://github.com/graycoreio/daffodil/issues/874)) ([5d3fa52](https://github.com/graycoreio/daffodil/commit/5d3fa52ecfbc9badeb65aeab0258d753cddcbe94))
+* **product:** add query fragments for magento configurable products ([#875](https://github.com/graycoreio/daffodil/issues/875)) ([820bd44](https://github.com/graycoreio/daffodil/commit/820bd44cbf98d698e3db50280168e79e51eeba47))
+
+
+### Bug Fixes
+
+* **cart:** default available shipping methods value to an array ([#871](https://github.com/graycoreio/daffodil/issues/871)) ([d2729c0](https://github.com/graycoreio/daffodil/commit/d2729c081c4247ac068f49af76b312fbd112fc71))
+
 ## [0.5.0](https://github.com/graycoreio/daffodil/compare/v0.4.22...v0.5.0) (2020-05-04)
 
 
