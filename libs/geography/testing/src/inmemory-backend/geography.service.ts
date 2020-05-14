@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import {
   InMemoryDbService,
-  RequestInfo
+  RequestInfo,
+  STATUS
 } from 'angular-in-memory-web-api';
 
 import { DaffCountry } from '@daffodil/geography';
+import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
 
 import { DaffCountryFactory } from '../factories/public_api';
 
@@ -14,7 +16,7 @@ import { DaffCountryFactory } from '../factories/public_api';
 @Injectable({
   providedIn: 'root'
 })
-export class DaffInMemoryBackendGeographyService implements InMemoryDbService {
+export class DaffInMemoryBackendGeographyService implements InMemoryDbService, DaffInMemoryDataServiceInterface {
   countries: DaffCountry[];
 
   constructor(private countryFactory: DaffCountryFactory) {
@@ -37,5 +39,23 @@ export class DaffInMemoryBackendGeographyService implements InMemoryDbService {
     return {
       countries: this.countries
     };
+  }
+
+  /**
+   * Responds to GET requests.
+   */
+  get(reqInfo: RequestInfo): any {
+    return reqInfo.utils.createResponse$(() => ({
+      body: reqInfo.id ? this.getCountry(reqInfo) : this.listCountries(reqInfo),
+      status: STATUS.OK
+    }))
+  }
+
+  private getCountry(reqInfo: RequestInfo) {
+    return reqInfo.collection.find(country => country.id === reqInfo.id)
+  }
+
+  private listCountries(reqInfo: RequestInfo) {
+    return reqInfo.collection
   }
 }
