@@ -1,14 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { DaffContainerComponent, DaffContainerSize } from './container.component';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+
+import { DaffContainerComponent } from './container.component';
+import { DaffSizeAllType } from '../../core/sizeable/sizeable';
 
 @Component({
   template: `<daff-container [size]="size"></daff-container>`
 })
 class WrapperComponent {
-  size: DaffContainerSize;
+  size: DaffSizeAllType;
 }
 
 describe('DaffContainerComponent', () => {

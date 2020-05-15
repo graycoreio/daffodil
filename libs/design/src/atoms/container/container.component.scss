@@ -7,23 +7,23 @@
 	padding: 0;
 	width: 100%;
 
-	&#{$root}--xs {
+	&.daff-xs {
 		max-width: 640px;
 	}
 
-	&#{$root}--sm {
+	&.daff-sm {
 		max-width: 800px;
 	}
 
-	&#{$root}--md {
+	&.daff-md {
 		max-width: 1040px;
 	}
 
-	&#{$root}--lg {
+	&.daff-lg {
 		max-width: 1340px;
 	}
 
-	&#{$root}--xl {
+	&.daff-xl {
 		max-width: 1920px;
 	}
 }
