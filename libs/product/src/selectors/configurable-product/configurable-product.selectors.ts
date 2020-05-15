@@ -1,6 +1,6 @@
 import { createSelector, MemoizedSelectorWithProps } from '@ngrx/store';
 
-import { DaffProduct, DaffProductTypeEnum } from '../../models/product';
+import { DaffProductTypeEnum } from '../../models/product';
 import { Dictionary } from '@ngrx/entity';
 import { getDaffConfigurableProductEntitiesSelectors } from '../configurable-product-entities/configurable-product-entities.selectors';
 import { getDaffProductEntitiesSelectors } from '../product-entities/product-entities.selectors';
@@ -46,10 +46,9 @@ const createConfigurableProductSelectors = (): DaffConfigurableProductMemoizedSe
 		selectProductEntities,
 		selectConfigurableProductAppliedAttributesEntitiesState,
 		(products, appliedAttributesEntities, props) => {
-			const remainingVariants: DaffConfigurableProductVariant[] = selectMatchingConfigurableProductVariants.projector(products, appliedAttributesEntities, { id: props.id });
-			
-			if(remainingVariants.length === 1) return remainingVariants[0].price;
-			else return getMinimumPrice(remainingVariants) + '-' + getMaximumPrice(remainingVariants);
+			const matchingVariants: DaffConfigurableProductVariant[] = selectMatchingConfigurableProductVariants.projector(products, appliedAttributesEntities, { id: props.id });
+			if(matchingVariants.length === 1) return matchingVariants[0].price;
+			else return getMinimumPrice(matchingVariants) + '-' + getMaximumPrice(matchingVariants);
 		}
 	);
 
@@ -103,31 +102,38 @@ function isVariantAvailable(
 	appliedAttributes: DaffProductVariantAttributesDictionary, 
 	variant: DaffConfigurableProductVariant
 ): boolean {
-	let flag = true;
-	configurableAttributes.forEach(option => {
-		if(appliedAttributes[option.code] && variant.appliedAttributes[option.code] !== appliedAttributes[option.code]) {
-			flag = false;
-		}
-	});
-	return flag;
+	return configurableAttributes.reduce((acc, option) => 
+		acc && !(isAttributeApplied(option.code, appliedAttributes) && !doesAppliedAttributeMatchVariantAttribute(appliedAttributes[option.code], variant.appliedAttributes[option.code])),
+		true
+	)
+}
+
+function isAttributeApplied(attributeCode: string, appliedAttributes: DaffProductVariantAttributesDictionary): boolean {
+	return !!appliedAttributes[attributeCode];
+}
+
+function doesAppliedAttributeMatchVariantAttribute(appliedAttribute: string, variantAttribute: string): boolean {
+	return variantAttribute === appliedAttribute
 }
 
 function getMinimumPrice(variants: DaffConfigurableProductVariant[]): string {
-	let price: number = parseInt(variants[0].price, 10);
-	variants.forEach(variant => {
-		if(parseInt(variant.price, 10) < price) price = parseInt(variant.price, 10);
-	});
-
-	return price.toString();
+	return variants.reduce(
+		(acc, variant) => {
+			const price = parseInt(variant.price, 10);
+			return price < acc ? price : acc;
+		},
+		parseInt(variants[0].price, 10)
+	).toString();
 }
 
 function getMaximumPrice(variants: DaffConfigurableProductVariant[]): string {
-	let price: number = parseInt(variants[0].price, 10);
-	variants.forEach(variant => {
-		if(parseInt(variant.price, 10) > price) price = parseInt(variant.price, 10);
-	});
-
-	return price.toString();
+	return variants.reduce(
+		(acc, variant) => {
+			const price = parseInt(variant.price, 10);
+			return price > acc ? price : acc;
+		},
+		parseInt(variants[0].price, 10)
+	).toString();
 }
 
 function isVariantAttributeMarkedAsUndetermined(attributeArray: string[], variantValue: string) {
