@@ -18,7 +18,7 @@ export interface MagentoConfigurableProductOption {
 
 export interface MagentoConfigurableProductOptionsValue {
 	label: string;
-	swatch_data: MagentoSwatchDataInterface;
+	swatch_data?: MagentoSwatchDataInterface;
 	value_index: number;
 }
 

@@ -41,11 +41,7 @@ export function transformOption(option: MagentoConfigurableProductOption): DaffC
 export function transformOptionValue(value: MagentoConfigurableProductOptionsValue): DaffConfigurableProductOptionValue {
 	return {
 		value: value.value_index.toString(),
-		label: value.label,
-		swatch: {
-			value: value.swatch_data.value,
-			thumbnail: value.swatch_data.thumbnail
-		}
+		label: value.label
 	}
 }
 
