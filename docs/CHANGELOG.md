@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.2](https://github.com/graycoreio/daffodil/compare/v0.5.1...v0.5.2) (2020-05-15)
+
+
+### Bug Fixes
+
+* **product:** fix magento configurable product query ([#895](https://github.com/graycoreio/daffodil/issues/895)) ([3e1528d](https://github.com/graycoreio/daffodil/commit/3e1528da11266e11751f3299756cfe6afcb6f485))
+
 ### [0.5.1](https://github.com/graycoreio/daffodil/compare/v0.5.0...v0.5.1) (2020-05-14)
 
 
