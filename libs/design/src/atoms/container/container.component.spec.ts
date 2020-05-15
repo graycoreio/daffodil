@@ -50,70 +50,8 @@ describe('DaffContainerComponent', () => {
 
   describe('setting the size', () => {
     it('should not set a default size', () => {
-      expect(component.size).toBeFalsy();
-
-      expect(de.classes).toEqual(jasmine.objectContaining({
-        'daff-container--xs': false,
-        'daff-container--sm': false,
-        'daff-container--md': false,
-        'daff-container--lg': false,
-        'daff-container--xl': false
-      }));
-    });
-
-    describe('when size="xs"', () => {
-      it('should add a class of "daff-container--xs" to the host element', () => {
-        wrapper.size = 'xs';
-        fixture.detectChanges();
-
-        expect(de.classes).toEqual(jasmine.objectContaining({
-          'daff-container--xs': true
-        }));
-      });
-    });
-
-    describe('when size="sm"', () => {
-      it('should add a class of "daff-container--sm" to the host element', () => {
-        wrapper.size = 'sm';
-        fixture.detectChanges();
-
-        expect(de.classes).toEqual(jasmine.objectContaining({
-          'daff-container--sm': true
-        }));
-      });
-    });
-
-    describe('when size="md"', () => {
-      it('should add a class of "daff-container--md" to the host element', () => {
-        wrapper.size = 'md';
-        fixture.detectChanges();
-
-        expect(de.classes).toEqual(jasmine.objectContaining({
-          'daff-container--md': true
-        }));
-      });
-    });
-
-    describe('when size="lg"', () => {
-      it('should add a class of "daff-container--lg" to the host element', () => {
-        wrapper.size = 'lg';
-        fixture.detectChanges();
-
-        expect(de.classes).toEqual(jasmine.objectContaining({
-          'daff-container--lg': true
-        }));
-      });
-    });
-
-    describe('when size="xl"', () => {
-      it('should add a class of "daff-container--xl" to the host element', () => {
-        wrapper.size = 'xl';
-        fixture.detectChanges();
-
-        expect(de.classes).toEqual(jasmine.objectContaining({
-          'daff-container--xl': true
-        }));
-      });
+      de = fixture.debugElement.query(By.css('daff-container'));
+      expect(de.nativeElement.classList.toString()).toEqual('daff-container');
     });
   });
 });
