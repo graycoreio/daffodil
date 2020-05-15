@@ -19,6 +19,9 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
 	daffConfigurableProduct.variants[1].image.id = '0';
 	daffConfigurableProduct.variants[2].image.id = '0';
 	const mediaUrl = 'mediaUrl';
+	delete daffConfigurableProduct.configurableAttributes[0].values[0].swatch
+	delete daffConfigurableProduct.configurableAttributes[0].values[1].swatch
+	delete daffConfigurableProduct.configurableAttributes[0].values[2].swatch
 
 	beforeEach(() => {
     TestBed.configureTestingModule({});
@@ -27,10 +30,15 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
 	describe('transformMagentoConfigurableProduct', () => {
 		
 		it('should transform a magento configurable product into a daffodil configurable product', () => {
-			expect(transformMagentoConfigurableProduct(magentoConfigurableProductData, mediaUrl)).toEqual({
+			const expected: DaffConfigurableProduct = {
 				...daffConfigurableProductData,
 				type: DaffProductTypeEnum.Configurable
-			});
+			};
+			delete expected.configurableAttributes[0].values[0].swatch;
+			delete expected.configurableAttributes[0].values[1].swatch;
+			delete expected.configurableAttributes[0].values[2].swatch;
+
+			expect(transformMagentoConfigurableProduct(magentoConfigurableProductData, mediaUrl)).toEqual(expected);
 		});
 	});
 
@@ -47,27 +55,15 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
 				values: [
 					{
 						value_index: parseInt(daffConfigurableProduct.configurableAttributes[0].values[0].value, 10),
-						label: daffConfigurableProduct.configurableAttributes[0].values[0].label,
-						swatch_data: {
-							value: daffConfigurableProduct.configurableAttributes[0].values[0].swatch.value,
-							thumbnail: daffConfigurableProduct.configurableAttributes[0].values[0].swatch.thumbnail
-						}
+						label: daffConfigurableProduct.configurableAttributes[0].values[0].label
 					},
 					{
 						value_index: parseInt(daffConfigurableProduct.configurableAttributes[0].values[1].value, 10),
-						label: daffConfigurableProduct.configurableAttributes[0].values[1].label,
-						swatch_data: {
-							value: daffConfigurableProduct.configurableAttributes[0].values[1].swatch.value,
-							thumbnail: daffConfigurableProduct.configurableAttributes[0].values[0].swatch.thumbnail
-						}
+						label: daffConfigurableProduct.configurableAttributes[0].values[1].label
 					},
 					{
 						value_index: parseInt(daffConfigurableProduct.configurableAttributes[0].values[2].value, 10),
-						label: daffConfigurableProduct.configurableAttributes[0].values[2].label,
-						swatch_data: {
-							value: daffConfigurableProduct.configurableAttributes[0].values[2].swatch.value,
-							thumbnail: daffConfigurableProduct.configurableAttributes[0].values[0].swatch.thumbnail
-						}
+						label: daffConfigurableProduct.configurableAttributes[0].values[2].label
 					}
 				]
 			};
@@ -81,11 +77,7 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
 		it('should transform a MagentoConfigurableProductOptionsValue into a DaffConfigurableProductOptionValue', () => {
 			const magentoConfigurableOptionValue = {
 				value_index: parseInt(daffConfigurableProduct.configurableAttributes[0].values[0].value, 10),
-				label: daffConfigurableProduct.configurableAttributes[0].values[0].label,
-				swatch_data: {
-					value: daffConfigurableProduct.configurableAttributes[0].values[0].swatch.value,
-					thumbnail: daffConfigurableProduct.configurableAttributes[0].values[0].swatch.thumbnail
-				}
+				label: daffConfigurableProduct.configurableAttributes[0].values[0].label
 			};
 
 			expect(transformOptionValue(magentoConfigurableOptionValue)).toEqual(daffConfigurableProduct.configurableAttributes[0].values[0]);

@@ -21,27 +21,15 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 			values: [
 				{
 					label: 'Blue',
-					value_index: 0,
-					swatch_data: {
-						value: '#0000FF',
-						thumbnail: null
-					}
+					value_index: 0
 				},
 				{
 					label: 'Yellow',
-					value_index: 1,
-					swatch_data: {
-						value: '#FFFF00',
-						thumbnail: null
-					}
+					value_index: 1
 				},
 				{
 					label: 'Red',
-					value_index: 2,
-					swatch_data: {
-						value: '#FF0000',
-						thumbnail: null
-					}
+					value_index: 2
 				}
 			]
 		}
