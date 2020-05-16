@@ -5,13 +5,13 @@ import { DaffConfigurableProductFacadeInterface } from '@daffodil/product';
 
 export class MockDaffConfigurableProductFacade implements DaffConfigurableProductFacadeInterface {
 	getAppliedAttributes(id: string): BehaviorSubject<Dictionary<string>> {
-		return new BehaviorSubject(null);
+		return new BehaviorSubject({});
 	};
 	getPrice(id: string): BehaviorSubject<string> {
 		return new BehaviorSubject(null);
 	};
 	getUndeterminedAttributes(id: string): BehaviorSubject<Dictionary<string[]>> {
-		return new BehaviorSubject(null);
+		return new BehaviorSubject({});
 	};
 	dispatch() {};
 }
