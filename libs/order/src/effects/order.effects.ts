@@ -22,6 +22,9 @@ export class DaffOrderEffects<T extends DaffOrder> {
     @Inject(DaffOrderDriver) private driver: DaffOrderServiceInterface<T>,
   ) {}
 
+  /**
+   * An effect for the loading of an order.
+   */
   @Effect()
   get$ = this.actions$.pipe(
     ofType(DaffOrderActionTypes.OrderLoadAction),
@@ -31,6 +34,9 @@ export class DaffOrderEffects<T extends DaffOrder> {
     )),
   )
 
+  /**
+   * An effect for the list of orders.
+   */
   @Effect()
   list$ = this.actions$.pipe(
     ofType(DaffOrderActionTypes.OrderListAction),
