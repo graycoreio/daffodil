@@ -34,7 +34,7 @@ function transformMagentoBundledProductItemOption(option: MagentoBundledProductI
 	return {
 		id: option.id.toString(),
 		name: option.label,
-		price: option.price.toString(),
+		price: option.price,
 		quantity: option.quantity
 	}
 }

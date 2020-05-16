@@ -1,7 +1,7 @@
 {
 	"id": "22",
 	"url": "url",
-	"price": "23",
+	"price": 23,
 	"discount": {
 		"amount": null,
 		"percent": null
@@ -53,11 +53,15 @@
 			"appliedAttributes": {
 				"color": "0"
 			},
+<<<<<<< HEAD
 			"price": "20",
 			"discount": {
 				"amount": 2,
 				"percent": 10
 			},
+=======
+			"price": 20,
+>>>>>>> feat(product): change the type of DaffProduct.price to number
 			"id": "22-1",
 			"image": {
 				"id": "0",
@@ -69,11 +73,15 @@
 			"appliedAttributes": {
 				"color": "1"
 			},
+<<<<<<< HEAD
 			"price": "23",
 			"discount": {
 				"amount": 2,
 				"percent": 8.7
 			},
+=======
+			"price": 23,
+>>>>>>> feat(product): change the type of DaffProduct.price to number
 			"id": "22-2",
 			"image": {
 				"id": "0",
@@ -85,11 +93,15 @@
 			"appliedAttributes": {
 				"color": "2"
 			},
+<<<<<<< HEAD
 			"price": "23",
 			"discount": {
 				"amount": 2,
 				"percent": 8.7
 			},
+=======
+			"price": 23,
+>>>>>>> feat(product): change the type of DaffProduct.price to number
 			"id": "22-3",
 			"image": {
 				"id": "0",

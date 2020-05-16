@@ -13,7 +13,7 @@ export interface DaffProduct {
 	id: string;
 	type?: DaffProductTypeEnum;
 	url?: string;
-	price?: string;
+	price?: number;
 	discount?: DaffProductDiscount;
   name?: string;
   brand?: string;

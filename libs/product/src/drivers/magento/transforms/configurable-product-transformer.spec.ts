@@ -104,7 +104,7 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
 					price_range: {
 						maximum_price: {
 							regular_price: {
-								value: parseInt(daffConfigurableProduct.variants[0].price, 10),
+								value: daffConfigurableProduct.variants[0].price,
 								currency: null
 							},
 							discount: {

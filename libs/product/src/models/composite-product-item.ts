@@ -16,6 +16,6 @@ export interface DaffCompositeProductItem {
 export interface DaffCompositeProductItemOption extends DaffProduct {
 	id: string;
 	name?: string;
-	price?: string;
+	price?: number;
 	quantity: number;
 }

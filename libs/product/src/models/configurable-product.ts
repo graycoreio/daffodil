@@ -17,7 +17,7 @@ export interface DaffConfigurableProductAttribute extends DaffSortable {
 export interface DaffConfigurableProductVariant {
 	appliedAttributes: DaffProductVariantAttributesDictionary;
 	id: string;
-	price: string;
+	price: number;
 	discount: DaffProductDiscount;
 	image?: DaffProductImage;
 }

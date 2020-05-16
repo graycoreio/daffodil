@@ -17,7 +17,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 	type = DaffProductTypeEnum.Configurable;
 	id = faker.random.number(10000).toString();
 	url = faker.random.alphaNumeric(16);
-  price = faker.random.number(1500).toString();
+  price = faker.random.number(1500);
   name = faker.commerce.productName();
   brand = faker.company.companyName();
 	description = 'Lorem ipsum dolor sit amet, accumsan ullamcorper ei eam. Sint appetere ocurreret no per, et cum lorem disputationi. Sit ut magna delenit, assum vidisse vocibus sed ut. In aperiri malorum accusamus sea, novum mediocritatem ius at. Duo agam probo honestatis ut. Nec regione splendide cu, unum graeco vivendum in duo.'
@@ -59,7 +59,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 			appliedAttributes: {
 				color: '0'
 			},
-			price: this.stubPriceVariant1.toString(),
+			price: this.stubPriceVariant1,
 			discount: {
 				amount: this.stubDiscountVariant1,
 				percent: this.stubDiscountVariant1/this.stubPriceVariant1
@@ -70,7 +70,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 			appliedAttributes: {
 				color: '1'
 			},
-			price: this.stubPriceVariant2.toString(),
+			price: this.stubPriceVariant2,
 			discount: {
 				amount: this.stubDiscountVariant2,
 				percent: this.stubDiscountVariant2/this.stubPriceVariant2
@@ -81,7 +81,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 			appliedAttributes: {
 				color: '2'
 			},
-			price: this.stubPriceVariant3.toString(),
+			price: this.stubPriceVariant3,
 			discount: {
 				amount: this.stubDiscountVariant3,
 				percent: this.stubDiscountVariant3/this.stubPriceVariant3
