@@ -12,5 +12,13 @@ export class MockDaffGeographyFacade implements DaffGeographyFacadeInterface {
   countryCount$: BehaviorSubject<number> = new BehaviorSubject(null);
   countryEntities$: BehaviorSubject<Dictionary<DaffCountry>> = new BehaviorSubject(null);
 
+  getCountry(id) {
+    return new BehaviorSubject(null);
+  }
+
+  getCountrySubdivisions(id) {
+    return new BehaviorSubject([]);
+  }
+
   dispatch(action: Action) {};
 }

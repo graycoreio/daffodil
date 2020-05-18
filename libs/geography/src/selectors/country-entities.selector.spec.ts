@@ -28,6 +28,8 @@ describe('Geography | Selector | CountryEntities', () => {
     selectCountryEntities,
     selectCountryIds,
     selectCountryTotal,
+    selectCountry,
+    selectCountrySubdivisions
   } = getDaffCountryEntitySelectors();
 
   beforeEach(() => {
@@ -79,6 +81,24 @@ describe('Geography | Selector | CountryEntities', () => {
     it('should select the total number of countries', () => {
       const selector = store.pipe(select(selectCountryTotal));
       const expected = cold('a', {a: 1});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCountry', () => {
+    it('should select a specific country by ID', () => {
+      const selector = store.pipe(select(selectCountry, { id: mockCountry.id }));
+      const expected = cold('a', {a: mockCountry});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCountrySubdivisions', () => {
+    it('should select a specific country\'s subdivisions by ID', () => {
+      const selector = store.pipe(select(selectCountrySubdivisions, { id: mockCountry.id }));
+      const expected = cold('a', {a: mockCountry.subdivisions});
 
       expect(selector).toBeObservable(expected);
     });

@@ -5,7 +5,7 @@ import { Dictionary } from '@ngrx/entity';
 
 import { DaffGeographyFeatureState } from '../../reducers/public_api';
 import {
-  getDaffGeographySelectors
+  getDaffGeographySelectors, DaffGeographyAllSelectors
 } from '../../selectors/public_api';
 import { DaffCountry } from '../../models/country';
 import { DaffGeographyFacadeInterface } from './geography-facade.interface';
@@ -22,6 +22,9 @@ export class DaffGeographyFacade<T extends DaffCountry> implements DaffGeography
   countryCount$: Observable<number>;
   countryEntities$: Observable<Dictionary<T>>;
 
+  private _selectCountry: DaffGeographyAllSelectors<T>['selectCountry'];
+  private _selectCountrySubdivisions: DaffGeographyAllSelectors<T>['selectCountrySubdivisions'];
+
   constructor(private store: Store<DaffGeographyFeatureState<T>>) {
     const {
       selectCountryIds,
@@ -29,8 +32,13 @@ export class DaffGeographyFacade<T extends DaffCountry> implements DaffGeography
       selectAllCountries,
       selectCountryTotal,
       selectGeographyLoading,
-      selectGeographyErrors
+      selectGeographyErrors,
+      selectCountry,
+      selectCountrySubdivisions
     } = getDaffGeographySelectors<T>();
+
+    this._selectCountry = selectCountry;
+    this._selectCountrySubdivisions = selectCountrySubdivisions;
 
     this.loading$ = this.store.pipe(select(selectGeographyLoading));
     this.errors$ = this.store.pipe(select(selectGeographyErrors));
@@ -39,6 +47,14 @@ export class DaffGeographyFacade<T extends DaffCountry> implements DaffGeography
     this.countryIds$ = this.store.pipe(select(selectCountryIds));
     this.countryCount$ = this.store.pipe(select(selectCountryTotal));
     this.countryEntities$ = this.store.pipe(select(selectCountryEntities));
+  }
+
+  getCountry(id: T['id']): Observable<T> {
+    return this.store.pipe(select(this._selectCountry, { id }))
+  }
+
+  getCountrySubdivisions(id: T['id']): Observable<T['subdivisions']> {
+    return this.store.pipe(select(this._selectCountrySubdivisions, { id }))
   }
 
   dispatch(action: Action) {
