@@ -1,12 +1,14 @@
 import {
   createSelector,
-  MemoizedSelector
+  MemoizedSelector,
+	MemoizedSelectorWithProps
 } from '@ngrx/store';
 
 import { getDaffCartFeatureSelector } from '../cart-feature.selector';
 import { DaffCart } from '../../models/cart';
 import { DaffCartReducerState, DaffCartReducersState, DaffCartErrorType } from '../../reducers/public_api';
 import { DaffCartOrderResult } from '../../models/cart-order-result';
+import { DaffCartItem } from '../../models/cart-item';
 
 export interface DaffCartStateMemoizedSelectors<
   T extends DaffCart = DaffCart
@@ -39,6 +41,7 @@ export interface DaffCartStateMemoizedSelectors<
 	selectCartAvailableShippingMethods: MemoizedSelector<object, T['available_shipping_methods']>;
 	selectCartAvailablePaymentMethods: MemoizedSelector<object, T['available_payment_methods']>;
   selectIsCartEmpty: MemoizedSelector<object, boolean>;
+  selectCartItemDiscountedRowTotal: MemoizedSelectorWithProps<object, object, number>;
 }
 
 const createCartSelectors = <
@@ -152,6 +155,13 @@ const createCartSelectors = <
 		selectCartValue,
 		cart => !cart || !cart.items || cart.items.length === 0
   );
+	const selectCartItemDiscountedRowTotal = createSelector(
+		selectCartItems,
+		(cartItems: DaffCartItem[], props) => {
+			const cartItem = cartItems.find(item => item.item_id === props.id)
+			return cartItem.row_total - cartItem.total_discount;
+		}
+  );
 
 	return {
 		selectCartState,
@@ -181,7 +191,8 @@ const createCartSelectors = <
 		selectCartShippingInformation,
 		selectCartAvailableShippingMethods,
     selectCartAvailablePaymentMethods,
-    selectIsCartEmpty
+		selectIsCartEmpty,
+		selectCartItemDiscountedRowTotal
 	}
 }
 

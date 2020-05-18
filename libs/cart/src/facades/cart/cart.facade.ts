@@ -50,6 +50,8 @@ export class DaffCartFacade<
 	orderResult$: Observable<V>;
 	orderResultId$: Observable<V['id']>;
 
+	private _selectCartItemDiscountedRowTotal;
+
   constructor(private store: Store<DaffCartReducersState<T, V>>) {
 		const {
 			selectCartLoading,
@@ -82,8 +84,10 @@ export class DaffCartFacade<
       selectCartOrderLoading,
       selectCartOrderErrors,
       selectCartOrderValue,
-      selectCartOrderId,
+			selectCartOrderId,
+			selectCartItemDiscountedRowTotal
 		} = getDaffCartSelectors<T, V>();
+		this._selectCartItemDiscountedRowTotal = selectCartItemDiscountedRowTotal;
 
     this.loading$ = this.store.pipe(select(selectCartLoading));
 		this.cart$ = this.store.pipe(select(selectCartValue));
@@ -116,7 +120,11 @@ export class DaffCartFacade<
     this.orderResultErrors$ = this.store.pipe(select(selectCartOrderErrors));
     this.orderResult$ = this.store.pipe(select(selectCartOrderValue));
     this.orderResultId$ = this.store.pipe(select(selectCartOrderId));
-  }
+	}
+	
+	getCartItemDiscountedTotal(itemId: string | number): Observable<number> {
+		return this.store.pipe(select(this._selectCartItemDiscountedRowTotal, { id: itemId }));
+	}
 
   dispatch(action: Action) {
     this.store.dispatch(action);

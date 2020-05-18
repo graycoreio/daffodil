@@ -3,7 +3,7 @@ import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartFactory } from '@daffodil/cart/testing';
+import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 
 import { DaffCartLoadSuccess, DaffCartPlaceOrderSuccess } from '../../actions/public_api';
 import { daffCartReducers, DaffCartReducersState } from '../../reducers/public_api';
@@ -14,7 +14,8 @@ import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
 describe('Cart | Selector | Cart', () => {
   let store: Store<DaffCartReducersState>;
 
-  let cartFactory: DaffCartFactory;
+	let cartFactory: DaffCartFactory;
+	let cartItemFactory: DaffCartItemFactory;
 
   let orderId: string;
   let cart: DaffCart;
@@ -47,7 +48,8 @@ describe('Cart | Selector | Cart', () => {
 		selectCartShippingInformation,
 		selectCartAvailableShippingMethods,
 		selectCartAvailablePaymentMethods,
-    selectIsCartEmpty
+		selectIsCartEmpty,
+		selectCartItemDiscountedRowTotal
 	} = getCartSelectors();
 
   beforeEach(() => {
@@ -62,9 +64,12 @@ describe('Cart | Selector | Cart', () => {
     store = TestBed.get(Store);
 
     cartFactory = TestBed.get(DaffCartFactory);
+    cartItemFactory = TestBed.get(DaffCartItemFactory);
 
     orderId = 'id';
-    cart = cartFactory.create();
+    cart = cartFactory.create({
+			items: cartItemFactory.createMany(2)
+		});
     loading = false;
     errors = {
       [DaffCartErrorType.Cart]: [],
@@ -302,6 +307,16 @@ describe('Cart | Selector | Cart', () => {
     it('selects whether the cart is empty', () => {
       const selector = store.pipe(select(selectIsCartEmpty));
       const expected = cold('a', {a: cart.items.length === 0});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCartItemDiscountedRowTotal', () => {
+    it('selects the discounted total of the given cart item id', () => {
+			const cartItemId = cart.items[0].item_id;
+			const selector = store.pipe(select(selectCartItemDiscountedRowTotal, { id: cartItemId }));
+      const expected = cold('a', {a: cart.items[0].row_total - cart.items[0].total_discount});
 
       expect(selector).toBeObservable(expected);
     });
