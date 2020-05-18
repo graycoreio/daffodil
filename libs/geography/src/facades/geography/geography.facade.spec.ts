@@ -12,7 +12,7 @@ import {
   daffGeographyReducers,
   DAFF_GEOGRAPHY_STORE_FEATURE_KEY
 } from '@daffodil/geography';
-import { DaffCountryFactory } from '@daffodil/geography/testing';
+import { DaffCountryFactory, DaffSubdivisionFactory } from '@daffodil/geography/testing';
 
 import { DaffGeographyFacade } from './geography.facade';
 
@@ -20,6 +20,7 @@ describe('DaffGeographyFacade', () => {
   let store: MockStore<{ [DAFF_GEOGRAPHY_STORE_FEATURE_KEY]: Partial<DaffGeographyFeatureState<DaffCountry>> }>;
   let facade: DaffGeographyFacade<DaffCountry>;
   let countryFactory: DaffCountryFactory;
+  let subdivisionFactory: DaffSubdivisionFactory;
 
   let mockCountry: DaffCountry;
   let countryId: DaffCountry['id'];
@@ -40,8 +41,10 @@ describe('DaffGeographyFacade', () => {
     store = TestBed.get(Store);
     facade = TestBed.get(DaffGeographyFacade);
     countryFactory = TestBed.get(DaffCountryFactory);
+    subdivisionFactory = TestBed.get(DaffSubdivisionFactory);
 
     mockCountry = countryFactory.create();
+    mockCountry.subdivisions = subdivisionFactory.createMany(3);
     countryId = mockCountry.id;
     errors = [];
   });
@@ -135,6 +138,32 @@ describe('DaffGeographyFacade', () => {
       const expected = cold('a', { a: {[countryId]: mockCountry} });
       store.dispatch(new DaffCountryLoadSuccess(mockCountry));
       expect(facade.countryEntities$).toBeObservable(expected);
+    });
+  });
+
+  describe('getCountry | getting a specific country by ID', () => {
+    it('should initially be undefined', () => {
+      const expected = cold('a', { a: undefined });
+      expect(facade.getCountry(mockCountry.id)).toBeObservable(expected);
+    });
+
+    it('should be the country upon a successful country load', () => {
+      const expected = cold('a', { a: mockCountry });
+      store.dispatch(new DaffCountryLoadSuccess(mockCountry));
+      expect(facade.getCountry(mockCountry.id)).toBeObservable(expected);
+    });
+  });
+
+  describe('getCountrySubdivisions | getting a specific country\'s subdivisions by country ID', () => {
+    it('should initially be an empty array', () => {
+      const expected = cold('a', { a: [] });
+      expect(facade.getCountrySubdivisions(mockCountry.id)).toBeObservable(expected);
+    });
+
+    it('should be the country\'s subdivisions upon a successful country load', () => {
+      const expected = cold('a', { a: mockCountry.subdivisions });
+      store.dispatch(new DaffCountryLoadSuccess(mockCountry));
+      expect(facade.getCountrySubdivisions(mockCountry.id)).toBeObservable(expected);
     });
   });
 });

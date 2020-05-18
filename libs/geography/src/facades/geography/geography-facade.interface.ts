@@ -13,4 +13,7 @@ export interface DaffGeographyFacadeInterface<T extends DaffCountry = DaffCountr
   countryIds$: Observable<(string | number)[]>;
   countryCount$: Observable<number>;
   countryEntities$: Observable<Dictionary<T>>;
+
+  getCountry(id: T['id']): Observable<T>;
+  getCountrySubdivisions(id: T['id']): Observable<T['subdivisions']>;
 }
