@@ -158,12 +158,8 @@ const createCartSelectors = <
 	const selectCartItemDiscountedRowTotal = createSelector(
 		selectCartItems,
 		(cartItems: DaffCartItem[], props) => {
-			return cartItems.reduce((acc: number, item: DaffCartItem) => {
-				if(item.item_id === props.id) {
-					return item.row_total - item.total_discount
-				}
-				return acc;
-			}, null)
+			const cartItem = cartItems.find(item => item.item_id === props.id)
+			return cartItem.row_total - cartItem.total_discount;
 		}
   );
 
