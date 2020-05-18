@@ -31,7 +31,7 @@ import {
 
 import { DaffCartFacade } from './cart.facade';
 import { DaffCartReducersState, daffCartReducers, initialState } from '../../reducers/public_api';
-import { DaffCartFactory } from '@daffodil/cart/testing';
+import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
 import { DaffCartErrorType } from '../../reducers/errors/cart-error-type.enum';
 import { DaffCart } from '../../models/cart';
@@ -40,7 +40,8 @@ import { DaffCartOrderResult } from '../../models/cart-order-result';
 describe('DaffCartFacade', () => {
   let store: MockStore<{ product: Partial<DaffCartReducersState> }>;
   let facade: DaffCartFacade;
-  let cartFactory: DaffCartFactory;
+	let cartFactory: DaffCartFactory;
+	let cartItemFactory: DaffCartItemFactory;
 
   let errors: DaffCartErrors;
   let mockCartOrderResult: DaffCartOrderResult;
@@ -60,6 +61,7 @@ describe('DaffCartFacade', () => {
     store = TestBed.get(Store);
     facade = TestBed.get(DaffCartFacade);
     cartFactory = TestBed.get(DaffCartFactory);
+    cartItemFactory = TestBed.get(DaffCartItemFactory);
 
     errors = {
       [DaffCartErrorType.Cart]: [],
@@ -503,5 +505,17 @@ describe('DaffCartFacade', () => {
         expect(facade.orderResultId$).toBeObservable(expected);
       });
     });
+  });
+
+  describe('getCartItemDiscountedTotal', () => {
+			
+		it('should be the cart order result ID', () => {
+			const cart = cartFactory.create({
+				items: cartItemFactory.createMany(2)
+			});
+      const expected = cold('a', { a: cart.items[0].row_total - cart.items[0].total_discount});
+      store.dispatch(new DaffCartLoadSuccess(cart));
+			expect(facade.getCartItemDiscountedTotal(cart.items[0].item_id)).toBeObservable(expected);
+		});
   });
 });
