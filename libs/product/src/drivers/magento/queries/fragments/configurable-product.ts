@@ -23,7 +23,7 @@ export const magentoConfigurableProductFragment = gql`
 			product {
 				sku
 				price_range {
-					minimum_price {
+					maximum_price {
 						regular_price {
 							value
 							currency
