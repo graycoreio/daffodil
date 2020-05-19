@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.3](https://github.com/graycoreio/daffodil/compare/v0.5.2...v0.5.3) (2020-05-19)
+
+
+### Features
+
+* **cart:** add selector for cart item discounted total ([#900](https://github.com/graycoreio/daffodil/issues/900)) ([5a5b65a](https://github.com/graycoreio/daffodil/commit/5a5b65a829381aa470ce58b8ebd77451b4b5d1ae))
+* **design:** add sizeable as a core interface ([#896](https://github.com/graycoreio/daffodil/issues/896)) ([20b5b39](https://github.com/graycoreio/daffodil/commit/20b5b39a357eb21d0c4d18423b70e318f054e3b0))
+* **geography:** add country and subdivision selectors ([#902](https://github.com/graycoreio/daffodil/issues/902)) ([674c09a](https://github.com/graycoreio/daffodil/commit/674c09a41b56cc1deb1ecb2bc059b5292355cbb1))
+* **order:** add effects for loading and listing orders ([#899](https://github.com/graycoreio/daffodil/issues/899)) ([8e28e29](https://github.com/graycoreio/daffodil/commit/8e28e290858dcddd94b7bb7c7ca319f515e88f58))
+
 ### [0.5.2](https://github.com/graycoreio/daffodil/compare/v0.5.1...v0.5.2) (2020-05-15)
 
 
