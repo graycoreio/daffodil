@@ -1,6 +1,6 @@
 import { DaffSortable } from '@daffodil/core';
 
-import { DaffProduct } from './product';
+import { DaffProduct, DaffProductDiscount } from './product';
 import { DaffProductImage } from './product-image';
 
 export interface DaffConfigurableProduct extends DaffProduct {
@@ -18,6 +18,7 @@ export interface DaffConfigurableProductVariant {
 	appliedAttributes: DaffProductVariantAttributesDictionary;
 	id: string;
 	price: string;
+	discount: DaffProductDiscount;
 	image?: DaffProductImage;
 }
 

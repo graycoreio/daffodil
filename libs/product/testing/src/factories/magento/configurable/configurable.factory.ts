@@ -9,6 +9,13 @@ import { MagentoProductTypeEnum, MagentoConfigurableProduct } from '@daffodil/pr
 import { MockMagentoCoreProduct } from '../core/product.factory';
 
 export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct implements MagentoConfigurableProduct {
+
+	private priceVariant1 = faker.random.number(1000);
+	private discountVariant1 = faker.random.number({min: 0, max: this.priceVariant1 - 1});
+	private priceVariant2 = faker.random.number(1000);
+	private discountVariant2 = faker.random.number({min: 0, max: this.priceVariant2 - 1});
+	private priceVariant3 = faker.random.number(1000);
+	private discountVariant3 = faker.random.number({min: 0, max: this.priceVariant3 - 1});
   __typename = MagentoProductTypeEnum.ConfigurableProduct;
 	configurable_options = [
 		{
@@ -65,8 +72,13 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 						__typename: 'ProductPrice',
 						regular_price: {
 							__typename: 'Money',
-							value: faker.random.number(1000),
+							value: this.priceVariant1,
 							currency: null
+						},
+						discount: {
+							__typename: 'ProductDiscount',
+							amount_off: this.discountVariant1,
+							percent_off: this.discountVariant1/this.priceVariant1
 						}
 					}
 				}
@@ -102,8 +114,12 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 						__typename: 'ProductPrice',
 						regular_price: {
 							__typename: 'Money',
-							value: faker.random.number(1000),
+							value: this.priceVariant2,
 							currency: null
+						},
+						discount: {
+							amount_off: this.discountVariant2,
+							percent_off: this.discountVariant2/this.priceVariant2
 						}
 					}
 				}
@@ -139,8 +155,12 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 						__typename: 'ProductPrice',
 						regular_price: {
 							__typename: 'Money',
-							value: faker.random.number(1000),
+							value: this.priceVariant3,
 							currency: null
+						},
+						discount: {
+							amount_off: this.discountVariant3,
+							percent_off: this.discountVariant3/this.priceVariant3
 						}
 					}
 				}

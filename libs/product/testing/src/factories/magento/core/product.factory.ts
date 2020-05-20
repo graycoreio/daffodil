@@ -7,6 +7,9 @@ import {
 import { MagentoProduct, MagentoProductTypeEnum } from '@daffodil/product';
 
 export class MockMagentoCoreProduct implements MagentoProduct {
+	private price = faker.random.number(1000);
+	private discount = faker.random.number({min: 0, max: this.price - 1});
+	
 	__typename = MagentoProductTypeEnum.SimpleProduct;
   id = faker.random.number(1000);
   url_key = faker.random.alphaNumeric(16);
@@ -32,8 +35,13 @@ export class MockMagentoCoreProduct implements MagentoProduct {
       __typename: 'ProductPrice',
 			regular_price: {
         __typename: 'Money',
-				value: faker.random.number(1000),
+				value: this.price,
 				currency: null
+			},
+			discount: {
+				__typename: 'ProductDiscount',
+				amount_off: this.discount,
+				percent_off: this.discount/this.price
 			}
 		}
   };
@@ -41,7 +49,7 @@ export class MockMagentoCoreProduct implements MagentoProduct {
     __typename: 'ComplexTextValue',
 		html: faker.random.words(3)
 	}
-  media_gallery_entries = [];
+	media_gallery_entries = [];
 }
 
 @Injectable({

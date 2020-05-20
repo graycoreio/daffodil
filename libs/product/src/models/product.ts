@@ -13,9 +13,15 @@ export interface DaffProduct {
 	id: string;
 	type?: DaffProductTypeEnum;
 	url?: string;
-  price?: string;
+	price?: string;
+	discount?: DaffProductDiscount;
   name?: string;
   brand?: string;
   description?: string;
   images?: DaffProductImage[];
+}
+
+export interface DaffProductDiscount {
+	amount: number;
+	percent: number;
 }

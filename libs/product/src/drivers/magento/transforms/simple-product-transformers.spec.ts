@@ -22,6 +22,10 @@ describe('DaffMagentoSimpleProductTransformerService', () => {
 			url: stubMagentoProduct.url_key,
 			name: stubMagentoProduct.name,
 			price: stubMagentoProduct.price_range.maximum_price.regular_price.value.toString(),
+			discount: {
+				amount: stubMagentoProduct.price_range.maximum_price.discount.amount_off,
+				percent: stubMagentoProduct.price_range.maximum_price.discount.percent_off
+			},
       images: [
         { url: stubMagentoProduct.image.url, id: '0', label: stubMagentoProduct.image.label},
       ],

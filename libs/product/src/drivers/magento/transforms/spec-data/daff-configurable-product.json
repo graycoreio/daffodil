@@ -1,7 +1,11 @@
 {
 	"id": "22",
 	"url": "url",
-  "price": "23",
+	"price": "23",
+	"discount": {
+		"amount": null,
+		"percent": null
+	},
 	"name": "Configurable T-Shirt",
 	"images": [
 		{
@@ -50,6 +54,10 @@
 				"color": "0"
 			},
 			"price": "20",
+			"discount": {
+				"amount": 2,
+				"percent": 10
+			},
 			"id": "22-1",
 			"image": {
 				"id": "0",
@@ -62,6 +70,10 @@
 				"color": "1"
 			},
 			"price": "23",
+			"discount": {
+				"amount": 2,
+				"percent": 8.7
+			},
 			"id": "22-2",
 			"image": {
 				"id": "0",
@@ -74,6 +86,10 @@
 				"color": "2"
 			},
 			"price": "23",
+			"discount": {
+				"amount": 2,
+				"percent": 8.7
+			},
 			"id": "22-3",
 			"image": {
 				"id": "0",

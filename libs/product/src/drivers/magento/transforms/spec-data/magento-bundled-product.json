@@ -1,0 +1,53 @@
+{
+	"__typename": "BundleProduct",
+	"id": 213,
+	"image": {
+		"label": "image-label",
+		"url": "image-url"
+	},
+	"thumbnail": {
+		"url": "thumbnail-url",
+		"label": "thumbnail-label"
+	},
+	"sku": "22",
+	"url_key": "url",
+	"description": {
+		"html": "Lorem ipsum dolor sit amet, accumsan ullamcorper ei eam. Sint appetere ocurreret no per, et cum lorem disputationi. Sit ut magna delenit, assum vidisse vocibus sed ut. In aperiri malorum accusamus sea, novum mediocritatem ius at. Duo agam probo honestatis ut. Nec regione splendide cu, unum graeco vivendum in duo."
+	},
+	"price_range": {
+		"maximum_price": {
+			"regular_price": {
+				"value": 23, 
+				"currency": null
+			},
+			"discount": {
+				"amount_off": 2,
+				"percent_off": 8.7
+			}
+		}
+	},
+	"name": "Group of Products",
+	"items": [
+		{
+			"id": "id1",
+			"sku": "22-1",
+			"required": false,
+			"title": "Options",
+			"type": "select",
+			"options": [
+				{
+					"id": "option-id-1",
+					"label": "Option 1",
+					"price": 10,
+					"quantity": 1
+				},
+				{
+					"id": "option-id-2",
+					"label": "Option 2",
+					"price": 12,
+					"quantity": 1 
+				}
+			]
+		}
+	]
+}

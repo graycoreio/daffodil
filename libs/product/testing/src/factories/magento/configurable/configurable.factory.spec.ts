@@ -39,7 +39,8 @@ describe('Product | Testing | Factories | MagentoConfigurableProductFactory', ()
       expect(result.short_description).toBeDefined();
       expect(result.media_gallery_entries).toBeDefined();
       expect(result.sku).toBeDefined();
-      expect(result.price_range.maximum_price).toBeDefined();
+      expect(result.price_range.maximum_price.regular_price).toBeDefined();
+      expect(result.price_range.maximum_price.discount).toBeDefined();
     });
   });
 });

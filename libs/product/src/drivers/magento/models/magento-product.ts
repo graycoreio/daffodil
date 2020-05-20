@@ -24,8 +24,12 @@ export interface MagentoProduct {
   price_range: {
 		maximum_price: {
 			regular_price: {
-				value: number
+				value: number,
 				currency: any
+			}
+			discount: {
+				amount_off: number,
+				percent_off: number
 			}
 		}
 	};
