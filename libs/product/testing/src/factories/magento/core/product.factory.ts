@@ -7,9 +7,6 @@ import {
 import { MagentoProduct, MagentoProductTypeEnum } from '@daffodil/product';
 
 export class MockMagentoCoreProduct implements MagentoProduct {
-	private price = faker.random.number(1000);
-	private discount = faker.random.number({min: 0, max: this.price - 1});
-	
 	__typename = MagentoProductTypeEnum.SimpleProduct;
   id = faker.random.number(1000);
   url_key = faker.random.alphaNumeric(16);
@@ -35,13 +32,13 @@ export class MockMagentoCoreProduct implements MagentoProduct {
       __typename: 'ProductPrice',
 			regular_price: {
         __typename: 'Money',
-				value: this.price,
+				value: faker.random.number({ min: 100, max: 1000}),
 				currency: null
 			},
 			discount: {
 				__typename: 'ProductDiscount',
-				amount_off: this.discount,
-				percent_off: this.discount/this.price
+				amount_off: faker.random.number(99),
+				percent_off: faker.random.number(99)
 			}
 		}
   };
