@@ -17,6 +17,8 @@ import { DaffInMemoryBackendCartService } from './cart/cart.service';
 import { DaffInMemoryBackendCartItemsService } from './cart-items/cart-items.service';
 import { DaffInMemoryBackendCartOrderService } from './cart-order/cart-order.service';
 import { DaffInMemoryBackendCartCouponService } from './cart-coupon/cart-coupon.service';
+import { DaffInMemoryBackendCartShippingAddressService } from './cart-shipping-address/cart-shipping-address.service';
+import { DaffInMemoryBackendCartBillingAddressService } from './cart-billing-address/cart-billing-address.service';
 
 describe('DaffInMemoryBackendCartRootService | Unit', () => {
   let service: DaffInMemoryBackendCartRootService;
@@ -25,6 +27,8 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
   let cartItemsBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartItemsService>;
   let cartOrderBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartOrderService>;
   let cartCouponBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartCouponService>;
+  let cartShippingAddressBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartShippingAddressService>;
+  let cartBillingAddressBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartBillingAddressService>;
 
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
@@ -57,6 +61,14 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
         {
           provide: DaffInMemoryBackendCartCouponService,
           useValue: jasmine.createSpyObj('DaffInMemoryBackendCartCouponService', ['get', 'post', 'delete'])
+        },
+        {
+          provide: DaffInMemoryBackendCartShippingAddressService,
+          useValue: jasmine.createSpyObj('DaffInMemoryBackendCartShippingAddressService', ['get', 'put'])
+        },
+        {
+          provide: DaffInMemoryBackendCartBillingAddressService,
+          useValue: jasmine.createSpyObj('DaffInMemoryBackendCartBillingAddressService', ['get', 'put'])
         }
       ]
     });
@@ -66,6 +78,8 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
     cartItemsBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartItemsService);
     cartOrderBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartOrderService);
     cartCouponBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartCouponService);
+    cartShippingAddressBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartShippingAddressService);
+    cartBillingAddressBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartBillingAddressService);
 
     cartFactory = TestBed.get(DaffCartFactory);
     cartItemFactory = TestBed.get(DaffCartItemFactory);
@@ -162,6 +176,34 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
         expect(cartCouponBackendServiceSpy.get).toHaveBeenCalledWith(reqInfoStub);
       });
     });
+
+    describe('when the collectionName is cart-shipping-address', () => {
+      let result;
+
+      beforeEach(() => {
+        reqInfoStub.collectionName = 'cart-shipping-address';
+
+        result = service.get(reqInfoStub);
+      });
+
+      it('should delegate the request to the cart shipping address service', () => {
+        expect(cartShippingAddressBackendServiceSpy.get).toHaveBeenCalledWith(reqInfoStub);
+      });
+    });
+
+    describe('when the collectionName is cart-billing-address', () => {
+      let result;
+
+      beforeEach(() => {
+        reqInfoStub.collectionName = 'cart-billing-address';
+
+        result = service.get(reqInfoStub);
+      });
+
+      it('should delegate the request to the cart billing address service', () => {
+        expect(cartBillingAddressBackendServiceSpy.get).toHaveBeenCalledWith(reqInfoStub);
+      });
+    });
   });
 
   describe('processing a post request', () => {
@@ -242,6 +284,34 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
 
       it('should delegate the request to the cart items service', () => {
         expect(cartItemsBackendServiceSpy.put).toHaveBeenCalledWith(reqInfoStub);
+      });
+    });
+
+    describe('when the collectionName is cart-shipping-address', () => {
+      let result;
+
+      beforeEach(() => {
+        reqInfoStub.collectionName = 'cart-shipping-address';
+
+        result = service.put(reqInfoStub);
+      });
+
+      it('should delegate the request to the cart shipping address service', () => {
+        expect(cartShippingAddressBackendServiceSpy.put).toHaveBeenCalledWith(reqInfoStub);
+      });
+    });
+
+    describe('when the collectionName is cart-billing-address', () => {
+      let result;
+
+      beforeEach(() => {
+        reqInfoStub.collectionName = 'cart-billing-address';
+
+        result = service.put(reqInfoStub);
+      });
+
+      it('should delegate the request to the cart billing address service', () => {
+        expect(cartBillingAddressBackendServiceSpy.put).toHaveBeenCalledWith(reqInfoStub);
       });
     });
   });

@@ -8,6 +8,8 @@ import { DaffInMemoryBackendCartService } from './cart/cart.service';
 import { DaffInMemoryBackendCartItemsService } from './cart-items/cart-items.service';
 import { DaffInMemoryBackendCartOrderService } from './cart-order/cart-order.service';
 import { DaffInMemoryBackendCartCouponService } from './cart-coupon/cart-coupon.service';
+import { DaffInMemoryBackendCartShippingAddressService } from './cart-shipping-address/cart-shipping-address.service';
+import { DaffInMemoryBackendCartBillingAddressService } from './cart-billing-address/cart-billing-address.service';
 
 /**
  * The root cart in-memory backend.
@@ -26,6 +28,8 @@ export class DaffInMemoryBackendCartRootService implements InMemoryDbService, Da
     'cart-items',
     'cart-order',
     'cart-coupon',
+    'cart-shipping-address',
+    'cart-billing-address',
   ]
 
   public carts: DaffCart[] = [];
@@ -35,6 +39,8 @@ export class DaffInMemoryBackendCartRootService implements InMemoryDbService, Da
     private cartItemsService: DaffInMemoryBackendCartItemsService,
     private cartOrderService: DaffInMemoryBackendCartOrderService,
     private cartCouponService: DaffInMemoryBackendCartCouponService,
+    private cartShippingAddressService: DaffInMemoryBackendCartShippingAddressService,
+    private cartBillingAddressService: DaffInMemoryBackendCartBillingAddressService,
   ) {}
 
   createDb(reqInfo: RequestInfo) {
@@ -81,6 +87,12 @@ export class DaffInMemoryBackendCartRootService implements InMemoryDbService, Da
 
       case 'cart-coupon':
         return this.cartCouponService[reqInfo.method](reqInfo);
+
+      case 'cart-shipping-address':
+        return this.cartShippingAddressService[reqInfo.method](reqInfo);
+
+      case 'cart-billing-address':
+        return this.cartBillingAddressService[reqInfo.method](reqInfo);
 
       default:
         return reqInfo.utils.createResponse$(() => ({
