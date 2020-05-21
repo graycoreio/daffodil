@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.5](https://github.com/graycoreio/daffodil/compare/v0.5.4...v0.5.5) (2020-05-21)
+
+
+### Features
+
+* **product:** add discount field to DaffProduct ([#905](https://github.com/graycoreio/daffodil/issues/905)) ([d92b07c](https://github.com/graycoreio/daffodil/commit/d92b07cc309644c92d5ae21b31db35f0e0d6d2ef))
+
 ### [0.5.4](https://github.com/graycoreio/daffodil/compare/v0.5.3...v0.5.4) (2020-05-19)
 
 
