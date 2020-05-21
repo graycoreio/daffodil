@@ -1,4 +1,4 @@
-import { DaffProduct, DaffProductTypeEnum } from '../../../models/product';
+import { DaffProduct, DaffProductTypeEnum, DaffProductDiscount } from '../../../models/product';
 import { MagentoProduct } from '../models/magento-product';
 
 /**
@@ -12,6 +12,7 @@ export function transformMagentoSimpleProduct(product: MagentoProduct, mediaUrl:
 		url: product.url_key,
 		name: product.name,
 		price: getPrice(product),
+		discount: getDiscount(product),
 		images: [
 			{ url: product.image.url, id: '0', label: product.image.label},
 			...transformMediaGalleryEntries(product, mediaUrl)
@@ -24,11 +25,21 @@ export function transformMagentoSimpleProduct(product: MagentoProduct, mediaUrl:
  * A function for null checking an object.
  */
 function getPrice(product: MagentoProduct): string {
-	return !product.price_range || 
-		!product.price_range.maximum_price || 
-		!product.price_range.maximum_price.regular_price || 
-		!!product.price_range.maximum_price.regular_price.value !== null
+	return product.price_range && 
+		product.price_range.maximum_price && 
+		product.price_range.maximum_price.regular_price && 
+		product.price_range.maximum_price.regular_price.value !== null
 	? product.price_range.maximum_price.regular_price.value.toString() : '';
+}
+
+function getDiscount(product: MagentoProduct): DaffProductDiscount {
+	return product.price_range && 
+		product.price_range.maximum_price && 
+		product.price_range.maximum_price.discount 
+		? { 
+			amount: product.price_range.maximum_price.discount.amount_off,
+			percent: product.price_range.maximum_price.discount.percent_off
+		} : { amount: null, percent: null }
 }
 
 function transformMediaGalleryEntries(product: MagentoProduct, mediaUrl: string) {

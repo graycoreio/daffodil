@@ -1,4 +1,4 @@
-import { DaffProductTypeEnum } from '../../../models/product';
+import { DaffProductTypeEnum, DaffProductDiscount } from '../../../models/product';
 import { transformMagentoSimpleProduct } from './simple-product-transformers';
 import { 
 	MagentoConfigurableProduct, 
@@ -50,6 +50,7 @@ export function transformVariant(variant: MagentoConfigurableProductVariant): Da
 		id: variant.product.sku,
 		appliedAttributes: transformVariantAttributes(variant.attributes),
 		price: getPrice(variant.product),
+		discount: getDiscount(variant.product),
 		image: {
 			id: '0',
 			url: variant.product.image.url,
@@ -74,9 +75,19 @@ export function transformVariantAttributes(attributes: MagentoConfigurableAttrib
  * A function for null checking an object.
  */
 function getPrice(product: MagentoProduct): string {
-	return !product.price_range || 
-		!product.price_range.maximum_price || 
-		!product.price_range.maximum_price.regular_price || 
-		!!product.price_range.maximum_price.regular_price.value !== null
+	return product.price_range && 
+		product.price_range.maximum_price && 
+		product.price_range.maximum_price.regular_price && 
+		product.price_range.maximum_price.regular_price.value !== null
 	? product.price_range.maximum_price.regular_price.value.toString() : '';
+}
+
+function getDiscount(product: MagentoProduct): DaffProductDiscount {
+	return product.price_range && 
+		product.price_range.maximum_price && 
+		product.price_range.maximum_price.discount 
+		? { 
+			amount: product.price_range.maximum_price.discount.amount_off,
+			percent: product.price_range.maximum_price.discount.percent_off
+		} : { amount: null, percent: null }
 }

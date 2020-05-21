@@ -19,7 +19,8 @@
 			"regular_price": {
 				"value": 23, 
 				"currency": null
-			}
+			},
+			"discount": null
 		}
 	},
 	"name": "Configurable T-Shirt",
@@ -78,6 +79,10 @@
 						"regular_price": {
 							"value": 20,
 							"currency": null
+						},
+						"discount": {
+							"amount_off": 2,
+							"percent_off": 10
 						}
 					}
 				},
@@ -107,6 +112,10 @@
 						"regular_price": {
 							"value": 23,
 							"currency": null
+						},
+						"discount": {
+							"amount_off": 2,
+							"percent_off": 8.7
 						}
 					}
 				},
@@ -136,6 +145,10 @@
 						"regular_price": {
 							"value": 23,
 							"currency": null
+						},
+						"discount": {
+							"amount_off": 2,
+							"percent_off": 8.7
 						}
 					}
 				},

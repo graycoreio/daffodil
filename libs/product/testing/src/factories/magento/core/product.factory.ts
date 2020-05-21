@@ -32,8 +32,13 @@ export class MockMagentoCoreProduct implements MagentoProduct {
       __typename: 'ProductPrice',
 			regular_price: {
         __typename: 'Money',
-				value: faker.random.number(1000),
+				value: faker.random.number({ min: 100, max: 1000}),
 				currency: null
+			},
+			discount: {
+				__typename: 'ProductDiscount',
+				amount_off: faker.random.number(99),
+				percent_off: faker.random.number(99)
 			}
 		}
   };
@@ -41,7 +46,7 @@ export class MockMagentoCoreProduct implements MagentoProduct {
     __typename: 'ComplexTextValue',
 		html: faker.random.words(3)
 	}
-  media_gallery_entries = [];
+	media_gallery_entries = [];
 }
 
 @Injectable({

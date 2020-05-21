@@ -32,6 +32,7 @@ describe('Product | Testing | Factories | DaffProductFactory', () => {
 			expect(result.id).toBeDefined();
       expect(result.url).toBeDefined();
       expect(result.price).toBeDefined();
+      expect(result.discount).toBeDefined();
       expect(result.name).toBeDefined();
       expect(result.brand).toBeDefined(); 
       expect(result.description).toBeDefined();     

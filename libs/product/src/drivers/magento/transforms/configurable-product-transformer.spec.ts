@@ -106,6 +106,10 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
 							regular_price: {
 								value: parseInt(daffConfigurableProduct.variants[0].price, 10),
 								currency: null
+							},
+							discount: {
+								amount_off: daffConfigurableProduct.variants[0].discount.amount,
+								percent_off: daffConfigurableProduct.variants[0].discount.percent
 							}
 						}
 					},

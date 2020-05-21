@@ -16,6 +16,10 @@ export const magentoProductFragment = gql`
 					value
 					currency
 				}
+				discount {
+					amount_off
+					percent_off
+				}
 			}
 		}
 		image {
