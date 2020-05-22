@@ -21,20 +21,18 @@ This overview assumes that you have already set up an Angular project and have g
 
 ## Setting up your AppModule
 
-To get started, import the `StoreModule` and the `DaffNewsletterModule` at the top of your app.module file.
+To get started, import one of the libraries' associated driver modules inside your `app.module`. In this example, we will be using the [`DaffNewsletterInMemoryDriverModule`](./drivers/in-memory-driver.md), as it can be used quickly with little to no setup. Afterwards, also import `StoreModule.forRoot({})`, as this will be relevant later on when utilizing the redux and state management features of the newsletter module.
 
 ```typescript
+
+
 import { DaffNewsletterModule } from '@daffodil/newsletter';
 import { StoreModule } from '@ngrx/store';
-```
 
-Then import the `DaffNewsletterModule` in your app.module. Afterwards, also import `StoreModule.forRoot({})`, as this will be relevant later on when utilizing the redux and state management features of the newsletter module.
-
-```typescript
 @ngModule({
   imports:[
     StoreModule.forRoot({}),
-    DaffNewsletterModule
+    DaffNewsletterInMemoryDriverModule.forRoot(),
   ]
 })
 ```

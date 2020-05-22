@@ -23,7 +23,7 @@ This overview assumes that you have already set up an Angular project and have g
 
 ## Setting up your AppModule
 
-To get started, import the `DaffContactModule` in your app.module. Next, import `StoreModule.forRoot({})`, which will be relevant later on when utilizing the redux and state management features of the contact module.
+To get started, import one of the libraries' associated driver modules inside your `app.module`. In this example, we will be using the `DaffContactInMemoryDriverModule`, as it can be used quickly with little to no setup. Next, import `StoreModule.forRoot({})`, which will be relevant later on when utilizing the redux and state management features of the contact module.
 
 ```typescript
 @ngModule({
