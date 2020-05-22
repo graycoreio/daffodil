@@ -49,7 +49,8 @@ describe('Cart | Selector | Cart', () => {
 		selectCartAvailableShippingMethods,
 		selectCartAvailablePaymentMethods,
 		selectIsCartEmpty,
-		selectCartItemDiscountedRowTotal
+    selectCartItemDiscountedRowTotal,
+    selectCanPlaceOrder
 	} = getCartSelectors();
 
   beforeEach(() => {
@@ -317,6 +318,16 @@ describe('Cart | Selector | Cart', () => {
 			const cartItemId = cart.items[0].item_id;
 			const selector = store.pipe(select(selectCartItemDiscountedRowTotal, { id: cartItemId }));
       const expected = cold('a', {a: cart.items[0].row_total - cart.items[0].total_discount});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCanPlaceOrder', () => {
+    it('selects whether the order has all the required fields', () => {
+      const canPlaceOrder = cart.items.length > 0 && cart.billing_address && cart.shipping_address && cart.shipping_information && !!cart.payment;
+			const selector = store.pipe(select(selectCanPlaceOrder));
+      const expected = cold('a', {a: canPlaceOrder});
 
       expect(selector).toBeObservable(expected);
     });

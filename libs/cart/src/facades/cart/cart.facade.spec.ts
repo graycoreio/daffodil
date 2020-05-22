@@ -28,10 +28,16 @@ import {
   DaffCartPlaceOrderSuccess,
   DaffCartCouponListFailure
 } from '@daffodil/cart';
+import {
+  DaffCartFactory,
+  DaffCartItemFactory,
+  DaffCartAddressFactory,
+  DaffCartPaymentFactory,
+  DaffCartShippingRateFactory
+} from '@daffodil/cart/testing';
 
 import { DaffCartFacade } from './cart.facade';
 import { DaffCartReducersState, daffCartReducers, initialState } from '../../reducers/public_api';
-import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
 import { DaffCartErrorType } from '../../reducers/errors/cart-error-type.enum';
 import { DaffCart } from '../../models/cart';
@@ -41,7 +47,10 @@ describe('DaffCartFacade', () => {
   let store: MockStore<{ product: Partial<DaffCartReducersState> }>;
   let facade: DaffCartFacade;
 	let cartFactory: DaffCartFactory;
-	let cartItemFactory: DaffCartItemFactory;
+  let cartItemFactory: DaffCartItemFactory;
+  let cartAddressFactory: DaffCartAddressFactory;
+  let paymentFactory: DaffCartPaymentFactory;
+  let shippingMethodFactory: DaffCartShippingRateFactory;
 
   let errors: DaffCartErrors;
   let mockCartOrderResult: DaffCartOrderResult;
@@ -62,6 +71,9 @@ describe('DaffCartFacade', () => {
     facade = TestBed.get(DaffCartFacade);
     cartFactory = TestBed.get(DaffCartFactory);
     cartItemFactory = TestBed.get(DaffCartItemFactory);
+    cartAddressFactory = TestBed.get(DaffCartAddressFactory);
+    paymentFactory = TestBed.get(DaffCartPaymentFactory);
+    shippingMethodFactory = TestBed.get(DaffCartShippingRateFactory);
 
     errors = {
       [DaffCartErrorType.Cart]: [],
@@ -508,14 +520,39 @@ describe('DaffCartFacade', () => {
   });
 
   describe('getCartItemDiscountedTotal', () => {
-			
-		it('should be the cart order result ID', () => {
+
+		it('should be the cart item\'s discounted total', () => {
 			const cart = cartFactory.create({
 				items: cartItemFactory.createMany(2)
 			});
       const expected = cold('a', { a: cart.items[0].row_total - cart.items[0].total_discount});
       store.dispatch(new DaffCartLoadSuccess(cart));
 			expect(facade.getCartItemDiscountedTotal(cart.items[0].item_id)).toBeObservable(expected);
+		});
+  });
+
+  describe('canPlaceOrder$', () => {
+    describe('when all the fields are valid', () => {
+      beforeEach(() => {
+        const cart: DaffCart = cartFactory.create({
+          items: cartItemFactory.createMany(1),
+          shipping_address: cartAddressFactory.create(),
+          billing_address: cartAddressFactory.create(),
+          payment: paymentFactory.create(),
+          shipping_information: shippingMethodFactory.create()
+        });
+        store.dispatch(new DaffCartLoadSuccess(cart));
+      });
+
+      it('should be true', () => {
+        const expected = cold('a', { a: true});
+        expect(facade.canPlaceOrder$).toBeObservable(expected);
+      })
+    });
+
+		it('should initially be false', () => {
+      const expected = cold('a', { a: false});
+			expect(facade.canPlaceOrder$).toBeObservable(expected);
 		});
   });
 });

@@ -38,11 +38,12 @@ export interface DaffCartFacadeInterface<
   availableShippingMethods$: Observable<DaffCart['available_shipping_methods']>;
   availablePaymentMethods$: Observable<DaffCart['available_payment_methods']>;
   isCartEmpty$: Observable<boolean>;
+  canPlaceOrder$: Observable<boolean>;
 
   orderResultLoading$: Observable<boolean>;
 	orderResultErrors$: Observable<string[]>;
 	orderResult$: Observable<V>;
 	orderResultId$: Observable<V['id']>;
 
-	getCartItemDiscountedTotal(itemId: string | number): Observable<number>; 
+	getCartItemDiscountedTotal(itemId: string | number): Observable<number>;
 }

@@ -1,7 +1,8 @@
 import {
   createSelector,
   MemoizedSelector,
-	MemoizedSelectorWithProps
+	MemoizedSelectorWithProps,
+  DefaultProjectorFn
 } from '@ngrx/store';
 
 import { getDaffCartFeatureSelector } from '../cart-feature.selector';
@@ -42,6 +43,7 @@ export interface DaffCartStateMemoizedSelectors<
 	selectCartAvailablePaymentMethods: MemoizedSelector<object, T['available_payment_methods']>;
   selectIsCartEmpty: MemoizedSelector<object, boolean>;
   selectCartItemDiscountedRowTotal: MemoizedSelectorWithProps<object, object, number>;
+  selectCanPlaceOrder: MemoizedSelector<object, boolean, DefaultProjectorFn<boolean>>;
 }
 
 const createCartSelectors = <
@@ -163,6 +165,25 @@ const createCartSelectors = <
 		}
   );
 
+  const selectCanPlaceOrder = createSelector(
+    selectIsCartEmpty,
+    selectCartBillingAddress,
+    selectCartShippingAddress,
+    selectCartShippingInformation,
+    selectCartPayment,
+    (
+      isCartEmpty,
+      billingAddress,
+      shippingAddress,
+      shippingMethod,
+      paymentMethod
+    ) => !isCartEmpty
+      && billingAddress
+      && shippingAddress
+      && shippingMethod
+      && !!paymentMethod
+  )
+
 	return {
 		selectCartState,
 		selectCartValue,
@@ -192,7 +213,8 @@ const createCartSelectors = <
 		selectCartAvailableShippingMethods,
     selectCartAvailablePaymentMethods,
 		selectIsCartEmpty,
-		selectCartItemDiscountedRowTotal
+    selectCartItemDiscountedRowTotal,
+    selectCanPlaceOrder
 	}
 }
 

@@ -44,6 +44,7 @@ export class DaffCartFacade<
   availableShippingMethods$: Observable<DaffCart['available_shipping_methods']>;
   availablePaymentMethods$: Observable<DaffCart['available_payment_methods']>;
   isCartEmpty$: Observable<boolean>;
+  canPlaceOrder$: Observable<boolean>;
 
   orderResultLoading$: Observable<boolean>;
 	orderResultErrors$: Observable<string[]>;
@@ -85,7 +86,8 @@ export class DaffCartFacade<
       selectCartOrderErrors,
       selectCartOrderValue,
 			selectCartOrderId,
-			selectCartItemDiscountedRowTotal
+      selectCartItemDiscountedRowTotal,
+      selectCanPlaceOrder
 		} = getDaffCartSelectors<T, V>();
 		this._selectCartItemDiscountedRowTotal = selectCartItemDiscountedRowTotal;
 
@@ -115,13 +117,14 @@ export class DaffCartFacade<
     this.availableShippingMethods$ = this.store.pipe(select(selectCartAvailableShippingMethods));
     this.availablePaymentMethods$ = this.store.pipe(select(selectCartAvailablePaymentMethods));
     this.isCartEmpty$ = this.store.pipe(select(selectIsCartEmpty));
+    this.canPlaceOrder$ = this.store.pipe(select(selectCanPlaceOrder));
 
     this.orderResultLoading$ = this.store.pipe(select(selectCartOrderLoading));
     this.orderResultErrors$ = this.store.pipe(select(selectCartOrderErrors));
     this.orderResult$ = this.store.pipe(select(selectCartOrderValue));
     this.orderResultId$ = this.store.pipe(select(selectCartOrderId));
 	}
-	
+
 	getCartItemDiscountedTotal(itemId: string | number): Observable<number> {
 		return this.store.pipe(select(this._selectCartItemDiscountedRowTotal, { id: itemId }));
 	}
