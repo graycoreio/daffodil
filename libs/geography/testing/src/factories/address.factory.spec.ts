@@ -3,7 +3,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { DaffAddressFactory, MockDaffAddress } from './address.factory';
 import { DaffAddress } from '@daffodil/geography';
 
-describe('Core | Interfaces | Factories | DaffAddressFactory', () => {
+describe('Geography | Interfaces | Factories | DaffAddressFactory', () => {
 
   let daffodilAddressFactory;
 

@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { DaffOrderAddressFactory } from './order-address.factory';
 import { DaffOrderAddress } from '@daffodil/order';
 
-describe('Checkout | Testing | Order | Factories | OrderAddressFactory', () => {
+describe('Order | Testing | Factories | OrderAddressFactory', () => {
 
   let orderAddressFactory: DaffOrderAddressFactory;
 

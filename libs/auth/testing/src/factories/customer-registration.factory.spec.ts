@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { DaffCustomerRegistration } from '@daffodil/auth';
 import { DaffCustomerRegistrationFactory } from './customer-registration.factory';
 
-describe('Core | Testing | Cart | Factories | CustomerRegistrationFactory', () => {
+describe('Auth | Testing | Factories | CustomerRegistrationFactory', () => {
 
   let customerRegistrationFactory: DaffCustomerRegistrationFactory;
 
