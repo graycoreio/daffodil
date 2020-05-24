@@ -11,7 +11,7 @@ import { DaffCountryFactory } from '@daffodil/geography/testing';
 
 import { DaffInMemoryGeographyService } from './geography.service';
 
-describe('Driver | In Memory | Cart | CartService', () => {
+describe('Driver | In Memory | Geography | GeographyService', () => {
   let service: DaffInMemoryGeographyService;
   let httpMock: HttpTestingController;
   let countryFactory: DaffCountryFactory;

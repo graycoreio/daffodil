@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import {  DaffOrderShippingMethod } from '@daffodil/order';
 import { DaffOrderShippingMethodFactory } from './order-shipping-rate.factory';
 
-describe('Checkout | Testing | Order | Factories | OrderShippingRateFactory', () => {
+describe('Order | Testing | Factories | OrderShippingRateFactory', () => {
 
   let orderShippingRateFactory: DaffOrderShippingMethodFactory;
 
