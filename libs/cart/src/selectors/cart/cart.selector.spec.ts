@@ -3,7 +3,13 @@ import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
+import {
+  DaffCartFactory,
+  DaffCartItemFactory,
+  DaffCartAddressFactory,
+  DaffCartPaymentFactory,
+  DaffCartShippingRateFactory
+} from '@daffodil/cart/testing';
 
 import { DaffCartLoadSuccess, DaffCartPlaceOrderSuccess } from '../../actions/public_api';
 import { daffCartReducers, DaffCartReducersState } from '../../reducers/public_api';
@@ -16,6 +22,9 @@ describe('Cart | Selector | Cart', () => {
 
 	let cartFactory: DaffCartFactory;
 	let cartItemFactory: DaffCartItemFactory;
+  let cartAddressFactory: DaffCartAddressFactory;
+  let paymentFactory: DaffCartPaymentFactory;
+  let shippingMethodFactory: DaffCartShippingRateFactory;
 
   let orderId: string;
   let cart: DaffCart;
@@ -71,11 +80,18 @@ describe('Cart | Selector | Cart', () => {
 
     cartFactory = TestBed.get(DaffCartFactory);
     cartItemFactory = TestBed.get(DaffCartItemFactory);
+    cartAddressFactory = TestBed.get(DaffCartAddressFactory);
+    paymentFactory = TestBed.get(DaffCartPaymentFactory);
+    shippingMethodFactory = TestBed.get(DaffCartShippingRateFactory);
 
     orderId = 'id';
     cart = cartFactory.create({
-			items: cartItemFactory.createMany(2)
-		});
+      items: cartItemFactory.createMany(2),
+      shipping_address: cartAddressFactory.create(),
+      billing_address: cartAddressFactory.create(),
+      payment: paymentFactory.create(),
+      shipping_information: shippingMethodFactory.create()
+    });
     loading = false;
     errors = {
       [DaffCartErrorType.Cart]: [],
@@ -328,49 +344,128 @@ describe('Cart | Selector | Cart', () => {
     });
   });
 
-  describe('selectHasBillingAddress', () => {
-    it('selects whether the cart has a billing address', () => {
-			const selector = store.pipe(select(selectHasBillingAddress));
-      const expected = cold('a', {a: !!cart.billing_address});
+  describe('selectHasBillingAddress | selects whether the cart has a billing address', () => {
+    describe('when the cart has a billing address', () => {
+      it('should return true', () => {
+        const selector = store.pipe(select(selectHasBillingAddress));
+        const expected = cold('a', {a: true});
 
-      expect(selector).toBeObservable(expected);
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart does not have a billing address', () => {
+      beforeEach(() => {
+        cart.billing_address = null;
+        store.dispatch(new DaffCartLoadSuccess(cart));
+      });
+
+      it('should return false', () => {
+        const selector = store.pipe(select(selectHasBillingAddress));
+        const expected = cold('a', {a: false});
+
+        expect(selector).toBeObservable(expected);
+      });
     });
   });
 
-  describe('selectHasShippingAddress', () => {
-    it('selects whether the cart has a shipping address', () => {
-			const selector = store.pipe(select(selectHasShippingAddress));
-      const expected = cold('a', {a: !!cart.shipping_address});
+  describe('selectHasShippingAddress | selects whether the cart has a shipping address', () => {
+    describe('when the cart has a shipping address', () => {
+      it('should return true', () => {
+        const selector = store.pipe(select(selectHasShippingAddress));
+        const expected = cold('a', {a: true});
 
-      expect(selector).toBeObservable(expected);
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart does not have a shipping address', () => {
+      beforeEach(() => {
+        cart.shipping_address = null;
+        store.dispatch(new DaffCartLoadSuccess(cart));
+      });
+
+      it('should return false', () => {
+        const selector = store.pipe(select(selectHasShippingAddress));
+        const expected = cold('a', {a: false});
+
+        expect(selector).toBeObservable(expected);
+      });
     });
   });
 
-  describe('selectHasShippingMethod', () => {
-    it('selects whether the cart has a selected shipping method', () => {
-			const selector = store.pipe(select(selectHasShippingMethod));
-      const expected = cold('a', {a: !!cart.shipping_information});
+  describe('selectHasShippingMethod | selects whether the cart has a selected shipping method', () => {
+    describe('when the cart has a selected shipping method', () => {
+      it('should return true', () => {
+        const selector = store.pipe(select(selectHasShippingMethod));
+        const expected = cold('a', {a: true});
 
-      expect(selector).toBeObservable(expected);
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart does not have a selected shipping method', () => {
+      beforeEach(() => {
+        cart.shipping_information = null;
+        store.dispatch(new DaffCartLoadSuccess(cart));
+      });
+
+      it('should return false', () => {
+        const selector = store.pipe(select(selectHasShippingMethod));
+        const expected = cold('a', {a: false});
+
+        expect(selector).toBeObservable(expected);
+      });
     });
   });
 
-  describe('selectHasPaymentMethod', () => {
-    it('selects whether the cart has a selected payment method', () => {
-			const selector = store.pipe(select(selectHasPaymentMethod));
-      const expected = cold('a', {a: !!cart.payment});
+  describe('selectHasPaymentMethod | selects whether the cart has a selected payment method', () => {
+    describe('when the cart has a selected payment method', () => {
+      it('should return true', () => {
+        const selector = store.pipe(select(selectHasPaymentMethod));
+        const expected = cold('a', {a: true});
 
-      expect(selector).toBeObservable(expected);
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart does not have a selected payment method', () => {
+      beforeEach(() => {
+        cart.payment = null;
+        store.dispatch(new DaffCartLoadSuccess(cart));
+      });
+
+      it('should return false', () => {
+        const selector = store.pipe(select(selectHasPaymentMethod));
+        const expected = cold('a', {a: false});
+
+        expect(selector).toBeObservable(expected);
+      });
     });
   });
 
-  describe('selectCanPlaceOrder', () => {
-    it('selects whether the cart has all the required fields for placing an order', () => {
-      const canPlaceOrder = cart.items.length > 0 && !!cart.billing_address && !!cart.shipping_address && !!cart.shipping_information && !!cart.payment;
-			const selector = store.pipe(select(selectCanPlaceOrder));
-      const expected = cold('a', {a: canPlaceOrder});
+  describe('selectCanPlaceOrder | selects whether the cart has all the required fields for placing an order', () => {
+    describe('when the cart has all the required fields for placing an order', () => {
+      it('should return true', () => {
+        const selector = store.pipe(select(selectCanPlaceOrder));
+        const expected = cold('a', {a: true});
 
-      expect(selector).toBeObservable(expected);
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart does not have all the required fields for placing an order', () => {
+      beforeEach(() => {
+        cart.billing_address = null;
+        store.dispatch(new DaffCartLoadSuccess(cart));
+      });
+
+      it('should return false', () => {
+        const selector = store.pipe(select(selectCanPlaceOrder));
+        const expected = cold('a', {a: false});
+
+        expect(selector).toBeObservable(expected);
+      });
     });
   });
 });
