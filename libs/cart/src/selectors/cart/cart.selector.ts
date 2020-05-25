@@ -43,6 +43,11 @@ export interface DaffCartStateMemoizedSelectors<
 	selectCartAvailablePaymentMethods: MemoizedSelector<object, T['available_payment_methods']>;
   selectIsCartEmpty: MemoizedSelector<object, boolean>;
   selectCartItemDiscountedRowTotal: MemoizedSelectorWithProps<object, object, number>;
+
+  selectHasBillingAddress: MemoizedSelector<object, boolean>;
+  selectHasShippingAddress: MemoizedSelector<object, boolean>;
+  selectHasShippingMethod: MemoizedSelector<object, boolean>;
+  selectHasPaymentMethod: MemoizedSelector<object, boolean>;
   selectCanPlaceOrder: MemoizedSelector<object, boolean, DefaultProjectorFn<boolean>>;
 }
 
@@ -165,23 +170,43 @@ const createCartSelectors = <
 		}
   );
 
+  const selectHasBillingAddress = createSelector(
+    selectCartBillingAddress,
+    billingAddress => !!billingAddress
+  );
+
+  const selectHasShippingAddress = createSelector(
+    selectCartShippingAddress,
+    shippingAddress => !!shippingAddress
+  );
+
+  const selectHasShippingMethod = createSelector(
+    selectCartShippingInformation,
+    shippingMethod => !!shippingMethod
+  );
+
+  const selectHasPaymentMethod = createSelector(
+    selectCartPayment,
+    paymentMethod => !!paymentMethod
+  );
+
   const selectCanPlaceOrder = createSelector(
     selectIsCartEmpty,
-    selectCartBillingAddress,
-    selectCartShippingAddress,
-    selectCartShippingInformation,
-    selectCartPayment,
+    selectHasBillingAddress,
+    selectHasShippingAddress,
+    selectHasShippingMethod,
+    selectHasPaymentMethod,
     (
       isCartEmpty,
-      billingAddress,
-      shippingAddress,
-      shippingMethod,
-      paymentMethod
+      hasBillingAddress,
+      hasShippingAddress,
+      hasShippingMethod,
+      hasPaymentMethod
     ) => !isCartEmpty
-      && billingAddress
-      && shippingAddress
-      && shippingMethod
-      && !!paymentMethod
+      && hasBillingAddress
+      && hasShippingAddress
+      && hasShippingMethod
+      && hasPaymentMethod
   )
 
 	return {
@@ -214,6 +239,11 @@ const createCartSelectors = <
     selectCartAvailablePaymentMethods,
 		selectIsCartEmpty,
     selectCartItemDiscountedRowTotal,
+
+    selectHasBillingAddress,
+    selectHasShippingAddress,
+    selectHasShippingMethod,
+    selectHasPaymentMethod,
     selectCanPlaceOrder
 	}
 }

@@ -531,6 +531,90 @@ describe('DaffCartFacade', () => {
 		});
   });
 
+  describe('hasBillingAddress$', () => {
+    describe('when all the billing address is present', () => {
+      beforeEach(() => {
+        const cart: DaffCart = cartFactory.create({
+          billing_address: cartAddressFactory.create(),
+        });
+        store.dispatch(new DaffCartLoadSuccess(cart));
+      });
+
+      it('should be true', () => {
+        const expected = cold('a', { a: true});
+        expect(facade.hasBillingAddress$).toBeObservable(expected);
+      })
+    });
+
+		it('should initially be false', () => {
+      const expected = cold('a', { a: false});
+			expect(facade.hasBillingAddress$).toBeObservable(expected);
+		});
+  });
+
+  describe('hasShippingAddress$', () => {
+    describe('when all the shipping address is present', () => {
+      beforeEach(() => {
+        const cart: DaffCart = cartFactory.create({
+          shipping_address: cartAddressFactory.create(),
+        });
+        store.dispatch(new DaffCartLoadSuccess(cart));
+      });
+
+      it('should be true', () => {
+        const expected = cold('a', { a: true});
+        expect(facade.hasShippingAddress$).toBeObservable(expected);
+      })
+    });
+
+		it('should initially be false', () => {
+      const expected = cold('a', { a: false});
+			expect(facade.hasShippingAddress$).toBeObservable(expected);
+		});
+  });
+
+  describe('hasShippingMethod$', () => {
+    describe('when all the shipping method is present', () => {
+      beforeEach(() => {
+        const cart: DaffCart = cartFactory.create({
+          shipping_information: shippingMethodFactory.create()
+        });
+        store.dispatch(new DaffCartLoadSuccess(cart));
+      });
+
+      it('should be true', () => {
+        const expected = cold('a', { a: true});
+        expect(facade.hasShippingMethod$).toBeObservable(expected);
+      })
+    });
+
+		it('should initially be false', () => {
+      const expected = cold('a', { a: false});
+			expect(facade.hasShippingMethod$).toBeObservable(expected);
+		});
+  });
+
+  describe('hasPaymentMethod$', () => {
+    describe('when all the payment method is present', () => {
+      beforeEach(() => {
+        const cart: DaffCart = cartFactory.create({
+          payment: paymentFactory.create(),
+        });
+        store.dispatch(new DaffCartLoadSuccess(cart));
+      });
+
+      it('should be true', () => {
+        const expected = cold('a', { a: true});
+        expect(facade.hasPaymentMethod$).toBeObservable(expected);
+      })
+    });
+
+		it('should initially be false', () => {
+      const expected = cold('a', { a: false});
+			expect(facade.hasPaymentMethod$).toBeObservable(expected);
+		});
+  });
+
   describe('canPlaceOrder$', () => {
     describe('when all the fields are valid', () => {
       beforeEach(() => {

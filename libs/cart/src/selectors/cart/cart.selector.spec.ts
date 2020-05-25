@@ -50,6 +50,11 @@ describe('Cart | Selector | Cart', () => {
 		selectCartAvailablePaymentMethods,
 		selectIsCartEmpty,
     selectCartItemDiscountedRowTotal,
+
+    selectHasBillingAddress,
+    selectHasShippingAddress,
+    selectHasShippingMethod,
+    selectHasPaymentMethod,
     selectCanPlaceOrder
 	} = getCartSelectors();
 
@@ -323,9 +328,45 @@ describe('Cart | Selector | Cart', () => {
     });
   });
 
+  describe('selectHasBillingAddress', () => {
+    it('selects whether the cart has a billing address', () => {
+			const selector = store.pipe(select(selectHasBillingAddress));
+      const expected = cold('a', {a: !!cart.billing_address});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectHasShippingAddress', () => {
+    it('selects whether the cart has a shipping address', () => {
+			const selector = store.pipe(select(selectHasShippingAddress));
+      const expected = cold('a', {a: !!cart.shipping_address});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectHasShippingMethod', () => {
+    it('selects whether the cart has a selected shipping method', () => {
+			const selector = store.pipe(select(selectHasShippingMethod));
+      const expected = cold('a', {a: !!cart.shipping_information});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectHasPaymentMethod', () => {
+    it('selects whether the cart has a selected payment method', () => {
+			const selector = store.pipe(select(selectHasPaymentMethod));
+      const expected = cold('a', {a: !!cart.payment});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
   describe('selectCanPlaceOrder', () => {
-    it('selects whether the order has all the required fields', () => {
-      const canPlaceOrder = cart.items.length > 0 && cart.billing_address && cart.shipping_address && cart.shipping_information && !!cart.payment;
+    it('selects whether the cart has all the required fields for placing an order', () => {
+      const canPlaceOrder = cart.items.length > 0 && !!cart.billing_address && !!cart.shipping_address && !!cart.shipping_information && !!cart.payment;
 			const selector = store.pipe(select(selectCanPlaceOrder));
       const expected = cold('a', {a: canPlaceOrder});
 

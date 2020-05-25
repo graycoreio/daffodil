@@ -38,6 +38,11 @@ export interface DaffCartFacadeInterface<
   availableShippingMethods$: Observable<DaffCart['available_shipping_methods']>;
   availablePaymentMethods$: Observable<DaffCart['available_payment_methods']>;
   isCartEmpty$: Observable<boolean>;
+
+  hasBillingAddress$: Observable<boolean>;
+  hasShippingAddress$: Observable<boolean>;
+  hasShippingMethod$: Observable<boolean>;
+  hasPaymentMethod$: Observable<boolean>;
   canPlaceOrder$: Observable<boolean>;
 
   orderResultLoading$: Observable<boolean>;
