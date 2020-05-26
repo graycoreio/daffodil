@@ -60,10 +60,16 @@ export class DaffRadioComponent implements OnInit {
    * Name of the Radio
    */
   @Input() name: string;
+
   /**
    * Used for aria-label. Default to name if user does not input a label.
    */
+  //tslint:disable-next-line:no-input-rename
   @Input('aria-label') label = name;
+  /**
+   * Used for aria-labelledby. 
+   */
+  //tslint:disable-next-line:no-input-rename
   @Input('aria-labelledby') labelledby;
 
 
