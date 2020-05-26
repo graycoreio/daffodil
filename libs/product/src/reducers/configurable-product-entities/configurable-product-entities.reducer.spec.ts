@@ -94,7 +94,7 @@ describe('Product | Product Entities Reducer', () => {
     it('sets a configurable product entity when the given product is configurable', () => {
 			const productLoadSuccess = new DaffProductLoadSuccess(configurableProduct);
 			result = daffConfigurableProductEntitiesReducer(initialState, productLoadSuccess);
-			expect(result.entities[configurableProduct.id]).toEqual({ id: configurableProduct.id });
+			expect(result.entities[configurableProduct.id]).toEqual({ id: configurableProduct.id, attributes: [] });
     });
 		
     it('does not set a configurable product entity when the given product is not configurable', () => {
@@ -113,7 +113,8 @@ describe('Product | Product Entities Reducer', () => {
 				ids: [configurableProduct.id],
 				entities: {
 					[configurableProduct.id]: {
-						id: configurableProduct.id
+						id: configurableProduct.id,
+						attributes: []
 					}
 				}
 			}
@@ -130,7 +131,10 @@ describe('Product | Product Entities Reducer', () => {
     it('adds a configurable product attribute to its corresponding entity', () => {
       expect(result.entities[configurableProduct.id]).toEqual({
 				id: configurableProduct.id,
-				[configurableProduct.configurableAttributes[0].code]: configurableProduct.configurableAttributes[0].values[0].value
+				attributes: [{
+					code: configurableProduct.configurableAttributes[0].code,
+					value: configurableProduct.configurableAttributes[0].values[0].value
+				}]
 			});
     });
   });
@@ -145,7 +149,10 @@ describe('Product | Product Entities Reducer', () => {
 				entities: {
 					[configurableProduct.id]: {
 						id: configurableProduct.id,
-						[configurableProduct.configurableAttributes[0].code]: configurableProduct.configurableAttributes[0].values[0].value
+						attributes: [{
+							code: configurableProduct.configurableAttributes[0].code,
+							value: configurableProduct.configurableAttributes[0].values[0].value
+						}]
 					}
 				}
 			}
@@ -160,7 +167,8 @@ describe('Product | Product Entities Reducer', () => {
 
     it('removes a configurable product attribute from its corresponding entity', () => {
       expect(result.entities[configurableProduct.id]).toEqual({
-				id: configurableProduct.id
+				id: configurableProduct.id,
+				attributes: []
 			});
     });
   });
@@ -176,7 +184,10 @@ describe('Product | Product Entities Reducer', () => {
 					entities: {
 						[configurableProduct.id]: {
 							id: configurableProduct.id,
-							[configurableProduct.configurableAttributes[0].code]: configurableProduct.configurableAttributes[0].values[0].value
+							attributes: [{
+								code: configurableProduct.configurableAttributes[0].code,
+								value: configurableProduct.configurableAttributes[0].values[0].value
+							}]
 						}
 					}
 				}
@@ -192,7 +203,8 @@ describe('Product | Product Entities Reducer', () => {
 	
 			it('removes a configurable product attribute from its corresponding entity', () => {
 				expect(result.entities[configurableProduct.id]).toEqual({
-					id: configurableProduct.id
+					id: configurableProduct.id,
+					attributes: []
 				});
 			});
 		});
@@ -204,7 +216,8 @@ describe('Product | Product Entities Reducer', () => {
 					ids: [configurableProduct.id],
 					entities: {
 						[configurableProduct.id]: {
-							id: configurableProduct.id
+							id: configurableProduct.id,
+							attributes: []
 						}
 					}
 				}
@@ -221,7 +234,10 @@ describe('Product | Product Entities Reducer', () => {
 			it('adds a configurable product attribute to its corresponding entity', () => {
 				expect(result.entities[configurableProduct.id]).toEqual({ 
 					id: configurableProduct.id, 
-					[configurableProduct.configurableAttributes[0].code]: configurableProduct.configurableAttributes[0].values[0].value
+					attributes: [{
+						code: configurableProduct.configurableAttributes[0].code,
+						value: configurableProduct.configurableAttributes[0].values[0].value
+					}]
 				});
 			});
 		});
@@ -234,7 +250,10 @@ describe('Product | Product Entities Reducer', () => {
 					entities: {
 						[configurableProduct.id]: {
 							id: configurableProduct.id,
-							[configurableProduct.configurableAttributes[0].code]: configurableProduct.configurableAttributes[0].values[0].value
+							attributes: [{
+								code: configurableProduct.configurableAttributes[0].code,
+								value: configurableProduct.configurableAttributes[0].values[0].value
+							}]
 						}
 					}
 				}
@@ -251,7 +270,10 @@ describe('Product | Product Entities Reducer', () => {
 			it('adds a configurable product attribute to its corresponding entity', () => {
 				expect(result.entities[configurableProduct.id]).toEqual({ 
 					id: configurableProduct.id, 
-					[configurableProduct.configurableAttributes[0].code]: configurableProduct.configurableAttributes[0].values[1].value
+					attributes: [{
+						code: configurableProduct.configurableAttributes[0].code,
+						value: configurableProduct.configurableAttributes[0].values[1].value
+					}]
 				});
 			});
 		});

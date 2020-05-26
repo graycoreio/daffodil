@@ -1,19 +1,20 @@
 import { createSelector, MemoizedSelector, MemoizedSelectorWithProps } from '@ngrx/store';
-import { EntityState } from '@ngrx/entity';
+import { EntityState, Dictionary } from '@ngrx/entity';
 
 import { getDaffProductFeatureSelector } from '../product-feature.selector';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
 import { DaffProduct } from '../../models/product';
 import { daffConfigurableProductAppliedAttributesEntitiesAdapter } from '../../reducers/configurable-product-entities/configurable-product-entities-reducer-adapter';
-import { DaffProductVariantAttributesDictionary } from '../../models/configurable-product';
+import { DaffConfigurableProductEntity, DaffConfigurableProductEntityAttribute } from '../../reducers/configurable-product-entities/configurable-product-entity';
 
 export interface DaffConfigurableProductEntitiesMemoizedSelectors {
-	selectConfigurableProductAppliedAttributesEntitiesState: MemoizedSelector<object, EntityState<DaffProductVariantAttributesDictionary>>;
-	selectConfigurableProductIds: MemoizedSelector<object, EntityState<DaffProductVariantAttributesDictionary>['ids']>;
-	selectConfigurableProductAppliedAttributesEntities: MemoizedSelector<object, EntityState<DaffProductVariantAttributesDictionary>['entities']>;
-	selectAllConfigurableProductAppliedAttributeDictionaries: MemoizedSelector<object, DaffProductVariantAttributesDictionary[]>;
+	selectConfigurableProductAppliedAttributesEntitiesState: MemoizedSelector<object, EntityState<DaffConfigurableProductEntity>>;
+	selectConfigurableProductIds: MemoizedSelector<object, EntityState<DaffConfigurableProductEntity>['ids']>;
+	selectConfigurableProductAppliedAttributesEntities: MemoizedSelector<object, EntityState<DaffConfigurableProductEntity>['entities']>;
+	selectAllConfigurableProductAppliedAttributeDictionaries: MemoizedSelector<object, DaffConfigurableProductEntity[]>;
 	selectConfigurableProductTotal: MemoizedSelector<object, number>;
-	selectConfigurableProductAppliedAttributes: MemoizedSelectorWithProps<object, object, DaffProductVariantAttributesDictionary>;
+	selectConfigurableProductAppliedAttributes: MemoizedSelectorWithProps<object, object, DaffConfigurableProductEntityAttribute[]>;
+	selectConfigurableProductAppliedAttributesAsDictionary: MemoizedSelectorWithProps<object, object, Dictionary<string>>;
 }
 
 const createConfigurableProductAppliedAttributesEntitiesSelectors = <T extends DaffProduct>(): DaffConfigurableProductEntitiesMemoizedSelectors => {
@@ -66,8 +67,18 @@ const createConfigurableProductAppliedAttributesEntitiesSelectors = <T extends D
 	 */
 	const selectConfigurableProductAppliedAttributes = createSelector(
 		selectConfigurableProductAppliedAttributesEntitiesState,
-		(products, props) => products.entities[props.id]
+		(products, props) => products.entities[props.id].attributes
 	);
+
+	const selectConfigurableProductAppliedAttributesAsDictionary = createSelector(
+		selectConfigurableProductAppliedAttributesEntitiesState,
+		(products, props) => {
+			return selectConfigurableProductAppliedAttributes.projector(products, { id: props.id }).reduce((acc, attribute) => {
+				acc[attribute.code] = attribute.value;
+				return acc;
+			}, {});
+		}
+	)
 
 	return { 
 		selectConfigurableProductAppliedAttributesEntitiesState,
@@ -75,7 +86,8 @@ const createConfigurableProductAppliedAttributesEntitiesSelectors = <T extends D
 		selectConfigurableProductAppliedAttributesEntities,
 		selectAllConfigurableProductAppliedAttributeDictionaries,
 		selectConfigurableProductTotal,
-		selectConfigurableProductAppliedAttributes
+		selectConfigurableProductAppliedAttributes,
+		selectConfigurableProductAppliedAttributesAsDictionary
 	}
 }
 

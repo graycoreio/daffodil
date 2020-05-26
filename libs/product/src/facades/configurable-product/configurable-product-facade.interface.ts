@@ -7,6 +7,12 @@ import { DaffStoreFacade } from '@daffodil/core';
 export interface DaffConfigurableProductFacadeInterface extends DaffStoreFacade<Action> {
 
 	/**
+	 * All attributes of a configurable product.
+	 * @param id the id of the configurable product.
+	 */
+	getAllAttributes(id: string): Observable<Dictionary<string[]>>;
+
+	/**
 	 * The applied attributes of a configurable product.
 	 * @param id the id of the configurable product.
 	 */
@@ -20,9 +26,9 @@ export interface DaffConfigurableProductFacadeInterface extends DaffStoreFacade<
 	getPrice(id: string): Observable<string>;
 
 	/**
-	 * The attributes that have not been determined by selected attributes. These are determined
-	 * by the variants that are still possible.
+	 * Selectable configurable product attributes derived from the remaining variants and the order of currently applied attributes.
+	 * The remaining variants of the product are derived from the currently applied attributes.
 	 * @param id the id of the configurable product.
 	 */
-	getUndeterminedAttributes(id: string): Observable<Dictionary<string[]>>;
+	getSelectableAttributes(id: string): Observable<Dictionary<string[]>>;
 }

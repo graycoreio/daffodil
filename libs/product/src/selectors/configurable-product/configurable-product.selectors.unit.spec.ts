@@ -14,7 +14,7 @@ import {
 
 import { getDaffConfigurableProductSelectors } from './configurable-product.selectors';
 
-describe('Configurable Product Selectors', () => {
+describe('Configurable Product Selectors | unit tests', () => {
 
   let store: Store<DaffProductReducersState>;
   const configurableProductFactory: DaffConfigurableProductFactory = new DaffConfigurableProductFactory();
@@ -22,7 +22,7 @@ describe('Configurable Product Selectors', () => {
 	const {
 		selectConfigurableProductPrice,
 		selectMatchingConfigurableProductVariants,
-		selectUndeterminedConfigurableProductAttributes
+		selectSelectableConfigurableProductAttributes
 	} = getDaffConfigurableProductSelectors();
   
   beforeEach(() => {
@@ -46,9 +46,15 @@ describe('Configurable Product Selectors', () => {
 				stubConfigurableProduct.variants[0].price = 2;
 				stubConfigurableProduct.variants[1].price = 1;
 				stubConfigurableProduct.variants[2].price = 3;
+				stubConfigurableProduct.variants[3].price = 4;
 				store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
+				store.dispatch(new DaffConfigurableProductApplyAttribute(
+					stubConfigurableProduct.id,
+					stubConfigurableProduct.configurableAttributes[0].code,
+					stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
+				));
 				const selector = store.pipe(select(selectConfigurableProductPrice, { id: stubConfigurableProduct.id }));
-				const expected = cold('a', { a: '1-3' });
+				const expected = cold('a', { a: '1-4' });
 
 				expect(selector).toBeObservable(expected);
 			});
@@ -62,6 +68,16 @@ describe('Configurable Product Selectors', () => {
 					stubConfigurableProduct.id,
 					stubConfigurableProduct.configurableAttributes[0].code,
 					stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
+				));
+				store.dispatch(new DaffConfigurableProductApplyAttribute(
+					stubConfigurableProduct.id,
+					stubConfigurableProduct.configurableAttributes[1].code,
+					stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[1].code]
+				));
+				store.dispatch(new DaffConfigurableProductApplyAttribute(
+					stubConfigurableProduct.id,
+					stubConfigurableProduct.configurableAttributes[2].code,
+					stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[2].code]
 				));
 				const selector = store.pipe(select(selectConfigurableProductPrice, { id: stubConfigurableProduct.id }));
 				const expected = cold('a', { a: stubConfigurableProduct.variants[0].price.toString() });
@@ -81,20 +97,24 @@ describe('Configurable Product Selectors', () => {
 				stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
 			));
 			const selector = store.pipe(select(selectMatchingConfigurableProductVariants, { id: stubConfigurableProduct.id }));
-			const expected = cold('a', { a: [stubConfigurableProduct.variants[0]] });
+			const expected = cold('a', { a: 
+				stubConfigurableProduct.variants.slice(0, 4)
+			});
 
 			expect(selector).toBeObservable(expected);
 		});
 	});
 
-	describe('selectUndeterminedConfigurableProductAttributes', () => {
+	describe('selectSelectableConfigurableProductAttributes', () => {
 		
-		it('returns a dictionary of attribute values that are undetermined by the matched variants and applied attributes', () => {
+		it('returns a dictionary of attribute values that are still selectable', () => {
 			store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
-			const selector = store.pipe(select(selectUndeterminedConfigurableProductAttributes, { id: stubConfigurableProduct.id }));
+			const selector = store.pipe(select(selectSelectableConfigurableProductAttributes, { id: stubConfigurableProduct.id }));
 			const expected = cold('a', { 
 				a: {
-					color: ['0', '1', '2']
+					color: ['0', '1', '2'],
+					size: ['0', '1', '2'],
+					material: ['0', '1', '2']
 				} 
 			});
 

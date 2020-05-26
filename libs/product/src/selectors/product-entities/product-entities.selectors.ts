@@ -69,8 +69,8 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
 	);
 
 	const selectProduct = createSelector(
-		selectProductEntitiesState,
-		(products, props) => products.entities[props.id]
+		selectProductEntities,
+		(products, props) => products[props.id]
 	);
 
 	return { 

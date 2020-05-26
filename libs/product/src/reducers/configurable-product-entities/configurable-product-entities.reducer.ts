@@ -6,7 +6,8 @@ import { DaffBestSellersActionTypes, DaffBestSellersActions } from '../../action
 import { daffConfigurableProductAppliedAttributesEntitiesAdapter } from './configurable-product-entities-reducer-adapter';
 import { DaffProduct, DaffProductTypeEnum } from '../../models/product';
 import { DaffConfigurableProductActions, DaffConfigurableProductActionTypes } from '../../actions/configurable-product.actions';
-import { DaffProductVariantAttributesDictionary, DaffConfigurableProduct } from '../../models/configurable-product';
+import { DaffConfigurableProduct } from '../../models/configurable-product';
+import { DaffConfigurableProductEntity, DaffConfigurableProductEntityAttribute } from './configurable-product-entity';
 
 /**
  * Reducer function that catches actions and changes/overwrites product entities state.
@@ -17,7 +18,7 @@ import { DaffProductVariantAttributesDictionary, DaffConfigurableProduct } from 
  */
 export function daffConfigurableProductEntitiesReducer<T extends DaffProduct, V extends DaffConfigurableProduct>(
   state = daffConfigurableProductAppliedAttributesEntitiesAdapter().getInitialState(), 
-  action: DaffProductGridActions<T> | DaffBestSellersActions<T> | DaffProductActions<T> | DaffConfigurableProductActions<V>): EntityState<DaffProductVariantAttributesDictionary> {
+  action: DaffProductGridActions<T> | DaffBestSellersActions<T> | DaffProductActions<T> | DaffConfigurableProductActions<V>): EntityState<DaffConfigurableProductEntity> {
 	const adapter = daffConfigurableProductAppliedAttributesEntitiesAdapter();
   switch (action.type) {
     case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
@@ -27,7 +28,8 @@ export function daffConfigurableProductEntitiesReducer<T extends DaffProduct, V 
 			if(action.payload.type === DaffProductTypeEnum.Configurable) {
 				return adapter.upsertOne(
 					{
-						id: action.payload.id
+						id: action.payload.id,
+						attributes: []
 					},
 					state
 				);
@@ -37,8 +39,7 @@ export function daffConfigurableProductEntitiesReducer<T extends DaffProduct, V 
 			return adapter.upsertOne(
 				{
 					id: action.id,
-					...state.entities[action.id],
-					[action.attributeId]: action.attributeValue
+					attributes: applyAttribute(state.entities[action.id].attributes, action.attributeId, action.attributeValue),
 				},
 				state
 			);
@@ -47,23 +48,26 @@ export function daffConfigurableProductEntitiesReducer<T extends DaffProduct, V 
 			delete upsertedEntity[action.attributeId];
 
 			return adapter.upsertOne(
-				upsertedEntity,
+				{
+					id: action.id,
+					attributes: removeAttribute(state.entities[action.id].attributes, action.attributeId)
+				},
 				state
 			);
 		case DaffConfigurableProductActionTypes.ConfigurableProductToggleAttributeAction:
-			let entity = state.entities[action.id];
+			let attributes: DaffConfigurableProductEntityAttribute[];
 
-			if(entity[action.attributeId] && entity[action.attributeId] === action.attributeValue) {
-				delete entity[action.attributeId];
+			if(isAttributeSelected(state.entities[action.id].attributes, action.attributeId, action.attributeValue)) {
+				attributes = removeAttribute(state.entities[action.id].attributes, action.attributeId)
 			} else {
-				entity = {
-					...entity,
-					[action.attributeId]: action.attributeValue
-				}
+				attributes = applyAttribute(state.entities[action.id].attributes, action.attributeId, action.attributeValue)
 			}
 
 			return adapter.upsertOne(
-				entity,
+				{
+					id: action.id,
+					attributes: attributes
+				},
 				state
 			);
     default:
@@ -71,12 +75,48 @@ export function daffConfigurableProductEntitiesReducer<T extends DaffProduct, V 
   }
 }
 
-function buildConfigurableProductAppliedAttributesEntities(products: DaffProduct[]): DaffProductVariantAttributesDictionary[] {
+function buildConfigurableProductAppliedAttributesEntities(products: DaffProduct[]): DaffConfigurableProductEntity[] {
 	return products
 		.filter(product => product.type === DaffProductTypeEnum.Configurable)
 		.map((product) => {
 			return {
-				id: product.id
+				id: product.id,
+				attributes: []
 			}
 		})
+}
+
+function applyAttribute(currentAttributes: DaffConfigurableProductEntityAttribute[], appliedAttributeCode: string, appliedAttributeValue: string): DaffConfigurableProductEntityAttribute[] {
+	const attributeIndex = currentAttributes.findIndex(attribute => attribute.code === appliedAttributeCode);
+	if(attributeIndex > -1) {
+		currentAttributes = [
+			...currentAttributes.slice(0, attributeIndex)
+		]
+		currentAttributes[attributeIndex] = {
+			code: appliedAttributeCode,
+			value: appliedAttributeValue
+		}
+	} else {
+		currentAttributes.push({
+			code: appliedAttributeCode,
+			value: appliedAttributeValue
+		});
+	}
+	
+	return currentAttributes;
+}
+
+function removeAttribute(currentAttributes: DaffConfigurableProductEntityAttribute[], appliedAttributeCode: string): DaffConfigurableProductEntityAttribute[] {
+	for(let i=0; i<currentAttributes.length; i++) {
+		if(currentAttributes[i].code === appliedAttributeCode) {
+			return currentAttributes.slice(0, i);
+		}
+	}
+}
+
+function isAttributeSelected(currentAttributes: DaffConfigurableProductEntityAttribute[], attributeCode: string, attributeValue: string): boolean {
+	for(let i=0; i<currentAttributes.length; i++) {
+		if(currentAttributes[i].code === attributeCode && currentAttributes[i].value === attributeValue) return true;
+	}
+	return false;
 }
