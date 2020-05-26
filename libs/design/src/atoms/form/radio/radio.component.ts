@@ -63,7 +63,9 @@ export class DaffRadioComponent implements OnInit {
   /**
    * Used for aria-label. Default to name if user does not input a label.
    */
-  @Input() label = name;
+  @Input('aria-label') label = name;
+  @Input('aria-labelledby') labelledby;
+
 
   disabled = false;
   focused = false;
