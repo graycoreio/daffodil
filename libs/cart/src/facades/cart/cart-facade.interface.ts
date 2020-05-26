@@ -39,10 +39,16 @@ export interface DaffCartFacadeInterface<
   availablePaymentMethods$: Observable<DaffCart['available_payment_methods']>;
   isCartEmpty$: Observable<boolean>;
 
+  hasBillingAddress$: Observable<boolean>;
+  hasShippingAddress$: Observable<boolean>;
+  hasShippingMethod$: Observable<boolean>;
+  hasPaymentMethod$: Observable<boolean>;
+  canPlaceOrder$: Observable<boolean>;
+
   orderResultLoading$: Observable<boolean>;
 	orderResultErrors$: Observable<string[]>;
 	orderResult$: Observable<V>;
 	orderResultId$: Observable<V['id']>;
 
-	getCartItemDiscountedTotal(itemId: string | number): Observable<number>; 
+	getCartItemDiscountedTotal(itemId: string | number): Observable<number>;
 }

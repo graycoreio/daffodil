@@ -45,6 +45,12 @@ export class DaffCartFacade<
   availablePaymentMethods$: Observable<DaffCart['available_payment_methods']>;
   isCartEmpty$: Observable<boolean>;
 
+  hasBillingAddress$: Observable<boolean>;
+  hasShippingAddress$: Observable<boolean>;
+  hasShippingMethod$: Observable<boolean>;
+  hasPaymentMethod$: Observable<boolean>;
+  canPlaceOrder$: Observable<boolean>;
+
   orderResultLoading$: Observable<boolean>;
 	orderResultErrors$: Observable<string[]>;
 	orderResult$: Observable<V>;
@@ -85,7 +91,13 @@ export class DaffCartFacade<
       selectCartOrderErrors,
       selectCartOrderValue,
 			selectCartOrderId,
-			selectCartItemDiscountedRowTotal
+      selectCartItemDiscountedRowTotal,
+
+      selectHasBillingAddress,
+      selectHasShippingAddress,
+      selectHasShippingMethod,
+      selectHasPaymentMethod,
+      selectCanPlaceOrder
 		} = getDaffCartSelectors<T, V>();
 		this._selectCartItemDiscountedRowTotal = selectCartItemDiscountedRowTotal;
 
@@ -116,12 +128,18 @@ export class DaffCartFacade<
     this.availablePaymentMethods$ = this.store.pipe(select(selectCartAvailablePaymentMethods));
     this.isCartEmpty$ = this.store.pipe(select(selectIsCartEmpty));
 
+    this.hasBillingAddress$ = this.store.pipe(select(selectHasBillingAddress));
+    this.hasShippingAddress$ = this.store.pipe(select(selectHasShippingAddress));
+    this.hasShippingMethod$ = this.store.pipe(select(selectHasShippingMethod));
+    this.hasPaymentMethod$ = this.store.pipe(select(selectHasPaymentMethod));
+    this.canPlaceOrder$ = this.store.pipe(select(selectCanPlaceOrder));
+
     this.orderResultLoading$ = this.store.pipe(select(selectCartOrderLoading));
     this.orderResultErrors$ = this.store.pipe(select(selectCartOrderErrors));
     this.orderResult$ = this.store.pipe(select(selectCartOrderValue));
     this.orderResultId$ = this.store.pipe(select(selectCartOrderId));
 	}
-	
+
 	getCartItemDiscountedTotal(itemId: string | number): Observable<number> {
 		return this.store.pipe(select(this._selectCartItemDiscountedRowTotal, { id: itemId }));
 	}

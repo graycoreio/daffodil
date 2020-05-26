@@ -1,7 +1,8 @@
 import {
   createSelector,
   MemoizedSelector,
-	MemoizedSelectorWithProps
+	MemoizedSelectorWithProps,
+  DefaultProjectorFn
 } from '@ngrx/store';
 
 import { getDaffCartFeatureSelector } from '../cart-feature.selector';
@@ -42,6 +43,12 @@ export interface DaffCartStateMemoizedSelectors<
 	selectCartAvailablePaymentMethods: MemoizedSelector<object, T['available_payment_methods']>;
   selectIsCartEmpty: MemoizedSelector<object, boolean>;
   selectCartItemDiscountedRowTotal: MemoizedSelectorWithProps<object, object, number>;
+
+  selectHasBillingAddress: MemoizedSelector<object, boolean>;
+  selectHasShippingAddress: MemoizedSelector<object, boolean>;
+  selectHasShippingMethod: MemoizedSelector<object, boolean>;
+  selectHasPaymentMethod: MemoizedSelector<object, boolean>;
+  selectCanPlaceOrder: MemoizedSelector<object, boolean, DefaultProjectorFn<boolean>>;
 }
 
 const createCartSelectors = <
@@ -163,6 +170,45 @@ const createCartSelectors = <
 		}
   );
 
+  const selectHasBillingAddress = createSelector(
+    selectCartBillingAddress,
+    billingAddress => !!billingAddress
+  );
+
+  const selectHasShippingAddress = createSelector(
+    selectCartShippingAddress,
+    shippingAddress => !!shippingAddress
+  );
+
+  const selectHasShippingMethod = createSelector(
+    selectCartShippingInformation,
+    shippingMethod => !!shippingMethod
+  );
+
+  const selectHasPaymentMethod = createSelector(
+    selectCartPayment,
+    paymentMethod => !!paymentMethod
+  );
+
+  const selectCanPlaceOrder = createSelector(
+    selectIsCartEmpty,
+    selectHasBillingAddress,
+    selectHasShippingAddress,
+    selectHasShippingMethod,
+    selectHasPaymentMethod,
+    (
+      isCartEmpty,
+      hasBillingAddress,
+      hasShippingAddress,
+      hasShippingMethod,
+      hasPaymentMethod
+    ) => !isCartEmpty
+      && hasBillingAddress
+      && hasShippingAddress
+      && hasShippingMethod
+      && hasPaymentMethod
+  )
+
 	return {
 		selectCartState,
 		selectCartValue,
@@ -192,7 +238,13 @@ const createCartSelectors = <
 		selectCartAvailableShippingMethods,
     selectCartAvailablePaymentMethods,
 		selectIsCartEmpty,
-		selectCartItemDiscountedRowTotal
+    selectCartItemDiscountedRowTotal,
+
+    selectHasBillingAddress,
+    selectHasShippingAddress,
+    selectHasShippingMethod,
+    selectHasPaymentMethod,
+    selectCanPlaceOrder
 	}
 }
 
