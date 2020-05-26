@@ -8,7 +8,7 @@ import { DaffCheckboxModule } from '../checkbox.module';
 
 @Component({
   template: `
-    <daff-checkbox label='testLabel' labeledBy='testParent'></daff-checkbox>
+    <daff-checkbox aria-label='testLabel' aria-labelledby='testParent'></daff-checkbox>
   `
 })
 class CheckboxWrapperComponent { }

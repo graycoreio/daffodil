@@ -59,11 +59,11 @@ export class DaffCheckboxComponent {
   /**
    * The aria-label of the checkbox. If not set by user then it defaults to the name of the checkbox.
    */
-  @Input() label = name;
+  @Input('aria-label') label = name;
   /**
    * The aria-labeledby of the checkbox.
    */
-  @Input() labeledBy: string;
+  @Input('aria-labelledby') labeledBy: string;
 
   /**
    * Event on whether or not the selection has changed.
