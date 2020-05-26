@@ -1,0 +1,13 @@
+<input type="radio" 
+[attr.checked]="checked ? '' : null" 
+[attr.id]="id" 
+[attr.name]="name" 
+[attr.aria-label]="label"
+[attr.value]="value"
+[attr.disabled] = "disabled ? '' : null" 
+(change)="onChange()"
+(blur)="onBlur()"
+(focus)="onFocus()"/>
+<label [attr.for]="id">
+  <ng-content></ng-content>
+</label>
