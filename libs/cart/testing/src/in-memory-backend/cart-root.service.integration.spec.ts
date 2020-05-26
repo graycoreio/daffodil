@@ -5,12 +5,14 @@ import { HttpClientInMemoryWebApiModule, } from 'angular-in-memory-web-api';
 import {
   DaffCart,
   DaffCartItem,
-  DaffCartCoupon
+  DaffCartCoupon,
+  DaffCartAddress
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
   DaffCartItemFactory,
-  DaffCartCouponFactory
+  DaffCartCouponFactory,
+  DaffCartAddressFactory
 } from '@daffodil/cart/testing';
 
 import { DaffInMemoryBackendCartRootService } from './cart-root.service';
@@ -21,10 +23,13 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
   let cartCouponFactory: DaffCartCouponFactory;
+  let cartAddressFactory: DaffCartAddressFactory;
 
   let mockCart: DaffCart;
   let mockCartItem: DaffCartItem;
   let mockCartCoupon: DaffCartCoupon;
+  let mockShippingAddress: DaffCartAddress;
+  let mockBillingAddress: DaffCartAddress;
   let cartId: DaffCart['id'];
   let itemId: DaffCartItem['item_id'];
 
@@ -41,14 +46,19 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     cartFactory = TestBed.get(DaffCartFactory);
     cartItemFactory = TestBed.get(DaffCartItemFactory);
     cartCouponFactory = TestBed.get(DaffCartCouponFactory);
+    cartAddressFactory = TestBed.get(DaffCartAddressFactory);
 
     mockCart = cartFactory.create();
     mockCartItem = cartItemFactory.create();
     mockCartCoupon = cartCouponFactory.create();
+    mockShippingAddress = cartAddressFactory.create();
+    mockBillingAddress = cartAddressFactory.create();
     cartId = mockCart.id;
     itemId = mockCartItem.item_id;
     mockCart.items.push(mockCartItem);
     mockCart.coupons.push(mockCartCoupon);
+    mockCart.shipping_address = mockShippingAddress;
+    mockCart.billing_address = mockBillingAddress;
 
     httpClient.post<any>('commands/resetDb', {carts: [mockCart]}).subscribe(() => done());
   });
@@ -265,5 +275,75 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     it('should return a cart with no coupons', () => {
       expect(result.coupons).toEqual([]);
     });
+  });
+
+  // cart shipping address
+  describe('processing a get shipping address request', () => {
+    let result;
+
+    beforeEach(done => {
+      httpClient.get<any>(`/api/cart-shipping-address/${cartId}/`).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return the cart shipping address', () => {
+      expect(result).toEqual(mockShippingAddress);
+    });
+  });
+
+  describe('processing an update shipping address request', () => {
+    let result;
+    let updatedStreet;
+
+    beforeEach(done => {
+      updatedStreet = `${mockShippingAddress.street} updated`;
+      mockShippingAddress.street = updatedStreet;
+
+      httpClient.put<any>(`/api/cart-shipping-address/${cartId}/`, mockShippingAddress).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return a cart with the updated shipping address', () => {
+      expect(result.shipping_address.street).toEqual(updatedStreet);
+		});
+  });
+
+  // cart billing address
+  describe('processing a get billing address request', () => {
+    let result;
+
+    beforeEach(done => {
+      httpClient.get<any>(`/api/cart-billing-address/${cartId}/`).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return the cart billing address', () => {
+      expect(result).toEqual(mockBillingAddress);
+    });
+  });
+
+  describe('processing an update billing address request', () => {
+    let result;
+    let updatedStreet;
+
+    beforeEach(done => {
+      updatedStreet = `${mockBillingAddress.street} updated`;
+      mockBillingAddress.street = updatedStreet;
+
+      httpClient.put<any>(`/api/cart-billing-address/${cartId}/`, mockBillingAddress).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return a cart with the updated billing address', () => {
+      expect(result.billing_address.street).toEqual(updatedStreet);
+		});
   });
 });
