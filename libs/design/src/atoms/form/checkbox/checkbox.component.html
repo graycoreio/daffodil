@@ -1,0 +1,14 @@
+<input #inputElement
+type="checkbox"
+[attr.aria-label]="label"
+[attr.aria-labelledby]="labeledBy"
+[attr.checked]="checked ? '' : null"
+[attr.id] = "id"
+[attr.value]="value"
+[attr.name]="name"
+[attr.disabled] = "disabled ? '' : null" 
+(change)="_onChange($event)"
+(blur)="onBlur()"
+(focus)="onFocus()"
+/>
+<label [attr.for]="id"><ng-content></ng-content></label>
