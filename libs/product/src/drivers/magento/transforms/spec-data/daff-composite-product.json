@@ -2,7 +2,7 @@
 	"type": "composite",
 	"id": "22",
 	"url": "url",
-	"price": "23",
+	"price": 23,
 	"discount": {
 		"amount": 2,
 		"percent": 8.7
@@ -26,13 +26,13 @@
 				{
 					"id": "option-id-1",
 					"name": "Option 1",
-					"price": "10",
+					"price": 10,
 					"quantity": 1
 				},
 				{
 					"id": "option-id-2",
 					"name": "Option 2",
-					"price": "12",
+					"price": 12,
 					"quantity": 1
 				}
 			]

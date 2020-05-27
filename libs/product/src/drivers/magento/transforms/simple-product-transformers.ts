@@ -24,12 +24,12 @@ export function transformMagentoSimpleProduct(product: MagentoProduct, mediaUrl:
 /**
  * A function for null checking an object.
  */
-function getPrice(product: MagentoProduct): string {
+function getPrice(product: MagentoProduct): number {
 	return product.price_range && 
 		product.price_range.maximum_price && 
 		product.price_range.maximum_price.regular_price && 
 		product.price_range.maximum_price.regular_price.value !== null
-	? product.price_range.maximum_price.regular_price.value.toString() : '';
+	? product.price_range.maximum_price.regular_price.value : null;
 }
 
 function getDiscount(product: MagentoProduct): DaffProductDiscount {

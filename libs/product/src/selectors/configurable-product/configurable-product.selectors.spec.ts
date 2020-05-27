@@ -43,9 +43,9 @@ describe('Configurable Product Selectors', () => {
 		describe('when many variants are possible', () => {
 			
 			it('should return a ranged price', () => {
-				stubConfigurableProduct.variants[0].price = '2';
-				stubConfigurableProduct.variants[1].price = '1';
-				stubConfigurableProduct.variants[2].price = '3';
+				stubConfigurableProduct.variants[0].price = 2;
+				stubConfigurableProduct.variants[1].price = 1;
+				stubConfigurableProduct.variants[2].price = 3;
 				store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
 				const selector = store.pipe(select(selectConfigurableProductPrice, { id: stubConfigurableProduct.id }));
 				const expected = cold('a', { a: '1-3' });
@@ -64,7 +64,7 @@ describe('Configurable Product Selectors', () => {
 					stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
 				));
 				const selector = store.pipe(select(selectConfigurableProductPrice, { id: stubConfigurableProduct.id }));
-				const expected = cold('a', { a: stubConfigurableProduct.variants[0].price });
+				const expected = cold('a', { a: stubConfigurableProduct.variants[0].price.toString() });
 
 				expect(selector).toBeObservable(expected);
 			});

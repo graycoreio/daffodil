@@ -12,7 +12,7 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 	type = DaffProductTypeEnum.Composite;
 	id = faker.random.number(10000).toString();
 	url = faker.random.alphaNumeric(16);
-	price = this.stubPrice.toString();
+	price = this.stubPrice;
 	discount = {
 		amount: this.stubDiscount,
 		percent: this.stubDiscount/this.stubPrice

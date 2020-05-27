@@ -47,7 +47,7 @@ const createConfigurableProductSelectors = (): DaffConfigurableProductMemoizedSe
 		selectConfigurableProductAppliedAttributesEntitiesState,
 		(products, appliedAttributesEntities, props) => {
 			const matchingVariants: DaffConfigurableProductVariant[] = selectMatchingConfigurableProductVariants.projector(products, appliedAttributesEntities, { id: props.id });
-			if(matchingVariants.length === 1) return matchingVariants[0].price;
+			if(matchingVariants.length === 1) return matchingVariants[0].price.toString();
 			else return getMinimumPrice(matchingVariants) + '-' + getMaximumPrice(matchingVariants);
 		}
 	);
@@ -119,20 +119,20 @@ function doesAppliedAttributeMatchVariantAttribute(appliedAttribute: string, var
 function getMinimumPrice(variants: DaffConfigurableProductVariant[]): string {
 	return variants.reduce(
 		(acc, variant) => {
-			const price = parseInt(variant.price, 10);
+			const price = variant.price;
 			return price < acc ? price : acc;
 		},
-		parseInt(variants[0].price, 10)
+		variants[0].price
 	).toString();
 }
 
 function getMaximumPrice(variants: DaffConfigurableProductVariant[]): string {
 	return variants.reduce(
 		(acc, variant) => {
-			const price = parseInt(variant.price, 10);
+			const price = variant.price
 			return price > acc ? price : acc;
 		},
-		parseInt(variants[0].price, 10)
+		variants[0].price
 	).toString();
 }
 

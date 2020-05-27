@@ -71,7 +71,7 @@ describe('DaffConfigurableProductFacade', () => {
   describe('getPrice', () => {
 
     it('should return an Observable string of the price/price-range for a configurable product', () => {
-			const expected = cold('a', { a: stubConfigurableProduct.variants[0].price });
+			const expected = cold('a', { a: stubConfigurableProduct.variants[0].price.toString() });
       store.dispatch(new DaffConfigurableProductApplyAttribute(
 				stubConfigurableProduct.id,
 				stubConfigurableProduct.configurableAttributes[0].code,
