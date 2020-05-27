@@ -26,8 +26,9 @@ export const appRoutes: Routes = [
   { path: 'paginator', loadChildren: () => import('./paginator/paginator.module').then(m => m.PaginatorModule) },
   { path: 'progress-indicator', loadChildren: () => import('./progress-indicator/progress-indicator.module').then(m => m.ProgressIndicatorModule) },
   { path: 'qty-dropdown', loadChildren: () => import('./qty-dropdown/qty-dropdown.module').then(m => m.QtyDropdownModule) },
-  {path: 'sidebar', loadChildren: () => import('./sidebar/sidebar.module').then(m => m.SidebarModule)},
-  {path: 'checkbox', loadChildren: () => import('./checkbox/checkbox.module').then(m => m.CheckboxModule)},
+  { path: 'sidebar', loadChildren: () => import('./sidebar/sidebar.module').then(m => m.SidebarModule) },
+  { path: 'checkbox', loadChildren: () => import('./checkbox/checkbox.module').then(m => m.CheckboxModule) },
+  { path: 'radio', loadChildren: () => import('./radio/radio.module').then(m => m.RadioModule) },
 ]
 
 @NgModule({

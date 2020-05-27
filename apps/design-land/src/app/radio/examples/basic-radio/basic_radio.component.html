@@ -1,0 +1,9 @@
+<h2>Basic Radio</h2>
+<daff-radio-set [formGroup]="radioGroup" name="race">
+  <daff-radio formControlName="race" value="Terran">Terran</daff-radio>
+  <daff-radio formControlName="race" value="Protoss">Protoss</daff-radio>
+  <daff-radio formControlName="race" value="Zerg">Zerg</daff-radio>
+</daff-radio-set>
+<div>
+  The best race to play as is: {{this.radioGroup.get('race').value}}
+</div>
