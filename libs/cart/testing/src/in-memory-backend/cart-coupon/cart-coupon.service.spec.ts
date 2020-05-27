@@ -40,7 +40,7 @@ describe('DaffInMemoryBackendCartCouponService', () => {
     mockCart.coupons = [mockCartCoupon];
     collection = [mockCart];
     cartId = mockCart.id;
-    baseUrl = 'api/cart-items/';
+    baseUrl = 'api/cart-coupon/';
     cartUrl = `/${baseUrl}${cartId}/`;
     reqInfoStub = {
       id: cartId,
