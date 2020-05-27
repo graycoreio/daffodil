@@ -1,7 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffOrder } from '@daffodil/order';
-import { DaffOrderFactory } from '@daffodil/order/testing';
+import {
+  DaffOrderFactory,
+  isOrder
+} from '@daffodil/order/testing';
 
 import { DaffInMemoryBackendOrderService } from './order.service';
 
@@ -84,9 +87,23 @@ describe('DaffInMemoryBackendOrderService | Unit', () => {
       result = service.createDb(reqInfoStub);
     });
 
-    it('should return a object with an array of orders', () => {
+    it('should return a object with an array of more than 2 orders', () => {
       expect(Array.isArray(result.orders)).toEqual(true);
       expect(result.orders.length).toBeGreaterThan(2);
+      result.orders.forEach(order => {
+        expect(isOrder(order)).toBeTruthy();
+      });
+    });
+
+    describe('when seed data is passed', () => {
+      beforeEach(() => {
+        reqInfoStub.req.body.orders = collection;
+        result = service.createDb(reqInfoStub);
+      });
+
+      it('should create the database with that seed data', () => {
+        expect(result.orders).toEqual(collection);
+      });
     });
   });
 });
