@@ -6,13 +6,17 @@ import {
   DaffCart,
   DaffCartItem,
   DaffCartCoupon,
-  DaffCartAddress
+  DaffCartAddress,
+  DaffCartPaymentMethod,
+  DaffCartShippingRate
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
   DaffCartItemFactory,
   DaffCartCouponFactory,
-  DaffCartAddressFactory
+  DaffCartAddressFactory,
+  DaffCartPaymentFactory,
+  DaffCartShippingRateFactory
 } from '@daffodil/cart/testing';
 
 import { DaffInMemoryBackendCartRootService } from './cart-root.service';
@@ -24,12 +28,16 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
   let cartItemFactory: DaffCartItemFactory;
   let cartCouponFactory: DaffCartCouponFactory;
   let cartAddressFactory: DaffCartAddressFactory;
+  let cartPaymentFactory: DaffCartPaymentFactory;
+  let cartShippingMethodFactory: DaffCartShippingRateFactory;
 
   let mockCart: DaffCart;
   let mockCartItem: DaffCartItem;
   let mockCartCoupon: DaffCartCoupon;
   let mockShippingAddress: DaffCartAddress;
   let mockBillingAddress: DaffCartAddress;
+  let mockPayment: DaffCartPaymentMethod;
+  let mockShippingMethod: DaffCartShippingRate;
   let cartId: DaffCart['id'];
   let itemId: DaffCartItem['item_id'];
 
@@ -47,18 +55,24 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     cartItemFactory = TestBed.get(DaffCartItemFactory);
     cartCouponFactory = TestBed.get(DaffCartCouponFactory);
     cartAddressFactory = TestBed.get(DaffCartAddressFactory);
+    cartPaymentFactory = TestBed.get(DaffCartPaymentFactory);
+    cartShippingMethodFactory = TestBed.get(DaffCartShippingRateFactory);
 
     mockCart = cartFactory.create();
     mockCartItem = cartItemFactory.create();
     mockCartCoupon = cartCouponFactory.create();
     mockShippingAddress = cartAddressFactory.create();
     mockBillingAddress = cartAddressFactory.create();
+    mockPayment = cartPaymentFactory.create();
+    mockShippingMethod = cartShippingMethodFactory.create();
     cartId = mockCart.id;
     itemId = mockCartItem.item_id;
     mockCart.items.push(mockCartItem);
     mockCart.coupons.push(mockCartCoupon);
     mockCart.shipping_address = mockShippingAddress;
     mockCart.billing_address = mockBillingAddress;
+    mockCart.available_payment_methods = [mockPayment];
+    mockCart.available_shipping_methods = [mockShippingMethod];
 
     httpClient.post<any>('commands/resetDb', {carts: [mockCart]}).subscribe(() => done());
   });
@@ -345,5 +359,37 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     it('should return a cart with the updated billing address', () => {
       expect(result.billing_address.street).toEqual(updatedStreet);
 		});
+  });
+
+  // cart payment methods
+  describe('processing a get available payment methods request', () => {
+    let result;
+
+    beforeEach(done => {
+      httpClient.get<any>(`/api/cart-payment-methods/${cartId}/`).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return the cart\'s available payment methods', () => {
+      expect(result).toEqual(mockCart.available_payment_methods);
+    });
+  });
+
+  // cart shipping methods
+  describe('processing a get available shipping methods request', () => {
+    let result;
+
+    beforeEach(done => {
+      httpClient.get<any>(`/api/cart-shipping-methods/${cartId}/`).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return the cart\'s available shipping methods', () => {
+      expect(result).toEqual(mockCart.available_shipping_methods);
+    });
   });
 });

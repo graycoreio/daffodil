@@ -10,6 +10,8 @@ import { DaffInMemoryBackendCartOrderService } from './cart-order/cart-order.ser
 import { DaffInMemoryBackendCartCouponService } from './cart-coupon/cart-coupon.service';
 import { DaffInMemoryBackendCartShippingAddressService } from './cart-shipping-address/cart-shipping-address.service';
 import { DaffInMemoryBackendCartBillingAddressService } from './cart-billing-address/cart-billing-address.service';
+import { DaffInMemoryBackendCartPaymentMethodsService } from './cart-payment-methods/cart-payment-methods.service';
+import { DaffInMemoryBackendCartShippingMethodsService } from './cart-shipping-methods/cart-shipping-methods.service';
 
 /**
  * The root cart in-memory backend.
@@ -30,6 +32,8 @@ export class DaffInMemoryBackendCartRootService implements InMemoryDbService, Da
     'cart-coupon',
     'cart-shipping-address',
     'cart-billing-address',
+    'cart-payment-methods',
+    'cart-shipping-methods',
   ]
 
   public carts: DaffCart[] = [];
@@ -41,6 +45,8 @@ export class DaffInMemoryBackendCartRootService implements InMemoryDbService, Da
     private cartCouponService: DaffInMemoryBackendCartCouponService,
     private cartShippingAddressService: DaffInMemoryBackendCartShippingAddressService,
     private cartBillingAddressService: DaffInMemoryBackendCartBillingAddressService,
+    private cartPaymentMethodsService: DaffInMemoryBackendCartPaymentMethodsService,
+    private cartShippingMethodsService: DaffInMemoryBackendCartShippingMethodsService,
   ) {}
 
   createDb(reqInfo: RequestInfo) {
@@ -93,6 +99,12 @@ export class DaffInMemoryBackendCartRootService implements InMemoryDbService, Da
 
       case 'cart-billing-address':
         return this.cartBillingAddressService[reqInfo.method](reqInfo);
+
+      case 'cart-payment-methods':
+        return this.cartPaymentMethodsService[reqInfo.method](reqInfo);
+
+      case 'cart-shipping-methods':
+        return this.cartShippingMethodsService[reqInfo.method](reqInfo);
 
       default:
         return reqInfo.utils.createResponse$(() => ({
