@@ -6,5 +6,5 @@
 </div>
 <div *ngIf="example">
   <button (click)="selectedFile = file" *ngFor="let file of example.files">{{ file.name }}</button>
-  <pre><code [class]="example.language" [highlight]="selectedFile.content"></code></pre>
+  <pre><code [class]="'hljs' + ' ' +selectedFile.language" [innerHtml]="selectedFile.content"></code></pre>
 </div>

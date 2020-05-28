@@ -10,6 +10,7 @@ import { DesignExampleDocumentCreatorProcessor } from './processors/designExampl
 import { DesignExampleFilterProcessor } from './processors/exampleFileCollator';
 import { designExampleReader } from './reader/example.reader';
 import { DesignExampleConvertToJsonProcessor } from './processors/convertToJson';
+import { DesignExampleHighlightCodeProcessor } from './processors/highlightCode';
 
 export const designExamplePackage = new Package('daffodil-design-examples', [daffodilBasePackage])
   .factory(designExampleReader)
@@ -20,6 +21,7 @@ export const designExamplePackage = new Package('daffodil-design-examples', [daf
   .processor(new CleanSelectorsProcessor())
   .processor(new DesignExampleDocumentCreatorProcessor())
   .processor(new DesignExampleFilterProcessor())
+  .processor(new DesignExampleHighlightCodeProcessor())
   .config(function (readFilesProcessor, designExampleReader) {
     readFilesProcessor.$enabled = true;
     readFilesProcessor.fileReaders.push(designExampleReader);

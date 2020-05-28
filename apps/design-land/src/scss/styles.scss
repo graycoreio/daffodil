@@ -8,6 +8,7 @@
 @import 'daff-theme';
 
 @import "theme";
+@import 'highlight.js/styles/github.css';
 
 @include daff-theme($theme);
 
