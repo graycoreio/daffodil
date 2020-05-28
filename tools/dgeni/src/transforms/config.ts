@@ -5,6 +5,7 @@ export const PROJECT_ROOT = resolve(__dirname, '../../../..');
 export const DGENI_DIR = resolve(__dirname, '../../');
 export const DAFFFIO_PATH = resolve(PROJECT_ROOT, 'apps/daffio');
 export const DESIGN_LAND_PATH = resolve(PROJECT_ROOT, 'apps/design-land');
+export const DESIGN_PATH = resolve(PROJECT_ROOT, 'libs/design');
 export const TEMPLATES_PATH = resolve(DGENI_DIR, 'src/templates');
 export const API_TEMPLATES_PATH = resolve(TEMPLATES_PATH, 'api');
 export const SRC_PATH = resolve(DAFFFIO_PATH, 'src');

@@ -3,7 +3,7 @@ import { Package } from 'dgeni';
 const typescriptPackage = require('dgeni-packages/typescript');
 
 import { daffodilBasePackage } from '../daffodil-base-package';
-import { DESIGN_LAND_PATH, TEMPLATES_PATH } from '../config';
+import { DESIGN_PATH, TEMPLATES_PATH } from '../config';
 import { CleanSelectorsProcessor } from '../../processors/cleanSelectors';
 import { FilterContainedDocsProcessor } from '../../processors/filterDocs';
 import { DesignExampleDocumentCreatorProcessor } from './processors/designExampleDocumentCreator';
@@ -25,9 +25,9 @@ export const designExamplePackage = new Package('daffodil-design-examples', [daf
   .config(function (readFilesProcessor, designExampleReader) {
     readFilesProcessor.$enabled = true;
     readFilesProcessor.fileReaders.push(designExampleReader);
-    readFilesProcessor.basePath = DESIGN_LAND_PATH;
+    readFilesProcessor.basePath = DESIGN_PATH;
     readFilesProcessor.sourceFiles = [
-      { include: ['**/examples/*/*.*']}
+      { include: ['**/examples/src/*/*.*']}
     ]
   })
   .config(function (convertToJson) {
