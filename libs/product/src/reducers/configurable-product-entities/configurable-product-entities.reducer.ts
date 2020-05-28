@@ -23,14 +23,16 @@ export function daffConfigurableProductEntitiesReducer<T extends DaffProduct, V 
   switch (action.type) {
     case DaffProductGridActionTypes.ProductGridLoadSuccessAction:
 		case DaffBestSellersActionTypes.BestSellersLoadSuccessAction:
-			return adapter.upsertMany(buildConfigurableProductAppliedAttributesEntities(action.payload), state);
+			return adapter.upsertMany(
+				action.payload
+					.filter(product => product.type === DaffProductTypeEnum.Configurable)
+					.map((product) => buildConfigurableProductAppliedAttributesEntity(product.id)), 
+				state
+			);
     case DaffProductActionTypes.ProductLoadSuccessAction:
 			if(action.payload.type === DaffProductTypeEnum.Configurable) {
 				return adapter.upsertOne(
-					{
-						id: action.payload.id,
-						attributes: []
-					},
+					buildConfigurableProductAppliedAttributesEntity(action.payload.id),
 					state
 				);
 			};
@@ -44,9 +46,6 @@ export function daffConfigurableProductEntitiesReducer<T extends DaffProduct, V 
 				state
 			);
 		case DaffConfigurableProductActionTypes.ConfigurableProductRemoveAttributeAction:
-			const upsertedEntity = state.entities[action.id];
-			delete upsertedEntity[action.attributeId];
-
 			return adapter.upsertOne(
 				{
 					id: action.id,
@@ -55,18 +54,12 @@ export function daffConfigurableProductEntitiesReducer<T extends DaffProduct, V 
 				state
 			);
 		case DaffConfigurableProductActionTypes.ConfigurableProductToggleAttributeAction:
-			let attributes: DaffConfigurableProductEntityAttribute[];
-
-			if(isAttributeSelected(state.entities[action.id].attributes, action.attributeId, action.attributeValue)) {
-				attributes = removeAttribute(state.entities[action.id].attributes, action.attributeId)
-			} else {
-				attributes = applyAttribute(state.entities[action.id].attributes, action.attributeId, action.attributeValue)
-			}
-
 			return adapter.upsertOne(
 				{
 					id: action.id,
-					attributes: attributes
+					attributes: isAttributeSelected(state.entities[action.id].attributes, action.attributeId, action.attributeValue) ?
+						removeAttribute(state.entities[action.id].attributes, action.attributeId) :
+						applyAttribute(state.entities[action.id].attributes, action.attributeId, action.attributeValue)
 				},
 				state
 			);
@@ -75,48 +68,34 @@ export function daffConfigurableProductEntitiesReducer<T extends DaffProduct, V 
   }
 }
 
-function buildConfigurableProductAppliedAttributesEntities(products: DaffProduct[]): DaffConfigurableProductEntity[] {
-	return products
-		.filter(product => product.type === DaffProductTypeEnum.Configurable)
-		.map((product) => {
-			return {
-				id: product.id,
-				attributes: []
-			}
-		})
+function buildConfigurableProductAppliedAttributesEntity(productId: string): DaffConfigurableProductEntity {
+	return {
+		id: productId,
+		attributes: []
+	}
 }
 
 function applyAttribute(currentAttributes: DaffConfigurableProductEntityAttribute[], appliedAttributeCode: string, appliedAttributeValue: string): DaffConfigurableProductEntityAttribute[] {
 	const attributeIndex = currentAttributes.findIndex(attribute => attribute.code === appliedAttributeCode);
-	if(attributeIndex > -1) {
-		currentAttributes = [
-			...currentAttributes.slice(0, attributeIndex)
-		]
-		currentAttributes[attributeIndex] = {
+	const retainedAttributes = attributeIndex > -1 ? currentAttributes.slice(0, attributeIndex) : currentAttributes;
+
+	return [
+		...retainedAttributes,
+		{
 			code: appliedAttributeCode,
 			value: appliedAttributeValue
 		}
-	} else {
-		currentAttributes.push({
-			code: appliedAttributeCode,
-			value: appliedAttributeValue
-		});
-	}
-	
-	return currentAttributes;
+	]
 }
 
 function removeAttribute(currentAttributes: DaffConfigurableProductEntityAttribute[], appliedAttributeCode: string): DaffConfigurableProductEntityAttribute[] {
-	for(let i=0; i<currentAttributes.length; i++) {
-		if(currentAttributes[i].code === appliedAttributeCode) {
-			return currentAttributes.slice(0, i);
-		}
-	}
+	const index = currentAttributes.findIndex(attribute => attribute.code === appliedAttributeCode);
+
+	return index > -1 ? currentAttributes.slice(0, index) : currentAttributes;
 }
 
 function isAttributeSelected(currentAttributes: DaffConfigurableProductEntityAttribute[], attributeCode: string, attributeValue: string): boolean {
-	for(let i=0; i<currentAttributes.length; i++) {
-		if(currentAttributes[i].code === attributeCode && currentAttributes[i].value === attributeValue) return true;
-	}
-	return false;
+	const index = currentAttributes.findIndex(attribute => attribute.code === attributeCode);
+
+	return index > -1 && currentAttributes[index].value === attributeValue;
 }

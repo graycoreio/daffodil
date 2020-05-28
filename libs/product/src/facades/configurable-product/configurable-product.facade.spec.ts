@@ -123,7 +123,7 @@ describe('DaffConfigurableProductFacade', () => {
 
   describe('getSelectableAttributes', () => {
 
-    it('should return an Observable string of the price/price-range for a configurable product', () => {
+    it('should return the selectable attributes for a configurable product', () => {
 			const expected = cold('a', { 
 				a: {
 					[stubConfigurableProduct.configurableAttributes[0].code]: [
