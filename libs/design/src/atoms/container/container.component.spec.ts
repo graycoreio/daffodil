@@ -53,5 +53,12 @@ describe('DaffContainerComponent', () => {
       de = fixture.debugElement.query(By.css('daff-container'));
       expect(de.nativeElement.classList.toString()).toEqual('daff-container');
     });
+
+    it('should add the size class on the host element for the defined size', () => {
+      wrapper.size = 'xs';
+      fixture.detectChanges();
+      
+      expect(de.nativeElement.classList.contains('daff-xs')).toEqual(true);
+    });
   });
 });
