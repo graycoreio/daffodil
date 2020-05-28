@@ -7,25 +7,20 @@ import { DesignLandArticleComponent } from './article.component';
 import { DesignLandArticleRoutingModule } from './article-routing.module';
 
 import { DaffArticleModule } from '@daffodil/design';
-import { ARTICLE_EXAMPLES } from './examples/public_api';
+import { ArticleExamplesModule, ARTICLE_EXAMPLES } from '@daffodil/design/article/examples';
 import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 
 @NgModule({
   declarations: [
     DesignLandArticleComponent,
-    ...ARTICLE_EXAMPLES
   ],
   imports: [
     CommonModule,
-    DesignLandArticleRoutingModule,
-    CommonModule,
     DaffArticleModule,
+    DesignLandArticleRoutingModule,
     DesignLandExampleViewerModule,
-
+    ArticleExamplesModule
   ],
-  entryComponents: [
-    ...ARTICLE_EXAMPLES
-  ]
 })
 export class DesignLandArticleModule {
   constructor(

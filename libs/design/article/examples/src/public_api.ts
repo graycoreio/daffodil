@@ -8,4 +8,5 @@ export { ArticleLinkComponent } from "./article-link/article-link.component";
 export { ArticleLeadComponent } from "./article-lead/article-lead.component";
 export { ArticleBlockquoteComponent } from "./article-blockquote/article-blockquote.component";
 
+export { ArticleExamplesModule } from './article-examples.module';
 export { ARTICLE_EXAMPLES } from './examples';
