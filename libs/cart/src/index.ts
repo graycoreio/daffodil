@@ -28,3 +28,4 @@ export { DaffCartStorageService } from './storage/cart-storage.service';
 export * from './errors/public_api';
 
 export * from './drivers/public_api';
+export * from './resolvers/public_api';
