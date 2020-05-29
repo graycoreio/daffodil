@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'article-code-inline',
+  selector: 'daff-article-code-inline',
   templateUrl: './article-code-inline.component.html'
 })
 export class ArticleCodeInlineComponent {}
