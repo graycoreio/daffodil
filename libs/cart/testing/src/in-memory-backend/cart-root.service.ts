@@ -12,6 +12,8 @@ import { DaffInMemoryBackendCartShippingAddressService } from './cart-shipping-a
 import { DaffInMemoryBackendCartBillingAddressService } from './cart-billing-address/cart-billing-address.service';
 import { DaffInMemoryBackendCartPaymentMethodsService } from './cart-payment-methods/cart-payment-methods.service';
 import { DaffInMemoryBackendCartShippingMethodsService } from './cart-shipping-methods/cart-shipping-methods.service';
+import { DaffInMemoryBackendCartPaymentService } from './cart-payment/cart-payment.service';
+import { DaffInMemoryBackendCartShippingInformationService } from './cart-shipping-information/cart-shipping-information.service';
 
 /**
  * The root cart in-memory backend.
@@ -34,6 +36,8 @@ export class DaffInMemoryBackendCartRootService implements InMemoryDbService, Da
     'cart-billing-address',
     'cart-payment-methods',
     'cart-shipping-methods',
+    'cart-payment',
+    'cart-shipping-information',
   ]
 
   public carts: DaffCart[] = [];
@@ -47,6 +51,8 @@ export class DaffInMemoryBackendCartRootService implements InMemoryDbService, Da
     private cartBillingAddressService: DaffInMemoryBackendCartBillingAddressService,
     private cartPaymentMethodsService: DaffInMemoryBackendCartPaymentMethodsService,
     private cartShippingMethodsService: DaffInMemoryBackendCartShippingMethodsService,
+    private cartPaymentService: DaffInMemoryBackendCartPaymentService,
+    private cartShippingInformationService: DaffInMemoryBackendCartShippingInformationService,
   ) {}
 
   createDb(reqInfo: RequestInfo) {
@@ -105,6 +111,12 @@ export class DaffInMemoryBackendCartRootService implements InMemoryDbService, Da
 
       case 'cart-shipping-methods':
         return this.cartShippingMethodsService[reqInfo.method](reqInfo);
+
+      case 'cart-payment':
+        return this.cartPaymentService[reqInfo.method](reqInfo);
+
+      case 'cart-shipping-information':
+        return this.cartShippingInformationService[reqInfo.method](reqInfo);
 
       default:
         return reqInfo.utils.createResponse$(() => ({

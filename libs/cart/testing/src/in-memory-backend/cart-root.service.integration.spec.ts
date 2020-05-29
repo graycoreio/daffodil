@@ -8,7 +8,8 @@ import {
   DaffCartCoupon,
   DaffCartAddress,
   DaffCartPaymentMethod,
-  DaffCartShippingRate
+  DaffCartShippingRate,
+  DaffCartShippingInformation
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
@@ -38,6 +39,7 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
   let mockBillingAddress: DaffCartAddress;
   let mockPayment: DaffCartPaymentMethod;
   let mockShippingMethod: DaffCartShippingRate;
+  let mockShippingInformation: DaffCartShippingInformation;
   let cartId: DaffCart['id'];
   let itemId: DaffCartItem['item_id'];
 
@@ -65,6 +67,10 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     mockBillingAddress = cartAddressFactory.create();
     mockPayment = cartPaymentFactory.create();
     mockShippingMethod = cartShippingMethodFactory.create();
+    mockShippingInformation = {
+      ...cartShippingMethodFactory.create(),
+      address_id: 0
+    };
     cartId = mockCart.id;
     itemId = mockCartItem.item_id;
     mockCart.items.push(mockCartItem);
@@ -73,6 +79,8 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     mockCart.billing_address = mockBillingAddress;
     mockCart.available_payment_methods = [mockPayment];
     mockCart.available_shipping_methods = [mockShippingMethod];
+    mockCart.payment = mockPayment;
+    mockCart.shipping_information = mockShippingInformation;
 
     httpClient.post<any>('commands/resetDb', {carts: [mockCart]}).subscribe(() => done());
   });
@@ -390,6 +398,107 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
 
     it('should return the cart\'s available shipping methods', () => {
       expect(result).toEqual(mockCart.available_shipping_methods);
+    });
+  });
+
+  // cart payment
+  describe('processing a get payment request', () => {
+    let result;
+
+    beforeEach(done => {
+      httpClient.get<any>(`/api/cart-payment/${cartId}/`).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return the cart payment', () => {
+      expect(result).toEqual(mockPayment);
+    });
+  });
+
+  describe('processing an update payment request', () => {
+    let result;
+    let newPayment: DaffCartPaymentMethod;
+
+    beforeEach(done => {
+      newPayment = cartPaymentFactory.create();
+
+      httpClient.put<any>(`/api/cart-payment/${cartId}/`, newPayment).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return a cart with the updated payment', () => {
+      expect(result.payment).toEqual(newPayment);
+		});
+  });
+
+  describe('processing a remove payment request', () => {
+    let result;
+
+    beforeEach(done => {
+      httpClient.delete<any>(`/api/cart-payment/${cartId}/`, {}).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return a cart with no payment', () => {
+      expect(result.payment).toBeFalsy();
+    });
+  });
+
+  // cart shipping information
+  describe('processing a get shipping information request', () => {
+    let result;
+
+    beforeEach(done => {
+      httpClient.get<any>(`/api/cart-shipping-information/${cartId}/`).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return the cart shipping information', () => {
+      expect(result).toEqual(mockShippingInformation);
+    });
+  });
+
+  describe('processing an update shipping information request', () => {
+    let result;
+    let newShippingInformation: DaffCartShippingInformation;
+
+    beforeEach(done => {
+      newShippingInformation = {
+        ...cartShippingMethodFactory.create(),
+        address_id: 5
+      };
+
+      httpClient.put<any>(`/api/cart-shipping-information/${cartId}/`, newShippingInformation).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return a cart with the updated shipping information', () => {
+      expect(result.shipping_information).toEqual(newShippingInformation);
+		});
+  });
+
+  describe('processing a remove shipping information request', () => {
+    let result;
+
+    beforeEach(done => {
+      httpClient.delete<any>(`/api/cart-shipping-information/${cartId}/`, {}).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return a cart with no shipping information', () => {
+      expect(result.shipping_information).toBeFalsy();
     });
   });
 });
