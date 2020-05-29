@@ -11,7 +11,6 @@ export interface DaffConfigurableProductEntitiesMemoizedSelectors {
 	selectConfigurableProductAppliedAttributesEntitiesState: MemoizedSelector<object, EntityState<DaffConfigurableProductEntity>>;
 	selectConfigurableProductIds: MemoizedSelector<object, EntityState<DaffConfigurableProductEntity>['ids']>;
 	selectConfigurableProductAppliedAttributesEntities: MemoizedSelector<object, EntityState<DaffConfigurableProductEntity>['entities']>;
-	selectAllConfigurableProductAppliedAttributeDictionaries: MemoizedSelector<object, DaffConfigurableProductEntity[]>;
 	selectConfigurableProductTotal: MemoizedSelector<object, number>;
 	selectConfigurableProductAppliedAttributes: MemoizedSelectorWithProps<object, object, DaffConfigurableProductEntityAttribute[]>;
 	selectConfigurableProductAppliedAttributesAsDictionary: MemoizedSelectorWithProps<object, object, Dictionary<string>>;
@@ -47,14 +46,6 @@ const createConfigurableProductAppliedAttributesEntitiesSelectors = <T extends D
 	);
 
 	/**
-	 * Selector for all configurable product applied attributes as dictionaries.
-	 */
-	const selectAllConfigurableProductAppliedAttributeDictionaries = createSelector(
-		selectConfigurableProductAppliedAttributesEntitiesState,
-		(state) => adapterSelectors.selectAll(state)
-	);
-
-	/**
 	 * Selector for the total number of configurable products.
 	 */
 	const selectConfigurableProductTotal = createSelector(
@@ -72,19 +63,16 @@ const createConfigurableProductAppliedAttributesEntitiesSelectors = <T extends D
 
 	const selectConfigurableProductAppliedAttributesAsDictionary = createSelector(
 		selectConfigurableProductAppliedAttributesEntitiesState,
-		(products, props) => {
-			return selectConfigurableProductAppliedAttributes.projector(products, { id: props.id }).reduce((acc, attribute) => {
-				acc[attribute.code] = attribute.value;
-				return acc;
-			}, {});
-		}
+		(products, props) => selectConfigurableProductAppliedAttributes.projector(products, { id: props.id }).reduce((acc, attribute) => {
+			acc[attribute.code] = attribute.value;
+			return acc;
+		}, {})
 	)
 
 	return { 
 		selectConfigurableProductAppliedAttributesEntitiesState,
 		selectConfigurableProductIds,
 		selectConfigurableProductAppliedAttributesEntities,
-		selectAllConfigurableProductAppliedAttributeDictionaries,
 		selectConfigurableProductTotal,
 		selectConfigurableProductAppliedAttributes,
 		selectConfigurableProductAppliedAttributesAsDictionary

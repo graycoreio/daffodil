@@ -21,7 +21,6 @@ describe('selectConfigurableProductEntitiesState', () => {
 	const {
 		selectConfigurableProductIds,
 		selectConfigurableProductAppliedAttributesEntities,
-		selectAllConfigurableProductAppliedAttributeDictionaries,
 		selectConfigurableProductTotal,
 		selectConfigurableProductAppliedAttributes,
 		selectConfigurableProductAppliedAttributesAsDictionary
@@ -60,38 +59,20 @@ describe('selectConfigurableProductEntitiesState', () => {
 	describe('selectConfigurableProductAppliedAttributesEntities', () => {
 		
 		it('selects configurable product attributes as a dictionary object', () => {
-			const expectedDictionary = new Object();
-			expectedDictionary[stubConfigurableProduct.id] = {
-				id: stubConfigurableProduct.id,
-				attributes: [
-					{
-						code: stubConfigurableProduct.configurableAttributes[0].code, 
-						value: stubConfigurableProduct.configurableAttributes[0].values[0].value
-					}
-				]
-			}
-
-			const selector = store.pipe(select(selectConfigurableProductAppliedAttributesEntities));
-			const expected = cold('a', { a: expectedDictionary });
-
-			expect(selector).toBeObservable(expected);
-		});
-	});
-
-	describe('selectAllConfigurableProductAppliedAttributeDictionaries', () => {
-		
-		it('selects all configurable product attributes as an array', () => {
-			const selector = store.pipe(select(selectAllConfigurableProductAppliedAttributeDictionaries));
-			const expected = cold('a', { 
-				a: [{ 
-					id: stubConfigurableProduct.id, attributes: [
+			const expectedDictionary = {
+				[stubConfigurableProduct.id]: {
+					id: stubConfigurableProduct.id,
+					attributes: [
 						{
 							code: stubConfigurableProduct.configurableAttributes[0].code, 
 							value: stubConfigurableProduct.configurableAttributes[0].values[0].value
 						}
-					] 
-				}]
-			});
+					]
+				}
+			}
+
+			const selector = store.pipe(select(selectConfigurableProductAppliedAttributesEntities));
+			const expected = cold('a', { a: expectedDictionary });
 
 			expect(selector).toBeObservable(expected);
 		});

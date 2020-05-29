@@ -58,11 +58,11 @@ const createConfigurableProductSelectors = (): DaffConfigurableProductMemoizedSe
 	const selectAllConfigurableProductAttributes = createSelector(
 		selectProductEntities,
 		(products, props) => {
-			const product = selectProduct.projector(products, { id: props.id });
+			const product = <DaffConfigurableProduct>selectProduct.projector(products, { id: props.id });
 			if(product.type !== DaffProductTypeEnum.Configurable) {
 				return {};
 			}
-			return products[props.id].configurableAttributes.reduce((acc, attribute) => {
+			return product.configurableAttributes.reduce((acc, attribute) => {
 				return {
 					...acc,
 					[attribute.code]: attribute.values.map(value => value.value)
@@ -87,30 +87,25 @@ const createConfigurableProductSelectors = (): DaffConfigurableProductMemoizedSe
 			if(appliedAttributes.length === 0) return selectAllConfigurableProductAttributes.projector(products, { id: props.id });
 			
 			const selectableAttributes = initializeSelectableAttributes(product.configurableAttributes);
-			let matchingVariants: DaffConfigurableProductVariant[] = product.variants;
+
 			// Set which values of applied attribute codes should be set as selectable based on the order that they were selected
-			for(let i=0; i<=appliedAttributes.length; i++) {
-				matchingVariants = matchingVariants.filter(variant => isVariantAvailable(appliedAttributes.slice(0, i), variant));
-				if(i<appliedAttributes.length) {
-					matchingVariants.forEach(variant => {
-						if(!isVariantAttributeMarkedAsSelectable(selectableAttributes[appliedAttributes[i].code], variant.appliedAttributes[appliedAttributes[i].code])) {
-							selectableAttributes[appliedAttributes[i].code].push(variant.appliedAttributes[appliedAttributes[i].code]);
-						}
-					});
-				}
-			}
-			
+			const matchedVariants = appliedAttributes.reduce((matchingVariants, appliedAttribute, i) => {
+				const filteredVariants = matchingVariants.filter(variant => isVariantAvailable(appliedAttributes.slice(0, i), variant));
+
+				selectableAttributes[appliedAttribute.code] = getSelectableAttributesFromVariants(selectableAttributes, filteredVariants, appliedAttribute.code);
+
+				return filteredVariants
+			}, product.variants).filter(variant =>
+				isVariantAvailable(appliedAttributes, variant)
+			);
+
 			// Set which values of the unapplied attribute codes should be set as selectable based on the matching variants of all
 			// applied attributes.
 			product.configurableAttributes.forEach(attribute => {
-				if(!selectableAttributes[attribute.code].length) {
-					matchingVariants.forEach(variant => {
-						if(!isVariantAttributeMarkedAsSelectable(selectableAttributes[attribute.code], variant.appliedAttributes[attribute.code])) {
-							selectableAttributes[attribute.code].push(variant.appliedAttributes[attribute.code]);
-						}
-					});
+				if (!selectableAttributes[attribute.code].length) {
+					selectableAttributes[attribute.code] = getSelectableAttributesFromVariants(selectableAttributes, matchedVariants, attribute.code);
 				}
-			})
+			});
 			
 			return selectableAttributes;
 		}
@@ -122,6 +117,18 @@ const createConfigurableProductSelectors = (): DaffConfigurableProductMemoizedSe
 		selectMatchingConfigurableProductVariants,
 		selectSelectableConfigurableProductAttributes
 	}
+}
+
+function getSelectableAttributesFromVariants(selectableAttributes: Dictionary<string[]>, variants: DaffConfigurableProductVariant[], code: string) {
+  return variants.reduce((selectedAttributes, variant) =>
+    isVariantAttributeMarkedAsSelectable(selectedAttributes, variant.appliedAttributes[code])
+      ? selectedAttributes
+      : [
+        ...selectedAttributes,
+        variant.appliedAttributes[code]
+      ],
+    selectableAttributes[code]
+  )
 }
 
 export const getDaffConfigurableProductSelectors = (() => {
