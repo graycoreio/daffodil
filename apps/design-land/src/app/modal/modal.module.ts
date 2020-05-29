@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { 
-  DaffModalModule, 
-  DaffFeatureModule, 
-  DaffButtonModule,
-  DaffCardModule 
+  DaffModalModule,
+  DaffArticleModule,
+  DaffButtonModule
 } from '@daffodil/design';
 
 import { DesignLandModalComponent } from './modal.component';
@@ -20,9 +20,8 @@ import { DesignLandModalRoutingModule } from './modal-routing.module';
     CommonModule,
     DesignLandModalRoutingModule,
     DaffModalModule,
-    DaffButtonModule,
-    DaffFeatureModule,
-    DaffCardModule
+    DaffArticleModule,
+    DaffButtonModule
   ],
   entryComponents: [
     DesignLandModalContentComponent

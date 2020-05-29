@@ -1,5 +1,26 @@
-<h1>Modal</h1>
+<daff-article>
+<h1 daffArticleTitle>Modal</h1>
+<p daffArticleLead>The <code>DaffModalComponent</code> is a dynamically rendered element that floats about the rest of a page's content. It can be especially useful for interstitials that require additional user feedback.</p>
 
-<p>The `DaffModalComponent` is a dynamically rendered element that takes a component of your choice and renders it inside a modal.</p>
+<h3>Supported Content Types</h3>
+<p>These components and directives help to structure the content in your modal.</p>
+<p>The <code>DaffModalComponent</code> optionally transcludes:</p>
+<ul>
+	<li><code>daff-modal-header</code>: component that places the <code>&lt;daffModalTitle&gt;</code> with styles to handle the placement of an optional actionable icon.</li>
+	<li><code>daffModalTitle</code>: directive for modal title that can be applied to a heading element (<code>&lt;h2&gt;</code>, &lt;h3&gt;, etc.)</li>
+	<li><code>daff-modal-content</code>: scrollable component to place the primary content in modal.</li>
+	<li><code>daff-modal-actions</code>: component to help place actionable components like buttons or links.</li>
+</ul>
 
-<button (click)="showModal()">Show a modal</button>
+<h3>Usage</h3>
+<p><code>DaffModalComponent</code> relies on using the <code>entryComponents</code> of the particular Angular <code>@NgModule</code>. To use the features of <code>DaffModalComponent</code>:</p>
+
+<ul>
+	<li>Import the <code>DaffModalModule</code> as you would with any other <code>@daffodil/design</code> component</li>
+	<li>Add the component that you want rendered inside the modal to your <code>@NgModule</code>'s <code>entryComponents</code></li>
+</ul>
+
+<p>Once your <code>@NgModule</code> has been configured, you can take advantage of the <code>DaffModalService</code> that is provided by the <code>DaffModalModule</code> to <code>open</code> and <code>close</code> the instance of the <code>DaffModalComponent</code>.</p>
+
+<button daff-button (click)="showModal()">Open Modal</button>
+</daff-article>

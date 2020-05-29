@@ -1,0 +1,9 @@
+@import '../../../scss/daff-util';
+
+:host {
+	display: block;
+	margin: 0 -25px;
+	max-height: 60vh;
+	overflow: scroll;
+	padding: 0 25px;
+}

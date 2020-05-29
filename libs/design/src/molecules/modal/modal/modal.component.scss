@@ -1,9 +1,13 @@
 @import '../../../scss/daff-util';
 
 :host {
-	z-index: 3;
-	display: flex;
+	display: block;
+	border-radius: 4px;
 	height: 100%;
+	max-width: 80vw;
+	overflow: hidden;
+	padding: 25px;
+	z-index: 3;
 
 	@include breakpoint(mobile) {
 		height: auto;
