@@ -8,23 +8,26 @@ import { DesignLandAppComponent } from './app.component';
 
 import {
   DaffSidebarModule,
-  DaffLinkSetModule
+  DaffLinkSetModule,
+  DaffArticleModule
  } from '@daffodil/design';
 
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     DesignLandAppRoutingModule,
+    HttpClientModule,
 
     DaffSidebarModule,
-    DaffLinkSetModule
+    DaffLinkSetModule,
+    DaffArticleModule
   ],
   declarations: [
     DesignLandAppComponent,
   ],
-  providers: [],
   bootstrap: [
     DesignLandAppComponent
   ]

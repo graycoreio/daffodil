@@ -64,6 +64,9 @@
       "@daffodil/design": [
         "dist/design"
       ],
+      "@daffodil/design/article/examples": [
+        "dist/design/article/examples"
+      ],
       "@daffodil/branding": [
         "dist/branding"
       ],
