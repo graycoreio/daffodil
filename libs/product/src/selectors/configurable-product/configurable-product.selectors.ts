@@ -62,12 +62,10 @@ const createConfigurableProductSelectors = (): DaffConfigurableProductMemoizedSe
 			if(product.type !== DaffProductTypeEnum.Configurable) {
 				return {};
 			}
-			return product.configurableAttributes.reduce((acc, attribute) => {
-				return {
-					...acc,
-					[attribute.code]: attribute.values.map(value => value.value)
-				};
-			}, {});
+			return product.configurableAttributes.reduce((acc, attribute) => ({
+				...acc,
+				[attribute.code]: attribute.values.map(value => value.value)
+			}), {});
 		}
 	);
 
@@ -169,12 +167,10 @@ function getMaximumPrice(variants: DaffConfigurableProductVariant[]): string {
 }
 
 function initializeSelectableAttributes(attributes: DaffConfigurableProductAttribute[]): Dictionary<string[]> {
-	return attributes.reduce((acc, attribute) => {
-		return {
-			...acc,
-			[attribute.code]: []
-		};
-	}, {});
+	return attributes.reduce((acc, attribute) => ({
+		...acc,
+		[attribute.code]: []
+	}), {});
 }
 
 function isVariantAttributeMarkedAsSelectable(attributeArray: string[], variantValue: string) {

@@ -63,10 +63,10 @@ const createConfigurableProductAppliedAttributesEntitiesSelectors = <T extends D
 
 	const selectConfigurableProductAppliedAttributesAsDictionary = createSelector(
 		selectConfigurableProductAppliedAttributesEntitiesState,
-		(products, props) => selectConfigurableProductAppliedAttributes.projector(products, { id: props.id }).reduce((acc, attribute) => {
-			acc[attribute.code] = attribute.value;
-			return acc;
-		}, {})
+		(products, props) => selectConfigurableProductAppliedAttributes.projector(products, { id: props.id }).reduce((acc, attribute) => ({
+			...acc,
+			[attribute.code]: attribute.value
+		}), {})
 	)
 
 	return { 
