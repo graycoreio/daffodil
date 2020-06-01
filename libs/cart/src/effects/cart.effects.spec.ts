@@ -184,6 +184,35 @@ describe('Daffodil | Cart | CartEffects', () => {
     });
   });
 
+  describe('when CartLoadSuccessAction is triggered', () => {
+    let expected;
+    let cartLoadSuccessAction;
+
+    beforeEach(() => {
+      cartLoadSuccessAction = new DaffCartLoadSuccess(mockCart);
+      actions$ = hot('--a', { a: cartLoadSuccessAction });
+      expected = cold('---');
+    });
+
+    it('should set the cart ID in storage', () => {
+      expect(effects.storeId$).toBeObservable(expected);
+      expect(daffCartStorageSpy.setCartId).toHaveBeenCalledWith(String(mockCart.id));
+    });
+
+    describe('and the storage service throws an error', () => {
+      beforeEach(() => {
+        daffCartStorageSpy.setCartId.and.callFake(throwStorageError)
+
+        actions$ = hot('--a', { a: cartLoadSuccessAction });
+        expected = cold('--(b|)', { b: cartStorageFailureAction });
+      });
+
+      it('should return a DaffCartStorageFailure', () => {
+        expect(effects.storeId$).toBeObservable(expected);
+      });
+    });
+  });
+
   describe('when AddToCartAction is triggered', () => {
     let expected;
     let productId: string;

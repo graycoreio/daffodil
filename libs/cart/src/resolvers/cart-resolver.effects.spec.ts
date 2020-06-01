@@ -15,7 +15,6 @@ import {
 	DaffResolveCart, 
 	DaffCartLoadFailure, 
 	DaffCartLoadSuccess, 
-	DaffCartCreateSuccess, 
 	DaffCartCreate 
 } from '../actions/public_api';
 import { DaffCartNotFoundError } from '../errors/not-found';
@@ -84,26 +83,22 @@ describe('DaffCartResolverEffects', () => {
 
 		it('should not attempt to create a cart', () => {
 			const loadCartSuccessAction = new DaffCartLoadSuccess(stubCart);
-			const createCartSuccessAction = new DaffCartCreateSuccess(stubCart);
 
 			actions$ = hot('--a', { a: new DaffResolveCart() });
-			const expected = cold('--(bc)', {
-				b: createCartSuccessAction,
-				c: loadCartSuccessAction,
+			const expected = cold('--(b)', {
+				b: loadCartSuccessAction,
 			});
 
 			expect(effects.onResolveCart$).toBeObservable(expected);
 			expect(driver.create).not.toHaveBeenCalled();
 		});
 
-		it('should dispatch several "resolution" actions', () => {
+		it('should indicate that a cart has loaded', () => {
 			const loadCartSuccessAction = new DaffCartLoadSuccess(stubCart);
-			const createCartSuccessAction = new DaffCartCreateSuccess(stubCart);
 
 			actions$ = hot('--a', { a: new DaffResolveCart() });
-			const expected = cold('--(bc)', {
-				b: createCartSuccessAction,
-				c: loadCartSuccessAction
+			const expected = cold('--(b)', {
+				b: loadCartSuccessAction
 			});
 
 			expect(effects.onResolveCart$).toBeObservable(expected);
@@ -154,12 +149,10 @@ describe('DaffCartResolverEffects', () => {
 			driver.get.and.returnValue(of(stubCart));
 
 			const loadCartSuccessAction = new DaffCartLoadSuccess(stubCart);
-			const createCartSuccessAction = new DaffCartCreateSuccess(stubCart);
 
 			actions$ = hot('--a', { a: new DaffResolveCart() });
-			const expected = cold('--(bc)', {
-				b: createCartSuccessAction,
-				c: loadCartSuccessAction
+			const expected = cold('--(b)', {
+				b: loadCartSuccessAction
 			});
 
 			expect(effects.onResolveCart$).toBeObservable(expected);
