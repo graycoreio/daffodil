@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'daff-article-lead',
+  // tslint:disable-next-line:component-selector
+  selector: 'article-lead',
   templateUrl: './article-lead.component.html'
 })
 export class ArticleLeadComponent {}
