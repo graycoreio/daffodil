@@ -158,6 +158,22 @@ describe('DaffCartResolverEffects', () => {
 			expect(effects.onResolveCart$).toBeObservable(expected);
 			expect(driver.create).toHaveBeenCalled();
 		});
+
+		it('should set the cart id in local storage', () => {
+			cartStorageService.getCartId.and.returnValue(undefined);
+			driver.create.and.returnValue(of({ id: stubCart.id }));
+			driver.get.and.returnValue(of(stubCart));
+
+			const loadCartSuccessAction = new DaffCartLoadSuccess(stubCart);
+
+			actions$ = hot('--a', { a: new DaffResolveCart() });
+			const expected = cold('--(b)', {
+				b: loadCartSuccessAction
+			});
+
+			expect(effects.onResolveCart$).toBeObservable(expected);
+			expect(cartStorageService.setCartId).toHaveBeenCalledWith(String(stubCart.id));
+		});
 	});
 
 	describe('when the error thrown is a DaffCartNotFoundError', () => {

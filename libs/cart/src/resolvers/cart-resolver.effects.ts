@@ -5,8 +5,7 @@ import { Observable, of } from 'rxjs';
 import { switchMap, catchError, map } from 'rxjs/operators';
 
 import { 
-	DaffCartActionTypes, 
-	DaffCartCreateSuccess, 
+	DaffCartActionTypes,
 	DaffCartLoadSuccess, 
 	DaffCartCreate, 
 	DaffCartLoadFailure 
@@ -29,15 +28,15 @@ export class DaffCartResolverEffects<T extends DaffCart = DaffCart> {
 	) {}
 
 	@Effect()
-	onResolveCart$: Observable<Action | Action[]> = this.actions$.pipe(
+	onResolveCart$: Observable<Action> = this.actions$.pipe(
 		ofType(DaffCartActionTypes.ResolveCartAction),
 		map(() => this.cartStorage.getCartId()),
 		switchMap(id => id ? of({ id }) : this.driver.create()),
 		switchMap(({ id }) => this.driver.get(id)),
-		switchMap(resp => [
-			// new DaffCartCreateSuccess(resp),
-			new DaffCartLoadSuccess(resp)
-		]),
+		switchMap(resp => {
+			this.cartStorage.setCartId(String(resp.id))
+			return [new DaffCartLoadSuccess(resp)]
+		}),
 		catchError(error => 
 			error instanceof DaffCartNotFoundError ? 
 				[new DaffCartCreate()] : 
