@@ -55,7 +55,7 @@ describe('Order | Reducer | OrderEntities', () => {
       result = reducer(initialState, orderListSuccess);
     });
 
-    it('should set countries from action.payload', () => {
+    it('should set orders from action.payload', () => {
       expect(result.entities).toEqual({[orderId]: order})
     });
   });
