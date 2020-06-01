@@ -16,8 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    CardComponent,
-    ...CARD_EXAMPLES
+    CardComponent
   ],
   imports: [
     CommonModule,

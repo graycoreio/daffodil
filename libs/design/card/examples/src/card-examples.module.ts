@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DaffCardModule } from '@daffodil/design';
-import { CARD_EXAMPLES } from './examples';
+import { CardWithImageModule } from './card-with-image/card-with-image.module';
+import { CardWithColorModule } from './card-with-color/card-with-color.module';
+
 
 @NgModule({
   imports: [
     CommonModule,
-    DaffCardModule
-  ],
-  declarations: [
-    ...CARD_EXAMPLES
+    CardWithImageModule,
+    CardWithColorModule
   ]
 })
 export class CardExamplesModule { }

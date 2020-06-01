@@ -4,7 +4,7 @@ import { DaffPalette } from '@daffodil/design';
 import { FormControl } from '@angular/forms';
 
 @Component({
-  // tslint:disable-next-line
+  // tslint:disable-next-line:component-selector
   selector: 'card-with-color',
   templateUrl: './card-with-color.component.html',
   styles: [`

@@ -6,11 +6,11 @@ import {
   DaffImageModule
 } from '@daffodil/design';
 
-import { CardWithThemeComponent } from './card-with-theme.component';
+import { CardWithImageComponent } from './card-with-image.component';
 
 @NgModule({
   declarations: [
-    CardWithThemeComponent
+    CardWithImageComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +18,7 @@ import { CardWithThemeComponent } from './card-with-theme.component';
     DaffImageModule
   ],
   exports: [
-    CardWithThemeComponent
+    CardWithImageComponent
   ]
 })
-export class CardWithThemeModule { }
+export class CardWithImageModule { }
