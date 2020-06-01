@@ -34,9 +34,6 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
 				...daffConfigurableProductData,
 				type: DaffProductTypeEnum.Configurable
 			};
-			delete expected.configurableAttributes[0].values[0].swatch;
-			delete expected.configurableAttributes[0].values[1].swatch;
-			delete expected.configurableAttributes[0].values[2].swatch;
 
 			expect(transformMagentoConfigurableProduct(magentoConfigurableProductData, mediaUrl)).toEqual(expected);
 		});
@@ -93,6 +90,16 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
 						code: daffConfigurableProduct.configurableAttributes[0].code,
 						label: daffConfigurableProduct.configurableAttributes[0].label,
 						value_index: parseInt(daffConfigurableProduct.configurableAttributes[0].values[0].value, 10)
+					},
+					{
+						code: daffConfigurableProduct.configurableAttributes[1].code,
+						label: daffConfigurableProduct.configurableAttributes[1].label,
+						value_index: parseInt(daffConfigurableProduct.configurableAttributes[1].values[0].value, 10)
+					},
+					{
+						code: daffConfigurableProduct.configurableAttributes[2].code,
+						label: daffConfigurableProduct.configurableAttributes[2].label,
+						value_index: parseInt(daffConfigurableProduct.configurableAttributes[2].values[0].value, 10)
 					}
 				],
 				product: {
@@ -129,6 +136,16 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
 					code: daffConfigurableProduct.configurableAttributes[0].code,
 					label: daffConfigurableProduct.configurableAttributes[0].label,
 					value_index: parseInt(daffConfigurableProduct.configurableAttributes[0].values[0].value, 10)
+				},
+				{
+					code: daffConfigurableProduct.configurableAttributes[1].code,
+					label: daffConfigurableProduct.configurableAttributes[1].label,
+					value_index: parseInt(daffConfigurableProduct.configurableAttributes[1].values[0].value, 10)
+				},
+				{
+					code: daffConfigurableProduct.configurableAttributes[2].code,
+					label: daffConfigurableProduct.configurableAttributes[2].label,
+					value_index: parseInt(daffConfigurableProduct.configurableAttributes[2].values[0].value, 10)
 				}
 			];
 

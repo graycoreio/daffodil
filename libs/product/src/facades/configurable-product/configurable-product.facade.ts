@@ -19,18 +19,22 @@ export class DaffConfigurableProductFacade<T extends DaffProduct = DaffProduct> 
 
 	selectors = getDaffProductSelectors<T>();
 	
-  constructor(private store: Store<DaffProductReducersState<T>>) {}
+	constructor(private store: Store<DaffProductReducersState<T>>) {}
+	
+	getAllAttributes(id: string): Observable<Dictionary<string[]>> {
+		return this.store.pipe(select(this.selectors.selectAllConfigurableProductAttributes, { id }));
+	}
 	
 	getAppliedAttributes(id: string): Observable<Dictionary<string>> {
-		return this.store.pipe(select(this.selectors.selectConfigurableProductAppliedAttributes, { id }))
+		return this.store.pipe(select(this.selectors.selectConfigurableProductAppliedAttributesAsDictionary, { id }));
 	}
 
 	getPrice(id: string): Observable<string> {
 		return this.store.pipe(select(this.selectors.selectConfigurableProductPrice, { id }));
 	}
 
-	getUndeterminedAttributes(id: string): Observable<Dictionary<string[]>> {
-		return this.store.pipe(select(this.selectors.selectUndeterminedConfigurableProductAttributes, { id }));
+	getSelectableAttributes(id: string): Observable<Dictionary<string[]>> {
+		return this.store.pipe(select(this.selectors.selectSelectableConfigurableProductAttributes, { id }));
 	}
 
   /**

@@ -50,12 +50,42 @@ describe('DaffConfigurableProductFacade', () => {
     expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 
+  describe('getAllAttributes', () => {
+
+    it('should return an Observable dictionary of all attributes', () => {
+			const expected = cold('a', { 
+				a: {
+					[stubConfigurableProduct.configurableAttributes[0].code]: [
+						stubConfigurableProduct.configurableAttributes[0].values[0].value,
+						stubConfigurableProduct.configurableAttributes[0].values[1].value,
+						stubConfigurableProduct.configurableAttributes[0].values[2].value
+					],
+					[stubConfigurableProduct.configurableAttributes[1].code]: [
+						stubConfigurableProduct.configurableAttributes[1].values[0].value,
+						stubConfigurableProduct.configurableAttributes[1].values[1].value,
+						stubConfigurableProduct.configurableAttributes[1].values[2].value
+					],
+					[stubConfigurableProduct.configurableAttributes[2].code]: [
+						stubConfigurableProduct.configurableAttributes[2].values[0].value,
+						stubConfigurableProduct.configurableAttributes[2].values[1].value,
+						stubConfigurableProduct.configurableAttributes[2].values[2].value,
+					]
+				} 
+			});
+      store.dispatch(new DaffConfigurableProductApplyAttribute(
+				stubConfigurableProduct.id,
+				stubConfigurableProduct.configurableAttributes[0].code,
+				stubConfigurableProduct.configurableAttributes[0].values[0].value
+			));
+			expect(facade.getAllAttributes(stubConfigurableProduct.id)).toBeObservable(expected);
+		});
+  });
+
   describe('getAppliedAttributes', () => {
 
     it('should return an Observable dictionary of applied attributes', () => {
 			const expected = cold('a', { 
 				a: {
-					id: stubConfigurableProduct.id,
 					[stubConfigurableProduct.configurableAttributes[0].code]: stubConfigurableProduct.configurableAttributes[0].values[0].value
 				} 
 			});
@@ -77,24 +107,44 @@ describe('DaffConfigurableProductFacade', () => {
 				stubConfigurableProduct.configurableAttributes[0].code,
 				stubConfigurableProduct.configurableAttributes[0].values[0].value
 			));
+			store.dispatch(new DaffConfigurableProductApplyAttribute(
+				stubConfigurableProduct.id,
+				stubConfigurableProduct.configurableAttributes[1].code,
+				stubConfigurableProduct.configurableAttributes[1].values[0].value
+			));
+			store.dispatch(new DaffConfigurableProductApplyAttribute(
+				stubConfigurableProduct.id,
+				stubConfigurableProduct.configurableAttributes[2].code,
+				stubConfigurableProduct.configurableAttributes[2].values[0].value
+			));
 			expect(facade.getPrice(stubConfigurableProduct.id)).toBeObservable(expected);
 		});
   });
 
-  describe('getUndeterminedAttributes', () => {
+  describe('getSelectableAttributes', () => {
 
-    it('should return an Observable string of the price/price-range for a configurable product', () => {
+    it('should return the selectable attributes for a configurable product', () => {
 			const expected = cold('a', { 
 				a: {
 					[stubConfigurableProduct.configurableAttributes[0].code]: [
 						stubConfigurableProduct.configurableAttributes[0].values[0].value,
 						stubConfigurableProduct.configurableAttributes[0].values[1].value,
 						stubConfigurableProduct.configurableAttributes[0].values[2].value
+					],
+					[stubConfigurableProduct.configurableAttributes[1].code]: [
+						stubConfigurableProduct.configurableAttributes[1].values[0].value,
+						stubConfigurableProduct.configurableAttributes[1].values[1].value,
+						stubConfigurableProduct.configurableAttributes[1].values[2].value
+					],
+					[stubConfigurableProduct.configurableAttributes[2].code]: [
+						stubConfigurableProduct.configurableAttributes[2].values[0].value,
+						stubConfigurableProduct.configurableAttributes[2].values[1].value,
+						stubConfigurableProduct.configurableAttributes[2].values[2].value
 					]
 				}
 			});
 
-			expect(facade.getUndeterminedAttributes(stubConfigurableProduct.id)).toBeObservable(expected);
+			expect(facade.getSelectableAttributes(stubConfigurableProduct.id)).toBeObservable(expected);
 		});
   });
 });

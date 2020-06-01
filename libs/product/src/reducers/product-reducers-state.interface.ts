@@ -4,7 +4,7 @@ import { DaffProduct } from '../models/product';
 import { DaffProductGridReducerState } from './product-grid/product-grid-reducer-state.interface';
 import { DaffProductReducerState } from './product/product-reducer-state.interface';
 import { DaffBestSellersReducerState } from './best-sellers/best-sellers-reducer-state.interface';
-import { DaffProductVariantAttributesDictionary } from '../models/configurable-product';
+import { DaffConfigurableProductEntity } from './configurable-product-entities/configurable-product-entity';
 
 /**
  * Interface for product redux store.
@@ -14,5 +14,5 @@ export interface DaffProductReducersState<T extends DaffProduct = DaffProduct> {
   productGrid: DaffProductGridReducerState<T>;
   product: DaffProductReducerState;
 	bestSellers: DaffBestSellersReducerState;
-	configurableProductAttributes: EntityState<DaffProductVariantAttributesDictionary>;
+	configurableProductAttributes: EntityState<DaffConfigurableProductEntity>;
 }

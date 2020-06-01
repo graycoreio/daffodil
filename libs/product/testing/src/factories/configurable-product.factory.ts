@@ -52,12 +52,136 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 					}
 				}
 			]
+		},
+		{
+			code: 'size',
+			label: 'Size',
+			order: 1,
+			values: [
+				{
+					value: '0',
+					label: 'Small',
+					swatch: null
+				},
+				{
+					value: '1',
+					label: 'Medium',
+					swatch: null
+				},
+				{
+					value: '2',
+					label: 'Large',
+					swatch: null
+				}
+			]
+		},
+		{
+			code: 'material',
+			label: 'Material',
+			order: 2,
+			values: [
+				{
+					value: '0',
+					label: 'Cotton',
+					swatch: null
+				},
+				{
+					value: '1',
+					label: 'Polyester',
+					swatch: null
+				},
+				{
+					value: '2',
+					label: 'Spandex',
+					swatch: null
+				}
+			]
 		}
 	];
 	variants = [
 		{
 			appliedAttributes: {
-				color: '0'
+				color: '0',
+				size: '0',
+				material: '0'
+			},
+			price: this.stubPriceVariant1.toString(),
+			discount: {
+				amount: this.stubDiscountVariant1,
+				percent: this.stubDiscountVariant1/this.stubPriceVariant1
+			},
+			id: faker.random.alphaNumeric(16)
+		},
+		{
+			appliedAttributes: {
+				color: '0',
+				size: '1',
+				material: '0'
+			},
+			price: this.stubPriceVariant1.toString(),
+			discount: {
+				amount: this.stubDiscountVariant1,
+				percent: this.stubDiscountVariant1/this.stubPriceVariant1
+			},
+			id: faker.random.alphaNumeric(16)
+		},
+		{
+			appliedAttributes: {
+				color: '0',
+				size: '1',
+				material: '2'
+			},
+			price: this.stubPriceVariant3.toString(),
+			discount: {
+				amount: this.stubDiscountVariant3,
+				percent: this.stubDiscountVariant3/this.stubPriceVariant3
+			},
+			id: faker.random.alphaNumeric(16)
+		},
+		{
+			appliedAttributes: {
+				color: '0',
+				size: '2',
+				material: '0'
+			},
+			price: this.stubPriceVariant1.toString(),
+			discount: {
+				amount: this.stubDiscountVariant1,
+				percent: this.stubDiscountVariant1/this.stubPriceVariant1
+			},
+			id: faker.random.alphaNumeric(16)
+		},
+		{
+			appliedAttributes: {
+				color: '1',
+				size: '0',
+				material: '0'
+			},
+			price: this.stubPriceVariant1.toString(),
+			discount: {
+				amount: this.stubDiscountVariant1,
+				percent: this.stubDiscountVariant1/this.stubPriceVariant1
+			},
+			id: faker.random.alphaNumeric(16)
+		},
+		{
+			appliedAttributes: {
+				color: '1',
+				size: '0',
+				material: '2'
+			},
+			price: this.stubPriceVariant3.toString(),
+			discount: {
+				amount: this.stubDiscountVariant3,
+				percent: this.stubDiscountVariant3/this.stubPriceVariant3
+			},
+			id: faker.random.alphaNumeric(16)
+		},
+		{
+			appliedAttributes: {
+				color: '1',
+				size: '2',
+				material: '0'
 			},
 			price: this.stubPriceVariant1,
 			discount: {
@@ -68,7 +192,9 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 		},
 		{
 			appliedAttributes: {
-				color: '1'
+				color: '1',
+				size: '2',
+				material: '1'
 			},
 			price: this.stubPriceVariant2,
 			discount: {
@@ -79,12 +205,27 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 		},
 		{
 			appliedAttributes: {
-				color: '2'
+				color: '2',
+				size: '0',
+				material: '0'
 			},
 			price: this.stubPriceVariant3,
 			discount: {
 				amount: this.stubDiscountVariant3,
 				percent: this.stubDiscountVariant3/this.stubPriceVariant3
+			},
+			id: faker.random.alphaNumeric(16)
+		},
+		{
+			appliedAttributes: {
+				color: '2',
+				size: '2',
+				material: '0'
+			},
+			price: this.stubPriceVariant1.toString(),
+			discount: {
+				amount: this.stubDiscountVariant1,
+				percent: this.stubDiscountVariant1/this.stubPriceVariant1
 			},
 			id: faker.random.alphaNumeric(16)
 		}

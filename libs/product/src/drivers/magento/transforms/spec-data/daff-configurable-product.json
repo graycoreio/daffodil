@@ -23,27 +23,53 @@
 			"values": [
 				{
 					"value": "0",
-					"label": "Blue",
-					"swatch": {
-						"value": "#0000FF",
-						"thumbnail": null
-					}
+					"label": "Blue"
 				},
 				{
 					"value": "1",
-					"label": "Yellow",
-					"swatch": {
-						"value": "#FFFF00",
-						"thumbnail": null
-					}
+					"label": "Yellow"
 				},
 				{
 					"value": "2",
-					"label": "Red",
-					"swatch": {
-						"value": "#FF0000",
-						"thumbnail": null
-					}
+					"label": "Red"
+				}
+			]
+		},
+		{
+			"code": "size",
+			"label": "Size",
+			"order": 1,
+			"values": [
+				{
+					"value": "0",
+					"label": "Small"
+				},
+				{
+					"value": "1",
+					"label": "Medium"
+				},
+				{
+					"value": "2",
+					"label": "Large"
+				}
+			]
+		},
+		{
+			"code": "material",
+			"label": "Material",
+			"order": 2,
+			"values": [
+				{
+					"value": "0",
+					"label": "Cotton"
+				},
+				{
+					"value": "1",
+					"label": "Polyester"
+				},
+				{
+					"value": "2",
+					"label": "Spandex"
 				}
 			]
 		}
@@ -51,7 +77,9 @@
 	"variants": [
 		{
 			"appliedAttributes": {
-				"color": "0"
+				"color": "0",
+				"size": "0",
+				"material": "0"
 			},
 			"price": 20,
 			"discount": {
@@ -67,12 +95,68 @@
 		},
 		{
 			"appliedAttributes": {
-				"color": "1"
+				"color": "0",
+				"size": "1",
+				"material": "0"
 			},
-			"price": 23,
+			"price": 20,
 			"discount": {
 				"amount": 2,
-				"percent": 8.7
+				"percent": 10
+			},
+			"id": "22-11",
+			"image": {
+				"id": "0",
+				"url": "url-01",
+				"label": "image-label-01"
+			}
+		},
+		{
+			"appliedAttributes": {
+				"color": "0",
+				"size": "1",
+				"material": "2"
+			},
+			"price": 25,
+			"discount": {
+				"amount": 5,
+				"percent": 20
+			},
+			"id": "22-12",
+			"image": {
+				"id": "0",
+				"url": "url-02",
+				"label": "image-label-02"
+			}
+		},
+		{
+			"appliedAttributes": {
+				"color": "0",
+				"size": "2",
+				"material": "0"
+			},
+			"price": 20,
+			"discount": {
+				"amount": 2,
+				"percent": 10
+			},
+			"id": "22-13",
+			"image": {
+				"id": "0",
+				"url": "url-03",
+				"label": "image-label-03"
+			}
+		},
+		{
+			"appliedAttributes": {
+				"color": "1",
+				"size": "0",
+				"material": "0"
+			},
+			"price": 20,
+			"discount": {
+				"amount": 2,
+				"percent": 10
 			},
 			"id": "22-2",
 			"image": {
@@ -83,18 +167,93 @@
 		},
 		{
 			"appliedAttributes": {
-				"color": "2"
+				"color": "1",
+				"size": "0",
+				"material": "2"
 			},
-			"price": 23,
+			"price": 25,
+			"discount": {
+				"amount": 5,
+				"percent": 20
+			},
+			"id": "22-21",
+			"image": {
+				"id": "0",
+				"url": "url-11",
+				"label": "image-label-11"
+			}
+		},
+		{
+			"appliedAttributes": {
+				"color": "1",
+				"size": "2",
+				"material": "0"
+			},
+			"price": 20,
 			"discount": {
 				"amount": 2,
-				"percent": 8.7
+				"percent": 10
+			},
+			"id": "22-22",
+			"image": {
+				"id": "0",
+				"url": "url-12",
+				"label": "image-label-12"
+			}
+		},
+		{
+			"appliedAttributes": {
+				"color": "1",
+				"size": "2",
+				"material": "1"
+			},
+			"price": 20,
+			"discount": {
+				"amount": 2,
+				"percent": 10
+			},
+			"id": "22-23",
+			"image": {
+				"id": "0",
+				"url": "url-13",
+				"label": "image-label-13"
+			}
+		},
+		{
+			"appliedAttributes": {
+				"color": "2",
+				"size": "0",
+				"material": "0"
+			},
+			"price": 20,
+			"discount": {
+				"amount": 2,
+				"percent": 10
 			},
 			"id": "22-3",
 			"image": {
 				"id": "0",
 				"url": "url-2",
 				"label": "image-label-2"
+			}
+		},
+
+		{
+			"appliedAttributes": {
+				"color": "2",
+				"size": "2",
+				"material": "0"
+			},
+			"price": 20,
+			"discount": {
+				"amount": 2,
+				"percent": 10
+			},
+			"id": "22-31",
+			"image": {
+				"id": "0",
+				"url": "url-21",
+				"label": "image-label-21"
 			}
 		}
 	]
