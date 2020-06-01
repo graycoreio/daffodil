@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
-import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-angular-boost';
+import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
 import { addTypenameToDocument } from 'apollo-utilities';
 
 import { schema } from '@daffodil/driver/magento';
