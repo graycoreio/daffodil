@@ -21,7 +21,7 @@ import { DaffCartItemDriver } from '../interfaces/cart-item-service.interface';
 import { MagentoGetCartResponse } from './models/responses/get-cart';
 import { MagentoCartItem } from './models/outputs/cart-item';
 import { DaffCartItem } from '../../models/cart-item';
-import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-angular-boost';
+import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
 
 describe('Driver | Magento | Cart | CartService', () => {
   let service: DaffMagentoCartService;
