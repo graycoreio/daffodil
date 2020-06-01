@@ -1,6 +1,6 @@
 import { DaffOrderActions, DaffOrderActionTypes } from '../../actions/order.actions';
 import { DaffOrder } from '../../models/order';
-import { getOrderAdapter } from './order-entities-adapter';
+import { daffGetOrderAdapter } from './order-entities-adapter';
 import { DaffOrderEntityState } from './order-entities-state.interface';
 import { daffOrderEntitiesInitialState } from './order-entities-initial-state';
 
@@ -11,7 +11,7 @@ export function daffOrderEntitiesReducer<T extends DaffOrder = DaffOrder>(
   state = daffOrderEntitiesInitialState,
   action: DaffOrderActions<T>
 ): DaffOrderEntityState<T> {
-  const adapter = getOrderAdapter<T>();
+  const adapter = daffGetOrderAdapter<T>();
 
   switch (action.type) {
     case DaffOrderActionTypes.OrderLoadSuccessAction:
