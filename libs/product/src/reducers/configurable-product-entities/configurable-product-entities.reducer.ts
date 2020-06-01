@@ -26,13 +26,13 @@ export function daffConfigurableProductEntitiesReducer<T extends DaffProduct, V 
 			return adapter.upsertMany(
 				action.payload
 					.filter(product => product.type === DaffProductTypeEnum.Configurable)
-					.map((product) => buildConfigurableProductAppliedAttributesEntity(product.id)), 
+					.map(buildConfigurableProductAppliedAttributesEntity), 
 				state
 			);
     case DaffProductActionTypes.ProductLoadSuccessAction:
 			if(action.payload.type === DaffProductTypeEnum.Configurable) {
 				return adapter.upsertOne(
-					buildConfigurableProductAppliedAttributesEntity(action.payload.id),
+					buildConfigurableProductAppliedAttributesEntity(action.payload),
 					state
 				);
 			};
@@ -68,9 +68,9 @@ export function daffConfigurableProductEntitiesReducer<T extends DaffProduct, V 
   }
 }
 
-function buildConfigurableProductAppliedAttributesEntity(productId: string): DaffConfigurableProductEntity {
+function buildConfigurableProductAppliedAttributesEntity(product: DaffProduct): DaffConfigurableProductEntity {
 	return {
-		id: productId,
+		id: product.id,
 		attributes: []
 	}
 }
