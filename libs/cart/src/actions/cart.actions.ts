@@ -15,7 +15,8 @@ export enum DaffCartActionTypes {
   AddToCartFailureAction = '[DaffCart] Cart Add to Cart Failure Action',
   CartClearAction = '[DaffCart] Cart Reset Action',
   CartClearSuccessAction = '[DaffCart] Cart Reset Success Action',
-  CartClearFailureAction = '[DaffCart] Cart Reset Failure Action'
+  CartClearFailureAction = '[DaffCart] Cart Reset Failure Action',
+  ResolveCartAction = '[DaffCart] Resolve Cart Action'
 }
 
 export class DaffCartStorageFailure implements Action {
@@ -88,6 +89,10 @@ export class DaffCartClearFailure implements Action {
   constructor(public payload: string) {}
 }
 
+export class DaffResolveCart implements Action {
+	readonly type = DaffCartActionTypes.ResolveCartAction;
+}
+
 export type DaffCartActions<T extends DaffCart = DaffCart> =
   | DaffCartStorageFailure
   | DaffCartLoad
@@ -101,4 +106,5 @@ export type DaffCartActions<T extends DaffCart = DaffCart> =
   | DaffAddToCartFailure
   | DaffCartClear
   | DaffCartClearSuccess<T>
-  | DaffCartClearFailure;
+  | DaffCartClearFailure
+  | DaffResolveCart;
