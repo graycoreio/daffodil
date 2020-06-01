@@ -12,7 +12,7 @@ export interface DaffOrderSelectors {
   selectOrderErrors: MemoizedSelector<object, string[]>;
 }
 
-const createOrderSelectors = <T extends DaffOrder>() => {
+const createOrderSelectors = <T extends DaffOrder = DaffOrder>() => {
   const { selectOrderFeatureState } = getDaffOrderReducersStateSelector<T>();
   const selectOrderState = createSelector(
     selectOrderFeatureState,
@@ -38,6 +38,6 @@ const createOrderSelectors = <T extends DaffOrder>() => {
 
 export const getOrderSelectors = (() => {
   let cache;
-  return <T extends DaffOrder>(): DaffOrderSelectors =>
+  return <T extends DaffOrder = DaffOrder>(): DaffOrderSelectors =>
     cache = cache || createOrderSelectors<T>()
 })();

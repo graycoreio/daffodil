@@ -16,7 +16,7 @@ import { DaffOrderServiceInterface, DaffOrderDriver } from '../drivers/interface
 import { DaffOrder } from '../models/order';
 
 @Injectable()
-export class DaffOrderEffects<T extends DaffOrder> {
+export class DaffOrderEffects<T extends DaffOrder = DaffOrder> {
   constructor(
     private actions$: Actions,
     @Inject(DaffOrderDriver) private driver: DaffOrderServiceInterface<T>,

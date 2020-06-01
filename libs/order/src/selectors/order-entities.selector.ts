@@ -8,7 +8,7 @@ import {
 import { getDaffOrderReducersStateSelector } from './order-feature.selector';
 import { DaffOrder } from '../models/order';
 
-export interface DaffOrderEntitySelectors<T extends DaffOrder> {
+export interface DaffOrderEntitySelectors<T extends DaffOrder = DaffOrder> {
   selectOrderEntitiesState: MemoizedSelector<object, DaffOrderEntityState<T>>;
   selectOrderIds: MemoizedSelector<object, string[] | number[]>;
   selectOrderEntities: MemoizedSelector<object, Dictionary<T>>;
@@ -16,7 +16,7 @@ export interface DaffOrderEntitySelectors<T extends DaffOrder> {
   selectOrderTotal: MemoizedSelector<object, number>;
 }
 
-const createOrderEntitySelectors = <T extends DaffOrder>() => {
+const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
   const { selectOrderFeatureState } = getDaffOrderReducersStateSelector<T>();
   const selectOrderEntitiesState = createSelector(
     selectOrderFeatureState,
@@ -47,7 +47,7 @@ const createOrderEntitySelectors = <T extends DaffOrder>() => {
 
 export const getDaffOrderEntitySelectors = (() => {
   let cache;
-  return <T extends DaffOrder>(): DaffOrderEntitySelectors<T> =>
+  return <T extends DaffOrder = DaffOrder>(): DaffOrderEntitySelectors<T> =>
     cache = cache || createOrderEntitySelectors<T>()
 })();
 

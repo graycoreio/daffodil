@@ -16,7 +16,7 @@ import {
 import { DaffOrderListSuccess } from '../actions/order.actions';
 
 describe('Order | Selector | OrderEntities', () => {
-  let store: Store<DaffOrderEntityState<DaffOrder>>;
+  let store: Store<DaffOrderEntityState>;
 
   let orderFactory: DaffOrderFactory
 
