@@ -13,6 +13,8 @@
 	.daff-modal-title {
 		@include embolden();
 		font-size: $medium-font-size;
+		margin: 0;
+		padding: 0;
 
 		@include breakpoint(mobile) {
 			font-size: $large-font-size;
