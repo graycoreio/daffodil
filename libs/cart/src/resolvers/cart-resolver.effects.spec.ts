@@ -15,9 +15,11 @@ import {
 	DaffResolveCart, 
 	DaffCartLoadFailure, 
 	DaffCartLoadSuccess, 
-	DaffCartCreate 
+	DaffCartCreate, 
+	DaffCartStorageFailure
 } from '../actions/public_api';
 import { DaffCartNotFoundError } from '../errors/not-found';
+import { DaffStorageServiceError } from '@daffodil/core';
 
 describe('DaffCartResolverEffects', () => {
 	let actions$: Observable<any>;
@@ -188,6 +190,24 @@ describe('DaffCartResolverEffects', () => {
 			actions$ = hot('--a', { a: new DaffResolveCart() });
 			const expected = cold('--(b|)', {
 				b: cartCreateAction,
+			});
+
+			expect(effects.onResolveCart$).toBeObservable(expected);
+		});
+	});
+
+	describe('when the error thrown is a DaffStorageServiceError', () => {
+
+		it('should indicate that the storage service has failed', () => {
+			const response = cold('#', {}, new DaffStorageServiceError());
+			driver.get.and.returnValue(response);
+			driver.create.and.returnValue(response);
+
+			const cartStorageFailureAction = new DaffCartStorageFailure();
+
+			actions$ = hot('--a', { a: new DaffResolveCart() });
+			const expected = cold('--(b|)', {
+				b: cartStorageFailureAction
 			});
 
 			expect(effects.onResolveCart$).toBeObservable(expected);
