@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'daff-article-ul',
+  // tslint:disable-next-line:component-selector
+  selector: 'article-ul',
   templateUrl: './article-ul.component.html'
 })
 export class ArticleUlComponent {}
