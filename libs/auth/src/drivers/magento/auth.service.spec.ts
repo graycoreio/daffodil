@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import {
   ApolloTestingModule,
   ApolloTestingController,
@@ -19,15 +20,20 @@ import { DaffLoginInfo } from '../../models/login-info';
 import { checkTokenQuery, MagentoCheckTokenResponse } from './queries/public_api';
 import { DaffUnauthorizedError, DaffInvalidAPIResponseError } from '../../errors/public_api';
 import * as validators from './validators/public_api';
+import { RestApiUrlConfig } from '../../config/rest-api-url.token';
 
 describe('Driver | Magento | Auth | AuthService', () => {
   let controller: ApolloTestingController;
+  let httpController: HttpTestingController;
   let service: DaffMagentoAuthService;
 
   const registrationFactory: DaffAccountRegistrationFactory = new DaffAccountRegistrationFactory();
   const authTokenFactory: DaffAuthTokenFactory = new DaffAuthTokenFactory();
 
-  let validatorSpy: jasmine.Spy;
+  const restApiUrl = 'RestApiUrl';
+
+  let checkTokenValidatorSpy: jasmine.Spy;
+  let resetPasswordValidatorSpy: jasmine.Spy;
 
   let mockAuth: DaffAuthToken;
   let mockLoginInfo: DaffLoginInfo;
@@ -41,21 +47,29 @@ describe('Driver | Magento | Auth | AuthService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ApolloTestingModule
+        ApolloTestingModule,
+        HttpClientTestingModule
       ],
       providers: [
         DaffMagentoAuthService,
+        {
+          provide: RestApiUrlConfig,
+          useValue: restApiUrl
+        }
       ]
     });
 
     service = TestBed.get(DaffMagentoAuthService);
     controller = TestBed.get(ApolloTestingController);
+    httpController = TestBed.get(HttpTestingController);
 
     mockRegistration = registrationFactory.create();
     mockAuth = authTokenFactory.create();
 
-    validatorSpy = jasmine.createSpy();
-    spyOnProperty(validators, 'validateCheckTokenResponse').and.returnValue(validatorSpy);
+    checkTokenValidatorSpy = jasmine.createSpy();
+    resetPasswordValidatorSpy = jasmine.createSpy();
+    spyOnProperty(validators, 'validateCheckTokenResponse').and.returnValue(checkTokenValidatorSpy);
+    spyOnProperty(validators, 'validateResetPasswordResponse').and.returnValue(checkTokenValidatorSpy);
 
     token = mockAuth.token;
     firstName = mockRegistration.customer.firstName;
@@ -89,7 +103,7 @@ describe('Driver | Magento | Auth | AuthService', () => {
 
       describe('and the response passes validation', () => {
         beforeEach(() => {
-          validatorSpy.and.returnValue({data: response})
+          checkTokenValidatorSpy.and.returnValue({data: response})
         });
 
         it('should return void and not throw an error', () => {
@@ -107,7 +121,7 @@ describe('Driver | Magento | Auth | AuthService', () => {
 
       describe('and the response fails validation', () => {
         beforeEach(() => {
-          validatorSpy.and.callFake(() => {
+          checkTokenValidatorSpy.and.callFake(() => {
             throw new DaffInvalidAPIResponseError('Check token response is invalid.')
           });
         });
@@ -151,6 +165,74 @@ describe('Driver | Magento | Auth | AuthService', () => {
           null,
           {category: 'graphql-authorization'}
         )]);
+      });
+    });
+  });
+
+  describe('resetPassword | resetting the customer\'s password', () => {
+    const resetPasswordUrl = `${restApiUrl}/V1/customers/password`;
+    let response;
+
+    afterEach(() => {
+      controller.verify();
+    });
+
+    describe('when the call to the Magento API is successful', () => {
+      describe('and the response passes validation', () => {
+        beforeEach(() => {
+          response = 'true';
+          resetPasswordValidatorSpy.and.returnValue(response)
+        });
+
+        it('should return void and not throw an error', () => {
+          const expected = cold('-', {});
+
+          expect(service.resetPassword(email)).toBeObservable(expected);
+
+          const op = httpController.expectOne(resetPasswordUrl);
+
+          op.flush(response);
+        });
+      });
+
+      describe('and the response fails validation', () => {
+        beforeEach(() => {
+          response = 'false';
+          checkTokenValidatorSpy.and.callFake(() => {
+            throw new DaffInvalidAPIResponseError('Reset password request was not successful.')
+          });
+        });
+
+        it('should throw a DaffInvalidAPIResponseError', done => {
+          service.resetPassword(email).pipe(
+            catchError(err => {
+              expect(err).toEqual(jasmine.any(DaffInvalidAPIResponseError));
+              done();
+              return [];
+            })
+          ).subscribe();
+
+          const op = httpController.expectOne(resetPasswordUrl);
+
+          op.flush(response);
+        });
+      });
+    });
+
+    // skipped until REST errors are handled by the error transform
+    xdescribe('when the call to the Magento API is unsuccessful', () => {
+      it('should throw an Error', done => {
+        service.resetPassword(email).pipe(
+          catchError(err => {
+            expect(err).toEqual(jasmine.any(Error));
+            done();
+            return [];
+          })
+        ).subscribe();
+
+        const op = httpController.expectOne(resetPasswordUrl);
+
+        op.error(new ErrorEvent('something broke'));
       });
     });
   });
