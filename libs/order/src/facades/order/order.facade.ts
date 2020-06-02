@@ -13,7 +13,7 @@ import { DaffOrderFacadeInterface } from './order-facade.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class DaffOrderFacade<T extends DaffOrder> implements DaffOrderFacadeInterface<T> {
+export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrderFacadeInterface<T> {
   loading$: Observable<boolean>;
   errors$: Observable<string[]>;
 

@@ -17,8 +17,8 @@ import { DaffOrderFactory } from '@daffodil/order/testing';
 import { DaffOrderFacade } from './order.facade';
 
 describe('DaffOrderFacade', () => {
-  let store: MockStore<{ [DAFF_ORDER_STORE_FEATURE_KEY]: Partial<DaffOrderReducersState<DaffOrder>> }>;
-  let facade: DaffOrderFacade<DaffOrder>;
+  let store: MockStore<{ [DAFF_ORDER_STORE_FEATURE_KEY]: Partial<DaffOrderReducersState> }>;
+  let facade: DaffOrderFacade;
   let orderFactory: DaffOrderFactory;
 
   let mockOrder: DaffOrder;
