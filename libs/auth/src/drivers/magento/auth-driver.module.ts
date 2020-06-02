@@ -1,6 +1,8 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { RestApiUrlConfig } from '../../config/rest-api-url.token';
+
 import { DaffRegisterDriver } from '../interfaces/register-service.interface';
 import { DaffMagentoRegisterService } from './register.service';
 
@@ -16,7 +18,7 @@ import { DaffMagentoAuthService } from './auth.service';
   ]
 })
 export class DaffAuthMagentoDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(restApiUrl: string): ModuleWithProviders {
     return {
       ngModule: DaffAuthMagentoDriverModule,
       providers: [
@@ -31,6 +33,10 @@ export class DaffAuthMagentoDriverModule {
         {
           provide: DaffAuthDriver,
           useExisting: DaffMagentoAuthService
+        },
+        {
+          provide: RestApiUrlConfig,
+          useValue: restApiUrl
         }
       ]
     };
