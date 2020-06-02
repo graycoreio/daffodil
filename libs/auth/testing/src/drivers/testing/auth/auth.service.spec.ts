@@ -39,4 +39,13 @@ describe('Driver | Testing | Auth | AuthService', () => {
       });
     });
   });
+
+  describe('resetPassword | resetting a password', () => {
+    it('should not throw an error', done => {
+      service.resetPassword('email').subscribe(res => {
+        expect(res).toBeUndefined();
+        done();
+      });
+    });
+  });
 });

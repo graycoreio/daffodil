@@ -12,4 +12,8 @@ export class DaffTestingAuthService implements DaffAuthServiceInterface {
   check(): Observable<void> {
     return of(undefined);
   }
+
+  resetPassword(email: string): Observable<void> {
+    return of(undefined);
+  }
 }

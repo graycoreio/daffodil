@@ -98,4 +98,14 @@ describe('DaffAuthInMemoryBackend | Unit', () => {
       expect(result.status).toEqual(STATUS.OK);
     });
   });
+
+  describe('processing a reset password request', () => {
+    it('should process post requests of the form `/api/auth/resetPassword` and return nothing with a OK status', () => {
+      reqInfoStub.id = 'resetPassword';
+      const result = authTestingService.post(reqInfoStub);
+
+      expect(result.body).toEqual(jasmine.objectContaining({}));
+      expect(result.status).toEqual(STATUS.OK);
+    });
+  });
 });

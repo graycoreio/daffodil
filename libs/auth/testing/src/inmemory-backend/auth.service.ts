@@ -15,10 +15,6 @@ export class DaffInMemoryBackendAuthService implements InMemoryDbService {
     return faker.random.alphaNumeric(16);
   }
 
-  private generateId(): string {
-    return faker.random.uuid();
-  }
-
   createDb() {
     return {
       auth: {}
@@ -34,6 +30,8 @@ export class DaffInMemoryBackendAuthService implements InMemoryDbService {
       return this.logout(reqInfo);
     } else if (reqInfo.id === 'check') {
       return this.check(reqInfo);
+    } else if (reqInfo.id === 'resetPassword') {
+      return this.resetPassword(reqInfo);
     }
   }
 
@@ -69,6 +67,13 @@ export class DaffInMemoryBackendAuthService implements InMemoryDbService {
   }
 
   private check(reqInfo) {
+    return reqInfo.utils.createResponse$(() => ({
+      body: {},
+      status: STATUS.OK
+    }))
+  }
+
+  private resetPassword(reqInfo) {
     return reqInfo.utils.createResponse$(() => ({
       body: {},
       status: STATUS.OK

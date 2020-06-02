@@ -20,4 +20,10 @@ export class DaffInMemoryAuthService implements DaffAuthServiceInterface {
       mapTo(undefined)
     );
   }
+
+  resetPassword(email: string): Observable<void> {
+    return this.http.post(`${this.url}resetPassword`, email).pipe(
+      mapTo(undefined)
+    );
+  }
 }

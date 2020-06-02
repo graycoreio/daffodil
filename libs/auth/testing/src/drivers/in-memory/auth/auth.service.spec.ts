@@ -53,4 +53,22 @@ describe('Driver | InMemory | Auth | AuthService', () => {
       req.flush({});
     });
   });
+
+  describe('resetPassword | resetting a password', () => {
+    afterEach(() => {
+      httpMock.verify();
+    });
+
+    it('should send a post request and not throw an error', done => {
+      service.resetPassword('email').subscribe(res => {
+        expect(res).toBeUndefined();
+        done();
+      });
+
+      const req = httpMock.expectOne(`${service.url}resetPassword`);
+      expect(req.request.method).toBe('POST');
+
+      req.flush({});
+    });
+  });
 });

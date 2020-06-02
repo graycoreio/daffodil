@@ -62,6 +62,15 @@ describe('DaffAuthInMemoryBackend | Integration', () => {
     });
   });
 
+  describe('processing a reset password request', () => {
+    it('should process post requests of the form `/api/auth/resetPassword` and return nothing', done => {
+      httpClient.post('/api/auth/resetPassword').subscribe(result => {
+        expect(result).toEqual(jasmine.objectContaining({}));
+        done();
+      });
+    });
+  });
+
   describe('processing a logout request', () => {
     it('should process post requests of the form `/api/auth/logout` and return success', done => {
       httpClient.post('/api/auth/logout', {}).subscribe(result => {
