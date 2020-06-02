@@ -19,6 +19,7 @@ export { DaffCartModule } from './cart.module';
 export * from './actions/public_api';
 export * from './selectors/public_api';
 export * from './reducers/public_api';
+export * from './guards/public_api';
 
 export { DaffCartFacade } from './facades/cart/cart.facade';
 export { DaffCartFacadeInterface } from './facades/cart/cart-facade.interface';
