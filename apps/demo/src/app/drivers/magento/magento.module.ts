@@ -27,7 +27,7 @@ const cache = new InMemoryCache({ fragmentMatcher });
     //Magento
     ApolloModule,
     HttpLinkModule,
-    DaffAuthMagentoDriverModule.forRoot(),
+    DaffAuthMagentoDriverModule.forRoot(`${(<MagentoEnvironmentDriverConfiguration>environment.driver).domain}/rest/default`),
     DaffProductMagentoDriverModule.forRoot(),
     DaffCartMagentoDriverModule.forRoot(),
     DaffCheckoutInMemoryDriverModule.forRoot(),
