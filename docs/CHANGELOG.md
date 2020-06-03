@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.6](https://github.com/graycoreio/daffodil/compare/v0.5.5...v0.5.6) (2020-06-03)
+
+
+### Features
+
+* **cart:** add angular guards for usage in checkout ([#926](https://github.com/graycoreio/daffodil/issues/926)) ([5be33ce](https://github.com/graycoreio/daffodil/commit/5be33cee6721e4d7ad91c7d7e8b50e25db5280ab))
+* **cart:** add billing and shipping address in-memory backends ([#906](https://github.com/graycoreio/daffodil/issues/906)) ([bea8769](https://github.com/graycoreio/daffodil/commit/bea8769e182b9145ca5752058a16586e28395234))
+* **cart:** add canPlaceOrder selector ([#908](https://github.com/graycoreio/daffodil/issues/908)) ([fe06c8c](https://github.com/graycoreio/daffodil/commit/fe06c8ccfae35a2f724379be2a60e8abc006cd30))
+* **cart:** add payment and shipping information in-memory backends ([#922](https://github.com/graycoreio/daffodil/issues/922)) ([ccf0fb7](https://github.com/graycoreio/daffodil/commit/ccf0fb7935179094f906b8bc0b9d1e8b5c66a088))
+* **cart:** add resolver action and effect for loading the cart ([#923](https://github.com/graycoreio/daffodil/issues/923)) ([ddf84a4](https://github.com/graycoreio/daffodil/commit/ddf84a42693be5d801518554c27b3ccf1a9b8a9a))
+* **cart:** add shipping and payment methods in-memory backends ([#917](https://github.com/graycoreio/daffodil/issues/917)) ([296ecca](https://github.com/graycoreio/daffodil/commit/296ecca4edcdb889a4f12778736374c098b9c946))
+* **design:** add Code Preview Component for demoing components in design-land ([#892](https://github.com/graycoreio/daffodil/issues/892)) ([cf0bb70](https://github.com/graycoreio/daffodil/commit/cf0bb7050f6ac01b8d42e3aca0c3a7fd9ed733a5))
+* **design:** added article component examples ([#893](https://github.com/graycoreio/daffodil/issues/893)) ([4021c4e](https://github.com/graycoreio/daffodil/commit/4021c4e0f3952a6eb5d3e3b12122bce9ae00e702))
+* **design:** created DaffCheckbox and DaffCheckboxSet components ([#864](https://github.com/graycoreio/daffodil/issues/864)) ([b21e47e](https://github.com/graycoreio/daffodil/commit/b21e47e038cb361d6db502f3318a56297b93684e))
+* **design:** initialized DaffRadioComponent ([#815](https://github.com/graycoreio/daffodil/issues/815)) ([86b0894](https://github.com/graycoreio/daffodil/commit/86b089411e106c467bd42c88678a2e6f7b029b5e))
+* **design:** move design examples docs gen to libs/design ([#918](https://github.com/graycoreio/daffodil/issues/918)) ([ef5c780](https://github.com/graycoreio/daffodil/commit/ef5c7808764f0fffedfe5b947c258e6e8e1fc3a5))
+* **design:** update container to use size interface ([#897](https://github.com/graycoreio/daffodil/issues/897)) ([5f8a8b1](https://github.com/graycoreio/daffodil/commit/5f8a8b13f20175ee60b9771f8b0b816e379c4a23))
+* **design:** use highlightjs at build time during docs gen ([#919](https://github.com/graycoreio/daffodil/issues/919)) ([0d5792e](https://github.com/graycoreio/daffodil/commit/0d5792e6e6c6f35c1d7259d4eed4318cc686e4ac))
+* **geography:** add testing driver ([#911](https://github.com/graycoreio/daffodil/issues/911)) ([85b3b37](https://github.com/graycoreio/daffodil/commit/85b3b37d73b43bf1ee0246201d02be9f395b4a61))
+* **order:** add facade ([#927](https://github.com/graycoreio/daffodil/issues/927)) ([bc1c67b](https://github.com/graycoreio/daffodil/commit/bc1c67b3c3f3a4dbc5509165595ade565682bf3f))
+* **order:** add in-memory driver and backend ([#909](https://github.com/graycoreio/daffodil/issues/909)) ([9f390db](https://github.com/graycoreio/daffodil/commit/9f390dbbe379995767588ad6665ed90d7055637b))
+* **order:** add reducers ([#881](https://github.com/graycoreio/daffodil/issues/881)) ([588492b](https://github.com/graycoreio/daffodil/commit/588492ba8aaee8ab632f0c4e9aecd0b0a352e6e8))
+* **order:** add selectors ([#925](https://github.com/graycoreio/daffodil/issues/925)) ([0e56603](https://github.com/graycoreio/daffodil/commit/0e56603439b94990c2ca6c4655374d0c2eba99e3))
+* **order:** add testing driver ([#912](https://github.com/graycoreio/daffodil/issues/912)) ([782bbf5](https://github.com/graycoreio/daffodil/commit/782bbf5d079368e657276b7da1606ebcb8ac34aa))
+* **product:** Add configurable product selectors and facade ([#887](https://github.com/graycoreio/daffodil/issues/887)) ([b22dd1c](https://github.com/graycoreio/daffodil/commit/b22dd1cb5160af4ad240553225b5af0efa2de8e3))
+* **product:** change the type of DaffProduct.price to number ([#898](https://github.com/graycoreio/daffodil/issues/898)) ([1e28dc6](https://github.com/graycoreio/daffodil/commit/1e28dc6e831777f07269b9fe15dec8a5cf9e517e))
+* **product:** cover edge cases for configurable product state ([#914](https://github.com/graycoreio/daffodil/issues/914)) ([3b0d47a](https://github.com/graycoreio/daffodil/commit/3b0d47aaf65a052f362c4a0bc000e7acdc261c4b))
+
 ### [0.5.5](https://github.com/graycoreio/daffodil/compare/v0.5.4...v0.5.5) (2020-05-21)
 
 
