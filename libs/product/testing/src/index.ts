@@ -9,5 +9,7 @@ export { DaffProductInMemoryDriverModule } from './drivers/in-memory/product-dri
 export { DaffProductTestingDriverModule } from './drivers/testing/product-driver.module';
 export { MockDaffProductFacade } from './helpers/mock-product-facade';
 export { DaffProductTestingModule } from './helpers/product-testing.module';
+export { MockDaffProductGridFacade } from './helpers/mock-product-grid-facade';
+export { MockDaffConfigurableProductFacade } from './helpers/mock-configurable-product-facade';
 
 export * from './factories/magento/public_api';
