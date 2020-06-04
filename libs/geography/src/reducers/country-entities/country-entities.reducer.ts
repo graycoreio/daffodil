@@ -7,7 +7,7 @@ import { daffCountryEntitiesInitialState } from './country-entities-initial-stat
 /**
  * Reducer function that catches actions and changes/overwrites country entities state.
  */
-export function daffCountryEntitiesReducer<T extends DaffCountry>(
+export function daffCountryEntitiesReducer<T extends DaffCountry = DaffCountry>(
   state = daffCountryEntitiesInitialState,
   action: DaffGeographyActions<T>
 ): DaffCountryEntityState<T> {
@@ -15,7 +15,10 @@ export function daffCountryEntitiesReducer<T extends DaffCountry>(
 
   switch (action.type) {
     case DaffGeographyActionTypes.CountryLoadSuccessAction:
-      return adapter.upsertOne(action.payload, state);
+      return adapter.upsertOne({
+        ...action.payload,
+        loaded: true
+      }, state);
 
     case DaffGeographyActionTypes.CountryListSuccessAction:
       return adapter.upsertMany(action.payload, state);

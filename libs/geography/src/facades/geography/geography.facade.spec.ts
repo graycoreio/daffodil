@@ -17,8 +17,8 @@ import { DaffCountryFactory, DaffSubdivisionFactory } from '@daffodil/geography/
 import { DaffGeographyFacade } from './geography.facade';
 
 describe('DaffGeographyFacade', () => {
-  let store: MockStore<{ [DAFF_GEOGRAPHY_STORE_FEATURE_KEY]: Partial<DaffGeographyFeatureState<DaffCountry>> }>;
-  let facade: DaffGeographyFacade<DaffCountry>;
+  let store: MockStore<{ [DAFF_GEOGRAPHY_STORE_FEATURE_KEY]: Partial<DaffGeographyFeatureState> }>;
+  let facade: DaffGeographyFacade;
   let countryFactory: DaffCountryFactory;
   let subdivisionFactory: DaffSubdivisionFactory;
 
@@ -96,9 +96,10 @@ describe('DaffGeographyFacade', () => {
     });
 
     it('should be the countries upon a successful load', () => {
-      const expected = cold('a', { a: [mockCountry] });
       store.dispatch(new DaffCountryLoadSuccess(mockCountry));
-      expect(facade.countries$).toBeObservable(expected);
+      facade.countries$.subscribe(countries => {
+        expect(countries).toEqual([jasmine.objectContaining(mockCountry)])
+      });
     });
   });
 
@@ -135,35 +136,57 @@ describe('DaffGeographyFacade', () => {
     });
 
     it('should contain the country upon a successful country load', () => {
-      const expected = cold('a', { a: {[countryId]: mockCountry} });
       store.dispatch(new DaffCountryLoadSuccess(mockCountry));
-      expect(facade.countryEntities$).toBeObservable(expected);
+      facade.countryEntities$.subscribe(countries => {
+        expect(countries).toEqual({[countryId]: jasmine.objectContaining(mockCountry)})
+      });
     });
   });
 
   describe('getCountry | getting a specific country by ID', () => {
     it('should initially be undefined', () => {
       const expected = cold('a', { a: undefined });
-      expect(facade.getCountry(mockCountry.id)).toBeObservable(expected);
+      expect(facade.getCountry(countryId)).toBeObservable(expected);
     });
 
     it('should be the country upon a successful country load', () => {
-      const expected = cold('a', { a: mockCountry });
       store.dispatch(new DaffCountryLoadSuccess(mockCountry));
-      expect(facade.getCountry(mockCountry.id)).toBeObservable(expected);
+      facade.getCountry(countryId).subscribe(country => {
+        expect(country).toEqual(jasmine.objectContaining(mockCountry))
+      });
     });
   });
 
   describe('getCountrySubdivisions | getting a specific country\'s subdivisions by country ID', () => {
     it('should initially be an empty array', () => {
       const expected = cold('a', { a: [] });
-      expect(facade.getCountrySubdivisions(mockCountry.id)).toBeObservable(expected);
+      expect(facade.getCountrySubdivisions(countryId)).toBeObservable(expected);
     });
 
     it('should be the country\'s subdivisions upon a successful country load', () => {
       const expected = cold('a', { a: mockCountry.subdivisions });
       store.dispatch(new DaffCountryLoadSuccess(mockCountry));
-      expect(facade.getCountrySubdivisions(mockCountry.id)).toBeObservable(expected);
+      expect(facade.getCountrySubdivisions(countryId)).toBeObservable(expected);
+    });
+  });
+
+  describe('selectIsCountryFullyLoaded', () => {
+    it('should initially be false', () => {
+      facade.isCountryFullyLoaded(countryId).subscribe(res => {
+        expect(res).toBeFalsy();
+      });
+    });
+
+    describe('when a country is loaded', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCountryLoadSuccess(mockCountry));
+      });
+
+      it('should be true', () => {
+        const expected = cold('a', {a: true});
+
+        expect(facade.isCountryFullyLoaded(countryId)).toBeObservable(expected);
+      });
     });
   });
 });

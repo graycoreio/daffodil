@@ -13,6 +13,12 @@ export function daffGeographyReducer<T extends DaffCountry>(
       return { ...state, loading: true };
 
     case DaffGeographyActionTypes.CountryLoadSuccessAction:
+      return {
+        ...state,
+        errors: [],
+        loading: false,
+      };
+
     case DaffGeographyActionTypes.CountryListSuccessAction:
       return {
         ...state,

@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { Store, StoreModule, select, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffCountry } from '@daffodil/geography';
+import { DaffCountry, DaffCountryLoadSuccess } from '@daffodil/geography';
 import { DaffCountryFactory } from '@daffodil/geography/testing';
 
 import {
@@ -16,7 +16,7 @@ import {
 import { DaffCountryListSuccess } from '../actions/public_api';
 
 describe('Geography | Selector | Geography', () => {
-  let store: Store<DaffGeographyFeatureState<DaffCountry>>;
+  let store: Store<DaffGeographyFeatureState>;
 
   let countryFactory: DaffCountryFactory
 

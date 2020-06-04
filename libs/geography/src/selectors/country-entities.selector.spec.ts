@@ -2,7 +2,10 @@ import { TestBed } from '@angular/core/testing';
 import { Store, StoreModule, select, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffCountry } from '@daffodil/geography';
+import {
+  DaffCountry,
+  DaffCountryLoadSuccess
+} from '@daffodil/geography';
 import { DaffCountryFactory } from '@daffodil/geography/testing';
 
 import {
@@ -29,7 +32,8 @@ describe('Geography | Selector | CountryEntities', () => {
     selectCountryIds,
     selectCountryTotal,
     selectCountry,
-    selectCountrySubdivisions
+    selectCountrySubdivisions,
+    selectIsCountryFullyLoaded
   } = getDaffCountryEntitySelectors();
 
   beforeEach(() => {
@@ -101,6 +105,27 @@ describe('Geography | Selector | CountryEntities', () => {
       const expected = cold('a', {a: mockCountry.subdivisions});
 
       expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectIsCountryFullyLoaded', () => {
+    it('should initially be false', () => {
+      store.pipe(select(selectIsCountryFullyLoaded, {id: mockCountry.id})).subscribe(res => {
+        expect(res).toBeFalsy();
+      });
+    });
+
+    describe('when a country is loaded', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCountryLoadSuccess(mockCountry));
+      });
+
+      it('should be true', () => {
+        const selector = store.pipe(select(selectIsCountryFullyLoaded, {id: mockCountry.id}));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
     });
   });
 });

@@ -19,9 +19,10 @@ export interface DaffCountryEntitySelectors<T extends DaffCountry> {
   selectCountryTotal: MemoizedSelector<object, number>;
   selectCountry: MemoizedSelectorWithProps<object, {id: string | number}, T>;
   selectCountrySubdivisions: MemoizedSelectorWithProps<object, {id: string | number}, T['subdivisions']>;
+  selectIsCountryFullyLoaded: MemoizedSelector<object, boolean>;
 }
 
-const createCountryEntitySelectors = <T extends DaffCountry>() => {
+const createCountryEntitySelectors = <T extends DaffCountry = DaffCountry>() => {
   const { selectGeographyFeatureState } = getDaffGeographyFeatureStateSelector<T>();
   const selectCountryEntitiesState = createSelector(
     selectGeographyFeatureState,
@@ -41,6 +42,14 @@ const createCountryEntitySelectors = <T extends DaffCountry>() => {
       return country ? country.subdivisions : []
     }
   )
+
+  const selectIsCountryFullyLoaded = createSelector(
+    selectEntities,
+    (countries: Dictionary<T>, props: {id: T['id']}) => {
+      const country = selectCountry.projector(countries, { id: props.id });
+      return country && country.loaded
+    }
+  );
 
   return {
     selectCountryEntitiesState,
@@ -67,7 +76,11 @@ const createCountryEntitySelectors = <T extends DaffCountry>() => {
     /**
      * Selector for a specific country's subdivisions.
      */
-    selectCountrySubdivisions
+    selectCountrySubdivisions,
+    /**
+     * Selector for checking if a country has been fully loaded.
+     */
+    selectIsCountryFullyLoaded
   }
 }
 

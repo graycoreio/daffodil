@@ -16,4 +16,5 @@ export interface DaffGeographyFacadeInterface<T extends DaffCountry = DaffCountr
 
   getCountry(id: T['id']): Observable<T>;
   getCountrySubdivisions(id: T['id']): Observable<T['subdivisions']>;
+  isCountryFullyLoaded(id: T['id']): Observable<boolean>
 }

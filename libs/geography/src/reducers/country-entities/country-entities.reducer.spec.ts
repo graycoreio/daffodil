@@ -42,7 +42,11 @@ describe('Geography | Reducer | CountryEntities', () => {
     });
 
     it('should set country from action.payload', () => {
-      expect(result.entities[countryId]).toEqual(country)
+      expect(result.entities[countryId]).toEqual(jasmine.objectContaining(country))
+    });
+
+    it('should indicate that the country has been fully loaded', () => {
+      expect(result.entities[countryId].loaded).toBeTruthy();
     });
   });
 

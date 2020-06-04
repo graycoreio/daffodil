@@ -13,7 +13,7 @@ import { DaffGeographyFacadeInterface } from './geography-facade.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class DaffGeographyFacade<T extends DaffCountry> implements DaffGeographyFacadeInterface<T> {
+export class DaffGeographyFacade<T extends DaffCountry = DaffCountry> implements DaffGeographyFacadeInterface<T> {
   loading$: Observable<boolean>;
   errors$: Observable<string[]>;
 
@@ -24,6 +24,7 @@ export class DaffGeographyFacade<T extends DaffCountry> implements DaffGeography
 
   private _selectCountry: DaffGeographyAllSelectors<T>['selectCountry'];
   private _selectCountrySubdivisions: DaffGeographyAllSelectors<T>['selectCountrySubdivisions'];
+  private _selectIsCountryFullyLoaded: DaffGeographyAllSelectors<T>['selectIsCountryFullyLoaded'];
 
   constructor(private store: Store<DaffGeographyFeatureState<T>>) {
     const {
@@ -34,11 +35,13 @@ export class DaffGeographyFacade<T extends DaffCountry> implements DaffGeography
       selectGeographyLoading,
       selectGeographyErrors,
       selectCountry,
-      selectCountrySubdivisions
+      selectCountrySubdivisions,
+      selectIsCountryFullyLoaded
     } = getDaffGeographySelectors<T>();
 
     this._selectCountry = selectCountry;
     this._selectCountrySubdivisions = selectCountrySubdivisions;
+    this._selectIsCountryFullyLoaded = selectIsCountryFullyLoaded;
 
     this.loading$ = this.store.pipe(select(selectGeographyLoading));
     this.errors$ = this.store.pipe(select(selectGeographyErrors));
@@ -55,6 +58,10 @@ export class DaffGeographyFacade<T extends DaffCountry> implements DaffGeography
 
   getCountrySubdivisions(id: T['id']): Observable<T['subdivisions']> {
     return this.store.pipe(select(this._selectCountrySubdivisions, { id }))
+  }
+
+  isCountryFullyLoaded(id: T['id']): Observable<boolean> {
+    return this.store.pipe(select(this._selectIsCountryFullyLoaded, { id }))
   }
 
   dispatch(action: Action) {
