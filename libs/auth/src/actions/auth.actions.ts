@@ -50,7 +50,7 @@ export class DaffAuthStorageFailure implements Action {
 /**
  * An action triggered to initialize a auth login request.
  */
-export class DaffAuthLogin<T extends DaffLoginInfo> implements Action {
+export class DaffAuthLogin<T extends DaffLoginInfo = DaffLoginInfo> implements Action {
   readonly type = DaffAuthActionTypes.AuthLoginAction;
 
   constructor(public loginInfo: T) {}
@@ -61,7 +61,7 @@ export class DaffAuthLogin<T extends DaffLoginInfo> implements Action {
  *
  * @param token - the customer access token
  */
-export class DaffAuthLoginSuccess<T extends DaffAuthToken> implements Action {
+export class DaffAuthLoginSuccess<T extends DaffAuthToken = DaffAuthToken> implements Action {
   readonly type = DaffAuthActionTypes.AuthLoginSuccessAction;
 
   constructor(public auth: T) {}
@@ -138,7 +138,7 @@ export class DaffAuthCheckFailure implements Action {
  *
  * @param registration
  */
-export class DaffAuthRegister<T extends DaffAccountRegistration> implements Action {
+export class DaffAuthRegister<T extends DaffAccountRegistration = DaffAccountRegistration> implements Action {
   readonly type = DaffAuthActionTypes.AuthRegisterAction;
 
   constructor(public registration: T) {}
@@ -149,7 +149,7 @@ export class DaffAuthRegister<T extends DaffAccountRegistration> implements Acti
  *
  * @param token - the customer access token
  */
-export class DaffAuthRegisterSuccess<T extends DaffLoginInfo> implements Action {
+export class DaffAuthRegisterSuccess<T extends DaffLoginInfo = DaffLoginInfo> implements Action {
   readonly type = DaffAuthActionTypes.AuthRegisterSuccessAction;
 
   constructor(public loginInfo: T) {}
@@ -167,9 +167,9 @@ export class DaffAuthRegisterFailure implements Action {
 }
 
 export type DaffAuthActions<
-  T extends DaffLoginInfo,
-  U extends DaffAuthToken,
-  S extends DaffAccountRegistration,
+  T extends DaffLoginInfo = DaffLoginInfo,
+  U extends DaffAuthToken= DaffAuthToken,
+  S extends DaffAccountRegistration= DaffAccountRegistration,
 > =
   | DaffAuthGuardCheckCompletion
   | DaffAuthGuardCheck
