@@ -19,10 +19,14 @@ npm install @daffodil/auth \
 `@daffodil/auth` provides an in-memory API driver for development and debugging purposes. Simply import the in-memory driver module:
 
 ```ts
-import { DaffAuthInMemoryDriverModule } from '@daffodil/auth/testing';
+import {
+  DaffAuthModule,
+  DaffAuthInMemoryDriverModule
+} from '@daffodil/auth/testing';
 
 @NgModule({
   imports: [
+    DaffAuthModule
     DaffAuthInMemoryDriverModule.forRoot()
   ]
 })
@@ -45,6 +49,7 @@ import { ApolloLink } from 'apollo-link';
 import { setContext } from 'apollo-link-context';
 
 import {
+  DaffAuthModule,
   DaffAuthMagentoDriverModule,
   DaffAuthStorageService
 } from '@daffodil/auth';
@@ -78,6 +83,7 @@ export function provideApollo(httpLink: HttpLink, authStorage: DaffAuthStorageSe
     HttpClientModule,
     ApolloModule,
     HttpLinkModule,
+    DaffAuthModule,
     DaffAuthMagentoDriverModule.forRoot(),
   ],
   providers: [
