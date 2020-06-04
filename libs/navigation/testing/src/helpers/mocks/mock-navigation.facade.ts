@@ -10,5 +10,5 @@ export class MockDaffNavigationFacade<T extends DaffGenericNavigationTree<T>> im
   loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   tree$: BehaviorSubject<T> = new BehaviorSubject(null);
   errors$: BehaviorSubject<string[]> = new BehaviorSubject([]);
-  dispatch() { }
+  dispatch(action) { }
 }
