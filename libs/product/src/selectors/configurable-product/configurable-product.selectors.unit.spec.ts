@@ -20,7 +20,10 @@ describe('Configurable Product Selectors | unit tests', () => {
   const configurableProductFactory: DaffConfigurableProductFactory = new DaffConfigurableProductFactory();
 	let stubConfigurableProduct: DaffConfigurableProduct;
 	const {
-		selectConfigurableProductPrice,
+		selectConfigurableProductPrices,
+		selectConfigurableProductMinimumPrice,
+		selectConfigurableProductMaximumPrice,
+		isConfigurablePriceRanged,
 		selectMatchingConfigurableProductVariants,
 		selectSelectableConfigurableProductAttributes
 	} = getDaffConfigurableProductSelectors();
@@ -38,11 +41,11 @@ describe('Configurable Product Selectors | unit tests', () => {
     store = TestBed.get(Store);
   });
 
-	describe('selectConfigurableProductPrice', () => {
+	describe('selectConfigurableProductPrices', () => {
 
 		describe('when many variants are possible', () => {
 			
-			it('should return a ranged price', () => {
+			it('should return an array of prices', () => {
 				stubConfigurableProduct.variants[0].price = 2;
 				stubConfigurableProduct.variants[1].price = 1;
 				stubConfigurableProduct.variants[2].price = 3;
@@ -53,37 +56,90 @@ describe('Configurable Product Selectors | unit tests', () => {
 					stubConfigurableProduct.configurableAttributes[0].code,
 					stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
 				));
-				const selector = store.pipe(select(selectConfigurableProductPrice, { id: stubConfigurableProduct.id }));
-				const expected = cold('a', { a: '1-4' });
+				const selector = store.pipe(select(selectConfigurableProductPrices, { id: stubConfigurableProduct.id }));
+				const expected = cold('a', { a: [2, 1, 3, 4] });
 
 				expect(selector).toBeObservable(expected);
 			});
 		});
+	});
 
-		describe('when only one variant is possible', () => {
-			
-			it('should return a single price', () => {
-				store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
-				store.dispatch(new DaffConfigurableProductApplyAttribute(
-					stubConfigurableProduct.id,
-					stubConfigurableProduct.configurableAttributes[0].code,
-					stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
-				));
-				store.dispatch(new DaffConfigurableProductApplyAttribute(
-					stubConfigurableProduct.id,
-					stubConfigurableProduct.configurableAttributes[1].code,
-					stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[1].code]
-				));
-				store.dispatch(new DaffConfigurableProductApplyAttribute(
-					stubConfigurableProduct.id,
-					stubConfigurableProduct.configurableAttributes[2].code,
-					stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[2].code]
-				));
-				const selector = store.pipe(select(selectConfigurableProductPrice, { id: stubConfigurableProduct.id }));
-				const expected = cold('a', { a: stubConfigurableProduct.variants[0].price.toString() });
+	describe('selectConfigurableProductMinimumPrice', () => {
+		
+		it('should return the minimum price of the range of variant prices', () => {
+			stubConfigurableProduct.variants[0].price = 2;
+			stubConfigurableProduct.variants[1].price = 1;
+			stubConfigurableProduct.variants[2].price = 3;
+			stubConfigurableProduct.variants[3].price = 4;
+			store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
+			store.dispatch(new DaffConfigurableProductApplyAttribute(
+				stubConfigurableProduct.id,
+				stubConfigurableProduct.configurableAttributes[0].code,
+				stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
+			));
+			const selector = store.pipe(select(selectConfigurableProductMinimumPrice, { id: stubConfigurableProduct.id }));
+			const expected = cold('a', { a: 1 });
 
-				expect(selector).toBeObservable(expected);
-			});
+			expect(selector).toBeObservable(expected);
+		});
+	});
+
+	describe('selectConfigurableProductMaximumPrice', () => {
+		
+		it('should return the maximum price of the range of variant prices', () => {
+			stubConfigurableProduct.variants[0].price = 2;
+			stubConfigurableProduct.variants[1].price = 1;
+			stubConfigurableProduct.variants[2].price = 3;
+			stubConfigurableProduct.variants[3].price = 4;
+			store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
+			store.dispatch(new DaffConfigurableProductApplyAttribute(
+				stubConfigurableProduct.id,
+				stubConfigurableProduct.configurableAttributes[0].code,
+				stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
+			));
+			const selector = store.pipe(select(selectConfigurableProductMaximumPrice, { id: stubConfigurableProduct.id }));
+			const expected = cold('a', { a: 4 });
+
+			expect(selector).toBeObservable(expected);
+		});
+	});
+
+	describe('isConfigurablePriceRanged', () => {
+		
+		it('should return true when more than one price is possible', () => {
+			store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
+			store.dispatch(new DaffConfigurableProductApplyAttribute(
+				stubConfigurableProduct.id,
+				stubConfigurableProduct.configurableAttributes[0].code,
+				stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
+			));
+			const selector = store.pipe(select(isConfigurablePriceRanged, { id: stubConfigurableProduct.id }));
+			const expected = cold('a', { a: true });
+
+			expect(selector).toBeObservable(expected);
+		});
+		
+		it('should return false when only one price is possible', () => {
+			store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
+			store.dispatch(new DaffConfigurableProductApplyAttribute(
+				stubConfigurableProduct.id,
+				stubConfigurableProduct.configurableAttributes[0].code,
+				stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
+			));
+			store.dispatch(new DaffConfigurableProductApplyAttribute(
+				stubConfigurableProduct.id,
+				stubConfigurableProduct.configurableAttributes[1].code,
+				stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[1].code]
+			));
+			store.dispatch(new DaffConfigurableProductApplyAttribute(
+				stubConfigurableProduct.id,
+				stubConfigurableProduct.configurableAttributes[2].code,
+				stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[2].code]
+			));
+			const selector = store.pipe(select(isConfigurablePriceRanged, { id: stubConfigurableProduct.id }));
+			const expected = cold('a', { a: false });
+
+			expect(selector).toBeObservable(expected);
 		});
 	});
 

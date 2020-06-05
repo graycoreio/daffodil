@@ -10,7 +10,13 @@ export class MockDaffConfigurableProductFacade implements DaffConfigurableProduc
 	getAppliedAttributes(id: string): BehaviorSubject<Dictionary<string>> {
 		return new BehaviorSubject({});
 	};
-	getPrice(id: string): BehaviorSubject<string> {
+	getMinimumPrice(id: string): BehaviorSubject<number> {
+		return new BehaviorSubject(null);
+	};
+	getMaximumPrice(id: string): BehaviorSubject<number> {
+		return new BehaviorSubject(null);
+	};
+	isPriceRanged(id: string): BehaviorSubject<boolean> {
 		return new BehaviorSubject(null);
 	};
 	getSelectableAttributes(id: string): BehaviorSubject<Dictionary<string[]>> {

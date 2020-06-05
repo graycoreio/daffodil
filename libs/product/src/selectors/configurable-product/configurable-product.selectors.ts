@@ -10,7 +10,10 @@ import { DaffConfigurableProductEntityAttribute } from '../../reducers/configura
 export interface DaffConfigurableProductMemoizedSelectors {
 	selectAllConfigurableProductAttributes: MemoizedSelectorWithProps<object, object, Dictionary<string[]>>;
 	selectMatchingConfigurableProductVariants: MemoizedSelectorWithProps<object, object, DaffConfigurableProductVariant[]>;
-	selectConfigurableProductPrice: MemoizedSelectorWithProps<object, object, string>;
+	selectConfigurableProductPrices: MemoizedSelectorWithProps<object, object, number[]>;
+	selectConfigurableProductMinimumPrice: MemoizedSelectorWithProps<object, object, number>;
+	selectConfigurableProductMaximumPrice: MemoizedSelectorWithProps<object, object, number>;
+	isConfigurablePriceRanged: MemoizedSelectorWithProps<object, object, boolean>;
 	selectSelectableConfigurableProductAttributes: MemoizedSelectorWithProps<object, object, Dictionary<string[]>>;
 }
 
@@ -45,15 +48,49 @@ const createConfigurableProductSelectors = (): DaffConfigurableProductMemoizedSe
 	/**
 	 * Selector for the range of price for current configuration of the configurable product.
 	 */
-	const selectConfigurableProductPrice = createSelector(
+	const selectConfigurableProductPrices = createSelector(
 		selectProductEntities,
 		selectConfigurableProductAppliedAttributesEntitiesState,
 		(products, appliedAttributesEntities, props) => {
-			const matchingVariants: DaffConfigurableProductVariant[] = selectMatchingConfigurableProductVariants.projector(products, appliedAttributesEntities, { id: props.id });
-			if(matchingVariants.length === 1) return matchingVariants[0].price.toString();
-			else return getMinimumPrice(matchingVariants) + '-' + getMaximumPrice(matchingVariants);
+			return selectMatchingConfigurableProductVariants.projector(products, appliedAttributesEntities, { id: props.id })
+				.map(variant => variant.price);
 		}
 	);
+
+	/**
+	 * Selector for the minimum price in the range of configurable product variant prices.
+	 */
+	const selectConfigurableProductMinimumPrice = createSelector(
+		selectProductEntities,
+		selectConfigurableProductAppliedAttributesEntitiesState,
+		(products, appliedAttributesEntities, props) => getMinimumPrice(
+			selectConfigurableProductPrices.projector(products, appliedAttributesEntities, { id: props.id })
+		)
+	)
+
+	/**
+	 * Selector for the maximum price in the range of configurable product variant prices.
+	 */
+	const selectConfigurableProductMaximumPrice = createSelector(
+		selectProductEntities,
+		selectConfigurableProductAppliedAttributesEntitiesState,
+		(products, appliedAttributesEntities, props) => getMaximumPrice(
+			selectConfigurableProductPrices.projector(products, appliedAttributesEntities, { id: props.id })
+		)
+	)
+
+	/**
+	 * Selector for whether the configurable product variant prices have been narrowed to a single price.
+	 */
+	const isConfigurablePriceRanged = createSelector(
+		selectProductEntities,
+		selectConfigurableProductAppliedAttributesEntitiesState,
+		(products, appliedAttributesEntities, props) => {
+			const minPrice = selectConfigurableProductMinimumPrice.projector(products, appliedAttributesEntities, { id: props.id });
+			const maxPrice = selectConfigurableProductMaximumPrice.projector(products, appliedAttributesEntities, { id: props.id });
+			return minPrice !== maxPrice;
+		}
+	)
 
 	const selectAllConfigurableProductAttributes = createSelector(
 		selectProductEntities,
@@ -111,7 +148,10 @@ const createConfigurableProductSelectors = (): DaffConfigurableProductMemoizedSe
 
 	return { 
 		selectAllConfigurableProductAttributes,
-		selectConfigurableProductPrice,
+		selectConfigurableProductPrices,
+		selectConfigurableProductMinimumPrice,
+		selectConfigurableProductMaximumPrice,
+		isConfigurablePriceRanged,
 		selectMatchingConfigurableProductVariants,
 		selectSelectableConfigurableProductAttributes
 	}
@@ -146,24 +186,18 @@ function isVariantAvailable(
 	)
 }
 
-function getMinimumPrice(variants: DaffConfigurableProductVariant[]): string {
-	return variants.reduce(
-		(acc, variant) => {
-			const price = variant.price;
-			return price < acc ? price : acc;
-		},
-		variants[0].price
-	).toString();
+function getMinimumPrice(prices: number[]): number {
+	return prices.reduce(
+		(acc, price) => price < acc ? price : acc,
+		prices[0]
+	);
 }
 
-function getMaximumPrice(variants: DaffConfigurableProductVariant[]): string {
-	return variants.reduce(
-		(acc, variant) => {
-			const price = variant.price
-			return price > acc ? price : acc;
-		},
-		variants[0].price
-	).toString();
+function getMaximumPrice(prices: number[]): number {
+	return prices.reduce(
+		(acc, price) => price > acc ? price : acc,
+		prices[0]
+	);
 }
 
 function initializeSelectableAttributes(attributes: DaffConfigurableProductAttribute[]): Dictionary<string[]> {
