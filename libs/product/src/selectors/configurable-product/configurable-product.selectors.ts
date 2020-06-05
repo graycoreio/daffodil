@@ -188,18 +188,14 @@ function isVariantAvailable(
 
 function getMinimumPrice(prices: number[]): number {
 	return prices.reduce(
-		(acc, price) => {
-			return price < acc ? price : acc;
-		},
+		(acc, price) => price < acc ? price : acc,
 		prices[0]
 	);
 }
 
 function getMaximumPrice(prices: number[]): number {
 	return prices.reduce(
-		(acc, price) => {
-			return price > acc ? price : acc;
-		},
+		(acc, price) => price > acc ? price : acc,
 		prices[0]
 	);
 }
