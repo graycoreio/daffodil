@@ -98,26 +98,57 @@ describe('DaffConfigurableProductFacade', () => {
 		});
   });
 
-  describe('getPrice', () => {
+  describe('getMinimumPrice', () => {
 
-    it('should return an Observable string of the price/price-range for a configurable product', () => {
-			const expected = cold('a', { a: stubConfigurableProduct.variants[0].price.toString() });
+    it('should return the minimum possible price for a configurable product', () => {
+			stubConfigurableProduct.variants[0].price = 2;
+			stubConfigurableProduct.variants[1].price = 1;
+			stubConfigurableProduct.variants[2].price = 4;
+			stubConfigurableProduct.variants[3].price = 3;
+			const expected = cold('a', { a: 1 });
+
       store.dispatch(new DaffConfigurableProductApplyAttribute(
 				stubConfigurableProduct.id,
 				stubConfigurableProduct.configurableAttributes[0].code,
 				stubConfigurableProduct.configurableAttributes[0].values[0].value
 			));
-			store.dispatch(new DaffConfigurableProductApplyAttribute(
+			expect(facade.getMinimumPrice(stubConfigurableProduct.id)).toBeObservable(expected);
+		});
+  });
+
+  describe('getMaximumPrice', () => {
+
+    it('should return the minimum possible price for a configurable product', () => {
+			stubConfigurableProduct.variants[0].price = 2;
+			stubConfigurableProduct.variants[1].price = 1;
+			stubConfigurableProduct.variants[2].price = 4;
+			stubConfigurableProduct.variants[3].price = 3;
+			const expected = cold('a', { a: 4 });
+
+      store.dispatch(new DaffConfigurableProductApplyAttribute(
 				stubConfigurableProduct.id,
-				stubConfigurableProduct.configurableAttributes[1].code,
-				stubConfigurableProduct.configurableAttributes[1].values[0].value
+				stubConfigurableProduct.configurableAttributes[0].code,
+				stubConfigurableProduct.configurableAttributes[0].values[0].value
 			));
-			store.dispatch(new DaffConfigurableProductApplyAttribute(
+			expect(facade.getMaximumPrice(stubConfigurableProduct.id)).toBeObservable(expected);
+		});
+  });
+
+  describe('isPriceRanged', () => {
+
+    it('should return whether the possible price is a range of prices', () => {
+			stubConfigurableProduct.variants[0].price = 2;
+			stubConfigurableProduct.variants[1].price = 1;
+			stubConfigurableProduct.variants[2].price = 4;
+			stubConfigurableProduct.variants[3].price = 3;
+			const expected = cold('a', { a: true });
+
+      store.dispatch(new DaffConfigurableProductApplyAttribute(
 				stubConfigurableProduct.id,
-				stubConfigurableProduct.configurableAttributes[2].code,
-				stubConfigurableProduct.configurableAttributes[2].values[0].value
+				stubConfigurableProduct.configurableAttributes[0].code,
+				stubConfigurableProduct.configurableAttributes[0].values[0].value
 			));
-			expect(facade.getPrice(stubConfigurableProduct.id)).toBeObservable(expected);
+			expect(facade.isPriceRanged(stubConfigurableProduct.id)).toBeObservable(expected);
 		});
   });
 
