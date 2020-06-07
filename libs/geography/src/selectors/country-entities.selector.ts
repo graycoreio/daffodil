@@ -79,6 +79,7 @@ const createCountryEntitySelectors = <T extends DaffCountry = DaffCountry>() => 
     selectCountrySubdivisions,
     /**
      * Selector for checking if a country has been fully loaded.
+     * If true, then a country's subdivisions will be populated if any exist.
      */
     selectIsCountryFullyLoaded
   }

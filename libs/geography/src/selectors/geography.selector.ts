@@ -10,7 +10,6 @@ export interface DaffGeographySelectors {
   selectGeographyState: MemoizedSelector<object, DaffGeographyReducerState>;
   selectGeographyLoading: MemoizedSelector<object, boolean>;
   selectGeographyErrors: MemoizedSelector<object, string[]>;
-
 }
 
 const createGeographySelectors = <T extends DaffCountry = DaffCountry>() => {
