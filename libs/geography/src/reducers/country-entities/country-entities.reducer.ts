@@ -24,7 +24,12 @@ export function daffCountryEntitiesReducer<T extends DaffCountry = DaffCountry>(
       return adapter.upsertMany(
         action.payload.map(country => ({
           ...country,
-          loaded: false
+          // defer to the loaded state of the country already in state (if it exists) but init field to false if it does not
+          loaded: (state.entities[country.id] && state.entities[country.id].loaded) || false,
+          // if the country coming in has no subdivisions and the same country in state does, use the subdivisions in state
+          subdivisions: country.subdivisions.length === 0 && state.entities[country.id] && state.entities[country.id].subdivisions.length > 0
+            ? state.entities[country.id].subdivisions
+            : country.subdivisions
         })),
         state
       );
