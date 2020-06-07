@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { Store, StoreModule, select, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffCountry, DaffCountryLoadSuccess } from '@daffodil/geography';
+import { DaffCountry } from '@daffodil/geography';
 import { DaffCountryFactory } from '@daffodil/geography/testing';
 
 import {

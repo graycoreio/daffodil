@@ -21,7 +21,13 @@ export function daffCountryEntitiesReducer<T extends DaffCountry = DaffCountry>(
       }, state);
 
     case DaffGeographyActionTypes.CountryListSuccessAction:
-      return adapter.upsertMany(action.payload, state);
+      return adapter.upsertMany(
+        action.payload.map(country => ({
+          ...country,
+          loaded: false
+        })),
+        state
+      );
 
     default:
       return state;

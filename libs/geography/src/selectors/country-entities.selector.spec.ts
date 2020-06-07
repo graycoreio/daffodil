@@ -57,7 +57,7 @@ describe('Geography | Selector | CountryEntities', () => {
   describe('selectAllCountries', () => {
     it('should select all of the countries', () => {
       const selector = store.pipe(select(selectAllCountries));
-      const expected = cold('a', {a: [mockCountry]});
+      const expected = cold('a', {a: [jasmine.objectContaining(mockCountry)]});
 
       expect(selector).toBeObservable(expected);
     });
@@ -66,7 +66,7 @@ describe('Geography | Selector | CountryEntities', () => {
   describe('selectCountryEntities', () => {
     it('should select all of the countries', () => {
       const selector = store.pipe(select(selectCountryEntities));
-      const expected = cold('a', {a: {[countryId]: mockCountry}});
+      const expected = cold('a', {a: {[countryId]: jasmine.objectContaining(mockCountry)}});
 
       expect(selector).toBeObservable(expected);
     });
@@ -93,7 +93,7 @@ describe('Geography | Selector | CountryEntities', () => {
   describe('selectCountry', () => {
     it('should select a specific country by ID', () => {
       const selector = store.pipe(select(selectCountry, { id: mockCountry.id }));
-      const expected = cold('a', {a: mockCountry});
+      const expected = cold('a', {a: jasmine.objectContaining(mockCountry)});
 
       expect(selector).toBeObservable(expected);
     });
@@ -110,9 +110,10 @@ describe('Geography | Selector | CountryEntities', () => {
 
   describe('selectIsCountryFullyLoaded', () => {
     it('should initially be false', () => {
-      store.pipe(select(selectIsCountryFullyLoaded, {id: mockCountry.id})).subscribe(res => {
-        expect(res).toBeFalsy();
-      });
+      const selector = store.pipe(select(selectIsCountryFullyLoaded, {id: mockCountry.id}));
+      const expected = cold('a', {a: false});
+
+      expect(selector).toBeObservable(expected);
     });
 
     describe('when a country is loaded', () => {

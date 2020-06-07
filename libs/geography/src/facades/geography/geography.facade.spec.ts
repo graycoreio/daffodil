@@ -10,7 +10,8 @@ import {
   DaffCountry,
   DaffGeographyFeatureState,
   daffGeographyReducers,
-  DAFF_GEOGRAPHY_STORE_FEATURE_KEY
+  DAFF_GEOGRAPHY_STORE_FEATURE_KEY,
+  DaffCountryListSuccess
 } from '@daffodil/geography';
 import { DaffCountryFactory, DaffSubdivisionFactory } from '@daffodil/geography/testing';
 
@@ -96,10 +97,9 @@ describe('DaffGeographyFacade', () => {
     });
 
     it('should be the countries upon a successful load', () => {
+      const expected = cold('a', { a: [jasmine.objectContaining(mockCountry)] });
       store.dispatch(new DaffCountryLoadSuccess(mockCountry));
-      facade.countries$.subscribe(countries => {
-        expect(countries).toEqual([jasmine.objectContaining(mockCountry)])
-      });
+      expect(facade.countries$).toBeObservable(expected);
     });
   });
 
@@ -136,10 +136,9 @@ describe('DaffGeographyFacade', () => {
     });
 
     it('should contain the country upon a successful country load', () => {
+      const expected = cold('a', { a: {[countryId]: jasmine.objectContaining(mockCountry)} });
       store.dispatch(new DaffCountryLoadSuccess(mockCountry));
-      facade.countryEntities$.subscribe(countries => {
-        expect(countries).toEqual({[countryId]: jasmine.objectContaining(mockCountry)})
-      });
+      expect(facade.countryEntities$).toBeObservable(expected);
     });
   });
 
@@ -150,10 +149,9 @@ describe('DaffGeographyFacade', () => {
     });
 
     it('should be the country upon a successful country load', () => {
+      const expected = cold('a', { a: jasmine.objectContaining(mockCountry) });
       store.dispatch(new DaffCountryLoadSuccess(mockCountry));
-      facade.getCountry(countryId).subscribe(country => {
-        expect(country).toEqual(jasmine.objectContaining(mockCountry))
-      });
+      expect(facade.getCountry(countryId)).toBeObservable(expected);
     });
   });
 
@@ -171,10 +169,14 @@ describe('DaffGeographyFacade', () => {
   });
 
   describe('selectIsCountryFullyLoaded', () => {
+    beforeEach(() => {
+      store.dispatch(new DaffCountryListSuccess([mockCountry]));
+    });
+
     it('should initially be false', () => {
-      facade.isCountryFullyLoaded(countryId).subscribe(res => {
-        expect(res).toBeFalsy();
-      });
+      const expected = cold('a', { a: false });
+
+      expect(facade.isCountryFullyLoaded(countryId)).toBeObservable(expected);
     });
 
     describe('when a country is loaded', () => {
@@ -183,7 +185,7 @@ describe('DaffGeographyFacade', () => {
       });
 
       it('should be true', () => {
-        const expected = cold('a', {a: true});
+        const expected = cold('a', { a: true });
 
         expect(facade.isCountryFullyLoaded(countryId)).toBeObservable(expected);
       });
