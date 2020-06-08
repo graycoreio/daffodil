@@ -80,8 +80,46 @@ describe('Geography | Reducer | CountryEntities', () => {
         result = reducer(inter, countryListSuccess);
       });
 
-      it('should not overwrite the subdivisions', () => {
-        expect(result.entities[mockCountry.id].subdivisions).toEqual([mockSubdivision]);
+      describe('and the payload does not have subdivisions', () => {
+        beforeEach(() => {
+          const countryLoadSuccess = new DaffCountryLoadSuccess({
+            ...mockCountry,
+            subdivisions: [mockSubdivision]
+          });
+          const countryListSuccess = new DaffCountryListSuccess([mockCountry]);
+
+          const inter = reducer(initialState, countryLoadSuccess);
+
+          result = reducer(inter, countryListSuccess);
+        });
+
+        it('should not overwrite the subdivisions', () => {
+          expect(result.entities[mockCountry.id].subdivisions).toEqual([mockSubdivision]);
+        });
+      });
+
+      describe('and the payload has subdivisions', () => {
+        let newSubdivisions;
+
+        beforeEach(() => {
+          newSubdivisions = subdivisionFactory.createMany(2);
+          const countryLoadSuccess = new DaffCountryLoadSuccess({
+            ...mockCountry,
+            subdivisions: [mockSubdivision]
+          });
+          const countryListSuccess = new DaffCountryListSuccess([{
+            ...mockCountry,
+            subdivisions: newSubdivisions
+          }]);
+
+          const inter = reducer(initialState, countryLoadSuccess);
+
+          result = reducer(inter, countryListSuccess);
+        });
+
+        it('should overwrite the subdivisions', () => {
+          expect(result.entities[mockCountry.id].subdivisions).toEqual(newSubdivisions);
+        });
       });
 
       it('should not overwrite the loaded state', () => {
