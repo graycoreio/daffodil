@@ -16,7 +16,7 @@ import {
 import { DaffCountryListSuccess } from '../actions/public_api';
 
 describe('Geography | Selector | Geography', () => {
-  let store: Store<DaffGeographyFeatureState<DaffCountry>>;
+  let store: Store<DaffGeographyFeatureState>;
 
   let countryFactory: DaffCountryFactory
 

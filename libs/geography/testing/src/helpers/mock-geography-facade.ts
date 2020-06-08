@@ -20,5 +20,9 @@ export class MockDaffGeographyFacade implements DaffGeographyFacadeInterface {
     return new BehaviorSubject([]);
   }
 
+  isCountryFullyLoaded(id) {
+    return new BehaviorSubject(false)
+  }
+
   dispatch(action: Action) {};
 }

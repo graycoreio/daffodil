@@ -7,6 +7,6 @@ import { DaffCountry } from '../../models/country';
  */
 export const getCountryAdapter = (() => {
   let cache;
-  return <T extends DaffCountry>(): EntityAdapter<T> =>
+  return <T extends DaffCountry = DaffCountry>(): EntityAdapter<T> =>
     cache = cache || createEntityAdapter<T>();
 })();

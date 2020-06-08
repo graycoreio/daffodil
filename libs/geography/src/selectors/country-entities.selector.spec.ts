@@ -2,7 +2,10 @@ import { TestBed } from '@angular/core/testing';
 import { Store, StoreModule, select, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffCountry } from '@daffodil/geography';
+import {
+  DaffCountry,
+  DaffCountryLoadSuccess
+} from '@daffodil/geography';
 import { DaffCountryFactory } from '@daffodil/geography/testing';
 
 import {
@@ -29,7 +32,8 @@ describe('Geography | Selector | CountryEntities', () => {
     selectCountryIds,
     selectCountryTotal,
     selectCountry,
-    selectCountrySubdivisions
+    selectCountrySubdivisions,
+    selectIsCountryFullyLoaded
   } = getDaffCountryEntitySelectors();
 
   beforeEach(() => {
@@ -53,7 +57,7 @@ describe('Geography | Selector | CountryEntities', () => {
   describe('selectAllCountries', () => {
     it('should select all of the countries', () => {
       const selector = store.pipe(select(selectAllCountries));
-      const expected = cold('a', {a: [mockCountry]});
+      const expected = cold('a', {a: [jasmine.objectContaining(mockCountry)]});
 
       expect(selector).toBeObservable(expected);
     });
@@ -62,7 +66,7 @@ describe('Geography | Selector | CountryEntities', () => {
   describe('selectCountryEntities', () => {
     it('should select all of the countries', () => {
       const selector = store.pipe(select(selectCountryEntities));
-      const expected = cold('a', {a: {[countryId]: mockCountry}});
+      const expected = cold('a', {a: {[countryId]: jasmine.objectContaining(mockCountry)}});
 
       expect(selector).toBeObservable(expected);
     });
@@ -89,7 +93,7 @@ describe('Geography | Selector | CountryEntities', () => {
   describe('selectCountry', () => {
     it('should select a specific country by ID', () => {
       const selector = store.pipe(select(selectCountry, { id: mockCountry.id }));
-      const expected = cold('a', {a: mockCountry});
+      const expected = cold('a', {a: jasmine.objectContaining(mockCountry)});
 
       expect(selector).toBeObservable(expected);
     });
@@ -101,6 +105,28 @@ describe('Geography | Selector | CountryEntities', () => {
       const expected = cold('a', {a: mockCountry.subdivisions});
 
       expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectIsCountryFullyLoaded', () => {
+    it('should initially be false', () => {
+      const selector = store.pipe(select(selectIsCountryFullyLoaded, {id: mockCountry.id}));
+      const expected = cold('a', {a: false});
+
+      expect(selector).toBeObservable(expected);
+    });
+
+    describe('when a country is loaded', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCountryLoadSuccess(mockCountry));
+      });
+
+      it('should be true', () => {
+        const selector = store.pipe(select(selectIsCountryFullyLoaded, {id: mockCountry.id}));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
     });
   });
 });
