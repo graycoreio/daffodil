@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.6.0](https://github.com/graycoreio/daffodil/compare/v0.5.6...v0.6.0) (2020-06-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **product:** the getPrice function on the DaffConfigurableProductFacade is now split into getMinimumPrice, getMaximumPrice, and isPriceRanged.
+
+### Features
+
+* **cart:** add empty cart guard ([#933](https://github.com/graycoreio/daffodil/issues/933)) ([959e70f](https://github.com/graycoreio/daffodil/commit/959e70f343823935d67eb870171ea45923ddd584))
+* **geography:** track the fully loaded countries in state ([#931](https://github.com/graycoreio/daffodil/issues/931)) ([122e537](https://github.com/graycoreio/daffodil/commit/122e53784d8784153bd6e9105895f4fe04c3258b))
+* **product:** change configurable product prices to be a min and max price ([#932](https://github.com/graycoreio/daffodil/issues/932)) ([fe1069b](https://github.com/graycoreio/daffodil/commit/fe1069b82e2bde9a1937be634989ee3011d4f0d0))
+
+
+### Bug Fixes
+
+* **navigation:** add action argument to mock facade dispatch function ([226b34e](https://github.com/graycoreio/daffodil/commit/226b34e2ed94421c221a0d7119527d1b7a8edc27))
+* **product:** add action argument to mock facade dispatch function ([58a2c94](https://github.com/graycoreio/daffodil/commit/58a2c94f5178370aa888d2e10d6ef7bf336b75e0))
+* **product:** export all mocked product facades ([394e1b5](https://github.com/graycoreio/daffodil/commit/394e1b5cf506c3c41041c12a18956a7683896f69))
+
 ### [0.5.6](https://github.com/graycoreio/daffodil/compare/v0.5.5...v0.5.6) (2020-06-03)
 
 
