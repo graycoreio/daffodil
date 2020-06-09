@@ -1,8 +1,8 @@
 import { Injectable, Inject } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { Resolve, Router } from '@angular/router';
-import { filter, switchMap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { DaffCartResolver } from './cart-resolver.service';
 import { DaffCartLoadSuccess, DaffCartActionTypes } from '../actions/public_api';
@@ -23,11 +23,11 @@ export class DaffEmptyCartResolver implements Resolve<Observable<Action>> {
   resolve(): Observable<Action> {
 		return this.cartResolver.resolve().pipe(
 			filter(action => action.type === DaffCartActionTypes.CartLoadSuccessAction),
-      switchMap((action: DaffCartLoadSuccess) => {
+      map((action: DaffCartLoadSuccess) => {
         if(!action.payload || action.payload.items.length === 0) {
           this.router.navigateByUrl(this.redirectUrl);
         }
-        return of(action);
+        return action;
 			})
 		);
   }

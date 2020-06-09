@@ -53,7 +53,7 @@ describe('DaffEmptyCartResolver', () => {
 
   describe('resolve', () => {
 
-    describe('when ResolverCartSuccessAction is dispatched with a cart', () => {
+    describe('when a cart is loaded', () => {
       
       it('should resolve with a DaffCartLoadSuccess action', () => {
         emptyCartResolver.resolve().subscribe((resolvedValue) => {
