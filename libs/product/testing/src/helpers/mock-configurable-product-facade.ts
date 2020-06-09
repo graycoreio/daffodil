@@ -1,7 +1,7 @@
 import { BehaviorSubject } from 'rxjs';
 import { Dictionary } from '@ngrx/entity';
 
-import { DaffConfigurableProductFacadeInterface } from '@daffodil/product';
+import { DaffConfigurableProductFacadeInterface, DaffConfigurableProductVariant } from '@daffodil/product';
 
 export class MockDaffConfigurableProductFacade implements DaffConfigurableProductFacadeInterface {
 	getAllAttributes(id: string): BehaviorSubject<Dictionary<string[]>> {
@@ -22,5 +22,8 @@ export class MockDaffConfigurableProductFacade implements DaffConfigurableProduc
 	getSelectableAttributes(id: string): BehaviorSubject<Dictionary<string[]>> {
 		return new BehaviorSubject({});
 	};
+	getMatchingVariants(id: string): BehaviorSubject<DaffConfigurableProductVariant[]> {
+		return new BehaviorSubject([]);
+	}
 	dispatch(action) {};
 }

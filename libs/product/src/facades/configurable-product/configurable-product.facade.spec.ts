@@ -178,4 +178,21 @@ describe('DaffConfigurableProductFacade', () => {
 			expect(facade.getSelectableAttributes(stubConfigurableProduct.id)).toBeObservable(expected);
 		});
   });
+
+  describe('getMatchingVariants', () => {
+
+    it('should return variants that match the applied attributes for a configurable product', () => {
+			store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
+			store.dispatch(new DaffConfigurableProductApplyAttribute(
+				stubConfigurableProduct.id,
+				stubConfigurableProduct.configurableAttributes[0].code,
+				stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
+			));
+			const expected = cold('a', { a: 
+				stubConfigurableProduct.variants.slice(0, 4)
+			});
+
+			expect(facade.getMatchingVariants(stubConfigurableProduct.id)).toBeObservable(expected);
+		});
+  });
 });
