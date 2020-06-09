@@ -15,7 +15,9 @@ import { DaffCartReducersState } from '../reducers/public_api';
  * Resolves the cart before navigation. Redirects to the url provided by the DaffCartResolverRedirectUrl token when a 
  * failure occurs during Cart Load.
  */
-@Injectable()
+@Injectable({
+	providedIn: 'root'
+})
 export class DaffCartResolver implements Resolve<Observable<Action>> {
   constructor(
     private store: Store<DaffCartReducersState>,

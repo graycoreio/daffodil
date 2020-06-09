@@ -12,7 +12,9 @@ import { DaffEmptyCartResolverRedirectUrl } from './tokens/empty-cart-resolver-r
  * Redirects to the url provided by the DaffEmptyCartResolverRedirectUrl injection token when the 
  * cart is empty after successfully loading.
  */
-@Injectable()
+@Injectable({
+	providedIn: 'root'
+})
 export class DaffEmptyCartResolver implements Resolve<Observable<Action>> {
   constructor(
 		private cartResolver: DaffCartResolver, 
