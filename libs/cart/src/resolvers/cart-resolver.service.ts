@@ -4,13 +4,12 @@ import { Resolve, Router } from '@angular/router';
 import { map, filter, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import { DaffCartReducersState } from '@daffodil/cart';
-
 import { 
 	DaffResolveCart, 
 	DaffCartActionTypes
 } from '../actions/public_api';
 import { DaffCartResolverRedirectUrl } from './tokens/cart-resolver-redirect.token';
+import { DaffCartReducersState } from '../reducers/public_api';
 
 /**
  * Resolves the cart before navigation. Redirects to the url provided by the DaffCartResolverRedirectUrl token when a 
