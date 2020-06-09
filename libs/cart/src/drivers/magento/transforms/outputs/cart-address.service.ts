@@ -21,8 +21,7 @@ export class DaffMagentoCartAddressTransformer {
       // address
       street: address.street[0],
       city: address.city,
-      region: address.region.label,
-      region_id: address.region.code,
+      region: address.region.code,
       country: address.country.label,
       country_id: address.country.code,
       postcode: address.postcode,

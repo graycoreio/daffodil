@@ -19,7 +19,6 @@ export class MockCartAddress implements DaffCartAddress {
   city = 'city';
   state = 'state';
   region = 'region';
-  region_id = faker.random.number(1000);
   postcode = 'postcode';
   country_id = 'ISO';
   telephone = '+1 (123)-123-1234';
@@ -29,7 +28,7 @@ export class MockCartAddress implements DaffCartAddress {
   providedIn: 'root'
 })
 export class DaffCartAddressFactory extends DaffModelFactory<DaffCartAddress> {
-  
+
   constructor(){
     super(MockCartAddress);
   }
