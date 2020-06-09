@@ -2,7 +2,12 @@ import { ComponentRef } from '@angular/core';
 import { DaffModalComponent } from './modal/modal.component';
 import { OverlayRef } from '@angular/cdk/overlay';
 
-export interface DaffModal {
+export class DaffModal<T> {
+
+	constructor(modal: ComponentRef<DaffModalComponent>, overlay: OverlayRef, ){
+		this.modal = modal;
+		this.overlay = overlay;
+	}
 	/**
 	 * The reference to the modal in question
 	 */
@@ -12,4 +17,9 @@ export interface DaffModal {
 	 * The overlay associated with a given modal.
 	 */
 	overlay: OverlayRef;
+
+	close(){
+		this.modal.instance.open = false;
+		this.overlay.detachBackdrop();
+	}
 }

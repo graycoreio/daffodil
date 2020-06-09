@@ -1,4 +1,4 @@
-import { Injectable, Type, ComponentRef } from '@angular/core';
+import { Injectable, Type, ComponentRef, Injector, StaticProvider } from '@angular/core';
 import { ComponentPortal } from '@angular/cdk/portal';
 import {
 	OverlayRef,
@@ -16,9 +16,9 @@ import { DaffModalModule } from '../modal.module';
 	providedIn: DaffModalModule,
 })
 export class DaffModalService {
-	private _modals: DaffModal[] = [];
+	private _modals: DaffModal<any>[] = [];
 
-	constructor(private overlay: Overlay) {}
+	constructor(private overlay: Overlay) { }
 
 	private defaultConfiguration: DaffModalConfiguration = {};
 
@@ -33,8 +33,9 @@ export class DaffModalService {
 	private _attachModalContent(
 		component: Type<any>,
 		modal: ComponentRef<DaffModalComponent>,
+		injector: Injector
 	): void {
-		modal.instance.attachContent(new ComponentPortal(component));
+		modal.instance.attachContent(new ComponentPortal(component, undefined, injector));
 	}
 
 	private _createOverlayRef(): OverlayRef {
@@ -46,7 +47,7 @@ export class DaffModalService {
 		});
 	}
 
-	private _removeModal(modal: DaffModal) {
+	private _removeModal(modal: DaffModal<any>) {
 		const index = this._modals.indexOf(modal);
 		if (index === -1) {
 			throw new Error(
@@ -59,21 +60,21 @@ export class DaffModalService {
 		this._modals = this._modals.filter(m => m !== modal);
 	}
 
-	open(
+	open<T>(
 		component: Type<any>,
 		configuration?: Partial<DaffModalConfiguration>,
-	): DaffModal {
+	): DaffModal<T> {
 		const config = { ...this.defaultConfiguration, ...configuration };
 		const _ref = this._createOverlayRef();
 		const _modal = this._attachModal(_ref);
-		const _attachedModal = this._attachModalContent(component, _modal);
+		const modal = new DaffModal<T>(_modal, _ref);
+		const injector = this.createInjector<T>(modal);
 
-		const modal: DaffModal = {
-			modal: _modal,
-			overlay: _ref,
-		};
+
+		const _attachedModal = this._attachModalContent(component, _modal, injector);
 
 		this._modals.push(modal);
+
 
 		_ref
 			.backdropClick()
@@ -85,11 +86,19 @@ export class DaffModalService {
 		return modal;
 	}
 
-	close(modal: DaffModal): void {
+	close(modal: DaffModal<any>): void {
 		modal.modal.instance.open = false;
 		modal.overlay.detachBackdrop();
 		modal.modal.instance.closedAnimationCompleted.subscribe(
 			(e: AnimationEvent) => this._removeModal(modal),
 		);
+	}
+
+	private createInjector<T>(modal: DaffModal<T>): Injector {
+		const providers: StaticProvider[] = [
+			{ provide: DaffModal, useValue: modal }
+		];
+
+		return Injector.create({ providers: providers })
 	}
 }
