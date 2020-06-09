@@ -6,7 +6,9 @@ import { map } from 'rxjs/operators';
 import { DaffCartFacade } from '../../facades/cart/cart.facade';
 import { DaffCartPaymentMethodGuardRedirectUrl } from './payment-method-guard-redirect.token';
 
-@Injectable()
+@Injectable({
+	providedIn: 'root'
+})
 export class DaffPaymentMethodGuard implements CanActivate {
   constructor(
 		private facade: DaffCartFacade,

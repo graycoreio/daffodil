@@ -6,7 +6,9 @@ import { map } from 'rxjs/operators';
 import { DaffCartFacade } from '../../facades/cart/cart.facade';
 import { DaffCartShippingAddressGuardRedirectUrl } from './shipping-address-guard-redirect.token';
 
-@Injectable()
+@Injectable({
+	providedIn: 'root'
+})
 export class DaffShippingAddressGuard implements CanActivate {
   constructor(
 		private facade: DaffCartFacade,
