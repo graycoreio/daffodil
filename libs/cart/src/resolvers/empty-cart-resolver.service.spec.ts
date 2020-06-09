@@ -10,7 +10,7 @@ import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 
 import { DaffEmptyCartResolver } from './empty-cart-resolver.service';
 import { DaffEmptyCartResolverRedirectUrl } from './tokens/empty-cart-resolver-redirect.token';
-import { DaffEmptyCartResolverModule } from './empty-cart-resolver.module';
+import { DaffCartResolverRedirectUrl } from './tokens/cart-resolver-redirect.token';
 
 describe('DaffEmptyCartResolver', () => {
   const actions$: Observable<any> = null;
@@ -28,12 +28,12 @@ describe('DaffEmptyCartResolver', () => {
         StoreModule.forRoot({
           cart: combineReducers(daffCartReducers),
         }),
-				RouterTestingModule,
-				DaffEmptyCartResolverModule
+				RouterTestingModule
       ],
       providers: [
 				provideMockActions(() => actions$),
-				{ provide: DaffEmptyCartResolverRedirectUrl, useValue: stubUrl }
+				{ provide: DaffEmptyCartResolverRedirectUrl, useValue: stubUrl },
+				{ provide: DaffCartResolverRedirectUrl, useValue: stubUrl }
       ]
     });
 

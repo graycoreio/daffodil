@@ -38,7 +38,6 @@ describe('DaffCartResolver', () => {
         RouterTestingModule
       ],
       providers: [
-        DaffCartResolver,
 				provideMockActions(() => actions$),
 				{ provide: DaffCartResolverRedirectUrl, useValue: stubUrl }
       ]
