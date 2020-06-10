@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 import { DaffProduct, DaffProductFacadeInterface } from '@daffodil/product';
 
@@ -8,8 +8,8 @@ export class MockDaffProductFacade implements DaffProductFacadeInterface {
 	 * @deprecated use getProduct instead.
 	 */
 	product$: BehaviorSubject<DaffProduct> = new BehaviorSubject(null);
-	getProduct(id: string): BehaviorSubject<DaffProduct> {
-		return new BehaviorSubject(null);
+	getProduct(id: string): Observable<DaffProduct> {
+		return of(null);
 	}
 	dispatch(action) {};
 }

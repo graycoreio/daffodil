@@ -1,26 +1,26 @@
-import { BehaviorSubject } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Dictionary } from '@ngrx/entity';
 
 import { DaffConfigurableProductFacadeInterface } from '@daffodil/product';
 
 export class MockDaffConfigurableProductFacade implements DaffConfigurableProductFacadeInterface {
-	getAllAttributes(id: string): BehaviorSubject<Dictionary<string[]>> {
-		return new BehaviorSubject({});
+	getAllAttributes(id: string): Observable<Dictionary<string[]>> {
+		return of({});
 	};
-	getAppliedAttributes(id: string): BehaviorSubject<Dictionary<string>> {
-		return new BehaviorSubject({});
+	getAppliedAttributes(id: string): Observable<Dictionary<string>> {
+		return of({});
 	};
-	getMinimumPrice(id: string): BehaviorSubject<number> {
-		return new BehaviorSubject(null);
+	getMinimumPrice(id: string): Observable<number> {
+		return of(null);
 	};
-	getMaximumPrice(id: string): BehaviorSubject<number> {
-		return new BehaviorSubject(null);
+	getMaximumPrice(id: string): Observable<number> {
+		return of(null);
 	};
-	isPriceRanged(id: string): BehaviorSubject<boolean> {
-		return new BehaviorSubject(null);
+	isPriceRanged(id: string): Observable<boolean> {
+		return of(null);
 	};
-	getSelectableAttributes(id: string): BehaviorSubject<Dictionary<string[]>> {
-		return new BehaviorSubject({});
+	getSelectableAttributes(id: string): Observable<Dictionary<string[]>> {
+		return of({});
 	};
 	dispatch(action) {};
 }

@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Action } from '@ngrx/store';
 
 import {
@@ -48,8 +48,8 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
 	orderResult$ = new BehaviorSubject<DaffCartOrderResult>({id: null});
 	orderResultId$ = new BehaviorSubject<DaffCartOrderResult['id']>(null);
 
-	getCartItemDiscountedTotal(itemId: string | number): BehaviorSubject<number> {
-		return new BehaviorSubject(null);
+	getCartItemDiscountedTotal(itemId: string | number): Observable<number> {
+		return of(null);
 	}
 
   dispatch(action: Action) {};

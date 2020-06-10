@@ -1,8 +1,8 @@
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of, Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
-import { DaffGeographyFacadeInterface, DaffCountry } from '@daffodil/geography';
+import { DaffGeographyFacadeInterface, DaffCountry, DaffSubdivision } from '@daffodil/geography';
 
 export class MockDaffGeographyFacade implements DaffGeographyFacadeInterface {
   loading$: BehaviorSubject<boolean> = new BehaviorSubject(null);
@@ -12,16 +12,16 @@ export class MockDaffGeographyFacade implements DaffGeographyFacadeInterface {
   countryCount$: BehaviorSubject<number> = new BehaviorSubject(null);
   countryEntities$: BehaviorSubject<Dictionary<DaffCountry>> = new BehaviorSubject(null);
 
-  getCountry(id) {
-    return new BehaviorSubject(null);
+  getCountry(id): Observable<DaffCountry> {
+    return of(null);
   }
 
-  getCountrySubdivisions(id) {
-    return new BehaviorSubject([]);
+  getCountrySubdivisions(id): Observable<DaffSubdivision[]> {
+    return of([]);
   }
 
-  isCountryFullyLoaded(id) {
-    return new BehaviorSubject(false)
+  isCountryFullyLoaded(id): Observable<boolean> {
+    return of(false)
   }
 
   dispatch(action: Action) {};

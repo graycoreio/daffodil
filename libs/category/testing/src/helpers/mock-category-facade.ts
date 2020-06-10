@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of, Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 
 import { DaffProduct } from '@daffodil/product';
@@ -31,14 +31,14 @@ export class MockDaffCategoryFacade implements DaffCategoryFacadeInterface {
 	errors$: BehaviorSubject<string[]> = new BehaviorSubject([]);
 	isCategoryEmpty$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 	
-	getCategoryById(id: string): BehaviorSubject<DaffCategory> {
-		return new BehaviorSubject(null);
+	getCategoryById(id: string): Observable<DaffCategory> {
+		return of(null);
 	};
-	getProductsByCategory(categoryId: string): BehaviorSubject<DaffProduct[]> {
-		return new BehaviorSubject([]);
+	getProductsByCategory(categoryId: string): Observable<DaffProduct[]> {
+		return of([]);
 	};
-	getTotalProductsByCategory(categoryId: string): BehaviorSubject<number> {
-		return new BehaviorSubject(null);
+	getTotalProductsByCategory(categoryId: string): Observable<number> {
+		return of(null);
 	};
   dispatch(action: Action) {};
 }
