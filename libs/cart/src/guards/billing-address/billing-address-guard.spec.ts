@@ -8,28 +8,36 @@ import { DaffCartFacade, DaffCart, DaffCartLoadSuccess } from '@daffodil/cart';
 
 import { DaffBillingAddressGuard } from './billing-address-guard';
 import { daffCartReducers } from '../../reducers/public_api';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
+import { DaffCartBillingAddressGuardRedirectUrl } from './billing-address-guard-redirect.token';
 
 describe('DaffBillingAddressGuard', () => {
 
 	let service: DaffBillingAddressGuard;
 	let facade;
 	let store: MockStore<any>;
+	let router: Router;
+	const stubUrl = 'url';
   
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
 				DaffBillingAddressGuard,
-				DaffCartFacade
+				DaffCartFacade,
+				{ provide: DaffCartBillingAddressGuardRedirectUrl, useValue: stubUrl }
 			],
 			imports: [
         StoreModule.forRoot({
           cart: combineReducers(daffCartReducers),
-        })
+				}),
+				RouterTestingModule
 			]
     });
 		service = TestBed.get(DaffBillingAddressGuard);
 		facade = TestBed.get(DaffCartFacade);
 		store = TestBed.get(Store);
+		router = TestBed.get(Router);
   });
 
   it('should be created', () => {
@@ -47,15 +55,27 @@ describe('DaffBillingAddressGuard', () => {
 			
 			expect(service.canActivate()).toBeObservable(expected);
 		});
-		
-		it('should not allow activation when there is not a billing address', () => {
-			const cart: DaffCart = new DaffCartFactory().create({
-				billing_address: null,
+
+		describe('when there is no billing address', () => {
+
+			beforeEach(() => {
+				spyOn(router, 'navigateByUrl');
+				const cart: DaffCart = new DaffCartFactory().create({
+					billing_address: null,
+				});
+				store.dispatch(new DaffCartLoadSuccess(cart));
 			});
-			store.dispatch(new DaffCartLoadSuccess(cart));
-			const expected = cold('a', { a: false })
 			
-			expect(service.canActivate()).toBeObservable(expected);
+			it('should not allow activation', () => {
+				const expected = cold('a', { a: false })
+				
+				expect(service.canActivate()).toBeObservable(expected);
+			});
+
+			it('should redirect to the given DaffCartBillingAddressGuardRedirectUrl', () => {
+				service.canActivate().subscribe();
+				expect(router.navigateByUrl).toHaveBeenCalledWith(stubUrl);
+			});
 		});
 	});
 });
