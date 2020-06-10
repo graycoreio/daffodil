@@ -1,0 +1,16 @@
+<daff-card [color]="colorControl.value">
+  <img daffCardImage src="/assets/card/uber-logo-dark.svg" />
+  <h4 daffCardTitle>Title</h4>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+  Some other content
+</daff-card>
+
+<select [formControl]="colorControl">
+    <option value="primary">Primary</option>
+    <option value="secondary">Secondary</option>
+    <option value="tertiary">Tertiary</option>
+    <option value="white">White</option>
+    <option value="black">Black</option>
+    <option value="theme">Theme</option>
+    <option value="theme-contrast">Theme Contrast</option>
+</select>
