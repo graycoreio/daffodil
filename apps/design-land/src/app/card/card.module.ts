@@ -9,7 +9,7 @@ import {
   DaffImageModule
 } from '@daffodil/design';
 
-import { CARD_EXAMPLES } from '@daffodil/design/card/examples';
+import { CARD_EXAMPLES, CardExamplesModule } from '@daffodil/design/card/examples';
 import { createCustomElement } from '@angular/elements';
 import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -24,10 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     DesignLandExampleViewerModule,
     ReactiveFormsModule,
     DaffCardModule,
-    DaffImageModule
-  ],
-  entryComponents: [
-    ...CARD_EXAMPLES
+    DaffImageModule,
+    CardExamplesModule
   ]
 })
 export class CardModule { 
