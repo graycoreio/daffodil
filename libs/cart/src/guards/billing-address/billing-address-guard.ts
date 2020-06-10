@@ -1,7 +1,7 @@
 import { CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Injectable, Inject } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 import { DaffCartFacade } from '../../facades/cart/cart.facade';
 import { DaffCartBillingAddressGuardRedirectUrl } from './billing-address-guard-redirect.token';
@@ -18,11 +18,10 @@ export class DaffBillingAddressGuard implements CanActivate {
 
   canActivate(): Observable<boolean> {
     return this.facade.hasBillingAddress$.pipe(
-			map(hasBillingAddress => {
+			tap(hasBillingAddress => {
 				if(!hasBillingAddress) {
 					this.router.navigateByUrl(this.redirectUrl)
 				}
-				return hasBillingAddress;
 			})
 		)
   }

@@ -1,7 +1,7 @@
 import { CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Injectable, Inject } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 import { DaffCartFacade } from '../../facades/cart/cart.facade';
 import { DaffCartPaymentMethodGuardRedirectUrl } from './payment-method-guard-redirect.token';
@@ -18,11 +18,10 @@ export class DaffPaymentMethodGuard implements CanActivate {
 
   canActivate(): Observable<boolean> {
     return this.facade.hasPaymentMethod$.pipe(
-			map(hasPaymentMethod => {
+			tap(hasPaymentMethod => {
 				if(!hasPaymentMethod) {
 					this.router.navigateByUrl(this.redirectUrl)
 				}
-				return hasPaymentMethod;
 			})
 		)
   }
