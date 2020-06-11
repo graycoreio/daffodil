@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.1](https://github.com/graycoreio/daffodil/compare/v0.6.0...v0.6.1) (2020-06-11)
+
+
+### Features
+
+* **cart:** add redirect url tokens for guards ([#939](https://github.com/graycoreio/daffodil/issues/939)) ([5ac9607](https://github.com/graycoreio/daffodil/commit/5ac9607ebf172853e509a6c294365251105712a1))
+* **cart:** add resolvers for loading the cart and checking if the cart is empty before navigation occurs ([9e378c4](https://github.com/graycoreio/daffodil/commit/9e378c4fe965a588d4ec9a1244c6d58e2d14f649))
+* **cart:** include cart coupon effects ([e92f37a](https://github.com/graycoreio/daffodil/commit/e92f37ae509d9135d46de3f9b3cc7acd7f1b1e9c))
+* **cart:** transform region to string for cart address input ([27b0784](https://github.com/graycoreio/daffodil/commit/27b0784d88fbff3d25db54c95ca5ef40406a755f))
+* **design-land:** added card-examples using the code preview component ([#894](https://github.com/graycoreio/daffodil/issues/894)) ([bce31f9](https://github.com/graycoreio/daffodil/commit/bce31f9e15c557aaa9bcc5b6e97a1c3c3e28aa38))
+* **geography:** deprecate region_id ([5fa7823](https://github.com/graycoreio/daffodil/commit/5fa7823fbe328d5ea866849d9d47e9af69c43dc2))
+* **product:** expose the selectMatchingVariants selector to the DaffConfigurableProductFacade ([#940](https://github.com/graycoreio/daffodil/issues/940)) ([a786f75](https://github.com/graycoreio/daffodil/commit/a786f7576ded5f113cbd7f8715b7f4dc0fc6a978))
+
+
+### Bug Fixes
+
+* **cart:** incorrect coupon action names ([404e01d](https://github.com/graycoreio/daffodil/commit/404e01d73eec1b2044acf3e71b253fe295aed765))
+
 ## [0.6.0](https://github.com/graycoreio/daffodil/compare/v0.5.6...v0.6.0) (2020-06-08)
 
 
