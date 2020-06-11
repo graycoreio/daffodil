@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
+    // tslint:disable-next-line:component-selector
     selector: 'basic-radio',
-    templateUrl: './basic_radio.component.html'
+    templateUrl: './basic-radio.component.html'
 })
 export class BasicRadioComponent implements OnInit {
 
@@ -14,6 +15,5 @@ export class BasicRadioComponent implements OnInit {
     }
 
     ngOnInit() {
-
     }
 }

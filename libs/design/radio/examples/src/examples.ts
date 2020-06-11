@@ -1,14 +1,10 @@
-import { BasicRadioComponent } from "./basic-radio/basic_radio.component"
-import { BasicRadioModule } from "./basic-radio/basic_radio.module"
-import { GeneratedRadioSetComponent } from "./generated-radio-set/generated_radio_set.component"
-import { GeneratedRadioSetModule } from "./generated-radio-set/generated_radio_set.module"
+import { BasicRadioComponent } from './basic-radio/basic-radio.component'
+import { BasicRadioModule } from './basic-radio/basic-radio.module'
 
 export const RADIO_EXAMPLES = [
-  BasicRadioComponent,
-  GeneratedRadioSetComponent
+  BasicRadioComponent
 ]
 
 export const RADIO_EXAMPLES_MODULES = [
-  BasicRadioModule,
-  GeneratedRadioSetModule
+  BasicRadioModule
 ]

@@ -1,7 +1,0 @@
-<h2>RadioSet generated from a list</h2>
-<daff-radio-set [formGroup]="radioGroup" name="race">
-  <daff-radio *ngFor="let console of consoles" formControlName="masterConsole" [value]="console">{{console}}</daff-radio>
-</daff-radio-set>
-<div>
-  The best console is : {{this.radioGroup.get('masterConsole').value}}
-</div>

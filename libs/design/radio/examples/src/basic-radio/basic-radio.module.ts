@@ -2,7 +2,7 @@ import { DaffRadioModule } from '@daffodil/design';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { BasicRadioComponent } from './basic_radio.component';
+import { BasicRadioComponent } from './basic-radio.component';
 
 @NgModule({
 
