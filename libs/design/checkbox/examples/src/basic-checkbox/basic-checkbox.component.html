@@ -1,0 +1,6 @@
+<daff-checkbox [formControl]="checkboxExample" value="checkboxExample">Checkbox</daff-checkbox>
+<div>
+  {{checkboxExample.value}}
+</div>
+<button daff-button color="primary" (click)="setFalse()">Set to false</button>
+<button daff-button (click)="setTrue()">Set to true</button>

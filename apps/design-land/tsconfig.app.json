@@ -5,7 +5,8 @@
     "paths": {
       "@daffodil/design": ["libs/design/src"],
       "@daffodil/design/article/examples": ["libs/design/article/examples/src"],
-      "@daffodil/design/card/examples": ["libs/design/card/examples/src"]
+      "@daffodil/design/card/examples": ["libs/design/card/examples/src"],
+      "@daffodil/design/checkbox/examples": ["libs/design/checkbox/examples/src"]
     },
     "types": []
   },

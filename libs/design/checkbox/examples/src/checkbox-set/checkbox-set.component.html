@@ -1,0 +1,13 @@
+<daff-checkbox-set [formArray]="checkboxArray">
+  <daff-checkbox [formControl]="checkboxArray.at(0)" value="option1">Option 1 </daff-checkbox>
+  <daff-checkbox [formControl]="checkboxArray.at(1)" value="option2">Option 2 </daff-checkbox>
+  <daff-checkbox [formControl]="checkboxArray.at(2)" value="option3">Option 3 </daff-checkbox>
+</daff-checkbox-set>
+
+<div>
+  {{checkboxArray.value}}
+</div>
+<button daff-button color="secondary" (click)="displayList()">Get List of Values</button>
+<div>
+  List of selected values: {{selectedValues}}
+</div>
