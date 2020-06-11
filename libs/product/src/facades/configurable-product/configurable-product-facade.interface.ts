@@ -3,6 +3,7 @@ import { Action } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
 import { DaffStoreFacade } from '@daffodil/core';
+import { DaffConfigurableProductVariant } from '../../models/configurable-product';
 
 export interface DaffConfigurableProductFacadeInterface extends DaffStoreFacade<Action> {
 
@@ -42,4 +43,10 @@ export interface DaffConfigurableProductFacadeInterface extends DaffStoreFacade<
 	 * @param id the id of the configurable product.
 	 */
 	getSelectableAttributes(id: string): Observable<Dictionary<string[]>>;
+
+	/**
+	 * The variants that match the applied attributes of a configurable product.
+	 * @param id the id of the configurable product.
+	 */
+	getMatchingVariants(id: string): Observable<DaffConfigurableProductVariant[]>;
 }

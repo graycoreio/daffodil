@@ -8,6 +8,7 @@ import { DaffProductReducersState } from '../../reducers/product-reducers-state.
 import { DaffProduct } from '../../models/product';
 import { getDaffProductSelectors } from '../../selectors/public_api';
 import { DaffConfigurableProductFacadeInterface } from './configurable-product-facade.interface';
+import { DaffConfigurableProductVariant } from '../../models/configurable-product';
 
 /**
  * A facade for accessing configurable product state from an application component.
@@ -43,6 +44,10 @@ export class DaffConfigurableProductFacade<T extends DaffProduct = DaffProduct> 
 
 	getSelectableAttributes(id: string): Observable<Dictionary<string[]>> {
 		return this.store.pipe(select(this.selectors.selectSelectableConfigurableProductAttributes, { id }));
+	}
+
+	getMatchingVariants(id: string): Observable<DaffConfigurableProductVariant[]> {
+		return this.store.pipe(select(this.selectors.selectMatchingConfigurableProductVariants, { id }));
 	}
 
   /**
