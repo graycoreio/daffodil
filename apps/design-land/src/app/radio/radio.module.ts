@@ -6,7 +6,7 @@ import { DaffRadioModule } from '@daffodil/design';
 
 import { RadioComponent } from './radio.component';
 import { DesignLandRadioRoutingModule } from './radio-routing.module';
-import { RADIO_EXAMPLES_MODULES } from './examples/examples';
+import { RADIO_EXAMPLES_MODULES } from '../../../../../libs/design/radio/examples/examples';
 
 
 
