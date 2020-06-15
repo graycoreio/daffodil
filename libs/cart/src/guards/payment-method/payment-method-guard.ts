@@ -6,6 +6,10 @@ import { tap } from 'rxjs/operators';
 import { DaffCartFacade } from '../../facades/cart/cart.facade';
 import { DaffCartPaymentMethodGuardRedirectUrl } from './payment-method-guard-redirect.token';
 
+/**
+ * A routing guard that will redirect to a given url if the payment method on the cart is not defined.
+ * The url is `/` by default, but can be overridden with the DaffCartPaymentMethodGuardRedirectUrl injection token.
+ */
 @Injectable({
 	providedIn: 'root'
 })
