@@ -27,6 +27,6 @@ export class DaffTestingCartPaymentService implements DaffCartPaymentServiceInte
   }
 
   remove(cartId: DaffCart['id']): Observable<void> {
-    return of();
+    return of(undefined);
   }
 }

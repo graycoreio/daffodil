@@ -57,7 +57,7 @@ describe('Driver | Testing | Cart | CartBillingAddressService', () => {
       mockCart.billing_address = mockCartAddressUpdate;
     });
 
-    it('should send a put request', () => {
+    it('should return a cart', () => {
       const expected = cold('(a|)', {a: jasmine.any(Object)});
       expect(service.update(cartId, mockCartAddressUpdate)).toBeObservable(expected);
     });

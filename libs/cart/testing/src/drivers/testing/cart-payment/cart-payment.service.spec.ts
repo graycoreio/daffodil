@@ -44,7 +44,7 @@ describe('Driver | Testing | Cart | CartPaymentService', () => {
   });
 
   describe('get | getting a cart payment method', () => {
-    it('should send a get request', () => {
+    it('should return the cart\'s payment method', () => {
       const expected = cold('(a|)', {a: jasmine.any(Object)});
       expect(service.get(cartId)).toBeObservable(expected);
     });
@@ -55,15 +55,15 @@ describe('Driver | Testing | Cart | CartPaymentService', () => {
       mockCart.payment = null;
     });
 
-    it('should send a put request', () => {
+    it('should return a cart', () => {
       const expected = cold('(a|)', {a: jasmine.any(Object)});
       expect(service.update(cartId, mockPayment)).toBeObservable(expected);
     });
   });
 
   describe('remove | removing the payment method from the cart', () => {
-    it('should send a delete request', () => {
-      const expected = cold('(a|)', {a: jasmine.any(Object)});
+    it('should return undefined', () => {
+      const expected = cold('(a|)', {a: undefined});
       expect(service.remove(cartId)).toBeObservable(expected);
     });
   });

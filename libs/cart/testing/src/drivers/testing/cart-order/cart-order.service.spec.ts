@@ -48,8 +48,10 @@ describe('Driver | Testing | Cart | CartOrderService', () => {
   });
 
   describe('placeOrder | placing an order and getting an order result', () => {
-    it('should send a post request and return the order result', () => {
-      const expected = cold('(a|)', {a: jasmine.any(Object)});
+    it('should return the order ID', () => {
+      const expected = cold('(a|)', {a: jasmine.objectContaining({
+        id: jasmine.any(Number)
+      })});
       expect(service.placeOrder(cartId, mockCartPayment)).toBeObservable(expected);
     });
   });
