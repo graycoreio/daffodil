@@ -12,8 +12,8 @@ import { DaffCartResolverRedirectUrl } from './tokens/cart-resolver-redirect.tok
 import { DaffCartReducersState } from '../reducers/public_api';
 
 /**
- * Resolves the cart before navigation. Redirects to the url provided by the DaffCartResolverRedirectUrl token when a 
- * failure occurs during Cart Load.
+ * Resolves the cart before navigation. Redirects to a given url when a failure occurs during Cart Load.
+ * This url is `/` by default but can be overridden with the DaffCartResolverRedirectUrl injection token.
  */
 @Injectable({
 	providedIn: 'root'

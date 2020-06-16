@@ -29,7 +29,7 @@ import { DaffCartCouponEffects } from './effects/cart-coupon.effects';
       DaffCartPaymentMethodsEffects,
       DaffCartOrderEffects,
       DaffCartCouponEffects
-    ]),
-  ]
+		]),
+	]
 })
 export class DaffCartStateModule { }
