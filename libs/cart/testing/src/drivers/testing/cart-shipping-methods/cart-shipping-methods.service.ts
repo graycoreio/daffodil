@@ -12,7 +12,7 @@ import { DaffCartShippingRateFactory } from '../../../factories/public_api';
 @Injectable({
   providedIn: 'root'
 })
-export class DaffTestingCartShippingMethodsService implements DaffCartShippingMethodsServiceInterface<DaffCartShippingRate> {
+export class DaffTestingCartShippingMethodsService implements DaffCartShippingMethodsServiceInterface {
   constructor(
     private shippingInfoFactory: DaffCartShippingRateFactory,
   ) {}

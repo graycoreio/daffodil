@@ -8,7 +8,7 @@ import { DaffCartFactory } from '../../../factories/cart.factory';
 @Injectable({
   providedIn: 'root'
 })
-export class DaffTestingCartService implements DaffCartServiceInterface<DaffCart> {
+export class DaffTestingCartService implements DaffCartServiceInterface {
   constructor(
     private cartFactory: DaffCartFactory
   ) {}

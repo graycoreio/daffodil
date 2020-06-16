@@ -12,7 +12,7 @@ import { DaffCartFactory, DaffCartPaymentFactory } from '../../../factories/publ
 @Injectable({
   providedIn: 'root'
 })
-export class DaffTestingCartPaymentService implements DaffCartPaymentServiceInterface<DaffCartPaymentMethod, DaffCart> {
+export class DaffTestingCartPaymentService implements DaffCartPaymentServiceInterface {
   constructor(
     private paymentFactory: DaffCartPaymentFactory,
     private cartFactory: DaffCartFactory
