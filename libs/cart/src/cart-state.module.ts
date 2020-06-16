@@ -14,8 +14,6 @@ import { DaffCartPaymentEffects } from './effects/cart-payment.effects';
 import { DaffCartPaymentMethodsEffects } from './effects/cart-payment-methods.effects';
 import { DaffCartOrderEffects } from './effects/cart-order.effects';
 import { DaffCartCouponEffects } from './effects/cart-coupon.effects';
-import { DaffCartBillingAddressGuardRedirectUrl, DaffCartShippingAddressGuardRedirectUrl, DaffCartShippingMethodGuardRedirectUrl, DaffCartPaymentMethodGuardRedirectUrl } from './guards/public_api';
-import { DaffEmptyCartResolverRedirectUrl, DaffCartResolverRedirectUrl } from './resolvers/public_api';
 
 @NgModule({
   imports: [
@@ -32,14 +30,6 @@ import { DaffEmptyCartResolverRedirectUrl, DaffCartResolverRedirectUrl } from '.
       DaffCartOrderEffects,
       DaffCartCouponEffects
 		]),
-	],
-	providers: [
-		{ provide: DaffCartBillingAddressGuardRedirectUrl, useValue: '/' },
-		{ provide: DaffCartShippingAddressGuardRedirectUrl, useValue: '/' },
-		{ provide: DaffCartShippingMethodGuardRedirectUrl, useValue: '/' },
-		{ provide: DaffCartPaymentMethodGuardRedirectUrl, useValue: '/' },
-		{ provide: DaffEmptyCartResolverRedirectUrl, useValue: '/' },
-		{ provide: DaffCartResolverRedirectUrl, useValue: '/' },
 	]
 })
 export class DaffCartStateModule { }
