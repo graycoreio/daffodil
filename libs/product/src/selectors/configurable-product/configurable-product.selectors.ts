@@ -81,8 +81,7 @@ const createConfigurableProductSelectors = (): DaffConfigurableProductMemoizedSe
 		selectConfigurableProductAppliedAttributesEntitiesState,
 		(products, appliedAttributesEntities, props) => {
 			return selectMatchingConfigurableProductVariants.projector(products, appliedAttributesEntities, { id: props.id })
-				.filter(variant => variant.discount ? variant.discount.amount > 0 : false)
-				.length > 0;
+				.reduce((acc, variant) => acc || (variant.discount && variant.discount.amount > 0), false);
 		}
 	)
 
