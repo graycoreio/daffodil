@@ -41,14 +41,14 @@ describe('Driver | Testing | Cart | CartItemService', () => {
   });
 
   describe('list | getting all the cart items', () => {
-    it('should return the cart\'s items', () => {
-      const expected = cold('(a|)', {a: jasmine.any(Object)});
+    it('should return an array and not throw an error', () => {
+      const expected = cold('(a|)', {a: jasmine.any(Array)});
       expect(service.list(cartId)).toBeObservable(expected);
     });
   });
 
   describe('get | getting a cart item', () => {
-    it('should return the cart item', () => {
+    it('should return an object and not throw an error', () => {
       const expected = cold('(a|)', {a: jasmine.any(Object)});
       expect(service.get(cartId, itemId)).toBeObservable(expected);
     });
@@ -71,7 +71,7 @@ describe('Driver | Testing | Cart | CartItemService', () => {
       };
     });
 
-    it('should return a cart', () => {
+    it('should return an object and not throw an error', () => {
       const expected = cold('(a|)', {a: jasmine.any(Object)});
       expect(service.add(cartId, cartItemInput)).toBeObservable(expected);
     });
@@ -86,14 +86,14 @@ describe('Driver | Testing | Cart | CartItemService', () => {
       mockCart.items = [newCartItem];
     });
 
-    it('should return a cart', () => {
+    it('should return an object and not throw an error', () => {
       const expected = cold('(a|)', {a: jasmine.any(Object)});
       expect(service.update(cartId, itemId, newCartItem)).toBeObservable(expected);
     });
   });
 
   describe('delete | removing an item from the cart', () => {
-    it('should return a cart', () => {
+    it('should return an object and not throw an error', () => {
       const expected = cold('(a|)', {a: jasmine.any(Object)});
       expect(service.delete(cartId, itemId)).toBeObservable(expected);
     });

@@ -33,14 +33,14 @@ describe('Driver | Testing | Cart | CartService', () => {
   });
 
   describe('get | getting a cart', () => {
-    it('should return a cart', () => {
+    it('should return an object and not throw an error', () => {
       const expected = cold('(a|)', {a: jasmine.any(Object)});
       expect(service.get(cartId)).toBeObservable(expected);
     });
   });
 
   describe('create | creating a cart', () => {
-    it('should return a cart ID', () => {
+    it('should return a cart ID and not throw an error', () => {
       const expected = cold('(a|)', {a: jasmine.objectContaining({
         id: jasmine.any(Number)
       })});
@@ -49,7 +49,7 @@ describe('Driver | Testing | Cart | CartService', () => {
   });
 
   describe('clear | clearing all items from the cart', () => {
-    it('should return a cart', () => {
+    it('should return an object and not throw an error', () => {
       const expected = cold('(a|)', {a: jasmine.any(Object)});
       expect(service.clear(cartId)).toBeObservable(expected);
     });

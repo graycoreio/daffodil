@@ -44,28 +44,28 @@ describe('Driver | Testing | Cart | CartCouponService', () => {
   });
 
   describe('list | getting all the cart coupons', () => {
-    it('should return the cart\'s coupons', () => {
+    it('should return an array and not throw an error', () => {
       const expected = cold('(a|)', {a: jasmine.any(Array)});
       expect(service.list(cartId)).toBeObservable(expected);
     });
   });
 
   describe('apply | applying a coupon to the cart', () => {
-    it('should return a cart', () => {
+    it('should return an object and not throw an error', () => {
       const expected = cold('(a|)', {a: jasmine.any(Object)});
       expect(service.apply(cartId, mockCartCoupon)).toBeObservable(expected);
     });
   });
 
   describe('remove | removing a coupon from the cart', () => {
-    it('should return a cart', () => {
+    it('should return an object and not throw an error', () => {
       const expected = cold('(a|)', {a: jasmine.any(Object)});
       expect(service.remove(cartId, mockCartCoupon)).toBeObservable(expected);
     });
   });
 
   describe('removeAll | removing all coupons from the cart', () => {
-    it('should return a cart', () => {
+    it('should return an object and not throw an error', () => {
       const expected = cold('(a|)', {a: jasmine.any(Object)});
       expect(service.removeAll(cartId)).toBeObservable(expected);
     });

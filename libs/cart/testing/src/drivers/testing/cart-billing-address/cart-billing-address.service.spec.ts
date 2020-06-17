@@ -43,7 +43,7 @@ describe('Driver | Testing | Cart | CartBillingAddressService', () => {
   });
 
   describe('get | getting a cart billing address', () => {
-    it('should return a cart address', () => {
+    it('should return an object and not throw an error', () => {
       const expected = cold('(a|)', {a: jasmine.any(Object)});
       expect(service.get(cartId)).toBeObservable(expected);
     });
@@ -57,7 +57,7 @@ describe('Driver | Testing | Cart | CartBillingAddressService', () => {
       mockCart.billing_address = mockCartAddressUpdate;
     });
 
-    it('should return a cart', () => {
+    it('should return an object and not throw an error', () => {
       const expected = cold('(a|)', {a: jasmine.any(Object)});
       expect(service.update(cartId, mockCartAddressUpdate)).toBeObservable(expected);
     });

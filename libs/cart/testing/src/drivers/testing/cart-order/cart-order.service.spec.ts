@@ -48,7 +48,7 @@ describe('Driver | Testing | Cart | CartOrderService', () => {
   });
 
   describe('placeOrder | placing an order and getting an order result', () => {
-    it('should return the order ID', () => {
+    it('should return the order ID and not throw an error', () => {
       const expected = cold('(a|)', {a: jasmine.objectContaining({
         id: jasmine.any(Number)
       })});

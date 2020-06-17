@@ -48,7 +48,7 @@ describe('Driver | Testing | Cart | CartShippingInformationService', () => {
   });
 
   describe('get | getting a cart\'s shipping info', () => {
-    it('should return the cart\'s shipping info', () => {
+    it('should return an object and not throw an error', () => {
       const expected = cold('(a|)', {a: jasmine.any(Object)});
       expect(service.get(cartId)).toBeObservable(expected);
     });
@@ -58,14 +58,14 @@ describe('Driver | Testing | Cart | CartShippingInformationService', () => {
     const newPrice = 56.34;
     const info: Partial<DaffCartShippingRate> = {price: newPrice};
 
-    it('should return a cart', () => {
+    it('should return an object and not throw an error', () => {
       const expected = cold('(a|)', {a: jasmine.any(Object)});
       expect(service.update(cartId, info)).toBeObservable(expected);
     });
   });
 
   describe('delete | deleting the selected shipping method', () => {
-    it('should return a cart', () => {
+    it('should return an object and not throw an error', () => {
       const expected = cold('(a|)', {a: jasmine.any(Object)});
       expect(service.delete(cartId)).toBeObservable(expected);
     });

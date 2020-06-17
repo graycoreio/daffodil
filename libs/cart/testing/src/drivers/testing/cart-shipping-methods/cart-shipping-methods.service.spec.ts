@@ -43,7 +43,7 @@ describe('Driver | Testing | Cart | CartShippingMethodsService', () => {
   });
 
   describe('list | list a cart\'s payment methods', () => {
-    it('should return the cart\'s payment methods', () => {
+    it('should return an array and not throw an error', () => {
       const expected = cold('(a|)', {a: jasmine.any(Array)});
       expect(service.list(cartId)).toBeObservable(expected);
     });
