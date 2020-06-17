@@ -1,9 +1,8 @@
-export * from './factories';
+export * from './factories/public_api';
+export * from './drivers/testing/public_api';
 
 export { DaffCartTestingModule } from './helpers/cart-testing.module';
 export { MockDaffCartFacade } from './helpers/mock-cart-facade';
-
-export { DaffTestingCartService } from './drivers/testing/cart.service';
 
 export { DaffInMemoryCartService } from './drivers/in-memory/cart/cart.service';
 export { DaffInMemoryCartItemService } from './drivers/in-memory/cart-item/cart-item.service';
@@ -23,4 +22,3 @@ export { DaffInMemoryBackendCartOrderService } from './in-memory-backend/cart-or
 export { DaffInMemoryBackendCartCouponService } from './in-memory-backend/cart-coupon/cart-coupon.service';
 
 export { DaffCartInMemoryDriverModule } from './drivers/in-memory/cart-driver.module';
-export { DaffTestingCartDriverModule } from './drivers/testing/cart-driver.module';

@@ -12,7 +12,7 @@ import {
 
 import { DaffInMemoryCartBillingAddressService } from './cart-billing-address.service';
 
-describe('Driver | In Memory | Cart | CartService', () => {
+describe('Driver | In Memory | Cart | CartBillingAddressService', () => {
   let cartBillingAddressService: DaffInMemoryCartBillingAddressService;
   let httpMock: HttpTestingController;
   let cartFactory: DaffCartFactory;
