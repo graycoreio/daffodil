@@ -32,12 +32,6 @@ export interface DaffConfigurableProductFacadeInterface extends DaffStoreFacade<
 	getMaximumPrice(id: string): Observable<number>;
 
 	/**
-	 * Get the current maximum price possible based on the applied attributes and remaining variants.
-	 * @param id the id of the configurable product.
-	 */
-	getMaximumPrice(id: string): Observable<number>;
-
-	/**
 	 * Get the current minimum discounted price possible based on the applied attributes and remaining variants.
 	 * @param id the id of the configurable product.
 	 */
