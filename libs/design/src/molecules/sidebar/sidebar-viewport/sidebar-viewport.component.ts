@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy, OnInit, ContentChild, ChangeDetectorRef } from '@angular/core';
+import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy, OnInit, ContentChild, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 
 import { DaffSidebarMode } from '../helper/sidebar-mode';
 import { daffSidebarAnimations } from '../animation/sidebar-animation';
@@ -15,7 +15,7 @@ import { DaffSidebarComponent } from '../sidebar/sidebar.component';
     daffSidebarAnimations.transformContent
   ]
 })
-export class DaffSidebarViewportComponent implements OnInit {
+export class DaffSidebarViewportComponent implements OnInit, AfterViewInit {
 
   constructor(private ref: ChangeDetectorRef) {
   }
