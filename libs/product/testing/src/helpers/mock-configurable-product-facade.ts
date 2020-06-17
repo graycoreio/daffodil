@@ -16,7 +16,16 @@ export class MockDaffConfigurableProductFacade implements DaffConfigurableProduc
 	getMaximumPrice(id: string): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	};
+	getMinimumDiscountedPrice(id: string): BehaviorSubject<number> {
+		return new BehaviorSubject(null);
+	};
+	getMaximumDiscountedPrice(id: string): BehaviorSubject<number> {
+		return new BehaviorSubject(null);
+	};
 	isPriceRanged(id: string): BehaviorSubject<boolean> {
+		return new BehaviorSubject(null);
+	};
+	hasDiscount(id: string): BehaviorSubject<boolean> {
 		return new BehaviorSubject(null);
 	};
 	getSelectableAttributes(id: string): BehaviorSubject<Dictionary<string[]>> {
@@ -24,6 +33,6 @@ export class MockDaffConfigurableProductFacade implements DaffConfigurableProduc
 	};
 	getMatchingVariants(id: string): BehaviorSubject<DaffConfigurableProductVariant[]> {
 		return new BehaviorSubject([]);
-	}
+	};
 	dispatch(action) {};
 }

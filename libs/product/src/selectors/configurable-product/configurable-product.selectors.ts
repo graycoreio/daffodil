@@ -11,8 +11,12 @@ export interface DaffConfigurableProductMemoizedSelectors {
 	selectAllConfigurableProductAttributes: MemoizedSelectorWithProps<object, object, Dictionary<string[]>>;
 	selectMatchingConfigurableProductVariants: MemoizedSelectorWithProps<object, object, DaffConfigurableProductVariant[]>;
 	selectConfigurableProductPrices: MemoizedSelectorWithProps<object, object, number[]>;
+	selectConfigurableProductDiscountedPrices: MemoizedSelectorWithProps<object, object, number[]>;
+	selectConfigurableProductHasDiscount: MemoizedSelectorWithProps<object, object, boolean>;
 	selectConfigurableProductMinimumPrice: MemoizedSelectorWithProps<object, object, number>;
 	selectConfigurableProductMaximumPrice: MemoizedSelectorWithProps<object, object, number>;
+	selectConfigurableProductMinimumDiscountedPrice: MemoizedSelectorWithProps<object, object, number>;
+	selectConfigurableProductMaximumDiscountedPrice: MemoizedSelectorWithProps<object, object, number>;
 	isConfigurablePriceRanged: MemoizedSelectorWithProps<object, object, boolean>;
 	selectSelectableConfigurableProductAttributes: MemoizedSelectorWithProps<object, object, Dictionary<string[]>>;
 }
@@ -58,6 +62,31 @@ const createConfigurableProductSelectors = (): DaffConfigurableProductMemoizedSe
 	);
 
 	/**
+	 * Selector for the range of discounts for current configuration of the configurable product.
+	 */
+	const selectConfigurableProductDiscountedPrices = createSelector(
+		selectProductEntities,
+		selectConfigurableProductAppliedAttributesEntitiesState,
+		(products, appliedAttributesEntities, props) => {
+			return selectMatchingConfigurableProductVariants.projector(products, appliedAttributesEntities, { id: props.id })
+				.map(variant => variant.discount ? variant.price - variant.discount.amount : variant.price);
+		}
+	);
+
+	/**
+	 * Selector that determines whether any of the variants for the current configuration of the configurable product has a discount.
+	 */
+	const selectConfigurableProductHasDiscount = createSelector(
+		selectProductEntities,
+		selectConfigurableProductAppliedAttributesEntitiesState,
+		(products, appliedAttributesEntities, props) => {
+			return selectMatchingConfigurableProductVariants.projector(products, appliedAttributesEntities, { id: props.id })
+				.filter(variant => variant.discount ? variant.discount.amount > 0 : false)
+				.length > 0;
+		}
+	)
+
+	/**
 	 * Selector for the minimum price in the range of configurable product variant prices.
 	 */
 	const selectConfigurableProductMinimumPrice = createSelector(
@@ -76,6 +105,28 @@ const createConfigurableProductSelectors = (): DaffConfigurableProductMemoizedSe
 		selectConfigurableProductAppliedAttributesEntitiesState,
 		(products, appliedAttributesEntities, props) => getMaximumPrice(
 			selectConfigurableProductPrices.projector(products, appliedAttributesEntities, { id: props.id })
+		)
+	)
+
+	/**
+	 * Selector for the minimum discounted price in the range of configurable product variants.
+	 */
+	const selectConfigurableProductMinimumDiscountedPrice = createSelector(
+		selectProductEntities,
+		selectConfigurableProductAppliedAttributesEntitiesState,
+		(products, appliedAttributesEntities, props) => getMinimumPrice(
+			selectConfigurableProductDiscountedPrices.projector(products, appliedAttributesEntities, { id: props.id })
+		)
+	)
+
+	/**
+	 * Selector for the maximum discounted price in the range of configurable product variants.
+	 */
+	const selectConfigurableProductMaximumDiscountedPrice = createSelector(
+		selectProductEntities,
+		selectConfigurableProductAppliedAttributesEntitiesState,
+		(products, appliedAttributesEntities, props) => getMaximumPrice(
+			selectConfigurableProductDiscountedPrices.projector(products, appliedAttributesEntities, { id: props.id })
 		)
 	)
 
@@ -149,8 +200,12 @@ const createConfigurableProductSelectors = (): DaffConfigurableProductMemoizedSe
 	return { 
 		selectAllConfigurableProductAttributes,
 		selectConfigurableProductPrices,
+		selectConfigurableProductDiscountedPrices,
+		selectConfigurableProductHasDiscount,
 		selectConfigurableProductMinimumPrice,
 		selectConfigurableProductMaximumPrice,
+		selectConfigurableProductMinimumDiscountedPrice,
+		selectConfigurableProductMaximumDiscountedPrice,
 		isConfigurablePriceRanged,
 		selectMatchingConfigurableProductVariants,
 		selectSelectableConfigurableProductAttributes
