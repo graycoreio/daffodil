@@ -1,8 +1,9 @@
-import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy, OnInit, ContentChild, ChangeDetectorRef } from '@angular/core';
 
 import { DaffSidebarMode } from '../helper/sidebar-mode';
 import { daffSidebarAnimations } from '../animation/sidebar-animation';
 import { getAnimationState } from '../animation/sidebar-animation-state';
+import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
   selector: 'daff-sidebar-viewport',
@@ -16,9 +17,11 @@ import { getAnimationState } from '../animation/sidebar-animation-state';
 })
 export class DaffSidebarViewportComponent implements OnInit {
 
+  constructor(private ref: ChangeDetectorRef) {
+  }
   _animationState: string;
 
-
+  @ContentChild(DaffSidebarComponent, { static: false }) sidebar: DaffSidebarComponent;
   /**
    * Internal tracking variable for the state of sidebar viewport.
    */
@@ -54,7 +57,16 @@ export class DaffSidebarViewportComponent implements OnInit {
 
   ngOnInit() {
     this._animationState = getAnimationState(this.opened, this.animationsEnabled);
+
   }
+  ngAfterViewInit() {
+    if (this.sidebar) {
+      this.sidebar.escapePressed.subscribe(() => {
+        this.onEscape();
+      })
+    }
+  }
+
 
   /**
    * Property for the "opened" state of the sidebar
@@ -73,5 +85,11 @@ export class DaffSidebarViewportComponent implements OnInit {
 
   get hasBackdrop(): boolean {
     return (this.mode === 'over' || this.mode === 'push');
+  }
+  onEscape() {
+    if (this.hasBackdrop) {
+      this.opened = false;
+      this.ref.markForCheck();
+    }
   }
 }
