@@ -21,8 +21,12 @@ describe('Configurable Product Selectors | unit tests', () => {
 	let stubConfigurableProduct: DaffConfigurableProduct;
 	const {
 		selectConfigurableProductPrices,
+		selectConfigurableProductDiscountedPrices,
+		selectConfigurableProductHasDiscount,
 		selectConfigurableProductMinimumPrice,
 		selectConfigurableProductMaximumPrice,
+		selectConfigurableProductMinimumDiscountedPrice,
+		selectConfigurableProductMaximumDiscountedPrice,
 		isConfigurablePriceRanged,
 		selectMatchingConfigurableProductVariants,
 		selectSelectableConfigurableProductAttributes
@@ -42,25 +46,83 @@ describe('Configurable Product Selectors | unit tests', () => {
   });
 
 	describe('selectConfigurableProductPrices', () => {
-
-		describe('when many variants are possible', () => {
 			
-			it('should return an array of prices', () => {
-				stubConfigurableProduct.variants[0].price = 2;
-				stubConfigurableProduct.variants[1].price = 1;
-				stubConfigurableProduct.variants[2].price = 3;
-				stubConfigurableProduct.variants[3].price = 4;
-				store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
-				store.dispatch(new DaffConfigurableProductApplyAttribute(
-					stubConfigurableProduct.id,
-					stubConfigurableProduct.configurableAttributes[0].code,
-					stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
-				));
-				const selector = store.pipe(select(selectConfigurableProductPrices, { id: stubConfigurableProduct.id }));
-				const expected = cold('a', { a: [2, 1, 3, 4] });
+		it('should return an array of prices', () => {
+			stubConfigurableProduct.variants[0].price = 2;
+			stubConfigurableProduct.variants[1].price = 1;
+			stubConfigurableProduct.variants[2].price = 3;
+			stubConfigurableProduct.variants[3].price = 4;
+			store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
+			store.dispatch(new DaffConfigurableProductApplyAttribute(
+				stubConfigurableProduct.id,
+				stubConfigurableProduct.configurableAttributes[0].code,
+				stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
+			));
+			const selector = store.pipe(select(selectConfigurableProductPrices, { id: stubConfigurableProduct.id }));
+			const expected = cold('a', { a: [2, 1, 3, 4] });
 
-				expect(selector).toBeObservable(expected);
-			});
+			expect(selector).toBeObservable(expected);
+		});
+	});
+
+	describe('selectConfigurableProductDiscountedPrices', () => {
+			
+		it('should return an array of prices', () => {
+			stubConfigurableProduct.variants[0].price = 4;
+			stubConfigurableProduct.variants[1].price = 4;
+			stubConfigurableProduct.variants[2].price = 4;
+			stubConfigurableProduct.variants[3].price = 4;
+			stubConfigurableProduct.variants[0].discount.amount = 3;
+			stubConfigurableProduct.variants[1].discount.amount = 2;
+			stubConfigurableProduct.variants[2].discount.amount = 1;
+			stubConfigurableProduct.variants[3].discount.amount = 3;
+			store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
+			store.dispatch(new DaffConfigurableProductApplyAttribute(
+				stubConfigurableProduct.id,
+				stubConfigurableProduct.configurableAttributes[0].code,
+				stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
+			));
+			const selector = store.pipe(select(selectConfigurableProductDiscountedPrices, { id: stubConfigurableProduct.id }));
+			const expected = cold('a', { a: [1, 2, 3, 1] });
+
+			expect(selector).toBeObservable(expected);
+		});
+	});
+
+	describe('selectConfigurableProductHasDiscount', () => {
+			
+		it('should return true when a variant has a discount', () => {
+			stubConfigurableProduct.variants[0].discount.amount = 3;
+			stubConfigurableProduct.variants[1].discount.amount = 5;
+			stubConfigurableProduct.variants[2].discount.amount = 6;
+			stubConfigurableProduct.variants[3].discount.amount = 3;
+			store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
+			store.dispatch(new DaffConfigurableProductApplyAttribute(
+				stubConfigurableProduct.id,
+				stubConfigurableProduct.configurableAttributes[0].code,
+				stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
+			));
+			const selector = store.pipe(select(selectConfigurableProductHasDiscount, { id: stubConfigurableProduct.id }));
+			const expected = cold('a', { a: true });
+
+			expect(selector).toBeObservable(expected);
+		});
+			
+		it('should return false when no variants have a discount', () => {
+			stubConfigurableProduct.variants[0].discount.amount = 0;
+			stubConfigurableProduct.variants[1].discount.amount = 0;
+			stubConfigurableProduct.variants[2].discount.amount = 0;
+			stubConfigurableProduct.variants[3].discount.amount = 0;
+			store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
+			store.dispatch(new DaffConfigurableProductApplyAttribute(
+				stubConfigurableProduct.id,
+				stubConfigurableProduct.configurableAttributes[0].code,
+				stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
+			));
+			const selector = store.pipe(select(selectConfigurableProductHasDiscount, { id: stubConfigurableProduct.id }));
+			const expected = cold('a', { a: false });
+
+			expect(selector).toBeObservable(expected);
 		});
 	});
 
@@ -99,6 +161,54 @@ describe('Configurable Product Selectors | unit tests', () => {
 			));
 			const selector = store.pipe(select(selectConfigurableProductMaximumPrice, { id: stubConfigurableProduct.id }));
 			const expected = cold('a', { a: 4 });
+
+			expect(selector).toBeObservable(expected);
+		});
+	});
+
+	describe('selectConfigurableProductMinimumDiscountedPrice', () => {
+		
+		it('should return the minimum discounted price of the range of variant discounted prices', () => {
+			stubConfigurableProduct.variants[0].price = 10;
+			stubConfigurableProduct.variants[1].price = 10;
+			stubConfigurableProduct.variants[2].price = 10;
+			stubConfigurableProduct.variants[3].price = 10;
+			stubConfigurableProduct.variants[0].discount.amount = 2;
+			stubConfigurableProduct.variants[1].discount.amount = 1;
+			stubConfigurableProduct.variants[2].discount.amount = 3;
+			stubConfigurableProduct.variants[3].discount.amount = 4;
+			store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
+			store.dispatch(new DaffConfigurableProductApplyAttribute(
+				stubConfigurableProduct.id,
+				stubConfigurableProduct.configurableAttributes[0].code,
+				stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
+			));
+			const selector = store.pipe(select(selectConfigurableProductMinimumDiscountedPrice, { id: stubConfigurableProduct.id }));
+			const expected = cold('a', { a: 6 });
+
+			expect(selector).toBeObservable(expected);
+		});
+	});
+
+	describe('selectConfigurableProductMaximumDiscountedPrice', () => {
+		
+		it('should return the maximum discounted price of the range of variant discounted prices', () => {
+			stubConfigurableProduct.variants[0].price = 10;
+			stubConfigurableProduct.variants[1].price = 10;
+			stubConfigurableProduct.variants[2].price = 10;
+			stubConfigurableProduct.variants[3].price = 10;
+			stubConfigurableProduct.variants[0].discount.amount = 2;
+			stubConfigurableProduct.variants[1].discount.amount = 1;
+			stubConfigurableProduct.variants[2].discount.amount = 3;
+			stubConfigurableProduct.variants[3].discount.amount = 4;
+			store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
+			store.dispatch(new DaffConfigurableProductApplyAttribute(
+				stubConfigurableProduct.id,
+				stubConfigurableProduct.configurableAttributes[0].code,
+				stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
+			));
+			const selector = store.pipe(select(selectConfigurableProductMaximumDiscountedPrice, { id: stubConfigurableProduct.id }));
+			const expected = cold('a', { a: 9 });
 
 			expect(selector).toBeObservable(expected);
 		});

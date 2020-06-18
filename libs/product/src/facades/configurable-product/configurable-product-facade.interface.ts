@@ -32,10 +32,28 @@ export interface DaffConfigurableProductFacadeInterface extends DaffStoreFacade<
 	getMaximumPrice(id: string): Observable<number>;
 
 	/**
+	 * Get the current minimum discounted price possible based on the applied attributes and remaining variants.
+	 * @param id the id of the configurable product.
+	 */
+	getMinimumDiscountedPrice(id: string): Observable<number>;
+
+	/**
+	 * Get the current maximum discounted price possible based on the applied attributes and remaining variants.
+	 * @param id the id of the configurable product.
+	 */
+	getMaximumDiscountedPrice(id: string): Observable<number>;
+
+	/**
 	 * Returns whether the possible price for the configurable product is a range of different prices
 	 * @param id the id of the configurable product.
 	 */
 	isPriceRanged(id: string): Observable<boolean>;
+
+	/**
+	 * Returns whether the variants of the configurable product have (a) discount(s)
+	 * @param id the id of the configurable product.
+	 */
+	hasDiscount(id: string): Observable<boolean>;
 
 	/**
 	 * Selectable configurable product attributes derived from the remaining variants and the order of currently applied attributes.

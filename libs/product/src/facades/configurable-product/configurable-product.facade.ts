@@ -37,9 +37,21 @@ export class DaffConfigurableProductFacade<T extends DaffProduct = DaffProduct> 
 	getMaximumPrice(id: string): Observable<number> {
 		return this.store.pipe(select(this.selectors.selectConfigurableProductMaximumPrice, { id }));
 	}
+
+	getMinimumDiscountedPrice(id: string): Observable<number> {
+		return this.store.pipe(select(this.selectors.selectConfigurableProductMinimumDiscountedPrice, { id }));
+	}
+
+	getMaximumDiscountedPrice(id: string): Observable<number> {
+		return this.store.pipe(select(this.selectors.selectConfigurableProductMaximumDiscountedPrice, { id }));
+	}
 	
 	isPriceRanged(id: string): Observable<boolean> {
 		return this.store.pipe(select(this.selectors.isConfigurablePriceRanged, { id }));
+	}
+	
+	hasDiscount(id: string): Observable<boolean> {
+		return this.store.pipe(select(this.selectors.selectConfigurableProductHasDiscount, { id }));
 	}
 
 	getSelectableAttributes(id: string): Observable<Dictionary<string[]>> {
