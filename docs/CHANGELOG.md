@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.2](https://github.com/graycoreio/daffodil/compare/v0.6.1...v0.6.2) (2020-06-18)
+
+
+### Features
+
+* **cart:** add default urls for guard injection token urls ([#947](https://github.com/graycoreio/daffodil/issues/947)) ([fc1a5c1](https://github.com/graycoreio/daffodil/commit/fc1a5c1b39ddc9a1f70d4f091d4fe5cdff9801fe))
+* **cart:** add testing drivers ([#946](https://github.com/graycoreio/daffodil/issues/946)) ([7d89739](https://github.com/graycoreio/daffodil/commit/7d89739a9585a58cecf1bdba6e8667c7bf900566))
+* **product:** add facade fields for configurable product discounts ([#950](https://github.com/graycoreio/daffodil/issues/950)) ([d311995](https://github.com/graycoreio/daffodil/commit/d311995db08e5cd60e2c7487a7639c53926937fb))
+
 ### [0.6.1](https://github.com/graycoreio/daffodil/compare/v0.6.0...v0.6.1) (2020-06-11)
 
 
