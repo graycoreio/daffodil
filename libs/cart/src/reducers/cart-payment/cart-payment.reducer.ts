@@ -61,7 +61,26 @@ export function cartPaymentReducer<T extends DaffCart>(
         ...state,
         ...addError(state.errors, action.payload),
         loading: false,
-      };
+			};
+		
+			
+		/**
+		 * This reducer is temporary until custom reducers can be injected by the @daffodil/paymentSource modules. Right now, 
+		 * the payment modules need a way to update cart state with a payment token.
+		 * 
+		 * todo: remove when possible.
+		 */
+		case DaffCartPaymentActionTypes.CartPaymentMethodAddAction:
+			return {
+				...state,
+				cart: {
+					...state.cart,
+					payment: {
+						...action.payload
+					}
+				}
+			};
+
 
     default:
       return state;

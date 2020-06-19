@@ -12,7 +12,8 @@ import {
   DaffCartPaymentUpdateSuccess,
   DaffCartPaymentUpdateFailure,
   DaffCartPaymentRemoveSuccess,
-  DaffCartPaymentRemoveFailure
+  DaffCartPaymentRemoveFailure,
+	DaffCartPaymentMethodAdd
 } from '../../actions/public_api';
 import { cartPaymentReducer } from './cart-payment.reducer';
 import { DaffCartErrorType } from '../errors/cart-error-type.enum';
@@ -236,6 +237,29 @@ describe('Cart | Reducer | Cart Payment', () => {
 
     it('should add an error to the payment section of state.errors', () => {
       expect(result.errors[DaffCartErrorType.Payment].length).toEqual(2);
+    });
+  });
+
+  describe('when CartPaymentMethodAddAction is triggered', () => {
+    let result;
+		let state: DaffCartReducerState<DaffCart>;
+		const stubPayment = {
+			method: 'method',
+			paymentToken: 'paymentToken'
+		}
+
+    beforeEach(() => {
+      state = {
+        ...initialState
+      }
+
+      const cartPaymentMethodAdd = new DaffCartPaymentMethodAdd(stubPayment);
+
+      result = cartPaymentReducer(state, cartPaymentMethodAdd);
+    });
+
+    it('should set the cart payment method from action.payload', () => {
+      expect(result.cart.payment).toEqual(stubPayment);
     });
   });
 });

@@ -1,3 +1,4 @@
 export interface DaffCartPaymentMethod {
-  method: string;
+	method: string;
+	payment_info?: any;
 }

@@ -13,6 +13,7 @@ export enum DaffCartPaymentActionTypes {
   CartPaymentRemoveAction = '[DaffCart] Payment Remove Action',
   CartPaymentRemoveSuccessAction = '[DaffCart] Payment Remove Success Action',
   CartPaymentRemoveFailureAction = '[DaffCart] Payment Remove Failure Action',
+	CartPaymentMethodAddAction = '[DaffCart] Payment Method Add Action'
 }
 
 export class DaffCartPaymentLoad implements Action {
@@ -63,6 +64,18 @@ export class DaffCartPaymentRemoveFailure implements Action {
   constructor(public payload: string) {}
 }
 
+/**
+ * This action is temporary until custom reducers can be injected by the @daffodil/paymentSource modules. Right now, 
+ * the payment modules need a way to update cart state with a payment token.
+ * 
+ * todo: remove when possible.
+ */
+export class DaffCartPaymentMethodAdd<T extends DaffCartPaymentMethod = DaffCartPaymentMethod> implements Action {
+	readonly type = DaffCartPaymentActionTypes.CartPaymentMethodAddAction;
+
+	constructor(public payload: T) {}
+}
+
 export type DaffCartPaymentActions<
   T extends DaffCartPaymentMethod = DaffCartPaymentMethod,
   V extends DaffCart = DaffCart
@@ -76,3 +89,4 @@ export type DaffCartPaymentActions<
   | DaffCartPaymentRemove
   | DaffCartPaymentRemoveSuccess
   | DaffCartPaymentRemoveFailure
+	| DaffCartPaymentMethodAdd<T>;
