@@ -1,7 +1,15 @@
-import { AuthorizeNetOpaqueData } from './authorize-net-opaque-data';
-import { AuthorizeNetMessages } from './authorize-net-messages';
+export interface AuthorizeNetMessage {
+	code: string;
+	text: string;
+}
 
 export interface AuthorizeNetResponse {
-	opaqueData: AuthorizeNetOpaqueData;
-	messages: AuthorizeNetMessages;
+	opaqueData: {
+		dataDescriptor: string;
+		dataValue: string;
+	};
+	messages: {
+		resultCode: string;
+		message: AuthorizeNetMessage[];
+	};
 }

@@ -3,26 +3,28 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { tap, switchMap, map, catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
+import { DaffCartPaymentMethodAdd } from '@daffodil/cart';
+
 import { 
 	DaffAuthorizeNetActionTypes, 
 	DaffAuthorizeNetGenerateToken, 
 	DaffAuthorizeNetGenerateTokenFailure, 
-	DaffAuthorizeNetGenerateTokenSuccess, 
 	DaffLoadAcceptJs
 } from '../actions/authorizenet.actions';
 import { DaffAuthorizeNetTokenRequest } from '../models/request/authorize-net-token-request';
 import { DaffAuthorizeNetDriver } from '../drivers/injection-tokens/authorize-net-driver.token';
 import { DaffAuthorizeNetService } from '../drivers/interfaces/authorize-net-service.interface';
-import { DaffAuthorizeNetTokenResponse } from '../models/response/authorize-net-token-response';
 
 const ACCEPT_LIBRARY = 'https://jstest.authorize.net/v1/Accept.js';
 
+export const AUTHORIZE_NET_PAYMENT_ID = 'authorizenet_acceptjs';
+
 @Injectable()
-export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest, V extends DaffAuthorizeNetTokenResponse> {
+export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = DaffAuthorizeNetTokenRequest> {
 
   constructor(
     private actions$: Actions,
-    @Inject(DaffAuthorizeNetDriver) private driver: DaffAuthorizeNetService<T, V>
+    @Inject(DaffAuthorizeNetDriver) private driver: DaffAuthorizeNetService<T>
   ){}
 
   @Effect()
@@ -31,7 +33,10 @@ export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest, V e
 		switchMap((action: DaffAuthorizeNetGenerateToken<T>) => 
 			this.driver.generateToken(action.payload).pipe(
 				map(resp => {
-					return new DaffAuthorizeNetGenerateTokenSuccess(resp);
+					return new DaffCartPaymentMethodAdd({
+						method: AUTHORIZE_NET_PAYMENT_ID,
+						payment_info: resp
+					});
 				}),
 				catchError(error => of(new DaffAuthorizeNetGenerateTokenFailure(error)))
 			)

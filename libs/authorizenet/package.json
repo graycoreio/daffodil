@@ -28,9 +28,11 @@
     "@ngrx/entity": "0.0.0-PLACEHOLDER",
 		"@ngrx/store": "0.0.0-PLACEHOLDER",
 		"@daffodil/core": "0.0.0-PLACEHOLDER",
+		"@daffodil/cart": "0.0.0-PLACEHOLDER",
     "rxjs": "0.0.0-PLACEHOLDER"
 	},
 	"devDependencies": {
-		"@daffodil/core": "0.0.0-PLACEHOLDER"
+		"@daffodil/core": "0.0.0-PLACEHOLDER",
+		"@daffodil/cart": "0.0.0-PLACEHOLDER"
 	}
 }

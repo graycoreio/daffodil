@@ -3,16 +3,17 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
-import { DaffAuthorizeNetEffects } from './authorize-net.effects';
+import { DaffCartPaymentMethodAdd } from '@daffodil/cart';
+
+import { DaffAuthorizeNetEffects, AUTHORIZE_NET_PAYMENT_ID } from './authorize-net.effects';
 import { DaffAuthorizeNetGenerateToken } from '../actions/authorizenet.actions';
 import { DaffAuthorizeNetTokenRequest } from '../models/request/authorize-net-token-request';
-import { DaffAuthorizeNetGenerateTokenSuccess, DaffAuthorizeNetGenerateTokenFailure } from '../actions/authorizenet.actions';
-import { DaffAuthorizeNetTokenResponse } from '../models/response/authorize-net-token-response';
+import { DaffAuthorizeNetGenerateTokenFailure } from '../actions/authorizenet.actions';
 import { DaffAuthorizeNetDriver } from '../drivers/injection-tokens/authorize-net-driver.token';
 
 describe('DaffAuthorizeNetEffects', () => {
   let actions$: Observable<any>;
-  let effects: DaffAuthorizeNetEffects<DaffAuthorizeNetTokenRequest, DaffAuthorizeNetTokenResponse>;
+  let effects: DaffAuthorizeNetEffects;
 	const paymentTokenRequest: DaffAuthorizeNetTokenRequest = {
 		creditCard: null
 	};
@@ -42,13 +43,16 @@ describe('DaffAuthorizeNetEffects', () => {
     describe('when the call to the AuthorizeNetService is successful', () => {
 
       beforeEach(() => {
-        authorizeNetPaymentServiceSpy.generateToken.and.returnValue(of({token: 'token'}));
+        authorizeNetPaymentServiceSpy.generateToken.and.returnValue(of('token'));
         actions$ = hot('--a', { a: authorizeNetGenerateToken });
       });
       
-      it('should dispatch a DaffAuthorizeNetGenerateTokenSuccess action', () => {
-        const authorizeNetGenerateTokenSuccessAction = new DaffAuthorizeNetGenerateTokenSuccess({ token: 'token' });
-        expected = cold('--a', { a: authorizeNetGenerateTokenSuccessAction });
+      it('should dispatch a DaffCartPaymentMethodAdd action', () => {
+        const cartPaymentMethodAddAction = new DaffCartPaymentMethodAdd({
+					method: AUTHORIZE_NET_PAYMENT_ID,
+					payment_info: 'token'
+				});
+        expected = cold('--a', { a: cartPaymentMethodAddAction });
         expect(effects.generateToken$).toBeObservable(expected);
 			});
 		});

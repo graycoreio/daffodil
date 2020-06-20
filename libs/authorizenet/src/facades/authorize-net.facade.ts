@@ -5,27 +5,23 @@ import { Observable } from 'rxjs';
 import { DaffAuthorizeNetModule } from '../authorize-net.module';
 import { daffAuthorizeNetSelectors } from '../selectors/authorize-net.selector';
 import { DaffAuthorizeNetReducersState } from '../reducers/authorize-net-reducers.interface';
-import { DaffAuthorizeNetTokenResponse } from '../models/response/authorize-net-token-response';
 import { DaffAuthorizeNetFacadeInterface } from './authorize-net-facade.interface';
 
 @Injectable({
   providedIn: DaffAuthorizeNetModule
 })
-export class DaffAuthorizeNetFacade<T extends DaffAuthorizeNetTokenResponse> implements DaffAuthorizeNetFacadeInterface<T> {
+export class DaffAuthorizeNetFacade implements DaffAuthorizeNetFacadeInterface {
 
-	authorizeTokenResponse$: Observable<T>
-  tokenNonce$: Observable<string>;
+  loading$: Observable<boolean>;
   error$: Observable<string>;
   
-  constructor(private store: Store<DaffAuthorizeNetReducersState<T>>) {
+  constructor(private store: Store<DaffAuthorizeNetReducersState>) {
 		const {
-			selectTokenResponse,
-			selectToken,
+			selectLoading,
 			selectError
-		} = daffAuthorizeNetSelectors<T>();
+		} = daffAuthorizeNetSelectors();
 
-    this.authorizeTokenResponse$ = this.store.pipe(select(selectTokenResponse));
-    this.tokenNonce$ = this.store.pipe(select(selectToken));
+    this.loading$ = this.store.pipe(select(selectLoading));
     this.error$ = this.store.pipe(select(selectError));
   }
 

@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffAuthorizeNetDefaultTransformerService } from './authorize-net-transformer.service';
-import { AuthorizeNetResponse } from '../../models/response/authorize-net-response';
-import { DaffAuthorizeNetTokenRequest } from '../../models/request/authorize-net-token-request';
-import { DaffAuthorizeNetConfig } from '../interfaces/authorize-net-config.interface';
-import { DaffCreditCard } from '../../models/request/credit-card';
+import { DaffCreditCard } from '../../../models/request/credit-card';
+import { DaffAuthorizeNetConfig } from '../../interfaces/authorize-net-config.interface';
+import { DaffAuthorizeNetTokenRequest } from '../../../models/request/authorize-net-token-request';
+import { transformMagentoAuthorizeNetRequest, transformMagentoAuthorizeNetResponse } from './authorize-net-transformer.service';
+import { AuthorizeNetResponse } from 'libs/authorizenet/src/models/response/authorize-net-response';
 
-describe('AuthorizeNet | Drivers | Transformers | DaffAuthorizeNetDefaultTransformerService', () => {
-	let service: DaffAuthorizeNetDefaultTransformerService;
+describe('AuthorizeNet | Drivers | Magento | Transformers', () => {
 	const stubCreditCard: DaffCreditCard = {
 		name: 'name',
 		cardnumber: 'cardnumber',
@@ -21,19 +20,10 @@ describe('AuthorizeNet | Drivers | Transformers | DaffAuthorizeNetDefaultTransfo
 	};
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        DaffAuthorizeNetDefaultTransformerService
-      ]
-    })
-    service = TestBed.get(DaffAuthorizeNetDefaultTransformerService);
+    TestBed.configureTestingModule({})
   });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-	});
 	
-	describe('transformOut', () => {
+	describe('transformMagentoAuthorizeNetRequest', () => {
 		
 		it('should transform the credit card and auth data into an AuthorizeNet request object', () => {
 			const request: DaffAuthorizeNetTokenRequest = {
@@ -55,13 +45,13 @@ describe('AuthorizeNet | Drivers | Transformers | DaffAuthorizeNetDefaultTransfo
 					apiLoginID: stubAuthData.apiLoginID
 				}
 			};
-			expect(service.transformOut(request, config)).toEqual(expectedRequestObject);
+			expect(transformMagentoAuthorizeNetRequest(request, config)).toEqual(expectedRequestObject);
 		});
 	});
 
-	describe('transformIn', () => {
+	describe('transformMagentoAuthorizeNetResponse', () => {
 		
-		it('should return a DaffAuthorizeNetTokenResponse', () => {
+		it('should return a MagentoAuthorizeNetPayment', () => {
 			const authorizeNetResponse: AuthorizeNetResponse = {
 				messages: null,
 				opaqueData: {
@@ -69,7 +59,16 @@ describe('AuthorizeNet | Drivers | Transformers | DaffAuthorizeNetDefaultTransfo
 					dataDescriptor: null
 				}
 			}
-			expect(service.transformIn(authorizeNetResponse)).toEqual({ token: 'paymentNonce' });
+			expect(transformMagentoAuthorizeNetResponse(authorizeNetResponse)).toEqual(
+				{ 
+					code: 'authorizenet_acceptjs',
+					authorizenet_acceptjs: {
+						cc_last_4: null,
+						opaque_data_descriptor: 'COMMON.ACCEPT.INAPP.PAYMENT',
+						opaque_data_value: 'paymentNonce'
+					}
+				}
+			);
 		});
 	});
 });

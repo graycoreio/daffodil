@@ -2,55 +2,56 @@ import { createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/s
 
 import { DaffAuthorizeNetReducersState } from '../reducers/authorize-net-reducers.interface';
 import { DaffAuthorizeNetReducerState } from '../reducers/authorize-net/authorize-net-reducer.interface';
-import { DaffAuthorizeNetTokenResponse } from '../models/response/authorize-net-token-response';
 
-export interface DaffAuthorizeNetMemoizedSelectors<T extends DaffAuthorizeNetTokenResponse> {
-	selectAuthorizeNetFeatureState: MemoizedSelector<object, DaffAuthorizeNetReducersState<T>>;
-	selectAuthorizeNetState: MemoizedSelector<object, DaffAuthorizeNetReducerState<T>> ;
-	selectTokenResponse: MemoizedSelector<object, T>;
-	selectToken: MemoizedSelector<object, string>;
+export interface DaffAuthorizeNetMemoizedSelectors {
+	selectAuthorizeNetFeatureState: MemoizedSelector<object, DaffAuthorizeNetReducersState>;
+	selectAuthorizeNetState: MemoizedSelector<object, DaffAuthorizeNetReducerState> ;
+	selectLoading: MemoizedSelector<object, boolean>;
 	selectError: MemoizedSelector<object, string>;
 }
 
-const createAuthorizeNetSelectors = <T extends DaffAuthorizeNetTokenResponse>(): DaffAuthorizeNetMemoizedSelectors<T> => {
+const createAuthorizeNetSelectors = (): DaffAuthorizeNetMemoizedSelectors => {
 
 	/**
 	 * AuthorizeNet Feature State
 	 */
-	const selectAuthorizeNetFeatureState = createFeatureSelector<DaffAuthorizeNetReducersState<T>>('authorizenet');
+	const selectAuthorizeNetFeatureState = createFeatureSelector<DaffAuthorizeNetReducersState>('authorizenet');
 
 	/**
 	 * AuthorizeNet State
 	 */
-	const selectAuthorizeNetState = createSelector(selectAuthorizeNetFeatureState, (state: DaffAuthorizeNetReducersState<T>) => state.authorizeNet);
+	const selectAuthorizeNetState = createSelector(
+		selectAuthorizeNetFeatureState, 
+		(state: DaffAuthorizeNetReducersState) => state.authorizeNet
+	);
 
 	/**
-	 * AuthorizeNet token response
+	 * AuthorizeNet loading state
 	 */
-	const selectTokenResponse = createSelector(selectAuthorizeNetState,(state: DaffAuthorizeNetReducerState<T>) => state.tokenResponse);
-
-	/**
-	 * AuthorizeNet token nonce
-	 */
-	const selectToken = createSelector(selectTokenResponse,(state: T) => state.token);
+	const selectLoading = createSelector(
+		selectAuthorizeNetState,
+		(state: DaffAuthorizeNetReducerState) => state.loading
+	);
 
 	/**
 	 * AuthorizeNet error
 	 */
-	const selectError = createSelector(selectAuthorizeNetState, (state: DaffAuthorizeNetReducerState<T>) => state.error);
+	const selectError = createSelector(
+		selectAuthorizeNetState, 
+		(state: DaffAuthorizeNetReducerState) => state.error
+	);
 
 	return { 
 		selectAuthorizeNetFeatureState,
 		selectAuthorizeNetState,
-		selectTokenResponse,
-		selectToken,
+		selectLoading,
 		selectError
 	}
 }
 
 export const daffAuthorizeNetSelectors = (() => {
 	let cache;
-	return <T extends DaffAuthorizeNetTokenResponse>(): DaffAuthorizeNetMemoizedSelectors<T> => cache = cache 
+	return (): DaffAuthorizeNetMemoizedSelectors => cache = cache 
 		? cache 
-		: createAuthorizeNetSelectors<T>();
+		: createAuthorizeNetSelectors();
 })();

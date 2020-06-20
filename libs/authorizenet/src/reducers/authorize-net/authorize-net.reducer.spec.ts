@@ -1,17 +1,17 @@
 import { daffAuthorizeNetReducer } from './authorize-net.reducer';
 import { DaffAuthorizeNetReducerState } from './authorize-net-reducer.interface';
 import { DaffAuthorizeNetGenerateTokenSuccess, DaffAuthorizeNetGenerateTokenFailure } from '../../actions/authorizenet.actions';
-import { DaffAuthorizeNetTokenResponse } from '../../models/response/authorize-net-token-response';
 
 describe('AuthorizeNet | AuthorizeNet Reducer', () => {
 
 	let stubPaymentNonce;
-	let initialState: DaffAuthorizeNetReducerState<DaffAuthorizeNetTokenResponse>;
+	let initialState: DaffAuthorizeNetReducerState;
 
   beforeEach(() => {
 		stubPaymentNonce = 'tokenResponse';
 		initialState = {
-			tokenResponse: null,
+			cc_last_4: null,
+			loading: false,
 			error: null
 		};
   });
@@ -28,17 +28,13 @@ describe('AuthorizeNet | AuthorizeNet Reducer', () => {
   });
 
   describe('when DaffAuthorizeNetGenerateTokenSuccess is triggered', () => {
-    let result: DaffAuthorizeNetReducerState<DaffAuthorizeNetTokenResponse>;
+    let result: DaffAuthorizeNetReducerState;
 
     beforeEach(() => {
-      const tokenLoadSuccess: DaffAuthorizeNetGenerateTokenSuccess<DaffAuthorizeNetTokenResponse> = new DaffAuthorizeNetGenerateTokenSuccess(stubPaymentNonce);
+      const tokenLoadSuccess: DaffAuthorizeNetGenerateTokenSuccess = new DaffAuthorizeNetGenerateTokenSuccess(stubPaymentNonce);
 
       result = daffAuthorizeNetReducer(initialState, tokenLoadSuccess);
     });
-
-    it('sets tokenResponse state to the action payload', () => {
-      expect(result.tokenResponse).toEqual(stubPaymentNonce);
-		});
 		
 		it('clears the error message', () => {
 			expect(result.error).toBeNull();
@@ -46,7 +42,7 @@ describe('AuthorizeNet | AuthorizeNet Reducer', () => {
   });
 
   describe('when DaffAuthorizeNetGenerateTokenFailure is triggered', () => {
-    let result: DaffAuthorizeNetReducerState<DaffAuthorizeNetTokenResponse>;
+    let result: DaffAuthorizeNetReducerState;
 
     beforeEach(() => {
       const tokenResponseLoadFailure: DaffAuthorizeNetGenerateTokenFailure = new DaffAuthorizeNetGenerateTokenFailure('error');
@@ -56,10 +52,6 @@ describe('AuthorizeNet | AuthorizeNet Reducer', () => {
 
     it('sets error state to the action payload', () => {
       expect(result.error).toEqual('error');
-		});
-		
-		it('clears the tokenResponse', () => {
-			expect(result.tokenResponse).toBeNull();
 		});
   });
 });

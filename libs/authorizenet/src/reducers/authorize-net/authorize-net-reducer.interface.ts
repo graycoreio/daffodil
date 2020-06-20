@@ -1,6 +1,5 @@
-import { DaffAuthorizeNetTokenResponse } from '../../models/response/authorize-net-token-response';
-
-export interface DaffAuthorizeNetReducerState<T extends DaffAuthorizeNetTokenResponse> {
-	tokenResponse: T;
+export interface DaffAuthorizeNetReducerState {
+	cc_last_4: string;
 	error: string;
+	loading: boolean;
 }
