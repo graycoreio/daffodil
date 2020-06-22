@@ -2,33 +2,58 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
+import { StoreModule, combineReducers, Store } from '@ngrx/store';
+import { MockStore } from '@ngrx/store/testing';
 
 import { DaffCartPaymentMethodAdd } from '@daffodil/cart';
 
-import { DaffAuthorizeNetEffects, AUTHORIZE_NET_PAYMENT_ID } from './authorize-net.effects';
+import { DaffAuthorizeNetEffects } from './authorize-net.effects';
 import { DaffAuthorizeNetGenerateToken } from '../actions/authorizenet.actions';
 import { DaffAuthorizeNetTokenRequest } from '../models/request/authorize-net-token-request';
 import { DaffAuthorizeNetGenerateTokenFailure } from '../actions/authorizenet.actions';
 import { DaffAuthorizeNetDriver } from '../drivers/injection-tokens/authorize-net-driver.token';
+import { daffAuthorizeNetReducers } from '../reducers/authorize-net.reducers';
+import { DaffAuthorizeNetService } from '../drivers/public_api';
+import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '../drivers/magento/authorize-net-payment-id';
 
+class MockAuthorizeNetDriver implements DaffAuthorizeNetService {
+	generateToken(paymentRequest, last4CC): Observable<any> {
+		return null;
+	}
+}
 describe('DaffAuthorizeNetEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffAuthorizeNetEffects;
 	const paymentTokenRequest: DaffAuthorizeNetTokenRequest = {
-		creditCard: null
+		creditCard: {
+			name: 'name',
+			cardnumber: '1234123412341234',
+			month: 'month',
+			year: 'year',
+			securitycode: '123'
+		}
 	};
-	const authorizeNetPaymentServiceSpy = jasmine.createSpyObj('DaffAuthorizeNetPaymentService', ['generateToken']);
+	let store: MockStore<any>;
+	let authorizeNetPaymentService: MockAuthorizeNetDriver;
   
   beforeEach(() => {
     TestBed.configureTestingModule({
+			imports: [
+				StoreModule.forRoot({
+					authorizenet: combineReducers(daffAuthorizeNetReducers)
+				}),
+			],
       providers: [
         DaffAuthorizeNetEffects,
 				provideMockActions(() => actions$),
-				{ provide: DaffAuthorizeNetDriver, useValue: authorizeNetPaymentServiceSpy }
+				{ provide: DaffAuthorizeNetDriver, useClass: MockAuthorizeNetDriver }
       ]
     });
 
-    effects = TestBed.get(DaffAuthorizeNetEffects);
+		effects = TestBed.get(DaffAuthorizeNetEffects);
+		authorizeNetPaymentService = TestBed.get(DaffAuthorizeNetDriver);
+		store = TestBed.get(Store);
+		store.dispatch(new DaffAuthorizeNetGenerateToken(paymentTokenRequest));
   });
 
   it('should be created', () => {
@@ -39,17 +64,30 @@ describe('DaffAuthorizeNetEffects', () => {
 
     let expected;
 		const authorizeNetGenerateToken = new DaffAuthorizeNetGenerateToken(paymentTokenRequest);
+
+		it('should call request a token with the last 4 digits of the customer credit card', () => {
+			spyOn(authorizeNetPaymentService, 'generateToken').and.returnValue(of('token'));
+			actions$ = hot('a', { a: authorizeNetGenerateToken });
+			const cartPaymentMethodAddAction = new DaffCartPaymentMethodAdd({
+				method: MAGENTO_AUTHORIZE_NET_PAYMENT_ID,
+				payment_info: 'token'
+			});
+			expected = cold('a', { a: cartPaymentMethodAddAction });
+			expect(effects.generateToken$).toBeObservable(expected);
+
+			expect(authorizeNetPaymentService.generateToken).toHaveBeenCalledWith(paymentTokenRequest, '1234')
+		});
     
     describe('when the call to the AuthorizeNetService is successful', () => {
 
       beforeEach(() => {
-        authorizeNetPaymentServiceSpy.generateToken.and.returnValue(of('token'));
+				spyOn(authorizeNetPaymentService, 'generateToken').and.returnValue(of('token'));
         actions$ = hot('--a', { a: authorizeNetGenerateToken });
       });
       
       it('should dispatch a DaffCartPaymentMethodAdd action', () => {
         const cartPaymentMethodAddAction = new DaffCartPaymentMethodAdd({
-					method: AUTHORIZE_NET_PAYMENT_ID,
+					method: MAGENTO_AUTHORIZE_NET_PAYMENT_ID,
 					payment_info: 'token'
 				});
         expected = cold('--a', { a: cartPaymentMethodAddAction });
@@ -61,8 +99,9 @@ describe('DaffAuthorizeNetEffects', () => {
       
       beforeEach(() => {
         const error = 'Failed to retrieve the token';
-        const response = cold('#', {}, error);
-        authorizeNetPaymentServiceSpy.generateToken.and.returnValue(response);
+				const response = cold('#', {}, error);
+				spyOn(authorizeNetPaymentService, 'generateToken').and.returnValue(response);
+				
         const authorizeNetGenerateTokenFailureAction = new DaffAuthorizeNetGenerateTokenFailure(error);
         actions$ = hot('--a', { a: authorizeNetGenerateToken });
         expected = cold('--b', { b: authorizeNetGenerateTokenFailureAction });

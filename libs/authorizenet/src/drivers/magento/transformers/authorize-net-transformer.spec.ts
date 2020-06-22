@@ -1,9 +1,7 @@
-import { TestBed } from '@angular/core/testing';
-
 import { DaffCreditCard } from '../../../models/request/credit-card';
 import { DaffAuthorizeNetConfig } from '../../interfaces/authorize-net-config.interface';
 import { DaffAuthorizeNetTokenRequest } from '../../../models/request/authorize-net-token-request';
-import { transformMagentoAuthorizeNetRequest, transformMagentoAuthorizeNetResponse } from './authorize-net-transformer.service';
+import { transformMagentoAuthorizeNetRequest, transformMagentoAuthorizeNetResponse } from './authorize-net-transformer';
 import { AuthorizeNetResponse } from 'libs/authorizenet/src/models/response/authorize-net-response';
 
 describe('AuthorizeNet | Drivers | Magento | Transformers', () => {
@@ -18,10 +16,6 @@ describe('AuthorizeNet | Drivers | Magento | Transformers', () => {
 		apiLoginID: 'apiLoginID',
 		clientKey: 'clientKey'
 	};
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({})
-  });
 	
 	describe('transformMagentoAuthorizeNetRequest', () => {
 		
@@ -59,11 +53,12 @@ describe('AuthorizeNet | Drivers | Magento | Transformers', () => {
 					dataDescriptor: null
 				}
 			}
-			expect(transformMagentoAuthorizeNetResponse(authorizeNetResponse)).toEqual(
+			const cc_last_4 = '1234';
+			expect(transformMagentoAuthorizeNetResponse(authorizeNetResponse, cc_last_4)).toEqual(
 				{ 
 					code: 'authorizenet_acceptjs',
 					authorizenet_acceptjs: {
-						cc_last_4: null,
+						cc_last_4: parseInt(cc_last_4, 10),
 						opaque_data_descriptor: 'COMMON.ACCEPT.INAPP.PAYMENT',
 						opaque_data_value: 'paymentNonce'
 					}

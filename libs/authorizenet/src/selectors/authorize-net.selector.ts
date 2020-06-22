@@ -6,6 +6,7 @@ import { DaffAuthorizeNetReducerState } from '../reducers/authorize-net/authoriz
 export interface DaffAuthorizeNetMemoizedSelectors {
 	selectAuthorizeNetFeatureState: MemoizedSelector<object, DaffAuthorizeNetReducersState>;
 	selectAuthorizeNetState: MemoizedSelector<object, DaffAuthorizeNetReducerState> ;
+	selectCcLast4: MemoizedSelector<object, string>;
 	selectLoading: MemoizedSelector<object, boolean>;
 	selectError: MemoizedSelector<object, string>;
 }
@@ -23,6 +24,14 @@ const createAuthorizeNetSelectors = (): DaffAuthorizeNetMemoizedSelectors => {
 	const selectAuthorizeNetState = createSelector(
 		selectAuthorizeNetFeatureState, 
 		(state: DaffAuthorizeNetReducersState) => state.authorizeNet
+	);
+
+	/**
+	 * Last four digits of credit cart
+	 */
+	const selectCcLast4 = createSelector(
+		selectAuthorizeNetState,
+		(state: DaffAuthorizeNetReducerState) => state.cc_last_4
 	);
 
 	/**
@@ -44,6 +53,7 @@ const createAuthorizeNetSelectors = (): DaffAuthorizeNetMemoizedSelectors => {
 	return { 
 		selectAuthorizeNetFeatureState,
 		selectAuthorizeNetState,
+		selectCcLast4,
 		selectLoading,
 		selectError
 	}

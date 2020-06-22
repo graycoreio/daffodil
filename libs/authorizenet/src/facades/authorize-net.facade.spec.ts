@@ -7,7 +7,7 @@ import { DaffAuthorizeNetFacade } from './authorize-net.facade';
 import { daffAuthorizeNetReducers } from '../reducers/authorize-net.reducers';
 import { DaffAuthorizeNetGenerateTokenFailure } from '../actions/authorizenet.actions';
 import { DaffCartPaymentMethodAdd } from '@daffodil/cart';
-import { AUTHORIZE_NET_PAYMENT_ID } from '../effects/authorize-net.effects';
+import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '../drivers/magento/authorize-net-payment-id';
 
 describe('DaffAuthorizeNetFacade', () => {
   let store: MockStore<any>;
@@ -45,10 +45,10 @@ describe('DaffAuthorizeNetFacade', () => {
 
   describe('loading$', () => {
 
-    it('should return the payment nonce', () => {
+    it('should return loading state for submitting a payment method', () => {
       const expected = cold('a', { a: false });
       store.dispatch(new DaffCartPaymentMethodAdd({
-				method: AUTHORIZE_NET_PAYMENT_ID,
+				method: MAGENTO_AUTHORIZE_NET_PAYMENT_ID,
 				payment_info: null
 			}));
       expect(facade.loading$).toBeObservable(expected);

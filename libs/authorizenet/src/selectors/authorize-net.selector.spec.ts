@@ -5,15 +5,16 @@ import { DaffCartPaymentMethodAdd } from '@daffodil/cart';
 
 import { DaffAuthorizeNetReducersState } from '../reducers/authorize-net-reducers.interface';
 import { daffAuthorizeNetReducers } from '../reducers/authorize-net.reducers';
-import { DaffAuthorizeNetGenerateTokenFailure } from '../actions/authorizenet.actions';
+import { DaffAuthorizeNetGenerateTokenFailure, DaffAuthorizeNetGenerateToken } from '../actions/authorizenet.actions';
 import { daffAuthorizeNetSelectors } from './authorize-net.selector';
-import { AUTHORIZE_NET_PAYMENT_ID } from '../effects/authorize-net.effects';
+import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '../drivers/magento/authorize-net-payment-id';
 
 describe('DaffAuthorizeNetSelectors', () => {
 
 	let store: Store<DaffAuthorizeNetReducersState>;
 	const {
 		selectAuthorizeNetState,
+		selectCcLast4,
 		selectLoading,
 		selectError
 	} = daffAuthorizeNetSelectors();
@@ -30,7 +31,7 @@ describe('DaffAuthorizeNetSelectors', () => {
     store = TestBed.get(Store);
 
 		store.dispatch(new DaffCartPaymentMethodAdd({
-			method: AUTHORIZE_NET_PAYMENT_ID,
+			method: MAGENTO_AUTHORIZE_NET_PAYMENT_ID,
 			payment_info: null
 		}));
   });
@@ -45,6 +46,24 @@ describe('DaffAuthorizeNetSelectors', () => {
       }
       const selector = store.pipe(select(selectAuthorizeNetState));
       const expected = cold('a', { a: expectedFeatureState });
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCcLast4', () => {
+
+    it('selects the last four digits of a credit card', () => {
+			store.dispatch(new DaffAuthorizeNetGenerateToken({
+				creditCard: {
+					name: 'name',
+					cardnumber: '1234123412341234',
+					month: 'month',
+					year: 'year',
+					securitycode: '123'
+				}
+			}));
+			const selector = store.pipe(select(selectCcLast4));
+      const expected = cold('a', { a: '1234' });
       expect(selector).toBeObservable(expected);
     });
   });
