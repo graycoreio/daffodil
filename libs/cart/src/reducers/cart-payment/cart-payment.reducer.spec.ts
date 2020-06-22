@@ -245,7 +245,7 @@ describe('Cart | Reducer | Cart Payment', () => {
 		let state: DaffCartReducerState<DaffCart>;
 		const stubPayment = {
 			method: 'method',
-			paymentToken: 'paymentToken'
+			payment_info: 'payment info object'
 		}
 
     beforeEach(() => {
