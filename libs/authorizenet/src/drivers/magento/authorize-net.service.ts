@@ -5,10 +5,9 @@ import { transformMagentoAuthorizeNetRequest, transformMagentoAuthorizeNetRespon
 import { MagentoAuthorizeNetPayment } from './models/authorize-net-payment';
 import { AcceptType } from '../../models/acceptJs/accept';
 import { DaffAuthorizeNetService } from '../interfaces/authorize-net-service.interface';
-import { DaffAuthorizeNetConfig } from '../interfaces/authorize-net-config.interface';
+import { DaffAuthorizeNetConfig, DaffAuthorizeNetConfigToken } from '../interfaces/authorize-net-config.interface';
 import { DaffAuthorizeNetTokenRequest } from '../../models/request/authorize-net-token-request';
 import { AuthorizeNetResponse } from '../../models/response/authorize-net-response';
-import { DaffAuthorizeNetConfigToken } from '../injection-tokens/authorize-net-config.token';
 
 declare var Accept: AcceptType;
 

@@ -1,7 +1,6 @@
 import { Action } from '@ngrx/store';
 
 import { DaffAuthorizeNetTokenRequest } from '../models/request/authorize-net-token-request';
-import { DaffCartPaymentMethod } from '@daffodil/cart';
 
 export enum DaffAuthorizeNetActionTypes {
   GenerateTokenAction = '[Daff-Authorize-Net] Generate Token',
@@ -26,10 +25,8 @@ export class DaffAuthorizeNetGenerateToken<T extends DaffAuthorizeNetTokenReques
  * 
  * @param payload - A string that is the payment nonce for a credit card.
  */
-export class DaffAuthorizeNetGenerateTokenSuccess<T extends DaffCartPaymentMethod = DaffCartPaymentMethod> implements Action {
+export class DaffAuthorizeNetGenerateTokenSuccess implements Action {
   readonly type = DaffAuthorizeNetActionTypes.GenerateTokenSuccessAction;
-
-  constructor(public payload: T) { }
 }
 
 /**
@@ -48,10 +45,9 @@ export class DaffLoadAcceptJs implements Action {
 }
 
 export type DaffAuthorizeNetActions<
-	T extends DaffAuthorizeNetTokenRequest = DaffAuthorizeNetTokenRequest, 
-	V extends DaffCartPaymentMethod = DaffCartPaymentMethod
+	T extends DaffAuthorizeNetTokenRequest = DaffAuthorizeNetTokenRequest
 > =
 	| DaffAuthorizeNetGenerateToken<T>
-	| DaffAuthorizeNetGenerateTokenSuccess<V>
+	| DaffAuthorizeNetGenerateTokenSuccess
 	| DaffAuthorizeNetGenerateTokenFailure
 	| DaffLoadAcceptJs;

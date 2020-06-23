@@ -1,11 +1,11 @@
-import { DaffCreditCard } from '../../../models/request/credit-card';
+import { DaffAuthorizeNetCreditCard } from '../../../models/request/credit-card';
 import { DaffAuthorizeNetConfig } from '../../interfaces/authorize-net-config.interface';
 import { DaffAuthorizeNetTokenRequest } from '../../../models/request/authorize-net-token-request';
 import { transformMagentoAuthorizeNetRequest, transformMagentoAuthorizeNetResponse } from './authorize-net-transformer';
 import { AuthorizeNetResponse } from 'libs/authorizenet/src/models/response/authorize-net-response';
 
 describe('AuthorizeNet | Drivers | Magento | Transformers', () => {
-	const stubCreditCard: DaffCreditCard = {
+	const stubCreditCard: DaffAuthorizeNetCreditCard = {
 		name: 'name',
 		cardnumber: 'cardnumber',
 		month: 'month',
@@ -14,7 +14,8 @@ describe('AuthorizeNet | Drivers | Magento | Transformers', () => {
 	}
 	const stubAuthData: DaffAuthorizeNetConfig = {
 		apiLoginID: 'apiLoginID',
-		clientKey: 'clientKey'
+		clientKey: 'clientKey',
+		acceptJsUrl: 'url'
 	};
 	
 	describe('transformMagentoAuthorizeNetRequest', () => {
@@ -22,10 +23,6 @@ describe('AuthorizeNet | Drivers | Magento | Transformers', () => {
 		it('should transform the credit card and auth data into an AuthorizeNet request object', () => {
 			const request: DaffAuthorizeNetTokenRequest = {
 				creditCard: stubCreditCard
-			};
-			const config: DaffAuthorizeNetConfig = {
-				clientKey: stubAuthData.clientKey,
-				apiLoginID: stubAuthData.apiLoginID
 			};
 			const expectedRequestObject = {
 				cardData: {
@@ -39,7 +36,7 @@ describe('AuthorizeNet | Drivers | Magento | Transformers', () => {
 					apiLoginID: stubAuthData.apiLoginID
 				}
 			};
-			expect(transformMagentoAuthorizeNetRequest(request, config)).toEqual(expectedRequestObject);
+			expect(transformMagentoAuthorizeNetRequest(request, stubAuthData)).toEqual(expectedRequestObject);
 		});
 	});
 

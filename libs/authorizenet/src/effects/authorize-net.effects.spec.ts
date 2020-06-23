@@ -5,17 +5,17 @@ import { hot, cold } from 'jasmine-marbles';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { MockStore } from '@ngrx/store/testing';
 
-import { DaffCartPaymentMethodAdd } from '@daffodil/cart';
+import { DaffCartPaymentUpdate } from '@daffodil/cart';
 
 import { DaffAuthorizeNetEffects } from './authorize-net.effects';
-import { DaffAuthorizeNetGenerateToken } from '../actions/authorizenet.actions';
+import { DaffAuthorizeNetGenerateToken, DaffAuthorizeNetGenerateTokenSuccess } from '../actions/authorizenet.actions';
 import { DaffAuthorizeNetTokenRequest } from '../models/request/authorize-net-token-request';
 import { DaffAuthorizeNetGenerateTokenFailure } from '../actions/authorizenet.actions';
-import { DaffAuthorizeNetDriver } from '../drivers/injection-tokens/authorize-net-driver.token';
 import { daffAuthorizeNetReducers } from '../reducers/authorize-net.reducers';
-import { DaffAuthorizeNetService } from '../drivers/public_api';
+import { DaffAuthorizeNetService, DaffAuthorizeNetConfigToken, DaffAuthorizeNetConfig } from '../drivers/public_api';
 import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '../drivers/magento/authorize-net-payment-id';
-import { DaffAuthorizeNetPaymentId } from '../models/authorizenet-payment-id.token';
+import { DaffAuthorizeNetDriver } from '../drivers/interfaces/authorize-net-service.interface';
+import { DaffAuthorizeNetPaymentId } from '../drivers/interfaces/authorize-net-payment-id.token';
 
 class MockAuthorizeNetDriver implements DaffAuthorizeNetService {
 	generateToken(paymentRequest): Observable<any> {
@@ -36,6 +36,11 @@ describe('DaffAuthorizeNetEffects', () => {
 	};
 	let store: MockStore<any>;
 	let authorizeNetPaymentService: MockAuthorizeNetDriver;
+	const stubConfig: DaffAuthorizeNetConfig = {
+		clientKey: 'clientKey',
+		apiLoginID: 'apiLoginID',
+		acceptJsUrl: 'acceptJsUrl'
+	}
   
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -48,7 +53,8 @@ describe('DaffAuthorizeNetEffects', () => {
         DaffAuthorizeNetEffects,
 				provideMockActions(() => actions$),
 				{ provide: DaffAuthorizeNetDriver, useClass: MockAuthorizeNetDriver },
-				{ provide: DaffAuthorizeNetPaymentId, useValue: MAGENTO_AUTHORIZE_NET_PAYMENT_ID }
+				{ provide: DaffAuthorizeNetPaymentId, useValue: MAGENTO_AUTHORIZE_NET_PAYMENT_ID },
+				{ provide: DaffAuthorizeNetConfigToken, useValue: stubConfig }
       ]
     });
 
@@ -74,12 +80,13 @@ describe('DaffAuthorizeNetEffects', () => {
         actions$ = hot('--a', { a: authorizeNetGenerateToken });
       });
       
-      it('should dispatch a DaffCartPaymentMethodAdd action', () => {
-        const cartPaymentMethodAddAction = new DaffCartPaymentMethodAdd({
+      it('should dispatch a DaffCartPaymentUpdate action', () => {
+				const generateTokenSuccessAction = new DaffAuthorizeNetGenerateTokenSuccess();
+        const cartPaymentMethodAddAction = new DaffCartPaymentUpdate({
 					method: MAGENTO_AUTHORIZE_NET_PAYMENT_ID,
 					payment_info: 'token'
 				});
-        expected = cold('--a', { a: cartPaymentMethodAddAction });
+        expected = cold('--(ab)', { a: generateTokenSuccessAction, b: cartPaymentMethodAddAction });
         expect(effects.generateToken$).toBeObservable(expected);
 			});
 		});

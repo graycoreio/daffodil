@@ -1,5 +1,5 @@
-import { DaffCreditCard } from './credit-card';
+import { DaffAuthorizeNetCreditCard } from './credit-card';
 
 export interface DaffAuthorizeNetTokenRequest {
-	creditCard: DaffCreditCard;
+	creditCard: DaffAuthorizeNetCreditCard;
 }

@@ -1,8 +1,9 @@
-import { DaffAuthorizeNetConfig } from '../../drivers/interfaces/authorize-net-config.interface';
-
 export interface AuthorizeNetRequest {
 	cardData: AuthorizeNetCreditCard;
-	authData: DaffAuthorizeNetConfig;
+	authData: {
+		clientKey: string;
+		apiLoginID: string;
+	};
 }
 
 export interface AuthorizeNetCreditCard {
