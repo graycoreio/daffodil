@@ -10,7 +10,6 @@ describe('AuthorizeNet | AuthorizeNet Reducer', () => {
   beforeEach(() => {
 		stubPaymentNonce = 'tokenResponse';
 		initialState = {
-			cc_last_4: null,
 			loading: false,
 			error: null
 		};

@@ -15,9 +15,10 @@ import { DaffAuthorizeNetDriver } from '../drivers/injection-tokens/authorize-ne
 import { daffAuthorizeNetReducers } from '../reducers/authorize-net.reducers';
 import { DaffAuthorizeNetService } from '../drivers/public_api';
 import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '../drivers/magento/authorize-net-payment-id';
+import { DaffAuthorizeNetPaymentId } from '../models/authorizenet-payment-id.token';
 
 class MockAuthorizeNetDriver implements DaffAuthorizeNetService {
-	generateToken(paymentRequest, last4CC): Observable<any> {
+	generateToken(paymentRequest): Observable<any> {
 		return null;
 	}
 }
@@ -46,7 +47,8 @@ describe('DaffAuthorizeNetEffects', () => {
       providers: [
         DaffAuthorizeNetEffects,
 				provideMockActions(() => actions$),
-				{ provide: DaffAuthorizeNetDriver, useClass: MockAuthorizeNetDriver }
+				{ provide: DaffAuthorizeNetDriver, useClass: MockAuthorizeNetDriver },
+				{ provide: DaffAuthorizeNetPaymentId, useValue: MAGENTO_AUTHORIZE_NET_PAYMENT_ID }
       ]
     });
 
@@ -64,19 +66,6 @@ describe('DaffAuthorizeNetEffects', () => {
 
     let expected;
 		const authorizeNetGenerateToken = new DaffAuthorizeNetGenerateToken(paymentTokenRequest);
-
-		it('should call request a token with the last 4 digits of the customer credit card', () => {
-			spyOn(authorizeNetPaymentService, 'generateToken').and.returnValue(of('token'));
-			actions$ = hot('a', { a: authorizeNetGenerateToken });
-			const cartPaymentMethodAddAction = new DaffCartPaymentMethodAdd({
-				method: MAGENTO_AUTHORIZE_NET_PAYMENT_ID,
-				payment_info: 'token'
-			});
-			expected = cold('a', { a: cartPaymentMethodAddAction });
-			expect(effects.generateToken$).toBeObservable(expected);
-
-			expect(authorizeNetPaymentService.generateToken).toHaveBeenCalledWith(paymentTokenRequest, '1234')
-		});
     
     describe('when the call to the AuthorizeNetService is successful', () => {
 

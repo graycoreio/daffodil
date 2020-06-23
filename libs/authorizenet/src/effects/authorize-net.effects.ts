@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { tap, switchMap, map, catchError, withLatestFrom } from 'rxjs/operators';
+import { tap, switchMap, map, catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
 import { DaffCartPaymentMethodAdd } from '@daffodil/cart';
@@ -14,8 +14,6 @@ import {
 import { DaffAuthorizeNetTokenRequest } from '../models/request/authorize-net-token-request';
 import { DaffAuthorizeNetDriver } from '../drivers/injection-tokens/authorize-net-driver.token';
 import { DaffAuthorizeNetService } from '../drivers/interfaces/authorize-net-service.interface';
-import { daffAuthorizeNetSelectors } from '../selectors/authorize-net.selector';
-import { Store, select } from '@ngrx/store';
 import { DaffAuthorizeNetPaymentId } from '../models/authorizenet-payment-id.token';
 
 const ACCEPT_LIBRARY = 'https://jstest.authorize.net/v1/Accept.js';
@@ -26,19 +24,14 @@ export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = Da
   constructor(
     private actions$: Actions,
 		@Inject(DaffAuthorizeNetDriver) private driver: DaffAuthorizeNetService<T>,
-		@Inject(DaffAuthorizeNetPaymentId) private authorizeNetPaymentId: string,
-		private store: Store<any>
+		@Inject(DaffAuthorizeNetPaymentId) private authorizeNetPaymentId: string
 	){}
-	private selectors = daffAuthorizeNetSelectors();
 
   @Effect()
   generateToken$ : Observable<any> = this.actions$.pipe(
 		ofType(DaffAuthorizeNetActionTypes.GenerateTokenAction),
-		withLatestFrom(
-			this.store.pipe(select(this.selectors.selectCcLast4))
-		),
-		switchMap(([action, ccLast4]: [DaffAuthorizeNetGenerateToken<T>, string]) => 
-			this.driver.generateToken(action.payload, ccLast4).pipe(
+		switchMap((action: DaffAuthorizeNetGenerateToken<T>) => 
+			this.driver.generateToken(action.payload).pipe(
 				map(resp => {
 					return new DaffCartPaymentMethodAdd({
 						method: this.authorizeNetPaymentId,

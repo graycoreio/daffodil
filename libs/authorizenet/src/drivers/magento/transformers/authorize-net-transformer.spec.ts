@@ -53,12 +53,13 @@ describe('AuthorizeNet | Drivers | Magento | Transformers', () => {
 					dataDescriptor: null
 				}
 			}
-			const cc_last_4 = '1234';
-			expect(transformMagentoAuthorizeNetResponse(authorizeNetResponse, cc_last_4)).toEqual(
+			const ccNumber = '1243123412341234';
+			const ccLast4 = '1234';
+			expect(transformMagentoAuthorizeNetResponse(authorizeNetResponse, ccNumber)).toEqual(
 				{ 
 					code: 'authorizenet_acceptjs',
 					authorizenet_acceptjs: {
-						cc_last_4: parseInt(cc_last_4, 10),
+						cc_last_4: parseInt(ccLast4, 10),
 						opaque_data_descriptor: 'COMMON.ACCEPT.INAPP.PAYMENT',
 						opaque_data_value: 'paymentNonce'
 					}

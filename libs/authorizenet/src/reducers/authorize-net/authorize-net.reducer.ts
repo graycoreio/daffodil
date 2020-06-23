@@ -4,7 +4,6 @@ import { DaffAuthorizeNetTokenRequest } from '../../models/request/authorize-net
 import { DaffCartPaymentActionTypes, DaffCartPaymentActions, DaffCartPaymentMethod } from '@daffodil/cart';
 
 export const initialState: DaffAuthorizeNetReducerState = {
-	cc_last_4: null,
 	error: null,
 	loading: false
 }
@@ -15,8 +14,7 @@ export function daffAuthorizeNetReducer <T extends DaffAuthorizeNetTokenRequest,
 		case DaffAuthorizeNetActionTypes.GenerateTokenAction:
 			return {
 				...state,
-				loading: true,
-				cc_last_4: action.payload.creditCard.cardnumber.slice(12)
+				loading: true
 			}
 		case DaffCartPaymentActionTypes.CartPaymentMethodAddAction:
 			return {

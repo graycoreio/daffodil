@@ -19,11 +19,11 @@ export function transformMagentoAuthorizeNetRequest(request: DaffAuthorizeNetTok
 	};
 };
 
-export function transformMagentoAuthorizeNetResponse(response: AuthorizeNetResponse, ccLast4: string): MagentoAuthorizeNetPayment {
+export function transformMagentoAuthorizeNetResponse(response: AuthorizeNetResponse, ccNumber: string): MagentoAuthorizeNetPayment {
 	return {
 		code: 'authorizenet_acceptjs',
 		authorizenet_acceptjs: {
-			cc_last_4: parseInt(ccLast4, 10),
+			cc_last_4: parseInt(ccNumber.slice(12), 10),
 			opaque_data_descriptor: 'COMMON.ACCEPT.INAPP.PAYMENT',
 			opaque_data_value: response.opaqueData.dataValue
 		}

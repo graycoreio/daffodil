@@ -21,13 +21,13 @@ export class DaffMagentoAuthorizeNetService implements DaffAuthorizeNetService {
 		@Inject(DaffAuthorizeNetConfigToken) public config: DaffAuthorizeNetConfig
 	) {}
 
-	generateToken(paymentTokenRequest: DaffAuthorizeNetTokenRequest, ccLast4: string): Observable<MagentoAuthorizeNetPayment> {
+	generateToken(paymentTokenRequest: DaffAuthorizeNetTokenRequest): Observable<MagentoAuthorizeNetPayment> {
 		return new Observable(observer =>
 			Accept.dispatchData(transformMagentoAuthorizeNetRequest(paymentTokenRequest, this.config), (response: AuthorizeNetResponse) => {
 				if (response.messages.resultCode === 'Error') {
 					throw new Error(response.messages[0].code + ':' + response.messages.message[0].text);
 				} else {
-					observer.next(transformMagentoAuthorizeNetResponse(response, ccLast4));
+					observer.next(transformMagentoAuthorizeNetResponse(response, paymentTokenRequest.creditCard.cardnumber));
 				}
 			})
 		);
