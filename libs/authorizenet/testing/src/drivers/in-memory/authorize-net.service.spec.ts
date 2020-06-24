@@ -43,7 +43,7 @@ describe('Driver | In Memory | AuthorizeNet | AuthorizeNetService', () => {
     });
 
     describe('a successful generateToken request', () => {
-      it('should send a post request to `api/authorizenet/generateToken` and respond with a cart', done => {
+      it('should send a post request to `api/authorizenet/generateToken` and return a response', done => {
 				const paymentTokenRequest: DaffAuthorizeNetTokenRequest = {
 					creditCard: {
 						name: 'name',
