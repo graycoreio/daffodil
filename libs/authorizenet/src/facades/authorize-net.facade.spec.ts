@@ -5,15 +5,13 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffAuthorizeNetFacade } from './authorize-net.facade';
 import { daffAuthorizeNetReducers } from '../reducers/authorize-net.reducers';
-import { DaffAuthorizeNetGenerateTokenFailure, DaffAuthorizeNetGenerateTokenSuccess } from '../actions/authorizenet.actions';
-import { DaffAuthorizeNetTokenResponse } from '../models/response/authorize-net-token-response';
+import { DaffAuthorizeNetGenerateTokenFailure } from '../actions/authorizenet.actions';
+import { DaffCartPaymentMethodAdd } from '@daffodil/cart';
+import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '../drivers/magento/authorize-net-payment-id';
 
 describe('DaffAuthorizeNetFacade', () => {
   let store: MockStore<any>;
-  let facade: DaffAuthorizeNetFacade<DaffAuthorizeNetTokenResponse>;
-	const stubAuthorizeTokenResponse = {
-		token: 'authorizeToken'
-	};
+  let facade: DaffAuthorizeNetFacade;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -32,7 +30,7 @@ describe('DaffAuthorizeNetFacade', () => {
   });
 
   it('should be created', () => {
-    const service: DaffAuthorizeNetFacade<DaffAuthorizeNetTokenResponse> = TestBed.get(DaffAuthorizeNetFacade);
+    const service: DaffAuthorizeNetFacade = TestBed.get(DaffAuthorizeNetFacade);
     expect(service).toBeTruthy();
   });
 
@@ -45,21 +43,15 @@ describe('DaffAuthorizeNetFacade', () => {
     expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 
-  describe('authorizeTokenResponse$', () => {
+  describe('loading$', () => {
 
-    it('should return the payment nonce', () => {
-      const expected = cold('a', { a: stubAuthorizeTokenResponse });
-      store.dispatch(new DaffAuthorizeNetGenerateTokenSuccess(stubAuthorizeTokenResponse));
-      expect(facade.authorizeTokenResponse$).toBeObservable(expected);
-    });
-  });
-
-  describe('tokenNonce$', () => {
-
-    it('should return the payment nonce', () => {
-      const expected = cold('a', { a: stubAuthorizeTokenResponse.token });
-      store.dispatch(new DaffAuthorizeNetGenerateTokenSuccess(stubAuthorizeTokenResponse));
-      expect(facade.tokenNonce$).toBeObservable(expected);
+    it('should return loading state for submitting a payment method', () => {
+      const expected = cold('a', { a: false });
+      store.dispatch(new DaffCartPaymentMethodAdd({
+				method: MAGENTO_AUTHORIZE_NET_PAYMENT_ID,
+				payment_info: null
+			}));
+      expect(facade.loading$).toBeObservable(expected);
     });
   });
 

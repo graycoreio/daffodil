@@ -3,10 +3,7 @@ import { Observable } from 'rxjs';
 
 import { DaffStoreFacade } from '@daffodil/core';
 
-import { DaffAuthorizeNetTokenResponse } from '../models/response/authorize-net-token-response';
-
-export interface DaffAuthorizeNetFacadeInterface<T extends DaffAuthorizeNetTokenResponse = DaffAuthorizeNetTokenResponse> extends DaffStoreFacade<Action> {
-	authorizeTokenResponse$: Observable<T>
-  tokenNonce$: Observable<string>;
+export interface DaffAuthorizeNetFacadeInterface extends DaffStoreFacade<Action> {
+  loading$: Observable<boolean>;
   error$: Observable<string>;
 }

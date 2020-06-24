@@ -1,11 +1,10 @@
 import { Action } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
 
-import { DaffAuthorizeNetFacadeInterface, DaffAuthorizeNetTokenResponse } from '@daffodil/authorizenet';
+import { DaffAuthorizeNetFacadeInterface } from '@daffodil/authorizenet';
 
 export class MockDaffAuthorizeNetFacade implements DaffAuthorizeNetFacadeInterface {
-	authorizeTokenResponse$: BehaviorSubject<DaffAuthorizeNetTokenResponse> = new BehaviorSubject(null);
-  tokenNonce$: BehaviorSubject<string> = new BehaviorSubject(null);
+  loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   error$: BehaviorSubject<string> = new BehaviorSubject(null);
 
   dispatch(action: Action) {};

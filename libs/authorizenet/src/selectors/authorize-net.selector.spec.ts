@@ -1,23 +1,22 @@
 import { TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
+import { DaffCartPaymentMethodAdd } from '@daffodil/cart';
 
 import { DaffAuthorizeNetReducersState } from '../reducers/authorize-net-reducers.interface';
 import { daffAuthorizeNetReducers } from '../reducers/authorize-net.reducers';
-import { DaffAuthorizeNetGenerateTokenSuccess, DaffAuthorizeNetGenerateTokenFailure } from '../actions/authorizenet.actions';
+import { DaffAuthorizeNetGenerateTokenFailure } from '../actions/authorizenet.actions';
 import { daffAuthorizeNetSelectors } from './authorize-net.selector';
-import { DaffAuthorizeNetTokenResponse } from '../models/response/authorize-net-token-response';
+import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '../drivers/magento/authorize-net-payment-id';
 
 describe('DaffAuthorizeNetSelectors', () => {
 
-	let store: Store<DaffAuthorizeNetReducersState<DaffAuthorizeNetTokenResponse>>;
-	const stubTokenNonce = 'tokenNonce';
+	let store: Store<DaffAuthorizeNetReducersState>;
 	const {
 		selectAuthorizeNetState,
-		selectTokenResponse,
-		selectToken,
+		selectLoading,
 		selectError
-	} = daffAuthorizeNetSelectors<DaffAuthorizeNetTokenResponse>();
+	} = daffAuthorizeNetSelectors();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -30,16 +29,17 @@ describe('DaffAuthorizeNetSelectors', () => {
 
     store = TestBed.get(Store);
 
-		store.dispatch(new DaffAuthorizeNetGenerateTokenSuccess({ token: stubTokenNonce }));
+		store.dispatch(new DaffCartPaymentMethodAdd({
+			method: MAGENTO_AUTHORIZE_NET_PAYMENT_ID,
+			payment_info: null
+		}));
   });
 
   describe('selectAuthorizeNetState', () => {
     
     it('selects DaffAuthorizeNetReducerState', () => {
       const expectedFeatureState = {
-				tokenResponse: {
-					token: stubTokenNonce
-				},
+				loading: false,
 				error: null
       }
       const selector = store.pipe(select(selectAuthorizeNetState));
@@ -48,23 +48,11 @@ describe('DaffAuthorizeNetSelectors', () => {
     });
   });
 
-  describe('selectTokenResponse', () => {
+  describe('selectLoading', () => {
 
-    it('selects the token response state', () => {
-			const tokenResponse = {
-				token: stubTokenNonce
-      }
-      const selector = store.pipe(select(selectTokenResponse));
-      const expected = cold('a', { a: tokenResponse });
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectToken', () => {
-
-    it('selects the token nonce state', () => {
-      const selector = store.pipe(select(selectToken));
-      const expected = cold('a', { a: stubTokenNonce });
+    it('selects the loading state', () => {
+      const selector = store.pipe(select(selectLoading));
+      const expected = cold('a', { a: false });
       expect(selector).toBeObservable(expected);
     });
   });

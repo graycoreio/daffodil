@@ -1,7 +1,6 @@
 import { Action } from '@ngrx/store';
 
 import { DaffAuthorizeNetTokenRequest } from '../models/request/authorize-net-token-request';
-import { DaffAuthorizeNetTokenResponse } from '../models/response/authorize-net-token-response';
 
 export enum DaffAuthorizeNetActionTypes {
   GenerateTokenAction = '[Daff-Authorize-Net] Generate Token',
@@ -15,7 +14,7 @@ export enum DaffAuthorizeNetActionTypes {
  * 
  * @param payload - An DaffAuthorizeNetRequestData object.
  */
-export class DaffAuthorizeNetGenerateToken<T extends DaffAuthorizeNetTokenRequest> implements Action {
+export class DaffAuthorizeNetGenerateToken<T extends DaffAuthorizeNetTokenRequest = DaffAuthorizeNetTokenRequest> implements Action {
 	readonly type = DaffAuthorizeNetActionTypes.GenerateTokenAction;
 
 	constructor(public payload: T) { }
@@ -26,10 +25,8 @@ export class DaffAuthorizeNetGenerateToken<T extends DaffAuthorizeNetTokenReques
  * 
  * @param payload - A string that is the payment nonce for a credit card.
  */
-export class DaffAuthorizeNetGenerateTokenSuccess<T extends DaffAuthorizeNetTokenResponse> implements Action {
+export class DaffAuthorizeNetGenerateTokenSuccess implements Action {
   readonly type = DaffAuthorizeNetActionTypes.GenerateTokenSuccessAction;
-
-  constructor(public payload: T) { }
 }
 
 /**
@@ -47,8 +44,10 @@ export class DaffLoadAcceptJs implements Action {
 	readonly type = DaffAuthorizeNetActionTypes.LoadAcceptJsAction;
 }
 
-export type DaffAuthorizeNetActions<T extends DaffAuthorizeNetTokenRequest, V extends DaffAuthorizeNetTokenResponse> =
+export type DaffAuthorizeNetActions<
+	T extends DaffAuthorizeNetTokenRequest = DaffAuthorizeNetTokenRequest
+> =
 	| DaffAuthorizeNetGenerateToken<T>
-	| DaffAuthorizeNetGenerateTokenSuccess<V>
+	| DaffAuthorizeNetGenerateTokenSuccess
 	| DaffAuthorizeNetGenerateTokenFailure
 	| DaffLoadAcceptJs;
