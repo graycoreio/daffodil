@@ -10,6 +10,9 @@ import {
   DaffCartBillingAddressUpdate,
   DaffCartBillingAddressUpdateSuccess,
   DaffCartBillingAddressUpdateFailure,
+  DaffCartAddressUpdate,
+  DaffCartAddressUpdateSuccess,
+  DaffCartAddressUpdateFailure,
 } from '../../actions/public_api';
 import { cartBillingAddressReducer } from './cart-billing-address.reducer';
 import { DaffCartErrorType } from '../errors/cart-error-type.enum';
@@ -158,6 +161,74 @@ describe('Cart | Reducer | Cart Billing Address', () => {
       const cartBillingAddressUpdateFailure = new DaffCartBillingAddressUpdateFailure(error);
 
       result = cartBillingAddressReducer(state, cartBillingAddressUpdateFailure);
+    });
+
+    it('should indicate that the cart is not loading', () => {
+      expect(result.loading).toEqual(false);
+    });
+
+    it('should add an error to the billing address section of state.errors', () => {
+      expect(result.errors[DaffCartErrorType.BillingAddress].length).toEqual(2);
+    });
+  });
+
+  describe('when DaffCartAddressUpdate is triggered', () => {
+    it('should set loading state to true', () => {
+      const cartAddressUpdateAction = new DaffCartAddressUpdate(cart.billing_address);
+
+      const result = cartBillingAddressReducer(initialState, cartAddressUpdateAction);
+
+      expect(result.loading).toEqual(true);
+    });
+  });
+
+  describe('when DaffCartAddressUpdateSuccess is triggered', () => {
+    let result;
+    let state: DaffCartReducerState<DaffCart>;
+
+    beforeEach(() => {
+      const cartAddressUpdateActionSuccess = new DaffCartAddressUpdateSuccess(cart);
+      state = {
+        ...initialState,
+        loading: true
+      }
+
+      result = cartBillingAddressReducer(state, cartAddressUpdateActionSuccess);
+    });
+
+    it('should set cart from action.payload', () => {
+      expect(result.cart).toEqual(cart)
+    });
+
+    it('should indicate that the cart is not loading', () => {
+      expect(result.loading).toEqual(false);
+    });
+
+    it('should reset the errors in the billing address section of state.errors to an empty array', () => {
+      expect(result.errors[DaffCartErrorType.BillingAddress]).toEqual([]);
+    });
+  });
+
+  describe('when DaffCartAddressUpdateFailure is triggered', () => {
+    let error: string;
+    let result;
+    let state: DaffCartReducerState<DaffCart>;
+
+    beforeEach(() => {
+      state = {
+        ...initialState,
+        loading: true,
+        errors: {
+          ...initialState.errors,
+          [DaffCartErrorType.BillingAddress]: new Array('firstError')
+        }
+      }
+
+      error = 'error';
+
+      const cartAddressUpdateFailure = new DaffCartAddressUpdateFailure(error);
+
+      result = cartBillingAddressReducer(state, cartAddressUpdateFailure);
     });
 
     it('should indicate that the cart is not loading', () => {

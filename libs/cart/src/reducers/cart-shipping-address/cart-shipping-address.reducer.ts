@@ -1,5 +1,6 @@
 import {
   DaffCartShippingAddressActionTypes,
+  DaffCartAddressActionTypes,
 } from '../../actions/public_api';
 import { initialState } from '../cart-initial-state';
 import { DaffCartReducerState } from '../cart-state.interface';
@@ -18,6 +19,7 @@ export function cartShippingAddressReducer<T extends DaffCart>(
   switch (action.type) {
     case DaffCartShippingAddressActionTypes.CartShippingAddressLoadAction:
     case DaffCartShippingAddressActionTypes.CartShippingAddressUpdateAction:
+    case DaffCartAddressActionTypes.CartAddressUpdateAction:
       return { ...state, loading: true };
 
     case DaffCartShippingAddressActionTypes.CartShippingAddressLoadSuccessAction:
@@ -32,6 +34,7 @@ export function cartShippingAddressReducer<T extends DaffCart>(
       };
 
     case DaffCartShippingAddressActionTypes.CartShippingAddressUpdateSuccessAction:
+    case DaffCartAddressActionTypes.CartAddressUpdateSuccessAction:
       return {
         ...state,
         ...resetErrors(state.errors),
@@ -44,6 +47,7 @@ export function cartShippingAddressReducer<T extends DaffCart>(
 
     case DaffCartShippingAddressActionTypes.CartShippingAddressLoadFailureAction:
     case DaffCartShippingAddressActionTypes.CartShippingAddressUpdateFailureAction:
+    case DaffCartAddressActionTypes.CartAddressUpdateFailureAction:
       return {
         ...state,
         ...addError(state.errors, action.payload),
