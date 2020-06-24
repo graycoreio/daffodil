@@ -39,7 +39,7 @@ describe('DaffAuthorizeNetEffects', () => {
 	const stubConfig: DaffAuthorizeNetConfig = {
 		clientKey: 'clientKey',
 		apiLoginID: 'apiLoginID',
-		acceptJsUrl: 'acceptJsUrl'
+		production: false
 	}
   
   beforeEach(() => {

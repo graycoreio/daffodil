@@ -17,6 +17,9 @@ import { DaffAuthorizeNetService, DaffAuthorizeNetDriver } from '../drivers/inte
 import { DaffAuthorizeNetPaymentId } from '../drivers/interfaces/authorize-net-payment-id.token';
 import { DaffAuthorizeNetConfig, DaffAuthorizeNetConfigToken } from '../drivers/public_api';
 
+const ACCEPT_JS_SANDBOX_URL = 'https://jstest.authorize.net/v1/Accept.js';
+const ACCEPT_JS_PRODUCTION_URL = 'https://js.authorize.net/v1/Accept.js';
+
 @Injectable()
 export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = DaffAuthorizeNetTokenRequest> {
 
@@ -51,7 +54,7 @@ export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = Da
 			const acceptJsScript = document.createElement('script');
 			acceptJsScript.async = true;
 			acceptJsScript.setAttribute('type', 'text/javascript');
-			acceptJsScript.setAttribute('src', this.config.acceptJsUrl);
+			acceptJsScript.setAttribute('src', this.config.production ? ACCEPT_JS_PRODUCTION_URL : ACCEPT_JS_SANDBOX_URL);
 			acceptJsScript.setAttribute('charset', 'utf-8');
 			document.body.appendChild(acceptJsScript);
 		})

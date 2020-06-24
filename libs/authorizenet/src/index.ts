@@ -6,7 +6,7 @@ export {
 	DaffAuthorizeNetGenerateTokenFailure
 } from './actions/authorizenet.actions';
 
-export { DaffCreditCard } from './models/request/credit-card';
+export { DaffAuthorizeNetCreditCard } from './models/request/credit-card';
 export { DaffAuthorizeNetFacade } from './facades/authorize-net.facade';
 export { DaffAuthorizeNetFacadeInterface } from './facades/authorize-net-facade.interface';
 export { DaffAuthorizeNetTokenRequest } from './models/request/authorize-net-token-request';
