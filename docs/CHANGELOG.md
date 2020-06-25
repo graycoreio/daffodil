@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.3](https://github.com/graycoreio/daffodil/compare/v0.6.2...v0.6.3) (2020-06-25)
+
+
+### Features
+
+* **authorizenet:** add inmemory and testing drivers ([#956](https://github.com/graycoreio/daffodil/issues/956)) ([19a6cc6](https://github.com/graycoreio/daffodil/commit/19a6cc6446457a9d116145d9da1f25c403be04e9))
+* **authorizenet:** overhaul the authorizenet module to be platform agnostic and useable with @daffodil/cart ([#952](https://github.com/graycoreio/daffodil/issues/952)) ([8062c47](https://github.com/graycoreio/daffodil/commit/8062c478c6af3fac9bb551564cf96a22ebb12593))
+* **cart:** add an action that payment modules can use to add payment info ([#951](https://github.com/graycoreio/daffodil/issues/951)) ([9be0c51](https://github.com/graycoreio/daffodil/commit/9be0c51f4218cf461fface5d920ccd1c8c0847e5))
+
 ### [0.6.2](https://github.com/graycoreio/daffodil/compare/v0.6.1...v0.6.2) (2020-06-18)
 
 
