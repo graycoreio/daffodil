@@ -70,6 +70,9 @@
       "@daffodil/design/card/examples": [
         "dist/design/card/examples"
       ],
+      "@daffodil/design/checkbox/examples": [
+        "dist/design/checkbox/examples"
+      ],
       "@daffodil/branding": [
         "dist/branding"
       ],
@@ -97,18 +100,18 @@
       "@daffodil/geography/testing": [
         "dist/geography/testing"
       ],
-			"@daffodil/authorizenet": [
-				"dist/authorizenet"
+      "@daffodil/authorizenet": [
+        "dist/authorizenet"
       ],
-			"@daffodil/authorizenet/testing": [
-				"dist/authorizenet/testing"
+      "@daffodil/authorizenet/testing": [
+        "dist/authorizenet/testing"
       ],
       "@daffodil/auth": [
         "dist/auth"
       ],
       "@daffodil/auth/testing": [
         "dist/auth/testing"
-			],
+      ],
       "@daffodil/paypal": [
         "dist/paypal"
       ],

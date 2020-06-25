@@ -11,7 +11,6 @@ import {
   DaffLinkSetModule,
   DaffArticleModule
  } from '@daffodil/design';
-
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -20,7 +19,6 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     DesignLandAppRoutingModule,
     HttpClientModule,
-
     DaffSidebarModule,
     DaffLinkSetModule,
     DaffArticleModule
