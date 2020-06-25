@@ -187,7 +187,7 @@ const createCartSelectors = <
 
   const selectHasPaymentMethod = createSelector(
     selectCartPayment,
-    paymentMethod => !!paymentMethod
+    paymentMethod => !!paymentMethod && paymentMethod.method !== ''
   );
 
   const selectCanPlaceOrder = createSelector(

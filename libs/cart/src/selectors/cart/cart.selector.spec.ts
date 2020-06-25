@@ -429,9 +429,23 @@ describe('Cart | Selector | Cart', () => {
       });
     });
 
-    describe('when the cart does not have a selected payment method', () => {
+    describe('when the cart has a null selected payment method', () => {
       beforeEach(() => {
         cart.payment = null;
+        store.dispatch(new DaffCartLoadSuccess(cart));
+      });
+
+      it('should return false', () => {
+        const selector = store.pipe(select(selectHasPaymentMethod));
+        const expected = cold('a', {a: false});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart has a empty string selected payment method', () => {
+      beforeEach(() => {
+        cart.payment = {method: ''};
         store.dispatch(new DaffCartLoadSuccess(cart));
       });
 
