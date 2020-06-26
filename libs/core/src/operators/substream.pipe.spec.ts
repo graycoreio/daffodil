@@ -29,6 +29,39 @@ describe('Core | Operators | Substream', () => {
         action3.type
       ];
     });
+
+    describe('and when the actions are emitted in the expected order multiple times', () => {
+      describe('and when the emission order is not interrupted', () => {
+        beforeEach(() => {
+          actions$ = hot('--a--b--c--a--b--c', {a: action1, b: action2, c: action3});
+          substream$ = actions$.pipe(
+            substream(sequence)
+          );
+        });
+
+        it('should emit the expected list of actions', () => {
+          const expected = cold('--------d--------d', {d: [action1, action2, action3]});
+
+          expect(substream$).toBeObservable(expected);
+        });
+      });
+
+      describe('and when the emission order is interrupted by an unexpected action', () => {
+        beforeEach(() => {
+          actions$ = hot('--a--d--b--c--a--d--b--c', {a: action1, b: action2, c: action3, d: action4});
+          substream$ = actions$.pipe(
+            substream(sequence)
+          );
+        });
+
+        it('should emit the expected list of actions', () => {
+          const expected = cold('-----------d-----------d', {d: [action1, action2, action3]});
+
+          expect(substream$).toBeObservable(expected);
+        });
+      });
+    });
+
     describe('and when the actions are emitted in the expected order', () => {
       describe('and when the emission order is not interrupted', () => {
         beforeEach(() => {
@@ -146,6 +179,65 @@ describe('Core | Operators | Substream', () => {
 
         it('should never emit', () => {
           const expected = cold('------------');
+
+          expect(substream$).toBeObservable(expected);
+        });
+      });
+    });
+  });
+
+  describe('when a list of types that have some optional types is passed', () => {
+    beforeEach(() => {
+      sequence = [
+        action1.type,
+        [
+          action2.type,
+          action3.type
+        ]
+      ];
+    });
+
+    describe('and when the actions are emitted in the expected order', () => {
+      describe('and when the first optional action is emitted', () => {
+        beforeEach(() => {
+          actions$ = hot('--a--b', {a: action1, b: action2});
+          substream$ = actions$.pipe(
+            substream(sequence)
+          );
+        });
+
+        it('should emit the list of actions containing the first optional action', () => {
+          const expected = cold('-----a', {a: [action1, action2]});
+
+          expect(substream$).toBeObservable(expected);
+        });
+      });
+
+      describe('and when the second optional action is emitted', () => {
+        beforeEach(() => {
+          actions$ = hot('--a--c', {a: action1, c: action3});
+          substream$ = actions$.pipe(
+            substream(sequence)
+          );
+        });
+
+        it('should emit the list of actions containing the second optional action', () => {
+          const expected = cold('-----a', {a: [action1, action3]});
+
+          expect(substream$).toBeObservable(expected);
+        });
+      });
+
+      describe('and when neither optional action is emitted', () => {
+        beforeEach(() => {
+          actions$ = hot('--a--a--d', {a: action1, d: action4});
+          substream$ = actions$.pipe(
+            substream(sequence)
+          );
+        });
+
+        it('should never emit', () => {
+          const expected = cold('---------');
 
           expect(substream$).toBeObservable(expected);
         });
