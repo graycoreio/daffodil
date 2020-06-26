@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.4](https://github.com/graycoreio/daffodil/compare/v0.6.3...v0.6.4) (2020-06-26)
+
+
+### Features
+
+* **authorizenet:** export all actions from authorizenet ([#959](https://github.com/graycoreio/daffodil/issues/959)) ([3c76454](https://github.com/graycoreio/daffodil/commit/3c764549b113be7e4cf85ae94255e2c4bb412c3d))
+* **design:** added checkbox examples ([#915](https://github.com/graycoreio/daffodil/issues/915)) ([100e5dd](https://github.com/graycoreio/daffodil/commit/100e5ddcee6c5b15d09ad01a6a13cf39ab974064))
+
 ### [0.6.3](https://github.com/graycoreio/daffodil/compare/v0.6.2...v0.6.3) (2020-06-25)
 
 
