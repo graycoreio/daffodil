@@ -1,0 +1,53 @@
+@mixin daff-list-theme($theme) {
+	$base: daff-map-deep-get($theme, 'core.base');
+	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
+
+	.daff-list {
+		.daff-list-item {
+			&__content {
+				*:nth-child(1) { /* stylelint-disable-line scss/selector-nest-combinators */
+					color: $base-contrast;
+				}
+
+				*:nth-child(n + 2) { /* stylelint-disable-line scss/selector-nest-combinators */
+					color: daff-illuminate($base-contrast, $daff-gray, 3);
+				}
+			}
+		}
+
+		// deprecated in v1.0.0
+		&--navigation {
+			.daff-list-item {
+				&:hover {
+					background-color: daff-illuminate($base, $daff-gray, 1);
+				}
+			}
+		}
+
+		// deprecated in v1.0.0
+		&--multi-line {
+			.daff-list-item {
+				&__content {
+					*:nth-child(1) { /* stylelint-disable-line scss/selector-nest-combinators */
+						color: $base-contrast;
+					}
+
+					*:nth-child(n + 2) { /* stylelint-disable-line scss/selector-nest-combinators */
+						color: daff-illuminate($base-contrast, $daff-gray, 3);
+					}
+				}
+			}
+		}
+	}
+
+	.daff-nav-list {
+		.daff-list-item {
+			background-color: $base;
+			transition: background-color 150ms;
+
+			&:hover {
+				background-color: daff-illuminate($base, $daff-gray, 1);
+			}
+		}
+	}
+}
