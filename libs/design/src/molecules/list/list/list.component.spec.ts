@@ -5,7 +5,10 @@ import { By } from '@angular/platform-browser';
 import { DaffListComponent, DaffListMode } from './list.component';
 
 @Component({
-  template: `<daff-list [mode]="mode"></daff-list>`
+  template: `
+    <daff-list [mode]="mode"></daff-list>
+    <daff-nav-list></daff-nav-list>
+  `
 })
 class WrapperComponent {
   mode: DaffListMode;
@@ -16,6 +19,7 @@ describe('DaffListComponent', () => {
   let component: DaffListComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
+  let navDE: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -83,6 +87,18 @@ describe('DaffListComponent', () => {
           'daff-list--navigation': true
         }));
       });
+    });
+  });
+
+  describe('<daff-nav-list>', () => {
+    beforeEach(() => {
+      navDE = fixture.debugElement.query(By.css('daff-nav-list'));
+    });
+
+    it('should add a class of "daff-nav-list" to the host element', () => {
+      expect(navDE.classes).toEqual(jasmine.objectContaining({
+        'daff-nav-list': true,
+      }));
     });
   });
 });
