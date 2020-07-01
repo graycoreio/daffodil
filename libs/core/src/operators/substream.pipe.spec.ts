@@ -21,7 +21,49 @@ describe('Core | Operators | Substream', () => {
     action4 = {type: 'type4'};
   });
 
-  describe('when a list of types with no terminators are passed', () => {
+  describe('when a list of one single type with no terminators is passed', () => {
+    beforeEach(() => {
+      sequence = [
+        action1.type,
+      ];
+    });
+
+    describe('and when the actions are emitted multiple times', () => {
+      describe('and when the emission order is not interrupted', () => {
+        beforeEach(() => {
+          actions$ = hot('--a--a--a--a', {a: action1});
+          substream$ = actions$.pipe(
+            substream(sequence)
+          );
+        });
+
+        it('should emit the expected list of actions', () => {
+          const expected = cold('--d--d--d--d', {d: [action1]});
+
+          expect(substream$).toBeObservable(expected);
+        });
+      });
+    });
+
+    describe('and when the actions are emitted in the expected order', () => {
+      describe('and when the emission order is not interrupted', () => {
+        beforeEach(() => {
+          actions$ = hot('--a', {a: action1});
+          substream$ = actions$.pipe(
+            substream(sequence)
+          );
+        });
+
+        it('should emit the expected list of actions', () => {
+          const expected = cold('--d', {d: [action1]});
+
+          expect(substream$).toBeObservable(expected);
+        });
+      });
+    });
+  });
+
+  describe('when a list of types with no terminators is passed', () => {
     beforeEach(() => {
       sequence = [
         action1.type,
@@ -110,7 +152,7 @@ describe('Core | Operators | Substream', () => {
     });
   });
 
-  describe('when a list of types with a terminator are passed', () => {
+  describe('when a list of types and a terminator are passed', () => {
     let terminator;
     beforeEach(() => {
       sequence = [
