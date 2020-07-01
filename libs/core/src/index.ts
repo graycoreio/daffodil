@@ -11,4 +11,5 @@ export { Constructable } from './constructable/constructable';
 
 export * from './errors/public_api';
 export * from './storage/public_api';
+export * from './operators/public_api';
 export { DaffSortable } from './sortable/sortable';
