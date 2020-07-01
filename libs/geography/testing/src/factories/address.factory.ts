@@ -7,9 +7,11 @@ import * as faker from 'faker/locale/en_US';
 
 export class MockDaffAddress implements DaffAddress {
   street = faker.address.streetName();
+  street2 = faker.address.secondaryAddress();
   city = faker.address.city();
   region = faker.address.stateAbbr();
   postcode = faker.address.zipCode();
+  country = faker.address.zipCode();
 }
 
 @Injectable({
