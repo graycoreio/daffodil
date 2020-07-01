@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.5](https://github.com/graycoreio/daffodil/compare/v0.6.4...v0.6.5) (2020-07-01)
+
+
+### Features
+
+* **core:** add substream operator ([#960](https://github.com/graycoreio/daffodil/issues/960)) ([a28325d](https://github.com/graycoreio/daffodil/commit/a28325d0d644e9b00005afc9cf48849416513581))
+
+
+### Bug Fixes
+
+* **cart:** hasPaymentMethod returns false for empty string method ([#958](https://github.com/graycoreio/daffodil/issues/958)) ([2542813](https://github.com/graycoreio/daffodil/commit/2542813486e7908b41ff34b136825d81aff803f0))
+
 ### [0.6.4](https://github.com/graycoreio/daffodil/compare/v0.6.3...v0.6.4) (2020-06-26)
 
 
