@@ -32,11 +32,11 @@ enum DaffListTypeEnum {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class DaffListComponent implements OnInit {
+export class DaffListComponent {
   @Input() mode: DaffListMode;
 
   @HostBinding('class.daff-list') get list() {
-    return this.listType === DaffListTypeEnum.Default || this.listType === undefined;
+    return this.listType === DaffListTypeEnum.Default;
   }
 
   @HostBinding('class.daff-list--multi-line') get multiline() {
@@ -52,17 +52,12 @@ export class DaffListComponent implements OnInit {
     return this.mode === DaffListModeEnum.Navigation;
   }
   
-  listType: DaffListType;
+  get listType(): DaffListType {
+    return this._getHostElement().localName;
+   }
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
+  constructor(private elementRef: ElementRef) {}
 
-  ngOnInit() {
-    for (const attr of LIST_HOST_ATTRIBUTES) {
-      if (this._hasHostAttributes(attr)) {
-        this.listType = attr;
-      }
-    }
-  }
 
   @HostBinding('class.daff-nav-list') get nav() {
     return this.listType === DaffListTypeEnum.Nav;
@@ -77,10 +72,5 @@ export class DaffListComponent implements OnInit {
 
   _getHostElement() {
     return this.elementRef.nativeElement;
-  }
-
-  /** Gets whether a list has one of the given attributes. */
-  _hasHostAttributes(...attributes: string[]) {
-    return attributes.some(attribute => this._getHostElement().localName === attribute);
   }
 }
