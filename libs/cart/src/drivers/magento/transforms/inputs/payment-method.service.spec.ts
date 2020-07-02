@@ -38,13 +38,19 @@ describe('Driver | Magento | Cart | Transformer | MagentoPaymentMethodInput', ()
     beforeEach(() => {
       method = 'method';
 
-      mockDaffPayment.method = method;
+			mockDaffPayment.method = method;
+			mockDaffPayment.payment_info = {
+				field: 1,
+				field2: {
+					someField: 'test'
+				}
+			}
 
       transformedPaymentMethod = service.transform(mockDaffPayment);
     });
 
-    it('should return an object with the correct values', () => {
-      expect(transformedPaymentMethod.code).toEqual(method);
+    it('should return the payment_info object', () => {
+      expect(transformedPaymentMethod).toEqual(mockDaffPayment.payment_info);
     });
   });
 });

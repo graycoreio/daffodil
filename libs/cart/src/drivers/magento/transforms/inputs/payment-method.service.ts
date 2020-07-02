@@ -7,7 +7,7 @@ import { DaffCartPaymentMethod } from '../../../../models/cart-payment';
 export class DaffMagentoPaymentMethodInputTransformer {
   transform(payment: Partial<DaffCartPaymentMethod>): MagentoPaymentMethodInput {
     return {
-      code: payment.method
+			...payment.payment_info
     }
   }
 }
