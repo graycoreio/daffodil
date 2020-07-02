@@ -8,8 +8,8 @@ export interface DaffOrderItem {
   qty_fulfilled: number;
   image: DaffProductImage;
   order_id: DaffOrder['id'];
-  created_at: Date;
-  updated_at: Date;
+  created_at: string;
+  updated_at: string;
   product_id: number;
   parent_item_id: number;
   sku: string;

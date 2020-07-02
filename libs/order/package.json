@@ -21,11 +21,13 @@
   "peerDependencies": {
     "@angular/core": "0.0.0-PLACEHOLDER",
     "@angular/common": "0.0.0-PLACEHOLDER",
+    "@daffodil/cart": "0.0.0-PLACEHOLDER",
     "@daffodil/core": "0.0.0-PLACEHOLDER",
     "@daffodil/geography": "0.0.0-PLACEHOLDER",
     "@daffodil/product": "0.0.0-PLACEHOLDER"
   },
   "devDependencies": {
+    "@daffodil/cart": "0.0.0-PLACEHOLDER",
     "@daffodil/core": "0.0.0-PLACEHOLDER",
     "@daffodil/geography": "0.0.0-PLACEHOLDER",
     "@daffodil/product": "0.0.0-PLACEHOLDER"

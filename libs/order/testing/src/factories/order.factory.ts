@@ -6,21 +6,18 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockOrder implements DaffOrder {
   id = faker.random.number(1000);
-  created_at = faker.date.past();
-  updated_at = faker.date.past();
-  store_to_base_rate = faker.random.number(1000);
-  grand_total = faker.random.number(1000);
-  checkout_method = 'card';
   customer_id = faker.random.number(1000);
-  coupon_code = faker.random.number(100000).toString();
-  subtotal = faker.random.number(1000);
-  subtotal_with_discount = faker.random.number(1000);
-  items = [];
-  addresses = [];
+  created_at = faker.date.past().toString();
+  updated_at = faker.date.past().toString();
   status = faker.random.word();
   totals = [];
   applied_codes = [];
+  items = [];
+  addresses = [];
+  shipments = [];
   payment = null;
+  invoices = [];
+  credits = [];
 };
 
 

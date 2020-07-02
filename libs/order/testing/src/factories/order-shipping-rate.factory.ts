@@ -8,8 +8,8 @@ export class MockOrderShippingMethod implements DaffOrderShippingMethod {
   rate_id = faker.random.number(1000);
   address_id = faker.random.number(1000);
   order_id = faker.random.number(1000);
-  created_at = faker.date.past();
-  updated_at = faker.date.past();
+  created_at = faker.date.past().toString();
+  updated_at = faker.date.past().toString();
   carrier = 'Birds Inc.';
   carrier_title = 'laden';
   code = 'code';
