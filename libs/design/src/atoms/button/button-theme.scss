@@ -3,7 +3,7 @@
 @import './button-theme-variants/raised';
 @import './button-theme-variants/stroked';
 @import './button-theme-variants/underline';
-
+@import './button-theme-variants/focus';
 
 @mixin daff-button-theme($theme) {
 	$primary: map-get($theme, primary);
@@ -13,6 +13,7 @@
 	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
 	$white: daff-map-deep-get($theme, 'core.white');
 	$black: daff-map-deep-get($theme, 'core.black');
+	$gray: daff-configure-palette($daff-gray, 60);
 
 	.daff-button {
 		@include daff-button-theme-variant(
@@ -33,7 +34,7 @@
 			@include daff-button-theme-variant(
 				daff-color($secondary),
 				daff-color($secondary, 80),
-				daff-color($secondary, 90)
+				daff-color($secondary, 90),
 			);
 		}
 
@@ -57,7 +58,7 @@
 			@include daff-button-theme-variant(
 				$white,
 				daff-color($daff-gray, 10),
-				daff-color($daff-gray, 20)
+				daff-color($daff-gray, 20),
 			);
 		}
 
@@ -65,9 +66,9 @@
 			@include daff-button-theme-variant(
 				daff-color($daff-gray, 30),
 				daff-color($daff-gray, 30),
-				daff-color($daff-gray, 30)
+				daff-color($daff-gray, 30),
 			);
-			color: daff-color($daff-gray, 60);
+			color: daff-color($gray);
 		}
 	}
 
@@ -102,7 +103,7 @@
 
 		&[disabled] {
 			@include daff-raised-button-theme-variant(daff-color($daff-gray, 30));
-			color: daff-color($daff-gray, 60);
+			color: daff-color($gray);
 
 			&:hover {
 				box-shadow: 0 3px 5px rgba($black, 0.12), 0 1px 3px rgba($black, 0.08);
@@ -155,16 +156,20 @@
 
 		&[disabled] {
 			@include daff-icon-button-theme-variant(
-				daff-color($daff-gray, 60),
-				daff-color($daff-gray, 60),
-				daff-color($daff-gray, 60)
+				daff-color($gray),
+				daff-color($gray),
+				daff-color($gray)
 			);
-			color: daff-color($daff-gray, 60);
+			color: daff-color($gray);
 		}
 	}
 
 	.daff-stroked-button {
-		@include daff-stroked-button-theme-variant();
+		@include daff-stroked-button-theme-variant(
+			currentColor,
+			0.08,
+			currentColor
+		);
 
 		&.daff-primary {
 			@include daff-stroked-button-theme-variant(
@@ -191,18 +196,26 @@
 		}
 
 		&.daff-black {
-			@include daff-stroked-button-theme-variant($black, 0.08, $black);
+			@include daff-stroked-button-theme-variant(
+				$black,
+				0.08,
+				$black
+			);
 		}
 
 		&.daff-white {
-			@include daff-stroked-button-theme-variant($white, 0.08, $white);
+			@include daff-stroked-button-theme-variant(
+				$white,
+				0.08,
+				$white
+			);
 		}
 
 		&[disabled] {
 			@include daff-stroked-button-theme-variant(
 				daff-color($daff-gray, 30),
 				0,
-				daff-color($daff-gray, 30)
+				daff-color($gray)
 			);
 		}
 	}
@@ -231,7 +244,35 @@
 		}
 
 		&[disabled] {
-			@include daff-underline-button-theme-variant(daff-color($daff-gray, 60));
+			@include daff-underline-button-theme-variant(daff-color($gray));
+		}
+	}
+
+	.daff-button,
+	.daff-raised-button,
+	.daff-stroked-button,
+	.daff-underline-button,
+	.daff-icon-button {
+		@include daff-button-focus-theme-variant($base-contrast);
+
+		&.daff-primary {
+			@include daff-button-focus-theme-variant(daff-color($primary));
+		}
+
+		&.daff-secondary {
+			@include daff-button-focus-theme-variant(daff-color($secondary));
+		}
+
+		&.daff-tertiary {
+			@include daff-button-focus-theme-variant(daff-color($tertiary));
+		}
+
+		&.daff-black {
+			@include daff-button-focus-theme-variant(daff-color($gray));
+		}
+
+		&.daff-white {
+			@include daff-button-focus-theme-variant(daff-color($gray));
 		}
 	}
 }
