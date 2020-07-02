@@ -4,7 +4,11 @@ import { CommonModule } from '@angular/common';
 import { ButtonComponent } from './button.component';
 import { DesignLandButtonRoutingModule } from './button-routing.module';
 
-import { DaffButtonSetModule, DaffButtonModule } from '@daffodil/design';
+import {
+  DaffButtonSetModule,
+  DaffButtonModule,
+  DaffArticleModule
+} from '@daffodil/design';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -18,6 +22,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     DesignLandButtonRoutingModule,
     DaffButtonSetModule,
     DaffButtonModule,
+    DaffArticleModule,
     FontAwesomeModule
   ]
 })
