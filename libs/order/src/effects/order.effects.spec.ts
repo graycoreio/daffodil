@@ -3,19 +3,23 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
-import { DaffOrder } from '@daffodil/order';
+import {
+  DaffOrder,
+} from '@daffodil/order';
 import { DaffOrderFactory } from '@daffodil/order/testing';
+import { DaffStorageServiceError } from '@daffodil/core';
+import { DaffCartStorageService, DaffCartStorageFailure } from '@daffodil/cart';
 
 import { DaffOrderEffects } from './order.effects';
+import { DaffOrderServiceInterface, DaffOrderDriver } from '../drivers/interfaces/order-service.interface';
 import {
   DaffOrderLoad,
   DaffOrderLoadSuccess,
   DaffOrderLoadFailure,
   DaffOrderList,
   DaffOrderListSuccess,
-  DaffOrderListFailure,
+  DaffOrderListFailure
 } from '../actions/order.actions';
-import { DaffOrderServiceInterface, DaffOrderDriver } from '../drivers/interfaces/order-service.interface';
 
 describe('Daffodil | Order | OrderEffects', () => {
   let actions$: Observable<any>;
@@ -27,6 +31,10 @@ describe('Daffodil | Order | OrderEffects', () => {
   let orderFactory: DaffOrderFactory;
 
   let daffDriverSpy: jasmine.SpyObj<DaffOrderServiceInterface<DaffOrder>>;
+  let daffCartStorageSpy: jasmine.SpyObj<DaffCartStorageService>;
+
+  const cartStorageFailureAction = new DaffCartStorageFailure();
+  const throwStorageError = () => { throw new DaffStorageServiceError() };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -36,16 +44,23 @@ describe('Daffodil | Order | OrderEffects', () => {
         {
           provide: DaffOrderDriver,
           useValue: jasmine.createSpyObj('DaffOrderDriver', ['get', 'list'])
+        },
+        {
+          provide: DaffCartStorageService,
+          useValue: jasmine.createSpyObj('DaffCartStorageService', ['getCartId'])
         }
       ]
     });
 
     effects = TestBed.get<DaffOrderEffects<DaffOrder>>(DaffOrderEffects);
     daffDriverSpy = TestBed.get<DaffOrderServiceInterface<DaffOrder>>(DaffOrderDriver);
+    daffCartStorageSpy = TestBed.get(DaffCartStorageService);
     orderFactory = TestBed.get<DaffOrderFactory>(DaffOrderFactory);
 
     mockOrder = orderFactory.create();
     orderId = mockOrder.id;
+
+    daffCartStorageSpy.getCartId.and.returnValue('cartId');
   });
 
   it('should be created', () => {
@@ -76,10 +91,23 @@ describe('Daffodil | Order | OrderEffects', () => {
         daffDriverSpy.get.and.returnValue(response);
         const orderLoadFailureAction = new DaffOrderLoadFailure(error);
         actions$ = hot('--a', { a: orderLoadAction });
-        expected = cold('--b', { b: orderLoadFailureAction });
+        expected = cold('--(b|)', { b: orderLoadFailureAction });
       });
 
       it('should dispatch a DaffOrderLoadFailure action', () => {
+        expect(effects.get$).toBeObservable(expected);
+      });
+    });
+
+    describe('and the storage service throws an error', () => {
+      beforeEach(() => {
+        daffCartStorageSpy.getCartId.and.callFake(throwStorageError)
+
+        actions$ = hot('--a', { a: orderLoadAction });
+        expected = cold('--(b|)', { b: cartStorageFailureAction });
+      });
+
+      it('should return a DaffCartStorageFailure', () => {
         expect(effects.get$).toBeObservable(expected);
       });
     });
@@ -109,10 +137,23 @@ describe('Daffodil | Order | OrderEffects', () => {
         daffDriverSpy.list.and.returnValue(response);
         const orderListFailureAction = new DaffOrderListFailure(error);
         actions$ = hot('--a', { a: orderListAction });
-        expected = cold('--b', { b: orderListFailureAction });
+        expected = cold('--(b|)', { b: orderListFailureAction });
       });
 
       it('should return a DaffOrderListFailure action', () => {
+        expect(effects.list$).toBeObservable(expected);
+      });
+    });
+
+    describe('and the storage service throws an error', () => {
+      beforeEach(() => {
+        daffCartStorageSpy.getCartId.and.callFake(throwStorageError)
+
+        actions$ = hot('--a', { a: orderListAction });
+        expected = cold('--(b|)', { b: cartStorageFailureAction });
+      });
+
+      it('should return a DaffCartStorageFailure', () => {
         expect(effects.list$).toBeObservable(expected);
       });
     });
