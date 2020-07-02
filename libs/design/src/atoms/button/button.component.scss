@@ -75,7 +75,27 @@
 	height: 40px;
 	line-height: 40px;
 	padding: 0;
-	width: 40px;
+
+	&.daff-sm {
+		font-size: $small-font-size;
+		line-height: 30px;
+		height: 30px;
+		width: 30px;
+	}
+
+	&.daff-md {
+		font-size: $normal-font-size;
+		line-height: 40px;
+		height: 40px;
+		width: 40px;
+	}
+
+	&.daff-lg {
+		font-size: $medium-font-size;
+		line-height: 50px;
+		height: 50px;
+		width: 50px;
+	}
 }
 
 .daff-stroked-button {
@@ -143,6 +163,18 @@
 			animation: underline-button-hover 700ms ease;
 		}
 	}
+
+	&.daff-sm {
+		font-size: $small-font-size;
+	}
+
+	&.daff-md {
+		font-size: $normal-font-size;
+	}
+
+	&.daff-lg {
+		font-size: $medium-font-size;
+	}
 }
 
 @keyframes underline-button-hover {
@@ -160,5 +192,21 @@
 
 	to {
 		transform: translateX(0);
+	}
+}
+
+.daff-button,
+.daff-raised-button,
+.daff-stroked-button {
+	&.daff-sm {
+		font-size: $small-font-size;
+	}
+
+	&.daff-md {
+		font-size: 1rem;
+	}
+
+	&.daff-lg {
+		font-size: $medium-font-size;
 	}
 }
