@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.7.0](https://github.com/graycoreio/daffodil/compare/v0.6.5...v0.7.0) (2020-07-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **order:** adds a peer dep
+
+### Features
+
+* **cart:** update the cart payment with the payment package-specific info object ([#969](https://github.com/graycoreio/daffodil/issues/969)) ([f21f97b](https://github.com/graycoreio/daffodil/commit/f21f97b9828843707574ac60646341eb98c379b9))
+* **geography:** add optional fields to address factories ([#966](https://github.com/graycoreio/daffodil/issues/966)) ([064eed7](https://github.com/graycoreio/daffodil/commit/064eed7df2040ab3a8feb1b554fa6e76bc470a14))
+* **order:** add magento queries and models for guest orders ([#968](https://github.com/graycoreio/daffodil/issues/968)) ([7441c55](https://github.com/graycoreio/daffodil/commit/7441c554f68117c9ca73c9694a4f2ae4a2e8f762))
+* **order:** add optional cartId parameters to support guest orders ([#967](https://github.com/graycoreio/daffodil/issues/967)) ([64c8419](https://github.com/graycoreio/daffodil/commit/64c84198c00a044d7ffed8a48ecc27168d89feac))
+* **order:** add order not found error ([#971](https://github.com/graycoreio/daffodil/issues/971)) ([8da48b8](https://github.com/graycoreio/daffodil/commit/8da48b8c80839b93cb0c4bdea52442c020c21fc4))
+
+
+### Bug Fixes
+
+* **cart:** fix bug where an invalid cart id would result in unresolvable errors ([#970](https://github.com/graycoreio/daffodil/issues/970)) ([bd6db11](https://github.com/graycoreio/daffodil/commit/bd6db11666fa7e079b4ce38fd8a772cd92c61fcc))
+
 ### [0.6.5](https://github.com/graycoreio/daffodil/compare/v0.6.4...v0.6.5) (2020-07-01)
 
 
