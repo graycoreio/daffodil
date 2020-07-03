@@ -15,7 +15,7 @@ export class MockOrder implements DaffOrder {
   grand_total = faker.random.number({min: 1, max: 1000});
   checkout_method = 'card';
   customer_id = faker.random.number({min: 1, max: 1000});
-  coupon_code = faker.random.number(100000).toString();
+  coupon_code = faker.random.number({min: 1, max: 100000}).toString();
   subtotal = faker.random.number({min: 1, max: 1000});
   subtotal_with_discount = faker.random.number({min: 1, max: 1000});
   items = [];

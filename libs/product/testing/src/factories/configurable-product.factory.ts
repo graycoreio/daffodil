@@ -7,17 +7,17 @@ import { DaffModelFactory } from '@daffodil/core/testing';
  * Mocked DaffConfigurableProduct object.
  */
 export class MockConfigurableProduct implements DaffConfigurableProduct {
-	private stubPriceVariant1 = faker.random.number(1500);
+	private stubPriceVariant1 = faker.random.number({min: 1, max: 1500});
 	private stubDiscountVariant1 = faker.random.number({min: 0, max: this.stubPriceVariant1 - 1});
-	private stubPriceVariant2 = faker.random.number(1500);
+	private stubPriceVariant2 = faker.random.number({min: 1, max: 1500});
 	private stubDiscountVariant2 = faker.random.number({min: 0, max: this.stubPriceVariant2 - 1});
-	private stubPriceVariant3 = faker.random.number(1500);
+	private stubPriceVariant3 = faker.random.number({min: 1, max: 1500});
 	private stubDiscountVariant3 = faker.random.number({min: 0, max: this.stubPriceVariant3 - 1});
 
 	type = DaffProductTypeEnum.Configurable;
-	id = faker.random.number(10000).toString();
+	id = faker.random.number({min: 1, max: 10000}).toString();
 	url = faker.random.alphaNumeric(16);
-  price = faker.random.number(1500);
+  price = faker.random.number({min: 1, max: 1500});
   name = faker.commerce.productName();
   brand = faker.company.companyName();
 	description = 'Lorem ipsum dolor sit amet, accumsan ullamcorper ei eam. Sint appetere ocurreret no per, et cum lorem disputationi. Sit ut magna delenit, assum vidisse vocibus sed ut. In aperiri malorum accusamus sea, novum mediocritatem ius at. Duo agam probo honestatis ut. Nec regione splendide cu, unum graeco vivendum in duo.'

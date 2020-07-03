@@ -37,8 +37,8 @@ export class MockMagentoCoreProduct implements MagentoProduct {
 			},
 			discount: {
 				__typename: 'ProductDiscount',
-				amount_off: faker.random.number(99),
-				percent_off: faker.random.number(99)
+				amount_off: faker.random.number({min: 1, max: 99}),
+				percent_off: faker.random.number({min: 1, max: 99})
 			}
 		}
   };

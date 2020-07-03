@@ -11,7 +11,7 @@ export class MockCartShippingRate implements DaffCartShippingRate {
     method_code = faker.random.word();
     method_title = 'swallow';
     method_description = 'efficient';
-    price = faker.random.number(1500);
+    price = faker.random.number({min: 1, max: 1500});
 }
 
 @Injectable({

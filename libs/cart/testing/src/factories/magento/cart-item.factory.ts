@@ -21,7 +21,7 @@ export class MockMagentoCartItem implements MagentoCartItem {
     total_item_discount: this.money()
   };
   product = this.createProduct();
-  quantity = faker.random.number(20);
+  quantity = faker.random.number({min: 1, max: 20});
 
   private createProduct(): MagentoProduct {
     return (new MagentoProductFactory()).create()
