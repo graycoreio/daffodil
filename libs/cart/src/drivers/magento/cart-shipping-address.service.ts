@@ -51,31 +51,36 @@ export class DaffMagentoCartShippingAddressService implements DaffCartShippingAd
   }
 
   update(cartId: string, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
-    return address.email
-      ? this.apollo.mutate<MagentoUpdateShippingAddressWithEmailResponse>({
-        mutation: updateShippingAddressWithEmail,
-        variables: {
-          cartId,
-          email: address.email,
-          address: this.shippingAddressInputTransformer.transform(address)
-        }
-      }).pipe(
-        map(resp => this.cartTransformer.transform({
-          ...resp.data.setShippingAddressesOnCart.cart,
-          email: resp.data.setGuestEmailOnCart.cart.email
-        })),
-        catchError(error => throwError(transformCartMagentoError(error))),
-      )
-      : this.apollo.mutate<MagentoUpdateShippingAddressResponse>({
-        mutation: updateShippingAddress,
-        variables: {
-          cartId,
-          email: address.email,
-          address: this.shippingAddressInputTransformer.transform(address)
-        }
-      }).pipe(
-        map(resp => this.cartTransformer.transform(resp.data.setShippingAddressesOnCart.cart)),
-        catchError(error => throwError(transformCartMagentoError(error))),
-      )
+    return address.email ? this.updateAddressWithEmail(cartId, address) : this.updateAddress(cartId, address)
+  }
+
+  private updateAddress(cartId: string, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
+    return this.apollo.mutate<MagentoUpdateShippingAddressResponse>({
+      mutation: updateShippingAddress,
+      variables: {
+        cartId,
+        address: this.shippingAddressInputTransformer.transform(address)
+      }
+    }).pipe(
+      map(resp => this.cartTransformer.transform(resp.data.setShippingAddressesOnCart.cart)),
+      catchError(error => throwError(transformCartMagentoError(error))),
+    )
+  }
+
+  private updateAddressWithEmail(cartId: string, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
+    return this.apollo.mutate<MagentoUpdateShippingAddressWithEmailResponse>({
+      mutation: updateShippingAddressWithEmail,
+      variables: {
+        cartId,
+        email: address.email,
+        address: this.shippingAddressInputTransformer.transform(address)
+      }
+    }).pipe(
+      map(resp => this.cartTransformer.transform({
+        ...resp.data.setShippingAddressesOnCart.cart,
+        email: resp.data.setGuestEmailOnCart.cart.email
+      })),
+      catchError(error => throwError(transformCartMagentoError(error))),
+    )
   }
 }

@@ -51,31 +51,36 @@ export class DaffMagentoCartBillingAddressService implements DaffCartBillingAddr
   }
 
   update(cartId: string, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
-    return address.email
-      ? this.apollo.mutate<MagentoUpdateBillingAddressWithEmailResponse>({
-        mutation: updateBillingAddressWithEmail,
-        variables: {
-          cartId,
-          email: address.email,
-          address: this.billingAddressInputTransformer.transform(address)
-        }
-      }).pipe(
-        map(resp => this.cartTransformer.transform({
-          ...resp.data.setBillingAddressOnCart.cart,
-          email: resp.data.setGuestEmailOnCart.cart.email
-        })),
-        catchError(error => throwError(transformCartMagentoError(error))),
-      )
-      : this.apollo.mutate<MagentoUpdateBillingAddressResponse>({
-        mutation: updateBillingAddress,
-        variables: {
-          cartId,
-          email: address.email,
-          address: this.billingAddressInputTransformer.transform(address)
-        }
-      }).pipe(
-        map(resp => this.cartTransformer.transform(resp.data.setBillingAddressOnCart.cart)),
-        catchError(error => throwError(transformCartMagentoError(error))),
-      )
+    return address.email ? this.updateAddressWithEmail(cartId, address) : this.updateAddress(cartId, address)
+  }
+
+  private updateAddress(cartId: string, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
+    return this.apollo.mutate<MagentoUpdateBillingAddressResponse>({
+      mutation: updateBillingAddress,
+      variables: {
+        cartId,
+        address: this.billingAddressInputTransformer.transform(address)
+      }
+    }).pipe(
+      map(resp => this.cartTransformer.transform(resp.data.setBillingAddressOnCart.cart)),
+      catchError(error => throwError(transformCartMagentoError(error))),
+    )
+  }
+
+  private updateAddressWithEmail(cartId: string, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
+    return this.apollo.mutate<MagentoUpdateBillingAddressWithEmailResponse>({
+      mutation: updateBillingAddressWithEmail,
+      variables: {
+        cartId,
+        email: address.email,
+        address: this.billingAddressInputTransformer.transform(address)
+      }
+    }).pipe(
+      map(resp => this.cartTransformer.transform({
+        ...resp.data.setBillingAddressOnCart.cart,
+        email: resp.data.setGuestEmailOnCart.cart.email
+      })),
+      catchError(error => throwError(transformCartMagentoError(error))),
+    )
   }
 }
