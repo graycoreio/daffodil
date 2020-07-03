@@ -20,13 +20,12 @@ import { DaffMagentoCartShippingAddressService } from './cart-shipping-address.s
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { MagentoCart } from './models/outputs/cart';
 import { MagentoGetShippingAddressResponse } from './models/responses/get-shipping-address';
-import { getShippingAddress, updateShippingAddress, setGuestEmail } from './queries/public_api';
+import { getShippingAddress, updateShippingAddress } from './queries/public_api';
 import { MagentoUpdateShippingAddressResponse } from './models/responses/update-shipping-address';
 import { DaffMagentoShippingAddressTransformer } from './transforms/outputs/shipping-address.service';
 import { DaffMagentoShippingAddressInputTransformer } from './transforms/inputs/shipping-address.service';
 import { MagentoShippingAddress } from './models/outputs/shipping-address';
 import { MagentoShippingAddressInput } from './models/inputs/shipping-address';
-import { MagentoSetGuestEmailResponse } from './models/responses/public_api';
 
 describe('Driver | Magento | Cart | CartShippingAddressService', () => {
   let service: DaffMagentoCartShippingAddressService;
@@ -51,7 +50,6 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
   let mockDaffCartAddress: DaffCartAddress;
   let mockUpdateShippingAddressResponse: MagentoUpdateShippingAddressResponse;
   let mockGetShippingAddressResponse: MagentoGetShippingAddressResponse;
-  let mockSetGuestEmailResponse: MagentoSetGuestEmailResponse;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -121,9 +119,7 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
       setShippingAddressesOnCart: {
 				__typename: 'SetShippingAddresses',
         cart: mockMagentoCart
-      }
-    };
-    mockSetGuestEmailResponse = {
+      },
       setGuestEmailOnCart: {
         cart: {
           email
@@ -196,7 +192,7 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
     });
   });
 
-  describe('update | updates the cart\'s shipping address', () => {
+  describe('update | updates the cart\'s email and shipping address', () => {
     let street;
 
     beforeEach(() => {
@@ -214,13 +210,9 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
       });
 
       const op = controller.expectOne(addTypenameToDocument(updateShippingAddress));
-      const emailOp = controller.expectOne(addTypenameToDocument(setGuestEmail));
 
       op.flush({
         data: mockUpdateShippingAddressResponse
-      });
-      emailOp.flush({
-        data: mockSetGuestEmailResponse
       });
     });
 

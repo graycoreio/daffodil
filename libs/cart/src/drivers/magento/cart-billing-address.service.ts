@@ -50,25 +50,17 @@ export class DaffMagentoCartBillingAddressService implements DaffCartBillingAddr
   }
 
   update(cartId: string, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
-    return zip(
-      this.apollo.mutate<MagentoUpdateBillingAddressResponse>({
-        mutation: updateBillingAddress,
-        variables: {
-          cartId,
-          address: this.billingAddressInputTransformer.transform(address)
-        }
-      }),
-      this.apollo.mutate<MagentoSetGuestEmailResponse>({
-        mutation: setGuestEmail,
-        variables: {
-          cartId,
-          email: address.email
-        }
-      })
-    ).pipe(
-      map(([updateResult, setEmailResult]) => this.cartTransformer.transform({
-        ...updateResult.data.setBillingAddressOnCart.cart,
-        email: setEmailResult.data.setGuestEmailOnCart.cart.email
+    return this.apollo.mutate<MagentoUpdateBillingAddressResponse>({
+      mutation: updateBillingAddress,
+      variables: {
+        cartId,
+        email: address.email,
+        address: this.billingAddressInputTransformer.transform(address)
+      }
+    }).pipe(
+      map(resp => this.cartTransformer.transform({
+        ...resp.data.setBillingAddressOnCart.cart,
+        email: resp.data.setGuestEmailOnCart.cart.email
       }))
     )
   }
