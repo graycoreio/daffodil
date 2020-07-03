@@ -14,6 +14,7 @@ export { getBillingAddress } from './get-billing-address';
 export { updateBillingAddress } from './update-billing-address';
 export { getShippingAddress } from './get-shipping-address';
 export { updateShippingAddress } from './update-shipping-address';
+export { updateAddress } from './update-address';
 export { getCart } from './get-cart';
 export { createCart } from './create-cart';
 export { setGuestEmail } from './set-guest-email';
