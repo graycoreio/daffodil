@@ -354,10 +354,10 @@ describe('Driver | Magento | Order | OrderService', () => {
     });
 
     describe('when the call to the Magento API is unsuccessful', () => {
-      it('should throw a DaffCartNotFoundError', done => {
+      it('should throw an Error', done => {
         service.get(orderId, cartId).pipe(
           catchError(err => {
-            expect(err).toEqual(jasmine.any(DaffCartNotFoundError));
+            expect(err).toEqual(jasmine.any(Error));
             done();
             return [];
           })
@@ -425,10 +425,10 @@ describe('Driver | Magento | Order | OrderService', () => {
     });
 
     describe('when the call to the Magento API is unsuccessful', () => {
-      it('should throw a DaffCartNotFoundError', done => {
+      it('should throw an Error', done => {
         service.list(cartId).pipe(
           catchError(err => {
-            expect(err).toEqual(jasmine.any(DaffCartNotFoundError));
+            expect(err).toEqual(jasmine.any(Error));
             done();
             return [];
           })
