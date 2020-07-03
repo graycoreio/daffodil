@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input, HostBinding } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input, HostBinding, ElementRef } from '@angular/core';
 
 export type DaffListMode = 'multi-line' | 'link' | 'navigation' | undefined;
 export enum DaffListModeEnum {
@@ -7,8 +7,17 @@ export enum DaffListModeEnum {
   Navigation = 'navigation'
 }
 
+export type DaffListType = 'daff-list' | 'daff-nav-list';
+
+enum DaffListTypeEnum {
+  Default = 'daff-list',
+  Nav = 'daff-nav-list'
+}
+
 @Component({
-  selector: 'daff-list',
+  selector:
+    'daff-list' + ',' +
+    'daff-nav-list',
   template: '<ng-content></ng-content>',
   styleUrls: ['./list.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -18,7 +27,9 @@ export enum DaffListModeEnum {
 export class DaffListComponent {
   @Input() mode: DaffListMode;
 
-  @HostBinding('class.daff-list') class = true;
+  @HostBinding('class.daff-list') get list() {
+    return this.listType === DaffListTypeEnum.Default;
+  }
 
   @HostBinding('class.daff-list--multi-line') get multiline() {
     return this.mode === DaffListModeEnum.Multiline;
@@ -31,5 +42,27 @@ export class DaffListComponent {
 
   @HostBinding('class.daff-list--navigation') get navigation() {
     return this.mode === DaffListModeEnum.Navigation;
+  }
+  
+  get listType(): DaffListType {
+    return this._getHostElement().localName;
+   }
+
+  constructor(private elementRef: ElementRef) {}
+
+
+  @HostBinding('class.daff-nav-list') get nav() {
+    return this.listType === DaffListTypeEnum.Nav;
+  }
+
+  /**
+   * Sets the role for a `<daff-nav-list>` to navigation.
+   */
+  @HostBinding('attr.role') get role() {
+    return this.listType === DaffListTypeEnum.Nav ? 'navigation' : 'list';
+  };
+
+  private _getHostElement() {
+    return this.elementRef.nativeElement;
   }
 }

@@ -1,11 +1,53 @@
 @import '../../../scss/daff-util';
 @import '../../../scss/daff-theme';
 
-.daff-list {
+@mixin daff-list() {
 	$root: &;
 	display: block;
 	margin: 0;
 	padding: 0;
+
+	.daff-list-item {
+		$root: &;
+		display: flex;
+		padding: 12px 16px;
+
+		&__content {
+			flex-grow: 1;
+
+			*:nth-child(1) { /* stylelint-disable-line scss/selector-nest-combinators */
+				@include embolden();
+				font-size: $normal-font-size;
+				line-height: 1.5em;
+				margin: 0;
+				padding: 0;
+			}
+
+			*:nth-child(n + 2) { /* stylelint-disable-line scss/selector-nest-combinators */
+				font-size: $normal-font-size;
+				margin: 0;
+				padding: 0;
+			}
+		}
+
+		.daff-prefix,
+		.daff-suffix {
+			display: flex;
+			align-items: center;
+		}
+
+		.daff-prefix {
+			margin-right: 24px;
+		}
+
+		.daff-suffix {
+			margin-left: 24px;
+		}
+	}
+}
+
+.daff-list {
+	@include daff-list();
 
 	&__subheader {
 		@include embolden();
@@ -55,21 +97,12 @@
 	}
 }
 
-.daff-list-item {
-	$root: &;
-	display: flex;
-	padding: 8px 0;
-	text-align: left;
+.daff-nav-list {
+	@include daff-list();
 
-	&:first-of-type {
-		padding: 0 0 8px;
-	}
-
-	.daff-prefix {
-		margin-right: 16px;
-	}
-
-	.daff-suffix {
-		margin-left: 16px;
+	.daff-list-item {
+		@include clickable();
+		outline: none;
+		text-decoration: none;
 	}
 }
