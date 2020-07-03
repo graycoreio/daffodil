@@ -10,9 +10,12 @@ export { MagentoGetSelectedShippingMethodResponse } from './get-selected-shippin
 export { MagentoSetSelectedShippingMethodResponse } from './set-selected-shipping-method';
 export { MagentoGetBillingAddressResponse } from './get-billing-address';
 export { MagentoUpdateBillingAddressResponse } from './update-billing-address';
+export { MagentoUpdateBillingAddressWithEmailResponse } from './update-billing-address-with-email';
 export { MagentoGetShippingAddressResponse } from './get-shipping-address';
 export { MagentoUpdateShippingAddressResponse } from './update-shipping-address';
+export { MagentoUpdateShippingAddressWithEmailResponse } from './update-shipping-address-with-email';
 export { MagentoUpdateAddressResponse } from './update-address';
+export { MagentoUpdateAddressWithEmailResponse } from './update-address-with-email';
 export { MagentoGetCartResponse } from './get-cart';
 export { MagentoCreateCartResponse } from './create-cart';
 export { MagentoSetGuestEmailResponse } from './set-guest-email';

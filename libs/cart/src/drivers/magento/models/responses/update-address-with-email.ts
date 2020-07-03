@@ -1,6 +1,11 @@
 import { MagentoGetCartResponse } from './get-cart';
 
-export interface MagentoUpdateAddressResponse {
+export interface MagentoUpdateAddressWithEmailResponse {
   setBillingAddressOnCart: MagentoGetCartResponse;
   setShippingAddressesOnCart: MagentoGetCartResponse;
+  setGuestEmailOnCart: {
+    cart: {
+      email: MagentoGetCartResponse['cart']['email']
+    }
+  };
 }

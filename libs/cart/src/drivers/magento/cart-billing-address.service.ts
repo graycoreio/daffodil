@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { Observable, zip } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, zip, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 import { DaffCartBillingAddressServiceInterface } from '../interfaces/cart-billing-address-service.interface';
 import { DaffCart } from '../../models/cart';
@@ -9,16 +9,17 @@ import { DaffCartAddress } from '../../models/cart-address';
 import {
   getBillingAddress,
   updateBillingAddress,
-  setGuestEmail
+  updateBillingAddressWithEmail
 } from './queries/public_api';
 import {
   MagentoGetBillingAddressResponse,
   MagentoUpdateBillingAddressResponse,
-  MagentoSetGuestEmailResponse
+  MagentoUpdateBillingAddressWithEmailResponse
 } from './models/responses/public_api';
 import { DaffMagentoBillingAddressInputTransformer } from './transforms/inputs/billing-address.service';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { DaffMagentoBillingAddressTransformer } from './transforms/outputs/billing-address.service';
+import { transformCartMagentoError } from './errors/transform';
 
 /**
  * A service for making Magento GraphQL queries for carts.
@@ -50,18 +51,31 @@ export class DaffMagentoCartBillingAddressService implements DaffCartBillingAddr
   }
 
   update(cartId: string, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
-    return this.apollo.mutate<MagentoUpdateBillingAddressResponse>({
-      mutation: updateBillingAddress,
-      variables: {
-        cartId,
-        email: address.email,
-        address: this.billingAddressInputTransformer.transform(address)
-      }
-    }).pipe(
-      map(resp => this.cartTransformer.transform({
-        ...resp.data.setBillingAddressOnCart.cart,
-        email: resp.data.setGuestEmailOnCart.cart.email
-      }))
-    )
+    return address.email
+      ? this.apollo.mutate<MagentoUpdateBillingAddressWithEmailResponse>({
+        mutation: updateBillingAddressWithEmail,
+        variables: {
+          cartId,
+          email: address.email,
+          address: this.billingAddressInputTransformer.transform(address)
+        }
+      }).pipe(
+        map(resp => this.cartTransformer.transform({
+          ...resp.data.setBillingAddressOnCart.cart,
+          email: resp.data.setGuestEmailOnCart.cart.email
+        })),
+        catchError(error => throwError(transformCartMagentoError(error))),
+      )
+      : this.apollo.mutate<MagentoUpdateBillingAddressResponse>({
+        mutation: updateBillingAddress,
+        variables: {
+          cartId,
+          email: address.email,
+          address: this.billingAddressInputTransformer.transform(address)
+        }
+      }).pipe(
+        map(resp => this.cartTransformer.transform(resp.data.setBillingAddressOnCart.cart)),
+        catchError(error => throwError(transformCartMagentoError(error))),
+      )
   }
 }

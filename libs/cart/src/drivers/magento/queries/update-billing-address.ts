@@ -5,8 +5,7 @@ import { cartFragment } from './fragments/public_api';
 export const updateBillingAddress = gql`
   mutation UpdateBillingAddress(
     $cartId: String!,
-    $address: BillingAddressInput!,
-    $email: String!
+    $address: BillingAddressInput!
   ) {
     setBillingAddressOnCart(input: {
       cart_id: $cartId
@@ -14,14 +13,6 @@ export const updateBillingAddress = gql`
     }) {
       cart {
         ...cart
-      }
-    }
-    setGuestEmailOnCart(input: {
-      cart_id: $cartId,
-      email: $email
-    }) {
-      cart {
-        email
       }
     }
   }
