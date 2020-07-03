@@ -4,12 +4,16 @@ import {
 } from '@angular/core';
 
 import { daffColorMixin, DaffColorable, DaffPalette } from '../../core/colorable/colorable';
+
 import { 
   DaffPrefixable, 
   DaffSuffixable, 
   daffPrefixableMixin,
   daffSuffixableMixin
 } from '../../core/prefix-suffix/public_api';
+
+import { daffSizeMixin } from '../../core/sizeable/sizeable-mixin';
+import { DaffSizeable, DaffSizeSmallType, DaffSizeMediumType, DaffSizeLargeType } from '../../core/sizeable/sizeable';
 
 /**
 * List of classes to add to Daff Button instances based on host attributes to style as different variants.
@@ -29,9 +33,16 @@ class DaffButtonBase{
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffButtonBase = daffColorMixin(daffSuffixableMixin(daffPrefixableMixin(DaffButtonBase))); 
+const _daffButtonBase = 
+daffColorMixin(daffSuffixableMixin(daffPrefixableMixin(daffSizeMixin(DaffButtonBase, 'md')))); 
 
 export type DaffButtonType = 'daff-button' | 'daff-stroked-button' | 'daff-raised-button' | 'daff-icon-button' | 'daff-underline-button' | undefined;
+
+/**
+ * The DaffSizeable types that the DaffButtonComponent can implement
+ */
+export type DaffButtonSize = DaffSizeSmallType | DaffSizeMediumType | DaffSizeLargeType;
+
 enum DaffButtonTypeEnum {
   Default = 'daff-button',
   Stroked = 'daff-stroked-button',
@@ -59,10 +70,12 @@ enum DaffButtonTypeEnum {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class DaffButtonComponent extends _daffButtonBase 
-  implements OnInit, DaffPrefixable, DaffSuffixable, DaffColorable {
+export class DaffButtonComponent
+  extends _daffButtonBase
+  implements OnInit, DaffPrefixable, DaffSuffixable, DaffColorable, DaffSizeable<DaffButtonSize> {
     @Input() color: DaffPalette;
     buttonType: DaffButtonType;
+    @Input() size: DaffButtonSize;
 
     constructor(private elementRef: ElementRef, private renderer: Renderer2) {
       super(elementRef, renderer);
