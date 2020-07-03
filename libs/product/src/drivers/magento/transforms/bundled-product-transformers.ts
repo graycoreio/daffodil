@@ -22,7 +22,7 @@ export function transformMagentoBundledProduct(product: MagentoBundledProduct, m
 
 function transformMagentoBundledProductItem(item: MagentoBundledProductItem): DaffCompositeProductItem {
 	return {
-		id: item.sku,
+		id: item.option_id.toString(),
 		required: item.required,
 		title: item.title,
 		input_type: <DaffCompositeProductItemInputEnum>item.type,

@@ -14,7 +14,7 @@ describe('DaffMagentoBundledProductTransformers', () => {
 	describe('transform', () => {
 		
 		it('should transform a MagentoBundledProduct to a DaffCompositeProduct', () => {
-			expect(transformMagentoBundledProduct(magentoBundledProductData, mediaUrl)).toEqual(daffCompositeProductData);
+			expect(transformMagentoBundledProduct(magentoBundledProductData, mediaUrl)).toEqual(jasmine.objectContaining(daffCompositeProductData));
 		});
 	});
 });
