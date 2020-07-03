@@ -12,7 +12,7 @@ import { MagentoMoneyFactory } from '@daffodil/driver/magento/testing';
 
 export class MockMagentoCartItem implements MagentoCartItem {
 	__typename = 'SimpleCartItem';
-  id = faker.random.number(1000);
+  id = faker.random.number({min: 1, max: 1000});
   prices = {
 		__typename: 'CartItemPrices',
     price: this.money(),

@@ -8,7 +8,7 @@ import { MagentoProduct, MagentoProductTypeEnum } from '@daffodil/product';
 
 export class MockMagentoCoreProduct implements MagentoProduct {
 	__typename = MagentoProductTypeEnum.SimpleProduct;
-  id = faker.random.number(1000);
+  id = faker.random.number({min: 1, max: 1000});
   url_key = faker.random.alphaNumeric(16);
   name = faker.random.word();
   sku = faker.random.alphaNumeric(16);

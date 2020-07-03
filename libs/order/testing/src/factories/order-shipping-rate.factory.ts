@@ -5,9 +5,9 @@ import { DaffOrderShippingMethod } from '@daffodil/order';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockOrderShippingMethod implements DaffOrderShippingMethod {
-  rate_id = faker.random.number(1000);
-  address_id = faker.random.number(1000);
-  order_id = faker.random.number(1000);
+  rate_id = faker.random.number({min: 1, max: 1000});
+  address_id = faker.random.number({min: 1, max: 1000});
+  order_id = faker.random.number({min: 1, max: 1000});
   created_at = faker.date.past().toString();
   updated_at = faker.date.past().toString();
   carrier = 'Birds Inc.';
@@ -15,7 +15,7 @@ export class MockOrderShippingMethod implements DaffOrderShippingMethod {
   code = 'code';
   method = 'swallow';
   method_description = 'efficient';
-  price = faker.random.number(1000);
+  price = faker.random.number({min: 1, max: 1000});
   error_message = 'error message';
   method_title = 'laden';
 }
