@@ -21,8 +21,7 @@ import {
   DaffCartStorageFailure
 } from '../actions/public_api';
 import { DaffCartStorageService } from '../storage/cart-storage.service';
-import { DaffCartShippingAddressServiceInterface, DaffCartShippingAddressDriver } from '../drivers/interfaces/cart-shipping-address-service.interface';
-import { DaffCartBillingAddressServiceInterface, DaffCartBillingAddressDriver } from '../drivers/interfaces/cart-billing-address-service.interface';
+import { DaffCartAddressServiceInterface, DaffCartAddressDriver } from '../drivers/interfaces/cart-address-service.interface';
 
 describe('Daffodil | Cart | CartAddressEffects', () => {
   let actions$: Observable<any>;
@@ -34,8 +33,7 @@ describe('Daffodil | Cart | CartAddressEffects', () => {
   let cartFactory: DaffCartFactory;
   let cartAddressFactory: DaffCartAddressFactory;
 
-  let daffShippingAddressDriverSpy: jasmine.SpyObj<DaffCartShippingAddressServiceInterface>;
-  let daffBillingAddressDriverSpy: jasmine.SpyObj<DaffCartBillingAddressServiceInterface>;
+  let daffAddressDriverSpy: jasmine.SpyObj<DaffCartAddressServiceInterface>;
 
   let daffCartStorageSpy: jasmine.SpyObj<DaffCartStorageService>;
   const cartStorageFailureAction = new DaffCartStorageFailure();
@@ -47,12 +45,8 @@ describe('Daffodil | Cart | CartAddressEffects', () => {
         DaffCartAddressEffects,
         provideMockActions(() => actions$),
         {
-          provide: DaffCartShippingAddressDriver,
-          useValue: jasmine.createSpyObj('DaffCartShippingAddressDriver', ['get', 'update'])
-        },
-        {
-          provide: DaffCartBillingAddressDriver,
-          useValue: jasmine.createSpyObj('DaffCartBillingAddressDriver', ['get', 'update'])
+          provide: DaffCartAddressDriver,
+          useValue: jasmine.createSpyObj('DaffCartAddressDriver', ['update'])
         },
         {
           provide: DaffCartStorageService,
@@ -63,8 +57,7 @@ describe('Daffodil | Cart | CartAddressEffects', () => {
 
     effects = TestBed.get<DaffCartAddressEffects<DaffCartAddress, DaffCart>>(DaffCartAddressEffects);
 
-    daffShippingAddressDriverSpy = TestBed.get<DaffCartShippingAddressServiceInterface>(DaffCartShippingAddressDriver);
-    daffBillingAddressDriverSpy = TestBed.get<DaffCartBillingAddressServiceInterface>(DaffCartBillingAddressDriver);
+    daffAddressDriverSpy = TestBed.get<DaffCartAddressServiceInterface>(DaffCartAddressDriver);
     daffCartStorageSpy = TestBed.get(DaffCartStorageService);
 
     cartFactory = TestBed.get<DaffCartFactory>(DaffCartFactory);
@@ -105,8 +98,7 @@ describe('Daffodil | Cart | CartAddressEffects', () => {
 
     describe('and the calls to the services are successful', () => {
       beforeEach(() => {
-        daffShippingAddressDriverSpy.update.and.returnValue(of(mockCart));
-        daffBillingAddressDriverSpy.update.and.returnValue(of(mockCart));
+        daffAddressDriverSpy.update.and.returnValue(of(mockCart));
         const cartAddressUpdateSuccessAction = new DaffCartAddressUpdateSuccess(mockCart);
         actions$ = hot('--a', { a: cartAddressUpdateAction });
         expected = cold('--b', { b: cartAddressUpdateSuccessAction });
@@ -121,8 +113,7 @@ describe('Daffodil | Cart | CartAddressEffects', () => {
       beforeEach(() => {
         const error = 'Failed to update cart address';
         const response = cold('#', {}, error);
-        daffShippingAddressDriverSpy.update.and.returnValue(response);
-        daffBillingAddressDriverSpy.update.and.returnValue(response);
+        daffAddressDriverSpy.update.and.returnValue(response);
         const cartAddressUpdateFailureAction = new DaffCartAddressUpdateFailure(error);
         actions$ = hot('--a', { a: cartAddressUpdateAction });
         expected = cold('--(b|)', { b: cartAddressUpdateFailureAction });

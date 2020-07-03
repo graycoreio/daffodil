@@ -12,39 +12,25 @@ import {
 } from '../actions/public_api';
 import { DaffCart } from '../models/cart';
 import { DaffCartAddress } from '../models/cart-address';
-import { DaffCartShippingAddressServiceInterface, DaffCartShippingAddressDriver } from '../drivers/interfaces/cart-shipping-address-service.interface';
-import { DaffCartBillingAddressServiceInterface, DaffCartBillingAddressDriver } from '../drivers/interfaces/cart-billing-address-service.interface';
+import { DaffCartAddressServiceInterface, DaffCartAddressDriver } from '../drivers/interfaces/cart-address-service.interface';
 import { DaffCartStorageService } from '../storage/cart-storage.service';
 import { DaffStorageServiceError } from '@daffodil/core';
 
 @Injectable()
-export class DaffCartAddressEffects<
-  T extends DaffCartAddress = DaffCartAddress,
-  V extends DaffCart = DaffCart
-> {
+export class DaffCartAddressEffects<T extends DaffCartAddress, V extends DaffCart> {
   constructor(
     private actions$: Actions,
-    @Inject(DaffCartShippingAddressDriver) private shippingAddressDriver: DaffCartShippingAddressServiceInterface<T, V>,
-    @Inject(DaffCartBillingAddressDriver) private billingAddressDriver: DaffCartBillingAddressServiceInterface<T, V>,
+    @Inject(DaffCartAddressDriver) private driver: DaffCartAddressServiceInterface<T, V>,
     private storage: DaffCartStorageService
   ) {}
 
-  /**
-   * Updates both the shipping and billing address of the cart.
-   */
   @Effect()
   update$ = this.actions$.pipe(
     ofType(DaffCartAddressActionTypes.CartAddressUpdateAction),
-    switchMap((action: DaffCartAddressUpdate<T>) => combineLatest(
-      this.shippingAddressDriver.update(this.storage.getCartId(), action.payload),
-      this.billingAddressDriver.update(this.storage.getCartId(), action.payload)
-    )),
-    map(([shippingResponse, billingResponse]) => new DaffCartAddressUpdateSuccess({
-      ...shippingResponse,
-      ...billingResponse,
-      shipping_address: shippingResponse.shipping_address,
-      billing_address: billingResponse.billing_address
-    })),
+    switchMap((action: DaffCartAddressUpdate<T>) =>
+      this.driver.update(this.storage.getCartId(), action.payload)
+    ),
+    map((resp: V) => new DaffCartAddressUpdateSuccess(resp)),
     catchError(error => of(error instanceof DaffStorageServiceError
       ? new DaffCartStorageFailure()
       : new DaffCartAddressUpdateFailure('Failed to update cart address')
