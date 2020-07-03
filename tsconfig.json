@@ -67,6 +67,9 @@
       "@daffodil/design/article/examples": [
         "dist/design/article/examples"
       ],
+      "@daffodil/design/button/examples": [
+        "dist/design/button/examples"
+      ],
       "@daffodil/design/card/examples": [
         "dist/design/card/examples"
       ],
