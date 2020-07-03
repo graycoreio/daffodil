@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input, HostBinding, ElementRef, Renderer2, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input, HostBinding, ElementRef } from '@angular/core';
 
 export type DaffListMode = 'multi-line' | 'link' | 'navigation' | undefined;
 export enum DaffListModeEnum {
@@ -7,15 +7,7 @@ export enum DaffListModeEnum {
   Navigation = 'navigation'
 }
 
-/**
-* List of classes to add to DaffListComponent instances based on host attributes to style as different variants.
-*/
-const LIST_HOST_ATTRIBUTES: DaffListType[] = [
-  'daff-list',
-  'daff-nav-list'
-];
-
-export type DaffListType = 'daff-list' | 'daff-nav-list' | undefined;
+export type DaffListType = 'daff-list' | 'daff-nav-list';
 
 enum DaffListTypeEnum {
   Default = 'daff-list',
@@ -70,7 +62,7 @@ export class DaffListComponent {
     return this.listType === DaffListTypeEnum.Nav ? 'navigation' : 'list';
   };
 
-  _getHostElement() {
+  private _getHostElement() {
     return this.elementRef.nativeElement;
   }
 }
