@@ -45,6 +45,7 @@ describe('Product | Testing | Factories | DaffCompositeProductFactory', () => {
 			expect(result.items[0].options[0].name).toBeDefined();
 			expect(result.items[0].options[0].price).toBeDefined();
 			expect(result.items[0].options[0].quantity).toBeDefined();
+			expect(result.items[0].options[0].is_default).toBeDefined();
     });
   });
 });

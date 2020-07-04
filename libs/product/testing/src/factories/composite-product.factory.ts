@@ -31,13 +31,15 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 					id: faker.random.alphaNumeric(10),
 					name: faker.commerce.productMaterial(),
 					price: faker.random.number(100).toString(),
-					quantity: faker.random.number(9)
+					quantity: faker.random.number(9),
+					is_default: true
 				},
 				{
 					id: faker.random.alphaNumeric(10),
 					name: faker.commerce.productMaterial(),
 					price: faker.random.number(100).toString(),
-					quantity: faker.random.number(9)
+					quantity: faker.random.number(9),
+					is_default: false
 				}
 			]
 		}

@@ -27,7 +27,7 @@ export interface MagentoBundledProductItemOption {
 	price: number;
 	quantity: number;
 	can_change_quantity?: boolean;
-	is_default?: boolean;
+	is_default: boolean;
 	position?: number;
 	price_type?: MagentoPriceTypeEnum;
 	product?: MagentoSimpleProduct;

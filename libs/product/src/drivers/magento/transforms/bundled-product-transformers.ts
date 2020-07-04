@@ -35,6 +35,7 @@ function transformMagentoBundledProductItemOption(option: MagentoBundledProductI
 		id: option.id.toString(),
 		name: option.label,
 		price: option.price,
-		quantity: option.quantity
+		quantity: option.quantity,
+		is_default: option.is_default
 	}
 }
