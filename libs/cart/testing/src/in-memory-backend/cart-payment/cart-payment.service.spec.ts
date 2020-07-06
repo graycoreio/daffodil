@@ -3,10 +3,12 @@ import { TestBed } from '@angular/core/testing';
 import {
   DaffCart,
 	DaffCartPaymentMethod,
+  DaffCartAddress,
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
-  DaffCartPaymentFactory
+  DaffCartPaymentFactory,
+  DaffCartAddressFactory
 } from '@daffodil/cart/testing';
 
 import { DaffInMemoryBackendCartPaymentService } from './cart-payment.service';
@@ -15,9 +17,11 @@ describe('DaffInMemoryBackendCartPaymentService', () => {
   let service: DaffInMemoryBackendCartPaymentService;
   let cartFactory: DaffCartFactory;
   let cartPaymentFactory: DaffCartPaymentFactory;
+  let cartAddressFactory: DaffCartAddressFactory;
 
   let mockCart: DaffCart;
   let mockCartPayment: DaffCartPaymentMethod;
+  let mockCartAddress: DaffCartAddress;
   let cartId;
   let reqInfoStub;
   let baseUrl;
@@ -34,9 +38,12 @@ describe('DaffInMemoryBackendCartPaymentService', () => {
 
     cartFactory = TestBed.get(DaffCartFactory);
     cartPaymentFactory = TestBed.get(DaffCartPaymentFactory);
+    cartAddressFactory = TestBed.get(DaffCartAddressFactory);
 
     mockCart = cartFactory.create();
     mockCartPayment = cartPaymentFactory.create();
+    mockCartAddress = cartAddressFactory.create();
+    mockCart.billing_address = mockCartAddress;
     mockCart.payment = mockCartPayment;
     collection = [mockCart];
     cartId = mockCart.id;
@@ -82,12 +89,32 @@ describe('DaffInMemoryBackendCartPaymentService', () => {
     beforeEach(() => {
       newPayment = cartPaymentFactory.create();
       reqInfoStub.url = cartUrl;
-      reqInfoStub.req.body = newPayment;
+      reqInfoStub.req.body = {payment: newPayment};
       result = service.put(reqInfoStub);
     });
 
     it('should return a cart with the updated payment', () => {
       expect(result.body.payment).toEqual(newPayment);
+		});
+  });
+
+  describe('processing an update payment with billing request', () => {
+    let result;
+    let newPayment: DaffCartPaymentMethod;
+
+    beforeEach(() => {
+      newPayment = cartPaymentFactory.create();
+      reqInfoStub.url = cartUrl;
+      reqInfoStub.req.body = {
+        payment: newPayment,
+        address: mockCartAddress
+      };
+      result = service.put(reqInfoStub);
+    });
+
+    it('should return a cart with the updated payment', () => {
+      expect(result.body.payment).toEqual(newPayment);
+      expect(result.body.billing_address).toEqual(mockCartAddress);
 		});
   });
 
