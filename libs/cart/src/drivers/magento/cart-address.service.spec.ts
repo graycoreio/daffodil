@@ -20,10 +20,10 @@ import {
 } from '@daffodil/cart/testing';
 
 import {
-  updateAddress
+  updateAddress, updateAddressWithEmail
 } from './queries/public_api';
 import {
-  MagentoUpdateAddressResponse,
+  MagentoUpdateAddressResponse, MagentoUpdateAddressWithEmailResponse,
 } from './models/responses/public_api';
 import { DaffMagentoCartAddressService } from './cart-address.service';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
@@ -53,6 +53,7 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
   let mockDaffCartAddress: DaffCartAddress;
   let mockMagentoShippingAddressInput: MagentoShippingAddressInput;
   let mockUpdateAddressResponse: MagentoUpdateAddressResponse;
+  let mockUpdateAddressWithEmailResponse: MagentoUpdateAddressWithEmailResponse;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -119,6 +120,16 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
         __typename: 'SetShippingAddresses',
         cart: mockMagentoCart
       },
+    };
+    mockUpdateAddressWithEmailResponse = {
+      setBillingAddressOnCart: {
+				__typename: 'SetBillingAddressOnCart',
+        cart: mockMagentoCart
+      },
+      setShippingAddressesOnCart: {
+        __typename: 'SetShippingAddresses',
+        cart: mockMagentoCart
+      },
       setGuestEmailOnCart: {
         cart: {
           email
@@ -136,43 +147,71 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
 
   describe('update | updates the cart\'s email, billing, and shipping address', () => {
     describe('when the call to the Magento API is successful', () => {
-      let street;
+      describe('when the email is included', () => {
+        let street;
 
-      beforeEach(() => {
-        street = 'updatedStreet';
+        beforeEach(() => {
+          street = 'updatedStreet';
 
-        mockMagentoShippingAddress.street = [street];
-        mockDaffCartAddress.street = street;
-      });
-
-      it('should return the correct value', done => {
-        service.update(cartId, mockDaffCartAddress).subscribe(result => {
-          expect(result.billing_address.street).toEqual(street);
-          expect(result.shipping_address.street).toEqual(street);
-          expect(result.billing_address.email).toEqual(email);
-          expect(result.shipping_address.email).toEqual(email);
-          done();
+          mockMagentoShippingAddress.street = [street];
+          mockDaffCartAddress.street = street;
         });
 
-        const op = controller.expectOne(addTypenameToDocument(updateAddress));
+        it('should return the correct value', done => {
+          service.update(cartId, mockDaffCartAddress).subscribe(result => {
+            expect(result.billing_address.street).toEqual(street);
+            expect(result.shipping_address.street).toEqual(street);
+            expect(result.billing_address.email).toEqual(email);
+            expect(result.shipping_address.email).toEqual(email);
+            done();
+          });
 
-        op.flush({
-          data: mockUpdateAddressResponse
+          const op = controller.expectOne(addTypenameToDocument(updateAddressWithEmail));
+
+          op.flush({
+            data: mockUpdateAddressWithEmailResponse
+          });
+        });
+      });
+
+      describe('when the email is not included', () => {
+        let street;
+
+        beforeEach(() => {
+          street = 'updatedStreet';
+
+          mockMagentoShippingAddress.street = [street];
+          mockDaffCartAddress.street = street;
+          mockDaffCartAddress.email = null;
+        });
+
+        it('should return the correct value', done => {
+          service.update(cartId, mockDaffCartAddress).subscribe(result => {
+            expect(result.billing_address.street).toEqual(street);
+            expect(result.shipping_address.street).toEqual(street);
+            done();
+          });
+
+          const op = controller.expectOne(addTypenameToDocument(updateAddress));
+
+          op.flush({
+            data: mockUpdateAddressResponse
+          });
         });
       });
     });
 
     describe('when the call to the Magento API is unsuccessful', () => {
-      it('should throw a DaffCartNotFoundError', done => {
+      it('should throw an Error', done => {
         service.update(cartId, mockDaffCartAddress).pipe(
           catchError(err => {
-            expect(err).toEqual(jasmine.any(DaffCartNotFoundError));
+            expect(err).toEqual(jasmine.any(Error));
             done();
             return [];
           })
         ).subscribe();
 
-        const op = controller.expectOne(addTypenameToDocument(updateAddress));
+        const op = controller.expectOne(addTypenameToDocument(updateAddressWithEmail));
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find a cart with that ID.',
