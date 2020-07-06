@@ -1,46 +1,82 @@
 import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
+import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
+import { addTypenameToDocument } from 'apollo-utilities';
+import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
+import { catchError } from 'rxjs/operators';
+import { GraphQLError } from 'graphql';
 
+import { schema } from '@daffodil/driver/magento';
 import {
   DaffCart,
-  DaffCartPaymentMethod
+  DaffCartPaymentMethod,
+  DaffCartAddress
 } from '@daffodil/cart';
 import {
   MagentoCartFactory,
   DaffCartFactory,
   DaffCartPaymentFactory,
-  MagentoCartPaymentMethodFactory
+  MagentoCartPaymentMethodFactory,
+  MagentoCartAddressFactory,
+  DaffCartAddressFactory,
+  MagentoCartAddressInputFactory
 } from '@daffodil/cart/testing';
 
 import { DaffMagentoCartPaymentService } from './cart-payment.service';
-import { MagentoCart } from './models/outputs/cart';
-import { MagentoCartPaymentMethod } from './models/outputs/cart-payment-method';
+import {
+  MagentoCart,
+  MagentoCartAddress,
+  MagentoCartPaymentMethod
+} from './models/outputs/public_api';
+import { MagentoBillingAddressInput } from './models/inputs/billing-address';
+import {
+  getSelectedPaymentMethod,
+  setSelectedPaymentMethod,
+  setSelectedPaymentMethodWithBillingAndEmail,
+  setSelectedPaymentMethodWithBilling
+} from './queries/public_api';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
-import { MagentoGetSelectedPaymentMethodResponse } from './models/responses/get-selected-payment-method';
-import { MagentoSetSelectedPaymentMethodResponse } from './models/responses/set-selected-payment-method';
-import { getSelectedPaymentMethod, setSelectedPaymentMethod } from './queries/public_api';
 import { DaffMagentoCartPaymentTransformer } from './transforms/outputs/cart-payment.service';
 import { DaffMagentoPaymentMethodInputTransformer } from './transforms/inputs/payment-method.service';
+import { DaffMagentoBillingAddressInputTransformer } from './transforms/inputs/billing-address.service';
+import {
+  MagentoGetSelectedPaymentMethodResponse,
+  MagentoSetSelectedPaymentMethodResponse,
+  MagentoSetSelectedPaymentMethodWithBillingResponse,
+  MagentoSetSelectedPaymentMethodWithBillingAndEmailResponse
+} from './models/responses/public_api';
 
 describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
   let service: DaffMagentoCartPaymentService;
   let controller: ApolloTestingController;
 
   let daffCartFactory: DaffCartFactory;
-  let magentoCartFactory: MagentoCartFactory;
-  let magentoPaymentMethodFactory: MagentoCartPaymentMethodFactory;
+  let daffCartAddressFactory: DaffCartAddressFactory;
   let daffCartPaymentFactory: DaffCartPaymentFactory;
+  let magentoCartFactory: MagentoCartFactory;
+  let magentoBillingAddressFactory: MagentoCartAddressFactory;
+  let magentoCartAddressInputFactory: MagentoCartAddressInputFactory;
+  let magentoPaymentMethodFactory: MagentoCartPaymentMethodFactory;
 
   let magentoCartTransformerSpy;
-  let magentoShippingRateTransformerSpy;
+  let magentoBillingRateTransformerSpy;
   let magentoPaymentMethodInputTransformerSpy;
+  let magentoBillingAddressInputTransformerSpy;
 
   let cartId;
+  let email;
+
   let mockDaffCart: DaffCart;
+  let mockDaffCartAddress: DaffCartAddress;
+  let mockDaffCartPaymentMethod: DaffCartPaymentMethod;
+
   let mockMagentoCart: MagentoCart;
   let mockMagentoCartPaymentMethod: MagentoCartPaymentMethod;
-  let mockDaffCartPaymentMethod: DaffCartPaymentMethod;
+  let mockMagentoBillingAddressInput: MagentoBillingAddressInput;
+  let mockMagentoBillingAddress: MagentoCartAddress;
+
   let mockSetSelectedPaymentMethodResponse: MagentoSetSelectedPaymentMethodResponse;
+  let mockSetSelectedPaymentMethodWithBillingResponse: MagentoSetSelectedPaymentMethodWithBillingResponse;
+  let mockSetSelectedPaymentMethodWithBillingAndEmailResponse: MagentoSetSelectedPaymentMethodWithBillingAndEmailResponse;
   let mockGetSelectedPaymentMethodResponse: MagentoGetSelectedPaymentMethodResponse;
 
   beforeEach(() => {
@@ -62,28 +98,56 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
           provide: DaffMagentoPaymentMethodInputTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoPaymentMethodInputTransformer', ['transform'])
         },
+        {
+          provide: DaffMagentoBillingAddressInputTransformer,
+          useValue: jasmine.createSpyObj('DaffMagentoBillingAddressInputTransformer', ['transform'])
+        },
+        {
+					provide: APOLLO_TESTING_CACHE,
+					useValue: new InMemoryCache({
+						addTypename: true,
+						fragmentMatcher: new IntrospectionFragmentMatcher({
+							introspectionQueryResultData: schema,
+						}),
+					}),
+				}
       ]
     });
 
     service = TestBed.get(DaffMagentoCartPaymentService);
     controller = TestBed.get(ApolloTestingController);
 
-    magentoCartTransformerSpy = TestBed.get(DaffMagentoCartTransformer);
-    magentoShippingRateTransformerSpy = TestBed.get(DaffMagentoCartPaymentTransformer);
-    magentoPaymentMethodInputTransformerSpy = TestBed.get(DaffMagentoPaymentMethodInputTransformer);
-
     daffCartFactory = TestBed.get(DaffCartFactory);
-    magentoCartFactory = TestBed.get(MagentoCartFactory);
-    magentoPaymentMethodFactory = TestBed.get(MagentoCartPaymentMethodFactory);
     daffCartPaymentFactory = TestBed.get(DaffCartPaymentFactory);
+    daffCartAddressFactory = TestBed.get(DaffCartAddressFactory);
+    magentoCartAddressInputFactory = TestBed.get(MagentoCartAddressInputFactory);
+    magentoPaymentMethodFactory = TestBed.get(MagentoCartPaymentMethodFactory);
+    magentoCartFactory = TestBed.get(MagentoCartFactory);
+
+    magentoCartTransformerSpy = TestBed.get(DaffMagentoCartTransformer);
+    magentoBillingRateTransformerSpy = TestBed.get(DaffMagentoCartPaymentTransformer);
+    magentoPaymentMethodInputTransformerSpy = TestBed.get(DaffMagentoPaymentMethodInputTransformer);
+    magentoBillingAddressInputTransformerSpy = TestBed.get(DaffMagentoBillingAddressInputTransformer);
+    magentoBillingAddressFactory = TestBed.get(MagentoCartAddressFactory);
 
     mockDaffCart = daffCartFactory.create();
-    mockMagentoCart = magentoCartFactory.create();
-    mockMagentoCartPaymentMethod = magentoPaymentMethodFactory.create();
+    mockDaffCartAddress = daffCartAddressFactory.create();
     mockDaffCartPaymentMethod = daffCartPaymentFactory.create();
+    mockMagentoCart = magentoCartFactory.create();
+    mockMagentoCartPaymentMethod = {
+      ...magentoPaymentMethodFactory.create(),
+      __typename: 'SelectedPaymentMethod'
+    };
+    mockMagentoBillingAddress = magentoBillingAddressFactory.create();
+    mockMagentoBillingAddressInput = {
+      address: magentoCartAddressInputFactory.create()
+    }
 
     cartId = mockDaffCart.id;
+    email = mockDaffCartAddress.email;
     mockDaffCart.payment = mockDaffCartPaymentMethod;
+    mockDaffCart.billing_address = mockDaffCartAddress;
+    mockMagentoCart.billing_address = mockMagentoBillingAddress;
     mockMagentoCart.selected_payment_method = mockMagentoCartPaymentMethod;
     mockGetSelectedPaymentMethodResponse = {
       cart: {
@@ -93,13 +157,40 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
     };
     mockSetSelectedPaymentMethodResponse = {
       setPaymentMethodOnCart: {
-				__typename: 'SetPaymetnMethod',
+				__typename: 'SetPaymentMethod',
         cart: mockMagentoCart
       }
     };
+    mockSetSelectedPaymentMethodWithBillingResponse = {
+      setPaymentMethodOnCart: {
+				__typename: 'SetPaymentMethod',
+        cart: mockMagentoCart
+      },
+      setBillingAddressOnCart: {
+				__typename: 'SetBillingAddressOnCart',
+        cart: mockMagentoCart
+      },
+    };
+    mockSetSelectedPaymentMethodWithBillingAndEmailResponse = {
+      setPaymentMethodOnCart: {
+				__typename: 'SetPaymentMethod',
+        cart: mockMagentoCart
+      },
+      setBillingAddressOnCart: {
+				__typename: 'SetBillingAddressOnCart',
+        cart: mockMagentoCart
+      },
+      setGuestEmailOnCart: {
+				__typename: 'SetGuestEmail',
+        cart: {
+          email
+        }
+      }
+    };
 
-    magentoCartTransformerSpy.transform.withArgs(mockMagentoCart).and.returnValue(mockDaffCart);
-    magentoShippingRateTransformerSpy.transform.and.returnValue(mockDaffCartPaymentMethod)
+    magentoCartTransformerSpy.transform.and.returnValue(mockDaffCart);
+    magentoBillingRateTransformerSpy.transform.and.returnValue(mockDaffCartPaymentMethod)
+    magentoBillingAddressInputTransformerSpy.transform.withArgs(mockDaffCartAddress).and.returnValue(mockMagentoBillingAddressInput);
   });
 
   it('should be created', () => {
@@ -109,11 +200,11 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
   describe('get | getting the selected payment method', () => {
     it('should call the transformer with the correct argument', done => {
       service.get(cartId).subscribe(() => {
-        expect(magentoShippingRateTransformerSpy.transform).toHaveBeenCalledWith(jasmine.objectContaining(mockMagentoCartPaymentMethod));
+        expect(magentoBillingRateTransformerSpy.transform).toHaveBeenCalledWith(jasmine.objectContaining(mockMagentoCartPaymentMethod));
         done();
       });
 
-      const op = controller.expectOne(getSelectedPaymentMethod);
+      const op = controller.expectOne(addTypenameToDocument(getSelectedPaymentMethod));
 
       op.flush({
         data: mockGetSelectedPaymentMethodResponse
@@ -126,7 +217,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
         done();
       });
 
-      const op = controller.expectOne(getSelectedPaymentMethod);
+      const op = controller.expectOne(addTypenameToDocument(getSelectedPaymentMethod));
 
       op.flush({
         data: mockGetSelectedPaymentMethodResponse
@@ -154,10 +245,105 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
         done();
       });
 
-      const op = controller.expectOne(setSelectedPaymentMethod);
+      const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethod));
 
       op.flush({
         data: mockSetSelectedPaymentMethodResponse
+      });
+    });
+
+    afterEach(() => {
+      controller.verify();
+    });
+  });
+
+  describe('update | updates the cart\'s selected payment method, email, and billing address', () => {
+    describe('when the call to the Magento API is successful', () => {
+      describe('when the email is included', () => {
+        let method;
+        let street;
+        let newEmail;
+
+        beforeEach(() => {
+          street = 'updatedStreet';
+          method = 'method';
+          newEmail = 'new email';
+
+          mockMagentoBillingAddress.street = [street];
+          mockDaffCartAddress.email = newEmail;
+          mockDaffCartAddress.street = street;
+          mockMagentoCartPaymentMethod.code = method;
+          mockDaffCartPaymentMethod.method = method;
+        });
+
+        it('should return the correct value', done => {
+          service.updateWithBilling(cartId, mockDaffCartPaymentMethod, mockDaffCartAddress).subscribe(result => {
+            expect(result.billing_address.street).toEqual(street);
+            expect(result.billing_address.email).toEqual(newEmail);
+            expect(result.payment.method).toEqual(method);
+            done();
+          });
+
+          const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethodWithBillingAndEmail));
+
+          op.flush({
+            data: mockSetSelectedPaymentMethodWithBillingAndEmailResponse
+          });
+        });
+      });
+
+      describe('when the email is not included', () => {
+        let method;
+        let street;
+
+        beforeEach(() => {
+          street = 'updatedStreet';
+          method = 'method';
+
+          mockDaffCartAddress.email = null;
+          mockMagentoBillingAddress.street = [street];
+          mockDaffCartAddress.street = street;
+          mockMagentoCartPaymentMethod.code = method;
+          mockDaffCartPaymentMethod.method = method;
+        });
+
+        it('should return the correct value', done => {
+          service.updateWithBilling(cartId, mockDaffCartPaymentMethod, mockDaffCartAddress).subscribe(result => {
+            expect(result.billing_address.street).toEqual(street);
+            expect(result.payment.method).toEqual(method);
+            done();
+          });
+
+          const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethodWithBilling));
+
+          op.flush({
+            data: mockSetSelectedPaymentMethodWithBillingResponse
+          });
+        });
+      });
+    });
+
+    describe('when the call to the Magento API is unsuccessful', () => {
+      it('should throw an Error', done => {
+        service.updateWithBilling(cartId, mockDaffCartPaymentMethod, mockDaffCartAddress).pipe(
+          catchError(err => {
+            expect(err).toEqual(jasmine.any(Error));
+            done();
+            return [];
+          })
+        ).subscribe();
+
+        const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethodWithBillingAndEmail));
+
+        op.graphqlErrors([new GraphQLError(
+          'Can\'t find a cart with that ID.',
+          null,
+          null,
+          null,
+          null,
+          null,
+          {category: 'graphql-no-such-entity'}
+        )]);
       });
     });
 
@@ -178,7 +364,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
         done();
       });
 
-      const op = controller.expectOne(setSelectedPaymentMethod);
+      const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethod));
 
       op.flush({
         data: mockSetSelectedPaymentMethodResponse
