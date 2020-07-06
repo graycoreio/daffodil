@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import {
   DaffCartDriver,
+  DaffCartAddressDriver,
   DaffCartBillingAddressDriver,
   DaffCartShippingAddressDriver,
   DaffCartCouponDriver,
@@ -14,6 +15,7 @@ import {
 } from '@daffodil/cart';
 
 import { DaffTestingCartService } from './cart/cart.service';
+import { DaffTestingCartAddressService } from './cart-address/cart-address.service';
 import { DaffTestingCartBillingAddressService } from './cart-billing-address/cart-billing-address.service';
 import { DaffTestingCartShippingAddressService } from './cart-shipping-address/cart-shipping-address.service';
 import { DaffTestingCartCouponService } from './cart-coupon/cart-coupon.service';
@@ -36,6 +38,10 @@ export class DaffTestingCartDriverModule {
         {
           provide: DaffCartDriver,
           useExisting: DaffTestingCartService
+        },
+        {
+          provide: DaffCartAddressDriver,
+          useExisting: DaffTestingCartAddressService
         },
         {
           provide: DaffCartBillingAddressDriver,

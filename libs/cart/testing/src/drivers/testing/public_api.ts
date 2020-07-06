@@ -1,5 +1,6 @@
 export { DaffTestingCartService } from './cart/cart.service';
 export { DaffTestingCartItemService } from './cart-item/cart-item.service';
+export { DaffTestingCartAddressService } from './cart-address/cart-address.service';
 export { DaffTestingCartBillingAddressService } from './cart-billing-address/cart-billing-address.service';
 export { DaffTestingCartPaymentService } from './cart-payment/cart-payment.service';
 export { DaffTestingCartPaymentMethodsService } from './cart-payment-methods/cart-payment-methods.service';

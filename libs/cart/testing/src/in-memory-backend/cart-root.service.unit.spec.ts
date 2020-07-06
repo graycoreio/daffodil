@@ -17,6 +17,7 @@ import { DaffInMemoryBackendCartService } from './cart/cart.service';
 import { DaffInMemoryBackendCartItemsService } from './cart-items/cart-items.service';
 import { DaffInMemoryBackendCartOrderService } from './cart-order/cart-order.service';
 import { DaffInMemoryBackendCartCouponService } from './cart-coupon/cart-coupon.service';
+import { DaffInMemoryBackendCartAddressService } from './cart-address/cart-address.service';
 import { DaffInMemoryBackendCartShippingAddressService } from './cart-shipping-address/cart-shipping-address.service';
 import { DaffInMemoryBackendCartBillingAddressService } from './cart-billing-address/cart-billing-address.service';
 import { DaffInMemoryBackendCartPaymentMethodsService } from './cart-payment-methods/cart-payment-methods.service';
@@ -31,6 +32,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
   let cartItemsBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartItemsService>;
   let cartOrderBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartOrderService>;
   let cartCouponBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartCouponService>;
+  let cartAddressBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartAddressService>;
   let cartShippingAddressBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartShippingAddressService>;
   let cartBillingAddressBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartBillingAddressService>;
   let cartPaymentMethodsBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartPaymentMethodsService>;
@@ -71,6 +73,10 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
           useValue: jasmine.createSpyObj('DaffInMemoryBackendCartCouponService', ['get', 'post', 'delete'])
         },
         {
+          provide: DaffInMemoryBackendCartAddressService,
+          useValue: jasmine.createSpyObj('DaffInMemoryBackendCartAddressService', ['put'])
+        },
+        {
           provide: DaffInMemoryBackendCartShippingAddressService,
           useValue: jasmine.createSpyObj('DaffInMemoryBackendCartShippingAddressService', ['get', 'put'])
         },
@@ -102,6 +108,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
     cartItemsBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartItemsService);
     cartOrderBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartOrderService);
     cartCouponBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartCouponService);
+    cartAddressBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartAddressService);
     cartShippingAddressBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartShippingAddressService);
     cartBillingAddressBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartBillingAddressService);
     cartPaymentMethodsBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartPaymentMethodsService);
@@ -368,6 +375,20 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
 
       it('should delegate the request to the cart items service', () => {
         expect(cartItemsBackendServiceSpy.put).toHaveBeenCalledWith(reqInfoStub);
+      });
+    });
+
+    describe('when the collectionName is cart-address', () => {
+      let result;
+
+      beforeEach(() => {
+        reqInfoStub.collectionName = 'cart-address';
+
+        result = service.put(reqInfoStub);
+      });
+
+      it('should delegate the request to the cart address service', () => {
+        expect(cartAddressBackendServiceSpy.put).toHaveBeenCalledWith(reqInfoStub);
       });
     });
 
