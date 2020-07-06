@@ -15,8 +15,8 @@ export class MockOrderPayment implements DaffOrderPayment {
     updated_at = new Date();
     method = 'card';
     cc_type = 'visa';
-    cc_number_enc = faker.random.number({min: 1, max: 1000}).toString();
-    cc_last4 = faker.random.number({min: 1, max: 1000}).toString();
+    cc_number_enc = faker.random.number({min: 1000, max: 9999}).toString();
+    cc_last4 = faker.random.number({min: 1000, max: 9999}).toString();
     cc_cid_enc = faker.random.number({min: 1, max: 1000}).toString();
     cc_owner = 'owner';
     cc_exp_month = 'month';
