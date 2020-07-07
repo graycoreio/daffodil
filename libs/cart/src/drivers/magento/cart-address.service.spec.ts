@@ -30,7 +30,6 @@ import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { MagentoCart } from './models/outputs/cart';
 import { DaffMagentoShippingAddressInputTransformer } from './transforms/inputs/shipping-address.service';
 import { MagentoShippingAddressInput } from './models/inputs/shipping-address';
-import { DaffCartNotFoundError } from '../../errors/public_api';
 
 describe('Driver | Magento | Cart | CartAddressService', () => {
   let service: DaffMagentoCartAddressService;

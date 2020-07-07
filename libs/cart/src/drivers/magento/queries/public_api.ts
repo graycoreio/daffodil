@@ -7,6 +7,8 @@ export { updateCartItem } from './update-cart-item';
 export { listPaymentMethods } from './list-payment-methods';
 export { getSelectedPaymentMethod } from './get-selected-payment-method';
 export { setSelectedPaymentMethod } from './set-selected-payment-method';
+export { setSelectedPaymentMethodWithBilling } from './set-selected-payment-method-with-billing';
+export { setSelectedPaymentMethodWithBillingAndEmail } from './set-selected-payment-method-with-billing-and-email';
 export { listShippingMethods } from './list-shipping-methods';
 export { getSelectedShippingMethod } from './get-selected-shipping-method';
 export { setSelectedShippingMethod } from './set-selected-shipping-method';

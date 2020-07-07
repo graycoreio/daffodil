@@ -424,10 +424,37 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     beforeEach(done => {
       newPayment = cartPaymentFactory.create();
 
-      httpClient.put<any>(`/api/cart-payment/${cartId}/`, newPayment).subscribe(res => {
+      httpClient.put<any>(`/api/cart-payment/${cartId}/`, {payment: newPayment}).subscribe(res => {
         result = res
         done();
       });
+    });
+
+    it('should return a cart with the updated payment', () => {
+      expect(result.payment).toEqual(newPayment);
+		});
+  });
+
+  describe('processing an update payment with billing request', () => {
+    let result;
+    let newPayment: DaffCartPaymentMethod;
+    let newAddress: DaffCartAddress;
+
+    beforeEach(done => {
+      newPayment = cartPaymentFactory.create();
+      newAddress = cartAddressFactory.create();
+
+      httpClient.put<any>(`/api/cart-payment/${cartId}/`, {
+        payment: newPayment,
+        address: newAddress
+      }).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return a cart with the updated billing address', () => {
+      expect(result.billing_address).toEqual(newAddress);
     });
 
     it('should return a cart with the updated payment', () => {

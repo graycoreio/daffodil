@@ -5,6 +5,8 @@ export { MagentoRemoveCartItemResponse } from './remove-cart-item';
 export { MagentoListPaymentMethodsResponse } from './list-payment-methods';
 export { MagentoGetSelectedPaymentMethodResponse } from './get-selected-payment-method';
 export { MagentoSetSelectedPaymentMethodResponse } from './set-selected-payment-method';
+export { MagentoSetSelectedPaymentMethodWithBillingResponse } from './set-selected-payment-method-with-billing';
+export { MagentoSetSelectedPaymentMethodWithBillingAndEmailResponse } from './set-selected-payment-method-with-billing-and-email';
 export { MagentoListShippingMethodsResponse } from './list-shipping-methods';
 export { MagentoGetSelectedShippingMethodResponse } from './get-selected-shipping-method';
 export { MagentoSetSelectedShippingMethodResponse } from './set-selected-shipping-method';
