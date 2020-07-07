@@ -1,0 +1,8 @@
+<ng-container *ngIf="_prefix">
+  <ng-content select="[daffPrefix]"></ng-content>
+</ng-container>
+<div class="daff-message-bar__body">
+  <ng-content select="[daffMessageBarMessage]"></ng-content>
+  <ng-content select="[daffMessageBarActions]"></ng-content>
+</div>
+<ng-content select="[daffMessageBarDismissal]"></ng-content>

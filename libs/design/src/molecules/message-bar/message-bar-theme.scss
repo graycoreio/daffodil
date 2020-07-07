@@ -1,0 +1,31 @@
+@mixin daff-message-bar-theme-variant($background, $border, $text) {
+	background-color: $background;
+	border: 1px solid $border;
+	color: $text;
+}
+
+@mixin daff-message-bar-theme($theme) {
+	$primary: map-get($theme, primary);
+	$secondary: map-get($theme, secondary);
+	$tertiary: map-get($theme, tertiary);
+	$base: daff-map-deep-get($theme, 'core.base');
+	$base-contrast: daff-map-deep-get($theme, 'core.base-contrast');
+	$white: daff-map-deep-get($theme, 'core.white');
+	$black: daff-map-deep-get($theme, 'core.black');
+
+	.daff-message-bar {
+		@include daff-message-bar-theme-variant(
+			daff-illuminate($base, $daff-gray, 1),
+			daff-illuminate($base, $daff-gray, 2),
+			$base-contrast
+		);
+
+		&--flush {
+			@include daff-message-bar-theme-variant(
+				daff-illuminate($base, $daff-gray, 1),
+				daff-illuminate($base, $daff-gray, 1),
+				$base-contrast
+			);
+		}
+	}
+}

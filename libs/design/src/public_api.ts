@@ -27,6 +27,7 @@ export * from './molecules/image-gallery/public_api';
 export * from './molecules/image-list/public_api';
 export * from './molecules/link-set/public_api';
 export * from './molecules/list/public_api';
+export * from './molecules/message-bar/public_api';
 export * from './molecules/modal/public_api';
 export * from './molecules/navbar/public_api';
 export * from './molecules/paginator/public_api';

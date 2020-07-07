@@ -12,6 +12,7 @@
 @import '../../molecules/card/card/card-theme';
 @import '../../molecules/hero/hero-theme';
 @import '../../molecules/list/list-theme';
+@import '../../molecules/message-bar/message-bar-theme';
 @import '../../molecules/modal/modal-theme';
 @import '../../molecules/navbar/navbar-theme';
 @import '../../molecules/paginator/paginator-theme';
@@ -42,6 +43,7 @@
 	@include daff-card-theme($theme);
 	@include daff-hero-theme($theme);
 	@include daff-list-theme($theme);
+	@include daff-message-bar-theme($theme);
 	@include daff-modal-theme($theme);
 	@include daff-navbar-theme($theme);
 	@include daff-paginator-theme($theme);

@@ -1,0 +1,36 @@
+@import '../../../scss/daff-util.scss';
+@import '../../../scss/daff-theme.scss';
+
+.daff-message-bar {
+	display: flex;
+	border-radius: 4px;
+
+	&--flush {
+		border-radius: 0;
+	}
+
+	.daff-prefix {
+		line-height: 1.25em;
+		padding: 12px 0 12px 16px;
+	}
+
+	&__body {
+		display: block;
+		width: 100%;
+	}
+
+	&__message {
+		display: block;
+		font-size: 1rem;
+		line-height: 1.25em;
+		padding: 12px 16px;
+	}
+
+	&__actions {
+		padding: 0 16px 12px;
+	}
+
+	&__dismissal {
+		margin: 2px 0;
+	}
+}
