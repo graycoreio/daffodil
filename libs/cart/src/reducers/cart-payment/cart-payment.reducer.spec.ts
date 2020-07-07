@@ -13,7 +13,10 @@ import {
   DaffCartPaymentUpdateFailure,
   DaffCartPaymentRemoveSuccess,
   DaffCartPaymentRemoveFailure,
-	DaffCartPaymentMethodAdd
+	DaffCartPaymentMethodAdd,
+  DaffCartPaymentUpdateWithBilling,
+  DaffCartPaymentUpdateWithBillingSuccess,
+  DaffCartPaymentUpdateWithBillingFailure
 } from '../../actions/public_api';
 import { cartPaymentReducer } from './cart-payment.reducer';
 import { DaffCartErrorType } from '../errors/cart-error-type.enum';
@@ -162,6 +165,74 @@ describe('Cart | Reducer | Cart Payment', () => {
       const cartPaymentUpdateFailure = new DaffCartPaymentUpdateFailure(error);
 
       result = cartPaymentReducer(state, cartPaymentUpdateFailure);
+    });
+
+    it('should indicate that the cart is not loading', () => {
+      expect(result.loading).toEqual(false);
+    });
+
+    it('should add an error to the payment section of state.errors', () => {
+      expect(result.errors[DaffCartErrorType.Payment].length).toEqual(2);
+    });
+  });
+
+  describe('when CartPaymentUpdateWithBillingAction is triggered', () => {
+    it('should set loading state to true', () => {
+      const cartPaymentUpdateWithBillingAction = new DaffCartPaymentUpdateWithBilling(cart.payment, cart.billing_address);
+
+      const result = cartPaymentReducer(initialState, cartPaymentUpdateWithBillingAction);
+
+      expect(result.loading).toEqual(true);
+    });
+  });
+
+  describe('when CartPaymentUpdateWithBillingActionSuccess is triggered', () => {
+    let result;
+    let state: DaffCartReducerState<DaffCart>;
+
+    beforeEach(() => {
+      const cartPaymentUpdateWithBillingActionSuccess = new DaffCartPaymentUpdateWithBillingSuccess(cart);
+      state = {
+        ...initialState,
+        loading: true
+      }
+
+      result = cartPaymentReducer(state, cartPaymentUpdateWithBillingActionSuccess);
+    });
+
+    it('should set cart from action.payload', () => {
+      expect(result.cart).toEqual(cart)
+    });
+
+    it('should indicate that the cart is not loading', () => {
+      expect(result.loading).toEqual(false);
+    });
+
+    it('should reset the errors in the payment section of state.errors to an empty array', () => {
+      expect(result.errors[DaffCartErrorType.Payment]).toEqual([]);
+    });
+  });
+
+  describe('when CartPaymentUpdateWithBillingFailureAction is triggered', () => {
+    let error: string;
+    let result;
+    let state: DaffCartReducerState<DaffCart>;
+
+    beforeEach(() => {
+      state = {
+        ...initialState,
+        loading: true,
+        errors: {
+          ...initialState.errors,
+          [DaffCartErrorType.Payment]: new Array('firstError')
+        }
+      }
+
+      error = 'error';
+
+      const cartPaymentUpdateWithBillingFailure = new DaffCartPaymentUpdateWithBillingFailure(error);
+
+      result = cartPaymentReducer(state, cartPaymentUpdateWithBillingFailure);
     });
 
     it('should indicate that the cart is not loading', () => {
