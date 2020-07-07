@@ -6,10 +6,12 @@ import { hot, cold } from 'jasmine-marbles';
 import {
   DaffCart,
   DaffCartPaymentMethod,
+  DaffCartAddress,
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
-  DaffCartPaymentFactory
+  DaffCartPaymentFactory,
+  DaffCartAddressFactory
 } from '@daffodil/cart/testing';
 
 import { DaffCartPaymentEffects } from './cart-payment.effects';
@@ -22,20 +24,25 @@ import {
   DaffCartPaymentRemoveFailure,
   DaffCartPaymentUpdate,
   DaffCartPaymentUpdateSuccess,
-  DaffCartPaymentUpdateFailure
+  DaffCartPaymentUpdateFailure,
+  DaffCartPaymentUpdateWithBilling,
+  DaffCartPaymentUpdateWithBillingSuccess,
+  DaffCartPaymentUpdateWithBillingFailure
 } from '../actions/public_api';
 import { DaffCartStorageService } from '../storage/cart-storage.service';
 import { DaffCartPaymentServiceInterface, DaffCartPaymentDriver } from '../drivers/interfaces/cart-payment-service.interface';
 
 describe('Daffodil | Cart | CartPaymentEffects', () => {
   let actions$: Observable<any>;
-  let effects: DaffCartPaymentEffects<DaffCartPaymentMethod, DaffCart>;
+  let effects: DaffCartPaymentEffects;
 
   let mockCart: DaffCart;
   let mockCartPayment: DaffCartPaymentMethod;
+  let mockCartBillingAddress: DaffCartAddress;
 
   let cartFactory: DaffCartFactory;
   let cartPaymentFactory: DaffCartPaymentFactory;
+  let cartAddressFactory: DaffCartAddressFactory;
 
   let daffPaymentDriverSpy: jasmine.SpyObj<DaffCartPaymentServiceInterface>;
 
@@ -48,7 +55,7 @@ describe('Daffodil | Cart | CartPaymentEffects', () => {
         provideMockActions(() => actions$),
         {
           provide: DaffCartPaymentDriver,
-          useValue: jasmine.createSpyObj('DaffCartPaymentDriver', ['get', 'update', 'remove'])
+          useValue: jasmine.createSpyObj('DaffCartPaymentDriver', ['get', 'update', 'updateWithBilling', 'remove'])
         },
         {
           provide: DaffCartStorageService,
@@ -57,16 +64,18 @@ describe('Daffodil | Cart | CartPaymentEffects', () => {
       ]
     });
 
-    effects = TestBed.get<DaffCartPaymentEffects<DaffCartPaymentMethod, DaffCart>>(DaffCartPaymentEffects);
+    effects = TestBed.get(DaffCartPaymentEffects);
 
     daffPaymentDriverSpy = TestBed.get<DaffCartPaymentServiceInterface>(DaffCartPaymentDriver);
     daffCartStorageSpy = TestBed.get(DaffCartStorageService);
 
     cartFactory = TestBed.get<DaffCartFactory>(DaffCartFactory);
     cartPaymentFactory = TestBed.get<DaffCartPaymentFactory>(DaffCartPaymentFactory);
+    cartAddressFactory = TestBed.get<DaffCartAddressFactory>(DaffCartAddressFactory);
 
     mockCart = cartFactory.create();
     mockCartPayment = cartPaymentFactory.create();
+    mockCartBillingAddress = cartAddressFactory.create();
 
     daffCartStorageSpy.getCartId.and.returnValue(String(mockCart.id));
   });
@@ -110,20 +119,20 @@ describe('Daffodil | Cart | CartPaymentEffects', () => {
 
   describe('when CartPaymentUpdateAction is triggered', () => {
     let expected;
-    let cartCreateAction;
+    let cartPaymentUpdateAction;
     const method = 'updatedMethod';
 
     beforeEach(() => {
       mockCartPayment.method = method;
-      cartCreateAction = new DaffCartPaymentUpdate(mockCartPayment);
+      cartPaymentUpdateAction = new DaffCartPaymentUpdate(mockCartPayment);
     });
 
     describe('and the call to CartPaymentService is successful', () => {
       beforeEach(() => {
         daffPaymentDriverSpy.update.and.returnValue(of(mockCart));
-        const cartCreateSuccessAction = new DaffCartPaymentUpdateSuccess(mockCart);
-        actions$ = hot('--a', { a: cartCreateAction });
-        expected = cold('--b', { b: cartCreateSuccessAction });
+        const cartPaymentUpdateSuccessAction = new DaffCartPaymentUpdateSuccess(mockCart);
+        actions$ = hot('--a', { a: cartPaymentUpdateAction });
+        expected = cold('--b', { b: cartPaymentUpdateSuccessAction });
       });
 
       it('should dispatch a CartPaymentUpdateSuccess action', () => {
@@ -136,13 +145,52 @@ describe('Daffodil | Cart | CartPaymentEffects', () => {
         const error = 'Failed to update cart payment';
         const response = cold('#', {}, error);
         daffPaymentDriverSpy.update.and.returnValue(response);
-        const cartCreateFailureAction = new DaffCartPaymentUpdateFailure(error);
-        actions$ = hot('--a', { a: cartCreateAction });
-        expected = cold('--b', { b: cartCreateFailureAction });
+        const cartPaymentUpdateFailureAction = new DaffCartPaymentUpdateFailure(error);
+        actions$ = hot('--a', { a: cartPaymentUpdateAction });
+        expected = cold('--b', { b: cartPaymentUpdateFailureAction });
       });
 
       it('should dispatch a CartPaymentUpdateFailure action', () => {
         expect(effects.update$).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('when CartPaymentUpdateWithBillingAction is triggered', () => {
+    let expected;
+    let cartPaymentUpdateAction;
+    const method = 'updatedMethod';
+
+    beforeEach(() => {
+      mockCartPayment.method = method;
+      cartPaymentUpdateAction = new DaffCartPaymentUpdateWithBilling(mockCartPayment, mockCartBillingAddress);
+    });
+
+    describe('and the call to CartPaymentService is successful', () => {
+      beforeEach(() => {
+        daffPaymentDriverSpy.updateWithBilling.and.returnValue(of(mockCart));
+        const cartPaymentUpdateSuccessAction = new DaffCartPaymentUpdateWithBillingSuccess(mockCart);
+        actions$ = hot('--a', { a: cartPaymentUpdateAction });
+        expected = cold('--b', { b: cartPaymentUpdateSuccessAction });
+      });
+
+      it('should dispatch a CartPaymentUpdateWithBillingSuccess action', () => {
+        expect(effects.updateWithBilling$).toBeObservable(expected);
+      });
+    });
+
+    describe('and the call to CartPaymentService fails', () => {
+      beforeEach(() => {
+        const error = 'Failed to update cart payment and billing address';
+        const response = cold('#', {}, error);
+        daffPaymentDriverSpy.updateWithBilling.and.returnValue(response);
+        const cartPaymentUpdateFailureAction = new DaffCartPaymentUpdateWithBillingFailure(error);
+        actions$ = hot('--a', { a: cartPaymentUpdateAction });
+        expected = cold('--b', { b: cartPaymentUpdateFailureAction });
+      });
+
+      it('should dispatch a CartPaymentUpdateWithBillingFailure action', () => {
+        expect(effects.updateWithBilling$).toBeObservable(expected);
       });
     });
   });

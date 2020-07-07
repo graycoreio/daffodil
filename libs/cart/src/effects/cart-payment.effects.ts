@@ -14,17 +14,25 @@ import {
   DaffCartPaymentUpdate,
   DaffCartPaymentUpdateSuccess,
   DaffCartPaymentUpdateFailure,
+  DaffCartPaymentUpdateWithBilling,
+  DaffCartPaymentUpdateWithBillingSuccess,
+  DaffCartPaymentUpdateWithBillingFailure,
 } from '../actions/public_api';
 import { DaffCart } from '../models/cart';
 import { DaffCartPaymentMethod } from '../models/cart-payment';
 import { DaffCartPaymentServiceInterface, DaffCartPaymentDriver } from '../drivers/interfaces/cart-payment-service.interface';
 import { DaffCartStorageService } from '../storage/cart-storage.service';
+import { DaffCartAddress } from '../models/cart-address';
 
 @Injectable()
-export class DaffCartPaymentEffects<T extends DaffCartPaymentMethod, V extends DaffCart> {
+export class DaffCartPaymentEffects<
+  T extends DaffCartPaymentMethod = DaffCartPaymentMethod,
+  V extends DaffCart = DaffCart,
+  R extends DaffCartAddress = DaffCartAddress,
+> {
   constructor(
     private actions$: Actions,
-    @Inject(DaffCartPaymentDriver) private driver: DaffCartPaymentServiceInterface<T, V>,
+    @Inject(DaffCartPaymentDriver) private driver: DaffCartPaymentServiceInterface<T, V, R>,
     private storage: DaffCartStorageService
   ) {}
 
@@ -46,6 +54,17 @@ export class DaffCartPaymentEffects<T extends DaffCartPaymentMethod, V extends D
       this.driver.update(this.storage.getCartId(), action.payload).pipe(
         map((resp: V) => new DaffCartPaymentUpdateSuccess(resp)),
         catchError(error => of(new DaffCartPaymentUpdateFailure('Failed to update cart payment')))
+      )
+    )
+  )
+
+  @Effect()
+  updateWithBilling$ = this.actions$.pipe(
+    ofType(DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingAction),
+    switchMap((action: DaffCartPaymentUpdateWithBilling<T, R>) =>
+      this.driver.updateWithBilling(this.storage.getCartId(), action.payment, action.address).pipe(
+        map(resp => new DaffCartPaymentUpdateWithBillingSuccess(resp)),
+        catchError(error => of(new DaffCartPaymentUpdateWithBillingFailure('Failed to update cart payment and billing address')))
       )
     )
   )

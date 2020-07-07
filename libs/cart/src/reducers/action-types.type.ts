@@ -31,6 +31,6 @@ export type ActionTypes<
   | DaffCartShippingAddressActions<W, T>
   | DaffCartShippingMethodsActions<X>
   | DaffCartShippingInformationActions<X, T>
-  | DaffCartPaymentActions<Y, T>
+  | DaffCartPaymentActions<Y, T, W>
   | DaffCartPaymentMethodsActions<Y>
   | DaffCartCouponActions<T, Z>

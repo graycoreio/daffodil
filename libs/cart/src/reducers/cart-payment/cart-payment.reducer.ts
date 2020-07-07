@@ -18,6 +18,7 @@ export function cartPaymentReducer<T extends DaffCart>(
   switch (action.type) {
     case DaffCartPaymentActionTypes.CartPaymentLoadAction:
     case DaffCartPaymentActionTypes.CartPaymentUpdateAction:
+    case DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingAction:
     case DaffCartPaymentActionTypes.CartPaymentRemoveAction:
       return { ...state, loading: true };
 
@@ -44,6 +45,7 @@ export function cartPaymentReducer<T extends DaffCart>(
       };
 
     case DaffCartPaymentActionTypes.CartPaymentUpdateSuccessAction:
+    case DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingSuccessAction:
       return {
         ...state,
         ...resetErrors(state.errors),
@@ -56,18 +58,19 @@ export function cartPaymentReducer<T extends DaffCart>(
 
     case DaffCartPaymentActionTypes.CartPaymentLoadFailureAction:
     case DaffCartPaymentActionTypes.CartPaymentUpdateFailureAction:
+    case DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingFailureAction:
     case DaffCartPaymentActionTypes.CartPaymentRemoveFailureAction:
       return {
         ...state,
         ...addError(state.errors, action.payload),
         loading: false,
 			};
-		
-			
+
+
 		/**
-		 * This reducer is temporary until custom reducers can be injected by the @daffodil/paymentSource modules. Right now, 
+		 * This reducer is temporary until custom reducers can be injected by the @daffodil/paymentSource modules. Right now,
 		 * the payment modules need a way to update cart state with a payment token.
-		 * 
+		 *
 		 * todo: remove when possible.
 		 */
 		case DaffCartPaymentActionTypes.CartPaymentMethodAddAction:
