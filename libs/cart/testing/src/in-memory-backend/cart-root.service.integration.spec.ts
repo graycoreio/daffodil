@@ -299,6 +299,27 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     });
   });
 
+  // cart address
+  describe('processing an update address request', () => {
+    let result;
+    let updatedStreet;
+
+    beforeEach(done => {
+      updatedStreet = `${mockShippingAddress.street} updated`;
+      mockShippingAddress.street = updatedStreet;
+
+      httpClient.put<any>(`/api/cart-address/${cartId}/`, mockShippingAddress).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return a cart with the updated addresses', () => {
+      expect(result.shipping_address.street).toEqual(updatedStreet);
+      expect(result.billing_address.street).toEqual(updatedStreet);
+		});
+  });
+
   // cart shipping address
   describe('processing a get shipping address request', () => {
     let result;
@@ -424,10 +445,37 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     beforeEach(done => {
       newPayment = cartPaymentFactory.create();
 
-      httpClient.put<any>(`/api/cart-payment/${cartId}/`, newPayment).subscribe(res => {
+      httpClient.put<any>(`/api/cart-payment/${cartId}/`, {payment: newPayment}).subscribe(res => {
         result = res
         done();
       });
+    });
+
+    it('should return a cart with the updated payment', () => {
+      expect(result.payment).toEqual(newPayment);
+		});
+  });
+
+  describe('processing an update payment with billing request', () => {
+    let result;
+    let newPayment: DaffCartPaymentMethod;
+    let newAddress: DaffCartAddress;
+
+    beforeEach(done => {
+      newPayment = cartPaymentFactory.create();
+      newAddress = cartAddressFactory.create();
+
+      httpClient.put<any>(`/api/cart-payment/${cartId}/`, {
+        payment: newPayment,
+        address: newAddress
+      }).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return a cart with the updated billing address', () => {
+      expect(result.billing_address).toEqual(newAddress);
     });
 
     it('should return a cart with the updated payment', () => {

@@ -3,11 +3,13 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 
 import {
   DaffCart,
-  DaffCartPaymentMethod
+  DaffCartPaymentMethod,
+  DaffCartAddress
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
-  DaffCartPaymentFactory
+  DaffCartPaymentFactory,
+  DaffCartAddressFactory
 } from '@daffodil/cart/testing';
 
 import { DaffInMemoryCartPaymentService } from './cart-payment.service';
@@ -17,9 +19,11 @@ describe('Driver | In Memory | Cart | CartPaymentService', () => {
   let httpMock: HttpTestingController;
   let cartFactory: DaffCartFactory;
   let cartPaymentFactory: DaffCartPaymentFactory;
+  let cartAddressFactory: DaffCartAddressFactory;
 
   let mockCart: DaffCart;
   let mockPayment: DaffCartPaymentMethod
+  let mockCartAddress: DaffCartAddress;
   let cartId;
 
   beforeEach(() => {
@@ -37,9 +41,12 @@ describe('Driver | In Memory | Cart | CartPaymentService', () => {
 
     cartFactory = TestBed.get(DaffCartFactory);
     cartPaymentFactory = TestBed.get(DaffCartPaymentFactory);
+    cartAddressFactory = TestBed.get(DaffCartAddressFactory);
 
     mockCart = cartFactory.create();
     mockPayment = cartPaymentFactory.create();
+    mockCartAddress = cartAddressFactory.create();
+    mockCart.billing_address = mockCartAddress;
     mockCart.payment = mockPayment;
     cartId = mockCart.id;
   });
@@ -78,9 +85,35 @@ describe('Driver | In Memory | Cart | CartPaymentService', () => {
       const req = httpMock.expectOne(`${cartPaymentService.url}/${cartId}`);
 
       expect(req.request.method).toBe('PUT');
-      expect(req.request.body).toEqual(mockPayment);
+      expect(req.request.body).toEqual({payment: mockPayment});
 
       mockCart.payment = mockPayment;
+
+      req.flush(mockCart);
+    });
+  });
+
+  describe('updateWithBilling | updating a cart\'s payment and billing address', () => {
+    beforeEach(() => {
+      mockCart.payment = null;
+      mockCart.billing_address = null;
+    });
+
+    it('should send a put request', done => {
+      cartPaymentService.updateWithBilling(cartId, mockPayment, mockCartAddress).subscribe(cart => {
+        done();
+      });
+
+      const req = httpMock.expectOne(`${cartPaymentService.url}/${cartId}`);
+
+      expect(req.request.method).toBe('PUT');
+      expect(req.request.body).toEqual({
+        payment: mockPayment,
+        address: mockCartAddress
+      });
+
+      mockCart.payment = mockPayment;
+      mockCart.billing_address = mockCartAddress;
 
       req.flush(mockCart);
     });

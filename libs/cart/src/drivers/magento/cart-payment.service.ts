@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 
-import { Observable } from 'rxjs';
-import { map, mapTo } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { map, mapTo, catchError } from 'rxjs/operators';
 
 import { DaffCartPaymentServiceInterface } from '../interfaces/cart-payment-service.interface';
 import { DaffCart } from '../../models/cart';
@@ -10,14 +10,21 @@ import { DaffCartPaymentMethod } from '../../models/cart-payment';
 import { DaffMagentoCartPaymentTransformer } from './transforms/outputs/cart-payment.service';
 import {
   getSelectedPaymentMethod,
-  setSelectedPaymentMethod
+  setSelectedPaymentMethod,
+  setSelectedPaymentMethodWithBilling,
+  setSelectedPaymentMethodWithBillingAndEmail
 } from './queries/public_api';
 import { DaffMagentoPaymentMethodInputTransformer } from './transforms/inputs/payment-method.service';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import {
   MagentoGetSelectedPaymentMethodResponse,
-  MagentoSetSelectedPaymentMethodResponse
+  MagentoSetSelectedPaymentMethodResponse,
+  MagentoSetSelectedPaymentMethodWithBillingResponse,
+  MagentoSetSelectedPaymentMethodWithBillingAndEmailResponse
 } from './models/responses/public_api';
+import { DaffCartAddress } from '../../models/cart-address';
+import { DaffMagentoBillingAddressInputTransformer } from './transforms/inputs/billing-address.service';
+import { transformCartMagentoError } from './errors/transform';
 
 /**
  * A service for making Magento GraphQL queries for carts.
@@ -30,7 +37,8 @@ export class DaffMagentoCartPaymentService implements DaffCartPaymentServiceInte
     private apollo: Apollo,
     public cartTransformer: DaffMagentoCartTransformer,
     public paymentTransformer: DaffMagentoCartPaymentTransformer,
-    public paymentInputTransformer: DaffMagentoPaymentMethodInputTransformer
+    public paymentInputTransformer: DaffMagentoPaymentMethodInputTransformer,
+    public cartAddressInputTransformer: DaffMagentoBillingAddressInputTransformer,
   ) {}
 
   get(cartId: string): Observable<DaffCartPaymentMethod> {
@@ -54,6 +62,12 @@ export class DaffMagentoCartPaymentService implements DaffCartPaymentServiceInte
     )
   }
 
+  updateWithBilling(cartId: string, payment: Partial<DaffCartPaymentMethod>, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
+    return address.email
+      ? this.updateWithBillingAddressAndEmail(cartId, payment, address)
+      : this.updateWithBillingAddress(cartId, payment, address)
+  }
+
   remove(cartId: string): Observable<void> {
     return this.apollo.mutate({
       mutation: setSelectedPaymentMethod,
@@ -63,6 +77,46 @@ export class DaffMagentoCartPaymentService implements DaffCartPaymentServiceInte
       }
     }).pipe(
       mapTo(undefined)
+    )
+  }
+
+  private updateWithBillingAddress(cartId: string, payment: Partial<DaffCartPaymentMethod>, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
+    return this.apollo.mutate<MagentoSetSelectedPaymentMethodWithBillingResponse>({
+      mutation: setSelectedPaymentMethodWithBilling,
+      variables: {
+        cartId,
+        payment: this.paymentInputTransformer.transform(payment),
+        address: this.cartAddressInputTransformer.transform(address)
+      }
+    }).pipe(
+      map(resp => this.cartTransformer.transform({
+        ...resp.data.setBillingAddressOnCart.cart,
+        ...resp.data.setPaymentMethodOnCart.cart,
+        billing_address: resp.data.setBillingAddressOnCart.cart.billing_address,
+        selected_payment_method: resp.data.setPaymentMethodOnCart.cart.selected_payment_method,
+      })),
+      catchError(error => throwError(transformCartMagentoError(error))),
+    )
+  }
+
+  private updateWithBillingAddressAndEmail(cartId: string, payment: Partial<DaffCartPaymentMethod>, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
+    return this.apollo.mutate<MagentoSetSelectedPaymentMethodWithBillingAndEmailResponse>({
+      mutation: setSelectedPaymentMethodWithBillingAndEmail,
+      variables: {
+        cartId,
+        email: address.email,
+        payment: this.paymentInputTransformer.transform(payment),
+        address: this.cartAddressInputTransformer.transform(address)
+      }
+    }).pipe(
+      map(resp => this.cartTransformer.transform({
+        ...resp.data.setBillingAddressOnCart.cart,
+        ...resp.data.setPaymentMethodOnCart.cart,
+        billing_address: resp.data.setBillingAddressOnCart.cart.billing_address,
+        selected_payment_method: resp.data.setPaymentMethodOnCart.cart.selected_payment_method,
+        email: resp.data.setGuestEmailOnCart.cart.email
+      })),
+      catchError(error => throwError(transformCartMagentoError(error))),
     )
   }
 }

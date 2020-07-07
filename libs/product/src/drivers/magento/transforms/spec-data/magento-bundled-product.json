@@ -29,21 +29,21 @@
 	"name": "Group of Products",
 	"items": [
 		{
-			"id": "id1",
+			"option_id": 1,
 			"sku": "22-1",
 			"required": false,
 			"title": "Options",
 			"type": "select",
 			"options": [
 				{
-					"id": "option-id-1",
+					"id": 1,
 					"label": "Option 1",
 					"price": 10,
 					"quantity": 1,
 					"is_default": true
 				},
 				{
-					"id": "option-id-2",
+					"id": 2,
 					"label": "Option 2",
 					"price": 12,
 					"quantity": 1,

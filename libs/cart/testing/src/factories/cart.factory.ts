@@ -5,7 +5,7 @@ import { DaffCart } from '@daffodil/cart';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCart implements DaffCart {
-  id = faker.random.number(1000);
+  id = faker.random.number({min: 1, max: 1000});
   subtotal = 10000;
   grand_total = 15000;
   coupons = [];

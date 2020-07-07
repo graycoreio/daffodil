@@ -1,16 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, zip, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 import { DaffCartShippingAddressServiceInterface } from '../interfaces/cart-shipping-address-service.interface';
 import { DaffCart } from '../../models/cart';
 import { DaffCartAddress } from '../../models/cart-address';
-import { getShippingAddress, updateShippingAddress } from './queries/public_api';
+import {
+  getShippingAddress,
+  updateShippingAddress,
+  updateShippingAddressWithEmail,
+} from './queries/public_api';
 import { DaffMagentoShippingAddressInputTransformer } from './transforms/inputs/shipping-address.service';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { DaffMagentoShippingAddressTransformer } from './transforms/outputs/shipping-address.service';
-import { MagentoGetShippingAddressResponse, MagentoUpdateShippingAddressResponse } from './models/responses/public_api';
+import {
+  MagentoGetShippingAddressResponse,
+  MagentoUpdateShippingAddressResponse,
+  MagentoUpdateShippingAddressWithEmailResponse,
+} from './models/responses/public_api';
+import { transformCartMagentoError } from './errors/transform';
 
 /**
  * A service for making Magento GraphQL queries for a cart's shipping address.
@@ -42,6 +51,10 @@ export class DaffMagentoCartShippingAddressService implements DaffCartShippingAd
   }
 
   update(cartId: string, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
+    return address.email ? this.updateAddressWithEmail(cartId, address) : this.updateAddress(cartId, address)
+  }
+
+  private updateAddress(cartId: string, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
     return this.apollo.mutate<MagentoUpdateShippingAddressResponse>({
       mutation: updateShippingAddress,
       variables: {
@@ -49,7 +62,25 @@ export class DaffMagentoCartShippingAddressService implements DaffCartShippingAd
         address: this.shippingAddressInputTransformer.transform(address)
       }
     }).pipe(
-      map(result => this.cartTransformer.transform(result.data.setShippingAddressesOnCart.cart))
+      map(resp => this.cartTransformer.transform(resp.data.setShippingAddressesOnCart.cart)),
+      catchError(error => throwError(transformCartMagentoError(error))),
+    )
+  }
+
+  private updateAddressWithEmail(cartId: string, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
+    return this.apollo.mutate<MagentoUpdateShippingAddressWithEmailResponse>({
+      mutation: updateShippingAddressWithEmail,
+      variables: {
+        cartId,
+        email: address.email,
+        address: this.shippingAddressInputTransformer.transform(address)
+      }
+    }).pipe(
+      map(resp => this.cartTransformer.transform({
+        ...resp.data.setShippingAddressesOnCart.cart,
+        email: resp.data.setGuestEmailOnCart.cart.email
+      })),
+      catchError(error => throwError(transformCartMagentoError(error))),
     )
   }
 }

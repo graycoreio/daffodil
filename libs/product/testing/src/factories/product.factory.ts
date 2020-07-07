@@ -7,11 +7,11 @@ import { DaffModelFactory } from '@daffodil/core/testing';
  * Mocked DaffProduct object.
  */
 export class MockProduct implements DaffProduct {
-	private stubPrice = faker.random.number(1500);
+	private stubPrice = faker.random.number({min: 1, max: 1500});
 	private stubDiscount = faker.random.number({min: 0, max: this.stubPrice - 1});
 
 	type = DaffProductTypeEnum.Simple;
-	id = faker.random.number(10000).toString();
+	id = faker.random.number({min: 1, max: 10000}).toString();
 	url = faker.random.alphaNumeric(16);
 	price = this.stubPrice;
 	discount = {

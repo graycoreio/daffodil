@@ -6,7 +6,7 @@ import { DaffCountry } from '@daffodil/geography';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCountry implements DaffCountry {
-  id = String(faker.random.number(1000));
+  id = String(faker.random.number({min: 1, max: 1000}));
   name = faker.random.word();
 	name_en = faker.random.word();
 	alpha2 = faker.random.alphaNumeric(2);

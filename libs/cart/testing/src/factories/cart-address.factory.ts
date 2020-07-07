@@ -6,7 +6,7 @@ import * as faker from 'faker/locale/en_US';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCartAddress implements DaffCartAddress {
-  address_id = faker.random.number(1000);
+  address_id = faker.random.number({min: 1, max: 1000});
   address_type = 'apartment';
   email = 'email@email.com';
   prefix = 'prefix';

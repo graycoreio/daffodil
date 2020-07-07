@@ -5,13 +5,14 @@ import { Observable } from 'rxjs';
 import {
   DaffCart,
   DaffCartPaymentMethod,
-  DaffCartPaymentServiceInterface
+  DaffCartPaymentServiceInterface,
+  DaffCartAddress
 } from '@daffodil/cart';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DaffInMemoryCartPaymentService implements DaffCartPaymentServiceInterface<DaffCartPaymentMethod, DaffCart> {
+export class DaffInMemoryCartPaymentService implements DaffCartPaymentServiceInterface {
   url = '/api/cart-payment';
 
   constructor(private http: HttpClient) {}
@@ -21,7 +22,11 @@ export class DaffInMemoryCartPaymentService implements DaffCartPaymentServiceInt
   }
 
   update(cartId: DaffCart['id'], payment: Partial<DaffCartPaymentMethod>): Observable<Partial<DaffCart>> {
-    return this.http.put<DaffCart>(`${this.url}/${cartId}`, payment);
+    return this.http.put<DaffCart>(`${this.url}/${cartId}`, {payment});
+  }
+
+  updateWithBilling(cartId: DaffCart['id'], payment: Partial<DaffCartPaymentMethod>, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
+    return this.http.put<DaffCart>(`${this.url}/${cartId}`, {payment, address});
   }
 
   remove(cartId: DaffCart['id']): Observable<void> {

@@ -2,6 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
 import { addTypenameToDocument } from 'apollo-utilities';
 import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
+import { catchError } from 'rxjs/operators';
+import { GraphQLError } from 'graphql';
 
 import { schema } from '@daffodil/driver/magento';
 import {
@@ -19,12 +21,12 @@ import { DaffMagentoCartBillingAddressService } from './cart-billing-address.ser
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { MagentoCart } from './models/outputs/cart';
 import { MagentoGetBillingAddressResponse } from './models/responses/get-billing-address';
-import { getBillingAddress, updateBillingAddress, setGuestEmail } from './queries/public_api';
+import { getBillingAddress, updateBillingAddress, updateBillingAddressWithEmail } from './queries/public_api';
 import { MagentoUpdateBillingAddressResponse } from './models/responses/update-billing-address';
 import { DaffMagentoBillingAddressTransformer } from './transforms/outputs/billing-address.service';
 import { DaffMagentoBillingAddressInputTransformer } from './transforms/inputs/billing-address.service';
 import { MagentoCartAddress } from './models/outputs/cart-address';
-import { MagentoSetGuestEmailResponse } from './models/responses/public_api';
+import { MagentoUpdateBillingAddressWithEmailResponse } from './models/responses/public_api';
 
 describe('Driver | Magento | Cart | CartBillingAddressService', () => {
   let service: DaffMagentoCartBillingAddressService;
@@ -46,8 +48,8 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
   let mockMagentoBillingAddress: MagentoCartAddress;
   let mockDaffCartAddress: DaffCartAddress;
   let mockUpdateBillingAddressResponse: MagentoUpdateBillingAddressResponse;
+  let mockUpdateBillingAddressWithEmailResponse: MagentoUpdateBillingAddressWithEmailResponse;
   let mockGetBillingAddressResponse: MagentoGetBillingAddressResponse;
-  let mockSetGuestEmailResponse: MagentoSetGuestEmailResponse;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -110,18 +112,22 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
         email
       }
     };
-    mockUpdateBillingAddressResponse = {
+    mockUpdateBillingAddressWithEmailResponse = {
       setBillingAddressOnCart: {
 				__typename: 'SetBillingAddressOnCart',
         cart: mockMagentoCart
-      }
-    };
-    mockSetGuestEmailResponse = {
+      },
       setGuestEmailOnCart: {
         cart: {
           email
         }
       }
+    };
+    mockUpdateBillingAddressResponse = {
+      setBillingAddressOnCart: {
+				__typename: 'SetBillingAddressOnCart',
+        cart: mockMagentoCart
+      },
     };
 
     magentoCartTransformerSpy.transform.and.returnValue(mockDaffCart);
@@ -183,31 +189,80 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
     });
   });
 
-  describe('update | updates the cart\'s billing address', () => {
-    let street;
+  describe('update | updates the cart\'s email and billing address', () => {
+    describe('when the call to the Magento API is unsuccessful', () => {
+      it('should throw an Error', done => {
+        service.update(cartId, mockDaffCartAddress).pipe(
+          catchError(err => {
+            expect(err).toEqual(jasmine.any(Error));
+            done();
+            return [];
+          })
+        ).subscribe();
 
-    beforeEach(() => {
-      street = 'updatedStreet';
+        const op = controller.expectOne(addTypenameToDocument(updateBillingAddressWithEmail));
 
-      mockMagentoBillingAddress.street = [street];
-      mockDaffCartAddress.street = street;
+        op.graphqlErrors([new GraphQLError(
+          'Can\'t find a cart with that ID.',
+          null,
+          null,
+          null,
+          null,
+          null,
+          {category: 'graphql-no-such-entity'}
+        )]);
+      });
     });
 
-    it('should return the correct value', done => {
-      service.update(cartId, mockDaffCartAddress).subscribe(result => {
-        expect(result.billing_address.street).toEqual(street);
-        expect(result.billing_address.email).toEqual(email);
-        done();
+    describe('when the call to the Magento API is successful', () => {
+      describe('when the email is included', () => {
+        let street;
+
+        beforeEach(() => {
+          street = 'updatedStreet';
+
+          mockMagentoBillingAddress.street = [street];
+          mockDaffCartAddress.street = street;
+        });
+
+        it('should return the correct value', done => {
+          service.update(cartId, mockDaffCartAddress).subscribe(result => {
+            expect(result.billing_address.street).toEqual(street);
+            expect(result.billing_address.email).toEqual(email);
+            done();
+          });
+
+          const op = controller.expectOne(addTypenameToDocument(updateBillingAddressWithEmail));
+
+          op.flush({
+            data: mockUpdateBillingAddressWithEmailResponse
+          });
+        });
       });
 
-      const billingOp = controller.expectOne(addTypenameToDocument(updateBillingAddress));
-      const emailOp = controller.expectOne(addTypenameToDocument(setGuestEmail));
+      describe('when the email is not included', () => {
+        let street;
 
-      billingOp.flush({
-        data: mockUpdateBillingAddressResponse
-      });
-      emailOp.flush({
-        data: mockSetGuestEmailResponse
+        beforeEach(() => {
+          street = 'updatedStreet';
+
+          mockMagentoBillingAddress.street = [street];
+          mockDaffCartAddress.street = street;
+          mockDaffCartAddress.email = null;
+        });
+
+        it('should return the correct value', done => {
+          service.update(cartId, mockDaffCartAddress).subscribe(result => {
+            expect(result.billing_address.street).toEqual(street);
+            done();
+          });
+
+          const op = controller.expectOne(addTypenameToDocument(updateBillingAddress));
+
+          op.flush({
+            data: mockUpdateBillingAddressResponse
+          });
+        });
       });
     });
 

@@ -9,12 +9,12 @@ import { DaffModelFactory } from '@daffodil/core/testing';
  * @deprecated
  */
 export class MockOrderAddress implements DaffOrderAddress {
-  address_id = faker.random.number(1000);
-  quote_id = faker.random.number(1000);
+  address_id = faker.random.number({min: 1, max: 1000});
+  quote_id = faker.random.number({min: 1, max: 1000});
   created_at = new Date();
   updated_at = new Date();
-  customer_id = faker.random.number(1000);
-  customer_address_id = faker.random.number(1000);
+  customer_id = faker.random.number({min: 1, max: 1000});
+  customer_address_id = faker.random.number({min: 1, max: 1000});
   address_type = 'apartment';
   email = 'email@email.com';
   prefix = 'prefix';
@@ -27,7 +27,7 @@ export class MockOrderAddress implements DaffOrderAddress {
   city = 'city';
   state = 'state';
   region = 'region';
-  region_id = faker.random.number(1000);
+  region_id = faker.random.number({min: 1, max: 1000});
   postcode = 'postcode';
   country_id = 'ISO';
   telephone = 'telephone';

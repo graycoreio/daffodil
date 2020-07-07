@@ -4,7 +4,8 @@ import { Observable, of } from 'rxjs';
 import {
   DaffCart,
   DaffCartPaymentMethod,
-  DaffCartPaymentServiceInterface
+  DaffCartPaymentServiceInterface,
+  DaffCartAddress
 } from '@daffodil/cart';
 
 import { DaffCartFactory, DaffCartPaymentFactory } from '../../../factories/public_api';
@@ -23,6 +24,10 @@ export class DaffTestingCartPaymentService implements DaffCartPaymentServiceInte
   }
 
   update(cartId: DaffCart['id'], payment: Partial<DaffCartPaymentMethod>): Observable<Partial<DaffCart>> {
+    return of(this.cartFactory.create());
+  }
+
+  updateWithBilling(cartId: DaffCart['id'], payment: Partial<DaffCartPaymentMethod>, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
     return of(this.cartFactory.create());
   }
 

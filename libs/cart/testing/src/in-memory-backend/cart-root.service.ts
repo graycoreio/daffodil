@@ -8,6 +8,7 @@ import { DaffInMemoryBackendCartService } from './cart/cart.service';
 import { DaffInMemoryBackendCartItemsService } from './cart-items/cart-items.service';
 import { DaffInMemoryBackendCartOrderService } from './cart-order/cart-order.service';
 import { DaffInMemoryBackendCartCouponService } from './cart-coupon/cart-coupon.service';
+import { DaffInMemoryBackendCartAddressService } from './cart-address/cart-address.service';
 import { DaffInMemoryBackendCartShippingAddressService } from './cart-shipping-address/cart-shipping-address.service';
 import { DaffInMemoryBackendCartBillingAddressService } from './cart-billing-address/cart-billing-address.service';
 import { DaffInMemoryBackendCartPaymentMethodsService } from './cart-payment-methods/cart-payment-methods.service';
@@ -32,6 +33,7 @@ export class DaffInMemoryBackendCartRootService implements InMemoryDbService, Da
     'cart-items',
     'cart-order',
     'cart-coupon',
+    'cart-address',
     'cart-shipping-address',
     'cart-billing-address',
     'cart-payment-methods',
@@ -47,6 +49,7 @@ export class DaffInMemoryBackendCartRootService implements InMemoryDbService, Da
     private cartItemsService: DaffInMemoryBackendCartItemsService,
     private cartOrderService: DaffInMemoryBackendCartOrderService,
     private cartCouponService: DaffInMemoryBackendCartCouponService,
+    private cartAddressService: DaffInMemoryBackendCartAddressService,
     private cartShippingAddressService: DaffInMemoryBackendCartShippingAddressService,
     private cartBillingAddressService: DaffInMemoryBackendCartBillingAddressService,
     private cartPaymentMethodsService: DaffInMemoryBackendCartPaymentMethodsService,
@@ -99,6 +102,9 @@ export class DaffInMemoryBackendCartRootService implements InMemoryDbService, Da
 
       case 'cart-coupon':
         return this.cartCouponService[reqInfo.method](reqInfo);
+
+      case 'cart-address':
+        return this.cartAddressService[reqInfo.method](reqInfo);
 
       case 'cart-shipping-address':
         return this.cartShippingAddressService[reqInfo.method](reqInfo);

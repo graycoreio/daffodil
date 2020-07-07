@@ -61,6 +61,17 @@ describe('Driver | Testing | Cart | CartPaymentService', () => {
     });
   });
 
+  describe('updateWithBilling | updating a cart\'s payment', () => {
+    beforeEach(() => {
+      mockCart.payment = null;
+    });
+
+    it('should return an object and not throw an error', () => {
+      const expected = cold('(a|)', {a: jasmine.any(Object)});
+      expect(service.updateWithBilling(cartId, mockPayment, {})).toBeObservable(expected);
+    });
+  });
+
   describe('remove | removing the payment method from the cart', () => {
     it('should return undefined and not throw an error', () => {
       const expected = cold('(a|)', {a: undefined});

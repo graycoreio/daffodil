@@ -42,9 +42,11 @@ export class DaffInMemoryBackendCartPaymentService implements DaffInMemoryDataSe
 
   private updatePayment(reqInfo: RequestInfo): DaffCart {
     const cart = this.getCart(reqInfo);
-    const payment = reqInfo.utils.getJsonBody(reqInfo.req);
+    const {payment, address} = reqInfo.utils.getJsonBody(reqInfo.req);
 
-		cart.payment = payment;
+    cart.payment = payment;
+
+    if (address) cart.billing_address = address;
 
     return cart;
   }

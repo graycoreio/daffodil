@@ -5,7 +5,7 @@ import { DaffCategoryPageConfigurationState, DaffCategoryFilterType, DaffCategor
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCategoryPageConfigurationState implements DaffCategoryPageConfigurationState<DaffCategoryRequest> {
-  id = faker.random.number(100);
+  id = faker.random.number({min: 1, max: 100});
   page_size = 20;
   current_page = 1;
   filters = [{
@@ -39,12 +39,12 @@ export class MockCategoryPageConfigurationState implements DaffCategoryPageConfi
         value: 'price'
     }
   ];
-  total_pages = faker.random.number(4);
+  total_pages = faker.random.number({min: 1, max: 4});
   filter_requests = [];
   applied_sort_option = null;
 	applied_sort_direction = null;
-	total_products = faker.random.number(3);
-	product_ids = [faker.random.number(100).toString()];
+	total_products = faker.random.number({min: 1, max: 3});
+	product_ids = [faker.random.number({min: 1, max: 100}).toString()];
 }
 
 @Injectable({
