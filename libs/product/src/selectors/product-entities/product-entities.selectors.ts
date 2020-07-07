@@ -13,6 +13,7 @@ export interface DaffProductEntitiesMemoizedSelectors<T extends DaffProduct = Da
 	selectAllProducts: MemoizedSelector<object, T[]>;
 	selectProductTotal: MemoizedSelector<object, number>;
 	selectProduct: MemoizedSelectorWithProps<object, object, T>;
+	selectProductDiscountAmount: MemoizedSelectorWithProps<object, object, number>;
 }
 
 const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEntitiesMemoizedSelectors<T> => {
@@ -73,13 +74,24 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
 		(products, props) => products[props.id]
 	);
 
+	const selectProductDiscountAmount = createSelector(
+		selectProductEntities,
+		(products, props) => {
+			const product = selectProduct.projector(products, { id: props.id });
+
+			return !!(product.discount && product.discount.amount) ?
+				product.discount.amount : 0;
+		}
+	)
+
 	return { 
 		selectProductEntitiesState,
 		selectProductIds,
 		selectProductEntities,
 		selectAllProducts,
 		selectProductTotal,
-		selectProduct
+		selectProduct,
+		selectProductDiscountAmount
 	}
 }
 
