@@ -299,6 +299,27 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
     });
   });
 
+  // cart address
+  describe('processing an update address request', () => {
+    let result;
+    let updatedStreet;
+
+    beforeEach(done => {
+      updatedStreet = `${mockShippingAddress.street} updated`;
+      mockShippingAddress.street = updatedStreet;
+
+      httpClient.put<any>(`/api/cart-address/${cartId}/`, mockShippingAddress).subscribe(res => {
+        result = res
+        done();
+      });
+    });
+
+    it('should return a cart with the updated addresses', () => {
+      expect(result.shipping_address.street).toEqual(updatedStreet);
+      expect(result.billing_address.street).toEqual(updatedStreet);
+		});
+  });
+
   // cart shipping address
   describe('processing a get shipping address request', () => {
     let result;
