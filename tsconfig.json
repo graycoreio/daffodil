@@ -82,8 +82,13 @@
       "@daffodil/design/checkbox/examples": [
         "dist/design/checkbox/examples"
       ],
+<<<<<<< HEAD
       "@daffodil/design/list/examples": [
         "dist/design/list/examples"
+=======
+      "@daffodil/design/message-bar/examples": [
+        "dist/design/message-bar/examples"
+>>>>>>> docs(design): add message bar documentation
       ],
       "@daffodil/branding": [
         "dist/branding"
