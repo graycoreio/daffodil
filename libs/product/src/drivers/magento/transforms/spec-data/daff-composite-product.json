@@ -27,13 +27,15 @@
 					"id": "1",
 					"name": "Option 1",
 					"price": 10,
-					"quantity": 1
+					"quantity": 1,
+					"is_default": true
 				},
 				{
 					"id": "2",
 					"name": "Option 2",
 					"price": 12,
-					"quantity": 1
+					"quantity": 1,
+					"is_default": false
 				}
 			]
 		}
