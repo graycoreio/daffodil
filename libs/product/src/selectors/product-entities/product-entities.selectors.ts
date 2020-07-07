@@ -79,8 +79,7 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
 		(products, props) => {
 			const product = selectProduct.projector(products, { id: props.id });
 
-			return !!(product.discount && product.discount.amount) ?
-				product.discount.amount : 0;
+			return (product.discount && product.discount.amount) || 0;
 		}
 	)
 

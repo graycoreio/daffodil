@@ -1,7 +1,10 @@
 import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
+import { Dictionary } from '@ngrx/entity';
 
 import { DaffStoreFacade } from '@daffodil/core';
+
+import { DaffCompositeProductItemOption } from '../../models/composite-product-item';
 
 export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Action> {
 
@@ -28,4 +31,10 @@ export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Act
 	 * @param id the id of the composite product.
 	 */
 	hasDiscount(id: string): Observable<boolean>;
+
+	/**
+	 * Returns the applied options for a composite product.
+	 * @param id the id of the composite product.
+	 */
+	getAppliedOptions(id: string): Observable<Dictionary<DaffCompositeProductItemOption['id']>>;
 }

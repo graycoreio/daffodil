@@ -62,12 +62,14 @@ function buildCompositeProductAppliedOptionsEntity(product: DaffCompositeProduct
 			[item.id]: getDefaultOption(item)
 		}), {})
 	}
+}
 
-	function getDefaultOption(item: DaffCompositeProductItem): string {
-		const defaultOptionIndex = item.options.findIndex(option => option.is_default);
+function getDefaultOption(item: DaffCompositeProductItem): string {
+	const defaultOptionIndex = item.options.findIndex(option => option.is_default);
 
-		return defaultOptionIndex < 0 && item.required ?
-			item.options[0].id :
-			item.options[defaultOptionIndex].id;
+	if(defaultOptionIndex > -1) {
+		return item.options[defaultOptionIndex].id;
+	} else {
+		return item.required ? item.options[0].id : null;
 	}
 }

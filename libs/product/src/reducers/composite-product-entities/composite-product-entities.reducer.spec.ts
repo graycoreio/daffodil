@@ -136,5 +136,42 @@ describe('Product | Composite Product Entities Reducer', () => {
     it('changes the option id of the given product item', () => {
       expect(result.entities[compositeProduct.id].items[compositeProduct.items[0].id]).toEqual(compositeProduct.items[0].options[1].id);
     });
-  });
+	});
+	
+	describe('setting the default item option', () => {
+		
+		let result;
+
+		it('should set the item to the default option when it is provided', () => {
+			compositeProduct.items[0].options[0].is_default = false;
+			compositeProduct.items[0].options[1].is_default = true;
+			const productLoadSuccess = new DaffProductLoadSuccess(compositeProduct);
+			result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
+
+			expect(result.entities[compositeProduct.id].items[compositeProduct.items[0].id]).toEqual(compositeProduct.items[0].options[1].id);
+		});
+
+		describe('when the default item option is not defined', () => {
+			
+			it('should set the default option to the first option when the item is required', () => {
+				compositeProduct.items[0].options[0].is_default = false;
+				compositeProduct.items[0].options[1].is_default = false;
+				compositeProduct.items[0].required = true;
+				const productLoadSuccess = new DaffProductLoadSuccess(compositeProduct);
+				result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
+
+				expect(result.entities[compositeProduct.id].items[compositeProduct.items[0].id]).toEqual(compositeProduct.items[0].options[0].id);
+			});
+
+			it('should set the default option to null when the item is not required', () => {
+				compositeProduct.items[0].options[0].is_default = false;
+				compositeProduct.items[0].options[1].is_default = false;
+				compositeProduct.items[0].required = false;
+				const productLoadSuccess = new DaffProductLoadSuccess(compositeProduct);
+				result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
+
+				expect(result.entities[compositeProduct.id].items[compositeProduct.items[0].id]).toEqual(null);
+			});
+		});
+	});
 });

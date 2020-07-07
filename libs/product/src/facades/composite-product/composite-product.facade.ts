@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select, Action } from '@ngrx/store';
+import { Dictionary } from '@ngrx/entity';
 
 import { DaffProductModule } from '../../product.module';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
 import { DaffProduct } from '../../models/product';
 import { getDaffProductSelectors } from '../../selectors/public_api';
 import { DaffCompositeProductFacadeInterface } from './composite-product-facade.interface';
+import { DaffCompositeProductItemOption } from '../../models/composite-product-item';
 
 /**
  * A facade for accessing composite product state from an application component.
@@ -34,6 +36,10 @@ export class DaffCompositeProductFacade<T extends DaffProduct = DaffProduct> imp
 	
 	hasDiscount(id: string): Observable<boolean> {
 		return this.store.pipe(select(this.selectors.selectCompositeProductHasDiscount, { id }));
+	}
+
+	getAppliedOptions(id: string): Observable<Dictionary<DaffCompositeProductItemOption['id']>> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductAppliedOptions, { id }));
 	}
 
   /**
