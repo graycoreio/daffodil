@@ -4,6 +4,7 @@ export * from './actions/product.actions';
 export * from './actions/product-grid.actions';
 export * from './actions/best-sellers.actions';
 export * from './actions/configurable-product.actions';
+export * from './actions/composite-product.actions';
 export { DaffProductImage } from './models/product-image';
 export * from './models/composite-product';
 export * from './models/composite-product-item';
@@ -25,6 +26,8 @@ export { DaffProductFacade } from './facades/product/product.facade';
 export { DaffProductFacadeInterface } from './facades/product/product-facade.interface';
 export { DaffConfigurableProductFacade } from './facades/configurable-product/configurable-product.facade';
 export { DaffConfigurableProductFacadeInterface } from './facades/configurable-product/configurable-product-facade.interface';
+export { DaffCompositeProductFacade } from './facades/composite-product/composite-product.facade';
+export { DaffCompositeProductFacadeInterface } from './facades/composite-product/composite-product-facade.interface';
 export { DaffBestSellersFacade } from './facades/best-sellers/best-sellers.facade';
 
 export * from './drivers/magento/public_api';
