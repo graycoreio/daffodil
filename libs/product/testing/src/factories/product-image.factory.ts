@@ -113,7 +113,7 @@ const productImageUrlsList: string[] = [
  * Mocked DaffProductImage object.
  */
 export class MockProductImage implements DaffProductImage {
-  id = faker.random.number(10000).toString();
+  id = faker.random.number({min: 1, max: 10000}).toString();
   url = productImageUrlsList[faker.random.number(productImageUrlsList.length-1)]
   label = faker.lorem.sentence();
 }

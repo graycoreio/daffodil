@@ -7,10 +7,10 @@ import { DaffModelFactory } from '@daffodil/core/testing';
  * Mocked DaffCompositeProduct object.
  */
 export class MockCompositeProduct implements DaffCompositeProduct {
-	private stubPrice = faker.random.number(1500);
+	private stubPrice = faker.random.number({min: 1, max: 1500});
 	private stubDiscount = faker.random.number({min: 0, max: this.stubPrice - 1});
 	type = DaffProductTypeEnum.Composite;
-	id = faker.random.number(10000).toString();
+	id = faker.random.number({min: 1, max: 10000}).toString();
 	url = faker.random.alphaNumeric(16);
 	price = this.stubPrice;
 	discount = {
@@ -30,14 +30,14 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 				{
 					id: faker.random.alphaNumeric(10),
 					name: faker.commerce.productMaterial(),
-					price: faker.random.number(100).toString(),
-					quantity: faker.random.number(9)
+					price: faker.random.number({min: 1, max: 100}).toString(),
+					quantity: faker.random.number({min: 1, max: 9})
 				},
 				{
 					id: faker.random.alphaNumeric(10),
 					name: faker.commerce.productMaterial(),
-					price: faker.random.number(100).toString(),
-					quantity: faker.random.number(9)
+					price: faker.random.number({min: 1, max: 100}).toString(),
+					quantity: faker.random.number({min: 1, max: 9})
 				}
 			]
 		}
