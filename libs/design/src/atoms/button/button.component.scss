@@ -3,9 +3,8 @@
 @mixin daff-button {
 	@include clickable();
 	appearance: none;
-	border-radius: 3px;
+	border-radius: 4px;
 	display: inline-block;
-	font-size: 1rem;
 	overflow: hidden;
 	position: relative;
 	text-align: center;
@@ -44,11 +43,11 @@
 	}
 
 	.daff-prefix {
-		margin-right: 10px;
+		margin-right: 8px;
 	}
 
 	.daff-suffix {
-		margin-left: 10px;
+		margin-left: 8px;
 	}
 }
 
@@ -56,24 +55,18 @@
 	@include daff-button();
 	@include daff-button-animation();
 	@include prefix-suffix();
-	min-width: 90px;
-	padding: 1em 2.5em;
 }
 
 .daff-raised-button {
 	@include daff-button();
 	@include daff-button-animation(1px, true);
 	@include prefix-suffix();
-	min-width: 90px;
-	padding: 1em 2.5em;
 }
 
 .daff-icon-button {
 	@include daff-button();
 	background: none;
 	border: 0;
-	height: 40px;
-	line-height: 40px;
 	padding: 0;
 
 	&.daff-sm {
@@ -103,8 +96,6 @@
 	@include daff-button-animation();
 	@include prefix-suffix();
 	background: transparent;
-	min-width: 90px;
-	padding: 1em 2.5em;
 
 	.daff-button__bg {
 		height: 100%;
@@ -125,7 +116,7 @@
 	background: transparent;
 	border: 0;
 	border-radius: 0;
-	padding: 0 0 5px;
+	padding: 0 0 4px;
 	text-decoration: underline;
 	vertical-align: middle;
 
@@ -198,6 +189,10 @@
 .daff-button,
 .daff-raised-button,
 .daff-stroked-button {
+	line-height: 1.25em;
+	min-width: 90px;
+	padding: 0.75em 1em;
+
 	&.daff-sm {
 		font-size: $small-font-size;
 	}

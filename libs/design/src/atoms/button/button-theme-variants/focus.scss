@@ -1,0 +1,6 @@
+@mixin daff-button-focus-theme-variant($shadow-color) {
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 0 4px rgba($shadow-color, 0.3);
+	}
+}

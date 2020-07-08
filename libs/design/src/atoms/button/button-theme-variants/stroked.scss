@@ -1,7 +1,7 @@
 @mixin daff-stroked-button-theme-variant(
-	$base-color: currentColor,
-	$background-opacity: 0.08,
-	$font-color: currentColor
+	$base-color,
+	$background-opacity,
+	$font-color
 ) {
 	border: 2px solid $base-color;
 	color: $font-color;
