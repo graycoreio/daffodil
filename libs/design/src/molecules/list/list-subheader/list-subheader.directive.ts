@@ -1,5 +1,8 @@
 import { Directive, HostBinding } from '@angular/core';
 
+/**
+ * @deprecated
+ */
 @Directive({
   selector: '[daffListSubheader]',
 })

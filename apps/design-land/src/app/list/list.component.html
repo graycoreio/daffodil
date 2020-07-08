@@ -27,28 +27,10 @@
   <daff-list-item><a href="#">List Item</a></daff-list-item>
 </daff-list>
 
-<h4>Multi-line List</h4>
-
-<daff-list type="multi-line">
-  <daff-list-item>
-    <h4>Lorem ipsum</h4>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vehicula lacinia tellus quis bibendum.</p>
-  </daff-list-item>
-  <daff-list-item>
-    <h4>Lorem ipsum</h4>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vehicula lacinia tellus quis bibendum.</p>
-  </daff-list-item>
-  <daff-list-item>
-    <h4>Lorem ipsum</h4>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vehicula lacinia tellus quis bibendum.</p>
-  </daff-list-item>
-</daff-list>
-
-<h4>Icon List</h4>
-
-<daff-list>
-  <daff-list-item>
-    <fa-icon [icon]="faTwitter" daffPrefix></fa-icon>
-    <h4>Lorem ipsum</h4>
-  </daff-list-item>
-</daff-list>
+  <h4>Deprecation Notice</h4>
+  <p>The <code>mode</code> property will be deprecated in v1.0.0.</p>
+  <ul>
+    <li><code>mode="navigation"</code> is replaced with <code>&lt;daff-nav-list&gt;</code>.</li>
+    <li><code>mode="link"</code> is replaced with <code>&lt;daff-nav-list&gt;</code>.</li>
+    <li><code>mode="multiline"</code> is completely deprecated. Multi-line lists will be a natural result of adding multiple lines to a <code>&lt;daff-list-item&gt;</code>.</li>
+  </ul>

@@ -49,6 +49,7 @@
 .daff-list {
 	@include daff-list();
 
+	// .daff-list__subheader deprecated in v1.0.0
 	&__subheader {
 		@include embolden();
 		@include uppercase();
@@ -56,6 +57,7 @@
 		padding: 0 0 25px;
 	}
 
+	// link and navigation deprecated in v1.0.0
 	&--link,
 	&--navigation {
 		a {
@@ -67,6 +69,7 @@
 		}
 	}
 
+	// deprecated in v1.0.0
 	&--multi-line {
 		.daff-list-item {
 			padding: 15px 0;
