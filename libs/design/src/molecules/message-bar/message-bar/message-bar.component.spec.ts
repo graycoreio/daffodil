@@ -12,7 +12,7 @@ class WrapperComponent {
   flush = false;
 }
 
-fdescribe('DaffMessageBarComponent', () => {
+describe('DaffMessageBarComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;
   let wrapper: WrapperComponent;
