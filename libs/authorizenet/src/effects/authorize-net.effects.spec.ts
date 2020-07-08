@@ -5,17 +5,18 @@ import { hot, cold } from 'jasmine-marbles';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { MockStore } from '@ngrx/store/testing';
 
-import { DaffCartPaymentUpdate } from '@daffodil/cart';
+import { DaffCartAddress, DaffCartPaymentUpdateWithBilling, DaffCartPaymentUpdateWithBillingSuccess, DaffCartPaymentUpdateWithBillingFailure } from '@daffodil/cart';
 
 import { DaffAuthorizeNetEffects } from './authorize-net.effects';
-import { DaffAuthorizeNetGenerateToken, DaffAuthorizeNetGenerateTokenSuccess } from '../actions/authorizenet.actions';
+import { DaffAuthorizeNetUpdatePayment, DaffAuthorizeNetUpdatePaymentSuccess } from '../actions/authorizenet.actions';
 import { DaffAuthorizeNetTokenRequest } from '../models/request/authorize-net-token-request';
-import { DaffAuthorizeNetGenerateTokenFailure } from '../actions/authorizenet.actions';
+import { DaffAuthorizeNetUpdatePaymentFailure } from '../actions/authorizenet.actions';
 import { daffAuthorizeNetReducers } from '../reducers/authorize-net.reducers';
 import { DaffAuthorizeNetService, DaffAuthorizeNetConfigToken, DaffAuthorizeNetConfig } from '../drivers/public_api';
 import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '../drivers/magento/authorize-net-payment-id';
 import { DaffAuthorizeNetDriver } from '../drivers/interfaces/authorize-net-service.interface';
 import { DaffAuthorizeNetPaymentId } from '../drivers/interfaces/authorize-net-payment-id.token';
+import { DaffCartAddressFactory, DaffCartFactory } from '@daffodil/cart/testing';
 
 class MockAuthorizeNetDriver implements DaffAuthorizeNetService {
 	generateToken(paymentRequest): Observable<any> {
@@ -41,6 +42,7 @@ describe('DaffAuthorizeNetEffects', () => {
 		apiLoginID: 'apiLoginID',
 		production: false
 	}
+	let stubAddress: DaffCartAddress;
   
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -58,54 +60,81 @@ describe('DaffAuthorizeNetEffects', () => {
       ]
     });
 
+		stubAddress = new DaffCartAddressFactory().create();
 		effects = TestBed.get(DaffAuthorizeNetEffects);
 		authorizeNetPaymentService = TestBed.get(DaffAuthorizeNetDriver);
 		store = TestBed.get(Store);
-		store.dispatch(new DaffAuthorizeNetGenerateToken(paymentTokenRequest));
   });
 
   it('should be created', () => {
     expect(effects).toBeTruthy();
   });
 
-  describe('when a DaffAuthorizeNetGenerateToken action is triggered', () => {
+  describe('updatePayment$', () => {
 
-    let expected;
-		const authorizeNetGenerateToken = new DaffAuthorizeNetGenerateToken(paymentTokenRequest);
+		let expected;
     
     describe('when the call to the AuthorizeNetService is successful', () => {
-
-      beforeEach(() => {
+			
+			beforeEach(() => {
+				const authorizeNetUpdatePayment = new DaffAuthorizeNetUpdatePayment(paymentTokenRequest, stubAddress);
 				spyOn(authorizeNetPaymentService, 'generateToken').and.returnValue(of('token'));
-        actions$ = hot('--a', { a: authorizeNetGenerateToken });
+        actions$ = hot('--a', { a: authorizeNetUpdatePayment });
       });
       
-      it('should dispatch a DaffCartPaymentUpdate action', () => {
-				const generateTokenSuccessAction = new DaffAuthorizeNetGenerateTokenSuccess();
-        const cartPaymentMethodAddAction = new DaffCartPaymentUpdate({
+      it('should dispatch a DaffCartPaymentUpdateWithBilling action', () => {
+        const cartPaymentUpdateWithBillingAction = new DaffCartPaymentUpdateWithBilling({
 					method: MAGENTO_AUTHORIZE_NET_PAYMENT_ID,
 					payment_info: 'token'
-				});
-        expected = cold('--(ab)', { a: generateTokenSuccessAction, b: cartPaymentMethodAddAction });
-        expect(effects.generateToken$).toBeObservable(expected);
+				}, stubAddress);
+        expected = cold('--a', { a: cartPaymentUpdateWithBillingAction });
+        expect(effects.updatePayment$).toBeObservable(expected);
 			});
 		});
 
     describe('when the call to the AuthorizeNetService fails', () => {
       
       beforeEach(() => {
+				const authorizeNetUpdatePayment = new DaffAuthorizeNetUpdatePayment(paymentTokenRequest, stubAddress);
         const error = 'Failed to retrieve the token';
 				const response = cold('#', {}, error);
 				spyOn(authorizeNetPaymentService, 'generateToken').and.returnValue(response);
 				
-        const authorizeNetGenerateTokenFailureAction = new DaffAuthorizeNetGenerateTokenFailure(error);
-        actions$ = hot('--a', { a: authorizeNetGenerateToken });
-        expected = cold('--b', { b: authorizeNetGenerateTokenFailureAction });
+        const authorizeNetUpdatePaymentFailureAction = new DaffAuthorizeNetUpdatePaymentFailure(error);
+        actions$ = hot('--a', { a: authorizeNetUpdatePayment });
+        expected = cold('--b', { b: authorizeNetUpdatePaymentFailureAction });
       });
       
-      it('should dispatch an AuthorizeNetGenerateTokenFailure action', () => {
-        expect(effects.generateToken$).toBeObservable(expected);
+      it('should dispatch an AuthorizeNetUpdatePaymentFailure action', () => {
+        expect(effects.updatePayment$).toBeObservable(expected);
       });
+		});
+	});
+
+	describe('updatePaymentSuccessSubstream$', () => {
+		
+		it('should dispatch DaffAuthorizeNetUpdatePaymentSuccess when the cart payment method has been successfully updated', () => {
+			const stubCart = new DaffCartFactory().create();
+			const authorizeNetUpdatePayment = new DaffAuthorizeNetUpdatePayment(paymentTokenRequest, stubAddress);
+			const cartPaymentUpdateWithBillingSuccess = new DaffCartPaymentUpdateWithBillingSuccess(stubCart);
+			const authorizeNetPaymentUpdateSuccess = new DaffAuthorizeNetUpdatePaymentSuccess();
+			actions$ = hot('--a--b', { a: authorizeNetUpdatePayment, b: cartPaymentUpdateWithBillingSuccess });
+
+			const expected = cold('-----c', { c: authorizeNetPaymentUpdateSuccess });
+			expect(effects.updatePaymentSuccessSubstream$).toBeObservable(expected);
+		});
+	});
+
+	describe('updatePaymentFailureSubstream$', () => {
+		
+		it('should dispatch DaffAuthorizeNetUpdatePaymentFailure when the cart payment method has failed to update', () => {
+			const authorizeNetUpdatePayment = new DaffAuthorizeNetUpdatePayment(paymentTokenRequest, stubAddress);
+			const cartPaymentUpdateWithBillingFailure = new DaffCartPaymentUpdateWithBillingFailure('error');
+			const authorizeNetPaymentUpdateFailure = new DaffAuthorizeNetUpdatePaymentFailure('The payment method has failed to update the cart.');
+			actions$ = hot('--ab', { a: authorizeNetUpdatePayment, b: cartPaymentUpdateWithBillingFailure });
+
+			const expected = cold('---c', { c: authorizeNetPaymentUpdateFailure });
+			expect(effects.updatePaymentFailureSubstream$).toBeObservable(expected);
 		});
 	});
 });

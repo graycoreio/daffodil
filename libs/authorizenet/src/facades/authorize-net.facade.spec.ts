@@ -5,7 +5,7 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffAuthorizeNetFacade } from './authorize-net.facade';
 import { daffAuthorizeNetReducers } from '../reducers/authorize-net.reducers';
-import { DaffAuthorizeNetGenerateTokenFailure } from '../actions/authorizenet.actions';
+import { DaffAuthorizeNetUpdatePaymentFailure } from '../actions/authorizenet.actions';
 import { DaffCartPaymentMethodAdd } from '@daffodil/cart';
 import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '../drivers/magento/authorize-net-payment-id';
 
@@ -60,7 +60,7 @@ describe('DaffAuthorizeNetFacade', () => {
     it('should return the current error message', () => {
       const stubError = 'error message';
       const expected = cold('a', { a: stubError});
-      store.dispatch(new DaffAuthorizeNetGenerateTokenFailure(stubError));
+      store.dispatch(new DaffAuthorizeNetUpdatePaymentFailure(stubError));
       expect(facade.error$).toBeObservable(expected);
     });
   })

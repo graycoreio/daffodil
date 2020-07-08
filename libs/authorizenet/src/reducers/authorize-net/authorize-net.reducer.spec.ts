@@ -1,13 +1,17 @@
 import { daffAuthorizeNetReducer } from './authorize-net.reducer';
 import { DaffAuthorizeNetReducerState } from './authorize-net-reducer.interface';
-import { DaffAuthorizeNetGenerateTokenSuccess, DaffAuthorizeNetGenerateTokenFailure, DaffAuthorizeNetGenerateToken } from '../../actions/authorizenet.actions';
+import { DaffAuthorizeNetUpdatePaymentSuccess, DaffAuthorizeNetUpdatePaymentFailure, DaffAuthorizeNetUpdatePayment } from '../../actions/authorizenet.actions';
+import { DaffCartAddress } from '@daffodil/cart';
+import { DaffCartAddressFactory } from '@daffodil/cart/testing';
 
 describe('AuthorizeNet | AuthorizeNet Reducer', () => {
 
 	let stubPaymentNonce;
 	let initialState: DaffAuthorizeNetReducerState;
+	let stubAddress: DaffCartAddress;
 
   beforeEach(() => {
+		stubAddress = new DaffCartAddressFactory().create();
 		stubPaymentNonce = 'tokenResponse';
 		initialState = {
 			loading: false,
@@ -26,11 +30,11 @@ describe('AuthorizeNet | AuthorizeNet Reducer', () => {
     });
   });
 
-  describe('when DaffAuthorizeNetGenerateToken is triggered', () => {
+  describe('when DaffAuthorizeNetUpdatePayment is triggered', () => {
     let result: DaffAuthorizeNetReducerState;
 
     beforeEach(() => {
-      const tokenLoad: DaffAuthorizeNetGenerateToken = new DaffAuthorizeNetGenerateToken({
+      const tokenLoad: DaffAuthorizeNetUpdatePayment = new DaffAuthorizeNetUpdatePayment({
 				creditCard: {
 					name: 'name',
 					cardnumber: '1234123412341234',
@@ -38,7 +42,7 @@ describe('AuthorizeNet | AuthorizeNet Reducer', () => {
 					year: 'year',
 					securitycode: '123'
 				}
-			});
+			}, stubAddress);
 
       result = daffAuthorizeNetReducer(initialState, tokenLoad);
     });
@@ -48,11 +52,11 @@ describe('AuthorizeNet | AuthorizeNet Reducer', () => {
 		});
   });
 
-  describe('when DaffAuthorizeNetGenerateTokenSuccess is triggered', () => {
+  describe('when DaffAuthorizeNetUpdatePaymentSuccess is triggered', () => {
     let result: DaffAuthorizeNetReducerState;
 
     beforeEach(() => {
-      const tokenLoadSuccess: DaffAuthorizeNetGenerateTokenSuccess = new DaffAuthorizeNetGenerateTokenSuccess();
+      const tokenLoadSuccess: DaffAuthorizeNetUpdatePaymentSuccess = new DaffAuthorizeNetUpdatePaymentSuccess();
 
       result = daffAuthorizeNetReducer(initialState, tokenLoadSuccess);
     });
@@ -66,11 +70,11 @@ describe('AuthorizeNet | AuthorizeNet Reducer', () => {
 		});
   });
 
-  describe('when DaffAuthorizeNetGenerateTokenFailure is triggered', () => {
+  describe('when DaffAuthorizeNetUpdatePaymentFailure is triggered', () => {
     let result: DaffAuthorizeNetReducerState;
 
     beforeEach(() => {
-      const tokenResponseLoadFailure: DaffAuthorizeNetGenerateTokenFailure = new DaffAuthorizeNetGenerateTokenFailure('error');
+      const tokenResponseLoadFailure: DaffAuthorizeNetUpdatePaymentFailure = new DaffAuthorizeNetUpdatePaymentFailure('error');
 
       result = daffAuthorizeNetReducer(initialState, tokenResponseLoadFailure);
     });
