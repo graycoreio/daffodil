@@ -4,9 +4,9 @@ import { DaffAuthorizeNetTokenRequest } from '../models/request/authorize-net-to
 import { DaffCartAddress } from '@daffodil/cart';
 
 export enum DaffAuthorizeNetActionTypes {
-  UpdatePaymentAction = '[Daff-Authorize-Net] Generate Token',
-  UpdatePaymentSuccessAction = '[Daff-Authorize-Net] Generate Token Success',
-	UpdatePaymentFailureAction = '[Daff-Authorize-Net] Generate Token Failure',
+  UpdatePaymentAction = '[Daff-Authorize-Net] Update Payment',
+  UpdatePaymentSuccessAction = '[Daff-Authorize-Net] Update Payment Success',
+	UpdatePaymentFailureAction = '[Daff-Authorize-Net] Update Payment Failure',
 	LoadAcceptJsAction = '[Daff-Authorize-Net] Load Accept Js'
 }
 
