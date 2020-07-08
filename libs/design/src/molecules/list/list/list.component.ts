@@ -1,9 +1,13 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input, HostBinding, ElementRef } from '@angular/core';
 
+/**
+ * @deprecated
+ * DaffListMode will be completely deprecated in v1.0.0
+ * */
 export type DaffListMode = 'multi-line' | 'link' | 'navigation' | undefined;
 export enum DaffListModeEnum {
   Multiline = 'multi-line',
-  Link = 'link', // Link will be deprecated in v1.0.0
+  Link = 'link',
   Navigation = 'navigation'
 }
 
@@ -25,21 +29,32 @@ enum DaffListTypeEnum {
 })
 
 export class DaffListComponent {
+  /**
+   * @deprecated
+   * */
   @Input() mode: DaffListMode;
 
   @HostBinding('class.daff-list') get list() {
     return this.listType === DaffListTypeEnum.Default;
   }
 
+  /**
+   * @deprecated
+   * */
   @HostBinding('class.daff-list--multi-line') get multiline() {
     return this.mode === DaffListModeEnum.Multiline;
   }
 
-  // Link will be deprecated in v1.0.0
+  /**
+   * @deprecated
+   * */
   @HostBinding('class.daff-list--link') get link() {
     return this.mode === DaffListModeEnum.Link;
   }
 
+  /**
+   * @deprecated
+   * */
   @HostBinding('class.daff-list--navigation') get navigation() {
     return this.mode === DaffListModeEnum.Navigation;
   }

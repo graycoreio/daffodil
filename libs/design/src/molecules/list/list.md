@@ -17,7 +17,7 @@ The `<daff-list>` component can be used to display a series of line items.
 </daff-list>
 ```
 
-## Link List
+## Link List (Deprecated)
 
 - `type="link"` is used for navigation lists
 
@@ -34,7 +34,7 @@ The `<daff-list>` component can be used to display a series of line items.
 </daff-list>
 ```
 
-## Multi-line List
+## Multi-line List (Deprecated)
 
 - `type="multi-line"` allows you to have multiple lines per `daff-list-item`.
 
