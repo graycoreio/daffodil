@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faInfoCircle, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -13,4 +13,5 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 })
 export class ActionableMessageBarComponent {
   faInfoCircle = faInfoCircle;
+  faTimes = faTimes;
 }
