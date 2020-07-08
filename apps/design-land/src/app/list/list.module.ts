@@ -19,4 +19,4 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FontAwesomeModule
   ]
 })
-export class ListModule {}
+export class DesignLandListModule {}

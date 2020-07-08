@@ -7,6 +7,4 @@ import { faTwitter } from '@fortawesome/free-brands-svg-icons';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent {
-  faTwitter = faTwitter;
-}
+export class DesignLandListComponent {}
