@@ -10,18 +10,18 @@ export const initialState: DaffAuthorizeNetReducerState = {
 export function daffAuthorizeNetReducer <T extends DaffAuthorizeNetTokenRequest>
 	(state: DaffAuthorizeNetReducerState = initialState, action: DaffAuthorizeNetActions<T>): DaffAuthorizeNetReducerState {
   switch (action.type) {
-		case DaffAuthorizeNetActionTypes.GenerateTokenAction:
+		case DaffAuthorizeNetActionTypes.UpdatePaymentAction:
 			return {
 				...state,
 				loading: true
 			}
-    case DaffAuthorizeNetActionTypes.GenerateTokenSuccessAction:
+    case DaffAuthorizeNetActionTypes.UpdatePaymentSuccessAction:
       return { 
 				...state,
 				loading: false,
 				error: null
 			};
-		case DaffAuthorizeNetActionTypes.GenerateTokenFailureAction:
+		case DaffAuthorizeNetActionTypes.UpdatePaymentFailureAction:
 			return {
 				...state,
 				loading: false,

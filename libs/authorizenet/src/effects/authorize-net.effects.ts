@@ -1,16 +1,17 @@
 import { Injectable, Inject } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { tap, switchMap, catchError } from 'rxjs/operators';
+import { tap, switchMap, catchError, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
-import { DaffCartPaymentUpdate } from '@daffodil/cart';
+import { DaffCartPaymentActionTypes, DaffCartPaymentUpdateWithBilling } from '@daffodil/cart';
+import { substream } from '@daffodil/core';
 
 import { 
 	DaffAuthorizeNetActionTypes, 
-	DaffAuthorizeNetGenerateToken, 
-	DaffAuthorizeNetGenerateTokenFailure, 
+	DaffAuthorizeNetUpdatePayment, 
+	DaffAuthorizeNetUpdatePaymentFailure, 
 	DaffLoadAcceptJs,
-	DaffAuthorizeNetGenerateTokenSuccess
+	DaffAuthorizeNetUpdatePaymentSuccess
 } from '../actions/authorizenet.actions';
 import { DaffAuthorizeNetTokenRequest } from '../models/request/authorize-net-token-request';
 import { DaffAuthorizeNetService, DaffAuthorizeNetDriver } from '../drivers/interfaces/authorize-net-service.interface';
@@ -31,20 +32,38 @@ export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = Da
 	){}
 
   @Effect()
-  generateToken$ : Observable<any> = this.actions$.pipe(
-		ofType(DaffAuthorizeNetActionTypes.GenerateTokenAction),
-		switchMap((action: DaffAuthorizeNetGenerateToken<T>) => 
-			this.driver.generateToken(action.payload).pipe(
-				switchMap(resp => [
-					new DaffAuthorizeNetGenerateTokenSuccess(),
-					new DaffCartPaymentUpdate({
+  updatePayment$ : Observable<any> = this.actions$.pipe(
+		ofType(DaffAuthorizeNetActionTypes.UpdatePaymentAction),
+		switchMap((action: DaffAuthorizeNetUpdatePayment<T>) => 
+			this.driver.generateToken(action.tokenRequest).pipe(
+				map(resp => new DaffCartPaymentUpdateWithBilling(
+					{
 						method: this.authorizeNetPaymentId,
 						payment_info: resp
-					})
-				]),
-				catchError(error => of(new DaffAuthorizeNetGenerateTokenFailure(error)))
+					}, 
+					action.address
+				)),
+				catchError(error => of(new DaffAuthorizeNetUpdatePaymentFailure(error)))
 			)
 		)
+	)
+
+	@Effect()
+	updatePaymentSuccessSubstream$ : Observable<any> = this.actions$.pipe(
+		substream(
+			[DaffAuthorizeNetActionTypes.UpdatePaymentAction, DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingSuccessAction],
+			DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingFailureAction
+		),
+		map((actions: Actions[]) => new DaffAuthorizeNetUpdatePaymentSuccess())
+	)
+
+	@Effect()
+	updatePaymentFailureSubstream$ : Observable<any> = this.actions$.pipe(
+		substream(
+			[DaffAuthorizeNetActionTypes.UpdatePaymentAction, DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingFailureAction],
+			DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingSuccessAction
+		),
+		map((actions: Actions[]) => new DaffAuthorizeNetUpdatePaymentFailure('The payment method has failed to update the cart.'))
 	)
 	
 	@Effect({ dispatch: false })
