@@ -5,14 +5,14 @@ import { By } from '@angular/platform-browser';
 import { DaffMessageBarComponent } from './message-bar.component';
 
 @Component ({
-  template: `<daff-message-bar [flush]="false"></daff-message-bar>`
+  template: `<daff-message-bar [flush]="flush"></daff-message-bar>`
 })
 
 class WrapperComponent {
   flush = false;
 }
 
-describe('DaffMessageBarComponent', () => {
+fdescribe('DaffMessageBarComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;
   let wrapper: WrapperComponent;
