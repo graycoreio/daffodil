@@ -2,7 +2,9 @@ import { Component, ChangeDetectionStrategy, HostBinding, ContentChild } from '@
 import { DaffPrefixDirective, DaffSuffixDirective } from '../../../core/prefix-suffix/public_api';
 
 @Component({
-  selector: 'daff-list-item',
+  selector:
+    'daff-list-item' + ',' +
+    'a[daff-list-item]',
   templateUrl: './list-item.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
