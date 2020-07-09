@@ -47,6 +47,13 @@ export function cartReducer<T extends DaffCart>(
         loading: false,
       };
 
+    case DaffCartActionTypes.CartStorageFailureAction:
+        return {
+          ...state,
+          ...addError(state.errors, 'Cart Storage Failed'),
+          loading: false,
+        };
+
     default:
       return state;
   }

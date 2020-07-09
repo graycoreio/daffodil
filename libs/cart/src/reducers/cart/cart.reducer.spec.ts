@@ -14,7 +14,8 @@ import {
   DaffCartCreate,
   DaffCartCreateSuccess,
   DaffCartCreateFailure,
-  DaffResolveCart
+  DaffResolveCart,
+  DaffCartStorageFailure
 } from '../../actions/public_api';
 import { DaffCart } from '../../models/cart';
 import { cartReducer } from './cart.reducer';
@@ -108,6 +109,34 @@ describe('Cart | Reducer | Cart', () => {
       const cartListLoadFailure = new DaffCartLoadFailure(error);
 
       result = cartReducer(state, cartListLoadFailure);
+    });
+
+    it('should indicate that the cart is not loading', () => {
+      expect(result.loading).toEqual(false);
+    });
+
+    it('should add an error to the cart section of state.errors', () => {
+      expect(result.errors[DaffCartErrorType.Cart].length).toEqual(2);
+    });
+  });
+
+  describe('when CartStorageFailure is triggered', () => {
+    let result;
+    let state: DaffCartReducerState<DaffCart>;
+
+    beforeEach(() => {
+      state = {
+        ...initialState,
+        loading: true,
+        errors: {
+          ...initialState.errors,
+          [DaffCartErrorType.Cart]: new Array('firstError')
+        }
+      }
+
+      const cartStorageFailure = new DaffCartStorageFailure();
+
+      result = cartReducer(state, cartStorageFailure);
     });
 
     it('should indicate that the cart is not loading', () => {
