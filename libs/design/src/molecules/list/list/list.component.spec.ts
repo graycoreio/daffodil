@@ -111,4 +111,16 @@ describe('DaffListComponent', () => {
       });
     });
   });
+
+  describe('<daff-nav-list>', () => {
+    beforeEach(() => {
+      navDE = fixture.debugElement.query(By.css('daff-nav-list'));
+    });
+
+    it('should add a class of "daff-nav-list" to the host element', () => {
+      expect(navDE.classes).toEqual(jasmine.objectContaining({
+        'daff-nav-list': true,
+      }));
+    });
+  });
 });

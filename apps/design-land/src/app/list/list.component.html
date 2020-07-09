@@ -1,31 +1,22 @@
-<h1>Daff List</h1>
+<daff-article>
+  <h1>List</h1>
+  <p><code>DaffListComponent</code> is a flexible component that can be used to display a series of content. It can be modified to support a range of content types.</p>
 
-<h2>Simple List</h2>
-<daff-list>
-  <h3 daffListSubheader>Lorem Ipsum</h3>
-  <daff-list-item>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</daff-list-item>
-  <daff-list-item>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</daff-list-item>
-  <daff-list-item>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</daff-list-item>
-</daff-list>
+  <h4>Basic Lists</h4>
+  <p>A <code>&lt;daff-list&gt;</code> consists of multiple <code>&lt;daff-list-item&gt;s</code>.</p>
+  <design-land-example-viewer example="basic-list"></design-land-example-viewer>
 
-<h3>List Types</h3>
+  <h4>Navigation Lists</h4>
+  <p>Use <code>&lt;daff-nav-list&gt;</code> for navigation lists. <code>&lt;mat-list-item&gt;</code>should be added to an anchor tag directly.</p>
+  <design-land-example-viewer example="nav-list"></design-land-example-viewer>
 
-<daff-nav-list>
-  <daff-list-item>Nav List</daff-list-item>
-  <daff-list-item>Nav List</daff-list-item>
-  <daff-list-item>Nav List</daff-list-item>
-</daff-nav-list>
+  <h4>Multi-line Lists</h4>
+  <p>For lists that have multiple lines per item, wrap each line appropriately with a heading or paragraph tag.</p>
+  <design-land-example-viewer example="multiline-list"></design-land-example-viewer>
 
-<h4>Link List</h4>
-
-<daff-list type="link">
-  <h3 daffListSubheader>List Subheader</h3>
-  <daff-list-item><a href="#">List Item</a></daff-list-item>
-  <daff-list-item><a href="#">List Item</a></daff-list-item>
-  <daff-list-item><a href="#">List Item</a></daff-list-item>
-  <daff-list-item><a href="#">List Item</a></daff-list-item>
-  <daff-list-item><a href="#">List Item</a></daff-list-item>
-</daff-list>
+  <h4>List with Icons</h4>
+  <p>To add an icon to a list item, use the <code>&lt;golfPrefix&gt;</code> or <code>&lt;golfSuffix&gt;</code> attributes for the appropriate placements.</p>
+  <design-land-example-viewer example="icon-list"></design-land-example-viewer>
 
   <h4>Deprecation Notice</h4>
   <p>The <code>mode</code> property will be deprecated in v1.0.0.</p>
@@ -34,3 +25,4 @@
     <li><code>mode="link"</code> is replaced with <code>&lt;daff-nav-list&gt;</code>.</li>
     <li><code>mode="multiline"</code> is completely deprecated. Multi-line lists will be a natural result of adding multiple lines to a <code>&lt;daff-list-item&gt;</code>.</li>
   </ul>
+</daff-article>
