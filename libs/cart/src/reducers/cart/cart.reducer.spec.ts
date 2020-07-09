@@ -13,7 +13,8 @@ import {
   DaffCartClearFailure,
   DaffCartCreate,
   DaffCartCreateSuccess,
-  DaffCartCreateFailure
+  DaffCartCreateFailure,
+  DaffResolveCart
 } from '../../actions/public_api';
 import { DaffCart } from '../../models/cart';
 import { cartReducer } from './cart.reducer';
@@ -46,6 +47,16 @@ describe('Cart | Reducer | Cart', () => {
       const cartListLoadAction: DaffCartLoad = new DaffCartLoad();
 
       const result = cartReducer(initialState, cartListLoadAction);
+
+      expect(result.loading).toEqual(true);
+    });
+  });
+
+  describe('when ResolveCartAction is triggered', () => {
+    it('should set loading state to true', () => {
+      const cartResolveAction: DaffResolveCart = new DaffResolveCart();
+
+      const result = cartReducer(initialState, cartResolveAction);
 
       expect(result.loading).toEqual(true);
     });
