@@ -1,4 +1,4 @@
-import { Inject, OnInit } from '@angular/core';
+import { Inject, OnInit, Injectable } from '@angular/core';
 
 import { DAFF_PRICE_DECIMAL_CONFIG_NOT_INTEGER_ERROR } from '../errors/price-decimal-config-error';
 import { DaffPriceDecimalConfig } from '../tokens/price-decimal-config.token';
@@ -6,6 +6,9 @@ import { DaffPriceDecimalConfig } from '../tokens/price-decimal-config.token';
 /**
  * A service to transform prices into integers to avoid javascript "long" arithmetic.
  */
+@Injectable({
+	providedIn: 'root'
+})
 export class DaffPriceDecimalTransformer implements OnInit {
 
 	constructor(
