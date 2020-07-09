@@ -4,13 +4,13 @@ import { DaffListModule } from '@daffodil/design';
 
 import { DesignLandListRoutingModule } from './list-routing.module';
 
-import { ListComponent } from './list.component';
+import { DesignLandListComponent } from './list.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
-    ListComponent
+    DesignLandListComponent
   ],
   imports: [
     CommonModule,
