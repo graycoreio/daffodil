@@ -17,9 +17,4 @@ export class DaffModal<T> {
 	 * The overlay associated with a given modal.
 	 */
 	overlay: OverlayRef;
-
-	close(){
-		this.modal.instance.open = false;
-		this.overlay.detachBackdrop();
-	}
 }

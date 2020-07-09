@@ -6,8 +6,11 @@ import { DaffModalService, DaffModal } from '@daffodil/design';
   templateUrl: './modal-content.component.html',
 })
 export class DesignLandModalContentComponent {
-  constructor(private modal: DaffModal<DesignLandModalContentComponent>) {}
+  constructor(
+    private modalService: DaffModalService,
+    private modal: DaffModal<DesignLandModalContentComponent>
+    ) {}
   hideModal() {
-    this.modal.close();
+    this.modalService.close(this.modal);
   }
 }
