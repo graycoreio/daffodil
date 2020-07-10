@@ -25,7 +25,7 @@ export class DaffListItemComponent {
     return this._isAnchor() ? null : 'listitem';
   };
 
-  _getHostElement() {
+  private _getHostElement() {
     return this.elementRef.nativeElement;
   }
 
