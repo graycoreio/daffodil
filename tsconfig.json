@@ -73,6 +73,9 @@
       "@daffodil/design/checkbox/examples": [
         "dist/design/checkbox/examples"
       ],
+      "@daffodil/design/list/examples": [
+        "dist/design/list/examples"
+      ],
       "@daffodil/branding": [
         "dist/branding"
       ],
