@@ -134,7 +134,7 @@ describe('Cart | Reducer | Cart', () => {
         }
       }
 
-      const cartStorageFailure = new DaffCartStorageFailure();
+      const cartStorageFailure = new DaffCartStorageFailure('Cart Storage Failed');
 
       result = cartReducer(state, cartStorageFailure);
     });

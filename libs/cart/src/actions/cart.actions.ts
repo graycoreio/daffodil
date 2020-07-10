@@ -21,6 +21,8 @@ export enum DaffCartActionTypes {
 
 export class DaffCartStorageFailure implements Action {
   readonly type = DaffCartActionTypes.CartStorageFailureAction;
+
+  constructor(public payload: string) {}
 }
 
 export class DaffCartLoad implements Action {

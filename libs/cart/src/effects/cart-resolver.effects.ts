@@ -42,7 +42,7 @@ export class DaffCartResolverEffects<T extends DaffCart = DaffCart> {
 		catchError(error => {
 			switch(error.name) {
 				case DaffStorageServiceError.name:
-					return of(new DaffCartStorageFailure())
+					return of(new DaffCartStorageFailure('Cart Storage Failed'))
 				case DaffCartNotFoundError.name:
 					return of(new DaffCartCreate());
 				default:

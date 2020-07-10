@@ -53,7 +53,7 @@ export class DaffCartEffects<T extends DaffCart> {
       this.storage.setCartId(String(action.payload.id))
     }),
     switchMapTo(EMPTY),
-    catchError(error => of(new DaffCartStorageFailure()))
+    catchError(error => of(new DaffCartStorageFailure('Cart Storage Failed')))
   )
 
   @Effect()
@@ -63,7 +63,7 @@ export class DaffCartEffects<T extends DaffCart> {
       map((resp: T) => new DaffCartLoadSuccess(resp)),
     )),
     catchError(error => of(error instanceof DaffStorageServiceError
-      ? new DaffCartStorageFailure()
+      ? new DaffCartStorageFailure('Cart Storage Failed')
       : new DaffCartLoadFailure('Failed to load cart')
     ))
   )

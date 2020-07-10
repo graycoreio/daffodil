@@ -48,7 +48,7 @@ export class DaffCartCouponEffects<
       )
     ),
     catchError(error => of(error instanceof DaffStorageServiceError
-      ? new DaffCartStorageFailure()
+      ? new DaffCartStorageFailure('Cart Storage Failed')
       : new DaffCartCouponApplyFailure('Failed to apply coupon to cart')
     ))
   )
@@ -62,7 +62,7 @@ export class DaffCartCouponEffects<
       )
     ),
     catchError(error => of(error instanceof DaffStorageServiceError
-      ? new DaffCartStorageFailure()
+      ? new DaffCartStorageFailure('Cart Storage Failed')
       : new DaffCartCouponListFailure('Failed to list coupons')
     ))
   )
@@ -76,7 +76,7 @@ export class DaffCartCouponEffects<
       )
     ),
     catchError(error => of(error instanceof DaffStorageServiceError
-      ? new DaffCartStorageFailure()
+      ? new DaffCartStorageFailure('Cart Storage Failed')
       : new DaffCartCouponRemoveFailure('Failed to remove a coupon from the cart')
     ))
   )
@@ -90,7 +90,7 @@ export class DaffCartCouponEffects<
       )
     ),
     catchError(error => of(error instanceof DaffStorageServiceError
-      ? new DaffCartStorageFailure()
+      ? new DaffCartStorageFailure('Cart Storage Failed')
       : new DaffCartCouponRemoveAllFailure('Failed to remove all coupons from the cart')
     ))
   )
