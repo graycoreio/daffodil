@@ -64,9 +64,10 @@ describe('Driver | Magento | Cart | CartOrderService', () => {
 
   describe('placeOrder | placing an order for the specified cart', () => {
     describe('when the call to the Magento API is successful', () => {
-      it('should return the order ID', done => {
+      it('should return the order and cart ID', done => {
         service.placeOrder(cartId, mockDaffCartPayment).subscribe(result => {
-          expect(String(result.id)).toEqual(String(orderNumber));
+          expect(String(result.orderId)).toEqual(String(orderNumber));
+          expect(String(result.cartId)).toEqual(String(cartId));
           done();
         });
 
