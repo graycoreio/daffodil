@@ -45,22 +45,15 @@ describe('Daffodil | Order | OrderEffects', () => {
           provide: DaffOrderDriver,
           useValue: jasmine.createSpyObj('DaffOrderDriver', ['get', 'list'])
         },
-        {
-          provide: DaffCartStorageService,
-          useValue: jasmine.createSpyObj('DaffCartStorageService', ['getCartId'])
-        }
       ]
     });
 
     effects = TestBed.get<DaffOrderEffects<DaffOrder>>(DaffOrderEffects);
     daffDriverSpy = TestBed.get<DaffOrderServiceInterface<DaffOrder>>(DaffOrderDriver);
-    daffCartStorageSpy = TestBed.get(DaffCartStorageService);
     orderFactory = TestBed.get<DaffOrderFactory>(DaffOrderFactory);
 
     mockOrder = orderFactory.create();
     orderId = mockOrder.id;
-
-    daffCartStorageSpy.getCartId.and.returnValue('cartId');
   });
 
   it('should be created', () => {
@@ -69,7 +62,7 @@ describe('Daffodil | Order | OrderEffects', () => {
 
   describe('when DaffOrderLoadAction is triggered', () => {
     let expected;
-    const orderLoadAction = new DaffOrderLoad(orderId);
+    const orderLoadAction = new DaffOrderLoad({orderId});
 
     describe('and the call to OrderService is successful', () => {
       beforeEach(() => {
@@ -95,19 +88,6 @@ describe('Daffodil | Order | OrderEffects', () => {
       });
 
       it('should dispatch a DaffOrderLoadFailure action', () => {
-        expect(effects.get$).toBeObservable(expected);
-      });
-    });
-
-    describe('and the storage service throws an error', () => {
-      beforeEach(() => {
-        daffCartStorageSpy.getCartId.and.callFake(throwStorageError)
-
-        actions$ = hot('--a', { a: orderLoadAction });
-        expected = cold('--(b|)', { b: cartStorageFailureAction });
-      });
-
-      it('should return a DaffCartStorageFailure', () => {
         expect(effects.get$).toBeObservable(expected);
       });
     });
@@ -141,19 +121,6 @@ describe('Daffodil | Order | OrderEffects', () => {
       });
 
       it('should return a DaffOrderListFailure action', () => {
-        expect(effects.list$).toBeObservable(expected);
-      });
-    });
-
-    describe('and the storage service throws an error', () => {
-      beforeEach(() => {
-        daffCartStorageSpy.getCartId.and.callFake(throwStorageError)
-
-        actions$ = hot('--a', { a: orderListAction });
-        expected = cold('--(b|)', { b: cartStorageFailureAction });
-      });
-
-      it('should return a DaffCartStorageFailure', () => {
         expect(effects.list$).toBeObservable(expected);
       });
     });
