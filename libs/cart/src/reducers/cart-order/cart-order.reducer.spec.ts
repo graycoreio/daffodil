@@ -39,13 +39,16 @@ describe('Cart | Reducer | CartOrder', () => {
         loading: true
       }
 
-      const cartPlaceOrderSuccess = new DaffCartPlaceOrderSuccess({id: orderId});
+      const cartPlaceOrderSuccess = new DaffCartPlaceOrderSuccess({
+        orderId,
+        cartId: 'cartId',
+      });
 
       result = reducer(state, cartPlaceOrderSuccess);
     });
 
     it('should set the order ID from action.payload', () => {
-      expect(result.cartOrderResult.id).toEqual(orderId)
+      expect(result.cartOrderResult.orderId).toEqual(orderId)
     });
 
     it('should indicate that the place order operation is not in progress', () => {

@@ -22,7 +22,8 @@ describe('Cart | Selector | CartOrder', () => {
     selectCartOrderLoading,
     selectCartOrderErrors,
     selectCartOrderValue,
-    selectCartOrderId
+    selectCartOrderId,
+    selectCartOrderCartId
 	} = getCartOrderSelectors();
 
   beforeEach(() => {
@@ -43,13 +44,19 @@ describe('Cart | Selector | CartOrder', () => {
     loading = false;
 
     store.dispatch(new DaffCartLoadSuccess(cart));
-    store.dispatch(new DaffCartPlaceOrderSuccess({id: orderId}));
+    store.dispatch(new DaffCartPlaceOrderSuccess({
+      orderId,
+      cartId: cart.id,
+    }));
   });
 
   describe('selectCartOrderState', () => {
     it('selects whether the place order operation is in progress', () => {
 			const expectedOrderState: DaffCartOrderReducerState = {
-				cartOrderResult: { id: orderId },
+				cartOrderResult: {
+          orderId,
+          cartId: cart.id,
+        },
 				loading: false,
 				errors: []
 			};
@@ -81,7 +88,10 @@ describe('Cart | Selector | CartOrder', () => {
   describe('selectCartOrderValue', () => {
     it('selects the order object', () => {
       const selector = store.pipe(select(selectCartOrderValue));
-      const expected = cold('a', {a: {id: orderId}});
+      const expected = cold('a', {a: jasmine.objectContaining({
+        orderId,
+        cartId: cart.id,
+      })});
 
       expect(selector).toBeObservable(expected);
     });
@@ -91,6 +101,15 @@ describe('Cart | Selector | CartOrder', () => {
     it('selects the ID of the order object', () => {
       const selector = store.pipe(select(selectCartOrderId));
       const expected = cold('a', {a: orderId});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCartOrderCartId', () => {
+    it('selects the cart ID of the order object', () => {
+      const selector = store.pipe(select(selectCartOrderCartId));
+      const expected = cold('a', {a: cart.id});
 
       expect(selector).toBeObservable(expected);
     });

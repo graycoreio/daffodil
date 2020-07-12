@@ -8,5 +8,5 @@ export interface DaffCartOrderResult {
   /**
    * @deprecated Use DaffCartOrderResult#orderId instead.
    */
-  id: string | number;
+  id?: string | number;
 }
