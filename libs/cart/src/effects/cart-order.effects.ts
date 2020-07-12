@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { switchMap, map, catchError } from 'rxjs/operators';
+import { switchMap, map, catchError, mapTo } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
@@ -12,7 +12,8 @@ import {
   DaffCartPlaceOrder,
   DaffCartPlaceOrderSuccess,
   DaffCartPlaceOrderFailure,
-  DaffCartStorageFailure
+  DaffCartStorageFailure,
+  DaffCartCreate
 } from '../actions/public_api';
 import { DaffCart } from '../models/cart';
 import { DaffCartOrderServiceInterface, DaffCartOrderDriver } from '../drivers/interfaces/cart-order-service.interface';
@@ -42,5 +43,10 @@ export class DaffCartOrderEffects<
       ? new DaffCartStorageFailure('Cart Storage Failed')
       : new DaffCartPlaceOrderFailure('Failed to place order')
     ))
+  )
+
+  resetCart$ = this.actions$.pipe(
+    ofType(DaffCartOrderActionTypes.CartPlaceOrderSuccessAction),
+    mapTo(new DaffCartCreate()),
   )
 }

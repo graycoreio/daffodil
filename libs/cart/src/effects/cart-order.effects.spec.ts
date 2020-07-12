@@ -18,6 +18,7 @@ import {
 
 import { DaffCartOrderEffects } from './cart-order.effects';
 import {
+  DaffCartCreate,
   DaffCartPlaceOrder,
   DaffCartPlaceOrderSuccess,
   DaffCartPlaceOrderFailure,
@@ -125,6 +126,22 @@ describe('Cart | Effect | CartOrderEffects', () => {
       it('should return a DaffCartStorageFailure', () => {
         expect(effects.placeOrder$).toBeObservable(expected);
       });
+    });
+  });
+
+  describe('resetCart$ | resetting the cart after a successful order', () => {
+    let expected;
+    let cartOrderSuccessAction;
+
+    beforeEach(() => {
+      const cartCreateAction = new DaffCartCreate()
+      cartOrderSuccessAction = new DaffCartPlaceOrderSuccess({id: mockCart.id});
+      actions$ = hot('--a', { a: cartOrderSuccessAction });
+      expected = cold('--b', {b: cartCreateAction});
+    });
+
+    it('should create a new cart', () => {
+      expect(effects.resetCart$).toBeObservable(expected);
     });
   });
 });
