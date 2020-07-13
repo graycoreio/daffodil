@@ -45,6 +45,7 @@ export class DaffCartOrderEffects<
     ))
   )
 
+  @Effect()
   resetCart$ = this.actions$.pipe(
     ofType(DaffCartOrderActionTypes.CartPlaceOrderSuccessAction),
     mapTo(new DaffCartCreate()),
