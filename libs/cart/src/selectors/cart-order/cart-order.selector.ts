@@ -17,6 +17,7 @@ export interface DaffCartOrderMemoizedSelectors<
 	selectCartOrderValue: MemoizedSelector<object, DaffCartOrderReducerState<T>['cartOrderResult']>;
 	selectCartOrderId: MemoizedSelector<object, DaffCartOrderReducerState<T>['cartOrderResult']['orderId']>;
 	selectCartOrderCartId: MemoizedSelector<object, DaffCartOrderReducerState<T>['cartOrderResult']['cartId']>;
+  selectHasOrderResult: MemoizedSelector<object, boolean>;
 }
 
 const createCartOrderSelectors = <
@@ -49,6 +50,12 @@ const createCartOrderSelectors = <
 		selectCartOrderState,
 		(state: DaffCartOrderReducerState<V>) => state.errors
   );
+  const selectHasOrderResult = createSelector(
+    selectCartOrderValue,
+    orderResult => !!(
+      orderResult && orderResult.orderId && orderResult.cartId
+    )
+  );
 
 	return {
     selectCartOrderState,
@@ -56,7 +63,8 @@ const createCartOrderSelectors = <
     selectCartOrderErrors,
     selectCartOrderValue,
     selectCartOrderId,
-    selectCartOrderCartId
+    selectCartOrderCartId,
+    selectHasOrderResult
 	}
 }
 

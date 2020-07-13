@@ -52,6 +52,7 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
   });
 	orderResultId$ = new BehaviorSubject<DaffCartOrderResult['orderId']>(null);
 	orderResultCartId$ = new BehaviorSubject<DaffCartOrderResult['cartId']>(null);
+	hasOrderResult$ = new BehaviorSubject<boolean>(false);
 
 	getCartItemDiscountedTotal(itemId: string | number): BehaviorSubject<number> {
 		return new BehaviorSubject(null);

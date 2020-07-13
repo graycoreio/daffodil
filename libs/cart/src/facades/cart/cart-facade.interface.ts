@@ -50,6 +50,7 @@ export interface DaffCartFacadeInterface<
 	orderResult$: Observable<V>;
 	orderResultId$: Observable<V['orderId']>;
 	orderResultCartId$: Observable<V['cartId']>;
+  hasOrderResult$: Observable<boolean>;
 
 	getCartItemDiscountedTotal(itemId: string | number): Observable<number>;
 }
