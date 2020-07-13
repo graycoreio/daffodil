@@ -7,8 +7,6 @@ import {
   DaffOrder,
 } from '@daffodil/order';
 import { DaffOrderFactory } from '@daffodil/order/testing';
-import { DaffStorageServiceError } from '@daffodil/core';
-import { DaffCartStorageService, DaffCartStorageFailure } from '@daffodil/cart';
 
 import { DaffOrderEffects } from './order.effects';
 import { DaffOrderServiceInterface, DaffOrderDriver } from '../drivers/interfaces/order-service.interface';
@@ -31,10 +29,6 @@ describe('Daffodil | Order | OrderEffects', () => {
   let orderFactory: DaffOrderFactory;
 
   let daffDriverSpy: jasmine.SpyObj<DaffOrderServiceInterface<DaffOrder>>;
-  let daffCartStorageSpy: jasmine.SpyObj<DaffCartStorageService>;
-
-  const cartStorageFailureAction = new DaffCartStorageFailure('Cart Storage Failed');
-  const throwStorageError = () => { throw new DaffStorageServiceError() };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
