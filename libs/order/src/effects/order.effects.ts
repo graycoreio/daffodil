@@ -37,7 +37,7 @@ export class DaffOrderEffects<T extends DaffOrder = DaffOrder> {
     ),
     map(resp => new DaffOrderLoadSuccess<T>(resp)),
     catchError(error => of(error instanceof DaffStorageServiceError
-      ? new DaffCartStorageFailure()
+      ? new DaffCartStorageFailure('Cart Storage Failed')
       : new DaffOrderLoadFailure('Failed to load order')
     ))
   )
@@ -53,7 +53,7 @@ export class DaffOrderEffects<T extends DaffOrder = DaffOrder> {
     ),
     map(resp => new DaffOrderListSuccess<T>(resp)),
     catchError(error => of(error instanceof DaffStorageServiceError
-      ? new DaffCartStorageFailure()
+      ? new DaffCartStorageFailure('Cart Storage Failed')
       : new DaffOrderListFailure('Failed to list the orders')
     ))
   )
