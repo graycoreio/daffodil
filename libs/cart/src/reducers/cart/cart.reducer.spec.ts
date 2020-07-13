@@ -13,7 +13,9 @@ import {
   DaffCartClearFailure,
   DaffCartCreate,
   DaffCartCreateSuccess,
-  DaffCartCreateFailure
+  DaffCartCreateFailure,
+  DaffResolveCart,
+  DaffCartStorageFailure
 } from '../../actions/public_api';
 import { DaffCart } from '../../models/cart';
 import { cartReducer } from './cart.reducer';
@@ -46,6 +48,16 @@ describe('Cart | Reducer | Cart', () => {
       const cartListLoadAction: DaffCartLoad = new DaffCartLoad();
 
       const result = cartReducer(initialState, cartListLoadAction);
+
+      expect(result.loading).toEqual(true);
+    });
+  });
+
+  describe('when ResolveCartAction is triggered', () => {
+    it('should set loading state to true', () => {
+      const cartResolveAction: DaffResolveCart = new DaffResolveCart();
+
+      const result = cartReducer(initialState, cartResolveAction);
 
       expect(result.loading).toEqual(true);
     });
@@ -97,6 +109,34 @@ describe('Cart | Reducer | Cart', () => {
       const cartListLoadFailure = new DaffCartLoadFailure(error);
 
       result = cartReducer(state, cartListLoadFailure);
+    });
+
+    it('should indicate that the cart is not loading', () => {
+      expect(result.loading).toEqual(false);
+    });
+
+    it('should add an error to the cart section of state.errors', () => {
+      expect(result.errors[DaffCartErrorType.Cart].length).toEqual(2);
+    });
+  });
+
+  describe('when CartStorageFailure is triggered', () => {
+    let result;
+    let state: DaffCartReducerState<DaffCart>;
+
+    beforeEach(() => {
+      state = {
+        ...initialState,
+        loading: true,
+        errors: {
+          ...initialState.errors,
+          [DaffCartErrorType.Cart]: new Array('firstError')
+        }
+      }
+
+      const cartStorageFailure = new DaffCartStorageFailure('Cart Storage Failed');
+
+      result = cartReducer(state, cartStorageFailure);
     });
 
     it('should indicate that the cart is not loading', () => {

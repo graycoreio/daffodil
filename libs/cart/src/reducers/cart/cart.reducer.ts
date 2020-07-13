@@ -16,6 +16,7 @@ export function cartReducer<T extends DaffCart>(
   action: ActionTypes
 ): DaffCartReducerState<T> {
   switch (action.type) {
+    case DaffCartActionTypes.ResolveCartAction:
     case DaffCartActionTypes.CartLoadAction:
     case DaffCartActionTypes.CartClearAction:
     case DaffCartActionTypes.AddToCartAction:
@@ -40,6 +41,8 @@ export function cartReducer<T extends DaffCart>(
     case DaffCartActionTypes.CartClearFailureAction:
     case DaffCartActionTypes.AddToCartFailureAction:
     case DaffCartActionTypes.CartCreateFailureAction:
+    case DaffCartActionTypes.CartStorageFailureAction:
+
       return {
         ...state,
         ...addError(state.errors, action.payload),

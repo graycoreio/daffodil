@@ -126,10 +126,10 @@ describe('DaffCartResolver', () => {
       
       it('should resolve with a DaffCartStorageFailure action', () => {
         cartResolver.resolve().subscribe((resolvedValue) => {
-          expect(resolvedValue).toEqual(new DaffCartStorageFailure());
+          expect(resolvedValue).toEqual(new DaffCartStorageFailure('Cart Storage Failed'));
         });
 
-        store.dispatch(new DaffCartStorageFailure());
+        store.dispatch(new DaffCartStorageFailure('Cart Storage Failed'));
       });
 
       it('should redirect to the provided DaffCartResolverRedirectUrl', () => {
@@ -137,7 +137,7 @@ describe('DaffCartResolver', () => {
           expect(router.navigateByUrl).toHaveBeenCalledWith(stubUrl);
         });
 
-        store.dispatch(new DaffCartStorageFailure());
+        store.dispatch(new DaffCartStorageFailure('Cart Storage Failed'));
       });
     });
   });

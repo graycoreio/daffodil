@@ -39,7 +39,7 @@ describe('Cart | Effect | CartOrderEffects', () => {
   let cartOrderDriverSpy: jasmine.SpyObj<DaffCartOrderServiceInterface>;
   let daffCartStorageSpy: jasmine.SpyObj<DaffCartStorageService>;
 
-  const cartStorageFailureAction = new DaffCartStorageFailure();
+  const cartStorageFailureAction = new DaffCartStorageFailure('Cart Storage Failed');
   const throwStorageError = () => { throw new DaffStorageServiceError() };
 
   beforeEach(() => {

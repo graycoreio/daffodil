@@ -39,7 +39,7 @@ export class DaffCartOrderEffects<
       map((resp: R) => new DaffCartPlaceOrderSuccess<R>(resp)),
     )),
     catchError(error => of(error instanceof DaffStorageServiceError
-      ? new DaffCartStorageFailure()
+      ? new DaffCartStorageFailure('Cart Storage Failed')
       : new DaffCartPlaceOrderFailure('Failed to place order')
     ))
   )

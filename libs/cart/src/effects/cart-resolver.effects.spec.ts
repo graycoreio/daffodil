@@ -203,7 +203,7 @@ describe('DaffCartResolverEffects', () => {
 			driver.get.and.returnValue(response);
 			driver.create.and.returnValue(response);
 
-			const cartStorageFailureAction = new DaffCartStorageFailure();
+			const cartStorageFailureAction = new DaffCartStorageFailure('Cart Storage Failed');
 
 			actions$ = hot('--a', { a: new DaffResolveCart() });
 			const expected = cold('--(b|)', {
