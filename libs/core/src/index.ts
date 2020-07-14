@@ -2,6 +2,7 @@ export { DaffAddress } from './address/address';
 
 export { DaffStoreFacade } from './store/facade';
 
+export * from './utils/long-arithmetic';
 export { range } from './utils/range';
 export { shuffle } from './utils/shuffle';
 export { randomSubset } from './utils/random-subset';
