@@ -7,7 +7,8 @@ import {
   DaffCartShippingInformationActions,
   DaffCartPaymentActions,
   DaffCartPaymentMethodsActions,
-  DaffCartCouponActions
+  DaffCartCouponActions,
+  DaffCartAddressActions
 } from '../actions/public_api';
 import { DaffCart } from '../models/cart';
 import { DaffCartItem } from '../models/cart-item';
@@ -29,6 +30,7 @@ export type ActionTypes<
   | DaffCartItemActions<V, U, T>
   | DaffCartBillingAddressActions<W, T>
   | DaffCartShippingAddressActions<W, T>
+  | DaffCartAddressActions<W, T>
   | DaffCartShippingMethodsActions<X>
   | DaffCartShippingInformationActions<X, T>
   | DaffCartPaymentActions<Y, T, W>
