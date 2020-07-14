@@ -45,7 +45,7 @@ export class ButtonModule {
       .map((customElement) => {
         // Register the custom element with the browser.
         customElements.define(
-          this.componentFactoryResolver.resolveComponentFactory(customElement.class).selector + '-example', 
+          this.componentFactoryResolver.resolveComponentFactory<unknown>(customElement.class).selector + '-example',
           customElement.element
         );
       });
