@@ -19,7 +19,9 @@ export class DaffInMemoryBackendCartOrderService implements DaffInMemoryDataServ
 
   private placeOrder(reqInfo): DaffCartOrderResult {
     return {
-      id: '8235422034'
+      id: '8235422034',
+      cartId: '89fdsa8sadf',
+      orderId: '8235422034',
     };
   }
 }

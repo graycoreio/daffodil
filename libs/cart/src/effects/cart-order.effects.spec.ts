@@ -8,7 +8,8 @@ import {
 } from '@daffodil/core'
 import {
   DaffCart,
-  DaffCartPaymentMethod
+  DaffCartPaymentMethod,
+  DaffCartOrderResult
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
@@ -81,7 +82,10 @@ describe('Cart | Effect | CartOrderEffects', () => {
 
     describe('when the call to CartOrderService is successful', () => {
       beforeEach(() => {
-        const response = {id: orderId};
+        const response: DaffCartOrderResult = {
+          orderId,
+          cartId: mockCart.id,
+        };
         const cartPlaceOrderSuccessAction = new DaffCartPlaceOrderSuccess(response);
 
         cartOrderDriverSpy.placeOrder.and.returnValue(of(response));

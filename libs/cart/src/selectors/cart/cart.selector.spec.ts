@@ -106,7 +106,10 @@ describe('Cart | Selector | Cart', () => {
     };
 
     store.dispatch(new DaffCartLoadSuccess(cart));
-    store.dispatch(new DaffCartPlaceOrderSuccess({id: orderId}));
+    store.dispatch(new DaffCartPlaceOrderSuccess({
+      orderId,
+      cartId: cart.id,
+    }));
   });
 
   describe('selectCartValue', () => {

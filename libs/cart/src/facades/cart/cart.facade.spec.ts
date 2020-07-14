@@ -87,7 +87,8 @@ describe('DaffCartFacade', () => {
       [DaffCartErrorType.Coupon]: [],
     };
     mockCartOrderResult = {
-      id: 'id'
+      orderId: 'orderId',
+      cartId: 'cartId',
     };
   });
 
@@ -485,7 +486,7 @@ describe('DaffCartFacade', () => {
 
   describe('orderResult$', () => {
     it('should initially be a cart order result object with a null ID', () => {
-      const expected = cold('a', { a: {id: null} });
+      const expected = cold('a', { a: jasmine.objectContaining({orderId: null, cartId: null}) });
       expect(facade.orderResult$).toBeObservable(expected);
     });
 
@@ -513,8 +514,26 @@ describe('DaffCartFacade', () => {
       });
 
       it('should be the cart order result ID', () => {
-        const expected = cold('a', { a: mockCartOrderResult.id });
+        const expected = cold('a', { a: mockCartOrderResult.orderId });
         expect(facade.orderResultId$).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('orderResultCartId$', () => {
+    it('should initially be null', () => {
+      const expected = cold('a', { a: null});
+      expect(facade.orderResultCartId$).toBeObservable(expected);
+    });
+
+    describe('when a place order request has succeeded', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartPlaceOrderSuccess(mockCartOrderResult));
+      });
+
+      it('should be the cart ID', () => {
+        const expected = cold('a', { a: mockCartOrderResult.cartId });
+        expect(facade.orderResultCartId$).toBeObservable(expected);
       });
     });
   });

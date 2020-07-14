@@ -38,7 +38,9 @@ describe('Driver | Testing | Cart | CartOrderService', () => {
     mockCart = cartFactory.create();
     mockCartPayment = cartPaymentFactory.create();
     mockCartOrderResult = {
-      id: 'id'
+      id: 'orderId',
+      orderId: 'orderId',
+      cartId: 'cartId',
     };
     cartId = mockCart.id;
   });
@@ -50,7 +52,9 @@ describe('Driver | Testing | Cart | CartOrderService', () => {
   describe('placeOrder | placing an order and getting an order result', () => {
     it('should return the order ID and not throw an error', () => {
       const expected = cold('(a|)', {a: jasmine.objectContaining({
-        id: jasmine.any(Number)
+        id: jasmine.any(Number),
+        orderId: jasmine.any(Number),
+        cartId: jasmine.any(Number),
       })});
       expect(service.placeOrder(cartId, mockCartPayment)).toBeObservable(expected);
     });

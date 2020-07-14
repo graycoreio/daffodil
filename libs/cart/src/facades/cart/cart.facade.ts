@@ -55,6 +55,7 @@ export class DaffCartFacade<
 	orderResultErrors$: Observable<string[]>;
 	orderResult$: Observable<V>;
 	orderResultId$: Observable<V['id']>;
+	orderResultCartId$: Observable<V['cartId']>;
 
 	private _selectCartItemDiscountedRowTotal;
 
@@ -91,6 +92,7 @@ export class DaffCartFacade<
       selectCartOrderErrors,
       selectCartOrderValue,
 			selectCartOrderId,
+			selectCartOrderCartId,
       selectCartItemDiscountedRowTotal,
 
       selectHasBillingAddress,
@@ -138,6 +140,7 @@ export class DaffCartFacade<
     this.orderResultErrors$ = this.store.pipe(select(selectCartOrderErrors));
     this.orderResult$ = this.store.pipe(select(selectCartOrderValue));
     this.orderResultId$ = this.store.pipe(select(selectCartOrderId));
+    this.orderResultCartId$ = this.store.pipe(select(selectCartOrderCartId));
 	}
 
 	getCartItemDiscountedTotal(itemId: string | number): Observable<number> {
