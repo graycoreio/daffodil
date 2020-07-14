@@ -134,8 +134,12 @@ describe('Cart | Effect | CartOrderEffects', () => {
     let cartOrderSuccessAction;
 
     beforeEach(() => {
-      const cartCreateAction = new DaffCartCreate()
-      cartOrderSuccessAction = new DaffCartPlaceOrderSuccess({id: mockCart.id});
+      const cartCreateAction = new DaffCartCreate();
+      const response: DaffCartOrderResult = {
+        orderId: 'orderId',
+        cartId: mockCart.id,
+      };
+      cartOrderSuccessAction = new DaffCartPlaceOrderSuccess(response);
       actions$ = hot('--a', { a: cartOrderSuccessAction });
       expected = cold('--b', {b: cartCreateAction});
     });
