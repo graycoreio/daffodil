@@ -7,6 +7,9 @@ import { DaffMagentoCartService } from './cart.service';
 import { DaffCartItemDriver } from '../interfaces/cart-item-service.interface';
 import { DaffMagentoCartItemService } from './cart-item.service';
 
+import { DaffCartAddressDriver } from '../interfaces/cart-address-service.interface';
+import { DaffMagentoCartAddressService } from './cart-address.service';
+
 import { DaffCartBillingAddressDriver } from '../interfaces/cart-billing-address-service.interface';
 import { DaffMagentoCartBillingAddressService } from './cart-billing-address.service';
 
@@ -65,6 +68,10 @@ export class DaffCartMagentoDriverModule {
         {
           provide: DaffCartItemDriver,
           useExisting: DaffMagentoCartItemService
+        },
+        {
+          provide: DaffCartAddressDriver,
+          useExisting: DaffMagentoCartAddressService
         },
         {
           provide: DaffCartBillingAddressDriver,
