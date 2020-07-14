@@ -23,7 +23,7 @@ describe('Cart | Selector | CartOrder', () => {
     selectCartOrderErrors,
     selectCartOrderValue,
     selectCartOrderId,
-    selectCartOrderCartId
+    selectCartOrderCartId,
     selectHasOrderResult
 	} = getCartOrderSelectors();
 
