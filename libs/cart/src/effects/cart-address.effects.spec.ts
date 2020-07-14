@@ -36,7 +36,7 @@ describe('Daffodil | Cart | CartAddressEffects', () => {
   let daffAddressDriverSpy: jasmine.SpyObj<DaffCartAddressServiceInterface>;
 
   let daffCartStorageSpy: jasmine.SpyObj<DaffCartStorageService>;
-  const cartStorageFailureAction = new DaffCartStorageFailure();
+  const cartStorageFailureAction = new DaffCartStorageFailure('Cart Storage Failed');
   const throwStorageError = () => { throw new DaffStorageServiceError() };
 
   beforeEach(() => {
