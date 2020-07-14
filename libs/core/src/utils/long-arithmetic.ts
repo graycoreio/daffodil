@@ -1,5 +1,8 @@
 /**
  * A function to add long numbers accurately with conversions and integer math.
+ * This function only guarantees correct answers when the numbers given and the result are less than
+ * 16 significant figures and less than 10^11
+ * 
  * @param numbers 
  */
 export function daffAdd(...numbers: number[]) {
@@ -12,6 +15,9 @@ export function daffAdd(...numbers: number[]) {
 
 /**
  * A function to subtract long numbers accurately with conversions and integer math.
+ * This function only guarantees correct answers when the numbers given and the result are each less than
+ * 16 significant figures and less than 10^11
+ * 
  * @param numbers 
  */
 export function daffSubtract(...numbers: number[]) {
@@ -25,6 +31,9 @@ export function daffSubtract(...numbers: number[]) {
 
 /**
  * A function to multiply long numbers accurately with conversions and integer math.
+ * This function only guarantees correct answers when the numbers given and the result are each less than 16 significant figures
+ * and less than 10^11
+ * 
  * @param numbers 
  */
 export function daffMultiply(...numbers: number[]) {
@@ -38,6 +47,9 @@ export function daffMultiply(...numbers: number[]) {
 
 /**
  * A function to divide long numbers accurately with conversions and integer math.
+ * This function only guarantees correct answers when the numbers given and the result are each less than 16 significant figures
+ * and less than 10^11
+ * 
  * @param numbers 
  */
 export function daffDivide(...numbers: number[]) {
@@ -51,6 +63,8 @@ export function daffDivide(...numbers: number[]) {
 
 /**
  * A helper function to get the number of decimal significant figures of a number.
+ * This function will fail if the given number has more than 16 significant figures or
+ * the value of the number is greater than 10^11
  * @param number
  */
 function daffPrecision(number: number) {
