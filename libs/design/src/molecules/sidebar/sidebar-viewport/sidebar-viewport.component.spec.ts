@@ -18,6 +18,7 @@ import { DaffBackdropComponent, DaffBackdropModule } from '../../backdrop/public
       [backdropIsVisible]="backdropIsVisible"
       [mode]="mode"
       [opened]="open" 
+      [fixed]="fixedValue"
       (backdropClicked)="incrementBackdropClicked()"></daff-sidebar-viewport>
   </div>
 `})
@@ -26,7 +27,9 @@ class WrapperComponent {
 
   backdropIsVisible = false;
 
-  mode: DaffSidebarMode = 'side';
+  mode: DaffSidebarMode = 'push';
+  
+  fixedValue = false;
 
   backdropClickedCounter = 0;
 
@@ -128,12 +131,12 @@ describe('DaffSidebarViewportComponent | Usage', () => {
     });
   });
 
-  describe('side mode', () => {
+  describe('fixed in viewport', () => {
 
     let backdropElement;
 
     beforeEach(() => {
-      wrapper.mode = 'side';
+      wrapper.fixedValue = true;
       fixture.detectChanges();
 
       backdropElement = fixture.debugElement.query(By.css('daff-backdrop'));
@@ -156,43 +159,16 @@ describe('DaffSidebarViewportComponent | Usage', () => {
     });
   });
 
-  describe('fixed mode', () => {
 
-    let backdropElement;
-
-    beforeEach(() => {
-      wrapper.mode = 'fixed';
-      fixture.detectChanges();
-
-      backdropElement = fixture.debugElement.query(By.css('daff-backdrop'));
-    });
-
-    it('should not render backdrop', () => {
-      expect(backdropElement).toBeNull();
-    });
-
-    it('should be `open` and and not change animation states regardless of `opened` state changes', () => {
-      wrapper.open = false;
-      fixture.detectChanges();
-
-      expect(component._animationState).toEqual('open');
-
-      wrapper.open = true;
-      fixture.detectChanges();
-
-      expect(component._animationState).toEqual('open');
-    });
-  });
-
-  it('should recalculate the animation state when the mode changes', () => {
-    wrapper.mode = 'side';
+  it('should recalculate the animation state when set to fixed', () => {
+    wrapper.mode = 'push';
     wrapper.open = false;
     fixture.detectChanges();
-    expect(component._animationState).toEqual('open');
-
-    wrapper.mode = 'push';
-    fixture.detectChanges();
     expect(component._animationState).toEqual('closed');
+
+    wrapper.fixedValue = true;
+    fixture.detectChanges();
+    expect(component._animationState).toEqual('open');
   });
 });
 
@@ -229,16 +205,15 @@ describe('DaffSidebarViewportComponent | Defaults', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have the _animationState should be `open` by default', () => {
-    expect(component._animationState).toEqual('open');
+  it('should have the _animationState should be `closed` by default', () => {
+    expect(component._animationState).toEqual('closed');
   });
 
-  it('should not have the backdrop by default', () => {
-    expect(component.hasBackdrop).toBe(false);
-    expect(fixture.debugElement.query(By.css('daff-backdrop'))).toBeNull();
+  it('should have the backdrop by default', () => {
+    expect(component.hasBackdrop).toBe(true);
   });
 
-  it('should be `side` mode by default', () => {
-    expect(component.mode).toBe('side');
+  it('should be `push` mode by default', () => {
+    expect(component.mode).toBe('push');
   });
 });

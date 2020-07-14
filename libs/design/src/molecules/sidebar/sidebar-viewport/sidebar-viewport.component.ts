@@ -18,7 +18,7 @@ import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 export class DaffSidebarViewportComponent implements OnInit, AfterViewInit {
 
   constructor(private ref: ChangeDetectorRef) {
-	}
+  }
 	/**
 	 * @docs-private
 	 */
@@ -34,10 +34,10 @@ export class DaffSidebarViewportComponent implements OnInit, AfterViewInit {
    */
   _opened = false;
 
-	/**
-	 * @docs-private
-	 */
-  _mode: DaffSidebarMode = 'side';
+  /**
+     * @docs-private
+     */
+  _mode: DaffSidebarMode = 'push';
 
   /**
    * The mode to put the sidebar in
@@ -49,33 +49,43 @@ export class DaffSidebarViewportComponent implements OnInit, AfterViewInit {
     this._animationState = getAnimationState(this.opened, this.animationsEnabled);
   }
 
+  _fixed = false;
+  /**
+   * Boolean value to lock the sidebar in viewport.
+   */
+  @Input()
+  get fixed(): boolean { return this._fixed; }
+  set fixed(value: boolean) {
+    this._fixed = value;
+    this._animationState = getAnimationState(this.opened, this.animationsEnabled);
+  }
   /**
    * Input state for whether or not the backdrop is 
    * "visible" to the human eye
    */
   // tslint:disable-next-line: no-inferrable-types
   @Input() backdropIsVisible: boolean = true;
-	
+
 	/**
 	 * Property for the "opened" state of the sidebar
 	 */
-	@Input()
-	get opened(): boolean { return this._opened; }
-	set opened(value: boolean) {
-		this._opened = value;
-		this._animationState = getAnimationState(value, this.animationsEnabled);
-	}
+  @Input()
+  get opened(): boolean { return this._opened; }
+  set opened(value: boolean) {
+    this._opened = value;
+    this._animationState = getAnimationState(value, this.animationsEnabled);
+  }
   /**
    * Event fired when the backdrop is clicked
    * This is often used to close the sidebar
    */
   @Output() backdropClicked: EventEmitter<void> = new EventEmitter<void>();
 
-	/**
+  /**
 	 * @docs-private
 	 */
-	get animationsEnabled(): boolean {
-    return (this.mode === 'over' || this.mode === 'push') ? true : false;
+  get animationsEnabled(): boolean {
+    return !this.fixed;
   }
 
 	/**
@@ -83,8 +93,8 @@ export class DaffSidebarViewportComponent implements OnInit, AfterViewInit {
 	 */
   ngOnInit() {
     this._animationState = getAnimationState(this.opened, this.animationsEnabled);
-	}
-	
+  }
+
 	/**
 	 * @docs-private
 	 */
@@ -107,10 +117,9 @@ export class DaffSidebarViewportComponent implements OnInit, AfterViewInit {
 	 * @docs-private
 	 */
   get hasBackdrop(): boolean {
-    return (this.mode === 'over' || this.mode === 'push');
-	}
-	
-	/**
+    return !this.fixed;
+  }
+  /**
 	 * @docs-private
 	 */
   onEscape() {

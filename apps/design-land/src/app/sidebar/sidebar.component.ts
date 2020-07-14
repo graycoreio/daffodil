@@ -9,4 +9,5 @@ import { DaffSidebarMode } from '@daffodil/design';
 export class SidebarComponent {
   mode: DaffSidebarMode = "push";
   open: boolean = false;
+  fixed = false;
 }
