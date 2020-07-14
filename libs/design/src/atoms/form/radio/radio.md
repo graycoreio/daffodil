@@ -1,10 +1,10 @@
-# DaffRadio and DaffRadioSet
+# Radio and Radio Set
 The `DaffRadioComponent` is used to select a single value from a selection of values. It can be hooked into Angular's `FormControl` to accomodate custom functionality. The `DaffRadioSetComponent` serves as a wrapper around a logical group of radios to provide styling.
 
 ## Accessibility
 The `DaffRadioComponent` uses native `<input>` HTML elements to ensure an accesible experience by default. It supports inputs to customize the experience for accessibility by allowing native input for `aria-label` and `aria-labelledby`.
 
-## DaffRadio Inputs
+## Radio Properties
 
 Property | Name            |  Type   |                                                                                         Description
 ---------|------- | :-----: | ---------------------------------------------------------------------------:
@@ -17,7 +17,7 @@ Output | selectionChange | boolean | An event that emits everytime a selection h
 
 
 
-## DaffRadioSet Properties
+## Radio Set Properties
 
 Name    |  type   |                                                                  Description
 ------- | :-----: | ---------------------------------------------------------------------------:
