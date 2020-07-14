@@ -17,6 +17,8 @@ describe('DaffListItemComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let itemDE: DebugElement;
   let anchorDE: DebugElement;
+  let listItem: DaffListItemComponent;
+  let anchorListItem: DaffListItemComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -43,6 +45,8 @@ describe('DaffListItemComponent', () => {
     beforeEach(() => {
       itemDE = fixture.debugElement.query(By.css('daff-list-item'));
       anchorDE = fixture.debugElement.query(By.css('a[daff-list-item]'));
+      listItem = itemDE.componentInstance;
+      anchorListItem = anchorDE.componentInstance;
     });
 
     it('should add a class of "daff-list-item" to the host element', () => {
@@ -53,6 +57,18 @@ describe('DaffListItemComponent', () => {
       expect(anchorDE.classes).toEqual(jasmine.objectContaining({
         'daff-list-item': true,
       }));
+    });
+
+    describe('if it is used without an anchor element', () => {
+      it('should have a role of listitem', () => {
+        expect(listItem.role).toBe('listitem');
+      });
+    });
+
+    describe('if it is used with an anchor element', () => {
+      it('should not have a role applied', () => {
+        expect(anchorListItem.role).toBe(null);
+      });
     });
   });
 }); 
