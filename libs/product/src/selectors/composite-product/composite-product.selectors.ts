@@ -1,10 +1,12 @@
 import { createSelector, MemoizedSelectorWithProps } from '@ngrx/store';
+import { Dictionary } from '@ngrx/entity';
+
+import { daffAdd, daffSubtract } from '@daffodil/core';
 
 import { DaffProductTypeEnum } from '../../models/product';
 import { getDaffCompositeProductEntitiesSelectors } from '../composite-product-entities/composite-product-entities.selectors';
 import { getDaffProductEntitiesSelectors } from '../product-entities/product-entities.selectors';
 import { DaffCompositeProduct } from '../../models/composite-product';
-import { Dictionary } from '@ngrx/entity';
 
 export interface DaffCompositeProductMemoizedSelectors {
 	selectCompositeProductPrice: MemoizedSelectorWithProps<object, object, number>;
@@ -41,7 +43,7 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 			const appliedOptions = selectCompositeProductAppliedOptions.projector(appliedOptionsEntities, { id: props.id });
 
 			return (<DaffCompositeProduct>product).items.reduce((acc, item) => {
-				return acc + item.options.find(option => option.id === appliedOptions[item.id]).price;
+				return daffAdd(acc, item.options.find(option => option.id === appliedOptions[item.id]).price);
 			}, product.price);
 		}
 	);
@@ -61,7 +63,7 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 			const appliedOptions = selectCompositeProductAppliedOptions.projector(appliedOptionsEntities, { id: props.id });
 			const productDiscountAmount = selectProductDiscountAmount.projector(products, { id: props.id });
 
-			return productDiscountAmount + getOptionsDiscountAmount(<DaffCompositeProduct>product, appliedOptions);
+			return daffAdd(productDiscountAmount, getOptionsDiscountAmount(<DaffCompositeProduct>product, appliedOptions));
 		}
 	);
 
@@ -77,9 +79,10 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 				return undefined;
 			}
 
-			return Math.round(100*
-				(selectCompositeProductPrice.projector(products, appliedOptionsEntities, { id: props.id }) - selectCompositeProductDiscountAmount.projector(products, appliedOptionsEntities, { id: props.id }))
-			)/100;
+			return daffSubtract(
+				selectCompositeProductPrice.projector(products, appliedOptionsEntities, { id: props.id }), 
+				selectCompositeProductDiscountAmount.projector(products, appliedOptionsEntities, { id: props.id })
+			);
 		}
 	);
 
@@ -118,6 +121,9 @@ function getOptionsDiscountAmount(product: DaffCompositeProduct, appliedOptions:
 	return product.items.reduce((acc, item) => {
 		const itemOptionDiscount = item.options.find(option => option.id === appliedOptions[item.id]).discount;
 
-		return acc + (itemOptionDiscount && itemOptionDiscount.amount > 0 ? itemOptionDiscount.amount : 0);
+		return daffAdd(
+			acc, 
+			(itemOptionDiscount && itemOptionDiscount.amount > 0 ? itemOptionDiscount.amount : 0)
+		);
 	}, 0)
 }

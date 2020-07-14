@@ -171,7 +171,7 @@ describe('Composite Product Selectors | integration tests', () => {
 				};
 				store.dispatch(new DaffProductLoadSuccess(newCompositeProduct));
 				const selector = store.pipe(select(selectCompositeProductDiscountedPrice, { id: newCompositeProduct.id }));
-				const expected = cold('a', { a: 59.01 });
+				const expected = cold('a', { a: 59.005 });
 				expect(selector).toBeObservable(expected);
 			});
 		});
