@@ -2,6 +2,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { A11yModule } from '@angular/cdk/a11y';
+
+
 
 import { DaffSidebarViewportComponent } from './sidebar-viewport.component';
 import { DaffSidebarComponent } from '../sidebar/sidebar.component';
@@ -46,7 +49,8 @@ describe('DaffSidebarViewportComponent | Usage', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        DaffBackdropModule
+        DaffBackdropModule,
+        A11yModule
       ],
       declarations: [
         WrapperComponent,
@@ -152,6 +156,34 @@ describe('DaffSidebarViewportComponent | Usage', () => {
     });
   });
 
+  describe('fixed mode', () => {
+
+    let backdropElement;
+
+    beforeEach(() => {
+      wrapper.mode = 'fixed';
+      fixture.detectChanges();
+
+      backdropElement = fixture.debugElement.query(By.css('daff-backdrop'));
+    });
+
+    it('should not render backdrop', () => {
+      expect(backdropElement).toBeNull();
+    });
+
+    it('should be `open` and and not change animation states regardless of `opened` state changes', () => {
+      wrapper.open = false;
+      fixture.detectChanges();
+
+      expect(component._animationState).toEqual('open');
+
+      wrapper.open = true;
+      fixture.detectChanges();
+
+      expect(component._animationState).toEqual('open');
+    });
+  });
+
   it('should recalculate the animation state when the mode changes', () => {
     wrapper.mode = 'side';
     wrapper.open = false;
@@ -173,7 +205,8 @@ describe('DaffSidebarViewportComponent | Defaults', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        DaffBackdropModule
+        DaffBackdropModule,
+        A11yModule
       ],
       declarations: [
         DaffSidebarViewportComponent,

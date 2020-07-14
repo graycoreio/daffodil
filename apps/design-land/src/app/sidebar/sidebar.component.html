@@ -3,6 +3,7 @@
     <option value="push">Push (push)</option>
     <option value="side">Side (side)</option>
     <option value="over">Over (over)</option>
+    <option value="fixed">Fixed (fixed)</option>
   </select>
 </daff-form-field>
 
@@ -10,7 +11,10 @@
 
 <daff-sidebar-viewport [mode]="mode" [opened]="open">
     <daff-sidebar>
-      sidebar
+      <a daff-link-set-item routerLink="accordion">Accordion</a><br>
+      <a daff-link-set-item routerLink="article">Article</a><br>
     </daff-sidebar>
     <p>Some Content</p>
 </daff-sidebar-viewport>
+<h1>Outside Focus   </h1>
+<input>    <input>     

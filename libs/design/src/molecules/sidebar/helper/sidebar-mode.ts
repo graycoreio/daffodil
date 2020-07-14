@@ -1,1 +1,1 @@
-export type DaffSidebarMode = 'over' | 'push' | 'side';
+export type DaffSidebarMode = 'over' | 'push' | 'side' | 'fixed';
