@@ -1,4 +1,4 @@
-# Checkbox and CheckboxSet
+# Checkbox and Checkbox Set
 
 The `DaffCheckboxComponent` is used to toggle an individual selection in a form. It can be hooked into Angular's `FormControl` to accomodate custom functionality. The `DaffCheckboxSetComponent` serves as a wrapper around a logical group of radios to provide styling.
 
