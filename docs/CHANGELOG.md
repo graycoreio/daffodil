@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.1](https://github.com/graycoreio/daffodil/compare/v0.7.0...v0.7.1) (2020-07-14)
+
+
+### Features
+
+* **authorizenet:** use the @daffodil/cart CartPaymentUpdateWithBilli… ([#988](https://github.com/graycoreio/daffodil/issues/988)) ([4586ac6](https://github.com/graycoreio/daffodil/commit/4586ac699b541ee19b512e4a05119e77b985b2e6))
+* **cart:** add cart address driver ([#977](https://github.com/graycoreio/daffodil/issues/977)) ([02e6239](https://github.com/graycoreio/daffodil/commit/02e623920056966bdf66cbec4ec8307bef2e6669))
+* **cart:** add cart address testing drivers ([#983](https://github.com/graycoreio/daffodil/issues/983)) ([b7e6a3e](https://github.com/graycoreio/daffodil/commit/b7e6a3e3a75935790208ebc82c583906304b0261))
+* **cart:** add cart address update state ([#954](https://github.com/graycoreio/daffodil/issues/954)) ([7ec3edf](https://github.com/graycoreio/daffodil/commit/7ec3edf897ab3a4ef719ec36d6dc253d1e0441be))
+* **cart:** add order result guard ([#999](https://github.com/graycoreio/daffodil/issues/999)) ([fa9ae6a](https://github.com/graycoreio/daffodil/commit/fa9ae6a498df4501e2e2384732114b0c633839dd))
+* **cart:** add payment updateWithBilling state ([#984](https://github.com/graycoreio/daffodil/issues/984)) ([1adae8a](https://github.com/graycoreio/daffodil/commit/1adae8a62a01f9a8c722413d92bdb1caee77aea5))
+* **cart:** add updateWithBilling method to payment driver ([#981](https://github.com/graycoreio/daffodil/issues/981)) ([2589e2a](https://github.com/graycoreio/daffodil/commit/2589e2a1a4a1cf318dc61a5818cc678a97915406))
+* **cart:** store cartId in order result ([#995](https://github.com/graycoreio/daffodil/issues/995)) ([9ae460e](https://github.com/graycoreio/daffodil/commit/9ae460ecb01fd4bde275111780d583e4a0eb2c72))
+* **cart:** update email with Magento shipping address update ([#976](https://github.com/graycoreio/daffodil/issues/976)) ([cb4dcd3](https://github.com/graycoreio/daffodil/commit/cb4dcd35029187e95201810cbd09ec2d8eaac5b4))
+* **core:** add long arithmetic functions ([#997](https://github.com/graycoreio/daffodil/issues/997)) ([a99ed27](https://github.com/graycoreio/daffodil/commit/a99ed277d4b2d8ecadf97129fc2e8a7efc70ad3d))
+* **design:** add `daff-nav-list` variant of a list ([#891](https://github.com/graycoreio/daffodil/issues/891)) ([941c2c4](https://github.com/graycoreio/daffodil/commit/941c2c4f3f5e7080f22323e8ebba0c386ac2516f))
+* **design:** add accesibility role to DaffListItemComponent ([#964](https://github.com/graycoreio/daffodil/issues/964)) ([ad31dbb](https://github.com/graycoreio/daffodil/commit/ad31dbb96befe53160d55c75400cd51bda6e1850))
+* **design:** add focus styles to button and update general styles ([#973](https://github.com/graycoreio/daffodil/issues/973)) ([5d37747](https://github.com/graycoreio/daffodil/commit/5d37747e578ad6b63de8ad5a43f3e8e4fbc6fbef))
+* **design:** add statusable as a core interface ([#982](https://github.com/graycoreio/daffodil/issues/982)) ([226b80d](https://github.com/graycoreio/daffodil/commit/226b80d7db4341340f6515edede6183f2e867ac8))
+* **design:** added new modes, focus, and escape key closing to sidebar ([#949](https://github.com/graycoreio/daffodil/issues/949)) ([b5745df](https://github.com/graycoreio/daffodil/commit/b5745df94dccc905e82214e6702804f231f912b5))
+* **design:** implement sizeable interface on the button component ([#903](https://github.com/graycoreio/daffodil/issues/903)) ([3d4d778](https://github.com/graycoreio/daffodil/commit/3d4d778b8b644e27099bf46bdaaa1140d4a038bc))
+* **design:** update list-item to work with anchor tags ([#990](https://github.com/graycoreio/daffodil/issues/990)) ([fb1658d](https://github.com/graycoreio/daffodil/commit/fb1658d795465ceacb8e043e7cb130a293e103f6))
+* **order:** add Magento guest orders driver ([#972](https://github.com/graycoreio/daffodil/issues/972)) ([cfee4c9](https://github.com/graycoreio/daffodil/commit/cfee4c9bea7724faeac20fc6a54359bedc0d5f43))
+* **order:** support guest orders in effects ([#975](https://github.com/graycoreio/daffodil/issues/975)) ([a837d2b](https://github.com/graycoreio/daffodil/commit/a837d2be8d06921c7a244629f1fb5b500020ab61))
+* **product:** add is_default to the composite product model ([#980](https://github.com/graycoreio/daffodil/issues/980)) ([d7eeab8](https://github.com/graycoreio/daffodil/commit/d7eeab80517a0d18e79519307f1a2bdf686932c4))
+
+
+### Bug Fixes
+
+* **all:** helper function returns false on ID of 0 ([#979](https://github.com/graycoreio/daffodil/issues/979)) ([27caa4e](https://github.com/graycoreio/daffodil/commit/27caa4ef185cd1ad5081b932d0ac78124a987297))
+* **cart:** fix bug where DaffCartStorageFailure was passed the wrong argument ([#1001](https://github.com/graycoreio/daffodil/issues/1001)) ([db48693](https://github.com/graycoreio/daffodil/commit/db48693f75c6595e1ac7105b1abc1921109fd33b))
+* **cart:** trigger load state on DaffCartResolve action ([#992](https://github.com/graycoreio/daffodil/issues/992)) ([8648496](https://github.com/graycoreio/daffodil/commit/8648496bc32105e9b15eaf059e88562072aa30b2))
+* **design-land:** update component names in list imports ([#991](https://github.com/graycoreio/daffodil/issues/991)) ([7545b24](https://github.com/graycoreio/daffodil/commit/7545b24fe73364c9afccb94098fb69e7db17ba63))
+* **product:** fix bug where the wrong magento field was assign to a Daffodil object ([#978](https://github.com/graycoreio/daffodil/issues/978)) ([d895b23](https://github.com/graycoreio/daffodil/commit/d895b2317b3402f2ddbd5db084de6bff200a73a3))
+
 ## [0.7.0](https://github.com/graycoreio/daffodil/compare/v0.6.5...v0.7.0) (2020-07-02)
 
 
