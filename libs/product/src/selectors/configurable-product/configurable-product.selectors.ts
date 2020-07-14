@@ -1,5 +1,7 @@
 import { createSelector, MemoizedSelectorWithProps } from '@ngrx/store';
 
+import { daffSubtract } from '@daffodil/core';
+
 import { DaffProductTypeEnum } from '../../models/product';
 import { Dictionary } from '@ngrx/entity';
 import { getDaffConfigurableProductEntitiesSelectors } from '../configurable-product-entities/configurable-product-entities.selectors';
@@ -69,7 +71,7 @@ const createConfigurableProductSelectors = (): DaffConfigurableProductMemoizedSe
 		selectConfigurableProductAppliedAttributesEntitiesState,
 		(products, appliedAttributesEntities, props) => {
 			return selectMatchingConfigurableProductVariants.projector(products, appliedAttributesEntities, { id: props.id })
-				.map(variant => variant.discount ? variant.price - variant.discount.amount : variant.price);
+				.map(variant => variant.discount ? daffSubtract(variant.price, variant.discount.amount) : variant.price);
 		}
 	);
 

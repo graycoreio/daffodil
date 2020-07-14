@@ -339,9 +339,13 @@ describe('Cart | Selector | Cart', () => {
 
   describe('selectCartItemDiscountedRowTotal', () => {
     it('selects the discounted total of the given cart item id', () => {
-			const cartItemId = cart.items[0].item_id;
+      const rowTotal = 118.54;
+      const discount = 15.10000034;
+      const cartItemId = cart.items[0].item_id;
+      cart.items[0].row_total = rowTotal;
+      cart.items[0].total_discount = discount;
 			const selector = store.pipe(select(selectCartItemDiscountedRowTotal, { id: cartItemId }));
-      const expected = cold('a', {a: cart.items[0].row_total - cart.items[0].total_discount});
+      const expected = cold('a', {a: 103.43999966});
 
       expect(selector).toBeObservable(expected);
     });

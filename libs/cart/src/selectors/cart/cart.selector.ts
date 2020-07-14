@@ -10,6 +10,7 @@ import { DaffCart } from '../../models/cart';
 import { DaffCartReducerState, DaffCartReducersState, DaffCartErrorType } from '../../reducers/public_api';
 import { DaffCartOrderResult } from '../../models/cart-order-result';
 import { DaffCartItem } from '../../models/cart-item';
+import { daffSubtract } from '@daffodil/core';
 
 export interface DaffCartStateMemoizedSelectors<
   T extends DaffCart = DaffCart
@@ -166,7 +167,7 @@ const createCartSelectors = <
 		selectCartItems,
 		(cartItems: DaffCartItem[], props) => {
 			const cartItem = cartItems.find(item => item.item_id === props.id)
-			return cartItem.row_total - cartItem.total_discount;
+			return daffSubtract(cartItem.row_total, cartItem.total_discount);
 		}
   );
 
