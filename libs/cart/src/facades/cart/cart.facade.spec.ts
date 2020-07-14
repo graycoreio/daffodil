@@ -538,6 +538,24 @@ describe('DaffCartFacade', () => {
     });
   });
 
+  describe('hasOrderResult$', () => {
+    it('should initially be false', () => {
+      const expected = cold('a', { a: false});
+      expect(facade.hasOrderResult$).toBeObservable(expected);
+    });
+
+    describe('when a place order request has succeeded', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartPlaceOrderSuccess(mockCartOrderResult));
+      });
+
+      it('should be true', () => {
+        const expected = cold('a', { a: true });
+        expect(facade.hasOrderResult$).toBeObservable(expected);
+      });
+    });
+  });
+
   describe('getCartItemDiscountedTotal', () => {
 
 		it('should be the cart item\'s discounted total', () => {

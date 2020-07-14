@@ -23,7 +23,8 @@ describe('Cart | Selector | CartOrder', () => {
     selectCartOrderErrors,
     selectCartOrderValue,
     selectCartOrderId,
-    selectCartOrderCartId
+    selectCartOrderCartId,
+    selectHasOrderResult
 	} = getCartOrderSelectors();
 
   beforeEach(() => {
@@ -110,7 +111,14 @@ describe('Cart | Selector | CartOrder', () => {
     it('selects the cart ID of the order object', () => {
       const selector = store.pipe(select(selectCartOrderCartId));
       const expected = cold('a', {a: cart.id});
+      expect(selector).toBeObservable(expected);
+    });
+  });
 
+  describe('selectHasOrderResult', () => {
+    it('selects the order object', () => {
+      const selector = store.pipe(select(selectHasOrderResult));
+      const expected = cold('a', {a: true});
       expect(selector).toBeObservable(expected);
     });
   });
