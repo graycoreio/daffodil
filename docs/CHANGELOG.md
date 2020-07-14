@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.2](https://github.com/graycoreio/daffodil/compare/v0.7.1...v0.7.2) (2020-07-14)
+
+
+### Features
+
+* **cart:** provide for cart address service in magento driver ([#1002](https://github.com/graycoreio/daffodil/issues/1002)) ([18a8dca](https://github.com/graycoreio/daffodil/commit/18a8dca9410175191c30b12e15f34c9d43158c23))
+
 ### [0.7.1](https://github.com/graycoreio/daffodil/compare/v0.7.0...v0.7.1) (2020-07-14)
 
 
