@@ -4,7 +4,7 @@
     The button is used for making actions apparent to the end-user. It can be used to navigate users to a different page or to perform an action. Buttons can contain text, icons, or both.
   </p>
 
-  <h2>About</h2>
+  <h3>About</h3>
   <p>
     Native <code>&lt;button&gt;</code> or <code>&lt;a&gt;</code> elements are always used in order to provide an easy, accessible experience for users.
   </p>
@@ -12,6 +12,12 @@
     <li><code>&lt;button&gt;</code> should be used when a clickable action is performed within the same page.</li>
     <li><code>&lt;a&gt;</code> should be used for interactions that will navigate users to a new page or to a different target on the same page.</li>
   </ul>
+
+  <h3>Types</h3>
+  <p><code>daff-button</code> — Rectangular contained button with background color</p>
+  <p><code>daff-icon-button</code> — Icon button used with icon fonts</p>
+  <p><code>daff-raised-button</code> — Rectangular contained button with background color and elevation</p>
+  <p><code>daff-stroked-button</code> — Rectangular outlined button with no background color</p>
 
   <h3>Basic Button</h3>
   <design-land-example-viewer example="basic-button"></design-land-example-viewer>
@@ -33,4 +39,13 @@
   <p>Supported Sizes: <code>sm | md | lg</code></p>
 
   <design-land-example-viewer example="sizeable-button"></design-land-example-viewer>
+
+  <h3>Theming</h3>
+  <p>The color of a button can be changed by using the <code>color</code> property. By default, the button uses the base-contrast color of the theme. This can be changed to one of the supported colors.</p>
+  <p>Supported colors: <code>primary | secondary | tertiary | black | white</code></p>
+
+  <h3>Accessibility</h3>
+  <p>Daffodil uses native <code>&lt;a&gt;</code> and <code>&lt;button&gt;</code> HTML elements to ensure an accessible experience by default. The <code>&lt;button&gt;</code> element should be used when a clickable action is performed within the same page. The <code>&lt;a&gt;</code> element should be used to navigate users to a new page or to a different target on the same page.</p>
+
+  <p>Buttons and links containing only icons (<code>&lt;daff-icon-button&gt;</code>) need to be given meaningful labels using <code>aria-label</code> or <code>aria-labelledby</code>.</p>
 </daff-article>

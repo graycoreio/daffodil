@@ -6,8 +6,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
   selector: 'sizeable-button',
   templateUrl: './sizeable-button.component.html',
   styles: [`
-    button[daff-sizeable-button],
-    a[daff-sizeable-button] {
+    button {
       margin-right: 8px;
     } 
   `]
