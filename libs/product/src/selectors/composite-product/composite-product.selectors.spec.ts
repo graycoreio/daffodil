@@ -159,7 +159,7 @@ describe('Composite Product Selectors | integration tests', () => {
 
 		describe('when the price or discount are long decimal values', () => {
 			
-			it('should return the expected discounted price to two decimals', () => {
+			it('should return the expected discounted price', () => {
 				const newCompositeProduct = compositeProductFactory.create();
 				newCompositeProduct.price = 70.53578;
 				newCompositeProduct.discount.amount = 20.3243;
