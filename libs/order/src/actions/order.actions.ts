@@ -16,7 +16,8 @@ export enum DaffOrderActionTypes {
 /**
  * Triggers the loading of the specified order.
  *
- * @param payload The order and guest cart ID.
+ * @param orderId The order ID.
+ * @param cartId The optional guest cart ID.
  */
 export class DaffOrderLoad<
   T extends DaffOrder = DaffOrder,
@@ -24,10 +25,7 @@ export class DaffOrderLoad<
 > implements Action {
   readonly type = DaffOrderActionTypes.OrderLoadAction;
 
-  constructor(public payload: {
-    orderId: T['id'],
-    cartId?: V['id'],
-  }) {}
+  constructor(public orderId: T['id'], public cartId?: V['id']) {}
 }
 
 export class DaffOrderLoadSuccess<T extends DaffOrder = DaffOrder> implements Action {

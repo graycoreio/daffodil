@@ -56,7 +56,7 @@ describe('Daffodil | Order | OrderEffects', () => {
 
   describe('when DaffOrderLoadAction is triggered', () => {
     let expected;
-    const orderLoadAction = new DaffOrderLoad({orderId});
+    const orderLoadAction = new DaffOrderLoad(orderId, 'cartId');
 
     describe('and the call to OrderService is successful', () => {
       beforeEach(() => {
@@ -89,7 +89,7 @@ describe('Daffodil | Order | OrderEffects', () => {
 
   describe('when DaffOrderListAction is triggered', () => {
     let expected;
-    const orderListAction = new DaffOrderList();
+    const orderListAction = new DaffOrderList('cartId');
 
     describe('and the call to OrderService is successful', () => {
       beforeEach(() => {

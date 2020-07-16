@@ -37,7 +37,7 @@ describe('Order | Reducer | Order', () => {
 
   describe('when OrderLoadAction is triggered', () => {
     it('sets loading state to true', () => {
-      const orderLoadAction: DaffOrderLoad = new DaffOrderLoad({orderId});
+      const orderLoadAction: DaffOrderLoad = new DaffOrderLoad(orderId);
 
       const result = reducer(initialState, orderLoadAction);
 

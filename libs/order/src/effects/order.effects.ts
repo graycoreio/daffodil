@@ -36,7 +36,7 @@ export class DaffOrderEffects<
   get$ = this.actions$.pipe(
     ofType(DaffOrderActionTypes.OrderLoadAction),
     switchMap((action: DaffOrderLoad<T, V>) =>
-      this.driver.get(action.payload.orderId, action.payload.cartId)
+      this.driver.get(action.orderId, action.cartId)
     ),
     map(resp => new DaffOrderLoadSuccess<T>(resp)),
     catchError(error => of(new DaffOrderLoadFailure('Failed to load order')))
