@@ -11,5 +11,6 @@ export { MockDaffProductFacade } from './helpers/mock-product-facade';
 export { DaffProductTestingModule } from './helpers/product-testing.module';
 export { MockDaffProductGridFacade } from './helpers/mock-product-grid-facade';
 export { MockDaffConfigurableProductFacade } from './helpers/mock-configurable-product-facade';
+export { MockDaffCompositeProductFacade } from './helpers/mock-composite-product-facade';
 
 export * from './factories/magento/public_api';
