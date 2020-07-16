@@ -3,8 +3,9 @@ import { switchMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
-import { DaffStorageServiceError } from '@daffodil/core';
-import { DaffCartStorageService, DaffCartStorageFailure } from '@daffodil/cart';
+import {
+  DaffCart
+} from '@daffodil/cart';
 
 import {
   DaffOrderActionTypes,
@@ -19,11 +20,13 @@ import { DaffOrderServiceInterface, DaffOrderDriver } from '../drivers/interface
 import { DaffOrder } from '../models/order';
 
 @Injectable()
-export class DaffOrderEffects<T extends DaffOrder = DaffOrder> {
+export class DaffOrderEffects<
+  T extends DaffOrder = DaffOrder,
+  V extends DaffCart = DaffCart
+> {
   constructor(
     private actions$: Actions,
     @Inject(DaffOrderDriver) private driver: DaffOrderServiceInterface<T>,
-    private storage: DaffCartStorageService,
   ) {}
 
   /**
@@ -32,29 +35,23 @@ export class DaffOrderEffects<T extends DaffOrder = DaffOrder> {
   @Effect()
   get$ = this.actions$.pipe(
     ofType(DaffOrderActionTypes.OrderLoadAction),
-    switchMap((action: DaffOrderLoad<T>) =>
-      this.driver.get(action.payload, this.storage.getCartId())
+    switchMap((action: DaffOrderLoad<T, V>) =>
+      this.driver.get(action.orderId, action.cartId)
     ),
     map(resp => new DaffOrderLoadSuccess<T>(resp)),
-    catchError(error => of(error instanceof DaffStorageServiceError
-      ? new DaffCartStorageFailure('Cart Storage Failed')
-      : new DaffOrderLoadFailure('Failed to load order')
-    ))
+    catchError(error => of(new DaffOrderLoadFailure('Failed to load order')))
   )
 
   /**
-   * An effect for the list of orders.
+   * An effect for the listing of orders.
    */
   @Effect()
   list$ = this.actions$.pipe(
     ofType(DaffOrderActionTypes.OrderListAction),
     switchMap((action: DaffOrderList) =>
-      this.driver.list(this.storage.getCartId())
+      this.driver.list(action.payload)
     ),
     map(resp => new DaffOrderListSuccess<T>(resp)),
-    catchError(error => of(error instanceof DaffStorageServiceError
-      ? new DaffCartStorageFailure('Cart Storage Failed')
-      : new DaffOrderListFailure('Failed to list the orders')
-    ))
+    catchError(error => of(new DaffOrderListFailure('Failed to list the orders')))
   )
 }

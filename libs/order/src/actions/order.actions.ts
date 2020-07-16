@@ -1,5 +1,7 @@
 import { Action } from '@ngrx/store';
 
+import { DaffCart } from '@daffodil/cart';
+
 import { DaffOrder } from '../models/public_api';
 
 export enum DaffOrderActionTypes {
@@ -11,10 +13,19 @@ export enum DaffOrderActionTypes {
   OrderListFailureAction = '[Order] Order List Failure Action'
 }
 
-export class DaffOrderLoad<T extends DaffOrder = DaffOrder> implements Action {
+/**
+ * Triggers the loading of the specified order.
+ *
+ * @param orderId The order ID.
+ * @param cartId The optional guest cart ID.
+ */
+export class DaffOrderLoad<
+  T extends DaffOrder = DaffOrder,
+  V extends DaffCart = DaffCart
+> implements Action {
   readonly type = DaffOrderActionTypes.OrderLoadAction;
 
-  constructor(public payload: T['id']) {}
+  constructor(public orderId: T['id'], public cartId?: V['id']) {}
 }
 
 export class DaffOrderLoadSuccess<T extends DaffOrder = DaffOrder> implements Action {
@@ -29,8 +40,15 @@ export class DaffOrderLoadFailure implements Action {
   constructor(public payload: string) {}
 }
 
-export class DaffOrderList implements Action {
+/**
+ * Triggers the loading of the orders for either the currently logged-in user or the specified guest cart.
+ *
+ * @param payload The guest cart ID.
+ */
+export class DaffOrderList<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffOrderActionTypes.OrderListAction;
+
+  constructor(public payload?: T['id']) {}
 }
 
 export class DaffOrderListSuccess<T extends DaffOrder = DaffOrder> implements Action {
@@ -45,8 +63,11 @@ export class DaffOrderListFailure implements Action {
   constructor(public payload: string) {}
 }
 
-export type DaffOrderActions<T extends DaffOrder = DaffOrder> =
-  | DaffOrderLoad<T>
+export type DaffOrderActions<
+  T extends DaffOrder = DaffOrder,
+  V extends DaffCart = DaffCart
+> =
+  | DaffOrderLoad<T, V>
   | DaffOrderLoadSuccess<T>
   | DaffOrderLoadFailure
   | DaffOrderList
