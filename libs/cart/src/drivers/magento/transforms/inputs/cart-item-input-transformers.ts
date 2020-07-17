@@ -27,7 +27,7 @@ export function transformConfigurableCartItem(item: DaffConfigurableCartItemInpu
 
 function transformCompositeCartItemOption(option: DaffCompositeCartItemOption): MagentoBundledCartItemOption {
 	return {
-		id: Number(option.id),
+		id: Number(option.code),
 		quantity: option.quantity,
 		value: [option.value]
 	}

@@ -22,7 +22,7 @@ export interface DaffCompositeCartItemInput extends DaffCartItemInput {
 }
 
 export interface DaffCompositeCartItemOption {
-	id: string | number;
+	code: string | number;
 	quantity: number;
 	value: string;
 }

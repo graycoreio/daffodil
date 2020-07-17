@@ -49,7 +49,7 @@ describe('Driver | Magento | Cart | Transformers | MagentoCartItemInput', () => 
 				...mockDaffCartItemInput,
 				type: DaffCartItemInputType.Composite,
 				options: [{
-					id: 1,
+					code: 1,
 					quantity: 1,
 					value: 'value'
 				}]
@@ -60,7 +60,7 @@ describe('Driver | Magento | Cart | Transformers | MagentoCartItemInput', () => 
 			transformedCartItem = transformCompositeCartItem(mockDaffCompositeCartItemInput);
       expect(transformedCartItem.input.sku).toEqual(mockDaffCompositeCartItemInput.productId);
       expect(transformedCartItem.input.quantity).toEqual(mockDaffCompositeCartItemInput.qty);
-      expect(transformedCartItem.options[0].id).toEqual(Number(mockDaffCompositeCartItemInput.options[0].id));
+      expect(transformedCartItem.options[0].id).toEqual(Number(mockDaffCompositeCartItemInput.options[0].code));
       expect(transformedCartItem.options[0].quantity).toEqual(mockDaffCompositeCartItemInput.options[0].quantity);
       expect(transformedCartItem.options[0].value).toEqual([mockDaffCompositeCartItemInput.options[0].value]);
 		});
