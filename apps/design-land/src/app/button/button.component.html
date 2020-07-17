@@ -1,69 +1,51 @@
-<h1>Daff Button</h1>
+<daff-article>
+  <h1 daffArticleTitle>Button</h1>
+  <p daffArticleLead>
+    The button is used for making actions apparent to the end-user. It can be used to navigate users to a different page or to perform an action. Buttons can contain text, icons, or both.
+  </p>
 
-<h2>Basic Button</h2>
-<daff-button-set>
-  <button daff-button>Default</button>
-  <button daff-button color="primary">Primary</button>
-  <button daff-button color="secondary">Secondary</button>
-  <button daff-button color="tertiary">Tertiary</button>
-  <button daff-button color="black">Black</button>
-  <button daff-button color="white">White</button>
-  <button daff-button><fa-icon [icon]="faChevronLeft" daffPrefix></fa-icon>Button</button>
-  <button daff-button><fa-icon [icon]="faChevronRight" daffSuffix></fa-icon>Button</button>
-  <a href="#" daff-button>Link</a>
-  <button daff-button disabled>Disabled</button>
-</daff-button-set>
+  <h3>About</h3>
+  <p>
+    Native <code>&lt;button&gt;</code> or <code>&lt;a&gt;</code> elements are always used in order to provide an easy, accessible experience for users.
+  </p>
+  <ul>
+    <li><code>&lt;button&gt;</code> should be used when a clickable action is performed within the same page.</li>
+    <li><code>&lt;a&gt;</code> should be used for interactions that will navigate users to a new page or to a different target on the same page.</li>
+  </ul>
 
+  <h3>Types</h3>
+  <p><code>daff-button</code> — Rectangular contained button with background color</p>
+  <p><code>daff-icon-button</code> — Icon button used with icon fonts</p>
+  <p><code>daff-raised-button</code> — Rectangular contained button with background color and elevation</p>
+  <p><code>daff-stroked-button</code> — Rectangular outlined button with no background color</p>
 
-<h2>Stroked Button</h2>
-<daff-button-set>
-  <button daff-stroked-button>Default</button>
-  <button daff-stroked-button color="primary">Primary</button>
-  <button daff-stroked-button color="secondary">Secondary</button>
-  <button daff-stroked-button color="tertiary">Tertiary</button>
-  <button daff-stroked-button color="black">Black</button>
-  <button daff-stroked-button color="white">White</button>
-  <button daff-stroked-button><fa-icon [icon]="faChevronLeft" daffPrefix></fa-icon>Button</button>
-  <button daff-stroked-button><fa-icon [icon]="faChevronRight" daffSuffix></fa-icon>Button</button>
-  <a href="#" daff-stroked-button>Link</a>
-  <button daff-stroked-button disabled>Disabled</button>
-</daff-button-set>
+  <h3>Basic Button</h3>
+  <design-land-example-viewer example="basic-button"></design-land-example-viewer>
+  
+  <h3>Stroked Button</h3>
+  <design-land-example-viewer example="stroked-button"></design-land-example-viewer>
+  
+  <h3>Raised Button</h3>
+  <design-land-example-viewer example="raised-button"></design-land-example-viewer>
+  
+  <h3>Icon Button</h3>
+  <design-land-example-viewer example="icon-button"></design-land-example-viewer>
+  
+  <h3>Underline Button</h3>
+  <design-land-example-viewer example="underline-button"></design-land-example-viewer>
 
-<h2>Raised Button</h2>
-<daff-button-set>
-  <button daff-raised-button>Default</button>
-  <button daff-raised-button color="primary">Primary</button>
-  <button daff-raised-button color="secondary">Secondary</button>
-  <button daff-raised-button color="tertiary">Tertiary</button>
-  <button daff-raised-button color="black">Black</button>
-  <button daff-raised-button color="white">White</button>
-  <button daff-raised-button><fa-icon [icon]="faChevronLeft" daffPrefix></fa-icon>Button</button>
-  <button daff-raised-button><fa-icon [icon]="faChevronRight" daffSuffix></fa-icon>Button</button>
-  <a href="#" daff-raised-button>Link</a>
-  <button daff-raised-button disabled>Disabled</button>
-</daff-button-set>
+  <h3>Sizes</h3>
+  <p>The size of a button can be updated by using the <code>size</code> property. The size of all the button variants will default to <code>md</code> if no size is defined. This can be updated to the three sizes buttons support.</p>
+  <p>Supported Sizes: <code>sm | md | lg</code></p>
 
-<h2>Icon Button</h2>
-<daff-button-set>
-  <button daff-icon-button><fa-icon [icon]="faPlus"></fa-icon></button>
-  <button daff-icon-button color="primary"><fa-icon [icon]="faPlus"></fa-icon></button>
-  <button daff-icon-button color="secondary"><fa-icon [icon]="faPlus"></fa-icon></button>
-  <button daff-icon-button color="tertiary"><fa-icon [icon]="faPlus"></fa-icon></button>
-  <button daff-icon-button color="black"><fa-icon [icon]="faPlus"></fa-icon></button>
-  <button daff-icon-button color="white"><fa-icon [icon]="faPlus"></fa-icon></button>
-  <button daff-icon-button disabled><fa-icon [icon]="faPlus"></fa-icon></button>
-</daff-button-set>
+  <design-land-example-viewer example="sizeable-button"></design-land-example-viewer>
 
-<h2>Underline Button</h2>
-<daff-button-set>
-  <button daff-underline-button>Default</button>
-  <button daff-underline-button color="primary">Primary</button>
-  <button daff-underline-button color="secondary">Secondary</button>
-  <button daff-underline-button color="tertiary">Tertiary</button>
-  <button daff-underline-button color="black">Black</button>
-  <button daff-underline-button color="white">White</button>
-  <button daff-underline-button><fa-icon [icon]="faChevronLeft" daffPrefix></fa-icon>Button</button>
-  <button daff-underline-button><fa-icon [icon]="faChevronRight" daffSuffix></fa-icon>Button</button>
-  <a href="#" daff-underline-button>Link</a>
-  <button daff-underline-button disabled>Disabled</button>
-</daff-button-set>
+  <h3>Theming</h3>
+  <p>The color of a button can be changed by using the <code>color</code> property. By default, the button uses the base-contrast color of the theme. This can be changed to one of the supported colors.</p>
+  <p>Supported colors: <code>primary | secondary | tertiary | black | white</code></p>
+
+  <h3>Accessibility</h3>
+  <p>Daffodil uses native <code>&lt;a&gt;</code> and <code>&lt;button&gt;</code> HTML elements to ensure an accessible experience by default. The <code>&lt;button&gt;</code> element should be used when a clickable action is performed within the same page. The <code>&lt;a&gt;</code> element should be used to navigate users to a new page or to a different target on the same page.</p>
+
+  <p>Buttons and links containing only icons (<code>&lt;daff-icon-button&gt;</code>) need to be given meaningful labels using <code>aria-label</code> or <code>aria-labelledby</code>.</p>
+</daff-article>

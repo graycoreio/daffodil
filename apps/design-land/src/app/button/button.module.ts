@@ -1,12 +1,19 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Injector, ComponentFactoryResolver } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { createCustomElement } from '@angular/elements';
 
 import { ButtonComponent } from './button.component';
 import { DesignLandButtonRoutingModule } from './button-routing.module';
 
-import { DaffButtonSetModule, DaffButtonModule } from '@daffodil/design';
+import {
+  DaffButtonSetModule,
+  DaffButtonModule,
+  DaffArticleModule
+} from '@daffodil/design';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
+
+import { BUTTON_EXAMPLES, ButtonExamplesModule } from '@daffodil/design/button/examples';
 
 @NgModule({
   declarations: [
@@ -16,9 +23,31 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CommonModule,
 
     DesignLandButtonRoutingModule,
+    DesignLandExampleViewerModule,
     DaffButtonSetModule,
     DaffButtonModule,
-    FontAwesomeModule
+    DaffArticleModule,
+    ButtonExamplesModule
   ]
 })
-export class ButtonModule {}
+export class ButtonModule {
+  constructor(
+    injector: Injector, 
+    private componentFactoryResolver: ComponentFactoryResolver
+  ) {
+    BUTTON_EXAMPLES
+      .map((classConstructor) => {
+        return {
+          element: createCustomElement(classConstructor, {injector}),
+          class: classConstructor
+        }
+      })
+      .map((customElement) => {
+        // Register the custom element with the browser.
+        customElements.define(
+          this.componentFactoryResolver.resolveComponentFactory<unknown>(customElement.class).selector + '-example',
+          customElement.element
+        );
+      });
+  }
+}
