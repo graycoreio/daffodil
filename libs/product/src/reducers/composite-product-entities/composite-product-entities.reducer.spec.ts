@@ -94,7 +94,15 @@ describe('Product | Composite Product Entities Reducer', () => {
     it('sets a composite product entity when the given product is composite', () => {
 			const productLoadSuccess = new DaffProductLoadSuccess(compositeProduct);
 			result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
-			expect(result.entities[compositeProduct.id]).toEqual({ id: compositeProduct.id, items: { [compositeProduct.items[0].id]: compositeProduct.items[0].options[0].id } });
+			expect(result.entities[compositeProduct.id]).toEqual({ 
+				id: compositeProduct.id, 
+				items: { 
+					[compositeProduct.items[0].id]: {
+						value: compositeProduct.items[0].options[0].id,
+						qty: 1
+					}
+				} 
+			});
     });
 		
     it('does not set a composite product entity when the given product is not composite', () => {
@@ -117,7 +125,10 @@ describe('Product | Composite Product Entities Reducer', () => {
 						items: compositeProduct.items.reduce((acc, item) => {
 							return {
 								...acc,
-								[item.id]: item.options.find(option => option.is_default).id
+								[item.id]: {
+									value: item.options.find(option => option.is_default).id,
+									qty: 1
+								}
 							}
 						}, {})
 					}
@@ -134,7 +145,10 @@ describe('Product | Composite Product Entities Reducer', () => {
     });
 
     it('changes the option id of the given product item', () => {
-      expect(result.entities[compositeProduct.id].items[compositeProduct.items[0].id]).toEqual(compositeProduct.items[0].options[1].id);
+      expect(result.entities[compositeProduct.id].items[compositeProduct.items[0].id]).toEqual({
+				value: compositeProduct.items[0].options[1].id,
+				qty: 1
+			});
     });
 	});
 	
@@ -148,7 +162,10 @@ describe('Product | Composite Product Entities Reducer', () => {
 			const productLoadSuccess = new DaffProductLoadSuccess(compositeProduct);
 			result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
 
-			expect(result.entities[compositeProduct.id].items[compositeProduct.items[0].id]).toEqual(compositeProduct.items[0].options[1].id);
+			expect(result.entities[compositeProduct.id].items[compositeProduct.items[0].id]).toEqual({
+				value: compositeProduct.items[0].options[1].id,
+				qty: 1
+			});
 		});
 
 		describe('when the default item option is not defined', () => {
@@ -160,7 +177,10 @@ describe('Product | Composite Product Entities Reducer', () => {
 				const productLoadSuccess = new DaffProductLoadSuccess(compositeProduct);
 				result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
 
-				expect(result.entities[compositeProduct.id].items[compositeProduct.items[0].id]).toEqual(compositeProduct.items[0].options[0].id);
+				expect(result.entities[compositeProduct.id].items[compositeProduct.items[0].id]).toEqual({
+					value: compositeProduct.items[0].options[0].id,
+					qty: 1
+				});
 			});
 
 			it('should set the default option to null when the item is not required', () => {
@@ -170,7 +190,7 @@ describe('Product | Composite Product Entities Reducer', () => {
 				const productLoadSuccess = new DaffProductLoadSuccess(compositeProduct);
 				result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
 
-				expect(result.entities[compositeProduct.id].items[compositeProduct.items[0].id]).toEqual(null);
+				expect(result.entities[compositeProduct.id].items[compositeProduct.items[0].id]).toEqual({ value: null, qty: null });
 			});
 		});
 	});

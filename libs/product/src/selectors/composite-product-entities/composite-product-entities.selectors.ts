@@ -5,14 +5,14 @@ import { getDaffProductFeatureSelector } from '../product-feature.selector';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
 import { DaffProduct } from '../../models/product';
 import { daffCompositeProductAppliedOptionsEntitiesAdapter } from '../../reducers/composite-product-entities/composite-product-entities-reducer-adapter';
-import { DaffCompositeProductEntity } from '../../reducers/composite-product-entities/composite-product-entity';
+import { DaffCompositeProductEntity, DaffCompositeProductEntityItem } from '../../reducers/composite-product-entities/composite-product-entity';
 
 export interface DaffCompositeProductEntitiesMemoizedSelectors {
 	selectCompositeProductAppliedOptionsEntitiesState: MemoizedSelector<object, EntityState<DaffCompositeProductEntity>>;
 	selectCompositeProductIds: MemoizedSelector<object, EntityState<DaffCompositeProductEntity>['ids']>;
 	selectCompositeProductAppliedOptionsEntities: MemoizedSelector<object, EntityState<DaffCompositeProductEntity>['entities']>;
 	selectCompositeProductTotal: MemoizedSelector<object, number>;
-	selectCompositeProductAppliedOptions: MemoizedSelectorWithProps<object, object, Dictionary<string>>;
+	selectCompositeProductAppliedOptions: MemoizedSelectorWithProps<object, object, Dictionary<DaffCompositeProductEntityItem>>;
 }
 
 const createCompositeProductAppliedOptionsEntitiesSelectors = <T extends DaffProduct>(): DaffCompositeProductEntitiesMemoizedSelectors => {

@@ -19,7 +19,7 @@ export enum DaffCompositeProductActionTypes {
 export class DaffCompositeProductApplyOption<T extends DaffCompositeProduct> implements Action {
   readonly type = DaffCompositeProductActionTypes.CompositeProductApplyOptionAction;
 
-  constructor(public id: T['id'], public itemId: string, public optionId: string) {}
+  constructor(public id: T['id'], public itemId: string, public optionId: string, public qty?: number) {}
 }
 
 export type DaffCompositeProductActions<T extends DaffCompositeProduct = DaffCompositeProduct> = 

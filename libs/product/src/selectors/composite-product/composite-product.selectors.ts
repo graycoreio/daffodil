@@ -1,12 +1,13 @@
 import { createSelector, MemoizedSelectorWithProps } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
-import { daffAdd, daffSubtract } from '@daffodil/core';
+import { daffAdd, daffSubtract, daffMultiply } from '@daffodil/core';
 
 import { DaffProductTypeEnum } from '../../models/product';
 import { getDaffCompositeProductEntitiesSelectors } from '../composite-product-entities/composite-product-entities.selectors';
 import { getDaffProductEntitiesSelectors } from '../product-entities/product-entities.selectors';
 import { DaffCompositeProduct } from '../../models/composite-product';
+import { DaffCompositeProductEntityItem } from '../../reducers/public_api';
 
 export interface DaffCompositeProductMemoizedSelectors {
 	selectCompositeProductPrice: MemoizedSelectorWithProps<object, object, number>;
@@ -43,7 +44,10 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 			const appliedOptions = selectCompositeProductAppliedOptions.projector(appliedOptionsEntities, { id: props.id });
 
 			return (<DaffCompositeProduct>product).items.reduce((acc, item) => {
-				return daffAdd(acc, item.options.find(option => option.id === appliedOptions[item.id]).price);
+				return daffAdd(
+					acc, 
+					daffMultiply(item.options.find(option => option.id === appliedOptions[item.id].value).price, appliedOptions[item.id].qty)
+				);
 			}, product.price);
 		}
 	);
@@ -117,13 +121,13 @@ export const getDaffCompositeProductSelectors = (() => {
 		: createCompositeProductSelectors();
 })();
 
-function getOptionsDiscountAmount(product: DaffCompositeProduct, appliedOptions: Dictionary<string>): number {
+function getOptionsDiscountAmount(product: DaffCompositeProduct, appliedOptions: Dictionary<DaffCompositeProductEntityItem>): number {
 	return product.items.reduce((acc, item) => {
-		const itemOptionDiscount = item.options.find(option => option.id === appliedOptions[item.id]).discount;
+		const itemOptionDiscount = item.options.find(option => option.id === appliedOptions[item.id].value).discount;
 
 		return daffAdd(
 			acc, 
-			(itemOptionDiscount && itemOptionDiscount.amount > 0 ? itemOptionDiscount.amount : 0)
+			daffMultiply((itemOptionDiscount && itemOptionDiscount.amount > 0 ? itemOptionDiscount.amount : 0), appliedOptions[item.id].qty)
 		);
 	}, 0)
 }
