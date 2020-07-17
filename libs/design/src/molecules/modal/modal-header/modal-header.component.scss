@@ -1,0 +1,23 @@
+@import '../../../scss/daff-util';
+
+:host {
+	display: block;
+}
+
+.daff-modal-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 24px;
+
+	.daff-modal-title {
+		@include embolden();
+		font-size: $medium-font-size;
+		margin: 0;
+		padding: 0;
+
+		@include breakpoint(mobile) {
+			font-size: $large-font-size;
+		}
+	}
+}

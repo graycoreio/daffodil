@@ -43,6 +43,7 @@ export class DaffModalService {
 			positionStrategy: new GlobalPositionStrategy()
 				.centerHorizontally()
 				.centerVertically(),
+			scrollStrategy: this.overlay.scrollStrategies.block()
 		});
 	}
 
