@@ -127,7 +127,7 @@ function getOptionsDiscountAmount(product: DaffCompositeProduct, appliedOptions:
 
 		return daffAdd(
 			acc, 
-			daffMultiply((itemOptionDiscount && itemOptionDiscount.amount > 0 ? itemOptionDiscount.amount : 0), appliedOptions[item.id].qty)
+			itemOptionDiscount && itemOptionDiscount.amount > 0 ? daffMultiply(itemOptionDiscount.amount, appliedOptions[item.id].qty) : 0
 		);
 	}, 0)
 }
