@@ -51,12 +51,15 @@ describe('selectCompositeProductEntitiesState', () => {
 
 	describe('selectCompositeProductAppliedOptionsEntities', () => {
 		
-		it('selects composite product items and the applied options as a dictionary object', () => {
+		it('selects composite product items and the applied options', () => {
 			const expectedDictionary = {
 				[stubCompositeProduct.id]: {
 					id: stubCompositeProduct.id,
 					items: {
-						[stubCompositeProduct.items[0].id]: stubCompositeProduct.items[0].options[0].id
+						[stubCompositeProduct.items[0].id]: {
+							value: stubCompositeProduct.items[0].options[0].id,
+							qty: 1
+						}
 					}
 				}
 			}
@@ -83,7 +86,12 @@ describe('selectCompositeProductEntitiesState', () => {
     it('selects the composite product options of the given id', () => {
 			const selector = store.pipe(select(selectCompositeProductAppliedOptions, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { 
-				a: {[stubCompositeProduct.items[0].id]: stubCompositeProduct.items[0].options[0].id}
+				a: {
+					[stubCompositeProduct.items[0].id]: {
+						value: stubCompositeProduct.items[0].options[0].id,
+						qty: 1
+					}
+				}
 			});
 
 			expect(selector).toBeObservable(expected);

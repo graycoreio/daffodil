@@ -7,7 +7,7 @@ import { daffCompositeProductAppliedOptionsEntitiesAdapter } from './composite-p
 import { DaffProduct, DaffProductTypeEnum } from '../../models/product';
 import { DaffCompositeProductActions, DaffCompositeProductActionTypes } from '../../actions/composite-product.actions';
 import { DaffCompositeProduct } from '../../models/composite-product';
-import { DaffCompositeProductEntity } from './composite-product-entity';
+import { DaffCompositeProductEntity, DaffCompositeProductEntityItem } from './composite-product-entity';
 import { DaffCompositeProductItem } from '../../models/composite-product-item';
 
 /**
@@ -44,7 +44,10 @@ export function daffCompositeProductEntitiesReducer<T extends DaffProduct, V ext
 					id: action.id,
 					items: {
 						...state.entities[action.id].items,
-						[action.itemId]: action.optionId
+						[action.itemId]: {
+							value: action.optionId,
+							qty: action.qty ? action.qty : 1
+						}
 					}
 				},
 				state
@@ -64,12 +67,17 @@ function buildCompositeProductAppliedOptionsEntity(product: DaffCompositeProduct
 	}
 }
 
-function getDefaultOption(item: DaffCompositeProductItem): string {
+function getDefaultOption(item: DaffCompositeProductItem): DaffCompositeProductEntityItem {
 	const defaultOptionIndex = item.options.findIndex(option => option.is_default);
 
 	if(defaultOptionIndex > -1) {
-		return item.options[defaultOptionIndex].id;
+		return {
+			value: item.options[defaultOptionIndex].id,
+			qty: 1
+		}
 	} else {
-		return item.required ? item.options[0].id : null;
+		return item.required ? 
+			{ value: item.options[0].id, qty: 1 } :
+			{ value: null, qty: null }
 	}
 }

@@ -28,9 +28,10 @@ describe('Composite Product Selectors | integration tests', () => {
 		selectCompositeProductHasDiscount
 	} = getDaffCompositeProductSelectors();
 	const stubDefaultPrice0 = 10;
-	const stubDiscountAmount0 = 2.4;
-	const stubDiscountAmount1 = 1.4;
+	const stubDiscountAmount0 = 2;
+	const stubDiscountAmount1 = 1;
 	const stubChangedPrice0 = 20;
+	const stubQty0 = 3;
   
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -111,10 +112,11 @@ describe('Composite Product Selectors | integration tests', () => {
 			store.dispatch(new DaffCompositeProductApplyOption(
 				stubCompositeProduct.id,
 				<string>stubCompositeProduct.items[0].id,
-				stubCompositeProduct.items[0].options[1].id
+				stubCompositeProduct.items[0].options[0].id,
+				stubQty0
 			));
 			const selector = store.pipe(select(selectCompositeProductDiscountAmount, { id: stubCompositeProduct.id }));
-			const expected = cold('a', { a: stubCompositeProduct.discount.amount + stubDiscountAmount1 });
+			const expected = cold('a', { a: stubCompositeProduct.discount.amount + (stubDiscountAmount0*stubQty0) });
 
 			expect(selector).toBeObservable(expected);
 		});
@@ -145,14 +147,15 @@ describe('Composite Product Selectors | integration tests', () => {
 			store.dispatch(new DaffCompositeProductApplyOption(
 				stubCompositeProduct.id,
 				<string>stubCompositeProduct.items[0].id,
-				stubCompositeProduct.items[0].options[1].id
+				stubCompositeProduct.items[0].options[1].id,
+				stubQty0
 			));
 			const selector = store.pipe(select(selectCompositeProductDiscountedPrice, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: 
 				stubCompositeProduct.price 
-				+ stubCompositeProduct.items[0].options[1].price 
+				+ (stubCompositeProduct.items[0].options[1].price * stubQty0)
 				- stubCompositeProduct.discount.amount 
-				- stubCompositeProduct.items[0].options[1].discount.amount
+				- (stubCompositeProduct.items[0].options[1].discount.amount * stubQty0)
 			});
 			expect(selector).toBeObservable(expected);
 		});

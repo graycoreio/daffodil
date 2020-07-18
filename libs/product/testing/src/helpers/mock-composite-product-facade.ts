@@ -1,7 +1,7 @@
 import { BehaviorSubject } from 'rxjs';
-import { Dictionary } from '@ngrx/entity';
 
-import { DaffCompositeProductFacadeInterface, DaffCompositeProductItemOption } from '@daffodil/product';
+import { DaffCompositeProductFacadeInterface, DaffCompositeProductEntityItem } from '@daffodil/product';
+import { Dictionary } from '@ngrx/entity';
 
 export class MockDaffCompositeProductFacade implements DaffCompositeProductFacadeInterface {
 	getPrice(id: string): BehaviorSubject<number> {
@@ -16,7 +16,7 @@ export class MockDaffCompositeProductFacade implements DaffCompositeProductFacad
 	hasDiscount(id: string): BehaviorSubject<boolean> {
 		return new BehaviorSubject(false);
 	};
-	getAppliedOptions(id: string): BehaviorSubject<Dictionary<DaffCompositeProductItemOption['id']>> {
+	getAppliedOptions(id: string): BehaviorSubject<Dictionary<DaffCompositeProductEntityItem>> {
 		return new BehaviorSubject({});
 	}
 	dispatch(action) {};

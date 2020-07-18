@@ -4,7 +4,7 @@ import { Dictionary } from '@ngrx/entity';
 
 import { DaffStoreFacade } from '@daffodil/core';
 
-import { DaffCompositeProductItemOption } from '../../models/composite-product-item';
+import { DaffCompositeProductEntityItem } from '../../reducers/composite-product-entities/composite-product-entity';
 
 export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Action> {
 
@@ -36,5 +36,5 @@ export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Act
 	 * Returns the applied options for a composite product.
 	 * @param id the id of the composite product.
 	 */
-	getAppliedOptions(id: string): Observable<Dictionary<DaffCompositeProductItemOption['id']>>;
+	getAppliedOptions(id: string): Observable<Dictionary<DaffCompositeProductEntityItem>>;
 }

@@ -112,7 +112,10 @@ describe('DaffCompositeProductFacade', () => {
 		
 		it('should return the applied option for a composite product', () => {
 			const expected = cold('a', { a: { 
-				[stubCompositeProduct.items[0].id]: stubCompositeProduct.items[0].options[0].id 
+				[stubCompositeProduct.items[0].id]: {
+					value: stubCompositeProduct.items[0].options[0].id,
+					qty: 1
+				}
 			}});
 
 			expect(facade.getAppliedOptions(stubCompositeProduct.id)).toBeObservable(expected);

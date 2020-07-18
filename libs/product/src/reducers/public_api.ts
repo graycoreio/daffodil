@@ -8,3 +8,4 @@ export { DaffProductReducerState } from './product/product-reducer-state.interfa
 export { daffProductReducer } from './product/product.reducer';
 export { DaffBestSellersReducerState } from './best-sellers/best-sellers-reducer-state.interface';
 export { daffBestSellersReducer } from './best-sellers/best-sellers.reducer';
+export * from './composite-product-entities/composite-product-entity';
