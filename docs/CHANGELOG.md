@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.8.0](https://github.com/graycoreio/daffodil/compare/v0.7.2...v0.8.0) (2020-07-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cart:** the DaffCartItemAdd for composite products has changed
+
+### Features
+
+* **cart:** change DaffCartItemAdd payload for composite products ([#1006](https://github.com/graycoreio/daffodil/issues/1006)) ([e49b1e4](https://github.com/graycoreio/daffodil/commit/e49b1e4d638fa307015a56d0dd97f202d6d46541))
+* **cart:** create new cart after successful order ([#993](https://github.com/graycoreio/daffodil/issues/993)) ([17f7563](https://github.com/graycoreio/daffodil/commit/17f7563b7decf879602902fc930b6c7b71e795b9))
+* **cart:** provide in-memory cart address driver ([#1004](https://github.com/graycoreio/daffodil/issues/1004)) ([f63d583](https://github.com/graycoreio/daffodil/commit/f63d583a23af605eb24e8ab9b2ef9cd6ee3ae9af))
+* **design:** add optional components to modal for consistent modal UI ([#921](https://github.com/graycoreio/daffodil/issues/921)) ([489f9a9](https://github.com/graycoreio/daffodil/commit/489f9a9638465248edb39f146f731dc15d99496a))
+* **order:** pass cart ID into state layer ([#996](https://github.com/graycoreio/daffodil/issues/996)) ([f84ecc6](https://github.com/graycoreio/daffodil/commit/f84ecc6c97cfc60f8207484447cb3d910dbc2240))
+* **product:** add qty to composite product option state ([#1005](https://github.com/graycoreio/daffodil/issues/1005)) ([e20e3a5](https://github.com/graycoreio/daffodil/commit/e20e3a53a7e3e440bcccb9f058c47859e6e0e1de))
+* **product:** add state for composite products ([#986](https://github.com/graycoreio/daffodil/issues/986)) ([817e146](https://github.com/graycoreio/daffodil/commit/817e146ffb68ea2f8bf58453afd4d8c86a2c82f0))
+
 ### [0.7.2](https://github.com/graycoreio/daffodil/compare/v0.7.1...v0.7.2) (2020-07-14)
 
 
