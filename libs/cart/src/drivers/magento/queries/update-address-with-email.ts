@@ -3,10 +3,12 @@ import gql from 'graphql-tag';
 import { cartFragment } from './fragments/public_api';
 
 export const updateAddressWithEmail = gql`
-  mutation UpdateAddress($cartId: String!, $address: AddressInput!, $email: String!) {
+  mutation UpdateAddress($cartId: String!, $address: CartAddressInput!, $email: String!) {
     setBillingAddressOnCart(input: {
       cart_id: $cartId
-      billing_address: $address
+      billing_address: {
+        address: $address
+      }
     }) {
       cart {
         ...cart
@@ -14,7 +16,9 @@ export const updateAddressWithEmail = gql`
     }
     setShippingAddressesOnCart(input: {
       cart_id: $cartId
-      shipping_addresses: [$address]
+      shipping_addresses: [{
+        address: $address
+      }]
     }) {
       cart {
         ...cart
