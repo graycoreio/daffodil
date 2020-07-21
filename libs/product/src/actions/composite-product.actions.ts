@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 
 import { DaffCompositeProduct } from '../models/composite-product';
+import { DaffCompositeProductItem, DaffCompositeProductItemOption } from '../models/composite-product-item';
 
 /**
  * Action types for Composite Product Actions.
@@ -19,7 +20,7 @@ export enum DaffCompositeProductActionTypes {
 export class DaffCompositeProductApplyOption<T extends DaffCompositeProduct> implements Action {
   readonly type = DaffCompositeProductActionTypes.CompositeProductApplyOptionAction;
 
-  constructor(public id: T['id'], public itemId: string, public optionId: string, public qty?: number) {}
+  constructor(public id: T['id'], public itemId: DaffCompositeProductItem['id'], public optionId: DaffCompositeProductItemOption['id'], public qty?: number) {}
 }
 
 export type DaffCompositeProductActions<T extends DaffCompositeProduct = DaffCompositeProduct> = 
