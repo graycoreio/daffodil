@@ -115,7 +115,9 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
     mockUpdateAddressResponse = {
       setBillingAddressOnCart: {
 				__typename: 'SetBillingAddressOnCart',
-        cart: mockMagentoCart
+        cart: {
+          id: cartId
+        }
       },
       setShippingAddressesOnCart: {
         __typename: 'SetShippingAddresses',
@@ -125,16 +127,19 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
     mockUpdateAddressWithEmailResponse = {
       setBillingAddressOnCart: {
 				__typename: 'SetBillingAddressOnCart',
-        cart: mockMagentoCart
+        cart: {
+          id: cartId
+        }
       },
       setShippingAddressesOnCart: {
         __typename: 'SetShippingAddresses',
-        cart: mockMagentoCart
+        cart: {
+          id: cartId
+        }
       },
       setGuestEmailOnCart: {
-        cart: {
-          email
-        }
+        __typename: 'setGuestEmailOnCart',
+        cart: mockMagentoCart
       }
     };
 

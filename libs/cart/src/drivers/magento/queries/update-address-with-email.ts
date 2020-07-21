@@ -11,7 +11,7 @@ export const updateAddressWithEmail = gql`
       }
     }) {
       cart {
-        ...cart
+        id
       }
     }
     setShippingAddressesOnCart(input: {
@@ -21,7 +21,7 @@ export const updateAddressWithEmail = gql`
       }]
     }) {
       cart {
-        ...cart
+        id
       }
     }
     setGuestEmailOnCart(input: {
@@ -29,7 +29,7 @@ export const updateAddressWithEmail = gql`
       email: $email
     }) {
       cart {
-        email
+        ...cart
       }
     }
   }

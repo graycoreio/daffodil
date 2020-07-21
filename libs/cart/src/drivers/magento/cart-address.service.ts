@@ -45,12 +45,7 @@ export class DaffMagentoCartAddressService implements DaffCartAddressServiceInte
         address: this.cartAddressInputTransformer.transform(address)
       }
     }).pipe(
-      map(resp => this.cartTransformer.transform({
-        ...resp.data.setBillingAddressOnCart.cart,
-        ...resp.data.setShippingAddressesOnCart.cart,
-        billing_address: resp.data.setBillingAddressOnCart.cart.billing_address,
-        shipping_addresses: resp.data.setShippingAddressesOnCart.cart.shipping_addresses,
-      })),
+      map(resp => this.cartTransformer.transform(resp.data.setShippingAddressesOnCart.cart)),
       catchError(error => throwError(transformCartMagentoError(error))),
     )
   }
@@ -64,13 +59,7 @@ export class DaffMagentoCartAddressService implements DaffCartAddressServiceInte
         address: this.cartAddressInputTransformer.transform(address)
       }
     }).pipe(
-      map(resp => this.cartTransformer.transform({
-        ...resp.data.setBillingAddressOnCart.cart,
-        ...resp.data.setShippingAddressesOnCart.cart,
-        billing_address: resp.data.setBillingAddressOnCart.cart.billing_address,
-        shipping_addresses: resp.data.setShippingAddressesOnCart.cart.shipping_addresses,
-        email: resp.data.setGuestEmailOnCart.cart.email
-      })),
+      map(resp => this.cartTransformer.transform(resp.data.setGuestEmailOnCart.cart)),
       catchError(error => throwError(transformCartMagentoError(error))),
     )
   }

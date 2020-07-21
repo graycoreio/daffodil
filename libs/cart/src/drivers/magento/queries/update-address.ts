@@ -11,7 +11,7 @@ export const updateAddress = gql`
       }
     }) {
       cart {
-        ...cart
+        id
       }
     }
     setShippingAddressesOnCart(input: {
