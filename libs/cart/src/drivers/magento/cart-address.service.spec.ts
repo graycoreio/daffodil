@@ -20,15 +20,17 @@ import {
 } from '@daffodil/cart/testing';
 
 import {
-  updateAddress, updateAddressWithEmail
+  updateAddress,
+  updateAddressWithEmail
 } from './queries/public_api';
 import {
-  MagentoUpdateAddressResponse, MagentoUpdateAddressWithEmailResponse,
+  MagentoUpdateAddressResponse,
+  MagentoUpdateAddressWithEmailResponse,
 } from './models/responses/public_api';
 import { DaffMagentoCartAddressService } from './cart-address.service';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { MagentoCart } from './models/outputs/cart';
-import { DaffMagentoShippingAddressInputTransformer } from './transforms/inputs/shipping-address.service';
+import { DaffMagentoCartAddressInputTransformer } from './transforms/inputs/cart-address.service';
 import { MagentoShippingAddressInput } from './models/inputs/shipping-address';
 
 describe('Driver | Magento | Cart | CartAddressService', () => {
@@ -42,7 +44,7 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
   let magentoCartAddressInputFactory: MagentoCartAddressInputFactory;
 
   let magentoCartTransformerSpy;
-  let magentoShippingAddressInputTransformerSpy;
+  let magentoCartAddressInputTransformerSpy;
 
   let cartId;
   let email;
@@ -66,8 +68,8 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
           useValue: jasmine.createSpyObj('DaffMagentoCartTransformer', ['transform'])
         },
         {
-          provide: DaffMagentoShippingAddressInputTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoShippingAddressInputTransformer', ['transform'])
+          provide: DaffMagentoCartAddressInputTransformer,
+          useValue: jasmine.createSpyObj('DaffMagentoCartAddressInputTransformer', ['transform'])
         },
 				{
 					provide: APOLLO_TESTING_CACHE,
@@ -85,7 +87,7 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
     controller = TestBed.get(ApolloTestingController);
 
     magentoCartTransformerSpy = TestBed.get(DaffMagentoCartTransformer);
-    magentoShippingAddressInputTransformerSpy = TestBed.get(DaffMagentoShippingAddressInputTransformer);
+    magentoCartAddressInputTransformerSpy = TestBed.get(DaffMagentoCartAddressInputTransformer);
 
     daffCartFactory = TestBed.get(DaffCartFactory);
     magentoCartFactory = TestBed.get(MagentoCartFactory);
@@ -113,7 +115,9 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
     mockUpdateAddressResponse = {
       setBillingAddressOnCart: {
 				__typename: 'SetBillingAddressOnCart',
-        cart: mockMagentoCart
+        cart: {
+          id: cartId
+        }
       },
       setShippingAddressesOnCart: {
         __typename: 'SetShippingAddresses',
@@ -123,21 +127,24 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
     mockUpdateAddressWithEmailResponse = {
       setBillingAddressOnCart: {
 				__typename: 'SetBillingAddressOnCart',
-        cart: mockMagentoCart
+        cart: {
+          id: cartId
+        }
       },
       setShippingAddressesOnCart: {
         __typename: 'SetShippingAddresses',
-        cart: mockMagentoCart
+        cart: {
+          id: cartId
+        }
       },
       setGuestEmailOnCart: {
-        cart: {
-          email
-        }
+        __typename: 'setGuestEmailOnCart',
+        cart: mockMagentoCart
       }
     };
 
     magentoCartTransformerSpy.transform.and.returnValue(mockDaffCart);
-    magentoShippingAddressInputTransformerSpy.transform.withArgs(mockDaffCartAddress).and.returnValue(mockMagentoShippingAddressInput);
+    magentoCartAddressInputTransformerSpy.transform.withArgs(mockDaffCartAddress).and.returnValue(mockMagentoShippingAddressInput);
   });
 
   it('should be created', () => {
