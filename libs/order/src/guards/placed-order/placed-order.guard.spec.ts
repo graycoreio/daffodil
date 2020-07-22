@@ -16,7 +16,7 @@ import {
 import { daffCartReducers, DaffCartPlaceOrderSuccess } from '@daffodil/cart';
 
 import { DaffPlacedOrderGuard } from './placed-order.guard';
-import { DaffOrderPlacedOrderGuardRedirectUrl } from './placed-order-guard-redirect.token';
+import { DaffPlacedOrderGuardRedirectUrl } from './placed-order-guard-redirect.token';
 
 describe('DaffPlacedOrderGuard', () => {
 	let service: DaffPlacedOrderGuard;
@@ -33,7 +33,7 @@ describe('DaffPlacedOrderGuard', () => {
       providers: [
 				DaffPlacedOrderGuard,
 				DaffOrderFacade,
-				{ provide: DaffOrderPlacedOrderGuardRedirectUrl, useValue: stubUrl }
+				{ provide: DaffPlacedOrderGuardRedirectUrl, useValue: stubUrl }
 			],
 			imports: [
         StoreModule.forRoot({
@@ -81,7 +81,7 @@ describe('DaffPlacedOrderGuard', () => {
 				expect(service.canActivate()).toBeObservable(expected);
 			});
 
-			it('should redirect to the given DaffOrderPlacedOrderGuardRedirectUrl', () => {
+			it('should redirect to the given DaffPlacedOrderGuardRedirectUrl', () => {
 				service.canActivate().subscribe();
 				expect(router.navigateByUrl).toHaveBeenCalledWith(stubUrl);
 			});

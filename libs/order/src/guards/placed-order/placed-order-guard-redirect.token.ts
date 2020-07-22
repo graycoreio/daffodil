@@ -1,3 +1,3 @@
 import { InjectionToken } from '@angular/core';
 
-export const DaffOrderPlacedOrderGuardRedirectUrl = new InjectionToken<string>('DaffOrderPlacedOrderGuardRedirectUrl');
+export const DaffPlacedOrderGuardRedirectUrl = new InjectionToken<string>('DaffPlacedOrderGuardRedirectUrl');

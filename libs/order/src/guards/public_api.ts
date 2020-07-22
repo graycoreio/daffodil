@@ -1,2 +1,2 @@
 export { DaffPlacedOrderGuard } from './placed-order/placed-order.guard';
-export { DaffOrderPlacedOrderGuardRedirectUrl } from './placed-order/placed-order-guard-redirect.token';
+export { DaffPlacedOrderGuardRedirectUrl } from './placed-order/placed-order-guard-redirect.token';
