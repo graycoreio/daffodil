@@ -1,6 +1,8 @@
 import { createSelector, MemoizedSelector } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
+import { getDaffCartSelectors } from '@daffodil/cart';
+
 import {
   daffGetOrderAdapter,
   DaffOrderEntityState
@@ -14,6 +16,8 @@ export interface DaffOrderEntitySelectors<T extends DaffOrder = DaffOrder> {
   selectOrderEntities: MemoizedSelector<object, Dictionary<T>>;
   selectAllOrders: MemoizedSelector<object, T[]>;
   selectOrderTotal: MemoizedSelector<object, number>;
+  selectPlacedOrder: MemoizedSelector<object, T>;
+  selectHasPlacedOrder: MemoizedSelector<object, boolean>;
 }
 
 const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
@@ -23,6 +27,18 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
     state => state.orders
   )
   const { selectIds, selectEntities, selectAll, selectTotal } = daffGetOrderAdapter<T>().getSelectors(selectOrderEntitiesState);
+  const { selectCartOrderId } = getDaffCartSelectors();
+
+  const selectPlacedOrder = createSelector(
+    selectEntities,
+    selectCartOrderId,
+    (orders, orderId) => orderId ? orders[Number(orderId)]: null
+  )
+
+  const selectHasPlacedOrder = createSelector(
+    selectPlacedOrder,
+    placedOrder => !!placedOrder
+  )
 
   return {
     selectOrderEntitiesState,
@@ -41,7 +57,15 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
     /**
      * Selector for total number of orders.
      */
-    selectOrderTotal: selectTotal
+    selectOrderTotal: selectTotal,
+    /**
+     * Selector for the most recently placed order (if any).
+     */
+    selectPlacedOrder,
+    /**
+     * Selector for the existence of the most recently placed order.
+     */
+    selectHasPlacedOrder
   }
 }
 

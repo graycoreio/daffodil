@@ -13,6 +13,7 @@ import {
   DAFF_ORDER_STORE_FEATURE_KEY
 } from '@daffodil/order';
 import { DaffOrderFactory } from '@daffodil/order/testing';
+import { DaffCartPlaceOrderSuccess, daffCartReducers } from '@daffodil/cart';
 
 import { DaffOrderFacade } from './order.facade';
 
@@ -30,7 +31,8 @@ describe('DaffOrderFacade', () => {
       imports: [
         StoreModule.forRoot({
           [DAFF_ORDER_STORE_FEATURE_KEY]: combineReducers(daffOrderReducers),
-        })
+          cart: combineReducers(daffCartReducers),
+        }),
       ],
       providers: [
         DaffOrderFacade,
@@ -135,6 +137,34 @@ describe('DaffOrderFacade', () => {
       const expected = cold('a', { a: {[orderId]: mockOrder} });
       store.dispatch(new DaffOrderLoadSuccess(mockOrder));
       expect(facade.orderEntities$).toBeObservable(expected);
+    });
+  });
+
+  describe('placedOrder$', () => {
+    it('should initially be null', () => {
+      const expected = cold('a', { a: null });
+      expect(facade.placedOrder$).toBeObservable(expected);
+    });
+
+    it('should contain the order upon a successful place order and order load', () => {
+      const expected = cold('a', { a: mockOrder });
+      store.dispatch(new DaffCartPlaceOrderSuccess({orderId: mockOrder.id, cartId: 'cartId'}));
+      store.dispatch(new DaffOrderLoadSuccess(mockOrder));
+      expect(facade.placedOrder$).toBeObservable(expected);
+    });
+  });
+
+  describe('hasPlacedOrder$', () => {
+    it('should initially be false', () => {
+      const expected = cold('a', { a: false });
+      expect(facade.hasPlacedOrder$).toBeObservable(expected);
+    });
+
+    it('should be true upon a successful place order and order load', () => {
+      const expected = cold('a', { a: true });
+      store.dispatch(new DaffCartPlaceOrderSuccess({orderId: mockOrder.id, cartId: 'cartId'}));
+      store.dispatch(new DaffOrderLoadSuccess(mockOrder));
+      expect(facade.hasPlacedOrder$).toBeObservable(expected);
     });
   });
 });

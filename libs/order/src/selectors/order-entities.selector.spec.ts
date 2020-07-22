@@ -4,6 +4,7 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffOrder } from '@daffodil/order';
 import { DaffOrderFactory } from '@daffodil/order/testing';
+import { daffCartReducers } from '@daffodil/cart';
 
 import {
   DaffOrderEntityState,
@@ -28,12 +29,15 @@ describe('Order | Selector | OrderEntities', () => {
     selectOrderEntities,
     selectOrderIds,
     selectOrderTotal,
+    selectPlacedOrder,
+    selectHasPlacedOrder
   } = getDaffOrderEntitySelectors();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
+          cart: combineReducers(daffCartReducers),
           [DAFF_ORDER_STORE_FEATURE_KEY]: combineReducers(daffOrderReducers)
         })
       ]
@@ -79,6 +83,24 @@ describe('Order | Selector | OrderEntities', () => {
     it('should select the total number of orders', () => {
       const selector = store.pipe(select(selectOrderTotal));
       const expected = cold('a', {a: 1});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectPlacedOrder', () => {
+    it('should select the most recently placed order', () => {
+      const selector = store.pipe(select(selectPlacedOrder));
+      const expected = cold('a', {a: null});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectHasPlacedOrder', () => {
+    it('should select if the most recently placed order exists', () => {
+      const selector = store.pipe(select(selectHasPlacedOrder));
+      const expected = cold('a', {a: false});
 
       expect(selector).toBeObservable(expected);
     });

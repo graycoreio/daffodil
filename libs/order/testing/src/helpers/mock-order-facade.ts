@@ -12,6 +12,8 @@ export class MockDaffOrderFacade implements DaffOrderFacadeInterface {
   orderIds$: BehaviorSubject<(string | number)[]> = new BehaviorSubject([]);
   orderCount$: BehaviorSubject<number> = new BehaviorSubject(null);
   orderEntities$: BehaviorSubject<Dictionary<DaffOrder>> = new BehaviorSubject({});
+  placedOrder$: BehaviorSubject<DaffOrder> = new BehaviorSubject(null);
+  hasPlacedOrder$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   dispatch(action: Action) {};
 }
