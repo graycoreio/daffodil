@@ -21,6 +21,8 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
   orderIds$: Observable<(string | number)[]>;
   orderCount$: Observable<number>;
   orderEntities$: Observable<Dictionary<T>>;
+  placedOrder$: Observable<T>;
+  hasPlacedOrder$: Observable<boolean>;
 
   constructor(private store: Store<DaffOrderReducersState<T>>) {
     const {
@@ -29,7 +31,9 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
       selectAllOrders,
       selectOrderTotal,
       selectOrderLoading,
-      selectOrderErrors
+      selectOrderErrors,
+      selectPlacedOrder,
+      selectHasPlacedOrder
     } = getDaffOrderSelectors<T>();
 
     this.loading$ = this.store.pipe(select(selectOrderLoading));
@@ -39,6 +43,8 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
     this.orderIds$ = this.store.pipe(select(selectOrderIds));
     this.orderCount$ = this.store.pipe(select(selectOrderTotal));
     this.orderEntities$ = this.store.pipe(select(selectOrderEntities));
+    this.placedOrder$ = this.store.pipe(select(selectPlacedOrder));
+    this.hasPlacedOrder$ = this.store.pipe(select(selectHasPlacedOrder));
   }
 
   dispatch(action: Action) {

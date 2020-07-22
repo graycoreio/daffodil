@@ -13,4 +13,6 @@ export interface DaffOrderFacadeInterface<T extends DaffOrder = DaffOrder> exten
   orderIds$: Observable<(string | number)[]>;
   orderCount$: Observable<number>;
   orderEntities$: Observable<Dictionary<T>>;
+  placedOrder$: Observable<T>;
+  hasPlacedOrder$: Observable<boolean>;
 }
