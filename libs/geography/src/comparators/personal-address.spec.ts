@@ -18,6 +18,14 @@ describe('Geography | Comparators | DaffPersonalAddress', () => {
     address1 = addressFactory.create();
   });
 
+  describe('when the addresses are null', () => {
+    it('should return false', () => {
+      const result = comparator(null, null);
+
+      expect(result).toBeFalsy();
+    });
+  });
+
   describe('when the addresses are the same', () => {
     it('should return true', () => {
       const result = comparator(address0, address0);

@@ -8,7 +8,8 @@ import { daffCompareAddresses } from './address';
  * @param address1 A personal address.
  */
 export function daffComparePersonalAddresses(address0: DaffPersonalAddress, address1: DaffPersonalAddress) {
-  return address0.prefix === address1.prefix &&
+  return address0 && address1 &&
+    address0.prefix === address1.prefix &&
     address0.suffix === address1.suffix &&
     address0.firstname === address1.firstname &&
     address0.middlename === address1.middlename &&

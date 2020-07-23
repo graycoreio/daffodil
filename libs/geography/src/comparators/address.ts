@@ -7,7 +7,8 @@ import { DaffAddress } from '../models/address';
  * @param address1 An address.
  */
 export function daffCompareAddresses(address0: DaffAddress, address1: DaffAddress) {
-  return address0.street === address1.street &&
+  return address0 && address1 &&
+    address0.street === address1.street &&
     address0.street2 === address1.street2 &&
     address0.city === address1.city &&
     address0.region === address1.region &&
