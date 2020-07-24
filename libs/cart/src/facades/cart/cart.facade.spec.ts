@@ -445,7 +445,7 @@ describe('DaffCartFacade', () => {
     });
   });
 
-  describe('isBillingSameAsShipping$ | whether the cart has a billing address', () => {
+  describe('isBillingSameAsShipping$ | whether the cart\'s billing and shipping address are the same', () => {
     let cart: DaffCart;
 
     beforeEach(() => {

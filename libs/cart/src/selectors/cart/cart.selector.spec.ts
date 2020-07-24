@@ -353,7 +353,7 @@ describe('Cart | Selector | Cart', () => {
     });
   });
 
-  describe('selectIsBillingSameAsShipping | selects whether the cart has a billing address', () => {
+  describe('selectIsBillingSameAsShipping | selects whether the cart\'s billing and shipping address are the same', () => {
     describe('when the cart has a billing and shipping address', () => {
       describe('and the shipping and billing address are the same', () => {
         beforeEach(() => {
