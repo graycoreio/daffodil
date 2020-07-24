@@ -37,7 +37,13 @@ export interface DaffCartFacadeInterface<
   shippingInformation$: Observable<DaffCart['shipping_information']>;
   availableShippingMethods$: Observable<DaffCart['available_shipping_methods']>;
   availablePaymentMethods$: Observable<DaffCart['available_payment_methods']>;
+
   isCartEmpty$: Observable<boolean>;
+  /**
+   * Whether the cart's shipping address equals the billing address.
+   * Returns false if either address is null or undefined.
+   */
+  isBillingSameAsShipping$: Observable<boolean>;
 
   hasBillingAddress$: Observable<boolean>;
   hasShippingAddress$: Observable<boolean>;

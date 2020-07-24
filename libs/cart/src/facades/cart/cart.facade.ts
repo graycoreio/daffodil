@@ -43,7 +43,9 @@ export class DaffCartFacade<
   shippingInformation$: Observable<DaffCart['shipping_information']>;
   availableShippingMethods$: Observable<DaffCart['available_shipping_methods']>;
   availablePaymentMethods$: Observable<DaffCart['available_payment_methods']>;
+
   isCartEmpty$: Observable<boolean>;
+  isBillingSameAsShipping$: Observable<boolean>;
 
   hasBillingAddress$: Observable<boolean>;
   hasShippingAddress$: Observable<boolean>;
@@ -86,8 +88,10 @@ export class DaffCartFacade<
 			selectCartTotals,
 			selectCartShippingInformation,
 			selectCartAvailableShippingMethods,
-			selectCartAvailablePaymentMethods,
+      selectCartAvailablePaymentMethods,
+
       selectIsCartEmpty,
+      selectIsBillingSameAsShipping,
 
       selectCartOrderLoading,
       selectCartOrderErrors,
@@ -130,7 +134,9 @@ export class DaffCartFacade<
     this.shippingInformation$ = this.store.pipe(select(selectCartShippingInformation));
     this.availableShippingMethods$ = this.store.pipe(select(selectCartAvailableShippingMethods));
     this.availablePaymentMethods$ = this.store.pipe(select(selectCartAvailablePaymentMethods));
+
     this.isCartEmpty$ = this.store.pipe(select(selectIsCartEmpty));
+    this.isBillingSameAsShipping$ = this.store.pipe(select(selectIsBillingSameAsShipping));
 
     this.hasBillingAddress$ = this.store.pipe(select(selectHasBillingAddress));
     this.hasShippingAddress$ = this.store.pipe(select(selectHasShippingAddress));

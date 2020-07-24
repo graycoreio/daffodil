@@ -56,9 +56,11 @@ describe('Cart | Selector | Cart', () => {
 		selectCartTotals,
 		selectCartShippingInformation,
 		selectCartAvailableShippingMethods,
-		selectCartAvailablePaymentMethods,
+    selectCartAvailablePaymentMethods,
+
 		selectIsCartEmpty,
     selectCartItemDiscountedRowTotal,
+    selectIsBillingSameAsShipping,
 
     selectHasBillingAddress,
     selectHasShippingAddress,
@@ -348,6 +350,66 @@ describe('Cart | Selector | Cart', () => {
       const expected = cold('a', {a: 103.43999966});
 
       expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectIsBillingSameAsShipping | selects whether the cart\'s billing and shipping address are the same', () => {
+    describe('when the cart has a billing and shipping address', () => {
+      describe('and the shipping and billing address are the same', () => {
+        beforeEach(() => {
+          cart.shipping_address = cart.billing_address;
+          store.dispatch(new DaffCartLoadSuccess(cart));
+        });
+
+        it('should return true', () => {
+          const selector = store.pipe(select(selectIsBillingSameAsShipping));
+          const expected = cold('a', {a: true});
+
+          expect(selector).toBeObservable(expected);
+        });
+      });
+
+      describe('and the shipping and billing address are not the same', () => {
+        beforeEach(() => {
+          cart.shipping_address.street = `${cart.shipping_address.street} ${cart.billing_address.street}`;
+          store.dispatch(new DaffCartLoadSuccess(cart));
+        });
+
+        it('should return false', () => {
+          const selector = store.pipe(select(selectIsBillingSameAsShipping));
+          const expected = cold('a', {a: false});
+
+          expect(selector).toBeObservable(expected);
+        });
+      });
+    });
+
+    describe('when the cart does not have a shipping address', () => {
+      beforeEach(() => {
+        cart.shipping_address = null;
+        store.dispatch(new DaffCartLoadSuccess(cart));
+      });
+
+      it('should return false', () => {
+        const selector = store.pipe(select(selectIsBillingSameAsShipping));
+        const expected = cold('a', {a: false});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart does not have a billing address', () => {
+      beforeEach(() => {
+        cart.billing_address = null;
+        store.dispatch(new DaffCartLoadSuccess(cart));
+      });
+
+      it('should return false', () => {
+        const selector = store.pipe(select(selectIsBillingSameAsShipping));
+        const expected = cold('a', {a: false});
+
+        expect(selector).toBeObservable(expected);
+      });
     });
   });
 
