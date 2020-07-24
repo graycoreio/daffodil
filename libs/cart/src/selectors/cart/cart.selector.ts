@@ -49,7 +49,7 @@ export interface DaffCartStateMemoizedSelectors<
   selectCartItemDiscountedRowTotal: MemoizedSelectorWithProps<object, object, number>;
   /**
    * Selects whether the cart's shipping address equals the billing address.
-   * Returns false when they are both nullity.
+   * Returns false if either address is null or undefined.
    */
 	selectIsBillingSameAsShipping: MemoizedSelector<object, boolean>;
 

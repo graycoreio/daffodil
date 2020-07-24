@@ -41,7 +41,7 @@ export interface DaffCartFacadeInterface<
   isCartEmpty$: Observable<boolean>;
   /**
    * Whether the cart's shipping address equals the billing address.
-   * Returns false when they are both nullity.
+   * Returns false if either address is null or undefined.
    */
   isBillingSameAsShipping$: Observable<boolean>;
 
