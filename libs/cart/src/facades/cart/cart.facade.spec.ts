@@ -445,6 +445,71 @@ describe('DaffCartFacade', () => {
     });
   });
 
+  describe('selectIsBillingSameAsShipping | selects whether the cart has a billing address', () => {
+    let cart: DaffCart;
+
+    beforeEach(() => {
+      cart = cartFactory.create({
+        shipping_address: cartAddressFactory.create(),
+        billing_address: cartAddressFactory.create(),
+      });
+    });
+
+    describe('when the cart has a billing and shipping address', () => {
+      describe('and the shipping and billing address are the same', () => {
+        beforeEach(() => {
+          cart.shipping_address = cart.billing_address;
+          store.dispatch(new DaffCartLoadSuccess(cart));
+        });
+
+        it('should return true', () => {
+          const expected = cold('a', {a: true});
+
+          expect(facade.isBillingSameAsShipping$).toBeObservable(expected);
+        });
+      });
+
+      describe('and the shipping and billing address are not the same', () => {
+        beforeEach(() => {
+          cart.shipping_address.street = `${cart.shipping_address.street} ${cart.billing_address.street}`;
+          store.dispatch(new DaffCartLoadSuccess(cart));
+        });
+
+        it('should return false', () => {
+          const expected = cold('a', {a: false});
+
+          expect(facade.isBillingSameAsShipping$).toBeObservable(expected);
+        });
+      });
+    });
+
+    describe('when the cart does not have a shipping address', () => {
+      beforeEach(() => {
+        cart.shipping_address = null;
+        store.dispatch(new DaffCartLoadSuccess(cart));
+      });
+
+      it('should return false', () => {
+        const expected = cold('a', {a: false});
+
+        expect(facade.isBillingSameAsShipping$).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart does not have a billing address', () => {
+      beforeEach(() => {
+        cart.billing_address = null;
+        store.dispatch(new DaffCartLoadSuccess(cart));
+      });
+
+      it('should return false', () => {
+        const expected = cold('a', {a: false});
+
+        expect(facade.isBillingSameAsShipping$).toBeObservable(expected);
+      });
+    });
+  });
+
   describe('orderResultLoading$', () => {
     it('should initially be false', () => {
       const expected = cold('a', { a: false });

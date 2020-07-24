@@ -5,12 +5,14 @@ import {
   DefaultProjectorFn
 } from '@ngrx/store';
 
+import { daffSubtract } from '@daffodil/core';
+import { daffComparePersonalAddresses } from '@daffodil/geography';
+
 import { getDaffCartFeatureSelector } from '../cart-feature.selector';
 import { DaffCart } from '../../models/cart';
 import { DaffCartReducerState, DaffCartReducersState, DaffCartErrorType } from '../../reducers/public_api';
 import { DaffCartOrderResult } from '../../models/cart-order-result';
 import { DaffCartItem } from '../../models/cart-item';
-import { daffSubtract } from '@daffodil/core';
 
 export interface DaffCartStateMemoizedSelectors<
   T extends DaffCart = DaffCart
@@ -41,9 +43,15 @@ export interface DaffCartStateMemoizedSelectors<
 	selectCartTotals: MemoizedSelector<object, T['totals']>;
 	selectCartShippingInformation: MemoizedSelector<object, T['shipping_information']>;
 	selectCartAvailableShippingMethods: MemoizedSelector<object, T['available_shipping_methods']>;
-	selectCartAvailablePaymentMethods: MemoizedSelector<object, T['available_payment_methods']>;
+  selectCartAvailablePaymentMethods: MemoizedSelector<object, T['available_payment_methods']>;
+
   selectIsCartEmpty: MemoizedSelector<object, boolean>;
   selectCartItemDiscountedRowTotal: MemoizedSelectorWithProps<object, object, number>;
+  /**
+   * Selects whether the cart's shipping address equals the billing address.
+   * Returns false when they are both nullity.
+   */
+	selectIsBillingSameAsShipping: MemoizedSelector<object, boolean>;
 
   selectHasBillingAddress: MemoizedSelector<object, boolean>;
   selectHasShippingAddress: MemoizedSelector<object, boolean>;
@@ -158,7 +166,8 @@ const createCartSelectors = <
 	const selectCartAvailablePaymentMethods = createSelector(
 		selectCartValue,
 		(state: DaffCartReducerState<T>['cart']) => state.available_payment_methods
-	);
+  );
+
 	const selectIsCartEmpty = createSelector(
 		selectCartValue,
 		cart => !cart || !cart.items || cart.items.length === 0
@@ -170,6 +179,11 @@ const createCartSelectors = <
 			return daffSubtract(cartItem.row_total, cartItem.total_discount);
 		}
   );
+  const selectIsBillingSameAsShipping = createSelector(
+    selectCartShippingAddress,
+    selectCartBillingAddress,
+    (shippingAddress, billingAddress) => daffComparePersonalAddresses(shippingAddress, billingAddress)
+  )
 
   const selectHasBillingAddress = createSelector(
     selectCartBillingAddress,
@@ -238,8 +252,10 @@ const createCartSelectors = <
 		selectCartShippingInformation,
 		selectCartAvailableShippingMethods,
     selectCartAvailablePaymentMethods,
+
 		selectIsCartEmpty,
     selectCartItemDiscountedRowTotal,
+    selectIsBillingSameAsShipping,
 
     selectHasBillingAddress,
     selectHasShippingAddress,
