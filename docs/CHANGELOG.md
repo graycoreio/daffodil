@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.1](https://github.com/graycoreio/daffodil/compare/v0.8.0...v0.8.1) (2020-07-24)
+
+
+### Features
+
+* **cart:** add isBillingSameAsShipping selector ([#1011](https://github.com/graycoreio/daffodil/issues/1011)) ([1f10da4](https://github.com/graycoreio/daffodil/commit/1f10da4c582920c5b8b6462e69894058a8ece1c3))
+* **geography:** add personal address and address comparators ([#1010](https://github.com/graycoreio/daffodil/issues/1010)) ([de575b6](https://github.com/graycoreio/daffodil/commit/de575b6c21beae81f659566a3cd77ec5d7f76aa1))
+* **order:** add placed order selectors and guard ([#1009](https://github.com/graycoreio/daffodil/issues/1009)) ([c32091c](https://github.com/graycoreio/daffodil/commit/c32091cb8a503708f47f9b7499054826d855295f))
+
+
+### Bug Fixes
+
+* **cart:** Magento cart address query fails from parameter type and complexity ([#1007](https://github.com/graycoreio/daffodil/issues/1007)) ([86569e3](https://github.com/graycoreio/daffodil/commit/86569e30df6bd8c8253c06cd6f60e5aedb5d4e06))
+
 ## [0.8.0](https://github.com/graycoreio/daffodil/compare/v0.7.2...v0.8.0) (2020-07-20)
 
 
