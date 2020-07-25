@@ -59,6 +59,10 @@ describe('selectCompositeProductEntitiesState', () => {
 						[stubCompositeProduct.items[0].id]: {
 							value: stubCompositeProduct.items[0].options[0].id,
 							qty: 1
+						},
+						[stubCompositeProduct.items[1].id]: {
+							value: stubCompositeProduct.items[1].options[0].id,
+							qty: 1
 						}
 					}
 				}
@@ -89,6 +93,10 @@ describe('selectCompositeProductEntitiesState', () => {
 				a: {
 					[stubCompositeProduct.items[0].id]: {
 						value: stubCompositeProduct.items[0].options[0].id,
+						qty: 1
+					},
+					[stubCompositeProduct.items[1].id]: {
+						value: stubCompositeProduct.items[1].options[0].id,
 						qty: 1
 					}
 				}

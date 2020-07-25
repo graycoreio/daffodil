@@ -100,6 +100,10 @@ describe('Product | Composite Product Entities Reducer', () => {
 					[compositeProduct.items[0].id]: {
 						value: compositeProduct.items[0].options[0].id,
 						qty: 1
+					},
+					[compositeProduct.items[1].id]: {
+						value: compositeProduct.items[1].options[0].id,
+						qty: 1
 					}
 				} 
 			});

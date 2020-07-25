@@ -4,6 +4,24 @@ import { DaffCompositeProductFacadeInterface, DaffCompositeProductEntityItem } f
 import { Dictionary } from '@ngrx/entity';
 
 export class MockDaffCompositeProductFacade implements DaffCompositeProductFacadeInterface {
+	getMinPossiblePrice(id: string): BehaviorSubject<number> {
+		return new BehaviorSubject(null);
+	};
+	getMaxPossiblePrice(id: string): BehaviorSubject<number> {
+		return new BehaviorSubject(null);
+	};
+	possiblyHasPriceRange(id: string): BehaviorSubject<boolean> {
+		return new BehaviorSubject(false);
+	};
+	getMinPrice(id: string): BehaviorSubject<number> {
+		return new BehaviorSubject(null);
+	};
+	getMaxPrice(id: string): BehaviorSubject<number> {
+		return new BehaviorSubject(null);
+	};
+	hasPriceRange(id: string): BehaviorSubject<boolean> {
+		return new BehaviorSubject(false);
+	};
 	getPrice(id: string): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	};

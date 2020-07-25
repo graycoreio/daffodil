@@ -30,14 +30,36 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 				{
 					id: faker.random.alphaNumeric(10),
 					name: faker.commerce.productMaterial(),
-					price: faker.random.number({min: 1, max: 100}).toString(),
+					price: faker.random.number({min: 1, max: 100}),
 					quantity: faker.random.number({min: 1, max: 9}),
 					is_default: true
 				},
 				{
 					id: faker.random.alphaNumeric(10),
 					name: faker.commerce.productMaterial(),
-					price: faker.random.number({min: 1, max: 100}).toString(),
+					price: faker.random.number({min: 1, max: 100}),
+					quantity: faker.random.number({min: 1, max: 9}),
+					is_default: false
+				}
+			]
+		},
+		{
+			id: faker.random.alphaNumeric(10),
+			required: faker.random.boolean(),
+			title: faker.commerce.productName(),
+			input_type: DaffCompositeProductItemInputEnum.select,
+			options: [
+				{
+					id: faker.random.alphaNumeric(10),
+					name: faker.commerce.productMaterial(),
+					price: faker.random.number({min: 1, max: 100}),
+					quantity: faker.random.number({min: 1, max: 9}),
+					is_default: true
+				},
+				{
+					id: faker.random.alphaNumeric(10),
+					name: faker.commerce.productMaterial(),
+					price: faker.random.number({min: 1, max: 100}),
 					quantity: faker.random.number({min: 1, max: 9}),
 					is_default: false
 				}
