@@ -100,7 +100,7 @@ describe('Daffodil | Cart | CartEffects', () => {
         daffDriverSpy.get.and.returnValue(response);
         const cartLoadFailureAction = new DaffCartLoadFailure(error);
         actions$ = hot('--a', { a: cartLoadAction });
-        expected = cold('--(b|)', { b: cartLoadFailureAction });
+        expected = cold('--b', { b: cartLoadFailureAction });
       });
 
       it('should dispatch a CartLoadFailure action', () => {

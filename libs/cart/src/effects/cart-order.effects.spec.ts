@@ -107,7 +107,7 @@ describe('Cart | Effect | CartOrderEffects', () => {
 
         cartOrderDriverSpy.placeOrder.and.returnValue(response);
         actions$ = hot('--a', { a: cartPlaceOrderAction });
-        expected = cold('--(b|)', { b: cartPlaceOrderFailureAction });
+        expected = cold('--b', { b: cartPlaceOrderFailureAction });
       });
 
       it('should dispatch a CartPlaceOrderFailure action', () => {

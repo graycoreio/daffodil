@@ -61,6 +61,7 @@ export class DaffCartEffects<T extends DaffCart> {
     ofType(DaffCartActionTypes.CartLoadAction),
     switchMap((action: DaffCartLoad) => this.driver.get(this.storage.getCartId()).pipe(
       map((resp: T) => new DaffCartLoadSuccess(resp)),
+      catchError(error => of(new DaffCartLoadFailure('Failed to load cart')))
     )),
     catchError(error => of(error instanceof DaffStorageServiceError
       ? new DaffCartStorageFailure('Cart Storage Failed')

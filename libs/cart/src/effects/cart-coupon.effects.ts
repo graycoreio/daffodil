@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { switchMap, map, catchError } from 'rxjs/operators';
+import { switchMap, map, catchError, tap, take } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
@@ -41,16 +41,18 @@ export class DaffCartCouponEffects<
 
   @Effect()
   apply$ = this.actions$.pipe(
+    tap(action => console.log('coupon', action)),
     ofType(DaffCartCouponActionTypes.CartCouponApplyAction),
     switchMap((action: DaffCartCouponApply<V>) =>
       this.driver.apply(this.storage.getCartId(), action.payload).pipe(
         map(resp => new DaffCartCouponApplySuccess(resp)),
+        catchError(error => of(new DaffCartCouponApplyFailure('Failed to apply coupon to cart')))
       )
     ),
     catchError(error => of(error instanceof DaffStorageServiceError
       ? new DaffCartStorageFailure('Cart Storage Failed')
       : new DaffCartCouponApplyFailure('Failed to apply coupon to cart')
-    ))
+    )),
   )
 
   @Effect()
@@ -59,6 +61,7 @@ export class DaffCartCouponEffects<
     switchMap((action: DaffCartCouponList) =>
       this.driver.list(this.storage.getCartId()).pipe(
         map(resp => new DaffCartCouponListSuccess<V>(resp)),
+        catchError(error => of(new DaffCartCouponListFailure('Failed to list coupons')))
       )
     ),
     catchError(error => of(error instanceof DaffStorageServiceError
@@ -73,6 +76,7 @@ export class DaffCartCouponEffects<
     switchMap((action: DaffCartCouponRemove<V>) =>
       this.driver.remove(this.storage.getCartId(), action.payload).pipe(
         map(resp => new DaffCartCouponRemoveSuccess(resp)),
+        catchError(error => of(new DaffCartCouponRemoveFailure('Failed to remove a coupon from the cart')))
       )
     ),
     catchError(error => of(error instanceof DaffStorageServiceError
@@ -87,6 +91,7 @@ export class DaffCartCouponEffects<
     switchMap((action: DaffCartCouponRemoveAll) =>
       this.driver.removeAll(this.storage.getCartId()).pipe(
         map(resp => new DaffCartCouponRemoveAllSuccess(resp)),
+        catchError(error => of(new DaffCartCouponRemoveAllFailure('Failed to remove all coupons from the cart')))
       )
     ),
     catchError(error => of(error instanceof DaffStorageServiceError

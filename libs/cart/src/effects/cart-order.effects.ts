@@ -38,6 +38,7 @@ export class DaffCartOrderEffects<
     ofType(DaffCartOrderActionTypes.CartPlaceOrderAction),
     switchMap((action: DaffCartPlaceOrder<V>) => this.driver.placeOrder(this.storage.getCartId(), action.payload).pipe(
       map((resp: R) => new DaffCartPlaceOrderSuccess<R>(resp)),
+      catchError(error => of(new DaffCartPlaceOrderFailure('Failed to place order')))
     )),
     catchError(error => of(error instanceof DaffStorageServiceError
       ? new DaffCartStorageFailure('Cart Storage Failed')
