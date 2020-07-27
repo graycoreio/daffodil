@@ -101,7 +101,7 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 
 			return (<DaffCompositeProduct>product).items.reduce((acc, item) => daffAdd(
 				acc, 
-				appliedOptions[item.id].value ? item.options.find(option => option.id === appliedOptions[item.id].value).price : getMinimumCompositeItemPrice(item)
+				appliedOptions[item.id].value ? findAppliedCompositeOptionPrice(item, appliedOptions) : getMinimumCompositeItemPrice(item)
 			), product.price);
 		}
 	);
@@ -123,7 +123,7 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 			return (<DaffCompositeProduct>product).items.reduce((acc, item) => 
 				daffAdd(
 					acc, 
-					appliedOptions[item.id].value ? item.options.find(option => option.id === appliedOptions[item.id].value).price : getMaximumRequiredItemPrice(item)
+					appliedOptions[item.id].value ? findAppliedCompositeOptionPrice(item, appliedOptions) : getMaximumRequiredItemPrice(item)
 				), product.price);
 		}
 	);
@@ -154,7 +154,7 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 
 			return (<DaffCompositeProduct>product).items.reduce((acc, item) => daffAdd(
 				acc, 
-				appliedOptions[item.id].value ? daffMultiply(item.options.find(option => option.id === appliedOptions[item.id].value).price, appliedOptions[item.id].qty) : 0
+				appliedOptions[item.id].value ? daffMultiply(findAppliedCompositeOptionPrice(item, appliedOptions), appliedOptions[item.id].qty) : 0
 			), product.price);
 		}
 	);
@@ -243,6 +243,10 @@ function getOptionsDiscountAmount(product: DaffCompositeProduct, appliedOptions:
 			itemOptionDiscount && itemOptionDiscount.amount > 0 ? daffMultiply(itemOptionDiscount.amount, appliedOptions[item.id].qty) : 0
 		);
 	}, 0)
+}
+
+function findAppliedCompositeOptionPrice(item: DaffCompositeProductItem, appliedOptions: Dictionary<DaffCompositeProductEntityItem>): number {
+	return item.options.find(option => option.id === appliedOptions[item.id].value).price
 }
 
 /**
