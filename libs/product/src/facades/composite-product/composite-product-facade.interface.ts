@@ -9,6 +9,46 @@ import { DaffCompositeProductEntityItem } from '../../reducers/composite-product
 export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Action> {
 
 	/**
+	 * Get the minimum price possible for a composite product regardless of applied options.
+	 * @param id the id of the composite product.
+	 */
+	getMinPossiblePrice(id: string): Observable<number>;
+
+	/**
+	 * Get the maximum price possible for a composite product regardless of applied options and including optional items.
+	 * @param id the id of the composite product.
+	 */
+	getMaxPossiblePrice(id: string): Observable<number>;
+
+	/**
+	 * Returns whether the composite product has a price range regardless of applied options and including
+	 * optional items.
+	 * @param id the id of the composite product.
+	 */
+	possiblyHasPriceRange(id: string): Observable<boolean>;
+
+	/**
+	 * Get the minimum price for a composite product excluding optional items and determined by 
+	 * currently applied options.
+	 * @param id the id of the composite product.
+	 */
+	getMinPrice(id: string): Observable<number>;
+
+	/**
+	 * Get the maximum price for a composite product excluding optional items and determined by
+	 * currently applied options.
+	 * @param id the id of the composite product.
+	 */
+	getMaxPrice(id: string): Observable<number>;
+
+	/**
+	 * Returns whether the composite product has a price range depending on applied options and excluding
+	 * optional items.
+	 * @param id the id of the composite product.
+	 */
+	hasPriceRange(id: string): Observable<boolean>;
+
+	/**
 	 * Get the price of a composite product based on the applied product options.
 	 * @param id the id of the composite product.
 	 */

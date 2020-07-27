@@ -22,6 +22,30 @@ export class DaffCompositeProductFacade<T extends DaffProduct = DaffProduct> imp
 	
 	constructor(private store: Store<DaffProductReducersState<T>>) {}
 	
+	getMinPossiblePrice(id: string): Observable<number> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductMinPossiblePrice, { id }));
+	}
+
+	getMaxPossiblePrice(id: string): Observable<number> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductMaxPossiblePrice, { id }));
+	}
+
+	possiblyHasPriceRange(id: string): Observable<boolean> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductPossiblyHasPriceRange, { id }));
+	}
+
+	getMinPrice(id: string): Observable<number> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductMinPrice, { id }));
+	}
+
+	getMaxPrice(id: string): Observable<number> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductMaxPrice, { id }));
+	}
+
+	hasPriceRange(id: string): Observable<boolean> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductHasPriceRange, { id }));
+	}
+
 	getPrice(id: string): Observable<number> {
 		return this.store.pipe(select(this.selectors.selectCompositeProductPrice, { id }));
 	}

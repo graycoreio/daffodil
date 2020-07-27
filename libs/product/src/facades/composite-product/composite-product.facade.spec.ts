@@ -17,11 +17,7 @@ describe('DaffCompositeProductFacade', () => {
   let store: MockStore<Partial<DaffProductReducersState>>;
 	let facade: DaffCompositeProductFacade;
 	let stubCompositeProduct: DaffCompositeProduct;
-	stubCompositeProduct = new DaffCompositeProductFactory().create();
-	const stubDefaultPrice0 = 10;
-	const stubDiscountAmount0 = 2.4;
-	const stubDiscountAmount1 = 1.4;
-	const stubChangedPrice0 = 20;
+	
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -34,22 +30,16 @@ describe('DaffCompositeProductFacade', () => {
         DaffCompositeProductFacade,
       ]
 		})
-		// setup: set items to required, set a default option on each item, and set prices/discounts.
-		stubCompositeProduct.items[0].required = true;
-		stubCompositeProduct.items[0].options[0].is_default = true;
-		stubCompositeProduct.items[0].options[0].price = stubDefaultPrice0;
-		stubCompositeProduct.items[0].options[1].price = stubChangedPrice0;
-		stubCompositeProduct.items[0].options[0].discount = {
-			amount: stubDiscountAmount0,
-			percent: null
-		}
-		stubCompositeProduct.items[0].options[1].discount = {
-			amount: stubDiscountAmount1,
-			percent: null
-		}
 
     store = TestBed.get(Store);
 		facade = TestBed.get(DaffCompositeProductFacade);
+		stubCompositeProduct = new DaffCompositeProductFactory().create();
+		stubCompositeProduct.items[0].required = true;
+		stubCompositeProduct.items[1].required = false;
+		stubCompositeProduct.items[0].options[0].price = 10;
+		stubCompositeProduct.items[0].options[1].price = 20;
+		stubCompositeProduct.items[1].options[0].price = 30;
+		stubCompositeProduct.items[1].options[1].price = 40;
 		store.dispatch(new DaffProductLoadSuccess(stubCompositeProduct));
 	});
 
@@ -66,11 +56,96 @@ describe('DaffCompositeProductFacade', () => {
     expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 
+  describe('getMinPossiblePrice', () => {
+
+    it('should return the minimum price possible for the product', () => {
+			const expected = cold('a', { a: 
+				stubCompositeProduct.price + 
+				stubCompositeProduct.items[0].options[0].price
+			});
+	
+			expect(facade.getMinPossiblePrice(stubCompositeProduct.id)).toBeObservable(expected);
+		});
+  });
+
+  describe('getMaxPossiblePrice', () => {
+
+    it('should return the maximum price possible for the product', () => {
+			const expected = cold('a', { a: 
+				stubCompositeProduct.price + 
+				stubCompositeProduct.items[0].options[1].price +
+				stubCompositeProduct.items[1].options[1].price
+			});
+	
+			expect(facade.getMaxPossiblePrice(stubCompositeProduct.id)).toBeObservable(expected);
+		});
+  });
+
+  describe('possiblyHasPriceRange', () => {
+
+    it('should return whether the product could have a price range', () => {
+			const expected = cold('a', { a: true });
+	
+			expect(facade.possiblyHasPriceRange(stubCompositeProduct.id)).toBeObservable(expected);
+		});
+	});
+
+  describe('getMinPrice', () => {
+
+    it('should return the minimum price for the product', () => {
+			const expected = cold('a', { a: 
+				stubCompositeProduct.price + 
+				stubCompositeProduct.items[0].options[0].price +
+				stubCompositeProduct.items[1].options[0].price
+			});
+	
+			expect(facade.getMinPrice(stubCompositeProduct.id)).toBeObservable(expected);
+		});
+  });
+
+  describe('getMaxPrice', () => {
+
+    it('should return the maximum price for the product', () => {
+			const expected = cold('a', { a: 
+				stubCompositeProduct.price + 
+				stubCompositeProduct.items[0].options[0].price +
+				stubCompositeProduct.items[1].options[0].price
+			});
+	
+			expect(facade.getMaxPrice(stubCompositeProduct.id)).toBeObservable(expected);
+		});
+  });
+
+  describe('hasPriceRange', () => {
+
+    it('should return whether the product currently has a price range', () => {
+			const expected = cold('a', { a: false });
+	
+			expect(facade.hasPriceRange(stubCompositeProduct.id)).toBeObservable(expected);
+		});
+	});
+
   describe('getPrice', () => {
 
     it('should return the price of the product', () => {
-			console.log(stubCompositeProduct);
-			const expected = cold('a', { a: stubCompositeProduct.price + stubDefaultPrice0 });
+			const expected = cold('a', { a: 
+				stubCompositeProduct.price + 
+				stubCompositeProduct.items[0].options[0].price +
+				stubCompositeProduct.items[1].options[0].price 
+			});
+	
+			expect(facade.getPrice(stubCompositeProduct.id)).toBeObservable(expected);
+		});
+  });
+
+  describe('getPrice', () => {
+
+    it('should return the price of the product', () => {
+			const expected = cold('a', { a: 
+				stubCompositeProduct.price + 
+				stubCompositeProduct.items[0].options[0].price +
+				stubCompositeProduct.items[1].options[0].price 
+			});
 	
 			expect(facade.getPrice(stubCompositeProduct.id)).toBeObservable(expected);
 		});
@@ -79,7 +154,9 @@ describe('DaffCompositeProductFacade', () => {
   describe('getDiscountAmount', () => {
 
     it('should return the total discount amount for a composite product', () => {
-			const expected = cold('a', { a: stubCompositeProduct.discount.amount + stubDiscountAmount0 });
+			const expected = cold('a', { a: 
+				stubCompositeProduct.discount.amount
+			});
 	
 			expect(facade.getDiscountAmount(stubCompositeProduct.id)).toBeObservable(expected);
 		});
@@ -91,8 +168,8 @@ describe('DaffCompositeProductFacade', () => {
 			const expected = cold('a', { a: 
 				stubCompositeProduct.price 
 				+ stubCompositeProduct.items[0].options[0].price 
-				- stubCompositeProduct.discount.amount 
-				- stubCompositeProduct.items[0].options[0].discount.amount
+				+ stubCompositeProduct.items[1].options[0].price 
+				- stubCompositeProduct.discount.amount
 			});
 	
 			expect(facade.getDiscountedPrice(stubCompositeProduct.id)).toBeObservable(expected);
@@ -114,6 +191,10 @@ describe('DaffCompositeProductFacade', () => {
 			const expected = cold('a', { a: { 
 				[stubCompositeProduct.items[0].id]: {
 					value: stubCompositeProduct.items[0].options[0].id,
+					qty: 1
+				},
+				[stubCompositeProduct.items[1].id]: {
+					value: stubCompositeProduct.items[1].options[0].id,
 					qty: 1
 				}
 			}});
