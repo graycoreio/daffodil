@@ -108,7 +108,7 @@ describe('Daffodil | Cart | CartCouponEffects', () => {
         daffDriverSpy.apply.and.returnValue(response);
         const cartCouponApplyFailureAction = new DaffCartCouponApplyFailure(error);
         actions$ = hot('--a', { a: cartCouponApplyAction });
-        expected = cold('--(b|)', { b: cartCouponApplyFailureAction });
+        expected = cold('--b', { b: cartCouponApplyFailureAction });
       });
 
       it('should dispatch a CartCouponApplyFailure action', () => {
@@ -121,7 +121,7 @@ describe('Daffodil | Cart | CartCouponEffects', () => {
         daffCartStorageSpy.getCartId.and.callFake(throwStorageError)
 
         actions$ = hot('--a', { a: cartCouponApplyAction });
-        expected = cold('--(b|)', { b: cartStorageFailureAction });
+        expected = cold('--b', { b: cartStorageFailureAction });
       });
 
       it('should return a DaffCartStorageFailure', () => {
@@ -154,7 +154,7 @@ describe('Daffodil | Cart | CartCouponEffects', () => {
         daffDriverSpy.list.and.returnValue(response);
         const cartCouponListFailureAction = new DaffCartCouponListFailure(error);
         actions$ = hot('--a', { a: cartCouponListAction });
-        expected = cold('--(b|)', { b: cartCouponListFailureAction });
+        expected = cold('--b', { b: cartCouponListFailureAction });
       });
 
       it('should dispatch a CartCouponListFailure action', () => {
@@ -167,7 +167,7 @@ describe('Daffodil | Cart | CartCouponEffects', () => {
         daffCartStorageSpy.getCartId.and.callFake(throwStorageError)
 
         actions$ = hot('--a', { a: cartCouponListAction });
-        expected = cold('--(b|)', { b: cartStorageFailureAction });
+        expected = cold('--b', { b: cartStorageFailureAction });
       });
 
       it('should return a DaffCartStorageFailure', () => {
@@ -200,7 +200,7 @@ describe('Daffodil | Cart | CartCouponEffects', () => {
         daffDriverSpy.remove.and.returnValue(response);
         const cartCouponRemoveFailureAction = new DaffCartCouponRemoveFailure(error);
         actions$ = hot('--a', { a: cartCouponRemoveAction });
-        expected = cold('--(b|)', { b: cartCouponRemoveFailureAction });
+        expected = cold('--b', { b: cartCouponRemoveFailureAction });
       });
 
       it('should dispatch a CartCouponApplyFailure action', () => {
@@ -213,7 +213,7 @@ describe('Daffodil | Cart | CartCouponEffects', () => {
         daffCartStorageSpy.getCartId.and.callFake(throwStorageError)
 
         actions$ = hot('--a', { a: cartCouponRemoveAction });
-        expected = cold('--(b|)', { b: cartStorageFailureAction });
+        expected = cold('--b', { b: cartStorageFailureAction });
       });
 
       it('should return a DaffCartStorageFailure', () => {
@@ -239,14 +239,14 @@ describe('Daffodil | Cart | CartCouponEffects', () => {
       });
     });
 
-    describe('and the clear call to driver fails', () => {
+    describe('and the call to CartCouponService fails', () => {
       beforeEach(() => {
         const error = 'Failed to remove all coupons from the cart';
         const response = cold('#', {}, error);
         daffDriverSpy.removeAll.and.returnValue(response);
         const cartCouponRemoveAllFailureAction = new DaffCartCouponRemoveAllFailure(error);
         actions$ = hot('--a', { a: cartCouponRemoveAllAction });
-        expected = cold('--(b|)', { b: cartCouponRemoveAllFailureAction });
+        expected = cold('--b', { b: cartCouponRemoveAllFailureAction });
       });
 
       it('should return a DaffCartCouponRemoveAllFailure action', () => {
@@ -259,7 +259,7 @@ describe('Daffodil | Cart | CartCouponEffects', () => {
         daffCartStorageSpy.getCartId.and.callFake(throwStorageError)
 
         actions$ = hot('--a', { a: cartCouponRemoveAllAction });
-        expected = cold('--(b|)', { b: cartStorageFailureAction });
+        expected = cold('--b', { b: cartStorageFailureAction });
       });
 
       it('should return a DaffCartStorageFailure', () => {

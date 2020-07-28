@@ -88,7 +88,7 @@ describe('Daffodil | Cart | CartAddressEffects', () => {
         daffCartStorageSpy.getCartId.and.callFake(throwStorageError)
 
         actions$ = hot('--a', { a: cartAddressUpdateAction });
-        expected = cold('--(b|)', { b: cartStorageFailureAction });
+        expected = cold('--b', { b: cartStorageFailureAction });
       });
 
       it('should return a DaffCartStorageFailure', () => {
@@ -116,7 +116,7 @@ describe('Daffodil | Cart | CartAddressEffects', () => {
         daffAddressDriverSpy.update.and.returnValue(response);
         const cartAddressUpdateFailureAction = new DaffCartAddressUpdateFailure(error);
         actions$ = hot('--a', { a: cartAddressUpdateAction });
-        expected = cold('--(b|)', { b: cartAddressUpdateFailureAction });
+        expected = cold('--b', { b: cartAddressUpdateFailureAction });
       });
 
       it('should dispatch a CartAddressUpdateFailure action', () => {

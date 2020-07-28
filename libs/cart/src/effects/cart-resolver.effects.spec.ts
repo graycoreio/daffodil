@@ -11,11 +11,11 @@ import { DaffCartResolverEffects } from './cart-resolver.effects';
 import { DaffCartDriver, DaffCartServiceInterface } from '../drivers/public_api';
 import { DaffCart } from '../models/cart';
 import { DaffCartStorageService } from '../storage/cart-storage.service';
-import { 
-	DaffResolveCart, 
-	DaffCartLoadFailure, 
-	DaffCartLoadSuccess, 
-	DaffCartCreate, 
+import {
+	DaffResolveCart,
+	DaffCartLoadFailure,
+	DaffCartLoadSuccess,
+	DaffCartCreate,
 	DaffCartStorageFailure
 } from '../actions/public_api';
 import { DaffCartNotFoundError } from '../errors/not-found';
@@ -67,7 +67,7 @@ describe('DaffCartResolverEffects', () => {
 			);
 
 			actions$ = hot('--a', { a: new DaffResolveCart() });
-			const expected = cold('--(b|)', {
+			const expected = cold('--b', {
 				b: loadCartFailureAction
 			});
 
@@ -87,7 +87,7 @@ describe('DaffCartResolverEffects', () => {
 			const loadCartSuccessAction = new DaffCartLoadSuccess(stubCart);
 
 			actions$ = hot('--a', { a: new DaffResolveCart() });
-			const expected = cold('--(b)', {
+			const expected = cold('--b', {
 				b: loadCartSuccessAction,
 			});
 
@@ -99,7 +99,7 @@ describe('DaffCartResolverEffects', () => {
 			const loadCartSuccessAction = new DaffCartLoadSuccess(stubCart);
 
 			actions$ = hot('--a', { a: new DaffResolveCart() });
-			const expected = cold('--(b)', {
+			const expected = cold('--b', {
 				b: loadCartSuccessAction
 			});
 
@@ -117,7 +117,7 @@ describe('DaffCartResolverEffects', () => {
 			);
 
 			actions$ = hot('--a', { a: new DaffResolveCart() });
-			const expected = cold('--(b|)', {
+			const expected = cold('--b', {
 				b: loadCartFailureAction
 			});
 
@@ -136,7 +136,7 @@ describe('DaffCartResolverEffects', () => {
 			);
 
 			actions$ = hot('--a', { a: new DaffResolveCart() });
-			const expected = cold('--(b|)', {
+			const expected = cold('--b', {
 				b: loadCartFailureAction
 			});
 
@@ -153,7 +153,7 @@ describe('DaffCartResolverEffects', () => {
 			const loadCartSuccessAction = new DaffCartLoadSuccess(stubCart);
 
 			actions$ = hot('--a', { a: new DaffResolveCart() });
-			const expected = cold('--(b)', {
+			const expected = cold('--b', {
 				b: loadCartSuccessAction
 			});
 
@@ -169,7 +169,7 @@ describe('DaffCartResolverEffects', () => {
 			const loadCartSuccessAction = new DaffCartLoadSuccess(stubCart);
 
 			actions$ = hot('--a', { a: new DaffResolveCart() });
-			const expected = cold('--(b)', {
+			const expected = cold('--b', {
 				b: loadCartSuccessAction
 			});
 
@@ -188,7 +188,7 @@ describe('DaffCartResolverEffects', () => {
 			const cartCreateAction = new DaffCartCreate();
 
 			actions$ = hot('--a', { a: new DaffResolveCart() });
-			const expected = cold('--(b|)', {
+			const expected = cold('--b', {
 				b: cartCreateAction,
 			});
 
@@ -206,7 +206,7 @@ describe('DaffCartResolverEffects', () => {
 			const cartStorageFailureAction = new DaffCartStorageFailure('Cart Storage Failed');
 
 			actions$ = hot('--a', { a: new DaffResolveCart() });
-			const expected = cold('--(b|)', {
+			const expected = cold('--b', {
 				b: cartStorageFailureAction
 			});
 

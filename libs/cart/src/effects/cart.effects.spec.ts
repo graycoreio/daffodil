@@ -100,7 +100,7 @@ describe('Daffodil | Cart | CartEffects', () => {
         daffDriverSpy.get.and.returnValue(response);
         const cartLoadFailureAction = new DaffCartLoadFailure(error);
         actions$ = hot('--a', { a: cartLoadAction });
-        expected = cold('--(b|)', { b: cartLoadFailureAction });
+        expected = cold('--b', { b: cartLoadFailureAction });
       });
 
       it('should dispatch a CartLoadFailure action', () => {
@@ -113,7 +113,7 @@ describe('Daffodil | Cart | CartEffects', () => {
         daffCartStorageSpy.getCartId.and.callFake(throwStorageError)
 
         actions$ = hot('--a', { a: cartLoadAction });
-        expected = cold('--(b|)', { b: cartStorageFailureAction });
+        expected = cold('--b', { b: cartStorageFailureAction });
       });
 
       it('should return a DaffCartStorageFailure', () => {
@@ -175,7 +175,7 @@ describe('Daffodil | Cart | CartEffects', () => {
         daffCartStorageSpy.setCartId.and.callFake(throwStorageError)
 
         actions$ = hot('--a', { a: cartCreateSuccessAction });
-        expected = cold('--(b|)', { b: cartStorageFailureAction });
+        expected = cold('--b', { b: cartStorageFailureAction });
       });
 
       it('should return a DaffCartStorageFailure', () => {
