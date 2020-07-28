@@ -121,7 +121,7 @@ describe('Daffodil | Cart | CartCouponEffects', () => {
         daffCartStorageSpy.getCartId.and.callFake(throwStorageError)
 
         actions$ = hot('--a', { a: cartCouponApplyAction });
-        expected = cold('--(b|)', { b: cartStorageFailureAction });
+        expected = cold('--b', { b: cartStorageFailureAction });
       });
 
       it('should return a DaffCartStorageFailure', () => {
@@ -167,7 +167,7 @@ describe('Daffodil | Cart | CartCouponEffects', () => {
         daffCartStorageSpy.getCartId.and.callFake(throwStorageError)
 
         actions$ = hot('--a', { a: cartCouponListAction });
-        expected = cold('--(b|)', { b: cartStorageFailureAction });
+        expected = cold('--b', { b: cartStorageFailureAction });
       });
 
       it('should return a DaffCartStorageFailure', () => {
@@ -213,7 +213,7 @@ describe('Daffodil | Cart | CartCouponEffects', () => {
         daffCartStorageSpy.getCartId.and.callFake(throwStorageError)
 
         actions$ = hot('--a', { a: cartCouponRemoveAction });
-        expected = cold('--(b|)', { b: cartStorageFailureAction });
+        expected = cold('--b', { b: cartStorageFailureAction });
       });
 
       it('should return a DaffCartStorageFailure', () => {
@@ -259,7 +259,7 @@ describe('Daffodil | Cart | CartCouponEffects', () => {
         daffCartStorageSpy.getCartId.and.callFake(throwStorageError)
 
         actions$ = hot('--a', { a: cartCouponRemoveAllAction });
-        expected = cold('--(b|)', { b: cartStorageFailureAction });
+        expected = cold('--b', { b: cartStorageFailureAction });
       });
 
       it('should return a DaffCartStorageFailure', () => {

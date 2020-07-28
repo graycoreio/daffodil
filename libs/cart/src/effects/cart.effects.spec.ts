@@ -113,7 +113,7 @@ describe('Daffodil | Cart | CartEffects', () => {
         daffCartStorageSpy.getCartId.and.callFake(throwStorageError)
 
         actions$ = hot('--a', { a: cartLoadAction });
-        expected = cold('--(b|)', { b: cartStorageFailureAction });
+        expected = cold('--b', { b: cartStorageFailureAction });
       });
 
       it('should return a DaffCartStorageFailure', () => {
@@ -175,7 +175,7 @@ describe('Daffodil | Cart | CartEffects', () => {
         daffCartStorageSpy.setCartId.and.callFake(throwStorageError)
 
         actions$ = hot('--a', { a: cartCreateSuccessAction });
-        expected = cold('--(b|)', { b: cartStorageFailureAction });
+        expected = cold('--b', { b: cartStorageFailureAction });
       });
 
       it('should return a DaffCartStorageFailure', () => {

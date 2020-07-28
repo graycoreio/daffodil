@@ -67,7 +67,7 @@ describe('DaffCartResolverEffects', () => {
 			);
 
 			actions$ = hot('--a', { a: new DaffResolveCart() });
-			const expected = cold('--(b|)', {
+			const expected = cold('--b', {
 				b: loadCartFailureAction
 			});
 

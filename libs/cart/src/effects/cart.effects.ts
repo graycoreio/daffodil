@@ -49,24 +49,27 @@ export class DaffCartEffects<T extends DaffCart> {
   })
   storeId$ = this.actions$.pipe(
     ofType(DaffCartActionTypes.CartCreateSuccessAction),
-    tap((action: DaffCartCreateSuccess<T>) => {
-      this.storage.setCartId(String(action.payload.id))
-    }),
-    switchMapTo(EMPTY),
-    catchError(error => of(new DaffCartStorageFailure('Cart Storage Failed')))
+    switchMap((action: DaffCartCreateSuccess<T>) => of(null).pipe(
+      tap(() => {
+        this.storage.setCartId(String(action.payload.id))
+      }),
+      switchMapTo(EMPTY),
+      catchError(error => of(new DaffCartStorageFailure('Cart Storage Failed'))),
+    )),
   )
 
   @Effect()
   get$ = this.actions$.pipe(
     ofType(DaffCartActionTypes.CartLoadAction),
-    switchMap((action: DaffCartLoad) => this.driver.get(this.storage.getCartId()).pipe(
+    switchMap((action: DaffCartLoad) => of(null).pipe(
+      map(() => this.storage.getCartId()),
+      switchMap(cartId => this.driver.get(cartId)),
       map((resp: T) => new DaffCartLoadSuccess(resp)),
-      catchError(error => of(new DaffCartLoadFailure('Failed to load cart')))
+      catchError(error => of(error.name === DaffStorageServiceError.name
+        ? new DaffCartStorageFailure('Cart Storage Failed')
+        : new DaffCartLoadFailure('Failed to load cart')
+      )),
     )),
-    catchError(error => of(error instanceof DaffStorageServiceError
-      ? new DaffCartStorageFailure('Cart Storage Failed')
-      : new DaffCartLoadFailure('Failed to load cart')
-    ))
   )
 
   @Effect()
@@ -83,9 +86,14 @@ export class DaffCartEffects<T extends DaffCart> {
   @Effect()
   clear$ = this.actions$.pipe(
     ofType(DaffCartActionTypes.CartClearAction),
-    switchMap((action: DaffCartClear) => this.driver.clear(this.storage.getCartId()).pipe(
+    switchMap((action: DaffCartClear) => of(null).pipe(
+      map(() => this.storage.getCartId()),
+      switchMap(cartId => this.driver.clear(cartId)),
       map((resp: T) => new DaffCartClearSuccess(resp)),
-      catchError(error => of(new DaffCartClearFailure('Failed to clear the cart.')))
-    ))
+      catchError(error => of(error.name === DaffStorageServiceError.name
+        ? new DaffCartStorageFailure('Cart Storage Failed')
+        : new DaffCartClearFailure('Failed to clear the cart.')
+      )),
+    )),
   )
 }

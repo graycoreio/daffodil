@@ -18,14 +18,7 @@ import { DaffCartNotFoundError } from '../errors/not-found';
 import { DaffStorageServiceError } from '@daffodil/core';
 
 function catchResolveErrors(error: Error) {
-  switch(error.name) {
-    case DaffStorageServiceError.name:
-      return of(new DaffCartStorageFailure('Cart Storage Failed'))
-    case DaffCartNotFoundError.name:
-      return of(new DaffCartCreate());
-    default:
-      return of(new DaffCartLoadFailure('Cart loading has failed'));
-  }
+
 }
 
 /**
@@ -42,16 +35,25 @@ export class DaffCartResolverEffects<T extends DaffCart = DaffCart> {
 
 	@Effect()
 	onResolveCart$: Observable<Action> = this.actions$.pipe(
-		ofType(DaffCartActionTypes.ResolveCartAction),
-		map(() => this.cartStorage.getCartId()),
-		switchMap(cartId => (cartId ? of({ id: cartId }) : this.driver.create()).pipe(
+    ofType(DaffCartActionTypes.ResolveCartAction),
+    switchMap(() => of(null).pipe(
+      map(() => this.cartStorage.getCartId()),
+      switchMap(cartId => cartId ? of({ id: cartId }) : this.driver.create()),
       switchMap(({ id }) => this.driver.get(id)),
       switchMap(resp => {
         this.cartStorage.setCartId(String(resp.id))
         return [new DaffCartLoadSuccess(resp)]
       }),
-      catchError(catchResolveErrors),
-    )),
-		catchError(catchResolveErrors),
+      catchError(error => {
+        switch(error.name) {
+          case DaffStorageServiceError.name:
+            return of(new DaffCartStorageFailure('Cart Storage Failed'))
+          case DaffCartNotFoundError.name:
+            return of(new DaffCartCreate());
+          default:
+            return of(new DaffCartLoadFailure('Cart loading has failed'));
+        }
+      }),
+    ))
 	);
 }
