@@ -17,10 +17,6 @@ import { DaffCart } from '../models/cart';
 import { DaffCartNotFoundError } from '../errors/not-found';
 import { DaffStorageServiceError } from '@daffodil/core';
 
-function catchResolveErrors(error: Error) {
-
-}
-
 /**
  * An effect for resolving the Cart. It will check local state for a cart id, and retrieve the cart if it exists. If a cart
  * of that id does not exist, it will create a new cart.
