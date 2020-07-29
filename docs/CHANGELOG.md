@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.2](https://github.com/graycoreio/daffodil/compare/v0.8.1...v0.8.2) (2020-07-29)
+
+
+### Features
+
+* **product:** add ranged price selectors for composite products ([#1012](https://github.com/graycoreio/daffodil/issues/1012)) ([cfe758c](https://github.com/graycoreio/daffodil/commit/cfe758cf8d2b0b3edc02745e5e83e4a988dbdcb1))
+
+
+### Bug Fixes
+
+* **authorizenet:** cannot read code of undefined on driver error ([#1014](https://github.com/graycoreio/daffodil/issues/1014)) ([b1fdb0c](https://github.com/graycoreio/daffodil/commit/b1fdb0c902678f9c6ec288c84187e0889b00c009))
+* **cart:** driver failures cause effect obsevables to complete ([#1013](https://github.com/graycoreio/daffodil/issues/1013)) ([f98a759](https://github.com/graycoreio/daffodil/commit/f98a7596365a8664fa3cb1b381fad8413b6b0ca0))
+
 ### [0.8.1](https://github.com/graycoreio/daffodil/compare/v0.8.0...v0.8.1) (2020-07-24)
 
 
