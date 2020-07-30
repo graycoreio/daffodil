@@ -8,17 +8,17 @@ export const setSelectedPaymentMethodWithBilling = gql`
     $payment: PaymentMethodInput!,
     $address: BillingAddressInput!
   ) {
-    setPaymentMethodOnCart(input: {
-      cart_id: $cartId
-      payment_method: $payment
-    }) {
-      cart {
-        ...cart
-      }
-    }
     setBillingAddressOnCart(input: {
       cart_id: $cartId
       billing_address: $address
+    }) {
+      cart {
+        id
+      }
+    }
+    setPaymentMethodOnCart(input: {
+      cart_id: $cartId
+      payment_method: $payment
     }) {
       cart {
         ...cart

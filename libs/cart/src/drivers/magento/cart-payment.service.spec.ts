@@ -182,9 +182,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
       },
       setGuestEmailOnCart: {
 				__typename: 'SetGuestEmail',
-        cart: {
-          email
-        }
+        cart: mockMagentoCart
       }
     };
 
