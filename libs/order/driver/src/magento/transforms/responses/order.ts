@@ -40,7 +40,7 @@ function transformTotals(totals: {
 
 function transformItem(item: MagentoGraycoreOrderItem): DaffOrderItem {
   return {
-    item_id: null,
+    item_id: item.product_id,
     qty_ordered: item.qty_ordered,
     qty_canceled: item.qty_canceled,
     qty_fulfilled: item.qty_fulfilled,

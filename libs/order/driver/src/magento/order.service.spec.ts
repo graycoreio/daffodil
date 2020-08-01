@@ -129,8 +129,8 @@ describe('Driver | Magento | Order | OrderService', () => {
         label: null
       },
       parent_item_id: null,
-      item_id: null
     });
+    mockDaffOrderItem.item_id = mockDaffOrderItem.product_id;
     mockDaffOrderShipmentItem = daffOrderShipmentItemFactory.create({
       item: mockDaffOrderItem
     });
