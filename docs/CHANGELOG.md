@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.3](https://github.com/graycoreio/daffodil/compare/v0.8.2...v0.8.3) (2020-08-03)
+
+
+### Features
+
+* **order:** add order subfield selectors ([#1018](https://github.com/graycoreio/daffodil/issues/1018)) ([c36f7a7](https://github.com/graycoreio/daffodil/commit/c36f7a75c0bd31edf04fe96971c6894c7c617406))
+
+
+### Bug Fixes
+
+* **authorizenet:** export a needed injection token ([#1019](https://github.com/graycoreio/daffodil/issues/1019)) ([284cc85](https://github.com/graycoreio/daffodil/commit/284cc852c35087f194e5dfdc716aaaaf534a06fb))
+* **cart:** set payment method with billing has high query complexity ([#1016](https://github.com/graycoreio/daffodil/issues/1016)) ([3f99aa9](https://github.com/graycoreio/daffodil/commit/3f99aa964412ecfecdea4d48536a3bab1f00b86a))
+
 ### [0.8.2](https://github.com/graycoreio/daffodil/compare/v0.8.1...v0.8.2) (2020-07-29)
 
 
