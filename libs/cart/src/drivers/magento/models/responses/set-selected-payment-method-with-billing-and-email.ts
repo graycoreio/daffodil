@@ -1,13 +1,18 @@
 import { MagentoGetCartResponse } from './get-cart';
 
 export interface MagentoSetSelectedPaymentMethodWithBillingAndEmailResponse {
-  setPaymentMethodOnCart: MagentoGetCartResponse;
-  setBillingAddressOnCart: MagentoGetCartResponse;
-  setGuestEmailOnCart: {
+  setPaymentMethodOnCart: {
     __typename: string;
     cart: {
-      email: MagentoGetCartResponse['cart']['email']
+      id: MagentoGetCartResponse['cart']['id'];
     }
   };
+  setBillingAddressOnCart: {
+    __typename: string;
+    cart: {
+      id: MagentoGetCartResponse['cart']['id'];
+    }
+  };
+  setGuestEmailOnCart: MagentoGetCartResponse;
 }
 

@@ -14,7 +14,7 @@ export const setSelectedPaymentMethodWithBillingAndEmail = gql`
       billing_address: $address
     }) {
       cart {
-        ...cart
+        id
       }
     }
     setPaymentMethodOnCart(input: {
@@ -22,7 +22,7 @@ export const setSelectedPaymentMethodWithBillingAndEmail = gql`
       payment_method: $payment
     }) {
       cart {
-        ...cart
+        id
       }
     }
     setGuestEmailOnCart(input: {
@@ -30,7 +30,7 @@ export const setSelectedPaymentMethodWithBillingAndEmail = gql`
       email: $email
     }) {
       cart {
-        email
+        ...cart
       }
     }
   }

@@ -89,12 +89,7 @@ export class DaffMagentoCartPaymentService implements DaffCartPaymentServiceInte
         address: this.cartAddressInputTransformer.transform(address)
       }
     }).pipe(
-      map(resp => this.cartTransformer.transform({
-        ...resp.data.setBillingAddressOnCart.cart,
-        ...resp.data.setPaymentMethodOnCart.cart,
-        billing_address: resp.data.setBillingAddressOnCart.cart.billing_address,
-        selected_payment_method: resp.data.setPaymentMethodOnCart.cart.selected_payment_method,
-      })),
+      map(resp => this.cartTransformer.transform(resp.data.setPaymentMethodOnCart.cart)),
       catchError(error => throwError(transformCartMagentoError(error))),
     )
   }
@@ -109,13 +104,7 @@ export class DaffMagentoCartPaymentService implements DaffCartPaymentServiceInte
         address: this.cartAddressInputTransformer.transform(address)
       }
     }).pipe(
-      map(resp => this.cartTransformer.transform({
-        ...resp.data.setBillingAddressOnCart.cart,
-        ...resp.data.setPaymentMethodOnCart.cart,
-        billing_address: resp.data.setBillingAddressOnCart.cart.billing_address,
-        selected_payment_method: resp.data.setPaymentMethodOnCart.cart.selected_payment_method,
-        email: resp.data.setGuestEmailOnCart.cart.email
-      })),
+      map(resp => this.cartTransformer.transform(resp.data.setGuestEmailOnCart.cart)),
       catchError(error => throwError(transformCartMagentoError(error))),
     )
   }
