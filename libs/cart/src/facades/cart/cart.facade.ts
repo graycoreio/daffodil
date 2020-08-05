@@ -9,14 +9,17 @@ import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
 import { DaffCartErrorType } from '../../reducers/errors/cart-error-type.enum';
 import { DaffCartFacadeInterface } from './cart-facade.interface';
 import { DaffCartOrderResult } from '../../models/cart-order-result';
+import { DaffCartItem } from '../../models/cart-item';
+import { Dictionary } from '@ngrx/entity';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DaffCartFacade<
   T extends DaffCart = DaffCart,
-  V extends DaffCartOrderResult = DaffCartOrderResult
-> implements DaffCartFacadeInterface<T, V> {
+	V extends DaffCartOrderResult = DaffCartOrderResult,
+	U extends DaffCartItem = DaffCartItem
+> implements DaffCartFacadeInterface<T, V, U> {
   loading$: Observable<boolean>;
   cart$: Observable<T>;
 
@@ -36,6 +39,7 @@ export class DaffCartFacade<
   grandTotal$: Observable<DaffCart['grand_total']>;
   coupons$: Observable<DaffCart['coupons']>;
   items$: Observable<DaffCart['items']>;
+  dictionaryOfItems$: Observable<Dictionary<U>>;
   billingAddress$: Observable<DaffCart['billing_address']>;
   shippingAddress$: Observable<DaffCart['shipping_address']>;
   payment$: Observable<DaffCart['payment']>;
@@ -62,7 +66,7 @@ export class DaffCartFacade<
 
 	private _selectCartItemDiscountedRowTotal;
 
-  constructor(private store: Store<DaffCartReducersState<T, V>>) {
+  constructor(private store: Store<DaffCartReducersState<T, U, V>>) {
 		const {
 			selectCartLoading,
 			selectCartValue,
@@ -82,6 +86,7 @@ export class DaffCartFacade<
 			selectCartGrandTotal,
 			selectCartCoupons,
 			selectCartItems,
+			selectCartItemEntities,
 			selectCartBillingAddress,
 			selectCartShippingAddress,
 			selectCartPayment,
@@ -106,7 +111,7 @@ export class DaffCartFacade<
       selectHasShippingMethod,
       selectHasPaymentMethod,
       selectCanPlaceOrder
-		} = getDaffCartSelectors<T, V>();
+		} = getDaffCartSelectors<T, V, U>();
 		this._selectCartItemDiscountedRowTotal = selectCartItemDiscountedRowTotal;
 
     this.loading$ = this.store.pipe(select(selectCartLoading));
@@ -127,6 +132,7 @@ export class DaffCartFacade<
     this.grandTotal$ = this.store.pipe(select(selectCartGrandTotal));
     this.coupons$ = this.store.pipe(select(selectCartCoupons));
     this.items$ = this.store.pipe(select(selectCartItems));
+    this.dictionaryOfItems$ = this.store.pipe(select(selectCartItemEntities));
     this.billingAddress$ = this.store.pipe(select(selectCartBillingAddress));
     this.shippingAddress$ = this.store.pipe(select(selectCartShippingAddress));
     this.payment$ = this.store.pipe(select(selectCartPayment));

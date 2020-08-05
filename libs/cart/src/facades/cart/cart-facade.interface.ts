@@ -7,10 +7,13 @@ import { DaffCart } from '../../models/cart';
 import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
 import { DaffCartErrorType } from '../../reducers/errors/cart-error-type.enum';
 import { DaffCartOrderResult } from '../../models/cart-order-result';
+import { Dictionary } from '@ngrx/entity';
+import { DaffCartItem } from '../../models/cart-item';
 
 export interface DaffCartFacadeInterface<
   T extends DaffCart = DaffCart,
-  V extends DaffCartOrderResult = DaffCartOrderResult
+	V extends DaffCartOrderResult = DaffCartOrderResult,
+	U extends DaffCartItem = DaffCartItem
 > extends DaffStoreFacade<Action> {
   loading$: Observable<boolean>;
   cart$: Observable<T>;
@@ -30,6 +33,7 @@ export interface DaffCartFacadeInterface<
   grandTotal$: Observable<DaffCart['grand_total']>;
   coupons$: Observable<DaffCart['coupons']>;
   items$: Observable<DaffCart['items']>;
+  dictionaryOfItems$: Observable<Dictionary<U>>;
   billingAddress$: Observable<DaffCart['billing_address']>;
   shippingAddress$: Observable<DaffCart['shipping_address']>;
   payment$: Observable<DaffCart['payment']>;

@@ -336,6 +336,28 @@ describe('DaffCartFacade', () => {
     });
   });
 
+  describe('dictionaryOfItems$', () => {
+    it('should initially be an empty object', () => {
+      const expected = cold('a', { a: {}});
+      expect(facade.dictionaryOfItems$).toBeObservable(expected);
+    });
+
+    it('should be the cart items upon a successful cart item list', () => {
+      const cart = cartFactory.create();
+			const expected = cold('a', { a: 
+				cart.items.reduce((acc, item) => ({
+					...acc,
+					[item.item_id]: {
+						...item,
+						id: item.item_id
+					}
+				}), {})
+			});
+      store.dispatch(new DaffCartItemListSuccess(cart.items));
+      expect(facade.dictionaryOfItems$).toBeObservable(expected);
+    });
+  });
+
   describe('billingAddress$', () => {
     it('should initially be null', () => {
       const expected = cold('a', { a: null});
