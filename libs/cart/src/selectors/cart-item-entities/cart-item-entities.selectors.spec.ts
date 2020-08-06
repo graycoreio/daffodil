@@ -47,7 +47,7 @@ describe('selectCartItemEntitiesState', () => {
     
       it('selects cart item ids', () => {
 				const selector = store.pipe(select(selectCartItemIds));
-				const expected = cold('a', { a: [mockCartItems[0].item_id, mockCartItems[1].item_id] });
+				const expected = cold('a', { a: [String(mockCartItems[0].item_id), String(mockCartItems[1].item_id)] });
 
 				expect(selector).toBeObservable(expected);
       });
@@ -58,10 +58,7 @@ describe('selectCartItemEntitiesState', () => {
       it('selects product entities as a dictionary object', () => {
 				const expectedDictionary = mockCartItems.reduce((acc, item) => ({
 					...acc,
-					[item.item_id]: {
-						...item,
-						id: item.item_id
-					}
+					[item.item_id]: item
 				}), {});
 
 				const selector = store.pipe(select(selectCartItemEntities));
@@ -75,7 +72,7 @@ describe('selectCartItemEntitiesState', () => {
       
       it('selects all products as an array', () => {
         const selector = store.pipe(select(selectAllCartItems));
-				const expected = cold('a', { a: mockCartItems.map(item => ({ ...item, id: item.item_id })) });
+				const expected = cold('a', { a: mockCartItems });
 
 				expect(selector).toBeObservable(expected);
       });
@@ -96,7 +93,7 @@ describe('selectCartItemEntitiesState', () => {
     
     it('should select the product of the given id', () => {
 			const selector = store.pipe(select(selectCartItem, { id: mockCartItems[0].item_id }));
-			const expected = cold('a', { a: { ...mockCartItems[0], id: mockCartItems[0].item_id } });
+			const expected = cold('a', { a: mockCartItems[0] });
 
 			expect(selector).toBeObservable(expected);
     });

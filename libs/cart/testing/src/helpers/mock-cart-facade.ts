@@ -30,7 +30,7 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
   grandTotal$: BehaviorSubject<DaffCart['grand_total']> = new BehaviorSubject(null);
   coupons$: BehaviorSubject<DaffCart['coupons']> = new BehaviorSubject([]);
   items$: BehaviorSubject<DaffCart['items']> = new BehaviorSubject([]);
-  dictionaryOfItems$: BehaviorSubject<Dictionary<DaffCartItem>> = new BehaviorSubject({});
+  itemDictionary$: BehaviorSubject<Dictionary<DaffCartItem>> = new BehaviorSubject({});
   billingAddress$: BehaviorSubject<DaffCart['billing_address']> = new BehaviorSubject(null);
   shippingAddress$: BehaviorSubject<DaffCart['shipping_address']> = new BehaviorSubject(null);
   payment$: BehaviorSubject<DaffCart['payment']> = new BehaviorSubject(null);

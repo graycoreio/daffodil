@@ -49,10 +49,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('sets expected cartItem on state', () => {
-      expect(result.entities[cartItems[0].item_id]).toEqual({
-				id: cartItems[0].item_id,
-				...cartItems[0]
-			});
+      expect(result.entities[cartItems[0].item_id]).toEqual(cartItems[0]);
     });
   });
 
@@ -69,10 +66,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('sets expected cartItem on state', () => {
-      expect(result.entities[cartItem.item_id]).toEqual({
-				id: cartItem.item_id,
-				...cartItem
-			});
+      expect(result.entities[cartItem.item_id]).toEqual(cartItem);
     });
   });
 
@@ -97,10 +91,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('sets expected cart item on state', () => {
-      expect(result.entities[cartItems[0].item_id]).toEqual({
-				id: cartItems[0].item_id,
-				...cartItems[0]
-			});
+      expect(result.entities[cartItems[0].item_id]).toEqual(cartItems[0]);
     });
   });
 
@@ -125,10 +116,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('sets expected cart item on state', () => {
-      expect(result.entities[cartItems[0].item_id]).toEqual({
-				id: cartItems[0].item_id,
-				...cartItems[0]
-			});
+      expect(result.entities[cartItems[0].item_id]).toEqual(cartItems[0]);
     });
   });
 
@@ -153,10 +141,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('sets expected cart item on state', () => {
-      expect(result.entities[cartItems[0].item_id]).toEqual({
-				id: cartItems[0].item_id,
-				...cartItems[0]
-			});
+      expect(result.entities[cartItems[0].item_id]).toEqual(cartItems[0]);
     });
   });
 });

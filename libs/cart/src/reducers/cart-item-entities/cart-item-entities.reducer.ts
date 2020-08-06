@@ -24,22 +24,13 @@ export function daffCartItemEntitiesReducer<
 	const adapter = daffCartItemEntitiesAdapter<T>();
   switch (action.type) {
     case DaffCartItemActionTypes.CartItemListSuccessAction:
-			return adapter.addAll(action.payload.map(item => ({
-				id: item.item_id,
-				...item
-			})), state);
+			return adapter.addAll(action.payload, state);
 		case DaffCartItemActionTypes.CartItemLoadSuccessAction:
-			return adapter.upsertOne({
-				id: action.payload.item_id,
-				...action.payload
-			}, state);
+			return adapter.upsertOne(action.payload, state);
 		case DaffCartItemActionTypes.CartItemUpdateSuccessAction:
 		case DaffCartItemActionTypes.CartItemAddSuccessAction:
 		case DaffCartItemActionTypes.CartItemDeleteSuccessAction:
-			return adapter.addAll(<T[]><unknown>action.payload.items.map(item => ({
-				id: item.item_id,
-				...item
-			})), state);
+			return adapter.addAll(<T[]><unknown>action.payload.items, state);
     default:
       return state;
   }

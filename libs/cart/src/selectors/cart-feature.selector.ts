@@ -13,7 +13,7 @@ export interface DaffCartFeatureMemoizedSelectors<
 	V extends DaffCartOrderResult = DaffCartOrderResult,
 	U extends DaffCartItem = DaffCartItem
 > {
-	selectCartFeatureState: MemoizedSelector<object, DaffCartReducersState<T, U, V>>;
+	selectCartFeatureState: MemoizedSelector<object, DaffCartReducersState<T, V, U>>;
 }
 
 export const getDaffCartFeatureSelector = (() => {
@@ -22,7 +22,7 @@ export const getDaffCartFeatureSelector = (() => {
     T extends DaffCart = DaffCart,
 		V extends DaffCartOrderResult = DaffCartOrderResult,
 		U extends DaffCartItem = DaffCartItem
-  >(): DaffCartFeatureMemoizedSelectors<T, V> => cache = cache
+  >(): DaffCartFeatureMemoizedSelectors<T, V, U> => cache = cache
 		? cache
-		: { selectCartFeatureState: createFeatureSelector<DaffCartReducersState<T, U, V>>('cart') }
+		: { selectCartFeatureState: createFeatureSelector<DaffCartReducersState<T, V, U>>('cart') }
 })();

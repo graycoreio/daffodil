@@ -39,7 +39,7 @@ export class DaffCartFacade<
   grandTotal$: Observable<DaffCart['grand_total']>;
   coupons$: Observable<DaffCart['coupons']>;
   items$: Observable<DaffCart['items']>;
-  dictionaryOfItems$: Observable<Dictionary<U>>;
+  itemDictionary$: Observable<Dictionary<U>>;
   billingAddress$: Observable<DaffCart['billing_address']>;
   shippingAddress$: Observable<DaffCart['shipping_address']>;
   payment$: Observable<DaffCart['payment']>;
@@ -66,7 +66,7 @@ export class DaffCartFacade<
 
 	private _selectCartItemDiscountedRowTotal;
 
-  constructor(private store: Store<DaffCartReducersState<T, U, V>>) {
+  constructor(private store: Store<DaffCartReducersState<T, V, U>>) {
 		const {
 			selectCartLoading,
 			selectCartValue,
@@ -132,7 +132,7 @@ export class DaffCartFacade<
     this.grandTotal$ = this.store.pipe(select(selectCartGrandTotal));
     this.coupons$ = this.store.pipe(select(selectCartCoupons));
     this.items$ = this.store.pipe(select(selectCartItems));
-    this.dictionaryOfItems$ = this.store.pipe(select(selectCartItemEntities));
+    this.itemDictionary$ = this.store.pipe(select(selectCartItemEntities));
     this.billingAddress$ = this.store.pipe(select(selectCartBillingAddress));
     this.shippingAddress$ = this.store.pipe(select(selectCartShippingAddress));
     this.payment$ = this.store.pipe(select(selectCartPayment));

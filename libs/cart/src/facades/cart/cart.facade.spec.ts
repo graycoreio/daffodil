@@ -336,10 +336,10 @@ describe('DaffCartFacade', () => {
     });
   });
 
-  describe('dictionaryOfItems$', () => {
+  describe('itemDictionary$', () => {
     it('should initially be an empty object', () => {
       const expected = cold('a', { a: {}});
-      expect(facade.dictionaryOfItems$).toBeObservable(expected);
+      expect(facade.itemDictionary$).toBeObservable(expected);
     });
 
     it('should be the cart items upon a successful cart item list', () => {
@@ -347,14 +347,11 @@ describe('DaffCartFacade', () => {
 			const expected = cold('a', { a: 
 				cart.items.reduce((acc, item) => ({
 					...acc,
-					[item.item_id]: {
-						...item,
-						id: item.item_id
-					}
+					[item.item_id]: item
 				}), {})
 			});
       store.dispatch(new DaffCartItemListSuccess(cart.items));
-      expect(facade.dictionaryOfItems$).toBeObservable(expected);
+      expect(facade.itemDictionary$).toBeObservable(expected);
     });
   });
 

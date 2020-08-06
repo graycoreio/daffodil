@@ -8,10 +8,10 @@ import { DaffCartItem } from '../models/cart-item';
 
 export interface DaffCartReducersState<
 	T extends DaffCart = DaffCart,
-  V extends DaffCartItem = DaffCartItem,
-  U extends DaffCartOrderResult = DaffCartOrderResult
+  V extends DaffCartOrderResult = DaffCartOrderResult,
+  U extends DaffCartItem = DaffCartItem
 > {
 	cart: DaffCartReducerState<T>,
-	cartItems: EntityState<V>,
-  order: DaffCartOrderReducerState<U>
+	cartItems: EntityState<U>,
+  order: DaffCartOrderReducerState<V>
 }

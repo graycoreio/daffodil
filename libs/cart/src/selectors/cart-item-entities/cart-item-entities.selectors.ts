@@ -19,13 +19,13 @@ export interface DaffCartItemEntitiesMemoizedSelectors<T extends DaffCartItem = 
 
 const createCartItemEntitiesSelectors = <
 	T extends DaffCart = DaffCart,
-  V extends DaffCartItem = DaffCartItem,
-	U extends DaffCartOrderResult = DaffCartOrderResult
->(): DaffCartItemEntitiesMemoizedSelectors<V> => {
+	V extends DaffCartOrderResult = DaffCartOrderResult,
+  U extends DaffCartItem = DaffCartItem
+>(): DaffCartItemEntitiesMemoizedSelectors<U> => {
 	const {
 		selectCartFeatureState
-	} = getDaffCartFeatureSelector<T, U, V>();
-	const adapterSelectors = daffCartItemEntitiesAdapter<V>().getSelectors();
+	} = getDaffCartFeatureSelector<T, V, U>();
+	const adapterSelectors = daffCartItemEntitiesAdapter<U>().getSelectors();
 	/**
 	 * CartItem Entities State
 	 */
@@ -93,9 +93,9 @@ export const getDaffCartItemEntitiesSelectors = (() => {
 	let cache;
 	return <
 		T extends DaffCart = DaffCart,
-		V extends DaffCartItem = DaffCartItem,
-		U extends DaffCartOrderResult = DaffCartOrderResult
-	>(): DaffCartItemEntitiesMemoizedSelectors<V> => cache = cache 
+		V extends DaffCartOrderResult = DaffCartOrderResult,
+		U extends DaffCartItem = DaffCartItem
+	>(): DaffCartItemEntitiesMemoizedSelectors<U> => cache = cache 
 		? cache 
 		: createCartItemEntitiesSelectors<T, V, U>();
 })()

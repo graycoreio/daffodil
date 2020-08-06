@@ -22,10 +22,10 @@ const createCartSelectors = <
 >(): DaffCartMemoizedSelectors<T> => {
 
 	return {
-		...getDaffCartFeatureSelector<T, V>(),
-		...getCartOrderSelectors<T, V>(),
-		...getCartSelectors<T>(),
-		...getDaffCartItemEntitiesSelectors<T, U, V>()
+		...getDaffCartFeatureSelector<T, V, U>(),
+		...getCartOrderSelectors<T, V, U>(),
+		...getCartSelectors<T, V, U>(),
+		...getDaffCartItemEntitiesSelectors<T, V, U>()
 	}
 }
 

@@ -33,7 +33,7 @@ export interface DaffCartFacadeInterface<
   grandTotal$: Observable<DaffCart['grand_total']>;
   coupons$: Observable<DaffCart['coupons']>;
   items$: Observable<DaffCart['items']>;
-  dictionaryOfItems$: Observable<Dictionary<U>>;
+  itemDictionary$: Observable<Dictionary<U>>;
   billingAddress$: Observable<DaffCart['billing_address']>;
   shippingAddress$: Observable<DaffCart['shipping_address']>;
   payment$: Observable<DaffCart['payment']>;
