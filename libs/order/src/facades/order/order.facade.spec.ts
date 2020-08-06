@@ -10,7 +10,8 @@ import {
   DaffOrder,
   DaffOrderReducersState,
   daffOrderReducers,
-  DAFF_ORDER_STORE_FEATURE_KEY
+  DAFF_ORDER_STORE_FEATURE_KEY,
+  DaffOrderListSuccess
 } from '@daffodil/order';
 import { DaffOrderFactory } from '@daffodil/order/testing';
 import { DaffCartPlaceOrderSuccess, daffCartReducers } from '@daffodil/cart';
@@ -165,6 +166,186 @@ describe('DaffOrderFacade', () => {
       store.dispatch(new DaffCartPlaceOrderSuccess({orderId: mockOrder.id, cartId: 'cartId'}));
       store.dispatch(new DaffOrderLoadSuccess(mockOrder));
       expect(facade.hasPlacedOrder$).toBeObservable(expected);
+    });
+  });
+
+  describe('getOrder$', () => {
+    it('should initially be null', () => {
+      const expected = cold('a', {a: null});
+
+      expect(facade.getOrder$(orderId)).toBeObservable(expected);
+    });
+
+    describe('when an order has been loaded', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should select the order', () => {
+        const expected = cold('a', {a: mockOrder});
+
+        expect(facade.getOrder$(orderId)).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('getTotals$', () => {
+    it('should initially be an empty array', () => {
+      const expected = cold('a', {a: []});
+
+      expect(facade.getTotals$(orderId)).toBeObservable(expected);
+    });
+
+    describe('when an order has been loaded', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should select the order\'s totals', () => {
+        const expected = cold('a', {a: mockOrder.totals});
+
+        expect(facade.getTotals$(orderId)).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('getAppliedCodes$', () => {
+    it('should initially be an empty array', () => {
+      const expected = cold('a', {a: []});
+
+      expect(facade.getAppliedCodes$(orderId)).toBeObservable(expected);
+    });
+
+    describe('when an order has been loaded', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should select the order\'s applied codes', () => {
+        const expected = cold('a', {a: mockOrder.applied_codes});
+
+        expect(facade.getAppliedCodes$(orderId)).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('getItems$', () => {
+    it('should initially be an empty array', () => {
+      const expected = cold('a', {a: []});
+
+      expect(facade.getItems$(orderId)).toBeObservable(expected);
+    });
+
+    describe('when an order has been loaded', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should select the order\'s items', () => {
+        const expected = cold('a', {a: mockOrder.items});
+
+        expect(facade.getItems$(orderId)).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('getAddresses$', () => {
+    it('should initially be an empty array', () => {
+      const expected = cold('a', {a: []});
+
+      expect(facade.getAddresses$(orderId)).toBeObservable(expected);
+    });
+
+    describe('when an order has been loaded', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should select the order\'s addresses', () => {
+        const expected = cold('a', {a: mockOrder.addresses});
+
+        expect(facade.getAddresses$(orderId)).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('getShipments$', () => {
+    it('should initially be an empty array', () => {
+      const expected = cold('a', {a: []});
+
+      expect(facade.getShipments$(orderId)).toBeObservable(expected);
+    });
+
+    describe('when an order has been loaded', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should select the order\'s shipments', () => {
+        const expected = cold('a', {a: mockOrder.shipments});
+
+        expect(facade.getShipments$(orderId)).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('getPayment$', () => {
+    it('should initially be null', () => {
+      const expected = cold('a', {a: null});
+
+      expect(facade.getPayment$(orderId)).toBeObservable(expected);
+    });
+
+    describe('when an order has been loaded', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should select the order\'s payment', () => {
+        const expected = cold('a', {a: mockOrder.payment});
+
+        expect(facade.getPayment$(orderId)).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('getInvoices$', () => {
+    it('should initially be an empty array', () => {
+      const expected = cold('a', {a: []});
+
+      expect(facade.getInvoices$(orderId)).toBeObservable(expected);
+    });
+
+    describe('when an order has been loaded', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should select the order\'s invoices', () => {
+        const expected = cold('a', {a: mockOrder.invoices});
+
+        expect(facade.getInvoices$(orderId)).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('getCredits$', () => {
+    it('should initially be an empty array', () => {
+      const expected = cold('a', {a: []});
+
+      expect(facade.getCredits$(orderId)).toBeObservable(expected);
+    });
+
+    describe('when an order has been loaded', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should select the order\'s credits', () => {
+        const expected = cold('a', {a: mockOrder.credits});
+
+        expect(facade.getCredits$(orderId)).toBeObservable(expected);
+      });
     });
   });
 });

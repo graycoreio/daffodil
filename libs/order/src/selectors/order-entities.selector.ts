@@ -46,7 +46,7 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
 
   const selectOrder = createSelector(
     selectEntities,
-    (orders, props) => orders[Number(props.id)]
+    (orders, props) => orders[Number(props.id)] || null
   )
 
   const selectPlacedOrder = createSelector(
@@ -149,6 +149,7 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
      */
     selectHasPlacedOrder,
 
+    selectOrder,
     /**
      * Selects the specified order's totals.
      */
