@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.4](https://github.com/graycoreio/daffodil/compare/v0.8.3...v0.8.4) (2020-08-06)
+
+
+### Features
+
+* **order:** add facade methods for order subfields ([#1021](https://github.com/graycoreio/daffodil/issues/1021)) ([40100c9](https://github.com/graycoreio/daffodil/commit/40100c9e5fdbb1f8fc535479e8fa2edbbfe8e840))
+
 ### [0.8.3](https://github.com/graycoreio/daffodil/compare/v0.8.2...v0.8.3) (2020-08-03)
 
 
