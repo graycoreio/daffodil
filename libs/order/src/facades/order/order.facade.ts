@@ -26,14 +26,15 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
   placedOrder$: Observable<T>;
   hasPlacedOrder$: Observable<boolean>;
 
-  _totals: DaffOrderEntitySelectors['selectOrderTotals'];
-  _appliedCodes: DaffOrderEntitySelectors['selectOrderAppliedCodes'];
-  _items: DaffOrderEntitySelectors['selectOrderItems'];
-  _addresses: DaffOrderEntitySelectors['selectOrderAddresses'];
-  _shipments: DaffOrderEntitySelectors['selectOrderShipments'];
-  _payment: DaffOrderEntitySelectors['selectOrderPayment'];
-  _invoices: DaffOrderEntitySelectors['selectOrderInvoices'];
-  _credits: DaffOrderEntitySelectors['selectOrderCredits'];
+  _order: DaffOrderEntitySelectors<T>['selectOrder'];
+  _totals: DaffOrderEntitySelectors<T>['selectOrderTotals'];
+  _appliedCodes: DaffOrderEntitySelectors<T>['selectOrderAppliedCodes'];
+  _items: DaffOrderEntitySelectors<T>['selectOrderItems'];
+  _addresses: DaffOrderEntitySelectors<T>['selectOrderAddresses'];
+  _shipments: DaffOrderEntitySelectors<T>['selectOrderShipments'];
+  _payment: DaffOrderEntitySelectors<T>['selectOrderPayment'];
+  _invoices: DaffOrderEntitySelectors<T>['selectOrderInvoices'];
+  _credits: DaffOrderEntitySelectors<T>['selectOrderCredits'];
 
   constructor(private store: Store<DaffOrderReducersState<T>>) {
     const {
@@ -47,6 +48,7 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
       selectPlacedOrder,
       selectHasPlacedOrder,
 
+      selectOrder,
       selectOrderTotals,
       selectOrderAppliedCodes,
       selectOrderItems,
@@ -68,6 +70,7 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
     this.placedOrder$ = this.store.pipe(select(selectPlacedOrder));
     this.hasPlacedOrder$ = this.store.pipe(select(selectHasPlacedOrder));
 
+    this._order = selectOrder;
     this._totals = selectOrderTotals;
     this._appliedCodes = selectOrderAppliedCodes;
     this._items = selectOrderItems;
@@ -78,35 +81,39 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
     this._credits = selectOrderCredits;
   }
 
-  totals$(orderId: T['id']): Observable<T['totals']> {
+  getOrder$(orderId: T['id']): Observable<T> {
+    return this.store.pipe(select(this._order, {id: orderId}))
+  }
+
+  getTotals$(orderId: T['id']): Observable<T['totals']> {
     return this.store.pipe(select(this._totals, {id: orderId}))
   }
 
-  appliedCodes$(orderId: T['id']): Observable<T['applied_codes']> {
+  getAppliedCodes$(orderId: T['id']): Observable<T['applied_codes']> {
     return this.store.pipe(select(this._appliedCodes, {id: orderId}))
   }
 
-  items$(orderId: T['id']): Observable<T['items']> {
+  getItems$(orderId: T['id']): Observable<T['items']> {
     return this.store.pipe(select(this._items, {id: orderId}))
   }
 
-  addresses$(orderId: T['id']): Observable<T['addresses']> {
+  getAddresses$(orderId: T['id']): Observable<T['addresses']> {
     return this.store.pipe(select(this._addresses, {id: orderId}))
   }
 
-  shipments$(orderId: T['id']): Observable<T['shipments']> {
+  getShipments$(orderId: T['id']): Observable<T['shipments']> {
     return this.store.pipe(select(this._shipments, {id: orderId}))
   }
 
-  payment$(orderId: T['id']): Observable<T['payment']> {
+  getPayment$(orderId: T['id']): Observable<T['payment']> {
     return this.store.pipe(select(this._payment, {id: orderId}))
   }
 
-  invoices$(orderId: T['id']): Observable<T['invoices']> {
+  getInvoices$(orderId: T['id']): Observable<T['invoices']> {
     return this.store.pipe(select(this._invoices, {id: orderId}))
   }
 
-  credits$(orderId: T['id']): Observable<T['credits']> {
+  getCredits$(orderId: T['id']): Observable<T['credits']> {
     return this.store.pipe(select(this._credits, {id: orderId}))
   }
 

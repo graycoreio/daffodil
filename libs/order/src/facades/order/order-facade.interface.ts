@@ -17,12 +17,13 @@ export interface DaffOrderFacadeInterface<T extends DaffOrder = DaffOrder> exten
   placedOrder$: Observable<T>;
   hasPlacedOrder$: Observable<boolean>;
 
-  totals$(orderId: T['id']): Observable<T['totals']>;
-  appliedCodes$(orderId: T['id']): Observable<T['applied_codes']>;
-  items$(orderId: T['id']): Observable<T['items']>;
-  addresses$(orderId: T['id']): Observable<T['addresses']>;
-  shipments$(orderId: T['id']): Observable<T['shipments']>;
-  payment$(orderId: T['id']): Observable<T['payment']>;
-  invoices$(orderId: T['id']): Observable<T['invoices']>;
-  credits$(orderId: T['id']): Observable<T['credits']>;
+  getOrder$(orderId: T['id']): Observable<T>;
+  getTotals$(orderId: T['id']): Observable<T['totals']>;
+  getAppliedCodes$(orderId: T['id']): Observable<T['applied_codes']>;
+  getItems$(orderId: T['id']): Observable<T['items']>;
+  getAddresses$(orderId: T['id']): Observable<T['addresses']>;
+  getShipments$(orderId: T['id']): Observable<T['shipments']>;
+  getPayment$(orderId: T['id']): Observable<T['payment']>;
+  getInvoices$(orderId: T['id']): Observable<T['invoices']>;
+  getCredits$(orderId: T['id']): Observable<T['credits']>;
 }

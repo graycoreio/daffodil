@@ -16,35 +16,39 @@ export class MockDaffOrderFacade implements DaffOrderFacadeInterface {
   placedOrder$: BehaviorSubject<DaffOrder> = new BehaviorSubject(null);
   hasPlacedOrder$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  totals$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['totals']> {
-    return new BehaviorSubject([])
-  }
-
-  appliedCodes$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['applied_codes']> {
-    return new BehaviorSubject([])
-  }
-
-  items$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['items']> {
-    return new BehaviorSubject([])
-  }
-
-  addresses$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['addresses']> {
-    return new BehaviorSubject([])
-  }
-
-  shipments$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['shipments']> {
-    return new BehaviorSubject([])
-  }
-
-  payment$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['payment']> {
+  getOrder$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder> {
     return new BehaviorSubject(null)
   }
 
-  invoices$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['invoices']> {
+  getTotals$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['totals']> {
     return new BehaviorSubject([])
   }
 
-  credits$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['credits']> {
+  getAppliedCodes$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['applied_codes']> {
+    return new BehaviorSubject([])
+  }
+
+  getItems$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['items']> {
+    return new BehaviorSubject([])
+  }
+
+  getAddresses$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['addresses']> {
+    return new BehaviorSubject([])
+  }
+
+  getShipments$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['shipments']> {
+    return new BehaviorSubject([])
+  }
+
+  getPayment$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['payment']> {
+    return new BehaviorSubject(null)
+  }
+
+  getInvoices$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['invoices']> {
+    return new BehaviorSubject([])
+  }
+
+  getCredits$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['credits']> {
     return new BehaviorSubject([])
   }
 
