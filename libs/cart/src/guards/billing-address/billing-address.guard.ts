@@ -9,7 +9,7 @@ import { DaffCartBillingAddressGuardRedirectUrl } from './billing-address-guard-
 /**
  * A routing guard that will redirect to a given url if the billing address on the cart is not defined.
  * The url is `/` by default, but can be overridden with the DaffCartBillingAddressGuardRedirectUrl injection token.
- * The guard will wait until the cart has been resolved before performing the check.
+ * The guard will wait until the cart has been resolved before performing the check and emitting.
  */
 @Injectable({
 	providedIn: 'root'

@@ -9,7 +9,7 @@ import { DaffCartPaymentMethodGuardRedirectUrl } from './payment-method-guard-re
 /**
  * A routing guard that will redirect to a given url if the payment method on the cart is not defined.
  * The url is `/` by default, but can be overridden with the DaffCartPaymentMethodGuardRedirectUrl injection token.
- * The guard will wait until the cart has been resolved before performing the check.
+ * The guard will wait until the cart has been resolved before performing the check and emitting.
  */
 @Injectable({
 	providedIn: 'root'
