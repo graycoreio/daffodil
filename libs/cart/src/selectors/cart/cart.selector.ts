@@ -65,7 +65,7 @@ const createCartSelectors = <
 	V extends DaffCartOrderResult = DaffCartOrderResult,
 	U extends DaffCartItem = DaffCartItem
 >(): DaffCartStateMemoizedSelectors<T> => {
-	const selectCartFeatureState = getDaffCartFeatureSelector<T, V>().selectCartFeatureState;
+	const selectCartFeatureState = getDaffCartFeatureSelector<T, V, U>().selectCartFeatureState;
 	const selectCartState = createSelector(
 		selectCartFeatureState,
 		(state: DaffCartReducersState<T, V, U>) => state.cart
