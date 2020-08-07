@@ -62,12 +62,13 @@ export interface DaffCartStateMemoizedSelectors<
 
 const createCartSelectors = <
   T extends DaffCart = DaffCart,
-  V extends DaffCartOrderResult = DaffCartOrderResult
+	V extends DaffCartOrderResult = DaffCartOrderResult,
+	U extends DaffCartItem = DaffCartItem
 >(): DaffCartStateMemoizedSelectors<T> => {
-	const selectCartFeatureState = getDaffCartFeatureSelector<T, V>().selectCartFeatureState;
+	const selectCartFeatureState = getDaffCartFeatureSelector<T, V, U>().selectCartFeatureState;
 	const selectCartState = createSelector(
 		selectCartFeatureState,
-		(state: DaffCartReducersState<T, V>) => state.cart
+		(state: DaffCartReducersState<T, V, U>) => state.cart
 	);
 	const selectCartValue = createSelector(
 		selectCartState,
@@ -269,8 +270,9 @@ export const getCartSelectors = (() => {
 	let cache;
 	return <
     T extends DaffCart = DaffCart,
-    V extends DaffCartOrderResult = DaffCartOrderResult
+		V extends DaffCartOrderResult = DaffCartOrderResult,
+		U extends DaffCartItem = DaffCartItem
   >(): DaffCartStateMemoizedSelectors<T> => cache = cache
 		? cache
-		: createCartSelectors<T, V>();
+		: createCartSelectors<T, V, U>();
 })();
