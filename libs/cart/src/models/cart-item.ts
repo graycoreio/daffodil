@@ -2,9 +2,11 @@ import {
   DaffProductImage,
   DaffProduct
 } from '@daffodil/product';
+import { DaffCartItemInputType } from './cart-item-input';
 
 export interface DaffCartItem {
-  item_id: number | string;
+	item_id: number | string;
+	type: DaffCartItemInputType;
   image?: DaffProductImage;
   product_id: DaffProduct['id'];
   parent_item_id: number;

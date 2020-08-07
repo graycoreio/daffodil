@@ -6,6 +6,7 @@ import {
 } from '@daffodil/cart/testing';
 
 import { DaffMagentoCartItemTransformer } from './cart-item.service';
+import { DaffCartItemInputType } from '../../../../models/cart-item-input';
 
 describe('Driver | Magento | Cart | Transformer | MagentoCartItem', () => {
   let service: DaffMagentoCartItemTransformer;
@@ -66,6 +67,7 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartItem', () => {
     });
 
     it('should return an object with the correct values', () => {
+			expect(transformedCartItem.type).toEqual(DaffCartItemInputType.Simple);
       expect(transformedCartItem.sku).toEqual(sku);
       expect(transformedCartItem.qty).toEqual(qty);
       expect(transformedCartItem.price).toEqual(price);

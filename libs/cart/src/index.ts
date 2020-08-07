@@ -1,5 +1,7 @@
 export { DaffCart } from './models/cart';
-export { DaffCartItem } from './models/cart-item';
+export * from './models/cart-item';
+export * from './models/composite-cart-item';
+export * from './models/configurable-cart-item';
 export { 
 	DaffCartItemInput,
 	DaffCartItemInputType,
