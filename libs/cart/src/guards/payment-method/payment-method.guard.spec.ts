@@ -2,30 +2,30 @@ import { TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 import { MockStore } from '@ngrx/store/testing';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffCartFactory, DaffCartAddressFactory } from '@daffodil/cart/testing';
+import { DaffCartFactory, DaffCartPaymentFactory } from '@daffodil/cart/testing';
 import { DaffCartFacade, DaffCart, DaffCartLoadSuccess } from '@daffodil/cart';
 
-import { DaffBillingAddressGuard } from './billing-address-guard';
+import { DaffPaymentMethodGuard } from './payment-method.guard';
 import { daffCartReducers } from '../../reducers/public_api';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Router } from '@angular/router';
-import { DaffCartBillingAddressGuardRedirectUrl } from './billing-address-guard-redirect.token';
+import { DaffCartPaymentMethodGuardRedirectUrl } from './payment-method-guard-redirect.token';
 
-describe('DaffBillingAddressGuard', () => {
+describe('DaffPaymentMethodGuard', () => {
 
-	let service: DaffBillingAddressGuard;
+	let service: DaffPaymentMethodGuard;
 	let facade;
 	let store: MockStore<any>;
 	let router: Router;
 	const stubUrl = 'url';
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-				DaffBillingAddressGuard,
+				DaffPaymentMethodGuard,
 				DaffCartFacade,
-				{ provide: DaffCartBillingAddressGuardRedirectUrl, useValue: stubUrl }
+				{ provide: DaffCartPaymentMethodGuardRedirectUrl, useValue: stubUrl }
 			],
 			imports: [
         StoreModule.forRoot({
@@ -34,45 +34,52 @@ describe('DaffBillingAddressGuard', () => {
 				RouterTestingModule
 			]
     });
-		service = TestBed.get(DaffBillingAddressGuard);
+		service = TestBed.get(DaffPaymentMethodGuard);
 		facade = TestBed.get(DaffCartFacade);
-		store = TestBed.get(Store);
 		router = TestBed.get(Router);
+		store = TestBed.get(Store);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
 	});
-	
+
 	describe('canActivate', () => {
-		
-		it('should allow activation when there is a billing address', () => {
+		describe('when the cart has not been resolved', () => {
+      it('should not emit', () => {
+        const expected = cold('-');
+
+        expect(service.canActivate()).toBeObservable(expected);
+      });
+    });
+
+		it('should allow activation when there is a payment method', () => {
 			const cart: DaffCart = new DaffCartFactory().create({
-				billing_address: new DaffCartAddressFactory().create(),
+				payment: new DaffCartPaymentFactory().create(),
 			});
 			store.dispatch(new DaffCartLoadSuccess(cart));
-			const expected = cold('a', { a: true })
-			
+			const expected = cold('(a|)', { a: true })
+
 			expect(service.canActivate()).toBeObservable(expected);
 		});
 
-		describe('when there is no billing address', () => {
+		describe('when there is no payment method', () => {
 
 			beforeEach(() => {
 				spyOn(router, 'navigateByUrl');
 				const cart: DaffCart = new DaffCartFactory().create({
-					billing_address: null,
+					payment: null,
 				});
 				store.dispatch(new DaffCartLoadSuccess(cart));
 			});
-			
+
 			it('should not allow activation', () => {
-				const expected = cold('a', { a: false })
-				
+				const expected = cold('(a|)', { a: false })
+
 				expect(service.canActivate()).toBeObservable(expected);
 			});
 
-			it('should redirect to the given DaffCartBillingAddressGuardRedirectUrl', () => {
+			it('should redirect to the given DaffCartPaymentMethodGuardRedirectUrl', () => {
 				service.canActivate().subscribe();
 				expect(router.navigateByUrl).toHaveBeenCalledWith(stubUrl);
 			});
