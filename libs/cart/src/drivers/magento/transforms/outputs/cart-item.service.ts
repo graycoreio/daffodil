@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { MagentoCartItem } from '../../models/outputs/cart-item';
+import { MagentoCartItem, MagentoCartItemTypeEnum } from '../../models/outputs/cart-item';
 import { DaffCartItem } from '../../../../models/cart-item';
+import { DaffCartItemInputType } from '../../../../models/cart-item-input';
 
 /**
  * Transforms magento carts into an object usable by daffodil.
@@ -19,7 +20,8 @@ export class DaffMagentoCartItemTransformer {
     return cartItem ? {
       ...{magento_cart_item: cartItem},
 
-      // base
+			// base
+			type: this.transformType(cartItem.__typename),
       item_id: cartItem.id,
       sku: cartItem.product.sku,
       name: cartItem.product.name,
@@ -37,5 +39,16 @@ export class DaffMagentoCartItemTransformer {
       // TODO: implement
       parent_item_id: 0
     } : null
-  }
+	}
+	
+	private transformType(magentoType: MagentoCartItemTypeEnum): DaffCartItemInputType {
+		switch(magentoType) {
+			case (MagentoCartItemTypeEnum.Bundle):
+				return DaffCartItemInputType.Composite;
+			case (MagentoCartItemTypeEnum.Configurable):
+				return DaffCartItemInputType.Configurable
+			default:
+				return DaffCartItemInputType.Simple;
+		}
+	} 
 }

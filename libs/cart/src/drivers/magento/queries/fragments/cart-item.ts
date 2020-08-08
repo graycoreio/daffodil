@@ -6,6 +6,7 @@ import { moneyFragment } from './money';
 
 export const cartItemFragment = gql`
   fragment cartItem on CartItemInterface {
+		__typename
     id
     product {
       ...product
@@ -24,7 +25,26 @@ export const cartItemFragment = gql`
       total_item_discount {
         ...money
       }
-    }
+		}
+		...on ConfigurableCartItem {
+			configurable_options {
+				option_label
+				value_label
+			}
+		}
+		...on BundleCartItem {
+			bundle_options {
+				id
+				label
+				type
+				values {
+					id
+					label
+					price
+					quantity
+				}
+			}
+		}
   }
   ${magentoProductFragment}
   ${moneyFragment}

@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
 import {
-  MagentoCartItem,
+	MagentoCartItem,
+	MagentoCartItemTypeEnum
 } from '@daffodil/cart';
 import { MagentoProduct } from '@daffodil/product';
 import { MagentoProductFactory } from '@daffodil/product/testing';
@@ -11,7 +12,7 @@ import { MagentoMoney } from '@daffodil/driver/magento';
 import { MagentoMoneyFactory } from '@daffodil/driver/magento/testing';
 
 export class MockMagentoCartItem implements MagentoCartItem {
-	__typename = 'SimpleCartItem';
+	__typename = MagentoCartItemTypeEnum.Simple;
   id = faker.random.number({min: 1, max: 1000});
   prices = {
 		__typename: 'CartItemPrices',
