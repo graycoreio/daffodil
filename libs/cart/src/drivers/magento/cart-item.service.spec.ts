@@ -21,7 +21,6 @@ import {
 import { DaffMagentoCartItemService } from './cart-item.service';
 import { MagentoCart } from './models/outputs/cart';
 import { MagentoCartItem } from './models/outputs/cart-item';
-import { DaffMagentoCartItemTransformer } from './transforms/outputs/cart-item.service';
 import { DaffMagentoCartItemUpdateInputTransformer } from './transforms/inputs/cart-item-update.service';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import {
@@ -57,7 +56,6 @@ describe('Driver | Magento | Cart | CartItemService', () => {
   let magentoCartItemFactory: MagentoCartItemFactory;
 
   let magentoCartTransformerSpy: jasmine.SpyObj<DaffMagentoCartTransformer>;
-  let magentoCartItemTransformerSpy: jasmine.SpyObj<DaffMagentoCartItemTransformer>;
   let magentoCartItemUpdateInputTransformerSpy: jasmine.SpyObj<DaffMagentoCartItemUpdateInputTransformer>;
 
   let cartId;
@@ -93,10 +91,6 @@ describe('Driver | Magento | Cart | CartItemService', () => {
           useValue: jasmine.createSpyObj('DaffMagentoCartTransformer', ['transform'])
         },
         {
-          provide: DaffMagentoCartItemTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartItemTransformer', ['transform'])
-        },
-        {
           provide: DaffMagentoCartItemUpdateInputTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoCartItemUpdateInputTransformer', ['transform'])
         },
@@ -116,7 +110,6 @@ describe('Driver | Magento | Cart | CartItemService', () => {
     controller = TestBed.get(ApolloTestingController);
 
     magentoCartTransformerSpy = TestBed.get(DaffMagentoCartTransformer);
-    magentoCartItemTransformerSpy = TestBed.get(DaffMagentoCartItemTransformer);
     magentoCartItemUpdateInputTransformerSpy = TestBed.get(DaffMagentoCartItemUpdateInputTransformer);
 
 		daffProductFactory = TestBed.get(DaffProductFactory);
@@ -202,7 +195,6 @@ describe('Driver | Magento | Cart | CartItemService', () => {
     };
 
     magentoCartTransformerSpy.transform.and.returnValue(mockDaffCart);
-    magentoCartItemTransformerSpy.transform.and.returnValue(mockDaffCartItem);
     magentoCartItemUpdateInputTransformerSpy.transform.and.returnValue(mockMagentoCartItemUpdateInput);
   });
 
@@ -211,22 +203,25 @@ describe('Driver | Magento | Cart | CartItemService', () => {
   });
 
   describe('list | getting a list of cart items', () => {
-    it('should call the transformer with the correct argument', done => {
-      service.list(cartId).subscribe(() => {
-        expect(magentoCartItemTransformerSpy.transform).toHaveBeenCalledWith(jasmine.objectContaining(mockMagentoCartItem));
-        done();
-      });
-
-      const op = controller.expectOne(addTypenameToDocument(listCartItems));
-
-      op.flush({
-        data: mockListCartItemResponse
-      });
-    });
 
     it('should return the correct value', done => {
       service.list(cartId).subscribe(result => {
-        expect(result).toEqual([jasmine.objectContaining(mockDaffCartItem)]);
+        expect(result).toEqual([jasmine.objectContaining({
+					item_id: mockMagentoCartItem.id,
+					type: DaffCartItemInputType.Simple,
+					image: {
+						id: mockMagentoCartItem.product.thumbnail.label,
+						url: mockMagentoCartItem.product.thumbnail.url,
+						label: mockMagentoCartItem.product.thumbnail.label
+					},
+					product_id: mockMagentoCartItem.product.id.toString(),
+					sku: mockMagentoCartItem.product.sku,
+					name: mockMagentoCartItem.product.name,
+					qty: mockMagentoCartItem.quantity,
+					price: mockMagentoCartItem.prices.price.value,
+					row_total: mockMagentoCartItem.prices.row_total.value,
+					total_discount: mockMagentoCartItem.prices.total_item_discount.value
+				})]);
         done();
       });
 

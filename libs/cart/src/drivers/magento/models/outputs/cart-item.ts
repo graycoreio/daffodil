@@ -33,7 +33,7 @@ export interface MagentoBundleCartItem extends MagentoCartItem {
 		type: string;
 		values: {
 			id: number;
-			string: string;
+			label: string;
 			price: number;
 			quantity: number;
 		}[];
