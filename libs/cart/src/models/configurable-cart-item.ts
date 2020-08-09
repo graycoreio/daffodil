@@ -7,12 +7,6 @@ export interface DaffConfigurableCartItem extends DaffCartItem {
 }
 
 export interface DaffConfigurableCartItemAttribute {
-	code: string;
-	label: string;
-	value: DaffConfigurableCartItemAttributeValue;
-}
-
-export interface DaffConfigurableCartItemAttributeValue {
-	value: string;
-	label: string;
+	attribute_label: string;
+	value_label: string;
 }
