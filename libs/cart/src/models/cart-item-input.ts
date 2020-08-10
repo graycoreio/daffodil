@@ -18,10 +18,10 @@ export interface DaffSimpleCartItemInput extends DaffCartItemInput {
 
 export interface DaffCompositeCartItemInput extends DaffCartItemInput {
 	type: DaffCartItemInputType.Composite;
-	options: DaffCompositeCartItemOption[];
+	options: DaffCompositeCartItemInputOption[];
 }
 
-export interface DaffCompositeCartItemOption {
+export interface DaffCompositeCartItemInputOption {
 	code: string | number;
 	quantity: number;
 	value: string;

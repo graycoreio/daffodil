@@ -6,7 +6,7 @@ export {
 	DaffCartItemInput,
 	DaffCartItemInputType,
 	DaffCompositeCartItemInput,
-	DaffCompositeCartItemOption
+	DaffCompositeCartItemInputOption
 } from './models/cart-item-input';
 export { DaffCartAddress } from './models/cart-address';
 export { DaffCartPaymentMethod } from './models/cart-payment';
