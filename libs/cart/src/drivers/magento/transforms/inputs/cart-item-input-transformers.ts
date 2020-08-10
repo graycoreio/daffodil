@@ -1,5 +1,5 @@
 import { MagentoCartItemInput, MagentoBundledCartItemInput, MagentoBundledCartItemOption, MagentoConfigurableCartItemInput } from '../../models/inputs/cart-item';
-import { DaffCartItemInput, DaffCompositeCartItemInput, DaffCompositeCartItemOption, DaffConfigurableCartItemInput } from '../../../../models/cart-item-input';
+import { DaffCartItemInput, DaffCompositeCartItemInput, DaffCompositeCartItemInputOption, DaffConfigurableCartItemInput } from '../../../../models/cart-item-input';
 
 export function transformCompositeCartItem(item: DaffCompositeCartItemInput): MagentoBundledCartItemInput {
 	return {
@@ -25,7 +25,7 @@ export function transformConfigurableCartItem(item: DaffConfigurableCartItemInpu
 	}
 }
 
-function transformCompositeCartItemOption(option: DaffCompositeCartItemOption): MagentoBundledCartItemOption {
+function transformCompositeCartItemOption(option: DaffCompositeCartItemInputOption): MagentoBundledCartItemOption {
 	return {
 		id: Number(option.code),
 		quantity: option.quantity,
