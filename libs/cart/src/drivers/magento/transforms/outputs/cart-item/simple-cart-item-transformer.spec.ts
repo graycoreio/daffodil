@@ -5,12 +5,10 @@ import {
   DaffCartItemFactory
 } from '@daffodil/cart/testing';
 
-import { DaffMagentoCartItemTransformer } from './cart-item.service';
-import { DaffCartItemInputType } from '../../../../models/cart-item-input';
+import { DaffCartItemInputType } from '../../../../../models/cart-item-input';
+import { transformMagentoSimpleCartItem } from './simple-cart-item-transformer';
 
-describe('Driver | Magento | Cart | Transformer | MagentoCartItem', () => {
-  let service: DaffMagentoCartItemTransformer;
-
+describe('Driver | Magento | Cart | Transformer | SimpleMagentoCartItem', () => {
   let daffCartItemFactory: DaffCartItemFactory;
   let magentoCartItemFactory: MagentoCartItemFactory;
 
@@ -18,14 +16,6 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartItem', () => {
   let mockMagentoCartItem;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        DaffMagentoCartItemTransformer
-      ]
-    });
-
-    service = TestBed.get(DaffMagentoCartItemTransformer);
-
     daffCartItemFactory = TestBed.get(DaffCartItemFactory);
     magentoCartItemFactory = TestBed.get(MagentoCartItemFactory);
 
@@ -33,11 +23,7 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartItem', () => {
     mockMagentoCartItem = magentoCartItemFactory.create();
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-
-  describe('transform | transforming a cart item', () => {
+  describe('transformMagentoSimpleCartItem', () => {
     let transformedCartItem;
     let sku;
     let qty;
@@ -63,7 +49,7 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartItem', () => {
 				label: label
 			}
 
-      transformedCartItem = service.transform(mockMagentoCartItem);
+      transformedCartItem = transformMagentoSimpleCartItem(mockMagentoCartItem);
     });
 
     it('should return an object with the correct values', () => {
@@ -83,7 +69,7 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartItem', () => {
 
     describe('when the argument is null', () => {
       beforeEach(() => {
-        transformedCartItem = service.transform(null);
+        transformedCartItem = transformMagentoSimpleCartItem(null);
       });
 
       it('should return null and not throw an error', () => {

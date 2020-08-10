@@ -18,13 +18,13 @@ import {
   updateCartItem
 } from './queries/public_api';
 import { MagentoConfigurableCartItemInput } from './models/inputs/cart-item';
-import { DaffMagentoCartItemTransformer } from './transforms/outputs/cart-item.service';
 import { transformCompositeCartItem, transformSimpleCartItem, transformConfigurableCartItem } from './transforms/inputs/cart-item-input-transformers';
 import { MagentoListCartItemsResponse } from './models/responses/list-cart-items';
 import { MagentoAddSimpleCartItemResponse, MagentoAddBundleCartItemResponse, MagentoAddConfigurableCartItemResponse } from './models/responses/add-cart-item';
 import { MagentoRemoveCartItemResponse } from './models/responses/remove-cart-item';
 import { DaffMagentoCartItemUpdateInputTransformer } from './transforms/inputs/cart-item-update.service';
 import { MagentoUpdateCartItemResponse } from './models/responses/public_api';
+import { transformMagentoCartItem } from './transforms/outputs/cart-item/cart-item-transformer';
 
 /**
  * A service for making Magento GraphQL queries for carts.
@@ -36,7 +36,6 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
   constructor(
     private apollo: Apollo,
     public cartTransformer: DaffMagentoCartTransformer,
-    public cartItemTransformer: DaffMagentoCartItemTransformer,
     public cartItemUpdateInputTransformer: DaffMagentoCartItemUpdateInputTransformer
   ) {}
 
@@ -45,7 +44,7 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
       query: listCartItems,
       variables: {cartId}
     }).pipe(
-      map(result => result.data.cart.items.map(item => this.cartItemTransformer.transform(item)))
+      map(result => result.data.cart.items.map(transformMagentoCartItem))
     )
   }
 

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 
-import { DaffMagentoCartItemTransformer } from './cart-item.service';
 import { DaffMagentoCartPaymentTransformer } from './cart-payment.service';
 import { DaffMagentoCartShippingInformationTransformer } from './cart-shipping-information.service';
 import { DaffMagentoShippingAddressTransformer } from './shipping-address.service';
@@ -9,6 +8,7 @@ import { MagentoCart } from '../../models/outputs/cart';
 import { DaffCart } from '../../../../models/cart';
 import { DaffMagentoCartShippingRateTransformer } from './cart-shipping-rate.service';
 import { daffMagentoCouponTransform } from './cart-coupon';
+import { transformMagentoCartItem } from './cart-item/cart-item-transformer';
 
 /**
  * Transforms magento carts into an object usable by daffodil.
@@ -18,7 +18,6 @@ import { daffMagentoCouponTransform } from './cart-coupon';
 })
 export class DaffMagentoCartTransformer {
   constructor(
-    public itemTransformer: DaffMagentoCartItemTransformer,
     public shippingAddressTransformer: DaffMagentoShippingAddressTransformer,
     public billingAddressTransformer: DaffMagentoBillingAddressTransformer,
     public paymentTransformer: DaffMagentoCartPaymentTransformer,
@@ -50,7 +49,7 @@ export class DaffMagentoCartTransformer {
 
   private transformCartItems(cart: MagentoCart): {items: DaffCart['items']} {
     return {
-      items: cart.items.map(item => this.itemTransformer.transform(item)),
+      items: cart.items.map(transformMagentoCartItem),
     }
   }
 

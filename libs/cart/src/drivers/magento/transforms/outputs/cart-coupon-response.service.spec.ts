@@ -13,7 +13,6 @@ import {
 } from '@daffodil/cart/testing';
 
 import { DaffMagentoCartTransformer } from './cart.service';
-import { DaffMagentoCartItemTransformer } from './cart-item.service';
 import { MagentoCartItem } from '../../models/outputs/cart-item';
 
 describe('Driver | Magento | Cart | Transformer | CartCouponResponse', () => {
@@ -29,16 +28,10 @@ describe('Driver | Magento | Cart | Transformer | CartCouponResponse', () => {
   let mockMagentoCoupon: MagentoCartCoupon;
   let mockCartItem: MagentoCartItem;
 
-  let cartItemTransformerSpy;
-
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffMagentoCartTransformer,
-        {
-          provide: DaffMagentoCartItemTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartItemTransformer', ['transform'])
-        }
+        DaffMagentoCartTransformer
       ]
     });
 
@@ -49,16 +42,12 @@ describe('Driver | Magento | Cart | Transformer | CartCouponResponse', () => {
     magentoCartItemFactory = TestBed.get(MagentoCartItemFactory);
     magentoCouponFactory = TestBed.get(MagentoCartCouponFactory);
 
-    cartItemTransformerSpy = TestBed.get(DaffMagentoCartItemTransformer);
-
     mockDaffCart = daffCartFactory.create();
     mockMagentoCart = magentoCartFactory.create();
     mockCartItem = magentoCartItemFactory.create();
     mockMagentoCoupon = magentoCouponFactory.create();
     mockMagentoCart.items = [mockCartItem];
     mockMagentoCart.applied_coupons = [mockMagentoCoupon];
-
-    cartItemTransformerSpy.transform.withArgs(mockCartItem).and.returnValue(mockDaffCart.items[0]);
   });
 
   it('should be created', () => {
@@ -89,10 +78,6 @@ describe('Driver | Magento | Cart | Transformer | CartCouponResponse', () => {
         expect(String(transformedCart.id)).toEqual(String(id));
         expect(transformedCart.subtotal).toEqual(subtotal);
         expect(transformedCart.grand_total).toEqual(grand_total);
-      });
-
-      it('should call the cart item transformer with the cart item', () => {
-        expect(cartItemTransformerSpy.transform).toHaveBeenCalledWith(mockCartItem);
       });
     });
 

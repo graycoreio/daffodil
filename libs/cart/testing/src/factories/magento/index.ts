@@ -4,5 +4,7 @@ export { MagentoCartCouponFactory } from './cart-coupon.factory';
 export { MagentoCartPaymentMethodFactory } from './cart-payment-method.factory';
 export { MagentoCartShippingMethodFactory } from './cart-shipping-method.factory';
 export { MagentoCartFactory } from './cart.factory';
-export { MagentoCartItemFactory } from './cart-item.factory';
+export { MagentoCartItemFactory } from './cart-item/cart-item.factory';
+export { MagentoBundleCartItemFactory } from './cart-item/bundle-cart-item.factory';
+export { MagentoConfigurableCartItemFactory } from './cart-item/configurable-cart-item.factory';
 export { MagentoShippingAddressFactory } from './shipping-address.factory';
