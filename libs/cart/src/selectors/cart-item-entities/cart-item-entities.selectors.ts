@@ -7,6 +7,9 @@ import { DaffCartReducersState } from '../../reducers/public_api';
 import { DaffCart } from '../../models/cart';
 import { DaffCartOrderResult } from '../../models/cart-order-result';
 import { getDaffCartFeatureSelector } from '../cart-feature.selector';
+import { DaffCartItemInputType } from '../../models/cart-item-input';
+import { DaffConfigurableCartItem, DaffConfigurableCartItemAttribute } from '../../models/configurable-cart-item';
+import { DaffCompositeCartItem, DaffCompositeCartItemOption } from '../../models/composite-cart-item';
 
 export interface DaffCartItemEntitiesMemoizedSelectors<T extends DaffCartItem = DaffCartItem> {
 	selectCartItemEntitiesState: MemoizedSelector<object, EntityState<T>>;
@@ -15,6 +18,8 @@ export interface DaffCartItemEntitiesMemoizedSelectors<T extends DaffCartItem = 
 	selectAllCartItems: MemoizedSelector<object, T[]>;
 	selectCartItemTotal: MemoizedSelector<object, number>;
 	selectCartItem: MemoizedSelectorWithProps<object, object, T>;
+	selectCartItemConfiguredAttributes: MemoizedSelectorWithProps<object, object, DaffConfigurableCartItemAttribute[]>;
+	selectCartItemCompositeOptions: MemoizedSelectorWithProps<object, object, DaffCompositeCartItemOption[]>;
 }
 
 const createCartItemEntitiesSelectors = <
@@ -79,13 +84,40 @@ const createCartItemEntitiesSelectors = <
 		(cartItems, props) => cartItems[props.id]
 	);
 
+	const selectCartItemConfiguredAttributes = createSelector(
+		selectCartItemEntities,
+		(cartItems, props) => {
+			const cartItem = selectCartItem.projector(cartItems, { id: props.id });
+			if(cartItem.type !== DaffCartItemInputType.Configurable) {
+				return null;
+			}
+
+			return (<DaffConfigurableCartItem>cartItem).attributes;
+		}
+	);
+
+	const selectCartItemCompositeOptions = createSelector(
+		selectCartItemEntities,
+		(cartItems, props) => {
+			const cartItem = selectCartItem.projector(cartItems, { id: props.id });
+
+			if(cartItem.type !== DaffCartItemInputType.Composite) {
+				return null;
+			}
+
+			return (<DaffCompositeCartItem>cartItem).options;
+		}
+	);
+
 	return { 
 		selectCartItemEntitiesState,
 		selectCartItemIds,
 		selectCartItemEntities,
 		selectAllCartItems,
 		selectCartItemTotal,
-		selectCartItem
+		selectCartItem,
+		selectCartItemConfiguredAttributes,
+		selectCartItemCompositeOptions
 	}
 }
 

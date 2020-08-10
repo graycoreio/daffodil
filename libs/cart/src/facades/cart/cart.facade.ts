@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Action, Store, select } from '@ngrx/store';
+import { Dictionary } from '@ngrx/entity';
 
 import { DaffCart } from '../../models/cart';
 import { DaffCartReducersState } from '../../reducers/public_api';
@@ -10,7 +11,8 @@ import { DaffCartErrorType } from '../../reducers/errors/cart-error-type.enum';
 import { DaffCartFacadeInterface } from './cart-facade.interface';
 import { DaffCartOrderResult } from '../../models/cart-order-result';
 import { DaffCartItem } from '../../models/cart-item';
-import { Dictionary } from '@ngrx/entity';
+import { DaffConfigurableCartItemAttribute } from '../../models/configurable-cart-item';
+import { DaffCompositeCartItemOption } from '../../models/composite-cart-item';
 
 @Injectable({
   providedIn: 'root'
@@ -65,6 +67,8 @@ export class DaffCartFacade<
   hasOrderResult$: Observable<boolean>;
 
 	private _selectCartItemDiscountedRowTotal;
+	private _selectCartItemConfiguredAttributes;
+	private _selectCartItemCompositeOptions;
 
   constructor(private store: Store<DaffCartReducersState<T, V, U>>) {
 		const {
@@ -87,6 +91,8 @@ export class DaffCartFacade<
 			selectCartCoupons,
 			selectCartItems,
 			selectCartItemEntities,
+			selectCartItemConfiguredAttributes,
+			selectCartItemCompositeOptions,
 			selectCartBillingAddress,
 			selectCartShippingAddress,
 			selectCartPayment,
@@ -113,6 +119,8 @@ export class DaffCartFacade<
       selectCanPlaceOrder
 		} = getDaffCartSelectors<T, V, U>();
 		this._selectCartItemDiscountedRowTotal = selectCartItemDiscountedRowTotal;
+		this._selectCartItemConfiguredAttributes = selectCartItemConfiguredAttributes;
+		this._selectCartItemCompositeOptions = selectCartItemCompositeOptions;
 
     this.loading$ = this.store.pipe(select(selectCartLoading));
 		this.cart$ = this.store.pipe(select(selectCartValue));
@@ -157,6 +165,14 @@ export class DaffCartFacade<
     this.orderResultCartId$ = this.store.pipe(select(selectCartOrderCartId));
     this.hasOrderResult$ = this.store.pipe(select(selectHasOrderResult));
 	}
+
+	getConfiguredCartItemAttributes(itemId: string | number): Observable<DaffConfigurableCartItemAttribute[]> {
+		return this.store.pipe(select(this._selectCartItemConfiguredAttributes, { id: itemId }))
+	};
+
+  getCompositeCartItemOptions(itemId: string | number): Observable<DaffCompositeCartItemOption[]> {
+		return this.store.pipe(select(this._selectCartItemCompositeOptions, { id: itemId }));
+	};
 
 	getCartItemDiscountedTotal(itemId: string | number): Observable<number> {
 		return this.store.pipe(select(this._selectCartItemDiscountedRowTotal, { id: itemId }));

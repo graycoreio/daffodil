@@ -7,7 +7,9 @@ import {
 	DaffCartErrors,
 	DaffCartErrorType,
   DaffCartOrderResult,
-	DaffCartItem
+	DaffCartItem,
+	DaffConfigurableCartItemAttribute,
+	DaffCompositeCartItemOption
 } from '@daffodil/cart';
 import { Dictionary } from '@ngrx/entity';
 
@@ -61,6 +63,14 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
 
 	getCartItemDiscountedTotal(itemId: string | number): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
+	}
+
+	getConfiguredCartItemAttributes(itemId: string | number): BehaviorSubject<DaffConfigurableCartItemAttribute[]> {
+		return new BehaviorSubject([]);
+	}
+
+	getCompositeCartItemOptions(itemId: string | number): BehaviorSubject<DaffCompositeCartItemOption[]> {
+		return new BehaviorSubject([]);
 	}
 
   dispatch(action: Action) {};

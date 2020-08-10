@@ -2,7 +2,6 @@ import { DaffCartItem } from './cart-item';
 import { DaffCartItemInputType } from './cart-item-input';
 
 export interface DaffConfigurableCartItem extends DaffCartItem {
-	type: DaffCartItemInputType.Configurable;
 	attributes: DaffConfigurableCartItemAttribute[];
 }
 
