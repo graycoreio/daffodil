@@ -20,6 +20,10 @@ export function cartResolveReducer<T extends DaffCart = DaffCart>(
     case DaffCartActionTypes.ResolveCartSuccessAction:
       return {
         ...state,
+        cart: {
+          ...state.cart,
+          ...action.payload
+        },
         resolved: true
       };
 

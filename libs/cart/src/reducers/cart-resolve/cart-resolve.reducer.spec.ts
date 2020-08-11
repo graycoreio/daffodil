@@ -63,6 +63,10 @@ describe('Cart | Reducer | cartResolveReducer', () => {
     it('should indicate that the cart is resolved', () => {
       expect(result.resolved).toEqual(true);
     });
+
+    it('should set cart from action.payload', () => {
+      expect(result.cart).toEqual(cart)
+    });
   });
 
   describe('when ResolveCartActionFailureAction is triggered', () => {
