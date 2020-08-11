@@ -27,5 +27,6 @@ export const initialState: DaffCartReducerState<any> = Object.freeze({
     [DaffCartErrorType.Payment]: [],
     [DaffCartErrorType.PaymentMethods]: [],
     [DaffCartErrorType.Coupon]: [],
-  }
+  },
+  resolved: false
 });
