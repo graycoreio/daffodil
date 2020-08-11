@@ -1,11 +1,11 @@
 import { TestBed, async } from '@angular/core/testing';
-import { StoreModule, combineReducers, Store } from '@ngrx/store';
+import { StoreModule, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-import { DaffCart, DaffCartReducersState, daffCartReducers, DaffCartLoadSuccess }  from '@daffodil/cart';
+import { DaffCart, DaffCartLoadSuccess }  from '@daffodil/cart';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 
 import { DaffEmptyCartResolver } from './empty-cart-resolver.service';
@@ -15,7 +15,7 @@ import { DaffCartResolverRedirectUrl } from './tokens/cart-resolver-redirect.tok
 describe('DaffEmptyCartResolver', () => {
   const actions$: Observable<any> = null;
   let emptyCartResolver: DaffEmptyCartResolver;
-  let store: Store<DaffCartReducersState>;
+  let store: Store<any>;
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
   let stubCart: DaffCart;
@@ -25,9 +25,7 @@ describe('DaffEmptyCartResolver', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        StoreModule.forRoot({
-          cart: combineReducers(daffCartReducers),
-        }),
+        StoreModule.forRoot({}),
 				RouterTestingModule
       ],
       providers: [

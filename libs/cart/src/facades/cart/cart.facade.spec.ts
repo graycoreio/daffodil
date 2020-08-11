@@ -33,7 +33,9 @@ import {
   DaffCartItemFactory,
   DaffCartAddressFactory,
   DaffCartPaymentFactory,
-  DaffCartShippingRateFactory
+  DaffCartShippingRateFactory,
+	DaffConfigurableCartItemFactory,
+	DaffCompositeCartItemFactory
 } from '@daffodil/cart/testing';
 
 import { DaffCartFacade } from './cart.facade';
@@ -42,12 +44,16 @@ import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
 import { DaffCartErrorType } from '../../reducers/errors/cart-error-type.enum';
 import { DaffCart } from '../../models/cart';
 import { DaffCartOrderResult } from '../../models/cart-order-result';
+import { DaffConfigurableCartItem } from '../../models/configurable-cart-item';
+import { DaffCompositeCartItem } from '../../models/composite-cart-item';
 
 describe('DaffCartFacade', () => {
   let store: MockStore<{ product: Partial<DaffCartReducersState> }>;
   let facade: DaffCartFacade;
 	let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
+  let configurableCartItemFactory: DaffConfigurableCartItemFactory;
+  let compositeCartItemFactory: DaffCompositeCartItemFactory;
   let cartAddressFactory: DaffCartAddressFactory;
   let paymentFactory: DaffCartPaymentFactory;
   let shippingMethodFactory: DaffCartShippingRateFactory;
@@ -71,6 +77,8 @@ describe('DaffCartFacade', () => {
     facade = TestBed.get(DaffCartFacade);
     cartFactory = TestBed.get(DaffCartFactory);
     cartItemFactory = TestBed.get(DaffCartItemFactory);
+    configurableCartItemFactory = TestBed.get(DaffConfigurableCartItemFactory);
+    compositeCartItemFactory = TestBed.get(DaffCompositeCartItemFactory);
     cartAddressFactory = TestBed.get(DaffCartAddressFactory);
     paymentFactory = TestBed.get(DaffCartPaymentFactory);
     shippingMethodFactory = TestBed.get(DaffCartShippingRateFactory);
@@ -638,6 +646,32 @@ describe('DaffCartFacade', () => {
         expect(facade.hasOrderResult$).toBeObservable(expected);
       });
     });
+  });
+
+  describe('getConfiguredCartItemAttributes', () => {
+
+		it('should be the configurable cart item\'s configured attributes', () => {
+			const cartItems: DaffConfigurableCartItem[] = configurableCartItemFactory.createMany(2);
+			const cart = cartFactory.create({
+				items: cartItems
+			});
+      const expected = cold('a', { a: cartItems[0].attributes });
+      store.dispatch(new DaffCartLoadSuccess(cart));
+			expect(facade.getConfiguredCartItemAttributes(cart.items[0].item_id)).toBeObservable(expected);
+		});
+  });
+
+  describe('getCompositeCartItemOptions', () => {
+
+		it('should be the composite cart item\'s item options', () => {
+			const cartItems: DaffCompositeCartItem[] = compositeCartItemFactory.createMany(2);
+			const cart = cartFactory.create({
+				items: cartItems
+			});
+      const expected = cold('a', { a: cartItems[0].options });
+      store.dispatch(new DaffCartLoadSuccess(cart));
+			expect(facade.getCompositeCartItemOptions(cart.items[0].item_id)).toBeObservable(expected);
+		});
   });
 
   describe('getCartItemDiscountedTotal', () => {

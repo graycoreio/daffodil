@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
+import { Dictionary } from '@ngrx/entity';
 
 import { DaffStoreFacade } from '@daffodil/core';
 
@@ -7,8 +8,9 @@ import { DaffCart } from '../../models/cart';
 import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
 import { DaffCartErrorType } from '../../reducers/errors/cart-error-type.enum';
 import { DaffCartOrderResult } from '../../models/cart-order-result';
-import { Dictionary } from '@ngrx/entity';
 import { DaffCartItem } from '../../models/cart-item';
+import { DaffConfigurableCartItemAttribute } from '../../models/configurable-cart-item';
+import { DaffCompositeCartItemOption } from '../../models/composite-cart-item';
 
 export interface DaffCartFacadeInterface<
   T extends DaffCart = DaffCart,
@@ -44,10 +46,10 @@ export interface DaffCartFacadeInterface<
 
   isCartEmpty$: Observable<boolean>;
   /**
-   * Whether the cart's shipping address equals the billing address.
-   * Returns false if either address is null or undefined.
+	 * Whether the cart's shipping address equals the billing address.
+	 * Returns false if either address is null or undefined.
    */
-  isBillingSameAsShipping$: Observable<boolean>;
+	isBillingSameAsShipping$: Observable<boolean>;
 
   hasBillingAddress$: Observable<boolean>;
   hasShippingAddress$: Observable<boolean>;
@@ -63,4 +65,6 @@ export interface DaffCartFacadeInterface<
   hasOrderResult$: Observable<boolean>;
 
 	getCartItemDiscountedTotal(itemId: string | number): Observable<number>;
+	getConfiguredCartItemAttributes(itemId: string | number): Observable<DaffConfigurableCartItemAttribute[]>;
+	getCompositeCartItemOptions(itemId: string | number): Observable<DaffCompositeCartItemOption[]>;
 }

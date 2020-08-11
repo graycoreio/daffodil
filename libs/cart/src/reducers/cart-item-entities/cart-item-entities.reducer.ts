@@ -2,7 +2,7 @@ import { EntityState } from '@ngrx/entity';
 
 import { daffCartItemEntitiesAdapter } from './cart-item-entities-reducer-adapter';
 import { DaffCartItem } from '../../models/cart-item';
-import { DaffCartItemActionTypes } from '../../actions/public_api';
+import { DaffCartItemActionTypes, DaffCartActionTypes, DaffCartActions } from '../../actions/public_api';
 import { DaffCartItemActions } from '../../actions/public_api';
 import { DaffCart } from '../../models/cart';
 import { DaffCartItemInput } from '../../models/cart-item-input';
@@ -20,7 +20,7 @@ export function daffCartItemEntitiesReducer<
 	V extends DaffCart = DaffCart
 >(
   state = daffCartItemEntitiesAdapter<T>().getInitialState(), 
-  action: DaffCartItemActions<T, U, V>): EntityState<T> {
+  action: DaffCartItemActions<T, U, V> | DaffCartActions<V>): EntityState<T> {
 	const adapter = daffCartItemEntitiesAdapter<T>();
   switch (action.type) {
     case DaffCartItemActionTypes.CartItemListSuccessAction:
@@ -28,8 +28,10 @@ export function daffCartItemEntitiesReducer<
 		case DaffCartItemActionTypes.CartItemLoadSuccessAction:
 			return adapter.upsertOne(action.payload, state);
 		case DaffCartItemActionTypes.CartItemUpdateSuccessAction:
-		case DaffCartItemActionTypes.CartItemAddSuccessAction:
 		case DaffCartItemActionTypes.CartItemDeleteSuccessAction:
+		case DaffCartItemActionTypes.CartItemAddSuccessAction:
+		case DaffCartActionTypes.CartLoadSuccessAction:
+		case DaffCartActionTypes.CartClearSuccessAction:
 			return adapter.addAll(<T[]><unknown>action.payload.items, state);
     default:
       return state;

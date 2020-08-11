@@ -8,7 +8,7 @@ import {
 } from '@daffodil/cart';
 import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
 
-import { DaffCartItemFactory } from '../../factories/cart-item.factory';
+import { DaffCartItemFactory } from '../../factories/cart-item/cart-item.factory';
 
 @Injectable({
   providedIn: 'root'

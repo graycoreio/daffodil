@@ -8,7 +8,9 @@ import {
 	DaffCartItemLoadSuccess, 
 	DaffCartItemUpdateSuccess, 
 	DaffCartItemAddSuccess, 
-	DaffCartItemDeleteSuccess
+	DaffCartItemDeleteSuccess,
+	DaffCartLoadSuccess,
+	DaffCartClearSuccess
 } from '../../actions/public_api';
 import { DaffCart } from '../../models/cart';
 
@@ -142,6 +144,50 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
     it('sets expected cart item on state', () => {
       expect(result.entities[cartItems[0].item_id]).toEqual(cartItems[0]);
+    });
+  });
+
+  describe('when CartLoadSuccessAction is triggered', () => {
+
+    let cart: DaffCart;
+    let cartItems: DaffCartItem[];
+    let result;
+
+    beforeEach(() => {
+			cartItems = cartItemFactory.createMany(2);
+      cart = new DaffCartFactory().create({
+				items: cartItems
+			});
+      const cartLoadSuccess = new DaffCartLoadSuccess(cart);
+      
+      result = daffCartItemEntitiesReducer(initialState, cartLoadSuccess);
+    });
+
+    it('sets expected number of cartItems on state', () => {
+      expect(result.ids.length).toEqual(cartItems.length);
+    });
+
+    it('sets expected cart item on state', () => {
+      expect(result.entities[cartItems[0].item_id]).toEqual(cartItems[0]);
+    });
+  });
+
+  describe('when CartClearSuccessAction is triggered', () => {
+
+    let cart: DaffCart;
+    let result;
+
+    beforeEach(() => {
+      cart = new DaffCartFactory().create({
+				items: []
+			});
+      const cartItemAddSuccess = new DaffCartClearSuccess(cart);
+      
+      result = daffCartItemEntitiesReducer(initialState, cartItemAddSuccess);
+    });
+
+    it('sets expected number of cartItems on state', () => {
+      expect(result.ids.length).toEqual(0);
     });
   });
 });

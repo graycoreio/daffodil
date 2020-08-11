@@ -8,7 +8,7 @@ import { DaffProductImage } from '@daffodil/product';
 
 export class MockCartItem implements DaffCartItem {
 	item_id = faker.random.number({min: 1, max: 1000});
-	type: DaffCartItemInputType.Simple;
+	type = DaffCartItemInputType.Simple;
   product_id = faker.random.number({min: 1, max: 1000});
 	parent_item_id = faker.random.number({min: 1, max: 1000});
 	image = <DaffProductImage>new DaffProductImageFactory().create();
