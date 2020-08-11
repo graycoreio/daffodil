@@ -46,23 +46,4 @@ describe('Cart | Testing | Factories | CompositeCartItemFactory', () => {
       expect(result.total_discount).toBeLessThan(result.price);
     });
   });
-
-  describe('createMany', () => {
-    let result: DaffCompositeCartItem[];
-
-    it('should create as many cart items as desired', () => {
-      const spy = spyOn(compositeCartItemFactory, 'create');
-
-      result = compositeCartItemFactory.createMany(2);
-      expect(result.length).toEqual(2);
-      expect(compositeCartItemFactory.create).toHaveBeenCalledTimes(2);
-
-
-      spy.calls.reset();
-
-      result = compositeCartItemFactory.createMany(3);
-      expect(result.length).toEqual(3);
-      expect(compositeCartItemFactory.create).toHaveBeenCalledTimes(3);
-    });
-  })
 });
