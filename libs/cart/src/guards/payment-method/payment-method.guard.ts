@@ -22,12 +22,12 @@ export class DaffPaymentMethodGuard implements CanActivate {
 	) {}
 
   canActivate(): Observable<boolean> {
-    return this.facade.id$.pipe(
-      filter(cartId => !!cartId),
+    return this.facade.resolved$.pipe(
+      filter(resolved => resolved),
       switchMapTo(this.facade.hasPaymentMethod$),
       take(1),
 			tap(hasPaymentMethod => {
-				if(!hasPaymentMethod) {
+				if (!hasPaymentMethod) {
 					this.router.navigateByUrl(this.redirectUrl)
 				}
 			})

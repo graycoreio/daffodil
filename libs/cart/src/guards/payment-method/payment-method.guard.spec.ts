@@ -6,7 +6,11 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffCartFactory, DaffCartPaymentFactory } from '@daffodil/cart/testing';
-import { DaffCartFacade, DaffCart, DaffCartLoadSuccess } from '@daffodil/cart';
+import {
+  DaffCartFacade,
+  DaffCart,
+  DaffResolveCartSuccess
+} from '@daffodil/cart';
 
 import { DaffPaymentMethodGuard } from './payment-method.guard';
 import { daffCartReducers } from '../../reducers/public_api';
@@ -57,7 +61,7 @@ describe('DaffPaymentMethodGuard', () => {
 			const cart: DaffCart = new DaffCartFactory().create({
 				payment: new DaffCartPaymentFactory().create(),
 			});
-			store.dispatch(new DaffCartLoadSuccess(cart));
+			store.dispatch(new DaffResolveCartSuccess(cart));
 			const expected = cold('(a|)', { a: true })
 
 			expect(service.canActivate()).toBeObservable(expected);
@@ -70,7 +74,7 @@ describe('DaffPaymentMethodGuard', () => {
 				const cart: DaffCart = new DaffCartFactory().create({
 					payment: null,
 				});
-				store.dispatch(new DaffCartLoadSuccess(cart));
+				store.dispatch(new DaffResolveCartSuccess(cart));
 			});
 
 			it('should not allow activation', () => {
