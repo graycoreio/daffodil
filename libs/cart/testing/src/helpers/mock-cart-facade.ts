@@ -14,7 +14,8 @@ import {
 import { Dictionary } from '@ngrx/entity';
 
 export class MockDaffCartFacade implements DaffCartFacadeInterface {
-  loading$: BehaviorSubject<boolean> = new BehaviorSubject(null);
+  loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  resolved$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   cart$: BehaviorSubject<DaffCart> = new BehaviorSubject(null);
   errors$: BehaviorSubject<DaffCartErrors> = new BehaviorSubject(null);
   cartErrors$: BehaviorSubject<DaffCartErrors[DaffCartErrorType.Cart]> = new BehaviorSubject([]);

@@ -11,7 +11,7 @@ import {
   DaffCartShippingRateFactory
 } from '@daffodil/cart/testing';
 
-import { DaffCartLoadSuccess, DaffCartPlaceOrderSuccess } from '../../actions/public_api';
+import { DaffCartLoadSuccess, DaffCartPlaceOrderSuccess, DaffResolveCartSuccess } from '../../actions/public_api';
 import { daffCartReducers, DaffCartReducersState } from '../../reducers/public_api';
 import { getCartSelectors } from './cart.selector';
 import { DaffCartErrorType } from '../../reducers/errors/cart-error-type.enum';
@@ -32,6 +32,7 @@ describe('Cart | Selector | Cart', () => {
 	let errors: DaffCartErrors;
 	const {
 		selectCartLoading,
+		selectCartResolved,
     selectCartValue,
 
 		selectCartErrorsObject,
@@ -127,6 +128,23 @@ describe('Cart | Selector | Cart', () => {
     it('returns loading state', () => {
       const selector = store.pipe(select(selectCartLoading));
       const expected = cold('a', {a: loading});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCartResolved', () => {
+    it('should initially be false', () => {
+      const selector = store.pipe(select(selectCartResolved));
+      const expected = cold('a', {a: false});
+
+      expect(selector).toBeObservable(expected);
+    })
+
+    it('it should be true after cart resolution success', () => {
+      const selector = store.pipe(select(selectCartResolved));
+      const expected = cold('a', {a: true});
+      store.dispatch(new DaffResolveCartSuccess(cart));
 
       expect(selector).toBeObservable(expected);
     });
