@@ -249,7 +249,7 @@ describe('Driver | Magento | Order | OrderService', () => {
     };
     mockMagentoOrder = {
       id: Number(mockDaffOrder.id),
-      order_number: null,
+      order_number: mockDaffOrder.id,
       customer_id: Number(mockDaffOrder.customer_id),
       created_at: mockDaffOrder.created_at,
       updated_at: mockDaffOrder.updated_at,
