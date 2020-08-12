@@ -6,7 +6,7 @@ import { MagentoGraycoreOrderInvoice } from './order-invoice';
 
 export interface MagentoGraycoreOrder {
   id: number;
-  order_number: string;
+  order_number: string | number;
   customer_id: number;
   created_at: string;
   updated_at: string;
