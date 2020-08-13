@@ -18,6 +18,7 @@ export interface DaffCartFacadeInterface<
 	U extends DaffCartItem = DaffCartItem
 > extends DaffStoreFacade<Action> {
   loading$: Observable<boolean>;
+  resolved$: Observable<boolean>;
   cart$: Observable<T>;
   errors$: Observable<DaffCartErrors>;
   cartErrors$: Observable<DaffCartErrors[DaffCartErrorType.Cart]>;

@@ -23,6 +23,7 @@ export class DaffCartFacade<
 	U extends DaffCartItem = DaffCartItem
 > implements DaffCartFacadeInterface<T, V, U> {
   loading$: Observable<boolean>;
+  resolved$: Observable<boolean>;
   cart$: Observable<T>;
 
   errors$: Observable<DaffCartErrors>;
@@ -72,7 +73,8 @@ export class DaffCartFacade<
 
   constructor(private store: Store<DaffCartReducersState<T, V, U>>) {
 		const {
-			selectCartLoading,
+      selectCartLoading,
+      selectCartResolved,
 			selectCartValue,
 			selectCartErrorsObject,
 			selectCartErrors,
@@ -123,6 +125,7 @@ export class DaffCartFacade<
 		this._selectCartItemCompositeOptions = selectCartItemCompositeOptions;
 
     this.loading$ = this.store.pipe(select(selectCartLoading));
+    this.resolved$ = this.store.pipe(select(selectCartResolved));
 		this.cart$ = this.store.pipe(select(selectCartValue));
     this.errors$ = this.store.pipe(select(selectCartErrorsObject));
     this.cartErrors$ = this.store.pipe(select(selectCartErrors));

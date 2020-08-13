@@ -22,12 +22,12 @@ export class DaffShippingAddressGuard implements CanActivate {
 	) {}
 
   canActivate(): Observable<boolean> {
-    return this.facade.id$.pipe(
-      filter(cartId => !!cartId),
+    return this.facade.resolved$.pipe(
+      filter(resolved => resolved),
       switchMapTo(this.facade.hasShippingAddress$),
       take(1),
 			tap(hasShippingAddress => {
-				if(!hasShippingAddress) {
+				if (!hasShippingAddress) {
 					this.router.navigateByUrl(this.redirectUrl)
 				}
 			})

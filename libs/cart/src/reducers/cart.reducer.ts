@@ -7,6 +7,7 @@ import { cartShippingInformationReducer } from './cart-shipping-information/cart
 import { cartPaymentReducer } from './cart-payment/cart-payment.reducer';
 import { cartPaymentMethodsReducer } from './cart-payment-methods/cart-payment-methods.reducer';
 import { cartCouponReducer } from './cart-coupon/cart-coupon.reducer';
+import { cartResolveReducer } from './cart-resolve/cart-resolve.reducer';
 
 import { DaffCartReducerState } from './cart-state.interface';
 import { ActionTypes } from './action-types.type';
@@ -44,7 +45,8 @@ export function daffCartReducer<T extends DaffCart = DaffCart>(
       cartShippingInformationReducer,
       cartPaymentReducer,
       cartPaymentMethodsReducer,
-      cartCouponReducer
+      cartCouponReducer,
+      cartResolveReducer
     ]
   )
 }

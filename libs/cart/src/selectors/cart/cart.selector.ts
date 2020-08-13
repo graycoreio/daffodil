@@ -20,6 +20,7 @@ export interface DaffCartStateMemoizedSelectors<
 	selectCartState: MemoizedSelector<object, DaffCartReducerState<T>>;
 	selectCartValue: MemoizedSelector<object, T>;
   selectCartLoading: MemoizedSelector<object, boolean>;
+  selectCartResolved: MemoizedSelector<object, boolean>;
 
 	selectCartErrorsObject: MemoizedSelector<object, DaffCartReducerState<T>['errors']>;
 	selectCartErrors: MemoizedSelector<object, string[]>;
@@ -77,6 +78,10 @@ const createCartSelectors = <
 	const selectCartLoading = createSelector(
 		selectCartState,
 		(state: DaffCartReducerState<T>) => state.loading
+  );
+  const selectCartResolved = createSelector(
+		selectCartState,
+		(state: DaffCartReducerState<T>) => state.resolved
   );
 
 	const selectCartErrorsObject = createSelector(
@@ -229,6 +234,7 @@ const createCartSelectors = <
 		selectCartState,
 		selectCartValue,
     selectCartLoading,
+    selectCartResolved,
 
 		selectCartErrorsObject,
 		selectCartErrors,

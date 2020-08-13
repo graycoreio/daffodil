@@ -6,7 +6,12 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { DaffCartFactory, DaffCartAddressFactory } from '@daffodil/cart/testing';
-import { DaffCartFacade, DaffCart, DaffCartLoadSuccess } from '@daffodil/cart';
+import {
+  DaffCartFacade,
+  DaffCart,
+  DaffResolveCartSuccess,
+  DaffCartLoadSuccess
+} from '@daffodil/cart';
 
 import { DaffShippingAddressGuard } from './shipping-address.guard';
 import { daffCartReducers } from '../../reducers/public_api';
@@ -57,7 +62,8 @@ describe('DaffShippingAddressGuard', () => {
 			const cart: DaffCart = new DaffCartFactory().create({
 				shipping_address: new DaffCartAddressFactory().create(),
 			});
-			store.dispatch(new DaffCartLoadSuccess(cart));
+      store.dispatch(new DaffCartLoadSuccess(cart));
+      store.dispatch(new DaffResolveCartSuccess());
 			const expected = cold('(a|)', { a: true })
 
 			expect(service.canActivate()).toBeObservable(expected);
@@ -70,7 +76,8 @@ describe('DaffShippingAddressGuard', () => {
 				const cart: DaffCart = new DaffCartFactory().create({
 					shipping_address: null,
 				});
-				store.dispatch(new DaffCartLoadSuccess(cart));
+        store.dispatch(new DaffCartLoadSuccess(cart));
+				store.dispatch(new DaffResolveCartSuccess());
 			});
 
 			it('should not allow activation', () => {

@@ -46,6 +46,7 @@ import { DaffCart } from '../../models/cart';
 import { DaffCartOrderResult } from '../../models/cart-order-result';
 import { DaffConfigurableCartItem } from '../../models/configurable-cart-item';
 import { DaffCompositeCartItem } from '../../models/composite-cart-item';
+import { DaffResolveCartSuccess } from '../../actions/public_api';
 
 describe('DaffCartFacade', () => {
   let store: MockStore<{ product: Partial<DaffCartReducersState> }>;
@@ -124,6 +125,19 @@ describe('DaffCartFacade', () => {
       const expected = cold('a', { a: true });
       store.dispatch(new DaffCartLoad());
       expect(facade.loading$).toBeObservable(expected);
+    });
+  });
+
+  describe('resolved$', () => {
+    it('should be false if the cart is not resolved', () => {
+      const expected = cold('a', { a: false });
+      expect(facade.resolved$).toBeObservable(expected);
+    });
+
+    it('should be true if the cart is resolved', () => {
+      const expected = cold('a', { a: true });
+      store.dispatch(new DaffResolveCartSuccess());
+      expect(facade.resolved$).toBeObservable(expected);
     });
   });
 
@@ -352,7 +366,7 @@ describe('DaffCartFacade', () => {
 
     it('should be the cart items upon a successful cart item list', () => {
       const cart = cartFactory.create();
-			const expected = cold('a', { a: 
+			const expected = cold('a', { a:
 				cart.items.reduce((acc, item) => ({
 					...acc,
 					[item.item_id]: item

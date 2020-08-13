@@ -22,12 +22,12 @@ export class DaffBillingAddressGuard implements CanActivate {
 	) {}
 
   canActivate(): Observable<boolean> {
-    return this.facade.id$.pipe(
-      filter(cartId => !!cartId),
+    return this.facade.resolved$.pipe(
+      filter(resolved => resolved),
       switchMapTo(this.facade.hasBillingAddress$),
       take(1),
 			tap(hasBillingAddress => {
-				if(!hasBillingAddress) {
+				if (!hasBillingAddress) {
 					this.router.navigateByUrl(this.redirectUrl)
 				}
 			})
