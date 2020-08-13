@@ -9,7 +9,8 @@ import { DaffCartFactory, DaffCartAddressFactory } from '@daffodil/cart/testing'
 import {
   DaffCartFacade,
   DaffCart,
-  DaffResolveCartSuccess
+  DaffResolveCartSuccess,
+  DaffCartLoadSuccess
 } from '@daffodil/cart';
 
 import { DaffShippingAddressGuard } from './shipping-address.guard';
@@ -61,7 +62,8 @@ describe('DaffShippingAddressGuard', () => {
 			const cart: DaffCart = new DaffCartFactory().create({
 				shipping_address: new DaffCartAddressFactory().create(),
 			});
-			store.dispatch(new DaffResolveCartSuccess(cart));
+      store.dispatch(new DaffCartLoadSuccess(cart));
+      store.dispatch(new DaffResolveCartSuccess());
 			const expected = cold('(a|)', { a: true })
 
 			expect(service.canActivate()).toBeObservable(expected);
@@ -74,7 +76,8 @@ describe('DaffShippingAddressGuard', () => {
 				const cart: DaffCart = new DaffCartFactory().create({
 					shipping_address: null,
 				});
-				store.dispatch(new DaffResolveCartSuccess(cart));
+        store.dispatch(new DaffCartLoadSuccess(cart));
+				store.dispatch(new DaffResolveCartSuccess());
 			});
 
 			it('should not allow activation', () => {

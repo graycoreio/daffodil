@@ -9,7 +9,8 @@ import { DaffCartFactory, DaffCartPaymentFactory } from '@daffodil/cart/testing'
 import {
   DaffCartFacade,
   DaffCart,
-  DaffResolveCartSuccess
+  DaffResolveCartSuccess,
+  DaffCartLoadSuccess
 } from '@daffodil/cart';
 
 import { DaffPaymentMethodGuard } from './payment-method.guard';
@@ -61,7 +62,8 @@ describe('DaffPaymentMethodGuard', () => {
 			const cart: DaffCart = new DaffCartFactory().create({
 				payment: new DaffCartPaymentFactory().create(),
 			});
-			store.dispatch(new DaffResolveCartSuccess(cart));
+      store.dispatch(new DaffCartLoadSuccess(cart));
+      store.dispatch(new DaffResolveCartSuccess());
 			const expected = cold('(a|)', { a: true })
 
 			expect(service.canActivate()).toBeObservable(expected);
@@ -74,7 +76,8 @@ describe('DaffPaymentMethodGuard', () => {
 				const cart: DaffCart = new DaffCartFactory().create({
 					payment: null,
 				});
-				store.dispatch(new DaffResolveCartSuccess(cart));
+        store.dispatch(new DaffCartLoadSuccess(cart));
+				store.dispatch(new DaffResolveCartSuccess());
 			});
 
 			it('should not allow activation', () => {

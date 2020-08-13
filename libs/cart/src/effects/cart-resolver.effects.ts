@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { switchMap, catchError, map } from 'rxjs/operators';
+import { switchMap, catchError, map, mapTo } from 'rxjs/operators';
 
 import { DaffStorageServiceError, substream } from '@daffodil/core';
 
@@ -68,13 +68,7 @@ export class DaffCartResolverEffects<T extends DaffCart = DaffCart> {
       ],
       DaffCartActionTypes.ResolveCartFailureAction
     ),
-    map(([
-      resolveCartAction,
-      cartLoadOrCreateSuccessAction
-    ]: [
-      DaffResolveCart,
-      DaffCartLoadSuccess<T> | DaffCartCreateSuccess<T>
-    ]) => new DaffResolveCartSuccess<T>(cartLoadOrCreateSuccessAction.payload as Partial<T>))
+    mapTo(new DaffResolveCartSuccess())
   );
 
   @Effect()

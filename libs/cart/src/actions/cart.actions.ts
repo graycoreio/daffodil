@@ -97,10 +97,10 @@ export class DaffResolveCart implements Action {
 	readonly type = DaffCartActionTypes.ResolveCartAction;
 }
 
-export class DaffResolveCartSuccess<T extends DaffCart = DaffCart> implements Action {
+export class DaffResolveCartSuccess implements Action {
   readonly type = DaffCartActionTypes.ResolveCartSuccessAction;
 
-  constructor(public payload: Partial<T>) {}
+  constructor() {}
 }
 
 export class DaffResolveCartFailure implements Action {
@@ -124,5 +124,5 @@ export type DaffCartActions<T extends DaffCart = DaffCart> =
   | DaffCartClearSuccess<T>
   | DaffCartClearFailure
   | DaffResolveCart
-  | DaffResolveCartSuccess<T>
+  | DaffResolveCartSuccess
   | DaffResolveCartFailure;

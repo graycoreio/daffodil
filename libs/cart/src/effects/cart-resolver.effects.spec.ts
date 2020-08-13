@@ -32,7 +32,9 @@ describe('DaffCartResolverEffects', () => {
 	let cartFactory: DaffCartFactory;
 	let stubCart: DaffCart;
 
-	let cartStorageService: jasmine.SpyObj<DaffCartStorageService>;
+  let cartStorageService: jasmine.SpyObj<DaffCartStorageService>;
+  const cartStorageFailureAction = new DaffCartStorageFailure('Cart Storage Failed');
+  const throwStorageError = () => { throw new DaffStorageServiceError() };
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -133,7 +135,6 @@ describe('DaffCartResolverEffects', () => {
       it('should dispatch a DaffCartLoadFailure action', () => {
         const response = cold('#', {});
         driver.get.and.returnValue(response);
-        driver.create.and.returnValue(response);
 
         const loadCartFailureAction = new DaffCartLoadFailure(
           'Cart loading has failed',
@@ -203,11 +204,7 @@ describe('DaffCartResolverEffects', () => {
     describe('when the error thrown is a DaffStorageServiceError', () => {
 
       it('should indicate that the storage service has failed', () => {
-        const response = cold('#', {}, new DaffStorageServiceError());
-        driver.get.and.returnValue(response);
-        driver.create.and.returnValue(response);
-
-        const cartStorageFailureAction = new DaffCartStorageFailure('Cart Storage Failed');
+        cartStorageService.getCartId.and.callFake(throwStorageError)
 
         actions$ = hot('--a', { a: new DaffResolveCart() });
         const expected = cold('--b', {
@@ -220,7 +217,7 @@ describe('DaffCartResolverEffects', () => {
   });
 
   describe('onResolveCartSuccess$', () => {
-    describe('when cart resolution is followed by a successful cart load', () => {
+    describe('when a resolve cart action is followed by a successful cart load', () => {
       beforeEach(() => {
         const resolveCartAction = new DaffResolveCart();
         const loadCartSuccessAction = new DaffCartLoadSuccess(stubCart);
@@ -232,14 +229,14 @@ describe('DaffCartResolverEffects', () => {
       })
 
       it('should indicate cart resolution success', () => {
-        const resolveCartSuccessAction = new DaffResolveCartSuccess(stubCart);
+        const resolveCartSuccessAction = new DaffResolveCartSuccess();
         const expected = cold('-----a', {a: resolveCartSuccessAction});
 
         expect(effects.onResolveCartSuccess$).toBeObservable(expected);
       })
     })
 
-    describe('when cart resolution is followed by a successful cart creation', () => {
+    describe('when a resolve cart action is followed by a successful cart creation', () => {
       beforeEach(() => {
         const resolveCartAction = new DaffResolveCart();
         const createCartSuccessAction = new DaffCartCreateSuccess(stubCart);
@@ -251,14 +248,14 @@ describe('DaffCartResolverEffects', () => {
       })
 
       it('should indicate cart resolution success', () => {
-        const resolveCartSuccessAction = new DaffResolveCartSuccess(stubCart);
+        const resolveCartSuccessAction = new DaffResolveCartSuccess();
         const expected = cold('-----a', {a: resolveCartSuccessAction});
 
         expect(effects.onResolveCartSuccess$).toBeObservable(expected);
       })
     })
 
-    describe('when cart resolution is followed by a cart resolve failure', () => {
+    describe('when a resolve cart action is followed by a cart resolve failure', () => {
       beforeEach(() => {
         const resolveCartAction = new DaffResolveCart();
         const resolveCartFailureAction = new DaffResolveCartFailure('');
@@ -278,7 +275,7 @@ describe('DaffCartResolverEffects', () => {
   })
 
   describe('onResolveCartFailure$', () => {
-    describe('when cart resolution is followed by a failed cart load', () => {
+    describe('when a resolve cart action is followed by a failed cart load', () => {
       let error;
 
       beforeEach(() => {
@@ -300,7 +297,7 @@ describe('DaffCartResolverEffects', () => {
       })
     })
 
-    describe('when cart resolution is followed by a failed cart creation', () => {
+    describe('when a resolve cart action is followed by a failed cart creation', () => {
       let error;
 
       beforeEach(() => {
@@ -314,7 +311,7 @@ describe('DaffCartResolverEffects', () => {
         });
       })
 
-      it('should indicate cart resolution success', () => {
+      it('should indicate cart resolution failure', () => {
         const resolveCartFailureAction = new DaffResolveCartFailure(error);
         const expected = cold('-----a', {a: resolveCartFailureAction});
 
@@ -322,10 +319,10 @@ describe('DaffCartResolverEffects', () => {
       })
     })
 
-    describe('when cart resolution is followed by a cart resolve success', () => {
+    describe('when a resolve cart action is followed by a cart resolve success', () => {
       beforeEach(() => {
         const resolveCartAction = new DaffResolveCart();
-        const resolveCartSuccessAction = new DaffResolveCartSuccess(stubCart);
+        const resolveCartSuccessAction = new DaffResolveCartSuccess();
 
         actions$ = hot('--a--b', {
           a: resolveCartAction,
@@ -333,7 +330,7 @@ describe('DaffCartResolverEffects', () => {
         });
       })
 
-      it('should not indicate cart resolution success', () => {
+      it('should not indicate cart resolution failure', () => {
         const expected = cold('------');
 
         expect(effects.onResolveCartFailure$).toBeObservable(expected);

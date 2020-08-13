@@ -1,15 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 
 import {
+  DaffResolveCart,
+  DaffResolveCartSuccess,
+  DaffResolveCartFailure,
+} from '@daffodil/cart';
+import {
   DaffCartFactory,
 } from '@daffodil/cart/testing';
 
 import { initialState } from '../cart-initial-state';
-import {
-  DaffResolveCart,
-  DaffResolveCartSuccess,
-  DaffResolveCartFailure,
-} from '../../actions/public_api';
 import { DaffCart } from '../../models/cart';
 import { cartResolveReducer as reducer } from './cart-resolve.reducer';
 import { DaffCartReducerState } from '../cart-state.interface';
@@ -55,17 +55,13 @@ describe('Cart | Reducer | cartResolveReducer', () => {
         resolved: false
       }
 
-      const cartResolveSuccess = new DaffResolveCartSuccess(cart);
+      const cartResolveSuccess = new DaffResolveCartSuccess();
 
       result = reducer(state, cartResolveSuccess);
     });
 
     it('should indicate that the cart is resolved', () => {
       expect(result.resolved).toEqual(true);
-    });
-
-    it('should set cart from action.payload', () => {
-      expect(result.cart).toEqual(cart)
     });
   });
 

@@ -9,7 +9,8 @@ import { DaffCartFactory, DaffCartShippingRateFactory } from '@daffodil/cart/tes
 import {
   DaffCartFacade,
   DaffCart,
-  DaffResolveCartSuccess
+  DaffResolveCartSuccess,
+  DaffCartLoadSuccess
 } from '@daffodil/cart';
 
 import { DaffShippingMethodGuard } from './shipping-method.guard';
@@ -61,7 +62,8 @@ describe('DaffShippingMethodGuard', () => {
 			const cart: DaffCart = new DaffCartFactory().create({
 				shipping_information: new DaffCartShippingRateFactory().create(),
 			});
-			store.dispatch(new DaffResolveCartSuccess(cart));
+      store.dispatch(new DaffCartLoadSuccess(cart));
+      store.dispatch(new DaffResolveCartSuccess());
 			const expected = cold('(a|)', { a: true })
 
 			expect(service.canActivate()).toBeObservable(expected);
@@ -74,7 +76,8 @@ describe('DaffShippingMethodGuard', () => {
 				const cart: DaffCart = new DaffCartFactory().create({
 					shipping_information: null,
 				});
-				store.dispatch(new DaffResolveCartSuccess(cart));
+        store.dispatch(new DaffCartLoadSuccess(cart));
+				store.dispatch(new DaffResolveCartSuccess());
 			});
 
 			it('should not allow activation', () => {

@@ -135,9 +135,8 @@ describe('DaffCartFacade', () => {
     });
 
     it('should be true if the cart is resolved', () => {
-      const cart = cartFactory.create();
       const expected = cold('a', { a: true });
-      store.dispatch(new DaffResolveCartSuccess(cart));
+      store.dispatch(new DaffResolveCartSuccess());
       expect(facade.resolved$).toBeObservable(expected);
     });
   });

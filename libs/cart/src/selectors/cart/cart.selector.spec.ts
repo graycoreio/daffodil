@@ -2,7 +2,12 @@ import { TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffCart } from '@daffodil/cart';
+import {
+  DaffCart,
+  DaffCartLoadSuccess,
+  DaffCartPlaceOrderSuccess,
+  DaffResolveCartSuccess
+} from '@daffodil/cart';
 import {
   DaffCartFactory,
   DaffCartItemFactory,
@@ -11,7 +16,6 @@ import {
   DaffCartShippingRateFactory
 } from '@daffodil/cart/testing';
 
-import { DaffCartLoadSuccess, DaffCartPlaceOrderSuccess, DaffResolveCartSuccess } from '../../actions/public_api';
 import { daffCartReducers, DaffCartReducersState } from '../../reducers/public_api';
 import { getCartSelectors } from './cart.selector';
 import { DaffCartErrorType } from '../../reducers/errors/cart-error-type.enum';
@@ -144,7 +148,7 @@ describe('Cart | Selector | Cart', () => {
     it('it should be true after cart resolution success', () => {
       const selector = store.pipe(select(selectCartResolved));
       const expected = cold('a', {a: true});
-      store.dispatch(new DaffResolveCartSuccess(cart));
+      store.dispatch(new DaffResolveCartSuccess());
 
       expect(selector).toBeObservable(expected);
     });
