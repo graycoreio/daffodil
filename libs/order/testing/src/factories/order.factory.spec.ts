@@ -37,8 +37,12 @@ describe('Order | Testing | Factories | DaffOrderFactory', () => {
         expect(result.items.length).toEqual(0)
       });
 
-      it('should have no OrderAddresses', () => {
-        expect(result.addresses.length).toEqual(0);
+      it('should have no billing addresses', () => {
+        expect(result.billing_addresses.length).toEqual(0);
+      });
+
+      it('should have no shipping addresses', () => {
+        expect(result.shipping_addresses.length).toEqual(0);
       });
 
       it('should not have a DaffOrderPayment', () => {
@@ -46,16 +50,4 @@ describe('Order | Testing | Factories | DaffOrderFactory', () => {
       });
     });
   });
-
-  describe('createMany', () => {
-    let result: DaffOrder[];
-
-    it('should create as many orders as desired', () => {
-      result = orderFactory.createMany(2);
-      expect(result.length).toEqual(2);
-
-      result = orderFactory.createMany(3);
-      expect(result.length).toEqual(3);
-    });
-  })
 });

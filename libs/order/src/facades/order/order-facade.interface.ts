@@ -21,7 +21,8 @@ export interface DaffOrderFacadeInterface<T extends DaffOrder = DaffOrder> exten
   getTotals$(orderId: T['id']): Observable<T['totals']>;
   getAppliedCodes$(orderId: T['id']): Observable<T['applied_codes']>;
   getItems$(orderId: T['id']): Observable<T['items']>;
-  getAddresses$(orderId: T['id']): Observable<T['addresses']>;
+  getBillingAddresses$(orderId: T['id']): Observable<T['billing_addresses']>;
+  getShippingAddresses$(orderId: T['id']): Observable<T['shipping_addresses']>;
   getShipments$(orderId: T['id']): Observable<T['shipments']>;
   getPayment$(orderId: T['id']): Observable<T['payment']>;
   getInvoices$(orderId: T['id']): Observable<T['invoices']>;

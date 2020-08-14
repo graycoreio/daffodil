@@ -158,10 +158,12 @@ export function daffMagentoTransformOrder(order: MagentoGraycoreOrder): DaffOrde
     totals: transformTotals(order),
     applied_codes: order.applied_codes.map(code => ({code})),
     items: order.items.map(transformItem),
-    addresses: [
-      order.shipping_address,
-      order.billing_address
-    ].map(transformAddress),
+    billing_addresses: [
+      transformAddress(order.billing_address)
+    ],
+    shipping_addresses: [
+      transformAddress(order.shipping_address)
+    ],
     shipments: order.shipments.map(transformShipment),
     payment: transformPayment(order.payment),
     invoices: order.invoices.map(transformInvoice),

@@ -15,10 +15,11 @@ export interface DaffOrder {
   status: string;
   totals: DaffOrderTotal[];
   applied_codes: DaffOrderCoupon[];
-  items?: DaffOrderItem[];
-  addresses?: DaffOrderAddress[];
-  shipments?: DaffOrderShipment[];
-  payment?: DaffOrderPayment;
-  invoices?: DaffOrderInvoice[];
-  credits?: DaffOrderCredit[];
+  items: DaffOrderItem[];
+  billing_addresses: DaffOrderAddress[];
+  shipping_addresses: DaffOrderAddress[];
+  shipments: DaffOrderShipment[];
+  payment: DaffOrderPayment;
+  invoices: DaffOrderInvoice[];
+  credits: DaffOrderCredit[];
 }
