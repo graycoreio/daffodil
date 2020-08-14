@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.9.0](https://github.com/graycoreio/daffodil/compare/v0.8.4...v0.9.0) (2020-08-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **order:** - addresses field has been removed
+- order addresses selector has been removed
+- order addresses facade field has been removed
+* **cart:** DaffCompositeCartItemOption model has changed to DaffCompositeCartItemInputOption to avoid a naming collision
+
+### Features
+
+* **cart:** add cart item entities state ([#1020](https://github.com/graycoreio/daffodil/issues/1020)) ([94a489e](https://github.com/graycoreio/daffodil/commit/94a489efdddd0826efdbffe4c658ab4638bc6252))
+* **cart:** add magento cart item transformers and factories for different types ([#1025](https://github.com/graycoreio/daffodil/issues/1025)) ([bd25b36](https://github.com/graycoreio/daffodil/commit/bd25b3664fb6328f3123e2e3c23e8a203fa09540))
+* **cart:** add models and queries for configurable and composite cart items ([#1024](https://github.com/graycoreio/daffodil/issues/1024)) ([71b49df](https://github.com/graycoreio/daffodil/commit/71b49df305612f2bf26e665cef2231152ad32814))
+* **cart:** add state for different cart item type attributes ([#1027](https://github.com/graycoreio/daffodil/issues/1027)) ([7e68415](https://github.com/graycoreio/daffodil/commit/7e6841515d558d2c302b9e54d718b661e477956a))
+* **cart:** change the DaffCompositeCartItemOption model to DaffCompositeCartItemInputOption ([#1026](https://github.com/graycoreio/daffodil/issues/1026)) ([cc29f6e](https://github.com/graycoreio/daffodil/commit/cc29f6e7e5fbccbad2c2f737295c2878c4189e7a))
+* **cart:** listen for resolve success and failure in cart guards ([#1028](https://github.com/graycoreio/daffodil/issues/1028)) ([8ef16dc](https://github.com/graycoreio/daffodil/commit/8ef16dc1442212ef2578773d61e626ddf3b94acb))
+* **cart:** wait for cart resolution in cart guards ([#1023](https://github.com/graycoreio/daffodil/issues/1023)) ([1a65ae0](https://github.com/graycoreio/daffodil/commit/1a65ae0412d383a48b130ba7604cf5ee8392953b))
+* **order:** separate billing and shipping address ([#1033](https://github.com/graycoreio/daffodil/issues/1033)) ([65da510](https://github.com/graycoreio/daffodil/commit/65da510ff0af4a284bec040dd43ddc0abd175447))
+* **order:** update cart ID input key ([#1029](https://github.com/graycoreio/daffodil/issues/1029)) ([85f7cda](https://github.com/graycoreio/daffodil/commit/85f7cda33eaaa5d7d6f491b81964a3ee8f84047a))
+* **order:** use magento order_number for daffodil order ID ([#1031](https://github.com/graycoreio/daffodil/issues/1031)) ([0a7a380](https://github.com/graycoreio/daffodil/commit/0a7a380fd65ffc23ddd1acc9da1964686ab2d85e))
+
 ### [0.8.4](https://github.com/graycoreio/daffodil/compare/v0.8.3...v0.8.4) (2020-08-06)
 
 
