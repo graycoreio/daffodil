@@ -249,11 +249,11 @@ describe('DaffOrderFacade', () => {
     });
   });
 
-  describe('getAddresses$', () => {
+  describe('getBillingAddresses$', () => {
     it('should initially be an empty array', () => {
       const expected = cold('a', {a: []});
 
-      expect(facade.getAddresses$(orderId)).toBeObservable(expected);
+      expect(facade.getBillingAddresses$(orderId)).toBeObservable(expected);
     });
 
     describe('when an order has been loaded', () => {
@@ -262,9 +262,29 @@ describe('DaffOrderFacade', () => {
       });
 
       it('should select the order\'s addresses', () => {
-        const expected = cold('a', {a: mockOrder.addresses});
+        const expected = cold('a', {a: mockOrder.billing_addresses});
 
-        expect(facade.getAddresses$(orderId)).toBeObservable(expected);
+        expect(facade.getBillingAddresses$(orderId)).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('getShippingAddresses$', () => {
+    it('should initially be an empty array', () => {
+      const expected = cold('a', {a: []});
+
+      expect(facade.getShippingAddresses$(orderId)).toBeObservable(expected);
+    });
+
+    describe('when an order has been loaded', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should select the order\'s addresses', () => {
+        const expected = cold('a', {a: mockOrder.shipping_addresses});
+
+        expect(facade.getShippingAddresses$(orderId)).toBeObservable(expected);
       });
     });
   });

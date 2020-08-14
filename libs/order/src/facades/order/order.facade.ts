@@ -30,7 +30,8 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
   _totals: DaffOrderEntitySelectors<T>['selectOrderTotals'];
   _appliedCodes: DaffOrderEntitySelectors<T>['selectOrderAppliedCodes'];
   _items: DaffOrderEntitySelectors<T>['selectOrderItems'];
-  _addresses: DaffOrderEntitySelectors<T>['selectOrderAddresses'];
+  _billingAddresses: DaffOrderEntitySelectors<T>['selectOrderBillingAddresses'];
+  _shippingAddresses: DaffOrderEntitySelectors<T>['selectOrderShippingAddresses'];
   _shipments: DaffOrderEntitySelectors<T>['selectOrderShipments'];
   _payment: DaffOrderEntitySelectors<T>['selectOrderPayment'];
   _invoices: DaffOrderEntitySelectors<T>['selectOrderInvoices'];
@@ -52,7 +53,8 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
       selectOrderTotals,
       selectOrderAppliedCodes,
       selectOrderItems,
-      selectOrderAddresses,
+      selectOrderBillingAddresses,
+      selectOrderShippingAddresses,
       selectOrderShipments,
       selectOrderPayment,
       selectOrderInvoices,
@@ -74,7 +76,8 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
     this._totals = selectOrderTotals;
     this._appliedCodes = selectOrderAppliedCodes;
     this._items = selectOrderItems;
-    this._addresses = selectOrderAddresses;
+    this._billingAddresses = selectOrderBillingAddresses;
+    this._shippingAddresses = selectOrderShippingAddresses;
     this._shipments = selectOrderShipments;
     this._payment = selectOrderPayment;
     this._invoices = selectOrderInvoices;
@@ -97,8 +100,12 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
     return this.store.pipe(select(this._items, {id: orderId}))
   }
 
-  getAddresses$(orderId: T['id']): Observable<T['addresses']> {
-    return this.store.pipe(select(this._addresses, {id: orderId}))
+  getBillingAddresses$(orderId: T['id']): Observable<T['billing_addresses']> {
+    return this.store.pipe(select(this._billingAddresses, {id: orderId}))
+  }
+
+  getShippingAddresses$(orderId: T['id']): Observable<T['shipping_addresses']> {
+    return this.store.pipe(select(this._shippingAddresses, {id: orderId}))
   }
 
   getShipments$(orderId: T['id']): Observable<T['shipments']> {

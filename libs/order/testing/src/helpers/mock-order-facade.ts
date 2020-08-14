@@ -32,7 +32,11 @@ export class MockDaffOrderFacade implements DaffOrderFacadeInterface {
     return new BehaviorSubject([])
   }
 
-  getAddresses$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['addresses']> {
+  getBillingAddresses$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['billing_addresses']> {
+    return new BehaviorSubject([])
+  }
+
+  getShippingAddresses$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['shipping_addresses']> {
     return new BehaviorSubject([])
   }
 

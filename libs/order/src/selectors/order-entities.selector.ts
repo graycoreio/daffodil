@@ -26,7 +26,8 @@ export interface DaffOrderEntitySelectors<T extends DaffOrder = DaffOrder> {
   selectOrderTotals: MemoizedSelector<object, T['totals']>;
   selectOrderAppliedCodes: MemoizedSelector<object, T['applied_codes']>;
   selectOrderItems: MemoizedSelector<object, T['items']>;
-  selectOrderAddresses: MemoizedSelector<object, T['addresses']>;
+  selectOrderBillingAddresses: MemoizedSelector<object, T['billing_addresses']>;
+  selectOrderShippingAddresses: MemoizedSelector<object, T['shipping_addresses']>;
   selectOrderShipments: MemoizedSelector<object, T['shipments']>;
   selectOrderPayment: MemoizedSelector<object, T['payment']>;
   selectOrderInvoices: MemoizedSelector<object, T['invoices']>;
@@ -80,11 +81,18 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
       return (order && order.items) || []
     }
   );
-  const selectOrderAddresses = createSelector(
+  const selectOrderBillingAddresses = createSelector(
     selectEntities,
     (orders, props) => {
       const order = selectOrder.projector(orders, {id: props.id});
-      return (order && order.addresses) || []
+      return (order && order.billing_addresses) || []
+    }
+  );
+  const selectOrderShippingAddresses = createSelector(
+    selectEntities,
+    (orders, props) => {
+      const order = selectOrder.projector(orders, {id: props.id});
+      return (order && order.shipping_addresses) || []
     }
   );
   const selectOrderShipments = createSelector(
@@ -163,9 +171,13 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
      */
     selectOrderItems,
     /**
-     * Selects the specified order's addresses.
+     * Selects the specified order's billing addresses.
      */
-    selectOrderAddresses,
+    selectOrderBillingAddresses,
+    /**
+     * Selects the specified order's shipping addresses.
+     */
+    selectOrderShippingAddresses,
     /**
      * Selects the specified order's shipments.
      */

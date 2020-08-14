@@ -36,7 +36,8 @@ describe('Order | Selector | OrderEntities', () => {
     selectOrderTotals,
     selectOrderAppliedCodes,
     selectOrderItems,
-    selectOrderAddresses,
+    selectOrderBillingAddresses,
+    selectOrderShippingAddresses,
     selectOrderShipments,
     selectOrderPayment,
     selectOrderInvoices,
@@ -266,9 +267,9 @@ describe('Order | Selector | OrderEntities', () => {
     });
   });
 
-  describe('selectOrderAddresses', () => {
+  describe('selectOrderBillingAddresses', () => {
     it('should initially be an empty array', () => {
-      const selector = store.pipe(select(selectOrderAddresses, {id: mockOrder.id}));
+      const selector = store.pipe(select(selectOrderBillingAddresses, {id: mockOrder.id}));
       const expected = cold('a', {a: []});
 
       expect(selector).toBeObservable(expected);
@@ -280,8 +281,30 @@ describe('Order | Selector | OrderEntities', () => {
       });
 
       it('should select the order\'s addresses', () => {
-        const selector = store.pipe(select(selectOrderAddresses, {id: mockOrder.id}));
-        const expected = cold('a', {a: mockOrder.addresses});
+        const selector = store.pipe(select(selectOrderBillingAddresses, {id: mockOrder.id}));
+        const expected = cold('a', {a: mockOrder.billing_addresses});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('selectOrderShippingAddresses', () => {
+    it('should initially be an empty array', () => {
+      const selector = store.pipe(select(selectOrderShippingAddresses, {id: mockOrder.id}));
+      const expected = cold('a', {a: []});
+
+      expect(selector).toBeObservable(expected);
+    });
+
+    describe('when an order has been loaded', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should select the order\'s addresses', () => {
+        const selector = store.pipe(select(selectOrderShippingAddresses, {id: mockOrder.id}));
+        const expected = cold('a', {a: mockOrder.shipping_addresses});
 
         expect(selector).toBeObservable(expected);
       });

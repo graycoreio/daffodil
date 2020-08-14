@@ -13,7 +13,8 @@ export class MockOrder implements DaffOrder {
   totals = [];
   applied_codes = [];
   items = [];
-  addresses = [];
+  billing_addresses = [];
+  shipping_addresses = [];
   shipments = [];
   payment = null;
   invoices = [];

@@ -1,18 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffOrderFactory } from './order.factory';
-import { DaffOrder } from '@daffodil/order';
+import { DaffOrderCoupon } from '@daffodil/order';
 
-describe('Order | Testing | Factories | DaffOrderFactory', () => {
+import { DaffOrderCouponFactory } from './order-coupon.factory';
 
-  let orderFactory: DaffOrderFactory;
+describe('Order | Testing | Factories | DaffOrderCouponFactory', () => {
+  let orderFactory: DaffOrderCouponFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffOrderFactory]
+      providers: [DaffOrderCouponFactory]
     });
 
-    orderFactory = TestBed.get(DaffOrderFactory);
+    orderFactory = TestBed.get(DaffOrderCouponFactory);
   });
 
   it('should be created', () => {
@@ -20,42 +20,20 @@ describe('Order | Testing | Factories | DaffOrderFactory', () => {
   });
 
   describe('create', () => {
-
-    let result : DaffOrder;
+    let result : DaffOrderCoupon;
 
     beforeEach(() => {
       result = orderFactory.create();
     });
 
-    it('should return a Order', () => {
+    it('should return an OrderCoupon', () => {
       expect(result).toBeDefined();
     });
 
-    describe('Order object', () => {
-
-      it('should have no OrderItems', () => {
-        expect(result.items.length).toEqual(0)
-      });
-
-      it('should have no OrderAddresses', () => {
-        expect(result.addresses.length).toEqual(0);
-      });
-
-      it('should not have a DaffOrderPayment', () => {
-        expect(result.payment).toEqual(null);
+    describe('Order Coupon object', () => {
+      it('should have a code', () => {
+        expect(result.code).toBeDefined();
       });
     });
   });
-
-  describe('createMany', () => {
-    let result: DaffOrder[];
-
-    it('should create as many orders as desired', () => {
-      result = orderFactory.createMany(2);
-      expect(result.length).toEqual(2);
-
-      result = orderFactory.createMany(3);
-      expect(result.length).toEqual(3);
-    });
-  })
 });
