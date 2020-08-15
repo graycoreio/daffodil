@@ -2,12 +2,7 @@ export { DaffCart } from './models/cart';
 export * from './models/cart-item';
 export * from './models/composite-cart-item';
 export * from './models/configurable-cart-item';
-export { 
-	DaffCartItemInput,
-	DaffCartItemInputType,
-	DaffCompositeCartItemInput,
-	DaffCompositeCartItemInputOption
-} from './models/cart-item-input';
+export * from './models/cart-item-input';
 export { DaffCartAddress } from './models/cart-address';
 export { DaffCartPaymentMethod } from './models/cart-payment';
 export { DaffCartShippingRate } from './models/cart-shipping-rate';
