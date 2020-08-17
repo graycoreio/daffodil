@@ -1,6 +1,6 @@
 import { DaffNoopStorageService } from './noopstorage.service';
 
-fdescribe('DaffNoopStorageService', () => {
+describe('DaffNoopStorageService', () => {
   let service: DaffNoopStorageService;
 
   beforeEach(() => {
@@ -23,7 +23,7 @@ fdescribe('DaffNoopStorageService', () => {
 		expect(service.getItem('testkey')).toEqual(undefined);
 	});
 	
-	it('should be able to delete an item from memory', () => {
+	it('should not be able to delete an item from memory', () => {
 		service.setItem('testkey', 'testvalue');
 		service.removeItem('testkey');
 
