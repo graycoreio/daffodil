@@ -30,7 +30,7 @@ describe('DaffNoopStorageService', () => {
 		expect(service.getItem('testkey')).toEqual(undefined);
 	});
 	
-	it('should be able to delete all items from memory', () => {
+	it('should not be able to delete all items from memory', () => {
 		service.setItem('testkey', 'testvalue');
 		service.setItem('testkey2', 'testvalue2');
 		 
