@@ -1,4 +1,4 @@
-import { DaffPersistenceService } from "../persistence.interface";
+import { DaffPersistenceService } from '../persistence.interface';
 
 export class DaffMemoryStorageService implements DaffPersistenceService {
   memory: { [x: string]: any } = {};
