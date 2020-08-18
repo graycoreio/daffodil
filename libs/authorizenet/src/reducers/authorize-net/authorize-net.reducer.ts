@@ -3,7 +3,9 @@ import { DaffAuthorizeNetActions, DaffAuthorizeNetActionTypes } from '../../acti
 import { DaffAuthorizeNetTokenRequest } from '../../models/request/authorize-net-token-request';
 
 export const initialState: DaffAuthorizeNetReducerState = {
-	error: null,
+	isAcceptLoaded: false,
+	paymentError: null,
+	acceptJsLoadError: null,
 	loading: false
 }
 
@@ -19,14 +21,26 @@ export function daffAuthorizeNetReducer <T extends DaffAuthorizeNetTokenRequest>
       return { 
 				...state,
 				loading: false,
-				error: null
+				paymentError: null
 			};
 		case DaffAuthorizeNetActionTypes.UpdatePaymentFailureAction:
 			return {
 				...state,
 				loading: false,
-				error: action.payload
+				paymentError: action.payload
 			};
+		case DaffAuthorizeNetActionTypes.LoadAcceptJsSuccessAction:
+			return {
+				...state,
+				isAcceptLoaded: true,
+				acceptJsLoadError: null
+			}
+		case DaffAuthorizeNetActionTypes.LoadAcceptJsFailureAction:
+			return {
+				...state,
+				loading: false,
+				acceptJsLoadError: action.payload
+			}
     default:
       return state;
   }

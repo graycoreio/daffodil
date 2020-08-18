@@ -7,7 +7,7 @@ import { DaffAuthorizeNetEffects } from './effects/authorize-net.effects';
 
 @NgModule({
   imports: [
-		StoreModule.forFeature('authorizeNet', daffAuthorizeNetReducers),
+		StoreModule.forFeature('authorizenet', daffAuthorizeNetReducers),
     EffectsModule.forFeature([DaffAuthorizeNetEffects]),
   ]
 })

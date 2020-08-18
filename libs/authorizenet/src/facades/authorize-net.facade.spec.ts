@@ -5,7 +5,7 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffAuthorizeNetFacade } from './authorize-net.facade';
 import { daffAuthorizeNetReducers } from '../reducers/authorize-net.reducers';
-import { DaffAuthorizeNetUpdatePaymentFailure } from '../actions/authorizenet.actions';
+import { DaffAuthorizeNetUpdatePaymentFailure, DaffLoadAcceptJsFailure } from '../actions/authorizenet.actions';
 import { DaffCartPaymentMethodAdd } from '@daffodil/cart';
 import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '../drivers/magento/authorize-net-payment-id';
 
@@ -43,6 +43,15 @@ describe('DaffAuthorizeNetFacade', () => {
     expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 
+  describe('isAcceptJsLoaded$', () => {
+
+    it('should return false by default', () => {
+      const expected = cold('a', { a: false });
+      
+      expect(facade.isAcceptJsLoaded$).toBeObservable(expected);
+    });
+  });
+
   describe('loading$', () => {
 
     it('should return loading state for submitting a payment method', () => {
@@ -55,13 +64,23 @@ describe('DaffAuthorizeNetFacade', () => {
     });
   });
 
-  describe('error$', () => {
+  describe('paymentError$', () => {
 
     it('should return the current error message', () => {
       const stubError = 'error message';
       const expected = cold('a', { a: stubError});
       store.dispatch(new DaffAuthorizeNetUpdatePaymentFailure(stubError));
-      expect(facade.error$).toBeObservable(expected);
+      expect(facade.paymentError$).toBeObservable(expected);
+    });
+  })
+
+  describe('acceptJsLoadError$', () => {
+
+    it('should return the acceptJsLoad error message', () => {
+      const stubError = 'error message';
+      const expected = cold('a', { a: stubError});
+      store.dispatch(new DaffLoadAcceptJsFailure(stubError));
+      expect(facade.acceptJsLoadError$).toBeObservable(expected);
     });
   })
 });
