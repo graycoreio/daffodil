@@ -1,4 +1,6 @@
 export interface DaffAuthorizeNetReducerState {
-	error: string;
+	isAcceptLoaded: boolean;
+	paymentError: string;
+	acceptJsLoadError: string;
 	loading: boolean;
 }

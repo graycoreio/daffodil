@@ -6,25 +6,33 @@ import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { MockStore } from '@ngrx/store/testing';
 
 import { DaffCartAddress, DaffCartPaymentUpdateWithBilling, DaffCartPaymentUpdateWithBillingSuccess, DaffCartPaymentUpdateWithBillingFailure } from '@daffodil/cart';
+import { DaffCartAddressFactory, DaffCartFactory } from '@daffodil/cart/testing';
 
 import { DaffAuthorizeNetEffects } from './authorize-net.effects';
-import { DaffAuthorizeNetUpdatePayment, DaffAuthorizeNetUpdatePaymentSuccess } from '../actions/authorizenet.actions';
+import { 
+	DaffAuthorizeNetUpdatePayment, 
+	DaffAuthorizeNetUpdatePaymentSuccess, 
+	DaffLoadAcceptJs, 
+	DaffLoadAcceptJsSuccess, 
+	DaffLoadAcceptJsFailure 
+} from '../actions/authorizenet.actions';
 import { DaffAuthorizeNetTokenRequest } from '../models/request/authorize-net-token-request';
 import { DaffAuthorizeNetUpdatePaymentFailure } from '../actions/authorizenet.actions';
 import { daffAuthorizeNetReducers } from '../reducers/authorize-net.reducers';
-import { DaffAuthorizeNetService, DaffAuthorizeNetConfigToken, DaffAuthorizeNetConfig } from '../drivers/public_api';
+import { DaffAuthorizeNetService, DaffAuthorizeNetConfig } from '../drivers/public_api';
 import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '../drivers/magento/authorize-net-payment-id';
 import { DaffAuthorizeNetDriver } from '../drivers/interfaces/authorize-net-service.interface';
 import { DaffAuthorizeNetPaymentId } from '../drivers/interfaces/authorize-net-payment-id.token';
-import { DaffCartAddressFactory, DaffCartFactory } from '@daffodil/cart/testing';
+import { DaffAcceptJsLoadingService } from '../services/accept-js-loading.service';
 
 class MockAuthorizeNetDriver implements DaffAuthorizeNetService {
 	generateToken(paymentRequest): Observable<any> {
 		return null;
 	}
 }
+
 describe('DaffAuthorizeNetEffects', () => {
-  let actions$: Observable<any>;
+	let actions$: Observable<any>;
   let effects: DaffAuthorizeNetEffects;
 	const paymentTokenRequest: DaffAuthorizeNetTokenRequest = {
 		creditCard: {
@@ -43,6 +51,7 @@ describe('DaffAuthorizeNetEffects', () => {
 		production: false
 	}
 	let stubAddress: DaffCartAddress;
+	const acceptJsLoadingServiceSpy = jasmine.createSpyObj('DaffAcceptJsLoadingService', ['load', 'getAccept']);
   
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -52,11 +61,11 @@ describe('DaffAuthorizeNetEffects', () => {
 				}),
 			],
       providers: [
-        DaffAuthorizeNetEffects,
 				provideMockActions(() => actions$),
+				{ provide: DaffAcceptJsLoadingService, useValue: acceptJsLoadingServiceSpy },
 				{ provide: DaffAuthorizeNetDriver, useClass: MockAuthorizeNetDriver },
 				{ provide: DaffAuthorizeNetPaymentId, useValue: MAGENTO_AUTHORIZE_NET_PAYMENT_ID },
-				{ provide: DaffAuthorizeNetConfigToken, useValue: stubConfig }
+        DaffAuthorizeNetEffects,
       ]
     });
 
@@ -135,6 +144,38 @@ describe('DaffAuthorizeNetEffects', () => {
 
 			const expected = cold('---c', { c: authorizeNetPaymentUpdateFailure });
 			expect(effects.updatePaymentFailureSubstream$).toBeObservable(expected);
+		});
+	});
+
+	describe('loadAcceptJs$', () => {
+
+		it('should load the acceptJs library', () => {
+			const loadAcceptJsAction = new DaffLoadAcceptJs();
+			actions$ = hot('--a', { a: loadAcceptJsAction });
+			effects.loadAcceptJs$().subscribe();
+
+			setTimeout(() => {
+				expect(acceptJsLoadingServiceSpy.load).toHaveBeenCalled();
+			});
+			expect(true).toBeTruthy();
+		});
+		
+		it('should trigger a DaffLoadAcceptJsSuccess action if acceptJs loads', () => {
+			acceptJsLoadingServiceSpy.getAccept.and.returnValue(true);
+			const loadAcceptJsAction = new DaffLoadAcceptJs();
+			actions$ = hot('--a', { a: loadAcceptJsAction });
+			const expected = cold('--b', { b: new DaffLoadAcceptJsSuccess() });
+
+			expect(effects.loadAcceptJs$()).toBeObservable(expected);
+		});
+		
+		it('should trigger a DaffLoadAcceptJsFailure action if acceptJs fails to load', () => {
+			acceptJsLoadingServiceSpy.getAccept.and.throwError('error')
+			const loadAcceptJsAction = new DaffLoadAcceptJs();
+			actions$ = hot('--a', { a: loadAcceptJsAction });
+			const expected = cold('--b', { b: new DaffLoadAcceptJsFailure('Accept Js has failed to load.') });
+
+			expect(effects.loadAcceptJs$(0, 0)).toBeObservable(expected);
 		});
 	});
 });

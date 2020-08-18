@@ -7,7 +7,9 @@ export interface DaffAuthorizeNetMemoizedSelectors {
 	selectAuthorizeNetFeatureState: MemoizedSelector<object, DaffAuthorizeNetReducersState>;
 	selectAuthorizeNetState: MemoizedSelector<object, DaffAuthorizeNetReducerState> ;
 	selectLoading: MemoizedSelector<object, boolean>;
-	selectError: MemoizedSelector<object, string>;
+	selectPaymentError: MemoizedSelector<object, string>;
+	selectAcceptJsLoadError: MemoizedSelector<object, string>;
+	selectIsAcceptJsLoaded: MemoizedSelector<object, boolean>;
 }
 
 const createAuthorizeNetSelectors = (): DaffAuthorizeNetMemoizedSelectors => {
@@ -34,18 +36,36 @@ const createAuthorizeNetSelectors = (): DaffAuthorizeNetMemoizedSelectors => {
 	);
 
 	/**
-	 * AuthorizeNet error
+	 * AuthorizeNet payment error
 	 */
-	const selectError = createSelector(
+	const selectPaymentError = createSelector(
 		selectAuthorizeNetState, 
-		(state: DaffAuthorizeNetReducerState) => state.error
+		(state: DaffAuthorizeNetReducerState) => state.paymentError
+	);
+
+	/**
+	 * AcceptJs load error
+	 */
+	const selectAcceptJsLoadError = createSelector(
+		selectAuthorizeNetState, 
+		(state: DaffAuthorizeNetReducerState) => state.acceptJsLoadError
+	);
+
+	/**
+	 * AcceptJs is loaded
+	 */
+	const selectIsAcceptJsLoaded = createSelector(
+		selectAuthorizeNetState, 
+		(state: DaffAuthorizeNetReducerState) => state.isAcceptLoaded
 	);
 
 	return { 
 		selectAuthorizeNetFeatureState,
 		selectAuthorizeNetState,
 		selectLoading,
-		selectError
+		selectPaymentError,
+		selectAcceptJsLoadError,
+		selectIsAcceptJsLoaded
 	}
 }
 
