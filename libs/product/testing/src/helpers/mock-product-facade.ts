@@ -11,5 +11,8 @@ export class MockDaffProductFacade implements DaffProductFacadeInterface {
 	getProduct(id: string): BehaviorSubject<DaffProduct> {
 		return new BehaviorSubject(null);
 	}
+	hasDiscount(id: string): BehaviorSubject<boolean> {
+		return new BehaviorSubject(false);
+	}
 	dispatch(action) {};
 }
