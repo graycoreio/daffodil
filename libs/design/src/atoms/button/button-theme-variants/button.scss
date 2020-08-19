@@ -4,17 +4,17 @@
 	$active-color: $hover-color
 ) {
 	background-color: $base-color;
-	border: 2px solid $base-color;
+	border: 1px solid $base-color;
 	color: daff-text-contrast($base-color);
 
 	&:hover,
 	&:focus {
 		background-color: $hover-color;
-		border: 2px solid $hover-color;
+		border: 1px solid $hover-color;
 	}
 
 	&:active {
 		background-color: $active-color;
-		border: 2px solid $active-color;
+		border: 1px solid $active-color;
 	}
 }

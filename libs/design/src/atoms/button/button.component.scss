@@ -2,10 +2,9 @@
 
 @mixin daff-button {
 	@include clickable();
+	display: inline-block;
 	appearance: none;
 	border-radius: 4px;
-	display: inline-block;
-	overflow: hidden;
 	position: relative;
 	text-align: center;
 	text-decoration: none;
@@ -71,23 +70,23 @@
 
 	&.daff-sm {
 		font-size: $small-font-size;
-		line-height: 30px;
-		height: 30px;
-		width: 30px;
+		line-height: 2rem;
+		height: 2rem;
+		width: 2rem;
 	}
 
 	&.daff-md {
 		font-size: $normal-font-size;
-		line-height: 40px;
-		height: 40px;
-		width: 40px;
+		line-height: 2.5rem;
+		height: 2.5rem;
+		width: 2.5rem;
 	}
 
 	&.daff-lg {
 		font-size: $medium-font-size;
-		line-height: 50px;
-		height: 50px;
-		width: 50px;
+		line-height: 3rem;
+		height: 3rem;
+		width: 3rem;
 	}
 }
 
@@ -116,13 +115,10 @@
 	background: transparent;
 	border: 0;
 	border-radius: 0;
-	padding: 0 0 4px;
-	text-decoration: underline;
+	line-height: 1.25rem;
+	overflow: hidden;
+	text-decoration: none;
 	vertical-align: middle;
-
-	@include breakpoint(big-tablet) {
-		text-decoration: none;
-	}
 
 	&[disabled] {
 		cursor: not-allowed;
@@ -136,35 +132,41 @@
 	}
 
 	&::after {
-		opacity: 0;
-
-		@include breakpoint(big-tablet) {
-			bottom: 0;
-			content: '';
-			height: 2px;
-			left: 0;
-			opacity: 1;
-			position: absolute;
-			width: 100%;
-		}
+		bottom: 0;
+		content: '';
+		height: 2px;
+		left: 0;
+		opacity: 1;
+		position: absolute;
+		width: 100%;
 	}
 
 	&:hover {
 		&::after {
-			animation: underline-button-hover 700ms ease;
+			animation: none;
+
+			@include breakpoint(big-tablet) {
+				animation: underline-button-hover 700ms ease;
+			}
 		}
 	}
 
 	&.daff-sm {
 		font-size: $small-font-size;
+		height: 1.25rem;
+		padding: 0;
 	}
 
 	&.daff-md {
 		font-size: $normal-font-size;
+		height: 1.5rem;
+		padding: 0 0 4px;
 	}
 
 	&.daff-lg {
 		font-size: $medium-font-size;
+		height: 1.75rem;
+		padding: 0 0 8px;
 	}
 }
 
@@ -189,19 +191,26 @@
 .daff-button,
 .daff-raised-button,
 .daff-stroked-button {
-	line-height: 1.25em;
-	min-width: 90px;
-	padding: 0.75em 1em;
+	min-width: 96px;
 
 	&.daff-sm {
 		font-size: $small-font-size;
+		line-height: 2rem;
+		height: 2rem;
+		padding: 0 1rem;
 	}
 
 	&.daff-md {
-		font-size: 1rem;
+		font-size: $normal-font-size;
+		line-height: 3rem;
+		height: 3rem;
+		padding: 0 1.5rem;
 	}
 
 	&.daff-lg {
 		font-size: $medium-font-size;
+		line-height: 3.5rem;
+		height: 3.5rem;
+		padding: 0 1.5rem;
 	}
 }
