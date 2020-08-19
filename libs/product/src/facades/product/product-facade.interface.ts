@@ -13,4 +13,5 @@ export interface DaffProductFacadeInterface<T extends DaffProduct = DaffProduct>
 	product$: Observable<T>;
 
 	getProduct(id: string): Observable<T>;
+	hasDiscount(id: string): Observable<boolean>;
 }

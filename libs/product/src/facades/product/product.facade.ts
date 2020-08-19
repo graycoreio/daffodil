@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { Store, select, Action } from '@ngrx/store';
 
@@ -35,6 +36,10 @@ export class DaffProductFacade<T extends DaffProduct = DaffProduct> implements D
 	
 	getProduct(id: string): Observable<T> {
 		return this.store.pipe(select(this.selectors.selectProduct, { id }));
+	}
+
+	hasDiscount(id: string): Observable<boolean> {
+		return this.store.pipe(select(this.selectors.selectProductHasDiscount, { id }));
 	}
 
   /**

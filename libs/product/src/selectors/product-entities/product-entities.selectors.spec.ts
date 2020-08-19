@@ -20,7 +20,8 @@ describe('selectProductEntitiesState', () => {
 		selectAllProducts,
 		selectProductTotal,
 		selectProduct,
-		selectProductDiscountAmount
+		selectProductDiscountAmount,
+		selectProductHasDiscount
 	} = getDaffProductEntitiesSelectors();
   
   beforeEach(() => {
@@ -99,6 +100,16 @@ describe('selectProductEntitiesState', () => {
     it('should select the product discount amount of the given id', () => {
 			const selector = store.pipe(select(selectProductDiscountAmount, { id: mockProduct.id }));
 			const expected = cold('a', { a: mockProduct.discount.amount });
+
+			expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectProductHasDiscount', () => {
+    
+    it('should select whether the product has a discount', () => {
+			const selector = store.pipe(select(selectProductHasDiscount, { id: mockProduct.id }));
+			const expected = cold('a', { a: !!mockProduct.discount.amount });
 
 			expect(selector).toBeObservable(expected);
     });

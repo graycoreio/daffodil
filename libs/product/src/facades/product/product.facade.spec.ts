@@ -82,4 +82,14 @@ describe('DaffProductFacade', () => {
       expect(facade.getProduct(product.id)).toBeObservable(expected);
 		});
 	});
+	
+	describe('hasDiscount()', () => {
+		it('should be an observable of whether the given product has discount', () => {
+			const product = {id: '1', name: 'Some Name', discount: { amount: 20, percent: 10 }};
+      const expected = cold('a', { a: true });
+      store.dispatch(new DaffProductLoad(product.id));
+      store.dispatch(new DaffProductLoadSuccess(product));
+      expect(facade.hasDiscount(product.id)).toBeObservable(expected);
+		});
+	});
 });
