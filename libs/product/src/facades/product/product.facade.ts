@@ -39,10 +39,7 @@ export class DaffProductFacade<T extends DaffProduct = DaffProduct> implements D
 	}
 
 	hasDiscount(id: string): Observable<boolean> {
-		return this.store.pipe(
-			select(this.selectors.selectProductDiscountAmount, { id }),
-			map(discount => !!discount)
-		)
+		return this.store.pipe(select(this.selectors.selectProductHasDiscount, { id }));
 	}
 
   /**
