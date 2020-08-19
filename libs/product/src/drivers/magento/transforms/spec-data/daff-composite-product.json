@@ -3,6 +3,7 @@
 	"id": "22",
 	"url": "url",
 	"price": 23,
+	"stock_status": "IN_STOCK",
 	"discount": {
 		"amount": 2,
 		"percent": 8.7

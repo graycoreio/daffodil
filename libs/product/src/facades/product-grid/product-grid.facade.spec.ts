@@ -3,6 +3,8 @@ import { MockStore } from '@ngrx/store/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
+import { DaffProductFactory } from '@daffodil/product/testing';
+
 import { DaffProductGridFacade } from './product-grid.facade';
 import { DaffProductGridLoad, DaffProductGridLoadSuccess } from '../../actions/product-grid.actions';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
@@ -61,7 +63,7 @@ describe('DaffProductGridFacade', () => {
     });
 
     it('should be an observable of the list of products', () => {
-      const products = [{id: '1', name: 'Some Name'}];
+      const products = new DaffProductFactory().createMany(1);
       const expected = cold('a', { a: products});
       store.dispatch(new DaffProductGridLoad());
       store.dispatch(new DaffProductGridLoadSuccess(products));

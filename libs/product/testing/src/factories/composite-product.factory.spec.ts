@@ -37,6 +37,7 @@ describe('Product | Testing | Factories | DaffCompositeProductFactory', () => {
       expect(result.name).toBeDefined();
       expect(result.brand).toBeDefined();
 			expect(result.description).toBeDefined();
+			expect(result.stock_status).toBeDefined();
 			expect(result.items[0].id).toBeDefined();
 			expect(result.items[0].required).toBeDefined();
 			expect(result.items[0].title).toBeDefined();
@@ -46,6 +47,7 @@ describe('Product | Testing | Factories | DaffCompositeProductFactory', () => {
 			expect(result.items[0].options[0].price).toBeDefined();
 			expect(result.items[0].options[0].quantity).toBeDefined();
 			expect(result.items[0].options[0].is_default).toBeDefined();
+			expect(result.items[0].options[0].stock_status).toBeDefined();
     });
   });
 });

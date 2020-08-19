@@ -11,6 +11,7 @@ import {
 } from '@daffodil/product';
 
 import { DaffProductFacade } from './product.facade';
+import { DaffProductFactory } from '@daffodil/product/testing';
 
 describe('DaffProductFacade', () => {
   let store: MockStore<Partial<DaffProductReducersState>>;
@@ -65,7 +66,7 @@ describe('DaffProductFacade', () => {
     });
 
     it('should be an observable of the currently selected product', () => {
-      const product = {id: '1', name: 'Some Name'};
+      const product = new DaffProductFactory().create();
       const expected = cold('a', { a: product});
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));
@@ -75,7 +76,7 @@ describe('DaffProductFacade', () => {
 	
 	describe('getProduct()', () => {
 		it('should be an observable of a product', () => {
-			const product = {id: '1', name: 'Some Name'};
+			const product = new DaffProductFactory().create();
       const expected = cold('a', { a: product});
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));

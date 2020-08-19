@@ -2,6 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
+import { DaffProductFactory } from '@daffodil/product/testing';
+
 import { DaffBestSellersFacade } from './best-sellers.facade';
 import { DaffBestSellersLoad, DaffBestSellersLoadSuccess } from '../../actions/best-sellers.actions';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
@@ -60,8 +62,9 @@ describe('DaffBestSellersFacade', () => {
     });
 
     it('should be an observable of the list of the best sellers that are added to state', () => {
-      const expected = cold('a', { a: [{id: '1', name: 'Some Name'}]});
-      store.dispatch(new DaffBestSellersLoadSuccess([{id: '1', name: 'Some Name'}]));
+			const stubProduct = new DaffProductFactory().create();
+      const expected = cold('a', { a: [stubProduct]});
+      store.dispatch(new DaffBestSellersLoadSuccess([stubProduct]));
       expect(facade.bestSellers$).toBeObservable(expected);
     })
   })

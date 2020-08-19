@@ -4,6 +4,11 @@ export enum MagentoProductTypeEnum {
 	SimpleProduct = 'SimpleProduct'
 }
 
+export enum MagentoProductStockStatusEnum {
+	InStock = 'IN_STOCK',
+	OutOfStock = 'OUT_OF_STOCK'
+}
+
 /**
  * An object for defining what the product service requests and retrieves from a magento backend.
  */
@@ -33,6 +38,7 @@ export interface MagentoProduct {
 			}
 		}
 	};
+	stock_status: string;
   media_gallery_entries?: {
 		label: string,
 		file: string,

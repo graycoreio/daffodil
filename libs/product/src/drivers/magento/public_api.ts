@@ -1,4 +1,4 @@
-export { MagentoProduct, MagentoProductTypeEnum } from './models/magento-product';
+export * from './models/magento-product';
 export { 
 	MagentoBundledProduct, 
 	MagentoBundledProductItemOption,

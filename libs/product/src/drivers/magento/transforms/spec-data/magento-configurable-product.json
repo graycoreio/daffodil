@@ -14,6 +14,7 @@
 	"description": {
 		"html": "Lorem ipsum dolor sit amet, accumsan ullamcorper ei eam. Sint appetere ocurreret no per, et cum lorem disputationi. Sit ut magna delenit, assum vidisse vocibus sed ut. In aperiri malorum accusamus sea, novum mediocritatem ius at. Duo agam probo honestatis ut. Nec regione splendide cu, unum graeco vivendum in duo."
 	},
+	"stock_status": "IN_STOCK",
 	"price_range": {
 		"maximum_price": {
 			"regular_price": {
@@ -148,6 +149,7 @@
 				},
 				"sku": "22-1", 
 				"id": null, 
+				"stock_status": "IN_STOCK",
 				"name": null, 
 				"__typename": null,
 				"url_key": null, 
@@ -190,6 +192,7 @@
 					}
 				},
 				"sku": "22-11", 
+				"stock_status": "IN_STOCK",
 				"id": null, 
 				"name": null, 
 				"__typename": null,
@@ -233,6 +236,7 @@
 					}
 				},
 				"sku": "22-12", 
+				"stock_status": "IN_STOCK",
 				"id": null, 
 				"name": null, 
 				"__typename": null,
@@ -276,6 +280,7 @@
 					}
 				},
 				"sku": "22-13", 
+				"stock_status": "IN_STOCK",
 				"id": null, 
 				"name": null, 
 				"__typename": null,
@@ -319,6 +324,7 @@
 					}
 				},
 				"sku": "22-2", 
+				"stock_status": "IN_STOCK",
 				"id": null, 
 				"name": null, 
 				"__typename": null,
@@ -362,6 +368,7 @@
 					}
 				},
 				"sku": "22-21", 
+				"stock_status": "IN_STOCK",
 				"id": null, 
 				"name": null, 
 				"__typename": null,
@@ -405,6 +412,7 @@
 					}
 				},
 				"sku": "22-22", 
+				"stock_status": "IN_STOCK",
 				"id": null, 
 				"name": null, 
 				"__typename": null,
@@ -448,6 +456,7 @@
 					}
 				},
 				"sku": "22-23", 
+				"stock_status": "IN_STOCK",
 				"id": null, 
 				"name": null, 
 				"__typename": null,
@@ -491,6 +500,7 @@
 					}
 				},
 				"sku": "22-3", 
+				"stock_status": "IN_STOCK",
 				"id": null, 
 				"name": null, 
 				"__typename": null,
@@ -534,6 +544,7 @@
 					}
 				},
 				"sku": "22-31", 
+				"stock_status": "IN_STOCK",
 				"id": null, 
 				"name": null, 
 				"__typename": null,
