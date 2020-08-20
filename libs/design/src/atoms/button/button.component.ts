@@ -1,6 +1,6 @@
 import {
   Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy,
-  ElementRef, Input, HostBinding, Renderer2, ContentChild
+  ElementRef, Input, HostBinding, Renderer2
 } from '@angular/core';
 
 import { daffColorMixin, DaffColorable, DaffPalette } from '../../core/colorable/colorable';
@@ -16,7 +16,7 @@ import { daffSizeMixin } from '../../core/sizeable/sizeable-mixin';
 import { DaffSizeable, DaffSizeSmallType, DaffSizeMediumType, DaffSizeLargeType } from '../../core/sizeable/sizeable';
 
 /**
-* List of classes to add to Daff Button instances based on host attributes to style as different variants.
+* List of classes to add to DaffButtonComponent instances based on host attributes to style as different variants.
 */
 const BUTTON_HOST_ATTRIBUTES: DaffButtonType[] = [
   'daff-button',
@@ -27,14 +27,13 @@ const BUTTON_HOST_ATTRIBUTES: DaffButtonType[] = [
 ];
 
 /**
- * An _elementRef and an instance of renderer2 are needed for the Colorable mixin
+ * An _elementRef and an instance of renderer2 are needed for the button mixins
  */
 class DaffButtonBase{
   constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {}
 }
 
-const _daffButtonBase = 
-daffColorMixin(daffSuffixableMixin(daffPrefixableMixin(daffSizeMixin(DaffButtonBase, 'md')))); 
+const _daffButtonBase = daffPrefixableMixin(daffSuffixableMixin(daffColorMixin(daffSizeMixin(DaffButtonBase, 'md'),'theme-contrast')));
 
 export type DaffButtonType = 'daff-button' | 'daff-stroked-button' | 'daff-raised-button' | 'daff-icon-button' | 'daff-underline-button' | undefined;
 
