@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.9.1](https://github.com/graycoreio/daffodil/compare/v0.9.0...v0.9.1) (2020-08-20)
+
+
+### Features
+
+* **authorizenet:** add state for verifying acceptJs has loaded ([#965](https://github.com/graycoreio/daffodil/issues/965)) ([efc24ae](https://github.com/graycoreio/daffodil/commit/efc24ae0c87ed5d3ca8475eef5e1dcb671370aad))
+* **cart:** export all cart item input models ([#1035](https://github.com/graycoreio/daffodil/issues/1035)) ([188eeb7](https://github.com/graycoreio/daffodil/commit/188eeb79aa6d2e5fed98930dafeb907e3c4bbf2c))
+* **core:** add backoff operator ([#965](https://github.com/graycoreio/daffodil/issues/965)) ([e76b58d](https://github.com/graycoreio/daffodil/commit/e76b58d31a822011a977a64a9aa65bbb5684e589))
+* **core:** add ID type ([#1034](https://github.com/graycoreio/daffodil/issues/1034)) ([62ef210](https://github.com/graycoreio/daffodil/commit/62ef21034a0cfe6e0bfc24a3146c44dfc81541ad))
+* **core:** create memory storage service ([#1036](https://github.com/graycoreio/daffodil/issues/1036)) ([95fbdea](https://github.com/graycoreio/daffodil/commit/95fbdea9f0f9ec41f51522874949d9c7a791873b))
+* **core:** create noop storage service ([#1032](https://github.com/graycoreio/daffodil/issues/1032)) ([bba42bc](https://github.com/graycoreio/daffodil/commit/bba42bccf39b94a35da20f25dc340df7561eb30b))
+* **design:** add theme and theme-contrast styles to button ([#1038](https://github.com/graycoreio/daffodil/issues/1038)) ([7f22a4b](https://github.com/graycoreio/daffodil/commit/7f22a4b5a96428183823832ca784ba439d7f11a8))
+* **product:** add facade field for hasDiscount ([#1037](https://github.com/graycoreio/daffodil/issues/1037)) ([e14ec27](https://github.com/graycoreio/daffodil/commit/e14ec27de2c1a2c34f6297d834c3f563715205f8))
+
 ## [0.9.0](https://github.com/graycoreio/daffodil/compare/v0.8.4...v0.9.0) (2020-08-14)
 
 
