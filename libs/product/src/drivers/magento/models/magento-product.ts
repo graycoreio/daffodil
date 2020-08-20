@@ -38,7 +38,7 @@ export interface MagentoProduct {
 			}
 		}
 	};
-	stock_status?: string;
+	stock_status?: MagentoProductStockStatusEnum;
   media_gallery_entries?: {
 		label: string,
 		file: string,
