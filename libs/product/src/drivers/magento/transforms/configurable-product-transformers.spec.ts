@@ -7,7 +7,6 @@ import { MagentoConfigurableProduct, MagentoConfigurableProductOption, MagentoCo
 import { transformOption, transformOptionValue, transformVariant, transformVariantAttributes, transformMagentoConfigurableProduct } from './configurable-product-transformers';
 import daffConfigurableProductData from './spec-data/daff-configurable-product.json';
 import magentoConfigurableProductData from './spec-data/magento-configurable-product.json';
-import { DaffProductTypeEnum } from '../../../models/product';
 
 describe('DaffMagentoConfigurableProductTransformers', () => {
 	const daffConfigurableProduct: DaffConfigurableProduct = new DaffConfigurableProductFactory().create();
@@ -30,12 +29,7 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
 	describe('transformMagentoConfigurableProduct', () => {
 		
 		it('should transform a magento configurable product into a daffodil configurable product', () => {
-			const expected: DaffConfigurableProduct = {
-				...daffConfigurableProductData,
-				type: DaffProductTypeEnum.Configurable
-			};
-
-			expect(transformMagentoConfigurableProduct(magentoConfigurableProductData, mediaUrl)).toEqual(expected);
+			expect(transformMagentoConfigurableProduct(magentoConfigurableProductData, mediaUrl)).toEqual(jasmine.objectContaining(daffConfigurableProductData));
 		});
 	});
 

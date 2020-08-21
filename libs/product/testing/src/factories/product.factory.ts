@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
-import { DaffProduct, DaffProductTypeEnum } from '@daffodil/product';
+import { DaffProduct, DaffProductTypeEnum, DaffProductStockEnum } from '@daffodil/product';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 /**
@@ -14,6 +14,7 @@ export class MockProduct implements DaffProduct {
 	id = faker.random.number({min: 1, max: 10000}).toString();
 	url = faker.random.alphaNumeric(16);
 	price = this.stubPrice;
+	stock_status = DaffProductStockEnum.InStock;
 	discount = {
 		amount: this.stubDiscount,
 		percent: this.stubDiscount/this.stubPrice

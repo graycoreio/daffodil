@@ -4,7 +4,7 @@ import * as faker from 'faker/locale/en_US';
 import {
   DaffModelFactory,
 } from '@daffodil/core/testing';
-import { MagentoProductTypeEnum, MagentoConfigurableProduct } from '@daffodil/product';
+import { MagentoProductTypeEnum, MagentoConfigurableProduct, MagentoProductStockStatusEnum } from '@daffodil/product';
 
 import { MockMagentoCoreProduct } from '../core/product.factory';
 
@@ -56,6 +56,7 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 				url_key: faker.random.alphaNumeric(16),
 				name: faker.random.word(),
 				sku: faker.random.alphaNumeric(16),
+				stock_status: MagentoProductStockStatusEnum.InStock,
 				image: {
 					__typename: 'ProductImage',
 					label: faker.random.words(3),
@@ -98,6 +99,7 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 				url_key: faker.random.alphaNumeric(16),
 				name: faker.random.word(),
 				sku: faker.random.alphaNumeric(16),
+				stock_status: MagentoProductStockStatusEnum.InStock,
 				image: {
 					__typename: 'ProductImage',
 					label: faker.random.words(3),
@@ -139,6 +141,7 @@ export class MockMagentoConfigurableProduct extends MockMagentoCoreProduct imple
 				url_key: faker.random.alphaNumeric(16),
 				name: faker.random.word(),
 				sku: faker.random.alphaNumeric(16),
+				stock_status: MagentoProductStockStatusEnum.InStock,
 				image: {
 					__typename: 'ProductImage',
 					label: faker.random.words(3),

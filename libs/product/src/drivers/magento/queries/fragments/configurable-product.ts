@@ -34,6 +34,7 @@ export const magentoConfigurableProductFragment = gql`
 						}
 					}
 				}
+				stock_status
 				image {
 					url
 					label
