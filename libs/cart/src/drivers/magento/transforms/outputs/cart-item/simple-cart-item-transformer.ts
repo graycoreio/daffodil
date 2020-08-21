@@ -1,5 +1,7 @@
+import { MagentoProductStockStatusEnum } from '@daffodil/product';
+
 import { MagentoCartItem } from '../../../models/outputs/cart-item';
-import { DaffCartItem } from '../../../../../models/cart-item';
+import { DaffCartItem, DaffCartItemStockEnum } from '../../../../../models/cart-item';
 import { DaffCartItemInputType } from '../../../../../models/cart-item-input';
 
 /**
@@ -25,8 +27,20 @@ export function transformMagentoSimpleCartItem(cartItem: MagentoCartItem): DaffC
 			label: cartItem.product.thumbnail.label
 		},
 		total_discount: cartItem.prices.total_item_discount.value,
+		stock_status: getStockStatus(cartItem.product.stock_status),
 
 		// TODO: implement
 		parent_item_id: 0
 	} : null
+}
+
+function getStockStatus(magentoStatus: string): DaffCartItemStockEnum {
+	switch(magentoStatus) {
+		case MagentoProductStockStatusEnum.InStock:
+			return DaffCartItemStockEnum.InStock;
+		case MagentoProductStockStatusEnum.OutOfStock:
+			return DaffCartItemStockEnum.OutOfStock;
+		default:
+			return DaffCartItemStockEnum.InStock;
+	}
 }
