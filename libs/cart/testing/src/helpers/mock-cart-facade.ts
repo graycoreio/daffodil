@@ -74,5 +74,9 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
 		return new BehaviorSubject([]);
 	}
 
+	isCartItemOutOfStock(itemId: string | number): BehaviorSubject<boolean> {
+		return new BehaviorSubject(false);
+	}
+
   dispatch(action: Action) {};
 }

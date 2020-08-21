@@ -70,6 +70,7 @@ export class DaffCartFacade<
 	private _selectCartItemDiscountedRowTotal;
 	private _selectCartItemConfiguredAttributes;
 	private _selectCartItemCompositeOptions;
+	private _selectIsCartItemOutOfStock;
 
   constructor(private store: Store<DaffCartReducersState<T, V, U>>) {
 		const {
@@ -113,6 +114,7 @@ export class DaffCartFacade<
 			selectCartOrderCartId,
       selectHasOrderResult,
       selectCartItemDiscountedRowTotal,
+      selectIsCartItemOutOfStock,
 
       selectHasBillingAddress,
       selectHasShippingAddress,
@@ -123,6 +125,7 @@ export class DaffCartFacade<
 		this._selectCartItemDiscountedRowTotal = selectCartItemDiscountedRowTotal;
 		this._selectCartItemConfiguredAttributes = selectCartItemConfiguredAttributes;
 		this._selectCartItemCompositeOptions = selectCartItemCompositeOptions;
+		this._selectIsCartItemOutOfStock = selectIsCartItemOutOfStock;
 
     this.loading$ = this.store.pipe(select(selectCartLoading));
     this.resolved$ = this.store.pipe(select(selectCartResolved));
@@ -179,6 +182,10 @@ export class DaffCartFacade<
 
 	getCartItemDiscountedTotal(itemId: string | number): Observable<number> {
 		return this.store.pipe(select(this._selectCartItemDiscountedRowTotal, { id: itemId }));
+	}
+
+	isCartItemOutOfStock(itemId: string | number): Observable<boolean> {
+		return this.store.pipe(select(this._selectIsCartItemOutOfStock, { id: itemId }));
 	}
 
   dispatch(action: Action) {

@@ -47,6 +47,7 @@ import { DaffCartOrderResult } from '../../models/cart-order-result';
 import { DaffConfigurableCartItem } from '../../models/configurable-cart-item';
 import { DaffCompositeCartItem } from '../../models/composite-cart-item';
 import { DaffResolveCartSuccess } from '../../actions/public_api';
+import { DaffCartItemStockEnum } from '../../models/cart-item';
 
 describe('DaffCartFacade', () => {
   let store: MockStore<{ product: Partial<DaffCartReducersState> }>;
@@ -697,6 +698,18 @@ describe('DaffCartFacade', () => {
       const expected = cold('a', { a: cart.items[0].row_total - cart.items[0].total_discount});
       store.dispatch(new DaffCartLoadSuccess(cart));
 			expect(facade.getCartItemDiscountedTotal(cart.items[0].item_id)).toBeObservable(expected);
+		});
+  });
+
+  describe('isCartItemOutOfStock', () => {
+
+		it('should return whether the cart item is out of stock', () => {
+			const cart = cartFactory.create({
+				items: cartItemFactory.createMany(2)
+			});
+      const expected = cold('a', { a: cart.items[0].stock_status === DaffCartItemStockEnum.OutOfStock });
+      store.dispatch(new DaffCartLoadSuccess(cart));
+			expect(facade.isCartItemOutOfStock(cart.items[0].item_id)).toBeObservable(expected);
 		});
   });
 
