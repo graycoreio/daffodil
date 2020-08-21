@@ -22,7 +22,7 @@ describe('selectProductEntitiesState', () => {
 		selectProduct,
 		selectProductDiscountAmount,
 		selectProductHasDiscount,
-		selectProductOutOfStock
+		selectIsProductOutOfStock
 	} = getDaffProductEntitiesSelectors();
   
   beforeEach(() => {
@@ -116,10 +116,10 @@ describe('selectProductEntitiesState', () => {
     });
   });
 
-  describe('selectProductOutOfStock', () => {
+  describe('selectIsProductOutOfStock', () => {
     
-    it('should select whether the product has a discount', () => {
-			const selector = store.pipe(select(selectProductOutOfStock, { id: mockProduct.id }));
+    it('should select whether the product is out of stock', () => {
+			const selector = store.pipe(select(selectIsProductOutOfStock, { id: mockProduct.id }));
 			const expected = cold('a', { a: mockProduct.stock_status === DaffProductStockEnum.OutOfStock });
 
 			expect(selector).toBeObservable(expected);

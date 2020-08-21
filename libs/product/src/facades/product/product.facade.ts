@@ -43,7 +43,7 @@ export class DaffProductFacade<T extends DaffProduct = DaffProduct> implements D
 	}
 
 	isOutOfStock(id: string): Observable<boolean> {
-		return this.store.pipe(select(this.selectors.selectProductOutOfStock, { id }));
+		return this.store.pipe(select(this.selectors.selectIsProductOutOfStock, { id }));
 	}
 
   /**
