@@ -4,7 +4,7 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffProductGridLoadSuccess } from '../../actions/product-grid.actions';
-import { DaffProduct } from '../../models/product';
+import { DaffProduct, DaffProductStockEnum } from '../../models/product';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
 import { daffProductReducers } from '../../reducers/product-reducers';
 import { getDaffProductEntitiesSelectors } from './product-entities.selectors';
@@ -21,7 +21,8 @@ describe('selectProductEntitiesState', () => {
 		selectProductTotal,
 		selectProduct,
 		selectProductDiscountAmount,
-		selectProductHasDiscount
+		selectProductHasDiscount,
+		selectProductOutOfStock
 	} = getDaffProductEntitiesSelectors();
   
   beforeEach(() => {
@@ -110,6 +111,16 @@ describe('selectProductEntitiesState', () => {
     it('should select whether the product has a discount', () => {
 			const selector = store.pipe(select(selectProductHasDiscount, { id: mockProduct.id }));
 			const expected = cold('a', { a: !!mockProduct.discount.amount });
+
+			expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectProductOutOfStock', () => {
+    
+    it('should select whether the product has a discount', () => {
+			const selector = store.pipe(select(selectProductOutOfStock, { id: mockProduct.id }));
+			const expected = cold('a', { a: mockProduct.stock_status === DaffProductStockEnum.OutOfStock });
 
 			expect(selector).toBeObservable(expected);
     });

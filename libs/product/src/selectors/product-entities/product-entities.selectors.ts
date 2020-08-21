@@ -4,7 +4,7 @@ import { EntityState } from '@ngrx/entity';
 import { daffProductEntitiesAdapter } from '../../reducers/product-entities/product-entities-reducer-adapter';
 import { getDaffProductFeatureSelector } from '../product-feature.selector';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
-import { DaffProduct } from '../../models/product';
+import { DaffProduct, DaffProductStockEnum } from '../../models/product';
 
 export interface DaffProductEntitiesMemoizedSelectors<T extends DaffProduct = DaffProduct> {
 	selectProductEntitiesState: MemoizedSelector<object, EntityState<T>>;
@@ -15,6 +15,7 @@ export interface DaffProductEntitiesMemoizedSelectors<T extends DaffProduct = Da
 	selectProduct: MemoizedSelectorWithProps<object, object, T>;
 	selectProductDiscountAmount: MemoizedSelectorWithProps<object, object, number>;
 	selectProductHasDiscount: MemoizedSelectorWithProps<object, object, boolean>;
+	selectProductOutOfStock: MemoizedSelectorWithProps<object, object, boolean>;
 }
 
 const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEntitiesMemoizedSelectors<T> => {
@@ -82,7 +83,7 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
 
 			return (product.discount && product.discount.amount) || 0;
 		}
-	)
+	);
 
 	const selectProductHasDiscount = createSelector(
 		selectProductEntities,
@@ -91,7 +92,15 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
 
 			return !!discountAmount;
 		}
-	)
+	);
+
+	const selectProductOutOfStock = createSelector(
+		selectProductEntities,
+		(products, props) => {
+			return selectProduct.projector(products, { id: props.id })
+				.stock_status === DaffProductStockEnum.OutOfStock;
+		}
+	);
 
 	return { 
 		selectProductEntitiesState,
@@ -101,7 +110,8 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
 		selectProductTotal,
 		selectProduct,
 		selectProductDiscountAmount,
-		selectProductHasDiscount
+		selectProductHasDiscount,
+		selectProductOutOfStock
 	}
 }
 
