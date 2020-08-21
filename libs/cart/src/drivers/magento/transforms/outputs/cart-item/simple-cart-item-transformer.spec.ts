@@ -7,6 +7,7 @@ import {
 
 import { DaffCartItemInputType } from '../../../../../models/cart-item-input';
 import { transformMagentoSimpleCartItem } from './simple-cart-item-transformer';
+import { MagentoProductStockStatusEnum } from '@daffodil/product';
 
 describe('Driver | Magento | Cart | Transformer | SimpleMagentoCartItem', () => {
   let daffCartItemFactory: DaffCartItemFactory;
@@ -31,6 +32,7 @@ describe('Driver | Magento | Cart | Transformer | SimpleMagentoCartItem', () => 
     let discount;
 		let url;
 		let label;
+		let stock_status;
 
     beforeEach(() => {
       sku = 'sku';
@@ -39,6 +41,7 @@ describe('Driver | Magento | Cart | Transformer | SimpleMagentoCartItem', () => 
       discount = 1;
 			url = 'url';
 			label = 'label';
+			stock_status = MagentoProductStockStatusEnum.InStock;
 
       mockMagentoCartItem.product.sku = sku;
       mockMagentoCartItem.quantity = qty;
@@ -57,6 +60,7 @@ describe('Driver | Magento | Cart | Transformer | SimpleMagentoCartItem', () => 
       expect(transformedCartItem.sku).toEqual(sku);
       expect(transformedCartItem.qty).toEqual(qty);
       expect(transformedCartItem.price).toEqual(price);
+      expect(transformedCartItem.stock_status).toEqual(stock_status);
       expect(transformedCartItem.total_discount).toEqual(discount);
       expect(transformedCartItem.image.id).toEqual(label);
       expect(transformedCartItem.image.url).toEqual(url);
