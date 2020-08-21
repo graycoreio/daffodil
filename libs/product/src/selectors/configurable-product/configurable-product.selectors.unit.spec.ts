@@ -13,6 +13,7 @@ import {
 } from '@daffodil/product';
 
 import { getDaffConfigurableProductSelectors } from './configurable-product.selectors';
+import { DaffProductStockEnum } from '../../models/product';
 
 describe('Configurable Product Selectors | unit tests', () => {
 
@@ -265,6 +266,23 @@ describe('Configurable Product Selectors | unit tests', () => {
 			const selector = store.pipe(select(selectMatchingConfigurableProductVariants, { id: stubConfigurableProduct.id }));
 			const expected = cold('a', { a:
 				stubConfigurableProduct.variants.slice(0, 4)
+			});
+
+			expect(selector).toBeObservable(expected);
+		});
+
+		it('only returns variants that are in stock', () => {
+			stubConfigurableProduct.variants[0].stock_status = DaffProductStockEnum.OutOfStock;
+
+			store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
+			store.dispatch(new DaffConfigurableProductApplyAttribute(
+				stubConfigurableProduct.id,
+				stubConfigurableProduct.configurableAttributes[0].code,
+				stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
+			));
+			const selector = store.pipe(select(selectMatchingConfigurableProductVariants, { id: stubConfigurableProduct.id }));
+			const expected = cold('a', { a:
+				stubConfigurableProduct.variants.slice(1, 4)
 			});
 
 			expect(selector).toBeObservable(expected);

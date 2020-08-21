@@ -14,5 +14,8 @@ export class MockDaffProductFacade implements DaffProductFacadeInterface {
 	hasDiscount(id: string): BehaviorSubject<boolean> {
 		return new BehaviorSubject(false);
 	}
+	isOutOfStock(id: string): BehaviorSubject<boolean> {
+		return new BehaviorSubject(false);
+	}
 	dispatch(action) {};
 }
