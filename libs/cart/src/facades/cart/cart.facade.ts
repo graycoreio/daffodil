@@ -184,7 +184,7 @@ export class DaffCartFacade<
 		return this.store.pipe(select(this._selectCartItemDiscountedRowTotal, { id: itemId }));
 	}
 
-	isCartItemOutOfStock(itemId: string | number): Observable<boolean> {
+	isCartItemOutOfStock(itemId: DaffCartItem['item_id']): Observable<boolean> {
 		return this.store.pipe(select(this._selectIsCartItemOutOfStock, { id: itemId }));
 	}
 
