@@ -6,7 +6,7 @@ import { DaffCartFactory, DaffCartItemFactory, DaffConfigurableCartItemFactory, 
 
 import { DaffCartReducersState, daffCartReducers } from '../../reducers/public_api';
 import { DaffCart } from '../../models/cart';
-import { DaffCartItem } from '../../models/cart-item';
+import { DaffCartItem, DaffCartItemStockEnum } from '../../models/cart-item';
 import { getDaffCartItemEntitiesSelectors } from './cart-item-entities.selectors';
 import { DaffCartItemListSuccess } from '../../actions/public_api';
 import { DaffConfigurableCartItem } from '../../models/configurable-cart-item';
@@ -30,7 +30,8 @@ describe('selectCartItemEntitiesState', () => {
 		selectCartItemTotal,
 		selectCartItem,
 		selectCartItemConfiguredAttributes,
-		selectCartItemCompositeOptions
+		selectCartItemCompositeOptions,
+		selectIsCartItemOutOfStock
 	} = getDaffCartItemEntitiesSelectors();
   
   beforeEach(() => {
@@ -140,6 +141,17 @@ describe('selectCartItemEntitiesState', () => {
 			store.dispatch(new DaffCartItemListSuccess(mockCompositeCartItems));
 			const selector = store.pipe(select(selectCartItemCompositeOptions, { id: mockCompositeCartItems[0].item_id }));
 			const expected = cold('a', { a: mockCompositeCartItems[0].options });
+
+			expect(selector).toBeObservable(expected);
+		});
+  });
+
+  describe('selectIsCartItemOutOfStock', () => {
+		
+		it('should return whether the given cart item is out of stock', () => {
+			store.dispatch(new DaffCartItemListSuccess(mockCartItems));
+			const selector = store.pipe(select(selectIsCartItemOutOfStock, { id: mockCartItems[0].item_id }));
+			const expected = cold('a', { a: mockCartItems[0].stock_status === DaffCartItemStockEnum.OutOfStock });
 
 			expect(selector).toBeObservable(expected);
 		});

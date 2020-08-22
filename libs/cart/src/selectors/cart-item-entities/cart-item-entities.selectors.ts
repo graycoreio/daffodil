@@ -1,7 +1,7 @@
 import { createSelector, MemoizedSelector, MemoizedSelectorWithProps } from '@ngrx/store';
 import { EntityState } from '@ngrx/entity';
 
-import { DaffCartItem } from '../../models/cart-item';
+import { DaffCartItem, DaffCartItemStockEnum } from '../../models/cart-item';
 import { daffCartItemEntitiesAdapter } from '../../reducers/cart-item-entities/cart-item-entities-reducer-adapter';
 import { DaffCartReducersState } from '../../reducers/public_api';
 import { DaffCart } from '../../models/cart';
@@ -20,6 +20,7 @@ export interface DaffCartItemEntitiesMemoizedSelectors<T extends DaffCartItem = 
 	selectCartItem: MemoizedSelectorWithProps<object, object, T>;
 	selectCartItemConfiguredAttributes: MemoizedSelectorWithProps<object, object, DaffConfigurableCartItemAttribute[]>;
 	selectCartItemCompositeOptions: MemoizedSelectorWithProps<object, object, DaffCompositeCartItemOption[]>;
+	selectIsCartItemOutOfStock: MemoizedSelectorWithProps<object, object, boolean>;
 }
 
 const createCartItemEntitiesSelectors = <
@@ -109,6 +110,14 @@ const createCartItemEntitiesSelectors = <
 		}
 	);
 
+	const selectIsCartItemOutOfStock = createSelector(
+		selectCartItemEntities,
+		(cartItems, props) => {
+			return selectCartItem.projector(cartItems, { id: props.id })
+				.stock_status === DaffCartItemStockEnum.OutOfStock;
+		}
+	);
+
 	return { 
 		selectCartItemEntitiesState,
 		selectCartItemIds,
@@ -117,7 +126,8 @@ const createCartItemEntitiesSelectors = <
 		selectCartItemTotal,
 		selectCartItem,
 		selectCartItemConfiguredAttributes,
-		selectCartItemCompositeOptions
+		selectCartItemCompositeOptions,
+		selectIsCartItemOutOfStock
 	}
 }
 
