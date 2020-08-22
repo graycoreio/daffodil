@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.9.2](https://github.com/graycoreio/daffodil/compare/v0.9.1...v0.9.2) (2020-08-22)
+
+
+### Features
+
+* **cart:** add cart item out of stock state ([#1043](https://github.com/graycoreio/daffodil/issues/1043)) ([7dc34e6](https://github.com/graycoreio/daffodil/commit/7dc34e6b23d0aa8040c9b8cbb88fd92062d95137))
+* **cart:** add stock_status field to cart items ([#1041](https://github.com/graycoreio/daffodil/issues/1041)) ([2a6d411](https://github.com/graycoreio/daffodil/commit/2a6d411bc37901a49cc6ae5e72b96bb363da7740))
+* **product:** add out_of_stock state for products ([#1042](https://github.com/graycoreio/daffodil/issues/1042)) ([7af5f24](https://github.com/graycoreio/daffodil/commit/7af5f2489fa3c9293ed9f4db787809497d739c84))
+* **product:** add stock_status field to product model ([#1039](https://github.com/graycoreio/daffodil/issues/1039)) ([2d746d7](https://github.com/graycoreio/daffodil/commit/2d746d72d1bf63f63ccb94095040f0232b105039))
+
 ### [0.9.1](https://github.com/graycoreio/daffodil/compare/v0.9.0...v0.9.1) (2020-08-20)
 
 
