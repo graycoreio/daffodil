@@ -1,5 +1,5 @@
 import { MagentoBundledProduct, MagentoBundledProductItem, MagentoBundledProductItemOption } from '../models/bundled-product';
-import { DaffProductTypeEnum } from '../../../models/product';
+import { DaffProductTypeEnum, DaffProductStockEnum } from '../../../models/product';
 import { DaffCompositeProduct } from '../../../models/composite-product';
 import { 
 	DaffCompositeProductItemOption, 
@@ -7,6 +7,7 @@ import {
 	DaffCompositeProductItemInputEnum 
 } from '../../../models/composite-product-item';
 import { transformMagentoSimpleProduct } from './simple-product-transformers';
+import { MagentoProductStockStatusEnum } from '../models/magento-product';
 
 /**
  * Transforms the magento MagentoProduct from the magento product query into a DaffProduct. 
@@ -36,6 +37,18 @@ function transformMagentoBundledProductItemOption(option: MagentoBundledProductI
 		name: option.label,
 		price: option.price,
 		quantity: option.quantity,
-		is_default: option.is_default
+		is_default: option.is_default,
+		stock_status: getStockStatus(option.product.stock_status)
+	}
+}
+
+function getStockStatus(magentoStatus: string): DaffProductStockEnum {
+	switch(magentoStatus) {
+		case MagentoProductStockStatusEnum.InStock:
+			return DaffProductStockEnum.InStock;
+		case MagentoProductStockStatusEnum.OutOfStock:
+			return DaffProductStockEnum.OutOfStock;
+		default:
+			return DaffProductStockEnum.InStock;
 	}
 }
