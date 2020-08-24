@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SidebarRoutingModule } from './sidebar-routing.module';
 import { SidebarComponent } from './sidebar.component';
-import { DaffSidebarModule, DaffButtonModule, DaffNativeSelectModule, DaffFormFieldModule } from '@daffodil/design';
+import { DaffSidebarModule, DaffButtonModule, DaffNativeSelectModule, DaffFormFieldModule, DaffLinkSetModule } from '@daffodil/design';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({

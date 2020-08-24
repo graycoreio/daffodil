@@ -65,7 +65,7 @@ describe('Sidebar | Sidebar Reducer', () => {
 
   describe('when SetSidebarModeAction is triggered', () => {
     it('should set the sidebar mode to the payload', () => {
-      const stubMode = 'side';
+      const stubMode = 'push';
       const action = new SetSidebarMode(stubMode);
       const result = reducer(initialState, action);
       expect(result.mode).toEqual(stubMode);

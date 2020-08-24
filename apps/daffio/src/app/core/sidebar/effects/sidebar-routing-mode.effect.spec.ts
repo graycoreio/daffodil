@@ -47,7 +47,7 @@ describe('Daffio | DaffioSidebarRoutingModeEffects', () => {
   describe('when a ROUTER_NAVIGATED occurs to a route with a `sidebarMode` in its tree', () => {
     const action = configureStubNavigationAction({
       data: {
-        sidebarMode: 'side'
+        sidebarMode: 'push'
       }
     });
 
@@ -77,7 +77,7 @@ describe('Daffio | DaffioSidebarRoutingModeEffects', () => {
         actions$ = hot( '--a', { a: action });
         spyOn(breakpointObserver, 'observe').and.returnValue(hot( '--a', { a: state }));
         
-        expected = cold('--b', { b: new SetSidebarMode('side') });
+        expected = cold('--b', { b: new SetSidebarMode('push') });
 
         effects = new DaffioSidebarRoutingModeEffects(actions$, breakpointObserver);
 

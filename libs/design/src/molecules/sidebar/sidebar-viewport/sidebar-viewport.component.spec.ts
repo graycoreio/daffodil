@@ -160,7 +160,7 @@ describe('DaffSidebarViewportComponent | Usage', () => {
   });
 
 
-  it('should recalculate the animation state when set to fixed', () => {
+  it('when mode is set to fixed', () => {
     wrapper.mode = 'push';
     wrapper.open = false;
     fixture.detectChanges();
@@ -205,7 +205,7 @@ describe('DaffSidebarViewportComponent | Defaults', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have the _animationState should be `closed` by default', () => {
+  it('should set the _animationState to closed by default', () => {
     expect(component._animationState).toEqual('closed');
   });
 
@@ -213,7 +213,7 @@ describe('DaffSidebarViewportComponent | Defaults', () => {
     expect(component.hasBackdrop).toBe(true);
   });
 
-  it('should be `push` mode by default', () => {
+  it('should set the default mode to `push`', () => {
     expect(component.mode).toBe('push');
   });
 });
