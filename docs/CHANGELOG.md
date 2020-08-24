@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.9.3](https://github.com/graycoreio/daffodil/compare/v0.9.2...v0.9.3) (2020-08-24)
+
+
+### Features
+
+* **product:** stock_status data is now available for composite product item options ([#1044](https://github.com/graycoreio/daffodil/issues/1044)) ([c371e63](https://github.com/graycoreio/daffodil/commit/c371e63e6a76ae9e81f3ea6175eddce59275a860))
+
 ### [0.9.2](https://github.com/graycoreio/daffodil/compare/v0.9.1...v0.9.2) (2020-08-22)
 
 
