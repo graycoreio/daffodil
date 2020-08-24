@@ -4,7 +4,7 @@ import { DaffProductLoadSuccess } from '../../actions/product.actions';
 import { DaffProductGridLoadSuccess } from '../../actions/product-grid.actions';
 import { daffCompositeProductEntitiesReducer } from './composite-product-entities.reducer';
 import { DaffBestSellersLoadSuccess } from '../../actions/best-sellers.actions';
-import { DaffProduct } from '../../models/product';
+import { DaffProduct, DaffProductStockEnum } from '../../models/product';
 import { daffCompositeProductAppliedOptionsEntitiesAdapter } from './composite-product-entities-reducer-adapter';
 import { DaffCompositeProduct } from '../../models/composite-product';
 import { DaffCompositeProductApplyOption } from '../../actions/composite-product.actions';
@@ -160,9 +160,10 @@ describe('Product | Composite Product Entities Reducer', () => {
 		
 		let result;
 
-		it('should set the item to the default option when it is provided', () => {
+		it('should set the item to the default option when it is provided and in stock', () => {
 			compositeProduct.items[0].options[0].is_default = false;
 			compositeProduct.items[0].options[1].is_default = true;
+			compositeProduct.items[0].options[1].stock_status = DaffProductStockEnum.InStock;
 			const productLoadSuccess = new DaffProductLoadSuccess(compositeProduct);
 			result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
 
@@ -172,11 +173,26 @@ describe('Product | Composite Product Entities Reducer', () => {
 			});
 		});
 
+		it('should not set the item to the default option when that option is out of stock', () => {
+			compositeProduct.items[0].options[0].is_default = false;
+			compositeProduct.items[0].options[1].is_default = true;
+			compositeProduct.items[0].options[1].stock_status = DaffProductStockEnum.OutOfStock;
+			const productLoadSuccess = new DaffProductLoadSuccess(compositeProduct);
+			result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
+
+			expect(result.entities[compositeProduct.id].items[compositeProduct.items[0].id]).not.toEqual({
+				value: compositeProduct.items[0].options[1].id,
+				qty: 1
+			});
+		});
+
 		describe('when the default item option is not defined', () => {
 			
-			it('should set the default option to the first option when the item is required', () => {
+			it(`should set the default option to the first option when the item is required 
+					and the first option is in stock`, () => {
 				compositeProduct.items[0].options[0].is_default = false;
 				compositeProduct.items[0].options[1].is_default = false;
+				compositeProduct.items[0].options[0].stock_status = DaffProductStockEnum.InStock;
 				compositeProduct.items[0].required = true;
 				const productLoadSuccess = new DaffProductLoadSuccess(compositeProduct);
 				result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
@@ -191,6 +207,18 @@ describe('Product | Composite Product Entities Reducer', () => {
 				compositeProduct.items[0].options[0].is_default = false;
 				compositeProduct.items[0].options[1].is_default = false;
 				compositeProduct.items[0].required = false;
+				const productLoadSuccess = new DaffProductLoadSuccess(compositeProduct);
+				result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
+
+				expect(result.entities[compositeProduct.id].items[compositeProduct.items[0].id]).toEqual({ value: null, qty: null });
+			});
+
+			it(`should set the default option to null when the item is required
+					and the first option is out of stock`, () => {
+				compositeProduct.items[0].options[0].is_default = false;
+				compositeProduct.items[0].options[1].is_default = false;
+				compositeProduct.items[0].options[0].stock_status = DaffProductStockEnum.OutOfStock;
+				compositeProduct.items[0].required = true;
 				const productLoadSuccess = new DaffProductLoadSuccess(compositeProduct);
 				result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
 

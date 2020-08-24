@@ -29,14 +29,16 @@
 					"name": "Option 1",
 					"price": 10,
 					"quantity": 1,
-					"is_default": true
+					"is_default": true,
+					"stock_status": "IN_STOCK"
 				},
 				{
 					"id": "2",
 					"name": "Option 2",
 					"price": 12,
 					"quantity": 1,
-					"is_default": false
+					"is_default": false,
+					"stock_status": "IN_STOCK"
 				}
 			]
 		}

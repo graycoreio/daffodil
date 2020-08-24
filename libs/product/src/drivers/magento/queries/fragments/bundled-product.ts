@@ -22,6 +22,7 @@ export const magentoBundledProductFragment = gql`
 					id
 					name
 					sku
+					stock_status
 				}
 			}
 		}
