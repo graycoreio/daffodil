@@ -87,12 +87,16 @@ function getDefaultOption(item: DaffCompositeProductItem): DaffCompositeProductE
 			qty: 1
 		}
 	} else {
-		return item.required && isOptionInStock(item.options[0]) ? 
-			{ value: item.options[0].id, qty: 1 } :
+		return item.required && getFirstInStockOptionIndex(item) > -1 ? 
+			{ value: item.options[getFirstInStockOptionIndex(item)].id, qty: 1 } :
 			{ value: null, qty: null }
 	}
 }
 
 function isOptionInStock(option: DaffCompositeProductItemOption): boolean {
 	return option.stock_status === DaffProductStockEnum.InStock;
+}
+
+function getFirstInStockOptionIndex(item: DaffCompositeProductItem): number {
+	return item.options.findIndex(option => option.stock_status === DaffProductStockEnum.InStock);
 }
