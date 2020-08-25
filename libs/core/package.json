@@ -15,12 +15,16 @@
     "build": "ng build core --prod",
     "lint": "ng lint core",
     "test": "ng test core --watch=false --browsers=ChromeHeadless",
-    "reportcoverage": 
+    "reportcoverage":
       "(cd ../../ && ./cc-test-reporter format-coverage -t lcov -o coverage/cc.core.json coverage/libs/core/lcov.info)",
     "publish": "(cd ../../dist/core; npm publish --access=public)"
   },
   "homepage": "https://github.com/graycoreio/daffodil",
   "peerDependencies": {
-    "@angular/core": "0.0.0-PLACEHOLDER"
+    "@angular/core": "0.0.0-PLACEHOLDER",
+    "graphql": "0.0.0-PLACEHOLDER"
+  },
+  "devDependencies": {
+    "graphql-tag": "0.0.0-PLACEHOLDER"
   }
 }
