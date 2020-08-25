@@ -1,5 +1,5 @@
 @mixin daff-raised-button-theme-variant($base-color) {
 	background-color: $base-color;
-	border: 2px solid $base-color;
+	border: 1px solid $base-color;
 	color: daff-text-contrast($base-color);
 }
