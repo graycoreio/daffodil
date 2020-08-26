@@ -254,11 +254,9 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
 				mockMagentoCart.shipping_addresses[0].selected_shipping_method = mockMagentoCart.shipping_addresses[0].available_shipping_methods[0];
 				transformedCart = service.transform(mockMagentoCart);
 
-				expect(
-					transformedCart.available_shipping_methods.findIndex(method => 
-						method.method_code === mockMagentoCart.shipping_addresses[0].selected_shipping_method.method_code
-					)
-				).toBeGreaterThan(-1);
+				expect(transformedCart.available_shipping_methods).toContain(jasmine.objectContaining({
+					method_code: mockMagentoCart.shipping_addresses[0].selected_shipping_method.method_code
+				}));
 			});
 		});
   });

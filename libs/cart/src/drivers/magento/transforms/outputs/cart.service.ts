@@ -121,13 +121,14 @@ export class DaffMagentoCartTransformer {
 				this.shippingRateTransformer.transform(method)
 			)
 		: [];
+		const selectedShippingMethod = cart.shipping_addresses[0].selected_shipping_method;
 
 		return {
-			available_shipping_methods: cart.shipping_addresses[0].selected_shipping_method &&
-			!this.containsShippingMethod(cart.shipping_addresses[0].available_shipping_methods, cart.shipping_addresses[0].selected_shipping_method) 
+			available_shipping_methods: selectedShippingMethod &&
+			!this.containsShippingMethod(cart.shipping_addresses[0].available_shipping_methods, selectedShippingMethod) 
 			? [
 					...availableMethods,
-					this.shippingRateTransformer.transform(cart.shipping_addresses[0].selected_shipping_method)
+					this.shippingRateTransformer.transform(selectedShippingMethod)
 				] : availableMethods
 		};
 	}
