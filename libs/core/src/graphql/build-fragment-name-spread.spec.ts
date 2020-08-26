@@ -1,8 +1,9 @@
 import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';
-import { daffGetFragmentNames } from './get-fragment-names';
 
-describe('Core | GraphQL | daffGetFragmentNames', () => {
+import { daffBuildFragmentNameSpread } from './build-fragment-name-spread';
+
+describe('Core | GraphQL | daffBuildFragmentNameSpread', () => {
   let mockFragment1: DocumentNode;
   let mockFragment2: DocumentNode;
   let mockEmptyFragment: DocumentNode;
@@ -43,37 +44,27 @@ describe('Core | GraphQL | daffGetFragmentNames', () => {
     `;
   });
 
-  describe('when there are fragments defined', () => {
+  describe('when there are some fragments defined', () => {
     let names;
 
     beforeEach(() => {
-      names = daffGetFragmentNames(mockFragment1, mockFragment2);
+      names = daffBuildFragmentNameSpread(mockFragment1, mockFragment2, mockEmptyFragment);
     });
 
-    it('should return a list of the fragment names', () => {
-      expect(names).toContain('fragment11');
-      expect(names).toContain('fragment12');
-      expect(names).toContain('fragment21');
-      expect(names).toContain('fragment22');
-    });
-
-    it('should not return the names of other nodes', () => {
-      expect(names).not.toContain('Random');
-      expect(names).not.toContain('Foo');
-      expect(names).not.toContain('Bar');
-      expect(names).not.toContain('Taco');
+    it('should return a string of the names separated by newlines', () => {
+      expect(names).toEqual(`...fragment11\n...fragment12\n...fragment21\n...fragment22\n`);
     });
   });
 
   describe('when there are no fragments defined', () => {
-    it('should return an empty list', () => {
-      expect(daffGetFragmentNames(mockEmptyFragment)).toEqual([]);
+    it('should return an empty string', () => {
+      expect(daffBuildFragmentNameSpread(mockEmptyFragment)).toEqual('');
     });
   });
 
   describe('when nothing is passed', () => {
-    it('should return an empty list', () => {
-      expect(daffGetFragmentNames()).toEqual([]);
+    it('should return an empty string', () => {
+      expect(daffBuildFragmentNameSpread()).toEqual('');
     });
   });
 });

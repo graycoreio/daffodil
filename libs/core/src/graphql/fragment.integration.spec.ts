@@ -4,14 +4,15 @@ import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
 
-import { daffBuildFragmentSpread } from './build-fragment-spread';
-import { daffGetFragmentNames } from './get-fragment-names';
+import { daffBuildFragmentNameSpread } from './build-fragment-name-spread';
+import { daffBuildFragmentDefinition } from './build-fragment-definition';
+import { mergeSchemas } from '@angular-devkit/core/src/json/schema';
 
 describe('Core | GraphQL | Fragment Integration', () => {
   let controller: ApolloTestingController;
   let apollo: Apollo;
 
-  let mockFragment: DocumentNode;
+  let mockFragments: DocumentNode[];
   let mockResponse;
 
   beforeEach(() => {
@@ -24,18 +25,31 @@ describe('Core | GraphQL | Fragment Integration', () => {
     controller = TestBed.get(ApolloTestingController);
     apollo = TestBed.get(Apollo);
 
-    mockFragment = gql`
-      fragment fragment1 on Query {
-        field1
-      }
-      fragment fragment2 on Query {
-        field2
-      }
-    `;
+    // since daffodil uses a multi provider to inject extra fragments, this is the form with which we will test
+    mockFragments = [
+      gql`
+        fragment fragment11 on Query {
+          field11
+        }
+        fragment fragment12 on Query {
+          field12
+        }
+      `,
+      gql`
+        fragment fragment21 on Query {
+          field21
+        }
+        fragment fragment22 on Query {
+          field22
+        }
+      `
+    ]
     mockResponse = {
       id: 'id',
-      field1: 'field1',
-      field2: 'field2',
+      field11: 'field11',
+      field12: 'field12',
+      field21: 'field21',
+      field22: 'field22',
     }
   });
 
@@ -46,9 +60,9 @@ describe('Core | GraphQL | Fragment Integration', () => {
       query = gql`
         query {
           id
-          ${daffBuildFragmentSpread(daffGetFragmentNames(mockFragment))}
+          ${daffBuildFragmentNameSpread(...mockFragments)}
         }
-        ${mockFragment}
+        ${daffBuildFragmentDefinition(...mockFragments)}
       `;
     });
 

@@ -1,2 +1,3 @@
 export { daffGetFragmentNames } from './get-fragment-names';
-export { daffBuildFragmentSpread } from './build-fragment-spread';
+export { daffBuildFragmentNameSpread } from './build-fragment-name-spread';
+export { daffBuildFragmentDefinition } from './build-fragment-definition';
