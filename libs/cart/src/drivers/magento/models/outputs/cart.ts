@@ -22,6 +22,14 @@ export interface MagentoCart {
     grand_total: MagentoMoney,
     subtotal_excluding_tax: MagentoMoney,
     subtotal_including_tax: MagentoMoney,
-    subtotal_with_discount_excluding_tax: MagentoMoney,
+		subtotal_with_discount_excluding_tax: MagentoMoney,
+		applied_taxes: {
+			amount: MagentoMoney,
+			label: string
+		}[],
+		discounts: {
+			amount: MagentoMoney,
+			label: string
+		}[]
   }
 }

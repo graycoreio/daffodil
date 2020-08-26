@@ -1,4 +1,4 @@
-export { DaffCart } from './models/cart';
+export * from './models/cart';
 export * from './models/cart-item';
 export * from './models/composite-cart-item';
 export * from './models/configurable-cart-item';
@@ -7,7 +7,7 @@ export { DaffCartAddress } from './models/cart-address';
 export { DaffCartPaymentMethod } from './models/cart-payment';
 export { DaffCartShippingRate } from './models/cart-shipping-rate';
 export { DaffCartShippingInformation } from './models/cart-shipping-info';
-export { DaffCartTotal } from './models/cart-total';
+export * from './models/cart-total';
 export { DaffCartCoupon } from './models/cart-coupon';
 export { DaffCartOrderResult } from './models/cart-order-result';
 

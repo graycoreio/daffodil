@@ -10,6 +10,7 @@ import { DaffMagentoCartShippingRateTransformer } from './cart-shipping-rate.ser
 import { daffMagentoCouponTransform } from './cart-coupon';
 import { transformMagentoCartItem } from './cart-item/cart-item-transformer';
 import { MagentoCartShippingMethod } from '../../models/outputs/public_api';
+import { transformCartTotals } from './cart-totals-transformer';
 
 /**
  * Transforms magento carts into an object usable by daffodil.
@@ -61,33 +62,6 @@ export class DaffMagentoCartTransformer {
     return {
       grand_total: cart.prices.grand_total.value,
       subtotal: cart.prices.subtotal_excluding_tax.value,
-    }
-  }
-
-  private transformTotalsList(cart: MagentoCart): {totals: DaffCart['totals']} {
-    return {
-      totals: [
-        {
-          name: 'grand_total',
-          label: 'Grand Total',
-          value: cart.prices.grand_total.value
-        },
-        {
-          name: 'subtotal_excluding_tax',
-          label: 'Subtotal Excluding Tax',
-          value: cart.prices.subtotal_excluding_tax.value
-        },
-        {
-          name: 'subtotal_including_tax',
-          label: 'Subtotal Including Tax',
-          value: cart.prices.subtotal_including_tax.value
-        },
-        {
-          name: 'subtotal_with_discount_excluding_tax',
-          label: 'Subtotal with Discount Excluding Tax',
-          value: cart.prices.subtotal_with_discount_excluding_tax.value
-        },
-      ],
     }
   }
 
@@ -165,7 +139,7 @@ export class DaffMagentoCartTransformer {
       ...this.transformCoupons(cart),
       ...this.transformPayment(cart),
       ...this.transformTotals(cart),
-      ...this.transformTotalsList(cart),
+      ...transformCartTotals(cart),
       ...this.transformShippingInformation(cart),
       ...this.transformShippingMethods(cart),
       ...this.transformPaymentMethods(cart),

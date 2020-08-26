@@ -47,7 +47,11 @@ describe('Cart | Testing | Factories | DaffCartFactory', () => {
 
       it('should not have a payment', () => {
         expect(result.payment).toEqual(null);
-      });
+			});
+			
+			it('should have cart totals', () => {
+				expect(result.totals.length).toBeGreaterThan(0);
+			});
     });
   });
 
