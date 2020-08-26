@@ -23,6 +23,7 @@ import { MagentoCartItem } from '../../models/outputs/cart-item';
 import { MagentoCartPaymentMethod } from '../../models/outputs/cart-payment-method';
 import { DaffMagentoShippingAddressTransformer } from './shipping-address.service';
 import { DaffMagentoCartShippingRateTransformer } from './cart-shipping-rate.service';
+import { MagentoCart } from '../../models/outputs/cart';
 
 describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
   let service: DaffMagentoCartTransformer;
@@ -35,10 +36,10 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
   let magentoShippingMethodFactory: MagentoCartShippingMethodFactory;
 
   let mockDaffCart: DaffCart;
-  let mockMagentoCart;
+  let mockMagentoCart: MagentoCart;
   let mockBillingAddress: MagentoCartAddress;
   let mockShippingAddress: MagentoShippingAddress;
-  let mockShippingMethod: MagentoCartShippingMethod;
+  let mockShippingMethods: MagentoCartShippingMethod[];
   let mockCartItem: MagentoCartItem;
   let mockPaymentMethod: MagentoCartPaymentMethod;
 
@@ -46,12 +47,13 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
   let shippingAddressTransformerSpy;
   let cartPaymentTransformerSpy;
   let cartShippingInformationTransformerSpy;
-  let cartShippingRateTransformerSpy;
+  let cartShippingRateTransformer;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        DaffMagentoCartTransformer,
+				DaffMagentoCartTransformer,
+				DaffMagentoCartShippingRateTransformer,
         {
           provide: DaffMagentoCartPaymentTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoCartPaymentTransformer', ['transform'])
@@ -59,10 +61,6 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
         {
           provide: DaffMagentoCartShippingInformationTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoCartShippingInformationTransformer', ['transform'])
-        },
-        {
-          provide: DaffMagentoCartShippingRateTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartShippingRateTransformer', ['transform'])
         },
         {
           provide: DaffMagentoCartAddressTransformer,
@@ -88,7 +86,7 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
     cartShippingInformationTransformerSpy = TestBed.get(DaffMagentoCartShippingInformationTransformer);
     shippingAddressTransformerSpy = TestBed.get(DaffMagentoShippingAddressTransformer);
     cartPaymentTransformerSpy = TestBed.get(DaffMagentoCartPaymentTransformer);
-    cartShippingRateTransformerSpy = TestBed.get(DaffMagentoCartShippingRateTransformer);
+    cartShippingRateTransformer = TestBed.get(DaffMagentoCartShippingRateTransformer);
 
     mockDaffCart = daffCartFactory.create();
     mockMagentoCart = magentoCartFactory.create();
@@ -101,18 +99,16 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
       email: mockMagentoCart.email
     };
     mockCartItem = magentoCartItemFactory.create();
-    mockShippingMethod = magentoShippingMethodFactory.create();
+    mockShippingMethods = magentoShippingMethodFactory.createMany(2);
     mockMagentoCart.shipping_addresses = [mockShippingAddress];
     mockMagentoCart.billing_address = mockBillingAddress;
     mockMagentoCart.items = [mockCartItem];
     mockPaymentMethod = mockMagentoCart.selected_payment_method;
-    mockShippingAddress.selected_shipping_method = mockShippingMethod;
-    mockShippingAddress.available_shipping_methods = [mockShippingMethod];
+    mockShippingAddress.selected_shipping_method = mockShippingMethods[0];
+    mockShippingAddress.available_shipping_methods = mockShippingMethods;
 
     cartAddressTransformerSpy.transform.withArgs(mockBillingAddress).and.returnValue(mockDaffCart.billing_address);
     shippingAddressTransformerSpy.transform.and.returnValue(mockDaffCart.shipping_address);
-    cartShippingInformationTransformerSpy.transform.withArgs(mockShippingMethod).and.returnValue(mockDaffCart.shipping_information);
-    cartShippingRateTransformerSpy.transform.withArgs(mockShippingMethod).and.returnValue(mockDaffCart.shipping_information);
     cartPaymentTransformerSpy.transform.withArgs(mockPaymentMethod).and.returnValue(mockDaffCart.payment);
   });
 
@@ -136,6 +132,8 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
         mockMagentoCart.id = id;
         mockMagentoCart.prices.subtotal_excluding_tax.value = subtotal;
         mockMagentoCart.prices.grand_total.value = grand_total;
+				spyOn(cartShippingRateTransformer, 'transform');
+				cartShippingInformationTransformerSpy.transform.withArgs(mockMagentoCart.shipping_addresses[0].selected_shipping_method).and.returnValue(mockDaffCart.shipping_information);
 
         transformedCart = service.transform(mockMagentoCart);
       });
@@ -158,13 +156,13 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
         }));
       });
 
-      it('should call the shipping information transformer with the shipping method', () => {
-        expect(cartShippingInformationTransformerSpy.transform).toHaveBeenCalledWith(mockShippingMethod);
+      it('should call the shipping information transformer with the selected shipping method', () => {
+        expect(cartShippingInformationTransformerSpy.transform).toHaveBeenCalledWith(mockMagentoCart.shipping_addresses[0].selected_shipping_method);
       });
 
       it('should call the shipping rate transformer with each of the available shipping methods', () => {
         mockShippingAddress.available_shipping_methods.forEach(method => {
-          expect(cartShippingRateTransformerSpy.transform).toHaveBeenCalledWith(method);
+          expect(cartShippingRateTransformer.transform).toHaveBeenCalledWith(method);
         });
       });
 
@@ -217,23 +215,49 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
       });
 
       it('should not call the shipping rate transformer', () => {
-        expect(cartShippingRateTransformerSpy.transform).not.toHaveBeenCalled();
+				spyOn(cartShippingRateTransformer, 'transform');
+        expect(cartShippingRateTransformer.transform).not.toHaveBeenCalled();
       });
     });
 
     describe('when the shipping methods are null', () => {
       beforeEach(() => {
         mockMagentoCart.shipping_addresses[0].available_shipping_methods = null;
+        mockMagentoCart.shipping_addresses[0].selected_shipping_method = null;
         transformedCart = service.transform(mockMagentoCart);
       });
-
+			
       it('should set available_shipping_methods to an empty array', () => {
-        expect(transformedCart.available_shipping_methods).toEqual([]);
+				expect(transformedCart.available_shipping_methods).toEqual([]);
       });
-
+			
       it('should not call the shipping rate transformer', () => {
-        expect(cartShippingRateTransformerSpy.transform).not.toHaveBeenCalled();
+				spyOn(cartShippingRateTransformer, 'transform');
+        expect(cartShippingRateTransformer.transform).not.toHaveBeenCalled();
       });
-    });
+		});
+		
+		describe('when the selected shipping method is included in the available methods', () => {
+			
+			it('should return the expected number of available shipping methods', () => {				
+				mockMagentoCart.shipping_addresses[0].selected_shipping_method = mockMagentoCart.shipping_addresses[0].available_shipping_methods[0];
+				transformedCart = service.transform(mockMagentoCart);
+
+				expect(transformedCart.available_shipping_methods.length).toEqual(2);
+			});
+		});
+
+		describe('when the selected shipping method is not included in the available methods', () => {
+
+			it('should return the selected shipping method as part of the available shipping methods', () => {
+				mockMagentoCart.shipping_addresses[0].available_shipping_methods = [mockMagentoCart.shipping_addresses[0].available_shipping_methods[1]];
+				mockMagentoCart.shipping_addresses[0].selected_shipping_method = mockMagentoCart.shipping_addresses[0].available_shipping_methods[0];
+				transformedCart = service.transform(mockMagentoCart);
+
+				expect(transformedCart.available_shipping_methods).toContain(jasmine.objectContaining({
+					method_code: mockMagentoCart.shipping_addresses[0].selected_shipping_method.method_code
+				}));
+			});
+		});
   });
 });
