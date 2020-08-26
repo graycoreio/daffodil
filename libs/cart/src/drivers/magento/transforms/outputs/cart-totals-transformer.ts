@@ -5,7 +5,7 @@ import { DaffCart } from '../../../../models/cart';
 import { DaffCartTotalTypeEnum } from '../../../../models/cart-total';
 
 export function transformCartTotals(cart: Partial<MagentoCart>): {totals: DaffCart['totals']} {
-	const totalTax = cart.prices.applied_taxes.reduce((acc, tax) => (daffAdd(acc, tax.amount.value)), 0);
+	const totalTax = cart.prices.applied_taxes ? cart.prices.applied_taxes.reduce((acc, tax) => (daffAdd(acc, tax.amount.value)), 0) : 0;
 	return {
 		totals: [
 			{
@@ -41,7 +41,7 @@ export function transformCartTotals(cart: Partial<MagentoCart>): {totals: DaffCa
 			{
 				name: DaffCartTotalTypeEnum.discount,
 				label: 'Discount',
-				value: cart.prices.discounts.reduce((acc, discount) => (daffAdd(acc, discount.amount.value)), 0)
+				value: cart.prices.discounts ? cart.prices.discounts.reduce((acc, discount) => (daffAdd(acc, discount.amount.value)), 0) : 0
 			}
 		],
 	}
