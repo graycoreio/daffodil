@@ -7,8 +7,14 @@ import { DaffCartTotal } from './cart-total';
 import { DaffCartShippingRate } from './cart-shipping-rate';
 
 export interface DaffCart {
-  id: number | string;
-  subtotal: number;
+	id: number | string;
+	/**
+	 * @deprecated use totals instead
+	 */
+	subtotal: number;
+	/**
+	 * @deprecated use totals instead
+	 */
   grand_total: number;
   coupons: DaffCartCoupon[];
   items?: DaffCartItem[];

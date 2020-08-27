@@ -13,6 +13,7 @@ import { DaffCartOrderResult } from '../../models/cart-order-result';
 import { DaffCartItem } from '../../models/cart-item';
 import { DaffConfigurableCartItemAttribute } from '../../models/configurable-cart-item';
 import { DaffCompositeCartItemOption } from '../../models/composite-cart-item';
+import { DaffCartTotal } from '../../models/cart-total';
 
 @Injectable({
   providedIn: 'root'
@@ -38,8 +39,14 @@ export class DaffCartFacade<
   couponErrors$: Observable<DaffCartErrors[DaffCartErrorType.Coupon]>;
 
   id$: Observable<DaffCart['id']>;
-  subtotal$: Observable<DaffCart['subtotal']>;
-  grandTotal$: Observable<DaffCart['grand_total']>;
+  subtotal$: Observable<DaffCartTotal['value']>;
+  grandTotal$: Observable<DaffCartTotal['value']>;
+  subtotalExcludingTax$: Observable<DaffCartTotal['value']>;
+  subtotalIncludingTax$: Observable<DaffCartTotal['value']>;
+  subtotalWithDiscountExcludingTax$: Observable<DaffCartTotal['value']>;
+  subtotalWithDiscountIncludingTax$: Observable<DaffCartTotal['value']>;
+  totalDiscount$: Observable<DaffCartTotal['value']>;
+  totalTax$: Observable<DaffCartTotal['value']>;
   coupons$: Observable<DaffCart['coupons']>;
   items$: Observable<DaffCart['items']>;
   itemDictionary$: Observable<Dictionary<U>>;
@@ -91,6 +98,12 @@ export class DaffCartFacade<
 			selectCartId,
 			selectCartSubtotal,
 			selectCartGrandTotal,
+			selectCartSubtotalExcludingTax,
+			selectCartSubtotalIncludingTax,
+			selectCartSubtotalWithDiscountExcludingTax,
+			selectCartSubtotalWithDiscountIncludingTax,
+			selectCartTotalDiscount,
+			selectCartTotalTax,
 			selectCartCoupons,
 			selectCartItems,
 			selectCartItemEntities,
@@ -144,6 +157,12 @@ export class DaffCartFacade<
     this.id$ = this.store.pipe(select(selectCartId));
     this.subtotal$ = this.store.pipe(select(selectCartSubtotal));
     this.grandTotal$ = this.store.pipe(select(selectCartGrandTotal));
+    this.subtotalExcludingTax$ = this.store.pipe(select(selectCartSubtotalExcludingTax));
+    this.subtotalIncludingTax$ = this.store.pipe(select(selectCartSubtotalIncludingTax));
+    this.subtotalWithDiscountExcludingTax$ = this.store.pipe(select(selectCartSubtotalWithDiscountExcludingTax));
+    this.subtotalWithDiscountIncludingTax$ = this.store.pipe(select(selectCartSubtotalWithDiscountIncludingTax));
+    this.totalDiscount$ = this.store.pipe(select(selectCartTotalDiscount));
+    this.totalTax$ = this.store.pipe(select(selectCartTotalTax));
     this.coupons$ = this.store.pipe(select(selectCartCoupons));
     this.items$ = this.store.pipe(select(selectCartItems));
     this.itemDictionary$ = this.store.pipe(select(selectCartItemEntities));

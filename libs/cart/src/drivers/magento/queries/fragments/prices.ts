@@ -15,6 +15,18 @@ export const pricesFragment = gql`
 		subtotal_with_discount_excluding_tax {
 			...money
 		}
+		applied_taxes {
+			amount {
+				...money
+			}
+			label
+		}
+		discounts {
+			amount {
+				...money
+			}
+			label
+		}
 	}
   ${moneyFragment}
 `;

@@ -37,6 +37,8 @@ describe('Cart | Testing | Factories | CartFactory', () => {
       expect(result.prices.grand_total).toBeDefined();
       expect(result.prices.subtotal_including_tax).toBeDefined();
       expect(result.prices.subtotal_with_discount_excluding_tax).toBeDefined();
+      expect(result.prices.applied_taxes).toBeDefined();
+      expect(result.prices.discounts).toBeDefined();
       expect(result.email).toBeDefined();
     });
   });

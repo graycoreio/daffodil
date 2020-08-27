@@ -2,7 +2,8 @@ import { TestBed } from '@angular/core/testing';
 
 import {
   DaffCart,
-  MagentoCartShippingMethod
+	MagentoCartShippingMethod,
+	DaffCartTotalTypeEnum
 } from '@daffodil/cart';
 import {
   MagentoCartFactory,
@@ -12,6 +13,7 @@ import {
   MagentoCartAddressFactory,
   MagentoCartShippingMethodFactory
 } from '@daffodil/cart/testing';
+import { daffAdd } from '@daffodil/core';
 
 import { DaffMagentoCartTransformer } from './cart.service';
 import { DaffMagentoCartAddressTransformer } from './cart-address.service';
@@ -142,7 +144,48 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
         expect(String(transformedCart.id)).toEqual(String(id));
         expect(transformedCart.subtotal).toEqual(subtotal);
         expect(transformedCart.grand_total).toEqual(grand_total);
-      });
+			});
+			
+			it('should return the expected cart totals', () => {
+				const totalTax = mockMagentoCart.prices.applied_taxes.reduce((acc, tax) => (daffAdd(acc, tax.amount.value)), 0);
+				expect(transformedCart.totals).toEqual([
+					{
+						name: DaffCartTotalTypeEnum.grandTotal,
+						label: 'Grand Total',
+						value: mockMagentoCart.prices.grand_total.value
+					},
+					{
+						name: DaffCartTotalTypeEnum.subtotalExcludingTax,
+						label: 'Subtotal Excluding Tax',
+						value: mockMagentoCart.prices.subtotal_excluding_tax.value
+					},
+					{
+						name: DaffCartTotalTypeEnum.subtotalIncludingTax,
+						label: 'Subtotal Including Tax',
+						value: mockMagentoCart.prices.subtotal_including_tax.value
+					},
+					{
+						name: DaffCartTotalTypeEnum.subtotalWithDiscountExcludingTax,
+						label: 'Subtotal with Discount Excluding Tax',
+						value: mockMagentoCart.prices.subtotal_with_discount_excluding_tax.value
+					},
+					{
+						name: DaffCartTotalTypeEnum.subtotalWithDiscountIncludingTax,
+						label: 'Subtotal with Discount Including Tax',
+						value: daffAdd(mockMagentoCart.prices.subtotal_with_discount_excluding_tax.value, totalTax)
+					},
+					{
+						name: DaffCartTotalTypeEnum.tax,
+						label: 'Tax',
+						value: totalTax
+					},
+					{
+						name: DaffCartTotalTypeEnum.discount,
+						label: 'Discount',
+						value: mockMagentoCart.prices.discounts.reduce((acc, discount) => (daffAdd(acc, discount.amount.value)), 0)
+					}
+				]);
+			});
 
       it('should call the cart address transformer with the billing address', () => {
         expect(cartAddressTransformerSpy.transform).toHaveBeenCalledWith(mockBillingAddress);

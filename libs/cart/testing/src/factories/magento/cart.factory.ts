@@ -15,6 +15,16 @@ export class MockMagentoCart implements MagentoCart {
     grand_total: this.money(),
     subtotal_including_tax: this.money(),
     subtotal_with_discount_excluding_tax: this.money(),
+    applied_taxes: [{
+			__typename: 'AppliedTax',
+			amount: this.money(),
+			label: 'tax'
+		}],
+		discounts: [{
+			__typename: 'Discount',
+			amount: this.money(),
+			label: 'discount'
+		}]
   };
   applied_coupons = [];
   items = [];
