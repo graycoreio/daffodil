@@ -12,7 +12,8 @@ describe('Core | GraphQL | Fragment Integration', () => {
   let controller: ApolloTestingController;
   let apollo: Apollo;
 
-  let mockFragments: DocumentNode[];
+  let mockFragment1: DocumentNode;
+  let mockFragment2: DocumentNode;
   let mockResponse;
 
   beforeEach(() => {
@@ -26,24 +27,22 @@ describe('Core | GraphQL | Fragment Integration', () => {
     apollo = TestBed.get(Apollo);
 
     // since daffodil uses a multi provider to inject extra fragments, this is the form with which we will test
-    mockFragments = [
-      gql`
-        fragment fragment11 on Query {
-          field11
-        }
-        fragment fragment12 on Query {
-          field12
-        }
-      `,
-      gql`
-        fragment fragment21 on Query {
-          field21
-        }
-        fragment fragment22 on Query {
-          field22
-        }
-      `
-    ]
+    mockFragment1 = gql`
+      fragment fragment11 on Query {
+        field11
+      }
+      fragment fragment12 on Query {
+        field12
+      }
+    `;
+    mockFragment2 = gql`
+      fragment fragment21 on Query {
+        field21
+      }
+      fragment fragment22 on Query {
+        field22
+      }
+    `;
     mockResponse = {
       id: 'id',
       field11: 'field11',
@@ -60,9 +59,9 @@ describe('Core | GraphQL | Fragment Integration', () => {
       query = gql`
         query {
           id
-          ${daffBuildFragmentNameSpread(...mockFragments)}
+          ${daffBuildFragmentNameSpread(mockFragment1, mockFragment2)}
         }
-        ${daffBuildFragmentDefinition(...mockFragments)}
+        ${daffBuildFragmentDefinition(mockFragment1, mockFragment2)}
       `;
     });
 
