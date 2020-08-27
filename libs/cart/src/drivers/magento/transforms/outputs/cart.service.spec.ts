@@ -91,7 +91,17 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
     cartShippingRateTransformer = TestBed.get(DaffMagentoCartShippingRateTransformer);
 
     mockDaffCart = daffCartFactory.create();
-    mockMagentoCart = magentoCartFactory.create();
+    mockMagentoCart = magentoCartFactory.create({
+			shipping_addresses: [
+				{
+					selected_shipping_method: {
+						amount: {
+							value: 100
+						}
+					}
+				}
+			]
+		});
     mockShippingAddress = {
       ...magentoShippingAddressFactory.create(),
       email: mockMagentoCart.email
@@ -183,6 +193,11 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
 						name: DaffCartTotalTypeEnum.discount,
 						label: 'Discount',
 						value: mockMagentoCart.prices.discounts.reduce((acc, discount) => (daffAdd(acc, discount.amount.value)), 0)
+					},
+					{
+						name: DaffCartTotalTypeEnum.shipping,
+						label: 'Shipping',
+						value: mockMagentoCart.shipping_addresses[0].selected_shipping_method.amount.value
 					}
 				]);
 			});

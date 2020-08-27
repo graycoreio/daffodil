@@ -11,6 +11,7 @@ import { DaffCartOrderResult } from '../../models/cart-order-result';
 import { DaffCartItem } from '../../models/cart-item';
 import { DaffConfigurableCartItemAttribute } from '../../models/configurable-cart-item';
 import { DaffCompositeCartItemOption } from '../../models/composite-cart-item';
+import { DaffCartTotal } from '../../models/cart-total';
 
 export interface DaffCartFacadeInterface<
   T extends DaffCart = DaffCart,
@@ -32,8 +33,15 @@ export interface DaffCartFacadeInterface<
   couponErrors$: Observable<DaffCartErrors[DaffCartErrorType.Coupon]>;
 
   id$: Observable<DaffCart['id']>;
-  subtotal$: Observable<DaffCart['subtotal']>;
-  grandTotal$: Observable<DaffCart['grand_total']>;
+  subtotal$: Observable<DaffCartTotal['value']>;
+  grandTotal$: Observable<DaffCartTotal['value']>;
+  subtotalExcludingTax$: Observable<DaffCartTotal['value']>;
+  subtotalIncludingTax$: Observable<DaffCartTotal['value']>;
+  subtotalWithDiscountExcludingTax$: Observable<DaffCartTotal['value']>;
+  subtotalWithDiscountIncludingTax$: Observable<DaffCartTotal['value']>;
+  totalDiscount$: Observable<DaffCartTotal['value']>;
+  totalTax$: Observable<DaffCartTotal['value']>;
+  shippingTotal$: Observable<DaffCartTotal['value']>;
   coupons$: Observable<DaffCart['coupons']>;
   items$: Observable<DaffCart['items']>;
   itemDictionary$: Observable<Dictionary<U>>;

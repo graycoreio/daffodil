@@ -60,6 +60,7 @@ describe('Cart | Selector | Cart', () => {
 		selectCartSubtotalWithDiscountIncludingTax,
 		selectCartTotalTax,
 		selectCartTotalDiscount,
+		selectCartShippingTotal,
 		selectCartCoupons,
 		selectCartItems,
 		selectCartBillingAddress,
@@ -331,6 +332,15 @@ describe('Cart | Selector | Cart', () => {
       expect(selector).toBeObservable(expected);
     });
   });
+
+  describe('selectCartShippingTotal', () => {
+    it('returns cart shipping total', () => {
+      const selector = store.pipe(select(selectCartShippingTotal));
+      const expected = cold('a', {a: cart.totals.find(total => total.name === DaffCartTotalTypeEnum.shipping).value});
+
+      expect(selector).toBeObservable(expected);
+    });
+	});
 
   describe('selectCartCoupons', () => {
     it('returns cart coupons', () => {

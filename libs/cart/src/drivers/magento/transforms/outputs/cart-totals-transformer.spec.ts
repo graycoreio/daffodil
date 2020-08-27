@@ -13,7 +13,17 @@ describe('transformCartTotals', () => {
 	beforeEach(() => {
     TestBed.configureTestingModule({});
 
-		stubMagentoCart = new MagentoCartFactory().create();
+		stubMagentoCart = new MagentoCartFactory().create({
+			shipping_addresses: [
+				{
+					selected_shipping_method: {
+						amount: {
+							value: 100
+						}
+					}
+				}
+			]
+		});
 		const totalTax = stubMagentoCart.prices.applied_taxes.reduce((acc, tax) => (daffAdd(acc, tax.amount.value)), 0);
 		expectedTotals = {
 			totals: [
@@ -51,6 +61,11 @@ describe('transformCartTotals', () => {
 					name: DaffCartTotalTypeEnum.discount,
 					label: 'Discount',
 					value: stubMagentoCart.prices.discounts.reduce((acc, discount) => (daffAdd(acc, discount.amount.value)), 0)
+				},
+				{
+					name: DaffCartTotalTypeEnum.shipping,
+					label: 'Shipping',
+					value: stubMagentoCart.shipping_addresses[0].selected_shipping_method.amount.value
 				}
 			]
 		};

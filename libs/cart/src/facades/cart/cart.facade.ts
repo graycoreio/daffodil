@@ -47,6 +47,7 @@ export class DaffCartFacade<
   subtotalWithDiscountIncludingTax$: Observable<DaffCartTotal['value']>;
   totalDiscount$: Observable<DaffCartTotal['value']>;
   totalTax$: Observable<DaffCartTotal['value']>;
+  shippingTotal$: Observable<DaffCartTotal['value']>;
   coupons$: Observable<DaffCart['coupons']>;
   items$: Observable<DaffCart['items']>;
   itemDictionary$: Observable<Dictionary<U>>;
@@ -104,6 +105,7 @@ export class DaffCartFacade<
 			selectCartSubtotalWithDiscountIncludingTax,
 			selectCartTotalDiscount,
 			selectCartTotalTax,
+			selectCartShippingTotal,
 			selectCartCoupons,
 			selectCartItems,
 			selectCartItemEntities,
@@ -163,6 +165,7 @@ export class DaffCartFacade<
     this.subtotalWithDiscountIncludingTax$ = this.store.pipe(select(selectCartSubtotalWithDiscountIncludingTax));
     this.totalDiscount$ = this.store.pipe(select(selectCartTotalDiscount));
     this.totalTax$ = this.store.pipe(select(selectCartTotalTax));
+    this.shippingTotal$ = this.store.pipe(select(selectCartShippingTotal));
     this.coupons$ = this.store.pipe(select(selectCartCoupons));
     this.items$ = this.store.pipe(select(selectCartItems));
     this.itemDictionary$ = this.store.pipe(select(selectCartItemEntities));
