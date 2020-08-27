@@ -42,7 +42,17 @@ export function transformCartTotals(cart: Partial<MagentoCart>): {totals: DaffCa
 				name: DaffCartTotalTypeEnum.discount,
 				label: 'Discount',
 				value: cart.prices.discounts ? cart.prices.discounts.reduce((acc, discount) => (daffAdd(acc, discount.amount.value)), 0) : 0
+			},
+			{
+				name: DaffCartTotalTypeEnum.shipping,
+				label: 'Shipping',
+				value: validateSelectedShippingAddress(cart) ? cart.shipping_addresses[0].selected_shipping_method.amount.value : 0
 			}
 		],
 	}
+}
+
+function validateSelectedShippingAddress(cart: Partial<MagentoCart>): boolean {
+	return !!cart.shipping_addresses[0] && !!cart.shipping_addresses[0].selected_shipping_method &&
+		!!cart.shipping_addresses[0].selected_shipping_method.amount;
 }

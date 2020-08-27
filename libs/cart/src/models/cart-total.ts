@@ -5,7 +5,8 @@ export enum DaffCartTotalTypeEnum {
 	subtotalWithDiscountExcludingTax = 'subtotal_with_discount_excluding_tax',
 	subtotalWithDiscountIncludingTax = 'subtotal_with_discount_including_tax',
 	discount = 'discount',
-	tax = 'tax'
+	tax = 'tax',
+	shipping = 'shipping'
 }
 
 export interface DaffCartTotal {

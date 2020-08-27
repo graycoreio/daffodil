@@ -9,7 +9,8 @@ import {
   DaffCartOrderResult,
 	DaffCartItem,
 	DaffConfigurableCartItemAttribute,
-	DaffCompositeCartItemOption
+	DaffCompositeCartItemOption,
+	DaffCartTotal
 } from '@daffodil/cart';
 import { Dictionary } from '@ngrx/entity';
 
@@ -29,8 +30,15 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
   couponErrors$: BehaviorSubject<DaffCartErrors[DaffCartErrorType.Coupon]> = new BehaviorSubject([]);
 
   id$: BehaviorSubject<DaffCart['id']> = new BehaviorSubject(null);
-  subtotal$: BehaviorSubject<DaffCart['subtotal']> = new BehaviorSubject(null);
-  grandTotal$: BehaviorSubject<DaffCart['grand_total']> = new BehaviorSubject(null);
+  subtotal$: BehaviorSubject<DaffCartTotal['value']> = new BehaviorSubject(null);
+  grandTotal$: BehaviorSubject<DaffCartTotal['value']> = new BehaviorSubject(null);
+  subtotalExcludingTax$: BehaviorSubject<DaffCartTotal['value']> = new BehaviorSubject(null);
+  subtotalIncludingTax$: BehaviorSubject<DaffCartTotal['value']> = new BehaviorSubject(null);
+  subtotalWithDiscountExcludingTax$: BehaviorSubject<DaffCartTotal['value']> = new BehaviorSubject(null);
+  subtotalWithDiscountIncludingTax$: BehaviorSubject<DaffCartTotal['value']> = new BehaviorSubject(null);
+  totalDiscount$: BehaviorSubject<DaffCartTotal['value']> = new BehaviorSubject(null);
+  totalTax$: BehaviorSubject<DaffCartTotal['value']> = new BehaviorSubject(null);
+  shippingTotal$: BehaviorSubject<DaffCartTotal['value']> = new BehaviorSubject(null);
   coupons$: BehaviorSubject<DaffCart['coupons']> = new BehaviorSubject([]);
   items$: BehaviorSubject<DaffCart['items']> = new BehaviorSubject([]);
   itemDictionary$: BehaviorSubject<Dictionary<DaffCartItem>> = new BehaviorSubject({});

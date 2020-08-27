@@ -16,7 +16,7 @@ export class MockCart implements DaffCart {
   totals = [
 		{
 			name: DaffCartTotalTypeEnum.grandTotal,
-			value: 1000,
+			value: 1050,
 			label: 'Grand Total'
 		},
 		{
@@ -48,6 +48,11 @@ export class MockCart implements DaffCart {
 			name: DaffCartTotalTypeEnum.discount,
 			value: 50,
 			label: ''
+		},
+		{
+			name: DaffCartTotalTypeEnum.shipping,
+			value: 50,
+			label: 'Shipping'
 		}
 	];
   payment = null;
