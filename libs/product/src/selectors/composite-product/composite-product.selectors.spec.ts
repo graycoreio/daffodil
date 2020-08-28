@@ -13,6 +13,7 @@ import {
 } from '@daffodil/product';
 
 import { getDaffCompositeProductSelectors } from './composite-product.selectors';
+import { daffMultiply, daffAdd, daffSubtract } from '@daffodil/core';
 
 describe('Composite Product Selectors | integration tests', () => {
 
@@ -267,7 +268,7 @@ describe('Composite Product Selectors | integration tests', () => {
 		
 		it('should initialize to the expected price', () => {
 			const selector = store.pipe(select(selectCompositeProductPrice, { id: stubCompositeProduct.id }));
-			const expected = cold('a', { a: stubCompositeProduct.price + stubPrice00 });
+			const expected = cold('a', { a: stubCompositeProduct.price + (stubPrice00*stubCompositeProduct.items[0].options[0].quantity) });
 	
 			expect(selector).toBeObservable(expected);
 		});
@@ -296,18 +297,14 @@ describe('Composite Product Selectors | integration tests', () => {
 
 		it('should initialize to the expected discount amount', () => {
 			const selector = store.pipe(select(selectCompositeProductDiscountAmount, { id: stubCompositeProduct.id }));
-			const expected = cold('a', { a: stubCompositeProduct.discount.amount + stubDiscountAmount0 });
+			const expected = cold('a', { a: stubCompositeProduct.discount.amount + (stubDiscountAmount0*stubCompositeProduct.items[0].options[0].quantity) });
 	
 			expect(selector).toBeObservable(expected);
 		});
 
 		it('should update the discount amount when an option change occurs', () => {
-			store.dispatch(new DaffCompositeProductApplyOption(
-				stubCompositeProduct.id,
-				<string>stubCompositeProduct.items[0].id,
-				stubCompositeProduct.items[0].options[0].id,
-				stubQty0
-			));
+			stubCompositeProduct.items[0].options[0].quantity = stubQty0;
+			store.dispatch(new DaffProductLoadSuccess(stubCompositeProduct));
 			const selector = store.pipe(select(selectCompositeProductDiscountAmount, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: stubCompositeProduct.discount.amount + (stubDiscountAmount0*stubQty0) });
 
@@ -326,12 +323,15 @@ describe('Composite Product Selectors | integration tests', () => {
 
 		it('should initialize to the expected discounted price', () => {
 			const selector = store.pipe(select(selectCompositeProductDiscountedPrice, { id: stubCompositeProduct.id }));
-			const expected = cold('a', { a: 
-				stubCompositeProduct.price 
-				+ stubCompositeProduct.items[0].options[0].price 
-				- stubCompositeProduct.discount.amount 
-				- stubCompositeProduct.items[0].options[0].discount.amount
-			});
+			const price = daffAdd(
+				stubCompositeProduct.price, 
+				daffMultiply(stubCompositeProduct.items[0].options[0].price, stubCompositeProduct.items[0].options[0].quantity),
+			);
+			const discount = daffAdd(
+				stubCompositeProduct.discount.amount,
+				daffMultiply(stubCompositeProduct.items[0].options[0].discount.amount, stubCompositeProduct.items[0].options[0].quantity)
+			)
+			const expected = cold('a', { a: daffSubtract(price, discount) });
 	
 			expect(selector).toBeObservable(expected);
 		});
@@ -360,6 +360,7 @@ describe('Composite Product Selectors | integration tests', () => {
 				newCompositeProduct.price = 70.53578;
 				newCompositeProduct.discount.amount = 20.3243;
 				newCompositeProduct.items[0].options[0].price = 10.3287;
+				newCompositeProduct.items[0].options[0].quantity = 1;
 				newCompositeProduct.items[0].options[0].is_default = true;
 				newCompositeProduct.items[1].required = false;
 				newCompositeProduct.items[1].options[0].is_default = false;

@@ -99,11 +99,11 @@ describe('Product | Composite Product Entities Reducer', () => {
 				items: { 
 					[compositeProduct.items[0].id]: {
 						value: compositeProduct.items[0].options[0].id,
-						qty: 1
+						qty: compositeProduct.items[0].options[0].quantity
 					},
 					[compositeProduct.items[1].id]: {
 						value: compositeProduct.items[1].options[0].id,
-						qty: 1
+						qty: compositeProduct.items[1].options[0].quantity
 					}
 				} 
 			});
@@ -131,7 +131,7 @@ describe('Product | Composite Product Entities Reducer', () => {
 								...acc,
 								[item.id]: {
 									value: item.options.find(option => option.is_default).id,
-									qty: 1
+									qty: item.options.find(option => option.is_default).quantity
 								}
 							}
 						}, {})
@@ -142,7 +142,8 @@ describe('Product | Composite Product Entities Reducer', () => {
       const compositeProductApplyAttribute = new DaffCompositeProductApplyOption(
 				compositeProduct.id,
 				<string>compositeProduct.items[0].id,
-				compositeProduct.items[0].options[1].id
+				compositeProduct.items[0].options[1].id,
+				compositeProduct.items[0].options[1].quantity
 			);
       
 			result = daffCompositeProductEntitiesReducer(specInitialState, compositeProductApplyAttribute);
@@ -151,7 +152,7 @@ describe('Product | Composite Product Entities Reducer', () => {
     it('changes the option id of the given product item', () => {
       expect(result.entities[compositeProduct.id].items[compositeProduct.items[0].id]).toEqual({
 				value: compositeProduct.items[0].options[1].id,
-				qty: 1
+				qty: compositeProduct.items[0].options[1].quantity
 			});
     });
 	});
@@ -169,7 +170,7 @@ describe('Product | Composite Product Entities Reducer', () => {
 
 			expect(result.entities[compositeProduct.id].items[compositeProduct.items[0].id]).toEqual({
 				value: compositeProduct.items[0].options[1].id,
-				qty: 1
+				qty: compositeProduct.items[0].options[1].quantity
 			});
 		});
 
@@ -182,7 +183,7 @@ describe('Product | Composite Product Entities Reducer', () => {
 
 			expect(result.entities[compositeProduct.id].items[compositeProduct.items[0].id]).not.toEqual({
 				value: compositeProduct.items[0].options[1].id,
-				qty: 1
+				qty: compositeProduct.items[0].options[1].quantity
 			});
 		});
 
@@ -199,7 +200,7 @@ describe('Product | Composite Product Entities Reducer', () => {
 
 				expect(result.entities[compositeProduct.id].items[compositeProduct.items[0].id]).toEqual({
 					value: compositeProduct.items[0].options[1].id,
-					qty: 1
+					qty: compositeProduct.items[0].options[1].quantity
 				});
 			});
 

@@ -58,11 +58,11 @@ describe('selectCompositeProductEntitiesState', () => {
 					items: {
 						[stubCompositeProduct.items[0].id]: {
 							value: stubCompositeProduct.items[0].options[0].id,
-							qty: 1
+							qty: stubCompositeProduct.items[0].options[0].quantity
 						},
 						[stubCompositeProduct.items[1].id]: {
 							value: stubCompositeProduct.items[1].options[0].id,
-							qty: 1
+							qty: stubCompositeProduct.items[1].options[0].quantity
 						}
 					}
 				}
@@ -87,18 +87,12 @@ describe('selectCompositeProductEntitiesState', () => {
 
   describe('selectCompositeProductAppliedOptions', () => {
     
-    it('selects the composite product options of the given id', () => {
+    it('selects the composite product applied options of the given id', () => {
 			const selector = store.pipe(select(selectCompositeProductAppliedOptions, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { 
 				a: {
-					[stubCompositeProduct.items[0].id]: {
-						value: stubCompositeProduct.items[0].options[0].id,
-						qty: 1
-					},
-					[stubCompositeProduct.items[1].id]: {
-						value: stubCompositeProduct.items[1].options[0].id,
-						qty: 1
-					}
+					[stubCompositeProduct.items[0].id]: stubCompositeProduct.items[0].options[0],
+					[stubCompositeProduct.items[1].id]: stubCompositeProduct.items[1].options[0]
 				}
 			});
 
