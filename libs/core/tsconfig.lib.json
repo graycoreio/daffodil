@@ -14,7 +14,8 @@
     "types": [],
     "lib": [
       "dom",
-      "es2015"
+      "es2015",
+      "ESNext.AsyncIterable"
     ]
   },
   "angularCompilerOptions": {
