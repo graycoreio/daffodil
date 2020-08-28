@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-
+import { DocumentNode } from 'graphql';
 import { throwError, Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
@@ -20,6 +20,7 @@ import { DaffCartCouponServiceInterface } from '../interfaces/cart-coupon-servic
 import { DaffCartCoupon } from '../../models/cart-coupon';
 import { daffMagentoCouponTransform } from './transforms/outputs/cart-coupon';
 import { DaffMagentoCartCouponResponseTransformer } from './transforms/outputs/cart-coupon-response.service';
+import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
 
 /**
  * A service for making Magento GraphQL queries for carts.
@@ -30,12 +31,13 @@ import { DaffMagentoCartCouponResponseTransformer } from './transforms/outputs/c
 export class DaffMagentoCartCouponService implements DaffCartCouponServiceInterface {
   constructor(
     private apollo: Apollo,
+    @Inject(DaffMagentoExtraCartFragments) public extraCartFragments: DocumentNode[],
     public cartTransformer: DaffMagentoCartCouponResponseTransformer,
   ) {}
 
   apply(cartId: DaffCart['id'], coupon: DaffCartCoupon): Observable<Partial<DaffCart>> {
     return this.apollo.mutate<MagentoApplyCouponResponse>({
-      mutation: applyCoupon,
+      mutation: applyCoupon(this.extraCartFragments),
       variables: {
         cartId,
         couponCode: coupon.code
@@ -48,7 +50,7 @@ export class DaffMagentoCartCouponService implements DaffCartCouponServiceInterf
 
   list(cartId: DaffCart['id']): Observable<DaffCartCoupon[]> {
     return this.apollo.mutate<MagentoListCartCouponsResponse>({
-      mutation: listCartCoupons,
+      mutation: listCartCoupons(this.extraCartFragments),
       variables: {
         cartId
       }
@@ -64,7 +66,7 @@ export class DaffMagentoCartCouponService implements DaffCartCouponServiceInterf
 
   removeAll(cartId: DaffCart['id']): Observable<Partial<DaffCart>> {
     return this.apollo.mutate<MagentoRemoveAllCouponsResponse>({
-      mutation: removeAllCoupons,
+      mutation: removeAllCoupons(this.extraCartFragments),
       variables: {
         cartId
       }

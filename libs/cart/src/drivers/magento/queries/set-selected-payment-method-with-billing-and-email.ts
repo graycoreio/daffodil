@@ -1,8 +1,11 @@
+import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';
+
+import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffodil/core';
 
 import { cartFragment } from './fragments/public_api';
 
-export const setSelectedPaymentMethodWithBillingAndEmail = gql`
+export const setSelectedPaymentMethodWithBillingAndEmail = (extraCartFragments: DocumentNode[] = []) => gql`
   mutation SetSelectedPaymentMethodWithBillingAndEmail(
     $cartId: String!,
     $payment: PaymentMethodInput!,
@@ -31,8 +34,10 @@ export const setSelectedPaymentMethodWithBillingAndEmail = gql`
     }) {
       cart {
         ...cart
+        ${daffBuildFragmentNameSpread(...extraCartFragments)}
       }
     }
   }
   ${cartFragment}
+  ${daffBuildFragmentDefinition(...extraCartFragments)}
 `;

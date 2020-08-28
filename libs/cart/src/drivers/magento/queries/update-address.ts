@@ -1,4 +1,7 @@
+import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';
+
+import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffodil/core';
 
 import { cartFragment } from './fragments/public_api';
 
@@ -9,7 +12,7 @@ import { cartFragment } from './fragments/public_api';
  * This helps us keep query complexity down and save some server CPU cycles.
  * Driver behavior is not guaranteed if Magento no longer processes compound queries in the order they are defined.
  */
-export const updateAddress = gql`
+export const updateAddress = (extraCartFragments: DocumentNode[] = []) => gql`
   mutation UpdateAddress($cartId: String!, $address: CartAddressInput!) {
     setBillingAddressOnCart(input: {
       cart_id: $cartId
@@ -29,8 +32,10 @@ export const updateAddress = gql`
     }) {
       cart {
         ...cart
+        ${daffBuildFragmentNameSpread(...extraCartFragments)}
       }
     }
   }
   ${cartFragment}
+  ${daffBuildFragmentDefinition(...extraCartFragments)}
 `;

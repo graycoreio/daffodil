@@ -9,7 +9,8 @@ import { schema } from '@daffodil/driver/magento';
 import {
   DaffCart,
   DaffCartPaymentMethod,
-  DaffCartAddress
+  DaffCartAddress,
+  daffMagentoNoopCartFragment
 } from '@daffodil/cart';
 import {
   MagentoCartFactory,
@@ -44,6 +45,7 @@ import {
   MagentoSetSelectedPaymentMethodWithBillingResponse,
   MagentoSetSelectedPaymentMethodWithBillingAndEmailResponse
 } from './models/responses/public_api';
+import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
 
 describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
   let service: DaffMagentoCartPaymentService;
@@ -101,6 +103,11 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
         {
           provide: DaffMagentoBillingAddressInputTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoBillingAddressInputTransformer', ['transform'])
+        },
+        {
+          provide: DaffMagentoExtraCartFragments,
+          useValue: daffMagentoNoopCartFragment,
+          multi: true
         },
         {
 					provide: APOLLO_TESTING_CACHE,
@@ -202,7 +209,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(getSelectedPaymentMethod));
+      const op = controller.expectOne(addTypenameToDocument(getSelectedPaymentMethod([daffMagentoNoopCartFragment])));
 
       op.flush({
         data: mockGetSelectedPaymentMethodResponse
@@ -215,7 +222,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(getSelectedPaymentMethod));
+      const op = controller.expectOne(addTypenameToDocument(getSelectedPaymentMethod([daffMagentoNoopCartFragment])));
 
       op.flush({
         data: mockGetSelectedPaymentMethodResponse
@@ -243,7 +250,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethod));
+      const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethod([daffMagentoNoopCartFragment])));
 
       op.flush({
         data: mockSetSelectedPaymentMethodResponse
@@ -282,7 +289,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
             done();
           });
 
-          const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethodWithBillingAndEmail));
+          const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethodWithBillingAndEmail([daffMagentoNoopCartFragment])));
 
           op.flush({
             data: mockSetSelectedPaymentMethodWithBillingAndEmailResponse
@@ -312,7 +319,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
             done();
           });
 
-          const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethodWithBilling));
+          const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethodWithBilling([daffMagentoNoopCartFragment])));
 
           op.flush({
             data: mockSetSelectedPaymentMethodWithBillingResponse
@@ -331,7 +338,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
           })
         ).subscribe();
 
-        const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethodWithBillingAndEmail));
+        const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethodWithBillingAndEmail([daffMagentoNoopCartFragment])));
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find a cart with that ID.',
@@ -362,7 +369,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethod));
+      const op = controller.expectOne(addTypenameToDocument(setSelectedPaymentMethod([daffMagentoNoopCartFragment])));
 
       op.flush({
         data: mockSetSelectedPaymentMethodResponse

@@ -9,7 +9,8 @@ import { schema } from '@daffodil/driver/magento';
 import {
   DaffCart,
   DaffCartAddress,
-  MagentoShippingAddress
+  MagentoShippingAddress,
+  daffMagentoNoopCartFragment
 } from '@daffodil/cart';
 import {
   MagentoCartFactory,
@@ -32,6 +33,7 @@ import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { MagentoCart } from './models/outputs/cart';
 import { DaffMagentoCartAddressInputTransformer } from './transforms/inputs/cart-address.service';
 import { MagentoShippingAddressInput } from './models/inputs/shipping-address';
+import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
 
 describe('Driver | Magento | Cart | CartAddressService', () => {
   let service: DaffMagentoCartAddressService;
@@ -70,6 +72,11 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
         {
           provide: DaffMagentoCartAddressInputTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoCartAddressInputTransformer', ['transform'])
+        },
+        {
+          provide: DaffMagentoExtraCartFragments,
+          useValue: daffMagentoNoopCartFragment,
+          multi: true
         },
 				{
 					provide: APOLLO_TESTING_CACHE,
@@ -172,7 +179,7 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
             done();
           });
 
-          const op = controller.expectOne(addTypenameToDocument(updateAddressWithEmail));
+          const op = controller.expectOne(addTypenameToDocument(updateAddressWithEmail([daffMagentoNoopCartFragment])));
 
           op.flush({
             data: mockUpdateAddressWithEmailResponse
@@ -198,7 +205,7 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
             done();
           });
 
-          const op = controller.expectOne(addTypenameToDocument(updateAddress));
+          const op = controller.expectOne(addTypenameToDocument(updateAddress([daffMagentoNoopCartFragment])));
 
           op.flush({
             data: mockUpdateAddressResponse
@@ -217,7 +224,7 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
           })
         ).subscribe();
 
-        const op = controller.expectOne(addTypenameToDocument(updateAddressWithEmail));
+        const op = controller.expectOne(addTypenameToDocument(updateAddressWithEmail([daffMagentoNoopCartFragment])));
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find a cart with that ID.',

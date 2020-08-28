@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
 
 import {
-  DaffCartPaymentMethod
+  DaffCartPaymentMethod, daffMagentoNoopCartFragment
 } from '@daffodil/cart';
 import {
   DaffCartPaymentFactory,
@@ -14,6 +14,7 @@ import { DaffMagentoCartPaymentTransformer } from './transforms/outputs/cart-pay
 import { listPaymentMethods } from './queries/public_api';
 import { MagentoListPaymentMethodsResponse } from './models/responses/public_api';
 import { MagentoCartPaymentMethod } from './models/outputs/cart-payment-method';
+import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
 
 describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
   let service: DaffMagentoCartPaymentMethodsService;
@@ -39,7 +40,12 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
         {
           provide: DaffMagentoCartPaymentTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoCartPaymentTransformer', ['transform'])
-        }
+        },
+        {
+          provide: DaffMagentoExtraCartFragments,
+          useValue: daffMagentoNoopCartFragment,
+          multi: true
+        },
       ]
     });
 
@@ -62,6 +68,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
     cartId = '15';
     mockListCartPaymentMethodsResponse = {
       cart: {
+        __typename: 'Cart',
         available_payment_methods: [mockMagentoPaymentMethod]
       }
     };
@@ -87,7 +94,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
         done();
       });
 
-      const op = controller.expectOne(listPaymentMethods);
+      const op = controller.expectOne(listPaymentMethods([daffMagentoNoopCartFragment]));
 
       op.flush({
         data: mockListCartPaymentMethodsResponse
@@ -100,7 +107,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
         done();
       });
 
-      const op = controller.expectOne(listPaymentMethods);
+      const op = controller.expectOne(listPaymentMethods([daffMagentoNoopCartFragment]));
 
       op.flush({
         data: mockListCartPaymentMethodsResponse

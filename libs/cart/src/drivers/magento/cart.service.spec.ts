@@ -2,7 +2,9 @@ import { TestBed } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
 import { of } from 'rxjs';
 import { addTypenameToDocument } from 'apollo-utilities';
+import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
 
+import { DaffCart, daffMagentoNoopCartFragment } from '@daffodil/cart';
 import {
   MagentoCartFactory,
   DaffCartFactory,
@@ -13,7 +15,6 @@ import { schema } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartService } from './cart.service';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
-import { DaffCart } from '@daffodil/cart';
 import { MagentoCart } from './models/outputs/cart';
 import { MagentoCreateCartResponse } from './models/responses/create-cart';
 import { getCart, createCart } from './queries/public_api';
@@ -21,7 +22,7 @@ import { DaffCartItemDriver } from '../interfaces/cart-item-service.interface';
 import { MagentoGetCartResponse } from './models/responses/get-cart';
 import { MagentoCartItem } from './models/outputs/cart-item';
 import { DaffCartItem } from '../../models/cart-item';
-import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
+import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
 
 describe('Driver | Magento | Cart | CartService', () => {
   let service: DaffMagentoCartService;
@@ -57,6 +58,11 @@ describe('Driver | Magento | Cart | CartService', () => {
         {
           provide: DaffCartItemDriver,
           useValue: jasmine.createSpyObj('DaffCartItemDriver', ['delete', 'list'])
+        },
+        {
+          provide: DaffMagentoExtraCartFragments,
+          useValue: daffMagentoNoopCartFragment,
+          multi: true
         },
 				{
 					provide: APOLLO_TESTING_CACHE,
@@ -117,7 +123,7 @@ describe('Driver | Magento | Cart | CartService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(getCart));
+      const op = controller.expectOne(addTypenameToDocument(getCart([daffMagentoNoopCartFragment])));
 
       op.flush({
         data: mockCartResponse
@@ -130,7 +136,7 @@ describe('Driver | Magento | Cart | CartService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(getCart));
+      const op = controller.expectOne(addTypenameToDocument(getCart([daffMagentoNoopCartFragment])));
 
       op.flush({
         data: mockCartResponse

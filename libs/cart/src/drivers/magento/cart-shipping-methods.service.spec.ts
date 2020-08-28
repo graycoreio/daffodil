@@ -5,7 +5,7 @@ import { addTypenameToDocument } from 'apollo-utilities';
 
 import { schema } from '@daffodil/driver/magento';
 import {
-  DaffCartShippingRate
+  DaffCartShippingRate, daffMagentoNoopCartFragment
 } from '@daffodil/cart';
 import {
   DaffCartShippingRateFactory,
@@ -17,6 +17,7 @@ import { DaffMagentoCartShippingRateTransformer } from './transforms/outputs/car
 import { listShippingMethods } from './queries/public_api';
 import { MagentoListShippingMethodsResponse } from './models/responses/public_api';
 import { MagentoCartShippingMethod } from './models/outputs/cart-shipping-method';
+import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
 
 interface MagentoCartAvailableShippingMethod extends MagentoCartShippingMethod {
 	__typename: string;
@@ -46,6 +47,11 @@ describe('Driver | Magento | Cart | CartShippingMethodsService', () => {
         {
           provide: DaffMagentoCartShippingRateTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoCartShippingRateTransformer', ['transform'])
+        },
+        {
+          provide: DaffMagentoExtraCartFragments,
+          useValue: daffMagentoNoopCartFragment,
+          multi: true
         },
 				{
 					provide: APOLLO_TESTING_CACHE,
@@ -109,7 +115,7 @@ describe('Driver | Magento | Cart | CartShippingMethodsService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(listShippingMethods));
+      const op = controller.expectOne(addTypenameToDocument(listShippingMethods([daffMagentoNoopCartFragment])));
 
       op.flush({
         data: mockListCartShippingMethodsResponse
@@ -123,7 +129,7 @@ describe('Driver | Magento | Cart | CartShippingMethodsService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(listShippingMethods));
+      const op = controller.expectOne(addTypenameToDocument(listShippingMethods([daffMagentoNoopCartFragment])));
 
       op.flush({
         data: mockListCartShippingMethodsResponse
