@@ -9,7 +9,8 @@ import { DaffProduct, DaffConfigurableProduct } from '@daffodil/product';
 import { DaffProductFactory, DaffConfigurableProductFactory } from '@daffodil/product/testing';
 import {
   DaffCart,
-  DaffCartItem
+  DaffCartItem,
+  daffMagentoNoopCartFragment
 } from '@daffodil/cart';
 import {
   MagentoCartFactory,
@@ -42,6 +43,7 @@ import {
 import { MagentoCartItemInput } from './models/inputs/cart-item';
 import { MagentoCartItemUpdateInput } from './models/inputs/cart-item-update';
 import { DaffCartItemInputType, DaffCompositeCartItemInput, DaffSimpleCartItemInput, DaffConfigurableCartItemInput } from '../../models/cart-item-input';
+import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
 
 
 describe('Driver | Magento | Cart | CartItemService', () => {
@@ -93,6 +95,11 @@ describe('Driver | Magento | Cart | CartItemService', () => {
         {
           provide: DaffMagentoCartItemUpdateInputTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoCartItemUpdateInputTransformer', ['transform'])
+        },
+        {
+          provide: DaffMagentoExtraCartFragments,
+          useValue: daffMagentoNoopCartFragment,
+          multi: true
         },
 				{
 					provide: APOLLO_TESTING_CACHE,
@@ -225,7 +232,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(listCartItems));
+      const op = controller.expectOne(addTypenameToDocument(listCartItems([daffMagentoNoopCartFragment])));
 
       op.flush({
         data: mockListCartItemResponse
@@ -261,9 +268,9 @@ describe('Driver | Magento | Cart | CartItemService', () => {
 					expect(result.items[0]).toEqual(jasmine.objectContaining(mockDaffCartItem));
 					done();
 				});
-	
-				const op = controller.expectOne(addTypenameToDocument(addBundleCartItem));
-	
+
+				const op = controller.expectOne(addTypenameToDocument(addBundleCartItem([daffMagentoNoopCartFragment])));
+
 				op.flush({
 					data: mockAddBundleCartItemResponse
 				});
@@ -276,9 +283,9 @@ describe('Driver | Magento | Cart | CartItemService', () => {
 					expect(result.items[0]).toEqual(jasmine.objectContaining(mockDaffCartItem));
 					done();
 				});
-	
-				const op = controller.expectOne(addTypenameToDocument(addSimpleCartItem));
-	
+
+				const op = controller.expectOne(addTypenameToDocument(addSimpleCartItem([daffMagentoNoopCartFragment])));
+
 				op.flush({
 					data: mockAddSimpleCartItemResponse
 				});
@@ -291,9 +298,9 @@ describe('Driver | Magento | Cart | CartItemService', () => {
 					expect(result.items[0]).toEqual(jasmine.objectContaining(mockDaffCartItem));
 					done();
 				});
-	
-				const op = controller.expectOne(addTypenameToDocument(addConfigurableCartItem));
-	
+
+				const op = controller.expectOne(addTypenameToDocument(addConfigurableCartItem([daffMagentoNoopCartFragment])));
+
 				op.flush({
 					data: mockAddConfigurableCartItemResponse
 				});
@@ -322,7 +329,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(updateCartItem));
+      const op = controller.expectOne(addTypenameToDocument(updateCartItem([daffMagentoNoopCartFragment])));
 
       op.flush({
         data: mockUpdateCartItemResponse
@@ -348,7 +355,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(removeCartItem));
+      const op = controller.expectOne(addTypenameToDocument(removeCartItem([daffMagentoNoopCartFragment])));
 
       op.flush({
         data: mockRemoveCartItemResponse

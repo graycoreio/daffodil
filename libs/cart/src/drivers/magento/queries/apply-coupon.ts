@@ -1,9 +1,12 @@
+import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';
+
+import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffodil/core';
 
 import { cartItemFragment } from './fragments/cart-item';
 import { pricesFragment } from './fragments/prices';
 
-export const applyCoupon = gql`
+export const applyCoupon = (extraCartFragments: DocumentNode[] = []) => gql`
   mutation ApplyCoupon($cartId: String!, $couponCode: String!) {
     applyCouponToCart(
       input: {
@@ -22,9 +25,11 @@ export const applyCoupon = gql`
         prices {
           ...prices
         }
+        ${daffBuildFragmentNameSpread(...extraCartFragments)}
       }
     }
   }
   ${cartItemFragment}
   ${pricesFragment}
+  ${daffBuildFragmentDefinition(...extraCartFragments)}
 `;

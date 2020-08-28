@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { DocumentNode } from 'graphql';
 
 import { DaffCartAddressServiceInterface } from '../interfaces/cart-address-service.interface';
 import { DaffCart } from '../../models/cart';
@@ -18,6 +19,7 @@ import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { DaffMagentoShippingAddressTransformer } from './transforms/outputs/shipping-address.service';
 import { transformCartMagentoError } from './errors/transform';
 import { DaffMagentoCartAddressInputTransformer } from './transforms/inputs/cart-address.service';
+import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
 
 /**
  * A service for making Magento GraphQL queries for carts.
@@ -28,6 +30,7 @@ import { DaffMagentoCartAddressInputTransformer } from './transforms/inputs/cart
 export class DaffMagentoCartAddressService implements DaffCartAddressServiceInterface {
   constructor(
     private apollo: Apollo,
+    @Inject(DaffMagentoExtraCartFragments) public extraCartFragments: DocumentNode[],
     public cartTransformer: DaffMagentoCartTransformer,
     public cartAddressTransformer: DaffMagentoShippingAddressTransformer,
     public cartAddressInputTransformer: DaffMagentoCartAddressInputTransformer,
@@ -39,7 +42,7 @@ export class DaffMagentoCartAddressService implements DaffCartAddressServiceInte
 
   private updateAddress(cartId: string, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
     return this.apollo.mutate<MagentoUpdateAddressResponse>({
-      mutation: updateAddress,
+      mutation: updateAddress(this.extraCartFragments),
       variables: {
         cartId,
         address: this.cartAddressInputTransformer.transform(address)
@@ -52,7 +55,7 @@ export class DaffMagentoCartAddressService implements DaffCartAddressServiceInte
 
   private updateAddressWithEmail(cartId: string, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
     return this.apollo.mutate<MagentoUpdateAddressWithEmailResponse>({
-      mutation: updateAddressWithEmail,
+      mutation: updateAddressWithEmail(this.extraCartFragments),
       variables: {
         cartId,
         email: address.email,

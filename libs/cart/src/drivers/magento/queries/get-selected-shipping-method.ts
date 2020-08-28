@@ -1,8 +1,11 @@
+import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';
+
+import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffodil/core';
 
 import { selectedShippingMethodFragment } from './fragments/public_api';
 
-export const getSelectedShippingMethod = gql`
+export const getSelectedShippingMethod = (extraCartFragments: DocumentNode[] = []) => gql`
   query GetSelectedShippingMethod($cartId: String!) {
     cart(cart_id: $cartId) {
       shipping_addresses {
@@ -10,7 +13,9 @@ export const getSelectedShippingMethod = gql`
           ...selectedShippingMethod
         }
       }
+      ${daffBuildFragmentNameSpread(...extraCartFragments)}
     }
   }
   ${selectedShippingMethodFragment}
+  ${daffBuildFragmentDefinition(...extraCartFragments)}
 `;

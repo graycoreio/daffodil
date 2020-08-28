@@ -14,6 +14,7 @@ export { DaffMagentoPaymentMethodInputTransformer } from './transforms/inputs/pa
 export { DaffMagentoShippingMethodInputTransformer } from './transforms/inputs/shipping-method.service';
 
 export * from './models/outputs/public_api';
+export * from './injection-tokens/public_api';
 
 export { DaffMagentoCartService } from './cart.service';
 export { DaffMagentoCartItemService } from './cart-item.service';
@@ -33,3 +34,4 @@ export { MagentoShippingAddressInput } from './models/inputs/shipping-address';
 export { MagentoShippingMethodInput } from './models/inputs/shipping-method';
 
 export { DaffCartMagentoDriverModule } from './cart-driver.module';
+export { daffMagentoNoopCartFragment } from './queries/public_api'

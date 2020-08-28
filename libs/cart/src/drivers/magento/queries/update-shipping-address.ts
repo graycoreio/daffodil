@@ -1,8 +1,11 @@
+import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';
+
+import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffodil/core';
 
 import { cartFragment } from './fragments/public_api';
 
-export const updateShippingAddress = gql`
+export const updateShippingAddress = (extraCartFragments: DocumentNode[] = []) => gql`
   mutation UpdateShippingAddress(
     $cartId: String!,
     $address: ShippingAddressInput!
@@ -13,8 +16,10 @@ export const updateShippingAddress = gql`
     }) {
       cart {
         ...cart
+        ${daffBuildFragmentNameSpread(...extraCartFragments)}
       }
     }
   }
   ${cartFragment}
+  ${daffBuildFragmentDefinition(...extraCartFragments)}
 `;
