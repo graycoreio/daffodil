@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.9.4](https://github.com/graycoreio/daffodil/compare/v0.9.3...v0.9.4) (2020-08-28)
+
+
+### Features
+
+* **cart:** add a cart total for shipping cost ([#1049](https://github.com/graycoreio/daffodil/issues/1049)) ([09ca283](https://github.com/graycoreio/daffodil/commit/09ca2835da54fa5de19c50ba01ecd75b348aed98))
+* **cart:** make cart totals individually selectable ([#1048](https://github.com/graycoreio/daffodil/issues/1048)) ([9f5a33c](https://github.com/graycoreio/daffodil/commit/9f5a33c447a5e58c97e174f5b30cac221429fc9a))
+* **cart:** provide extra cart fragments ([#1050](https://github.com/graycoreio/daffodil/issues/1050)) ([2f8bc20](https://github.com/graycoreio/daffodil/commit/2f8bc20dadcc88e5e211c51561614968ce64abe6))
+* **core:** add GraphQL fragment utils ([#1045](https://github.com/graycoreio/daffodil/issues/1045)) ([d4663aa](https://github.com/graycoreio/daffodil/commit/d4663aaf8db3a9fd365431f5e01c768718a616f7))
+* **product:** make composite product items have a default option if … ([#1046](https://github.com/graycoreio/daffodil/issues/1046)) ([2b9c37d](https://github.com/graycoreio/daffodil/commit/2b9c37d699e752a514fda9290ef475a1864ff185))
+
+
+### Bug Fixes
+
+* **cart:** fix bug where selected shipping methods were not included … ([#1047](https://github.com/graycoreio/daffodil/issues/1047)) ([74e1e81](https://github.com/graycoreio/daffodil/commit/74e1e818d63969cda8910ca2c34be23143d983a3))
+
 ### [0.9.3](https://github.com/graycoreio/daffodil/compare/v0.9.2...v0.9.3) (2020-08-24)
 
 
