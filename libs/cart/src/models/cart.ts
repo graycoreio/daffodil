@@ -25,4 +25,9 @@ export interface DaffCart {
   shipping_information: DaffCartShippingInformation | null;
   available_shipping_methods: DaffCartShippingRate[];
   available_payment_methods: DaffCartPaymentMethod[];
+  /**
+   * The field is set to the platform cart object returned by the most recent driver call.
+   * No fields are guaranteed here.
+   */
+  extra_attributes?: any;
 }

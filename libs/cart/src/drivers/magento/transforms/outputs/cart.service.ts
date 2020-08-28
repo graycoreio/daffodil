@@ -99,19 +99,19 @@ export class DaffMagentoCartTransformer {
 
 		return {
 			available_shipping_methods: selectedShippingMethod &&
-			!this.containsShippingMethod(cart.shipping_addresses[0].available_shipping_methods, selectedShippingMethod) 
+			!this.containsShippingMethod(cart.shipping_addresses[0].available_shipping_methods, selectedShippingMethod)
 			? [
 					...availableMethods,
 					this.shippingRateTransformer.transform(selectedShippingMethod)
 				] : availableMethods
 		};
 	}
-	
+
 	private containsShippingMethod(
-		availableMethods: MagentoCartShippingMethod[], 
+		availableMethods: MagentoCartShippingMethod[],
 		selectedMethod: MagentoCartShippingMethod
 	): boolean {
-		return availableMethods.findIndex(method => 
+		return availableMethods.findIndex(method =>
 			method.carrier_code === selectedMethod.carrier_code && method.method_code === selectedMethod.method_code
 		) > -1;
 	}
@@ -131,7 +131,7 @@ export class DaffMagentoCartTransformer {
   transform(cart: MagentoCart): DaffCart {
     return cart ? {
       // add the magento cart in this way to avoid 'object literal may only specify known proerties'
-      ...{magento_cart: cart},
+      extra_attributes: cart,
 
       ...this.transformCartItems(cart),
       ...this.transformBillingAddress(cart),
