@@ -58,14 +58,14 @@ export class MockCart implements DaffCart {
   payment = null;
   available_shipping_methods = [];
   available_payment_methods = [];
+  extra_attributes = {};
 };
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class DaffCartFactory extends DaffModelFactory<DaffCart>{
-  constructor(){
+  constructor() {
     super(MockCart);
   }
 }

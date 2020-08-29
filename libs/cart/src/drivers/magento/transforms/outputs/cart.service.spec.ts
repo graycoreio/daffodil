@@ -236,8 +236,8 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
         expect(shippingAddressTransformerSpy.transform).toHaveBeenCalledWith(mockShippingAddress);
       });
 
-      it('should set the magento_cart field', () => {
-        expect(transformedCart.magento_cart).toEqual(mockMagentoCart);
+      it('should set the extra_attributes field', () => {
+        expect(transformedCart.extra_attributes).toEqual(mockMagentoCart);
       });
     });
 
