@@ -31,7 +31,9 @@ export function transformCartTotals(cart: Partial<MagentoCart>): {totals: DaffCa
 			{
 				name: DaffCartTotalTypeEnum.subtotalWithDiscountIncludingTax,
 				label: 'Subtotal with Discount Including Tax',
-				value: daffAdd(cart.prices.subtotal_with_discount_excluding_tax.value, totalTax)
+				value: cart.prices.subtotal_with_discount_excluding_tax.value ? 
+								daffAdd(cart.prices.subtotal_with_discount_excluding_tax.value, totalTax) :
+								cart.prices.subtotal_with_discount_excluding_tax.value
 			},
 			{
 				name: DaffCartTotalTypeEnum.tax,
