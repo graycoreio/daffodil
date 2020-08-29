@@ -7,8 +7,7 @@ import { DaffProductTypeEnum } from '../../models/product';
 import { getDaffCompositeProductEntitiesSelectors } from '../composite-product-entities/composite-product-entities.selectors';
 import { getDaffProductEntitiesSelectors } from '../product-entities/product-entities.selectors';
 import { DaffCompositeProduct } from '../../models/composite-product';
-import { DaffCompositeProductEntityItem } from '../../reducers/public_api';
-import { DaffCompositeProductItem } from '../../models/composite-product-item';
+import { DaffCompositeProductItem, DaffCompositeProductItemOption } from '../../models/composite-product-item';
 
 export interface DaffCompositeProductMemoizedSelectors {
 	selectCompositeProductMinPossiblePrice: MemoizedSelectorWithProps<object, object, number>;
@@ -97,11 +96,10 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 			if(product.type !== DaffProductTypeEnum.Composite) {
 				return undefined;
 			}
-			const appliedOptions = selectCompositeProductAppliedOptions.projector(appliedOptionsEntities, { id: props.id });
-
+			const appliedOptions = selectCompositeProductAppliedOptions.projector(products, appliedOptionsEntities, { id: props.id });
 			return (<DaffCompositeProduct>product).items.reduce((acc, item) => daffAdd(
 				acc, 
-				appliedOptions[item.id].value ? findAppliedCompositeOptionPrice(item, appliedOptions) : getMinimumCompositeItemPrice(item)
+				appliedOptions[item.id] ? appliedOptions[item.id].price : getMinimumCompositeItemPrice(item)
 			), product.price);
 		}
 	);
@@ -118,12 +116,12 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 			if(product.type !== DaffProductTypeEnum.Composite) {
 				return undefined;
 			}
-			const appliedOptions = selectCompositeProductAppliedOptions.projector(appliedOptionsEntities, { id: props.id });
+			const appliedOptions = selectCompositeProductAppliedOptions.projector(products, appliedOptionsEntities, { id: props.id });
 
 			return (<DaffCompositeProduct>product).items.reduce((acc, item) => 
 				daffAdd(
 					acc, 
-					appliedOptions[item.id].value ? findAppliedCompositeOptionPrice(item, appliedOptions) : getMaximumRequiredItemPrice(item)
+					appliedOptions[item.id]  ? appliedOptions[item.id].price : getMaximumRequiredItemPrice(item)
 				), product.price);
 		}
 	);
@@ -150,11 +148,11 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 				return undefined;
 			}
 			
-			const appliedOptions = selectCompositeProductAppliedOptions.projector(appliedOptionsEntities, { id: props.id });
+			const appliedOptions = selectCompositeProductAppliedOptions.projector(products, appliedOptionsEntities, { id: props.id });
 
 			return (<DaffCompositeProduct>product).items.reduce((acc, item) => daffAdd(
 				acc, 
-				appliedOptions[item.id].value ? daffMultiply(findAppliedCompositeOptionPrice(item, appliedOptions), appliedOptions[item.id].qty) : 0
+				appliedOptions[item.id] ? daffMultiply(appliedOptions[item.id].price, appliedOptions[item.id].quantity) : 0
 			), product.price);
 		}
 	);
@@ -171,9 +169,8 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 			if(product.type !== DaffProductTypeEnum.Composite) {
 				return undefined;
 			}
-			const appliedOptions = selectCompositeProductAppliedOptions.projector(appliedOptionsEntities, { id: props.id });
+			const appliedOptions = selectCompositeProductAppliedOptions.projector(products, appliedOptionsEntities, { id: props.id });
 			const productDiscountAmount = selectProductDiscountAmount.projector(products, { id: props.id });
-
 			return daffAdd(productDiscountAmount, getOptionsDiscountAmount(<DaffCompositeProduct>product, appliedOptions));
 		}
 	);
@@ -234,19 +231,15 @@ export const getDaffCompositeProductSelectors = (() => {
 		: createCompositeProductSelectors();
 })();
 
-function getOptionsDiscountAmount(product: DaffCompositeProduct, appliedOptions: Dictionary<DaffCompositeProductEntityItem>): number {
+function getOptionsDiscountAmount(product: DaffCompositeProduct, appliedOptions: Dictionary<DaffCompositeProductItemOption>): number {
 	return product.items.reduce((acc, item) => {
-		const itemOptionDiscount = appliedOptions[item.id].value ? item.options.find(option => option.id === appliedOptions[item.id].value).discount : null;
-
+		const itemOptionDiscount = appliedOptions[item.id] ? appliedOptions[item.id].discount : null;
+		
 		return daffAdd(
 			acc, 
-			itemOptionDiscount && itemOptionDiscount.amount > 0 ? daffMultiply(itemOptionDiscount.amount, appliedOptions[item.id].qty) : 0
+			itemOptionDiscount && itemOptionDiscount.amount > 0 && appliedOptions[item.id] ? daffMultiply(itemOptionDiscount.amount, appliedOptions[item.id].quantity) : 0
 		);
 	}, 0)
-}
-
-function findAppliedCompositeOptionPrice(item: DaffCompositeProductItem, appliedOptions: Dictionary<DaffCompositeProductEntityItem>): number {
-	return item.options.find(option => option.id === appliedOptions[item.id].value).price
 }
 
 /**

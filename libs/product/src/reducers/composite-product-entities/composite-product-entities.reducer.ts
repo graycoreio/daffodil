@@ -82,12 +82,12 @@ function getDefaultOption(item: DaffCompositeProductItem): DaffCompositeProductE
 	if(defaultOptionIndex > -1 && isOptionInStock(item.options[defaultOptionIndex])) {
 		return {
 			value: item.options[defaultOptionIndex].id,
-			qty: 1
+			qty: item.options[defaultOptionIndex].quantity
 		}
 	} else {
 		const firstInStockOptionIndex = item.options.findIndex(option => option.stock_status === DaffProductStockEnum.InStock);
 		return item.required && firstInStockOptionIndex > -1 ? 
-			{ value: item.options[firstInStockOptionIndex].id, qty: 1 } :
+			{ value: item.options[firstInStockOptionIndex].id, qty: item.options[firstInStockOptionIndex].quantity } :
 			{ value: null, qty: null }
 	}
 }

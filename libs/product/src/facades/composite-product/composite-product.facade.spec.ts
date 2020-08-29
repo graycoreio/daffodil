@@ -130,21 +130,8 @@ describe('DaffCompositeProductFacade', () => {
     it('should return the price of the product', () => {
 			const expected = cold('a', { a: 
 				stubCompositeProduct.price + 
-				stubCompositeProduct.items[0].options[0].price +
-				stubCompositeProduct.items[1].options[0].price 
-			});
-	
-			expect(facade.getPrice(stubCompositeProduct.id)).toBeObservable(expected);
-		});
-  });
-
-  describe('getPrice', () => {
-
-    it('should return the price of the product', () => {
-			const expected = cold('a', { a: 
-				stubCompositeProduct.price + 
-				stubCompositeProduct.items[0].options[0].price +
-				stubCompositeProduct.items[1].options[0].price 
+				stubCompositeProduct.items[0].options[0].price*stubCompositeProduct.items[0].options[0].quantity +
+				stubCompositeProduct.items[1].options[0].price*stubCompositeProduct.items[1].options[0].quantity
 			});
 	
 			expect(facade.getPrice(stubCompositeProduct.id)).toBeObservable(expected);
@@ -167,8 +154,8 @@ describe('DaffCompositeProductFacade', () => {
     it('should the discounted price for a composite product', () => {
 			const expected = cold('a', { a: 
 				stubCompositeProduct.price 
-				+ stubCompositeProduct.items[0].options[0].price 
-				+ stubCompositeProduct.items[1].options[0].price 
+				+ stubCompositeProduct.items[0].options[0].price*stubCompositeProduct.items[0].options[0].quantity
+				+ stubCompositeProduct.items[1].options[0].price*stubCompositeProduct.items[1].options[0].quantity
 				- stubCompositeProduct.discount.amount
 			});
 	
@@ -189,14 +176,8 @@ describe('DaffCompositeProductFacade', () => {
 		
 		it('should return the applied option for a composite product', () => {
 			const expected = cold('a', { a: { 
-				[stubCompositeProduct.items[0].id]: {
-					value: stubCompositeProduct.items[0].options[0].id,
-					qty: 1
-				},
-				[stubCompositeProduct.items[1].id]: {
-					value: stubCompositeProduct.items[1].options[0].id,
-					qty: 1
-				}
+				[stubCompositeProduct.items[0].id]: stubCompositeProduct.items[0].options[0],
+				[stubCompositeProduct.items[1].id]: stubCompositeProduct.items[1].options[0]
 			}});
 
 			expect(facade.getAppliedOptions(stubCompositeProduct.id)).toBeObservable(expected);
