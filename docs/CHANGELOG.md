@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.10.0](https://github.com/graycoreio/daffodil/compare/v0.9.4...v0.10.0) (2020-08-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* **product:** selectCompositeProductAppliedOptions selector now returns Dictionary<DaffCompositeProductItemOption>
+
+### Features
+
+* **cart:** add extra_attributes field on cart model ([#1052](https://github.com/graycoreio/daffodil/issues/1052)) ([ead9eca](https://github.com/graycoreio/daffodil/commit/ead9ecaa516a517e59e5fa8a4158f9cdf535c70d))
+* **product:** composite product applied options selector returns  a dictionary of DaffCompositeProductItemOption instead of DaffCompositeProductEntityItem ([#1051](https://github.com/graycoreio/daffodil/issues/1051)) ([1fed7dc](https://github.com/graycoreio/daffodil/commit/1fed7dc36945cf243f05898fe465fb5cb5804a22))
+
+
+### Bug Fixes
+
+* **cart:** fix bug where a null value caused a crash ([#1053](https://github.com/graycoreio/daffodil/issues/1053)) ([0db25d8](https://github.com/graycoreio/daffodil/commit/0db25d8b04d8c8f32ac8082157b53997b599f1f9))
+
 ### [0.9.4](https://github.com/graycoreio/daffodil/compare/v0.9.3...v0.9.4) (2020-08-28)
 
 
