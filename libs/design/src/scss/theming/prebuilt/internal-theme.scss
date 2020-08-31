@@ -4,9 +4,9 @@
 @import '../configure-theme';
 @import '../theme';
 
-$primary: daff-configure-palette($daff-yellow, 60);
+$primary: daff-configure-palette($daff-blue, 60);
 $secondary: daff-configure-palette($daff-purple, 60);
-$tertiary: daff-configure-palette($daff-blue, 60);
+$tertiary: daff-configure-palette($daff-green, 60);
 
 $theme: daff-configure-theme($primary, $secondary, $tertiary);
 

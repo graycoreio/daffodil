@@ -2,6 +2,52 @@
 $daff-white: #ffffff;
 $error: #dd0000;
 
+// 60 apart passes AAA level for any size text (except for 10/70)
+// 50 apart passes AA level for any size text (except for 10/60)
+
+$daff-blue: (
+	10: #f1f3ff,
+	20: #e3e7ff,
+	30: #bcc6ff,
+	40: #94a6ff,
+	50: #6f8cff,
+	60: #1f66ff,
+	70: #174fc9,
+	80: #183b93,
+	90: #132a68,
+	100: #0d1b45
+);
+
+$daff-primary: $daff-blue;
+
+$daff-purple: (
+	10: #f3f2fc,
+	20: #e7e6fa,
+	30: #c7c4f7,
+	40: #a7a1f7,
+	50: #8e84fa,
+	60: #6a57ff,
+	70: #4d2df3,
+	80: #391dbe,
+	90: #281885,
+	100: #191057
+);
+
+$daff-accent: $daff-purple;
+
+$daff-green: (
+	10: #d6fcea,
+	20: #9dfbd3,
+	30: #51e1ae,
+	40: #37c193,
+	50: #1fa67c,
+	60: #00835f,
+	70: #0f654a,
+	80: #104b37,
+	90: #0d3426,
+	100: #082218
+);
+
 $daff-yellow: (
 	10: #fff8e2,
 	20: #ffefb7,
@@ -13,36 +59,6 @@ $daff-yellow: (
 	80: #ffbb0c,
 	90: #ffb409,
 	100: #ffa705
-);
-
-$daff-primary: $daff-yellow;
-
-$daff-purple: (
-	10: #e6e4f6,
-	20: #c0bde8,
-	30: #9691d9,
-	40: #6c64c9,
-	50: #4d43be,
-	60: #2d22b2,
-	70: #281eab,
-	80: #2219a2,
-	90: #1c1499,
-	100: #110c8a
-);
-
-$daff-accent: $daff-purple;
-
-$daff-blue: (
-	10: #e6e6e9,
-	20: #c0c1c8,
-	30: #9698a3,
-	40: #6c6e7e,
-	50: #4d4f63,
-	60: #2d3047,
-	70: #282b40,
-	80: #222437,
-	90: #1c1e2f,
-	100: #111320
 );
 
 $daff-gray: (
