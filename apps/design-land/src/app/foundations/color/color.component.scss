@@ -1,0 +1,82 @@
+@import 'utilities';
+@import 'theme';
+
+.dl-color {
+	&__grid {
+		display: grid;
+		grid-gap: 32px;
+		grid-template-columns: 1fr;
+		grid-template-areas: 
+			'primary'
+			'secondary'
+			'tertiary';
+
+		@include breakpoint(tablet) {
+			grid-template-columns: repeat(3, 1fr);
+			grid-template-areas: 
+				'primary secondary tertiary';
+		}
+	}
+	
+	&__brand-grid {
+		display: grid;
+		grid-gap: 32px;
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			'yellow';
+
+		@include breakpoint(tablet) {
+			grid-template-columns: repeat(3, 1fr);
+			grid-template-areas:
+				'yellow . .';
+		}
+	}
+
+	&__palette {
+		display: block;
+
+		&.primary {
+			grid-area: primary;
+		}
+
+		&.secondary {
+			grid-area: secondary;
+		}
+
+		> * {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 0 16px;
+			height: 3rem;
+
+			&:first-child {
+				border-top-left-radius: 8px;
+				border-top-right-radius: 8px;
+			}
+	
+			&:last-child {
+				border-bottom-left-radius: 8px;
+				border-bottom-right-radius: 8px;
+			}
+
+			&:nth-child(n+6) {
+        color: $white;
+			}
+			
+			&:nth-child(6) {
+				height: 4rem;
+			}
+		}
+
+		&.yellow {
+			> * {
+				color: $black;
+			}
+		}
+	}
+
+	&__hue {
+		@include uppercase();
+	}
+}
