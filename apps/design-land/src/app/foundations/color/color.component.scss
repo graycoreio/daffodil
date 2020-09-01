@@ -18,30 +18,24 @@
 		}
 	}
 	
-	&__brand-grid {
+	&__decorative-grid {
 		display: grid;
 		grid-gap: 32px;
 		grid-template-columns: 1fr;
 		grid-template-areas:
-			'yellow';
+			'brand-yellow'
+			'red-palette'
+			'bronze';
 
 		@include breakpoint(tablet) {
 			grid-template-columns: repeat(3, 1fr);
 			grid-template-areas:
-				'yellow . .';
+				'brand-yellow red-palette bronze';
 		}
 	}
 
 	&__palette {
 		display: block;
-
-		&.primary {
-			grid-area: primary;
-		}
-
-		&.secondary {
-			grid-area: secondary;
-		}
 
 		> * {
 			display: flex;
@@ -69,10 +63,36 @@
 			}
 		}
 
-		&.yellow {
+		&.primary {
+			grid-area: primary;
+		}
+
+		&.secondary {
+			grid-area: secondary;
+		}
+		
+		&.tertiary {
+			grid-area: tertiary;
+		}
+
+		&.brand-yellow {
+			grid-area: brand-yellow;
+
 			> * {
 				color: $black;
+				
+				&:last-child {
+					color: $white;
+				}
 			}
+		}
+
+		&.red {
+			grid-area: red-palette;
+		}
+
+		&.bronze {
+			grid-area: bronze;
 		}
 	}
 
