@@ -2,19 +2,20 @@ import { Injectable, Inject } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 import { DaffCartShippingInformationServiceInterface } from '../interfaces/cart-shipping-information-service.interface';
 import { DaffCart } from '../../models/cart';
 import { DaffMagentoCartShippingRateTransformer } from './transforms/outputs/cart-shipping-rate.service';
 import {
   getSelectedShippingMethod,
-  setSelectedShippingMethod
+  setSelectedShippingMethod,
+  listShippingMethods
 } from './queries/public_api';
 import { DaffMagentoShippingMethodInputTransformer } from './transforms/inputs/shipping-method.service';
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { DaffCartShippingRate } from '../../models/cart-shipping-rate';
-import { MagentoGetSelectedShippingMethodResponse, MagentoSetSelectedShippingMethodResponse } from './models/responses/public_api';
+import { MagentoGetSelectedShippingMethodResponse, MagentoSetSelectedShippingMethodResponse, MagentoListShippingMethodsResponse } from './models/responses/public_api';
 import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
 
 /**
@@ -29,7 +30,7 @@ export class DaffMagentoCartShippingInformationService implements DaffCartShippi
     @Inject(DaffMagentoExtraCartFragments) public extraCartFragments: DocumentNode[],
     public cartTransformer: DaffMagentoCartTransformer,
     public shippingRateTransformer: DaffMagentoCartShippingRateTransformer,
-    public shippingMethodInputTransformer: DaffMagentoShippingMethodInputTransformer
+    public shippingMethodInputTransformer: DaffMagentoShippingMethodInputTransformer,
   ) {}
 
   get(cartId: string): Observable<DaffCartShippingRate> {
@@ -52,7 +53,23 @@ export class DaffMagentoCartShippingInformationService implements DaffCartShippi
         method: this.shippingMethodInputTransformer.transform(shippingInfo)
       }
     }).pipe(
-      map(result => this.cartTransformer.transform(result.data.setShippingMethodsOnCart.cart))
+      switchMap(result =>
+        // because Magento only returns the selected shipping method for the mutation
+        // we have to manually refetch the available shipping methods
+        // with fetchPolicy: 'network-only' in order to skip the cache
+        this.apollo.query<MagentoListShippingMethodsResponse>({
+          query: listShippingMethods(this.extraCartFragments),
+          variables: {cartId},
+          fetchPolicy: 'network-only'
+        }).pipe(
+          map(shippingMethods => ({
+            ...this.cartTransformer.transform(result.data.setShippingMethodsOnCart.cart),
+            available_shipping_methods: shippingMethods.data.cart.shipping_addresses[0].available_shipping_methods.map(item =>
+              this.shippingRateTransformer.transform(item)
+            )
+          }))
+        )
+      )
     )
   }
 

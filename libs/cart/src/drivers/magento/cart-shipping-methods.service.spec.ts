@@ -83,6 +83,7 @@ describe('Driver | Magento | Cart | CartShippingMethodsService', () => {
     mockListCartShippingMethodsResponse = {
       cart: {
 				__typename: 'Cart',
+        id: cartId,
         shipping_addresses: [{
 					__typename: 'AvailableShippingAddresses',
           available_shipping_methods: [mockMagentoShippingMethod]
