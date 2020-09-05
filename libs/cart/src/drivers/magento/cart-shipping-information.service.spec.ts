@@ -230,7 +230,7 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
         data: mockSetSelectedShippingMethodResponse
       });
 
-      // set timeout because the requests here are made in serial
+      // set timeout because the requests here are made in series
       setTimeout(() => {
         const listShippingMethodsOp = controller.expectOne(addTypenameToDocument(listShippingMethods([daffMagentoNoopCartFragment])));
 
