@@ -68,12 +68,8 @@ function buildCompositeProductAppliedOptionsEntity(product: DaffCompositeProduct
 }
 
 /**
- * Sets the default item option to the specified default option unless that option is out of stock.
- * Sets the default item option to the first in stock option if the specified default option is out of stock and
- * 	the item is required.
- * Does not set a default option if no options are in stock.
- * Sets the default item option to the first in stock option if no default option is specified and the item is required.
- * Does not set a default option if a default is not specified and not required.
+ * Sets the default item option to the specified default option if it is in stock.
+ * Does not set a default option if a default is not specified or if the default is out of stock.
  * @param item a DaffCompositeProductItem
  */
 function getDefaultOption(item: DaffCompositeProductItem): DaffCompositeProductEntityItem {
@@ -85,10 +81,7 @@ function getDefaultOption(item: DaffCompositeProductItem): DaffCompositeProductE
 			qty: item.options[defaultOptionIndex].quantity
 		}
 	} else {
-		const firstInStockOptionIndex = item.options.findIndex(option => option.stock_status === DaffProductStockEnum.InStock);
-		return item.required && firstInStockOptionIndex > -1 ? 
-			{ value: item.options[firstInStockOptionIndex].id, qty: item.options[firstInStockOptionIndex].quantity } :
-			{ value: null, qty: null }
+		return { value: null, qty: null };
 	}
 }
 
