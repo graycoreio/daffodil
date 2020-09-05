@@ -13,7 +13,6 @@ import {
 } from '@daffodil/product';
 
 import { getDaffConfigurableProductSelectors } from './configurable-product.selectors';
-import { DaffProductStockEnum } from '../../models/product';
 
 describe('Configurable Product Selectors | unit tests', () => {
 
@@ -272,7 +271,7 @@ describe('Configurable Product Selectors | unit tests', () => {
 		});
 
 		it('only returns variants that are in stock', () => {
-			stubConfigurableProduct.variants[0].stock_status = DaffProductStockEnum.OutOfStock;
+			stubConfigurableProduct.variants[0].in_stock = false;
 
 			store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
 			store.dispatch(new DaffConfigurableProductApplyAttribute(

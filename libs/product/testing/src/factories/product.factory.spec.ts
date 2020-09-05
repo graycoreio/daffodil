@@ -36,7 +36,7 @@ describe('Product | Testing | Factories | DaffProductFactory', () => {
       expect(result.name).toBeDefined();
       expect(result.brand).toBeDefined(); 
       expect(result.description).toBeDefined();     
-      expect(result.stock_status).toBeDefined();     
+      expect(result.in_stock).toBeDefined();     
     });
   });
 

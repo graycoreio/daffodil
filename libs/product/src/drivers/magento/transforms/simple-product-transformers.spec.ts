@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { MagentoProductFactory } from '@daffodil/product/testing';
 
 import { MagentoProduct } from '../models/magento-product';
-import { DaffProduct, DaffProductTypeEnum, DaffProductStockEnum } from '../../../models/product';
+import { DaffProduct, DaffProductTypeEnum } from '../../../models/product';
 import { transformMagentoSimpleProduct } from './simple-product-transformers';
 
 describe('DaffMagentoSimpleProductTransformerService', () => {
@@ -30,7 +30,7 @@ describe('DaffMagentoSimpleProductTransformerService', () => {
         { url: stubMagentoProduct.image.url, id: '0', label: stubMagentoProduct.image.label},
       ],
 			description: stubMagentoProduct.description.html,
-			stock_status: DaffProductStockEnum.InStock
+			in_stock: true
 		}
   });
 

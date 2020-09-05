@@ -4,11 +4,11 @@ import { DaffProductGridActionTypes, DaffProductGridActions } from '../../action
 import { DaffProductActionTypes, DaffProductActions } from '../../actions/product.actions';
 import { DaffBestSellersActionTypes, DaffBestSellersActions } from '../../actions/best-sellers.actions';
 import { daffCompositeProductAppliedOptionsEntitiesAdapter } from './composite-product-entities-reducer-adapter';
-import { DaffProduct, DaffProductTypeEnum, DaffProductStockEnum } from '../../models/product';
+import { DaffProduct, DaffProductTypeEnum } from '../../models/product';
 import { DaffCompositeProductActions, DaffCompositeProductActionTypes } from '../../actions/composite-product.actions';
 import { DaffCompositeProduct } from '../../models/composite-product';
 import { DaffCompositeProductEntity, DaffCompositeProductEntityItem } from './composite-product-entity';
-import { DaffCompositeProductItem, DaffCompositeProductItemOption } from '../../models/composite-product-item';
+import { DaffCompositeProductItem } from '../../models/composite-product-item';
 
 /**
  * Reducer function that catches actions and changes/overwrites composite product entities state.
@@ -75,7 +75,7 @@ function buildCompositeProductAppliedOptionsEntity(product: DaffCompositeProduct
 function getDefaultOption(item: DaffCompositeProductItem): DaffCompositeProductEntityItem {
 	const defaultOptionIndex = item.options.findIndex(option => option.is_default);
 
-	if(defaultOptionIndex > -1 && isOptionInStock(item.options[defaultOptionIndex])) {
+	if(defaultOptionIndex > -1 && item.options[defaultOptionIndex].in_stock) {
 		return {
 			value: item.options[defaultOptionIndex].id,
 			qty: item.options[defaultOptionIndex].quantity
@@ -83,8 +83,4 @@ function getDefaultOption(item: DaffCompositeProductItem): DaffCompositeProductE
 	} else {
 		return { value: null, qty: null };
 	}
-}
-
-function isOptionInStock(option: DaffCompositeProductItemOption): boolean {
-	return option.stock_status === DaffProductStockEnum.InStock;
 }

@@ -4,7 +4,7 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffProductGridLoadSuccess } from '../../actions/product-grid.actions';
-import { DaffProduct, DaffProductStockEnum } from '../../models/product';
+import { DaffProduct } from '../../models/product';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
 import { daffProductReducers } from '../../reducers/product-reducers';
 import { getDaffProductEntitiesSelectors } from './product-entities.selectors';
@@ -120,7 +120,7 @@ describe('selectProductEntitiesState', () => {
     
     it('should select whether the product is out of stock', () => {
 			const selector = store.pipe(select(selectIsProductOutOfStock, { id: mockProduct.id }));
-			const expected = cold('a', { a: mockProduct.stock_status === DaffProductStockEnum.OutOfStock });
+			const expected = cold('a', { a: !mockProduct.in_stock });
 
 			expect(selector).toBeObservable(expected);
     });

@@ -35,10 +35,10 @@ describe('Product | Testing | Factories | DaffConfigurableProductFactory', () =>
       expect(result.name).toBeDefined();
       expect(result.brand).toBeDefined();
 			expect(result.description).toBeDefined();
-			expect(result.stock_status).toBeDefined();
+			expect(result.in_stock).toBeDefined();
 			expect(result.configurableAttributes).toBeDefined();
 			expect(result.variants).toBeDefined();
-			expect(result.variants[0].stock_status).toBeDefined();
+			expect(result.variants[0].in_stock).toBeDefined();
     });
   });
 });

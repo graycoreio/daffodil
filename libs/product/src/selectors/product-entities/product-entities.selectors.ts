@@ -4,7 +4,7 @@ import { EntityState } from '@ngrx/entity';
 import { daffProductEntitiesAdapter } from '../../reducers/product-entities/product-entities-reducer-adapter';
 import { getDaffProductFeatureSelector } from '../product-feature.selector';
 import { DaffProductReducersState } from '../../reducers/product-reducers-state.interface';
-import { DaffProduct, DaffProductStockEnum } from '../../models/product';
+import { DaffProduct } from '../../models/product';
 
 export interface DaffProductEntitiesMemoizedSelectors<T extends DaffProduct = DaffProduct> {
 	selectProductEntitiesState: MemoizedSelector<object, EntityState<T>>;
@@ -97,8 +97,8 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
 	const selectIsProductOutOfStock = createSelector(
 		selectProductEntities,
 		(products, props) => {
-			return selectProduct.projector(products, { id: props.id })
-				.stock_status === DaffProductStockEnum.OutOfStock;
+			return !selectProduct.projector(products, { id: props.id })
+				.in_stock;
 		}
 	);
 

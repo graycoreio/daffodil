@@ -1,4 +1,4 @@
-import { DaffProduct, DaffProductTypeEnum, DaffProductDiscount, DaffProductStockEnum } from '../../../models/product';
+import { DaffProduct, DaffProductTypeEnum, DaffProductDiscount } from '../../../models/product';
 import { MagentoProduct, MagentoProductStockStatusEnum } from '../models/magento-product';
 
 /**
@@ -13,7 +13,7 @@ export function transformMagentoSimpleProduct(product: MagentoProduct, mediaUrl:
 		name: product.name,
 		price: getPrice(product),
 		discount: getDiscount(product),
-		stock_status: getStockStatus(product.stock_status),
+		in_stock: product.stock_status === MagentoProductStockStatusEnum.InStock,
 		images: [
 			{ url: product.image.url, id: '0', label: product.image.label},
 			...transformMediaGalleryEntries(product, mediaUrl)
@@ -51,15 +51,4 @@ function transformMediaGalleryEntries(product: MagentoProduct, mediaUrl: string)
 			id: image.id.toString()
 		}
 	}) : []
-}
-
-function getStockStatus(magentoStatus: string): DaffProductStockEnum {
-	switch(magentoStatus) {
-		case MagentoProductStockStatusEnum.InStock:
-			return DaffProductStockEnum.InStock;
-		case MagentoProductStockStatusEnum.OutOfStock:
-			return DaffProductStockEnum.OutOfStock;
-		default:
-			return DaffProductStockEnum.InStock;
-	}
 }
