@@ -23,11 +23,12 @@ import { MagentoCartShippingMethod } from './models/outputs/cart-shipping-method
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { MagentoGetSelectedShippingMethodResponse } from './models/responses/get-selected-shipping-method';
 import { MagentoSetSelectedShippingMethodResponse } from './models/responses/set-selected-shipping-method';
-import { getSelectedShippingMethod, setSelectedShippingMethod } from './queries/public_api';
+import { getSelectedShippingMethod, setSelectedShippingMethod, listShippingMethods } from './queries/public_api';
 import { DaffMagentoCartShippingRateTransformer } from './transforms/outputs/cart-shipping-rate.service';
 import { DaffMagentoShippingMethodInputTransformer } from './transforms/inputs/shipping-method.service';
 import { MagentoShippingAddress } from './models/outputs/shipping-address';
 import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
+import { MagentoListShippingMethodsResponse } from './models/responses/public_api';
 
 interface MagentoCartSelectedShippingMethod extends MagentoCartShippingMethod {
 	__typename: string;
@@ -55,6 +56,7 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
   let mockDaffCartShippingInformation: DaffCartShippingInformation;
   let mockSetSelectedShippingMethodResponse: MagentoSetSelectedShippingMethodResponse;
   let mockGetSelectedShippingMethodResponse: MagentoGetSelectedShippingMethodResponse;
+  let mockListCartShippingMethodsResponse: MagentoListShippingMethodsResponse;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -136,6 +138,16 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
         cart: mockMagentoCart
       }
     };
+    mockListCartShippingMethodsResponse = {
+      cart: {
+        __typename: 'Cart',
+        id: cartId,
+        shipping_addresses: [{
+					__typename: 'AvailableShippingAddresses',
+          available_shipping_methods: [mockMagentoShippingMethod]
+        }]
+      }
+    };
 
     magentoCartTransformerSpy.transform.and.returnValue(mockDaffCart);
     magentoShippingRateTransformerSpy.transform.and.returnValue(mockDaffCartShippingInformation)
@@ -206,17 +218,26 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
       mockDaffCartShippingInformation.carrier = carrier;
     });
 
-    it('should return the correct value', done => {
+    it('should return the correct value and manually refetch the shipping methods', done => {
       service.update(cartId, mockDaffCartShippingInformation).subscribe(result => {
         expect(result.shipping_information.carrier).toEqual(carrier);
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(setSelectedShippingMethod([daffMagentoNoopCartFragment])));
+      const setSelectedShippingMethodOp = controller.expectOne(addTypenameToDocument(setSelectedShippingMethod([daffMagentoNoopCartFragment])));
 
-      op.flush({
+      setSelectedShippingMethodOp.flush({
         data: mockSetSelectedShippingMethodResponse
       });
+
+      // set timeout because the requests here are made in series
+      setTimeout(() => {
+        const listShippingMethodsOp = controller.expectOne(addTypenameToDocument(listShippingMethods([daffMagentoNoopCartFragment])));
+
+        listShippingMethodsOp.flush({
+          data: mockListCartShippingMethodsResponse
+        });
+      })
     });
 
     afterEach(() => {
