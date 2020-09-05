@@ -88,33 +88,14 @@ export class DaffMagentoCartTransformer {
   }
 
   private transformShippingMethods(cart: MagentoCart): {available_shipping_methods: DaffCart['available_shipping_methods']} {
-		if(!cart.shipping_addresses[0]) return { available_shipping_methods: [] };
-
-		const availableMethods = cart.shipping_addresses[0] && cart.shipping_addresses[0].available_shipping_methods
-		? cart.shipping_addresses[0].available_shipping_methods.map(method =>
-				this.shippingRateTransformer.transform(method)
-			)
-		: [];
-		const selectedShippingMethod = cart.shipping_addresses[0].selected_shipping_method;
-
 		return {
-			available_shipping_methods: selectedShippingMethod &&
-			!this.containsShippingMethod(cart.shipping_addresses[0].available_shipping_methods, selectedShippingMethod)
-			? [
-					...availableMethods,
-					this.shippingRateTransformer.transform(selectedShippingMethod)
-				] : availableMethods
-		};
-	}
-
-	private containsShippingMethod(
-		availableMethods: MagentoCartShippingMethod[],
-		selectedMethod: MagentoCartShippingMethod
-	): boolean {
-		return availableMethods.findIndex(method =>
-			method.carrier_code === selectedMethod.carrier_code && method.method_code === selectedMethod.method_code
-		) > -1;
-	}
+      available_shipping_methods: cart.shipping_addresses[0] && cart.shipping_addresses[0].available_shipping_methods
+        ? cart.shipping_addresses[0].available_shipping_methods.map(method =>
+          this.shippingRateTransformer.transform(method)
+        )
+        : []
+    }
+  }
 
   private transformPaymentMethods(cart: MagentoCart): {available_payment_methods: DaffCart['available_payment_methods']} {
     return {
