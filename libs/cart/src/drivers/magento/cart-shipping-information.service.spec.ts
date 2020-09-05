@@ -218,7 +218,7 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
       mockDaffCartShippingInformation.carrier = carrier;
     });
 
-    it('should return the correct value', done => {
+    it('should return the correct value and manually refetch the shipping methods', done => {
       service.update(cartId, mockDaffCartShippingInformation).subscribe(result => {
         expect(result.shipping_information.carrier).toEqual(carrier);
         done();
@@ -237,26 +237,6 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
         listShippingMethodsOp.flush({
           data: mockListCartShippingMethodsResponse
         });
-      })
-    });
-
-    it('should manually refetch the shipping methods and force cache bypass', () => {
-      service.update(cartId, mockDaffCartShippingInformation).subscribe();
-
-      const setSelectedShippingMethodOp = controller.expectOne(addTypenameToDocument(setSelectedShippingMethod([daffMagentoNoopCartFragment])));
-
-      setSelectedShippingMethodOp.flush({
-        data: mockSetSelectedShippingMethodResponse
-      });
-
-      // set timeout because the requests here are made in serial
-      setTimeout(() => {
-        const listShippingMethodsOp = controller.expectOne(addTypenameToDocument(listShippingMethods([daffMagentoNoopCartFragment])));
-
-        listShippingMethodsOp.flush({
-          data: mockListCartShippingMethodsResponse
-        });
-        console.log(listShippingMethodsOp);
       })
     });
 
