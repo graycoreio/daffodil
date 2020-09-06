@@ -4,11 +4,6 @@ import {
 } from '@daffodil/product';
 import { DaffCartItemInputType } from './cart-item-input';
 
-export enum DaffCartItemStockEnum {
-	InStock = 'IN_STOCK',
-	OutOfStock = 'OUT_OF_STOCK'
-}
-
 export interface DaffCartItem {
 	item_id: number | string;
 	type: DaffCartItemInputType;
@@ -21,5 +16,5 @@ export interface DaffCartItem {
   price: number;
   row_total: number;
 	total_discount: number;
-	stock_status: DaffCartItemStockEnum;
+	in_stock: boolean;
 }

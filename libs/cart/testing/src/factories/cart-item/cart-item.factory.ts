@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
 
-import { DaffCartItem, DaffCartItemInputType, DaffCartItemStockEnum } from '@daffodil/cart';
+import { DaffCartItem, DaffCartItemInputType } from '@daffodil/cart';
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffProductImageFactory } from '@daffodil/product/testing';
 import { DaffProductImage } from '@daffodil/product';
@@ -18,7 +18,7 @@ export class MockCartItem implements DaffCartItem {
   price = faker.random.number({min: 1, max: 1500});
   row_total = this.qty * this.price
 	total_discount = faker.random.number({min: 0, max: this.price - 1});
-	stock_status = DaffCartItemStockEnum.InStock;
+	in_stock = true;
 }
 
 @Injectable({

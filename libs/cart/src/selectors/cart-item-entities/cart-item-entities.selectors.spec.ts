@@ -6,7 +6,7 @@ import { DaffCartFactory, DaffCartItemFactory, DaffConfigurableCartItemFactory, 
 
 import { DaffCartReducersState, daffCartReducers } from '../../reducers/public_api';
 import { DaffCart } from '../../models/cart';
-import { DaffCartItem, DaffCartItemStockEnum } from '../../models/cart-item';
+import { DaffCartItem } from '../../models/cart-item';
 import { getDaffCartItemEntitiesSelectors } from './cart-item-entities.selectors';
 import { DaffCartItemListSuccess } from '../../actions/public_api';
 import { DaffConfigurableCartItem } from '../../models/configurable-cart-item';
@@ -151,7 +151,7 @@ describe('selectCartItemEntitiesState', () => {
 		it('should return whether the given cart item is out of stock', () => {
 			store.dispatch(new DaffCartItemListSuccess(mockCartItems));
 			const selector = store.pipe(select(selectIsCartItemOutOfStock, { id: mockCartItems[0].item_id }));
-			const expected = cold('a', { a: mockCartItems[0].stock_status === DaffCartItemStockEnum.OutOfStock });
+			const expected = cold('a', { a: !mockCartItems[0].in_stock });
 
 			expect(selector).toBeObservable(expected);
 		});
