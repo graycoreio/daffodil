@@ -113,7 +113,9 @@ const createCartItemEntitiesSelectors = <
 	const selectIsCartItemOutOfStock = createSelector(
 		selectCartItemEntities,
 		(cartItems, props) => {
-			return !selectCartItem.projector(cartItems, { id: props.id }).in_stock;
+			const cartItem = selectCartItem.projector(cartItems, { id: props.id });
+
+			return cartItem ? !cartItem.in_stock : null;
 		}
 	);
 

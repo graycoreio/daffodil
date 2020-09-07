@@ -123,6 +123,13 @@ describe('selectProductEntitiesState', () => {
 			const expected = cold('a', { a: !mockProduct.in_stock });
 
 			expect(selector).toBeObservable(expected);
+		});
+    
+    it('should return null if the product is not in state', () => {
+			const selector = store.pipe(select(selectIsProductOutOfStock, { id: mockProduct + 'notId' }));
+			const expected = cold('a', { a: null });
+
+			expect(selector).toBeObservable(expected);
     });
   });
 });

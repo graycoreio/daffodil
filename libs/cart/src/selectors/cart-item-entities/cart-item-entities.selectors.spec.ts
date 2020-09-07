@@ -155,5 +155,12 @@ describe('selectCartItemEntitiesState', () => {
 
 			expect(selector).toBeObservable(expected);
 		});
+    
+    it('should return null if the cart item is not in state', () => {
+			const selector = store.pipe(select(selectIsCartItemOutOfStock, { id: mockCartItems[0].item_id + 'notId' }));
+			const expected = cold('a', { a: null });
+
+			expect(selector).toBeObservable(expected);
+    });
   });
 });

@@ -97,8 +97,9 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
 	const selectIsProductOutOfStock = createSelector(
 		selectProductEntities,
 		(products, props) => {
-			return !selectProduct.projector(products, { id: props.id })
-				.in_stock;
+			const product = selectProduct.projector(products, { id: props.id });
+			
+			return product ? !product.in_stock : null;
 		}
 	);
 
