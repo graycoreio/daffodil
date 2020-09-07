@@ -21,7 +21,8 @@ describe('selectCompositeProductEntitiesState', () => {
 		selectCompositeProductIds,
 		selectCompositeProductAppliedOptionsEntities,
 		selectCompositeProductTotal,
-		selectCompositeProductAppliedOptions
+		selectCompositeProductAppliedOptions,
+		selectIsCompositeProductItemRequired
 	} = getDaffCompositeProductEntitiesSelectors();
   
   beforeEach(() => {
@@ -94,6 +95,18 @@ describe('selectCompositeProductEntitiesState', () => {
 					[stubCompositeProduct.items[0].id]: stubCompositeProduct.items[0].options[0],
 					[stubCompositeProduct.items[1].id]: stubCompositeProduct.items[1].options[0]
 				}
+			});
+
+			expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectIsCompositeProductItemRequired', () => {
+    
+    it('selects the composite product applied options of the given id', () => {
+			const selector = store.pipe(select(selectIsCompositeProductItemRequired, { id: stubCompositeProduct.id, item_id: stubCompositeProduct.items[0].id }));
+			const expected = cold('a', { 
+				a: stubCompositeProduct.items[0].required
 			});
 
 			expect(selector).toBeObservable(expected);

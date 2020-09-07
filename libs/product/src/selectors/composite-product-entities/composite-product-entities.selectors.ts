@@ -8,7 +8,7 @@ import { daffCompositeProductAppliedOptionsEntitiesAdapter } from '../../reducer
 import { DaffCompositeProductEntity } from '../../reducers/composite-product-entities/composite-product-entity';
 import { getDaffProductEntitiesSelectors } from '../product-entities/product-entities.selectors';
 import { DaffCompositeProduct } from '../../models/composite-product';
-import { DaffCompositeProductItemOption } from '../../models/composite-product-item';
+import { DaffCompositeProductItemOption, DaffCompositeProductItem } from '../../models/composite-product-item';
 
 export interface DaffCompositeProductEntitiesMemoizedSelectors {
 	selectCompositeProductAppliedOptionsEntitiesState: MemoizedSelector<object, EntityState<DaffCompositeProductEntity>>;
@@ -16,6 +16,7 @@ export interface DaffCompositeProductEntitiesMemoizedSelectors {
 	selectCompositeProductAppliedOptionsEntities: MemoizedSelector<object, EntityState<DaffCompositeProductEntity>['entities']>;
 	selectCompositeProductTotal: MemoizedSelector<object, number>;
 	selectCompositeProductAppliedOptions: MemoizedSelectorWithProps<object, object, Dictionary<DaffCompositeProductItemOption>>;
+	selectIsCompositeProductItemRequired: MemoizedSelectorWithProps<object, { id: DaffCompositeProduct['id'], item_id: DaffCompositeProductItem['id']}, boolean>;
 }
 
 const createCompositeProductAppliedOptionsEntitiesSelectors = <T extends DaffProduct>(): DaffCompositeProductEntitiesMemoizedSelectors => {
@@ -81,12 +82,26 @@ const createCompositeProductAppliedOptionsEntitiesSelectors = <T extends DaffPro
 		}
 	);
 
+	const selectIsCompositeProductItemRequired = createSelector(
+		selectProductEntities,
+		(products, props) => {
+			const product = selectProduct.projector(products, { id: props.id });
+			if(product.type !== DaffProductTypeEnum.Composite) {
+				return undefined;
+			}
+			const productItem = (<DaffCompositeProduct>product).items.find(item => item.id === props.item_id);
+
+			return productItem ? productItem.required : null
+		}
+	)
+
 	return { 
 		selectCompositeProductAppliedOptionsEntitiesState,
 		selectCompositeProductIds,
 		selectCompositeProductAppliedOptionsEntities,
 		selectCompositeProductTotal,
-		selectCompositeProductAppliedOptions
+		selectCompositeProductAppliedOptions,
+		selectIsCompositeProductItemRequired
 	}
 }
 

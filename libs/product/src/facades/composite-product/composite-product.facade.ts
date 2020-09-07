@@ -8,7 +8,8 @@ import { DaffProductReducersState } from '../../reducers/product-reducers-state.
 import { DaffProduct } from '../../models/product';
 import { getDaffProductSelectors } from '../../selectors/public_api';
 import { DaffCompositeProductFacadeInterface } from './composite-product-facade.interface';
-import { DaffCompositeProductItemOption } from '../../models/composite-product-item';
+import { DaffCompositeProductItemOption, DaffCompositeProductItem } from '../../models/composite-product-item';
+import { DaffCompositeProduct } from '../../models/composite-product';
 
 /**
  * A facade for accessing composite product state from an application component.
@@ -64,6 +65,10 @@ export class DaffCompositeProductFacade<T extends DaffProduct = DaffProduct> imp
 
 	getAppliedOptions(id: string): Observable<Dictionary<DaffCompositeProductItemOption>> {
 		return this.store.pipe(select(this.selectors.selectCompositeProductAppliedOptions, { id }));
+	}
+
+	isItemRequired(id: DaffCompositeProduct['id'], item_id: DaffCompositeProductItem['id']) {
+		return this.store.pipe(select(this.selectors.selectIsCompositeProductItemRequired, { id, item_id }));
 	}
 
   /**
