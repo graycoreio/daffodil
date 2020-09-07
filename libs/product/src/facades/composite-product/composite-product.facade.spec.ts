@@ -183,4 +183,13 @@ describe('DaffCompositeProductFacade', () => {
 			expect(facade.getAppliedOptions(stubCompositeProduct.id)).toBeObservable(expected);
 		});
 	});
+	
+	describe('isItemRequired', () => {
+		
+		it('should return whether the composite product item is required', () => {
+			const expected = cold('a', { a: stubCompositeProduct.items[0].required });
+
+			expect(facade.isItemRequired(stubCompositeProduct.id, stubCompositeProduct.items[0].id)).toBeObservable(expected);
+		});
+	});
 });

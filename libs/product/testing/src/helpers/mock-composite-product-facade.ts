@@ -1,6 +1,6 @@
 import { BehaviorSubject } from 'rxjs';
 
-import { DaffCompositeProductFacadeInterface, DaffCompositeProductItemOption } from '@daffodil/product';
+import { DaffCompositeProductFacadeInterface, DaffCompositeProductItemOption, DaffCompositeProduct, DaffCompositeProductItem } from '@daffodil/product';
 import { Dictionary } from '@ngrx/entity';
 
 export class MockDaffCompositeProductFacade implements DaffCompositeProductFacadeInterface {
@@ -36,6 +36,9 @@ export class MockDaffCompositeProductFacade implements DaffCompositeProductFacad
 	};
 	getAppliedOptions(id: string): BehaviorSubject<Dictionary<DaffCompositeProductItemOption>> {
 		return new BehaviorSubject({});
+	}
+	isItemRequired(id: DaffCompositeProduct['id'], item_id: DaffCompositeProductItem['id']): BehaviorSubject<boolean> {
+		return new BehaviorSubject(false);
 	}
 	dispatch(action) {};
 }

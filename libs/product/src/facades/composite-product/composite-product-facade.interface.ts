@@ -4,7 +4,8 @@ import { Dictionary } from '@ngrx/entity';
 
 import { DaffStoreFacade } from '@daffodil/core';
 
-import { DaffCompositeProductItemOption } from '../../models/composite-product-item';
+import { DaffCompositeProductItemOption, DaffCompositeProductItem } from '../../models/composite-product-item';
+import { DaffCompositeProduct } from '../../models/composite-product';
 
 export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Action> {
 
@@ -77,4 +78,11 @@ export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Act
 	 * @param id the id of the composite product.
 	 */
 	getAppliedOptions(id: string): Observable<Dictionary<DaffCompositeProductItemOption>>;
+
+	/**
+	 * Returns whether the item of a composite product is required.
+	 * @param id the id of the composite product.
+	 * @param item_id the id of the item_id.
+	 */
+	isItemRequired(id: DaffCompositeProduct['id'], item_id: DaffCompositeProductItem['id']): Observable<boolean>;
 }
