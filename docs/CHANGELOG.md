@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.11.0](https://github.com/graycoreio/daffodil/compare/v0.10.0...v0.11.0) (2020-09-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cart, product:** stock_status is now a boolean called in_stock
+* **cart, product:** cart item stock_status is now an in_stock boolean field
+
+### Features
+
+* **authorizenet:** add error for authorizenet config ([#1055](https://github.com/graycoreio/daffodil/issues/1055)) ([0f7bcd9](https://github.com/graycoreio/daffodil/commit/0f7bcd95ed18310e8ab2a766c70727f1a398b10a))
+* **cart, product:** add in_stock field for products and cart items ([#1061](https://github.com/graycoreio/daffodil/issues/1061)) ([15a4039](https://github.com/graycoreio/daffodil/commit/15a403980f8a96e5a655fd27accacf3426972777))
+* **product:** add selector for whether a composite product item is r… ([#1062](https://github.com/graycoreio/daffodil/issues/1062)) ([6509e26](https://github.com/graycoreio/daffodil/commit/6509e26152ffe445a3384c853c3bcc258655a6d3))
+* **product:** default composite product item options are completely determined by the platform ([#1059](https://github.com/graycoreio/daffodil/issues/1059)) ([6e747bf](https://github.com/graycoreio/daffodil/commit/6e747bf44ec33205ab5ab246ab4af2ab3b658a1c))
+
+
+### Bug Fixes
+
+* **cart:** not all available shipping methods returned by update ([#1057](https://github.com/graycoreio/daffodil/issues/1057)) ([3559d10](https://github.com/graycoreio/daffodil/commit/3559d10657cbb2419c4ae09c0458a4b33bb98a27))
+
 ## [0.10.0](https://github.com/graycoreio/daffodil/compare/v0.9.4...v0.10.0) (2020-08-29)
 
 
