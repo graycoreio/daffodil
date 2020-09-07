@@ -6,11 +6,6 @@ export enum DaffProductTypeEnum {
 	Configurable = 'configurable'
 }
 
-export enum DaffProductStockEnum {
-	InStock = 'IN_STOCK',
-	OutOfStock = 'OUT_OF_STOCK'
-}
-
 /**
  * An interface for a product usable by the @daffodil/product library.
  */
@@ -24,7 +19,7 @@ export interface DaffProduct {
   brand?: string;
   description?: string;
 	images?: DaffProductImage[];
-	stock_status?: DaffProductStockEnum;
+	in_stock?: boolean;
 }
 
 export interface DaffProductDiscount {

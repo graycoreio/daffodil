@@ -2,7 +2,7 @@ import { createSelector, MemoizedSelectorWithProps } from '@ngrx/store';
 
 import { daffSubtract } from '@daffodil/core';
 
-import { DaffProductTypeEnum, DaffProductStockEnum } from '../../models/product';
+import { DaffProductTypeEnum } from '../../models/product';
 import { Dictionary } from '@ngrx/entity';
 import { getDaffConfigurableProductEntitiesSelectors } from '../configurable-product-entities/configurable-product-entities.selectors';
 import { getDaffProductEntitiesSelectors } from '../product-entities/product-entities.selectors';
@@ -236,7 +236,7 @@ function isVariantAvailable(
 	appliedAttributes: DaffConfigurableProductEntityAttribute[], 
 	variant: DaffConfigurableProductVariant
 ): boolean {
-	return variant.stock_status === DaffProductStockEnum.InStock && 
+	return variant.in_stock && 
 		appliedAttributes.reduce((acc, attribute) => 
 			acc && attribute.value === variant.appliedAttributes[attribute.code],
 			true

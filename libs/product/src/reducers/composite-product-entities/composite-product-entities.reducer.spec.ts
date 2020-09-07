@@ -4,7 +4,7 @@ import { DaffProductLoadSuccess } from '../../actions/product.actions';
 import { DaffProductGridLoadSuccess } from '../../actions/product-grid.actions';
 import { daffCompositeProductEntitiesReducer } from './composite-product-entities.reducer';
 import { DaffBestSellersLoadSuccess } from '../../actions/best-sellers.actions';
-import { DaffProduct, DaffProductStockEnum } from '../../models/product';
+import { DaffProduct } from '../../models/product';
 import { daffCompositeProductAppliedOptionsEntitiesAdapter } from './composite-product-entities-reducer-adapter';
 import { DaffCompositeProduct } from '../../models/composite-product';
 import { DaffCompositeProductApplyOption } from '../../actions/composite-product.actions';
@@ -164,7 +164,7 @@ describe('Product | Composite Product Entities Reducer', () => {
 		it('should set the item to the default option when it is provided and in stock', () => {
 			compositeProduct.items[0].options[0].is_default = false;
 			compositeProduct.items[0].options[1].is_default = true;
-			compositeProduct.items[0].options[1].stock_status = DaffProductStockEnum.InStock;
+			compositeProduct.items[0].options[1].in_stock = true;
 			const productLoadSuccess = new DaffProductLoadSuccess(compositeProduct);
 			result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
 
@@ -177,7 +177,7 @@ describe('Product | Composite Product Entities Reducer', () => {
 		it('should set the default option to null when the default option is out of stock', () => {
 			compositeProduct.items[0].options[0].is_default = false;
 			compositeProduct.items[0].options[1].is_default = true;
-			compositeProduct.items[0].options[1].stock_status = DaffProductStockEnum.OutOfStock;
+			compositeProduct.items[0].options[1].in_stock = false;
 			const productLoadSuccess = new DaffProductLoadSuccess(compositeProduct);
 			result = daffCompositeProductEntitiesReducer(initialState, productLoadSuccess);
 

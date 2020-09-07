@@ -60,7 +60,7 @@ describe('Driver | Magento | Cart | Transformer | SimpleMagentoCartItem', () => 
       expect(transformedCartItem.sku).toEqual(sku);
       expect(transformedCartItem.qty).toEqual(qty);
       expect(transformedCartItem.price).toEqual(price);
-      expect(transformedCartItem.stock_status).toEqual(stock_status);
+      expect(transformedCartItem.in_stock).toEqual(true);
       expect(transformedCartItem.total_discount).toEqual(discount);
       expect(transformedCartItem.image.id).toEqual(label);
       expect(transformedCartItem.image.url).toEqual(url);

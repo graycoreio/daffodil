@@ -1,6 +1,6 @@
 import { DaffSortable } from '@daffodil/core';
 
-import { DaffProduct, DaffProductDiscount, DaffProductStockEnum } from './product';
+import { DaffProduct, DaffProductDiscount } from './product';
 import { DaffProductImage } from './product-image';
 
 export interface DaffConfigurableProduct extends DaffProduct {
@@ -20,7 +20,7 @@ export interface DaffConfigurableProductVariant {
 	price: number;
 	discount: DaffProductDiscount;
 	image?: DaffProductImage;
-	stock_status: DaffProductStockEnum;
+	in_stock: boolean;
 }
 
 export interface DaffProductVariantAttributesDictionary {

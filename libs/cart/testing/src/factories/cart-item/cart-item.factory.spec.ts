@@ -38,7 +38,7 @@ describe('Cart | Testing | Factories | CartItemFactory', () => {
       expect(result.price).not.toBeNull();
       expect(result.row_total).not.toBeNull();
       expect(result.total_discount).not.toBeNull();
-      expect(result.stock_status).not.toBeNull();
+      expect(result.in_stock).not.toBeNull();
     });
 
     it('should set total_discount to be less than price', () => {

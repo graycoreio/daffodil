@@ -1,7 +1,7 @@
 import { createSelector, MemoizedSelector, MemoizedSelectorWithProps } from '@ngrx/store';
 import { EntityState } from '@ngrx/entity';
 
-import { DaffCartItem, DaffCartItemStockEnum } from '../../models/cart-item';
+import { DaffCartItem } from '../../models/cart-item';
 import { daffCartItemEntitiesAdapter } from '../../reducers/cart-item-entities/cart-item-entities-reducer-adapter';
 import { DaffCartReducersState } from '../../reducers/public_api';
 import { DaffCart } from '../../models/cart';
@@ -113,8 +113,9 @@ const createCartItemEntitiesSelectors = <
 	const selectIsCartItemOutOfStock = createSelector(
 		selectCartItemEntities,
 		(cartItems, props) => {
-			return selectCartItem.projector(cartItems, { id: props.id })
-				.stock_status === DaffCartItemStockEnum.OutOfStock;
+			const cartItem = selectCartItem.projector(cartItems, { id: props.id });
+
+			return cartItem ? !cartItem.in_stock : null;
 		}
 	);
 

@@ -7,7 +7,7 @@
 		"amount": null,
 		"percent": null
 	},
-	"stock_status": "IN_STOCK",
+	"in_stock": false,
 	"name": "Configurable T-Shirt",
 	"images": [
 		{
@@ -88,7 +88,7 @@
 				"amount": 2,
 				"percent": 10
 			},
-			"stock_status": "IN_STOCK",
+			"in_stock": false,
 			"id": "22-1",
 			"image": {
 				"id": "0",
@@ -107,7 +107,7 @@
 				"amount": 2,
 				"percent": 10
 			},
-			"stock_status": "IN_STOCK",
+			"in_stock": false,
 			"id": "22-11",
 			"image": {
 				"id": "0",
@@ -126,7 +126,7 @@
 				"amount": 5,
 				"percent": 20
 			},
-			"stock_status": "IN_STOCK",
+			"in_stock": false,
 			"id": "22-12",
 			"image": {
 				"id": "0",
@@ -145,7 +145,7 @@
 				"amount": 2,
 				"percent": 10
 			},
-			"stock_status": "IN_STOCK",
+			"in_stock": false,
 			"id": "22-13",
 			"image": {
 				"id": "0",
@@ -164,7 +164,7 @@
 				"amount": 2,
 				"percent": 10
 			},
-			"stock_status": "IN_STOCK",
+			"in_stock": false,
 			"id": "22-2",
 			"image": {
 				"id": "0",
@@ -183,7 +183,7 @@
 				"amount": 5,
 				"percent": 20
 			},
-			"stock_status": "IN_STOCK",
+			"in_stock": false,
 			"id": "22-21",
 			"image": {
 				"id": "0",
@@ -202,7 +202,7 @@
 				"amount": 2,
 				"percent": 10
 			},
-			"stock_status": "IN_STOCK",
+			"in_stock": false,
 			"id": "22-22",
 			"image": {
 				"id": "0",
@@ -221,7 +221,7 @@
 				"amount": 2,
 				"percent": 10
 			},
-			"stock_status": "IN_STOCK",
+			"in_stock": false,
 			"id": "22-23",
 			"image": {
 				"id": "0",
@@ -240,7 +240,7 @@
 				"amount": 2,
 				"percent": 10
 			},
-			"stock_status": "IN_STOCK",
+			"in_stock": false,
 			"id": "22-3",
 			"image": {
 				"id": "0",
@@ -260,7 +260,7 @@
 				"amount": 2,
 				"percent": 10
 			},
-			"stock_status": "IN_STOCK",
+			"in_stock": false,
 			"id": "22-31",
 			"image": {
 				"id": "0",

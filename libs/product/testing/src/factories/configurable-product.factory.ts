@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as faker from 'faker/locale/en_US';
-import { DaffConfigurableProduct, DaffProductTypeEnum, DaffProductStockEnum } from '@daffodil/product';
+import { DaffConfigurableProduct, DaffProductTypeEnum } from '@daffodil/product';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 /**
@@ -21,7 +21,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
   name = faker.commerce.productName();
   brand = faker.company.companyName();
 	description = 'Lorem ipsum dolor sit amet, accumsan ullamcorper ei eam. Sint appetere ocurreret no per, et cum lorem disputationi. Sit ut magna delenit, assum vidisse vocibus sed ut. In aperiri malorum accusamus sea, novum mediocritatem ius at. Duo agam probo honestatis ut. Nec regione splendide cu, unum graeco vivendum in duo.'
-	stock_status = DaffProductStockEnum.InStock;
+	in_stock = true;
 	configurableAttributes = [
 		{
 			code: 'color',
@@ -112,7 +112,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				percent: this.stubDiscountVariant1/this.stubPriceVariant1
 			},
 			id: faker.random.alphaNumeric(16),
-			stock_status: DaffProductStockEnum.InStock
+			in_stock: true
 		},
 		{
 			appliedAttributes: {
@@ -126,7 +126,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				percent: this.stubDiscountVariant1/this.stubPriceVariant1
 			},
 			id: faker.random.alphaNumeric(16),
-			stock_status: DaffProductStockEnum.InStock
+			in_stock: true
 		},
 		{
 			appliedAttributes: {
@@ -140,7 +140,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				percent: this.stubDiscountVariant3/this.stubPriceVariant3
 			},
 			id: faker.random.alphaNumeric(16),
-			stock_status: DaffProductStockEnum.InStock
+			in_stock: true
 		},
 		{
 			appliedAttributes: {
@@ -154,7 +154,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				percent: this.stubDiscountVariant1/this.stubPriceVariant1
 			},
 			id: faker.random.alphaNumeric(16),
-			stock_status: DaffProductStockEnum.InStock
+			in_stock: true
 		},
 		{
 			appliedAttributes: {
@@ -168,7 +168,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				percent: this.stubDiscountVariant1/this.stubPriceVariant1
 			},
 			id: faker.random.alphaNumeric(16),
-			stock_status: DaffProductStockEnum.InStock
+			in_stock: true
 		},
 		{
 			appliedAttributes: {
@@ -182,7 +182,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				percent: this.stubDiscountVariant3/this.stubPriceVariant3
 			},
 			id: faker.random.alphaNumeric(16),
-			stock_status: DaffProductStockEnum.InStock
+			in_stock: true
 		},
 		{
 			appliedAttributes: {
@@ -196,7 +196,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				percent: this.stubDiscountVariant1/this.stubPriceVariant1
 			},
 			id: faker.random.alphaNumeric(16),
-			stock_status: DaffProductStockEnum.InStock
+			in_stock: true
 		},
 		{
 			appliedAttributes: {
@@ -210,7 +210,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				percent: this.stubDiscountVariant2/this.stubPriceVariant2
 			},
 			id: faker.random.alphaNumeric(16),
-			stock_status: DaffProductStockEnum.InStock
+			in_stock: true
 		},
 		{
 			appliedAttributes: {
@@ -224,7 +224,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				percent: this.stubDiscountVariant3/this.stubPriceVariant3
 			},
 			id: faker.random.alphaNumeric(16),
-			stock_status: DaffProductStockEnum.InStock
+			in_stock: true
 		},
 		{
 			appliedAttributes: {
@@ -238,7 +238,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 				percent: this.stubDiscountVariant1/this.stubPriceVariant1
 			},
 			id: faker.random.alphaNumeric(16),
-			stock_status: DaffProductStockEnum.InStock
+			in_stock: true
 		}
 	]
 }

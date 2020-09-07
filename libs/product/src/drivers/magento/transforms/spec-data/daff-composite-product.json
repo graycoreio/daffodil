@@ -3,7 +3,7 @@
 	"id": "22",
 	"url": "url",
 	"price": 23,
-	"stock_status": "IN_STOCK",
+	"in_stock": true,
 	"discount": {
 		"amount": 2,
 		"percent": 8.7
@@ -30,7 +30,7 @@
 					"price": 10,
 					"quantity": 1,
 					"is_default": true,
-					"stock_status": "IN_STOCK"
+					"in_stock": true
 				},
 				{
 					"id": "2",
@@ -38,7 +38,7 @@
 					"price": 12,
 					"quantity": 1,
 					"is_default": false,
-					"stock_status": "IN_STOCK"
+					"in_stock": true
 				}
 			]
 		}

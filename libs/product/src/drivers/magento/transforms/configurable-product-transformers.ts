@@ -1,4 +1,4 @@
-import { DaffProductTypeEnum, DaffProductDiscount, DaffProductStockEnum } from '../../../models/product';
+import { DaffProductTypeEnum, DaffProductDiscount } from '../../../models/product';
 import { transformMagentoSimpleProduct } from './simple-product-transformers';
 import { 
 	MagentoConfigurableProduct, 
@@ -56,7 +56,7 @@ export function transformVariant(variant: MagentoConfigurableProductVariant): Da
 			url: variant.product.image.url,
 			label: variant.product.image.label
 		},
-		stock_status: getStockStatus(variant.product.stock_status)
+		in_stock: variant.product.stock_status === MagentoProductStockStatusEnum.InStock
 	}
 }
 
@@ -91,15 +91,4 @@ function getDiscount(product: MagentoProduct): DaffProductDiscount {
 			amount: product.price_range.maximum_price.discount.amount_off,
 			percent: product.price_range.maximum_price.discount.percent_off
 		} : { amount: null, percent: null }
-}
-
-function getStockStatus(magentoStatus: string): DaffProductStockEnum {
-	switch(magentoStatus) {
-		case MagentoProductStockStatusEnum.InStock:
-			return DaffProductStockEnum.InStock;
-		case MagentoProductStockStatusEnum.OutOfStock:
-			return DaffProductStockEnum.OutOfStock;
-		default:
-			return DaffProductStockEnum.InStock;
-	}
 }
