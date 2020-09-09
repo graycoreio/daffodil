@@ -10,7 +10,7 @@ import { DaffShopifyProductService } from './product.service';
   ]
 })
 export class DaffProductShopifyDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffProductShopifyDriverModule> {
     return {
       ngModule: DaffProductShopifyDriverModule,
       providers: [

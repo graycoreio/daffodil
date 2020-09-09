@@ -11,7 +11,7 @@ import { DaffTestingNavigationService } from './navigation.service';
   ]
 })
 export class DaffNavigationTestingDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffNavigationTestingDriverModule> {
     return {
       ngModule: DaffNavigationTestingDriverModule,
       providers: [

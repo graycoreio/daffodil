@@ -2,7 +2,9 @@ import { BehaviorSubject } from 'rxjs';
 
 import { DaffCompositeProductFacadeInterface, DaffCompositeProductItemOption, DaffCompositeProduct, DaffCompositeProductItem } from '@daffodil/product';
 import { Dictionary } from '@ngrx/entity';
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class MockDaffCompositeProductFacade implements DaffCompositeProductFacadeInterface {
 	getMinPossiblePrice(id: string): BehaviorSubject<number> {
 		return new BehaviorSubject(null);

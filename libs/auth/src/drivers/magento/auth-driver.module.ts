@@ -16,7 +16,7 @@ import { DaffMagentoAuthService } from './auth.service';
   ]
 })
 export class DaffAuthMagentoDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffAuthMagentoDriverModule> {
     return {
       ngModule: DaffAuthMagentoDriverModule,
       providers: [

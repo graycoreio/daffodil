@@ -15,7 +15,7 @@ import { DaffMagentoAppliedFiltersTransformService } from './transformers/applie
   ]
 })
 export class DaffCategoryMagentoDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffCategoryMagentoDriverModule> {
     return {
       ngModule: DaffCategoryMagentoDriverModule,
       providers: [

@@ -13,7 +13,7 @@ import { DaffInMemoryGeographyService } from './geography.service';
   ]
 })
 export class DaffGeographyInMemoryDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffGeographyInMemoryDriverModule> {
     return {
       ngModule: DaffGeographyInMemoryDriverModule,
       providers: [

@@ -11,7 +11,7 @@ import { DaffInMemoryCategoryService } from './category.service';
   ]
 })
 export class DaffCategoryInMemoryDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffCategoryInMemoryDriverModule> {
     return {
       ngModule: DaffCategoryInMemoryDriverModule,
       providers: [

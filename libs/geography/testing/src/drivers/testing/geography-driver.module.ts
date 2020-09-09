@@ -11,7 +11,7 @@ import { DaffTestingGeographyService } from './geography.service';
   ]
 })
 export class DaffGeographyTestingDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffGeographyTestingDriverModule> {
     return {
       ngModule: DaffGeographyTestingDriverModule,
       providers: [

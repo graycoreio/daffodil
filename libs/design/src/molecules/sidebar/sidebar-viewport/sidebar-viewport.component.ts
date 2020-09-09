@@ -21,7 +21,7 @@ export class DaffSidebarViewportComponent implements OnInit, AfterViewInit {
   }
   _animationState: string;
 
-  @ContentChild(DaffSidebarComponent, { static: false }) sidebar: DaffSidebarComponent;
+  @ContentChild(DaffSidebarComponent) sidebar: DaffSidebarComponent;
   /**
    * Internal tracking variable for the state of sidebar viewport.
    */

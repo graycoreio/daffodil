@@ -13,7 +13,7 @@ import { DaffAuthorizeNetPaymentId } from '../interfaces/authorize-net-payment-i
   ]
 })
 export class DaffMagentoAuthorizeNetDriverModule {
-  static forRoot(config: DaffAuthorizeNetConfig): ModuleWithProviders {
+  static forRoot(config: DaffAuthorizeNetConfig): ModuleWithProviders<DaffMagentoAuthorizeNetDriverModule> {
 		if(!config.apiLoginID || !config.clientKey) {
 			throw Error('You must provide an apiLoginID and clientKey for Authorize.Net configuration.')
 		}

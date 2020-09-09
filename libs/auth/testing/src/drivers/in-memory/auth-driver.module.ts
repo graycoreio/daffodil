@@ -17,7 +17,7 @@ import { DaffInMemoryAuthService } from './auth/auth.service';
   ]
 })
 export class DaffAuthInMemoryDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffAuthInMemoryDriverModule> {
     return {
       ngModule: DaffAuthInMemoryDriverModule,
       providers: [

@@ -11,7 +11,7 @@ import { DaffInMemoryPaypalService } from './paypal.service';
   ]
 })
 export class DaffPaypalInMemoryDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffPaypalInMemoryDriverModule> {
     return {
       ngModule: DaffPaypalInMemoryDriverModule,
       providers: [

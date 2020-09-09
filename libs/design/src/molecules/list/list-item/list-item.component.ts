@@ -13,8 +13,8 @@ export class DaffListItemComponent {
 
   @HostBinding('class.daff-list-item') class = true;
 
-  @ContentChild(DaffPrefixDirective, { static: false }) _prefix: DaffPrefixDirective;
-  @ContentChild(DaffSuffixDirective, { static: false }) _suffix: DaffSuffixDirective;
+  @ContentChild(DaffPrefixDirective) _prefix: DaffPrefixDirective;
+  @ContentChild(DaffSuffixDirective) _suffix: DaffSuffixDirective;
 
   constructor(private elementRef: ElementRef) {}
 

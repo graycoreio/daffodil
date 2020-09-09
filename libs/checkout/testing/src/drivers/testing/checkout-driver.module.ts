@@ -11,7 +11,7 @@ import { DaffTestingCheckoutService } from './checkout.service';
   ]
 })
 export class DaffCheckoutTestingDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffCheckoutTestingDriverModule> {
     return {
       ngModule: DaffCheckoutTestingDriverModule,
       providers: [

@@ -13,7 +13,9 @@ import {
 	DaffCartTotal
 } from '@daffodil/cart';
 import { Dictionary } from '@ngrx/entity';
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class MockDaffCartFacade implements DaffCartFacadeInterface {
   loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   resolved$: BehaviorSubject<boolean> = new BehaviorSubject(false);

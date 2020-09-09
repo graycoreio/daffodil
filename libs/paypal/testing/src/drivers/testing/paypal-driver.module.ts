@@ -11,7 +11,7 @@ import { DaffTestingPaypalService } from './paypal.service';
   ]
 })
 export class DaffPaypalTestingDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffPaypalTestingDriverModule> {
     return {
       ngModule: DaffPaypalTestingDriverModule,
       providers: [

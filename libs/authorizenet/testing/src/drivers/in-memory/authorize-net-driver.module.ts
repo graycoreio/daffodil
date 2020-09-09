@@ -11,7 +11,7 @@ import { DaffInMemoryAuthorizeNetService } from './authorize-net.service';
   ]
 })
 export class DaffAuthorizeNetInMemoryDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffAuthorizeNetInMemoryDriverModule> {
     return {
       ngModule: DaffAuthorizeNetInMemoryDriverModule,
       providers: [
