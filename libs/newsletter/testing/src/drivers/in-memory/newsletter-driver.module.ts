@@ -11,7 +11,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
   ]
 })
 export class DaffNewsletterInMemoryDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffNewsletterInMemoryDriverModule> {
     return {
       ngModule: DaffNewsletterInMemoryDriverModule,
       providers: [

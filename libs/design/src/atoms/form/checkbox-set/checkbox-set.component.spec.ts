@@ -17,7 +17,7 @@ import { DaffCheckboxModule } from '../checkbox/checkbox.module';
   `
 })
 class CheckboxEmbeddedComponent implements OnInit {
-  @ViewChild(DaffCheckboxSetComponent, { static: false })
+  @ViewChild(DaffCheckboxSetComponent)
   private checkboxSet: DaffCheckboxSetComponent;
   checkboxArray = new FormArray([new FormControl(), new FormControl(), new FormControl()]);
 

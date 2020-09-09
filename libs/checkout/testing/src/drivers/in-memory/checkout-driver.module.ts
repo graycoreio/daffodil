@@ -11,7 +11,7 @@ import { DaffInMemoryCheckoutService } from './checkout.service';
   ]
 })
 export class DaffCheckoutInMemoryDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffCheckoutInMemoryDriverModule> {
     return {
       ngModule: DaffCheckoutInMemoryDriverModule,
       providers: [

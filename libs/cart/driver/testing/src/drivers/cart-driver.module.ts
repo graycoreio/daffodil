@@ -31,7 +31,7 @@ import { DaffTestingCartPaymentMethodsService } from './cart-payment-methods/car
   ]
 })
 export class DaffTestingCartDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffTestingCartDriverModule> {
     return {
       ngModule: DaffTestingCartDriverModule,
       providers: [

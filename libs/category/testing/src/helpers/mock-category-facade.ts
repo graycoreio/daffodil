@@ -11,7 +11,9 @@ import {
 	DaffCategoryAppliedFilter, 
 	DaffSortDirectionEnum 
 } from '@daffodil/category';
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class MockDaffCategoryFacade implements DaffCategoryFacadeInterface {
 
   category$: BehaviorSubject<DaffCategory> = new BehaviorSubject(null);

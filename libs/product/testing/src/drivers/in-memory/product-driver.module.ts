@@ -14,7 +14,7 @@ import { DaffInMemoryProductService } from './product.service';
   ]
 })
 export class DaffProductInMemoryDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffProductInMemoryDriverModule> {
     return {
       ngModule: DaffProductInMemoryDriverModule,
       providers: [

@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 
 import { CheckboxComponent } from './checkbox.component';
 import { DesignLandCheckboxRoutingModule } from './checkbox-routing.module';
-import { CHECKBOX_EXAMPLES } from '@daffodil/design/checkbox/examples';
 import { createCustomElement, NgElementConstructor } from '@angular/elements';
 import { DesignLandExampleViewerModule } from '../core/code-preview/container/example-viewer.module';
 
@@ -20,7 +19,6 @@ export interface CustomClassElement<T> {
 
     declarations: [
         CheckboxComponent,
-        ...CHECKBOX_EXAMPLES
     ],
     imports: [
         DesignLandExampleViewerModule,

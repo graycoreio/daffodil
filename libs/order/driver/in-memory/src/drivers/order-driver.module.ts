@@ -13,7 +13,7 @@ import { DaffInMemoryOrderService } from './order.service';
   ]
 })
 export class DaffOrderInMemoryDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffOrderInMemoryDriverModule> {
     return {
       ngModule: DaffOrderInMemoryDriverModule,
       providers: [

@@ -14,7 +14,7 @@ import { DaffTestingProductService } from './product.service';
   ]
 })
 export class DaffProductTestingDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffProductTestingDriverModule> {
     return {
       ngModule: DaffProductTestingDriverModule,
       providers: [

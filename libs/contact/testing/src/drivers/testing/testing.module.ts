@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class DaffContactTestingDriverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DaffContactTestingDriverModule> {
     return {
       ngModule: DaffContactTestingDriverModule,
       providers: [

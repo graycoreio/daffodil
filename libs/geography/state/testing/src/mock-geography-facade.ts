@@ -1,10 +1,12 @@
 import { BehaviorSubject } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
+import { Injectable } from '@angular/core';
 
 import { DaffCountry } from '@daffodil/geography';
 import { DaffGeographyFacadeInterface } from '@daffodil/geography/state';
 
+@Injectable()
 export class MockDaffGeographyFacade implements DaffGeographyFacadeInterface {
   loading$: BehaviorSubject<boolean> = new BehaviorSubject(null);
   errors$: BehaviorSubject<string[]> = new BehaviorSubject([]);

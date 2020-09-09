@@ -1,6 +1,7 @@
 import { BehaviorSubject } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
+import { Injectable } from '@angular/core';
 
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffCart, DaffCartTotal, DaffCartItem, DaffCartOrderResult, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption } from '@daffodil/cart';
@@ -14,6 +15,7 @@ import {
   DaffCartResolveState
 } from '@daffodil/cart/state';
 
+@Injectable()
 export class MockDaffCartFacade implements DaffCartFacadeInterface {
   cart$: BehaviorSubject<DaffCart> = new BehaviorSubject(null);
 
