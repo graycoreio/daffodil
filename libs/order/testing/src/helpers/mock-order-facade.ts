@@ -3,7 +3,7 @@ import { Action } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
 import { DaffOrderFacadeInterface, DaffOrder } from '@daffodil/order';
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class MockDaffOrderFacade implements DaffOrderFacadeInterface {

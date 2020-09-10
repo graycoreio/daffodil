@@ -1,7 +1,7 @@
 import { BehaviorSubject } from 'rxjs';
 
 import { DaffProduct, DaffProductFacadeInterface } from '@daffodil/product';
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class MockDaffProductFacade implements DaffProductFacadeInterface {

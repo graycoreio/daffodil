@@ -6,7 +6,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./qty-dropdown.component.scss']
 })
 export class QtyDropdownComponent{
-  selectedValue: number = 1;
+  selectedValue = 1;
 
   updateValue(qty:number){
     if(qty % 1 != 0){

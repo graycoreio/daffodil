@@ -28,7 +28,7 @@ describe('CodeExampleService', () => {
       service.get('test').subscribe(resp => {
         expect(resp).toEqual(jasmine.objectContaining({
           name: undefined,
-          element: "undefined-example"
+          element: 'undefined-example'
         }));
       })
       const req = httpMock.expectOne('/assets/design-examples/test.json');

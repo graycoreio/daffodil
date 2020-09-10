@@ -16,14 +16,14 @@ class WrapperComponent {
     files: [
 
       {
-        "name": "article-blockquote.component.html",
-        "content": "<daff-article>\r\n  <blockquote>\r\n    This is a blockquote. This can be used for customer testimonals, document references, etc.\r\n    <cite>Name your quote source here.</cite>\r\n  </blockquote>\r\n</daff-article>",
-        "language": "html"
+        'name': 'article-blockquote.component.html',
+        'content': '<daff-article>\r\n  <blockquote>\r\n    This is a blockquote. This can be used for customer testimonals, document references, etc.\r\n    <cite>Name your quote source here.</cite>\r\n  </blockquote>\r\n</daff-article>',
+        'language': 'html'
       },
       {
-        "name": "article-blockquote.component.ts",
-        "content": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'article-blockquote',\r\n  templateUrl: './article-blockquote.component.html'\r\n})\r\nexport class ArticleBlockquoteComponent {}\r\n",
-        "language": "typescript"
+        'name': 'article-blockquote.component.ts',
+        'content': 'import { Component, OnInit } from \'@angular/core\';\r\n\r\n@Component({\r\n  selector: \'article-blockquote\',\r\n  templateUrl: \'./article-blockquote.component.html\'\r\n})\r\nexport class ArticleBlockquoteComponent {}\r\n',
+        'language': 'typescript'
       }
     ]
 

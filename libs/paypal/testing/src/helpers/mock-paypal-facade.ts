@@ -2,7 +2,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Action } from '@ngrx/store';
 
 import { DaffPaypalFacadeInterface, DaffPaypalTokenResponse } from '@daffodil/paypal';
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class MockDaffPaypalFacade implements DaffPaypalFacadeInterface {

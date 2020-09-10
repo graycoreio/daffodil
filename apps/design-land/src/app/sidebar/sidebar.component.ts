@@ -7,6 +7,6 @@ import { DaffSidebarMode } from '@daffodil/design';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
-  mode: DaffSidebarMode = "push";
-  open: boolean = false;
+  mode: DaffSidebarMode = 'push';
+  open = false;
 }
