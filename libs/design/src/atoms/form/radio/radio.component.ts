@@ -20,7 +20,7 @@ let radioUniqueId = 0;
 
 export class DaffRadioComponent implements OnInit {
 
-  @HostBinding('attr.role') role: string = 'radio';
+  @HostBinding('attr.role') role = 'radio';
   @HostBinding('class.focused') get focusClass() {
     return this.focused === true;
   };
@@ -34,7 +34,7 @@ export class DaffRadioComponent implements OnInit {
   @Output() selectionChange: EventEmitter<boolean> = new EventEmitter();
 
 
-  _checked: boolean = false;
+  _checked = false;
   /**
    * The checked property of the radio
    */

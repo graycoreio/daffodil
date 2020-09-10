@@ -85,7 +85,7 @@ export class DaffCheckboxComponent {
   /**
    * The role of the component. Set to "checkbox".
    */
-  @HostBinding('attr.role') role: string = 'checkbox';
+  @HostBinding('attr.role') role = 'checkbox';
 
 
   _onChange(val: Event) {
