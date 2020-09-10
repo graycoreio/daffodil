@@ -42,7 +42,7 @@ export const substream = (sequence: ActionSequence, ...terminators: ActionType[]
       : matchedSubstream;
 
   return pipe(
-    scan<Action>((matchedSubstream, action) =>
+    scan<Action, Action[]>((matchedSubstream, action) =>
       terminators.indexOf(action.type) > -1
         // terminator found, reset the list
         ? []

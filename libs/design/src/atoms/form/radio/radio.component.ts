@@ -20,7 +20,7 @@ let radioUniqueId = 0;
 
 export class DaffRadioComponent implements OnInit {
 
-  @HostBinding('attr.role') role = 'radio';
+  @HostBinding('attr.role') role: string = 'radio';
   @HostBinding('class.focused') get focusClass() {
     return this.focused === true;
   };
@@ -34,7 +34,7 @@ export class DaffRadioComponent implements OnInit {
   @Output() selectionChange: EventEmitter<boolean> = new EventEmitter();
 
 
-  _checked = false;
+  _checked: boolean = false;
   /**
    * The checked property of the radio
    */
@@ -65,12 +65,12 @@ export class DaffRadioComponent implements OnInit {
    * Used for aria-label. Default to name if user does not input a label.
    */
   //tslint:disable-next-line:no-input-rename
-  @Input('aria-label') label = name;
+  @Input('aria-label') label: string = name;
   /**
    * Used for aria-labelledby. 
    */
   //tslint:disable-next-line:no-input-rename
-  @Input('aria-labelledby') labelledby;
+  @Input('aria-labelledby') labelledby: string;
 
 
   disabled = false;
