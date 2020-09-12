@@ -4,7 +4,7 @@ import {
   ApolloTestingController,
 } from 'apollo-angular/testing';
 import { cold } from 'jasmine-marbles';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { GraphQLError } from 'graphql';
 
 import {
@@ -16,9 +16,8 @@ import { DaffMagentoAuthService } from './auth.service';
 import { DaffAccountRegistration } from '../../models/account-registration';
 import { DaffAuthToken } from '../../models/auth-token';
 import { DaffLoginInfo } from '../../models/login-info';
-import { checkTokenQuery, MagentoCheckTokenResponse } from './queries/public_api';
+import { checkTokenQuery } from './queries/public_api';
 import { DaffUnauthorizedError, DaffInvalidAPIResponseError } from '../../errors/public_api';
-import * as validators from './validators/public_api';
 
 describe('Driver | Magento | Auth | AuthService', () => {
   let controller: ApolloTestingController;
@@ -26,8 +25,6 @@ describe('Driver | Magento | Auth | AuthService', () => {
 
   const registrationFactory: DaffAccountRegistrationFactory = new DaffAccountRegistrationFactory();
   const authTokenFactory: DaffAuthTokenFactory = new DaffAuthTokenFactory();
-
-  let validatorSpy: jasmine.Spy;
 
   let mockAuth: DaffAuthToken;
   let mockLoginInfo: DaffLoginInfo;
@@ -54,9 +51,6 @@ describe('Driver | Magento | Auth | AuthService', () => {
     mockRegistration = registrationFactory.create();
     mockAuth = authTokenFactory.create();
 
-    validatorSpy = jasmine.createSpy();
-    spyOnProperty(validators, 'validateCheckTokenResponse').and.returnValue(validatorSpy);
-
     token = mockAuth.token;
     firstName = mockRegistration.customer.firstName;
     lastName = mockRegistration.customer.lastName;
@@ -70,7 +64,7 @@ describe('Driver | Magento | Auth | AuthService', () => {
   });
 
   describe('check | checking the status of an access token', () => {
-    let response: MagentoCheckTokenResponse;
+    let response;
     let id: number;
 
     afterEach(() => {
@@ -80,16 +74,15 @@ describe('Driver | Magento | Auth | AuthService', () => {
     describe('when the call to the Magento API is successful', () => {
       beforeEach(() => {
         id = 4;
-        response = {
-          customer: {
-            id
-          }
-        };
       });
 
       describe('and the response passes validation', () => {
         beforeEach(() => {
-          validatorSpy.and.returnValue({data: response})
+					response = {
+						customer: {
+							id
+						}
+					};
         });
 
         it('should return void and not throw an error', () => {
@@ -107,9 +100,11 @@ describe('Driver | Magento | Auth | AuthService', () => {
 
       describe('and the response fails validation', () => {
         beforeEach(() => {
-          validatorSpy.and.callFake(() => {
-            throw new DaffInvalidAPIResponseError('Check token response is invalid.')
-          });
+					response = {
+						customer: {
+							id: null
+						}
+					};
         });
 
         it('should throw a DaffInvalidAPIResponseError', done => {

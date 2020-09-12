@@ -47,7 +47,9 @@ export class DaffRadioControlValueAccessorDirective implements OnInit, ControlVa
    * writeValue function from the CVA interface
    */
   writeValue(value: any): void {
-    if (this.value === value) {
+		// the this._onChange null check here is necessary because of an ongoing bug in angular forms
+		// where writeValue can be called before the component initializes: https://github.com/angular/angular/issues/29218
+    if (this.value === value && this._onChange) {
       this._onChange();
       this.fireSelect();
     }

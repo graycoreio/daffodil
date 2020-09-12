@@ -45,13 +45,10 @@ import {
 } from './models/responses/public_api';
 import { DaffOrderMagentoService } from './order.service';
 import { getGuestOrders, MagentoGetGuestOrdersResponse } from './queries/public_api';
-import * as validators from './validators/public_api';
 
 describe('Driver | Magento | Order | OrderService', () => {
   let service: DaffOrderMagentoService;
   let controller: ApolloTestingController;
-
-  let validatorSpy: jasmine.Spy;
 
   let daffOrderFactory: DaffOrderFactory;
   let daffOrderAddressFactory: DaffOrderAddressFactory;
@@ -229,7 +226,7 @@ describe('Driver | Magento | Order | OrderService', () => {
     mockMagentoOrderShipment = {
       tracking: [mockMagentoOrderShipmentTracking],
       items: [mockMagentoOrderShipmentItem]
-    };
+		};
     mockMagentoOrderPayment = {
       payment_id: Number(mockDaffOrderPayment.payment_id),
       order_id: Number(mockDaffOrderPayment.order_id),
@@ -271,9 +268,6 @@ describe('Driver | Magento | Order | OrderService', () => {
         orders: [mockMagentoOrder]
       }
     };
-
-    validatorSpy = jasmine.createSpy();
-    spyOnProperty(validators, 'validateGetOrdersResponse').and.returnValue(validatorSpy);
   });
 
   it('should be created', () => {
@@ -284,9 +278,7 @@ describe('Driver | Magento | Order | OrderService', () => {
     describe('when the call to the Magento API is successful', () => {
       describe('and the response fails validation', () => {
         beforeEach(() => {
-          validatorSpy.and.callFake(() => {
-            throw new DaffInvalidAPIResponseError('Get orders response does not contain a valid list of orders.')
-          });
+					mockGetOrdersResponse.graycoreGuestOrders.orders = null;
         });
 
         it('should throw a DaffInvalidAPIResponseError', done => {
@@ -307,9 +299,6 @@ describe('Driver | Magento | Order | OrderService', () => {
       });
 
       describe('and the response passes validation', () => {
-        beforeEach(() => {
-          validatorSpy.and.returnValue({data: mockGetOrdersResponse});
-        });
 
         describe('and the order is found', () => {
           it('should return the correct Daffodil order', done => {
@@ -382,9 +371,6 @@ describe('Driver | Magento | Order | OrderService', () => {
   describe('list | listing the available orders', () => {
     describe('when the call to the Magento API is successful', () => {
       describe('and the response passes validation', () => {
-        beforeEach(() => {
-          validatorSpy.and.returnValue({data: mockGetOrdersResponse});
-        });
 
         it('should return the list of Daffodil orders', done => {
           service.list(cartId).subscribe(result => {
@@ -402,9 +388,7 @@ describe('Driver | Magento | Order | OrderService', () => {
 
       describe('and the response fails validation', () => {
         beforeEach(() => {
-          validatorSpy.and.callFake(() => {
-            throw new DaffInvalidAPIResponseError('Get orders response does not contain a valid list of orders.')
-          });
+					mockGetOrdersResponse.graycoreGuestOrders.orders = null;
         });
 
         it('should throw a DaffInvalidAPIResponseError', done => {

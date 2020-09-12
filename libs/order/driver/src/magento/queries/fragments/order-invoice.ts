@@ -2,6 +2,7 @@ import gql from 'graphql-tag';
 
 import { orderShipmentItemFragment } from './order-shipment-item';
 import { orderAddressFragment } from './order-address';
+import { orderPaymentFragment } from './order-payment';
 
 export const orderInvoiceFragment = gql`
   fragment orderInvoice on GraycoreOrderInvoice {
@@ -15,8 +16,12 @@ export const orderInvoiceFragment = gql`
     }
     shipping_address {
       ...orderAddress
-    }
+		}
+		payment {
+			...orderPayment
+		}
   }
   ${orderShipmentItemFragment}
   ${orderAddressFragment}
+  ${orderPaymentFragment}
 `;

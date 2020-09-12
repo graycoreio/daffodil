@@ -15,7 +15,11 @@ const _prefixableComponentBase = daffPrefixableMixin(PrefixableComponentBase);
   selector: 'daff-prefixable',
   template: '<ng-content></ng-content>'
 })
-class PrefixableComponent extends _prefixableComponentBase {}
+class PrefixableComponent extends _prefixableComponentBase {
+	constructor() {
+		super();
+	}
+}
 
 @Component({
   template: '<daff-prefixable><div daffPrefix></div></daff-prefixable>'

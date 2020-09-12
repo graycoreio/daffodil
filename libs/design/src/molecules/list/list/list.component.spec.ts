@@ -46,9 +46,7 @@ describe('DaffListComponent', () => {
 
   describe('<daff-list>', () => {
     it('should add a class of "daff-list" to the host element', () => {
-      expect(de.classes).toEqual(jasmine.objectContaining({
-        'daff-list': true,
-      }));
+			expect(de.nativeElement.classList.contains('daff-list')).toBeTruthy();
     });
 
     it('should have a role of list', () => {
@@ -63,9 +61,7 @@ describe('DaffListComponent', () => {
     });
 
     it('should add a class of "daff-nav-list" to the host element', () => {
-      expect(navDE.classes).toEqual(jasmine.objectContaining({
-        'daff-nav-list': true,
-      }));
+			expect(navDE.nativeElement.classList.contains('daff-nav-list')).toBeTruthy();
     });
 
     it('should have a role of navigation', () => {
@@ -75,19 +71,15 @@ describe('DaffListComponent', () => {
 
   describe('setting the mode', () => {
     it('should not set a default mode', () => {
-      expect(component.mode).toBeFalsy();
-      expect(de.classes).toEqual(jasmine.objectContaining({
-        'daff-list--multi-line': false,
-      }));
+			expect(component.mode).toBeFalsy();
+			expect(de.nativeElement.classList.contains('daff-list--multi-line')).toBeFalsy();
     });
 
     describe('when mode="multi-line"', () => {
       it('should add a class of "daff-list--multi-line" to the host element', () => {
         wrapper.mode = 'multi-line';
         fixture.detectChanges();
-        expect(de.classes).toEqual(jasmine.objectContaining({
-          'daff-list--multi-line': true
-        }));
+				expect(de.nativeElement.classList.contains('daff-list--multi-line')).toBeTruthy();
       });
     });
 
@@ -95,9 +87,7 @@ describe('DaffListComponent', () => {
       it('should add a class of "daff-list--link" to the host element', () => {
         wrapper.mode = 'link';
         fixture.detectChanges();
-        expect(de.classes).toEqual(jasmine.objectContaining({
-          'daff-list--link': true
-        }));
+				expect(de.nativeElement.classList.contains('daff-list--link')).toBeTruthy();
       });
     });
 
@@ -105,9 +95,7 @@ describe('DaffListComponent', () => {
       it('should add a class of "daff-list--navigation" to the host element', () => {
         wrapper.mode = 'navigation';
         fixture.detectChanges();
-        expect(de.classes).toEqual(jasmine.objectContaining({
-          'daff-list--navigation': true
-        }));
+				expect(de.nativeElement.classList.contains('daff-list--navigation')).toBeTruthy();
       });
     });
   });
@@ -118,9 +106,7 @@ describe('DaffListComponent', () => {
     });
 
     it('should add a class of "daff-nav-list" to the host element', () => {
-      expect(navDE.classes).toEqual(jasmine.objectContaining({
-        'daff-nav-list': true,
-      }));
+			expect(navDE.nativeElement.classList.contains('daff-nav-list')).toBeTruthy();
     });
   });
 });

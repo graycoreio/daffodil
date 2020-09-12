@@ -22,7 +22,6 @@ import {
   MagentoRevokeCustomerTokenResponse
 } from './queries/public_api';
 import { DaffMagentoAuthTransformerService } from './transforms/auth-transformer.service';
-import * as validators from './validators/public_api';
 import {
   DaffAuthenticationFailedError,
   DaffUnauthorizedError,
@@ -37,9 +36,6 @@ describe('Driver | Magento | Auth | LoginService', () => {
 
   const registrationFactory: DaffAccountRegistrationFactory = new DaffAccountRegistrationFactory();
   const authTokenFactory: DaffAuthTokenFactory = new DaffAuthTokenFactory();
-
-  let generateTokenValidatorSpy: jasmine.Spy;
-  let revokeTokenValidatorSpy: jasmine.Spy;
 
   let mockAuth: DaffAuthToken;
   let mockLoginInfo: DaffLoginInfo;
@@ -70,11 +66,6 @@ describe('Driver | Magento | Auth | LoginService', () => {
     mockRegistration = registrationFactory.create();
     mockAuth = authTokenFactory.create();
 
-    generateTokenValidatorSpy = jasmine.createSpy();
-    revokeTokenValidatorSpy = jasmine.createSpy();
-    spyOnProperty(validators, 'validateGenerateTokenResponse').and.returnValue(generateTokenValidatorSpy);
-    spyOnProperty(validators, 'validateRevokeTokenResponse').and.returnValue(revokeTokenValidatorSpy);
-
     token = mockAuth.token;
     firstName = mockRegistration.customer.firstName;
     lastName = mockRegistration.customer.lastName;
@@ -102,9 +93,6 @@ describe('Driver | Magento | Auth | LoginService', () => {
       });
 
       describe('and the response passes validation', () => {
-        beforeEach(() => {
-          generateTokenValidatorSpy.and.returnValue({data: response})
-        });
 
         it('should call the transformer with the generate token response', done => {
           service.login(mockLoginInfo).subscribe(auth => {
@@ -135,9 +123,11 @@ describe('Driver | Magento | Auth | LoginService', () => {
 
       describe('and the response fails validation', () => {
         beforeEach(() => {
-          generateTokenValidatorSpy.and.callFake(() => {
-            throw new DaffInvalidAPIResponseError('Generate token response is invalid.')
-          });
+					response = {
+						generateCustomerToken: {
+							token: null
+						}
+					};
         });
 
         it('should throw a DaffInvalidAPIResponseError', done => {
@@ -202,9 +192,6 @@ describe('Driver | Magento | Auth | LoginService', () => {
       });
 
       describe('and the response passes validation', () => {
-        beforeEach(() => {
-          revokeTokenValidatorSpy.and.returnValue({data: response})
-        });
 
         it('should return void and not throw an error', () => {
           const expected = cold('-', {});
@@ -221,9 +208,11 @@ describe('Driver | Magento | Auth | LoginService', () => {
 
       describe('and the response fails validation', () => {
         beforeEach(() => {
-          revokeTokenValidatorSpy.and.callFake(() => {
-            throw new DaffInvalidAPIResponseError('Revoke token response is invalid.')
-          });
+					response = {
+						revokeCustomerToken: {
+							result: null
+						}
+					};
         });
 
         // TODO: test for specific errors

@@ -49,27 +49,21 @@ describe('DaffHeroComponent', () => {
 
   describe('<daff-hero>', () => {
     it('should add a class of "daff-hero" to the host element', () => {
-      expect(de.classes).toEqual(jasmine.objectContaining({
-        'daff-hero': true,
-      }));
+			expect(de.nativeElement.classList.contains('daff-hero')).toBeTruthy();
     });
   });
 
   describe('setting the layout', () => {
     it('should not set a default layout', () => {
-      expect(component.layout).toBeFalsy();
-      expect(de.classes).toEqual(jasmine.objectContaining({
-        'daff-hero--centered': false,
-      }));
+			expect(component.layout).toBeFalsy();
+			expect(de.nativeElement.classList.contains('daff-hero--centered')).toBeFalsy();
     });
 
     describe('when layout="centered"', () => {
       it('should add a class of "daff-hero--centered" to the host element', () => {
         wrapper.layout = 'centered';
         fixture.detectChanges();
-        expect(de.classes).toEqual(jasmine.objectContaining({
-          'daff-hero--centered': true
-        }));
+				expect(de.nativeElement.classList.contains('daff-hero--centered')).toBeTruthy();
       });
     });
   });
@@ -77,19 +71,15 @@ describe('DaffHeroComponent', () => {
   describe('setting the size', () => {
     it('should not set a default size', () => {
       expect(component.layout).toBeFalsy();
-      expect(de.classes).toEqual(jasmine.objectContaining({
-        'daff-hero--small': false,
-        'daff-hero--compact': false
-      }));
+			expect(de.nativeElement.classList.contains('daff-hero--small')).toBeFalsy();
+			expect(de.nativeElement.classList.contains('daff-hero--compact')).toBeFalsy();
     });
 
     describe('when size="small"', () => {
       it('should add a class of "daff-hero--small" to the host element', () => {
         wrapper.size = 'small';
         fixture.detectChanges();
-        expect(de.classes).toEqual(jasmine.objectContaining({
-          'daff-hero--small': true
-        }));
+				expect(de.nativeElement.classList.contains('daff-hero--small')).toBeTruthy();
       });
     });
 
@@ -97,9 +87,7 @@ describe('DaffHeroComponent', () => {
       it('should add a class of "daff-hero--compact" to the host element', () => {
         wrapper.size = 'compact';
         fixture.detectChanges();
-        expect(de.classes).toEqual(jasmine.objectContaining({
-          'daff-hero--compact': true
-        }));
+				expect(de.nativeElement.classList.contains('daff-hero--compact')).toBeTruthy();
       });
     });
   });
