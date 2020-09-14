@@ -44,6 +44,7 @@ export interface DaffCartFacadeInterface<
   shippingTotal$: Observable<DaffCartTotal['value']>;
   coupons$: Observable<DaffCart['coupons']>;
   items$: Observable<DaffCart['items']>;
+  hasOutOfStockItems$: Observable<boolean>;
   itemDictionary$: Observable<Dictionary<U>>;
   billingAddress$: Observable<DaffCart['billing_address']>;
   shippingAddress$: Observable<DaffCart['shipping_address']>;

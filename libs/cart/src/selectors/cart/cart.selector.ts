@@ -46,6 +46,7 @@ export interface DaffCartStateMemoizedSelectors<
 	selectCartShippingTotal: MemoizedSelector<object, DaffCartTotal['value']>;
 	selectCartCoupons: MemoizedSelector<object, T['coupons']>;
 	selectCartItems: MemoizedSelector<object, T['items']>;
+	selectCartHasOutOfStockItems: MemoizedSelector<object, boolean>;
 	selectCartBillingAddress: MemoizedSelector<object, T['billing_address']>;
 	selectCartShippingAddress: MemoizedSelector<object, T['shipping_address']>;
 	selectCartPayment: MemoizedSelector<object, T['payment']>;
@@ -211,6 +212,10 @@ const createCartSelectors = <
 		selectCartValue,
 		(state: DaffCartReducerState<T>['cart']) => state.items
 	);
+	const selectCartHasOutOfStockItems = createSelector(
+		selectCartValue,
+		(state: DaffCartReducerState<T>['cart']) => state.items.reduce((acc, item) => (acc || !item.in_stock), false)
+	)
 	const selectCartBillingAddress = createSelector(
 		selectCartValue,
 		(state: DaffCartReducerState<T>['cart']) => state.billing_address
@@ -325,6 +330,7 @@ const createCartSelectors = <
 		selectCartShippingTotal,
 		selectCartCoupons,
 		selectCartItems,
+		selectCartHasOutOfStockItems,
 		selectCartBillingAddress,
 		selectCartShippingAddress,
 		selectCartPayment,
