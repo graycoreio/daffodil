@@ -50,6 +50,7 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
   shippingInformation$: BehaviorSubject<DaffCart['shipping_information']> = new BehaviorSubject(null);
   availableShippingMethods$: BehaviorSubject<DaffCart['available_shipping_methods']> = new BehaviorSubject([]);
   availablePaymentMethods$: BehaviorSubject<DaffCart['available_payment_methods']> = new BehaviorSubject([]);
+  paymentId$: BehaviorSubject<any> = new BehaviorSubject(null);
 
   isCartEmpty$: BehaviorSubject<boolean> = new BehaviorSubject(true);
   isBillingSameAsShipping$: BehaviorSubject<boolean> = new BehaviorSubject(false);
