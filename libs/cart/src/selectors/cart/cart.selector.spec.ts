@@ -63,6 +63,7 @@ describe('Cart | Selector | Cart', () => {
 		selectCartShippingTotal,
 		selectCartCoupons,
 		selectCartItems,
+		selectCartHasOutOfStockItems,
 		selectCartBillingAddress,
 		selectCartShippingAddress,
 		selectCartPayment,
@@ -355,6 +356,24 @@ describe('Cart | Selector | Cart', () => {
     it('returns cart items', () => {
       const selector = store.pipe(select(selectCartItems));
       const expected = cold('a', {a: cart.items});
+
+      expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCartHasOutOfStockItems', () => {
+    it('returns true when at least one cart item is out of stock', () => {
+      cart.items[0].in_stock = false;
+			store.dispatch(new DaffCartLoadSuccess(cart));
+			const selector = store.pipe(select(selectCartHasOutOfStockItems));
+      const expected = cold('a', {a: true });
+
+      expect(selector).toBeObservable(expected);
+		});
+
+    it('returns false when no items are out of stock', () => {
+			const selector = store.pipe(select(selectCartHasOutOfStockItems));
+      const expected = cold('a', {a: false });
 
       expect(selector).toBeObservable(expected);
     });

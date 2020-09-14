@@ -429,6 +429,16 @@ describe('DaffCartFacade', () => {
     });
   });
 
+  describe('hasOutOfStockItems$', () => {
+
+    it('should return whether or not the cart has out of stock items', () => {
+      const cart = cartFactory.create();
+      const expected = cold('a', { a: false });
+      store.dispatch(new DaffCartItemListSuccess(cart.items));
+      expect(facade.hasOutOfStockItems$).toBeObservable(expected);
+    });
+  });
+
   describe('itemDictionary$', () => {
     it('should initially be an empty object', () => {
       const expected = cold('a', { a: {}});
