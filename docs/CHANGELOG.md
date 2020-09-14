@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.1](https://github.com/graycoreio/daffodil/compare/v0.11.0...v0.11.1) (2020-09-14)
+
+
+### Features
+
+* **cart:** add selector for whether the cart has out of stock items ([#1064](https://github.com/graycoreio/daffodil/issues/1064)) ([138fb19](https://github.com/graycoreio/daffodil/commit/138fb1962a9d2b57fe361ea1a384483de361fbd8))
+
 ## [0.11.0](https://github.com/graycoreio/daffodil/compare/v0.10.0...v0.11.0) (2020-09-07)
 
 
