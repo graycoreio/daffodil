@@ -586,8 +586,8 @@ describe('DaffCartFacade', () => {
         }));
       });
 
-      it('should not emit', () => {
-        const expected = cold('-');
+      it('should return null', () => {
+        const expected = cold('a', {a: null});
         expect(facade.paymentId$).toBeObservable(expected);
       });
     });
@@ -603,8 +603,8 @@ describe('DaffCartFacade', () => {
         }));
       });
 
-      it('should not emit', () => {
-        const expected = cold('-');
+      it('should return null', () => {
+        const expected = cold('a', {a: null});
         expect(facade.paymentId$).toBeObservable(expected);
       });
     });
@@ -637,7 +637,7 @@ describe('DaffCartFacade', () => {
         }));
       });
 
-      it('should return the mapped payment ID', () => {
+      it('should return the platform agnostic payment ID', () => {
         const expected = cold('a', {a: paymentId});
         expect(facade.paymentId$).toBeObservable(expected);
       });

@@ -186,8 +186,11 @@ export class DaffCartFacade<
     this.availableShippingMethods$ = this.store.pipe(select(selectCartAvailableShippingMethods));
     this.availablePaymentMethods$ = this.store.pipe(select(selectCartAvailablePaymentMethods));
     this.paymentId$ = this.payment$.pipe(
-      filter(payment => !!(payment && payment.method)),
-      map(payment => this.paymentMethodMap[payment.method])
+      map(payment =>
+        payment && payment.method
+          ? this.paymentMethodMap[payment.method]
+          : null
+      )
     );
 
     this.isCartEmpty$ = this.store.pipe(select(selectIsCartEmpty));
