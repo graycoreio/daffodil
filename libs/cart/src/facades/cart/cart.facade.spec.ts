@@ -49,7 +49,7 @@ import { DaffCartOrderResult } from '../../models/cart-order-result';
 import { DaffConfigurableCartItem } from '../../models/configurable-cart-item';
 import { DaffCompositeCartItem } from '../../models/composite-cart-item';
 import { DaffResolveCartSuccess } from '../../actions/public_api';
-import { DaffCartPaymentMethodMap } from '../../injection-tokens/public_api';
+import { DaffCartPaymentMethodIdMap } from '../../injection-tokens/public_api';
 
 describe('DaffCartFacade', () => {
   let store: MockStore<{ product: Partial<DaffCartReducersState> }>;
@@ -77,7 +77,7 @@ describe('DaffCartFacade', () => {
       providers: [
         DaffCartFacade,
         {
-          provide: DaffCartPaymentMethodMap,
+          provide: DaffCartPaymentMethodIdMap,
           useValue: {
             [paymentMethod]: paymentId
           }

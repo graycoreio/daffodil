@@ -14,7 +14,7 @@ import { DaffCartItem } from '../../models/cart-item';
 import { DaffConfigurableCartItemAttribute } from '../../models/configurable-cart-item';
 import { DaffCompositeCartItemOption } from '../../models/composite-cart-item';
 import { DaffCartTotal } from '../../models/cart-total';
-import { DaffCartPaymentMethodMap } from '../../injection-tokens/public_api';
+import { DaffCartPaymentMethodIdMap } from '../../injection-tokens/public_api';
 import { filter, map, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -86,7 +86,7 @@ export class DaffCartFacade<
 
   constructor(
     private store: Store<DaffCartReducersState<T, V, U>>,
-    @Inject(DaffCartPaymentMethodMap) private paymentMethodMap: Object
+    @Inject(DaffCartPaymentMethodIdMap) private paymentMethodMap: Object
   ) {
 		const {
       selectCartLoading,
@@ -187,11 +187,7 @@ export class DaffCartFacade<
     this.availablePaymentMethods$ = this.store.pipe(select(selectCartAvailablePaymentMethods));
     this.paymentId$ = this.payment$.pipe(
       filter(payment => !!(payment && payment.method)),
-      map(payment => {
-        console.log(this.paymentMethodMap, payment.method);
-
-        return this.paymentMethodMap[payment.method]
-      })
+      map(payment => this.paymentMethodMap[payment.method])
     );
 
     this.isCartEmpty$ = this.store.pipe(select(selectIsCartEmpty));
