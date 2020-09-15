@@ -31,7 +31,7 @@ export function transformCartTotals(cart: Partial<MagentoCart>): {totals: DaffCa
 			{
 				name: DaffCartTotalTypeEnum.subtotalWithDiscountIncludingTax,
 				label: 'Subtotal with Discount Including Tax',
-				value: cart.prices.subtotal_with_discount_excluding_tax.value ? 
+				value: cart.prices.subtotal_with_discount_excluding_tax.value ?
 								daffAdd(cart.prices.subtotal_with_discount_excluding_tax.value, totalTax) :
 								cart.prices.subtotal_with_discount_excluding_tax.value
 			},
@@ -55,6 +55,7 @@ export function transformCartTotals(cart: Partial<MagentoCart>): {totals: DaffCa
 }
 
 function validateSelectedShippingAddress(cart: Partial<MagentoCart>): boolean {
-	return !!cart.shipping_addresses[0] && !!cart.shipping_addresses[0].selected_shipping_method &&
+  // TODO: optional chaining
+	return !!cart.shipping_addresses && !!cart.shipping_addresses[0] && !!cart.shipping_addresses[0].selected_shipping_method &&
 		!!cart.shipping_addresses[0].selected_shipping_method.amount;
 }

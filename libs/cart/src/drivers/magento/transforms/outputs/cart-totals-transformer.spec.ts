@@ -70,7 +70,7 @@ describe('transformCartTotals', () => {
 			]
 		};
   });
-		
+
 	it('should transform cart totals', () => {
 		expect(transformCartTotals(stubMagentoCart)).toEqual(expectedTotals);
 	});
@@ -127,6 +127,62 @@ describe('transformCartTotals', () => {
 		stubMagentoCart.prices.subtotal_including_tax.value = null;
 		stubMagentoCart.prices.subtotal_with_discount_excluding_tax.value = null;
 		stubMagentoCart.shipping_addresses[0].selected_shipping_method.amount.value = null;
+
+		expect(transformCartTotals(stubMagentoCart)).toEqual(expectedTotals);
+  });
+
+  it('should transform cart totals when magento gives empty shipping addresses', () => {
+		expectedTotals = {
+			totals: [
+				{
+					name: DaffCartTotalTypeEnum.grandTotal,
+					label: 'Grand Total',
+					value: null
+				},
+				{
+					name: DaffCartTotalTypeEnum.subtotalExcludingTax,
+					label: 'Subtotal Excluding Tax',
+					value: null
+				},
+				{
+					name: DaffCartTotalTypeEnum.subtotalIncludingTax,
+					label: 'Subtotal Including Tax',
+					value: null
+				},
+				{
+					name: DaffCartTotalTypeEnum.subtotalWithDiscountExcludingTax,
+					label: 'Subtotal with Discount Excluding Tax',
+					value: null
+				},
+				{
+					name: DaffCartTotalTypeEnum.subtotalWithDiscountIncludingTax,
+					label: 'Subtotal with Discount Including Tax',
+					value: null
+				},
+				{
+					name: DaffCartTotalTypeEnum.tax,
+					label: 'Tax',
+					value: 0
+				},
+				{
+					name: DaffCartTotalTypeEnum.discount,
+					label: 'Discount',
+					value: 0
+				},
+				{
+					name: DaffCartTotalTypeEnum.shipping,
+					label: 'Shipping',
+					value: 0
+				}
+			]
+		};
+		stubMagentoCart.prices.applied_taxes = [];
+		stubMagentoCart.prices.discounts = [];
+		stubMagentoCart.prices.grand_total.value = null;
+		stubMagentoCart.prices.subtotal_excluding_tax.value = null;
+		stubMagentoCart.prices.subtotal_including_tax.value = null;
+		stubMagentoCart.prices.subtotal_with_discount_excluding_tax.value = null;
+		stubMagentoCart.shipping_addresses = null;
 
 		expect(transformCartTotals(stubMagentoCart)).toEqual(expectedTotals);
 	});
