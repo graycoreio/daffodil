@@ -4,28 +4,30 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
 import {
-  MockDaffCartFacade,
+  DaffCartTestingModule,
 } from '@daffodil/cart/testing';
 
 import { DaffOrderResultGuard } from './order-result.guard';
 import { DaffCartOrderResultGuardRedirectUrl } from './order-result-guard-redirect.token';
 import { DaffCartFacade } from '../../facades/cart/cart.facade';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('DaffOrderResultGuard', () => {
 	let guard: DaffOrderResultGuard;
-	let facade: DaffCartFacade;
+	let facade;
 	let router: Router;
 	const stubUrl = 'url';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        { provide: DaffCartFacade, useClass: MockDaffCartFacade },
 				DaffOrderResultGuard,
-				{ provide: DaffCartOrderResultGuardRedirectUrl, useValue: stubUrl },
+        { provide: DaffCartOrderResultGuardRedirectUrl, useValue: stubUrl },
+        provideMockStore()
       ],
 			imports: [
-				RouterTestingModule
+        RouterTestingModule,
+        DaffCartTestingModule
 			]
     });
 

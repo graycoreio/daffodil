@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Action, Store, select } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
@@ -14,6 +14,8 @@ import { DaffCartItem } from '../../models/cart-item';
 import { DaffConfigurableCartItemAttribute } from '../../models/configurable-cart-item';
 import { DaffCompositeCartItemOption } from '../../models/composite-cart-item';
 import { DaffCartTotal } from '../../models/cart-total';
+import { DaffCartPaymentMethodIdMap } from '../../injection-tokens/public_api';
+import { filter, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -59,6 +61,7 @@ export class DaffCartFacade<
   shippingInformation$: Observable<DaffCart['shipping_information']>;
   availableShippingMethods$: Observable<DaffCart['available_shipping_methods']>;
   availablePaymentMethods$: Observable<DaffCart['available_payment_methods']>;
+  paymentId$: Observable<any>;
 
   isCartEmpty$: Observable<boolean>;
   isBillingSameAsShipping$: Observable<boolean>;
@@ -81,7 +84,10 @@ export class DaffCartFacade<
 	private _selectCartItemCompositeOptions;
 	private _selectIsCartItemOutOfStock;
 
-  constructor(private store: Store<DaffCartReducersState<T, V, U>>) {
+  constructor(
+    private store: Store<DaffCartReducersState<T, V, U>>,
+    @Inject(DaffCartPaymentMethodIdMap) private paymentMethodMap: Object
+  ) {
 		const {
       selectCartLoading,
       selectCartResolved,
@@ -179,6 +185,13 @@ export class DaffCartFacade<
     this.shippingInformation$ = this.store.pipe(select(selectCartShippingInformation));
     this.availableShippingMethods$ = this.store.pipe(select(selectCartAvailableShippingMethods));
     this.availablePaymentMethods$ = this.store.pipe(select(selectCartAvailablePaymentMethods));
+    this.paymentId$ = this.payment$.pipe(
+      map(payment =>
+        payment && payment.method
+          ? this.paymentMethodMap[payment.method]
+          : null
+      )
+    );
 
     this.isCartEmpty$ = this.store.pipe(select(selectIsCartEmpty));
     this.isBillingSameAsShipping$ = this.store.pipe(select(selectIsBillingSameAsShipping));

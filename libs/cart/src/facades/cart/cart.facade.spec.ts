@@ -27,7 +27,9 @@ import {
   DaffCartPlaceOrderFailure,
   DaffCartPlaceOrderSuccess,
   DaffCartCouponListFailure,
-	DaffCartTotalTypeEnum
+  DaffCartTotalTypeEnum,
+  DaffCartPaymentMethod,
+  DaffCart,
 } from '@daffodil/cart';
 import {
   DaffCartFactory,
@@ -43,11 +45,11 @@ import { DaffCartFacade } from './cart.facade';
 import { DaffCartReducersState, daffCartReducers, initialState } from '../../reducers/public_api';
 import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
 import { DaffCartErrorType } from '../../reducers/errors/cart-error-type.enum';
-import { DaffCart } from '../../models/cart';
 import { DaffCartOrderResult } from '../../models/cart-order-result';
 import { DaffConfigurableCartItem } from '../../models/configurable-cart-item';
 import { DaffCompositeCartItem } from '../../models/composite-cart-item';
 import { DaffResolveCartSuccess } from '../../actions/public_api';
+import { DaffCartPaymentMethodIdMap } from '../../injection-tokens/public_api';
 
 describe('DaffCartFacade', () => {
   let store: MockStore<{ product: Partial<DaffCartReducersState> }>;
@@ -62,6 +64,8 @@ describe('DaffCartFacade', () => {
 
   let errors: DaffCartErrors;
   let mockCartOrderResult: DaffCartOrderResult;
+  const paymentMethod = 'so dumb';
+  const paymentId = 'even dumber';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -72,6 +76,12 @@ describe('DaffCartFacade', () => {
       ],
       providers: [
         DaffCartFacade,
+        {
+          provide: DaffCartPaymentMethodIdMap,
+          useValue: {
+            [paymentMethod]: paymentId
+          }
+        }
       ]
     })
 
@@ -556,6 +566,81 @@ describe('DaffCartFacade', () => {
       const expected = cold('a', { a: cart.available_payment_methods});
       store.dispatch(new DaffCartPaymentMethodsLoadSuccess(cart.available_payment_methods));
       expect(facade.availablePaymentMethods$).toBeObservable(expected);
+    });
+  });
+
+  describe('paymentId$', () => {
+    let mockPayment: DaffCartPaymentMethod;
+    let cart: DaffCart;
+
+    beforeEach(() => {
+      cart = cartFactory.create();
+      mockPayment = paymentFactory.create();
+    });
+
+    describe('when the cart does not have a payment', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartLoadSuccess({
+          ...cart,
+          payment: null
+        }));
+      });
+
+      it('should return null', () => {
+        const expected = cold('a', {a: null});
+        expect(facade.paymentId$).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart does not have a payment method', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartLoadSuccess({
+          ...cart,
+          payment: {
+            ...mockPayment,
+            method: null
+          }
+        }));
+      });
+
+      it('should return null', () => {
+        const expected = cold('a', {a: null});
+        expect(facade.paymentId$).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart\'s payment method is not defined in the map', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartLoadSuccess({
+          ...cart,
+          payment: {
+            ...mockPayment,
+            method: 'not in the map'
+          }
+        }));
+      });
+
+      it('should return undefined', () => {
+        const expected = cold('a', {a: undefined});
+        expect(facade.paymentId$).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart\'s payment method is defined in the map', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartLoadSuccess({
+          ...cart,
+          payment: {
+            ...mockPayment,
+            method: paymentMethod
+          }
+        }));
+      });
+
+      it('should return the platform agnostic payment ID', () => {
+        const expected = cold('a', {a: paymentId});
+        expect(facade.paymentId$).toBeObservable(expected);
+      });
     });
   });
 

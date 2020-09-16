@@ -5,7 +5,7 @@ import { MockStore } from '@ngrx/store/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-import { DaffCartFactory, DaffCartAddressFactory } from '@daffodil/cart/testing';
+import { DaffCartFactory, DaffCartAddressFactory, DaffCartTestingModule, MockDaffCartFacade } from '@daffodil/cart/testing';
 import {
   DaffCartFacade,
   DaffCart,
@@ -20,7 +20,7 @@ import { DaffCartBillingAddressGuardRedirectUrl } from './billing-address-guard-
 describe('DaffBillingAddressGuard', () => {
 
 	let service: DaffBillingAddressGuard;
-	let facade;
+	let facade: MockDaffCartFacade;
 	let store: MockStore<any>;
 	let router: Router;
 	const stubUrl = 'url';
@@ -29,14 +29,14 @@ describe('DaffBillingAddressGuard', () => {
     TestBed.configureTestingModule({
       providers: [
 				DaffBillingAddressGuard,
-				DaffCartFacade,
 				{ provide: DaffCartBillingAddressGuardRedirectUrl, useValue: stubUrl }
 			],
 			imports: [
         StoreModule.forRoot({
           cart: combineReducers(daffCartReducers),
 				}),
-				RouterTestingModule
+        RouterTestingModule,
+        DaffCartTestingModule
 			]
     });
 		service = TestBed.get(DaffBillingAddressGuard);

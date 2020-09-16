@@ -53,6 +53,12 @@ export interface DaffCartFacadeInterface<
   shippingInformation$: Observable<DaffCart['shipping_information']>;
   availableShippingMethods$: Observable<DaffCart['available_shipping_methods']>;
   availablePaymentMethods$: Observable<DaffCart['available_payment_methods']>;
+  /**
+   * The user-defined platform-agnostic payment identifier that corresponds to the cart's current (platform-specific) payment method.
+   * Define the mapping with the `DaffCartPaymentMethodIdMap` injection token.
+   * @see DaffCartPaymentMethodIdMap
+   */
+  paymentId$: Observable<any>;
 
   isCartEmpty$: Observable<boolean>;
   /**
