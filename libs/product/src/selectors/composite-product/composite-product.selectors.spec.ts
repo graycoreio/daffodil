@@ -421,7 +421,7 @@ describe('Composite Product Selectors | integration tests', () => {
 
       it('should return false', () => {
         const selector = store.pipe(select(selectCompositeProductHasDiscount, { id: mockProduct.id }));
-        const expected = cold('a', { a: true });
+        const expected = cold('a', { a: false });
 
         expect(selector).toBeObservable(expected);
       });
