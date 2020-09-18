@@ -3,8 +3,8 @@ import { MockStore } from '@ngrx/store/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { 
-	DaffCompositeProduct, 
+import {
+	DaffCompositeProduct,
 	DaffProductLoadSuccess,
 	daffProductReducers,
 	DaffProductReducersState
@@ -17,7 +17,7 @@ describe('DaffCompositeProductFacade', () => {
   let store: MockStore<Partial<DaffProductReducersState>>;
 	let facade: DaffCompositeProductFacade;
 	let stubCompositeProduct: DaffCompositeProduct;
-	
+	let compositeProductFactory: DaffCompositeProductFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -32,8 +32,10 @@ describe('DaffCompositeProductFacade', () => {
 		})
 
     store = TestBed.get(Store);
-		facade = TestBed.get(DaffCompositeProductFacade);
-		stubCompositeProduct = new DaffCompositeProductFactory().create();
+    facade = TestBed.get(DaffCompositeProductFacade);
+    compositeProductFactory = TestBed.get(DaffCompositeProductFactory);
+
+		stubCompositeProduct = compositeProductFactory.create();
 		stubCompositeProduct.items[0].required = true;
 		stubCompositeProduct.items[1].required = false;
 		stubCompositeProduct.items[0].options[0].price = 10;
@@ -59,11 +61,11 @@ describe('DaffCompositeProductFacade', () => {
   describe('getMinPossiblePrice', () => {
 
     it('should return the minimum price possible for the product', () => {
-			const expected = cold('a', { a: 
-				stubCompositeProduct.price + 
+			const expected = cold('a', { a:
+				stubCompositeProduct.price +
 				stubCompositeProduct.items[0].options[0].price
 			});
-	
+
 			expect(facade.getMinPossiblePrice(stubCompositeProduct.id)).toBeObservable(expected);
 		});
   });
@@ -71,12 +73,12 @@ describe('DaffCompositeProductFacade', () => {
   describe('getMaxPossiblePrice', () => {
 
     it('should return the maximum price possible for the product', () => {
-			const expected = cold('a', { a: 
-				stubCompositeProduct.price + 
+			const expected = cold('a', { a:
+				stubCompositeProduct.price +
 				stubCompositeProduct.items[0].options[1].price +
 				stubCompositeProduct.items[1].options[1].price
 			});
-	
+
 			expect(facade.getMaxPossiblePrice(stubCompositeProduct.id)).toBeObservable(expected);
 		});
   });
@@ -85,7 +87,7 @@ describe('DaffCompositeProductFacade', () => {
 
     it('should return whether the product could have a price range', () => {
 			const expected = cold('a', { a: true });
-	
+
 			expect(facade.possiblyHasPriceRange(stubCompositeProduct.id)).toBeObservable(expected);
 		});
 	});
@@ -93,12 +95,12 @@ describe('DaffCompositeProductFacade', () => {
   describe('getMinPrice', () => {
 
     it('should return the minimum price for the product', () => {
-			const expected = cold('a', { a: 
-				stubCompositeProduct.price + 
+			const expected = cold('a', { a:
+				stubCompositeProduct.price +
 				stubCompositeProduct.items[0].options[0].price +
 				stubCompositeProduct.items[1].options[0].price
 			});
-	
+
 			expect(facade.getMinPrice(stubCompositeProduct.id)).toBeObservable(expected);
 		});
   });
@@ -106,12 +108,12 @@ describe('DaffCompositeProductFacade', () => {
   describe('getMaxPrice', () => {
 
     it('should return the maximum price for the product', () => {
-			const expected = cold('a', { a: 
-				stubCompositeProduct.price + 
+			const expected = cold('a', { a:
+				stubCompositeProduct.price +
 				stubCompositeProduct.items[0].options[0].price +
 				stubCompositeProduct.items[1].options[0].price
 			});
-	
+
 			expect(facade.getMaxPrice(stubCompositeProduct.id)).toBeObservable(expected);
 		});
   });
@@ -120,7 +122,7 @@ describe('DaffCompositeProductFacade', () => {
 
     it('should return whether the product currently has a price range', () => {
 			const expected = cold('a', { a: false });
-	
+
 			expect(facade.hasPriceRange(stubCompositeProduct.id)).toBeObservable(expected);
 		});
 	});
@@ -128,12 +130,12 @@ describe('DaffCompositeProductFacade', () => {
   describe('getPrice', () => {
 
     it('should return the price of the product', () => {
-			const expected = cold('a', { a: 
-				stubCompositeProduct.price + 
+			const expected = cold('a', { a:
+				stubCompositeProduct.price +
 				stubCompositeProduct.items[0].options[0].price*stubCompositeProduct.items[0].options[0].quantity +
 				stubCompositeProduct.items[1].options[0].price*stubCompositeProduct.items[1].options[0].quantity
 			});
-	
+
 			expect(facade.getPrice(stubCompositeProduct.id)).toBeObservable(expected);
 		});
   });
@@ -141,10 +143,10 @@ describe('DaffCompositeProductFacade', () => {
   describe('getDiscountAmount', () => {
 
     it('should return the total discount amount for a composite product', () => {
-			const expected = cold('a', { a: 
+			const expected = cold('a', { a:
 				stubCompositeProduct.discount.amount
 			});
-	
+
 			expect(facade.getDiscountAmount(stubCompositeProduct.id)).toBeObservable(expected);
 		});
   });
@@ -152,30 +154,41 @@ describe('DaffCompositeProductFacade', () => {
   describe('getDiscountedPrice', () => {
 
     it('should the discounted price for a composite product', () => {
-			const expected = cold('a', { a: 
-				stubCompositeProduct.price 
+			const expected = cold('a', { a:
+				stubCompositeProduct.price
 				+ stubCompositeProduct.items[0].options[0].price*stubCompositeProduct.items[0].options[0].quantity
 				+ stubCompositeProduct.items[1].options[0].price*stubCompositeProduct.items[1].options[0].quantity
 				- stubCompositeProduct.discount.amount
 			});
-	
+
 			expect(facade.getDiscountedPrice(stubCompositeProduct.id)).toBeObservable(expected);
 		});
   });
 
   describe('hasDiscount', () => {
+    let productWithDiscount;
+
+    beforeEach(() => {
+      productWithDiscount = compositeProductFactory.create({
+        discount: {
+          amount: 10,
+          percent: 10
+        }
+      })
+      store.dispatch(new DaffProductLoadSuccess(productWithDiscount));
+    })
 
     it('should return whether the product has a discount', () => {
 			const expected = cold('a', { a: true });
-	
-			expect(facade.hasDiscount(stubCompositeProduct.id)).toBeObservable(expected);
+
+			expect(facade.hasDiscount(productWithDiscount.id)).toBeObservable(expected);
 		});
 	});
-	
+
 	describe('getAppliedOptions', () => {
-		
+
 		it('should return the applied option for a composite product', () => {
-			const expected = cold('a', { a: { 
+			const expected = cold('a', { a: {
 				[stubCompositeProduct.items[0].id]: stubCompositeProduct.items[0].options[0],
 				[stubCompositeProduct.items[1].id]: stubCompositeProduct.items[1].options[0]
 			}});
@@ -183,9 +196,9 @@ describe('DaffCompositeProductFacade', () => {
 			expect(facade.getAppliedOptions(stubCompositeProduct.id)).toBeObservable(expected);
 		});
 	});
-	
+
 	describe('isItemRequired', () => {
-		
+
 		it('should return whether the composite product item is required', () => {
 			const expected = cold('a', { a: stubCompositeProduct.items[0].required });
 
