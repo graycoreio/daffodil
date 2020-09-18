@@ -23,6 +23,18 @@ export const magentoBundledProductFragment = gql`
 					name
 					sku
 					stock_status
+					price_range {
+						maximum_price {
+							regular_price {
+								value
+								currency
+							}
+							discount {
+								amount_off
+								percent_off
+							}
+						}
+					}
 				}
 			}
 		}

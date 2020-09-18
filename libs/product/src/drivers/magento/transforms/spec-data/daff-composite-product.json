@@ -27,7 +27,11 @@
 				{
 					"id": "1",
 					"name": "Option 1",
-					"price": 10,
+					"price": 5,
+					"discount": {
+						"amount": 1,
+						"percent": 20
+					},
 					"quantity": 1,
 					"is_default": true,
 					"in_stock": true
@@ -35,7 +39,11 @@
 				{
 					"id": "2",
 					"name": "Option 2",
-					"price": 12,
+					"price": 2,
+					"discount": {
+						"amount": 1,
+						"percent": 50
+					},
 					"quantity": 1,
 					"is_default": false,
 					"in_stock": true
