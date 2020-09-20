@@ -46,6 +46,7 @@ function transformMagentoBundledProductItemOption(option: MagentoBundledProductI
 /**
  * A function for null checking an object.
  */
+//TODO: use optional chaining after angular 9 and Typescript 3.7
 function getPrice(product: MagentoProduct): number {
 	return product.price_range && 
 		product.price_range.maximum_price && 
