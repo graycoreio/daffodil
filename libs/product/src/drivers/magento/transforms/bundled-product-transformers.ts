@@ -54,6 +54,7 @@ function getPrice(product: MagentoProduct): number {
 	? product.price_range.maximum_price.regular_price.value : null;
 }
 
+//TODO: use optional chaining after angular 9 and Typescript 3.7
 function getDiscount(product: MagentoProduct): DaffProductDiscount {
 	return product.price_range && 
 		product.price_range.maximum_price && 
