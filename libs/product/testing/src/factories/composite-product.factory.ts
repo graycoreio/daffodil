@@ -32,6 +32,10 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 					id: faker.random.alphaNumeric(10),
 					name: faker.commerce.productMaterial(),
 					price: faker.random.number({min: 1, max: 100}),
+					discount: {
+						amount: 0,
+						percent: 0
+					},
 					quantity: faker.random.number({min: 1, max: 9}),
 					is_default: true,
 					in_stock: true
@@ -40,6 +44,10 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 					id: faker.random.alphaNumeric(10),
 					name: faker.commerce.productMaterial(),
 					price: faker.random.number({min: 1, max: 100}),
+					discount: {
+						amount: 0,
+						percent: 0
+					},
 					quantity: faker.random.number({min: 1, max: 9}),
 					is_default: false,
 					in_stock: true
@@ -56,6 +64,10 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 					id: faker.random.alphaNumeric(10),
 					name: faker.commerce.productMaterial(),
 					price: faker.random.number({min: 1, max: 100}),
+					discount: {
+						amount: 0,
+						percent: 0
+					},
 					quantity: faker.random.number({min: 1, max: 9}),
 					is_default: true,
 					in_stock: true
@@ -64,6 +76,10 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 					id: faker.random.alphaNumeric(10),
 					name: faker.commerce.productMaterial(),
 					price: faker.random.number({min: 1, max: 100}),
+					discount: {
+						amount: 0,
+						percent: 0
+					},
 					quantity: faker.random.number({min: 1, max: 9}),
 					is_default: false,
 					in_stock: true
