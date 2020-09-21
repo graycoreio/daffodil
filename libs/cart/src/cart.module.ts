@@ -6,7 +6,8 @@ import {
 	DaffCartBillingAddressGuardRedirectUrl,
 	DaffCartShippingAddressGuardRedirectUrl,
 	DaffCartShippingMethodGuardRedirectUrl,
-	DaffCartPaymentMethodGuardRedirectUrl
+  DaffCartPaymentMethodGuardRedirectUrl,
+  DaffCartOrderResultGuardRedirectUrl
 } from './guards/public_api';
 import { DaffEmptyCartResolverRedirectUrl, DaffCartResolverRedirectUrl } from './resolvers/public_api';
 import { DaffCartPaymentMethodIdMap } from './injection-tokens/public_api';
@@ -25,6 +26,7 @@ import { DaffCartPaymentMethodIdMap } from './injection-tokens/public_api';
 		{ provide: DaffCartShippingAddressGuardRedirectUrl, useValue: '/' },
 		{ provide: DaffCartShippingMethodGuardRedirectUrl, useValue: '/' },
 		{ provide: DaffCartPaymentMethodGuardRedirectUrl, useValue: '/' },
+		{ provide: DaffCartOrderResultGuardRedirectUrl, useValue: '/' },
 		{ provide: DaffEmptyCartResolverRedirectUrl, useValue: '/' },
 		{ provide: DaffCartResolverRedirectUrl, useValue: '/' },
 		{ provide: DaffCartPaymentMethodIdMap, useValue: {} },
