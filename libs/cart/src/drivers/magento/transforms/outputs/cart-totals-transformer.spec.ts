@@ -172,7 +172,7 @@ describe('transformCartTotals', () => {
 				{
 					name: DaffCartTotalTypeEnum.shipping,
 					label: 'Shipping',
-					value: 0
+					value: null
 				}
 			]
 		};

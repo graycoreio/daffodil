@@ -48,7 +48,7 @@ export function transformCartTotals(cart: Partial<MagentoCart>): {totals: DaffCa
 			{
 				name: DaffCartTotalTypeEnum.shipping,
 				label: 'Shipping',
-				value: validateSelectedShippingAddress(cart) ? cart.shipping_addresses[0].selected_shipping_method.amount.value : 0
+				value: validateSelectedShippingAddress(cart) ? cart.shipping_addresses[0].selected_shipping_method.amount.value : null
 			}
 		],
 	}
