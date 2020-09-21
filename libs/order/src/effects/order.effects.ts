@@ -36,10 +36,11 @@ export class DaffOrderEffects<
   get$ = this.actions$.pipe(
     ofType(DaffOrderActionTypes.OrderLoadAction),
     switchMap((action: DaffOrderLoad<T, V>) =>
-      this.driver.get(action.orderId, action.cartId)
+      this.driver.get(action.orderId, action.cartId).pipe(
+        map(resp => new DaffOrderLoadSuccess<T>(resp)),
+        catchError(error => of(new DaffOrderLoadFailure('Failed to load order')))
+      )
     ),
-    map(resp => new DaffOrderLoadSuccess<T>(resp)),
-    catchError(error => of(new DaffOrderLoadFailure('Failed to load order')))
   )
 
   /**
@@ -49,9 +50,10 @@ export class DaffOrderEffects<
   list$ = this.actions$.pipe(
     ofType(DaffOrderActionTypes.OrderListAction),
     switchMap((action: DaffOrderList) =>
-      this.driver.list(action.payload)
+      this.driver.list(action.payload).pipe(
+        map(resp => new DaffOrderListSuccess<T>(resp)),
+        catchError(error => of(new DaffOrderListFailure('Failed to list the orders')))
+      )
     ),
-    map(resp => new DaffOrderListSuccess<T>(resp)),
-    catchError(error => of(new DaffOrderListFailure('Failed to list the orders')))
   )
 }

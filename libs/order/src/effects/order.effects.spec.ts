@@ -78,7 +78,7 @@ describe('Daffodil | Order | OrderEffects', () => {
         daffDriverSpy.get.and.returnValue(response);
         const orderLoadFailureAction = new DaffOrderLoadFailure(error);
         actions$ = hot('--a', { a: orderLoadAction });
-        expected = cold('--(b|)', { b: orderLoadFailureAction });
+        expected = cold('--b', { b: orderLoadFailureAction });
       });
 
       it('should dispatch a DaffOrderLoadFailure action', () => {
@@ -111,7 +111,7 @@ describe('Daffodil | Order | OrderEffects', () => {
         daffDriverSpy.list.and.returnValue(response);
         const orderListFailureAction = new DaffOrderListFailure(error);
         actions$ = hot('--a', { a: orderListAction });
-        expected = cold('--(b|)', { b: orderListFailureAction });
+        expected = cold('--b', { b: orderListFailureAction });
       });
 
       it('should return a DaffOrderListFailure action', () => {
