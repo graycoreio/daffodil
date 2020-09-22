@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.2](https://github.com/graycoreio/daffodil/compare/v0.11.1...v0.11.2) (2020-09-22)
+
+
+### Features
+
+* **cart:** add platform agnostic payment method ID facade field ([#1065](https://github.com/graycoreio/daffodil/issues/1065)) ([dbd9463](https://github.com/graycoreio/daffodil/commit/dbd94638858749a9892320ebeb168ae8d7848417))
+* **cart:** export order result guard ([#1073](https://github.com/graycoreio/daffodil/issues/1073)) ([cc697c8](https://github.com/graycoreio/daffodil/commit/cc697c8270d5e6353fa19d6387d8ab7f8ea95c9c))
+* **product:** update the composite product option price and add disc… ([#1070](https://github.com/graycoreio/daffodil/issues/1070)) ([6cdf80e](https://github.com/graycoreio/daffodil/commit/6cdf80e150cc6d00855512dce4914afd193b5cdf))
+
+
+### Bug Fixes
+
+* **cart:** a null shipping total should be null instead of zero ([#1071](https://github.com/graycoreio/daffodil/issues/1071)) ([1656271](https://github.com/graycoreio/daffodil/commit/1656271732f97e9c1c4c947f9892cad612f0e3d3))
+* **cart:** cart totals transformer crashes for no shipping addresses ([#1066](https://github.com/graycoreio/daffodil/issues/1066)) ([c1582ce](https://github.com/graycoreio/daffodil/commit/c1582ce28cb47ff1c67748f673992a42e087d860))
+* **order:** driver errors cause effect observables to complete ([#1072](https://github.com/graycoreio/daffodil/issues/1072)) ([4ef1521](https://github.com/graycoreio/daffodil/commit/4ef15218265cc6e2b81f6608c66fc3ae585a93cc))
+* **order:** wrong cart ID GraphQL variable type ([#1067](https://github.com/graycoreio/daffodil/issues/1067)) ([5007cb6](https://github.com/graycoreio/daffodil/commit/5007cb636ef0a081c9d8c805bdb7a0ef024252c4))
+
 ### [0.11.1](https://github.com/graycoreio/daffodil/compare/v0.11.0...v0.11.1) (2020-09-14)
 
 
