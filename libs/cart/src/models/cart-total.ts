@@ -9,6 +9,12 @@ export enum DaffCartTotalTypeEnum {
 	shipping = 'shipping'
 }
 
+/**
+ * Since some cart totals might not have a value defined at all times, like shipping, the values of these totals
+ * can be null. Allowing their values to be null differentiates a non-existent value from a zero value. In the case of
+ * shipping, this would mean the difference between a cart with no selected shipping method and a cart with a selected shipping
+ * method that costs zero.
+ */
 export interface DaffCartTotal {
   value: number;
   label: string;
