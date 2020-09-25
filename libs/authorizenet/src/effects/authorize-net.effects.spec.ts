@@ -9,12 +9,12 @@ import { DaffCartAddress, DaffCartPaymentUpdateWithBilling, DaffCartPaymentUpdat
 import { DaffCartAddressFactory, DaffCartFactory } from '@daffodil/cart/testing';
 
 import { DaffAuthorizeNetEffects } from './authorize-net.effects';
-import { 
-	DaffAuthorizeNetUpdatePayment, 
-	DaffAuthorizeNetUpdatePaymentSuccess, 
-	DaffLoadAcceptJs, 
-	DaffLoadAcceptJsSuccess, 
-	DaffLoadAcceptJsFailure 
+import {
+	DaffAuthorizeNetUpdatePayment,
+	DaffAuthorizeNetUpdatePaymentSuccess,
+	DaffLoadAcceptJs,
+	DaffLoadAcceptJsSuccess,
+	DaffLoadAcceptJsFailure
 } from '../actions/authorizenet.actions';
 import { DaffAuthorizeNetTokenRequest } from '../models/request/authorize-net-token-request';
 import { DaffAuthorizeNetUpdatePaymentFailure } from '../actions/authorizenet.actions';
@@ -52,7 +52,7 @@ describe('DaffAuthorizeNetEffects', () => {
 	}
 	let stubAddress: DaffCartAddress;
 	const acceptJsLoadingServiceSpy = jasmine.createSpyObj('DaffAcceptJsLoadingService', ['load', 'getAccept']);
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
 			imports: [
@@ -82,15 +82,15 @@ describe('DaffAuthorizeNetEffects', () => {
   describe('updatePayment$', () => {
 
 		let expected;
-    
+
     describe('when the call to the AuthorizeNetService is successful', () => {
-			
+
 			beforeEach(() => {
 				const authorizeNetUpdatePayment = new DaffAuthorizeNetUpdatePayment(paymentTokenRequest, stubAddress);
 				spyOn(authorizeNetPaymentService, 'generateToken').and.returnValue(of('token'));
         actions$ = hot('--a', { a: authorizeNetUpdatePayment });
       });
-      
+
       it('should dispatch a DaffCartPaymentUpdateWithBilling action', () => {
         const cartPaymentUpdateWithBillingAction = new DaffCartPaymentUpdateWithBilling({
 					method: MAGENTO_AUTHORIZE_NET_PAYMENT_ID,
@@ -102,18 +102,18 @@ describe('DaffAuthorizeNetEffects', () => {
 		});
 
     describe('when the call to the AuthorizeNetService fails', () => {
-      
+
       beforeEach(() => {
 				const authorizeNetUpdatePayment = new DaffAuthorizeNetUpdatePayment(paymentTokenRequest, stubAddress);
-        const error = 'Failed to retrieve the token';
+        const error = new Error('Failed to retrieve the token');
 				const response = cold('#', {}, error);
 				spyOn(authorizeNetPaymentService, 'generateToken').and.returnValue(response);
-				
-        const authorizeNetUpdatePaymentFailureAction = new DaffAuthorizeNetUpdatePaymentFailure(error);
+
+        const authorizeNetUpdatePaymentFailureAction = new DaffAuthorizeNetUpdatePaymentFailure(error.message);
         actions$ = hot('--a', { a: authorizeNetUpdatePayment });
         expected = cold('--b', { b: authorizeNetUpdatePaymentFailureAction });
       });
-      
+
       it('should dispatch an AuthorizeNetUpdatePaymentFailure action', () => {
         expect(effects.updatePayment$).toBeObservable(expected);
       });
@@ -121,7 +121,7 @@ describe('DaffAuthorizeNetEffects', () => {
 	});
 
 	describe('updatePaymentSuccessSubstream$', () => {
-		
+
 		it('should dispatch DaffAuthorizeNetUpdatePaymentSuccess when the cart payment method has been successfully updated', () => {
 			const stubCart = new DaffCartFactory().create();
 			const authorizeNetUpdatePayment = new DaffAuthorizeNetUpdatePayment(paymentTokenRequest, stubAddress);
@@ -135,7 +135,7 @@ describe('DaffAuthorizeNetEffects', () => {
 	});
 
 	describe('updatePaymentFailureSubstream$', () => {
-		
+
 		it('should dispatch DaffAuthorizeNetUpdatePaymentFailure when the cart payment method has failed to update', () => {
 			const authorizeNetUpdatePayment = new DaffAuthorizeNetUpdatePayment(paymentTokenRequest, stubAddress);
 			const cartPaymentUpdateWithBillingFailure = new DaffCartPaymentUpdateWithBillingFailure('error');
@@ -159,7 +159,7 @@ describe('DaffAuthorizeNetEffects', () => {
 			});
 			expect(true).toBeTruthy();
 		});
-		
+
 		it('should trigger a DaffLoadAcceptJsSuccess action if acceptJs loads', () => {
 			acceptJsLoadingServiceSpy.getAccept.and.returnValue(true);
 			const loadAcceptJsAction = new DaffLoadAcceptJs();
@@ -168,7 +168,7 @@ describe('DaffAuthorizeNetEffects', () => {
 
 			expect(effects.loadAcceptJs$()).toBeObservable(expected);
 		});
-		
+
 		it('should trigger a DaffLoadAcceptJsFailure action if acceptJs fails to load', () => {
 			acceptJsLoadingServiceSpy.getAccept.and.throwError('error')
 			const loadAcceptJsAction = new DaffLoadAcceptJs();
