@@ -6,10 +6,10 @@ import { Observable, of } from 'rxjs';
 import { DaffCartPaymentActionTypes, DaffCartPaymentUpdateWithBilling } from '@daffodil/cart';
 import { substream, backoff } from '@daffodil/core';
 
-import { 
-	DaffAuthorizeNetActionTypes, 
-	DaffAuthorizeNetUpdatePayment, 
-	DaffAuthorizeNetUpdatePaymentFailure, 
+import {
+	DaffAuthorizeNetActionTypes,
+	DaffAuthorizeNetUpdatePayment,
+	DaffAuthorizeNetUpdatePaymentFailure,
 	DaffLoadAcceptJs,
 	DaffAuthorizeNetUpdatePaymentSuccess,
 	DaffLoadAcceptJsFailure,
@@ -33,16 +33,18 @@ export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = Da
   @Effect()
   updatePayment$ : Observable<any> = this.actions$.pipe(
 		ofType(DaffAuthorizeNetActionTypes.UpdatePaymentAction),
-		switchMap((action: DaffAuthorizeNetUpdatePayment<T>) => 
+		switchMap((action: DaffAuthorizeNetUpdatePayment<T>) =>
 			this.driver.generateToken(action.tokenRequest).pipe(
 				map(resp => new DaffCartPaymentUpdateWithBilling(
 					{
 						method: this.authorizeNetPaymentId,
 						payment_info: resp
-					}, 
+					},
 					action.address
 				)),
-				catchError(error => of(new DaffAuthorizeNetUpdatePaymentFailure(error)))
+        catchError((error: Error) =>
+          of(new DaffAuthorizeNetUpdatePaymentFailure(error.message))
+        )
 			)
 		)
 	)
@@ -64,7 +66,7 @@ export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = Da
 		),
 		map((actions: Actions[]) => new DaffAuthorizeNetUpdatePaymentFailure('The payment method has failed to update the cart.'))
 	)
-	
+
 	@Effect()
   loadAcceptJs$ = (maxTries = 10, ms = 10): Observable<any> => this.actions$.pipe(
     ofType(DaffAuthorizeNetActionTypes.LoadAcceptJsAction),
