@@ -15,7 +15,7 @@ import { DaffConfigurableCartItemAttribute } from '../../models/configurable-car
 import { DaffCompositeCartItemOption } from '../../models/composite-cart-item';
 import { DaffCartTotal } from '../../models/cart-total';
 import { DaffCartPaymentMethodIdMap } from '../../injection-tokens/public_api';
-import { filter, map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +50,7 @@ export class DaffCartFacade<
   totalDiscount$: Observable<DaffCartTotal['value']>;
   totalTax$: Observable<DaffCartTotal['value']>;
   shippingTotal$: Observable<DaffCartTotal['value']>;
+  hasShippingMethodApplied$: Observable<boolean>;
   coupons$: Observable<DaffCart['coupons']>;
   items$: Observable<DaffCart['items']>;
   hasOutOfStockItems$: Observable<boolean>;
@@ -113,6 +114,7 @@ export class DaffCartFacade<
 			selectCartTotalDiscount,
 			selectCartTotalTax,
 			selectCartShippingTotal,
+			selectCartHasShippingMethodApplied,
 			selectCartCoupons,
 			selectCartItems,
 			selectCartHasOutOfStockItems,
@@ -174,6 +176,7 @@ export class DaffCartFacade<
     this.totalDiscount$ = this.store.pipe(select(selectCartTotalDiscount));
     this.totalTax$ = this.store.pipe(select(selectCartTotalTax));
     this.shippingTotal$ = this.store.pipe(select(selectCartShippingTotal));
+    this.hasShippingMethodApplied$ = this.store.pipe(select(selectCartHasShippingMethodApplied));
     this.coupons$ = this.store.pipe(select(selectCartCoupons));
     this.items$ = this.store.pipe(select(selectCartItems));
     this.hasOutOfStockItems$ = this.store.pipe(select(selectCartHasOutOfStockItems));

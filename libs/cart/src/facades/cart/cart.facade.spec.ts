@@ -411,6 +411,16 @@ describe('DaffCartFacade', () => {
     });
   });
 
+  describe('hasShippingMethodApplied$', () => {
+
+    it('should return whether the cart has a shipping method applied', () => {
+      const cart = cartFactory.create();
+      const expected = cold('a', { a: true });
+      store.dispatch(new DaffCartLoadSuccess(cart));
+      expect(facade.hasShippingMethodApplied$).toBeObservable(expected);
+    });
+  });
+
   describe('coupons$', () => {
     it('should initially be an empty array', () => {
       const expected = cold('a', { a: []});

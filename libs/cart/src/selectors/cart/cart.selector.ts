@@ -44,6 +44,7 @@ export interface DaffCartStateMemoizedSelectors<
 	selectCartTotalTax: MemoizedSelector<object, DaffCartTotal['value']>;
 	selectCartTotalDiscount: MemoizedSelector<object, DaffCartTotal['value']>;
 	selectCartShippingTotal: MemoizedSelector<object, DaffCartTotal['value']>;
+	selectCartHasShippingMethodApplied: MemoizedSelector<object, boolean>;
 	selectCartCoupons: MemoizedSelector<object, T['coupons']>;
 	selectCartItems: MemoizedSelector<object, T['items']>;
 	selectCartHasOutOfStockItems: MemoizedSelector<object, boolean>;
@@ -204,6 +205,12 @@ const createCartSelectors = <
 			return shippingTotalObject ? shippingTotalObject.value : null;
 		}
 	);
+	const selectCartHasShippingMethodApplied = createSelector(
+		selectCartValue,
+		(state: DaffCartReducerState<T>['cart']) => {
+			return selectCartShippingTotal.projector(state) !== null;
+		}
+	);
 	const selectCartCoupons = createSelector(
 		selectCartValue,
 		(state: DaffCartReducerState<T>['cart']) => state.coupons
@@ -328,6 +335,7 @@ const createCartSelectors = <
 		selectCartTotalDiscount,
 		selectCartTotalTax,
 		selectCartShippingTotal,
+		selectCartHasShippingMethodApplied,
 		selectCartCoupons,
 		selectCartItems,
 		selectCartHasOutOfStockItems,

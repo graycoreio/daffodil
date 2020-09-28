@@ -42,6 +42,7 @@ export interface DaffCartFacadeInterface<
   totalDiscount$: Observable<DaffCartTotal['value']>;
   totalTax$: Observable<DaffCartTotal['value']>;
   shippingTotal$: Observable<DaffCartTotal['value']>;
+  hasShippingMethodApplied$: Observable<boolean>;
   coupons$: Observable<DaffCart['coupons']>;
   items$: Observable<DaffCart['items']>;
   hasOutOfStockItems$: Observable<boolean>;

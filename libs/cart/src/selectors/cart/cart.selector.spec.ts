@@ -61,6 +61,7 @@ describe('Cart | Selector | Cart', () => {
 		selectCartTotalTax,
 		selectCartTotalDiscount,
 		selectCartShippingTotal,
+		selectCartHasShippingMethodApplied,
 		selectCartCoupons,
 		selectCartItems,
 		selectCartHasOutOfStockItems,
@@ -338,6 +339,39 @@ describe('Cart | Selector | Cart', () => {
     it('returns cart shipping total', () => {
       const selector = store.pipe(select(selectCartShippingTotal));
       const expected = cold('a', {a: cart.totals.find(total => total.name === DaffCartTotalTypeEnum.shipping).value});
+
+      expect(selector).toBeObservable(expected);
+    });
+	});
+
+  describe('selectCartHasShippingMethodApplied', () => {
+    it('returns true when the cart has a shipping method applied', () => {
+      const selector = store.pipe(select(selectCartHasShippingMethodApplied));
+      const expected = cold('a', {a: true });
+
+      expect(selector).toBeObservable(expected);
+		});
+		
+    it('returns true when the cart has a shipping method with a total of zero', () => {
+			cart.totals = [
+				{
+					value: 0,
+					label: 'shipping',
+					name: DaffCartTotalTypeEnum.shipping
+				}
+			];
+			store.dispatch(new DaffCartLoadSuccess(cart));
+      const selector = store.pipe(select(selectCartHasShippingMethodApplied));
+      const expected = cold('a', {a: true });
+
+      expect(selector).toBeObservable(expected);
+    });
+		
+    it('returns false when the cart does not have a shipping method applied', () => {
+			cart.totals = [];
+			store.dispatch(new DaffCartLoadSuccess(cart));
+      const selector = store.pipe(select(selectCartHasShippingMethodApplied));
+      const expected = cold('a', {a: false });
 
       expect(selector).toBeObservable(expected);
     });
