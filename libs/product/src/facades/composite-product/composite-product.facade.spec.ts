@@ -140,6 +140,32 @@ describe('DaffCompositeProductFacade', () => {
 		});
   });
 
+  describe('getMinDiscountedPrice', () => {
+
+    it('should return the discounted price of the product', () => {
+			const expected = cold('a', { a:
+				stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+				stubCompositeProduct.items[0].options[0].price - stubCompositeProduct.items[0].options[0].discount.amount +
+				stubCompositeProduct.items[1].options[0].price - stubCompositeProduct.items[1].options[0].discount.amount
+			});
+
+			expect(facade.getMinDiscountedPrice(stubCompositeProduct.id)).toBeObservable(expected);
+		});
+  });
+
+  describe('getMaxDiscountedPrice', () => {
+
+    it('should return the price of the product', () => {
+			const expected = cold('a', { a:
+				stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+				stubCompositeProduct.items[0].options[0].price - stubCompositeProduct.items[0].options[0].discount.amount +
+				stubCompositeProduct.items[1].options[0].price - stubCompositeProduct.items[1].options[0].discount.amount
+			});
+
+			expect(facade.getMaxDiscountedPrice(stubCompositeProduct.id)).toBeObservable(expected);
+		});
+  });
+
   describe('getDiscountAmount', () => {
 
     it('should return the total discount amount for a composite product', () => {

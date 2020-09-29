@@ -25,9 +25,21 @@ export class MockDaffCompositeProductFacade implements DaffCompositeProductFacad
 	getPrice(id: string): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	};
+	getMinDiscountedPrice(id: string): BehaviorSubject<number> {
+		return new BehaviorSubject(null);
+	};
+	getMaxDiscountedPrice(id: string): BehaviorSubject<number> {
+		return new BehaviorSubject(null);
+	};
+	/**
+	 * @deprecated
+	 */
 	getDiscountAmount(id: string): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	};
+	/**
+	 * @deprecated Use getMinDiscountedPrice and getMaxDiscountedPrice instead
+	 */
 	getDiscountedPrice(id: string): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	};

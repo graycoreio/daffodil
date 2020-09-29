@@ -17,6 +17,8 @@ export interface DaffCompositeProductMemoizedSelectors {
 	selectCompositeProductMaxPrice: MemoizedSelectorWithProps<object, object, number>;
 	selectCompositeProductHasPriceRange: MemoizedSelectorWithProps<object, object, boolean>;
 	selectCompositeProductPrice: MemoizedSelectorWithProps<object, object, number>;
+	selectCompositeProductMinDiscountedPrice: MemoizedSelectorWithProps<object, object, number>;
+	selectCompositeProductMaxDiscountedPrice: MemoizedSelectorWithProps<object, object, number>;
 	selectCompositeProductDiscountAmount: MemoizedSelectorWithProps<object, object, number>;
 	selectCompositeProductDiscountedPrice: MemoizedSelectorWithProps<object, object, number>;
 	selectCompositeProductHasDiscount: MemoizedSelectorWithProps<object, object, boolean>;
@@ -121,7 +123,7 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 			return (<DaffCompositeProduct>product).items.reduce((acc, item) => 
 				daffAdd(
 					acc, 
-					appliedOptions[item.id]  ? appliedOptions[item.id].price : getMaximumRequiredItemPrice(item)
+					appliedOptions[item.id] ? appliedOptions[item.id].price : getMaximumRequiredItemPrice(item)
 				), product.price);
 		}
 	);
@@ -157,9 +159,56 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 		}
 	);
 
+	/**
+	 * Selector for the minimum discounted price for required items of a composite product, depending on the current selection of item options.
+	 * This would be used for a composite product that has required items without default selections.
+	 */
+	//todo use optional chaining where possible.
+	const selectCompositeProductMinDiscountedPrice = createSelector(
+		selectProductEntities,
+		selectCompositeProductAppliedOptionsEntitiesState,
+		(products, appliedOptionsEntities, props) => {
+			const product = selectProduct.projector(products, { id: props.id });
+			if(product.type !== DaffProductTypeEnum.Composite) {
+				return undefined;
+			}
+			const appliedOptions = selectCompositeProductAppliedOptions.projector(products, appliedOptionsEntities, { id: props.id });
+			
+			return (<DaffCompositeProduct>product).items.reduce((acc, item) => daffAdd(
+				acc, 
+				appliedOptions[item.id] ? 
+					daffSubtract(appliedOptions[item.id].price, appliedOptions[item.id].discount && appliedOptions[item.id].discount.amount) : 
+					getMinimumCompositeItemDiscountedPrice(item)
+			), daffSubtract(product.price, product.discount ? product.discount.amount : 0));
+		}
+	);
+
+	/**
+	 * Selector for the minimum discounted price for required items of a composite product, depending on the current selection of item options.
+	 * This would be used for a composite product that has required items without default selections.
+	 */
+	//todo use optional chaining where possible.
+	const selectCompositeProductMaxDiscountedPrice = createSelector(
+		selectProductEntities,
+		selectCompositeProductAppliedOptionsEntitiesState,
+		(products, appliedOptionsEntities, props) => {
+			const product = selectProduct.projector(products, { id: props.id });
+			if(product.type !== DaffProductTypeEnum.Composite) {
+				return undefined;
+			}
+			const appliedOptions = selectCompositeProductAppliedOptions.projector(products, appliedOptionsEntities, { id: props.id });
+			return (<DaffCompositeProduct>product).items.reduce((acc, item) => daffAdd(
+				acc, 
+				appliedOptions[item.id] ? 
+					daffSubtract(appliedOptions[item.id].price, appliedOptions[item.id].discount && appliedOptions[item.id].discount.amount) : 
+					getMaximumCompositeItemDiscountedPrice(item)
+			), daffSubtract(product.price, product.discount ? product.discount.amount : 0));
+		}
+	);
 
 	/**
 	 * Selector for the discount amount for current configuration of the composite product.
+	 * @deprecated Use selectCompositeProductMinDiscountedPrice and selectCompositeProductMaxDiscountedPrice instead.
 	 */
 	const selectCompositeProductDiscountAmount = createSelector(
 		selectProductEntities,
@@ -177,7 +226,8 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 
 	/**
 	 * Selector for the discounted price for current configuration of the composite product.
-	 */
+	 * @deprecated Use selectCompositeProductMinDiscountedPrice and selectCompositeProductMaxDiscountedPrice instead.
+ 	 */
 	const selectCompositeProductDiscountedPrice = createSelector(
 		selectProductEntities,
 		selectCompositeProductAppliedOptionsEntitiesState,
@@ -206,7 +256,10 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 				return undefined;
 			}
 
-			return selectCompositeProductDiscountAmount.projector(products, appliedOptionsEntities, { id: props.id }) > 0;
+			return daffSubtract(
+				selectCompositeProductMinPrice.projector(products, appliedOptionsEntities, { id: props.id }), 
+				selectCompositeProductMinDiscountedPrice.projector(products, appliedOptionsEntities, { id: props.id })
+			) > 0;
 		}
 	);
 
@@ -218,6 +271,8 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 		selectCompositeProductMaxPrice,
 		selectCompositeProductHasPriceRange,
 		selectCompositeProductPrice,
+		selectCompositeProductMinDiscountedPrice,
+		selectCompositeProductMaxDiscountedPrice,
 		selectCompositeProductDiscountAmount,
 		selectCompositeProductDiscountedPrice,
 		selectCompositeProductHasDiscount
@@ -248,6 +303,27 @@ function getOptionsDiscountAmount(product: DaffCompositeProduct, appliedOptions:
  */
 function getMinimumCompositeItemPrice(item: DaffCompositeProductItem): number {
 	return item.required ? Math.min(...item.options.map(option => option.price)) : 0;
+}
+
+/**
+ * The minimum discounted price of an item is zero if the item is optional.
+ * @param item DaffCompositeProductItem
+ */
+//todo use optional chaining when possible
+function getMinimumCompositeItemDiscountedPrice(item: DaffCompositeProductItem): number {
+	return item.required ? Math.min(...item.options.map(option =>
+		daffSubtract(option.price, option.discount ? option.discount.amount : 0)
+	)) : 0;
+}
+/**
+ * The maximum discounted price of an item is zero if the item is optional.
+ * @param item DaffCompositeProductItem
+ */
+//todo use optional chaining when possible
+function getMaximumCompositeItemDiscountedPrice(item: DaffCompositeProductItem): number {
+	return item.required ? Math.max(...item.options.map(option => 
+		daffSubtract(option.price, option.discount ? option.discount.amount : 0)
+	)) : 0;
 }
 
 /**
