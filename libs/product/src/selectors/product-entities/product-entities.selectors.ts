@@ -86,6 +86,7 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
 		}
 	);
 
+	//todo use optional chaining when possible.
 	const selectProductDiscountPercent = createSelector(
 		selectProductEntities,
 		(products, props) => {
