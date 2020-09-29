@@ -14,6 +14,12 @@ export class MockDaffProductFacade implements DaffProductFacadeInterface {
 	hasDiscount(id: string): BehaviorSubject<boolean> {
 		return new BehaviorSubject(false);
 	}
+	getDiscountAmount(id: string): BehaviorSubject<number> {
+		return new BehaviorSubject(null);
+	}
+	getDiscountPercent(id: string): BehaviorSubject<number> {
+		return new BehaviorSubject(null);
+	}
 	isOutOfStock(id: string): BehaviorSubject<boolean> {
 		return new BehaviorSubject(false);
 	}

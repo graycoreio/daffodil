@@ -14,6 +14,7 @@ export interface DaffProductEntitiesMemoizedSelectors<T extends DaffProduct = Da
 	selectProductTotal: MemoizedSelector<object, number>;
 	selectProduct: MemoizedSelectorWithProps<object, object, T>;
 	selectProductDiscountAmount: MemoizedSelectorWithProps<object, object, number>;
+	selectProductDiscountPercent: MemoizedSelectorWithProps<object, object, number>;
 	selectProductHasDiscount: MemoizedSelectorWithProps<object, object, boolean>;
 	selectIsProductOutOfStock: MemoizedSelectorWithProps<object, object, boolean>;
 }
@@ -85,6 +86,15 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
 		}
 	);
 
+	const selectProductDiscountPercent = createSelector(
+		selectProductEntities,
+		(products, props) => {
+			const product = selectProduct.projector(products, { id: props.id });
+
+			return (product.discount && product.discount.percent) || 0;
+		}
+	);
+
 	const selectProductHasDiscount = createSelector(
 		selectProductEntities,
 		(products, props) => {
@@ -111,6 +121,7 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
 		selectProductTotal,
 		selectProduct,
 		selectProductDiscountAmount,
+		selectProductDiscountPercent,
 		selectProductHasDiscount,
 		selectIsProductOutOfStock
 	}

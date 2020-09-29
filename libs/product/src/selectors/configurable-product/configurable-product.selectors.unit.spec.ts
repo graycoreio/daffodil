@@ -22,9 +22,12 @@ describe('Configurable Product Selectors | unit tests', () => {
 	const {
 		selectConfigurableProductPrices,
 		selectConfigurableProductDiscountedPrices,
+		selectConfigurableProductPercentDiscounts,
 		selectConfigurableProductHasDiscount,
 		selectConfigurableProductMinimumPrice,
 		selectConfigurableProductMaximumPrice,
+		selectConfigurableProductMinimumPercentDiscount,
+		selectConfigurableProductMaximumPercentDiscount,
 		selectConfigurableProductMinimumDiscountedPrice,
 		selectConfigurableProductMaximumDiscountedPrice,
 		isConfigurablePriceRanged,
@@ -89,6 +92,26 @@ describe('Configurable Product Selectors | unit tests', () => {
 		});
 	});
 
+
+	describe('selectConfigurableProductPercentDiscounts', () => {
+
+		it('should return an array of the percent discounts for a product', () => {
+			stubConfigurableProduct.variants[0].discount.percent = 1;
+			stubConfigurableProduct.variants[1].discount.percent = 2;
+			stubConfigurableProduct.variants[2].discount.percent = 3;
+			stubConfigurableProduct.variants[3].discount.percent = 4;
+			store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
+			store.dispatch(new DaffConfigurableProductApplyAttribute(
+				stubConfigurableProduct.id,
+				stubConfigurableProduct.configurableAttributes[0].code,
+				stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
+			));
+			const selector = store.pipe(select(selectConfigurableProductPercentDiscounts, { id: stubConfigurableProduct.id }));
+			const expected = cold('a', { a: [1, 2, 3, 4] });
+
+			expect(selector).toBeObservable(expected);
+		});
+	});
 	describe('selectConfigurableProductHasDiscount', () => {
 
 		it('should return true when a variant has a discount', () => {
@@ -209,6 +232,46 @@ describe('Configurable Product Selectors | unit tests', () => {
 			));
 			const selector = store.pipe(select(selectConfigurableProductMaximumDiscountedPrice, { id: stubConfigurableProduct.id }));
 			const expected = cold('a', { a: 9 });
+
+			expect(selector).toBeObservable(expected);
+		});
+	});
+
+	describe('selectConfigurableProductMinimumPercentDiscount', () => {
+
+		it('should return the maximum percent discount of the range of variant discounted prices', () => {
+			stubConfigurableProduct.variants[0].discount.percent = 2;
+			stubConfigurableProduct.variants[1].discount.percent = 1;
+			stubConfigurableProduct.variants[2].discount.percent = 3;
+			stubConfigurableProduct.variants[3].discount.percent = 4;
+			store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
+			store.dispatch(new DaffConfigurableProductApplyAttribute(
+				stubConfigurableProduct.id,
+				stubConfigurableProduct.configurableAttributes[0].code,
+				stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
+			));
+			const selector = store.pipe(select(selectConfigurableProductMinimumPercentDiscount, { id: stubConfigurableProduct.id }));
+			const expected = cold('a', { a: 1 });
+
+			expect(selector).toBeObservable(expected);
+		});
+	});
+
+	describe('selectConfigurableProductMaximumPercentDiscount', () => {
+
+		it('should return the maximum percent discount of the range of variant discounted prices', () => {
+			stubConfigurableProduct.variants[0].discount.percent = 2;
+			stubConfigurableProduct.variants[1].discount.percent = 1;
+			stubConfigurableProduct.variants[2].discount.percent = 3;
+			stubConfigurableProduct.variants[3].discount.percent = 4;
+			store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
+			store.dispatch(new DaffConfigurableProductApplyAttribute(
+				stubConfigurableProduct.id,
+				stubConfigurableProduct.configurableAttributes[0].code,
+				stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
+			));
+			const selector = store.pipe(select(selectConfigurableProductMaximumPercentDiscount, { id: stubConfigurableProduct.id }));
+			const expected = cold('a', { a: 4 });
 
 			expect(selector).toBeObservable(expected);
 		});

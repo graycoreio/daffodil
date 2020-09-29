@@ -42,6 +42,14 @@ export class DaffProductFacade<T extends DaffProduct = DaffProduct> implements D
 		return this.store.pipe(select(this.selectors.selectProductHasDiscount, { id }));
 	}
 
+	getDiscountAmount(id: string): Observable<number> {
+		return this.store.pipe(select(this.selectors.selectProductDiscountAmount, { id }));
+	}
+
+	getDiscountPercent(id: string): Observable<number> {
+		return this.store.pipe(select(this.selectors.selectProductDiscountPercent, { id }));
+	}
+
 	isOutOfStock(id: string): Observable<boolean> {
 		return this.store.pipe(select(this.selectors.selectIsProductOutOfStock, { id }));
 	}
