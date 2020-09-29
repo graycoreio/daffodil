@@ -22,6 +22,12 @@ export class MockDaffConfigurableProductFacade implements DaffConfigurableProduc
 	getMaximumDiscountedPrice(id: string): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	};
+	getMinimumPercentDiscount(id: string): BehaviorSubject<number> {
+		return new BehaviorSubject(null);
+	};
+	getMaximumPercentDiscount(id: string): BehaviorSubject<number> {
+		return new BehaviorSubject(null);
+	};
 	isPriceRanged(id: string): BehaviorSubject<boolean> {
 		return new BehaviorSubject(null);
 	};

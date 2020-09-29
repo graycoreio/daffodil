@@ -178,6 +178,42 @@ describe('DaffConfigurableProductFacade', () => {
 		});
   });
 
+  describe('getMinimumPercentDiscount', () => {
+
+    it('should return the minimum possible percent discount for a configurable product', () => {
+			stubConfigurableProduct.variants[0].discount.percent = 3;
+			stubConfigurableProduct.variants[1].discount.percent = 2;
+			stubConfigurableProduct.variants[2].discount.percent = 1;
+			stubConfigurableProduct.variants[3].discount.percent = 3;
+			const expected = cold('a', { a: 1 });
+
+      store.dispatch(new DaffConfigurableProductApplyAttribute(
+				stubConfigurableProduct.id,
+				stubConfigurableProduct.configurableAttributes[0].code,
+				stubConfigurableProduct.configurableAttributes[0].values[0].value
+			));
+			expect(facade.getMinimumPercentDiscount(stubConfigurableProduct.id)).toBeObservable(expected);
+		});
+  });
+
+  describe('getMaximumPercentDiscount', () => {
+
+    it('should return the maximum possible percent discount for a configurable product', () => {
+			stubConfigurableProduct.variants[0].discount.percent = 3;
+			stubConfigurableProduct.variants[1].discount.percent = 2;
+			stubConfigurableProduct.variants[2].discount.percent = 1;
+			stubConfigurableProduct.variants[3].discount.percent = 3;
+			const expected = cold('a', { a: 3 });
+
+      store.dispatch(new DaffConfigurableProductApplyAttribute(
+				stubConfigurableProduct.id,
+				stubConfigurableProduct.configurableAttributes[0].code,
+				stubConfigurableProduct.configurableAttributes[0].values[0].value
+			));
+			expect(facade.getMaximumPercentDiscount(stubConfigurableProduct.id)).toBeObservable(expected);
+		});
+	});
+
   describe('isPriceRanged', () => {
 
     it('should return whether the possible price is a range of prices', () => {

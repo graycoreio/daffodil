@@ -94,6 +94,26 @@ describe('DaffProductFacade', () => {
 		});
 	});
 	
+	describe('getDiscountAmount()', () => {
+		it('should be an observable of whether the given product has discount', () => {
+			const product = {id: '1', name: 'Some Name', discount: { amount: 20, percent: 10 }};
+      const expected = cold('a', { a: 20 });
+      store.dispatch(new DaffProductLoad(product.id));
+      store.dispatch(new DaffProductLoadSuccess(product));
+      expect(facade.getDiscountAmount(product.id)).toBeObservable(expected);
+		});
+	});
+	
+	describe('getDiscountPercent()', () => {
+		it('should be an observable of whether the given product has discount', () => {
+			const product = {id: '1', name: 'Some Name', discount: { amount: 20, percent: 10 }};
+      const expected = cold('a', { a: 10 });
+      store.dispatch(new DaffProductLoad(product.id));
+      store.dispatch(new DaffProductLoadSuccess(product));
+      expect(facade.getDiscountPercent(product.id)).toBeObservable(expected);
+		});
+	});
+	
 	describe('isOutOfStock()', () => {
 		it('should be an observable of whether the given product is out of stock', () => {
 			const product = {id: '1', name: 'Some Name', discount: { amount: 20, percent: 10 }, in_stock: false};
