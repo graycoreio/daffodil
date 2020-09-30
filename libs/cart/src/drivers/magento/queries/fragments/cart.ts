@@ -5,7 +5,6 @@ import { availablePaymentMethodFragment } from './available-payment-method';
 import { selectedPaymentMethodFragment } from './selected-payment-method';
 import { cartItemFragment } from './cart-item';
 import { cartCouponFragment } from './cart-coupon';
-import { availableShippingMethodFragment } from './available-shipping-method';
 import { selectedShippingMethodFragment } from './selected-shipping-method';
 import { pricesFragment } from './prices';
 
@@ -19,9 +18,6 @@ export const cartFragment = gql`
     shipping_addresses {
       ...cartAddress
       ... on ShippingCartAddress {
-        available_shipping_methods {
-          ...availableShippingMethod
-        }
         selected_shipping_method {
           ...selectedShippingMethod
         }
@@ -46,7 +42,6 @@ export const cartFragment = gql`
   ${cartAddressFragment}
   ${availablePaymentMethodFragment}
   ${selectedPaymentMethodFragment}
-  ${availableShippingMethodFragment}
   ${selectedShippingMethodFragment}
   ${cartItemFragment}
   ${pricesFragment}
