@@ -19,6 +19,7 @@ export interface DaffCompositeProductMemoizedSelectors {
 	selectCompositeProductPrice: MemoizedSelectorWithProps<object, object, number>;
 	selectCompositeProductMinDiscountedPrice: MemoizedSelectorWithProps<object, object, number>;
 	selectCompositeProductMaxDiscountedPrice: MemoizedSelectorWithProps<object, object, number>;
+	selectCompositeProductHasDiscountedPriceRange: MemoizedSelectorWithProps<object, object, boolean>;
 	selectCompositeProductDiscountAmount: MemoizedSelectorWithProps<object, object, number>;
 	selectCompositeProductDiscountedPrice: MemoizedSelectorWithProps<object, object, number>;
 	selectCompositeProductHasDiscount: MemoizedSelectorWithProps<object, object, boolean>;
@@ -101,7 +102,7 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 			const appliedOptions = selectCompositeProductAppliedOptions.projector(products, appliedOptionsEntities, { id: props.id });
 			return (<DaffCompositeProduct>product).items.reduce((acc, item) => daffAdd(
 				acc, 
-				appliedOptions[item.id] ? appliedOptions[item.id].price : getMinimumCompositeItemPrice(item)
+				appliedOptions[item.id] ? daffMultiply(appliedOptions[item.id].price, appliedOptions[item.id].quantity) : getMinimumCompositeItemPrice(item)
 			), product.price);
 		}
 	);
@@ -123,7 +124,7 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 			return (<DaffCompositeProduct>product).items.reduce((acc, item) => 
 				daffAdd(
 					acc, 
-					appliedOptions[item.id] ? appliedOptions[item.id].price : getMaximumRequiredItemPrice(item)
+					appliedOptions[item.id] ? daffMultiply(appliedOptions[item.id].price, appliedOptions[item.id].quantity) : getMaximumRequiredItemPrice(item)
 				), product.price);
 		}
 	);
@@ -140,6 +141,7 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 
 	/**
 	 * Selector for the price for current configuration of the composite product.
+	 * This will only be the final price when selectCompositeProductHasPriceRange is false.
 	 */
 	const selectCompositeProductPrice = createSelector(
 		selectProductEntities,
@@ -173,11 +175,13 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 				return undefined;
 			}
 			const appliedOptions = selectCompositeProductAppliedOptions.projector(products, appliedOptionsEntities, { id: props.id });
-			
 			return (<DaffCompositeProduct>product).items.reduce((acc, item) => daffAdd(
 				acc, 
 				appliedOptions[item.id] ? 
-					daffSubtract(appliedOptions[item.id].price, appliedOptions[item.id].discount && appliedOptions[item.id].discount.amount) : 
+					daffMultiply(
+						daffSubtract(appliedOptions[item.id].price, appliedOptions[item.id].discount && appliedOptions[item.id].discount.amount), 
+						appliedOptions[item.id].quantity
+					) : 
 					getMinimumCompositeItemDiscountedPrice(item)
 			), daffSubtract(product.price, product.discount ? product.discount.amount : 0));
 		}
@@ -200,11 +204,24 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 			return (<DaffCompositeProduct>product).items.reduce((acc, item) => daffAdd(
 				acc, 
 				appliedOptions[item.id] ? 
-					daffSubtract(appliedOptions[item.id].price, appliedOptions[item.id].discount && appliedOptions[item.id].discount.amount) : 
+					daffMultiply(
+						daffSubtract(appliedOptions[item.id].price, appliedOptions[item.id].discount && appliedOptions[item.id].discount.amount),
+						appliedOptions[item.id].quantity
+					) : 
 					getMaximumCompositeItemDiscountedPrice(item)
 			), daffSubtract(product.price, product.discount ? product.discount.amount : 0));
 		}
 	);
+
+	/**
+	 * Selector for whether the composite product has a discounted price range based on the currently applied item options.
+	 */
+	const selectCompositeProductHasDiscountedPriceRange = createSelector(
+		selectProductEntities,
+		selectCompositeProductAppliedOptionsEntitiesState,
+		(products, appliedOptionsEntities, props) => selectCompositeProductMinDiscountedPrice.projector(products, appliedOptionsEntities, { id: props.id }) 
+			!== selectCompositeProductMaxDiscountedPrice.projector(products, appliedOptionsEntities, { id: props.id })
+	)
 
 	/**
 	 * Selector for the discount amount for current configuration of the composite product.
@@ -273,6 +290,7 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 		selectCompositeProductPrice,
 		selectCompositeProductMinDiscountedPrice,
 		selectCompositeProductMaxDiscountedPrice,
+		selectCompositeProductHasDiscountedPriceRange,
 		selectCompositeProductDiscountAmount,
 		selectCompositeProductDiscountedPrice,
 		selectCompositeProductHasDiscount

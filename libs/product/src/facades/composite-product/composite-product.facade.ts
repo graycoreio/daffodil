@@ -59,6 +59,10 @@ export class DaffCompositeProductFacade<T extends DaffProduct = DaffProduct> imp
 		return this.store.pipe(select(this.selectors.selectCompositeProductMaxDiscountedPrice, { id }));
 	}
 
+	hasDiscountedPriceRange(id: string): Observable<boolean> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductHasDiscountedPriceRange, { id }));
+	}
+
 	/**
 	 * @deprecated
 	 */
