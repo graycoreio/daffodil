@@ -293,23 +293,31 @@ describe('Composite Product Selectors | integration tests', () => {
 	describe('selectCompositeProductMinDiscountedPrice', () => {
 
 		let newCompositeProduct;
+		const item0Option0Price = 10;
+		const item0Option1Price = 10;
+		const item0Option0DiscountAmount = 5;
+		const item0Option1DiscountAmount = 2;
+		const item1Option0Price = 20;
+		const item1Option1Price = 10;
+		const item1Option0DiscountAmount = 2;
+		const item1Option1DiscountAmount = 4;
 
 		beforeEach(() => {
 			newCompositeProduct = compositeProductFactory.create();
 			newCompositeProduct.items[0].required = true;
 			newCompositeProduct.items[0].options[0].is_default = false;
 			newCompositeProduct.items[0].options[1].is_default = false;
-			newCompositeProduct.items[0].options[0].price = 10;
-			newCompositeProduct.items[0].options[1].price = 10;
-			newCompositeProduct.items[0].options[0].discount.amount = 5;
-			newCompositeProduct.items[0].options[1].discount.amount = 2;
+			newCompositeProduct.items[0].options[0].price = item0Option0Price;
+			newCompositeProduct.items[0].options[1].price = item0Option1Price;
+			newCompositeProduct.items[0].options[0].discount.amount = item0Option0DiscountAmount;
+			newCompositeProduct.items[0].options[1].discount.amount = item0Option1DiscountAmount;
 			newCompositeProduct.items[1].required = true;
 			newCompositeProduct.items[1].options[0].is_default = false;
 			newCompositeProduct.items[1].options[1].is_default = false;
-			newCompositeProduct.items[1].options[0].price = 20;
-			newCompositeProduct.items[1].options[1].price = 10;
-			newCompositeProduct.items[1].options[0].discount.amount = 2;
-			newCompositeProduct.items[1].options[1].discount.amount = 4;
+			newCompositeProduct.items[1].options[0].price = item1Option0Price;
+			newCompositeProduct.items[1].options[1].price = item1Option1Price;
+			newCompositeProduct.items[1].options[0].discount.amount = item1Option0DiscountAmount;
+			newCompositeProduct.items[1].options[1].discount.amount = item1Option1DiscountAmount;
 			store.dispatch(new DaffProductLoadSuccess(newCompositeProduct));
 		});
 
@@ -321,21 +329,34 @@ describe('Composite Product Selectors | integration tests', () => {
 		});
 
 		it('should initialize to the expected minimum discounted price', () => {
+			const smallestItem0DiscountedPrice = item0Option0Price - item0Option0DiscountAmount;
+			const smallestItem1DiscountedPrice = item1Option1Price - item1Option1DiscountAmount;
 			const selector = store.pipe(select(selectCompositeProductMinDiscountedPrice, { id: newCompositeProduct.id }));
-			const expected = cold('a', { a: newCompositeProduct.price - newCompositeProduct.discount.amount + 5 + 6 });
+			const expected = cold('a', { a: 
+				newCompositeProduct.price - newCompositeProduct.discount.amount + 
+				smallestItem0DiscountedPrice + 
+				smallestItem1DiscountedPrice
+			});
 
 			expect(selector).toBeObservable(expected);
 		});
 
 		it('should update the price when an option change occurs', () => {
+			const updatedOption01Quantity = 3;
+			const selectedItem0DiscountedPrice = (item0Option1Price - item0Option1DiscountAmount) * updatedOption01Quantity;
+			const smallestItem1DiscountedPrice = item1Option1Price - item1Option1DiscountAmount;
+
 			store.dispatch(new DaffCompositeProductApplyOption(
 				newCompositeProduct.id,
 				<string>newCompositeProduct.items[0].id,
 				newCompositeProduct.items[0].options[1].id,
-				3
+				updatedOption01Quantity
 			));
 			const selector = store.pipe(select(selectCompositeProductMinDiscountedPrice, { id: newCompositeProduct.id }));
-			const expected = cold('a', { a: newCompositeProduct.price - newCompositeProduct.discount.amount + 8*3 + 6 });
+			const expected = cold('a', { a: newCompositeProduct.price - newCompositeProduct.discount.amount + 
+				selectedItem0DiscountedPrice + 
+				smallestItem1DiscountedPrice 
+			});
 
 			expect(selector).toBeObservable(expected);
 		});
@@ -344,23 +365,31 @@ describe('Composite Product Selectors | integration tests', () => {
 	describe('selectCompositeProductMaxDiscountedPrice', () => {
 
 		let newCompositeProduct;
+		const item0Option0Price = 10;
+		const item0Option1Price = 10;
+		const item0Option0DiscountAmount = 5;
+		const item0Option1DiscountAmount = 2;
+		const item1Option0Price = 20;
+		const item1Option1Price = 10;
+		const item1Option0DiscountAmount = 2;
+		const item1Option1DiscountAmount = 4;
 
 		beforeEach(() => {
 			newCompositeProduct = compositeProductFactory.create();
 			newCompositeProduct.items[0].required = true;
 			newCompositeProduct.items[0].options[0].is_default = false;
 			newCompositeProduct.items[0].options[1].is_default = false;
-			newCompositeProduct.items[0].options[0].price = 10;
-			newCompositeProduct.items[0].options[1].price = 10;
-			newCompositeProduct.items[0].options[0].discount.amount = 5;
-			newCompositeProduct.items[0].options[1].discount.amount = 2;
+			newCompositeProduct.items[0].options[0].price = item0Option0Price;
+			newCompositeProduct.items[0].options[1].price = item0Option1Price;
+			newCompositeProduct.items[0].options[0].discount.amount = item0Option0DiscountAmount;
+			newCompositeProduct.items[0].options[1].discount.amount = item0Option1DiscountAmount;
 			newCompositeProduct.items[1].required = true;
 			newCompositeProduct.items[1].options[0].is_default = false;
 			newCompositeProduct.items[1].options[1].is_default = false;
-			newCompositeProduct.items[1].options[0].price = 20;
-			newCompositeProduct.items[1].options[1].price = 10;
-			newCompositeProduct.items[1].options[0].discount.amount = 2;
-			newCompositeProduct.items[1].options[1].discount.amount = 4;
+			newCompositeProduct.items[1].options[0].price = item1Option0Price;
+			newCompositeProduct.items[1].options[1].price = item1Option1Price;
+			newCompositeProduct.items[1].options[0].discount.amount = item1Option0DiscountAmount;
+			newCompositeProduct.items[1].options[1].discount.amount = item1Option1DiscountAmount;
 			store.dispatch(new DaffProductLoadSuccess(newCompositeProduct));
 		});
 
@@ -371,22 +400,33 @@ describe('Composite Product Selectors | integration tests', () => {
 			expect(selector).toBeObservable(expected);
 		});
 
-		it('should initialize to the expected minimum discounted price', () => {
+		it('should initialize to the expected maximum discounted price', () => {
+			const largestItem0DiscountedPrice = item0Option1Price - item0Option1DiscountAmount;
+			const largestItem1DiscountedPrice = item1Option0Price - item1Option0DiscountAmount;
 			const selector = store.pipe(select(selectCompositeProductMaxDiscountedPrice, { id: newCompositeProduct.id }));
-			const expected = cold('a', { a: newCompositeProduct.price - newCompositeProduct.discount.amount + 8 + 18 });
+			const expected = cold('a', { a: newCompositeProduct.price - newCompositeProduct.discount.amount + 
+				largestItem0DiscountedPrice + 
+				largestItem1DiscountedPrice
+			});
 
 			expect(selector).toBeObservable(expected);
 		});
 
 		it('should update the price when an option change occurs', () => {
+			const updatedOption00Quantity = 3;
+			const selectedItem0DiscountedPrice = (item0Option0Price - item0Option0DiscountAmount) * updatedOption00Quantity;
+			const largestItem1DiscountedPrice = item1Option0Price - item1Option0DiscountAmount;
 			store.dispatch(new DaffCompositeProductApplyOption(
 				newCompositeProduct.id,
 				<string>newCompositeProduct.items[0].id,
 				newCompositeProduct.items[0].options[0].id,
-				3
+				updatedOption00Quantity
 			));
 			const selector = store.pipe(select(selectCompositeProductMaxDiscountedPrice, { id: newCompositeProduct.id }));
-			const expected = cold('a', { a: newCompositeProduct.price - newCompositeProduct.discount.amount + 5*3 + 18 });
+			const expected = cold('a', { a: newCompositeProduct.price - newCompositeProduct.discount.amount + 
+				selectedItem0DiscountedPrice + 
+				largestItem1DiscountedPrice
+			});
 
 			expect(selector).toBeObservable(expected);
 		});
