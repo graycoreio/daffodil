@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.3](https://github.com/graycoreio/daffodil/compare/v0.11.2...v0.11.3) (2020-10-01)
+
+
+### Features
+
+* **product:** add min and max discounted price selectors for composi… ([#1079](https://github.com/graycoreio/daffodil/issues/1079)) ([e0310f4](https://github.com/graycoreio/daffodil/commit/e0310f4c233fa50868a181072a41400652cac0b7))
+* **product:** add selectors for configurable and simple product perc… ([#1078](https://github.com/graycoreio/daffodil/issues/1078)) ([c16b153](https://github.com/graycoreio/daffodil/commit/c16b15393c469be6542da798968a191786658f0d))
+
+
+### Bug Fixes
+
+* **authorizenet:** incorrectly passing error message to failure action ([#1076](https://github.com/graycoreio/daffodil/issues/1076)) ([82b9290](https://github.com/graycoreio/daffodil/commit/82b929056e52c0dc4f0dee2799f9e9274b14b9ff))
+
 ### [0.11.2](https://github.com/graycoreio/daffodil/compare/v0.11.1...v0.11.2) (2020-09-22)
 
 
