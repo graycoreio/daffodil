@@ -56,15 +56,36 @@ export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Act
 	getPrice(id: string): Observable<number>;
 
 	/**
+	 * Get the minimum discounted price of a composite product based on the applied product options.
+	 * @param id the id of the composite product.
+	 */
+	getMinDiscountedPrice(id: string): Observable<number>;
+
+	/**
+	 * Get the maximum discounted price of a composite product based on the applied product options.
+	 * @param id the id of the composite product.
+	 */
+	getMaxDiscountedPrice(id: string): Observable<number>;
+
+	/**
+	 * Returns whether the composite product has a discounted price range depending on applied options and excluding
+	 * optional items.
+	 * @param id the id of the composite product.
+	 */
+	hasDiscountedPriceRange(id: string): Observable<boolean>;
+
+	/**
 	 * Get the discount amount of a composite product based on the applied product options.
 	 * @param id the id of the composite product.
+	 * @deprecated
 	 */
 	getDiscountAmount(id: string): Observable<number>;
 
 	/**
 	 * Get the discounted price of a composite product based on the applied product options.
 	 * @param id the id of the composite product.
-	 */
+	 * @deprecated Use getMinDiscountAmount and getMaxDiscountAmount instead.
+ 	 */
 	getDiscountedPrice(id: string): Observable<number>;
 
 	/**
