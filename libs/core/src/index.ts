@@ -15,4 +15,5 @@ export * from './storage/public_api';
 export * from './operators/public_api';
 export * from './types/public_api';
 export * from './graphql/public_api';
+export * from './loading/public_api';
 export { DaffSortable } from './sortable/sortable';
