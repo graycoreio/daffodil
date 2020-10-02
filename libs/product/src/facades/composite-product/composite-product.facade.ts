@@ -23,62 +23,60 @@ export class DaffCompositeProductFacade<T extends DaffProduct = DaffProduct> imp
 	
 	constructor(private store: Store<DaffProductReducersState<T>>) {}
 	
-	getMinPossiblePrice(id: string): Observable<number> {
-		return this.store.pipe(select(this.selectors.selectCompositeProductMinPossiblePrice, { id }));
+	getMinOptionalPrice(id: string): Observable<number> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductMinOptionalPrice, { id }));
 	}
 
-	getMaxPossiblePrice(id: string): Observable<number> {
-		return this.store.pipe(select(this.selectors.selectCompositeProductMaxPossiblePrice, { id }));
+	getMaxOptionalPrice(id: string): Observable<number> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductMaxOptionalPrice, { id }));
 	}
 
-	possiblyHasPriceRange(id: string): Observable<boolean> {
-		return this.store.pipe(select(this.selectors.selectCompositeProductPossiblyHasPriceRange, { id }));
+	hasOptionalPriceRange(id: string): Observable<boolean> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductHasOptionalPriceRange, { id }));
 	}
 
-	getMinPrice(id: string): Observable<number> {
-		return this.store.pipe(select(this.selectors.selectCompositeProductMinPrice, { id }));
+	getMinOptionalDiscountedPrice(id: string): Observable<number> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductMinOptionalDiscountedPrice, { id }));
 	}
 
-	getMaxPrice(id: string): Observable<number> {
-		return this.store.pipe(select(this.selectors.selectCompositeProductMaxPrice, { id }));
+	getMaxOptionalDiscountedPrice(id: string): Observable<number> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductMaxOptionalDiscountedPrice, { id }));
 	}
 
-	hasPriceRange(id: string): Observable<boolean> {
-		return this.store.pipe(select(this.selectors.selectCompositeProductHasPriceRange, { id }));
+	hasOptionalDiscountedPriceRange(id: string): Observable<boolean> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductHasOptionalDiscountedPriceRange, { id }));
 	}
 
-	getPrice(id: string): Observable<number> {
-		return this.store.pipe(select(this.selectors.selectCompositeProductPrice, { id }));
+	hasOptionalDiscount(id: string): Observable<boolean> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductHasOptionalDiscount, { id }));
+	}
+
+	getMinRequiredPrice(id: string): Observable<number> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductMinRequiredPrice, { id }));
+	}
+
+	getMaxRequiredPrice(id: string): Observable<number> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductMaxRequiredPrice, { id }));
+	}
+
+	hasRequiredPriceRange(id: string): Observable<boolean> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductHasRequiredPriceRange, { id }));
 	}
 	
-	getMinDiscountedPrice(id: string): Observable<number> {
-		return this.store.pipe(select(this.selectors.selectCompositeProductMinDiscountedPrice, { id }));
+	getMinRequiredDiscountedPrice(id: string): Observable<number> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductMinRequiredDiscountedPrice, { id }));
 	}
 
-	getMaxDiscountedPrice(id: string): Observable<number> {
-		return this.store.pipe(select(this.selectors.selectCompositeProductMaxDiscountedPrice, { id }));
+	getMaxRequiredDiscountedPrice(id: string): Observable<number> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductMaxRequiredDiscountedPrice, { id }));
 	}
 
-	hasDiscountedPriceRange(id: string): Observable<boolean> {
-		return this.store.pipe(select(this.selectors.selectCompositeProductHasDiscountedPriceRange, { id }));
-	}
-
-	/**
-	 * @deprecated
-	 */
-	getDiscountAmount(id: string): Observable<number> {
-		return this.store.pipe(select(this.selectors.selectCompositeProductDiscountAmount, { id }));
-	}
-
-	/**
-	 * @deprecated Use getMinDiscountAmount and getMaxDiscountAmount instead.
-	 */
-	getDiscountedPrice(id: string): Observable<number> {
-		return this.store.pipe(select(this.selectors.selectCompositeProductDiscountedPrice, { id }));
+	hasRequiredDiscountedPriceRange(id: string): Observable<boolean> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductHasRequiredDiscountedPriceRange, { id }));
 	}
 	
-	hasDiscount(id: string): Observable<boolean> {
-		return this.store.pipe(select(this.selectors.selectCompositeProductHasDiscount, { id }));
+	hasRequiredDiscount(id: string): Observable<boolean> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductHasRequiredDiscount, { id }));
 	}
 
 	getAppliedOptions(id: string): Observable<Dictionary<DaffCompositeProductItemOption>> {
