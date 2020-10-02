@@ -22,20 +22,20 @@ describe('Composite Product Selectors | integration tests', () => {
 	let stubCompositeProduct: DaffCompositeProduct;
 	let stubProduct: DaffProduct;
 	const {
-		selectCompositeProductMinOptionalPrice,
-		selectCompositeProductMaxOptionalPrice,
-		selectCompositeProductHasOptionalPriceRange,
-		selectCompositeProductMinOptionalDiscountedPrice,
-		selectCompositeProductMaxOptionalDiscountedPrice,
-		selectCompositeProductHasOptionalDiscountedPriceRange,
-		selectCompositeProductHasOptionalDiscount,
-		selectCompositeProductMinRequiredPrice,
-		selectCompositeProductMaxRequiredPrice,
-		selectCompositeProductHasRequiredPriceRange,
-		selectCompositeProductMinRequiredDiscountedPrice,
-		selectCompositeProductMaxRequiredDiscountedPrice,
-		selectCompositeProductHasRequiredDiscountedPriceRange,
-		selectCompositeProductHasRequiredDiscount
+		selectCompositeProductMinOptionalItemPrice,
+		selectCompositeProductMaxOptionalItemPrice,
+		selectCompositeProductHasOptionalItemPriceRange,
+		selectCompositeProductMinOptionalItemDiscountedPrice,
+		selectCompositeProductMaxOptionalItemDiscountedPrice,
+		selectCompositeProductHasOptionalItemDiscountedPriceRange,
+		selectCompositeProductHasOptionalItemDiscount,
+		selectCompositeProductMinRequiredItemPrice,
+		selectCompositeProductMaxRequiredItemPrice,
+		selectCompositeProductHasRequiredItemPriceRange,
+		selectCompositeProductMinRequiredItemDiscountedPrice,
+		selectCompositeProductMaxRequiredItemDiscountedPrice,
+		selectCompositeProductHasRequiredItemDiscountedPriceRange,
+		selectCompositeProductHasRequiredItemDiscount
 	} = getDaffCompositeProductSelectors();
 	const stubPrice00 = 10;
 	const stubDiscountAmount0 = 2;
@@ -80,17 +80,17 @@ describe('Composite Product Selectors | integration tests', () => {
 		store.dispatch(new DaffProductLoadSuccess(stubProduct));
 	});
 
-	describe('selectCompositeProductMinOptionalPrice', () => {
+	describe('selectCompositeProductMinOptionalItemPrice', () => {
 
 		it('should return undefined if the given product id is not from a composite product', () => {
-			const selector = store.pipe(select(selectCompositeProductMinOptionalPrice, { id: stubProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMinOptionalItemPrice, { id: stubProduct.id }));
 			const expected = cold('a', { a: undefined });
 
 			expect(selector).toBeObservable(expected);
 		});
 
 		it('should initialize to the minimum price for the composite product including optional items', () => {
-			const selector = store.pipe(select(selectCompositeProductMinOptionalPrice, { id: stubCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMinOptionalItemPrice, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: stubCompositeProduct.price + stubPrice00 + stubPrice10 });
 
 			expect(selector).toBeObservable(expected);
@@ -102,24 +102,24 @@ describe('Composite Product Selectors | integration tests', () => {
 				<string>stubCompositeProduct.items[0].id,
 				stubCompositeProduct.items[0].options[1].id
 			));
-			const selector = store.pipe(select(selectCompositeProductMinOptionalPrice, { id: stubCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMinOptionalItemPrice, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: stubCompositeProduct.price + stubPrice00 + stubPrice10 });
 
 			expect(selector).toBeObservable(expected);
 		});
 	});
 
-	describe('selectCompositeProductMaxOptionalPrice', () => {
+	describe('selectCompositeProductMaxOptionalItemPrice', () => {
 
 		it('should return undefined if the given product id is not from a composite product', () => {
-			const selector = store.pipe(select(selectCompositeProductMaxOptionalPrice, { id: stubProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMaxOptionalItemPrice, { id: stubProduct.id }));
 			const expected = cold('a', { a: undefined });
 
 			expect(selector).toBeObservable(expected);
 		});
 
 		it('should initialize to the maximum price for the composite product including optional items', () => {
-			const selector = store.pipe(select(selectCompositeProductMaxOptionalPrice, { id: stubCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMaxOptionalItemPrice, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: stubCompositeProduct.price + stubPrice01 + stubPrice11 });
 
 			expect(selector).toBeObservable(expected);
@@ -131,24 +131,24 @@ describe('Composite Product Selectors | integration tests', () => {
 				<string>stubCompositeProduct.items[0].id,
 				stubCompositeProduct.items[0].options[1].id
 			));
-			const selector = store.pipe(select(selectCompositeProductMaxOptionalPrice, { id: stubCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMaxOptionalItemPrice, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: stubCompositeProduct.price + stubPrice01 + stubPrice11 });
 
 			expect(selector).toBeObservable(expected);
 		});
 	});
 
-	describe('selectCompositeProductHasOptionalPriceRange', () => {
+	describe('selectCompositeProductHasOptionalItemPriceRange', () => {
 
 		it('should return false if the given product id is not from a composite product', () => {
-			const selector = store.pipe(select(selectCompositeProductHasOptionalPriceRange, { id: stubProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductHasOptionalItemPriceRange, { id: stubProduct.id }));
 			const expected = cold('a', { a: false });
 
 			expect(selector).toBeObservable(expected);
 		});
 
 		it('should return true if the possible min and max prices are not equal', () => {
-			const selector = store.pipe(select(selectCompositeProductHasOptionalPriceRange, { id: stubCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductHasOptionalItemPriceRange, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: true });
 
 			expect(selector).toBeObservable(expected);
@@ -161,24 +161,24 @@ describe('Composite Product Selectors | integration tests', () => {
 			newCompositeProduct.items[1].options[0].price = 0;
 			newCompositeProduct.items[1].options[1].price = 0;
 			store.dispatch(new DaffProductLoadSuccess(newCompositeProduct));
-			const selector = store.pipe(select(selectCompositeProductHasOptionalPriceRange, { id: newCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductHasOptionalItemPriceRange, { id: newCompositeProduct.id }));
 			const expected = cold('a', { a: false });
 
 			expect(selector).toBeObservable(expected);
 		});
 	});
 
-	describe('selectCompositeProductMinOptionalDiscountedPrice', () => {
+	describe('selectCompositeProductMinOptionalItemDiscountedPrice', () => {
 
 		it('should return undefined if the given product id is not from a composite product', () => {
-			const selector = store.pipe(select(selectCompositeProductMinOptionalDiscountedPrice, { id: stubProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMinOptionalItemDiscountedPrice, { id: stubProduct.id }));
 			const expected = cold('a', { a: undefined });
 
 			expect(selector).toBeObservable(expected);
 		});
 
 		it('should initialize to the minimum discounted price for the composite product including optional items', () => {
-			const selector = store.pipe(select(selectCompositeProductMinOptionalDiscountedPrice, { id: stubCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMinOptionalItemDiscountedPrice, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: stubCompositeProduct.price - stubCompositeProduct.discount.amount + stubPrice00 - stubDiscountAmount0 + stubPrice10 });
 
 			expect(selector).toBeObservable(expected);
@@ -190,24 +190,24 @@ describe('Composite Product Selectors | integration tests', () => {
 				<string>stubCompositeProduct.items[0].id,
 				stubCompositeProduct.items[0].options[1].id
 			));
-			const selector = store.pipe(select(selectCompositeProductMinOptionalDiscountedPrice, { id: stubCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMinOptionalItemDiscountedPrice, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: stubCompositeProduct.price - stubCompositeProduct.discount.amount + stubPrice00 - stubDiscountAmount0 + stubPrice10 });
 
 			expect(selector).toBeObservable(expected);
 		});
 	});
 
-	describe('selectCompositeProductMaxOptionalDiscountedPrice', () => {
+	describe('selectCompositeProductMaxOptionalItemDiscountedPrice', () => {
 
 		it('should return undefined if the given product id is not from a composite product', () => {
-			const selector = store.pipe(select(selectCompositeProductMaxOptionalDiscountedPrice, { id: stubProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMaxOptionalItemDiscountedPrice, { id: stubProduct.id }));
 			const expected = cold('a', { a: undefined });
 
 			expect(selector).toBeObservable(expected);
 		});
 
 		it('should initialize to the maximum discounted price for the composite product including optional items', () => {
-			const selector = store.pipe(select(selectCompositeProductMaxOptionalDiscountedPrice, { id: stubCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMaxOptionalItemDiscountedPrice, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: stubCompositeProduct.price - stubCompositeProduct.discount.amount + stubPrice01 - stubDiscountAmount1 + stubPrice11 });
 
 			expect(selector).toBeObservable(expected);
@@ -219,24 +219,24 @@ describe('Composite Product Selectors | integration tests', () => {
 				<string>stubCompositeProduct.items[0].id,
 				stubCompositeProduct.items[0].options[1].id
 			));
-			const selector = store.pipe(select(selectCompositeProductMaxOptionalDiscountedPrice, { id: stubCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMaxOptionalItemDiscountedPrice, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: stubCompositeProduct.price - stubCompositeProduct.discount.amount + stubPrice01 - stubDiscountAmount1 + stubPrice11 });
 
 			expect(selector).toBeObservable(expected);
 		});
 	});
 
-	describe('selectCompositeProductHasOptionalDiscountedPriceRange', () => {
+	describe('selectCompositeProductHasOptionalItemDiscountedPriceRange', () => {
 
 		it('should return false if the given product id is not from a composite product', () => {
-			const selector = store.pipe(select(selectCompositeProductHasOptionalDiscountedPriceRange, { id: stubProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductHasOptionalItemDiscountedPriceRange, { id: stubProduct.id }));
 			const expected = cold('a', { a: false });
 
 			expect(selector).toBeObservable(expected);
 		});
 
 		it('should return true if the min and max prices including optional items are not equal', () => {
-			const selector = store.pipe(select(selectCompositeProductHasOptionalDiscountedPriceRange, { id: stubCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductHasOptionalItemDiscountedPriceRange, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: true });
 
 			expect(selector).toBeObservable(expected);
@@ -249,24 +249,24 @@ describe('Composite Product Selectors | integration tests', () => {
 			newCompositeProduct.items[1].options[0].price = 0;
 			newCompositeProduct.items[1].options[1].price = 0;
 			store.dispatch(new DaffProductLoadSuccess(newCompositeProduct));
-			const selector = store.pipe(select(selectCompositeProductHasOptionalDiscountedPriceRange, { id: newCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductHasOptionalItemDiscountedPriceRange, { id: newCompositeProduct.id }));
 			const expected = cold('a', { a: false });
 
 			expect(selector).toBeObservable(expected);
 		});
 	});
 
-	describe('selectCompositeProductHasOptionalDiscount', () => {
+	describe('selectCompositeProductHasOptionalItemDiscount', () => {
 
 		it('should return undefined if the given product id is not from a composite product', () => {
-			const selector = store.pipe(select(selectCompositeProductHasOptionalDiscount, { id: stubProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductHasOptionalItemDiscount, { id: stubProduct.id }));
 			const expected = cold('a', { a: undefined });
 
 			expect(selector).toBeObservable(expected);
 		});
 
 		it('should return true if the product, including optional items, has a discount', () => {
-			const selector = store.pipe(select(selectCompositeProductHasOptionalDiscount, { id: stubCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductHasOptionalItemDiscount, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: true });
 
 			expect(selector).toBeObservable(expected);
@@ -284,7 +284,7 @@ describe('Composite Product Selectors | integration tests', () => {
 			newCompositeProduct.items[1].options[0].discount.amount = 0;
 			newCompositeProduct.items[1].options[1].discount.amount = 0;
 			store.dispatch(new DaffProductLoadSuccess(newCompositeProduct));
-			const selector = store.pipe(select(selectCompositeProductHasOptionalDiscount, { id: newCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductHasOptionalItemDiscount, { id: newCompositeProduct.id }));
 			const expected = cold('a', { a: false });
 
 			expect(selector).toBeObservable(expected);
@@ -314,24 +314,24 @@ describe('Composite Product Selectors | integration tests', () => {
 			newCompositeProduct.items[1].options[0].discount.amount = 0;
 			newCompositeProduct.items[1].options[1].discount.amount = 0;
 			store.dispatch(new DaffProductLoadSuccess(newCompositeProduct));
-			const selector = store.pipe(select(selectCompositeProductHasOptionalDiscount, { id: newCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductHasOptionalItemDiscount, { id: newCompositeProduct.id }));
 			const expected = cold('a', { a: false });
 
 			expect(selector).toBeObservable(expected);
 		});
 	});
 
-	describe('selectCompositeProductMinRequiredPrice', () => {
+	describe('selectCompositeProductMinRequiredItemPrice', () => {
 
 		it('should return undefined if the given product id is not from a composite product', () => {
-			const selector = store.pipe(select(selectCompositeProductMinRequiredPrice, { id: stubProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMinRequiredItemPrice, { id: stubProduct.id }));
 			const expected = cold('a', { a: undefined });
 
 			expect(selector).toBeObservable(expected);
 		});
 
 		it('should initialize to the current minimum price', () => {
-			const selector = store.pipe(select(selectCompositeProductMinRequiredPrice, { id: stubCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMinRequiredItemPrice, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: stubCompositeProduct.price + stubPrice00*stubQty0 });
 
 			expect(selector).toBeObservable(expected);
@@ -343,24 +343,24 @@ describe('Composite Product Selectors | integration tests', () => {
 				<string>stubCompositeProduct.items[0].id,
 				stubCompositeProduct.items[0].options[1].id
 			));
-			const selector = store.pipe(select(selectCompositeProductMinRequiredPrice, { id: stubCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMinRequiredItemPrice, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: stubCompositeProduct.price + stubPrice01 });
 
 			expect(selector).toBeObservable(expected);
 		});
 	});
 
-	describe('selectCompositeProductMaxRequiredPrice', () => {
+	describe('selectCompositeProductMaxRequiredItemPrice', () => {
 
 		it('should return undefined if the given product id is not from a composite product', () => {
-			const selector = store.pipe(select(selectCompositeProductMaxRequiredPrice, { id: stubProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMaxRequiredItemPrice, { id: stubProduct.id }));
 			const expected = cold('a', { a: undefined });
 
 			expect(selector).toBeObservable(expected);
 		});
 
 		it('should initialize to the current maximum price', () => {
-			const selector = store.pipe(select(selectCompositeProductMaxRequiredPrice, { id: stubCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMaxRequiredItemPrice, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: stubCompositeProduct.price + stubPrice00*stubQty0 });
 
 			expect(selector).toBeObservable(expected);
@@ -372,17 +372,17 @@ describe('Composite Product Selectors | integration tests', () => {
 				<string>stubCompositeProduct.items[0].id,
 				stubCompositeProduct.items[0].options[1].id
 			));
-			const selector = store.pipe(select(selectCompositeProductMaxRequiredPrice, { id: stubCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMaxRequiredItemPrice, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: stubCompositeProduct.price + stubPrice01 });
 
 			expect(selector).toBeObservable(expected);
 		});
 	});
 
-	describe('selectCompositeProductHasRequiredPriceRange', () => {
+	describe('selectCompositeProductHasRequiredItemPriceRange', () => {
 
 		it('should return false if the given product id is not from a composite product', () => {
-			const selector = store.pipe(select(selectCompositeProductHasRequiredPriceRange, { id: stubProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductHasRequiredItemPriceRange, { id: stubProduct.id }));
 			const expected = cold('a', { a: false });
 
 			expect(selector).toBeObservable(expected);
@@ -394,7 +394,7 @@ describe('Composite Product Selectors | integration tests', () => {
 				<string>stubCompositeProduct.items[0].id,
 				null
 			));
-			const selector = store.pipe(select(selectCompositeProductHasRequiredPriceRange, { id: stubCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductHasRequiredItemPriceRange, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: true });
 
 			expect(selector).toBeObservable(expected);
@@ -407,14 +407,14 @@ describe('Composite Product Selectors | integration tests', () => {
 			newCompositeProduct.items[1].options[0].price = 0;
 			newCompositeProduct.items[1].options[1].price = 0;
 			store.dispatch(new DaffProductLoadSuccess(newCompositeProduct));
-			const selector = store.pipe(select(selectCompositeProductHasRequiredPriceRange, { id: newCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductHasRequiredItemPriceRange, { id: newCompositeProduct.id }));
 			const expected = cold('a', { a: false });
 
 			expect(selector).toBeObservable(expected);
 		});
 	});
 
-	describe('selectCompositeProductMinRequiredDiscountedPrice', () => {
+	describe('selectCompositeProductMinRequiredItemDiscountedPrice', () => {
 
 		let newCompositeProduct;
 		const item0Option0Price = 10;
@@ -446,7 +446,7 @@ describe('Composite Product Selectors | integration tests', () => {
 		});
 
 		it('should return undefined if the given product id is not from a composite product', () => {
-			const selector = store.pipe(select(selectCompositeProductMinRequiredDiscountedPrice, { id: stubProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMinRequiredItemDiscountedPrice, { id: stubProduct.id }));
 			const expected = cold('a', { a: undefined });
 
 			expect(selector).toBeObservable(expected);
@@ -455,7 +455,7 @@ describe('Composite Product Selectors | integration tests', () => {
 		it('should initialize to the expected minimum discounted price', () => {
 			const smallestItem0DiscountedPrice = item0Option0Price - item0Option0DiscountAmount;
 			const smallestItem1DiscountedPrice = item1Option1Price - item1Option1DiscountAmount;
-			const selector = store.pipe(select(selectCompositeProductMinRequiredDiscountedPrice, { id: newCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMinRequiredItemDiscountedPrice, { id: newCompositeProduct.id }));
 			const expected = cold('a', { a: 
 				newCompositeProduct.price - newCompositeProduct.discount.amount + 
 				smallestItem0DiscountedPrice + 
@@ -476,7 +476,7 @@ describe('Composite Product Selectors | integration tests', () => {
 				newCompositeProduct.items[0].options[1].id,
 				updatedOption01Quantity
 			));
-			const selector = store.pipe(select(selectCompositeProductMinRequiredDiscountedPrice, { id: newCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMinRequiredItemDiscountedPrice, { id: newCompositeProduct.id }));
 			const expected = cold('a', { a: newCompositeProduct.price - newCompositeProduct.discount.amount + 
 				selectedItem0DiscountedPrice + 
 				smallestItem1DiscountedPrice 
@@ -486,7 +486,7 @@ describe('Composite Product Selectors | integration tests', () => {
 		});
 	});
 
-	describe('selectCompositeProductMaxRequiredDiscountedPrice', () => {
+	describe('selectCompositeProductMaxRequiredItemDiscountedPrice', () => {
 
 		let newCompositeProduct;
 		const item0Option0Price = 10;
@@ -518,7 +518,7 @@ describe('Composite Product Selectors | integration tests', () => {
 		});
 
 		it('should return undefined if the given product id is not from a composite product', () => {
-			const selector = store.pipe(select(selectCompositeProductMaxRequiredDiscountedPrice, { id: stubProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMaxRequiredItemDiscountedPrice, { id: stubProduct.id }));
 			const expected = cold('a', { a: undefined });
 
 			expect(selector).toBeObservable(expected);
@@ -527,7 +527,7 @@ describe('Composite Product Selectors | integration tests', () => {
 		it('should initialize to the expected maximum discounted price', () => {
 			const largestItem0DiscountedPrice = item0Option1Price - item0Option1DiscountAmount;
 			const largestItem1DiscountedPrice = item1Option0Price - item1Option0DiscountAmount;
-			const selector = store.pipe(select(selectCompositeProductMaxRequiredDiscountedPrice, { id: newCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMaxRequiredItemDiscountedPrice, { id: newCompositeProduct.id }));
 			const expected = cold('a', { a: newCompositeProduct.price - newCompositeProduct.discount.amount + 
 				largestItem0DiscountedPrice + 
 				largestItem1DiscountedPrice
@@ -546,7 +546,7 @@ describe('Composite Product Selectors | integration tests', () => {
 				newCompositeProduct.items[0].options[0].id,
 				updatedOption00Quantity
 			));
-			const selector = store.pipe(select(selectCompositeProductMaxRequiredDiscountedPrice, { id: newCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductMaxRequiredItemDiscountedPrice, { id: newCompositeProduct.id }));
 			const expected = cold('a', { a: newCompositeProduct.price - newCompositeProduct.discount.amount + 
 				selectedItem0DiscountedPrice + 
 				largestItem1DiscountedPrice
@@ -556,10 +556,10 @@ describe('Composite Product Selectors | integration tests', () => {
 		});
 	});
 
-	describe('selectCompositeProductHasRequiredDiscountedPriceRange', () => {
+	describe('selectCompositeProductHasRequiredItemDiscountedPriceRange', () => {
 
 		it('should return false if the given product id is not from a composite product', () => {
-			const selector = store.pipe(select(selectCompositeProductHasRequiredDiscountedPriceRange, { id: stubProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductHasRequiredItemDiscountedPriceRange, { id: stubProduct.id }));
 			const expected = cold('a', { a: false });
 
 			expect(selector).toBeObservable(expected);
@@ -571,7 +571,7 @@ describe('Composite Product Selectors | integration tests', () => {
 				<string>stubCompositeProduct.items[0].id,
 				null
 			));
-			const selector = store.pipe(select(selectCompositeProductHasRequiredDiscountedPriceRange, { id: stubCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductHasRequiredItemDiscountedPriceRange, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: true });
 
 			expect(selector).toBeObservable(expected);
@@ -588,17 +588,17 @@ describe('Composite Product Selectors | integration tests', () => {
 			newCompositeProduct.items[1].options[1].discount.amount = 0;
 			newCompositeProduct.items[1].options[1].discount.amount = 0;
 			store.dispatch(new DaffProductLoadSuccess(newCompositeProduct));
-			const selector = store.pipe(select(selectCompositeProductHasRequiredDiscountedPriceRange, { id: newCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductHasRequiredItemDiscountedPriceRange, { id: newCompositeProduct.id }));
 			const expected = cold('a', { a: false });
 
 			expect(selector).toBeObservable(expected);
 		});
 	});
 
-	describe('selectCompositeProductHasRequiredDiscount', () => {
+	describe('selectCompositeProductHasRequiredItemDiscount', () => {
 
 		it('should return undefined if the given product id is not from a composite product', () => {
-			const selector = store.pipe(select(selectCompositeProductHasRequiredDiscount, { id: stubProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductHasRequiredItemDiscount, { id: stubProduct.id }));
 			const expected = cold('a', { a: undefined });
 
 			expect(selector).toBeObservable(expected);
@@ -618,7 +618,7 @@ describe('Composite Product Selectors | integration tests', () => {
       });
 
       it('should return true', () => {
-        const selector = store.pipe(select(selectCompositeProductHasRequiredDiscount, { id: mockProduct.id }));
+        const selector = store.pipe(select(selectCompositeProductHasRequiredItemDiscount, { id: mockProduct.id }));
         const expected = cold('a', { a: true });
 
         expect(selector).toBeObservable(expected);
@@ -639,7 +639,7 @@ describe('Composite Product Selectors | integration tests', () => {
       });
 
       it('should return false', () => {
-        const selector = store.pipe(select(selectCompositeProductHasRequiredDiscount, { id: mockProduct.id }));
+        const selector = store.pipe(select(selectCompositeProductHasRequiredItemDiscount, { id: mockProduct.id }));
         const expected = cold('a', { a: false });
 
         expect(selector).toBeObservable(expected);
@@ -671,7 +671,7 @@ describe('Composite Product Selectors | integration tests', () => {
 				}
 			})
 			store.dispatch(new DaffProductLoadSuccess(newCompositeProduct));
-			const selector = store.pipe(select(selectCompositeProductHasRequiredDiscount, { id: newCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductHasRequiredItemDiscount, { id: newCompositeProduct.id }));
 			const expected = cold('a', { a: false });
 
 			expect(selector).toBeObservable(expected);

@@ -14,14 +14,14 @@ export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Act
 	 * This would be useful for a quick preview of a product.
 	 * @param id the id of the composite product.
 	 */
-	getMinOptionalPrice(id: string): Observable<number>;
+	getMinOptionalItemPrice(id: string): Observable<number>;
 
 	/**
    * Get the maximum price for a composite product, including optional items and regardless of applied options.
 	 * This would be useful for a quick preview of a product.	 
 	 * @param id the id of the composite product.
 	 */
-	getMaxOptionalPrice(id: string): Observable<number>;
+	getMaxOptionalItemPrice(id: string): Observable<number>;
 
 	/**
 	 * Returns whether the composite product could have a price range in any configuration,
@@ -29,21 +29,21 @@ export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Act
 	 * This could be useful for a quick preview of the product.
 	 * @param id the id of the composite product.
 	 */
-	hasOptionalPriceRange(id: string): Observable<boolean>;
+	hasOptionalItemPriceRange(id: string): Observable<boolean>;
 
 	/**
 	 * Get the minimum discounted price for a composite product, including optional items and regardless of the current selection of item options.
 	 * This could be useful for a quick preview of the product.
 	 * @param id the id of the composite product.
 	 */
-	getMinOptionalDiscountedPrice(id: string): Observable<number>;
+	getMinOptionalItemDiscountedPrice(id: string): Observable<number>;
 
 	/**
 	 * Get the maximum discounted price for a composite product, including optional items and regardless of the current selection of item options.
 	 * This could be useful for a quick preview of the product.
 	 * @param id the id of the composite product.
 	 */
-	getMaxOptionalDiscountedPrice(id: string): Observable<number>;
+	getMaxOptionalItemDiscountedPrice(id: string): Observable<number>;
 
 	/**
 	 * Selector for whether the composite product could have a discounted price range in any configuration,
@@ -51,7 +51,7 @@ export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Act
 	 * This could be useful for a quick preview of the product.
 	 * @param id the id of the composite product.
 	 */
-	hasOptionalDiscountedPriceRange(id: string): Observable<boolean>;
+	hasOptionalItemDiscountedPriceRange(id: string): Observable<boolean>;
 
 	/**
 	 * Returns whether the minimum and maximum composite product discounted prices equal the minimum and maximum
@@ -63,47 +63,47 @@ export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Act
 	 * of the discounted prices and it wouldn't make sense to the customer what is happening.
 	 * @param id the id of the composite product.
 	 */
-	hasOptionalDiscount(id: string): Observable<boolean>;
+	hasOptionalItemDiscount(id: string): Observable<boolean>;
 
 	/**
 	 * Get the minimum price for a composite product, excluding unselected optional items and depending on the current selection of item options.
 	 * This would be used for a composite product that has required items without default selections.
 	 * @param id the id of the composite product.
 	 */
-	getMinRequiredPrice(id: string): Observable<number>;
+	getMinRequiredItemPrice(id: string): Observable<number>;
 
 	/**
 	 * Get the maximum price for a composite product, excluding unselected optional items and depending on the current selection of item options.
 	 * This would be used for a composite product that has required items without default selections.
 	 * @param id the id of the composite product.
 	 */
-	getMaxRequiredPrice(id: string): Observable<number>;
+	getMaxRequiredItemPrice(id: string): Observable<number>;
 
 	/**
 	 * Selector for whether the composite product has a price range, excluding unselected optional items and based on the currently applied item options.
 	 * @param id the id of the composite product.
 	 */
-	hasRequiredPriceRange(id: string): Observable<boolean>;
+	hasRequiredItemPriceRange(id: string): Observable<boolean>;
 
 	/**
 	 * Get the minimum discounted price for a composite product, excluding unselected optional items and depending on the current selection of item options.
 	 * This would be used for a composite product that has required items without default selections or just the final price of a product with no price range.
 	 * @param id the id of the composite product.
 	 */
-	getMinRequiredDiscountedPrice(id: string): Observable<number>;
+	getMinRequiredItemDiscountedPrice(id: string): Observable<number>;
 
 	/**
 	 * Get the maximum discounted price for a composite product, excluding unselected optional items and depending on the current selection of item options.
 	 * This would be used for a composite product that has required items without default selections or just the final price of a product with no price range.
 	 * @param id the id of the composite product.
 	 */
-	getMaxRequiredDiscountedPrice(id: string): Observable<number>;
+	getMaxRequiredItemDiscountedPrice(id: string): Observable<number>;
 
 	/**
 	 * Returns whether the composite product has a discounted price range, excluding unselected optional items and based on the currently applied item options.
 	 * @param id the id of the composite product.
 	 */
-	hasRequiredDiscountedPriceRange(id: string): Observable<boolean>;
+	hasRequiredItemDiscountedPriceRange(id: string): Observable<boolean>;
 
 	/**
 	 * Returns whether the minimum and maximum composite product discounted prices equal the minimum and maximum
@@ -115,7 +115,7 @@ export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Act
 	 * of the discounted prices and it wouldn't make sense to the customer what is happening.
 	 * @param id the id of the composite product.
 	 */
-	hasRequiredDiscount(id: string): Observable<boolean>;
+	hasRequiredItemDiscount(id: string): Observable<boolean>;
 
 	/**
 	 * Returns the applied options for a composite product.
