@@ -2,12 +2,13 @@ import { TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffCart } from '@daffodil/cart';
+import { DaffCart, DaffCartPlaceOrder } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { DaffCartLoadSuccess, DaffCartPlaceOrderSuccess } from '../../actions/public_api';
 import { daffCartReducers, DaffCartReducersState, DaffCartOrderReducerState } from '../../reducers/public_api';
 import { getCartOrderSelectors } from './cart-order.selector';
+import { DaffLoadingState } from '@daffodil/core';
 
 describe('Cart | Selector | CartOrder', () => {
   let store: Store<DaffCartReducersState>;
@@ -20,6 +21,7 @@ describe('Cart | Selector | CartOrder', () => {
 	const {
     selectCartOrderState,
     selectCartOrderLoading,
+    selectCartOrderMutating,
     selectCartOrderErrors,
     selectCartOrderValue,
     selectCartOrderId,
@@ -58,7 +60,7 @@ describe('Cart | Selector | CartOrder', () => {
           orderId,
           cartId: cart.id,
         },
-				loading: false,
+				loading: DaffLoadingState.Complete,
 				errors: []
 			};
       const selector = store.pipe(select(selectCartOrderState));
@@ -69,11 +71,50 @@ describe('Cart | Selector | CartOrder', () => {
   });
 
   describe('selectCartOrderLoading', () => {
-    it('selects whether the place order operation is in progress', () => {
-      const selector = store.pipe(select(selectCartOrderLoading));
-      const expected = cold('a', {a: false});
+    describe('when there is a cart order operation in progress', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartPlaceOrder());
+      });
 
-      expect(selector).toBeObservable(expected);
+      it('should return true', () => {
+        const selector = store.pipe(select(selectCartOrderLoading));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when there is not a cart order operation in progress', () => {
+      it('should return false', () => {
+        const selector = store.pipe(select(selectCartOrderLoading));
+        const expected = cold('a', {a: false});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('selectCartOrderMutating', () => {
+    describe('when there is a place order operation in progress', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartPlaceOrder());
+      });
+
+      it('should return true', () => {
+        const selector = store.pipe(select(selectCartOrderMutating));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when there is not a place order operation in progress', () => {
+      it('should return false', () => {
+        const selector = store.pipe(select(selectCartOrderMutating));
+        const expected = cold('a', {a: false});
+
+        expect(selector).toBeObservable(expected);
+      });
     });
   });
 

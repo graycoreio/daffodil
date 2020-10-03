@@ -5,12 +5,12 @@ import {
   DefaultProjectorFn
 } from '@ngrx/store';
 
-import { daffSubtract } from '@daffodil/core';
+import { DaffLoadingState, daffSubtract } from '@daffodil/core';
 import { daffComparePersonalAddresses } from '@daffodil/geography';
 
 import { getDaffCartFeatureSelector } from '../cart-feature.selector';
 import { DaffCart } from '../../models/cart';
-import { DaffCartReducerState, DaffCartReducersState, DaffCartErrorType } from '../../reducers/public_api';
+import { DaffCartReducerState, DaffCartReducersState, DaffCartOperationType } from '../../reducers/public_api';
 import { DaffCartOrderResult } from '../../models/cart-order-result';
 import { DaffCartItem } from '../../models/cart-item';
 import { DaffCartTotalTypeEnum, DaffCartTotal } from '../../models/cart-total';
@@ -20,8 +20,131 @@ export interface DaffCartStateMemoizedSelectors<
 > {
 	selectCartState: MemoizedSelector<object, DaffCartReducerState<T>>;
 	selectCartValue: MemoizedSelector<object, T>;
-  selectCartLoading: MemoizedSelector<object, boolean>;
   selectCartResolved: MemoizedSelector<object, boolean>;
+
+  /**
+   * The object that holds all the loading states for cart operations.
+   */
+  selectCartLoadingObject: MemoizedSelector<object, DaffCartReducerState<T>['loading']>;
+  /**
+   * Selects whether there is a cart operation in progress.
+   * This does not include operations specifally for cart subfields.
+   */
+  selectCartLoading: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart resolve operation in progress.
+   * This does not include operations specifally for cart subfields.
+   * This pertains only to requests that do not mutate data such as "load" or "list".
+   */
+  selectCartResolving: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart mutate operation in progress.
+   * This does not include operations specifally for cart subfields.
+   * This pertains only to requests that mutate data such as "update".
+   */
+  selectCartMutating: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart billing address operation in progress.
+   */
+  selectBillingAddressLoading: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart billing address resolve operation in progress.
+   * This pertains only to requests that do not mutate data such as "load" or "list".
+   */
+  selectBillingAddressResolving: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart billing address mutate operation in progress.
+   * This pertains only to requests that mutate data such as "update".
+   */
+  selectBillingAddressMutating: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart shipping address operation in progress.
+   */
+  selectShippingAddressLoading: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart shipping address resolve operation in progress.
+   * This pertains only to requests that do not mutate data such as "load" or "list".
+   */
+  selectShippingAddressResolving: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart shipping address mutate operation in progress.
+   * This pertains only to requests that mutate data such as "update".
+   */
+  selectShippingAddressMutating: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart shipping information operation in progress.
+   */
+  selectShippingInformationLoading: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart shipping information resolve operation in progress.
+   * This pertains only to requests that do not mutate data such as "load" or "list".
+   */
+  selectShippingInformationResolving: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart shipping information mutate operation in progress.
+   * This pertains only to requests that mutate data such as "update".
+   */
+  selectShippingInformationMutating: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart shipping methods operation in progress.
+   */
+  selectShippingMethodsLoading: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart shipping methods resolve operation in progress.
+   * This pertains only to requests that do not mutate data such as "load" or "list".
+   */
+  selectShippingMethodsResolving: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart payment operation in progress.
+   */
+  selectPaymentLoading: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart payment resolve operation in progress.
+   * This pertains only to requests that do not mutate data such as "load" or "list".
+   */
+  selectPaymentResolving: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart payment mutate operation in progress.
+   * This pertains only to requests that mutate data such as "update".
+   */
+  selectPaymentMutating: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart payment methods operation in progress.
+   */
+  selectPaymentMethodsLoading: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart payment methods resolve operation in progress.
+   * This pertains only to requests that do not mutate data such as "load" or "list".
+   */
+  selectPaymentMethodsResolving: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart coupon operation in progress.
+   */
+  selectCouponLoading: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart coupon resolve operation in progress.
+   * This pertains only to requests that do not mutate data such as "load" or "list".
+   */
+  selectCouponResolving: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart coupon mutate operation in progress.
+   * This pertains only to requests that mutate data such as "update".
+   */
+  selectCouponMutating: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart item operation in progress.
+   */
+  selectItemLoading: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart item resolve operation in progress.
+   * This pertains only to requests that do not mutate data such as "load" or "list".
+   */
+  selectItemResolving: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a cart item mutate operation in progress.
+   * This pertains only to requests that mutate data such as "update".
+   */
+	selectItemMutating: MemoizedSelector<object, boolean>;
 
 	selectCartErrorsObject: MemoizedSelector<object, DaffCartReducerState<T>['errors']>;
 	selectCartErrors: MemoizedSelector<object, string[]>;
@@ -32,8 +155,8 @@ export interface DaffCartStateMemoizedSelectors<
 	selectPaymentErrors: MemoizedSelector<object, string[]>;
 	selectPaymentMethodsErrors: MemoizedSelector<object, string[]>;
   selectCouponErrors: MemoizedSelector<object, string[]>;
-
 	selectItemErrors: MemoizedSelector<object, string[]>;
+
 	selectCartId: MemoizedSelector<object, T['id']>;
 	selectCartSubtotal: MemoizedSelector<object, DaffCartTotal['value']>;
 	selectCartGrandTotal: MemoizedSelector<object, DaffCartTotal['value']>;
@@ -84,13 +207,114 @@ const createCartSelectors = <
 		selectCartState,
 		(state: DaffCartReducerState<T>) => state.cart
 	);
-	const selectCartLoading = createSelector(
-		selectCartState,
-		(state: DaffCartReducerState<T>) => state.loading
-  );
   const selectCartResolved = createSelector(
 		selectCartState,
 		(state: DaffCartReducerState<T>) => state.resolved
+  );
+
+  const selectCartLoadingObject = createSelector(
+		selectCartState,
+		state => state.loading
+  );
+	const selectCartLoading = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.Cart] !== DaffLoadingState.Complete
+  );
+  const selectCartResolving = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.Cart] === DaffLoadingState.Resolving
+  );
+  const selectCartMutating = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.Cart] === DaffLoadingState.Mutating
+	);
+	const selectBillingAddressLoading = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.BillingAddress] !== DaffLoadingState.Complete
+  );
+  const selectBillingAddressResolving = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.BillingAddress] === DaffLoadingState.Resolving
+  );
+  const selectBillingAddressMutating = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.BillingAddress] === DaffLoadingState.Mutating
+	);
+	const selectShippingAddressLoading = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.ShippingAddress] !== DaffLoadingState.Complete
+  );
+  const selectShippingAddressResolving = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.ShippingAddress] === DaffLoadingState.Resolving
+  );
+  const selectShippingAddressMutating = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.ShippingAddress] === DaffLoadingState.Mutating
+	);
+	const selectShippingInformationLoading = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.ShippingInformation] !== DaffLoadingState.Complete
+  );
+  const selectShippingInformationResolving = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.ShippingInformation] === DaffLoadingState.Resolving
+  );
+  const selectShippingInformationMutating = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.ShippingInformation] === DaffLoadingState.Mutating
+	);
+	const selectShippingMethodsLoading = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.ShippingMethods] !== DaffLoadingState.Complete
+  );
+  const selectShippingMethodsResolving = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.ShippingMethods] === DaffLoadingState.Resolving
+  );
+	const selectPaymentLoading = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.Payment] !== DaffLoadingState.Complete
+  );
+  const selectPaymentResolving = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.Payment] === DaffLoadingState.Resolving
+  );
+  const selectPaymentMutating = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.Payment] === DaffLoadingState.Mutating
+	);
+	const selectPaymentMethodsLoading = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.PaymentMethods] !== DaffLoadingState.Complete
+  );
+  const selectPaymentMethodsResolving = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.PaymentMethods] === DaffLoadingState.Resolving
+  );
+	const selectItemLoading = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.Item] !== DaffLoadingState.Complete
+  );
+  const selectItemResolving = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.Item] === DaffLoadingState.Resolving
+  );
+  const selectItemMutating = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.Item] === DaffLoadingState.Mutating
+  );
+  const selectCouponLoading = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.Coupon] !== DaffLoadingState.Complete
+  );
+  const selectCouponResolving = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.Coupon] === DaffLoadingState.Resolving
+  );
+  const selectCouponMutating = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.Coupon] === DaffLoadingState.Mutating
   );
 
 	const selectCartErrorsObject = createSelector(
@@ -99,39 +323,39 @@ const createCartSelectors = <
 	);
 	const selectCartErrors = createSelector(
 		selectCartErrorsObject,
-		(state: DaffCartReducerState<T>['errors']) => state[DaffCartErrorType.Cart]
+		(state: DaffCartReducerState<T>['errors']) => state[DaffCartOperationType.Cart]
 	);
 	const selectBillingAddressErrors = createSelector(
 		selectCartErrorsObject,
-		(state: DaffCartReducerState<T>['errors']) => state[DaffCartErrorType.BillingAddress]
+		(state: DaffCartReducerState<T>['errors']) => state[DaffCartOperationType.BillingAddress]
 	);
 	const selectShippingAddressErrors = createSelector(
 		selectCartErrorsObject,
-		(state: DaffCartReducerState<T>['errors']) => state[DaffCartErrorType.ShippingAddress]
+		(state: DaffCartReducerState<T>['errors']) => state[DaffCartOperationType.ShippingAddress]
 	);
 	const selectShippingInformationErrors = createSelector(
 		selectCartErrorsObject,
-		(state: DaffCartReducerState<T>['errors']) => state[DaffCartErrorType.ShippingInformation]
+		(state: DaffCartReducerState<T>['errors']) => state[DaffCartOperationType.ShippingInformation]
 	);
 	const selectShippingMethodsErrors = createSelector(
 		selectCartErrorsObject,
-		(state: DaffCartReducerState<T>['errors']) => state[DaffCartErrorType.ShippingMethods]
+		(state: DaffCartReducerState<T>['errors']) => state[DaffCartOperationType.ShippingMethods]
 	);
 	const selectPaymentErrors = createSelector(
 		selectCartErrorsObject,
-		(state: DaffCartReducerState<T>['errors']) => state[DaffCartErrorType.Payment]
+		(state: DaffCartReducerState<T>['errors']) => state[DaffCartOperationType.Payment]
 	);
 	const selectPaymentMethodsErrors = createSelector(
 		selectCartErrorsObject,
-		(state: DaffCartReducerState<T>['errors']) => state[DaffCartErrorType.PaymentMethods]
+		(state: DaffCartReducerState<T>['errors']) => state[DaffCartOperationType.PaymentMethods]
 	);
 	const selectItemErrors = createSelector(
 		selectCartErrorsObject,
-		(state: DaffCartReducerState<T>['errors']) => state[DaffCartErrorType.Item]
+		(state: DaffCartReducerState<T>['errors']) => state[DaffCartOperationType.Item]
   );
   const selectCouponErrors = createSelector(
 		selectCartErrorsObject,
-		(state: DaffCartReducerState<T>['errors']) => state[DaffCartErrorType.Coupon]
+		(state: DaffCartReducerState<T>['errors']) => state[DaffCartOperationType.Coupon]
   );
 
 	const selectCartId = createSelector(
@@ -304,8 +528,34 @@ const createCartSelectors = <
 	return {
 		selectCartState,
 		selectCartValue,
-    selectCartLoading,
     selectCartResolved,
+
+    selectCartLoadingObject,
+    selectCartLoading,
+    selectCartResolving,
+    selectCartMutating,
+    selectBillingAddressLoading,
+    selectBillingAddressResolving,
+    selectBillingAddressMutating,
+    selectShippingAddressLoading,
+    selectShippingAddressResolving,
+    selectShippingAddressMutating,
+    selectShippingInformationLoading,
+    selectShippingInformationResolving,
+    selectShippingInformationMutating,
+    selectShippingMethodsLoading,
+    selectShippingMethodsResolving,
+    selectPaymentLoading,
+    selectPaymentResolving,
+    selectPaymentMutating,
+    selectPaymentMethodsLoading,
+    selectPaymentMethodsResolving,
+    selectCouponLoading,
+    selectCouponResolving,
+    selectCouponMutating,
+    selectItemLoading,
+    selectItemResolving,
+    selectItemMutating,
 
 		selectCartErrorsObject,
 		selectCartErrors,
