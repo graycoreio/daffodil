@@ -1,3 +1,5 @@
+import { DaffLoadingState } from '@daffodil/core';
+
 import { daffCartOrderInitialState } from './cart-order-initial-state';
 import {
   DaffCartOrderActions,
@@ -14,21 +16,21 @@ export function daffCartOrderReducer<T extends DaffCartOrderResult = DaffCartOrd
     case DaffCartOrderActionTypes.CartPlaceOrderAction:
       return {
         ...state,
-        loading: true
+        loading: DaffLoadingState.Mutating
       };
 
     case DaffCartOrderActionTypes.CartPlaceOrderSuccessAction:
       return {
         ...state,
         errors: [],
-        loading: false,
+        loading: DaffLoadingState.Complete,
         cartOrderResult: action.payload,
       };
 
     case DaffCartOrderActionTypes.CartPlaceOrderFailureAction:
       return {
         ...state,
-        loading: false,
+        loading: DaffLoadingState.Complete,
         errors: [
           ...state.errors,
           action.payload

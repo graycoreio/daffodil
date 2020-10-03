@@ -1,15 +1,19 @@
+import { DaffLoadingState } from '@daffodil/core';
+
 import {
   DaffCartPaymentActionTypes,
 } from '../../actions/public_api';
 import { initialState } from '../cart-initial-state';
 import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
-import { DaffCartErrorType } from '../errors/cart-error-type.enum';
+import { DaffCartOperationType } from '../cart-operation-type.enum';
 import { DaffCart } from '../../models/cart';
 import { initializeErrorAdder, initializeErrorResetter } from '../errors/error-state-helpers';
+import { initializeLoadingSetter } from '../loading/loading-state-helpers';
 
-const addError = initializeErrorAdder(DaffCartErrorType.Payment);
-const resetErrors = initializeErrorResetter(DaffCartErrorType.Payment);
+const addError = initializeErrorAdder(DaffCartOperationType.Payment);
+const resetErrors = initializeErrorResetter(DaffCartOperationType.Payment);
+const setLoading = initializeLoadingSetter(DaffCartOperationType.Payment);
 
 export function cartPaymentReducer<T extends DaffCart>(
   state = initialState,
@@ -17,10 +21,18 @@ export function cartPaymentReducer<T extends DaffCart>(
 ): DaffCartReducerState<T> {
   switch (action.type) {
     case DaffCartPaymentActionTypes.CartPaymentLoadAction:
+      return {
+        ...state,
+        ...setLoading(state.loading, DaffLoadingState.Resolving)
+      };
+
     case DaffCartPaymentActionTypes.CartPaymentUpdateAction:
     case DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingAction:
     case DaffCartPaymentActionTypes.CartPaymentRemoveAction:
-      return { ...state, loading: true };
+      return {
+        ...state,
+        ...setLoading(state.loading, DaffLoadingState.Mutating)
+      };
 
     case DaffCartPaymentActionTypes.CartPaymentLoadSuccessAction:
       return {
@@ -30,7 +42,7 @@ export function cartPaymentReducer<T extends DaffCart>(
           ...state.cart,
           payment: action.payload
         },
-        loading: false,
+        ...setLoading(state.loading, DaffLoadingState.Complete),
       };
 
     case DaffCartPaymentActionTypes.CartPaymentRemoveSuccessAction:
@@ -41,7 +53,7 @@ export function cartPaymentReducer<T extends DaffCart>(
           ...state.cart,
           payment: null
         },
-        loading: false,
+        ...setLoading(state.loading, DaffLoadingState.Complete),
       };
 
     case DaffCartPaymentActionTypes.CartPaymentUpdateSuccessAction:
@@ -53,7 +65,7 @@ export function cartPaymentReducer<T extends DaffCart>(
           ...state.cart,
           ...action.payload
         },
-        loading: false,
+        ...setLoading(state.loading, DaffLoadingState.Complete),
       };
 
     case DaffCartPaymentActionTypes.CartPaymentLoadFailureAction:
@@ -63,7 +75,7 @@ export function cartPaymentReducer<T extends DaffCart>(
       return {
         ...state,
         ...addError(state.errors, action.payload),
-        loading: false,
+        ...setLoading(state.loading, DaffLoadingState.Complete),
 			};
 
 

@@ -1,3 +1,5 @@
+import { DaffLoadingState } from '@daffodil/core';
+
 import {
   DaffCartShippingAddressActionTypes,
   DaffCartAddressActionTypes,
@@ -5,12 +7,14 @@ import {
 import { initialState } from '../cart-initial-state';
 import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
-import { DaffCartErrorType } from '../errors/cart-error-type.enum';
+import { DaffCartOperationType } from '../cart-operation-type.enum';
 import { DaffCart } from '../../models/cart';
 import { initializeErrorAdder, initializeErrorResetter } from '../errors/error-state-helpers';
+import { initializeLoadingSetter } from '../loading/loading-state-helpers';
 
-const addError = initializeErrorAdder(DaffCartErrorType.ShippingAddress);
-const resetErrors = initializeErrorResetter(DaffCartErrorType.ShippingAddress);
+const addError = initializeErrorAdder(DaffCartOperationType.ShippingAddress);
+const resetErrors = initializeErrorResetter(DaffCartOperationType.ShippingAddress);
+const setLoading = initializeLoadingSetter(DaffCartOperationType.ShippingAddress);
 
 export function cartShippingAddressReducer<T extends DaffCart>(
   state = initialState,
@@ -18,9 +22,17 @@ export function cartShippingAddressReducer<T extends DaffCart>(
 ): DaffCartReducerState<T> {
   switch (action.type) {
     case DaffCartShippingAddressActionTypes.CartShippingAddressLoadAction:
+      return {
+        ...state,
+        ...setLoading(state.loading, DaffLoadingState.Resolving)
+      };
+
     case DaffCartShippingAddressActionTypes.CartShippingAddressUpdateAction:
     case DaffCartAddressActionTypes.CartAddressUpdateAction:
-      return { ...state, loading: true };
+      return {
+        ...state,
+        ...setLoading(state.loading, DaffLoadingState.Mutating)
+      };
 
     case DaffCartShippingAddressActionTypes.CartShippingAddressLoadSuccessAction:
       return {
@@ -30,7 +42,7 @@ export function cartShippingAddressReducer<T extends DaffCart>(
           ...state.cart,
           shipping_address: action.payload
         },
-        loading: false,
+        ...setLoading(state.loading, DaffLoadingState.Complete),
       };
 
     case DaffCartShippingAddressActionTypes.CartShippingAddressUpdateSuccessAction:
@@ -42,7 +54,7 @@ export function cartShippingAddressReducer<T extends DaffCart>(
           ...state.cart,
           ...action.payload
         },
-        loading: false,
+        ...setLoading(state.loading, DaffLoadingState.Complete),
       };
 
     case DaffCartShippingAddressActionTypes.CartShippingAddressLoadFailureAction:
@@ -51,7 +63,7 @@ export function cartShippingAddressReducer<T extends DaffCart>(
       return {
         ...state,
         ...addError(state.errors, action.payload),
-        loading: false,
+        ...setLoading(state.loading, DaffLoadingState.Complete),
       };
 
     default:

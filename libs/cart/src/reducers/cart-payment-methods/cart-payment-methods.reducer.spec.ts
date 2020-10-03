@@ -1,4 +1,6 @@
+import { DaffLoadingState } from '@daffodil/core';
 import { DaffCartFactory } from '@daffodil/cart/testing';
+
 import { initialState } from '../cart-initial-state';
 import { DaffCartReducerState } from '../cart-state.interface';
 import {
@@ -8,7 +10,7 @@ import {
 } from '../../actions/public_api';
 import { DaffCart } from '../../models/cart';
 import { cartPaymentMethodsReducer } from './cart-payment-methods.reducer';
-import { DaffCartErrorType } from '../errors/cart-error-type.enum';
+import { DaffCartOperationType } from '../cart-operation-type.enum';
 
 describe('Cart | Reducer | Cart Payment Methods', () => {
   let cartFactory: DaffCartFactory;
@@ -37,7 +39,7 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
       const cartPaymentMethodsLoadAction = new DaffCartPaymentMethodsLoad();
       const result = cartPaymentMethodsReducer(initialState, cartPaymentMethodsLoadAction);
 
-      expect(result.loading).toEqual(true);
+      expect(result.loading[DaffCartOperationType.PaymentMethods]).toEqual(DaffLoadingState.Resolving);
     });
   });
 
@@ -48,7 +50,10 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true
+        loading: {
+          ...initialState.loading,
+          [DaffCartOperationType.PaymentMethods]: DaffLoadingState.Resolving
+        }
       }
 
       const cartPaymentMethodsLoadSuccess = new DaffCartPaymentMethodsLoadSuccess(cart.available_payment_methods);
@@ -57,7 +62,7 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading).toEqual(false);
+      expect(result.loading[DaffCartOperationType.PaymentMethods]).toEqual(DaffLoadingState.Complete);
     });
 
     it('should set available_payment_methods from action.payload', () => {
@@ -65,7 +70,7 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
     });
 
     it('should reset the errors in the payment methods section of state.errors to an empty array', () => {
-      expect(result.errors[DaffCartErrorType.PaymentMethods]).toEqual([]);
+      expect(result.errors[DaffCartOperationType.PaymentMethods]).toEqual([]);
     });
   });
 
@@ -77,10 +82,13 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true,
+        loading: {
+          ...initialState.loading,
+          [DaffCartOperationType.PaymentMethods]: DaffLoadingState.Resolving
+        },
         errors: {
           ...initialState.errors,
-          [DaffCartErrorType.PaymentMethods]: new Array('firstError')
+          [DaffCartOperationType.PaymentMethods]: new Array('firstError')
         }
       }
 
@@ -90,11 +98,11 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading).toEqual(false);
+      expect(result.loading[DaffCartOperationType.PaymentMethods]).toEqual(DaffLoadingState.Complete);
     });
 
     it('should add an error to the payment methods section of state.errors', () => {
-      expect(result.errors[DaffCartErrorType.PaymentMethods].length).toEqual(2);
+      expect(result.errors[DaffCartOperationType.PaymentMethods].length).toEqual(2);
     });
   });
 });
