@@ -15,16 +15,6 @@ import { DaffCartOrderResult } from '../../models/cart-order-result';
 import { DaffCartItem } from '../../models/cart-item';
 import { DaffCartTotalTypeEnum, DaffCartTotal } from '../../models/cart-total';
 
-/**
- * Util function to project loading selectors
- */
-function projectAllLoadingSelectors(
-  cartLoadingObject: DaffCartLoading,
-  ...selectors: {projector: (DaffCartLoading) => boolean}[]
-) {
-
-}
-
 export interface DaffCartStateMemoizedSelectors<
   T extends DaffCart = DaffCart
 > {
