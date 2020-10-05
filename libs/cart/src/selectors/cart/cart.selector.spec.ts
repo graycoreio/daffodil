@@ -42,6 +42,9 @@ describe('Cart | Selector | Cart', () => {
     selectCartValue,
 
     selectCartLoadingObject,
+    selectCartFeatureLoading,
+    selectCartFeatureResolving,
+    selectCartFeatureMutating,
     selectCartLoading,
     selectCartResolving,
     selectCartMutating,
@@ -198,6 +201,364 @@ describe('Cart | Selector | Cart', () => {
       const expected = cold('a', {a: loading});
 
       expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCartFeatureLoading', () => {
+    describe('when all the cart operations have completed', () => {
+      it('should return false', () => {
+        const selector = store.pipe(select(selectCartFeatureLoading));
+        const expected = cold('a', {a: false});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart operations have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartLoad())
+      });
+
+      it('should return true', () => {
+        const selector = store.pipe(select(selectCartFeatureLoading));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart item operations have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartItemLoad('itemId'))
+      });
+
+      it('should return true', () => {
+        const selector = store.pipe(select(selectCartFeatureLoading));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart billing operations have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartBillingAddressLoad())
+      });
+
+      it('should return true state', () => {
+        const selector = store.pipe(select(selectCartFeatureLoading));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart shipping address operations have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartShippingAddressLoad())
+      });
+
+      it('should return true state', () => {
+        const selector = store.pipe(select(selectCartFeatureLoading));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart shipping operations have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartShippingInformationLoad())
+      });
+
+      it('should return true state', () => {
+        const selector = store.pipe(select(selectCartFeatureLoading));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart shipping methods operations have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartShippingMethodsLoad())
+      });
+
+      it('should return true state', () => {
+        const selector = store.pipe(select(selectCartFeatureLoading));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart payment operations have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartPaymentLoad())
+      });
+
+      it('should return true', () => {
+        const selector = store.pipe(select(selectCartFeatureLoading));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart payment methods operations have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartPaymentMethodsLoad())
+      });
+
+      it('should return true state', () => {
+        const selector = store.pipe(select(selectCartFeatureLoading));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart coupon operations have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartCouponList())
+      });
+
+      it('should return true', () => {
+        const selector = store.pipe(select(selectCartFeatureLoading));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('selectCartFeatureResolving', () => {
+    describe('when all the cart operations have completed', () => {
+      it('should return false', () => {
+        const selector = store.pipe(select(selectCartFeatureResolving));
+        const expected = cold('a', {a: false});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart resolutions have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartLoad())
+      });
+
+      it('should return true', () => {
+        const selector = store.pipe(select(selectCartFeatureResolving));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart item resolutions have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartItemLoad('itemId'))
+      });
+
+      it('should return true', () => {
+        const selector = store.pipe(select(selectCartFeatureResolving));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart billing resolutions have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartBillingAddressLoad())
+      });
+
+      it('should return true state', () => {
+        const selector = store.pipe(select(selectCartFeatureResolving));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart shipping address resolutions have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartShippingAddressLoad())
+      });
+
+      it('should return true state', () => {
+        const selector = store.pipe(select(selectCartFeatureResolving));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart shipping resolutions have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartShippingInformationLoad())
+      });
+
+      it('should return true state', () => {
+        const selector = store.pipe(select(selectCartFeatureResolving));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart shipping methods resolutions have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartShippingMethodsLoad())
+      });
+
+      it('should return true state', () => {
+        const selector = store.pipe(select(selectCartFeatureResolving));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart payment resolutions have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartPaymentLoad())
+      });
+
+      it('should return true', () => {
+        const selector = store.pipe(select(selectCartFeatureResolving));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart payment methods resolutions have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartPaymentMethodsLoad())
+      });
+
+      it('should return true state', () => {
+        const selector = store.pipe(select(selectCartFeatureResolving));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart coupon resolutions have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartCouponList())
+      });
+
+      it('should return true', () => {
+        const selector = store.pipe(select(selectCartFeatureResolving));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('selectCartFeatureMutating', () => {
+    describe('when all the cart operations have completed', () => {
+      it('should return false', () => {
+        const selector = store.pipe(select(selectCartFeatureMutating));
+        const expected = cold('a', {a: false});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart mutations have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartClear())
+      });
+
+      it('should return true', () => {
+        const selector = store.pipe(select(selectCartFeatureMutating));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart item mutations have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartItemDelete('itemId'))
+      });
+
+      it('should return true', () => {
+        const selector = store.pipe(select(selectCartFeatureMutating));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart billing mutations have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartBillingAddressUpdate({}))
+      });
+
+      it('should return true state', () => {
+        const selector = store.pipe(select(selectCartFeatureMutating));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart shipping address mutations have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartShippingAddressUpdate({}))
+      });
+
+      it('should return true state', () => {
+        const selector = store.pipe(select(selectCartFeatureMutating));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart shipping mutations have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartShippingInformationDelete())
+      });
+
+      it('should return true state', () => {
+        const selector = store.pipe(select(selectCartFeatureMutating));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart payment mutations have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartPaymentRemove())
+      });
+
+      it('should return true', () => {
+        const selector = store.pipe(select(selectCartFeatureMutating));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart coupon mutations have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartCouponRemoveAll())
+      });
+
+      it('should return true', () => {
+        const selector = store.pipe(select(selectCartFeatureMutating));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
     });
   });
 
@@ -418,7 +779,7 @@ describe('Cart | Selector | Cart', () => {
   });
 
   describe('selectShippingAddressLoading', () => {
-    describe('when the cart shipping operations have completed', () => {
+    describe('when the cart shipping address operations have completed', () => {
       it('should return false state', () => {
         const selector = store.pipe(select(selectShippingAddressLoading));
         const expected = cold('a', {a: false});
@@ -427,7 +788,7 @@ describe('Cart | Selector | Cart', () => {
       });
     });
 
-    describe('when the cart shipping operations have not completed', () => {
+    describe('when the cart shipping address operations have not completed', () => {
       beforeEach(() => {
         store.dispatch(new DaffCartShippingAddressLoad())
       });
@@ -442,7 +803,7 @@ describe('Cart | Selector | Cart', () => {
   });
 
   describe('selectShippingAddressResolving', () => {
-    describe('when the cart shipping operations have completed', () => {
+    describe('when the cart shipping address operations have completed', () => {
       it('should return false state', () => {
         const selector = store.pipe(select(selectShippingAddressResolving));
         const expected = cold('a', {a: false});
@@ -451,7 +812,7 @@ describe('Cart | Selector | Cart', () => {
       });
     });
 
-    describe('when the cart shipping resolutions have not completed', () => {
+    describe('when the cart shipping address resolutions have not completed', () => {
       beforeEach(() => {
         store.dispatch(new DaffCartShippingAddressLoad())
       });
@@ -466,7 +827,7 @@ describe('Cart | Selector | Cart', () => {
   });
 
   describe('selectShippingAddressMutating', () => {
-    describe('when the cart shipping operations have completed', () => {
+    describe('when the cart shipping address operations have completed', () => {
       it('should return false state', () => {
         const selector = store.pipe(select(selectShippingAddressMutating));
         const expected = cold('a', {a: false});
@@ -475,7 +836,7 @@ describe('Cart | Selector | Cart', () => {
       });
     });
 
-    describe('when the cart shipping mutations have not completed', () => {
+    describe('when the cart shipping address mutations have not completed', () => {
       beforeEach(() => {
         store.dispatch(new DaffCartShippingAddressUpdate({}))
       });
@@ -562,7 +923,7 @@ describe('Cart | Selector | Cart', () => {
   });
 
   describe('selectShippingMethodsLoading', () => {
-    describe('when the cart shipping operations have completed', () => {
+    describe('when the cart shipping methods operations have completed', () => {
       it('should return false state', () => {
         const selector = store.pipe(select(selectShippingMethodsLoading));
         const expected = cold('a', {a: false});
@@ -571,7 +932,7 @@ describe('Cart | Selector | Cart', () => {
       });
     });
 
-    describe('when the cart shipping operations have not completed', () => {
+    describe('when the cart shipping methods operations have not completed', () => {
       beforeEach(() => {
         store.dispatch(new DaffCartShippingMethodsLoad())
       });
@@ -586,7 +947,7 @@ describe('Cart | Selector | Cart', () => {
   });
 
   describe('selectShippingMethodsResolving', () => {
-    describe('when the cart shipping operations have completed', () => {
+    describe('when the cart shipping methods operations have completed', () => {
       it('should return false state', () => {
         const selector = store.pipe(select(selectShippingMethodsResolving));
         const expected = cold('a', {a: false});
@@ -595,7 +956,7 @@ describe('Cart | Selector | Cart', () => {
       });
     });
 
-    describe('when the cart shipping resolutions have not completed', () => {
+    describe('when the cart shipping methods resolutions have not completed', () => {
       beforeEach(() => {
         store.dispatch(new DaffCartShippingMethodsLoad())
       });
@@ -682,7 +1043,7 @@ describe('Cart | Selector | Cart', () => {
   });
 
   describe('selectPaymentMethodsLoading', () => {
-    describe('when the cart payment operations have completed', () => {
+    describe('when the cart payment methods operations have completed', () => {
       it('should return false state', () => {
         const selector = store.pipe(select(selectPaymentMethodsLoading));
         const expected = cold('a', {a: false});
@@ -691,7 +1052,7 @@ describe('Cart | Selector | Cart', () => {
       });
     });
 
-    describe('when the cart payment operations have not completed', () => {
+    describe('when the cart payment methods operations have not completed', () => {
       beforeEach(() => {
         store.dispatch(new DaffCartPaymentMethodsLoad())
       });
@@ -706,7 +1067,7 @@ describe('Cart | Selector | Cart', () => {
   });
 
   describe('selectPaymentMethodsResolving', () => {
-    describe('when the cart payment operations have completed', () => {
+    describe('when the cart payment methods operations have completed', () => {
       it('should return false state', () => {
         const selector = store.pipe(select(selectPaymentMethodsResolving));
         const expected = cold('a', {a: false});
@@ -715,7 +1076,7 @@ describe('Cart | Selector | Cart', () => {
       });
     });
 
-    describe('when the cart payment resolutions have not completed', () => {
+    describe('when the cart payment methods resolutions have not completed', () => {
       beforeEach(() => {
         store.dispatch(new DaffCartPaymentMethodsLoad())
       });

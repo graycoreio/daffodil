@@ -20,6 +20,9 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
   cart$: BehaviorSubject<DaffCart> = new BehaviorSubject(null);
 
   loadingObject$: BehaviorSubject<DaffCartLoading> = new BehaviorSubject(null);
+  featureLoading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  featureResolving$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  featureMutating$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   resolving$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   mutating$: BehaviorSubject<boolean> = new BehaviorSubject(false);

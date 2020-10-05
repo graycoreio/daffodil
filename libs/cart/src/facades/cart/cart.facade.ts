@@ -30,6 +30,9 @@ export class DaffCartFacade<
   cart$: Observable<T>;
 
   loadingObject$: Observable<DaffCartLoading>;
+  featureLoading$: Observable<boolean>;
+  featureResolving$: Observable<boolean>;
+  featureMutating$: Observable<boolean>;
   loading$: Observable<boolean>;
   resolving$: Observable<boolean>;
   mutating$: Observable<boolean>;
@@ -120,6 +123,9 @@ export class DaffCartFacade<
       selectCartValue,
 
       selectCartLoadingObject,
+      selectCartFeatureLoading,
+      selectCartFeatureResolving,
+      selectCartFeatureMutating,
       selectCartLoading,
       selectCartResolving,
       selectCartMutating,
@@ -208,6 +214,9 @@ export class DaffCartFacade<
     this.cart$ = this.store.pipe(select(selectCartValue));
 
     this.loadingObject$ = this.store.pipe(select(selectCartLoadingObject));
+    this.featureLoading$ = this.store.pipe(select(selectCartFeatureLoading));
+    this.featureResolving$ = this.store.pipe(select(selectCartFeatureResolving));
+    this.featureMutating$ = this.store.pipe(select(selectCartFeatureMutating));
     this.loading$ = this.store.pipe(select(selectCartLoading));
     this.resolving$ = this.store.pipe(select(selectCartResolving));
     this.mutating$ = this.store.pipe(select(selectCartMutating));

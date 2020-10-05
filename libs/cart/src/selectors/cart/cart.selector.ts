@@ -10,10 +10,20 @@ import { daffComparePersonalAddresses } from '@daffodil/geography';
 
 import { getDaffCartFeatureSelector } from '../cart-feature.selector';
 import { DaffCart } from '../../models/cart';
-import { DaffCartReducerState, DaffCartReducersState, DaffCartOperationType } from '../../reducers/public_api';
+import { DaffCartReducerState, DaffCartReducersState, DaffCartOperationType, DaffCartLoading } from '../../reducers/public_api';
 import { DaffCartOrderResult } from '../../models/cart-order-result';
 import { DaffCartItem } from '../../models/cart-item';
 import { DaffCartTotalTypeEnum, DaffCartTotal } from '../../models/cart-total';
+
+/**
+ * Util function to project loading selectors
+ */
+function projectAllLoadingSelectors(
+  cartLoadingObject: DaffCartLoading,
+  ...selectors: {projector: (DaffCartLoading) => boolean}[]
+) {
+
+}
 
 export interface DaffCartStateMemoizedSelectors<
   T extends DaffCart = DaffCart
@@ -26,6 +36,23 @@ export interface DaffCartStateMemoizedSelectors<
    * The object that holds all the loading states for cart operations.
    */
   selectCartLoadingObject: MemoizedSelector<object, DaffCartReducerState<T>['loading']>;
+  /**
+   * Selects whether there is any cart operation in progress.
+   * This includes operations specifically for cart subfields.
+   */
+  selectCartFeatureLoading: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is any cart resolve operation in progress.
+   * This includes operations for cart subfields.
+   * This pertains only to requests that do not mutate data such as "load" or "list".
+   */
+  selectCartFeatureResolving: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is any cart mutate operation in progress.
+   * This includes operations for cart subfields.
+   * This pertains only to requests that mutate data such as "update".
+   */
+  selectCartFeatureMutating: MemoizedSelector<object, boolean>;
   /**
    * Selects whether there is a cart operation in progress.
    * This does not include operations specifically for cart subfields.
@@ -316,6 +343,52 @@ const createCartSelectors = <
 		selectCartLoadingObject,
 		loadingObject => loadingObject[DaffCartOperationType.Coupon] === DaffLoadingState.Mutating
   );
+  const selectCartFeatureLoading = createSelector(
+		selectCartLoadingObject,
+		loadingObject => [
+      selectCartLoading,
+      selectBillingAddressLoading,
+      selectShippingAddressLoading,
+      selectShippingInformationLoading,
+      selectShippingMethodsLoading,
+      selectPaymentLoading,
+      selectPaymentMethodsLoading,
+      selectCouponLoading,
+      selectItemLoading,
+    ].map(selector =>
+      selector.projector(loadingObject)
+    ).reduce((acc, loading) => acc || loading, false)
+  );
+  const selectCartFeatureResolving = createSelector(
+		selectCartLoadingObject,
+		loadingObject => [
+      selectCartResolving,
+      selectBillingAddressResolving,
+      selectShippingAddressResolving,
+      selectShippingInformationResolving,
+      selectShippingMethodsResolving,
+      selectPaymentResolving,
+      selectPaymentMethodsResolving,
+      selectCouponResolving,
+      selectItemResolving,
+    ].map(selector =>
+      selector.projector(loadingObject)
+    ).reduce((acc, resolving) => acc || resolving, false)
+  );
+  const selectCartFeatureMutating = createSelector(
+		selectCartLoadingObject,
+		loadingObject => [
+      selectCartMutating,
+      selectBillingAddressMutating,
+      selectShippingAddressMutating,
+      selectShippingInformationMutating,
+      selectPaymentMutating,
+      selectCouponMutating,
+      selectItemMutating,
+    ].map(selector =>
+      selector.projector(loadingObject)
+    ).reduce((acc, mutating) => acc || mutating, false)
+	);
 
 	const selectCartErrorsObject = createSelector(
 		selectCartState,
@@ -531,6 +604,9 @@ const createCartSelectors = <
     selectCartResolved,
 
     selectCartLoadingObject,
+    selectCartFeatureLoading,
+    selectCartFeatureResolving,
+    selectCartFeatureMutating,
     selectCartLoading,
     selectCartResolving,
     selectCartMutating,
