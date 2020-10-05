@@ -28,18 +28,18 @@ export interface DaffCartStateMemoizedSelectors<
   selectCartLoadingObject: MemoizedSelector<object, DaffCartReducerState<T>['loading']>;
   /**
    * Selects whether there is a cart operation in progress.
-   * This does not include operations specifally for cart subfields.
+   * This does not include operations specifically for cart subfields.
    */
   selectCartLoading: MemoizedSelector<object, boolean>;
   /**
    * Selects whether there is a cart resolve operation in progress.
-   * This does not include operations specifally for cart subfields.
+   * This does not include operations specifically for cart subfields.
    * This pertains only to requests that do not mutate data such as "load" or "list".
    */
   selectCartResolving: MemoizedSelector<object, boolean>;
   /**
    * Selects whether there is a cart mutate operation in progress.
-   * This does not include operations specifally for cart subfields.
+   * This does not include operations specifically for cart subfields.
    * This pertains only to requests that mutate data such as "update".
    */
   selectCartMutating: MemoizedSelector<object, boolean>;

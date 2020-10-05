@@ -28,18 +28,18 @@ export interface DaffCartFacadeInterface<
   loadingObject$: Observable<DaffCartLoading>;
   /**
    * Whether there is a cart operation in progress.
-   * This does not include operations specifally for cart subfields.
+   * This does not include operations specifically for cart subfields.
    */
   loading$: Observable<boolean>;
   /**
    * Whether there is a cart resolve operation in progress.
-   * This does not include operations specifally for cart subfields.
+   * This does not include operations specifically for cart subfields.
    * This pertains only to requests that do not mutate data such as "load" or "list".
    */
   resolving$: Observable<boolean>;
   /**
    * Whether there is a cart mutate operation in progress.
-   * This does not include operations specifally for cart subfields.
+   * This does not include operations specifically for cart subfields.
    * This pertains only to requests that mutate data such as "update".
    */
   mutating$: Observable<boolean>;
