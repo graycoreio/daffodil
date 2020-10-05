@@ -67,14 +67,14 @@ export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Act
 
 	/**
 	 * Get the minimum price for a composite product, excluding unselected optional items and depending on the current selection of item options.
-	 * This would be used for a composite product that has required items without default selections.
+	 * This will be equal to getMaxRequiredItemPrice when all required items already have default selections.
 	 * @param id the id of the composite product.
 	 */
 	getMinRequiredItemPrice(id: string): Observable<number>;
 
 	/**
 	 * Get the maximum price for a composite product, excluding unselected optional items and depending on the current selection of item options.
-	 * This would be used for a composite product that has required items without default selections.
+	 * This will be equal to getMinRequiredItemPrice when all required items already have default selections.
 	 * @param id the id of the composite product.
 	 */
 	getMaxRequiredItemPrice(id: string): Observable<number>;

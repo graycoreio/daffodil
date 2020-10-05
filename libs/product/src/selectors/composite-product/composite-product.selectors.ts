@@ -9,19 +9,85 @@ import { DaffCompositeProduct } from '../../models/composite-product';
 import { DaffCompositeProductItem } from '../../models/composite-product-item';
 
 export interface DaffCompositeProductMemoizedSelectors {
+	/**
+	 * Selector for the minimum price for a composite product, including the optional items and regardless of the current item option selection.
+	 * This could be useful for a quick preview of the product.
+	 */
 	selectCompositeProductMinOptionalItemPrice: MemoizedSelectorWithProps<object, object, number>;
+	/**
+	 * Selector for the maximum price for a composite product, including the optional items and regardless of the current item option selection.
+	 * This could be useful for a quick preview of the product.
+	 */
 	selectCompositeProductMaxOptionalItemPrice: MemoizedSelectorWithProps<object, object, number>;
+	/**
+	 * Selector for whether the composite product could have a price range in any configuration,
+	 * including the optional items and regardless of the current item option selection.
+	 * This could be useful for a quick preview of the product.
+	 */
 	selectCompositeProductHasOptionalItemPriceRange: MemoizedSelectorWithProps<object, object, boolean>;
+	/**
+	 * Selector for the minimum discounted price for a composite product, including optional items and regardless of the current selection of item options.
+	 * This could be useful for a quick preview of the product.
+	 */
 	selectCompositeProductMinOptionalItemDiscountedPrice: MemoizedSelectorWithProps<object, object, number>;
+	/**
+	 * Selector for the maximum discounted price for a composite product, including optional items and regardless of the current selection of item options.
+	 * This could be useful for a quick preview of the product.
+	 */
 	selectCompositeProductMaxOptionalItemDiscountedPrice: MemoizedSelectorWithProps<object, object, number>;
+	/**
+	 * Selector for whether the composite product could have a discounted price range in any configuration,
+	 * including the optional items and regardless of the current item option selection.
+	 * This could be useful for a quick preview of the product.
+	 */
 	selectCompositeProductHasOptionalItemDiscountedPriceRange: MemoizedSelectorWithProps<object, object, boolean>;
+	/**
+	 * Selector for whether the minimum and maximum composite product discounted prices equal the minimum and maximum
+	 * pre discount prices, including optional items. Note: this intentionally misses a usecase where there is a discount
+	 * in between the minimum and maximum prices. This is because the resulting UI would be non-sensical to the customer for
+	 * this usecase. For example, if we have a set of item options' prices: (price, discount), (10, 0), (20, 0), (15, 4).
+	 * While it is true that there is technically a discounted price, the user would see the original price range (10-20) followed
+	 * by the discounted price range (10-20). This would happen, because the 15-4=11 price would fall between the two extremes
+	 * of the discounted prices and it wouldn't make sense to the customer what is happening.
+	 */
 	selectCompositeProductHasOptionalItemDiscount: MemoizedSelectorWithProps<object, object, boolean>;
+	/**
+	 * Selector for the minimum price for a composite product, excluding unselected optional items and depending on the current selection of item options.
+	 * This would be used for a composite product that has required items without default selections.
+	 */
 	selectCompositeProductMinRequiredItemPrice: MemoizedSelectorWithProps<object, object, number>;
+	/**
+	 * Selector for the maximum price for a composite product, excluding unselected optional items and depending on the current selection of item options.
+	 * This would be used for a composite product that has required items without default selections.
+	 */
 	selectCompositeProductMaxRequiredItemPrice: MemoizedSelectorWithProps<object, object, number>;
+	/**
+	 * Selector for whether the composite product has a price range, excluding unselected optional items and based on the currently applied item options.
+	 */
 	selectCompositeProductHasRequiredItemPriceRange: MemoizedSelectorWithProps<object, object, boolean>;
+	/**
+	 * Selector for the minimum discounted price for a composite product, excluding unselected optional items and depending on the current selection of item options.
+	 * This would be used for a composite product that has required items without default selections or just the final price of a product with no price range.
+	 */
 	selectCompositeProductMinRequiredItemDiscountedPrice: MemoizedSelectorWithProps<object, object, number>;
+	/**
+	 * Selector for the maximum discounted price for a composite product, excluding unselected optional items and depending on the current selection of item options.
+	 * This would be used for a composite product that has required items without default selections or just the final price of a product with no price range.
+	 */
 	selectCompositeProductMaxRequiredItemDiscountedPrice: MemoizedSelectorWithProps<object, object, number>;
+	/**
+	 * Selector for whether the composite product has a discounted price range, excluding unselected optional items and based on the currently applied item options.
+	 */
 	selectCompositeProductHasRequiredItemDiscountedPriceRange: MemoizedSelectorWithProps<object, object, boolean>;
+	/**
+	 * Selector for whether the minimum and maximum composite product discounted prices equal the minimum and maximum
+	 * pre discount prices, excluding unselected optional items. Note: this intentionally misses a usecase where there is a discount
+	 * in between the minimum and maximum prices. This is because the resulting UI would be non-sensical to the customer for
+	 * this usecase. For example, if we have a set of item options' prices: (price, discount), (10, 0), (20, 0), (15, 4).
+	 * While it is true that there is technically a discounted price, the user would see the original price range (10-20) followed
+	 * by the discounted price range (10-20). This would happen, because the 15-4=11 price would fall between the two extremes
+	 * of the discounted prices and it wouldn't make sense to the customer what is happening.
+	 */
 	selectCompositeProductHasRequiredItemDiscount: MemoizedSelectorWithProps<object, object, boolean>;
 }
 
@@ -37,10 +103,6 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 		selectProduct
 	} = getDaffProductEntitiesSelectors();
 
-	/**
-	 * Selector for the minimum price for a composite product, including the optional items and regardless of the current item option selection.
-	 * This could be useful for a quick preview of the product.
-	 */
 	const selectCompositeProductMinOptionalItemPrice = createSelector(
 		selectProductEntities,
 		(products, props) => {
@@ -57,10 +119,6 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 		}
 	);
 
-	/**
-	 * Selector for the maximum price for a composite product, including the optional items and regardless of the current item option selection.
-	 * This could be useful for a quick preview of the product.
-	 */
 	const selectCompositeProductMaxOptionalItemPrice = createSelector(
 		selectProductEntities,
 		(products, props) => {
@@ -77,22 +135,12 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 		}
 	);
 
-	/**
-	 * Selector for whether the composite product could have a price range in any configuration,
-	 * including the optional items and regardless of the current item option selection.
-	 * This could be useful for a quick preview of the product.
-	 */
 	const selectCompositeProductHasOptionalItemPriceRange = createSelector(
 		selectProductEntities,
 		(products, props) => selectCompositeProductMinOptionalItemPrice.projector(products, { id: props.id }) 
 			!== selectCompositeProductMaxOptionalItemPrice.projector(products, { id: props.id })
 	)
 
-	/**
-	 * Selector for the minimum discounted price for a composite product, including optional items and regardless of the current selection of item options.
-	 * This could be useful for a quick preview of the product.
-	 */
-	//todo use optional chaining where possible.
 	const selectCompositeProductMinOptionalItemDiscountedPrice = createSelector(
 		selectProductEntities,
 		(products, props) => {
@@ -102,16 +150,11 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 			}
 			return (<DaffCompositeProduct>product).items.reduce((acc, item) => daffAdd(
 				acc, 
-				Math.min(...item.options.map(option => daffSubtract(option.price, option.discount ? option.discount.amount : 0)))
-			), daffSubtract(product.price, product.discount ? product.discount.amount : 0));
+				Math.min(...getItemDiscountedPrices(item))
+			), product.discount ? daffSubtract(product.price, product.discount.amount) : product.price);
 		}
 	);
 
-	/**
-	 * Selector for the maximum discounted price for a composite product, including optional items and regardless of the current selection of item options.
-	 * This could be useful for a quick preview of the product.
-	 */
-	//todo use optional chaining where possible.
 	const selectCompositeProductMaxOptionalItemDiscountedPrice = createSelector(
 		selectProductEntities,
 		(products, props) => {
@@ -121,31 +164,17 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 			}
 			return (<DaffCompositeProduct>product).items.reduce((acc, item) => daffAdd(
 				acc, 
-				Math.max(...item.options.map(option => daffSubtract(option.price, option.discount ? option.discount.amount : 0)))
-			), daffSubtract(product.price, product.discount ? product.discount.amount : 0));
+				Math.max(...getItemDiscountedPrices(item))
+			), product.discount ? daffSubtract(product.price, product.discount.amount) : product.price);
 		}
 	);
 
-	/**
-	 * Selector for whether the composite product could have a discounted price range in any configuration,
-	 * including the optional items and regardless of the current item option selection.
-	 * This could be useful for a quick preview of the product.
-	 */
 	const selectCompositeProductHasOptionalItemDiscountedPriceRange = createSelector(
 		selectProductEntities,
 		(products, props) => selectCompositeProductMinOptionalItemDiscountedPrice.projector(products, { id: props.id }) 
 			!== selectCompositeProductMaxOptionalItemDiscountedPrice.projector(products, { id: props.id })
 	)
 
-	/**
-	 * Selector for whether the minimum and maximum composite product discounted prices equal the minimum and maximum
-	 * pre discount prices, including optional items. Note: this intentionally misses a usecase where there is a discount
-	 * in between the minimum and maximum prices. This is because the resulting UI would be non-sensical to the customer for
-	 * this usecase. For example, if we have a set of item options' prices: (price, discount), (10, 0), (20, 0), (15, 4).
-	 * While it is true that there is technically a discounted price, the user would see the original price range (10-20) followed
-	 * by the discounted price range (10-20). This would happen, because the 15-4=11 price would fall between the two extremes
-	 * of the discounted prices and it wouldn't make sense to the customer what is happening.
-	 */
 	const selectCompositeProductHasOptionalItemDiscount = createSelector(
 		selectProductEntities,
 		(products, props) => {
@@ -154,20 +183,13 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 				return undefined;
 			}
 
-			return daffSubtract(
-				selectCompositeProductMinOptionalItemPrice.projector(products, { id: props.id }), 
+			return selectCompositeProductMinOptionalItemPrice.projector(products, { id: props.id }) !==
 				selectCompositeProductMinOptionalItemDiscountedPrice.projector(products, { id: props.id })
-			) > 0 || daffSubtract(
-				selectCompositeProductMaxOptionalItemPrice.projector(products, { id: props.id }), 
-				selectCompositeProductMaxOptionalItemDiscountedPrice.projector(products, { id: props.id })
-			) > 0;
+		 || selectCompositeProductMaxOptionalItemPrice.projector(products, { id: props.id }) !==
+				selectCompositeProductMaxOptionalItemDiscountedPrice.projector(products, { id: props.id });
 		}
 	);
 
-	/**
-	 * Selector for the minimum price for a composite product, excluding unselected optional items and depending on the current selection of item options.
-	 * This would be used for a composite product that has required items without default selections.
-	 */
 	const selectCompositeProductMinRequiredItemPrice = createSelector(
 		selectProductEntities,
 		selectCompositeProductAppliedOptionsEntitiesState,
@@ -184,10 +206,6 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 		}
 	);
 
-	/**
-	 * Selector for the maximum price for a composite product, excluding unselected optional items and depending on the current selection of item options.
-	 * This would be used for a composite product that has required items without default selections.
-	 */
 	const selectCompositeProductMaxRequiredItemPrice = createSelector(
 		selectProductEntities,
 		selectCompositeProductAppliedOptionsEntitiesState,
@@ -206,9 +224,6 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 		}
 	);
 
-	/**
-	 * Selector for whether the composite product has a price range, excluding unselected optional items and based on the currently applied item options.
-	 */
 	const selectCompositeProductHasRequiredItemPriceRange = createSelector(
 		selectProductEntities,
 		selectCompositeProductAppliedOptionsEntitiesState,
@@ -216,11 +231,6 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 			!== selectCompositeProductMaxRequiredItemPrice.projector(products, appliedOptionsEntities, { id: props.id })
 	)
 
-	/**
-	 * Selector for the minimum discounted price for a composite product, excluding unselected optional items and depending on the current selection of item options.
-	 * This would be used for a composite product that has required items without default selections or just the final price of a product with no price range.
-	 */
-	//todo use optional chaining where possible.
 	const selectCompositeProductMinRequiredItemDiscountedPrice = createSelector(
 		selectProductEntities,
 		selectCompositeProductAppliedOptionsEntitiesState,
@@ -234,19 +244,14 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 				acc, 
 				appliedOptions[item.id] ? 
 					daffMultiply(
-						daffSubtract(appliedOptions[item.id].price, appliedOptions[item.id].discount && appliedOptions[item.id].discount.amount), 
+						appliedOptions[item.id].discount ? daffSubtract(appliedOptions[item.id].price, appliedOptions[item.id].discount.amount) : appliedOptions[item.id].price, 
 						appliedOptions[item.id].quantity
 					) : 
 					getMinimumRequiredCompositeItemDiscountedPrice(item)
-			), daffSubtract(product.price, product.discount ? product.discount.amount : 0));
+			), product.discount ? daffSubtract(product.price, product.discount.amount) : product.price);
 		}
 	);
 
-	/**
-	 * Selector for the maximum discounted price for a composite product, excluding unselected optional items and depending on the current selection of item options.
-	 * This would be used for a composite product that has required items without default selections or just the final price of a product with no price range.
-	 */
-	//todo use optional chaining where possible.
 	const selectCompositeProductMaxRequiredItemDiscountedPrice = createSelector(
 		selectProductEntities,
 		selectCompositeProductAppliedOptionsEntitiesState,
@@ -260,17 +265,14 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 				acc, 
 				appliedOptions[item.id] ? 
 					daffMultiply(
-						daffSubtract(appliedOptions[item.id].price, appliedOptions[item.id].discount && appliedOptions[item.id].discount.amount),
+						appliedOptions[item.id].discount ? daffSubtract(appliedOptions[item.id].price, appliedOptions[item.id].discount.amount) : appliedOptions[item.id].price,
 						appliedOptions[item.id].quantity
 					) : 
 					getMaximumRequiredCompositeItemDiscountedPrice(item)
-			), daffSubtract(product.price, product.discount ? product.discount.amount : 0));
+			), product.discount.amount ? daffSubtract(product.price, product.discount.amount) : product.price);
 		}
 	);
 
-	/**
-	 * Selector for whether the composite product has a discounted price range, excluding unselected optional items and based on the currently applied item options.
-	 */
 	const selectCompositeProductHasRequiredItemDiscountedPriceRange = createSelector(
 		selectProductEntities,
 		selectCompositeProductAppliedOptionsEntitiesState,
@@ -278,15 +280,6 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 			!== selectCompositeProductMaxRequiredItemDiscountedPrice.projector(products, appliedOptionsEntities, { id: props.id })
 	)
 
-	/**
-	 * Selector for whether the minimum and maximum composite product discounted prices equal the minimum and maximum
-	 * pre discount prices, excluding unselected optional items. Note: this intentionally misses a usecase where there is a discount
-	 * in between the minimum and maximum prices. This is because the resulting UI would be non-sensical to the customer for
-	 * this usecase. For example, if we have a set of item options' prices: (price, discount), (10, 0), (20, 0), (15, 4).
-	 * While it is true that there is technically a discounted price, the user would see the original price range (10-20) followed
-	 * by the discounted price range (10-20). This would happen, because the 15-4=11 price would fall between the two extremes
-	 * of the discounted prices and it wouldn't make sense to the customer what is happening.
-	 */
 	const selectCompositeProductHasRequiredItemDiscount = createSelector(
 		selectProductEntities,
 		selectCompositeProductAppliedOptionsEntitiesState,
@@ -296,13 +289,10 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 				return undefined;
 			}
 
-			return daffSubtract(
-				selectCompositeProductMinRequiredItemPrice.projector(products, appliedOptionsEntities, { id: props.id }), 
+			return selectCompositeProductMinRequiredItemPrice.projector(products, appliedOptionsEntities, { id: props.id }) !==
 				selectCompositeProductMinRequiredItemDiscountedPrice.projector(products, appliedOptionsEntities, { id: props.id })
-			) > 0 || daffSubtract(
-				selectCompositeProductMaxRequiredItemPrice.projector(products, appliedOptionsEntities, { id: props.id }), 
-				selectCompositeProductMaxRequiredItemDiscountedPrice.projector(products, appliedOptionsEntities, { id: props.id })
-			) > 0;
+			|| selectCompositeProductMaxRequiredItemPrice.projector(products, appliedOptionsEntities, { id: props.id }) !==
+				selectCompositeProductMaxRequiredItemDiscountedPrice.projector(products, appliedOptionsEntities, { id: props.id });
 		}
 	);
 
@@ -366,4 +356,8 @@ function getMaximumRequiredCompositeItemDiscountedPrice(item: DaffCompositeProdu
 	return item.required ? Math.max(...item.options.map(option => 
 		daffSubtract(option.price, option.discount ? option.discount.amount : 0)
 	)) : 0;
+}
+
+function getItemDiscountedPrices(item: DaffCompositeProductItem): number[] {
+	return item.options.map(option => option.discount ? daffSubtract(option.price, option.discount.amount) : option.price);
 }
