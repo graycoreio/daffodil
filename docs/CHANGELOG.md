@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.13.0](https://github.com/graycoreio/daffodil/compare/v0.12.1...v0.13.0) (2020-10-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* **product:** Some of the composite product price selectors have been renamed, because they were incorrect/misleading.
+
+* **product:** fix the facade and selector names for composite product prices ([#1085](https://github.com/graycoreio/daffodil/issues/1085)) ([5766ad9](https://github.com/graycoreio/daffodil/commit/5766ad9b48ddf7b9a4bf402190be58968cacbff4))
+
 ### [0.12.1](https://github.com/graycoreio/daffodil/compare/v0.12.0...v0.12.1) (2020-10-06)
 
 
