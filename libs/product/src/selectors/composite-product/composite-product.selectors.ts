@@ -13,34 +13,34 @@ export interface DaffCompositeProductMemoizedSelectors {
 	 * Selector for the minimum price for a composite product, including the optional items and regardless of the current item option selection.
 	 * This could be useful for a quick preview of the product.
 	 */
-	selectCompositeProductMinOptionalItemPrice: MemoizedSelectorWithProps<object, object, number>;
+	selectCompositeProductMinPossibleItemPrice: MemoizedSelectorWithProps<object, object, number>;
 	/**
 	 * Selector for the maximum price for a composite product, including the optional items and regardless of the current item option selection.
 	 * This could be useful for a quick preview of the product.
 	 */
-	selectCompositeProductMaxOptionalItemPrice: MemoizedSelectorWithProps<object, object, number>;
+	selectCompositeProductMaxPossibleItemPrice: MemoizedSelectorWithProps<object, object, number>;
 	/**
 	 * Selector for whether the composite product could have a price range in any configuration,
 	 * including the optional items and regardless of the current item option selection.
 	 * This could be useful for a quick preview of the product.
 	 */
-	selectCompositeProductHasOptionalItemPriceRange: MemoizedSelectorWithProps<object, object, boolean>;
+	selectCompositeProductPossiblyHasItemPriceRange: MemoizedSelectorWithProps<object, object, boolean>;
 	/**
 	 * Selector for the minimum discounted price for a composite product, including optional items and regardless of the current selection of item options.
 	 * This could be useful for a quick preview of the product.
 	 */
-	selectCompositeProductMinOptionalItemDiscountedPrice: MemoizedSelectorWithProps<object, object, number>;
+	selectCompositeProductMinPossibleItemDiscountedPrice: MemoizedSelectorWithProps<object, object, number>;
 	/**
 	 * Selector for the maximum discounted price for a composite product, including optional items and regardless of the current selection of item options.
 	 * This could be useful for a quick preview of the product.
 	 */
-	selectCompositeProductMaxOptionalItemDiscountedPrice: MemoizedSelectorWithProps<object, object, number>;
+	selectCompositeProductMaxPossibleItemDiscountedPrice: MemoizedSelectorWithProps<object, object, number>;
 	/**
 	 * Selector for whether the composite product could have a discounted price range in any configuration,
 	 * including the optional items and regardless of the current item option selection.
 	 * This could be useful for a quick preview of the product.
 	 */
-	selectCompositeProductHasOptionalItemDiscountedPriceRange: MemoizedSelectorWithProps<object, object, boolean>;
+	selectCompositeProductPossiblyHasItemDiscountedPriceRange: MemoizedSelectorWithProps<object, object, boolean>;
 	/**
 	 * Selector for whether the minimum and maximum composite product discounted prices equal the minimum and maximum
 	 * pre discount prices, including optional items. Note: this intentionally misses a usecase where there is a discount
@@ -50,7 +50,7 @@ export interface DaffCompositeProductMemoizedSelectors {
 	 * by the discounted price range (10-20). This would happen, because the 15-4=11 price would fall between the two extremes
 	 * of the discounted prices and it wouldn't make sense to the customer what is happening.
 	 */
-	selectCompositeProductHasOptionalItemDiscount: MemoizedSelectorWithProps<object, object, boolean>;
+	selectCompositeProductPossiblyHasItemDiscount: MemoizedSelectorWithProps<object, object, boolean>;
 	/**
 	 * Selector for the minimum price for a composite product, excluding unselected optional items and depending on the current selection of item options.
 	 * This would be used for a composite product that has required items without default selections.
@@ -103,7 +103,7 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 		selectProduct
 	} = getDaffProductEntitiesSelectors();
 
-	const selectCompositeProductMinOptionalItemPrice = createSelector(
+	const selectCompositeProductMinPossibleItemPrice = createSelector(
 		selectProductEntities,
 		(products, props) => {
 			const product = selectProduct.projector(products, { id: props.id });
@@ -119,7 +119,7 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 		}
 	);
 
-	const selectCompositeProductMaxOptionalItemPrice = createSelector(
+	const selectCompositeProductMaxPossibleItemPrice = createSelector(
 		selectProductEntities,
 		(products, props) => {
 			const product = selectProduct.projector(products, { id: props.id });
@@ -135,13 +135,13 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 		}
 	);
 
-	const selectCompositeProductHasOptionalItemPriceRange = createSelector(
+	const selectCompositeProductPossiblyHasItemPriceRange = createSelector(
 		selectProductEntities,
-		(products, props) => selectCompositeProductMinOptionalItemPrice.projector(products, { id: props.id }) 
-			!== selectCompositeProductMaxOptionalItemPrice.projector(products, { id: props.id })
+		(products, props) => selectCompositeProductMinPossibleItemPrice.projector(products, { id: props.id }) 
+			!== selectCompositeProductMaxPossibleItemPrice.projector(products, { id: props.id })
 	)
 
-	const selectCompositeProductMinOptionalItemDiscountedPrice = createSelector(
+	const selectCompositeProductMinPossibleItemDiscountedPrice = createSelector(
 		selectProductEntities,
 		(products, props) => {
 			const product = selectProduct.projector(products, { id: props.id });
@@ -155,7 +155,7 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 		}
 	);
 
-	const selectCompositeProductMaxOptionalItemDiscountedPrice = createSelector(
+	const selectCompositeProductMaxPossibleItemDiscountedPrice = createSelector(
 		selectProductEntities,
 		(products, props) => {
 			const product = selectProduct.projector(products, { id: props.id });
@@ -169,13 +169,13 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 		}
 	);
 
-	const selectCompositeProductHasOptionalItemDiscountedPriceRange = createSelector(
+	const selectCompositeProductPossiblyHasItemDiscountedPriceRange = createSelector(
 		selectProductEntities,
-		(products, props) => selectCompositeProductMinOptionalItemDiscountedPrice.projector(products, { id: props.id }) 
-			!== selectCompositeProductMaxOptionalItemDiscountedPrice.projector(products, { id: props.id })
+		(products, props) => selectCompositeProductMinPossibleItemDiscountedPrice.projector(products, { id: props.id }) 
+			!== selectCompositeProductMaxPossibleItemDiscountedPrice.projector(products, { id: props.id })
 	)
 
-	const selectCompositeProductHasOptionalItemDiscount = createSelector(
+	const selectCompositeProductPossiblyHasItemDiscount = createSelector(
 		selectProductEntities,
 		(products, props) => {
 			const product = selectProduct.projector(products, { id: props.id });
@@ -183,10 +183,10 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 				return undefined;
 			}
 
-			return selectCompositeProductMinOptionalItemPrice.projector(products, { id: props.id }) !==
-				selectCompositeProductMinOptionalItemDiscountedPrice.projector(products, { id: props.id })
-		 || selectCompositeProductMaxOptionalItemPrice.projector(products, { id: props.id }) !==
-				selectCompositeProductMaxOptionalItemDiscountedPrice.projector(products, { id: props.id });
+			return selectCompositeProductMinPossibleItemPrice.projector(products, { id: props.id }) !==
+				selectCompositeProductMinPossibleItemDiscountedPrice.projector(products, { id: props.id })
+		 || selectCompositeProductMaxPossibleItemPrice.projector(products, { id: props.id }) !==
+				selectCompositeProductMaxPossibleItemDiscountedPrice.projector(products, { id: props.id });
 		}
 	);
 
@@ -297,13 +297,13 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 	);
 
 	return { 
-		selectCompositeProductMinOptionalItemPrice,
-		selectCompositeProductMaxOptionalItemPrice,
-		selectCompositeProductHasOptionalItemPriceRange,
-		selectCompositeProductMinOptionalItemDiscountedPrice,
-		selectCompositeProductMaxOptionalItemDiscountedPrice,
-		selectCompositeProductHasOptionalItemDiscountedPriceRange,
-		selectCompositeProductHasOptionalItemDiscount,
+		selectCompositeProductMinPossibleItemPrice,
+		selectCompositeProductMaxPossibleItemPrice,
+		selectCompositeProductPossiblyHasItemPriceRange,
+		selectCompositeProductMinPossibleItemDiscountedPrice,
+		selectCompositeProductMaxPossibleItemDiscountedPrice,
+		selectCompositeProductPossiblyHasItemDiscountedPriceRange,
+		selectCompositeProductPossiblyHasItemDiscount,
 		selectCompositeProductMinRequiredItemPrice,
 		selectCompositeProductMaxRequiredItemPrice,
 		selectCompositeProductHasRequiredItemPriceRange,

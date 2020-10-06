@@ -58,7 +58,7 @@ describe('DaffCompositeProductFacade', () => {
     expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 
-  describe('getMinOptionalItemPrice', () => {
+  describe('getMinPossibleItemPrice', () => {
 
     it('should return the minimum price possible for the product', () => {
 			const expected = cold('a', { a:
@@ -67,11 +67,11 @@ describe('DaffCompositeProductFacade', () => {
 				stubCompositeProduct.items[1].options[0].price
 			});
 
-			expect(facade.getMinOptionalItemPrice(stubCompositeProduct.id)).toBeObservable(expected);
+			expect(facade.getMinPossibleItemPrice(stubCompositeProduct.id)).toBeObservable(expected);
 		});
   });
 
-  describe('getMaxOptionalItemPrice', () => {
+  describe('getMaxPossibleItemPrice', () => {
 
     it('should return the maximum price possible for the product', () => {
 			const expected = cold('a', { a:
@@ -80,20 +80,20 @@ describe('DaffCompositeProductFacade', () => {
 				stubCompositeProduct.items[1].options[1].price
 			});
 
-			expect(facade.getMaxOptionalItemPrice(stubCompositeProduct.id)).toBeObservable(expected);
+			expect(facade.getMaxPossibleItemPrice(stubCompositeProduct.id)).toBeObservable(expected);
 		});
   });
 
-  describe('hasOptionalItemPriceRange', () => {
+  describe('possiblyHasItemPriceRange', () => {
 
     it('should return whether the product could have a price range', () => {
 			const expected = cold('a', { a: true });
 
-			expect(facade.hasOptionalItemPriceRange(stubCompositeProduct.id)).toBeObservable(expected);
+			expect(facade.possiblyHasItemPriceRange(stubCompositeProduct.id)).toBeObservable(expected);
 		});
 	});
 
-  describe('getMinOptionalItemDiscountedPrice', () => {
+  describe('getMinPossibleItemDiscountedPrice', () => {
 
     it('should return the minimum discounted price possible for the product', () => {
 			const expected = cold('a', { a:
@@ -102,11 +102,11 @@ describe('DaffCompositeProductFacade', () => {
 				stubCompositeProduct.items[1].options[0].price
 			});
 
-			expect(facade.getMinOptionalItemDiscountedPrice(stubCompositeProduct.id)).toBeObservable(expected);
+			expect(facade.getMinPossibleItemDiscountedPrice(stubCompositeProduct.id)).toBeObservable(expected);
 		});
   });
 
-  describe('getMaxOptionalItemDiscountedPrice', () => {
+  describe('getMaxPossibleItemDiscountedPrice', () => {
 
     it('should return the maximum discounted price possible for the product', () => {
 			const expected = cold('a', { a:
@@ -115,20 +115,20 @@ describe('DaffCompositeProductFacade', () => {
 				stubCompositeProduct.items[1].options[1].price
 			});
 
-			expect(facade.getMaxOptionalItemDiscountedPrice(stubCompositeProduct.id)).toBeObservable(expected);
+			expect(facade.getMaxPossibleItemDiscountedPrice(stubCompositeProduct.id)).toBeObservable(expected);
 		});
   });
 
-  describe('hasOptionalItemDiscountedPriceRange', () => {
+  describe('possiblyHasItemDiscountedPriceRange', () => {
 
     it('should return whether the product could have a discounted price range', () => {
 			const expected = cold('a', { a: true });
 
-			expect(facade.hasOptionalItemDiscountedPriceRange(stubCompositeProduct.id)).toBeObservable(expected);
+			expect(facade.possiblyHasItemDiscountedPriceRange(stubCompositeProduct.id)).toBeObservable(expected);
 		});
 	});
 
-  describe('hasOptionalItemDiscount', () => {
+  describe('possiblyHasItemDiscount', () => {
     let productWithDiscount;
 
     beforeEach(() => {
@@ -144,7 +144,7 @@ describe('DaffCompositeProductFacade', () => {
     it('should return whether the product has a discount including optional items', () => {
 			const expected = cold('a', { a: true });
 
-			expect(facade.hasOptionalItemDiscount(productWithDiscount.id)).toBeObservable(expected);
+			expect(facade.possiblyHasItemDiscount(productWithDiscount.id)).toBeObservable(expected);
 		});
 	});
 
