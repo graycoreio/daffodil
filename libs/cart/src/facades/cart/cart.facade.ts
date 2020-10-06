@@ -7,7 +7,7 @@ import { DaffCart } from '../../models/cart';
 import { DaffCartReducersState } from '../../reducers/public_api';
 import { getDaffCartSelectors } from '../../selectors/public_api';
 import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
-import { DaffCartErrorType } from '../../reducers/errors/cart-error-type.enum';
+import { DaffCartOperationType } from '../../reducers/cart-operation-type.enum';
 import { DaffCartFacadeInterface } from './cart-facade.interface';
 import { DaffCartOrderResult } from '../../models/cart-order-result';
 import { DaffCartItem } from '../../models/cart-item';
@@ -16,6 +16,7 @@ import { DaffCompositeCartItemOption } from '../../models/composite-cart-item';
 import { DaffCartTotal } from '../../models/cart-total';
 import { DaffCartPaymentMethodIdMap } from '../../injection-tokens/public_api';
 import { filter, map, tap } from 'rxjs/operators';
+import { DaffCartLoading } from '../../reducers/loading/cart-loading.type';
 
 @Injectable({
   providedIn: 'root'
@@ -25,20 +26,49 @@ export class DaffCartFacade<
 	V extends DaffCartOrderResult = DaffCartOrderResult,
 	U extends DaffCartItem = DaffCartItem
 > implements DaffCartFacadeInterface<T, V, U> {
-  loading$: Observable<boolean>;
   resolved$: Observable<boolean>;
   cart$: Observable<T>;
 
+  loadingObject$: Observable<DaffCartLoading>;
+  featureLoading$: Observable<boolean>;
+  featureResolving$: Observable<boolean>;
+  featureMutating$: Observable<boolean>;
+  loading$: Observable<boolean>;
+  resolving$: Observable<boolean>;
+  mutating$: Observable<boolean>;
+  billingAddressLoading$: Observable<boolean>;
+  billingAddressResolving$: Observable<boolean>;
+  billingAddressMutating$: Observable<boolean>;
+  shippingAddressLoading$: Observable<boolean>;
+  shippingAddressResolving$: Observable<boolean>;
+  shippingAddressMutating$: Observable<boolean>;
+  shippingInformationLoading$: Observable<boolean>;
+  shippingInformationResolving$: Observable<boolean>;
+  shippingInformationMutating$: Observable<boolean>;
+  shippingMethodsLoading$: Observable<boolean>;
+  shippingMethodsResolving$: Observable<boolean>;
+  paymentLoading$: Observable<boolean>;
+  paymentResolving$: Observable<boolean>;
+  paymentMutating$: Observable<boolean>;
+  paymentMethodsLoading$: Observable<boolean>;
+  paymentMethodsResolving$: Observable<boolean>;
+  couponLoading$: Observable<boolean>;
+  couponResolving$: Observable<boolean>;
+  couponMutating$: Observable<boolean>;
+  itemLoading$: Observable<boolean>;
+  itemResolving$: Observable<boolean>;
+	itemMutating$: Observable<boolean>;
+
   errors$: Observable<DaffCartErrors>;
-  cartErrors$: Observable<DaffCartErrors[DaffCartErrorType.Cart]>;
-  itemErrors$: Observable<DaffCartErrors[DaffCartErrorType.Item]>;
-  billingAddressErrors$: Observable<DaffCartErrors[DaffCartErrorType.BillingAddress]>;
-  shippingAddressErrors$: Observable<DaffCartErrors[DaffCartErrorType.ShippingAddress]>;
-  shippingInformationErrors$: Observable<DaffCartErrors[DaffCartErrorType.ShippingInformation]>;
-  shippingMethodsErrors$: Observable<DaffCartErrors[DaffCartErrorType.ShippingMethods]>;
-  paymentErrors$: Observable<DaffCartErrors[DaffCartErrorType.Payment]>;
-  paymentMethodsErrors$: Observable<DaffCartErrors[DaffCartErrorType.PaymentMethods]>;
-  couponErrors$: Observable<DaffCartErrors[DaffCartErrorType.Coupon]>;
+  cartErrors$: Observable<DaffCartErrors[DaffCartOperationType.Cart]>;
+  itemErrors$: Observable<DaffCartErrors[DaffCartOperationType.Item]>;
+  billingAddressErrors$: Observable<DaffCartErrors[DaffCartOperationType.BillingAddress]>;
+  shippingAddressErrors$: Observable<DaffCartErrors[DaffCartOperationType.ShippingAddress]>;
+  shippingInformationErrors$: Observable<DaffCartErrors[DaffCartOperationType.ShippingInformation]>;
+  shippingMethodsErrors$: Observable<DaffCartErrors[DaffCartOperationType.ShippingMethods]>;
+  paymentErrors$: Observable<DaffCartErrors[DaffCartOperationType.Payment]>;
+  paymentMethodsErrors$: Observable<DaffCartErrors[DaffCartOperationType.PaymentMethods]>;
+  couponErrors$: Observable<DaffCartErrors[DaffCartOperationType.Coupon]>;
 
   id$: Observable<DaffCart['id']>;
   subtotal$: Observable<DaffCartTotal['value']>;
@@ -89,9 +119,39 @@ export class DaffCartFacade<
     @Inject(DaffCartPaymentMethodIdMap) private paymentMethodMap: Object
   ) {
 		const {
-      selectCartLoading,
       selectCartResolved,
-			selectCartValue,
+      selectCartValue,
+
+      selectCartLoadingObject,
+      selectCartFeatureLoading,
+      selectCartFeatureResolving,
+      selectCartFeatureMutating,
+      selectCartLoading,
+      selectCartResolving,
+      selectCartMutating,
+      selectBillingAddressLoading,
+      selectBillingAddressResolving,
+      selectBillingAddressMutating,
+      selectShippingAddressLoading,
+      selectShippingAddressResolving,
+      selectShippingAddressMutating,
+      selectShippingInformationLoading,
+      selectShippingInformationResolving,
+      selectShippingInformationMutating,
+      selectShippingMethodsLoading,
+      selectShippingMethodsResolving,
+      selectPaymentLoading,
+      selectPaymentResolving,
+      selectPaymentMutating,
+      selectPaymentMethodsLoading,
+      selectPaymentMethodsResolving,
+      selectCouponLoading,
+      selectCouponResolving,
+      selectCouponMutating,
+      selectItemLoading,
+      selectItemResolving,
+      selectItemMutating,
+
 			selectCartErrorsObject,
 			selectCartErrors,
 			selectItemErrors,
@@ -150,9 +210,39 @@ export class DaffCartFacade<
 		this._selectCartItemCompositeOptions = selectCartItemCompositeOptions;
 		this._selectIsCartItemOutOfStock = selectIsCartItemOutOfStock;
 
-    this.loading$ = this.store.pipe(select(selectCartLoading));
     this.resolved$ = this.store.pipe(select(selectCartResolved));
-		this.cart$ = this.store.pipe(select(selectCartValue));
+    this.cart$ = this.store.pipe(select(selectCartValue));
+
+    this.loadingObject$ = this.store.pipe(select(selectCartLoadingObject));
+    this.featureLoading$ = this.store.pipe(select(selectCartFeatureLoading));
+    this.featureResolving$ = this.store.pipe(select(selectCartFeatureResolving));
+    this.featureMutating$ = this.store.pipe(select(selectCartFeatureMutating));
+    this.loading$ = this.store.pipe(select(selectCartLoading));
+    this.resolving$ = this.store.pipe(select(selectCartResolving));
+    this.mutating$ = this.store.pipe(select(selectCartMutating));
+    this.billingAddressLoading$ = this.store.pipe(select(selectBillingAddressLoading));
+    this.billingAddressResolving$ = this.store.pipe(select(selectBillingAddressResolving));
+    this.billingAddressMutating$ = this.store.pipe(select(selectBillingAddressMutating));
+    this.shippingAddressLoading$ = this.store.pipe(select(selectShippingAddressLoading));
+    this.shippingAddressResolving$ = this.store.pipe(select(selectShippingAddressResolving));
+    this.shippingAddressMutating$ = this.store.pipe(select(selectShippingAddressMutating));
+    this.shippingInformationLoading$ = this.store.pipe(select(selectShippingInformationLoading));
+    this.shippingInformationResolving$ = this.store.pipe(select(selectShippingInformationResolving));
+    this.shippingInformationMutating$ = this.store.pipe(select(selectShippingInformationMutating));
+    this.shippingMethodsLoading$ = this.store.pipe(select(selectShippingMethodsLoading));
+    this.shippingMethodsResolving$ = this.store.pipe(select(selectShippingMethodsResolving));
+    this.paymentLoading$ = this.store.pipe(select(selectPaymentLoading));
+    this.paymentResolving$ = this.store.pipe(select(selectPaymentResolving));
+    this.paymentMutating$ = this.store.pipe(select(selectPaymentMutating));
+    this.paymentMethodsLoading$ = this.store.pipe(select(selectPaymentMethodsLoading));
+    this.paymentMethodsResolving$ = this.store.pipe(select(selectPaymentMethodsResolving));
+    this.couponLoading$ = this.store.pipe(select(selectCouponLoading));
+    this.couponResolving$ = this.store.pipe(select(selectCouponResolving));
+    this.couponMutating$ = this.store.pipe(select(selectCouponMutating));
+    this.itemLoading$ = this.store.pipe(select(selectItemLoading));
+    this.itemResolving$ = this.store.pipe(select(selectItemResolving));
+    this.itemMutating$ = this.store.pipe(select(selectItemMutating));
+
     this.errors$ = this.store.pipe(select(selectCartErrorsObject));
     this.cartErrors$ = this.store.pipe(select(selectCartErrors));
     this.itemErrors$ = this.store.pipe(select(selectItemErrors));

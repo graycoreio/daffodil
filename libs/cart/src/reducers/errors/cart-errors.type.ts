@@ -1,5 +1,5 @@
-import { DaffCartErrorType } from './cart-error-type.enum';
+import { DaffCartOperationType } from '../cart-operation-type.enum';
 
 export type DaffCartErrors = {
-  [K in DaffCartErrorType]: string[]
+  [K in DaffCartOperationType]: string[]
 }

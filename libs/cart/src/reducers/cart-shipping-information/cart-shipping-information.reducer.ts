@@ -1,15 +1,19 @@
+import { DaffLoadingState } from '@daffodil/core';
+
 import {
   DaffCartShippingInformationActionTypes,
 } from '../../actions/public_api';
 import { initialState } from '../cart-initial-state';
 import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
-import { DaffCartErrorType } from '../errors/cart-error-type.enum';
+import { DaffCartOperationType } from '../cart-operation-type.enum';
 import { DaffCart } from '../../models/cart';
 import { initializeErrorAdder, initializeErrorResetter } from '../errors/error-state-helpers';
+import { initializeLoadingSetter } from '../loading/loading-state-helpers';
 
-const addError = initializeErrorAdder(DaffCartErrorType.ShippingInformation);
-const resetErrors = initializeErrorResetter(DaffCartErrorType.ShippingInformation);
+const addError = initializeErrorAdder(DaffCartOperationType.ShippingInformation);
+const resetErrors = initializeErrorResetter(DaffCartOperationType.ShippingInformation);
+const setLoading = initializeLoadingSetter(DaffCartOperationType.ShippingInformation);
 
 export function cartShippingInformationReducer<T extends DaffCart>(
   state = initialState,
@@ -17,9 +21,17 @@ export function cartShippingInformationReducer<T extends DaffCart>(
 ): DaffCartReducerState<T> {
   switch (action.type) {
     case DaffCartShippingInformationActionTypes.CartShippingInformationLoadAction:
+      return {
+        ...state,
+        ...setLoading(state.loading, DaffLoadingState.Resolving)
+      };
+
     case DaffCartShippingInformationActionTypes.CartShippingInformationUpdateAction:
     case DaffCartShippingInformationActionTypes.CartShippingInformationDeleteAction:
-      return { ...state, loading: true };
+      return {
+        ...state,
+        ...setLoading(state.loading, DaffLoadingState.Mutating)
+      };
 
     case DaffCartShippingInformationActionTypes.CartShippingInformationLoadSuccessAction:
       return {
@@ -30,7 +42,7 @@ export function cartShippingInformationReducer<T extends DaffCart>(
           // TODO: remove workaround
           shipping_information: {...action.payload, address_id: null}
         },
-        loading: false,
+        ...setLoading(state.loading, DaffLoadingState.Complete),
       };
 
     case DaffCartShippingInformationActionTypes.CartShippingInformationUpdateSuccessAction:
@@ -44,7 +56,7 @@ export function cartShippingInformationReducer<T extends DaffCart>(
           shipping_information: null,
           ...action.payload
         },
-        loading: false,
+        ...setLoading(state.loading, DaffLoadingState.Complete),
       };
 
     case DaffCartShippingInformationActionTypes.CartShippingInformationLoadFailureAction:
@@ -53,7 +65,7 @@ export function cartShippingInformationReducer<T extends DaffCart>(
       return {
         ...state,
         ...addError(state.errors, action.payload),
-        loading: false,
+        ...setLoading(state.loading, DaffLoadingState.Complete),
       };
 
     default:

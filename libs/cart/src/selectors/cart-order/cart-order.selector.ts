@@ -8,12 +8,20 @@ import { getDaffCartFeatureSelector } from '../cart-feature.selector';
 import { DaffCart } from '../../models/cart';
 import { DaffCartReducersState, DaffCartOrderReducerState } from '../../reducers/public_api';
 import { DaffCartItem } from '../../models/cart-item';
+import { DaffLoadingState } from '@daffodil/core';
 
 export interface DaffCartOrderMemoizedSelectors<
   T extends DaffCartOrderResult = DaffCartOrderResult
 > {
   selectCartOrderState: MemoizedSelector<object, DaffCartOrderReducerState<T>>;
+  /**
+   * Selects whether there is a cart order operation in progress.
+   */
   selectCartOrderLoading: MemoizedSelector<object, boolean>;
+  /**
+   * Selects whether there is a place order operation in progress.
+   */
+  selectCartOrderMutating: MemoizedSelector<object, boolean>;
 	selectCartOrderErrors: MemoizedSelector<object, DaffCartOrderReducerState<T>['errors']>;
 	selectCartOrderValue: MemoizedSelector<object, DaffCartOrderReducerState<T>['cartOrderResult']>;
 	selectCartOrderId: MemoizedSelector<object, DaffCartOrderReducerState<T>['cartOrderResult']['orderId']>;
@@ -46,7 +54,11 @@ const createCartOrderSelectors = <
   );
   const selectCartOrderLoading = createSelector(
 		selectCartOrderState,
-		(state: DaffCartOrderReducerState<V>) => state.loading
+		(state: DaffCartOrderReducerState<V>) => state.loading !== DaffLoadingState.Complete
+  );
+  const selectCartOrderMutating = createSelector(
+		selectCartOrderState,
+		(state: DaffCartOrderReducerState<V>) => state.loading === DaffLoadingState.Mutating
 	);
 	const selectCartOrderErrors = createSelector(
 		selectCartOrderState,
@@ -62,6 +74,7 @@ const createCartOrderSelectors = <
 	return {
     selectCartOrderState,
     selectCartOrderLoading,
+    selectCartOrderMutating,
     selectCartOrderErrors,
     selectCartOrderValue,
     selectCartOrderId,

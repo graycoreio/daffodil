@@ -1,15 +1,19 @@
+import { DaffLoadingState } from '@daffodil/core';
+
 import {
   DaffCartItemActionTypes,
 } from '../../actions/public_api';
 import { initialState } from '../cart-initial-state';
 import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
-import { DaffCartErrorType } from '../errors/cart-error-type.enum';
+import { DaffCartOperationType } from '../cart-operation-type.enum';
 import { DaffCart } from '../../models/cart';
 import { initializeErrorAdder, initializeErrorResetter } from '../errors/error-state-helpers';
+import { initializeLoadingSetter } from '../loading/loading-state-helpers';
 
-const addError = initializeErrorAdder(DaffCartErrorType.Item);
-const resetErrors = initializeErrorResetter(DaffCartErrorType.Item);
+const addError = initializeErrorAdder(DaffCartOperationType.Item);
+const resetErrors = initializeErrorResetter(DaffCartOperationType.Item);
+const setLoading = initializeLoadingSetter(DaffCartOperationType.Item);
 
 export function cartItemReducer<T extends DaffCart>(
   state = initialState,
@@ -18,10 +22,18 @@ export function cartItemReducer<T extends DaffCart>(
   switch (action.type) {
     case DaffCartItemActionTypes.CartItemListAction:
     case DaffCartItemActionTypes.CartItemLoadAction:
+      return {
+        ...state,
+        ...setLoading(state.loading, DaffLoadingState.Resolving)
+      };
+
     case DaffCartItemActionTypes.CartItemUpdateAction:
     case DaffCartItemActionTypes.CartItemAddAction:
     case DaffCartItemActionTypes.CartItemDeleteAction:
-      return { ...state, loading: true };
+      return {
+        ...state,
+        ...setLoading(state.loading, DaffLoadingState.Mutating)
+      };
 
     case DaffCartItemActionTypes.CartItemListSuccessAction:
       return {
@@ -31,7 +43,7 @@ export function cartItemReducer<T extends DaffCart>(
           ...state.cart,
           items: action.payload
         },
-        loading: false,
+        ...setLoading(state.loading, DaffLoadingState.Complete),
       };
 
     case DaffCartItemActionTypes.CartItemLoadSuccessAction:
@@ -46,7 +58,7 @@ export function cartItemReducer<T extends DaffCart>(
               : item
           )
         },
-        loading: false,
+        ...setLoading(state.loading, DaffLoadingState.Complete),
       };
 
     case DaffCartItemActionTypes.CartItemUpdateSuccessAction:
@@ -59,7 +71,7 @@ export function cartItemReducer<T extends DaffCart>(
           ...state.cart,
           ...action.payload
         },
-        loading: false,
+        ...setLoading(state.loading, DaffLoadingState.Complete),
       };
 
     case DaffCartItemActionTypes.CartItemListFailureAction:
@@ -70,7 +82,7 @@ export function cartItemReducer<T extends DaffCart>(
       return {
         ...state,
         ...addError(state.errors, action.payload),
-        loading: false,
+        ...setLoading(state.loading, DaffLoadingState.Complete),
       };
 
     default:

@@ -1,15 +1,19 @@
+import { DaffLoadingState } from '@daffodil/core';
+
 import {
   DaffCartPaymentMethodsActionTypes
 } from '../../actions/public_api';
 import { initialState } from '../cart-initial-state';
 import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
-import { DaffCartErrorType } from '../errors/cart-error-type.enum';
+import { DaffCartOperationType } from '../cart-operation-type.enum';
 import { DaffCart } from '../../models/cart';
 import { initializeErrorAdder, initializeErrorResetter } from '../errors/error-state-helpers';
+import { initializeLoadingSetter } from '../loading/loading-state-helpers';
 
-const addError = initializeErrorAdder(DaffCartErrorType.PaymentMethods);
-const resetErrors = initializeErrorResetter(DaffCartErrorType.PaymentMethods);
+const addError = initializeErrorAdder(DaffCartOperationType.PaymentMethods);
+const resetErrors = initializeErrorResetter(DaffCartOperationType.PaymentMethods);
+const setLoading = initializeLoadingSetter(DaffCartOperationType.PaymentMethods);
 
 export function cartPaymentMethodsReducer<T extends DaffCart>(
   state = initialState,
@@ -17,7 +21,10 @@ export function cartPaymentMethodsReducer<T extends DaffCart>(
 ): DaffCartReducerState<T> {
   switch (action.type) {
     case DaffCartPaymentMethodsActionTypes.CartPaymentMethodsLoadAction:
-      return { ...state, loading: true };
+      return {
+        ...state,
+        ...setLoading(state.loading, DaffLoadingState.Resolving)
+      };
 
     case DaffCartPaymentMethodsActionTypes.CartPaymentMethodsLoadSuccessAction:
       return {
@@ -27,14 +34,14 @@ export function cartPaymentMethodsReducer<T extends DaffCart>(
           ...state.cart,
           available_payment_methods: action.payload
         },
-        loading: false,
+        ...setLoading(state.loading, DaffLoadingState.Complete),
       };
 
     case DaffCartPaymentMethodsActionTypes.CartPaymentMethodsLoadFailureAction:
       return {
         ...state,
         ...addError(state.errors, action.payload),
-        loading: false,
+        ...setLoading(state.loading, DaffLoadingState.Complete),
       };
 
     default:

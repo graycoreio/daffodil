@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
+import { DaffLoadingState } from '@daffodil/core';
 import { DaffCartCoupon } from '@daffodil/cart';
 import {
   DaffCartFactory,
@@ -24,7 +25,7 @@ import {
 import { DaffCart } from '../../models/cart';
 import { cartCouponReducer as reducer } from './cart-coupon.reducer';
 import { DaffCartReducerState } from '../cart-state.interface';
-import { DaffCartErrorType } from '../errors/cart-error-type.enum';
+import { DaffCartOperationType } from '../cart-operation-type.enum';
 
 
 describe('Cart | Reducer | cartCouponReducer', () => {
@@ -55,12 +56,12 @@ describe('Cart | Reducer | cartCouponReducer', () => {
   });
 
   describe('when CartCouponApplyAction is triggered', () => {
-    it('should set loading state to true', () => {
+    it('should indicate that the cart coupon is being mutated', () => {
       const cartCouponApplyAction: DaffCartCouponApply = new DaffCartCouponApply(mockCoupon);
 
       const result = reducer(initialState, cartCouponApplyAction);
 
-      expect(result.loading).toEqual(true);
+      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffLoadingState.Mutating);
     });
   });
 
@@ -71,7 +72,10 @@ describe('Cart | Reducer | cartCouponReducer', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true
+        loading: {
+          ...initialState.loading,
+          [DaffCartOperationType.Coupon]: DaffLoadingState.Resolving
+        }
       }
 
       const cartCouponApplySuccess = new DaffCartCouponApplySuccess(cart);
@@ -84,11 +88,11 @@ describe('Cart | Reducer | cartCouponReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading).toEqual(false);
+      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffLoadingState.Complete);
     });
 
     it('should reset the errors in the coupon section of state.errors to an empty array', () => {
-      expect(result.errors[DaffCartErrorType.Coupon]).toEqual([]);
+      expect(result.errors[DaffCartOperationType.Coupon]).toEqual([]);
     });
   });
 
@@ -100,10 +104,13 @@ describe('Cart | Reducer | cartCouponReducer', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true,
+        loading: {
+          ...initialState.loading,
+          [DaffCartOperationType.Coupon]: DaffLoadingState.Resolving
+        },
         errors: {
           ...initialState.errors,
-          [DaffCartErrorType.Coupon]: new Array('firstError')
+          [DaffCartOperationType.Coupon]: new Array('firstError')
         }
       }
 
@@ -113,11 +120,11 @@ describe('Cart | Reducer | cartCouponReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading).toEqual(false);
+      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffLoadingState.Complete);
     });
 
     it('should add an error to the coupon section of state.errors', () => {
-      expect(result.errors[DaffCartErrorType.Coupon].length).toEqual(2);
+      expect(result.errors[DaffCartOperationType.Coupon].length).toEqual(2);
     });
   });
 
@@ -127,7 +134,7 @@ describe('Cart | Reducer | cartCouponReducer', () => {
 
       const result = reducer(initialState, cartCouponListAction);
 
-      expect(result.loading).toEqual(true);
+      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffLoadingState.Resolving);
     });
   });
 
@@ -138,7 +145,10 @@ describe('Cart | Reducer | cartCouponReducer', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true
+        loading: {
+          ...initialState.loading,
+          [DaffCartOperationType.Coupon]: DaffLoadingState.Resolving
+        }
       }
 
       const cartCouponListSuccess = new DaffCartCouponListSuccess([mockCoupon]);
@@ -151,11 +161,11 @@ describe('Cart | Reducer | cartCouponReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading).toEqual(false);
+      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffLoadingState.Complete);
     });
 
     it('should reset the errors in the coupon section of state.errors to an empty array', () => {
-      expect(result.errors[DaffCartErrorType.Coupon]).toEqual([]);
+      expect(result.errors[DaffCartOperationType.Coupon]).toEqual([]);
     });
   });
 
@@ -167,10 +177,13 @@ describe('Cart | Reducer | cartCouponReducer', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true,
+        loading: {
+          ...initialState.loading,
+          [DaffCartOperationType.Coupon]: DaffLoadingState.Resolving
+        },
         errors: {
           ...initialState.errors,
-          [DaffCartErrorType.Coupon]: new Array('firstError')
+          [DaffCartOperationType.Coupon]: new Array('firstError')
         }
       }
 
@@ -180,21 +193,21 @@ describe('Cart | Reducer | cartCouponReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading).toEqual(false);
+      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffLoadingState.Complete);
     });
 
     it('should add an error to the coupon section of state.errors', () => {
-      expect(result.errors[DaffCartErrorType.Coupon].length).toEqual(2);
+      expect(result.errors[DaffCartOperationType.Coupon].length).toEqual(2);
     });
   });
 
   describe('when CartCouponRemoveAction is triggered', () => {
-    it('should set loading state to true', () => {
+    it('should indicate that the cart coupon is being mutated', () => {
       const cartCouponRemoveAction: DaffCartCouponRemove = new DaffCartCouponRemove(mockCoupon);
 
       const result = reducer(initialState, cartCouponRemoveAction);
 
-      expect(result.loading).toEqual(true);
+      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffLoadingState.Mutating);
     });
   });
 
@@ -206,7 +219,10 @@ describe('Cart | Reducer | cartCouponReducer', () => {
       const cartCouponRemoveActionSuccess: DaffCartCouponRemoveSuccess = new DaffCartCouponRemoveSuccess(cart);
       state = {
         ...initialState,
-        loading: true
+        loading: {
+          ...initialState.loading,
+          [DaffCartOperationType.Coupon]: DaffLoadingState.Resolving
+        }
       }
 
       result = reducer(state, cartCouponRemoveActionSuccess);
@@ -217,11 +233,11 @@ describe('Cart | Reducer | cartCouponReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading).toEqual(false);
+      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffLoadingState.Complete);
     });
 
     it('should reset the errors in the coupon section of state.errors to an empty array', () => {
-      expect(result.errors[DaffCartErrorType.Coupon]).toEqual([]);
+      expect(result.errors[DaffCartOperationType.Coupon]).toEqual([]);
     });
   });
 
@@ -233,10 +249,13 @@ describe('Cart | Reducer | cartCouponReducer', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true,
+        loading: {
+          ...initialState.loading,
+          [DaffCartOperationType.Coupon]: DaffLoadingState.Resolving
+        },
         errors: {
           ...initialState.errors,
-          [DaffCartErrorType.Coupon]: new Array('firstError')
+          [DaffCartOperationType.Coupon]: new Array('firstError')
         }
       }
 
@@ -248,19 +267,22 @@ describe('Cart | Reducer | cartCouponReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading).toEqual(false);
+      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffLoadingState.Complete);
     });
 
     it('should add an error to the coupon section of state.errors', () => {
-      expect(result.errors[DaffCartErrorType.Coupon].length).toEqual(2);
+      expect(result.errors[DaffCartOperationType.Coupon].length).toEqual(2);
     });
   });
 
   describe('when CartCouponRemoveAllAction is triggered', () => {
-    it('should indicate that the cart is loading', () => {
+    it('should indicate that the cart coupon is being mutated', () => {
       const expectedState = {
         ...initialState,
-        loading: true,
+        loading: {
+          ...initialState.loading,
+          [DaffCartOperationType.Coupon]: DaffLoadingState.Mutating
+        },
       }
       const cartClear = new DaffCartCouponRemoveAll();
       const result = reducer(initialState, cartClear);
@@ -285,14 +307,17 @@ describe('Cart | Reducer | cartCouponReducer', () => {
           items: [],
           ...cart
         },
-        loading: false
+        loading: {
+          ...initialState.loading,
+          [DaffCartOperationType.Coupon]: DaffLoadingState.Complete
+        }
       }
 
       expect(result).toEqual(expectedState);
     });
 
     it('should reset the errors in the coupon section of state.errors to an empty array', () => {
-      expect(result.errors[DaffCartErrorType.Coupon]).toEqual([]);
+      expect(result.errors[DaffCartOperationType.Coupon]).toEqual([]);
     });
   });
 
@@ -304,10 +329,13 @@ describe('Cart | Reducer | cartCouponReducer', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        loading: true,
+        loading: {
+          ...initialState.loading,
+          [DaffCartOperationType.Coupon]: DaffLoadingState.Resolving
+        },
         errors: {
           ...initialState.errors,
-          [DaffCartErrorType.Coupon]: new Array('firstError')
+          [DaffCartOperationType.Coupon]: new Array('firstError')
         }
       }
 
@@ -319,11 +347,11 @@ describe('Cart | Reducer | cartCouponReducer', () => {
     });
 
     it('should indicate that the cart is not loading', () => {
-      expect(result.loading).toEqual(false);
+      expect(result.loading[DaffCartOperationType.Coupon]).toEqual(DaffLoadingState.Complete);
     });
 
     it('should add an error to the coupon section of state.errors', () => {
-      expect(result.errors[DaffCartErrorType.Coupon].length).toEqual(2);
+      expect(result.errors[DaffCartOperationType.Coupon].length).toEqual(2);
     });
   });
 });
