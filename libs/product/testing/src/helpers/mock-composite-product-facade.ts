@@ -4,49 +4,46 @@ import { DaffCompositeProductFacadeInterface, DaffCompositeProductItemOption, Da
 import { Dictionary } from '@ngrx/entity';
 
 export class MockDaffCompositeProductFacade implements DaffCompositeProductFacadeInterface {
-	getMinPossiblePrice(id: string): BehaviorSubject<number> {
+	getMinPossibleItemPrice(id: string): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	};
-	getMaxPossiblePrice(id: string): BehaviorSubject<number> {
+	getMaxPossibleItemPrice(id: string): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	};
-	possiblyHasPriceRange(id: string): BehaviorSubject<boolean> {
+	possiblyHasItemPriceRange(id: string): BehaviorSubject<boolean> {
 		return new BehaviorSubject(false);
 	};
-	getMinPrice(id: string): BehaviorSubject<number> {
+	getMinPossibleItemDiscountedPrice(id: string): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	};
-	getMaxPrice(id: string): BehaviorSubject<number> {
+	getMaxPossibleItemDiscountedPrice(id: string): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	};
-	hasPriceRange(id: string): BehaviorSubject<boolean> {
+	possiblyHasItemDiscountedPriceRange(id: string): BehaviorSubject<boolean> {
 		return new BehaviorSubject(false);
 	};
-	getPrice(id: string): BehaviorSubject<number> {
-		return new BehaviorSubject(null);
-	};
-	getMinDiscountedPrice(id: string): BehaviorSubject<number> {
-		return new BehaviorSubject(null);
-	};
-	getMaxDiscountedPrice(id: string): BehaviorSubject<number> {
-		return new BehaviorSubject(null);
-	};
-	hasDiscountedPriceRange(id: string): BehaviorSubject<boolean> {
+	possiblyHasItemDiscount(id: string): BehaviorSubject<boolean> {
 		return new BehaviorSubject(false);
 	};
-	/**
-	 * @deprecated
-	 */
-	getDiscountAmount(id: string): BehaviorSubject<number> {
+	getMinRequiredItemPrice(id: string): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	};
-	/**
-	 * @deprecated Use getMinDiscountedPrice and getMaxDiscountedPrice instead
-	 */
-	getDiscountedPrice(id: string): BehaviorSubject<number> {
+	getMaxRequiredItemPrice(id: string): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	};
-	hasDiscount(id: string): BehaviorSubject<boolean> {
+	hasRequiredItemPriceRange(id: string): BehaviorSubject<boolean> {
+		return new BehaviorSubject(false);
+	};
+	getMinRequiredItemDiscountedPrice(id: string): BehaviorSubject<number> {
+		return new BehaviorSubject(null);
+	};
+	getMaxRequiredItemDiscountedPrice(id: string): BehaviorSubject<number> {
+		return new BehaviorSubject(null);
+	};
+	hasRequiredItemDiscountedPriceRange(id: string): BehaviorSubject<boolean> {
+		return new BehaviorSubject(false);
+	};
+	hasRequiredItemDiscount(id: string): BehaviorSubject<boolean> {
 		return new BehaviorSubject(false);
 	};
 	getAppliedOptions(id: string): BehaviorSubject<Dictionary<DaffCompositeProductItemOption>> {
