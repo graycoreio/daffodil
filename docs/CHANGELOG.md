@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.12.0](https://github.com/graycoreio/daffodil/compare/v0.11.3...v0.12.0) (2020-10-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* **product:** nearly all of the DaffCompositeProductFacade fields and the DaffCompositeProductMemoizedSelectors have changed
+* **core, cart:** The loading$ facade field is now called featureLoading$, and the selectCartLoading selector is now selectCartFeatureLoading
+
+### Features
+
+* **core, cart:** segregate loading state into cart subfields ([#1084](https://github.com/graycoreio/daffodil/issues/1084)) ([daabdb8](https://github.com/graycoreio/daffodil/commit/daabdb85696799f04f610ca87ed235f36e8e1707))
+* **product:** finalize the composite product price selectors and fac… ([#1083](https://github.com/graycoreio/daffodil/issues/1083)) ([f7fcddf](https://github.com/graycoreio/daffodil/commit/f7fcddf72fd92456b806479c6045b0087afd2a02))
+
 ### [0.11.3](https://github.com/graycoreio/daffodil/compare/v0.11.2...v0.11.3) (2020-10-01)
 
 
