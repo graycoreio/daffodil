@@ -89,9 +89,9 @@ describe('Composite Product Selectors | integration tests', () => {
 			expect(selector).toBeObservable(expected);
 		});
 
-		it('should initialize to the minimum price for the composite product including optional items', () => {
+		it('should initialize to the minimum price for the composite product excluding optional items', () => {
 			const selector = store.pipe(select(selectCompositeProductMinPossiblePrice, { id: stubCompositeProduct.id }));
-			const expected = cold('a', { a: stubCompositeProduct.price + stubPrice00 + stubPrice10 });
+			const expected = cold('a', { a: stubCompositeProduct.price + stubPrice00 });
 
 			expect(selector).toBeObservable(expected);
 		});
@@ -103,7 +103,7 @@ describe('Composite Product Selectors | integration tests', () => {
 				stubCompositeProduct.items[0].options[1].id
 			));
 			const selector = store.pipe(select(selectCompositeProductMinPossiblePrice, { id: stubCompositeProduct.id }));
-			const expected = cold('a', { a: stubCompositeProduct.price + stubPrice00 + stubPrice10 });
+			const expected = cold('a', { a: stubCompositeProduct.price + stubPrice00 });
 
 			expect(selector).toBeObservable(expected);
 		});
@@ -179,7 +179,7 @@ describe('Composite Product Selectors | integration tests', () => {
 
 		it('should initialize to the minimum discounted price for the composite product including optional items', () => {
 			const selector = store.pipe(select(selectCompositeProductMinPossibleDiscountedPrice, { id: stubCompositeProduct.id }));
-			const expected = cold('a', { a: stubCompositeProduct.price - stubCompositeProduct.discount.amount + stubPrice00 - stubDiscountAmount0 + stubPrice10 });
+			const expected = cold('a', { a: stubCompositeProduct.price - stubCompositeProduct.discount.amount + stubPrice00 - stubDiscountAmount0 });
 
 			expect(selector).toBeObservable(expected);
 		});
@@ -191,7 +191,7 @@ describe('Composite Product Selectors | integration tests', () => {
 				stubCompositeProduct.items[0].options[1].id
 			));
 			const selector = store.pipe(select(selectCompositeProductMinPossibleDiscountedPrice, { id: stubCompositeProduct.id }));
-			const expected = cold('a', { a: stubCompositeProduct.price - stubCompositeProduct.discount.amount + stubPrice00 - stubDiscountAmount0 + stubPrice10 });
+			const expected = cold('a', { a: stubCompositeProduct.price - stubCompositeProduct.discount.amount + stubPrice00 - stubDiscountAmount0 });
 
 			expect(selector).toBeObservable(expected);
 		});
