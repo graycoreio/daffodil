@@ -36,7 +36,6 @@ describe('DaffAuthorizeNetEffects', () => {
   let effects: DaffAuthorizeNetEffects;
 	const paymentTokenRequest: DaffAuthorizeNetTokenRequest = {
 		creditCard: {
-			name: 'name',
 			cardnumber: '1234123412341234',
 			month: 'month',
 			year: 'year',

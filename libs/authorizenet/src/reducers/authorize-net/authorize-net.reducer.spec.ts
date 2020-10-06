@@ -38,7 +38,6 @@ describe('AuthorizeNet | AuthorizeNet Reducer', () => {
     beforeEach(() => {
       const tokenLoad: DaffAuthorizeNetUpdatePayment = new DaffAuthorizeNetUpdatePayment({
 				creditCard: {
-					name: 'name',
 					cardnumber: '1234123412341234',
 					month: 'month',
 					year: 'year',

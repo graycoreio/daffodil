@@ -46,7 +46,6 @@ describe('Driver | In Memory | AuthorizeNet | AuthorizeNetService', () => {
       it('should send a post request to `api/authorizenet/generateToken` and return a response', done => {
 				const paymentTokenRequest: DaffAuthorizeNetTokenRequest = {
 					creditCard: {
-						name: 'name',
 						cardnumber: '5555555555554444', 
 						month: 'month', 
 						year: 'year', 

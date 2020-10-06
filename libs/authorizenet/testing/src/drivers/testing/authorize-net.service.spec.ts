@@ -25,7 +25,6 @@ describe('Driver | Testing | AuthorizeNet | AuthorizeNetService', () => {
       const expected = cold('(a|)', {a: jasmine.any(Object)});
       expect(service.generateToken({
 				creditCard: {
-					name: 'name',
 					cardnumber: '1234123412341234',
 					month: 'month',
 					year: 'year',

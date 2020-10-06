@@ -6,7 +6,6 @@ import { AuthorizeNetResponse } from 'libs/authorizenet/src/models/response/auth
 
 describe('AuthorizeNet | Drivers | Magento | Transformers', () => {
 	const stubCreditCard: DaffAuthorizeNetCreditCard = {
-		name: 'name',
 		cardnumber: 'cardnumber',
 		month: 'month',
 		year: 'year',
