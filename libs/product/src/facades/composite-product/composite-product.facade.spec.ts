@@ -63,8 +63,7 @@ describe('DaffCompositeProductFacade', () => {
     it('should return the minimum price possible for the product', () => {
 			const expected = cold('a', { a:
 				stubCompositeProduct.price +
-				stubCompositeProduct.items[0].options[0].price +
-				stubCompositeProduct.items[1].options[0].price
+				stubCompositeProduct.items[0].options[0].price
 			});
 
 			expect(facade.getMinPossiblePrice(stubCompositeProduct.id)).toBeObservable(expected);
@@ -98,8 +97,7 @@ describe('DaffCompositeProductFacade', () => {
     it('should return the minimum discounted price possible for the product', () => {
 			const expected = cold('a', { a:
 				stubCompositeProduct.price - stubCompositeProduct.discount.amount +
-				stubCompositeProduct.items[0].options[0].price +
-				stubCompositeProduct.items[1].options[0].price
+				stubCompositeProduct.items[0].options[0].price
 			});
 
 			expect(facade.getMinPossibleDiscountedPrice(stubCompositeProduct.id)).toBeObservable(expected);

@@ -10,7 +10,7 @@ import { DaffCompositeProduct } from '../../models/composite-product';
 export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Action> {
 
 	/**
-	 * Get the minimum price for a composite product, including optional items and regardless of applied options.
+	 * Get the minimum price for a composite product, excluding optional items and regardless of applied options.
 	 * This would be useful for a quick preview of a product.
 	 * @param id the id of the composite product.
 	 */
@@ -32,7 +32,7 @@ export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Act
 	possiblyHasPriceRange(id: string): Observable<boolean>;
 
 	/**
-	 * Get the minimum discounted price for a composite product, including optional items and regardless of the current selection of item options.
+	 * Get the minimum discounted price for a composite product, excluding optional items and regardless of the current selection of item options.
 	 * This could be useful for a quick preview of the product.
 	 * @param id the id of the composite product.
 	 */

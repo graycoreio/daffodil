@@ -10,7 +10,7 @@ import { DaffCompositeProductItem } from '../../models/composite-product-item';
 
 export interface DaffCompositeProductMemoizedSelectors {
 	/**
-	 * Selector for the minimum price for a composite product, including the optional items and regardless of the current item option selection.
+	 * Selector for the minimum price for a composite product, excluding the optional items and regardless of the current item option selection.
 	 * This could be useful for a quick preview of the product.
 	 */
 	selectCompositeProductMinPossiblePrice: MemoizedSelectorWithProps<object, object, number>;
@@ -26,7 +26,7 @@ export interface DaffCompositeProductMemoizedSelectors {
 	 */
 	selectCompositeProductPossiblyHasPriceRange: MemoizedSelectorWithProps<object, object, boolean>;
 	/**
-	 * Selector for the minimum discounted price for a composite product, including optional items and regardless of the current selection of item options.
+	 * Selector for the minimum discounted price for a composite product, excluding optional items and regardless of the current selection of item options.
 	 * This could be useful for a quick preview of the product.
 	 */
 	selectCompositeProductMinPossibleDiscountedPrice: MemoizedSelectorWithProps<object, object, number>;
@@ -114,7 +114,7 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 			return (<DaffCompositeProduct>product).items.reduce((acc, item) => 
 				daffAdd(
 					acc, 
-					Math.min(...item.options.map(option => option.price))
+					getMinimumRequiredCompositeItemPrice(item)
 				), product.price);
 		}
 	);
@@ -150,7 +150,7 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 			}
 			return (<DaffCompositeProduct>product).items.reduce((acc, item) => daffAdd(
 				acc, 
-				Math.min(...getItemDiscountedPrices(item))
+				getMinimumRequiredCompositeItemDiscountedPrice(item)
 			), product.discount ? daffSubtract(product.price, product.discount.amount) : product.price);
 		}
 	);
@@ -164,7 +164,7 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 			}
 			return (<DaffCompositeProduct>product).items.reduce((acc, item) => daffAdd(
 				acc, 
-				Math.max(...getItemDiscountedPrices(item))
+				Math.max(...item.options.map(option => option.discount ? daffSubtract(option.price, option.discount.amount) : option.price))
 			), product.discount ? daffSubtract(product.price, product.discount.amount) : product.price);
 		}
 	);
@@ -356,8 +356,4 @@ function getMaximumRequiredCompositeItemDiscountedPrice(item: DaffCompositeProdu
 	return item.required ? Math.max(...item.options.map(option => 
 		daffSubtract(option.price, option.discount ? option.discount.amount : 0)
 	)) : 0;
-}
-
-function getItemDiscountedPrices(item: DaffCompositeProductItem): number[] {
-	return item.options.map(option => option.discount ? daffSubtract(option.price, option.discount.amount) : option.price);
 }
