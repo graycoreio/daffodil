@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.12.1](https://github.com/graycoreio/daffodil/compare/v0.12.0...v0.12.1) (2020-10-06)
+
+
+### Features
+
+* **authorizenet:** remove name as type from DaffAuthorizeNetCreditCard interface ([#1081](https://github.com/graycoreio/daffodil/issues/1081)) ([a7931df](https://github.com/graycoreio/daffodil/commit/a7931dfa8b4dee12f7d38f0ff53c0d2af02d72e0))
+
 ## [0.12.0](https://github.com/graycoreio/daffodil/compare/v0.11.3...v0.12.0) (2020-10-06)
 
 
