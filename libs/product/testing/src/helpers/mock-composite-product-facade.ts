@@ -4,25 +4,25 @@ import { DaffCompositeProductFacadeInterface, DaffCompositeProductItemOption, Da
 import { Dictionary } from '@ngrx/entity';
 
 export class MockDaffCompositeProductFacade implements DaffCompositeProductFacadeInterface {
-	getMinPossibleItemPrice(id: string): BehaviorSubject<number> {
+	getMinPossiblePrice(id: string): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	};
-	getMaxPossibleItemPrice(id: string): BehaviorSubject<number> {
+	getMaxPossiblePrice(id: string): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	};
-	possiblyHasItemPriceRange(id: string): BehaviorSubject<boolean> {
+	possiblyHasPriceRange(id: string): BehaviorSubject<boolean> {
 		return new BehaviorSubject(false);
 	};
-	getMinPossibleItemDiscountedPrice(id: string): BehaviorSubject<number> {
+	getMinPossibleDiscountedPrice(id: string): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	};
-	getMaxPossibleItemDiscountedPrice(id: string): BehaviorSubject<number> {
+	getMaxPossibleDiscountedPrice(id: string): BehaviorSubject<number> {
 		return new BehaviorSubject(null);
 	};
-	possiblyHasItemDiscountedPriceRange(id: string): BehaviorSubject<boolean> {
+	possiblyHasDiscountedPriceRange(id: string): BehaviorSubject<boolean> {
 		return new BehaviorSubject(false);
 	};
-	possiblyHasItemDiscount(id: string): BehaviorSubject<boolean> {
+	possiblyHasDiscount(id: string): BehaviorSubject<boolean> {
 		return new BehaviorSubject(false);
 	};
 	getMinRequiredItemPrice(id: string): BehaviorSubject<number> {
