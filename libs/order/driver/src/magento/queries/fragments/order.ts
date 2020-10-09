@@ -14,6 +14,9 @@ export const orderFragment = gql`
     updated_at
     grand_total
     subtotal
+    shipping
+    discount
+    tax
     status
     applied_codes
     items {

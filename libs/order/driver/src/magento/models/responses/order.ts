@@ -12,6 +12,9 @@ export interface MagentoGraycoreOrder {
   updated_at: string;
   grand_total: number;
   subtotal: number;
+  shipping: number;
+  discount: number;
+  tax: number;
   status: string;
   applied_codes: string[];
   items: MagentoGraycoreOrderItem[]

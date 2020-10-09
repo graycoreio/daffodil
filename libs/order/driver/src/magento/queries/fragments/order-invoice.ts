@@ -10,6 +10,9 @@ export const orderInvoiceFragment = gql`
     }
     grand_total
     subtotal
+    shipping
+    discount
+    tax
     billing_address {
       ...orderAddress
     }

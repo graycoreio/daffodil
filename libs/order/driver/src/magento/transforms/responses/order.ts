@@ -22,7 +22,10 @@ import {
 
 function transformTotals(totals: {
   grand_total: number,
-  subtotal: number
+  subtotal: number,
+  shipping: number,
+  discount: number,
+  tax: number,
 }): DaffOrderTotal[] {
   return [
     {
@@ -34,6 +37,21 @@ function transformTotals(totals: {
       label: 'Subtotal',
       value: totals.subtotal,
       sort_order: 0
+    },
+    {
+      label: 'Shipping',
+      value: totals.shipping,
+      sort_order: 2
+    },
+    {
+      label: 'Tax',
+      value: totals.tax,
+      sort_order: 3
+    },
+    {
+      label: 'Discount',
+      value: totals.discount,
+      sort_order: 4
     }
   ]
 }

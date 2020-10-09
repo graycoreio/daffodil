@@ -64,6 +64,9 @@ describe('Driver | Magento | Order | Transformer | Order', () => {
   let mockDaffOrderShippingMethod: DaffOrderShippingMethod;
   let mockDaffOrderGrandTotal: DaffOrderTotal;
   let mockDaffOrderSubTotal: DaffOrderTotal;
+  let mockDaffOrderShippingTotal: DaffOrderTotal;
+  let mockDaffOrderTax: DaffOrderTotal;
+  let mockDaffOrderDiscount: DaffOrderTotal;
 
   let mockMagentoOrder: MagentoGraycoreOrder;
   let mockMagentoOrderAddress: MagentoGraycoreOrderAddress;
@@ -127,8 +130,26 @@ describe('Driver | Magento | Order | Transformer | Order', () => {
       label: 'Subtotal',
       sort_order: 0
     });
+    mockDaffOrderShippingTotal = daffOrderTotalFactory.create({
+      label: 'Shipping',
+      sort_order: 2
+    });
+    mockDaffOrderTax = daffOrderTotalFactory.create({
+      label: 'Tax',
+      sort_order: 3
+    });
+    mockDaffOrderDiscount = daffOrderTotalFactory.create({
+      label: 'Discount',
+      sort_order: 4
+    });
     mockDaffOrderInvoice = daffOrderInvoiceFactory.create({
-      totals: [mockDaffOrderGrandTotal, mockDaffOrderSubTotal],
+      totals: jasmine.arrayContaining([
+        mockDaffOrderGrandTotal,
+        mockDaffOrderSubTotal,
+        mockDaffOrderShippingTotal,
+        mockDaffOrderTax,
+        mockDaffOrderDiscount
+      ]),
       billing_address: mockDaffOrderAddress,
       shipping_address: mockDaffOrderAddress,
       payment: mockDaffOrderPayment,
@@ -136,7 +157,13 @@ describe('Driver | Magento | Order | Transformer | Order', () => {
       shipping_method: null
     });
     mockDaffOrder = daffOrderFactory.create({
-      totals: [mockDaffOrderGrandTotal, mockDaffOrderSubTotal],
+      totals: jasmine.arrayContaining([
+        mockDaffOrderGrandTotal,
+        mockDaffOrderSubTotal,
+        mockDaffOrderShippingTotal,
+        mockDaffOrderTax,
+        mockDaffOrderDiscount
+      ]),
       applied_codes: [mockDaffOrderCoupon],
       items: [mockDaffOrderItem],
       billing_addresses: [mockDaffOrderAddress],
@@ -213,6 +240,9 @@ describe('Driver | Magento | Order | Transformer | Order', () => {
       items: [mockMagentoOrderShipmentItem],
       grand_total: mockDaffOrderGrandTotal.value,
       subtotal: mockDaffOrderSubTotal.value,
+      shipping: mockDaffOrderShippingTotal.value,
+      discount: mockDaffOrderDiscount.value,
+      tax: mockDaffOrderTax.value,
       billing_address: mockMagentoOrderAddress,
       shipping_address: mockMagentoOrderAddress,
       payment: mockMagentoOrderPayment,
@@ -225,6 +255,9 @@ describe('Driver | Magento | Order | Transformer | Order', () => {
       updated_at: mockDaffOrder.updated_at,
       grand_total: mockDaffOrderGrandTotal.value,
       subtotal: mockDaffOrderSubTotal.value,
+      shipping: mockDaffOrderShippingTotal.value,
+      discount: mockDaffOrderDiscount.value,
+      tax: mockDaffOrderTax.value,
       status: mockDaffOrder.status,
       applied_codes: [mockDaffOrderCoupon.code],
       items: [mockMagentoOrderItem],
