@@ -49,7 +49,17 @@ export function cartReducer<T extends DaffCart>(
         ...setLoading(state.loading, DaffLoadingState.Complete),
       };
 
-    case DaffCartActionTypes.CartLoadFailureAction:
+		case DaffCartActionTypes.CartCreateSuccessAction:
+			return {
+        ...state,
+        ...resetErrors(state.errors),
+        cart: {
+          ...initialState.cart,
+          ...action.payload
+        },
+        ...setLoading(state.loading, DaffLoadingState.Complete),
+      };
+		case DaffCartActionTypes.CartLoadFailureAction:
     case DaffCartActionTypes.CartClearFailureAction:
     case DaffCartActionTypes.AddToCartFailureAction:
     case DaffCartActionTypes.CartCreateFailureAction:
