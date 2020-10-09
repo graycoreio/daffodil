@@ -22,7 +22,12 @@ import {
 
 function transformTotals(totals: {
   grand_total: number,
-  subtotal: number
+  subtotal: number,
+  subtotal_including_tax: number,
+  subtotal_with_discount_excluding_tax: number,
+  subtotal_with_discount_including_tax: number,
+  discount: number,
+  tax: number,
 }): DaffOrderTotal[] {
   return [
     {
@@ -34,6 +39,31 @@ function transformTotals(totals: {
       label: 'Subtotal',
       value: totals.subtotal,
       sort_order: 0
+    },
+    {
+      label: 'Subtotal Including Tax',
+      value: totals.subtotal_including_tax,
+      sort_order: 2
+    },
+    {
+      label: 'Subtotal with Discount Excluding Tax',
+      value: totals.subtotal_with_discount_excluding_tax,
+      sort_order: 3
+    },
+    {
+      label: 'Subtotal with Discount Including Tax',
+      value: totals.subtotal_with_discount_including_tax,
+      sort_order: 4
+    },
+    {
+      label: 'Tax',
+      value: totals.tax,
+      sort_order: 5
+    },
+    {
+      label: 'Discount',
+      value: totals.discount,
+      sort_order: 6
     }
   ]
 }

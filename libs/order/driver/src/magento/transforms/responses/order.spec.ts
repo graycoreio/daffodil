@@ -64,6 +64,11 @@ describe('Driver | Magento | Order | Transformer | Order', () => {
   let mockDaffOrderShippingMethod: DaffOrderShippingMethod;
   let mockDaffOrderGrandTotal: DaffOrderTotal;
   let mockDaffOrderSubTotal: DaffOrderTotal;
+  let mockDaffOrderSubTotalInclTax: DaffOrderTotal;
+  let mockDaffOrderSubTotalWithDiscountExclTax: DaffOrderTotal;
+  let mockDaffOrderSubTotalWithDiscountInclTax: DaffOrderTotal;
+  let mockDaffOrderTax: DaffOrderTotal;
+  let mockDaffOrderDiscount: DaffOrderTotal;
 
   let mockMagentoOrder: MagentoGraycoreOrder;
   let mockMagentoOrderAddress: MagentoGraycoreOrderAddress;
@@ -127,8 +132,36 @@ describe('Driver | Magento | Order | Transformer | Order', () => {
       label: 'Subtotal',
       sort_order: 0
     });
+    mockDaffOrderSubTotalInclTax = daffOrderTotalFactory.create({
+      label: 'Subtotal Including Tax',
+      sort_order: 2
+    });
+    mockDaffOrderSubTotalWithDiscountExclTax = daffOrderTotalFactory.create({
+      label: 'Subtotal with Discount Excluding Tax',
+      sort_order: 3
+    });
+    mockDaffOrderSubTotalWithDiscountInclTax = daffOrderTotalFactory.create({
+      label: 'Subtotal with Discount Including Tax',
+      sort_order: 4
+    });
+    mockDaffOrderTax = daffOrderTotalFactory.create({
+      label: 'Tax',
+      sort_order: 5
+    });
+    mockDaffOrderDiscount = daffOrderTotalFactory.create({
+      label: 'Discount',
+      sort_order: 6
+    });
     mockDaffOrderInvoice = daffOrderInvoiceFactory.create({
-      totals: [mockDaffOrderGrandTotal, mockDaffOrderSubTotal],
+      totals: jasmine.arrayContaining([
+        mockDaffOrderGrandTotal,
+        mockDaffOrderSubTotal,
+        mockDaffOrderSubTotalInclTax,
+        mockDaffOrderSubTotalWithDiscountExclTax,
+        mockDaffOrderSubTotalWithDiscountInclTax,
+        mockDaffOrderTax,
+        mockDaffOrderDiscount
+      ]),
       billing_address: mockDaffOrderAddress,
       shipping_address: mockDaffOrderAddress,
       payment: mockDaffOrderPayment,
@@ -136,7 +169,15 @@ describe('Driver | Magento | Order | Transformer | Order', () => {
       shipping_method: null
     });
     mockDaffOrder = daffOrderFactory.create({
-      totals: [mockDaffOrderGrandTotal, mockDaffOrderSubTotal],
+      totals: jasmine.arrayContaining([
+        mockDaffOrderGrandTotal,
+        mockDaffOrderSubTotal,
+        mockDaffOrderSubTotalInclTax,
+        mockDaffOrderSubTotalWithDiscountExclTax,
+        mockDaffOrderSubTotalWithDiscountInclTax,
+        mockDaffOrderTax,
+        mockDaffOrderDiscount
+      ]),
       applied_codes: [mockDaffOrderCoupon],
       items: [mockDaffOrderItem],
       billing_addresses: [mockDaffOrderAddress],
@@ -213,6 +254,11 @@ describe('Driver | Magento | Order | Transformer | Order', () => {
       items: [mockMagentoOrderShipmentItem],
       grand_total: mockDaffOrderGrandTotal.value,
       subtotal: mockDaffOrderSubTotal.value,
+      subtotal_including_tax: mockDaffOrderSubTotalInclTax.value,
+      subtotal_with_discount_excluding_tax: mockDaffOrderSubTotalWithDiscountExclTax.value,
+      subtotal_with_discount_including_tax: mockDaffOrderSubTotalWithDiscountInclTax.value,
+      discount: mockDaffOrderDiscount.value,
+      tax: mockDaffOrderTax.value,
       billing_address: mockMagentoOrderAddress,
       shipping_address: mockMagentoOrderAddress,
       payment: mockMagentoOrderPayment,
@@ -225,6 +271,11 @@ describe('Driver | Magento | Order | Transformer | Order', () => {
       updated_at: mockDaffOrder.updated_at,
       grand_total: mockDaffOrderGrandTotal.value,
       subtotal: mockDaffOrderSubTotal.value,
+      subtotal_including_tax: mockDaffOrderSubTotalInclTax.value,
+      subtotal_with_discount_excluding_tax: mockDaffOrderSubTotalWithDiscountExclTax.value,
+      subtotal_with_discount_including_tax: mockDaffOrderSubTotalWithDiscountInclTax.value,
+      discount: mockDaffOrderDiscount.value,
+      tax: mockDaffOrderTax.value,
       status: mockDaffOrder.status,
       applied_codes: [mockDaffOrderCoupon.code],
       items: [mockMagentoOrderItem],
