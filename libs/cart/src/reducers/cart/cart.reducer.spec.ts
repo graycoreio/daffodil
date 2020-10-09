@@ -186,8 +186,11 @@ describe('Cart | Reducer | Cart', () => {
       result = cartReducer(state, cartCreateSuccess);
     });
 
-    it('should set cart from action.payload', () => {
-      expect(result.cart.id).toEqual(cart.id)
+    it('should set the cart to initial state plus the payload cart id', () => {
+      expect(result.cart).toEqual({
+				...initialState.cart,
+				id: cart.id
+			})
     });
 
     it('should indicate that the cart is not loading', () => {
