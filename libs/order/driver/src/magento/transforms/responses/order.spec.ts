@@ -64,9 +64,7 @@ describe('Driver | Magento | Order | Transformer | Order', () => {
   let mockDaffOrderShippingMethod: DaffOrderShippingMethod;
   let mockDaffOrderGrandTotal: DaffOrderTotal;
   let mockDaffOrderSubTotal: DaffOrderTotal;
-  let mockDaffOrderSubTotalInclTax: DaffOrderTotal;
-  let mockDaffOrderSubTotalWithDiscountExclTax: DaffOrderTotal;
-  let mockDaffOrderSubTotalWithDiscountInclTax: DaffOrderTotal;
+  let mockDaffOrderShippingTotal: DaffOrderTotal;
   let mockDaffOrderTax: DaffOrderTotal;
   let mockDaffOrderDiscount: DaffOrderTotal;
 
@@ -132,33 +130,23 @@ describe('Driver | Magento | Order | Transformer | Order', () => {
       label: 'Subtotal',
       sort_order: 0
     });
-    mockDaffOrderSubTotalInclTax = daffOrderTotalFactory.create({
-      label: 'Subtotal Including Tax',
+    mockDaffOrderShippingTotal = daffOrderTotalFactory.create({
+      label: 'Shipping',
       sort_order: 2
-    });
-    mockDaffOrderSubTotalWithDiscountExclTax = daffOrderTotalFactory.create({
-      label: 'Subtotal with Discount Excluding Tax',
-      sort_order: 3
-    });
-    mockDaffOrderSubTotalWithDiscountInclTax = daffOrderTotalFactory.create({
-      label: 'Subtotal with Discount Including Tax',
-      sort_order: 4
     });
     mockDaffOrderTax = daffOrderTotalFactory.create({
       label: 'Tax',
-      sort_order: 5
+      sort_order: 3
     });
     mockDaffOrderDiscount = daffOrderTotalFactory.create({
       label: 'Discount',
-      sort_order: 6
+      sort_order: 4
     });
     mockDaffOrderInvoice = daffOrderInvoiceFactory.create({
       totals: jasmine.arrayContaining([
         mockDaffOrderGrandTotal,
         mockDaffOrderSubTotal,
-        mockDaffOrderSubTotalInclTax,
-        mockDaffOrderSubTotalWithDiscountExclTax,
-        mockDaffOrderSubTotalWithDiscountInclTax,
+        mockDaffOrderShippingTotal,
         mockDaffOrderTax,
         mockDaffOrderDiscount
       ]),
@@ -172,9 +160,7 @@ describe('Driver | Magento | Order | Transformer | Order', () => {
       totals: jasmine.arrayContaining([
         mockDaffOrderGrandTotal,
         mockDaffOrderSubTotal,
-        mockDaffOrderSubTotalInclTax,
-        mockDaffOrderSubTotalWithDiscountExclTax,
-        mockDaffOrderSubTotalWithDiscountInclTax,
+        mockDaffOrderShippingTotal,
         mockDaffOrderTax,
         mockDaffOrderDiscount
       ]),
@@ -254,9 +240,7 @@ describe('Driver | Magento | Order | Transformer | Order', () => {
       items: [mockMagentoOrderShipmentItem],
       grand_total: mockDaffOrderGrandTotal.value,
       subtotal: mockDaffOrderSubTotal.value,
-      subtotal_including_tax: mockDaffOrderSubTotalInclTax.value,
-      subtotal_with_discount_excluding_tax: mockDaffOrderSubTotalWithDiscountExclTax.value,
-      subtotal_with_discount_including_tax: mockDaffOrderSubTotalWithDiscountInclTax.value,
+      shipping: mockDaffOrderShippingTotal.value,
       discount: mockDaffOrderDiscount.value,
       tax: mockDaffOrderTax.value,
       billing_address: mockMagentoOrderAddress,
@@ -271,9 +255,7 @@ describe('Driver | Magento | Order | Transformer | Order', () => {
       updated_at: mockDaffOrder.updated_at,
       grand_total: mockDaffOrderGrandTotal.value,
       subtotal: mockDaffOrderSubTotal.value,
-      subtotal_including_tax: mockDaffOrderSubTotalInclTax.value,
-      subtotal_with_discount_excluding_tax: mockDaffOrderSubTotalWithDiscountExclTax.value,
-      subtotal_with_discount_including_tax: mockDaffOrderSubTotalWithDiscountInclTax.value,
+      shipping: mockDaffOrderShippingTotal.value,
       discount: mockDaffOrderDiscount.value,
       tax: mockDaffOrderTax.value,
       status: mockDaffOrder.status,
