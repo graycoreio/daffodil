@@ -14,9 +14,7 @@ export const orderFragment = gql`
     updated_at
     grand_total
     subtotal
-    subtotal_including_tax
-    subtotal_with_discount_excluding_tax
-    subtotal_with_discount_including_tax
+    shipping
     discount
     tax
     status
