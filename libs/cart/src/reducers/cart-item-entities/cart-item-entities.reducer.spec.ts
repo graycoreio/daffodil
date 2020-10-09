@@ -3,11 +3,11 @@ import { DaffCartItemFactory, DaffCartFactory } from '@daffodil/cart/testing';
 import { daffCartItemEntitiesAdapter } from './cart-item-entities-reducer-adapter';
 import { daffCartItemEntitiesReducer } from './cart-item-entities.reducer';
 import { DaffCartItem } from '../../models/cart-item';
-import { 
-	DaffCartItemListSuccess, 
-	DaffCartItemLoadSuccess, 
-	DaffCartItemUpdateSuccess, 
-	DaffCartItemAddSuccess, 
+import {
+	DaffCartItemListSuccess,
+	DaffCartItemLoadSuccess,
+	DaffCartItemUpdateSuccess,
+	DaffCartItemAddSuccess,
 	DaffCartItemDeleteSuccess,
 	DaffCartLoadSuccess,
 	DaffCartClearSuccess
@@ -41,8 +41,10 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
     beforeEach(() => {
       cartItems = cartItemFactory.createMany(2);
+      // ensure item IDs are unique
+      cartItems[1].item_id = Number(cartItems[0].item_id) + 1;
       const cartItemListSuccess = new DaffCartItemListSuccess(cartItems);
-      
+
       result = daffCartItemEntitiesReducer(initialState, cartItemListSuccess);
     });
 
@@ -63,7 +65,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     beforeEach(() => {
       cartItem = cartItemFactory.create();
       const cartItemLoadSuccess = new DaffCartItemLoadSuccess(cartItem);
-      
+
       result = daffCartItemEntitiesReducer(initialState, cartItemLoadSuccess);
     });
 
@@ -84,7 +86,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 				items: cartItems
 			});
       const cartItemUpdateSuccess = new DaffCartItemUpdateSuccess(cart);
-      
+
       result = daffCartItemEntitiesReducer(initialState, cartItemUpdateSuccess);
     });
 
@@ -109,7 +111,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 				items: cartItems
 			});
       const cartItemAddSuccess = new DaffCartItemAddSuccess(cart);
-      
+
       result = daffCartItemEntitiesReducer(initialState, cartItemAddSuccess);
     });
 
@@ -134,7 +136,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 				items: cartItems
 			});
       const cartItemDeleteSuccess = new DaffCartItemDeleteSuccess(cart);
-      
+
       result = daffCartItemEntitiesReducer(initialState, cartItemDeleteSuccess);
     });
 
@@ -159,7 +161,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 				items: cartItems
 			});
       const cartLoadSuccess = new DaffCartLoadSuccess(cart);
-      
+
       result = daffCartItemEntitiesReducer(initialState, cartLoadSuccess);
     });
 
@@ -182,7 +184,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 				items: []
 			});
       const cartItemAddSuccess = new DaffCartClearSuccess(cart);
-      
+
       result = daffCartItemEntitiesReducer(initialState, cartItemAddSuccess);
     });
 
