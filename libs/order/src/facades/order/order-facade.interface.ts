@@ -5,6 +5,7 @@ import { Dictionary } from '@ngrx/entity';
 import { DaffStoreFacade } from '@daffodil/core';
 
 import { DaffOrder } from '../../models/order';
+import { DaffOrderTotal } from '../../models/public_api';
 
 export interface DaffOrderFacadeInterface<T extends DaffOrder = DaffOrder> extends DaffStoreFacade<Action> {
   loading$: Observable<boolean>;
@@ -27,4 +28,25 @@ export interface DaffOrderFacadeInterface<T extends DaffOrder = DaffOrder> exten
   getPayment$(orderId: T['id']): Observable<T['payment']>;
   getInvoices$(orderId: T['id']): Observable<T['invoices']>;
   getCredits$(orderId: T['id']): Observable<T['credits']>;
+
+  /**
+   * The specified order's grand total.
+   */
+  getGrandTotal$(orderId: T['id']): Observable<DaffOrderTotal>;
+  /**
+   * The specified order's subtotal.
+   */
+  getSubtotal$(orderId: T['id']): Observable<DaffOrderTotal>;
+  /**
+   * The specified order's shipping total.
+   */
+  getShipping$(orderId: T['id']): Observable<DaffOrderTotal>;
+  /**
+   * The specified order's discount total.
+   */
+  getDiscount$(orderId: T['id']): Observable<DaffOrderTotal>;
+  /**
+   * The specified order's tax total.
+   */
+  getTax$(orderId: T['id']): Observable<DaffOrderTotal>;
 }
