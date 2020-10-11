@@ -17,7 +17,8 @@ import {
   DaffOrderShipmentItem,
   DaffOrderShipmentTracking,
   DaffOrderPayment,
-  DaffOrderInvoice
+  DaffOrderInvoice,
+  DaffOrderTotalTypeEnum
 } from '@daffodil/order';
 
 function transformTotals(totals: {
@@ -30,26 +31,31 @@ function transformTotals(totals: {
   return [
     {
       label: 'Grand Total',
+      type: DaffOrderTotalTypeEnum.GrandTotal,
       value: totals.grand_total,
       sort_order: 1
     },
     {
       label: 'Subtotal',
+      type: DaffOrderTotalTypeEnum.Subtotal,
       value: totals.subtotal,
       sort_order: 0
     },
     {
       label: 'Shipping',
+      type: DaffOrderTotalTypeEnum.Shipping,
       value: totals.shipping,
       sort_order: 2
     },
     {
       label: 'Tax',
+      type: DaffOrderTotalTypeEnum.Tax,
       value: totals.tax,
       sort_order: 3
     },
     {
       label: 'Discount',
+      type: DaffOrderTotalTypeEnum.Discount,
       value: totals.discount,
       sort_order: 4
     }

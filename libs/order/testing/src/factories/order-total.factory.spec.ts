@@ -31,6 +31,7 @@ describe('Order | Testing | Factories | DaffOrderTotalFactory', () => {
       expect(result.label).toBeDefined();
       expect(result.value).toBeDefined();
       expect(result.sort_order).toBeDefined();
+      expect(result.type).toBeDefined();
     });
   });
 });
