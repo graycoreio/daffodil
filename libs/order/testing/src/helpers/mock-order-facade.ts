@@ -61,13 +61,13 @@ export class MockDaffOrderFacade implements DaffOrderFacadeInterface {
   getSubtotal$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrderTotal> {
     return new BehaviorSubject(null)
   };
-  getShipping$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrderTotal> {
+  getShippingTotal$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrderTotal> {
     return new BehaviorSubject(null)
   };
-  getDiscount$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrderTotal> {
+  getDiscountTotal$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrderTotal> {
     return new BehaviorSubject(null)
   };
-  getTax$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrderTotal> {
+  getTaxTotal$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrderTotal> {
     return new BehaviorSubject(null)
   };
 
