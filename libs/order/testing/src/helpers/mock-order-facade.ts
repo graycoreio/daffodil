@@ -2,7 +2,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
-import { DaffOrderFacadeInterface, DaffOrder } from '@daffodil/order';
+import { DaffOrderFacadeInterface, DaffOrder, DaffOrderTotal } from '@daffodil/order';
 
 export class MockDaffOrderFacade implements DaffOrderFacadeInterface {
   loading$: BehaviorSubject<boolean> = new BehaviorSubject(null);
@@ -55,6 +55,21 @@ export class MockDaffOrderFacade implements DaffOrderFacadeInterface {
   getCredits$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrder['credits']> {
     return new BehaviorSubject([])
   }
+  getGrandTotal$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrderTotal> {
+    return new BehaviorSubject(null)
+  };
+  getSubtotal$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrderTotal> {
+    return new BehaviorSubject(null)
+  };
+  getShippingTotal$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrderTotal> {
+    return new BehaviorSubject(null)
+  };
+  getDiscountTotal$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrderTotal> {
+    return new BehaviorSubject(null)
+  };
+  getTaxTotal$(orderId: DaffOrder['id']): BehaviorSubject<DaffOrderTotal> {
+    return new BehaviorSubject(null)
+  };
 
   dispatch(action: Action) {};
 }

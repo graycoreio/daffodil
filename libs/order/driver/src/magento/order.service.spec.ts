@@ -17,7 +17,8 @@ import {
   DaffOrderTotal,
   DaffOrderPayment,
   DaffInvalidAPIResponseError,
-  DaffOrderNotFoundError
+  DaffOrderNotFoundError,
+  DaffOrderTotalTypeEnum
 } from '@daffodil/order';
 import {
   DaffOrderFactory,
@@ -153,22 +154,27 @@ describe('Driver | Magento | Order | OrderService', () => {
     mockDaffOrderShippingMethod = daffOrderShippingMethodFactory.create();
     mockDaffOrderGrandTotal = daffOrderTotalFactory.create({
       label: 'Grand Total',
+      type: DaffOrderTotalTypeEnum.GrandTotal,
       sort_order: 1
     });
     mockDaffOrderSubTotal = daffOrderTotalFactory.create({
       label: 'Subtotal',
+      type: DaffOrderTotalTypeEnum.Subtotal,
       sort_order: 0
     });
     mockDaffOrderShippingTotal = daffOrderTotalFactory.create({
       label: 'Shipping',
+      type: DaffOrderTotalTypeEnum.Shipping,
       sort_order: 2
     });
     mockDaffOrderTax = daffOrderTotalFactory.create({
       label: 'Tax',
+      type: DaffOrderTotalTypeEnum.Tax,
       sort_order: 3
     });
     mockDaffOrderDiscount = daffOrderTotalFactory.create({
       label: 'Discount',
+      type: DaffOrderTotalTypeEnum.Discount,
       sort_order: 4
     });
     mockDaffOrderInvoice = daffOrderInvoiceFactory.create({

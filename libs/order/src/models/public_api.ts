@@ -7,5 +7,5 @@ export { DaffOrderShipmentItem } from './order-shipment-item';
 export { DaffOrderShipmentTracking } from './order-shipment-tracking';
 export { DaffOrderShipment } from './order-shipment';
 export { DaffOrderShippingMethod } from './order-shipping-method';
-export { DaffOrderTotal } from './order-total';
+export { DaffOrderTotal, DaffOrderTotalTypeEnum } from './order-total';
 export { DaffOrder } from './order';

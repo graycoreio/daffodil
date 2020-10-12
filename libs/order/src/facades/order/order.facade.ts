@@ -10,6 +10,7 @@ import {
 import { DaffOrder } from '../../models/order';
 import { DaffOrderFacadeInterface } from './order-facade.interface';
 import { DaffOrderEntitySelectors } from '../../selectors/order-entities.selector';
+import { DaffOrderTotal } from '../../models/public_api';
 
 @Injectable({
   providedIn: 'root'
@@ -31,11 +32,16 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
   _appliedCodes: DaffOrderEntitySelectors<T>['selectOrderAppliedCodes'];
   _items: DaffOrderEntitySelectors<T>['selectOrderItems'];
   _billingAddresses: DaffOrderEntitySelectors<T>['selectOrderBillingAddresses'];
-  _shippingAddresses: DaffOrderEntitySelectors<T>['selectOrderShippingAddresses'];
+  _shippingAddresses: DaffOrderEntitySelectors<T>['selectOrderShippingTotalAddresses'];
   _shipments: DaffOrderEntitySelectors<T>['selectOrderShipments'];
   _payment: DaffOrderEntitySelectors<T>['selectOrderPayment'];
   _invoices: DaffOrderEntitySelectors<T>['selectOrderInvoices'];
   _credits: DaffOrderEntitySelectors<T>['selectOrderCredits'];
+  _grandTotal: DaffOrderEntitySelectors<T>['selectOrderGrandTotal'];
+  _subtotal: DaffOrderEntitySelectors<T>['selectOrderSubtotal'];
+  _shipping: DaffOrderEntitySelectors<T>['selectOrderShippingTotal'];
+  _discount: DaffOrderEntitySelectors<T>['selectOrderDiscountTotal'];
+  _tax: DaffOrderEntitySelectors<T>['selectOrderTaxTotal'];
 
   constructor(private store: Store<DaffOrderReducersState<T>>) {
     const {
@@ -54,11 +60,17 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
       selectOrderAppliedCodes,
       selectOrderItems,
       selectOrderBillingAddresses,
-      selectOrderShippingAddresses,
+      selectOrderShippingTotalAddresses,
       selectOrderShipments,
       selectOrderPayment,
       selectOrderInvoices,
       selectOrderCredits,
+
+      selectOrderGrandTotal,
+      selectOrderSubtotal,
+      selectOrderShippingTotal,
+      selectOrderDiscountTotal,
+      selectOrderTaxTotal,
     } = getDaffOrderSelectors<T>();
 
     this.loading$ = this.store.pipe(select(selectOrderLoading));
@@ -77,11 +89,16 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
     this._appliedCodes = selectOrderAppliedCodes;
     this._items = selectOrderItems;
     this._billingAddresses = selectOrderBillingAddresses;
-    this._shippingAddresses = selectOrderShippingAddresses;
+    this._shippingAddresses = selectOrderShippingTotalAddresses;
     this._shipments = selectOrderShipments;
     this._payment = selectOrderPayment;
     this._invoices = selectOrderInvoices;
     this._credits = selectOrderCredits;
+    this._grandTotal = selectOrderGrandTotal;
+    this._subtotal = selectOrderSubtotal;
+    this._shipping = selectOrderShippingTotal;
+    this._discount = selectOrderDiscountTotal;
+    this._tax = selectOrderTaxTotal;
   }
 
   getOrder$(orderId: T['id']): Observable<T> {
@@ -123,6 +140,22 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
   getCredits$(orderId: T['id']): Observable<T['credits']> {
     return this.store.pipe(select(this._credits, {id: orderId}))
   }
+
+  getGrandTotal$(orderId: T['id']): Observable<DaffOrderTotal> {
+    return this.store.pipe(select(this._grandTotal, {id: orderId}))
+  };
+  getSubtotal$(orderId: T['id']): Observable<DaffOrderTotal> {
+    return this.store.pipe(select(this._subtotal, {id: orderId}))
+  };
+  getShippingTotal$(orderId: T['id']): Observable<DaffOrderTotal> {
+    return this.store.pipe(select(this._shipping, {id: orderId}))
+  };
+  getDiscountTotal$(orderId: T['id']): Observable<DaffOrderTotal> {
+    return this.store.pipe(select(this._discount, {id: orderId}))
+  };
+  getTaxTotal$(orderId: T['id']): Observable<DaffOrderTotal> {
+    return this.store.pipe(select(this._tax, {id: orderId}))
+  };
 
   dispatch(action: Action) {
     this.store.dispatch(action);

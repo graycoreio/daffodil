@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { Store, StoreModule, select, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffOrder, DaffOrderItem } from '@daffodil/order';
-import { DaffOrderFactory, DaffOrderItemFactory } from '@daffodil/order/testing';
+import { DaffOrder, DaffOrderItem, DaffOrderTotal, DaffOrderTotalTypeEnum } from '@daffodil/order';
+import { DaffOrderFactory, DaffOrderItemFactory, DaffOrderTotalFactory } from '@daffodil/order/testing';
 import { daffCartReducers, DaffCartPlaceOrderSuccess } from '@daffodil/cart';
 
 import {
@@ -21,9 +21,11 @@ describe('Order | Selector | OrderEntities', () => {
 
   let orderFactory: DaffOrderFactory;
   let orderItemFactory: DaffOrderItemFactory;
+  let orderTotalFactory: DaffOrderTotalFactory;
 
   let mockOrder: DaffOrder;
   let mockOrderItem: DaffOrderItem;
+  let mockOrderTotal: DaffOrderTotal;
   let orderId: DaffOrder['id'];
 
   const {
@@ -37,13 +39,19 @@ describe('Order | Selector | OrderEntities', () => {
     selectOrderAppliedCodes,
     selectOrderItems,
     selectOrderBillingAddresses,
-    selectOrderShippingAddresses,
+    selectOrderShippingTotalAddresses,
     selectOrderShipments,
     selectOrderPayment,
     selectOrderInvoices,
     selectOrderCredits,
 
     selectOrderItem,
+
+    selectOrderGrandTotal,
+    selectOrderSubtotal,
+    selectOrderShippingTotal,
+    selectOrderDiscountTotal,
+    selectOrderTaxTotal,
   } = getDaffOrderEntitySelectors();
 
   beforeEach(() => {
@@ -59,10 +67,13 @@ describe('Order | Selector | OrderEntities', () => {
     store = TestBed.get(Store);
     orderFactory = TestBed.get(DaffOrderFactory);
     orderItemFactory = TestBed.get(DaffOrderItemFactory);
+    orderTotalFactory = TestBed.get(DaffOrderTotalFactory);
 
     mockOrderItem = orderItemFactory.create();
+    mockOrderTotal = orderTotalFactory.create();
     mockOrder = orderFactory.create({
-      items: [mockOrderItem]
+      items: [mockOrderItem],
+      totals: [mockOrderTotal]
     });
     orderId = mockOrder.id;
   });
@@ -289,9 +300,9 @@ describe('Order | Selector | OrderEntities', () => {
     });
   });
 
-  describe('selectOrderShippingAddresses', () => {
+  describe('selectOrderShippingTotalAddresses', () => {
     it('should initially be an empty array', () => {
-      const selector = store.pipe(select(selectOrderShippingAddresses, {id: mockOrder.id}));
+      const selector = store.pipe(select(selectOrderShippingTotalAddresses, {id: mockOrder.id}));
       const expected = cold('a', {a: []});
 
       expect(selector).toBeObservable(expected);
@@ -303,7 +314,7 @@ describe('Order | Selector | OrderEntities', () => {
       });
 
       it('should select the order\'s addresses', () => {
-        const selector = store.pipe(select(selectOrderShippingAddresses, {id: mockOrder.id}));
+        const selector = store.pipe(select(selectOrderShippingTotalAddresses, {id: mockOrder.id}));
         const expected = cold('a', {a: mockOrder.shipping_addresses});
 
         expect(selector).toBeObservable(expected);
@@ -415,6 +426,121 @@ describe('Order | Selector | OrderEntities', () => {
       it('should select the order item', () => {
         const selector = store.pipe(select(selectOrderItem, {id: mockOrder.id, item_id: mockOrderItem.item_id}));
         const expected = cold('a', {a: mockOrderItem});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('selectOrderGrandTotal', () => {
+    it('should initially be null', () => {
+      const selector = store.pipe(select(selectOrderGrandTotal, { id: mockOrder.id }));
+      const expected = cold('a', { a: null });
+
+      expect(selector).toBeObservable(expected);
+    });
+
+    describe('when an order has been loaded with a grand total', () => {
+      beforeEach(() => {
+        mockOrderTotal.type = DaffOrderTotalTypeEnum.GrandTotal;
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should select the grand total', () => {
+        const selector = store.pipe(select(selectOrderGrandTotal, { id: mockOrder.id }));
+        const expected = cold('a', { a: mockOrderTotal });
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('selectOrderSubtotal', () => {
+    it('should initially be null', () => {
+      const selector = store.pipe(select(selectOrderSubtotal, { id: mockOrder.id }));
+      const expected = cold('a', { a: null });
+
+      expect(selector).toBeObservable(expected);
+    });
+
+    describe('when an order has been loaded with a subtotal', () => {
+      beforeEach(() => {
+        mockOrderTotal.type = DaffOrderTotalTypeEnum.Subtotal;
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should select the subtotal', () => {
+        const selector = store.pipe(select(selectOrderSubtotal, { id: mockOrder.id }));
+        const expected = cold('a', { a: mockOrderTotal });
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('selectOrderShippingTotal', () => {
+    it('should initially be null', () => {
+      const selector = store.pipe(select(selectOrderShippingTotal, { id: mockOrder.id }));
+      const expected = cold('a', { a: null });
+
+      expect(selector).toBeObservable(expected);
+    });
+
+    describe('when an order has been loaded with a shipping total', () => {
+      beforeEach(() => {
+        mockOrderTotal.type = DaffOrderTotalTypeEnum.Shipping;
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should select the shipping total', () => {
+        const selector = store.pipe(select(selectOrderShippingTotal, { id: mockOrder.id }));
+        const expected = cold('a', { a: mockOrderTotal });
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('selectOrderDiscountTotal', () => {
+    it('should initially be null', () => {
+      const selector = store.pipe(select(selectOrderDiscountTotal, { id: mockOrder.id }));
+      const expected = cold('a', { a: null });
+
+      expect(selector).toBeObservable(expected);
+    });
+
+    describe('when an order has been loaded with a discount total', () => {
+      beforeEach(() => {
+        mockOrderTotal.type = DaffOrderTotalTypeEnum.Discount;
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should select the discount total', () => {
+        const selector = store.pipe(select(selectOrderDiscountTotal, { id: mockOrder.id }));
+        const expected = cold('a', { a: mockOrderTotal });
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('selectOrderTaxTotal', () => {
+    it('should initially be null', () => {
+      const selector = store.pipe(select(selectOrderTaxTotal, { id: mockOrder.id }));
+      const expected = cold('a', { a: null });
+
+      expect(selector).toBeObservable(expected);
+    });
+
+    describe('when an order has been loaded with a tax total', () => {
+      beforeEach(() => {
+        mockOrderTotal.type = DaffOrderTotalTypeEnum.Tax;
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should select the tax total', () => {
+        const selector = store.pipe(select(selectOrderTaxTotal, { id: mockOrder.id }));
+        const expected = cold('a', { a: mockOrderTotal });
 
         expect(selector).toBeObservable(expected);
       });

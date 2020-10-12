@@ -11,9 +11,11 @@ import {
   DaffOrderReducersState,
   daffOrderReducers,
   DAFF_ORDER_STORE_FEATURE_KEY,
-  DaffOrderListSuccess
+  DaffOrderListSuccess,
+  DaffOrderTotal,
+  DaffOrderTotalTypeEnum
 } from '@daffodil/order';
-import { DaffOrderFactory } from '@daffodil/order/testing';
+import { DaffOrderFactory, DaffOrderTotalFactory } from '@daffodil/order/testing';
 import { DaffCartPlaceOrderSuccess, daffCartReducers } from '@daffodil/cart';
 
 import { DaffOrderFacade } from './order.facade';
@@ -22,8 +24,10 @@ describe('DaffOrderFacade', () => {
   let store: MockStore<{ [DAFF_ORDER_STORE_FEATURE_KEY]: Partial<DaffOrderReducersState> }>;
   let facade: DaffOrderFacade;
   let orderFactory: DaffOrderFactory;
+  let orderTotalFactory: DaffOrderTotalFactory;
 
   let mockOrder: DaffOrder;
+  let mockOrderTotal: DaffOrderTotal;
   let orderId: DaffOrder['id'];
   let errors: string[];
 
@@ -43,8 +47,12 @@ describe('DaffOrderFacade', () => {
     store = TestBed.get(Store);
     facade = TestBed.get(DaffOrderFacade);
     orderFactory = TestBed.get(DaffOrderFactory);
+    orderTotalFactory = TestBed.get(DaffOrderTotalFactory);
 
-    mockOrder = orderFactory.create();
+    mockOrderTotal = orderTotalFactory.create();
+    mockOrder = orderFactory.create({
+      totals: [mockOrderTotal]
+    });
     orderId = mockOrder.id;
     errors = [];
   });
@@ -365,6 +373,111 @@ describe('DaffOrderFacade', () => {
         const expected = cold('a', {a: mockOrder.credits});
 
         expect(facade.getCredits$(orderId)).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('getGrandTotal$', () => {
+    it('should initially be null', () => {
+      const expected = cold('a', { a: null });
+
+      expect(facade.getGrandTotal$(mockOrder.id)).toBeObservable(expected);
+    });
+
+    describe('when an order has been loaded with a grand total', () => {
+      beforeEach(() => {
+        mockOrderTotal.type = DaffOrderTotalTypeEnum.GrandTotal;
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should select the grand total', () => {
+        const expected = cold('a', { a: mockOrderTotal });
+
+        expect(facade.getGrandTotal$(mockOrder.id)).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('getSubtotal$', () => {
+    it('should initially be null', () => {
+      const expected = cold('a', { a: null });
+
+      expect(facade.getSubtotal$(mockOrder.id)).toBeObservable(expected);
+    });
+
+    describe('when an order has been loaded with a subtotal', () => {
+      beforeEach(() => {
+        mockOrderTotal.type = DaffOrderTotalTypeEnum.Subtotal;
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should select the subtotal', () => {
+        const expected = cold('a', { a: mockOrderTotal });
+
+        expect(facade.getSubtotal$(mockOrder.id)).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('getShippingTotal$', () => {
+    it('should initially be null', () => {
+      const expected = cold('a', { a: null });
+
+      expect(facade.getShippingTotal$(mockOrder.id)).toBeObservable(expected);
+    });
+
+    describe('when an order has been loaded with a shipping total', () => {
+      beforeEach(() => {
+        mockOrderTotal.type = DaffOrderTotalTypeEnum.Shipping;
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should select the shipping total', () => {
+        const expected = cold('a', { a: mockOrderTotal });
+
+        expect(facade.getShippingTotal$(mockOrder.id)).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('getDiscountTotal$', () => {
+    it('should initially be null', () => {
+      const expected = cold('a', { a: null });
+
+      expect(facade.getDiscountTotal$(mockOrder.id)).toBeObservable(expected);
+    });
+
+    describe('when an order has been loaded with a discount total', () => {
+      beforeEach(() => {
+        mockOrderTotal.type = DaffOrderTotalTypeEnum.Discount;
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should select the discount total', () => {
+        const expected = cold('a', { a: mockOrderTotal });
+
+        expect(facade.getDiscountTotal$(mockOrder.id)).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('getTaxTotal$', () => {
+    it('should initially be null', () => {
+      const expected = cold('a', { a: null });
+
+      expect(facade.getTaxTotal$(mockOrder.id)).toBeObservable(expected);
+    });
+
+    describe('when an order has been loaded with a tax total', () => {
+      beforeEach(() => {
+        mockOrderTotal.type = DaffOrderTotalTypeEnum.Tax;
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should select the tax total', () => {
+        const expected = cold('a', { a: mockOrderTotal });
+
+        expect(facade.getTaxTotal$(mockOrder.id)).toBeObservable(expected);
       });
     });
   });
