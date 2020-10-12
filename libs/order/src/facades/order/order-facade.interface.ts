@@ -40,13 +40,13 @@ export interface DaffOrderFacadeInterface<T extends DaffOrder = DaffOrder> exten
   /**
    * The specified order's shipping total.
    */
-  getShipping$(orderId: T['id']): Observable<DaffOrderTotal>;
+  getShippingTotal$(orderId: T['id']): Observable<DaffOrderTotal>;
   /**
    * The specified order's discount total.
    */
-  getDiscount$(orderId: T['id']): Observable<DaffOrderTotal>;
+  getDiscountTotal$(orderId: T['id']): Observable<DaffOrderTotal>;
   /**
    * The specified order's tax total.
    */
-  getTax$(orderId: T['id']): Observable<DaffOrderTotal>;
+  getTaxTotal$(orderId: T['id']): Observable<DaffOrderTotal>;
 }

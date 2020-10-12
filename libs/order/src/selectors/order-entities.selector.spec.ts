@@ -39,7 +39,7 @@ describe('Order | Selector | OrderEntities', () => {
     selectOrderAppliedCodes,
     selectOrderItems,
     selectOrderBillingAddresses,
-    selectOrderShippingAddresses,
+    selectOrderShippingTotalAddresses,
     selectOrderShipments,
     selectOrderPayment,
     selectOrderInvoices,
@@ -49,9 +49,9 @@ describe('Order | Selector | OrderEntities', () => {
 
     selectOrderGrandTotal,
     selectOrderSubtotal,
-    selectOrderShipping,
-    selectOrderDiscount,
-    selectOrderTax,
+    selectOrderShippingTotal,
+    selectOrderDiscountTotal,
+    selectOrderTaxTotal,
   } = getDaffOrderEntitySelectors();
 
   beforeEach(() => {
@@ -300,9 +300,9 @@ describe('Order | Selector | OrderEntities', () => {
     });
   });
 
-  describe('selectOrderShippingAddresses', () => {
+  describe('selectOrderShippingTotalAddresses', () => {
     it('should initially be an empty array', () => {
-      const selector = store.pipe(select(selectOrderShippingAddresses, {id: mockOrder.id}));
+      const selector = store.pipe(select(selectOrderShippingTotalAddresses, {id: mockOrder.id}));
       const expected = cold('a', {a: []});
 
       expect(selector).toBeObservable(expected);
@@ -314,7 +314,7 @@ describe('Order | Selector | OrderEntities', () => {
       });
 
       it('should select the order\'s addresses', () => {
-        const selector = store.pipe(select(selectOrderShippingAddresses, {id: mockOrder.id}));
+        const selector = store.pipe(select(selectOrderShippingTotalAddresses, {id: mockOrder.id}));
         const expected = cold('a', {a: mockOrder.shipping_addresses});
 
         expect(selector).toBeObservable(expected);
@@ -478,9 +478,9 @@ describe('Order | Selector | OrderEntities', () => {
     });
   });
 
-  describe('selectOrderShipping', () => {
+  describe('selectOrderShippingTotal', () => {
     it('should initially be null', () => {
-      const selector = store.pipe(select(selectOrderShipping, { id: mockOrder.id }));
+      const selector = store.pipe(select(selectOrderShippingTotal, { id: mockOrder.id }));
       const expected = cold('a', { a: null });
 
       expect(selector).toBeObservable(expected);
@@ -493,7 +493,7 @@ describe('Order | Selector | OrderEntities', () => {
       });
 
       it('should select the shipping total', () => {
-        const selector = store.pipe(select(selectOrderShipping, { id: mockOrder.id }));
+        const selector = store.pipe(select(selectOrderShippingTotal, { id: mockOrder.id }));
         const expected = cold('a', { a: mockOrderTotal });
 
         expect(selector).toBeObservable(expected);
@@ -501,9 +501,9 @@ describe('Order | Selector | OrderEntities', () => {
     });
   });
 
-  describe('selectOrderDiscount', () => {
+  describe('selectOrderDiscountTotal', () => {
     it('should initially be null', () => {
-      const selector = store.pipe(select(selectOrderDiscount, { id: mockOrder.id }));
+      const selector = store.pipe(select(selectOrderDiscountTotal, { id: mockOrder.id }));
       const expected = cold('a', { a: null });
 
       expect(selector).toBeObservable(expected);
@@ -516,7 +516,7 @@ describe('Order | Selector | OrderEntities', () => {
       });
 
       it('should select the discount total', () => {
-        const selector = store.pipe(select(selectOrderDiscount, { id: mockOrder.id }));
+        const selector = store.pipe(select(selectOrderDiscountTotal, { id: mockOrder.id }));
         const expected = cold('a', { a: mockOrderTotal });
 
         expect(selector).toBeObservable(expected);
@@ -524,9 +524,9 @@ describe('Order | Selector | OrderEntities', () => {
     });
   });
 
-  describe('selectOrderTax', () => {
+  describe('selectOrderTaxTotal', () => {
     it('should initially be null', () => {
-      const selector = store.pipe(select(selectOrderTax, { id: mockOrder.id }));
+      const selector = store.pipe(select(selectOrderTaxTotal, { id: mockOrder.id }));
       const expected = cold('a', { a: null });
 
       expect(selector).toBeObservable(expected);
@@ -539,7 +539,7 @@ describe('Order | Selector | OrderEntities', () => {
       });
 
       it('should select the tax total', () => {
-        const selector = store.pipe(select(selectOrderTax, { id: mockOrder.id }));
+        const selector = store.pipe(select(selectOrderTaxTotal, { id: mockOrder.id }));
         const expected = cold('a', { a: mockOrderTotal });
 
         expect(selector).toBeObservable(expected);

@@ -61,7 +61,7 @@ export interface DaffOrderEntitySelectors<T extends DaffOrder = DaffOrder> {
   /**
    * Selects the specified order's shipping addresses.
    */
-  selectOrderShippingAddresses: MemoizedSelector<object, T['shipping_addresses']>;
+  selectOrderShippingTotalAddresses: MemoizedSelector<object, T['shipping_addresses']>;
   /**
    * Selects the specified order's shipments.
    */
@@ -95,15 +95,15 @@ export interface DaffOrderEntitySelectors<T extends DaffOrder = DaffOrder> {
   /**
    * Selects the specified order's shipping total.
    */
-  selectOrderShipping: MemoizedSelector<object, DaffOrderTotal>;
+  selectOrderShippingTotal: MemoizedSelector<object, DaffOrderTotal>;
   /**
    * Selects the specified order's discount total.
    */
-  selectOrderDiscount: MemoizedSelector<object, DaffOrderTotal>;
+  selectOrderDiscountTotal: MemoizedSelector<object, DaffOrderTotal>;
   /**
    * Selects the specified order's tax total.
    */
-  selectOrderTax: MemoizedSelector<object, DaffOrderTotal>;
+  selectOrderTaxTotal: MemoizedSelector<object, DaffOrderTotal>;
 }
 
 const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
@@ -158,7 +158,7 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
       return (order && order.billing_addresses) || []
     }
   );
-  const selectOrderShippingAddresses = createSelector(
+  const selectOrderShippingTotalAddresses = createSelector(
     selectEntities,
     (orders, props) => {
       const order = selectOrder.projector(orders, {id: props.id});
@@ -212,7 +212,7 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
       return index > -1 ? totals[index] : null
     }
   );
-  const selectOrderShipping = createSelector(
+  const selectOrderShippingTotal = createSelector(
     selectEntities,
     (orders, props) => {
       const totals = selectOrderTotals.projector(orders, { id: props.id });
@@ -221,7 +221,7 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
       return index > -1 ? totals[index] : null
     }
   );
-  const selectOrderDiscount = createSelector(
+  const selectOrderDiscountTotal = createSelector(
     selectEntities,
     (orders, props) => {
       const totals = selectOrderTotals.projector(orders, { id: props.id });
@@ -230,7 +230,7 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
       return index > -1 ? totals[index] : null
     }
   );
-  const selectOrderTax = createSelector(
+  const selectOrderTaxTotal = createSelector(
     selectEntities,
     (orders, props) => {
       const totals = selectOrderTotals.projector(orders, { id: props.id });
@@ -260,7 +260,7 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
     selectOrderAppliedCodes,
     selectOrderItems,
     selectOrderBillingAddresses,
-    selectOrderShippingAddresses,
+    selectOrderShippingTotalAddresses,
     selectOrderShipments,
     selectOrderPayment,
     selectOrderInvoices,
@@ -269,9 +269,9 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
 
     selectOrderGrandTotal,
     selectOrderSubtotal,
-    selectOrderShipping,
-    selectOrderDiscount,
-    selectOrderTax,
+    selectOrderShippingTotal,
+    selectOrderDiscountTotal,
+    selectOrderTaxTotal,
   }
 }
 

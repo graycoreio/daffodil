@@ -419,11 +419,11 @@ describe('DaffOrderFacade', () => {
     });
   });
 
-  describe('getShipping$', () => {
+  describe('getShippingTotal$', () => {
     it('should initially be null', () => {
       const expected = cold('a', { a: null });
 
-      expect(facade.getShipping$(mockOrder.id)).toBeObservable(expected);
+      expect(facade.getShippingTotal$(mockOrder.id)).toBeObservable(expected);
     });
 
     describe('when an order has been loaded with a shipping total', () => {
@@ -435,16 +435,16 @@ describe('DaffOrderFacade', () => {
       it('should select the shipping total', () => {
         const expected = cold('a', { a: mockOrderTotal });
 
-        expect(facade.getShipping$(mockOrder.id)).toBeObservable(expected);
+        expect(facade.getShippingTotal$(mockOrder.id)).toBeObservable(expected);
       });
     });
   });
 
-  describe('getDiscount$', () => {
+  describe('getDiscountTotal$', () => {
     it('should initially be null', () => {
       const expected = cold('a', { a: null });
 
-      expect(facade.getDiscount$(mockOrder.id)).toBeObservable(expected);
+      expect(facade.getDiscountTotal$(mockOrder.id)).toBeObservable(expected);
     });
 
     describe('when an order has been loaded with a discount total', () => {
@@ -456,16 +456,16 @@ describe('DaffOrderFacade', () => {
       it('should select the discount total', () => {
         const expected = cold('a', { a: mockOrderTotal });
 
-        expect(facade.getDiscount$(mockOrder.id)).toBeObservable(expected);
+        expect(facade.getDiscountTotal$(mockOrder.id)).toBeObservable(expected);
       });
     });
   });
 
-  describe('getTax$', () => {
+  describe('getTaxTotal$', () => {
     it('should initially be null', () => {
       const expected = cold('a', { a: null });
 
-      expect(facade.getTax$(mockOrder.id)).toBeObservable(expected);
+      expect(facade.getTaxTotal$(mockOrder.id)).toBeObservable(expected);
     });
 
     describe('when an order has been loaded with a tax total', () => {
@@ -477,7 +477,7 @@ describe('DaffOrderFacade', () => {
       it('should select the tax total', () => {
         const expected = cold('a', { a: mockOrderTotal });
 
-        expect(facade.getTax$(mockOrder.id)).toBeObservable(expected);
+        expect(facade.getTaxTotal$(mockOrder.id)).toBeObservable(expected);
       });
     });
   });
