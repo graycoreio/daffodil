@@ -2,8 +2,50 @@
 	<h1 daffArticleTitle>Color</h1>
 	<p daffArticleLead>Color is used to help us distinguish and create consistent experiences across products.</p>
 
-	<h3>Accessibility</h3>
-	<p>We are committed to complying with the <a href="https://www.w3.org/TR/WCAG/" target="_blank">Web Content Accessibility Guidelines (WCAG) 2.1</a>. The component kit is built with the guidelines in mind. If you choose to identify your own color palettes outside of Daffodil's colors, please make sure to choose primary, secondary, tertiary, and extended colors that will pass the guidelines. Ensure there is sufficient color contrast between elements so that people who are visually impaired can see and use our products.</p>
+	<h3>Accessibility Considerations and Guarantees</h3>
+	<p>We are committed to complying with the <a href="https://www.w3.org/TR/WCAG/" target="_blank">Web Content Accessibility Guidelines (WCAG) 2.1</a>. The component kit is built with the guidelines in mind. If you choose to identify your own color palettes outside of Daffodil's colors, please make sure to choose primary, secondary, tertiary, and extended colors that will pass the guidelines. Ensure there is sufficient color contrast between elements so that people who are visually impaired can see and use your products.</p>
+
+	<h5>The following contrast considerations are of interest:</h5>
+	<p>To verify contrast ratios, we recommend using this <a href="contrast-ratio.com">contrast ratio calculator</a>.</p>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Element type</th>
+				<th>Contrast ratio</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Normal Text</td>
+				<td>
+					4.5:1 (AA)<br>
+					7:1 (AAA)
+				</td>
+			</tr>
+			<tr>
+				<td>Large Text</td>
+				<td>
+					3:1 (AA)<br>
+					4.5:1 (AAA)
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h6>Normal Text</h6>
+	<p>Normal text must have a contrast ratio of at least 4.5:1 to pass AA guidelines and 7:1 to pass AAA guidelines. This is accurate only if your font is <strong>at least 16px with Regular weight or heavier.</strong></p>
+
+	<h6>Large Text</h6>
+	<p>Large text must have a contrast ratio of at least 3:1 to pass AA guidelines and 4.5:1 to pass AAA guidelines. This is accurate only if your font is <strong>at least 18.66px with Bold weight or 24px.</strong></p>
+ 
+	<h6>As a result, we've ensured that in the palettes that we provide, the following are enforced:</h6>
+	<ul>
+		<li>"70" (e.g. 80 - 10) palette steps apart guarantees at least a 7:1 ratio</li>
+		<li>"60" (e.g. 70 - 10) palette steps apart guarantees at least a 4.5:1 ratio</li>
+	</ul>
+
+	<p>Note, there may be smaller increments that allow for the contrast ratios to be met (e.g. "20/70" passes a 4.5:1 ratio), but this is not consistently reliable across and within palettes, so please use this at your discretion.</p>
 
 	<h3>Color palettes</h3>
 	<div class="dl-color__grid">
