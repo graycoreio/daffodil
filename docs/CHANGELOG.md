@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.14.0](https://github.com/graycoreio/daffodil/compare/v0.13.0...v0.14.0) (2020-10-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cart:** creates no longer store the original cart state, but instead reset it, you may need to reload your cart data.
+
+### Features
+
+* **cart:** cart create success action should reset the cart state ([#1089](https://github.com/graycoreio/daffodil/issues/1089)) ([c2172bc](https://github.com/graycoreio/daffodil/commit/c2172bc1d6f03cad617731a28b58a0c875bd6bd7))
+* **order:** add all invoice and order totals ([#1087](https://github.com/graycoreio/daffodil/issues/1087)) ([92e96f9](https://github.com/graycoreio/daffodil/commit/92e96f9fd7cd729342ae2958f9cb5a60613583b4))
+* **order:** add order total selectors ([#1090](https://github.com/graycoreio/daffodil/issues/1090)) ([de8724e](https://github.com/graycoreio/daffodil/commit/de8724e106c9b6a2e6efbdbb3fc4d16c8ddfe984))
+
+
+### Bug Fixes
+
+* **product:** the min possible composite product price should not include prices for optional items ([#1086](https://github.com/graycoreio/daffodil/issues/1086)) ([13bb953](https://github.com/graycoreio/daffodil/commit/13bb953306ebbd979d6a0ce11ba53c530f303ec5))
+
 ## [0.13.0](https://github.com/graycoreio/daffodil/compare/v0.12.1...v0.13.0) (2020-10-06)
 
 
