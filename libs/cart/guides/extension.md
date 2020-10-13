@@ -40,12 +40,17 @@ The following cart drivers support extensible fragments:
 
 Provide the `DaffMagentoExtraCartFragments` to query additional fields on a Magento cart query. This applies to all of the driver calls that return a `DaffCart`, which is most of them.
 
+The additional fields are present on the untyped `extra_attributes` field.
+
 The following example demonstrates providing a GraphQL document using the `graphql-tag` library.
 
 ```typescript
 import gql from 'graphql-tag';
 import {
-  DaffMagentoExtraCartFragments
+  DaffMagentoExtraCartFragments,
+  DaffCartFacade,
+  DaffCartLoad,
+  DaffCart
 } from '@daffodil/cart';
 
 const extraCartFragment = gql`
@@ -66,9 +71,36 @@ const extraCartFragment = gql`
   providers: [
     {
       provide: DaffMagentoExtraCartFragments,
-      useValue: extraCartFragment
+      useValue: extraCartFragment,
+      multi: true
     }
   ]
 })
 class AppModule {}
+
+@Component({})
+class CartComponent implements OnInit {
+  cart$: Observable<DaffCart>;
+  field1$: Observable<{amount: number}>;
+  field2$: Observable<{value: string}>;
+
+  constructor(private cartFacade: DaffCartFacade) {}
+
+  ngOnInit() {
+    this.loadCart();
+    this.cart$ = this.cartFacade.cart$;
+    this.field1$ = this.cart$.pipe(
+      map(cart => cart.extra_attributes?.field1)
+    );
+    this.field2$ = this.cart$.pipe(
+      map(cart => cart.extra_attributes?.shipping_addresses?.[0]?.field2)
+    );
+  }
+
+  private loadCart() {
+    this.cartFacade.dispatch(new DaffCartLoad());
+  }
+}
 ```
+
+> An extra cart fragment is defined and provided for the `DaffMagentoExtraCartFragments` injection token. The `CartComponent` then loads the cart on initialization, which will query the cart and include the extra injected cart fields in the request. The component maps the extra fields from `cart.extra_attributes` to local fields.
