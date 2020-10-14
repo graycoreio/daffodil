@@ -80,7 +80,7 @@ export class CartItemComponent implements OnInit {
 }
 ```
 
-> In this example, three observable streams are assigned from `cartFacade`. Then when `addSimpleItem` is called, the `cartFacade`'s  `dispatch` function is called with the appropriately formed input. The effect layer will pick up the `DaffCartItemAdd` and invoke the injected driver with the item input info and the stored cart ID. The driver layer then sends your data off to the backend and updates the three observable streams when a response is received.
+> In this example, three observable streams are assigned from `cartFacade`. Then when `addSimpleItem` is called, the `cartFacade`'s  `dispatch` function is called with the appropriately formed input. The input data is then sent off to the backend and the three observable streams are updated when a response is received.
 
 <!-- TODO: add dependency injectable reducers guide once we implement it -->
 <!-- TODO: add dependency injectable actions for effects guide once we implement it -->
