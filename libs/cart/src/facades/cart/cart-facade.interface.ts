@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
-import { DaffStoreFacade } from '@daffodil/core';
+import { DaffStoreFacade } from '@daffodil/core/state';
 
 import { DaffCart } from '../../models/cart';
 import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';

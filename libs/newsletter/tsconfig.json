@@ -5,6 +5,15 @@
       "@daffodil/core": [
         "dist/core"
       ],
+      "@daffodil/core/testing": [
+        "dist/core/testing"
+      ],
+      "@daffodil/core/graphql": [
+        "dist/core/graphql"
+      ],
+      "@daffodil/core/state": [
+        "dist/core/state"
+      ],
       "@daffodil/driver": [
         "dist/driver"
       ],

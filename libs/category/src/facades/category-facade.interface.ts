@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 
-import { DaffStoreFacade } from '@daffodil/core';
+import { DaffStoreFacade } from '@daffodil/core/state';
 import { DaffProduct } from '@daffodil/product';
 
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
@@ -13,8 +13,8 @@ import { DaffGenericCategory } from '../models/generic-category';
 import { DaffCategory } from '../models/category';
 
 export interface DaffCategoryFacadeInterface<
-	T extends DaffCategoryRequest = DaffCategoryRequest, 
-	V extends DaffGenericCategory<V> = DaffCategory, 
+	T extends DaffCategoryRequest = DaffCategoryRequest,
+	V extends DaffGenericCategory<V> = DaffCategory,
 	U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
 	W extends DaffProduct = DaffProduct
 > extends DaffStoreFacade<Action> {
@@ -82,22 +82,22 @@ export interface DaffCategoryFacadeInterface<
 	 * Is the category page empty of products.
 	 */
 	isCategoryEmpty$: Observable<boolean>;
-	
+
 	/**
 	 * Get a category by the provided Id.
-	 * @param id 
+	 * @param id
 	 */
 	getCategoryById(id: string): Observable<V>;
 
 	/**
 	 * Get products by a category Id.
-	 * @param categoryId 
+	 * @param categoryId
 	 */
 	getProductsByCategory(categoryId: string): Observable<W[]>;
 
 	/**
 	 * Get products by a category Id.
-	 * @param categoryId 
+	 * @param categoryId
 	 */
 	getTotalProductsByCategory(categoryId: string): Observable<number>;
 }

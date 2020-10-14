@@ -1,7 +1,7 @@
 import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';
 
-import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffodil/core';
+import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffodil/core/graphql';
 
 import { cartCouponFragment } from './fragments/public_api';
 

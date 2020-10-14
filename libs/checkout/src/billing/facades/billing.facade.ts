@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select, Action } from '@ngrx/store';
 
-import { DaffStoreFacade, DaffAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
+import { DaffStoreFacade } from '@daffodil/core/state';
 
 import { DaffBillingModule } from '../billing.module';
 import { DaffBillingReducersState } from '../reducers/billing-reducers.interface';
-import { 
-  selectBillingAddress, 
-  selectBillingAddressIsShippingAddress, 
-  selectPaymentInfo 
+import {
+  selectBillingAddress,
+  selectBillingAddressIsShippingAddress,
+  selectPaymentInfo
 } from '../selectors/billing.selector';
 import { PaymentInfo } from '../../models/payment/payment-info';
 

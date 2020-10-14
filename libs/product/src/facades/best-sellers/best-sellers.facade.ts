@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store, select, Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffStoreFacade } from '@daffodil/core';
+import { DaffStoreFacade } from '@daffodil/core/state';
 
 import { DaffProduct } from '../../models/product';
 import { DaffProductModule } from '../../product.module';
@@ -37,7 +37,7 @@ export class DaffBestSellersFacade<T extends DaffProduct = DaffProduct> implemen
 
   /**
    * Dispatches an action to the rxjs action stream.
-   * @param action 
+   * @param action
    */
   dispatch(action: Action) {
     this.store.dispatch(action);

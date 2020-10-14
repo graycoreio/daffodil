@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 
-import { DaffStoreFacade } from '@daffodil/core';
+import { DaffStoreFacade } from '@daffodil/core/state';
 import { DaffAuthToken } from '../models/auth-token';
 
 export interface DaffAuthFacadeInterface<T extends DaffAuthToken = DaffAuthToken> extends DaffStoreFacade<Action> {

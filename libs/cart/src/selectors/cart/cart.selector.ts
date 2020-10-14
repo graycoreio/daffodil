@@ -5,7 +5,8 @@ import {
   DefaultProjectorFn
 } from '@ngrx/store';
 
-import { DaffLoadingState, daffSubtract } from '@daffodil/core';
+import { daffSubtract } from '@daffodil/core';
+import { DaffLoadingState } from '@daffodil/core/state';
 import { daffComparePersonalAddresses } from '@daffodil/geography';
 
 import { getDaffCartFeatureSelector } from '../cart-feature.selector';
