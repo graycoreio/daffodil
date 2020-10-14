@@ -23,6 +23,9 @@
       "@daffodil/contact": [
         "libs/contact/src"
       ],
+      "@daffodil/contact/driver/zendesk": [
+        "libs/contact/driver/zendesk/src"
+      ],
       "@daffodil/contact/testing": [
         "libs/contact/testing/src"
       ],
