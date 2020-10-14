@@ -1,5 +1,11 @@
 # Extension
 
+- [Extension](#extension)
+  - [Custom Drivers](#custom-drivers)
+  - [Generic Models](#generic-models)
+  - [Extensible GraphQL Fragments](#extensible-graphql-fragments)
+    - [Magento](#magento)
+
 `@daffodil/cart` provides a number of extension mechanisms so that it can be customized to fit specific needs.
 
 ## Custom Drivers

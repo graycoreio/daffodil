@@ -1,4 +1,4 @@
-# Magento
+# Magento Driver
 
 The Magento driver communicates with the Magento backend through the GraphQL API.
 

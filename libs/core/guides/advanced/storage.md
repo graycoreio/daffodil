@@ -1,5 +1,13 @@
 # Storage
 
+- [Storage](#storage)
+  - [Services](#services)
+    - [`DaffLocalStorageService`](#dafflocalstorageservice)
+    - [`DaffMemoryStorageService`](#daffmemorystorageservice)
+    - [`DaffErrorStorageService`](#dafferrorstorageservice)
+    - [`DaffNoopStorageService`](#daffnoopstorageservice)
+  - [Environment-Specific Storage Services](#environment-specific-storage-services)
+
 Daffodil abstracts the storage layer behind the `DaffPersistenceService` interface. A number of different services implement this interface and suit different use cases.
 
 ## Services

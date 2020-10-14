@@ -1,5 +1,10 @@
 # Usage
 
+- [Usage](#usage)
+  - [Interacting with Platforms](#interacting-with-platforms)
+  - [Using Routing Guards](#using-routing-guards)
+  - [Providing Platform-Agnostic Payment IDs](#providing-platform-agnostic-payment-ids)
+
 ## Interacting with Platforms
 
 Interacting with platforms through the Daffodil facade is the recommended method. See [using the facade](./state.md#using-the-facade).

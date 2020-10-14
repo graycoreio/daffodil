@@ -1,5 +1,9 @@
 # State
 
+- [State](#state)
+  - [Setting up your `AppModule`](#setting-up-your-appmodule)
+  - [Using the Facade](#using-the-facade)
+
 `@daffodil/cart` provides a fully featured state library to streamline the management of your application's state as well as driver interaction.
 
 The facade is an abstraction that provides all the functionality needed for standard use. It is the recommended way to interact with the Daffodil state layer.

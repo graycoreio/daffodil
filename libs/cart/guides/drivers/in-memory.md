@@ -1,4 +1,4 @@
-# Cart In-Memory Web API Driver
+# In-Memory Web API Driver
 
 The In-Memory driver is for rapid development without the need to set up a magento/shopify/etc backend. It will mock out the management of a cart and operate like a functional backend. It is intended for development and testing purposes; it is not meant to be used in production.
 
