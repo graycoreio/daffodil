@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
-import { DaffStoreFacade } from '@daffodil/core';
+import { DaffStoreFacade } from '@daffodil/core/state';
 
 import { DaffCompositeProductItemOption, DaffCompositeProductItem } from '../../models/composite-product-item';
 import { DaffCompositeProduct } from '../../models/composite-product';
@@ -18,7 +18,7 @@ export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Act
 
 	/**
    * Get the maximum price for a composite product, including optional items and regardless of applied options.
-	 * This would be useful for a quick preview of a product.	 
+	 * This would be useful for a quick preview of a product.
 	 * @param id the id of the composite product.
 	 */
 	getMaxPossiblePrice(id: string): Observable<number>;

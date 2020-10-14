@@ -1,4 +1,4 @@
-import { DaffLoadingState } from '@daffodil/core';
+import { DaffLoadingState } from '@daffodil/core/state';
 
 import { DaffCartReducerState } from './cart-state.interface';
 import { DaffCartOperationType } from './cart-operation-type.enum';

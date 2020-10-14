@@ -4,7 +4,7 @@ import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { MockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 
-import { DaffLoadingState } from '@daffodil/core';
+import { DaffLoadingState } from '@daffodil/core/state';
 import {
   DaffCartLoad,
   DaffCartLoadSuccess,

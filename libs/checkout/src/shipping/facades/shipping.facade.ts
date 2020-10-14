@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select, Action } from '@ngrx/store';
 
-import { DaffStoreFacade, DaffAddress } from '@daffodil/core';
+import { DaffAddress } from '@daffodil/core';
+import { DaffStoreFacade } from '@daffodil/core/state';
 
 import { DaffShippingModule } from '../shipping.module';
 import { DaffShippingReducersState } from '../reducers/shipping-reducers.interface';

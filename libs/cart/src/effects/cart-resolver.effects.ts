@@ -4,7 +4,8 @@ import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { switchMap, catchError, map, mapTo } from 'rxjs/operators';
 
-import { DaffStorageServiceError, substream } from '@daffodil/core';
+import { DaffStorageServiceError } from '@daffodil/core';
+import { substream } from '@daffodil/core/state';
 
 import {
 	DaffCartActionTypes,

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select, Action } from '@ngrx/store';
 
-import { DaffStoreFacade } from '@daffodil/core';
+import { DaffStoreFacade } from '@daffodil/core/state';
 
 import { DaffPaymentModule } from '../payment.module';
 import { DaffPaymentReducersState } from '../reducers/payment-reducers.interface';

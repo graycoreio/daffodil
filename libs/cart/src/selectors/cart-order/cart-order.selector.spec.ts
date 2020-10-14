@@ -8,7 +8,7 @@ import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffCartLoadSuccess, DaffCartPlaceOrderSuccess } from '../../actions/public_api';
 import { daffCartReducers, DaffCartReducersState, DaffCartOrderReducerState } from '../../reducers/public_api';
 import { getCartOrderSelectors } from './cart-order.selector';
-import { DaffLoadingState } from '@daffodil/core';
+import { DaffLoadingState } from '@daffodil/core/state';
 
 describe('Cart | Selector | CartOrder', () => {
   let store: Store<DaffCartReducersState>;

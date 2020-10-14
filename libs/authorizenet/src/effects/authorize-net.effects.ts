@@ -4,7 +4,8 @@ import { switchMap, catchError, map, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
 import { DaffCartPaymentActionTypes, DaffCartPaymentUpdateWithBilling } from '@daffodil/cart';
-import { substream, backoff } from '@daffodil/core';
+import { backoff } from '@daffodil/core';
+import { substream } from '@daffodil/core/state';
 
 import {
 	DaffAuthorizeNetActionTypes,

@@ -8,7 +8,7 @@ import { getDaffCartFeatureSelector } from '../cart-feature.selector';
 import { DaffCart } from '../../models/cart';
 import { DaffCartReducersState, DaffCartOrderReducerState } from '../../reducers/public_api';
 import { DaffCartItem } from '../../models/cart-item';
-import { DaffLoadingState } from '@daffodil/core';
+import { DaffLoadingState } from '@daffodil/core/state';
 
 export interface DaffCartOrderMemoizedSelectors<
   T extends DaffCartOrderResult = DaffCartOrderResult

@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DaffStoreFacade } from '@daffodil/core';
+import { DaffStoreFacade } from '@daffodil/core/state';
 
 export interface DaffAuthorizeNetFacadeInterface extends DaffStoreFacade<Action> {
   isAcceptJsLoaded$: Observable<boolean>;

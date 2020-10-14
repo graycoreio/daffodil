@@ -22,14 +22,20 @@
       "@daffodil/core": [
         "dist/core"
       ],
+      "@daffodil/core/testing": [
+        "dist/core/testing"
+      ],
+      "@daffodil/core/graphql": [
+        "dist/core/graphql"
+      ],
+      "@daffodil/core/state": [
+        "dist/core/state"
+      ],
       "@daffodil/cart": [
         "dist/cart"
       ],
       "@daffodil/cart/testing": [
         "dist/cart/testing"
-      ],
-      "@daffodil/core/testing": [
-        "dist/core/testing"
       ],
       "@daffodil/navigation": [
         "dist/navigation"

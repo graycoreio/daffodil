@@ -1,4 +1,4 @@
-import { DaffLoadingState } from '@daffodil/core';
+import { DaffLoadingState } from '@daffodil/core/state';
 import { DaffCartShippingRate } from '@daffodil/cart';
 import { DaffCartFactory, DaffCartShippingRateFactory } from '@daffodil/cart/testing';
 

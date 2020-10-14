@@ -1,4 +1,4 @@
-import { DaffLoadingState } from '@daffodil/core';
+import { DaffLoadingState } from '@daffodil/core/state';
 
 import { daffCartOrderReducer as reducer } from './cart-order.reducer';
 import { daffCartOrderInitialState as initialState } from './cart-order-initial-state';

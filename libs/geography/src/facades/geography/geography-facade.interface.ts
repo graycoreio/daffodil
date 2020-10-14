@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
-import { DaffStoreFacade } from '@daffodil/core';
+import { DaffStoreFacade } from '@daffodil/core/state';
 
 import { DaffCountry } from '../../models/country';
 

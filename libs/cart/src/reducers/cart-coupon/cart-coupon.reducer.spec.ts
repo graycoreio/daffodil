@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffLoadingState } from '@daffodil/core';
+import { DaffLoadingState } from '@daffodil/core/state';
 import { DaffCartCoupon } from '@daffodil/cart';
 import {
   DaffCartFactory,

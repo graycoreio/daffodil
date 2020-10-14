@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 
-import { DaffStoreFacade } from '@daffodil/core';
+import { DaffStoreFacade } from '@daffodil/core/state';
 
 import { DaffProduct } from '../../models/product';
 
