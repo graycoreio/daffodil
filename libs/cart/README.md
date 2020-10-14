@@ -5,28 +5,24 @@ provides clear interfaces, models, and factories for the frontend of an ecommerc
 
 ## Installation
 
-Refer to [the installation guide](./guides/installation).
+Refer to [the installation guide](./guides/installation.md).
 
 ## Getting Started
 
-Refer to [the getting started guide](./guides/getting-started).
+Refer to [the getting started guide](./guides/getting-started.md).
 
 ## Usage
 
-Refer to [the usage guide](./guides/usage).
+Refer to [the usage guide](./guides/usage.md).
 
 ## Extension
 
-Refer to [the extension guide](./guides/extension).
+Refer to [the extension guide](./guides/extension.md).
 
 ## Testing
 
-Refer to [the testing guide](./guides/testing).
+Refer to [the testing guide](./guides/testing.md).
 
-## Live Demo
+## Drivers
 
-[Checkout a live example of the `DaffCart` library in action!]()
-
-## Supported Drivers
-- [In-Memory](./drivers/in-memory.md)
-- [Magento](./drivers/magento.md)
+Refer to [the drivers guide](./guides/drivers.md).

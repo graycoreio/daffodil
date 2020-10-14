@@ -2,6 +2,55 @@
 
 `@daffodil/cart` provides a number of extension mechanisms so that it can be customized to fit specific needs.
 
+## Custom Drivers
+
+If the packaged Daffodil drivers don't satisfy the required use cases, they can be overriden by providing custom drivers. Create a service that implements the interface corresponding to the driver you wish to override.
+
+If custom behavior is not needed for all driver methods, unimplemented methods can be delegated to the original driver. The following example demonstrates overriding the `create` method of the `DaffCartDriver` while using Magento.
+
+```typescript
+import {
+  DaffCartDriver,
+  DaffMagentoCartService
+} from '@daffodil/cart';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CustomMagentoCartService implements DaffCartServiceInterface {
+  constructor(
+    private cartDriver: DaffMagentoCartService,
+  ) {}
+
+  get(cartId: string): Observable<DaffCart> {
+    return this.cartDriver.get(cartId);
+  }
+
+  create(): Observable<{id: string}> {
+    // custom behavior
+  }
+
+  addToCart(productId: string, qty: number): Observable<DaffCart> {
+    return this.cartDriver.addToCart(productId, qty);
+  }
+
+  clear(cartId: string): Observable<Partial<DaffCart>> {
+    return this.cartDriver.clear(cartId);
+	}
+}
+
+@NgModule({
+  ...,
+  providers: [
+    {
+      provide: DaffCartDriver,
+      useExisting: CustomMagentoCartService
+    }
+  ]
+})
+class AppModule {}
+```
+
 ## Generic Models
 
 All Daffodil layers can operate on generic extensions of vanilla Daffodil models. Custom models can therefore be used while retaining type safety. The following example illustrates customizing the cart model with the cart facade.

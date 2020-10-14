@@ -1,13 +1,13 @@
-# Cart Magento Driver
+# Magento
 
-The In-Memory driver is for rapid development without the need to set up a magento/shopify/etc backend. It will mock out the submission of a cart form and operate like a functional backend.
+The Magento driver communicates with the Magento backend through the GraphQL API.
 
-To set up, import the `DaffCartMagentoDriverModule` from the `@daffodil/cart/testing` library and the `ApolloModule` from `angular-in-memory-web-api`.
- Include `DaffCartMagentoDriverModule.forRoot()` and `ApolloModule` in the imports section of your `app.module`.
+To set up, import the `DaffCartMagentoDriverModule` from the `@daffodil/cart` library and the `ApolloModule` from `apollo-angular`.
+ Include `DaffCartMagentoDriverModule.forRoot()` and `ApolloModule` in the imports section of your `AppModule`.
 
 ```typescript
 import { ApolloModule } from 'apollo-angular';
-import { DaffCartMagentoDriverModule } from '@daffodil/cart/testing';
+import { DaffCartMagentoDriverModule } from '@daffodil/cart';
 
 @NgModule({
   imports: [
@@ -18,11 +18,11 @@ import { DaffCartMagentoDriverModule } from '@daffodil/cart/testing';
 export class AppModule {}
 ```
 
-Now your `DaffCart` implementation will have access to the In-Memory Driver to use while developing.
+Now your `DaffCart` implementation will be able to interact with Magento.
 
-> It is important to note to only have one `daffodil/cart` driver set up in your App.Module at a time. To set up a driver configuration to make switching between different backend drivers simple, follow the [advanced setup guide](). <!-- TODO: add multiple drivers guide -->
+> It is important to note to only have one `@daffodil/cart` driver set up in your `AppModule` at a time. To set up a driver configuration to make switching between different backend drivers simple, follow the [advanced setup guide](). <!-- TODO: add multiple drivers guide -->
 
 ### Fragment Introspection
 
-You should set up fragment introspection with the Magento backend. Refer to the [fragment introspection guide](../../docs/advanced/fragment-introspection) for more info.
+You should set up fragment introspection with the Magento backend. Refer to the [fragment introspection guide](../../../../tools/builders/guides/fragment-introspection.md) for more info.
 

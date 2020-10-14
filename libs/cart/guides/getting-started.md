@@ -2,29 +2,8 @@
 
 This overview assumes that you have already set up an Angular project and have gone through the [cart installation guide](./installation.md). If you have not, we recommend you do that first.
 
-## Setting up your `AppModule`
+Daffodil includes multiple layers of functionality that build on each other. The models can be used on their own. The driver layers can be used with the models but also allow custom extensions to those models to be passed as generics. A state layer sits on top of the driver layer. Individual drivers can be overridden through driver injection tokens and custom extensions to models can be passed into the state layer's generics.
 
-To get started, import the `DaffCartModule` in your `AppModule`. Next, import `StoreModule.forRoot({})`, which will be relevant later on when utilizing the redux and state management features of the cart module.
+The recommended way to use Daffodil is with the state layer.
 
-```typescript
-@ngModule({
-  imports:[
-    StoreModule.forRoot({}),
-    DaffCartModule
-  ]
-})
-export class AppModule {}
-```
-
-## Utilizing inside your component
-
-The `DaffCartModule` provides a `DaffCartFacade` that wraps the complexities of the state library into one place. This facade will handle updating the user's cart and can also be utilized to build your UI with behaviors common to a cart.
-
-To inject the facade inside your component, include an instance of `DaffCartFacade` in your component's constructor.
-
-```typescript
-@Component({})
-export class CartComponent {
-  constructor(public cartFacade: DaffCartFacade) {}
-}
-```
+See [the driver](./drivers.md) and [state](./state.md) guides for information about those layers. See [the extension guide](./extension.md) for information about extending Daffodil. See [the usage guide](./usage.md) for general information about the other parts of `@daffodil/cart`.

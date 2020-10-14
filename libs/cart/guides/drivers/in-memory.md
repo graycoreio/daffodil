@@ -7,7 +7,7 @@ To set up, import the `DaffCartInMemoryDriverModule` from the `@daffodil/cart/te
 
 ```typescript
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { DaffCartInMemoryDriverModule } from '@daffodil/Cart/testing';
+import { DaffCartInMemoryDriverModule } from '@daffodil/cart/testing';
 
 @NgModule({
   imports: [
