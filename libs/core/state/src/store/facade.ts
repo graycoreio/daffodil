@@ -1,3 +1,3 @@
 export interface DaffStoreFacade<T> {
-    dispatch(action: T);
+  dispatch(action: T);
 }

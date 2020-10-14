@@ -1,6 +1,6 @@
 {
   "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/core/testing",
+  "dest": "../../dist/core/graphql",
   "deleteDestPath": false,
   "lib": {
     "entryFile": "src/index.ts"
