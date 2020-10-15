@@ -1,7 +1,8 @@
 import { Processor, Document } from 'dgeni';
 
 /**
- * Exchange < for &lt; and > for &gt; so that generic types can be rendered correctly as html.
+ * Filter out properties that are meant to be only internal. These include fields prefixed with an underscore and
+ * the angular lifecycle hooks, like "ngOnInit".
  */
 export class FilterOutInternalPropertiesProcessor implements Processor {
 	name = 'filterOutInternalProperties';
