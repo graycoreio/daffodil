@@ -88,7 +88,7 @@ class CartComponent implements OnInit {
 
 Arbitrary additional fields can be requested on the cart object. Inject a GraphQL document node containing fragments on the platform's cart type to define extra fields.
 
-The following cart drivers support extensible fragments:
+Only drivers that use GraphQL support extensible fragments because fragments are specific to GraphQL. The following cart drivers support extensible fragments:
 - Magento
 
 ### Magento
