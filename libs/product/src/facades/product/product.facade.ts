@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { Store, select, Action } from '@ngrx/store';
 
@@ -11,15 +10,15 @@ import { getDaffProductSelectors } from '../../selectors/public_api';
 import { DaffProductFacadeInterface } from './product-facade.interface';
 
 /**
- * A facade for accessing product state from an application component.
+ * A facade for getting state about a particular product.
  */
 @Injectable({
   providedIn: DaffProductModule
 })
 export class DaffProductFacade<T extends DaffProduct = DaffProduct> implements DaffProductFacadeInterface<T> {
   /**
-   * The loading state of the product.
-   */
+	 * Whether a product is being loaded.
+	 */
   loading$: Observable<boolean>;
   /**
    * The currently selected product.
@@ -33,23 +32,43 @@ export class DaffProductFacade<T extends DaffProduct = DaffProduct> implements D
     this.loading$ = this.store.pipe(select(this.selectors.selectSelectedProductLoadingState));
 		this.product$ = this.store.pipe(select(this.selectors.selectSelectedProduct));
 	}
-	
+
+	/**
+	 * Get a product.
+	 * @param id a product id
+	 */
 	getProduct(id: string): Observable<T> {
 		return this.store.pipe(select(this.selectors.selectProduct, { id }));
 	}
 
+	/**
+	 * Whether a particular product has a discount.
+	 * @param id a product id
+	 */
 	hasDiscount(id: string): Observable<boolean> {
 		return this.store.pipe(select(this.selectors.selectProductHasDiscount, { id }));
 	}
 
+	/**
+	 * Get the discount amount of a product.
+	 * @param id a product id
+	 */
 	getDiscountAmount(id: string): Observable<number> {
 		return this.store.pipe(select(this.selectors.selectProductDiscountAmount, { id }));
 	}
 
+	/**
+	 * Get the discount percent of a product
+	 * @param id a product id
+	 */
 	getDiscountPercent(id: string): Observable<number> {
 		return this.store.pipe(select(this.selectors.selectProductDiscountPercent, { id }));
 	}
 
+	/**
+	 * Whether a product is out of stock.
+	 * @param id a product id
+	 */
 	isOutOfStock(id: string): Observable<boolean> {
 		return this.store.pipe(select(this.selectors.selectIsProductOutOfStock, { id }));
 	}

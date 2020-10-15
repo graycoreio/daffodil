@@ -5,6 +5,9 @@ import { Dictionary } from '@ngrx/entity';
 import { DaffStoreFacade } from '@daffodil/core/state';
 import { DaffConfigurableProductVariant } from '../../models/configurable-product';
 
+/**
+ * An interface for a facade that accesses configurable product state.
+ */
 export interface DaffConfigurableProductFacadeInterface extends DaffStoreFacade<Action> {
 
 	/**
