@@ -9,6 +9,7 @@ import { PackagesProcessor } from '../../processors/packages';
 import { FilterContainedDocsProcessor } from '../../processors/filterDocs';
 import { CleanSelectorsProcessor } from '../../processors/cleanSelectors';
 import { MakeTypesHtmlCompatibleProcessor } from '../../processors/makeTypesHtmlCompatible';
+import { FilterOutInternalPropertiesProcessor } from '../../processors/filterOutInternalProperties';
 
 //List of packages to be left out of API generation
 const excludedPackages = ['branding'];
@@ -22,6 +23,7 @@ export const apiDocs =  new Package('checkout', [
   .processor(new FilterContainedDocsProcessor())
   .processor(new CleanSelectorsProcessor())
   .processor(new MakeTypesHtmlCompatibleProcessor())
+  .processor(new FilterOutInternalPropertiesProcessor())
   .processor(new GenerateApiListProcessor())
   .processor(new PackagesProcessor())
   .factory(function API_DOC_TYPES_TO_RENDER(EXPORT_DOC_TYPES) {
