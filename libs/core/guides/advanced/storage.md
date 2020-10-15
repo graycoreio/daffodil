@@ -15,7 +15,7 @@ Daffodil abstracts the storage layer behind the `DaffPersistenceService` interfa
 
 ### `DaffLocalStorageService`
 
-The `DaffLocalStorageService` utilizes `localStorage` to implement persistence. It is appropriate for browser environments.
+The `DaffLocalStorageService` uses `localStorage` to implement persistence. It is appropriate for browser environments.
 
 ### `DaffMemoryStorageService`
 
