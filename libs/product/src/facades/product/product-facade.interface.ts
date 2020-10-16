@@ -14,6 +14,7 @@ export interface DaffProductFacadeInterface<T extends DaffProduct = DaffProduct>
 	 */
 	loading$: Observable<boolean>;
 	/**
+	 * deprecated - use getProduct instead.
 	 * @deprecated use getProduct instead.
 	 */
 	product$: Observable<T>;
@@ -37,7 +38,7 @@ export interface DaffProductFacadeInterface<T extends DaffProduct = DaffProduct>
 	getDiscountAmount(id: string): Observable<number>;
 
 	/**
-	 * Get the discount percent of a product
+	 * Get the discount percent of a product.
 	 * @param id a product id
 	 */
 	getDiscountPercent(id: string): Observable<number>;

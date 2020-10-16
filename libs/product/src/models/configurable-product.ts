@@ -23,11 +23,11 @@ export interface DaffConfigurableProductAttribute extends DaffSortable {
 }
 
 /**
- * A variant is one version of the configurable product with all attributes chosen. Variants exist because you might not have
- * all versions of every configuration of the product in stock. For example, you might have a medium, red shirt and a small,
- * green shirt, but no small, red shirts. So you could have two variants (mediumRed, smallGreen) rather than the maximum 4 variants 
+ * A variant is one version of the configurable product with all attributes chosen. Variants exist because not all versions of every configuration of 
+ * the product might be in stock. For example, a shirt might have a medium, red shirt and a small,
+ * green shirt in stock, but no small, red shirts. In this case there would be two variants (mediumRed, smallGreen) rather than the maximum 4 variants 
  * (smallRed, mediumRed, smallGreen, mediumGreen). This ensures the customer can't add a configurable product to the cart that is not
- * in stock. However, variants don't usually need to be considered by the frontend dev, because daffodil abstacts the concept of variants away into 
+ * in stock. However, variants don't usually need to be considered by the frontend dev, because daffodil abstacts away the concept of variants into 
  * an "available attributes" selector.
  */
 export interface DaffConfigurableProductVariant {

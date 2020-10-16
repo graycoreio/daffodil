@@ -10,8 +10,10 @@ export enum DaffCompositeProductItemInputEnum {
 
 /**
  * The composite product item describes one set of product options that the user can add to the composite product.
- * If a composite product is a toolbox bundle, a composite product item might be a screw driver, and the options contained in that
- * item might be a phillips head and a flathead. The customer would choose to add either a phillips head or a flathead to the
+ * A composite product item can be required or optional. If it is required, an option _must_ be chosen in order to add the product to the cart.
+ * If the item is optional, the product can be added to the cart without an option having been chosen.
+ * For example, f a composite product is a toolbox bundle, a composite product item might be a screw driver, and the options contained in that
+ * item might be a phillips head and a flathead. The customer could choose to add either a phillips head or a flathead to the
  * composite product, or neither if the item is optional.
  */
 export interface DaffCompositeProductItem {

@@ -7,6 +7,7 @@ import { DaffConfigurableProductVariant } from '../../models/configurable-produc
 
 /**
  * An interface for a facade that accesses configurable product state.
+ * Exposes many parts of the state for easy access and allows dispatching of actions.
  */
 export interface DaffConfigurableProductFacadeInterface extends DaffStoreFacade<Action> {
 

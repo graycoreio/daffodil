@@ -8,7 +8,8 @@ import { DaffCompositeProductItemOption, DaffCompositeProductItem } from '../../
 import { DaffCompositeProduct } from '../../models/composite-product';
 
 /**
- * A facade for accessing composite product state from an application component.
+ * A facade for interacting with the composite product state.
+ * Exposes many parts of the state for easy access and allows dispatching of actions.
  */
 export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Action> {
 
