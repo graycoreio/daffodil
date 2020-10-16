@@ -7,6 +7,10 @@ import { DaffStoreFacade } from '@daffodil/core/state';
 import { DaffCompositeProductItemOption, DaffCompositeProductItem } from '../../models/composite-product-item';
 import { DaffCompositeProduct } from '../../models/composite-product';
 
+/**
+ * A facade for interacting with the composite product state.
+ * Exposes many parts of the state for easy access and allows dispatching of actions.
+ */
 export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Action> {
 
 	/**

@@ -12,7 +12,10 @@ import { DaffCompositeProductItemOption, DaffCompositeProductItem } from '../../
 import { DaffCompositeProduct } from '../../models/composite-product';
 
 /**
- * A facade for accessing composite product state from an application component.
+ * A facade for interacting with the composite product state.
+ * Exposes many parts of the state for easy access and allows dispatching of actions.
+ * 
+ * See the <a href="docs/api/product/DaffCompositeProductFacadeInterface">DaffCompositeProductFacadeInterface docs</a> for more details.
  */
 @Injectable({
   providedIn: DaffProductModule
@@ -22,7 +25,7 @@ export class DaffCompositeProductFacade<T extends DaffProduct = DaffProduct> imp
 	selectors = getDaffProductSelectors<T>();
 	
 	constructor(private store: Store<DaffProductReducersState<T>>) {}
-	
+
 	getMinPossiblePrice(id: string): Observable<number> {
 		return this.store.pipe(select(this.selectors.selectCompositeProductMinPossiblePrice, { id }));
 	}
@@ -62,7 +65,7 @@ export class DaffCompositeProductFacade<T extends DaffProduct = DaffProduct> imp
 	hasRequiredItemPriceRange(id: string): Observable<boolean> {
 		return this.store.pipe(select(this.selectors.selectCompositeProductHasRequiredItemPriceRange, { id }));
 	}
-	
+
 	getMinRequiredItemDiscountedPrice(id: string): Observable<number> {
 		return this.store.pipe(select(this.selectors.selectCompositeProductMinRequiredItemDiscountedPrice, { id }));
 	}
@@ -74,7 +77,7 @@ export class DaffCompositeProductFacade<T extends DaffProduct = DaffProduct> imp
 	hasRequiredItemDiscountedPriceRange(id: string): Observable<boolean> {
 		return this.store.pipe(select(this.selectors.selectCompositeProductHasRequiredItemDiscountedPriceRange, { id }));
 	}
-	
+
 	hasRequiredItemDiscount(id: string): Observable<boolean> {
 		return this.store.pipe(select(this.selectors.selectCompositeProductHasRequiredItemDiscount, { id }));
 	}

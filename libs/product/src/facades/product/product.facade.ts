@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { Store, select, Action } from '@ngrx/store';
 
@@ -11,20 +10,15 @@ import { getDaffProductSelectors } from '../../selectors/public_api';
 import { DaffProductFacadeInterface } from './product-facade.interface';
 
 /**
- * A facade for accessing product state from an application component.
+ * A facade for getting state about a particular product.
+ * 
+ * See the <a href="docs/api/product/DaffProductFacadeInterface">DaffProductFacadeInterface docs</a> for more details.
  */
 @Injectable({
   providedIn: DaffProductModule
 })
 export class DaffProductFacade<T extends DaffProduct = DaffProduct> implements DaffProductFacadeInterface<T> {
-  /**
-   * The loading state of the product.
-   */
   loading$: Observable<boolean>;
-  /**
-   * The currently selected product.
-	 * @deprecate use getProduct instead.
-   */
   product$: Observable<T>;
 
 	private selectors = getDaffProductSelectors<T>();
@@ -33,7 +27,7 @@ export class DaffProductFacade<T extends DaffProduct = DaffProduct> implements D
     this.loading$ = this.store.pipe(select(this.selectors.selectSelectedProductLoadingState));
 		this.product$ = this.store.pipe(select(this.selectors.selectSelectedProduct));
 	}
-	
+
 	getProduct(id: string): Observable<T> {
 		return this.store.pipe(select(this.selectors.selectProduct, { id }));
 	}

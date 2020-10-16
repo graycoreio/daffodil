@@ -11,7 +11,10 @@ import { DaffConfigurableProductFacadeInterface } from './configurable-product-f
 import { DaffConfigurableProductVariant } from '../../models/configurable-product';
 
 /**
- * A facade for accessing configurable product state from an application component.
+ * A facade for interacting with the configurable product state.
+ * Exposes many parts of the state for easy access and allows dispatching of actions.
+ * 
+ * See the <a href="docs/api/product/DaffConfigurableProductFacadeInterface">DaffConfigurableProductFacadeInterface docs</a> for more details.
  */
 @Injectable({
   providedIn: DaffProductModule
@@ -53,11 +56,11 @@ export class DaffConfigurableProductFacade<T extends DaffProduct = DaffProduct> 
 	getMaximumPercentDiscount(id: string): Observable<number> {
 		return this.store.pipe(select(this.selectors.selectConfigurableProductMaximumPercentDiscount, { id }));
 	}
-	
+
 	isPriceRanged(id: string): Observable<boolean> {
 		return this.store.pipe(select(this.selectors.isConfigurablePriceRanged, { id }));
 	}
-	
+
 	hasDiscount(id: string): Observable<boolean> {
 		return this.store.pipe(select(this.selectors.selectConfigurableProductHasDiscount, { id }));
 	}
