@@ -67,7 +67,12 @@ export const apiDocs =  new Package('checkout', [
       pathTemplate: '${moduleDoc.moduleFolder}/${name}',
       outputPathTemplate: '${moduleDoc.moduleFolder}/${name}.json',
     });
-  })
+	})
+	.config(function(parseTagsProcessor: any) {
+		parseTagsProcessor.tagDefinitions = parseTagsProcessor.tagDefinitions.concat([
+			{name: 'docs-private'}
+		])
+	})
   .config(function(convertToJson, API_DOC_TYPES_TO_RENDER) {
     convertToJson.docTypes = convertToJson.docTypes.concat(API_DOC_TYPES_TO_RENDER);
   })
