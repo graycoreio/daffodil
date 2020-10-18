@@ -7,7 +7,11 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockOrderItem implements DaffOrderItem {
   item_id = faker.random.number({min: 1, max: 1000});
-  image = null;
+  image = {
+    url: faker.image.imageUrl,
+    id: faker.random.number({min: 1, max: 1000}),
+    label: faker.random.word()
+  };
   order_id = faker.random.number({min: 1, max: 1000});
   qty_ordered = faker.random.number({min: 1, max: 1000});
   qty_canceled = faker.random.number({min: 1, max: 1000});

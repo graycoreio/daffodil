@@ -50,6 +50,10 @@ describe('Order | Testing | Factories | OrderItemFactory', () => {
       expect(result.row_total_with_discount).not.toBeNull();
       expect(result.row_weight).not.toBeNull();
       expect(result.tax_before_discount).not.toBeNull();
+      expect(result.image).not.toBeNull();
+      expect(result.image.id).not.toBeNull();
+      expect(result.image.label).not.toBeNull();
+      expect(result.image.url).not.toBeNull();
     });
   });
 
