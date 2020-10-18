@@ -21,5 +21,5 @@ export class FilterOutPrivatePropertiesProcessor implements Processor {
 }
 
 function filterOutPrivateProperties(members): any {
-	return members.filter(member => !member.content.includes('@docs-private'));
+	return members.filter(member => !member.tags.tags.filter(tag => tag.tagName ==='docs-private').length);
 }
