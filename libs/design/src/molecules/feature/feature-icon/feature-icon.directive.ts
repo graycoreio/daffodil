@@ -5,5 +5,8 @@ import { Directive, HostBinding } from '@angular/core';
 })
 export class DaffFeatureIconDirective {
 
-  @HostBinding('class.daff-feature__icon') private class = true;
+	/**
+	 * @docs-private
+	 */
+  @HostBinding('class.daff-feature__icon') class = true;
 }

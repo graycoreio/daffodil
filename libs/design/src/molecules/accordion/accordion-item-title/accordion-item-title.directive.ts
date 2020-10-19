@@ -4,6 +4,9 @@ import { Directive, HostBinding } from '@angular/core';
   selector: '[daffAccordionItemTitle]',
 })
 export class DaffAccordionItemTitleDirective {
-  
-  @HostBinding('class.daff-accordion-item__title') private class = true;
+	
+	/**
+	 * @docs-private
+	 */
+  @HostBinding('class.daff-accordion-item__title') class = true;
 }

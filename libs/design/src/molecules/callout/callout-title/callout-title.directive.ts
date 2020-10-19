@@ -6,5 +6,8 @@ import { Directive, HostBinding } from '@angular/core';
 
 export class DaffCalloutTitleDirective {
 
-  @HostBinding('class.daff-callout__title') private class = true;
+	/**
+	 * @docs-private
+	 */
+  @HostBinding('class.daff-callout__title') class = true;
 }

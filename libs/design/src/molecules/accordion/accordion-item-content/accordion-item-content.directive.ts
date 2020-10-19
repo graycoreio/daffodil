@@ -5,5 +5,8 @@ import { Directive, HostBinding } from '@angular/core';
 })
 export class DaffAccordionItemContentDirective {
 
-  @HostBinding('class.daff-accordion-item__content') private class = true;
+	/**
+	 * @docs-private
+	 */
+  @HostBinding('class.daff-accordion-item__content') class = true;
 }

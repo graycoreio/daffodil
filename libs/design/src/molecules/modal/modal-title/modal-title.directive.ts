@@ -4,5 +4,8 @@ import { Directive, HostBinding } from '@angular/core';
   selector: '[daffModalTitle]'
 })
 export class DaffModalTitleDirective {
-  @HostBinding('class.daff-modal-title') private class = true;
+	/**
+	 * @docs-private
+	 */
+  @HostBinding('class.daff-modal-title') class = true;
 }

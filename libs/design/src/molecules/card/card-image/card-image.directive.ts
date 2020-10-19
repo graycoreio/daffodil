@@ -4,6 +4,9 @@ import { Directive, HostBinding } from '@angular/core';
   selector: '[daffCardImage]'
 })
 export class DaffCardImageDirective {
-  
-  @HostBinding('class.daff-card__image') private class = true;
+	
+	/**
+	 * @docs-private
+	 */
+  @HostBinding('class.daff-card__image') class = true;
 }
