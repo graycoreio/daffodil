@@ -8,5 +8,8 @@ import { Directive, HostBinding } from '@angular/core';
 })
 export class DaffLinkSetSubheadingDirective {
 
+	/**
+	 * @docs-private
+	 */
   @HostBinding('class.daff-link-set__subheading') class = true;
 }

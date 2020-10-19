@@ -31,7 +31,7 @@ export class DaffModalComponent {
 	/**
 	 * The CDK Portal outlet used to portal content into the modal.
 	 */
-	@ViewChild(CdkPortalOutlet, { static: true }) _portalOutlet: CdkPortalOutlet;
+	@ViewChild(CdkPortalOutlet, { static: true }) private _portalOutlet: CdkPortalOutlet;
 
 	/**
 	 * Event fired when the close animation is completed.
@@ -53,6 +53,7 @@ export class DaffModalComponent {
 
 	/**
 	 * Hostbinding to set the default modal class on the host element
+	 * @docs-private
 	 */
 	@HostBinding('class.daff-modal') modalClass = true;
 

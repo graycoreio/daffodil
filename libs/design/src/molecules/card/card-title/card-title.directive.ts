@@ -5,5 +5,8 @@ import { Directive, HostBinding } from '@angular/core';
 })
 export class DaffCardTitleDirective {
 
+	/**
+	 * @docs-private
+	 */
   @HostBinding('class.daff-card__title') class = true;
 }

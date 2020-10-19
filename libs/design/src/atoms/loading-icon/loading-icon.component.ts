@@ -25,7 +25,13 @@ export class DaffLoadingIconComponent extends _daffLoadingIconBase implements Da
   // tslint:disable-next-line: no-inferrable-types
   @Input() diameter: number = 60;
 
-  @HostBinding('class.daff-loading-icon') class = true;
+	/**
+	 * @docs-private
+	 */
+	@HostBinding('class.daff-loading-icon') class = true;
+	/**
+	 * @docs-private
+	 */
   @HostBinding('style.max-width') get maxWidth() {
     return this.diameter + 'px';
   }

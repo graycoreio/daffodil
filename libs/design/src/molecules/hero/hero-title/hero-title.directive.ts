@@ -5,6 +5,9 @@ import { Directive, HostBinding } from '@angular/core';
 })
 
 export class DaffHeroTitleDirective {
-  
+	
+	/**
+	 * @docs-private
+	 */
   @HostBinding('class.daff-hero__title') class = true;
 }

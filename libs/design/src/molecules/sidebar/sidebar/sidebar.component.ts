@@ -7,7 +7,7 @@ import { fromEvent } from 'rxjs';
  * DaffSidebar is heavily based upon the work done by the @angular/material2
  * team on `mat-drawer` and `mat-sidenav`. `daff-sidebar` is intended to be
  * a simplified version (with a different design) of `mat-drawer` which 
- * follows a stricter `dumb` component pattern than `mat-drawer`
+ * follows a stricter "dumb" component pattern than `mat-drawer`
  */
 @Component({
   selector: 'daff-sidebar',

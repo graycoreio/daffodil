@@ -5,5 +5,8 @@ import { Directive, HostBinding } from '@angular/core';
 })
 export class DaffArticleLeadDirective {
 
+	/**
+	 * @docs-private
+	 */
   @HostBinding('class.daff-article__lead') class = true;
 }

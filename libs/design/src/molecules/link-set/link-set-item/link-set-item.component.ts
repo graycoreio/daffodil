@@ -9,5 +9,8 @@ import { Component, ViewEncapsulation, ChangeDetectionStrategy, HostBinding } fr
 })
 export class DaffLinkSetItemComponent {
 
+	/**
+	 * @docs-private
+	 */
   @HostBinding('class.daff-link-set__item') class = true;
 }

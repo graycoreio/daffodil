@@ -8,5 +8,8 @@ import { Component, ViewEncapsulation, HostBinding } from '@angular/core';
 })
 export class DaffImageListComponent {
 
+	/**
+	 * @docs-private
+	 */
   @HostBinding('class.daff-image-list') class = true;
 }

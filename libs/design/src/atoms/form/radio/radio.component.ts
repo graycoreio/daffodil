@@ -20,70 +20,82 @@ let radioUniqueId = 0;
 
 export class DaffRadioComponent implements OnInit {
 
-  @HostBinding('attr.role') role = 'radio';
+	/**
+	 * @docs-private
+	 */
+	@HostBinding('attr.role') role = 'radio';
+	/**
+	 * @docs-private
+	 */
   @HostBinding('class.focused') get focusClass() {
     return this.focused === true;
-  };
+	};
+	/**
+	 * @docs-private
+	 */
   @HostBinding('class.disabled') get disabledClass() {
     return this.disabled === true;
   };
 
+	/**
+	 * @docs-private
+	 */
+	_checked = false;
   /**
-   * Output event of selection being changed
+	 * The checked property of the radio
    */
-  @Output() selectionChange: EventEmitter<boolean> = new EventEmitter();
-
-
-  _checked = false;
-  /**
-   * The checked property of the radio
-   */
-  @Input()
+	@Input()
 	get checked() {
 		return this._checked;
 	}
 	set checked(value: boolean) {
 		if (this._checked !== value) {
-      this._checked = value;
+			this._checked = value;
 			this.selectionChange.emit(this.value);
 		}
 	}
   /**
-   * The value of the radio
+	 * The value of the radio
    */
-  @Input() value: any;
+	@Input() value: any;
   /**
-   * The id of the radio. It is uniquely generated but can be overwritten by the user. Must be unique.
+	 * The id of the radio. It is uniquely generated but can be overwritten by the user. Must be unique.
    */
-  @Input() id: string = 'daff-radio-' + radioUniqueId;
+	@Input() id: string = 'daff-radio-' + radioUniqueId;
   /**
-   * Name of the Radio
+	 * Name of the Radio
    */
-  @Input() name: string;
-
+	@Input() name: string;
+	
   /**
-   * Used for aria-label. Default to name if user does not input a label.
+	 * Used for aria-label. Default to name if user does not input a label.
    */
-  //tslint:disable-next-line:no-input-rename
+	//tslint:disable-next-line:no-input-rename
   @Input('aria-label') label = name;
   /**
-   * Used for aria-labelledby. 
+	 * Used for aria-labelledby. 
    */
-  //tslint:disable-next-line:no-input-rename
+	//tslint:disable-next-line:no-input-rename
   @Input('aria-labelledby') labelledby;
-
+	
+	/**
+	 * Output event of selection being changed
+	 */
+	@Output() selectionChange: EventEmitter<boolean> = new EventEmitter();
 
   disabled = false;
   focused = false;
 
   constructor(@Optional() private radioset: DaffRadioSetComponent) {
     radioUniqueId++;
-  }
+	}
+
+	/**
+	 * @docs-private
+	 */
   ngOnInit() {
     this.name = this.radioset ? this.radioset.name : this.name
   }
-
-
 
   /**
    * updates Focus styling
@@ -98,13 +110,13 @@ export class DaffRadioComponent implements OnInit {
     this.focused = false;
   }
   /**
-   * toggeles checked attribute on
+   * toggles checked attribute on
    */
   select(): void {
     this.checked = true;
   }
   /**
-   * toggeles checked attribute off
+   * toggles checked attribute off
    */
   deselect(): void {
     this.checked = false;

@@ -13,13 +13,28 @@ export class DaffQtyDropdownComponent implements OnInit {
   @Input() id: number | string;
   @Output() qtyChanged: EventEmitter<number> = new EventEmitter<number>();
 
-  dropdownItemCounter: number[];
-  inputHasBeenShown: boolean;
-  onChange = (qty: number) => {};
+	/**
+	 * @docs-private
+	 */
+	dropdownItemCounter: number[];
+	/**
+	 * @docs-private
+	 */
+	inputHasBeenShown: boolean;
+	/**
+	 * @docs-private
+	 */
+	onChange = (qty: number) => {};
+	/**
+	 * @docs-private
+	 */
   onTouched = () => {};
 
   constructor(private renderer: Renderer2) { }
 
+	/**
+	 * @docs-private
+	 */
   ngOnInit() {
     this.dropdownItemCounter = Array.from(Array(this.dropdownRange),(x,i)=>i);
 
@@ -28,19 +43,31 @@ export class DaffQtyDropdownComponent implements OnInit {
     }
   }
 
+	/**
+	 * @docs-private
+	 */
   writeValue(qty: number): void {
     this.qty = qty;
     this.onChange(this.qty);
   }
 
+	/**
+	 * @docs-private
+	 */
   registerOnChange(fn: (qty: number) => void): void {
     this.onChange = fn;
   }
 
+	/**
+	 * @docs-private
+	 */
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
 
+	/**
+	 * @docs-private
+	 */
   setDisabledState(isDisabled: boolean): void {
     if (this.inputHasBeenShown) {
       this.renderer.setProperty(document.getElementById('input_' + this.id), 'disabled', isDisabled);
@@ -49,6 +76,9 @@ export class DaffQtyDropdownComponent implements OnInit {
     }
   }
 
+	/**
+	 * @docs-private
+	 */
   get showQtyInputField() : boolean {
     if (!this.isQtyOutsideDropdownRange() && !this.inputHasBeenShown) {
       return false
@@ -58,6 +88,9 @@ export class DaffQtyDropdownComponent implements OnInit {
     }
   }
 
+	/**
+	 * @docs-private
+	 */
   onChangedWrapper(value: any) {
     value = parseInt(value, 10);
     if (value === 10) {

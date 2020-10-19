@@ -24,6 +24,9 @@ const _daffProgressIndicatorBase = daffColorMixin(DaffProgressIndicatorBase, 'pr
 })
 export class DaffProgressIndicatorComponent extends _daffProgressIndicatorBase implements DaffColorable {
 
+	/**
+	 * @docs-private
+	 */
   @HostBinding('class.daff-progress-indicator') class = true;
 
   /**
@@ -59,6 +62,9 @@ export class DaffProgressIndicatorComponent extends _daffProgressIndicatorBase i
     }
   }
 
+	/**
+	 * @docs-private
+	 */
   get fillState(): any {
     return {
       value: this.percentage,

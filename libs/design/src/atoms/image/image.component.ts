@@ -31,14 +31,12 @@ const validateProperties = (object: Object, props: string[]) => {
 })
 export class DaffImageComponent implements OnInit {
 
-  @Output() load: EventEmitter<void> = new EventEmitter();
-  
-  private _src: string;
+	private _src: string;
 
   @Input()
   get src(): string { return this._src; }
   set src(value: string) {
-    this._src = value;
+		this._src = value;
     validateProperty(this, 'src');
   }
 
@@ -47,34 +45,42 @@ export class DaffImageComponent implements OnInit {
   @Input()
   get alt(): string { return this._alt; }
   set alt(value: string) {
-    this._alt = value;
+		this._alt = value;
     validateProperty(this, 'alt');
   }
-
+	
   private _width: number;
-
+	
   @Input()
   get width(): number { return this._width; }
   set width(value: number) {
-    this._width = value;
+		this._width = value;
     validateProperty(this, 'width');
   }
-
+	
   private _height: number;
-
+	
   @Input()
   get height(): number { return this._height; }
   set height(value: number) {
-    this._height = value;
+		this._height = value;
     validateProperty(this, 'height');
-  }
+	}
 
+	@Output() load: EventEmitter<void> = new EventEmitter();
+
+	/**
+	 * @docs-private
+	 */
   ngOnInit(): void {
     validateProperties(this, ['src', 'alt', 'width', 'height'])
   }
 
   constructor(private sanitizer: DomSanitizer) {}
 
+	/**
+	 * @docs-private
+	 */
   get paddingTop(): any {
     if (!this.height || !this.width ) {
       return undefined;
@@ -83,6 +89,9 @@ export class DaffImageComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustStyle('calc(' + this.height + ' / ' + this.width + ' * 100%)');
   }
 
+	/**
+	 * @docs-private
+	 */
   @HostBinding('style.max-width') get maxWidth(): string {
     return this.width + 'px';
   }

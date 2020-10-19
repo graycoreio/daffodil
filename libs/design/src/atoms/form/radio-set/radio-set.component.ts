@@ -13,6 +13,9 @@ export class DaffRadioSetComponent {
 
   constructor() { }
 
+	/**
+	 * @docs-private
+	 */
   @HostBinding('attr.role') role = 'radiogroup';
 
 }
