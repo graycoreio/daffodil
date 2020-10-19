@@ -10,7 +10,7 @@
 
 ## Custom Drivers
 
-If the packaged Daffodil drivers don't satisfy the required use cases, they can be overriden by providing custom drivers. Create a service that implements the interface corresponding to the driver you wish to override.
+If the packaged Daffodil drivers don't satisfy the required use cases, they can be overriden by providing custom drivers. Create a service that implements the interface corresponding to the driver in question.
 
 If custom behavior is not needed for all driver methods, unimplemented methods can be delegated to the original driver. The following example demonstrates overriding the `create` method of the `DaffCartDriver` while using Magento.
 

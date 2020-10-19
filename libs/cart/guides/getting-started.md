@@ -1,6 +1,6 @@
 # Getting Started
 
-This overview assumes that you have already set up an Angular project and have gone through the [cart installation guide](./installation.md). If you have not, we recommend you do that first.
+This overview assumes that an Angular project has already been set up and [cart installation](./installation.md) has been completed. If not, we recommend that be done first.
 
 Daffodil includes multiple layers of functionality that build on each other. The models can be used on their own. The driver layers can be used with the models but also allow custom extensions to those models to be passed as generics. A state layer sits on top of the driver layer. Individual drivers can be overridden through driver injection tokens and custom extensions to models can be passed into the state layer's generics.
 
