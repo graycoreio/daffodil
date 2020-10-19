@@ -23,11 +23,17 @@ export class DaffRadioComponent implements OnInit {
 	/**
 	 * @docs-private
 	 */
-  @HostBinding('attr.role') role = 'radio';
-  @HostBinding('class.focused') private get focusClass() {
+	@HostBinding('attr.role') role = 'radio';
+	/**
+	 * @docs-private
+	 */
+  @HostBinding('class.focused') get focusClass() {
     return this.focused === true;
-  };
-  @HostBinding('class.disabled') private get disabledClass() {
+	};
+	/**
+	 * @docs-private
+	 */
+  @HostBinding('class.disabled') get disabledClass() {
     return this.disabled === true;
   };
 

@@ -15,10 +15,19 @@ import { getAnimationState } from '../animation/accordion-animation-state';
   ]
 })
 export class DaffAccordionItemComponent implements OnInit {
-  private faChevronDown = faChevronDown;
-  private faChevronUp = faChevronUp;
+	/**
+	 * @docs-private
+	 */
+	faChevronDown = faChevronDown;
+	/**
+	 * @docs-private
+	 */
+  faChevronUp = faChevronUp;
 
-  @HostBinding('class.daff-accordion-item') private class = true;
+	/**
+	 * @docs-private
+	 */
+  @HostBinding('class.daff-accordion-item') class = true;
 
 	@Input() initiallyActive: boolean;
 	/**

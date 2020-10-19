@@ -24,7 +24,10 @@ const _daffProgressIndicatorBase = daffColorMixin(DaffProgressIndicatorBase, 'pr
 })
 export class DaffProgressIndicatorComponent extends _daffProgressIndicatorBase implements DaffColorable {
 
-  @HostBinding('class.daff-progress-indicator') private class = true;
+	/**
+	 * @docs-private
+	 */
+  @HostBinding('class.daff-progress-indicator') class = true;
 
   /**
    * The color of the progress indicator

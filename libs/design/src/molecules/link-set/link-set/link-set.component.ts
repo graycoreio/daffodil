@@ -12,5 +12,8 @@ import { Component, HostBinding, ViewEncapsulation, Input, ChangeDetectionStrate
 })
 export class DaffLinkSetComponent {
 
-  @HostBinding('class.daff-link-set') private class = true;
+	/**
+	 * @docs-private
+	 */
+  @HostBinding('class.daff-link-set') class = true;
 }

@@ -16,15 +16,24 @@ export enum DaffFeatureModeEnum {
 
 export class DaffFeatureComponent {
 
-  @HostBinding('class.daff-feature') private class = true;
+	/**
+	 * @docs-private
+	 */
+  @HostBinding('class.daff-feature') class = true;
 
   @Input() mode: DaffFeatureMode = DaffFeatureModeEnum.Normal;
 
-  @HostBinding('class.daff-feature--compact') private get compact() {
+	/**
+	 * @docs-private
+	 */
+  @HostBinding('class.daff-feature--compact') get compact() {
     return this.mode === DaffFeatureModeEnum.Compact;
   }
 
-  @HostBinding('class.daff-feature--normal') private get normal() {
+	/**
+	 * @docs-private
+	 */
+  @HostBinding('class.daff-feature--normal') get normal() {
     return this.mode === DaffFeatureModeEnum.Normal;
   }
 }

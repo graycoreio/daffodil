@@ -41,20 +41,32 @@ export class DaffHeroComponent extends _daffHeroBase implements DaffColorable {
     super(elementRef, renderer);
   }
 
-  @HostBinding('class.daff-hero') private class = true;
+  /**
+	 * @docs-private
+	 */
+	@HostBinding('class.daff-hero') class = true;
 
-  // Will be deprecated in v1.0.0
-  @HostBinding('class.daff-hero--centered') private get centered() {
+  /**
+	 * Will be deprecated in v1.0.0
+	 * @docs-private
+	 */
+	@HostBinding('class.daff-hero--centered') get centered() {
     return this.layout === DaffHeroLayoutEnum.Centered;
   }
 
-  // Will be deprecated in v1.0.0
-  @HostBinding('class.daff-hero--small') private get small() {
+  /**
+	 * Will be deprecated in v1.0.0
+	 * @docs-private
+	 */
+	@HostBinding('class.daff-hero--small') get small() {
     return this.size === DaffHeroSizeEnum.Small;
   }
 
-  // Will be deprecated in v1.0.0
-  @HostBinding('class.daff-hero--compact') private get compact() {
+  /**
+	 * Will be deprecated in v1.0.0
+	 * @docs-private
+	 */
+	@HostBinding('class.daff-hero--compact') get compact() {
     return this.size === DaffHeroSizeEnum.Compact;
   }
 }

@@ -21,7 +21,10 @@ export class DaffContainerComponent extends _daffContainerBase implements DaffSi
 
   @Input() size: DaffSizeAllType;
 
-  @HostBinding('class.daff-container') private class = true;
+	/**
+	 * @docs-private
+	 */
+  @HostBinding('class.daff-container') class = true;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     super(elementRef, renderer);

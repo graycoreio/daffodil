@@ -98,11 +98,17 @@ export class DaffCheckboxComponent {
 	 */
   _onChange(val: Event) {
     (val.target as HTMLInputElement).checked ? this.select() : this.deselect();
-  };
-  @HostBinding('class.focused') private get focusClass() {
+	};
+	/**
+	 * @docs-private
+	 */
+  @HostBinding('class.focused') get focusClass() {
     return this.focused === true;
-  };
-  @HostBinding('class.disabled') private get disabledClass() {
+	};
+	/**
+	 * @docs-private
+	 */
+  @HostBinding('class.disabled') get disabledClass() {
     return this.disabled === true;
   };
   /**

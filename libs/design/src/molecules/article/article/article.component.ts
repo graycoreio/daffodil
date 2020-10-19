@@ -11,7 +11,13 @@ import { Component, ViewEncapsulation, HostBinding } from '@angular/core';
 })
 export class DaffArticleComponent {
 
-  @HostBinding('class.daff-article') private class = true;
+	/**
+	 * @docs-private
+	 */
+  @HostBinding('class.daff-article') class = true;
 
-  @HostBinding('attr.role') private role = 'article';
+	/**
+	 * @docs-private
+	 */
+  @HostBinding('attr.role') role = 'article';
 }

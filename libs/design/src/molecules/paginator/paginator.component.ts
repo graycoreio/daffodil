@@ -23,11 +23,24 @@ const visiblePageRange = 2;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChanges, DaffColorable {
-  @HostBinding('class.daff-paginator') private class = true;
-  @HostBinding('attr.role') private role = 'navigation';
+	
+	/**
+	 * @docs-private
+	 */
+	@HostBinding('class.daff-paginator') class = true;
+	/**
+	 * @docs-private
+	 */
+  @HostBinding('attr.role') role = 'navigation';
 
-  private faChevronRight = faChevronRight;
-  private faChevronLeft = faChevronLeft;
+	/**
+	 * @docs-private
+	 */
+	faChevronRight = faChevronRight;
+	/**
+	 * @docs-private
+	 */
+  faChevronLeft = faChevronLeft;
 
   /**
    * The color theme of the paginator.

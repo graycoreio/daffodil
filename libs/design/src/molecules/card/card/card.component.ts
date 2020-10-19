@@ -29,8 +29,11 @@ const _daffCardBase = daffColorMixin(DaffCardBase)
 
 export class DaffCardComponent extends _daffCardBase implements DaffColorable {
 
-  @Input() color: DaffPalette;
-  @HostBinding('class.daff-card') private class = true;
+	@Input() color: DaffPalette;
+	/**
+	 * @docs-private
+	 */
+  @HostBinding('class.daff-card') class = true;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     super(elementRef, renderer);

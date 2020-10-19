@@ -16,7 +16,10 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterContentChecked {
 
-  private faChevronDown = faChevronDown;
+	/**
+	 * @docs-private
+	 */
+  faChevronDown = faChevronDown;
 
   /**
    * The tracking property used to determine if the parent form has been submitted,

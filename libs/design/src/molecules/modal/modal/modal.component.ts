@@ -53,8 +53,9 @@ export class DaffModalComponent {
 
 	/**
 	 * Hostbinding to set the default modal class on the host element
+	 * @docs-private
 	 */
-	@HostBinding('class.daff-modal') private modalClass = true;
+	@HostBinding('class.daff-modal') modalClass = true;
 
 	/**
 	 * Helper method to attach portable content to modal

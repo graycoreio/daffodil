@@ -11,10 +11,19 @@ import { DaffPrefixDirective, DaffSuffixDirective } from '../../../core/prefix-s
 
 export class DaffListItemComponent {
 
-  @HostBinding('class.daff-list-item') private class = true;
+	/**
+	 * @docs-private
+	 */
+  @HostBinding('class.daff-list-item') class = true;
 
-  @ContentChild(DaffPrefixDirective, { static: false }) private _prefix: DaffPrefixDirective;
-  @ContentChild(DaffSuffixDirective, { static: false }) private _suffix: DaffSuffixDirective;
+	/**
+	 * @docs-private
+	 */
+	@ContentChild(DaffPrefixDirective, { static: false }) _prefix: DaffPrefixDirective;
+	/**
+	 * @docs-private
+	 */
+  @ContentChild(DaffSuffixDirective, { static: false }) _suffix: DaffSuffixDirective;
 
   constructor(private elementRef: ElementRef) {}
 
