@@ -16,23 +16,38 @@ import { DaffFormFieldControl } from '../../form-field/form-field-control';
 })
 
 export class DaffNativeSelectComponent implements DaffFormFieldControl {
+	/**
+	 * @docs-private
+	 */
   controlType = 'native-select';
-  focused = false;
-
+	
   /**
-   * Has the form been submitted.
+	 * Has the form been submitted.
    */
-  @Input() formSubmitted: boolean;
+	@Input() formSubmitted: boolean;
+	focused = false;
 
+	/**
+	 * @docs-private
+	 */
   @HostListener('focus') focus() {
     this.focused = true;
   }
 
+	/**
+	 * @docs-private
+	 */
   @HostListener('blur') blur() {
     this.focused = false;
   }
 
-  constructor(@Optional() @Self() public ngControl: NgControl, private _elementRef: ElementRef<HTMLInputElement>) {}
+  constructor(
+		/**
+		 * @docs-private
+		 */
+		@Optional() @Self() public ngControl: NgControl, 
+		private _elementRef: ElementRef<HTMLInputElement>
+	) {}
 
   onFocus() {
     this._elementRef.nativeElement.focus();

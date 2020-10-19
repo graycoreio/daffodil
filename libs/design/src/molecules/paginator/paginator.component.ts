@@ -23,17 +23,20 @@ const visiblePageRange = 2;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChanges, DaffColorable {
-  @HostBinding('class.daff-paginator') class = true;
-  @HostBinding('attr.role') role = 'navigation';
+  @HostBinding('class.daff-paginator') private class = true;
+  @HostBinding('attr.role') private role = 'navigation';
 
-  faChevronRight = faChevronRight;
-  faChevronLeft = faChevronLeft;
+  private faChevronRight = faChevronRight;
+  private faChevronLeft = faChevronLeft;
 
   /**
    * The color theme of the paginator.
    */
   @Input() color: DaffPalette;
-  _paginatorId: string;
+	/**
+	 * @docs-private
+	 */
+	_paginatorId: string;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     super(elementRef, renderer);
@@ -52,6 +55,9 @@ export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChan
    */
   @Input() currentPage: number;
 
+	/**
+	 * @docs-private
+	 */
   _numberOfPagesArray: number[];
 
   /**
@@ -59,6 +65,9 @@ export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChan
    */
   @Output() notifyPageChange: EventEmitter<any> = new EventEmitter();
 
+	/**
+	 * @docs-private
+	 */
   ngOnChanges() {
     if(this.numberOfPages < 1) {
       throw new Error(DaffPaginatorNumberOfPagesErrorMessage);
@@ -71,6 +80,7 @@ export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChan
 
   /**
    * Emits the previous page number through notifyPageChange Output.
+	 * @docs-private
    */
   _onNotifyPrevPageChange() {
     this.notifyPageChange.emit(this.currentPage - 1);
@@ -78,6 +88,7 @@ export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChan
 
   /**
    * Emits the next page number through notifyPageChange Output.
+	 * @docs-private
    */
   _onNotifyNextPageChange() {
     this.notifyPageChange.emit(this.currentPage + 1);
@@ -85,6 +96,7 @@ export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChan
 
   /**
    * Emits a pageNumber to notifyPageChange Output.
+	 * @docs-private
    * @param pageNumber a page number
    */
   _onNotifyPageChange(pageNumber: number) {
@@ -93,6 +105,7 @@ export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChan
 
   /**
    * A simple function that determines if the given page number is the current page number.
+	 * @docs-private
    * @param page a page number
    */
   _isSelected(page: number): boolean {
@@ -101,6 +114,7 @@ export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChan
 
   /**
    * Determines when ellipsis after the first page number should show.
+	 * @docs-private
    */
   _showFirstEllipsis(): boolean {
     return this.currentPage >= visiblePageRange+2;
@@ -108,6 +122,7 @@ export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChan
 
   /**
    * Determines when ellipsis before the final page number should show.
+	 * @docs-private
    */
   _showLastEllipsis(): boolean {
     return this.currentPage < (this.numberOfPages - visiblePageRange);
@@ -116,6 +131,7 @@ export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChan
   /**
    * Determines if the given page number should be shown. The two additional 'or' conditionals are needed 
    * so the paginator retains the same total width at the extreme page numbers (1 and numberOfPages).
+	 * @docs-private
    * @param pageNumber page number to check.
    */
   _showNumber(pageNumber: number): boolean {
@@ -126,6 +142,7 @@ export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChan
 
   /**
    * Determines when the Previous button should be disabled.
+	 * @docs-private
    */
   _disablePrev(): boolean {
     return this.currentPage === 1;
@@ -133,6 +150,7 @@ export class DaffPaginatorComponent extends _daffPaginatorBase implements OnChan
 
   /**
    * Determines when the Next button should be disabled.
+	 * @docs-private
    */
   _disableNext(): boolean {
     return this.currentPage === this.numberOfPages;

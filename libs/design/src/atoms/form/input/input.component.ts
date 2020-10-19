@@ -17,22 +17,34 @@ import { DaffFormFieldControl } from '../form-field/form-field-control';
 })
 export class DaffInputComponent implements DaffFormFieldControl {
 
+	/**
+	 * Has the form been submitted.
+	 */
+	@Input() formSubmitted: boolean;
+
   focused = false;
-
-  /**
-   * Has the form been submitted.
-   */
-  @Input() formSubmitted: boolean;
-
+	
+	/**
+	 * @docs-private
+	 */
   @HostListener('focus') focus() {
     this.focused = true;
   }
 
+	/**
+	 * @docs-private
+	 */
   @HostListener('blur') blur() {
     this.focused = false;
   }
 
-  constructor(@Optional() @Self() public ngControl: NgControl, private _elementRef: ElementRef<HTMLInputElement>) {}
+  constructor(
+		/**
+		 * @docs-private
+		 */
+		@Optional() @Self() public ngControl: NgControl, 
+		private _elementRef: ElementRef<HTMLInputElement>
+	) {}
 
   onFocus() {
     this._elementRef.nativeElement.focus();

@@ -5,5 +5,5 @@ import { Directive, HostBinding } from '@angular/core';
 })
 export class DaffFeatureSubheaderDirective {
 
-  @HostBinding('class.daff-feature__subheader') class = true;
+  @HostBinding('class.daff-feature__subheader') private class = true;
 }

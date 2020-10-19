@@ -8,5 +8,5 @@ import { Component, ViewEncapsulation, HostBinding, ChangeDetectionStrategy } fr
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DaffModalHeaderComponent {
-  @HostBinding('class.daff-modal-header') class = true;
+  @HostBinding('class.daff-modal-header') private class = true;
 }

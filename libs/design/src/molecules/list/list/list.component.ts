@@ -34,11 +34,15 @@ export class DaffListComponent {
    * */
   @Input() mode: DaffListMode;
 
+	/**
+	 * @docs-private
+	 */
   @HostBinding('class.daff-list') get list() {
     return this.listType === DaffListTypeEnum.Default;
   }
 
   /**
+	 * @docs-private
    * @deprecated
    * */
   @HostBinding('class.daff-list--multi-line') get multiline() {
@@ -46,6 +50,7 @@ export class DaffListComponent {
   }
 
   /**
+	 * @docs-private
    * @deprecated
    * */
   @HostBinding('class.daff-list--link') get link() {
@@ -53,25 +58,32 @@ export class DaffListComponent {
   }
 
   /**
+	 * @docs-private
    * @deprecated
    * */
   @HostBinding('class.daff-list--navigation') get navigation() {
     return this.mode === DaffListModeEnum.Navigation;
   }
-  
+	
+	/**
+	 * @docs-private
+	 */
   get listType(): DaffListType {
     return this._getHostElement().localName;
    }
 
   constructor(private elementRef: ElementRef) {}
 
-
+	/**
+	 * @docs-private
+	 */
   @HostBinding('class.daff-nav-list') get nav() {
     return this.listType === DaffListTypeEnum.Nav;
   }
 
   /**
    * Sets the role for a `<daff-nav-list>` to navigation.
+	 * @docs-private
    */
   @HostBinding('attr.role') get role() {
     return this.listType === DaffListTypeEnum.Nav ? 'navigation' : 'list';

@@ -20,6 +20,9 @@ let checkboxIdNum = 0;
 
 })
 export class DaffCheckboxComponent {
+	/**
+	 * @docs-private
+	 */
   @ViewChild('inputElement', {static: true, read: ElementRef}) nativeCheckbox: ElementRef<HTMLInputElement>;
   /**
    * The name of the checkbox.
@@ -32,7 +35,8 @@ export class DaffCheckboxComponent {
   /**
    * Boolean value to determine whether or not the checkbox is checked.
    */
-  _checked = false;
+	private _checked = false;
+
   @Input()
   get checked() {
     return this._checked;
@@ -84,17 +88,21 @@ export class DaffCheckboxComponent {
 
   /**
    * The role of the component. Set to "checkbox".
+	 * @docs-private
    */
   @HostBinding('attr.role') role = 'checkbox';
 
 
+	/**
+	 * @docs-private
+	 */
   _onChange(val: Event) {
     (val.target as HTMLInputElement).checked ? this.select() : this.deselect();
   };
-  @HostBinding('class.focused') get focusClass() {
+  @HostBinding('class.focused') private get focusClass() {
     return this.focused === true;
   };
-  @HostBinding('class.disabled') get disabledClass() {
+  @HostBinding('class.disabled') private get disabledClass() {
     return this.disabled === true;
   };
   /**

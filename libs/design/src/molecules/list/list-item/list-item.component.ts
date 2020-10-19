@@ -11,15 +11,16 @@ import { DaffPrefixDirective, DaffSuffixDirective } from '../../../core/prefix-s
 
 export class DaffListItemComponent {
 
-  @HostBinding('class.daff-list-item') class = true;
+  @HostBinding('class.daff-list-item') private class = true;
 
-  @ContentChild(DaffPrefixDirective, { static: false }) _prefix: DaffPrefixDirective;
-  @ContentChild(DaffSuffixDirective, { static: false }) _suffix: DaffSuffixDirective;
+  @ContentChild(DaffPrefixDirective, { static: false }) private _prefix: DaffPrefixDirective;
+  @ContentChild(DaffSuffixDirective, { static: false }) private _suffix: DaffSuffixDirective;
 
   constructor(private elementRef: ElementRef) {}
 
   /**
    * Sets the role for a regular `<daff-list-item>` to listitem.
+	 * @docs-private
    */
   @HostBinding('attr.role') get role() {
     return this._isAnchor() ? null : 'listitem';

@@ -7,5 +7,5 @@ import { Component, ViewEncapsulation, HostBinding } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class DaffButtonSetComponent {
-  @HostBinding('class.daff-button-set') class = true;
+  @HostBinding('class.daff-button-set') private class = true;
 }

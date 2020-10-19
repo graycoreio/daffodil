@@ -29,10 +29,11 @@ export class DaffCheckboxSetComponent {
   /**
    * The role of the component. Set to "checkbox".
    */
-  @HostBinding('attr.role') role = 'group';
+  @HostBinding('attr.role') private role = 'group';
 
   /**
    * The list of checkboxes in the set.
+	 * @docs-private
    */
   @ContentChildren(DaffCheckboxComponent) checkboxes: QueryList<DaffCheckboxComponent>;
 

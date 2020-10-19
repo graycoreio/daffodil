@@ -5,5 +5,5 @@ import { Directive, HostBinding } from '@angular/core';
 })
 export class DaffArticleMetaDirective {
 
-  @HostBinding('class.daff-article__meta') class = true;
+  @HostBinding('class.daff-article__meta') private class = true;
 }

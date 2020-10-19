@@ -8,5 +8,5 @@ import { Directive, HostBinding } from '@angular/core';
 })
 export class DaffListSubheaderDirective {
 
-  @HostBinding('class.daff-list__subheader') class = true;
+  @HostBinding('class.daff-list__subheader') private class = true;
 }

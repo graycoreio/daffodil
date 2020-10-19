@@ -15,7 +15,8 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 })
 
 export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterContentChecked {
-  faChevronDown = faChevronDown;
+
+  private faChevronDown = faChevronDown;
 
   /**
    * The tracking property used to determine if the parent form has been submitted,
@@ -28,6 +29,7 @@ export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterC
 
   /**
    * The child form control that the form-field manages
+	 * @docs-private
    */
   @ContentChild(DaffFormFieldControl, { static: false }) _control: DaffFormFieldControl;
 
@@ -48,6 +50,8 @@ export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterC
    * 
    * TODO: consider whether or not this can be refactored to some kind of 
    * observable to remove unnecessary change detection.
+	 * 
+	 * @docs-private
    */
   ngDoCheck() {
     if (this._control) {
@@ -70,6 +74,8 @@ export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterC
    * Life cycle hook to verify that the form field has an acceptable
    * child control instance. Mostly useful for development-time 
    * validation of usage.
+	 * 
+	 * @docs-private
    */
   ngAfterContentInit() {
     this._validateFormControl();
@@ -79,6 +85,8 @@ export class DaffFormFieldComponent implements DoCheck, AfterContentInit, AfterC
    * Life cycle hook to verify that the form field has an acceptable
    * child control instance. Mostly useful for development-time 
    * validation of usage.
+	 * 
+	 * @docs-private
    */
   ngAfterContentChecked() {
     this._validateFormControl();

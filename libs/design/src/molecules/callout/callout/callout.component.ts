@@ -39,15 +39,15 @@ export class DaffCalloutComponent extends _daffCalloutBase implements DaffColora
     super(elementRef, renderer);
   }
 
-  @HostBinding('class.daff-callout') class = true;
+  @HostBinding('class.daff-callout') private class = true;
 
   // Will be deprecated in v1.0.0
-  @HostBinding('class.daff-callout--centered') get centered() {
+  @HostBinding('class.daff-callout--centered') private get centered() {
     return this.layout === DaffCalloutLayoutEnum.Centered;
   }
 
   // Will be deprecated in v1.0.0
-  @HostBinding('class.daff-callout--compact') get compact() {
+  @HostBinding('class.daff-callout--compact') private get compact() {
     return this.size === DaffCalloutSizeEnum.Compact;
   }
 }

@@ -5,5 +5,5 @@ import { Directive, HostBinding } from '@angular/core';
 })
 export class DaffArticleTitleDirective {
 
-  @HostBinding('class.daff-article__title') class = true;
+  @HostBinding('class.daff-article__title') private class = true;
 }

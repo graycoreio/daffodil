@@ -73,8 +73,9 @@ export class DaffButtonComponent
   extends _daffButtonBase
   implements OnInit, DaffPrefixable, DaffSuffixable, DaffColorable, DaffSizeable<DaffButtonSize> {
     @Input() color: DaffPalette;
-    buttonType: DaffButtonType;
-    @Input() size: DaffButtonSize;
+		@Input() size: DaffButtonSize;
+		
+    private buttonType: DaffButtonType;
 
     constructor(private elementRef: ElementRef, private renderer: Renderer2) {
       super(elementRef, renderer);
@@ -86,6 +87,10 @@ export class DaffButtonComponent
       }
     }
 
+
+		/**
+		 * @docs-private
+		 */
     ngOnInit() {
       for (const attr of BUTTON_HOST_ATTRIBUTES) {
         if (this._hasHostAttributes(attr)) {
@@ -94,32 +99,49 @@ export class DaffButtonComponent
       }
     }
 
+		/**
+		 * @docs-private
+		 */
     @HostBinding('class.daff-button') get button() {
       return this.buttonType === DaffButtonTypeEnum.Default || this.buttonType === undefined;
     }
   
+		/**
+		 * @docs-private
+		 */
     @HostBinding('class.daff-stroked-button') get stroked() {
       return this.buttonType === DaffButtonTypeEnum.Stroked;
     }
 
+		/**
+		 * @docs-private
+		 */
     @HostBinding('class.daff-raised-button') get raised() {
       return this.buttonType === DaffButtonTypeEnum.Raised;
     }
   
+		/**
+		 * @docs-private
+		 */
     @HostBinding('class.daff-icon-button') get icon() {
       return this.buttonType === DaffButtonTypeEnum.Icon;
     }
 
+		/**
+		 * @docs-private
+		 */
     @HostBinding('class.daff-underline-button') get underline() {
       return this.buttonType === DaffButtonTypeEnum.Underline;
     }
 
-    _getHostElement() {
+    private _getHostElement() {
       return this.elementRef.nativeElement;
     }
   
-    /** Gets whether the button has one of the given attributes. */
-    _hasHostAttributes(...attributes: string[]) {
+    /** 
+		 * Gets whether the button has one of the given attributes. 
+		 * */
+    private _hasHostAttributes(...attributes: string[]) {
       return attributes.some(attribute => this._getHostElement().hasAttribute(attribute));
     }
 }

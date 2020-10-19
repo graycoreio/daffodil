@@ -15,15 +15,24 @@ import { getAnimationState } from '../animation/accordion-animation-state';
   ]
 })
 export class DaffAccordionItemComponent implements OnInit {
-  faChevronDown = faChevronDown;
-  faChevronUp = faChevronUp;
+  private faChevronDown = faChevronDown;
+  private faChevronUp = faChevronUp;
 
-  @HostBinding('class.daff-accordion-item') class = true;
+  @HostBinding('class.daff-accordion-item') private class = true;
 
-  @Input() initiallyActive: boolean;
-  _open = false;
+	@Input() initiallyActive: boolean;
+	/**
+	 * @docs-private
+	 */
+	_open = false;
+	/**
+	 * @docs-private
+	 */
   _animationState: string;
-  
+
+	/**
+	 * @docs-private
+	 */
   ngOnInit() {
     this._open = this.initiallyActive ? this.initiallyActive : this._open;
     this._animationState = getAnimationState(this._open);
