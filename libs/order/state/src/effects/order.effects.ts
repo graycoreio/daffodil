@@ -8,9 +8,11 @@ import {
 } from '@daffodil/cart';
 import {
   DaffOrder,
+} from '@daffodil/order';
+import {
   DaffOrderServiceInterface,
   DaffOrderDriver
-} from '@daffodil/order';
+} from '@daffodil/order/driver';
 
 import {
   DaffOrderActionTypes,

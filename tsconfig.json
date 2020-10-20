@@ -139,6 +139,9 @@
       "@daffodil/order/state": [
         "dist/order/state"
       ],
+      "@daffodil/order/driver": [
+        "dist/order/driver"
+      ],
       "@daffodil/order/driver/magento/2.4.0": [
         "dist/order/driver/magento/2.4.0"
       ]

@@ -5,9 +5,11 @@ import { hot, cold } from 'jasmine-marbles';
 
 import {
   DaffOrder,
+} from '@daffodil/order';
+import {
   DaffOrderServiceInterface,
   DaffOrderDriver
-} from '@daffodil/order';
+} from '@daffodil/order/driver';
 import { DaffOrderFactory } from '@daffodil/order/testing';
 
 import { DaffOrderEffects } from './order.effects';

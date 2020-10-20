@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import {
-  DaffOrderServiceInterface,
   DaffOrder
 } from '@daffodil/order';
+import {
+  DaffOrderServiceInterface,
+} from '@daffodil/order/driver';
 
 import { DaffOrderFactory } from '../../factories/public_api';
 

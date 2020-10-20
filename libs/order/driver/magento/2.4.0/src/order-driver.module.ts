@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DaffOrderDriver } from '@daffodil/order';
+import { DaffOrderDriver } from '@daffodil/order/driver';
 
 import { DaffOrderMagentoService } from './order.service';
 

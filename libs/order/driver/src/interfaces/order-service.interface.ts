@@ -2,8 +2,7 @@ import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { DaffCart } from '@daffodil/cart';
-
-import { DaffOrder } from '../../models/public_api';
+import { DaffOrder } from '@daffodil/order';
 
 export const DaffOrderDriver = new InjectionToken<DaffOrderServiceInterface>('DaffOrderDriver');
 
