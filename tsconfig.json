@@ -136,8 +136,11 @@
       "@daffodil/order/testing": [
         "dist/order/testing"
       ],
-      "@daffodil/order/driver": [
-        "dist/order/driver"
+      "@daffodil/order/state": [
+        "dist/order/state"
+      ],
+      "@daffodil/order/driver/magento/2.4.0": [
+        "dist/order/driver/magento/2.4.0"
       ]
     }
   },
