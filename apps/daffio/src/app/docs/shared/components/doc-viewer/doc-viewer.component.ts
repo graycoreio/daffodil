@@ -6,7 +6,7 @@ import { DaffioDoc } from '../../models/doc';
 
 //This is needed because scrolling to a particular element for fragment routing (e.g. package/component#fragment)
 //does not go to the correct height by default.
-export const FRAGMENT_SCROLL_OFFSET = 25;
+export const FRAGMENT_SCROLL_OFFSET = 45;
 
 @Component({
   selector: 'daffio-doc-viewer',

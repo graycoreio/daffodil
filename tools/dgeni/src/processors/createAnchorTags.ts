@@ -1,6 +1,8 @@
 import { Document, Processor } from "dgeni";
 
-var INLINE_LINK_REGEX = /{@link.[^}]*}/g;
+const INLINE_LINK_REGEX = /{@link.[^}]*}/g;
+const INLINE_LINK_PATH_REGEX = /(?<={@link )([\s\S]*?)(?= )/;
+const INLINE_LINK_TITLE_REGEX = /(?<={@link[\s\S].* )(.*)(?=})/;
 const API_DOCS_PATH = "docs/api/";
 
 /**
@@ -26,12 +28,8 @@ export class CreateAnchorTagsProcessor implements Processor {
 	}
 }
 
-function buildAnchorTag(linkString): string {
-	let splitValues = linkString.split(' ');
-	//the title is always all of the values beyond the second part of the split values.
-	let title = splitValues.slice(2).join(' ');
-	//remove the } from the end of the title string.
-	title = title.substring(0, title.length - 1);
-	//build and return the anchor tag.
-	return '<a href=\'' + API_DOCS_PATH + splitValues[1] + '\'>' + title + '</a>';
+function buildAnchorTag(linkString: string): string {
+	const path = linkString.match(INLINE_LINK_PATH_REGEX)[0];
+	const title = linkString.match(INLINE_LINK_TITLE_REGEX)[0];
+	return `<a href='` + API_DOCS_PATH + path + `'>` + title + `</a>`;
 }

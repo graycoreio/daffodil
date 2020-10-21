@@ -6,7 +6,7 @@ import { DaffioDoc } from '../models/doc';
 import { DaffioGuideList } from '../models/guide-list';
 import { DaffioDocServiceInterface } from './docs-service.interface';
 
-const DOCS_BASE_URL = '/assets/daffio/';
+export const DOCS_BASE_URL = '/assets/daffio/';
 
 @Injectable({
   providedIn: 'root',
