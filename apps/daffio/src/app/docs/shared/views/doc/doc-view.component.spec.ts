@@ -15,7 +15,7 @@ import { DaffioDoc } from '../../models/doc';
 import { DaffioDocViewComponent } from './doc-view.component';
 
 @Component({template: '', selector: 'daffio-doc-viewer'})
-class MockDaffioDocViewer {
+class MockDaffioDocViewerComponent {
 	@Input() doc: DaffioDoc
 }
 
@@ -31,7 +31,7 @@ describe('DaffioDocViewComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
 				DaffioDocViewComponent,
-				MockDaffioDocViewer
+				MockDaffioDocViewerComponent
 			],
       providers: [
         { provide: ActivatedRoute, useValue: stubActivatedRoute },
