@@ -43,7 +43,18 @@ describe('DaffioDocService', () => {
     expect(req.request.method).toEqual('GET');
 
     req.flush(doc);
-  });
+	});
+
+  it('should be able to retrieve a doc when there is a fragment in the url', () => {
+    service.get('my/path#fragment').subscribe((apiDoc) => {
+      expect(apiDoc).toEqual(doc);
+    });
+    const req = httpTestingController.expectOne('/assets/daffio/my/path.json');
+
+    expect(req.request.method).toEqual('GET');
+
+    req.flush(doc);
+	});
 
   it('should be able to retrieve a guide list', () => {
     service.getGuideList().subscribe((guides) => {

@@ -23,7 +23,8 @@ describe('DaffioApiDocViewComponent', () => {
     docTypeShorthand: 't',
   };
   const stubActivatedRoute = {
-    data: new BehaviorSubject({}),
+		data: new BehaviorSubject({}),
+		fragment: new BehaviorSubject(null)
   };
 
   beforeEach(async(() => {

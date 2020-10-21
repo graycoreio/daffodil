@@ -7,12 +7,17 @@ import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { cold } from 'jasmine-marbles';
 import { BehaviorSubject } from 'rxjs';
+import { Component, Input } from '@angular/core';
 
 import { DaffioDocFactory } from '../../../testing/factories/doc.factory';
 import { DaffioDocViewerComponent } from '../../components/doc-viewer/doc-viewer.component';
-import { DaffioDocViewerModule } from '../../components/doc-viewer/doc-viewer.module';
 import { DaffioDoc } from '../../models/doc';
 import { DaffioDocViewComponent } from './doc-view.component';
+
+@Component({template: '', selector: 'daffio-doc-viewer'})
+class MockDaffioDocViewer {
+	@Input() doc: DaffioDoc
+}
 
 describe('DaffioDocViewComponent', () => {
   let component: DaffioDocViewComponent;
@@ -24,10 +29,10 @@ describe('DaffioDocViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DaffioDocViewComponent],
-      imports: [
-        DaffioDocViewerModule,
-      ],
+      declarations: [
+				DaffioDocViewComponent,
+				MockDaffioDocViewer
+			],
       providers: [
         { provide: ActivatedRoute, useValue: stubActivatedRoute },
       ],

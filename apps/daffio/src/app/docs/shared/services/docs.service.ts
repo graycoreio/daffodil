@@ -16,7 +16,7 @@ export class DaffioDocService<T extends DaffioDoc, V extends DaffioGuideList> im
   constructor(private http: HttpClient) {}
 
   get(path: string): Observable<T> {
-    return this.http.get<T>(DOCS_BASE_URL + path + '.json');
+    return this.http.get<T>(DOCS_BASE_URL + path.split('#')[0] + '.json');
   }
   getGuideList(): Observable<DaffioGuideList> {
     return this.http.get<V>(DOCS_BASE_URL + 'docs/guides/guide-list.json');

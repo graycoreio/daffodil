@@ -1,13 +1,13 @@
 {% if member.decorators[0].name === 'Input' %}
-<div class="members-table__cell">@Input() {$ member.name $}</div>
+<div id="{$ member.name $}" class="members-table__cell">@Input() {$ member.name $}</div>
 <div class="members-table__cell">{$ member.type $}</div>
 <div class="members-table__cell">{$ member.description $}</div>
 {% elif member.decorators[0].name === 'Output' %}
-<div class="members-table__cell">@Output() {$ member.name $}</div>
+<div id="{$ member.name $}" class="members-table__cell">@Output() {$ member.name $}</div>
 <div class="members-table__cell">{$ member.type $}</div>
 <div class="members-table__cell">{$ member.description $}</div>
 {% else %}
-<div class="members-table__cell">{$ member.name $}</div>
+<div id="{$ member.name $}" class="members-table__cell">{$ member.name $}</div>
 <div class="members-table__cell">{$ member.type $}</div>
 <div class="members-table__cell">{$ member.description $}</div>
 {% endif %}
