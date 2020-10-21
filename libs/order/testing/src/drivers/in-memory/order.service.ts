@@ -4,8 +4,10 @@ import { Observable } from 'rxjs';
 
 import {
   DaffOrder,
-  DaffOrderServiceInterface,
 } from '@daffodil/order';
+import {
+  DaffOrderServiceInterface,
+} from '@daffodil/order/driver';
 
 @Injectable({
   providedIn: 'root'

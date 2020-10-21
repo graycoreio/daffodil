@@ -1,1 +1,3 @@
-export * from './magento/public_api';
+export { DaffOrderDriver, DaffOrderServiceInterface } from './interfaces/order-service.interface';
+
+export * from './errors/public_api';

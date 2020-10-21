@@ -2,7 +2,8 @@ import { BehaviorSubject } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
-import { DaffOrderFacadeInterface, DaffOrder, DaffOrderTotal } from '@daffodil/order';
+import { DaffOrder, DaffOrderTotal } from '@daffodil/order';
+import { DaffOrderFacadeInterface } from '@daffodil/order/state';
 
 export class MockDaffOrderFacade implements DaffOrderFacadeInterface {
   loading$: BehaviorSubject<boolean> = new BehaviorSubject(null);

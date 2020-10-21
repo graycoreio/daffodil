@@ -3,21 +3,21 @@ import { CommonModule } from '@angular/common';
 
 import { DaffOrderDriver } from '@daffodil/order/driver';
 
-import { DaffTestingOrderService } from './order.service';
+import { DaffOrderMagentoService } from './order.service';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
   ]
 })
-export class DaffOrderTestingDriverModule {
-  static forRoot(): ModuleWithProviders {
+export class DaffOrderMagentoDriverModule {
+  static forRoot(): ModuleWithProviders<DaffOrderMagentoDriverModule> {
     return {
-      ngModule: DaffOrderTestingDriverModule,
+      ngModule: DaffOrderMagentoDriverModule,
       providers: [
         {
           provide: DaffOrderDriver,
-          useExisting: DaffTestingOrderService
+          useExisting: DaffOrderMagentoService
         }
       ]
     };

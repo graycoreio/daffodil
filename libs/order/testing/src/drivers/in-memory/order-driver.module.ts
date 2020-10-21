@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import {
   DaffOrderDriver,
-} from '@daffodil/order';
+} from '@daffodil/order/driver';
 
 import { DaffInMemoryOrderService } from './order.service';
 
