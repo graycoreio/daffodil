@@ -7,10 +7,10 @@ import { map, catchError } from 'rxjs/operators';
 import { DaffCart } from '@daffodil/cart';
 import {
   DaffOrder,
-  DaffOrderNotFoundError
 } from '@daffodil/order';
 import {
   DaffOrderServiceInterface,
+  DaffOrderNotFoundError
 } from '@daffodil/order/driver';
 
 import { getGuestOrders, MagentoGetGuestOrdersResponse } from './queries/public_api';

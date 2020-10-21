@@ -15,10 +15,12 @@ import {
   DaffOrderShippingMethod,
   DaffOrderTotal,
   DaffOrderPayment,
-  DaffInvalidAPIResponseError,
-  DaffOrderNotFoundError,
   DaffOrderTotalTypeEnum
 } from '@daffodil/order';
+import {
+  DaffOrderNotFoundError,
+  DaffInvalidAPIResponseError,
+} from '@daffodil/order/driver';
 import {
   DaffOrderFactory,
   DaffOrderAddressFactory,

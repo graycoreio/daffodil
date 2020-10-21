@@ -1,6 +1,6 @@
 import { ApolloQueryResult } from 'apollo-client';
 
-import { DaffInvalidAPIResponseError } from '@daffodil/order';
+import { DaffInvalidAPIResponseError } from '@daffodil/order/driver';
 
 import { MagentoGetGuestOrdersResponse } from '../queries/public_api';
 
