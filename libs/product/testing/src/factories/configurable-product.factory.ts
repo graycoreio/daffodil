@@ -109,7 +109,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 			price: this.stubPriceVariant1.toString(),
 			discount: {
 				amount: this.stubDiscountVariant1,
-				percent: Math.floor(this.stubDiscountVariant1/this.stubPriceVariant1)
+				percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100)
 			},
 			id: faker.random.alphaNumeric(16),
 			in_stock: true
@@ -123,7 +123,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 			price: this.stubPriceVariant1.toString(),
 			discount: {
 				amount: this.stubDiscountVariant1,
-				percent: Math.floor(this.stubDiscountVariant1/this.stubPriceVariant1)
+				percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100)
 			},
 			id: faker.random.alphaNumeric(16),
 			in_stock: true
@@ -137,7 +137,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 			price: this.stubPriceVariant3.toString(),
 			discount: {
 				amount: this.stubDiscountVariant3,
-				percent: Math.floor(this.stubDiscountVariant3/this.stubPriceVariant3)
+				percent: Math.floor((this.stubDiscountVariant3/this.stubPriceVariant3) * 100)
 			},
 			id: faker.random.alphaNumeric(16),
 			in_stock: true
@@ -151,7 +151,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 			price: this.stubPriceVariant1.toString(),
 			discount: {
 				amount: this.stubDiscountVariant1,
-				percent: Math.floor(this.stubDiscountVariant1/this.stubPriceVariant1)
+				percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100)
 			},
 			id: faker.random.alphaNumeric(16),
 			in_stock: true
@@ -165,7 +165,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 			price: this.stubPriceVariant1.toString(),
 			discount: {
 				amount: this.stubDiscountVariant1,
-				percent: Math.floor(this.stubDiscountVariant1/this.stubPriceVariant1)
+				percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100)
 			},
 			id: faker.random.alphaNumeric(16),
 			in_stock: true
@@ -179,7 +179,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 			price: this.stubPriceVariant3.toString(),
 			discount: {
 				amount: this.stubDiscountVariant3,
-				percent: Math.floor(this.stubDiscountVariant3/this.stubPriceVariant3)
+				percent: Math.floor((this.stubDiscountVariant3/this.stubPriceVariant3) * 100)
 			},
 			id: faker.random.alphaNumeric(16),
 			in_stock: true
@@ -193,7 +193,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 			price: this.stubPriceVariant1,
 			discount: {
 				amount: this.stubDiscountVariant1,
-				percent: Math.floor(this.stubDiscountVariant1/this.stubPriceVariant1)
+				percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100)
 			},
 			id: faker.random.alphaNumeric(16),
 			in_stock: true
@@ -207,7 +207,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 			price: this.stubPriceVariant2,
 			discount: {
 				amount: this.stubDiscountVariant2,
-				percent: Math.floor(this.stubDiscountVariant2/this.stubPriceVariant2)
+				percent: Math.floor((this.stubDiscountVariant2/this.stubPriceVariant2) * 100)
 			},
 			id: faker.random.alphaNumeric(16),
 			in_stock: true
@@ -221,7 +221,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 			price: this.stubPriceVariant3,
 			discount: {
 				amount: this.stubDiscountVariant3,
-				percent: Math.floor(this.stubDiscountVariant3/this.stubPriceVariant3)
+				percent: Math.floor((this.stubDiscountVariant3/this.stubPriceVariant3) * 100)
 			},
 			id: faker.random.alphaNumeric(16),
 			in_stock: true
@@ -235,7 +235,7 @@ export class MockConfigurableProduct implements DaffConfigurableProduct {
 			price: this.stubPriceVariant1.toString(),
 			discount: {
 				amount: this.stubDiscountVariant1,
-				percent: Math.floor(this.stubDiscountVariant1/this.stubPriceVariant1)
+				percent: Math.floor((this.stubDiscountVariant1/this.stubPriceVariant1) * 100)
 			},
 			id: faker.random.alphaNumeric(16),
 			in_stock: true
