@@ -31,5 +31,5 @@ export class CreateAnchorTagsProcessor implements Processor {
 function buildAnchorTag(linkString: string): string {
 	const path = linkString.match(INLINE_LINK_PATH_REGEX)[0];
 	const title = linkString.match(INLINE_LINK_TITLE_REGEX)[0];
-	return `<a href='` + API_DOCS_PATH + path + `'>` + title + `</a>`;
+	return `<a href='${API_DOCS_PATH}${path}'>${title}</a>`;
 }
