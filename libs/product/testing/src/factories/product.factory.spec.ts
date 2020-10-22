@@ -40,7 +40,7 @@ describe('Product | Testing | Factories | DaffProductFactory', () => {
 		});
 		
 		it('should the percentage as a whole number', () => {
-			expect(Math.floor(result.discount.percent)).toEqual(result.discount.percent);
+			expect(result.discount.percent%1).toEqual(0);
 		});
   });
 
