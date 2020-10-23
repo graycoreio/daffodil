@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.15.0](https://github.com/graycoreio/daffodil/compare/v0.14.0...v0.15.0) (2020-10-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* **order:** this requires dependents to use the new entry points as old entry points are removed.
+* **all:** @daffodil/core package import paths changed, you will need to update imports.
+
+### Features
+
+* **all:** split core into graphql and state packages ([#1091](https://github.com/graycoreio/daffodil/issues/1091)) ([bf689e1](https://github.com/graycoreio/daffodil/commit/bf689e168cf270f396a5dd33618f345bd2da6de9))
+* **cart, magento:** removes shipping methods from main cart fragement ([#1080](https://github.com/graycoreio/daffodil/issues/1080)) ([f9743a7](https://github.com/graycoreio/daffodil/commit/f9743a742182a194ada2a9e18311580ce9a040ec))
+* **design:** update color palettes ([#1054](https://github.com/graycoreio/daffodil/issues/1054)) ([4e91d60](https://github.com/graycoreio/daffodil/commit/4e91d6038fa982635f225fd28df78df237b0eb48))
+* **order:** define image in order item factory ([#1101](https://github.com/graycoreio/daffodil/issues/1101)) ([f79eedb](https://github.com/graycoreio/daffodil/commit/f79eedb576d669a98ec33edc16838cad6d7512a5))
+* **order:** fragement package into separate entrypoints ([#1105](https://github.com/graycoreio/daffodil/issues/1105)) ([4790c80](https://github.com/graycoreio/daffodil/commit/4790c8078f8807f539b251ffba7dcbd660d6a88c))
+* **tools-dgeni:** remove internal properties from generated docs ([#1098](https://github.com/graycoreio/daffodil/issues/1098)) ([7a3e14a](https://github.com/graycoreio/daffodil/commit/7a3e14ade178e32543e0020bdb5ec1ddf4d573e9))
+* **tools, daffio:** generate interface docs with dgeni; generate docs for all public fields ([#1094](https://github.com/graycoreio/daffodil/issues/1094)) ([5dd6239](https://github.com/graycoreio/daffodil/commit/5dd6239a160085e36dc7c964ab10bdd97a767ba4))
+
+
+### Bug Fixes
+
+* **product:** make any product percentages a whole number to avoid re… ([#1108](https://github.com/graycoreio/daffodil/issues/1108)) ([e89ee4d](https://github.com/graycoreio/daffodil/commit/e89ee4dcc283d372bdd2f7b3efd0f11f83236071))
+* **product:** set the price and discount of the primary product of magento composite products to zero ([#1109](https://github.com/graycoreio/daffodil/issues/1109)) ([f8ba0cb](https://github.com/graycoreio/daffodil/commit/f8ba0cb37de7d86e9d527a5369475822a8dafe2e))
+* **tools-dgeni:** make types for properties HTML compatible ([#1097](https://github.com/graycoreio/daffodil/issues/1097)) ([d09b2aa](https://github.com/graycoreio/daffodil/commit/d09b2aad53ffb838aa3d85977575ecd89812fc99))
+
 ## [0.14.0](https://github.com/graycoreio/daffodil/compare/v0.13.0...v0.14.0) (2020-10-13)
 
 
