@@ -2,11 +2,11 @@
 	"type": "composite",
 	"id": "22",
 	"url": "url",
-	"price": 23,
+	"price": 0,
 	"in_stock": true,
 	"discount": {
-		"amount": 2,
-		"percent": 8.7
+		"amount": 0,
+		"percent": 0
 	},
 	"name": "Group of Products",
 	"images": [

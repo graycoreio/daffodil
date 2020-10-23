@@ -17,12 +17,12 @@
 	"price_range": {
 		"maximum_price": {
 			"regular_price": {
-				"value": 23, 
+				"value": 0, 
 				"currency": null
 			},
 			"discount": {
-				"amount_off": 2,
-				"percent_off": 8.7
+				"amount_off": 0,
+				"percent_off": 0
 			}
 		}
 	},
