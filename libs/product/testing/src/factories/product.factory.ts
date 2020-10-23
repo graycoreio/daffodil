@@ -17,7 +17,7 @@ export class MockProduct implements DaffProduct {
 	in_stock = true;
 	discount = {
 		amount: this.stubDiscount,
-		percent: this.stubDiscount/this.stubPrice
+		percent: Math.floor((this.stubDiscount/this.stubPrice) * 100)
 	}
   name = faker.commerce.productName();
   brand = faker.company.companyName();

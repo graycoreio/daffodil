@@ -39,6 +39,10 @@ describe('Product | Testing | Factories | DaffConfigurableProductFactory', () =>
 			expect(result.configurableAttributes).toBeDefined();
 			expect(result.variants).toBeDefined();
 			expect(result.variants[0].in_stock).toBeDefined();
-    });
+		});
+		
+		it('should return any percents as whole numbers', () => {
+			expect(result.variants[0].discount.percent % 1).toEqual(0);
+		});
   });
 });
