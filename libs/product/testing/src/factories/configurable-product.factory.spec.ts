@@ -42,7 +42,7 @@ describe('Product | Testing | Factories | DaffConfigurableProductFactory', () =>
 		});
 		
 		it('should return any percents as whole numbers', () => {
-			expect(result.variants[0].discount.percent%1).toEqual(0);
+			expect(result.variants[0].discount.percent % 1).toEqual(0);
 		});
   });
 });
