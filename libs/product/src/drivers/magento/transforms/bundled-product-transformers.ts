@@ -16,6 +16,11 @@ import { MagentoProduct, MagentoProductStockStatusEnum } from '../models/magento
 export function transformMagentoBundledProduct(product: MagentoBundledProduct, mediaUrl: string): DaffCompositeProduct {
 	return {
 		...transformMagentoSimpleProduct(product, mediaUrl),
+		price: 0,
+		discount: {
+			amount: 0,
+			percent: 0
+		},
 		type: DaffProductTypeEnum.Composite,
 		items: product.items.map(transformMagentoBundledProductItem)
 	}
