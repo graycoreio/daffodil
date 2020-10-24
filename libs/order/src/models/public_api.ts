@@ -1,7 +1,9 @@
 export { DaffOrderAddress } from './order-address';
 export { DaffOrderCoupon } from './order-coupon';
 export { DaffOrderInvoice } from './order-invoice';
-export { DaffOrderItem } from './order-item';
+export { DaffOrderItem, DaffOrderItemType } from './order-item';
+export { DaffCompositeOrderItem, DaffCompositeOrderItemOption } from './composite-order-item';
+export { DaffConfigurableOrderItem, DaffConfigurableOrderItemAttribute } from './configurable-order-item';
 export { DaffOrderPayment } from './order-payment';
 export { DaffOrderShipmentItem } from './order-shipment-item';
 export { DaffOrderShipmentTracking } from './order-shipment-tracking';

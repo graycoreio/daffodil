@@ -1,14 +1,4 @@
 import {
-  MagentoGraycoreOrder,
-  MagentoGraycoreOrderItem,
-  MagentoGraycoreOrderShipment,
-  MagentoGraycoreOrderAddress,
-  MagentoGraycoreOrderShipmentItem,
-  MagentoGraycoreOrderShipmentTracking,
-  MagentoGraycoreOrderPayment,
-  MagentoGraycoreOrderInvoice
-} from '../../models/responses/public_api';
-import {
   DaffOrder,
   DaffOrderTotal,
   DaffOrderItem,
@@ -18,8 +8,20 @@ import {
   DaffOrderShipmentTracking,
   DaffOrderPayment,
   DaffOrderInvoice,
-  DaffOrderTotalTypeEnum
+  DaffOrderTotalTypeEnum,
+  DaffOrderItemType
 } from '@daffodil/order';
+
+import {
+  MagentoGraycoreOrder,
+  MagentoGraycoreOrderItem,
+  MagentoGraycoreOrderShipment,
+  MagentoGraycoreOrderAddress,
+  MagentoGraycoreOrderShipmentItem,
+  MagentoGraycoreOrderShipmentTracking,
+  MagentoGraycoreOrderPayment,
+  MagentoGraycoreOrderInvoice
+} from '../../models/responses/public_api';
 
 function transformTotals(totals: {
   grand_total: number,
@@ -65,6 +67,7 @@ function transformTotals(totals: {
 function transformItem(item: MagentoGraycoreOrderItem): DaffOrderItem {
   return {
     item_id: null,
+    type: DaffOrderItemType.Simple,
     qty_ordered: item.qty_ordered,
     qty_canceled: item.qty_canceled,
     qty_fulfilled: item.qty_fulfilled,

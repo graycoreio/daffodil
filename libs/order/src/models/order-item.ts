@@ -1,7 +1,14 @@
 import { DaffProductImage } from '@daffodil/product';
 import { DaffOrder } from './order';
 
+export enum DaffOrderItemType {
+  Simple = 'simple',
+  Composite = 'composite',
+  Configurable = 'configurable'
+}
+
 export interface DaffOrderItem {
+  type: DaffOrderItemType;
   item_id: number;
   qty_ordered: number;
   qty_canceled: number;
