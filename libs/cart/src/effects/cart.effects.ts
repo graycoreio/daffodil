@@ -65,7 +65,7 @@ export class DaffCartEffects<T extends DaffCart> {
       map(() => this.storage.getCartId()),
       switchMap(cartId => this.driver.get(cartId)),
       map((resp: T) => new DaffCartLoadSuccess(resp)),
-      catchError(error => of(error.name === DaffStorageServiceError.name
+      catchError(error => of(error.code === DaffStorageServiceError.code
         ? new DaffCartStorageFailure('Cart Storage Failed')
         : new DaffCartLoadFailure('Failed to load cart')
       )),
@@ -90,7 +90,7 @@ export class DaffCartEffects<T extends DaffCart> {
       map(() => this.storage.getCartId()),
       switchMap(cartId => this.driver.clear(cartId)),
       map((resp: T) => new DaffCartClearSuccess(resp)),
-      catchError(error => of(error.name === DaffStorageServiceError.name
+      catchError(error => of(error.code === DaffStorageServiceError.code
         ? new DaffCartStorageFailure('Cart Storage Failed')
         : new DaffCartClearFailure('Failed to clear the cart.')
       )),

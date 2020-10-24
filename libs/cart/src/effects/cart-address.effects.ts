@@ -32,7 +32,7 @@ export class DaffCartAddressEffects<T extends DaffCartAddress, V extends DaffCar
       map(() => this.storage.getCartId()),
       switchMap(cartId => this.driver.update(cartId, action.payload)),
       map((resp: V) => new DaffCartAddressUpdateSuccess(resp)),
-      catchError(error => of(error.name === DaffStorageServiceError.name
+      catchError(error => of(error.code === DaffStorageServiceError.code
         ? new DaffCartStorageFailure('Cart Storage Failed')
         : new DaffCartAddressUpdateFailure('Failed to update cart address')
       )),

@@ -40,7 +40,7 @@ export class DaffCartOrderEffects<
       map(() => this.storage.getCartId()),
       switchMap(cartId => this.driver.placeOrder(cartId, action.payload)),
       map((resp: R) => new DaffCartPlaceOrderSuccess<R>(resp)),
-      catchError(error => of(error.name === DaffStorageServiceError.name
+      catchError(error => of(error.code === DaffStorageServiceError.code
         ? new DaffCartStorageFailure('Cart Storage Failed')
         : new DaffCartPlaceOrderFailure('Failed to place order')
       )),

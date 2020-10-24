@@ -5,8 +5,7 @@ import { DaffErrorCodeMap } from '@daffodil/core';
 import { daffTransformMagentoError } from './transform';
 
 class MockError extends Error {
-  readonly name = 'MockError';
-  readonly code: string = 'MOCK';
+  public static readonly code: string = 'MOCK';
 
 	constructor(public message: string) {
 		super(message);
