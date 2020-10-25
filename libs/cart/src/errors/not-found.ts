@@ -1,7 +1,12 @@
-export class DaffCartNotFoundError extends Error {
-  public static readonly code: string = 'CART_NOT_FOUND';
+import { DaffInheritableError } from '@daffodil/core';
 
-	constructor(public message: string) {
+export class DaffCartNotFoundError extends DaffInheritableError {
+	/**
+	 * The particular error code of the error.
+	 */
+	public readonly code: string = 'CART_NOT_FOUND';
+
+	constructor(message?: string) {
 		super(message);
 	}
 }
