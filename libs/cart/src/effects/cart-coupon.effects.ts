@@ -46,7 +46,7 @@ export class DaffCartCouponEffects<
       map(() => this.storage.getCartId()),
       switchMap(cartId => this.driver.apply(cartId, action.payload)),
       map(resp => new DaffCartCouponApplySuccess(resp)),
-      catchError(error => of(error.code === DaffStorageServiceError.code
+      catchError(error => of(error instanceof DaffStorageServiceError
         ? new DaffCartStorageFailure('Cart Storage Failed')
         : new DaffCartCouponApplyFailure('Failed to apply coupon to cart')
       )),
@@ -60,7 +60,7 @@ export class DaffCartCouponEffects<
       map(() => this.storage.getCartId()),
       switchMap(cartId => this.driver.list(cartId)),
       map(resp => new DaffCartCouponListSuccess<V>(resp)),
-      catchError(error => of(error.code === DaffStorageServiceError.code
+      catchError(error => of(error instanceof DaffStorageServiceError
         ? new DaffCartStorageFailure('Cart Storage Failed')
         : new DaffCartCouponListFailure('Failed to list coupons')
       )),
@@ -74,7 +74,7 @@ export class DaffCartCouponEffects<
       map(() => this.storage.getCartId()),
       switchMap(cartId => this.driver.remove(cartId, action.payload)),
       map(resp => new DaffCartCouponRemoveSuccess(resp)),
-      catchError(error => of(error.code === DaffStorageServiceError.code
+      catchError(error => of(error instanceof DaffStorageServiceError
         ? new DaffCartStorageFailure('Cart Storage Failed')
         : new DaffCartCouponRemoveFailure('Failed to remove a coupon from the cart')
       )),
@@ -88,7 +88,7 @@ export class DaffCartCouponEffects<
       map(() => this.storage.getCartId()),
       switchMap(cartId => this.driver.removeAll(cartId)),
       map(resp => new DaffCartCouponRemoveAllSuccess(resp)),
-      catchError(error => of(error.code === DaffStorageServiceError.code
+      catchError(error => of(error instanceof DaffStorageServiceError
         ? new DaffCartStorageFailure('Cart Storage Failed')
         : new DaffCartCouponRemoveAllFailure('Failed to remove all coupons from the cart')
       )),
