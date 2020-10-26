@@ -144,6 +144,9 @@
       ],
       "@daffodil/order/driver/magento/2.4.0": [
         "dist/order/driver/magento/2.4.0"
+      ],
+      "@daffodil/order/driver/magento/2.4.1": [
+        "dist/order/driver/magento/2.4.1"
       ]
     }
   },
