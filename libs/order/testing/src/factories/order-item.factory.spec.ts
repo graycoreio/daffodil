@@ -54,25 +54,11 @@ describe('Order | Testing | Factories | OrderItemFactory', () => {
       expect(result.image.id).not.toBeNull();
       expect(result.image.label).not.toBeNull();
       expect(result.image.url).not.toBeNull();
+      expect(result.type).not.toBeNull();
+    });
+
+    it('should set total_discount to be less than price', () => {
+      expect(result.discount_amount).toBeLessThan(result.price);
     });
   });
-
-  describe('createMany', () => {
-    let result: DaffOrderItem[];
-
-    it('should create as many order items as desired', () => {
-      const spy = spyOn(orderItemFactory, 'create');
-
-      result = orderItemFactory.createMany(2);
-      expect(result.length).toEqual(2);
-      expect(orderItemFactory.create).toHaveBeenCalledTimes(2);
-
-
-      spy.calls.reset();
-
-      result = orderItemFactory.createMany(3);
-      expect(result.length).toEqual(3);
-      expect(orderItemFactory.create).toHaveBeenCalledTimes(3);
-    });
-  })
 });
