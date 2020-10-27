@@ -16,8 +16,10 @@ export const orderInvoiceBundleItemFragment = gql`
   fragment orderInvoiceBundleItem on BundleInvoiceItem {
     quantity_invoiced
     order_item {
+      ...orderItem
       ...orderBundleItem
     }
   }
+  ${orderItemFragment}
   ${orderBundleItemFragment}
 `;

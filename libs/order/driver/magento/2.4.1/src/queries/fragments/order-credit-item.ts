@@ -16,8 +16,10 @@ export const orderCreditBundleItemFragment = gql`
   fragment orderCreditBundleItem on BundleCreditMemoItem {
     quantity_refunded
     order_item {
+      ...orderItem
       ...orderBundleItem
     }
   }
+  ${orderItemFragment}
   ${orderBundleItemFragment}
 `;

@@ -35,21 +35,6 @@ export const orderItemFragment = gql`
 
 export const orderBundleItemFragment = gql`
   fragment orderBundleItem on BundleOrderItem {
-    quantity_ordered
-    quantity_canceled
-    quantity_shipped
-    quantity_invoiced
-    product_url_key
-    product_sku
-    product_name
-    product_sale_price {
-      value
-    }
-    discounts {
-      amount {
-        value
-      }
-    }
     bundle_options {
       ...orderBundleItemSelectedOption
     }
