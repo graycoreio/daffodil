@@ -1,0 +1,55 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@daffodil/core": [
+        "dist/core"
+      ],
+      "@daffodil/core/testing": [
+        "dist/core/testing"
+      ],
+      "@daffodil/core/graphql": [
+        "dist/core/graphql"
+      ],
+      "@daffodil/core/state": [
+        "dist/core/state"
+      ],
+      "@daffodil/cart": [
+        "dist/cart"
+      ],
+      "@daffodil/geography": [
+        "dist/geography"
+      ],
+      "@daffodil/geography/testing": [
+        "dist/geography/testing"
+      ],
+      "@daffodil/product": [
+        "dist/product"
+      ],
+      "@daffodil/driver": [
+        "dist/driver"
+      ],
+      "@daffodil/driver/magento": [
+        "dist/driver/magento"
+      ],
+      "@daffodil/order": [
+        "libs/order/src"
+      ],
+      "@daffodil/order/testing": [
+        "libs/order/testing/src"
+      ],
+      "@daffodil/order/state": [
+        "libs/order/state/src"
+      ],
+      "@daffodil/order/driver": [
+        "libs/order/driver/src"
+      ],
+      "@daffodil/order/driver/magento/2.4.0": [
+        "libs/order/driver/magento/2.4.0/src"
+      ],
+      "@daffodil/order/driver/magento/2.4.1": [
+        "libs/order/driver/magento/2.4.1/src"
+      ],
+    }
+  }
+}
