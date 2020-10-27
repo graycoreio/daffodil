@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DaffGeographyDriver } from '@daffodil/geography';
+import { DaffGeographyDriver } from '@daffodil/geography/driver';
 
 import { DaffTestingGeographyService } from './geography.service';
 

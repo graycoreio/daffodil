@@ -2,7 +2,8 @@ import { BehaviorSubject } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
-import { DaffGeographyFacadeInterface, DaffCountry } from '@daffodil/geography';
+import { DaffCountry } from '@daffodil/geography';
+import { DaffGeographyFacadeInterface } from '@daffodil/geography/state';
 
 export class MockDaffGeographyFacade implements DaffGeographyFacadeInterface {
   loading$: BehaviorSubject<boolean> = new BehaviorSubject(null);

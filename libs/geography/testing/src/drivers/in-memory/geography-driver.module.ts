@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import {
   DaffGeographyDriver,
-} from '@daffodil/geography';
+} from '@daffodil/geography/driver';
 
 import { DaffInMemoryGeographyService } from './geography.service';
 

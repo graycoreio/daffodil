@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import {
-  DaffGeographyServiceInterface,
   DaffCountry
 } from '@daffodil/geography';
+import {
+  DaffGeographyServiceInterface,
+} from '@daffodil/geography/driver';
 
 import { DaffCountryFactory } from '../../factories/country.factory';
 import { DaffSubdivisionFactory } from '../../factories/subdivision.factory';

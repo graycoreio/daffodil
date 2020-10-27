@@ -5,9 +5,11 @@ import { catchError, map } from 'rxjs/operators';
 
 import {
   DaffCountry,
+} from '@daffodil/geography';
+import {
   DaffGeographyServiceInterface,
   DaffCountryNotFoundError
-} from '@daffodil/geography';
+} from '@daffodil/geography/driver';
 
 @Injectable({
   providedIn: 'root'

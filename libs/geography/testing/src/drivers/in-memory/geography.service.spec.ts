@@ -5,8 +5,10 @@ import { catchError } from 'rxjs/operators';
 
 import {
   DaffCountry,
-  DaffCountryNotFoundError
 } from '@daffodil/geography';
+import {
+  DaffCountryNotFoundError
+} from '@daffodil/geography/driver';
 import { DaffCountryFactory } from '@daffodil/geography/testing';
 
 import { DaffInMemoryGeographyService } from './geography.service';

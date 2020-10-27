@@ -112,6 +112,15 @@
       "@daffodil/geography/testing": [
         "dist/geography/testing"
       ],
+      "@daffodil/geography/state": [
+        "dist/geography/state"
+      ],
+      "@daffodil/geography/driver": [
+        "dist/geography/driver"
+      ],
+      "@daffodil/geography/driver/magento": [
+        "dist/geography/driver/magento"
+      ],
       "@daffodil/authorizenet": [
         "dist/authorizenet"
       ],
