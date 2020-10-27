@@ -17,12 +17,12 @@ import {
 import { DaffOrderMagentoService } from './order.service';
 import { getGuestOrders, MagentoGetGuestOrdersResponse } from './queries/public_api';
 import * as validators from './validators/public_api';
-import { MagentoTestDataFactory } from './helpers/test-data.service';
+import { MagentoOrderTestDataFactory } from './helpers/test-data.service';
 
 describe('Driver | Magento | Order | OrderService', () => {
   let service: DaffOrderMagentoService;
   let controller: ApolloTestingController;
-  let testDataFactory: MagentoTestDataFactory;
+  let testDataFactory: MagentoOrderTestDataFactory;
 
   let validatorSpy: jasmine.Spy;
 
@@ -44,7 +44,7 @@ describe('Driver | Magento | Order | OrderService', () => {
 
     service = TestBed.get(DaffOrderMagentoService);
     controller = TestBed.get(ApolloTestingController);
-    testDataFactory = TestBed.get(MagentoTestDataFactory);
+    testDataFactory = TestBed.get(MagentoOrderTestDataFactory);
 
     const testData = testDataFactory.create();
     mockDaffOrder = testData.mockDaffOrder;
