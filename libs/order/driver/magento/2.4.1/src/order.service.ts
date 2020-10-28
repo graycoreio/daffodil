@@ -30,10 +30,7 @@ export class DaffOrderMagentoService implements DaffOrderServiceInterface {
   constructor(
     private apollo: Apollo,
     @Inject(DaffMagentoExtraOrderFragments) public extraOrderFragments: DocumentNode[],
-  ) {
-    console.log(this.extraOrderFragments);
-
-  }
+  ) {}
 
   list(cartId?: DaffCart['id']): Observable<DaffOrder[]> {
     return this.apollo.query<MagentoGetGuestOrdersResponse>({
