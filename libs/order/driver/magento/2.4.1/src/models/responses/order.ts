@@ -13,7 +13,6 @@ export interface MagentoOrder {
   carrier: string;
   number: string;
   shipping_method: string;
-  email: string;
   items: MagentoOrderItem[];
   billing_address: MagentoOrderAddress;
   shipping_address: MagentoOrderAddress;
