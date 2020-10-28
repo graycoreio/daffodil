@@ -258,7 +258,7 @@ export function daffMagentoTransformOrder(order: MagentoOrder): DaffOrder {
   return {
     extra_attributes: order,
 
-    id: order.id,
+    id: order.number,
     customer_id: null,
     updated_at: null,
     created_at: order.order_date,
