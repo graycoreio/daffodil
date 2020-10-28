@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { DocumentNode } from 'graphql';
+import { Inject, Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 
 import { Observable, throwError } from 'rxjs';
@@ -17,6 +18,7 @@ import { getGuestOrders, MagentoGetGuestOrdersResponse } from './queries/public_
 import { validateGetOrdersResponse } from './validators/public_api';
 import { transformMagentoOrderError } from './errors/transform';
 import { daffMagentoTransformOrder } from './transforms/responses/order';
+import { DaffMagentoExtraOrderFragments } from './injection-tokens/public_api';
 
 /**
  * A service for making Magento GraphQL queries for orders.
@@ -27,11 +29,15 @@ import { daffMagentoTransformOrder } from './transforms/responses/order';
 export class DaffOrderMagentoService implements DaffOrderServiceInterface {
   constructor(
     private apollo: Apollo,
-  ) {}
+    @Inject(DaffMagentoExtraOrderFragments) public extraOrderFragments: DocumentNode[],
+  ) {
+    console.log(this.extraOrderFragments);
+
+  }
 
   list(cartId?: DaffCart['id']): Observable<DaffOrder[]> {
     return this.apollo.query<MagentoGetGuestOrdersResponse>({
-      query: getGuestOrders,
+      query: getGuestOrders(this.extraOrderFragments),
       variables: {
         cartId
       }

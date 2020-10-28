@@ -46,8 +46,9 @@ import {
   MagentoGraycoreOrderShipment
 } from './models/responses/public_api';
 import { DaffOrderMagentoService } from './order.service';
-import { getGuestOrders, MagentoGetGuestOrdersResponse } from './queries/public_api';
+import { daffMagentoNoopOrderFragment, getGuestOrders, MagentoGetGuestOrdersResponse } from './queries/public_api';
 import * as validators from './validators/public_api';
+import { DaffMagentoExtraOrderFragments } from './injection-tokens/public_api';
 
 describe('Driver | Magento | Order | OrderService', () => {
   let service: DaffOrderMagentoService;
@@ -103,6 +104,11 @@ describe('Driver | Magento | Order | OrderService', () => {
       ],
       providers: [
         DaffOrderMagentoService,
+        {
+          provide: DaffMagentoExtraOrderFragments,
+          useValue: daffMagentoNoopOrderFragment,
+          multi: true
+        }
       ]
     });
 
@@ -339,7 +345,7 @@ describe('Driver | Magento | Order | OrderService', () => {
             })
           ).subscribe();
 
-          const op = controller.expectOne(getGuestOrders);
+          const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
 
           op.flush({
             data: mockGetOrdersResponse
@@ -359,7 +365,7 @@ describe('Driver | Magento | Order | OrderService', () => {
               done();
             });
 
-            const op = controller.expectOne(getGuestOrders);
+            const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
 
             op.flush({
               data: mockGetOrdersResponse
@@ -385,7 +391,7 @@ describe('Driver | Magento | Order | OrderService', () => {
               done();
             });
 
-            const op = controller.expectOne(getGuestOrders);
+            const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
 
             op.flush({
               data: mockGetOrdersResponse
@@ -405,7 +411,7 @@ describe('Driver | Magento | Order | OrderService', () => {
           })
         ).subscribe();
 
-        const op = controller.expectOne(getGuestOrders);
+        const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find a cart with that ID.',
@@ -433,7 +439,7 @@ describe('Driver | Magento | Order | OrderService', () => {
             done();
           });
 
-          const op = controller.expectOne(getGuestOrders);
+          const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
 
           op.flush({
             data: mockGetOrdersResponse
@@ -457,7 +463,7 @@ describe('Driver | Magento | Order | OrderService', () => {
             })
           ).subscribe();
 
-          const op = controller.expectOne(getGuestOrders);
+          const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
 
           op.flush({
             data: mockGetOrdersResponse
@@ -476,7 +482,7 @@ describe('Driver | Magento | Order | OrderService', () => {
           })
         ).subscribe();
 
-        const op = controller.expectOne(getGuestOrders);
+        const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find a cart with that ID.',
