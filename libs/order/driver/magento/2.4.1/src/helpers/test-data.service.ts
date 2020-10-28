@@ -101,7 +101,9 @@ export class MagentoOrderTestDataFactory {
     let mockMagentoOrderCredit: MagentoOrderCredit;
     let mockMagentoOrderCreditItem: MagentoOrderCreditItem;
 
-    mockDaffOrderAddress = this.daffOrderAddressFactory.create();
+    mockDaffOrderAddress = this.daffOrderAddressFactory.create({
+      email: null
+    });
     mockDaffOrderCoupon = this.daffOrderCouponFactory.create();
     mockDaffOrderPayment = this.daffOrderPaymentFactory.create({
       created_at: null,
@@ -469,7 +471,6 @@ export class MagentoOrderTestDataFactory {
       order_date: mockDaffOrder.created_at,
       carrier: mockDaffOrderShipment.carrier,
       shipping_method: mockDaffOrderShipment.method,
-      email: mockDaffOrderAddress.email,
       total: {
         grand_total: {
           value: mockDaffOrderGrandTotal.value,
