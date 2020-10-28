@@ -509,6 +509,8 @@ export class MagentoOrderTestDataFactory {
       credit_memos: [mockMagentoOrderCredit]
     };
 
+    mockDaffOrder.extra_attributes = mockMagentoOrder;
+
     return {
       mockDaffOrder,
       mockMagentoOrder

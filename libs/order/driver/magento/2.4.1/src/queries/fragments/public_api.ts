@@ -6,3 +6,4 @@ export { orderPaymentFragment } from './order-payment';
 export { orderShipmentFragment } from './order-shipment';
 export { orderShipmentItemFragment } from './order-shipment-item';
 export { orderShipmentTrackingFragment } from './order-shipment-tracking';
+export { daffMagentoNoopOrderFragment } from './noop-order';
