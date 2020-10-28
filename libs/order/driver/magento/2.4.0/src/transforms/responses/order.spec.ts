@@ -274,6 +274,8 @@ describe('Driver | Magento | Order | Transformer | Order', () => {
       invoices: [mockMagentoOrderInvoice],
       credits: [mockMagentoOrderInvoice]
     };
+
+    mockDaffOrder.extra_attributes = mockMagentoOrder;
   });
 
   describe('daffMagentoTransformOrder | transforming a magento order into a daff order', () => {

@@ -256,6 +256,8 @@ function transformCredit(credit: MagentoOrderCredit, order: MagentoOrder): DaffO
  */
 export function daffMagentoTransformOrder(order: MagentoOrder): DaffOrder {
   return {
+    extra_attributes: order,
+
     id: order.id,
     customer_id: null,
     updated_at: null,

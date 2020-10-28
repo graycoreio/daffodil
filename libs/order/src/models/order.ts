@@ -22,4 +22,9 @@ export interface DaffOrder {
   payment: DaffOrderPayment;
   invoices: DaffOrderInvoice[];
   credits: DaffOrderCredit[];
+  /**
+   * The field is set to the platform order object returned by the most recent driver call.
+   * No fields are guaranteed here.
+   */
+  extra_attributes?: any;
 }

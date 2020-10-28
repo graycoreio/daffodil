@@ -176,6 +176,8 @@ function transformInvoice(invoice: MagentoGraycoreOrderInvoice): DaffOrderInvoic
  */
 export function daffMagentoTransformOrder(order: MagentoGraycoreOrder): DaffOrder {
   return {
+    extra_attributes: order,
+
     id: order.order_number,
     customer_id: order.customer_id,
     created_at: order.created_at,

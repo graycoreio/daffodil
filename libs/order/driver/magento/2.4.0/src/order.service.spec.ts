@@ -306,6 +306,7 @@ describe('Driver | Magento | Order | OrderService', () => {
       invoices: [mockMagentoOrderInvoice],
       credits: [mockMagentoOrderInvoice]
     };
+    mockDaffOrder.extra_attributes = mockMagentoOrder;
     mockGetOrdersResponse = {
       graycoreGuestOrders: {
         orders: [mockMagentoOrder]
