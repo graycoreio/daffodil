@@ -9,6 +9,8 @@ export { DaffProductImage } from './models/product-image';
 export * from './models/composite-product';
 export * from './models/composite-product-item';
 export * from './models/configurable-product';
+export * from './models/prices';
+export * from './models/composite-configuration-item';
 
 export * from './reducers/public_api';
 export * from './selectors/public_api';
@@ -29,5 +31,6 @@ export { DaffConfigurableProductFacadeInterface } from './facades/configurable-p
 export { DaffCompositeProductFacade } from './facades/composite-product/composite-product.facade';
 export { DaffCompositeProductFacadeInterface } from './facades/composite-product/composite-product-facade.interface';
 export { DaffBestSellersFacade } from './facades/best-sellers/best-sellers.facade';
+export * from './facades/helpers';
 
 export * from './drivers/magento/public_api';
