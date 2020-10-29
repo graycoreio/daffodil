@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
-import { orderBundleItemFragment, orderItemFragment } from './order-item';
+
+import { orderItemFragment } from './order-item';
 import { orderAddressFragment } from './order-address';
 import { orderShipmentFragment } from './order-shipment';
 import { orderPaymentFragment } from './order-payment';
@@ -9,6 +10,7 @@ import { orderTotalFragment } from './order-total';
 
 export const orderFragment = gql`
   fragment order on GraycoreGuestOrder {
+    __typename
     id
     order_date
     status
@@ -17,7 +19,6 @@ export const orderFragment = gql`
     shipping_method
     items {
       ...orderItem
-      ...orderBundleItem
     }
     billing_address {
       ...orderAddress
@@ -42,7 +43,6 @@ export const orderFragment = gql`
     }
   }
   ${orderItemFragment}
-  ${orderBundleItemFragment}
   ${orderShipmentFragment}
   ${orderPaymentFragment}
   ${orderInvoiceFragment}

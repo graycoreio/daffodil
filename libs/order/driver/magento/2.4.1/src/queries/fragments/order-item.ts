@@ -2,15 +2,21 @@ import gql from 'graphql-tag';
 
 export const orderBundleItemSelectedOptionFragment = gql`
   fragment orderBundleItemSelectedOption on ItemSelectedBundleOption {
+    __typename
+    id
     label
     values {
+      __typename
+      id
       product_name
     }
   }
 `;
 
 export const orderItemFragment = gql`
-  fragment orderItem on OrderItem {
+  fragment orderItem on OrderItemInterface {
+    __typename
+    id
     quantity_ordered
     quantity_canceled
     quantity_shipped
@@ -18,6 +24,7 @@ export const orderItemFragment = gql`
     product_url_key
     product_sku
     product_name
+    product_type
     product_sale_price {
       value
     }
@@ -30,14 +37,10 @@ export const orderItemFragment = gql`
       label
       value
     }
-  }
-`;
-
-export const orderBundleItemFragment = gql`
-  fragment orderBundleItem on BundleOrderItem {
-    bundle_options {
-      ...orderBundleItemSelectedOption
+    ... on BundleOrderItem {
+      bundle_options {
+        ...orderBundleItemSelectedOption
+      }
     }
   }
-  ${orderBundleItemSelectedOptionFragment}
 `;
