@@ -43,4 +43,5 @@ export const orderItemFragment = gql`
       }
     }
   }
+  ${orderBundleItemSelectedOptionFragment}
 `;
