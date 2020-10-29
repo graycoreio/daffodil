@@ -55,7 +55,17 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 
 	const selectCompositeProductPrices = createSelector(
 		selectProductEntities,
-		(products, props) => selectCompositeProductPricesForConfiguration.projector(products, { id: props.id })
+		(products, props) => {
+			const product = selectProduct.projector(products, { id: props.id });
+			if(product.type !== DaffProductTypeEnum.Composite) {
+				return undefined;
+			}
+
+			return {
+				minPrice: getMinPricesForConfiguration(<DaffCompositeProduct>product, null),
+				maxPrice: getMaxPricesIncludingOptionalItems(<DaffCompositeProduct>product)
+			}
+		}
 	);
 
 	const selectCompositeProductPricesAsCurrentlyConfigured = createSelector(
@@ -171,6 +181,24 @@ function getMaxPricesForConfiguration(product: DaffCompositeProduct, appliedOpti
 					appliedOptions[item.id].price, 
 					appliedOptions[item.id].quantity
 				) : getMaximumRequiredCompositeItemPrice(item)
+		), product.price)
+	}
+}
+
+/**
+ * Gets the maximum prices of a composite product including optional item prices.
+ * @param product a DaffCompositeProduct
+ */
+function getMaxPricesIncludingOptionalItems(product: DaffCompositeProduct): DaffProductPrices {
+	return {
+		discountedPrice: (<DaffCompositeProduct>product).items.reduce((acc, item) => daffAdd(
+			acc, 
+			Math.max(...item.options.map(option => option.discount ? daffSubtract(option.price, option.discount.amount) : option.price))
+		), product.discount ? daffSubtract(product.price, product.discount.amount) : product.price),
+		discount: { amount: null, percent: null },
+		originalPrice: (<DaffCompositeProduct>product).items.reduce((acc, item) => daffAdd(
+			acc,
+			Math.max(...item.options.map(option => option.price))
 		), product.price)
 	}
 }

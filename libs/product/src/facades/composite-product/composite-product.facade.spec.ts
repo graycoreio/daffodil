@@ -118,7 +118,7 @@ describe('DaffCompositeProductFacade', () => {
 
   describe('getPrices', () => {
 
-    it('should return the broadest price range for a composite product excluding optional items', () => {
+    it('should return the broadest price range for a composite product including optional items', () => {
 			const expected = cold('a', { a: {
 				minPrice: {
 					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
@@ -131,12 +131,13 @@ describe('DaffCompositeProductFacade', () => {
 				},
 				maxPrice: {
 					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
-						stubPrice01 - stubDiscountAmount01,
+						stubPrice01 - stubDiscountAmount01 +
+						stubPrice11 - stubDiscountAmount11,
 					discount: {
 						amount: null,
 						percent: null
 					},
-					originalPrice: stubCompositeProduct.price + stubPrice01
+					originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11
 				}
 			}
 			});

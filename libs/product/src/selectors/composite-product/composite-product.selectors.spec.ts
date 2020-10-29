@@ -198,7 +198,7 @@ describe('Composite Product Selectors | integration tests', () => {
 			expect(selector).toBeObservable(expected);
 		});
 		
-		it('should return the broadest price range for a composite product excluding optional items', () => {
+		it('should return the broadest price range for a composite product including optional items', () => {
 			const selector = store.pipe(select(selectCompositeProductPrices, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: {
 				minPrice: {
@@ -210,12 +210,13 @@ describe('Composite Product Selectors | integration tests', () => {
 					originalPrice: stubCompositeProduct.price + stubPrice00
 				},
 				maxPrice: {
-					discountedPrice: stubCompositeProduct.price + stubPrice01 - stubCompositeProduct.discount.amount - stubDiscountAmount01,
+					discountedPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11 - 
+						stubCompositeProduct.discount.amount - stubDiscountAmount01 - stubDiscountAmount11,
 					discount: {
 						amount: null,
 						percent: null
 					},
-					originalPrice: stubCompositeProduct.price + stubPrice01
+					originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11
 				}
 			}});
 
