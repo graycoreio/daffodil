@@ -2,7 +2,7 @@ import { daffAdd } from '@daffodil/core';
 
 import { MagentoCart } from '../../models/outputs/cart';
 import { DaffCart } from '../../../../models/cart';
-import { DaffCartTotalTypeEnum } from '../../../../models/cart-total';
+import { DaffCartTotal, DaffCartTotalTypeEnum } from '../../../../models/cart-total';
 
 export function transformCartTotals(cart: Partial<MagentoCart>): {totals: DaffCart['totals']} {
 	const totalTax = cart.prices.applied_taxes ? cart.prices.applied_taxes.reduce((acc, tax) => (daffAdd(acc, tax.amount.value)), 0) : 0;
@@ -40,11 +40,7 @@ export function transformCartTotals(cart: Partial<MagentoCart>): {totals: DaffCa
 				label: 'Tax',
 				value: totalTax
 			},
-			{
-				name: DaffCartTotalTypeEnum.discount,
-				label: 'Discount',
-				value: cart.prices.discounts ? cart.prices.discounts.reduce((acc, discount) => (daffAdd(acc, discount.amount.value)), 0) : 0
-			},
+			...transformDiscounts(cart.prices.discounts),
 			{
 				name: DaffCartTotalTypeEnum.shipping,
 				label: 'Shipping',
@@ -52,6 +48,14 @@ export function transformCartTotals(cart: Partial<MagentoCart>): {totals: DaffCa
 			}
 		],
 	}
+}
+
+function transformDiscounts(discounts): DaffCartTotal[] {
+	return discounts ? discounts.map(discount => ({
+		name: DaffCartTotalTypeEnum.discount,
+		label: discount.label,
+		value: discount.amount.value
+	})) : [];
 }
 
 function validateSelectedShippingAddress(cart: Partial<MagentoCart>): boolean {
