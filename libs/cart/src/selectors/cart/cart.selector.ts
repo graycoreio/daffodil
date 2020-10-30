@@ -183,7 +183,10 @@ export interface DaffCartStateMemoizedSelectors<
 	selectCartSubtotalWithDiscountExcludingTax: MemoizedSelector<object, DaffCartTotal['value']>;
 	selectCartSubtotalWithDiscountIncludingTax: MemoizedSelector<object, DaffCartTotal['value']>;
 	selectCartTotalTax: MemoizedSelector<object, DaffCartTotal['value']>;
-	selectCartTotalDiscount: MemoizedSelector<object, DaffCartTotal['value']>;
+	/**
+	 * Selects the DaffCartTotals for cart discounts. These are discounts associated with coupon codes.
+	 */
+	selectCartDiscountTotals: MemoizedSelector<object, DaffCartTotal[]>;
 	selectCartShippingTotal: MemoizedSelector<object, DaffCartTotal['value']>;
 	selectCartCoupons: MemoizedSelector<object, T['coupons']>;
 	selectCartItems: MemoizedSelector<object, T['items']>;
@@ -478,11 +481,11 @@ const createCartSelectors = <
 			return taxObject ? taxObject.value : null;
 		}
 	);
-	const selectCartTotalDiscount = createSelector(
+	const selectCartDiscountTotals = createSelector(
 		selectCartValue,
 		(state: DaffCartReducerState<T>['cart']) => {
-			const discountObject = state.totals.find(total => total.name === DaffCartTotalTypeEnum.discount);
-			return discountObject ? discountObject.value : null;
+			const discounts: DaffCartTotal[] = state.totals.filter(total => total.name === DaffCartTotalTypeEnum.discount);
+			return discounts ? discounts : [];
 		}
 	);
 	const selectCartShippingTotal = createSelector(
@@ -642,7 +645,7 @@ const createCartSelectors = <
 		selectCartSubtotalIncludingTax,
 		selectCartSubtotalWithDiscountExcludingTax,
 		selectCartSubtotalWithDiscountIncludingTax,
-		selectCartTotalDiscount,
+		selectCartDiscountTotals,
 		selectCartTotalTax,
 		selectCartShippingTotal,
 		selectCartCoupons,

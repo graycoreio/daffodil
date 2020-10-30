@@ -57,11 +57,11 @@ describe('transformCartTotals', () => {
 					label: 'Tax',
 					value: totalTax
 				},
-				{
+				...stubMagentoCart.prices.discounts.map(discount => ({
 					name: DaffCartTotalTypeEnum.discount,
-					label: 'Discount',
-					value: stubMagentoCart.prices.discounts.reduce((acc, discount) => (daffAdd(acc, discount.amount.value)), 0)
-				},
+					label: discount.label,
+					value: discount.amount.value
+				})),
 				{
 					name: DaffCartTotalTypeEnum.shipping,
 					label: 'Shipping',
@@ -106,11 +106,6 @@ describe('transformCartTotals', () => {
 				{
 					name: DaffCartTotalTypeEnum.tax,
 					label: 'Tax',
-					value: 0
-				},
-				{
-					name: DaffCartTotalTypeEnum.discount,
-					label: 'Discount',
 					value: 0
 				},
 				{
@@ -162,11 +157,6 @@ describe('transformCartTotals', () => {
 				{
 					name: DaffCartTotalTypeEnum.tax,
 					label: 'Tax',
-					value: 0
-				},
-				{
-					name: DaffCartTotalTypeEnum.discount,
-					label: 'Discount',
 					value: 0
 				},
 				{

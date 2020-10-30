@@ -15,7 +15,7 @@ import { DaffConfigurableCartItemAttribute } from '../../models/configurable-car
 import { DaffCompositeCartItemOption } from '../../models/composite-cart-item';
 import { DaffCartTotal } from '../../models/cart-total';
 import { DaffCartPaymentMethodIdMap } from '../../injection-tokens/public_api';
-import { filter, map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { DaffCartLoading } from '../../reducers/loading/cart-loading.type';
 
 @Injectable({
@@ -77,7 +77,7 @@ export class DaffCartFacade<
   subtotalIncludingTax$: Observable<DaffCartTotal['value']>;
   subtotalWithDiscountExcludingTax$: Observable<DaffCartTotal['value']>;
   subtotalWithDiscountIncludingTax$: Observable<DaffCartTotal['value']>;
-  totalDiscount$: Observable<DaffCartTotal['value']>;
+  discountTotals$: Observable<DaffCartTotal[]>;
   totalTax$: Observable<DaffCartTotal['value']>;
   shippingTotal$: Observable<DaffCartTotal['value']>;
   coupons$: Observable<DaffCart['coupons']>;
@@ -170,7 +170,7 @@ export class DaffCartFacade<
 			selectCartSubtotalIncludingTax,
 			selectCartSubtotalWithDiscountExcludingTax,
 			selectCartSubtotalWithDiscountIncludingTax,
-			selectCartTotalDiscount,
+			selectCartDiscountTotals,
 			selectCartTotalTax,
 			selectCartShippingTotal,
 			selectCartCoupons,
@@ -261,7 +261,7 @@ export class DaffCartFacade<
     this.subtotalIncludingTax$ = this.store.pipe(select(selectCartSubtotalIncludingTax));
     this.subtotalWithDiscountExcludingTax$ = this.store.pipe(select(selectCartSubtotalWithDiscountExcludingTax));
     this.subtotalWithDiscountIncludingTax$ = this.store.pipe(select(selectCartSubtotalWithDiscountIncludingTax));
-    this.totalDiscount$ = this.store.pipe(select(selectCartTotalDiscount));
+    this.discountTotals$ = this.store.pipe(select(selectCartDiscountTotals));
     this.totalTax$ = this.store.pipe(select(selectCartTotalTax));
     this.shippingTotal$ = this.store.pipe(select(selectCartShippingTotal));
     this.coupons$ = this.store.pipe(select(selectCartCoupons));

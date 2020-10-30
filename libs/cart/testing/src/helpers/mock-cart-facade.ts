@@ -67,7 +67,7 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
   subtotalIncludingTax$: BehaviorSubject<DaffCartTotal['value']> = new BehaviorSubject(null);
   subtotalWithDiscountExcludingTax$: BehaviorSubject<DaffCartTotal['value']> = new BehaviorSubject(null);
   subtotalWithDiscountIncludingTax$: BehaviorSubject<DaffCartTotal['value']> = new BehaviorSubject(null);
-  totalDiscount$: BehaviorSubject<DaffCartTotal['value']> = new BehaviorSubject(null);
+  discountTotals$: BehaviorSubject<DaffCartTotal[]> = new BehaviorSubject([]);
   totalTax$: BehaviorSubject<DaffCartTotal['value']> = new BehaviorSubject(null);
   shippingTotal$: BehaviorSubject<DaffCartTotal['value']> = new BehaviorSubject(null);
   coupons$: BehaviorSubject<DaffCart['coupons']> = new BehaviorSubject([]);

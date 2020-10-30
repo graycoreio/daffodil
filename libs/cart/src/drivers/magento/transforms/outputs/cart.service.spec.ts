@@ -191,11 +191,11 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
 						label: 'Tax',
 						value: totalTax
 					},
-					{
+					...mockMagentoCart.prices.discounts.map(discount => ({
 						name: DaffCartTotalTypeEnum.discount,
-						label: 'Discount',
-						value: mockMagentoCart.prices.discounts.reduce((acc, discount) => (daffAdd(acc, discount.amount.value)), 0)
-					},
+						label: discount.label,
+						value: discount.amount.value
+					})),
 					{
 						name: DaffCartTotalTypeEnum.shipping,
 						label: 'Shipping',

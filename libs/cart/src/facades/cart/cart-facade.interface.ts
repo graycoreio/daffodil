@@ -181,7 +181,7 @@ export interface DaffCartFacadeInterface<
   subtotalIncludingTax$: Observable<DaffCartTotal['value']>;
   subtotalWithDiscountExcludingTax$: Observable<DaffCartTotal['value']>;
   subtotalWithDiscountIncludingTax$: Observable<DaffCartTotal['value']>;
-  totalDiscount$: Observable<DaffCartTotal['value']>;
+  discountTotals$: Observable<DaffCartTotal[]>;
   totalTax$: Observable<DaffCartTotal['value']>;
   shippingTotal$: Observable<DaffCartTotal['value']>;
   coupons$: Observable<DaffCart['coupons']>;
