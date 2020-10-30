@@ -16,6 +16,8 @@
       "@daffodil/contact": ["libs/contact/src"],
       "@daffodil/contact/testing": ["libs/contact/testing/src"],
       "@daffodil/core": ["libs/core/src"],
+      "@daffodil/core/state": ["libs/core/state/src"],
+      "@daffodil/core/graphql": ["libs/core/graphql/src"],
       "@daffodil/core/testing": ["libs/core/testing/src"],
       "@daffodil/design": ["libs/design/src"],
 			"@daffodil/driver": ["libs/driver/src"],
