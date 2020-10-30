@@ -970,13 +970,13 @@ describe('DaffCartFacade', () => {
     });
   });
 
-  describe('totalDiscount$', () => {
+  describe('discountTotals$', () => {
 
-    it('should be the cart total discount upon a successful cart load', () => {
+    it('should be the cart discount totals upon a successful cart load', () => {
       const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.totals.find(total => total.name === DaffCartTotalTypeEnum.discount).value });
+      const expected = cold('a', { a: cart.totals.filter(total => total.name === DaffCartTotalTypeEnum.discount) });
       facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.totalDiscount$).toBeObservable(expected);
+      expect(facade.discountTotals$).toBeObservable(expected);
     });
   });
 

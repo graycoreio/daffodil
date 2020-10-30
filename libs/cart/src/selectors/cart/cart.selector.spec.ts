@@ -90,7 +90,7 @@ describe('Cart | Selector | Cart', () => {
 		selectCartSubtotalWithDiscountExcludingTax,
 		selectCartSubtotalWithDiscountIncludingTax,
 		selectCartTotalTax,
-		selectCartTotalDiscount,
+		selectCartDiscountTotals,
 		selectCartShippingTotal,
 		selectCartCoupons,
 		selectCartItems,
@@ -1324,10 +1324,10 @@ describe('Cart | Selector | Cart', () => {
     });
   });
 
-  describe('selectCartTotalDiscount', () => {
-    it('returns cart total discount', () => {
-      const selector = store.pipe(select(selectCartTotalDiscount));
-      const expected = cold('a', {a: cart.totals.find(total => total.name === DaffCartTotalTypeEnum.discount).value});
+  describe('selectCartDiscountTotals', () => {
+    it('returns cart discount totals', () => {
+      const selector = store.pipe(select(selectCartDiscountTotals));
+      const expected = cold('a', {a: cart.totals.filter(total => total.name === DaffCartTotalTypeEnum.discount)});
 
       expect(selector).toBeObservable(expected);
     });
