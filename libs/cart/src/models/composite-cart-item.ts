@@ -6,6 +6,7 @@ export interface DaffCompositeCartItem extends DaffCartItem {
 }
 
 export interface DaffCompositeCartItemOption {
+	option_id: string;
 	option_label: string;
 	value_label: string;
 }
