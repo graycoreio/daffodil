@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.16.0](https://github.com/graycoreio/daffodil/compare/v0.15.0...v0.16.0) (2020-11-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cart:** The DaffCartFacade.totalDiscount is now DaffCartFacade.discountTotals and is an array of DaffCartTotal instead of a single number. Similarly the getDaffCartSelectors.selectCartTotalDiscount is now selectCartDiscountTotals.
+
+### Features
+
+* **cart:** add option_id to the DaffCompositeCartItemOption ([#1123](https://github.com/graycoreio/daffodil/issues/1123)) ([f3d37b5](https://github.com/graycoreio/daffodil/commit/f3d37b517a94c85351c1dca68333a74961e5643b))
+* **cart:** make cart discounts separate ([#1121](https://github.com/graycoreio/daffodil/issues/1121)) ([2b7ecbf](https://github.com/graycoreio/daffodil/commit/2b7ecbf59793992f41a2b0d4ad42c258b79ebfde))
+* **order:** add extra order fragment extensions ([#1117](https://github.com/graycoreio/daffodil/issues/1117)) ([e3dcbb7](https://github.com/graycoreio/daffodil/commit/e3dcbb73e85c861d0455dd9c957e6b1be3df405d))
+* **order:** add magento 2.4.1 driver models and transforms ([#1112](https://github.com/graycoreio/daffodil/issues/1112)) ([26dca6f](https://github.com/graycoreio/daffodil/commit/26dca6f61685ac60e73ff9b1dcd3bdba4774c7cd))
+* **order:** add magento 2.4.1 driver queries ([#1114](https://github.com/graycoreio/daffodil/issues/1114)) ([0ac5fc0](https://github.com/graycoreio/daffodil/commit/0ac5fc0f4675216fa74fbf1d899925ab1d75739a))
+* **order:** add magento 2.4.1 driver service ([#1116](https://github.com/graycoreio/daffodil/issues/1116)) ([0a6053e](https://github.com/graycoreio/daffodil/commit/0a6053e3f9cf0b3c8db479e256adc82b299a1dcb))
+* **order:** add order item types ([#1110](https://github.com/graycoreio/daffodil/issues/1110)) ([24c8cbb](https://github.com/graycoreio/daffodil/commit/24c8cbb66d9e5b602744ebc934c80bd83f15dca6))
+
+
+### Bug Fixes
+
+* **demo:** update tsconfig with core subpackages ([#1122](https://github.com/graycoreio/daffodil/issues/1122)) ([0abbda7](https://github.com/graycoreio/daffodil/commit/0abbda7bd8f2b54d1c1790336e50afc3442d1395))
+* **order:** email field present on order ([#1118](https://github.com/graycoreio/daffodil/issues/1118)) ([ac7e306](https://github.com/graycoreio/daffodil/commit/ac7e30664f8bb15fad31caff5a6da310a0ead53d))
+
 ## [0.15.0](https://github.com/graycoreio/daffodil/compare/v0.14.0...v0.15.0) (2020-10-23)
 
 
