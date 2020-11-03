@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.16.1](https://github.com/graycoreio/daffodil/compare/v0.16.0...v0.16.1) (2020-11-03)
+
+
+### Bug Fixes
+
+* **cart:** composite cart item option id points to the wrong field in… ([#1124](https://github.com/graycoreio/daffodil/issues/1124)) ([ec7a3ae](https://github.com/graycoreio/daffodil/commit/ec7a3aeecc0aa7cb4b9f5951b2c15fac87191ac6))
+
 ## [0.16.0](https://github.com/graycoreio/daffodil/compare/v0.15.0...v0.16.0) (2020-11-02)
 
 
