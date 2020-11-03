@@ -18,7 +18,7 @@ export function transformMagentoBundleCartItem(bundleCartItem: MagentoBundleCart
 
 function transformBundleCartItemOption(option: MagentoBundleCartItem['bundle_options'][0]): DaffCompositeCartItemOption {
 	return {
-		option_id: option.id.toString(),
+		option_id: option.values[0].id,
 		option_label: option.label,
 		value_label: option.values[0].label
 	}
