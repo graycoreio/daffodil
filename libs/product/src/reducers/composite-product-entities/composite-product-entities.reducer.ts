@@ -7,8 +7,9 @@ import { daffCompositeProductAppliedOptionsEntitiesAdapter } from './composite-p
 import { DaffProduct, DaffProductTypeEnum } from '../../models/product';
 import { DaffCompositeProductActions, DaffCompositeProductActionTypes } from '../../actions/composite-product.actions';
 import { DaffCompositeProduct } from '../../models/composite-product';
-import { DaffCompositeProductEntity, DaffCompositeProductEntityItem } from './composite-product-entity';
+import { DaffCompositeProductEntity } from './composite-product-entity';
 import { DaffCompositeProductItem } from '../../models/composite-product-item';
+import { DaffCompositeConfigurationItem } from '../../models/composite-configuration-item';
 
 /**
  * Reducer function that catches actions and changes/overwrites composite product entities state.
@@ -72,7 +73,7 @@ function buildCompositeProductAppliedOptionsEntity(product: DaffCompositeProduct
  * Does not set a default option if a default is not specified or if the default is out of stock.
  * @param item a DaffCompositeProductItem
  */
-function getDefaultOption(item: DaffCompositeProductItem): DaffCompositeProductEntityItem {
+function getDefaultOption(item: DaffCompositeProductItem): DaffCompositeConfigurationItem {
 	const defaultOptionIndex = item.options.findIndex(option => option.is_default);
 
 	if(defaultOptionIndex > -1 && item.options[defaultOptionIndex].in_stock) {

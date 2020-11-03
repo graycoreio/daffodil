@@ -1,11 +1,7 @@
 import { Dictionary } from '@ngrx/entity';
+import { DaffCompositeConfigurationItem } from '../../models/composite-configuration-item';
 
 export interface DaffCompositeProductEntity {
 	id: string;
-	items: Dictionary<DaffCompositeProductEntityItem>;
-}
-
-export interface DaffCompositeProductEntityItem {
-	value: string;
-	qty: number;
+	items: Dictionary<DaffCompositeConfigurationItem>;
 }
