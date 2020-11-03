@@ -3,7 +3,7 @@ import { Dictionary } from '@ngrx/entity';
 
 import { daffAdd, daffMultiply, daffSubtract } from '@daffodil/core';
 
-import { DaffProductTypeEnum } from '../../models/product';
+import { DaffProduct, DaffProductTypeEnum } from '../../models/product';
 import { getDaffCompositeProductEntitiesSelectors } from '../composite-product-entities/composite-product-entities.selectors';
 import { getDaffProductEntitiesSelectors } from '../product-entities/product-entities.selectors';
 import { DaffCompositeProduct } from '../../models/composite-product';
@@ -144,7 +144,7 @@ function getMinPricesForConfiguration(product: DaffCompositeProduct, appliedOpti
 					appliedOptions[item.id].quantity
 				) : 
 				getMinimumRequiredCompositeItemDiscountedPrice(item)
-		), product.discount ? daffSubtract(product.price, product.discount.amount) : product.price),
+		), getDiscountedPrice(product)),
 		discount: { amount: null, percent: null },
 		originalPrice: product.items.reduce((acc, item) => daffAdd(
 			acc, 
@@ -172,7 +172,7 @@ function getMaxPricesForConfiguration(product: DaffCompositeProduct, appliedOpti
 					appliedOptions[item.id].quantity
 				) : 
 				getMaximumRequiredCompositeItemDiscountedPrice(item)
-		), product.discount ? daffSubtract(product.price, product.discount.amount) : product.price),
+		), getDiscountedPrice(product)),
 		discount: { amount: null, percent: null },
 		originalPrice: product.items.reduce((acc, item) => daffAdd(
 			acc,
@@ -185,6 +185,10 @@ function getMaxPricesForConfiguration(product: DaffCompositeProduct, appliedOpti
 	}
 }
 
+function getDiscountedPrice(product: DaffProduct): number {
+  return product.discount ? daffSubtract(product.price, product.discount.amount) : product.price
+}
+
 /**
  * Gets the maximum prices of a composite product including optional item prices.
  * @param product a DaffCompositeProduct
@@ -193,8 +197,8 @@ function getMaxPricesIncludingOptionalItems(product: DaffCompositeProduct): Daff
 	return {
 		discountedPrice: (<DaffCompositeProduct>product).items.reduce((acc, item) => daffAdd(
 			acc, 
-			Math.max(...item.options.map(option => option.discount ? daffSubtract(option.price, option.discount.amount) : option.price))
-		), product.discount ? daffSubtract(product.price, product.discount.amount) : product.price),
+			Math.max(...item.options.map(getDiscountedPrice))
+		), getDiscountedPrice(product)),
 		discount: { amount: null, percent: null },
 		originalPrice: (<DaffCompositeProduct>product).items.reduce((acc, item) => daffAdd(
 			acc,
