@@ -140,10 +140,7 @@ function getMinPricesForConfiguration(product: DaffCompositeProduct, appliedOpti
 		discountedPrice: product.items.reduce((acc, item) => daffAdd(
 			acc, 
 			appliedOptions && appliedOptions[item.id] ? 
-				daffMultiply(
-					appliedOptions[item.id].discount ? daffSubtract(appliedOptions[item.id].price, appliedOptions[item.id].discount.amount) : appliedOptions[item.id].price, 
-					appliedOptions[item.id].quantity
-				) : 
+				daffMultiply(getDiscountedPrice(appliedOptions[item.id]), appliedOptions[item.id].quantity) : 
 				getMinimumRequiredCompositeItemDiscountedPrice(item)
 		), getDiscountedPrice(product)),
 		discount: { amount: null, percent: null },
@@ -168,10 +165,7 @@ function getMaxPricesForConfiguration(product: DaffCompositeProduct, appliedOpti
 		discountedPrice: product.items.reduce((acc, item) => daffAdd(
 			acc, 
 			appliedOptions && appliedOptions[item.id] ? 
-				daffMultiply(
-					appliedOptions[item.id].discount ? daffSubtract(appliedOptions[item.id].price, appliedOptions[item.id].discount.amount) : appliedOptions[item.id].price, 
-					appliedOptions[item.id].quantity
-				) : 
+				daffMultiply(getDiscountedPrice(appliedOptions[item.id]), appliedOptions[item.id].quantity) : 
 				getMaximumRequiredCompositeItemDiscountedPrice(item)
 		), getDiscountedPrice(product)),
 		discount: { amount: null, percent: null },
