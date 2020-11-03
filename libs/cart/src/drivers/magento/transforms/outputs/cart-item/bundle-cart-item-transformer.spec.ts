@@ -14,7 +14,7 @@ describe('transformMagentoBundleCartItem', () => {
 	});
 	
 	it('should return the expected composite product', () => {
-		expect(transformedCartItem.options[0].option_id).toEqual(stubMagentoBundleCartItem.bundle_options[0].id.toString());
+		expect(transformedCartItem.options[0].option_id).toEqual(stubMagentoBundleCartItem.bundle_options[0].values[0].id);
 		expect(transformedCartItem.options[0].option_label).toEqual(stubMagentoBundleCartItem.bundle_options[0].label);
 		expect(transformedCartItem.options[0].value_label).toEqual(stubMagentoBundleCartItem.bundle_options[0].values[0].label);
 	});
