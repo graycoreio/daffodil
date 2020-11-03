@@ -13,7 +13,7 @@ import { DaffCompositeConfigurationItem } from '../../models/composite-configura
 
 export interface DaffCompositeProductMemoizedSelectors {
 	/**
-	 * Get a DaffPriceRange for a composite product based on the configuration provided.
+	 * Get a DaffPriceRange for a composite product based on the configuration provided excluding unselected, optional item prices.
 	 */
 	selectCompositeProductPricesForConfiguration: MemoizedSelectorWithProps<object, { id: string, configuration?: Dictionary<DaffCompositeConfigurationItem> }, DaffPriceRange>;
 	/**
@@ -21,7 +21,8 @@ export interface DaffCompositeProductMemoizedSelectors {
 	 */
 	selectCompositeProductPrices: MemoizedSelectorWithProps<object, { id: string }, DaffPriceRange>;
 	/**
-	 * Get the DaffPriceRange for a composite product based on the current configuration of selected item options in redux state.
+	 * Get the DaffPriceRange for a composite product based on the current configuration of selected item options in redux state and
+	 * excluding unselected, optional item prices.
 	 */
 	selectCompositeProductPricesAsCurrentlyConfigured: MemoizedSelectorWithProps<object, { id: string }, DaffPriceRange>;
 }
@@ -130,7 +131,7 @@ function getMaximumRequiredCompositeItemDiscountedPrice(item: DaffCompositeProdu
 }
 
 /**
- * Gets the minimum prices of a composite product for the configuration provided.
+ * Gets the minimum prices of a composite product for the configuration provided excluding unselected, optional item prices.
  * @param product a DaffCompositeProduct
  * @param appliedOptions a Dictionary<DaffCompositeProductItemOption> that determines the current configuration of the composite product.
  */
@@ -158,7 +159,7 @@ function getMinPricesForConfiguration(product: DaffCompositeProduct, appliedOpti
 }
 
 /**
- * Gets the maximum prices of a composite product for the configuration provided.
+ * Gets the maximum prices of a composite product for the configuration provided excluding unselected, optional item prices.
  * @param product a DaffCompositeProduct
  * @param appliedOptions a Dictionary<DaffCompositeProductItemOption> that determines the current configuration of the composite product.
  */
