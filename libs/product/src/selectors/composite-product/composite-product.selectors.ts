@@ -115,9 +115,7 @@ function getMaximumRequiredCompositeItemPrice(item: DaffCompositeProductItem): n
  */
 //todo use optional chaining when possible
 function getMinimumRequiredCompositeItemDiscountedPrice(item: DaffCompositeProductItem): number {
-	return item.required ? Math.min(...item.options.map(option =>
-		daffSubtract(option.price, option.discount ? option.discount.amount : 0)
-	)) : 0;
+	return item.required ? Math.min(...item.options.map(getDiscountedPrice)) : 0;
 }
 /**
  * The maximum discounted price of an item is zero if the item is optional.
@@ -125,9 +123,7 @@ function getMinimumRequiredCompositeItemDiscountedPrice(item: DaffCompositeProdu
  */
 //todo use optional chaining when possible
 function getMaximumRequiredCompositeItemDiscountedPrice(item: DaffCompositeProductItem): number {
-	return item.required ? Math.max(...item.options.map(option => 
-		daffSubtract(option.price, option.discount ? option.discount.amount : 0)
-	)) : 0;
+	return item.required ? Math.max(...item.options.map(getDiscountedPrice)) : 0;
 }
 
 /**
