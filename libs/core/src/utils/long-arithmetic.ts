@@ -6,7 +6,7 @@
  * @param numbers 
  */
 export function daffAdd(...numbers: number[]) {
-	if(numbers.length < 2) throw new Error('Provide at least 2 numbers for daffAdd.'); 
+	if(numbers.length < 2) throw new Error('Provide at least 2 numbers for daffAdd.');
 	const precision = Math.max(...numbers.map(daffPrecision));
 	return numbers.reduce((acc, number) => {
 		return acc + Math.round(number*precision);
@@ -69,6 +69,7 @@ export function daffDivide(...numbers: number[]) {
  */
 function daffPrecision(number: number) {
 	let p = 10000;
+	if(number === undefined || number === null) return p;
   while (Math.round(number * p) / p !== number) { p *= 10; }
   return p;
 }
