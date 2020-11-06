@@ -6,6 +6,7 @@ import { InjectionToken } from '@angular/core';
  * It should be an object whose keys are the cart payment's method and whose values are strings.
  * Defaults to an empty object.
  */
+// TODO: refactor to upper snake case
 export const DaffCartPaymentMethodIdMap = new InjectionToken<{[key: string]: string}>('DaffCartPaymentMethodIdMap', {
   factory: () => ({})
 });
