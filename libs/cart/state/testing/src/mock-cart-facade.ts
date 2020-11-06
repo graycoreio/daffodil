@@ -2,6 +2,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffCart, DaffCartTotal, DaffCartItem, DaffCartOrderResult, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption } from '@daffodil/cart';
 import {
 	DaffCartFacadeInterface,
@@ -94,7 +95,7 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
   canPlaceOrder$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   orderResultLoading$ = new BehaviorSubject<boolean>(false);
-	orderResultErrors$ = new BehaviorSubject<string[]>([]);
+	orderResultErrors$ = new BehaviorSubject<DaffStateError[]>([]);
 	orderResult$ = new BehaviorSubject<DaffCartOrderResult>({
     id: null,
     orderId: null,
