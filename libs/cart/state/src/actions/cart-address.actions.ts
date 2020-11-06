@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffCartAddress, DaffCart } from '@daffodil/cart';
 
 export enum DaffCartAddressActionTypes {
@@ -32,7 +33,7 @@ export class DaffCartAddressUpdateSuccess<T extends DaffCart = DaffCart> impleme
 export class DaffCartAddressUpdateFailure implements Action {
   readonly type = DaffCartAddressActionTypes.CartAddressUpdateFailureAction;
 
-  constructor(public payload: string) {}
+  constructor(public payload: DaffStateError) {}
 }
 
 export type DaffCartAddressActions<

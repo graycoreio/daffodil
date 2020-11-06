@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffCartPaymentMethod, DaffCart, DaffCartAddress } from '@daffodil/cart';
 
 export enum DaffCartPaymentActionTypes {
@@ -31,7 +32,7 @@ export class DaffCartPaymentLoadSuccess<T extends DaffCartPaymentMethod = DaffCa
 export class DaffCartPaymentLoadFailure implements Action {
   readonly type = DaffCartPaymentActionTypes.CartPaymentLoadFailureAction;
 
-  constructor(public payload: string) {}
+  constructor(public payload: DaffStateError) {}
 }
 
 export class DaffCartPaymentUpdate<T extends DaffCartPaymentMethod = DaffCartPaymentMethod> implements Action {
@@ -49,7 +50,7 @@ export class DaffCartPaymentUpdateSuccess<T extends DaffCart = DaffCart> impleme
 export class DaffCartPaymentUpdateFailure implements Action {
   readonly type = DaffCartPaymentActionTypes.CartPaymentUpdateFailureAction;
 
-  constructor(public payload: string) {}
+  constructor(public payload: DaffStateError) {}
 }
 
 /**
@@ -86,7 +87,7 @@ export class DaffCartPaymentUpdateWithBillingSuccess<T extends DaffCart = DaffCa
 export class DaffCartPaymentUpdateWithBillingFailure implements Action {
   readonly type = DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingFailureAction;
 
-  constructor(public payload: string) {}
+  constructor(public payload: DaffStateError) {}
 }
 
 export class DaffCartPaymentRemove implements Action {
@@ -100,7 +101,7 @@ export class DaffCartPaymentRemoveSuccess implements Action {
 export class DaffCartPaymentRemoveFailure implements Action {
   readonly type = DaffCartPaymentActionTypes.CartPaymentRemoveFailureAction;
 
-  constructor(public payload: string) {}
+  constructor(public payload: DaffStateError) {}
 }
 
 /**

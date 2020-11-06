@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffCartPaymentMethod } from '@daffodil/cart';
 
 export enum DaffCartPaymentMethodsActionTypes {
@@ -23,7 +24,7 @@ export class DaffCartPaymentMethodsLoadSuccess<T extends DaffCartPaymentMethod =
 export class DaffCartPaymentMethodsLoadFailure implements Action {
   readonly type = DaffCartPaymentMethodsActionTypes.CartPaymentMethodsLoadFailureAction;
 
-  constructor(public payload: string) {}
+  constructor(public payload: DaffStateError) {}
 }
 
 export type DaffCartPaymentMethodsActions<T extends DaffCartPaymentMethod = DaffCartPaymentMethod> =
