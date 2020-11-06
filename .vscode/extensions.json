@@ -1,6 +1,6 @@
 {
     "recommendations": [
-        "shinnn.stylelint",
+        "stylelint.vscode-stylelint",
         "apollographql.vscode-apollo",
         "naumovs.color-highlight",
         "ms-vsliveshare.vsliveshare",
