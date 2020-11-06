@@ -3,7 +3,7 @@ import { Action } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
 import { DaffStoreFacade } from '@daffodil/core/state';
-import { DaffCart, DaffCartOrderResult, DaffCartItem, DaffCartTotal, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption } from '@daffodil/cart';
+import { DaffCart, DaffCartOrderResult, DaffCartItem, DaffCartTotal, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption, DaffCartItemStateEnum } from '@daffodil/cart';
 
 import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
 import { DaffCartOperationType } from '../../reducers/cart-operation-type.enum';
@@ -160,7 +160,7 @@ export interface DaffCartFacadeInterface<
    * Whether there is a cart item mutate operation in progress.
    * This pertains only to requests that mutate data such as "update".
    */
-  itemMutating$: Observable<boolean>;
+	itemMutating$: Observable<boolean>;
 
   errors$: Observable<DaffCartErrors>;
   cartErrors$: Observable<DaffCartErrors[DaffCartOperationType.Cart]>;
@@ -221,8 +221,12 @@ export interface DaffCartFacadeInterface<
 	orderResultCartId$: Observable<V['cartId']>;
   hasOrderResult$: Observable<boolean>;
 
-	getCartItemDiscountedTotal(itemId: string | number): Observable<number>;
-	getConfiguredCartItemAttributes(itemId: string | number): Observable<DaffConfigurableCartItemAttribute[]>;
-	getCompositeCartItemOptions(itemId: string | number): Observable<DaffCompositeCartItemOption[]>;
-	isCartItemOutOfStock(itemId: DaffCartItem['item_id']): Observable<boolean>;
+	getCartItemDiscountedTotal(itemId: U['item_id']): Observable<number>;
+	getConfiguredCartItemAttributes(itemId: U['item_id']): Observable<DaffConfigurableCartItemAttribute[]>;
+	getCompositeCartItemOptions(itemId: U['item_id']): Observable<DaffCompositeCartItemOption[]>;
+	isCartItemOutOfStock(itemId: U['item_id']): Observable<boolean>;
+	/**
+	 * The state of a cart item.
+	 */
+  getCartItemState(itemId: U['item_id']): Observable<DaffCartItemStateEnum>;
 }

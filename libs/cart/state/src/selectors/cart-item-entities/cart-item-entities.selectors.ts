@@ -1,7 +1,7 @@
 import { createSelector, MemoizedSelector, MemoizedSelectorWithProps } from '@ngrx/store';
 import { EntityState } from '@ngrx/entity';
 
-import { DaffCartItem, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption, DaffCart, DaffCartOrderResult, DaffCartItemInputType, DaffConfigurableCartItem, DaffCompositeCartItem } from '@daffodil/cart';
+import { DaffCartItem, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption, DaffCart, DaffCartOrderResult, DaffCartItemInputType, DaffConfigurableCartItem, DaffCompositeCartItem, DaffCartItemStateEnum } from '@daffodil/cart';
 
 import { daffCartItemEntitiesAdapter } from '../../reducers/cart-item-entities/cart-item-entities-reducer-adapter';
 import { DaffCartReducersState } from '../../reducers/public_api';
@@ -17,6 +17,7 @@ export interface DaffCartItemEntitiesMemoizedSelectors<T extends DaffCartItem = 
 	selectCartItemConfiguredAttributes: MemoizedSelectorWithProps<object, object, DaffConfigurableCartItemAttribute[]>;
 	selectCartItemCompositeOptions: MemoizedSelectorWithProps<object, object, DaffCompositeCartItemOption[]>;
 	selectIsCartItemOutOfStock: MemoizedSelectorWithProps<object, object, boolean>;
+	selectCartItemState: MemoizedSelectorWithProps<object, object, DaffCartItemStateEnum>;
 }
 
 const createCartItemEntitiesSelectors = <
@@ -115,7 +116,16 @@ const createCartItemEntitiesSelectors = <
 		}
 	);
 
-	return {
+	const selectCartItemState = createSelector(
+		selectCartItemEntities,
+		(cartItems, props) => {
+			const cartItem = selectCartItem.projector(cartItems, { id: props.id });
+
+			return cartItem ? cartItem.state : null;
+		}
+	)
+
+	return { 
 		selectCartItemEntitiesState,
 		selectCartItemIds,
 		selectCartItemEntities,
@@ -124,7 +134,8 @@ const createCartItemEntitiesSelectors = <
 		selectCartItem,
 		selectCartItemConfiguredAttributes,
 		selectCartItemCompositeOptions,
-		selectIsCartItemOutOfStock
+		selectIsCartItemOutOfStock,
+		selectCartItemState
 	}
 }
 

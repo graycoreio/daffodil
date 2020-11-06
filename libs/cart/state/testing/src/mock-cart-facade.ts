@@ -2,7 +2,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
-import { DaffCart, DaffCartTotal, DaffCartItem, DaffCartOrderResult, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption } from '@daffodil/cart';
+import { DaffCart, DaffCartTotal, DaffCartItem, DaffCartOrderResult, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption, DaffCartItemStateEnum } from '@daffodil/cart';
 import {
 	DaffCartFacadeInterface,
 	DaffCartErrors,
@@ -113,6 +113,10 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
 
 	isCartItemOutOfStock(itemId: DaffCartItem['item_id']): BehaviorSubject<boolean> {
 		return new BehaviorSubject(false);
+	}
+
+	getCartItemState(itemId: DaffCartItem['item_id']): BehaviorSubject<DaffCartItemStateEnum> {
+		return new BehaviorSubject(DaffCartItemStateEnum.Default);
 	}
 
   dispatch(action: Action) {};

@@ -1,10 +1,9 @@
 import { EntityState } from '@ngrx/entity';
 
-import { DaffCartItem, DaffCartItemInput, DaffCart } from '@daffodil/cart';
+import { DaffCartItem, DaffCartItemInput, DaffCart, DaffCartItemStateEnum } from '@daffodil/cart';
 
 import { daffCartItemEntitiesAdapter } from './cart-item-entities-reducer-adapter';
-import { DaffCartItemActionTypes, DaffCartActionTypes, DaffCartActions } from '../../actions/public_api';
-import { DaffCartItemActions } from '../../actions/public_api';
+import { DaffCartItemActionTypes, DaffCartActionTypes, DaffCartActions, DaffCartItemActions } from '../../actions/public_api';
 
 /**
  * Reducer function that catches actions and changes/overwrites product entities state.
@@ -32,6 +31,17 @@ export function daffCartItemEntitiesReducer<
 		case DaffCartActionTypes.CartLoadSuccessAction:
 		case DaffCartActionTypes.CartClearSuccessAction:
 			return adapter.addAll(<T[]><unknown>action.payload.items, state);
+		case DaffCartItemActionTypes.CartItemStateResetAction:
+			return adapter.addAll(Object.keys(state.entities).map(key => ({
+				...state.entities[key],
+				state: DaffCartItemStateEnum.Default
+			})), state);
+		case DaffCartItemActionTypes.CartItemUpdateAction:
+		case DaffCartItemActionTypes.CartItemDeleteAction:
+			return adapter.upsertOne({
+				...state.entities[action.itemId],
+				state: DaffCartItemStateEnum.Mutating
+			}, state)
     default:
       return state;
   }

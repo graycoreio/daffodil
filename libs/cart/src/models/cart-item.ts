@@ -6,6 +6,7 @@ import { DaffCartItemInputType } from './cart-item-input';
 
 export interface DaffCartItem {
 	item_id: number | string;
+	state: DaffCartItemStateEnum;
 	type: DaffCartItemInputType;
   image?: DaffProductImage;
   product_id: DaffProduct['id'];
@@ -17,4 +18,11 @@ export interface DaffCartItem {
   row_total: number;
 	total_discount: number;
 	in_stock: boolean;
+}
+
+export enum DaffCartItemStateEnum {
+	New = 'new',
+	Updated = 'updated',
+	Mutating = 'mutating',
+	Default = 'default'
 }

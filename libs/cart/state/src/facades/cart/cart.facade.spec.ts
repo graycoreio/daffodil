@@ -1487,6 +1487,18 @@ describe('DaffCartFacade', () => {
     });
   });
 
+  describe('getCartItemState', () => {
+
+    it('should return the cart item state', () => {
+      const cart = cartFactory.create({
+        items: [cartItemFactory.create()]
+      });
+      const expected = cold('a', { a: cart.items[0].state });
+      facade.dispatch(new DaffCartLoadSuccess(cart));
+      expect(facade.getCartItemState(cart.items[0].item_id)).toBeObservable(expected);
+    });
+  });
+
   describe('hasBillingAddress$', () => {
     describe('when all the billing address is present', () => {
       beforeEach(() => {

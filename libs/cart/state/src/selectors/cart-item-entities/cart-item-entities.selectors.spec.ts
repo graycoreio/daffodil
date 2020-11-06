@@ -27,7 +27,8 @@ describe('selectCartItemEntitiesState', () => {
 		selectCartItem,
 		selectCartItemConfiguredAttributes,
 		selectCartItemCompositeOptions,
-		selectIsCartItemOutOfStock
+		selectIsCartItemOutOfStock,
+		selectCartItemState
 	} = getDaffCartItemEntitiesSelectors();
 
   beforeEach(() => {
@@ -154,6 +155,24 @@ describe('selectCartItemEntitiesState', () => {
 
     it('should return null if the cart item is not in state', () => {
 			const selector = store.pipe(select(selectIsCartItemOutOfStock, { id: mockCartItems[0].item_id + 'notId' }));
+			const expected = cold('a', { a: null });
+
+			expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCartItemState', () => {
+		
+		it('should return whether the given cart item is out of stock', () => {
+			store.dispatch(new DaffCartItemListSuccess(mockCartItems));
+			const selector = store.pipe(select(selectCartItemState, { id: mockCartItems[0].item_id }));
+			const expected = cold('a', { a: mockCartItems[0].state });
+
+			expect(selector).toBeObservable(expected);
+		});
+    
+    it('should return null if the cart item is not in state', () => {
+			const selector = store.pipe(select(selectCartItemState, { id: mockCartItems[0].item_id + 'notId' }));
 			const expected = cold('a', { a: null });
 
 			expect(selector).toBeObservable(expected);
