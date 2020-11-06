@@ -1,4 +1,4 @@
-import { DaffLoadingState } from '@daffodil/core/state';
+import { DaffLoadingState, DaffStateError } from '@daffodil/core/state';
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartPaymentLoad, DaffCartOperationType, DaffCartReducerState, DaffCartPaymentLoadSuccess, DaffCartPaymentLoadFailure, DaffCartPaymentUpdate, DaffCartPaymentUpdateSuccess, DaffCartPaymentUpdateFailure, DaffCartPaymentUpdateWithBilling, DaffCartPaymentUpdateWithBillingSuccess, DaffCartPaymentUpdateWithBillingFailure, DaffCartPaymentRemove, DaffCartPaymentRemoveSuccess, DaffCartPaymentRemoveFailure, DaffCartPaymentMethodAdd, initialState } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
@@ -67,7 +67,7 @@ describe('Cart | Reducer | Cart Payment', () => {
   });
 
   describe('when CartPaymentLoadFailureAction is triggered', () => {
-    const error = 'error message';
+    const error: DaffStateError = {code: 'error code', message: 'error message'};
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -80,7 +80,7 @@ describe('Cart | Reducer | Cart Payment', () => {
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.Payment]: new Array('firstError')
+          [DaffCartOperationType.Payment]: [{code: 'first error code', message: 'first error message'}]
         }
       }
 
@@ -139,7 +139,7 @@ describe('Cart | Reducer | Cart Payment', () => {
   });
 
   describe('when CartPaymentUpdateFailureAction is triggered', () => {
-    let error: string;
+    let error: DaffStateError;
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -152,11 +152,11 @@ describe('Cart | Reducer | Cart Payment', () => {
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.Payment]: new Array('firstError')
+          [DaffCartOperationType.Payment]: [{code: 'first error code', message: 'first error message'}]
         }
       }
 
-      error = 'error';
+      error = {code: 'error code', message: 'error message'};
 
       const cartPaymentUpdateFailure = new DaffCartPaymentUpdateFailure(error);
 
@@ -213,7 +213,7 @@ describe('Cart | Reducer | Cart Payment', () => {
   });
 
   describe('when CartPaymentUpdateWithBillingFailureAction is triggered', () => {
-    let error: string;
+    let error: DaffStateError;
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -226,11 +226,11 @@ describe('Cart | Reducer | Cart Payment', () => {
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.Payment]: new Array('firstError')
+          [DaffCartOperationType.Payment]: [{code: 'first error code', message: 'first error message'}]
         }
       }
 
-      error = 'error';
+      error = {code: 'error code', message: 'error message'};
 
       const cartPaymentUpdateWithBillingFailure = new DaffCartPaymentUpdateWithBillingFailure(error);
 
@@ -286,7 +286,7 @@ describe('Cart | Reducer | Cart Payment', () => {
   });
 
   describe('when CartPaymentRemoveFailureAction is triggered', () => {
-    let error: string;
+    let error: DaffStateError;
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -299,11 +299,11 @@ describe('Cart | Reducer | Cart Payment', () => {
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.Payment]: new Array('firstError')
+          [DaffCartOperationType.Payment]: [{code: 'first error code', message: 'first error message'}]
         }
       }
 
-      error = 'error';
+      error = {code: 'error code', message: 'error message'};
 
       const cartPaymentRemoveFailure = new DaffCartPaymentRemoveFailure(error);
 

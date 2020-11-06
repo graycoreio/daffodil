@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffLoadingState } from '@daffodil/core/state';
+import { DaffLoadingState, DaffStateError } from '@daffodil/core/state';
 import { DaffCart, DaffCartCoupon } from '@daffodil/cart';
 import { DaffCartCouponApply, DaffCartOperationType, DaffCartReducerState, DaffCartCouponApplySuccess, DaffCartCouponApplyFailure, DaffCartCouponList, DaffCartCouponListSuccess, DaffCartCouponListFailure, DaffCartCouponRemove, DaffCartCouponRemoveSuccess, DaffCartCouponRemoveFailure, DaffCartCouponRemoveAll, DaffCartCouponRemoveAllSuccess, DaffCartCouponRemoveAllFailure, initialState } from '@daffodil/cart/state';
 import {
@@ -80,7 +80,7 @@ describe('Cart | Reducer | cartCouponReducer', () => {
   });
 
   describe('when CartCouponApplyFailureAction is triggered', () => {
-    const error = 'error message';
+    const error: DaffStateError = {code: 'error code', message: 'error message'};
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -93,7 +93,7 @@ describe('Cart | Reducer | cartCouponReducer', () => {
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.Coupon]: new Array('firstError')
+          [DaffCartOperationType.Coupon]: [{code: 'first error code', message: 'first error message'}]
         }
       }
 
@@ -153,7 +153,7 @@ describe('Cart | Reducer | cartCouponReducer', () => {
   });
 
   describe('when CartCouponListFailureAction is triggered', () => {
-    const error = 'error message';
+    const error: DaffStateError = {code: 'error code', message: 'error message'};
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -166,7 +166,7 @@ describe('Cart | Reducer | cartCouponReducer', () => {
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.Coupon]: new Array('firstError')
+          [DaffCartOperationType.Coupon]: [{code: 'first error code', message: 'first error message'}]
         }
       }
 
@@ -225,7 +225,7 @@ describe('Cart | Reducer | cartCouponReducer', () => {
   });
 
   describe('when CartCouponRemoveFailureAction is triggered', () => {
-    let error: string;
+    let error: DaffStateError;
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -238,11 +238,11 @@ describe('Cart | Reducer | cartCouponReducer', () => {
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.Coupon]: new Array('firstError')
+          [DaffCartOperationType.Coupon]: [{code: 'first error code', message: 'first error message'}]
         }
       }
 
-      error = 'error';
+      error = {code: 'error code', message: 'error message'};
 
       const cartCouponRemoveFailure = new DaffCartCouponRemoveFailure(error);
 
@@ -305,7 +305,7 @@ describe('Cart | Reducer | cartCouponReducer', () => {
   });
 
   describe('when CartCouponRemoveAllFailureAction is triggered', () => {
-    let error: string;
+    let error: DaffStateError;
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -318,11 +318,11 @@ describe('Cart | Reducer | cartCouponReducer', () => {
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.Coupon]: new Array('firstError')
+          [DaffCartOperationType.Coupon]: [{code: 'first error code', message: 'first error message'}]
         }
       }
 
-      error = 'error';
+      error = {code: 'error code', message: 'error message'};
 
       const cartClearFailure = new DaffCartCouponRemoveAllFailure(error);
 

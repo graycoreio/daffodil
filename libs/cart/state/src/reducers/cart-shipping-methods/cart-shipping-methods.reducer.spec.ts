@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffLoadingState } from '@daffodil/core/state';
+import { DaffLoadingState, DaffStateError } from '@daffodil/core/state';
 import { DaffCart, DaffCartShippingRate } from '@daffodil/cart';
 import { DaffCartShippingMethodsLoad, DaffCartOperationType, DaffCartReducerState, DaffCartShippingMethodsLoadSuccess, DaffCartShippingMethodsLoadFailure, initialState } from '@daffodil/cart/state';
 import { DaffCartFactory, DaffCartShippingRateFactory } from '@daffodil/cart/testing';
@@ -76,7 +76,7 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
   });
 
   describe('when CartShippingMethodsLoadFailureAction is triggered', () => {
-    const error = 'error message';
+    const error: DaffStateError = {code: 'error code', message: 'error message'};
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -89,7 +89,7 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.ShippingMethods]: new Array('firstError')
+          [DaffCartOperationType.ShippingMethods]: [{code: 'first error code', message: 'first error message'}]
         }
       }
 

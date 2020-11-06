@@ -1,4 +1,4 @@
-import { DaffLoadingState } from '@daffodil/core/state';
+import { DaffLoadingState, DaffStateError } from '@daffodil/core/state';
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartBillingAddressLoad, DaffCartOperationType, DaffCartReducerState, DaffCartBillingAddressLoadSuccess, DaffCartBillingAddressLoadFailure, DaffCartBillingAddressUpdate, DaffCartBillingAddressUpdateSuccess, DaffCartBillingAddressUpdateFailure, DaffCartAddressUpdate, DaffCartAddressUpdateSuccess, DaffCartAddressUpdateFailure, initialState } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
@@ -67,7 +67,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
   });
 
   describe('when CartBillingAddressLoadFailureAction is triggered', () => {
-    const error = 'error message';
+    const error: DaffStateError = {code: 'error code', message: 'error message'};
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -80,7 +80,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.BillingAddress]: new Array('firstError')
+          [DaffCartOperationType.BillingAddress]: [{code: 'first error code', message: 'first error message'}]
         }
       }
 
@@ -139,7 +139,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
   });
 
   describe('when CartBillingAddressUpdateFailureAction is triggered', () => {
-    let error: string;
+    let error: DaffStateError;
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -152,11 +152,11 @@ describe('Cart | Reducer | Cart Billing Address', () => {
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.BillingAddress]: new Array('firstError')
+          [DaffCartOperationType.BillingAddress]: [{code: 'first error code', message: 'first error message'}]
         }
       }
 
-      error = 'error';
+      error = {code: 'error code', message: 'error message'};
 
       const cartBillingAddressUpdateFailure = new DaffCartBillingAddressUpdateFailure(error);
 
@@ -213,7 +213,7 @@ describe('Cart | Reducer | Cart Billing Address', () => {
   });
 
   describe('when DaffCartAddressUpdateFailure is triggered', () => {
-    let error: string;
+    let error: DaffStateError;
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -226,11 +226,11 @@ describe('Cart | Reducer | Cart Billing Address', () => {
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.BillingAddress]: new Array('firstError')
+          [DaffCartOperationType.BillingAddress]: [{code: 'first error code', message: 'first error message'}]
         }
       }
 
-      error = 'error';
+      error = {code: 'error code', message: 'error message'};
 
       const cartAddressUpdateFailure = new DaffCartAddressUpdateFailure(error);
 

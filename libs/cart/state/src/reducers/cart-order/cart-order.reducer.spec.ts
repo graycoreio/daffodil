@@ -1,4 +1,4 @@
-import { DaffLoadingState } from '@daffodil/core/state';
+import { DaffLoadingState, DaffStateError } from '@daffodil/core/state';
 import { DaffCartPlaceOrder, DaffCartOrderReducerState, DaffCartPlaceOrderSuccess, DaffCartPlaceOrderFailure } from '@daffodil/cart/state';
 
 import { daffCartOrderReducer as reducer } from './cart-order.reducer';
@@ -61,7 +61,7 @@ describe('Cart | Reducer | CartOrder', () => {
   });
 
   describe('when CartPlaceOrderFailureAction is triggered', () => {
-    const error = 'error message';
+    const error: DaffStateError = {code: 'error code', message: 'error message'};
     let result;
     let state: DaffCartOrderReducerState;
 
