@@ -3,6 +3,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
+import { DaffStateError } from '@daffodil/core/state';
 import {
   DaffCart,
   DaffCartAddress,
@@ -91,7 +92,7 @@ describe('Daffodil | Cart | CartShippingAddressEffects', () => {
 
     describe('and the call to CartShippingAddressService fails', () => {
       beforeEach(() => {
-        const error = 'Failed to load cart shipping address';
+        const error: DaffStateError = {code: 'code', message: 'Failed to load cart shipping address'};
         const response = cold('#', {}, error);
         daffShippingAddressDriverSpy.get.and.returnValue(response);
         const cartShippingAddressLoadFailureAction = new DaffCartShippingAddressLoadFailure(error);
@@ -130,7 +131,7 @@ describe('Daffodil | Cart | CartShippingAddressEffects', () => {
 
     describe('and the call to CartShippingAddressService fails', () => {
       beforeEach(() => {
-        const error = 'Failed to update cart shipping address';
+        const error: DaffStateError = {code: 'code', message: 'Failed to update cart shipping address'};
         const response = cold('#', {}, error);
         daffShippingAddressDriverSpy.update.and.returnValue(response);
         const cartCreateFailureAction = new DaffCartShippingAddressUpdateFailure(error);

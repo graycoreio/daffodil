@@ -6,7 +6,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import {
   DaffStorageServiceError
 } from '@daffodil/core'
-import { DaffCart, DaffCartStorageService } from '@daffodil/cart';
+import { DaffCart, DaffCartStorageService, DAFF_CART_ERROR_MATCHER } from '@daffodil/cart';
 import { DaffCartDriver, DaffCartServiceInterface } from '@daffodil/cart/driver';
 
 import {
@@ -30,6 +30,7 @@ import {
 export class DaffCartEffects<T extends DaffCart> {
   constructor(
     private actions$: Actions,
+    @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: Function,
     @Inject(DaffCartDriver) private driver: DaffCartServiceInterface<T>,
     private storage: DaffCartStorageService,
   ) {}
@@ -39,7 +40,7 @@ export class DaffCartEffects<T extends DaffCart> {
     ofType(DaffCartActionTypes.CartCreateAction),
     switchMap((action: DaffCartCreate) => this.driver.create().pipe(
       map((resp: {id: T['id']}) => new DaffCartCreateSuccess(resp)),
-      catchError(error => of(new DaffCartCreateFailure('Failed to create cart')))
+      catchError(error => of(new DaffCartCreateFailure(this.errorMatcher(error))))
     ))
   )
 
@@ -51,7 +52,7 @@ export class DaffCartEffects<T extends DaffCart> {
         this.storage.setCartId(String(action.payload.id))
       }),
       switchMapTo(EMPTY),
-      catchError(error => of(new DaffCartStorageFailure('Cart Storage Failed'))),
+      catchError(error => of(new DaffCartStorageFailure(this.errorMatcher(error)))),
     )),
   )
 
@@ -63,8 +64,8 @@ export class DaffCartEffects<T extends DaffCart> {
       switchMap(cartId => this.driver.get(cartId)),
       map((resp: T) => new DaffCartLoadSuccess(resp)),
       catchError(error => of(error instanceof DaffStorageServiceError
-        ? new DaffCartStorageFailure('Cart Storage Failed')
-        : new DaffCartLoadFailure('Failed to load cart')
+        ? new DaffCartStorageFailure(this.errorMatcher(error))
+        : new DaffCartLoadFailure(this.errorMatcher(error))
       )),
     )),
   )
@@ -75,7 +76,7 @@ export class DaffCartEffects<T extends DaffCart> {
     switchMap((action: DaffAddToCart) =>
       this.driver.addToCart(action.payload.productId, action.payload.qty).pipe(
         map((resp: T) => new DaffAddToCartSuccess(resp)),
-        catchError(error => of(new DaffAddToCartFailure('Failed to add item to cart')))
+        catchError(error => of(new DaffAddToCartFailure(this.errorMatcher(error))))
       )
     )
   )
@@ -88,8 +89,8 @@ export class DaffCartEffects<T extends DaffCart> {
       switchMap(cartId => this.driver.clear(cartId)),
       map((resp: T) => new DaffCartClearSuccess(resp)),
       catchError(error => of(error instanceof DaffStorageServiceError
-        ? new DaffCartStorageFailure('Cart Storage Failed')
-        : new DaffCartClearFailure('Failed to clear the cart.')
+        ? new DaffCartStorageFailure(this.errorMatcher(error))
+        : new DaffCartClearFailure(this.errorMatcher(error))
       )),
     )),
   )

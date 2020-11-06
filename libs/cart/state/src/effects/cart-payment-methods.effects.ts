@@ -3,7 +3,7 @@ import { switchMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
-import { DaffCartPaymentMethod, DaffCartStorageService } from '@daffodil/cart';
+import { DaffCartPaymentMethod, DaffCartStorageService, DAFF_CART_ERROR_MATCHER } from '@daffodil/cart';
 import { DaffCartPaymentMethodsDriver, DaffCartPaymentMethodsServiceInterface } from '@daffodil/cart/driver';
 
 import {
@@ -18,6 +18,7 @@ export class DaffCartPaymentMethodsEffects<T extends DaffCartPaymentMethod> {
 
   constructor(
     private actions$: Actions,
+    @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: Function,
     @Inject(DaffCartPaymentMethodsDriver) private driver: DaffCartPaymentMethodsServiceInterface<T>,
     private storage: DaffCartStorageService
     ) {}
@@ -28,7 +29,7 @@ export class DaffCartPaymentMethodsEffects<T extends DaffCartPaymentMethod> {
     switchMap((action: DaffCartPaymentMethodsLoad) =>
       this.driver.list(this.storage.getCartId()).pipe(
         map((resp: T[]) => new DaffCartPaymentMethodsLoadSuccess(resp)),
-        catchError(error => of(new DaffCartPaymentMethodsLoadFailure('Failed to list cart payment methods')))
+        catchError(error => of(new DaffCartPaymentMethodsLoadFailure(this.errorMatcher(error))))
       )
     )
   )

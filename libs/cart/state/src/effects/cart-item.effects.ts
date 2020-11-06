@@ -3,7 +3,7 @@ import { switchMap, map, catchError, debounceTime } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
-import { DaffCartItemInput, DaffCart, DaffCartStorageService } from '@daffodil/cart';
+import { DaffCartItemInput, DaffCart, DaffCartStorageService, DAFF_CART_ERROR_MATCHER } from '@daffodil/cart';
 import { DaffCartItemDriver, DaffCartItemServiceInterface } from '@daffodil/cart/driver';
 
 import {
@@ -36,6 +36,7 @@ export class DaffCartItemEffects<
 > {
   constructor(
     private actions$: Actions,
+    @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: Function,
     @Inject(DaffCartItemDriver) private driver: DaffCartItemServiceInterface<T, U, V>,
 		private storage: DaffCartStorageService,
 		@Inject(DaffCartItemStateDebounceTime) private cartItemStateDebounceTime: number
@@ -47,7 +48,7 @@ export class DaffCartItemEffects<
     switchMap((action: DaffCartItemList) =>
       this.driver.list(this.storage.getCartId()).pipe(
         map((resp: T[]) => new DaffCartItemListSuccess(resp)),
-        catchError(error => of(new DaffCartItemListFailure('Failed to list cart items')))
+        catchError(error => of(new DaffCartItemListFailure(this.errorMatcher(error))))
       )
     )
   )
@@ -58,7 +59,7 @@ export class DaffCartItemEffects<
     switchMap((action: DaffCartItemLoad<T>) =>
       this.driver.get(this.storage.getCartId(), action.itemId).pipe(
         map((resp: T) => new DaffCartItemLoadSuccess(resp)),
-        catchError(error => of(new DaffCartItemLoadFailure('Failed to load cart item')))
+        catchError(error => of(new DaffCartItemLoadFailure(this.errorMatcher(error))))
       )
     )
   )
@@ -68,11 +69,11 @@ export class DaffCartItemEffects<
     ofType(DaffCartItemActionTypes.CartItemAddAction),
     switchMap((action: DaffCartItemAdd<U>) =>
 			this.driver.add(
-				this.storage.getCartId(), 
+				this.storage.getCartId(),
 				action.input
 			).pipe(
         map((resp: V) => new DaffCartItemAddSuccess(resp)),
-        catchError(error => of(new DaffCartItemAddFailure('Failed to add cart item')))
+        catchError(error => of(new DaffCartItemAddFailure(this.errorMatcher(error))))
       )
     )
 	)
@@ -87,7 +88,7 @@ export class DaffCartItemEffects<
 				action.changes
 			).pipe(
 				map((resp: V) => new DaffCartItemUpdateSuccess(resp, action.itemId)),
-				catchError(error => of(new DaffCartItemUpdateFailure('Failed to update cart item')))
+				catchError(error => of(new DaffCartItemUpdateFailure(this.errorMatcher(error))))
 			)
 		)
 	)
@@ -105,7 +106,7 @@ export class DaffCartItemEffects<
     switchMap((action: DaffCartItemDelete<T>) =>
       this.driver.delete(this.storage.getCartId(), action.itemId).pipe(
         map((resp: V) => new DaffCartItemDeleteSuccess(resp)),
-        catchError(error => of(new DaffCartItemDeleteFailure('Failed to remove the cart item')))
+        catchError(error => of(new DaffCartItemDeleteFailure(this.errorMatcher(error))))
       )
     )
   )

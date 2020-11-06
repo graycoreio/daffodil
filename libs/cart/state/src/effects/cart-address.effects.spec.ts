@@ -15,6 +15,7 @@ import {
   DaffCartFactory,
   DaffCartAddressFactory
 } from '@daffodil/cart/testing';
+import { DaffStateError, daffTransformErrorToStateError } from '@daffodil/core/state';
 
 import { DaffCartAddressEffects } from './cart-address.effects';
 
@@ -31,7 +32,7 @@ describe('Daffodil | Cart | CartAddressEffects', () => {
   let daffAddressDriverSpy: jasmine.SpyObj<DaffCartAddressServiceInterface>;
 
   let daffCartStorageSpy: jasmine.SpyObj<DaffCartStorageService>;
-  const cartStorageFailureAction = new DaffCartStorageFailure('Cart Storage Failed');
+  const cartStorageFailureAction = new DaffCartStorageFailure(daffTransformErrorToStateError(new DaffStorageServiceError('An error occurred during storage.')));
   const throwStorageError = () => { throw new DaffStorageServiceError('An error occurred during storage.') };
 
   beforeEach(() => {
@@ -106,7 +107,7 @@ describe('Daffodil | Cart | CartAddressEffects', () => {
 
     describe('and the call to CartAddressService fails', () => {
       beforeEach(() => {
-        const error = 'Failed to update cart address';
+        const error: DaffStateError = {code: 'code', message: 'Failed to update cart address'};
         const response = cold('#', {}, error);
         daffAddressDriverSpy.update.and.returnValue(response);
         const cartAddressUpdateFailureAction = new DaffCartAddressUpdateFailure(error);
