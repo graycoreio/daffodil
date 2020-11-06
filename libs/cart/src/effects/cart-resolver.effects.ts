@@ -22,7 +22,7 @@ import {
 import { DaffCartStorageService } from '../storage/cart-storage.service';
 import { DaffCartDriver, DaffCartServiceInterface } from '../drivers/public_api';
 import { DaffCart } from '../models/cart';
-import { DaffCartNotFoundError } from '../errors/not-found';
+import { DaffCartNotFoundError } from '../errors/cart-not-found';
 
 /**
  * An effect for resolving the Cart. It will check local state for a cart id, and retrieve the cart if it exists. If a cart
@@ -48,10 +48,10 @@ export class DaffCartResolverEffects<T extends DaffCart = DaffCart> {
         return of(new DaffCartLoadSuccess(resp))
       }),
       catchError(error => {
-        switch(error.name) {
-          case DaffStorageServiceError.name:
-            return of(new DaffCartStorageFailure('Cart Storage Failed'))
-          case DaffCartNotFoundError.name:
+        switch(true) {
+          case error instanceof DaffStorageServiceError:
+            return of(new DaffCartStorageFailure('Cart Storage Failed'));
+          case error instanceof DaffCartNotFoundError:
             return of(new DaffCartCreate());
           default:
             return of(new DaffCartLoadFailure('Cart loading has failed'));

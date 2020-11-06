@@ -18,7 +18,7 @@ import { getCountries, MagentoGetCountriesResponse } from './queries/public_api'
 import { MagentoRegion, MagentoCountry } from './models/responses/public_api';
 import { getCountry } from './queries/get-country';
 import { MagentoGetCountryResponse } from './queries/responses/get-country';
-import { DaffCountryNotFoundError, DaffInvalidAPIResponseError } from '../../errors/public_api';
+import { DaffCountryNotFoundError, DaffGeographyInvalidAPIResponseError } from '../../errors/public_api';
 import * as validators from './validators/public_api';
 
 describe('Driver | Magento | Geography | GeographyService', () => {
@@ -192,14 +192,14 @@ describe('Driver | Magento | Geography | GeographyService', () => {
       describe('and the response fails validation', () => {
         beforeEach(() => {
           validatorSpy.and.callFake(() => {
-            throw new DaffInvalidAPIResponseError('Get countries response does not contain a valid list of countries.')
+            throw new DaffGeographyInvalidAPIResponseError('Get countries response does not contain a valid list of countries.')
           });
         });
 
-        it('should throw a DaffInvalidAPIResponseError', done => {
+        it('should throw a DaffGeographyInvalidAPIResponseError', done => {
           service.list().pipe(
             catchError(err => {
-              expect(err).toEqual(jasmine.any(DaffInvalidAPIResponseError));
+              expect(err).toEqual(jasmine.any(DaffGeographyInvalidAPIResponseError));
               done();
               return [];
             })

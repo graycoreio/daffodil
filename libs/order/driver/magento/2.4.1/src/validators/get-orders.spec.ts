@@ -1,6 +1,6 @@
 import { ApolloQueryResult } from 'apollo-client';
 
-import { DaffInvalidAPIResponseError } from '@daffodil/order/driver';
+import { DaffOrderInvalidAPIResponseError } from '@daffodil/order/driver';
 
 import { MagentoGetGuestOrdersResponse } from '../queries/public_api';
 import { validateGetOrdersResponse as validator } from './get-orders';
@@ -34,8 +34,8 @@ describe('Driver | Magento | Order | Validator | GetOrders', () => {
       response.data.graycoreGuestOrders.items = null;
     });
 
-    it('should throw a DaffInvalidAPIResponseError', () => {
-      expect(() => validator(response)).toThrow(jasmine.any(DaffInvalidAPIResponseError));
+    it('should throw a DaffOrderInvalidAPIResponseError', () => {
+      expect(() => validator(response)).toThrow(jasmine.any(DaffOrderInvalidAPIResponseError));
     });
   });
 
@@ -44,8 +44,8 @@ describe('Driver | Magento | Order | Validator | GetOrders', () => {
       response.data.graycoreGuestOrders.items = [{} as any];
     });
 
-    it('should throw a DaffInvalidAPIResponseError', () => {
-      expect(() => validator(response)).toThrow(jasmine.any(DaffInvalidAPIResponseError));
+    it('should throw a DaffOrderInvalidAPIResponseError', () => {
+      expect(() => validator(response)).toThrow(jasmine.any(DaffOrderInvalidAPIResponseError));
     });
   });
 });

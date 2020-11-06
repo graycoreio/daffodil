@@ -2,7 +2,7 @@ import { ApolloQueryResult } from 'apollo-client';
 
 import { MagentoGetCountriesResponse } from '../queries/public_api';
 import { validateGetCountriesResponse as validator } from './get-countries';
-import { DaffInvalidAPIResponseError } from '../../../errors/public_api';
+import { DaffGeographyInvalidAPIResponseError } from '../../../errors/public_api';
 
 describe('Driver | Magento | Auth | Validator | CheckToken', () => {
   let response: ApolloQueryResult<MagentoGetCountriesResponse>;
@@ -31,8 +31,8 @@ describe('Driver | Magento | Auth | Validator | CheckToken', () => {
       response.data.countries = null;
     });
 
-    it('should throw a DaffInvalidAPIResponseError', () => {
-      expect(() => validator(response)).toThrow(jasmine.any(DaffInvalidAPIResponseError));
+    it('should throw a DaffGeographyInvalidAPIResponseError', () => {
+      expect(() => validator(response)).toThrow(jasmine.any(DaffGeographyInvalidAPIResponseError));
     });
   });
 });

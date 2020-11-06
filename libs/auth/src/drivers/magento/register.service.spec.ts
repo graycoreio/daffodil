@@ -9,12 +9,12 @@ import { catchError } from 'rxjs/operators';
 import {
   DaffAccountRegistrationFactory,
 } from '@daffodil/auth/testing';
+import { DaffBadInputError } from '@daffodil/driver';
 
 import { DaffMagentoRegisterService } from './register.service';
 import { DaffAccountRegistration } from '../../models/account-registration';
 import { DaffLoginInfo } from '../../models/login-info';
 import { createCustomerMutation } from './queries/public_api';
-import { DaffBadInputError } from '../../errors/public_api';
 
 describe('Driver | Magento | Auth | RegisterService', () => {
   let controller: ApolloTestingController;

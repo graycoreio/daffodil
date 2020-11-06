@@ -1,10 +1,10 @@
 import { DaffErrorCodeMap } from '@daffodil/core';
+import { DaffBadInputError } from '@daffodil/driver';
 
 import { MagentoAuthGraphQlErrorCode } from './codes';
 import {
   DaffUnauthorizedError,
   DaffAuthenticationFailedError,
-  DaffBadInputError
 } from '../../../errors/public_api';
 
 export const DaffAuthMagentoErrorMap: DaffErrorCodeMap = {

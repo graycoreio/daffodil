@@ -26,7 +26,7 @@ import * as validators from './validators/public_api';
 import {
   DaffAuthenticationFailedError,
   DaffUnauthorizedError,
-  DaffInvalidAPIResponseError
+  DaffAuthInvalidAPIResponseError
 } from '../../errors/public_api';
 
 describe('Driver | Magento | Auth | LoginService', () => {
@@ -136,14 +136,14 @@ describe('Driver | Magento | Auth | LoginService', () => {
       describe('and the response fails validation', () => {
         beforeEach(() => {
           generateTokenValidatorSpy.and.callFake(() => {
-            throw new DaffInvalidAPIResponseError('Generate token response is invalid.')
+            throw new DaffAuthInvalidAPIResponseError('Generate token response is invalid.')
           });
         });
 
-        it('should throw a DaffInvalidAPIResponseError', done => {
+        it('should throw a DaffAuthInvalidAPIResponseError', done => {
           service.login(mockLoginInfo).pipe(
             catchError(err => {
-              expect(err).toEqual(jasmine.any(DaffInvalidAPIResponseError));
+              expect(err).toEqual(jasmine.any(DaffAuthInvalidAPIResponseError));
               done();
               return [];
             })
@@ -222,7 +222,7 @@ describe('Driver | Magento | Auth | LoginService', () => {
       describe('and the response fails validation', () => {
         beforeEach(() => {
           revokeTokenValidatorSpy.and.callFake(() => {
-            throw new DaffInvalidAPIResponseError('Revoke token response is invalid.')
+            throw new DaffAuthInvalidAPIResponseError('Revoke token response is invalid.')
           });
         });
 
@@ -230,7 +230,7 @@ describe('Driver | Magento | Auth | LoginService', () => {
         it('should throw an error', done => {
           service.logout().pipe(
             catchError(err => {
-              expect(err).toEqual(jasmine.any(DaffInvalidAPIResponseError));
+              expect(err).toEqual(jasmine.any(DaffAuthInvalidAPIResponseError));
               done();
               return [];
             })

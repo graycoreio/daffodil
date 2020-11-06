@@ -2,7 +2,7 @@ import { ApolloQueryResult } from 'apollo-client';
 
 import { MagentoCheckTokenResponse } from '../queries/public_api';
 import { validateCheckTokenResponse as validator } from './check-token';
-import { DaffInvalidAPIResponseError } from '../../../errors/public_api';
+import { DaffAuthInvalidAPIResponseError } from '../../../errors/public_api';
 
 describe('Driver | Magento | Auth | Validator | CheckToken', () => {
   let response: ApolloQueryResult<MagentoCheckTokenResponse>;
@@ -33,8 +33,8 @@ describe('Driver | Magento | Auth | Validator | CheckToken', () => {
       response.data.customer.id = null;
     });
 
-    it('should throw a DaffInvalidAPIResponseError', () => {
-      expect(() => validator(response)).toThrow(jasmine.any(DaffInvalidAPIResponseError));
+    it('should throw a DaffAuthInvalidAPIResponseError', () => {
+      expect(() => validator(response)).toThrow(jasmine.any(DaffAuthInvalidAPIResponseError));
     });
   });
 });
