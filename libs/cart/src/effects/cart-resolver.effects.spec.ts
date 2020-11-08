@@ -22,7 +22,7 @@ import {
   DaffCartCreateSuccess,
   DaffResolveCartFailure
 } from '../actions/public_api';
-import { DaffCartNotFoundError } from '../errors/not-found';
+import { DaffCartNotFoundError } from '../errors/cart-not-found';
 
 describe('DaffCartResolverEffects', () => {
 	let actions$: Observable<any>;
@@ -34,7 +34,7 @@ describe('DaffCartResolverEffects', () => {
 
   let cartStorageService: jasmine.SpyObj<DaffCartStorageService>;
   const cartStorageFailureAction = new DaffCartStorageFailure('Cart Storage Failed');
-  const throwStorageError = () => { throw new DaffStorageServiceError() };
+  const throwStorageError = () => { throw new DaffStorageServiceError('An error occurred during storage.') };
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({

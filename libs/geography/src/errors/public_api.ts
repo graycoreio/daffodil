@@ -1,2 +1,2 @@
-export { DaffCountryNotFoundError } from './not-found';
-export { DaffInvalidAPIResponseError } from './invalid-api-response';
+export { DaffCountryNotFoundError } from './country-not-found';
+export { DaffGeographyInvalidAPIResponseError } from './invalid-api-response';

@@ -1,12 +1,11 @@
 import { ApolloError } from 'apollo-client';
 
-import { DaffErrorCodeMap } from '@daffodil/core';
+import { DaffError, DaffErrorCodeMap, DaffInheritableError } from '@daffodil/core';
 
 import { daffTransformMagentoError } from './transform';
 
-class MockError extends Error {
-  readonly name = 'MockError';
-  readonly code: string = 'MOCK';
+class MockError extends DaffInheritableError implements DaffError {
+	public readonly code: string = 'MOCK';
 
 	constructor(public message: string) {
 		super(message);

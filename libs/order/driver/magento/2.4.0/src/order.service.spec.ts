@@ -19,7 +19,7 @@ import {
 } from '@daffodil/order';
 import {
   DaffOrderNotFoundError,
-  DaffInvalidAPIResponseError,
+  DaffOrderInvalidAPIResponseError,
 } from '@daffodil/order/driver';
 import {
   DaffOrderFactory,
@@ -332,14 +332,14 @@ describe('Driver | Magento | Order | OrderService', () => {
       describe('and the response fails validation', () => {
         beforeEach(() => {
           validatorSpy.and.callFake(() => {
-            throw new DaffInvalidAPIResponseError('Get orders response does not contain a valid list of orders.')
+            throw new DaffOrderInvalidAPIResponseError('Get orders response does not contain a valid list of orders.')
           });
         });
 
-        it('should throw a DaffInvalidAPIResponseError', done => {
+        it('should throw a DaffOrderInvalidAPIResponseError', done => {
           service.list(cartId).pipe(
             catchError(err => {
-              expect(err).toEqual(jasmine.any(DaffInvalidAPIResponseError));
+              expect(err).toEqual(jasmine.any(DaffOrderInvalidAPIResponseError));
               done();
               return [];
             })
@@ -450,14 +450,14 @@ describe('Driver | Magento | Order | OrderService', () => {
       describe('and the response fails validation', () => {
         beforeEach(() => {
           validatorSpy.and.callFake(() => {
-            throw new DaffInvalidAPIResponseError('Get orders response does not contain a valid list of orders.')
+            throw new DaffOrderInvalidAPIResponseError('Get orders response does not contain a valid list of orders.')
           });
         });
 
-        it('should throw a DaffInvalidAPIResponseError', done => {
+        it('should throw a DaffOrderInvalidAPIResponseError', done => {
           service.list(cartId).pipe(
             catchError(err => {
-              expect(err).toEqual(jasmine.any(DaffInvalidAPIResponseError));
+              expect(err).toEqual(jasmine.any(DaffOrderInvalidAPIResponseError));
               done();
               return [];
             })

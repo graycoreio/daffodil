@@ -2,7 +2,7 @@ import { ApolloQueryResult } from 'apollo-client';
 
 import { MagentoGenerateTokenResponse } from '../queries/public_api';
 import { validateGenerateTokenResponse as validator } from './generate-token';
-import { DaffInvalidAPIResponseError } from '../../../errors/public_api';
+import { DaffAuthInvalidAPIResponseError } from '../../../errors/public_api';
 
 describe('Driver | Magento | Auth | Validator | GenerateToken', () => {
   let response: ApolloQueryResult<MagentoGenerateTokenResponse>;
@@ -33,8 +33,8 @@ describe('Driver | Magento | Auth | Validator | GenerateToken', () => {
       response.data.generateCustomerToken.token = null;
     });
 
-    it('should throw a DaffInvalidAPIResponseError', () => {
-      expect(() => validator(response)).toThrow(jasmine.any(DaffInvalidAPIResponseError));
+    it('should throw a DaffAuthInvalidAPIResponseError', () => {
+      expect(() => validator(response)).toThrow(jasmine.any(DaffAuthInvalidAPIResponseError));
     });
   });
 });

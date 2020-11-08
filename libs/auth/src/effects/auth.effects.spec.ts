@@ -52,7 +52,7 @@ describe('DaffAuthEffects', () => {
   const authFactory: DaffAuthTokenFactory = new DaffAuthTokenFactory();
 
   const authStorageFailureAction = new DaffAuthStorageFailure('Storage of auth token has failed.');
-  const throwStorageError = () => { throw new DaffStorageServiceError() };
+  const throwStorageError = () => { throw new DaffStorageServiceError('An error occurred during storage.') };
 
   let mockAuth: DaffAuthToken;
   let mockLoginInfo: DaffLoginInfo;

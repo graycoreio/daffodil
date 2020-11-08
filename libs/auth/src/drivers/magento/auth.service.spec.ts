@@ -17,7 +17,7 @@ import { DaffAccountRegistration } from '../../models/account-registration';
 import { DaffAuthToken } from '../../models/auth-token';
 import { DaffLoginInfo } from '../../models/login-info';
 import { checkTokenQuery, MagentoCheckTokenResponse } from './queries/public_api';
-import { DaffUnauthorizedError, DaffInvalidAPIResponseError } from '../../errors/public_api';
+import { DaffUnauthorizedError, DaffAuthInvalidAPIResponseError } from '../../errors/public_api';
 import * as validators from './validators/public_api';
 
 describe('Driver | Magento | Auth | AuthService', () => {
@@ -108,14 +108,14 @@ describe('Driver | Magento | Auth | AuthService', () => {
       describe('and the response fails validation', () => {
         beforeEach(() => {
           validatorSpy.and.callFake(() => {
-            throw new DaffInvalidAPIResponseError('Check token response is invalid.')
+            throw new DaffAuthInvalidAPIResponseError('Check token response is invalid.')
           });
         });
 
-        it('should throw a DaffInvalidAPIResponseError', done => {
+        it('should throw a DaffAuthInvalidAPIResponseError', done => {
           service.check().pipe(
             catchError(err => {
-              expect(err).toEqual(jasmine.any(DaffInvalidAPIResponseError));
+              expect(err).toEqual(jasmine.any(DaffAuthInvalidAPIResponseError));
               done();
               return [];
             })
