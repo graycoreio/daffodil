@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.17.0](https://github.com/graycoreio/daffodil/compare/v0.16.1...v0.17.0) (2020-11-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **product:** The composite product selectors are now replaced with
+selectCompositeProductPricesForConfiguration,
+selectCompositeProductPrices,
+selectCompositeProductPricesAsCurrentlyConfigured
+
+### Features
+
+* **all:** swap error names to compile-safe static codes ([#1127](https://github.com/graycoreio/daffodil/issues/1127)) ([58185af](https://github.com/graycoreio/daffodil/commit/58185af420c78a4bc0a749ca3c16a620211e664f))
+* **core:** add error models and transform ([#1125](https://github.com/graycoreio/daffodil/issues/1125)) ([ede2170](https://github.com/graycoreio/daffodil/commit/ede217035af1a778ed9e38f235943db2f2be40f4))
+* **product:** change the api for composite product facade and selectors ([#1120](https://github.com/graycoreio/daffodil/issues/1120)) ([516b541](https://github.com/graycoreio/daffodil/commit/516b54171085592f52d355c44d05adf135f384b7))
+
+
+### Bug Fixes
+
+* **core:** null or undefined values cause an infinite loop in arithmetic functions ([#1128](https://github.com/graycoreio/daffodil/issues/1128)) ([65724c2](https://github.com/graycoreio/daffodil/commit/65724c2813cc958bbfe03e5e1f6ebd21e0dc03b4))
+
 ### [0.16.1](https://github.com/graycoreio/daffodil/compare/v0.16.0...v0.16.1) (2020-11-03)
 
 
