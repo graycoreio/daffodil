@@ -2,6 +2,7 @@ import gql from 'graphql-tag';
 
 export const orderCreditTotalFragment = gql`
   fragment orderCreditTotal on CreditMemoTotal {
+    __typename
     discounts {
       amount {
         value

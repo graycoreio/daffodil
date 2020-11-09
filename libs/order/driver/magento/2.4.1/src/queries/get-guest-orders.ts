@@ -8,7 +8,7 @@ import { orderFragment } from './fragments/public_api';
 export const getGuestOrders = (extraOrderFragments: DocumentNode[] = []) => gql`
   query GetGuestOrders($cartId: String!) {
     graycoreGuestOrders(cartId: $cartId) {
-      orders {
+      items {
         ...order
         ${daffBuildFragmentNameSpread(...extraOrderFragments)}
       }

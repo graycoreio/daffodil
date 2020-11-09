@@ -2,6 +2,7 @@ import gql from 'graphql-tag';
 
 export const orderAddressFragment = gql`
   fragment orderAddress on OrderAddress {
+    __typename
     city
     company
     country_code

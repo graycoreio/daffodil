@@ -2,6 +2,7 @@ import gql from 'graphql-tag';
 
 export const orderTotalFragment = gql`
   fragment orderTotal on OrderTotal {
+    __typename
     discounts {
       amount {
         value
