@@ -47,4 +47,16 @@ export interface DaffCompositeProductFacadeInterface extends DaffStoreFacade<Act
 	 * @param item_id the id of the item_id.
 	 */
 	isItemRequired(id: DaffCompositeProduct['id'], item_id: DaffCompositeProductItem['id']): Observable<boolean>;
+
+	/**
+	 * Returns whether a DaffPriceRange has a discount.
+	 * @param priceRange a DaffPriceRange
+	 */
+	hasDiscount(priceRange: DaffPriceRange): boolean;
+
+	/**
+	 * Returns whether the min and max prices of a DaffPriceRange are different.
+	 * @param priceRange a DaffPriceRange
+	 */
+	hasPriceRange(priceRange: DaffPriceRange): boolean;
 }

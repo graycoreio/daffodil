@@ -27,7 +27,10 @@ export class MockDaffCompositeProductFacade implements DaffCompositeProductFacad
 		return new BehaviorSubject(false);
 	}
 	dispatch(action) {};
-
-	hasDiscount(priceRange: DaffPriceRange) {};
-	hasPriceRange(priceRange: DaffPriceRange) {};
+	hasDiscount(priceRange: DaffPriceRange): boolean {
+		return false;
+	};
+	hasPriceRange(priceRange: DaffPriceRange): boolean {
+		return false;
+	};
 }
