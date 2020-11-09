@@ -1,0 +1,46 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@daffodil/core": [
+        "dist/core"
+      ],
+      "@daffodil/core/graphql": [
+        "dist/core/graphql"
+      ],
+      "@daffodil/core/state": [
+        "dist/core/state"
+      ],
+      "@daffodil/core/testing": [
+        "dist/core/testing"
+      ],
+      "@daffodil/driver": [
+        "dist/driver"
+      ],
+      "@daffodil/driver/magento": [
+        "dist/driver/magento"
+      ],
+      "@daffodil/driver/magento/testing": [
+        "dist/driver/magento/testing"
+      ],
+      "@daffodil/cart": [
+        "libs/cart/src"
+      ],
+      "@daffodil/cart/testing": [
+        "libs/cart/testing/src"
+      ],
+      "@daffodil/geography": [
+        "dist/geography"
+      ],
+      "@daffodil/geography/testing": [
+        "dist/geography/testing"
+      ],
+      "@daffodil/product": [
+        "dist/product"
+      ],
+      "@daffodil/product/testing": [
+        "dist/product/testing"
+      ],
+    }
+  }
+}

@@ -5,9 +5,8 @@ import { MockStore } from '@ngrx/store/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffCartFactory, DaffCartAddressFactory, DaffCartTestingModule } from '@daffodil/cart/testing';
+import { DaffCartFactory, DaffCartAddressFactory } from '@daffodil/cart/testing';
 import {
-  DaffCartFacade,
   DaffCart,
   DaffResolveCartSuccess,
   DaffCartLoadSuccess
@@ -20,7 +19,6 @@ import { DaffCartShippingAddressGuardRedirectUrl } from './shipping-address-guar
 describe('DaffShippingAddressGuard', () => {
 
 	let service: DaffShippingAddressGuard;
-	let facade;
 	let store: MockStore<any>;
 	let router: Router;
 	const stubUrl = 'url';
@@ -36,11 +34,9 @@ describe('DaffShippingAddressGuard', () => {
           cart: combineReducers(daffCartReducers),
 				}),
         RouterTestingModule,
-        DaffCartTestingModule
 			]
     });
 		service = TestBed.get(DaffShippingAddressGuard);
-		facade = TestBed.get(DaffCartFacade);
 		store = TestBed.get(Store);
 		router = TestBed.get(Router);
   });

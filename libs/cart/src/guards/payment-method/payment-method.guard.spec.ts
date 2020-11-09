@@ -5,9 +5,8 @@ import { MockStore } from '@ngrx/store/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DaffCartFactory, DaffCartPaymentFactory, DaffCartTestingModule } from '@daffodil/cart/testing';
+import { DaffCartFactory, DaffCartPaymentFactory } from '@daffodil/cart/testing';
 import {
-  DaffCartFacade,
   DaffCart,
   DaffResolveCartSuccess,
   DaffCartLoadSuccess
@@ -20,7 +19,6 @@ import { DaffCartPaymentMethodGuardRedirectUrl } from './payment-method-guard-re
 describe('DaffPaymentMethodGuard', () => {
 
 	let service: DaffPaymentMethodGuard;
-	let facade;
 	let store: MockStore<any>;
 	let router: Router;
 	const stubUrl = 'url';
@@ -36,11 +34,9 @@ describe('DaffPaymentMethodGuard', () => {
           cart: combineReducers(daffCartReducers),
 				}),
         RouterTestingModule,
-        DaffCartTestingModule
 			]
     });
 		service = TestBed.get(DaffPaymentMethodGuard);
-		facade = TestBed.get(DaffCartFacade);
 		router = TestBed.get(Router);
 		store = TestBed.get(Store);
   });
