@@ -1,7 +1,7 @@
 ## Running Daffodil Demo
 
 ### Prerequisites
-* [Lerna](https://lernajs.io/) - `npm install --g lerna`.
+* [Lerna](https://lernajs.io/) - `npm install -g lerna`.
 * [Angular CLI](https://cli.angular.io/) - `npm install -g @angular/cli`
 
 ### Getting Started
