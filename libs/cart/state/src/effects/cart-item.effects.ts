@@ -125,8 +125,15 @@ export class DaffCartItemEffects<
 	private updateAddedCartItemState(oldCartItems: T[], newCartItems: T[]): T[] {
 		return newCartItems.map(newItem => {
 			const oldItem = oldCartItems.find(originalItem => originalItem.item_id === newItem.item_id);
-			return !oldItem || (oldItem && oldItem.qty !== newItem.qty) ? 
-				{ ...newItem, state: DaffCartItemStateEnum.New } : newItem;
+			switch(true) {
+				case !oldItem:
+					return { ...newItem, state: DaffCartItemStateEnum.New };
+				//todo: add optional chaining when possible
+				case oldItem && oldItem.qty !== newItem.qty:
+					return { ...newItem, state: DaffCartItemStateEnum.Updated };
+				default:
+					return newItem;
+			}
 		})
 	}
 

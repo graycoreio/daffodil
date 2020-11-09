@@ -163,7 +163,7 @@ describe('selectCartItemEntitiesState', () => {
 
   describe('selectCartItemState', () => {
 		
-		it('should return whether the given cart item is out of stock', () => {
+		it('should return the state of the cart item', () => {
 			store.dispatch(new DaffCartItemListSuccess(mockCartItems));
 			const selector = store.pipe(select(selectCartItemState, { id: mockCartItems[0].item_id }));
 			const expected = cold('a', { a: mockCartItems[0].state });

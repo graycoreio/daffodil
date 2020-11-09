@@ -209,7 +209,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
 				const cartItemAddSuccessAction = new DaffCartItemAddSuccess({
 					...newCart,
 					items: [
-						{ ...newCart.items[0], state: DaffCartItemStateEnum.New }
+						{ ...newCart.items[0], state: DaffCartItemStateEnum.Updated }
 					]
 				});
 				actions$ = hot('--a', { a: cartItemAddAction });
