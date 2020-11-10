@@ -5,9 +5,8 @@ import {
   DaffCountry,
   DaffSubdivision
 } from '@daffodil/geography';
+import { DaffCountryFactory, DaffSubdivisionFactory } from '@daffodil/geography/testing';
 
-import { DaffCountryFactory } from '../../factories/country.factory';
-import { DaffSubdivisionFactory } from '../../factories/subdivision.factory';
 import { DaffTestingGeographyService } from './geography.service';
 
 describe('Driver | Testing | Geography | GeographyService', () => {

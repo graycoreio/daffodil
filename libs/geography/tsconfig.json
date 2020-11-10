@@ -1,39 +1,34 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "baseUrl": "../..",
     "paths": {
-      "@daffodil/core": [
-        "dist/core"
-      ],
-      "@daffodil/core/testing": [
-        "dist/core/testing"
-      ],
-      "@daffodil/core/graphql": [
-        "dist/core/graphql"
-      ],
-      "@daffodil/core/state": [
-        "dist/core/state"
-      ],
-      "@daffodil/driver": [
-        "dist/driver"
-      ],
-      "@daffodil/driver/magento": [
-        "dist/driver/magento"
+      "@daffodil/*": [
+        "dist/*"
       ],
       "@daffodil/geography": [
         "libs/geography/src"
       ],
-      "@daffodil/geography/testing": [
-        "libs/geography/testing/src"
-      ],
       "@daffodil/geography/state": [
         "libs/geography/state/src"
+      ],
+      "@daffodil/geography/state/testing": [
+        "libs/geography/state/testing/src"
       ],
       "@daffodil/geography/driver": [
         "libs/geography/driver/src"
       ],
+      "@daffodil/geography/driver/testing": [
+        "libs/geography/driver/testing/src"
+      ],
+      "@daffodil/geography/driver/testing/in-memory": [
+        "libs/geography/driver/testing/in-memory/src"
+      ],
       "@daffodil/geography/driver/magento": [
         "libs/geography/driver/magento/src"
+      ],
+      "@daffodil/geography/testing": [
+        "libs/geography/testing/src"
       ],
     }
   }

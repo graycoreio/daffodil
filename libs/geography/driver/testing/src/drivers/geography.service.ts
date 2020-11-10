@@ -7,9 +7,7 @@ import {
 import {
   DaffGeographyServiceInterface,
 } from '@daffodil/geography/driver';
-
-import { DaffCountryFactory } from '../../factories/country.factory';
-import { DaffSubdivisionFactory } from '../../factories/subdivision.factory';
+import { DaffCountryFactory, DaffSubdivisionFactory } from '@daffodil/geography/testing';
 
 @Injectable({
   providedIn: 'root'
