@@ -25,9 +25,7 @@ import {
   DaffCartItemAddFailure,
 	DaffCartItemStateReset,
 } from '../actions/public_api';
-import { select, Store } from '@ngrx/store';
-import { DaffCartReducersState } from '../reducers/public_api';
-import { getDaffCartItemEntitiesSelectors } from '../selectors/cart-item-entities/cart-item-entities.selectors';
+import { DaffCartFacade } from '../facades/cart/cart.facade';
 
 @Injectable()
 export class DaffCartItemEffects<
@@ -40,7 +38,7 @@ export class DaffCartItemEffects<
     private actions$: Actions,
     @Inject(DaffCartItemDriver) private driver: DaffCartItemServiceInterface<T, U, V>,
 		private storage: DaffCartStorageService,
-		private store: Store<DaffCartReducersState<V, X, T>>,
+		private facade: DaffCartFacade<V, X, T>,
 		@Inject(DaffCartItemStateDebounceTime) private cartItemStateDebounceTime: number
   ) {}
 
@@ -71,8 +69,8 @@ export class DaffCartItemEffects<
     ofType(DaffCartItemActionTypes.CartItemAddAction),
     switchMap((action: DaffCartItemAdd<U>) =>
       combineLatest([
-				this.store.pipe(
-					select(getDaffCartItemEntitiesSelectors<V, X, T>().selectAllCartItems),
+				this.facade.items$.pipe(
+					map(items => items),
 					take(1)
 				),
 				this.driver.add(this.storage.getCartId(), action.input)
