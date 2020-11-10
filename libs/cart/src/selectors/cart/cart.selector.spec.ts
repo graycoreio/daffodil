@@ -23,6 +23,8 @@ import { getCartSelectors } from './cart.selector';
 import { DaffCartOperationType } from '../../reducers/cart-operation-type.enum';
 import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
 import { DaffCartLoading } from '../../reducers/loading/cart-loading.type';
+import { DaffCartItemAdd } from '../../actions/public_api';
+import { DaffCartItemInputType } from '../../models/cart-item-input';
 
 describe('Cart | Selector | Cart', () => {
   let store: Store<DaffCartReducersState>;
@@ -694,7 +696,11 @@ describe('Cart | Selector | Cart', () => {
 
     describe('when the cart item mutations have not completed', () => {
       beforeEach(() => {
-        store.dispatch(new DaffCartItemDelete('itemId'))
+        store.dispatch(new DaffCartItemAdd({
+					productId: 'itemId',
+					qty: 1,
+					type: DaffCartItemInputType.Simple
+				}))
       });
 
       it('should return true', () => {

@@ -16,7 +16,13 @@ import {
   DaffCartCreateSuccess,
   DaffCartCreateFailure,
   DaffResolveCart,
-  DaffCartStorageFailure
+  DaffCartStorageFailure,
+	DaffCartItemUpdate,
+	DaffCartItemDelete,
+	DaffCartItemUpdateSuccess,
+	DaffCartItemDeleteSuccess,
+	DaffCartItemUpdateFailure,
+	DaffCartItemDeleteFailure
 } from '../../actions/public_api';
 import { DaffCart } from '../../models/cart';
 import { cartReducer } from './cart.reducer';
@@ -388,6 +394,66 @@ describe('Cart | Reducer | Cart', () => {
 
     it('should add an error to the cart section of state.errors', () => {
       expect(result.errors[DaffCartOperationType.Cart].length).toEqual(2);
+    });
+	});
+
+  describe('when CartItemUpdateAction is triggered', () => {
+    it('should indicate that the cart is being mutated', () => {
+      const cartItemUpdateAction: DaffCartItemUpdate = new DaffCartItemUpdate('id', {});
+
+      const result = cartReducer(initialState, cartItemUpdateAction);
+
+      expect(result.loading[DaffCartOperationType.Cart]).toEqual(DaffLoadingState.Mutating);
+    });
+	});
+	
+  describe('when CartItemDeleteAction is triggered', () => {
+    it('should indicate that the cart is being mutated', () => {
+      const cartItemDeleteAction: DaffCartItemDelete = new DaffCartItemDelete('id');
+
+      const result = cartReducer(initialState, cartItemDeleteAction);
+
+      expect(result.loading[DaffCartOperationType.Cart]).toEqual(DaffLoadingState.Mutating);
+    });
+	});
+	
+  describe('when CartItemUpdateSuccessAction is triggered', () => {
+    it('should indicate that the cart is being mutated', () => {
+      const cartItemUpdateSuccess: DaffCartItemUpdateSuccess = new DaffCartItemUpdateSuccess(cart);
+
+      const result = cartReducer(initialState, cartItemUpdateSuccess);
+
+      expect(result.loading[DaffCartOperationType.Cart]).toEqual(DaffLoadingState.Complete);
+    });
+  });
+	
+  describe('when CartItemDeleteSuccessAction is triggered', () => {
+    it('should indicate that the cart is being mutated', () => {
+      const cartItemDeleteSuccess: DaffCartItemDeleteSuccess = new DaffCartItemDeleteSuccess(cart);
+
+      const result = cartReducer(initialState, cartItemDeleteSuccess);
+
+      expect(result.loading[DaffCartOperationType.Cart]).toEqual(DaffLoadingState.Complete);
+    });
+  });
+	
+  describe('when CartItemUpdateFailureAction is triggered', () => {
+    it('should indicate that the cart is being mutated', () => {
+      const cartItemUpdateFailure: DaffCartItemUpdateFailure = new DaffCartItemUpdateFailure('error');
+
+      const result = cartReducer(initialState, cartItemUpdateFailure);
+
+      expect(result.loading[DaffCartOperationType.Cart]).toEqual(DaffLoadingState.Complete);
+    });
+  });
+	
+  describe('when CartItemDeleteFailureAction is triggered', () => {
+    it('should indicate that the cart is being mutated', () => {
+      const cartItemDeleteFailure: DaffCartItemDeleteFailure = new DaffCartItemDeleteFailure('error');
+
+      const result = cartReducer(initialState, cartItemDeleteFailure);
+
+      expect(result.loading[DaffCartOperationType.Cart]).toEqual(DaffLoadingState.Complete);
     });
   });
 });

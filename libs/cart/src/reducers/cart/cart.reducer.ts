@@ -1,7 +1,7 @@
 import { DaffLoadingState } from '@daffodil/core/state';
 
 import {
-  DaffCartActionTypes,
+  DaffCartActionTypes, DaffCartItemActionTypes,
 } from '../../actions/public_api';
 import { initialState } from '../cart-initial-state';
 import { DaffCartReducerState } from '../cart-state.interface';
@@ -30,10 +30,21 @@ export function cartReducer<T extends DaffCart>(
     case DaffCartActionTypes.CartClearAction:
     case DaffCartActionTypes.AddToCartAction:
     case DaffCartActionTypes.CartCreateAction:
+		case DaffCartItemActionTypes.CartItemUpdateAction:
+		case DaffCartItemActionTypes.CartItemDeleteAction:
       return {
         ...state,
         ...setLoading(state.loading, DaffLoadingState.Mutating)
-      };
+			};
+
+		case DaffCartItemActionTypes.CartItemUpdateSuccessAction:
+		case DaffCartItemActionTypes.CartItemDeleteSuccessAction:
+		case DaffCartItemActionTypes.CartItemUpdateFailureAction:
+		case DaffCartItemActionTypes.CartItemDeleteFailureAction:
+			return {
+				...state,
+				...setLoading(state.loading, DaffLoadingState.Complete)
+			}
 
     case DaffCartActionTypes.CartLoadSuccessAction:
     case DaffCartActionTypes.CartClearSuccessAction:

@@ -52,12 +52,12 @@ describe('Cart | Reducer | Cart Item', () => {
   });
 
   describe('when CartItemUpdateAction is triggered', () => {
-    it('should indicate that the cart item is being mutated', () => {
+    it('should not indicate that the cart items are being mutated', () => {
       const cartItemUpdateAction = new DaffCartItemUpdate('itemId', {qty: 3});
 
       const result = cartItemReducer(initialState, cartItemUpdateAction);
 
-      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffLoadingState.Mutating);
+      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffLoadingState.Complete);
     });
   });
 
@@ -125,12 +125,12 @@ describe('Cart | Reducer | Cart Item', () => {
   });
 
   describe('when CartItemDeleteAction is triggered', () => {
-    it('should indicate that the cart item is being mutated', () => {
+    it('should not indicate that the cart items are being mutated', () => {
       const cartItemRemoveAction = new DaffCartItemDelete('itemId');
 
       const result = cartItemReducer(initialState, cartItemRemoveAction);
 
-      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffLoadingState.Mutating);
+      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffLoadingState.Complete);
     });
   });
 

@@ -50,8 +50,9 @@ import { DaffCartOperationType } from '../../reducers/cart-operation-type.enum';
 import { DaffCartOrderResult } from '../../models/cart-order-result';
 import { DaffConfigurableCartItem } from '../../models/configurable-cart-item';
 import { DaffCompositeCartItem } from '../../models/composite-cart-item';
-import { DaffResolveCartSuccess } from '../../actions/public_api';
+import { DaffCartItemAdd, DaffResolveCartSuccess } from '../../actions/public_api';
 import { DaffCartPaymentMethodIdMap } from '../../injection-tokens/public_api';
+import { DaffCartItemInputType } from '../../models/cart-item-input';
 
 describe('DaffCartFacade', () => {
   let store: MockStore<{ product: Partial<DaffCartReducersState> }>;
@@ -333,7 +334,11 @@ describe('DaffCartFacade', () => {
 
     describe('when the cart item mutations have not completed', () => {
       beforeEach(() => {
-        facade.dispatch(new DaffCartItemDelete('itemId'))
+        facade.dispatch(new DaffCartItemAdd({
+					productId: 'itemId',
+					qty: 1,
+					type: DaffCartItemInputType.Simple
+				}))
       });
 
       it('should return true', () => {

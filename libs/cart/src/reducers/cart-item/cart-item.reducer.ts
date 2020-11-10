@@ -27,9 +27,7 @@ export function cartItemReducer<T extends DaffCart>(
         ...setLoading(state.loading, DaffLoadingState.Resolving)
       };
 
-    case DaffCartItemActionTypes.CartItemUpdateAction:
     case DaffCartItemActionTypes.CartItemAddAction:
-    case DaffCartItemActionTypes.CartItemDeleteAction:
       return {
         ...state,
         ...setLoading(state.loading, DaffLoadingState.Mutating)
