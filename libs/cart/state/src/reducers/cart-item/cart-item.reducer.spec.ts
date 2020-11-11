@@ -65,7 +65,7 @@ describe('Cart | Reducer | Cart Item', () => {
         }
       }
 
-      const cartItemUpdateSuccess = new DaffCartItemUpdateSuccess(cart);
+      const cartItemUpdateSuccess = new DaffCartItemUpdateSuccess(cart, 'id');
 
       result = cartItemReducer(state, cartItemUpdateSuccess);
     });

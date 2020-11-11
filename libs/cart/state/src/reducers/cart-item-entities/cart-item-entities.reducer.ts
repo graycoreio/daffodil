@@ -25,9 +25,17 @@ export function daffCartItemEntitiesReducer<
 			return adapter.addAll(action.payload, state);
 		case DaffCartItemActionTypes.CartItemLoadSuccessAction:
 			return adapter.upsertOne(action.payload, state);
-		case DaffCartItemActionTypes.CartItemUpdateSuccessAction:
-		case DaffCartItemActionTypes.CartItemDeleteSuccessAction:
 		case DaffCartItemActionTypes.CartItemAddSuccessAction:
+			return adapter.addAll(
+				updateAddedCartItemState<T>(state.entities, <T[]>action.payload.items), 
+				state
+			);
+		case DaffCartItemActionTypes.CartItemUpdateSuccessAction:
+			return adapter.addAll(
+				updateMutatedCartItemState<T>(<T[]>action.payload.items, action.itemId), 
+				state
+			);
+		case DaffCartItemActionTypes.CartItemDeleteSuccessAction:
 		case DaffCartActionTypes.CartLoadSuccessAction:
 		case DaffCartActionTypes.CartClearSuccessAction:
 			return adapter.addAll(<T[]><unknown>action.payload.items, state);
@@ -45,4 +53,24 @@ export function daffCartItemEntitiesReducer<
     default:
       return state;
   }
+}
+
+function updateAddedCartItemState<T extends DaffCartItem>(oldCartItems: Dictionary<T>, newCartItems: T[]): T[] {
+	return newCartItems.map(newItem => {
+		const oldItem = oldCartItems[newItem.item_id];
+		switch(true) {
+			case !oldItem:
+				return { ...newItem, state: DaffCartItemStateEnum.New };
+			//todo: add optional chaining when possible
+			case oldItem && oldItem.qty !== newItem.qty:
+				return { ...newItem, state: DaffCartItemStateEnum.Updated };
+			default:
+				return newItem;
+		}
+	})
+}
+
+function updateMutatedCartItemState<T extends DaffCartItem>(cartItems: T[], itemId: T['item_id']): T[] {
+	return cartItems.map(item => item.item_id === itemId ? 
+		{ ...item, state: DaffCartItemStateEnum.Updated} : item)
 }

@@ -3,7 +3,7 @@ import { switchMap, map, catchError, debounceTime, take } from 'rxjs/operators';
 import { combineLatest, of } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
-import { DaffCartItem, DaffCartItemInput, DaffCart, DaffCartStorageService, DaffCartOrderResult, DaffCartItemStateDebounceTime, DaffCartItemStateEnum } from '@daffodil/cart';
+import { DaffCartItem, DaffCartItemInput, DaffCart, DaffCartStorageService, DaffCartOrderResult, DaffCartItemStateDebounceTime } from '@daffodil/cart';
 import { DaffCartItemDriver, DaffCartItemServiceInterface } from '@daffodil/cart/driver';
 
 import {
@@ -68,17 +68,11 @@ export class DaffCartItemEffects<
   add$ = this.actions$.pipe(
     ofType(DaffCartItemActionTypes.CartItemAddAction),
     switchMap((action: DaffCartItemAdd<U>) =>
-      combineLatest([
-				this.facade.items$.pipe(
-					map(items => items),
-					take(1)
-				),
-				this.driver.add(this.storage.getCartId(), action.input)
-			]).pipe(
-        map(([cartItems, resp]: [T[], V]) => new DaffCartItemAddSuccess({
-					...resp,
-					items: this.updateAddedCartItemState(cartItems, <T[]>resp.items)
-				})),
+			this.driver.add(
+				this.storage.getCartId(), 
+				action.input
+			).pipe(
+        map((resp: V) => new DaffCartItemAddSuccess(resp)),
         catchError(error => of(new DaffCartItemAddFailure('Failed to add cart item')))
       )
     )
@@ -93,10 +87,7 @@ export class DaffCartItemEffects<
 				action.itemId,
 				action.changes
 			).pipe(
-				map((resp: V) => new DaffCartItemUpdateSuccess({
-					...resp,
-					items: this.updateMutatedCartItemState(<T[]>resp.items, action.itemId)
-				})),
+				map((resp: V) => new DaffCartItemUpdateSuccess(resp, action.itemId)),
 				catchError(error => of(new DaffCartItemUpdateFailure('Failed to update cart item')))
 			)
 		)
@@ -119,24 +110,4 @@ export class DaffCartItemEffects<
       )
     )
   )
-
-	private updateAddedCartItemState(oldCartItems: T[], newCartItems: T[]): T[] {
-		return newCartItems.map(newItem => {
-			const oldItem = oldCartItems.find(originalItem => originalItem.item_id === newItem.item_id);
-			switch(true) {
-				case !oldItem:
-					return { ...newItem, state: DaffCartItemStateEnum.New };
-				//todo: add optional chaining when possible
-				case oldItem && oldItem.qty !== newItem.qty:
-					return { ...newItem, state: DaffCartItemStateEnum.Updated };
-				default:
-					return newItem;
-			}
-		})
-	}
-
-	private updateMutatedCartItemState(cartItems: T[], itemId: T['item_id']): T[] {
-		return cartItems.map(item => item.item_id === itemId ? 
-			{ ...item, state: DaffCartItemStateEnum.Updated} : item)
-	}
 }

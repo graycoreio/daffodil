@@ -170,49 +170,17 @@ describe('Daffodil | Cart | CartItemEffects', () => {
     });
 
     describe('and the call to CartItemService is successful', () => {
-
-			it(`should dispatch a CartItemAddSuccess action with cart items of the correct state 
-					when a new product is added to the cart`, () => {
-				daffCartFacade.items$.next([]);
-				const newCart = {
-					...mockCart,
-					items: [
-						mockCartItem
-					]
-				}
-				daffCartItemDriverSpy.add.and.returnValue(of(newCart));
-				const cartItemAddSuccessAction = new DaffCartItemAddSuccess({
-					...newCart,
-					items: [
-						{ ...mockCartItem, state: DaffCartItemStateEnum.New }
-					]
-				});
-				actions$ = hot('--a', { a: cartItemAddAction });
+			beforeEach(() => {	
+        mockCart.items.push(mockCartItem);
+        daffCartItemDriverSpy.add.and.returnValue(of(mockCart));
+        const cartItemAddSuccessAction = new DaffCartItemAddSuccess(mockCart);
+        actions$ = hot('--a', { a: cartItemAddAction });
 				expected = cold('--b', { b: cartItemAddSuccessAction });
-        expect(effects.add$).toBeObservable(expected);
-      });
+			});
 
-			it(`should dispatch a CartItemAddSuccess action with cart items of the correct state 
-					when an existing product on the cart is added to the cart`, () => {
-				daffCartFacade.items$.next([mockCartItem]);
-				const newCart = {
-					...mockCart,
-					items: [{
-						...mockCartItem,
-						qty: mockCartItem.qty + 1
-					}]
-				};
-				daffCartItemDriverSpy.add.and.returnValue(of(newCart));
-				const cartItemAddSuccessAction = new DaffCartItemAddSuccess({
-					...newCart,
-					items: [
-						{ ...newCart.items[0], state: DaffCartItemStateEnum.Updated }
-					]
-				});
-				actions$ = hot('--a', { a: cartItemAddAction });
-				expected = cold('--b', { b: cartItemAddSuccessAction });
-        expect(effects.add$).toBeObservable(expected);
-      });
+			it('should dispatch a CartItemAddSuccess action', () => {
+				expect(effects.add$).toBeObservable(expected);
+			});
     });
 
     describe('and the call to CartItemService fails', () => {
@@ -244,22 +212,13 @@ describe('Daffodil | Cart | CartItemEffects', () => {
 
     describe('and the call to CartItemService is successful', () => {
       beforeEach(() => {
-        daffCartItemDriverSpy.update.and.returnValue(of({
-					...mockCart,
-					items: [mockCartItem]
-				}));
-        const cartItemUpdateSuccessAction = new DaffCartItemUpdateSuccess({
-					...mockCart,
-					items: [{
-						...mockCart.items[0],
-						state: DaffCartItemStateEnum.Updated
-					}]
-				});
+				daffCartItemDriverSpy.update.and.returnValue(of(mockCart));
+				const cartItemUpdateSuccessAction = new DaffCartItemUpdateSuccess(mockCart, mockCartItem.item_id);
         actions$ = hot('--a', { a: cartItemUpdateAction });
         expected = cold('--b', { b: cartItemUpdateSuccessAction });
       });
 
-      it('should dispatch a CartItemUpdateSuccess action with cart items of the correct state', () => {
+      it('should dispatch a CartItemUpdateSuccess action', () => {
         expect(effects.update$).toBeObservable(expected);
       });
     });
@@ -309,7 +268,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
 				});
 				testScheduler.run(helpers => {
 					const expectedMarble = '4000ms a';
-					const cartItemUpdateSuccess = new DaffCartItemUpdateSuccess(mockCart);
+					const cartItemUpdateSuccess = new DaffCartItemUpdateSuccess(mockCart, mockCartItem.item_id);
 					const shopCartItemReset = new DaffCartItemStateReset();
 					actions$ = helpers.hot('a', { a: cartItemUpdateSuccess });
 					expectedObservable = {a: shopCartItemReset};

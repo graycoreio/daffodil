@@ -61,10 +61,10 @@ export class DaffCartItemUpdate<T extends DaffCartItem = DaffCartItem> implement
   constructor(public itemId: T['item_id'], public changes: Partial<T>) {}
 }
 
-export class DaffCartItemUpdateSuccess<T extends DaffCart = DaffCart> implements Action {
+export class DaffCartItemUpdateSuccess<T extends DaffCart = DaffCart, V extends DaffCartItem = DaffCartItem> implements Action {
   readonly type = DaffCartItemActionTypes.CartItemUpdateSuccessAction;
 
-  constructor(public payload: Partial<T>) {}
+  constructor(public payload: Partial<T>, public itemId: V['item_id']) {}
 }
 
 export class DaffCartItemUpdateFailure implements Action {
@@ -125,7 +125,7 @@ export type DaffCartItemActions<
   | DaffCartItemLoadSuccess<T>
   | DaffCartItemLoadFailure
   | DaffCartItemUpdate<T>
-  | DaffCartItemUpdateSuccess<V>
+  | DaffCartItemUpdateSuccess<V, T>
   | DaffCartItemUpdateFailure
   | DaffCartItemAdd<U>
   | DaffCartItemAddSuccess<V>
