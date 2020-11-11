@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { STATUS } from 'angular-in-memory-web-api';
 
 import {
   DaffCart,
@@ -7,23 +6,13 @@ import {
 	DaffCartItem,
 	DaffCartItemInputType
 } from '@daffodil/cart';
+import { DaffInMemoryBackendCartService, DaffInMemoryBackendCartItemsService, DaffInMemoryBackendCartOrderService, DaffInMemoryBackendCartCouponService, DaffInMemoryBackendCartAddressService, DaffInMemoryBackendCartShippingAddressService, DaffInMemoryBackendCartBillingAddressService, DaffInMemoryBackendCartPaymentMethodsService, DaffInMemoryBackendCartShippingMethodsService, DaffInMemoryBackendCartPaymentService, DaffInMemoryBackendCartShippingInformationService } from '@daffodil/cart/driver/in-memory';
 import {
   DaffCartFactory,
   DaffCartItemFactory
 } from '@daffodil/cart/testing';
 
 import { DaffInMemoryBackendCartRootService } from './cart-root.service';
-import { DaffInMemoryBackendCartService } from './cart/cart.service';
-import { DaffInMemoryBackendCartItemsService } from './cart-items/cart-items.service';
-import { DaffInMemoryBackendCartOrderService } from './cart-order/cart-order.service';
-import { DaffInMemoryBackendCartCouponService } from './cart-coupon/cart-coupon.service';
-import { DaffInMemoryBackendCartAddressService } from './cart-address/cart-address.service';
-import { DaffInMemoryBackendCartShippingAddressService } from './cart-shipping-address/cart-shipping-address.service';
-import { DaffInMemoryBackendCartBillingAddressService } from './cart-billing-address/cart-billing-address.service';
-import { DaffInMemoryBackendCartPaymentMethodsService } from './cart-payment-methods/cart-payment-methods.service';
-import { DaffInMemoryBackendCartShippingMethodsService } from './cart-shipping-methods/cart-shipping-methods.service';
-import { DaffInMemoryBackendCartPaymentService } from './cart-payment/cart-payment.service';
-import { DaffInMemoryBackendCartShippingInformationService } from './cart-shipping-information/cart-shipping-information.service';
 
 describe('DaffInMemoryBackendCartRootService | Unit', () => {
   let service: DaffInMemoryBackendCartRootService;
