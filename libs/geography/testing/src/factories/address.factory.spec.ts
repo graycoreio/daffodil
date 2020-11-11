@@ -1,7 +1,8 @@
 import { TestBed, async } from '@angular/core/testing';
 
-import { DaffAddressFactory, MockDaffAddress } from './address.factory';
 import { DaffAddress } from '@daffodil/geography';
+
+import { DaffAddressFactory, MockDaffAddress } from './address.factory';
 
 describe('Geography | Interfaces | Factories | DaffAddressFactory', () => {
 

@@ -6,13 +6,12 @@ import {
   DaffCountryLoadFailure,
   DaffCountryList,
   DaffCountryListSuccess,
-  DaffCountryListFailure
+  DaffCountryListFailure,
+  daffGeographyInitialState as initialState,
+  DaffGeographyReducerState
 } from '@daffodil/geography/state';
 
-import { daffGeographyInitialState as initialState } from './geography-initial-state';
 import { daffGeographyReducer as reducer } from './geography.reducer';
-import { DaffGeographyReducerState } from './geography-state.interface';
-
 
 describe('Geography | Reducer | Geography', () => {
   let countryFactory: DaffCountryFactory;

@@ -2,6 +2,7 @@ export { DaffMagentoCountryTransformer } from './transforms/responses/country.se
 export { DaffMagentoSubdivisionTransformer } from './transforms/responses/subdivision.service';
 
 export * from './models/responses/public_api';
+export * from './queries/public_api';
 
 export { DaffGeographyMagentoService } from './geography.service';
 

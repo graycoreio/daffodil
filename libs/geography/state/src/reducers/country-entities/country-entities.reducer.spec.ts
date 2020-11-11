@@ -3,12 +3,12 @@ import { DaffCountryFactory, DaffSubdivisionFactory } from '@daffodil/geography/
 import {
   DaffCountryLoadSuccess,
   DaffCountryListSuccess,
+  daffCountryEntitiesInitialState as initialState
 } from '@daffodil/geography/state';
 
 import {
   daffCountryEntitiesReducer as reducer,
 } from './country-entities.reducer';
-import { daffCountryEntitiesInitialState as initialState } from './country-entities-initial-state';
 
 describe('Geography | Reducer | CountryEntities', () => {
   let countryFactory: DaffCountryFactory;

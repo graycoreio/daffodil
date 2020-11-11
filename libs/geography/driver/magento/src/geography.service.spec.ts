@@ -7,19 +7,15 @@ import {
   DaffCountry,
   DaffSubdivision
 } from '@daffodil/geography';
+import { getCountry, MagentoGetCountryResponse, DaffMagentoCountryTransformer, MagentoRegion, MagentoCountry, MagentoGetCountriesResponse, getCountries } from '@daffodil/geography/driver/magento';
 import {
   DaffCountryFactory,
   DaffSubdivisionFactory
 } from '@daffodil/geography/testing';
 import { DaffCountryNotFoundError, DaffGeographyInvalidAPIResponseError } from '@daffodil/geography/driver';
 
-import { DaffGeographyMagentoService } from './geography.service';
-import { DaffMagentoCountryTransformer } from './transforms/responses/country.service';
-import { getCountries, MagentoGetCountriesResponse } from './queries/public_api';
-import { MagentoRegion, MagentoCountry } from './models/responses/public_api';
-import { getCountry } from './queries/get-country';
-import { MagentoGetCountryResponse } from './queries/responses/get-country';
 import * as validators from './validators/public_api';
+import { DaffGeographyMagentoService } from './geography.service';
 
 describe('Driver | Magento | Geography | GeographyService', () => {
   let service: DaffGeographyMagentoService;

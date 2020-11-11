@@ -3,12 +3,12 @@ import { TestBed } from '@angular/core/testing';
 import {
   DaffSubdivision
 } from '@daffodil/geography';
+import { MagentoRegion } from '@daffodil/geography/driver/magento';
 import {
   DaffSubdivisionFactory,
 } from '@daffodil/geography/testing';
 
 import { DaffMagentoSubdivisionTransformer } from './subdivision.service';
-import { MagentoRegion } from '../../models/responses/region';
 
 describe('Driver | Magento | Geography | Transformer | Subdivision', () => {
   let service: DaffMagentoSubdivisionTransformer;

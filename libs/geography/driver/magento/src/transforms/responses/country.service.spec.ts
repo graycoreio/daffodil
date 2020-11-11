@@ -4,15 +4,13 @@ import {
   DaffCountry,
   DaffSubdivision
 } from '@daffodil/geography';
+import { MagentoCountry, MagentoRegion, DaffMagentoSubdivisionTransformer } from '@daffodil/geography/driver/magento';
 import {
   DaffCountryFactory,
   DaffSubdivisionFactory,
 } from '@daffodil/geography/testing';
 
 import { DaffMagentoCountryTransformer } from './country.service';
-import { DaffMagentoSubdivisionTransformer } from './subdivision.service';
-import { MagentoCountry } from '../../models/responses/country';
-import { MagentoRegion } from '../../models/responses/region';
 
 describe('Driver | Magento | Geography | Transformer | Country', () => {
   let service: DaffMagentoCountryTransformer;
