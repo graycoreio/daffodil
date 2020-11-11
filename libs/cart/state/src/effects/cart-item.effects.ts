@@ -1,9 +1,9 @@
 import { Injectable, Inject } from '@angular/core';
-import { switchMap, map, catchError, debounceTime, take } from 'rxjs/operators';
-import { combineLatest, of } from 'rxjs';
+import { switchMap, map, catchError, debounceTime } from 'rxjs/operators';
+import { of } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
-import { DaffCartItem, DaffCartItemInput, DaffCart, DaffCartStorageService, DaffCartOrderResult, DaffCartItemStateDebounceTime } from '@daffodil/cart';
+import { DaffCartItem, DaffCartItemInput, DaffCart, DaffCartStorageService, DaffCartItemStateDebounceTime } from '@daffodil/cart';
 import { DaffCartItemDriver, DaffCartItemServiceInterface } from '@daffodil/cart/driver';
 
 import {
@@ -25,20 +25,17 @@ import {
   DaffCartItemAddFailure,
 	DaffCartItemStateReset,
 } from '../actions/public_api';
-import { DaffCartFacade } from '../facades/cart/cart.facade';
 
 @Injectable()
 export class DaffCartItemEffects<
   T extends DaffCartItem,
   U extends DaffCartItemInput,
 	V extends DaffCart,
-	X extends DaffCartOrderResult
 > {
   constructor(
     private actions$: Actions,
     @Inject(DaffCartItemDriver) private driver: DaffCartItemServiceInterface<T, U, V>,
 		private storage: DaffCartStorageService,
-		private facade: DaffCartFacade<V, X, T>,
 		@Inject(DaffCartItemStateDebounceTime) private cartItemStateDebounceTime: number
   ) {}
 

@@ -1,26 +1,24 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 import { provideMockStore } from '@ngrx/store/testing';
+import { TestScheduler } from 'rxjs/testing';
 
-import { DaffCartItem, DaffCartItemInput, DaffCart, DaffCartStorageService, DaffCartItemInputType, DaffCartOrderResult, DaffCartItemStateDebounceTime, DaffCartItemStateEnum } from '@daffodil/cart';
+import { DaffCartItem, DaffCartItemInput, DaffCart, DaffCartStorageService, DaffCartItemInputType, DaffCartItemStateDebounceTime } from '@daffodil/cart';
 import { DaffCartItemServiceInterface, DaffCartItemDriver } from '@daffodil/cart/driver';
 import { DaffCartItemList, DaffCartItemListSuccess, DaffCartItemListFailure, DaffCartItemLoad, DaffCartItemLoadSuccess, DaffCartItemLoadFailure, DaffCartItemAdd, DaffCartItemAddSuccess, DaffCartItemAddFailure, DaffCartItemUpdate, DaffCartItemUpdateSuccess, DaffCartItemUpdateFailure, DaffCartItemDelete, DaffCartItemDeleteSuccess, DaffCartItemDeleteFailure } from '@daffodil/cart/state';
 import {
   DaffCartFactory,
-	DaffCartItemFactory,
-	MockDaffCartFacade
+	DaffCartItemFactory
 } from '@daffodil/cart/testing';
 
 import { DaffCartItemEffects } from './cart-item.effects';
-import { TestScheduler } from 'rxjs/testing';
 import { DaffCartItemStateReset } from '../actions/public_api';
-import { DaffCartFacade } from '../facades/cart/cart.facade';
 
 describe('Daffodil | Cart | CartItemEffects', () => {
   let actions$: Observable<any>;
-	let effects: DaffCartItemEffects<DaffCartItem, DaffCartItemInput, DaffCart, DaffCartOrderResult>;
+	let effects: DaffCartItemEffects<DaffCartItem, DaffCartItemInput, DaffCart>;
 
   let mockCart: DaffCart;
   let mockCartItem: DaffCartItem;
@@ -32,7 +30,6 @@ describe('Daffodil | Cart | CartItemEffects', () => {
   let daffCartItemDriverSpy: jasmine.SpyObj<DaffCartItemServiceInterface>;
 
 	let daffCartStorageSpy: jasmine.SpyObj<DaffCartStorageService>;
-	let daffCartFacade: MockDaffCartFacade;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -51,10 +48,6 @@ describe('Daffodil | Cart | CartItemEffects', () => {
         {
           provide: DaffCartStorageService,
           useValue: jasmine.createSpyObj('DaffCartStorageService', ['getCartId'])
-				},
-				{
-					provide: DaffCartFacade,
-					useClass: MockDaffCartFacade
 				}
 			],
     });
@@ -62,11 +55,9 @@ describe('Daffodil | Cart | CartItemEffects', () => {
 		effects = TestBed.get<DaffCartItemEffects<
 			DaffCartItem, 
 			DaffCartItemInput, 
-			DaffCart, 
-			DaffCartOrderResult
+			DaffCart
 		>>(DaffCartItemEffects);
 
-		daffCartFacade = TestBed.get(DaffCartFacade);
     daffCartItemDriverSpy = TestBed.get<DaffCartItemServiceInterface>(DaffCartItemDriver);
     daffCartStorageSpy = TestBed.get(DaffCartStorageService);
 
