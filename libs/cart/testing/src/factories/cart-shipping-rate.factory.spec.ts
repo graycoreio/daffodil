@@ -1,10 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffCartShippingRate } from '@daffodil/cart';
+
 import { DaffCartShippingRateFactory } from './cart-shipping-rate.factory';
 
 describe('Cart | Testing | Factories | CartShippingRateFactory', () => {
-  
+
   let cartShippingRateFactory: DaffCartShippingRateFactory;
 
   beforeEach(() => {
@@ -26,7 +27,7 @@ describe('Cart | Testing | Factories | CartShippingRateFactory', () => {
     beforeEach(() => {
       result = cartShippingRateFactory.create();
     });
-    
+
     xit('should return a CartShippingRate with all required fields defined', () => {
 
     });

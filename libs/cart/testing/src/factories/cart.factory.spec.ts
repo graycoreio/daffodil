@@ -1,10 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffCartFactory } from './cart.factory';
 import { DaffCart } from '@daffodil/cart';
 
+import { DaffCartFactory } from './cart.factory';
+
 describe('Cart | Testing | Factories | DaffCartFactory', () => {
-  
+
   let cartFactory: DaffCartFactory;
 
   beforeEach(() => {
@@ -32,7 +33,7 @@ describe('Cart | Testing | Factories | DaffCartFactory', () => {
     });
 
     describe('Cart object', () => {
-      
+
       it('should have no CartItems', () => {
         expect(result.items.length).toEqual(0)
       });
@@ -48,7 +49,7 @@ describe('Cart | Testing | Factories | DaffCartFactory', () => {
       it('should not have a payment', () => {
         expect(result.payment).toEqual(null);
 			});
-			
+
 			it('should have cart totals', () => {
 				expect(result.totals.length).toBeGreaterThan(0);
 			});

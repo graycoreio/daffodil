@@ -2,7 +2,7 @@ import { createSelector, MemoizedSelector } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
 import { DaffOrder, DaffOrderItem, DaffOrderTotal, DaffOrderTotalTypeEnum } from '@daffodil/order';
-import { getDaffCartSelectors } from '@daffodil/cart';
+import { getDaffCartSelectors } from '@daffodil/cart/state';
 
 import {
   daffGetOrderAdapter,

@@ -5,7 +5,8 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-import { DaffCart, DaffCartReducersState, daffCartReducers }  from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
+import { DaffCartReducersState, daffCartReducers }  from '@daffodil/cart/state';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 
 import { EmptyCartResolver } from './empty-cart-resolver.service';
@@ -54,7 +55,7 @@ describe('EmptyCartResolver', () => {
   describe('resolve', () => {
 
     describe('when ResolverCartSuccessAction is dispatched with a cart', () => {
-      
+
       it('should resolve with a ResolveCartSuccess action', () => {
         emptyCartResolver.resolve().subscribe((resolvedValue) => {
           expect(resolvedValue).toEqual(new ResolveCartSuccess(stubCart));
@@ -63,7 +64,7 @@ describe('EmptyCartResolver', () => {
       });
 
       describe('and cart is empty', () => {
-        
+
         it('should redirect to the cart page', () => {
           emptyCartResolver.resolve().subscribe(() => {
             expect(router.navigateByUrl).toHaveBeenCalledWith('/cart');
@@ -73,7 +74,7 @@ describe('EmptyCartResolver', () => {
       });
 
       describe('and cart is not empty', () => {
-        
+
         beforeEach(() => {
           stubCart = cartFactory.create({items: cartItemFactory.create()})
         });

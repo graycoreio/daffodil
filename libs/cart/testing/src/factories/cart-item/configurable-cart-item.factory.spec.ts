@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffConfigurableCartItemFactory } from './configurable-cart-item.factory';
 import { DaffConfigurableCartItem } from '@daffodil/cart';
+
+import { DaffConfigurableCartItemFactory } from './configurable-cart-item.factory';
 
 describe('Cart | Testing | Factories | ConfigurableCartItemFactory', () => {
 

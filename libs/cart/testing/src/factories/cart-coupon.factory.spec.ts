@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffCartCouponFactory } from './cart-coupon.factory';
 import { DaffCartCoupon } from '@daffodil/cart';
+
+import { DaffCartCouponFactory } from './cart-coupon.factory';
 
 describe('Cart | Testing | Factories | CartCouponFactory', () => {
   let factory: DaffCartCouponFactory;

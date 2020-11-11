@@ -1,7 +1,8 @@
 import { TestBed, async } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 
-import { DaffCartClear, DaffCartLoadSuccess, DaffCart, DaffCartReducersState, daffCartReducers } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
+import { DaffCartClear, DaffCartLoadSuccess, DaffCartReducersState, daffCartReducers } from '@daffodil/cart/state';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 
 import { isCartEmpty, selectCartItemCount } from './cart-selector';

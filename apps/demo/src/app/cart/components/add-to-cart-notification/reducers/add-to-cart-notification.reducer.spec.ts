@@ -1,20 +1,21 @@
-import { DaffAddToCart, DaffAddToCartSuccess, DaffCart } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
+import { DaffAddToCart, DaffAddToCartSuccess } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
-import { 
-  initialState, 
-  reducer, 
-  getOpen, 
-  getProductQty, 
-  getLoading, 
-  getProductId 
+import {
+  initialState,
+  reducer,
+  getOpen,
+  getProductQty,
+  getLoading,
+  getProductId
 } from '../reducers/add-to-cart-notification.reducer';
 import { OpenAddToCartNotification, CloseAddToCartNotification } from '../actions/add-to-cart-notification.actions';
 
 describe('Add To Cart Notification | Reducer', () => {
-  
+
   describe('initialState', () => {
-    
+
     it('should set open to false', () => {
       expect(initialState.open).toBeFalsy();
     });
@@ -37,7 +38,7 @@ describe('Add To Cart Notification | Reducer', () => {
 
     beforeEach(() => {
       const openAddToCartNotificationAction = new OpenAddToCartNotification();
-      
+
       result = reducer(initialState, openAddToCartNotificationAction);
     });
 
@@ -52,7 +53,7 @@ describe('Add To Cart Notification | Reducer', () => {
 
     beforeEach(() => {
       const closeAddToCartNotificationAction = new CloseAddToCartNotification();
-      
+
       result = reducer(initialState, closeAddToCartNotificationAction);
     });
 
@@ -71,7 +72,7 @@ describe('Add To Cart Notification | Reducer', () => {
       stubQty = 1;
       stubId = 'id';
       const addToCartAction = new DaffAddToCart({productId: stubId, qty: stubQty});
-      
+
       result = reducer(initialState, addToCartAction);
     });
 
@@ -96,7 +97,7 @@ describe('Add To Cart Notification | Reducer', () => {
 
     beforeEach(() => {
       const addToCartSuccessAction = new DaffAddToCartSuccess(stubCart);
-      
+
       result = reducer(initialState, addToCartSuccessAction);
     });
 
@@ -106,28 +107,28 @@ describe('Add To Cart Notification | Reducer', () => {
   });
 
   describe('getOpen', () => {
-    
+
     it('returns open state', () => {
       expect(getOpen(initialState)).toEqual(initialState.open);
     });
   });
 
   describe('getProductQty', () => {
-    
+
     it('returns productQty state', () => {
       expect(getProductQty(initialState)).toEqual(initialState.productQty);
     });
   });
 
   describe('getProductId', () => {
-    
+
     it('returns productId state', () => {
       expect(getProductId(initialState)).toEqual(initialState.productId);
     });
   });
 
   describe('getLoading', () => {
-    
+
     it('returns loading state', () => {
       expect(getLoading(initialState)).toEqual(initialState.loading);
     });

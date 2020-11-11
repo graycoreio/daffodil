@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-
-import { DaffCart, DaffCartFacade } from '@daffodil/cart';
 import { map } from 'rxjs/operators';
+
+import { DaffCart } from '@daffodil/cart';
+import { DaffCartFacade } from '@daffodil/cart/state';
 
 @Component({
   selector: 'demo-cart',
@@ -17,7 +18,7 @@ export class CartComponent implements OnInit {
   isCartEmpty$: Observable<boolean>;
 
   constructor(
-		private facade: DaffCartFacade<DaffCart>
+		private facade: DaffCartFacade
   ) {}
 
   ngOnInit(): void {

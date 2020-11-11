@@ -5,7 +5,8 @@ import { hot, cold } from 'jasmine-marbles';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { MockStore } from '@ngrx/store/testing';
 
-import { DaffCartAddress, DaffCartPaymentUpdateWithBilling, DaffCartPaymentUpdateWithBillingSuccess, DaffCartPaymentUpdateWithBillingFailure } from '@daffodil/cart';
+import { DaffCartAddress } from '@daffodil/cart';
+import { DaffCartPaymentUpdateWithBilling, DaffCartPaymentUpdateWithBillingSuccess, DaffCartPaymentUpdateWithBillingFailure } from '@daffodil/cart/state';
 import { DaffCartAddressFactory, DaffCartFactory } from '@daffodil/cart/testing';
 
 import { DaffAuthorizeNetEffects } from './authorize-net.effects';

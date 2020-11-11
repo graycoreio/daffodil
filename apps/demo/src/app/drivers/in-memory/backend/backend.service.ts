@@ -11,7 +11,7 @@ import { DaffCart } from '@daffodil/cart';
 import { DaffOrder } from '@daffodil/checkout';
 import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
-import { DaffInMemoryBackendCartRootService } from '@daffodil/cart/testing';
+import { DaffInMemoryBackendCartRootService } from '@daffodil/cart/driver/in-memory';
 import { DaffInMemoryBackendCheckoutService } from '@daffodil/checkout/testing';
 import { DaffInMemoryBackendNavigationService } from '@daffodil/navigation/testing';
 import { DaffInMemoryBackendAuthService } from '@daffodil/auth/testing';

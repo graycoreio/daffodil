@@ -4,7 +4,7 @@ import { Resolve, Router } from '@angular/router';
 import { map, filter, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import { DaffCartReducersState } from '@daffodil/cart';
+import { DaffCartReducersState } from '@daffodil/cart/state';
 
 import { ResolveCart, ResolveCartSuccess, ResolveCartFailure, CartResolverActionTypes } from '../actions/cart-resolver.actions';
 
@@ -20,7 +20,7 @@ export class CartResolver implements Resolve<Observable<Action>> {
 
   resolve(): Observable<Action> {
     this.store.dispatch(new ResolveCart());
-    
+
     return this.dispatcher.pipe(
       filter(action => action.type === CartResolverActionTypes.ResolveCartSuccessAction
         || action.type === CartResolverActionTypes.ResolveCartFailureAction),
