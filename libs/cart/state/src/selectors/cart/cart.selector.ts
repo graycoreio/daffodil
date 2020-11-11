@@ -149,7 +149,11 @@ export interface DaffCartStateMemoizedSelectors<
   /**
    * Selects whether there is a cart item operation in progress.
    */
-  selectItemLoading: MemoizedSelector<object, boolean>;
+	selectItemLoading: MemoizedSelector<object, boolean>;
+	/**
+   * Selects whether there is a cart item add operation in progress.
+   */
+  selectItemAdding: MemoizedSelector<object, boolean>;
   /**
    * Selects whether there is a cart item resolve operation in progress.
    * This pertains only to requests that do not mutate data such as "load" or "list".
@@ -314,6 +318,10 @@ const createCartSelectors = <
 		selectCartLoadingObject,
 		loadingObject => loadingObject[DaffCartOperationType.Item] !== DaffLoadingState.Complete
   );
+	const selectItemAdding = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.Item] === DaffLoadingState.Adding
+  );
   const selectItemResolving = createSelector(
 		selectCartLoadingObject,
 		loadingObject => loadingObject[DaffCartOperationType.Item] === DaffLoadingState.Resolving
@@ -375,7 +383,8 @@ const createCartSelectors = <
       selectShippingInformationMutating,
       selectPaymentMutating,
       selectCouponMutating,
-      selectItemMutating,
+			selectItemMutating,
+			selectItemAdding,
     ].map(selector =>
       selector.projector(loadingObject)
     ).reduce((acc, mutating) => acc || mutating, false)
@@ -620,7 +629,8 @@ const createCartSelectors = <
     selectCouponLoading,
     selectCouponResolving,
     selectCouponMutating,
-    selectItemLoading,
+		selectItemLoading,
+		selectItemAdding,
     selectItemResolving,
     selectItemMutating,
 

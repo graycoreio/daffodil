@@ -148,6 +148,10 @@ export interface DaffCartFacadeInterface<
    */
   itemLoading$: Observable<boolean>;
   /**
+   * Whether there is a cart item add operation in progress.
+   */
+  itemAdding$: Observable<boolean>;
+  /**
    * Whether there is a cart item resolve operation in progress.
    * This pertains only to requests that do not mutate data such as "load" or "list".
    */

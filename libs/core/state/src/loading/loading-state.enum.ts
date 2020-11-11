@@ -1,5 +1,6 @@
 export enum DaffLoadingState {
   Resolving = 'Resolving',
-  Mutating = 'Mutating',
+	Mutating = 'Mutating',
+	Adding = 'Adding',
   Complete = 'Complete',
 }

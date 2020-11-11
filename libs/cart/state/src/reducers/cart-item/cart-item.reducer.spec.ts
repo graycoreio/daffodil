@@ -183,12 +183,12 @@ describe('Cart | Reducer | Cart Item', () => {
     const productId = 'productId';
     const qty = 1;
 
-    it('should indicate that the cart item is being mutated', () => {
+    it('should indicate that the cart item is being added', () => {
       const cartItemAddAction = new DaffCartItemAdd({ type, productId, qty });
 
       const result = cartItemReducer(initialState, cartItemAddAction);
 
-      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffLoadingState.Mutating);
+      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffLoadingState.Adding);
     });
   });
 
