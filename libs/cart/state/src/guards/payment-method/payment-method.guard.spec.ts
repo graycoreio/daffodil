@@ -9,12 +9,12 @@ import { DaffCart } from '@daffodil/cart';
 import {
   daffCartReducers,
   DaffResolveCartSuccess,
-  DaffCartLoadSuccess
+  DaffCartLoadSuccess,
+  DaffCartPaymentMethodGuardRedirectUrl
 } from '@daffodil/cart/state';
 import { DaffCartFactory, DaffCartPaymentFactory } from '@daffodil/cart/testing';
 
 import { DaffPaymentMethodGuard } from './payment-method.guard';
-import { DaffCartPaymentMethodGuardRedirectUrl } from './payment-method-guard-redirect.token';
 
 describe('DaffPaymentMethodGuard', () => {
 

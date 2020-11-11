@@ -13,12 +13,12 @@ import {
 	DaffCartLoadFailure,
 	DaffCartCreateFailure,
   DaffCartStorageFailure,
-  DaffResolveCart
+  DaffResolveCart,
+  DaffCartResolverRedirectUrl
 }  from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { DaffCartResolver } from './cart-resolver.service';
-import { DaffCartResolverRedirectUrl } from './tokens/cart-resolver-redirect.token';
 
 describe('DaffCartResolver', () => {
   const actions$: Observable<any> = null;

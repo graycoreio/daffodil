@@ -9,12 +9,12 @@ import { DaffCart } from '@daffodil/cart';
 import {
   daffCartReducers,
   DaffResolveCartSuccess,
-  DaffCartLoadSuccess
+  DaffCartLoadSuccess,
+  DaffCartShippingMethodGuardRedirectUrl
 } from '@daffodil/cart/state';
 import { DaffCartFactory, DaffCartShippingRateFactory } from '@daffodil/cart/testing';
 
 import { DaffShippingMethodGuard } from './shipping-method.guard';
-import { DaffCartShippingMethodGuardRedirectUrl } from './shipping-method-guard-redirect.token';
 
 describe('DaffShippingMethodGuard', () => {
 

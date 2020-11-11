@@ -6,11 +6,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartLoadSuccess, DaffCartResolverRedirectUrl }  from '@daffodil/cart/state';
+import { DaffCartLoadSuccess, DaffCartResolverRedirectUrl, DaffEmptyCartResolverRedirectUrl }  from '@daffodil/cart/state';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 
 import { DaffEmptyCartResolver } from './empty-cart-resolver.service';
-import { DaffEmptyCartResolverRedirectUrl } from './tokens/empty-cart-resolver-redirect.token';
 
 describe('DaffEmptyCartResolver', () => {
   const actions$: Observable<any> = null;

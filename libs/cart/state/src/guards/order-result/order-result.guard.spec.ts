@@ -4,13 +4,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { provideMockStore } from '@ngrx/store/testing';
 
-import { DaffCartFacade } from '@daffodil/cart/state';
+import { DaffCartFacade, DaffCartOrderResultGuardRedirectUrl } from '@daffodil/cart/state';
 import {
   DaffCartTestingModule,
 } from '@daffodil/cart/state/testing';
 
 import { DaffOrderResultGuard } from './order-result.guard';
-import { DaffCartOrderResultGuardRedirectUrl } from './order-result-guard-redirect.token';
 
 describe('DaffOrderResultGuard', () => {
 	let guard: DaffOrderResultGuard;

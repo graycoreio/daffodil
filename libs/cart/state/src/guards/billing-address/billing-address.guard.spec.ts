@@ -10,11 +10,10 @@ import {
   DaffResolveCartSuccess,
   DaffCartLoadSuccess
 } from '@daffodil/cart/state';
-import { daffCartReducers } from '@daffodil/cart/state';
+import { daffCartReducers, DaffCartBillingAddressGuardRedirectUrl } from '@daffodil/cart/state';
 import { DaffCartFactory, DaffCartAddressFactory } from '@daffodil/cart/testing';
 
 import { DaffBillingAddressGuard } from './billing-address.guard';
-import { DaffCartBillingAddressGuardRedirectUrl } from './billing-address-guard-redirect.token';
 
 describe('DaffBillingAddressGuard', () => {
 
