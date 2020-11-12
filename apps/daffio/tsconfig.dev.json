@@ -1,11 +1,11 @@
 {
-    "extends": "./tsconfig.app.json",
-    "compilerOptions": {
-      "paths": {
-        "@daffodil/core": ["libs/core/src"],
-        "@daffodil/core/testing": ["libs/core/testing/src"],
-        "@daffodil/design": ["libs/design/src"],
-        "@daffodil/branding": ["libs/branding/src"],
-      }
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "baseUrl": "../..",
+    "paths": {
+      "@daffodil/*": [
+        "libs/*/src"
+      ],
     }
   }
+}
