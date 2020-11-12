@@ -1,10 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffCartPaymentMethod } from '@daffodil/cart';
+
 import { DaffCartPaymentFactory } from './cart-payment.factory';
 
 describe('Cart | Testing | Factories | CartPaymentFactory', () => {
-  
+
   let cartPaymentFactory: DaffCartPaymentFactory;
 
   beforeEach(() => {

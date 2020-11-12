@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { Observable } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
-import { DaffAddToCart } from '@daffodil/cart';
+import { DaffAddToCart } from '@daffodil/cart/state';
 import { DaffModalModule } from '@daffodil/design';
 
 import { provideMockActions } from '@ngrx/effects/testing';
@@ -38,13 +38,13 @@ describe('AddToCartNotificationEffects', () => {
 
     let expected;
     const addToCartAction = new DaffAddToCart({productId: 'id', qty: 1});
-  
+
     beforeEach(() => {
       const openAddToCartNotificationAction = new OpenAddToCartNotification();
       actions$ = hot('--a', { a: addToCartAction });
       expected = cold('--b', { b: openAddToCartNotificationAction });
     });
-    
+
     it('should dispatch a OpenAddToCartNotification action', () => {
       expect(effects.addToCart$).toBeObservable(expected);
     });

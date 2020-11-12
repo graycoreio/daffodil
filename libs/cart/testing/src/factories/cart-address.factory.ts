@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-
-import { DaffCartAddress } from '@daffodil/cart';
 import * as faker from 'faker/locale/en_US';
 
+import { DaffCartAddress } from '@daffodil/cart';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockCartAddress implements DaffCartAddress {

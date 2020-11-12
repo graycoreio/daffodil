@@ -1,6 +1,6 @@
 import { ActionReducerMap, createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
-import { DaffCart, getDaffCartSelectors } from '@daffodil/cart';
+import { getDaffCartSelectors } from '@daffodil/cart/state';
 
 import * as fromDemoAddToCartNotification from './add-to-cart-notification.reducer';
 

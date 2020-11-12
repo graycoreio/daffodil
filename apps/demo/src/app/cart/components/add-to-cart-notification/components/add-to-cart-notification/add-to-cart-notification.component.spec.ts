@@ -9,7 +9,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffProduct, DaffProductLoadSuccess, DaffProductReducersState, daffProductReducers } from '@daffodil/product';
 import { DaffLoadingIconModule } from '@daffodil/design';
-import { DaffAddToCart, DaffAddToCartSuccess, DaffCartReducersState, daffCartReducers } from '@daffodil/cart';
+import { DaffAddToCart, DaffAddToCartSuccess, DaffCartReducersState, daffCartReducers } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { AddToCartNotificationComponent } from './add-to-cart-notification.component';
@@ -145,7 +145,7 @@ describe('AddToCartNotificationComponent', () => {
     const stubProduct = productFactory.create(1);
     const productAddPayload = { productId: stubProduct.id, qty: 1 };
     const stubCart = cartFactory.create();
-    
+
     beforeEach(() => {
       store.dispatch(new OpenAddToCartNotification());
       store.dispatch(new DaffAddToCart(productAddPayload));

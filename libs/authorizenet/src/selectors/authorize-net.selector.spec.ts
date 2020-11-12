@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
-import { DaffCartPaymentMethodAdd } from '@daffodil/cart';
+import { DaffCartPaymentMethodAdd } from '@daffodil/cart/state';
 
 import { DaffAuthorizeNetReducersState } from '../reducers/authorize-net-reducers.interface';
 import { daffAuthorizeNetReducers } from '../reducers/authorize-net.reducers';
@@ -38,7 +38,7 @@ describe('DaffAuthorizeNetSelectors', () => {
   });
 
   describe('selectAuthorizeNetState', () => {
-    
+
     it('selects DaffAuthorizeNetReducerState', () => {
       const expectedFeatureState = {
 				isAcceptLoaded: false,

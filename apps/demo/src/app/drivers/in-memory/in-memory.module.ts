@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { DaffProductInMemoryDriverModule } from '@daffodil/product/testing';
-import { DaffCartInMemoryDriverModule } from '@daffodil/cart/testing';
+import { DaffCartInMemoryDriverModule } from '@daffodil/cart/driver/in-memory';
 import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
 import { DaffNavigationInMemoryDriverModule } from '@daffodil/navigation/testing';
 import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/testing';

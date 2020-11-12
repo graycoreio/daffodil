@@ -1,6 +1,5 @@
 import { DaffErrorCodeMap } from '@daffodil/core';
-
-import { DaffCartNotFoundError } from '@daffodil/cart';
+import { DaffCartNotFoundError } from '@daffodil/cart/driver';
 
 import { MagentoOrderGraphQlErrorCode } from './codes';
 

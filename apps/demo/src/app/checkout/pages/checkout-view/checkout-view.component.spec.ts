@@ -4,24 +4,26 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { Observable, of, BehaviorSubject } from 'rxjs';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
-import { DaffCart, DaffCartFacade } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
+import { DaffCartFacade } from '@daffodil/cart/state';
+import { DaffCartTestingModule, MockDaffCartFacade } from '@daffodil/cart/state/testing';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 import { ShippingContainer, PaymentInfo } from '@daffodil/checkout';
 import { DaffPaymentFactory } from '@daffodil/checkout/testing';
-import { 
-  DaffAccordionModule, 
-  DaffAccordionItemComponent, 
-  DaffContainerModule, 
-  DaffLoadingIconModule 
+import {
+  DaffAccordionModule,
+  DaffAccordionItemComponent,
+  DaffContainerModule,
+  DaffLoadingIconModule
 } from '@daffodil/design';
 
 import * as fromDemoCheckout from '../../reducers/index';
 import { ShowPaymentView } from '../../actions/payment.actions';
 import { CheckoutViewComponent } from './checkout-view.component';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 const daffodilAddressFactory = new DaffAddressFactory();
 const paymentFactory = new DaffPaymentFactory();
@@ -92,11 +94,6 @@ class MockBillingContainer {
   toggleBillingAddressIsShippingAddress = () => {};
 }
 
-class MockDaffCartFacade {
-  cart$: BehaviorSubject<DaffCart>;
-  loading$: BehaviorSubject<boolean>;
-}
-
 describe('CheckoutViewComponent', () => {
   let component: CheckoutViewComponent;
   let fixture: ComponentFixture<CheckoutViewComponent>;
@@ -117,7 +114,8 @@ describe('CheckoutViewComponent', () => {
         DaffAccordionModule,
         NoopAnimationsModule,
         DaffContainerModule,
-        DaffLoadingIconModule
+        DaffLoadingIconModule,
+        DaffCartTestingModule
       ],
       declarations: [
         CheckoutViewComponent,
@@ -130,7 +128,6 @@ describe('CheckoutViewComponent', () => {
       ],
       providers: [
 				provideMockStore({}),
-				{ provide: DaffCartFacade, useClass: MockDaffCartFacade }
       ]
     })
     .compileComponents();
@@ -171,9 +168,9 @@ describe('CheckoutViewComponent', () => {
   it('should render two place-order buttons', () => {
     expect(placeOrders.length).toEqual(2);
   });
-  
+
   describe('on <demo-shipping>', () => {
-  
+
     it('should set isShippingAddressValid', () => {
       expect(shipping.isShippingAddressValid).toEqual(stubIsShippingAddressValid);
     });
@@ -192,9 +189,9 @@ describe('CheckoutViewComponent', () => {
   });
 
   describe('when <demo-shipping> emits', () => {
-    
+
     describe('updateShippingAddress', () => {
-      
+
       it('should call function passed by ShippingContainer', () => {
         spyOn(shippingContainer, 'updateShippingAddress');
 
@@ -202,16 +199,16 @@ describe('CheckoutViewComponent', () => {
 
         expect(shippingContainer.updateShippingAddress).toHaveBeenCalledWith(stubShippingAddress);
       });
-      
+
       it('should dispatch a ShowPaymentView action', () => {
         shipping.updateShippingAddress.emit(stubShippingAddress);
-        
+
         expect(store.dispatch).toHaveBeenCalledWith(new ShowPaymentView());
       });
     });
 
     describe('selectShippingOption', () => {
-      
+
       it('should call function passed by ShippingContainer', () => {
         spyOn(shippingContainer, 'selectShippingOption');
 
@@ -223,7 +220,7 @@ describe('CheckoutViewComponent', () => {
   });
 
   describe('on <demo-payment>', () => {
-    
+
     it('should set paymentInfo', () => {
       expect(payment.paymentInfo).toEqual(stubPaymentInfo);
     });
@@ -240,7 +237,7 @@ describe('CheckoutViewComponent', () => {
   describe('when payment emits', () => {
 
     describe('updatePaymentInfo', () => {
-      
+
       it('should call BillingContainer.updatePaymentInfo', () => {
         spyOn(billingContainer, 'updatePaymentInfo');
 
@@ -251,7 +248,7 @@ describe('CheckoutViewComponent', () => {
     });
 
     describe('updateBillingAddress', () => {
-      
+
       it('should call BillingContainer.updateBillingAddress', () => {
         spyOn(billingContainer, 'updateBillingAddress');
 
@@ -262,7 +259,7 @@ describe('CheckoutViewComponent', () => {
     });
 
     describe('toggleBillingAddressIsShippingAddress', () => {
-      
+
       it('should call BillingContainer.toggleBillingAddressIsShippingAddress', () => {
         spyOn(billingContainer, 'toggleBillingAddressIsShippingAddress');
 
@@ -288,7 +285,7 @@ describe('CheckoutViewComponent', () => {
   });
 
   describe('on second <demo-cart-summary-wrapper>', () => {
-    
+
     it('should set cart', () => {
       expect(cartSummaryWrappers[1].componentInstance.cart).toEqual(stubCart);
     });
@@ -303,7 +300,7 @@ describe('CheckoutViewComponent', () => {
   });
 
   describe('on third <demo-cart-summary-wrapper>', () => {
-    
+
     it('should set cart', () => {
       expect(cartSummaryWrappers[2].componentInstance.cart).toEqual(stubCart);
     });
@@ -318,7 +315,7 @@ describe('CheckoutViewComponent', () => {
   });
 
   describe('on <daff-accordion-item>', () => {
-    
+
     it('should set initiallyAction to false', () => {
       expect(accordionItem.initiallyActive).toBeFalsy();
     });
@@ -326,10 +323,10 @@ describe('CheckoutViewComponent', () => {
     describe('when cart is null', () => {
       beforeEach(() => {
         cartFacade.cart$.next(null);
- 
+
         fixture.detectChanges();
       });
-      
+
       it('should show zero cart items in the accordion title', () => {
         expect(fixture.debugElement.query(By.css('[daffAccordionItemTitle]')).nativeElement.innerHTML).toEqual('Cart Summary (0)');
       });
@@ -346,21 +343,21 @@ describe('CheckoutViewComponent', () => {
         });
         fixture.detectChanges();
       });
-      
+
       it('should show the number of cart items in the accordion title', () => {
         expect(fixture.debugElement.query(By.css('[daffAccordionItemTitle]')).nativeElement.innerHTML).toEqual('Cart Summary (1)');
       });
     });
   });
-  
+
   describe('ngOnInit', () => {
-    
+
     it('should initialize showPaymentView$', () => {
       component.showPaymentView$.subscribe((showPaymentView) => {
         expect(showPaymentView).toEqual(stubShowPaymentView);
       });
     });
-    
+
     it('should initialize showReviewView$', () => {
       component.showReviewView$.subscribe((showReviewView) => {
         expect(showReviewView).toEqual(stubShowReviewView);
@@ -369,7 +366,7 @@ describe('CheckoutViewComponent', () => {
   });
 
   describe('when showPaymentView$ is false', () => {
-    
+
     it('should not render .demo-checkout__payment', () => {
 
       component.showPaymentView$ = of(false);
@@ -380,7 +377,7 @@ describe('CheckoutViewComponent', () => {
   });
 
   describe('when showPaymentView$ is true', () => {
-    
+
     it('should render .demo-checkout__payment', () => {
       component.showPaymentView$ = of(true);
       fixture.detectChanges();
@@ -390,7 +387,7 @@ describe('CheckoutViewComponent', () => {
   });
 
   describe('when showReviewView$ is false', () => {
-    
+
     it('should not render .demo-checkout__review', () => {
 
       component.showReviewView$ = of(false);
@@ -401,7 +398,7 @@ describe('CheckoutViewComponent', () => {
   });
 
   describe('when showReviewView$ is true', () => {
-    
+
     it('should render .demo-checkout__review', () => {
       component.showReviewView$ = of(true);
       fixture.detectChanges();
@@ -422,7 +419,7 @@ describe('CheckoutViewComponent', () => {
       checkoutElement = fixture.debugElement.query(By.css('.demo-checkout'));
       loadingIcon = fixture.debugElement.query(By.css('.demo-checkout__loading-icon'));
     });
-    
+
     it('should not render checkoutElement', () => {
       expect(checkoutElement).toBeNull();
     });
@@ -444,7 +441,7 @@ describe('CheckoutViewComponent', () => {
       checkoutElement = fixture.debugElement.query(By.css('.demo-checkout'));
       loadingIcon = fixture.debugElement.query(By.css('.demo-checkout__loading-icon'));
     });
-    
+
     it('should render checkout', () => {
       expect(checkoutElement).not.toBeNull();
     });

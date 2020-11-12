@@ -1,45 +1,37 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "baseUrl": "../..",
     "paths": {
-      "@daffodil/core": [
-        "dist/core"
-      ],
-      "@daffodil/core/graphql": [
-        "dist/core/graphql"
-      ],
-      "@daffodil/core/state": [
-        "dist/core/state"
-      ],
-      "@daffodil/core/testing": [
-        "dist/core/testing"
-      ],
-      "@daffodil/driver": [
-        "dist/driver"
-      ],
-      "@daffodil/driver/magento": [
-        "dist/driver/magento"
-      ],
-      "@daffodil/driver/magento/testing": [
-        "dist/driver/magento/testing"
+      "@daffodil/*": [
+        "dist/*"
       ],
       "@daffodil/cart": [
         "libs/cart/src"
       ],
+      "@daffodil/cart/state": [
+        "libs/cart/state/src"
+      ],
+      "@daffodil/cart/state/testing": [
+        "libs/cart/state/testing/src"
+      ],
+      "@daffodil/cart/driver": [
+        "libs/cart/driver/src"
+      ],
+      "@daffodil/cart/driver/testing": [
+        "libs/cart/driver/testing/src"
+      ],
+      "@daffodil/cart/driver/in-memory": [
+        "libs/cart/driver/in-memory/src"
+      ],
+      "@daffodil/cart/driver/magento": [
+        "libs/cart/driver/magento/src"
+      ],
+      "@daffodil/cart/driver/magento/testing": [
+        "libs/cart/driver/magento/testing/src"
+      ],
       "@daffodil/cart/testing": [
         "libs/cart/testing/src"
-      ],
-      "@daffodil/geography": [
-        "dist/geography"
-      ],
-      "@daffodil/geography/testing": [
-        "dist/geography/testing"
-      ],
-      "@daffodil/product": [
-        "dist/product"
-      ],
-      "@daffodil/product/testing": [
-        "dist/product/testing"
       ],
     }
   }

@@ -2,13 +2,15 @@ import { Component, Input, DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
+import { BehaviorSubject } from 'rxjs';
 import { provideMockStore } from '@ngrx/store/testing';
 
+import { DaffCart } from '@daffodil/cart';
+import { DaffCartFacade } from '@daffodil/cart/state';
+import { DaffCartTestingModule, MockDaffCartFacade } from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
-import { DaffCart, DaffCartItem, DaffCartFacade } from '@daffodil/cart';
 
 import { CartComponent } from './cart.component';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({ template: '<demo-cart [cart]="cartValue"></demo-cart>' })
 class WrapperComponent {
@@ -40,11 +42,6 @@ class MockCartItemCountComponent {
   @Input() itemCount: number;
 }
 
-class MockDaffCartFacade {
-	items$: BehaviorSubject<DaffCartItem[]>;
-	isCartEmpty$: BehaviorSubject<boolean>;
-}
-
 describe('Cart', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
@@ -65,6 +62,9 @@ describe('Cart', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffCartTestingModule
+      ],
       declarations: [
         WrapperComponent,
         MockCartItemsComponent,
@@ -74,7 +74,6 @@ describe('Cart', () => {
       ],
       providers: [
 				provideMockStore({}),
-				{ provide: DaffCartFacade, useClass: MockDaffCartFacade }
       ]
     })
       .compileComponents();

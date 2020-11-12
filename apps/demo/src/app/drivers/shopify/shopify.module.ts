@@ -8,7 +8,7 @@ import { onError,} from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
 
 import { DaffProductShopifyDriverModule } from '@daffodil/product';
-import { DaffCartInMemoryDriverModule } from '@daffodil/cart/testing';
+import { DaffCartInMemoryDriverModule } from '@daffodil/cart/driver/in-memory';
 import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
 import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/testing';
 
@@ -28,7 +28,7 @@ const cache = new InMemoryCache();
      DaffNewsletterInMemoryDriverModule.forRoot()
   ]
 })
-export class DemoShopifyDriverModule { 
+export class DemoShopifyDriverModule {
   driver: ShopifyEnviromentDriverConfiguration = (<ShopifyEnviromentDriverConfiguration>environment.driver);
 
   // Shopify

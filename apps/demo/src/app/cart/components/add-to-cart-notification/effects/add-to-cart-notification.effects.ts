@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { map, tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
-import { DaffCartActionTypes } from '@daffodil/cart';
+import { DaffCartActionTypes } from '@daffodil/cart/state';
 
 import { OpenAddToCartNotification, AddToCartNotificationActionTypes, CloseAddToCartNotification } from '../actions/add-to-cart-notification.actions';
 import { DaffModalService, DaffModal } from '@daffodil/design';
@@ -18,7 +18,7 @@ export class AddToCartNotificationEffects {
     private daffModalService: DaffModalService,
     private store$: Store<any>
   ) {}
-    
+
   @Effect()
   addToCart$ = this.actions$.pipe(
     ofType(DaffCartActionTypes.AddToCartAction),

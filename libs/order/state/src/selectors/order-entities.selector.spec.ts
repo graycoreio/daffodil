@@ -4,7 +4,7 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffOrder, DaffOrderItem, DaffOrderTotal, DaffOrderTotalTypeEnum } from '@daffodil/order';
 import { DaffOrderFactory, DaffOrderItemFactory, DaffOrderTotalFactory } from '@daffodil/order/testing';
-import { daffCartReducers, DaffCartPlaceOrderSuccess } from '@daffodil/cart';
+import { daffCartReducers, DaffCartPlaceOrderSuccess } from '@daffodil/cart/state';
 
 import {
   DaffOrderEntityState,

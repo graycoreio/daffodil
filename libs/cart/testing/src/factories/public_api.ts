@@ -6,5 +6,3 @@ export { DaffCartAddressFactory } from './cart-address.factory';
 export { DaffCartPaymentFactory } from './cart-payment.factory';
 export { DaffCartShippingRateFactory } from './cart-shipping-rate.factory';
 export { DaffCartCouponFactory } from './cart-coupon.factory';
-
-export * from './magento';

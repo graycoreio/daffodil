@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { DemoInMemoryBackendService } from './backend.service';
-import { DaffInMemoryBackendCartRootService } from '@daffodil/cart/testing';
+import { DaffInMemoryBackendCartRootService } from '@daffodil/cart/driver/in-memory';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
 import { DaffInMemoryBackendCheckoutService } from '@daffodil/checkout/testing';
 import { DaffInMemoryBackendNavigationService } from '@daffodil/navigation/testing';
@@ -68,13 +68,13 @@ describe('Driver | In Memory | InMemoryService', () => {
   });
 
   describe('get', () => {
-    
+
     describe('when collectionName is products', () => {
-      
+
       let reqInfo;
       let result;
       let returnedValue;
-      
+
       beforeEach(() => {
         returnedValue = 'returnedValue';
         spyOn(service.productTestingService, 'get').and.returnValue(returnedValue);;
@@ -84,7 +84,7 @@ describe('Driver | In Memory | InMemoryService', () => {
 
         result = service.get(reqInfo);
       });
-      
+
       it('should call productTestingService.get', () => {
         expect(service.productTestingService.get).toHaveBeenCalledWith(reqInfo);
       });
@@ -93,13 +93,13 @@ describe('Driver | In Memory | InMemoryService', () => {
         expect(result).toEqual(returnedValue);
       });
     });
-    
+
     describe('when collectionName is navigation', () => {
-      
+
       let reqInfo;
       let result;
       let returnedValue;
-      
+
       beforeEach(() => {
         returnedValue = 'returnedValue';
         spyOn(service.navigationTestingService, 'get').and.returnValue(returnedValue);;
@@ -109,7 +109,7 @@ describe('Driver | In Memory | InMemoryService', () => {
 
         result = service.get(reqInfo);
       });
-      
+
       it('should call navigationTestingService.get', () => {
         expect(service.navigationTestingService.get).toHaveBeenCalledWith(reqInfo);
       });
@@ -120,7 +120,7 @@ describe('Driver | In Memory | InMemoryService', () => {
     });
 
     describe('when collectionName is none of the above', () => {
-      
+
       it('should return undefined', () => {
         expect(service.get({collectionName: 'noneOfTheAbove'})).toEqual(undefined);
       });

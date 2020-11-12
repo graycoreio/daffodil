@@ -3,7 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs';
 
-import { DaffCart, DaffCartFacade } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
+import { DaffCartFacade } from '@daffodil/cart/state';
+import { DaffCartTestingModule, MockDaffCartFacade } from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { DaffContainerModule, DaffLoadingIconModule } from '@daffodil/design';
 
@@ -11,11 +13,6 @@ import { DemoCartViewComponent } from './cart-view.component';
 
 const cartFactory = new DaffCartFactory();
 const cart = cartFactory.create();
-
-class MockDaffCartFacade {
-  cart$: BehaviorSubject<DaffCart>;
-  loading$: BehaviorSubject<boolean>;
-}
 
 @Component({
   selector: 'demo-cart',
@@ -38,10 +35,8 @@ describe('DemoCartViewComponent', () => {
       ],
       imports: [
         DaffContainerModule,
-        DaffLoadingIconModule
-			],
-			providers: [
-				{ provide: DaffCartFacade, useClass: MockDaffCartFacade }
+        DaffLoadingIconModule,
+        DaffCartTestingModule
 			]
     })
     .compileComponents();

@@ -6,11 +6,10 @@ import { Action, select, Store } from '@ngrx/store';
 
 import {
 	DaffCart,
-	DaffCartDriver,
-	DaffCartServiceInterface,
 	DaffCartStorageService,
-	DaffCartReducersState
 } from '@daffodil/cart';
+import { DaffCartDriver, DaffCartServiceInterface } from '@daffodil/cart/driver';
+import { DaffCartReducersState } from '@daffodil/cart/state';
 
 import {
 	ResolveCartSuccess,

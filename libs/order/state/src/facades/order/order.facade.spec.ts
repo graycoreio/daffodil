@@ -18,7 +18,7 @@ import {
   DaffOrderListSuccess,
 } from '@daffodil/order/state';
 import { DaffOrderFactory, DaffOrderTotalFactory } from '@daffodil/order/testing';
-import { DaffCartPlaceOrderSuccess, daffCartReducers } from '@daffodil/cart';
+import { DaffCartPlaceOrderSuccess, daffCartReducers } from '@daffodil/cart/state';
 
 import { DaffOrderFacade } from './order.facade';
 

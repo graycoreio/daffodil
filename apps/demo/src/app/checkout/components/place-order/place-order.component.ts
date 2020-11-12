@@ -3,7 +3,8 @@ import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 
-import { DaffCart, DaffCartFacade } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
+import { DaffCartFacade } from '@daffodil/cart/state';
 import { PlaceOrder } from '@daffodil/checkout';
 
 import * as fromDemoCheckout from '../../reducers';
@@ -20,7 +21,7 @@ export class PlaceOrderComponent implements OnInit {
 
   constructor(
 		private store: Store<any>,
-		private cartFacade: DaffCartFacade<DaffCart>
+		private cartFacade: DaffCartFacade
 	) { }
 
   ngOnInit() {

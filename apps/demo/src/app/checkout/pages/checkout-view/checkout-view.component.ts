@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
+
+import { DaffCart } from '@daffodil/cart';
+import { DaffCartFacade } from '@daffodil/cart/state';
+
 import * as fromDemoCheckout from '../../reducers';
 import { ShowPaymentView } from '../../actions/payment.actions';
-import { DaffCartFacade, DaffCart } from '@daffodil/cart';
 
 @Component({
   templateUrl: './checkout-view.component.html',
@@ -18,7 +21,7 @@ export class CheckoutViewComponent implements OnInit {
 
   constructor(
 		private store: Store<fromDemoCheckout.State>,
-		private cartFacade: DaffCartFacade<DaffCart>
+		private cartFacade: DaffCartFacade
   ) { }
 
   ngOnInit() {

@@ -9,7 +9,7 @@ import { DaffProductMagentoDriverModule } from '@daffodil/product';
 import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
 import { DaffNavigationMagentoDriverModule } from '@daffodil/navigation';
 import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/testing';
-import { DaffCartMagentoDriverModule } from '@daffodil/cart';
+import { DaffCartMagentoDriverModule } from '@daffodil/cart/driver/magento';
 import { DaffAuthMagentoDriverModule } from '@daffodil/auth';
 
 import { environment } from '../../../environments/environment';

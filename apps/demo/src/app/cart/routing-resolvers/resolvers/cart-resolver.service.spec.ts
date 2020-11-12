@@ -5,7 +5,8 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-import { DaffCart, daffCartReducers, DaffCartReducersState }  from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
+import { daffCartReducers, DaffCartReducersState }  from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { CartResolver } from './cart-resolver.service';
@@ -58,7 +59,7 @@ describe('CartResolver', () => {
     describe('when ResolveCartSuccess is dispatched with a cart', () => {
 
       describe('and cart is null', () => {
-        
+
         it('should resolve with a ResolveCartFailure action', () => {
           cartResolver.resolve().subscribe((resolvedValue) => {
             expect(resolvedValue).toEqual(new ResolveCartFailure(null));
@@ -75,9 +76,9 @@ describe('CartResolver', () => {
           store.dispatch(new ResolveCartSuccess(null));
         });
       });
-      
+
       describe('and cart is defined', () => {
-        
+
         it('should resolve with a ResolveCartSuccess action', () => {
           cartResolver.resolve().subscribe((returnedValue) => {
             expect(returnedValue).toEqual(new ResolveCartSuccess(stubCart));
@@ -97,7 +98,7 @@ describe('CartResolver', () => {
     });
 
     describe('when ResolveCartFailure is dispatched', () => {
-      
+
       it('should resolve with a ResolveCartFailure action', () => {
         cartResolver.resolve().subscribe((resolvedValue) => {
           expect(resolvedValue).toEqual(new ResolveCartFailure(null));

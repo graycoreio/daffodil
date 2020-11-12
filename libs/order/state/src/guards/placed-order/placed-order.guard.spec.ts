@@ -15,7 +15,7 @@ import {
   daffOrderReducers
 } from '@daffodil/order/state';
 import { DaffOrderFactory } from '@daffodil/order/testing';
-import { daffCartReducers, DaffCartPlaceOrderSuccess } from '@daffodil/cart';
+import { daffCartReducers, DaffCartPlaceOrderSuccess } from '@daffodil/cart/state';
 
 import { DaffPlacedOrderGuard } from './placed-order.guard';
 import { DaffPlacedOrderGuardRedirectUrl } from './placed-order-guard-redirect.token';

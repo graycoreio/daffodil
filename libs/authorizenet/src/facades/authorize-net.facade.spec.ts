@@ -6,7 +6,7 @@ import { cold } from 'jasmine-marbles';
 import { DaffAuthorizeNetFacade } from './authorize-net.facade';
 import { daffAuthorizeNetReducers } from '../reducers/authorize-net.reducers';
 import { DaffAuthorizeNetUpdatePaymentFailure, DaffLoadAcceptJsFailure } from '../actions/authorizenet.actions';
-import { DaffCartPaymentMethodAdd } from '@daffodil/cart';
+import { DaffCartPaymentMethodAdd } from '@daffodil/cart/state';
 import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '../drivers/magento/authorize-net-payment-id';
 
 describe('DaffAuthorizeNetFacade', () => {
@@ -47,7 +47,7 @@ describe('DaffAuthorizeNetFacade', () => {
 
     it('should return false by default', () => {
       const expected = cold('a', { a: false });
-      
+
       expect(facade.isAcceptJsLoaded$).toBeObservable(expected);
     });
   });

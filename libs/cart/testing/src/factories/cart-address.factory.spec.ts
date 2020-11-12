@@ -1,10 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffCartAddressFactory } from './cart-address.factory';
 import { DaffCartAddress } from '@daffodil/cart';
 
+import { DaffCartAddressFactory } from './cart-address.factory';
+
 describe('Cart | Testing | Factories | CartAddressFactory', () => {
-  
+
   let cartAddressFactory: DaffCartAddressFactory;
 
   beforeEach(() => {

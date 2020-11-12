@@ -4,7 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { Observable, of, BehaviorSubject } from 'rxjs';
+import { hot, cold } from 'jasmine-marbles';
 
+import { DaffCartFacade, DaffAddToCart } from '@daffodil/cart/state';
+import { DaffCartTestingModule, MockDaffCartFacade } from '@daffodil/cart/state/testing';
 import { DaffProduct, DaffProductFacade, DaffProductLoad } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffLoadingIconModule } from '@daffodil/design';
@@ -13,12 +16,6 @@ import { ProductViewComponent } from './product-view.component';
 import { ActivatedRouteStub } from '../../../testing/ActivatedRouteStub';
 import { AddToCartComponent } from '../../components/add-to-cart/add-to-cart.component';
 import { ProductComponent } from '../../components/product/product.component';
-import { hot, cold } from 'jasmine-marbles';
-import { DaffCartFacade, DaffAddToCart } from '@daffodil/cart';
-
-class MockDaffCartFacade {
-  dispatch() {};
-}
 
 @Component({
   selector: 'demo-product',
@@ -61,7 +58,8 @@ describe('ProductViewComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        DaffLoadingIconModule
+        DaffLoadingIconModule,
+        DaffCartTestingModule
       ],
       declarations: [
         ProductViewComponent,
@@ -71,7 +69,6 @@ describe('ProductViewComponent', () => {
       providers: [
         { provide: ActivatedRoute, useValue: activatedRoute },
         { provide: DaffProductFacade, useClass: MockDaffProductFacade },
-        { provide: DaffCartFacade, useClass: MockDaffCartFacade }
       ]
     })
       .compileComponents();

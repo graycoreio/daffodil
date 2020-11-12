@@ -5,16 +5,14 @@ import { Store } from '@ngrx/store';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 
-import { DaffCart, DaffCartFacade } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
+import { DaffCartFacade } from '@daffodil/cart/state';
+import { DaffCartTestingModule, MockDaffCartFacade } from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { PlaceOrder } from '@daffodil/checkout';
+
 import * as fromDemoCheckout from '../../reducers';
 import { PlaceOrderComponent } from './place-order.component';
-
-class MockDaffCartFacade {
-	cart$: BehaviorSubject<DaffCart> = new BehaviorSubject(null);
-	dispatch = jasmine.createSpy();
-}
 
 describe('PlaceOrderComponent', () => {
   let fixture: ComponentFixture<PlaceOrderComponent>;
@@ -32,7 +30,9 @@ describe('PlaceOrderComponent', () => {
       ],
       providers: [
 				provideMockStore({}),
-				{ provide: DaffCartFacade, useClass: MockDaffCartFacade }
+      ],
+      imports: [
+        DaffCartTestingModule
       ]
     })
     .compileComponents();
@@ -47,7 +47,7 @@ describe('PlaceOrderComponent', () => {
 		cartFacade = TestBed.get(DaffCartFacade);
 		cartFacade.cart$.next(stubCart);
 
-    spyOn(store, 'dispatch');
+    spyOn(cartFacade, 'dispatch');
 
     store.overrideSelector(fromDemoCheckout.selectEnablePlaceOrderButton, stubEnablePlaceOrderButton);
 
