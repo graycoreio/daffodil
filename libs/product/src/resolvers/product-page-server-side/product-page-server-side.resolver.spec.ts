@@ -1,30 +1,22 @@
 import { TestBed, async } from '@angular/core/testing';
-import { StoreModule, combineReducers, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { provideMockActions } from '@ngrx/effects/testing';
+import { of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { ɵPLATFORM_SERVER_ID, ɵPLATFORM_BROWSER_ID } from '@angular/common';
 import { PLATFORM_ID } from '@angular/core';
-import { MockStore } from '@ngrx/store/testing';
-import { fail } from 'assert';
-
-import { DaffProductFactory } from '@daffodil/product/testing';
+import { combineReducers, StoreModule } from '@ngrx/store';
 
 import { DaffProductPageServerSideResolver } from './product-page-server-side.resolver';
-import { DaffProduct } from '../../models/product';
-import { daffProductReducers } from '../../reducers/product-reducers';
-import { DaffProductLoad, DaffProductLoadSuccess, DaffProductLoadFailure } from '../../actions/product.actions';
-import { DaffProductReducersState } from '../../reducers/public_api';
+import { DaffProductPageResolver } from '../product-page/product-page.resolver';
+import { daffProductReducers } from '../../reducers/public_api';
 
 describe('DaffProductPageServerSideResolver', () => {
-	const actions$: Observable<any> = null;
-	let ProductResolver: DaffProductPageServerSideResolver;
-  let store: MockStore<DaffProductReducersState>;
-  let ProductFactory: DaffProductFactory;
-  let stubProduct: DaffProduct;
+	let resolver: DaffProductPageServerSideResolver;
+	let productPageResolver: DaffProductPageResolver;
 	let route: ActivatedRoute;
 
 	describe('resolve - on the server', () => {
+
+		const productPageResolveValue = true;
 
 		beforeEach(async(() => {
 			TestBed.configureTestingModule({
@@ -34,7 +26,6 @@ describe('DaffProductPageServerSideResolver', () => {
 					})
 				],
 				providers: [
-					provideMockActions(() => actions$),
 					{
 						provide: ActivatedRoute,
 						useValue: {snapshot: {paramMap: { get: () => '123'}}}
@@ -43,46 +34,21 @@ describe('DaffProductPageServerSideResolver', () => {
 				]
 			});
 	
-			ProductResolver = TestBed.get(DaffProductPageServerSideResolver);
-			ProductFactory = TestBed.get(DaffProductFactory);
-			stubProduct = ProductFactory.create();
-			store = TestBed.get(Store);
+			resolver = TestBed.get(DaffProductPageServerSideResolver);
 			route = TestBed.get(ActivatedRoute);
+			productPageResolver = TestBed.get(DaffProductPageResolver);
+			spyOn(productPageResolver, 'resolve').and.returnValue(of(productPageResolveValue));
 		}));
 
-		it('should dispatch a DaffProductLoad action with the correct product id', () => {
-			spyOn(store, 'dispatch');
-			ProductResolver.resolve( route.snapshot );
-			expect(store.dispatch).toHaveBeenCalledWith(
-				new DaffProductLoad('123')
-			);
-		});
-
-		it('should resolve when DaffProductLoadSuccess is dispatched', () => {
-			ProductResolver.resolve(route.snapshot).subscribe(value => {
-				expect(value).toEqual(true);
+		it('should call the DaffProductPageResolver', () => {
+			resolver.resolve( route.snapshot ).subscribe(value => {
+				expect(productPageResolver.resolve).toHaveBeenCalledWith(route.snapshot);
+				expect(value).toEqual(productPageResolveValue);
 			});
-
-			store.dispatch(new DaffProductLoadSuccess(stubProduct));
-		});
-
-		it('should resolve when DaffCartLoadFailure is dispatched', () => {
-			ProductResolver.resolve(route.snapshot).subscribe(value => {
-				expect(value).toEqual(true);
-			});
-
-			store.dispatch(new DaffProductLoadFailure(null));
-		});
-
-		it('should not resolve without a product load success or failure', () => {
-			ProductResolver.resolve(route.snapshot).subscribe(() => {
-				fail();
-			});
-			expect(true).toBeTruthy();
 		});
 	});
 
-	describe('in the browser', () => {
+	describe('resolve - in the browser', () => {
 		beforeEach(async(() => {
 			TestBed.configureTestingModule({
 				imports: [
@@ -91,7 +57,6 @@ describe('DaffProductPageServerSideResolver', () => {
 					})
 				],
 				providers: [
-					provideMockActions(() => actions$),
 					{
 						provide: ActivatedRoute,
 						useValue: {snapshot: {paramMap: { get: () => '123'}}}
@@ -100,17 +65,17 @@ describe('DaffProductPageServerSideResolver', () => {
 				]
 			});
 	
-			ProductResolver = TestBed.get(DaffProductPageServerSideResolver);
-			ProductFactory = TestBed.get(DaffProductFactory);
-			stubProduct = ProductFactory.create();
-			store = TestBed.get(Store);
+			resolver = TestBed.get(DaffProductPageServerSideResolver);
 			route = TestBed.get(ActivatedRoute);
+			productPageResolver = TestBed.get(DaffProductPageResolver);
+			spyOn(productPageResolver, 'resolve');
 		}));
 
-		it('should resolve', () => {
-			ProductResolver.resolve(route.snapshot).subscribe((value) => {
+		it('should resolve without calling the DaffProductPageResolver', () => {
+			resolver.resolve(route.snapshot).subscribe((value) => {
+				expect(productPageResolver.resolve).not.toHaveBeenCalled();
 				expect(value).toBeTruthy();
 			});
-		});		
+		});
 	});
 });
