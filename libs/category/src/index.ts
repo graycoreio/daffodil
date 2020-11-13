@@ -9,6 +9,8 @@ export { DaffCategoryMagentoDriverModule } from './drivers/magento/category-driv
 export { DaffCategoryServiceInterface } from './drivers/interfaces/category-service.interface';
 export { DaffCategoryDriver } from './drivers/injection-tokens/category-driver.token';
 
+export * from './resolvers/public_api';
+
 export * from './selectors/category.selector';
 
 export { DaffGetCategoryResponse } from './models/get-category-response';
