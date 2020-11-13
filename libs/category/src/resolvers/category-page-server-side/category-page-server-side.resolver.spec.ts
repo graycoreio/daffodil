@@ -1,30 +1,22 @@
 import { TestBed, async } from '@angular/core/testing';
-import { StoreModule, combineReducers, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { StoreModule, combineReducers } from '@ngrx/store';
+import { Observable, of } from 'rxjs';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { ActivatedRoute } from '@angular/router';
 import { ɵPLATFORM_SERVER_ID, ɵPLATFORM_BROWSER_ID } from '@angular/common';
 import { PLATFORM_ID } from '@angular/core';
-import { MockStore } from '@ngrx/store/testing';
-import { fail } from 'assert';
-
-import { DaffProductFactory } from '@daffodil/product/testing';
-import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 
 import { DaffCategoryPageServerSideResolver } from './category-page-server-side.resolver';
-import { DaffCategoryReducersState } from '../../reducers/category-reducers.interface';
-import { DaffCategory } from '../../models/category';
 import { daffCategoryReducers } from '../../reducers/category-reducers';
-import { DaffDefaultCategoryPageSize } from './default-category-page-size.token';
-import { DaffCategoryLoad, DaffCategoryLoadSuccess, DaffCategoryLoadFailure } from '../../actions/category.actions';
+import { DaffCategoryPageResolver } from '../category-page/category-page.resolver';
+import { DaffDefaultCategoryPageSize } from '../category-page/default-category-page-size.token';
 
 describe('DaffCategoryPageServerSideResolver', () => {
 	const actions$: Observable<any> = null;
-	let categoryResolver: DaffCategoryPageServerSideResolver;
-  let store: MockStore<DaffCategoryReducersState>;
-  let categoryFactory: DaffCategoryFactory;
-  let stubCategory: DaffCategory;
+	let resolver: DaffCategoryPageServerSideResolver;
 	let route: ActivatedRoute;
+	let categoryPageResolver: DaffCategoryPageResolver;
+	const categoryPageResolveValue = true;
 
 	describe('resolve - on the server', () => {
 
@@ -46,46 +38,17 @@ describe('DaffCategoryPageServerSideResolver', () => {
 				]
 			});
 	
-			categoryResolver = TestBed.get(DaffCategoryPageServerSideResolver);
-			categoryFactory = TestBed.get(DaffCategoryFactory);
-			stubCategory = categoryFactory.create();
-			store = TestBed.get(Store);
+			resolver = TestBed.get(DaffCategoryPageServerSideResolver);
+			categoryPageResolver = TestBed.get(DaffCategoryPageResolver);
 			route = TestBed.get(ActivatedRoute);
+			spyOn(categoryPageResolver, 'resolve').and.returnValue(of(true));
 		}));
 
-		it('should dispatch a DaffCategoryLoad action with the correct category id', () => {
-			spyOn(store, 'dispatch');
-			categoryResolver.resolve( route.snapshot );
-			expect(store.dispatch).toHaveBeenCalledWith(
-				new DaffCategoryLoad({ id: '123', page_size: 12 })
-			);
-		});
-
-		it('should resolve when DaffCategoryLoadSuccess is dispatched', () => {
-			categoryResolver.resolve(route.snapshot).subscribe(value => {
-				expect(value).toEqual(true);
+		it('should resolve with the DaffCategoryPageResolver', () => {
+			resolver.resolve( route.snapshot ).subscribe(value => {
+				expect(categoryPageResolver.resolve).toHaveBeenCalledWith(route.snapshot);
+				expect(value).toEqual(categoryPageResolveValue);
 			});
-
-			store.dispatch(new DaffCategoryLoadSuccess({
-				products: [new DaffProductFactory().create()],
-				category: stubCategory,
-				categoryPageConfigurationState: new DaffCategoryPageConfigurationStateFactory().create()
-			}));
-		});
-
-		it('should resolve when DaffCartLoadFailure is dispatched', () => {
-			categoryResolver.resolve(route.snapshot).subscribe(value => {
-				expect(value).toEqual(true);
-			});
-
-			store.dispatch(new DaffCategoryLoadFailure(null));
-		});
-
-		it('should not resolve without a category load success or failure', () => {
-			categoryResolver.resolve(route.snapshot).subscribe(() => {
-				fail();
-			});
-			expect(true).toBeTruthy();
 		});
 	});
 
@@ -99,26 +62,26 @@ describe('DaffCategoryPageServerSideResolver', () => {
 				],
 				providers: [
 					provideMockActions(() => actions$),
-					{ provide: DaffDefaultCategoryPageSize, useValue: 12 },
 					{
 						provide: ActivatedRoute,
 						useValue: {snapshot: {paramMap: { get: () => '123'}}}
 					},
+					{ provide: DaffDefaultCategoryPageSize, useValue: 12 },
 					{ provide: PLATFORM_ID, useValue: ɵPLATFORM_BROWSER_ID }
 				]
 			});
 	
-			categoryResolver = TestBed.get(DaffCategoryPageServerSideResolver);
-			categoryFactory = TestBed.get(DaffCategoryFactory);
-			stubCategory = categoryFactory.create();
-			store = TestBed.get(Store);
+			resolver = TestBed.get(DaffCategoryPageServerSideResolver);
 			route = TestBed.get(ActivatedRoute);
+			categoryPageResolver = TestBed.get(DaffCategoryPageResolver);
+			spyOn(categoryPageResolver, 'resolve');
 		}));
 
-		it('should resolve', () => {
-			categoryResolver.resolve(route.snapshot).subscribe((value) => {
+		it('should resolve without calling the DaffCategoryPageResolver', () => {
+			resolver.resolve(route.snapshot).subscribe((value) => {
+				expect(categoryPageResolver.resolve).not.toHaveBeenCalled();
 				expect(value).toBeTruthy();
 			});
-		});		
+		});	
 	});
 });
