@@ -12,11 +12,11 @@ import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 
 import { DaffCategoryPageServerSideResolver } from './category-page-server-side.resolver';
-import { DaffCategoryReducersState } from '../reducers/category-reducers.interface';
-import { DaffCategory } from '../models/category';
-import { daffCategoryReducers } from '../reducers/category-reducers';
+import { DaffCategoryReducersState } from '../../reducers/category-reducers.interface';
+import { DaffCategory } from '../../models/category';
+import { daffCategoryReducers } from '../../reducers/category-reducers';
 import { DaffDefaultCategoryPageSize } from './default-category-page-size.token';
-import { DaffCategoryLoad, DaffCategoryLoadSuccess, DaffCategoryLoadFailure } from '../actions/category.actions';
+import { DaffCategoryLoad, DaffCategoryLoadSuccess, DaffCategoryLoadFailure } from '../../actions/category.actions';
 
 describe('DaffCategoryPageServerSideResolver', () => {
 	const actions$: Observable<any> = null;

@@ -5,8 +5,8 @@ import { ActionsSubject, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs'
 import { filter, map, take } from 'rxjs/operators';
 
-import { DaffCategoryActionTypes, DaffCategoryLoad, DaffCategoryLoadFailure, DaffCategoryLoadSuccess } from '../actions/category.actions';
-import { DaffCategoryReducersState } from '../reducers/category-reducers.interface';
+import { DaffCategoryActionTypes, DaffCategoryLoad, DaffCategoryLoadFailure, DaffCategoryLoadSuccess } from '../../actions/category.actions';
+import { DaffCategoryReducersState } from '../../reducers/category-reducers.interface';
 import { DaffDefaultCategoryPageSize } from './default-category-page-size.token';
 
 /**
