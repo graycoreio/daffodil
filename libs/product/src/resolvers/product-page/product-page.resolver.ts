@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core'
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router'
+import { ofType } from '@ngrx/effects';
 import { ActionsSubject, Store } from '@ngrx/store';
 import { Observable } from 'rxjs'
-import { filter, mapTo, take } from 'rxjs/operators';
+import { mapTo, take } from 'rxjs/operators';
 
-import { DaffProductActionTypes, DaffProductLoad, DaffProductLoadFailure, DaffProductLoadSuccess } from '../../actions/product.actions';
+import { DaffProductActionTypes, DaffProductLoad } from '../../actions/product.actions';
 import { DaffProductReducersState } from '../../reducers/public_api';
 
 /**
@@ -24,10 +25,7 @@ export class DaffProductPageResolver implements Resolve<Observable<boolean>> {
 		this.store.dispatch(new DaffProductLoad(route.paramMap.get('id')));
 
 		return this.dispatcher.pipe(
-			filter((action: DaffProductLoadSuccess | DaffProductLoadFailure) => 
-				action.type === DaffProductActionTypes.ProductLoadSuccessAction
-				|| action.type === DaffProductActionTypes.ProductLoadFailureAction
-			),
+			ofType(DaffProductActionTypes.ProductLoadSuccessAction || DaffProductActionTypes.ProductLoadFailureAction),
 			mapTo(true),
 			take(1)
 		);
