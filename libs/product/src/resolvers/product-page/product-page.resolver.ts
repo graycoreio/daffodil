@@ -25,7 +25,7 @@ export class DaffProductPageResolver implements Resolve<Observable<boolean>> {
 		this.store.dispatch(new DaffProductLoad(route.paramMap.get('id')));
 
 		return this.dispatcher.pipe(
-			ofType(DaffProductActionTypes.ProductLoadSuccessAction || DaffProductActionTypes.ProductLoadFailureAction),
+			ofType(DaffProductActionTypes.ProductLoadSuccessAction, DaffProductActionTypes.ProductLoadFailureAction),
 			mapTo(true),
 			take(1)
 		);
