@@ -12,6 +12,7 @@ import { DaffCart, DaffCartTotal, DaffCartOrderResult, DaffCartItem, DaffCartTot
 
 import { getDaffCartFeatureSelector } from '../cart-feature.selector';
 import { DaffCartReducerState, DaffCartReducersState, DaffCartOperationType } from '../../reducers/public_api';
+import { DaffCartItemLoadingState } from '../../reducers/loading/cart-loading.type';
 
 export interface DaffCartStateMemoizedSelectors<
   T extends DaffCart = DaffCart
@@ -316,19 +317,19 @@ const createCartSelectors = <
   );
 	const selectItemLoading = createSelector(
 		selectCartLoadingObject,
-		loadingObject => loadingObject[DaffCartOperationType.Item] !== DaffLoadingState.Complete
+		loadingObject => loadingObject[DaffCartOperationType.Item] !== DaffCartItemLoadingState.Complete
   );
 	const selectItemAdding = createSelector(
 		selectCartLoadingObject,
-		loadingObject => loadingObject[DaffCartOperationType.Item] === DaffLoadingState.Adding
+		loadingObject => loadingObject[DaffCartOperationType.Item] === DaffCartItemLoadingState.Adding
   );
   const selectItemResolving = createSelector(
 		selectCartLoadingObject,
-		loadingObject => loadingObject[DaffCartOperationType.Item] === DaffLoadingState.Resolving
+		loadingObject => loadingObject[DaffCartOperationType.Item] === DaffCartItemLoadingState.Resolving
   );
   const selectItemMutating = createSelector(
 		selectCartLoadingObject,
-		loadingObject => loadingObject[DaffCartOperationType.Item] === DaffLoadingState.Mutating
+		loadingObject => loadingObject[DaffCartOperationType.Item] === DaffCartItemLoadingState.Mutating
   );
   const selectCouponLoading = createSelector(
 		selectCartLoadingObject,

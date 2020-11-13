@@ -20,6 +20,7 @@ import {
 
 import { getCartSelectors } from './cart.selector';
 import { DaffCartItemAdd } from '../../actions/public_api';
+import { DaffCartItemLoadingState } from '../../reducers/loading/cart-loading.type';
 
 describe('Cart | Selector | Cart', () => {
   let store: Store<DaffCartReducersState>;
@@ -139,7 +140,7 @@ describe('Cart | Selector | Cart', () => {
     });
     loading = {
       [DaffCartOperationType.Cart]: DaffLoadingState.Complete,
-      [DaffCartOperationType.Item]: DaffLoadingState.Complete,
+      [DaffCartOperationType.Item]: DaffCartItemLoadingState.Complete,
       [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Complete,
       [DaffCartOperationType.BillingAddress]: DaffLoadingState.Complete,
       [DaffCartOperationType.ShippingInformation]: DaffLoadingState.Complete,
@@ -674,7 +675,7 @@ describe('Cart | Selector | Cart', () => {
   });
 
   describe('selectItemAdding', () => {
-    describe('when the cart item operations have completed', () => {
+    describe('when the cart item add operations have completed', () => {
       it('should return false', () => {
         const selector = store.pipe(select(selectItemAdding));
         const expected = cold('a', {a: false});
@@ -683,7 +684,7 @@ describe('Cart | Selector | Cart', () => {
       });
     });
 
-    describe('when the cart item operations have not completed', () => {
+    describe('when the cart item add operations have not completed', () => {
       beforeEach(() => {
         store.dispatch(new DaffCartItemAdd({
 					productId: 'productId',

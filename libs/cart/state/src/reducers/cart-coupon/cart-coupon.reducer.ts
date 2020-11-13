@@ -9,7 +9,7 @@ import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
 import { DaffCartOperationType } from '../cart-operation-type.enum';
 import { initializeErrorAdder, initializeErrorResetter } from '../errors/error-state-helpers';
-import { initializeLoadingSetter } from '../loading/loading-state-helpers';
+import { initializeLoadingSetter } from '../loading/cart-loading.type';
 
 const addError = initializeErrorAdder(DaffCartOperationType.Coupon);
 const resetErrors = initializeErrorResetter(DaffCartOperationType.Coupon);

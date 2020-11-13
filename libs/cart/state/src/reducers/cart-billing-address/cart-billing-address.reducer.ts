@@ -10,7 +10,7 @@ import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
 import { initializeErrorAdder, initializeErrorResetter } from '../errors/error-state-helpers';
 import { DaffCartOperationType } from '../cart-operation-type.enum';
-import { initializeLoadingSetter } from '../loading/loading-state-helpers';
+import { initializeLoadingSetter } from '../loading/cart-loading.type';
 
 const addError = initializeErrorAdder(DaffCartOperationType.BillingAddress);
 const resetErrors = initializeErrorResetter(DaffCartOperationType.BillingAddress);

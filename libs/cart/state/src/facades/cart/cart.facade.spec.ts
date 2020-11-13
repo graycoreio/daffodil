@@ -19,6 +19,7 @@ import {
 
 import { DaffCartFacade } from './cart.facade';
 import { DaffCartItemAdd } from '../../actions/public_api';
+import { DaffCartItemLoadingState } from '../../reducers/loading/cart-loading.type';
 
 describe('DaffCartFacade', () => {
   let store: MockStore<{ product: Partial<DaffCartReducersState> }>;
@@ -67,7 +68,7 @@ describe('DaffCartFacade', () => {
 
     loading = {
       [DaffCartOperationType.Cart]: DaffLoadingState.Complete,
-      [DaffCartOperationType.Item]: DaffLoadingState.Complete,
+      [DaffCartOperationType.Item]: DaffCartItemLoadingState.Complete,
       [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Complete,
       [DaffCartOperationType.BillingAddress]: DaffLoadingState.Complete,
       [DaffCartOperationType.ShippingInformation]: DaffLoadingState.Complete,
