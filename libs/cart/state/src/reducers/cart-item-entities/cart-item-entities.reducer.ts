@@ -1,4 +1,4 @@
-import { EntityState } from '@ngrx/entity';
+import { Dictionary, EntityState } from '@ngrx/entity';
 
 import { DaffCartItem, DaffCartItemInput, DaffCart, DaffCartItemStateEnum } from '@daffodil/cart';
 
@@ -71,6 +71,7 @@ function updateAddedCartItemState<T extends DaffCartItem>(oldCartItems: Dictiona
 }
 
 function updateMutatedCartItemState<T extends DaffCartItem>(cartItems: T[], itemId: T['item_id']): T[] {
+	console.log('test');
 	return cartItems.map(item => item.item_id === itemId ? 
 		{ ...item, state: DaffCartItemStateEnum.Updated} : item)
 }
