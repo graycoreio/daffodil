@@ -109,10 +109,10 @@ function transformAdditionalItemFields(item: MagentoOrderItem) {
   }
 }
 
-function transformItem(item: MagentoOrderItem, order: MagentoOrder): DaffOrderItem {
+function transformItem(item: MagentoOrderItem, order: MagentoOrder, qty: number): DaffOrderItem {
   const discount = item.discounts.reduce((acc, d) => daffAdd(acc, d.amount.value), 0);
-  const rowTotal = item.quantity_invoiced * item.product_sale_price.value;
-  const rowTotalWithDiscount = item.quantity_invoiced * daffSubtract(item.product_sale_price.value, discount);
+  const rowTotal = qty * item.product_sale_price.value;
+  const rowTotalWithDiscount = qty * daffSubtract(item.product_sale_price.value, discount);
 
   return {
     type: DaffOrderItemType.Simple,
@@ -120,7 +120,7 @@ function transformItem(item: MagentoOrderItem, order: MagentoOrder): DaffOrderIt
     qty_ordered: item.quantity_ordered,
     qty_canceled: item.quantity_canceled,
     qty_fulfilled: item.quantity_shipped,
-    qty: item.quantity_invoiced,
+    qty,
     image: {
       url: item.product_url_key,
       id: null,
@@ -168,7 +168,7 @@ function transformAddress(address: MagentoOrderAddress, order: MagentoOrder): Da
 
 function transformShipmentItem(shipmentItem: MagentoOrderShipmentItem, order: MagentoOrder): DaffOrderShipmentItem {
   return {
-    item: transformItem(shipmentItem.order_item, order),
+    item: transformItem(shipmentItem.order_item, order, shipmentItem.quantity_shipped),
     qty: shipmentItem.quantity_shipped
   }
 }
@@ -215,10 +215,10 @@ function transformPayment(payment: MagentoOrderPayment, order: MagentoOrder): Da
   }
 }
 
-function transformInvoiceItem(shipmentItem: MagentoOrderInvoiceItem, order: MagentoOrder): DaffOrderShipmentItem {
+function transformInvoiceItem(invoiceItem: MagentoOrderInvoiceItem, order: MagentoOrder): DaffOrderShipmentItem {
   return {
-    item: transformItem(shipmentItem.order_item, order),
-    qty: shipmentItem.quantity_invoiced
+    item: transformItem(invoiceItem.order_item, order, invoiceItem.quantity_invoiced),
+    qty: invoiceItem.quantity_invoiced
   }
 }
 
@@ -235,7 +235,7 @@ function transformInvoice(invoice: MagentoOrderInvoice, order: MagentoOrder, pay
 
 function transformCreditItem(creditItem: MagentoOrderCreditItem, order: MagentoOrder): DaffOrderShipmentItem {
   return {
-    item: transformItem(creditItem.order_item, order),
+    item: transformItem(creditItem.order_item, order, creditItem.quantity_refunded),
     qty: creditItem.quantity_refunded
   }
 }
@@ -266,7 +266,7 @@ export function daffMagentoTransformOrder(order: MagentoOrder): DaffOrder {
 
     totals: transformTotals(order.total),
     applied_codes: order.total.discounts.map(transformCouponDiscount),
-    items: order.items.map(item => transformItem(item, order)),
+    items: order.items.map(item => transformItem(item, order, item.quantity_ordered)),
     billing_addresses: [
       transformAddress(order.billing_address, order)
     ],
