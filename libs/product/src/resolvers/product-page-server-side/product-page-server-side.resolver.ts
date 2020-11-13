@@ -5,8 +5,8 @@ import { ActionsSubject, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs'
 import { filter, map, take } from 'rxjs/operators';
 
-import { DaffProductActionTypes, DaffProductLoad, DaffProductLoadFailure, DaffProductLoadSuccess } from '../actions/product.actions';
-import { DaffProductReducersState } from '../reducers/public_api';
+import { DaffProductActionTypes, DaffProductLoad, DaffProductLoadFailure, DaffProductLoadSuccess } from '../../actions/product.actions';
+import { DaffProductReducersState } from '../../reducers/public_api';
 
 /**
  * Resolves the product page immediately when in a browser, so client-side loading states can show immediately. 

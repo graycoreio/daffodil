@@ -11,10 +11,10 @@ import { fail } from 'assert';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { DaffProductPageServerSideResolver } from './product-page-server-side.resolver';
-import { DaffProduct } from '../models/product';
-import { daffProductReducers } from '../reducers/product-reducers';
-import { DaffProductLoad, DaffProductLoadSuccess, DaffProductLoadFailure } from '../actions/product.actions';
-import { DaffProductReducersState } from '../reducers/public_api';
+import { DaffProduct } from '../../models/product';
+import { daffProductReducers } from '../../reducers/product-reducers';
+import { DaffProductLoad, DaffProductLoadSuccess, DaffProductLoadFailure } from '../../actions/product.actions';
+import { DaffProductReducersState } from '../../reducers/public_api';
 
 describe('DaffProductPageServerSideResolver', () => {
 	const actions$: Observable<any> = null;

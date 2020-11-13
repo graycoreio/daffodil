@@ -12,7 +12,7 @@ export * from './models/configurable-product';
 export * from './models/prices';
 export * from './models/composite-configuration-item';
 
-export { DaffProductPageServerSideResolver } from './resolvers/product-page-server-side.resolver';
+export * from './resolvers/public_api';
 
 export * from './reducers/public_api';
 export * from './selectors/public_api';
