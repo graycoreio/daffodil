@@ -7,8 +7,8 @@ import { DaffProductPageResolver } from '../product-page/product-page.resolver';
 
 /**
  * Resolves immediately when in a browser, so client-side loading states can show immediately. 
- * When server-side, this resolver will call the `DaffProductPageResolver`. The purpose of this resolver is pass
- * full documents to web crawlers for seo audits.
+ * When server-side, this resolver will call the `DaffProductPageResolver`. The purpose of this resolver
+ * is to pass full documents to web crawlers for seo audits.
  */
 @Injectable({
 	providedIn: 'root'
