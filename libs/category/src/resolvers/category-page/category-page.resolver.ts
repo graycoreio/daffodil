@@ -1,10 +1,11 @@
 import { Inject, Injectable } from '@angular/core'
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router'
+import { ofType } from '@ngrx/effects';
 import { ActionsSubject, Store } from '@ngrx/store';
 import { Observable } from 'rxjs'
-import { filter, mapTo, take } from 'rxjs/operators';
+import { mapTo, take } from 'rxjs/operators';
 
-import { DaffCategoryActionTypes, DaffCategoryLoad, DaffCategoryLoadFailure, DaffCategoryLoadSuccess } from '../../actions/category.actions';
+import { DaffCategoryActionTypes, DaffCategoryLoad } from '../../actions/category.actions';
 import { DaffCategoryReducersState } from '../../reducers/category-reducers.interface';
 import { DaffDefaultCategoryPageSize } from './default-category-page-size.token';
 
@@ -28,10 +29,7 @@ export class DaffCategoryPageResolver implements Resolve<Observable<boolean>> {
 		}));
 
 		return this.dispatcher.pipe(
-			filter((action: DaffCategoryLoadSuccess | DaffCategoryLoadFailure) => 
-				action.type === DaffCategoryActionTypes.CategoryLoadSuccessAction
-				|| action.type === DaffCategoryActionTypes.CategoryLoadFailureAction
-			),
+			ofType(DaffCategoryActionTypes.CategoryLoadSuccessAction || DaffCategoryActionTypes.CategoryLoadFailureAction),
 			mapTo(true),
 			take(1)
 		);
