@@ -29,7 +29,7 @@ export class DaffCategoryPageResolver implements Resolve<Observable<boolean>> {
 		}));
 
 		return this.dispatcher.pipe(
-			ofType(DaffCategoryActionTypes.CategoryLoadSuccessAction || DaffCategoryActionTypes.CategoryLoadFailureAction),
+			ofType(DaffCategoryActionTypes.CategoryLoadSuccessAction, DaffCategoryActionTypes.CategoryLoadFailureAction),
 			mapTo(true),
 			take(1)
 		);
