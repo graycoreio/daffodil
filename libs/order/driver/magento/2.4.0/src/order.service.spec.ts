@@ -34,7 +34,6 @@ import {
   DaffOrderTotalFactory,
   DaffOrderPaymentFactory,
 } from '@daffodil/order/testing';
-
 import {
   MagentoGraycoreOrder,
   MagentoGraycoreOrderAddress,
@@ -43,12 +42,15 @@ import {
   MagentoGraycoreOrderItem,
   MagentoGraycoreOrderShipmentItem,
   MagentoGraycoreOrderShipmentTracking,
-  MagentoGraycoreOrderShipment
-} from './models/responses/public_api';
-import { DaffOrderMagentoService } from './order.service';
-import { daffMagentoNoopOrderFragment, getGuestOrders, MagentoGetGuestOrdersResponse } from './queries/public_api';
+  MagentoGraycoreOrderShipment,
+  DaffMagentoExtraOrderFragments,
+  daffMagentoNoopOrderFragment,
+  getGuestOrders,
+  MagentoGetGuestOrdersResponse
+} from '@daffodil/order/driver/magento/2.4.0';
+
 import * as validators from './validators/public_api';
-import { DaffMagentoExtraOrderFragments } from './injection-tokens/public_api';
+import { DaffOrderMagentoService } from './order.service';
 
 describe('Driver | Magento | Order | OrderService', () => {
   let service: DaffOrderMagentoService;

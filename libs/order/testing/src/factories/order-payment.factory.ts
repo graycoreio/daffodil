@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-
-import { DaffOrderPayment } from '@daffodil/order';
 import * as faker from 'faker/locale/en_US';
 
+import { DaffOrderPayment } from '@daffodil/order';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
 export class MockOrderPayment implements DaffOrderPayment {

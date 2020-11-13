@@ -27,7 +27,6 @@ import {
   DaffOrderTotalFactory,
   DaffOrderPaymentFactory,
 } from '@daffodil/order/testing';
-
 import {
   MagentoGraycoreOrder,
   MagentoGraycoreOrderAddress,
@@ -37,7 +36,8 @@ import {
   MagentoGraycoreOrderShipmentItem,
   MagentoGraycoreOrderShipmentTracking,
   MagentoGraycoreOrderShipment
-} from '../../models/responses/public_api';
+} from '@daffodil/order/driver/magento/2.4.0';
+
 import { daffMagentoTransformOrder } from './order';
 
 describe('Driver | Magento | Order | Transformer | Order', () => {

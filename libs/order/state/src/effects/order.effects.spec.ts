@@ -10,9 +10,6 @@ import {
   DaffOrderServiceInterface,
   DaffOrderDriver
 } from '@daffodil/order/driver';
-import { DaffOrderFactory } from '@daffodil/order/testing';
-
-import { DaffOrderEffects } from './order.effects';
 import {
   DaffOrderLoad,
   DaffOrderLoadSuccess,
@@ -20,7 +17,10 @@ import {
   DaffOrderList,
   DaffOrderListSuccess,
   DaffOrderListFailure
-} from '../actions/order.actions';
+} from '@daffodil/order/state';
+import { DaffOrderFactory } from '@daffodil/order/testing';
+
+import { DaffOrderEffects } from './order.effects';
 
 describe('Daffodil | Order | OrderEffects', () => {
   let actions$: Observable<any>;

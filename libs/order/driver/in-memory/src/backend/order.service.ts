@@ -5,12 +5,11 @@ import {
   STATUS
 } from 'angular-in-memory-web-api';
 
-import { DaffOrder } from '@daffodil/order';
 import { DaffInMemoryDataServiceInterface } from '@daffodil/core/testing';
-
+import { DaffOrder } from '@daffodil/order';
 import {
   DaffOrderFactory,
-} from '../factories/public_api';
+} from '@daffodil/order/testing';
 
 /**
  * An in-memory service that stubs out the backend services for getting orders.

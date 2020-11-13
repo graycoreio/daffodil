@@ -31,11 +31,6 @@ import {
   DaffCompositeOrderItemFactory,
   DaffConfigurableOrderItemFactory
 } from '@daffodil/order/testing';
-
-import { MagentoOrderCredit } from '../models/responses/order-credit';
-import { MagentoOrderCreditItem } from '../models/responses/order-credit-item';
-import { MagentoOrderInvoiceItem } from '../models/responses/order-invoice-item';
-import { MagentoOrderBundleItem, MagentoOrderItemType } from '../models/responses/order-item';
 import {
   MagentoOrder,
   MagentoOrderAddress,
@@ -44,8 +39,14 @@ import {
   MagentoOrderItem,
   MagentoOrderShipmentItem,
   MagentoOrderShipmentTracking,
-  MagentoOrderShipment
-} from '../models/responses/public_api';
+  MagentoOrderShipment,
+  MagentoOrderCredit,
+  MagentoOrderCreditItem,
+  MagentoOrderInvoiceItem,
+  MagentoOrderBundleItem,
+  MagentoOrderItemType
+} from '@daffodil/order/driver/magento/2.4.1';
+
 import { MagentoOrderTestData } from './test-data.interface';
 
 @Injectable({

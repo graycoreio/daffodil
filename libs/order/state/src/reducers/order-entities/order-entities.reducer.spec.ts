@@ -1,14 +1,14 @@
 import { DaffOrder } from '@daffodil/order';
-import { DaffOrderFactory } from '@daffodil/order/testing';
-
 import {
   DaffOrderLoadSuccess,
   DaffOrderListSuccess,
-} from '../../actions/order.actions';
+  daffOrderEntitiesInitialState as initialState
+} from '@daffodil/order/state';
+import { DaffOrderFactory } from '@daffodil/order/testing';
+
 import {
   daffOrderEntitiesReducer as reducer,
 } from './order-entities.reducer';
-import { daffOrderEntitiesInitialState as initialState } from './order-entities-initial-state';
 
 describe('Order | Reducer | OrderEntities', () => {
   let orderFactory: DaffOrderFactory;

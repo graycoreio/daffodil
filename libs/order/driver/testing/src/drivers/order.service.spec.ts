@@ -4,8 +4,8 @@ import { cold } from 'jasmine-marbles';
 import {
   DaffOrder,
 } from '@daffodil/order';
+import { DaffOrderFactory } from '@daffodil/order/testing';
 
-import { DaffOrderFactory } from '../../factories/order.factory';
 import { DaffTestingOrderService } from './order.service';
 
 describe('Driver | Testing | Order | OrderService', () => {

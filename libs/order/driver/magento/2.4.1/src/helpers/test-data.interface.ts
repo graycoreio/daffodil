@@ -1,10 +1,9 @@
 import {
   DaffOrder,
 } from '@daffodil/order';
-
 import {
   MagentoOrder,
-} from '../models/responses/public_api';
+} from '@daffodil/order/driver/magento/2.4.1';
 
 export interface MagentoOrderTestData {
   mockDaffOrder: DaffOrder;
