@@ -1,13 +1,13 @@
-import { isPlatformBrowser } from "@angular/common"
-import { Inject, Injectable, PLATFORM_ID } from "@angular/core"
-import { ActivatedRouteSnapshot, Resolve } from "@angular/router"
-import { ActionsSubject, Store } from "@ngrx/store";
-import { Observable, of } from "rxjs"
-import { filter, map, take } from "rxjs/operators";
+import { isPlatformBrowser } from '@angular/common'
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core'
+import { ActivatedRouteSnapshot, Resolve } from '@angular/router'
+import { ActionsSubject, Store } from '@ngrx/store';
+import { Observable, of } from 'rxjs'
+import { filter, map, take } from 'rxjs/operators';
 
-import { DaffCategoryActionTypes, DaffCategoryLoad, DaffCategoryLoadFailure, DaffCategoryLoadSuccess } from "../actions/category.actions";
-import { DaffCategoryReducersState } from "../reducers/category-reducers.interface";
-import { DaffDefaultCategoryPageSize } from "./default-category-page-size.token";
+import { DaffCategoryActionTypes, DaffCategoryLoad, DaffCategoryLoadFailure, DaffCategoryLoadSuccess } from '../actions/category.actions';
+import { DaffCategoryReducersState } from '../reducers/category-reducers.interface';
+import { DaffDefaultCategoryPageSize } from './default-category-page-size.token';
 
 /**
  * Resolves the category page immediately when in a browser, so client-side loading states can show immediately. 

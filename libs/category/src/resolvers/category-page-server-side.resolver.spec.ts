@@ -19,7 +19,7 @@ import { DaffDefaultCategoryPageSize } from './default-category-page-size.token'
 import { DaffCategoryLoad, DaffCategoryLoadSuccess, DaffCategoryLoadFailure } from '../actions/category.actions';
 
 describe('DaffCategoryPageServerSideResolver', () => {
-	let actions$: Observable<any>;
+	const actions$: Observable<any> = null;
 	let categoryResolver: DaffCategoryPageServerSideResolver;
   let store: MockStore<DaffCategoryReducersState>;
   let categoryFactory: DaffCategoryFactory;
