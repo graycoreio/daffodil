@@ -4,7 +4,7 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { daffCategoryReducers } from './reducers/category-reducers';
 import { DaffCategoryEffects } from './effects/category.effects';
-import { DaffDefaultCategoryPageSize } from './resolvers/default-category-page-size.token';
+import { DaffDefaultCategoryPageSize } from './resolvers/public_api';
 
 @NgModule({
   imports: [
