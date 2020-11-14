@@ -127,6 +127,7 @@ export class MagentoOrderTestDataFactory {
       updated_at: null,
       weight: null,
     });
+    mockDaffOrderItem.qty_ordered = mockDaffOrderItem.qty;
     mockDaffOrderCompositeItem = this.daffOrderCompositeItemFactory.create({
       image: {
         url: 'url',
@@ -144,6 +145,7 @@ export class MagentoOrderTestDataFactory {
       updated_at: null,
       weight: null,
     });
+    mockDaffOrderCompositeItem.qty_ordered = mockDaffOrderCompositeItem.qty;
     mockDaffOrderConfigurableItem = this.daffOrderConfigurableItemFactory.create({
       image: {
         url: 'url',
@@ -161,9 +163,11 @@ export class MagentoOrderTestDataFactory {
       updated_at: null,
       weight: null,
     });
+    mockDaffOrderConfigurableItem.qty_ordered = mockDaffOrderConfigurableItem.qty;
     mockDaffOrderShipmentItem = this.daffOrderShipmentItemFactory.create({
       item: mockDaffOrderItem
     });
+    mockDaffOrderShipmentItem.qty = mockDaffOrderItem.qty;
     mockDaffOrderShipmentTracking = this.daffOrderShipmentTrackingFactory.create({
       tracking_url: null,
       carrier_logo: null
@@ -254,7 +258,7 @@ export class MagentoOrderTestDataFactory {
       entered_options: [],
       status: null,
       product_type: MagentoOrderItemType.Simple,
-      quantity_ordered: mockDaffOrderItem.qty_ordered,
+      quantity_ordered: mockDaffOrderItem.qty,
       quantity_canceled: mockDaffOrderItem.qty_canceled,
       quantity_refunded: mockDaffOrderItem.qty_canceled,
       quantity_returned: mockDaffOrderItem.qty_canceled,
@@ -295,7 +299,7 @@ export class MagentoOrderTestDataFactory {
       })),
       status: null,
       product_type: MagentoOrderItemType.Bundle,
-      quantity_ordered: mockDaffOrderCompositeItem.qty_ordered,
+      quantity_ordered: mockDaffOrderCompositeItem.qty,
       quantity_canceled: mockDaffOrderCompositeItem.qty_canceled,
       quantity_refunded: mockDaffOrderCompositeItem.qty_canceled,
       quantity_returned: mockDaffOrderCompositeItem.qty_canceled,
@@ -325,7 +329,7 @@ export class MagentoOrderTestDataFactory {
       entered_options: [],
       status: null,
       product_type: MagentoOrderItemType.Configurable,
-      quantity_ordered: mockDaffOrderConfigurableItem.qty_ordered,
+      quantity_ordered: mockDaffOrderConfigurableItem.qty,
       quantity_canceled: mockDaffOrderConfigurableItem.qty_canceled,
       quantity_refunded: mockDaffOrderConfigurableItem.qty_canceled,
       quantity_returned: mockDaffOrderConfigurableItem.qty_canceled,
