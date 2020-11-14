@@ -6,7 +6,32 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffLoadingState } from '@daffodil/core/state';
 import { DaffCartOrderResult, DaffCartPaymentMethodIdMap, DaffCart, DaffCartTotalTypeEnum, DaffCartPaymentMethod, DaffConfigurableCartItem, DaffCompositeCartItem, DaffCartItemInputType } from '@daffodil/cart';
-import { initialState, DaffCartReducersState, DaffCartLoading, DaffCartErrors, daffCartReducers, DaffCartOperationType, DaffResolveCartSuccess, DaffCartLoadSuccess, DaffCartLoad, DaffCartClear, DaffCartItemLoad, DaffCartItemDelete, DaffCartBillingAddressLoad, DaffCartBillingAddressUpdate, DaffCartShippingAddressLoad, DaffCartShippingAddressUpdate, DaffCartShippingInformationLoad, DaffCartShippingInformationDelete, DaffCartShippingMethodsLoad, DaffCartPaymentLoad, DaffCartPaymentRemove, DaffCartPaymentMethodsLoad, DaffCartCouponList, DaffCartCouponRemoveAll, DaffCartLoadFailure, DaffCartItemLoadFailure, DaffCartBillingAddressLoadFailure, DaffCartShippingAddressLoadFailure, DaffCartShippingInformationLoadFailure, DaffCartShippingMethodsLoadFailure, DaffCartPaymentLoadFailure, DaffCartPaymentMethodsLoadFailure, DaffCartCouponListFailure, DaffCartCreateSuccess, DaffCartItemListSuccess, DaffCartBillingAddressLoadSuccess, DaffCartShippingAddressLoadSuccess, DaffCartPaymentLoadSuccess, DaffCartShippingInformationLoadSuccess, DaffCartShippingMethodsLoadSuccess, DaffCartPaymentMethodsLoadSuccess, DaffCartPlaceOrder, DaffCartPlaceOrderFailure, DaffCartPlaceOrderSuccess } from '@daffodil/cart/state';
+import { 
+	initialState, DaffCartReducersState, 
+	DaffCartLoading, DaffCartErrors, 
+	daffCartReducers, DaffCartOperationType, 
+	DaffResolveCartSuccess, DaffCartLoadSuccess, 
+	DaffCartLoad, DaffCartClear, 
+	DaffCartItemLoad, DaffCartItemDelete, 
+	DaffCartBillingAddressLoad, DaffCartBillingAddressUpdate, 
+	DaffCartShippingAddressLoad, DaffCartShippingAddressUpdate, 
+	DaffCartShippingInformationLoad, DaffCartShippingInformationDelete, 
+	DaffCartShippingMethodsLoad, DaffCartPaymentLoad, 
+	DaffCartPaymentRemove, DaffCartPaymentMethodsLoad, 
+	DaffCartCouponList, DaffCartCouponRemoveAll, 
+	DaffCartLoadFailure, DaffCartItemLoadFailure, 
+	DaffCartBillingAddressLoadFailure, DaffCartShippingAddressLoadFailure, 
+	DaffCartShippingInformationLoadFailure, DaffCartShippingMethodsLoadFailure, 
+	DaffCartPaymentLoadFailure, DaffCartPaymentMethodsLoadFailure, 
+	DaffCartCouponListFailure, DaffCartCreateSuccess, 
+	DaffCartItemListSuccess, DaffCartBillingAddressLoadSuccess, 
+	DaffCartShippingAddressLoadSuccess, DaffCartPaymentLoadSuccess, 
+	DaffCartShippingInformationLoadSuccess, DaffCartShippingMethodsLoadSuccess, 
+	DaffCartPaymentMethodsLoadSuccess, DaffCartPlaceOrder, 
+	DaffCartPlaceOrderFailure, DaffCartPlaceOrderSuccess,
+	DaffCartItemLoadingState,
+	DaffCartItemAdd
+} from '@daffodil/cart/state';
 import {
   DaffCartFactory,
   DaffCartItemFactory,
@@ -18,8 +43,6 @@ import {
 } from '@daffodil/cart/testing';
 
 import { DaffCartFacade } from './cart.facade';
-import { DaffCartItemAdd } from '../../actions/public_api';
-import { DaffCartItemLoadingState } from '../../reducers/loading/cart-loading.type';
 
 describe('DaffCartFacade', () => {
   let store: MockStore<{ product: Partial<DaffCartReducersState> }>;

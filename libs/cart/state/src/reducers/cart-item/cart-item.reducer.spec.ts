@@ -1,9 +1,19 @@
 import { DaffCart, DaffCartItem, DaffCartItemInputType } from '@daffodil/cart';
-import { DaffCartItemUpdate, DaffCartOperationType, DaffCartReducerState, DaffCartItemUpdateSuccess, DaffCartItemUpdateFailure, DaffCartItemDelete, DaffCartItemDeleteSuccess, DaffCartItemDeleteFailure, DaffCartItemAdd, DaffCartItemAddSuccess, DaffCartItemAddFailure, DaffCartItemLoad, DaffCartItemLoadSuccess, DaffCartItemLoadFailure, DaffCartItemList, DaffCartItemListSuccess, DaffCartItemListFailure, initialState } from '@daffodil/cart/state';
+import { 
+	DaffCartItemUpdate, DaffCartOperationType, 
+	DaffCartReducerState, DaffCartItemUpdateSuccess, 
+	DaffCartItemUpdateFailure, DaffCartItemDelete, 
+	DaffCartItemDeleteSuccess, DaffCartItemDeleteFailure, 
+	DaffCartItemAdd, DaffCartItemAddSuccess, 
+	DaffCartItemAddFailure, DaffCartItemLoad, 
+	DaffCartItemLoadSuccess, DaffCartItemLoadFailure, 
+	DaffCartItemList, DaffCartItemListSuccess, 
+	DaffCartItemListFailure, initialState,
+	DaffCartItemLoadingState
+} from '@daffodil/cart/state';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 
 import { cartItemReducer } from './cart-item.reducer';
-import { DaffCartItemLoadingState } from '../loading/cart-loading.type';
 
 describe('Cart | Reducer | Cart Item', () => {
   let cartFactory: DaffCartFactory;

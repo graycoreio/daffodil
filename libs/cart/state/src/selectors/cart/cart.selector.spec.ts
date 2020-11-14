@@ -8,7 +8,29 @@ import {
   DaffCartLoadSuccess,
   DaffCartPlaceOrderSuccess,
   DaffResolveCartSuccess,
-	DaffCartBillingAddressLoad, DaffCartItemLoad, DaffCartLoad, DaffCartPaymentLoad, DaffCartPaymentMethodsLoad, DaffCartShippingAddressLoad, DaffCartShippingInformationLoad, DaffCartShippingMethodsLoad, DaffCartCouponList, DaffCartClear, DaffCartItemDelete, DaffCartBillingAddressUpdate, DaffCartShippingAddressUpdate, DaffCartShippingInformationDelete, DaffCartPaymentRemove, DaffCartCouponRemoveAll, DaffCartReducersState, DaffCartLoading, DaffCartErrors, daffCartReducers, DaffCartOperationType
+	DaffCartBillingAddressLoad, 
+	DaffCartItemLoad, 
+	DaffCartLoad, 
+	DaffCartPaymentLoad, 
+	DaffCartPaymentMethodsLoad, 
+	DaffCartShippingAddressLoad, 
+	DaffCartShippingInformationLoad, 
+	DaffCartShippingMethodsLoad, 
+	DaffCartCouponList, 
+	DaffCartClear, 
+	DaffCartItemDelete, 
+	DaffCartBillingAddressUpdate, 
+	DaffCartShippingAddressUpdate, 
+	DaffCartShippingInformationDelete, 
+	DaffCartPaymentRemove, 
+	DaffCartCouponRemoveAll, 
+	DaffCartReducersState, 
+	DaffCartLoading, 
+	DaffCartErrors, 
+	daffCartReducers, 
+	DaffCartOperationType,
+	DaffCartItemAdd,
+	DaffCartItemLoadingState
 } from '@daffodil/cart/state';
 import {
   DaffCartFactory,
@@ -19,8 +41,8 @@ import {
 } from '@daffodil/cart/testing';
 
 import { getCartSelectors } from './cart.selector';
-import { DaffCartItemAdd } from '../../actions/public_api';
-import { DaffCartItemLoadingState } from '../../reducers/loading/cart-loading.type';
+import {  } from '../../actions/public_api';
+import {  } from '../../reducers/loading/cart-loading.type';
 
 describe('Cart | Selector | Cart', () => {
   let store: Store<DaffCartReducersState>;
