@@ -41,8 +41,6 @@ import {
 } from '@daffodil/cart/testing';
 
 import { getCartSelectors } from './cart.selector';
-import {  } from '../../actions/public_api';
-import {  } from '../../reducers/loading/cart-loading.type';
 
 describe('Cart | Selector | Cart', () => {
   let store: Store<DaffCartReducersState>;
