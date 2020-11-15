@@ -3,12 +3,12 @@ import { Store, StoreModule, select, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
 import { DaffOrder } from '@daffodil/order';
-  import {
-    daffOrderReducers,
-    DaffOrderReducersState,
-    DAFF_ORDER_STORE_FEATURE_KEY,
-    DaffOrderListSuccess
-  } from '@daffodil/order/state';
+import {
+  daffOrderReducers,
+  DaffOrderReducersState,
+  DAFF_ORDER_STORE_FEATURE_KEY,
+  DaffOrderListSuccess
+} from '@daffodil/order/state';
 import { DaffOrderFactory } from '@daffodil/order/testing';
 
 import {
