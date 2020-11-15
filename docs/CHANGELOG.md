@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.17.2](https://github.com/graycoreio/daffodil/compare/v0.17.1...v0.17.2) (2020-11-15)
+
+
+### Features
+
+* **cart:** add invalid API response error ([#1133](https://github.com/graycoreio/daffodil/issues/1133)) ([d572f46](https://github.com/graycoreio/daffodil/commit/d572f462900ac0671b1b0ff00c8b3e5a8dc1729a))
+* **cart:** shard packages  ([#1137](https://github.com/graycoreio/daffodil/issues/1137)) ([463c9bc](https://github.com/graycoreio/daffodil/commit/463c9bc1bd096aac3e945736e1299332b74bec9e))
+* **category:** add resolvers for category page server-side rendering ([#1142](https://github.com/graycoreio/daffodil/issues/1142)) ([42c31cf](https://github.com/graycoreio/daffodil/commit/42c31cff5036f3d58791767814b0e9410ff06462))
+* **geography:** shard packages ([#1113](https://github.com/graycoreio/daffodil/issues/1113)) ([cfefedc](https://github.com/graycoreio/daffodil/commit/cfefedccb6cd92ecbf8e99344a2e344ba933c6ca))
+* **product:** add resolvers for product page server-side rendering ([#1143](https://github.com/graycoreio/daffodil/issues/1143)) ([bd8cbb6](https://github.com/graycoreio/daffodil/commit/bd8cbb6293b6d533f26a41b821b010051d653e51))
+
+
+### Bug Fixes
+
+* **builders:** generate-fragment-types builder was built into the wrong directory for demo ([#1136](https://github.com/graycoreio/daffodil/issues/1136)) ([48c4bad](https://github.com/graycoreio/daffodil/commit/48c4bad30fca98bd56bfbe36b33b2312e7d57315))
+* **order:** using wrong item quantity ([#1144](https://github.com/graycoreio/daffodil/issues/1144)) ([a2f79fa](https://github.com/graycoreio/daffodil/commit/a2f79fa44df244914770afeb56dd78d4d0bb0ea9))
+* **product:** fix some return types in the MockDaffCompositeProductFacade ([#1134](https://github.com/graycoreio/daffodil/issues/1134)) ([dde203e](https://github.com/graycoreio/daffodil/commit/dde203ef19bb2404f40e3ee6a81a71f557c71363))
+
 ### [0.17.1](https://github.com/graycoreio/daffodil/compare/v0.17.0...v0.17.1) (2020-11-09)
 
 
