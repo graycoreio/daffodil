@@ -7,8 +7,7 @@ import {
 import {
   DaffOrderServiceInterface,
 } from '@daffodil/order/driver';
-
-import { DaffOrderFactory } from '../../factories/public_api';
+import { DaffOrderFactory } from '@daffodil/order/testing';
 
 @Injectable({
   providedIn: 'root'

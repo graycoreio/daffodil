@@ -1,17 +1,17 @@
 import { DaffOrder } from '@daffodil/order';
-import { DaffOrderFactory } from '@daffodil/order/testing';
-
-import { daffOrderReducer as reducer } from './order.reducer';
 import {
   DaffOrderLoad,
   DaffOrderLoadSuccess,
   DaffOrderLoadFailure,
   DaffOrderList,
   DaffOrderListSuccess,
-  DaffOrderListFailure
-} from '../../actions/order.actions';
-import { DaffOrderReducerState } from './order-reducer.interface';
-import { daffOrderInitialState as initialState } from './order-initial-state';
+  DaffOrderListFailure,
+  daffOrderInitialState as initialState,
+  DaffOrderReducerState
+} from '@daffodil/order/state';
+import { DaffOrderFactory } from '@daffodil/order/testing';
+
+import { daffOrderReducer as reducer } from './order.reducer';
 
 describe('Order | Reducer | Order', () => {
   let orderFactory: DaffOrderFactory;

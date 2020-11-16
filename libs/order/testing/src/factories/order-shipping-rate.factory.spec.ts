@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import {  DaffOrderShippingMethod } from '@daffodil/order';
+
 import { DaffOrderShippingMethodFactory } from './order-shipping-rate.factory';
 
 describe('Order | Testing | Factories | OrderShippingRateFactory', () => {

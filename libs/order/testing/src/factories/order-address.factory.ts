@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import * as faker from 'faker/locale/en_US';
 
 import { DaffOrderAddress } from '@daffodil/order';

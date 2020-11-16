@@ -1,8 +1,12 @@
-export { MagentoOrder } from './order';
 export { MagentoOrderAddress } from './order-address';
+export { MagentoOrderCredit } from './order-credit';
+export { MagentoOrderCreditItem } from './order-credit-item';
 export { MagentoOrderInvoice } from './order-invoice';
-export { MagentoOrderItem } from './order-item';
+export * from './order-invoice-item';
+export * from './order-item';
 export { MagentoOrderPayment } from './order-payment';
+export * from './order-shipment-item';
 export { MagentoOrderShipment } from './order-shipment';
-export { MagentoOrderShipmentItem } from './order-shipment-item';
 export { MagentoOrderShipmentTracking } from './order-shipment-tracking';
+export { MagentoOrderTotal } from './order-total';
+export { MagentoOrder } from './order';

@@ -1,6 +1,6 @@
-import { daffOrderReducer } from './order/order.reducer';
+import { daffOrderReducer, daffOrderEntitiesReducer } from '@daffodil/order/state';
+
 import { daffOrderReducers } from './order-reducers';
-import { daffOrderEntitiesReducer } from './order-entities/public_api';
 
 describe('daffOrderReducers', () => {
 

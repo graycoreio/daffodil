@@ -3,17 +3,17 @@ import { Store, StoreModule, select, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
 import { DaffOrder } from '@daffodil/order';
-import { DaffOrderFactory } from '@daffodil/order/testing';
-
 import {
   daffOrderReducers,
   DaffOrderReducersState,
-  DAFF_ORDER_STORE_FEATURE_KEY
-} from '../reducers/public_api';
+  DAFF_ORDER_STORE_FEATURE_KEY,
+  DaffOrderListSuccess
+} from '@daffodil/order/state';
+import { DaffOrderFactory } from '@daffodil/order/testing';
+
 import {
   getOrderSelectors,
 } from './order.selector';
-import { DaffOrderListSuccess } from '../actions/order.actions';
 
 describe('Order | Selector | Order', () => {
   let store: Store<DaffOrderReducersState>;

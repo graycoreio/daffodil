@@ -10,15 +10,11 @@ import {
   DaffOrderInvalidAPIResponseError,
   DaffOrderNotFoundError,
 } from '@daffodil/order/driver';
+import { MagentoOrder, DaffMagentoExtraOrderFragments, daffMagentoNoopOrderFragment, MagentoGetGuestOrdersResponse, getGuestOrders } from '@daffodil/order/driver/magento/2.4.1';
 
-import {
-  MagentoOrder,
-} from './models/responses/public_api';
-import { DaffOrderMagentoService } from './order.service';
-import { daffMagentoNoopOrderFragment, getGuestOrders, MagentoGetGuestOrdersResponse } from './queries/public_api';
 import * as validators from './validators/public_api';
-import { MagentoOrderTestDataFactory } from './helpers/test-data.service';
-import { DaffMagentoExtraOrderFragments } from './injection-tokens/public_api';
+import { MagentoOrderTestDataFactory } from './helpers/public_api';
+import { DaffOrderMagentoService } from './order.service';
 
 describe('Driver | Magento | Order | OrderService', () => {
   let service: DaffOrderMagentoService;

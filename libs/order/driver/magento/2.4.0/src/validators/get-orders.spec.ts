@@ -1,8 +1,8 @@
 import { ApolloQueryResult } from 'apollo-client';
 
 import { DaffOrderInvalidAPIResponseError } from '@daffodil/order/driver';
+import { MagentoGetGuestOrdersResponse } from '@daffodil/order/driver/magento/2.4.0';
 
-import { MagentoGetGuestOrdersResponse } from '../queries/public_api';
 import { validateGetOrdersResponse as validator } from './get-orders';
 
 describe('Driver | Magento | Order | Validator | GetOrders', () => {

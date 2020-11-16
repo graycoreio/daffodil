@@ -3,18 +3,18 @@ import { Store, StoreModule, select, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
 import { DaffOrder, DaffOrderItem, DaffOrderTotal, DaffOrderTotalTypeEnum } from '@daffodil/order';
+import {
+  DaffOrderEntityState,
+  daffOrderReducers,
+  DAFF_ORDER_STORE_FEATURE_KEY,
+  DaffOrderListSuccess
+} from '@daffodil/order/state';
 import { DaffOrderFactory, DaffOrderItemFactory, DaffOrderTotalFactory } from '@daffodil/order/testing';
 import { daffCartReducers, DaffCartPlaceOrderSuccess } from '@daffodil/cart/state';
 
 import {
-  DaffOrderEntityState,
-  daffOrderReducers,
-  DAFF_ORDER_STORE_FEATURE_KEY
-} from '../reducers/public_api';
-import {
   getDaffOrderEntitySelectors,
 } from './order-entities.selector';
-import { DaffOrderListSuccess } from '../actions/order.actions';
 
 describe('Order | Selector | OrderEntities', () => {
   let store: Store<DaffOrderEntityState>;
