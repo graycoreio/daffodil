@@ -1,8 +1,7 @@
 import { DaffLoadingState, DaffStateError } from '@daffodil/core/state';
-import { DaffCartPlaceOrder, DaffCartOrderReducerState, DaffCartPlaceOrderSuccess, DaffCartPlaceOrderFailure } from '@daffodil/cart/state';
+import { DaffCartPlaceOrder, DaffCartOrderReducerState, DaffCartPlaceOrderSuccess, DaffCartPlaceOrderFailure, daffCartOrderInitialState as initialState } from '@daffodil/cart/state';
 
 import { daffCartOrderReducer as reducer } from './cart-order.reducer';
-import { daffCartOrderInitialState as initialState } from './cart-order-initial-state';
 
 describe('Cart | Reducer | CartOrder', () => {
   describe('when an unknown action is triggered', () => {
