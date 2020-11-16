@@ -51,6 +51,7 @@ export class DaffCartFacade<
   couponResolving$: Observable<boolean>;
   couponMutating$: Observable<boolean>;
   itemLoading$: Observable<boolean>;
+  itemAdding$: Observable<boolean>;
   itemResolving$: Observable<boolean>;
 	itemMutating$: Observable<boolean>;
 
@@ -144,6 +145,7 @@ export class DaffCartFacade<
       selectCouponResolving,
       selectCouponMutating,
       selectItemLoading,
+      selectItemAdding,
       selectItemResolving,
       selectItemMutating,
 
@@ -235,6 +237,7 @@ export class DaffCartFacade<
     this.couponResolving$ = this.store.pipe(select(selectCouponResolving));
     this.couponMutating$ = this.store.pipe(select(selectCouponMutating));
     this.itemLoading$ = this.store.pipe(select(selectItemLoading));
+    this.itemAdding$ = this.store.pipe(select(selectItemAdding));
     this.itemResolving$ = this.store.pipe(select(selectItemResolving));
     this.itemMutating$ = this.store.pipe(select(selectItemMutating));
 

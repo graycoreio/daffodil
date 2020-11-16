@@ -12,6 +12,7 @@ import { DaffCart, DaffCartTotal, DaffCartOrderResult, DaffCartItem, DaffCartTot
 
 import { getDaffCartFeatureSelector } from '../cart-feature.selector';
 import { DaffCartReducerState, DaffCartReducersState, DaffCartOperationType } from '../../reducers/public_api';
+import { DaffCartItemLoadingState } from '../../reducers/loading/cart-loading.type';
 
 export interface DaffCartStateMemoizedSelectors<
   T extends DaffCart = DaffCart
@@ -149,7 +150,11 @@ export interface DaffCartStateMemoizedSelectors<
   /**
    * Selects whether there is a cart item operation in progress.
    */
-  selectItemLoading: MemoizedSelector<object, boolean>;
+	selectItemLoading: MemoizedSelector<object, boolean>;
+	/**
+   * Selects whether there is a cart item add operation in progress.
+   */
+  selectItemAdding: MemoizedSelector<object, boolean>;
   /**
    * Selects whether there is a cart item resolve operation in progress.
    * This pertains only to requests that do not mutate data such as "load" or "list".
@@ -312,15 +317,19 @@ const createCartSelectors = <
   );
 	const selectItemLoading = createSelector(
 		selectCartLoadingObject,
-		loadingObject => loadingObject[DaffCartOperationType.Item] !== DaffLoadingState.Complete
+		loadingObject => loadingObject[DaffCartOperationType.Item] !== DaffCartItemLoadingState.Complete
+  );
+	const selectItemAdding = createSelector(
+		selectCartLoadingObject,
+		loadingObject => loadingObject[DaffCartOperationType.Item] === DaffCartItemLoadingState.Adding
   );
   const selectItemResolving = createSelector(
 		selectCartLoadingObject,
-		loadingObject => loadingObject[DaffCartOperationType.Item] === DaffLoadingState.Resolving
+		loadingObject => loadingObject[DaffCartOperationType.Item] === DaffCartItemLoadingState.Resolving
   );
   const selectItemMutating = createSelector(
 		selectCartLoadingObject,
-		loadingObject => loadingObject[DaffCartOperationType.Item] === DaffLoadingState.Mutating
+		loadingObject => loadingObject[DaffCartOperationType.Item] === DaffCartItemLoadingState.Mutating
   );
   const selectCouponLoading = createSelector(
 		selectCartLoadingObject,
@@ -375,7 +384,8 @@ const createCartSelectors = <
       selectShippingInformationMutating,
       selectPaymentMutating,
       selectCouponMutating,
-      selectItemMutating,
+			selectItemMutating,
+			selectItemAdding,
     ].map(selector =>
       selector.projector(loadingObject)
     ).reduce((acc, mutating) => acc || mutating, false)
@@ -620,7 +630,8 @@ const createCartSelectors = <
     selectCouponLoading,
     selectCouponResolving,
     selectCouponMutating,
-    selectItemLoading,
+		selectItemLoading,
+		selectItemAdding,
     selectItemResolving,
     selectItemMutating,
 

@@ -5,8 +5,33 @@ import { MockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 
 import { DaffLoadingState } from '@daffodil/core/state';
-import { DaffCartOrderResult, DaffCartPaymentMethodIdMap, DaffCart, DaffCartTotalTypeEnum, DaffCartPaymentMethod, DaffConfigurableCartItem, DaffCompositeCartItem } from '@daffodil/cart';
-import { initialState, DaffCartReducersState, DaffCartLoading, DaffCartErrors, daffCartReducers, DaffCartOperationType, DaffResolveCartSuccess, DaffCartLoadSuccess, DaffCartLoad, DaffCartClear, DaffCartItemLoad, DaffCartItemDelete, DaffCartBillingAddressLoad, DaffCartBillingAddressUpdate, DaffCartShippingAddressLoad, DaffCartShippingAddressUpdate, DaffCartShippingInformationLoad, DaffCartShippingInformationDelete, DaffCartShippingMethodsLoad, DaffCartPaymentLoad, DaffCartPaymentRemove, DaffCartPaymentMethodsLoad, DaffCartCouponList, DaffCartCouponRemoveAll, DaffCartLoadFailure, DaffCartItemLoadFailure, DaffCartBillingAddressLoadFailure, DaffCartShippingAddressLoadFailure, DaffCartShippingInformationLoadFailure, DaffCartShippingMethodsLoadFailure, DaffCartPaymentLoadFailure, DaffCartPaymentMethodsLoadFailure, DaffCartCouponListFailure, DaffCartCreateSuccess, DaffCartItemListSuccess, DaffCartBillingAddressLoadSuccess, DaffCartShippingAddressLoadSuccess, DaffCartPaymentLoadSuccess, DaffCartShippingInformationLoadSuccess, DaffCartShippingMethodsLoadSuccess, DaffCartPaymentMethodsLoadSuccess, DaffCartPlaceOrder, DaffCartPlaceOrderFailure, DaffCartPlaceOrderSuccess } from '@daffodil/cart/state';
+import { DaffCartOrderResult, DaffCartPaymentMethodIdMap, DaffCart, DaffCartTotalTypeEnum, DaffCartPaymentMethod, DaffConfigurableCartItem, DaffCompositeCartItem, DaffCartItemInputType } from '@daffodil/cart';
+import { 
+	initialState, DaffCartReducersState, 
+	DaffCartLoading, DaffCartErrors, 
+	daffCartReducers, DaffCartOperationType, 
+	DaffResolveCartSuccess, DaffCartLoadSuccess, 
+	DaffCartLoad, DaffCartClear, 
+	DaffCartItemLoad, DaffCartItemDelete, 
+	DaffCartBillingAddressLoad, DaffCartBillingAddressUpdate, 
+	DaffCartShippingAddressLoad, DaffCartShippingAddressUpdate, 
+	DaffCartShippingInformationLoad, DaffCartShippingInformationDelete, 
+	DaffCartShippingMethodsLoad, DaffCartPaymentLoad, 
+	DaffCartPaymentRemove, DaffCartPaymentMethodsLoad, 
+	DaffCartCouponList, DaffCartCouponRemoveAll, 
+	DaffCartLoadFailure, DaffCartItemLoadFailure, 
+	DaffCartBillingAddressLoadFailure, DaffCartShippingAddressLoadFailure, 
+	DaffCartShippingInformationLoadFailure, DaffCartShippingMethodsLoadFailure, 
+	DaffCartPaymentLoadFailure, DaffCartPaymentMethodsLoadFailure, 
+	DaffCartCouponListFailure, DaffCartCreateSuccess, 
+	DaffCartItemListSuccess, DaffCartBillingAddressLoadSuccess, 
+	DaffCartShippingAddressLoadSuccess, DaffCartPaymentLoadSuccess, 
+	DaffCartShippingInformationLoadSuccess, DaffCartShippingMethodsLoadSuccess, 
+	DaffCartPaymentMethodsLoadSuccess, DaffCartPlaceOrder, 
+	DaffCartPlaceOrderFailure, DaffCartPlaceOrderSuccess,
+	DaffCartItemLoadingState,
+	DaffCartItemAdd
+} from '@daffodil/cart/state';
 import {
   DaffCartFactory,
   DaffCartItemFactory,
@@ -66,7 +91,7 @@ describe('DaffCartFacade', () => {
 
     loading = {
       [DaffCartOperationType.Cart]: DaffLoadingState.Complete,
-      [DaffCartOperationType.Item]: DaffLoadingState.Complete,
+      [DaffCartOperationType.Item]: DaffCartItemLoadingState.Complete,
       [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Complete,
       [DaffCartOperationType.BillingAddress]: DaffLoadingState.Complete,
       [DaffCartOperationType.ShippingInformation]: DaffLoadingState.Complete,
@@ -262,6 +287,32 @@ describe('DaffCartFacade', () => {
         const expected = cold('a', { a: true });
 
         expect(facade.itemLoading$).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('itemAdding$', () => {
+    describe('when the cart item add operations have completed', () => {
+      it('should return false', () => {
+        const expected = cold('a', { a: false });
+
+        expect(facade.itemAdding$).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart item add operations have not completed', () => {
+      beforeEach(() => {
+        facade.dispatch(new DaffCartItemAdd({
+					productId: 'productId',
+					qty: 1,
+					type: DaffCartItemInputType.Simple
+				}))
+      });
+
+      it('should return true', () => {
+        const expected = cold('a', { a: true });
+
+        expect(facade.itemAdding$).toBeObservable(expected);
       });
     });
   });

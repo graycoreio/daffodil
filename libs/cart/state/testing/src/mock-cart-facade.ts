@@ -41,6 +41,7 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
   couponResolving$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   couponMutating$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   itemLoading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  itemAdding$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   itemResolving$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 	itemMutating$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 

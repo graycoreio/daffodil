@@ -1,7 +1,7 @@
 export { daffCartReducers } from './cart-reducers';
 export { DaffCartReducersState } from './cart-reducers-state.interface';
 
-export { DaffCartLoading } from './loading/cart-loading.type';
+export * from './loading/cart-loading.type';
 export { DaffCartErrors } from './errors/cart-errors.type';
 export { DaffCartOperationType } from './cart-operation-type.enum';
 

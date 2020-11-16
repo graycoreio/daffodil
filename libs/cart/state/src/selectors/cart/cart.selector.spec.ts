@@ -3,12 +3,34 @@ import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
 import { DaffLoadingState } from '@daffodil/core/state';
-import { DaffCart, DaffCartTotalTypeEnum } from '@daffodil/cart';
+import { DaffCart, DaffCartItemInputType, DaffCartTotalTypeEnum } from '@daffodil/cart';
 import {
   DaffCartLoadSuccess,
   DaffCartPlaceOrderSuccess,
   DaffResolveCartSuccess,
-	DaffCartBillingAddressLoad, DaffCartItemLoad, DaffCartLoad, DaffCartPaymentLoad, DaffCartPaymentMethodsLoad, DaffCartShippingAddressLoad, DaffCartShippingInformationLoad, DaffCartShippingMethodsLoad, DaffCartCouponList, DaffCartClear, DaffCartItemDelete, DaffCartBillingAddressUpdate, DaffCartShippingAddressUpdate, DaffCartShippingInformationDelete, DaffCartPaymentRemove, DaffCartCouponRemoveAll, DaffCartReducersState, DaffCartLoading, DaffCartErrors, daffCartReducers, DaffCartOperationType
+	DaffCartBillingAddressLoad, 
+	DaffCartItemLoad, 
+	DaffCartLoad, 
+	DaffCartPaymentLoad, 
+	DaffCartPaymentMethodsLoad, 
+	DaffCartShippingAddressLoad, 
+	DaffCartShippingInformationLoad, 
+	DaffCartShippingMethodsLoad, 
+	DaffCartCouponList, 
+	DaffCartClear, 
+	DaffCartItemDelete, 
+	DaffCartBillingAddressUpdate, 
+	DaffCartShippingAddressUpdate, 
+	DaffCartShippingInformationDelete, 
+	DaffCartPaymentRemove, 
+	DaffCartCouponRemoveAll, 
+	DaffCartReducersState, 
+	DaffCartLoading, 
+	DaffCartErrors, 
+	daffCartReducers, 
+	DaffCartOperationType,
+	DaffCartItemAdd,
+	DaffCartItemLoadingState
 } from '@daffodil/cart/state';
 import {
   DaffCartFactory,
@@ -63,7 +85,8 @@ describe('Cart | Selector | Cart', () => {
     selectCouponLoading,
     selectCouponResolving,
     selectCouponMutating,
-    selectItemLoading,
+		selectItemLoading,
+		selectItemAdding,
     selectItemResolving,
     selectItemMutating,
 
@@ -137,7 +160,7 @@ describe('Cart | Selector | Cart', () => {
     });
     loading = {
       [DaffCartOperationType.Cart]: DaffLoadingState.Complete,
-      [DaffCartOperationType.Item]: DaffLoadingState.Complete,
+      [DaffCartOperationType.Item]: DaffCartItemLoadingState.Complete,
       [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Complete,
       [DaffCartOperationType.BillingAddress]: DaffLoadingState.Complete,
       [DaffCartOperationType.ShippingInformation]: DaffLoadingState.Complete,
@@ -556,6 +579,23 @@ describe('Cart | Selector | Cart', () => {
         expect(selector).toBeObservable(expected);
       });
     });
+
+    describe('when the cart item add mutations have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartItemAdd({
+					productId: 'productId',
+					qty: 1,
+					type: DaffCartItemInputType.Simple
+				}))
+      });
+
+      it('should return true', () => {
+        const selector = store.pipe(select(selectCartFeatureMutating));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
   });
 
   describe('selectCartLoading', () => {
@@ -647,6 +687,34 @@ describe('Cart | Selector | Cart', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectItemLoading));
+        const expected = cold('a', {a: true});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('selectItemAdding', () => {
+    describe('when the cart item add operations have completed', () => {
+      it('should return false', () => {
+        const selector = store.pipe(select(selectItemAdding));
+        const expected = cold('a', {a: false});
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when the cart item add operations have not completed', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartItemAdd({
+					productId: 'productId',
+					qty: 1,
+					type: DaffCartItemInputType.Simple
+				}))
+      });
+
+      it('should return true', () => {
+        const selector = store.pipe(select(selectItemAdding));
         const expected = cold('a', {a: true});
 
         expect(selector).toBeObservable(expected);

@@ -2,6 +2,7 @@ import { DaffLoadingState } from '@daffodil/core/state';
 
 import { DaffCartReducerState } from './cart-state.interface';
 import { DaffCartOperationType } from './cart-operation-type.enum';
+import { DaffCartItemLoadingState } from './loading/cart-loading.type';
 
 export const initialState: DaffCartReducerState<any> = Object.freeze({
   cart: {
@@ -20,7 +21,7 @@ export const initialState: DaffCartReducerState<any> = Object.freeze({
   },
   loading: {
     [DaffCartOperationType.Cart]: DaffLoadingState.Complete,
-    [DaffCartOperationType.Item]: DaffLoadingState.Complete,
+    [DaffCartOperationType.Item]: DaffCartItemLoadingState.Complete,
     [DaffCartOperationType.ShippingAddress]: DaffLoadingState.Complete,
     [DaffCartOperationType.BillingAddress]: DaffLoadingState.Complete,
     [DaffCartOperationType.ShippingInformation]: DaffLoadingState.Complete,
