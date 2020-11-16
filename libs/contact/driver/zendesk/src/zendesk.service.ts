@@ -3,38 +3,37 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { DaffContactServiceInterface } from '@daffodil/contact';
-import { DaffContactZendeskConfigService } from './config.service';
+import {
+	DaffContactZendeskDriverConfigToken,
+	DaffContactZendeskDriverConfig,
+} from './config';
 
+/**
+ * The concrete implementation of the @daffodil/contact driver for Zendesk.
+ */
 @Injectable()
-export class DaffContactZendeskService
+export class DaffContactZendeskDriverService
 	implements DaffContactServiceInterface<any, any> {
-
 	/**
 	 * The anonymous request resource endpoint of Zendesk.
 	 */
 	readonly ENDPOINT: string = '/api/v2/requests.json';
 
-	/**
-	 * A method to determine the final URI to request to.
-	 */
-	private getEndpoint() {
-		return this.config.getEndpoint() + this.ENDPOINT;
-	}
-
 	constructor(
 		private httpClient: HttpClient,
-		private config: DaffContactZendeskConfigService,
+		@Inject(DaffContactZendeskDriverConfigToken)
+		private config: DaffContactZendeskDriverConfig,
 	) {}
 
 	/**
-	 * Sends a contact form submission to zendesk 
+	 * Sends a contact form submission to zendesk
 	 */
 	send(form: any): Observable<any> {
-		return this.httpClient.post(this.getEndpoint(), {
+		return this.httpClient.post(this.config.domain, {
 			request: {
-				requester: { 
+				requester: {
 					name: form.name,
-					email: form.email
+					email: form.email,
 				},
 				subject: 'Contact Form Request',
 				comment: { body: form.message },

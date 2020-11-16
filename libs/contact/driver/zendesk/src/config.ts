@@ -1,8 +1,18 @@
 import { InjectionToken } from '@angular/core';
 
-export interface DaffContactZendeskConfig {
-  subdomain: string;
+/**
+ * The zendesk driver configuration object
+ */
+export interface DaffContactZendeskDriverConfig {
+	/**
+	 * The fully-qualified domain to the Zendesk account,
+	 * e.g. https://daffodil.zendesk.com
+	 */
+	domain: string;
 }
-export const DaffContactZendeskConfigToken = new InjectionToken<DaffContactZendeskConfig>(
-  'DaffContactZendeskConfigToken'
-);
+/**
+ * The dock
+ */
+export const DaffContactZendeskDriverConfigToken = new InjectionToken<
+	DaffContactZendeskDriverConfig
+>('DaffContactZendeskDriverConfigToken');

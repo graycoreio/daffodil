@@ -16,7 +16,7 @@ describe('Integration | DaffContactZendeskDriver', () => {
 			imports: [
 				HttpClientTestingModule,
 				DaffContactZendeskDriverModule.forRoot({
-					subdomain: 'test',
+					domain: 'https://test.zendesk.com',
 				}),
 			],
 		});

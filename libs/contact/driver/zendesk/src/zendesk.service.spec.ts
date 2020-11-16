@@ -58,12 +58,12 @@ describe('DaffContactZendeskService', () => {
 		expect(req.request.body).toEqual({
 			request: {
 				requester: {
-					 name: undefined,
-					 email: 'test@example.com'
+					name: undefined,
+					email: 'test@example.com',
 				},
 				subject: 'Contact Form Request',
 				comment: { body: undefined },
-			}
+			},
 		});
 	});
 });
