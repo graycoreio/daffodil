@@ -62,7 +62,8 @@ export class DaffCategoryLoadFailure implements Action {
 }
 
 /**
- * An action triggered to initialize a category load request.
+ * An action triggered to initialize a category page load request.
+ * This is intended to be used for loading full category pages.
  *
  * @param request - DaffCategoryRequest object
  */
@@ -73,7 +74,7 @@ export class DaffCategoryPageLoad<T extends DaffCategoryRequest = DaffCategoryRe
 }
 
 /**
- * An action triggered upon a successful category request.
+ * An action triggered upon a successful category page request.
  *
  * @param response - DaffGetCategoryResponse object
  */
@@ -89,7 +90,7 @@ export class DaffCategoryPageLoadSuccess<
 }
 
 /**
- * An action triggered upon a failed category request.
+ * An action triggered upon a failed category page request.
  *
  * @param errorMessage - an error message
  */
