@@ -1,12 +1,12 @@
 import { EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
-import { DaffCartItem } from '@daffodil/cart';
+import { DaffStatefulCartItem } from '../../models/stateful-cart-item';
 
 /**
  * Cart Item Entities Adapter for changing/overwriting entity state.
  */
 export const daffCartItemEntitiesAdapter = (() => {
 	let cache;
-  return <T extends DaffCartItem>(): EntityAdapter<T> =>
+  return <T extends DaffStatefulCartItem>(): EntityAdapter<T> =>
     cache = cache || createEntityAdapter<T>({selectId: item => String(item.item_id)});
 })();

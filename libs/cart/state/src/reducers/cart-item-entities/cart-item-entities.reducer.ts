@@ -1,9 +1,10 @@
 import { Dictionary, EntityState } from '@ngrx/entity';
 
-import { DaffCartItem, DaffCartItemInput, DaffCart, DaffCartItemStateEnum } from '@daffodil/cart';
+import { DaffCartItem, DaffCartItemInput, DaffCart } from '@daffodil/cart';
 
 import { daffCartItemEntitiesAdapter } from './cart-item-entities-reducer-adapter';
 import { DaffCartItemActionTypes, DaffCartActionTypes, DaffCartActions, DaffCartItemActions } from '../../actions/public_api';
+import { DaffCartItemStateEnum, DaffStatefulCartItem } from '../../models/stateful-cart-item';
 
 /**
  * Reducer function that catches actions and changes/overwrites product entities state.
@@ -13,11 +14,11 @@ import { DaffCartItemActionTypes, DaffCartActionTypes, DaffCartActions, DaffCart
  * @returns CartItem entities state
  */
 export function daffCartItemEntitiesReducer<
-	T extends DaffCartItem = DaffCartItem,
+	T extends DaffStatefulCartItem = DaffStatefulCartItem,
 	U extends DaffCartItemInput = DaffCartItemInput,
-	V extends DaffCart = DaffCart
+	V extends DaffCart = DaffCart,
 >(
-  state = daffCartItemEntitiesAdapter<T>().getInitialState(),
+  state = daffCartItemEntitiesAdapter<T>().getInitialState({ daffState: DaffCartItemStateEnum.Default }),
   action: DaffCartItemActions<T, U, V> | DaffCartActions<V>): EntityState<T> {
 	const adapter = daffCartItemEntitiesAdapter<T>();
   switch (action.type) {
@@ -63,7 +64,7 @@ function updateAddedCartItemState<T extends DaffCartItem>(oldCartItems: Dictiona
 				return { ...newItem, state: DaffCartItemStateEnum.New };
 			//todo: add optional chaining when possible
 			case oldItem && oldItem.qty !== newItem.qty:
-				return { ...newItem, state: DaffCartItemStateEnum.Updated };
+				return { ...newItem, daffState: DaffCartItemStateEnum.Updated };
 			default:
 				return newItem;
 		}
@@ -71,7 +72,6 @@ function updateAddedCartItemState<T extends DaffCartItem>(oldCartItems: Dictiona
 }
 
 function updateMutatedCartItemState<T extends DaffCartItem>(cartItems: T[], itemId: T['item_id']): T[] {
-	console.log('test');
 	return cartItems.map(item => item.item_id === itemId ? 
-		{ ...item, state: DaffCartItemStateEnum.Updated} : item)
+		{ ...item, daffState: DaffCartItemStateEnum.Updated} : item)
 }

@@ -4,9 +4,9 @@ import * as faker from 'faker/locale/en_US';
 import { DaffConfigurableCartItem, DaffCartItemInputType } from '@daffodil/cart';
 import { DaffModelFactory } from '@daffodil/core/testing';
 
-import { MockCartItem } from './cart-item.factory';
+import { DaffMockCartItem } from './cart-item.factory';
 
-export class MockConfigurableCartItem extends MockCartItem implements DaffConfigurableCartItem {
+export class MockConfigurableCartItem extends DaffMockCartItem implements DaffConfigurableCartItem {
 	type = DaffCartItemInputType.Configurable;
 	attributes = [
 		{

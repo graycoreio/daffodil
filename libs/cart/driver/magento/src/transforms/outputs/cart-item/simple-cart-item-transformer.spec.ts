@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { MagentoProductStockStatusEnum } from '@daffodil/product';
-import { DaffCartItemInputType, DaffCartItemStateEnum } from '@daffodil/cart';
+import { DaffCartItemInputType } from '@daffodil/cart';
 import { MagentoCartItemFactory } from '@daffodil/cart/driver/magento/testing';
 import {
   DaffCartItemFactory
@@ -57,7 +57,6 @@ describe('Driver | Magento | Cart | Transformer | SimpleMagentoCartItem', () => 
 
     it('should return an object with the correct values', () => {
 			expect(transformedCartItem.type).toEqual(DaffCartItemInputType.Simple);
-			expect(transformedCartItem.state).toEqual(DaffCartItemStateEnum.Default);
       expect(transformedCartItem.sku).toEqual(sku);
       expect(transformedCartItem.qty).toEqual(qty);
       expect(transformedCartItem.price).toEqual(price);

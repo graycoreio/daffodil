@@ -34,13 +34,13 @@ import {
 } from '@daffodil/cart/state';
 import {
   DaffCartFactory,
-  DaffCartItemFactory,
   DaffCartAddressFactory,
   DaffCartPaymentFactory,
   DaffCartShippingRateFactory,
   DaffConfigurableCartItemFactory,
   DaffCompositeCartItemFactory
 } from '@daffodil/cart/testing';
+import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
 
 import { DaffCartFacade } from './cart.facade';
 
@@ -48,7 +48,7 @@ describe('DaffCartFacade', () => {
   let store: MockStore<{ product: Partial<DaffCartReducersState> }>;
   let facade: DaffCartFacade;
   let cartFactory: DaffCartFactory;
-  let cartItemFactory: DaffCartItemFactory;
+  let statefulCartItemFactory: DaffStatefulCartItemFactory;
   let configurableCartItemFactory: DaffConfigurableCartItemFactory;
   let compositeCartItemFactory: DaffCompositeCartItemFactory;
   let cartAddressFactory: DaffCartAddressFactory;
@@ -82,7 +82,7 @@ describe('DaffCartFacade', () => {
     store = TestBed.get(Store);
     facade = TestBed.get(DaffCartFacade);
     cartFactory = TestBed.get(DaffCartFactory);
-    cartItemFactory = TestBed.get(DaffCartItemFactory);
+    statefulCartItemFactory = TestBed.get(DaffStatefulCartItemFactory);
     configurableCartItemFactory = TestBed.get(DaffConfigurableCartItemFactory);
     compositeCartItemFactory = TestBed.get(DaffCompositeCartItemFactory);
     cartAddressFactory = TestBed.get(DaffCartAddressFactory);
@@ -1467,7 +1467,7 @@ describe('DaffCartFacade', () => {
 
     it('should be the cart item\'s discounted total', () => {
       const cart = cartFactory.create({
-        items: cartItemFactory.createMany(2)
+        items: statefulCartItemFactory.createMany(2)
       });
       const expected = cold('a', { a: cart.items[0].row_total - cart.items[0].total_discount });
       facade.dispatch(new DaffCartLoadSuccess(cart));
@@ -1479,7 +1479,7 @@ describe('DaffCartFacade', () => {
 
     it('should return whether the cart item is out of stock', () => {
       const cart = cartFactory.create({
-        items: cartItemFactory.createMany(2)
+        items: statefulCartItemFactory.createMany(2)
       });
       const expected = cold('a', { a: !cart.items[0].in_stock });
       facade.dispatch(new DaffCartLoadSuccess(cart));
@@ -1490,12 +1490,13 @@ describe('DaffCartFacade', () => {
   describe('getCartItemState', () => {
 
     it('should return the cart item state', () => {
+			const statefulCartItem = statefulCartItemFactory.create();
       const cart = cartFactory.create({
-        items: [cartItemFactory.create()]
+        items: [statefulCartItem]
       });
-      const expected = cold('a', { a: cart.items[0].state });
+      const expected = cold('a', { a: statefulCartItem.daffState });
       facade.dispatch(new DaffCartLoadSuccess(cart));
-      expect(facade.getCartItemState(cart.items[0].item_id)).toBeObservable(expected);
+      expect(facade.getCartItemState(statefulCartItem.item_id)).toBeObservable(expected);
     });
   });
 
@@ -1587,7 +1588,7 @@ describe('DaffCartFacade', () => {
     describe('when all the fields are valid', () => {
       beforeEach(() => {
         const cart: DaffCart = cartFactory.create({
-          items: cartItemFactory.createMany(1),
+          items: statefulCartItemFactory.createMany(1),
           shipping_address: cartAddressFactory.create(),
           billing_address: cartAddressFactory.create(),
           payment: paymentFactory.create(),

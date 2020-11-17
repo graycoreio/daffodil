@@ -1,4 +1,4 @@
-import { DaffCartItem, DaffCartItemInputType, DaffCartItemStateEnum } from '@daffodil/cart';
+import { DaffCartItem, DaffCartItemInputType } from '@daffodil/cart';
 import { MagentoProductStockStatusEnum } from '@daffodil/product';
 
 import { MagentoCartItem } from '../../../models/public_api';
@@ -13,7 +13,6 @@ export function transformMagentoSimpleCartItem(cartItem: MagentoCartItem): DaffC
 
 		// base
 		type: DaffCartItemInputType.Simple,
-		state: DaffCartItemStateEnum.Default,
 		item_id: cartItem.id,
 		sku: cartItem.product.sku,
 		name: cartItem.product.name,

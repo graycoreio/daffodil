@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { Action, Store, select } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
-import { DaffCart, DaffCartOrderResult, DaffCartItem, DaffCartTotal, DaffCartPaymentMethodIdMap, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption, DaffCartItemStateEnum } from '@daffodil/cart';
+import { DaffCart, DaffCartOrderResult, DaffCartTotal, DaffCartPaymentMethodIdMap, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption } from '@daffodil/cart';
 
 import { DaffCartReducersState } from '../../reducers/public_api';
 import { getDaffCartSelectors } from '../../selectors/public_api';
@@ -12,6 +12,7 @@ import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
 import { DaffCartOperationType } from '../../reducers/cart-operation-type.enum';
 import { DaffCartFacadeInterface } from './cart-facade.interface';
 import { DaffCartLoading } from '../../reducers/loading/cart-loading.type';
+import { DaffCartItemStateEnum, DaffStatefulCartItem } from '../../models/stateful-cart-item';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ import { DaffCartLoading } from '../../reducers/loading/cart-loading.type';
 export class DaffCartFacade<
   T extends DaffCart = DaffCart,
 	V extends DaffCartOrderResult = DaffCartOrderResult,
-	U extends DaffCartItem = DaffCartItem
+	U extends DaffStatefulCartItem = DaffStatefulCartItem
 > implements DaffCartFacadeInterface<T, V, U> {
   resolved$: Observable<boolean>;
   cart$: Observable<T>;

@@ -2,12 +2,14 @@ import { BehaviorSubject } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
-import { DaffCart, DaffCartTotal, DaffCartItem, DaffCartOrderResult, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption, DaffCartItemStateEnum } from '@daffodil/cart';
+import { DaffCart, DaffCartTotal, DaffCartItem, DaffCartOrderResult, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption } from '@daffodil/cart';
 import {
 	DaffCartFacadeInterface,
 	DaffCartErrors,
 	DaffCartOperationType,
-  DaffCartLoading
+	DaffCartLoading,
+	DaffCartItemStateEnum,
+	DaffStatefulCartItem
 } from '@daffodil/cart/state';
 
 export class MockDaffCartFacade implements DaffCartFacadeInterface {
@@ -69,7 +71,7 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
   coupons$: BehaviorSubject<DaffCart['coupons']> = new BehaviorSubject([]);
   items$: BehaviorSubject<DaffCart['items']> = new BehaviorSubject([]);
   hasOutOfStockItems$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  itemDictionary$: BehaviorSubject<Dictionary<DaffCartItem>> = new BehaviorSubject({});
+  itemDictionary$: BehaviorSubject<Dictionary<DaffStatefulCartItem>> = new BehaviorSubject({});
   billingAddress$: BehaviorSubject<DaffCart['billing_address']> = new BehaviorSubject(null);
   shippingAddress$: BehaviorSubject<DaffCart['shipping_address']> = new BehaviorSubject(null);
   payment$: BehaviorSubject<DaffCart['payment']> = new BehaviorSubject(null);

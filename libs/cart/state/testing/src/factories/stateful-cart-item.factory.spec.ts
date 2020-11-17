@@ -1,31 +1,31 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffCartItem } from '@daffodil/cart';
+import { DaffStatefulCartItem } from '@daffodil/cart/state';
 
-import { DaffCartItemFactory } from './cart-item.factory';
+import { DaffStatefulCartItemFactory } from './stateful-cart-item.factory';
 
-describe('Cart | Testing | Factories | CartItemFactory', () => {
+describe('Cart | State | Testing | Factories | StatefulCartItemFactory', () => {
 
-  let cartItemFactory: DaffCartItemFactory;
+  let statefulCartItemFactory: DaffStatefulCartItemFactory;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DaffCartItemFactory]
+      providers: [DaffStatefulCartItemFactory]
     });
 
-    cartItemFactory = TestBed.get(DaffCartItemFactory);
+    statefulCartItemFactory = TestBed.get(DaffStatefulCartItemFactory);
   });
 
   it('should be created', () => {
-    expect(cartItemFactory).toBeTruthy();
+    expect(statefulCartItemFactory).toBeTruthy();
   });
 
   describe('create', () => {
 
-    let result: DaffCartItem;
+    let result: DaffStatefulCartItem;
 
     beforeEach(() => {
-      result = cartItemFactory.create();
+      result = statefulCartItemFactory.create();
     });
 
     it('should return a CartItem with all required fields defined', () => {
@@ -40,6 +40,7 @@ describe('Cart | Testing | Factories | CartItemFactory', () => {
       expect(result.row_total).not.toBeNull();
       expect(result.total_discount).not.toBeNull();
       expect(result.in_stock).not.toBeNull();
+      expect(result.daffState).not.toBeNull();
     });
 
     it('should set total_discount to be less than price', () => {

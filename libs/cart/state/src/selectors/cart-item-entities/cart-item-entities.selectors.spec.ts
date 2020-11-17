@@ -2,21 +2,23 @@ import { TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffCart, DaffCartItem, DaffConfigurableCartItem, DaffCompositeCartItem } from '@daffodil/cart';
+import { DaffCart, DaffConfigurableCartItem, DaffCompositeCartItem } from '@daffodil/cart';
 import { DaffCartReducersState, daffCartReducers, DaffCartItemListSuccess } from '@daffodil/cart/state';
-import { DaffCartFactory, DaffCartItemFactory, DaffConfigurableCartItemFactory, DaffCompositeCartItemFactory } from '@daffodil/cart/testing';
+import { DaffCartFactory, DaffConfigurableCartItemFactory, DaffCompositeCartItemFactory } from '@daffodil/cart/testing';
+import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
 
 import { getDaffCartItemEntitiesSelectors } from './cart-item-entities.selectors';
+import { DaffStatefulCartItem } from '../../models/public_api';
 
 describe('selectCartItemEntitiesState', () => {
 
   let store: Store<DaffCartReducersState>;
   const cartFactory: DaffCartFactory = new DaffCartFactory();
-	const cartItemFactory: DaffCartItemFactory = new DaffCartItemFactory();
+	const statefulCartItemFactory: DaffStatefulCartItemFactory = new DaffStatefulCartItemFactory();
 	const configurableCartItemFactory: DaffConfigurableCartItemFactory = new DaffConfigurableCartItemFactory();
 	const compositeCartItemFactory: DaffCompositeCartItemFactory = new DaffCompositeCartItemFactory();
 	let mockCart: DaffCart;
-	let mockCartItems: DaffCartItem[];
+	let mockCartItems: DaffStatefulCartItem[];
 	let mockConfigurableCartItems: DaffConfigurableCartItem[];
 	let mockCompositeCartItems: DaffCompositeCartItem[];
 	const {
@@ -41,7 +43,7 @@ describe('selectCartItemEntitiesState', () => {
     });
 
 		mockCart = cartFactory.create();
-		mockCartItems = cartItemFactory.createMany(2);
+		mockCartItems = statefulCartItemFactory.createMany(2);
 		mockConfigurableCartItems = configurableCartItemFactory.createMany(2);
 		mockCompositeCartItems = compositeCartItemFactory.createMany(2);
     store = TestBed.get(Store);
@@ -166,7 +168,7 @@ describe('selectCartItemEntitiesState', () => {
 		it('should return the state of the cart item', () => {
 			store.dispatch(new DaffCartItemListSuccess(mockCartItems));
 			const selector = store.pipe(select(selectCartItemState, { id: mockCartItems[0].item_id }));
-			const expected = cold('a', { a: mockCartItems[0].state });
+			const expected = cold('a', { a: mockCartItems[0].daffState });
 
 			expect(selector).toBeObservable(expected);
 		});

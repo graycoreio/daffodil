@@ -3,16 +3,17 @@ import { Action } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
 import { DaffStoreFacade } from '@daffodil/core/state';
-import { DaffCart, DaffCartOrderResult, DaffCartItem, DaffCartTotal, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption, DaffCartItemStateEnum } from '@daffodil/cart';
+import { DaffCart, DaffCartOrderResult, DaffCartTotal, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption } from '@daffodil/cart';
 
 import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
 import { DaffCartOperationType } from '../../reducers/cart-operation-type.enum';
 import { DaffCartLoading } from '../../reducers/loading/cart-loading.type';
+import { DaffCartItemStateEnum, DaffStatefulCartItem } from '../../models/stateful-cart-item';
 
 export interface DaffCartFacadeInterface<
   T extends DaffCart = DaffCart,
 	V extends DaffCartOrderResult = DaffCartOrderResult,
-	U extends DaffCartItem = DaffCartItem
+	U extends DaffStatefulCartItem = DaffStatefulCartItem
 > extends DaffStoreFacade<Action> {
   resolved$: Observable<boolean>;
   cart$: Observable<T>;
