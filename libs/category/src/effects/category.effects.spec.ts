@@ -10,15 +10,18 @@ import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 
 import { DaffCategoryEffects } from './category.effects';
-import { 
-	DaffCategoryLoad, 
-	DaffCategoryLoadSuccess, 
-	DaffCategoryLoadFailure, 
-	DaffChangeCategoryPageSize, 
-	DaffChangeCategoryCurrentPage, 
-	DaffChangeCategoryFilters, 
-	DaffChangeCategorySortingOption, 
-	DaffToggleCategoryFilter
+import {
+	DaffCategoryLoad,
+	DaffCategoryLoadSuccess,
+	DaffCategoryLoadFailure,
+	DaffChangeCategoryPageSize,
+	DaffChangeCategoryCurrentPage,
+	DaffChangeCategoryFilters,
+	DaffChangeCategorySortingOption,
+	DaffToggleCategoryFilter,
+  DaffCategoryPageLoad,
+  DaffCategoryPageLoadFailure,
+  DaffCategoryPageLoadSuccess
 } from '../actions/category.actions';
 import { DaffCategory } from '../models/category';
 import { DaffCategoryServiceInterface } from '../drivers/interfaces/category-service.interface';
@@ -64,7 +67,7 @@ describe('DaffCategoryEffects', () => {
         DaffCategoryEffects,
         provideMockActions(() => actions$),
         {
-          provide: DaffCategoryDriver, 
+          provide: DaffCategoryDriver,
           useClass: MockCategoryDriver
         }
       ]
@@ -80,9 +83,9 @@ describe('DaffCategoryEffects', () => {
 		stubCategoryPageConfigurationState = categoryPageConfigurationStateFactory.create();
 		stubCategory.id = stubCategoryPageConfigurationState.id;
 		stubProducts = productFactory.createMany(3);
-		
+
     daffCategoryDriver = TestBed.get(DaffCategoryDriver);
-		
+
 		daffCategoryDriverSpy.get.and.returnValue(of({
 			category: stubCategory,
 			categoryPageConfigurationState: stubCategoryPageConfigurationState,
@@ -104,34 +107,34 @@ describe('DaffCategoryEffects', () => {
   });
 
   describe('processCategoryGetRequest', () => {
-    
+
 		let expected;
 		let categoryLoadAction;
 
 		beforeEach(() => {
  			categoryLoadAction = new DaffCategoryLoad({id: stubCategory.id});
 		})
-    
+
     describe('when the call to CategoryService is successful', () => {
 
       beforeEach(() => {
         actions$ = hot('--a', { a: categoryLoadAction });
       });
-      
+
       it('should dispatch a DaffCategoryLoadSuccess and a DaffProductGridLoadSuccess action', () => {
 				spyOn(daffCategoryDriver, 'get').and.returnValue(of({
 					category: stubCategory,
 					categoryPageConfigurationState: stubCategoryPageConfigurationState,
 					products: stubProducts
 				}));
-        
+
         expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
         expect(effects.loadCategory$).toBeObservable(expected);
       });
     });
 
     describe('when the call to CategoryService fails', () => {
-      
+
       beforeEach(() => {
         const error = 'Failed to load the category';
 				const response = cold('#', {}, error);
@@ -140,7 +143,7 @@ describe('DaffCategoryEffects', () => {
         actions$ = hot('--a', { a: categoryLoadAction });
         expected = cold('--b', { b: categoryLoadFailureAction });
       });
-      
+
       it('should dispatch a CategoryLoadFailure action', () => {
         expect(effects.loadCategory$).toBeObservable(expected);
       });
@@ -148,7 +151,7 @@ describe('DaffCategoryEffects', () => {
 	});
 
 	describe('validateFilters', () => {
-		
+
 		it('should throw an error when an invalid range type format is given', () => {
 			expect(() => {
 				effects.validateFilters([{
@@ -177,10 +180,68 @@ describe('DaffCategoryEffects', () => {
 		});
 	});
 
+  describe('when CategoryPageLoadAction is triggered', () => {
+    let categoryPageLoadSuccessAction: DaffCategoryPageLoadSuccess;
+		let expected;
+		let categoryPageLoadAction;
+
+		beforeEach(() => {
+       categoryPageLoadAction = new DaffCategoryPageLoad({id: stubCategory.id});
+       categoryPageLoadSuccessAction = new DaffCategoryPageLoadSuccess({
+        category: stubCategory,
+        categoryPageConfigurationState: stubCategoryPageConfigurationState,
+        products: stubProducts
+      });
+
+      actions$ = hot('--a', { a: categoryPageLoadAction });
+		});
+
+    describe('when the call to CategoryService is successful', () => {
+      it('should dispatch a DaffCategoryPageLoadSuccess and a DaffProductGridLoadSuccess action', () => {
+				spyOn(daffCategoryDriver, 'get').and.returnValue(of({
+					category: stubCategory,
+					categoryPageConfigurationState: stubCategoryPageConfigurationState,
+					products: stubProducts
+				}));
+
+        expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryPageLoadSuccessAction });
+        expect(effects.loadCategoryPage$).toBeObservable(expected);
+      });
+    });
+
+    describe('when the call to CategoryService fails', () => {
+
+      beforeEach(() => {
+        const error = 'Failed to load the category';
+				const response = cold('#', {}, error);
+				spyOn(daffCategoryDriver, 'get').and.returnValue(response);
+        const categoryPageLoadFailureAction = new DaffCategoryPageLoadFailure(error);
+        expected = cold('--b', { b: categoryPageLoadFailureAction });
+      });
+
+      it('should dispatch a CategoryPageLoadFailure action', () => {
+        expect(effects.loadCategoryPage$).toBeObservable(expected);
+      });
+    });
+
+    it('should call get category with only an id', () => {
+			spyOn(daffCategoryDriver, 'get').and.returnValue(of({
+				category: stubCategory,
+				categoryPageConfigurationState: stubCategoryPageConfigurationState,
+				products: stubProducts
+			}));
+
+      expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryPageLoadSuccessAction });
+      expect(effects.loadCategoryPage$).toBeObservable(expected);
+
+      expect(daffCategoryDriver.get).toHaveBeenCalledWith({ id: stubCategory.id });
+    });
+  });
+
   describe('when CategoryLoadAction is triggered', () => {
 
     let expected;
-    
+
     it('should call get category with only an id', () => {
 			spyOn(daffCategoryDriver, 'get').and.returnValue(of({
 				category: stubCategory,
@@ -189,7 +250,7 @@ describe('DaffCategoryEffects', () => {
 			}));
       const categoryLoadAction = new DaffCategoryLoad({ id: stubCategory.id });
       actions$ = hot('--a', { a: categoryLoadAction });
-      
+
       expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
       expect(effects.loadCategory$).toBeObservable(expected);
 
@@ -200,7 +261,7 @@ describe('DaffCategoryEffects', () => {
   describe('when ChangeCategoryPageSize action is triggered', () => {
 
     let expected;
-    
+
     it('should call get category with an id, page size, applied filters, and an applied sort option', () => {
 			spyOn(daffCategoryDriver, 'get').and.returnValue(of({
 				category: stubCategory,
@@ -209,10 +270,10 @@ describe('DaffCategoryEffects', () => {
 			}));
       const changeCategoryPageSizeAction = new DaffChangeCategoryPageSize(3);
       actions$ = hot('--a', { a: changeCategoryPageSizeAction });
-      
+
       expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
 			expect(effects.changeCategoryPageSize$).toBeObservable(expected);
-      expect(daffCategoryDriver.get).toHaveBeenCalledWith({ 
+      expect(daffCategoryDriver.get).toHaveBeenCalledWith({
 				...stubCategoryPageConfigurationState,
 				page_size: 3
       });
@@ -222,7 +283,7 @@ describe('DaffCategoryEffects', () => {
   describe('when ChangeCategoryCurrentPage action is triggered', () => {
 
     let expected;
-    
+
     it('should call get category with every available parameter', () => {
 			spyOn(daffCategoryDriver, 'get').and.returnValue(of({
 				category: stubCategory,
@@ -231,10 +292,10 @@ describe('DaffCategoryEffects', () => {
 			}));
       const changeCategoryCurrentPageAction = new DaffChangeCategoryCurrentPage(3);
       actions$ = hot('--a', { a: changeCategoryCurrentPageAction });
-			
+
 			expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
 			expect(effects.changeCategoryCurrentPage$).toBeObservable(expected);
-			expect(daffCategoryDriver.get).toHaveBeenCalledWith({ 
+			expect(daffCategoryDriver.get).toHaveBeenCalledWith({
 				...stubCategoryPageConfigurationState,
 				current_page: 3
       });
@@ -244,7 +305,7 @@ describe('DaffCategoryEffects', () => {
   describe('when ChangeCategoryFiltersAction is triggered', () => {
 
     let expected;
-    
+
     it('should call get category with an id, page size, applied filters, and an applied sorting option', () => {
 			spyOn(daffCategoryDriver, 'get').and.returnValue(of({
 				category: stubCategory,
@@ -257,10 +318,10 @@ describe('DaffCategoryEffects', () => {
 				value: ['value']
 			}]);
       actions$ = hot('--a', { a: changeCategoryFiltersAction });
-			
+
 			expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
 			expect(effects.changeCategoryFilters$).toBeObservable(expected);
-			expect(daffCategoryDriver.get).toHaveBeenCalledWith({ 
+			expect(daffCategoryDriver.get).toHaveBeenCalledWith({
 				...stubCategoryPageConfigurationState,
 				filter_requests: [{
 					name: 'name',
@@ -274,7 +335,7 @@ describe('DaffCategoryEffects', () => {
   describe('when ToggleCategoryFilterAction is triggered', () => {
 
     let expected;
-    
+
     it('should call get category with an id, page size, applied filters, and an applied sorting option', () => {
 			spyOn(daffCategoryDriver, 'get').and.returnValue(of({
 				category: stubCategory,
@@ -293,10 +354,10 @@ describe('DaffCategoryEffects', () => {
 			});
 			store.dispatch(toggleCategoryFilterAction);
       actions$ = hot('--a', { a: toggleCategoryFilterAction });
-			
+
 			expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
 			expect(effects.toggleCategoryFilter$).toBeObservable(expected);
-			expect(daffCategoryDriver.get).toHaveBeenCalledWith({ 
+			expect(daffCategoryDriver.get).toHaveBeenCalledWith({
         ...stubCategoryPageConfigurationState,
 				filter_requests: [appliedFilter]
       });
@@ -306,7 +367,7 @@ describe('DaffCategoryEffects', () => {
   describe('when ChangeCategorySortAction is triggered', () => {
 
     let expected;
-    
+
     it('should call get category with an id, page size, applied filters, and an applied sorting option', () => {
 			spyOn(daffCategoryDriver, 'get').and.returnValue(of({
 				category: stubCategory,
@@ -318,10 +379,10 @@ describe('DaffCategoryEffects', () => {
 				direction: DaffSortDirectionEnum.Ascending
 			});
       actions$ = hot('--a', { a: changeCategorySortingOption });
-			
+
 			expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryLoadSuccessAction });
 			expect(effects.changeCategorySort$).toBeObservable(expected);
-			expect(daffCategoryDriver.get).toHaveBeenCalledWith({ 
+			expect(daffCategoryDriver.get).toHaveBeenCalledWith({
 				...stubCategoryPageConfigurationState,
 				applied_sort_direction: DaffSortDirectionEnum.Ascending,
 				applied_sort_option: 'option'

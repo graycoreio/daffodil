@@ -6,16 +6,19 @@ import { Store, select } from '@ngrx/store';
 
 import { DaffProductGridLoadSuccess, DaffProduct } from '@daffodil/product';
 
-import { 
-  DaffCategoryActionTypes, 
-  DaffCategoryLoad, 
-  DaffCategoryLoadSuccess, 
-  DaffCategoryLoadFailure, 
+import {
+  DaffCategoryActionTypes,
+  DaffCategoryLoad,
+  DaffCategoryLoadSuccess,
+  DaffCategoryLoadFailure,
   DaffChangeCategoryPageSize,
   DaffChangeCategoryCurrentPage,
 	DaffChangeCategoryFilters,
 	DaffChangeCategorySortingOption,
-	DaffToggleCategoryFilter
+	DaffToggleCategoryFilter,
+  DaffCategoryPageLoadSuccess,
+  DaffCategoryPageLoad,
+  DaffCategoryPageLoadFailure
 } from '../actions/category.actions';
 import { DaffCategoryDriver } from '../drivers/injection-tokens/category-driver.token';
 import { DaffCategoryServiceInterface } from '../drivers/interfaces/category-service.interface';
@@ -40,7 +43,7 @@ export class DaffCategoryEffects<
     @Inject(DaffCategoryDriver) private driver: DaffCategoryServiceInterface<T, V, U, W>,
     private store: Store<any>
 	){}
-	
+
 	private categorySelectors = getDaffCategorySelectors<T, V, U, W>();
 
   @Effect()
@@ -49,6 +52,21 @@ export class DaffCategoryEffects<
     switchMap((action: DaffCategoryLoad<T>) => {
 			this.validateFilters(action.request.filter_requests);
 			return this.processCategoryGetRequest(action.request)
+		})
+  )
+
+  @Effect()
+  loadCategoryPage$ : Observable<any> = this.actions$.pipe(
+    ofType(DaffCategoryActionTypes.CategoryPageLoadAction),
+    switchMap((action: DaffCategoryPageLoad<T>) => {
+			this.validateFilters(action.request.filter_requests);
+			return this.driver.get(action.request).pipe(
+        switchMap((resp: DaffGetCategoryResponse<T, V, U, W>) => [
+          new DaffProductGridLoadSuccess(resp.products),
+          new DaffCategoryPageLoadSuccess(resp)
+        ]),
+        catchError(error => of(new DaffCategoryPageLoadFailure('Failed to load the category')))
+      )
 		})
 	)
 
@@ -59,7 +77,7 @@ export class DaffCategoryEffects<
 			this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState))
 		),
     switchMap((
-			[action, categoryRequest]: 
+			[action, categoryRequest]:
 			[DaffChangeCategoryPageSize, T]
 		) => this.processCategoryGetRequest({
 			...categoryRequest,
@@ -74,7 +92,7 @@ export class DaffCategoryEffects<
 			this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState))
     ),
     switchMap((
-			[action, categoryRequest]: 
+			[action, categoryRequest]:
 			[DaffChangeCategoryCurrentPage, T]
 		) => this.processCategoryGetRequest({
 			...categoryRequest,
@@ -89,7 +107,7 @@ export class DaffCategoryEffects<
 			this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState))
     ),
     switchMap((
-			[action, categoryRequest]: 
+			[action, categoryRequest]:
 			[DaffChangeCategoryFilters, T]
 		) => {
 			this.validateFilters(action.filters);
@@ -107,7 +125,7 @@ export class DaffCategoryEffects<
 			this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState))
     ),
     switchMap((
-			[action, categoryPageConfigurationState]: 
+			[action, categoryPageConfigurationState]:
 			[DaffToggleCategoryFilter, U]
 		) => {
 			this.validateFilters(categoryPageConfigurationState.filter_requests);
@@ -124,7 +142,7 @@ export class DaffCategoryEffects<
 			this.store.pipe(select(this.categorySelectors.selectCategoryPageConfigurationState))
     ),
     switchMap((
-			[action, categoryRequest]: 
+			[action, categoryRequest]:
 			[DaffChangeCategorySortingOption, T]
 		) => this.processCategoryGetRequest({
 			...categoryRequest,
@@ -132,7 +150,7 @@ export class DaffCategoryEffects<
 			applied_sort_direction: action.sort.direction
 		}))
 	)
-	
+
 	validateFilters(filters: DaffCategoryFilterRequest[]): void {
 		if(!filters) return;
 		filters.forEach((filter, i) => {
