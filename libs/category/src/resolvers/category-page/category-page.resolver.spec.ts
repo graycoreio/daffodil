@@ -5,6 +5,8 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { ActivatedRoute } from '@angular/router';
 import { MockStore } from '@ngrx/store/testing';
 import { fail } from 'assert';
+import { PLATFORM_ID } from '@angular/core';
+import { ɵPLATFORM_BROWSER_ID, ɵPLATFORM_SERVER_ID } from '@angular/common';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
@@ -24,7 +26,7 @@ describe('DaffCategoryPageResolver', () => {
   let stubCategory: DaffCategory;
 	let route: ActivatedRoute;
 
-	describe('resolve', () => {
+	describe('resolve - on server', () => {
 
 		beforeEach(async(() => {
 			TestBed.configureTestingModule({
@@ -39,7 +41,8 @@ describe('DaffCategoryPageResolver', () => {
 					{
 						provide: ActivatedRoute,
 						useValue: {snapshot: {paramMap: { get: () => '123'}}}
-					}
+					},
+					{ provide: PLATFORM_ID, useValue: ɵPLATFORM_SERVER_ID }
 				]
 			});
 	
@@ -83,6 +86,48 @@ describe('DaffCategoryPageResolver', () => {
 				fail();
 			});
 			expect(true).toBeTruthy();
+		});
+	});
+
+	describe('resolve - in the browser', () => {
+
+		beforeEach(async(() => {
+			TestBed.configureTestingModule({
+				imports: [
+					StoreModule.forRoot({
+						category: combineReducers(daffCategoryReducers),
+					})
+				],
+				providers: [
+					provideMockActions(() => actions$),
+					{ provide: DaffDefaultCategoryPageSize, useValue: 12 },
+					{
+						provide: ActivatedRoute,
+						useValue: {snapshot: {paramMap: { get: () => '123'}}}
+					},
+					{ provide: PLATFORM_ID, useValue: ɵPLATFORM_BROWSER_ID }
+				]
+			});
+	
+			categoryResolver = TestBed.get(DaffCategoryPageResolver);
+			categoryFactory = TestBed.get(DaffCategoryFactory);
+			stubCategory = categoryFactory.create();
+			store = TestBed.get(Store);
+			route = TestBed.get(ActivatedRoute);
+		}));
+
+		it('should dispatch a DaffCategoryLoad action with the correct category id', () => {
+			spyOn(store, 'dispatch');
+			categoryResolver.resolve( route.snapshot );
+			expect(store.dispatch).toHaveBeenCalledWith(
+				new DaffCategoryLoad({ id: '123', page_size: 12 })
+			);
+		});
+
+		it('should resolve without a category load success or failure', () => {
+			categoryResolver.resolve(route.snapshot).subscribe((value) => {
+				expect(value).toBeTruthy();
+			});
 		});
 	});
 });

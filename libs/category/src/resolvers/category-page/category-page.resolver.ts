@@ -1,8 +1,9 @@
-import { Inject, Injectable } from '@angular/core'
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core'
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router'
 import { ofType } from '@ngrx/effects';
 import { ActionsSubject, Store } from '@ngrx/store';
-import { Observable } from 'rxjs'
+import { Observable, of } from 'rxjs'
 import { mapTo, take } from 'rxjs/operators';
 
 import { DaffCategoryActionTypes, DaffCategoryLoad } from '../../actions/category.actions';
@@ -18,6 +19,7 @@ import { DaffDefaultCategoryPageSize } from './default-category-page-size.token'
 })
 export class DaffCategoryPageResolver implements Resolve<Observable<boolean>> {
   constructor(
+		@Inject(PLATFORM_ID) private platformId: string,
 		@Inject(DaffDefaultCategoryPageSize) private defaultCategoryPageSize: number,
     private store: Store<DaffCategoryReducersState>,
     private dispatcher: ActionsSubject,
@@ -28,7 +30,7 @@ export class DaffCategoryPageResolver implements Resolve<Observable<boolean>> {
       id: route.paramMap.get('id'), page_size: this.defaultCategoryPageSize
 		}));
 
-		return this.dispatcher.pipe(
+		return isPlatformBrowser(this.platformId) ? of(true) : this.dispatcher.pipe(
 			ofType(DaffCategoryActionTypes.CategoryLoadSuccessAction, DaffCategoryActionTypes.CategoryLoadFailureAction),
 			mapTo(true),
 			take(1)
