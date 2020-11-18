@@ -1,113 +1,18 @@
 import gql from 'graphql-tag';
 
-export const GetCategoryTree = gql`
-  query GetCategoryTree($filters: CategoryFilterInput!){
-    categoryList(filters: $filters) {
-      id
-      name
-      include_in_menu
-      products {
-        total_count
-      }
-      children_count
-      children {
-        id
-        level
-        name
-        include_in_menu
-        products {
-          total_count
-        }
-        path
-        children_count
-        children {
-          id
-          level
-          name
-          include_in_menu
-          products {
-            total_count
-          }
-          path
-          children_count
-          children {
-            id
-            level
-            name
-            include_in_menu
-            products {
-              total_count
-            }
-            path
-            children_count
-            children {
-              id
-              level
-              name
-              include_in_menu
-              products {
-                total_count
-              }
-              path
-              children_count
-              children {
-                id
-                level
-                name
-                include_in_menu
-                products {
-                  total_count
-                }
-                path
-                children_count
-                children {
-                  id
-                  level
-                  name
-                  include_in_menu
-                  products {
-                    total_count
-                  }
-                  path
-                  children_count
-                  children {
-                    id
-                    level
-                    name
-                    include_in_menu
-                    products {
-                      total_count
-                    }
-                    path
-                    children_count
-                    children {
-                      id
-                      level
-                      name
-                      include_in_menu
-                      products {
-                        total_count
-                      }
-                      path
-                      children_count
-                      children {
-                        id
-                        level
-                        name
-                        include_in_menu
-                        products {
-                          total_count
-                        }
-                        path
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
+import { getCategoryNodeFragment } from './fragments/category-node';
+
+/**
+ * Generates a category tree query with the specified number of nested child category tree fragments.
+ * @param depth The maximum depth to which category children should be added to the fragment.
+ */
+export function getCategoryTree(depth: number = 3) {
+  return gql`
+    query GetCategoryTree($filters: CategoryFilterInput!){
+      categoryList(filters: $filters) {
+        ...recursiveCategoryNode
       }
     }
-  }
-`;
+    ${getCategoryNodeFragment(depth)}
+  `;
+}

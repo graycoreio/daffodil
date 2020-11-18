@@ -16,9 +16,8 @@ export class DaffMagentoNavigationTransformerService implements DaffNavigationTr
       name: node.name,
       total_products: node.products.total_count,
       children_count: node.children_count,
-      children: node.children.filter((child) => child.include_in_menu).map((child) => {
-        return this.transform(child);
-      })
+      // TODO: optional chaining
+      children: node.children && node.children.filter(child => child.include_in_menu).map(child => this.transform(child))
     };
   }
 }
