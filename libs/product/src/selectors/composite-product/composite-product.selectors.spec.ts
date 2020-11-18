@@ -188,7 +188,7 @@ describe('Composite Product Selectors | integration tests', () => {
 			expect(selector).toBeObservable(expected);
 		});
 
-		it('should return the expected price range when a configuration with only quantities are provided', () => {
+		it('should return the expected price range when a configuration with only quantities is provided', () => {
 			const stubConfiguration: Dictionary<DaffCompositeConfigurationItem> = {
 				[stubCompositeProduct.items[0].id]: {
 					value: null,
@@ -330,7 +330,7 @@ describe('Composite Product Selectors | integration tests', () => {
 			expect(selector).toBeObservable(expected);
 		});
 
-		it('should return the expected price range when a configuration with only quantities are provided', () => {
+		it('should return the expected price range when a configuration with only quantities is provided', () => {
 			const stubConfiguration: Dictionary<DaffCompositeConfigurationItem> = {
 				[stubCompositeProduct.items[0].id]: {
 					value: null,
