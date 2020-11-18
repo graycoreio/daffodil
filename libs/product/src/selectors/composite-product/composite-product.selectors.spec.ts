@@ -188,14 +188,48 @@ describe('Composite Product Selectors | integration tests', () => {
 			expect(selector).toBeObservable(expected);
 		});
 
+		it('should return the expected price range when a configuration without quantities is provided', () => {
+			const stubConfiguration: Dictionary<DaffCompositeConfigurationItem> = {
+				[stubCompositeProduct.items[0].id]: {
+					value: stubCompositeProduct.items[0].options[1].id
+				},
+				[stubCompositeProduct.items[1].id]: {
+					value: stubCompositeProduct.items[1].options[1].id
+				}
+			}
+			const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
+			const expected = cold('a', { a: {
+				minPrice: {
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+						stubPrice01 - stubDiscountAmount01 + 
+						stubPrice11 - stubDiscountAmount11,
+					discount: {
+						amount: null,
+						percent: null
+					},
+					originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11
+				},
+				maxPrice: {
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+						stubPrice01 - stubDiscountAmount01 +
+						stubPrice11 - stubDiscountAmount11,
+					discount: {
+						amount: null,
+						percent: null
+					},
+					originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11
+				}
+			}});
+
+			expect(selector).toBeObservable(expected);
+		});
+
 		it('should return the expected price range when a configuration with only quantities is provided', () => {
 			const stubConfiguration: Dictionary<DaffCompositeConfigurationItem> = {
 				[stubCompositeProduct.items[0].id]: {
-					value: null,
 					qty: stubQty0
 				},
 				[stubCompositeProduct.items[1].id]: {
-					value: null,
 					qty: stubQty1
 				}
 			}
@@ -330,14 +364,48 @@ describe('Composite Product Selectors | integration tests', () => {
 			expect(selector).toBeObservable(expected);
 		});
 
+		it(`should return the expected price range when a configuration without quantities is provided`, () => {
+			const stubConfiguration: Dictionary<DaffCompositeConfigurationItem> = {
+				[stubCompositeProduct.items[0].id]: {
+					value: stubCompositeProduct.items[0].options[1].id
+				},
+				[stubCompositeProduct.items[1].id]: {
+					value: stubCompositeProduct.items[1].options[1].id
+				}
+			}
+			const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
+			const expected = cold('a', { a: {
+				minPrice: {
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+						stubPrice01 - stubDiscountAmount01 + 
+						stubPrice11 - stubDiscountAmount11,
+					discount: {
+						amount: null,
+						percent: null
+					},
+					originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11
+				},
+				maxPrice: {
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+						stubPrice01 - stubDiscountAmount01 +
+						stubPrice11 - stubDiscountAmount11,
+					discount: {
+						amount: null,
+						percent: null
+					},
+					originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11
+				}
+			}});
+
+			expect(selector).toBeObservable(expected);
+		});
+
 		it('should return the expected price range when a configuration with only quantities is provided', () => {
 			const stubConfiguration: Dictionary<DaffCompositeConfigurationItem> = {
 				[stubCompositeProduct.items[0].id]: {
-					value: null,
 					qty: stubQty0
 				},
 				[stubCompositeProduct.items[1].id]: {
-					value: null,
 					qty: stubQty1
 				}
 			}

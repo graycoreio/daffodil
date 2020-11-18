@@ -215,7 +215,7 @@ function getAppliedOptionsForConfiguration(product: DaffCompositeProduct, config
 		...acc,
 		[item.id]: configuration[item.id] ? {
 			...item.options.find(option => option.id === configuration[item.id].value),
-			quantity: configuration[item.id].qty
+			quantity: (configuration[item.id].qty === null || configuration[item.id].qty === undefined) ? 1 : configuration[item.id].qty
 		} : null
 }), {})
 }
@@ -227,5 +227,5 @@ function appliedOptionHasId(appliedOption: DaffCompositeProductItemOption): bool
 
 //todo: use optional chaining when possible
 function appliedOptionHasQty(appliedOption: DaffCompositeProductItemOption): boolean {
-	return appliedOption && !!appliedOption.quantity;
+	return appliedOption && appliedOption.quantity !== null;
 }
