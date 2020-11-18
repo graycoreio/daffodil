@@ -5,6 +5,8 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { ActivatedRoute } from '@angular/router';
 import { MockStore } from '@ngrx/store/testing';
 import { fail } from 'assert';
+import { PLATFORM_ID } from '@angular/core';
+import { ɵPLATFORM_BROWSER_ID, ɵPLATFORM_SERVER_ID } from '@angular/common';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
 
@@ -22,7 +24,7 @@ describe('DaffProductPageResolver', () => {
   let stubProduct: DaffProduct;
 	let route: ActivatedRoute;
 
-	describe('resolve', () => {
+	describe('resolve - on the server', () => {
 
 		beforeEach(async(() => {
 			TestBed.configureTestingModule({
@@ -37,6 +39,7 @@ describe('DaffProductPageResolver', () => {
 						provide: ActivatedRoute,
 						useValue: {snapshot: {paramMap: { get: () => '123'}}}
 					},
+					{ provide: PLATFORM_ID, useValue: ɵPLATFORM_SERVER_ID }
 				]
 			});
 	
@@ -76,6 +79,47 @@ describe('DaffProductPageResolver', () => {
 				fail();
 			});
 			expect(true).toBeTruthy();
+		});
+	});
+
+	describe('resolve - in the browser', () => {
+		
+		beforeEach(async(() => {
+			TestBed.configureTestingModule({
+				imports: [
+					StoreModule.forRoot({
+						product: combineReducers(daffProductReducers),
+					})
+				],
+				providers: [
+					provideMockActions(() => actions$),
+					{
+						provide: ActivatedRoute,
+						useValue: {snapshot: {paramMap: { get: () => '123'}}}
+					},
+					{ provide: PLATFORM_ID, useValue: ɵPLATFORM_BROWSER_ID }
+				]
+			});
+	
+			resolver = TestBed.get(DaffProductPageResolver);
+			ProductFactory = TestBed.get(DaffProductFactory);
+			stubProduct = ProductFactory.create();
+			store = TestBed.get(Store);
+			route = TestBed.get(ActivatedRoute);
+		}));
+
+		it('should dispatch a DaffProductLoad action with the correct product id', () => {
+			spyOn(store, 'dispatch');
+			resolver.resolve( route.snapshot );
+			expect(store.dispatch).toHaveBeenCalledWith(
+				new DaffProductLoad('123')
+			);
+		});
+
+		it('should resolve without a product load success or failure', () => {
+			resolver.resolve(route.snapshot).subscribe((value) => {
+				expect(value).toBeTruthy();
+			});
 		});
 	});
 });
