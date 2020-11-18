@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.18.0](https://github.com/graycoreio/daffodil/compare/v0.17.2...v0.18.0) (2020-11-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **geography:** DaffGeographyModule is removed. Use DaffGeographyStateModule instead.
+* **order:** The order testing package has been split into @daffodil/order/state/testing, @daffodil/order/driver/testing, and @daffodil/order/driver/in-memory
+
+### Features
+
+* **cart:** add error matcher injection token ([#1132](https://github.com/graycoreio/daffodil/issues/1132)) ([00c9fe6](https://github.com/graycoreio/daffodil/commit/00c9fe623279d0a5a784ceb79d7cc459cc5f925d))
+* **cart:** cart items now have an Adding state ([#1140](https://github.com/graycoreio/daffodil/issues/1140)) ([86af522](https://github.com/graycoreio/daffodil/commit/86af5227cebf0141b826554ece58f5fa5b08fd08))
+* **order:** shard testing packages ([#1138](https://github.com/graycoreio/daffodil/issues/1138)) ([9794c70](https://github.com/graycoreio/daffodil/commit/9794c701a894058f2c8e4c471ae6c621393c61c6))
+
+
+### Bug Fixes
+
+* **category:** category page resolver should dispatch a category load action regardless of environment ([#1148](https://github.com/graycoreio/daffodil/issues/1148)) ([565cd96](https://github.com/graycoreio/daffodil/commit/565cd96b69a73a235a2936795c97861bb26ea908))
+* **product:** product page resolver should dispatch a product load regardless of environment ([#1149](https://github.com/graycoreio/daffodil/issues/1149)) ([a434df3](https://github.com/graycoreio/daffodil/commit/a434df313d01cc5d76fc05a44f5b5b6e20df09c1))
+
+
+* **geography:** remove useless DaffGeographyModule ([#1146](https://github.com/graycoreio/daffodil/issues/1146)) ([1ff48f2](https://github.com/graycoreio/daffodil/commit/1ff48f25bafcdf9d9d54f6bb85e0c8a829422e81))
+
 ### [0.17.2](https://github.com/graycoreio/daffodil/compare/v0.17.1...v0.17.2) (2020-11-15)
 
 
