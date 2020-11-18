@@ -14,7 +14,7 @@ import { DaffMagentoNavigationService } from './navigation.service';
 import { getCategoryTree } from './queries/get-category-tree';
 import { DaffNavigationTransformer } from '../injection-tokens/navigation-transformer.token';
 import { DaffMagentoNavigationTransformerService } from './transformers/navigation-transformer';
-import { DaffNavigationCategoryTreeQueryDepth } from '../injection-tokens/category-tree-query-depth.token';
+import { MAGENTO_NAVIGATION_TREE_QUERY_DEPTH } from '../interfaces/navigation-config.interface';
 
 describe('Driver | Magento | Navigation | NavigationService', () => {
   let navigationService: DaffMagentoNavigationService;
@@ -32,7 +32,7 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
         DaffMagentoNavigationService,
         { provide: DaffNavigationTransformer, useExisting: DaffMagentoNavigationTransformerService },
         {
-          provide: DaffNavigationCategoryTreeQueryDepth,
+          provide: MAGENTO_NAVIGATION_TREE_QUERY_DEPTH,
           useValue: queryDepth
         },
         {

@@ -9,7 +9,7 @@ import { GetCategoryTreeResponse } from './interfaces/get-category-tree-response
 import { DaffNavigationTransformer } from '../injection-tokens/navigation-transformer.token';
 import { DaffNavigationTransformerInterface } from '../interfaces/navigation-transformer.interface';
 import { DaffNavigationTree } from '../../models/navigation-tree';
-import { DaffNavigationCategoryTreeQueryDepth } from '../injection-tokens/category-tree-query-depth.token';
+import { MAGENTO_NAVIGATION_TREE_QUERY_DEPTH } from '../interfaces/navigation-config.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class DaffMagentoNavigationService implements DaffNavigationServiceInterf
   constructor(
     private apollo: Apollo,
     @Inject(DaffNavigationTransformer) private transformer: DaffNavigationTransformerInterface<DaffNavigationTree>,
-    @Inject(DaffNavigationCategoryTreeQueryDepth) private categoryTreeQueryDepth: number
+    @Inject(MAGENTO_NAVIGATION_TREE_QUERY_DEPTH) private categoryTreeQueryDepth: number
   ) {}
 
   get(categoryId: string): Observable<DaffNavigationTree> {
