@@ -187,6 +187,43 @@ describe('Composite Product Selectors | integration tests', () => {
 
 			expect(selector).toBeObservable(expected);
 		});
+
+		it('should return the expected price range when a configuration with only quantities is provided', () => {
+			const stubConfiguration: Dictionary<DaffCompositeConfigurationItem> = {
+				[stubCompositeProduct.items[0].id]: {
+					value: null,
+					qty: stubQty0
+				},
+				[stubCompositeProduct.items[1].id]: {
+					value: null,
+					qty: stubQty1
+				}
+			}
+			const selector = store.pipe(select(selectCompositeProductPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
+			const expected = cold('a', { a: {
+				minPrice: {
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+						(stubPrice00 - stubDiscountAmount00) * stubQty0,
+					discount: {
+						amount: null,
+						percent: null
+					},
+					originalPrice: stubCompositeProduct.price + (stubPrice00 * stubQty0)
+				},
+				//this max price doesn't include optional items, but we need it to do that in certain circumstances
+				maxPrice: {
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+						(stubPrice01 - stubDiscountAmount01) * stubQty0,
+					discount: {
+						amount: null,
+						percent: null
+					},
+					originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0)
+				}
+			}});
+
+			expect(selector).toBeObservable(expected);
+		});
 	});
 
 	describe('selectCompositeProductPrices', () => {
