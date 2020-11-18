@@ -122,6 +122,7 @@ const createCartItemEntitiesSelectors = <
 		(cartItems, props) => {
 			const cartItem = selectCartItem.projector(cartItems, { id: props.id });
 
+			//todo use optional chaining when possible
 			return cartItem ? cartItem.daffState : null;
 		}
 	)

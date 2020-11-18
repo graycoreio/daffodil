@@ -192,6 +192,9 @@ export interface DaffCartStateMemoizedSelectors<
 	selectCartDiscountTotals: MemoizedSelector<object, DaffCartTotal[]>;
 	selectCartShippingTotal: MemoizedSelector<object, DaffCartTotal['value']>;
 	selectCartCoupons: MemoizedSelector<object, T['coupons']>;
+	/**
+	 * @deprecated use getDaffCartItemEntitiesSelectors().selectAllCartItems instead.
+	 */
 	selectCartItems: MemoizedSelector<object, T['items']>;
 	selectCartHasOutOfStockItems: MemoizedSelector<object, boolean>;
 	selectCartBillingAddress: MemoizedSelector<object, T['billing_address']>;
