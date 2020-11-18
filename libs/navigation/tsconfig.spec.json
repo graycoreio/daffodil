@@ -1,31 +1,11 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc/libs/navigation",
     "types": [
       "jasmine",
       "node"
-    ],
-    "paths": {
-      "@daffodil/core": [
-        "dist/core"
-      ],
-      "@daffodil/core/testing": [
-        "dist/core/testing"
-      ],
-      "@daffodil/core/graphql": [
-        "dist/core/graphql"
-      ],
-      "@daffodil/core/state": [
-        "dist/core/state"
-      ],
-      "@daffodil/navigation": [
-        "libs/navigation/src/index.ts"
-      ],
-      "@daffodil/navigation/testing": [
-        "libs/navigation/testing/src/index.ts"
-      ]
-    }
+    ]
   },
   "files": [
     "test.ts"
