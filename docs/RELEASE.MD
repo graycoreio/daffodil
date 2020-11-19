@@ -19,3 +19,7 @@ npm run generate-packages && npm run publish
 ```
 
 > Note that you can skip the above `generate-packages` step during a publish if you are doing a publish immediately following a release as the `release` processes generates and verifies the `dist` folder.
+
+## Troubleshooting
+
+Sometimes the publish to npm will fail because the one-time password expires while packages are publishing. If this occurs, the unpublished packages will need to be published individually by running `lerna run publish --scope="@daffodil/{package-name}" -- --otp={one-item password}`.
