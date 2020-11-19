@@ -4,7 +4,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffMockCartItem } from '@daffodil/cart/testing';
 import { DaffStatefulCartItem, DaffCartItemStateEnum } from '@daffodil/cart/state';
 
-export class MockStatefulCartItem extends DaffMockCartItem implements DaffStatefulCartItem {
+export class DaffMockStatefulCartItem extends DaffMockCartItem implements DaffStatefulCartItem {
 	daffState: DaffCartItemStateEnum.Default;
 }
 
@@ -14,6 +14,6 @@ export class MockStatefulCartItem extends DaffMockCartItem implements DaffStatef
 export class DaffStatefulCartItemFactory extends DaffModelFactory<DaffStatefulCartItem> {
 
   constructor(){
-    super(MockStatefulCartItem);
+    super(DaffMockStatefulCartItem);
   }
 }

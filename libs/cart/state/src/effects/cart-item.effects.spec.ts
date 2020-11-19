@@ -5,27 +5,26 @@ import { hot, cold } from 'jasmine-marbles';
 import { provideMockStore } from '@ngrx/store/testing';
 import { TestScheduler } from 'rxjs/testing';
 
-import { DaffCartItem, DaffCartItemInput, DaffCart, DaffCartStorageService, DaffCartItemInputType, DaffCartItemStateDebounceTime } from '@daffodil/cart';
+import { DaffCartItemInput, DaffCart, DaffCartStorageService, DaffCartItemInputType, DaffCartItemStateDebounceTime } from '@daffodil/cart';
 import { DaffCartItemServiceInterface, DaffCartItemDriver } from '@daffodil/cart/driver';
 import { DaffCartItemList, DaffCartItemListSuccess, DaffCartItemListFailure, DaffCartItemLoad, DaffCartItemLoadSuccess, DaffCartItemLoadFailure, DaffCartItemAdd, DaffCartItemAddSuccess, DaffCartItemAddFailure, DaffCartItemUpdate, DaffCartItemUpdateSuccess, DaffCartItemUpdateFailure, DaffCartItemDelete, DaffCartItemDeleteSuccess, DaffCartItemDeleteFailure } from '@daffodil/cart/state';
-import {
-  DaffCartFactory,
-	DaffCartItemFactory
-} from '@daffodil/cart/testing';
+import { DaffCartFactory } from '@daffodil/cart/testing';
+import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
 
 import { DaffCartItemEffects } from './cart-item.effects';
 import { DaffCartItemStateReset } from '../actions/public_api';
+import { DaffStatefulCartItem } from '../models/public_api';
 
 describe('Daffodil | Cart | CartItemEffects', () => {
   let actions$: Observable<any>;
-	let effects: DaffCartItemEffects<DaffCartItem, DaffCartItemInput, DaffCart>;
+	let effects: DaffCartItemEffects<DaffStatefulCartItem, DaffCartItemInput, DaffCart>;
 
   let mockCart: DaffCart;
-  let mockCartItem: DaffCartItem;
+  let mockCartItem: DaffStatefulCartItem;
   let mockCartItemInput: DaffCartItemInput;
 
   let cartFactory: DaffCartFactory;
-  let cartItemFactory: DaffCartItemFactory;
+  let statefulCartItemFactory: DaffStatefulCartItemFactory;
 
   let daffCartItemDriverSpy: jasmine.SpyObj<DaffCartItemServiceInterface>;
 
@@ -53,7 +52,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
     });
 
 		effects = TestBed.get<DaffCartItemEffects<
-			DaffCartItem, 
+			DaffStatefulCartItem, 
 			DaffCartItemInput, 
 			DaffCart
 		>>(DaffCartItemEffects);
@@ -62,10 +61,10 @@ describe('Daffodil | Cart | CartItemEffects', () => {
     daffCartStorageSpy = TestBed.get(DaffCartStorageService);
 
     cartFactory = TestBed.get<DaffCartFactory>(DaffCartFactory);
-    cartItemFactory = TestBed.get<DaffCartItemFactory>(DaffCartItemFactory);
+    statefulCartItemFactory = TestBed.get<DaffStatefulCartItemFactory>(DaffStatefulCartItemFactory);
 
     mockCart = cartFactory.create();
-    mockCartItem = cartItemFactory.create();
+    mockCartItem = statefulCartItemFactory.create();
     mockCartItemInput = {
 			type: DaffCartItemInputType.Simple,
       productId: '3',

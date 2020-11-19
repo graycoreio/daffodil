@@ -6,7 +6,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 
 import { DaffMockCartItem } from './cart-item.factory';
 
-export class MockCompositeCartItem extends DaffMockCartItem implements DaffCompositeCartItem {
+export class DaffMockCompositeCartItem extends DaffMockCartItem implements DaffCompositeCartItem {
 	type = DaffCartItemInputType.Composite;
 	options = [
 		{
@@ -28,6 +28,6 @@ export class MockCompositeCartItem extends DaffMockCartItem implements DaffCompo
 export class DaffCompositeCartItemFactory extends DaffModelFactory<DaffCompositeCartItem> {
 
   constructor(){
-    super(MockCompositeCartItem);
+    super(DaffMockCompositeCartItem);
   }
 }

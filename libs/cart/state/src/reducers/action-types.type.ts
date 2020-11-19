@@ -1,4 +1,4 @@
-import { DaffCart, DaffCartAddress, DaffCartCoupon, DaffCartItem, DaffCartItemInput, DaffCartPaymentMethod, DaffCartShippingRate } from '@daffodil/cart';
+import { DaffCart, DaffCartAddress, DaffCartCoupon, DaffCartItemInput, DaffCartPaymentMethod, DaffCartShippingRate } from '@daffodil/cart';
 
 import {
   DaffCartActions,
@@ -12,10 +12,11 @@ import {
   DaffCartCouponActions,
   DaffCartAddressActions
 } from '../actions/public_api';
+import { DaffStatefulCartItem } from '../models/public_api';
 
 export type ActionTypes<
 	T extends DaffCart = DaffCart,
-	V extends DaffCartItem = DaffCartItem,
+	V extends DaffStatefulCartItem = DaffStatefulCartItem,
 	U extends DaffCartItemInput = DaffCartItemInput,
 	W extends DaffCartAddress = DaffCartAddress,
 	X extends DaffCartShippingRate = DaffCartShippingRate,

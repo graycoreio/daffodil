@@ -6,7 +6,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 
 import { DaffMockCartItem } from './cart-item.factory';
 
-export class MockConfigurableCartItem extends DaffMockCartItem implements DaffConfigurableCartItem {
+export class DaffMockConfigurableCartItem extends DaffMockCartItem implements DaffConfigurableCartItem {
 	type = DaffCartItemInputType.Configurable;
 	attributes = [
 		{
@@ -26,6 +26,6 @@ export class MockConfigurableCartItem extends DaffMockCartItem implements DaffCo
 export class DaffConfigurableCartItemFactory extends DaffModelFactory<DaffConfigurableCartItem> {
 
   constructor(){
-    super(MockConfigurableCartItem);
+    super(DaffMockConfigurableCartItem);
   }
 }

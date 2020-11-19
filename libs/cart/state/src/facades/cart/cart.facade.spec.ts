@@ -1038,9 +1038,9 @@ describe('DaffCartFacade', () => {
     });
 
     it('should be the cart items upon a successful cart item list', () => {
-      const cart = cartFactory.create();
-      const expected = cold('a', { a: cart.items });
-      facade.dispatch(new DaffCartItemListSuccess(cart.items));
+      const statefulCartItems = statefulCartItemFactory.createMany(2);
+      const expected = cold('a', { a: statefulCartItems });
+      facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
       expect(facade.items$).toBeObservable(expected);
     });
   });
@@ -1048,9 +1048,9 @@ describe('DaffCartFacade', () => {
   describe('hasOutOfStockItems$', () => {
 
     it('should return whether or not the cart has out of stock items', () => {
-      const cart = cartFactory.create();
+      const statefulCartItems = statefulCartItemFactory.createMany(2);
       const expected = cold('a', { a: false });
-      facade.dispatch(new DaffCartItemListSuccess(cart.items));
+      facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
       expect(facade.hasOutOfStockItems$).toBeObservable(expected);
     });
   });
@@ -1062,15 +1062,15 @@ describe('DaffCartFacade', () => {
     });
 
     it('should be the cart items upon a successful cart item list', () => {
-      const cart = cartFactory.create();
+      const statefulCartItems = statefulCartItemFactory.createMany(2);
       const expected = cold('a', {
         a:
-          cart.items.reduce((acc, item) => ({
+					statefulCartItems.reduce((acc, item) => ({
             ...acc,
             [item.item_id]: item
           }), {})
       });
-      facade.dispatch(new DaffCartItemListSuccess(cart.items));
+      facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
       expect(facade.itemDictionary$).toBeObservable(expected);
     });
   });
