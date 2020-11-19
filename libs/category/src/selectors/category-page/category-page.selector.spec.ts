@@ -11,7 +11,7 @@ import { DaffCategoryPageConfigurationState } from '../../models/category-page-c
 import { getDaffCategoryPageSelectors } from './category-page.selector';
 import { daffCategoryReducers } from '../../reducers/category-reducers';
 import { DaffCategoryFilterType } from '../../models/category-filter-base';
-import { DaffCategoryLoadSuccess, DaffCategoryLoad } from '../../actions/category.actions';
+import { DaffCategoryPageLoadSuccess, DaffCategoryPageLoad } from '../../actions/category.actions';
 import { DaffCategoryFilterRequest } from '../../models/requests/filter-request';
 import { DaffCategoryAppliedFilter } from '../../models/category-applied-filter';
 
@@ -32,7 +32,7 @@ describe('DaffCategoryPageSelectors', () => {
         })
       ]
     });
-    
+
     stubCategory = categoryFactory.create();
     stubCategoryPageConfigurationState.id = stubCategory.id;
 		stubCategoryPageConfigurationState.filters = [
@@ -59,11 +59,11 @@ describe('DaffCategoryPageSelectors', () => {
 		];
     store = TestBed.get(Store);
 
-    store.dispatch(new DaffCategoryLoadSuccess({ category: stubCategory, categoryPageConfigurationState: stubCategoryPageConfigurationState, products: null }));
+    store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageConfigurationState: stubCategoryPageConfigurationState, products: null }));
   });
 
   describe('selectCategoryState', () => {
-    
+
     it('selects CategoryReducerState for category', () => {
       const expectedFeatureState = {
         categoryPageConfigurationState: stubCategoryPageConfigurationState,
@@ -126,7 +126,7 @@ describe('DaffCategoryPageSelectors', () => {
 
     it('sets applied filters to [] if the available filters is []', () => {
 			stubCategoryPageConfigurationState.filters = [];
-			store.dispatch(new DaffCategoryLoadSuccess({ category: stubCategory, categoryPageConfigurationState: stubCategoryPageConfigurationState, products: null }));
+			store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageConfigurationState: stubCategoryPageConfigurationState, products: null }));
 			const filterRequests: DaffCategoryFilterRequest[] = [
 				{
 					name: 'name',
@@ -135,7 +135,7 @@ describe('DaffCategoryPageSelectors', () => {
 				}
 			];
 			const expectedAppliedFilters: DaffCategoryAppliedFilter[] = [];
-			store.dispatch(new DaffCategoryLoad({
+			store.dispatch(new DaffCategoryPageLoad({
 				id: stubCategoryPageConfigurationState.id,
 				filter_requests: filterRequests
 			}));
@@ -161,7 +161,7 @@ describe('DaffCategoryPageSelectors', () => {
 					value: 'value'
 				}]
 			}]
-			store.dispatch(new DaffCategoryLoad({
+			store.dispatch(new DaffCategoryPageLoad({
 				id: stubCategoryPageConfigurationState.id,
 				filter_requests: filterRequests
 			}));
