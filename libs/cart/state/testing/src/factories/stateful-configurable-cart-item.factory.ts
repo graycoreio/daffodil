@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 
 import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffMockConfigurableCartItem } from '@daffodil/cart/testing';
-import { DaffStatefulCartItem, DaffCartItemStateEnum, DaffStatefulConfigurableCartItem } from '@daffodil/cart/state';
+import { DaffCartItemStateEnum, DaffStatefulConfigurableCartItem } from '@daffodil/cart/state';
 
-export class DaffMockStatefulConfigurableCartItem extends DaffMockConfigurableCartItem implements DaffStatefulCartItem {
+export class DaffMockStatefulConfigurableCartItem extends DaffMockConfigurableCartItem implements DaffStatefulConfigurableCartItem {
 	daffState: DaffCartItemStateEnum.Default;
 }
 
