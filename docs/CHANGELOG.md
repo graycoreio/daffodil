@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.19.0](https://github.com/graycoreio/daffodil/compare/v0.18.0...v0.19.0) (2020-11-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* **product:** The selectCompositeProductPricesForConfiguration selector is now selectCompositeProductRequiredItemPricesForConfiguration, and selectCompositeProductPrices is now selectCompositeProductOptionalItemPricesForConfiguration
+
+### Features
+
+* **category:** add page load action ([#1151](https://github.com/graycoreio/daffodil/issues/1151)) ([4c726b2](https://github.com/graycoreio/daffodil/commit/4c726b263d4ad4cf34c5feb56a24d6f3fa0dfec6))
+* **product:** allow selectCompositeProductPricesForConfiguration tak… ([#1153](https://github.com/graycoreio/daffodil/issues/1153)) ([bfa55c6](https://github.com/graycoreio/daffodil/commit/bfa55c6b1b869e169707b29fbcacf1d078a2df82))
+
 ## [0.18.0](https://github.com/graycoreio/daffodil/compare/v0.17.2...v0.18.0) (2020-11-18)
 
 
