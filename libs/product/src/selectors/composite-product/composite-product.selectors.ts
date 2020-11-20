@@ -138,16 +138,14 @@ function getMinPricesForConfiguration(product: DaffCompositeProduct, appliedOpti
 			acc, 
 			appliedOptionHasId(appliedOptions[item.id]) ? 
 				daffMultiply(getDiscountedPrice(appliedOptions[item.id]), appliedOptions[item.id].quantity) : 
-				appliedOptionHasQty(appliedOptions[item.id]) ? 
-					getMinimumRequiredCompositeItemDiscountedPrice(item, appliedOptions[item.id].quantity) : getMinimumRequiredCompositeItemDiscountedPrice(item, 1)
+				getMinimumRequiredCompositeItemDiscountedPrice(item, getOptionQty(appliedOptions[item.id]))
 		), getDiscountedPrice(product)),
 		discount: { amount: null, percent: null },
 		originalPrice: product.items.reduce((acc, item) => daffAdd(
 			acc, 
 			appliedOptionHasId(appliedOptions[item.id]) ? 
 				daffMultiply(appliedOptions[item.id].price, appliedOptions[item.id].quantity) : 
-				appliedOptionHasQty(appliedOptions[item.id]) ? 
-					getMinimumRequiredCompositeItemPrice(item, appliedOptions[item.id].quantity) : getMinimumRequiredCompositeItemPrice(item, 1)
+				getMinimumRequiredCompositeItemPrice(item, getOptionQty(appliedOptions[item.id]))
 		), product.price)
 	}
 }
@@ -163,16 +161,14 @@ function getMaxPricesForConfiguration(product: DaffCompositeProduct, appliedOpti
 			acc, 
 			appliedOptionHasId(appliedOptions[item.id]) ? 
 				daffMultiply(getDiscountedPrice(appliedOptions[item.id]), appliedOptions[item.id].quantity) : 
-				appliedOptionHasQty(appliedOptions[item.id]) ?
-					getMaximumRequiredCompositeItemDiscountedPrice(item, appliedOptions[item.id].quantity) : getMaximumRequiredCompositeItemDiscountedPrice(item, 1)
+				getMaximumRequiredCompositeItemDiscountedPrice(item, getOptionQty(appliedOptions[item.id]))
 		), getDiscountedPrice(product)),
 		discount: { amount: null, percent: null },
 		originalPrice: product.items.reduce((acc, item) => daffAdd(
 			acc,
 			appliedOptionHasId(appliedOptions[item.id]) ? 
 				daffMultiply(appliedOptions[item.id].price, appliedOptions[item.id].quantity) : 
-				appliedOptionHasQty(appliedOptions[item.id]) ? 
-					getMaximumRequiredCompositeItemPrice(item, appliedOptions[item.id].quantity) : getMaximumRequiredCompositeItemPrice(item, 1)
+				getMaximumRequiredCompositeItemPrice(item, getOptionQty(appliedOptions[item.id]))
 		), product.price)
 	}
 }
@@ -192,7 +188,8 @@ function getMaxPricesForConfigurationIncludingOptionalItems(product: DaffComposi
 			appliedOptionHasId(appliedOptions[item.id]) ? 
 				daffMultiply(getDiscountedPrice(appliedOptions[item.id]), appliedOptions[item.id].quantity) :
 				appliedOptionHasQty(appliedOptions[item.id]) ?
-					daffMultiply(Math.max(...item.options.map(getDiscountedPrice)), appliedOptions[item.id].quantity) : Math.max(...item.options.map(getDiscountedPrice))
+					daffMultiply(Math.max(...item.options.map(getDiscountedPrice)), appliedOptions[item.id].quantity) : 
+					Math.max(...item.options.map(getDiscountedPrice))
 		), getDiscountedPrice(product)),
 		discount: { amount: null, percent: null },
 		originalPrice: (<DaffCompositeProduct>product).items.reduce((acc, item) => daffAdd(
@@ -200,7 +197,8 @@ function getMaxPricesForConfigurationIncludingOptionalItems(product: DaffComposi
 			appliedOptionHasId(appliedOptions[item.id]) ? 
 				daffMultiply(appliedOptions[item.id].price, appliedOptions[item.id].quantity) : 
 				appliedOptionHasQty(appliedOptions[item.id]) ?
-					daffMultiply(Math.max(...item.options.map(option => option.price)), appliedOptions[item.id].quantity) : Math.max(...item.options.map(option => option.price))
+					daffMultiply(Math.max(...item.options.map(option => option.price)), appliedOptions[item.id].quantity) : 
+					Math.max(...item.options.map(option => option.price))
 		), product.price)
 	}
 }
@@ -223,6 +221,10 @@ function getAppliedOptionsForConfiguration(product: DaffCompositeProduct, config
 //todo: use optional chaining when possible
 function appliedOptionHasId(appliedOption: DaffCompositeProductItemOption): boolean {
 	return appliedOption && !!appliedOption.id;
+}
+
+function getOptionQty(appliedOption: DaffCompositeProductItemOption): number {
+	return appliedOptionHasQty(appliedOption) ? appliedOption.quantity : 1;
 }
 
 //todo: use optional chaining when possible
