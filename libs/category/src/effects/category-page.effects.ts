@@ -22,10 +22,9 @@ import { DaffCategoryServiceInterface } from '../drivers/interfaces/category-ser
 import { DaffGetCategoryResponse } from '../models/get-category-response';
 import { getDaffCategorySelectors } from '../selectors/category.selector';
 import { DaffCategoryRequest } from '../models/requests/category-request';
-import { DaffCategoryFilterRequest, DaffCategoryFromToFilterSeparator } from '../models/requests/filter-request';
-import { DaffCategoryFilterType } from '../models/category-filter-base';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
 import { DaffGenericCategory } from '../models/generic-category';
+import { daffCategoryValidateFilters } from '../helpers/public_api';
 
 @Injectable()
 export class DaffCategoryPageEffects<
@@ -47,7 +46,7 @@ export class DaffCategoryPageEffects<
   loadCategoryPage$ : Observable<any> = this.actions$.pipe(
     ofType(DaffCategoryActionTypes.CategoryPageLoadAction),
     switchMap((action: DaffCategoryPageLoad<T>) => {
-			this.validateFilters(action.request.filter_requests);
+			daffCategoryValidateFilters(action.request.filter_requests);
 			return this.processCategoryGetRequest(action.request)
 		})
 	)
@@ -92,7 +91,7 @@ export class DaffCategoryPageEffects<
 			[action, categoryRequest]:
 			[DaffChangeCategoryFilters, T]
 		) => {
-			this.validateFilters(action.filters);
+			daffCategoryValidateFilters(action.filters);
 			return this.processCategoryGetRequest({
 				...categoryRequest,
 				filter_requests: action.filters
@@ -110,7 +109,7 @@ export class DaffCategoryPageEffects<
 			[action, categoryPageConfigurationState]:
 			[DaffToggleCategoryFilter, U]
 		) => {
-			this.validateFilters(categoryPageConfigurationState.filter_requests);
+			daffCategoryValidateFilters(categoryPageConfigurationState.filter_requests);
 			return this.processCategoryGetRequest({
 				...categoryPageConfigurationState
 			})
@@ -132,23 +131,6 @@ export class DaffCategoryPageEffects<
 			applied_sort_direction: action.sort.direction
 		}))
 	)
-
-	validateFilters(filters: DaffCategoryFilterRequest[]): void {
-		if(!filters) return;
-		filters.forEach((filter, i) => {
-			if(filter.type === DaffCategoryFilterType.Range &&
-				filter.value[0].split(DaffCategoryFromToFilterSeparator).length !== 2) {
-				throw new Error('Category range filter is in an invalid format. Should be **-**');
-			}
-
-			for(let j=i+1; j < filters.length; j++) {
-				if(filters[i].name === filters[j].name) {
-					throw new Error('More than one category filter of the same name exists. These should' +
-						' be combined into a single filter action with multiple values.')
-				}
-			}
-		})
-	}
 
   private processCategoryGetRequest(payload: T) {
     return this.driver.get(payload).pipe(

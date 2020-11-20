@@ -17,6 +17,7 @@ import { DaffGetCategoryResponse } from '../models/get-category-response';
 import { DaffCategoryRequest } from '../models/requests/category-request';
 import { DaffCategoryPageConfigurationState } from '../models/category-page-configuration-state';
 import { DaffGenericCategory } from '../models/generic-category';
+import { daffCategoryValidateFilters } from '../helpers/public_api';
 
 @Injectable()
 export class DaffCategoryEffects<
@@ -34,12 +35,15 @@ export class DaffCategoryEffects<
   @Effect()
   loadCategory$ : Observable<any> = this.actions$.pipe(
     ofType(DaffCategoryActionTypes.CategoryLoadAction),
-    switchMap((action: DaffCategoryLoad<T>) => this.driver.get(action.request).pipe(
-      switchMap((resp: DaffGetCategoryResponse<T, V, U, W>) => of(
-        new DaffProductGridLoadSuccess(resp.products),
-        new DaffCategoryLoadSuccess(resp)
-      )),
-      catchError(error => of(new DaffCategoryLoadFailure('Failed to load the category')))
-    ))
+    switchMap((action: DaffCategoryLoad<T>) => {
+			daffCategoryValidateFilters(action.request.filter_requests);
+      return this.driver.get(action.request).pipe(
+        switchMap((resp: DaffGetCategoryResponse<T, V, U, W>) => of(
+          new DaffProductGridLoadSuccess(resp.products),
+          new DaffCategoryLoadSuccess(resp)
+        )),
+        catchError(error => of(new DaffCategoryLoadFailure('Failed to load the category')))
+      )
+    })
   )
 }

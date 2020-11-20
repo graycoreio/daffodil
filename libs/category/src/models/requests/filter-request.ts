@@ -47,7 +47,7 @@ export type DaffToggleCategoryFilterRequest =
 	DaffToggleCategoryFilterEqualRequest |
 	DaffToggleCategoryFilterRangeRequest;
 
-export type DaffCategoryFilterRequest = 
-	DaffCategoryFilterMatchRequest | 
-	DaffCategoryFilterEqualRequest | 
+export type DaffCategoryFilterRequest =
+	DaffCategoryFilterMatchRequest |
+	DaffCategoryFilterEqualRequest |
 	DaffCategoryFilterRangeRequest;

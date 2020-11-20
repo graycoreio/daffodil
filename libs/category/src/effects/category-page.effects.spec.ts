@@ -147,44 +147,16 @@ describe('DaffCategoryPageEffects', () => {
     });
 	});
 
-	describe('validateFilters', () => {
-
-		it('should throw an error when an invalid range type format is given', () => {
-			expect(() => {
-				effects.validateFilters([{
-					name: 'price',
-					value: ['invalidFormat'],
-					type: DaffCategoryFilterType.Range
-				}])
-			}).toThrowError('Category range filter is in an invalid format. Should be **-**');
-		});
-
-		it('should throw an error when two filters share the same name', () => {
-			expect(() => {
-				effects.validateFilters([{
-					name: 'name',
-					value: ['value'],
-					type: DaffCategoryFilterType.Equal
-				},
-				{
-					name: 'name',
-					value: ['value2'],
-					type: DaffCategoryFilterType.Equal
-				}
-			])
-			}).toThrowError('More than one category filter of the same name exists. These should' +
-						' be combined into a single filter action with multiple values.');
-		});
-	});
-
   describe('when CategoryPageLoadAction is triggered', () => {
     let categoryPageLoadSuccessAction: DaffCategoryPageLoadSuccess;
 		let expected;
 		let categoryPageLoadAction;
+    let categoryRequest: DaffCategoryRequest;
 
 		beforeEach(() => {
-       categoryPageLoadAction = new DaffCategoryPageLoad({id: stubCategory.id});
-       categoryPageLoadSuccessAction = new DaffCategoryPageLoadSuccess({
+      categoryRequest = {id: stubCategory.id};
+      categoryPageLoadAction = new DaffCategoryPageLoad(categoryRequest);
+      categoryPageLoadSuccessAction = new DaffCategoryPageLoadSuccess({
         category: stubCategory,
         categoryPageConfigurationState: stubCategoryPageConfigurationState,
         products: stubProducts
@@ -221,7 +193,7 @@ describe('DaffCategoryPageEffects', () => {
       });
     });
 
-    it('should call get category with only an id', () => {
+    it('should call get category with the category request from the action payload', () => {
 			spyOn(daffCategoryDriver, 'get').and.returnValue(of({
 				category: stubCategory,
 				categoryPageConfigurationState: stubCategoryPageConfigurationState,
@@ -231,7 +203,7 @@ describe('DaffCategoryPageEffects', () => {
       expected = cold('--(ab)', { a: productGridLoadSuccessAction, b: categoryPageLoadSuccessAction });
       expect(effects.loadCategoryPage$).toBeObservable(expected);
 
-      expect(daffCategoryDriver.get).toHaveBeenCalledWith({ id: stubCategory.id });
+      expect(daffCategoryDriver.get).toHaveBeenCalledWith(categoryRequest);
     });
   });
 

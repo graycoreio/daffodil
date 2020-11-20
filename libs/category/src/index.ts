@@ -20,7 +20,7 @@ export { DaffCategoryPageConfigurationState } from './models/category-page-confi
 export { DaffCategoryBreadcrumb } from './models/category-breadcrumb'
 export { DaffCategory } from './models/category'
 export { DaffGenericCategory } from './models/generic-category'
-export { 
+export {
 	DaffCategoryRequest,
 	DaffSortDirectionEnum
 } from './models/requests/category-request';
@@ -30,3 +30,4 @@ export * from './models/category-filter-base';
 export * from './models/category-applied-filter';
 
 export * from './drivers/magento/public_api';
+export * from './helpers/public_api';
