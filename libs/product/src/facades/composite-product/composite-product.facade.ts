@@ -41,12 +41,12 @@ export class DaffCompositeProductFacade<T extends DaffProduct = DaffProduct> imp
 	 */
 	hasPriceRange = productPriceRangeHasPriceRange;
 
-	getPricesForConfiguration(id: string, configuration: Dictionary<DaffCompositeConfigurationItem>): Observable<DaffPriceRange> {
-		return this.store.pipe(select(this.selectors.selectCompositeProductPricesForConfiguration, { id, configuration }));
+	getRequiredItemPricesForConfiguration(id: string, configuration?: Dictionary<DaffCompositeConfigurationItem>): Observable<DaffPriceRange> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductRequiredItemPricesForConfiguration, { id, configuration }));
 	}
 
-	getPrices(id: string): Observable<DaffPriceRange> {
-		return this.store.pipe(select(this.selectors.selectCompositeProductPrices, { id }));
+	getOptionalItemPricesForConfiguration(id: string, configuration?: Dictionary<DaffCompositeConfigurationItem>): Observable<DaffPriceRange> {
+		return this.store.pipe(select(this.selectors.selectCompositeProductOptionalItemPricesForConfiguration, { id, configuration }));
 	}
 
 	getPricesAsCurrentlyConfigured(id: string): Observable<DaffPriceRange> {

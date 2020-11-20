@@ -1,4 +1,4 @@
 export interface DaffCompositeConfigurationItem {
-	qty: number;
-	value: string;
+	qty?: number;
+	value?: string;
 }

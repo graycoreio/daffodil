@@ -81,7 +81,7 @@ describe('DaffCompositeProductFacade', () => {
     expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 
-  describe('getPricesForConfiguration', () => {
+  describe('getRequiredItemPricesForConfiguration', () => {
 
     it('should return the expected price range for the configuration provided', () => {
 			const stubConfiguration: Dictionary<DaffCompositeConfigurationItem> = {
@@ -112,11 +112,11 @@ describe('DaffCompositeProductFacade', () => {
 			}
 			});
 
-			expect(facade.getPricesForConfiguration(stubCompositeProduct.id, stubConfiguration)).toBeObservable(expected);
+			expect(facade.getRequiredItemPricesForConfiguration(stubCompositeProduct.id, stubConfiguration)).toBeObservable(expected);
 		});
   });
 
-  describe('getPrices', () => {
+  describe('getOptionalItemPricesForConfiguration', () => {
 
     it('should return the broadest price range for a composite product including optional items', () => {
 			const expected = cold('a', { a: {
@@ -142,7 +142,7 @@ describe('DaffCompositeProductFacade', () => {
 			}
 			});
 
-			expect(facade.getPrices(stubCompositeProduct.id)).toBeObservable(expected);
+			expect(facade.getOptionalItemPricesForConfiguration(stubCompositeProduct.id)).toBeObservable(expected);
 		});
   });
 

@@ -24,8 +24,8 @@ describe('Composite Product Selectors | integration tests', () => {
 	let stubCompositeProduct: DaffCompositeProduct;
 	let stubProduct: DaffProduct;
 	const {
-		selectCompositeProductPricesForConfiguration,
-		selectCompositeProductPrices,
+		selectCompositeProductRequiredItemPricesForConfiguration,
+		selectCompositeProductOptionalItemPricesForConfiguration,
 		selectCompositeProductPricesAsCurrentlyConfigured
 	} = getDaffCompositeProductSelectors();
 	const stubPrice00 = 10;
@@ -83,17 +83,17 @@ describe('Composite Product Selectors | integration tests', () => {
 		store.dispatch(new DaffProductLoadSuccess(stubProduct));
 	});
 
-	describe('selectCompositeProductPricesForConfiguration', () => {
+	describe('selectCompositeProductRequiredItemPricesForConfiguration', () => {
 
 		it('should return undefined when the product is not a composite product', () => {
-			const selector = store.pipe(select(selectCompositeProductPricesForConfiguration, { id: stubProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration, { id: stubProduct.id }));
 			const expected = cold('a', { a: undefined });
 
 			expect(selector).toBeObservable(expected);
 		});
 
 		it('should return the broadest price range when no configuration is provided', () => {
-			const selector = store.pipe(select(selectCompositeProductPricesForConfiguration, { id: stubCompositeProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: {
 				minPrice: {
 					discountedPrice: stubCompositeProduct.price + stubPrice00 - stubCompositeProduct.discount.amount - stubDiscountAmount00,
@@ -123,7 +123,7 @@ describe('Composite Product Selectors | integration tests', () => {
 					qty: stubQty1
 				}
 			}
-			const selector = store.pipe(select(selectCompositeProductPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
+			const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
 			const expected = cold('a', { a: {
 				minPrice: {
 					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
@@ -161,7 +161,7 @@ describe('Composite Product Selectors | integration tests', () => {
 					qty: stubQty1
 				}
 			}
-			const selector = store.pipe(select(selectCompositeProductPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
+			const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
 			const expected = cold('a', { a: {
 				minPrice: {
 					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
@@ -187,19 +187,90 @@ describe('Composite Product Selectors | integration tests', () => {
 
 			expect(selector).toBeObservable(expected);
 		});
+
+		it('should return the expected price range when a configuration without quantities is provided', () => {
+			const stubConfiguration: Dictionary<DaffCompositeConfigurationItem> = {
+				[stubCompositeProduct.items[0].id]: {
+					value: stubCompositeProduct.items[0].options[1].id
+				},
+				[stubCompositeProduct.items[1].id]: {
+					value: stubCompositeProduct.items[1].options[1].id
+				}
+			}
+			const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
+			const expected = cold('a', { a: {
+				minPrice: {
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+						stubPrice01 - stubDiscountAmount01 + 
+						stubPrice11 - stubDiscountAmount11,
+					discount: {
+						amount: null,
+						percent: null
+					},
+					originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11
+				},
+				maxPrice: {
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+						stubPrice01 - stubDiscountAmount01 +
+						stubPrice11 - stubDiscountAmount11,
+					discount: {
+						amount: null,
+						percent: null
+					},
+					originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11
+				}
+			}});
+
+			expect(selector).toBeObservable(expected);
+		});
+
+		it('should return the expected price range when a configuration with only quantities is provided', () => {
+			const stubConfiguration: Dictionary<DaffCompositeConfigurationItem> = {
+				[stubCompositeProduct.items[0].id]: {
+					qty: stubQty0
+				},
+				[stubCompositeProduct.items[1].id]: {
+					qty: stubQty1
+				}
+			}
+			const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
+			const expected = cold('a', { a: {
+				minPrice: {
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+						(stubPrice00 - stubDiscountAmount00) * stubQty0,
+					discount: {
+						amount: null,
+						percent: null
+					},
+					originalPrice: stubCompositeProduct.price + (stubPrice00 * stubQty0)
+				},
+				maxPrice: {
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+						(stubPrice01 - stubDiscountAmount01) * stubQty0,
+					discount: {
+						amount: null,
+						percent: null
+					},
+					originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0)
+				}
+			}});
+
+			expect(selector).toBeObservable(expected);
+		});
 	});
 
-	describe('selectCompositeProductPrices', () => {
+	describe('selectCompositeProductOptionalItemPricesForConfiguration', () => {
 
 		it('should return undefined when the product is not a composite product', () => {
-			const selector = store.pipe(select(selectCompositeProductPrices, { id: stubProduct.id }));
+			const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration, { id: stubProduct.id }));
 			const expected = cold('a', { a: undefined });
 
 			expect(selector).toBeObservable(expected);
 		});
 		
-		it('should return the broadest price range for a composite product including optional items', () => {
-			const selector = store.pipe(select(selectCompositeProductPrices, { id: stubCompositeProduct.id }));
+		it(`should return the broadest price range for a composite product including optional items
+				when no configuration is provided`, () => {
+			const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: {
 				minPrice: {
 					discountedPrice: stubCompositeProduct.price + stubPrice00 - stubCompositeProduct.discount.amount - stubDiscountAmount00,
@@ -217,6 +288,146 @@ describe('Composite Product Selectors | integration tests', () => {
 						percent: null
 					},
 					originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11
+				}
+			}});
+
+			expect(selector).toBeObservable(expected);
+		});
+
+		it(`should return the expected price range including optional items
+				when a partial configuration is provided`, () => {
+			const stubConfiguration: Dictionary<DaffCompositeConfigurationItem> = {
+				[stubCompositeProduct.items[0].id]: {
+					value: stubCompositeProduct.items[0].options[0].id,
+					qty: stubQty0
+				}
+			}
+			const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
+			const expected = cold('a', { a: {
+				minPrice: {
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + (stubPrice00 - stubDiscountAmount00) * stubQty0,
+					discount: {
+						amount: null,
+						percent: null
+					},
+					originalPrice: stubCompositeProduct.price + (stubPrice00 * stubQty0)
+				},
+				maxPrice: {
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+						(stubPrice00 - stubDiscountAmount00) * stubQty0 + (stubPrice11 - stubDiscountAmount11),
+					discount: {
+						amount: null,
+						percent: null
+					},
+					originalPrice: stubCompositeProduct.price + (stubPrice00 * stubQty0) + (stubPrice11)
+				}
+			}});
+
+			expect(selector).toBeObservable(expected);
+		});
+
+		it(`should return the expected price range when a full configuration is provided`, () => {
+			const stubConfiguration: Dictionary<DaffCompositeConfigurationItem> = {
+				[stubCompositeProduct.items[0].id]: {
+					value: stubCompositeProduct.items[0].options[1].id,
+					qty: stubQty0
+				},
+				[stubCompositeProduct.items[1].id]: {
+					value: stubCompositeProduct.items[1].options[1].id,
+					qty: stubQty1
+				}
+			}
+			const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
+			const expected = cold('a', { a: {
+				minPrice: {
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+						(stubPrice01 - stubDiscountAmount01) * stubQty0 + 
+						(stubPrice11 - stubDiscountAmount11) * stubQty1,
+					discount: {
+						amount: null,
+						percent: null
+					},
+					originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0) + (stubPrice11 * stubQty1)
+				},
+				maxPrice: {
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+						(stubPrice01 - stubDiscountAmount01) * stubQty0 +
+						(stubPrice11 - stubDiscountAmount11) * stubQty1,
+					discount: {
+						amount: null,
+						percent: null
+					},
+					originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0) + (stubPrice11 * stubQty1)
+				}
+			}});
+
+			expect(selector).toBeObservable(expected);
+		});
+
+		it(`should return the expected price range when a configuration without quantities is provided`, () => {
+			const stubConfiguration: Dictionary<DaffCompositeConfigurationItem> = {
+				[stubCompositeProduct.items[0].id]: {
+					value: stubCompositeProduct.items[0].options[1].id
+				},
+				[stubCompositeProduct.items[1].id]: {
+					value: stubCompositeProduct.items[1].options[1].id
+				}
+			}
+			const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
+			const expected = cold('a', { a: {
+				minPrice: {
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+						stubPrice01 - stubDiscountAmount01 + 
+						stubPrice11 - stubDiscountAmount11,
+					discount: {
+						amount: null,
+						percent: null
+					},
+					originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11
+				},
+				maxPrice: {
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+						stubPrice01 - stubDiscountAmount01 +
+						stubPrice11 - stubDiscountAmount11,
+					discount: {
+						amount: null,
+						percent: null
+					},
+					originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11
+				}
+			}});
+
+			expect(selector).toBeObservable(expected);
+		});
+
+		it('should return the expected price range when a configuration with only quantities is provided', () => {
+			const stubConfiguration: Dictionary<DaffCompositeConfigurationItem> = {
+				[stubCompositeProduct.items[0].id]: {
+					qty: stubQty0
+				},
+				[stubCompositeProduct.items[1].id]: {
+					qty: stubQty1
+				}
+			}
+			const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
+			const expected = cold('a', { a: {
+				minPrice: {
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+						(stubPrice00 - stubDiscountAmount00) * stubQty0,
+					discount: {
+						amount: null,
+						percent: null
+					},
+					originalPrice: stubCompositeProduct.price + (stubPrice00 * stubQty0)
+				},
+				maxPrice: {
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+						(stubPrice01 - stubDiscountAmount01) * stubQty0 + (stubPrice11 - stubDiscountAmount11) * stubQty1,
+					discount: {
+						amount: null,
+						percent: null
+					},
+					originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0) + (stubPrice11 * stubQty1)
 				}
 			}});
 

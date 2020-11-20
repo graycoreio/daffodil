@@ -11,10 +11,10 @@ import {
 import { Dictionary } from '@ngrx/entity';
 
 export class MockDaffCompositeProductFacade implements DaffCompositeProductFacadeInterface {
-	getPricesForConfiguration(id: string, configuration: Dictionary<DaffCompositeConfigurationItem>): BehaviorSubject<DaffPriceRange> {
+	getRequiredItemPricesForConfiguration(id: string, configuration?: Dictionary<DaffCompositeConfigurationItem>): BehaviorSubject<DaffPriceRange> {
 		return new BehaviorSubject(null);
 	}
-	getPrices(id: string): BehaviorSubject<DaffPriceRange> {
+	getOptionalItemPricesForConfiguration(id: string, configuration?: Dictionary<DaffCompositeConfigurationItem>): BehaviorSubject<DaffPriceRange> {
 		return new BehaviorSubject(null);
 	}
 	getPricesAsCurrentlyConfigured(id: string): BehaviorSubject<DaffPriceRange> {
