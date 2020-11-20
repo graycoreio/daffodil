@@ -6,7 +6,7 @@ import { DaffProductGridLoadSuccess, daffProductReducers, DaffProduct } from '@d
 import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
 import { DaffProductFactory } from '@daffodil/product/testing';
 
-import { DaffCategoryLoadSuccess } from '../actions/category.actions';
+import { DaffCategoryPageLoadSuccess } from '../actions/category.actions';
 import { getDaffCategorySelectors } from './category.selector';
 import { DaffCategoryReducersState } from '../reducers/category-reducers.interface';
 import { daffCategoryReducers } from '../reducers/category-reducers';
@@ -35,7 +35,7 @@ describe('DaffCategorySelectors', () => {
         })
       ]
     });
-    
+
     stubCategory = categoryFactory.create();
     product = productFactory.create();
     stubCategoryPageConfigurationState.id = stubCategory.id;
@@ -65,7 +65,7 @@ describe('DaffCategorySelectors', () => {
 		];
     store = TestBed.get(Store);
 
-    store.dispatch(new DaffCategoryLoadSuccess({ category: stubCategory, categoryPageConfigurationState: stubCategoryPageConfigurationState, products: null }));
+    store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageConfigurationState: stubCategoryPageConfigurationState, products: null }));
     store.dispatch(new DaffProductGridLoadSuccess([product]));
   });
 
@@ -97,7 +97,7 @@ describe('DaffCategorySelectors', () => {
 				productA.id,
 				productB.id,
 			];
-			const loadA = new DaffCategoryLoadSuccess({
+			const loadA = new DaffCategoryPageLoadSuccess({
 				category: {
 					...stubCategory,
 				},
@@ -121,7 +121,7 @@ describe('DaffCategorySelectors', () => {
 				productB.id,
 				productA.id,
 			];
-			const loadB = new DaffCategoryLoadSuccess({
+			const loadB = new DaffCategoryPageLoadSuccess({
 				category: {
 					...stubCategory,
 				},

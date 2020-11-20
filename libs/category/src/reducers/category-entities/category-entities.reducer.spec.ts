@@ -1,6 +1,6 @@
 import { DaffCategoryFactory } from '@daffodil/category/testing';
 
-import { DaffCategoryLoadSuccess } from '../../actions/category.actions';
+import { DaffCategoryLoadSuccess, DaffCategoryPageLoadSuccess } from '../../actions/category.actions';
 import { daffCategoryEntitiesReducer } from './category-entities.reducer';
 import { DaffCategory } from '../../models/category';
 import { daffCategoryEntitiesAdapter } from './category-entities-adapter';
@@ -24,8 +24,8 @@ describe('Category | Category Entities Reducer', () => {
     });
   });
 
-  describe('when CategoryLoadSuccessAction is triggered', () => {
-    
+  describe('when CategoryPageLoadSuccessAction is triggered', () => {
+
     let category: DaffCategory;
     let result;
     let categoryId;
@@ -33,9 +33,29 @@ describe('Category | Category Entities Reducer', () => {
     beforeEach(() => {
       category = categoryFactory.create();
       categoryId = category.id;
-      
+
+      const categoryLoadSuccess = new DaffCategoryPageLoadSuccess({category: category, categoryPageConfigurationState: null, products: null});
+
+      result = daffCategoryEntitiesReducer(daffCategoryEntitiesAdapter<DaffCategory>().getInitialState(), categoryLoadSuccess);
+    });
+
+    it('sets expected category on state', () => {
+      expect(result.entities[categoryId]).toEqual(category);
+    });
+  });
+
+  describe('when CategoryLoadSuccessAction is triggered', () => {
+
+    let category: DaffCategory;
+    let result;
+    let categoryId;
+
+    beforeEach(() => {
+      category = categoryFactory.create();
+      categoryId = category.id;
+
       const categoryLoadSuccess = new DaffCategoryLoadSuccess({category: category, categoryPageConfigurationState: null, products: null});
-      
+
       result = daffCategoryEntitiesReducer(daffCategoryEntitiesAdapter<DaffCategory>().getInitialState(), categoryLoadSuccess);
     });
 

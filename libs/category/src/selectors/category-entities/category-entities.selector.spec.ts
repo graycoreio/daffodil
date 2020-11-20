@@ -9,7 +9,7 @@ import { DaffCategoryRequest } from '../../models/requests/category-request';
 import { DaffCategory } from '../../models/category';
 import { DaffCategoryPageConfigurationState } from '../../models/category-page-configuration-state';
 import { getDaffCategoryEntitiesSelectors } from './category-entities.selector';
-import { DaffCategoryLoadSuccess } from '../../actions/category.actions';
+import { DaffCategoryPageLoadSuccess } from '../../actions/category.actions';
 
 describe('DaffCategoryEntitiesSelectors', () => {
 
@@ -28,11 +28,11 @@ describe('DaffCategoryEntitiesSelectors', () => {
         })
       ]
     });
-    
+
     stubCategory = categoryFactory.create();
     store = TestBed.get(Store);
 
-    store.dispatch(new DaffCategoryLoadSuccess({ category: stubCategory, categoryPageConfigurationState: stubCategoryPageConfigurationState, products: null }));
+    store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageConfigurationState: stubCategoryPageConfigurationState, products: null }));
   });
 
   describe('selectCategoryIds', () => {

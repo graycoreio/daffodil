@@ -10,19 +10,20 @@ import { DaffGenericCategory } from '../../models/generic-category';
 import { DaffCategory } from '../../models/category';
 
 export function daffCategoryEntitiesReducer<
-	T extends DaffCategoryRequest = DaffCategoryRequest, 
-	V extends DaffGenericCategory<V> = DaffCategory, 
-	U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>, 
+	T extends DaffCategoryRequest = DaffCategoryRequest,
+	V extends DaffGenericCategory<V> = DaffCategory,
+	U extends DaffCategoryPageConfigurationState<T> = DaffCategoryPageConfigurationState<T>,
 	W extends DaffProduct = DaffProduct
 >(
-  state = daffCategoryEntitiesAdapter<V>().getInitialState(), 
+  state = daffCategoryEntitiesAdapter<V>().getInitialState(),
 	action: DaffCategoryActions<T, V, U, W>
 ): EntityState<V> {
   switch (action.type) {
     case DaffCategoryActionTypes.CategoryLoadSuccessAction:
+    case DaffCategoryActionTypes.CategoryPageLoadSuccessAction:
       return daffCategoryEntitiesAdapter<V>().upsertOne(
-        { 
-          id: action.response.category.id, 
+        {
+          id: action.response.category.id,
           ...action.response.category
         },
         state
