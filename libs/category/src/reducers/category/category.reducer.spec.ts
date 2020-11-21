@@ -516,6 +516,35 @@ describe('Category | Category Reducer', () => {
 		});
   });
 
+  describe('when CategoryLoadSuccessAction is triggered', () => {
+
+    let result: DaffCategoryReducerState<DaffCategoryRequest, DaffCategoryPageConfigurationState<DaffCategoryRequest>>;
+    let state: DaffCategoryReducerState<DaffCategoryRequest, DaffCategoryPageConfigurationState<DaffCategoryRequest>>;
+
+    beforeEach(() => {
+      state = {
+        ...initialState,
+        categoryLoading: true,
+        productsLoading: true,
+      }
+
+      const categoryLoadSuccess = new DaffCategoryLoadSuccess({ category: category, categoryPageConfigurationState: categoryPageConfigurationState, products: null });
+      result = daffCategoryReducer(state, categoryLoadSuccess);
+    });
+
+    it('sets categoryLoading to false', () => {
+      expect(result.categoryLoading).toEqual(false);
+    });
+
+    it('sets productsLoading to false', () => {
+      expect(result.productsLoading).toEqual(false);
+    });
+
+    it('sets categoryPageConfigurationState from the payload', () => {
+      expect(result.categoryPageConfigurationState).toEqual(categoryPageConfigurationState);
+    });
+  });
+
   describe('when CategoryPageLoadSuccessAction is triggered', () => {
 
     let result: DaffCategoryReducerState<DaffCategoryRequest, DaffCategoryPageConfigurationState<DaffCategoryRequest>>;
