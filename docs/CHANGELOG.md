@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.19.1](https://github.com/graycoreio/daffodil/compare/v0.19.0...v0.19.1) (2020-11-21)
+
+
+### Bug Fixes
+
+* **category:** stop category load on DaffCategoryLoadSuccess ([#1156](https://github.com/graycoreio/daffodil/issues/1156)) ([24bbcce](https://github.com/graycoreio/daffodil/commit/24bbcceea500df2819f6f4913b951c058c9f03fc))
+
 ## [0.19.0](https://github.com/graycoreio/daffodil/compare/v0.18.0...v0.19.0) (2020-11-20)
 
 
