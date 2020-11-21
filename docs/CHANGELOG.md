@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.19.2](https://github.com/graycoreio/daffodil/compare/v0.19.1...v0.19.2) (2020-11-21)
+
+
+### Bug Fixes
+
+* **category:** add category page effects to DaffCategoryStateModule ([#1157](https://github.com/graycoreio/daffodil/issues/1157)) ([79ce0cb](https://github.com/graycoreio/daffodil/commit/79ce0cbb53bd0f8a9856400e107410007f8837dc))
+
 ### [0.19.1](https://github.com/graycoreio/daffodil/compare/v0.19.0...v0.19.1) (2020-11-21)
 
 
