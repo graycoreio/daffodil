@@ -98,7 +98,8 @@ export function daffCategoryReducer<T extends DaffCategoryRequest, U extends Daf
 			}
     // This reducer cannot spread over state, because this would wipe out the applied filters on state. Applied filters are not
     // set here for reasons stated above.
-    case DaffCategoryActionTypes.CategoryPageLoadSuccessAction:
+		case DaffCategoryActionTypes.CategoryLoadSuccessAction:
+		case DaffCategoryActionTypes.CategoryPageLoadSuccessAction:
       return {
         ...state,
 				categoryLoading: false,

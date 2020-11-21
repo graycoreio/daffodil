@@ -16,7 +16,7 @@ import { DaffCategoryReducersState } from '../../reducers/category-reducers.inte
 import { DaffCategory } from '../../models/category';
 import { daffCategoryReducers } from '../../reducers/category-reducers';
 import { DaffDefaultCategoryPageSize } from './default-category-page-size.token';
-import { DaffCategoryLoad, DaffCategoryLoadSuccess, DaffCategoryLoadFailure } from '../../actions/category.actions';
+import { DaffCategoryPageLoad, DaffCategoryPageLoadSuccess, DaffCategoryPageLoadFailure } from '../../actions/category.actions';
 
 describe('DaffCategoryPageResolver', () => {
 	const actions$: Observable<any> = null;
@@ -53,20 +53,20 @@ describe('DaffCategoryPageResolver', () => {
 			route = TestBed.get(ActivatedRoute);
 		}));
 
-		it('should dispatch a DaffCategoryLoad action with the correct category id', () => {
+		it('should dispatch a DaffCategoryPageLoad action with the correct category id', () => {
 			spyOn(store, 'dispatch');
 			categoryResolver.resolve( route.snapshot );
 			expect(store.dispatch).toHaveBeenCalledWith(
-				new DaffCategoryLoad({ id: '123', page_size: 12 })
+				new DaffCategoryPageLoad({ id: '123', page_size: 12 })
 			);
 		});
 
-		it('should resolve when DaffCategoryLoadSuccess is dispatched', () => {
+		it('should resolve when DaffCategoryPageLoadSuccess is dispatched', () => {
 			categoryResolver.resolve(route.snapshot).subscribe(value => {
 				expect(value).toEqual(true);
 			});
 
-			store.dispatch(new DaffCategoryLoadSuccess({
+			store.dispatch(new DaffCategoryPageLoadSuccess({
 				products: [new DaffProductFactory().create()],
 				category: stubCategory,
 				categoryPageConfigurationState: new DaffCategoryPageConfigurationStateFactory().create()
@@ -78,7 +78,7 @@ describe('DaffCategoryPageResolver', () => {
 				expect(value).toEqual(true);
 			});
 
-			store.dispatch(new DaffCategoryLoadFailure(null));
+			store.dispatch(new DaffCategoryPageLoadFailure(null));
 		});
 
 		it('should not resolve without a category load success or failure', () => {
@@ -116,11 +116,11 @@ describe('DaffCategoryPageResolver', () => {
 			route = TestBed.get(ActivatedRoute);
 		}));
 
-		it('should dispatch a DaffCategoryLoad action with the correct category id', () => {
+		it('should dispatch a DaffCategoryPageLoad action with the correct category id', () => {
 			spyOn(store, 'dispatch');
 			categoryResolver.resolve( route.snapshot );
 			expect(store.dispatch).toHaveBeenCalledWith(
-				new DaffCategoryLoad({ id: '123', page_size: 12 })
+				new DaffCategoryPageLoad({ id: '123', page_size: 12 })
 			);
 		});
 
