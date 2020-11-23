@@ -70,15 +70,16 @@ function buildCompositeProductAppliedOptionsEntity(product: DaffCompositeProduct
 
 /**
  * Sets the default item option to the specified default option if it is in stock.
- * Does not set a default option if a default is not specified or if the default is out of stock.
+ * Does not set a default option if a default is not specified.
+ * Does not set a default option but does set a default qty if the default is out of stock.
  * @param item a DaffCompositeProductItem
  */
 function getDefaultOption(item: DaffCompositeProductItem): DaffCompositeConfigurationItem {
 	const defaultOptionIndex = item.options.findIndex(option => option.is_default);
 
-	if(defaultOptionIndex > -1 && item.options[defaultOptionIndex].in_stock) {
+	if(defaultOptionIndex > -1) {
 		return {
-			value: item.options[defaultOptionIndex].id,
+			value: item.options[defaultOptionIndex].in_stock ? item.options[defaultOptionIndex].id : null,
 			qty: item.options[defaultOptionIndex].quantity
 		}
 	} else {

@@ -47,6 +47,7 @@ const createCompositeProductSelectors = (): DaffCompositeProductMemoizedSelector
 			}
 
 			const appliedOptions = props.configuration ? getAppliedOptionsForConfiguration(<DaffCompositeProduct>product, props.configuration) : {};
+			console.log(appliedOptions);
 			return {
 				minPrice: getMinPricesForConfiguration(<DaffCompositeProduct>product, appliedOptions),
 				maxPrice: getMaxPricesForConfiguration(<DaffCompositeProduct>product, appliedOptions)
@@ -209,6 +210,7 @@ function getMaxPricesForConfigurationIncludingOptionalItems(product: DaffComposi
  * @param configuration a Dictionary<DaffCompositeConfigurationItem> used to build the appliedOptions object.
  */
 function getAppliedOptionsForConfiguration(product: DaffCompositeProduct, configuration: Dictionary<DaffCompositeConfigurationItem>): Dictionary<DaffCompositeProductItemOption> {
+	console.log(configuration);
 	return (<DaffCompositeProduct>product).items.reduce((acc, item) => ({
 		...acc,
 		[item.id]: configuration[item.id] ? {

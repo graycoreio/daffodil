@@ -57,7 +57,6 @@ describe('Composite Product Selectors | integration tests', () => {
 		stubCompositeProduct.items[0].options[0].price = stubPrice00;
 		stubCompositeProduct.items[0].options[0].quantity = stubQty0;
 		stubCompositeProduct.items[0].options[1].price = stubPrice01;
-		stubCompositeProduct.items[0].options[0].quantity = stubQty1;
 		stubCompositeProduct.items[0].options[0].discount = {
 			amount: stubDiscountAmount00,
 			percent: null
@@ -70,6 +69,7 @@ describe('Composite Product Selectors | integration tests', () => {
 		stubCompositeProduct.items[1].options[0].is_default = false;
 		stubCompositeProduct.items[1].options[0].price = stubPrice10;
 		stubCompositeProduct.items[1].options[1].price = stubPrice11;
+		stubCompositeProduct.items[1].options[0].quantity = stubQty1;
 		stubCompositeProduct.items[1].options[0].discount = {
 			amount: stubDiscountAmount10,
 			percent: null
@@ -479,6 +479,35 @@ describe('Composite Product Selectors | integration tests', () => {
 						percent: null
 					},
 					originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0) + (stubPrice11 * stubQty1)
+				}
+			}});
+
+			expect(selector).toBeObservable(expected);
+		});
+		
+		it('should return a price range that reflects the expected option quantity when the default item option is out of stock', () => {
+			stubCompositeProduct.items[0].options[0].in_stock = false;
+			store.dispatch(new DaffProductLoadSuccess(stubCompositeProduct));
+
+			const selector = store.pipe(select(selectCompositeProductPricesAsCurrentlyConfigured, { id: stubCompositeProduct.id }));
+			const expected = cold('a', { a: {
+				minPrice: {
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+						(stubPrice00 - stubDiscountAmount00) * stubQty0,
+					discount: {
+						amount: null,
+						percent: null
+					},
+					originalPrice: stubCompositeProduct.price + (stubPrice00 * stubQty0)
+				},
+				maxPrice: {
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+						(stubPrice01 - stubDiscountAmount01) * stubQty0,
+					discount: {
+						amount: null,
+						percent: null
+					},
+					originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0)
 				}
 			}});
 
