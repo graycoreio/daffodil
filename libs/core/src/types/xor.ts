@@ -1,9 +1,9 @@
 /**
  * The "Exclusive Or" (XOR) type means that for any instance of the type, it is either one of the two type constraints,
- * but never both or neither. 
+ * but never both nor neither. 
  * 
  * For example, The simplest scenario is when describing "name" vs. "firstName" and "lastName". Your typical object has
- * exactly one of the scenarios, but never both and never no naming at al. 
+ * exactly one of the scenarios, but never both at the same time, nor no name at all. 
  * 
  * Inspired by the original Typescript Issue:
  * https://github.com/microsoft/TypeScript/issues/14094#issuecomment-373782604
