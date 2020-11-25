@@ -47,8 +47,7 @@ describe('DaffAuthorizeNetEffects', () => {
 	let authorizeNetPaymentService: MockAuthorizeNetDriver;
 	const stubConfig: DaffAuthorizeNetConfig = {
 		clientKey: 'clientKey',
-		apiLoginID: 'apiLoginID',
-		production: false
+		apiLoginID: 'apiLoginID'
 	}
 	let stubAddress: DaffCartAddress;
 	const acceptJsLoadingServiceSpy = jasmine.createSpyObj('DaffAcceptJsLoadingService', ['load', 'getAccept']);
