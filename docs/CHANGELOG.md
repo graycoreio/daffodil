@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.20.0](https://github.com/graycoreio/daffodil/compare/v0.19.2...v0.20.0) (2020-11-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* **authorizenet:** This used to depend on a configuration setting in the driver. This didn't make sense and was widely regarded as a bad move. Instead, we've shifted the configuration setting to its own token that you can toggle at the root as you'd like.
+
+### Features
+
+* **authorizenet:** add new production token to authorizenet package  ([#1161](https://github.com/graycoreio/daffodil/issues/1161)) ([2cd04c2](https://github.com/graycoreio/daffodil/commit/2cd04c234a6c0b097c7ab8d01d47b2d3f98de38c))
+* **cart:** add state to each cart item to indicate if it is new, mutating, etc ([#1126](https://github.com/graycoreio/daffodil/issues/1126)) ([e65ec68](https://github.com/graycoreio/daffodil/commit/e65ec683fb0baaaa23676a458bb3232f492c05e1))
+* **navigation:** injectable category tree query depth in magento driver ([#1150](https://github.com/graycoreio/daffodil/issues/1150)) ([a2ce44d](https://github.com/graycoreio/daffodil/commit/a2ce44db475bbd6bbff482eec831f7017c12a1a2))
+
+
+### Bug Fixes
+
+* **product:** out of stock item options result in a price bug for non… ([#1158](https://github.com/graycoreio/daffodil/issues/1158)) ([a3dd189](https://github.com/graycoreio/daffodil/commit/a3dd1890a09e610958e54054566fd3f09eaaec46))
+
 ### [0.19.2](https://github.com/graycoreio/daffodil/compare/v0.19.1...v0.19.2) (2020-11-21)
 
 
