@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { Action, Store, select } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
-import { DaffCart, DaffCartOrderResult, DaffCartItem, DaffCartTotal, DaffCartPaymentMethodIdMap, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption } from '@daffodil/cart';
+import { DaffCart, DaffCartOrderResult, DaffCartTotal, DaffCartPaymentMethodIdMap, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption } from '@daffodil/cart';
 
 import { DaffCartReducersState } from '../../reducers/public_api';
 import { getDaffCartSelectors } from '../../selectors/public_api';
@@ -12,6 +12,7 @@ import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
 import { DaffCartOperationType } from '../../reducers/cart-operation-type.enum';
 import { DaffCartFacadeInterface } from './cart-facade.interface';
 import { DaffCartLoading } from '../../reducers/loading/cart-loading.type';
+import { DaffCartItemStateEnum, DaffStatefulCartItem } from '../../models/stateful-cart-item';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ import { DaffCartLoading } from '../../reducers/loading/cart-loading.type';
 export class DaffCartFacade<
   T extends DaffCart = DaffCart,
 	V extends DaffCartOrderResult = DaffCartOrderResult,
-	U extends DaffCartItem = DaffCartItem
+	U extends DaffStatefulCartItem = DaffStatefulCartItem
 > implements DaffCartFacadeInterface<T, V, U> {
   resolved$: Observable<boolean>;
   cart$: Observable<T>;
@@ -109,6 +110,7 @@ export class DaffCartFacade<
 	private _selectCartItemConfiguredAttributes;
 	private _selectCartItemCompositeOptions;
 	private _selectIsCartItemOutOfStock;
+	private _selectCartItemState;
 
   constructor(
     private store: Store<DaffCartReducersState<T, V, U>>,
@@ -194,7 +196,8 @@ export class DaffCartFacade<
 			selectCartOrderCartId,
       selectHasOrderResult,
       selectCartItemDiscountedRowTotal,
-      selectIsCartItemOutOfStock,
+			selectIsCartItemOutOfStock,
+			selectCartItemState,
 
       selectHasBillingAddress,
       selectHasShippingAddress,
@@ -206,6 +209,7 @@ export class DaffCartFacade<
 		this._selectCartItemConfiguredAttributes = selectCartItemConfiguredAttributes;
 		this._selectCartItemCompositeOptions = selectCartItemCompositeOptions;
 		this._selectIsCartItemOutOfStock = selectIsCartItemOutOfStock;
+		this._selectCartItemState = selectCartItemState;
 
     this.resolved$ = this.store.pipe(select(selectCartResolved));
     this.cart$ = this.store.pipe(select(selectCartValue));
@@ -298,20 +302,24 @@ export class DaffCartFacade<
     this.hasOrderResult$ = this.store.pipe(select(selectHasOrderResult));
 	}
 
-	getConfiguredCartItemAttributes(itemId: string | number): Observable<DaffConfigurableCartItemAttribute[]> {
+	getConfiguredCartItemAttributes(itemId: U['item_id']): Observable<DaffConfigurableCartItemAttribute[]> {
 		return this.store.pipe(select(this._selectCartItemConfiguredAttributes, { id: itemId }))
 	};
 
-  getCompositeCartItemOptions(itemId: string | number): Observable<DaffCompositeCartItemOption[]> {
+  getCompositeCartItemOptions(itemId: U['item_id']): Observable<DaffCompositeCartItemOption[]> {
 		return this.store.pipe(select(this._selectCartItemCompositeOptions, { id: itemId }));
 	};
 
-	getCartItemDiscountedTotal(itemId: string | number): Observable<number> {
+	getCartItemDiscountedTotal(itemId: U['item_id']): Observable<number> {
 		return this.store.pipe(select(this._selectCartItemDiscountedRowTotal, { id: itemId }));
 	}
 
-	isCartItemOutOfStock(itemId: DaffCartItem['item_id']): Observable<boolean> {
+	isCartItemOutOfStock(itemId: U['item_id']): Observable<boolean> {
 		return this.store.pipe(select(this._selectIsCartItemOutOfStock, { id: itemId }));
+	}
+
+	getCartItemState(itemId: U['item_id']): Observable<DaffCartItemStateEnum> {
+		return this.store.pipe(select(this._selectCartItemState, { id: itemId }));
 	}
 
   dispatch(action: Action) {

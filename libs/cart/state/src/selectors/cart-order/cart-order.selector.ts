@@ -4,10 +4,11 @@ import {
 } from '@ngrx/store';
 
 import { DaffLoadingState } from '@daffodil/core/state';
-import { DaffCartOrderResult, DaffCart, DaffCartItem } from '@daffodil/cart';
+import { DaffCartOrderResult, DaffCart } from '@daffodil/cart';
 
 import { getDaffCartFeatureSelector } from '../cart-feature.selector';
 import { DaffCartReducersState, DaffCartOrderReducerState } from '../../reducers/public_api';
+import { DaffStatefulCartItem } from '../../models/stateful-cart-item';
 
 export interface DaffCartOrderMemoizedSelectors<
   T extends DaffCartOrderResult = DaffCartOrderResult
@@ -31,7 +32,7 @@ export interface DaffCartOrderMemoizedSelectors<
 const createCartOrderSelectors = <
   T extends DaffCart = DaffCart,
 	V extends DaffCartOrderResult = DaffCartOrderResult,
-	U extends DaffCartItem = DaffCartItem
+	U extends DaffStatefulCartItem = DaffStatefulCartItem
 >(): DaffCartOrderMemoizedSelectors<V> => {
 	const selectCartFeatureState = getDaffCartFeatureSelector<T, V, U>().selectCartFeatureState;
 
@@ -87,7 +88,7 @@ export const getCartOrderSelectors = (() => {
 	return <
     T extends DaffCart = DaffCart,
 		V extends DaffCartOrderResult = DaffCartOrderResult,
-		U extends DaffCartItem = DaffCartItem
+		U extends DaffStatefulCartItem = DaffStatefulCartItem
   >(): DaffCartOrderMemoizedSelectors<V> => cache = cache
 		? cache
 		: createCartOrderSelectors<T, V, U>();

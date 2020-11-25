@@ -1,7 +1,7 @@
 import { DaffCartItem, DaffCartItemInputType } from '@daffodil/cart';
 import { MagentoProductStockStatusEnum } from '@daffodil/product';
 
-import { MagentoCartItem } from '../../../models/responses/cart-item';
+import { MagentoCartItem } from '../../../models/public_api';
 
 /**
  * Transforms the magento MagentoCartItem from the magento cart query into a DaffCartItem.

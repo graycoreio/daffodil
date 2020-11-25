@@ -2,23 +2,25 @@ import { TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffCart, DaffCartItem, DaffConfigurableCartItem, DaffCompositeCartItem } from '@daffodil/cart';
+import { DaffCart } from '@daffodil/cart';
 import { DaffCartReducersState, daffCartReducers, DaffCartItemListSuccess } from '@daffodil/cart/state';
-import { DaffCartFactory, DaffCartItemFactory, DaffConfigurableCartItemFactory, DaffCompositeCartItemFactory } from '@daffodil/cart/testing';
+import { DaffCartFactory } from '@daffodil/cart/testing';
+import { DaffStatefulCartItemFactory, DaffStatefulCompositeCartItemFactory, DaffStatefulConfigurableCartItemFactory } from '@daffodil/cart/state/testing';
 
 import { getDaffCartItemEntitiesSelectors } from './cart-item-entities.selectors';
+import { DaffStatefulCartItem, DaffStatefulCompositeCartItem, DaffStatefulConfigurableCartItem } from '../../models/public_api';
 
 describe('selectCartItemEntitiesState', () => {
 
   let store: Store<DaffCartReducersState>;
   const cartFactory: DaffCartFactory = new DaffCartFactory();
-	const cartItemFactory: DaffCartItemFactory = new DaffCartItemFactory();
-	const configurableCartItemFactory: DaffConfigurableCartItemFactory = new DaffConfigurableCartItemFactory();
-	const compositeCartItemFactory: DaffCompositeCartItemFactory = new DaffCompositeCartItemFactory();
+	const statefulCartItemFactory: DaffStatefulCartItemFactory = new DaffStatefulCartItemFactory();
+	const statefulConfigurableCartItemFactory: DaffStatefulConfigurableCartItemFactory = new DaffStatefulConfigurableCartItemFactory();
+	const statefulCompositeCartItemFactory: DaffStatefulCompositeCartItemFactory = new DaffStatefulCompositeCartItemFactory();
 	let mockCart: DaffCart;
-	let mockCartItems: DaffCartItem[];
-	let mockConfigurableCartItems: DaffConfigurableCartItem[];
-	let mockCompositeCartItems: DaffCompositeCartItem[];
+	let mockCartItems: DaffStatefulCartItem[];
+	let mockStatefulConfigurableCartItems: DaffStatefulConfigurableCartItem[];
+	let mockStatefulCompositeCartItems: DaffStatefulCompositeCartItem[];
 	const {
 		selectCartItemIds,
 		selectCartItemEntities,
@@ -27,7 +29,8 @@ describe('selectCartItemEntitiesState', () => {
 		selectCartItem,
 		selectCartItemConfiguredAttributes,
 		selectCartItemCompositeOptions,
-		selectIsCartItemOutOfStock
+		selectIsCartItemOutOfStock,
+		selectCartItemState
 	} = getDaffCartItemEntitiesSelectors();
 
   beforeEach(() => {
@@ -40,9 +43,9 @@ describe('selectCartItemEntitiesState', () => {
     });
 
 		mockCart = cartFactory.create();
-		mockCartItems = cartItemFactory.createMany(2);
-		mockConfigurableCartItems = configurableCartItemFactory.createMany(2);
-		mockCompositeCartItems = compositeCartItemFactory.createMany(2);
+		mockCartItems = statefulCartItemFactory.createMany(2);
+		mockStatefulConfigurableCartItems = statefulConfigurableCartItemFactory.createMany(2);
+		mockStatefulCompositeCartItems = statefulCompositeCartItemFactory.createMany(2);
     store = TestBed.get(Store);
 
     store.dispatch(new DaffCartItemListSuccess(mockCartItems));
@@ -116,9 +119,9 @@ describe('selectCartItemEntitiesState', () => {
 		});
 
 		it('should return the configured attributes of a configurable cart item', () => {
-			store.dispatch(new DaffCartItemListSuccess(mockConfigurableCartItems));
-			const selector = store.pipe(select(selectCartItemConfiguredAttributes, { id: mockConfigurableCartItems[0].item_id }));
-			const expected = cold('a', { a: mockConfigurableCartItems[0].attributes });
+			store.dispatch(new DaffCartItemListSuccess(mockStatefulConfigurableCartItems));
+			const selector = store.pipe(select(selectCartItemConfiguredAttributes, { id: mockStatefulConfigurableCartItems[0].item_id }));
+			const expected = cold('a', { a: mockStatefulConfigurableCartItems[0].attributes });
 
 			expect(selector).toBeObservable(expected);
 		});
@@ -134,9 +137,9 @@ describe('selectCartItemEntitiesState', () => {
 		});
 
 		it('should return the item options of a composite cart item', () => {
-			store.dispatch(new DaffCartItemListSuccess(mockCompositeCartItems));
-			const selector = store.pipe(select(selectCartItemCompositeOptions, { id: mockCompositeCartItems[0].item_id }));
-			const expected = cold('a', { a: mockCompositeCartItems[0].options });
+			store.dispatch(new DaffCartItemListSuccess(mockStatefulCompositeCartItems));
+			const selector = store.pipe(select(selectCartItemCompositeOptions, { id: mockStatefulCompositeCartItems[0].item_id }));
+			const expected = cold('a', { a: mockStatefulCompositeCartItems[0].options });
 
 			expect(selector).toBeObservable(expected);
 		});
@@ -154,6 +157,24 @@ describe('selectCartItemEntitiesState', () => {
 
     it('should return null if the cart item is not in state', () => {
 			const selector = store.pipe(select(selectIsCartItemOutOfStock, { id: mockCartItems[0].item_id + 'notId' }));
+			const expected = cold('a', { a: null });
+
+			expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCartItemState', () => {
+		
+		it('should return the state of the cart item', () => {
+			store.dispatch(new DaffCartItemListSuccess(mockCartItems));
+			const selector = store.pipe(select(selectCartItemState, { id: mockCartItems[0].item_id }));
+			const expected = cold('a', { a: mockCartItems[0].daffState });
+
+			expect(selector).toBeObservable(expected);
+		});
+    
+    it('should return null if the cart item is not in state', () => {
+			const selector = store.pipe(select(selectCartItemState, { id: mockCartItems[0].item_id + 'notId' }));
 			const expected = cold('a', { a: null });
 
 			expect(selector).toBeObservable(expected);

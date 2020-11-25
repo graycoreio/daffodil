@@ -1,4 +1,4 @@
-import { DaffCart, DaffCartItem, DaffCartItemInputType } from '@daffodil/cart';
+import { DaffCart, DaffCartItemInputType } from '@daffodil/cart';
 import { 
 	DaffCartItemUpdate, DaffCartOperationType, 
 	DaffCartReducerState, DaffCartItemUpdateSuccess, 
@@ -11,23 +11,25 @@ import {
 	DaffCartItemListFailure, initialState,
 	DaffCartItemLoadingState
 } from '@daffodil/cart/state';
-import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
+import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
+import { DaffCartFactory } from '@daffodil/cart/testing';
+import { DaffStatefulCartItem } from '../../models/public_api';
 
 import { cartItemReducer } from './cart-item.reducer';
 
 describe('Cart | Reducer | Cart Item', () => {
   let cartFactory: DaffCartFactory;
-  let cartItemFactory: DaffCartItemFactory;
+  let statefulCartItemFactory: DaffStatefulCartItemFactory;
 
   let cart: DaffCart;
-  let cartItem: DaffCartItem;
+  let cartItem: DaffStatefulCartItem;
 
   beforeEach(() => {
     cartFactory = new DaffCartFactory();
-    cartItemFactory = new DaffCartItemFactory();
+    statefulCartItemFactory = new DaffStatefulCartItemFactory();
 
     cart = cartFactory.create();
-    cartItem = cartItemFactory.create();
+    cartItem = statefulCartItemFactory.create();
 
     cart.items = [cartItem];
   });
@@ -65,7 +67,7 @@ describe('Cart | Reducer | Cart Item', () => {
         }
       }
 
-      const cartItemUpdateSuccess = new DaffCartItemUpdateSuccess(cart);
+      const cartItemUpdateSuccess = new DaffCartItemUpdateSuccess(cart, 'id');
 
       result = cartItemReducer(state, cartItemUpdateSuccess);
     });
@@ -285,7 +287,7 @@ describe('Cart | Reducer | Cart Item', () => {
   describe('when CartItemLoadSuccessAction is triggered', () => {
     let result;
     let state: DaffCartReducerState<DaffCart>;
-    let newCartItem: DaffCartItem;
+    let newCartItem: DaffStatefulCartItem;
 
     beforeEach(() => {
       newCartItem = {
@@ -373,7 +375,7 @@ describe('Cart | Reducer | Cart Item', () => {
     let state: DaffCartReducerState<DaffCart>;
 
     beforeEach(() => {
-      const cartItemListActionSuccess = new DaffCartItemListSuccess(cart.items);
+      const cartItemListActionSuccess = new DaffCartItemListSuccess([cartItem]);
       state = {
         ...initialState,
         loading: {

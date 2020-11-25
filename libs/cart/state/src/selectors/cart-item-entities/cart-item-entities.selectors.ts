@@ -1,13 +1,14 @@
 import { createSelector, MemoizedSelector, MemoizedSelectorWithProps } from '@ngrx/store';
 import { EntityState } from '@ngrx/entity';
 
-import { DaffCartItem, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption, DaffCart, DaffCartOrderResult, DaffCartItemInputType, DaffConfigurableCartItem, DaffCompositeCartItem } from '@daffodil/cart';
+import { DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption, DaffCart, DaffCartOrderResult, DaffCartItemInputType, DaffConfigurableCartItem, DaffCompositeCartItem } from '@daffodil/cart';
 
 import { daffCartItemEntitiesAdapter } from '../../reducers/cart-item-entities/cart-item-entities-reducer-adapter';
 import { DaffCartReducersState } from '../../reducers/public_api';
 import { getDaffCartFeatureSelector } from '../cart-feature.selector';
+import { DaffCartItemStateEnum, DaffStatefulCartItem } from '../../models/stateful-cart-item';
 
-export interface DaffCartItemEntitiesMemoizedSelectors<T extends DaffCartItem = DaffCartItem> {
+export interface DaffCartItemEntitiesMemoizedSelectors<T extends DaffStatefulCartItem = DaffStatefulCartItem> {
 	selectCartItemEntitiesState: MemoizedSelector<object, EntityState<T>>;
 	selectCartItemIds: MemoizedSelector<object, EntityState<T>['ids']>;
 	selectCartItemEntities: MemoizedSelector<object, EntityState<T>['entities']>;
@@ -17,12 +18,13 @@ export interface DaffCartItemEntitiesMemoizedSelectors<T extends DaffCartItem = 
 	selectCartItemConfiguredAttributes: MemoizedSelectorWithProps<object, object, DaffConfigurableCartItemAttribute[]>;
 	selectCartItemCompositeOptions: MemoizedSelectorWithProps<object, object, DaffCompositeCartItemOption[]>;
 	selectIsCartItemOutOfStock: MemoizedSelectorWithProps<object, object, boolean>;
+	selectCartItemState: MemoizedSelectorWithProps<object, object, DaffCartItemStateEnum>;
 }
 
 const createCartItemEntitiesSelectors = <
 	T extends DaffCart = DaffCart,
 	V extends DaffCartOrderResult = DaffCartOrderResult,
-  U extends DaffCartItem = DaffCartItem
+  U extends DaffStatefulCartItem = DaffStatefulCartItem
 >(): DaffCartItemEntitiesMemoizedSelectors<U> => {
 	const {
 		selectCartFeatureState
@@ -115,7 +117,17 @@ const createCartItemEntitiesSelectors = <
 		}
 	);
 
-	return {
+	const selectCartItemState = createSelector(
+		selectCartItemEntities,
+		(cartItems, props) => {
+			const cartItem = selectCartItem.projector(cartItems, { id: props.id });
+
+			//todo use optional chaining when possible
+			return cartItem ? cartItem.daffState : null;
+		}
+	)
+
+	return { 
 		selectCartItemEntitiesState,
 		selectCartItemIds,
 		selectCartItemEntities,
@@ -124,7 +136,8 @@ const createCartItemEntitiesSelectors = <
 		selectCartItem,
 		selectCartItemConfiguredAttributes,
 		selectCartItemCompositeOptions,
-		selectIsCartItemOutOfStock
+		selectIsCartItemOutOfStock,
+		selectCartItemState
 	}
 }
 
@@ -133,7 +146,7 @@ export const getDaffCartItemEntitiesSelectors = (() => {
 	return <
 		T extends DaffCart = DaffCart,
 		V extends DaffCartOrderResult = DaffCartOrderResult,
-		U extends DaffCartItem = DaffCartItem
+		U extends DaffStatefulCartItem = DaffStatefulCartItem
 	>(): DaffCartItemEntitiesMemoizedSelectors<U> => cache = cache
 		? cache
 		: createCartItemEntitiesSelectors<T, V, U>();

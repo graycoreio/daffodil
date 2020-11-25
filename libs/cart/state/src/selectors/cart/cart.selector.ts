@@ -8,11 +8,12 @@ import {
 import { daffSubtract } from '@daffodil/core';
 import { DaffLoadingState } from '@daffodil/core/state';
 import { daffComparePersonalAddresses } from '@daffodil/geography';
-import { DaffCart, DaffCartTotal, DaffCartOrderResult, DaffCartItem, DaffCartTotalTypeEnum } from '@daffodil/cart';
+import { DaffCart, DaffCartTotal, DaffCartOrderResult, DaffCartTotalTypeEnum } from '@daffodil/cart';
 
 import { getDaffCartFeatureSelector } from '../cart-feature.selector';
 import { DaffCartReducerState, DaffCartReducersState, DaffCartOperationType } from '../../reducers/public_api';
 import { DaffCartItemLoadingState } from '../../reducers/loading/cart-loading.type';
+import { DaffStatefulCartItem } from '../../models/stateful-cart-item';
 
 export interface DaffCartStateMemoizedSelectors<
   T extends DaffCart = DaffCart
@@ -191,6 +192,9 @@ export interface DaffCartStateMemoizedSelectors<
 	selectCartDiscountTotals: MemoizedSelector<object, DaffCartTotal[]>;
 	selectCartShippingTotal: MemoizedSelector<object, DaffCartTotal['value']>;
 	selectCartCoupons: MemoizedSelector<object, T['coupons']>;
+	/**
+	 * @deprecated use getDaffCartItemEntitiesSelectors().selectAllCartItems instead.
+	 */
 	selectCartItems: MemoizedSelector<object, T['items']>;
 	selectCartHasOutOfStockItems: MemoizedSelector<object, boolean>;
 	selectCartBillingAddress: MemoizedSelector<object, T['billing_address']>;
@@ -219,7 +223,7 @@ export interface DaffCartStateMemoizedSelectors<
 const createCartSelectors = <
   T extends DaffCart = DaffCart,
 	V extends DaffCartOrderResult = DaffCartOrderResult,
-	U extends DaffCartItem = DaffCartItem
+	U extends DaffStatefulCartItem = DaffStatefulCartItem
 >(): DaffCartStateMemoizedSelectors<T> => {
 	const selectCartFeatureState = getDaffCartFeatureSelector<T, V, U>().selectCartFeatureState;
 	const selectCartState = createSelector(
@@ -549,7 +553,7 @@ const createCartSelectors = <
   );
 	const selectCartItemDiscountedRowTotal = createSelector(
 		selectCartItems,
-		(cartItems: DaffCartItem[], props) => {
+		(cartItems: DaffStatefulCartItem[], props) => {
 			const cartItem = cartItems.find(item => item.item_id === props.id)
 			return daffSubtract(cartItem.row_total, cartItem.total_discount);
 		}
@@ -684,7 +688,7 @@ export const getCartSelectors = (() => {
 	return <
     T extends DaffCart = DaffCart,
 		V extends DaffCartOrderResult = DaffCartOrderResult,
-		U extends DaffCartItem = DaffCartItem
+		U extends DaffStatefulCartItem = DaffStatefulCartItem
   >(): DaffCartStateMemoizedSelectors<T> => cache = cache
 		? cache
 		: createCartSelectors<T, V, U>();

@@ -7,7 +7,9 @@ import {
 	DaffCartFacadeInterface,
 	DaffCartErrors,
 	DaffCartOperationType,
-  DaffCartLoading
+	DaffCartLoading,
+	DaffCartItemStateEnum,
+	DaffStatefulCartItem
 } from '@daffodil/cart/state';
 
 export class MockDaffCartFacade implements DaffCartFacadeInterface {
@@ -69,7 +71,7 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
   coupons$: BehaviorSubject<DaffCart['coupons']> = new BehaviorSubject([]);
   items$: BehaviorSubject<DaffCart['items']> = new BehaviorSubject([]);
   hasOutOfStockItems$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  itemDictionary$: BehaviorSubject<Dictionary<DaffCartItem>> = new BehaviorSubject({});
+  itemDictionary$: BehaviorSubject<Dictionary<DaffStatefulCartItem>> = new BehaviorSubject({});
   billingAddress$: BehaviorSubject<DaffCart['billing_address']> = new BehaviorSubject(null);
   shippingAddress$: BehaviorSubject<DaffCart['shipping_address']> = new BehaviorSubject(null);
   payment$: BehaviorSubject<DaffCart['payment']> = new BehaviorSubject(null);
@@ -113,6 +115,10 @@ export class MockDaffCartFacade implements DaffCartFacadeInterface {
 
 	isCartItemOutOfStock(itemId: DaffCartItem['item_id']): BehaviorSubject<boolean> {
 		return new BehaviorSubject(false);
+	}
+
+	getCartItemState(itemId: DaffCartItem['item_id']): BehaviorSubject<DaffCartItemStateEnum> {
+		return new BehaviorSubject(DaffCartItemStateEnum.Default);
 	}
 
   dispatch(action: Action) {};

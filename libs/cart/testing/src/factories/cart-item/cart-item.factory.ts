@@ -6,7 +6,7 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 import { DaffProductImageFactory } from '@daffodil/product/testing';
 import { DaffProductImage } from '@daffodil/product';
 
-export class MockCartItem implements DaffCartItem {
+export class DaffMockCartItem implements DaffCartItem {
 	item_id = faker.random.number({min: 1, max: 1000});
 	type = DaffCartItemInputType.Simple;
   product_id = faker.random.number({min: 1, max: 1000});
@@ -27,6 +27,6 @@ export class MockCartItem implements DaffCartItem {
 export class DaffCartItemFactory extends DaffModelFactory<DaffCartItem> {
 
   constructor(){
-    super(MockCartItem);
+    super(DaffMockCartItem);
   }
 }
