@@ -6,8 +6,8 @@ import { Observable, of } from 'rxjs';
 import { DaffCartPaymentActionTypes, DaffCartPaymentUpdateWithBilling } from '@daffodil/cart/state';
 import { backoff } from '@daffodil/core';
 import { substream } from '@daffodil/core/state';
-import { DaffAuthorizeNetTokenRequest } from '@daffodil/authorizenet';
-import { DaffAuthorizeNetDriver, DaffAuthorizeNetService, DaffAuthorizeNetPaymentId, DaffAcceptJsLoadingService } from '@daffodil/authorizenet/driver';
+import { DaffAcceptJsLoadingService, DaffAuthorizeNetTokenRequest } from '@daffodil/authorizenet';
+import { DaffAuthorizeNetDriver, DaffAuthorizeNetService, DaffAuthorizeNetPaymentId } from '@daffodil/authorizenet/driver';
 
 import {
 	DaffAuthorizeNetActionTypes,

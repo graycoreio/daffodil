@@ -8,8 +8,8 @@ import { MockStore } from '@ngrx/store/testing';
 import { DaffCartAddress } from '@daffodil/cart';
 import { DaffCartPaymentUpdateWithBilling, DaffCartPaymentUpdateWithBillingSuccess, DaffCartPaymentUpdateWithBillingFailure } from '@daffodil/cart/state';
 import { DaffCartAddressFactory, DaffCartFactory } from '@daffodil/cart/testing';
-import { DaffAuthorizeNetTokenRequest } from '@daffodil/authorizenet';
-import { DaffAuthorizeNetService, DaffAuthorizeNetConfig, DaffAcceptJsLoadingService, DaffAuthorizeNetDriver, DaffAuthorizeNetPaymentId } from '@daffodil/authorizenet/driver';
+import { DaffAcceptJsLoadingService, DaffAuthorizeNetTokenRequest } from '@daffodil/authorizenet';
+import { DaffAuthorizeNetService, DaffAuthorizeNetConfig, DaffAuthorizeNetDriver, DaffAuthorizeNetPaymentId } from '@daffodil/authorizenet/driver';
 import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '@daffodil/authorizenet/driver/magento';
 import { daffAuthorizeNetReducers, DaffAuthorizeNetUpdatePayment, DaffAuthorizeNetUpdatePaymentFailure, DaffAuthorizeNetUpdatePaymentSuccess, DaffLoadAcceptJs, DaffLoadAcceptJsSuccess, DaffLoadAcceptJsFailure, DAFF_AUTHORIZENET_STORE_FEATURE_KEY } from '@daffodil/authorizenet/state';
 
