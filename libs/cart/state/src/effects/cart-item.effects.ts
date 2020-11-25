@@ -3,7 +3,7 @@ import { switchMap, map, catchError, debounceTime } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
-import { DaffCartItemInput, DaffCart, DaffCartStorageService, DaffCartItemStateDebounceTime } from '@daffodil/cart';
+import { DaffCartItemInput, DaffCart, DaffCartStorageService } from '@daffodil/cart';
 import { DaffCartItemDriver, DaffCartItemServiceInterface } from '@daffodil/cart/driver';
 
 import {
@@ -26,6 +26,7 @@ import {
 	DaffCartItemStateReset,
 } from '../actions/public_api';
 import { DaffStatefulCartItem } from '../models/public_api';
+import { DaffCartItemStateDebounceTime } from '../injection-tokens/cart-item-state-debounce-time';
 
 @Injectable()
 export class DaffCartItemEffects<

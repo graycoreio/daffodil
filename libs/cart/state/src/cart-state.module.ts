@@ -24,7 +24,7 @@ import { DaffCartPaymentMethodsEffects } from './effects/cart-payment-methods.ef
 import { DaffCartOrderEffects } from './effects/cart-order.effects';
 import { DaffCartCouponEffects } from './effects/cart-coupon.effects';
 import { DaffCartAddressEffects } from './effects/cart-address.effects';
-import { DaffCartItemStateDebounceTime } from '@daffodil/cart';
+import { DaffCartItemStateDebounceTime } from './injection-tokens/cart-item-state-debounce-time';
 
 @NgModule({
   imports: [

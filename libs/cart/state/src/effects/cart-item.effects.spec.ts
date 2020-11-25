@@ -5,7 +5,7 @@ import { hot, cold } from 'jasmine-marbles';
 import { provideMockStore } from '@ngrx/store/testing';
 import { TestScheduler } from 'rxjs/testing';
 
-import { DaffCartItemInput, DaffCart, DaffCartStorageService, DaffCartItemInputType, DaffCartItemStateDebounceTime } from '@daffodil/cart';
+import { DaffCartItemInput, DaffCart, DaffCartStorageService, DaffCartItemInputType } from '@daffodil/cart';
 import { DaffCartItemServiceInterface, DaffCartItemDriver } from '@daffodil/cart/driver';
 import { DaffCartItemList, DaffCartItemListSuccess, DaffCartItemListFailure, DaffCartItemLoad, DaffCartItemLoadSuccess, DaffCartItemLoadFailure, DaffCartItemAdd, DaffCartItemAddSuccess, DaffCartItemAddFailure, DaffCartItemUpdate, DaffCartItemUpdateSuccess, DaffCartItemUpdateFailure, DaffCartItemDelete, DaffCartItemDeleteSuccess, DaffCartItemDeleteFailure } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
@@ -14,6 +14,7 @@ import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
 import { DaffCartItemEffects } from './cart-item.effects';
 import { DaffCartItemStateReset } from '../actions/public_api';
 import { DaffStatefulCartItem } from '../models/public_api';
+import { DaffCartItemStateDebounceTime } from '../injection-tokens/cart-item-state-debounce-time';
 
 describe('Daffodil | Cart | CartItemEffects', () => {
   let actions$: Observable<any>;
