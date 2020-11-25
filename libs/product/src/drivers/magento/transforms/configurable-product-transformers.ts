@@ -14,8 +14,8 @@ import {
 	DaffConfigurableProductVariant,
 	DaffProductVariantAttributesDictionary
 } from '../../../models/configurable-product';
-import { MagentoProduct, MagentoProductStockStatusEnum } from '../models/magento-product';
-import { DaffProductDiscount } from '../../../models/pricing/discount';
+import { MagentoProductStockStatusEnum } from '../models/magento-product';
+import { getDiscount, getDiscountedPrice, getPrice } from '../helpers/null-checkers';
 
 /**
  * Transforms the magento MagentoProduct from the magento product query into a DaffProduct. 
@@ -74,36 +74,4 @@ export function transformVariantAttributes(attributes: MagentoConfigurableAttrib
 	});
 
 	return appliedAttributes;
-}
-
-/**
- * A function for null checking an object.
- */
-function getPrice(product: MagentoProduct): number {
-	return product.price_range && 
-		product.price_range.maximum_price && 
-		product.price_range.maximum_price.regular_price && 
-		product.price_range.maximum_price.regular_price.value !== null
-	? product.price_range.maximum_price.regular_price.value : null;
-}
-
-/**
- * A function for null checking an object.
- */
-function getDiscountedPrice(product: MagentoProduct): number {
-	return product.price_range && 
-		product.price_range.maximum_price && 
-		product.price_range.maximum_price.final_price && 
-		product.price_range.maximum_price.final_price.value !== null
-	? product.price_range.maximum_price.final_price.value : null;
-}
-
-function getDiscount(product: MagentoProduct): DaffProductDiscount {
-	return product.price_range && 
-		product.price_range.maximum_price && 
-		product.price_range.maximum_price.discount 
-		? { 
-			amount: product.price_range.maximum_price.discount.amount_off,
-			percent: product.price_range.maximum_price.discount.percent_off
-		} : { amount: null, percent: null }
 }

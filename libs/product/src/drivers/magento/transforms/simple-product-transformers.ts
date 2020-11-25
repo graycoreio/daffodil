@@ -1,5 +1,5 @@
-import { DaffProductDiscount } from '../../../models/pricing/public_api';
 import { DaffProduct, DaffProductTypeEnum } from '../../../models/product';
+import { getDiscount, getDiscountedPrice, getPrice } from '../helpers/null-checkers';
 import { MagentoProduct, MagentoProductStockStatusEnum } from '../models/magento-product';
 
 /**
@@ -24,38 +24,6 @@ export function transformMagentoSimpleProduct(product: MagentoProduct, mediaUrl:
 		],
 		description: product.description.html
 	}
-}
-
-/**
- * A function for null checking an object.
- */
-function getPrice(product: MagentoProduct): number {
-	return product.price_range && 
-		product.price_range.maximum_price && 
-		product.price_range.maximum_price.regular_price && 
-		product.price_range.maximum_price.regular_price.value !== null
-	? product.price_range.maximum_price.regular_price.value : null;
-}
-
-/**
- * A function for null checking an object.
- */
-function getDiscountedPrice(product: MagentoProduct): number {
-	return product.price_range && 
-		product.price_range.maximum_price && 
-		product.price_range.maximum_price.final_price && 
-		product.price_range.maximum_price.final_price.value !== null
-	? product.price_range.maximum_price.final_price.value : null;
-}
-
-function getDiscount(product: MagentoProduct): DaffProductDiscount {
-	return product.price_range && 
-		product.price_range.maximum_price && 
-		product.price_range.maximum_price.discount 
-		? { 
-			amount: product.price_range.maximum_price.discount.amount_off,
-			percent: product.price_range.maximum_price.discount.percent_off
-		} : { amount: null, percent: null }
 }
 
 function transformMediaGalleryEntries(product: MagentoProduct, mediaUrl: string) {
