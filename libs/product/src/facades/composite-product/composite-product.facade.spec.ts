@@ -96,7 +96,7 @@ describe('DaffCompositeProductFacade', () => {
 			}
 			const expected = cold('a', { a: {
 				minPrice: {
-					discountedPrice: stubCompositeProduct.price.originalPrice - stubCompositeProduct.price.discount.amount + 
+					discountedPrice: stubCompositeProduct.price.discountedPrice + 
 						stubPrice01 - stubDiscountAmount01,
 					discount: {
 						amount: null,
@@ -105,7 +105,7 @@ describe('DaffCompositeProductFacade', () => {
 					originalPrice: stubCompositeProduct.price.originalPrice + stubPrice01
 				},
 				maxPrice: {
-					discountedPrice: stubCompositeProduct.price.originalPrice - stubCompositeProduct.price.discount.amount + 
+					discountedPrice: stubCompositeProduct.price.discountedPrice + 
 						stubPrice01 - stubDiscountAmount01,
 					discount: {
 						amount: null,
@@ -125,7 +125,7 @@ describe('DaffCompositeProductFacade', () => {
     it('should return the broadest price range for a composite product including optional items', () => {
 			const expected = cold('a', { a: {
 				minPrice: {
-					discountedPrice: stubCompositeProduct.price.originalPrice - stubCompositeProduct.price.discount.amount + 
+					discountedPrice: stubCompositeProduct.price.discountedPrice + 
 						stubPrice00 - stubDiscountAmount00,
 					discount: {
 						amount: null,
@@ -134,7 +134,7 @@ describe('DaffCompositeProductFacade', () => {
 					originalPrice: stubCompositeProduct.price.originalPrice + stubPrice00
 				},
 				maxPrice: {
-					discountedPrice: stubCompositeProduct.price.originalPrice - stubCompositeProduct.price.discount.amount + 
+					discountedPrice: stubCompositeProduct.price.discountedPrice + 
 						stubPrice01 - stubDiscountAmount01 +
 						stubPrice11 - stubDiscountAmount11,
 					discount: {
@@ -161,7 +161,7 @@ describe('DaffCompositeProductFacade', () => {
 			));
 			const expected = cold('a', { a: {
 				minPrice: {
-					discountedPrice: stubCompositeProduct.price.originalPrice - stubCompositeProduct.price.discount.amount + 
+					discountedPrice: stubCompositeProduct.price.discountedPrice + 
 						stubPrice01 - stubDiscountAmount01,
 					discount: {
 						amount: null,
@@ -170,7 +170,7 @@ describe('DaffCompositeProductFacade', () => {
 					originalPrice: stubCompositeProduct.price.originalPrice + stubPrice01
 				},
 				maxPrice: {
-					discountedPrice: stubCompositeProduct.price.originalPrice - stubCompositeProduct.price.discount.amount + 
+					discountedPrice: stubCompositeProduct.price.discountedPrice + 
 						stubPrice01 - stubDiscountAmount01,
 					discount: {
 						amount: null,
