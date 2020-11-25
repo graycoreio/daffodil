@@ -8,7 +8,8 @@ import {
 	DaffCartShippingAddressGuardRedirectUrl,
 	DaffCartShippingMethodGuardRedirectUrl,
   DaffCartPaymentMethodGuardRedirectUrl,
-  DaffCartOrderResultGuardRedirectUrl
+  DaffCartOrderResultGuardRedirectUrl,
+  DaffCartNonEmptyCartGuardRedirectUrl
 } from './guards/public_api';
 import { DaffEmptyCartResolverRedirectUrl, DaffCartResolverRedirectUrl } from './resolvers/public_api';
 
@@ -45,6 +46,7 @@ import { DaffCartItemStateDebounceTime } from './injection-tokens/cart-item-stat
 	],
 	providers: [
 		{ provide: DaffCartBillingAddressGuardRedirectUrl, useValue: '/' },
+		{ provide: DaffCartNonEmptyCartGuardRedirectUrl, useValue: '/' },
 		{ provide: DaffCartShippingAddressGuardRedirectUrl, useValue: '/' },
 		{ provide: DaffCartShippingMethodGuardRedirectUrl, useValue: '/' },
 		{ provide: DaffCartPaymentMethodGuardRedirectUrl, useValue: '/' },

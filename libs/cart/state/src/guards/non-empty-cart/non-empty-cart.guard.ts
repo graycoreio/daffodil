@@ -7,7 +7,7 @@ import { DaffCartFacade } from '../../facades/cart/cart.facade';
 import { DaffCartNonEmptyCartGuardRedirectUrl } from './non-empty-cart-guard-redirect.token';
 
 /**
- * A routing guard that will redirect to a given url if the billing address on the cart is not defined.
+ * A routing guard that will redirect to a given url if there are no items in the cart.
  * The url is `/` by default, but can be overridden with the DaffCartNonEmptyCartGuardRedirectUrl injection token.
  * The guard will wait until the cart has been resolved before performing the check and emitting.
  */
