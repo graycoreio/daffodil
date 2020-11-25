@@ -4,11 +4,9 @@ export const DaffAuthorizeNetConfigToken = new InjectionToken('DaffAuthorizeNetC
 
 /**
  * An interface for providing @daffodil/authorizenet with needed configurations specific to your authorizenet
- * endpoint. The production flag will switch between the sandbox and production endpoint depending on the value
- * given.
+ * endpoint.
  */
 export interface DaffAuthorizeNetConfig {
 	clientKey: string;
 	apiLoginID: string;
-	production: boolean;
 }
