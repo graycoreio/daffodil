@@ -13,8 +13,7 @@ describe('AuthorizeNet | Drivers | Magento | Transformers', () => {
 	}
 	const stubAuthData: DaffAuthorizeNetConfig = {
 		apiLoginID: 'apiLoginID',
-		clientKey: 'clientKey',
-		production: false
+		clientKey: 'clientKey'
 	};
 	
 	describe('transformMagentoAuthorizeNetRequest', () => {
