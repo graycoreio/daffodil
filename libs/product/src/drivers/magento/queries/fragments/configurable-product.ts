@@ -28,6 +28,10 @@ export const magentoConfigurableProductFragment = gql`
 							value
 							currency
 						}
+						final_price {
+							value
+							currency
+						}
 						discount {
 							amount_off
 							percent_off

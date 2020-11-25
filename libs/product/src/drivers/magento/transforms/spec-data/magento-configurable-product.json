@@ -20,6 +20,10 @@
 				"value": 23, 
 				"currency": null
 			},
+			"final_price": {
+				"value": 23, 
+				"currency": null
+			},
 			"discount": null
 		}
 	},
@@ -140,6 +144,10 @@
 							"value": 20,
 							"currency": null
 						},
+						"final_price": {
+							"value": 18,
+							"currency": null
+						},
 						"discount": {
 							"amount_off": 2,
 							"percent_off": 10
@@ -181,6 +189,10 @@
 					"maximum_price": {
 						"regular_price": {
 							"value": 20,
+							"currency": null
+						},
+						"final_price": {
+							"value": 18,
 							"currency": null
 						},
 						"discount": {
@@ -226,6 +238,10 @@
 							"value": 25,
 							"currency": null
 						},
+						"final_price": {
+							"value": 20,
+							"currency": null
+						},
 						"discount": {
 							"amount_off": 5,
 							"percent_off": 20
@@ -267,6 +283,10 @@
 					"maximum_price": {
 						"regular_price": {
 							"value": 20,
+							"currency": null
+						},
+						"final_price": {
+							"value": 18,
 							"currency": null
 						},
 						"discount": {
@@ -312,6 +332,10 @@
 							"value": 20,
 							"currency": null
 						},
+						"final_price": {
+							"value": 18,
+							"currency": null
+						},
 						"discount": {
 							"amount_off": 2,
 							"percent_off": 10
@@ -353,6 +377,10 @@
 					"maximum_price": {
 						"regular_price": {
 							"value": 25,
+							"currency": null
+						},
+						"final_price": {
+							"value": 20,
 							"currency": null
 						},
 						"discount": {
@@ -398,6 +426,10 @@
 							"value": 20,
 							"currency": null
 						},
+						"final_price": {
+							"value": 18,
+							"currency": null
+						},
 						"discount": {
 							"amount_off": 2,
 							"percent_off": 10
@@ -439,6 +471,10 @@
 					"maximum_price": {
 						"regular_price": {
 							"value": 20,
+							"currency": null
+						},
+						"final_price": {
+							"value": 18,
 							"currency": null
 						},
 						"discount": {
@@ -484,6 +520,10 @@
 							"value": 20,
 							"currency": null
 						},
+						"final_price": {
+							"value": 18,
+							"currency": null
+						},
 						"discount": {
 							"amount_off": 2,
 							"percent_off": 10
@@ -525,6 +565,10 @@
 					"maximum_price": {
 						"regular_price": {
 							"value": 20,
+							"currency": null
+						},
+						"final_price": {
+							"value": 18,
 							"currency": null
 						},
 						"discount": {

@@ -7,19 +7,19 @@ import {
 	DaffCompositeProductItemOption,
 	DaffCompositeProduct,
 	DaffCompositeProductItem,
-	DaffPriceRange,
+	DaffProductPriceRange,
 	DaffCompositeConfigurationItem
 } from '@daffodil/product';
 
 @Injectable({providedIn: 'root'})
 export class MockDaffCompositeProductFacade implements DaffCompositeProductFacadeInterface {
-	getRequiredItemPricesForConfiguration(id: string, configuration?: Dictionary<DaffCompositeConfigurationItem>): BehaviorSubject<DaffPriceRange> {
+	getRequiredItemPricesForConfiguration(id: string, configuration?: Dictionary<DaffCompositeConfigurationItem>): BehaviorSubject<DaffProductPriceRange> {
 		return new BehaviorSubject(null);
 	}
-	getOptionalItemPricesForConfiguration(id: string, configuration?: Dictionary<DaffCompositeConfigurationItem>): BehaviorSubject<DaffPriceRange> {
+	getOptionalItemPricesForConfiguration(id: string, configuration?: Dictionary<DaffCompositeConfigurationItem>): BehaviorSubject<DaffProductPriceRange> {
 		return new BehaviorSubject(null);
 	}
-	getPricesAsCurrentlyConfigured(id: string): BehaviorSubject<DaffPriceRange> {
+	getPricesAsCurrentlyConfigured(id: string): BehaviorSubject<DaffProductPriceRange> {
 		return new BehaviorSubject(null);
 	}
 	getAppliedOptions(id: string): BehaviorSubject<Dictionary<DaffCompositeProductItemOption>> {
@@ -29,10 +29,10 @@ export class MockDaffCompositeProductFacade implements DaffCompositeProductFacad
 		return new BehaviorSubject(false);
 	}
 	dispatch(action) {};
-	hasDiscount(priceRange: DaffPriceRange): boolean {
+	hasDiscount(priceRange: DaffProductPriceRange): boolean {
 		return false;
 	};
-	hasPriceRange(priceRange: DaffPriceRange): boolean {
+	hasPriceRange(priceRange: DaffProductPriceRange): boolean {
 		return false;
 	};
 }

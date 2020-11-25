@@ -28,9 +28,6 @@ export interface DaffCompositeProductItem {
  * The composite product item option is a DaffProduct that can be added to a composite product.
  */
 export interface DaffCompositeProductItemOption extends DaffProduct {
-	id: string;
-	name: string;
-	price: number;
 	is_default: boolean;
 	quantity: number;
 }

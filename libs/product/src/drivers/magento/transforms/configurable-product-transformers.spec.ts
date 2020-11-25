@@ -105,12 +105,16 @@ describe('DaffMagentoConfigurableProductTransformers', () => {
 					price_range: {
 						maximum_price: {
 							regular_price: {
-								value: daffConfigurableProduct.variants[0].price,
+								value: daffConfigurableProduct.variants[0].price.originalPrice,
+								currency: null
+							},
+							final_price: {
+								value: daffConfigurableProduct.variants[0].price.discountedPrice,
 								currency: null
 							},
 							discount: {
-								amount_off: daffConfigurableProduct.variants[0].discount.amount,
-								percent_off: daffConfigurableProduct.variants[0].discount.percent
+								amount_off: daffConfigurableProduct.variants[0].price.discount.amount,
+								percent_off: daffConfigurableProduct.variants[0].price.discount.percent
 							}
 						}
 					},

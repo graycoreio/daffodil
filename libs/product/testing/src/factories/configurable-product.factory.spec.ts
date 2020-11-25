@@ -31,8 +31,8 @@ describe('Product | Testing | Factories | DaffConfigurableProductFactory', () =>
       expect(result.type).toEqual(DaffProductTypeEnum.Configurable);
 			expect(result.id).toBeDefined();
       expect(result.url).toBeDefined();
-      expect(result.price).toBeDefined();
-      expect(result.images).toBeDefined();
+			expect(result.images).toBeDefined();
+      expect(result.price.originalPrice).toBeDefined();
       expect(result.name).toBeDefined();
       expect(result.brand).toBeDefined();
 			expect(result.description).toBeDefined();
@@ -43,7 +43,7 @@ describe('Product | Testing | Factories | DaffConfigurableProductFactory', () =>
 		});
 		
 		it('should return any percents as whole numbers', () => {
-			expect(result.variants[0].discount.percent % 1).toEqual(0);
+			expect(result.variants[0].price.discount.percent % 1).toEqual(0);
 		});
   });
 });

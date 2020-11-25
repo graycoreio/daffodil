@@ -32,6 +32,10 @@ export interface MagentoProduct {
 				value: number,
 				currency: any
 			}
+			final_price: {
+				value: number,
+				currency: any
+			}
 			discount: {
 				amount_off: number,
 				percent_off: number

@@ -2,11 +2,14 @@
 	"type": "composite",
 	"id": "22",
 	"url": "url",
-	"price": 0,
 	"in_stock": true,
-	"discount": {
-		"amount": 0,
-		"percent": 0
+	"price": {
+		"originalPrice": 0,
+		"discount": {
+			"amount": 0,
+			"percent": 0
+		},
+		"discountedPrice": 0
 	},
 	"name": "Group of Products",
 	"images": [
@@ -27,11 +30,14 @@
 				{
 					"id": "1",
 					"name": "Option 1",
-					"price": 5,
 					"images": [],
-					"discount": {
-						"amount": 1,
-						"percent": 20
+					"price": {
+						"originalPrice": 5,
+						"discount": {
+							"amount": 1,
+							"percent": 20
+						},
+						"discountedPrice": 4
 					},
 					"quantity": 1,
 					"is_default": true,
@@ -40,11 +46,14 @@
 				{
 					"id": "2",
 					"name": "Option 2",
-					"price": 2,
 					"images": [],
-					"discount": {
-						"amount": 1,
-						"percent": 50
+					"price": {
+						"originalPrice": 2,
+						"discount": {
+							"amount": 1,
+							"percent": 50
+						},
+						"discountedPrice": 1
 					},
 					"quantity": 1,
 					"is_default": false,

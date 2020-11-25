@@ -31,7 +31,6 @@ describe('Driver | Magento | Cart | CartService', () => {
   let cartId;
   let mockDaffCart: DaffCart;
   let mockMagentoCart: MagentoCart;
-  let mockMagentoCartItem: MagentoCartItem;
   let mockDaffCartItem: DaffCartItem;
   let mockCartResponse: MagentoGetCartResponse;
   let mockCreateCartResponse: MagentoCreateCartResponse;
@@ -76,12 +75,9 @@ describe('Driver | Magento | Cart | CartService', () => {
 
     mockDaffCart = daffCartFactory.create();
     mockMagentoCart = magentoCartFactory.create();
-    mockMagentoCartItem = magentoCartItemFactory.create();
-    mockDaffCartItem = daffCartItemFactory.create();
+		mockDaffCartItem = daffCartItemFactory.create();
 
-    mockMagentoCartItem.id = String(mockDaffCartItem.item_id);
     cartId = mockDaffCart.id;
-    mockMagentoCart.items = [mockMagentoCartItem];
     mockDaffCart.items = [mockDaffCartItem];
     mockCreateCartResponse = {
       createEmptyCart: String(cartId)

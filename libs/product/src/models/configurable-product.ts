@@ -1,7 +1,8 @@
 import { DaffSortable } from '@daffodil/core';
 
-import { DaffProduct, DaffProductDiscount } from './product';
+import { DaffProduct } from './product';
 import { DaffProductImage } from './product-image';
+import { DaffProductPrice } from './pricing/public_api';
 
 /**
  * A configurable product is a product with configurable attributes. The price of a configurable product may change based on 
@@ -33,10 +34,9 @@ export interface DaffConfigurableProductAttribute extends DaffSortable {
 export interface DaffConfigurableProductVariant {
 	appliedAttributes: DaffProductVariantAttributesDictionary;
 	id: string;
-	price: number;
-	discount: DaffProductDiscount;
 	image?: DaffProductImage;
 	in_stock: boolean;
+	price: DaffProductPrice;
 }
 
 /**

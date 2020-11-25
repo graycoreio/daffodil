@@ -21,10 +21,13 @@ describe('DaffMagentoSimpleProductTransformerService', () => {
 			id: stubMagentoProduct.sku,
 			url: stubMagentoProduct.url_key,
 			name: stubMagentoProduct.name,
-			price: stubMagentoProduct.price_range.maximum_price.regular_price.value,
-			discount: {
-				amount: stubMagentoProduct.price_range.maximum_price.discount.amount_off,
-				percent: stubMagentoProduct.price_range.maximum_price.discount.percent_off
+			price: {
+				originalPrice: stubMagentoProduct.price_range.maximum_price.regular_price.value,
+				discount: {
+					amount: stubMagentoProduct.price_range.maximum_price.discount.amount_off,
+					percent: stubMagentoProduct.price_range.maximum_price.discount.percent_off
+				},
+				discountedPrice: stubMagentoProduct.price_range.maximum_price.final_price.value
 			},
       images: [
         { url: stubMagentoProduct.image.url, id: '0', label: stubMagentoProduct.image.label},

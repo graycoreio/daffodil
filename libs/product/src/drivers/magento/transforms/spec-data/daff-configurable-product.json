@@ -2,10 +2,13 @@
 	"type": "configurable",
 	"id": "22",
 	"url": "url",
-	"price": 23,
-	"discount": {
-		"amount": null,
-		"percent": null
+	"price": {
+		"originalPrice": 23,
+		"discount": {
+			"amount": null,
+			"percent": null
+		},
+		"discountedPrice": 23
 	},
 	"in_stock": false,
 	"name": "Configurable T-Shirt",
@@ -83,10 +86,13 @@
 				"size": "0",
 				"material": "0"
 			},
-			"price": 20,
-			"discount": {
-				"amount": 2,
-				"percent": 10
+			"price": {
+				"originalPrice": 20,
+				"discount": {
+					"amount": 2,
+					"percent": 10
+				},
+				"discountedPrice": 18
 			},
 			"in_stock": false,
 			"id": "22-1",
@@ -102,10 +108,13 @@
 				"size": "1",
 				"material": "0"
 			},
-			"price": 20,
-			"discount": {
-				"amount": 2,
-				"percent": 10
+			"price": {
+				"originalPrice": 20,
+				"discount": {
+					"amount": 2,
+					"percent": 10
+				},
+				"discountedPrice": 18
 			},
 			"in_stock": false,
 			"id": "22-11",
@@ -121,10 +130,13 @@
 				"size": "1",
 				"material": "2"
 			},
-			"price": 25,
-			"discount": {
-				"amount": 5,
-				"percent": 20
+			"price": {
+				"originalPrice": 25,
+				"discount": {
+					"amount": 5,
+					"percent": 20
+				},
+				"discountedPrice": 20
 			},
 			"in_stock": false,
 			"id": "22-12",
@@ -140,10 +152,13 @@
 				"size": "2",
 				"material": "0"
 			},
-			"price": 20,
-			"discount": {
-				"amount": 2,
-				"percent": 10
+			"price": {
+				"originalPrice": 20,
+				"discount": {
+					"amount": 2,
+					"percent": 10
+				},
+				"discountedPrice": 18
 			},
 			"in_stock": false,
 			"id": "22-13",
@@ -159,10 +174,13 @@
 				"size": "0",
 				"material": "0"
 			},
-			"price": 20,
-			"discount": {
-				"amount": 2,
-				"percent": 10
+			"price": {
+				"originalPrice": 20,
+				"discount": {
+					"amount": 2,
+					"percent": 10
+				},
+				"discountedPrice": 18
 			},
 			"in_stock": false,
 			"id": "22-2",
@@ -178,10 +196,13 @@
 				"size": "0",
 				"material": "2"
 			},
-			"price": 25,
-			"discount": {
-				"amount": 5,
-				"percent": 20
+			"price": {
+				"originalPrice": 25,
+				"discount": {
+					"amount": 5,
+					"percent": 20
+				},
+				"discountedPrice": 20
 			},
 			"in_stock": false,
 			"id": "22-21",
@@ -197,10 +218,13 @@
 				"size": "2",
 				"material": "0"
 			},
-			"price": 20,
-			"discount": {
-				"amount": 2,
-				"percent": 10
+			"price": {
+				"originalPrice": 20,
+				"discount": {
+					"amount": 2,
+					"percent": 10
+				},
+				"discountedPrice": 18
 			},
 			"in_stock": false,
 			"id": "22-22",
@@ -216,10 +240,13 @@
 				"size": "2",
 				"material": "1"
 			},
-			"price": 20,
-			"discount": {
-				"amount": 2,
-				"percent": 10
+			"price": {
+				"originalPrice": 20,
+				"discount": {
+					"amount": 2,
+					"percent": 10
+				},
+				"discountedPrice": 18
 			},
 			"in_stock": false,
 			"id": "22-23",
@@ -235,10 +262,13 @@
 				"size": "0",
 				"material": "0"
 			},
-			"price": 20,
-			"discount": {
-				"amount": 2,
-				"percent": 10
+			"price": {
+				"originalPrice": 20,
+				"discount": {
+					"amount": 2,
+					"percent": 10
+				},
+				"discountedPrice": 18
 			},
 			"in_stock": false,
 			"id": "22-3",
@@ -255,10 +285,13 @@
 				"size": "2",
 				"material": "0"
 			},
-			"price": 20,
-			"discount": {
-				"amount": 2,
-				"percent": 10
+			"price": {
+				"originalPrice": 20,
+				"discount": {
+					"amount": 2,
+					"percent": 10
+				},
+				"discountedPrice": 18
 			},
 			"in_stock": false,
 			"id": "22-31",

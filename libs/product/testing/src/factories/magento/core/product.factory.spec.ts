@@ -41,6 +41,7 @@ describe('Product | Testing | Factories | MagentoCoreProductFactory', () => {
       expect(result.sku).toBeDefined();
       expect(result.stock_status).toBeDefined();
       expect(result.price_range.maximum_price.regular_price).toBeDefined();
+      expect(result.price_range.maximum_price.final_price).toBeDefined();
       expect(result.price_range.maximum_price.discount).toBeDefined();
     });
   });

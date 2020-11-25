@@ -1,4 +1,5 @@
-import { DaffProduct, DaffProductTypeEnum, DaffProductDiscount } from '../../../models/product';
+import { DaffProductDiscount } from '../../../models/pricing/public_api';
+import { DaffProduct, DaffProductTypeEnum } from '../../../models/product';
 import { MagentoProduct, MagentoProductStockStatusEnum } from '../models/magento-product';
 
 /**
@@ -11,8 +12,11 @@ export function transformMagentoSimpleProduct(product: MagentoProduct, mediaUrl:
 		id: product.sku,
 		url: product.url_key,
 		name: product.name,
-		price: getPrice(product),
-		discount: getDiscount(product),
+		price: {
+			originalPrice: getPrice(product),
+			discount: getDiscount(product),
+			discountedPrice: getDiscountedPrice(product)
+		},
 		in_stock: product.stock_status === MagentoProductStockStatusEnum.InStock,
 		images: [
 			{ url: product.image.url, id: '0', label: product.image.label},
@@ -31,6 +35,17 @@ function getPrice(product: MagentoProduct): number {
 		product.price_range.maximum_price.regular_price && 
 		product.price_range.maximum_price.regular_price.value !== null
 	? product.price_range.maximum_price.regular_price.value : null;
+}
+
+/**
+ * A function for null checking an object.
+ */
+function getDiscountedPrice(product: MagentoProduct): number {
+	return product.price_range && 
+		product.price_range.maximum_price && 
+		product.price_range.maximum_price.final_price && 
+		product.price_range.maximum_price.final_price.value !== null
+	? product.price_range.maximum_price.final_price.value : null;
 }
 
 function getDiscount(product: MagentoProduct): DaffProductDiscount {

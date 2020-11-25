@@ -95,8 +95,7 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
 		(products, props) => {
 			const product = selectProduct.projector(products, { id: props.id });
 
-			//todo: use optional chaining when possible
-			return (product.discount && product.discount.amount) || 0;
+			return (product.price.discount && product.price.discount.amount) || 0;
 		}
 	);
 
@@ -116,7 +115,7 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
 		(products, props) => {
 			const product = selectProduct.projector(products, { id: props.id });
 
-			return (product.discount && product.discount.percent) || 0;
+			return (product.price.discount && product.price.discount.percent) || 0;
 		}
 	);
 

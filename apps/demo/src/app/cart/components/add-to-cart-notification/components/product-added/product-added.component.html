@@ -2,7 +2,7 @@
   <img *ngIf="product.images" src="{{product.images[0].url}}">
   <div class="demo-product-added__description">
     <div class="demo-product-added__name">{{product.name}}</div>
-    <div class="demo-product-added__price">${{product.price}}</div>
+    <div class="demo-product-added__price">${{product.price.originalPrice}}</div>
     <div class="demo-product-added__info">
       Color: White (HC)
     </div>

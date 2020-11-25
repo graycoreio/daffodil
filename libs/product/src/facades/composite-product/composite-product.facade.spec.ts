@@ -53,14 +53,18 @@ describe('DaffCompositeProductFacade', () => {
 		stubCompositeProduct.items[0].options[1].is_default = false;
 		stubCompositeProduct.items[1].options[0].is_default = false;
 		stubCompositeProduct.items[1].options[1].is_default = false;
-		stubCompositeProduct.items[0].options[0].price = stubPrice00;
-		stubCompositeProduct.items[0].options[1].price = stubPrice01;
-		stubCompositeProduct.items[1].options[0].price = stubPrice10;
-		stubCompositeProduct.items[1].options[1].price = stubPrice11;
-		stubCompositeProduct.items[0].options[0].discount.amount = stubDiscountAmount00;
-		stubCompositeProduct.items[0].options[1].discount.amount = stubDiscountAmount01;
-		stubCompositeProduct.items[1].options[0].discount.amount = stubDiscountAmount10;
-		stubCompositeProduct.items[1].options[1].discount.amount = stubDiscountAmount11;
+		stubCompositeProduct.items[0].options[0].price.originalPrice = stubPrice00;
+		stubCompositeProduct.items[0].options[1].price.originalPrice = stubPrice01;
+		stubCompositeProduct.items[1].options[0].price.originalPrice = stubPrice10;
+		stubCompositeProduct.items[1].options[1].price.originalPrice = stubPrice11;
+		stubCompositeProduct.items[0].options[0].price.discount.amount = stubDiscountAmount00;
+		stubCompositeProduct.items[0].options[1].price.discount.amount = stubDiscountAmount01;
+		stubCompositeProduct.items[1].options[0].price.discount.amount = stubDiscountAmount10;
+		stubCompositeProduct.items[1].options[1].price.discount.amount = stubDiscountAmount11;
+		stubCompositeProduct.items[0].options[0].price.discountedPrice = stubPrice00 - stubDiscountAmount00;
+		stubCompositeProduct.items[0].options[1].price.discountedPrice = stubPrice01 - stubDiscountAmount01;
+		stubCompositeProduct.items[1].options[0].price.discountedPrice = stubPrice10 - stubDiscountAmount10;
+		stubCompositeProduct.items[1].options[1].price.discountedPrice = stubPrice11 - stubDiscountAmount11;
 		stubCompositeProduct.items[0].options[0].quantity = 1;
 		stubCompositeProduct.items[0].options[1].quantity = 1;
 		stubCompositeProduct.items[1].options[0].quantity = 1;
@@ -92,22 +96,22 @@ describe('DaffCompositeProductFacade', () => {
 			}
 			const expected = cold('a', { a: {
 				minPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+					discountedPrice: stubCompositeProduct.price.originalPrice - stubCompositeProduct.price.discount.amount + 
 						stubPrice01 - stubDiscountAmount01,
 					discount: {
 						amount: null,
 						percent: null
 					},
-					originalPrice: stubCompositeProduct.price + stubPrice01
+					originalPrice: stubCompositeProduct.price.originalPrice + stubPrice01
 				},
 				maxPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+					discountedPrice: stubCompositeProduct.price.originalPrice - stubCompositeProduct.price.discount.amount + 
 						stubPrice01 - stubDiscountAmount01,
 					discount: {
 						amount: null,
 						percent: null
 					},
-					originalPrice: stubCompositeProduct.price + stubPrice01
+					originalPrice: stubCompositeProduct.price.originalPrice + stubPrice01
 				}
 			}
 			});
@@ -121,23 +125,23 @@ describe('DaffCompositeProductFacade', () => {
     it('should return the broadest price range for a composite product including optional items', () => {
 			const expected = cold('a', { a: {
 				minPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+					discountedPrice: stubCompositeProduct.price.originalPrice - stubCompositeProduct.price.discount.amount + 
 						stubPrice00 - stubDiscountAmount00,
 					discount: {
 						amount: null,
 						percent: null
 					},
-					originalPrice: stubCompositeProduct.price + stubPrice00
+					originalPrice: stubCompositeProduct.price.originalPrice + stubPrice00
 				},
 				maxPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+					discountedPrice: stubCompositeProduct.price.originalPrice - stubCompositeProduct.price.discount.amount + 
 						stubPrice01 - stubDiscountAmount01 +
 						stubPrice11 - stubDiscountAmount11,
 					discount: {
 						amount: null,
 						percent: null
 					},
-					originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11
+					originalPrice: stubCompositeProduct.price.originalPrice + stubPrice01 + stubPrice11
 				}
 			}
 			});
@@ -157,22 +161,22 @@ describe('DaffCompositeProductFacade', () => {
 			));
 			const expected = cold('a', { a: {
 				minPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+					discountedPrice: stubCompositeProduct.price.originalPrice - stubCompositeProduct.price.discount.amount + 
 						stubPrice01 - stubDiscountAmount01,
 					discount: {
 						amount: null,
 						percent: null
 					},
-					originalPrice: stubCompositeProduct.price + stubPrice01
+					originalPrice: stubCompositeProduct.price.originalPrice + stubPrice01
 				},
 				maxPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+					discountedPrice: stubCompositeProduct.price.originalPrice - stubCompositeProduct.price.discount.amount + 
 						stubPrice01 - stubDiscountAmount01,
 					discount: {
 						amount: null,
 						percent: null
 					},
-					originalPrice: stubCompositeProduct.price + stubPrice01
+					originalPrice: stubCompositeProduct.price.originalPrice + stubPrice01
 				}
 			}
 			});

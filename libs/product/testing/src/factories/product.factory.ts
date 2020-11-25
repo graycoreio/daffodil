@@ -9,16 +9,20 @@ import { DaffModelFactory } from '@daffodil/core/testing';
 export class MockProduct implements DaffProduct {
 	private stubPrice = faker.random.number({min: 1, max: 1500});
 	private stubDiscount = faker.random.number({min: 0, max: this.stubPrice - 1});
+	private stubDiscountedPrice = this.stubPrice - this.stubDiscount;
 
 	type = DaffProductTypeEnum.Simple;
 	id = faker.random.number({min: 1, max: 10000}).toString();
 	url = faker.random.alphaNumeric(16);
-	price = this.stubPrice;
-	in_stock = true;
-	discount = {
-		amount: this.stubDiscount,
-		percent: Math.floor((this.stubDiscount/this.stubPrice) * 100)
+	price = {
+		originalPrice: this.stubPrice,
+		discount: {
+			amount: this.stubDiscount,
+			percent: Math.floor((this.stubDiscount/this.stubPrice) * 100)
+		},
+		discountedPrice: this.stubDiscountedPrice
 	};
+	in_stock = true;
 	images = [];
   name = faker.commerce.productName();
   brand = faker.company.companyName();

@@ -31,9 +31,10 @@ describe('Product | Testing | Factories | DaffProductFactory', () => {
       expect(result.type).toBeDefined();
 			expect(result.id).toBeDefined();
       expect(result.url).toBeDefined();
-      expect(result.price).toBeDefined();
-      expect(result.images).toBeDefined();
-      expect(result.discount).toBeDefined();
+			expect(result.images).toBeDefined();
+      expect(result.price.originalPrice).toBeDefined();
+      expect(result.price.discountedPrice).toBeDefined();
+      expect(result.price.discount).toBeDefined();
       expect(result.name).toBeDefined();
       expect(result.brand).toBeDefined(); 
       expect(result.description).toBeDefined();     
@@ -41,7 +42,7 @@ describe('Product | Testing | Factories | DaffProductFactory', () => {
 		});
 		
 		it('should the percentage as a whole number', () => {
-			expect(result.discount.percent % 1).toEqual(0);
+			expect(result.price.discount.percent % 1).toEqual(0);
 		});
   });
 

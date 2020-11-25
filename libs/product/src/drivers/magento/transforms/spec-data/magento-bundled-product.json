@@ -20,6 +20,10 @@
 				"value": 0, 
 				"currency": null
 			},
+			"final_price": {
+				"value": 0,
+				"currency": null
+			},
 			"discount": {
 				"amount_off": 0,
 				"percent_off": 0
@@ -61,6 +65,10 @@
 									"value": 5, 
 									"currency": null
 								},
+								"final_price": {
+									"value": 4,
+									"currency": null
+								},
 								"discount": {
 									"amount_off": 1,
 									"percent_off": 20
@@ -93,6 +101,10 @@
 							"maximum_price": {
 								"regular_price": {
 									"value": 2, 
+									"currency": null
+								},
+								"final_price": {
+									"value": 1,
 									"currency": null
 								},
 								"discount": {

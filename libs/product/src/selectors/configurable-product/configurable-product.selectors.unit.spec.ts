@@ -63,10 +63,10 @@ describe('Configurable Product Selectors | unit tests', () => {
 	describe('selectConfigurableProductPrices', () => {
 
 		it('should return an array of prices', () => {
-			stubConfigurableProduct.variants[0].price = 2;
-			stubConfigurableProduct.variants[1].price = 1;
-			stubConfigurableProduct.variants[2].price = 3;
-			stubConfigurableProduct.variants[3].price = 4;
+			stubConfigurableProduct.variants[0].price.originalPrice = 2;
+			stubConfigurableProduct.variants[1].price.originalPrice = 1;
+			stubConfigurableProduct.variants[2].price.originalPrice = 3;
+			stubConfigurableProduct.variants[3].price.originalPrice = 4;
 			store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
 			store.dispatch(new DaffConfigurableProductApplyAttribute(
 				stubConfigurableProduct.id,
@@ -83,14 +83,10 @@ describe('Configurable Product Selectors | unit tests', () => {
 	describe('selectConfigurableProductDiscountedPrices', () => {
 
 		it('should return an array of prices', () => {
-			stubConfigurableProduct.variants[0].price = 4;
-			stubConfigurableProduct.variants[1].price = 4;
-			stubConfigurableProduct.variants[2].price = 4;
-			stubConfigurableProduct.variants[3].price = 4;
-			stubConfigurableProduct.variants[0].discount.amount = 3.2;
-			stubConfigurableProduct.variants[1].discount.amount = 2.002;
-			stubConfigurableProduct.variants[2].discount.amount = 1.9999999;
-			stubConfigurableProduct.variants[3].discount.amount = 3;
+			stubConfigurableProduct.variants[0].price.discountedPrice = 4;
+			stubConfigurableProduct.variants[1].price.discountedPrice = 4;
+			stubConfigurableProduct.variants[2].price.discountedPrice = 4;
+			stubConfigurableProduct.variants[3].price.discountedPrice = 4;
 			store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
 			store.dispatch(new DaffConfigurableProductApplyAttribute(
 				stubConfigurableProduct.id,
@@ -98,7 +94,7 @@ describe('Configurable Product Selectors | unit tests', () => {
 				stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
 			));
 			const selector = store.pipe(select(selectConfigurableProductDiscountedPrices, { id: stubConfigurableProduct.id }));
-			const expected = cold('a', { a: [.8, 1.998, 2.0000001, 1] });
+			const expected = cold('a', { a: [4, 4, 4, 4] });
 
 			expect(selector).toBeObservable(expected);
 		});
@@ -108,10 +104,10 @@ describe('Configurable Product Selectors | unit tests', () => {
 	describe('selectConfigurableProductPercentDiscounts', () => {
 
 		it('should return an array of the percent discounts for a product', () => {
-			stubConfigurableProduct.variants[0].discount.percent = 1;
-			stubConfigurableProduct.variants[1].discount.percent = 2;
-			stubConfigurableProduct.variants[2].discount.percent = 3;
-			stubConfigurableProduct.variants[3].discount.percent = 4;
+			stubConfigurableProduct.variants[0].price.discount.percent = 1;
+			stubConfigurableProduct.variants[1].price.discount.percent = 2;
+			stubConfigurableProduct.variants[2].price.discount.percent = 3;
+			stubConfigurableProduct.variants[3].price.discount.percent = 4;
 			store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
 			store.dispatch(new DaffConfigurableProductApplyAttribute(
 				stubConfigurableProduct.id,
@@ -127,10 +123,10 @@ describe('Configurable Product Selectors | unit tests', () => {
 	describe('selectConfigurableProductHasDiscount', () => {
 
 		it('should return true when a variant has a discount', () => {
-			stubConfigurableProduct.variants[0].discount.amount = 3;
-			stubConfigurableProduct.variants[1].discount.amount = 5;
-			stubConfigurableProduct.variants[2].discount.amount = 6;
-			stubConfigurableProduct.variants[3].discount.amount = 3;
+			stubConfigurableProduct.variants[0].price.discount.amount = 3;
+			stubConfigurableProduct.variants[1].price.discount.amount = 5;
+			stubConfigurableProduct.variants[2].price.discount.amount = 6;
+			stubConfigurableProduct.variants[3].price.discount.amount = 3;
 			store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
 			store.dispatch(new DaffConfigurableProductApplyAttribute(
 				stubConfigurableProduct.id,
@@ -144,10 +140,10 @@ describe('Configurable Product Selectors | unit tests', () => {
 		});
 
 		it('should return false when no variants have a discount', () => {
-			stubConfigurableProduct.variants[0].discount.amount = 0;
-			stubConfigurableProduct.variants[1].discount.amount = 0;
-			stubConfigurableProduct.variants[2].discount.amount = 0;
-			stubConfigurableProduct.variants[3].discount.amount = 0;
+			stubConfigurableProduct.variants[0].price.discount.amount = 0;
+			stubConfigurableProduct.variants[1].price.discount.amount = 0;
+			stubConfigurableProduct.variants[2].price.discount.amount = 0;
+			stubConfigurableProduct.variants[3].price.discount.amount = 0;
 			store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
 			store.dispatch(new DaffConfigurableProductApplyAttribute(
 				stubConfigurableProduct.id,
@@ -164,10 +160,10 @@ describe('Configurable Product Selectors | unit tests', () => {
 	describe('selectConfigurableProductMinimumPrice', () => {
 
 		it('should return the minimum price of the range of variant prices', () => {
-			stubConfigurableProduct.variants[0].price = 2;
-			stubConfigurableProduct.variants[1].price = 1;
-			stubConfigurableProduct.variants[2].price = 3;
-			stubConfigurableProduct.variants[3].price = 4;
+			stubConfigurableProduct.variants[0].price.originalPrice = 2;
+			stubConfigurableProduct.variants[1].price.originalPrice = 1;
+			stubConfigurableProduct.variants[2].price.originalPrice = 3;
+			stubConfigurableProduct.variants[3].price.originalPrice = 4;
 			store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
 			store.dispatch(new DaffConfigurableProductApplyAttribute(
 				stubConfigurableProduct.id,
@@ -184,10 +180,10 @@ describe('Configurable Product Selectors | unit tests', () => {
 	describe('selectConfigurableProductMaximumPrice', () => {
 
 		it('should return the maximum price of the range of variant prices', () => {
-			stubConfigurableProduct.variants[0].price = 2;
-			stubConfigurableProduct.variants[1].price = 1;
-			stubConfigurableProduct.variants[2].price = 3;
-			stubConfigurableProduct.variants[3].price = 4;
+			stubConfigurableProduct.variants[0].price.originalPrice = 2;
+			stubConfigurableProduct.variants[1].price.originalPrice = 1;
+			stubConfigurableProduct.variants[2].price.originalPrice = 3;
+			stubConfigurableProduct.variants[3].price.originalPrice = 4;
 			store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
 			store.dispatch(new DaffConfigurableProductApplyAttribute(
 				stubConfigurableProduct.id,
@@ -204,14 +200,18 @@ describe('Configurable Product Selectors | unit tests', () => {
 	describe('selectConfigurableProductMinimumDiscountedPrice', () => {
 
 		it('should return the minimum discounted price of the range of variant discounted prices', () => {
-			stubConfigurableProduct.variants[0].price = 10;
-			stubConfigurableProduct.variants[1].price = 10;
-			stubConfigurableProduct.variants[2].price = 10;
-			stubConfigurableProduct.variants[3].price = 10;
-			stubConfigurableProduct.variants[0].discount.amount = 2;
-			stubConfigurableProduct.variants[1].discount.amount = 1;
-			stubConfigurableProduct.variants[2].discount.amount = 3;
-			stubConfigurableProduct.variants[3].discount.amount = 4;
+			stubConfigurableProduct.variants[0].price.originalPrice = 10;
+			stubConfigurableProduct.variants[1].price.originalPrice = 10;
+			stubConfigurableProduct.variants[2].price.originalPrice = 10;
+			stubConfigurableProduct.variants[3].price.originalPrice = 10;
+			stubConfigurableProduct.variants[0].price.discount.amount = 2;
+			stubConfigurableProduct.variants[1].price.discount.amount = 1;
+			stubConfigurableProduct.variants[2].price.discount.amount = 3;
+			stubConfigurableProduct.variants[3].price.discount.amount = 4;
+			stubConfigurableProduct.variants[0].price.discountedPrice = 8;
+			stubConfigurableProduct.variants[1].price.discountedPrice = 9;
+			stubConfigurableProduct.variants[2].price.discountedPrice = 7;
+			stubConfigurableProduct.variants[3].price.discountedPrice = 6;
 			store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
 			store.dispatch(new DaffConfigurableProductApplyAttribute(
 				stubConfigurableProduct.id,
@@ -228,14 +228,18 @@ describe('Configurable Product Selectors | unit tests', () => {
 	describe('selectConfigurableProductMaximumDiscountedPrice', () => {
 
 		it('should return the maximum discounted price of the range of variant discounted prices', () => {
-			stubConfigurableProduct.variants[0].price = 10;
-			stubConfigurableProduct.variants[1].price = 10;
-			stubConfigurableProduct.variants[2].price = 10;
-			stubConfigurableProduct.variants[3].price = 10;
-			stubConfigurableProduct.variants[0].discount.amount = 2;
-			stubConfigurableProduct.variants[1].discount.amount = 1;
-			stubConfigurableProduct.variants[2].discount.amount = 3;
-			stubConfigurableProduct.variants[3].discount.amount = 4;
+			stubConfigurableProduct.variants[0].price.originalPrice = 10;
+			stubConfigurableProduct.variants[1].price.originalPrice = 10;
+			stubConfigurableProduct.variants[2].price.originalPrice = 10;
+			stubConfigurableProduct.variants[3].price.originalPrice = 10;
+			stubConfigurableProduct.variants[0].price.discount.amount = 2;
+			stubConfigurableProduct.variants[1].price.discount.amount = 1;
+			stubConfigurableProduct.variants[2].price.discount.amount = 3;
+			stubConfigurableProduct.variants[3].price.discount.amount = 4;
+			stubConfigurableProduct.variants[0].price.discountedPrice = 8;
+			stubConfigurableProduct.variants[1].price.discountedPrice = 9;
+			stubConfigurableProduct.variants[2].price.discountedPrice = 7;
+			stubConfigurableProduct.variants[3].price.discountedPrice = 6;
 			store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
 			store.dispatch(new DaffConfigurableProductApplyAttribute(
 				stubConfigurableProduct.id,
@@ -252,10 +256,10 @@ describe('Configurable Product Selectors | unit tests', () => {
 	describe('selectConfigurableProductMinimumPercentDiscount', () => {
 
 		it('should return the maximum percent discount of the range of variant discounted prices', () => {
-			stubConfigurableProduct.variants[0].discount.percent = 2;
-			stubConfigurableProduct.variants[1].discount.percent = 1;
-			stubConfigurableProduct.variants[2].discount.percent = 3;
-			stubConfigurableProduct.variants[3].discount.percent = 4;
+			stubConfigurableProduct.variants[0].price.discount.percent = 2;
+			stubConfigurableProduct.variants[1].price.discount.percent = 1;
+			stubConfigurableProduct.variants[2].price.discount.percent = 3;
+			stubConfigurableProduct.variants[3].price.discount.percent = 4;
 			store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
 			store.dispatch(new DaffConfigurableProductApplyAttribute(
 				stubConfigurableProduct.id,
@@ -272,10 +276,10 @@ describe('Configurable Product Selectors | unit tests', () => {
 	describe('selectConfigurableProductMaximumPercentDiscount', () => {
 
 		it('should return the maximum percent discount of the range of variant discounted prices', () => {
-			stubConfigurableProduct.variants[0].discount.percent = 2;
-			stubConfigurableProduct.variants[1].discount.percent = 1;
-			stubConfigurableProduct.variants[2].discount.percent = 3;
-			stubConfigurableProduct.variants[3].discount.percent = 4;
+			stubConfigurableProduct.variants[0].price.discount.percent = 2;
+			stubConfigurableProduct.variants[1].price.discount.percent = 1;
+			stubConfigurableProduct.variants[2].price.discount.percent = 3;
+			stubConfigurableProduct.variants[3].price.discount.percent = 4;
 			store.dispatch(new DaffProductGridLoadSuccess([stubConfigurableProduct]));
 			store.dispatch(new DaffConfigurableProductApplyAttribute(
 				stubConfigurableProduct.id,

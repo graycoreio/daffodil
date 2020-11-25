@@ -115,19 +115,31 @@ describe('DaffConfigurableProductFacade', () => {
         variants: [
           {
             ...stubConfigurableProduct.variants[0],
-            price: 2
+            price: {
+							...stubConfigurableProduct.variants[0].price,
+							originalPrice: 2
+						}
           },
           {
             ...stubConfigurableProduct.variants[1],
-            price: 1
+            price: {
+							...stubConfigurableProduct.variants[1].price,
+							originalPrice: 1
+						}
           },
           {
             ...stubConfigurableProduct.variants[2],
-            price: 4
+            price: {
+							...stubConfigurableProduct.variants[2].price,
+							originalPrice: 4
+						}
           },
           {
             ...stubConfigurableProduct.variants[3],
-            price: 3
+            price: {
+							...stubConfigurableProduct.variants[3].price,
+							originalPrice: 3
+						}
           },
           ...stubConfigurableProduct.variants.slice(4)
         ]
@@ -151,19 +163,31 @@ describe('DaffConfigurableProductFacade', () => {
         variants: [
           {
             ...stubConfigurableProduct.variants[0],
-            price: 2
+            price: {
+							...stubConfigurableProduct.variants[0].price,
+							originalPrice: 2
+						}
           },
           {
             ...stubConfigurableProduct.variants[1],
-            price: 1
+            price: {
+							...stubConfigurableProduct.variants[1].price,
+							originalPrice: 1
+						}
           },
           {
             ...stubConfigurableProduct.variants[2],
-            price: 4
+            price: {
+							...stubConfigurableProduct.variants[2].price,
+							originalPrice: 4
+						}
           },
           {
             ...stubConfigurableProduct.variants[3],
-            price: 3
+            price: {
+							...stubConfigurableProduct.variants[3].price,
+							originalPrice: 3
+						}
           },
           ...stubConfigurableProduct.variants.slice(4)
         ]
@@ -187,7 +211,14 @@ describe('DaffConfigurableProductFacade', () => {
         variants: [
           {
             ...stubConfigurableProduct.variants[0],
-            price: 4,
+            price: {
+							originalPrice: 4,
+							discount: {
+								amount: 3,
+								percent: 75
+							},
+							discountedPrice: 1
+						},
             discount: {
               ...stubConfigurableProduct.variants[0].discount,
               amount: 3
@@ -195,27 +226,36 @@ describe('DaffConfigurableProductFacade', () => {
           },
           {
             ...stubConfigurableProduct.variants[1],
-            price: 4,
-            discount: {
-              ...stubConfigurableProduct.variants[1].discount,
-              amount: 2
-            }
+            price: {
+							originalPrice: 4,
+							discount: {
+								amount: 2,
+								percent: 50
+							},
+							discountedPrice: 2
+						},
           },
           {
             ...stubConfigurableProduct.variants[2],
-            price: 4,
-            discount: {
-              ...stubConfigurableProduct.variants[2].discount,
-              amount: 1
-            }
+            price: {
+							originalPrice: 4,
+							discount: {
+								amount: 1,
+								percent: 25
+							},
+							discountedPrice: 3
+						},
           },
           {
             ...stubConfigurableProduct.variants[3],
-            price: 4,
-            discount: {
-              ...stubConfigurableProduct.variants[3].discount,
-              amount: 3
-            }
+            price: {
+							originalPrice: 4,
+							discount: {
+								amount: 3,
+								percent: 75
+							},
+							discountedPrice: 1
+						},
           },
           ...stubConfigurableProduct.variants.slice(4)
         ]
@@ -239,35 +279,47 @@ describe('DaffConfigurableProductFacade', () => {
         variants: [
           {
             ...stubConfigurableProduct.variants[0],
-            price: 4,
-            discount: {
-              ...stubConfigurableProduct.variants[0].discount,
-              amount: 3
-            }
+            price: {
+							originalPrice: 4,
+							discount: {
+								amount: 3,
+								percent: 75
+							},
+							discountedPrice: 1
+						},
           },
           {
             ...stubConfigurableProduct.variants[1],
-            price: 4,
-            discount: {
-              ...stubConfigurableProduct.variants[1].discount,
-              amount: 2
-            }
+            price: {
+							originalPrice: 4,
+							discount: {
+								amount: 2,
+								percent: 50
+							},
+							discountedPrice: 2
+						},
           },
           {
             ...stubConfigurableProduct.variants[2],
-            price: 4,
-            discount: {
-              ...stubConfigurableProduct.variants[2].discount,
-              amount: 1
-            }
+            price: {
+							originalPrice: 4,
+							discount: {
+								amount: 1,
+								percent: 25
+							},
+							discountedPrice: 3
+						},
           },
           {
             ...stubConfigurableProduct.variants[3],
-            price: 4,
-            discount: {
-              ...stubConfigurableProduct.variants[3].discount,
-              amount: 3
-            }
+            price: {
+							originalPrice: 4,
+							discount: {
+								amount: 3,
+								percent: 75
+							},
+							discountedPrice: 1
+						},
           },
           ...stubConfigurableProduct.variants.slice(4)
         ]
@@ -291,36 +343,52 @@ describe('DaffConfigurableProductFacade', () => {
         variants: [
           {
             ...stubConfigurableProduct.variants[0],
-            discount: {
-              ...stubConfigurableProduct.variants[0].discount,
-              percent: 3
-            }
+            price: {
+							originalPrice: 4,
+							discount: {
+								amount: 3,
+								percent: 75
+							},
+							discountedPrice: 1
+						},
           },
           {
             ...stubConfigurableProduct.variants[1],
-            discount: {
-              ...stubConfigurableProduct.variants[1].discount,
-              percent: 2
-            }
+            price: {
+							originalPrice: 4,
+							discount: {
+								amount: 2,
+								percent: 50
+							},
+							discountedPrice: 2
+						},
           },
           {
             ...stubConfigurableProduct.variants[2],
-            discount: {
-              ...stubConfigurableProduct.variants[2].discount,
-              percent: 1
-            }
+            price: {
+							originalPrice: 4,
+							discount: {
+								amount: 1,
+								percent: 25
+							},
+							discountedPrice: 3
+						},
           },
           {
             ...stubConfigurableProduct.variants[3],
-            discount: {
-              ...stubConfigurableProduct.variants[3].discount,
-              percent: 3
-            }
+            price: {
+							originalPrice: 4,
+							discount: {
+								amount: 3,
+								percent: 75
+							},
+							discountedPrice: 1
+						},
           },
           ...stubConfigurableProduct.variants.slice(4)
         ]
       }));
-			const expected = cold('a', { a: 1 });
+			const expected = cold('a', { a: 25 });
 
       store.dispatch(new DaffConfigurableProductApplyAttribute(
 				stubConfigurableProduct.id,
@@ -339,36 +407,52 @@ describe('DaffConfigurableProductFacade', () => {
         variants: [
           {
             ...stubConfigurableProduct.variants[0],
-            discount: {
-              ...stubConfigurableProduct.variants[0].discount,
-              percent: 3
-            }
+            price: {
+							originalPrice: 4,
+							discount: {
+								amount: 3,
+								percent: 75
+							},
+							discountedPrice: 1
+						},
           },
           {
             ...stubConfigurableProduct.variants[1],
-            discount: {
-              ...stubConfigurableProduct.variants[1].discount,
-              percent: 2
-            }
+            price: {
+							originalPrice: 4,
+							discount: {
+								amount: 2,
+								percent: 50
+							},
+							discountedPrice: 2
+						},
           },
           {
             ...stubConfigurableProduct.variants[2],
-            discount: {
-              ...stubConfigurableProduct.variants[2].discount,
-              percent: 1
-            }
+            price: {
+							originalPrice: 4,
+							discount: {
+								amount: 1,
+								percent: 25
+							},
+							discountedPrice: 3
+						},
           },
           {
             ...stubConfigurableProduct.variants[3],
-            discount: {
-              ...stubConfigurableProduct.variants[3].discount,
-              percent: 3
-            }
+            price: {
+							originalPrice: 4,
+							discount: {
+								amount: 3,
+								percent: 75
+							},
+							discountedPrice: 1
+						},
           },
           ...stubConfigurableProduct.variants.slice(4)
         ]
       }));
-			const expected = cold('a', { a: 3 });
+			const expected = cold('a', { a: 75 });
 
       store.dispatch(new DaffConfigurableProductApplyAttribute(
 				stubConfigurableProduct.id,
@@ -387,19 +471,31 @@ describe('DaffConfigurableProductFacade', () => {
         variants: [
           {
             ...stubConfigurableProduct.variants[0],
-            price: 2
+            price: {
+							...stubConfigurableProduct.variants[0].price,
+							originalPrice: 2,
+						},
           },
           {
             ...stubConfigurableProduct.variants[1],
-            price: 1
+            price: {
+							...stubConfigurableProduct.variants[1].price,
+							originalPrice: 1,
+						},
           },
           {
             ...stubConfigurableProduct.variants[2],
-            price: 4
+            price: {
+							...stubConfigurableProduct.variants[2].price,
+							originalPrice: 4,
+						},
           },
           {
             ...stubConfigurableProduct.variants[3],
-            price: 3
+            price: {
+							...stubConfigurableProduct.variants[3].price,
+							originalPrice: 3,
+						},
           },
           ...stubConfigurableProduct.variants.slice(4)
         ]
@@ -423,31 +519,43 @@ describe('DaffConfigurableProductFacade', () => {
         variants: [
           {
             ...stubConfigurableProduct.variants[0],
-            discount: {
-              ...stubConfigurableProduct.variants[0].discount,
-              amount: 3
-            }
+            price: {
+							...stubConfigurableProduct.variants[0].price,
+							discount: {
+								amount: 2,
+								percent: 50
+							}
+						},
           },
           {
             ...stubConfigurableProduct.variants[1],
-            discount: {
-              ...stubConfigurableProduct.variants[1].discount,
-              amount: 2
-            }
+            price: {
+							...stubConfigurableProduct.variants[1].price,
+							discount: {
+								amount: 2,
+								percent: 50
+							}
+						},
           },
           {
             ...stubConfigurableProduct.variants[2],
-            discount: {
-              ...stubConfigurableProduct.variants[2].discount,
-              amount: 1
-            }
+            price: {
+							...stubConfigurableProduct.variants[2].price,
+							discount: {
+								amount: 1,
+								percent: 25
+							}
+						},
           },
           {
             ...stubConfigurableProduct.variants[3],
-            discount: {
-              ...stubConfigurableProduct.variants[3].discount,
-              amount: 3
-            }
+            price: {
+							...stubConfigurableProduct.variants[3].price,
+							discount: {
+								amount: 3,
+								percent: 75
+							}
+						},
           },
           ...stubConfigurableProduct.variants.slice(4)
         ]
