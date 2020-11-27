@@ -13,7 +13,7 @@ import {
 import { daffCartReducers, DaffCartItemsGuardRedirectUrl } from '@daffodil/cart/state';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 
-import { DaffCartItemsGuard } from './non-empty-cart.guard';
+import { DaffCartItemsGuard } from './cart-items.guard';
 
 describe('Cart | State | Guards | DaffCartItemsGuard', () => {
 	let service: DaffCartItemsGuard;

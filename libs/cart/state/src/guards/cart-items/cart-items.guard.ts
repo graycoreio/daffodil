@@ -4,7 +4,7 @@ import { Injectable, Inject } from '@angular/core';
 import { tap, filter, switchMapTo, take, map } from 'rxjs/operators';
 
 import { DaffCartFacade } from '../../facades/cart/cart.facade';
-import { DaffCartItemsGuardRedirectUrl } from './non-empty-cart-guard-redirect.token';
+import { DaffCartItemsGuardRedirectUrl } from './cart-items-guard-redirect.token';
 
 /**
  * A routing guard that will ensure that the cart is not empty before allowing activation of a route.
