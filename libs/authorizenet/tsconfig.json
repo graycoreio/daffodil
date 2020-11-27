@@ -1,0 +1,32 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "../..",
+    "paths": {
+      "@daffodil/*": [
+        "dist/*"
+      ],
+      "@daffodil/authorizenet": [
+        "libs/authorizenet/src"
+      ],
+      "@daffodil/authorizenet/state": [
+        "libs/authorizenet/state/src"
+      ],
+      "@daffodil/authorizenet/state/testing": [
+        "libs/authorizenet/state/testing/src"
+      ],
+      "@daffodil/authorizenet/driver": [
+        "libs/authorizenet/driver/src"
+      ],
+      "@daffodil/authorizenet/driver/testing": [
+        "libs/authorizenet/driver/testing/src"
+      ],
+      "@daffodil/authorizenet/driver/in-memory": [
+        "libs/authorizenet/driver/in-memory/src"
+      ],
+      "@daffodil/authorizenet/driver/magento": [
+        "libs/authorizenet/driver/magento/src"
+      ],
+    }
+  }
+}
