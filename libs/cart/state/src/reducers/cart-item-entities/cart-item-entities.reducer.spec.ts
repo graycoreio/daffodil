@@ -120,7 +120,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 		});
 		
 		it('sets the new cart item\'s state to New', () => {
-			expect(result.entities[statefulCartItem.item_id].state).toEqual(DaffCartItemStateEnum.New);
+			expect(result.entities[statefulCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.New);
 		});
   });
 
@@ -248,7 +248,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('resets the state of all the cart items to default', () => {
-      expect(result.entities[stubCartItem.item_id].state).toEqual(DaffCartItemStateEnum.Default);
+      expect(result.entities[stubCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.Default);
     });
   });
 
@@ -272,7 +272,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('sets the updating cart item state to mutating', () => {
-      expect(result.entities[stubStatefulCartItem.item_id].state).toEqual(DaffCartItemStateEnum.Mutating);
+      expect(result.entities[stubStatefulCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.Mutating);
     });
   });
 
@@ -296,7 +296,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
 
     it('sets the cart item state to mutating', () => {
-      expect(result.entities[stubCartItem.item_id].state).toEqual(DaffCartItemStateEnum.Mutating);
+      expect(result.entities[stubCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.Mutating);
     });
   });
 });
