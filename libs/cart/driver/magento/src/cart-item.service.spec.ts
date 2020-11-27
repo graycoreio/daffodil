@@ -23,6 +23,7 @@ import {
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 
 import { DaffMagentoCartItemService } from './cart-item.service';
+import { daffMultiply, daffSubtract } from '@daffodil/core';
 
 describe('Driver | Magento | Cart | CartItemService', () => {
   let service: DaffMagentoCartItemService;
@@ -141,7 +142,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
     mockMagentoCartItemUpdateInput = {
       cart_item_id: itemId,
       quantity: 3
-    }
+    };
     mockListCartItemResponse = {
       cart: {
 				__typename: 'Cart',
@@ -190,6 +191,9 @@ describe('Driver | Magento | Cart | CartItemService', () => {
   describe('list | getting a list of cart items', () => {
 
     it('should return the correct value', done => {
+      const price = mockMagentoCartItem.product.price_range.maximum_price.regular_price.value;
+      const discount = mockMagentoCartItem.product.price_range.maximum_price.discount.amount_off;
+
       service.list(cartId).subscribe(result => {
         expect(result).toEqual([jasmine.objectContaining({
 					item_id: mockMagentoCartItem.id,
@@ -203,9 +207,9 @@ describe('Driver | Magento | Cart | CartItemService', () => {
 					sku: mockMagentoCartItem.product.sku,
 					name: mockMagentoCartItem.product.name,
 					qty: mockMagentoCartItem.quantity,
-					price: mockMagentoCartItem.prices.price.value,
-					row_total: mockMagentoCartItem.prices.row_total.value,
-					total_discount: mockMagentoCartItem.prices.total_item_discount.value
+					price,
+					row_total: daffMultiply(daffSubtract(price, discount), mockMagentoCartItem.quantity),
+					total_discount: discount
 				})]);
         done();
       });

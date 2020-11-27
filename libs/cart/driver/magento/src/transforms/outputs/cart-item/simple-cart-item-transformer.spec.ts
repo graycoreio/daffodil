@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
 import { MagentoProductStockStatusEnum } from '@daffodil/product';
-import { DaffCartItemInputType } from '@daffodil/cart';
+import { DaffCartItem, DaffCartItemInputType } from '@daffodil/cart';
+import { MagentoCartItem } from '@daffodil/cart/driver/magento';
 import { MagentoCartItemFactory } from '@daffodil/cart/driver/magento/testing';
 import {
   DaffCartItemFactory
@@ -13,8 +14,8 @@ describe('Driver | Magento | Cart | Transformer | SimpleMagentoCartItem', () => 
   let daffCartItemFactory: DaffCartItemFactory;
   let magentoCartItemFactory: MagentoCartItemFactory;
 
-  let mockDaffCartItem;
-  let mockMagentoCartItem;
+  let mockDaffCartItem: DaffCartItem;
+  let mockMagentoCartItem: MagentoCartItem;
 
   beforeEach(() => {
     daffCartItemFactory = TestBed.get(DaffCartItemFactory);
@@ -46,6 +47,8 @@ describe('Driver | Magento | Cart | Transformer | SimpleMagentoCartItem', () => 
       mockMagentoCartItem.product.sku = sku;
       mockMagentoCartItem.quantity = qty;
       mockMagentoCartItem.prices.price.value = price;
+      mockMagentoCartItem.product.price_range.maximum_price.regular_price.value = price;
+      mockMagentoCartItem.product.price_range.maximum_price.discount.amount_off = discount;
 			mockMagentoCartItem.prices.total_item_discount.value = discount;
 			mockMagentoCartItem.product.thumbnail = {
 				url: url,

@@ -1,4 +1,5 @@
 import { DaffCartItem, DaffCartItemInputType } from '@daffodil/cart';
+import { daffMultiply, daffSubtract } from '@daffodil/core';
 import { MagentoProductStockStatusEnum } from '@daffodil/product';
 
 import { MagentoCartItem } from '../../../models/public_api';
@@ -8,7 +9,12 @@ import { MagentoCartItem } from '../../../models/public_api';
  * @param response the response from a magento cart query.
  */
 export function transformMagentoSimpleCartItem(cartItem: MagentoCartItem): DaffCartItem {
-	return cartItem ? {
+  if (!cartItem) return null
+
+  const price = cartItem.product.price_range.maximum_price.regular_price.value;
+  const discount = cartItem.product.price_range.maximum_price.discount.amount_off;
+
+	return {
 		...{magento_cart_item: cartItem},
 
 		// base
@@ -17,18 +23,18 @@ export function transformMagentoSimpleCartItem(cartItem: MagentoCartItem): DaffC
 		sku: cartItem.product.sku,
 		name: cartItem.product.name,
 		qty: cartItem.quantity,
-		price: cartItem.prices.price.value,
-		row_total: cartItem.prices.row_total.value,
+		price,
+		row_total: daffMultiply(daffSubtract(price, discount), cartItem.quantity),
 		product_id: String(cartItem.product.id),
 		image: {
 			id: cartItem.product.thumbnail.label,
 			url: cartItem.product.thumbnail.url,
 			label: cartItem.product.thumbnail.label
 		},
-		total_discount: cartItem.prices.total_item_discount.value,
+		total_discount: discount,
 		in_stock: cartItem.product.stock_status === MagentoProductStockStatusEnum.InStock,
 
 		// TODO: implement
 		parent_item_id: 0
-	} : null
+	}
 }
