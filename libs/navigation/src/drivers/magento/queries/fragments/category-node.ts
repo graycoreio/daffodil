@@ -4,16 +4,14 @@ import gql from 'graphql-tag';
 /**
  * A category tree fragment with no nested children.
  */
-export const categoryNodeFragment = gql`
-  fragment categoryNode on CategoryTree {
-    id
-    level
-    name
-    include_in_menu
-    products {
-      total_count
-    }
-  }
+const categoryNodeFragment = `
+	id
+	level
+	name
+	include_in_menu
+	products {
+		total_count
+	}
 `
 
 /**
@@ -22,17 +20,16 @@ export const categoryNodeFragment = gql`
  */
 export function getCategoryNodeFragment(depth: number = 3): DocumentNode {
   const fragmentBody = new Array(depth).fill(null).reduce(acc => `
-    ...categoryNode
+    ${categoryNodeFragment}
     children_count
     children {
       ${acc}
     }
-  `, '...categoryNode')
+  `, categoryNodeFragment)
 
   return gql`
     fragment recursiveCategoryNode on CategoryTree {
       ${fragmentBody}
     }
-    ${categoryNodeFragment}
   `
 }
