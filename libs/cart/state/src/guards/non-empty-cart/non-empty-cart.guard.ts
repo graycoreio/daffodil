@@ -4,21 +4,22 @@ import { Injectable, Inject } from '@angular/core';
 import { tap, filter, switchMapTo, take, map } from 'rxjs/operators';
 
 import { DaffCartFacade } from '../../facades/cart/cart.facade';
-import { DaffCartNonEmptyCartGuardRedirectUrl } from './non-empty-cart-guard-redirect.token';
+import { DaffCartItemsGuardRedirectUrl } from './non-empty-cart-guard-redirect.token';
 
 /**
- * A routing guard that will redirect to a given url if there are no items in the cart.
- * The url is `/` by default, but can be overridden with the DaffCartNonEmptyCartGuardRedirectUrl injection token.
+ * A routing guard that will ensure that the cart is not empty before allowing activation of a route.
+ * If the cart has items in it, then `canActivate` will emit true. If not, it will emit false and redirect to a specific path.
+ * The url is `/` by default but can be overridden with the {@link DaffCartItemsGuardRedirectUrl} injection token.
  * The guard will wait until the cart has been resolved before performing the check and emitting.
  */
 @Injectable({
 	providedIn: 'root'
 })
-export class DaffNonEmptyCartGuard implements CanActivate {
+export class DaffCartItemsGuard implements CanActivate {
   constructor(
 		private facade: DaffCartFacade,
 		private router: Router,
-		@Inject(DaffCartNonEmptyCartGuardRedirectUrl) private redirectUrl: string
+		@Inject(DaffCartItemsGuardRedirectUrl) private redirectUrl: string
 	) {}
 
   canActivate(): Observable<boolean> {

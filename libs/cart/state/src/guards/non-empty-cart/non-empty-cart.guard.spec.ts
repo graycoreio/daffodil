@@ -10,13 +10,13 @@ import {
   DaffResolveCartSuccess,
   DaffCartLoadSuccess
 } from '@daffodil/cart/state';
-import { daffCartReducers, DaffCartNonEmptyCartGuardRedirectUrl } from '@daffodil/cart/state';
+import { daffCartReducers, DaffCartItemsGuardRedirectUrl } from '@daffodil/cart/state';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 
-import { DaffNonEmptyCartGuard } from './non-empty-cart.guard';
+import { DaffCartItemsGuard } from './non-empty-cart.guard';
 
-describe('Cart | State | Guards | DaffNonEmptyCartGuard', () => {
-	let service: DaffNonEmptyCartGuard;
+describe('Cart | State | Guards | DaffCartItemsGuard', () => {
+	let service: DaffCartItemsGuard;
 	let store: MockStore<any>;
   let router: Router;
 
@@ -31,7 +31,7 @@ describe('Cart | State | Guards | DaffNonEmptyCartGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-				{ provide: DaffCartNonEmptyCartGuardRedirectUrl, useValue: stubUrl }
+				{ provide: DaffCartItemsGuardRedirectUrl, useValue: stubUrl }
 			],
 			imports: [
         StoreModule.forRoot({
@@ -41,7 +41,7 @@ describe('Cart | State | Guards | DaffNonEmptyCartGuard', () => {
 			]
     });
 
-		service = TestBed.get(DaffNonEmptyCartGuard);
+		service = TestBed.get(DaffCartItemsGuard);
 		store = TestBed.get(Store);
     router = TestBed.get(Router);
 
@@ -98,7 +98,7 @@ describe('Cart | State | Guards | DaffNonEmptyCartGuard', () => {
 				expect(service.canActivate()).toBeObservable(expected);
 			});
 
-			it('should redirect to the given DaffCartNonEmptyCartGuardRedirectUrl', () => {
+			it('should redirect to the given DaffCartItemsGuardRedirectUrl', () => {
 				service.canActivate().subscribe();
 				expect(router.navigateByUrl).toHaveBeenCalledWith(stubUrl);
 			});
