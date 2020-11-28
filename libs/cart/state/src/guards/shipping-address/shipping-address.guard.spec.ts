@@ -16,7 +16,7 @@ import { DaffCartFactory, DaffCartAddressFactory } from '@daffodil/cart/testing'
 
 import { DaffShippingAddressGuard } from './shipping-address.guard';
 
-describe('DaffShippingAddressGuard', () => {
+describe('Cart | State | Guards | DaffShippingAddressGuard', () => {
 
 	let service: DaffShippingAddressGuard;
 	let store: MockStore<any>;
@@ -26,7 +26,6 @@ describe('DaffShippingAddressGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-				DaffShippingAddressGuard,
 				{ provide: DaffCartShippingAddressGuardRedirectUrl, useValue: stubUrl }
 			],
 			imports: [

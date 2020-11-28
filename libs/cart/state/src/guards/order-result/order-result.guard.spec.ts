@@ -11,7 +11,7 @@ import {
 
 import { DaffOrderResultGuard } from './order-result.guard';
 
-describe('DaffOrderResultGuard', () => {
+describe('Cart | State | Guards | DaffOrderResultGuard', () => {
 	let guard: DaffOrderResultGuard;
 	let facade;
 	let router: Router;
@@ -20,7 +20,6 @@ describe('DaffOrderResultGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-				DaffOrderResultGuard,
         { provide: DaffCartOrderResultGuardRedirectUrl, useValue: stubUrl },
         provideMockStore()
       ],

@@ -16,7 +16,7 @@ import { DaffCartFactory, DaffCartShippingRateFactory } from '@daffodil/cart/tes
 
 import { DaffShippingMethodGuard } from './shipping-method.guard';
 
-describe('DaffShippingMethodGuard', () => {
+describe('Cart | State | Guards | DaffShippingMethodGuard', () => {
 
 	let service: DaffShippingMethodGuard;
 	let store: MockStore<any>;
@@ -26,7 +26,6 @@ describe('DaffShippingMethodGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-				DaffShippingMethodGuard,
 				{ provide: DaffCartShippingMethodGuardRedirectUrl, useValue: stubUrl }
 			],
 			imports: [

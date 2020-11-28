@@ -16,7 +16,7 @@ import { DaffCartFactory, DaffCartPaymentFactory } from '@daffodil/cart/testing'
 
 import { DaffPaymentMethodGuard } from './payment-method.guard';
 
-describe('DaffPaymentMethodGuard', () => {
+describe('Cart | State | Guards | DaffPaymentMethodGuard', () => {
 
 	let service: DaffPaymentMethodGuard;
 	let store: MockStore<any>;
@@ -26,7 +26,6 @@ describe('DaffPaymentMethodGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-				DaffPaymentMethodGuard,
         { provide: DaffCartPaymentMethodGuardRedirectUrl, useValue: stubUrl }
 			],
 			imports: [

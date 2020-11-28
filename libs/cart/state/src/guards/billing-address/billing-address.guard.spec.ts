@@ -15,7 +15,7 @@ import { DaffCartFactory, DaffCartAddressFactory } from '@daffodil/cart/testing'
 
 import { DaffBillingAddressGuard } from './billing-address.guard';
 
-describe('DaffBillingAddressGuard', () => {
+describe('Cart | State | Guards | DaffBillingAddressGuard', () => {
 
 	let service: DaffBillingAddressGuard;
 	let store: MockStore<any>;
@@ -25,7 +25,6 @@ describe('DaffBillingAddressGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-				DaffBillingAddressGuard,
 				{ provide: DaffCartBillingAddressGuardRedirectUrl, useValue: stubUrl }
 			],
 			imports: [
