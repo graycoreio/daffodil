@@ -1,6 +1,6 @@
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartItemListSuccess, DaffCartItemLoadSuccess, DaffCartItemUpdateSuccess, DaffCartItemAddSuccess, DaffCartItemDeleteSuccess, DaffCartLoadSuccess, DaffCartClearSuccess } from '@daffodil/cart/state';
-import { DaffCartFactory } from '@daffodil/cart/testing';
+import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
 
 import { DaffCartItemDelete, DaffCartItemStateReset, DaffCartItemUpdate } from '../../actions/public_api';
@@ -11,7 +11,7 @@ import { daffCartItemEntitiesReducer } from './cart-item-entities.reducer';
 describe('Cart | Cart Item Entities Reducer', () => {
 
 	let statefulCartItemFactory: DaffStatefulCartItemFactory;
-	const initialState = daffCartItemEntitiesAdapter().getInitialState({ daffState: DaffCartItemStateEnum.Default });
+	const initialState = daffCartItemEntitiesAdapter().getInitialState();
 
   beforeEach(() => {
     statefulCartItemFactory = new DaffStatefulCartItemFactory();
@@ -26,7 +26,75 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
       expect(result).toEqual(initialState);
     });
-  });
+	});
+	
+	describe('when an existing cart item does not have a default daffState', () => {
+		let result;
+		let stubStatefulCartItem: DaffStatefulCartItem;
+		let initialStateWithCartItem;
+		
+		beforeEach(() => {
+			stubStatefulCartItem = new DaffStatefulCartItemFactory().create({
+				item_id: 'id'
+			});
+			initialStateWithCartItem = {
+				...initialState,
+				entities: {
+					[stubStatefulCartItem.item_id]: {
+						...stubStatefulCartItem,
+						daffState: DaffCartItemStateEnum.New
+					}
+				}
+			};
+		});
+
+		it('should retain the existing daffState when a CartItemListSuccessAction is triggered', () => {
+      const cartItemListSuccess = new DaffCartItemListSuccess([{
+				...stubStatefulCartItem,
+				daffState: DaffCartItemStateEnum.Default
+			}]);
+
+			result = daffCartItemEntitiesReducer(initialStateWithCartItem, cartItemListSuccess);
+			expect(result.entities[stubStatefulCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.New);
+		});
+		
+		it('should retain the existing daffState when a CartItemLoadSuccessAction is triggered', () => {
+			const cartItemLoadSuccess = new DaffCartItemLoadSuccess({
+				...stubStatefulCartItem,
+				daffState: DaffCartItemStateEnum.Default
+			});
+
+			result = daffCartItemEntitiesReducer(initialStateWithCartItem, cartItemLoadSuccess);
+			expect(result.entities[stubStatefulCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.New);
+		});
+
+		it('should retain the existing daffState when a CartItemDeleteSuccessAction is triggered', () => {
+      const cartItemDeleteSuccess = new DaffCartItemDeleteSuccess(new DaffCartFactory().create({
+				items: [new DaffCartItemFactory().create({ item_id: stubStatefulCartItem.item_id })]
+			}));
+
+			result = daffCartItemEntitiesReducer(initialStateWithCartItem, cartItemDeleteSuccess);
+			expect(result.entities[stubStatefulCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.New);
+		});
+
+		it('should retain the existing daffState when a CartLoadSuccessAction is triggered', () => {
+      const cartLoadSuccess = new DaffCartLoadSuccess(new DaffCartFactory().create({
+				items: [new DaffCartItemFactory().create({ item_id: stubStatefulCartItem.item_id })]
+			}));
+
+			result = daffCartItemEntitiesReducer(initialStateWithCartItem, cartLoadSuccess);
+			expect(result.entities[stubStatefulCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.New);
+		});
+
+		it('should retain the existing daffState when a CartClearSuccessAction is triggered', () => {
+      const cartClearSuccess = new DaffCartClearSuccess(new DaffCartFactory().create({
+				items: [new DaffCartItemFactory().create({ item_id: stubStatefulCartItem.item_id })]
+			}));
+
+			result = daffCartItemEntitiesReducer(initialStateWithCartItem, cartClearSuccess);
+			expect(result.entities[stubStatefulCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.New);
+		});
+	});
 
   describe('when CartItemListSuccessAction is triggered', () => {
 
