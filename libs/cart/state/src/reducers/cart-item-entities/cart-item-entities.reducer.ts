@@ -1,6 +1,6 @@
 import { Dictionary, EntityState } from '@ngrx/entity';
 
-import { DaffCartItem, DaffCartItemInput, DaffCart } from '@daffodil/cart';
+import { DaffCartItemInput, DaffCart } from '@daffodil/cart';
 
 import { daffCartItemEntitiesAdapter } from './cart-item-entities-reducer-adapter';
 import { DaffCartItemActionTypes, DaffCartActionTypes, DaffCartActions, DaffCartItemActions } from '../../actions/public_api';
@@ -18,14 +18,20 @@ export function daffCartItemEntitiesReducer<
 	U extends DaffCartItemInput = DaffCartItemInput,
 	V extends DaffCart = DaffCart,
 >(
-  state = daffCartItemEntitiesAdapter<T>().getInitialState({ daffState: DaffCartItemStateEnum.Default }),
+  state = daffCartItemEntitiesAdapter<T>().getInitialState(),
   action: DaffCartItemActions<T, U, V> | DaffCartActions<V>): EntityState<T> {
 	const adapter = daffCartItemEntitiesAdapter<T>();
   switch (action.type) {
     case DaffCartItemActionTypes.CartItemListSuccessAction:
-			return adapter.addAll(action.payload, state);
+			return adapter.addAll(action.payload.map(item => ({
+				...item,
+				daffState: getDaffState(state.entities[item.item_id]) || DaffCartItemStateEnum.Default
+			})), state);
 		case DaffCartItemActionTypes.CartItemLoadSuccessAction:
-			return adapter.upsertOne(action.payload, state);
+			return adapter.upsertOne({
+				...action.payload,
+				daffState: getDaffState(state.entities[action.payload.item_id]) || DaffCartItemStateEnum.Default
+			}, state);
 		case DaffCartItemActionTypes.CartItemAddSuccessAction:
 			return adapter.addAll(
 				updateAddedCartItemState<T>(state.entities, <T[]>action.payload.items), 
@@ -39,29 +45,37 @@ export function daffCartItemEntitiesReducer<
 		case DaffCartItemActionTypes.CartItemDeleteSuccessAction:
 		case DaffCartActionTypes.CartLoadSuccessAction:
 		case DaffCartActionTypes.CartClearSuccessAction:
-			return adapter.addAll(<T[]><unknown>action.payload.items, state);
+			return adapter.addAll(<T[]><unknown>action.payload.items.map(item => ({
+				...item,
+				daffState: getDaffState(state.entities[item.item_id]) || DaffCartItemStateEnum.Default
+			})), state);
 		case DaffCartItemActionTypes.CartItemStateResetAction:
 			return adapter.addAll(Object.keys(state.entities).map(key => ({
 				...state.entities[key],
-				state: DaffCartItemStateEnum.Default
+				daffState: DaffCartItemStateEnum.Default
 			})), state);
 		case DaffCartItemActionTypes.CartItemUpdateAction:
 		case DaffCartItemActionTypes.CartItemDeleteAction:
 			return adapter.upsertOne({
 				...state.entities[action.itemId],
-				state: DaffCartItemStateEnum.Mutating
+				daffState: DaffCartItemStateEnum.Mutating
 			}, state)
     default:
       return state;
   }
 }
 
-function updateAddedCartItemState<T extends DaffCartItem>(oldCartItems: Dictionary<T>, newCartItems: T[]): T[] {
+//todo: use optional chaining when possible
+function getDaffState<T extends DaffStatefulCartItem>(item: T): DaffCartItemStateEnum {
+	return item && item.daffState;
+}
+
+function updateAddedCartItemState<T extends DaffStatefulCartItem>(oldCartItems: Dictionary<T>, newCartItems: T[]): T[] {
 	return newCartItems.map(newItem => {
 		const oldItem = oldCartItems[newItem.item_id];
 		switch(true) {
 			case !oldItem:
-				return { ...newItem, state: DaffCartItemStateEnum.New };
+				return { ...newItem, daffState: DaffCartItemStateEnum.New };
 			//todo: add optional chaining when possible
 			case oldItem && oldItem.qty !== newItem.qty:
 				return { ...newItem, daffState: DaffCartItemStateEnum.Updated };
@@ -71,7 +85,7 @@ function updateAddedCartItemState<T extends DaffCartItem>(oldCartItems: Dictiona
 	})
 }
 
-function updateMutatedCartItemState<T extends DaffCartItem>(cartItems: T[], itemId: T['item_id']): T[] {
+function updateMutatedCartItemState<T extends DaffStatefulCartItem>(cartItems: T[], itemId: T['item_id']): T[] {
 	return cartItems.map(item => item.item_id === itemId ? 
 		{ ...item, daffState: DaffCartItemStateEnum.Updated} : item)
 }
