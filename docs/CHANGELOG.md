@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.20.1](https://github.com/graycoreio/daffodil/compare/v0.20.0...v0.20.1) (2020-11-28)
+
+
+### Features
+
+* **authorizenet:** shard packages and add store feature key ([#1160](https://github.com/graycoreio/daffodil/issues/1160)) ([2919188](https://github.com/graycoreio/daffodil/commit/29191882a845feb65ed9834e83f981e14aaaa1f3))
+* **cart:** add cart item guard ([#1164](https://github.com/graycoreio/daffodil/issues/1164)) ([d4237a4](https://github.com/graycoreio/daffodil/commit/d4237a4fa066020549a5d5f0c7b6d7cdfc7c9003))
+
+
+### Bug Fixes
+
+* **cart:** cart item state is set incorrectly in cart item reducers ([#1165](https://github.com/graycoreio/daffodil/issues/1165)) ([9789d92](https://github.com/graycoreio/daffodil/commit/9789d925f3fa2be01c7cdf99281b9699437d6699))
+
 ## [0.20.0](https://github.com/graycoreio/daffodil/compare/v0.19.2...v0.20.0) (2020-11-25)
 
 
