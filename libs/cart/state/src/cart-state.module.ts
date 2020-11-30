@@ -27,6 +27,7 @@ import { DaffCartOrderEffects } from './effects/cart-order.effects';
 import { DaffCartCouponEffects } from './effects/cart-coupon.effects';
 import { DaffCartAddressEffects } from './effects/cart-address.effects';
 import { DaffCartItemStateDebounceTime } from './injection-tokens/cart-item-state-debounce-time';
+import { DaffCartResolverEffects } from './effects/cart-resolver.effects';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { DaffCartItemStateDebounceTime } from './injection-tokens/cart-item-stat
       DaffCartPaymentEffects,
       DaffCartPaymentMethodsEffects,
       DaffCartOrderEffects,
-      DaffCartCouponEffects
+      DaffCartCouponEffects,
+      DaffCartResolverEffects,
 		]),
 	],
 	providers: [
