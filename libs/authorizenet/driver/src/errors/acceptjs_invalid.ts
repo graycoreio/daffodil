@@ -5,8 +5,8 @@ import { DaffError, DaffInheritableError } from '@daffodil/core';
  * This can be caused by the script being loaded from a local source
  * or when the browser or proxy has improperly cached an older version of the script.
  */
-export class DaffAuthorizenetAcceptjsInvalidError extends DaffInheritableError implements DaffError {
-  public readonly code: string = 'DAFF_AUTHORIZENET_ACCEPTJS_INVALID';
+export class DaffAuthorizeNetAcceptjsInvalidError extends DaffInheritableError implements DaffError {
+  public readonly code: string = 'DAFF_AUTHORIZE_NET_ACCEPTJS_INVALID';
 
 	constructor(public message: string) {
 		super(message);
