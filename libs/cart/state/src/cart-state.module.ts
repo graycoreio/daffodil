@@ -9,7 +9,8 @@ import {
 	DaffCartShippingMethodGuardRedirectUrl,
   DaffCartPaymentMethodGuardRedirectUrl,
   DaffCartOrderResultGuardRedirectUrl,
-  DaffCartItemsGuardRedirectUrl
+  DaffCartItemsGuardRedirectUrl,
+  DaffResolvedCartGuardRedirectUrl
 } from './guards/public_api';
 import { DaffEmptyCartResolverRedirectUrl, DaffCartResolverRedirectUrl } from './resolvers/public_api';
 
@@ -26,6 +27,7 @@ import { DaffCartOrderEffects } from './effects/cart-order.effects';
 import { DaffCartCouponEffects } from './effects/cart-coupon.effects';
 import { DaffCartAddressEffects } from './effects/cart-address.effects';
 import { DaffCartItemStateDebounceTime } from './injection-tokens/cart-item-state-debounce-time';
+import { DaffCartResolverEffects } from './effects/cart-resolver.effects';
 
 @NgModule({
   imports: [
@@ -41,12 +43,14 @@ import { DaffCartItemStateDebounceTime } from './injection-tokens/cart-item-stat
       DaffCartPaymentEffects,
       DaffCartPaymentMethodsEffects,
       DaffCartOrderEffects,
-      DaffCartCouponEffects
+      DaffCartCouponEffects,
+      DaffCartResolverEffects,
 		]),
 	],
 	providers: [
 		{ provide: DaffCartBillingAddressGuardRedirectUrl, useValue: '/' },
 		{ provide: DaffCartItemsGuardRedirectUrl, useValue: '/' },
+		{ provide: DaffResolvedCartGuardRedirectUrl, useValue: '/' },
 		{ provide: DaffCartShippingAddressGuardRedirectUrl, useValue: '/' },
 		{ provide: DaffCartShippingMethodGuardRedirectUrl, useValue: '/' },
 		{ provide: DaffCartPaymentMethodGuardRedirectUrl, useValue: '/' },
