@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.20.2](https://github.com/graycoreio/daffodil/compare/v0.20.1...v0.20.2) (2020-11-30)
+
+
+### Features
+
+* **cart:** add resolved cart guard ([#1170](https://github.com/graycoreio/daffodil/issues/1170)) ([7e747af](https://github.com/graycoreio/daffodil/commit/7e747afb9dfe6bb6d17c002cbed4869ac152d593))
+* **order:** add a selector for whether an order has a discount ([#1169](https://github.com/graycoreio/daffodil/issues/1169)) ([818d919](https://github.com/graycoreio/daffodil/commit/818d919bb3fa3e75bb3d2355e4e3ed0b649a2240))
+
+
+### Bug Fixes
+
+* **navigation:** the getCategoryNodeFragment magento query does not work ([#1168](https://github.com/graycoreio/daffodil/issues/1168)) ([0b44bd6](https://github.com/graycoreio/daffodil/commit/0b44bd636be77780536696f5760be74f5ab9436f))
+
 ### [0.20.1](https://github.com/graycoreio/daffodil/compare/v0.20.0...v0.20.1) (2020-11-28)
 
 
