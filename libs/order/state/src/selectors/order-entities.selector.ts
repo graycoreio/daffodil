@@ -234,10 +234,10 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
   const selectOrderHasDiscount = createSelector(
     selectEntities,
     (orders, props) => {
-      const totals = selectOrderTotals.projector(orders, { id: props.id });
-      const index = totals.findIndex(total => total.type === DaffOrderTotalTypeEnum.Discount);
+      const discountTotal = selectOrderDiscountTotal.projector(orders, { id: props.id });
 
-      return index > -1;
+			//todo: use optional chaining when possible
+      return !!discountTotal && discountTotal.value > 0;
     }
   );
   const selectOrderTaxTotal = createSelector(
