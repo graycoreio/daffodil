@@ -199,7 +199,7 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
 	
 	//todo: remove this test when this bug is fixed: https://github.com/magento/magento2/issues/31086
 	//This test only exists to test the workaround.
-	it('should return the expected fragment', () => {
+	it('should not use nested fragments', () => {
 		const expectedFields = [
 			'id',
 			'level',
