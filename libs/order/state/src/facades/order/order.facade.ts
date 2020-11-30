@@ -41,6 +41,7 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
   _subtotal: DaffOrderEntitySelectors<T>['selectOrderSubtotal'];
   _shipping: DaffOrderEntitySelectors<T>['selectOrderShippingTotal'];
   _discount: DaffOrderEntitySelectors<T>['selectOrderDiscountTotal'];
+  _hasDiscount: DaffOrderEntitySelectors<T>['selectOrderHasDiscount'];
   _tax: DaffOrderEntitySelectors<T>['selectOrderTaxTotal'];
 
   constructor(private store: Store<DaffOrderReducersState<T>>) {
@@ -70,6 +71,7 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
       selectOrderSubtotal,
       selectOrderShippingTotal,
       selectOrderDiscountTotal,
+      selectOrderHasDiscount,
       selectOrderTaxTotal,
     } = getDaffOrderSelectors<T>();
 
@@ -98,6 +100,7 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
     this._subtotal = selectOrderSubtotal;
     this._shipping = selectOrderShippingTotal;
     this._discount = selectOrderDiscountTotal;
+    this._hasDiscount = selectOrderHasDiscount;
     this._tax = selectOrderTaxTotal;
   }
 
@@ -152,6 +155,9 @@ export class DaffOrderFacade<T extends DaffOrder = DaffOrder> implements DaffOrd
   };
   getDiscountTotal$(orderId: T['id']): Observable<DaffOrderTotal> {
     return this.store.pipe(select(this._discount, {id: orderId}))
+  };
+  hasDiscount$(orderId: T['id']): Observable<boolean> {
+    return this.store.pipe(select(this._hasDiscount, {id: orderId}))
   };
   getTaxTotal$(orderId: T['id']): Observable<DaffOrderTotal> {
     return this.store.pipe(select(this._tax, {id: orderId}))

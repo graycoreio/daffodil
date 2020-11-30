@@ -51,6 +51,7 @@ describe('Order | Selector | OrderEntities', () => {
     selectOrderSubtotal,
     selectOrderShippingTotal,
     selectOrderDiscountTotal,
+    selectOrderHasDiscount,
     selectOrderTaxTotal,
   } = getDaffOrderEntitySelectors();
 
@@ -518,6 +519,43 @@ describe('Order | Selector | OrderEntities', () => {
       it('should select the discount total', () => {
         const selector = store.pipe(select(selectOrderDiscountTotal, { id: mockOrder.id }));
         const expected = cold('a', { a: mockOrderTotal });
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('selectOrderHasDiscount', () => {
+    it('should initially be false', () => {
+      const selector = store.pipe(select(selectOrderHasDiscount, { id: mockOrder.id }));
+      const expected = cold('a', { a: false });
+
+      expect(selector).toBeObservable(expected);
+    });
+
+    describe('when an order has been loaded with a discount total', () => {
+      beforeEach(() => {
+        mockOrderTotal.type = DaffOrderTotalTypeEnum.Discount;
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should return true', () => {
+        const selector = store.pipe(select(selectOrderHasDiscount, { id: mockOrder.id }));
+        const expected = cold('a', { a: true });
+
+        expect(selector).toBeObservable(expected);
+      });
+    });
+
+    describe('when an order has been loaded without a discount total', () => {
+      beforeEach(() => {
+				mockOrderTotal = null;
+				store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should return false', () => {
+        const selector = store.pipe(select(selectOrderHasDiscount, { id: mockOrder.id }));
+        const expected = cold('a', { a: false });
 
         expect(selector).toBeObservable(expected);
       });
