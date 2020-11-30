@@ -171,7 +171,7 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
     let response: Observable<ApolloQueryResult<CategoryNode>>;
 
     beforeEach(() => {
-      const fragment = getCategoryNodeFragment(3);
+			const fragment = getCategoryNodeFragment(3);
 
       query = gql`
         query TestQuery {
@@ -195,7 +195,25 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
         data: depth3NavigationTree
       })
     });
-  });
+	});
+	
+	//todo: remove this test when this bug is fixed: https://github.com/magento/magento2/issues/31086
+	//This test only exists to test the workaround.
+	it('should not use nested fragments', () => {
+		const expectedFields = [
+			'id',
+			'level',
+			'name',
+			'include_in_menu',
+			'products',
+			'children_count',
+			'children'
+		];
+
+		(<any>getCategoryNodeFragment(3).definitions[0]).selectionSet.selections.forEach((selection, index) => {
+			expect(selection.name.value).toEqual(expectedFields[index]);
+		});
+	});
 
   afterEach(() => {
     controller.verify();
