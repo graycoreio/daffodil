@@ -463,6 +463,35 @@ describe('DaffOrderFacade', () => {
     });
   });
 
+  describe('hasDiscount$', () => {
+
+    describe('when an order has been loaded with a discount total', () => {
+      beforeEach(() => {
+        mockOrderTotal.type = DaffOrderTotalTypeEnum.Discount;
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should return true', () => {
+        const expected = cold('a', { a: true });
+
+        expect(facade.hasDiscount$(mockOrder.id)).toBeObservable(expected);
+      });
+    });
+
+    describe('when an order has been loaded without a discount total', () => {
+      beforeEach(() => {
+        mockOrderTotal = null;
+        store.dispatch(new DaffOrderListSuccess([mockOrder]));
+      });
+
+      it('should return false', () => {
+        const expected = cold('a', { a: false });
+
+        expect(facade.hasDiscount$(mockOrder.id)).toBeObservable(expected);
+      });
+    });
+  });
+
   describe('getTaxTotal$', () => {
     it('should initially be null', () => {
       const expected = cold('a', { a: null });

@@ -96,7 +96,11 @@ export interface DaffOrderEntitySelectors<T extends DaffOrder = DaffOrder> {
   /**
    * Selects the specified order's discount total.
    */
-  selectOrderDiscountTotal: MemoizedSelector<object, DaffOrderTotal>;
+	selectOrderDiscountTotal: MemoizedSelector<object, DaffOrderTotal>;
+	/**
+	 * Selects whether the specified order has a discount.
+	 */
+	selectOrderHasDiscount: MemoizedSelector<object, boolean>;
   /**
    * Selects the specified order's tax total.
    */
@@ -227,6 +231,15 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
       return index > -1 ? totals[index] : null
     }
   );
+  const selectOrderHasDiscount = createSelector(
+    selectEntities,
+    (orders, props) => {
+      const discountTotal = selectOrderDiscountTotal.projector(orders, { id: props.id });
+
+			//todo: use optional chaining when possible
+      return !!discountTotal && discountTotal.value > 0;
+    }
+  );
   const selectOrderTaxTotal = createSelector(
     selectEntities,
     (orders, props) => {
@@ -268,6 +281,7 @@ const createOrderEntitySelectors = <T extends DaffOrder = DaffOrder>() => {
     selectOrderSubtotal,
     selectOrderShippingTotal,
     selectOrderDiscountTotal,
+    selectOrderHasDiscount,
     selectOrderTaxTotal,
   }
 }
