@@ -1,6 +1,7 @@
 import { DaffAuthorizeNetUpdatePaymentSuccess, DaffAuthorizeNetUpdatePaymentFailure, DaffAuthorizeNetUpdatePayment, DaffLoadAcceptJsSuccess, DaffLoadAcceptJsFailure, DaffAuthorizeNetReducerState } from '@daffodil/authorizenet/state';
 import { DaffCartAddress } from '@daffodil/cart';
 import { DaffCartAddressFactory } from '@daffodil/cart/testing';
+import { DaffStateError } from '@daffodil/core/state';
 
 import { daffAuthorizeNetReducer } from './authorize-net.reducer';
 
@@ -73,9 +74,14 @@ describe('AuthorizeNet | AuthorizeNet Reducer', () => {
 
   describe('when DaffAuthorizeNetUpdatePaymentFailure is triggered', () => {
     let result: DaffAuthorizeNetReducerState;
+    let mockError: DaffStateError;
 
     beforeEach(() => {
-      const tokenResponseLoadFailure: DaffAuthorizeNetUpdatePaymentFailure = new DaffAuthorizeNetUpdatePaymentFailure('error');
+      mockError = {
+        code: 'error code',
+        message: 'error message'
+      };
+      const tokenResponseLoadFailure: DaffAuthorizeNetUpdatePaymentFailure = new DaffAuthorizeNetUpdatePaymentFailure(mockError);
 
       result = daffAuthorizeNetReducer(initialState, tokenResponseLoadFailure);
     });
@@ -85,7 +91,7 @@ describe('AuthorizeNet | AuthorizeNet Reducer', () => {
 		});
 
     it('sets payment error state to the action payload', () => {
-      expect(result.paymentError).toEqual('error');
+      expect(result.paymentError).toEqual(mockError);
 		});
 	});
 
@@ -109,9 +115,14 @@ describe('AuthorizeNet | AuthorizeNet Reducer', () => {
 
   describe('when DaffLoadAcceptJsFailure is triggered', () => {
     let result: DaffAuthorizeNetReducerState;
+    let mockError: DaffStateError;
 
     beforeEach(() => {
-      const loadAcceptJsFailure: DaffLoadAcceptJsFailure = new DaffLoadAcceptJsFailure('error');
+      mockError = {
+        code: 'error code',
+        message: 'error message'
+      };
+      const loadAcceptJsFailure: DaffLoadAcceptJsFailure = new DaffLoadAcceptJsFailure(mockError);
 
       result = daffAuthorizeNetReducer(initialState, loadAcceptJsFailure);
     });
@@ -121,7 +132,7 @@ describe('AuthorizeNet | AuthorizeNet Reducer', () => {
 		});
 
     it('sets acceptJsLoad error state to the action payload', () => {
-      expect(result.acceptJsLoadError).toEqual('error');
+      expect(result.acceptJsLoadError).toEqual(mockError);
 		});
 	});
 });

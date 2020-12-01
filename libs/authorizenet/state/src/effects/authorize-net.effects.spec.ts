@@ -12,6 +12,7 @@ import { DaffAcceptJsLoadingService, DaffAuthorizeNetTokenRequest } from '@daffo
 import { DaffAuthorizeNetService, DaffAuthorizeNetConfig, DaffAuthorizeNetDriver, DaffAuthorizeNetPaymentId } from '@daffodil/authorizenet/driver';
 import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '@daffodil/authorizenet/driver/magento';
 import { daffAuthorizeNetReducers, DaffAuthorizeNetUpdatePayment, DaffAuthorizeNetUpdatePaymentFailure, DaffAuthorizeNetUpdatePaymentSuccess, DaffLoadAcceptJs, DaffLoadAcceptJsSuccess, DaffLoadAcceptJsFailure, DAFF_AUTHORIZENET_STORE_FEATURE_KEY } from '@daffodil/authorizenet/state';
+import { DaffError, DaffInheritableError } from '@daffodil/core';
 
 import { DaffAuthorizeNetEffects } from './authorize-net.effects';
 
@@ -19,6 +20,14 @@ class MockAuthorizeNetDriver implements DaffAuthorizeNetService {
 	generateToken(paymentRequest): Observable<any> {
 		return null;
 	}
+}
+
+class MockError extends DaffInheritableError implements DaffError {
+  code = 'mock code';
+
+  constructor(public message: string) {
+    super(message)
+  }
 }
 
 describe('DaffAuthorizeNetEffects', () => {
@@ -93,11 +102,14 @@ describe('DaffAuthorizeNetEffects', () => {
 
       beforeEach(() => {
 				const authorizeNetUpdatePayment = new DaffAuthorizeNetUpdatePayment(paymentTokenRequest, stubAddress);
-        const error = new Error('Failed to retrieve the token');
+        const error = new MockError('Failed to retrieve the token');
 				const response = cold('#', {}, error);
 				spyOn(authorizeNetPaymentService, 'generateToken').and.returnValue(response);
 
-        const authorizeNetUpdatePaymentFailureAction = new DaffAuthorizeNetUpdatePaymentFailure(error.message);
+        const authorizeNetUpdatePaymentFailureAction = new DaffAuthorizeNetUpdatePaymentFailure({
+          code: error.code,
+          message: error.message
+        });
         actions$ = hot('--a', { a: authorizeNetUpdatePayment });
         expected = cold('--b', { b: authorizeNetUpdatePaymentFailureAction });
       });
@@ -125,9 +137,13 @@ describe('DaffAuthorizeNetEffects', () => {
 	describe('updatePaymentFailureSubstream$', () => {
 
 		it('should dispatch DaffAuthorizeNetUpdatePaymentFailure when the cart payment method has failed to update', () => {
-			const authorizeNetUpdatePayment = new DaffAuthorizeNetUpdatePayment(paymentTokenRequest, stubAddress);
-			const cartPaymentUpdateWithBillingFailure = new DaffCartPaymentUpdateWithBillingFailure('error');
-			const authorizeNetPaymentUpdateFailure = new DaffAuthorizeNetUpdatePaymentFailure('The payment method has failed to update the cart.');
+      const authorizeNetUpdatePayment = new DaffAuthorizeNetUpdatePayment(paymentTokenRequest, stubAddress);
+      const mockErrorMessage = 'Cart payment with billing update failed.'
+			const cartPaymentUpdateWithBillingFailure = new DaffCartPaymentUpdateWithBillingFailure(mockErrorMessage);
+			const authorizeNetPaymentUpdateFailure = new DaffAuthorizeNetUpdatePaymentFailure({
+        code: 'DaffCartPaymentUpdateWithBillingFailure placeholder code',
+        message: mockErrorMessage
+      });
 			actions$ = hot('--ab', { a: authorizeNetUpdatePayment, b: cartPaymentUpdateWithBillingFailure });
 
 			const expected = cold('---c', { c: authorizeNetPaymentUpdateFailure });
@@ -158,10 +174,14 @@ describe('DaffAuthorizeNetEffects', () => {
 		});
 
 		it('should trigger a DaffLoadAcceptJsFailure action if acceptJs fails to load', () => {
-			acceptJsLoadingServiceSpy.getAccept.and.throwError('error')
+      const mockError = new MockError('Accept Js has failed to load.')
+			acceptJsLoadingServiceSpy.getAccept.and.throwError(mockError)
 			const loadAcceptJsAction = new DaffLoadAcceptJs();
 			actions$ = hot('--a', { a: loadAcceptJsAction });
-			const expected = cold('--b', { b: new DaffLoadAcceptJsFailure('Accept Js has failed to load.') });
+			const expected = cold('--b', { b: new DaffLoadAcceptJsFailure({
+        code: mockError.code,
+        message: mockError.message
+      }) });
 
 			expect(effects.loadAcceptJs$(0, 0)).toBeObservable(expected);
 		});

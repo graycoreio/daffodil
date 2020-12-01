@@ -1,12 +1,12 @@
 import { Injectable, Inject } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { switchMap, catchError, map, tap } from 'rxjs/operators';
+import { switchMap, catchError, map, tap, mapTo } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
-import { DaffCartPaymentActionTypes, DaffCartPaymentUpdateWithBilling } from '@daffodil/cart/state';
-import { backoff } from '@daffodil/core';
+import { DaffCartPaymentActionTypes, DaffCartPaymentUpdateWithBilling, DaffCartPaymentUpdateWithBillingFailure } from '@daffodil/cart/state';
+import { backoff, DaffError } from '@daffodil/core';
 import { substream } from '@daffodil/core/state';
-import { DaffAcceptJsLoadingService, DaffAuthorizeNetTokenRequest } from '@daffodil/authorizenet';
+import { DaffAcceptJsLoadingService, DaffAuthorizeNetTokenRequest, DAFF_AUTHORIZENET_ERROR_MATCHER } from '@daffodil/authorizenet';
 import { DaffAuthorizeNetDriver, DaffAuthorizeNetService, DaffAuthorizeNetPaymentId } from '@daffodil/authorizenet/driver';
 
 import {
@@ -26,6 +26,7 @@ export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = Da
     private actions$: Actions,
 		@Inject(DaffAuthorizeNetDriver) private driver: DaffAuthorizeNetService<T>,
 		@Inject(DaffAuthorizeNetPaymentId) private authorizeNetPaymentId: string,
+		@Inject(DAFF_AUTHORIZENET_ERROR_MATCHER) private errorMatcher: Function,
 		private acceptJsLoadingService: DaffAcceptJsLoadingService
 	) {}
 
@@ -41,8 +42,8 @@ export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = Da
 					},
 					action.address
 				)),
-        catchError((error: Error) =>
-          of(new DaffAuthorizeNetUpdatePaymentFailure(error.message))
+        catchError((error: DaffError) =>
+          of(new DaffAuthorizeNetUpdatePaymentFailure(this.errorMatcher(error)))
         )
 			)
 		)
@@ -54,7 +55,7 @@ export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = Da
 			[DaffAuthorizeNetActionTypes.UpdatePaymentAction, DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingSuccessAction],
 			DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingFailureAction
 		),
-		map((actions: Actions[]) => new DaffAuthorizeNetUpdatePaymentSuccess())
+		mapTo(new DaffAuthorizeNetUpdatePaymentSuccess())
 	)
 
 	@Effect()
@@ -63,7 +64,13 @@ export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = Da
 			[DaffAuthorizeNetActionTypes.UpdatePaymentAction, DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingFailureAction],
 			DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingSuccessAction
 		),
-		map((actions: Actions[]) => new DaffAuthorizeNetUpdatePaymentFailure('The payment method has failed to update the cart.'))
+    map(([updatePaymentAction, updatePaymentFailureAction]: [DaffAuthorizeNetUpdatePayment, DaffCartPaymentUpdateWithBillingFailure]) =>
+      // TODO: change once cart failure actions use DaffStateError
+      new DaffAuthorizeNetUpdatePaymentFailure(this.errorMatcher({
+        code: 'DaffCartPaymentUpdateWithBillingFailure placeholder code',
+        message: updatePaymentFailureAction.payload
+      }))
+    )
 	)
 
 	@Effect()
@@ -73,8 +80,8 @@ export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = Da
 		switchMap(() => of(null).pipe(
 			map(() => this.acceptJsLoadingService.getAccept()),
 			backoff(maxTries, ms),
-			map(() => new DaffLoadAcceptJsSuccess()),
-			catchError(() => of(new DaffLoadAcceptJsFailure('Accept Js has failed to load.')))
+			mapTo(new DaffLoadAcceptJsSuccess()),
+			catchError((error: DaffError) => of(new DaffLoadAcceptJsFailure(this.errorMatcher(error))))
 		))
 	)
 }
