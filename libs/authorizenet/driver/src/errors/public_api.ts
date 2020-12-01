@@ -13,3 +13,4 @@ export { DaffAuthorizeNetInvalidClientKeyError } from './invalid-client-key';
 export { DaffAuthorizeNetInvalidLoginIdError } from './invalid-login-id';
 export { DaffAuthorizeNetInvalidPostalCodeError } from './invalid-postal-code';
 export { DaffAuthorizeNetPastCCExpirationError } from './past-cc-expiration';
+export { DAFF_AUTHORIZE_NET_ERROR_CODE_MAP } from './error-code-map';
