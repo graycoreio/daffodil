@@ -29,6 +29,10 @@ export class DaffConfigurableProductFacade<T extends DaffProduct = DaffProduct> 
 		return this.store.pipe(select(this.selectors.selectAllConfigurableProductAttributes, { id }));
 	}
 	
+	getAllVariants(id: string): Observable<DaffConfigurableProductVariant[]> {
+		return this.store.pipe(select(this.selectors.selectAllConfigurableProductVariants, { id }));
+	}
+	
 	getAppliedAttributes(id: string): Observable<Dictionary<string>> {
 		return this.store.pipe(select(this.selectors.selectConfigurableProductAppliedAttributesAsDictionary, { id }));
 	}

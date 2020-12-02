@@ -11,6 +11,7 @@ import { DaffConfigurableProductEntityAttribute } from '../../reducers/configura
 
 export interface DaffConfigurableProductMemoizedSelectors {
 	selectAllConfigurableProductAttributes: MemoizedSelectorWithProps<object, object, Dictionary<string[]>>;
+	selectAllConfigurableProductVariants: MemoizedSelectorWithProps<object, object, DaffConfigurableProductVariant[]>;
 	selectMatchingConfigurableProductVariants: MemoizedSelectorWithProps<object, object, DaffConfigurableProductVariant[]>;
 	selectConfigurableProductPrices: MemoizedSelectorWithProps<object, object, number[]>;
 	selectConfigurableProductDiscountedPrices: MemoizedSelectorWithProps<object, object, number[]>;
@@ -37,6 +38,20 @@ const createConfigurableProductSelectors = (): DaffConfigurableProductMemoizedSe
 		selectProductEntities,
 		selectProduct
 	} = getDaffProductEntitiesSelectors();
+
+	/**
+	 * Selector for all variants of the product.
+	 */
+	const selectAllConfigurableProductVariants = createSelector(
+		selectProductEntities,
+		(products, props) => {
+			const product = <DaffConfigurableProduct>selectProduct.projector(products, { id: props.id });
+			if(!product || product.type !== DaffProductTypeEnum.Configurable) {
+				return [];
+			}
+			return product.variants;
+		}
+	);
 
 	/**
 	 * Selector for the variants of the product that match the currently applied attributes.
@@ -237,6 +252,7 @@ const createConfigurableProductSelectors = (): DaffConfigurableProductMemoizedSe
 
 	return { 
 		selectAllConfigurableProductAttributes,
+		selectAllConfigurableProductVariants,
 		selectConfigurableProductPrices,
 		selectConfigurableProductDiscountedPrices,
 		selectConfigurableProductPercentDiscounts,
