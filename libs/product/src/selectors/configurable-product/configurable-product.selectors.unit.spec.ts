@@ -20,6 +20,7 @@ describe('Configurable Product Selectors | unit tests', () => {
   const configurableProductFactory: DaffConfigurableProductFactory = new DaffConfigurableProductFactory();
 	let stubConfigurableProduct: DaffConfigurableProduct;
 	const {
+		selectAllConfigurableProductVariants,
 		selectConfigurableProductPrices,
 		selectConfigurableProductDiscountedPrices,
 		selectConfigurableProductPercentDiscounts,
@@ -47,6 +48,17 @@ describe('Configurable Product Selectors | unit tests', () => {
     stubConfigurableProduct = configurableProductFactory.create();
     store = TestBed.get(Store);
   });
+
+	describe('selectAllConfigurableProductVariants', () => {
+
+		it('returns all variants for the given product', () => {
+			store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
+			const selector = store.pipe(select(selectAllConfigurableProductVariants, { id: stubConfigurableProduct.id }));
+			const expected = cold('a', { a: stubConfigurableProduct.variants});
+
+			expect(selector).toBeObservable(expected);
+		});
+	});
 
 	describe('selectConfigurableProductPrices', () => {
 

@@ -18,6 +18,12 @@ export interface DaffConfigurableProductFacadeInterface extends DaffStoreFacade<
 	getAllAttributes(id: string): Observable<Dictionary<string[]>>;
 
 	/**
+	 * All variants of a configurable product.
+	 * @param id the id of the configurable product.
+	 */
+	getAllVariants(id: string): Observable<DaffConfigurableProductVariant[]>;
+
+	/**
 	 * The applied attributes of a configurable product.
 	 * @param id the id of the configurable product.
 	 */

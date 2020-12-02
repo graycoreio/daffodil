@@ -7,6 +7,9 @@ export class MockDaffConfigurableProductFacade implements DaffConfigurableProduc
 	getAllAttributes(id: string): BehaviorSubject<Dictionary<string[]>> {
 		return new BehaviorSubject({});
 	};
+	getAllVariants(id: string): BehaviorSubject<DaffConfigurableProductVariant[]> {
+		return new BehaviorSubject([]);
+	};
 	getAppliedAttributes(id: string): BehaviorSubject<Dictionary<string>> {
 		return new BehaviorSubject({});
 	};

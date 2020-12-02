@@ -81,6 +81,15 @@ describe('DaffConfigurableProductFacade', () => {
 		});
   });
 
+  describe('getAllVariants', () => {
+
+    it('should return an Observable dictionary of all attributes', () => {
+			const expected = cold('a', { a: stubConfigurableProduct.variants });
+
+			expect(facade.getAllVariants(stubConfigurableProduct.id)).toBeObservable(expected);
+		});
+  });
+
   describe('getAppliedAttributes', () => {
 
     it('should return an Observable dictionary of applied attributes', () => {
