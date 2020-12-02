@@ -10,7 +10,7 @@ npm install @daffodil/authorizenet
 ```
 
 ## Usage
-This package does most of the setup for you. All you need to do is import the `DaffAuthorizeNetModule` into your app, and either provide your own `DaffAuthorizeNetDriver` or just use the default one by importing `DaffAuthorizeNetDriverModule.forRoot()`. To set your authorizenet authentication details, provide a `DaffAuthorizeNetConfig` through the `DaffAuthorizeNetConfigToken` injection token. 
+This package does most of the setup for you. All you need to do is import the `DaffAuthorizeNetStateModule` into your app, and either provide your own `DaffAuthorizeNetDriver` or just use the default one by importing `DaffAuthorizeNetDriverModule.forRoot()`. To set your authorizenet authentication details, provide a `DaffAuthorizeNetConfig` through the `DaffAuthorizeNetConfigToken` injection token. 
 
 Call the `DaffAuthorizeNetGenerateToken` action with a `DaffAuthorizeNetTokenRequest` to generate a payment nonce. Access the payment nonce through the `DaffAuthorizeNetFacade`.
 
