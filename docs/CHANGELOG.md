@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.20.3](https://github.com/graycoreio/daffodil/compare/v0.20.2...v0.20.3) (2020-12-02)
+
+
+### Features
+
+* **authorizenet:** add error matcher injection token ([#1172](https://github.com/graycoreio/daffodil/issues/1172)) ([56baf73](https://github.com/graycoreio/daffodil/commit/56baf7368a60c86649896d0f996b7e05072064e8))
+* **product:** add a selector for getting all variants of a configurable product ([#1174](https://github.com/graycoreio/daffodil/issues/1174)) ([429d7a2](https://github.com/graycoreio/daffodil/commit/429d7a25fb904686ea16b1ccbcacb08e27886cd4))
+
 ### [0.20.2](https://github.com/graycoreio/daffodil/compare/v0.20.1...v0.20.2) (2020-11-30)
 
 
