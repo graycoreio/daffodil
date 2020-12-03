@@ -7,16 +7,10 @@ import { DaffStorageServiceError } from '@daffodil/core';
 import { DaffCart, DaffCartStorageService } from '@daffodil/cart';
 import {
   DaffResolveCart,
-  DaffCartLoadFailure,
-  DaffCartLoadSuccess,
-  DaffCartCreate,
-  DaffCartStorageFailure,
-  DaffResolveCartSuccess,
-  DaffCartCreateSuccess,
   DaffResolveCartFailure,
-  DaffCartCreateFailure
+  DaffResolveCartSuccess,
 } from '@daffodil/cart/state';
-import { DaffCartServiceInterface, DaffCartDriver, DaffCartNotFoundError } from '@daffodil/cart/driver';
+import { DaffCartServiceInterface, DaffCartDriver, DaffCartNotFoundError, DaffCartInvalidAPIResponseError } from '@daffodil/cart/driver';
 import {
 	DaffCartFactory,
 } from '@daffodil/cart/testing';
@@ -32,7 +26,6 @@ describe('DaffCartResolverEffects', () => {
 	let stubCart: DaffCart;
 
   let cartStorageService: jasmine.SpyObj<DaffCartStorageService>;
-  const cartStorageFailureAction = new DaffCartStorageFailure('Cart Storage Failed');
   const throwStorageError = () => { throw new DaffStorageServiceError('An error occurred during storage.') };
 
 	beforeEach(() => {
@@ -62,278 +55,178 @@ describe('DaffCartResolverEffects', () => {
 		expect(effects).toBeTruthy();
   });
 
-  describe('onResolveCart$', () => {
-    describe('handling storage errors e.g. being in SSR', () => {
-      it('should dispatch a DaffCartLoadFailure action', () => {
-        cartStorageService.getCartId.and.throwError('Storage error');
-
-        const loadCartFailureAction = new DaffCartLoadFailure(
-          'Cart loading has failed',
-        );
-
-        actions$ = hot('--a', { a: new DaffResolveCart() });
-        const expected = cold('--b', {
-          b: loadCartFailureAction
-        });
-
-        expect(effects.onResolveCart$).toBeObservable(expected);
-      });
+  describe('onResolveCart$ | when DaffResolveCart is dispatched', () => {
+    beforeEach(() => {
+      actions$ = hot('--a', { a: new DaffResolveCart() });
     });
 
-    describe('successfully resolving a cart when theres a cart id in storage', () => {
+    describe('when the storage service throws an error while fetching the cart ID', () => {
       beforeEach(() => {
-        cartStorageService.getCartId.and.returnValue(
-          stubCart.id.toString(),
-        );
-        driver.get.and.returnValue(of(stubCart));
+        cartStorageService.getCartId.and.callFake(throwStorageError);
       });
 
-      it('should not attempt to create a cart', () => {
-        const loadCartSuccessAction = new DaffCartLoadSuccess(stubCart);
-
-        actions$ = hot('--a', { a: new DaffResolveCart() });
+      it('should indicate cart resolution failure due to cart ID retrieval', () => {
+        const resolveCartFailureAction = new DaffResolveCartFailure('Cart resolution failed while attempting to retrieve the cart ID from storage.');
         const expected = cold('--b', {
-          b: loadCartSuccessAction,
-        });
-
-        expect(effects.onResolveCart$).toBeObservable(expected);
-        expect(driver.create).not.toHaveBeenCalled();
-      });
-
-      it('should indicate that a cart has loaded', () => {
-        const loadCartSuccessAction = new DaffCartLoadSuccess(stubCart);
-
-        actions$ = hot('--a', { a: new DaffResolveCart() });
-        const expected = cold('--b', {
-          b: loadCartSuccessAction
+          b: resolveCartFailureAction
         });
 
         expect(effects.onResolveCart$).toBeObservable(expected);
       });
     });
 
-    describe('handling XHR errors when creating a cart', () => {
-      it('should dispatch DaffCartLoadFailure action', () => {
-        const response = cold('#', {});
-        driver.create.and.returnValue(response);
-
-        const loadCartFailureAction = new DaffCartLoadFailure(
-          'Cart loading has failed',
-        );
-
-        actions$ = hot('--a', { a: new DaffResolveCart() });
-        const expected = cold('--b', {
-          b: loadCartFailureAction
-        });
-
-        expect(effects.onResolveCart$).toBeObservable(expected);
-      });
-    });
-
-    describe('handling XHR errors when retrieving a cart', () => {
-      it('should dispatch a DaffCartLoadFailure action', () => {
-        const response = cold('#', {});
-        driver.get.and.returnValue(response);
-
-        const loadCartFailureAction = new DaffCartLoadFailure(
-          'Cart loading has failed',
-        );
-
-        actions$ = hot('--a', { a: new DaffResolveCart() });
-        const expected = cold('--b', {
-          b: loadCartFailureAction
-        });
-
-        expect(effects.onResolveCart$).toBeObservable(expected);
-      });
-    });
-
-    describe('creating a cart when there is no cart id in storage', () => {
-      it('should create a cart', () => {
+    describe('when there is not a cart ID in storage', () => {
+      beforeEach(() => {
         cartStorageService.getCartId.and.returnValue(undefined);
         driver.create.and.returnValue(of({ id: stubCart.id }));
         driver.get.and.returnValue(of(stubCart));
+      });
 
-        const loadCartSuccessAction = new DaffCartLoadSuccess(stubCart);
+      describe('and when creating a cart fails', () => {
+        beforeEach(() => {
+          const response = cold('#', {}, new DaffCartInvalidAPIResponseError('error'));
+          driver.create.and.returnValue(response);
+        });
 
-        actions$ = hot('--a', { a: new DaffResolveCart() });
+        it('should dispatch DaffResolveCartFailure action', () => {
+          const response = cold('#', {});
+          driver.create.and.returnValue(response);
+          const resolveCartFailureAction = new DaffResolveCartFailure('Cart resolution has failed.');
+          const expected = cold('--b', {
+            b: resolveCartFailureAction
+          });
+
+          expect(effects.onResolveCart$).toBeObservable(expected);
+        });
+      });
+
+      it('should create a cart', () => {
+        const resolveCartSuccessAction = new DaffResolveCartSuccess(stubCart);
         const expected = cold('--b', {
-          b: loadCartSuccessAction
+          b: resolveCartSuccessAction
         });
 
         expect(effects.onResolveCart$).toBeObservable(expected);
         expect(driver.create).toHaveBeenCalled();
       });
-
-      it('should set the cart id in local storage', () => {
-        cartStorageService.getCartId.and.returnValue(undefined);
-        driver.create.and.returnValue(of({ id: stubCart.id }));
-        driver.get.and.returnValue(of(stubCart));
-
-        const loadCartSuccessAction = new DaffCartLoadSuccess(stubCart);
-
-        actions$ = hot('--a', { a: new DaffResolveCart() });
-        const expected = cold('--b', {
-          b: loadCartSuccessAction
-        });
-
-        expect(effects.onResolveCart$).toBeObservable(expected);
-        expect(cartStorageService.setCartId).toHaveBeenCalledWith(String(stubCart.id));
-      });
     });
 
-    describe('when the error thrown is a DaffCartNotFoundError', () => {
+    describe('when there is a cart ID in storage', () => {
+      let cartId;
 
-      it('should create a new cart', () => {
-        cartStorageService.getCartId.and.returnValue('id');
-        const response = cold('#', {}, new DaffCartNotFoundError('error'));
-        driver.get.and.returnValue(response);
-
-        const cartCreateAction = new DaffCartCreate();
-
-        actions$ = hot('--a', { a: new DaffResolveCart() });
-        const expected = cold('--b', {
-          b: cartCreateAction,
-        });
-
-        expect(effects.onResolveCart$).toBeObservable(expected);
+      beforeEach(() => {
+        cartId = stubCart.id.toString();
+        cartStorageService.getCartId.and.returnValue(cartId);
       });
-    });
 
-    describe('when the error thrown is a DaffStorageServiceError', () => {
-
-      it('should indicate that the storage service has failed', () => {
-        cartStorageService.getCartId.and.callFake(throwStorageError)
-
-        actions$ = hot('--a', { a: new DaffResolveCart() });
-        const expected = cold('--b', {
-          b: cartStorageFailureAction
+      describe('and the get call fails', () => {
+        beforeEach(() => {
+          const response = cold('#', {}, new DaffCartInvalidAPIResponseError('error'));
+          driver.get.and.returnValue(response);
         });
 
-        expect(effects.onResolveCart$).toBeObservable(expected);
+        it('should indicate failed cart resolution', () => {
+          const resolveCartFailureAction = new DaffResolveCartFailure('Cart resolution has failed.');
+          const expected = cold('--b', {
+            b: resolveCartFailureAction,
+          });
+
+          expect(effects.onResolveCart$).toBeObservable(expected);
+        });
+      });
+
+      describe('and the cart is not found when attempting to load it', () => {
+        beforeEach(() => {
+          const response = cold('#', {}, new DaffCartNotFoundError('error'));
+          driver.get.withArgs(cartId).and.returnValue(response);
+        });
+
+        describe('and the driver calls succeed', () => {
+          beforeEach(() => {
+            const newCartId = 'newCartId';
+            driver.create.and.returnValue(of({id: newCartId}));
+            driver.get.withArgs(newCartId).and.returnValue(of(stubCart));
+          });
+
+          it('should create a new cart', () => {
+            const resolveCartSuccessAction = new DaffResolveCartSuccess(stubCart);
+            const expected = cold('--b', {
+              b: resolveCartSuccessAction,
+            });
+
+            expect(effects.onResolveCart$).toBeObservable(expected);
+            expect(driver.create).toHaveBeenCalled();
+          });
+
+          it('should indicate successful cart resolution', () => {
+            const resolveCartSuccessAction = new DaffResolveCartSuccess(stubCart);
+            const expected = cold('--b', {
+              b: resolveCartSuccessAction,
+            });
+
+            expect(effects.onResolveCart$).toBeObservable(expected);
+          });
+        });
+
+        describe('and the create call fails', () => {
+          beforeEach(() => {
+            const response = cold('#', {}, new DaffCartInvalidAPIResponseError('error'));
+            driver.create.and.returnValue(response);
+          });
+
+          it('should indicate failed cart resolution', () => {
+            const resolveCartFailureAction = new DaffResolveCartFailure('Cart resolution failed after attempting to generate and load a new cart.');
+            const expected = cold('--b', {
+              b: resolveCartFailureAction,
+            });
+
+            expect(effects.onResolveCart$).toBeObservable(expected);
+          });
+        });
+
+        describe('and the get call fails', () => {
+          beforeEach(() => {
+            const response = cold('#', {}, new DaffCartNotFoundError('error'));
+            const newCartId = 'newCartId';
+            driver.create.and.returnValue(of({id: newCartId}));
+            driver.get.withArgs(newCartId).and.returnValue(response);
+          });
+
+          it('should indicate failed cart resolution', () => {
+            const resolveCartFailureAction = new DaffResolveCartFailure('Cart resolution failed after attempting to generate and load a new cart.');
+            const expected = cold('--b', {
+              b: resolveCartFailureAction,
+            });
+
+            expect(effects.onResolveCart$).toBeObservable(expected);
+          });
+        });
+      });
+
+      describe('and the cart loads successfully', () => {
+        beforeEach(() => {
+          driver.get.and.returnValue(of(stubCart));
+        });
+
+        it('should not attempt to create a cart', () => {
+          const resolveCartSuccessAction = new DaffResolveCartSuccess(stubCart);
+          const expected = cold('--b', {
+            b: resolveCartSuccessAction,
+          });
+
+          expect(effects.onResolveCart$).toBeObservable(expected);
+          expect(driver.create).not.toHaveBeenCalled();
+        });
+
+        it('should indicate that a cart has resolved', () => {
+          const resolveCartSuccessAction = new DaffResolveCartSuccess(stubCart);
+          const expected = cold('--b', {
+            b: resolveCartSuccessAction
+          });
+
+          expect(effects.onResolveCart$).toBeObservable(expected);
+        });
       });
     });
   });
-
-  describe('onResolveCartSuccess$', () => {
-    describe('when a resolve cart action is followed by a successful cart load', () => {
-      beforeEach(() => {
-        const resolveCartAction = new DaffResolveCart();
-        const loadCartSuccessAction = new DaffCartLoadSuccess(stubCart);
-
-        actions$ = hot('--a--b', {
-          a: resolveCartAction,
-          b: loadCartSuccessAction
-        });
-      })
-
-      it('should indicate cart resolution success', () => {
-        const resolveCartSuccessAction = new DaffResolveCartSuccess();
-        const expected = cold('-----a', {a: resolveCartSuccessAction});
-
-        expect(effects.onResolveCartSuccess$).toBeObservable(expected);
-      })
-    })
-
-    describe('when a resolve cart action is followed by a successful cart creation', () => {
-      beforeEach(() => {
-        const resolveCartAction = new DaffResolveCart();
-        const createCartSuccessAction = new DaffCartCreateSuccess(stubCart);
-
-        actions$ = hot('--a--b', {
-          a: resolveCartAction,
-          b: createCartSuccessAction
-        });
-      })
-
-      it('should indicate cart resolution success', () => {
-        const resolveCartSuccessAction = new DaffResolveCartSuccess();
-        const expected = cold('-----a', {a: resolveCartSuccessAction});
-
-        expect(effects.onResolveCartSuccess$).toBeObservable(expected);
-      })
-    })
-
-    describe('when a resolve cart action is followed by a cart resolve failure', () => {
-      beforeEach(() => {
-        const resolveCartAction = new DaffResolveCart();
-        const resolveCartFailureAction = new DaffResolveCartFailure('');
-
-        actions$ = hot('--a--b', {
-          a: resolveCartAction,
-          b: resolveCartFailureAction
-        });
-      })
-
-      it('should not indicate cart resolution success', () => {
-        const expected = cold('------');
-
-        expect(effects.onResolveCartSuccess$).toBeObservable(expected);
-      })
-    })
-  })
-
-  describe('onResolveCartFailure$', () => {
-    describe('when a resolve cart action is followed by a failed cart load', () => {
-      let error;
-
-      beforeEach(() => {
-        error = 'error'
-        const resolveCartAction = new DaffResolveCart();
-        const loadCartSuccessAction = new DaffCartLoadFailure(error);
-
-        actions$ = hot('--a--b', {
-          a: resolveCartAction,
-          b: loadCartSuccessAction
-        });
-      })
-
-      it('should indicate cart resolution failure', () => {
-        const resolveCartFailureAction = new DaffResolveCartFailure(error);
-        const expected = cold('-----a', {a: resolveCartFailureAction});
-
-        expect(effects.onResolveCartFailure$).toBeObservable(expected);
-      })
-    })
-
-    describe('when a resolve cart action is followed by a failed cart creation', () => {
-      let error;
-
-      beforeEach(() => {
-        error = 'error'
-        const resolveCartAction = new DaffResolveCart();
-        const createCartFailureAction = new DaffCartCreateFailure(error);
-
-        actions$ = hot('--a--b', {
-          a: resolveCartAction,
-          b: createCartFailureAction
-        });
-      })
-
-      it('should indicate cart resolution failure', () => {
-        const resolveCartFailureAction = new DaffResolveCartFailure(error);
-        const expected = cold('-----a', {a: resolveCartFailureAction});
-
-        expect(effects.onResolveCartFailure$).toBeObservable(expected);
-      })
-    })
-
-    describe('when a resolve cart action is followed by a cart resolve success', () => {
-      beforeEach(() => {
-        const resolveCartAction = new DaffResolveCart();
-        const resolveCartSuccessAction = new DaffResolveCartSuccess();
-
-        actions$ = hot('--a--b', {
-          a: resolveCartAction,
-          b: resolveCartSuccessAction
-        });
-      })
-
-      it('should not indicate cart resolution failure', () => {
-        const expected = cold('------');
-
-        expect(effects.onResolveCartFailure$).toBeObservable(expected);
-      })
-    })
-  })
 });
