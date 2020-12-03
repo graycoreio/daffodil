@@ -50,7 +50,7 @@ import { DaffCartResolverEffects } from './effects/cart-resolver.effects';
 	providers: [
 		{ provide: DaffCartBillingAddressGuardRedirectUrl, useValue: '/' },
 		{ provide: DaffCartItemsGuardRedirectUrl, useValue: '/' },
-		{ provide: DaffResolvedCartGuardRedirectUrl, useValue: '/' },
+		{ provide: DaffResolvedCartGuardRedirectUrl, useValue: null },
 		{ provide: DaffCartShippingAddressGuardRedirectUrl, useValue: '/' },
 		{ provide: DaffCartShippingMethodGuardRedirectUrl, useValue: '/' },
 		{ provide: DaffCartPaymentMethodGuardRedirectUrl, useValue: '/' },
