@@ -6,7 +6,8 @@ import {
   DaffResolveCartSuccess,
   DaffResolveCartFailure,
   initialState,
-  DaffCartReducerState
+  DaffCartReducerState,
+  DaffCartResolveState
 } from '@daffodil/cart/state';
 import {
   DaffCartFactory,
@@ -35,13 +36,13 @@ describe('Cart | Reducer | cartResolveReducer', () => {
     });
   });
 
-  describe('when ResolveCartActionAction is triggered', () => {
-    it('should set resolved state to false', () => {
+  describe('when ResolveCartAction is triggered', () => {
+    it('should set resolved state to resolving', () => {
       const cartResolveAction: DaffResolveCart = new DaffResolveCart();
 
       const result = reducer(initialState, cartResolveAction);
 
-      expect(result.resolved).toEqual(false);
+      expect(result.resolved).toEqual(DaffCartResolveState.Resolving);
     });
   });
 
@@ -52,16 +53,16 @@ describe('Cart | Reducer | cartResolveReducer', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        resolved: false
+        resolved: DaffCartResolveState.Resolving
       }
 
-      const cartResolveSuccess = new DaffResolveCartSuccess();
+      const cartResolveSuccess = new DaffResolveCartSuccess(cart);
 
       result = reducer(state, cartResolveSuccess);
     });
 
-    it('should indicate that the cart is resolved', () => {
-      expect(result.resolved).toEqual(true);
+    it('should indicate that the cart resolved successfully', () => {
+      expect(result.resolved).toEqual(DaffCartResolveState.Succeeded);
     });
   });
 
@@ -73,7 +74,7 @@ describe('Cart | Reducer | cartResolveReducer', () => {
     beforeEach(() => {
       state = {
         ...initialState,
-        resolved: false,
+        resolved: DaffCartResolveState.Resolving,
       }
 
       const cartResolveFailure = new DaffResolveCartFailure(error);
@@ -81,8 +82,8 @@ describe('Cart | Reducer | cartResolveReducer', () => {
       result = reducer(state, cartResolveFailure);
     });
 
-    it('should indicate that the cart is resolved', () => {
-      expect(result.resolved).toEqual(true);
+    it('should indicate that the cart failed resolution', () => {
+      expect(result.resolved).toEqual(DaffCartResolveState.Failed);
     });
   });
 });

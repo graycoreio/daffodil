@@ -9,14 +9,18 @@ import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
 import { DaffCartOperationType } from '../../reducers/cart-operation-type.enum';
 import { DaffCartLoading } from '../../reducers/loading/cart-loading.type';
 import { DaffCartItemStateEnum, DaffStatefulCartItem } from '../../models/stateful-cart-item';
+import { DaffCartResolveState } from '../../reducers/public_api';
 
 export interface DaffCartFacadeInterface<
   T extends DaffCart = DaffCart,
 	V extends DaffCartOrderResult = DaffCartOrderResult,
 	U extends DaffStatefulCartItem = DaffStatefulCartItem
 > extends DaffStoreFacade<Action> {
-  resolved$: Observable<boolean>;
   cart$: Observable<T>;
+
+  resolved$: Observable<DaffCartResolveState>;
+  resolveSuccess$: Observable<boolean>;
+  resolveFailure$: Observable<boolean>;
 
   /**
    * The object that holds all the loading states for cart operations.

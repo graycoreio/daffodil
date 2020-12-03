@@ -6,7 +6,7 @@ import { Dictionary } from '@ngrx/entity';
 
 import { DaffCart, DaffCartOrderResult, DaffCartTotal, DaffCartPaymentMethodIdMap, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption } from '@daffodil/cart';
 
-import { DaffCartReducersState } from '../../reducers/public_api';
+import { DaffCartReducersState, DaffCartResolveState } from '../../reducers/public_api';
 import { getDaffCartSelectors } from '../../selectors/public_api';
 import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
 import { DaffCartOperationType } from '../../reducers/cart-operation-type.enum';
@@ -22,8 +22,11 @@ export class DaffCartFacade<
 	V extends DaffCartOrderResult = DaffCartOrderResult,
 	U extends DaffStatefulCartItem = DaffStatefulCartItem
 > implements DaffCartFacadeInterface<T, V, U> {
-  resolved$: Observable<boolean>;
   cart$: Observable<T>;
+
+  resolved$: Observable<DaffCartResolveState>;
+  resolveSuccess$: Observable<boolean>;
+  resolveFailure$: Observable<boolean>;
 
   loadingObject$: Observable<DaffCartLoading>;
   featureLoading$: Observable<boolean>;
@@ -117,8 +120,11 @@ export class DaffCartFacade<
     @Inject(DaffCartPaymentMethodIdMap) private paymentMethodMap: Object
   ) {
 		const {
-      selectCartResolved,
       selectCartValue,
+
+      selectCartResolved,
+      selectCartResolveSuccess,
+      selectCartResolveFailure,
 
       selectCartLoadingObject,
       selectCartFeatureLoading,
@@ -211,8 +217,11 @@ export class DaffCartFacade<
 		this._selectIsCartItemOutOfStock = selectIsCartItemOutOfStock;
 		this._selectCartItemState = selectCartItemState;
 
-    this.resolved$ = this.store.pipe(select(selectCartResolved));
     this.cart$ = this.store.pipe(select(selectCartValue));
+
+    this.resolved$ = this.store.pipe(select(selectCartResolved));
+    this.resolveSuccess$ = this.store.pipe(select(selectCartResolveSuccess));
+    this.resolveFailure$ = this.store.pipe(select(selectCartResolveFailure));
 
     this.loadingObject$ = this.store.pipe(select(selectCartLoadingObject));
     this.featureLoading$ = this.store.pipe(select(selectCartFeatureLoading));

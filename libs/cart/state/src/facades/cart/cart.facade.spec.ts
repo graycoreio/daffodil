@@ -6,31 +6,32 @@ import { cold } from 'jasmine-marbles';
 
 import { DaffLoadingState } from '@daffodil/core/state';
 import { DaffCartOrderResult, DaffCartPaymentMethodIdMap, DaffCart, DaffCartTotalTypeEnum, DaffCartPaymentMethod, DaffConfigurableCartItem, DaffCompositeCartItem, DaffCartItemInputType } from '@daffodil/cart';
-import { 
-	initialState, DaffCartReducersState, 
-	DaffCartLoading, DaffCartErrors, 
-	daffCartReducers, DaffCartOperationType, 
-	DaffResolveCartSuccess, DaffCartLoadSuccess, 
-	DaffCartLoad, DaffCartClear, 
-	DaffCartItemLoad, DaffCartItemDelete, 
-	DaffCartBillingAddressLoad, DaffCartBillingAddressUpdate, 
-	DaffCartShippingAddressLoad, DaffCartShippingAddressUpdate, 
-	DaffCartShippingInformationLoad, DaffCartShippingInformationDelete, 
-	DaffCartShippingMethodsLoad, DaffCartPaymentLoad, 
-	DaffCartPaymentRemove, DaffCartPaymentMethodsLoad, 
-	DaffCartCouponList, DaffCartCouponRemoveAll, 
-	DaffCartLoadFailure, DaffCartItemLoadFailure, 
-	DaffCartBillingAddressLoadFailure, DaffCartShippingAddressLoadFailure, 
-	DaffCartShippingInformationLoadFailure, DaffCartShippingMethodsLoadFailure, 
-	DaffCartPaymentLoadFailure, DaffCartPaymentMethodsLoadFailure, 
-	DaffCartCouponListFailure, DaffCartCreateSuccess, 
-	DaffCartItemListSuccess, DaffCartBillingAddressLoadSuccess, 
-	DaffCartShippingAddressLoadSuccess, DaffCartPaymentLoadSuccess, 
-	DaffCartShippingInformationLoadSuccess, DaffCartShippingMethodsLoadSuccess, 
-	DaffCartPaymentMethodsLoadSuccess, DaffCartPlaceOrder, 
+import {
+	initialState, DaffCartReducersState,
+	DaffCartLoading, DaffCartErrors,
+	daffCartReducers, DaffCartOperationType,
+	DaffCartLoadSuccess,
+	DaffCartLoad, DaffCartClear,
+	DaffCartItemLoad, DaffCartItemDelete,
+	DaffCartBillingAddressLoad, DaffCartBillingAddressUpdate,
+	DaffCartShippingAddressLoad, DaffCartShippingAddressUpdate,
+	DaffCartShippingInformationLoad, DaffCartShippingInformationDelete,
+	DaffCartShippingMethodsLoad, DaffCartPaymentLoad,
+	DaffCartPaymentRemove, DaffCartPaymentMethodsLoad,
+	DaffCartCouponList, DaffCartCouponRemoveAll,
+	DaffCartLoadFailure, DaffCartItemLoadFailure,
+	DaffCartBillingAddressLoadFailure, DaffCartShippingAddressLoadFailure,
+	DaffCartShippingInformationLoadFailure, DaffCartShippingMethodsLoadFailure,
+	DaffCartPaymentLoadFailure, DaffCartPaymentMethodsLoadFailure,
+	DaffCartCouponListFailure, DaffCartCreateSuccess,
+	DaffCartItemListSuccess, DaffCartBillingAddressLoadSuccess,
+	DaffCartShippingAddressLoadSuccess, DaffCartPaymentLoadSuccess,
+	DaffCartShippingInformationLoadSuccess, DaffCartShippingMethodsLoadSuccess,
+	DaffCartPaymentMethodsLoadSuccess, DaffCartPlaceOrder,
 	DaffCartPlaceOrderFailure, DaffCartPlaceOrderSuccess,
 	DaffCartItemLoadingState,
-	DaffCartItemAdd
+	DaffCartItemAdd,
+  DaffCartResolveState
 } from '@daffodil/cart/state';
 import {
   DaffCartFactory,
@@ -132,15 +133,23 @@ describe('DaffCartFacade', () => {
   });
 
   describe('resolved$', () => {
-    it('should be false if the cart is not resolved', () => {
-      const expected = cold('a', { a: false });
+    it('should be the resolved state', () => {
+      const expected = cold('a', { a: DaffCartResolveState.Default });
       expect(facade.resolved$).toBeObservable(expected);
     });
+  });
 
-    it('should be true if the cart is resolved', () => {
-      const expected = cold('a', { a: true });
-      facade.dispatch(new DaffResolveCartSuccess());
-      expect(facade.resolved$).toBeObservable(expected);
+  describe('resolveSuccess$', () => {
+    it('should be false', () => {
+      const expected = cold('a', { a: false });
+      expect(facade.resolveSuccess$).toBeObservable(expected);
+    });
+  });
+
+  describe('resolveFailure$', () => {
+    it('should be false', () => {
+      const expected = cold('a', { a: false });
+      expect(facade.resolveFailure$).toBeObservable(expected);
     });
   });
 

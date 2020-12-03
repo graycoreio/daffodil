@@ -14,13 +14,17 @@ import { getDaffCartFeatureSelector } from '../cart-feature.selector';
 import { DaffCartReducerState, DaffCartReducersState, DaffCartOperationType } from '../../reducers/public_api';
 import { DaffCartItemLoadingState } from '../../reducers/loading/cart-loading.type';
 import { DaffStatefulCartItem } from '../../models/stateful-cart-item';
+import { DaffCartResolveState } from '../../reducers/cart-resolve/cart-resolve-state.enum';
 
 export interface DaffCartStateMemoizedSelectors<
   T extends DaffCart = DaffCart
 > {
 	selectCartState: MemoizedSelector<object, DaffCartReducerState<T>>;
-	selectCartValue: MemoizedSelector<object, T>;
-  selectCartResolved: MemoizedSelector<object, boolean>;
+  selectCartValue: MemoizedSelector<object, T>;
+
+  selectCartResolved: MemoizedSelector<object, DaffCartResolveState>;
+  selectCartResolveSuccess: MemoizedSelector<object, boolean>;
+  selectCartResolveFailure: MemoizedSelector<object, boolean>;
 
   /**
    * The object that holds all the loading states for cart operations.
@@ -233,10 +237,19 @@ const createCartSelectors = <
 	const selectCartValue = createSelector(
 		selectCartState,
 		(state: DaffCartReducerState<T>) => state.cart
-	);
+  );
+
   const selectCartResolved = createSelector(
 		selectCartState,
 		(state: DaffCartReducerState<T>) => state.resolved
+  );
+  const selectCartResolveSuccess = createSelector(
+		selectCartResolved,
+		resolved => resolved === DaffCartResolveState.Succeeded
+  );
+  const selectCartResolveFailure = createSelector(
+		selectCartResolved,
+		resolved => resolved === DaffCartResolveState.Failed
   );
 
   const selectCartLoadingObject = createSelector(
@@ -605,8 +618,11 @@ const createCartSelectors = <
 
 	return {
 		selectCartState,
-		selectCartValue,
+    selectCartValue,
+
     selectCartResolved,
+    selectCartResolveSuccess,
+    selectCartResolveFailure,
 
     selectCartLoadingObject,
     selectCartFeatureLoading,
