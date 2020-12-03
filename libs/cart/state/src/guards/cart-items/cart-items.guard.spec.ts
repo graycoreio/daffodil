@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 
 import { DaffCart, DaffCartItem } from '@daffodil/cart';
 import {
-  DaffResolveCartSuccess,
   DaffCartLoadSuccess
 } from '@daffodil/cart/state';
 import { daffCartReducers, DaffCartItemsGuardRedirectUrl } from '@daffodil/cart/state';
@@ -57,21 +56,12 @@ describe('Cart | State | Guards | DaffCartItemsGuard', () => {
 	});
 
 	describe('canActivate', () => {
-    describe('when the cart has not been resolved', () => {
-      it('should not emit', () => {
-        const expected = cold('-');
-
-        expect(service.canActivate()).toBeObservable(expected);
-      });
-    });
-
     describe('when there are items in the cart', () => {
       beforeEach(() => {
         store.dispatch(new DaffCartLoadSuccess({
           ...cart,
           items: cartItems
         }));
-        store.dispatch(new DaffResolveCartSuccess());
       });
 
       it('should allow activation', () => {
@@ -89,7 +79,6 @@ describe('Cart | State | Guards | DaffCartItemsGuard', () => {
           ...cart,
           items: []
         }));
-        store.dispatch(new DaffResolveCartSuccess());
 			});
 
 			it('should not allow activation', () => {

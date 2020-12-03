@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 
 import { DaffCart } from '@daffodil/cart';
 import {
-  DaffResolveCartSuccess,
   DaffCartLoadSuccess
 } from '@daffodil/cart/state';
 import { daffCartReducers, DaffCartBillingAddressGuardRedirectUrl } from '@daffodil/cart/state';
@@ -44,20 +43,11 @@ describe('Cart | State | Guards | DaffBillingAddressGuard', () => {
 	});
 
 	describe('canActivate', () => {
-    describe('when the cart has not been resolved', () => {
-      it('should not emit', () => {
-        const expected = cold('-');
-
-        expect(service.canActivate()).toBeObservable(expected);
-      });
-    });
-
 		it('should allow activation when there is a billing address', () => {
 			const cart: DaffCart = new DaffCartFactory().create({
 				billing_address: new DaffCartAddressFactory().create(),
 			});
 			store.dispatch(new DaffCartLoadSuccess(cart));
-			store.dispatch(new DaffResolveCartSuccess());
 			const expected = cold('(a|)', { a: true })
 
 			expect(service.canActivate()).toBeObservable(expected);
@@ -71,7 +61,6 @@ describe('Cart | State | Guards | DaffBillingAddressGuard', () => {
 					billing_address: null,
 				});
         store.dispatch(new DaffCartLoadSuccess(cart));
-        store.dispatch(new DaffResolveCartSuccess());
 			});
 
 			it('should not allow activation', () => {

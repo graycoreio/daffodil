@@ -8,7 +8,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { DaffCart } from '@daffodil/cart';
 import {
   daffCartReducers,
-  DaffResolveCartSuccess,
   DaffCartLoadSuccess,
   DaffCartPaymentMethodGuardRedirectUrl
 } from '@daffodil/cart/state';
@@ -45,20 +44,11 @@ describe('Cart | State | Guards | DaffPaymentMethodGuard', () => {
 	});
 
 	describe('canActivate', () => {
-		describe('when the cart has not been resolved', () => {
-      it('should not emit', () => {
-        const expected = cold('-');
-
-        expect(service.canActivate()).toBeObservable(expected);
-      });
-    });
-
 		it('should allow activation when there is a payment method', () => {
 			const cart: DaffCart = new DaffCartFactory().create({
 				payment: new DaffCartPaymentFactory().create(),
 			});
       store.dispatch(new DaffCartLoadSuccess(cart));
-      store.dispatch(new DaffResolveCartSuccess());
 			const expected = cold('(a|)', { a: true })
 
 			expect(service.canActivate()).toBeObservable(expected);
@@ -72,7 +62,6 @@ describe('Cart | State | Guards | DaffPaymentMethodGuard', () => {
 					payment: null,
 				});
         store.dispatch(new DaffCartLoadSuccess(cart));
-				store.dispatch(new DaffResolveCartSuccess());
 			});
 
 			it('should not allow activation', () => {
