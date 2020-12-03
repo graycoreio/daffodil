@@ -1,3 +1,3 @@
-export { DaffContactInMemoryDriverModule } from './drivers/in-memory/in-memory.module';
-export { DaffInMemoryBackendContactService } from '../../driver/in-memory/src/in-memory-backend/contact-in-memory-backend.service';
+export { DaffContactInMemoryDriverModule } from './in-memory.module';
+export { DaffInMemoryBackendContactService } from './in-memory-backend/contact-in-memory-backend.service';
 

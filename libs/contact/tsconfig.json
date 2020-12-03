@@ -23,9 +23,21 @@
       "@daffodil/contact": [
         "libs/contact/src"
       ],
-      "@daffodil/contact/testing": [
-        "libs/contact/testing/src"
+      "@daffodil/contact/driver": [
+        "libs/contact/driver/src"
       ],
+      "@daffodil/contact/driver/in-memory": [
+        "libs/contact/driver/in-memory/src"
+      ],
+      "@daffodil/contact/driver/hubspot": [
+        "libs/contact/driver/hubspot/src"
+      ],
+      "@daffodil/contact/testing": [
+        "libs/contact/driver/testing/src"
+      ],
+      "@daffodil/contact/state": [
+        "libs/contact/state/src"
+      ]
     }
   }
 }

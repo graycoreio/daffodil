@@ -10,8 +10,9 @@ import {
 	DaffContactFailedSubmit,
 	DaffContactRetry,
 	DaffContactCancel,
-	DaffContactDriver,
 } from '@daffodil/contact/state';
+
+import { DaffContactDriver } from '@daffodil/contact/driver'
 
 import { DaffContactTestingDriverModule } from '@daffodil/contact/testing';
 
