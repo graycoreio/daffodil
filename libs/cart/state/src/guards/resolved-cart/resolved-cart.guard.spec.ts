@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { DaffCart } from '@daffodil/cart';
 import {
   DaffCartFacade,
+  DaffCartResolveState,
   DaffResolveCart
 } from '@daffodil/cart/state';
 import { DaffResolvedCartGuardRedirectUrl } from '@daffodil/cart/state';
@@ -66,7 +67,7 @@ describe('Cart | State | Guards | DaffResolvedCartGuard', () => {
 
     describe('when the cart has not been resolved', () => {
       beforeEach(() => {
-        facade.resolveSuccess$.next(false);
+        facade.resolved$.next(DaffCartResolveState.Default);
       });
 
       it('should not emit', () => {
@@ -78,7 +79,7 @@ describe('Cart | State | Guards | DaffResolvedCartGuard', () => {
 
     describe('when there is a successfully resolved cart', () => {
       beforeEach(() => {
-        facade.resolveSuccess$.next(true);
+        facade.resolved$.next(DaffCartResolveState.Succeeded);
       });
 
       it('should allow activation', () => {
@@ -91,7 +92,7 @@ describe('Cart | State | Guards | DaffResolvedCartGuard', () => {
 		describe('when there is a failed cart resolution', () => {
 			beforeEach(() => {
 				spyOn(router, 'navigateByUrl');
-        facade.resolveFailure$.next(true);
+        facade.resolved$.next(DaffCartResolveState.Failed);
       });
 
       describe('when the redirect URL is not specified', () => {

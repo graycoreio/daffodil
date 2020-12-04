@@ -23,8 +23,6 @@ export interface DaffCartStateMemoizedSelectors<
   selectCartValue: MemoizedSelector<object, T>;
 
   selectCartResolved: MemoizedSelector<object, DaffCartResolveState>;
-  selectCartResolveSuccess: MemoizedSelector<object, boolean>;
-  selectCartResolveFailure: MemoizedSelector<object, boolean>;
 
   /**
    * The object that holds all the loading states for cart operations.
@@ -242,14 +240,6 @@ const createCartSelectors = <
   const selectCartResolved = createSelector(
 		selectCartState,
 		(state: DaffCartReducerState<T>) => state.resolved
-  );
-  const selectCartResolveSuccess = createSelector(
-		selectCartResolved,
-		resolved => resolved === DaffCartResolveState.Succeeded
-  );
-  const selectCartResolveFailure = createSelector(
-		selectCartResolved,
-		resolved => resolved === DaffCartResolveState.Failed
   );
 
   const selectCartLoadingObject = createSelector(
@@ -621,8 +611,6 @@ const createCartSelectors = <
     selectCartValue,
 
     selectCartResolved,
-    selectCartResolveSuccess,
-    selectCartResolveFailure,
 
     selectCartLoadingObject,
     selectCartFeatureLoading,

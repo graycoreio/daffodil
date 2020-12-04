@@ -62,8 +62,6 @@ describe('Cart | Selector | Cart', () => {
     selectCartValue,
 
     selectCartResolved,
-    selectCartResolveSuccess,
-    selectCartResolveFailure,
 
     selectCartLoadingObject,
     selectCartFeatureLoading,
@@ -230,40 +228,6 @@ describe('Cart | Selector | Cart', () => {
     it('should be failed after cart resolution failure', () => {
       const selector = store.pipe(select(selectCartResolved));
       const expected = cold('a', {a: DaffCartResolveState.Failed});
-      store.dispatch(new DaffResolveCartFailure('error'));
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCartResolveSuccess', () => {
-    it('should initially be false', () => {
-      const selector = store.pipe(select(selectCartResolveSuccess));
-      const expected = cold('a', {a: false});
-
-      expect(selector).toBeObservable(expected);
-    });
-
-    it('should be true after cart resolution success', () => {
-      const selector = store.pipe(select(selectCartResolveSuccess));
-      const expected = cold('a', {a: true});
-      store.dispatch(new DaffResolveCartSuccess(cart));
-
-      expect(selector).toBeObservable(expected);
-    });
-  });
-
-  describe('selectCartResolveFailure', () => {
-    it('should initially be false', () => {
-      const selector = store.pipe(select(selectCartResolveFailure));
-      const expected = cold('a', {a: false});
-
-      expect(selector).toBeObservable(expected);
-    });
-
-    it('should be true after cart resolution failure', () => {
-      const selector = store.pipe(select(selectCartResolveFailure));
-      const expected = cold('a', {a: true});
       store.dispatch(new DaffResolveCartFailure('error'));
 
       expect(selector).toBeObservable(expected);

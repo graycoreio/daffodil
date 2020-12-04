@@ -19,8 +19,6 @@ export interface DaffCartFacadeInterface<
   cart$: Observable<T>;
 
   resolved$: Observable<DaffCartResolveState>;
-  resolveSuccess$: Observable<boolean>;
-  resolveFailure$: Observable<boolean>;
 
   /**
    * The object that holds all the loading states for cart operations.

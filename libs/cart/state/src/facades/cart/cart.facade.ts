@@ -25,8 +25,6 @@ export class DaffCartFacade<
   cart$: Observable<T>;
 
   resolved$: Observable<DaffCartResolveState>;
-  resolveSuccess$: Observable<boolean>;
-  resolveFailure$: Observable<boolean>;
 
   loadingObject$: Observable<DaffCartLoading>;
   featureLoading$: Observable<boolean>;
@@ -123,8 +121,6 @@ export class DaffCartFacade<
       selectCartValue,
 
       selectCartResolved,
-      selectCartResolveSuccess,
-      selectCartResolveFailure,
 
       selectCartLoadingObject,
       selectCartFeatureLoading,
@@ -220,8 +216,6 @@ export class DaffCartFacade<
     this.cart$ = this.store.pipe(select(selectCartValue));
 
     this.resolved$ = this.store.pipe(select(selectCartResolved));
-    this.resolveSuccess$ = this.store.pipe(select(selectCartResolveSuccess));
-    this.resolveFailure$ = this.store.pipe(select(selectCartResolveFailure));
 
     this.loadingObject$ = this.store.pipe(select(selectCartLoadingObject));
     this.featureLoading$ = this.store.pipe(select(selectCartFeatureLoading));

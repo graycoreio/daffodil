@@ -6,6 +6,7 @@ import { tap, filter, take, map } from 'rxjs/operators';
 import { DaffCartFacade } from '../../facades/cart/cart.facade';
 import { DaffResolvedCartGuardRedirectUrl } from './resolved-cart-guard-redirect.token';
 import { DaffResolveCart } from '../../actions/public_api';
+import { DaffCartResolveState } from '../../reducers/public_api';
 
 /**
  * A routing guard that will optionally redirect to a given url if the cart is not properly resolved.
@@ -27,12 +28,9 @@ export class DaffResolvedCartGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     this.facade.dispatch(new DaffResolveCart());
 
-    return combineLatest([
-      this.facade.resolveSuccess$,
-      this.facade.resolveFailure$
-    ]).pipe(
-      filter(([success, failure]) => success || failure),
-      map(([success]) => success),
+    return this.facade.resolved$.pipe(
+      filter(resolvedState => resolvedState === DaffCartResolveState.Succeeded || resolvedState === DaffCartResolveState.Failed),
+      map(resolvedState => resolvedState === DaffCartResolveState.Succeeded),
       take(1),
 			tap(success => {
 				if (!success && this.redirectUrl) {

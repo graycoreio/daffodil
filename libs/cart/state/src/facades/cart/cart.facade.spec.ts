@@ -139,20 +139,6 @@ describe('DaffCartFacade', () => {
     });
   });
 
-  describe('resolveSuccess$', () => {
-    it('should be false', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.resolveSuccess$).toBeObservable(expected);
-    });
-  });
-
-  describe('resolveFailure$', () => {
-    it('should be false', () => {
-      const expected = cold('a', { a: false });
-      expect(facade.resolveFailure$).toBeObservable(expected);
-    });
-  });
-
   describe('cart$', () => {
     it('should initially be cart with no defined properties', () => {
       const expected = cold('a', { a: initialState.cart });
