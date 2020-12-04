@@ -136,26 +136,26 @@ describe('DaffCartResolverEffects', () => {
       });
 
       describe('and the cart is not found when attempting to load it', () => {
+        const newCartId = 'newCartId';
+
         beforeEach(() => {
           const response = cold('#', {}, new DaffCartNotFoundError('error'));
           driver.get.withArgs(cartId).and.returnValue(response);
+          driver.create.and.returnValue(of({id: newCartId}));
+        });
+
+        it('should create a new cart', () => {
+          const expected = cold('--b', {
+            b: jasmine.anything(),
+          });
+
+          expect(effects.onResolveCart$).toBeObservable(expected);
+          expect(driver.create).toHaveBeenCalled();
         });
 
         describe('and the driver calls succeed', () => {
           beforeEach(() => {
-            const newCartId = 'newCartId';
-            driver.create.and.returnValue(of({id: newCartId}));
             driver.get.withArgs(newCartId).and.returnValue(of(stubCart));
-          });
-
-          it('should create a new cart', () => {
-            const resolveCartSuccessAction = new DaffResolveCartSuccess(stubCart);
-            const expected = cold('--b', {
-              b: resolveCartSuccessAction,
-            });
-
-            expect(effects.onResolveCart$).toBeObservable(expected);
-            expect(driver.create).toHaveBeenCalled();
           });
 
           it('should indicate successful cart resolution', () => {
@@ -187,7 +187,6 @@ describe('DaffCartResolverEffects', () => {
         describe('and the get call fails', () => {
           beforeEach(() => {
             const response = cold('#', {}, new DaffCartNotFoundError('error'));
-            const newCartId = 'newCartId';
             driver.create.and.returnValue(of({id: newCartId}));
             driver.get.withArgs(newCartId).and.returnValue(response);
           });
@@ -218,7 +217,7 @@ describe('DaffCartResolverEffects', () => {
           expect(driver.create).not.toHaveBeenCalled();
         });
 
-        it('should indicate that a cart has resolved', () => {
+        it('should indicate that a cart has resolved successfully', () => {
           const resolveCartSuccessAction = new DaffResolveCartSuccess(stubCart);
           const expected = cold('--b', {
             b: resolveCartSuccessAction
