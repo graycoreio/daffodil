@@ -187,7 +187,11 @@ export interface DaffCartFacadeInterface<
   totalTax$: Observable<DaffCartTotal['value']>;
   shippingTotal$: Observable<DaffCartTotal['value']>;
   coupons$: Observable<DaffCart['coupons']>;
-  items$: Observable<DaffCart['items']>;
+	items$: Observable<DaffCart['items']>;
+	/**
+	 * The total number of cart items, taking into account the quantity of each cart item.
+	 */
+  totalItems$: Observable<number>;
   hasOutOfStockItems$: Observable<boolean>;
   itemDictionary$: Observable<Dictionary<U>>;
   billingAddress$: Observable<DaffCart['billing_address']>;
