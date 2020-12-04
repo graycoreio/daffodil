@@ -6,20 +6,19 @@ import { Router } from '@angular/router';
 
 import { DaffCart } from '@daffodil/cart';
 import {
-  DaffResolveCartSuccess,
-  DaffCartLoadSuccess,
   DaffCartFacade,
+  DaffCartResolveState,
   DaffResolveCart
 } from '@daffodil/cart/state';
 import { DaffResolvedCartGuardRedirectUrl } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
-import { DaffCartTestingModule, MockDaffCartFacade } from '@daffodil/cart/state/testing';
+import { DaffCartTestingModule } from '@daffodil/cart/state/testing';
 
 import { DaffResolvedCartGuard } from './resolved-cart.guard';
 
 describe('Cart | State | Guards | DaffResolvedCartGuard', () => {
 	let service: DaffResolvedCartGuard;
-	let facade: MockDaffCartFacade;
+	let facade;
   let router: Router;
 
   let cartFactory: DaffCartFactory;
@@ -39,9 +38,9 @@ describe('Cart | State | Guards | DaffResolvedCartGuard', () => {
 			]
     });
 
-		service = TestBed.get(DaffResolvedCartGuard);
 		facade = TestBed.get(DaffCartFacade);
     router = TestBed.get(Router);
+		service = new DaffResolvedCartGuard(facade, router, stubUrl);
 
     spyOn(facade, 'dispatch');
 
@@ -68,7 +67,7 @@ describe('Cart | State | Guards | DaffResolvedCartGuard', () => {
 
     describe('when the cart has not been resolved', () => {
       beforeEach(() => {
-        facade.resolved$.next(false);
+        facade.resolved$.next(DaffCartResolveState.Default);
       });
 
       it('should not emit', () => {
@@ -78,10 +77,9 @@ describe('Cart | State | Guards | DaffResolvedCartGuard', () => {
       });
     });
 
-    describe('when there is a resolved cart with an ID', () => {
+    describe('when there is a successfully resolved cart', () => {
       beforeEach(() => {
-        facade.id$.next(cart.id);
-        facade.resolved$.next(true);
+        facade.resolved$.next(DaffCartResolveState.Succeeded);
       });
 
       it('should allow activation', () => {
@@ -91,13 +89,22 @@ describe('Cart | State | Guards | DaffResolvedCartGuard', () => {
       });
     });
 
-
-		describe('when there is not a resolved cart with an ID', () => {
+		describe('when there is a failed cart resolution', () => {
 			beforeEach(() => {
 				spyOn(router, 'navigateByUrl');
-        facade.id$.next(null);
-        facade.resolved$.next(true);
-			});
+        facade.resolved$.next(DaffCartResolveState.Failed);
+      });
+
+      describe('when the redirect URL is not specified', () => {
+        beforeEach(() => {
+          service = new DaffResolvedCartGuard(facade, router, null);
+        });
+
+        it('should not redirect', () => {
+          service.canActivate().subscribe();
+          expect(router.navigateByUrl).not.toHaveBeenCalled();
+        });
+      });
 
 			it('should not allow activation', () => {
 				const expected = cold('(a|)', { a: false });

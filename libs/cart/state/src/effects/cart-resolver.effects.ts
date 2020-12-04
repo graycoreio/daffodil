@@ -5,20 +5,13 @@ import { Observable, of } from 'rxjs';
 import { switchMap, catchError, map, mapTo } from 'rxjs/operators';
 
 import { DaffStorageServiceError } from '@daffodil/core';
-import { substream } from '@daffodil/core/state';
 import { DaffCart, DaffCartStorageService } from '@daffodil/cart';
 import { DaffCartDriver, DaffCartServiceInterface, DaffCartNotFoundError } from '@daffodil/cart/driver';
 
 import {
 	DaffCartActionTypes,
-	DaffCartLoadSuccess,
-	DaffCartCreate,
-	DaffCartLoadFailure,
-	DaffCartStorageFailure,
-  DaffResolveCart,
   DaffResolveCartSuccess,
   DaffResolveCartFailure,
-  DaffCartCreateFailure
 } from '../actions/public_api';
 
 /**
@@ -33,57 +26,28 @@ export class DaffCartResolverEffects<T extends DaffCart = DaffCart> {
 		@Inject(DaffCartDriver) private driver: DaffCartServiceInterface<T>,
 	) {}
 
-	@Effect()
-	onResolveCart$: Observable<Action> = this.actions$.pipe(
+  @Effect()
+  onResolveCart$: Observable<Action> = this.actions$.pipe(
     ofType(DaffCartActionTypes.ResolveCartAction),
     switchMap(() => of(null).pipe(
       map(() => this.cartStorage.getCartId()),
       switchMap(cartId => cartId ? of({ id: cartId }) : this.driver.create()),
       switchMap(({ id }) => this.driver.get(id)),
-      switchMap(resp => {
-        this.cartStorage.setCartId(String(resp.id))
-        return of(new DaffCartLoadSuccess(resp))
-      }),
+      map(resp => new DaffResolveCartSuccess(resp)),
       catchError(error => {
         switch(true) {
           case error instanceof DaffStorageServiceError:
-            return of(new DaffCartStorageFailure('Cart Storage Failed'));
+            return of(new DaffResolveCartFailure('Cart resolution failed while attempting to retrieve the cart ID from storage.'));
           case error instanceof DaffCartNotFoundError:
-            return of(new DaffCartCreate());
+            return this.driver.create().pipe(
+              switchMap(({ id }) => this.driver.get(id)),
+              map(resp => new DaffResolveCartSuccess(resp)),
+              catchError(() => of(new DaffResolveCartFailure('Cart resolution failed after attempting to generate and load a new cart.')))
+            );
           default:
-            return of(new DaffCartLoadFailure('Cart loading has failed'));
+            return of(new DaffResolveCartFailure('Cart resolution has failed.'));
         }
       }),
     ))
   );
-
-  @Effect()
-	onResolveCartSuccess$: Observable<Action> = this.actions$.pipe(
-    substream(
-      [
-        DaffCartActionTypes.ResolveCartAction,
-        [DaffCartActionTypes.CartLoadSuccessAction, DaffCartActionTypes.CartCreateSuccessAction]
-      ],
-      DaffCartActionTypes.ResolveCartFailureAction
-    ),
-    mapTo(new DaffResolveCartSuccess())
-  );
-
-  @Effect()
-	onResolveCartFailure$: Observable<Action> = this.actions$.pipe(
-    substream(
-      [
-        DaffCartActionTypes.ResolveCartAction,
-        [DaffCartActionTypes.CartLoadFailureAction, DaffCartActionTypes.CartCreateFailureAction]
-      ],
-      DaffCartActionTypes.ResolveCartSuccessAction
-    ),
-    map(([
-      resolveCartAction,
-      cartFailureAction
-    ]: [
-      DaffResolveCart,
-      DaffCartLoadFailure | DaffCartCreateFailure
-    ]) => new DaffResolveCartFailure(cartFailureAction.payload))
-	);
 }

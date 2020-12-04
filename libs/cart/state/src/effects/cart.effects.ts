@@ -43,11 +43,9 @@ export class DaffCartEffects<T extends DaffCart> {
     ))
   )
 
-  @Effect({
-    dispatch: false
-  })
+  @Effect()
   storeId$ = this.actions$.pipe(
-    ofType(DaffCartActionTypes.CartCreateSuccessAction),
+    ofType(DaffCartActionTypes.CartCreateSuccessAction, DaffCartActionTypes.ResolveCartSuccessAction),
     switchMap((action: DaffCartCreateSuccess<T>) => of(null).pipe(
       tap(() => {
         this.storage.setCartId(String(action.payload.id))

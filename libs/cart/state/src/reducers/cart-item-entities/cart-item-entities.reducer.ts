@@ -34,17 +34,18 @@ export function daffCartItemEntitiesReducer<
 			}, state);
 		case DaffCartItemActionTypes.CartItemAddSuccessAction:
 			return adapter.addAll(
-				updateAddedCartItemState<T>(state.entities, <T[]>action.payload.items), 
+				updateAddedCartItemState<T>(state.entities, <T[]>action.payload.items),
 				state
 			);
 		case DaffCartItemActionTypes.CartItemUpdateSuccessAction:
 			return adapter.addAll(
-				updateMutatedCartItemState<T>(<T[]>action.payload.items, action.itemId), 
+				updateMutatedCartItemState<T>(<T[]>action.payload.items, action.itemId),
 				state
 			);
 		case DaffCartItemActionTypes.CartItemDeleteSuccessAction:
 		case DaffCartActionTypes.CartLoadSuccessAction:
-		case DaffCartActionTypes.CartClearSuccessAction:
+		case DaffCartActionTypes.ResolveCartSuccessAction:
+    case DaffCartActionTypes.CartClearSuccessAction:
 			return adapter.addAll(<T[]><unknown>action.payload.items.map(item => ({
 				...item,
 				daffState: getDaffState(state.entities[item.item_id]) || DaffCartItemStateEnum.Default
@@ -86,6 +87,6 @@ function updateAddedCartItemState<T extends DaffStatefulCartItem>(oldCartItems: 
 }
 
 function updateMutatedCartItemState<T extends DaffStatefulCartItem>(cartItems: T[], itemId: T['item_id']): T[] {
-	return cartItems.map(item => item.item_id === itemId ? 
+	return cartItems.map(item => item.item_id === itemId ?
 		{ ...item, daffState: DaffCartItemStateEnum.Updated} : item)
 }

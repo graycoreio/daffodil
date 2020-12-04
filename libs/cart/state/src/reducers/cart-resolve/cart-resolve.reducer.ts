@@ -6,6 +6,7 @@ import {
 import { initialState } from '../cart-initial-state';
 import { DaffCartReducerState } from '../cart-state.interface';
 import { ActionTypes } from '../action-types.type';
+import { DaffCartResolveState } from './cart-resolve-state.enum';
 
 export function cartResolveReducer<T extends DaffCart = DaffCart>(
   state = initialState,
@@ -15,14 +16,19 @@ export function cartResolveReducer<T extends DaffCart = DaffCart>(
     case DaffCartActionTypes.ResolveCartAction:
       return {
         ...state,
-        resolved: false
+        resolved: DaffCartResolveState.Resolving
       };
 
     case DaffCartActionTypes.ResolveCartSuccessAction:
+      return {
+        ...state,
+        resolved: DaffCartResolveState.Succeeded
+      };
+
     case DaffCartActionTypes.ResolveCartFailureAction:
       return {
         ...state,
-        resolved: true
+        resolved: DaffCartResolveState.Failed
       };
 
     default:

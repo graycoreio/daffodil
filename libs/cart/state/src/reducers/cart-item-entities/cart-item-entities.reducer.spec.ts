@@ -1,10 +1,8 @@
 import { DaffCart } from '@daffodil/cart';
-import { DaffCartItemListSuccess, DaffCartItemLoadSuccess, DaffCartItemUpdateSuccess, DaffCartItemAddSuccess, DaffCartItemDeleteSuccess, DaffCartLoadSuccess, DaffCartClearSuccess } from '@daffodil/cart/state';
+import { DaffCartItemListSuccess, DaffCartItemLoadSuccess, DaffCartItemUpdateSuccess, DaffCartItemAddSuccess, DaffCartItemDeleteSuccess, DaffCartLoadSuccess, DaffCartClearSuccess, DaffCartItemDelete, DaffCartItemStateEnum, DaffCartItemStateReset, DaffCartItemUpdate, DaffResolveCartSuccess, DaffStatefulCartItem } from '@daffodil/cart/state';
 import { DaffCartFactory, DaffCartItemFactory } from '@daffodil/cart/testing';
 import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
 
-import { DaffCartItemDelete, DaffCartItemStateReset, DaffCartItemUpdate } from '../../actions/public_api';
-import { DaffCartItemStateEnum, DaffStatefulCartItem } from '../../models/stateful-cart-item';
 import { daffCartItemEntitiesAdapter } from './cart-item-entities-reducer-adapter';
 import { daffCartItemEntitiesReducer } from './cart-item-entities.reducer';
 
@@ -27,12 +25,12 @@ describe('Cart | Cart Item Entities Reducer', () => {
       expect(result).toEqual(initialState);
     });
 	});
-	
+
 	describe('when an existing cart item does not have a default daffState', () => {
 		let result;
 		let stubStatefulCartItem: DaffStatefulCartItem;
 		let initialStateWithCartItem;
-		
+
 		beforeEach(() => {
 			stubStatefulCartItem = new DaffStatefulCartItemFactory().create({
 				item_id: 'id'
@@ -57,7 +55,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 			result = daffCartItemEntitiesReducer(initialStateWithCartItem, cartItemListSuccess);
 			expect(result.entities[stubStatefulCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.New);
 		});
-		
+
 		it('should retain the existing daffState when a CartItemLoadSuccessAction is triggered', () => {
 			const cartItemLoadSuccess = new DaffCartItemLoadSuccess({
 				...stubStatefulCartItem,
@@ -146,7 +144,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 				items: cartItems
 			});
       const cartItemUpdateSuccess = new DaffCartItemUpdateSuccess(cart, cartItems[0].item_id);
-      
+
       result = daffCartItemEntitiesReducer(initialState, cartItemUpdateSuccess);
     });
 
@@ -157,7 +155,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     it('sets expected cart item on state', () => {
       expect(result.entities[cartItems[0].item_id].item_id).toEqual(cartItems[0].item_id);
 		});
-		
+
 		it('sets the state of the updated cart item to Updated', () => {
 			expect(result.entities[cartItems[0].item_id].daffState).toEqual(DaffCartItemStateEnum.Updated)
 		});
@@ -186,7 +184,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
     it('sets expected cart item on state', () => {
       expect(result.entities[statefulCartItem.item_id].item_id).toEqual(statefulCartItem.item_id);
 		});
-		
+
 		it('sets the new cart item\'s state to New', () => {
 			expect(result.entities[statefulCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.New);
 		});
@@ -210,7 +208,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 					qty: statefulCartItem.qty + 1
 				}]
 			});
-      
+
       result = daffCartItemEntitiesReducer({
 				...initialState,
 				entities: {
@@ -218,7 +216,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 				}
 			}, cartItemAddSuccess);
     });
-		
+
 		it('sets the cart item\'s state to Updated', () => {
 			expect(result.entities[statefulCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.Updated);
 		});
@@ -274,6 +272,31 @@ describe('Cart | Cart Item Entities Reducer', () => {
     });
   });
 
+  describe('when ResolveCartSuccessAction is triggered', () => {
+
+    let cart: DaffCart;
+    let cartItems: DaffStatefulCartItem[];
+    let result;
+
+    beforeEach(() => {
+			cartItems = statefulCartItemFactory.createMany(2);
+      cart = new DaffCartFactory().create({
+				items: cartItems
+			});
+      const resolveCartSuccess = new DaffResolveCartSuccess(cart);
+
+      result = daffCartItemEntitiesReducer(initialState, resolveCartSuccess);
+    });
+
+    it('sets expected number of cartItems on state', () => {
+      expect(result.ids.length).toEqual(cartItems.length);
+    });
+
+    it('sets expected cart item on state', () => {
+      expect(result.entities[cartItems[0].item_id]).toEqual(cartItems[0]);
+    });
+  });
+
   describe('when CartClearSuccessAction is triggered', () => {
 
     let cart: DaffCart;
@@ -311,7 +334,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 				}
 			}
       const cartItemStateReset = new DaffCartItemStateReset();
-      
+
       result = daffCartItemEntitiesReducer(testInitialState, cartItemStateReset);
     });
 
@@ -335,7 +358,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 				}
 			}
       const cartItemUpdateAction = new DaffCartItemUpdate(stubStatefulCartItem.item_id, { qty: 4 });
-      
+
       result = daffCartItemEntitiesReducer(testInitialState, cartItemUpdateAction);
     });
 
@@ -359,7 +382,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 				}
 			}
       const cartItemDeleteAction = new DaffCartItemDelete(stubCartItem.item_id);
-      
+
       result = daffCartItemEntitiesReducer(testInitialState, cartItemDeleteAction);
     });
 

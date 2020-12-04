@@ -4,6 +4,7 @@ export { DaffCartReducersState } from './cart-reducers-state.interface';
 export * from './loading/cart-loading.type';
 export { DaffCartErrors } from './errors/cart-errors.type';
 export { DaffCartOperationType } from './cart-operation-type.enum';
+export { DaffCartResolveState } from './cart-resolve/cart-resolve-state.enum'
 
 export { daffCartReducer } from './cart.reducer';
 export { DaffCartReducerState } from './cart-state.interface';

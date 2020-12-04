@@ -8,29 +8,32 @@ import {
   DaffCartLoadSuccess,
   DaffCartPlaceOrderSuccess,
   DaffResolveCartSuccess,
-	DaffCartBillingAddressLoad, 
-	DaffCartItemLoad, 
-	DaffCartLoad, 
-	DaffCartPaymentLoad, 
-	DaffCartPaymentMethodsLoad, 
-	DaffCartShippingAddressLoad, 
-	DaffCartShippingInformationLoad, 
-	DaffCartShippingMethodsLoad, 
-	DaffCartCouponList, 
-	DaffCartClear, 
-	DaffCartItemDelete, 
-	DaffCartBillingAddressUpdate, 
-	DaffCartShippingAddressUpdate, 
-	DaffCartShippingInformationDelete, 
-	DaffCartPaymentRemove, 
-	DaffCartCouponRemoveAll, 
-	DaffCartReducersState, 
-	DaffCartLoading, 
-	DaffCartErrors, 
-	daffCartReducers, 
+	DaffCartBillingAddressLoad,
+	DaffCartItemLoad,
+	DaffCartLoad,
+	DaffCartPaymentLoad,
+	DaffCartPaymentMethodsLoad,
+	DaffCartShippingAddressLoad,
+	DaffCartShippingInformationLoad,
+	DaffCartShippingMethodsLoad,
+	DaffCartCouponList,
+	DaffCartClear,
+	DaffCartItemDelete,
+	DaffCartBillingAddressUpdate,
+	DaffCartShippingAddressUpdate,
+	DaffCartShippingInformationDelete,
+	DaffCartPaymentRemove,
+	DaffCartCouponRemoveAll,
+	DaffCartReducersState,
+	DaffCartLoading,
+	DaffCartErrors,
+	daffCartReducers,
 	DaffCartOperationType,
 	DaffCartItemAdd,
-	DaffCartItemLoadingState
+	DaffCartItemLoadingState,
+  DaffCartResolveState,
+  DaffResolveCart,
+  DaffResolveCartFailure
 } from '@daffodil/cart/state';
 import {
   DaffCartFactory,
@@ -56,8 +59,9 @@ describe('Cart | Selector | Cart', () => {
   let loading: DaffCartLoading;
 	let errors: DaffCartErrors;
 	const {
-		selectCartResolved,
     selectCartValue,
+
+    selectCartResolved,
 
     selectCartLoadingObject,
     selectCartFeatureLoading,
@@ -198,17 +202,33 @@ describe('Cart | Selector | Cart', () => {
   });
 
   describe('selectCartResolved', () => {
-    it('should initially be false', () => {
+    it('should initially be default', () => {
       const selector = store.pipe(select(selectCartResolved));
-      const expected = cold('a', {a: false});
+      const expected = cold('a', {a: DaffCartResolveState.Default});
 
       expect(selector).toBeObservable(expected);
-    })
+    });
 
-    it('it should be true after cart resolution success', () => {
+    it('should be resolving after cart resolution has been initiated', () => {
       const selector = store.pipe(select(selectCartResolved));
-      const expected = cold('a', {a: true});
-      store.dispatch(new DaffResolveCartSuccess());
+      const expected = cold('a', {a: DaffCartResolveState.Resolving});
+      store.dispatch(new DaffResolveCart());
+
+      expect(selector).toBeObservable(expected);
+    });
+
+    it('should be succeeded after cart resolution success', () => {
+      const selector = store.pipe(select(selectCartResolved));
+      const expected = cold('a', {a: DaffCartResolveState.Succeeded});
+      store.dispatch(new DaffResolveCartSuccess(cart));
+
+      expect(selector).toBeObservable(expected);
+    });
+
+    it('should be failed after cart resolution failure', () => {
+      const selector = store.pipe(select(selectCartResolved));
+      const expected = cold('a', {a: DaffCartResolveState.Failed});
+      store.dispatch(new DaffResolveCartFailure('error'));
 
       expect(selector).toBeObservable(expected);
     });

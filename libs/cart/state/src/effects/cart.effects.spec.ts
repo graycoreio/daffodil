@@ -23,7 +23,8 @@ import {
   DaffCartCreate,
   DaffCartCreateSuccess,
   DaffCartCreateFailure,
-  DaffCartStorageFailure
+  DaffCartStorageFailure,
+  DaffResolveCartSuccess
 } from '@daffodil/cart/state';
 import { DaffCartServiceInterface, DaffCartDriver } from '@daffodil/cart/driver';
 import { DaffCartFactory } from '@daffodil/cart/testing';
@@ -160,6 +161,35 @@ describe('Daffodil | Cart | CartEffects', () => {
 
     beforeEach(() => {
       cartCreateSuccessAction = new DaffCartCreateSuccess({id: mockCart.id});
+      actions$ = hot('--a', { a: cartCreateSuccessAction });
+      expected = cold('---');
+    });
+
+    it('should set the cart ID in storage', () => {
+      expect(effects.storeId$).toBeObservable(expected);
+      expect(daffCartStorageSpy.setCartId).toHaveBeenCalledWith(String(mockCart.id));
+    });
+
+    describe('and the storage service throws an error', () => {
+      beforeEach(() => {
+        daffCartStorageSpy.setCartId.and.callFake(throwStorageError)
+
+        actions$ = hot('--a', { a: cartCreateSuccessAction });
+        expected = cold('--b', { b: cartStorageFailureAction });
+      });
+
+      it('should return a DaffCartStorageFailure', () => {
+        expect(effects.storeId$).toBeObservable(expected);
+      });
+    });
+  });
+
+  describe('when ResolveCartSuccessAction is triggered', () => {
+    let expected;
+    let cartCreateSuccessAction;
+
+    beforeEach(() => {
+      cartCreateSuccessAction = new DaffResolveCartSuccess(mockCart);
       actions$ = hot('--a', { a: cartCreateSuccessAction });
       expected = cold('---');
     });

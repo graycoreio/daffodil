@@ -9,12 +9,14 @@ import {
 	DaffCartOperationType,
 	DaffCartLoading,
 	DaffCartItemStateEnum,
-	DaffStatefulCartItem
+	DaffStatefulCartItem,
+  DaffCartResolveState
 } from '@daffodil/cart/state';
 
 export class MockDaffCartFacade implements DaffCartFacadeInterface {
-  resolved$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   cart$: BehaviorSubject<DaffCart> = new BehaviorSubject(null);
+
+  resolved$: BehaviorSubject<DaffCartResolveState> = new BehaviorSubject(DaffCartResolveState.Default);
 
   loadingObject$: BehaviorSubject<DaffCartLoading> = new BehaviorSubject(null);
   featureLoading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
