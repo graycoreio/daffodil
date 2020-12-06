@@ -1,5 +1,6 @@
 import { createSelector, MemoizedSelector, MemoizedSelectorWithProps } from '@ngrx/store';
 import { EntityState } from '@ngrx/entity';
+import { daffSubtract } from '@daffodil/core';
 
 import { daffProductEntitiesAdapter } from '../../reducers/product-entities/product-entities-reducer-adapter';
 import { getDaffProductFeatureSelector } from '../product-feature.selector';
@@ -13,7 +14,9 @@ export interface DaffProductEntitiesMemoizedSelectors<T extends DaffProduct = Da
 	selectAllProducts: MemoizedSelector<object, T[]>;
 	selectProductTotal: MemoizedSelector<object, number>;
 	selectProduct: MemoizedSelectorWithProps<object, object, T>;
+	selectProductPrice: MemoizedSelectorWithProps<object, object, number>;
 	selectProductDiscountAmount: MemoizedSelectorWithProps<object, object, number>;
+	selectProductDiscountedPrice: MemoizedSelectorWithProps<object, object, number>;
 	selectProductDiscountPercent: MemoizedSelectorWithProps<object, object, number>;
 	selectProductHasDiscount: MemoizedSelectorWithProps<object, object, boolean>;
 	selectIsProductOutOfStock: MemoizedSelectorWithProps<object, object, boolean>;
@@ -77,14 +80,35 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
 		(products, props) => products[props.id]
 	);
 
+	const selectProductPrice = createSelector(
+		selectProductEntities,
+		(products, props) => {
+			const product = selectProduct.projector(products, { id: props.id });
+
+			//todo: use optional chaining when possible
+			return product && product.price || null;
+		}
+	)
+
 	const selectProductDiscountAmount = createSelector(
 		selectProductEntities,
 		(products, props) => {
 			const product = selectProduct.projector(products, { id: props.id });
 
+			//todo: use optional chaining when possible
 			return (product.discount && product.discount.amount) || 0;
 		}
 	);
+
+	const selectProductDiscountedPrice = createSelector(
+		selectProductEntities,
+		(products, props) => {
+			const price = selectProductPrice.projector(products, { id: props.id });
+			const discountAmount = selectProductDiscountAmount.projector(products, { id: props.id });
+
+			return daffSubtract(price, discountAmount);
+		}
+	)
 
 	//todo use optional chaining when possible.
 	const selectProductDiscountPercent = createSelector(
@@ -121,7 +145,9 @@ const createProductEntitiesSelectors = <T extends DaffProduct>(): DaffProductEnt
 		selectAllProducts,
 		selectProductTotal,
 		selectProduct,
+		selectProductPrice,
 		selectProductDiscountAmount,
+		selectProductDiscountedPrice,
 		selectProductDiscountPercent,
 		selectProductHasDiscount,
 		selectIsProductOutOfStock

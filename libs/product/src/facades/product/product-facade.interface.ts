@@ -26,6 +26,12 @@ export interface DaffProductFacadeInterface<T extends DaffProduct = DaffProduct>
 	getProduct(id: string): Observable<T>;
 
 	/**
+	 * Get the original price for a product.
+	 * @param id a product id
+	 */
+	getPrice(id: string): Observable<number>;
+
+	/**
 	 * Whether a particular product has a discount.
 	 * @param id a product id
 	 */
@@ -36,6 +42,12 @@ export interface DaffProductFacadeInterface<T extends DaffProduct = DaffProduct>
 	 * @param id a product id
 	 */
 	getDiscountAmount(id: string): Observable<number>;
+
+	/**
+	 * Get the discounted price for a product.
+	 * @param id a product id
+	 */
+	getDiscountedPrice(id: string): Observable<number>;
 
 	/**
 	 * Get the discount percent of a product.

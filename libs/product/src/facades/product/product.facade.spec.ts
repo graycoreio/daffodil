@@ -12,6 +12,7 @@ import {
 
 import { DaffProductFacade } from './product.facade';
 import { DaffProductFactory } from '@daffodil/product/testing';
+import { daffSubtract } from '@daffodil/core';
 
 describe('DaffProductFacade', () => {
   let store: MockStore<Partial<DaffProductReducersState>>;
@@ -73,7 +74,7 @@ describe('DaffProductFacade', () => {
       expect(facade.product$).toBeObservable(expected);
     })
 	});
-	
+
 	describe('getProduct()', () => {
 		it('should be an observable of a product', () => {
 			const product = new DaffProductFactory().create();
@@ -81,6 +82,16 @@ describe('DaffProductFacade', () => {
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));
       expect(facade.getProduct(product.id)).toBeObservable(expected);
+		});
+	});
+
+	describe('getPrice()', () => {
+		it('should be an observable of a product', () => {
+			const product = new DaffProductFactory().create();
+      const expected = cold('a', { a: product.price });
+      store.dispatch(new DaffProductLoad(product.id));
+      store.dispatch(new DaffProductLoadSuccess(product));
+      expect(facade.getPrice(product.id)).toBeObservable(expected);
 		});
 	});
 	
@@ -101,6 +112,16 @@ describe('DaffProductFacade', () => {
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));
       expect(facade.getDiscountAmount(product.id)).toBeObservable(expected);
+		});
+	});
+	
+	describe('getDiscountedPrice()', () => {
+		it('should be an observable of the discounted price of a product', () => {
+			const product = new DaffProductFactory().create();
+      const expected = cold('a', { a: daffSubtract(product.price, product.discount.amount) });
+      store.dispatch(new DaffProductLoad(product.id));
+      store.dispatch(new DaffProductLoadSuccess(product));
+      expect(facade.getDiscountedPrice(product.id)).toBeObservable(expected);
 		});
 	});
 	

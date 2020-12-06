@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
+import { daffSubtract } from '@daffodil/core';
 
 import { DaffProductFactory } from '@daffodil/product/testing';
 import { DaffProductGridLoadSuccess } from '../../actions/product-grid.actions';
@@ -20,7 +21,9 @@ describe('selectProductEntitiesState', () => {
 		selectAllProducts,
 		selectProductTotal,
 		selectProduct,
+		selectProductPrice,
 		selectProductDiscountAmount,
+		selectProductDiscountedPrice,
 		selectProductDiscountPercent,
 		selectProductHasDiscount,
 		selectIsProductOutOfStock
@@ -97,6 +100,16 @@ describe('selectProductEntitiesState', () => {
     });
   });
 
+  describe('selectProductPrice', () => {
+    
+    it('should select the product of the given id', () => {
+			const selector = store.pipe(select(selectProductPrice, { id: mockProduct.id }));
+			const expected = cold('a', { a: mockProduct.price });
+
+			expect(selector).toBeObservable(expected);
+    });
+  });
+
   describe('selectProductDiscountAmount', () => {
     
     it('should select the product discount amount of the given id', () => {
@@ -106,6 +119,16 @@ describe('selectProductEntitiesState', () => {
 			expect(selector).toBeObservable(expected);
     });
   });
+
+  describe('selectProductDiscountedPrice', () => {
+    
+    it('should select the product of the given id', () => {
+			const selector = store.pipe(select(selectProductDiscountedPrice, { id: mockProduct.id }));
+			const expected = cold('a', { a: daffSubtract(mockProduct.price, mockProduct.discount.amount) });
+
+			expect(selector).toBeObservable(expected);
+    });
+	});
 
   describe('selectProductDiscountPercent', () => {
     
