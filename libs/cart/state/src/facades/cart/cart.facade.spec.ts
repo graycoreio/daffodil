@@ -1040,6 +1040,22 @@ describe('DaffCartFacade', () => {
     });
   });
 
+  describe('totalItems$', () => {
+    it('should initially be zero', () => {
+      const expected = cold('a', { a: 0 });
+      expect(facade.totalItems$).toBeObservable(expected);
+    });
+
+    it('should be the total number of cart items upon a successful cart item list', () => {
+      const statefulCartItems = statefulCartItemFactory.createMany(2);
+      const expected = cold('a', { a: statefulCartItems.reduce((acc, item) => {
+				return acc + item.qty;
+			}, 0) });
+      facade.dispatch(new DaffCartItemListSuccess(statefulCartItems));
+      expect(facade.totalItems$).toBeObservable(expected);
+    });
+  });
+
   describe('hasOutOfStockItems$', () => {
 
     it('should return whether or not the cart has out of stock items', () => {

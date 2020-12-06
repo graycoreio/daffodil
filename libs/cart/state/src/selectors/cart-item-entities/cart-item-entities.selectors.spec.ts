@@ -25,6 +25,7 @@ describe('selectCartItemEntitiesState', () => {
 		selectCartItemIds,
 		selectCartItemEntities,
 		selectAllCartItems,
+		selectTotalNumberOfCartItems,
 		selectCartItemTotal,
 		selectCartItem,
 		selectCartItemConfiguredAttributes,
@@ -104,6 +105,18 @@ describe('selectCartItemEntitiesState', () => {
     it('should select the product of the given id', () => {
 			const selector = store.pipe(select(selectCartItem, { id: mockCartItems[0].item_id }));
 			const expected = cold('a', { a: mockCartItems[0] });
+
+			expect(selector).toBeObservable(expected);
+    });
+	});
+
+  describe('selectTotalNumberOfCartItems', () => {
+
+    it('should select total number of cart items that takes into account the quantity of each cart item', () => {
+			const selector = store.pipe(select(selectTotalNumberOfCartItems, { id: mockCartItems[0].item_id }));
+			const expected = cold('a', { a: mockCartItems.reduce((acc, item) => {
+				return acc + item.qty
+			}, 0) });
 
 			expect(selector).toBeObservable(expected);
     });

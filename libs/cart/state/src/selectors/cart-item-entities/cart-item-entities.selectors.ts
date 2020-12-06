@@ -15,6 +15,7 @@ export interface DaffCartItemEntitiesMemoizedSelectors<T extends DaffStatefulCar
 	selectAllCartItems: MemoizedSelector<object, T[]>;
 	selectCartItemTotal: MemoizedSelector<object, number>;
 	selectCartItem: MemoizedSelectorWithProps<object, object, T>;
+	selectTotalNumberOfCartItems: MemoizedSelector<object, number>;
 	selectCartItemConfiguredAttributes: MemoizedSelectorWithProps<object, object, DaffConfigurableCartItemAttribute[]>;
 	selectCartItemCompositeOptions: MemoizedSelectorWithProps<object, object, DaffCompositeCartItemOption[]>;
 	selectIsCartItemOutOfStock: MemoizedSelectorWithProps<object, object, boolean>;
@@ -83,6 +84,14 @@ const createCartItemEntitiesSelectors = <
 		(cartItems, props) => cartItems[props.id]
 	);
 
+	/**
+	 * Selector for the total number of cart items that takes into account the qty on each cart item.
+	 */
+	const selectTotalNumberOfCartItems = createSelector(
+		selectAllCartItems,
+		(cartItems) => cartItems.reduce((acc, cartItem) => acc + cartItem.qty, 0)
+	)
+
 	const selectCartItemConfiguredAttributes = createSelector(
 		selectCartItemEntities,
 		(cartItems, props) => {
@@ -134,6 +143,7 @@ const createCartItemEntitiesSelectors = <
 		selectAllCartItems,
 		selectCartItemTotal,
 		selectCartItem,
+		selectTotalNumberOfCartItems,
 		selectCartItemConfiguredAttributes,
 		selectCartItemCompositeOptions,
 		selectIsCartItemOutOfStock,
