@@ -89,11 +89,7 @@ const createCartItemEntitiesSelectors = <
 	 */
 	const selectTotalNumberOfCartItems = createSelector(
 		selectAllCartItems,
-		(cartItems) => {
-			return cartItems.reduce((acc, cartItem) => {
-				return acc + cartItem.qty
-			}, 0)
-		}
+		(cartItems) => cartItems.reduce((acc, cartItem) => acc + cartItem.qty, 0)
 	)
 
 	const selectCartItemConfiguredAttributes = createSelector(
