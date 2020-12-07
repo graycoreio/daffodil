@@ -3,6 +3,10 @@ import { Injectable } from '@angular/core';
 import { DaffPersistenceService } from '../persistence.interface';
 import { DaffServerStorageServiceError } from './server-error';
 
+/**
+ * An error storage service meant to be loaded into SSR contexts.
+ * It will always throw the {@link DaffServerStorageServiceError}.
+ */
 @Injectable({
   providedIn: 'root'
 })
