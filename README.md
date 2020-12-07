@@ -1,5 +1,5 @@
 # Daffodil
-[![Chat on Discord](https://img.shields.io/discord/777920696583454740)](https://discord.gg/dHq2f4RpHr)
+[![Chat on Discord](https://img.shields.io/discord/777920696583454740)](https://discord.gg/BdaJVZ53sR)
 [![Build Status](https://graycore.visualstudio.com/Daffodil/_apis/build/status/graycoreio.daffodil?branchName=develop)](https://graycore.visualstudio.com/Daffodil/_build/latest?definitionId=6&branchName=develop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1b331aa9dd107c168250/maintainability)](https://codeclimate.com/github/graycoreio/daffodil/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/1b331aa9dd107c168250/test_coverage)](https://codeclimate.com/github/graycoreio/daffodil/test_coverage)
