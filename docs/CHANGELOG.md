@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.21.0](https://github.com/graycoreio/daffodil/compare/v0.20.3...v0.21.0) (2020-12-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cart:** The type of the `selectCartResolved` has changed to `DaffCartResolvedState` enum. The type of the `resolved$` facade field has changed in the same way
+
+### Features
+
+* **cart:** add selector for total cart items ([#1178](https://github.com/graycoreio/daffodil/issues/1178)) ([b1d3d69](https://github.com/graycoreio/daffodil/commit/b1d3d693bab21a36e764ef57014499728bca395c))
+* **cart:** improve CartResolution action hygiene, change resolved state to enum ([#1176](https://github.com/graycoreio/daffodil/issues/1176)) ([d0cbf78](https://github.com/graycoreio/daffodil/commit/d0cbf788b0e55ca1aa2971e2410dd324f18afc5c))
+* **product:** add selectors for product prices and discounted prices ([#1177](https://github.com/graycoreio/daffodil/issues/1177)) ([f966124](https://github.com/graycoreio/daffodil/commit/f96612442b11c1357f131f5264e978134edf1592))
+
 ### [0.20.3](https://github.com/graycoreio/daffodil/compare/v0.20.2...v0.20.3) (2020-12-02)
 
 
