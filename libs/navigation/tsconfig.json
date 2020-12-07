@@ -9,9 +9,27 @@
       "@daffodil/navigation": [
         "libs/navigation/src"
       ],
+      "@daffodil/navigation/state": [
+        "libs/navigation/state/src"
+      ],
+      "@daffodil/navigation/state/testing": [
+        "libs/navigation/state/testing/src"
+      ],
+      "@daffodil/navigation/driver": [
+        "libs/navigation/driver/src"
+      ],
+      "@daffodil/navigation/driver/testing": [
+        "libs/navigation/driver/testing/src"
+      ],
+      "@daffodil/navigation/driver/in-memory": [
+        "libs/navigation/driver/in-memory/src"
+      ],
+      "@daffodil/navigation/driver/magento": [
+        "libs/navigation/driver/magento/src"
+      ],
       "@daffodil/navigation/testing": [
         "libs/navigation/testing/src"
-      ]
+      ],
     }
   }
 }

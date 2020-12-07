@@ -5,7 +5,7 @@ import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffNavigationTreeFactory } from './navigation-tree.factory';
 
 describe('Navigation | Testing | Factories | DaffNavigationTreeFactory', () => {
-  
+
   let navigationTreeFactory;
 
   beforeEach(() => {
@@ -27,13 +27,13 @@ describe('Navigation | Testing | Factories | DaffNavigationTreeFactory', () => {
     beforeEach(() => {
       result = navigationTreeFactory.create();
     });
-    
+
     it('should return a Navigation with all required fields defined', () => {
-      expect(result.id).toBeDefined(); 
-      expect(result.name).toBeDefined(); 
-      expect(result.path).toBeDefined(); 
-      expect(result.children_count).toBeDefined(); 
-      expect(result.total_products).toBeDefined(); 
+      expect(result.id).toBeDefined();
+      expect(result.name).toBeDefined();
+      expect(result.path).toBeDefined();
+      expect(result.children_count).toBeDefined();
+      expect(result.total_products).toBeDefined();
     });
   });
 
