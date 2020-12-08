@@ -23,7 +23,6 @@ export { updateAddress } from './update-address';
 export { updateAddressWithEmail } from './update-address-with-email';
 export { getCart } from './get-cart';
 export { createCart } from './create-cart';
-export { setGuestEmail } from './set-guest-email';
 export { placeOrder } from './place-order';
 export { applyCoupon } from './apply-coupon';
 export { listCartCoupons } from './list-cart-coupons';

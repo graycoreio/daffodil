@@ -5,6 +5,7 @@ import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffo
 
 import { cartItemFragment } from './fragments/cart-item';
 import { pricesFragment } from './fragments/prices';
+import { cartCouponFragment, selectedShippingMethodFragment } from './fragments/public_api';
 
 export const applyCoupon = (extraCartFragments: DocumentNode[] = []) => gql`
   mutation ApplyCoupon($cartId: String!, $couponCode: String!) {
@@ -19,17 +20,27 @@ export const applyCoupon = (extraCartFragments: DocumentNode[] = []) => gql`
         items {
           ...cartItem
         }
+				shipping_addresses {
+					... on ShippingCartAddress {
+						selected_shipping_method {
+							...selectedShippingMethod
+						}
+					}
+				}
         applied_coupons {
-          code
+          ...cartCoupon
         }
         prices {
           ...prices
-        }
+				}
+				
         ${daffBuildFragmentNameSpread(...extraCartFragments)}
       }
     }
   }
   ${cartItemFragment}
   ${pricesFragment}
+	${cartCouponFragment}
+	${selectedShippingMethodFragment}
   ${daffBuildFragmentDefinition(...extraCartFragments)}
 `;
