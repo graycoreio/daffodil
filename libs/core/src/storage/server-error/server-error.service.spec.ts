@@ -1,14 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DaffErrorServerStorageService } from './server-error.service';
+import { DaffServerErrorStorageService } from './server-error.service';
 
-describe('DaffErrorServerStorageService', () => {
-  let service: DaffErrorServerStorageService;
+describe('DaffServerErrorStorageService', () => {
+  let service: DaffServerErrorStorageService;
 
-  const errorMessage = 'The DaffErrorServerStorageService always throws an error.';
+  const errorMessage = 'The DaffServerErrorStorageService always throws an error.';
 
   beforeEach(() => {
-    service = TestBed.get(DaffErrorServerStorageService);
+    service = TestBed.get(DaffServerErrorStorageService);
   });
 
   it('should be created', () => {

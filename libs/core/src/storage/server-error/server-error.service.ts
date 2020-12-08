@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 
 import { DaffPersistenceService } from '../persistence.interface';
-import { DaffServerStorageServiceError } from './server-error';
+import { DaffServerSideStorageError } from './server-error';
 
 /**
- * An error storage service meant to be loaded into SSR contexts.
- * It will always throw the {@link DaffServerStorageServiceError}.
+ * A storage service meant to be loaded into SSR contexts.
+ * It will always throw the {@link DaffServerSideStorageError}.
  */
 @Injectable({
   providedIn: 'root'
 })
-export class DaffErrorServerStorageService implements DaffPersistenceService {
-  static readonly ERROR_MESSAGE = 'The DaffErrorServerStorageService always throws an error.';
+export class DaffServerErrorStorageService implements DaffPersistenceService {
+  static readonly ERROR_MESSAGE = 'The DaffServerErrorStorageService always throws an error.';
 
   setItem(key: string, value: any): void {
     this.throwError();
@@ -30,6 +30,6 @@ export class DaffErrorServerStorageService implements DaffPersistenceService {
   }
 
   private throwError() {
-    throw new DaffServerStorageServiceError(DaffErrorServerStorageService.ERROR_MESSAGE);
+    throw new DaffServerSideStorageError(DaffServerErrorStorageService.ERROR_MESSAGE);
   }
 }
