@@ -2,10 +2,13 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
+import { combineReducers, Store, StoreModule } from '@ngrx/store';
 
-import { DaffStorageServiceError } from '@daffodil/core';
+import { DaffStorageServiceError, DaffServerSideStorageError } from '@daffodil/core';
 import { DaffCart, DaffCartStorageService } from '@daffodil/cart';
 import {
+  DaffCartLoadSuccess,
+  daffCartReducers,
   DaffResolveCart,
   DaffResolveCartFailure,
   DaffResolveCartSuccess,
@@ -25,14 +28,21 @@ describe('DaffCartResolverEffects', () => {
 	let cartFactory: DaffCartFactory;
 	let stubCart: DaffCart;
 
+  let store: Store<any>;
   let cartStorageService: jasmine.SpyObj<DaffCartStorageService>;
   const throwStorageError = () => { throw new DaffStorageServiceError('An error occurred during storage.') };
+  const throwServerStorageError = () => { throw new DaffServerSideStorageError('An error occurred during storage.') };
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
+      imports: [
+        StoreModule.forRoot({
+          cart: combineReducers(daffCartReducers),
+				}),
+      ],
 			providers: [
 				DaffCartResolverEffects,
-				provideMockActions(() => actions$),
+        provideMockActions(() => actions$),
 				{
 					provide: DaffCartDriver,
           useValue: jasmine.createSpyObj('DaffCartDriver', ['get', 'create', 'clear', 'addToCart'])
@@ -47,7 +57,9 @@ describe('DaffCartResolverEffects', () => {
 		effects = TestBed.get(DaffCartResolverEffects);
 		driver = TestBed.get(DaffCartDriver);
 		cartFactory = TestBed.get(DaffCartFactory);
-		cartStorageService = TestBed.get(DaffCartStorageService);
+    cartStorageService = TestBed.get(DaffCartStorageService);
+    store = TestBed.get(Store);
+
 		stubCart = cartFactory.create();
 	});
 
@@ -69,6 +81,22 @@ describe('DaffCartResolverEffects', () => {
         const resolveCartFailureAction = new DaffResolveCartFailure('Cart resolution failed while attempting to retrieve the cart ID from storage.');
         const expected = cold('--b', {
           b: resolveCartFailureAction
+        });
+
+        expect(effects.onResolveCart$).toBeObservable(expected);
+      });
+    });
+
+    describe('when the storage service is invoked on the server', () => {
+      beforeEach(() => {
+        store.dispatch(new DaffCartLoadSuccess(stubCart));
+        cartStorageService.getCartId.and.callFake(throwServerStorageError);
+      });
+
+      it('should successfully resolve the cart to the value already in state', () => {
+        const resolveCartSuccessAction = new DaffResolveCartSuccess(stubCart);
+        const expected = cold('--b', {
+          b: resolveCartSuccessAction
         });
 
         expect(effects.onResolveCart$).toBeObservable(expected);
