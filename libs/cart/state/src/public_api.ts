@@ -6,6 +6,7 @@ export * from './resolvers/public_api';
 export * from './models/public_api';
 
 export { DaffCartStateModule } from './cart-state.module'
+export { DaffCartStateServerModule } from './cart-state.server.module'
 
 export { DaffCartFacade } from './facades/cart/cart.facade';
 export { DaffCartFacadeInterface } from './facades/cart/cart-facade.interface';
