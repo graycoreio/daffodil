@@ -13,7 +13,7 @@ import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
 import { DaffInMemoryBackendCartRootService } from '@daffodil/cart/driver/in-memory';
 import { DaffInMemoryBackendCheckoutService } from '@daffodil/checkout/testing';
-import { DaffInMemoryBackendNavigationService } from '@daffodil/navigation/testing';
+import { DaffInMemoryBackendNavigationService } from '@daffodil/navigation/driver/in-memory';
 import { DaffInMemoryBackendAuthService } from '@daffodil/auth/testing';
 
 @Injectable({

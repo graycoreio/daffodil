@@ -5,7 +5,7 @@ import { DemoInMemoryBackendService } from './backend.service';
 import { DaffInMemoryBackendCartRootService } from '@daffodil/cart/driver/in-memory';
 import { DaffInMemoryBackendProductService } from '@daffodil/product/testing';
 import { DaffInMemoryBackendCheckoutService } from '@daffodil/checkout/testing';
-import { DaffInMemoryBackendNavigationService } from '@daffodil/navigation/testing';
+import { DaffInMemoryBackendNavigationService } from '@daffodil/navigation/driver/in-memory';
 
 describe('Driver | In Memory | InMemoryService', () => {
   let service;
