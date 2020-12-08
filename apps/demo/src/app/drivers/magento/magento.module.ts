@@ -7,7 +7,7 @@ import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 
 import { DaffProductMagentoDriverModule } from '@daffodil/product';
 import { DaffCheckoutInMemoryDriverModule } from '@daffodil/checkout/testing';
-import { DaffNavigationMagentoDriverModule } from '@daffodil/navigation';
+import { DaffNavigationMagentoDriverModule } from '@daffodil/navigation/driver/magento';
 import { DaffNewsletterInMemoryDriverModule } from '@daffodil/newsletter/testing';
 import { DaffCartMagentoDriverModule } from '@daffodil/cart/driver/magento';
 import { DaffAuthMagentoDriverModule } from '@daffodil/auth';

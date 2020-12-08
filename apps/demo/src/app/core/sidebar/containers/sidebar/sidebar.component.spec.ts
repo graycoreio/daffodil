@@ -6,8 +6,9 @@ import { Observable, BehaviorSubject, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 import { provideMockStore } from '@ngrx/store/testing';
 
-import { DaffNavigationFacade, DaffNavigationLoad, DaffNavigationTree } from '@daffodil/navigation';
 import { DaffSidebarModule, DaffSidebarComponent, DaffLoadingIconModule, DaffLinkSetModule } from '@daffodil/design';
+import { DaffNavigationTree } from '@daffodil/navigation';
+import { DaffNavigationFacade, DaffNavigationLoad } from '@daffodil/navigation/state';
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -42,7 +43,7 @@ describe('SidebarContainer', () => {
         DaffLoadingIconModule,
         DaffLinkSetModule,
       ],
-      declarations: [ 
+      declarations: [
         WrapperComponent,
         SidebarContainer,
         SidebarListComponent
@@ -66,7 +67,7 @@ describe('SidebarContainer', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     navFacade = TestBed.get(DaffNavigationFacade);
-    
+
     fixture.detectChanges();
 
     wrapper = fixture.componentInstance;
@@ -112,7 +113,7 @@ describe('SidebarContainer', () => {
 
     daffSidebar.escapePressed.emit();
 
-    expect(component.onClose).toHaveBeenCalled();    
+    expect(component.onClose).toHaveBeenCalled();
   });
 
   describe('when loading is false', () => {
@@ -121,7 +122,7 @@ describe('SidebarContainer', () => {
       component.treeLoading$ = of(false);
       fixture.detectChanges();
     });
-    
+
     it('should render the demo-sidebar-list', () => {
       const sidebarListComponent = fixture.debugElement.query(By.css('demo-sidebar-list')).componentInstance;
 
@@ -136,7 +137,7 @@ describe('SidebarContainer', () => {
   });
 
   describe('when treeLoading is true', () => {
-    
+
     beforeEach(() => {
       component.treeLoading$ = of(true);
       fixture.detectChanges();

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-
-import { DaffNavigationTree, DaffNavigationFacade, DaffNavigationLoad } from '@daffodil/navigation';
-
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
+import { DaffNavigationTree } from '@daffodil/navigation';
+import { DaffNavigationFacade, DaffNavigationLoad } from '@daffodil/navigation/state';
+
 import * as fromDemoSidebar from '../../reducers/index';
 import { CloseSidebar } from '../../actions/sidebar.actions';
 
