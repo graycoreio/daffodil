@@ -7,6 +7,7 @@ export interface MagentoApplyCouponResponse {
       items: MagentoCart['items'],
       applied_coupons: MagentoCart['applied_coupons'],
       prices: MagentoCart['prices'],
+			shipping_addresses: Partial<MagentoCart['shipping_addresses']>
     }
   };
 }
