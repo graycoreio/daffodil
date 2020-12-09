@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Action, Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { DaffStateError } from '@daffodil/core/state';
+
 import { daffAuthorizeNetSelectors } from '../selectors/authorize-net.selector';
 import { DaffAuthorizeNetReducersState } from '../reducers/authorize-net-reducers.interface';
 import { DaffAuthorizeNetFacadeInterface } from './authorize-net-facade.interface';
@@ -13,8 +15,8 @@ export class DaffAuthorizeNetFacade implements DaffAuthorizeNetFacadeInterface {
 
 	isAcceptJsLoaded$: Observable<boolean>;
   loading$: Observable<boolean>;
-  paymentError$: Observable<string>;
-  acceptJsLoadError$: Observable<string>;
+  paymentError$: Observable<DaffStateError>;
+  acceptJsLoadError$: Observable<DaffStateError>;
 
   constructor(private store: Store<DaffAuthorizeNetReducersState>) {
 		const {

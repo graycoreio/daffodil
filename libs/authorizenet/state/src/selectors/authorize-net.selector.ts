@@ -1,5 +1,7 @@
 import { createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 
+import { DaffStateError } from '@daffodil/core/state';
+
 import { DaffAuthorizeNetReducersState } from '../reducers/authorize-net-reducers.interface';
 import { DaffAuthorizeNetReducerState } from '../reducers/authorize-net/authorize-net-reducer.interface';
 import { DAFF_AUTHORIZENET_STORE_FEATURE_KEY } from '../reducers/authorizenet-store-feature-key';
@@ -8,8 +10,8 @@ export interface DaffAuthorizeNetMemoizedSelectors {
 	selectAuthorizeNetFeatureState: MemoizedSelector<object, DaffAuthorizeNetReducersState>;
 	selectAuthorizeNetState: MemoizedSelector<object, DaffAuthorizeNetReducerState> ;
 	selectLoading: MemoizedSelector<object, boolean>;
-	selectPaymentError: MemoizedSelector<object, string>;
-	selectAcceptJsLoadError: MemoizedSelector<object, string>;
+	selectPaymentError: MemoizedSelector<object, DaffStateError>;
+	selectAcceptJsLoadError: MemoizedSelector<object, DaffStateError>;
 	selectIsAcceptJsLoaded: MemoizedSelector<object, boolean>;
 }
 

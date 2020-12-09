@@ -2,6 +2,7 @@ import { Action } from '@ngrx/store';
 
 import { DaffCartAddress } from '@daffodil/cart';
 import { DaffAuthorizeNetTokenRequest } from '@daffodil/authorizenet';
+import { DaffStateError } from '@daffodil/core/state';
 
 export enum DaffAuthorizeNetActionTypes {
   UpdatePaymentAction = '[Daff-Authorize-Net] Update Payment',
@@ -43,7 +44,7 @@ export class DaffAuthorizeNetUpdatePaymentSuccess implements Action {
 export class DaffAuthorizeNetUpdatePaymentFailure implements Action {
 	readonly type = DaffAuthorizeNetActionTypes.UpdatePaymentFailureAction;
 
-	constructor(public payload: string) { }
+	constructor(public payload: DaffStateError) { }
 }
 
 export class DaffLoadAcceptJs implements Action {
@@ -63,7 +64,7 @@ export class DaffLoadAcceptJsSuccess implements Action {
 export class DaffLoadAcceptJsFailure implements Action {
 	readonly type = DaffAuthorizeNetActionTypes.LoadAcceptJsFailureAction;
 
-	constructor(public payload: string) {};
+	constructor(public payload: DaffStateError) {};
 }
 
 export type DaffAuthorizeNetActions<

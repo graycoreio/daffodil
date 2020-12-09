@@ -6,12 +6,14 @@ import { cold } from 'jasmine-marbles';
 import { DaffCartPaymentMethodAdd } from '@daffodil/cart/state';
 import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '@daffodil/authorizenet/driver/magento';
 import { daffAuthorizeNetReducers, DaffAuthorizeNetUpdatePaymentFailure, DaffLoadAcceptJsFailure, DAFF_AUTHORIZENET_STORE_FEATURE_KEY } from '@daffodil/authorizenet/state';
+import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffAuthorizeNetFacade } from './authorize-net.facade';
 
 describe('DaffAuthorizeNetFacade', () => {
   let store: MockStore<any>;
   let facade: DaffAuthorizeNetFacade;
+  let mockError: DaffStateError;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -27,6 +29,11 @@ describe('DaffAuthorizeNetFacade', () => {
 
     store = TestBed.get(Store);
     facade = TestBed.get(DaffAuthorizeNetFacade);
+
+    mockError = {
+      code: 'code',
+      message: 'error'
+    };
   });
 
   it('should be created', () => {
@@ -67,9 +74,8 @@ describe('DaffAuthorizeNetFacade', () => {
   describe('paymentError$', () => {
 
     it('should return the current error message', () => {
-      const stubError = 'error message';
-      const expected = cold('a', { a: stubError});
-      store.dispatch(new DaffAuthorizeNetUpdatePaymentFailure(stubError));
+      const expected = cold('a', { a: mockError});
+      store.dispatch(new DaffAuthorizeNetUpdatePaymentFailure(mockError));
       expect(facade.paymentError$).toBeObservable(expected);
     });
   })
@@ -77,9 +83,8 @@ describe('DaffAuthorizeNetFacade', () => {
   describe('acceptJsLoadError$', () => {
 
     it('should return the acceptJsLoad error message', () => {
-      const stubError = 'error message';
-      const expected = cold('a', { a: stubError});
-      store.dispatch(new DaffLoadAcceptJsFailure(stubError));
+      const expected = cold('a', { a: mockError});
+      store.dispatch(new DaffLoadAcceptJsFailure(mockError));
       expect(facade.acceptJsLoadError$).toBeObservable(expected);
     });
   })

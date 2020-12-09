@@ -5,12 +5,14 @@ import { cold } from 'jasmine-marbles';
 import { DaffCartPaymentMethodAdd } from '@daffodil/cart/state';
 import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '@daffodil/authorizenet/driver/magento';
 import { DaffAuthorizeNetReducersState, daffAuthorizeNetReducers, DaffAuthorizeNetUpdatePaymentFailure, DaffLoadAcceptJsFailure, DAFF_AUTHORIZENET_STORE_FEATURE_KEY } from '@daffodil/authorizenet/state';
+import { DaffStateError } from '@daffodil/core/state';
 
 import { daffAuthorizeNetSelectors } from './authorize-net.selector';
 
 describe('DaffAuthorizeNetSelectors', () => {
 
-	let store: Store<DaffAuthorizeNetReducersState>;
+  let store: Store<DaffAuthorizeNetReducersState>;
+  let mockError: DaffStateError;
 	const {
 		selectAuthorizeNetState,
 		selectIsAcceptJsLoaded,
@@ -29,6 +31,11 @@ describe('DaffAuthorizeNetSelectors', () => {
     });
 
     store = TestBed.get(Store);
+
+    mockError = {
+      code: 'code',
+      message: 'error'
+    };
 
 		store.dispatch(new DaffCartPaymentMethodAdd({
 			method: MAGENTO_AUTHORIZE_NET_PAYMENT_ID,
@@ -72,10 +79,10 @@ describe('DaffAuthorizeNetSelectors', () => {
   describe('selectError', () => {
 
     it('selects the error message state', () => {
-			store.dispatch(new DaffAuthorizeNetUpdatePaymentFailure('error'));
+			store.dispatch(new DaffAuthorizeNetUpdatePaymentFailure(mockError));
 
       const selector = store.pipe(select(selectPaymentError));
-      const expected = cold('a', { a: 'error' });
+      const expected = cold('a', { a: mockError });
       expect(selector).toBeObservable(expected);
     });
   });
@@ -83,10 +90,10 @@ describe('DaffAuthorizeNetSelectors', () => {
   describe('selectAcceptJsLoadError', () => {
 
     it('selects the error message state', () => {
-			store.dispatch(new DaffLoadAcceptJsFailure('load error'));
+			store.dispatch(new DaffLoadAcceptJsFailure(mockError));
 
       const selector = store.pipe(select(selectAcceptJsLoadError));
-      const expected = cold('a', { a: 'load error' });
+      const expected = cold('a', { a: mockError });
       expect(selector).toBeObservable(expected);
     });
   });
