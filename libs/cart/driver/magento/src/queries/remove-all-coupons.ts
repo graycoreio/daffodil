@@ -4,8 +4,8 @@ import gql from 'graphql-tag';
 import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffodil/core/graphql';
 
 import { cartItemFragment } from './fragments/cart-item';
-import { pricesFragment } from './fragments/prices';
-import { cartCouponFragment, selectedShippingMethodFragment } from './fragments/public_api';
+import { cartCouponFragment } from './fragments/public_api';
+import { cartTotalsFragment } from './fragments/cart-totals';
 
 export const removeAllCoupons = (extraCartFragments: DocumentNode[] = []) => gql`
   mutation RemoveAllCoupons($cartId: String!) {
@@ -19,26 +19,16 @@ export const removeAllCoupons = (extraCartFragments: DocumentNode[] = []) => gql
         items {
           ...cartItem
         }
-				shipping_addresses {
-					... on ShippingCartAddress {
-						selected_shipping_method {
-							...selectedShippingMethod
-						}
-					}
-				}
         applied_coupons {
-					...cartCoupon
-        }
-        prices {
-          ...prices
-        }
+          ...cartCoupon
+				}
+				...cartTotals
         ${daffBuildFragmentNameSpread(...extraCartFragments)}
       }
     }
   }
   ${cartItemFragment}
-  ${pricesFragment}
 	${cartCouponFragment}
-	${selectedShippingMethodFragment}
+	${cartTotalsFragment}
   ${daffBuildFragmentDefinition(...extraCartFragments)}
 `;
