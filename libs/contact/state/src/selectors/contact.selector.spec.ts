@@ -1,5 +1,5 @@
 import { Store, StoreModule, select } from '@ngrx/store';
-import { reducer, DaffContactState } from '../reducers/contact.reducer';
+import { reducer, DaffContactState } from '@daffodil/contact/state';
 import { TestBed } from '@angular/core/testing';
 import { cold } from 'jasmine-marbles';
 import { selectDaffContactLoading, selectDaffContactSuccess, selectDaffContactError, DaffContactFeatureState } from './contact.selector';
