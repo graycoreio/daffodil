@@ -21,5 +21,6 @@ export {
   selectDaffContactError,
   selectDaffContactLoading,
   selectDaffContactSuccess,
-  selectContactFeatureState
+  selectContactFeatureState,
+  DaffContactFeatureState
 } from './selectors/contact.selector';

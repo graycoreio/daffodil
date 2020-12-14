@@ -8,9 +8,9 @@ import {
 	DaffContactSuccessSubmit,
 	DaffContactSubmit,
 	DaffContactFailedSubmit,
+	DaffContactFeatureState
 } from '@daffodil/contact/state';
 
-import { DaffContactFeatureState } from '../selectors/contact.selector';
 import { DaffContactFacade } from './contact.facade';
 
 describe('the DaffContactFacade', () => {
