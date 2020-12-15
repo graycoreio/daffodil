@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { interval } from 'rxjs';
-import { delay, switchMapTo, take } from 'rxjs/operators';
+import { delay, switchMap, switchMapTo, take } from 'rxjs/operators';
 import { TestScheduler } from 'rxjs/testing';
 
 import { DaffQueuedApollo } from './queued-apollo.service'
@@ -74,20 +74,26 @@ describe('Core | GraphQL | DaffQueuedApollo', () => {
 
           ob0 = interval(500).pipe(
             take(2),
-            switchMapTo(service.mutate({
-              mutation: req0
-            })),
-            delay(750)
+            switchMap(() =>
+              service.mutate({
+                mutation: req0
+              }).pipe(
+                delay(750)
+              )
+            ),
           );
           ob1 = interval(600).pipe(
             take(1),
-            switchMapTo(service.mutate({
-              mutation: req1
-            })),
-            delay(500)
+            switchMap(() =>
+              service.mutate({
+                mutation: req1
+              }).pipe(
+                delay(500)
+              )
+            ),
           );
 
-          expectObservable(ob0).toBe('1252ms a 499ms (a|)', {a: data0});
+          expectObservable(ob0).toBe('1752ms (a|)', {a: data0});
           expectObservable(ob1).toBe('1102ms (a|)', {a: data1});
         })
       })
