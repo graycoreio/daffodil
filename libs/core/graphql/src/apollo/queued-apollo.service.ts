@@ -34,12 +34,12 @@ export class DaffQueuedApollo {
 
   private addRequestToQueue(subscriber: Subscriber<any>, request: Observable<any>): void {
     this.queue.push(() => {
-      request.subscribe(
+      const sub = request.subscribe(
         response => {
           // emit the outer observable
           subscriber.next(response);
           subscriber.complete();
-          subscriber.unsubscribe();
+          sub.unsubscribe();
 
           // process the queue
           this.queue.shift();
