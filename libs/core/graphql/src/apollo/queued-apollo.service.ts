@@ -39,6 +39,7 @@ export class DaffQueuedApollo {
           // emit the outer observable
           subscriber.next(response);
           subscriber.complete();
+          subscriber.unsubscribe();
 
           // process the queue
           this.queue.shift();

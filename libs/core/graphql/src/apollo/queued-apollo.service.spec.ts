@@ -138,6 +138,20 @@ describe('Core | GraphQL | DaffQueuedApollo', () => {
       })
     })
 
+    it('should unsubscribe from the apollo request observable after it emits once', () => {
+      testScheduler.run(({cold, expectObservable}) => {
+        apollo.mutate.withArgs(jasmine.objectContaining({
+          mutation: req0
+        })).and.returnValue(cold('--a--a', {a: data0}))
+
+        ob0 = service.mutate({
+          mutation: req0
+        });
+
+        expectObservable(ob0).toBe('--(a|)', {a: data0});
+      })
+    })
+
     describe('when apollo throws an error', () => {
       it('should pass that error to the returned observable', () => {
         const error = new Error('error');
