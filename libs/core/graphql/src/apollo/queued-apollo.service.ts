@@ -1,0 +1,52 @@
+import { Injectable } from '@angular/core';
+import { Apollo } from 'apollo-angular';
+import { R } from 'apollo-angular/types';
+import { MutationOptions } from 'apollo-client';
+import { FetchResult } from 'apollo-link';
+import { Observable, Subscriber } from 'rxjs';
+
+/**
+ * A service that will queue mutate calls to Apollo.
+ * It will not send subsequent mutate requests until the previous one has been completed.
+ * This is useful for avoiding race conditions on the backend.
+ * This should be used alongside Apollo.
+ */
+@Injectable({
+  providedIn: 'root'
+})
+export class DaffQueuedApollo {
+  queue: Function[] = [];
+
+  constructor(
+    private apollo: Apollo
+  ) {}
+
+  /**
+   * Queue up a mutate request.
+   * The request will not actually be queued until the returned observable is subscribed.
+   * If the queue is empty, the request will be sent when it enters the queue.
+   * Otherwise, it will be sent when it reaches the front of the queue.
+   * @param options Mutation options.
+   */
+  mutate<T, V = R>(options: MutationOptions<T, V>): Observable<FetchResult<T>> {
+    return new Observable(subscriber => this.addRequestToQueue(subscriber, this.apollo.mutate(options)))
+  }
+
+  private addRequestToQueue(subscriber: Subscriber<any>, request: Observable<any>): void {
+    this.queue.push(() => {
+      request.subscribe(response => {
+        // emit the outer observable
+        subscriber.next(response);
+        subscriber.complete();
+
+        // process the queue
+        this.queue.shift();
+        // TODO: optional chaining
+        if (this.queue[0]) this.queue[0]();
+      }, subscriber.error, subscriber.complete)
+    });
+
+    // start the queue if previously empty
+    if (this.queue.length === 1) this.queue[0]();
+  }
+}

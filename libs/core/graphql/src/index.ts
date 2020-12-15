@@ -1,1 +1,1 @@
-export * from './fragments/public_api';
+export * from './public_api';
