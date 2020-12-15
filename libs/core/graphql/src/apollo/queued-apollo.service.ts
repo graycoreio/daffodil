@@ -46,8 +46,14 @@ export class DaffQueuedApollo {
           // TODO: optional chaining
           if (this.queue[0]) this.queue[0]();
         },
-        error => subscriber.error(error),
-        () => subscriber.complete()
+        error => {
+          subscriber.error(error)
+          sub.unsubscribe();
+        },
+        () => {
+          subscriber.complete()
+          sub.unsubscribe();
+        }
       )
     });
 
