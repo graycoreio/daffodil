@@ -4,6 +4,7 @@ import { DocumentNode } from 'graphql';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { DaffQueuedApollo } from '@daffodil/core/graphql'
 import { DaffCartItem, DaffCartItemInput, DaffCart, DaffCartItemInputType, DaffCompositeCartItemInput, DaffConfigurableCartItemInput } from '@daffodil/cart';
 import { DaffCartItemServiceInterface } from '@daffodil/cart/driver';
 
@@ -25,6 +26,7 @@ import { DaffMagentoCartItemUpdateInputTransformer } from './transforms/inputs/c
 import { MagentoUpdateCartItemResponse } from './queries/responses/public_api';
 import { transformMagentoCartItem } from './transforms/outputs/cart-item/cart-item-transformer';
 import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
+import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
 
 /**
  * A service for making Magento GraphQL queries for carts.
@@ -35,6 +37,7 @@ import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
 export class DaffMagentoCartItemService implements DaffCartItemServiceInterface {
   constructor(
     private apollo: Apollo,
+    @Inject(DAFF_MAGENTO_CART_MUTATION_QUEUE) private mutationQueue: DaffQueuedApollo,
     @Inject(DaffMagentoExtraCartFragments) public extraCartFragments: DocumentNode[],
     public cartTransformer: DaffMagentoCartTransformer,
     public cartItemUpdateInputTransformer: DaffMagentoCartItemUpdateInputTransformer
@@ -67,7 +70,7 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
   }
 
   update(cartId: string, itemId: number, changes: Partial<DaffCartItem>): Observable<Partial<DaffCart>> {
-    return this.apollo.mutate<MagentoUpdateCartItemResponse>({
+    return this.mutationQueue.mutate<MagentoUpdateCartItemResponse>({
       mutation: updateCartItem(this.extraCartFragments),
       variables: {
         cartId,
@@ -82,7 +85,7 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
   }
 
   delete(cartId: string, itemId: number): Observable<Partial<DaffCart>> {
-    return this.apollo.mutate<MagentoRemoveCartItemResponse>({
+    return this.mutationQueue.mutate<MagentoRemoveCartItemResponse>({
       mutation: removeCartItem(this.extraCartFragments),
       variables: {
         cartId,
@@ -95,7 +98,7 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
 
 	private addBundledProduct(cartId: string, cartItemInput: DaffCompositeCartItemInput): Observable<Partial<DaffCart>> {
 		const bundleInput = transformCompositeCartItem(cartItemInput);
-		return this.apollo.mutate<MagentoAddBundleCartItemResponse>({
+		return this.mutationQueue.mutate<MagentoAddBundleCartItemResponse>({
       mutation: addBundleCartItem(this.extraCartFragments),
       variables: {
         cartId,
@@ -109,7 +112,7 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
 
 	private addConfigurableProduct(cartId: string, cartItemInput: DaffConfigurableCartItemInput): Observable<Partial<DaffCart>> {
 		const configurableInput: MagentoConfigurableCartItemInput = transformConfigurableCartItem(cartItemInput);
-		return this.apollo.mutate<MagentoAddConfigurableCartItemResponse>({
+		return this.mutationQueue.mutate<MagentoAddConfigurableCartItemResponse>({
       mutation: addConfigurableCartItem(this.extraCartFragments),
       variables: {
 				cartId,
@@ -122,7 +125,7 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
 	}
 
 	private addSimpleProduct(cartId: string, cartItemInput: DaffCartItemInput): Observable<Partial<DaffCart>> {
-		return this.apollo.mutate<MagentoAddSimpleCartItemResponse>({
+		return this.mutationQueue.mutate<MagentoAddSimpleCartItemResponse>({
       mutation: addSimpleCartItem(this.extraCartFragments),
       variables: {
         cartId,

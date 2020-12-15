@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { DocumentNode } from 'graphql';
 
+import { DaffQueuedApollo } from '@daffodil/core/graphql'
 import { DaffCartAddress, DaffCart } from '@daffodil/cart';
 import { DaffCartShippingAddressServiceInterface } from '@daffodil/cart/driver';
 
@@ -22,6 +23,7 @@ import {
 } from './queries/responses/public_api';
 import { transformCartMagentoError } from './errors/transform';
 import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
+import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
 
 /**
  * A service for making Magento GraphQL queries for a cart's shipping address.
@@ -32,6 +34,7 @@ import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
 export class DaffMagentoCartShippingAddressService implements DaffCartShippingAddressServiceInterface {
   constructor(
     private apollo: Apollo,
+    @Inject(DAFF_MAGENTO_CART_MUTATION_QUEUE) private mutationQueue: DaffQueuedApollo,
     @Inject(DaffMagentoExtraCartFragments) public extraCartFragments: DocumentNode[],
     public cartTransformer: DaffMagentoCartTransformer,
     public shippingAddressTransformer: DaffMagentoShippingAddressTransformer,
@@ -58,7 +61,7 @@ export class DaffMagentoCartShippingAddressService implements DaffCartShippingAd
   }
 
   private updateAddress(cartId: string, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
-    return this.apollo.mutate<MagentoUpdateShippingAddressResponse>({
+    return this.mutationQueue.mutate<MagentoUpdateShippingAddressResponse>({
       mutation: updateShippingAddress(this.extraCartFragments),
       variables: {
         cartId,
@@ -71,7 +74,7 @@ export class DaffMagentoCartShippingAddressService implements DaffCartShippingAd
   }
 
   private updateAddressWithEmail(cartId: string, address: Partial<DaffCartAddress>): Observable<Partial<DaffCart>> {
-    return this.apollo.mutate<MagentoUpdateShippingAddressWithEmailResponse>({
+    return this.mutationQueue.mutate<MagentoUpdateShippingAddressWithEmailResponse>({
       mutation: updateShippingAddressWithEmail(this.extraCartFragments),
       variables: {
         cartId,

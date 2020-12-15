@@ -4,6 +4,7 @@ import { DocumentNode } from 'graphql';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
+import { DaffQueuedApollo } from '@daffodil/core/graphql'
 import { DaffCartShippingRate, DaffCart } from '@daffodil/cart';
 import { DaffCartShippingInformationServiceInterface } from '@daffodil/cart/driver';
 
@@ -17,6 +18,7 @@ import { DaffMagentoShippingMethodInputTransformer } from './transforms/inputs/s
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { MagentoGetSelectedShippingMethodResponse, MagentoSetSelectedShippingMethodResponse, MagentoListShippingMethodsResponse } from './queries/responses/public_api';
 import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
+import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
 
 /**
  * A service for making Magento GraphQL queries for carts.
@@ -27,6 +29,7 @@ import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
 export class DaffMagentoCartShippingInformationService implements DaffCartShippingInformationServiceInterface {
   constructor(
     private apollo: Apollo,
+    @Inject(DAFF_MAGENTO_CART_MUTATION_QUEUE) private mutationQueue: DaffQueuedApollo,
     @Inject(DaffMagentoExtraCartFragments) public extraCartFragments: DocumentNode[],
     public cartTransformer: DaffMagentoCartTransformer,
     public shippingRateTransformer: DaffMagentoCartShippingRateTransformer,
@@ -46,7 +49,7 @@ export class DaffMagentoCartShippingInformationService implements DaffCartShippi
   }
 
   update(cartId: string, shippingInfo: Partial<DaffCartShippingRate>): Observable<Partial<DaffCart>> {
-    return this.apollo.mutate<MagentoSetSelectedShippingMethodResponse>({
+    return this.mutationQueue.mutate<MagentoSetSelectedShippingMethodResponse>({
       mutation: setSelectedShippingMethod(this.extraCartFragments),
       variables: {
         cartId,
@@ -74,7 +77,7 @@ export class DaffMagentoCartShippingInformationService implements DaffCartShippi
   }
 
   delete(cartId: string, id?: string | number): Observable<Partial<DaffCart>> {
-    return this.apollo.mutate<MagentoSetSelectedShippingMethodResponse>({
+    return this.mutationQueue.mutate<MagentoSetSelectedShippingMethodResponse>({
       mutation: setSelectedShippingMethod(this.extraCartFragments),
       variables: {
         cartId,
