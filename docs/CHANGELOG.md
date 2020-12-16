@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.21.1](https://github.com/graycoreio/daffodil/compare/v0.21.0...v0.21.1) (2020-12-16)
+
+
+### Features
+
+* **authorizenet:** add driver errors ([#1171](https://github.com/graycoreio/daffodil/issues/1171)) ([bf893f4](https://github.com/graycoreio/daffodil/commit/bf893f4afe896bd269fac350f0b040f7c7c5b5f7))
+* **authorizenet:** map errors in magento driver ([#1183](https://github.com/graycoreio/daffodil/issues/1183)) ([64882a1](https://github.com/graycoreio/daffodil/commit/64882a1b01508d6aa58c1dc16ed86dc8969ab570))
+* **authorizenet:** transform errors to state with injected error matcher ([#1182](https://github.com/graycoreio/daffodil/issues/1182)) ([d305410](https://github.com/graycoreio/daffodil/commit/d3054102f5df93a7b994f8069adf4ab594c1cc6e))
+* **core:** add storage service that errors on the server ([#1180](https://github.com/graycoreio/daffodil/issues/1180)) ([3f47e76](https://github.com/graycoreio/daffodil/commit/3f47e76ba437eee3919f204b62df0098c9170684))
+* **navigation:** shard packages ([#1181](https://github.com/graycoreio/daffodil/issues/1181)) ([05d67e7](https://github.com/graycoreio/daffodil/commit/05d67e7d6f74f01808654a43beb5d8faf40f5f1f))
+
+
+### Bug Fixes
+
+* **cart:** some cart fields disappear during mutations that do not retrieve the entire cart ([#1184](https://github.com/graycoreio/daffodil/issues/1184)) ([1c9e0e5](https://github.com/graycoreio/daffodil/commit/1c9e0e551a47d653817c5f867cc8674543a90ba9))
+
 ## [0.21.0](https://github.com/graycoreio/daffodil/compare/v0.20.3...v0.21.0) (2020-12-07)
 
 
