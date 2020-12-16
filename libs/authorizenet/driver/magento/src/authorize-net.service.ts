@@ -7,7 +7,7 @@ import { DaffAuthorizeNetService, DaffAuthorizeNetConfigToken, DaffAuthorizeNetC
 import { transformMagentoAuthorizeNetRequest, transformMagentoAuthorizeNetResponse } from './transformers/authorize-net-transformer';
 import { MagentoAuthorizeNetPayment } from './models/authorize-net-payment';
 
-declare var Accept: AcceptType;
+export declare var Accept: AcceptType;
 
 @Injectable({
   providedIn: 'root'

@@ -18,6 +18,8 @@ export class DaffAcceptJsLoadingService {
 	) {}
 
 	load(): void {
+    console.log(typeof Accept);
+
 		if (typeof Accept === 'undefined') {
 			const acceptJsScript = this.doc.createElement('script');
 			acceptJsScript.async = true;

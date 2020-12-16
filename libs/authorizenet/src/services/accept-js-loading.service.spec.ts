@@ -28,8 +28,9 @@ describe('DaffAcceptJsLoadingService', () => {
 		expect(service).toBeTruthy();
 	});
 
-	it(`throws an error when acceptJs has not been loaded
-			should load the acceptJs library into the document`, () => {
+	it(`throws an error when acceptJs has not been loaded should load the acceptJs library into the document`, () => {
+    delete (window as any).Accept;
+
 		expect(() => {
 			service.getAccept();
 		}).toThrowError();
