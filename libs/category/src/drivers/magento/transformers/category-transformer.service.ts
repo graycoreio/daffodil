@@ -14,7 +14,8 @@ export class DaffMagentoCategoryTransformerService {
       id: category.id,
 			name: category.name,
 			description: category.description,
-      children_count: category.children_count,
+			children_count: category.children_count,
+			//todo: use optional chaining when possible
 			breadcrumbs: category.breadcrumbs ? 
 				category.breadcrumbs
 					.map(breadcrumb => this.transformBreadcrumb(breadcrumb))
