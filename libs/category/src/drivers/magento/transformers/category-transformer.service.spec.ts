@@ -28,8 +28,10 @@ describe('DaffMagentoCategoryTransformerService', () => {
 
   describe('transform', () => {
 
-    it('should return a DaffCategory', () => {
-      const magentoCategory: MagentoCategory = {
+		let magentoCategory: MagentoCategory;
+
+		beforeEach(() => {
+			magentoCategory = {
         id: stubCategory.id,
 				name: stubCategory.name,
 				description: stubCategory.description,
@@ -56,50 +58,31 @@ describe('DaffMagentoCategoryTransformerService', () => {
 				},
         children_count: stubCategory.children_count
       }
+		});
 
+    it('should return a DaffCategory', () => {
       expect(service.transform(magentoCategory)).toEqual(stubCategory);
 		});
 
     it('should return breadcrumbs in order of category_level', () => {
-      const magentoCategory: MagentoCategory = {
-        id: stubCategory.id,
-				name: stubCategory.name,
-				description: stubCategory.description,
-        breadcrumbs: [{
-          category_id: 3,
-          category_name: 'category3',
-          category_level: 3,
-          category_url_key: 'urlKey3'
-				},
-				{
-          category_id: 1,
-          category_name: 'category1',
-          category_level: 1,
-          category_url_key: 'urlKey1'
-				},
-				{
-          category_id: 2,
-          category_name: 'category2',
-          category_level: 2,
-          category_url_key: 'urlKey2'
-				}],
-				products: {
-					items: [{
-						__typename: 'simple',
-						id: 1,
-						name: 'name',
-						sku: stubCategory.product_ids[0],
-						url_key: 'url_key',
-						image: null,
-						price_range: null,
-            thumbnail: {
-              url: 'url',
-              label: 'label'
-            }
-					}]
-				},
-        children_count: stubCategory.children_count
-			}
+      magentoCategory.breadcrumbs = [{
+				category_id: 3,
+				category_name: 'category3',
+				category_level: 3,
+				category_url_key: 'urlKey3'
+			},
+			{
+				category_id: 1,
+				category_name: 'category1',
+				category_level: 1,
+				category_url_key: 'urlKey1'
+			},
+			{
+				category_id: 2,
+				category_name: 'category2',
+				category_level: 2,
+				category_url_key: 'urlKey2'
+			}];
 			const expectedBreadcrumbs: DaffCategoryBreadcrumb[] = [{
 				categoryId: 1,
 				categoryName: 'category1',
