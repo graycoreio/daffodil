@@ -46,7 +46,7 @@ describe('AuthorizeNet | Drivers | Magento | Transformers', () => {
 					dataValue: 'paymentNonce',
 					dataDescriptor: null
 				}
-			}
+			};
 			const ccNumber = '1243123412341234';
 			const ccLast4 = '1234';
 			expect(transformMagentoAuthorizeNetResponse(authorizeNetResponse, ccNumber)).toEqual(
