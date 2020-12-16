@@ -91,7 +91,7 @@ describe('Driver | Magento | Authorize.net | DaffMagentoAuthorizeNetService', ()
   describe('generateToken | generating a payment token with acceptjs', () => {
     describe('when the request completes successfully', () => {
       beforeEach(() => {
-        acceptSpy.and.callFake((request, cb) => cb(authorizeNetResponse))
+        acceptSpy.and.callFake((_, cb) => cb(authorizeNetResponse))
       });
 
       it('should return the payment info', () => {
@@ -118,7 +118,7 @@ describe('Driver | Magento | Authorize.net | DaffMagentoAuthorizeNetService', ()
             ]
           }
         };
-        acceptSpy.and.callFake((request, cb) => cb(errorResponse))
+        acceptSpy.and.callFake((_, cb) => cb(errorResponse))
       });
 
       it('should throw a past CC expiration error', () => {
