@@ -376,7 +376,28 @@ describe('Configurable Product Selectors | unit tests', () => {
 				a: {
 					color: ['0', '1', '2'],
 					size: ['0', '1', '2'],
-					material: ['0', '1', '2']
+					material: ['0', '2', '1']
+				}
+			});
+
+			expect(selector).toBeObservable(expected);
+		});
+
+		it('returns expected dictionary when variants are out of stock', () => {
+			stubConfigurableProduct.variants = stubConfigurableProduct.variants.map(variant => {
+				if(variant.appliedAttributes['material'] === '1') {
+					variant.in_stock = false;
+				}
+
+				return variant;
+			});
+			store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
+			const selector = store.pipe(select(selectSelectableConfigurableProductAttributes, { id: stubConfigurableProduct.id }));
+			const expected = cold('a', {
+				a: {
+					color: ['0', '1', '2'],
+					size: ['0', '1', '2'],
+					material: ['0', '2']
 				}
 			});
 

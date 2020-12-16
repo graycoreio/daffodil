@@ -276,8 +276,8 @@ describe('DaffConfigurableProductFacade', () => {
 					],
 					[stubConfigurableProduct.configurableAttributes[2].code]: [
 						stubConfigurableProduct.configurableAttributes[2].values[0].value,
-						stubConfigurableProduct.configurableAttributes[2].values[1].value,
-						stubConfigurableProduct.configurableAttributes[2].values[2].value
+						stubConfigurableProduct.configurableAttributes[2].values[2].value,
+						stubConfigurableProduct.configurableAttributes[2].values[1].value
 					]
 				}
 			});
