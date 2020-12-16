@@ -1,3 +1,7 @@
+/**
+ * The error codes for Authorize.net driver errors.
+ * See {@link DaffError} and {@link DaffStateError}.
+ */
 export enum DaffAuthorizeNetDriverErrorCodes {
   ACCEPTJS_INVALID = 'DAFF_AUTHORIZE_NET_ACCEPTJS_INVALID',
   ACCEPTJS_MISSING = 'DAFF_AUTHORIZE_NET_ACCEPTJS_MISSING',

@@ -13,6 +13,9 @@ import { DaffAuthorizeNetInvalidLoginIdError } from './invalid-login-id';
 import { DaffAuthorizeNetInvalidPostalCodeError } from './invalid-postal-code';
 import { DaffAuthorizeNetPastCCExpirationError } from './past-cc-expiration';
 
+/**
+ * A mapping from the Authorize.net platform error codes to Daffodil driver error classes.
+ */
 export const DAFF_AUTHORIZE_NET_ERROR_CODE_MAP = {
   E_WC_01: DaffAuthorizeNetAcceptjsMissingError,
   E_WC_02: DaffAuthorizeNetInsecureConnectionError,
