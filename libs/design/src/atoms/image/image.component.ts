@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, EventEmitter, Output, HostBinding, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { mediaCompatToken } from '../../molecules/media-gallery/media/media-compat.token';
 
 const validateProperty = (object: Object, prop: string) => {
   if (object[prop] === null || object[prop] === undefined || object[prop] === '') {
@@ -27,7 +28,12 @@ const validateProperties = (object: Object, props: string[]) => {
   selector: 'daff-image',
   templateUrl: './image.component.html',
   styleUrls: ['./image.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: mediaCompatToken, useExisting: DaffImageComponent
+    }
+  ]
 })
 export class DaffImageComponent implements OnInit {
 
@@ -81,7 +87,7 @@ export class DaffImageComponent implements OnInit {
 	/**
 	 * @docs-private
 	 */
-  get paddingTop(): any {
+  get _paddingTop(): any {
     if (!this.height || !this.width ) {
       return undefined;
     }

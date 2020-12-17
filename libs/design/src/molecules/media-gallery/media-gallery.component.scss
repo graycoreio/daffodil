@@ -1,0 +1,37 @@
+@import 'daff-util';
+
+:host(.daff-media-gallery) {
+	/* autoprefixer grid: autoplace */
+	$root: '.daff-media-gallery';
+	display: grid;
+	grid-template-areas:
+		'main-image'
+		'list';
+	grid-template-columns: 1fr;
+	grid-gap: 8px;
+
+	@include breakpoint(mobile) {
+		grid-template-areas: 'list main-image';
+		grid-template-columns: 80px 1fr;
+		grid-gap: 24px;
+	}
+}
+
+.daff-media-gallery {
+	&__list {
+		grid-area: list;
+		display: inline-block;
+
+		@include breakpoint(mobile) {
+			flex-direction: block;
+		}
+	}
+
+	&__main-image {
+		grid-area: main-image;
+	}
+
+	&__media {
+		width: 80px;
+	}
+}
