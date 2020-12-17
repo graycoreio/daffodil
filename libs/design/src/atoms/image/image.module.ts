@@ -11,7 +11,10 @@ import { DaffImageComponent } from './image.component';
     CommonModule,
   ],
   exports: [
-    DaffImageComponent,
+    DaffImageComponent
   ],
+  entryComponents: [
+    DaffImageComponent
+  ]
 })
 export class DaffImageModule { }

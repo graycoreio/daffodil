@@ -8,6 +8,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { mediaCompatToken } from '../../molecules/media-gallery/media/media-compat.token';
 
 const validateProperty = (object: Record<string, any>, prop: string) => {
   if (object[prop] === null || object[prop] === undefined || object[prop] === '') {
@@ -35,6 +36,11 @@ const validateProperties = (object: Record<string, any>, props: string[]) => {
   templateUrl: './image.component.html',
   styleUrls: ['./image.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: mediaCompatToken, useExisting: DaffImageComponent
+    }
+  ]
 })
 export class DaffImageComponent implements OnInit {
 
@@ -98,13 +104,13 @@ export class DaffImageComponent implements OnInit {
 	/**
 	 * @docs-private
 	 */
-	get paddingTop(): any {
-	  if (!this.height || !this.width ) {
-	    return undefined;
-	  }
-
-	  return this.sanitizer.bypassSecurityTrustStyle('calc(' + this.height + ' / ' + this.width + ' * 100%)');
-	}
+  get _paddingTop(): any {
+    if (!this.height || !this.width ) {
+      return undefined;
+    }
+    
+    return this.sanitizer.bypassSecurityTrustStyle('calc(' + this.height + ' / ' + this.width + ' * 100%)');
+  }
 
 	/**
 	 * @docs-private
