@@ -150,7 +150,7 @@ describe('Configurable Product Selectors | integration tests', () => {
 			a: {
 				color: ['0', '1', '2'],
 				size: ['0', '1', '2'],
-				material: ['0', '1', '2']
+				material: ['0', '2', '1']
 			} 
 		});
 

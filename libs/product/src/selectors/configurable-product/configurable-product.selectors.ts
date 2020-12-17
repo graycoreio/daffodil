@@ -223,7 +223,6 @@ const createConfigurableProductSelectors = (): DaffConfigurableProductMemoizedSe
 				return {};
 			}
 			const appliedAttributes: DaffConfigurableProductEntityAttribute[] = selectConfigurableProductAppliedAttributes.projector(appliedAttributesEntities, { id: props.id });
-			if(appliedAttributes.length === 0) return selectAllConfigurableProductAttributes.projector(products, { id: props.id });
 			
 			const selectableAttributes = initializeSelectableAttributes(product.configurableAttributes);
 
