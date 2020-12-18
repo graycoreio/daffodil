@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.21.2](https://github.com/graycoreio/daffodil/compare/v0.21.1...v0.21.2) (2020-12-18)
+
+
+### Features
+
+* **cart:** queue mutations in magento driver ([#1191](https://github.com/graycoreio/daffodil/issues/1191)) ([100bbc0](https://github.com/graycoreio/daffodil/commit/100bbc0a2d246f07cc95d1e5d197aa080818474f))
+* **core:** add queued apollo service ([#1187](https://github.com/graycoreio/daffodil/issues/1187)) ([c125b7c](https://github.com/graycoreio/daffodil/commit/c125b7cb8988b97c726172cc5271cdad0d320714))
+
+
+### Bug Fixes
+
+* **category:** category breadcrumbs return from magento in alphabetic… ([#1188](https://github.com/graycoreio/daffodil/issues/1188)) ([4eeb037](https://github.com/graycoreio/daffodil/commit/4eeb03741d65a3d3f9609d55911f647f9f2e0871))
+* **product:** configurable product selectable attributes include out of stock variants ([#1189](https://github.com/graycoreio/daffodil/issues/1189)) ([2248754](https://github.com/graycoreio/daffodil/commit/224875404d693c187b37473429c090059bded6ea))
+
 ### [0.21.1](https://github.com/graycoreio/daffodil/compare/v0.21.0...v0.21.1) (2020-12-16)
 
 
