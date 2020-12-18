@@ -4,6 +4,7 @@ import { DocumentNode } from 'graphql';
 import { Observable, throwError, forkJoin } from 'rxjs';
 import { map, switchMap, catchError } from 'rxjs/operators';
 
+import { DaffQueuedApollo } from '@daffodil/core/graphql'
 import { DaffCart, DaffCartItem, DaffCartItemInput } from '@daffodil/cart';
 import { DaffCartServiceInterface, DaffCartItemDriver, DaffCartItemServiceInterface } from '@daffodil/cart/driver';
 
@@ -13,6 +14,7 @@ import { MagentoGetCartResponse } from './queries/responses/get-cart';
 import { MagentoCreateCartResponse } from './queries/responses/create-cart';
 import { transformCartMagentoError } from './errors/transform';
 import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
+import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
 
 /**
  * A service for making Magento GraphQL queries for carts.
@@ -23,6 +25,7 @@ import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
 export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart> {
   constructor(
     private apollo: Apollo,
+    @Inject(DAFF_MAGENTO_CART_MUTATION_QUEUE) private mutationQueue: DaffQueuedApollo,
     public cartTransformer: DaffMagentoCartTransformer,
     @Inject(DaffCartItemDriver) private cartItemDriver: DaffCartItemServiceInterface<
       DaffCartItem,
@@ -43,7 +46,7 @@ export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart
   }
 
   create(): Observable<{id: string}> {
-    return this.apollo.mutate<MagentoCreateCartResponse>({mutation: createCart}).pipe(
+    return this.mutationQueue.mutate<MagentoCreateCartResponse>({mutation: createCart}).pipe(
       map(result => ({id: result.data.createEmptyCart}))
     )
   }
