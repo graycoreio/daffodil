@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { DaffLoadingState } from '@daffodil/core/state';
+import { DaffLoadingState, DaffStateError } from '@daffodil/core/state';
 import { DaffCart, DaffCartItemInputType, DaffCartTotalTypeEnum } from '@daffodil/cart';
 import {
   DaffCartLoadSuccess,
@@ -57,7 +57,8 @@ describe('Cart | Selector | Cart', () => {
   let orderId: string;
   let cart: DaffCart;
   let loading: DaffCartLoading;
-	let errors: DaffCartErrors;
+  let errors: DaffCartErrors;
+  let error: DaffStateError;
 	const {
     selectCartValue,
 
@@ -155,6 +156,10 @@ describe('Cart | Selector | Cart', () => {
     shippingMethodFactory = TestBed.get(DaffCartShippingRateFactory);
 
     orderId = 'id';
+    error = {
+      code: 'error code',
+      message: 'error message'
+    }
     cart = cartFactory.create({
       items: cartItemFactory.createMany(2),
       shipping_address: cartAddressFactory.create(),
@@ -228,7 +233,7 @@ describe('Cart | Selector | Cart', () => {
     it('should be failed after cart resolution failure', () => {
       const selector = store.pipe(select(selectCartResolved));
       const expected = cold('a', {a: DaffCartResolveState.Failed});
-      store.dispatch(new DaffResolveCartFailure('error'));
+      store.dispatch(new DaffResolveCartFailure(error));
 
       expect(selector).toBeObservable(expected);
     });

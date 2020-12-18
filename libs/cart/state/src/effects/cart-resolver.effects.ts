@@ -45,9 +45,9 @@ export class DaffCartResolverEffects<T extends DaffCart = DaffCart> {
             return this.driver.create().pipe(
               switchMap(({ id }) => this.driver.get(id)),
               map(resp => new DaffResolveCartSuccess(resp)),
-              catchError(() => {
-                error.message = 'Cart resolution failed after attempting to generate and load a new cart.'
-                return of(new DaffResolveCartFailure(this.errorMatcher(error)))
+              catchError((innerError: DaffError) => {
+                innerError.message = 'Cart resolution failed after attempting to generate and load a new cart.'
+                return of(new DaffResolveCartFailure(this.errorMatcher(innerError)))
               })
             );
           default:
