@@ -138,10 +138,11 @@ describe('DaffAuthorizeNetEffects', () => {
 
 		it('should dispatch DaffAuthorizeNetUpdatePaymentFailure when the cart payment method has failed to update', () => {
       const authorizeNetUpdatePayment = new DaffAuthorizeNetUpdatePayment(paymentTokenRequest, stubAddress);
+      const mockCode = 'code'
       const mockErrorMessage = 'Cart payment with billing update failed.'
-			const cartPaymentUpdateWithBillingFailure = new DaffCartPaymentUpdateWithBillingFailure(mockErrorMessage);
+			const cartPaymentUpdateWithBillingFailure = new DaffCartPaymentUpdateWithBillingFailure({code: mockCode, message: mockErrorMessage});
 			const authorizeNetPaymentUpdateFailure = new DaffAuthorizeNetUpdatePaymentFailure({
-        code: 'DaffCartPaymentUpdateWithBillingFailure placeholder code',
+        code: mockCode,
         message: mockErrorMessage
       });
 			actions$ = hot('--ab', { a: authorizeNetUpdatePayment, b: cartPaymentUpdateWithBillingFailure });

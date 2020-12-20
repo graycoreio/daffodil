@@ -65,11 +65,7 @@ export class DaffAuthorizeNetEffects<T extends DaffAuthorizeNetTokenRequest = Da
 			DaffCartPaymentActionTypes.CartPaymentUpdateWithBillingSuccessAction
 		),
     map(([updatePaymentAction, updatePaymentFailureAction]: [DaffAuthorizeNetUpdatePayment, DaffCartPaymentUpdateWithBillingFailure]) =>
-      // TODO: change once cart failure actions use DaffStateError
-      new DaffAuthorizeNetUpdatePaymentFailure(this.errorMatcher({
-        code: 'DaffCartPaymentUpdateWithBillingFailure placeholder code',
-        message: updatePaymentFailureAction.payload
-      }))
+      new DaffAuthorizeNetUpdatePaymentFailure(this.errorMatcher(updatePaymentFailureAction.payload))
     )
 	)
 
