@@ -3,14 +3,13 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
-import { DaffError, DaffStorageServiceError } from '@daffodil/core';
+import { DaffStorageServiceError } from '@daffodil/core';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
 import { DaffCart, DaffCartStorageService } from '@daffodil/cart';
 import {
   DaffResolveCart,
   DaffResolveCartFailure,
   DaffResolveCartSuccess,
-  DaffCartStorageFailure,
 } from '@daffodil/cart/state';
 import { DaffCartServiceInterface, DaffCartDriver, DaffCartNotFoundError, DaffCartInvalidAPIResponseError } from '@daffodil/cart/driver';
 import {

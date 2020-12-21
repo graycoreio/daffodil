@@ -6,7 +6,6 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { DaffStorageServiceError } from '@daffodil/core';
 import { DaffCartAddress, DaffCart, DaffCartStorageService, DAFF_CART_ERROR_MATCHER } from '@daffodil/cart';
 import { DaffCartAddressDriver, DaffCartAddressServiceInterface } from '@daffodil/cart/driver';
-import { daffTransformErrorToStateError } from '@daffodil/core/state';
 
 import {
   DaffCartAddressActionTypes,
