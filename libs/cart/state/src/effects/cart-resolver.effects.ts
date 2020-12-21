@@ -4,8 +4,8 @@ import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { switchMap, catchError, map, mapTo } from 'rxjs/operators';
 
-import { DaffStorageServiceError } from '@daffodil/core';
-import { DaffCart, DaffCartStorageService } from '@daffodil/cart';
+import { DaffStorageServiceError, DaffError } from '@daffodil/core';
+import { DaffCart, DaffCartStorageService, DAFF_CART_ERROR_MATCHER } from '@daffodil/cart';
 import { DaffCartDriver, DaffCartServiceInterface, DaffCartNotFoundError } from '@daffodil/cart/driver';
 
 import {
@@ -22,6 +22,7 @@ import {
 export class DaffCartResolverEffects<T extends DaffCart = DaffCart> {
 	constructor(
 		private actions$: Actions,
+    @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: Function,
 		private cartStorage: DaffCartStorageService,
 		@Inject(DaffCartDriver) private driver: DaffCartServiceInterface<T>,
 	) {}
@@ -34,18 +35,23 @@ export class DaffCartResolverEffects<T extends DaffCart = DaffCart> {
       switchMap(cartId => cartId ? of({ id: cartId }) : this.driver.create()),
       switchMap(({ id }) => this.driver.get(id)),
       map(resp => new DaffResolveCartSuccess(resp)),
-      catchError(error => {
+      catchError((error: DaffError) => {
         switch(true) {
           case error instanceof DaffStorageServiceError:
-            return of(new DaffResolveCartFailure('Cart resolution failed while attempting to retrieve the cart ID from storage.'));
+            error.message = 'Cart resolution failed while attempting to retrieve the cart ID from storage.'
+            return of(new DaffResolveCartFailure(this.errorMatcher(error)));
           case error instanceof DaffCartNotFoundError:
             return this.driver.create().pipe(
               switchMap(({ id }) => this.driver.get(id)),
               map(resp => new DaffResolveCartSuccess(resp)),
-              catchError(() => of(new DaffResolveCartFailure('Cart resolution failed after attempting to generate and load a new cart.')))
+              catchError((innerError: DaffError) => {
+                innerError.message = 'Cart resolution failed after attempting to generate and load a new cart.'
+                return of(new DaffResolveCartFailure(this.errorMatcher(innerError)))
+              })
             );
           default:
-            return of(new DaffResolveCartFailure('Cart resolution has failed.'));
+            error.message = 'Cart resolution has failed.'
+            return of(new DaffResolveCartFailure(this.errorMatcher(error)));
         }
       }),
     ))

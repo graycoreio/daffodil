@@ -14,6 +14,7 @@ import {
   DaffCartFactory,
   DaffCartAddressFactory
 } from '@daffodil/cart/testing';
+import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffCartBillingAddressEffects } from './cart-billing-address.effects';
 
@@ -84,7 +85,7 @@ describe('Daffodil | Cart | CartBillingAddressEffects', () => {
 
     describe('and the call to CartBillingAddressService fails', () => {
       beforeEach(() => {
-        const error = 'Failed to load cart billing address';
+        const error: DaffStateError = {code: 'code', message: 'Failed to load cart billing address'};
         const response = cold('#', {}, error);
         daffBillingAddressDriverSpy.get.and.returnValue(response);
         const cartBillingAddressLoadFailureAction = new DaffCartBillingAddressLoadFailure(error);
@@ -123,7 +124,7 @@ describe('Daffodil | Cart | CartBillingAddressEffects', () => {
 
     describe('and the call to CartBillingAddressService fails', () => {
       beforeEach(() => {
-        const error = 'Failed to update cart billing address';
+        const error: DaffStateError = {code: 'code', message: 'Failed to update cart billing address'};
         const response = cold('#', {}, error);
         daffBillingAddressDriverSpy.update.and.returnValue(response);
         const cartCreateFailureAction = new DaffCartBillingAddressUpdateFailure(error);

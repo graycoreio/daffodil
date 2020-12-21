@@ -3,7 +3,7 @@ import { switchMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
-import { DaffCartShippingRate, DaffCartStorageService } from '@daffodil/cart';
+import { DaffCartShippingRate, DaffCartStorageService, DAFF_CART_ERROR_MATCHER } from '@daffodil/cart';
 import { DaffCartShippingMethodsDriver, DaffCartShippingMethodsServiceInterface } from '@daffodil/cart/driver';
 
 import {
@@ -18,6 +18,7 @@ export class DaffCartShippingMethodsEffects<T extends DaffCartShippingRate> {
 
   constructor(
     private actions$: Actions,
+    @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: Function,
     @Inject(DaffCartShippingMethodsDriver) private driver: DaffCartShippingMethodsServiceInterface<T>,
     private storage: DaffCartStorageService
     ) {}
@@ -28,7 +29,7 @@ export class DaffCartShippingMethodsEffects<T extends DaffCartShippingRate> {
     switchMap((action: DaffCartShippingMethodsLoad) =>
       this.driver.list(this.storage.getCartId()).pipe(
         map((resp: T[]) => new DaffCartShippingMethodsLoadSuccess(resp)),
-        catchError(error => of(new DaffCartShippingMethodsLoadFailure('Failed to list cart shipping methods')))
+        catchError(error => of(new DaffCartShippingMethodsLoadFailure(this.errorMatcher(error))))
       )
     )
   )

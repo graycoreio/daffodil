@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
 import { DaffStorageServiceError } from '@daffodil/core';
+import { daffTransformErrorToStateError } from '@daffodil/core/state';
 import { DaffCart, DaffCartStorageService } from '@daffodil/cart';
 import {
   DaffResolveCart,
@@ -66,7 +67,8 @@ describe('DaffCartResolverEffects', () => {
       });
 
       it('should indicate cart resolution failure due to cart ID retrieval', () => {
-        const resolveCartFailureAction = new DaffResolveCartFailure('Cart resolution failed while attempting to retrieve the cart ID from storage.');
+        const error = new DaffStorageServiceError('Cart resolution failed while attempting to retrieve the cart ID from storage.');
+        const resolveCartFailureAction = new DaffResolveCartFailure(daffTransformErrorToStateError(error));
         const expected = cold('--b', {
           b: resolveCartFailureAction
         });
@@ -89,9 +91,8 @@ describe('DaffCartResolverEffects', () => {
         });
 
         it('should dispatch DaffResolveCartFailure action', () => {
-          const response = cold('#', {});
-          driver.create.and.returnValue(response);
-          const resolveCartFailureAction = new DaffResolveCartFailure('Cart resolution has failed.');
+          const error = new DaffCartInvalidAPIResponseError('Cart resolution has failed.');
+          const resolveCartFailureAction = new DaffResolveCartFailure(daffTransformErrorToStateError(error));
           const expected = cold('--b', {
             b: resolveCartFailureAction
           });
@@ -126,7 +127,8 @@ describe('DaffCartResolverEffects', () => {
         });
 
         it('should indicate failed cart resolution', () => {
-          const resolveCartFailureAction = new DaffResolveCartFailure('Cart resolution has failed.');
+          const error = new DaffCartInvalidAPIResponseError('Cart resolution has failed.');
+          const resolveCartFailureAction = new DaffResolveCartFailure(daffTransformErrorToStateError(error));
           const expected = cold('--b', {
             b: resolveCartFailureAction,
           });
@@ -175,7 +177,8 @@ describe('DaffCartResolverEffects', () => {
           });
 
           it('should indicate failed cart resolution', () => {
-            const resolveCartFailureAction = new DaffResolveCartFailure('Cart resolution failed after attempting to generate and load a new cart.');
+            const error = new DaffCartInvalidAPIResponseError('Cart resolution failed after attempting to generate and load a new cart.');
+            const resolveCartFailureAction = new DaffResolveCartFailure(daffTransformErrorToStateError(error));
             const expected = cold('--b', {
               b: resolveCartFailureAction,
             });
@@ -192,7 +195,8 @@ describe('DaffCartResolverEffects', () => {
           });
 
           it('should indicate failed cart resolution', () => {
-            const resolveCartFailureAction = new DaffResolveCartFailure('Cart resolution failed after attempting to generate and load a new cart.');
+            const error = new DaffCartNotFoundError('Cart resolution failed after attempting to generate and load a new cart.');
+            const resolveCartFailureAction = new DaffResolveCartFailure(daffTransformErrorToStateError(error));
             const expected = cold('--b', {
               b: resolveCartFailureAction,
             });

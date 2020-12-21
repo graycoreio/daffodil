@@ -1,4 +1,4 @@
-import { DaffLoadingState } from '@daffodil/core/state';
+import { DaffLoadingState, DaffStateError } from '@daffodil/core/state';
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartPaymentMethodsLoad, DaffCartOperationType, DaffCartReducerState, DaffCartPaymentMethodsLoadSuccess, DaffCartPaymentMethodsLoadFailure, initialState } from '@daffodil/cart/state';
 import { DaffCartFactory } from '@daffodil/cart/testing';
@@ -68,7 +68,7 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
   });
 
   describe('when CartPaymentMethodsLoadFailureAction is triggered', () => {
-    const error = 'error message';
+    const error: DaffStateError = {code: 'error code', message: 'error message'};
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -81,7 +81,7 @@ describe('Cart | Reducer | Cart Payment Methods', () => {
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.PaymentMethods]: new Array('firstError')
+          [DaffCartOperationType.PaymentMethods]: [{code: 'first error code', message: 'first error message'}]
         }
       }
 

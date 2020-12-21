@@ -5,6 +5,8 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
+import { DaffStorageServiceError } from '@daffodil/core';
+import { DaffStateError, daffTransformErrorToStateError } from '@daffodil/core/state';
 import { DaffCart } from '@daffodil/cart';
 import {
 	daffCartReducers,
@@ -123,13 +125,14 @@ describe('DaffCartResolver', () => {
     });
 
     describe('when DaffCartStorageFailure is dispatched', () => {
+      const error: DaffStateError = daffTransformErrorToStateError(new DaffStorageServiceError('An error occurred during storage.'))
 
       it('should resolve with a DaffCartStorageFailure action', () => {
         cartResolver.resolve().subscribe((resolvedValue) => {
-          expect(resolvedValue).toEqual(new DaffCartStorageFailure('Cart Storage Failed'));
+          expect(resolvedValue).toEqual(new DaffCartStorageFailure(error));
         });
 
-        store.dispatch(new DaffCartStorageFailure('Cart Storage Failed'));
+        store.dispatch(new DaffCartStorageFailure(error));
       });
 
       it('should redirect to the provided DaffCartResolverRedirectUrl', () => {
@@ -137,7 +140,7 @@ describe('DaffCartResolver', () => {
           expect(router.navigateByUrl).toHaveBeenCalledWith(stubUrl);
         });
 
-        store.dispatch(new DaffCartStorageFailure('Cart Storage Failed'));
+        store.dispatch(new DaffCartStorageFailure(error));
       });
     });
   });

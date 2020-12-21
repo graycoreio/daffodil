@@ -3,6 +3,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
+import { DaffStateError } from '@daffodil/core/state';
 import {
   DaffCart,
   DaffCartShippingInformation,
@@ -97,7 +98,7 @@ describe('Daffodil | Cart | CartShippingInformationEffects', () => {
 
     describe('and the call to CartShippingInformationService fails', () => {
       beforeEach(() => {
-        const error = 'Failed to load cart shipping information';
+        const error: DaffStateError = {code: 'code', message: 'Failed to load cart shipping information'};
         const response = cold('#', {}, error);
         daffShippingInformationDriverSpy.get.and.returnValue(response);
         const cartShippingInformationLoadFailureAction = new DaffCartShippingInformationLoadFailure(error);
@@ -136,7 +137,7 @@ describe('Daffodil | Cart | CartShippingInformationEffects', () => {
 
     describe('and the call to CartShippingInformationService fails', () => {
       beforeEach(() => {
-        const error = 'Failed to update cart shipping information';
+        const error: DaffStateError = {code: 'code', message: 'Failed to update cart shipping information'};
         const response = cold('#', {}, error);
         daffShippingInformationDriverSpy.update.and.returnValue(response);
         const cartCreateFailureAction = new DaffCartShippingInformationUpdateFailure(error);
@@ -169,7 +170,7 @@ describe('Daffodil | Cart | CartShippingInformationEffects', () => {
 
     describe('and the call to CartShippingInformationService fails', () => {
       beforeEach(() => {
-        const error = 'Failed to delete the cart shipping information';
+        const error: DaffStateError = {code: 'code', message: 'Failed to delete the cart shipping information'};
         const response = cold('#', {}, error);
         daffShippingInformationDriverSpy.delete.and.returnValue(response);
         const cartShippingInformationDeleteFailureAction = new DaffCartShippingInformationDeleteFailure(error);

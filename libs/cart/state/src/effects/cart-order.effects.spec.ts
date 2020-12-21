@@ -6,6 +6,7 @@ import { hot, cold } from 'jasmine-marbles';
 import {
   DaffStorageServiceError
 } from '@daffodil/core'
+import { DaffStateError, daffTransformErrorToStateError } from '@daffodil/core/state';
 import {
   DaffCart,
   DaffCartPaymentMethod,
@@ -35,7 +36,7 @@ describe('Cart | Effect | CartOrderEffects', () => {
   let cartOrderDriverSpy: jasmine.SpyObj<DaffCartOrderServiceInterface>;
   let daffCartStorageSpy: jasmine.SpyObj<DaffCartStorageService>;
 
-  const cartStorageFailureAction = new DaffCartStorageFailure('Cart Storage Failed');
+  const cartStorageFailureAction = new DaffCartStorageFailure(daffTransformErrorToStateError(new DaffStorageServiceError('An error occurred during storage.')));
   const throwStorageError = () => { throw new DaffStorageServiceError('An error occurred during storage.') };
 
   beforeEach(() => {
@@ -95,7 +96,7 @@ describe('Cart | Effect | CartOrderEffects', () => {
 
     describe('and the call to CartOrderService fails', () => {
       beforeEach(() => {
-        const error = 'Failed to place order';
+        const error: DaffStateError = {code: 'code', message: 'Failed to place order'};
         const response = cold('#', {}, error);
         const cartPlaceOrderFailureAction = new DaffCartPlaceOrderFailure(error);
 

@@ -12,6 +12,7 @@ import {
 import {
   DaffCartFactory,
 } from '@daffodil/cart/testing';
+import { DaffStateError } from '@daffodil/core/state';
 
 import { cartResolveReducer as reducer } from './cart-resolve.reducer';
 
@@ -67,7 +68,7 @@ describe('Cart | Reducer | cartResolveReducer', () => {
   });
 
   describe('when ResolveCartActionFailureAction is triggered', () => {
-    const error = 'error message';
+    const error: DaffStateError = {code: 'error code', message: 'error message'};
     let result;
     let state: DaffCartReducerState<DaffCart>;
 

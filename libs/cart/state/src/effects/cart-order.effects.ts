@@ -6,7 +6,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import {
   DaffStorageServiceError
 } from '@daffodil/core'
-import { DaffCart, DaffCartPaymentMethod, DaffCartOrderResult, DaffCartStorageService } from '@daffodil/cart';
+import { DaffCart, DaffCartPaymentMethod, DaffCartOrderResult, DaffCartStorageService, DAFF_CART_ERROR_MATCHER } from '@daffodil/cart';
 import { DaffCartOrderDriver, DaffCartOrderServiceInterface } from '@daffodil/cart/driver';
 
 import {
@@ -26,6 +26,7 @@ export class DaffCartOrderEffects<
 > {
   constructor(
     private actions$: Actions,
+    @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: Function,
     @Inject(DaffCartOrderDriver) private driver: DaffCartOrderServiceInterface<T, V, R>,
     private storage: DaffCartStorageService,
   ) {}
@@ -38,8 +39,8 @@ export class DaffCartOrderEffects<
       switchMap(cartId => this.driver.placeOrder(cartId, action.payload)),
       map((resp: R) => new DaffCartPlaceOrderSuccess<R>(resp)),
       catchError(error => of(error instanceof DaffStorageServiceError
-        ? new DaffCartStorageFailure('Cart Storage Failed')
-        : new DaffCartPlaceOrderFailure('Failed to place order')
+        ? new DaffCartStorageFailure(this.errorMatcher(error))
+        : new DaffCartPlaceOrderFailure(this.errorMatcher(error))
       )),
     )),
   )

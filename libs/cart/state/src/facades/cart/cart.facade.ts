@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { Action, Store, select } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffCart, DaffCartOrderResult, DaffCartTotal, DaffCartPaymentMethodIdMap, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption } from '@daffodil/cart';
 
 import { DaffCartReducersState, DaffCartResolveState } from '../../reducers/public_api';
@@ -102,7 +103,7 @@ export class DaffCartFacade<
   canPlaceOrder$: Observable<boolean>;
 
   orderResultLoading$: Observable<boolean>;
-	orderResultErrors$: Observable<string[]>;
+	orderResultErrors$: Observable<DaffStateError[]>;
 	orderResult$: Observable<V>;
 	orderResultId$: Observable<V['orderId']>;
 	orderResultCartId$: Observable<V['cartId']>;

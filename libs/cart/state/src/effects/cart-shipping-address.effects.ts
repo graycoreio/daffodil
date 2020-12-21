@@ -3,7 +3,7 @@ import { switchMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
-import { DaffCartAddress, DaffCart, DaffCartStorageService } from '@daffodil/cart';
+import { DaffCartAddress, DaffCart, DaffCartStorageService, DAFF_CART_ERROR_MATCHER } from '@daffodil/cart';
 import { DaffCartShippingAddressDriver, DaffCartShippingAddressServiceInterface } from '@daffodil/cart/driver';
 
 import {
@@ -20,6 +20,7 @@ import {
 export class DaffCartShippingAddressEffects<T extends DaffCartAddress, V extends DaffCart> {
   constructor(
     private actions$: Actions,
+    @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: Function,
     @Inject(DaffCartShippingAddressDriver) private driver: DaffCartShippingAddressServiceInterface<T, V>,
     private storage: DaffCartStorageService
   ) {}
@@ -30,7 +31,7 @@ export class DaffCartShippingAddressEffects<T extends DaffCartAddress, V extends
     switchMap((action: DaffCartShippingAddressLoad) =>
       this.driver.get(this.storage.getCartId()).pipe(
         map((resp: T) => new DaffCartShippingAddressLoadSuccess(resp)),
-        catchError(error => of(new DaffCartShippingAddressLoadFailure('Failed to load cart shipping address')))
+        catchError(error => of(new DaffCartShippingAddressLoadFailure(this.errorMatcher(error))))
       )
     )
   )
@@ -41,7 +42,7 @@ export class DaffCartShippingAddressEffects<T extends DaffCartAddress, V extends
     switchMap((action: DaffCartShippingAddressUpdate<T>) =>
       this.driver.update(this.storage.getCartId(), action.payload).pipe(
         map((resp: V) => new DaffCartShippingAddressUpdateSuccess(resp)),
-        catchError(error => of(new DaffCartShippingAddressUpdateFailure('Failed to update cart shipping address')))
+        catchError(error => of(new DaffCartShippingAddressUpdateFailure(this.errorMatcher(error))))
       )
     )
   )

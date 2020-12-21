@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
-import { DaffStoreFacade } from '@daffodil/core/state';
+import { DaffStateError, DaffStoreFacade } from '@daffodil/core/state';
 import { DaffCart, DaffCartOrderResult, DaffCartTotal, DaffConfigurableCartItemAttribute, DaffCompositeCartItemOption } from '@daffodil/cart';
 
 import { DaffCartErrors } from '../../reducers/errors/cart-errors.type';
@@ -222,7 +222,7 @@ export interface DaffCartFacadeInterface<
   canPlaceOrder$: Observable<boolean>;
 
   orderResultLoading$: Observable<boolean>;
-	orderResultErrors$: Observable<string[]>;
+	orderResultErrors$: Observable<DaffStateError[]>;
 	orderResult$: Observable<V>;
 	orderResultId$: Observable<V['orderId']>;
 	orderResultCartId$: Observable<V['cartId']>;

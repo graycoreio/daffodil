@@ -4,7 +4,7 @@ import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { MockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 
-import { DaffLoadingState } from '@daffodil/core/state';
+import { DaffLoadingState, DaffStateError } from '@daffodil/core/state';
 import { DaffCartOrderResult, DaffCartPaymentMethodIdMap, DaffCart, DaffCartTotalTypeEnum, DaffCartPaymentMethod, DaffConfigurableCartItem, DaffCompositeCartItem, DaffCartItemInputType } from '@daffodil/cart';
 import {
 	initialState, DaffCartReducersState,
@@ -781,7 +781,7 @@ describe('DaffCartFacade', () => {
     });
 
     it('should contain an error upon a failed cart load', () => {
-      const error = 'error';
+      const error: DaffStateError = {code: 'error code', message: 'error message'};
       const expected = cold('a', { a: [error] });
       facade.dispatch(new DaffCartLoadFailure(error));
       expect(facade.cartErrors$).toBeObservable(expected);
@@ -795,7 +795,7 @@ describe('DaffCartFacade', () => {
     });
 
     it('should contain an error upon a failed item load', () => {
-      const error = 'error';
+      const error: DaffStateError = {code: 'error code', message: 'error message'};
       const expected = cold('a', { a: [error] });
       facade.dispatch(new DaffCartItemLoadFailure(error));
       expect(facade.itemErrors$).toBeObservable(expected);
@@ -809,7 +809,7 @@ describe('DaffCartFacade', () => {
     });
 
     it('should contain an error upon a failed billing address load', () => {
-      const error = 'error';
+      const error: DaffStateError = {code: 'error code', message: 'error message'};
       const expected = cold('a', { a: [error] });
       facade.dispatch(new DaffCartBillingAddressLoadFailure(error));
       expect(facade.billingAddressErrors$).toBeObservable(expected);
@@ -823,7 +823,7 @@ describe('DaffCartFacade', () => {
     });
 
     it('should contain an error upon a failed shipping address load', () => {
-      const error = 'error';
+      const error: DaffStateError = {code: 'error code', message: 'error message'};
       const expected = cold('a', { a: [error] });
       facade.dispatch(new DaffCartShippingAddressLoadFailure(error));
       expect(facade.shippingAddressErrors$).toBeObservable(expected);
@@ -837,7 +837,7 @@ describe('DaffCartFacade', () => {
     });
 
     it('should contain an error upon a failed shipping information load', () => {
-      const error = 'error';
+      const error: DaffStateError = {code: 'error code', message: 'error message'};
       const expected = cold('a', { a: [error] });
       facade.dispatch(new DaffCartShippingInformationLoadFailure(error));
       expect(facade.shippingInformationErrors$).toBeObservable(expected);
@@ -851,7 +851,7 @@ describe('DaffCartFacade', () => {
     });
 
     it('should contain an error upon a failed shipping methods load', () => {
-      const error = 'error';
+      const error: DaffStateError = {code: 'error code', message: 'error message'};
       const expected = cold('a', { a: [error] });
       facade.dispatch(new DaffCartShippingMethodsLoadFailure(error));
       expect(facade.shippingMethodsErrors$).toBeObservable(expected);
@@ -865,7 +865,7 @@ describe('DaffCartFacade', () => {
     });
 
     it('should contain an error upon a failed payment load', () => {
-      const error = 'error';
+      const error: DaffStateError = {code: 'error code', message: 'error message'};
       const expected = cold('a', { a: [error] });
       facade.dispatch(new DaffCartPaymentLoadFailure(error));
       expect(facade.paymentErrors$).toBeObservable(expected);
@@ -879,7 +879,7 @@ describe('DaffCartFacade', () => {
     });
 
     it('should contain an error upon a failed payment methods load', () => {
-      const error = 'error';
+      const error: DaffStateError = {code: 'error code', message: 'error message'};
       const expected = cold('a', { a: [error] });
       facade.dispatch(new DaffCartPaymentMethodsLoadFailure(error));
       expect(facade.paymentMethodsErrors$).toBeObservable(expected);
@@ -893,7 +893,7 @@ describe('DaffCartFacade', () => {
     });
 
     it('should contain an error upon a failed coupon list', () => {
-      const error = 'error';
+      const error: DaffStateError = {code: 'error code', message: 'error message'};
       const expected = cold('a', { a: [error] });
       facade.dispatch(new DaffCartCouponListFailure(error));
       expect(facade.couponErrors$).toBeObservable(expected);

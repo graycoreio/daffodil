@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
 import { DaffStorageServiceError } from '@daffodil/core';
-import { DaffCartAddress, DaffCart, DaffCartStorageService } from '@daffodil/cart';
+import { DaffCartAddress, DaffCart, DaffCartStorageService, DAFF_CART_ERROR_MATCHER } from '@daffodil/cart';
 import { DaffCartAddressDriver, DaffCartAddressServiceInterface } from '@daffodil/cart/driver';
 
 import {
@@ -19,6 +19,7 @@ import {
 export class DaffCartAddressEffects<T extends DaffCartAddress, V extends DaffCart> {
   constructor(
     private actions$: Actions,
+    @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: Function,
     @Inject(DaffCartAddressDriver) private driver: DaffCartAddressServiceInterface<T, V>,
     private storage: DaffCartStorageService
   ) {}
@@ -31,8 +32,8 @@ export class DaffCartAddressEffects<T extends DaffCartAddress, V extends DaffCar
       switchMap(cartId => this.driver.update(cartId, action.payload)),
       map((resp: V) => new DaffCartAddressUpdateSuccess(resp)),
       catchError(error => of(error instanceof DaffStorageServiceError
-        ? new DaffCartStorageFailure('Cart Storage Failed')
-        : new DaffCartAddressUpdateFailure('Failed to update cart address')
+        ? new DaffCartStorageFailure(this.errorMatcher(error))
+        : new DaffCartAddressUpdateFailure(this.errorMatcher(error))
       )),
     )),
   )

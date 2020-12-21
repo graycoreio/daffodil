@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffCartShippingRate, DaffCart } from '@daffodil/cart';
 
 export enum DaffCartShippingInformationActionTypes {
@@ -27,7 +28,7 @@ export class DaffCartShippingInformationLoadSuccess<T extends DaffCartShippingRa
 export class DaffCartShippingInformationLoadFailure implements Action {
   readonly type = DaffCartShippingInformationActionTypes.CartShippingInformationLoadFailureAction;
 
-  constructor(public payload: string) {}
+  constructor(public payload: DaffStateError) {}
 }
 
 export class DaffCartShippingInformationUpdate<T extends DaffCartShippingRate = DaffCartShippingRate> implements Action {
@@ -45,7 +46,7 @@ export class DaffCartShippingInformationUpdateSuccess<T extends DaffCart = DaffC
 export class DaffCartShippingInformationUpdateFailure implements Action {
   readonly type = DaffCartShippingInformationActionTypes.CartShippingInformationUpdateFailureAction;
 
-  constructor(public payload: string) {}
+  constructor(public payload: DaffStateError) {}
 }
 
 export class DaffCartShippingInformationDelete<T extends DaffCartShippingRate = DaffCartShippingRate> implements Action {
@@ -63,7 +64,7 @@ export class DaffCartShippingInformationDeleteSuccess<T extends DaffCart = DaffC
 export class DaffCartShippingInformationDeleteFailure implements Action {
   readonly type = DaffCartShippingInformationActionTypes.CartShippingInformationDeleteFailureAction;
 
-  constructor(public payload: string) {}
+  constructor(public payload: DaffStateError) {}
 }
 
 export type DaffCartShippingInformationActions<

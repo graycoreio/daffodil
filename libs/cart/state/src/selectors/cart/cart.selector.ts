@@ -6,7 +6,7 @@ import {
 } from '@ngrx/store';
 
 import { daffSubtract } from '@daffodil/core';
-import { DaffLoadingState } from '@daffodil/core/state';
+import { DaffLoadingState, DaffStateError } from '@daffodil/core/state';
 import { daffComparePersonalAddresses } from '@daffodil/geography';
 import { DaffCart, DaffCartTotal, DaffCartOrderResult, DaffCartTotalTypeEnum } from '@daffodil/cart';
 
@@ -170,15 +170,15 @@ export interface DaffCartStateMemoizedSelectors<
 	selectItemMutating: MemoizedSelector<object, boolean>;
 
 	selectCartErrorsObject: MemoizedSelector<object, DaffCartReducerState<T>['errors']>;
-	selectCartErrors: MemoizedSelector<object, string[]>;
-	selectBillingAddressErrors: MemoizedSelector<object, string[]>;
-	selectShippingAddressErrors: MemoizedSelector<object, string[]>;
-	selectShippingInformationErrors: MemoizedSelector<object, string[]>;
-	selectShippingMethodsErrors: MemoizedSelector<object, string[]>;
-	selectPaymentErrors: MemoizedSelector<object, string[]>;
-	selectPaymentMethodsErrors: MemoizedSelector<object, string[]>;
-  selectCouponErrors: MemoizedSelector<object, string[]>;
-	selectItemErrors: MemoizedSelector<object, string[]>;
+	selectCartErrors: MemoizedSelector<object, DaffStateError[]>;
+	selectBillingAddressErrors: MemoizedSelector<object, DaffStateError[]>;
+	selectShippingAddressErrors: MemoizedSelector<object, DaffStateError[]>;
+	selectShippingInformationErrors: MemoizedSelector<object, DaffStateError[]>;
+	selectShippingMethodsErrors: MemoizedSelector<object, DaffStateError[]>;
+	selectPaymentErrors: MemoizedSelector<object, DaffStateError[]>;
+	selectPaymentMethodsErrors: MemoizedSelector<object, DaffStateError[]>;
+  selectCouponErrors: MemoizedSelector<object, DaffStateError[]>;
+	selectItemErrors: MemoizedSelector<object, DaffStateError[]>;
 
 	selectCartId: MemoizedSelector<object, T['id']>;
 	selectCartSubtotal: MemoizedSelector<object, DaffCartTotal['value']>;

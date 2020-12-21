@@ -3,6 +3,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
+import { DaffStateError } from '@daffodil/core/state';
 import {
   DaffCart,
   DaffCartPaymentMethod,
@@ -103,7 +104,7 @@ describe('Daffodil | Cart | CartPaymentEffects', () => {
 
     describe('and the call to CartPaymentService fails', () => {
       beforeEach(() => {
-        const error = 'Failed to load cart payment';
+        const error: DaffStateError = {code: 'code', message: 'Failed to load cart payment'};
         const response = cold('#', {}, error);
         daffPaymentDriverSpy.get.and.returnValue(response);
         const cartPaymentLoadFailureAction = new DaffCartPaymentLoadFailure(error);
@@ -142,7 +143,7 @@ describe('Daffodil | Cart | CartPaymentEffects', () => {
 
     describe('and the call to CartPaymentService fails', () => {
       beforeEach(() => {
-        const error = 'Failed to update cart payment';
+        const error: DaffStateError = {code: 'code', message: 'Failed to update cart payment'};
         const response = cold('#', {}, error);
         daffPaymentDriverSpy.update.and.returnValue(response);
         const cartPaymentUpdateFailureAction = new DaffCartPaymentUpdateFailure(error);
@@ -181,7 +182,7 @@ describe('Daffodil | Cart | CartPaymentEffects', () => {
 
     describe('and the call to CartPaymentService fails', () => {
       beforeEach(() => {
-        const error = 'Failed to update cart payment and billing address';
+        const error: DaffStateError = {code: 'code', message: 'Failed to update cart payment and billing address'};
         const response = cold('#', {}, error);
         daffPaymentDriverSpy.updateWithBilling.and.returnValue(response);
         const cartPaymentUpdateFailureAction = new DaffCartPaymentUpdateWithBillingFailure(error);
@@ -213,7 +214,7 @@ describe('Daffodil | Cart | CartPaymentEffects', () => {
 
     describe('and the call to CartPaymentService fails', () => {
       beforeEach(() => {
-        const error = 'Failed to remove the cart payment';
+        const error: DaffStateError = {code: 'code', message: 'Failed to remove the cart payment'};
         const response = cold('#', {}, error);
         daffPaymentDriverSpy.remove.and.returnValue(response);
         const cartPaymentRemoveFailureAction = new DaffCartPaymentRemoveFailure(error);

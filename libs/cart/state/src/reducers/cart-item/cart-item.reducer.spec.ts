@@ -1,19 +1,20 @@
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffCart, DaffCartItemInputType } from '@daffodil/cart';
-import { 
-	DaffCartItemUpdate, DaffCartOperationType, 
-	DaffCartReducerState, DaffCartItemUpdateSuccess, 
-	DaffCartItemUpdateFailure, DaffCartItemDelete, 
-	DaffCartItemDeleteSuccess, DaffCartItemDeleteFailure, 
-	DaffCartItemAdd, DaffCartItemAddSuccess, 
-	DaffCartItemAddFailure, DaffCartItemLoad, 
-	DaffCartItemLoadSuccess, DaffCartItemLoadFailure, 
-	DaffCartItemList, DaffCartItemListSuccess, 
+import {
+	DaffCartItemUpdate, DaffCartOperationType,
+	DaffCartReducerState, DaffCartItemUpdateSuccess,
+	DaffCartItemUpdateFailure, DaffCartItemDelete,
+	DaffCartItemDeleteSuccess, DaffCartItemDeleteFailure,
+	DaffCartItemAdd, DaffCartItemAddSuccess,
+	DaffCartItemAddFailure, DaffCartItemLoad,
+	DaffCartItemLoadSuccess, DaffCartItemLoadFailure,
+	DaffCartItemList, DaffCartItemListSuccess,
 	DaffCartItemListFailure, initialState,
-	DaffCartItemLoadingState
+	DaffCartItemLoadingState,
+  DaffStatefulCartItem
 } from '@daffodil/cart/state';
 import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
-import { DaffStatefulCartItem } from '../../models/public_api';
 
 import { cartItemReducer } from './cart-item.reducer';
 
@@ -86,7 +87,7 @@ describe('Cart | Reducer | Cart Item', () => {
   });
 
   describe('when CartItemUpdateFailureAction is triggered', () => {
-    const error = 'error message';
+    const error: DaffStateError = {code: 'error code', message: 'error message'};
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -99,7 +100,7 @@ describe('Cart | Reducer | Cart Item', () => {
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.Item]: new Array('firstError')
+          [DaffCartOperationType.Item]: [{code: 'first error code', message: 'first error message'}]
         }
       }
 
@@ -159,7 +160,7 @@ describe('Cart | Reducer | Cart Item', () => {
   });
 
   describe('when CartItemDeleteFailureAction is triggered', () => {
-    const error = 'error message';
+    const error: DaffStateError = {code: 'error code', message: 'error message'};
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -172,7 +173,7 @@ describe('Cart | Reducer | Cart Item', () => {
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.Item]: new Array('firstError')
+          [DaffCartOperationType.Item]: [{code: 'first error code', message: 'first error message'}]
         }
       }
 
@@ -235,7 +236,7 @@ describe('Cart | Reducer | Cart Item', () => {
   });
 
   describe('when CartItemAddFailureAction is triggered', () => {
-    let error: string;
+    let error: DaffStateError;
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -248,11 +249,11 @@ describe('Cart | Reducer | Cart Item', () => {
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.Item]: new Array('firstError')
+          [DaffCartOperationType.Item]: [{code: 'first error code', message: 'first error message'}]
         }
       }
 
-      error = 'error';
+      error = {code: 'error code', message: 'error message'};
 
       const cartItemAddFailure = new DaffCartItemAddFailure(error);
 
@@ -321,7 +322,7 @@ describe('Cart | Reducer | Cart Item', () => {
   });
 
   describe('when CartItemLoadFailureAction is triggered', () => {
-    let error: string;
+    let error: DaffStateError;
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -334,11 +335,11 @@ describe('Cart | Reducer | Cart Item', () => {
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.Item]: new Array('firstError')
+          [DaffCartOperationType.Item]: [{code: 'first error code', message: 'first error message'}]
         }
       }
 
-      error = 'error';
+      error = {code: 'error code', message: 'error message'};
 
       const cartItemLoadFailure = new DaffCartItemLoadFailure(error);
 
@@ -401,7 +402,7 @@ describe('Cart | Reducer | Cart Item', () => {
   });
 
   describe('when CartItemListFailureAction is triggered', () => {
-    let error: string;
+    let error: DaffStateError;
     let result;
     let state: DaffCartReducerState<DaffCart>;
 
@@ -414,11 +415,11 @@ describe('Cart | Reducer | Cart Item', () => {
         },
         errors: {
           ...initialState.errors,
-          [DaffCartOperationType.Item]: new Array('firstError')
+          [DaffCartOperationType.Item]: [{code: 'first error code', message: 'first error message'}]
         }
       }
 
-      error = 'error';
+      error = {code: 'error code', message: 'error message'};
 
       const cartItemListFailure = new DaffCartItemListFailure(error);
 

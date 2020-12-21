@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffCartCoupon, DaffCart } from '@daffodil/cart';
 
 export enum DaffCartCouponActionTypes {
@@ -32,7 +33,7 @@ export class DaffCartCouponApplySuccess<T extends DaffCart = DaffCart> implement
 export class DaffCartCouponApplyFailure implements Action {
   readonly type = DaffCartCouponActionTypes.CartCouponApplyFailureAction;
 
-  constructor(public payload: string) {}
+  constructor(public payload: DaffStateError) {}
 }
 
 export class DaffCartCouponList implements Action {
@@ -48,7 +49,7 @@ export class DaffCartCouponListSuccess<T extends DaffCartCoupon = DaffCartCoupon
 export class DaffCartCouponListFailure implements Action {
   readonly type = DaffCartCouponActionTypes.CartCouponListFailureAction;
 
-  constructor(public payload: string) {}
+  constructor(public payload: DaffStateError) {}
 }
 
 export class DaffCartCouponRemove<T extends DaffCartCoupon = DaffCartCoupon> implements Action {
@@ -66,7 +67,7 @@ export class DaffCartCouponRemoveSuccess<T extends DaffCart = DaffCart> implemen
 export class DaffCartCouponRemoveFailure implements Action {
   readonly type = DaffCartCouponActionTypes.CartCouponRemoveFailureAction;
 
-  constructor(public payload: string) {}
+  constructor(public payload: DaffStateError) {}
 }
 
 export class DaffCartCouponRemoveAll implements Action {
@@ -82,7 +83,7 @@ export class DaffCartCouponRemoveAllSuccess<T extends DaffCart = DaffCart> imple
 export class DaffCartCouponRemoveAllFailure implements Action {
   readonly type = DaffCartCouponActionTypes.CartCouponRemoveAllFailureAction;
 
-  constructor(public payload: string) {}
+  constructor(public payload: DaffStateError) {}
 }
 
 export type DaffCartCouponActions<

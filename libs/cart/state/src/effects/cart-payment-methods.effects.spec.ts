@@ -14,6 +14,7 @@ import {
   DaffCartFactory,
   DaffCartPaymentFactory,
 } from '@daffodil/cart/testing';
+import { DaffStateError } from '@daffodil/core/state';
 
 import { DaffCartPaymentMethodsEffects } from './cart-payment-methods.effects';
 
@@ -84,7 +85,7 @@ describe('Daffodil | Cart | DaffCartPaymentMethodsEffects', () => {
 
     describe('and the call to CartService fails', () => {
       beforeEach(() => {
-        const error = 'Failed to list cart payment methods';
+        const error: DaffStateError = {code: 'code', message: 'Failed to list cart payment methods'};
         const response = cold('#', {}, error);
         paymentMethodsDriverSpy.list.and.returnValue(response);
         const cartCreateFailureAction = new DaffCartPaymentMethodsLoadFailure(error);

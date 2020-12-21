@@ -6,7 +6,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import {
   DaffStorageServiceError
 } from '@daffodil/core'
-import { DaffCart, DaffCartCoupon, DaffCartStorageService } from '@daffodil/cart';
+import { DaffCart, DaffCartCoupon, DaffCartStorageService, DAFF_CART_ERROR_MATCHER } from '@daffodil/cart';
 import { DaffCartCouponDriver, DaffCartCouponServiceInterface } from '@daffodil/cart/driver';
 
 import {
@@ -33,6 +33,7 @@ export class DaffCartCouponEffects<
 > {
   constructor(
     private actions$: Actions,
+    @Inject(DAFF_CART_ERROR_MATCHER) private errorMatcher: Function,
     @Inject(DaffCartCouponDriver) private driver: DaffCartCouponServiceInterface<T, V>,
     private storage: DaffCartStorageService,
   ) {}
@@ -45,8 +46,8 @@ export class DaffCartCouponEffects<
       switchMap(cartId => this.driver.apply(cartId, action.payload)),
       map(resp => new DaffCartCouponApplySuccess(resp)),
       catchError(error => of(error instanceof DaffStorageServiceError
-        ? new DaffCartStorageFailure('Cart Storage Failed')
-        : new DaffCartCouponApplyFailure('Failed to apply coupon to cart')
+        ? new DaffCartStorageFailure(this.errorMatcher(error))
+        : new DaffCartCouponApplyFailure(this.errorMatcher(error))
       )),
     )),
   )
@@ -59,8 +60,8 @@ export class DaffCartCouponEffects<
       switchMap(cartId => this.driver.list(cartId)),
       map(resp => new DaffCartCouponListSuccess<V>(resp)),
       catchError(error => of(error instanceof DaffStorageServiceError
-        ? new DaffCartStorageFailure('Cart Storage Failed')
-        : new DaffCartCouponListFailure('Failed to list coupons')
+        ? new DaffCartStorageFailure(this.errorMatcher(error))
+        : new DaffCartCouponListFailure(this.errorMatcher(error))
       )),
     )),
   )
@@ -73,8 +74,8 @@ export class DaffCartCouponEffects<
       switchMap(cartId => this.driver.remove(cartId, action.payload)),
       map(resp => new DaffCartCouponRemoveSuccess(resp)),
       catchError(error => of(error instanceof DaffStorageServiceError
-        ? new DaffCartStorageFailure('Cart Storage Failed')
-        : new DaffCartCouponRemoveFailure('Failed to remove a coupon from the cart')
+        ? new DaffCartStorageFailure(this.errorMatcher(error))
+        : new DaffCartCouponRemoveFailure(this.errorMatcher(error))
       )),
     )),
   )
@@ -87,8 +88,8 @@ export class DaffCartCouponEffects<
       switchMap(cartId => this.driver.removeAll(cartId)),
       map(resp => new DaffCartCouponRemoveAllSuccess(resp)),
       catchError(error => of(error instanceof DaffStorageServiceError
-        ? new DaffCartStorageFailure('Cart Storage Failed')
-        : new DaffCartCouponRemoveAllFailure('Failed to remove all coupons from the cart')
+        ? new DaffCartStorageFailure(this.errorMatcher(error))
+        : new DaffCartCouponRemoveAllFailure(this.errorMatcher(error))
       )),
     )),
   )

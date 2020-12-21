@@ -7,14 +7,14 @@ import { TestScheduler } from 'rxjs/testing';
 
 import { DaffCartItemInput, DaffCart, DaffCartStorageService, DaffCartItemInputType } from '@daffodil/cart';
 import { DaffCartItemServiceInterface, DaffCartItemDriver } from '@daffodil/cart/driver';
-import { DaffCartItemList, DaffCartItemListSuccess, DaffCartItemListFailure, DaffCartItemLoad, DaffCartItemLoadSuccess, DaffCartItemLoadFailure, DaffCartItemAdd, DaffCartItemAddSuccess, DaffCartItemAddFailure, DaffCartItemUpdate, DaffCartItemUpdateSuccess, DaffCartItemUpdateFailure, DaffCartItemDelete, DaffCartItemDeleteSuccess, DaffCartItemDeleteFailure } from '@daffodil/cart/state';
-import { DaffCartFactory } from '@daffodil/cart/testing';
+import { DaffCartItemList, DaffCartItemListSuccess, DaffCartItemListFailure, DaffCartItemLoad, DaffCartItemLoadSuccess, DaffCartItemLoadFailure, DaffCartItemAdd, DaffCartItemAddSuccess, DaffCartItemAddFailure, DaffCartItemUpdate, DaffCartItemUpdateSuccess, DaffCartItemUpdateFailure, DaffCartItemDelete, DaffCartItemDeleteSuccess, DaffCartItemDeleteFailure, DaffStatefulCartItem, DaffCartItemStateReset, DaffCartItemStateDebounceTime } from '@daffodil/cart/state';
+import {
+  DaffCartFactory,
+} from '@daffodil/cart/testing';
+import { DaffStateError } from '@daffodil/core/state';
 import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
 
 import { DaffCartItemEffects } from './cart-item.effects';
-import { DaffCartItemStateReset } from '../actions/public_api';
-import { DaffStatefulCartItem } from '../models/public_api';
-import { DaffCartItemStateDebounceTime } from '../injection-tokens/cart-item-state-debounce-time';
 
 describe('Daffodil | Cart | CartItemEffects', () => {
   let actions$: Observable<any>;
@@ -41,7 +41,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
           provide: DaffCartItemDriver,
           useValue: jasmine.createSpyObj('DaffCartItemDriver', ['list', 'get', 'update', 'add', 'delete'])
 				},
-				{ 
+				{
 					provide: DaffCartItemStateDebounceTime,
 					useValue: 4000
 				},
@@ -53,8 +53,8 @@ describe('Daffodil | Cart | CartItemEffects', () => {
     });
 
 		effects = TestBed.get<DaffCartItemEffects<
-			DaffStatefulCartItem, 
-			DaffCartItemInput, 
+			DaffStatefulCartItem,
+			DaffCartItemInput,
 			DaffCart
 		>>(DaffCartItemEffects);
 
@@ -100,7 +100,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
 
     describe('and the call to CartItemService fails', () => {
       beforeEach(() => {
-        const error = 'Failed to list cart items';
+        const error: DaffStateError = {code: 'code', message: 'Failed to list cart items'};
         const response = cold('#', {}, error);
         daffCartItemDriverSpy.list.and.returnValue(response);
         const cartItemListFailureAction = new DaffCartItemListFailure(error);
@@ -137,7 +137,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
 
     describe('and the call to CartItemService fails', () => {
       beforeEach(() => {
-        const error = 'Failed to load cart item';
+        const error: DaffStateError = {code: 'code', message: 'Failed to load cart item'};
         const response = cold('#', {}, error);
         daffCartItemDriverSpy.get.and.returnValue(response);
         const cartItemLoadFailureAction = new DaffCartItemLoadFailure(error);
@@ -161,7 +161,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
     });
 
     describe('and the call to CartItemService is successful', () => {
-			beforeEach(() => {	
+			beforeEach(() => {
         mockCart.items.push(mockCartItem);
         daffCartItemDriverSpy.add.and.returnValue(of(mockCart));
         const cartItemAddSuccessAction = new DaffCartItemAddSuccess(mockCart);
@@ -176,7 +176,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
 
     describe('and the call to CartItemService fails', () => {
       beforeEach(() => {
-        const error = 'Failed to add cart item';
+        const error: DaffStateError = {code: 'code', message: 'Failed to add cart item'};
         const response = cold('#', {}, error);
         daffCartItemDriverSpy.add.and.returnValue(response);
         const cartItemAddFailureAction = new DaffCartItemAddFailure(error);
@@ -216,7 +216,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
 
     describe('and the call to CartItemService fails', () => {
       beforeEach(() => {
-        const error = 'Failed to update cart item';
+        const error: DaffStateError = {code: 'code', message: 'Failed to update cart item'};
         const response = cold('#', {}, error);
         daffCartItemDriverSpy.update.and.returnValue(response);
         const cartItemUpdateFailureAction = new DaffCartItemUpdateFailure(error);
@@ -232,7 +232,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
 
   describe('resetCartItemStateAfterChange$', () => {
 		let expectedObservable;
-		
+
 		describe('when a DaffCartItemAddSuccess action is dispatched', () => {
 
 			it('should dispatch a DaffCartItemStateReset after the specified amount of time', () => {
@@ -245,7 +245,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
 					const shopCartItemReset = new DaffCartItemStateReset();
 					actions$ = helpers.hot('a', { a: cartItemAddSuccess });
 					expectedObservable = {a: shopCartItemReset};
-	
+
 					helpers.expectObservable(effects.resetCartItemStateAfterChange$).toBe(expectedMarble, expectedObservable);
 				});
 			});
@@ -263,7 +263,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
 					const shopCartItemReset = new DaffCartItemStateReset();
 					actions$ = helpers.hot('a', { a: cartItemUpdateSuccess });
 					expectedObservable = {a: shopCartItemReset};
-	
+
 					helpers.expectObservable(effects.resetCartItemStateAfterChange$).toBe(expectedMarble, expectedObservable);
 				});
 			});
@@ -293,7 +293,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
 
     describe('and the call to CartItemService fails', () => {
       beforeEach(() => {
-        const error = 'Failed to remove the cart item';
+        const error: DaffStateError = {code: 'code', message: 'Failed to remove the cart item'};
         const response = cold('#', {}, error);
         daffCartItemDriverSpy.delete.and.returnValue(response);
         const cartItemRemoveCartFailureAction = new DaffCartItemDeleteFailure(error);
