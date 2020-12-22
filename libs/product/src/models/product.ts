@@ -18,7 +18,7 @@ export interface DaffProduct {
   name?: string;
   brand?: string;
   description?: string;
-	images?: DaffProductImage[];
+	images: DaffProductImage[];
 	in_stock?: boolean;
 }
 

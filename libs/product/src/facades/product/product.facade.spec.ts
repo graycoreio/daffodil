@@ -97,7 +97,7 @@ describe('DaffProductFacade', () => {
 	
 	describe('hasDiscount()', () => {
 		it('should be an observable of whether the given product has discount', () => {
-			const product = {id: '1', name: 'Some Name', discount: { amount: 20, percent: 10 }};
+			const product = {id: '1', name: 'Some Name', images: [], discount: { amount: 20, percent: 10 }};
       const expected = cold('a', { a: true });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));
@@ -107,7 +107,7 @@ describe('DaffProductFacade', () => {
 	
 	describe('getDiscountAmount()', () => {
 		it('should be an observable of whether the given product has discount', () => {
-			const product = {id: '1', name: 'Some Name', discount: { amount: 20, percent: 10 }};
+			const product = {id: '1', name: 'Some Name', images: [], discount: { amount: 20, percent: 10 }};
       const expected = cold('a', { a: 20 });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));
@@ -127,7 +127,7 @@ describe('DaffProductFacade', () => {
 	
 	describe('getDiscountPercent()', () => {
 		it('should be an observable of whether the given product has discount', () => {
-			const product = {id: '1', name: 'Some Name', discount: { amount: 20, percent: 10 }};
+			const product = {id: '1', name: 'Some Name', images: [], discount: { amount: 20, percent: 10 }};
       const expected = cold('a', { a: 10 });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));
@@ -137,7 +137,7 @@ describe('DaffProductFacade', () => {
 	
 	describe('isOutOfStock()', () => {
 		it('should be an observable of whether the given product is out of stock', () => {
-			const product = {id: '1', name: 'Some Name', discount: { amount: 20, percent: 10 }, in_stock: false};
+			const product = {id: '1', name: 'Some Name', images: [], discount: { amount: 20, percent: 10 }, in_stock: false};
       const expected = cold('a', { a: true });
       store.dispatch(new DaffProductLoad(product.id));
       store.dispatch(new DaffProductLoadSuccess(product));

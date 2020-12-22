@@ -28,6 +28,7 @@
 					"id": "1",
 					"name": "Option 1",
 					"price": 5,
+					"images": [],
 					"discount": {
 						"amount": 1,
 						"percent": 20
@@ -40,6 +41,7 @@
 					"id": "2",
 					"name": "Option 2",
 					"price": 2,
+					"images": [],
 					"discount": {
 						"amount": 1,
 						"percent": 50
