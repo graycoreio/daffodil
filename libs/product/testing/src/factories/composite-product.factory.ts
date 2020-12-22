@@ -13,6 +13,7 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 	id = faker.random.number({min: 1, max: 10000}).toString();
 	url = faker.random.alphaNumeric(16);
 	price = this.stubPrice;
+	images = [];
 	discount = {
 		amount: this.stubDiscount,
 		percent: this.stubDiscount/this.stubPrice
@@ -32,6 +33,7 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 					id: faker.random.alphaNumeric(10),
 					name: faker.commerce.productMaterial(),
 					price: faker.random.number({min: 1, max: 100}),
+					images: [],
 					discount: {
 						amount: 0,
 						percent: 0
@@ -44,6 +46,7 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 					id: faker.random.alphaNumeric(10),
 					name: faker.commerce.productMaterial(),
 					price: faker.random.number({min: 1, max: 100}),
+					images: [],
 					discount: {
 						amount: 0,
 						percent: 0
@@ -64,6 +67,7 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 					id: faker.random.alphaNumeric(10),
 					name: faker.commerce.productMaterial(),
 					price: faker.random.number({min: 1, max: 100}),
+					images: [],
 					discount: {
 						amount: 0,
 						percent: 0
@@ -76,6 +80,7 @@ export class MockCompositeProduct implements DaffCompositeProduct {
 					id: faker.random.alphaNumeric(10),
 					name: faker.commerce.productMaterial(),
 					price: faker.random.number({min: 1, max: 100}),
+					images: [],
 					discount: {
 						amount: 0,
 						percent: 0

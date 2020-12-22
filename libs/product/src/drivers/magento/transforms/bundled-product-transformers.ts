@@ -41,6 +41,7 @@ function transformMagentoBundledProductItemOption(option: MagentoBundledProductI
 		id: option.id.toString(),
 		name: option.label,
 		price: getPrice(option.product),
+		images: [],
 		discount: getDiscount(option.product),
 		quantity: option.quantity,
 		is_default: option.is_default,
