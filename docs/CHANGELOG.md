@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.21.3](https://github.com/graycoreio/daffodil/compare/v0.21.2...v0.21.3) (2020-12-22)
+
+
+### Features
+
+* **cart:** transform cart errors with injectable error matcher ([#1147](https://github.com/graycoreio/daffodil/issues/1147)) ([98f894d](https://github.com/graycoreio/daffodil/commit/98f894d2ade0abd049f98e72784a9831e13004e3))
+* **product:** make DaffProduct.images a required field ([#1195](https://github.com/graycoreio/daffodil/issues/1195)) ([d4b5e43](https://github.com/graycoreio/daffodil/commit/d4b5e43179bd397ec54ab430b25539c41fc83a8c))
+
 ### [0.21.2](https://github.com/graycoreio/daffodil/compare/v0.21.1...v0.21.2) (2020-12-18)
 
 
