@@ -26,6 +26,7 @@ export class DaffQueuedApollo {
    * The request will not actually be queued until the returned observable is subscribed.
    * If the queue is empty, the request will be sent when it enters the queue.
    * Otherwise, it will be sent when it reaches the front of the queue.
+   * The observable will complete after it emits once.
    * @param options Mutation options.
    */
   mutate<T, V = R>(options: MutationOptions<T, V>): Observable<FetchResult<T>> {
