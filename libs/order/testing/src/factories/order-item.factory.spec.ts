@@ -58,8 +58,8 @@ describe('Order | Testing | Factories | OrderItemFactory', () => {
       expect(result.type).not.toBeNull();
     });
 
-    it('should set total_discount to be less than price', () => {
-      expect(result.discount_amount).toBeLessThan(result.price);
+    it('should set total_discount to be less than or equal to price', () => {
+      expect(result.discount_amount).toBeLessThanOrEqual(result.price);
     });
   });
 });

@@ -42,8 +42,8 @@ describe('Cart | Testing | Factories | CartItemFactory', () => {
       expect(result.in_stock).not.toBeNull();
     });
 
-    it('should set total_discount to be less than price', () => {
-      expect(result.total_discount).toBeLessThan(result.price);
+    it('should set total_discount to be less than or equal to price', () => {
+      expect(result.total_discount).toBeLessThanOrEqual(result.price);
     });
   });
 });
