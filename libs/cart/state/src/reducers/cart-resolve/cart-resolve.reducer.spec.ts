@@ -15,6 +15,7 @@ import {
 import { DaffStateError } from '@daffodil/core/state';
 
 import { cartResolveReducer as reducer } from './cart-resolve.reducer';
+import { DaffResolveCartServerSide } from '../../actions/public_api';
 
 
 describe('Cart | Reducer | cartResolveReducer', () => {
@@ -85,6 +86,26 @@ describe('Cart | Reducer | cartResolveReducer', () => {
 
     it('should indicate that the cart failed resolution', () => {
       expect(result.resolved).toEqual(DaffCartResolveState.Failed);
+    });
+  });
+
+  describe('when ResolveCartServerSideAction is triggered', () => {
+    let result;
+    let state: DaffCartReducerState<DaffCart>;
+
+    beforeEach(() => {
+      state = {
+        ...initialState,
+        resolved: DaffCartResolveState.Resolving,
+      }
+
+      const serverSideResolve = new DaffResolveCartServerSide();
+
+      result = reducer(state, serverSideResolve);
+    });
+
+    it('should indicate that the cart resolved to the special "server" state', () => {
+      expect(result.resolved).toEqual(DaffCartResolveState.ServerSide);
     });
   });
 });

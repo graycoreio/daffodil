@@ -1,120 +1,99 @@
 import { TestBed } from '@angular/core/testing';
 import { cold } from 'jasmine-marbles';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
-import { DaffCart } from '@daffodil/cart';
+import { DaffCartResolveState } from '@daffodil/cart/state';
 import {
-  DaffCartFacade,
-  DaffCartResolveState,
-  DaffResolveCart
-} from '@daffodil/cart/state';
-import { DaffResolvedCartGuardRedirectUrl } from '@daffodil/cart/state';
-import { DaffCartFactory } from '@daffodil/cart/testing';
-import { DaffCartTestingModule } from '@daffodil/cart/state/testing';
+	DaffCartTestingModule,
+	MockDaffCartFacade,
+} from '@daffodil/cart/state/testing';
 
 import { DaffResolvedCartGuard } from './resolved-cart.guard';
+import { daffCartStateConfigurationDefault } from '../../config/config';
+import { daffCartStateResolutionConfigurationDefault } from '../../config/resolution/config';
+import { DaffCartFacade } from '../../facades/cart/cart.facade';
 
 describe('Cart | State | Guards | DaffResolvedCartGuard', () => {
 	let service: DaffResolvedCartGuard;
 	let facade;
-  let router: Router;
+	let router: Router;
 
-  let cartFactory: DaffCartFactory;
+	beforeEach(() => {
+		TestBed.configureTestingModule({
+			imports: [DaffCartTestingModule, RouterTestingModule],
+		});
 
-  let cart: DaffCart;
-
-	const stubUrl = 'url';
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-				{ provide: DaffResolvedCartGuardRedirectUrl, useValue: stubUrl }
-			],
-			imports: [
-        DaffCartTestingModule,
-        RouterTestingModule,
-			]
-    });
-
+		router = TestBed.get(Router);
 		facade = TestBed.get(DaffCartFacade);
-    router = TestBed.get(Router);
-		service = new DaffResolvedCartGuard(facade, router, stubUrl);
 
-    spyOn(facade, 'dispatch');
+		service = new DaffResolvedCartGuard(
+			facade,
+			router,
+			daffCartStateConfigurationDefault,
+		);
+	});
 
-    cartFactory = TestBed.get(DaffCartFactory);
-
-    cart = cartFactory.create();
-  });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+	it('should be created', () => {
+		expect(service).toBeTruthy();
 	});
 
 	describe('canActivate', () => {
-    let obs: Observable<boolean>;
+		describe('when the cart has not been resolved', () => {
+			beforeEach(() => {
+				facade.resolved$.next(DaffCartResolveState.Default);
+			});
 
-    beforeEach(() => {
-      obs = service.canActivate();
-    });
+			it('should not emit', () => {
+				const expected = cold('-');
 
-    it('should initiate cart resolution', () => {
-      const expected = new DaffResolveCart();
-      expect(facade.dispatch).toHaveBeenCalledWith(expected);
-    });
+				expect(service.canActivate()).toBeObservable(expected);
+			});
+		});
 
-    describe('when the cart has not been resolved', () => {
-      beforeEach(() => {
-        facade.resolved$.next(DaffCartResolveState.Default);
-      });
+		describe('when there is a successfully resolved cart', () => {
+			beforeEach(() => {
+				facade.resolved$.next(DaffCartResolveState.Succeeded);
+			});
 
-      it('should not emit', () => {
-        const expected = cold('-');
+			it('should allow activation', () => {
+				const expected = cold('(a|)', { a: true });
 
-        expect(obs).toBeObservable(expected);
-      });
-    });
-
-    describe('when there is a successfully resolved cart', () => {
-      beforeEach(() => {
-        facade.resolved$.next(DaffCartResolveState.Succeeded);
-      });
-
-      it('should allow activation', () => {
-        const expected = cold('(a|)', { a: true })
-
-        expect(obs).toBeObservable(expected);
-      });
-    });
+				expect(service.canActivate()).toBeObservable(expected);
+			});
+		});
 
 		describe('when there is a failed cart resolution', () => {
 			beforeEach(() => {
-				spyOn(router, 'navigateByUrl');
-        facade.resolved$.next(DaffCartResolveState.Failed);
-      });
-
-      describe('when the redirect URL is not specified', () => {
-        beforeEach(() => {
-          service = new DaffResolvedCartGuard(facade, router, null);
-        });
-
-        it('should not redirect', () => {
-          service.canActivate().subscribe();
-          expect(router.navigateByUrl).not.toHaveBeenCalled();
-        });
-      });
-
-			it('should not allow activation', () => {
-				const expected = cold('(a|)', { a: false });
-
-				expect(obs).toBeObservable(expected);
+				facade.resolved$.next(DaffCartResolveState.Failed);
 			});
 
-			it('should redirect to the given DaffResolvedCartGuardRedirectUrl', () => {
-				obs.subscribe();
-				expect(router.navigateByUrl).toHaveBeenCalledWith(stubUrl);
+			describe('when the redirect URL is not specified', () => {
+				it('should not redirect', () => {
+					service = new DaffResolvedCartGuard(facade, router, {
+						...daffCartStateConfigurationDefault,
+						resolution: {
+							...daffCartStateResolutionConfigurationDefault,
+							failedResolutionPath: null,
+						},
+					});
+
+					const expected = cold('(a|)', { a: false });
+					expect(service.canActivate()).toBeObservable(expected);
+				});
+			});
+
+			it('should return a UrlTree to the configured route', () => {
+				service = new DaffResolvedCartGuard(facade, router, {
+					...daffCartStateConfigurationDefault,
+					resolution: {
+						...daffCartStateResolutionConfigurationDefault,
+						failedResolutionPath: 'some-path',
+					},
+				});
+
+				const expected = cold('(a|)', { a: router.parseUrl('some-path') });
+				expect(service.canActivate()).toBeObservable(expected);
 			});
 		});
 	});

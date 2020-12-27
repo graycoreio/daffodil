@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -9,8 +9,7 @@ import {
 	DaffCartShippingMethodGuardRedirectUrl,
   DaffCartPaymentMethodGuardRedirectUrl,
   DaffCartOrderResultGuardRedirectUrl,
-  DaffCartItemsGuardRedirectUrl,
-  DaffResolvedCartGuardRedirectUrl
+  DaffCartItemsGuardRedirectUrl
 } from './guards/public_api';
 import { DaffEmptyCartResolverRedirectUrl, DaffCartResolverRedirectUrl } from './resolvers/public_api';
 
@@ -28,6 +27,7 @@ import { DaffCartCouponEffects } from './effects/cart-coupon.effects';
 import { DaffCartAddressEffects } from './effects/cart-address.effects';
 import { DaffCartItemStateDebounceTime } from './injection-tokens/cart-item-state-debounce-time';
 import { DaffCartResolverEffects } from './effects/cart-resolver.effects';
+import { DaffCartStateConfiguration, DAFF_CART_STATE_CONFIG, daffCartStateConfigurationDefault } from './config/config';
 
 @NgModule({
   imports: [
@@ -50,7 +50,6 @@ import { DaffCartResolverEffects } from './effects/cart-resolver.effects';
 	providers: [
 		{ provide: DaffCartBillingAddressGuardRedirectUrl, useValue: '/' },
 		{ provide: DaffCartItemsGuardRedirectUrl, useValue: '/' },
-		{ provide: DaffResolvedCartGuardRedirectUrl, useValue: null },
 		{ provide: DaffCartShippingAddressGuardRedirectUrl, useValue: '/' },
 		{ provide: DaffCartShippingMethodGuardRedirectUrl, useValue: '/' },
 		{ provide: DaffCartPaymentMethodGuardRedirectUrl, useValue: '/' },
@@ -60,4 +59,19 @@ import { DaffCartResolverEffects } from './effects/cart-resolver.effects';
 		{ provide: DaffCartItemStateDebounceTime, useValue: 4000 }
 	]
 })
-export class DaffCartStateModule { }
+export class DaffCartStateModule { 
+  static forRoot(config: DaffCartStateConfiguration = {} as any): ModuleWithProviders<DaffCartStateModule> {
+    return {
+      ngModule: DaffCartStateModule,
+      providers: [
+        {
+          provide: DAFF_CART_STATE_CONFIG,
+          useValue: {
+            ...daffCartStateConfigurationDefault,
+            ...config
+          }
+        }
+      ]
+    }
+  }
+}
