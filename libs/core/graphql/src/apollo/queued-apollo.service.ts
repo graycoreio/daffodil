@@ -3,7 +3,7 @@ import { Apollo } from 'apollo-angular';
 import { R } from 'apollo-angular/types';
 import { MutationOptions } from 'apollo-client';
 import { FetchResult } from 'apollo-link';
-import { Observable, Subscriber } from 'rxjs';
+import { Observable, Subscriber, Subscription } from 'rxjs';
 
 /**
  * A service that will queue mutate calls to Apollo.
@@ -26,6 +26,7 @@ export class DaffQueuedApollo {
    * The request will not actually be queued until the returned observable is subscribed.
    * If the queue is empty, the request will be sent when it enters the queue.
    * Otherwise, it will be sent when it reaches the front of the queue.
+   * The observable will complete after it emits once.
    * @param options Mutation options.
    */
   mutate<T, V = R>(options: MutationOptions<T, V>): Observable<FetchResult<T>> {
@@ -39,25 +40,30 @@ export class DaffQueuedApollo {
           // emit the outer observable
           subscriber.next(response);
           subscriber.complete();
-          sub.unsubscribe();
 
-          // process the queue
-          this.queue.shift();
-          // TODO: optional chaining
-          if (this.queue[0]) this.queue[0]();
+          this.finishRequestSubscription(sub);
         },
         error => {
           subscriber.error(error)
-          sub.unsubscribe();
+          this.finishRequestSubscription(sub);
         },
         () => {
           subscriber.complete()
-          sub.unsubscribe();
+          this.finishRequestSubscription(sub);
         }
       )
     });
 
     // start the queue if previously empty
     if (this.queue.length === 1) this.queue[0]();
+  }
+
+  private finishRequestSubscription(requestSubscription: Subscription): void {
+    requestSubscription.unsubscribe();
+
+    // process queue
+    this.queue.shift();
+    // TODO: optional chaining
+    if (this.queue[0]) this.queue[0]();
   }
 }

@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { interval } from 'rxjs';
-import { delay, switchMap, switchMapTo, take } from 'rxjs/operators';
+import { delay, switchMap, take } from 'rxjs/operators';
 import { TestScheduler } from 'rxjs/testing';
 
 import { DaffQueuedApollo } from './queued-apollo.service'
@@ -100,25 +100,50 @@ describe('Core | GraphQL | DaffQueuedApollo', () => {
     })
 
     describe('when multiple requests are made', () => {
-      it('should make the second request after the first one completes', () => {
-        testScheduler.run(({cold, expectObservable}) => {
-          apollo.mutate.withArgs(jasmine.objectContaining({
-            mutation: req0
-          })).and.returnValue(cold('--a', {a: data0}))
-          apollo.mutate.withArgs(jasmine.objectContaining({
-            mutation: req1
-          })).and.returnValue(cold('--a', {a: data1}))
+      describe('and the first one completes successfully', () => {
+        it('should make the second request after the first one completes', () => {
+          testScheduler.run(({cold, expectObservable}) => {
+            apollo.mutate.withArgs(jasmine.objectContaining({
+              mutation: req0
+            })).and.returnValue(cold('--a', {a: data0}))
+            apollo.mutate.withArgs(jasmine.objectContaining({
+              mutation: req1
+            })).and.returnValue(cold('--a', {a: data1}))
 
-          ob0 = service.mutate({
-            mutation: req0
-          });
-          ob1 = service.mutate({
-            mutation: req1
-          });
+            ob0 = service.mutate({
+              mutation: req0
+            });
+            ob1 = service.mutate({
+              mutation: req1
+            });
 
-          expectObservable(ob0).toBe('--(a|)', {a: data0});
-          expectObservable(ob1).toBe('----(a|)', {a: data1});
-        })
+            expectObservable(ob0).toBe('--(a|)', {a: data0});
+            expectObservable(ob1).toBe('----(a|)', {a: data1});
+          })
+        });
+      });
+
+      describe('and the first one throws an error', () => {
+        it('should make the second request after the first one throws an error', () => {
+          testScheduler.run(({cold, expectObservable}) => {
+            apollo.mutate.withArgs(jasmine.objectContaining({
+              mutation: req0
+            })).and.returnValue(cold('--#', {}, 'error'))
+            apollo.mutate.withArgs(jasmine.objectContaining({
+              mutation: req1
+            })).and.returnValue(cold('--a', {a: data1}))
+
+            ob0 = service.mutate({
+              mutation: req0
+            });
+            ob1 = service.mutate({
+              mutation: req1
+            });
+
+            expectObservable(ob0).toBe('--#', {}, 'error');
+            expectObservable(ob1).toBe('----(a|)', {a: data1});
+          })
+        });
       });
     });
 
