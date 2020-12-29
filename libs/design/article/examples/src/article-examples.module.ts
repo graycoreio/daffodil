@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ARTICLE_EXAMPLES } from './examples';
 import { DaffArticleModule } from '@daffodil/design';
+
+import { ARTICLE_EXAMPLES } from './examples';
 
 @NgModule({
   declarations: [
