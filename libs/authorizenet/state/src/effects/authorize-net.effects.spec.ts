@@ -3,7 +3,6 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
-import { MockStore } from '@ngrx/store/testing';
 
 import { DaffCartAddress } from '@daffodil/cart';
 import { DaffCartPaymentUpdateWithBilling, DaffCartPaymentUpdateWithBillingSuccess, DaffCartPaymentUpdateWithBillingFailure } from '@daffodil/cart/state';
@@ -11,16 +10,11 @@ import { DaffCartAddressFactory, DaffCartFactory } from '@daffodil/cart/testing'
 import { DaffAcceptJsLoadingService, DaffAuthorizeNetTokenRequest } from '@daffodil/authorizenet';
 import { DaffAuthorizeNetService, DaffAuthorizeNetConfig, DaffAuthorizeNetDriver, DaffAuthorizeNetPaymentId } from '@daffodil/authorizenet/driver';
 import { MAGENTO_AUTHORIZE_NET_PAYMENT_ID } from '@daffodil/authorizenet/driver/magento';
+import { DaffTestingAuthorizeNetService } from '@daffodil/authorizenet/driver/testing';
 import { daffAuthorizeNetReducers, DaffAuthorizeNetUpdatePayment, DaffAuthorizeNetUpdatePaymentFailure, DaffAuthorizeNetUpdatePaymentSuccess, DaffLoadAcceptJs, DaffLoadAcceptJsSuccess, DaffLoadAcceptJsFailure, DAFF_AUTHORIZENET_STORE_FEATURE_KEY } from '@daffodil/authorizenet/state';
 import { DaffError, DaffInheritableError } from '@daffodil/core';
 
 import { DaffAuthorizeNetEffects } from './authorize-net.effects';
-
-class MockAuthorizeNetDriver implements DaffAuthorizeNetService {
-	generateToken(paymentRequest): Observable<any> {
-		return null;
-	}
-}
 
 class MockError extends DaffInheritableError implements DaffError {
   code = 'mock code';
@@ -41,8 +35,8 @@ describe('DaffAuthorizeNetEffects', () => {
 			securitycode: '123'
 		}
 	};
-	let store: MockStore<any>;
-	let authorizeNetPaymentService: MockAuthorizeNetDriver;
+	let store: Store<any>;
+	let authorizeNetPaymentService: DaffAuthorizeNetService;
 	const stubConfig: DaffAuthorizeNetConfig = {
 		clientKey: 'clientKey',
 		apiLoginID: 'apiLoginID'
@@ -60,15 +54,18 @@ describe('DaffAuthorizeNetEffects', () => {
       providers: [
 				provideMockActions(() => actions$),
 				{ provide: DaffAcceptJsLoadingService, useValue: acceptJsLoadingServiceSpy },
-				{ provide: DaffAuthorizeNetDriver, useClass: MockAuthorizeNetDriver },
-				{ provide: DaffAuthorizeNetPaymentId, useValue: MAGENTO_AUTHORIZE_NET_PAYMENT_ID },
+        { provide: DaffAuthorizeNetPaymentId, useValue: MAGENTO_AUTHORIZE_NET_PAYMENT_ID },
+        {
+          provide: DaffAuthorizeNetDriver,
+          useClass: DaffTestingAuthorizeNetService
+        },
         DaffAuthorizeNetEffects,
       ]
     });
 
 		stubAddress = new DaffCartAddressFactory().create();
 		effects = TestBed.inject(DaffAuthorizeNetEffects);
-		authorizeNetPaymentService = TestBed.inject(DaffAuthorizeNetDriver);
+		authorizeNetPaymentService = TestBed.inject<DaffAuthorizeNetService>(DaffAuthorizeNetDriver);
 		store = TestBed.inject(Store);
   });
 
