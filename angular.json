@@ -660,7 +660,7 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/apps/daffio/server",
-            "main": "apps/daffio/src/main.server.ts",
+            "main": "apps/daffio/server.ts",
             "tsConfig": "apps/daffio/tsconfig.server.json",
             "stylePreprocessorOptions": {
               "includePaths": [
@@ -679,6 +679,32 @@
                 }
               ]
             }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "daffio:build",
+            "serverTarget": "daffio:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "daffio:build:production",
+              "serverTarget": "daffio:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "daffio:build:production",
+            "serverTarget": "daffio:server:production",
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {}
           }
         }
       }

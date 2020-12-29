@@ -3,8 +3,6 @@ import { enableProdMode } from '@angular/core';
 // Express Engine
 
 import { ngExpressEngine } from '@nguniversal/express-engine';
-// Import module map for lazy loading
-import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 
 
 
@@ -19,14 +17,11 @@ export const app = express();
 
 const BROWSER_FOLDER = join(__dirname, 'browser');
 
-const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./../../../dist/apps/daffio/server/main');
+const { AppServerModuleNgFactory } = require('./../../../dist/apps/daffio/server/main');
 
 
 app.engine('html', ngExpressEngine({
   bootstrap: AppServerModuleNgFactory,
-  providers: [
-    provideModuleMap(LAZY_MODULE_MAP)
-  ]
 }));
 
 app.set('view engine', 'html');
