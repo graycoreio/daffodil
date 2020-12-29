@@ -8,10 +8,10 @@ import { DaffPaypalTokenResponseFactory } from '@daffodil/paypal/testing';
 import { DaffPaypalFacade } from './paypal.facade';
 import { daffPaypalReducers } from '../reducers/paypal-reducers';
 import { DaffPaypalTokenResponse } from '../models/paypal-token-response';
-import { 
-	DaffGeneratePaypalExpressTokenSuccess, 
-	DaffGeneratePaypalExpressToken, 
-	DaffGeneratePaypalExpressTokenFailure 
+import {
+	DaffGeneratePaypalExpressTokenSuccess,
+	DaffGeneratePaypalExpressToken,
+	DaffGeneratePaypalExpressTokenFailure
 } from '../actions/paypal.actions';
 
 describe('DaffPaypalFacade', () => {
@@ -31,10 +31,10 @@ describe('DaffPaypalFacade', () => {
         DaffPaypalFacade
       ]
     })
-    
+
     stubPaypalTokenResponse = paypalTokenResponseFactory.create();
-    store = TestBed.get(Store);
-    facade = TestBed.get(DaffPaypalFacade);
+    store = TestBed.inject(Store);
+    facade = TestBed.inject(DaffPaypalFacade);
   });
 
   it('should be created', () => {
@@ -51,7 +51,7 @@ describe('DaffPaypalFacade', () => {
   });
 
   describe('paypalTokenResponse$', () => {
-  
+
     it('should return the paypalTokenResponse', () => {
       const expected = cold('a', { a: stubPaypalTokenResponse });
       store.dispatch(new DaffGeneratePaypalExpressTokenSuccess(stubPaypalTokenResponse));
@@ -60,7 +60,7 @@ describe('DaffPaypalFacade', () => {
   });
 
   describe('paypalToken$', () => {
-  
+
     it('should return the paypalToken', () => {
       const expected = cold('a', { a: stubPaypalTokenResponse.token });
       store.dispatch(new DaffGeneratePaypalExpressTokenSuccess(stubPaypalTokenResponse));
@@ -69,7 +69,7 @@ describe('DaffPaypalFacade', () => {
   });
 
   describe('paypalStartUrl$', () => {
-  
+
     it('should return the paypal start url', () => {
       const expected = cold('a', { a: stubPaypalTokenResponse.urls.start });
       store.dispatch(new DaffGeneratePaypalExpressTokenSuccess(stubPaypalTokenResponse));
@@ -78,20 +78,20 @@ describe('DaffPaypalFacade', () => {
   });
 
   describe('paypalEditUrl$', () => {
-  
+
     it('should return the paypal edit url', () => {
       const expected = cold('a', { a: stubPaypalTokenResponse.urls.edit });
       store.dispatch(new DaffGeneratePaypalExpressTokenSuccess(stubPaypalTokenResponse));
       expect(facade.paypalEditUrl$).toBeObservable(expected);
     });
 	});
-	
+
   describe('loading$', () => {
     it('should be false if the paypal state is not loading', () => {
       const expected = cold('a', { a: false });
       expect(facade.loading$).toBeObservable(expected);
     });
-  
+
     it('should be true if the paypal state is loading', () => {
       const expected = cold('a', { a: true });
       store.dispatch(new DaffGeneratePaypalExpressToken({ cartId: '1' }));

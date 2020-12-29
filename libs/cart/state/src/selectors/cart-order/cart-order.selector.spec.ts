@@ -37,9 +37,9 @@ describe('Cart | Selector | CartOrder', () => {
       ]
     });
 
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
 
-    cartFactory = TestBed.get(DaffCartFactory);
+    cartFactory = TestBed.inject(DaffCartFactory);
 
     orderId = 'id';
     cart = cartFactory.create();

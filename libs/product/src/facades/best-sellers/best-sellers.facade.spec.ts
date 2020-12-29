@@ -25,8 +25,8 @@ describe('DaffBestSellersFacade', () => {
       ]
     })
 
-    store = TestBed.get(Store);
-    facade = TestBed.get(DaffBestSellersFacade);
+    store = TestBed.inject(Store);
+    facade = TestBed.inject(DaffBestSellersFacade);
   });
 
   it('should be created', () => {
@@ -47,7 +47,7 @@ describe('DaffBestSellersFacade', () => {
       const expected = cold('a', { a: false });
       expect(facade.loading$).toBeObservable(expected);
     });
-  
+
     it('should be true if the bestSellers is loading', () => {
       const expected = cold('a', { a: true });
       store.dispatch(new DaffBestSellersLoad());

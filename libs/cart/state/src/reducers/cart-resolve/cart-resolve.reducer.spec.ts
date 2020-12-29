@@ -23,7 +23,7 @@ describe('Cart | Reducer | cartResolveReducer', () => {
   let cart: DaffCart;
 
   beforeEach(() => {
-    cartFactory = TestBed.get(DaffCartFactory);
+    cartFactory = TestBed.inject(DaffCartFactory);
 
     cart = cartFactory.create();
   });

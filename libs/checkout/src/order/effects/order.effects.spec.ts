@@ -34,10 +34,10 @@ describe('Daffodil | State | Order | OrderEffects', () => {
       ]
     });
 
-    effects = TestBed.get(OrderEffects);
-    orderFactory = TestBed.get(DaffOrderFactory);
-    cartFactory = TestBed.get(DaffCartFactory);
-    daffCheckoutDriver = TestBed.get(DaffCheckoutDriver);
+    effects = TestBed.inject(OrderEffects);
+    orderFactory = TestBed.inject(DaffOrderFactory);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    daffCheckoutDriver = TestBed.inject(DaffCheckoutDriver);
 
     stubCart = cartFactory.create();
     stubOrder = orderFactory.create();

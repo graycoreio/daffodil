@@ -23,7 +23,7 @@ describe('DaffAuthInMemoryBackend | Unit', () => {
       ]
     });
 
-    authTestingService = TestBed.get(DaffInMemoryBackendAuthService);
+    authTestingService = TestBed.inject(DaffInMemoryBackendAuthService);
 
     mockAuth = authFactory.create();
 

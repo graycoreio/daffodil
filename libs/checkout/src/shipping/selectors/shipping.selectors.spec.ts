@@ -20,7 +20,7 @@ describe('Shipping Selectors', () => {
   let addressFactory: DaffAddressFactory;
   let stubShippingAddress: DaffAddress;
   let stubSelectedShippingOptionId: string;
-  
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -30,17 +30,17 @@ describe('Shipping Selectors', () => {
       ]
     });
 
-    addressFactory = TestBed.get(DaffAddressFactory);
+    addressFactory = TestBed.inject(DaffAddressFactory);
 
     stubShippingAddress = addressFactory.create();
     stubSelectedShippingOptionId = '0';
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
     store.dispatch(new DaffUpdateShippingAddress(stubShippingAddress));
     store.dispatch(new DaffSelectShippingOption(stubSelectedShippingOptionId));
   }));
 
   describe('selectShippingState', () => {
-    
+
     it('selects shipping state', () => {
       const expectedShippingState = {
         shippingAddress: stubShippingAddress,
@@ -54,7 +54,7 @@ describe('Shipping Selectors', () => {
   });
 
   describe('selectShippingAddress', () => {
-    
+
     it('selects shippingAddress state', () => {
       const selector = store.pipe(select(selectShippingAddress));
       const expected = cold('a', { a: stubShippingAddress });
@@ -63,7 +63,7 @@ describe('Shipping Selectors', () => {
   });
 
   describe('selectShippingOptionId', () => {
-    
+
     it('selects shippingOptionId state', () => {
       const selector = store.pipe(select(selectShippingOptionId));
       const expected = cold('a', { a: stubSelectedShippingOptionId });
@@ -72,7 +72,7 @@ describe('Shipping Selectors', () => {
   });
 
   describe('selectIsShippingAddressValid', () => {
-    
+
     it('selects isShippingAddressValid state', () => {
       const selector = store.pipe(select(selectIsShippingAddressValid));
       const expected = cold('a', { a: !!stubShippingAddress });

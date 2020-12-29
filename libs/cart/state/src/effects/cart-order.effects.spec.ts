@@ -55,11 +55,11 @@ describe('Cart | Effect | CartOrderEffects', () => {
       ]
     });
 
-    effects = TestBed.get(DaffCartOrderEffects);
-    cartOrderDriverSpy = TestBed.get(DaffCartOrderDriver);
-    daffCartStorageSpy = TestBed.get(DaffCartStorageService);
-    cartFactory = TestBed.get(DaffCartFactory);
-    daffCartPaymentFactory = TestBed.get(DaffCartPaymentFactory);
+    effects = TestBed.inject(DaffCartOrderEffects);
+    cartOrderDriverSpy = TestBed.inject(DaffCartOrderDriver);
+    daffCartStorageSpy = TestBed.inject(DaffCartStorageService);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    daffCartPaymentFactory = TestBed.inject(DaffCartPaymentFactory);
 
     mockCart = cartFactory.create();
     mockDaffCartPayment = daffCartPaymentFactory.create();

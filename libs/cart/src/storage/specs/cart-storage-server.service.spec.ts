@@ -15,7 +15,7 @@ describe('DaffCartStorageService | on the server', () => {
 	});
 
 	beforeEach(() => {
-		service = TestBed.get(DaffCartStorageService);
+		service = TestBed.inject(DaffCartStorageService);
 	});
 
 	it('should be created', () => {

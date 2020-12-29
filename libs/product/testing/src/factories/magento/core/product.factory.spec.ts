@@ -12,7 +12,7 @@ describe('Product | Testing | Factories | MagentoCoreProductFactory', () => {
       providers: [MagentoCoreProductFactory]
     });
 
-    factory = TestBed.get(MagentoCoreProductFactory);
+    factory = TestBed.inject(MagentoCoreProductFactory);
   });
 
   it('should be created', () => {

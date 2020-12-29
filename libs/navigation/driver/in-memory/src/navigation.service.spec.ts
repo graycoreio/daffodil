@@ -20,9 +20,9 @@ describe('Driver | InMemory | Navigation | NavigationService', () => {
       ]
     });
 
-    httpMock = TestBed.get(HttpTestingController);
-    navigationService = TestBed.get(DaffInMemoryNavigationService);
-    navigationTreeFactory = TestBed.get(DaffNavigationTreeFactory);
+    httpMock = TestBed.inject(HttpTestingController);
+    navigationService = TestBed.inject(DaffInMemoryNavigationService);
+    navigationTreeFactory = TestBed.inject(DaffNavigationTreeFactory);
   });
 
   afterEach(() => {

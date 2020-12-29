@@ -23,9 +23,9 @@ describe('DaffInMemoryBackendGeographyService | Integration', () => {
       ],
     });
 
-    httpClient = TestBed.get(HttpClient);
+    httpClient = TestBed.inject(HttpClient);
 
-    countryFactory = TestBed.get(DaffCountryFactory);
+    countryFactory = TestBed.inject(DaffCountryFactory);
 
     mockCountry = countryFactory.create();
     countryId = mockCountry.id;

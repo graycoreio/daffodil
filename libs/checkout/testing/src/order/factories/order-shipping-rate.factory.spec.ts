@@ -12,7 +12,7 @@ describe('Checkout | Testing | Order | Factories | OrderShippingRateFactory', ()
       providers: [DaffOrderShippingRateFactory]
     });
 
-    orderShippingRateFactory = TestBed.get(DaffOrderShippingRateFactory);
+    orderShippingRateFactory = TestBed.inject(DaffOrderShippingRateFactory);
   });
 
   it('should be created', () => {

@@ -19,7 +19,7 @@ describe('Driver | Testing | Navigation | NavigationService', () => {
         DaffTestingNavigationService
       ]
     });
-    navigationService = TestBed.get(DaffTestingNavigationService);
+    navigationService = TestBed.inject(DaffTestingNavigationService);
   });
 
   it('should be created', () => {

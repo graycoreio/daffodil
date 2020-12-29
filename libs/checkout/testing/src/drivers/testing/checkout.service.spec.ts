@@ -22,7 +22,7 @@ describe('Driver | Testing | Checkout | CheckoutService', () => {
     stubOrder = new DaffOrderFactory().create();
     orderFactorySpy.create.and.returnValue(stubOrder);
 
-    testingCheckoutService = TestBed.get(DaffTestingCheckoutService);
+    testingCheckoutService = TestBed.inject(DaffTestingCheckoutService);
   });
 
   it('should be created', () => {

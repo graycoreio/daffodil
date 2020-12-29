@@ -5,7 +5,7 @@ import { DaffPaypalTokenResponse } from '@daffodil/paypal';
 import { DaffPaypalTokenResponseFactory } from './paypal-token-response.factory';
 
 describe('Paypal | Testing | Factories | DaffPaypalTokenResponseFactory', () => {
-  
+
   let paypalTokenResponseFactory;
 
   beforeEach(() => {
@@ -13,7 +13,7 @@ describe('Paypal | Testing | Factories | DaffPaypalTokenResponseFactory', () => 
       providers: [DaffPaypalTokenResponseFactory]
     });
 
-    paypalTokenResponseFactory = TestBed.get(DaffPaypalTokenResponseFactory);
+    paypalTokenResponseFactory = TestBed.inject(DaffPaypalTokenResponseFactory);
   });
 
   it('should be created', () => {
@@ -27,11 +27,11 @@ describe('Paypal | Testing | Factories | DaffPaypalTokenResponseFactory', () => 
     beforeEach(() => {
       result = paypalTokenResponseFactory.create();
     });
-    
+
     it('should return a DaffPaypalTokenResponse with all required fields defined', () => {
-      expect(result.token).toBeDefined(); 
-      expect(result.urls.start).toBeDefined(); 
-      expect(result.urls.edit).toBeDefined(); 
+      expect(result.token).toBeDefined();
+      expect(result.urls.start).toBeDefined();
+      expect(result.urls.edit).toBeDefined();
     });
   });
 

@@ -51,14 +51,14 @@ describe('DaffInMemoryBackendCartRootService | Integration', () => {
       ],
     });
 
-    httpClient = TestBed.get(HttpClient);
+    httpClient = TestBed.inject(HttpClient);
 
-    cartFactory = TestBed.get(DaffCartFactory);
-    cartItemFactory = TestBed.get(DaffCartItemFactory);
-    cartCouponFactory = TestBed.get(DaffCartCouponFactory);
-    cartAddressFactory = TestBed.get(DaffCartAddressFactory);
-    cartPaymentFactory = TestBed.get(DaffCartPaymentFactory);
-    cartShippingMethodFactory = TestBed.get(DaffCartShippingRateFactory);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartItemFactory = TestBed.inject(DaffCartItemFactory);
+    cartCouponFactory = TestBed.inject(DaffCartCouponFactory);
+    cartAddressFactory = TestBed.inject(DaffCartAddressFactory);
+    cartPaymentFactory = TestBed.inject(DaffCartPaymentFactory);
+    cartShippingMethodFactory = TestBed.inject(DaffCartShippingRateFactory);
 
     mockCart = cartFactory.create();
     mockCartItem = cartItemFactory.create();

@@ -47,13 +47,13 @@ describe('Driver | Magento | Geography | GeographyService', () => {
       ]
     });
 
-    service = TestBed.get(DaffGeographyMagentoService);
-    controller = TestBed.get(ApolloTestingController);
+    service = TestBed.inject(DaffGeographyMagentoService);
+    controller = TestBed.inject(ApolloTestingController);
 
-    daffSubdivisionFactory = TestBed.get(DaffSubdivisionFactory);
-    daffCountryFactory = TestBed.get(DaffCountryFactory);
+    daffSubdivisionFactory = TestBed.inject(DaffSubdivisionFactory);
+    daffCountryFactory = TestBed.inject(DaffCountryFactory);
 
-    countryTransformerSpy = TestBed.get(DaffMagentoCountryTransformer);
+    countryTransformerSpy = TestBed.inject(DaffMagentoCountryTransformer);
 
     mockDaffCountry = daffCountryFactory.create();
     mockDaffSubdivision = daffSubdivisionFactory.create();

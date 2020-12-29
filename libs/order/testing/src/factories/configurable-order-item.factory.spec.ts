@@ -13,7 +13,7 @@ describe('Order | Testing | Factories | ConfigurableOrderItemFactory', () => {
       providers: [DaffConfigurableOrderItemFactory]
     });
 
-    configurableOrderItemFactory = TestBed.get(DaffConfigurableOrderItemFactory);
+    configurableOrderItemFactory = TestBed.inject(DaffConfigurableOrderItemFactory);
   });
 
   it('should be created', () => {

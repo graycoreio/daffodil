@@ -27,10 +27,10 @@ describe('OrderContainer', () => {
   }));
 
   beforeEach(() => {
-    cartFactory = TestBed.get(DaffOrderFactory);
+    cartFactory = TestBed.inject(DaffOrderFactory);
     fixture = TestBed.createComponent(OrderContainer);
     component = fixture.componentInstance;
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
 
     stubLoading = false;
     stubOrder = cartFactory.create();

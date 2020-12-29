@@ -21,8 +21,8 @@ describe('Driver | Testing | Product | ProductService', () => {
       ]
     });
 
-    productService = TestBed.get(DaffTestingProductService);
-    productImageFactory = TestBed.get(DaffProductImageFactory);
+    productService = TestBed.inject(DaffTestingProductService);
+    productImageFactory = TestBed.inject(DaffProductImageFactory);
 
     productImageFactory.createMany.and.returnValue(stubProductImages);
     productImageFactory.create.and.returnValue(stubProductImages[0]);

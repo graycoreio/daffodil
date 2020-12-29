@@ -12,7 +12,7 @@ describe('Geography | Testing | Factories | DaffSubdivisionFactory', () => {
       providers: [DaffSubdivisionFactory]
     });
 
-    factory = TestBed.get(DaffSubdivisionFactory);
+    factory = TestBed.inject(DaffSubdivisionFactory);
   });
 
   it('should be created', () => {

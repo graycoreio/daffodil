@@ -18,8 +18,8 @@ describe('DaffioDocService', () => {
       imports: [HttpClientTestingModule]
     })
 
-    httpTestingController = TestBed.get(HttpTestingController);
-    service = TestBed.get(DaffioDocService);
+    httpTestingController = TestBed.inject(HttpTestingController);
+    service = TestBed.inject(DaffioDocService);
   });
 
   afterEach(() => {

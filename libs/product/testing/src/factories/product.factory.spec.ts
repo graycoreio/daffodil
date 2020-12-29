@@ -4,7 +4,7 @@ import { DaffProductFactory } from './product.factory';
 import { DaffProduct } from '@daffodil/product';
 
 describe('Product | Testing | Factories | DaffProductFactory', () => {
-  
+
   let productFactory;
 
   beforeEach(() => {
@@ -12,7 +12,7 @@ describe('Product | Testing | Factories | DaffProductFactory', () => {
       providers: [DaffProductFactory]
     });
 
-    productFactory = TestBed.get(DaffProductFactory);
+    productFactory = TestBed.inject(DaffProductFactory);
   });
 
   it('should be created', () => {
@@ -26,7 +26,7 @@ describe('Product | Testing | Factories | DaffProductFactory', () => {
     beforeEach(() => {
       result = productFactory.create();
     });
-    
+
     it('should return a Product with all required fields defined', () => {
       expect(result.type).toBeDefined();
 			expect(result.id).toBeDefined();
@@ -35,11 +35,11 @@ describe('Product | Testing | Factories | DaffProductFactory', () => {
       expect(result.images).toBeDefined();
       expect(result.discount).toBeDefined();
       expect(result.name).toBeDefined();
-      expect(result.brand).toBeDefined(); 
-      expect(result.description).toBeDefined();     
-      expect(result.in_stock).toBeDefined();     
+      expect(result.brand).toBeDefined();
+      expect(result.description).toBeDefined();
+      expect(result.in_stock).toBeDefined();
 		});
-		
+
 		it('should the percentage as a whole number', () => {
 			expect(result.discount.percent % 1).toEqual(0);
 		});

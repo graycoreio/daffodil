@@ -26,8 +26,8 @@ describe('Driver | InMemory | Auth | AuthService', () => {
       ]
     });
 
-    httpMock = TestBed.get(HttpTestingController);
-    service = TestBed.get(DaffInMemoryAuthService);
+    httpMock = TestBed.inject(HttpTestingController);
+    service = TestBed.inject(DaffInMemoryAuthService);
 
     mockAuth = authFactory.create();
   });

@@ -9,14 +9,14 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
 
 	let service: DaffMagentoAppliedFiltersTransformService;
 	const categoryId = 'id';
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         DaffMagentoAppliedFiltersTransformService
       ]
     });
-    service = TestBed.get(DaffMagentoAppliedFiltersTransformService);
+    service = TestBed.inject(DaffMagentoAppliedFiltersTransformService);
   });
 
   it('should be created', () => {
@@ -34,9 +34,9 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
 
 			expect(service.transform(categoryId, null)).toEqual(expectedReturn);
 		});
-		
+
 		describe('when the filter type is Range', () => {
-			
+
 			it('should transform a format of ##-## into a valid magento FromTo filter', () => {
 				const categoryFilterActions: DaffCategoryFilterRequest[] = [
 					{
@@ -100,7 +100,7 @@ describe('DaffMagentoAppliedFiltersTransformService', () => {
 		});
 
 		describe('when the filter type is not Range', () => {
-			
+
 			it('should transform an array of DaffCategoryFilterRequest into a MagentoCategoryFilters', () => {
 				const categoryFilterActions: DaffCategoryFilterRequest[] = [
 					{

@@ -53,8 +53,8 @@ describe('Driver | Magento | Auth | LoginService', () => {
       ]
     });
 
-    service = TestBed.get(DaffMagentoLoginService);
-    controller = TestBed.get(ApolloTestingController);
+    service = TestBed.inject(DaffMagentoLoginService);
+    controller = TestBed.inject(ApolloTestingController);
 
     mockRegistration = registrationFactory.create();
     mockAuth = authTokenFactory.create();

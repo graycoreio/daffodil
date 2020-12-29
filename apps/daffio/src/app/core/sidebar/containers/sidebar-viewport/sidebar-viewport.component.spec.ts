@@ -18,7 +18,7 @@ import { DaffioGuidesViewerModule } from '../../../../docs/shared/components/gui
 describe('DaffioSidebarViewportContainer', () => {
   let component: DaffioSidebarViewportContainer;
   let fixture: ComponentFixture<DaffioSidebarViewportContainer>;
-  
+
   let daffSidebarViewport: DaffSidebarViewportComponent;
   let daffSidebar: DaffSidebarComponent;
 
@@ -36,7 +36,7 @@ describe('DaffioSidebarViewportContainer', () => {
         DaffioGuidesViewerModule,
         HttpClientTestingModule
       ],
-      declarations: [ 
+      declarations: [
         DaffioSidebarViewportContainer
       ]
     })
@@ -46,7 +46,7 @@ describe('DaffioSidebarViewportContainer', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DaffioSidebarViewportContainer);
     component = fixture.componentInstance;
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
     spyOn(store, 'dispatch');
 
     fixture.detectChanges();
@@ -68,8 +68,8 @@ describe('DaffioSidebarViewportContainer', () => {
 
       daffSidebarViewport.backdropClicked.emit()
 
-      expect(component.close).toHaveBeenCalledWith(); 
-    });   
+      expect(component.close).toHaveBeenCalledWith();
+    });
   });
 
   describe('ngOnInit', () => {
@@ -86,14 +86,14 @@ describe('DaffioSidebarViewportContainer', () => {
 
     daffSidebar.escapePressed.emit();
 
-    expect(component.close).toHaveBeenCalled();    
+    expect(component.close).toHaveBeenCalled();
   })
 
   describe('methods', () => {
     describe('close', () => {
       it('should call store.dispatch with a CloseSidebar action', () => {
         component.close();
-  
+
         expect(store.dispatch).toHaveBeenCalledWith(new CloseSidebar());
       });
     });
@@ -101,7 +101,7 @@ describe('DaffioSidebarViewportContainer', () => {
     describe('open', () => {
       it('should call store.dispatch with a OpenSidebar action', () => {
         component.open();
-  
+
         expect(store.dispatch).toHaveBeenCalledWith(new OpenSidebar());
       });
     });
@@ -109,7 +109,7 @@ describe('DaffioSidebarViewportContainer', () => {
     describe('setVisibility', () => {
       it('should call store.dispatch with a SetSidebarAction action', () => {
         component.setVisibility(true);
-  
+
         expect(store.dispatch).toHaveBeenCalledWith(new SetSidebarState(true));
       });
     });

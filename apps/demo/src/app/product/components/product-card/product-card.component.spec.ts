@@ -28,7 +28,7 @@ describe('ProductCardComponent', () => {
       imports: [
         RouterTestingModule
       ],
-      declarations: [ 
+      declarations: [
         ProductCardComponent,
         WrapperComponent
       ]
@@ -39,14 +39,14 @@ describe('ProductCardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    productImageFactory = TestBed.get(DaffProductImageFactory);
-    productFactory = TestBed.get(DaffProductFactory);
+    productImageFactory = TestBed.inject(DaffProductImageFactory);
+    productFactory = TestBed.inject(DaffProductFactory);
 
     const stubProductImages = productImageFactory.createMany(5);
     stubProduct = productFactory.create({images: stubProductImages});
 
     wrapper.productValue = stubProduct;
-    router = TestBed.get(Router);
+    router = TestBed.inject(Router);
     spyOn(router, 'navigateByUrl');
 
     fixture.detectChanges();
@@ -67,7 +67,7 @@ describe('ProductCardComponent', () => {
     beforeEach(() => {
       fixture.debugElement.query(By.css('.demo-product-card')).nativeElement.click();
     });
-    
+
     it('should call router.navigateByUrl', () => {
       expect(productCardComponent.componentInstance.router.navigateByUrl).toHaveBeenCalledWith('product/' + stubProduct.id);
     });

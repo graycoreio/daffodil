@@ -12,7 +12,7 @@ describe('Driver | InMemory | Product | DaffInMemoryBackendProductService', () =
       providers: [DaffInMemoryBackendProductService]
     });
 
-    productTestingService = TestBed.get(DaffInMemoryBackendProductService);
+    productTestingService = TestBed.inject(DaffInMemoryBackendProductService);
   });
 
   it('should be created', () => {
@@ -38,9 +38,9 @@ describe('Driver | InMemory | Product | DaffInMemoryBackendProductService', () =
   });
 
   describe('get', () => {
-    
+
     describe('when reqInfo.id is "best-sellers"', () => {
-      
+
       let reqInfoStub;
       let result;
 

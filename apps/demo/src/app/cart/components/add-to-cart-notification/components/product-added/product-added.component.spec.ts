@@ -12,7 +12,7 @@ const stubQty = 1;
 @Component({
   template: '<demo-product-added [qty]="qtyValue" [product]="productValue"></demo-product-added>'
 })
-class WrapperComponent { 
+class WrapperComponent {
   qtyValue: number = stubQty;
   productValue: DaffProduct;
 }
@@ -40,8 +40,8 @@ describe('ProductAddedComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
 
-    productFactory = TestBed.get(DaffProductFactory);
-    productImageFactory = TestBed.get(DaffProductImageFactory);
+    productFactory = TestBed.inject(DaffProductFactory);
+    productImageFactory = TestBed.inject(DaffProductImageFactory);
     stubProduct = productFactory.create({images:productImageFactory.createMany(5)});
     wrapper.productValue = stubProduct;
 
@@ -61,9 +61,9 @@ describe('ProductAddedComponent', () => {
   it('should be able to take product as input', () => {
     expect(productAdded.product).toEqual(stubProduct);
   });
-  
+
   describe('when product is defined', () => {
-    
+
     it('should render .demo-product-added', () => {
       productAddedElement = fixture.debugElement.query(By.css('.demo-product-added'));
 
@@ -71,7 +71,7 @@ describe('ProductAddedComponent', () => {
     });
 
     describe('and product.images is null', () => {
-      
+
       beforeEach(() => {
         productAdded.product.images = null;
         fixture.detectChanges();
@@ -85,7 +85,7 @@ describe('ProductAddedComponent', () => {
     });
 
     describe('and product.images is defined', () => {
-      
+
       it('should render img tag', () => {
         const imgTag = fixture.debugElement.query(By.css('img'));
 
@@ -93,14 +93,14 @@ describe('ProductAddedComponent', () => {
       });
     });
   });
-  
+
   describe('when product is null', () => {
-    
+
     beforeEach(() => {
       wrapper.productValue = null;
       fixture.detectChanges();
     });
-    
+
     it('should not render .demo-product-added', () => {
       productAddedElement = fixture.debugElement.query(By.css('.demo-product-added'));
 

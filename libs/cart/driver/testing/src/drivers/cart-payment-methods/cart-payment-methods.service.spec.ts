@@ -28,10 +28,10 @@ describe('Driver | Testing | Cart | CartPaymentMethodsService', () => {
       ]
     });
 
-    service = TestBed.get(DaffTestingCartPaymentMethodsService);
+    service = TestBed.inject(DaffTestingCartPaymentMethodsService);
 
-    cartFactory = TestBed.get(DaffCartFactory);
-    paymentFactory = TestBed.get(DaffCartPaymentFactory);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    paymentFactory = TestBed.inject(DaffCartPaymentFactory);
 
     mockCart = cartFactory.create();
     mockCartPaymentMethods = paymentFactory.createMany(3);

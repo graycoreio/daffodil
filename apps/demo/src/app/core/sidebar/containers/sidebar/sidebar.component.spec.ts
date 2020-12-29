@@ -66,7 +66,7 @@ describe('SidebarContainer', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
-    navFacade = TestBed.get(DaffNavigationFacade);
+    navFacade = TestBed.inject(DaffNavigationFacade);
 
     fixture.detectChanges();
 

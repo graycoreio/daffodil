@@ -56,8 +56,8 @@ describe('DaffModalService', () => {
 			declarations: [WrapperComponent],
 		}).compileComponents();
 
-		modalService = TestBed.get(DaffModalService);
-		overlayContainer = TestBed.get<OverlayContainer>(OverlayContainer);
+		modalService = TestBed.inject(DaffModalService);
+		overlayContainer = TestBed.inject<OverlayContainer>(OverlayContainer);
 		overlayContainerElement = overlayContainer.getContainerElement();
 		fixture = TestBed.createComponent(WrapperComponent);
 		fixture.detectChanges();

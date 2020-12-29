@@ -5,7 +5,7 @@ import { DaffProductImage } from '@daffodil/product';
 import { DaffProductImageFactory } from './product-image.factory';
 
 describe('Product | Testing | Factories | DaffProductImageFactory', () => {
-  
+
   let productImageFactory;
 
   beforeEach(() => {
@@ -13,7 +13,7 @@ describe('Product | Testing | Factories | DaffProductImageFactory', () => {
       providers: [DaffProductImageFactory]
     });
 
-    productImageFactory = TestBed.get(DaffProductImageFactory);
+    productImageFactory = TestBed.inject(DaffProductImageFactory);
   });
 
   it('should be created', () => {
@@ -27,7 +27,7 @@ describe('Product | Testing | Factories | DaffProductImageFactory', () => {
     beforeEach(() => {
       result = productImageFactory.create();
     });
-    
+
     it('should return a ProductImage with all required fields defined', () => {
       expect(result.id).toBeDefined();
       expect(result.url).toBeDefined();

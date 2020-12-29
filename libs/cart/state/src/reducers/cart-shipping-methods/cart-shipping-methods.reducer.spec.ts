@@ -15,7 +15,7 @@ describe('Cart | Reducer | Cart Shipping Methods', () => {
 
   beforeEach(() => {
     cartFactory = new DaffCartFactory();
-    cartShippingRateFactory = TestBed.get<DaffCartShippingRateFactory>(DaffCartShippingRateFactory);
+    cartShippingRateFactory = TestBed.inject<DaffCartShippingRateFactory>(DaffCartShippingRateFactory);
 
     cart = cartFactory.create();
     mockCartShippingRate = cartShippingRateFactory.create();

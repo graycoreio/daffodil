@@ -31,9 +31,9 @@ describe('Driver | In Memory | Geography | GeographyService', () => {
       ]
     });
 
-    httpMock = TestBed.get(HttpTestingController);
-    countryFactory = TestBed.get(DaffCountryFactory);
-    service = TestBed.get(DaffInMemoryGeographyService);
+    httpMock = TestBed.inject(HttpTestingController);
+    countryFactory = TestBed.inject(DaffCountryFactory);
+    service = TestBed.inject(DaffInMemoryGeographyService);
 
     mockCountry = countryFactory.create();
     countryId = mockCountry.id;

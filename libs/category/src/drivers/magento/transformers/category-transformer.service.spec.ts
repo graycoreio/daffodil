@@ -19,7 +19,7 @@ describe('DaffMagentoCategoryTransformerService', () => {
         DaffMagentoCategoryTransformerService
       ]
     });
-    service = TestBed.get(DaffMagentoCategoryTransformerService);
+    service = TestBed.inject(DaffMagentoCategoryTransformerService);
   });
 
   it('should be created', () => {

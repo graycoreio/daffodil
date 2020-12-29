@@ -7,7 +7,7 @@ import { SetSelectedImageState } from '../actions/image-gallery.actions';
 describe('selectImageGalleryState', () => {
 
   let store: Store<fromDemoImageGallery.State>;
-  
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -17,9 +17,9 @@ describe('selectImageGalleryState', () => {
       ]
     });
 
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
   }));
-    
+
   describe('demoImageGalleryStateSelector', () => {
 
     let expectedImageGalleryState;
@@ -29,7 +29,7 @@ describe('selectImageGalleryState', () => {
         selectedImage: ''
       }
     });
-    
+
     it('returns the image gallery state', () => {
       store.pipe(select(fromDemoImageGallery.demoImageGalleryStateSelector)).subscribe((selectedImageGalleryState) => {
         expect(selectedImageGalleryState).toEqual(expectedImageGalleryState);
@@ -45,7 +45,7 @@ describe('selectImageGalleryState', () => {
       stubSelectedImage = 'url';
       store.dispatch(new SetSelectedImageState(stubSelectedImage));
     });
-    
+
     it('selects the selected image', () => {
       store.pipe(select(fromDemoImageGallery.selectSelectedImage)).subscribe((selectedImage) => {
         expect(selectedImage).toEqual(stubSelectedImage);

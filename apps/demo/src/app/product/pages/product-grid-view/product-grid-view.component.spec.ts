@@ -45,7 +45,7 @@ describe('ProductGridViewComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProductGridViewComponent);
     component = fixture.componentInstance;
-    facade = TestBed.get(DaffProductGridFacade);
+    facade = TestBed.inject(DaffProductGridFacade);
     fixture.detectChanges();
 
     productGridComponent = fixture.debugElement.query(By.css('demo-product-grid')).componentInstance;
@@ -96,7 +96,7 @@ describe('ProductGridViewComponent', () => {
   });
 
   describe('when loading$ becomes false', () => {
-    
+
     beforeEach(() => {
       component.loading$ = of(false);
       fixture.detectChanges();

@@ -33,10 +33,10 @@ describe('DaffInMemoryBackendCartItemsService', () => {
         DaffInMemoryBackendCartItemsService,
       ]
     });
-    service = TestBed.get(DaffInMemoryBackendCartItemsService);
+    service = TestBed.inject(DaffInMemoryBackendCartItemsService);
 
-    cartFactory = TestBed.get(DaffCartFactory);
-    cartItemFactory = TestBed.get(DaffCartItemFactory);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartItemFactory = TestBed.inject(DaffCartItemFactory);
 
     mockCart = cartFactory.create();
     mockCartItems = cartItemFactory.createMany(3);
@@ -108,12 +108,12 @@ describe('DaffInMemoryBackendCartItemsService', () => {
       reqInfoStub.req.body = mockCartItemInput;
       productId = mockCartItemInput.productId;
     });
-		
+
     it('should return a cart with the added item', () => {
 			result = service.post(reqInfoStub);
       expect(result.body.items).toContain(jasmine.objectContaining({product_id: productId}));
 		});
-		
+
 		it('should add the given qty to an existing cart item qty', () => {
 			productId = reqInfoStub.collection[0].items[0].product_id;
 			const cart_item_qty = reqInfoStub.collection[0].items[0].qty;

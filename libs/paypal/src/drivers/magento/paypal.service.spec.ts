@@ -40,10 +40,10 @@ describe('Driver | Magento | Paypal | PaypalService', () => {
       ]
     });
 
-    controller = TestBed.get(ApolloTestingController);
+    controller = TestBed.inject(ApolloTestingController);
 
-    service = TestBed.get(DaffMagentoPaypalService);
-    paypalTokenResponseFactory = TestBed.get(DaffPaypalTokenResponseFactory);
+    service = TestBed.inject(DaffMagentoPaypalService);
+    paypalTokenResponseFactory = TestBed.inject(DaffPaypalTokenResponseFactory);
   });
 
   it('should be created', () => {

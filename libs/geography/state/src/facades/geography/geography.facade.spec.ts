@@ -41,10 +41,10 @@ describe('DaffGeographyFacade', () => {
       ]
     });
 
-    store = TestBed.get(Store);
-    facade = TestBed.get(DaffGeographyFacade);
-    countryFactory = TestBed.get(DaffCountryFactory);
-    subdivisionFactory = TestBed.get(DaffSubdivisionFactory);
+    store = TestBed.inject(Store);
+    facade = TestBed.inject(DaffGeographyFacade);
+    countryFactory = TestBed.inject(DaffCountryFactory);
+    subdivisionFactory = TestBed.inject(DaffSubdivisionFactory);
 
     mockCountry = countryFactory.create();
     mockCountry.subdivisions = subdivisionFactory.createMany(3);

@@ -39,9 +39,9 @@ describe('DemoAuthEffects', () => {
       ]
     });
 
-    effects = TestBed.get(DemoAuthEffects);
-    router = TestBed.get(Router);
-    location = TestBed.get(Location);
+    effects = TestBed.inject(DemoAuthEffects);
+    router = TestBed.inject(Router);
+    location = TestBed.inject(Location);
 
     mockAuthToken = authFactory.create();
 

@@ -6,7 +6,7 @@ describe('DaffErrorStorageService', () => {
   let service: DaffErrorStorageService;
 
   beforeEach(() => {
-    service = TestBed.get(DaffErrorStorageService);
+    service = TestBed.inject(DaffErrorStorageService);
   });
 
   it('should be created', () => {

@@ -10,7 +10,7 @@ describe('selectDemoCheckoutState', () => {
   let stubShowShippingForm: boolean;
   let expectedShowPaymentView: boolean;
   let expectedShowPaymentForm: boolean;
-  
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -23,12 +23,12 @@ describe('selectDemoCheckoutState', () => {
     stubShowShippingForm = true;
     expectedShowPaymentView = false;
     expectedShowPaymentForm = null;
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
     store.dispatch(new SetShowShippingForm(stubShowShippingForm));
   }));
 
   describe('demoShippingStateSelector', () => {
-    
+
     it('selects shipping state', () => {
       const expectedShippingState = {
         showShippingForm: stubShowShippingForm
@@ -41,7 +41,7 @@ describe('selectDemoCheckoutState', () => {
   });
 
   describe('selectShowShippingForm', () => {
-    
+
     it('selects showShippingForm state', () => {
       store.pipe(select(fromCheckout.selectShowShippingForm)).subscribe((showShippingForm) => {
         expect(showShippingForm).toEqual(stubShowShippingForm);
@@ -50,7 +50,7 @@ describe('selectDemoCheckoutState', () => {
   });
 
   describe('demoPaymentStateSelector', () => {
-    
+
     it('selects payment state', () => {
       const expectedPaymentState = {
         showPaymentView: expectedShowPaymentView,
@@ -64,7 +64,7 @@ describe('selectDemoCheckoutState', () => {
   });
 
   describe('selectShowPaymentView', () => {
-    
+
     it('selects showPaymentView state', () => {
       store.pipe(select(fromCheckout.selectShowPaymentView)).subscribe((showPaymentView) => {
         expect(showPaymentView).toEqual(expectedShowPaymentView);
@@ -73,7 +73,7 @@ describe('selectDemoCheckoutState', () => {
   });
 
   describe('selectShowPaymentForm', () => {
-    
+
     it('selects showPaymentForm state', () => {
       store.pipe(select(fromCheckout.selectShowPaymentForm)).subscribe((showPaymentForm) => {
         expect(showPaymentForm).toEqual(expectedShowPaymentForm);
@@ -82,7 +82,7 @@ describe('selectDemoCheckoutState', () => {
   });
 
   describe('demoCheckoutStateSelector', () => {
-    
+
     it('selects checkout state', () => {
       const expectedCheckoutState = {
         enablePlaceOrderButton: false,
@@ -96,7 +96,7 @@ describe('selectDemoCheckoutState', () => {
   });
 
   describe('selectEnablePlaceOrderButton', () => {
-    
+
     it('selects enablePlaceOrderButton state', () => {
       store.pipe(select(fromCheckout.selectEnablePlaceOrderButton)).subscribe((enablePlaceOrderButton) => {
         expect(enablePlaceOrderButton).toEqual(false);
@@ -105,7 +105,7 @@ describe('selectDemoCheckoutState', () => {
   });
 
   describe('selectShowReviewView', () => {
-    
+
     it('selects showReviewView state', () => {
       store.pipe(select(fromCheckout.selectShowReviewView)).subscribe((showReviewView) => {
         expect(showReviewView).toEqual(false);

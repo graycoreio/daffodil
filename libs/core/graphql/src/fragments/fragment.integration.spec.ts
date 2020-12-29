@@ -23,8 +23,8 @@ describe('Core | GraphQL | Fragment Integration', () => {
       ]
     });
 
-    controller = TestBed.get(ApolloTestingController);
-    apollo = TestBed.get(Apollo);
+    controller = TestBed.inject(ApolloTestingController);
+    apollo = TestBed.inject(Apollo);
 
     // since daffodil uses a multi provider to inject extra fragments, this is the form with which we will test
     mockFragment1 = gql`

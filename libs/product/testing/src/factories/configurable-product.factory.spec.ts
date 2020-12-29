@@ -4,7 +4,7 @@ import { DaffConfigurableProductFactory } from './configurable-product.factory';
 import { DaffConfigurableProduct, DaffProductTypeEnum } from '@daffodil/product';
 
 describe('Product | Testing | Factories | DaffConfigurableProductFactory', () => {
-  
+
   let configurableProductFactory;
 
   beforeEach(() => {
@@ -12,7 +12,7 @@ describe('Product | Testing | Factories | DaffConfigurableProductFactory', () =>
       providers: [DaffConfigurableProductFactory]
     });
 
-    configurableProductFactory = TestBed.get(DaffConfigurableProductFactory);
+    configurableProductFactory = TestBed.inject(DaffConfigurableProductFactory);
   });
 
   it('should be created', () => {
@@ -26,7 +26,7 @@ describe('Product | Testing | Factories | DaffConfigurableProductFactory', () =>
     beforeEach(() => {
       result = configurableProductFactory.create();
     });
-    
+
     it('should return a Configurable Product with all required fields defined', () => {
       expect(result.type).toEqual(DaffProductTypeEnum.Configurable);
 			expect(result.id).toBeDefined();
@@ -41,7 +41,7 @@ describe('Product | Testing | Factories | DaffConfigurableProductFactory', () =>
 			expect(result.variants).toBeDefined();
 			expect(result.variants[0].in_stock).toBeDefined();
 		});
-		
+
 		it('should return any percents as whole numbers', () => {
 			expect(result.variants[0].discount.percent % 1).toEqual(0);
 		});

@@ -51,10 +51,10 @@ describe('DaffAuthFacade', () => {
       ]
     });
 
-    store = TestBed.get(Store);
-    facade = TestBed.get(DaffAuthFacade);
-    authFactory = TestBed.get(DaffAuthTokenFactory);
-    accountRegistrationFactory = TestBed.get(DaffAccountRegistrationFactory);
+    store = TestBed.inject(Store);
+    facade = TestBed.inject(DaffAuthFacade);
+    authFactory = TestBed.inject(DaffAuthTokenFactory);
+    accountRegistrationFactory = TestBed.inject(DaffAccountRegistrationFactory);
 
     mockAuthToken = authFactory.create();
     mockRegistration = accountRegistrationFactory.create();

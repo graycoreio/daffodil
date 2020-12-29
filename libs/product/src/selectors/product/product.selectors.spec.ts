@@ -23,7 +23,7 @@ describe('selectProductState', () => {
 		selectSelectedProductId,
 		selectSelectedProductQty
 	} = getDaffProductPageSelectors();
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -34,12 +34,12 @@ describe('selectProductState', () => {
     });
 
     mockProduct = productFactory.create();
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
 
     store.dispatch(new DaffProductGridLoadSuccess(new Array(mockProduct)));
     store.dispatch(new DaffProductLoad(mockProduct.id));
   });
-  
+
   describe('SelectedProductState', () => {
 
     describe('selectSelectedProductState', () => {
@@ -54,7 +54,7 @@ describe('selectProductState', () => {
           errors: []
         }
       });
-      
+
       it('returns the selected product state', () => {
 				const selector = store.pipe(select(selectSelectedProductState));
 				const expected = cold('a', { a: expectedProductState });
@@ -64,7 +64,7 @@ describe('selectProductState', () => {
     });
 
     describe('selectSelectedProductId', () => {
-      
+
       it('returns the selected product id', () => {
 				const selector = store.pipe(select(selectSelectedProductId));
 				const expected = cold('a', { a: mockProduct.id });
@@ -74,7 +74,7 @@ describe('selectProductState', () => {
     });
 
     describe('selectSelectedProductQty', () => {
-      
+
       it('returns the selected product qty', () => {
 				const selector = store.pipe(select(selectSelectedProductQty));
 				const expected = cold('a', { a: 1 });
@@ -84,7 +84,7 @@ describe('selectProductState', () => {
     });
 
     describe('selectSelectedProductLoadingState', () => {
-      
+
       it('selects the loading state of the selected product', () => {
 				const selector = store.pipe(select(selectSelectedProductLoadingState));
 				const expected = cold('a', { a: true });
@@ -95,7 +95,7 @@ describe('selectProductState', () => {
   });
 
   describe('selectSelectedProduct', () => {
-    
+
     it('selects the selected product', () => {
 			const selector = store.pipe(select(selectSelectedProduct));
 			const expected = cold('a', { a: mockProduct });

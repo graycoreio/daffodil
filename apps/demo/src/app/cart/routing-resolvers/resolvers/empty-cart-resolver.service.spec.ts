@@ -38,12 +38,12 @@ describe('EmptyCartResolver', () => {
     });
 
     cartResolverSpy.resolve.and.returnValue(of(new ResolveCartSuccess(stubCart)));
-    emptyCartResolver = TestBed.get(EmptyCartResolver);
-    cartFactory = TestBed.get(DaffCartFactory);
-    cartItemFactory = TestBed.get(DaffCartItemFactory);
+    emptyCartResolver = TestBed.inject(EmptyCartResolver);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartItemFactory = TestBed.inject(DaffCartItemFactory);
     stubCart = cartFactory.create();
-    store = TestBed.get(Store);
-    router = TestBed.get(Router);
+    store = TestBed.inject(Store);
+    router = TestBed.inject(Router);
 
     spyOn(router, 'navigateByUrl');
   }));

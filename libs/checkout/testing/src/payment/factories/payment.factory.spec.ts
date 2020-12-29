@@ -4,7 +4,7 @@ import { DaffPaymentFactory, MockPaymentInfo } from './payment.factory';
 import { PaymentInfo } from '@daffodil/checkout';
 
 describe('Checkout | Testing | Payment | Factories | BillingFactory', () => {
-  
+
   let paymentFactory;
 
   beforeEach(() => {
@@ -14,7 +14,7 @@ describe('Checkout | Testing | Payment | Factories | BillingFactory', () => {
       ]
     });
 
-    paymentFactory = TestBed.get(DaffPaymentFactory);
+    paymentFactory = TestBed.inject(DaffPaymentFactory);
   });
 
   it('should be created', () => {

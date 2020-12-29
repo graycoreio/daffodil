@@ -41,10 +41,10 @@ describe('PlaceOrderComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PlaceOrderComponent);
     component = fixture.componentInstance;
-    store = TestBed.get(Store);
-    cartFactory = TestBed.get(DaffCartFactory);
+    store = TestBed.inject(Store);
+    cartFactory = TestBed.inject(DaffCartFactory);
 		stubCart = cartFactory.create();
-		cartFacade = TestBed.get(DaffCartFacade);
+		cartFacade = TestBed.inject(DaffCartFacade);
 		cartFacade.cart$.next(stubCart);
 
     spyOn(cartFacade, 'dispatch');

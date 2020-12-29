@@ -7,7 +7,7 @@ describe('DaffPersistenceServiceToken', () => {
   let defaultPersistenceService: DaffPersistenceService;
 
   beforeEach(() => {
-		defaultPersistenceService = TestBed.get(Token);
+		defaultPersistenceService = TestBed.inject(Token);
   });
 
   it('should inject a DaffLocalStorageService', () => {

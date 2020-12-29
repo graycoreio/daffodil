@@ -40,12 +40,12 @@ describe('Cart | State | Guards | DaffCartItemsGuard', () => {
 			]
     });
 
-		service = TestBed.get(DaffCartItemsGuard);
-		store = TestBed.get(Store);
-    router = TestBed.get(Router);
+		service = TestBed.inject(DaffCartItemsGuard);
+		store = TestBed.inject(Store);
+    router = TestBed.inject(Router);
 
-    cartFactory = TestBed.get(DaffCartFactory);
-    cartItemFactory = TestBed.get(DaffCartItemFactory);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartItemFactory = TestBed.inject(DaffCartItemFactory);
 
     cart = cartFactory.create();
     cartItems = cartItemFactory.createMany(1);

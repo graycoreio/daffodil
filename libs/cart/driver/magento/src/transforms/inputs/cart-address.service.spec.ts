@@ -20,9 +20,9 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartAddress', () => {
       ]
     });
 
-    service = TestBed.get(DaffMagentoCartAddressInputTransformer);
+    service = TestBed.inject(DaffMagentoCartAddressInputTransformer);
 
-    daffCartAddressFactory = TestBed.get(DaffCartAddressFactory);
+    daffCartAddressFactory = TestBed.inject(DaffCartAddressFactory);
 
     mockDaffCartAddress = daffCartAddressFactory.create();
   });

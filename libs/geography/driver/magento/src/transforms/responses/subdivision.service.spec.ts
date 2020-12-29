@@ -25,9 +25,9 @@ describe('Driver | Magento | Geography | Transformer | Subdivision', () => {
       ]
     });
 
-    service = TestBed.get(DaffMagentoSubdivisionTransformer);
+    service = TestBed.inject(DaffMagentoSubdivisionTransformer);
 
-    daffSubdivisionFactory = TestBed.get(DaffSubdivisionFactory);
+    daffSubdivisionFactory = TestBed.inject(DaffSubdivisionFactory);
 
     mockDaffSubdivision = daffSubdivisionFactory.create();
     mockMagentoRegion = {

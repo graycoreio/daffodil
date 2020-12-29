@@ -39,8 +39,8 @@ describe('Driver | Magento | Auth | RegisterService', () => {
       ]
     });
 
-    service = TestBed.get(DaffMagentoRegisterService);
-    controller = TestBed.get(ApolloTestingController);
+    service = TestBed.inject(DaffMagentoRegisterService);
+    controller = TestBed.inject(ApolloTestingController);
 
     mockRegistration = registrationFactory.create();
 

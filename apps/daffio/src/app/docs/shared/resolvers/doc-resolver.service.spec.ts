@@ -36,9 +36,9 @@ describe('DocResolver', () => {
       ]
     });
 
-    router = TestBed.get(Router);
-    docService = TestBed.get(DaffioDocService);
-    resolver = TestBed.get(DocResolver);
+    router = TestBed.inject(Router);
+    docService = TestBed.inject(DaffioDocService);
+    resolver = TestBed.inject(DocResolver);
   });
 
   it('should be created', () => {
@@ -50,7 +50,7 @@ describe('DocResolver', () => {
     expect(resolver.resolve(null, { url: 'my/path' } as RouterStateSnapshot)).toBeObservable(expected);
   });
 
-  describe('if the doc doesn\'t exist (the doc service errors)', () => {    
+  describe('if the doc doesn\'t exist (the doc service errors)', () => {
     beforeEach(() => {
       spyOn(docService, 'get').and.returnValue(throwError('error'));
       spyOn(router, 'navigate');

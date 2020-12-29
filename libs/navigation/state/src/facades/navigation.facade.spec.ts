@@ -28,8 +28,8 @@ describe('DaffNavigationFacade', () => {
     })
 
     navigation = navigationTreeFactory.create();
-    store = TestBed.get(Store);
-    facade = TestBed.get(DaffNavigationFacade);
+    store = TestBed.inject(Store);
+    facade = TestBed.inject(DaffNavigationFacade);
   });
 
   it('should be created', () => {

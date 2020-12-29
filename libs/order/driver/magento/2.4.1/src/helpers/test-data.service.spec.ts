@@ -7,7 +7,7 @@ describe('Order | Driver | Magento | 2.4.1 | Helpers | MagentoOrderTestDataFacto
   let service: MagentoOrderTestDataFactory;
 
   beforeEach(() => {
-    service = TestBed.get(MagentoOrderTestDataFactory);
+    service = TestBed.inject(MagentoOrderTestDataFactory);
   });
 
   it('should create', () => {

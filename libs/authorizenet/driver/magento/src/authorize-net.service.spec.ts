@@ -11,7 +11,8 @@ describe('Driver | Magento | Authorize.net | DaffMagentoAuthorizeNetService', ()
   let service: DaffMagentoAuthorizeNetService;
 
   let acceptSpy: jasmine.Spy;
-  let acceptJsLoaderSpy: jasmine.SpyObj<DaffAcceptJsLoadingService>;
+  let getAcceptSpy: jasmine.Spy;
+  let acceptJsLoaderService: DaffAcceptJsLoadingService;
 
   let stubCreditCard: DaffAuthorizeNetCreditCard;
   let request: DaffAuthorizeNetTokenRequest;
@@ -33,16 +34,12 @@ describe('Driver | Magento | Authorize.net | DaffMagentoAuthorizeNetService', ()
         {
 					provide: DaffAuthorizeNetConfigToken,
 					useValue: stubAuthData
-        },
-        {
-          provide: DaffAcceptJsLoadingService,
-          useValue: jasmine.createSpyObj('DaffAcceptJsLoadingService', ['getAccept'])
         }
       ]
     });
 
-    service = TestBed.get(DaffMagentoAuthorizeNetService);
-    acceptJsLoaderSpy = TestBed.get(DaffAcceptJsLoadingService);
+    service = TestBed.inject(DaffMagentoAuthorizeNetService);
+    acceptJsLoaderService = TestBed.inject(DaffAcceptJsLoadingService);
 
     stubCreditCard = {
       cardnumber: ccNumber,
@@ -86,8 +83,8 @@ describe('Driver | Magento | Authorize.net | DaffMagentoAuthorizeNetService', ()
     };
 
     acceptSpy = jasmine.createSpy()
-
-    acceptJsLoaderSpy.getAccept.and.returnValue({dispatchData: acceptSpy});
+    getAcceptSpy = spyOn(acceptJsLoaderService, 'getAccept');
+    getAcceptSpy.and.returnValue({dispatchData: acceptSpy});
   });
 
   it('should be created', () => {

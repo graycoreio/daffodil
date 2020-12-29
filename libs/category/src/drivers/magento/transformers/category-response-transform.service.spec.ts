@@ -38,7 +38,7 @@ describe('DaffMagentoCategoryResponseTransformService', () => {
         { provide: DaffMagentoCategoryPageConfigTransformerService, useValue: magentoCategoryPageConfigurationTransformerServiceSpy }
       ]
     });
-    service = TestBed.get(DaffMagentoCategoryResponseTransformService);
+    service = TestBed.inject(DaffMagentoCategoryResponseTransformService);
   });
 
   it('should be created', () => {

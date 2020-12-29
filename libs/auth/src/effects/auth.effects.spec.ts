@@ -87,12 +87,12 @@ describe('DaffAuthEffects', () => {
       ]
     });
 
-    effects = TestBed.get(DaffAuthEffects);
+    effects = TestBed.inject(DaffAuthEffects);
 
-    daffLoginDriver = TestBed.get(DaffLoginDriver);
-    daffRegisterDriver = TestBed.get(DaffRegisterDriver);
-    daffAuthDriver = TestBed.get(DaffAuthDriver);
-    daffAuthStorageSpy = TestBed.get(DaffAuthStorageService);
+    daffLoginDriver = TestBed.inject(DaffLoginDriver);
+    daffRegisterDriver = TestBed.inject(DaffRegisterDriver);
+    daffAuthDriver = TestBed.inject(DaffAuthDriver);
+    daffAuthStorageSpy = TestBed.inject(DaffAuthStorageService);
 
     mockRegistration = registrationFactory.create();
     mockAuth = authFactory.create();

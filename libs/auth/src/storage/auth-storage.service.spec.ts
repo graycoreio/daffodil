@@ -10,7 +10,7 @@ describe('DaffAuthStorageService', () => {
 
     });
 
-    service = TestBed.get(DaffAuthStorageService);
+    service = TestBed.inject(DaffAuthStorageService);
   });
 
   afterEach(() => {

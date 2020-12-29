@@ -26,7 +26,7 @@ describe('DaffAuthInMemoryBackend | Integration', () => {
       ],
     });
 
-    httpClient = TestBed.get(HttpClient);
+    httpClient = TestBed.inject(HttpClient);
 
     mockRegistration = registrationFactory.create();
     mockLoginInfo = {

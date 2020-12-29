@@ -25,9 +25,9 @@ describe('DaffNewsletterHubspotDriver', () => {
 			],
 		});
 
-		httpMock = TestBed.get(HttpTestingController);
+		httpMock = TestBed.inject(HttpTestingController);
 
-		newsletterService = TestBed.get(
+		newsletterService = TestBed.inject(
 			DaffNewsletterDriver
 		);
 	});

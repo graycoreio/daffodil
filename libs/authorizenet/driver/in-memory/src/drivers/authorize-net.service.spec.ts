@@ -22,8 +22,8 @@ describe('Driver | In Memory | AuthorizeNet | AuthorizeNetService', () => {
       ]
     });
 
-    httpMock = TestBed.get(HttpTestingController);
-    authorizeNetService = TestBed.get(DaffInMemoryAuthorizeNetService);
+    httpMock = TestBed.inject(HttpTestingController);
+    authorizeNetService = TestBed.inject(DaffInMemoryAuthorizeNetService);
   });
 
   afterEach(() => {

@@ -48,7 +48,7 @@ describe('CartComponent', () => {
       ]
     });
 
-    mockCartFacade = TestBed.get(DaffCartFacade);
+    mockCartFacade = TestBed.inject(DaffCartFacade);
 
     spyOn(mockCartFacade, 'dispatch');
 

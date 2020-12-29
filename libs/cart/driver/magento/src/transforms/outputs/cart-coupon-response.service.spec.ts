@@ -37,12 +37,12 @@ describe('Driver | Magento | Cart | Transformer | CartCouponResponse', () => {
       ]
     });
 
-    service = TestBed.get(DaffMagentoCartTransformer);
+    service = TestBed.inject(DaffMagentoCartTransformer);
 
-    daffCartFactory = TestBed.get(DaffCartFactory);
-    magentoCartFactory = TestBed.get(MagentoCartFactory);
-    magentoCartItemFactory = TestBed.get(MagentoCartItemFactory);
-    magentoCouponFactory = TestBed.get(MagentoCartCouponFactory);
+    daffCartFactory = TestBed.inject(DaffCartFactory);
+    magentoCartFactory = TestBed.inject(MagentoCartFactory);
+    magentoCartItemFactory = TestBed.inject(MagentoCartItemFactory);
+    magentoCouponFactory = TestBed.inject(MagentoCartCouponFactory);
 
     mockDaffCart = daffCartFactory.create();
     mockMagentoCart = magentoCartFactory.create();

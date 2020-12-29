@@ -30,7 +30,7 @@ describe('DaffAuthorizeNetSelectors', () => {
       ]
     });
 
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
 
     mockError = {
       code: 'code',

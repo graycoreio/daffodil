@@ -65,10 +65,10 @@ describe('Order | Selector | OrderEntities', () => {
       ]
     });
 
-    store = TestBed.get(Store);
-    orderFactory = TestBed.get(DaffOrderFactory);
-    orderItemFactory = TestBed.get(DaffOrderItemFactory);
-    orderTotalFactory = TestBed.get(DaffOrderTotalFactory);
+    store = TestBed.inject(Store);
+    orderFactory = TestBed.inject(DaffOrderFactory);
+    orderItemFactory = TestBed.inject(DaffOrderItemFactory);
+    orderTotalFactory = TestBed.inject(DaffOrderTotalFactory);
 
     mockOrderItem = orderItemFactory.create();
     mockOrderTotal = orderTotalFactory.create();

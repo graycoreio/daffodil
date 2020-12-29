@@ -19,9 +19,9 @@ describe('Driver | InMemory | Product | ProductService', () => {
       ]
     });
 
-    httpMock = TestBed.get(HttpTestingController);
-    productService = TestBed.get(DaffInMemoryProductService);
-    productFactory = TestBed.get(DaffProductFactory);
+    httpMock = TestBed.inject(HttpTestingController);
+    productService = TestBed.inject(DaffInMemoryProductService);
+    productFactory = TestBed.inject(DaffProductFactory);
   });
 
   afterEach(() => {

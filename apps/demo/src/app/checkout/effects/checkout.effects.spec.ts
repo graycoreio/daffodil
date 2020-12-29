@@ -19,7 +19,7 @@ describe('CheckoutEffects', () => {
   let router: Router;
   const cartFactory: DaffCartFactory = new DaffCartFactory();
   let stubCart: DaffCart;
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -32,8 +32,8 @@ describe('CheckoutEffects', () => {
     });
 
     stubCart = cartFactory.create();
-    effects = TestBed.get(CheckoutEffects);
-    router = TestBed.get(Router);
+    effects = TestBed.inject(CheckoutEffects);
+    router = TestBed.inject(Router);
     spyOn(router, 'navigateByUrl');
   });
 
@@ -51,7 +51,7 @@ describe('CheckoutEffects', () => {
       actions$ = hot('--a', { a: toggleShowPaymentFormAction });
       expected = cold('--b', { b: showReviewViewAction });
     });
-    
+
     it('should dispatch a ShowReviewView action', () => {
       expect(effects.onToggleShowPaymentForm$).toBeObservable(expected);
     });
@@ -61,7 +61,7 @@ describe('CheckoutEffects', () => {
 
     let expected;
     const placeOrderAction = new PlaceOrder(stubCart);
-    
+
     beforeEach(() => {
       actions$ = hot('--a', { a: placeOrderAction });
       expected = cold('--b', { b: placeOrderAction });

@@ -12,7 +12,7 @@ describe('Order | Testing | Factories | DaffOrderShipmentFactory', () => {
       providers: [DaffOrderShipmentFactory]
     });
 
-    factory = TestBed.get(DaffOrderShipmentFactory);
+    factory = TestBed.inject(DaffOrderShipmentFactory);
   });
 
   it('should be created', () => {

@@ -45,8 +45,8 @@ describe('Geography | Selector | CountryEntities', () => {
       ]
     });
 
-    store = TestBed.get(Store);
-    countryFactory = TestBed.get(DaffCountryFactory);
+    store = TestBed.inject(Store);
+    countryFactory = TestBed.inject(DaffCountryFactory);
 
     mockCountry = countryFactory.create();
     countryId = mockCountry.id;

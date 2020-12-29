@@ -22,9 +22,9 @@ describe('Driver | In Memory | Checkout | CheckoutService', () => {
       ]
     });
 
-    httpMock = TestBed.get(HttpTestingController);
-    orderFactory = TestBed.get(DaffOrderFactory);
-    checkoutService = TestBed.get(DaffInMemoryCheckoutService);
+    httpMock = TestBed.inject(HttpTestingController);
+    orderFactory = TestBed.inject(DaffOrderFactory);
+    checkoutService = TestBed.inject(DaffInMemoryCheckoutService);
   });
 
   afterEach(() => {

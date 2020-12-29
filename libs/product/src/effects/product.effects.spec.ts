@@ -27,16 +27,16 @@ describe('DaffProductEffects', () => {
         DaffProductEffects,
         provideMockActions(() => actions$),
         {
-          provide: DaffProductDriver, 
+          provide: DaffProductDriver,
           useValue: new DaffTestingProductService(new DaffProductFactory(), new DaffProductImageFactory())
         },
       ]
     });
 
-    effects = TestBed.get(DaffProductEffects);
-    productFactory = TestBed.get(DaffProductFactory);
+    effects = TestBed.inject(DaffProductEffects);
+    productFactory = TestBed.inject(DaffProductFactory);
 
-    daffProductDriver = TestBed.get(DaffProductDriver);
+    daffProductDriver = TestBed.inject(DaffProductDriver);
 
     mockProduct = productFactory.create();
   });
@@ -49,7 +49,7 @@ describe('DaffProductEffects', () => {
 
     let expected;
     const productLoadAction = new DaffProductLoad(productId);
-    
+
     describe('and the call to ProductService is successful', () => {
 
       beforeEach(() => {
@@ -58,14 +58,14 @@ describe('DaffProductEffects', () => {
         actions$ = hot('--a', { a: productLoadAction });
         expected = cold('--b', { b: productLoadSuccessAction });
       });
-      
+
       it('should dispatch a ProductLoadSuccess action', () => {
         expect(effects.load$).toBeObservable(expected);
       });
     });
 
     describe('and the call to ProductService fails', () => {
-      
+
       beforeEach(() => {
         const error = 'Failed to load product';
         const response = cold('#', {}, error);
@@ -74,7 +74,7 @@ describe('DaffProductEffects', () => {
         actions$ = hot('--a', { a: productLoadAction });
         expected = cold('--b', { b: productLoadFailureAction });
       });
-      
+
       it('should dispatch a ProductLoadFailure action', () => {
         expect(effects.load$).toBeObservable(expected);
       });

@@ -18,7 +18,7 @@ describe('DemoHeaderComponent', () => {
         DaffNavbarModule,
         RouterTestingModule
       ],
-      declarations: [ 
+      declarations: [
         DemoHeaderComponent
       ]
     })
@@ -27,7 +27,7 @@ describe('DemoHeaderComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DemoHeaderComponent);
-    router = TestBed.get(Router);
+    router = TestBed.inject(Router);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -37,7 +37,7 @@ describe('DemoHeaderComponent', () => {
   });
 
   describe('when cart icon is clicked', () => {
-    
+
     it('should call router.navigateByUrl', () => {
       spyOn(router, 'navigateByUrl');
       fixture.debugElement.query(By.css('.demo-header__right-nav')).nativeElement.click();

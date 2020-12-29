@@ -34,10 +34,10 @@ describe('DaffNavigationEffects', () => {
       ]
     });
 
-    effects = TestBed.get(DaffNavigationEffects);
-    navigationTreeFactory = TestBed.get(DaffNavigationTreeFactory);
+    effects = TestBed.inject(DaffNavigationEffects);
+    navigationTreeFactory = TestBed.inject(DaffNavigationTreeFactory);
 
-    daffNavigationDriver = TestBed.get(DaffNavigationDriver);
+    daffNavigationDriver = TestBed.inject(DaffNavigationDriver);
 
     mockNavigation = navigationTreeFactory.create();
   });

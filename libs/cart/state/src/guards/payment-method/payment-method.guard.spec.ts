@@ -34,9 +34,9 @@ describe('Cart | State | Guards | DaffPaymentMethodGuard', () => {
         RouterTestingModule,
 			]
     });
-		service = TestBed.get(DaffPaymentMethodGuard);
-		router = TestBed.get(Router);
-		store = TestBed.get(Store);
+		service = TestBed.inject(DaffPaymentMethodGuard);
+		router = TestBed.inject(Router);
+		store = TestBed.inject(Store);
   });
 
   it('should be created', () => {

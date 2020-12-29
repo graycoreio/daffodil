@@ -15,8 +15,8 @@ const stubFormGroupValue = formBuilder.group({
 const stubSubmitted = false;
 
 @Component({
-  template: '<demo-shipping-options ' + 
-              '[formGroup]="formGroupValue" ' +  
+  template: '<demo-shipping-options ' +
+              '[formGroup]="formGroupValue" ' +
               '[submitted]="submittedValue"></demo-shipping-options>'
 })
 class WrapperComponent {
@@ -36,7 +36,7 @@ describe('ShippingOptionsComponent', () => {
         FormsModule,
         ReactiveFormsModule
       ],
-      declarations: [ 
+      declarations: [
         WrapperComponent,
         ShippingOptionsComponent
       ],
@@ -50,7 +50,7 @@ describe('ShippingOptionsComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
-    shippingOptionsService = TestBed.get(ShippingOptionsService);
+    shippingOptionsService = TestBed.inject(ShippingOptionsService);
     wrapper = fixture.componentInstance;
     fixture.detectChanges();
 
@@ -74,10 +74,10 @@ describe('ShippingOptionsComponent', () => {
   });
 
   describe('when formControl has not been touched or submitted', () => {
-    
+
     it('should set errorState to false', () => {
       shippingOptionsComponent.formGroup.controls['id'].markAsUntouched();
-   
+
       fixture.detectChanges();
 
       expect(shippingOptionsComponent.errorState).toBeFalsy();
@@ -91,7 +91,7 @@ describe('ShippingOptionsComponent', () => {
     });
 
     describe('and does not have an error', () => {
-      
+
       it('should set errorState to false', () => {
         shippingOptionsComponent.formGroup.controls['id'].setValue('valid');
         shippingOptionsComponent.ngDoCheck();
@@ -99,12 +99,12 @@ describe('ShippingOptionsComponent', () => {
         expect(shippingOptionsComponent.errorState).toBeFalsy();
       });
     });
-    
+
     describe('and has an error', () => {
-      
+
       it('should set errorState to true', () => {
         shippingOptionsComponent.formGroup.controls['id'].setValue(null);
-    
+
         fixture.detectChanges();
 
         expect(shippingOptionsComponent.errorState).toBeTruthy();
@@ -113,13 +113,13 @@ describe('ShippingOptionsComponent', () => {
   });
 
   describe('when errorState is true', () => {
-    
+
     beforeEach(() => {
       shippingOptionsComponent.formGroup.controls['id'].setValue(null);
       shippingOptionsComponent.formGroup.controls['id'].markAsTouched();
       fixture.detectChanges();
     });
-    
+
     it('should set hidden to false on .demo-shipping-options__invalid', () => {
       const hostNativeElement = fixture.debugElement.query(By.css('.demo-shipping-options__invalid')).nativeElement;
 
@@ -128,7 +128,7 @@ describe('ShippingOptionsComponent', () => {
   });
 
   describe('when errorState is false', () => {
-    
+
     beforeEach(() => {
       shippingOptionsComponent.formGroup.controls['id'].setValue('valid');
 

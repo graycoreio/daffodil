@@ -12,7 +12,7 @@ describe('Driver | InMemory | Navigation | DaffInMemoryBackendNavigationService'
       providers: [DaffInMemoryBackendNavigationService]
     });
 
-    navigationTestingService = TestBed.get(DaffInMemoryBackendNavigationService);
+    navigationTestingService = TestBed.inject(DaffInMemoryBackendNavigationService);
   });
 
   it('should be created', () => {

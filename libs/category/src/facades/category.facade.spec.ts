@@ -56,8 +56,8 @@ describe('DaffCategoryFacade', () => {
     categoryPageConfigurationState.id = category.id;
     categoryPageConfigurationState.product_ids = [product.id];
     category.product_ids = [product.id];
-    store = TestBed.get(Store);
-    facade = TestBed.get(DaffCategoryFacade);
+    store = TestBed.inject(Store);
+    facade = TestBed.inject(DaffCategoryFacade);
   });
 
   it('should be created', () => {

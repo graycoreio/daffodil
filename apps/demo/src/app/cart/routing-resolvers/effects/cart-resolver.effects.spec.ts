@@ -38,10 +38,10 @@ describe('CartResolverEffects', () => {
       ]
     });
 
-    effects = TestBed.get(CartResolverEffects);
-    cartFactory = TestBed.get(DaffCartFactory);
+    effects = TestBed.inject(CartResolverEffects);
+    cartFactory = TestBed.inject(DaffCartFactory);
     stubCart = cartFactory.create();
-    driver = TestBed.get(DaffCartDriver);
+    driver = TestBed.inject(DaffCartDriver);
   });
 
   it('should be created', () => {

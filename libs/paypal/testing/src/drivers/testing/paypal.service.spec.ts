@@ -20,7 +20,7 @@ describe('Testing | Drivers | Testing | PaypalService', () => {
         DaffTestingPaypalService
       ]
     });
-    paypalService = TestBed.get(DaffTestingPaypalService);
+    paypalService = TestBed.inject(DaffTestingPaypalService);
   });
 
   it('should be created', () => {

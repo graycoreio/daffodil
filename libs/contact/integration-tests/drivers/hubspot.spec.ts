@@ -24,16 +24,16 @@ describe('DaffContactHubspotDriver', () => {
 				}),
 			],
 		});
-		httpMock = TestBed.get(HttpTestingController);
-		contactService = TestBed.get(DaffContactDriver);
+		httpMock = TestBed.inject(HttpTestingController);
+		contactService = TestBed.inject(DaffContactDriver);
 	});
 	afterEach(() => {
 		httpMock.verify();
-	});
+  });
 
 	it('should be created', () => {
 		expect(contactService).toBeTruthy();
-	});
+  });
 
 	describe('when sending', () => {
 		it('should send a submission', () => {
@@ -49,7 +49,7 @@ describe('DaffContactHubspotDriver', () => {
 			});
 			req.flush(mockReq);
 			httpMock.verify();
-		});
+    });
 
 	});
 });

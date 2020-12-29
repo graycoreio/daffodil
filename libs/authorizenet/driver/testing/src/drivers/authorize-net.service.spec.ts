@@ -13,7 +13,7 @@ describe('Driver | Testing | AuthorizeNet | AuthorizeNetService', () => {
       ]
     });
 
-    service = TestBed.get(DaffTestingAuthorizeNetService);
+    service = TestBed.inject(DaffTestingAuthorizeNetService);
   });
 
   it('should be created', () => {

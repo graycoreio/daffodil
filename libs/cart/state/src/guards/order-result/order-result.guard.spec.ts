@@ -29,9 +29,9 @@ describe('Cart | State | Guards | DaffOrderResultGuard', () => {
 			]
     });
 
-		guard = TestBed.get(DaffOrderResultGuard);
-		facade = TestBed.get(DaffCartFacade);
-    router = TestBed.get(Router);
+		guard = TestBed.inject(DaffOrderResultGuard);
+		facade = TestBed.inject(DaffCartFacade);
+    router = TestBed.inject(Router);
   });
 
   it('should be created', () => {

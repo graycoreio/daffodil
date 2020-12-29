@@ -20,9 +20,9 @@ describe('Driver | Magento | Cart | Transformer | MagentoPaymentMethodInput', ()
       ]
     });
 
-    service = TestBed.get(DaffMagentoPaymentMethodInputTransformer);
+    service = TestBed.inject(DaffMagentoPaymentMethodInputTransformer);
 
-    daffPaymentFactory = TestBed.get(DaffCartPaymentFactory);
+    daffPaymentFactory = TestBed.inject(DaffCartPaymentFactory);
 
     mockDaffPayment = daffPaymentFactory.create();
   });

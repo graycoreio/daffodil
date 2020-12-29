@@ -91,22 +91,22 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
         }
       ]
     });
-    service = TestBed.get(DaffInMemoryBackendCartRootService);
+    service = TestBed.inject(DaffInMemoryBackendCartRootService);
 
-    cartBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartService);
-    cartItemsBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartItemsService);
-    cartOrderBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartOrderService);
-    cartCouponBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartCouponService);
-    cartAddressBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartAddressService);
-    cartShippingAddressBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartShippingAddressService);
-    cartBillingAddressBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartBillingAddressService);
-    cartPaymentMethodsBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartPaymentMethodsService);
-    cartShippingMethodsBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartShippingMethodsService);
-    cartPaymentBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartPaymentService);
-    cartShippingInformationBackendServiceSpy = TestBed.get(DaffInMemoryBackendCartShippingInformationService);
+    cartBackendServiceSpy = TestBed.inject(DaffInMemoryBackendCartService);
+    cartItemsBackendServiceSpy = TestBed.inject(DaffInMemoryBackendCartItemsService);
+    cartOrderBackendServiceSpy = TestBed.inject(DaffInMemoryBackendCartOrderService);
+    cartCouponBackendServiceSpy = TestBed.inject(DaffInMemoryBackendCartCouponService);
+    cartAddressBackendServiceSpy = TestBed.inject(DaffInMemoryBackendCartAddressService);
+    cartShippingAddressBackendServiceSpy = TestBed.inject(DaffInMemoryBackendCartShippingAddressService);
+    cartBillingAddressBackendServiceSpy = TestBed.inject(DaffInMemoryBackendCartBillingAddressService);
+    cartPaymentMethodsBackendServiceSpy = TestBed.inject(DaffInMemoryBackendCartPaymentMethodsService);
+    cartShippingMethodsBackendServiceSpy = TestBed.inject(DaffInMemoryBackendCartShippingMethodsService);
+    cartPaymentBackendServiceSpy = TestBed.inject(DaffInMemoryBackendCartPaymentService);
+    cartShippingInformationBackendServiceSpy = TestBed.inject(DaffInMemoryBackendCartShippingInformationService);
 
-    cartFactory = TestBed.get(DaffCartFactory);
-    cartItemFactory = TestBed.get(DaffCartItemFactory);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartItemFactory = TestBed.inject(DaffCartItemFactory);
 
     mockCart = cartFactory.create();
     mockCartItem = cartItemFactory.create();

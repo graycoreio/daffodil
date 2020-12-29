@@ -4,7 +4,7 @@ import { DaffAddressFactory, MockDaffAddress } from './address.factory';
 import { DaffAddress } from '@daffodil/core';
 
 describe('Core | Interfaces | Factories | DaffAddressFactory', () => {
-  
+
   let daffodilAddressFactory;
 
   beforeEach(async(() => {
@@ -12,7 +12,7 @@ describe('Core | Interfaces | Factories | DaffAddressFactory', () => {
       providers: [DaffAddressFactory]
     });
 
-    daffodilAddressFactory = TestBed.get(DaffAddressFactory);
+    daffodilAddressFactory = TestBed.inject(DaffAddressFactory);
   }));
 
   it('should be created', () => {
@@ -59,7 +59,7 @@ describe('Core | Interfaces | Factories | DaffAddressFactory', () => {
       expect(result.telephone).toBeDefined();
     });
   });
-  
+
   describe('creating many addresses', () => {
     let result: DaffAddress[];
 

@@ -12,7 +12,7 @@ describe('Cart | Testing | Factories | CartPaymentMethodFactory', () => {
       providers: [MagentoCartPaymentMethodFactory]
     });
 
-    factory = TestBed.get(MagentoCartPaymentMethodFactory);
+    factory = TestBed.inject(MagentoCartPaymentMethodFactory);
   });
 
   it('should be created', () => {
