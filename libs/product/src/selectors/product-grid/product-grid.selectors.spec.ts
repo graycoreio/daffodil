@@ -21,7 +21,7 @@ describe('selectProductState', () => {
 		selectProductGridState,
 		selectProductGridLoadingState
 	} = getDaffProductGridSelectors();
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -32,7 +32,7 @@ describe('selectProductState', () => {
     });
 
     mockProduct = productFactory.create();
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
 
     store.dispatch(new DaffBestSellersReset());
     store.dispatch(new DaffProductGridReset());
@@ -42,9 +42,9 @@ describe('selectProductState', () => {
   });
 
   describe('ProductGridState', () => {
-    
+
     describe('selectProductGridState', () => {
-    
+
       it('selects product grid state', () => {
         const expectedGridState = {
           products: [],
@@ -57,9 +57,9 @@ describe('selectProductState', () => {
 				expect(selector).toBeObservable(expected);
       });
     });
-  
+
     describe('selectProductGridLoadingState', () => {
-      
+
       it('selects product grid loading state', () => {
 				const selector = store.pipe(select(selectProductGridLoadingState));
 				const expected = cold('a', { a: false });

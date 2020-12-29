@@ -11,7 +11,7 @@ describe('DaffNewsletterInMemoryBackend', () => {
       providers: [DaffInMemoryBackendNewsletterService]
     });
 
-    newsletterTestingService = TestBed.get(DaffInMemoryBackendNewsletterService);
+    newsletterTestingService = TestBed.inject(DaffInMemoryBackendNewsletterService);
   });
 
   it('should be created', () => {

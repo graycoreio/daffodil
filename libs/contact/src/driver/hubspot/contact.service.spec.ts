@@ -25,7 +25,7 @@ describe('DaffContactHubspotService', () => {
 			],
 		});
 
-		contactService = TestBed.get(DaffContactDriver);
+		contactService = TestBed.inject(DaffContactDriver);
 	});
 
 	it('should be created', () => {

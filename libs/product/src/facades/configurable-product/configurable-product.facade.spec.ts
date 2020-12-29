@@ -3,8 +3,8 @@ import { MockStore } from '@ngrx/store/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
-import { 
-	DaffConfigurableProduct, 
+import {
+	DaffConfigurableProduct,
 	DaffConfigurableProductApplyAttribute,
 	DaffProductLoadSuccess,
 	daffProductReducers,
@@ -31,8 +31,8 @@ describe('DaffConfigurableProductFacade', () => {
       ]
     })
 
-    store = TestBed.get(Store);
-		facade = TestBed.get(DaffConfigurableProductFacade);
+    store = TestBed.inject(Store);
+		facade = TestBed.inject(DaffConfigurableProductFacade);
 		stubConfigurableProduct = new DaffConfigurableProductFactory().create();
 		store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
 	});
@@ -53,7 +53,7 @@ describe('DaffConfigurableProductFacade', () => {
   describe('getAllAttributes', () => {
 
     it('should return an Observable dictionary of all attributes', () => {
-			const expected = cold('a', { 
+			const expected = cold('a', {
 				a: {
 					[stubConfigurableProduct.configurableAttributes[0].code]: [
 						stubConfigurableProduct.configurableAttributes[0].values[0].value,
@@ -70,7 +70,7 @@ describe('DaffConfigurableProductFacade', () => {
 						stubConfigurableProduct.configurableAttributes[2].values[1].value,
 						stubConfigurableProduct.configurableAttributes[2].values[2].value,
 					]
-				} 
+				}
 			});
       store.dispatch(new DaffConfigurableProductApplyAttribute(
 				stubConfigurableProduct.id,
@@ -93,10 +93,10 @@ describe('DaffConfigurableProductFacade', () => {
   describe('getAppliedAttributes', () => {
 
     it('should return an Observable dictionary of applied attributes', () => {
-			const expected = cold('a', { 
+			const expected = cold('a', {
 				a: {
 					[stubConfigurableProduct.configurableAttributes[0].code]: stubConfigurableProduct.configurableAttributes[0].values[0].value
-				} 
+				}
 			});
       store.dispatch(new DaffConfigurableProductApplyAttribute(
 				stubConfigurableProduct.id,
@@ -262,7 +262,7 @@ describe('DaffConfigurableProductFacade', () => {
   describe('getSelectableAttributes', () => {
 
     it('should return the selectable attributes for a configurable product', () => {
-			const expected = cold('a', { 
+			const expected = cold('a', {
 				a: {
 					[stubConfigurableProduct.configurableAttributes[0].code]: [
 						stubConfigurableProduct.configurableAttributes[0].values[0].value,
@@ -295,7 +295,7 @@ describe('DaffConfigurableProductFacade', () => {
 				stubConfigurableProduct.configurableAttributes[0].code,
 				stubConfigurableProduct.variants[0].appliedAttributes[stubConfigurableProduct.configurableAttributes[0].code]
 			));
-			const expected = cold('a', { a: 
+			const expected = cold('a', { a:
 				stubConfigurableProduct.variants.slice(0, 4)
 			});
 

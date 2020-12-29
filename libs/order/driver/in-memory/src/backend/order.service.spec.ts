@@ -25,9 +25,9 @@ describe('DaffInMemoryBackendOrderService | Unit', () => {
         DaffInMemoryBackendOrderService,
       ]
     });
-    service = TestBed.get(DaffInMemoryBackendOrderService);
+    service = TestBed.inject(DaffInMemoryBackendOrderService);
 
-    orderFactory = TestBed.get(DaffOrderFactory);
+    orderFactory = TestBed.inject(DaffOrderFactory);
 
     mockOrder = orderFactory.create();
     collection = [mockOrder];

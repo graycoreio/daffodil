@@ -23,11 +23,11 @@ const stubBillingAddressIsShippingAddress = false;
 
 @Component({
   template: '<demo-payment ' +
-              '[paymentInfo]="paymentInfoValue" ' + 
-              '[billingAddress]="billingAddressValue" ' + 
-              '[billingAddressIsShippingAddress]="billingAddressIsShippingAddressValue" ' + 
-              '(updatePaymentInfo)="updatePaymentInfoFunction($event)" ' + 
-              '(updateBillingAddress)="updateBillingAddressFunction($event)" ' + 
+              '[paymentInfo]="paymentInfoValue" ' +
+              '[billingAddress]="billingAddressValue" ' +
+              '[billingAddressIsShippingAddress]="billingAddressIsShippingAddressValue" ' +
+              '(updatePaymentInfo)="updatePaymentInfoFunction($event)" ' +
+              '(updateBillingAddress)="updateBillingAddressFunction($event)" ' +
               '(toggleBillingAddressIsShippingAddress)="toggleBillingAddressIsShippingAddressFunction()"></demo-payment>'
 })
 class WrapperComponent {
@@ -72,7 +72,7 @@ describe('PaymentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         WrapperComponent,
         MockPaymentFormComponent,
         MockPaymentSummaryComponent,
@@ -89,10 +89,10 @@ describe('PaymentComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
     store.overrideSelector(fromDemoCheckout.selectShowPaymentForm, stubShowPaymentForm)
     spyOn(store, 'dispatch');
-    
+
     fixture.detectChanges();
 
     payment = fixture.debugElement.query(By.css('demo-payment')).componentInstance;
@@ -122,7 +122,7 @@ describe('PaymentComponent', () => {
   });
 
   describe('on <demo-payment-form>', () => {
-    
+
     it('should set paymentInfo', () => {
       expect(paymentForm.paymentInfo).toEqual(stubPaymentInfo);
     });
@@ -170,7 +170,7 @@ describe('PaymentComponent', () => {
   });
 
   describe('on <demo-payment-summary>', () => {
-    
+
     it('should set paymentInfo', () => {
       expect(paymentSummary.paymentInfo).toEqual(stubPaymentInfo);
     });
@@ -187,11 +187,11 @@ describe('PaymentComponent', () => {
   });
 
   describe('on <demo-billing-summary>', () => {
-    
+
     it('should set billingAddress', () => {
       expect(billingSummary.billingAddress).toEqual(stubBillingAddress);
     });
-    
+
     it('should set billingAddressIsShippingAddress', () => {
       expect(billingSummary.billingAddressIsShippingAddress).toEqual(stubBillingAddressIsShippingAddress);
     });
@@ -200,7 +200,7 @@ describe('PaymentComponent', () => {
   describe('ngOnInit', () => {
 
     describe('when paymentInfo is defined', () => {
-      
+
       beforeEach(() => {
         payment.paymentInfo = stubPaymentInfo;
         payment.ngOnInit();
@@ -217,7 +217,7 @@ describe('PaymentComponent', () => {
         payment.paymentInfo = null;
         payment.ngOnInit();
       });
-      
+
       it('should dispatch a ShowPaymentForm action', () => {
         expect(store.dispatch).toHaveBeenCalledWith(new ShowPaymentForm());
       });
@@ -231,7 +231,7 @@ describe('PaymentComponent', () => {
   });
 
   describe('togglePaymentView', () => {
-    
+
     it('should dispatch a ToggleShowPaymentForm action', () => {
       payment.togglePaymentView();
 
@@ -240,7 +240,7 @@ describe('PaymentComponent', () => {
   });
 
   describe('onUpdatePaymentInfo', () => {
-    
+
     it('should call togglePaymentView', () => {
       spyOn(payment, 'togglePaymentView');
 
@@ -264,17 +264,17 @@ describe('PaymentComponent', () => {
       paymentSummaryNativeElement = fixture.debugElement.query(By.css('demo-payment-summary')).nativeElement;
       billingSummaryNativeElement = fixture.debugElement.query(By.css('demo-billing-summary')).nativeElement;
     });
-    
+
     it('should not put hidden attribute on demo-payment-form', () => {
       expect(paymentFormNativeElement.hidden).toBeFalsy();
     });
 
     it('should put hidden attribute on demo-payment-summary', () => {
-      expect(paymentSummaryNativeElement.hidden).toBeTruthy();      
+      expect(paymentSummaryNativeElement.hidden).toBeTruthy();
     });
 
     it('should put hidden attribute on demo-billing-summary', () => {
-      expect(billingSummaryNativeElement.hidden).toBeTruthy();      
+      expect(billingSummaryNativeElement.hidden).toBeTruthy();
     });
   });
 
@@ -298,18 +298,18 @@ describe('PaymentComponent', () => {
     });
 
     it('should not put hidden attribute on demo-payment-summary', () => {
-      expect(paymentSummaryNativeElement.hidden).toBeFalsy();     
+      expect(paymentSummaryNativeElement.hidden).toBeFalsy();
     });
 
     it('should not put hidden attribute on demo-billing-summary', () => {
-      expect(billingSummaryNativeElement.hidden).toBeFalsy();     
+      expect(billingSummaryNativeElement.hidden).toBeFalsy();
     });
   });
 
   describe('when paymentInfo is null', () => {
-    
+
     let paymentSummaryElement;
-    
+
     beforeEach(() => {
       payment.paymentInfo = null;
 

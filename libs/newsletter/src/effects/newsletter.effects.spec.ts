@@ -39,8 +39,8 @@ describe('NewsletterEffects', () => {
 				provideMockActions(() => actions$),
 			],
 		});
-		effects = TestBed.get(DaffNewsletterEffects);
-		daffNewsletterDriver = TestBed.get(DaffNewsletterDriver);
+		effects = TestBed.inject(DaffNewsletterEffects);
+		daffNewsletterDriver = TestBed.inject(DaffNewsletterDriver);
 	});
 
 	it('should be created', () => {

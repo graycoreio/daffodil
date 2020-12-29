@@ -80,15 +80,15 @@ describe('DaffCartFacade', () => {
       ]
     })
 
-    store = TestBed.get(Store);
-    facade = TestBed.get(DaffCartFacade);
-    cartFactory = TestBed.get(DaffCartFactory);
-    statefulCartItemFactory = TestBed.get(DaffStatefulCartItemFactory);
-    configurableCartItemFactory = TestBed.get(DaffConfigurableCartItemFactory);
-    compositeCartItemFactory = TestBed.get(DaffCompositeCartItemFactory);
-    cartAddressFactory = TestBed.get(DaffCartAddressFactory);
-    paymentFactory = TestBed.get(DaffCartPaymentFactory);
-    shippingMethodFactory = TestBed.get(DaffCartShippingRateFactory);
+    store = TestBed.inject(Store);
+    facade = TestBed.inject(DaffCartFacade);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    statefulCartItemFactory = TestBed.inject(DaffStatefulCartItemFactory);
+    configurableCartItemFactory = TestBed.inject(DaffConfigurableCartItemFactory);
+    compositeCartItemFactory = TestBed.inject(DaffCompositeCartItemFactory);
+    cartAddressFactory = TestBed.inject(DaffCartAddressFactory);
+    paymentFactory = TestBed.inject(DaffCartPaymentFactory);
+    shippingMethodFactory = TestBed.inject(DaffCartShippingRateFactory);
 
     loading = {
       [DaffCartOperationType.Cart]: DaffLoadingState.Complete,
@@ -119,7 +119,7 @@ describe('DaffCartFacade', () => {
   });
 
   it('should be created', () => {
-    const service: DaffCartFacade<DaffCart> = TestBed.get(DaffCartFacade);
+    const service: DaffCartFacade<DaffCart> = TestBed.inject(DaffCartFacade);
     expect(service).toBeTruthy();
   });
 

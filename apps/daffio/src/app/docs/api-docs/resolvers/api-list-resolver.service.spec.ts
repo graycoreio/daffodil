@@ -9,7 +9,7 @@ import { DaffioApiDocService } from '../services/api-doc.service';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-describe('DaffioApiListResolver', () => {  
+describe('DaffioApiListResolver', () => {
   let resolver: DaffioApiListResolver;
   let docService: DaffioApiDocService;
   let router: Router;
@@ -30,13 +30,13 @@ describe('DaffioApiListResolver', () => {
       ]
     });
 
-    router = TestBed.get(Router);
-    docService = TestBed.get(DaffioApiDocService);
-    resolver = TestBed.get(DaffioApiListResolver);
+    router = TestBed.inject(Router);
+    docService = TestBed.inject(DaffioApiDocService);
+    resolver = TestBed.inject(DaffioApiListResolver);
   });
 
   it('should be created', () => {
-    const service: DaffioApiListResolver = TestBed.get(DaffioApiListResolver);
+    const service: DaffioApiListResolver = TestBed.inject(DaffioApiListResolver);
     expect(service).toBeTruthy();
   });
 
@@ -45,7 +45,7 @@ describe('DaffioApiListResolver', () => {
     expect(resolver.resolve()).toBeObservable(expected);
   });
 
-  describe('if the doc doesn\'t exist (the doc service errors)', () => {    
+  describe('if the doc doesn\'t exist (the doc service errors)', () => {
     beforeEach(() => {
       spyOn(docService, 'list').and.returnValue(throwError('error'));
       spyOn(router, 'navigate');

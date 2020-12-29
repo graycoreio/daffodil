@@ -11,7 +11,7 @@ describe('DaffRadioRegistry', () => {
   }));
 
   it('should be created', () => {
-    const service: DaffRadioRegistry = TestBed.get(DaffRadioRegistry);
+    const service: DaffRadioRegistry = TestBed.inject(DaffRadioRegistry);
     expect(service).toBeTruthy();
   });
 });

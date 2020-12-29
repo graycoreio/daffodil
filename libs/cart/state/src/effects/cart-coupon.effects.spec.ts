@@ -54,11 +54,11 @@ describe('Daffodil | Cart | CartCouponEffects', () => {
       ]
     });
 
-    effects = TestBed.get(DaffCartCouponEffects);
-    daffDriverSpy = TestBed.get(DaffCartCouponDriver);
-    daffCartStorageSpy = TestBed.get(DaffCartStorageService);
-    cartFactory = TestBed.get(DaffCartFactory);
-    cartCouponFactory = TestBed.get(DaffCartCouponFactory);
+    effects = TestBed.inject(DaffCartCouponEffects);
+    daffDriverSpy = TestBed.inject(DaffCartCouponDriver);
+    daffCartStorageSpy = TestBed.inject(DaffCartStorageService);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartCouponFactory = TestBed.inject(DaffCartCouponFactory);
 
     mockCart = cartFactory.create();
     mockCoupon = cartCouponFactory.create();

@@ -23,9 +23,9 @@ describe('DaffInMemoryBackendOrderService | Integration', () => {
       ],
     });
 
-    httpClient = TestBed.get(HttpClient);
+    httpClient = TestBed.inject(HttpClient);
 
-    orderFactory = TestBed.get(DaffOrderFactory);
+    orderFactory = TestBed.inject(DaffOrderFactory);
 
     mockOrder = orderFactory.create();
     orderId = mockOrder.id;

@@ -45,9 +45,9 @@ describe('Daffodil | Order | OrderEffects', () => {
       ]
     });
 
-    effects = TestBed.get<DaffOrderEffects<DaffOrder>>(DaffOrderEffects);
-    daffDriverSpy = TestBed.get<DaffOrderServiceInterface<DaffOrder>>(DaffOrderDriver);
-    orderFactory = TestBed.get<DaffOrderFactory>(DaffOrderFactory);
+    effects = TestBed.inject<DaffOrderEffects<DaffOrder>>(DaffOrderEffects);
+    daffDriverSpy = TestBed.inject<DaffOrderServiceInterface<DaffOrder>>(DaffOrderDriver);
+    orderFactory = TestBed.inject<DaffOrderFactory>(DaffOrderFactory);
 
     mockOrder = orderFactory.create();
     orderId = mockOrder.id;

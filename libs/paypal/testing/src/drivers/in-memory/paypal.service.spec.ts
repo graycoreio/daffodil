@@ -19,9 +19,9 @@ describe('Testing | Drivers | InMemory | PaypalService', () => {
       ]
     });
 
-    httpMock = TestBed.get(HttpTestingController);
-    paypalService = TestBed.get(DaffInMemoryPaypalService);
-    paypalTokenResponseFactory = TestBed.get(DaffPaypalTokenResponseFactory);
+    httpMock = TestBed.inject(HttpTestingController);
+    paypalService = TestBed.inject(DaffInMemoryPaypalService);
+    paypalTokenResponseFactory = TestBed.inject(DaffPaypalTokenResponseFactory);
   });
 
   afterEach(() => {

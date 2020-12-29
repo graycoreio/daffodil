@@ -13,8 +13,8 @@ const daffodilAddressFactory = new DaffAddressFactory();
 const stubDaffodilAddress = daffodilAddressFactory.create();
 
 @Component({
-  template: '<demo-shipping-summary [selectedShippingOptionId]="selectedShippingOptionIdValue" ' + 
-              '[shippingAddress]="shippingAddressValue" ' + 
+  template: '<demo-shipping-summary [selectedShippingOptionId]="selectedShippingOptionIdValue" ' +
+              '[shippingAddress]="shippingAddressValue" ' +
               '(editShippingInfo)="editShippingInfoFunction()"></demo-shipping-summary>'})
 class WrapperComponent {
   shippingAddressValue: DaffAddress = stubDaffodilAddress;
@@ -51,7 +51,7 @@ describe('ShippingSummaryComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
-    shippingOptionsService = TestBed.get(ShippingOptionsService);
+    shippingOptionsService = TestBed.inject(ShippingOptionsService);
     wrapper = fixture.componentInstance;
     fixture.detectChanges();
 
@@ -83,7 +83,7 @@ describe('ShippingSummaryComponent', () => {
   });
 
   describe('when edit anchor tag is clicked', () => {
-    
+
     it('should call onEdit', () => {
       spyOn(shippingSummaryComponent, 'onEdit');
 
@@ -94,7 +94,7 @@ describe('ShippingSummaryComponent', () => {
   });
 
   describe('onEdit', () => {
-    
+
     it('should call editShippingInfo.emit', () => {
       spyOn(shippingSummaryComponent.editShippingInfo, 'emit');
 

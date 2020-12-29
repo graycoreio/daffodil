@@ -28,9 +28,9 @@ describe('Driver | Testing | Cart | CartAddressService', () => {
       ]
     });
 
-    cartFactory = TestBed.get(DaffCartFactory);
-    cartAddressFactory = TestBed.get(DaffCartAddressFactory);
-    service = TestBed.get(DaffTestingCartAddressService);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartAddressFactory = TestBed.inject(DaffCartAddressFactory);
+    service = TestBed.inject(DaffTestingCartAddressService);
 
     mockCart = cartFactory.create();
     mockCartAddress = cartAddressFactory.create();

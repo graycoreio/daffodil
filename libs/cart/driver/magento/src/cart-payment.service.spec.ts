@@ -96,21 +96,21 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
       ]
     });
 
-    service = TestBed.get(DaffMagentoCartPaymentService);
-    controller = TestBed.get(ApolloTestingController);
+    service = TestBed.inject(DaffMagentoCartPaymentService);
+    controller = TestBed.inject(ApolloTestingController);
 
-    daffCartFactory = TestBed.get(DaffCartFactory);
-    daffCartPaymentFactory = TestBed.get(DaffCartPaymentFactory);
-    daffCartAddressFactory = TestBed.get(DaffCartAddressFactory);
-    magentoCartAddressInputFactory = TestBed.get(MagentoCartAddressInputFactory);
-    magentoPaymentMethodFactory = TestBed.get(MagentoCartPaymentMethodFactory);
-    magentoCartFactory = TestBed.get(MagentoCartFactory);
+    daffCartFactory = TestBed.inject(DaffCartFactory);
+    daffCartPaymentFactory = TestBed.inject(DaffCartPaymentFactory);
+    daffCartAddressFactory = TestBed.inject(DaffCartAddressFactory);
+    magentoCartAddressInputFactory = TestBed.inject(MagentoCartAddressInputFactory);
+    magentoPaymentMethodFactory = TestBed.inject(MagentoCartPaymentMethodFactory);
+    magentoCartFactory = TestBed.inject(MagentoCartFactory);
 
-    magentoCartTransformerSpy = TestBed.get(DaffMagentoCartTransformer);
-    magentoBillingRateTransformerSpy = TestBed.get(DaffMagentoCartPaymentTransformer);
-    magentoPaymentMethodInputTransformerSpy = TestBed.get(DaffMagentoPaymentMethodInputTransformer);
-    magentoBillingAddressInputTransformerSpy = TestBed.get(DaffMagentoBillingAddressInputTransformer);
-    magentoBillingAddressFactory = TestBed.get(MagentoCartAddressFactory);
+    magentoCartTransformerSpy = TestBed.inject(DaffMagentoCartTransformer);
+    magentoBillingRateTransformerSpy = TestBed.inject(DaffMagentoCartPaymentTransformer);
+    magentoPaymentMethodInputTransformerSpy = TestBed.inject(DaffMagentoPaymentMethodInputTransformer);
+    magentoBillingAddressInputTransformerSpy = TestBed.inject(DaffMagentoBillingAddressInputTransformer);
+    magentoBillingAddressFactory = TestBed.inject(MagentoCartAddressFactory);
 
     mockDaffCart = daffCartFactory.create();
     mockDaffCartAddress = daffCartAddressFactory.create();

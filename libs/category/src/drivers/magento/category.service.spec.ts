@@ -40,8 +40,8 @@ xdescribe('Driver | Magento | Category | CategoryService', () => {
       ]
     });
 
-    categoryService = TestBed.get(DaffMagentoCategoryService);
-    controller = TestBed.get(ApolloTestingController);
+    categoryService = TestBed.inject(DaffMagentoCategoryService);
+    controller = TestBed.inject(ApolloTestingController);
   });
 
   it('should be created', () => {

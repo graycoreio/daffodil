@@ -63,7 +63,7 @@ describe('DaffCategorySelectors', () => {
 				}]
 			}
 		];
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
 
     store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageConfigurationState: stubCategoryPageConfigurationState, products: null }));
     store.dispatch(new DaffProductGridLoadSuccess([product]));

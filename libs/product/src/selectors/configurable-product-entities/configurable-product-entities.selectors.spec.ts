@@ -3,7 +3,7 @@ import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
 import { DaffConfigurableProductFactory } from '@daffodil/product/testing';
-import { 
+import {
 	DaffProductGridLoadSuccess,
 	DaffProductReducersState,
 	daffProductReducers,
@@ -25,7 +25,7 @@ describe('selectConfigurableProductEntitiesState', () => {
 		selectConfigurableProductAppliedAttributes,
 		selectConfigurableProductAppliedAttributesAsDictionary
 	} = getDaffConfigurableProductEntitiesSelectors();
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -36,18 +36,18 @@ describe('selectConfigurableProductEntitiesState', () => {
     });
 
     stubConfigurableProduct = configurableProductFactory.create();
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
 
     store.dispatch(new DaffProductGridLoadSuccess(new Array(stubConfigurableProduct)));
     store.dispatch(new DaffConfigurableProductApplyAttribute(
-			stubConfigurableProduct.id, 
-			stubConfigurableProduct.configurableAttributes[0].code, 
+			stubConfigurableProduct.id,
+			stubConfigurableProduct.configurableAttributes[0].code,
 			stubConfigurableProduct.configurableAttributes[0].values[0].value
 		));
   });
-    
+
 	describe('selectConfigurableProductIds', () => {
-	
+
 		it('selects product ids', () => {
 			const selector = store.pipe(select(selectConfigurableProductIds));
 			const expected = cold('a', { a: [stubConfigurableProduct.id] });
@@ -57,14 +57,14 @@ describe('selectConfigurableProductEntitiesState', () => {
 	});
 
 	describe('selectConfigurableProductAppliedAttributesEntities', () => {
-		
+
 		it('selects configurable product attributes as a dictionary object', () => {
 			const expectedDictionary = {
 				[stubConfigurableProduct.id]: {
 					id: stubConfigurableProduct.id,
 					attributes: [
 						{
-							code: stubConfigurableProduct.configurableAttributes[0].code, 
+							code: stubConfigurableProduct.configurableAttributes[0].code,
 							value: stubConfigurableProduct.configurableAttributes[0].values[0].value
 						}
 					]
@@ -79,7 +79,7 @@ describe('selectConfigurableProductEntitiesState', () => {
 	});
 
 	describe('selectConfigurableProductTotal', () => {
-		
+
 		it('selects the total number of configurable products', () => {
 			const selector = store.pipe(select(selectConfigurableProductTotal));
 			const expected = cold('a', { a: 1 });
@@ -89,14 +89,14 @@ describe('selectConfigurableProductEntitiesState', () => {
 	});
 
   describe('selectConfigurableProductAppliedAttributes', () => {
-    
+
     it('selects the configurable product attributes of the given id', () => {
 			const selector = store.pipe(select(selectConfigurableProductAppliedAttributes, { id: stubConfigurableProduct.id }));
-			const expected = cold('a', { 
+			const expected = cold('a', {
 				a: [{
-					code: stubConfigurableProduct.configurableAttributes[0].code, 
+					code: stubConfigurableProduct.configurableAttributes[0].code,
 					value: stubConfigurableProduct.configurableAttributes[0].values[0].value
-				}] 
+				}]
 			});
 
 			expect(selector).toBeObservable(expected);
@@ -104,10 +104,10 @@ describe('selectConfigurableProductEntitiesState', () => {
   });
 
   describe('selectConfigurableProductAppliedAttributesAsDictionary', () => {
-    
+
     it('selects the configurable product attributes of the given id as a dictionary', () => {
 			const selector = store.pipe(select(selectConfigurableProductAppliedAttributesAsDictionary, { id: stubConfigurableProduct.id }));
-			const expected = cold('a', { 
+			const expected = cold('a', {
 				a: {
 					[stubConfigurableProduct.configurableAttributes[0].code]: stubConfigurableProduct.configurableAttributes[0].values[0].value
 				}

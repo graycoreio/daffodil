@@ -67,9 +67,9 @@ describe('DaffAuthorizeNetEffects', () => {
     });
 
 		stubAddress = new DaffCartAddressFactory().create();
-		effects = TestBed.get(DaffAuthorizeNetEffects);
-		authorizeNetPaymentService = TestBed.get(DaffAuthorizeNetDriver);
-		store = TestBed.get(Store);
+		effects = TestBed.inject(DaffAuthorizeNetEffects);
+		authorizeNetPaymentService = TestBed.inject(DaffAuthorizeNetDriver);
+		store = TestBed.inject(Store);
   });
 
   it('should be created', () => {

@@ -42,7 +42,7 @@ describe('DaffioHeaderContainer', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     component = fixture.componentInstance;
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
     spyOn(store, 'dispatch');
     fixture.detectChanges();
 
@@ -57,7 +57,7 @@ describe('DaffioHeaderContainer', () => {
     it('should call store.dispatch with a ToggleSidebar action', () => {
       const sidebarButton = fixture.debugElement.query(By.css('[sidebar-button]')).nativeElement;
       sidebarButton.click();
-      
+
       expect(store.dispatch).toHaveBeenCalledWith(new ToggleSidebar());
     });
   });

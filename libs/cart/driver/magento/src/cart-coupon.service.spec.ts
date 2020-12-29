@@ -49,12 +49,12 @@ describe('Driver | Magento | Cart | CartCouponService', () => {
       ]
     });
 
-    service = TestBed.get(DaffMagentoCartCouponService);
-    controller = TestBed.get(ApolloTestingController);
+    service = TestBed.inject(DaffMagentoCartCouponService);
+    controller = TestBed.inject(ApolloTestingController);
 
-    daffCartFactory = TestBed.get(DaffCartFactory);
-    magentoCartFactory = TestBed.get(MagentoCartFactory);
-    daffCartCouponFactory = TestBed.get(DaffCartCouponFactory);
+    daffCartFactory = TestBed.inject(DaffCartFactory);
+    magentoCartFactory = TestBed.inject(MagentoCartFactory);
+    daffCartCouponFactory = TestBed.inject(DaffCartCouponFactory);
 
     mockDaffCart = daffCartFactory.create();
     mockMagentoCart = magentoCartFactory.create();

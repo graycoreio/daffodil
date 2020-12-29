@@ -22,7 +22,7 @@ describe('Driver | Testing | Auth | AuthService', () => {
       ]
     });
 
-    service = TestBed.get(DaffTestingAuthService);
+    service = TestBed.inject(DaffTestingAuthService);
 
     mockAuth = authFactory.create();
   });

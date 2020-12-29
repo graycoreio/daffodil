@@ -14,7 +14,7 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
         DaffMagentoNavigationTransformerService
       ]
     })
-    service = TestBed.get(DaffMagentoNavigationTransformerService);
+    service = TestBed.inject(DaffMagentoNavigationTransformerService);
   });
 
   it('should be created', () => {

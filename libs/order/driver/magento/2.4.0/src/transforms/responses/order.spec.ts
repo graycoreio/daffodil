@@ -79,17 +79,17 @@ describe('Driver | Magento | Order | Transformer | Order', () => {
   let mockMagentoOrderShipment: MagentoGraycoreOrderShipment;
 
   beforeEach(() => {
-    daffOrderFactory = TestBed.get(DaffOrderFactory);
-    daffOrderAddressFactory = TestBed.get(DaffOrderAddressFactory);
-    daffOrderCouponFactory = TestBed.get(DaffOrderCouponFactory);
-    daffOrderInvoiceFactory = TestBed.get(DaffOrderInvoiceFactory);
-    daffOrderPaymentFactory = TestBed.get(DaffOrderPaymentFactory);
-    daffOrderItemFactory = TestBed.get(DaffOrderItemFactory);
-    daffOrderShipmentItemFactory = TestBed.get(DaffOrderShipmentItemFactory);
-    daffOrderShipmentTrackingFactory = TestBed.get(DaffOrderShipmentTrackingFactory);
-    daffOrderShipmentFactory = TestBed.get(DaffOrderShipmentFactory);
-    daffOrderShippingMethodFactory = TestBed.get(DaffOrderShippingMethodFactory);
-    daffOrderTotalFactory = TestBed.get(DaffOrderTotalFactory);
+    daffOrderFactory = TestBed.inject(DaffOrderFactory);
+    daffOrderAddressFactory = TestBed.inject(DaffOrderAddressFactory);
+    daffOrderCouponFactory = TestBed.inject(DaffOrderCouponFactory);
+    daffOrderInvoiceFactory = TestBed.inject(DaffOrderInvoiceFactory);
+    daffOrderPaymentFactory = TestBed.inject(DaffOrderPaymentFactory);
+    daffOrderItemFactory = TestBed.inject(DaffOrderItemFactory);
+    daffOrderShipmentItemFactory = TestBed.inject(DaffOrderShipmentItemFactory);
+    daffOrderShipmentTrackingFactory = TestBed.inject(DaffOrderShipmentTrackingFactory);
+    daffOrderShipmentFactory = TestBed.inject(DaffOrderShipmentFactory);
+    daffOrderShippingMethodFactory = TestBed.inject(DaffOrderShippingMethodFactory);
+    daffOrderTotalFactory = TestBed.inject(DaffOrderTotalFactory);
 
     mockDaffOrderAddress = daffOrderAddressFactory.create();
     mockDaffOrderCoupon = daffOrderCouponFactory.create();

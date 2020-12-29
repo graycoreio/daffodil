@@ -34,7 +34,7 @@ describe('Driver | Testing | Category | CategoryService', () => {
         DaffTestingCategoryService
       ]
     });
-    categoryService = TestBed.get(DaffTestingCategoryService);
+    categoryService = TestBed.inject(DaffTestingCategoryService);
   });
 
   it('should be created', () => {

@@ -3,7 +3,7 @@ import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
 import { DaffCompositeProductFactory } from '@daffodil/product/testing';
-import { 
+import {
 	DaffProductGridLoadSuccess,
 	DaffProductReducersState,
 	daffProductReducers,
@@ -24,7 +24,7 @@ describe('selectCompositeProductEntitiesState', () => {
 		selectCompositeProductAppliedOptions,
 		selectIsCompositeProductItemRequired
 	} = getDaffCompositeProductEntitiesSelectors();
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -35,13 +35,13 @@ describe('selectCompositeProductEntitiesState', () => {
     });
 
 		stubCompositeProduct = compositeProductFactory.create();
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
 
     store.dispatch(new DaffProductGridLoadSuccess(new Array(stubCompositeProduct)));
   });
-    
+
 	describe('selectCompositeProductIds', () => {
-	
+
 		it('selects product ids', () => {
 			const selector = store.pipe(select(selectCompositeProductIds));
 			const expected = cold('a', { a: [stubCompositeProduct.id] });
@@ -51,7 +51,7 @@ describe('selectCompositeProductEntitiesState', () => {
 	});
 
 	describe('selectCompositeProductAppliedOptionsEntities', () => {
-		
+
 		it('selects composite product items and the applied options', () => {
 			const expectedDictionary = {
 				[stubCompositeProduct.id]: {
@@ -77,7 +77,7 @@ describe('selectCompositeProductEntitiesState', () => {
 	});
 
 	describe('selectCompositeProductTotal', () => {
-		
+
 		it('selects the total number of composite products', () => {
 			const selector = store.pipe(select(selectCompositeProductTotal));
 			const expected = cold('a', { a: 1 });
@@ -87,10 +87,10 @@ describe('selectCompositeProductEntitiesState', () => {
 	});
 
   describe('selectCompositeProductAppliedOptions', () => {
-    
+
     it('selects the composite product applied options of the given id', () => {
 			const selector = store.pipe(select(selectCompositeProductAppliedOptions, { id: stubCompositeProduct.id }));
-			const expected = cold('a', { 
+			const expected = cold('a', {
 				a: {
 					[stubCompositeProduct.items[0].id]: stubCompositeProduct.items[0].options[0],
 					[stubCompositeProduct.items[1].id]: stubCompositeProduct.items[1].options[0]
@@ -102,10 +102,10 @@ describe('selectCompositeProductEntitiesState', () => {
   });
 
   describe('selectIsCompositeProductItemRequired', () => {
-    
+
     it('selects the composite product applied options of the given id', () => {
 			const selector = store.pipe(select(selectIsCompositeProductItemRequired, { id: stubCompositeProduct.id, item_id: stubCompositeProduct.items[0].id }));
-			const expected = cold('a', { 
+			const expected = cold('a', {
 				a: stubCompositeProduct.items[0].required
 			});
 

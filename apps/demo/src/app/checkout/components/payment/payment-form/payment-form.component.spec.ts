@@ -14,12 +14,12 @@ import { AddressFormFactory } from '../../forms/address-form/factories/address-f
 import { PaymentInfoFormFactory } from '../payment-info-form/factories/payment-info-form.factory';
 
 @Component({
-  'template': '<demo-payment-form ' + 
-                '[paymentInfo]="paymentInfoValue" ' + 
+  'template': '<demo-payment-form ' +
+                '[paymentInfo]="paymentInfoValue" ' +
                 '[billingAddress]="billingAddressValue" ' +
-                '[billingAddressIsShippingAddress]="billingAddressIsShippingAddressValue" ' + 
-                '(updatePaymentInfo)="updatePaymentInfoFunction($event)" ' + 
-                '(updateBillingAddress)="updatePaymentInfoFunction($event)" ' + 
+                '[billingAddressIsShippingAddress]="billingAddressIsShippingAddressValue" ' +
+                '(updatePaymentInfo)="updatePaymentInfoFunction($event)" ' +
+                '(updateBillingAddress)="updatePaymentInfoFunction($event)" ' +
                 '(toggleBillingAddressIsShippingAddress)="toggleBillingAddressIsShippingAddressFunction($event)"></demo-payment-form>'
 })
 class WrapperComponent {
@@ -67,7 +67,7 @@ describe('PaymentFormComponent', () => {
           shippings: combineReducers(fromDemoCheckout.reducers),
         })
       ],
-      declarations: [ 
+      declarations: [
         WrapperComponent,
         MockAddressFormComponent,
         MockPaymentInfoFormComponent,
@@ -93,7 +93,7 @@ describe('PaymentFormComponent', () => {
     paymentInfoFormFactorySpy.create.and.returnValue(stubPaymentInfoFormGroup);
 
     fixture = TestBed.createComponent(WrapperComponent);
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
     spyOn(store, 'dispatch');
     wrapper = fixture.componentInstance;
     wrapper.paymentInfoValue = stubPaymentInfo;
@@ -126,7 +126,7 @@ describe('PaymentFormComponent', () => {
   });
 
   describe('on <demo-address-form>', () => {
-    
+
     it('should set formGroup', () => {
       expect(<FormGroup> addressFormComponent.formGroup).toEqual(<FormGroup> paymentFormComponent.form.controls['address']);
     });
@@ -137,7 +137,7 @@ describe('PaymentFormComponent', () => {
   });
 
   describe('on <demo-payment-info-form>', () => {
-    
+
     it('should set formGroup', () => {
       expect(<FormGroup> paymentInfoFormComponent.formGroup).toEqual(<FormGroup> paymentFormComponent.form.controls['paymentInfo']);
     });
@@ -164,7 +164,7 @@ describe('PaymentFormComponent', () => {
   });
 
   describe('when checkbox is clicked', () => {
-    
+
     it('should emit toggleBillingAddressIsShippingAddress', () => {
       spyOn(paymentFormComponent.toggleBillingAddressIsShippingAddress, 'emit');
       fixture.debugElement.query(By.css('#sameAsShipping')).nativeElement.click();
@@ -174,12 +174,12 @@ describe('PaymentFormComponent', () => {
   });
 
   describe('when billingAddressIsShippingAddress is true', () => {
-    
+
     beforeEach(() => {
       paymentFormComponent.billingAddressIsShippingAddress = true;
       fixture.detectChanges();
     });
-    
+
     it('should not render firstname input', () => {
       const firstnameElement = fixture.debugElement.query(By.css('.demo-payment-form__first-name'));
 
@@ -188,7 +188,7 @@ describe('PaymentFormComponent', () => {
   });
 
   describe('when submit button is clicked', () => {
-    
+
     it('should call onSubmit', () => {
       spyOn(paymentFormComponent, 'onSubmit');
       fixture.debugElement.query(By.css('button')).nativeElement.click();
@@ -217,7 +217,7 @@ describe('PaymentFormComponent', () => {
 
           paymentFormComponent.onSubmit();
         });
-        
+
         it('should not emit updatePaymentInfo', () => {
           expect(paymentFormComponent.updatePaymentInfo.emit).not.toHaveBeenCalled();
         });
@@ -225,20 +225,20 @@ describe('PaymentFormComponent', () => {
         it('should not emit updateBillingAddress', () => {
           expect(paymentFormComponent.updateBillingAddress.emit).not.toHaveBeenCalled();
         });
-        
+
         it('should not call store.dispatch', () => {
           expect(store.dispatch).not.toHaveBeenCalled();
         });
       });
 
       describe('and billingAddressIsShippingAddress is true', () => {
-        
+
         beforeEach(() => {
           paymentFormComponent.billingAddressIsShippingAddress = true;
         });
 
         describe('and paymentInfoForm is invalid', () => {
-          
+
           beforeEach(() => {
             paymentFormComponent.form.controls.paymentInfo.value.name = null;
             fixture.detectChanges();
@@ -273,7 +273,7 @@ describe('PaymentFormComponent', () => {
 
             paymentFormComponent.onSubmit();
           });
-    
+
           it('should emit updatePaymentInfo', () => {
             expect(paymentFormComponent.updatePaymentInfo.emit).toHaveBeenCalledWith(expectedPaymentInfo);
           });
@@ -315,7 +315,7 @@ describe('PaymentFormComponent', () => {
         });
         fixture.detectChanges();
       });
-    
+
       it('should emit updatePaymentInfo', () => {
         paymentFormComponent.onSubmit();
         expect(paymentFormComponent.updatePaymentInfo.emit).toHaveBeenCalledWith(stubPaymentInfoFormGroup.value);
@@ -334,7 +334,7 @@ describe('PaymentFormComponent', () => {
   });
 
   describe('when updatePaymentInfo is emitted', () => {
-    
+
     it('should call the function passed by the host element', () => {
       const emittedValue = 'emittedValue';
       spyOn(wrapper, 'updatePaymentInfoFunction');

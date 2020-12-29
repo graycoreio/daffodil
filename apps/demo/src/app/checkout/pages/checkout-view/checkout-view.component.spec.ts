@@ -136,11 +136,11 @@ describe('CheckoutViewComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CheckoutViewComponent);
     component = fixture.componentInstance;
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
     store.overrideSelector(fromDemoCheckout.selectShowPaymentView, stubShowPaymentView);
     store.overrideSelector(fromDemoCheckout.selectShowReviewView, stubShowReviewView);
 		spyOn(store, 'dispatch');
-		cartFacade = TestBed.get(DaffCartFacade);
+		cartFacade = TestBed.inject(DaffCartFacade);
 		cartFacade.cart$ = new BehaviorSubject(stubCart);
 		cartFacade.loading$ = new BehaviorSubject(false);
 

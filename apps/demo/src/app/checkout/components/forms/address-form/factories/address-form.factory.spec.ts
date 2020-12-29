@@ -4,7 +4,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AddressFormFactory } from './address-form.factory';
 
 describe('Daffodil Demo | Checkout | Forms | Address Form | Factories | AddressFormFactory', () => {
-  
+
   let addressFormFactory;
 
   beforeEach(() => {
@@ -15,7 +15,7 @@ describe('Daffodil Demo | Checkout | Forms | Address Form | Factories | AddressF
       providers: [AddressFormFactory]
     });
 
-    addressFormFactory = TestBed.get(AddressFormFactory);
+    addressFormFactory = TestBed.inject(AddressFormFactory);
   });
 
   it('should be created', () => {
@@ -23,13 +23,13 @@ describe('Daffodil Demo | Checkout | Forms | Address Form | Factories | AddressF
   });
 
   describe('create', () => {
-    
+
     let result: FormGroup;
     let expectedResult;
     let address;
 
     describe('when address is null', () => {
-      
+
       beforeEach(() => {
         address = null;
         expectedResult = {
@@ -41,17 +41,17 @@ describe('Daffodil Demo | Checkout | Forms | Address Form | Factories | AddressF
           postcode: '',
           telephone: ''
         };
-  
+
         result = addressFormFactory.create(address);
       });
-  
+
       it('should return the expected FormGroup', () => {
         expect(result.value).toEqual(expectedResult);
       });
     });
 
     describe('when address is defined', () => {
-      
+
       beforeEach(() => {
         address = {
           firstname: 'firstname',
@@ -62,10 +62,10 @@ describe('Daffodil Demo | Checkout | Forms | Address Form | Factories | AddressF
           postcode: 'postcode',
           telephone: 'telephone'
         };
-  
+
         result = addressFormFactory.create(address);
       });
-  
+
       it('should return the expected FormGroup', () => {
         expect(result.value).toEqual(address);
       });

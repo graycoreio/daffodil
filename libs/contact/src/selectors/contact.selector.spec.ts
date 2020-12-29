@@ -17,7 +17,7 @@ describe('the contact selectors', () => {
       ]
     });
     mockContactState= { loading: false, success: false, errors: null }
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
   });
   describe('the selectDaffContactLoading', () => {
     it('should select the loading property of the contact state', () =>{

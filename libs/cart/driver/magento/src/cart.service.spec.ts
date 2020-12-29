@@ -68,16 +68,16 @@ describe('Driver | Magento | Cart | CartService', () => {
       ]
     });
 
-    service = TestBed.get(DaffMagentoCartService);
-    controller = TestBed.get(ApolloTestingController);
+    service = TestBed.inject(DaffMagentoCartService);
+    controller = TestBed.inject(ApolloTestingController);
 
-    magentoCartTransformerSpy = TestBed.get(DaffMagentoCartTransformer);
-    magentoCartItemSpy = TestBed.get(DaffCartItemDriver);
+    magentoCartTransformerSpy = TestBed.inject(DaffMagentoCartTransformer);
+    magentoCartItemSpy = TestBed.inject(DaffCartItemDriver);
 
-    daffCartFactory = TestBed.get(DaffCartFactory);
-    magentoCartFactory = TestBed.get(MagentoCartFactory);
-    magentoCartItemFactory = TestBed.get(MagentoCartItemFactory);
-    daffCartItemFactory = TestBed.get(DaffCartItemFactory);
+    daffCartFactory = TestBed.inject(DaffCartFactory);
+    magentoCartFactory = TestBed.inject(MagentoCartFactory);
+    magentoCartItemFactory = TestBed.inject(MagentoCartItemFactory);
+    daffCartItemFactory = TestBed.inject(DaffCartItemFactory);
 
     mockDaffCart = daffCartFactory.create();
     mockMagentoCart = magentoCartFactory.create();

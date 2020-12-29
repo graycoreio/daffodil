@@ -34,9 +34,9 @@ describe('Cart | State | Guards | DaffShippingAddressGuard', () => {
         RouterTestingModule,
 			]
     });
-		service = TestBed.get(DaffShippingAddressGuard);
-		store = TestBed.get(Store);
-		router = TestBed.get(Router);
+		service = TestBed.inject(DaffShippingAddressGuard);
+		store = TestBed.inject(Store);
+		router = TestBed.inject(Router);
   });
 
   it('should be created', () => {

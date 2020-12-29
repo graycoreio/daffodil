@@ -50,8 +50,8 @@ describe('DaffModalService', () => {
 	}));
 
 	beforeEach(() => {
-		service = TestBed.get(DaffModalService);
-		overlayContainer = TestBed.get<OverlayContainer>(OverlayContainer);
+		service = TestBed.inject(DaffModalService);
+		overlayContainer = TestBed.inject<OverlayContainer>(OverlayContainer);
 		overlayContainerElement = overlayContainer.getContainerElement();
 		fixture = TestBed.createComponent(WrapperComponent);
 		fixture.detectChanges();

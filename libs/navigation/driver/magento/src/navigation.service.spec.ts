@@ -51,10 +51,10 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
       ]
     });
 
-    controller = TestBed.get(ApolloTestingController);
+    controller = TestBed.inject(ApolloTestingController);
 
-    navigationService = TestBed.get(DaffMagentoNavigationService);
-    navigationTreeFactory = TestBed.get(DaffNavigationTreeFactory);
+    navigationService = TestBed.inject(DaffMagentoNavigationService);
+    navigationTreeFactory = TestBed.inject(DaffNavigationTreeFactory);
   });
 
   it('should be created', () => {

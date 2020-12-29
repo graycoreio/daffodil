@@ -43,10 +43,10 @@ describe('CartItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    router = TestBed.get(Router);
+    router = TestBed.inject(Router);
     spyOn(router, 'navigateByUrl');
-    cartItemFactory = TestBed.get(DaffCartItemFactory);
-    productImageFactory = TestBed.get(DaffProductImageFactory);
+    cartItemFactory = TestBed.inject(DaffCartItemFactory);
+    productImageFactory = TestBed.inject(DaffProductImageFactory);
     mockCartItem = cartItemFactory.create({image: productImageFactory.create()});
 
     wrapper.cartItemValue = mockCartItem;
@@ -55,7 +55,7 @@ describe('CartItemComponent', () => {
 
     fixture.detectChanges();
   });
-    
+
   it('should create', () => {
     expect(cartItemComponent).toBeTruthy();
   });
@@ -67,20 +67,20 @@ describe('CartItemComponent', () => {
   it('renders a <daff-qty-dropdown>', () => {
     expect(qtyDropdownComponent).not.toBeNull();
   });
-  
+
   describe('on <daff-qty-dropdown>', () => {
-    
+
     it('sets qty', () => {
       expect(qtyDropdownComponent.qty).toEqual(mockCartItem.qty);
     });
-    
+
     it('sets id', () => {
       expect(qtyDropdownComponent.id).toEqual(mockCartItem.item_id);
     });
   });
 
   describe('redirectToProduct', () => {
-    
+
     it('should call router.navigateByUrl', () => {
       cartItemComponent.componentInstance.redirectToProduct();
 
@@ -89,7 +89,7 @@ describe('CartItemComponent', () => {
   });
 
   describe('when cart-item image is clicked', () => {
-    
+
     it('should call redirectToProduct', () => {
       spyOn(cartItemComponent.componentInstance, 'redirectToProduct');
       fixture.debugElement.query(By.css('img')).nativeElement.click();
@@ -99,11 +99,11 @@ describe('CartItemComponent', () => {
   });
 
   describe('when cart-item__name is clicked', () => {
-    
+
     it('should call redirectToProduct', () => {
       spyOn(cartItemComponent.componentInstance, 'redirectToProduct');
       fixture.debugElement.query(By.css('.demo-cart-item__name')).nativeElement.click();
-      
+
       expect(cartItemComponent.componentInstance.redirectToProduct).toHaveBeenCalled();
     });
   });

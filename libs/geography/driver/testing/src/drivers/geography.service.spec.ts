@@ -37,9 +37,9 @@ describe('Driver | Testing | Geography | GeographyService', () => {
       ]
     });
 
-    service = TestBed.get(DaffTestingGeographyService);
-    countryFactorySpy = TestBed.get(DaffCountryFactory);
-    subdivisionFactorySpy = TestBed.get(DaffSubdivisionFactory);
+    service = TestBed.inject(DaffTestingGeographyService);
+    countryFactorySpy = TestBed.inject(DaffCountryFactory);
+    subdivisionFactorySpy = TestBed.inject(DaffSubdivisionFactory);
 
     countryFactory = new DaffCountryFactory();
     subdivisionFactory = new DaffSubdivisionFactory();

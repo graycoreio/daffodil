@@ -9,7 +9,7 @@ describe('DaffContactInMemoryBackend', () => {
     TestBed.configureTestingModule({
       providers: [DaffInMemoryBackendContactService]
     });
-    contactTestingService = TestBed.get(DaffInMemoryBackendContactService);
+    contactTestingService = TestBed.inject(DaffInMemoryBackendContactService);
   });
 
   it('should be created', () => {

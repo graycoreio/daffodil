@@ -28,9 +28,9 @@ describe('ProceedToCheckoutDirective', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
-    router = TestBed.get(Router);
+    router = TestBed.inject(Router);
     wrapper = fixture.componentInstance;
-    
+
     fixture.detectChanges();
 
     spyOn(router, 'navigateByUrl');
@@ -41,7 +41,7 @@ describe('ProceedToCheckoutDirective', () => {
   });
 
   describe('when [demoProceedToCheckout] is clicked', () => {
-    
+
     it('should call router.navigateByUrl', () => {
       fixture.debugElement.query(By.css('[demoProceedToCheckout]')).nativeElement.click();
 

@@ -44,9 +44,9 @@ describe('Driver | Magento | Order | OrderService', () => {
       ]
     });
 
-    service = TestBed.get(DaffOrderMagentoService);
-    controller = TestBed.get(ApolloTestingController);
-    testDataFactory = TestBed.get(MagentoOrderTestDataFactory);
+    service = TestBed.inject(DaffOrderMagentoService);
+    controller = TestBed.inject(ApolloTestingController);
+    testDataFactory = TestBed.inject(MagentoOrderTestDataFactory);
 
     const testData = testDataFactory.create();
     mockDaffOrder = testData.mockDaffOrder;

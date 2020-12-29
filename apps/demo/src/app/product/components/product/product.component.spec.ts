@@ -10,11 +10,11 @@ import { DaffProductFactory } from '@daffodil/product/testing';
 
 import { ProductComponent } from './product.component';
 
-import { 
-  DaffAccordionModule, 
-  DaffQtyDropdownModule, 
+import {
+  DaffAccordionModule,
+  DaffQtyDropdownModule,
   DaffContainerModule,
-  DaffQtyDropdownComponent 
+  DaffQtyDropdownComponent
 } from '@daffodil/design';
 
 @Component({template: '<demo-product [product]="productValue" [qty]="qtyValue" (updateQty)="updateQtyFunction($event)"></demo-product>'})
@@ -47,7 +47,7 @@ describe('ProductComponent', () => {
         DaffQtyDropdownModule,
         NoopAnimationsModule
       ],
-      declarations: [ 
+      declarations: [
         ProductComponent,
         WrapperComponent,
         MockImageGalleryContainer
@@ -59,11 +59,11 @@ describe('ProductComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    router = TestBed.get(Router);
+    router = TestBed.inject(Router);
     spyOn(router, 'navigateByUrl');
     wrapper.productValue = stubProduct;
     wrapper.qtyValue = stubQty;
-    
+
     fixture.detectChanges();
 
     productComponent = fixture.debugElement.query(By.css('demo-product')).componentInstance;
@@ -82,7 +82,7 @@ describe('ProductComponent', () => {
   });
 
   describe('on <demo-image-gallery-container>', () => {
-    
+
     it('should set images', () => {
       const imageGalleryContainer = fixture.debugElement.query(By.css('demo-image-gallery-container')).componentInstance;
 
@@ -101,9 +101,9 @@ describe('ProductComponent', () => {
     it('should set id', () => {
       expect(qtyDropdownComponent.id.toString()).toEqual(stubProduct.id);
     });
-   
+
     it('should set qty', () => {
-      expect(qtyDropdownComponent.qty).toEqual(stubQty);      
+      expect(qtyDropdownComponent.qty).toEqual(stubQty);
     });
 
     it('should call updateQty.emit when qtyChanged is called', () => {
@@ -118,14 +118,14 @@ describe('ProductComponent', () => {
   it('should call updateQtyFunction when updateQty is emitted', () => {
     const payload = 4;
     spyOn(wrapper, 'updateQtyFunction');
-    
+
     productComponent.updateQty.emit(payload);
 
-    expect(wrapper.updateQtyFunction).toHaveBeenCalledWith(payload);   
+    expect(wrapper.updateQtyFunction).toHaveBeenCalledWith(payload);
   });
 
   describe('onUpdateQty', () => {
-    
+
     it('should call updateQty.emit', () => {
       spyOn(productComponent.updateQty, 'emit');
       stubQty = 4;
@@ -136,14 +136,14 @@ describe('ProductComponent', () => {
   });
 
   describe('when product is null', () => {
-    
+
     it('should redirect to the 404 not-found page', () => {
       fixture = TestBed.createComponent(WrapperComponent);
       wrapper = fixture.componentInstance;
 
       wrapper.productValue = null;
       fixture.detectChanges();
-      
+
       expect(router.navigateByUrl).toHaveBeenCalledWith('/404');
     });
   });

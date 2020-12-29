@@ -20,9 +20,9 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartShippingRate', () =
       ]
     });
 
-    service = TestBed.get(DaffMagentoCartShippingRateTransformer);
+    service = TestBed.inject(DaffMagentoCartShippingRateTransformer);
 
-    magentoShippingMethodFactory = TestBed.get(MagentoCartShippingMethodFactory);
+    magentoShippingMethodFactory = TestBed.inject(MagentoCartShippingMethodFactory);
 
     mockMagentoShippingMethod = magentoShippingMethodFactory.create();
   });

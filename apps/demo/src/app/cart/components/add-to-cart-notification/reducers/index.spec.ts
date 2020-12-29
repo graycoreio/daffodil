@@ -32,9 +32,9 @@ describe('selectDemoAddToCartNotificationState', () => {
     expectedProductQty = 0;
     expectedLoading = false;
     expectedProductId = null;
-    store = TestBed.get(Store);
-    cartFactory = TestBed.get(DaffCartFactory);
-    cartItemFactory = TestBed.get(DaffCartItemFactory);
+    store = TestBed.inject(Store);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartItemFactory = TestBed.inject(DaffCartItemFactory);
     store.dispatch(new CloseAddToCartNotification);
   }));
 

@@ -30,12 +30,12 @@ describe('Driver | Magento | Cart | Transformer | MagentoShippingAddress', () =>
       ]
     });
 
-    service = TestBed.get(DaffMagentoShippingAddressTransformer);
+    service = TestBed.inject(DaffMagentoShippingAddressTransformer);
 
-    cartAddressTransformerSpy = TestBed.get(DaffMagentoCartAddressTransformer);
+    cartAddressTransformerSpy = TestBed.inject(DaffMagentoCartAddressTransformer);
 
-    daffCartAddressFactory = TestBed.get(DaffCartAddressFactory);
-    magentoShippingAddressFactory = TestBed.get(MagentoShippingAddressFactory);
+    daffCartAddressFactory = TestBed.inject(DaffCartAddressFactory);
+    magentoShippingAddressFactory = TestBed.inject(MagentoShippingAddressFactory);
 
     mockDaffShippingAddress = daffCartAddressFactory.create();
     mockMagentoShippingAddress = magentoShippingAddressFactory.create();

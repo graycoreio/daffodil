@@ -42,12 +42,12 @@ describe('DaffProductPageResolver', () => {
 					{ provide: PLATFORM_ID, useValue: ɵPLATFORM_SERVER_ID }
 				]
 			});
-	
-			resolver = TestBed.get(DaffProductPageResolver);
-			ProductFactory = TestBed.get(DaffProductFactory);
+
+			resolver = TestBed.inject(DaffProductPageResolver);
+			ProductFactory = TestBed.inject(DaffProductFactory);
 			stubProduct = ProductFactory.create();
-			store = TestBed.get(Store);
-			route = TestBed.get(ActivatedRoute);
+			store = TestBed.inject(Store);
+			route = TestBed.inject(ActivatedRoute);
 		}));
 
 		it('should dispatch a DaffProductLoad action with the correct product id', () => {
@@ -83,7 +83,7 @@ describe('DaffProductPageResolver', () => {
 	});
 
 	describe('resolve - in the browser', () => {
-		
+
 		beforeEach(async(() => {
 			TestBed.configureTestingModule({
 				imports: [
@@ -100,12 +100,12 @@ describe('DaffProductPageResolver', () => {
 					{ provide: PLATFORM_ID, useValue: ɵPLATFORM_BROWSER_ID }
 				]
 			});
-	
-			resolver = TestBed.get(DaffProductPageResolver);
-			ProductFactory = TestBed.get(DaffProductFactory);
+
+			resolver = TestBed.inject(DaffProductPageResolver);
+			ProductFactory = TestBed.inject(DaffProductFactory);
 			stubProduct = ProductFactory.create();
-			store = TestBed.get(Store);
-			route = TestBed.get(ActivatedRoute);
+			store = TestBed.inject(Store);
+			route = TestBed.inject(ActivatedRoute);
 		}));
 
 		it('should dispatch a DaffProductLoad action with the correct product id', () => {

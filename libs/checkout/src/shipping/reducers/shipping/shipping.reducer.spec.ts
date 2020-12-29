@@ -15,7 +15,7 @@ describe('Shipping | Shipping Reducer', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({});
 
-    addressFactory = TestBed.get(DaffAddressFactory);
+    addressFactory = TestBed.inject(DaffAddressFactory);
     shippingAddress = addressFactory.create();
     selectedShippingOptionId = '0';
   }));
@@ -37,7 +37,7 @@ describe('Shipping | Shipping Reducer', () => {
 
     beforeEach(() => {
       const updateShippingAddressAction = new DaffUpdateShippingAddress(shippingAddress);
-      
+
       result = daffShippingReducer(initialState, updateShippingAddressAction);
     });
 
@@ -52,7 +52,7 @@ describe('Shipping | Shipping Reducer', () => {
 
     beforeEach(() => {
       const selectShippingOptionAction = new DaffSelectShippingOption(selectedShippingOptionId);
-      
+
       result = daffShippingReducer(initialState, selectShippingOptionAction);
     });
 

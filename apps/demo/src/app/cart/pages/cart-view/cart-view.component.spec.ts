@@ -45,7 +45,7 @@ describe('DemoCartViewComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DemoCartViewComponent);
 		component = fixture.componentInstance;
-		cartFacade = TestBed.get(DaffCartFacade);
+		cartFacade = TestBed.inject(DaffCartFacade);
 
 		cartFacade.cart$ = new BehaviorSubject(cart);
 		cartFacade.loading$ = new BehaviorSubject(false);

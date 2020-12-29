@@ -32,10 +32,10 @@ describe('Driver | In Memory | Cart | CartAddressService', () => {
       ]
     });
 
-    httpMock = TestBed.get(HttpTestingController);
-    cartFactory = TestBed.get(DaffCartFactory);
-    cartAddressFactory = TestBed.get(DaffCartAddressFactory);
-    cartBillingAddressService = TestBed.get(DaffInMemoryCartAddressService);
+    httpMock = TestBed.inject(HttpTestingController);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartAddressFactory = TestBed.inject(DaffCartAddressFactory);
+    cartBillingAddressService = TestBed.inject(DaffInMemoryCartAddressService);
 
     mockCart = cartFactory.create();
     mockCartAddress = cartAddressFactory.create();

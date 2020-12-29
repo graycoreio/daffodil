@@ -10,8 +10,8 @@ import { ShippingOptionFormService } from '../shipping-options/components/servic
 import { AddressFormFactory } from '../../forms/address-form/factories/address-form.factory';
 
 @Component({
-  'template': '<demo-shipping-form [shippingAddress]="shippingAddressValue" ' + 
-                '[editMode]="editModeValue" ' + 
+  'template': '<demo-shipping-form [shippingAddress]="shippingAddressValue" ' +
+                '[editMode]="editModeValue" ' +
                 '(submitted)="submittedFunction($event)"></demo-shipping-form>'
 })
 class WrapperComponent {
@@ -49,7 +49,7 @@ describe('ShippingFormComponent', () => {
         FormsModule,
         ReactiveFormsModule
       ],
-      declarations: [ 
+      declarations: [
         WrapperComponent,
         ShippingFormComponent,
         MockAddressFormComponent,
@@ -65,7 +65,7 @@ describe('ShippingFormComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
-    shippingOptionFormService = TestBed.get(ShippingOptionFormService);
+    shippingOptionFormService = TestBed.inject(ShippingOptionFormService);
     stubShippingAddress = {
       firstname: '',
       lastname: '',
@@ -78,7 +78,7 @@ describe('ShippingFormComponent', () => {
     wrapper = fixture.componentInstance;
     wrapper.editModeValue = false;
     wrapper.shippingAddressValue = stubShippingAddress;
-    
+
     stubAddressFormGroup = new AddressFormFactory(new FormBuilder()).create(stubShippingAddress).value;
     addressFormFactorySpy.create.and.returnValue(stubAddressFormGroup);
 
@@ -102,7 +102,7 @@ describe('ShippingFormComponent', () => {
   });
 
   describe('on <demo-address-form>', () => {
-    
+
     it('should set formGroup', () => {
       expect(<FormGroup> addressFormComponent.formGroup).toEqual(<FormGroup> shippingFormComponent.form.controls['address']);
     });
@@ -132,18 +132,18 @@ describe('ShippingFormComponent', () => {
     it('should call addressFormFactory.create with shippingAddress', () => {
       expect(addressFormFactorySpy.create).toHaveBeenCalledWith(stubShippingAddress)
     });
-    
+
     it('sets form.value.address to addressFormFactory.create()', () => {
       expect(shippingFormComponent.form.value.address).toEqual(stubAddressFormGroup);
     });
-    
+
     it('sets form.value.shippingOption to shippingOptionFormService.getShippingOptionFormGroup()', () => {
       expect(shippingFormComponent.form.value.shippingOption).toEqual(shippingOptionFormService.getShippingOptionFormGroup().value);
     });
   });
 
   describe('onSubmit', () => {
-    
+
     describe('when form is valid', () => {
 
       beforeEach(() => {
@@ -158,17 +158,17 @@ describe('ShippingFormComponent', () => {
 
         shippingFormComponent.onSubmit(shippingFormComponent.form);
       });
-      
+
       it('should call submitted.emit', () => {
         expect(shippingFormComponent.submitted.emit).toHaveBeenCalledWith(shippingFormComponent.form.value);
       });
     });
 
     describe('when form is invalid', () => {
-      
+
       it('should not call submitted.emit', () => {
         spyOn(shippingFormComponent.submitted, 'emit');
-        
+
         shippingFormComponent.onSubmit(shippingFormComponent.form);
 
         expect(shippingFormComponent.submitted.emit).not.toHaveBeenCalled();
@@ -183,17 +183,17 @@ describe('ShippingFormComponent', () => {
     beforeEach(() => {
       emittedValue = 'emittedValue';
       spyOn(wrapper, 'submittedFunction');
-      
+
       shippingFormComponent.submitted.emit(emittedValue);
     });
-    
+
     it('should call the function passed in by the host component', () => {
       expect(wrapper.submittedFunction).toHaveBeenCalledWith(emittedValue);
     });
   });
 
   describe('when editMode is false', () => {
-    
+
     it('should set button text to Continue to Payment', () => {
       const buttonText = fixture.debugElement.query(By.css('button')).nativeElement.innerHTML;
       expect(buttonText).toEqual('Continue to Payment')
@@ -201,15 +201,15 @@ describe('ShippingFormComponent', () => {
   });
 
   describe('when editMode is true', () => {
-    
+
     let buttonText;
-    
+
     beforeEach(() => {
       shippingFormComponent.editMode = true;
       fixture.detectChanges();
       buttonText = fixture.debugElement.query(By.css('button')).nativeElement.innerHTML;
     });
-    
+
     it('should set button text to Save', () => {
       expect(buttonText).toEqual('Save');
     });

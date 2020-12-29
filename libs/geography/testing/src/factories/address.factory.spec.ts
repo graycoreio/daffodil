@@ -13,7 +13,7 @@ describe('Geography | Interfaces | Factories | DaffAddressFactory', () => {
       providers: [DaffAddressFactory]
     });
 
-    daffodilAddressFactory = TestBed.get(DaffAddressFactory);
+    daffodilAddressFactory = TestBed.inject(DaffAddressFactory);
   }));
 
   it('should be created', () => {

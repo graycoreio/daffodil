@@ -146,13 +146,13 @@ describe('Cart | Selector | Cart', () => {
       ]
     });
 
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
 
-    cartFactory = TestBed.get(DaffCartFactory);
-    cartItemFactory = TestBed.get(DaffCartItemFactory);
-    cartAddressFactory = TestBed.get(DaffCartAddressFactory);
-    paymentFactory = TestBed.get(DaffCartPaymentFactory);
-    shippingMethodFactory = TestBed.get(DaffCartShippingRateFactory);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartItemFactory = TestBed.inject(DaffCartItemFactory);
+    cartAddressFactory = TestBed.inject(DaffCartAddressFactory);
+    paymentFactory = TestBed.inject(DaffCartPaymentFactory);
+    shippingMethodFactory = TestBed.inject(DaffCartShippingRateFactory);
 
     orderId = 'id';
     error = {

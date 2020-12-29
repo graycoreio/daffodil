@@ -12,7 +12,7 @@ describe('Driver | Magento | Testing | Factories | MagentoMoneyFactory', () => {
       providers: [MagentoMoneyFactory]
     });
 
-    factory = TestBed.get(MagentoMoneyFactory);
+    factory = TestBed.inject(MagentoMoneyFactory);
   });
 
   it('should be created', () => {

@@ -22,9 +22,9 @@ describe('DaffInMemoryBackendGeographyService | Unit', () => {
         DaffInMemoryBackendGeographyService,
       ]
     });
-    service = TestBed.get(DaffInMemoryBackendGeographyService);
+    service = TestBed.inject(DaffInMemoryBackendGeographyService);
 
-    countryFactory = TestBed.get(DaffCountryFactory);
+    countryFactory = TestBed.inject(DaffCountryFactory);
 
     mockCountry = countryFactory.create();
     collection = [mockCountry];

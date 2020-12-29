@@ -68,20 +68,20 @@ describe('Driver | Magento | Cart | Transformer | MagentoCart', () => {
       ]
     });
 
-    service = TestBed.get(DaffMagentoCartTransformer);
+    service = TestBed.inject(DaffMagentoCartTransformer);
 
-    daffCartFactory = TestBed.get(DaffCartFactory);
-    magentoCartFactory = TestBed.get(MagentoCartFactory);
-    magentoShippingAddressFactory = TestBed.get(MagentoShippingAddressFactory);
-    magentoCartAddressFactory = TestBed.get(MagentoCartAddressFactory);
-    magentoCartItemFactory = TestBed.get(MagentoCartItemFactory);
-    magentoShippingMethodFactory = TestBed.get(MagentoCartShippingMethodFactory);
+    daffCartFactory = TestBed.inject(DaffCartFactory);
+    magentoCartFactory = TestBed.inject(MagentoCartFactory);
+    magentoShippingAddressFactory = TestBed.inject(MagentoShippingAddressFactory);
+    magentoCartAddressFactory = TestBed.inject(MagentoCartAddressFactory);
+    magentoCartItemFactory = TestBed.inject(MagentoCartItemFactory);
+    magentoShippingMethodFactory = TestBed.inject(MagentoCartShippingMethodFactory);
 
-    cartAddressTransformerSpy = TestBed.get(DaffMagentoCartAddressTransformer);
-    cartShippingInformationTransformerSpy = TestBed.get(DaffMagentoCartShippingInformationTransformer);
-    shippingAddressTransformerSpy = TestBed.get(DaffMagentoShippingAddressTransformer);
-    cartPaymentTransformerSpy = TestBed.get(DaffMagentoCartPaymentTransformer);
-    cartShippingRateTransformerSpy = TestBed.get(DaffMagentoCartShippingRateTransformer);
+    cartAddressTransformerSpy = TestBed.inject(DaffMagentoCartAddressTransformer);
+    cartShippingInformationTransformerSpy = TestBed.inject(DaffMagentoCartShippingInformationTransformer);
+    shippingAddressTransformerSpy = TestBed.inject(DaffMagentoShippingAddressTransformer);
+    cartPaymentTransformerSpy = TestBed.inject(DaffMagentoCartPaymentTransformer);
+    cartShippingRateTransformerSpy = TestBed.inject(DaffMagentoCartShippingRateTransformer);
 
     mockDaffCart = daffCartFactory.create();
     mockMagentoCart = magentoCartFactory.create({

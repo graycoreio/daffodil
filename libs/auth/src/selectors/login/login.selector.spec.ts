@@ -46,7 +46,7 @@ describe('Auth | Selector | Login', () => {
       ]
     });
 
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
 
     mockAuthToken = authTokenFactory.create();
 

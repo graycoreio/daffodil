@@ -21,7 +21,7 @@ describe('DaffMagentoLoginInfoTransformerService', () => {
       ]
     });
 
-    service = TestBed.get(DaffMagentoLoginInfoTransformerService);
+    service = TestBed.inject(DaffMagentoLoginInfoTransformerService);
 
     mockRegistration = accountRegistrationFactory.create();
   });

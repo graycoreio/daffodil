@@ -18,15 +18,15 @@ describe('Driver | Magento | Transformers | DaffMagentoPaypalTransformerService'
         DaffMagentoPaypalTransformerService
       ]
     })
-    service = TestBed.get(DaffMagentoPaypalTransformerService);
+    service = TestBed.inject(DaffMagentoPaypalTransformerService);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
 	});
-	
+
 	describe('transformOut', () => {
-		
+
 		it('should transform a daffodil paypal token request into a magento request', () => {
 			const daffPaypalTokenRequest: DaffPaypalTokenRequest = {
 				cartId: 'cartId'
@@ -56,7 +56,7 @@ describe('Driver | Magento | Transformers | DaffMagentoPaypalTransformerService'
 	});
 
 	describe('transformIn', () => {
-		
+
 		it('should transform a magento paypal token response into a daffodil response', () => {
 			const daffPaypalTokenResponse: DaffPaypalTokenResponse = paypalTokenResponseFactory.create();
 			const magentoPaypalExpressToken: MagentoPaypalExpressToken = {

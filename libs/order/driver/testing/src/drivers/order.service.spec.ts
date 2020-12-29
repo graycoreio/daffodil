@@ -29,8 +29,8 @@ describe('Driver | Testing | Order | OrderService', () => {
       ]
     });
 
-    service = TestBed.get(DaffTestingOrderService);
-    orderFactorySpy = TestBed.get(DaffOrderFactory);
+    service = TestBed.inject(DaffTestingOrderService);
+    orderFactorySpy = TestBed.inject(DaffOrderFactory);
 
     orderFactory = new DaffOrderFactory();
 

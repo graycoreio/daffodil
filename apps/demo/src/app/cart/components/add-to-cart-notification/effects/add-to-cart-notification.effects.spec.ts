@@ -27,7 +27,7 @@ describe('AddToCartNotificationEffects', () => {
       ]
     });
 
-    effects = TestBed.get(AddToCartNotificationEffects);
+    effects = TestBed.inject(AddToCartNotificationEffects);
   });
 
   it('should be created', () => {

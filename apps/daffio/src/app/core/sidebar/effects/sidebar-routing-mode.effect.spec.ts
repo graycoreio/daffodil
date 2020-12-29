@@ -11,8 +11,8 @@ import { DaffioSidebarRoutingModeEffects } from './sidebar-routing-mode.effects'
 import { ResetMode, SetSidebarMode } from '../actions/sidebar.actions';
 
 const configureStubNavigationAction = (snapshot: any) : RouterNavigatedAction => {
-  return { 
-    type: ROUTER_NAVIGATED, 
+  return {
+    type: ROUTER_NAVIGATED,
     payload: {
       routerState: {
         url: 'this-is-url',
@@ -41,7 +41,7 @@ describe('Daffio | DaffioSidebarRoutingModeEffects', () => {
       ]
     });
 
-    breakpointObserver = TestBed.get(BreakpointObserver);
+    breakpointObserver = TestBed.inject(BreakpointObserver);
   });
 
   describe('when a ROUTER_NAVIGATED occurs to a route with a `sidebarMode` in its tree', () => {
@@ -55,11 +55,11 @@ describe('Daffio | DaffioSidebarRoutingModeEffects', () => {
       const state: BreakpointState = {matches: false, breakpoints: {}};
 
       it('should dispatch a ResetModeAction', () => {
-        let expected; 
+        let expected;
 
         actions$ = hot( '--a', { a: action });
         spyOn(breakpointObserver, 'observe').and.returnValue(hot( '--a', { a: state }));
-        
+
         expected = cold('--b', { b: new ResetMode() });
 
         effects = new DaffioSidebarRoutingModeEffects(actions$, breakpointObserver);
@@ -67,16 +67,16 @@ describe('Daffio | DaffioSidebarRoutingModeEffects', () => {
         expect(effects.changeModeWhenVisitingConfiguredRoute$()).toBeObservable(expected);
       });
     });
-  
+
     describe('when the screen is above the "big tablet" breakpoint', () => {
       const state: BreakpointState = {matches: true, breakpoints: {}};
 
       it('should dispatch a SetSidebarMode action with the `sidebarMode` defined on the route', () => {
-        let expected; 
+        let expected;
 
         actions$ = hot( '--a', { a: action });
         spyOn(breakpointObserver, 'observe').and.returnValue(hot( '--a', { a: state }));
-        
+
         expected = cold('--b', { b: new SetSidebarMode('side') });
 
         effects = new DaffioSidebarRoutingModeEffects(actions$, breakpointObserver);
@@ -91,11 +91,11 @@ describe('Daffio | DaffioSidebarRoutingModeEffects', () => {
     const state: BreakpointState = {matches: false, breakpoints: {}};
 
     it('should dispatch a ResetMode action', () => {
-      let expected; 
+      let expected;
 
       actions$ = hot( '--a', { a: action });
       spyOn(breakpointObserver, 'observe').and.returnValue(hot( '--a', { a: state }));
-      
+
       expected = cold('--b', { b: new ResetMode() });
 
       effects = new DaffioSidebarRoutingModeEffects(actions$, breakpointObserver);

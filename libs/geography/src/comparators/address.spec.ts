@@ -12,7 +12,7 @@ describe('Geography | Comparators | DaffAddress', () => {
   let address1: DaffAddress;
 
   beforeEach(() => {
-    addressFactory = TestBed.get(DaffAddressFactory);
+    addressFactory = TestBed.inject(DaffAddressFactory);
 
     address0 = addressFactory.create();
     address1 = addressFactory.create();

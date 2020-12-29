@@ -7,7 +7,7 @@ describe('MagentoOrderTestDataFactory', () => {
   let service: MagentoOrderTestDataFactory;
 
   beforeEach(() => {
-    service = TestBed.get(MagentoOrderTestDataFactory);
+    service = TestBed.inject(MagentoOrderTestDataFactory);
   });
 
   it('should create', () => {

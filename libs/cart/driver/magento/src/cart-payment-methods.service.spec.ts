@@ -45,13 +45,13 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
       ]
     });
 
-    service = TestBed.get(DaffMagentoCartPaymentMethodsService);
-    controller = TestBed.get(ApolloTestingController);
+    service = TestBed.inject(DaffMagentoCartPaymentMethodsService);
+    controller = TestBed.inject(ApolloTestingController);
 
-    magentoCartPaymentTransformerSpy = TestBed.get(DaffMagentoCartPaymentTransformer);
+    magentoCartPaymentTransformerSpy = TestBed.inject(DaffMagentoCartPaymentTransformer);
 
-    daffCartPaymentFactory = TestBed.get(DaffCartPaymentFactory);
-    magentoPaymentMethodFactory = TestBed.get(MagentoCartPaymentMethodFactory);
+    daffCartPaymentFactory = TestBed.inject(DaffCartPaymentFactory);
+    magentoPaymentMethodFactory = TestBed.inject(MagentoCartPaymentMethodFactory);
 
     mockDaffCartPayment = daffCartPaymentFactory.create();
     // TODO: create a factory and model for MagentoAvailablePaymentMethod

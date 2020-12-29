@@ -27,7 +27,7 @@ describe('DemoIndicatorComponent', () => {
         RouterTestingModule,
         DaffProgressIndicatorModule
       ],
-      declarations: [ 
+      declarations: [
         DemoIndicatorComponent
       ],
       providers: [
@@ -39,7 +39,7 @@ describe('DemoIndicatorComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DemoIndicatorComponent);
-    router = TestBed.get(Router);
+    router = TestBed.inject(Router);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -63,12 +63,12 @@ describe('DemoIndicatorComponent', () => {
     it('should set show to false and hide the `daff-progress-indicator`', () => {
       router.events.next(new NavigationEnd(1, 'mock', 'mock'));
       fixture.detectChanges();
-  
+
       expect(component.routingPercentage).toEqual(100);
       expect(component.show).toBe(false);
       expect(fixture.debugElement.query(By.css('daff-progress-indicator'))).toBe(null);
     });
   });
 
-  
+
 });

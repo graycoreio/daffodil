@@ -19,7 +19,7 @@ describe('DaffMagentoAuthTransformerService', () => {
       ]
     })
 
-    service = TestBed.get(DaffMagentoAuthTransformerService);
+    service = TestBed.inject(DaffMagentoAuthTransformerService);
 
     mockAuthToken = authTokenFactory.create();
   });

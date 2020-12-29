@@ -27,7 +27,7 @@ class WrapperComponent {
   selector: 'demo-cart-summary',
   template: ''
 })
-class MockCartSummaryComponent { 
+class MockCartSummaryComponent {
   @Input() cart: DaffCart;
   @Input() title: string;
 }
@@ -61,7 +61,7 @@ describe('CartSummaryWrapper', () => {
         RouterTestingModule,
         DaffLoadingIconModule
       ],
-      declarations: [ 
+      declarations: [
         WrapperComponent,
         CartSummaryWrapperComponent,
         MockCartTotalsComponent,
@@ -74,13 +74,13 @@ describe('CartSummaryWrapper', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
-    router = TestBed.get(Router);
+    router = TestBed.inject(Router);
     spyOn(router, 'navigateByUrl');
     wrapper = fixture.componentInstance;
     wrapper.cartValue$ = of(cart);
     wrapper.loadingValue$ = of(false);
     wrapper.cartTitleValue = stubCartTitle;
-    
+
     cartSummaryWrapperComponent = fixture.debugElement.query(By.css('demo-cart-summary-wrapper')).componentInstance;
 
     fixture.detectChanges();
@@ -111,7 +111,7 @@ describe('CartSummaryWrapper', () => {
   });
 
   describe('on <demo-cart-summary>', () => {
-    
+
     it('should set cart to value passed by cart-container directive', () => {
       expect(cartSummaryComponent.cart).toEqual(cart);
     });
@@ -122,14 +122,14 @@ describe('CartSummaryWrapper', () => {
   });
 
   describe('on <demo-cart-totals>', () => {
-    
+
     it('should set cart to value passed by the cart-container directive', () => {
       expect(cartTotalsComponent.cart).toEqual(cart);
     });
   });
 
   describe('when the cart is not loading', () => {
-    
+
     it('should render <demo-cart-summary>', () => {
       expect(cartSummaryComponent).not.toBeNull();
     });
@@ -145,7 +145,7 @@ describe('CartSummaryWrapper', () => {
 
     it('should not render loading-icon', () => {
       const loadingIconElement = fixture.debugElement.query(By.css('.cart-container__loading-icon'));
-      
+
       expect(loadingIconElement).toBeNull();
     });
   });
@@ -156,7 +156,7 @@ describe('CartSummaryWrapper', () => {
       wrapper.loadingValue$ = of(true);
       fixture.detectChanges();
     });
-    
+
     it('should not render <demo-cart-summary>', () => {
       const cartSummaryElement = fixture.debugElement.query(By.css('demo-cart-summary'));
       expect(cartSummaryElement).toBeNull();
@@ -174,7 +174,7 @@ describe('CartSummaryWrapper', () => {
 
     it('should render demo-loading-icon', () => {
       const loadingIcon = fixture.debugElement.query(By.css('.demo-cart-summary-wrapper__loading-icon'));
-      
+
       expect(loadingIcon).not.toBeNull();
     });
   });

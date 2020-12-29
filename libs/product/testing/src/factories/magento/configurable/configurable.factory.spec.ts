@@ -12,7 +12,7 @@ describe('Product | Testing | Factories | MagentoConfigurableProductFactory', ()
       providers: [MagentoConfigurableProductFactory]
     });
 
-    factory = TestBed.get(MagentoConfigurableProductFactory);
+    factory = TestBed.inject(MagentoConfigurableProductFactory);
   });
 
   it('should be created', () => {

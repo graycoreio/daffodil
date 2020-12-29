@@ -35,7 +35,7 @@ describe('DaffMagentoCategoryPageConfigTransformerService', () => {
         DaffMagentoCategoryPageConfigTransformerService
       ]
     });
-    service = TestBed.get(DaffMagentoCategoryPageConfigTransformerService);
+    service = TestBed.inject(DaffMagentoCategoryPageConfigTransformerService);
   });
 
   it('should be created', () => {

@@ -10,10 +10,10 @@ import { DaffUpdateBillingAddress, DaffUpdatePaymentInfo } from '../actions/bill
 import { PaymentInfo } from '../../models/payment/payment-info';
 import { DaffBillingReducersState } from '../reducers/billing-reducers.interface';
 import { daffBillingReducers } from '../reducers/billing-reducers';
-import { 
-  selectBillingState, 
-  selectBillingAddress, 
-  selectBillingAddressIsShippingAddress, 
+import {
+  selectBillingState,
+  selectBillingAddress,
+  selectBillingAddressIsShippingAddress,
   selectPaymentInfo
 } from './billing.selector';
 
@@ -25,9 +25,9 @@ describe('selectBillingFeatureState', () => {
 
   const paymentFactory: DaffPaymentFactory = new DaffPaymentFactory();
   let stubPaymentInfo: PaymentInfo;
-  
+
   let stubBillingAddressIsShippingAddress: boolean;
-  
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -40,13 +40,13 @@ describe('selectBillingFeatureState', () => {
     stubPaymentInfo = paymentFactory.create();
     stubBillingAddress = addressFactory.create();
     stubBillingAddressIsShippingAddress = false;
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
     store.dispatch(new DaffUpdateBillingAddress(stubBillingAddress));
     store.dispatch(new DaffUpdatePaymentInfo(stubPaymentInfo));
   }));
 
   describe('selectBillingState', () => {
-    
+
     it('selects billing state', () => {
       const expectedBillingState = {
         billingAddress: stubBillingAddress,
@@ -61,7 +61,7 @@ describe('selectBillingFeatureState', () => {
   });
 
   describe('selectBillingAddress', () => {
-    
+
     it('selects billingAddress state', () => {
       const selector = store.pipe(select(selectBillingAddress));
       const expected = cold('a', { a: stubBillingAddress });
@@ -70,7 +70,7 @@ describe('selectBillingFeatureState', () => {
   });
 
   describe('selectBillingAddressIsShippingAddress', () => {
-    
+
     it('selects billingAddressIsShippingAddress state', () => {
       const selector = store.pipe(select(selectBillingAddressIsShippingAddress));
       const expected = cold('a', { a: stubBillingAddressIsShippingAddress });
@@ -79,7 +79,7 @@ describe('selectBillingFeatureState', () => {
   });
 
   describe('selectPaymentInfo', () => {
-    
+
     it('selects paymentInfo state', () => {
       const selector = store.pipe(select(selectPaymentInfo));
       const expected = cold('a', { a: stubPaymentInfo });

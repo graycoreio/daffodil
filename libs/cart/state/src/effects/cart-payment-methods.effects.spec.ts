@@ -48,13 +48,13 @@ describe('Daffodil | Cart | DaffCartPaymentMethodsEffects', () => {
       ]
     });
 
-    effects = TestBed.get<DaffCartPaymentMethodsEffects<DaffCartPaymentMethod>>(DaffCartPaymentMethodsEffects);
+    effects = TestBed.inject<DaffCartPaymentMethodsEffects<DaffCartPaymentMethod>>(DaffCartPaymentMethodsEffects);
 
-    paymentMethodsDriverSpy = TestBed.get<DaffCartPaymentMethodsServiceInterface>(DaffCartPaymentMethodsDriver);
-    daffCartStorageSpy = TestBed.get(DaffCartStorageService);
+    paymentMethodsDriverSpy = TestBed.inject<DaffCartPaymentMethodsServiceInterface>(DaffCartPaymentMethodsDriver);
+    daffCartStorageSpy = TestBed.inject(DaffCartStorageService);
 
-    cartFactory = TestBed.get<DaffCartFactory>(DaffCartFactory);
-    cartPaymentMethodFactory = TestBed.get<DaffCartPaymentFactory>(DaffCartPaymentFactory);
+    cartFactory = TestBed.inject<DaffCartFactory>(DaffCartFactory);
+    cartPaymentMethodFactory = TestBed.inject<DaffCartPaymentFactory>(DaffCartPaymentFactory);
 
     mockCart = cartFactory.create();
     mockCartPaymentMethod = cartPaymentMethodFactory.create();

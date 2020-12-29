@@ -24,7 +24,7 @@ describe('MiniCartItemComponent', () => {
   let productImageFactory: DaffProductImageFactory;
   let mockCartItem: DaffCartItem;
   let router: Router;
-  
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -37,14 +37,14 @@ describe('MiniCartItemComponent', () => {
     })
     .compileComponents();
   }));
-  
+
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    router = TestBed.get(Router);
+    router = TestBed.inject(Router);
     spyOn(router, 'navigateByUrl');
-    cartItemFactory = TestBed.get(DaffCartItemFactory);
-    productImageFactory = TestBed.get(DaffProductImageFactory);
+    cartItemFactory = TestBed.inject(DaffCartItemFactory);
+    productImageFactory = TestBed.inject(DaffProductImageFactory);
     mockCartItem = cartItemFactory.create({image: productImageFactory.create()});
 
     wrapper.cartItemValue = mockCartItem;
@@ -62,7 +62,7 @@ describe('MiniCartItemComponent', () => {
   });
 
   describe('redirectToProduct', () => {
-    
+
     it('should call router.navigateByUrl', () => {
       cartItemComponent.redirectToProduct();
 
@@ -71,7 +71,7 @@ describe('MiniCartItemComponent', () => {
   });
 
   describe('when minicart-item image is clicked', () => {
-    
+
     it('should call redirectToProduct', () => {
       spyOn(cartItemComponent, 'redirectToProduct');
       fixture.debugElement.query(By.css('img')).nativeElement.click();
@@ -81,11 +81,11 @@ describe('MiniCartItemComponent', () => {
   });
 
   describe('when minicart-item__name is clicked', () => {
-    
+
     it('should call redirectToProduct', () => {
       spyOn(cartItemComponent, 'redirectToProduct');
       fixture.debugElement.query(By.css('.demo-minicart-item__name')).nativeElement.click();
-      
+
       expect(cartItemComponent.redirectToProduct).toHaveBeenCalled();
     });
   });

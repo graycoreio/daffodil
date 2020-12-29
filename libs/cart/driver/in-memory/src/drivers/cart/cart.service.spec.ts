@@ -27,9 +27,9 @@ describe('Driver | In Memory | Cart | CartService', () => {
       ]
     });
 
-    httpMock = TestBed.get(HttpTestingController);
-    cartFactory = TestBed.get(DaffCartFactory);
-    cartService = TestBed.get(DaffInMemoryCartService);
+    httpMock = TestBed.inject(HttpTestingController);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartService = TestBed.inject(DaffInMemoryCartService);
 
     mockCart = cartFactory.create();
     cartId = mockCart.id;

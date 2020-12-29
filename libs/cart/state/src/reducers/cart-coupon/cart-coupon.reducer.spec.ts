@@ -19,8 +19,8 @@ describe('Cart | Reducer | cartCouponReducer', () => {
   let mockCoupon: DaffCartCoupon
 
   beforeEach(() => {
-    cartFactory = TestBed.get(DaffCartFactory);
-    cartCouponFactory = TestBed.get(DaffCartCouponFactory);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartCouponFactory = TestBed.inject(DaffCartCouponFactory);
 
     cart = cartFactory.create();
     mockCoupon = cartCouponFactory.create();

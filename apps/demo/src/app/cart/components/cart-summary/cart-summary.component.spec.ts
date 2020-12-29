@@ -46,11 +46,11 @@ describe('CartSummaryComponent', () => {
 
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    
-    router = TestBed.get(Router);
+
+    router = TestBed.inject(Router);
     spyOn(router, 'navigateByUrl');
-    cartFactory = TestBed.get(DaffCartFactory);
-    cartItemFactory = TestBed.get(DaffCartItemFactory);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartItemFactory = TestBed.inject(DaffCartItemFactory);
 
     mockCart = cartFactory.create({
       items: cartItemFactory.createMany(2)
@@ -83,12 +83,12 @@ describe('CartSummaryComponent', () => {
 
   describe('on <demo-minicart-item>', () => {
     it('should set item', () => {
-      expect(minicartItems[0].componentInstance.item).toEqual(mockCart.items[0]);  
+      expect(minicartItems[0].componentInstance.item).toEqual(mockCart.items[0]);
     });
   });
 
   describe('when title is null', () => {
-    
+
     it('should not render .demo-cart-summary__header', () => {
       cartSummary.title = null;
       fixture.detectChanges();
@@ -100,7 +100,7 @@ describe('CartSummaryComponent', () => {
   });
 
   describe('when title is defined', () => {
-    
+
     it('should render .demo-cart-summary__header', () => {
       const cartTitleElement = fixture.debugElement.query(By.css('.demo-cart-summary__title'));
 
@@ -113,7 +113,7 @@ describe('CartSummaryComponent', () => {
     beforeEach(() => {
       fixture.debugElement.query(By.css('a')).nativeElement.click();
     });
-    
+
     it('should call router.navigateByUrl', () => {
       expect(router.navigateByUrl).toHaveBeenCalledWith('/cart');
     });

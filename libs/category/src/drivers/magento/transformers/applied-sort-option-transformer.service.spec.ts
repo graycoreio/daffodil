@@ -7,14 +7,14 @@ import { DaffSortDirectionEnum } from '../../../models/requests/category-request
 describe('DaffMagentoAppliedSortOptionTransformService', () => {
 
   let service: DaffMagentoAppliedSortOptionTransformService;
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         DaffMagentoAppliedSortOptionTransformService
       ]
     });
-    service = TestBed.get(DaffMagentoAppliedSortOptionTransformService);
+    service = TestBed.inject(DaffMagentoAppliedSortOptionTransformService);
   });
 
   it('should be created', () => {
@@ -22,7 +22,7 @@ describe('DaffMagentoAppliedSortOptionTransformService', () => {
   });
 
   describe('transform', () => {
-    
+
     it('should return a MagentoSortOptionAction', () => {
 			const expectedReturn: MagentoSortFieldAction = {
 				sortOption: MagentoSortDirectionEnum.Ascending

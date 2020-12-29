@@ -87,22 +87,22 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
       ]
     });
 
-    service = TestBed.get(DaffMagentoCartAddressService);
-    controller = TestBed.get(ApolloTestingController);
+    service = TestBed.inject(DaffMagentoCartAddressService);
+    controller = TestBed.inject(ApolloTestingController);
 
-    magentoCartTransformerSpy = TestBed.get(DaffMagentoCartTransformer);
-    magentoCartAddressInputTransformerSpy = TestBed.get(DaffMagentoCartAddressInputTransformer);
+    magentoCartTransformerSpy = TestBed.inject(DaffMagentoCartTransformer);
+    magentoCartAddressInputTransformerSpy = TestBed.inject(DaffMagentoCartAddressInputTransformer);
 
-    daffCartFactory = TestBed.get(DaffCartFactory);
-    magentoCartFactory = TestBed.get(MagentoCartFactory);
-    daffCartAddressFactory = TestBed.get(DaffCartAddressFactory);
-    magentoShippingAddressFactory = TestBed.get(MagentoShippingAddressFactory);
-    magentoCartAddressInputFactory = TestBed.get(MagentoCartAddressInputFactory);
+    daffCartFactory = TestBed.inject(DaffCartFactory);
+    magentoCartFactory = TestBed.inject(MagentoCartFactory);
+    daffCartAddressFactory = TestBed.inject(DaffCartAddressFactory);
+    magentoShippingAddressFactory = TestBed.inject(MagentoShippingAddressFactory);
+    magentoCartAddressInputFactory = TestBed.inject(MagentoCartAddressInputFactory);
 
     mockDaffCart = daffCartFactory.create();
     mockMagentoCart = magentoCartFactory.create();
     mockMagentoShippingAddress = magentoShippingAddressFactory.create();
-    magentoShippingAddressFactory = TestBed.get(MagentoShippingAddressFactory);
+    magentoShippingAddressFactory = TestBed.inject(MagentoShippingAddressFactory);
     mockDaffCartAddress = daffCartAddressFactory.create();
     mockMagentoShippingAddressInput = {
       address: magentoCartAddressInputFactory.create()

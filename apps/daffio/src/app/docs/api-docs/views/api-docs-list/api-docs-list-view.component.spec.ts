@@ -30,7 +30,7 @@ class MockDaffioApiDocsListComponent implements DaffioApiDocsListComponent {
 describe('DaffioApiDocsListViewComponent', () => {
   let component: DaffioApiDocsListViewComponent;
   let fixture: ComponentFixture<DaffioApiDocsListViewComponent>;
-  let activatedRoute: ActivatedRouteStub; 
+  let activatedRoute: ActivatedRouteStub;
 
   const stubDocsList = [
     {
@@ -68,7 +68,7 @@ describe('DaffioApiDocsListViewComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DaffioApiDocsListViewComponent);
     component = fixture.componentInstance;
-    activatedRoute = TestBed.get(ActivatedRoute);
+    activatedRoute = TestBed.inject(ActivatedRoute);
     fixture.detectChanges();
   });
 

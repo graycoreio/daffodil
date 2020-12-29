@@ -18,7 +18,7 @@ describe('DaffNewsletterSelectors', () => {
       ]
     });
     mockNewsletter = {loading: false, success: false, error: null};
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
 
   });
   describe('selectDaffNewsletterLoading', () =>{

@@ -13,7 +13,7 @@ describe('Navigation | Testing | Factories | DaffNavigationTreeFactory', () => {
       providers: [DaffNavigationTreeFactory]
     });
 
-    navigationTreeFactory = TestBed.get(DaffNavigationTreeFactory);
+    navigationTreeFactory = TestBed.inject(DaffNavigationTreeFactory);
   });
 
   it('should be created', () => {

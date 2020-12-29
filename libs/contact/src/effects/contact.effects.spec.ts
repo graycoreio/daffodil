@@ -28,18 +28,18 @@ describe('DaffContactEffects', () => {
 			imports: [DaffContactTestingDriverModule.forRoot()],
 			providers: [DaffContactEffects, provideMockActions(() => actions$)],
 		});
-		effects = TestBed.get(DaffContactEffects);
-		daffContactDriver = TestBed.get(DaffContactDriver);
+		effects = TestBed.inject(DaffContactEffects);
+		daffContactDriver = TestBed.inject(DaffContactDriver);
 	});
 
 	it('should be created', () => {
 		expect(effects).toBeTruthy();
   });
-  
+
 	describe('when a ContactSubscribe is triggered', () => {
 		let expected;
     const forumSubmit = new DaffContactSubmit(mockForm);
-    
+
 		it('and if the call was successful, it should dispatch a ContactSuccessSubmit', () => {
 			const successAction = new DaffContactSuccessSubmit();
 			spyOn(daffContactDriver, 'send').and.returnValue(of('mystring'));
@@ -48,7 +48,7 @@ describe('DaffContactEffects', () => {
 			expected = cold('--b', { b: successAction });
 			expect(effects.trySubmission$).toBeObservable(expected);
     });
-    
+
 		it('and if the call fails, it should dispatch a ContactFailedSubmit', () => {
 			const error = ['Failed to submit'];
 			const response = cold('#', {}, error);
@@ -60,11 +60,11 @@ describe('DaffContactEffects', () => {
 			expect(effects.trySubmission$).toBeObservable(expected);
 		});
   });
-  
+
 	describe('when a ContactRetry is triggered', () => {
 		let expected;
     const forumSubmit = new DaffContactRetry(mockForm);
-    
+
 		it('and if the call was successful, it should dispatch a ContactSuccessSubmit', () => {
 			const successAction = new DaffContactSuccessSubmit();
 			spyOn(daffContactDriver, 'send').and.returnValue(of('mystring'));
@@ -73,7 +73,7 @@ describe('DaffContactEffects', () => {
 			expected = cold('--b', { b: successAction });
 			expect(effects.trySubmission$).toBeObservable(expected);
     });
-    
+
 		it('and if the call fails, it should dispatch a ContactFailedSubmit', () => {
 			const error = ['Failed to submit'];
 			const response = cold('#', {}, error);
@@ -85,12 +85,12 @@ describe('DaffContactEffects', () => {
 			expect(effects.trySubmission$).toBeObservable(expected);
 		});
   });
-  
+
 	describe('when a ContactCancel is triggered', () => {
 		let expected;
 		const forumSubmit = new DaffContactSubmit(mockForm);
     const forumCancel = new DaffContactCancel();
-    
+
 		it('it should return an empty observable', () => {
 			actions$ = hot('---d-----', {
 				d: forumCancel,
@@ -99,7 +99,7 @@ describe('DaffContactEffects', () => {
 
 			expect(effects.trySubmission$).toBeObservable(expected);
     });
-    
+
 		it('it should cancel a ContactSubmit action', () => {
 			actions$ = hot('--(ad)----', {
 				a: forumSubmit,

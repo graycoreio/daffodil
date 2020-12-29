@@ -28,10 +28,10 @@ describe('Driver | Testing | Cart | CartCouponService', () => {
       ]
     });
 
-    service = TestBed.get(DaffTestingCartCouponService);
+    service = TestBed.inject(DaffTestingCartCouponService);
 
-    cartFactory = TestBed.get(DaffCartFactory);
-    cartCouponFactory = TestBed.get(DaffCartCouponFactory);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartCouponFactory = TestBed.inject(DaffCartCouponFactory);
 
     mockCart = cartFactory.create();
     mockCartCoupon = cartCouponFactory.create();

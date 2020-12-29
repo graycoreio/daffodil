@@ -5,7 +5,7 @@ import { DaffCategory } from '@daffodil/category';
 import { DaffCategoryFactory } from './category.factory';
 
 describe('Category | Testing | Factories | DaffCategoryFactory', () => {
-  
+
   let categoryFactory;
 
   beforeEach(() => {
@@ -13,7 +13,7 @@ describe('Category | Testing | Factories | DaffCategoryFactory', () => {
       providers: [DaffCategoryFactory]
     });
 
-    categoryFactory = TestBed.get(DaffCategoryFactory);
+    categoryFactory = TestBed.inject(DaffCategoryFactory);
   });
 
   it('should be created', () => {
@@ -27,15 +27,15 @@ describe('Category | Testing | Factories | DaffCategoryFactory', () => {
     beforeEach(() => {
       result = categoryFactory.create();
     });
-    
+
     it('should return a Category with all required fields defined', () => {
-      expect(result.id).toBeDefined(); 
-			expect(result.name).toBeDefined(); 
+      expect(result.id).toBeDefined();
+			expect(result.name).toBeDefined();
 			expect(result.description).toBeDefined();
-      expect(result.children_count).toBeDefined(); 
-      expect(result.total_products).toBeDefined(); 
-      expect(result.product_ids).toBeDefined(); 
-      expect(result.breadcrumbs).toBeDefined(); 
+      expect(result.children_count).toBeDefined();
+      expect(result.total_products).toBeDefined();
+      expect(result.product_ids).toBeDefined();
+      expect(result.breadcrumbs).toBeDefined();
     });
   });
 

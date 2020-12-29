@@ -32,12 +32,12 @@ describe('DaffBillingFacade', () => {
         DaffBillingFacade,
       ]
     })
-    
+
     stubBillingAddress = addressFactory.create();
     stubBillingAddressIsShippingAddress = false;
     stubPaymentInfo = paymentFactory.create();
-    store = TestBed.get(Store);
-    facade = TestBed.get(DaffBillingFacade);
+    store = TestBed.inject(Store);
+    facade = TestBed.inject(DaffBillingFacade);
   });
 
   it('should be created', () => {
@@ -54,7 +54,7 @@ describe('DaffBillingFacade', () => {
   });
 
   describe('billingAddress$', () => {
-  
+
     it('should return the billing address', () => {
       const expected = cold('a', { a: stubBillingAddress });
       store.dispatch(new DaffUpdateBillingAddress(stubBillingAddress));
@@ -63,7 +63,7 @@ describe('DaffBillingFacade', () => {
   });
 
   describe('billingAddressIsShippingAddress$', () => {
-  
+
     it('should return whether the billing address is the same as the shipping address', () => {
       const expected = cold('a', { a: !stubBillingAddressIsShippingAddress });
       store.dispatch(new DaffToggleBillingAddressIsShippingAddress());
@@ -72,7 +72,7 @@ describe('DaffBillingFacade', () => {
   });
 
   describe('paymentInfo$', () => {
-  
+
     it('should return the payment info', () => {
       const expected = cold('a', { a: stubPaymentInfo });
       store.dispatch(new DaffUpdatePaymentInfo(stubPaymentInfo));

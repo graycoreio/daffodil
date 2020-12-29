@@ -26,8 +26,8 @@ describe('DaffProductGridFacade', () => {
       ]
     })
 
-    store = TestBed.get(Store);
-    facade = TestBed.get(DaffProductGridFacade);
+    store = TestBed.inject(Store);
+    facade = TestBed.inject(DaffProductGridFacade);
   });
 
   it('should be created', () => {
@@ -48,7 +48,7 @@ describe('DaffProductGridFacade', () => {
       const expected = cold('a', { a: false });
       expect(facade.loading$).toBeObservable(expected);
     });
-  
+
     it('should be true if the product-grid state is loading', () => {
       const expected = cold('a', { a: true });
       store.dispatch(new DaffProductGridLoad());

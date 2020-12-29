@@ -4,7 +4,7 @@ import { ImageFactory } from './image.factory';
 import { Image } from '../../interfaces/image';
 
 describe('ImageFactory', () => {
-  
+
   let imageFactory: ImageFactory;
 
   beforeEach(() => {
@@ -12,7 +12,7 @@ describe('ImageFactory', () => {
       providers: [ImageFactory]
     });
 
-    imageFactory = TestBed.get(ImageFactory);
+    imageFactory = TestBed.inject(ImageFactory);
   });
 
   it('should be created', () => {
@@ -36,7 +36,7 @@ describe('ImageFactory', () => {
       it('should have a label', () => {
         expect(result.label).not.toBeNull();
       });
-      
+
       it('should have a url', () => {
         expect(result.url).not.toBeNull();
       });

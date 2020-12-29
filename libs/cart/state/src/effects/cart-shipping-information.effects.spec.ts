@@ -58,13 +58,13 @@ describe('Daffodil | Cart | CartShippingInformationEffects', () => {
       ]
     });
 
-    effects = TestBed.get<DaffCartShippingInformationEffects<DaffCartShippingInformation, DaffCart>>(DaffCartShippingInformationEffects);
+    effects = TestBed.inject<DaffCartShippingInformationEffects<DaffCartShippingInformation, DaffCart>>(DaffCartShippingInformationEffects);
 
-    daffShippingInformationDriverSpy = TestBed.get<DaffCartShippingInformationServiceInterface>(DaffCartShippingInformationDriver);
-    daffCartStorageSpy = TestBed.get(DaffCartStorageService);
+    daffShippingInformationDriverSpy = TestBed.inject<DaffCartShippingInformationServiceInterface>(DaffCartShippingInformationDriver);
+    daffCartStorageSpy = TestBed.inject(DaffCartStorageService);
 
-    cartFactory = TestBed.get<DaffCartFactory>(DaffCartFactory);
-    cartShippingRateFactory = TestBed.get<DaffCartShippingRateFactory>(DaffCartShippingRateFactory);
+    cartFactory = TestBed.inject<DaffCartFactory>(DaffCartFactory);
+    cartShippingRateFactory = TestBed.inject<DaffCartShippingRateFactory>(DaffCartShippingRateFactory);
 
     mockCart = cartFactory.create();
     mockCartShippingInformation = {

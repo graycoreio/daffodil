@@ -26,7 +26,7 @@ describe('Driver | Testing | Auth | LoginService', () => {
       ]
     });
 
-    loginService = TestBed.get(DaffTestingLoginService);
+    loginService = TestBed.inject(DaffTestingLoginService);
 
     mockRegistration = registrationFactory.create();
 

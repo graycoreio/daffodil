@@ -34,11 +34,11 @@ describe('DaffInMemoryBackendCartPaymentService', () => {
         DaffInMemoryBackendCartPaymentService,
       ]
     });
-    service = TestBed.get(DaffInMemoryBackendCartPaymentService);
+    service = TestBed.inject(DaffInMemoryBackendCartPaymentService);
 
-    cartFactory = TestBed.get(DaffCartFactory);
-    cartPaymentFactory = TestBed.get(DaffCartPaymentFactory);
-    cartAddressFactory = TestBed.get(DaffCartAddressFactory);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartPaymentFactory = TestBed.inject(DaffCartPaymentFactory);
+    cartAddressFactory = TestBed.inject(DaffCartAddressFactory);
 
     mockCart = cartFactory.create();
     mockCartPayment = cartPaymentFactory.create();

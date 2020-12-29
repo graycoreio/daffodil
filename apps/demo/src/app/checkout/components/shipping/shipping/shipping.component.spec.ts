@@ -25,11 +25,11 @@ const stubSelectedShippingOptionId = '0';
 const stubShowPaymentView = false;
 
 @Component({
-  template: '<demo-shipping [isShippingAddressValid]="isShippingAddressValidValue" ' + 
-              '[shippingAddress]="shippingAddressValue" ' + 
-              '[selectedShippingOptionId]="selectedShippingOptionIdValue" ' + 
-              '[showPaymentView]="showPaymentViewValue" ' + 
-              '(updateShippingAddress)="updateShippingAddressFunction($event)" ' + 
+  template: '<demo-shipping [isShippingAddressValid]="isShippingAddressValidValue" ' +
+              '[shippingAddress]="shippingAddressValue" ' +
+              '[selectedShippingOptionId]="selectedShippingOptionIdValue" ' +
+              '[showPaymentView]="showPaymentViewValue" ' +
+              '(updateShippingAddress)="updateShippingAddressFunction($event)" ' +
               '(selectShippingOption)="selectShippingOptionFunction($event)"></demo-shipping>'
 })
 class WrapperComponent {
@@ -70,7 +70,7 @@ describe('ShippingComponent', () => {
           demoCheckout: combineReducers(fromDemoCheckout.reducers),
         })
       ],
-      declarations: [ 
+      declarations: [
         WrapperComponent,
         MockShippingFormComponent,
         MockShippingSummaryComponent,
@@ -83,7 +83,7 @@ describe('ShippingComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
 
     fixture.detectChanges();
 
@@ -107,9 +107,9 @@ describe('ShippingComponent', () => {
   it('should be able to take showPaymentView as input', () => {
     expect(shipping.showPaymentView).toEqual(stubShowPaymentView);
   });
-  
+
   describe('on <demo-shipping-form>', () => {
-    
+
     it('should set shippingAddress', () => {
       expect(shippingFormComponent.shippingAddress).toEqual(shipping.shippingAddress);
     });
@@ -120,7 +120,7 @@ describe('ShippingComponent', () => {
   });
 
   describe('on <demo-shipping-summary>', () => {
-    
+
     it('should set shippingAddress', () => {
       expect(shippingSummaryComponent.shippingAddress).toEqual(shipping.shippingAddress);
     });
@@ -131,13 +131,13 @@ describe('ShippingComponent', () => {
   });
 
   describe('ngOnInit', () => {
-    
+
     it('should dispatch a SetShowShippingForm action', () => {
       spyOn(store, 'dispatch');
       shipping.ngOnInit();
       expect(store.dispatch).toHaveBeenCalledWith(new SetShowShippingForm(!stubIsShippingAddressValidValue));
     });
-    
+
     it('should initialize showShippingForm$', () => {
       const expected = cold('a', { a: false });
       expect(shipping.showShippingForm$).toBeObservable(expected);
@@ -145,9 +145,9 @@ describe('ShippingComponent', () => {
   });
 
   describe('when shippingFormComponent emits', () => {
-    
+
     describe('submitted', () => {
-      
+
       let emittedValue;
 
       beforeEach(() => {
@@ -164,11 +164,11 @@ describe('ShippingComponent', () => {
 
         shippingFormComponent.submitted.emit(emittedValue);
       });
-      
+
       it('should call hostComponent.updateShippingAddressFunction', () => {
         expect(wrapper.updateShippingAddressFunction).toHaveBeenCalledWith(emittedValue.address);
       });
-      
+
       it('should call hostComponent.selectShippingOptionFunction', () => {
         expect(wrapper.selectShippingOptionFunction).toHaveBeenCalledWith(emittedValue.shippingOption.id);
       });
@@ -180,20 +180,20 @@ describe('ShippingComponent', () => {
   });
 
   describe('when shippingSummaryComponent emits', () => {
-    
+
     describe('editShippingInfo', () => {
       it('should call toggleShippingView', () => {
         spyOn(shipping, 'toggleShippingView');
-  
+
         shippingSummaryComponent.editShippingInfo.emit();
-        
+
         expect(shipping.toggleShippingView).toHaveBeenCalled();
       });
     });
   });
 
   describe('toggleShippingView', () => {
-    
+
     it('should dispatch a ToggleShowShippingForm action', () => {
       spyOn(store, 'dispatch');
       shipping.toggleShippingView();
@@ -208,20 +208,20 @@ describe('ShippingComponent', () => {
 
       fixture.detectChanges();
     });
-    
+
     it('should show <demo-shipping-form>', () => {
       expect(fixture.debugElement.query(By.css('demo-shipping-form')).nativeElement.hidden).toBeFalsy();
     });
 
     describe('and shippingAddress is defined', () => {
-      
+
       it('should hide <demo-shipping-summary>', () => {
         expect(fixture.debugElement.query(By.css('demo-shipping-summary')).nativeElement.hidden).toBeTruthy();
       });
     });
 
     describe('and shippingAddress is null', () => {
-      
+
       it('should not render <demo-shipping-summary>', () => {
         shipping.shippingAddress = null;
         fixture.detectChanges();
@@ -237,7 +237,7 @@ describe('ShippingComponent', () => {
       shipping.showShippingForm$ = of(false);
       fixture.detectChanges();
     });
-    
+
     it('should not show <demo-shipping-form>', () => {
       expect(fixture.debugElement.query(By.css('demo-shipping-form')).nativeElement.hidden).toBeTruthy();
     });

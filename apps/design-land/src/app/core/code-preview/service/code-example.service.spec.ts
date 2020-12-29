@@ -15,8 +15,8 @@ describe('CodeExampleService', () => {
         CodeExampleService,
       ]
     });
-    service = TestBed.get(CodeExampleService);
-    httpMock = TestBed.get(HttpTestingController);
+    service = TestBed.inject(CodeExampleService);
+    httpMock = TestBed.inject(HttpTestingController);
 
   });
 

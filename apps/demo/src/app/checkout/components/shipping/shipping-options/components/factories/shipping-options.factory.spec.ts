@@ -5,7 +5,7 @@ import { ShippingOption } from '@daffodil/checkout';
 import { ShippingOptionsFactory } from './shipping-options.factory';
 
 describe('Daffodil Demo | Checkout | Shipping | Shipping Options | Factories | ShippingOptionsFactory', () => {
-  
+
   let shippingOptionsFactory;
 
   beforeEach(() => {
@@ -13,7 +13,7 @@ describe('Daffodil Demo | Checkout | Shipping | Shipping Options | Factories | S
       providers: [ShippingOptionsFactory]
     });
 
-    shippingOptionsFactory = TestBed.get(ShippingOptionsFactory);
+    shippingOptionsFactory = TestBed.inject(ShippingOptionsFactory);
   });
 
   it('should be created', () => {
@@ -21,7 +21,7 @@ describe('Daffodil Demo | Checkout | Shipping | Shipping Options | Factories | S
   });
 
   describe('create', () => {
-    
+
     let result:ShippingOption[];
     let expectedResult;
 

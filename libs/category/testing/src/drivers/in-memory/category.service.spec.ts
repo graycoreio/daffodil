@@ -22,10 +22,10 @@ describe('Driver | InMemory | Category | CategoryService', () => {
       ]
     });
 
-    httpMock = TestBed.get(HttpTestingController);
-    categoryService = TestBed.get(DaffInMemoryCategoryService);
-    categoryFactory = TestBed.get(DaffCategoryFactory);
-    productFactory = TestBed.get(DaffProductFactory);
+    httpMock = TestBed.inject(HttpTestingController);
+    categoryService = TestBed.inject(DaffInMemoryCategoryService);
+    categoryFactory = TestBed.inject(DaffCategoryFactory);
+    productFactory = TestBed.inject(DaffProductFactory);
   });
 
   afterEach(() => {

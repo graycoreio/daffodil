@@ -62,10 +62,10 @@ describe('DaffCartResolverEffects', () => {
 			],
 		});
 
-		effects = TestBed.get(DaffCartResolverEffects);
-		driver = TestBed.get(DaffCartDriver);
-		cartFactory = TestBed.get(DaffCartFactory);
-		cartStorageService = TestBed.get(DaffCartStorageService);
+		effects = TestBed.inject(DaffCartResolverEffects);
+		driver = TestBed.inject(DaffCartDriver);
+		cartFactory = TestBed.inject(DaffCartFactory);
+		cartStorageService = TestBed.inject(DaffCartStorageService);
 		stubCart = cartFactory.create();
 	});
 

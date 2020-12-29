@@ -13,7 +13,7 @@ describe('Cart | Testing | Factories | CartShippingRateFactory', () => {
       providers: [DaffCartShippingRateFactory]
     });
 
-    cartShippingRateFactory = TestBed.get(DaffCartShippingRateFactory);
+    cartShippingRateFactory = TestBed.inject(DaffCartShippingRateFactory);
   });
 
   it('should be created', () => {

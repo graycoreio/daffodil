@@ -46,7 +46,7 @@ describe('Configurable Product Selectors | unit tests', () => {
     });
 
     stubConfigurableProduct = configurableProductFactory.create();
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
   });
 
 	describe('selectAllConfigurableProductVariants', () => {

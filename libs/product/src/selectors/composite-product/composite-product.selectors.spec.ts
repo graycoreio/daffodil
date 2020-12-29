@@ -78,7 +78,7 @@ describe('Composite Product Selectors | integration tests', () => {
 			amount: stubDiscountAmount11,
 			percent: null
 		};
-		store = TestBed.get(Store);
+		store = TestBed.inject(Store);
 		store.dispatch(new DaffProductLoadSuccess(stubCompositeProduct));
 		store.dispatch(new DaffProductLoadSuccess(stubProduct));
 	});
@@ -126,8 +126,8 @@ describe('Composite Product Selectors | integration tests', () => {
 			const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
 			const expected = cold('a', { a: {
 				minPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
-						stubPrice00 - stubDiscountAmount00 + 
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+						stubPrice00 - stubDiscountAmount00 +
 						(stubPrice11 - stubDiscountAmount11) * stubQty1,
 					discount: {
 						amount: null,
@@ -136,7 +136,7 @@ describe('Composite Product Selectors | integration tests', () => {
 					originalPrice: stubCompositeProduct.price + stubPrice00 + (stubPrice11 * stubQty1)
 				},
 				maxPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						stubPrice01 - stubDiscountAmount01 +
 						(stubPrice11 - stubDiscountAmount11) * stubQty1,
 					discount: {
@@ -164,8 +164,8 @@ describe('Composite Product Selectors | integration tests', () => {
 			const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
 			const expected = cold('a', { a: {
 				minPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
-						(stubPrice01 - stubDiscountAmount01) * stubQty0 + 
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+						(stubPrice01 - stubDiscountAmount01) * stubQty0 +
 						(stubPrice11 - stubDiscountAmount11) * stubQty1,
 					discount: {
 						amount: null,
@@ -174,7 +174,7 @@ describe('Composite Product Selectors | integration tests', () => {
 					originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0) + (stubPrice11 * stubQty1)
 				},
 				maxPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						(stubPrice01 - stubDiscountAmount01) * stubQty0 +
 						(stubPrice11 - stubDiscountAmount11) * stubQty1,
 					discount: {
@@ -200,8 +200,8 @@ describe('Composite Product Selectors | integration tests', () => {
 			const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
 			const expected = cold('a', { a: {
 				minPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
-						stubPrice01 - stubDiscountAmount01 + 
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+						stubPrice01 - stubDiscountAmount01 +
 						stubPrice11 - stubDiscountAmount11,
 					discount: {
 						amount: null,
@@ -210,7 +210,7 @@ describe('Composite Product Selectors | integration tests', () => {
 					originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11
 				},
 				maxPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						stubPrice01 - stubDiscountAmount01 +
 						stubPrice11 - stubDiscountAmount11,
 					discount: {
@@ -236,7 +236,7 @@ describe('Composite Product Selectors | integration tests', () => {
 			const selector = store.pipe(select(selectCompositeProductRequiredItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
 			const expected = cold('a', { a: {
 				minPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						(stubPrice00 - stubDiscountAmount00) * stubQty0,
 					discount: {
 						amount: null,
@@ -245,7 +245,7 @@ describe('Composite Product Selectors | integration tests', () => {
 					originalPrice: stubCompositeProduct.price + (stubPrice00 * stubQty0)
 				},
 				maxPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						(stubPrice01 - stubDiscountAmount01) * stubQty0,
 					discount: {
 						amount: null,
@@ -267,7 +267,7 @@ describe('Composite Product Selectors | integration tests', () => {
 
 			expect(selector).toBeObservable(expected);
 		});
-		
+
 		it(`should return the broadest price range for a composite product including optional items
 				when no configuration is provided`, () => {
 			const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration, { id: stubCompositeProduct.id }));
@@ -281,7 +281,7 @@ describe('Composite Product Selectors | integration tests', () => {
 					originalPrice: stubCompositeProduct.price + stubPrice00
 				},
 				maxPrice: {
-					discountedPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11 - 
+					discountedPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11 -
 						stubCompositeProduct.discount.amount - stubDiscountAmount01 - stubDiscountAmount11,
 					discount: {
 						amount: null,
@@ -340,8 +340,8 @@ describe('Composite Product Selectors | integration tests', () => {
 			const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
 			const expected = cold('a', { a: {
 				minPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
-						(stubPrice01 - stubDiscountAmount01) * stubQty0 + 
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+						(stubPrice01 - stubDiscountAmount01) * stubQty0 +
 						(stubPrice11 - stubDiscountAmount11) * stubQty1,
 					discount: {
 						amount: null,
@@ -350,7 +350,7 @@ describe('Composite Product Selectors | integration tests', () => {
 					originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0) + (stubPrice11 * stubQty1)
 				},
 				maxPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						(stubPrice01 - stubDiscountAmount01) * stubQty0 +
 						(stubPrice11 - stubDiscountAmount11) * stubQty1,
 					discount: {
@@ -376,8 +376,8 @@ describe('Composite Product Selectors | integration tests', () => {
 			const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
 			const expected = cold('a', { a: {
 				minPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
-						stubPrice01 - stubDiscountAmount01 + 
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+						stubPrice01 - stubDiscountAmount01 +
 						stubPrice11 - stubDiscountAmount11,
 					discount: {
 						amount: null,
@@ -386,7 +386,7 @@ describe('Composite Product Selectors | integration tests', () => {
 					originalPrice: stubCompositeProduct.price + stubPrice01 + stubPrice11
 				},
 				maxPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						stubPrice01 - stubDiscountAmount01 +
 						stubPrice11 - stubDiscountAmount11,
 					discount: {
@@ -412,7 +412,7 @@ describe('Composite Product Selectors | integration tests', () => {
 			const selector = store.pipe(select(selectCompositeProductOptionalItemPricesForConfiguration, { id: stubCompositeProduct.id, configuration: stubConfiguration }));
 			const expected = cold('a', { a: {
 				minPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						(stubPrice00 - stubDiscountAmount00) * stubQty0,
 					discount: {
 						amount: null,
@@ -421,7 +421,7 @@ describe('Composite Product Selectors | integration tests', () => {
 					originalPrice: stubCompositeProduct.price + (stubPrice00 * stubQty0)
 				},
 				maxPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						(stubPrice01 - stubDiscountAmount01) * stubQty0 + (stubPrice11 - stubDiscountAmount11) * stubQty1,
 					discount: {
 						amount: null,
@@ -443,7 +443,7 @@ describe('Composite Product Selectors | integration tests', () => {
 
 			expect(selector).toBeObservable(expected);
 		});
-		
+
 		it('should return the expected price range for the current configuration of the product in state', () => {
 			store.dispatch(new DaffCompositeProductApplyOption(
 				stubCompositeProduct.id,
@@ -461,8 +461,8 @@ describe('Composite Product Selectors | integration tests', () => {
 			const selector = store.pipe(select(selectCompositeProductPricesAsCurrentlyConfigured, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: {
 				minPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
-						(stubPrice01 - stubDiscountAmount01) * stubQty0 + 
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
+						(stubPrice01 - stubDiscountAmount01) * stubQty0 +
 						(stubPrice11 - stubDiscountAmount11) * stubQty1,
 					discount: {
 						amount: null,
@@ -471,7 +471,7 @@ describe('Composite Product Selectors | integration tests', () => {
 					originalPrice: stubCompositeProduct.price + (stubPrice01 * stubQty0) + (stubPrice11 * stubQty1)
 				},
 				maxPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						(stubPrice01 - stubDiscountAmount01) * stubQty0 +
 						(stubPrice11 - stubDiscountAmount11) * stubQty1,
 					discount: {
@@ -484,7 +484,7 @@ describe('Composite Product Selectors | integration tests', () => {
 
 			expect(selector).toBeObservable(expected);
 		});
-		
+
 		it('should return a price range that reflects the expected option quantity when the default item option is out of stock', () => {
 			stubCompositeProduct.items[0].options[0].in_stock = false;
 			store.dispatch(new DaffProductLoadSuccess(stubCompositeProduct));
@@ -492,7 +492,7 @@ describe('Composite Product Selectors | integration tests', () => {
 			const selector = store.pipe(select(selectCompositeProductPricesAsCurrentlyConfigured, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: {
 				minPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						(stubPrice00 - stubDiscountAmount00) * stubQty0,
 					discount: {
 						amount: null,
@@ -501,7 +501,7 @@ describe('Composite Product Selectors | integration tests', () => {
 					originalPrice: stubCompositeProduct.price + (stubPrice00 * stubQty0)
 				},
 				maxPrice: {
-					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount + 
+					discountedPrice: stubCompositeProduct.price - stubCompositeProduct.discount.amount +
 						(stubPrice01 - stubDiscountAmount01) * stubQty0,
 					discount: {
 						amount: null,

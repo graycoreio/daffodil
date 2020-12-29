@@ -3,8 +3,8 @@ import { StoreModule, combineReducers, Store, select } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
 import { DaffConfigurableProductFactory } from '@daffodil/product/testing';
-import { 
-	DaffConfigurableProduct, 
+import {
+	DaffConfigurableProduct,
 	DaffProductLoadSuccess,
 	daffProductReducers,
 	DaffProductReducersState,
@@ -26,7 +26,7 @@ describe('Configurable Product Selectors | integration tests', () => {
 	const {
 		selectConfigurableProductAppliedAttributesAsDictionary
 	} = getDaffConfigurableProductEntitiesSelectors();
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -37,11 +37,11 @@ describe('Configurable Product Selectors | integration tests', () => {
     });
 
     stubConfigurableProduct = configurableProductFactory.create();
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
   });
 
 	describe('when one attribute (material) is chosen', () => {
-		
+
 		beforeEach(() => {
 			store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
 			store.dispatch(new DaffConfigurableProductApplyAttribute(
@@ -54,12 +54,12 @@ describe('Configurable Product Selectors | integration tests', () => {
 		it(`should include all attribute values for the selected attribute code;
 				should include only attributes values for the remaining attribute codes that match variants having the selected attribute value`, () => {
 			const selector = store.pipe(select(selectSelectableConfigurableProductAttributes, { id: stubConfigurableProduct.id }));
-			const expected = cold('a', { 
+			const expected = cold('a', {
 				a: {
 					color: ['0', '1'],
 					size: ['1', '0'],
 					material: ['0', '2', '1']
-				} 
+				}
 			});
 
 			expect(selector).toBeObservable(expected);
@@ -67,7 +67,7 @@ describe('Configurable Product Selectors | integration tests', () => {
 	});
 
 	describe('when more than one attribute (color and size) is chosen', () => {
-		
+
 		beforeEach(() => {
 			store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
 			store.dispatch(new DaffConfigurableProductApplyAttribute(
@@ -86,19 +86,19 @@ describe('Configurable Product Selectors | integration tests', () => {
 				should include only attribute values for the second selected attribute code that match variants having the first selected attribute value;
 				should include only attribute values for the remaining attribute codes that match variants having both the first and second selected attribute values`, () => {
 			const selector = store.pipe(select(selectSelectableConfigurableProductAttributes, { id: stubConfigurableProduct.id }));
-			const expected = cold('a', { 
+			const expected = cold('a', {
 				a: {
 					color: ['0', '1', '2'],
 					size: ['0', '1', '2'],
 					material: ['0', '2']
-				} 
+				}
 			});
 
 			expect(selector).toBeObservable(expected);
 		});
 
 		describe('and a different first selection (color) is chosen', () => {
-			
+
 			beforeEach(() => {
 				store.dispatch(new DaffConfigurableProductApplyAttribute(
 					stubConfigurableProduct.id,
@@ -120,7 +120,7 @@ describe('Configurable Product Selectors | integration tests', () => {
 		});
 
 		describe('and a different second selection (size) is chosen', () => {
-			
+
 			beforeEach(() => {
 				store.dispatch(new DaffConfigurableProductApplyAttribute(
 					stubConfigurableProduct.id,
@@ -142,16 +142,16 @@ describe('Configurable Product Selectors | integration tests', () => {
 			});
 		});
 	});
-	
+
 	it('returns a dictionary of attribute values that are still selectable', () => {
 		store.dispatch(new DaffProductLoadSuccess(stubConfigurableProduct));
 		const selector = store.pipe(select(selectSelectableConfigurableProductAttributes, { id: stubConfigurableProduct.id }));
-		const expected = cold('a', { 
+		const expected = cold('a', {
 			a: {
 				color: ['0', '1', '2'],
 				size: ['0', '1', '2'],
 				material: ['0', '2', '1']
-			} 
+			}
 		});
 
 		expect(selector).toBeObservable(expected);

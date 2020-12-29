@@ -17,7 +17,7 @@ class MockSidebarContainer {}
 describe('SidebarViewportContainer', () => {
   let component: SidebarViewportContainer;
   let fixture: ComponentFixture<SidebarViewportContainer>;
-  
+
   let sidebarViewport: DaffSidebarViewportComponent;
 
   let store: MockStore<fromDemoSidebar.State>;
@@ -30,7 +30,7 @@ describe('SidebarViewportContainer', () => {
         NoopAnimationsModule,
         DaffSidebarModule
       ],
-      declarations: [ 
+      declarations: [
         SidebarViewportContainer,
         MockSidebarContainer
       ],
@@ -44,7 +44,7 @@ describe('SidebarViewportContainer', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SidebarViewportContainer);
     component = fixture.componentInstance;
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
     store.overrideSelector(fromDemoSidebar.selectShowSidebar, false);
     fixture.detectChanges();
 
@@ -69,7 +69,7 @@ describe('SidebarViewportContainer', () => {
 
     sidebarViewport.backdropClicked.emit()
 
-    expect(component.close).toHaveBeenCalledWith();    
+    expect(component.close).toHaveBeenCalledWith();
   });
 
   describe('ngOnInit', () => {

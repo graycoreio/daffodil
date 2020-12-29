@@ -35,7 +35,7 @@ describe('Auth | Selector | Auth', () => {
       ]
     });
 
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
 
     loading = false;
     errors = [];

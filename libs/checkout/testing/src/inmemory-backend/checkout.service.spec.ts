@@ -5,7 +5,7 @@ import { DaffInMemoryBackendCheckoutService } from './checkout.service';
 
 describe('Driver | Checkout | In Memory | CheckoutTestingService', () => {
   let checkoutTestingService: DaffInMemoryBackendCheckoutService;
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -16,7 +16,7 @@ describe('Driver | Checkout | In Memory | CheckoutTestingService', () => {
       ]
     });
 
-    checkoutTestingService = TestBed.get(DaffInMemoryBackendCheckoutService);
+    checkoutTestingService = TestBed.inject(DaffInMemoryBackendCheckoutService);
   });
 
   it('should be created', () => {
@@ -29,7 +29,7 @@ describe('Driver | Checkout | In Memory | CheckoutTestingService', () => {
     beforeEach(() => {
       result = checkoutTestingService.createDb();
     });
-    
+
     it('should return a null Order', () => {
       result = checkoutTestingService.createDb();
       expect(result.order).toBeNull();
@@ -71,7 +71,7 @@ describe('Driver | Checkout | In Memory | CheckoutTestingService', () => {
           }
         };
       });
-      
+
       it('should return an order with two order items', () => {
         result = checkoutTestingService.post(reqInfoStub);
         expect(result.body.items.length).toEqual(2);

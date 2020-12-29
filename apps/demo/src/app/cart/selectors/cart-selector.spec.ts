@@ -23,9 +23,9 @@ describe('selectCartState', () => {
       ]
     });
 
-    cartFactory = TestBed.get(DaffCartFactory);
-    cartItemFactory = TestBed.get(DaffCartItemFactory);
-    store = TestBed.get(Store);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartItemFactory = TestBed.inject(DaffCartItemFactory);
+    store = TestBed.inject(Store);
   }));
 
   describe('selectCartItemCount', () => {

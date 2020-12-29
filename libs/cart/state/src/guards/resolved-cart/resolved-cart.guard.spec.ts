@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { DaffCartResolveState } from '@daffodil/cart/state';
 import {
 	DaffCartTestingModule,
-	MockDaffCartFacade,
 } from '@daffodil/cart/state/testing';
 
 import { DaffResolvedCartGuard } from './resolved-cart.guard';
@@ -24,8 +23,8 @@ describe('Cart | State | Guards | DaffResolvedCartGuard', () => {
 			imports: [DaffCartTestingModule, RouterTestingModule],
 		});
 
-		router = TestBed.get(Router);
-		facade = TestBed.get(DaffCartFacade);
+		facade = TestBed.inject(DaffCartFacade);
+    router = TestBed.inject(Router);
 
 		service = new DaffResolvedCartGuard(
 			facade,

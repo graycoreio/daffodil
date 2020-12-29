@@ -53,8 +53,8 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
       ]
     });
 
-    apollo = TestBed.get(Apollo);
-    controller = TestBed.get(ApolloTestingController);
+    apollo = TestBed.inject(Apollo);
+    controller = TestBed.inject(ApolloTestingController);
 
     childlessNavigationTree = generateMagentoCategoryTree();
     delete childlessNavigationTree.children;

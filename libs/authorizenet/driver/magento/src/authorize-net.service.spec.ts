@@ -36,7 +36,7 @@ describe('Driver | Magento | Authorize.net | DaffMagentoAuthorizeNetService', ()
       ]
     });
 
-    service = TestBed.get(DaffMagentoAuthorizeNetService);
+    service = TestBed.inject(DaffMagentoAuthorizeNetService);
 
     stubCreditCard = {
       cardnumber: ccNumber,
