@@ -28,7 +28,7 @@ describe('selectProductEntitiesState', () => {
 		selectProductHasDiscount,
 		selectIsProductOutOfStock
 	} = getDaffProductEntitiesSelectors();
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -39,15 +39,15 @@ describe('selectProductEntitiesState', () => {
     });
 
     mockProduct = productFactory.create();
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
 
     store.dispatch(new DaffProductGridLoadSuccess(new Array(mockProduct)));
   });
 
   describe('ProductEntitiesState', () => {
-    
+
     describe('selectIds', () => {
-    
+
       it('selects product ids', () => {
 				const selector = store.pipe(select(selectProductIds));
 				const expected = cold('a', { a: [mockProduct.id] });
@@ -55,9 +55,9 @@ describe('selectProductEntitiesState', () => {
 				expect(selector).toBeObservable(expected);
       });
     });
-  
+
     describe('selectProductEntities', () => {
-      
+
       it('selects product entities as a dictionary object', () => {
 				const expectedDictionary = new Object();
 				expectedDictionary[mockProduct.id] = mockProduct;
@@ -68,9 +68,9 @@ describe('selectProductEntitiesState', () => {
 				expect(selector).toBeObservable(expected);
       });
     });
-  
+
     describe('selectAllProducts', () => {
-      
+
       it('selects all products as an array', () => {
         const selector = store.pipe(select(selectAllProducts));
 				const expected = cold('a', { a: [mockProduct] });
@@ -78,20 +78,20 @@ describe('selectProductEntitiesState', () => {
 				expect(selector).toBeObservable(expected);
       });
     });
-  
+
     describe('selectProductTotal', () => {
-      
+
       it('selects the total number of products', () => {
         const selector = store.pipe(select(selectProductTotal));
 				const expected = cold('a', { a: 1 });
 
 				expect(selector).toBeObservable(expected);
       });
-    });  
+    });
   });
 
   describe('selectProduct', () => {
-    
+
     it('should select the product of the given id', () => {
 			const selector = store.pipe(select(selectProduct, { id: mockProduct.id }));
 			const expected = cold('a', { a: mockProduct });
@@ -101,7 +101,7 @@ describe('selectProductEntitiesState', () => {
   });
 
   describe('selectProductPrice', () => {
-    
+
     it('should select the product of the given id', () => {
 			const selector = store.pipe(select(selectProductPrice, { id: mockProduct.id }));
 			const expected = cold('a', { a: mockProduct.price });
@@ -111,7 +111,7 @@ describe('selectProductEntitiesState', () => {
   });
 
   describe('selectProductDiscountAmount', () => {
-    
+
     it('should select the product discount amount of the given id', () => {
 			const selector = store.pipe(select(selectProductDiscountAmount, { id: mockProduct.id }));
 			const expected = cold('a', { a: mockProduct.discount.amount });
@@ -121,7 +121,7 @@ describe('selectProductEntitiesState', () => {
   });
 
   describe('selectProductDiscountedPrice', () => {
-    
+
     it('should select the product of the given id', () => {
 			const selector = store.pipe(select(selectProductDiscountedPrice, { id: mockProduct.id }));
 			const expected = cold('a', { a: daffSubtract(mockProduct.price, mockProduct.discount.amount) });
@@ -131,7 +131,7 @@ describe('selectProductEntitiesState', () => {
 	});
 
   describe('selectProductDiscountPercent', () => {
-    
+
     it('should select the product discount amount of the given id', () => {
 			const selector = store.pipe(select(selectProductDiscountPercent, { id: mockProduct.id }));
 			const expected = cold('a', { a: mockProduct.discount.percent });
@@ -141,7 +141,7 @@ describe('selectProductEntitiesState', () => {
   });
 
   describe('selectProductHasDiscount', () => {
-    
+
     it('should select whether the product has a discount', () => {
 			const selector = store.pipe(select(selectProductHasDiscount, { id: mockProduct.id }));
 			const expected = cold('a', { a: !!mockProduct.discount.amount });
@@ -151,14 +151,14 @@ describe('selectProductEntitiesState', () => {
   });
 
   describe('selectIsProductOutOfStock', () => {
-    
+
     it('should select whether the product is out of stock', () => {
 			const selector = store.pipe(select(selectIsProductOutOfStock, { id: mockProduct.id }));
 			const expected = cold('a', { a: !mockProduct.in_stock });
 
 			expect(selector).toBeObservable(expected);
 		});
-    
+
     it('should return null if the product is not in state', () => {
 			const selector = store.pipe(select(selectIsProductOutOfStock, { id: mockProduct + 'notId' }));
 			const expected = cold('a', { a: null });

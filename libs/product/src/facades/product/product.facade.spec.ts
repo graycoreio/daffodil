@@ -4,7 +4,7 @@ import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
 import {
-	DaffProductLoad, 
+	DaffProductLoad,
 	DaffProductLoadSuccess,
 	daffProductReducers,
 	DaffProductReducersState
@@ -30,8 +30,8 @@ describe('DaffProductFacade', () => {
       ]
     })
 
-    store = TestBed.get(Store);
-    facade = TestBed.get(DaffProductFacade);
+    store = TestBed.inject(Store);
+    facade = TestBed.inject(DaffProductFacade);
   });
 
   it('should be created', () => {
@@ -52,7 +52,7 @@ describe('DaffProductFacade', () => {
       const expected = cold('a', { a: false });
       expect(facade.loading$).toBeObservable(expected);
     });
-  
+
     it('should be true if the product state is loading', () => {
       const expected = cold('a', { a: true });
       store.dispatch(new DaffProductLoad('1'));
@@ -94,7 +94,7 @@ describe('DaffProductFacade', () => {
       expect(facade.getPrice(product.id)).toBeObservable(expected);
 		});
 	});
-	
+
 	describe('hasDiscount()', () => {
 		it('should be an observable of whether the given product has discount', () => {
 			const product = {id: '1', name: 'Some Name', images: [], discount: { amount: 20, percent: 10 }};
@@ -104,7 +104,7 @@ describe('DaffProductFacade', () => {
       expect(facade.hasDiscount(product.id)).toBeObservable(expected);
 		});
 	});
-	
+
 	describe('getDiscountAmount()', () => {
 		it('should be an observable of whether the given product has discount', () => {
 			const product = {id: '1', name: 'Some Name', images: [], discount: { amount: 20, percent: 10 }};
@@ -114,7 +114,7 @@ describe('DaffProductFacade', () => {
       expect(facade.getDiscountAmount(product.id)).toBeObservable(expected);
 		});
 	});
-	
+
 	describe('getDiscountedPrice()', () => {
 		it('should be an observable of the discounted price of a product', () => {
 			const product = new DaffProductFactory().create();
@@ -124,7 +124,7 @@ describe('DaffProductFacade', () => {
       expect(facade.getDiscountedPrice(product.id)).toBeObservable(expected);
 		});
 	});
-	
+
 	describe('getDiscountPercent()', () => {
 		it('should be an observable of whether the given product has discount', () => {
 			const product = {id: '1', name: 'Some Name', images: [], discount: { amount: 20, percent: 10 }};
@@ -134,7 +134,7 @@ describe('DaffProductFacade', () => {
       expect(facade.getDiscountPercent(product.id)).toBeObservable(expected);
 		});
 	});
-	
+
 	describe('isOutOfStock()', () => {
 		it('should be an observable of whether the given product is out of stock', () => {
 			const product = {id: '1', name: 'Some Name', images: [], discount: { amount: 20, percent: 10 }, in_stock: false};

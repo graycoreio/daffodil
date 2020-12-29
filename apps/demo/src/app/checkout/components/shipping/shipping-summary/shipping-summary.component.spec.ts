@@ -55,7 +55,7 @@ describe('ShippingSummaryComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
-    shippingOptionsService = TestBed.get(ShippingOptionsService);
+    shippingOptionsService = TestBed.inject(ShippingOptionsService);
     wrapper = fixture.componentInstance;
     fixture.detectChanges();
 

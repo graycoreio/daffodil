@@ -5,7 +5,7 @@ import { DaffCategoryPageConfigurationState, DaffCategoryRequest } from '@daffod
 import { DaffCategoryPageConfigurationStateFactory } from './category-page-configuration-state.factory';
 
 describe('Category | Testing | Factories | DaffCategoryPageConfigurationStateFactory', () => {
-  
+
   let categoryPageConfigurationStateFactory;
 
   beforeEach(() => {
@@ -13,7 +13,7 @@ describe('Category | Testing | Factories | DaffCategoryPageConfigurationStateFac
       providers: [DaffCategoryPageConfigurationStateFactory]
     });
 
-    categoryPageConfigurationStateFactory = TestBed.get(DaffCategoryPageConfigurationStateFactory);
+    categoryPageConfigurationStateFactory = TestBed.inject(DaffCategoryPageConfigurationStateFactory);
   });
 
   it('should be created', () => {
@@ -27,12 +27,12 @@ describe('Category | Testing | Factories | DaffCategoryPageConfigurationStateFac
     beforeEach(() => {
       result = categoryPageConfigurationStateFactory.create();
     });
-    
+
     it('should return a DaffCategoryPageConfigurationState with all required fields defined', () => {
-      expect(result.id).toBeDefined(); 
-      expect(result.sort_options[0].label).toBeDefined(); 
-      expect(result.sort_options[0].value).toBeDefined(); 
-      expect(result.total_pages).toBeDefined(); 
+      expect(result.id).toBeDefined();
+      expect(result.sort_options[0].label).toBeDefined();
+      expect(result.sort_options[0].value).toBeDefined();
+      expect(result.total_pages).toBeDefined();
       expect(result.filters).toBeDefined();
 			expect(result.filter_requests).toBeDefined();
 			expect(result.product_ids).toBeDefined();

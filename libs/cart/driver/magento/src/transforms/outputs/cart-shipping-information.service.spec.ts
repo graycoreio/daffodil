@@ -30,12 +30,12 @@ describe('Driver | Magento | Cart | Transformer | MagentoShippingInformation', (
       ]
     });
 
-    service = TestBed.get(DaffMagentoCartShippingInformationTransformer);
+    service = TestBed.inject(DaffMagentoCartShippingInformationTransformer);
 
-    daffCartShippingInformationFactory = TestBed.get(DaffCartShippingRateFactory);
-    magentoCartShippingMethodFactory = TestBed.get(MagentoCartShippingMethodFactory);
+    daffCartShippingInformationFactory = TestBed.inject(DaffCartShippingRateFactory);
+    magentoCartShippingMethodFactory = TestBed.inject(MagentoCartShippingMethodFactory);
 
-    cartShippingRateTransformerSpy = TestBed.get(DaffMagentoCartShippingRateTransformer);
+    cartShippingRateTransformerSpy = TestBed.inject(DaffMagentoCartShippingRateTransformer);
 
     mockDaffShippingInformation = {
       ...daffCartShippingInformationFactory.create(),

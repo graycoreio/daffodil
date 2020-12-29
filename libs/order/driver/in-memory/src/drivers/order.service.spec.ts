@@ -26,9 +26,9 @@ describe('Driver | In Memory | Order | OrderService', () => {
       ]
     });
 
-    httpMock = TestBed.get(HttpTestingController);
-    orderFactory = TestBed.get(DaffOrderFactory);
-    service = TestBed.get(DaffInMemoryOrderService);
+    httpMock = TestBed.inject(HttpTestingController);
+    orderFactory = TestBed.inject(DaffOrderFactory);
+    service = TestBed.inject(DaffInMemoryOrderService);
 
     mockOrder = orderFactory.create();
     orderId = mockOrder.id;

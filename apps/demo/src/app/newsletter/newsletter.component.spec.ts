@@ -41,7 +41,7 @@ describe('NewsletterComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NewsletterComponent);
     component = fixture.componentInstance;
-    facade = TestBed.get(DaffNewsletterFacade);
+    facade = TestBed.inject(DaffNewsletterFacade);
     fixture.detectChanges();
 
   });
@@ -72,7 +72,7 @@ describe('NewsletterComponent', () => {
     });
     it('should call onNewsletterSubmit on click', () => {
       spyOn(component, 'onNewsletterSubmit');
-      
+
       newsletterElement = fixture.debugElement.nativeElement.querySelector('button');
       newsletterElement.click();
       expect(component.onNewsletterSubmit).toHaveBeenCalled();
@@ -93,7 +93,7 @@ describe('NewsletterComponent', () => {
     });
     it('should call onNewsletterCancel on click', () => {
       spyOn(component, 'onNewsletterCancel');
-      
+
       newsletterElement = fixture.debugElement.nativeElement.querySelector('button');
       newsletterElement.click();
       expect(component.onNewsletterCancel).toHaveBeenCalled();
@@ -129,7 +129,7 @@ describe('NewsletterComponent', () => {
     });
     it('should call onNewsletterRetry on click', () => {
       spyOn(component, 'onNewsletterRetry');
-      
+
       newsletterElement = fixture.debugElement.nativeElement.querySelector('button');
       newsletterElement.click();
       expect(component.onNewsletterRetry).toHaveBeenCalled();

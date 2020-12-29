@@ -25,7 +25,7 @@ describe('selectOrderState', () => {
     });
 
     stubOrder = orderFactory.create();
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
     store.dispatch(new DaffPlaceOrderSuccess(stubOrder));
   }));
 

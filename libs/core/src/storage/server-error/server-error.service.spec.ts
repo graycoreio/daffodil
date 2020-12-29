@@ -8,7 +8,7 @@ describe('DaffServerErrorStorageService', () => {
   const errorMessage = 'The DaffServerErrorStorageService always throws an error.';
 
   beforeEach(() => {
-    service = TestBed.get(DaffServerErrorStorageService);
+    service = TestBed.inject(DaffServerErrorStorageService);
   });
 
   it('should be created', () => {

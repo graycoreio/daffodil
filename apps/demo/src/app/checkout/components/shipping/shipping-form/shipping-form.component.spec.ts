@@ -69,7 +69,7 @@ describe('ShippingFormComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
-    shippingOptionFormService = TestBed.get(ShippingOptionFormService);
+    shippingOptionFormService = TestBed.inject(ShippingOptionFormService);
     stubShippingAddress = {
       firstname: '',
       lastname: '',

@@ -4,7 +4,7 @@ import { ShippingOptionFormFactory } from './shipping-option-form.factory';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 describe('Daffodil Demo | Checkout | Shipping | Shipping Options | Factories | ShippingOptionFormFactory', () => {
-  
+
   let shippingOptionFormFactory;
 
   beforeEach(() => {
@@ -15,7 +15,7 @@ describe('Daffodil Demo | Checkout | Shipping | Shipping Options | Factories | S
       providers: [ShippingOptionFormFactory]
     });
 
-    shippingOptionFormFactory = TestBed.get(ShippingOptionFormFactory);
+    shippingOptionFormFactory = TestBed.inject(ShippingOptionFormFactory);
   });
 
   it('should be created', () => {
@@ -23,7 +23,7 @@ describe('Daffodil Demo | Checkout | Shipping | Shipping Options | Factories | S
   });
 
   describe('create', () => {
-    
+
     let result: FormGroup;
     let expectedResult;
 

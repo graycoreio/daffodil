@@ -4,7 +4,7 @@ import { ShippingRate } from '@daffodil/checkout';
 import { DaffShippingRateFactory } from './shipping-rate.factory';
 
 describe('Checkout | Testing | Shipping | Factories | CartShippingRateFactory', () => {
-  
+
   let shippingRateFactory: DaffShippingRateFactory;
 
   beforeEach(() => {
@@ -12,7 +12,7 @@ describe('Checkout | Testing | Shipping | Factories | CartShippingRateFactory', 
       providers: [DaffShippingRateFactory]
     });
 
-    shippingRateFactory = TestBed.get(DaffShippingRateFactory);
+    shippingRateFactory = TestBed.inject(DaffShippingRateFactory);
   });
 
   it('should be created', () => {
@@ -26,7 +26,7 @@ describe('Checkout | Testing | Shipping | Factories | CartShippingRateFactory', 
     beforeEach(() => {
       result = shippingRateFactory.create();
     });
-    
+
     xit('should return a ShippingRate with all required fields defined', () => {
 
     });

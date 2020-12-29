@@ -21,7 +21,7 @@ describe('DaffAcceptJsLoadingService', () => {
 
 		production = false;
 
-		service = TestBed.get(DaffAcceptJsLoadingService);
+		service = TestBed.inject(DaffAcceptJsLoadingService);
 	});
 
 	it('should be created', () => {

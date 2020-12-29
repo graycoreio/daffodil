@@ -14,7 +14,7 @@ describe('selectPaymentState', () => {
   let store: Store<DaffPaymentReducersState>;
   const paymentFactory: DaffPaymentFactory = new DaffPaymentFactory();
   let stubPaymentInfo: PaymentInfo;
-  
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -25,12 +25,12 @@ describe('selectPaymentState', () => {
     });
 
     stubPaymentInfo = paymentFactory.create();
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
     store.dispatch(new DaffUpdatePaymentInfo(stubPaymentInfo));
   }));
 
   describe('selectPaymentState', () => {
-    
+
     it('selects payment state', () => {
       const expectedPaymentState = {
         paymentInfo: stubPaymentInfo
@@ -42,7 +42,7 @@ describe('selectPaymentState', () => {
   });
 
   describe('selectPaymentInfo', () => {
-    
+
     it('selects paymentInfo state', () => {
       const selector = store.pipe(select(selectPaymentInfo));
       const expected = cold('a', { a: stubPaymentInfo });

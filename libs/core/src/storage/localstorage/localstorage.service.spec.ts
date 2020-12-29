@@ -13,7 +13,7 @@ describe('DaffLocalStorageService', () => {
 		);
 
 		it('should throw an error in a non-browser context', () => {
-			expect(() => TestBed.get(DaffLocalStorageService)).toThrowError();
+			expect(() => TestBed.inject(DaffLocalStorageService)).toThrowError();
 		});
 	});
 
@@ -25,7 +25,7 @@ describe('DaffLocalStorageService', () => {
 				providers: [{ provide: PLATFORM_ID, useValue: ɵPLATFORM_BROWSER_ID }],
 			});
 
-			service = TestBed.get(DaffLocalStorageService);
+			service = TestBed.inject(DaffLocalStorageService);
 		});
 
 		it('should be created', () => {

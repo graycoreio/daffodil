@@ -25,8 +25,8 @@ describe('DaffNewsletterFacade', () => {
         DaffNewsletterFacade
       ]
     })
-    store = TestBed.get(Store);
-    facade = TestBed.get(DaffNewsletterFacade);
+    store = TestBed.inject(Store);
+    facade = TestBed.inject(DaffNewsletterFacade);
   });
   it('should be created', () => {
     expect(facade).toBeTruthy();

@@ -36,12 +36,12 @@ describe('Driver | Magento | Geography | Transformer | Country', () => {
       ]
     });
 
-    service = TestBed.get(DaffMagentoCountryTransformer);
+    service = TestBed.inject(DaffMagentoCountryTransformer);
 
-    daffSubdivisionFactory = TestBed.get(DaffSubdivisionFactory);
-    daffCountryFactory = TestBed.get(DaffCountryFactory);
+    daffSubdivisionFactory = TestBed.inject(DaffSubdivisionFactory);
+    daffCountryFactory = TestBed.inject(DaffCountryFactory);
 
-    subdivisionTransformerSpy = TestBed.get(DaffMagentoSubdivisionTransformer);
+    subdivisionTransformerSpy = TestBed.inject(DaffMagentoSubdivisionTransformer);
 
     mockDaffCountry = daffCountryFactory.create();
     mockDaffSubdivision = daffSubdivisionFactory.create();

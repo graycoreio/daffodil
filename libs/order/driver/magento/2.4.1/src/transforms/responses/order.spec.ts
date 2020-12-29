@@ -13,7 +13,7 @@ describe('Order | Driver | Magento | 2.4.1 | Transformer | Order', () => {
   let mockMagentoOrder: MagentoOrder;
 
   beforeEach(() => {
-    testDataFactory = TestBed.get(MagentoOrderTestDataFactory);
+    testDataFactory = TestBed.inject(MagentoOrderTestDataFactory);
 
     const testData = testDataFactory.create();
     mockDaffOrder = testData.mockDaffOrder;

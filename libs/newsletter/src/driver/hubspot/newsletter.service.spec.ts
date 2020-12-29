@@ -24,7 +24,7 @@ describe('DaffNewsletterHubspotService', () => {
 			],
 		});
 
-		newsletterService = TestBed.get(DaffNewsletterHubspotService);
+		newsletterService = TestBed.inject(DaffNewsletterHubspotService);
 	});
 
 	it('should be created', () => {

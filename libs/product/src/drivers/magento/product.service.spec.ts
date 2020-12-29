@@ -41,10 +41,10 @@ describe('Product | Magento | ProductService', () => {
 			],
 		});
 
-		service = TestBed.get(DaffMagentoProductService);
-		controller = TestBed.get(ApolloTestingController);
-    magentoSimpleProductFactory = TestBed.get(MagentoProductFactory);
-    
+		service = TestBed.inject(DaffMagentoProductService);
+		controller = TestBed.inject(ApolloTestingController);
+    magentoSimpleProductFactory = TestBed.inject(MagentoProductFactory);
+
     stubSimpleProduct = magentoSimpleProductFactory.create();
 	});
 

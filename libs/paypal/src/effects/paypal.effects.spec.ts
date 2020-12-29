@@ -6,10 +6,10 @@ import { hot, cold } from 'jasmine-marbles';
 import { DaffPaypalTokenResponseFactory, DaffTestingPaypalService } from '@daffodil/paypal/testing';
 
 import { DaffPaypalEffects } from './paypal.effects';
-import { 
-	DaffGeneratePaypalExpressToken, 
-	DaffGeneratePaypalExpressTokenSuccess, 
-	DaffGeneratePaypalExpressTokenFailure 
+import {
+	DaffGeneratePaypalExpressToken,
+	DaffGeneratePaypalExpressTokenSuccess,
+	DaffGeneratePaypalExpressTokenFailure
 } from '../actions/paypal.actions';
 import { DaffPaypalServiceInterface } from '../drivers/interfaces/paypal-service.interface';
 import { DaffPaypalTokenRequest } from '../models/paypal-token-request';
@@ -35,16 +35,16 @@ describe('DaffPaypalEffects', () => {
         DaffPaypalEffects,
         provideMockActions(() => actions$),
         {
-          provide: DaffPaypalDriver, 
+          provide: DaffPaypalDriver,
           useValue: new DaffTestingPaypalService(new DaffPaypalTokenResponseFactory())
         },
       ]
     });
 
-    effects = TestBed.get(DaffPaypalEffects);
-    paypalTokenResponseFactory = TestBed.get(DaffPaypalTokenResponseFactory);
+    effects = TestBed.inject(DaffPaypalEffects);
+    paypalTokenResponseFactory = TestBed.inject(DaffPaypalTokenResponseFactory);
 
-    daffPaypalDriver = TestBed.get(DaffPaypalDriver);
+    daffPaypalDriver = TestBed.inject(DaffPaypalDriver);
 
     stubPaypalTokenResponse = paypalTokenResponseFactory.create();
   });
@@ -57,7 +57,7 @@ describe('DaffPaypalEffects', () => {
 
     let expected;
     const paypalLoadAction = new DaffGeneratePaypalExpressToken(paypalTokenRequest);
-    
+
     describe('and the call to PaypalService is successful', () => {
 
       beforeEach(() => {
@@ -66,14 +66,14 @@ describe('DaffPaypalEffects', () => {
         actions$ = hot('--a', { a: paypalLoadAction });
         expected = cold('--b', { b: paypalLoadSuccessAction });
       });
-      
+
       it('should dispatch a PaypalLoadSuccess action', () => {
         expect(effects.generatePaypalExpressToken$).toBeObservable(expected);
       });
     });
 
     describe('and the call to PaypalService fails', () => {
-      
+
       beforeEach(() => {
         const error = 'Failed to retrieve token';
         const response = cold('#', {}, error);
@@ -82,7 +82,7 @@ describe('DaffPaypalEffects', () => {
         actions$ = hot('--a', { a: paypalLoadAction });
         expected = cold('--b', { b: paypalLoadFailureAction });
       });
-      
+
       it('should dispatch a PaypalLoadFailure action', () => {
         expect(effects.generatePaypalExpressToken$).toBeObservable(expected);
       });

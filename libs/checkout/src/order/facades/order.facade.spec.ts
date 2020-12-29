@@ -29,8 +29,8 @@ describe('DaffOrderFacade', () => {
     })
 
     stubOrder = orderFactory.create();
-    store = TestBed.get(Store);
-    facade = TestBed.get(DaffOrderFacade);
+    store = TestBed.inject(Store);
+    facade = TestBed.inject(DaffOrderFacade);
   });
 
   it('should be created', () => {

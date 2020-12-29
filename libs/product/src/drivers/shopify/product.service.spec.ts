@@ -25,10 +25,10 @@ describe('Driver | Shopify | Product | ProductService', () => {
       ]
     });
 
-    controller = TestBed.get(ApolloTestingController);
+    controller = TestBed.inject(ApolloTestingController);
 
-    productService = TestBed.get(DaffShopifyProductService);
-    productFactory = TestBed.get(DaffProductFactory);
+    productService = TestBed.inject(DaffShopifyProductService);
+    productFactory = TestBed.inject(DaffProductFactory);
   });
 
   it('should be created', () => {

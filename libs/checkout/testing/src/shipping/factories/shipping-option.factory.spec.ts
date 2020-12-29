@@ -4,7 +4,7 @@ import { DaffShippingOptionFactory } from './shipping-option.factory';
 import { ShippingOption } from '@daffodil/checkout';
 
 describe('Checkout | Testing | Shipping | Factories | ShippingOptionFactory', () => {
-  
+
   let shippingOptionFactory: DaffShippingOptionFactory;
 
   beforeEach(() => {
@@ -12,7 +12,7 @@ describe('Checkout | Testing | Shipping | Factories | ShippingOptionFactory', ()
       providers: [DaffShippingOptionFactory]
     });
 
-    shippingOptionFactory = TestBed.get(DaffShippingOptionFactory);
+    shippingOptionFactory = TestBed.inject(DaffShippingOptionFactory);
   });
 
   it('should be created', () => {
@@ -20,7 +20,7 @@ describe('Checkout | Testing | Shipping | Factories | ShippingOptionFactory', ()
   });
 
   describe('create', () => {
-    
+
     let result: ShippingOption;
 
     beforeEach(() => {
@@ -28,7 +28,7 @@ describe('Checkout | Testing | Shipping | Factories | ShippingOptionFactory', ()
     });
 
     xit('should return a shipping option', () => {
-      
+
     });
   });
 

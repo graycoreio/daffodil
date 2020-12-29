@@ -7,7 +7,7 @@ describe('selectDemoSidebarState', () => {
 
   let store: Store<fromSidebar.DemoSidebarState>;
   let expectedShowSidebar: boolean;
-  
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -18,11 +18,11 @@ describe('selectDemoSidebarState', () => {
     });
 
     expectedShowSidebar = false;
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
   }));
 
   describe('demoSidebarStateSelector', () => {
-    
+
     it('selects sidebar state', () => {
       const expectedSidebarState = {
         showSidebar: expectedShowSidebar
@@ -35,7 +35,7 @@ describe('selectDemoSidebarState', () => {
   });
 
   describe('selectShowSidebar', () => {
-    
+
     it('selects showSidebar state', () => {
       store.pipe(select(fromSidebar.selectShowSidebar)).subscribe((showSidebar) => {
         expect(showSidebar).toEqual(expectedShowSidebar);

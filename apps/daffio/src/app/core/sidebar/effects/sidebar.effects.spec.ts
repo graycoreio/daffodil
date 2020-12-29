@@ -24,7 +24,7 @@ describe('Daffio | DaffioSidebarEffects', () => {
       ]
     });
 
-    effects = TestBed.get(DaffioSidebarEffects);
+    effects = TestBed.inject(DaffioSidebarEffects);
   });
 
   it('should be created', () => {
@@ -36,7 +36,7 @@ describe('Daffio | DaffioSidebarEffects', () => {
     const completion = new SidebarActions.CloseSidebar();
 
     it('should dispatch CloseSidebar with some delay', () => {
-        let expected; 
+        let expected;
 
         actions$ = hot( '--a', { a: action });
         expected = cold('---b', { b: completion });

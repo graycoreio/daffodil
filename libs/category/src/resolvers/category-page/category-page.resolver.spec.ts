@@ -45,12 +45,12 @@ describe('DaffCategoryPageResolver', () => {
 					{ provide: PLATFORM_ID, useValue: ɵPLATFORM_SERVER_ID }
 				]
 			});
-	
-			categoryResolver = TestBed.get(DaffCategoryPageResolver);
-			categoryFactory = TestBed.get(DaffCategoryFactory);
+
+			categoryResolver = TestBed.inject(DaffCategoryPageResolver);
+			categoryFactory = TestBed.inject(DaffCategoryFactory);
 			stubCategory = categoryFactory.create();
-			store = TestBed.get(Store);
-			route = TestBed.get(ActivatedRoute);
+			store = TestBed.inject(Store);
+			route = TestBed.inject(ActivatedRoute);
 		}));
 
 		it('should dispatch a DaffCategoryPageLoad action with the correct category id', () => {
@@ -108,12 +108,12 @@ describe('DaffCategoryPageResolver', () => {
 					{ provide: PLATFORM_ID, useValue: ɵPLATFORM_BROWSER_ID }
 				]
 			});
-	
-			categoryResolver = TestBed.get(DaffCategoryPageResolver);
-			categoryFactory = TestBed.get(DaffCategoryFactory);
+
+			categoryResolver = TestBed.inject(DaffCategoryPageResolver);
+			categoryFactory = TestBed.inject(DaffCategoryFactory);
 			stubCategory = categoryFactory.create();
-			store = TestBed.get(Store);
-			route = TestBed.get(ActivatedRoute);
+			store = TestBed.inject(Store);
+			route = TestBed.inject(ActivatedRoute);
 		}));
 
 		it('should dispatch a DaffCategoryPageLoad action with the correct category id', () => {

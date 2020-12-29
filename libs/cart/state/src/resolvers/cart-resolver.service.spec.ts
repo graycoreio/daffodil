@@ -45,11 +45,11 @@ describe('DaffCartResolver', () => {
       ]
     });
 
-    cartResolver = TestBed.get(DaffCartResolver);
-    cartFactory = TestBed.get(DaffCartFactory);
+    cartResolver = TestBed.inject(DaffCartResolver);
+    cartFactory = TestBed.inject(DaffCartFactory);
     stubCart = cartFactory.create();
-    store = TestBed.get(Store);
-    router = TestBed.get(Router);
+    store = TestBed.inject(Store);
+    router = TestBed.inject(Router);
 
     spyOn(router, 'navigateByUrl');
   }));

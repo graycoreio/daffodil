@@ -28,9 +28,9 @@ describe('DaffShippingFacade', () => {
         DaffShippingFacade,
       ]
     })
-    
-    store = TestBed.get(Store);
-    facade = TestBed.get(DaffShippingFacade);
+
+    store = TestBed.inject(Store);
+    facade = TestBed.inject(DaffShippingFacade);
     stubShippingAddress = addressFactory.create();
     stubSelectedShippingOptionId = '0';
     stubIsShippingAddressValid = true;
@@ -50,7 +50,7 @@ describe('DaffShippingFacade', () => {
   });
 
   describe('shippingAddress$', () => {
-  
+
     it('should return the shipping address for the customer', () => {
       const expected = cold('a', { a: stubShippingAddress });
       store.dispatch(new DaffUpdateShippingAddress(stubShippingAddress));
@@ -59,7 +59,7 @@ describe('DaffShippingFacade', () => {
   });
 
   describe('selectedShippingOptionId$', () => {
-  
+
     it('should return the selected shipping option id', () => {
       const expected = cold('a', { a: stubSelectedShippingOptionId });
       store.dispatch(new DaffSelectShippingOption(stubSelectedShippingOptionId));
@@ -68,7 +68,7 @@ describe('DaffShippingFacade', () => {
   });
 
   describe('isShippingAddressValid$', () => {
-  
+
     it('should return whether the shipping address given is valid', () => {
       const expected = cold('a', { a: stubIsShippingAddressValid });
       store.dispatch(new DaffUpdateShippingAddress(stubShippingAddress));

@@ -20,7 +20,7 @@ describe('selectBestSellersState', () => {
 		selectBestSellersState,
 		selectBestSellersIdsState
 	} = getDaffBestSellersSelectors();
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -31,15 +31,15 @@ describe('selectBestSellersState', () => {
     });
 
     mockProduct = productFactory.create();
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
 
     store.dispatch(new DaffBestSellersLoadSuccess(new Array(mockProduct)));
   });
 
   describe('BestSellersState', () => {
-    
+
     describe('selectBestSellersState', () => {
-    
+
       it('selects best seller grid state', () => {
         const expectedState = {
           productIds: [mockProduct.id],
@@ -48,27 +48,27 @@ describe('selectBestSellersState', () => {
         }
 				const selector = store.pipe(select(selectBestSellersState));
 				const expected = cold('a', { a: expectedState });
-	
+
 				expect(selector).toBeObservable(expected);
       });
     });
-  
+
     describe('selectBestSellersLoadingState', () => {
-      
+
       it('selects best sellers loading state', () => {
 				const selector = store.pipe(select(selectBestSellersLoadingState));
 				const expected = cold('a', { a: false });
-	
+
 				expect(selector).toBeObservable(expected);
       });
     });
 
     describe('selectBestSellersIdsState', () => {
-      
+
       it('selects best sellers ids state', () => {
 				const selector = store.pipe(select(selectBestSellersIdsState));
 				const expected = cold('a', { a: [mockProduct.id] });
-	
+
 				expect(selector).toBeObservable(expected);
       });
     });
@@ -77,7 +77,7 @@ describe('selectBestSellersState', () => {
 			it('should return the list of best sellers off the product entity state', () => {
 				const selector = store.pipe(select(selectBestSellersProducts));
 				const expected = cold('a', { a: [mockProduct] });
-	
+
 				expect(selector).toBeObservable(expected);
       });
     });

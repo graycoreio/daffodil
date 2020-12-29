@@ -24,8 +24,8 @@ describe('Demo | Auth | MemberOnlyGuard', () => {
       ]
     });
 
-    guard = TestBed.get(MemberOnlyGuard);
-    mockFacade = TestBed.get(DaffAuthFacade);
+    guard = TestBed.inject(MemberOnlyGuard);
+    mockFacade = TestBed.inject(DaffAuthFacade);
   });
 
   describe('isAuthenticated | checking if the user is authenticated', () => {

@@ -70,10 +70,10 @@ describe('DaffCategoryPageEffects', () => {
       ]
     });
 
-    effects = TestBed.get(DaffCategoryPageEffects);
-    store = TestBed.get(Store);
-    categoryFactory = TestBed.get(DaffCategoryFactory);
-    categoryPageConfigurationStateFactory = TestBed.get(DaffCategoryPageConfigurationStateFactory);
+    effects = TestBed.inject(DaffCategoryPageEffects);
+    store = TestBed.inject(Store);
+    categoryFactory = TestBed.inject(DaffCategoryFactory);
+    categoryPageConfigurationStateFactory = TestBed.inject(DaffCategoryPageConfigurationStateFactory);
     productFactory = new DaffProductFactory();
 
 		stubCategory = categoryFactory.create();
@@ -81,7 +81,7 @@ describe('DaffCategoryPageEffects', () => {
 		stubCategory.id = stubCategoryPageConfigurationState.id;
 		stubProducts = productFactory.createMany(3);
 
-    daffCategoryDriver = TestBed.get(DaffCategoryDriver);
+    daffCategoryDriver = TestBed.inject(DaffCategoryDriver);
 
 		daffCategoryDriverSpy.get.and.returnValue(of({
 			category: stubCategory,

@@ -24,7 +24,7 @@ describe('Driver | In Memory | InMemoryService', () => {
       ]
     });
 
-    service = TestBed.get(DemoInMemoryBackendService);
+    service = TestBed.inject(DemoInMemoryBackendService);
   });
 
   it('should be created', () => {

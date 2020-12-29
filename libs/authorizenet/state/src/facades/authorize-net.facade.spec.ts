@@ -27,8 +27,8 @@ describe('DaffAuthorizeNetFacade', () => {
       ]
     })
 
-    store = TestBed.get(Store);
-    facade = TestBed.get(DaffAuthorizeNetFacade);
+    store = TestBed.inject(Store);
+    facade = TestBed.inject(DaffAuthorizeNetFacade);
 
     mockError = {
       code: 'code',
@@ -37,7 +37,7 @@ describe('DaffAuthorizeNetFacade', () => {
   });
 
   it('should be created', () => {
-    const service: DaffAuthorizeNetFacade = TestBed.get(DaffAuthorizeNetFacade);
+    const service: DaffAuthorizeNetFacade = TestBed.inject(DaffAuthorizeNetFacade);
     expect(service).toBeTruthy();
   });
 

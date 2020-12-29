@@ -35,7 +35,7 @@ describe('Daff Paypal Selectors', () => {
     });
 
     stubPaypalTokenResponse = navigationTreeFactory.create();
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
 
     store.dispatch(new DaffGeneratePaypalExpressTokenSuccess(stubPaypalTokenResponse));
   });

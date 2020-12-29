@@ -16,8 +16,8 @@ describe('Driver | InMemory | Category | DaffInMemoryBackendCategoryService', ()
       ]
     });
 
-    inMemoryBackendProductService = TestBed.get(DaffInMemoryBackendProductService);
-    categoryTestingService = TestBed.get(DaffInMemoryBackendCategoryService);
+    inMemoryBackendProductService = TestBed.inject(DaffInMemoryBackendProductService);
+    categoryTestingService = TestBed.inject(DaffInMemoryBackendCategoryService);
   });
 
   it('should be created', () => {
@@ -25,7 +25,7 @@ describe('Driver | InMemory | Category | DaffInMemoryBackendCategoryService', ()
   });
 
   describe('get', () => {
-      
+
     let reqInfoStub;
     let result;
     const stubPageSize = 5;
@@ -65,7 +65,7 @@ describe('Driver | InMemory | Category | DaffInMemoryBackendCategoryService', ()
 			const pageSize = result.body.categoryPageConfigurationState.page_size;
       expect(result.body.categoryPageConfigurationState.total_pages).toEqual(Math.ceil(totalProducts/pageSize));
 		});
-		
+
 		it('should set no more products on the category than the page_size', () => {
 			expect(result.body.categoryPageConfigurationState.product_ids.length).toBeLessThanOrEqual(result.body.categoryPageConfigurationState.page_size);
 		});

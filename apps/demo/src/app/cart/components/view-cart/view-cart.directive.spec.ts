@@ -19,8 +19,8 @@ describe('ViewCartDirective', () => {
       imports: [
         RouterTestingModule
       ],
-      declarations: [ 
-        ViewCartDirective, 
+      declarations: [
+        ViewCartDirective,
         WrapperComponent
       ]
     })
@@ -28,7 +28,7 @@ describe('ViewCartDirective', () => {
   }));
 
   beforeEach(() => {
-    router = TestBed.get(Router);
+    router = TestBed.inject(Router);
     spyOn(router, 'navigateByUrl');
 
     fixture = TestBed.createComponent(WrapperComponent);
@@ -41,7 +41,7 @@ describe('ViewCartDirective', () => {
   });
 
   describe('when [demoViewCart] is clicked', () => {
-    
+
     it('should call router.navigateByUrl', () => {
       fixture.debugElement.query(By.css('[demoViewCart]')).nativeElement.click();
 

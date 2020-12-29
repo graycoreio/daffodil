@@ -31,9 +31,9 @@ describe('ShippingContainer', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ShippingContainer);
     component = fixture.componentInstance;
-    
-    store = TestBed.get(Store);
-    addressFactory = TestBed.get(DaffAddressFactory);
+
+    store = TestBed.inject(Store);
+    addressFactory = TestBed.inject(DaffAddressFactory);
 
     initialShippingAddress = addressFactory.create();
     stubSelectedShippingOptionId = '0';
@@ -78,7 +78,7 @@ describe('ShippingContainer', () => {
   });
 
   describe('updateShippingAddress', () => {
-    
+
     it('should call store.dispatch with UpdateShippingAddress action', () => {
       component.updateShippingAddress(initialShippingAddress);
 
@@ -87,7 +87,7 @@ describe('ShippingContainer', () => {
   });
 
   describe('selectShippingOption', () => {
-    
+
     it('should call store.dispatch with SelectShippingOption action', () => {
       component.selectShippingOption(stubSelectedShippingOptionId);
 

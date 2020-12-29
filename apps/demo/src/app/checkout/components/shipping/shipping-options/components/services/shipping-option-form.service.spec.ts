@@ -18,8 +18,8 @@ describe('Daffodil Demo | Checkout | Shipping | Shipping Options | Services | Sh
         ShippingOptionFormFactory
       ]
     });
-    shippingOptionsService = TestBed.get(ShippingOptionFormService);
-    shippingOptionFormFactory = TestBed.get(ShippingOptionFormFactory);
+    shippingOptionsService = TestBed.inject(ShippingOptionFormService);
+    shippingOptionFormFactory = TestBed.inject(ShippingOptionFormFactory);
   });
 
   it('should be created', () => {
@@ -27,7 +27,7 @@ describe('Daffodil Demo | Checkout | Shipping | Shipping Options | Services | Sh
   });
 
   describe('getShippingOptionFormGroup', () => {
-      
+
     it('should return shippingOptionForm', () => {
       expect(shippingOptionsService.getShippingOptionFormGroup().value).toEqual(shippingOptionFormFactory.create().value);
     });

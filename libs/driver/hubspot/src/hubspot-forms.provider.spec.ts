@@ -11,7 +11,7 @@ import { DaffHubspotFormsService, daffHubspotFormsServiceFactory} from '@daffodi
 
 describe('DaffHubspotForms Factory Provider', () => {
   let hubspotService: DaffHubspotFormsService;
- 
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports:[
@@ -30,10 +30,10 @@ describe('DaffHubspotForms Factory Provider', () => {
           ],
         }
       ],
-      
+
     })
-    hubspotService = TestBed.get(DaffHubspotFormsService);
-    
+    hubspotService = TestBed.inject(DaffHubspotFormsService);
+
 
   });
   it('should create a DaffHubspotFormsService', () => {

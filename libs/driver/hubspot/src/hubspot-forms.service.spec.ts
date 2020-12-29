@@ -28,13 +28,13 @@ describe('DaffHubspotFormsService', () => {
       ]
     });
 
-    httpMock = TestBed.get(HttpTestingController);
-    doc = TestBed.get(DOCUMENT);
-    httpClient = TestBed.get(HttpClient);
+    httpMock = TestBed.inject(HttpTestingController);
+    doc = TestBed.inject(DOCUMENT);
+    httpClient = TestBed.inject(HttpClient);
     config =  { portalId: '999', guid: '999', version: 'v3' };
-    route = TestBed.get(Router);
-    title = TestBed.get(Title);
-    formsService = new DaffHubspotFormsService(httpClient, 
+    route = TestBed.inject(Router);
+    title = TestBed.inject(Title);
+    formsService = new DaffHubspotFormsService(httpClient,
       doc,
       route,
       title,

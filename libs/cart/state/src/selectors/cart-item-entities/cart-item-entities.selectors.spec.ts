@@ -49,7 +49,7 @@ describe('selectCartItemEntitiesState', () => {
 		mockCartItems = statefulCartItemFactory.createMany(2);
 		mockStatefulConfigurableCartItems = statefulConfigurableCartItemFactory.createMany(2);
 		mockStatefulCompositeCartItems = statefulCompositeCartItemFactory.createMany(2);
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
 
     store.dispatch(new DaffCartItemListSuccess(mockCartItems));
   });
@@ -198,7 +198,7 @@ describe('selectCartItemEntitiesState', () => {
   });
 
   describe('selectCartItemState', () => {
-		
+
 		it('should return the state of the cart item', () => {
 			store.dispatch(new DaffCartItemListSuccess(mockCartItems));
 			const selector = store.pipe(select(selectCartItemState, { id: mockCartItems[0].item_id }));
@@ -206,7 +206,7 @@ describe('selectCartItemEntitiesState', () => {
 
 			expect(selector).toBeObservable(expected);
 		});
-    
+
     it('should return null if the cart item is not in state', () => {
 			const selector = store.pipe(select(selectCartItemState, { id: mockCartItems[0].item_id + 'notId' }));
 			const expected = cold('a', { a: null });

@@ -34,7 +34,7 @@ describe('ImageGalleryComponent', () => {
       imports: [
         DaffImageGalleryModule
       ],
-      declarations: [ 
+      declarations: [
         WrapperComponent,
         ImageGalleryComponent
       ],
@@ -47,9 +47,9 @@ describe('ImageGalleryComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
-    wrapper = fixture.componentInstance;  
-    
-    store = TestBed.get(Store);
+    wrapper = fixture.componentInstance;
+
+    store = TestBed.inject(Store);
     store.overrideSelector(fromDemoImageGallery.selectSelectedImage, stubImages[activeImageIndex].url);
 
     fixture.detectChanges();
@@ -87,7 +87,7 @@ describe('ImageGalleryComponent', () => {
   });
 
   describe('when img is clicked', () => {
-    
+
     it('should call select with image.url', () => {
       spyOn(imageGalleryContainer, 'select');
       daffGalleryImages[activeImageIndex].query(By.css('img')).nativeElement.click();
@@ -99,14 +99,14 @@ describe('ImageGalleryComponent', () => {
   describe('ngOnInit', () => {
 
     beforeEach(() => {
-      spyOn(imageGalleryContainer, 'select'); 
+      spyOn(imageGalleryContainer, 'select');
       imageGalleryContainer.ngOnInit();
     });
-      
+
     it('should call select with the first image', () => {
       expect(imageGalleryContainer.select).toHaveBeenCalledWith(imageGalleryContainer.images[0].url);
     });
-    
+
     it('should initialize selectedImage$', () => {
       const expected = cold('a', { a: imageGalleryContainer.images[0].url });
       expect(imageGalleryContainer.selectedImage$).toBeObservable(expected);
@@ -115,7 +115,7 @@ describe('ImageGalleryComponent', () => {
   });
 
   describe('select', () => {
-    
+
     beforeEach(() => {
       spyOn(store, 'dispatch');
     });

@@ -27,10 +27,10 @@ describe('DaffPaymentFacade', () => {
         DaffPaymentFacade,
       ]
     })
-    
+
     stubPayment = paymentFactory.create();
-    store = TestBed.get(Store);
-    facade = TestBed.get(DaffPaymentFacade);
+    store = TestBed.inject(Store);
+    facade = TestBed.inject(DaffPaymentFacade);
   });
 
   it('should be created', () => {

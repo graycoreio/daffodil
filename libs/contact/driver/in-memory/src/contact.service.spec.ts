@@ -19,8 +19,8 @@ describe('The DaffInMemoryContactService', () => {
         DaffInMemoryContactService
       ]
     });
-    httpMock = TestBed.get(HttpTestingController);
-    contactService = TestBed.get<DaffInMemoryContactService>(DaffInMemoryContactService);
+    httpMock = TestBed.inject(HttpTestingController);
+    contactService = TestBed.inject<DaffInMemoryContactService>(DaffInMemoryContactService);
   });
   afterEach(() => {
     httpMock.verify();

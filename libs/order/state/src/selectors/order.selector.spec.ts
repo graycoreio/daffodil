@@ -38,8 +38,8 @@ describe('Order | Selector | Order', () => {
       ]
     });
 
-    store = TestBed.get(Store);
-    orderFactory = TestBed.get(DaffOrderFactory);
+    store = TestBed.inject(Store);
+    orderFactory = TestBed.inject(DaffOrderFactory);
 
     mockOrder = orderFactory.create();
     loading = false;

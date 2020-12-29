@@ -34,10 +34,10 @@ describe('BillingContainer', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BillingContainer);
     component = fixture.componentInstance;
-    
-    store = TestBed.get(Store);
-    addressFactory = TestBed.get(DaffAddressFactory);
-    paymentFactory = TestBed.get(DaffPaymentFactory);
+
+    store = TestBed.inject(Store);
+    addressFactory = TestBed.inject(DaffAddressFactory);
+    paymentFactory = TestBed.inject(DaffPaymentFactory);
 
     initialBillingAddress = addressFactory.create();
     initialBillingAddressIsShippingAddress = false;
@@ -82,7 +82,7 @@ describe('BillingContainer', () => {
   });
 
   describe('updateBillingAddress', () => {
-    
+
     it('should call store.dispatch with DaffUpdateBillingAddress action', () => {
       component.updateBillingAddress(initialBillingAddress);
 
@@ -91,7 +91,7 @@ describe('BillingContainer', () => {
   });
 
   describe('toggleBillingAddressIsShippingAddress', () => {
-    
+
     it('should call store.dispatch with DaffToggleBillingAddressIsShippingAddress action', () => {
       component.toggleBillingAddressIsShippingAddress();
 
@@ -100,7 +100,7 @@ describe('BillingContainer', () => {
   });
 
   describe('updatePaymentInfo', () => {
-    
+
     it('should call store.dispatch with DaffUpdatePaymentInfo action', () => {
       component.updatePaymentInfo(initialPaymentInfo);
 

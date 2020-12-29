@@ -29,7 +29,7 @@ describe('DaffNavigationSelectors', () => {
     });
 
     mockNavigation = navigationTreeFactory.create();
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
 
     store.dispatch(new DaffNavigationLoadSuccess(mockNavigation));
   });

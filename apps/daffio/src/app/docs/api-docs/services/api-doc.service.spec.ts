@@ -15,8 +15,8 @@ describe('DaffioApiDocService', () => {
       ]
     });
 
-    httpTestingController = TestBed.get(HttpTestingController);
-    service = TestBed.get(DaffioApiDocService);
+    httpTestingController = TestBed.inject(HttpTestingController);
+    service = TestBed.inject(DaffioApiDocService);
   });
 
   afterEach(() => {

@@ -13,7 +13,7 @@ describe('Cart | State | Testing | Factories | StatefulConfigurableCartItemFacto
       providers: [DaffStatefulConfigurableCartItemFactory]
     });
 
-    statefulConfigurableCartItemFactory = TestBed.get(DaffStatefulConfigurableCartItemFactory);
+    statefulConfigurableCartItemFactory = TestBed.inject(DaffStatefulConfigurableCartItemFactory);
   });
 
   it('should be created', () => {

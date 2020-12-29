@@ -7,7 +7,7 @@ import { initialState } from './sidebar.reducer';
 describe('selectDaffioSidebarState', () => {
 
   let store: Store<fromSidebar.DaffioSidebarState>;
-  
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -17,11 +17,11 @@ describe('selectDaffioSidebarState', () => {
       ]
     });
 
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
   }));
 
   describe('daffioSidebarStateSelector', () => {
-    
+
     it('selects sidebar state', () => {
       store.pipe(select(fromSidebar.daffioSidebarStateSelector)).subscribe((sidebarState) => {
         expect(sidebarState).toEqual(initialState);
@@ -30,7 +30,7 @@ describe('selectDaffioSidebarState', () => {
   });
 
   describe('selectShowSidebar', () => {
-    
+
     it('selects showSidebar state', () => {
       store.pipe(select(fromSidebar.selectShowSidebar)).subscribe((showSidebar) => {
         expect(showSidebar).toEqual(initialState.showSidebar);

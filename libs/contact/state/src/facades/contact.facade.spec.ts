@@ -26,8 +26,8 @@ describe('the DaffContactFacade', () => {
 			],
 			providers: [DaffContactFacade],
 		});
-		store = TestBed.get(Store);
-		facade = TestBed.get(DaffContactFacade);
+		store = TestBed.inject(Store);
+		facade = TestBed.inject(DaffContactFacade);
 	});
 	it('should be created', () => {
 		expect(facade).toBeTruthy();

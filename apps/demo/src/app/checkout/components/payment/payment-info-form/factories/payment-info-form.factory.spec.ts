@@ -6,7 +6,7 @@ import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 import { PaymentInfoFormFactory } from './payment-info-form.factory';
 
 describe('Daffodil Demo | Checkout | Forms | Payment Info Form | Factories | PaymentInfoFormFactory', () => {
-  
+
   let paymentInfoFormFactory;
   let paymentFactory: DaffPaymentFactory;
 
@@ -18,8 +18,8 @@ describe('Daffodil Demo | Checkout | Forms | Payment Info Form | Factories | Pay
       providers: [PaymentInfoFormFactory]
     });
 
-    paymentInfoFormFactory = TestBed.get(PaymentInfoFormFactory);
-    paymentFactory = TestBed.get(DaffPaymentFactory);
+    paymentInfoFormFactory = TestBed.inject(PaymentInfoFormFactory);
+    paymentFactory = TestBed.inject(DaffPaymentFactory);
   });
 
   it('should be created', () => {
@@ -27,13 +27,13 @@ describe('Daffodil Demo | Checkout | Forms | Payment Info Form | Factories | Pay
   });
 
   describe('create', () => {
-    
+
     let result: FormGroup;
     let expectedResult;
     let paymentInfo;
 
     describe('when paymentInfo is null', () => {
-      
+
       beforeEach(() => {
         paymentInfo = null;
         expectedResult = paymentFactory.create({
@@ -43,10 +43,10 @@ describe('Daffodil Demo | Checkout | Forms | Payment Info Form | Factories | Pay
           year: '',
           securitycode: ''
         });
-  
+
         result = paymentInfoFormFactory.create(paymentInfo);
       });
-  
+
       it('should return the default FormGroup', () => {
         expect(result.value).toEqual(expectedResult);
       });
@@ -59,7 +59,7 @@ describe('Daffodil Demo | Checkout | Forms | Payment Info Form | Factories | Pay
 
         result = paymentInfoFormFactory.create(paymentInfo);
       });
-      
+
       it('should return a FormGroup with the paymentInfo values', () => {
         expect(result.value).toEqual(paymentInfo);
       });

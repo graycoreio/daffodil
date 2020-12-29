@@ -34,10 +34,10 @@ describe('DaffInMemoryBackendCartService', () => {
         DaffInMemoryBackendCartService,
       ]
     });
-    service = TestBed.get(DaffInMemoryBackendCartService);
+    service = TestBed.inject(DaffInMemoryBackendCartService);
 
-    cartFactory = TestBed.get(DaffCartFactory);
-    cartItemFactory = TestBed.get(DaffCartItemFactory);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartItemFactory = TestBed.inject(DaffCartItemFactory);
 
     mockCart = cartFactory.create();
     mockCartItem = cartItemFactory.create();
@@ -76,13 +76,13 @@ describe('DaffInMemoryBackendCartService', () => {
       reqInfoStub.url = baseUrl;
 
     });
-		
+
     it('should return the cart', () => {
 			result = service.get(reqInfoStub);
       expect(result.body).toEqual(mockCart);
       expect(result.status).toEqual(STATUS.OK);
 		});
-		
+
 		it('should return an error response when the cart does not exist', () => {
 			reqInfoStub.id = null;
 			result = service.get(reqInfoStub);

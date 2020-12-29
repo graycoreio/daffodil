@@ -95,7 +95,7 @@ describe('PaymentFormComponent', () => {
     paymentInfoFormFactorySpy.create.and.returnValue(stubPaymentInfoFormGroup);
 
     fixture = TestBed.createComponent(WrapperComponent);
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
     spyOn(store, 'dispatch');
     wrapper = fixture.componentInstance;
     wrapper.paymentInfoValue = stubPaymentInfo;

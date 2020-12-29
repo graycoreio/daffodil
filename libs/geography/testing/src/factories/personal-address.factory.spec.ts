@@ -12,7 +12,7 @@ describe('Geography | Interfaces | Factories | DaffPersonalAddressFactory', () =
       providers: [DaffPersonalAddressFactory]
     });
 
-    factory = TestBed.get(DaffPersonalAddressFactory);
+    factory = TestBed.inject(DaffPersonalAddressFactory);
   }));
 
   it('should be created', () => {

@@ -18,9 +18,9 @@ describe('Driver | Magento | Cart | Transformer | MagentoCartItemUpdateInput', (
       ]
     });
 
-    service = TestBed.get(DaffMagentoCartItemUpdateInputTransformer);
+    service = TestBed.inject(DaffMagentoCartItemUpdateInputTransformer);
 
-    daffCartItemFactory = TestBed.get(DaffCartItemFactory);
+    daffCartItemFactory = TestBed.inject(DaffCartItemFactory);
 
     mockDaffCartItemUpdateInput = daffCartItemFactory.create();
   });

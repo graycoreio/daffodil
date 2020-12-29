@@ -91,7 +91,7 @@ describe('PaymentComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
     store.overrideSelector(fromDemoCheckout.selectShowPaymentForm, stubShowPaymentForm)
     spyOn(store, 'dispatch');
 

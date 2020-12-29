@@ -4,7 +4,7 @@ import { DaffCompositeProductFactory } from './composite-product.factory';
 import { DaffCompositeProduct } from '@daffodil/product';
 
 describe('Product | Testing | Factories | DaffCompositeProductFactory', () => {
-  
+
   let compositeProductFactory;
 
   beforeEach(() => {
@@ -12,7 +12,7 @@ describe('Product | Testing | Factories | DaffCompositeProductFactory', () => {
       providers: [DaffCompositeProductFactory]
     });
 
-    compositeProductFactory = TestBed.get(DaffCompositeProductFactory);
+    compositeProductFactory = TestBed.inject(DaffCompositeProductFactory);
   });
 
   it('should be created', () => {
@@ -26,7 +26,7 @@ describe('Product | Testing | Factories | DaffCompositeProductFactory', () => {
     beforeEach(() => {
       result = compositeProductFactory.create();
     });
-    
+
     it('should return a Composite Product with all required fields defined', () => {
       expect(result.type).toBeDefined();
 			expect(result.id).toBeDefined();

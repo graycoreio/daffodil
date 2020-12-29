@@ -23,15 +23,15 @@ describe('DaffProductGridEffects', () => {
         DaffProductGridEffects,
         provideMockActions(() => actions$),
         {
-          provide: DaffProductDriver, 
+          provide: DaffProductDriver,
           useValue: new DaffTestingProductService(new DaffProductFactory(), new DaffProductImageFactory())
         },
       ]
     });
 
-    effects = TestBed.get(DaffProductGridEffects);
-    productFactory = TestBed.get(DaffProductFactory);
-    daffProductDriver = TestBed.get(DaffProductDriver);
+    effects = TestBed.inject(DaffProductGridEffects);
+    productFactory = TestBed.inject(DaffProductFactory);
+    daffProductDriver = TestBed.inject(DaffProductDriver);
 
     mockProductGrid = new Array(productFactory.create());
   });
@@ -44,7 +44,7 @@ describe('DaffProductGridEffects', () => {
 
     let expected;
     const productGridLoadAction = new DaffProductGridLoad();
-    
+
     describe('and the call to ProductService is successful', () => {
 
       beforeEach(() => {
@@ -53,14 +53,14 @@ describe('DaffProductGridEffects', () => {
         actions$ = hot('--a', { a: productGridLoadAction });
         expected = cold('--b', { b: productGridLoadSuccessAction });
       });
-      
+
       it('should dispatch a ProductGridLoadSuccess action', () => {
         expect(effects.loadAll$).toBeObservable(expected);
       });
     });
 
     describe('and the call to ProductService fails', () => {
-      
+
       beforeEach(() => {
         const error = 'Failed to load product grid';
         const response = cold('#', {}, error);
@@ -69,7 +69,7 @@ describe('DaffProductGridEffects', () => {
         actions$ = hot('--a', { a: productGridLoadAction });
         expected = cold('--b', { b: productGridLoadFailureAction });
       });
-      
+
       it('should dispatch a ProductGridLoadFailure action', () => {
         expect(effects.loadAll$).toBeObservable(expected);
       });

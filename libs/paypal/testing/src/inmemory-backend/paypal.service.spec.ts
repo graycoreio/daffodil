@@ -10,7 +10,7 @@ describe('Testing | Driver | InMemoryBackend | DaffInMemoryBackendPaypalService'
       providers: [DaffInMemoryBackendPaypalService]
     });
 
-    paypalTestingService = TestBed.get(DaffInMemoryBackendPaypalService);
+    paypalTestingService = TestBed.inject(DaffInMemoryBackendPaypalService);
   });
 
   it('should be created', () => {

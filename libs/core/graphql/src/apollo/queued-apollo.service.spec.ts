@@ -54,8 +54,8 @@ describe('Core | GraphQL | DaffQueuedApollo', () => {
     testScheduler = new TestScheduler((a, b) => {
       expect(a).toEqual(b)
     });
-    service = TestBed.get(DaffQueuedApollo);
-    apollo = TestBed.get(Apollo);
+    service = TestBed.inject(DaffQueuedApollo);
+    apollo = TestBed.inject(Apollo);
   });
 
   describe('mutate | queueing mutate requests', () => {

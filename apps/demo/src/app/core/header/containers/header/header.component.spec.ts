@@ -40,7 +40,7 @@ describe('DemoHeaderContainer', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DemoHeaderContainer);
     component = fixture.componentInstance;
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
     spyOn(store, 'dispatch');
     fixture.detectChanges();
   });
@@ -53,7 +53,7 @@ describe('DemoHeaderContainer', () => {
     it('should call store.dispatch with a ToggleSidebar action', () => {
       const sidebarButton = fixture.debugElement.query(By.css('[header-menu-button]')).nativeElement;
       sidebarButton.click();
-      
+
       expect(store.dispatch).toHaveBeenCalledWith(new ToggleSidebar());
     });
   });

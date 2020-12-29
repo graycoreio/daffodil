@@ -17,8 +17,8 @@ describe('Driver | Magento | Cart | Transformer | SimpleMagentoCartItem', () => 
   let mockMagentoCartItem;
 
   beforeEach(() => {
-    daffCartItemFactory = TestBed.get(DaffCartItemFactory);
-    magentoCartItemFactory = TestBed.get(MagentoCartItemFactory);
+    daffCartItemFactory = TestBed.inject(DaffCartItemFactory);
+    magentoCartItemFactory = TestBed.inject(MagentoCartItemFactory);
 
     mockDaffCartItem = daffCartItemFactory.create();
     mockMagentoCartItem = magentoCartItemFactory.create();

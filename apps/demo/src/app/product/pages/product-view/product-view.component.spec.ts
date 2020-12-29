@@ -78,8 +78,8 @@ describe('ProductViewComponent', () => {
     fixture = TestBed.createComponent(ProductViewComponent);
     component = fixture.componentInstance;
     activatedRoute.setParamMap({ id: idParam });
-		facade = TestBed.get(DaffProductFacade);
-		cartFacade = TestBed.get(DaffCartFacade);
+		facade = TestBed.inject(DaffProductFacade);
+		cartFacade = TestBed.inject(DaffCartFacade);
 
     fixture.detectChanges();
 

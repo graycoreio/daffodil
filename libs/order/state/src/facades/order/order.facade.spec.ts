@@ -46,10 +46,10 @@ describe('DaffOrderFacade', () => {
       ]
     });
 
-    store = TestBed.get(Store);
-    facade = TestBed.get(DaffOrderFacade);
-    orderFactory = TestBed.get(DaffOrderFactory);
-    orderTotalFactory = TestBed.get(DaffOrderTotalFactory);
+    store = TestBed.inject(Store);
+    facade = TestBed.inject(DaffOrderFacade);
+    orderFactory = TestBed.inject(DaffOrderFactory);
+    orderTotalFactory = TestBed.inject(DaffOrderTotalFactory);
 
     mockOrderTotal = orderTotalFactory.create();
     mockOrder = orderFactory.create({

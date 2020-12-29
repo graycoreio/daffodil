@@ -46,11 +46,11 @@ describe('DaffPlacedOrderGuard', () => {
 			]
     });
 
-		service = TestBed.get(DaffPlacedOrderGuard);
-		store = TestBed.get(Store);
-    router = TestBed.get(Router);
+		service = TestBed.inject(DaffPlacedOrderGuard);
+		store = TestBed.inject(Store);
+    router = TestBed.inject(Router);
 
-    orderFactory = TestBed.get(DaffOrderFactory);
+    orderFactory = TestBed.inject(DaffOrderFactory);
     mockOrder = orderFactory.create();
   });
 

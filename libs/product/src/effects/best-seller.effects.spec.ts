@@ -22,7 +22,7 @@ describe('BestSellersEffects', () => {
     TestBed.configureTestingModule({
       providers: [
         {
-          provide: DaffProductDriver, 
+          provide: DaffProductDriver,
           useValue: new DaffTestingProductService(new DaffProductFactory(), new DaffProductImageFactory())
         },
         DaffBestSellersEffects,
@@ -30,9 +30,9 @@ describe('BestSellersEffects', () => {
       ]
     });
 
-    effects = TestBed.get(DaffBestSellersEffects);
-    daffProductDriver = TestBed.get(DaffProductDriver);
-    productFactory = TestBed.get(DaffProductFactory);
+    effects = TestBed.inject(DaffBestSellersEffects);
+    daffProductDriver = TestBed.inject(DaffProductDriver);
+    productFactory = TestBed.inject(DaffProductFactory);
 
     mockBestSellers = new Array(productFactory.create());
   });
@@ -45,7 +45,7 @@ describe('BestSellersEffects', () => {
 
     let expected;
     const bestSellersLoadAction = new DaffBestSellersLoad();
-    
+
     describe('and the call to ProductService is successful', () => {
 
       beforeEach(() => {
@@ -54,14 +54,14 @@ describe('BestSellersEffects', () => {
         actions$ = hot('--a', { a: bestSellersLoadAction });
         expected = cold('--b', { b: bestSellersLoadSuccessAction });
       });
-      
+
       it('should dispatch a BestSellersLoadSuccess action', () => {
         expect(effects.loadBestSellers$).toBeObservable(expected);
       });
     });
 
     describe('and the call to ProductService fails', () => {
-      
+
       beforeEach(() => {
         const error = 'Failed to load best selling products';
         const response = cold('#', {}, error);
@@ -70,7 +70,7 @@ describe('BestSellersEffects', () => {
         actions$ = hot('--a', { a: bestSellersLoadAction });
         expected = cold('--b', { b: bestSellersLoadFailureAction });
       });
-      
+
       it('should dispatch a BestSellersLoadFailure action', () => {
         expect(effects.loadBestSellers$).toBeObservable(expected);
       });

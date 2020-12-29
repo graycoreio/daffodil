@@ -12,7 +12,7 @@ describe('Auth | Testing | Factories | DaffAuthTokenFactory', () => {
       providers: [DaffAuthTokenFactory]
     });
 
-    accountRegistrationFactory = TestBed.get(DaffAuthTokenFactory);
+    accountRegistrationFactory = TestBed.inject(DaffAuthTokenFactory);
   });
 
   it('should be created', () => {

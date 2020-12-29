@@ -18,7 +18,7 @@ class MockDaffBestSellersFacade {
   selector: 'demo-product-grid',
   template: ''
 })
-class MockProductGridComponent { 
+class MockProductGridComponent {
   @Input() products: DaffProduct[];
 }
 
@@ -34,7 +34,7 @@ describe('BestSellersComponent', () => {
       imports: [
         DaffLoadingIconModule
       ],
-      declarations: [ 
+      declarations: [
         BestSellersComponent,
         MockProductGridComponent
 			],
@@ -47,7 +47,7 @@ describe('BestSellersComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BestSellersComponent);
-		bestSellersFacade = TestBed.get(DaffBestSellersFacade);
+		bestSellersFacade = TestBed.inject(DaffBestSellersFacade);
 		bestSellersFacade.bestSellers$.next(stubProducts)
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -60,7 +60,7 @@ describe('BestSellersComponent', () => {
   });
 
   describe('on <demo-product-grid>', () => {
-    
+
     it('should set products', () => {
       expect(productGridComponent.products).toEqual(stubProducts);
     });
@@ -73,7 +73,7 @@ describe('BestSellersComponent', () => {
 
       fixture.detectChanges();
     });
-    
+
     it('should render .demo-best-sellers', () => {
       const bestSellersElement = fixture.debugElement.query(By.css('.demo-best-sellers'));
 
@@ -94,7 +94,7 @@ describe('BestSellersComponent', () => {
 
       fixture.detectChanges();
     });
-    
+
     it('should not render .demo-best-sellers', () => {
       const bestSellersElement = fixture.debugElement.query(By.css('.demo-best-sellers'));
 

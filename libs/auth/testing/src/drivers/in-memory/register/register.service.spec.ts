@@ -36,8 +36,8 @@ describe('Driver | InMemory | Auth | RegisterService', () => {
       ]
     });
 
-    httpMock = TestBed.get(HttpTestingController);
-    registerService = TestBed.get(DaffInMemoryRegisterService);
+    httpMock = TestBed.inject(HttpTestingController);
+    registerService = TestBed.inject(DaffInMemoryRegisterService);
 
     mockRegistration = registrationFactory.create();
 
