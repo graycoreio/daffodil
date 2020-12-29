@@ -2,6 +2,7 @@ import { NgModule, ComponentFactoryResolver, Injector } from '@angular/core';
 import { DaffCheckboxModule, DaffButtonModule } from '@daffodil/design';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { CHECKBOX_EXAMPLES } from '@daffodil/design/checkbox/examples';
 
 import { CheckboxComponent } from './checkbox.component';
 import { DesignLandCheckboxRoutingModule } from './checkbox-routing.module';

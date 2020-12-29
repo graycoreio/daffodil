@@ -27,7 +27,7 @@ export class CodePreviewComponent {
 
   ngOnChanges() {
     if(this.example){
-      this.content.nativeElement.innerHtml = "";
+      this.content.nativeElement.innerHtml = '';
       this.content.nativeElement.appendChild(document.createElement(this.example.element));
       this.selectedFile = this.example.files[0];
     }

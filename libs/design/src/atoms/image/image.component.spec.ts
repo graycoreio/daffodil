@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
-import { By, DomSanitizer } from '@angular/platform-browser';
+import { By } from '@angular/platform-browser';
 
 import { DaffImageComponent } from './image.component';
 
@@ -100,7 +100,7 @@ describe('DaffImageComponent', () => {
 
     fixture.detectChanges();
 
-    expect(wrapperDE.styles['paddingTop']).toEqual(null);
+    expect(wrapperDE.styles['paddingTop']).toEqual('');
   });
 
   it('calculates and sets `padding-top` on `.daff-image__wrapper` based on height and width', () => {
@@ -109,10 +109,10 @@ describe('DaffImageComponent', () => {
 
     fixture.detectChanges();
 
-    expect(wrapperDE.styles['paddingTop']).toEqual('calc(' + wrapper.height + ' / ' + wrapper.width + ' * 100%)');
+    expect(wrapperDE.styles['paddingTop']).toEqual('calc(33.3333%)');
   });
 
-  it('sets `max-width` on the host element based on the dwidth', () => {
+  it('sets `max-width` on the host element based on the width', () => {
     wrapper.width = 300;
 
     fixture.detectChanges();

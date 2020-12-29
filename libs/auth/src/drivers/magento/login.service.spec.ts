@@ -7,27 +7,19 @@ import { cold } from 'jasmine-marbles';
 import { catchError } from 'rxjs/operators';
 import { GraphQLError } from 'graphql';
 
+import { DaffAuthToken, DaffLoginInfo, DaffAccountRegistration, DaffAuthInvalidAPIResponseError, DaffAuthenticationFailedError, DaffUnauthorizedError } from '@daffodil/auth';
 import {
   DaffAccountRegistrationFactory,
   DaffAuthTokenFactory
 } from '@daffodil/auth/testing';
 
-import { DaffMagentoLoginService } from './login.service';
-import { DaffAccountRegistration } from '../../models/account-registration';
-import { DaffAuthToken } from '../../models/auth-token';
-import { DaffLoginInfo } from '../../models/login-info';
 import {
   generateTokenMutation,
   revokeCustomerTokenMutation,
   MagentoRevokeCustomerTokenResponse
 } from './queries/public_api';
 import { DaffMagentoAuthTransformerService } from './transforms/auth-transformer.service';
-import * as validators from './validators/public_api';
-import {
-  DaffAuthenticationFailedError,
-  DaffUnauthorizedError,
-  DaffAuthInvalidAPIResponseError
-} from '../../errors/public_api';
+import { DaffMagentoLoginService } from './login.service';
 
 describe('Driver | Magento | Auth | LoginService', () => {
   let controller: ApolloTestingController;
@@ -37,9 +29,6 @@ describe('Driver | Magento | Auth | LoginService', () => {
 
   const registrationFactory: DaffAccountRegistrationFactory = new DaffAccountRegistrationFactory();
   const authTokenFactory: DaffAuthTokenFactory = new DaffAuthTokenFactory();
-
-  let generateTokenValidatorSpy: jasmine.Spy;
-  let revokeTokenValidatorSpy: jasmine.Spy;
 
   let mockAuth: DaffAuthToken;
   let mockLoginInfo: DaffLoginInfo;
@@ -70,11 +59,6 @@ describe('Driver | Magento | Auth | LoginService', () => {
     mockRegistration = registrationFactory.create();
     mockAuth = authTokenFactory.create();
 
-    generateTokenValidatorSpy = jasmine.createSpy();
-    revokeTokenValidatorSpy = jasmine.createSpy();
-    spyOnProperty(validators, 'validateGenerateTokenResponse').and.returnValue(generateTokenValidatorSpy);
-    spyOnProperty(validators, 'validateRevokeTokenResponse').and.returnValue(revokeTokenValidatorSpy);
-
     token = mockAuth.token;
     firstName = mockRegistration.customer.firstName;
     lastName = mockRegistration.customer.lastName;
@@ -102,9 +86,6 @@ describe('Driver | Magento | Auth | LoginService', () => {
       });
 
       describe('and the response passes validation', () => {
-        beforeEach(() => {
-          generateTokenValidatorSpy.and.returnValue({data: response})
-        });
 
         it('should call the transformer with the generate token response', done => {
           service.login(mockLoginInfo).subscribe(auth => {
@@ -135,9 +116,11 @@ describe('Driver | Magento | Auth | LoginService', () => {
 
       describe('and the response fails validation', () => {
         beforeEach(() => {
-          generateTokenValidatorSpy.and.callFake(() => {
-            throw new DaffAuthInvalidAPIResponseError('Generate token response is invalid.')
-          });
+					response = {
+						generateCustomerToken: {
+							token: null
+						}
+					};
         });
 
         it('should throw a DaffAuthInvalidAPIResponseError', done => {
@@ -202,9 +185,6 @@ describe('Driver | Magento | Auth | LoginService', () => {
       });
 
       describe('and the response passes validation', () => {
-        beforeEach(() => {
-          revokeTokenValidatorSpy.and.returnValue({data: response})
-        });
 
         it('should return void and not throw an error', () => {
           const expected = cold('-', {});
@@ -221,9 +201,11 @@ describe('Driver | Magento | Auth | LoginService', () => {
 
       describe('and the response fails validation', () => {
         beforeEach(() => {
-          revokeTokenValidatorSpy.and.callFake(() => {
-            throw new DaffAuthInvalidAPIResponseError('Revoke token response is invalid.')
-          });
+					response = {
+						revokeCustomerToken: {
+							result: null
+						}
+					};
         });
 
         // TODO: test for specific errors

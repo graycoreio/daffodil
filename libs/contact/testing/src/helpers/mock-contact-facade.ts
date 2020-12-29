@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
 
 import { DaffContactFacadeInterface } from '@daffodil/contact';
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class MockDaffContactFacade implements DaffContactFacadeInterface {

@@ -13,6 +13,7 @@ export { ShippingContainer } from './shipping/containers/shipping.component';
 export { OrderContainer } from './order/containers/order.component';
 
 export { DaffPaymentFacade } from './payment/facades/payment.facade';
+export { DaffPaymentModule } from './payment/payment.module';
 export {
   DaffPaymentActionTypes,
   DaffPaymentActions,
@@ -46,6 +47,7 @@ export { DaffBillingReducersState } from './billing/reducers/billing-reducers.in
 export { DaffBillingReducerState } from './billing/reducers/billing/billing-reducer.interface';
 export { daffBillingReducers } from './billing/reducers/billing-reducers';
 export { daffBillingReducer } from './billing/reducers/billing/billing.reducer';
+export { BillingContainer } from './billing/containers/billing.component';
 
 export { DaffShippingFacade } from './shipping/facades/shipping.facade';
 export {

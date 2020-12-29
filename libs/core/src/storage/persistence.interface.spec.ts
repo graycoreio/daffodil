@@ -1,27 +1,16 @@
-import { Inject } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { DaffPersistenceServiceToken as Token, DaffPersistenceService } from './persistence.interface'
 import { DaffLocalStorageService } from './localstorage/localstorage.service';
 
-class MockService {
-  constructor(@Inject(Token) public service: DaffPersistenceService) {}
-}
-
 describe('DaffPersistenceServiceToken', () => {
-  let mockService: MockService;
+  let defaultPersistenceService: DaffPersistenceService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        MockService
-      ]
-    });
-
-    mockService = TestBed.get(MockService);
+		defaultPersistenceService = TestBed.get(Token);
   });
 
   it('should inject a DaffLocalStorageService', () => {
-    expect(mockService.service instanceof DaffLocalStorageService).toBeTruthy()
+    expect(defaultPersistenceService instanceof DaffLocalStorageService).toBeTruthy()
   });
 });

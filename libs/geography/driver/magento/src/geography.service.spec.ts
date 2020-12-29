@@ -14,7 +14,6 @@ import {
 } from '@daffodil/geography/testing';
 import { DaffCountryNotFoundError, DaffGeographyInvalidAPIResponseError } from '@daffodil/geography/driver';
 
-import * as validators from './validators/public_api';
 import { DaffGeographyMagentoService } from './geography.service';
 
 describe('Driver | Magento | Geography | GeographyService', () => {
@@ -25,7 +24,6 @@ describe('Driver | Magento | Geography | GeographyService', () => {
   let daffSubdivisionFactory: DaffSubdivisionFactory;
 
   let countryTransformerSpy: jasmine.SpyObj<DaffMagentoCountryTransformer>;
-  let validatorSpy: jasmine.Spy;
 
   let countryId: DaffCountry['id'];
   let mockDaffCountry: DaffCountry;
@@ -56,8 +54,6 @@ describe('Driver | Magento | Geography | GeographyService', () => {
     daffCountryFactory = TestBed.get(DaffCountryFactory);
 
     countryTransformerSpy = TestBed.get(DaffMagentoCountryTransformer);
-    validatorSpy = jasmine.createSpy();
-    spyOnProperty(validators, 'validateGetCountriesResponse').and.returnValue(validatorSpy);
 
     mockDaffCountry = daffCountryFactory.create();
     mockDaffSubdivision = daffSubdivisionFactory.create();
@@ -151,16 +147,10 @@ describe('Driver | Magento | Geography | GeographyService', () => {
   describe('list | listing the available countries', () => {
     describe('when the call to the Magento API is successful', () => {
       describe('and the response passes validation', () => {
-        beforeEach(() => {
-          mockDaffCountry.subdivisions = [mockDaffSubdivision];
-          mockMagentoCountry.available_regions = [mockMagentoRegion];
-
-          validatorSpy.and.returnValue({data: mockGetCountriesResponse});
-        });
 
         it('should call the transformer with the each of Magento countries', done => {
           service.list().subscribe(() => {
-            expect(countryTransformerSpy.transform).toHaveBeenCalledWith(mockMagentoCountry);
+            expect(countryTransformerSpy.transform).toHaveBeenCalledWith(mockGetCountriesResponse.countries[0]);
             done();
           });
 
@@ -187,9 +177,9 @@ describe('Driver | Magento | Geography | GeographyService', () => {
 
       describe('and the response fails validation', () => {
         beforeEach(() => {
-          validatorSpy.and.callFake(() => {
-            throw new DaffGeographyInvalidAPIResponseError('Get countries response does not contain a valid list of countries.')
-          });
+					mockGetCountriesResponse = {
+						countries: null
+					};
         });
 
         it('should throw a DaffGeographyInvalidAPIResponseError', done => {

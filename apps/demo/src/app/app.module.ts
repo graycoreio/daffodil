@@ -26,7 +26,10 @@ import { ThankYouModule } from './thank-you/thank-you.module';
 
 import { DemoRoutingComponentModule } from './routing/routing-component.module';
 import { DemoCartRootModule } from './cart/cart-root.module';
-import { DemoDriverMap } from './drivers/map';
+import { DemoInMemoryDriverModule } from './drivers/in-memory/in-memory.module';
+import { DemoMagentoDriverModule } from './drivers/magento/magento.module';
+import { DemoShopifyDriverModule } from './drivers/shopify/shopify.module';
+import { DemoDriverVariantEnum } from '../environments/environment.interface';
 
 @NgModule({
   declarations: [
@@ -37,8 +40,10 @@ import { DemoDriverMap } from './drivers/map';
     BrowserAnimationsModule,
 
     HttpClientModule,
-
-    DemoDriverMap[environment.driver.variant],
+		environment.driver.variant === DemoDriverVariantEnum.IN_MEMORY
+			? DemoInMemoryDriverModule
+			: environment.driver.variant === DemoDriverVariantEnum.MAGENTO ?
+				DemoMagentoDriverModule : DemoShopifyDriverModule,
 
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
