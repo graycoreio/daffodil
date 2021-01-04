@@ -41,15 +41,13 @@ export class DaffResolvedCartGuard implements CanActivate {
 					resolvedState === DaffCartResolveState.ServerSide,
 			),
 			take(1),
-			map(success => {
-				if (!success && this.config.resolution.failedResolutionPath) {
-					return this.router.parseUrl(
-						this.config.resolution.failedResolutionPath,
-					);
-				} else {
-					return success;
-				}
-			}),
+			map(success => 
+					!success && this.config.resolution.failedResolutionPath 
+						?	this.router.parseUrl(
+								this.config.resolution.failedResolutionPath,
+							)
+						: success
+			),
 		);
 	}
 }
