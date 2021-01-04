@@ -1,24 +1,24 @@
 # Cart Resolution
 
-This tutorial Daffodil Cart Resolution for resolving a user's cart upon application initilization. This behavior is chiefly managed by the `DaffResolvedCartGuard`.
+This tutorial will walk you through Daffodil's Cart Resolution process which is responsible for resolving a user's cart upon application initialization. This behavior is chiefly managed by the `DaffResolvedCartGuard`.
 
 ## Supported Scenarios
 
-At the moment, the following scenarios are handled by the `DaffResolvedCartGuard` **for guest users**.
+At the moment, the following scenarios are handled by the `DaffResolvedCartGuard` **for guest users only**.
 
 > Note that currently, carts for authenticated users are not supported.
 
 [//]: # "TODO(griest024): remove note when authenticated carts are supported."
 
 - Generating a new cart when a user visits the application for the very first time.
-- Retrieving a previously existing cart for a user upon refresh.
+- Retrieving a previously existing cart for a user upon page reload.
 - Generating a new cart for a user when their prior cart isn't found (e.g., after expiry).
 - Skipping cart resolution during server-side rendering.
 - Upon a resolution failure, bailing out and navigating somewhere outside the scope of a cart resolution (e.g. your Ecommerce Service's API is down).
 
 ## Usage
 
-Assuming that you're already using the `DaffCartStateModule` and have previously selected a driver, you can simply add the guard to your route's `canActivate` and the guard will handle the rest.
+Assuming that you're already using the `DaffCartStateModule` and have previously selected a [driver](../../drivers.md) for `@daffodil/cart`, you can simply add the guard to your route's `canActivate` and the guard will handle the rest.
 
 ```typescript
 import { Routes, RouterModule } from '@angular/router';
@@ -35,7 +35,7 @@ export const appRoutes: [
 
 @NgModule({
   imports: [
-    DaffCartInMemoryDriverModule.forRoot(),
+    //DaffCartInMemoryDriverModule.forRoot(),
     DaffCartStateModule.forRoot(),
     RouterModule.forRoot(appRoutes),
   ],
@@ -43,6 +43,8 @@ export const appRoutes: [
 })
 export class AppModule {}
 ```
+
+Upon adding the code, load up the route and take a look at the Network Requests in your browser. You should see at least one request to your ecommerce systems's cart endpoint that attempts resolution.
 
 ## Configuration
 
