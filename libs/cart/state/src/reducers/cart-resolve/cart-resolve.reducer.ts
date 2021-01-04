@@ -18,7 +18,11 @@ export function cartResolveReducer<T extends DaffCart = DaffCart>(
         ...state,
         resolved: DaffCartResolveState.Resolving
       };
-
+    case DaffCartActionTypes.ResolveCartServerSideAction:
+      return {
+        ...state,
+        resolved: DaffCartResolveState.ServerSide
+      };
     case DaffCartActionTypes.ResolveCartSuccessAction:
       return {
         ...state,

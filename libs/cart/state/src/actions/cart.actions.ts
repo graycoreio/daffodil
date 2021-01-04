@@ -19,6 +19,7 @@ export enum DaffCartActionTypes {
   CartClearFailureAction = '[DaffCart] Cart Reset Failure Action',
   ResolveCartAction = '[DaffCart] Resolve Cart Action',
   ResolveCartSuccessAction = '[DaffCart] Resolve Cart Success Action',
+  ResolveCartServerSideAction = '[DaffCart] Resolve Cart Server Side Action',
   ResolveCartFailureAction = '[DaffCart] Resolve Cart Failure Action',
 }
 
@@ -94,20 +95,37 @@ export class DaffCartClearFailure implements Action {
   constructor(public payload: DaffStateError) {}
 }
 
+/**
+ * An action indicating that cart resolution begins.
+ */
 export class DaffResolveCart implements Action {
   readonly type = DaffCartActionTypes.ResolveCartAction;
 }
 
+/**
+ * An action that indicates a user's cart is resolved successfully.
+ */
 export class DaffResolveCartSuccess<T extends DaffCart = DaffCart> implements Action {
   readonly type = DaffCartActionTypes.ResolveCartSuccessAction;
 
   constructor(public payload: T) {}
 }
 
+/**
+ * An action that indicates that a cart failed to resolve.
+ */
 export class DaffResolveCartFailure implements Action {
   readonly type = DaffCartActionTypes.ResolveCartFailureAction;
 
   constructor(public payload: DaffStateError) {}
+}
+
+/**
+ * An action indicating that the cart resolution terminated as a result
+ * of an attempted resolution on the server.
+ */
+export class DaffResolveCartServerSide implements Action {
+  readonly type = DaffCartActionTypes.ResolveCartServerSideAction;
 }
 
 export type DaffCartActions<T extends DaffCart = DaffCart> =
@@ -126,4 +144,5 @@ export type DaffCartActions<T extends DaffCart = DaffCart> =
   | DaffCartClearFailure
   | DaffResolveCart
   | DaffResolveCartSuccess<T>
+  | DaffResolveCartServerSide
   | DaffResolveCartFailure;
