@@ -3,7 +3,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
-import { DaffStorageServiceError } from '@daffodil/core';
+import { DaffStorageServiceError, DaffServerSideStorageError } from '@daffodil/core';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
 import { DaffCart, DaffCartStorageService } from '@daffodil/cart';
 import {
@@ -20,6 +20,7 @@ import {
 import { DaffCartFactory } from '@daffodil/cart/testing';
 
 import { DaffCartResolverEffects } from './cart-resolver.effects';
+import { DaffResolveCartServerSide } from '../actions/public_api';
 
 describe('DaffCartResolverEffects', () => {
 	let actions$: Observable<any>;
@@ -78,6 +79,24 @@ describe('DaffCartResolverEffects', () => {
 	describe('onResolveCart() | when DaffResolveCart is dispatched', () => {
 		beforeEach(() => {
 			actions$ = hot('--a', { a: new DaffResolveCart() });
+		});
+
+		fdescribe('when cart resolution is attempted on the server', () => {
+			beforeEach(() => {
+				cartStorageService.getCartId.and.callFake(() => {
+					throw new DaffServerSideStorageError("Resolution failed server side.")
+				});
+			});
+
+			it('should emit a an action indicating that server side resolution occurred', () => {
+				const resolveCartServerSide = new DaffResolveCartServerSide();
+				const expected = cold('--a', {
+					a: resolveCartServerSide,
+				});
+
+				expect(effects.onResolveCart()).toBeObservable(expected);
+
+			});
 		});
 
 		describe('when the storage service throws an error while fetching the cart ID', () => {
