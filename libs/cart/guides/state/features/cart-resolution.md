@@ -48,7 +48,7 @@ Upon adding the code, load up the route and take a look at the Network Requests 
 
 ## Configuration
 
-You can configure the route to which the `DaffResolvedCartGuard` navigates to when an error occurs during resolution. See the [configuration guide](./configuration.md) and the `resolution` key of `DaffCartStateConfiguration` for more information.
+You can configure the route to which the `DaffResolvedCartGuard` navigates when an error occurs during resolution. See the [configuration guide](./configuration.md) and the `resolution` key of `DaffCartStateConfiguration` for more information.
 
 ## Gotchas
 
