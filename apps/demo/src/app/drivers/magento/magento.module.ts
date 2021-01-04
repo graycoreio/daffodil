@@ -1,5 +1,5 @@
 import {Apollo} from 'apollo-angular';
-import {InMemoryCache, ApolloLink} from '@apollo/client';
+import {InMemoryCache, ApolloLink} from '@apollo/client/core';
 import {onError} from '@apollo/client/link/error';
 import {HttpLink} from 'apollo-angular/http';
 import { NgModule } from '@angular/core';
@@ -13,7 +13,7 @@ import { DaffAuthMagentoDriverModule } from '@daffodil/auth';
 
 import { environment } from '../../../environments/environment';
 import { MagentoEnvironmentDriverConfiguration } from '../../../environments/environment.interface';
-import possibleTypes from './fragmentTypes.json';
+import { possibleTypes } from './fragmentTypes.json';
 
 const cache = new InMemoryCache({ possibleTypes });
 
