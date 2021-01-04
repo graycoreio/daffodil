@@ -81,7 +81,7 @@ describe('DaffCartResolverEffects', () => {
 			actions$ = hot('--a', { a: new DaffResolveCart() });
 		});
 
-		fdescribe('when cart resolution is attempted on the server', () => {
+		describe('when cart resolution is attempted on the server', () => {
 			beforeEach(() => {
 				cartStorageService.getCartId.and.callFake(() => {
 					throw new DaffServerSideStorageError("Resolution failed server side.")
