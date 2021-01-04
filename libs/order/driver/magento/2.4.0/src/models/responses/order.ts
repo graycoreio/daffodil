@@ -5,6 +5,7 @@ import { MagentoGraycoreOrderPayment } from './order-payment';
 import { MagentoGraycoreOrderInvoice } from './order-invoice';
 
 export interface MagentoGraycoreOrder {
+  __typename?: 'GraycoreOrder';
   id: number;
   order_number: string | number;
   customer_id: number;

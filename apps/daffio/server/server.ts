@@ -4,8 +4,6 @@ import { enableProdMode } from '@angular/core';
 
 import { ngExpressEngine } from '@nguniversal/express-engine';
 
-
-
 import * as express from 'express';
 import { join } from 'path';
 

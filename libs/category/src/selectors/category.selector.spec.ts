@@ -22,7 +22,7 @@ describe('DaffCategorySelectors', () => {
   const categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
   const productFactory: DaffProductFactory = new DaffProductFactory();
 	let stubCategory: DaffCategory;
-  const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest> = categoryPageConfigurationFactory.create();
+  let stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest>;
 	let product: DaffProduct;
 	const categorySelectors = getDaffCategorySelectors();
 
@@ -38,6 +38,7 @@ describe('DaffCategorySelectors', () => {
 
     stubCategory = categoryFactory.create();
     product = productFactory.create();
+    stubCategoryPageConfigurationState = categoryPageConfigurationFactory.create()
     stubCategoryPageConfigurationState.id = stubCategory.id;
 		stubCategoryPageConfigurationState.product_ids = [product.id];
 		stubCategory.product_ids = [product.id];
@@ -92,17 +93,14 @@ describe('DaffCategorySelectors', () => {
 			const productB = productFactory.create();
 
 			//Load a set of products
-			stubCategory.product_ids = [productA.id, productB.id];
-			stubCategoryPageConfigurationState.product_ids = [
-				productA.id,
-				productB.id,
-			];
 			const loadA = new DaffCategoryPageLoadSuccess({
 				category: {
-					...stubCategory,
-				},
+          ...stubCategory,
+          product_ids: [productA.id, productB.id]
+				} as any,
 				categoryPageConfigurationState: {
-					...stubCategoryPageConfigurationState,
+          ...stubCategoryPageConfigurationState,
+          product_ids: [productA.id, productB.id]
 				},
 				products: [productA, productB],
 			});
@@ -116,17 +114,14 @@ describe('DaffCategorySelectors', () => {
 			expect(selector).toBeObservable(expectedA);
 
 			//Load the same products in a different order
-			stubCategory.product_ids = [productB.id, productA.id];
-			stubCategoryPageConfigurationState.product_ids = [
-				productB.id,
-				productA.id,
-			];
 			const loadB = new DaffCategoryPageLoadSuccess({
 				category: {
-					...stubCategory,
-				},
+          ...stubCategory,
+          product_ids: [productB.id, productA.id]
+				} as any,
 				categoryPageConfigurationState: {
-					...stubCategoryPageConfigurationState,
+          ...stubCategoryPageConfigurationState,
+          product_ids: [productB.id, productA.id]
 				},
 				products: [productA, productB],
 			});

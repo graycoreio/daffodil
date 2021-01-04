@@ -37,6 +37,8 @@ export class DaffMagentoCartCouponService implements DaffCartCouponServiceInterf
   ) {}
 
   apply(cartId: DaffCart['id'], coupon: DaffCartCoupon): Observable<Partial<DaffCart>> {
+    console.log(JSON.stringify(applyCoupon(this.extraCartFragments)));
+
     return this.mutationQueue.mutate<MagentoApplyCouponResponse>({
       mutation: applyCoupon(this.extraCartFragments),
       variables: {

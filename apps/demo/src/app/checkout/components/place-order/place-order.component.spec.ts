@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of, BehaviorSubject } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 
 import { DaffCart } from '@daffodil/cart';
@@ -18,7 +18,7 @@ describe('PlaceOrderComponent', () => {
   let fixture: ComponentFixture<PlaceOrderComponent>;
   let component: PlaceOrderComponent;
   const stubEnablePlaceOrderButton = true;
-  let store: MockStore<any>;
+  let store: Store<any>;
   let cartFactory: DaffCartFactory;
 	let stubCart: DaffCart;
 	let cartFacade: MockDaffCartFacade;

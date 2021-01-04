@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { OrderContainer } from './order.component';
 import { DaffPlaceOrder } from '../actions/order.actions';
@@ -11,7 +11,7 @@ import { selectLoading, selectOrder } from '../selectors/order.selector';
 describe('OrderContainer', () => {
   let component: OrderContainer;
   let fixture: ComponentFixture<OrderContainer>;
-  let store: MockStore<any>;
+  let store: Store<any>;
   let stubLoading: boolean;
   let stubOrder: DaffOrder;
   let cartFactory: DaffOrderFactory;

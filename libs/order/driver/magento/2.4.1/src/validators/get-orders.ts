@@ -1,11 +1,11 @@
-import { ApolloQueryResult } from 'apollo-client';
+import {ApolloQueryResult} from '@apollo/client/core';
 
 import { DaffOrderInvalidAPIResponseError } from '@daffodil/order/driver';
 
 import { MagentoGetGuestOrdersResponse } from '../queries/public_api';
 
 export const validateGetOrdersResponse = (response: ApolloQueryResult<MagentoGetGuestOrdersResponse>) => {
-  if (response.data.graycoreGuestOrders.items) {
+  if (response.data?.graycoreGuestOrders?.items) {
     if (response.data.graycoreGuestOrders.items.reduce((acc, order) => acc && !!(
       order.billing_address
         && order.shipping_address

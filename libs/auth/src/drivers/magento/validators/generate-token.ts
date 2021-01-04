@@ -1,4 +1,4 @@
-import { ApolloQueryResult } from 'apollo-client';
+import {ApolloQueryResult} from '@apollo/client/core';
 
 import { MagentoGenerateTokenResponse } from '../queries/public_api';
 import { DaffAuthInvalidAPIResponseError } from '../../../errors/public_api';

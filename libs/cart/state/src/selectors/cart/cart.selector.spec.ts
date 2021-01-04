@@ -1426,8 +1426,13 @@ describe('Cart | Selector | Cart', () => {
 
   describe('selectCartHasOutOfStockItems', () => {
     it('should return true when at least one cart item is out of stock', () => {
-      cart.items[0].in_stock = false;
-			store.dispatch(new DaffCartLoadSuccess(cart));
+			store.dispatch(new DaffCartLoadSuccess({
+        ...cart,
+        items: [{
+          ...cart.items[0],
+          in_stock: false
+        }]
+      }));
 			const selector = store.pipe(select(selectCartHasOutOfStockItems));
       const expected = cold('a', {a: true });
 
@@ -1519,8 +1524,14 @@ describe('Cart | Selector | Cart', () => {
       const rowTotal = 118.54;
       const discount = 15.10000034;
       const cartItemId = cart.items[0].item_id;
-      cart.items[0].row_total = rowTotal;
-      cart.items[0].total_discount = discount;
+      store.dispatch(new DaffCartLoadSuccess({
+        ...cart,
+        items: [{
+          ...cart.items[0],
+          row_total: rowTotal,
+          total_discount: discount
+        }]
+      }));
 			const selector = store.pipe(select(selectCartItemDiscountedRowTotal, { id: cartItemId }));
       const expected = cold('a', {a: 103.43999966});
 
@@ -1532,8 +1543,10 @@ describe('Cart | Selector | Cart', () => {
     describe('when the cart has a billing and shipping address', () => {
       describe('and the shipping and billing address are the same', () => {
         beforeEach(() => {
-          cart.shipping_address = cart.billing_address;
-          store.dispatch(new DaffCartLoadSuccess(cart));
+          store.dispatch(new DaffCartLoadSuccess({
+            ...cart,
+            shipping_address: cart.billing_address
+          }));
         });
 
         it('should return true', () => {
@@ -1546,8 +1559,13 @@ describe('Cart | Selector | Cart', () => {
 
       describe('and the shipping and billing address are not the same', () => {
         beforeEach(() => {
-          cart.shipping_address.street = `${cart.shipping_address.street} ${cart.billing_address.street}`;
-          store.dispatch(new DaffCartLoadSuccess(cart));
+          store.dispatch(new DaffCartLoadSuccess({
+            ...cart,
+            shipping_address: {
+              ...cart.shipping_address,
+              street: `${cart.shipping_address.street} ${cart.billing_address.street}`
+            }
+          }));
         });
 
         it('should return false', () => {
@@ -1561,8 +1579,10 @@ describe('Cart | Selector | Cart', () => {
 
     describe('when the cart does not have a shipping address', () => {
       beforeEach(() => {
-        cart.shipping_address = null;
-        store.dispatch(new DaffCartLoadSuccess(cart));
+        store.dispatch(new DaffCartLoadSuccess({
+          ...cart,
+          shipping_address: null
+        }));
       });
 
       it('should return false', () => {
@@ -1575,8 +1595,10 @@ describe('Cart | Selector | Cart', () => {
 
     describe('when the cart does not have a billing address', () => {
       beforeEach(() => {
-        cart.billing_address = null;
-        store.dispatch(new DaffCartLoadSuccess(cart));
+        store.dispatch(new DaffCartLoadSuccess({
+          ...cart,
+          billing_address: null
+        }));
       });
 
       it('should return false', () => {
@@ -1600,8 +1622,10 @@ describe('Cart | Selector | Cart', () => {
 
     describe('when the cart does not have a billing address', () => {
       beforeEach(() => {
-        cart.billing_address = null;
-        store.dispatch(new DaffCartLoadSuccess(cart));
+        store.dispatch(new DaffCartLoadSuccess({
+          ...cart,
+          billing_address: null
+        }));
       });
 
       it('should return false', () => {
@@ -1625,8 +1649,10 @@ describe('Cart | Selector | Cart', () => {
 
     describe('when the cart does not have a shipping address', () => {
       beforeEach(() => {
-        cart.shipping_address = null;
-        store.dispatch(new DaffCartLoadSuccess(cart));
+        store.dispatch(new DaffCartLoadSuccess({
+          ...cart,
+          shipping_address: null
+        }));
       });
 
       it('should return false', () => {
@@ -1650,8 +1676,10 @@ describe('Cart | Selector | Cart', () => {
 
     describe('when the cart does not have a selected shipping method', () => {
       beforeEach(() => {
-        cart.shipping_information = null;
-        store.dispatch(new DaffCartLoadSuccess(cart));
+        store.dispatch(new DaffCartLoadSuccess({
+          ...cart,
+          shipping_information: null
+        }));
       });
 
       it('should return false', () => {
@@ -1675,8 +1703,10 @@ describe('Cart | Selector | Cart', () => {
 
     describe('when the cart has a null selected payment method', () => {
       beforeEach(() => {
-        cart.payment = null;
-        store.dispatch(new DaffCartLoadSuccess(cart));
+        store.dispatch(new DaffCartLoadSuccess({
+          ...cart,
+          payment: null
+        }));
       });
 
       it('should return false', () => {
@@ -1689,8 +1719,13 @@ describe('Cart | Selector | Cart', () => {
 
     describe('when the cart has a empty string selected payment method', () => {
       beforeEach(() => {
-        cart.payment = {method: ''};
-        store.dispatch(new DaffCartLoadSuccess(cart));
+        store.dispatch(new DaffCartLoadSuccess({
+          ...cart,
+          payment: {
+            ...cart.payment,
+            method: ''
+          }
+        }));
       });
 
       it('should return false', () => {
@@ -1714,8 +1749,10 @@ describe('Cart | Selector | Cart', () => {
 
     describe('when the cart does not have all the required fields for placing an order', () => {
       beforeEach(() => {
-        cart.billing_address = null;
-        store.dispatch(new DaffCartLoadSuccess(cart));
+        store.dispatch(new DaffCartLoadSuccess({
+          ...cart,
+          billing_address: null
+        }));
       });
 
       it('should return false', () => {

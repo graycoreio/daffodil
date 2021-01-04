@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { MockStore } from '@ngrx/store/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
@@ -11,7 +10,7 @@ import { DaffProductReducersState } from '../../reducers/product-reducers-state.
 import { daffProductReducers } from '../../reducers/product-reducers';
 
 describe('DaffProductGridFacade', () => {
-  let store: MockStore<Partial<DaffProductReducersState>>;
+  let store: Store<Partial<DaffProductReducersState>>;
   let facade: DaffProductGridFacade;
 
   beforeEach(() => {

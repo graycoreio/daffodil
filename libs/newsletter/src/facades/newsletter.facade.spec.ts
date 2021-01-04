@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DaffNewsletterFacade } from './newsletter.facade';
-import { MockStore } from '@ngrx/store/testing';
 import { State } from '../selectors/newsletter.selector';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { reducer } from '../reducers/newsletter.reducer';
@@ -11,7 +10,7 @@ import { DaffNewsletterSubmission } from '../models/newsletter.model';
 
 describe('DaffNewsletterFacade', () => {
 
-  let store: MockStore<Partial<State>>;
+  let store: Store<Partial<State>>;
   let facade: DaffNewsletterFacade;
 
   beforeEach(() =>{

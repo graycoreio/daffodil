@@ -254,7 +254,7 @@ export class MagentoOrderTestDataFactory {
     mockDaffOrderConfigurableItem.order_id = mockDaffOrder.id;
 
     mockMagentoOrderSimpleItem = {
-      id: null,
+      __typename: 'OrderItem',
       selected_options: [],
       entered_options: [],
       status: null,
@@ -269,11 +269,14 @@ export class MagentoOrderTestDataFactory {
       product_sku: mockDaffOrderItem.sku,
       product_name: mockDaffOrderItem.name,
       product_sale_price: {
+        __typename: 'Money',
         value: mockDaffOrderItem.price,
         currency: 'USD'
       },
       discounts: [{
+        __typename: 'Discount',
         amount: {
+          __typename: 'Money',
           value: mockDaffOrderItem.discount_amount,
           currency: 'USD'
         },
@@ -281,14 +284,14 @@ export class MagentoOrderTestDataFactory {
       }],
     };
     mockMagentoOrderBundleItem = {
-      id: null,
+      __typename: 'BundleOrderItem',
       selected_options: [],
       entered_options: [],
       bundle_options: mockDaffOrderCompositeItem.options.map(a => ({
-        id: null,
+        __typename: 'ItemSelectedBundleOption',
         label: a.option_label,
         values: [{
-          id: null,
+          __typename: 'ItemSelectedBundleOptionValue',
           price: {
             value: null,
             currency: 'USD'
@@ -310,11 +313,14 @@ export class MagentoOrderTestDataFactory {
       product_sku: mockDaffOrderCompositeItem.sku,
       product_name: mockDaffOrderCompositeItem.name,
       product_sale_price: {
+        __typename: 'Money',
         value: mockDaffOrderCompositeItem.price,
         currency: 'USD'
       },
       discounts: [{
+        __typename: 'Discount',
         amount: {
+          __typename: 'Money',
           value: mockDaffOrderCompositeItem.discount_amount,
           currency: 'USD'
         },
@@ -322,8 +328,9 @@ export class MagentoOrderTestDataFactory {
       }],
     };
     mockMagentoOrderConfigurableItem = {
-      id: null,
+      __typename: 'OrderItem',
       selected_options: mockDaffOrderConfigurableItem.attributes.map(a => ({
+        __typename: 'OrderItemOption',
         label: a.attribute_label,
         value: a.value_label
       })),
@@ -340,11 +347,14 @@ export class MagentoOrderTestDataFactory {
       product_sku: mockDaffOrderConfigurableItem.sku,
       product_name: mockDaffOrderConfigurableItem.name,
       product_sale_price: {
+        __typename: 'Money',
         value: mockDaffOrderConfigurableItem.price,
         currency: 'USD'
       },
       discounts: [{
+        __typename: 'Discount',
         amount: {
+          __typename: 'Money',
           value: mockDaffOrderConfigurableItem.discount_amount,
           currency: 'USD'
         },
@@ -352,6 +362,7 @@ export class MagentoOrderTestDataFactory {
       }],
     };
     mockMagentoOrderAddress = {
+      __typename: 'OrderAddress',
       prefix: mockDaffOrderAddress.prefix,
       suffix: mockDaffOrderAddress.suffix,
       firstname: mockDaffOrderAddress.firstname,
@@ -368,69 +379,87 @@ export class MagentoOrderTestDataFactory {
       fax: null
     };
     mockMagentoOrderShipmentTracking = {
+      __typename: 'ShipmentTracking',
       number: mockDaffOrderShipmentTracking.tracking_number,
       carrier: mockDaffOrderShipmentTracking.carrier,
       title: mockDaffOrderShipmentTracking.title,
     };
     mockMagentoOrderShipmentItem = {
+      __typename: 'ShipmentItem',
       order_item: mockMagentoOrderSimpleItem,
       quantity_shipped: mockDaffOrderShipmentItem.qty
     };
     mockMagentoOrderShipment = {
+      __typename: 'OrderShipment',
       tracking: [mockMagentoOrderShipmentTracking],
       items: [mockMagentoOrderShipmentItem]
     };
     mockMagentoOrderPayment = {
+      __typename: 'OrderPaymentMethod',
       name: String(mockDaffOrderPayment.payment_id),
       type: mockDaffOrderPayment.method,
       additional_data: [
         {
+          __typename: 'KeyValue',
           name: 'cc_type',
           value: mockDaffOrderPayment.cc_type
         },
         {
+          __typename: 'KeyValue',
           name: 'cc_last4',
           value: mockDaffOrderPayment.cc_last4
         },
         {
+          __typename: 'KeyValue',
           name: 'cc_owner',
           value: mockDaffOrderPayment.cc_owner
         },
         {
+          __typename: 'KeyValue',
           name: 'cc_exp_month',
           value: mockDaffOrderPayment.cc_exp_month
         },
         {
+          __typename: 'KeyValue',
           name: 'cc_exp_year',
           value: mockDaffOrderPayment.cc_exp_year
         },
       ]
     };
     mockMagentoOrderInvoiceItem = {
+      __typename: 'InvoiceItem',
       order_item: mockMagentoOrderSimpleItem,
       quantity_invoiced: mockDaffOrderShipmentItem.qty
     };
     mockMagentoOrderInvoice = {
+      __typename: 'Invoice',
       items: [mockMagentoOrderInvoiceItem],
       total: {
+        __typename: 'InvoiceTotal',
         grand_total: {
+          __typename: 'Money',
           value: mockDaffOrderGrandTotal.value,
           currency: 'USD'
         },
         subtotal: {
+          __typename: 'Money',
           value: mockDaffOrderSubTotal.value,
           currency: 'USD'
         },
         total_shipping: {
+          __typename: 'Money',
           value: mockDaffOrderShippingTotal.value,
           currency: 'USD'
         },
         total_tax: {
+          __typename: 'Money',
           value: mockDaffOrderTax.value,
           currency: 'USD'
         },
         discounts: [{
+          __typename: 'Discount',
           amount: {
+            __typename: 'Money',
             value: mockDaffOrderDiscount.value,
             currency: 'USD'
           },
@@ -439,30 +468,39 @@ export class MagentoOrderTestDataFactory {
       },
     };
     mockMagentoOrderCreditItem = {
+      __typename: 'CreditMemoItem',
       order_item: mockMagentoOrderSimpleItem,
       quantity_refunded: mockDaffOrderShipmentItem.qty
     };
     mockMagentoOrderCredit = {
+      __typename: 'CreditMemo',
       items: [mockMagentoOrderCreditItem],
       total: {
+        __typename: 'CreditMemoTotal',
         grand_total: {
+          __typename: 'Money',
           value: mockDaffOrderGrandTotal.value,
           currency: 'USD'
         },
         subtotal: {
+          __typename: 'Money',
           value: mockDaffOrderSubTotal.value,
           currency: 'USD'
         },
         total_shipping: {
+          __typename: 'Money',
           value: mockDaffOrderShippingTotal.value,
           currency: 'USD'
         },
         total_tax: {
+          __typename: 'Money',
           value: mockDaffOrderTax.value,
           currency: 'USD'
         },
         discounts: [{
+          __typename: 'Discount',
           amount: {
+            __typename: 'Money',
             value: mockDaffOrderDiscount.value,
             currency: 'USD'
           },
@@ -471,30 +509,38 @@ export class MagentoOrderTestDataFactory {
       }
     };
     mockMagentoOrder = {
+      __typename: 'GraycoreGuestOrder',
       id: String(mockDaffOrder.id),
       number: String(mockDaffOrder.id),
       order_date: mockDaffOrder.created_at,
       carrier: mockDaffOrderShipment.carrier,
       shipping_method: mockDaffOrderShipment.method,
       total: {
+        __typename: 'OrderTotal',
         grand_total: {
+          __typename: 'Money',
           value: mockDaffOrderGrandTotal.value,
           currency: 'USD'
         },
         subtotal: {
+          __typename: 'Money',
           value: mockDaffOrderSubTotal.value,
           currency: 'USD'
         },
         total_shipping: {
+          __typename: 'Money',
           value: mockDaffOrderShippingTotal.value,
           currency: 'USD'
         },
         total_tax: {
+          __typename: 'Money',
           value: mockDaffOrderTax.value,
           currency: 'USD'
         },
         discounts: [{
+          __typename: 'Discount',
           amount: {
+            __typename: 'Money',
             value: mockDaffOrderDiscount.value,
             currency: 'USD'
           },

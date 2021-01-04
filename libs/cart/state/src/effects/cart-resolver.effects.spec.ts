@@ -12,7 +12,8 @@ import { DaffCart, DaffCartStorageService } from '@daffodil/cart';
 import {
 	DaffResolveCart,
 	DaffResolveCartFailure,
-	DaffResolveCartSuccess,
+  DaffResolveCartSuccess,
+  DaffResolveCartServerSide
 } from '@daffodil/cart/state';
 import {
 	DaffCartServiceInterface,
@@ -21,52 +22,48 @@ import {
 	DaffCartInvalidAPIResponseError,
 } from '@daffodil/cart/driver';
 import { DaffCartFactory } from '@daffodil/cart/testing';
+import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
 
 import { DaffCartResolverEffects } from './cart-resolver.effects';
-import { DaffResolveCartServerSide } from '../actions/public_api';
 
 describe('DaffCartResolverEffects', () => {
 	let actions$: Observable<any>;
 	let effects: DaffCartResolverEffects;
-	let driver: jasmine.SpyObj<DaffCartServiceInterface>;
 
 	let cartFactory: DaffCartFactory;
 	let stubCart: DaffCart;
 
-	let cartStorageService: jasmine.SpyObj<DaffCartStorageService>;
-	const throwStorageError = () => {
-		throw new DaffStorageServiceError('An error occurred during storage.');
-	};
+	let driver: DaffCartServiceInterface;
+  let cartStorageService: DaffCartStorageService;
+
+  let driverGetSpy: jasmine.Spy;
+  let driverCreateSpy: jasmine.Spy;
+  let getCartIdSpy: jasmine.Spy;
+
+  const throwStorageError = () => { throw new DaffStorageServiceError('An error occurred during storage.') };
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			providers: [
+			imports: [
+        DaffTestingCartDriverModule.forRoot()
+      ],
+      providers: [
 				DaffCartResolverEffects,
 				provideMockActions(() => actions$),
-				{
-					provide: DaffCartDriver,
-					useValue: jasmine.createSpyObj('DaffCartDriver', [
-						'get',
-						'create',
-						'clear',
-						'addToCart',
-					]),
-				},
-				{
-					provide: DaffCartStorageService,
-					useValue: jasmine.createSpyObj('DaffCartStorageService', [
-						'setCartId',
-						'getCartId',
-					]),
-				},
 			],
 		});
 
 		effects = TestBed.inject(DaffCartResolverEffects);
 		driver = TestBed.inject(DaffCartDriver);
 		cartFactory = TestBed.inject(DaffCartFactory);
-		cartStorageService = TestBed.inject(DaffCartStorageService);
-		stubCart = cartFactory.create();
+    cartStorageService = TestBed.inject(DaffCartStorageService);
+
+    stubCart = cartFactory.create();
+
+    driverGetSpy = spyOn(driver, 'get');
+    driverCreateSpy = spyOn(driver, 'create');
+    getCartIdSpy = spyOn(cartStorageService, 'getCartId');
+    getCartIdSpy.and.returnValue(String(stubCart.id));
 	});
 
 	it('should be created', () => {
@@ -86,7 +83,7 @@ describe('DaffCartResolverEffects', () => {
 
 		describe('when cart resolution is attempted on the server', () => {
 			beforeEach(() => {
-				cartStorageService.getCartId.and.callFake(() => {
+				getCartIdSpy.and.callFake(() => {
 					throw new DaffServerSideStorageError(
 						'Resolution failed server side.',
 					);
@@ -105,7 +102,7 @@ describe('DaffCartResolverEffects', () => {
 
 		describe('when the storage service throws an error while fetching the cart ID', () => {
 			beforeEach(() => {
-				cartStorageService.getCartId.and.callFake(throwStorageError);
+				getCartIdSpy.and.callFake(throwStorageError);
 			});
 
 			it('should indicate cart resolution failure due to cart ID retrieval', () => {
@@ -125,9 +122,9 @@ describe('DaffCartResolverEffects', () => {
 
 		describe('when there is not a cart ID in storage', () => {
 			beforeEach(() => {
-				cartStorageService.getCartId.and.returnValue(undefined);
-				driver.create.and.returnValue(of({ id: stubCart.id }));
-				driver.get.and.returnValue(of(stubCart));
+				getCartIdSpy.and.returnValue(undefined);
+				driverCreateSpy.and.returnValue(of({ id: stubCart.id }));
+				driverGetSpy.and.returnValue(of(stubCart));
 			});
 
 			describe('and when creating a cart fails', () => {
@@ -137,7 +134,7 @@ describe('DaffCartResolverEffects', () => {
 						{},
 						new DaffCartInvalidAPIResponseError('error'),
 					);
-					driver.create.and.returnValue(response);
+					driverCreateSpy.and.returnValue(response);
 				});
 
 				it('should dispatch DaffResolveCartFailure action', () => {
@@ -162,7 +159,7 @@ describe('DaffCartResolverEffects', () => {
 				});
 
 				expect(effects.onResolveCart()).toBeObservable(expected);
-				expect(driver.create).toHaveBeenCalled();
+				expect(driverCreateSpy).toHaveBeenCalled();
 			});
 		});
 
@@ -171,7 +168,7 @@ describe('DaffCartResolverEffects', () => {
 
 			beforeEach(() => {
 				cartId = stubCart.id.toString();
-				cartStorageService.getCartId.and.returnValue(cartId);
+				getCartIdSpy.and.returnValue(cartId);
 			});
 
 			describe('and the get call fails', () => {
@@ -181,7 +178,7 @@ describe('DaffCartResolverEffects', () => {
 						{},
 						new DaffCartInvalidAPIResponseError('error'),
 					);
-					driver.get.and.returnValue(response);
+					driverGetSpy.and.returnValue(response);
 				});
 
 				it('should indicate failed cart resolution', () => {
@@ -204,8 +201,8 @@ describe('DaffCartResolverEffects', () => {
 
 				beforeEach(() => {
 					const response = cold('#', {}, new DaffCartNotFoundError('error'));
-					driver.get.withArgs(cartId).and.returnValue(response);
-					driver.create.and.returnValue(of({ id: newCartId }));
+					driverGetSpy.withArgs(cartId).and.returnValue(response);
+					driverCreateSpy.and.returnValue(of({ id: newCartId }));
 				});
 
 				it('should create a new cart', () => {
@@ -214,12 +211,12 @@ describe('DaffCartResolverEffects', () => {
 					});
 
 					expect(effects.onResolveCart()).toBeObservable(expected);
-					expect(driver.create).toHaveBeenCalled();
+					expect(driverCreateSpy).toHaveBeenCalled();
 				});
 
 				describe('and the driver calls succeed', () => {
 					beforeEach(() => {
-						driver.get.withArgs(newCartId).and.returnValue(of(stubCart));
+						driverGetSpy.withArgs(newCartId).and.returnValue(of(stubCart));
 					});
 
 					it('should indicate successful cart resolution', () => {
@@ -241,7 +238,7 @@ describe('DaffCartResolverEffects', () => {
 							{},
 							new DaffCartInvalidAPIResponseError('error'),
 						);
-						driver.create.and.returnValue(response);
+						driverCreateSpy.and.returnValue(response);
 					});
 
 					it('should indicate failed cart resolution', () => {
@@ -262,8 +259,8 @@ describe('DaffCartResolverEffects', () => {
 				describe('and the get call fails', () => {
 					beforeEach(() => {
 						const response = cold('#', {}, new DaffCartNotFoundError('error'));
-						driver.create.and.returnValue(of({ id: newCartId }));
-						driver.get.withArgs(newCartId).and.returnValue(response);
+						driverCreateSpy.and.returnValue(of({ id: newCartId }));
+						driverGetSpy.withArgs(newCartId).and.returnValue(response);
 					});
 
 					it('should indicate failed cart resolution', () => {
@@ -284,7 +281,7 @@ describe('DaffCartResolverEffects', () => {
 
 			describe('and the cart loads successfully', () => {
 				beforeEach(() => {
-					driver.get.and.returnValue(of(stubCart));
+					driverGetSpy.and.returnValue(of(stubCart));
 				});
 
 				it('should not attempt to create a cart', () => {
@@ -294,7 +291,7 @@ describe('DaffCartResolverEffects', () => {
 					});
 
 					expect(effects.onResolveCart()).toBeObservable(expected);
-					expect(driver.create).not.toHaveBeenCalled();
+					expect(driverCreateSpy).not.toHaveBeenCalled();
 				});
 
 				it('should indicate that a cart has resolved successfully', () => {

@@ -1,13 +1,12 @@
+import { InMemoryCache } from '@apollo/client/core';
 import { TestBed } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
-import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
-import { addTypenameToDocument } from 'apollo-utilities';
 
 import { schema } from '@daffodil/driver/magento';
 import {
   DaffCartShippingRate,
 } from '@daffodil/cart';
-import { MagentoCartShippingMethod, MagentoListShippingMethodsResponse, DaffMagentoCartShippingRateTransformer, DaffMagentoExtraCartFragments, daffMagentoNoopCartFragment, listShippingMethods } from '@daffodil/cart/driver/magento';
+import { MagentoCartShippingMethod, MagentoListShippingMethodsResponse, DaffMagentoCartShippingRateTransformer, DaffMagentoExtraCartFragments, daffMagentoNoopCartFragment } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartShippingMethodFactory
 } from '@daffodil/cart/driver/magento/testing';
@@ -53,9 +52,7 @@ describe('Driver | Magento | Cart | CartShippingMethodsService', () => {
 					provide: APOLLO_TESTING_CACHE,
 					useValue: new InMemoryCache({
 						addTypename: true,
-						fragmentMatcher: new IntrospectionFragmentMatcher({
-							introspectionQueryResultData: schema,
-						}),
+						possibleTypes: schema.possibleTypes,
 					}),
 				}
       ]
@@ -112,7 +109,7 @@ describe('Driver | Magento | Cart | CartShippingMethodsService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(listShippingMethods([daffMagentoNoopCartFragment])));
+      const op = controller.expectOne('ListShippingMethods');
 
       op.flush({
         data: mockListCartShippingMethodsResponse
@@ -126,7 +123,7 @@ describe('Driver | Magento | Cart | CartShippingMethodsService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(listShippingMethods([daffMagentoNoopCartFragment])));
+      const op = controller.expectOne('ListShippingMethods');
 
       op.flush({
         data: mockListCartShippingMethodsResponse

@@ -21,8 +21,9 @@
     "paths": {
       "@daffodil/*": [
         "dist/*"
-      ],
-    }
+      ]
+    },
+    "allowSyntheticDefaultImports": true
   },
   "exclude": [
     "node_modules",

@@ -1,6 +1,6 @@
+import {Apollo} from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 import { Inject, Injectable } from '@angular/core';
-import { Apollo } from 'apollo-angular';
 
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
@@ -40,7 +40,11 @@ export class DaffOrderMagentoService implements DaffOrderServiceInterface {
       }
     }).pipe(
       map(validateGetOrdersResponse),
-      map(result => result.data.graycoreGuestOrders.items.map(daffMagentoTransformOrder)),
+      map(result => {
+        console.log('source', result.data.graycoreGuestOrders.items[0].items[1]);
+
+        return result.data.graycoreGuestOrders.items.map(daffMagentoTransformOrder)
+      }),
       catchError(err => throwError(transformMagentoOrderError(err)))
     );
   }

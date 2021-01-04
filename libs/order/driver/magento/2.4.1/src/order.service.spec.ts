@@ -1,5 +1,6 @@
+import {InMemoryCache} from '@apollo/client/core';
 import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
+import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
 import { GraphQLError } from 'graphql';
 import { catchError } from 'rxjs/operators';
 
@@ -10,18 +11,16 @@ import {
   DaffOrderInvalidAPIResponseError,
   DaffOrderNotFoundError,
 } from '@daffodil/order/driver';
-import { MagentoOrder, DaffMagentoExtraOrderFragments, daffMagentoNoopOrderFragment, MagentoGetGuestOrdersResponse, getGuestOrders } from '@daffodil/order/driver/magento/2.4.1';
+import { MagentoOrder, DaffMagentoExtraOrderFragments, daffMagentoNoopOrderFragment, MagentoGetGuestOrdersResponse } from '@daffodil/order/driver/magento/2.4.1';
+import { schema } from '@daffodil/driver/magento';
 
-import * as validators from './validators/public_api';
 import { MagentoOrderTestDataFactory } from './helpers/public_api';
 import { DaffOrderMagentoService } from './order.service';
 
-describe('Driver | Magento | Order | OrderService', () => {
+describe('Driver | Magento | 2.4.1 | Order | OrderService', () => {
   let service: DaffOrderMagentoService;
   let controller: ApolloTestingController;
   let testDataFactory: MagentoOrderTestDataFactory;
-
-  let validatorSpy: jasmine.Spy;
 
   let cartId: string;
   let orderId: DaffOrder['id'];
@@ -40,7 +39,14 @@ describe('Driver | Magento | Order | OrderService', () => {
           provide: DaffMagentoExtraOrderFragments,
           useValue: daffMagentoNoopOrderFragment,
           multi: true
-        }
+        },
+        {
+					provide: APOLLO_TESTING_CACHE,
+					useValue: new InMemoryCache({
+						addTypename: true,
+						possibleTypes: schema.possibleTypes,
+					}),
+				}
       ]
     });
 
@@ -57,12 +63,10 @@ describe('Driver | Magento | Order | OrderService', () => {
 
     mockGetOrdersResponse = {
       graycoreGuestOrders: {
+        __typename: 'GraycoreGuestOrders',
         items: [mockMagentoOrder]
       }
     };
-
-    validatorSpy = jasmine.createSpy();
-    spyOnProperty(validators, 'validateGetOrdersResponse').and.returnValue(validatorSpy);
   });
 
   it('should be created', () => {
@@ -73,9 +77,7 @@ describe('Driver | Magento | Order | OrderService', () => {
     describe('when the call to the Magento API is successful', () => {
       describe('and the response fails validation', () => {
         beforeEach(() => {
-          validatorSpy.and.callFake(() => {
-            throw new DaffOrderInvalidAPIResponseError('Get orders response does not contain a valid list of orders.')
-          });
+          mockGetOrdersResponse.graycoreGuestOrders.items = null;
         });
 
         it('should throw a DaffOrderInvalidAPIResponseError', done => {
@@ -87,7 +89,7 @@ describe('Driver | Magento | Order | OrderService', () => {
             })
           ).subscribe();
 
-          const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
+          const op = controller.expectOne('GetGuestOrders');
 
           op.flush({
             data: mockGetOrdersResponse
@@ -96,18 +98,19 @@ describe('Driver | Magento | Order | OrderService', () => {
       });
 
       describe('and the response passes validation', () => {
-        beforeEach(() => {
-          validatorSpy.and.returnValue({data: mockGetOrdersResponse});
-        });
-
         describe('and the order is found', () => {
           it('should return the correct Daffodil order', done => {
             service.get(orderId, cartId).subscribe(result => {
-              expect(result).toEqual(jasmine.objectContaining(mockDaffOrder));
+              expect(result).toEqual(jasmine.objectContaining({
+                ...mockDaffOrder,
+                extra_attributes: jasmine.anything()
+              }));
               done();
             });
 
-            const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
+            const op = controller.expectOne('GetGuestOrders');
+
+            console.log('test', mockGetOrdersResponse.graycoreGuestOrders.items[0].items[1]);
 
             op.flush({
               data: mockGetOrdersResponse
@@ -133,7 +136,7 @@ describe('Driver | Magento | Order | OrderService', () => {
               done();
             });
 
-            const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
+            const op = controller.expectOne('GetGuestOrders');
 
             op.flush({
               data: mockGetOrdersResponse
@@ -153,7 +156,7 @@ describe('Driver | Magento | Order | OrderService', () => {
           })
         ).subscribe();
 
-        const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
+        const op = controller.expectOne('GetGuestOrders');
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find a cart with that ID.',
@@ -171,17 +174,16 @@ describe('Driver | Magento | Order | OrderService', () => {
   describe('list | listing the available orders', () => {
     describe('when the call to the Magento API is successful', () => {
       describe('and the response passes validation', () => {
-        beforeEach(() => {
-          validatorSpy.and.returnValue({data: mockGetOrdersResponse});
-        });
-
         it('should return the list of Daffodil orders', done => {
           service.list(cartId).subscribe(result => {
-            expect(result).toEqual([jasmine.objectContaining(mockDaffOrder)]);
+            expect(result).toEqual([jasmine.objectContaining({
+              ...mockDaffOrder,
+              extra_attributes: jasmine.anything()
+            })]);
             done();
           });
 
-          const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
+          const op = controller.expectOne('GetGuestOrders');
 
           op.flush({
             data: mockGetOrdersResponse
@@ -191,9 +193,7 @@ describe('Driver | Magento | Order | OrderService', () => {
 
       describe('and the response fails validation', () => {
         beforeEach(() => {
-          validatorSpy.and.callFake(() => {
-            throw new DaffOrderInvalidAPIResponseError('Get orders response does not contain a valid list of orders.')
-          });
+          mockGetOrdersResponse.graycoreGuestOrders.items = null;
         });
 
         it('should throw a DaffOrderInvalidAPIResponseError', done => {
@@ -205,7 +205,7 @@ describe('Driver | Magento | Order | OrderService', () => {
             })
           ).subscribe();
 
-          const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
+          const op = controller.expectOne('GetGuestOrders');
 
           op.flush({
             data: mockGetOrdersResponse
@@ -224,7 +224,7 @@ describe('Driver | Magento | Order | OrderService', () => {
           })
         ).subscribe();
 
-        const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
+        const op = controller.expectOne('GetGuestOrders');
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find a cart with that ID.',

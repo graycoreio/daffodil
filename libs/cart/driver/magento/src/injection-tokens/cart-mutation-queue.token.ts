@@ -1,5 +1,5 @@
+import {Apollo} from 'apollo-angular';
 import { inject, InjectionToken } from '@angular/core';
-import { Apollo } from 'apollo-angular';
 
 import { DaffQueuedApollo } from '@daffodil/core/graphql'
 

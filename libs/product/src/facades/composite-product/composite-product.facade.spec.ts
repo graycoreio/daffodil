@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { MockStore } from '@ngrx/store/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 import { Dictionary } from '@ngrx/entity';
@@ -17,7 +16,7 @@ import { DaffCompositeConfigurationItem } from '../../models/composite-configura
 import { DaffCompositeProductApplyOption } from '../../actions/composite-product.actions';
 
 describe('DaffCompositeProductFacade', () => {
-  let store: MockStore<Partial<DaffProductReducersState>>;
+  let store: Store<Partial<DaffProductReducersState>>;
 	let facade: DaffCompositeProductFacade;
 	let stubCompositeProduct: DaffCompositeProduct;
 	let compositeProductFactory: DaffCompositeProductFactory;

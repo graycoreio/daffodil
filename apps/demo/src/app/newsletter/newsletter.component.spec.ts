@@ -1,3 +1,4 @@
+import {Observable} from '@apollo/client/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NewsletterComponent } from './newsletter.component';
@@ -5,10 +6,9 @@ import { DaffContainerModule } from '@daffodil/design';
 
 import { By } from '@angular/platform-browser';
 import { DaffNewsletterFacade } from '@daffodil/newsletter';
-import { Observable } from 'apollo-link';
+
 import { ReactiveFormsModule } from '@angular/forms';
-import { of, empty } from 'rxjs';
-import { cold, hot } from 'jasmine-marbles';
+import { of } from 'rxjs';
 
 
 class MockDaffNewsletterFacade {

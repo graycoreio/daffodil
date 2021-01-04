@@ -2,7 +2,6 @@ import { NgModule, Injector, ComponentFactoryResolver } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { createCustomElement } from '@angular/elements';
 
-
 import { DesignLandArticleComponent } from './article.component';
 import { DesignLandArticleRoutingModule } from './article-routing.module';
 

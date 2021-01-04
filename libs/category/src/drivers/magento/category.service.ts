@@ -1,7 +1,7 @@
+import {Apollo} from 'apollo-angular';
 import { Injectable } from '@angular/core';
 import { Observable, combineLatest } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { Apollo } from 'apollo-angular';
 
 import { DaffCategoryServiceInterface } from '../interfaces/category-service.interface';
 import { DaffGetCategoryResponse } from '../../models/get-category-response';
@@ -25,7 +25,7 @@ import { buildCustomMetadataAttribute, addMetadataTypesToAggregates } from './tr
   providedIn: 'root'
 })
 export class DaffMagentoCategoryService implements DaffCategoryServiceInterface {
-  
+
   constructor(
     private apollo: Apollo,
 		private magentoCategoryResponseTransformer: DaffMagentoCategoryResponseTransformService,
@@ -48,10 +48,10 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
 				query: MagentoGetCategoryAggregations,
 				variables: {filter: {category_id: {eq: categoryRequest.id}}}
 			}).pipe(
-				switchMap((aggregationResult): Observable<MagentoGetCategoryAggregationsResponse> => 
+				switchMap((aggregationResult): Observable<MagentoGetCategoryAggregationsResponse> =>
 					this.apollo.query<MagentoCustomAttributeMetadataResponse>({
 						query: MagentoGetCustomAttributeMetadata,
-						variables: { 
+						variables: {
 							attributes: aggregationResult.data.products.aggregations
 								.filter(aggregate => aggregate.attribute_code !== 'category_id')
 								.map(aggregate => buildCustomMetadataAttribute(aggregate))
@@ -70,7 +70,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
 			map((finalResult: MagentoCompleteCategoryResponse) => this.magentoCategoryResponseTransformer.transform(finalResult))
 		);
 	}
-	
+
 	private getProductsQueryVariables(request: DaffCategoryRequest): MagentoGetProductsByCategoriesRequest {
 		const queryVariables = {
 			filter: this.magentoAppliedFiltersTransformer.transform(request.id, request.filter_requests)
@@ -85,7 +85,7 @@ export class DaffMagentoCategoryService implements DaffCategoryServiceInterface 
 	}
 
 	private buildCompleteCategoryResponse(
-		categoryResponse: MagentoGetACategoryResponse, 
+		categoryResponse: MagentoGetACategoryResponse,
 		aggregationsAndSortsResponse: MagentoGetCategoryAggregationsResponse,
 		productsResponse: MagentoGetProductsResponse
 	): MagentoCompleteCategoryResponse {

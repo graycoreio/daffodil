@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import {gql} from 'apollo-angular';
 
 import { countryFragment, regionFragment } from './fragments/public_api';
 

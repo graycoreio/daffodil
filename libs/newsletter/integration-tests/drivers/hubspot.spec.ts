@@ -6,11 +6,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import {
 	DaffNewsletterHubSpotDriverModule,
 	DaffNewsletterDriver,
-	DaffNewsletterServiceInterface
+	DaffNewsletterServiceInterface,
+  DaffNewsletterSubmission
 } from '@daffodil/newsletter';
 
 describe('DaffNewsletterHubspotDriver', () => {
-	let newsletterService: DaffNewsletterServiceInterface<any, any>;
+	let newsletterService: DaffNewsletterServiceInterface<DaffNewsletterSubmission, any>;
 	let httpMock: HttpTestingController;
 
 	beforeEach(() => {
@@ -27,9 +28,7 @@ describe('DaffNewsletterHubspotDriver', () => {
 
 		httpMock = TestBed.inject(HttpTestingController);
 
-		newsletterService = TestBed.inject(
-			DaffNewsletterDriver
-		);
+		newsletterService = TestBed.inject<DaffNewsletterServiceInterface<DaffNewsletterSubmission, any>>(DaffNewsletterDriver);
 	});
 
 	it('should provide an instance of the DaffNewsletterDriver', () => {

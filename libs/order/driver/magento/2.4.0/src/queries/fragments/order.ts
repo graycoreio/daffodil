@@ -1,4 +1,5 @@
-import gql from 'graphql-tag';
+import {gql} from 'apollo-angular';
+
 import { orderItemFragment } from './order-item';
 import { orderAddressFragment } from './order-address';
 import { orderShipmentFragment } from './order-shipment';

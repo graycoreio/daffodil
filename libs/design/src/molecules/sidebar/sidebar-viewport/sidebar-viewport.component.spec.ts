@@ -4,8 +4,6 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { A11yModule } from '@angular/cdk/a11y';
 
-
-
 import { DaffSidebarViewportComponent } from './sidebar-viewport.component';
 import { DaffSidebarComponent } from '../sidebar/sidebar.component';
 import { DaffSidebarMode } from '../helper/sidebar-mode';
@@ -17,7 +15,7 @@ import { DaffBackdropComponent, DaffBackdropModule } from '../../backdrop/public
     <daff-sidebar-viewport
       [backdropIsVisible]="backdropIsVisible"
       [mode]="mode"
-      [opened]="open" 
+      [opened]="open"
       (backdropClicked)="incrementBackdropClicked()"></daff-sidebar-viewport>
   </div>
 `})

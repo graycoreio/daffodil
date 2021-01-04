@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { Observable, of, BehaviorSubject } from 'rxjs';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
@@ -104,7 +104,7 @@ describe('CheckoutViewComponent', () => {
   let billingContainer: MockBillingContainer;
   let accordionItem: DaffAccordionItemComponent;
   let placeOrders;
-  let store: MockStore<any>;
+  let store: Store<any>;
   stubCart = cartFactory.create();
 	let cartFacade: MockDaffCartFacade;
 

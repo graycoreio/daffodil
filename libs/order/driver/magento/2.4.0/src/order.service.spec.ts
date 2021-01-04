@@ -1,7 +1,10 @@
+import {InMemoryCache} from '@apollo/client/core';
 import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
+import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
 import { GraphQLError } from 'graphql';
 import { catchError } from 'rxjs/operators';
+
+import { schema } from '@daffodil/driver/magento';
 
 import {
   DaffOrder,
@@ -45,13 +48,12 @@ import {
   MagentoGraycoreOrderShipment,
   DaffMagentoExtraOrderFragments,
   daffMagentoNoopOrderFragment,
-  getGuestOrders,
   MagentoGetGuestOrdersResponse
 } from '@daffodil/order/driver/magento/2.4.0';
 
 import { DaffOrderMagentoService } from './order.service';
 
-describe('Driver | Magento | Order | OrderService', () => {
+describe('Driver | Magento | 2.4.0 | Order | OrderService', () => {
   let service: DaffOrderMagentoService;
   let controller: ApolloTestingController;
 
@@ -107,7 +109,14 @@ describe('Driver | Magento | Order | OrderService', () => {
           provide: DaffMagentoExtraOrderFragments,
           useValue: daffMagentoNoopOrderFragment,
           multi: true
-        }
+        },
+        {
+					provide: APOLLO_TESTING_CACHE,
+					useValue: new InMemoryCache({
+						addTypename: true,
+						possibleTypes: schema.possibleTypes,
+					}),
+				}
       ]
     });
 
@@ -218,6 +227,7 @@ describe('Driver | Magento | Order | OrderService', () => {
     cartId = 'cartId';
 
     mockMagentoOrderItem = {
+      __typename: 'GraycoreOrderItem',
       qty_ordered: mockDaffOrderItem.qty_ordered,
       qty_canceled: mockDaffOrderItem.qty_canceled,
       qty_fulfilled: mockDaffOrderItem.qty_fulfilled,
@@ -241,6 +251,7 @@ describe('Driver | Magento | Order | OrderService', () => {
       tax_before_discount: mockDaffOrderItem.tax_before_discount,
     };
     mockMagentoOrderAddress = {
+      __typename: 'GraycoreOrderAddress',
       order_id: Number(mockDaffOrderAddress.order_id),
       prefix: mockDaffOrderAddress.prefix,
       suffix: mockDaffOrderAddress.suffix,
@@ -257,19 +268,23 @@ describe('Driver | Magento | Order | OrderService', () => {
       postcode: mockDaffOrderAddress.postcode,
     };
     mockMagentoOrderShipmentTracking = {
+      __typename: 'GraycoreOrderShipmentTracking',
       tracking_number: mockDaffOrderShipmentTracking.tracking_number,
       carrier: mockDaffOrderShipmentTracking.carrier,
       title: mockDaffOrderShipmentTracking.title,
     };
     mockMagentoOrderShipmentItem = {
+      __typename: 'GraycoreOrderShipmentItem',
       item: mockMagentoOrderItem,
       qty: mockDaffOrderShipmentItem.qty
     };
     mockMagentoOrderShipment = {
+      __typename: 'GraycoreOrderShipment',
       tracking: [mockMagentoOrderShipmentTracking],
       items: [mockMagentoOrderShipmentItem]
 		};
     mockMagentoOrderPayment = {
+      __typename: 'GraycoreOrderPayment',
       payment_id: Number(mockDaffOrderPayment.payment_id),
       order_id: Number(mockDaffOrderPayment.order_id),
       method: mockDaffOrderPayment.method,
@@ -280,6 +295,7 @@ describe('Driver | Magento | Order | OrderService', () => {
       cc_exp_year: mockDaffOrderPayment.cc_exp_year,
     };
     mockMagentoOrderInvoice = {
+      __typename: 'GraycoreOrderInvoice',
       items: [mockMagentoOrderShipmentItem],
       grand_total: mockDaffOrderGrandTotal.value,
       subtotal: mockDaffOrderSubTotal.value,
@@ -291,6 +307,7 @@ describe('Driver | Magento | Order | OrderService', () => {
       payment: mockMagentoOrderPayment,
     };
     mockMagentoOrder = {
+      __typename: 'GraycoreOrder',
       id: Number(mockDaffOrder.id),
       order_number: mockDaffOrder.id,
       customer_id: Number(mockDaffOrder.customer_id),
@@ -314,6 +331,7 @@ describe('Driver | Magento | Order | OrderService', () => {
     mockDaffOrder.extra_attributes = mockMagentoOrder;
     mockGetOrdersResponse = {
       graycoreGuestOrders: {
+        __typename: 'GraycoreGuestOrders',
         orders: [mockMagentoOrder]
       }
     };
@@ -339,7 +357,7 @@ describe('Driver | Magento | Order | OrderService', () => {
             })
           ).subscribe();
 
-          const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
+          const op = controller.expectOne('GetGuestOrders');
 
           op.flush({
             data: mockGetOrdersResponse
@@ -356,7 +374,7 @@ describe('Driver | Magento | Order | OrderService', () => {
               done();
             });
 
-            const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
+            const op = controller.expectOne('GetGuestOrders');
 
             op.flush({
               data: mockGetOrdersResponse
@@ -382,7 +400,7 @@ describe('Driver | Magento | Order | OrderService', () => {
               done();
             });
 
-            const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
+            const op = controller.expectOne('GetGuestOrders');
 
             op.flush({
               data: mockGetOrdersResponse
@@ -402,7 +420,7 @@ describe('Driver | Magento | Order | OrderService', () => {
           })
         ).subscribe();
 
-        const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
+        const op = controller.expectOne('GetGuestOrders');
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find a cart with that ID.',
@@ -427,7 +445,7 @@ describe('Driver | Magento | Order | OrderService', () => {
             done();
           });
 
-          const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
+          const op = controller.expectOne('GetGuestOrders');
 
           op.flush({
             data: mockGetOrdersResponse
@@ -449,7 +467,7 @@ describe('Driver | Magento | Order | OrderService', () => {
             })
           ).subscribe();
 
-          const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
+          const op = controller.expectOne('GetGuestOrders');
 
           op.flush({
             data: mockGetOrdersResponse
@@ -468,7 +486,7 @@ describe('Driver | Magento | Order | OrderService', () => {
           })
         ).subscribe();
 
-        const op = controller.expectOne(getGuestOrders([daffMagentoNoopOrderFragment]));
+        const op = controller.expectOne('GetGuestOrders');
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find a cart with that ID.',

@@ -1,11 +1,15 @@
+import {InMemoryCache, ApolloLink} from '@apollo/client/core';
+import {Apollo, ApolloModule} from 'apollo-angular';
+import {HttpLink, HttpLinkModule} from 'apollo-angular/http';
+import {onError} from '@apollo/client/link/error';
 import { NgModule } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { Apollo, ApolloModule } from 'apollo-angular';
-import { HttpLink, HttpLinkModule } from 'apollo-angular-link-http';
-import { onError,} from 'apollo-link-error';
-import { ApolloLink } from 'apollo-link';
+
+
+
+
+
 
 import { DaffProductShopifyDriverModule } from '@daffodil/product';
 import { DaffCartInMemoryDriverModule } from '@daffodil/cart/driver/in-memory';
@@ -19,13 +23,13 @@ const cache = new InMemoryCache();
 
 @NgModule({
   imports: [
-     //Shopify
-     ApolloModule,
-     HttpLinkModule,
-     DaffProductShopifyDriverModule.forRoot(),
-     DaffCartInMemoryDriverModule.forRoot(),
-     DaffCheckoutInMemoryDriverModule.forRoot(),
-     DaffNewsletterInMemoryDriverModule.forRoot()
+    //Shopify
+    ApolloModule,
+    HttpLinkModule,
+    DaffProductShopifyDriverModule.forRoot(),
+    DaffCartInMemoryDriverModule.forRoot(),
+    DaffCheckoutInMemoryDriverModule.forRoot(),
+    DaffNewsletterInMemoryDriverModule.forRoot()
   ]
 })
 export class DemoShopifyDriverModule {

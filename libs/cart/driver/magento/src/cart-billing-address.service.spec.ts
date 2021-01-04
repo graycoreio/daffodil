@@ -1,7 +1,7 @@
+import { InMemoryCache } from '@apollo/client/core';
 import { TestBed } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
-import { addTypenameToDocument } from 'apollo-utilities';
-import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
+
 import { catchError } from 'rxjs/operators';
 import { GraphQLError } from 'graphql';
 
@@ -10,7 +10,7 @@ import {
   DaffCart,
   DaffCartAddress,
 } from '@daffodil/cart';
-import { MagentoCart, MagentoCartAddress, MagentoUpdateBillingAddressResponse, MagentoUpdateBillingAddressWithEmailResponse, MagentoGetBillingAddressResponse, DaffMagentoCartTransformer, DaffMagentoBillingAddressTransformer, DaffMagentoBillingAddressInputTransformer, DaffMagentoExtraCartFragments, daffMagentoNoopCartFragment, getBillingAddress, updateBillingAddressWithEmail, updateBillingAddress } from '@daffodil/cart/driver/magento';
+import { MagentoCart, MagentoCartAddress, MagentoUpdateBillingAddressResponse, MagentoUpdateBillingAddressWithEmailResponse, MagentoGetBillingAddressResponse, DaffMagentoCartTransformer, DaffMagentoBillingAddressTransformer, DaffMagentoBillingAddressInputTransformer, DaffMagentoExtraCartFragments, daffMagentoNoopCartFragment } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
   MagentoCartAddressFactory,
@@ -70,9 +70,7 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
 					provide: APOLLO_TESTING_CACHE,
 					useValue: new InMemoryCache({
 						addTypename: true,
-						fragmentMatcher: new IntrospectionFragmentMatcher({
-							introspectionQueryResultData: schema,
-						}),
+						possibleTypes: schema.possibleTypes,
 					}),
 				}
       ]
@@ -114,7 +112,9 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
         cart: mockMagentoCart
       },
       setGuestEmailOnCart: {
+				__typename: 'SetGuestEmailOnCart',
         cart: {
+          __typename: 'Cart',
           email
         }
       }
@@ -141,7 +141,7 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(getBillingAddress([daffMagentoNoopCartFragment])));
+      const op = controller.expectOne('GetBillingAddress');
 
       op.flush({
         data: mockGetBillingAddressResponse
@@ -154,7 +154,7 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(getBillingAddress([daffMagentoNoopCartFragment])));
+      const op = controller.expectOne('GetBillingAddress');
 
       op.flush({
         data: mockGetBillingAddressResponse
@@ -172,7 +172,7 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
           done();
         });
 
-        const op = controller.expectOne(addTypenameToDocument(getBillingAddress([daffMagentoNoopCartFragment])));
+        const op = controller.expectOne('GetBillingAddress');
 
         op.flush({
           data: mockGetBillingAddressResponse
@@ -196,7 +196,7 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
           })
         ).subscribe();
 
-        const op = controller.expectOne(addTypenameToDocument(updateBillingAddressWithEmail([daffMagentoNoopCartFragment])));
+        const op = controller.expectOne('UpdateBillingAddressWithEmail');
 
         op.graphqlErrors([new GraphQLError(
           'Can\'t find a cart with that ID.',
@@ -228,7 +228,7 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
             done();
           });
 
-          const op = controller.expectOne(addTypenameToDocument(updateBillingAddressWithEmail([daffMagentoNoopCartFragment])));
+          const op = controller.expectOne('UpdateBillingAddressWithEmail');
 
           op.flush({
             data: mockUpdateBillingAddressWithEmailResponse
@@ -253,7 +253,7 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
             done();
           });
 
-          const op = controller.expectOne(addTypenameToDocument(updateBillingAddress([daffMagentoNoopCartFragment])));
+          const op = controller.expectOne('UpdateBillingAddress');
 
           op.flush({
             data: mockUpdateBillingAddressResponse

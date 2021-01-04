@@ -1,10 +1,8 @@
+import {Apollo, gql} from 'apollo-angular';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
 
 import { DaffProduct } from '../../models/product';
 import { DaffProductServiceInterface } from '../interfaces/product-service.interface';
@@ -30,6 +28,7 @@ interface ProductEdge {
 }
 
 interface ProductNode {
+  __typename?: 'Product';
   id: string;
   title?: string;
   price?: string;
@@ -74,7 +73,7 @@ export const GetAProduct = gql`
 
 /**
  * Transforms a ProductNode into a different object.
- * 
+ *
  * @param node - ProductNode object
  * @returns A Product object
  */
@@ -88,7 +87,7 @@ export const DaffShopifyProductTransformer = (node: ProductNode) : DaffProduct =
 
 /**
  * A service for getting DaffProducts from apollo shopify product requests.
- * 
+ *
  * @Param apollo
  */
 @Injectable({
@@ -97,12 +96,12 @@ export const DaffShopifyProductTransformer = (node: ProductNode) : DaffProduct =
 export class DaffShopifyProductService implements DaffProductServiceInterface {
 
   defaultLength = 20;
-  
+
   constructor(private apollo: Apollo) {}
 
   /**
    * A query for retrieving all Products as an Observable<DaffProduct[]>.
-   * 
+   *
    * @returns Observable<Product[]>
    */
   getAll(): Observable<DaffProduct[]> {
@@ -134,7 +133,7 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
 
   /**
    * A query for retrieving a particular product as an Observable<DaffProduct>.
-   * 
+   *
    * @param productId - A product ID
    * @returns Observable<Product>
    */
@@ -145,7 +144,11 @@ export class DaffShopifyProductService implements DaffProductServiceInterface {
         id: productId
       }
     }).pipe(
-      map(result => DaffShopifyProductTransformer(result.data.node))
+      map(result => {
+        console.log(result);
+
+        return DaffShopifyProductTransformer(result.data.node)
+      })
     );
   }
 }

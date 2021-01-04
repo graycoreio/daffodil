@@ -1,4 +1,4 @@
-import { ApolloError } from 'apollo-client';
+import {ApolloError} from '@apollo/client/core';
 
 import { DaffUnauthorizedError } from '../../../errors/public_api';
 import { MagentoAuthGraphQlErrorCode } from './codes';

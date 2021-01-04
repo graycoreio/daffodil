@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { MockStore } from '@ngrx/store/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
@@ -15,7 +14,7 @@ import {
 } from '../actions/paypal.actions';
 
 describe('DaffPaypalFacade', () => {
-  let store: MockStore<any>;
+  let store: Store<any>;
   let facade: DaffPaypalFacade;
   const paypalTokenResponseFactory: DaffPaypalTokenResponseFactory = new DaffPaypalTokenResponseFactory();
 	let stubPaypalTokenResponse: DaffPaypalTokenResponse;

@@ -1,14 +1,16 @@
 import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
+import { InMemoryCache } from '@apollo/client/core';
+import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
 
 import {
   DaffCartPaymentMethod,
 } from '@daffodil/cart';
-import { MagentoCartPaymentMethod, MagentoListPaymentMethodsResponse, DaffMagentoCartPaymentTransformer, DaffMagentoExtraCartFragments, daffMagentoNoopCartFragment, listPaymentMethods } from '@daffodil/cart/driver/magento';
+import { MagentoCartPaymentMethod, MagentoListPaymentMethodsResponse, DaffMagentoCartPaymentTransformer, DaffMagentoExtraCartFragments, daffMagentoNoopCartFragment } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartPaymentMethodFactory
 } from '@daffodil/cart/driver/magento/testing';
 import { DaffCartPaymentFactory } from '@daffodil/cart/testing';
+import { schema } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartPaymentMethodsService } from './cart-payment-methods.service';
 
@@ -16,7 +18,8 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
   let service: DaffMagentoCartPaymentMethodsService;
   let controller: ApolloTestingController;
 
-  let magentoCartPaymentTransformerSpy;
+  let magentoCartPaymentTransformerService: DaffMagentoCartPaymentTransformer;
+  let magentoCartPaymentTransformerSpy: jasmine.Spy;
 
   let daffCartPaymentFactory: DaffCartPaymentFactory;
   let magentoPaymentMethodFactory: MagentoCartPaymentMethodFactory;
@@ -34,21 +37,24 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
       providers: [
         DaffMagentoCartPaymentMethodsService,
         {
-          provide: DaffMagentoCartPaymentTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartPaymentTransformer', ['transform'])
-        },
-        {
           provide: DaffMagentoExtraCartFragments,
           useValue: daffMagentoNoopCartFragment,
           multi: true
         },
+				{
+					provide: APOLLO_TESTING_CACHE,
+					useValue: new InMemoryCache({
+						addTypename: true,
+						possibleTypes: schema.possibleTypes,
+					}),
+				}
       ]
     });
 
     service = TestBed.inject(DaffMagentoCartPaymentMethodsService);
     controller = TestBed.inject(ApolloTestingController);
 
-    magentoCartPaymentTransformerSpy = TestBed.inject(DaffMagentoCartPaymentTransformer);
+    magentoCartPaymentTransformerService = TestBed.inject(DaffMagentoCartPaymentTransformer);
 
     daffCartPaymentFactory = TestBed.inject(DaffCartPaymentFactory);
     magentoPaymentMethodFactory = TestBed.inject(MagentoCartPaymentMethodFactory);
@@ -57,6 +63,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
     // TODO: create a factory and model for MagentoAvailablePaymentMethod
     const temp = magentoPaymentMethodFactory.create();
     mockMagentoPaymentMethod = {
+      __typename: 'AvailablePaymentMethod',
       code: temp.code,
       title: temp.title
     };
@@ -69,7 +76,8 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
       }
     };
 
-    magentoCartPaymentTransformerSpy.transform.withArgs(mockMagentoPaymentMethod).and.returnValue(mockDaffCartPayment);
+    magentoCartPaymentTransformerSpy = spyOn(magentoCartPaymentTransformerService, 'transform');
+    magentoCartPaymentTransformerSpy.withArgs(mockMagentoPaymentMethod).and.returnValue(mockDaffCartPayment);
   });
 
   it('should be created', () => {
@@ -82,15 +90,16 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
     beforeEach(() => {
       method = 'method';
       mockDaffCartPayment.method = method;
+      mockMagentoPaymentMethod.code = method;
     });
 
     it('should call the transformer with the correct argument', done => {
       service.list(cartId).subscribe(() => {
-        expect(magentoCartPaymentTransformerSpy.transform).toHaveBeenCalledWith(mockMagentoPaymentMethod);
+        expect(magentoCartPaymentTransformerSpy).toHaveBeenCalledWith(mockMagentoPaymentMethod);
         done();
       });
 
-      const op = controller.expectOne(listPaymentMethods([daffMagentoNoopCartFragment]));
+      const op = controller.expectOne('ListPaymentMethods');
 
       op.flush({
         data: mockListCartPaymentMethodsResponse
@@ -103,7 +112,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
         done();
       });
 
-      const op = controller.expectOne(listPaymentMethods([daffMagentoNoopCartFragment]));
+      const op = controller.expectOne('ListPaymentMethods');
 
       op.flush({
         data: mockListCartPaymentMethodsResponse

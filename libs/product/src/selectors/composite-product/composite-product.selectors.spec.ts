@@ -486,8 +486,22 @@ describe('Composite Product Selectors | integration tests', () => {
 		});
 
 		it('should return a price range that reflects the expected option quantity when the default item option is out of stock', () => {
-			stubCompositeProduct.items[0].options[0].in_stock = false;
-			store.dispatch(new DaffProductLoadSuccess(stubCompositeProduct));
+			store.dispatch(new DaffProductLoadSuccess({
+        ...stubCompositeProduct,
+        items: [
+          {
+            ...stubCompositeProduct.items[0],
+            options: [
+              {
+                ...stubCompositeProduct.items[0].options[0],
+                in_stock: false
+              },
+              ...stubCompositeProduct.items[0].options.slice(1)
+            ]
+          },
+          ...stubCompositeProduct.items.slice(1)
+        ]
+      }));
 
 			const selector = store.pipe(select(selectCompositeProductPricesAsCurrentlyConfigured, { id: stubCompositeProduct.id }));
 			const expected = cold('a', { a: {

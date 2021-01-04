@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import {gql} from 'apollo-angular';
 
 import { orderItemFragment } from './order-item';
 import { orderAddressFragment } from './order-address';
@@ -10,7 +10,6 @@ import { orderTotalFragment } from './order-total';
 
 export const orderFragment = gql`
   fragment order on GraycoreGuestOrder {
-    __typename
     id
     order_date
     status

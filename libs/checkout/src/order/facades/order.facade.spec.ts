@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { MockStore } from '@ngrx/store/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
@@ -11,7 +10,7 @@ import { DaffPlaceOrderSuccess } from '../actions/order.actions';
 import { DaffOrderFacade } from './order.facade';
 
 describe('DaffOrderFacade', () => {
-  let store: MockStore<any>;
+  let store: Store<any>;
   let facade: DaffOrderFacade;
   let stubOrder: DaffOrder;
   const orderFactory: DaffOrderFactory = new DaffOrderFactory();

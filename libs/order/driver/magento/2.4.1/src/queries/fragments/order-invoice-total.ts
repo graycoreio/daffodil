@@ -1,8 +1,8 @@
-import gql from 'graphql-tag';
+import {gql} from 'apollo-angular';
+
 
 export const orderInvoiceTotalFragment = gql`
   fragment orderInvoiceTotal on InvoiceTotal {
-    __typename
     discounts {
       amount {
         value

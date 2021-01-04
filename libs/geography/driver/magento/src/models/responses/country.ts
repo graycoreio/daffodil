@@ -1,6 +1,7 @@
 import { MagentoRegion } from './region';
 
 export interface MagentoCountry {
+  __typename?: 'Country';
   id: string;
   available_regions?:	MagentoRegion[];
   full_name_english:	string;

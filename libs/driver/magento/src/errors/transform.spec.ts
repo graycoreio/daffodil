@@ -1,4 +1,4 @@
-import { ApolloError } from 'apollo-client';
+import {ApolloError} from '@apollo/client/core';
 
 import { DaffError, DaffErrorCodeMap, DaffInheritableError } from '@daffodil/core';
 

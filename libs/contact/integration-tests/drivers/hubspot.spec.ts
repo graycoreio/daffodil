@@ -42,12 +42,11 @@ describe('DaffContactHubspotDriver', () => {
 			const mockReq = of(forumSubmission);
 			contactService.send(forumSubmission).subscribe();
 			const req = httpMock.expectOne(
-				`${'https://api.hsforms.com/submissions/v3/integration/submit/123123/123123'}`,
+				'https://api.hsforms.com/submissions/v3/integration/submit/123123/123123',
 			);
-			expect(req.request.body).toEqual({
+			expect(req.request.body).toEqual(jasmine.objectContaining({
 				fields: [Object({ name: 'email', value: 'test@email.com' })],
-				context: Object({ hutk: null, pageUri: '/', pageName: '' }),
-			});
+			}));
 			req.flush(mockReq);
 			httpMock.verify();
     });

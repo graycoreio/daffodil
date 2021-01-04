@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 
 import { DaffImageGalleryModule } from '@daffodil/design';
 import { Store } from '@ngrx/store';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { ImageGalleryComponent } from './image-gallery.component';
 import { SetSelectedImageState } from '../actions/image-gallery.actions';
@@ -27,7 +27,7 @@ describe('ImageGalleryComponent', () => {
   let imageGalleryContainer: ImageGalleryComponent;
   const activeImageIndex = 0;
   let daffGalleryImages;
-  let store: MockStore<any>;
+  let store: Store<any>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

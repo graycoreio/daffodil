@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { MockStore } from '@ngrx/store/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
@@ -16,7 +15,7 @@ import { DaffCategoryFilterType } from '../models/category-filter-base';
 import { DaffCategoryRequest } from '../models/requests/category-request';
 
 describe('DaffCategoryFacade', () => {
-  let store: MockStore<any>;
+  let store: Store<any>;
   let facade: DaffCategoryFacade<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>, DaffProduct>;
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
   const categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();

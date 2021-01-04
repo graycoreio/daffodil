@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -20,7 +20,7 @@ describe('SidebarViewportContainer', () => {
 
   let sidebarViewport: DaffSidebarViewportComponent;
 
-  let store: MockStore<fromDemoSidebar.State>;
+  let store: Store<fromDemoSidebar.State>;
   let stubShowSidebar: boolean;
   let sidebarContainer: MockSidebarContainer;
 

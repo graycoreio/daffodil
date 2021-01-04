@@ -5,7 +5,9 @@ import { DaffCartAddress } from '@daffodil/cart';
 import { MagentoShippingAddressInput } from '../../models/requests/shipping-address';
 import { DaffMagentoCartAddressInputTransformer } from './cart-address.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DaffMagentoShippingAddressInputTransformer {
   constructor(private cartAddressTransformer: DaffMagentoCartAddressInputTransformer) {}
 

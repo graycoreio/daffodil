@@ -23,10 +23,7 @@ describe('NewsletterEffects', () => {
 	let actions$: Observable<any>;
 	let effects: DaffNewsletterEffects<DaffNewsletterSubmission, any>;
 	const mockNewsletter = { email: 'test@test.com' };
-	let daffNewsletterDriver: DaffNewsletterServiceInterface<
-		DaffNewsletterSubmission,
-		any
-	>;
+	let daffNewsletterDriver: DaffNewsletterServiceInterface<DaffNewsletterSubmission, any>;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -40,7 +37,7 @@ describe('NewsletterEffects', () => {
 			],
 		});
 		effects = TestBed.inject(DaffNewsletterEffects);
-		daffNewsletterDriver = TestBed.inject(DaffNewsletterDriver);
+		daffNewsletterDriver = TestBed.inject<DaffNewsletterServiceInterface<DaffNewsletterSubmission, any>>(DaffNewsletterDriver);
 	});
 
 	it('should be created', () => {

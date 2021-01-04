@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
-import { MockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 
 import { DaffCartPaymentMethodAdd } from '@daffodil/cart/state';

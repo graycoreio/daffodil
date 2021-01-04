@@ -1,13 +1,14 @@
+import {Apollo, gql} from 'apollo-angular';
+import {InMemoryCache, ApolloQueryResult} from '@apollo/client/core';
+import {addTypenameToDocument} from '@apollo/client/utilities';
 import { TestBed } from '@angular/core/testing';
 import { schema } from '@daffodil/driver/magento';
-import { Apollo } from 'apollo-angular';
+
 import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
-import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
-import { ApolloQueryResult } from 'apollo-client';
+
 import { DocumentNode } from 'graphql';
-import gql from 'graphql-tag';
+
 import { Observable } from 'rxjs';
-import { addTypenameToDocument } from 'apollo-utilities';
 
 import { CategoryNode } from '@daffodil/navigation/driver/magento';
 
@@ -45,9 +46,7 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
 					provide: APOLLO_TESTING_CACHE,
 					useValue: new InMemoryCache({
 						addTypename: true,
-						fragmentMatcher: new IntrospectionFragmentMatcher({
-							introspectionQueryResultData: schema,
-						}),
+						possibleTypes: schema.possibleTypes,
 					}),
 				}
       ]

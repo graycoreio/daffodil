@@ -21,7 +21,7 @@ describe('DaffCategoryPageSelectors', () => {
   const categoryFactory: DaffCategoryFactory = new DaffCategoryFactory();
   const categoryPageConfigurationFactory: DaffCategoryPageConfigurationStateFactory = new DaffCategoryPageConfigurationStateFactory();
 	let stubCategory: DaffCategory;
-  const stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest> = categoryPageConfigurationFactory.create();
+  let stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState<DaffCategoryRequest>;
 	const categorySelectors = getDaffCategoryPageSelectors<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>>();
 
   beforeEach(() => {
@@ -34,6 +34,7 @@ describe('DaffCategoryPageSelectors', () => {
     });
 
     stubCategory = categoryFactory.create();
+    stubCategoryPageConfigurationState = categoryPageConfigurationFactory.create()
     stubCategoryPageConfigurationState.id = stubCategory.id;
 		stubCategoryPageConfigurationState.filters = [
 			{
@@ -125,8 +126,14 @@ describe('DaffCategoryPageSelectors', () => {
   describe('selectCategoryPageAppliedFilters', () => {
 
     it('sets applied filters to [] if the available filters is []', () => {
-			stubCategoryPageConfigurationState.filters = [];
-			store.dispatch(new DaffCategoryPageLoadSuccess({ category: stubCategory, categoryPageConfigurationState: stubCategoryPageConfigurationState, products: null }));
+			store.dispatch(new DaffCategoryPageLoadSuccess({
+        category: stubCategory,
+        categoryPageConfigurationState: {
+          ...stubCategoryPageConfigurationState,
+          filters: []
+        },
+        products: null
+      }));
 			const filterRequests: DaffCategoryFilterRequest[] = [
 				{
 					name: 'name',

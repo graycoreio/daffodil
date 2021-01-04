@@ -4,7 +4,9 @@ import { DaffCartAddress } from '@daffodil/cart';
 
 import { MagentoCartAddressInput } from '../../models/requests/cart-address';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DaffMagentoCartAddressInputTransformer {
   transform(cartAddress: Partial<DaffCartAddress>): MagentoCartAddressInput {
     return {

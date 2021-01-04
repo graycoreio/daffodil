@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { StoreModule, Store } from '@ngrx/store';
-import { MockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 
 import {
@@ -14,7 +13,7 @@ import { DaffContactFeatureState } from '../selectors/contact.selector';
 import { DaffContactFacade } from './contact.facade';
 
 describe('the DaffContactFacade', () => {
-  let store: MockStore<Partial<DaffContactFeatureState>>;
+  let store: Store<Partial<DaffContactFeatureState>>;
   let facade: DaffContactFacade;
 
   beforeEach(() => {

@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-
 import { DaffInMemoryCheckoutService } from './checkout.service';
 import { DaffOrderFactory } from '@daffodil/checkout/testing';
 import { DaffOrder } from '@daffodil/checkout';

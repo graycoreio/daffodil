@@ -1,4 +1,5 @@
 export interface MagentoGraycoreOrderPayment {
+  __typename?: 'GraycoreOrderPayment';
   payment_id: number;
   order_id: number;
   method: string;

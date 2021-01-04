@@ -12,11 +12,15 @@ import { DaffTestingGeographyService } from './geography.service';
 describe('Driver | Testing | Geography | GeographyService', () => {
   let service: DaffTestingGeographyService;
 
-  let countryFactorySpy: jasmine.SpyObj<DaffCountryFactory>;
-  let subdivisionFactorySpy: jasmine.SpyObj<DaffSubdivisionFactory>;
+  let countryCreateSpy: jasmine.Spy;
+  let countryCreateManySpy: jasmine.Spy;
+  let subdivisionCreateSpy: jasmine.Spy;
+  let subdivisionCreateManySpy: jasmine.Spy;
 
   let countryFactory: DaffCountryFactory;
   let subdivisionFactory: DaffSubdivisionFactory;
+  let countryFactoryService: DaffCountryFactory;
+  let subdivisionFactoryService: DaffSubdivisionFactory;
 
   let mockCountry: DaffCountry;
   let mockSubdivision: DaffSubdivision;
@@ -25,21 +29,13 @@ describe('Driver | Testing | Geography | GeographyService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        {
-          provide: DaffCountryFactory,
-          useValue: jasmine.createSpyObj('DaffCountryFactory', ['create', 'createMany'])
-        },
-        {
-          provide: DaffSubdivisionFactory,
-          useValue: jasmine.createSpyObj('DaffSubdivisionFactory', ['create', 'createMany'])
-        },
         DaffTestingGeographyService
       ]
     });
 
     service = TestBed.inject(DaffTestingGeographyService);
-    countryFactorySpy = TestBed.inject(DaffCountryFactory);
-    subdivisionFactorySpy = TestBed.inject(DaffSubdivisionFactory);
+    countryFactoryService = TestBed.inject(DaffCountryFactory);
+    subdivisionFactoryService = TestBed.inject(DaffSubdivisionFactory);
 
     countryFactory = new DaffCountryFactory();
     subdivisionFactory = new DaffSubdivisionFactory();
@@ -48,10 +44,14 @@ describe('Driver | Testing | Geography | GeographyService', () => {
     mockSubdivision = subdivisionFactory.create();
     countryId = mockCountry.id;
 
-    countryFactorySpy.create.and.returnValue(mockCountry);
-    countryFactorySpy.createMany.and.returnValue([mockCountry]);
-    subdivisionFactorySpy.create.and.returnValue(mockSubdivision);
-    subdivisionFactorySpy.createMany.and.returnValue([mockSubdivision]);
+    countryCreateSpy = spyOn(countryFactoryService, 'create');
+    countryCreateManySpy = spyOn(countryFactoryService, 'createMany');
+    subdivisionCreateSpy = spyOn(subdivisionFactoryService, 'create');
+    subdivisionCreateManySpy = spyOn(subdivisionFactoryService, 'createMany');
+    countryCreateSpy.and.returnValue(mockCountry);
+    countryCreateManySpy.and.returnValue([mockCountry]);
+    subdivisionCreateSpy.and.returnValue(mockSubdivision);
+    subdivisionCreateManySpy.and.returnValue([mockSubdivision]);
   });
 
   it('should be created', () => {

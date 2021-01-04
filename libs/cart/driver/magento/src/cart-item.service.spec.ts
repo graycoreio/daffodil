@@ -1,8 +1,7 @@
+import { InMemoryCache } from '@apollo/client/core';
 import { TestBed } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
 import { of } from 'rxjs';
-import { addTypenameToDocument } from 'apollo-utilities';
-import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
 
 import { schema } from '@daffodil/driver/magento';
 import { DaffProduct, DaffConfigurableProduct } from '@daffodil/product';
@@ -15,7 +14,7 @@ import {
   DaffConfigurableCartItemInput,
   DaffSimpleCartItemInput,
 } from '@daffodil/cart';
-import { DaffMagentoCartTransformer, DaffMagentoCartItemUpdateInputTransformer, MagentoCart, MagentoCartItem, MagentoCartItemInput, MagentoCartItemUpdateInput, MagentoAddSimpleCartItemResponse, MagentoAddBundleCartItemResponse, MagentoAddConfigurableCartItemResponse, MagentoListCartItemsResponse, MagentoUpdateCartItemResponse, MagentoRemoveCartItemResponse, DaffMagentoExtraCartFragments, daffMagentoNoopCartFragment, listCartItems, addBundleCartItem, addSimpleCartItem, addConfigurableCartItem, updateCartItem, removeCartItem } from '@daffodil/cart/driver/magento';
+import { DaffMagentoCartTransformer, DaffMagentoCartItemUpdateInputTransformer, MagentoCart, MagentoCartItem, MagentoCartItemInput, MagentoCartItemUpdateInput, MagentoAddSimpleCartItemResponse, MagentoAddBundleCartItemResponse, MagentoAddConfigurableCartItemResponse, MagentoListCartItemsResponse, MagentoUpdateCartItemResponse, MagentoRemoveCartItemResponse, DaffMagentoExtraCartFragments, daffMagentoNoopCartFragment } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
   MagentoCartItemFactory
@@ -35,8 +34,11 @@ describe('Driver | Magento | Cart | CartItemService', () => {
   let daffCartItemFactory: DaffCartItemFactory;
   let magentoCartItemFactory: MagentoCartItemFactory;
 
-  let magentoCartTransformerSpy: jasmine.SpyObj<DaffMagentoCartTransformer>;
-  let magentoCartItemUpdateInputTransformerSpy: jasmine.SpyObj<DaffMagentoCartItemUpdateInputTransformer>;
+  let magentoCartTransformer: DaffMagentoCartTransformer;
+  let magentoCartItemUpdateInputTransformer: DaffMagentoCartItemUpdateInputTransformer;
+
+  let cartTransformerSpy: jasmine.Spy;
+  let cartItemUpdateInputTransformerSpy: jasmine.Spy;
 
   let cartId;
   let itemId;
@@ -67,14 +69,6 @@ describe('Driver | Magento | Cart | CartItemService', () => {
       providers: [
         DaffMagentoCartItemService,
         {
-          provide: DaffMagentoCartTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartTransformer', ['transform'])
-        },
-        {
-          provide: DaffMagentoCartItemUpdateInputTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartItemUpdateInputTransformer', ['transform'])
-        },
-        {
           provide: DaffMagentoExtraCartFragments,
           useValue: daffMagentoNoopCartFragment,
           multi: true
@@ -83,9 +77,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
 					provide: APOLLO_TESTING_CACHE,
 					useValue: new InMemoryCache({
 						addTypename: true,
-						fragmentMatcher: new IntrospectionFragmentMatcher({
-							introspectionQueryResultData: schema,
-						}),
+						possibleTypes: schema.possibleTypes,
 					}),
 				}
       ]
@@ -94,8 +86,8 @@ describe('Driver | Magento | Cart | CartItemService', () => {
     service = TestBed.inject(DaffMagentoCartItemService);
     controller = TestBed.inject(ApolloTestingController);
 
-    magentoCartTransformerSpy = TestBed.inject(DaffMagentoCartTransformer);
-    magentoCartItemUpdateInputTransformerSpy = TestBed.inject(DaffMagentoCartItemUpdateInputTransformer);
+    magentoCartTransformer = TestBed.inject(DaffMagentoCartTransformer);
+    magentoCartItemUpdateInputTransformer = TestBed.inject(DaffMagentoCartItemUpdateInputTransformer);
 
 		daffProductFactory = TestBed.inject(DaffProductFactory);
 		daffConfigurableProductFactory = TestBed.inject(DaffConfigurableProductFactory);
@@ -179,8 +171,11 @@ describe('Driver | Magento | Cart | CartItemService', () => {
       }
     };
 
-    magentoCartTransformerSpy.transform.and.returnValue(mockDaffCart);
-    magentoCartItemUpdateInputTransformerSpy.transform.and.returnValue(mockMagentoCartItemUpdateInput);
+    cartTransformerSpy = spyOn(magentoCartTransformer, 'transform');
+    cartItemUpdateInputTransformerSpy = spyOn(magentoCartItemUpdateInputTransformer, 'transform');
+
+    cartTransformerSpy.and.returnValue(mockDaffCart);
+    cartItemUpdateInputTransformerSpy.and.returnValue(mockMagentoCartItemUpdateInput);
   });
 
   it('should be created', () => {
@@ -210,7 +205,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(listCartItems([daffMagentoNoopCartFragment])));
+      const op = controller.expectOne('ListCartItems');
 
       op.flush({
         data: mockListCartItemResponse
@@ -247,7 +242,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
 					done();
 				});
 
-				const op = controller.expectOne(addTypenameToDocument(addBundleCartItem([daffMagentoNoopCartFragment])));
+				const op = controller.expectOne('AddBundleCartItem');
 
 				op.flush({
 					data: mockAddBundleCartItemResponse
@@ -262,7 +257,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
 					done();
 				});
 
-				const op = controller.expectOne(addTypenameToDocument(addSimpleCartItem([daffMagentoNoopCartFragment])));
+				const op = controller.expectOne('AddSimpleCartItem');
 
 				op.flush({
 					data: mockAddSimpleCartItemResponse
@@ -277,7 +272,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
 					done();
 				});
 
-				const op = controller.expectOne(addTypenameToDocument(addConfigurableCartItem([daffMagentoNoopCartFragment])));
+				const op = controller.expectOne('AddConfigurableCartItem');
 
 				op.flush({
 					data: mockAddConfigurableCartItemResponse
@@ -307,7 +302,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(updateCartItem([daffMagentoNoopCartFragment])));
+      const op = controller.expectOne('UpdateCartItem');
 
       op.flush({
         data: mockUpdateCartItemResponse
@@ -333,7 +328,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(removeCartItem([daffMagentoNoopCartFragment])));
+      const op = controller.expectOne('RemoveCartItem');
 
       op.flush({
         data: mockRemoveCartItemResponse

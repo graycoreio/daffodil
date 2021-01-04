@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { StoreModule, combineReducers, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 
 import { DaffAddress } from '@daffodil/core';
@@ -12,7 +12,7 @@ import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 import { ShowPaymentForm, ToggleShowPaymentForm, HidePaymentForm } from '../../../actions/payment.actions';
 import * as fromDemoCheckout from '../../../reducers';
 import { PaymentComponent } from './payment.component';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 const paymentFactory = new DaffPaymentFactory();
 const daffodilAddressFactory = new DaffAddressFactory();
@@ -68,7 +68,7 @@ describe('PaymentComponent', () => {
   let paymentForm: MockPaymentFormComponent;
   let paymentSummary: MockPaymentSummaryComponent;
   let billingSummary: MockBillingSummaryComponent;
-  let store: MockStore<any>;
+  let store: Store<any>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

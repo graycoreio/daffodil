@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActionsSubject, Action } from '@ngrx/store';
 
-
 import { Resolve, Router } from '@angular/router';
 import { ResolveCartSuccess, CartResolverActionTypes } from '../actions/cart-resolver.actions';
 import { filter, switchMap } from 'rxjs/operators';

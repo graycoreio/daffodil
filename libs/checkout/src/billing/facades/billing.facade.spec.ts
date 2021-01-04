@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { MockStore } from '@ngrx/store/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
@@ -13,7 +12,7 @@ import { daffBillingReducers } from '../reducers/billing-reducers';
 import { DaffUpdateBillingAddress, DaffToggleBillingAddressIsShippingAddress, DaffUpdatePaymentInfo } from '../actions/billing.actions';
 
 describe('DaffBillingFacade', () => {
-  let store: MockStore<any>;
+  let store: Store<any>;
   let facade: DaffBillingFacade;
   let stubBillingAddress: DaffAddress;
   let stubBillingAddressIsShippingAddress: boolean;

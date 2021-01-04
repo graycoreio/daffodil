@@ -21,7 +21,7 @@ export class MockOrderItem implements DaffOrderItem {
   product_id = faker.random.number({min: 1, max: 1000});
   parent_item_id = faker.random.number({min: 1, max: 1000});
   sku = 'sku';
-  name = 'Product Name';
+  name = faker.random.word();
   weight = faker.random.number({min: 1, max: 1000});
   qty = faker.random.number({min: 1, max: 10});
   price = faker.random.number({min: 1, max: 1000});

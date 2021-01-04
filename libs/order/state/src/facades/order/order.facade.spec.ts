@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
-import { MockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 
 import {
@@ -23,7 +22,7 @@ import { DaffCartPlaceOrderSuccess, daffCartReducers } from '@daffodil/cart/stat
 import { DaffOrderFacade } from './order.facade';
 
 describe('DaffOrderFacade', () => {
-  let store: MockStore<{ [DAFF_ORDER_STORE_FEATURE_KEY]: Partial<DaffOrderReducersState> }>;
+  let store: Store<{ [DAFF_ORDER_STORE_FEATURE_KEY]: Partial<DaffOrderReducersState> }>;
   let facade: DaffOrderFacade;
   let orderFactory: DaffOrderFactory;
   let orderTotalFactory: DaffOrderTotalFactory;

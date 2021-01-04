@@ -1,14 +1,11 @@
+import {InMemoryCache} from '@apollo/client/core';
+import {addTypenameToDocument} from '@apollo/client/utilities';
 import { TestBed } from '@angular/core/testing';
 import {
 	ApolloTestingModule,
 	ApolloTestingController,
 	APOLLO_TESTING_CACHE,
 } from 'apollo-angular/testing';
-import {
-	InMemoryCache,
-	IntrospectionFragmentMatcher,
-} from 'apollo-cache-inmemory';
-import { addTypenameToDocument } from 'apollo-utilities';
 
 import { GetProductQuery, MagentoSimpleProduct } from '@daffodil/product';
 import {
@@ -33,9 +30,7 @@ describe('Product | Magento | ProductService', () => {
 					provide: APOLLO_TESTING_CACHE,
 					useValue: new InMemoryCache({
 						addTypename: true,
-						fragmentMatcher: new IntrospectionFragmentMatcher({
-							introspectionQueryResultData: schema,
-						}),
+						possibleTypes: schema.possibleTypes,
 					}),
 				},
 			],

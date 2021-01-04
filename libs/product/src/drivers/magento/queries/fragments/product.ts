@@ -1,4 +1,5 @@
-import gql from 'graphql-tag';
+import {gql} from 'apollo-angular';
+
 import { magentoBundledProductFragment } from './bundled-product';
 import { magentoSimpleProductFragment } from './simple-product';
 import { magentoConfigurableProductFragment } from './configurable-product';

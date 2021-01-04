@@ -1,4 +1,5 @@
 export interface MagentoOrderAddress {
+  __typename?: 'OrderAddress';
   city: string;
   company: string;
   country_code: string;

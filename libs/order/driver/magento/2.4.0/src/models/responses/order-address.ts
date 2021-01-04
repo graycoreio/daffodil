@@ -1,4 +1,5 @@
 export interface MagentoGraycoreOrderAddress {
+  __typename?: 'GraycoreOrderAddress';
   order_id: number;
   prefix: string;
   suffix: string;
