@@ -3,7 +3,10 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
-import { DaffStorageServiceError, DaffServerSideStorageError } from '@daffodil/core';
+import {
+	DaffStorageServiceError,
+	DaffServerSideStorageError,
+} from '@daffodil/core';
 import { daffTransformErrorToStateError } from '@daffodil/core/state';
 import { DaffCart, DaffCartStorageService } from '@daffodil/cart';
 import {
@@ -84,7 +87,9 @@ describe('DaffCartResolverEffects', () => {
 		describe('when cart resolution is attempted on the server', () => {
 			beforeEach(() => {
 				cartStorageService.getCartId.and.callFake(() => {
-					throw new DaffServerSideStorageError("Resolution failed server side.")
+					throw new DaffServerSideStorageError(
+						'Resolution failed server side.',
+					);
 				});
 			});
 
@@ -95,7 +100,6 @@ describe('DaffCartResolverEffects', () => {
 				});
 
 				expect(effects.onResolveCart()).toBeObservable(expected);
-
 			});
 		});
 
