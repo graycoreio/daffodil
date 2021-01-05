@@ -9,7 +9,7 @@ import { DaffCartItemInput, DaffCart, DaffCartStorageService, DaffCartItemInputT
 import { DaffCartItemServiceInterface, DaffCartItemDriver } from '@daffodil/cart/driver';
 import { DaffCartItemList, DaffCartItemListSuccess, DaffCartItemListFailure, DaffCartItemLoad, DaffCartItemLoadSuccess, DaffCartItemLoadFailure, DaffCartItemAdd, DaffCartItemAddSuccess, DaffCartItemAddFailure, DaffCartItemUpdate, DaffCartItemUpdateSuccess, DaffCartItemUpdateFailure, DaffCartItemDelete, DaffCartItemDeleteSuccess, DaffCartItemDeleteFailure, DaffStatefulCartItem, DaffCartItemStateReset, DaffCartItemStateDebounceTime } from '@daffodil/cart/state';
 import {
-  DaffCartFactory,
+  DaffCartFactory, DaffCartItemFactory,
 } from '@daffodil/cart/testing';
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
@@ -193,18 +193,19 @@ describe('Daffodil | Cart | CartItemEffects', () => {
   describe('when CartItemUpdateAction is triggered', () => {
     let expected;
     let cartItemUpdateAction;
-    let qty;
+		let qty;
+		let cartItemUpdateSuccessAction;
 
     beforeEach(() => {
       qty = mockCartItem.qty + 1
       mockCartItem.qty = qty;
       cartItemUpdateAction = new DaffCartItemUpdate(mockCartItem.item_id, mockCartItem);
-    });
+			cartItemUpdateSuccessAction = new DaffCartItemUpdateSuccess(mockCart, mockCartItem.item_id);
+		});
 
     describe('and the call to CartItemService is successful', () => {
       beforeEach(() => {
 				daffCartItemDriverSpy.update.and.returnValue(of(mockCart));
-				const cartItemUpdateSuccessAction = new DaffCartItemUpdateSuccess(mockCart, mockCartItem.item_id);
         actions$ = hot('--a', { a: cartItemUpdateAction });
         expected = cold('--b', { b: cartItemUpdateSuccessAction });
       });
@@ -212,7 +213,21 @@ describe('Daffodil | Cart | CartItemEffects', () => {
       it('should dispatch a CartItemUpdateSuccess action', () => {
         expect(effects.update$).toBeObservable(expected);
       });
-    });
+		});
+		
+		describe('and a concurrent request is made', () => {
+			
+			it('should not cancel the first observable', () => {
+				const mockCartItem2 = new DaffCartItemFactory().create();
+				daffCartItemDriverSpy.update.and.returnValue(cold('--a', { a: mockCart }));
+				const cartItemUpdateAction2 = new DaffCartItemUpdate(mockCartItem2.item_id, mockCartItem2);
+				const cartItemUpdateSuccessAction2 = new DaffCartItemUpdateSuccess(mockCart, mockCartItem2.item_id);
+				actions$ = hot('ab', { a: cartItemUpdateAction, b: cartItemUpdateAction2 })
+				expected = cold('--cd', { c: cartItemUpdateSuccessAction, d: cartItemUpdateSuccessAction2 })
+
+				expect(effects.update$).toBeObservable(expected);
+			});
+		});
 
     describe('and the call to CartItemService fails', () => {
       beforeEach(() => {
@@ -272,24 +287,38 @@ describe('Daffodil | Cart | CartItemEffects', () => {
 
   describe('when CartItemDeleteAction is triggered', () => {
     let expected;
-    let cartItemRemoveAction;
+		let cartItemDeleteAction;
+		let cartItemDeleteSuccessAction;
 
     beforeEach(() => {
-      cartItemRemoveAction = new DaffCartItemDelete(mockCartItem.item_id);
+      cartItemDeleteAction = new DaffCartItemDelete(mockCartItem.item_id);
+			cartItemDeleteSuccessAction = new DaffCartItemDeleteSuccess(mockCart);
     });
 
     describe('and the clear call to driver is successful', () => {
       beforeEach(() => {
         mockCart.items = [];
         daffCartItemDriverSpy.delete.and.returnValue(of(mockCart));
-        const cartItemRemoveCartSuccessAction = new DaffCartItemDeleteSuccess(mockCart);
-        actions$ = hot('--a', { a: cartItemRemoveAction });
-        expected = cold('--b', { b: cartItemRemoveCartSuccessAction });
+        actions$ = hot('--a', { a: cartItemDeleteAction });
+        expected = cold('--b', { b: cartItemDeleteSuccessAction });
       });
       it('should return a DaffCartItemDeleteSucess action', () => {
         expect(effects.delete$).toBeObservable(expected);
       });
     });
+		
+		describe('and a concurrent request is made', () => {
+			
+			it('should not cancel the first observable', () => {
+				const mockCartItem2 = new DaffCartItemFactory().create();
+				daffCartItemDriverSpy.delete.and.returnValue(cold('--a', { a: mockCart }));
+				const cartItemDeleteAction2 = new DaffCartItemDelete(mockCartItem2.item_id);
+				actions$ = hot('ab', { a: cartItemDeleteAction, b: cartItemDeleteAction2 })
+				expected = cold('--cd', { c: cartItemDeleteSuccessAction, d: cartItemDeleteSuccessAction })
+
+				expect(effects.delete$).toBeObservable(expected);
+			});
+		});
 
     describe('and the call to CartItemService fails', () => {
       beforeEach(() => {
@@ -297,7 +326,7 @@ describe('Daffodil | Cart | CartItemEffects', () => {
         const response = cold('#', {}, error);
         daffCartItemDriverSpy.delete.and.returnValue(response);
         const cartItemRemoveCartFailureAction = new DaffCartItemDeleteFailure(error);
-        actions$ = hot('--a', { a: cartItemRemoveAction });
+        actions$ = hot('--a', { a: cartItemDeleteAction });
         expected = cold('--b', { b: cartItemRemoveCartFailureAction });
       });
       it('should return a DaffCartItemDeleteFailure action', () => {

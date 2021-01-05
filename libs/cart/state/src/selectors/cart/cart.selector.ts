@@ -388,7 +388,7 @@ const createCartSelectors = <
 			selectItemAdding
     ].map(selector =>
       selector.projector(loadingObject)
-    ).reduce((acc, mutating) => acc || mutating || cartItemMutating, false)
+    ).reduce((acc, mutating) => acc || mutating, false) || cartItemMutating
 	);
 
 	const selectCartErrorsObject = createSelector(

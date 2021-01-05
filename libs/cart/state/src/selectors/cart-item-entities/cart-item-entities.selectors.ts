@@ -127,6 +127,7 @@ const createCartItemEntitiesSelectors = <
 		}
 	);
 
+	//todo optional chaining
 	const selectCartItemMutating = createSelector(
 		selectAllCartItems,
 		(cartItems: U[]) => cartItems && cartItems.reduce((acc, item) =>
