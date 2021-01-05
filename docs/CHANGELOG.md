@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.22.0](https://github.com/graycoreio/daffodil/compare/v0.21.3...v0.22.0) (2021-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cart:** The selectItemMutating selector is now a derived selector of all cart item states and is called selectCartItemMutating
+
+### Features
+
+* **cart:** add more driver errors ([#1198](https://github.com/graycoreio/daffodil/issues/1198)) ([05a0a15](https://github.com/graycoreio/daffodil/commit/05a0a15e28a1a621c539607ef10125a30ae3a73b))
+* **cart/state:** add specification for server-side cart resolution ([#1193](https://github.com/graycoreio/daffodil/issues/1193)) ([e21f1cd](https://github.com/graycoreio/daffodil/commit/e21f1cd580445e8c370b4b0b086a95d5869b417e))
+* **core:** swap persistence to server error on server by default ([#1200](https://github.com/graycoreio/daffodil/issues/1200)) ([9184640](https://github.com/graycoreio/daffodil/commit/9184640c57bcab16c49251464a44cac65bd4ddaf))
+
+
+### Bug Fixes
+
+* **cart:** fix bug where concurrent cart item updates would result in… ([#1203](https://github.com/graycoreio/daffodil/issues/1203)) ([486dda7](https://github.com/graycoreio/daffodil/commit/486dda79e6dc05f510a51c00d701281f9691da6b))
+* **core:** queued apollo mutation errors prevent subsequent requests ([#1196](https://github.com/graycoreio/daffodil/issues/1196)) ([cc43940](https://github.com/graycoreio/daffodil/commit/cc439406943fc94af81498ef56c6646e6bca138c))
+
 ### [0.21.3](https://github.com/graycoreio/daffodil/compare/v0.21.2...v0.21.3) (2020-12-22)
 
 
