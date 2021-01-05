@@ -16,7 +16,6 @@ export interface DaffCartLoading {
 
 export enum DaffCartItemLoadingState {
   Resolving = 'Resolving',
-	Mutating = 'Mutating',
 	Adding = 'Adding',
   Complete = 'Complete',
 }

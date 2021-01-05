@@ -19,6 +19,7 @@ export interface DaffCartItemEntitiesMemoizedSelectors<T extends DaffStatefulCar
 	selectCartItemConfiguredAttributes: MemoizedSelectorWithProps<object, object, DaffConfigurableCartItemAttribute[]>;
 	selectCartItemCompositeOptions: MemoizedSelectorWithProps<object, object, DaffCompositeCartItemOption[]>;
 	selectIsCartItemOutOfStock: MemoizedSelectorWithProps<object, object, boolean>;
+	selectCartItemMutating: MemoizedSelector<object, boolean>;
 	selectCartItemState: MemoizedSelectorWithProps<object, object, DaffCartItemStateEnum>;
 }
 
@@ -126,6 +127,13 @@ const createCartItemEntitiesSelectors = <
 		}
 	);
 
+	//todo optional chaining
+	const selectCartItemMutating = createSelector(
+		selectAllCartItems,
+		(cartItems: U[]) => cartItems && cartItems.reduce((acc, item) =>
+			acc || item.daffState === DaffCartItemStateEnum.Mutating, false)
+	);
+
 	const selectCartItemState = createSelector(
 		selectCartItemEntities,
 		(cartItems, props) => {
@@ -147,6 +155,7 @@ const createCartItemEntitiesSelectors = <
 		selectCartItemConfiguredAttributes,
 		selectCartItemCompositeOptions,
 		selectIsCartItemOutOfStock,
+		selectCartItemMutating,
 		selectCartItemState
 	}
 }

@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { switchMap, map, catchError, debounceTime } from 'rxjs/operators';
+import { switchMap, map, catchError, debounceTime, concatMap, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
@@ -81,7 +81,7 @@ export class DaffCartItemEffects<
   @Effect()
   update$ = this.actions$.pipe(
     ofType(DaffCartItemActionTypes.CartItemUpdateAction),
-    switchMap((action: DaffCartItemUpdate<T>) =>
+		mergeMap((action: DaffCartItemUpdate<T>) => 
 			this.driver.update(
 				this.storage.getCartId(),
 				action.itemId,
@@ -103,7 +103,7 @@ export class DaffCartItemEffects<
   @Effect()
   delete$ = this.actions$.pipe(
     ofType(DaffCartItemActionTypes.CartItemDeleteAction),
-    switchMap((action: DaffCartItemDelete<T>) =>
+    mergeMap((action: DaffCartItemDelete<T>) =>
       this.driver.delete(this.storage.getCartId(), action.itemId).pipe(
         map((resp: V) => new DaffCartItemDeleteSuccess(resp)),
         catchError(error => of(new DaffCartItemDeleteFailure(this.errorMatcher(error))))
