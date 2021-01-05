@@ -93,7 +93,6 @@ describe('Cart | Selector | Cart', () => {
 		selectItemLoading,
 		selectItemAdding,
     selectItemResolving,
-    selectItemMutating,
 
 		selectCartErrorsObject,
 		selectCartErrors,
@@ -764,30 +763,6 @@ describe('Cart | Selector | Cart', () => {
 
       it('should return true', () => {
         const selector = store.pipe(select(selectItemResolving));
-        const expected = cold('a', {a: true});
-
-        expect(selector).toBeObservable(expected);
-      });
-    });
-  });
-
-  describe('selectItemMutating', () => {
-    describe('when the cart item operations have completed', () => {
-      it('should return false', () => {
-        const selector = store.pipe(select(selectItemMutating));
-        const expected = cold('a', {a: false});
-
-        expect(selector).toBeObservable(expected);
-      });
-    });
-
-    describe('when the cart item mutations have not completed', () => {
-      beforeEach(() => {
-        store.dispatch(new DaffCartItemDelete('itemId'))
-      });
-
-      it('should return true', () => {
-        const selector = store.pipe(select(selectItemMutating));
         const expected = cold('a', {a: true});
 
         expect(selector).toBeObservable(expected);

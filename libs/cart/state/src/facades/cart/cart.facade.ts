@@ -153,7 +153,7 @@ export class DaffCartFacade<
       selectItemLoading,
       selectItemAdding,
       selectItemResolving,
-      selectItemMutating,
+      selectCartItemMutating,
 
 			selectCartErrorsObject,
 			selectCartErrors,
@@ -249,7 +249,7 @@ export class DaffCartFacade<
     this.itemLoading$ = this.store.pipe(select(selectItemLoading));
     this.itemAdding$ = this.store.pipe(select(selectItemAdding));
     this.itemResolving$ = this.store.pipe(select(selectItemResolving));
-    this.itemMutating$ = this.store.pipe(select(selectItemMutating));
+    this.itemMutating$ = this.store.pipe(select(selectCartItemMutating));
 
     this.errors$ = this.store.pipe(select(selectCartErrorsObject));
     this.cartErrors$ = this.store.pipe(select(selectCartErrors));

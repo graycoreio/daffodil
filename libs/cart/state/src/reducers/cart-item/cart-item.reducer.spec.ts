@@ -1,9 +1,9 @@
 import { DaffStateError } from '@daffodil/core/state';
 import { DaffCart, DaffCartItemInputType } from '@daffodil/cart';
 import {
-	DaffCartItemUpdate, DaffCartOperationType,
+	DaffCartOperationType,
 	DaffCartReducerState, DaffCartItemUpdateSuccess,
-	DaffCartItemUpdateFailure, DaffCartItemDelete,
+	DaffCartItemUpdateFailure,
 	DaffCartItemDeleteSuccess, DaffCartItemDeleteFailure,
 	DaffCartItemAdd, DaffCartItemAddSuccess,
 	DaffCartItemAddFailure, DaffCartItemLoad,
@@ -42,16 +42,6 @@ describe('Cart | Reducer | Cart Item', () => {
       const result = cartItemReducer(initialState, action);
 
       expect(result).toBe(initialState);
-    });
-  });
-
-  describe('when CartItemUpdateAction is triggered', () => {
-    it('should indicate that the cart item is being mutated', () => {
-      const cartItemUpdateAction = new DaffCartItemUpdate('itemId', {qty: 3});
-
-      const result = cartItemReducer(initialState, cartItemUpdateAction);
-
-      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffCartItemLoadingState.Mutating);
     });
   });
 
@@ -115,16 +105,6 @@ describe('Cart | Reducer | Cart Item', () => {
 
     it('should add an error to the item section of state.errors', () => {
       expect(result.errors[DaffCartOperationType.Item].length).toEqual(2);
-    });
-  });
-
-  describe('when CartItemDeleteAction is triggered', () => {
-    it('should indicate that the cart item is being mutated', () => {
-      const cartItemRemoveAction = new DaffCartItemDelete('itemId');
-
-      const result = cartItemReducer(initialState, cartItemRemoveAction);
-
-      expect(result.loading[DaffCartOperationType.Item]).toEqual(DaffCartItemLoadingState.Mutating);
     });
   });
 

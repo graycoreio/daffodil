@@ -9,6 +9,7 @@ import { DaffStatefulCartItemFactory, DaffStatefulCompositeCartItemFactory, Daff
 
 import { getDaffCartItemEntitiesSelectors } from './cart-item-entities.selectors';
 import { DaffStatefulCartItem, DaffStatefulCompositeCartItem, DaffStatefulConfigurableCartItem } from '../../models/public_api';
+import { DaffCartItemUpdate } from '../../actions/public_api';
 
 describe('selectCartItemEntitiesState', () => {
 
@@ -31,6 +32,7 @@ describe('selectCartItemEntitiesState', () => {
 		selectCartItemConfiguredAttributes,
 		selectCartItemCompositeOptions,
 		selectIsCartItemOutOfStock,
+		selectCartItemMutating,
 		selectCartItemState
 	} = getDaffCartItemEntitiesSelectors();
 
@@ -171,6 +173,25 @@ describe('selectCartItemEntitiesState', () => {
     it('should return null if the cart item is not in state', () => {
 			const selector = store.pipe(select(selectIsCartItemOutOfStock, { id: mockCartItems[0].item_id + 'notId' }));
 			const expected = cold('a', { a: null });
+
+			expect(selector).toBeObservable(expected);
+    });
+  });
+
+  describe('selectCartItemMutating', () => {
+
+		it('should return true when a cart item is mutating', () => {
+			store.dispatch(new DaffCartItemListSuccess(mockCartItems));
+			store.dispatch(new DaffCartItemUpdate(mockCartItems[0].item_id, { qty: 2 }));
+			const selector = store.pipe(select(selectCartItemMutating, { id: mockCartItems[0].item_id }));
+			const expected = cold('a', { a: true });
+
+			expect(selector).toBeObservable(expected);
+		});
+
+    it('should return false when there are no cart items mutating', () => {
+			const selector = store.pipe(select(selectCartItemMutating, { id: mockCartItems[0].item_id }));
+			const expected = cold('a', { a: false });
 
 			expect(selector).toBeObservable(expected);
     });

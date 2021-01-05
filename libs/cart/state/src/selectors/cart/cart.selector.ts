@@ -15,6 +15,7 @@ import { DaffCartReducerState, DaffCartReducersState, DaffCartOperationType } fr
 import { DaffCartItemLoadingState } from '../../reducers/loading/cart-loading.type';
 import { DaffStatefulCartItem } from '../../models/stateful-cart-item';
 import { DaffCartResolveState } from '../../reducers/cart-resolve/cart-resolve-state.enum';
+import { getDaffCartItemEntitiesSelectors } from '../cart-item-entities/cart-item-entities.selectors';
 
 export interface DaffCartStateMemoizedSelectors<
   T extends DaffCart = DaffCart
@@ -163,11 +164,6 @@ export interface DaffCartStateMemoizedSelectors<
    * This pertains only to requests that do not mutate data such as "load" or "list".
    */
   selectItemResolving: MemoizedSelector<object, boolean>;
-  /**
-   * Selects whether there is a cart item mutate operation in progress.
-   * This pertains only to requests that mutate data such as "update".
-   */
-	selectItemMutating: MemoizedSelector<object, boolean>;
 
 	selectCartErrorsObject: MemoizedSelector<object, DaffCartReducerState<T>['errors']>;
 	selectCartErrors: MemoizedSelector<object, DaffStateError[]>;
@@ -228,6 +224,7 @@ const createCartSelectors = <
 	U extends DaffStatefulCartItem = DaffStatefulCartItem
 >(): DaffCartStateMemoizedSelectors<T> => {
 	const selectCartFeatureState = getDaffCartFeatureSelector<T, V, U>().selectCartFeatureState;
+	const { selectCartItemMutating } = getDaffCartItemEntitiesSelectors<T, V, U>();
 	const selectCartState = createSelector(
 		selectCartFeatureState,
 		(state: DaffCartReducersState<T, V, U>) => state.cart
@@ -334,10 +331,6 @@ const createCartSelectors = <
 		selectCartLoadingObject,
 		loadingObject => loadingObject[DaffCartOperationType.Item] === DaffCartItemLoadingState.Resolving
   );
-  const selectItemMutating = createSelector(
-		selectCartLoadingObject,
-		loadingObject => loadingObject[DaffCartOperationType.Item] === DaffCartItemLoadingState.Mutating
-  );
   const selectCouponLoading = createSelector(
 		selectCartLoadingObject,
 		loadingObject => loadingObject[DaffCartOperationType.Coupon] !== DaffLoadingState.Complete
@@ -384,18 +377,18 @@ const createCartSelectors = <
   );
   const selectCartFeatureMutating = createSelector(
 		selectCartLoadingObject,
-		loadingObject => [
+		selectCartItemMutating,
+		(loadingObject, cartItemMutating) => [
       selectCartMutating,
       selectBillingAddressMutating,
       selectShippingAddressMutating,
       selectShippingInformationMutating,
       selectPaymentMutating,
       selectCouponMutating,
-			selectItemMutating,
-			selectItemAdding,
+			selectItemAdding
     ].map(selector =>
       selector.projector(loadingObject)
-    ).reduce((acc, mutating) => acc || mutating, false)
+    ).reduce((acc, mutating) => acc || mutating || cartItemMutating, false)
 	);
 
 	const selectCartErrorsObject = createSelector(
@@ -641,7 +634,6 @@ const createCartSelectors = <
 		selectItemLoading,
 		selectItemAdding,
     selectItemResolving,
-    selectItemMutating,
 
 		selectCartErrorsObject,
 		selectCartErrors,
