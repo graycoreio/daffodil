@@ -8,7 +8,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { mediaCompatToken, daffMediaCompatToken } from '../../molecules/media-gallery/media/media-compat.token';
+import { daffMediaCompatToken } from '../../molecules/media-gallery/public_api';
 
 const validateProperty = (object: Record<string, any>, prop: string) => {
   if (object[prop] === null || object[prop] === undefined || object[prop] === '') {
