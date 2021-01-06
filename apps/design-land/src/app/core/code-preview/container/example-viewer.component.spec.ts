@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { DesignLandExampleViewer } from './example-viewer.component';
 
@@ -8,7 +9,10 @@ describe('DesignLandExampleViewer', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DesignLandExampleViewer ]
+      declarations: [ DesignLandExampleViewer ],
+      imports: [
+        HttpClientTestingModule
+      ]
     })
     .compileComponents();
   }));
