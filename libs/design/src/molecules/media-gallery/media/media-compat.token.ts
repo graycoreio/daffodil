@@ -1,3 +1,3 @@
 import { InjectionToken } from "@angular/core";
 
-export const mediaCompatToken = new InjectionToken<unknown>('mediaCompatToken');
+export const daffMediaCompatToken = new InjectionToken<unknown>('mediaCompatToken');

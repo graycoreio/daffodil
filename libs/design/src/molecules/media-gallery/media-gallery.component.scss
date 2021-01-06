@@ -15,6 +15,22 @@
 		grid-template-columns: 80px 1fr;
 		grid-gap: 24px;
 	}
+
+	::ng-deep {
+		#{$root}__media {
+			@include clickable();
+			display: block;
+			margin: 10px 0;
+			max-width: 100%;
+			overflow: hidden;
+			width: 50px;
+			height: 50px;
+
+			&--selected {
+				outline: 1px solid blue;
+			}
+		}
+	}
 }
 
 .daff-media-gallery {
@@ -29,9 +45,5 @@
 
 	&__main-image {
 		grid-area: main-image;
-	}
-
-	&__media {
-		width: 80px;
-	}
+	}	
 }

@@ -1,23 +1,32 @@
-import { Component, ContentChildren, QueryList, AfterContentInit, Type, HostBinding, AfterContentChecked } from '@angular/core';
-import { DaffMediaDirective } from './media/media.directive';
+import {
+	Component,
+	HostBinding,
+	ChangeDetectionStrategy,
+	Input
+} from '@angular/core';
+
+let uniqueGalleryId = 0;
 
 @Component({
-  selector: 'daff-media-gallery',
-  templateUrl: './media-gallery.component.html',
-  styleUrls: ['./media-gallery.component.scss']
+	selector: 'daff-media-gallery',
+	templateUrl: './media-gallery.component.html',
+	styleUrls: ['./media-gallery.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DaffMediaGalleryComponent implements AfterContentInit {
-  @HostBinding('class.daff-media-gallery') class = true;
+export class DaffMediaGalleryComponent {
 
-  @ContentChildren(DaffMediaDirective) mediaList: QueryList<DaffMediaDirective>;
+	/**
+	 * The name of the gallery
+	 */
+	@Input('name') _name: string = "";
 
-  ngAfterContentInit(): void {
-    this.mediaList.changes.subscribe((mediaList: DaffMediaDirective[]) => {
-      const media = mediaList.filter((item) => item.selected)[0];
-      this._component = media.component;
-      console.log('test');
-    });
-  }
+	get name() {
+		return this._name ? this._name : uniqueGalleryId.toString();
+	}
 
-  _component: Type<any>;
+	@HostBinding('class.daff-media-gallery') class = true;
+	
+	constructor() {
+		uniqueGalleryId++;
+	}
 }
