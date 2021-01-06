@@ -1,42 +1,34 @@
-import { Component, Input } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { of, Observable, BehaviorSubject } from 'rxjs';
+import { of } from 'rxjs';
 import { cold, hot } from 'jasmine-marbles';
 
-import { DaffProductFactory } from '@daffodil/product/testing';
+import { DaffProductFactory, DaffProductTestingModule } from '@daffodil/product/testing';
 import { DaffContainerModule, DaffLoadingIconModule } from '@daffodil/design';
-import { DaffProductGridFacade, DaffProduct } from '@daffodil/product';
+import { DaffProductGridFacade } from '@daffodil/product';
+import { DaffCartTestingModule } from '@daffodil/cart/state/testing';
 
 import { ProductGridViewComponent } from './product-grid-view.component';
 import { ProductGridComponent } from '../../components/product-grid/product-grid.component';
 import { ProductGridModule } from '../../components/product-grid/product-grid.module';
 
-class MockDaffProductGridFacade {
-  loading$: Observable<boolean> = new BehaviorSubject(false);
-  products$: Observable<DaffProduct[]> = new BehaviorSubject([]);
-  dispatch() { }
-}
-
-
 describe('ProductGridViewComponent', () => {
   let component: ProductGridViewComponent;
   let fixture: ComponentFixture<ProductGridViewComponent>;
   let productGridComponent: ProductGridComponent;
-  let facade: MockDaffProductGridFacade;
+  let facade;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        ProductGridViewComponent
+        ProductGridViewComponent,
       ],
       imports: [
         DaffContainerModule,
         DaffLoadingIconModule,
-        ProductGridModule
-      ],
-      providers: [
-        { provide: DaffProductGridFacade, useClass: MockDaffProductGridFacade }
+        ProductGridModule,
+        DaffProductTestingModule,
+        DaffCartTestingModule
       ]
     })
       .compileComponents();

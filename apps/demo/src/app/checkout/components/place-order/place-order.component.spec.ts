@@ -1,13 +1,13 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of, BehaviorSubject } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { provideMockStore } from '@ngrx/store/testing';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartFacade } from '@daffodil/cart/state';
-import { DaffCartTestingModule, MockDaffCartFacade } from '@daffodil/cart/state/testing';
+import { DaffCartTestingModule } from '@daffodil/cart/state/testing';
 import { DaffCartFactory } from '@daffodil/cart/testing';
 import { PlaceOrder } from '@daffodil/checkout';
 
@@ -18,12 +18,12 @@ describe('PlaceOrderComponent', () => {
   let fixture: ComponentFixture<PlaceOrderComponent>;
   let component: PlaceOrderComponent;
   const stubEnablePlaceOrderButton = true;
-  let store: Store<any>;
+  let store: MockStore<any>;
   let cartFactory: DaffCartFactory;
 	let stubCart: DaffCart;
-	let cartFacade: MockDaffCartFacade;
+	let cartFacade;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         PlaceOrderComponent
@@ -41,7 +41,7 @@ describe('PlaceOrderComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PlaceOrderComponent);
     component = fixture.componentInstance;
-    store = TestBed.inject(Store);
+    store = TestBed.inject(MockStore);
     cartFactory = TestBed.inject(DaffCartFactory);
 		stubCart = cartFactory.create();
 		cartFacade = TestBed.inject(DaffCartFacade);

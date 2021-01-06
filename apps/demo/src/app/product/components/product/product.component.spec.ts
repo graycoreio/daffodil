@@ -21,7 +21,7 @@ import {
 class WrapperComponent {
   productValue: DaffProduct;
   qtyValue: number;
-  updateQtyFunction(){};
+  updateQtyFunction(e) {};
 }
 
 @Component({selector: 'demo-image-gallery-container', template: ''})

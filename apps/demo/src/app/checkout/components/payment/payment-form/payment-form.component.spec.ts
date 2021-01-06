@@ -26,7 +26,7 @@ class WrapperComponent {
   paymentInfoValue: PaymentInfo;
   billingAddressValue: DaffAddress;
   billingAddressIsShippingAddressValue: boolean;
-  updatePaymentInfoFunction = () => {};
+  updatePaymentInfoFunction = (e) => {};
   updateBillingAddressFunction = () => {};
   toggleBillingAddressIsShippingAddressFunction = () => {};
 }

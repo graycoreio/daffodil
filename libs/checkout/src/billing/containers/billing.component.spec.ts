@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
-import { provideMockStore } from '@ngrx/store/testing';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
@@ -14,7 +14,7 @@ import { selectPaymentInfo, selectBillingAddress, selectBillingAddressIsShipping
 describe('BillingContainer', () => {
   let component: BillingContainer;
   let fixture: ComponentFixture<BillingContainer>;
-  let store: Store<any>;
+  let store: MockStore<any>;
   let initialBillingAddress: DaffAddress;
   let initialBillingAddressIsShippingAddress: boolean;
   let initialPaymentInfo: PaymentInfo;
@@ -35,7 +35,7 @@ describe('BillingContainer', () => {
     fixture = TestBed.createComponent(BillingContainer);
     component = fixture.componentInstance;
 
-    store = TestBed.inject(Store);
+    store = TestBed.inject(MockStore);
     addressFactory = TestBed.inject(DaffAddressFactory);
     paymentFactory = TestBed.inject(DaffPaymentFactory);
 

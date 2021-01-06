@@ -5,12 +5,12 @@ import { hot, cold } from 'jasmine-marbles';
 
 import { DaffCart } from '@daffodil/cart';
 import { DaffCartFactory } from '@daffodil/cart/testing';
-import { DaffTestingCheckoutService, DaffOrderFactory } from '@daffodil/checkout/testing';
+import { DaffCheckoutDriver } from '@daffodil/checkout';
+import { DaffOrderFactory, DaffCheckoutTestingDriverModule } from '@daffodil/checkout/testing';
 
 import { OrderEffects } from './order.effects';
 import { DaffPlaceOrder, DaffPlaceOrderSuccess, DaffPlaceOrderFailure } from '../actions/order.actions';
 import { DaffCheckoutServiceInterface } from '../../drivers/interfaces/checkout-service.interface';
-import { DaffCheckoutDriver } from '../../drivers/injection-tokens/driver-checkout.token';
 import { DaffOrder } from '../../models/order/order';
 
 describe('Daffodil | State | Order | OrderEffects', () => {
@@ -24,20 +24,19 @@ describe('Daffodil | State | Order | OrderEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffCheckoutTestingDriverModule.forRoot()
+      ],
       providers: [
         OrderEffects,
         provideMockActions(() => actions$),
-        {
-          provide: DaffCheckoutDriver,
-          useExisting: DaffTestingCheckoutService
-        }
       ]
     });
 
     effects = TestBed.inject(OrderEffects);
     orderFactory = TestBed.inject(DaffOrderFactory);
     cartFactory = TestBed.inject(DaffCartFactory);
-    daffCheckoutDriver = TestBed.inject(DaffCheckoutDriver);
+    daffCheckoutDriver = TestBed.inject<DaffCheckoutServiceInterface>(DaffCheckoutDriver);
 
     stubCart = cartFactory.create();
     stubOrder = orderFactory.create();

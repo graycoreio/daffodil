@@ -1,36 +1,31 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
+import { hot, cold } from 'jasmine-marbles';
+import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { DaffioApiDocsListViewComponent } from './api-docs-list-view.component';
 import { DaffioApiDocsListComponent } from '../../components/api-docs-list/api-docs-list.component';
-import { DaffioApiDocsListModule } from '../../components/api-docs-list/api-docs-list.module';
-import { hot, cold } from 'jasmine-marbles';
-import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { Component, Input } from '@angular/core';
 import { DaffioApiDocReference } from '../../models/api-doc-reference';
-
-class ActivatedRouteStub {
-  data = new BehaviorSubject({});
-
-  setData(data) {
-    this.data.next(data);
-  }
-};
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   template: '',
   selector: 'daffio-api-docs-list'
 })
-class MockDaffioApiDocsListComponent implements DaffioApiDocsListComponent {
+class MockDaffioApiDocsListComponent implements DaffioApiDocsListComponent, OnInit {
   @Input() docsList: DaffioApiDocReference[] = [];
+
+  ngOnInit() {
+    console.log(this.docsList);
+  }
 }
 
 describe('DaffioApiDocsListViewComponent', () => {
   let component: DaffioApiDocsListViewComponent;
   let fixture: ComponentFixture<DaffioApiDocsListViewComponent>;
-  let activatedRoute: ActivatedRouteStub;
+  let activatedRoute: ActivatedRoute;
 
   const stubDocsList = [
     {
@@ -49,7 +44,7 @@ describe('DaffioApiDocsListViewComponent', () => {
     }
   ];
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule
@@ -57,18 +52,17 @@ describe('DaffioApiDocsListViewComponent', () => {
       declarations: [
         MockDaffioApiDocsListComponent,
         DaffioApiDocsListViewComponent
-      ],
-      providers: [
-        { provide: ActivatedRoute, useClass: ActivatedRouteStub }
       ]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
+    activatedRoute = TestBed.inject(ActivatedRoute);
+    activatedRoute.data = new BehaviorSubject({reference: stubDocsList});
+
     fixture = TestBed.createComponent(DaffioApiDocsListViewComponent);
     component = fixture.componentInstance;
-    activatedRoute = TestBed.inject(ActivatedRoute);
     fixture.detectChanges();
   });
 
@@ -77,8 +71,6 @@ describe('DaffioApiDocsListViewComponent', () => {
   });
 
   it('should initialize docsList$ from a route resolver', () => {
-    activatedRoute.setData({ reference: stubDocsList});
-
     const expected = cold('b', { b: stubDocsList });
     expect(component.docsList$).toBeObservable(expected);
   });
@@ -87,7 +79,7 @@ describe('DaffioApiDocsListViewComponent', () => {
     let docsListComponent: DaffioApiDocsListComponent;
 
     beforeEach(() => {
-      activatedRoute.setData({ reference: stubDocsList});
+      (activatedRoute.data as BehaviorSubject<any>).next({ reference: stubDocsList});
       fixture.detectChanges();
       docsListComponent = fixture.debugElement.query(By.css('daffio-api-docs-list')).componentInstance;
     });

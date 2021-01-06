@@ -3,7 +3,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable ,  of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
-import { DaffPaypalTokenResponseFactory, DaffTestingPaypalService } from '@daffodil/paypal/testing';
+import { DaffPaypalTokenResponseFactory, DaffPaypalTestingDriverModule } from '@daffodil/paypal/testing';
 
 import { DaffPaypalEffects } from './paypal.effects';
 import {
@@ -31,20 +31,19 @@ describe('DaffPaypalEffects', () => {
 		};
 
     TestBed.configureTestingModule({
+      imports: [
+        DaffPaypalTestingDriverModule.forRoot()
+      ],
       providers: [
         DaffPaypalEffects,
         provideMockActions(() => actions$),
-        {
-          provide: DaffPaypalDriver,
-          useValue: new DaffTestingPaypalService(new DaffPaypalTokenResponseFactory())
-        },
       ]
     });
 
     effects = TestBed.inject(DaffPaypalEffects);
     paypalTokenResponseFactory = TestBed.inject(DaffPaypalTokenResponseFactory);
 
-    daffPaypalDriver = TestBed.inject(DaffPaypalDriver);
+    daffPaypalDriver = TestBed.inject<DaffPaypalServiceInterface>(DaffPaypalDriver);
 
     stubPaypalTokenResponse = paypalTokenResponseFactory.create();
   });

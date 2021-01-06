@@ -1,38 +1,30 @@
 import {Observable} from '@apollo/client/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NewsletterComponent } from './newsletter.component';
 import { DaffContainerModule } from '@daffodil/design';
 
 import { By } from '@angular/platform-browser';
 import { DaffNewsletterFacade } from '@daffodil/newsletter';
+import { DaffNewsletterTestingModule } from '@daffodil/newsletter/testing';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 
-
-class MockDaffNewsletterFacade {
-  loading$: Observable<boolean>;
-  error$: Observable<string>;
-  success$: Observable<boolean>;
-}
-
 describe('NewsletterComponent', () => {
   let component: NewsletterComponent;
   let fixture: ComponentFixture<NewsletterComponent>;
-  let facade: MockDaffNewsletterFacade;
+  let facade;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         NewsletterComponent
       ],
       imports: [
         DaffContainerModule,
-        ReactiveFormsModule
-      ],
-      providers: [
-        { provide: DaffNewsletterFacade, useClass: MockDaffNewsletterFacade }
+        ReactiveFormsModule,
+        DaffNewsletterTestingModule
       ]
     })
       .compileComponents();

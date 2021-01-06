@@ -16,7 +16,6 @@ describe('Driver | Magento | Auth | Validator | CheckToken', () => {
       },
       loading: null,
       networkStatus: null,
-      stale: null
     };
   });
 

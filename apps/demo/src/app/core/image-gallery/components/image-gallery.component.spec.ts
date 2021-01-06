@@ -1,10 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, Input } from '@angular/core';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { DaffImageGalleryModule } from '@daffodil/design';
 import { Store } from '@ngrx/store';
-import { provideMockStore } from '@ngrx/store/testing';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { ImageGalleryComponent } from './image-gallery.component';
 import { SetSelectedImageState } from '../actions/image-gallery.actions';
@@ -27,9 +27,9 @@ describe('ImageGalleryComponent', () => {
   let imageGalleryContainer: ImageGalleryComponent;
   const activeImageIndex = 0;
   let daffGalleryImages;
-  let store: Store<any>;
+  let store: MockStore<any>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         DaffImageGalleryModule
@@ -49,7 +49,7 @@ describe('ImageGalleryComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
 
-    store = TestBed.inject(Store);
+    store = TestBed.inject(MockStore);
     store.overrideSelector(fromDemoImageGallery.selectSelectedImage, stubImages[activeImageIndex].url);
 
     fixture.detectChanges();

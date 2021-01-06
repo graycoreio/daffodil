@@ -1,8 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
-
-import { Observable, BehaviorSubject, of } from 'rxjs';
+import { of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 import { provideMockStore } from '@ngrx/store/testing';
 
@@ -10,6 +9,7 @@ import { DaffSidebarModule, DaffSidebarComponent, DaffLoadingIconModule, DaffLin
 import { DaffNavigationTree } from '@daffodil/navigation';
 import { DaffNavigationFacade, DaffNavigationLoad } from '@daffodil/navigation/state';
 import { DaffNavigationTreeFactory } from '@daffodil/navigation/testing';
+import { DaffNavigationTestingModule } from '@daffodil/navigation/state/testing';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -19,29 +19,23 @@ import { SidebarListComponent } from '../../components/sidebar-list/sidebar-list
 @Component({template: '<demo-sidebar></demo-sidebar>'})
 class WrapperComponent {}
 
-class MockDaffNavigationFacade {
-  loading$: Observable<boolean> = new BehaviorSubject(false);
-  tree$: Observable<DaffNavigationTree> = new BehaviorSubject(null);
-  errors$: Observable<string[]> = new BehaviorSubject([]);
-  dispatch() { }
-}
-
 describe('SidebarContainer', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
   let component: SidebarContainer;
   let daffSidebar: DaffSidebarComponent;
-  let navFacade: MockDaffNavigationFacade;
+  let navFacade;
   const daffNavigationTreeFactory: DaffNavigationTreeFactory = new DaffNavigationTreeFactory();
   const tree: DaffNavigationTree = daffNavigationTreeFactory.create();
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         DaffSidebarModule,
         FontAwesomeModule,
         DaffLoadingIconModule,
         DaffLinkSetModule,
+        DaffNavigationTestingModule
       ],
       declarations: [
         WrapperComponent,
@@ -50,7 +44,6 @@ describe('SidebarContainer', () => {
       ],
       providers: [
         provideMockStore(),
-        { provide: DaffNavigationFacade, useClass: MockDaffNavigationFacade },
       ]
     })
     .overrideComponent(SidebarListComponent, {

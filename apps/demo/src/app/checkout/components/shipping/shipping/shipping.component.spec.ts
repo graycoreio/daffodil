@@ -25,20 +25,24 @@ const stubSelectedShippingOptionId = '0';
 const stubShowPaymentView = false;
 
 @Component({
-  template: '<demo-shipping [isShippingAddressValid]="isShippingAddressValidValue" ' +
-              '[shippingAddress]="shippingAddressValue" ' +
-              '[selectedShippingOptionId]="selectedShippingOptionIdValue" ' +
-              '[showPaymentView]="showPaymentViewValue" ' +
-              '(updateShippingAddress)="updateShippingAddressFunction($event)" ' +
-              '(selectShippingOption)="selectShippingOptionFunction($event)"></demo-shipping>'
+  template: `
+    <demo-shipping
+      [isShippingAddressValid]="isShippingAddressValidValue"
+      [shippingAddress]="shippingAddressValue"
+      [selectedShippingOptionId]="selectedShippingOptionIdValue"
+      [showPaymentView]="showPaymentViewValue"
+      (updateShippingAddress)="updateShippingAddressFunction($event)"
+      (selectShippingOption)="selectShippingOptionFunction($event)"
+    ></demo-shipping>
+  `
 })
 class WrapperComponent {
   isShippingAddressValidValue = stubIsShippingAddressValidValue;
   shippingAddressValue: DaffAddress = stubDaffodilAddress;
   selectedShippingOptionIdValue: string = stubSelectedShippingOptionId;
   showPaymentViewValue: boolean = stubShowPaymentView;
-  updateShippingAddressFunction() {};
-  selectShippingOptionFunction() {};
+  updateShippingAddressFunction(e) {};
+  selectShippingOptionFunction(e) {};
 }
 
 @Component({selector: 'demo-shipping-form', template: '<ng-content></ng-content>'})

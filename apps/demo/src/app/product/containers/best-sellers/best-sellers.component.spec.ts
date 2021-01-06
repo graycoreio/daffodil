@@ -1,18 +1,12 @@
 import { Component, Input } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { BehaviorSubject } from 'rxjs';
 
 import { DaffProduct, DaffBestSellersFacade } from '@daffodil/product';
 import { DaffLoadingIconModule } from '@daffodil/design';
-import { DaffProductFactory } from '@daffodil/product/testing';
+import { DaffProductFactory, DaffProductTestingModule } from '@daffodil/product/testing';
 
 import { BestSellersComponent } from './best-sellers.component';
-
-class MockDaffBestSellersFacade {
-  loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  bestSellers$: BehaviorSubject<DaffProduct[]> = new BehaviorSubject([]);
-}
 
 @Component({
   selector: 'demo-product-grid',
@@ -25,21 +19,19 @@ class MockProductGridComponent {
 describe('BestSellersComponent', () => {
   let component: BestSellersComponent;
   let fixture: ComponentFixture<BestSellersComponent>;
-  let bestSellersFacade: MockDaffBestSellersFacade;
+  let bestSellersFacade;
 	let productGridComponent: MockProductGridComponent;
 	const stubProducts: DaffProduct[] = new DaffProductFactory().createMany(2);
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        DaffLoadingIconModule
+        DaffLoadingIconModule,
+        DaffProductTestingModule
       ],
       declarations: [
         BestSellersComponent,
         MockProductGridComponent
-			],
-			providers: [
-				{ provide: DaffBestSellersFacade, useClass: MockDaffBestSellersFacade }
 			]
     })
     .compileComponents();

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs';
 
@@ -25,9 +25,9 @@ class MockCartWrapperComponent {
 describe('DemoCartViewComponent', () => {
   let component: DemoCartViewComponent;
 	let fixture: ComponentFixture<DemoCartViewComponent>;
-	let cartFacade: MockDaffCartFacade;
+	let cartFacade;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         DemoCartViewComponent,

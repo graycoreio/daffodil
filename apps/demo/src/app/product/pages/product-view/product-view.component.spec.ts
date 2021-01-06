@@ -1,15 +1,15 @@
 import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
-import { Observable, of, BehaviorSubject } from 'rxjs';
+import { of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
-import { DaffCartFacade, DaffAddToCart } from '@daffodil/cart/state';
-import { DaffCartTestingModule, MockDaffCartFacade } from '@daffodil/cart/state/testing';
-import { DaffProduct, DaffProductFacade, DaffProductLoad } from '@daffodil/product';
-import { DaffProductFactory } from '@daffodil/product/testing';
+import { DaffAddToCart, DaffCartFacade } from '@daffodil/cart/state';
+import { DaffCartTestingModule } from '@daffodil/cart/state/testing';
+import { DaffProduct, DaffProductLoad, DaffProductFacade } from '@daffodil/product';
+import { DaffProductFactory, DaffProductTestingModule } from '@daffodil/product/testing';
 import { DaffLoadingIconModule } from '@daffodil/design';
 
 import { ProductViewComponent } from './product-view.component';
@@ -35,12 +35,6 @@ class MockAddToCartComponent {
   @Output() addToCart: EventEmitter<any> = new EventEmitter();
 }
 
-class MockDaffProductFacade {
-  loading$: Observable<boolean> = new BehaviorSubject(false);
-  product$: Observable<DaffProduct[]> = new BehaviorSubject(null);
-  dispatch() { }
-}
-
 describe('ProductViewComponent', () => {
   const productFactory: DaffProductFactory = new DaffProductFactory();
   const mockProduct = productFactory.create();
@@ -49,17 +43,18 @@ describe('ProductViewComponent', () => {
 
   let component: ProductViewComponent;
   let fixture: ComponentFixture<ProductViewComponent>;
-  let cartFacade: MockDaffCartFacade;
+  let cartFacade;
   let productComponent: ProductComponent;
   let addToCartComponent: AddToCartComponent;
-  let facade: DaffProductFacade<DaffProduct>;
+  let facade;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
         DaffLoadingIconModule,
-        DaffCartTestingModule
+        DaffCartTestingModule,
+        DaffProductTestingModule
       ],
       declarations: [
         ProductViewComponent,
@@ -68,7 +63,6 @@ describe('ProductViewComponent', () => {
       ],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRoute },
-        { provide: DaffProductFacade, useClass: MockDaffProductFacade },
       ]
     })
       .compileComponents();

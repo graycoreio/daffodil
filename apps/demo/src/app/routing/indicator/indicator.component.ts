@@ -10,7 +10,7 @@ import { RouterPercentEnum } from '../router-percent-enum';
   styleUrls: ['./indicator.component.scss']
 })
 export class DemoIndicatorComponent implements OnInit {
-  
+
   routingPercentage = 0;
   show = false;
 

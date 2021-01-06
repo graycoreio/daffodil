@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
@@ -12,7 +12,7 @@ import { DaffPaymentFactory } from '@daffodil/checkout/testing';
 import { ShowPaymentForm, ToggleShowPaymentForm, HidePaymentForm } from '../../../actions/payment.actions';
 import * as fromDemoCheckout from '../../../reducers';
 import { PaymentComponent } from './payment.component';
-import { provideMockStore } from '@ngrx/store/testing';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 const paymentFactory = new DaffPaymentFactory();
 const daffodilAddressFactory = new DaffAddressFactory();
@@ -22,20 +22,20 @@ const stubShowPaymentForm = true;
 const stubBillingAddressIsShippingAddress = false;
 
 @Component({
-  template: '<demo-payment ' +
-              '[paymentInfo]="paymentInfoValue" ' +
-              '[billingAddress]="billingAddressValue" ' +
-              '[billingAddressIsShippingAddress]="billingAddressIsShippingAddressValue" ' +
-              '(updatePaymentInfo)="updatePaymentInfoFunction($event)" ' +
-              '(updateBillingAddress)="updateBillingAddressFunction($event)" ' +
-              '(toggleBillingAddressIsShippingAddress)="toggleBillingAddressIsShippingAddressFunction()"></demo-payment>'
+  template: `<demo-payment
+              [paymentInfo]="paymentInfoValue"
+              [billingAddress]="billingAddressValue"
+              [billingAddressIsShippingAddress]="billingAddressIsShippingAddressValue"
+              (updatePaymentInfo)="updatePaymentInfoFunction($event)"
+              (updateBillingAddress)="updateBillingAddressFunction($event)"
+              (toggleBillingAddressIsShippingAddress)="toggleBillingAddressIsShippingAddressFunction()"></demo-payment>`
 })
 class WrapperComponent {
   paymentInfoValue: PaymentInfo = stubPaymentInfo;
   billingAddressValue: DaffAddress = stubBillingAddress;
   billingAddressIsShippingAddressValue: boolean = stubBillingAddressIsShippingAddress;
-  updatePaymentInfoFunction = () => {};
-  updateBillingAddressFunction = () => {};
+  updatePaymentInfoFunction = e => {};
+  updateBillingAddressFunction = e => {};
   toggleBillingAddressIsShippingAddressFunction = () => {};
 }
 
@@ -68,9 +68,9 @@ describe('PaymentComponent', () => {
   let paymentForm: MockPaymentFormComponent;
   let paymentSummary: MockPaymentSummaryComponent;
   let billingSummary: MockBillingSummaryComponent;
-  let store: Store<any>;
+  let store: MockStore<any>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         WrapperComponent,
@@ -89,7 +89,7 @@ describe('PaymentComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
-    store = TestBed.inject(Store);
+    store = TestBed.inject(MockStore);
     store.overrideSelector(fromDemoCheckout.selectShowPaymentForm, stubShowPaymentForm)
     spyOn(store, 'dispatch');
 
