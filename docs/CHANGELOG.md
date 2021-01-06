@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.22.1](https://github.com/graycoreio/daffodil/compare/v0.22.0...v0.22.1) (2021-01-06)
+
+
+### Bug Fixes
+
+* **cart:** cart item states get reset when DaffCartItemUpdateSuccess actions are dispatched ([#1205](https://github.com/graycoreio/daffodil/issues/1205)) ([f4a7ea4](https://github.com/graycoreio/daffodil/commit/f4a7ea4d19d5f485639bfcf47dc9ee37d61af35a))
+
 ## [0.22.0](https://github.com/graycoreio/daffodil/compare/v0.21.3...v0.22.0) (2021-01-05)
 
 
