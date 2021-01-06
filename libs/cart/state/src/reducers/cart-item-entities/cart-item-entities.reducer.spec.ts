@@ -92,6 +92,19 @@ describe('Cart | Cart Item Entities Reducer', () => {
 			result = daffCartItemEntitiesReducer(initialStateWithCartItem, cartClearSuccess);
 			expect(result.entities[stubStatefulCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.New);
 		});
+
+		it('should retain the existing daffState when a CartItemUpdateSuccessAction is triggered', () => {
+			const cartItem = new DaffCartItemFactory().create();
+			const cartItemUpdateSuccess = new DaffCartItemUpdateSuccess(new DaffCartFactory().create({
+				items: [
+					stubStatefulCartItem,
+					cartItem
+				]
+			}), cartItem.item_id);
+			result = daffCartItemEntitiesReducer(initialStateWithCartItem, cartItemUpdateSuccess);
+
+			expect(result.entities[stubStatefulCartItem.item_id].daffState).toEqual(DaffCartItemStateEnum.New);
+		});
 	});
 
   describe('when CartItemListSuccessAction is triggered', () => {
@@ -136,7 +149,7 @@ describe('Cart | Cart Item Entities Reducer', () => {
 
     let cart: DaffCart;
     let cartItems: DaffStatefulCartItem[];
-    let result;
+		let result;
 
     beforeEach(() => {
 			cartItems = statefulCartItemFactory.createMany(2);
