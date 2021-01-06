@@ -39,7 +39,7 @@ export function daffCartItemEntitiesReducer<
 			);
 		case DaffCartItemActionTypes.CartItemUpdateSuccessAction:
 			return adapter.addAll(
-				updateMutatedCartItemState<T>(<T[]>action.payload.items, action.itemId),
+				updateMutatedCartItemState<T>(<T[]>action.payload.items, state.entities, action.itemId),
 				state
 			);
 		case DaffCartItemActionTypes.CartItemDeleteSuccessAction:
@@ -86,7 +86,8 @@ function updateAddedCartItemState<T extends DaffStatefulCartItem>(oldCartItems: 
 	})
 }
 
-function updateMutatedCartItemState<T extends DaffStatefulCartItem>(cartItems: T[], itemId: T['item_id']): T[] {
-	return cartItems.map(item => item.item_id === itemId ?
-		{ ...item, daffState: DaffCartItemStateEnum.Updated} : item)
+function updateMutatedCartItemState<T extends DaffStatefulCartItem>(responseItems: T[], stateItems: Dictionary<T>, itemId: T['item_id']): T[] {
+	return responseItems.map(item => item.item_id === itemId ?
+		{ ...item, daffState: DaffCartItemStateEnum.Updated} : 
+		{ ...item, daffState: getDaffState(stateItems[item.item_id]) || DaffCartItemStateEnum.Default })
 }
