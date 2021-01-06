@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, EventEmitter, Output, HostBinding, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { mediaCompatToken } from '../../molecules/media-gallery/media/media-compat.token';
+import { mediaCompatToken, daffMediaCompatToken } from '../../molecules/media-gallery/media/media-compat.token';
 
 const validateProperty = (object: Object, prop: string) => {
   if (object[prop] === null || object[prop] === undefined || object[prop] === '') {
@@ -31,7 +31,7 @@ const validateProperties = (object: Object, props: string[]) => {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
-      provide: mediaCompatToken, useExisting: DaffImageComponent
+      provide: daffMediaCompatToken, useExisting: DaffImageComponent
     }
   ]
 })

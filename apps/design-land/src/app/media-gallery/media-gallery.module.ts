@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MediaGalleryComponent } from './media-gallery.component';
 
-import { DaffMediaGalleryModule, DaffImageModule } from '@daffodil/design';
+import { DaffMediaGalleryModule, DaffImageModule, DaffCardModule } from '@daffodil/design';
 import { DesignLandMediaGalleryRoutingModule } from './media-gallery-routing-module';
 
 
@@ -16,7 +16,8 @@ import { DesignLandMediaGalleryRoutingModule } from './media-gallery-routing-mod
     DesignLandMediaGalleryRoutingModule,
 
     DaffMediaGalleryModule,
-    DaffImageModule
+    DaffImageModule,
+    DaffCardModule
   ]
 })
 export class MediaGalleryModule { }

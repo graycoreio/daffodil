@@ -1,21 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DaffMediaGalleryComponent } from './media-gallery.component';
-import { DaffMediaDirective } from './media/media.directive';
+import { DaffMediaDirective } from "./media/media.directive";
 import { DaffMediaRendererComponent } from './media-renderer/media-renderer.component';
+import { DaffMediaGalleryRegistry } from './registry/media-gallery.registry';
 
 @NgModule({
-  declarations: [
-    DaffMediaGalleryComponent,
-    DaffMediaDirective,
-    DaffMediaRendererComponent
-  ],
-  imports: [
-    CommonModule
-  ],
-  exports: [
-    DaffMediaDirective,
-    DaffMediaGalleryComponent
-  ]
+	declarations: [
+		DaffMediaGalleryComponent,
+		DaffMediaDirective,
+		DaffMediaRendererComponent,
+	],
+	imports: [CommonModule],
+	exports: [DaffMediaDirective, DaffMediaGalleryComponent],
+	providers: [
+		DaffMediaGalleryRegistry
+	]
 })
-export class DaffMediaGalleryModule { }
+export class DaffMediaGalleryModule {}
