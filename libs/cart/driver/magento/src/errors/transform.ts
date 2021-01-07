@@ -7,15 +7,13 @@ import { DaffCartMagentoErrorMap, DaffCartMagentoErrorMessageRegexMap } from './
 
 
 function transformMagentoCartGraphQlError(error: ApolloError): Error {
-	if (error.graphQLErrors.length) {
-    for (const code in DaffCartMagentoErrorMessageRegexMap) {
-      if (DaffCartMagentoErrorMessageRegexMap.hasOwnProperty(code)) {
-        const matchIndex = error.graphQLErrors[0].message.search(DaffCartMagentoErrorMessageRegexMap[code]);
+  // TODO: readdress this when we move to eslint
+  // tslint:disable-next-line
+  for (const code in DaffCartMagentoErrorMessageRegexMap) {
+    const matchIndex = error.graphQLErrors[0].message.search(DaffCartMagentoErrorMessageRegexMap[code]);
 
-        if (matchIndex > -1 && DaffCartDriverErrorMap[code]) {
-          return new DaffCartDriverErrorMap[code](error.message)
-        }
-      }
+    if (matchIndex > -1 && DaffCartDriverErrorMap[code]) {
+      return new DaffCartDriverErrorMap[code](error.message)
     }
   }
 
@@ -23,7 +21,8 @@ function transformMagentoCartGraphQlError(error: ApolloError): Error {
 };
 
 export function transformCartMagentoError(error) {
-  if (error.graphQLErrors) {
+  // TODO: optional chaining
+  if (error.graphQLErrors && error.graphQLErrors.length) {
 		return transformMagentoCartGraphQlError(error);
 	} else {
 		return daffTransformMagentoError(error, DaffCartMagentoErrorMap);
