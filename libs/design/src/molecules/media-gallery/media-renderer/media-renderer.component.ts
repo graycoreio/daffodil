@@ -39,22 +39,22 @@ export class DaffMediaRendererComponent implements OnInit {
 			 */
 			this.slot.clear();
 
-			const _selectedMedia = galleries[this.gallery.name].media.filter(media => media.selected).shift();
+			const _selectedThumbnail = galleries[this.gallery.name].thumbnail.filter(media => media.selected).shift();
 
 			/**
 			 * If there's no selected media, render nothing.
 			 */
-			if(!_selectedMedia) {
+			if(!_selectedThumbnail) {
 				return;
 			}
 
-			let _selectedMediaComponent = _selectedMedia.component;
+			let _selectedThumbnailComponent = _selectedThumbnail.component;
 			
 			/**
 			 * Then we create the component to insert.
 			 */
 			let component = this.componentFactoryResolver.resolveComponentFactory(
-				_selectedMediaComponent.constructor as Type<unknown>
+				_selectedThumbnailComponent.constructor as Type<unknown>
 			);
 			const componentRef = this.slot.createComponent(component);
 			
@@ -62,7 +62,7 @@ export class DaffMediaRendererComponent implements OnInit {
 			 * We fill the component with it's values from the original component
 			 */
 			component.inputs.forEach(input => {
-				componentRef.instance[input.propName] = _selectedMediaComponent[input.propName];
+				componentRef.instance[input.propName] = _selectedThumbnailComponent[input.propName];
 			});
 
 			/**

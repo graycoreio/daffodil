@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { DaffMediaGalleryComponent } from '../media-gallery.component';
-import { DaffMediaDirective } from "../media/media.directive";
+import { DaffThumbnailDirective } from "../thumbnail/thumbnail.directive";
 import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface DaffMediaGalleryDict {
 	[galleryName: string]: {
 		gallery: DaffMediaGalleryComponent;
-		media: DaffMediaDirective[];
+		thumbnail: DaffThumbnailDirective[];
 	}
 }
 
@@ -24,19 +24,23 @@ export class DaffMediaGalleryRegistry {
 	 * @description
 	 * Adds a media element to the internal registry.
 	 */
-	add(gallery: DaffMediaGalleryComponent, media: DaffMediaDirective) {
+	add(gallery: DaffMediaGalleryComponent, thumbnail: DaffThumbnailDirective) {
 		let galleries = this._galleries$.getValue();
-		
+
 		galleries = {
 			...galleries,
 			[gallery.name]: {
 				gallery: gallery,
-			media: galleries[gallery.name] ? [
-					...galleries[gallery.name].media,
-					media
-				] : [media]
+			thumbnail: galleries[gallery.name] ? [
+					...galleries[gallery.name].thumbnail,
+					thumbnail
+				] : [thumbnail]
 			}
 		};
+
+		if(galleries[gallery.name].thumbnail.length === 1) {
+			thumbnail.select();
+		}
 
 		this._galleries$.next(galleries);
 	}
@@ -45,9 +49,9 @@ export class DaffMediaGalleryRegistry {
 	 * @description
 	 * Removes a media element from the internal registry.
 	 */
-	remove(media: DaffMediaDirective) {
+	remove(thumbnail: DaffThumbnailDirective) {
 		let galleries = this._galleries$.getValue();
-		const index = this._galleries$.getValue()[media.gallery.name].media.indexOf(media);
+		const index = this._galleries$.getValue()[thumbnail.gallery.name].thumbnail.indexOf(thumbnail);
 
 		//This should never happen, but we don't need to remove it if it doesn't exist.
 		if(index == -1){
@@ -56,11 +60,11 @@ export class DaffMediaGalleryRegistry {
 
 		this._galleries$.next({
 			...this._galleries$.getValue(),
-			[media.gallery.name]: {
-				...this._galleries$.getValue()[media.gallery.name],
-				media: [
-					...galleries[media.gallery.name].media.slice(0, index),
-					...galleries[media.gallery.name].media.slice(index + 1)
+			[thumbnail.gallery.name]: {
+				...this._galleries$.getValue()[thumbnail.gallery.name],
+				thumbnail: [
+					...galleries[thumbnail.gallery.name].thumbnail.slice(0, index),
+					...galleries[thumbnail.gallery.name].thumbnail.slice(index + 1)
 				]
 			}
 		});
@@ -70,11 +74,11 @@ export class DaffMediaGalleryRegistry {
 	 * @description
 	 * Selects a media element for a given gallery.
 	 */
-	select(media: DaffMediaDirective) {
+	select(thumbnail: DaffThumbnailDirective) {
 		let galleries = this._galleries$.getValue();
-		const index = this._galleries$.getValue()[media.gallery.name].media.indexOf(media);
+		const index = this._galleries$.getValue()[thumbnail.gallery.name].thumbnail.indexOf(thumbnail);
 
-		if(media.selected){
+		if(thumbnail.selected){
 			return;
 		}
 
@@ -86,11 +90,11 @@ export class DaffMediaGalleryRegistry {
 
 		this._galleries$.next({
 			...this._galleries$.getValue(),
-			[media.gallery.name]: {
-				...this._galleries$.getValue()[media.gallery.name],
-				media: [
-					...this._galleries$.getValue()[media.gallery.name].media.filter(m => m !== media).map(m => m.deselect()),
-					media.select()
+			[thumbnail.gallery.name]: {
+				...this._galleries$.getValue()[thumbnail.gallery.name],
+				thumbnail: [
+					...this._galleries$.getValue()[thumbnail.gallery.name].thumbnail.filter(m => m !== thumbnail).map(m => m.deselect()),
+					thumbnail.select()
 				]
 			}
 		});
