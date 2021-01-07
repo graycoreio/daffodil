@@ -22,7 +22,7 @@ import { DaffMagentoBillingAddressInputTransformer } from './transforms/inputs/b
 import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { DaffMagentoBillingAddressTransformer } from './transforms/outputs/billing-address.service';
 import { transformCartMagentoError } from './errors/transform';
-import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
+import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
 import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
 
 /**
@@ -35,7 +35,7 @@ export class DaffMagentoCartBillingAddressService implements DaffCartBillingAddr
   constructor(
     private apollo: Apollo,
     @Inject(DAFF_MAGENTO_CART_MUTATION_QUEUE) private mutationQueue: DaffQueuedApollo,
-    @Inject(DaffMagentoExtraCartFragments) public extraCartFragments: DocumentNode[],
+    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) public extraCartFragments: DocumentNode[],
     public cartTransformer: DaffMagentoCartTransformer,
     public billingAddressTransformer: DaffMagentoBillingAddressTransformer,
     public billingAddressInputTransformer: DaffMagentoBillingAddressInputTransformer

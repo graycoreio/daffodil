@@ -25,7 +25,7 @@ import { MagentoRemoveCartItemResponse } from './queries/responses/remove-cart-i
 import { DaffMagentoCartItemUpdateInputTransformer } from './transforms/inputs/cart-item-update.service';
 import { MagentoUpdateCartItemResponse } from './queries/responses/public_api';
 import { transformMagentoCartItem } from './transforms/outputs/cart-item/cart-item-transformer';
-import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
+import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
 import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
 
 /**
@@ -38,7 +38,7 @@ export class DaffMagentoCartItemService implements DaffCartItemServiceInterface 
   constructor(
     private apollo: Apollo,
     @Inject(DAFF_MAGENTO_CART_MUTATION_QUEUE) private mutationQueue: DaffQueuedApollo,
-    @Inject(DaffMagentoExtraCartFragments) public extraCartFragments: DocumentNode[],
+    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) public extraCartFragments: DocumentNode[],
     public cartTransformer: DaffMagentoCartTransformer,
     public cartItemUpdateInputTransformer: DaffMagentoCartItemUpdateInputTransformer
   ) {}

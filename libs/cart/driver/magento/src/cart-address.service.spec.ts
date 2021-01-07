@@ -21,7 +21,7 @@ import {
   MagentoShippingAddressInput,
   DaffMagentoCartTransformer,
   DaffMagentoCartAddressInputTransformer,
-  DaffMagentoExtraCartFragments,
+  DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
 } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
@@ -71,7 +71,7 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
           useValue: jasmine.createSpyObj('DaffMagentoCartAddressInputTransformer', ['transform'])
         },
         {
-          provide: DaffMagentoExtraCartFragments,
+          provide: DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
           useValue: daffMagentoNoopCartFragment,
           multi: true
         },

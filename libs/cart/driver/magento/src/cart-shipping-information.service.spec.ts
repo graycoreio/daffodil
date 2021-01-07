@@ -8,7 +8,7 @@ import {
   DaffCart,
   DaffCartShippingInformation,
 } from '@daffodil/cart';
-import { MagentoCartShippingMethod, MagentoCart, MagentoShippingAddress, MagentoSetSelectedShippingMethodResponse, MagentoGetSelectedShippingMethodResponse, MagentoListShippingMethodsResponse, DaffMagentoCartTransformer, DaffMagentoCartShippingRateTransformer, DaffMagentoShippingMethodInputTransformer, DaffMagentoExtraCartFragments, daffMagentoNoopCartFragment, getSelectedShippingMethod, setSelectedShippingMethod, listShippingMethods } from '@daffodil/cart/driver/magento';
+import { MagentoCartShippingMethod, MagentoCart, MagentoShippingAddress, MagentoSetSelectedShippingMethodResponse, MagentoGetSelectedShippingMethodResponse, MagentoListShippingMethodsResponse, DaffMagentoCartTransformer, DaffMagentoCartShippingRateTransformer, DaffMagentoShippingMethodInputTransformer, DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS, daffMagentoNoopCartFragment, getSelectedShippingMethod, setSelectedShippingMethod, listShippingMethods } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
   MagentoCartShippingMethodFactory,
@@ -66,7 +66,7 @@ describe('Driver | Magento | Cart | CartShippingInformationService', () => {
           useValue: jasmine.createSpyObj('DaffMagentoShippingMethodInputTransformer', ['transform'])
         },
         {
-          provide: DaffMagentoExtraCartFragments,
+          provide: DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
           useValue: daffMagentoNoopCartFragment,
           multi: true
         },

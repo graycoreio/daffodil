@@ -13,7 +13,7 @@ import { getCart, createCart } from './queries/public_api';
 import { MagentoGetCartResponse } from './queries/responses/get-cart';
 import { MagentoCreateCartResponse } from './queries/responses/create-cart';
 import { transformCartMagentoError } from './errors/transform';
-import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
+import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
 import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
 
 /**
@@ -32,7 +32,7 @@ export class DaffMagentoCartService implements DaffCartServiceInterface<DaffCart
       DaffCartItemInput,
       DaffCart
     >,
-    @Inject(DaffMagentoExtraCartFragments) public extraCartFragments: DocumentNode[],
+    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) public extraCartFragments: DocumentNode[],
   ) {}
 
   get(cartId: string): Observable<DaffCart> {

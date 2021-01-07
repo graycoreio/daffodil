@@ -15,7 +15,7 @@ import {
   DaffConfigurableCartItemInput,
   DaffSimpleCartItemInput,
 } from '@daffodil/cart';
-import { DaffMagentoCartTransformer, DaffMagentoCartItemUpdateInputTransformer, MagentoCart, MagentoCartItem, MagentoCartItemInput, MagentoCartItemUpdateInput, MagentoAddSimpleCartItemResponse, MagentoAddBundleCartItemResponse, MagentoAddConfigurableCartItemResponse, MagentoListCartItemsResponse, MagentoUpdateCartItemResponse, MagentoRemoveCartItemResponse, DaffMagentoExtraCartFragments, daffMagentoNoopCartFragment, listCartItems, addBundleCartItem, addSimpleCartItem, addConfigurableCartItem, updateCartItem, removeCartItem } from '@daffodil/cart/driver/magento';
+import { DaffMagentoCartTransformer, DaffMagentoCartItemUpdateInputTransformer, MagentoCart, MagentoCartItem, MagentoCartItemInput, MagentoCartItemUpdateInput, MagentoAddSimpleCartItemResponse, MagentoAddBundleCartItemResponse, MagentoAddConfigurableCartItemResponse, MagentoListCartItemsResponse, MagentoUpdateCartItemResponse, MagentoRemoveCartItemResponse, DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS, daffMagentoNoopCartFragment, listCartItems, addBundleCartItem, addSimpleCartItem, addConfigurableCartItem, updateCartItem, removeCartItem } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
   MagentoCartItemFactory
@@ -75,7 +75,7 @@ describe('Driver | Magento | Cart | CartItemService', () => {
           useValue: jasmine.createSpyObj('DaffMagentoCartItemUpdateInputTransformer', ['transform'])
         },
         {
-          provide: DaffMagentoExtraCartFragments,
+          provide: DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
           useValue: daffMagentoNoopCartFragment,
           multi: true
         },

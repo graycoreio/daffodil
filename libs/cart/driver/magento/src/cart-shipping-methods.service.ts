@@ -10,7 +10,7 @@ import { DaffCartShippingMethodsServiceInterface } from '@daffodil/cart/driver';
 import { listShippingMethods } from './queries/public_api';
 import { MagentoListShippingMethodsResponse } from './queries/responses/list-shipping-methods';
 import { DaffMagentoCartShippingRateTransformer } from './transforms/outputs/cart-shipping-rate.service';
-import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
+import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
 
 /**
  * A service for making Magento GraphQL queries for carts' shipping methods.
@@ -21,7 +21,7 @@ import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
 export class DaffMagentoCartShippingMethodsService implements DaffCartShippingMethodsServiceInterface {
   constructor(
     private apollo: Apollo,
-    @Inject(DaffMagentoExtraCartFragments) public extraCartFragments: DocumentNode[],
+    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) public extraCartFragments: DocumentNode[],
     public shippingRateTransformer: DaffMagentoCartShippingRateTransformer
   ) {}
 

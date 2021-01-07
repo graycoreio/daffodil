@@ -19,7 +19,7 @@ import { DaffMagentoCartTransformer } from './transforms/outputs/cart.service';
 import { DaffMagentoShippingAddressTransformer } from './transforms/outputs/shipping-address.service';
 import { transformCartMagentoError } from './errors/transform';
 import { DaffMagentoCartAddressInputTransformer } from './transforms/inputs/cart-address.service';
-import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
+import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
 import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
 
 /**
@@ -31,7 +31,7 @@ import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutati
 export class DaffMagentoCartAddressService implements DaffCartAddressServiceInterface {
   constructor(
     @Inject(DAFF_MAGENTO_CART_MUTATION_QUEUE) private mutationQueue: DaffQueuedApollo,
-    @Inject(DaffMagentoExtraCartFragments) public extraCartFragments: DocumentNode[],
+    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) public extraCartFragments: DocumentNode[],
     public cartTransformer: DaffMagentoCartTransformer,
     public cartAddressTransformer: DaffMagentoShippingAddressTransformer,
     public cartAddressInputTransformer: DaffMagentoCartAddressInputTransformer,

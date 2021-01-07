@@ -1,1 +1,1 @@
-export { DaffMagentoExtraCartFragments } from './fragments/cart';
+export { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './fragments/cart';

@@ -7,7 +7,7 @@ import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemo
 import { schema } from '@daffodil/driver/magento';
 import { DaffCart, DaffCartItem } from '@daffodil/cart';
 import { DaffCartItemDriver } from '@daffodil/cart/driver';
-import { MagentoCart, MagentoCartItem, MagentoGetCartResponse, MagentoCreateCartResponse, DaffMagentoCartTransformer, DaffMagentoExtraCartFragments, daffMagentoNoopCartFragment, getCart, createCart } from '@daffodil/cart/driver/magento';
+import { MagentoCart, MagentoCartItem, MagentoGetCartResponse, MagentoCreateCartResponse, DaffMagentoCartTransformer, DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS, daffMagentoNoopCartFragment, getCart, createCart } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
   MagentoCartItemFactory,
@@ -52,7 +52,7 @@ describe('Driver | Magento | Cart | CartService', () => {
           useValue: jasmine.createSpyObj('DaffCartItemDriver', ['delete', 'list'])
         },
         {
-          provide: DaffMagentoExtraCartFragments,
+          provide: DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
           useValue: daffMagentoNoopCartFragment,
           multi: true
         },
