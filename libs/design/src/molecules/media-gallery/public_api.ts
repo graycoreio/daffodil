@@ -1,5 +1,5 @@
 export * from './media-gallery.component';
 export * from './media-gallery.module';
-export * from './media/media.directive';
+export * from './thumbnail/thumbnail.directive';
 
-export { daffMediaCompatToken } from './media/media-compat.token';
+export { daffThumbnailCompatToken } from './thumbnail/thumbnail-compat.token';

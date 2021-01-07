@@ -17,7 +17,7 @@
 	}
 
 	::ng-deep {
-		#{$root}__media {
+		.daff-thumbnail {
 			@include clickable();
 			display: block;
 			margin: 10px 0;

@@ -8,16 +8,17 @@ import {
 	Output,
 	EventEmitter,
 	ChangeDetectorRef,
-	OnInit
+	OnInit,
+	OnDestroy
 } from '@angular/core';
 import { DaffMediaGalleryRegistry } from '../registry/media-gallery.registry';
-import { daffMediaCompatToken } from './media-compat.token';
+import { daffThumbnailCompatToken } from './thumbnail-compat.token';
 import { DaffMediaGalleryComponent } from '../media-gallery.component';
 
 @Directive({
-	selector: '[daffMedia]',
+	selector: '[daffThumbnail]',
 })
-export class DaffMediaDirective implements OnInit {
+export class DaffThumbnailDirective implements OnInit, OnDestroy {
 
 	/**
 	 * A prop for determining whether or not the media element is selected.
@@ -27,12 +28,12 @@ export class DaffMediaDirective implements OnInit {
 	/**
 	 * Adds a class for styling a gallery item
 	 */
-	@HostBinding('class.daff-media-gallery__media') class = true;
+	@HostBinding('class.daff-thumbnail') class = true;
 
 	/**
 	 * Adds a class for styling a gallery item
 	 */
-	@HostBinding('class.daff-media-gallery__media--selected') get selectedClass() {
+	@HostBinding('class.daff-thumbnail--selected') get selectedClass() {
 		return this.selected;
 	};
 	
@@ -59,7 +60,7 @@ export class DaffMediaDirective implements OnInit {
 	@Output() becameSelected: EventEmitter<void> = new EventEmitter<void>();
 
 	constructor(
-		@Inject(daffMediaCompatToken) public component: Type<unknown>,
+		@Inject(daffThumbnailCompatToken) public component: Type<unknown>,
 		private cd: ChangeDetectorRef,
 		private registry: DaffMediaGalleryRegistry,
 		public gallery: DaffMediaGalleryComponent
@@ -68,6 +69,10 @@ export class DaffMediaDirective implements OnInit {
 
 	ngOnInit(): void {
 		this.registry.add(this.gallery, this);
+	}
+
+	ngOnDestroy(): void {
+		this.registry.select(this);
 	}
 
 	select() {
