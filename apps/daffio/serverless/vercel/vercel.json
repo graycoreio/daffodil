@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "public": true,
+  "functions": {
+    "api/serverless.js": {
+      "includeFiles": "+(server|browser)/+(main.js|index.html)",
+      "runtime": "@vercel/node@1.8.5"
+    }
+  },
+  "rewrites": [
+    { "source": "/", "destination": "api/serverless.js"},
+    { "source": "/(.*)", "destination": "api/serverless.js" },
+    { "source": "/(.*[.].+)", "destination": "/$1"}
+  ]
+}

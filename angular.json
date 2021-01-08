@@ -273,8 +273,8 @@
               "libs/product/tsconfig.spec.json"
             ],
             "exclude": [
-							"**/node_modules/**",
-							"**/*.json"
+              "**/node_modules/**",
+              "**/*.json"
             ]
           }
         }
@@ -660,7 +660,7 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/apps/daffio/server",
-            "main": "apps/daffio/src/main.server.ts",
+            "main": "apps/daffio/server/server.ts",
             "tsConfig": "apps/daffio/tsconfig.server.json",
             "stylePreprocessorOptions": {
               "includePaths": [
@@ -679,6 +679,32 @@
                 }
               ]
             }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "daffio:build",
+            "serverTarget": "daffio:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "daffio:build:production",
+              "serverTarget": "daffio:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "daffio:build:production",
+            "serverTarget": "daffio:server:production",
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {}
           }
         }
       }
@@ -1112,19 +1138,19 @@
     "geography": {
       "projectType": "library",
       "root": "libs/geography",
-			"sourceRoot": "libs/geography/src",
-			"prefix": "@daffodil",
+      "sourceRoot": "libs/geography/src",
+      "prefix": "@daffodil",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-						"tsConfig": "libs/geography/tsconfig.lib.json",
+            "tsConfig": "libs/geography/tsconfig.lib.json",
             "project": "libs/geography/ng-package.json"
           },
           "configurations": {
             "production": {
-							"project": "libs/geography/ng-package.json"
-						}
+              "project": "libs/geography/ng-package.json"
+            }
           }
         },
         "test": {
@@ -1133,33 +1159,33 @@
             "main": "libs/geography/test.ts",
             "codeCoverage": true,
             "tsConfig": "libs/geography/tsconfig.spec.json",
-						"karmaConfig": "libs/geography/karma.conf.js"
-					}
+            "karmaConfig": "libs/geography/karma.conf.js"
+          }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-							"libs/geography/tsconfig.lib.json",
-							"libs/geography/tsconfig.spec.json"
-						],
+              "libs/geography/tsconfig.lib.json",
+              "libs/geography/tsconfig.spec.json"
+            ],
             "exclude": [
               "**/node_modules/**"
             ]
           }
         }
       }
-		},
-		"paypal": {
+    },
+    "paypal": {
       "root": "libs/paypal",
       "sourceRoot": "libs/paypal/src",
-			"projectType": "library",
-			"prefix": "@daffodil",
+      "projectType": "library",
+      "prefix": "@daffodil",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-						"tsConfig": "libs/paypal/tsconfig.lib.json",
+            "tsConfig": "libs/paypal/tsconfig.lib.json",
             "project": "libs/paypal/ng-package.json"
           },
           "configurations": {
@@ -1171,7 +1197,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-						"main": "libs/paypal/test.ts",
+            "main": "libs/paypal/test.ts",
             "tsConfig": "libs/paypal/tsconfig.spec.json",
             "karmaConfig": "libs/paypal/karma.conf.js"
           }
@@ -1180,7 +1206,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-							"libs/paypal/tsconfig.lib.json",
+              "libs/paypal/tsconfig.lib.json",
               "libs/paypal/tsconfig.spec.json"
             ],
             "exclude": [
@@ -1193,19 +1219,19 @@
     "order": {
       "projectType": "library",
       "root": "libs/order",
-			"sourceRoot": "libs/order/src",
-			"prefix": "@daffodil",
+      "sourceRoot": "libs/order/src",
+      "prefix": "@daffodil",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-						"tsConfig": "libs/order/tsconfig.lib.json",
+            "tsConfig": "libs/order/tsconfig.lib.json",
             "project": "libs/order/ng-package.json"
           },
           "configurations": {
             "production": {
-							"project": "libs/order/ng-package.json"
-						}
+              "project": "libs/order/ng-package.json"
+            }
           }
         },
         "test": {
@@ -1214,16 +1240,16 @@
             "main": "libs/order/test.ts",
             "codeCoverage": true,
             "tsConfig": "libs/order/tsconfig.spec.json",
-						"karmaConfig": "libs/order/karma.conf.js"
-					}
+            "karmaConfig": "libs/order/karma.conf.js"
+          }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-							"libs/order/tsconfig.lib.json",
-							"libs/order/tsconfig.spec.json"
-						],
+              "libs/order/tsconfig.lib.json",
+              "libs/order/tsconfig.spec.json"
+            ],
             "exclude": [
               "**/node_modules/**"
             ]
@@ -1277,6 +1303,7 @@
     "warnings": {
       "typescriptMismatch": false,
       "versionMismatch": false
-    }
+    },
+    "analytics": "afd3c7da-d12a-4ec7-8adc-6cb3b4e33196"
   }
 }
