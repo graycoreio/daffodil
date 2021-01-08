@@ -1,4 +1,5 @@
 import { InMemoryCache } from '@apollo/client/core';
+import { addTypenameToDocument } from '@apollo/client/utilities';
 import { TestBed } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
 import { catchError } from 'rxjs/operators';
@@ -83,7 +84,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodService', () => {
 					useValue: new InMemoryCache({
 						addTypename: true,
 						possibleTypes: schema.possibleTypes,
-						}),
+					}),
 				}
       ]
     });

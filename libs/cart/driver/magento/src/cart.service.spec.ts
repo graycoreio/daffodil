@@ -1,4 +1,5 @@
 import { InMemoryCache } from '@apollo/client/core';
+import { addTypenameToDocument } from '@apollo/client/utilities';
 import { TestBed } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
 import { of } from 'rxjs';
@@ -6,7 +7,7 @@ import { of } from 'rxjs';
 import { schema } from '@daffodil/driver/magento';
 import { DaffCart, DaffCartItem } from '@daffodil/cart';
 import { DaffCartItemDriver } from '@daffodil/cart/driver';
-import { MagentoCart, MagentoCartItem, MagentoGetCartResponse, MagentoCreateCartResponse, DaffMagentoCartTransformer, getCart, createCart } from '@daffodil/cart/driver/magento';
+import { MagentoCart, MagentoCartItem, MagentoGetCartResponse, MagentoCreateCartResponse, DaffMagentoCartTransformer, createCart, getCart } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
   MagentoCartItemFactory,
@@ -50,12 +51,12 @@ describe('Driver | Magento | Cart | CartService', () => {
           provide: DaffCartItemDriver,
           useValue: jasmine.createSpyObj('DaffCartItemDriver', ['delete', 'list'])
         },
-				{
+        {
 					provide: APOLLO_TESTING_CACHE,
 					useValue: new InMemoryCache({
 						addTypename: true,
 						possibleTypes: schema.possibleTypes,
-						}),
+					}),
 				}
       ]
     });

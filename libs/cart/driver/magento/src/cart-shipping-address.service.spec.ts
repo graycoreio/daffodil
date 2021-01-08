@@ -1,4 +1,5 @@
 import { InMemoryCache } from '@apollo/client/core';
+import { addTypenameToDocument } from '@apollo/client/utilities';
 import { TestBed } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
 import { catchError } from 'rxjs/operators';
@@ -63,12 +64,12 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
           provide: DaffMagentoShippingAddressInputTransformer,
           useValue: jasmine.createSpyObj('DaffMagentoShippingAddressInputTransformer', ['transform'])
         },
-				{
+        {
 					provide: APOLLO_TESTING_CACHE,
 					useValue: new InMemoryCache({
 						addTypename: true,
 						possibleTypes: schema.possibleTypes,
-						}),
+					}),
 				}
       ]
     });
@@ -118,7 +119,9 @@ describe('Driver | Magento | Cart | CartShippingAddressService', () => {
         cart: mockMagentoCart
       },
       setGuestEmailOnCart: {
+        __typename: 'Cart',
         cart: {
+				  __typename: 'Cart',
           email
         }
       }
