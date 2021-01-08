@@ -1,3 +1,5 @@
 import { InjectionToken } from '@angular/core';
 
-export const DaffCategoryDriver = new InjectionToken('DaffCategoryDriver');
+import { DaffCategoryServiceInterface } from '../interfaces/category-service.interface';
+
+export const DaffCategoryDriver = new InjectionToken<DaffCategoryServiceInterface>('DaffCategoryDriver');
