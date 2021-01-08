@@ -25,7 +25,7 @@ import {
 } from './queries/responses/public_api';
 import { DaffMagentoBillingAddressInputTransformer } from './transforms/inputs/billing-address.service';
 import { transformCartMagentoError } from './errors/transform';
-import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
+import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
 import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
 
 /**
@@ -42,7 +42,7 @@ export class DaffMagentoCartPaymentService implements DaffCartPaymentServiceInte
     public paymentTransformer: DaffMagentoCartPaymentTransformer,
     public paymentInputTransformer: DaffMagentoPaymentMethodInputTransformer,
     public cartAddressInputTransformer: DaffMagentoBillingAddressInputTransformer,
-    @Inject(DaffMagentoExtraCartFragments) public extraCartFragments: DocumentNode[],
+    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) public extraCartFragments: DocumentNode[],
   ) {}
 
   get(cartId: string): Observable<DaffCartPaymentMethod> {

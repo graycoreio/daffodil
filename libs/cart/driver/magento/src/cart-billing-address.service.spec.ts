@@ -10,7 +10,7 @@ import {
   DaffCart,
   DaffCartAddress,
 } from '@daffodil/cart';
-import { MagentoCart, MagentoCartAddress, MagentoUpdateBillingAddressResponse, MagentoUpdateBillingAddressWithEmailResponse, MagentoGetBillingAddressResponse, DaffMagentoCartTransformer, DaffMagentoBillingAddressTransformer, DaffMagentoBillingAddressInputTransformer, DaffMagentoExtraCartFragments, daffMagentoNoopCartFragment, getBillingAddress, updateBillingAddressWithEmail, updateBillingAddress } from '@daffodil/cart/driver/magento';
+import { MagentoCart, MagentoCartAddress, MagentoUpdateBillingAddressResponse, MagentoUpdateBillingAddressWithEmailResponse, MagentoGetBillingAddressResponse, DaffMagentoCartTransformer, DaffMagentoBillingAddressTransformer, DaffMagentoBillingAddressInputTransformer, DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS, daffMagentoNoopCartFragment, getBillingAddress, updateBillingAddressWithEmail, updateBillingAddress } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
   MagentoCartAddressFactory,
@@ -62,7 +62,7 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
           useValue: jasmine.createSpyObj('DaffMagentoBillingAddressInputTransformer', ['transform'])
         },
         {
-          provide: DaffMagentoExtraCartFragments,
+          provide: DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS,
           useValue: daffMagentoNoopCartFragment,
           multi: true
         },

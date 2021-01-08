@@ -8,4 +8,4 @@ import { DocumentNode } from 'graphql';
  *
  * Fragment structure is platform-specific and this feature should be used with care.
  */
-export const DaffMagentoExtraCartFragments = new InjectionToken<DocumentNode>('DaffMagentoExtraCartFragments');
+export const DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS = new InjectionToken<DocumentNode>('DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS');

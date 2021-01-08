@@ -10,7 +10,7 @@ import { DaffCartPaymentMethodsServiceInterface } from '@daffodil/cart/driver';
 import { listPaymentMethods } from './queries/public_api';
 import { DaffMagentoCartPaymentTransformer } from './transforms/outputs/cart-payment.service';
 import { MagentoListPaymentMethodsResponse } from './queries/responses/list-payment-methods';
-import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
+import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
 
 /**
  * A service for making Magento GraphQL queries for carts.
@@ -21,7 +21,7 @@ import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
 export class DaffMagentoCartPaymentMethodsService implements DaffCartPaymentMethodsServiceInterface {
   constructor(
     private apollo: Apollo,
-    @Inject(DaffMagentoExtraCartFragments) public extraCartFragments: DocumentNode[],
+    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) public extraCartFragments: DocumentNode[],
     public paymentTransformer: DaffMagentoCartPaymentTransformer
   ) {}
 

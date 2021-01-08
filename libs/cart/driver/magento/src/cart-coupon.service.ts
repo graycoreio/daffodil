@@ -20,7 +20,7 @@ import {
 } from './queries/responses/public_api';
 import { daffMagentoCouponTransform } from './transforms/outputs/cart-coupon';
 import { DaffMagentoCartCouponResponseTransformer } from './transforms/outputs/cart-coupon-response.service';
-import { DaffMagentoExtraCartFragments } from './injection-tokens/public_api';
+import { DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS } from './injection-tokens/public_api';
 import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutation-queue.token';
 
 /**
@@ -32,7 +32,7 @@ import { DAFF_MAGENTO_CART_MUTATION_QUEUE } from './injection-tokens/cart-mutati
 export class DaffMagentoCartCouponService implements DaffCartCouponServiceInterface {
   constructor(
     @Inject(DAFF_MAGENTO_CART_MUTATION_QUEUE) private mutationQueue: DaffQueuedApollo,
-    @Inject(DaffMagentoExtraCartFragments) public extraCartFragments: DocumentNode[],
+    @Inject(DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS) public extraCartFragments: DocumentNode[],
     public cartTransformer: DaffMagentoCartCouponResponseTransformer,
   ) {}
 
