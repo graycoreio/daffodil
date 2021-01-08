@@ -1,12 +1,12 @@
+import {gql} from 'apollo-angular';
 import { DocumentNode } from 'graphql';
-import gql from 'graphql-tag';
 
 import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffodil/core/graphql';
 
 import { cartFragment } from './fragments/public_api';
 
 export const updateShippingAddressWithEmail = (extraCartFragments: DocumentNode[] = []) => gql`
-  mutation UpdateShippingAddress(
+  mutation UpdateShippingAddressWithEmail(
     $cartId: String!,
     $address: ShippingAddressInput!,
     $email: String!

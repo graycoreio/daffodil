@@ -1,5 +1,5 @@
+import {gql} from 'apollo-angular';
 import { DocumentNode } from 'graphql';
-import gql from 'graphql-tag';
 
 import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffodil/core/graphql';
 

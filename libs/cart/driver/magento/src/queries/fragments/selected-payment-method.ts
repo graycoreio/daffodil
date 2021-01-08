@@ -1,4 +1,5 @@
-import gql from 'graphql-tag';
+import {gql} from 'apollo-angular';
+
 
 export const selectedPaymentMethodFragment = gql`
   fragment selectedPaymentMethod on SelectedPaymentMethod {

@@ -1,4 +1,5 @@
-import gql from 'graphql-tag';
+import {gql} from 'apollo-angular';
+
 
 export const cartCouponFragment = gql`
   fragment cartCoupon on AppliedCoupon {
