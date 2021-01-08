@@ -1,7 +1,7 @@
+import {Apollo} from 'apollo-angular';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { mapTo, catchError } from 'rxjs/operators';
-import { Apollo } from 'apollo-angular';
 
 import { DaffRegisterServiceInterface } from '../interfaces/register-service.interface';
 import { DaffLoginInfo } from '../../models/login-info';
