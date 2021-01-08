@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
-import { MockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 
 import { DaffCartPaymentMethodAdd } from '@daffodil/cart/state';
@@ -11,7 +10,7 @@ import { DaffStateError } from '@daffodil/core/state';
 import { DaffAuthorizeNetFacade } from './authorize-net.facade';
 
 describe('DaffAuthorizeNetFacade', () => {
-  let store: MockStore<any>;
+  let store: Store<any>;
   let facade: DaffAuthorizeNetFacade;
   let mockError: DaffStateError;
 
