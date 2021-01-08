@@ -1,4 +1,5 @@
 import { InMemoryCache } from '@apollo/client/core';
+import { addTypenameToDocument } from '@apollo/client/utilities';
 import { TestBed } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
 
@@ -12,14 +13,14 @@ import {
 } from '@daffodil/cart';
 import {
   MagentoCart,
-  updateAddress,
-  updateAddressWithEmail,
   MagentoUpdateAddressResponse,
   MagentoUpdateAddressWithEmailResponse,
   MagentoShippingAddress,
   MagentoShippingAddressInput,
   DaffMagentoCartTransformer,
   DaffMagentoCartAddressInputTransformer,
+  updateAddress,
+  updateAddressWithEmail
 } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartFactory,
@@ -73,7 +74,7 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
 					useValue: new InMemoryCache({
 						addTypename: true,
 						possibleTypes: schema.possibleTypes,
-						}),
+					}),
 				}
       ]
     });
@@ -111,6 +112,7 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
       setBillingAddressOnCart: {
 				__typename: 'SetBillingAddressOnCart',
         cart: {
+          __typename: 'Cart',
           id: cartId
         }
       },
@@ -123,12 +125,14 @@ describe('Driver | Magento | Cart | CartAddressService', () => {
       setBillingAddressOnCart: {
 				__typename: 'SetBillingAddressOnCart',
         cart: {
+          __typename: 'Cart',
           id: cartId
         }
       },
       setShippingAddressesOnCart: {
         __typename: 'SetShippingAddresses',
         cart: {
+          __typename: 'Cart',
           id: cartId
         }
       },

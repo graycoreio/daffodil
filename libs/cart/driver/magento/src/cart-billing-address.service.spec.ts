@@ -1,4 +1,5 @@
 import { InMemoryCache } from '@apollo/client/core';
+import { addTypenameToDocument } from '@apollo/client/utilities';
 import { TestBed } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
 
@@ -65,9 +66,7 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
 					provide: APOLLO_TESTING_CACHE,
 					useValue: new InMemoryCache({
 						addTypename: true,
-						fragmentMatcher: new IntrospectionFragmentMatcher({
-							introspectionQueryResultData: schema,
-						}),
+						possibleTypes: schema.possibleTypes,
 					}),
 				}
       ]
@@ -109,7 +108,9 @@ describe('Driver | Magento | Cart | CartBillingAddressService', () => {
         cart: mockMagentoCart
       },
       setGuestEmailOnCart: {
+				__typename: 'SetGuestEmailOnCart',
         cart: {
+          __typename: 'Cart',
           email
         }
       }

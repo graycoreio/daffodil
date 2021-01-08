@@ -1,16 +1,20 @@
 import { TestBed } from '@angular/core/testing';
-import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
+import { addTypenameToDocument } from '@apollo/client/utilities';
+import { InMemoryCache } from '@apollo/client/core';
+import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
 
 import {
   DaffCartPaymentMethod,
 } from '@daffodil/cart';
-import { MagentoCartPaymentMethod, MagentoListPaymentMethodsResponse, DaffMagentoCartPaymentTransformer, listPaymentMethods } from '@daffodil/cart/driver/magento';
+import { MagentoCartPaymentMethod, MagentoListPaymentMethodsResponse, DaffMagentoCartPaymentTransformer } from '@daffodil/cart/driver/magento';
 import {
   MagentoCartPaymentMethodFactory
 } from '@daffodil/cart/driver/magento/testing';
 import { DaffCartPaymentFactory } from '@daffodil/cart/testing';
+import { schema } from '@daffodil/driver/magento';
 
 import { DaffMagentoCartPaymentMethodsService } from './cart-payment-methods.service';
+import { listPaymentMethods } from './queries/public_api';
 
 describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
   let service: DaffMagentoCartPaymentMethodsService;
@@ -34,6 +38,13 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
       ],
       providers: [
         DaffMagentoCartPaymentMethodsService,
+				{
+					provide: APOLLO_TESTING_CACHE,
+					useValue: new InMemoryCache({
+						addTypename: true,
+						possibleTypes: schema.possibleTypes,
+					}),
+				}
       ]
     });
 
@@ -49,6 +60,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
     // TODO: create a factory and model for MagentoAvailablePaymentMethod
     const temp = magentoPaymentMethodFactory.create();
     mockMagentoPaymentMethod = {
+      __typename: 'AvailablePaymentMethod',
       code: temp.code,
       title: temp.title
     };
@@ -75,6 +87,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
     beforeEach(() => {
       method = 'method';
       mockDaffCartPayment.method = method;
+      mockMagentoPaymentMethod.code = method;
     });
 
     it('should call the transformer with the correct argument', done => {
@@ -83,7 +96,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
         done();
       });
 
-      const op = controller.expectOne(listPaymentMethods([]));
+      const op = controller.expectOne(addTypenameToDocument(listPaymentMethods([])));
 
       op.flush({
         data: mockListCartPaymentMethodsResponse
@@ -96,7 +109,7 @@ describe('Driver | Magento | Cart | CartPaymentMethodsService', () => {
         done();
       });
 
-      const op = controller.expectOne(listPaymentMethods([]));
+      const op = controller.expectOne(addTypenameToDocument(listPaymentMethods([])));
 
       op.flush({
         data: mockListCartPaymentMethodsResponse
