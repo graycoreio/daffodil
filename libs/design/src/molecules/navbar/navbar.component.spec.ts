@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DaffNavbarComponent } from './navbar.component';
 import { Component, DebugElement } from '@angular/core';
@@ -17,7 +17,7 @@ describe('DaffNavbarComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let de: DebugElement;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         WrapperComponent,

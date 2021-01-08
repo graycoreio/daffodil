@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 
 import { DaffArticleComponent } from './article.component';
@@ -16,7 +16,7 @@ describe('DaffArticleComponent', () => {
   let wrapper: WrapperComponent;
   let component: DaffArticleComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         DaffArticleComponent,

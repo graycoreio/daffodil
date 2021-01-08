@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { DaffHeroSubtitleDirective } from './hero-subtitle.directive';
@@ -15,7 +15,7 @@ describe('DaffHeroSubtitleDirective', () => {
   let heroSubtitle: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         DaffHeroSubtitleDirective,
@@ -41,4 +41,4 @@ describe('DaffHeroSubtitleDirective', () => {
       expect(heroSubtitle.nativeElement.classList.contains('daff-hero__subtitle')).toEqual(true);
     });
   });
-}); 
+});

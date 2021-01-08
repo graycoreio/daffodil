@@ -1,6 +1,6 @@
 import {
 	TestBed,
-	async,
+	waitForAsync,
 	ComponentFixture,
 	flush,
 	fakeAsync,
@@ -42,7 +42,7 @@ describe('DaffModalService', () => {
 	let fixture: ComponentFixture<WrapperComponent>;
 	let wrapper: WrapperComponent;
 
-	beforeEach(async(() => {
+	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
 			imports: [DynamicModule, DaffModalModule, NoopAnimationsModule],
 			declarations: [WrapperComponent],

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { DaffListItemComponent } from './list-item.component';
@@ -20,7 +20,7 @@ describe('DaffListItemComponent', () => {
   let listItem: DaffListItemComponent;
   let anchorListItem: DaffListItemComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         DaffListItemComponent,
@@ -71,4 +71,4 @@ describe('DaffListItemComponent', () => {
       });
     });
   });
-}); 
+});

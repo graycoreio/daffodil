@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
@@ -29,14 +29,14 @@ describe('DaffFormFieldComponent | Usage', () => {
   let formFieldControlElement: HTMLElement;
   let control: DaffFormFieldControl;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
         DaffInputModule,
         FontAwesomeModule
       ],
-      declarations: [ 
+      declarations: [
         WrapperComponent,
         DaffFormFieldComponent,
         DaffErrorMessageComponent
@@ -123,12 +123,12 @@ class WrapperWithoutControlComponent {
 describe('DaffFormFieldComponent | Usage Without Control', () => {
   let fixture: ComponentFixture<WrapperWithoutControlComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         FontAwesomeModule
       ],
-      declarations: [ 
+      declarations: [
         WrapperWithoutControlComponent,
         DaffFormFieldComponent,
         DaffErrorMessageComponent

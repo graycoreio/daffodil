@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DaffInputComponent } from './input.component';
 import { By } from '@angular/platform-browser';
@@ -20,9 +20,9 @@ describe('DaffInputComponent', () => {
   let component: DaffInputComponent;
   let componentDE: DebugElement;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         DaffInputComponent,
         WrapperComponent
        ]
@@ -54,7 +54,7 @@ describe('DaffInputComponent', () => {
   describe('onFocus', () => {
     it('should call focus on the native element', () => {
       spyOn(componentDE.nativeElement, 'focus');
-      
+
       component.onFocus();
 
       expect(componentDE.nativeElement.focus).toHaveBeenCalled();

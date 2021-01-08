@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
@@ -18,9 +18,9 @@ describe('DaffContainerComponent', () => {
   let de: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         WrapperComponent,
         DaffContainerComponent
       ]
@@ -38,7 +38,7 @@ describe('DaffContainerComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  }); 
+  });
 
   describe('<daff-container>', () => {
     it('should add a class of "daff-container" to the host element', () => {
@@ -57,7 +57,7 @@ describe('DaffContainerComponent', () => {
     it('should add the size class on the host element for the defined size', () => {
       wrapper.size = 'xs';
       fixture.detectChanges();
-      
+
       expect(de.nativeElement.classList.contains('daff-xs')).toEqual(true);
     });
   });

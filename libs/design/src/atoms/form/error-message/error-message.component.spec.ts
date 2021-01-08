@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DaffErrorMessageComponent } from './error-message.component';
 
@@ -6,7 +6,7 @@ describe('DaffErrorMessageComponent', () => {
   let fixture: ComponentFixture<DaffErrorMessageComponent>;
   let component: DaffErrorMessageComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         DaffErrorMessageComponent

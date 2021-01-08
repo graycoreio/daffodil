@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { TestBed, waitForAsync, ComponentFixture } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
@@ -20,7 +20,7 @@ describe('DaffCheckbox Accessibility', () => {
 
   let fixture: ComponentFixture<CheckboxWrapperComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         CheckboxWrapperComponent,

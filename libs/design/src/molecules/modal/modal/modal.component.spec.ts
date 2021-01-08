@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, DebugElement } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -18,8 +18,8 @@ describe('DaffModalComponent', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let modal: DaffModalComponent;
   let modalDe: DebugElement;
-  
-  beforeEach(async(() => {
+
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,

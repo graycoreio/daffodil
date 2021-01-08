@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DaffBackdropComponent } from './backdrop.component';
 import { Component, DebugElement } from '@angular/core';
@@ -24,13 +24,13 @@ describe('DaffBackdropComponent | Usage', () => {
   let backdrop: DaffBackdropComponent;
   let backdropHost: DebugElement;
   let backdropEl: DebugElement;
-  
-  beforeEach(async(() => {
+
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule
       ],
-      declarations: [ 
+      declarations: [
         WrapperComponent,
         DaffBackdropComponent
       ]
@@ -56,7 +56,7 @@ describe('DaffBackdropComponent | Usage', () => {
     it('should not add the class `daff-backdrop--transparent` to the host element', () => {
       wrapper.transparentValue = false;
       fixture.detectChanges();
-      
+
       expect(backdropEl.nativeElement.classList).not.toContain('daff-backdrop--transparent');
     });
   });
@@ -65,7 +65,7 @@ describe('DaffBackdropComponent | Usage', () => {
     it('should add the class `daff-backdrop--transparent` to the host element', () => {
       wrapper.transparentValue = true;
       fixture.detectChanges();
-      
+
       expect(backdropEl.nativeElement.classList).toContain('daff-backdrop--transparent');
     });
   });
@@ -95,13 +95,13 @@ describe('DaffBackdropComponent | Usage', () => {
 describe('DaffBackdropComponent | Defaults', () => {
   let fixture: ComponentFixture<DaffBackdropComponent>;
   let component: DaffBackdropComponent;
-  
-  beforeEach(async(() => {
+
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule
       ],
-      declarations: [ 
+      declarations: [
         DaffBackdropComponent
       ]
     })

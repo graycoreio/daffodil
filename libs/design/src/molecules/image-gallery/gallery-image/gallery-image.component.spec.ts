@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
@@ -15,9 +15,9 @@ describe('DaffGalleryImageComponent', () => {
   let hostElement;
   let component: DaffGalleryImageComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         WrapperComponent,
         DaffGalleryImageComponent
       ]
@@ -52,7 +52,7 @@ describe('DaffGalleryImageComponent', () => {
   });
 
   describe('when selected is true', () => {
-    
+
     it('should add the daff-image-gallery__daff-gallery-image--selected class to host element', () => {
       wrapper.selectedValue = true
       fixture.detectChanges();
@@ -62,7 +62,7 @@ describe('DaffGalleryImageComponent', () => {
   });
 
   describe('when selected is false', () => {
-    
+
     it('should not add the daff-image-gallery__daff-gallery-image--selected class to host element', () => {
       wrapper.selectedValue = false;
       fixture.detectChanges();

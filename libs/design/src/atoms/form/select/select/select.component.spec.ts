@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -28,12 +28,12 @@ describe('DaffNativeSelectComponent', () => {
   let component: DaffNativeSelectComponent;
   let componentDE: DebugElement;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule
       ],
-      declarations: [ 
+      declarations: [
         DaffNativeSelectComponent,
         WrapperComponent
        ]
@@ -74,7 +74,7 @@ describe('DaffNativeSelectComponent', () => {
   describe('onFocus', () => {
     it('should call focus on the native element', () => {
       spyOn(componentDE.nativeElement, 'focus');
-      
+
       component.onFocus();
 
       expect(componentDE.nativeElement.focus).toHaveBeenCalled();

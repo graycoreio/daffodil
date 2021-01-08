@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 
 import { DaffButtonSetComponent } from './button-set.component';
@@ -16,7 +16,7 @@ describe('DaffButtonSetComponent', () => {
   let wrapper: WrapperComponent;
   let component: DaffButtonSetComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         DaffButtonSetComponent,

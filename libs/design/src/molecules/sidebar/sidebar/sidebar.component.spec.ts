@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DaffSidebarComponent } from './sidebar.component';
 import { Component } from '@angular/core';
@@ -8,9 +8,9 @@ describe('DaffSidebarComponent', () => {
   let component: DaffSidebarComponent;
   let fixture: ComponentFixture<DaffSidebarComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         DaffSidebarComponent
       ]
     })
@@ -22,7 +22,7 @@ describe('DaffSidebarComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   })
-  
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
@@ -34,7 +34,7 @@ describe('DaffSidebarComponent', () => {
       fixture.nativeElement.dispatchEvent(new KeyboardEvent('keydown', {
           key: 'Escape'
       }));
-      
+
       fixture.detectChanges();
 
       expect(component.escapePressed.emit).toHaveBeenCalled();
@@ -72,9 +72,9 @@ describe('DaffSidebarComponent | usage', () => {
   let fixture: ComponentFixture<WrapperComponent>;
   let component: DaffSidebarComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         WrapperComponent,
         DaffSidebarComponent
       ]

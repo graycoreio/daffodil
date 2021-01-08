@@ -1,4 +1,4 @@
-import { ComponentFixture, async, TestBed } from '@angular/core/testing';
+import { ComponentFixture, waitForAsync, TestBed } from '@angular/core/testing';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -8,7 +8,7 @@ import { DaffRadioModule } from '../radio.module';
 
 @Component({
   template: `
- 
+
 <daff-radio-set [formGroup]='radioGroup' name='fruit'>
   <daff-radio formControlName='fruit' value='apple'>Apple</daff-radio>
   <daff-radio formControlName='fruit' value='grape'>Grape</daff-radio>
@@ -35,7 +35,7 @@ describe('DaffRadioComponent', () => {
   let embeddedFixture: ComponentFixture<RadioEmbeddedComponent>;
 
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         RadioEmbeddedComponent,
