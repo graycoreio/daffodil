@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DaffCopyrightComponent } from './copyright.component';
 
@@ -6,7 +6,7 @@ describe('DaffCopyrightComponent', () => {
   let component: DaffCopyrightComponent;
   let fixture: ComponentFixture<DaffCopyrightComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ DaffCopyrightComponent ]
     })

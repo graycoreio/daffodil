@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DaffLogoComponent } from './logo.component';
 
@@ -6,7 +6,7 @@ describe('DaffLogoComponent', () => {
   let component: DaffLogoComponent;
   let fixture: ComponentFixture<DaffLogoComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ DaffLogoComponent ]
     })
