@@ -6,7 +6,7 @@ import { MockDaffCartFacade } from './mock-cart-facade';
 
 @NgModule({
   providers: [
-		{ provide: DaffCartFacade, useClass: MockDaffCartFacade }
+		{ provide: DaffCartFacade, useExisting: MockDaffCartFacade }
 	]
 })
 export class DaffCartTestingModule { }
