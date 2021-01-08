@@ -5,8 +5,8 @@ import { DaffAccountRegistration } from '../../models/account-registration';
 import { DaffLoginInfo } from '../../models/login-info';
 
 export interface DaffRegisterServiceInterface<
-  TRequest extends DaffAccountRegistration,
-  TResponse extends DaffLoginInfo
+  TRequest extends DaffAccountRegistration = DaffAccountRegistration,
+  TResponse extends DaffLoginInfo = DaffLoginInfo
 > {
 
   /**
@@ -18,4 +18,4 @@ export interface DaffRegisterServiceInterface<
   register(registration: TRequest): Observable<TResponse>;
 }
 
-export const DaffRegisterDriver = new InjectionToken('DaffRegisterDriver');
+export const DaffRegisterDriver = new InjectionToken<DaffRegisterServiceInterface>('DaffRegisterDriver');
