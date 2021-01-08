@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
-import { MockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 
 import {
@@ -9,7 +8,6 @@ import {
   DaffAuthLogin,
   DaffAuthToken,
   DAFF_AUTH_STORE_FEATURE_KEY,
-  DaffAuthFeatureState,
   daffAuthReducers,
   DaffLoginInfo,
   DaffAuthRegister,
@@ -24,7 +22,7 @@ import { DaffAuthTokenFactory, DaffAccountRegistrationFactory } from '@daffodil/
 import { DaffAuthFacade } from './auth.facade';
 
 describe('DaffAuthFacade', () => {
-  let store: MockStore<{ [DAFF_AUTH_STORE_FEATURE_KEY]: Partial<DaffAuthFeatureState<DaffAuthToken>> }>;
+  let store: Store<any>;
   let facade: DaffAuthFacade;
   let authFactory: DaffAuthTokenFactory;
   let accountRegistrationFactory: DaffAccountRegistrationFactory;
