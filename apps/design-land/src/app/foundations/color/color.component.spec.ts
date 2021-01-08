@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DesignLandColorComponent } from './color.component';
 
@@ -6,7 +6,7 @@ describe('DesignLandColorComponent', () => {
   let component: DesignLandColorComponent;
   let fixture: ComponentFixture<DesignLandColorComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         DesignLandColorComponent
