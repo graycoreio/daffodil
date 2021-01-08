@@ -1,4 +1,4 @@
-import { ApolloQueryResult } from 'apollo-client';
+import {ApolloQueryResult} from '@apollo/client/core';
 
 import { MagentoCheckTokenResponse } from '../queries/public_api';
 import { validateCheckTokenResponse as validator } from './check-token';
@@ -16,7 +16,6 @@ describe('Driver | Magento | Auth | Validator | CheckToken', () => {
       },
       loading: null,
       networkStatus: null,
-      stale: null
     };
   });
 

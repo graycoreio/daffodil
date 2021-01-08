@@ -1,4 +1,4 @@
-import { ApolloQueryResult } from 'apollo-client';
+import {ApolloQueryResult} from '@apollo/client/core';
 
 import { MagentoGenerateTokenResponse } from '../queries/public_api';
 import { validateGenerateTokenResponse as validator } from './generate-token';
@@ -16,7 +16,6 @@ describe('Driver | Magento | Auth | Validator | GenerateToken', () => {
       },
       loading: null,
       networkStatus: null,
-      stale: null
     };
   });
 

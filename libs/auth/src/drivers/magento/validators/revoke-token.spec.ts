@@ -1,4 +1,4 @@
-import { ApolloQueryResult } from 'apollo-client';
+import {ApolloQueryResult} from '@apollo/client/core';
 
 import { MagentoRevokeCustomerTokenResponse } from '../queries/public_api';
 import { validateRevokeTokenResponse as validator } from './revoke-token';
@@ -16,7 +16,6 @@ describe('Driver | Magento | Auth | Validator | RevokeToken', () => {
       },
       loading: null,
       networkStatus: null,
-      stale: null
     };
   });
 
