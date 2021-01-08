@@ -5,8 +5,8 @@ import { DaffLoginInfo } from '../../models/login-info';
 import { DaffAuthToken } from '../../models/auth-token';
 
 export interface DaffLoginServiceInterface<
-  TRequest extends DaffLoginInfo,
-  TResponse extends DaffAuthToken
+  TRequest extends DaffLoginInfo = DaffLoginInfo,
+  TResponse extends DaffAuthToken = DaffAuthToken
 > {
   /**
    * Logs the user in.
@@ -21,4 +21,4 @@ export interface DaffLoginServiceInterface<
   logout(): Observable<void>;
 }
 
-export const DaffLoginDriver = new InjectionToken('DaffLoginDriver');
+export const DaffLoginDriver = new InjectionToken<DaffLoginServiceInterface>('DaffLoginDriver');
