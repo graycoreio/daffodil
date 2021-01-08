@@ -1,4 +1,4 @@
-import { ApolloError } from 'apollo-client';
+import { ApolloError } from '@apollo/client/core';
 import { GraphQLError } from 'graphql';
 
 import { DaffInvalidCouponCodeError } from '@daffodil/cart/driver';

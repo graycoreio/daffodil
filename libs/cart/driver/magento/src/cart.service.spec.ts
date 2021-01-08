@@ -1,8 +1,7 @@
+import { InMemoryCache } from '@apollo/client/core';
 import { TestBed } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
 import { of } from 'rxjs';
-import { addTypenameToDocument } from 'apollo-utilities';
-import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
 
 import { schema } from '@daffodil/driver/magento';
 import { DaffCart, DaffCartItem } from '@daffodil/cart';
@@ -55,10 +54,8 @@ describe('Driver | Magento | Cart | CartService', () => {
 					provide: APOLLO_TESTING_CACHE,
 					useValue: new InMemoryCache({
 						addTypename: true,
-						fragmentMatcher: new IntrospectionFragmentMatcher({
-							introspectionQueryResultData: schema,
+						possibleTypes: schema.possibleTypes,
 						}),
-					}),
 				}
       ]
     });

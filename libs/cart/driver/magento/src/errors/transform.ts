@@ -1,4 +1,4 @@
-import { ApolloError } from 'apollo-client';
+import { ApolloError } from '@apollo/client/core';
 
 import { daffTransformMagentoError } from '@daffodil/driver/magento';
 import { DaffCartDriverErrorMap } from '@daffodil/cart/driver';

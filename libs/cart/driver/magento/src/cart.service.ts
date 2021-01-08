@@ -1,5 +1,5 @@
+import {Apollo} from 'apollo-angular';
 import { Injectable, Inject } from '@angular/core';
-import { Apollo } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 import { Observable, throwError, forkJoin } from 'rxjs';
 import { map, switchMap, catchError } from 'rxjs/operators';

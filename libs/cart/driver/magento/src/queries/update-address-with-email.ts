@@ -1,5 +1,5 @@
+import {gql} from 'apollo-angular';
 import { DocumentNode } from 'graphql';
-import gql from 'graphql-tag';
 
 import { daffBuildFragmentNameSpread, daffBuildFragmentDefinition } from '@daffodil/core/graphql';
 
@@ -13,7 +13,7 @@ import { cartFragment } from './fragments/public_api';
  * Driver behavior is not guaranteed if Magento no longer processes compound queries in the order they are defined.
  */
 export const updateAddressWithEmail = (extraCartFragments: DocumentNode[] = []) => gql`
-  mutation UpdateAddress($cartId: String!, $address: CartAddressInput!, $email: String!) {
+  mutation UpdateAddressWithEmail($cartId: String!, $address: CartAddressInput!, $email: String!) {
     setBillingAddressOnCart(input: {
       cart_id: $cartId
       billing_address: {
