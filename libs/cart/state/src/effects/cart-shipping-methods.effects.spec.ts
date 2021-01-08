@@ -19,6 +19,7 @@ import {
   DaffCartShippingRateFactory,
 } from '@daffodil/cart/testing';
 import { DaffStateError } from '@daffodil/core/state';
+import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
 
 import { DaffCartShippingMethodsEffects } from './cart-shipping-methods.effects';
 
@@ -32,38 +33,37 @@ describe('Daffodil | Cart | DaffCartShippingMethodsEffects', () => {
   let cartFactory: DaffCartFactory;
   let cartShippingRateFactory: DaffCartShippingRateFactory;
 
-  let shippingMethodsDriverSpy: jasmine.SpyObj<DaffCartShippingMethodsServiceInterface>;
+  let shippingMethodsDriver: DaffCartShippingMethodsServiceInterface;
+  let daffCartStorageService: DaffCartStorageService;
 
-  let daffCartStorageSpy: jasmine.SpyObj<DaffCartStorageService>;
+  let driverListSpy: jasmine.Spy;
+  let getCartIdSpy: jasmine.Spy;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffTestingCartDriverModule.forRoot()
+      ],
       providers: [
         DaffCartShippingMethodsEffects,
         provideMockActions(() => actions$),
-        {
-          provide: DaffCartShippingMethodsDriver,
-          useValue: jasmine.createSpyObj('DaffCartShippingMethodsDriver', ['list'])
-        },
-        {
-          provide: DaffCartStorageService,
-          useValue: jasmine.createSpyObj('DaffCartStorageService', ['getCartId'])
-        }
       ]
     });
 
-    effects = TestBed.inject<DaffCartShippingMethodsEffects<DaffCartShippingRate>>(DaffCartShippingMethodsEffects);
+    effects = TestBed.inject(DaffCartShippingMethodsEffects);
 
-    shippingMethodsDriverSpy = TestBed.inject<DaffCartShippingMethodsServiceInterface>(DaffCartShippingMethodsDriver);
-    daffCartStorageSpy = TestBed.inject(DaffCartStorageService);
+    shippingMethodsDriver = TestBed.inject(DaffCartShippingMethodsDriver);
+    daffCartStorageService = TestBed.inject(DaffCartStorageService);
 
-    cartFactory = TestBed.inject<DaffCartFactory>(DaffCartFactory);
-    cartShippingRateFactory = TestBed.inject<DaffCartShippingRateFactory>(DaffCartShippingRateFactory);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartShippingRateFactory = TestBed.inject(DaffCartShippingRateFactory);
 
     mockCart = cartFactory.create();
     mockCartShippingRate = cartShippingRateFactory.create();
 
-    daffCartStorageSpy.getCartId.and.returnValue(String(mockCart.id));
+    driverListSpy = spyOn(shippingMethodsDriver, 'list');
+    getCartIdSpy = spyOn(daffCartStorageService, 'getCartId');
+    getCartIdSpy.and.returnValue(String(mockCart.id));
   });
 
   it('should be created', () => {
@@ -76,7 +76,7 @@ describe('Daffodil | Cart | DaffCartShippingMethodsEffects', () => {
 
     describe('and the call to CartService is successful', () => {
       beforeEach(() => {
-        shippingMethodsDriverSpy.list.and.returnValue(of([mockCartShippingRate]));
+        driverListSpy.and.returnValue(of([mockCartShippingRate]));
         const cartCreateSuccessAction = new DaffCartShippingMethodsLoadSuccess([mockCartShippingRate]);
         actions$ = hot('--a', { a: cartCreateAction });
         expected = cold('--b', { b: cartCreateSuccessAction });
@@ -91,7 +91,7 @@ describe('Daffodil | Cart | DaffCartShippingMethodsEffects', () => {
       beforeEach(() => {
         const error: DaffStateError = {code: 'code', message: 'Failed to list cart shipping methods'};
         const response = cold('#', {}, error);
-        shippingMethodsDriverSpy.list.and.returnValue(response);
+        driverListSpy.and.returnValue(response);
         const cartCreateFailureAction = new DaffCartShippingMethodsLoadFailure(error);
         actions$ = hot('--a', { a: cartCreateAction });
         expected = cold('--b', { b: cartCreateFailureAction });

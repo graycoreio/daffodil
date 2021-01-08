@@ -35,8 +35,11 @@ describe('Driver | Magento | Cart | CartItemService', () => {
   let daffCartItemFactory: DaffCartItemFactory;
   let magentoCartItemFactory: MagentoCartItemFactory;
 
-  let magentoCartTransformerSpy: jasmine.SpyObj<DaffMagentoCartTransformer>;
-  let magentoCartItemUpdateInputTransformerSpy: jasmine.SpyObj<DaffMagentoCartItemUpdateInputTransformer>;
+  let magentoCartTransformer: DaffMagentoCartTransformer;
+  let magentoCartItemUpdateInputTransformer: DaffMagentoCartItemUpdateInputTransformer;
+
+  let cartTransformerSpy: jasmine.Spy;
+  let cartItemUpdateInputTransformerSpy: jasmine.Spy;
 
   let cartId;
   let itemId;
@@ -66,14 +69,6 @@ describe('Driver | Magento | Cart | CartItemService', () => {
       ],
       providers: [
         DaffMagentoCartItemService,
-        {
-          provide: DaffMagentoCartTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartTransformer', ['transform'])
-        },
-        {
-          provide: DaffMagentoCartItemUpdateInputTransformer,
-          useValue: jasmine.createSpyObj('DaffMagentoCartItemUpdateInputTransformer', ['transform'])
-        },
 				{
 					provide: APOLLO_TESTING_CACHE,
 					useValue: new InMemoryCache({
@@ -89,8 +84,8 @@ describe('Driver | Magento | Cart | CartItemService', () => {
     service = TestBed.inject(DaffMagentoCartItemService);
     controller = TestBed.inject(ApolloTestingController);
 
-    magentoCartTransformerSpy = TestBed.inject(DaffMagentoCartTransformer);
-    magentoCartItemUpdateInputTransformerSpy = TestBed.inject(DaffMagentoCartItemUpdateInputTransformer);
+    magentoCartTransformer = TestBed.inject(DaffMagentoCartTransformer);
+    magentoCartItemUpdateInputTransformer = TestBed.inject(DaffMagentoCartItemUpdateInputTransformer);
 
 		daffProductFactory = TestBed.inject(DaffProductFactory);
 		daffConfigurableProductFactory = TestBed.inject(DaffConfigurableProductFactory);
@@ -174,8 +169,11 @@ describe('Driver | Magento | Cart | CartItemService', () => {
       }
     };
 
-    magentoCartTransformerSpy.transform.and.returnValue(mockDaffCart);
-    magentoCartItemUpdateInputTransformerSpy.transform.and.returnValue(mockMagentoCartItemUpdateInput);
+    cartTransformerSpy = spyOn(magentoCartTransformer, 'transform');
+    cartItemUpdateInputTransformerSpy = spyOn(magentoCartItemUpdateInputTransformer, 'transform');
+
+    cartTransformerSpy.and.returnValue(mockDaffCart);
+    cartItemUpdateInputTransformerSpy.and.returnValue(mockMagentoCartItemUpdateInput);
   });
 
   it('should be created', () => {

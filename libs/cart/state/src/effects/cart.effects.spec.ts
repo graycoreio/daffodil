@@ -29,6 +29,7 @@ import {
 } from '@daffodil/cart/state';
 import { DaffCartServiceInterface, DaffCartDriver } from '@daffodil/cart/driver';
 import { DaffCartFactory } from '@daffodil/cart/testing';
+import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
 
 import { DaffCartEffects } from './cart.effects';
 
@@ -40,37 +41,44 @@ describe('Daffodil | Cart | CartEffects', () => {
 
   let cartFactory: DaffCartFactory;
 
-  let daffDriverSpy: jasmine.SpyObj<DaffCartServiceInterface>;
+  let driver: DaffCartServiceInterface;
+  let daffCartStorageService: DaffCartStorageService;
 
-  let daffCartStorageSpy: jasmine.SpyObj<DaffCartStorageService>;
+  let driverGetSpy: jasmine.Spy;
+  let driverCreateSpy: jasmine.Spy;
+  let driverClearSpy: jasmine.Spy;
+  let driverAddToCartSpy: jasmine.Spy;
+  let getCartIdSpy: jasmine.Spy;
+  let setCartIdSpy: jasmine.Spy;
 
   const cartStorageFailureAction = new DaffCartStorageFailure(daffTransformErrorToStateError(new DaffStorageServiceError('An error occurred during storage.')));
   const throwStorageError = () => { throw new DaffStorageServiceError('An error occurred during storage.') };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffTestingCartDriverModule.forRoot()
+      ],
       providers: [
         DaffCartEffects,
         provideMockActions(() => actions$),
-        {
-          provide: DaffCartDriver,
-          useValue: jasmine.createSpyObj('DaffCartDriver', ['get', 'create', 'clear', 'addToCart'])
-        },
-        {
-          provide: DaffCartStorageService,
-          useValue: jasmine.createSpyObj('DaffCartStorageService', ['setCartId', 'getCartId'])
-        }
       ]
     });
 
-    effects = TestBed.inject<DaffCartEffects<DaffCart>>(DaffCartEffects);
-    daffDriverSpy = TestBed.inject<DaffCartServiceInterface>(DaffCartDriver);
-    daffCartStorageSpy = TestBed.inject(DaffCartStorageService);
-    cartFactory = TestBed.inject<DaffCartFactory>(DaffCartFactory);
+    effects = TestBed.inject(DaffCartEffects);
+    driver = TestBed.inject(DaffCartDriver);
+    daffCartStorageService = TestBed.inject(DaffCartStorageService);
+    cartFactory = TestBed.inject(DaffCartFactory);
 
     mockCart = cartFactory.create();
 
-    daffCartStorageSpy.getCartId.and.returnValue(String(mockCart.id));
+    driverGetSpy = spyOn(driver, 'get');
+    driverCreateSpy = spyOn(driver, 'create');
+    driverClearSpy = spyOn(driver, 'clear');
+    driverAddToCartSpy = spyOn(driver, 'addToCart');
+    setCartIdSpy = spyOn(daffCartStorageService, 'setCartId');
+    getCartIdSpy = spyOn(daffCartStorageService, 'getCartId');
+    getCartIdSpy.and.returnValue(String(mockCart.id));
   });
 
   it('should be created', () => {
@@ -83,7 +91,7 @@ describe('Daffodil | Cart | CartEffects', () => {
 
     describe('and the call to CartService is successful', () => {
       beforeEach(() => {
-        daffDriverSpy.get.and.returnValue(of(mockCart));
+        driverGetSpy.and.returnValue(of(mockCart));
         const cartLoadSuccessAction = new DaffCartLoadSuccess(mockCart);
         actions$ = hot('--a', { a: cartLoadAction });
         expected = cold('--b', { b: cartLoadSuccessAction });
@@ -98,7 +106,7 @@ describe('Daffodil | Cart | CartEffects', () => {
       beforeEach(() => {
         const error: DaffStateError = {code: 'code', message: 'Failed to load cart'};
         const response = cold('#', {}, error);
-        daffDriverSpy.get.and.returnValue(response);
+        driverGetSpy.and.returnValue(response);
         const cartLoadFailureAction = new DaffCartLoadFailure(error);
         actions$ = hot('--a', { a: cartLoadAction });
         expected = cold('--b', { b: cartLoadFailureAction });
@@ -111,7 +119,7 @@ describe('Daffodil | Cart | CartEffects', () => {
 
     describe('and the storage service throws an error', () => {
       beforeEach(() => {
-        daffCartStorageSpy.getCartId.and.callFake(throwStorageError)
+        getCartIdSpy.and.callFake(throwStorageError)
 
         actions$ = hot('--a', { a: cartLoadAction });
         expected = cold('--b', { b: cartStorageFailureAction });
@@ -129,7 +137,7 @@ describe('Daffodil | Cart | CartEffects', () => {
 
     describe('and the call to CartService is successful', () => {
       beforeEach(() => {
-        daffDriverSpy.create.and.returnValue(of({id: mockCart.id}));
+        driverCreateSpy.and.returnValue(of({id: mockCart.id}));
         const cartCreateSuccessAction = new DaffCartCreateSuccess({id: mockCart.id});
         actions$ = hot('--a', { a: cartCreateAction });
         expected = cold('--b', { b: cartCreateSuccessAction });
@@ -144,7 +152,7 @@ describe('Daffodil | Cart | CartEffects', () => {
       beforeEach(() => {
         const error: DaffStateError = {code: 'code', message: 'Failed to create cart'};
         const response = cold('#', {}, error);
-        daffDriverSpy.create.and.returnValue(response);
+        driverCreateSpy.and.returnValue(response);
         const cartCreateFailureAction = new DaffCartCreateFailure(error);
         actions$ = hot('--a', { a: cartCreateAction });
         expected = cold('--b', { b: cartCreateFailureAction });
@@ -168,12 +176,12 @@ describe('Daffodil | Cart | CartEffects', () => {
 
     it('should set the cart ID in storage', () => {
       expect(effects.storeId$).toBeObservable(expected);
-      expect(daffCartStorageSpy.setCartId).toHaveBeenCalledWith(String(mockCart.id));
+      expect(setCartIdSpy).toHaveBeenCalledWith(String(mockCart.id));
     });
 
     describe('and the storage service throws an error', () => {
       beforeEach(() => {
-        daffCartStorageSpy.setCartId.and.callFake(throwStorageError)
+        setCartIdSpy.and.callFake(throwStorageError)
 
         actions$ = hot('--a', { a: cartCreateSuccessAction });
         expected = cold('--b', { b: cartStorageFailureAction });
@@ -197,12 +205,12 @@ describe('Daffodil | Cart | CartEffects', () => {
 
     it('should set the cart ID in storage', () => {
       expect(effects.storeId$).toBeObservable(expected);
-      expect(daffCartStorageSpy.setCartId).toHaveBeenCalledWith(String(mockCart.id));
+      expect(setCartIdSpy).toHaveBeenCalledWith(String(mockCart.id));
     });
 
     describe('and the storage service throws an error', () => {
       beforeEach(() => {
-        daffCartStorageSpy.setCartId.and.callFake(throwStorageError)
+        setCartIdSpy.and.callFake(throwStorageError)
 
         actions$ = hot('--a', { a: cartCreateSuccessAction });
         expected = cold('--b', { b: cartStorageFailureAction });
@@ -226,7 +234,7 @@ describe('Daffodil | Cart | CartEffects', () => {
 
     describe('and the call to CartService is successful', () => {
       beforeEach(() => {
-        daffDriverSpy.addToCart.and.returnValue(of(mockCart));
+        driverAddToCartSpy.and.returnValue(of(mockCart));
         const addToCartSuccessAction = new DaffAddToCartSuccess(mockCart);
         actions$ = hot('--a', { a: addToCartAction });
         expected = cold('--b', { b: addToCartSuccessAction });
@@ -241,7 +249,7 @@ describe('Daffodil | Cart | CartEffects', () => {
       beforeEach(() => {
         const error: DaffStateError = {code: 'code', message: 'Failed to add item to cart'};
         const response = cold('#', {}, error);
-        daffDriverSpy.addToCart.and.returnValue(response);
+        driverAddToCartSpy.and.returnValue(response);
         const addToCartFailureAction = new DaffAddToCartFailure(error);
         actions$ = hot('--a', { a: addToCartAction });
         expected = cold('--b', { b: addToCartFailureAction });
@@ -259,7 +267,7 @@ describe('Daffodil | Cart | CartEffects', () => {
 
     describe('and the clear call to driver is successful', () => {
       beforeEach(() => {
-        daffDriverSpy.clear.and.returnValue(of(mockCart));
+        driverClearSpy.and.returnValue(of(mockCart));
         const cartClearSuccessAction = new DaffCartClearSuccess(mockCart);
         actions$ = hot('--a', { a: cartClearAction });
         expected = cold('--b', { b: cartClearSuccessAction });
@@ -273,7 +281,7 @@ describe('Daffodil | Cart | CartEffects', () => {
       beforeEach(() => {
         const error: DaffStateError = {code: 'code', message: 'Failed to clear the cart.'};
         const response = cold('#', {}, error);
-        daffDriverSpy.clear.and.returnValue(response);
+        driverClearSpy.and.returnValue(response);
         const cartClearFailureAction = new DaffCartClearFailure(error);
         actions$ = hot('--a', { a: cartClearAction });
         expected = cold('--b', { b: cartClearFailureAction });
