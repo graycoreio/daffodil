@@ -19,6 +19,7 @@ import {
   DaffCartFactory,
   DaffCartPaymentFactory
 } from '@daffodil/cart/testing';
+import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
 
 import { DaffCartOrderEffects } from './cart-order.effects';
 
@@ -33,31 +34,29 @@ describe('Cart | Effect | CartOrderEffects', () => {
   let cartFactory: DaffCartFactory;
   let daffCartPaymentFactory: DaffCartPaymentFactory;
 
-  let cartOrderDriverSpy: jasmine.SpyObj<DaffCartOrderServiceInterface>;
-  let daffCartStorageSpy: jasmine.SpyObj<DaffCartStorageService>;
+  let cartOrderDriver: DaffCartOrderServiceInterface;
+  let daffCartStorageService: DaffCartStorageService;
+
+  let driverPlaceOrderSpy: jasmine.Spy;
+  let getCartIdSpy: jasmine.Spy;
 
   const cartStorageFailureAction = new DaffCartStorageFailure(daffTransformErrorToStateError(new DaffStorageServiceError('An error occurred during storage.')));
   const throwStorageError = () => { throw new DaffStorageServiceError('An error occurred during storage.') };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffTestingCartDriverModule.forRoot()
+      ],
       providers: [
         DaffCartOrderEffects,
         provideMockActions(() => actions$),
-        {
-          provide: DaffCartOrderDriver,
-          useValue: jasmine.createSpyObj('DaffCartOrderDriver', ['placeOrder'])
-        },
-        {
-          provide: DaffCartStorageService,
-          useValue: jasmine.createSpyObj('DaffCartStorageService', ['setCartId', 'getCartId'])
-        }
       ]
     });
 
     effects = TestBed.inject(DaffCartOrderEffects);
-    cartOrderDriverSpy = TestBed.inject(DaffCartOrderDriver);
-    daffCartStorageSpy = TestBed.inject(DaffCartStorageService);
+    cartOrderDriver = TestBed.inject(DaffCartOrderDriver);
+    daffCartStorageService = TestBed.inject(DaffCartStorageService);
     cartFactory = TestBed.inject(DaffCartFactory);
     daffCartPaymentFactory = TestBed.inject(DaffCartPaymentFactory);
 
@@ -65,7 +64,9 @@ describe('Cart | Effect | CartOrderEffects', () => {
     mockDaffCartPayment = daffCartPaymentFactory.create();
     orderId = 'id';
 
-    daffCartStorageSpy.getCartId.and.returnValue(String(mockCart.id));
+    driverPlaceOrderSpy = spyOn(cartOrderDriver, 'placeOrder');
+    getCartIdSpy = spyOn(daffCartStorageService, 'getCartId');
+    getCartIdSpy.and.returnValue(String(mockCart.id));
   });
 
   it('should be created', () => {
@@ -84,7 +85,7 @@ describe('Cart | Effect | CartOrderEffects', () => {
         };
         const cartPlaceOrderSuccessAction = new DaffCartPlaceOrderSuccess(response);
 
-        cartOrderDriverSpy.placeOrder.and.returnValue(of(response));
+        driverPlaceOrderSpy.and.returnValue(of(response));
         actions$ = hot('--a', { a: cartPlaceOrderAction });
         expected = cold('--b', { b: cartPlaceOrderSuccessAction });
       });
@@ -100,7 +101,7 @@ describe('Cart | Effect | CartOrderEffects', () => {
         const response = cold('#', {}, error);
         const cartPlaceOrderFailureAction = new DaffCartPlaceOrderFailure(error);
 
-        cartOrderDriverSpy.placeOrder.and.returnValue(response);
+        driverPlaceOrderSpy.and.returnValue(response);
         actions$ = hot('--a', { a: cartPlaceOrderAction });
         expected = cold('--b', { b: cartPlaceOrderFailureAction });
       });
@@ -112,7 +113,7 @@ describe('Cart | Effect | CartOrderEffects', () => {
 
     describe('and the storage service throws an error', () => {
       beforeEach(() => {
-        daffCartStorageSpy.getCartId.and.callFake(throwStorageError)
+        getCartIdSpy.and.callFake(throwStorageError)
 
         actions$ = hot('--a', { a: cartPlaceOrderAction });
         expected = cold('--b', { b: cartStorageFailureAction });

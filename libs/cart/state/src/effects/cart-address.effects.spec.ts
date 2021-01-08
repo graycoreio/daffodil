@@ -16,6 +16,7 @@ import {
   DaffCartAddressFactory
 } from '@daffodil/cart/testing';
 import { DaffStateError, daffTransformErrorToStateError } from '@daffodil/core/state';
+import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
 
 import { DaffCartAddressEffects } from './cart-address.effects';
 
@@ -29,32 +30,30 @@ describe('Daffodil | Cart | CartAddressEffects', () => {
   let cartFactory: DaffCartFactory;
   let cartAddressFactory: DaffCartAddressFactory;
 
-  let daffAddressDriverSpy: jasmine.SpyObj<DaffCartAddressServiceInterface>;
+  let daffAddressDriver: DaffCartAddressServiceInterface;
+  let daffCartStorageService: DaffCartStorageService;
 
-  let daffCartStorageSpy: jasmine.SpyObj<DaffCartStorageService>;
+  let driverUpdateSpy: jasmine.Spy;
+  let getCartIdSpy: jasmine.Spy;
+
   const cartStorageFailureAction = new DaffCartStorageFailure(daffTransformErrorToStateError(new DaffStorageServiceError('An error occurred during storage.')));
   const throwStorageError = () => { throw new DaffStorageServiceError('An error occurred during storage.') };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffTestingCartDriverModule.forRoot()
+      ],
       providers: [
         DaffCartAddressEffects,
         provideMockActions(() => actions$),
-        {
-          provide: DaffCartAddressDriver,
-          useValue: jasmine.createSpyObj('DaffCartAddressDriver', ['update'])
-        },
-        {
-          provide: DaffCartStorageService,
-          useValue: jasmine.createSpyObj('DaffCartStorageService', ['getCartId'])
-        }
       ]
     });
 
     effects = TestBed.inject<DaffCartAddressEffects<DaffCartAddress, DaffCart>>(DaffCartAddressEffects);
 
-    daffAddressDriverSpy = TestBed.inject<DaffCartAddressServiceInterface>(DaffCartAddressDriver);
-    daffCartStorageSpy = TestBed.inject(DaffCartStorageService);
+    daffAddressDriver = TestBed.inject(DaffCartAddressDriver);
+    daffCartStorageService = TestBed.inject(DaffCartStorageService);
 
     cartFactory = TestBed.inject<DaffCartFactory>(DaffCartFactory);
     cartAddressFactory = TestBed.inject<DaffCartAddressFactory>(DaffCartAddressFactory);
@@ -62,7 +61,9 @@ describe('Daffodil | Cart | CartAddressEffects', () => {
     mockCart = cartFactory.create();
     mockCartAddress = cartAddressFactory.create();
 
-    daffCartStorageSpy.getCartId.and.returnValue(String(mockCart.id));
+    getCartIdSpy = spyOn(daffCartStorageService, 'getCartId');
+    driverUpdateSpy = spyOn(daffAddressDriver, 'update');
+    getCartIdSpy.and.returnValue(String(mockCart.id));
   });
 
   it('should be created', () => {
@@ -81,7 +82,7 @@ describe('Daffodil | Cart | CartAddressEffects', () => {
 
     describe('and the storage service throws an error', () => {
       beforeEach(() => {
-        daffCartStorageSpy.getCartId.and.callFake(throwStorageError)
+        getCartIdSpy.and.callFake(throwStorageError)
 
         actions$ = hot('--a', { a: cartAddressUpdateAction });
         expected = cold('--b', { b: cartStorageFailureAction });
@@ -94,7 +95,7 @@ describe('Daffodil | Cart | CartAddressEffects', () => {
 
     describe('and the calls to the services are successful', () => {
       beforeEach(() => {
-        daffAddressDriverSpy.update.and.returnValue(of(mockCart));
+        driverUpdateSpy.and.returnValue(of(mockCart));
         const cartAddressUpdateSuccessAction = new DaffCartAddressUpdateSuccess(mockCart);
         actions$ = hot('--a', { a: cartAddressUpdateAction });
         expected = cold('--b', { b: cartAddressUpdateSuccessAction });
@@ -109,7 +110,7 @@ describe('Daffodil | Cart | CartAddressEffects', () => {
       beforeEach(() => {
         const error: DaffStateError = {code: 'code', message: 'Failed to update cart address'};
         const response = cold('#', {}, error);
-        daffAddressDriverSpy.update.and.returnValue(response);
+        driverUpdateSpy.and.returnValue(response);
         const cartAddressUpdateFailureAction = new DaffCartAddressUpdateFailure(error);
         actions$ = hot('--a', { a: cartAddressUpdateAction });
         expected = cold('--b', { b: cartAddressUpdateFailureAction });

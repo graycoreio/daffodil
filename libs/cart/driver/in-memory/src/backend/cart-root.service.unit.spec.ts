@@ -17,17 +17,17 @@ import { DaffInMemoryBackendCartRootService } from './cart-root.service';
 describe('DaffInMemoryBackendCartRootService | Unit', () => {
   let service: DaffInMemoryBackendCartRootService;
 
-  let cartBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartService>;
-  let cartItemsBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartItemsService>;
-  let cartOrderBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartOrderService>;
-  let cartCouponBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartCouponService>;
-  let cartAddressBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartAddressService>;
-  let cartShippingAddressBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartShippingAddressService>;
-  let cartBillingAddressBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartBillingAddressService>;
-  let cartPaymentMethodsBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartPaymentMethodsService>;
-  let cartShippingMethodsBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartShippingMethodsService>;
-  let cartPaymentBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartPaymentService>;
-  let cartShippingInformationBackendServiceSpy: jasmine.SpyObj<DaffInMemoryBackendCartShippingInformationService>;
+  let cartBackendService: DaffInMemoryBackendCartService;
+  let cartItemsBackendService: DaffInMemoryBackendCartItemsService;
+  let cartOrderBackendService: DaffInMemoryBackendCartOrderService;
+  let cartCouponBackendService: DaffInMemoryBackendCartCouponService;
+  let cartAddressBackendService: DaffInMemoryBackendCartAddressService;
+  let cartShippingAddressBackendService: DaffInMemoryBackendCartShippingAddressService;
+  let cartBillingAddressBackendService: DaffInMemoryBackendCartBillingAddressService;
+  let cartPaymentMethodsBackendService: DaffInMemoryBackendCartPaymentMethodsService;
+  let cartShippingMethodsBackendService: DaffInMemoryBackendCartShippingMethodsService;
+  let cartPaymentBackendService: DaffInMemoryBackendCartPaymentService;
+  let cartShippingInformationBackendService: DaffInMemoryBackendCartShippingInformationService;
 
   let cartFactory: DaffCartFactory;
   let cartItemFactory: DaffCartItemFactory;
@@ -41,69 +41,49 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
   let cartUrl;
   let collection: DaffCart[];
 
+  let cartGetSpy: jasmine.Spy;
+  let cartPostSpy: jasmine.Spy;
+  let cartItemsGetSpy: jasmine.Spy;
+  let cartItemsPostSpy: jasmine.Spy;
+  let cartItemsPutSpy: jasmine.Spy;
+  let cartItemsDeleteSpy: jasmine.Spy;
+  let cartOrderPostSpy: jasmine.Spy;
+  let cartCouponGetSpy: jasmine.Spy;
+  let cartCouponPostSpy: jasmine.Spy;
+  let cartCouponDeleteSpy: jasmine.Spy;
+  let cartAddressPutSpy: jasmine.Spy;
+  let cartShippingAddressGetSpy: jasmine.Spy;
+  let cartShippingAddressPutSpy: jasmine.Spy;
+  let cartBillingAddressGetSpy: jasmine.Spy;
+  let cartBillingAddressPutSpy: jasmine.Spy;
+  let cartPaymentMethodsGetSpy: jasmine.Spy;
+  let cartShippingMethodsGetSpy: jasmine.Spy;
+  let cartPaymentGetSpy: jasmine.Spy;
+  let cartPaymentPutSpy: jasmine.Spy;
+  let cartPaymentDeleteSpy: jasmine.Spy;
+  let cartShippingInformationGetSpy: jasmine.Spy;
+  let cartShippingInformationPutSpy: jasmine.Spy;
+  let cartShippingInformationDeleteSpy: jasmine.Spy;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         DaffInMemoryBackendCartRootService,
-        {
-          provide: DaffInMemoryBackendCartService,
-          useValue: jasmine.createSpyObj('DaffInMemoryBackendCartService', ['get', 'post'])
-        },
-        {
-          provide: DaffInMemoryBackendCartItemsService,
-          useValue: jasmine.createSpyObj('DaffInMemoryBackendCartItemsService', ['get', 'post', 'put', 'delete'])
-        },
-        {
-          provide: DaffInMemoryBackendCartOrderService,
-          useValue: jasmine.createSpyObj('DaffInMemoryBackendCartOrderService', ['post'])
-        },
-        {
-          provide: DaffInMemoryBackendCartCouponService,
-          useValue: jasmine.createSpyObj('DaffInMemoryBackendCartCouponService', ['get', 'post', 'delete'])
-        },
-        {
-          provide: DaffInMemoryBackendCartAddressService,
-          useValue: jasmine.createSpyObj('DaffInMemoryBackendCartAddressService', ['put'])
-        },
-        {
-          provide: DaffInMemoryBackendCartShippingAddressService,
-          useValue: jasmine.createSpyObj('DaffInMemoryBackendCartShippingAddressService', ['get', 'put'])
-        },
-        {
-          provide: DaffInMemoryBackendCartBillingAddressService,
-          useValue: jasmine.createSpyObj('DaffInMemoryBackendCartBillingAddressService', ['get', 'put'])
-        },
-        {
-          provide: DaffInMemoryBackendCartPaymentMethodsService,
-          useValue: jasmine.createSpyObj('DaffInMemoryBackendCartPaymentMethodsService', ['get'])
-        },
-        {
-          provide: DaffInMemoryBackendCartShippingMethodsService,
-          useValue: jasmine.createSpyObj('DaffInMemoryBackendCartShippingMethodsService', ['get'])
-        },
-        {
-          provide: DaffInMemoryBackendCartPaymentService,
-          useValue: jasmine.createSpyObj('DaffInMemoryBackendCartPaymentService', ['get', 'put', 'delete'])
-        },
-        {
-          provide: DaffInMemoryBackendCartShippingInformationService,
-          useValue: jasmine.createSpyObj('DaffInMemoryBackendCartShippingInformationService', ['get', 'put', 'delete'])
-        }
       ]
     });
     service = TestBed.inject(DaffInMemoryBackendCartRootService);
 
-    cartBackendServiceSpy = TestBed.inject(DaffInMemoryBackendCartService);
-    cartItemsBackendServiceSpy = TestBed.inject(DaffInMemoryBackendCartItemsService);
-    cartOrderBackendServiceSpy = TestBed.inject(DaffInMemoryBackendCartOrderService);
-    cartCouponBackendServiceSpy = TestBed.inject(DaffInMemoryBackendCartCouponService);
-    cartAddressBackendServiceSpy = TestBed.inject(DaffInMemoryBackendCartAddressService);
-    cartShippingAddressBackendServiceSpy = TestBed.inject(DaffInMemoryBackendCartShippingAddressService);
-    cartBillingAddressBackendServiceSpy = TestBed.inject(DaffInMemoryBackendCartBillingAddressService);
-    cartPaymentMethodsBackendServiceSpy = TestBed.inject(DaffInMemoryBackendCartPaymentMethodsService);
-    cartShippingMethodsBackendServiceSpy = TestBed.inject(DaffInMemoryBackendCartShippingMethodsService);
-    cartPaymentBackendServiceSpy = TestBed.inject(DaffInMemoryBackendCartPaymentService);
-    cartShippingInformationBackendServiceSpy = TestBed.inject(DaffInMemoryBackendCartShippingInformationService);
+    cartBackendService = TestBed.inject(DaffInMemoryBackendCartService);
+    cartItemsBackendService = TestBed.inject(DaffInMemoryBackendCartItemsService);
+    cartOrderBackendService = TestBed.inject(DaffInMemoryBackendCartOrderService);
+    cartCouponBackendService = TestBed.inject(DaffInMemoryBackendCartCouponService);
+    cartAddressBackendService = TestBed.inject(DaffInMemoryBackendCartAddressService);
+    cartShippingAddressBackendService = TestBed.inject(DaffInMemoryBackendCartShippingAddressService);
+    cartBillingAddressBackendService = TestBed.inject(DaffInMemoryBackendCartBillingAddressService);
+    cartPaymentMethodsBackendService = TestBed.inject(DaffInMemoryBackendCartPaymentMethodsService);
+    cartShippingMethodsBackendService = TestBed.inject(DaffInMemoryBackendCartShippingMethodsService);
+    cartPaymentBackendService = TestBed.inject(DaffInMemoryBackendCartPaymentService);
+    cartShippingInformationBackendService = TestBed.inject(DaffInMemoryBackendCartShippingInformationService);
 
     cartFactory = TestBed.inject(DaffCartFactory);
     cartItemFactory = TestBed.inject(DaffCartItemFactory);
@@ -135,6 +115,30 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
         findById: (ary, id) => ary.find(e => e.id === id)
       }
     };
+
+    cartGetSpy = spyOn(cartBackendService, 'get');
+    cartPostSpy = spyOn(cartBackendService, 'post');
+    cartItemsGetSpy = spyOn(cartItemsBackendService, 'get');
+    cartItemsPostSpy = spyOn(cartItemsBackendService, 'post');
+    cartItemsPutSpy = spyOn(cartItemsBackendService, 'put');
+    cartItemsDeleteSpy = spyOn(cartItemsBackendService, 'delete');
+    cartOrderPostSpy = spyOn(cartOrderBackendService, 'post');
+    cartCouponGetSpy = spyOn(cartCouponBackendService, 'get');
+    cartCouponPostSpy = spyOn(cartCouponBackendService, 'post');
+    cartCouponDeleteSpy = spyOn(cartCouponBackendService, 'delete');
+    cartAddressPutSpy = spyOn(cartAddressBackendService, 'put');
+    cartShippingAddressGetSpy = spyOn(cartShippingAddressBackendService, 'get');
+    cartShippingAddressPutSpy = spyOn(cartShippingAddressBackendService, 'put');
+    cartBillingAddressGetSpy = spyOn(cartBillingAddressBackendService, 'get');
+    cartBillingAddressPutSpy = spyOn(cartBillingAddressBackendService, 'put');
+    cartPaymentMethodsGetSpy = spyOn(cartPaymentMethodsBackendService, 'get');
+    cartShippingMethodsGetSpy = spyOn(cartShippingMethodsBackendService, 'get');
+    cartPaymentGetSpy = spyOn(cartPaymentBackendService, 'get');
+    cartPaymentPutSpy = spyOn(cartPaymentBackendService, 'put');
+    cartPaymentDeleteSpy = spyOn(cartPaymentBackendService, 'delete');
+    cartShippingInformationGetSpy = spyOn(cartShippingInformationBackendService, 'get');
+    cartShippingInformationPutSpy = spyOn(cartShippingInformationBackendService, 'put');
+    cartShippingInformationDeleteSpy = spyOn(cartShippingInformationBackendService, 'delete');
   });
 
   it('should be created', () => {
@@ -169,7 +173,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
 
       it('should delegate the request to the cart service', () => {
-        expect(cartBackendServiceSpy.get).toHaveBeenCalledWith(reqInfoStub);
+        expect(cartGetSpy).toHaveBeenCalledWith(reqInfoStub);
       });
     });
 
@@ -183,7 +187,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
 
       it('should delegate the request to the cart items service', () => {
-        expect(cartItemsBackendServiceSpy.get).toHaveBeenCalledWith(reqInfoStub);
+        expect(cartItemsGetSpy).toHaveBeenCalledWith(reqInfoStub);
       });
     });
 
@@ -197,7 +201,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
 
       it('should delegate the request to the cart coupon service', () => {
-        expect(cartCouponBackendServiceSpy.get).toHaveBeenCalledWith(reqInfoStub);
+        expect(cartCouponGetSpy).toHaveBeenCalledWith(reqInfoStub);
       });
     });
 
@@ -211,7 +215,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
 
       it('should delegate the request to the cart shipping address service', () => {
-        expect(cartShippingAddressBackendServiceSpy.get).toHaveBeenCalledWith(reqInfoStub);
+        expect(cartShippingAddressGetSpy).toHaveBeenCalledWith(reqInfoStub);
       });
     });
 
@@ -225,7 +229,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
 
       it('should delegate the request to the cart billing address service', () => {
-        expect(cartBillingAddressBackendServiceSpy.get).toHaveBeenCalledWith(reqInfoStub);
+        expect(cartBillingAddressGetSpy).toHaveBeenCalledWith(reqInfoStub);
       });
     });
 
@@ -239,7 +243,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
 
       it('should delegate the request to the cart payment methods service', () => {
-        expect(cartPaymentMethodsBackendServiceSpy.get).toHaveBeenCalledWith(reqInfoStub);
+        expect(cartPaymentMethodsGetSpy).toHaveBeenCalledWith(reqInfoStub);
       });
     });
 
@@ -253,7 +257,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
 
       it('should delegate the request to the cart shipping methods service', () => {
-        expect(cartShippingMethodsBackendServiceSpy.get).toHaveBeenCalledWith(reqInfoStub);
+        expect(cartShippingMethodsGetSpy).toHaveBeenCalledWith(reqInfoStub);
       });
     });
 
@@ -267,7 +271,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
 
       it('should delegate the request to the cart payment service', () => {
-        expect(cartPaymentBackendServiceSpy.get).toHaveBeenCalledWith(reqInfoStub);
+        expect(cartPaymentGetSpy).toHaveBeenCalledWith(reqInfoStub);
       });
     });
 
@@ -281,7 +285,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
 
       it('should delegate the request to the cart shipping information service', () => {
-        expect(cartShippingInformationBackendServiceSpy.get).toHaveBeenCalledWith(reqInfoStub);
+        expect(cartShippingInformationGetSpy).toHaveBeenCalledWith(reqInfoStub);
       });
     });
   });
@@ -301,7 +305,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
 
       it('should delegate the request to the cart service', () => {
-        expect(cartBackendServiceSpy.post).toHaveBeenCalledWith(reqInfoStub);
+        expect(cartPostSpy).toHaveBeenCalledWith(reqInfoStub);
       });
     });
 
@@ -315,7 +319,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
 
       it('should delegate the request to the cart items service', () => {
-        expect(cartItemsBackendServiceSpy.post).toHaveBeenCalledWith(reqInfoStub);
+        expect(cartItemsPostSpy).toHaveBeenCalledWith(reqInfoStub);
       });
     });
 
@@ -329,7 +333,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
 
       it('should delegate the request to the cart order service', () => {
-        expect(cartOrderBackendServiceSpy.post).toHaveBeenCalledWith(reqInfoStub);
+        expect(cartOrderPostSpy).toHaveBeenCalledWith(reqInfoStub);
       });
     });
 
@@ -343,7 +347,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
 
       it('should delegate the request to the cart coupon service', () => {
-        expect(cartCouponBackendServiceSpy.post).toHaveBeenCalledWith(reqInfoStub);
+        expect(cartCouponPostSpy).toHaveBeenCalledWith(reqInfoStub);
       });
     });
   });
@@ -363,7 +367,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
 
       it('should delegate the request to the cart items service', () => {
-        expect(cartItemsBackendServiceSpy.put).toHaveBeenCalledWith(reqInfoStub);
+        expect(cartItemsPutSpy).toHaveBeenCalledWith(reqInfoStub);
       });
     });
 
@@ -377,7 +381,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
 
       it('should delegate the request to the cart address service', () => {
-        expect(cartAddressBackendServiceSpy.put).toHaveBeenCalledWith(reqInfoStub);
+        expect(cartAddressPutSpy).toHaveBeenCalledWith(reqInfoStub);
       });
     });
 
@@ -391,7 +395,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
 
       it('should delegate the request to the cart shipping address service', () => {
-        expect(cartShippingAddressBackendServiceSpy.put).toHaveBeenCalledWith(reqInfoStub);
+        expect(cartShippingAddressPutSpy).toHaveBeenCalledWith(reqInfoStub);
       });
     });
 
@@ -405,7 +409,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
 
       it('should delegate the request to the cart billing address service', () => {
-        expect(cartBillingAddressBackendServiceSpy.put).toHaveBeenCalledWith(reqInfoStub);
+        expect(cartBillingAddressPutSpy).toHaveBeenCalledWith(reqInfoStub);
       });
     });
 
@@ -419,7 +423,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
 
       it('should delegate the request to the cart payment service', () => {
-        expect(cartPaymentBackendServiceSpy.put).toHaveBeenCalledWith(reqInfoStub);
+        expect(cartPaymentPutSpy).toHaveBeenCalledWith(reqInfoStub);
       });
     });
 
@@ -433,7 +437,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
 
       it('should delegate the request to the cart shipping information service', () => {
-        expect(cartShippingInformationBackendServiceSpy.put).toHaveBeenCalledWith(reqInfoStub);
+        expect(cartShippingInformationPutSpy).toHaveBeenCalledWith(reqInfoStub);
       });
     });
   });
@@ -453,7 +457,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
 
       it('should delegate the request to the cart items service', () => {
-        expect(cartItemsBackendServiceSpy.delete).toHaveBeenCalledWith(reqInfoStub);
+        expect(cartItemsDeleteSpy).toHaveBeenCalledWith(reqInfoStub);
       });
     });
 
@@ -467,7 +471,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
 
       it('should delegate the request to the cart coupon service', () => {
-        expect(cartCouponBackendServiceSpy.delete).toHaveBeenCalledWith(reqInfoStub);
+        expect(cartCouponDeleteSpy).toHaveBeenCalledWith(reqInfoStub);
       });
     });
 
@@ -481,7 +485,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
 
       it('should delegate the request to the cart payment service', () => {
-        expect(cartPaymentBackendServiceSpy.delete).toHaveBeenCalledWith(reqInfoStub);
+        expect(cartPaymentDeleteSpy).toHaveBeenCalledWith(reqInfoStub);
       });
     });
 
@@ -495,7 +499,7 @@ describe('DaffInMemoryBackendCartRootService | Unit', () => {
       });
 
       it('should delegate the request to the cart shipping information service', () => {
-        expect(cartShippingInformationBackendServiceSpy.delete).toHaveBeenCalledWith(reqInfoStub);
+        expect(cartShippingInformationDeleteSpy).toHaveBeenCalledWith(reqInfoStub);
       });
     });
   });

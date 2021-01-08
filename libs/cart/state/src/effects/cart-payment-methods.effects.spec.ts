@@ -15,6 +15,7 @@ import {
   DaffCartPaymentFactory,
 } from '@daffodil/cart/testing';
 import { DaffStateError } from '@daffodil/core/state';
+import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
 
 import { DaffCartPaymentMethodsEffects } from './cart-payment-methods.effects';
 
@@ -28,38 +29,37 @@ describe('Daffodil | Cart | DaffCartPaymentMethodsEffects', () => {
   let cartFactory: DaffCartFactory;
   let cartPaymentMethodFactory: DaffCartPaymentFactory;
 
-  let paymentMethodsDriverSpy: jasmine.SpyObj<DaffCartPaymentMethodsServiceInterface>;
+  let paymentMethodsDriver: DaffCartPaymentMethodsServiceInterface;
+  let daffCartStorageService: DaffCartStorageService;
 
-  let daffCartStorageSpy: jasmine.SpyObj<DaffCartStorageService>;
+  let driverListSpy: jasmine.Spy;
+  let getCartIdSpy: jasmine.Spy;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffTestingCartDriverModule.forRoot()
+      ],
       providers: [
         DaffCartPaymentMethodsEffects,
         provideMockActions(() => actions$),
-        {
-          provide: DaffCartPaymentMethodsDriver,
-          useValue: jasmine.createSpyObj('DaffCartPaymentMethodsDriver', ['list'])
-        },
-        {
-          provide: DaffCartStorageService,
-          useValue: jasmine.createSpyObj('DaffCartStorageService', ['getCartId'])
-        }
       ]
     });
 
-    effects = TestBed.inject<DaffCartPaymentMethodsEffects<DaffCartPaymentMethod>>(DaffCartPaymentMethodsEffects);
+    effects = TestBed.inject(DaffCartPaymentMethodsEffects);
 
-    paymentMethodsDriverSpy = TestBed.inject<DaffCartPaymentMethodsServiceInterface>(DaffCartPaymentMethodsDriver);
-    daffCartStorageSpy = TestBed.inject(DaffCartStorageService);
+    paymentMethodsDriver = TestBed.inject(DaffCartPaymentMethodsDriver);
+    daffCartStorageService = TestBed.inject(DaffCartStorageService);
 
-    cartFactory = TestBed.inject<DaffCartFactory>(DaffCartFactory);
-    cartPaymentMethodFactory = TestBed.inject<DaffCartPaymentFactory>(DaffCartPaymentFactory);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartPaymentMethodFactory = TestBed.inject(DaffCartPaymentFactory);
 
     mockCart = cartFactory.create();
     mockCartPaymentMethod = cartPaymentMethodFactory.create();
 
-    daffCartStorageSpy.getCartId.and.returnValue(String(mockCart.id));
+    driverListSpy = spyOn(paymentMethodsDriver, 'list');
+    getCartIdSpy = spyOn(daffCartStorageService, 'getCartId');
+    getCartIdSpy.and.returnValue(String(mockCart.id));
   });
 
   it('should be created', () => {
@@ -72,7 +72,7 @@ describe('Daffodil | Cart | DaffCartPaymentMethodsEffects', () => {
 
     describe('and the call to CartService is successful', () => {
       beforeEach(() => {
-        paymentMethodsDriverSpy.list.and.returnValue(of([mockCartPaymentMethod]));
+        driverListSpy.and.returnValue(of([mockCartPaymentMethod]));
         const cartCreateSuccessAction = new DaffCartPaymentMethodsLoadSuccess([mockCartPaymentMethod]);
         actions$ = hot('--a', { a: cartCreateAction });
         expected = cold('--b', { b: cartCreateSuccessAction });
@@ -87,7 +87,7 @@ describe('Daffodil | Cart | DaffCartPaymentMethodsEffects', () => {
       beforeEach(() => {
         const error: DaffStateError = {code: 'code', message: 'Failed to list cart payment methods'};
         const response = cold('#', {}, error);
-        paymentMethodsDriverSpy.list.and.returnValue(response);
+        driverListSpy.and.returnValue(response);
         const cartCreateFailureAction = new DaffCartPaymentMethodsLoadFailure(error);
         actions$ = hot('--a', { a: cartCreateAction });
         expected = cold('--b', { b: cartCreateFailureAction });

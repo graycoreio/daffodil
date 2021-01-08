@@ -22,6 +22,7 @@ import {
   DaffCartFactory,
   DaffCartAddressFactory
 } from '@daffodil/cart/testing';
+import { DaffTestingCartDriverModule } from '@daffodil/cart/driver/testing';
 
 import { DaffCartShippingAddressEffects } from './cart-shipping-address.effects';
 
@@ -35,38 +36,39 @@ describe('Daffodil | Cart | CartShippingAddressEffects', () => {
   let cartFactory: DaffCartFactory;
   let cartAddressFactory: DaffCartAddressFactory;
 
-  let daffShippingAddressDriverSpy: jasmine.SpyObj<DaffCartShippingAddressServiceInterface>;
+  let daffShippingAddressDriver: DaffCartShippingAddressServiceInterface;
+  let daffCartStorageService: DaffCartStorageService;
 
-  let daffCartStorageSpy: jasmine.SpyObj<DaffCartStorageService>;
+  let driverGetSpy: jasmine.Spy;
+  let driverUpdateSpy: jasmine.Spy;
+  let getCartIdSpy: jasmine.Spy;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        DaffTestingCartDriverModule.forRoot()
+      ],
       providers: [
         DaffCartShippingAddressEffects,
         provideMockActions(() => actions$),
-        {
-          provide: DaffCartShippingAddressDriver,
-          useValue: jasmine.createSpyObj('DaffCartShippingAddressDriver', ['get', 'update'])
-        },
-        {
-          provide: DaffCartStorageService,
-          useValue: jasmine.createSpyObj('DaffCartStorageService', ['getCartId'])
-        }
       ]
     });
 
-    effects = TestBed.inject<DaffCartShippingAddressEffects<DaffCartAddress, DaffCart>>(DaffCartShippingAddressEffects);
+    effects = TestBed.inject(DaffCartShippingAddressEffects);
 
-    daffShippingAddressDriverSpy = TestBed.inject<DaffCartShippingAddressServiceInterface>(DaffCartShippingAddressDriver);
-    daffCartStorageSpy = TestBed.inject(DaffCartStorageService);
+    daffShippingAddressDriver = TestBed.inject(DaffCartShippingAddressDriver);
+    daffCartStorageService = TestBed.inject(DaffCartStorageService);
 
-    cartFactory = TestBed.inject<DaffCartFactory>(DaffCartFactory);
-    cartAddressFactory = TestBed.inject<DaffCartAddressFactory>(DaffCartAddressFactory);
+    cartFactory = TestBed.inject(DaffCartFactory);
+    cartAddressFactory = TestBed.inject(DaffCartAddressFactory);
 
     mockCart = cartFactory.create();
     mockCartShippingAddress = cartAddressFactory.create();
 
-    daffCartStorageSpy.getCartId.and.returnValue(String(mockCart.id));
+    driverGetSpy = spyOn(daffShippingAddressDriver, 'get');
+    driverUpdateSpy = spyOn(daffShippingAddressDriver, 'update');
+    getCartIdSpy = spyOn(daffCartStorageService, 'getCartId');
+    getCartIdSpy.and.returnValue(String(mockCart.id));
   });
 
   it('should be created', () => {
@@ -79,7 +81,7 @@ describe('Daffodil | Cart | CartShippingAddressEffects', () => {
 
     describe('and the call to CartShippingAddressService is successful', () => {
       beforeEach(() => {
-        daffShippingAddressDriverSpy.get.and.returnValue(of(mockCartShippingAddress));
+        driverGetSpy.and.returnValue(of(mockCartShippingAddress));
         const cartShippingAddressLoadSuccessAction = new DaffCartShippingAddressLoadSuccess(mockCartShippingAddress);
         actions$ = hot('--a', { a: cartShippingAddressLoadAction });
         expected = cold('--b', { b: cartShippingAddressLoadSuccessAction });
@@ -94,7 +96,7 @@ describe('Daffodil | Cart | CartShippingAddressEffects', () => {
       beforeEach(() => {
         const error: DaffStateError = {code: 'code', message: 'Failed to load cart shipping address'};
         const response = cold('#', {}, error);
-        daffShippingAddressDriverSpy.get.and.returnValue(response);
+        driverGetSpy.and.returnValue(response);
         const cartShippingAddressLoadFailureAction = new DaffCartShippingAddressLoadFailure(error);
         actions$ = hot('--a', { a: cartShippingAddressLoadAction });
         expected = cold('--b', { b: cartShippingAddressLoadFailureAction });
@@ -118,7 +120,7 @@ describe('Daffodil | Cart | CartShippingAddressEffects', () => {
 
     describe('and the call to CartShippingAddressService is successful', () => {
       beforeEach(() => {
-        daffShippingAddressDriverSpy.update.and.returnValue(of(mockCart));
+        driverUpdateSpy.and.returnValue(of(mockCart));
         const cartCreateSuccessAction = new DaffCartShippingAddressUpdateSuccess(mockCart);
         actions$ = hot('--a', { a: cartCreateAction });
         expected = cold('--b', { b: cartCreateSuccessAction });
@@ -133,7 +135,7 @@ describe('Daffodil | Cart | CartShippingAddressEffects', () => {
       beforeEach(() => {
         const error: DaffStateError = {code: 'code', message: 'Failed to update cart shipping address'};
         const response = cold('#', {}, error);
-        daffShippingAddressDriverSpy.update.and.returnValue(response);
+        driverUpdateSpy.and.returnValue(response);
         const cartCreateFailureAction = new DaffCartShippingAddressUpdateFailure(error);
         actions$ = hot('--a', { a: cartCreateAction });
         expected = cold('--b', { b: cartCreateFailureAction });
