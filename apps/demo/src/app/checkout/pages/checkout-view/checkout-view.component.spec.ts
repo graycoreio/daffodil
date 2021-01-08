@@ -87,8 +87,8 @@ class MockBillingContainer {
   paymentInfo$: Observable<PaymentInfo> = of(stubPaymentInfo);
   billingAddress$: Observable<DaffAddress> = of(stubBillingAddress);
   billingAddressIsShippingAddress$: Observable<boolean> = of(stubBillingAddressIsShippingAddress);
-  updatePaymentInfo = () => {};
-  updateBillingAddress = () => {};
+  updatePaymentInfo = (e) => {};
+  updateBillingAddress = (e) => {};
   toggleBillingAddressIsShippingAddress = () => {};
 }
 
@@ -210,9 +210,9 @@ describe('CheckoutViewComponent', () => {
       it('should call function passed by ShippingContainer', () => {
         spyOn(shippingContainer, 'selectShippingOption');
 
-        shipping.selectShippingOption.emit(stubSelectedShippingOptionIndex);
+        shipping.selectShippingOption.emit(String(stubSelectedShippingOptionIndex));
 
-        expect(shippingContainer.selectShippingOption).toHaveBeenCalledWith(stubSelectedShippingOptionIndex);
+        expect(shippingContainer.selectShippingOption).toHaveBeenCalledWith(String(stubSelectedShippingOptionIndex));
       });
     });
   });

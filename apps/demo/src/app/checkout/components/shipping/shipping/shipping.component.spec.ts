@@ -41,8 +41,8 @@ class WrapperComponent {
   shippingAddressValue: DaffAddress = stubDaffodilAddress;
   selectedShippingOptionIdValue: string = stubSelectedShippingOptionId;
   showPaymentViewValue: boolean = stubShowPaymentView;
-  updateShippingAddressFunction() {};
-  selectShippingOptionFunction() {};
+  updateShippingAddressFunction(e) {};
+  selectShippingOptionFunction(e) {};
 }
 
 @Component({selector: 'demo-shipping-form', template: '<ng-content></ng-content>'})
