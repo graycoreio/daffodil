@@ -9,6 +9,12 @@ const categoryNodeFragment = `
 	level
 	name
 	include_in_menu
+	breadcrumbs {
+		category_id
+		category_name
+		category_level
+		category_url_key
+	}
 	products {
 		total_count
 	}

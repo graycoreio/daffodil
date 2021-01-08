@@ -38,8 +38,15 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
           total_count: 10
         },
         children_count: 0,
-        children: []
-      }]
+				children: [],
+				breadcrumbs: [{
+					category_id: 1,
+					category_level: 1,
+					category_name: 'name',
+					category_url_key: 'url'
+				}]
+			}],
+			breadcrumbs: []
     }
 
     const navigation: DaffNavigationTree = {
@@ -48,7 +55,8 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
       path: '1',
       total_products: 10,
       children: [],
-      children_count: 0,
+			children_count: 0,
+			breadcrumbs: []
     }
 
     expect(service.transform(categoryNode)).toEqual(navigation);
@@ -71,8 +79,15 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
           total_count: 10
         },
         children_count: 0,
-        children: []
-      }]
+				children: [],
+				breadcrumbs: [{
+					category_id: 1,
+					category_level: 1,
+					category_name: 'name',
+					category_url_key: 'url'
+				}]
+			}],
+			breadcrumbs: []
     };
 
     const navigation: DaffNavigationTree = {
@@ -86,9 +101,16 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
         path: '2',
         total_products: 10,
         children: [],
-        children_count: 0,
+				children_count: 0,
+				breadcrumbs: [{
+					categoryId: 1,
+					categoryLevel: 1,
+					categoryName: 'name',
+					categoryUrlKey: 'url'
+				}]
       }],
-      children_count: 1,
+			children_count: 1,
+			breadcrumbs: []
     }
 
     expect(service.transform(categoryNode)).toEqual(navigation);

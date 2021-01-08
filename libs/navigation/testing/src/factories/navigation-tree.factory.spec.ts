@@ -33,7 +33,8 @@ describe('Navigation | Testing | Factories | DaffNavigationTreeFactory', () => {
       expect(result.name).toBeDefined();
       expect(result.path).toBeDefined();
       expect(result.children_count).toBeDefined();
-      expect(result.total_products).toBeDefined();
+			expect(result.total_products).toBeDefined();
+			expect(result.breadcrumbs).toBeDefined();
     });
   });
 
