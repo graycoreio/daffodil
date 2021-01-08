@@ -31,6 +31,6 @@ export interface DaffCartServiceInterface<T extends DaffCart = DaffCart> {
 	clear(id: T['id']): Observable<Partial<T>>;
 }
 
-export const DaffCartDriver = new InjectionToken<DaffCartServiceInterface<any>>(
+export const DaffCartDriver = new InjectionToken<DaffCartServiceInterface>(
 	'DaffCartDriver',
 );
