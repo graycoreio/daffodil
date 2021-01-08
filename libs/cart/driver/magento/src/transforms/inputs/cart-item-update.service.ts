@@ -4,7 +4,9 @@ import { DaffCartItem } from '@daffodil/cart';
 
 import { MagentoCartItemUpdateInput } from '../../models/requests/cart-item-update';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DaffMagentoCartItemUpdateInputTransformer {
   transform(item: Partial<DaffCartItem>): MagentoCartItemUpdateInput {
     return {
