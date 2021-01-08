@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
-import { MockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 
 import { DaffLoadingState, DaffStateError } from '@daffodil/core/state';
@@ -46,7 +45,7 @@ import { DaffStatefulCartItemFactory } from '@daffodil/cart/state/testing';
 import { DaffCartFacade } from './cart.facade';
 
 describe('DaffCartFacade', () => {
-  let store: MockStore<{ product: Partial<DaffCartReducersState> }>;
+  let store: Store<{ product: Partial<DaffCartReducersState> }>;
   let facade: DaffCartFacade;
   let cartFactory: DaffCartFactory;
   let statefulCartItemFactory: DaffStatefulCartItemFactory;

@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
-import { MockStore } from '@ngrx/store/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -18,7 +17,7 @@ import { DaffShippingAddressGuard } from './shipping-address.guard';
 describe('Cart | State | Guards | DaffShippingAddressGuard', () => {
 
 	let service: DaffShippingAddressGuard;
-	let store: MockStore<any>;
+	let store: Store<any>;
 	let router: Router;
 	const stubUrl = 'url';
 

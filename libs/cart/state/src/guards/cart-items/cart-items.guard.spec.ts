@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
-import { MockStore } from '@ngrx/store/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
@@ -16,7 +15,7 @@ import { DaffCartItemsGuard } from './cart-items.guard';
 
 describe('Cart | State | Guards | DaffCartItemsGuard', () => {
 	let service: DaffCartItemsGuard;
-	let store: MockStore<any>;
+	let store: Store<any>;
   let router: Router;
 
   let cartFactory: DaffCartFactory;
