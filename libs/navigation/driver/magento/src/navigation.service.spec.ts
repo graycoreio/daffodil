@@ -85,10 +85,7 @@ describe('Driver | Magento | Navigation | NavigationService', () => {
             name: navigation.name,
             include_in_menu: true,
             level: 0,
-            products: {
-              __typename: 'typename',
-              total_count: navigation.total_products
-            },
+            product_count: navigation.total_products,
             children_count: navigation.children_count,
 						children: [],
 						breadcrumbs: []

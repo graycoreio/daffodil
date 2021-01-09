@@ -26,17 +26,13 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
       id: '1',
       name: 'Root Category',
       include_in_menu: true,
-      products: {
-        total_count: 10
-      },
+      product_count: 10,
       children_count: 0,
       children: [{
         id: '2',
         include_in_menu: false,
         name: 'Subcategory',
-        products: {
-          total_count: 10
-        },
+        product_count: 10,
         children_count: 0,
 				children: [],
 				breadcrumbs: [{
@@ -67,17 +63,13 @@ describe('Driver | Magento | Navigation | Transformers | DaffMagentoNavigationTr
       id: '1',
       name: 'Root Category',
       include_in_menu: true,
-      products: {
-        total_count: 10
-      },
+      product_count: 10,
       children_count: 1,
       children: [{
         id: '2',
         include_in_menu: true,
         name: 'Subcategory',
-        products: {
-          total_count: 10
-        },
+        product_count: 10,
         children_count: 0,
 				children: [],
 				breadcrumbs: [{

@@ -19,10 +19,7 @@ const generateMagentoCategoryTree = (): CategoryNode => ({
   name: 'name',
   include_in_menu: true,
   level: 0,
-  products: {
-    __typename: 'typename',
-    total_count: 1
-  },
+  product_count: 10,
   children_count: 0,
 	children: [],
 	breadcrumbs: []
@@ -208,7 +205,7 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
 			'name',
 			'include_in_menu',
 			'breadcrumbs',
-			'products',
+			'product_count',
 			'children_count',
 			'children'
 		];

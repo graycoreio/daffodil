@@ -15,8 +15,8 @@ export class DaffMagentoNavigationTransformerService implements DaffNavigationTr
       id: node.id,
       path: node.id,
       name: node.name,
-      total_products: node.products.total_count,
-			children_count: node.children_count,
+      total_products: node.product_count,
+      children_count: node.children_count,
 			//todo: use optional chaining when possible
 			breadcrumbs: node.breadcrumbs ? 
 				node.breadcrumbs
