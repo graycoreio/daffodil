@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { MockStore } from '@ngrx/store/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
@@ -11,7 +10,7 @@ import { daffPaymentReducers } from '../reducers/payment-reducers';
 import { DaffUpdatePaymentInfo } from '../actions/payment.actions';
 
 describe('DaffPaymentFacade', () => {
-  let store: MockStore<any>;
+  let store: Store<any>;
   let facade: DaffPaymentFacade;
   const paymentFactory: DaffPaymentFactory = new DaffPaymentFactory();
   let stubPayment: PaymentInfo;

@@ -32,7 +32,7 @@ describe('ShippingContainer', () => {
     fixture = TestBed.createComponent(ShippingContainer);
     component = fixture.componentInstance;
 
-    store = TestBed.inject(Store);
+    store = TestBed.inject(MockStore);
     addressFactory = TestBed.inject(DaffAddressFactory);
 
     initialShippingAddress = addressFactory.create();

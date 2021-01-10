@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Store } from '@ngrx/store';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { DaffAddress } from '@daffodil/core';
@@ -35,7 +34,7 @@ describe('BillingContainer', () => {
     fixture = TestBed.createComponent(BillingContainer);
     component = fixture.componentInstance;
 
-    store = TestBed.inject(Store);
+    store = TestBed.inject(MockStore);
     addressFactory = TestBed.inject(DaffAddressFactory);
     paymentFactory = TestBed.inject(DaffPaymentFactory);
 

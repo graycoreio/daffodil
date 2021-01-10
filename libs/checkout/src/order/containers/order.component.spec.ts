@@ -1,9 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Store } from '@ngrx/store';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { OrderContainer } from './order.component';
-import { DaffPlaceOrder } from '../actions/order.actions';
 import { DaffOrderFactory } from '../../../testing/src';
 import { DaffOrder } from '../../models/order/order';
 import { selectLoading, selectOrder } from '../selectors/order.selector';
@@ -30,7 +28,7 @@ describe('OrderContainer', () => {
     cartFactory = TestBed.inject(DaffOrderFactory);
     fixture = TestBed.createComponent(OrderContainer);
     component = fixture.componentInstance;
-    store = TestBed.inject(Store);
+    store = TestBed.inject(MockStore);
 
     stubLoading = false;
     stubOrder = cartFactory.create();
