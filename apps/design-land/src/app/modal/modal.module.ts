@@ -22,9 +22,6 @@ import { DesignLandModalRoutingModule } from './modal-routing.module';
     DaffModalModule,
     DaffArticleModule,
     DaffButtonModule
-  ],
-  entryComponents: [
-    DesignLandModalContentComponent
   ]
 })
 export class ModalModule { 
