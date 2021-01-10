@@ -11,6 +11,8 @@ npm install --save @daffodil/builders
 
 ### Generate Fragment Types
 
+> Note that this builder now generates possible type data instead of raw fragment types data. This is to comply with the [breaking cache changes](https://www.apollographql.com/docs/react/migrating/apollo-client-3-migration/#breaking-cache-changes) from Apollo Client v3. See [information about usage here](https://www.apollographql.com/docs/react/data/fragments/#defining-possibletypes-manually).
+
 In your `angular.json`, add an architect section for generating fragment type data. Pass the URL of your GraphQL schema in as the `url` option. The data will be generated and written to the file specified by the `path` option.
 
 If either `url` or `path` are falsey, the builder will do nothing and exit successfully. You can use this behavior to disable the builder for environments where the schema is not available.
