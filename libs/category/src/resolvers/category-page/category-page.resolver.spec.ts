@@ -3,7 +3,6 @@ import { StoreModule, combineReducers, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { ActivatedRoute } from '@angular/router';
-import { MockStore } from '@ngrx/store/testing';
 import { fail } from 'assert';
 import { PLATFORM_ID } from '@angular/core';
 import { ɵPLATFORM_BROWSER_ID, ɵPLATFORM_SERVER_ID } from '@angular/common';
@@ -21,7 +20,7 @@ import { DaffCategoryPageLoad, DaffCategoryPageLoadSuccess, DaffCategoryPageLoad
 describe('DaffCategoryPageResolver', () => {
 	const actions$: Observable<any> = null;
 	let categoryResolver: DaffCategoryPageResolver;
-  let store: MockStore<DaffCategoryReducersState>;
+  let store: Store<DaffCategoryReducersState>;
   let categoryFactory: DaffCategoryFactory;
   let stubCategory: DaffCategory;
 	let route: ActivatedRoute;
