@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { DaffAddress } from '@daffodil/core';
 import { DaffAddressFactory } from '@daffodil/core/testing';
@@ -12,7 +12,7 @@ describe('Shipping | Shipping Reducer', () => {
   let shippingAddress: DaffAddress;
   let selectedShippingOptionId: string;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({});
 
     addressFactory = TestBed.inject(DaffAddressFactory);

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { OrderContainer } from './order.component';
@@ -14,7 +14,7 @@ describe('OrderContainer', () => {
   let stubOrder: DaffOrder;
   let cartFactory: DaffOrderFactory;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ OrderContainer ],
       providers: [

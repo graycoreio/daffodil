@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { DaffAddress } from '@daffodil/core';
@@ -20,7 +20,7 @@ describe('BillingContainer', () => {
   let addressFactory: DaffAddressFactory;
   let paymentFactory: DaffPaymentFactory;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ BillingContainer ],
       providers: [
