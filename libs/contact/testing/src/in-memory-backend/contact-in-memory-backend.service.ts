@@ -25,11 +25,9 @@ export class DaffInMemoryBackendContactService implements InMemoryDbService {
       return Error('Payload is undefined');
     }
     else if(this.forums.indexOf(reqInfo.body) !== -1){
-      console.log('not here')
       return Error('Already contains submission');
     }
     else{
-      console.log(reqInfo)
       this.forums.push(reqInfo.body);
       return of(reqInfo);
     }
