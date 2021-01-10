@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { MockStore } from '@ngrx/store/testing';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 
@@ -10,7 +9,7 @@ import { daffShippingReducers } from '../reducers/shipping-reducers';
 import { DaffUpdateShippingAddress, DaffSelectShippingOption } from '../actions/shipping.actions';
 
 describe('DaffShippingFacade', () => {
-  let store: MockStore<any>;
+  let store: Store<any>;
   let facade: DaffShippingFacade;
   let stubShippingAddress: DaffAddress;
   let stubSelectedShippingOptionId: string;
