@@ -3,11 +3,10 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable ,  of } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
-import { MockStore } from '@ngrx/store/testing';
 
 import { DaffProduct, DaffProductGridLoadSuccess, daffProductReducers } from '@daffodil/product';
 import { DaffProductFactory } from '@daffodil/product/testing';
-import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory } from '@daffodil/category/testing';
+import { DaffCategoryFactory, DaffCategoryPageConfigurationStateFactory, DaffCategoryTestingDriverModule } from '@daffodil/category/testing';
 
 import { DaffCategoryEffects } from './category.effects';
 import {
@@ -22,12 +21,6 @@ import { DaffCategoryPageConfigurationState } from '../models/category-page-conf
 import { DaffCategoryRequest } from '../models/requests/category-request';
 import { daffCategoryReducers } from '../reducers/category-reducers';
 
-class MockCategoryDriver implements DaffCategoryServiceInterface<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>, DaffProduct> {
-	get(categoryRequest: any): Observable<any> {
-		return null;
-	}
-}
-
 describe('DaffCategoryEffects', () => {
   let actions$: Observable<any>;
   let effects: DaffCategoryEffects<DaffCategoryRequest, DaffCategory, DaffCategoryPageConfigurationState<DaffCategoryRequest>, DaffProduct>;
@@ -35,8 +28,8 @@ describe('DaffCategoryEffects', () => {
   let stubCategoryPageConfigurationState: DaffCategoryPageConfigurationState;
   let stubProducts: DaffProduct[];
   let daffCategoryDriver: DaffCategoryServiceInterface;
-  const daffCategoryDriverSpy = jasmine.createSpyObj('DaffCategoryDriver', ['get']);
-  let store: MockStore<any>;
+  let store: Store<any>;
+  let driverGetSpy: jasmine.Spy;
 
   let categoryFactory: DaffCategoryFactory;
   let categoryPageConfigurationStateFactory: DaffCategoryPageConfigurationStateFactory;
@@ -53,22 +46,19 @@ describe('DaffCategoryEffects', () => {
         StoreModule.forRoot({
           category: combineReducers(daffCategoryReducers),
           product: combineReducers(daffProductReducers)
-        })
+        }),
+        DaffCategoryTestingDriverModule.forRoot()
 			],
       providers: [
         DaffCategoryEffects,
         provideMockActions(() => actions$),
-        {
-          provide: DaffCategoryDriver,
-          useClass: MockCategoryDriver
-        }
       ]
     });
 
     store = TestBed.inject(Store);
     effects = TestBed.inject(DaffCategoryEffects);
     categoryFactory = TestBed.inject(DaffCategoryFactory);
-    daffCategoryDriver = TestBed.inject(DaffCategoryDriver);
+    daffCategoryDriver = TestBed.inject<DaffCategoryServiceInterface>(DaffCategoryDriver);
     categoryPageConfigurationStateFactory = TestBed.inject(DaffCategoryPageConfigurationStateFactory);
     productFactory = TestBed.inject(DaffProductFactory);
 
@@ -78,7 +68,8 @@ describe('DaffCategoryEffects', () => {
 		stubProducts = productFactory.createMany(3);
 
 
-		daffCategoryDriverSpy.get.and.returnValue(of({
+    driverGetSpy = spyOn(daffCategoryDriver, 'get');
+		driverGetSpy.and.returnValue(of({
 			category: stubCategory,
 			categoryPageConfigurationState: stubCategoryPageConfigurationState,
 			products: stubProducts
@@ -107,7 +98,7 @@ describe('DaffCategoryEffects', () => {
 
     describe('when the call to CategoryService is successful', () => {
       it('should dispatch a DaffCategoryLoadSuccess and a DaffProductGridLoadSuccess action', () => {
-				spyOn(daffCategoryDriver, 'get').and.returnValue(of({
+				driverGetSpy.and.returnValue(of({
 					category: stubCategory,
 					categoryPageConfigurationState: stubCategoryPageConfigurationState,
 					products: stubProducts
@@ -123,7 +114,7 @@ describe('DaffCategoryEffects', () => {
       beforeEach(() => {
         const error = 'Failed to load the category';
 				const response = cold('#', {}, error);
-				spyOn(daffCategoryDriver, 'get').and.returnValue(response);
+				driverGetSpy.and.returnValue(response);
         const categoryLoadFailureAction = new DaffCategoryLoadFailure(error);
         expected = cold('--b', { b: categoryLoadFailureAction });
       });
@@ -134,7 +125,7 @@ describe('DaffCategoryEffects', () => {
     });
 
     it('should call get category with the category request from the action payload', () => {
-			spyOn(daffCategoryDriver, 'get').and.returnValue(of({
+			driverGetSpy.and.returnValue(of({
 				category: stubCategory,
 				categoryPageConfigurationState: stubCategoryPageConfigurationState,
 				products: stubProducts
