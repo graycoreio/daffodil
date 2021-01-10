@@ -1,4 +1,5 @@
-import gql from 'graphql-tag';
+import {gql} from 'apollo-angular';
+
 
 /**
  * This query only exists because products and their associated aggregations/filter cannot
