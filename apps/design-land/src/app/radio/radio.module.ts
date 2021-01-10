@@ -27,9 +27,6 @@ export interface CustomClassElement<T> {
     DaffRadioModule,
     ReactiveFormsModule,
     CommonModule,
-  ],
-  entryComponents: [
-    ...RADIO_EXAMPLES
   ]
 })
 export class RadioModule {
