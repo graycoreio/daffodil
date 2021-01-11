@@ -11,7 +11,8 @@ import {
   DaffCartPaymentDriver,
   DaffCartShippingInformationDriver,
   DaffCartShippingMethodsDriver,
-  DaffCartPaymentMethodsDriver
+  DaffCartPaymentMethodsDriver,
+  DaffCartItemDriver
 } from '@daffodil/cart/driver';
 
 import { DaffTestingCartService } from './cart/cart.service';
@@ -24,6 +25,7 @@ import { DaffTestingCartPaymentService } from './cart-payment/cart-payment.servi
 import { DaffTestingCartShippingInformationService } from './cart-shipping-information/cart-shipping-information.service';
 import { DaffTestingCartShippingMethodsService } from './cart-shipping-methods/cart-shipping-methods.service';
 import { DaffTestingCartPaymentMethodsService } from './cart-payment-methods/cart-payment-methods.service';
+import { DaffTestingCartItemService } from './cart-item/cart-item.service';
 
 @NgModule({
   imports: [
@@ -38,6 +40,10 @@ export class DaffTestingCartDriverModule {
         {
           provide: DaffCartDriver,
           useExisting: DaffTestingCartService
+        },
+        {
+          provide: DaffCartItemDriver,
+          useExisting: DaffTestingCartItemService
         },
         {
           provide: DaffCartAddressDriver,
