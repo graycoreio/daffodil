@@ -1,21 +1,18 @@
+import {gql, Apollo} from 'apollo-angular';
+import {InMemoryCache, ApolloQueryResult} from '@apollo/client/core';
 import { TestBed } from '@angular/core/testing';
-import { schema } from '@daffodil/driver/magento';
-import { Apollo } from 'apollo-angular';
-import { ApolloTestingController, ApolloTestingModule, APOLLO_TESTING_CACHE } from 'apollo-angular/testing';
-import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
-import { ApolloQueryResult } from 'apollo-client';
+import { ApolloTestingController, APOLLO_TESTING_CACHE, ApolloTestingModule } from 'apollo-angular/testing';
 import { DocumentNode } from 'graphql';
-import gql from 'graphql-tag';
 import { Observable } from 'rxjs';
-import { addTypenameToDocument } from 'apollo-utilities';
 
+import { schema } from '@daffodil/driver/magento';
 import { CategoryNode } from '@daffodil/navigation/driver/magento';
 
 import { getCategoryNodeFragment } from './category-node';
 
-const generateMagentoCategoryTree = (): CategoryNode => ({
+const generateMagentoCategoryTree = (id): CategoryNode => ({
   __typename: 'CategoryTree',
-  id: 'id',
+  id,
   name: 'name',
   include_in_menu: true,
   level: 0,
@@ -43,33 +40,31 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
 					provide: APOLLO_TESTING_CACHE,
 					useValue: new InMemoryCache({
 						addTypename: true,
-						fragmentMatcher: new IntrospectionFragmentMatcher({
-							introspectionQueryResultData: schema,
-						}),
+						possibleTypes: schema.possibleTypes,
 					}),
-				}
+        },
       ]
     });
 
     apollo = TestBed.inject(Apollo);
     controller = TestBed.inject(ApolloTestingController);
 
-    childlessNavigationTree = generateMagentoCategoryTree();
+    childlessNavigationTree = generateMagentoCategoryTree(1);
     delete childlessNavigationTree.children;
     delete childlessNavigationTree.children_count;
     depth1NavigationTree = {
-      ...generateMagentoCategoryTree(),
+      ...generateMagentoCategoryTree(2),
       children_count: 1,
       children: [childlessNavigationTree]
     };
     depth3NavigationTree = {
-      ...generateMagentoCategoryTree(),
+      ...generateMagentoCategoryTree(3),
       children_count: 1,
       children: [{
-        ...generateMagentoCategoryTree(),
+        ...generateMagentoCategoryTree(4),
         children_count: 1,
         children: [{
-          ...generateMagentoCategoryTree(),
+          ...generateMagentoCategoryTree(5),
           children_count: 1,
           children: [childlessNavigationTree]
         }]
@@ -79,14 +74,16 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
 
   describe('when the depth is 0', () => {
     let query: DocumentNode;
-    let response: Observable<ApolloQueryResult<CategoryNode>>;
+    let response: Observable<ApolloQueryResult<{categoryList: CategoryNode}>>;
 
     beforeEach(() => {
       const fragment = getCategoryNodeFragment(0);
 
       query = gql`
         query TestQuery {
-          ...recursiveCategoryNode
+          categoryList {
+            ...recursiveCategoryNode
+          }
         }
         ${fragment}
       `;
@@ -96,41 +93,39 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
 
     it('should successfully query a childless response', done => {
       response.subscribe(resp => {
-        expect(resp.data).toEqual(childlessNavigationTree);
+        expect(resp.data.categoryList).toEqual(childlessNavigationTree);
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(query));
+      const op = controller.expectOne('TestQuery');
 
-      op.flush({
-        data: childlessNavigationTree
-      })
+      op.flushData({categoryList: childlessNavigationTree})
     });
 
     it('should not successfully query a childful response', done => {
       response.subscribe(resp => {
-        expect(resp.data.children).toBeFalsy();
+        expect(resp.data.categoryList.children).toBeFalsy();
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(query));
+      const op = controller.expectOne('TestQuery');
 
-      op.flush({
-        data: depth3NavigationTree
-      })
+      op.flushData({categoryList: depth3NavigationTree})
     });
   });
 
   describe('when the depth is 1', () => {
     let query: DocumentNode;
-    let response: Observable<ApolloQueryResult<CategoryNode>>;
+    let response: Observable<ApolloQueryResult<{categoryList: CategoryNode}>>;
 
     beforeEach(() => {
       const fragment = getCategoryNodeFragment(1);
 
       query = gql`
         query TestQuery {
-          ...recursiveCategoryNode
+          categoryList {
+            ...recursiveCategoryNode
+          }
         }
         ${fragment}
       `;
@@ -140,41 +135,39 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
 
     it('should successfully query a 1 child response', done => {
       response.subscribe(resp => {
-        expect(resp.data).toEqual(depth1NavigationTree);
+        expect(resp.data.categoryList).toEqual(jasmine.objectContaining(depth1NavigationTree));
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(query));
+      const op = controller.expectOne('TestQuery');
 
-      op.flush({
-        data: depth1NavigationTree
-      })
+      op.flushData({categoryList: depth1NavigationTree})
     });
 
     it('should not successfully query a depth 3 response', done => {
       response.subscribe(resp => {
-        expect(resp.data.children[0].children).toBeFalsy();
+        expect(resp.data.categoryList.children[0].children).toBeFalsy();
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(query));
+      const op = controller.expectOne('TestQuery');
 
-      op.flush({
-        data: depth3NavigationTree
-      })
+      op.flushData({categoryList: depth3NavigationTree})
     });
   });
 
   describe('when the depth is 3', () => {
     let query: DocumentNode;
-    let response: Observable<ApolloQueryResult<CategoryNode>>;
+    let response: Observable<ApolloQueryResult<{categoryList: CategoryNode}>>;
 
     beforeEach(() => {
 			const fragment = getCategoryNodeFragment(3);
 
       query = gql`
         query TestQuery {
-          ...recursiveCategoryNode
+          categoryList {
+            ...recursiveCategoryNode
+          }
         }
         ${fragment}
       `;
@@ -184,15 +177,13 @@ describe('Navigation | Driver | Magento | getCategoryNodeFragment', () => {
 
     it('should successfully query a 3 child response', done => {
       response.subscribe(resp => {
-        expect(resp.data).toEqual(depth3NavigationTree);
+        expect(resp.data.categoryList).toEqual(depth3NavigationTree);
         done();
       });
 
-      const op = controller.expectOne(addTypenameToDocument(query));
+      const op = controller.expectOne('TestQuery');
 
-      op.flush({
-        data: depth3NavigationTree
-      })
+      op.flushData({categoryList: depth3NavigationTree})
     });
 	});
 
