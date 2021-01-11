@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.23.1](https://github.com/graycoreio/daffodil/compare/v0.23.0...v0.23.1) (2021-01-11)
+
+
+### Features
+
+* **navigation:** export the MagentoBreadcrumb interface ([#1215](https://github.com/graycoreio/daffodil/issues/1215)) ([5fddf83](https://github.com/graycoreio/daffodil/commit/5fddf83c4a18b8a2827a519036b8f6934cf884a2))
+
 ## [0.23.0](https://github.com/graycoreio/daffodil/compare/v0.22.1...v0.23.0) (2021-01-11)
 
 
