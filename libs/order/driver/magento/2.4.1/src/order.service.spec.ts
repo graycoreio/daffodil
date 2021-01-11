@@ -16,7 +16,7 @@ import * as validators from './validators/public_api';
 import { MagentoOrderTestDataFactory } from './helpers/public_api';
 import { DaffOrderMagentoService } from './order.service';
 
-describe('Driver | Magento | Order | OrderService', () => {
+describe('Order | Driver | Magento | 2.4.1 | OrderService', () => {
   let service: DaffOrderMagentoService;
   let controller: ApolloTestingController;
   let testDataFactory: MagentoOrderTestDataFactory;

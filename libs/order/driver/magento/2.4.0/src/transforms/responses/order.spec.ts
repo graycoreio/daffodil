@@ -40,7 +40,7 @@ import {
 
 import { daffMagentoTransformOrder } from './order';
 
-describe('Driver | Magento | Order | Transformer | Order', () => {
+describe('Order | Driver | Magento | 2.4.0 | Transformer | Order', () => {
   let daffOrderFactory: DaffOrderFactory;
   let daffOrderAddressFactory: DaffOrderAddressFactory;
   let daffOrderCouponFactory: DaffOrderCouponFactory;

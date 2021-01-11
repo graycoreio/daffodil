@@ -5,7 +5,7 @@ import { MagentoGetGuestOrdersResponse } from '@daffodil/order/driver/magento/2.
 
 import { validateGetOrdersResponse as validator } from './get-orders';
 
-describe('Driver | Magento | Order | Validator | GetOrders', () => {
+describe('Order | Driver | Magento | 2.4.0 | Validator | GetOrders', () => {
   let response: ApolloQueryResult<MagentoGetGuestOrdersResponse>;
 
   beforeEach(() => {

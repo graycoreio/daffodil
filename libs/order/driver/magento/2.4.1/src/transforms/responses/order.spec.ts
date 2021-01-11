@@ -6,7 +6,7 @@ import { MagentoOrder } from '@daffodil/order/driver/magento/2.4.1';
 import { MagentoOrderTestDataFactory } from '../../helpers/public_api';
 import { daffMagentoTransformOrder } from './order';
 
-describe('Driver | Magento | Order | Transformer | Order', () => {
+describe('Order | Driver | Magento | 2.4.1 | Transformer | Order', () => {
   let testDataFactory: MagentoOrderTestDataFactory;
 
   let mockDaffOrder: DaffOrder;
