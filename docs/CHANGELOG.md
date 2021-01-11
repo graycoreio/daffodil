@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.23.0](https://github.com/graycoreio/daffodil/compare/v0.22.1...v0.23.0) (2021-01-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cart:** this token has been renamed to `DAFF_CART_MAGENTO_EXTRA_CART_FRAGMENTS`, simply swap your existing token with the new one.
+
+### Features
+
+* **cart:** rename extra cart fragments token ([#1208](https://github.com/graycoreio/daffodil/issues/1208)) ([83c87fd](https://github.com/graycoreio/daffodil/commit/83c87fd0be1d60daab7bbbd16a34a672fe341b64))
+* **navigation:** get breadcrumbs with navigation queries ([#1210](https://github.com/graycoreio/daffodil/issues/1210)) ([00542a7](https://github.com/graycoreio/daffodil/commit/00542a7c4478c132261f495d58f11f7840acaf4d))
+
 ### [0.22.1](https://github.com/graycoreio/daffodil/compare/v0.22.0...v0.22.1) (2021-01-06)
 
 
