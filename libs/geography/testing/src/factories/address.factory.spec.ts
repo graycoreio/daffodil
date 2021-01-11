@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { DaffAddress } from '@daffodil/geography';
 
@@ -8,7 +8,7 @@ describe('Geography | Interfaces | Factories | DaffAddressFactory', () => {
 
   let daffodilAddressFactory;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       providers: [DaffAddressFactory]
     });
