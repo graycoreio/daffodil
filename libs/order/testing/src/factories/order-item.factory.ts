@@ -20,7 +20,7 @@ export class MockOrderItem implements DaffOrderItem {
   updated_at = faker.date.past();
   product_id = faker.random.number({min: 1, max: 1000});
   parent_item_id = faker.random.number({min: 1, max: 1000});
-  sku = faker.random.alphanumeric(20);
+  sku = faker.random.alphaNumeric(20);
   name = faker.random.word();
   weight = faker.random.number({min: 1, max: 1000});
   qty = faker.random.number({min: 1, max: 10});
