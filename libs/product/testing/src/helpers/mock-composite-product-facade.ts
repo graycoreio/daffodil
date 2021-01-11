@@ -1,15 +1,17 @@
 import { BehaviorSubject } from 'rxjs';
+import { Dictionary } from '@ngrx/entity';
+import { Injectable } from '@angular/core';
 
-import { 
-	DaffCompositeProductFacadeInterface, 
-	DaffCompositeProductItemOption, 
-	DaffCompositeProduct, 
+import {
+	DaffCompositeProductFacadeInterface,
+	DaffCompositeProductItemOption,
+	DaffCompositeProduct,
 	DaffCompositeProductItem,
 	DaffPriceRange,
 	DaffCompositeConfigurationItem
 } from '@daffodil/product';
-import { Dictionary } from '@ngrx/entity';
 
+@Injectable({providedIn: 'root'})
 export class MockDaffCompositeProductFacade implements DaffCompositeProductFacadeInterface {
 	getRequiredItemPricesForConfiguration(id: string, configuration?: Dictionary<DaffCompositeConfigurationItem>): BehaviorSubject<DaffPriceRange> {
 		return new BehaviorSubject(null);
