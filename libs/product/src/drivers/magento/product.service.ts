@@ -1,9 +1,8 @@
+import {Apollo} from 'apollo-angular';
 import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-import { Apollo } from 'apollo-angular';
 
 import { DaffProductServiceInterface } from '../interfaces/product-service.interface';
 import { GetAllProductsQuery } from './queries/get-all-products';
@@ -17,7 +16,7 @@ import { DaffProduct } from '../../models/product';
 @Injectable({
   providedIn: 'root'
 })
-export class DaffMagentoProductService implements DaffProductServiceInterface {  
+export class DaffMagentoProductService implements DaffProductServiceInterface {
   constructor(private apollo: Apollo) {}
 
   /**

@@ -1,10 +1,8 @@
+import {Apollo, gql} from 'apollo-angular';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
 
 import { DaffProduct } from '../../models/product';
 import { DaffProductServiceInterface } from '../interfaces/product-service.interface';
